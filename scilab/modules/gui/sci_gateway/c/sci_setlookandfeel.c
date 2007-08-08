@@ -22,14 +22,14 @@ int C2F(sci_setlookandfeel) _PARAMS((char *fname,unsigned long fname_len))
 		char *looknfeel = NULL;
 		int *paramoutINT=(int*)MALLOC(sizeof(int));
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		looknfeel=cstk(l1);
 
 		bOK = setlookandfeel(looknfeel);
 		*paramoutINT=(int)bOK;
 
 		n1=1;
-		CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &paramoutINT);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
 		LhsVar(1)=Rhs+1;
 
 		C2F(putlhsvar)();

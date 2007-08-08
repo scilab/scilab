@@ -34,8 +34,8 @@ int intsplin(char *fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
 
-  GetRhsVar(1,"d", &mx, &nx, &lx);
-  GetRhsVar(2,"d", &my, &ny, &ly);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
 
   if ( mx != my  ||  nx != ny  ||  (mx != 1  &&  nx != 1) ) 
     { 
@@ -75,7 +75,7 @@ int intsplin(char *fname,unsigned long fname_len)
 	  Scierror(999,"%s: for a clamped spline you must give the endpoint slopes\n\r",fname);
 	  return 0;
 	}
-      GetRhsVar(4,"d", &mc, &nc, &lc);
+      GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &mc, &nc, &lc);
       if ( mc*nc != 2 )
 	{
 	  Scierror(999,"%s: bad dimension for the 4 arg (endpoint slopes)\n\r",fname);
@@ -96,7 +96,7 @@ int intsplin(char *fname,unsigned long fname_len)
       return(0);
     };
 
-  CreateVar(Rhs+1, "d", &mx,  &nx,   &ld); /* memory for d (only argument returned) */   
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &mx,  &nx,   &ld); /* memory for d (only argument returned) */   
   d = stk(ld);
 
   switch(spline_type)
@@ -114,14 +114,14 @@ int intsplin(char *fname,unsigned long fname_len)
     case(NOT_A_KNOT) : case(NATURAL) : case(CLAMPED) : case(PERIODIC) :
       /*  (the wk4 work array is used only in the periodic case) */
       mwk1 = n; nwk1 = 1; mwk2 = n-1; nwk2 = 1; mwk3 = n-1; nwk3 = 1; mwk4 = n-1; nwk4 = 1;
-      CreateVar(Rhs+2, "d", &mwk1,  &nwk1,   &lwk1);
-      CreateVar(Rhs+3, "d", &mwk2,  &nwk2,   &lwk2);
-      CreateVar(Rhs+4, "d", &mwk3,  &nwk3,   &lwk3);
+      CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &mwk1,  &nwk1,   &lwk1);
+      CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mwk2,  &nwk2,   &lwk2);
+      CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &mwk3,  &nwk3,   &lwk3);
       lwk4 = lwk1;
       if (spline_type == CLAMPED) 
 	{ d[0] = c[0]; d[n-1] = c[1]; };
       if (spline_type == PERIODIC)
-	CreateVar(Rhs+5, "d", &mwk4,  &nwk4,   &lwk4);
+	CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE, &mwk4,  &nwk4,   &lwk4);
       C2F(splinecub) (x, y, d, &n, &spline_type, stk(lwk1), stk(lwk2), stk(lwk3), stk(lwk4));
       break;
     }

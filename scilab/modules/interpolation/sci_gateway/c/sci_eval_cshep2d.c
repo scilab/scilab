@@ -31,16 +31,16 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
 
-  GetRhsVar(1,"d", &mx, &nx, &lx);
-  GetRhsVar(2,"d", &my, &ny, &ly);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
   if ( mx != my  ||  nx != ny ) 
     { 
       Scierror(999,"%s: xp and yp must have the same dimension \r\n", fname);
       return 0;
     }
 
-  GetRhsVar(3,"t",&mt, &nt, &lt);
-  GetListRhsVar(3, 1, "S", &m1,  &n1, &Str);    /* m1 = 1, n1 = 8 ? a verifier */
+  GetRhsVar(3,TYPED_LIST_DATATYPE,&mt, &nt, &lt);
+  GetListRhsVar(3, 1,MATRIX_OF_STRING_DATATYPE, &m1,  &n1, &Str);    /* m1 = 1, n1 = 8 ? a verifier */
   if ( strcmp(Str[0],"cshep2d") != 0) 
     {
 		/* Free Str */
@@ -71,30 +71,30 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
 	  FREE(Str);
 	  Str=NULL;
   }
-  GetListRhsVar(3, 2, "d", &m2, &n2,  &lxyz);   /* m2 = n , n2 = 3  */
+  GetListRhsVar(3, 2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2,  &lxyz);   /* m2 = n , n2 = 3  */
   GetListRhsVar(3, 3, "I", &m3, &n3,  (int *)&Cell);  /* m3 = nr, n3 = nr */
   GetListRhsVar(3, 4, "I", &m4, &n4,  (int *)&Next);  /* m4 = 1 , n4 = n  */
-  GetListRhsVar(3, 5, "d", &m5, &n5,  &lgrid);  /* m5 = 1 , n5 = 4  */
-  GetListRhsVar(3, 6, "d", &m6, &n6,  &lrmax);  /* m6 = 1 , n6 = 1  */
-  GetListRhsVar(3, 7, "d", &m7, &n7,  &lrw);    /* m7 = 1 , n7 = n  */
-  GetListRhsVar(3, 8, "d", &m8, &n8,  &la);     /* m8 = 9 , n8 = n  */
+  GetListRhsVar(3, 5,MATRIX_OF_DOUBLE_DATATYPE, &m5, &n5,  &lgrid);  /* m5 = 1 , n5 = 4  */
+  GetListRhsVar(3, 6,MATRIX_OF_DOUBLE_DATATYPE, &m6, &n6,  &lrmax);  /* m6 = 1 , n6 = 1  */
+  GetListRhsVar(3, 7,MATRIX_OF_DOUBLE_DATATYPE, &m7, &n7,  &lrw);    /* m7 = 1 , n7 = n  */
+  GetListRhsVar(3, 8,MATRIX_OF_DOUBLE_DATATYPE, &m8, &n8,  &la);     /* m8 = 9 , n8 = n  */
 
   cell = (int *)Cell.D; next = (int *)Next.D; 
   xp = stk(lx); yp = stk(ly); np = mx*nx; 
   n = m2; nr = m3;
   xyz = stk(lxyz); grid = stk(lgrid);
 
-  CreateVar(4, "d", &mx, &nx, &lf); f = stk(lf);
+  CreateVar(4,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lf); f = stk(lf);
   if ( Lhs > 1 ) 
     { 
-      CreateVar(5, "d", &mx, &nx, &ldfdx); dfdx = stk(ldfdx);
-      CreateVar(6, "d", &mx, &nx, &ldfdy); dfdy = stk(ldfdy);
+      CreateVar(5,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &ldfdx); dfdx = stk(ldfdx);
+      CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &ldfdy); dfdy = stk(ldfdy);
     }
   if ( Lhs > 3 ) 
     {
-      CreateVar(7, "d", &mx, &nx, &ldffdxx); dffdxx = stk(ldffdxx);
-      CreateVar(8, "d", &mx, &nx, &ldffdxy); dffdyy = stk(ldffdxy);
-      CreateVar(9, "d", &mx, &nx, &ldffdyy); dffdxy = stk(ldffdyy);
+      CreateVar(7,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &ldffdxx); dffdxx = stk(ldffdxx);
+      CreateVar(8,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &ldffdxy); dffdyy = stk(ldffdxy);
+      CreateVar(9,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &ldffdyy); dffdxy = stk(ldffdyy);
     }
 
   switch( Lhs )

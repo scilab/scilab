@@ -44,9 +44,9 @@ int intinterp3d(char *fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
 
-  GetRhsVar(1,"d", &mxp, &nxp, &lxp); xp = stk(lxp);
-  GetRhsVar(2,"d", &myp, &nyp, &lyp); yp = stk(lyp);
-  GetRhsVar(3,"d", &mzp, &nzp, &lzp); zp = stk(lzp);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &lxp); xp = stk(lxp);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &myp, &nyp, &lyp); yp = stk(lyp);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mzp, &nzp, &lzp); zp = stk(lzp);
   if ( mxp != myp  ||  nxp != nyp || mxp != mzp  ||  nxp != nzp) 
     { 
       Scierror(999,"%s: xp, yp and zp must have the same dimensions \r\n", fname);
@@ -54,8 +54,8 @@ int intinterp3d(char *fname,unsigned long fname_len)
     }
   np = mxp * nxp;
 
-  GetRhsVar(4,"t",&mt, &nt, &lt);
-  GetListRhsVar(4, 1, "S", &m1,  &n1, &Str);
+  GetRhsVar(4,TYPED_LIST_DATATYPE,&mt, &nt, &lt);
+  GetListRhsVar(4, 1,MATRIX_OF_STRING_DATATYPE, &m1,  &n1, &Str);
   if ( strcmp(Str[0],"tensbs3d") != 0) 
     {
 		/* Free Str */
@@ -86,12 +86,12 @@ int intinterp3d(char *fname,unsigned long fname_len)
 	  FREE(Str);
 	  Str=NULL;
   }
-  GetListRhsVar(4, 2, "d", &mtx, &n,  &ltx);
-  GetListRhsVar(4, 3, "d", &mty, &n,  &lty);
-  GetListRhsVar(4, 4, "d", &mtz, &n,  &ltz);
+  GetListRhsVar(4, 2,MATRIX_OF_DOUBLE_DATATYPE, &mtx, &n,  &ltx);
+  GetListRhsVar(4, 3,MATRIX_OF_DOUBLE_DATATYPE, &mty, &n,  &lty);
+  GetListRhsVar(4, 4,MATRIX_OF_DOUBLE_DATATYPE, &mtz, &n,  &ltz);
   GetListRhsVar(4, 5, "I", &m  , &n,  (int *)&Order);
-  GetListRhsVar(4, 6, "d", &nxyz,&n,  &lbcoef);
-  GetListRhsVar(4, 7, "d", &nsix,&n,  &lxyzminmax);
+  GetListRhsVar(4, 6,MATRIX_OF_DOUBLE_DATATYPE, &nxyz,&n,  &lbcoef);
+  GetListRhsVar(4, 7,MATRIX_OF_DOUBLE_DATATYPE, &nsix,&n,  &lxyzminmax);
   xyzminmax = stk(lxyzminmax);
   xmin = xyzminmax[0];  xmax = xyzminmax[1]; 
   ymin = xyzminmax[2];  ymax = xyzminmax[3]; 
@@ -112,14 +112,14 @@ int intinterp3d(char *fname,unsigned long fname_len)
   else
     outmode = C0;
 
-  CreateVar(Rhs+1, "d", &mxp, &nxp, &lfp); fp = stk(lfp);
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &lfp); fp = stk(lfp);
 
   order = (int *)Order.D;
   kx = order[0]; ky = order[1]; kz = order[2];
   nx = mtx - kx; ny = mty - ky; nz = mtz - kz; 
 
   mwork = ky*kz + 3*Max(kx,Max(ky,kz)) + kz;
-  CreateVar(Rhs+2, "d", &mwork, &one, &lwork);
+  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &mwork, &one, &lwork);
 
   if ( Lhs == 1 )
     {
@@ -130,9 +130,9 @@ int intinterp3d(char *fname,unsigned long fname_len)
     }
   else
     {
-      CreateVar(Rhs+3, "d", &mxp, &nxp, &ldfpdx); dfpdx = stk(ldfpdx);
-      CreateVar(Rhs+4, "d", &mxp, &nxp, &ldfpdy); dfpdy = stk(ldfpdy);
-      CreateVar(Rhs+5, "d", &mxp, &nxp, &ldfpdz); dfpdz = stk(ldfpdz);
+      CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &ldfpdx); dfpdx = stk(ldfpdx);
+      CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &ldfpdy); dfpdy = stk(ldfpdy);
+      CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &ldfpdz); dfpdz = stk(ldfpdz);
       C2F(driverdb3valwithgrad)(xp,yp,zp,fp,dfpdx, dfpdy, dfpdz, &np,
 				stk(ltx), stk(lty), stk(ltz),
 				&nx, &ny, &nz, &kx, &ky, &kz, stk(lbcoef), stk(lwork),

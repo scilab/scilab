@@ -26,16 +26,16 @@ int intab01od(char* fname)
 
 	CheckRhs(minrhs,maxrhs);  CheckLhs(minlhs,maxlhs);
 	theTOL=(double) C2F(dlamch)("e",1L);
-	GetRhsVar(1,"d",&mA,&nA,&ptrA);   A=1;        /*     A */
+	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&mA,&nA,&ptrA);   A=1;        /*     A */
 	N=mA;
 	theTOL=0.2*sqrt(2*theTOL)*N;
-	GetRhsVar(2,"d",&mB,&nB,&ptrB);   B=2;        /*     B */
+	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&mB,&nB,&ptrB);   B=2;        /*     B */
 	M=nB;
 	if (nA != mB || mA != nA )
 	{ Scierror(999,"Invalid A,B matrices \r\n");  return 0; }
 	if (Rhs == 3) {
 		/*    TOL is given:   ab01od(A,B,tol)   */
-		GetRhsVar(3,"d",&mtol,&ntol,&ptrTOL);  theTOL=*stk(ptrTOL);    /*     TOL */
+		GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&mtol,&ntol,&ptrTOL);  theTOL=*stk(ptrTOL);    /*     TOL */
 		if (theTOL>1.0||theTOL<0.0) {
 			Scierror(999,"TOL must be in [0 1]\r\n");  return 0; 
 		}
@@ -50,12 +50,12 @@ int intab01od(char* fname)
 	JOBV= "N"; if (Lhs >= 4)  JOBV="I";
 
 	/*     creating NCONT,U,KSTAIR,V,IWORK,DWORK   */
-	CreateVar(Rhs+1,"i",(un=1,&un),(un=1,&un),&ptrNCONT);  NCONT=Rhs+1;
-	CreateVar(Rhs+2,"d",&N,&N,&ptrU);  U=Rhs+2;
-	CreateVar(Rhs+3,"i",(un=1,&un),&N,&ptrKSTAIR);  KSTAIR=Rhs+3;
-	CreateVar(Rhs+4,"d",&M,&M,&ptrV);  V=Rhs+4;
-	CreateVar(Rhs+5,"i",(un=1,&un),&M,&ptrIWORK);
-	CreateVar(Rhs+6,"d",(un=1,&un),&LDWORK,&ptrDWORK);
+	CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),(un=1,&un),&ptrNCONT);  NCONT=Rhs+1;
+	CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&N,&N,&ptrU);  U=Rhs+2;
+	CreateVar(Rhs+3,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),&N,&ptrKSTAIR);  KSTAIR=Rhs+3;
+	CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE,&M,&M,&ptrV);  V=Rhs+4;
+	CreateVar(Rhs+5,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),&M,&ptrIWORK);
+	CreateVar(Rhs+6,MATRIX_OF_DOUBLE_DATATYPE,(un=1,&un),&LDWORK,&ptrDWORK);
 	C2F(ab01od)( "A", JOBU, JOBV, &N, &M, stk(ptrA), &LDA, 
 		stk(ptrB), &LDB, stk(ptrU), &LDU, stk(ptrV), &LDV, 
 		istk(ptrNCONT), &INDCON, istk(ptrKSTAIR), &theTOL,  
@@ -66,7 +66,7 @@ int intab01od(char* fname)
 	}
 	if (Lhs >= 3) {
 		/*     resizing KSTAIR      */
-		CreateVar(Rhs+7,"i",(un=1,&un),&INDCON,&ptrJUNK); 
+		CreateVar(Rhs+7,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),&INDCON,&ptrJUNK); 
 		KSTAIR=Rhs+7;
 		C2F(icopy)(&INDCON,istk(ptrKSTAIR),(un=1,&un),istk(ptrJUNK),(un=1,&un)); }
 	/*     lhs variables: [NCONT,U,KSTAIR,V,A,B]=ab01od(A,B)   */

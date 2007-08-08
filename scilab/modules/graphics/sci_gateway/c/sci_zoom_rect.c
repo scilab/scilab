@@ -25,7 +25,7 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
   }
   else
   {
-    GetRhsVar(1,"d",&m,&n,&l); 
+    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l); 
     CheckLength(1,4,m*n);
     zoom_box(stk(l),&x_pixel,&y_pixel);
   }

@@ -37,9 +37,9 @@ int C2F(intreadxls)(char *fname, long lfn)
   CheckRhs(2,2);
 
   /*  checking variable Pos */
-  GetRhsVar(1,"d",&m1,&n1,&l1);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   fd=(int)*stk(l1);
-  GetRhsVar(2,"d",&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   pos=(int)*stk(l1);
 
   xls_read(&fd,&pos,&data, &ind, &N, &M,  &ierr);
@@ -64,14 +64,14 @@ int C2F(intreadxls)(char *fname, long lfn)
   MN=M*N;
   if (MN==0)
     {
-      CreateVar(Rhs+1, "d", &zero,&zero, &l1);
-      CreateVar(Rhs+2, "d", &zero,&zero, &l1);
+      CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &zero,&zero, &l1);
+      CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &zero,&zero, &l1);
     }
 
   else
     {
-      CreateVarFromPtr(Rhs+1, "d", &N,&M, &data);
-      CreateVarFromPtr(Rhs+2, "i", &N,&M, &ind);
+      CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &N,&M, &data);
+      CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE, &N,&M, &ind);
       FREE(data);
       FREE(ind);
     }
@@ -122,7 +122,7 @@ int C2F(intopenxls)(char *fname, long lfn)
   CheckRhs(1,1);
 
   /*  checking variable file */
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   C2F(cluni0)(cstk(l1), IN, &ns,(long int) (m1*n1),256L);
 
   TMPDIR=getTMPDIR();
@@ -154,7 +154,7 @@ int C2F(intopenxls)(char *fname, long lfn)
       Scierror(999,"%s :There is no xls stream in the ole2 file %s \r\n",fname,IN);
       return 0;
     }
-  CreateVar(Rhs+1,"i",&one,&one,&l2);
+  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&one,&one,&l2);
   *istk(l2)=fd; /* logical unit */
 
   xls_open(&ierr, &fd, &sst ,&ns, &Sheetnames, &Abspos,&nsheets);
@@ -195,7 +195,7 @@ int C2F(intopenxls)(char *fname, long lfn)
   if (ns != 0) 
   {
     /* Create a typed list to return the properties */
-    CreateVarFromPtr(Rhs+2,"S", &one, &ns, sst);
+    CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE, &one, &ns, sst);
     for (k=0;k<ns;k++) 
 	{
 		if ( (sst) && (sst[k]))
@@ -211,12 +211,12 @@ int C2F(intopenxls)(char *fname, long lfn)
 	}
   }
   else
-    CreateVar(Rhs+2,"d",&ns,&ns,&l2);
+    CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&ns,&ns,&l2);
 
   if (nsheets != 0) 
   {
     /* Create a typed list to return the properties */
-    CreateVarFromPtr(Rhs+3,"S", &one, &nsheets, Sheetnames);
+    CreateVarFromPtr(Rhs+3,MATRIX_OF_STRING_DATATYPE, &one, &nsheets, Sheetnames);
 	
 	if (Sheetnames)
 	{
@@ -234,7 +234,7 @@ int C2F(intopenxls)(char *fname, long lfn)
 
     
     
-    CreateVar(Rhs+4,"d", &one, &nsheets, &l2);
+    CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &one, &nsheets, &l2);
     for (i=0;i<nsheets;i++) *stk(l2+i)=Abspos[i];
 	if (Abspos)
 	{
@@ -243,8 +243,8 @@ int C2F(intopenxls)(char *fname, long lfn)
 	}
   }
   else {
-    CreateVar(Rhs+3,"d",&nsheets,&nsheets,&l2);
-    CreateVar(Rhs+4,"d",&nsheets,&nsheets,&l2);
+    CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&nsheets,&nsheets,&l2);
+    CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE,&nsheets,&nsheets,&l2);
   }
 
   LhsVar(1)= Rhs+1;

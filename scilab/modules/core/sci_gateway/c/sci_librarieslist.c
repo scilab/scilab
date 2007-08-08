@@ -22,12 +22,12 @@ int C2F(sci_librarieslist) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		int m = 0, n = 0;
 		m = sizelibraries; n = 1;
-		CreateVarFromPtr(Rhs+1, "S", &m, &n, libraries);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n, libraries);
 	}
 	else
 	{
 		int m = 0, n = 0, l = 0;
-		CreateVarFromPtr(Rhs+1, "d",&n,&m,&l);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&n,&m,&l);
 	}
 	LhsVar(1) = Rhs+1;
 

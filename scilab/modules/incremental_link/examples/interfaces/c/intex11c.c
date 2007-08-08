@@ -15,12 +15,12 @@ int intex11c(fname)
   CheckRhs(minrhs,maxrhs) ;
   CheckLhs(minlhs,maxlhs) ;
 
-  GetRhsVar(1, "d", &m1, &n1, &l1);
-  GetRhsVar(2, "d", &m2, &n2, &l2);
-  GetRhsVar(3, "d", &m2, &n2, &l2);
-  GetRhsVar(4, "d", &m2, &n2, &l2);
-  GetRhsVar(5, "d", &m2, &n2, &l2);
-  GetRhsVar(6, "d", &m2, &n2, &l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+  GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+  GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+  GetRhsVar(6,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
 
   /* 
    *  We receive 6 input variables indexed by (1,2,...6) 

@@ -28,8 +28,8 @@ int sci_xpolys(char *fname,unsigned long fname_len)
   SciWin();
   CheckRhs(2,3);
 
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
 
   if ( m1 * n1 == 0 || m2 * n2 == 0 )
@@ -41,12 +41,12 @@ int sci_xpolys(char *fname,unsigned long fname_len)
 
   if (Rhs == 3) 
   {
-    GetRhsVar(3,"i",&m3,&n3,&l3); CheckVector (3,m3,n3); CheckDimProp(1,3,m3 * n3 < n1);
+    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); CheckVector (3,m3,n3); CheckDimProp(1,3,m3 * n3 < n1);
   }
   else
   {
     int un=1;
-    CreateVar(3,"i",&un,&n1,&l3);
+    CreateVar(3,MATRIX_OF_INTEGER_DATATYPE,&un,&n1,&l3);
     for (i = 0 ; i < n1 ; ++i) *istk(l3+i) = 1;
   } 
 

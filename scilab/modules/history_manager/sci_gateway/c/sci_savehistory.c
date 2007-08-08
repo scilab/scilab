@@ -32,7 +32,7 @@ int C2F(sci_savehistory) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( GetType(1) == sci_strings )
 		{
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			Path=cstk(l1);
 
 			C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);

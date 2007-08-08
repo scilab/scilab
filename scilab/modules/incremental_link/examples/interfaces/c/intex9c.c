@@ -17,7 +17,7 @@ int intex9c(fname)
   CheckRhs(minrhs,maxrhs) ;
   CheckLhs(minlhs,maxlhs) ;
 
-  GetRhsVar( 1, "c", &m1, &n1, &l1);
+  GetRhsVar( 1,STRING_DATATYPE, &m1, &n1, &l1);
 
   as2osc(cstk(l1));
 

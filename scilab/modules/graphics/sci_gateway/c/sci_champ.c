@@ -69,10 +69,10 @@ int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
     Error(999); 
     return(0);
   }
-  GetRhsVar(1, "d", &m1, &n1, &l1);
-  GetRhsVar(2, "d", &m2, &n2, &l2);
-  GetRhsVar(3, "d", &m3, &n3, &l3);
-  GetRhsVar(4, "d", &m4, &n4, &l4);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
+  GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &m4, &n4, &l4);
   CheckSameDims(3,4,m3,n3,m4,n4);
   CheckDimProp(2,3,m2 * n2 != n3);
   CheckDimProp(1,3,m1 * n1 != m3); 

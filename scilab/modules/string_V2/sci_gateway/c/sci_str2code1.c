@@ -26,7 +26,7 @@ int C2F(sci_str2code1) _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(1,4);
   switch ( VarType(1)) {
 	  case 10 :
-	  GetRhsVar(1,"S",&m1,&n1,&Str);
+	  GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 	  mn = m1*n1; 
 	  str2code(Str,values,&nbValues);
 	  //  for (x=0;x<=62;x++)       /* To look up in the table */

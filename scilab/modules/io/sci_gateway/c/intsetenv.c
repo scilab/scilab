@@ -28,10 +28,10 @@ int	C2F(intsetenv) _PARAMS((char *fname, unsigned long len))
 	{
 		char *param1=NULL,*param2=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
 			
-		GetRhsVar(2,"c",&m1,&n1,&l1);
+		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 		param2=cstk(l1);
 
 		ReturnValueSetenv(setenvc(param1,param2));
@@ -53,7 +53,7 @@ int ReturnValueSetenv(int value)
 	else  *paramoutINT=(int)(FALSE);
 
 	n1=1;
-	CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &paramoutINT);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
     LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
 	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}

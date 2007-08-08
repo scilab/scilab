@@ -73,7 +73,7 @@ int inttimescicos(fname,fname_len)
   int un,l1;
   CheckRhs(-1,0);
   CheckLhs(1,1);
-  CreateVar(Rhs+1,"d",(un=1,&un),(un=1,&un),&l1);
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,(un=1,&un),(un=1,&un),&l1);
   *stk(l1)=get_scicos_time();
   LhsVar(1)=Rhs+1;
   return 0;
@@ -93,12 +93,12 @@ int intduplicate(fname,fname_len)
   int m1,m2,m3,n1,n2,n3,l1,l2,l3,n;
   CheckRhs(2,2);
   CheckLhs(1,1);
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   n=m1*n1;
   if (n==0) {
     m3=0;
-    CreateVar(Rhs+3, "d", &m3, &m3, &l3);
+    CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &m3, &l3);
     LhsVar(1) = Rhs+3;
     return 0;
   }
@@ -109,7 +109,7 @@ int intduplicate(fname,fname_len)
     }
   comp_size(stk(l2),&n3,n);
   m3=1;
-  CreateVar(Rhs+3, "d", &n3, &m3, &l3);
+  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &n3, &m3, &l3);
   duplicata(&n,stk(l1),stk(l2),stk(l3),&n3);
   LhsVar(1) = Rhs+3;
   return 0;
@@ -127,7 +127,7 @@ int intdiffobjs(fname,fname_len)
   CheckLhs(1,1);
   header1 = GetData(1);
   header2 = GetData(2);
-  CreateVar(Rhs+3,"d",(un=1,&un),(un=1,&un),&l3);
+  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,(un=1,&un),(un=1,&un),&l3);
   LhsVar(1) = Rhs+3;
   size1=2*(*Lstk(Top-Rhs+2)-*Lstk(Top-Rhs+1)); 
   size2=2*(*Lstk(Top-Rhs+3)-*Lstk(Top-Rhs+2));
@@ -158,14 +158,14 @@ int inttree2(fname,fname_len)
   CheckRhs(5,5);
   CheckLhs(2,2);
 
-  GetRhsVar(1,"i",&nvec,&mvec,&ipvec);
-  GetRhsVar(2,"i",&noin,&moin,&ipoin);
-  GetRhsVar(3,"i",&noinr,&moinr,&ipoinr);
-  GetRhsVar(4,"i",&ndep,&mdep,&ipdep);
-  GetRhsVar(5,"i",&ndepuptr,&mdepuptr,&ipdepuptr);
+  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&nvec,&mvec,&ipvec);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&noin,&moin,&ipoin);
+  GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&noinr,&moinr,&ipoinr);
+  GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&ndep,&mdep,&ipdep);
+  GetRhsVar(5,MATRIX_OF_INTEGER_DATATYPE,&ndepuptr,&mdepuptr,&ipdepuptr);
   n=nvec*mvec;
-  CreateVar(Rhs+6,"i",&n,&un,&ipord);
-  CreateVar(Rhs+7,"i",&un,&un,&ipok);
+  CreateVar(Rhs+6,MATRIX_OF_INTEGER_DATATYPE,&n,&un,&ipord);
+  CreateVar(Rhs+7,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&ipok);
 
   ctree2(istk(ipvec),n,istk(ipdep),istk(ipdepuptr),istk(ipoin),istk(ipoinr),
 	 istk(ipord),&nord,istk(ipok));
@@ -189,18 +189,18 @@ int inttree3(fname,fname_len)
   CheckRhs(8,8);
   CheckLhs(2,2);
 
-  GetRhsVar(1,"i",&nvec,&mvec,&ipvec);
-  GetRhsVar(2,"i",&ndep,&mdep,&ipdep);
-  GetRhsVar(3,"i",&ndepuptr,&mdepuptr,&ipdepuptr);
-  GetRhsVar(4,"i",&ntyp,&mtyp,&iptyp);
-  GetRhsVar(5,"i",&nbex,&mbex,&ipbex);
-  GetRhsVar(6,"i",&nbop,&mbop,&ipbop);
-  GetRhsVar(7,"i",&nbln,&mbln,&ipbln);
-  GetRhsVar(8,"i",&nblr,&mblr,&ipblr);
+  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&nvec,&mvec,&ipvec);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&ndep,&mdep,&ipdep);
+  GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&ndepuptr,&mdepuptr,&ipdepuptr);
+  GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&ntyp,&mtyp,&iptyp);
+  GetRhsVar(5,MATRIX_OF_INTEGER_DATATYPE,&nbex,&mbex,&ipbex);
+  GetRhsVar(6,MATRIX_OF_INTEGER_DATATYPE,&nbop,&mbop,&ipbop);
+  GetRhsVar(7,MATRIX_OF_INTEGER_DATATYPE,&nbln,&mbln,&ipbln);
+  GetRhsVar(8,MATRIX_OF_INTEGER_DATATYPE,&nblr,&mblr,&ipblr);
   
   n=nvec*mvec;
-  CreateVar(Rhs+9,"i",&n,&un,&ipord);
-  CreateVar(Rhs+10,"i",&un,&un,&ipok);
+  CreateVar(Rhs+9,MATRIX_OF_INTEGER_DATATYPE,&n,&un,&ipord);
+  CreateVar(Rhs+10,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&ipok);
 
   ctree3(istk(ipvec),n,istk(ipdep),istk(ipdepuptr),istk(iptyp),istk(ipbex),
 	 istk(ipbop),istk(ipbln),istk(ipblr),istk(ipord),&nord,istk(ipok));
@@ -221,15 +221,15 @@ int inttree4 _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(5,5);
   CheckLhs(2,2);
 
-  GetRhsVar(1,"i",&nvec,&mvec,&ipvec);
-  GetRhsVar(2,"i",&noin,&moin,&ipoin);
-  GetRhsVar(3,"i",&noinr,&moinr,&ipoinr);
-  GetRhsVar(4,"i",&nnd,&mnd,&ipnd);
-  GetRhsVar(5,"i",&ntyp,&mtyp,&iptyp);
+  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&nvec,&mvec,&ipvec);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&noin,&moin,&ipoin);
+  GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&noinr,&moinr,&ipoinr);
+  GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&nnd,&mnd,&ipnd);
+  GetRhsVar(5,MATRIX_OF_INTEGER_DATATYPE,&ntyp,&mtyp,&iptyp);
   n=nvec*mvec;
   nn=nnd*mnd;
-  CreateVar(Rhs+6,"i",&un,&nn,&ipr1);
-  CreateVar(Rhs+7,"i",&un,&nn,&ipr2);
+  CreateVar(Rhs+6,MATRIX_OF_INTEGER_DATATYPE,&un,&nn,&ipr1);
+  CreateVar(Rhs+7,MATRIX_OF_INTEGER_DATATYPE,&un,&nn,&ipr2);
 
   ctree4(istk(ipvec),n,istk(ipnd),mnd,istk(iptyp),istk(ipoin),
 	 istk(ipoinr),istk(ipr1),istk(ipr2),&nr);
@@ -255,7 +255,7 @@ int intxproperty(fname,fname_len)
   extern int n_pointer_xproperty;
   CheckRhs(-1,0);
   CheckLhs(1,1);
-  CreateVarFromPtr(Rhs+1,"i",&n_pointer_xproperty,(un=1,&un),&pointer_xproperty);
+  CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&n_pointer_xproperty,(un=1,&un),&pointer_xproperty);
   LhsVar(1)=Rhs+1;
   return 0;
 }
@@ -268,7 +268,7 @@ int intphasesim(fname,fname_len)
   int un,l1;
   CheckRhs(-1,0);
   CheckLhs(1,1);
-  CreateVar(Rhs+1,"i",(un=1,&un),(un=1,&un),&l1);
+  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),(un=1,&un),&l1);
   *istk(l1)=get_phase_simulation();
   LhsVar(1)=Rhs+1;
   return 0;
@@ -282,7 +282,7 @@ int intsetxproperty(fname,fname_len)
 {
   int un,l1,m1;
   CheckRhs(1,1);
-  GetRhsVar(1,"i",&m1,(un=1,&un),&l1);
+  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,(un=1,&un),&l1);
   set_pointer_xproperty(istk(l1));
   LhsVar(1)=0; 
   return 0;
@@ -296,7 +296,7 @@ int intsetblockerror(fname,fname_len)
 {
   int un,l1;
   CheckRhs(1,1);
-  GetRhsVar(1,"i",(un=1,&un),(un=1,&un),&l1);
+  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),(un=1,&un),&l1);
   set_block_error(*istk(l1));
   LhsVar(1)=0; 
   return 0;
@@ -772,8 +772,8 @@ int intcpass2(fname,fname_len)
       nmode[k]=(int)le1515[0];
     }
   
-  GetRhsVar(2, "i", &m1, &n1, &l1);
-  GetRhsVar(3, "i", &m2, &n2, &l2);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
+  GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
   if ((connectmat=MALLOC((m1*n1+1)*sizeof(int))) ==NULL )  return 0;		  
   connectmat[0]=m1*n1;
   for(i=0;i<n1;i++)
@@ -816,7 +816,7 @@ int intcpass2(fname,fname_len)
 
     }
   
-  GetRhsVar(5, "i", &one, &m4, &l3); 
+  GetRhsVar(5,MATRIX_OF_INTEGER_DATATYPE, &one, &m4, &l3); 
   solver=*istk(l3);
   
   cpass2(&bllst111,&bllst112,&bllst2,&bllst3,&bllst4,&bllst5,&bllst9,&bllst10,&bllst11,
@@ -827,11 +827,11 @@ int intcpass2(fname,fname_len)
 	 &nblk,&ndcblk,&subscr,&iord,&ok);
   if (!ok) 
     {
-      CreateVar(Rhs+11,"i", &one, &zeros, &l31);
-      CreateVar(Rhs+12,"i", &one, &zeros, &l32);
-      CreateVar(Rhs+13,"i", &one, &zeros, &l33);
-      CreateVar(Rhs+14,"i", &one, &zeros, &l39);
-      CreateVar(Rhs+15,"i", &one, &zeros, &l40);
+      CreateVar(Rhs+11,MATRIX_OF_INTEGER_DATATYPE, &one, &zeros, &l31);
+      CreateVar(Rhs+12,MATRIX_OF_INTEGER_DATATYPE, &one, &zeros, &l32);
+      CreateVar(Rhs+13,MATRIX_OF_INTEGER_DATATYPE, &one, &zeros, &l33);
+      CreateVar(Rhs+14,MATRIX_OF_INTEGER_DATATYPE, &one, &zeros, &l39);
+      CreateVar(Rhs+15,MATRIX_OF_INTEGER_DATATYPE, &one, &zeros, &l40);
       LhsVar(1) = Rhs+11;
       LhsVar(2) = Rhs+12;
       LhsVar(3) = Rhs+13;
@@ -890,23 +890,23 @@ int intcpass2(fname,fname_len)
   n7=(int) tevts[0];
   n8= evtspt[0];
   n9= outtb[0];
-  CreateVar(6,"t", &m31, &n31, &l31);
-  CreateListVarFromPtr(6,1,"S", &one, &n32, Str1);
-  CreateListVarFromPtr(6,2,"d", &n4, &one,  &y1);
-  CreateListVarFromPtr(6,3,"d", &n5, &one,  &y2);
-  CreateListVarFromPtr(6,4,"i", &n6, &one,  &y3);
-  CreateListVarFromPtr(6,5,"d", &n7, &one,  &y4);
-  CreateListVarFromPtr(6,6,"i", &n8, &one,  &y5);
-  CreateListVarFromPtr(6,7,"i", &one, &one, &y6);
-  CreateListVarFromPtr(6,8,"i", &n9, &one,  &y7);
+  CreateVar(6,TYPED_LIST_DATATYPE, &m31, &n31, &l31);
+  CreateListVarFromPtr(6,1,MATRIX_OF_STRING_DATATYPE, &one, &n32, Str1);
+  CreateListVarFromPtr(6,2,MATRIX_OF_DOUBLE_DATATYPE, &n4, &one,  &y1);
+  CreateListVarFromPtr(6,3,MATRIX_OF_DOUBLE_DATATYPE, &n5, &one,  &y2);
+  CreateListVarFromPtr(6,4,MATRIX_OF_INTEGER_DATATYPE, &n6, &one,  &y3);
+  CreateListVarFromPtr(6,5,MATRIX_OF_DOUBLE_DATATYPE, &n7, &one,  &y4);
+  CreateListVarFromPtr(6,6,MATRIX_OF_INTEGER_DATATYPE, &n8, &one,  &y5);
+  CreateListVarFromPtr(6,7,MATRIX_OF_INTEGER_DATATYPE, &one, &one, &y6);
+  CreateListVarFromPtr(6,8,MATRIX_OF_INTEGER_DATATYPE, &n9, &one,  &y7);
   LhsVar(1) = 6;
   FREE(iz0);
   FREE(tevts);
   FREE(evtspt);
   FREE(outtb);
   /********************** sim *****************/
-  CreateVar(7,"t", &m33, &n39, &l32);
-  CreateListVarFromPtr(7,1,"S", &one, &n40, Str2);
+  CreateVar(7,TYPED_LIST_DATATYPE, &m33, &n39, &l32);
+  CreateListVarFromPtr(7,1,MATRIX_OF_STRING_DATATYPE, &one, &n40, Str2);
   y8=(char**) (bllst111+1);
   n10=(int) bllst111[0];
   y9=(int*) (bllst6ptr+1);
@@ -999,36 +999,36 @@ int intcpass2(fname,fname_len)
   y38=(int*) (vecnull+1);
   n41=0;
   
-  CreateListVarFromPtr(7,2,"i", &n41, &one, &y38);
-  CreateListVarFromPtr(7,3,"i", &n11, &one, &y9);
-  CreateListVarFromPtr(7,4,"i", &n12,&one,  &y10);
-  CreateListVarFromPtr(7,5,"i", &n13, &one, &y11);
-  CreateListVarFromPtr(7,6,"i", &n14,&one,  &y12);
-  CreateListVarFromPtr(7,7,"i", &n15,&one,  &y13);
-  CreateListVarFromPtr(7,8,"i", &n16, &one, &y14);
-  CreateListVarFromPtr(7,9,"i", &n17, &one, &y15);
-  CreateListVarFromPtr(7,10,"i", &n18, &one, &y16);
-  CreateListVarFromPtr(7,11,"d", &n19,&one,  &y17);
-  CreateListVarFromPtr(7,12,"i", &n20, &one, &y18);
-  CreateListVarFromPtr(7,13,"i", &n21, &one, &y19);
-  CreateListVarFromPtr(7,14,"i", &n22, &one, &y20);
-  CreateListVarFromPtr(7,15,"i", &n23, &one, &y21);
-  CreateListVarFromPtr(7,16,"i", &n24, &one, &y22);
-  CreateListVarFromPtr(7,17,"i", &n25, &deux, &y23);
-  CreateListVarFromPtr(7,18,"i", &n26, &deux, &y24);
-  CreateListVarFromPtr(7,19,"i", &n27, &deux, &y25);
-  CreateListVarFromPtr(7,20,"i", &n28, &deux,&y26);
-  CreateListVarFromPtr(7,21,"i", &n29, &deux, &y27);
-  CreateListVarFromPtr(7,22,"i", &n30, &one, &y28);
-  CreateListVarFromPtr(7,23,"i", &one, &one, &y29);
-  CreateListVarFromPtr(7,24,"i", &n33, &one, &y30);
-  CreateListVarFromPtr(7,25,"i", &one, &one, &y31);
-  CreateListVarFromPtr(7,26,"i", &one, &one, &y32);
-  CreateListVarFromPtr(7,27,"i", &n34, &one, &y33);
-  CreateListVarFromPtr(7,28,"i", &n35,&one,  &y34);
-  CreateListVarFromPtr(7,29,"i", &n36, &deux, &y35);
-  CreateListVarFromPtr(7,30,"S", &n37, &one, y36);
-  CreateListVarFromPtr(7,31,"i", &n43, &one, &y41);
+  CreateListVarFromPtr(7,2,MATRIX_OF_INTEGER_DATATYPE, &n41, &one, &y38);
+  CreateListVarFromPtr(7,3,MATRIX_OF_INTEGER_DATATYPE, &n11, &one, &y9);
+  CreateListVarFromPtr(7,4,MATRIX_OF_INTEGER_DATATYPE, &n12,&one,  &y10);
+  CreateListVarFromPtr(7,5,MATRIX_OF_INTEGER_DATATYPE, &n13, &one, &y11);
+  CreateListVarFromPtr(7,6,MATRIX_OF_INTEGER_DATATYPE, &n14,&one,  &y12);
+  CreateListVarFromPtr(7,7,MATRIX_OF_INTEGER_DATATYPE, &n15,&one,  &y13);
+  CreateListVarFromPtr(7,8,MATRIX_OF_INTEGER_DATATYPE, &n16, &one, &y14);
+  CreateListVarFromPtr(7,9,MATRIX_OF_INTEGER_DATATYPE, &n17, &one, &y15);
+  CreateListVarFromPtr(7,10,MATRIX_OF_INTEGER_DATATYPE, &n18, &one, &y16);
+  CreateListVarFromPtr(7,11,MATRIX_OF_DOUBLE_DATATYPE, &n19,&one,  &y17);
+  CreateListVarFromPtr(7,12,MATRIX_OF_INTEGER_DATATYPE, &n20, &one, &y18);
+  CreateListVarFromPtr(7,13,MATRIX_OF_INTEGER_DATATYPE, &n21, &one, &y19);
+  CreateListVarFromPtr(7,14,MATRIX_OF_INTEGER_DATATYPE, &n22, &one, &y20);
+  CreateListVarFromPtr(7,15,MATRIX_OF_INTEGER_DATATYPE, &n23, &one, &y21);
+  CreateListVarFromPtr(7,16,MATRIX_OF_INTEGER_DATATYPE, &n24, &one, &y22);
+  CreateListVarFromPtr(7,17,MATRIX_OF_INTEGER_DATATYPE, &n25, &deux, &y23);
+  CreateListVarFromPtr(7,18,MATRIX_OF_INTEGER_DATATYPE, &n26, &deux, &y24);
+  CreateListVarFromPtr(7,19,MATRIX_OF_INTEGER_DATATYPE, &n27, &deux, &y25);
+  CreateListVarFromPtr(7,20,MATRIX_OF_INTEGER_DATATYPE, &n28, &deux,&y26);
+  CreateListVarFromPtr(7,21,MATRIX_OF_INTEGER_DATATYPE, &n29, &deux, &y27);
+  CreateListVarFromPtr(7,22,MATRIX_OF_INTEGER_DATATYPE, &n30, &one, &y28);
+  CreateListVarFromPtr(7,23,MATRIX_OF_INTEGER_DATATYPE, &one, &one, &y29);
+  CreateListVarFromPtr(7,24,MATRIX_OF_INTEGER_DATATYPE, &n33, &one, &y30);
+  CreateListVarFromPtr(7,25,MATRIX_OF_INTEGER_DATATYPE, &one, &one, &y31);
+  CreateListVarFromPtr(7,26,MATRIX_OF_INTEGER_DATATYPE, &one, &one, &y32);
+  CreateListVarFromPtr(7,27,MATRIX_OF_INTEGER_DATATYPE, &n34, &one, &y33);
+  CreateListVarFromPtr(7,28,MATRIX_OF_INTEGER_DATATYPE, &n35,&one,  &y34);
+  CreateListVarFromPtr(7,29,MATRIX_OF_INTEGER_DATATYPE, &n36, &deux, &y35);
+  CreateListVarFromPtr(7,30,MATRIX_OF_STRING_DATATYPE, &n37, &one, y36);
+  CreateListVarFromPtr(7,31,MATRIX_OF_INTEGER_DATATYPE, &n43, &one, &y41);
   LhsVar(2) = 7;
   
   FREE(zcptr);
@@ -1081,12 +1081,12 @@ int intcpass2(fname,fname_len)
   FREE(connectmat); 
   FREE(vecnull);
 
-  CreateVar(8,"l", &n10, &one, &l33);
+  CreateVar(8,LIST_DATATYPE, &n10, &one, &l33);
   for (i=0; i < n10; i++)
     {
       n38=(int)strlen(y8[i]);
       y37=*(y8+i);
-      CreateListVarFromPtr(8,i+1,"c", &n38, &one, &y37); 
+      CreateListVarFromPtr(8,i+1,STRING_DATATYPE, &n38, &one, &y37); 
     }
   LhsVar(3) = 8;
   for (i = 1; i <= nb; i++)
@@ -1096,16 +1096,16 @@ int intcpass2(fname,fname_len)
   if ((solverptr=MALLOC(sizeof(int))) ==NULL )  return 0;		  
   solverptr[0]=solver;
   y39=solverptr;
-  CreateVarFromPtr(Rhs+9, "i", &one, &one, &y39);
+  CreateVarFromPtr(Rhs+9,MATRIX_OF_INTEGER_DATATYPE, &one, &one, &y39);
   LhsVar(4) = Rhs+9;
   FREE(solverptr);
 
-  CreateVar(Rhs+10,"l", &nb, &one, &l40);
+  CreateVar(Rhs+10,LIST_DATATYPE, &nb, &one, &l40);
   for (i=1; i < nb+1; i++)
     {      
       y40=(int*) (corinvec+corinvptr[i]);
       n42=corinvptr[i+1]-corinvptr[i];
-      CreateListVarFromPtr(10,i,"i", &one, &n42, &y40); 
+      CreateListVarFromPtr(10,i,MATRIX_OF_INTEGER_DATATYPE, &one, &n42, &y40); 
     }
   LhsVar(5) = Rhs+10;
   FREE(corinvec);
@@ -3030,7 +3030,7 @@ int intgetscicosvarsc(fname,fname_len)
     if (ierr==TRUE_)
     {
      ptr_dd = (double *) ptr;
-     CreateVar(j+2,"d",&nv,&mv,&l_tmp); /* Create double variable at the top+j+1 addr. of the stack */
+     CreateVar(j+2,MATRIX_OF_DOUBLE_DATATYPE,&nv,&mv,&l_tmp); /* Create double variable at the top+j+1 addr. of the stack */
      for (i=0;i<nv*mv;i++) *stk(l_tmp+i) = ptr_dd[i]; /* copy returned array in istk */
     }
    }
@@ -3133,7 +3133,7 @@ int intgetscicosvarsc(fname,fname_len)
      {
       C2F(mklist)(&nblk);
       Top=Topsave; /* adjust Top counter */
-      CreateVar(j+2,"l",&nblk,(i=1,&i),&l_tmp); /* this is done to inform common intersci */
+      CreateVar(j+2,LIST_DATATYPE,&nblk,(i=1,&i),&l_tmp); /* this is done to inform common intersci */
      }
 
     }
@@ -3192,7 +3192,7 @@ int intgetscicosvarsc(fname,fname_len)
     j++;
     C2F(mktlist)(&j);
     Top=Top-1;
-    CreateVar(Rhs+2,"t",&j,(i=1,&i),&l_tmp); /* this is done to inform common intersci */
+    CreateVar(Rhs+2,TYPED_LIST_DATATYPE,&j,(i=1,&i),&l_tmp); /* this is done to inform common intersci */
    }
 
    /* put new variable in lsh argument */
@@ -3307,7 +3307,7 @@ int intbuildouttb(fname)
  /*check type of Rhs 1*/
  if (VarType(1)==1)
  {
-  GetRhsVar(1, "d", &m1, &n1, &l1);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
  }
  else if (VarType(1)==8)
  {
@@ -3336,7 +3336,7 @@ int intbuildouttb(fname)
  /*check type of Rhs 2*/
  if (VarType(2)==1)
  {
-  GetRhsVar(2, "d", &m2, &n2, &l2);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
  }
  else if (VarType(2)==8)
  {
@@ -3526,7 +3526,7 @@ int intbuildouttb(fname)
  }
 
  /* build output list */
- CreateVar(3,"l",&n_lnktyp,&n3,&l3);
+ CreateVar(3,LIST_DATATYPE,&n_lnktyp,&n3,&l3);
 
  for(i=0;i<n_lnktyp;i++)
  {
@@ -3539,7 +3539,7 @@ int intbuildouttb(fname)
               break;
              }
              for (j=0;j<nm;j++) ptr_d[j]=0;
-             CreateListVarFromPtr(3,i+1,"d",&lnksz[i],&lnksz[i+n_lnktyp], &ptr_d);
+             CreateListVarFromPtr(3,i+1,MATRIX_OF_DOUBLE_DATATYPE,&lnksz[i],&lnksz[i+n_lnktyp], &ptr_d);
              FREE(ptr_d);
              break;
 
@@ -3650,7 +3650,7 @@ int intbuildouttb(fname)
               break;
              }
              for (j=0;j<nm;j++) ptr_d[j]=0;
-             CreateListVarFromPtr(3,i+1,"d",&lnksz[i],&lnksz[i+n_lnktyp], &ptr_d);
+             CreateListVarFromPtr(3,i+1,MATRIX_OF_DOUBLE_DATATYPE,&lnksz[i],&lnksz[i+n_lnktyp], &ptr_d);
              FREE(ptr_d);
              break;
   }

@@ -42,13 +42,13 @@ int C2F(sci_settextcolor) _PARAMS((char *fname,unsigned long l))
 				int G=-1;
 				int B=-1;
 
-				GetRhsVar(1,"i",&m1,&n1,&l1);
+				GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 				R=*istk(l1);
 
-				GetRhsVar(2,"i",&m1,&n1,&l1);
+				GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 				G=*istk(l1);
 
-				GetRhsVar(3,"i",&m1,&n1,&l1);
+				GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 				B=*istk(l1);
 
 				if ((R>=0) && (R<256) &&
@@ -82,7 +82,7 @@ int C2F(sci_settextcolor) _PARAMS((char *fname,unsigned long l))
 	}
 
 	n1=1;
-	CreateVarFromPtr(Rhs+1, "b", &n1, &n1,&paramoutINT);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1,&paramoutINT);
 
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
@@ -117,13 +117,13 @@ int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname,unsigned long l))
 				int G=-1;
 				int B=-1;
 
-				GetRhsVar(1,"i",&m1,&n1,&l1);
+				GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 				R=*istk(l1);
 
-				GetRhsVar(2,"i",&m1,&n1,&l1);
+				GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 				G=*istk(l1);
 
-				GetRhsVar(3,"i",&m1,&n1,&l1);
+				GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 				B=*istk(l1);
 				if ( (R>=0) && (R<256) &&
 					 (G>=0) && (G<256) &&
@@ -156,7 +156,7 @@ int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname,unsigned long l))
 	}
 
 	n1=1;
-	CreateVarFromPtr(Rhs+1, "b", &n1, &n1,&paramoutINT);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1,&paramoutINT);
 
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();

@@ -16,7 +16,7 @@ int intex13c(fname)
   CheckRhs(minrhs,maxrhs) ;
   CheckLhs(minlhs,maxlhs) ;
 
-  GetRhsCVar(1, "d", &it1, &m1, &n1, &lr1,&lc1);
+  GetRhsCVar(1,MATRIX_OF_DOUBLE_DATATYPE, &it1, &m1, &n1, &lr1,&lc1);
   
   f99(stk(lr1), stk(lc1), &it1, &m1, &n1, &ierr);
   

@@ -23,7 +23,7 @@ int C2F(sci_getlookandfeel) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		m1=(int)strlen(look);
 		n1=1;
-		CreateVarFromPtr(Rhs+1, "c",&m1,&n1,&look);
+		CreateVarFromPtr(Rhs+1,STRING_DATATYPE,&m1,&n1,&look);
 		if (look) {FREE(look); look = NULL;}
 	}
 	else
@@ -31,7 +31,7 @@ int C2F(sci_getlookandfeel) _PARAMS((char *fname,unsigned long fname_len))
 		int l1=0;
 		m1=0;
 		n1=0;
-		CreateVar(Rhs+1,"c",  &m1, &n1, &l1);
+		CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
 	}
 	LhsVar(1) = Rhs+1;
 	

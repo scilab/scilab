@@ -23,17 +23,17 @@ int sci_savewave __PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(2,3);
   CheckLhs(1,1);
   /*  checking variable file */
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   /*  checking variable res */
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   mn2=m2*n2;
   /* Checking variable rate */
   if ( Rhs == 3 )
   {
-     GetRhsVar(3,"d",&m3,&n3,&l3);
+     GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
      rate =(int)(*stk(l3));
   }
-  CreateVar(Rhs+1, "d", &un,&un, &l4);
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &un,&un, &l4);
   lout=FILENAME_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
   channels = m2;

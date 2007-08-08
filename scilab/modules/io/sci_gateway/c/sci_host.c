@@ -16,7 +16,7 @@ int C2F(sci_host) _PARAMS((char *fname,unsigned long fname_len))
 		int m1 = 0, n1 = 0;
 		char **Str=NULL;
 
-		GetRhsVar(1,"S",&m1,&n1,&Str);
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 
 		if ( (m1 != 1) && (n1 != 1) )
 		{
@@ -30,7 +30,7 @@ int C2F(sci_host) _PARAMS((char *fname,unsigned long fname_len))
 			int l1 = 0;
 
 			C2F(systemc)(Str[0], &stat);
-			CreateVar(Rhs+1, "i", &one,&one, &l1);
+			CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &one,&one, &l1);
 			*istk(l1) = (int) stat;
 
 			LhsVar(1)= Rhs+1;

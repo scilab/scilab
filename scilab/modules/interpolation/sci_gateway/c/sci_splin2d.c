@@ -41,9 +41,9 @@ int intsplin2d(char *fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
 
-  GetRhsVar(1,"d", &mx, &nx, &lx);
-  GetRhsVar(2,"d", &my, &ny, &ly);
-  GetRhsVar(3,"d", &mz, &nz, &lz);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mz, &nz, &lz);
 
   if ( mx != 1 || my != 1 || mz != nx || nz != ny || nx < 2 || ny < 2)
     { 
@@ -75,12 +75,12 @@ int intsplin2d(char *fname,unsigned long fname_len)
 
   /* memory for the big C array */
   mc = 16*(nx-1)*(ny-1); nc = 1;
-  CreateVar( Rhs+1, "d", &mc,  &nc, &lc);
+  CreateVar( Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &mc,  &nc, &lc);
   C = stk(lc);
   /* memory for work arrays  */
-  CreateVar( Rhs+2, "d", &nx, &ny, &lp);
-  CreateVar( Rhs+3, "d", &nx, &ny, &lq);
-  CreateVar( Rhs+4, "d", &nx, &ny, &lr);
+  CreateVar( Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &nx, &ny, &lp);
+  CreateVar( Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &nx, &ny, &lq);
+  CreateVar( Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &nx, &ny, &lr);
 
   if (spline_type == MONOTONE || spline_type == FAST || spline_type == FAST_PERIODIC)
     {   
@@ -94,11 +94,11 @@ int intsplin2d(char *fname,unsigned long fname_len)
 
       nxy = Max(nx,ny); nxym1 = nxy-1; nxym2 = nxy-2; 
 
-      CreateVar( Rhs+5, "d", &nxy,   &one, &lA_d);
-      CreateVar( Rhs+6, "d", &nxym1, &one, &lA_sd);
-      CreateVar( Rhs+7, "d", &ny,    &one, &ld);
-      CreateVar( Rhs+8, "d", &nxy,   &one, &lqdu);
-      CreateVar( Rhs+9, "d", &ny,    &one, &lutemp);
+      CreateVar( Rhs+5,MATRIX_OF_DOUBLE_DATATYPE, &nxy,   &one, &lA_d);
+      CreateVar( Rhs+6,MATRIX_OF_DOUBLE_DATATYPE, &nxym1, &one, &lA_sd);
+      CreateVar( Rhs+7,MATRIX_OF_DOUBLE_DATATYPE, &ny,    &one, &ld);
+      CreateVar( Rhs+8,MATRIX_OF_DOUBLE_DATATYPE, &nxy,   &one, &lqdu);
+      CreateVar( Rhs+9,MATRIX_OF_DOUBLE_DATATYPE, &ny,    &one, &lutemp);
 
       if (spline_type == PERIODIC)
 	{

@@ -13,27 +13,27 @@ int intdlassq(fname)
   static int minlhs=1, minrhs=1, maxlhs=2, maxrhs=3;
   CheckRhs(minrhs,maxrhs) ;  CheckLhs(minlhs,maxlhs) ;
   
-  GetRhsVar(1, "d", &mX, &nX, &lX);   /* X */
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mX, &nX, &lX);   /* X */
   N=mX*nX;
   NRHS=Rhs;
   switch ( NRHS ) {
   case 3:
     /*    dlassq(x, scale, sumsq)   */
-    GetRhsVar(2, "d", &mSCALE, &nSCALE, &lSCALE);   /* SCALE */
-    GetRhsVar(3, "d", &mSUMSQ, &nSUMSQ, &lSUMSQ);   /* SUMSQ */
+    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &mSCALE, &nSCALE, &lSCALE);   /* SCALE */
+    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mSUMSQ, &nSUMSQ, &lSUMSQ);   /* SUMSQ */
     break;
   case 2:
     /*    dlassq(x, scale)   */
     SUMSQ=0;
-    GetRhsVar(2, "d", &mSCALE, &nSCALE, &lSCALE);   /* SCALE */
-    CreateVar(3, "d", &un, &un, &lSUMSQ);
+    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &mSCALE, &nSCALE, &lSCALE);   /* SCALE */
+    CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &lSUMSQ);
     *stk(lSUMSQ)=SUMSQ;   /*  default  */
     break;
   case 1:
     /*    dlassq(x)   */
     SUMSQ=0;SCALE=0;
-    CreateVar(2, "d", &un, &un, &lSCALE);
-    CreateVar(3, "d", &un, &un, &lSUMSQ);
+    CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &lSCALE);
+    CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &lSUMSQ);
     *stk(lSUMSQ)=SUMSQ; *stk(lSCALE)=SCALE;  /*  default  */
     break;
   default:

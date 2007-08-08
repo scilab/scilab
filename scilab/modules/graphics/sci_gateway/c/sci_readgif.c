@@ -28,7 +28,7 @@ int sci_readgif ( char * fname, unsigned long fname_len )
 		int* ArrayTmpL1=NULL;
 		int* ArrayTmpL2=NULL;
 		
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		FilenameGIF=cstk(l1);
 
 		readGifImg(FilenameGIF,&imgptr,&m,&n,&ncol) ;
@@ -67,10 +67,10 @@ int sci_readgif ( char * fname, unsigned long fname_len )
 			k++;
 		}
 		
-		CreateVarFromPtr(Rhs+1, "i",&ml1,&nl1,&ArrayTmpL1);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&ml1,&nl1,&ArrayTmpL1);
 		LhsVar(1)=Rhs+1;
 
-		CreateVarFromPtr(Rhs+2, "i",&ml2,&nl2,&ArrayTmpL2);
+		CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ml2,&nl2,&ArrayTmpL2);
 		LhsVar(2)=Rhs+2;
 
 		if ( ArrayTmpL2 != NULL ) {FREE(ArrayTmpL2);ArrayTmpL2=NULL;}

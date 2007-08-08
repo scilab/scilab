@@ -18,9 +18,9 @@ int intmatmul(fname)
   CheckLhs(minlhs,maxlhs) ;
 
   /* Get A (#1) and B (#2) and create C (#3) as double ("d") matrices */
-  GetRhsVar(1, "d", &m1, &n1, &l1);   /* m1, n1 (and l1) are output parameters */
-  GetRhsVar(2, "d", &m2, &n2, &l2);   /* m1, n1 (and l1) are output parameters */
-  CreateVar(3, "d", &m1, &n2, &l3);   /* m1 and n2 are input parameters */
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);   /* m1, n1 (and l1) are output parameters */
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);   /* m1, n1 (and l1) are output parameters */
+  CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n2, &l3);   /* m1 and n2 are input parameters */
 
   /* Check dimensions    */
   if (!(n1==m2)) { sciprint("%s: Incompatible inputs \r\n", "matmul");

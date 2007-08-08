@@ -41,10 +41,10 @@ int intsmopen(char *fname,unsigned long fname_len)
 	CheckRhs(1,3);
 	CheckLhs(1,2);
 	/*  checking variable file */
-	GetRhsVar(1,"c",&m1,&n1,&l1);
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	if ( Rhs >= 2) 
 	{
-		GetRhsVar(2,"c",&m2,&n2,&l2);
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		status = cstk(l2);
 	}
 	else 
@@ -53,11 +53,11 @@ int intsmopen(char *fname,unsigned long fname_len)
 	}
 	if ( Rhs >= 3) 
 	{
-		GetRhsVar(3,"i",&m3,&n3,&l3);
+		GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
 		swap = *istk(l3);
 	} 
-	CreateVar(Rhs+1, "i", &un,&un, &l4);
-	CreateVar(Rhs+2, "d", &un,&un, &l5);
+	CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &un,&un, &l4);
+	CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &un,&un, &l5);
 	lout=FILENAME_MAX;
 	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
 
@@ -102,13 +102,13 @@ int intsmputstr(char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 	/*  checking variable file */
-	GetRhsVar(1,"c",&m1,&n1,&l1);
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	if ( Rhs >= 2) 
 	{
-		GetRhsVar(2,"i",&m2,&n2,&l2);
+		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
 		fd = *istk(l2);
 	}
-	CreateVar(Rhs+1, "d", &m3,&n3, &l3);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &m3,&n3, &l3);
 	C2F(mputstr)(&fd,cstk(l1),stk(l3),&err);
 	if (err >  0)
 	{
@@ -133,10 +133,10 @@ int intsmclose(char *fname,unsigned long fname_len)
 	/*  checking variable file */
 	if ( Rhs >= 1) 
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		fd = *istk(l1);
 	}
-	CreateVar(Rhs+1, "d", &un,&un, &l2);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &un,&un, &l2);
 	C2F(mclose)(&fd,stk(l2));
 	LhsVar(1)= Rhs+1;
 	PutLhsVar();
@@ -154,11 +154,11 @@ int intsmput(char *fname,unsigned long fname_len)
 	CheckRhs(1,3);
 	CheckLhs(1,1);
 	/*  checking variable res */
-	GetRhsVar(1,"d",&m1,&n1,&l1);
+	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	n1=m1*n1;
 	if ( Rhs >= 2) 
 	{
-		GetRhsVar(2,"c",&m2,&n2,&l2);
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		type = cstk(l2);
 	}
 	else 
@@ -167,7 +167,7 @@ int intsmput(char *fname,unsigned long fname_len)
 	}
 	if ( Rhs >= 3) 
 	{
-		GetRhsVar(3,"i",&m3,&n3,&l3);
+		GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
 		fd = *istk(l3);
 	}
 	C2F(mput)(&fd,stk(l1),&n1,type,&err);
@@ -195,12 +195,12 @@ int intsmget(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 	if ( Rhs >= 1) 
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		n  = *istk(l1);
 	}
 	if ( Rhs >= 2) 
 	{
-		GetRhsVar(2,"c",&m2,&n2,&l2);
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		type = cstk(l2);
 	}
 	else 
@@ -209,10 +209,10 @@ int intsmget(char *fname,unsigned long fname_len)
 	}
 	if ( Rhs >= 3) 
 	{
-		GetRhsVar(3,"i",&m3,&n3,&l3);
+		GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
 		fd = *istk(l3);
 	}
-	CreateVar(Rhs+1,"d",&un,&n,&l4);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&un,&n,&l4);
 	LhsVar(1)= Rhs+1;
 	C2F(mget)(&fd,stk(l4),&n,type,&err);
 	if (err >  0) 
@@ -228,7 +228,7 @@ int intsmget(char *fname,unsigned long fname_len)
 		n5 = -err -1;
 		if ( n5 < n ) 
 		{
-			CreateVar(Rhs+2,"d",&un,&n5,&l5);
+			CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&un,&n5,&l5);
 			for ( i=0; i < n5 ; i++) *stk(l5+i) = *stk(l4+i);
 			LhsVar(1)= Rhs+2;
 		}
@@ -249,15 +249,15 @@ int intsmgetstr(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 	if ( Rhs >= 1) 
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		n  = *istk(l1);
 	}
 	if ( Rhs >= 2) 
 	{
-		GetRhsVar(2,"i",&m2,&n2,&l2);
+		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
 		fd = *istk(l2);
 	}
-	CreateVar(Rhs+1,"c",&n,&un,&l3);
+	CreateVar(Rhs+1,STRING_DATATYPE,&n,&un,&l3);
 	C2F(mgetstr1)(&fd,cstk(l3),&n,&err);
 	LhsVar(1)=Rhs+1;
 	if (err >  0) 
@@ -273,7 +273,7 @@ int intsmgetstr(char *fname,unsigned long fname_len)
 		n5 = -err -1;
 		if ( n5 < n ) 
 		{
-			CreateVar(Rhs+2,"c",&un,&n5,&l5);
+			CreateVar(Rhs+2,STRING_DATATYPE,&un,&n5,&l5);
 			strcpy(cstk(l5),cstk(l3));
 			LhsVar(1)= Rhs+2;
 		}
@@ -293,10 +293,10 @@ int intsmeof(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 	if ( Rhs >= 1) 
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		fd  = *istk(l1);
 	}
-	CreateVar(Rhs+1,"d",&un,&un,&lr);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&lr);
 	C2F(meof)(&fd,stk(lr));
 	LhsVar(1)= Rhs+1;
 	PutLhsVar();
@@ -313,15 +313,15 @@ int intsmseek(char *fname,unsigned long fname_len)
 	Nbvars=0;
 	CheckRhs(1,3);
 	CheckLhs(1,1);
-	GetRhsVar(1,"i",&m1,&n1,&l1);
+	GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	if ( Rhs >= 2) 
 	{
-		GetRhsVar(2,"i",&m2,&n2,&l2);
+		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
 		fd = *istk(l2);
 	}
 	if ( Rhs >= 3)
 	{
-		GetRhsVar(3,"c",&m3,&n3,&l3);
+		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
 		flag = cstk(l3);
 	}
 	else
@@ -352,10 +352,10 @@ int intsmtell(char *fname,unsigned long fname_len)
 	/*  checking variable file */
 	if ( Rhs >= 1) 
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		fd = *istk(l1);
 	}
-	CreateVar(Rhs+1, "d", &un,&un, &l2);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &un,&un, &l2);
 	C2F(mtell)(&fd,stk(l2),&err);
 	if (err >  0)
 	{
@@ -380,7 +380,7 @@ int intsmclearerr(char *fname,unsigned long fname_len)
 	/*  checking variable file */
 	if ( Rhs >= 1) 
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		fd = *istk(l1);
 	}
 	C2F(mclearerr)(&fd);
@@ -400,10 +400,10 @@ int intsmerror(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 	if ( Rhs >= 1) 
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		fd  = *istk(l1);
 	}
-	CreateVar(Rhs+1,"d",&un,&un,&lr);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&lr);
 	C2F(merror)(&fd,stk(lr));
 	LhsVar(1)= Rhs+1;
 	PutLhsVar();

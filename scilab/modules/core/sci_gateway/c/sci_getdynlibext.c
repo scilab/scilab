@@ -20,7 +20,7 @@ int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len))
 	sprintf(output,"%s",SHARED_LIB_EXT);
 	
 	n1=1;
-	CreateVarFromPtr( Rhs+1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 	if (output) {FREE(output);output=NULL;}
 
 	LhsVar(1) = Rhs+1;

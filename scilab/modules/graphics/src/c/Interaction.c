@@ -505,7 +505,7 @@ sciExecCallback (sciPointObj * pthis)
     case SCI_POLYLINE:
       if (sciGetCallback(pthis))
 	{
-	  CreateVar(1, "c", &m1, &n1, &l1);
+	  CreateVar(1,STRING_DATATYPE, &m1, &n1, &l1);
 	  strncpy(cstk(l1), sciGetCallback(pthis), sciGetCallbackLen(pthis));
 	  /* back conversion to Scilab coding */
 	  Convert2Sci(1);

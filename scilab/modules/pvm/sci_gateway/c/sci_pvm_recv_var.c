@@ -16,15 +16,15 @@ int intspvm_recv_var _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(3,3);
   CheckLhs(1,1);
   /*  checking variable tid */
-  GetRhsVar(1,"i",&m1,&n1,&l1);
+  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
   CheckScalar(1,m1,n1);
   /*  checking variable tag */
-  GetRhsVar(2,"i",&m2,&n2,&l2);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
   CheckScalar(2,m2,n2);
   /*  checking variable buff */
-  GetRhsVar(3,"c",&m3,&n3,&l3);
+  GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
   /* cross variable size checking */
-  CreateVar(Rhs+4,"i",&un,&un,&l4);/* named: res */
+  CreateVar(Rhs+4,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l4);/* named: res */
   C2F(scipvmrecvvar)(istk(l1),istk(l2),cstk(l3),istk(l4));
   LhsVar(1)= Rhs+4;
   

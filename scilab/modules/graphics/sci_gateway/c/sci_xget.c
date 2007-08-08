@@ -35,7 +35,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   CheckRhs(1,2);
   CheckLhs(0,1);
 
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
   /* check if key is valid */
   for (i=0; i < NUMSETFONC ; i++)
@@ -53,13 +53,13 @@ int sci_xget(char *fname,unsigned long fname_len)
     strncpy(C2F(cha1).buf,cstk(l1),v);
     C2F(msgs)(&i,&v);
     x2=0;
-    CreateVar(Rhs+1,"d",&x2,&x2,&l3);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&x2,&x2,&l3);
     LhsVar(1)=Rhs+1;
     return 0;
   }
 
   if (Rhs == 2) {
-    GetRhsVar(2,"d",&m2,&n2,&l2); 
+    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); 
     CheckScalar(2,m2,n2);  
     flagx = (integer) *stk(l2); }
   else
@@ -70,7 +70,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     int bufl;
     /*     special case for global variables set */
     C2F(xgetg)( cstk(l1),C2F(cha1).buf,&bufl,m1,bsiz);
-    CreateVar(Rhs+1,"c",&bufl,&one,&l3);
+    CreateVar(Rhs+1,STRING_DATATYPE,&bufl,&one,&l3);
     strncpy(cstk(l3),C2F(cha1).buf,bufl);
     LhsVar(1)=Rhs+1;
     return 0;
@@ -98,7 +98,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     x1[0] = sciGetMarkStyle(subwin);
     x1[1] = sciGetMarkSize(subwin);
     x2=2;
-    CreateVar(Rhs+1,"d",&one,&x2,&l3);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
     for (i2 = 0 ; i2 < x2 ; ++i2)
 		*stk(l3 + i2 ) = (double) x1[i2];      
     LhsVar(1)=Rhs+1;
@@ -111,7 +111,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 
     x1[0]=x1[1];
     x2=1;
-    CreateVar(Rhs+1,"d",&one,&x2,&l3);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
     for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];      
     LhsVar(1)=Rhs+1;
   }
@@ -121,7 +121,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     x1[0] = sciGetLineStyle(subwin);
   
     x2=1;
-    CreateVar(Rhs+1,"d",&one,&x2,&l3);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
     *stk(l3 ) = (double) x1[0];      
     LhsVar(1)=Rhs+1;
   } 
@@ -129,7 +129,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   else if ( strcmp(cstk(l1),"old_style") == 0) 
   {
     x2=1;
-    CreateVar(Rhs+1,"d",&one,&x2,&l3);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
     *stk(l3 ) = 0 ;    
     LhsVar(1)=Rhs+1;          
   }   /* NG end*/
@@ -160,12 +160,12 @@ int sci_xget(char *fname,unsigned long fname_len)
       C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
     }
     if (x2 > 0) {
-      CreateVar(Rhs+1,"d",&one,&x2,&l3);
+      CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
       for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];      
     }
     else {
       x2=0;
-      CreateVar(Rhs+1,"d",&x2,&x2,&l3);
+      CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&x2,&x2,&l3);
     }
     LhsVar(1)=Rhs+1;
   }

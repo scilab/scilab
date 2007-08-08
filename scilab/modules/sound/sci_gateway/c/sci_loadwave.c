@@ -23,7 +23,7 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   CheckRhs(1,1);
   CheckLhs(1,3);
   /*  checking variable file */
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   /*** first call to get the size **/
   lout=FILENAME_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
@@ -37,8 +37,8 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   /* using channels */
   m2 =Wi.wChannels;
   nn2 = n2/m2;
-  CreateVar(Rhs+2,"d",&m2,&nn2,&l2);
-  CreateVar(Rhs+3,"d",&un,&eight,&l3);
+  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&nn2,&l2);
+  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&un,&eight,&l3);
   
   *stk(l3)   = Wi.wFormatTag;	/* data format */
   *stk(l3+1) = Wi.wChannels;	/* number of channels */
@@ -50,7 +50,7 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   *stk(l3+7) = Wi.bytespersample; /* bytes per sample (per channel) */
 
   n4=1;m4=(int)strlen(Wi.wav_format);
-  CreateVar(Rhs+4,"c",&m4,&n4,&l4);
+  CreateVar(Rhs+4,STRING_DATATYPE,&m4,&n4,&l4);
   strncpy(cstk(l4),Wi.wav_format,strlen(Wi.wav_format));
   C2F(loadwave)(filename,stk(l2),&n2,1,&Wi,&err);
   if (err >  0)

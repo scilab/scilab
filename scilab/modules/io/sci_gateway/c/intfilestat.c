@@ -29,10 +29,10 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 #endif
    CheckRhs(1,1);
    CheckLhs(1,2);
-   GetRhsVar(1, "c", &m1, &n1, &l1); /* get file name */
+   GetRhsVar(1,STRING_DATATYPE, &m1, &n1, &l1); /* get file name */
 
    n=m1*n1+256;
-   CreateVar(2,"c",&one,&n,&l2);
+   CreateVar(2,STRING_DATATYPE,&one,&n,&l2);
    C2F(cluni0)(cstk(l1), cstk(l2), &m1,m1*n1,n);
    /* Get data associated with "given file": */
 #ifdef _MSC_VER
@@ -62,12 +62,12 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 		 if ( (DriveType==DRIVE_UNKNOWN) || (DriveType==DRIVE_NO_ROOT_DIR) )
 		 {
 			 n1=0;
-			 CreateVar(2,"d",&n1,&n1,&l2);
+			 CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&n1,&n1,&l2);
 		 }
 		 else
 		 {
 			 n1 = 13;
-			 CreateVar(2,"d",&one,&n1,&l2);
+			 CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&one,&n1,&l2);
 
 			 *stk(l2+0) =  0.0;
 			 *stk(l2+1) =  16895; /* TODO: explain what the hell is 16895 */
@@ -86,7 +86,7 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 		 LhsVar(1) = 2;
 		 if (Lhs==2) 
 		 {
-			 CreateVar(3,"d",&one,&one,&l2);
+			 CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&l2);
 			 *stk(l2) = (double) result;
 			 LhsVar(2) = 3;
 		 }
@@ -94,18 +94,18 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 	 else
 	 {
 		 n1=0;
-		 CreateVar(2,"d",&n1,&n1,&l2);
+		 CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&n1,&n1,&l2);
 	 }
      
 #else
 	 n1=0;
-	 CreateVar(2,"d",&n1,&n1,&l2);
+	 CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&n1,&n1,&l2);
 #endif
    }
    else
    {
      n1 = 13;
-     CreateVar(2,"d",&one,&n1,&l2);
+     CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&one,&n1,&l2);
 
      *stk(l2+0) = (double) buf.st_size;/* total size, in bytes */
      *stk(l2+1) = (double) buf.st_mode;/* protection */
@@ -129,7 +129,7 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
    }
   LhsVar(1) = 2;
   if (Lhs==2) {
-    CreateVar(3,"d",&one,&one,&l2);
+    CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&l2);
     *stk(l2) = (double) result;
     LhsVar(2) = 3;
   }

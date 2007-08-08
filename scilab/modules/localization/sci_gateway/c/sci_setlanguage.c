@@ -23,7 +23,7 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 		char *param=NULL;
 		char *newlanguage=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param=cstk(l1);
 
 		newlanguage=convertlanguagealias(param);
@@ -40,19 +40,19 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				if (!setlanguage(newlanguage,TRUE,TRUE))
 				{
-					CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+					CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 					*istk(l1)=(int)(FALSE);
 				}
 				else
 				{
-					CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+					CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 					*istk(l1)=(int)(TRUE);
 				}
 			}
 			else
 			{
 				/* do nothing */
-				CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 				*istk(l1)=(int)(TRUE);
 			}
 		}
@@ -64,7 +64,7 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 				sciprint("Choosing default language : \"%s\".\n\n",SCILABDEFAULTLANGUAGE);
 			}
 
-			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);
 		}
 		LhsVar(1)=Rhs+1;

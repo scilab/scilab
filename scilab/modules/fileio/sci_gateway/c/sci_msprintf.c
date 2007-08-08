@@ -31,7 +31,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	for (k=2;k<=Rhs;k++) {
 		if (VarType(k) !=1 && VarType(k) !=10) {OverLoad(k);return 0;}
 	}
-	GetRhsVar(1,"c",&m1,&n1,&l1);
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	ptrFormat=cstk(l1);
 
 	for(i=0;i<(int)strlen(ptrFormat);i++)
@@ -128,7 +128,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	if (rval == RET_BUG) return 0;
 	/** Create a Scilab String : lstr must not be freed **/
 	n2=1;
-	CreateVarFromPtr(Rhs+1, "S", &n, &n2, strs);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &n, &n2, strs);
 	for (k=0;k<n;k++) FREE(strs[k]);
 	FREE(strs);
 	LhsVar(1)=Rhs+1;

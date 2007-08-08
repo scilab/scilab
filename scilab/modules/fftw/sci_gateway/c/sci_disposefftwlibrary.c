@@ -13,12 +13,12 @@ int sci_disposefftwlibrary __PARAMS((char *fname,unsigned long fname_len))
 	n1=1;
 	if ( DisposeFFTWLibrary() )
 	{
-		CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 		*istk(l1)=(int)(TRUE);
 	}
 	else
 	{
-		CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 		*istk(l1)=(int)(FALSE);
 	}
 

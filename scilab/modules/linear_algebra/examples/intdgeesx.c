@@ -37,11 +37,11 @@ int intdgeesx(fname)
 	CheckLhs(1,3) ;
 	
 	/*--------------------A---------------------------*/
-	GetRhsVar(A, "d", &M, &N, &lA);
+	GetRhsVar(A,MATRIX_OF_DOUBLE_DATATYPE, &M, &N, &lA);
 	CheckSquare(A, M, N);
 	
 	/*--------------------W---------------------------*/
-	CreateCVar(W, "d", &it, &N, &un, &lWR, &lWI);
+	CreateCVar(W,MATRIX_OF_DOUBLE_DATATYPE, &it, &N, &un, &lWR, &lWI);
 	
 	NLHS=Lhs;
 	LDA = MAX(1,N);
@@ -55,7 +55,7 @@ int intdgeesx(fname)
 			printf("== 2 ==\r\n");
 			JOBVS="V";
 			/*--------------------VS---------------------------*/
-			CreateVar(VS, "d", &N, &N, &lVS);
+			CreateVar(VS,MATRIX_OF_DOUBLE_DATATYPE, &N, &N, &lVS);
 			/*--------------------WORK---------------------------*/
 			WORK=4; LWORKMIN = MAX(1, 3*N);
 			LWORK=Maxvol(WORK,"d");  /* max memory currently available */
@@ -63,7 +63,7 @@ int intdgeesx(fname)
 			
 			LIWORK = 1;
 			
-			CreateVar(WORK, "d", &LWORK, &un, &lWORK);
+			CreateVar(WORK,MATRIX_OF_DOUBLE_DATATYPE, &LWORK, &un, &lWORK);
 			C2F(dgeesx)(JOBVS, SORT, select, SENSE, &N, stk(lA), &LDA, &SDIM, 
 					stk(lWR), stk(lWI),
 					stk(lVS), &LDVS, &RCONDE, &RCONDV, stk(lWORK), 
@@ -78,7 +78,7 @@ int intdgeesx(fname)
 			WORK=3; LWORKMIN = MAX(1, 3*N);
 			LWORK=Maxvol(WORK, "d"); /* max memory currently available */
 			if (LWORK < LWORKMIN)  Scierror(999,"%s:  not enough memory (use stacksize) \r\n",fname); 
-			CreateVar(WORK, "d", &LWORK, &un, &lWORK);
+			CreateVar(WORK,MATRIX_OF_DOUBLE_DATATYPE, &LWORK, &un, &lWORK);
 			
 			C2F(dgeesx)(JOBVS, SORT, select, SENSE, &N, stk(lA), &LDA, &SDIM, 
 					stk(lWR), stk(lWI),

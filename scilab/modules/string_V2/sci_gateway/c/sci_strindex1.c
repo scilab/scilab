@@ -47,19 +47,19 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
     Rhs = Max(0, Rhs);
     CheckRhs(1,3);
     CheckLhs(1,2);
-	GetRhsVar(1,"S",&m1,&n1,&Str);
+	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 	mn = m1*n1;  
 	if (mn != 1) 
 	{
 		/*give an error message that the first is not correct.*/
 		return 1;
 	}
-	GetRhsVar(2,"S",&m2,&n2,&Str2);
+	GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str2);
 	mn2 = m2*n2;  
 	lbuf=*Str;
 	if (Rhs >= 3) 
 	{
-		GetRhsVar(3,"c",&m3,&n3,&l3);
+		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
 		if ( m3*n3 != 0) 
 			typ = cstk(l3)[0];
 		if (typ == 'r' ) 
@@ -84,7 +84,7 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
 					numRow   = 1 ;
 					numCol   = 1 ;
 					outIndex = 0 ;
-					CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
+					CreateVar(Rhs+1+x,STRING_DATATYPE,&numRow,&numCol,&outIndex);
 					LhsVar(x+1) = outIndex2 ;
 					continue;
 				}

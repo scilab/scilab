@@ -70,7 +70,7 @@ int sci_get_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
   }
   Str1[n1-1][0] = '\0';
 
-  CreateVarFromPtr(1, "S", &n1, (j=1,&j), Str1);
+  CreateVarFromPtr(1,MATRIX_OF_STRING_DATATYPE, &n1, (j=1,&j), Str1);
 
   LhsVar(1)=1;
 

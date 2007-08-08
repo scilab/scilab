@@ -39,15 +39,15 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
   /*  les points sur lesquels on evalue par interpolation */
 /*   l = I_UINT32; CreateVar(Rhs+1, "I", &n, &one, &l); */
 /*   xp = (double **) istk(l); */
-  CreateVar(Rhs+1, "d", &n, &one, &l);  /* => lets store an array of pointers  */
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &n, &one, &l);  /* => lets store an array of pointers  */
   xp = (double **) stk(l);               /*   with size of 4 or 8 bytes */
 
-  GetRhsVar(1,"d", &mxp, &nxp, &lxp);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &lxp);
   xp[0] = stk(lxp);
   np = mxp*nxp;
   for ( i = 2 ; i <= n ; i++ )
     {
-      GetRhsVar(i,"d", &mxpn, &nxpn, &lxpn);
+      GetRhsVar(i,MATRIX_OF_DOUBLE_DATATYPE, &mxpn, &nxpn, &lxpn);
       if ( mxp != mxpn || nxp != nxpn )
 	{ 
 	  Scierror(999,"%s: bad inputs for xp1, xp2, ...., \r\n", fname);
@@ -61,12 +61,12 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
   dim = istk(l);
 /*   l = I_UINT32; CreateVar(Rhs+3, "I", &n, &one, &l); */
 /*   x = (double **) istk(l); */
-  CreateVar(Rhs+3, "d", &n, &one, &l);  /* => lets store an array of pointers  */
+  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &n, &one, &l);  /* => lets store an array of pointers  */
   x = (double **) stk(l);               /*    with size(void *) = 4 or 8 bytes */
 
   for ( i = 1 ; i <= n ; i++ )
     {
-      GetRhsVar(n+i,"d", &mx, &nx, &lx);
+      GetRhsVar(n+i,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
       if ( (mx != 1 && nx != 1) && mx*nx < 2)
 	{ 
 	  Scierror(999,"%s: bad arg number %d \r\n", fname, n+i);
@@ -101,7 +101,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
     }
   else  /* n = 1 or 2 */
     {
-      GetRhsVar(2*n+1,"d", &my, &ny, &ly);
+      GetRhsVar(2*n+1,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
       if ( n == 1  &&  my*ny != dim[0] )
 	{ 
 	  Scierror(999,"%s: size incompatibility between grid points and values in dim 1 \n\r", fname);
@@ -129,12 +129,12 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
   else
     outmode = C0;
 
-  CreateVar(Rhs+4, "d", &n, &one, &l); u = stk(l);
+  CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &n, &one, &l); u = stk(l);
   m = 1; for ( i = 1 ; i <= n ; i++) m = 2*m;
-  CreateVar(Rhs+5, "d", &m, &one, &l); v = stk(l);
+  CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE, &m, &one, &l); v = stk(l);
   l = 4; CreateVar(Rhs+6, "I", &m, &one, &l); ad = istk(l);
   l = 4; CreateVar(Rhs+7, "I", &n, &one, &l); k = istk(l);
-  CreateVar(Rhs+8, "d", &mxp, &nxp, &l); yp = stk(l);
+  CreateVar(Rhs+8,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &l); yp = stk(l);
 
   nlinear_interp(x, val, dim, n, xp, yp, np, outmode, u, v, ad, k);
 

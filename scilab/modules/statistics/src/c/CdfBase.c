@@ -17,7 +17,7 @@ int  CdfBase(char *fname,int inarg,int oarg,int *callpos,char *option,char *errn
 	}
 	for ( i = 0 ; i < inarg ; i++ )
 	{
-		GetRhsVar(i+2, "d", &m[i], &n[i], &l[i]);
+		GetRhsVar(i+2,MATRIX_OF_DOUBLE_DATATYPE, &m[i], &n[i], &l[i]);
 	}
 	for ( i = 1 ; i < inarg ; i++) 
 		if ( m[i] != m[i-1] || n[i] != n[i-1]) 
@@ -26,7 +26,7 @@ int  CdfBase(char *fname,int inarg,int oarg,int *callpos,char *option,char *errn
 			return 1;
 		} 
 		for ( i = 0 ; i < oarg ; i++) 
-			CreateVar(i+2+inarg,"d",&m[0],&n[0],&l[i+inarg]);
+			CreateVar(i+2+inarg,MATRIX_OF_DOUBLE_DATATYPE,&m[0],&n[0],&l[i+inarg]);
 		switch ( inarg+oarg) 
 		{
 		case 5:

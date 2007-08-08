@@ -28,9 +28,9 @@ int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len))
   int numCol;
   Rhs = Max(0, Rhs);
   CheckRhs(1,4);
-  GetRhsVar(1,"S",&m1,&n1,&Str);
+  GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
   mn = m1*n1;  
-  GetRhsVar(2,"i",&m2,&n4,&l4);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n4,&l4);
   m4=istk(l4);
   u=0;
   v=0;

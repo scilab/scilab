@@ -25,7 +25,7 @@ int intex3c(char *fname)
 
   /* a boolean matrix argument */ 
   
-  GetRhsVar(1, "b", &m1, &n1, &l1);
+  GetRhsVar(1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &l1);
 
   /* create a new boolean matrix same size as first argument 
    *
@@ -33,7 +33,7 @@ int intex3c(char *fname)
    * with istk(l1) which can be modified and returned. 
    */
 
-  CreateVar(2, "b",&m1,&n1,&l2);
+  CreateVar(2,MATRIX_OF_BOOLEAN_DATATYPE,&m1,&n1,&l2);
 
   /* fills new matrix  */
   

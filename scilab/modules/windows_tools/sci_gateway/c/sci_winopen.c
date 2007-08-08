@@ -13,7 +13,7 @@ int C2F(sci_winopen) _PARAMS((char *fname,unsigned long l))
 
 	CheckRhs(1,1);
 
-	GetRhsVar(1,"c",&m1,&n1,&l1);
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	bOK = winopen(cstk(l1));
 
 	if (bOK) LhsVar(1) = 0;

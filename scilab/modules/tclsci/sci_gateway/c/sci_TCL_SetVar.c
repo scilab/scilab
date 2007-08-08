@@ -58,10 +58,10 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 		char **Str=NULL;
 		int i=0;
 		
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName=cstk(l1);
 		
-		GetRhsVar(2,"S",&m1,&n1,&Str);
+		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 
 		/* Efface valeur precedente */
 		Tcl_UnsetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY);
@@ -99,10 +99,10 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 			return 0;
 		}
 		
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName=cstk(l1);
 		
-		GetRhsVar(2,"d",&m1,&n1,&l1);
+		GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 
 		if ( (m1==0) && (n1==0) )
 		{
@@ -129,7 +129,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 	m1=1;
 	n1=1;
 	l1=0;
-	CreateVar(Rhs+1,"b",  &m1, &n1, &l1);
+	CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE,  &m1, &n1, &l1);
 	*istk(l1)=*paramoutINT;
 
 	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}

@@ -22,7 +22,7 @@ int C2F(sci_setlanguagemenu) _PARAMS((char *fname,unsigned long l))
 	CheckRhs(1,1);
   
 	/*  checking variable file */
-	GetRhsVar(1,"c",&m1,&n1,&l1);
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	/*** first call to get the size **/
 	lout=LANGUAGE_MAX;
 	C2F(cluni0)(cstk(l1), Language, &out_n,m1*n1,lout);

@@ -40,7 +40,7 @@ int C2F(sci_consolebox) _PARAMS((char *fname,unsigned long l))
 		{
 			char *param=NULL;
 
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			param=cstk(l1);
 
 			if ( (strcmp(param,"off")==0) || (strcmp(param,"on")==0) || (strcmp(param,"toggle")==0) )
@@ -85,7 +85,7 @@ int C2F(sci_consolebox) _PARAMS((char *fname,unsigned long l))
 		}
 
 	n1=1;
-	CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
+	CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();	
 	if (Output) {FREE(Output);Output=NULL;}

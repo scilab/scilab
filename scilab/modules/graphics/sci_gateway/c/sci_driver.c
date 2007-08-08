@@ -20,13 +20,13 @@ int sci_driver(char *fname,unsigned long fname_len)
   CheckLhs(0,1);
   if (Rhs <= 0) 
   {
-    CreateVar(Rhs+1,"c",&m1,&n1,&l1);
+    CreateVar(Rhs+1,STRING_DATATYPE,&m1,&n1,&l1);
     C2F(dr1)("xgetdr", cstk(l1), &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &dv, 7L, m1);
     LhsVar(1) = Rhs+1;
   } 
   else 
   {
-    GetRhsVar(1,"c",&m1,&n1,&l1);
+    GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
     C2F(dr1)("xsetdr", cstk(l1), &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &dv, 7L, m1);
     LhsVar(1)=0;
   }

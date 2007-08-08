@@ -34,7 +34,7 @@ int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			strcpy(shortpath,cstk(l1));
 		}
 
@@ -42,7 +42,7 @@ int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len))
 		C2F(scichdir)(path,&ierr);
 
 		n1=1;
-		CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 
 		if (ierr == 0) *istk(l1)=(int)(TRUE);
 		else *istk(l1)=(int)(FALSE);

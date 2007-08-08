@@ -38,17 +38,17 @@ char typ = '*';
   
   switch ( VarType(1)) {
   case 10 :
-    GetRhsVar(1,"S",&m1,&n1,&Str);
+    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
     mn = m1*n1;  
     if (Rhs >= 2) {
-      GetRhsVar(2,"c",&m2,&n2,&l2);
+      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
       sep = cstk(l2);
     }
     if (Rhs >= 3) {
-      GetRhsVar(3,"c",&m3,&n3,&l3);
+      GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
       if ( m3*n3 != 0) 
 		  typ = cstk(l3)[0];
-      if (typ != 'c' && typ != 'r' && typ != 'p' && typ != 'a') {
+      if (typ != STRING_DATATYPE && typ != MATRIX_OF_RATIONAL_DATATYPE && typ != SCILAB_POINTER_DATATYPE && typ != 'a') {
 		  Scierror(999,"%s: third argument should be 'c' or 'r'\r\n",fname);
 		  return 0;
       }
@@ -60,7 +60,7 @@ char typ = '*';
 		  nchars += strlen(Str[i]);
 
       nchars += (mn-1)*strlen(sep);
-      CreateVar(Rhs+1,"c",&un,&nchars,&l3);
+      CreateVar(Rhs+1,STRING_DATATYPE,&un,&nchars,&l3);
       k=0;
       for ( i = 0 ; i < mn ; i++ ) 
 	{

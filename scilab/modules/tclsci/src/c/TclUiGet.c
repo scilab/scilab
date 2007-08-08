@@ -24,7 +24,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 			int nbelem=0;
 			double *MatrixOut=NULL;
 
-			GetRhsVar(RhsPropertieField,"c",&m1,&n1,&l1);
+			GetRhsVar(RhsPropertieField,STRING_DATATYPE,&m1,&n1,&l1);
 			StrField=cstk(l1);
 			StrValue=(char*)MALLOC((StrMax+1)*sizeof(char));
 
@@ -33,7 +33,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 				MatrixOut=String2Matrix(StrValue,&nbelem);
 				n1=1;
 				m1=nbelem;
-				CreateVarFromPtr(Rhs+1, "d", &n1, &m1, &MatrixOut);
+				CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &n1, &m1, &MatrixOut);
 				if (MatrixOut) {FREE(MatrixOut); MatrixOut=NULL;}
 			}
 			else
@@ -60,7 +60,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 				static int local_l1,local_n1,local_m1;
 				char *StrField=NULL;
 
-				GetRhsVar(RhsPropertieField,"c",&local_m1,&local_n1,&local_l1);
+				GetRhsVar(RhsPropertieField,STRING_DATATYPE,&local_m1,&local_n1,&local_l1);
 				StrField=cstk(local_l1);
 				nocase(StrField);
 
@@ -91,7 +91,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 							ReturnArrayString[k++]=AsciiFromUTF8;
 						}
 
-						CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, ReturnArrayString);
+						CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, ReturnArrayString);
 
 						for (i=0;i<ncol;i++) for (j=0;j<nrow;j++) { FREE(ReturnArrayString[i+ncol*j]);ReturnArrayString[i+ncol*j]=NULL; }
 						FREE(ReturnArrayString);
@@ -112,7 +112,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 							output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
 							sprintf(output,"%s",AsciiFromUTF8);
-							CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+							CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 
 							if (output) {FREE(output);output=NULL;}
 							if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
@@ -153,7 +153,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 								ReturnArrayString[k++]=AsciiFromUTF8;
 							}
 
-							/*CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, ReturnArrayString);*/
+							/*CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, ReturnArrayString);*/
 
 							for (i=0;i<ncol;i++) for (j=0;j<nrow;j++) { FREE(ReturnArrayString[i+ncol*j]);ReturnArrayString[i+ncol*j]=NULL; }
 							FREE(ReturnArrayString);
@@ -174,7 +174,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 								output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
 								sprintf(output,"%s",AsciiFromUTF8);
-								/*CreateVarFromPtr( Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);*/
+								/*CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);*/
 
 								if (output) {FREE(output);output=NULL;}
 								if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
@@ -207,7 +207,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 								AsciiFromUTF8=UTF8toANSI(TCLinterp,StrValue);
 								m1=(int)strlen(AsciiFromUTF8);
 								n1=1;
-								CreateVar(Rhs+1, "c", &m1,&n1,&l1);
+								CreateVar(Rhs+1,STRING_DATATYPE, &m1,&n1,&l1);
 								sprintf(cstk(l1),"%s",AsciiFromUTF8);
 								bOK=1;
 							}
@@ -243,7 +243,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 							MatrixOut=String2Matrix(AsciiFromUTF8,&nbelem);
 							n1=1;
 							m1=nbelem;
-							CreateVarFromPtr(Rhs+1, "d", &n1, &m1, &MatrixOut);
+							CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &n1, &m1, &MatrixOut);
 							if (MatrixOut) {FREE(MatrixOut); MatrixOut=NULL;}
 							bOK=1;
 						}
@@ -252,7 +252,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 						{
 							m1=(int)strlen(AsciiFromUTF8);
 							n1=1;
-							CreateVar(Rhs+1, "c", &m1,&n1,&l1);
+							CreateVar(Rhs+1,STRING_DATATYPE, &m1,&n1,&l1);
 							sprintf(cstk(l1),"%s",AsciiFromUTF8);
 							bOK=1;
 						}

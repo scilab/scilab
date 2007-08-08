@@ -36,7 +36,7 @@ int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len ))
       struct BCG *ScilabGC=NULL;
       int num_win=-2;
       CheckLhs(1,1);
-      GetRhsVar(1,"i",&m1,&n1,&l1);
+      GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
       num_win=*istk(l1);
       LhsVar(1)=0;
       ScilabGC = getWindowXgcNumber (num_win);

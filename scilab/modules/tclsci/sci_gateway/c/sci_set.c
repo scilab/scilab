@@ -19,7 +19,7 @@ int C2F(sci_TCL_set) _PARAMS((char *fname,unsigned long l))
 		int Handle=0;
 		char VarName[64];
 
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		Handle=*istk(l1);
 
 		sprintf(VarName,"Win(%d)",Handle);

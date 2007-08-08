@@ -25,12 +25,12 @@ int sci_xs2emf( char * fname, unsigned long fname_len )
   {
     integer m1,n1,l1;
     int figurenum=-1;
-    GetRhsVar(1,"i",&m1,&n1,&l1);
+    GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
     figurenum=*istk(l1);
     if (figurenum>=0)
     {
       char *FileName=NULL;
-      GetRhsVar(2,"c",&m1,&n1,&l1);
+      GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
       FileName=cstk(l1);
       bOK=Interface_XS2EMF(figurenum,FileName);
     }

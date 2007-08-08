@@ -18,13 +18,13 @@ int intspvm_start _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(0,1);
   CheckLhs(1,1);
   if (Rhs ==1 ) {
-    GetRhsVar(1,"c",&m1,&n1,&l1);mn1=m1*n1;
+    GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);mn1=m1*n1;
     host = cstk(l1);
   } else {
     host = hdefault;
     mn1= strlen(hdefault);
   }
-  CreateVar(Rhs+1,"i",&un,&un,&res);
+  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&res);
   C2F(scipvmstart)(istk(res),host,&mn1);
   LhsVar(1)=Rhs+1;
   C2F(putlhsvar)();

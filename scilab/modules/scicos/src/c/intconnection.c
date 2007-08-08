@@ -19,10 +19,10 @@ int connection(int* path_out,int* path_in)
   n1=n2=1;
   m2=path_in[0];
   
-  CreateVar(1, "i", &n1, &m1, &l1);  
+  CreateVar(1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &l1);  
   for (i=1; i<=m1; i++)
     *istk(l1+i-1)=path_out[i];
-  CreateVar(2, "i", &n2, &m2, &l2);
+  CreateVar(2,MATRIX_OF_INTEGER_DATATYPE, &n2, &m2, &l2);
   for (i=1; i<=m2; i++)
     *istk(l2+i-1)=path_in[i];
   
@@ -47,19 +47,19 @@ int badconnection(int* path_out,int prt_out, int nout,int* path_in,int prt_in,in
   n1=1;
   m2=path_in[0];
   
-  CreateVar(1, "i", &n1, &m1, &l1);  
+  CreateVar(1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &l1);  
   for (i=1; i<=m1; i++)
     *istk(l1+i-1)=path_out[i];
-  CreateVar(2, "i", &n1, &n1, &l2);
+  CreateVar(2,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &l2);
   *istk(l2)=prt_out;
-  CreateVar(3, "i", &n1, &n1, &l3);
+  CreateVar(3,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &l3);
   *istk(l3)=nout;
-  CreateVar(4, "i", &n1, &m2, &l4);
+  CreateVar(4,MATRIX_OF_INTEGER_DATATYPE, &n1, &m2, &l4);
   for (i=1; i<=m2; i++)
     *istk(l4+i-1)=path_in[i];
-  CreateVar(5, "i", &n1, &n1, &l5);
+  CreateVar(5,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &l5);
   *istk(l5)=prt_in;
-  CreateVar(6, "i", &n1, &n1, &l6);
+  CreateVar(6,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &l6);
   *istk(l6)=nin;
   
   Convert2Sci(1);
@@ -80,7 +80,7 @@ int Message(char* code)
   int mlhs=0,mrhs=1,ibegin=1;
   int l1, m1=(int)strlen(code), n1=1;
   static char name[] = "x_message" ;
-  CreateVar(1, "c", &m1, &n1, &l1);
+  CreateVar(1,STRING_DATATYPE, &m1, &n1, &l1);
   strcpy(cstk(l1),code);
   Convert2Sci(1);
   SciString(&ibegin,name,&mlhs,&mrhs);

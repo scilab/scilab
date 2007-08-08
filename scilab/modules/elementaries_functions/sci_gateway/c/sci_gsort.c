@@ -36,10 +36,10 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		switch (Type) 
 		{
 		case sci_strings : 
-			GetRhsVar(1,"S",&m1,&n1,&S);
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&S);
 			break;
 		case sci_matrix :
-			GetRhsVar(1,"d",&m1,&n1,&l1);
+			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 			break;
 		case sci_ints:
 			GetRhsVar(1,"I",&m1,&n1,&Im);
@@ -53,7 +53,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	if (Rhs >= 2)
 	{
 		char c;
-		GetRhsVar(2,"c",&m2,&n2,&l2);
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		if ( m2 == 0 ) 
 		{
 			Scierror(999,"%s: second argument is an empty string\r\n",fname);
@@ -70,7 +70,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 
 	if (Rhs == 3)
 	{
-		GetRhsVar(3,"c",&m3,&n3,&l3);
+		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
 		CheckLength(3,m3,1);
 		if ( *cstk(l3) != 'i' && *cstk(l3) != 'd') 
 		{
@@ -121,7 +121,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 
 			C2F(gsortd)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
 
-			CreateVarFromPtr(Rhs+1,"d",&m1,&n1,&tmp_matrix);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&tmp_matrix);
 			LhsVar(1)= Rhs+1 ;
 
 			if (Lhs == 2)
@@ -175,7 +175,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	case sci_strings:
 		{
 			C2F(gsorts)(S,indices,&iflag,&m1,&n1,typex,iord);
-			CreateVarFromPtr(Rhs+1,"S", &m1, &n1, S);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, S);
 			LhsVar(1)=Rhs+1;
 
 			if (Lhs == 2)

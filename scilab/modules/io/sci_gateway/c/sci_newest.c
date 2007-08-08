@@ -25,7 +25,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 		n1=0;
 		l1=0;
 
-		CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 		return 0;
@@ -43,7 +43,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 				/* newest([]) --> [] */
 				if (GetType(j) == sci_matrix)
 				{
-					GetRhsVar(j,"i",&m1,&n1,&l1);
+					GetRhsVar(j,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 
 					if ( (m1==0) && (n1==0) )
 					{
@@ -51,7 +51,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 						n1=0;
 						l1=0;
 
-						CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+						CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 						LhsVar(1)=Rhs+1;
 						C2F(putlhsvar)();
 						return 0;
@@ -76,7 +76,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			char **Str=NULL;
 
-			GetRhsVar(1,"S",&m1,&n1,&Str);
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 
 			if ( (m1 != 1) && (n1 != 1) )
 			{
@@ -95,7 +95,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 			for (j=1;j<=RhsBackup;j++)
 			{
 				
-				GetRhsVar(j,"c",&m1,&n1,&l1);
+				GetRhsVar(j,STRING_DATATYPE,&m1,&n1,&l1);
 				Str[j-1]=MALLOC(sizeof(char)*(strlen(cstk(l1))+1));
 				strcpy(Str[j-1],cstk(l1));
 			}
@@ -119,7 +119,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 			*paramoutINT = RetIndex;
 
 			n1=1;
-			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 			LhsVar(1)=Rhs+1;
 			C2F(putlhsvar)();
 
@@ -131,7 +131,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 			n1=0;
 			l1=0;
 
-			CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 			LhsVar(1)=Rhs+1;
 			C2F(putlhsvar)();
 		}

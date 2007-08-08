@@ -16,12 +16,12 @@ int intspvm_gettid _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(2,2);
   CheckLhs(1,1);
   /*  checking variable group */
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   /*  checking variable inum */
-  GetRhsVar(2,"i",&m2,&n2,&l2);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
   CheckScalar(2,m2,n2);
   /* cross variable size checking */
-  CreateVar(Rhs+3,"i",&un,&un,&l3);/* named: tid */
+  CreateVar(Rhs+3,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l3);/* named: tid */
   *istk(l3) = pvm_gettid(cstk(l1),*istk(l2));
   LhsVar(1)= Rhs+3;
   C2F(putlhsvar)();

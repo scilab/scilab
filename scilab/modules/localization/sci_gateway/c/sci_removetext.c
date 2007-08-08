@@ -19,10 +19,10 @@ int C2F(sci_removetext) _PARAMS((char *fname,unsigned long fname_len))
 		char *param1=NULL;
 		char *param2=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
 
-		GetRhsVar(2,"c",&m1,&n1,&l1);
+		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 		param2=cstk(l1);
 
 		if ((strcmp(param1,"errors")==0) || (strcmp(param1,"messages")==0) || (strcmp(param1,"menus")==0))
@@ -49,12 +49,12 @@ int C2F(sci_removetext) _PARAMS((char *fname,unsigned long fname_len))
 			n1=1;
 			if (bOK)
 			{
-				CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 				*istk(l1)=(int)(TRUE);
 			}
 			else
 			{
-				CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 				*istk(l1)=(int)(FALSE);
 			}
 

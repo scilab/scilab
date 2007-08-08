@@ -30,7 +30,7 @@ int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l))
 		{
 			char *param=NULL;
 
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			param=cstk(l1);
 			strcpy(AssocParam,param);
 
@@ -48,12 +48,12 @@ int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l))
 		{
 			char *param=NULL;
 
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			param=cstk(l1);
 
 			strcpy(AssocParam,param);
 
-			GetRhsVar(2,"c",&m1,&n1,&l1);
+			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 			param=cstk(l1);
 
 			strcpy(ExtraParam,param);
@@ -65,14 +65,14 @@ int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l))
 	if (Output)
 	{
 		n1=1;
-		CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
+		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 	}
 	else
 	{
 		n1=0;
 		m1=0;
 		l1=0;
-		CreateVarFromPtr(Rhs+ 1, "d",&n1,&m1,&l1);
+		CreateVarFromPtr(Rhs+ 1,MATRIX_OF_DOUBLE_DATATYPE,&n1,&m1,&l1);
 	}
 		
 	LhsVar(1) = Rhs+1;

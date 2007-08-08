@@ -30,7 +30,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 		{
 			char *param=NULL;
 
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
 			if ( n1==1 )
 			{
@@ -59,7 +59,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 				if (IsAScalar(1))
 				{
 					int num_win=-2;
-					GetRhsVar(1,"i",&m1,&n1,&l1);
+					GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 					num_win=*istk(l1);
 					if (num_win>=0)
 					{
@@ -93,7 +93,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 			char *param2=NULL;
 			char *lines=NULL;
 
-			GetRhsVar(1,"S",&m1,&n1,&Str);
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 
 			if (n1 == 1)
 			{
@@ -174,7 +174,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 				return 0;
 			}
 
-			GetRhsVar(2,"c",&m1,&n1,&l1);
+			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 			param2=cstk(l1);
 
 			PrintString(lines,param2);
@@ -190,10 +190,10 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 					int num_win=-2;
 					char *param=NULL;
 
-					GetRhsVar(1,"i",&m1,&n1,&l1);
+					GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 					num_win=*istk(l1);
 
-					GetRhsVar(2,"c",&m1,&n1,&l1);
+					GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 					param=cstk(l1);
 
 					if ( (strcmp(param,"pos")==0) || (strcmp(param,"gdi")==0) )
@@ -229,7 +229,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 	}
 
 	n1=1;
-	CreateVarFromPtr(Rhs+1, "b", &n1, &n1,&paramoutINT);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1,&paramoutINT);
 	LhsVar(1)=Rhs+1;
 	FREE(paramoutINT);
 	C2F(putlhsvar)();

@@ -93,7 +93,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   }
 
   /* retrieve address of input variable to transform */
-  GetRhsCVar(1, "d", &it1, &m1, &n1, &lr1, &li1);
+  GetRhsCVar(1,MATRIX_OF_DOUBLE_DATATYPE, &it1, &m1, &n1, &lr1, &li1);
 
   /* void input gives void output */
   if ((m1<1)|(n1<1)) {
@@ -375,7 +375,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   /* real data */
   else if (it1==0) {
    /* set input array address */
-   CreateCVar(1, "d", (i=1,&i), &m1, &n1, &lr1,&li1);
+   CreateCVar(1,MATRIX_OF_DOUBLE_DATATYPE, (i=1,&i), &m1, &n1, &lr1,&li1);
 
    ri=stk(lr1);
    ii=stk(li1);

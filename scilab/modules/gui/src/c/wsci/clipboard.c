@@ -321,7 +321,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 	{
 		if ( (Rhs == 1) && (GetType(1)==sci_strings) )
 		{
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			param1=cstk(l1);
 
 			if ( ( strcmp(param1,"paste") == 0 ) || ( strcmp(param1,"pastespecial") == 0 ) )
@@ -333,7 +333,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 
 				if (output)
 				{
-					CreateVarFromPtr(Rhs+ 1, "c",(m1=strlen(output), &m1),&n1,&output);
+					CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);
 					FREE(output);
 					LhsVar(1)=Rhs+1;
 				}
@@ -342,7 +342,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 					m1=0;
 					n1=0;
 					l1=0;
-					CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+					CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 					LhsVar(1)=Rhs+1;
 				}
 
@@ -360,12 +360,12 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 		{
 			if ( (GetType(1)==sci_strings) && (GetType(2)==sci_strings) )
 			{
-				GetRhsVar(1,"c",&m1,&n1,&l1);
+				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 				param1=cstk(l1);
 
 				if ( strcmp(param1,"do") == 0 )
 				{
-					GetRhsVar(2,"c",&m1,&n1,&l1);
+					GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 					param2=cstk(l1);
 
 					if ( strcmp(param2,"paste") == 0 )
@@ -389,7 +389,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 					m1=0;
 					n1=0;
 					l1=0;
-					CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+					CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 					LhsVar(1)=Rhs+1;
 					C2F(putlhsvar)();	
 					return 0;
@@ -401,7 +401,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 					char **Str=NULL;
 					LPTW lptw=GetTextWinScilab();
 
-					GetRhsVar(2,"S",&m1,&n1,&Str);
+					GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 
 
 					if ( (m1==1) && (n1==1) )
@@ -448,7 +448,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 					m1=0;
 					n1=0;
 					l1=0;
-					CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+					CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 					LhsVar(1)=Rhs+1;
 					C2F(putlhsvar)();	
 					return 0;
@@ -462,13 +462,13 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 
 			if ( (IsAScalar(1)) && (GetType(2)==sci_strings) )
 			{
-				GetRhsVar(2,"c",&m1,&n1,&l1);
+				GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 				param2=cstk(l1);
 
 				if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
 				{
 					int num_win=-2;
-					GetRhsVar(1,"i",&m1,&n1,&l1);
+					GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 					num_win=*istk(l1);
 					if (num_win>=0)
 					{
@@ -489,7 +489,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 							m1=0;
 							n1=0;
 							l1=0;
-							CreateVar(1,"d",  &m1, &n1, &l1);
+							CreateVar(1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 							LhsVar(1)=1;
 							C2F(putlhsvar)();	
 							return 0;
@@ -523,12 +523,12 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 	{
 		if ( (Rhs == 2) && (IsAScalar(1)) && (GetType(2)==sci_strings) )
 		{
-			GetRhsVar(2,"c",&m1,&n1,&l1);
+			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 			param2=cstk(l1);
 			if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
 			{
 				int num_win=-2;
-				GetRhsVar(1,"i",&m1,&n1,&l1);
+				GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 				num_win=*istk(l1);
 				if (num_win>=0)
 				{
@@ -549,7 +549,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 						m1=0;
 						n1=0;
 						l1=0;
-						CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+						CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 						LhsVar(1)=Rhs+1;
 						C2F(putlhsvar)();	
 						return 0;
@@ -594,7 +594,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
  // {
 	//if (Rhs == 1)
 	//{
-	//  GetRhsVar(1,"c",&m1,&n1,&l1);
+	//  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	//  param1=cstk(l1);
 
 	//  if ( ( strcmp(param1,"paste") == 0 ) || ( strcmp(param1,"pastespecial") == 0 ) )
@@ -606,7 +606,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 
 	//	  if (output)
 	//	  {
-	//		  CreateVarFromPtr( Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);
+	//		  CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);
 	//		  FREE(output);
 	//		  LhsVar(1)=Rhs+1;
 	//	  }
@@ -615,7 +615,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 	//		  m1=0;
 	//		  n1=0;
 	//		  l1=0;
-	//		  CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+	//		  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 	//		  LhsVar(1)=Rhs+1;
 	//	  }
 
@@ -635,13 +635,13 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 	//	{
 	//		if (GetType(2)==sci_strings)
 	//		{
-	//			GetRhsVar(2,"c",&m1,&n1,&l1);
+	//			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 	//			param2=cstk(l1);
 
 	//			if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
 	//			{
 	//				int num_win=-2;
-	//				GetRhsVar(1,"i",&m1,&n1,&l1);
+	//				GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	//				num_win=*istk(l1);
 
 	//				if (num_win>=0)
@@ -687,12 +687,12 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 	//	else
 	//	if ( (GetType(1)==sci_strings) && (GetType(2)==sci_strings) )
 	//	{
-	//		GetRhsVar(1,"c",&m1,&n1,&l1);
+	//		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	//		param1=cstk(l1);
 
 	//		if ( strcmp(param1,"do") == 0 )
 	//		{
-	//			GetRhsVar(2,"c",&m1,&n1,&l1);
+	//			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 	//			param2=cstk(l1);
 
 	//			if ( strcmp(param2,"paste") == 0 )
@@ -722,7 +722,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 	//			char **Str=NULL;
 	//			LPTW lptw=GetTextWinScilab();
 	//			
-	//			GetRhsVar(2,"S",&m1,&n1,&Str);
+	//			GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 
 	//			if ( (m1==1) && (n1==1) )
 	//			{
@@ -789,13 +789,13 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 	//  {
 	//	  if (GetType(2)==sci_strings)
 	//	  {
-	//		  GetRhsVar(2,"c",&m1,&n1,&l1);
+	//		  GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 	//		  param2=cstk(l1);
 
 	//		  if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
 	//		  {
 	//			  int num_win=-2;
-	//			  GetRhsVar(1,"i",&m1,&n1,&l1);
+	//			  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	//			  num_win=*istk(l1);
 
 	//			  if (num_win>=0)

@@ -17,18 +17,18 @@ int intspvm_reduce _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(5,5);
   CheckLhs(1,2);
   /*  checking variable func */
-  GetRhsVar(1,"c",&m1,&n1,&l1);mn1=m1*n1;
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);mn1=m1*n1;
   /*  checking variable data */
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   /*  checking variable msgtag */
-  GetRhsVar(3,"i",&m3,&n3,&l3);
+  GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
   CheckScalar(3,m3,n3);
   /*  checking variable group */
-  GetRhsVar(4,"c",&m4,&n4,&l4);mn4=m4*n4;
+  GetRhsVar(4,STRING_DATATYPE,&m4,&n4,&l4);mn4=m4*n4;
   /*  checking variable rootginst */
-  GetRhsVar(5,"i",&m5,&n5,&l5);
+  GetRhsVar(5,MATRIX_OF_INTEGER_DATATYPE,&m5,&n5,&l5);
   CheckScalar(5,m5,n5);
-  CreateVar(6,"i",&un,&un,&res);
+  CreateVar(6,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&res);
   C2F(scipvmreduce)(cstk(l1),&mn1,stk(l2),&m2,&n2,istk(l3),cstk(l4),&mn4,istk(l5),istk(res));
   LhsVar(1)= 2;
   LhsVar(2)= 6;

@@ -29,7 +29,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   else {
     if (GetType(1)==4) {
       iflag=0;
-      GetRhsVar(1, "b", &m, &n, &l1);
+      GetRhsVar(1,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l1);
       CheckDims(1,m*n,1,2,1);
       sel[0]=*istk(l1);sel[1]=*istk(l1+1);}
     else {
@@ -38,7 +38,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     }
     if (Rhs==2) {
       if (iflag==1) {
-        GetRhsVar(2, "b", &m, &n, &l1);
+        GetRhsVar(2,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l1);
         CheckDims(2,m*n,1,2,1);
         sel[0]=*istk(l1);sel[1]=*istk(l1+1);}
     }
@@ -50,7 +50,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   case 1: 
     v2=0;
     C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v2,&x,&y,&dv,&dv,10L,3L); 
-    CreateVar(Rhs+1,"d",&m1,&n1,&l1);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
     if (button==-100)
     {
       *stk(l1) = -1;
@@ -66,7 +66,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   case 2:
     v2=2;
     C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v2,&x,&y,&dv,&dv,10L,3L);
-    CreateVar(Rhs+1,"d",&m1,&n1,&l1);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
     if (button==-100)
     {
       *stk(l1) = -1;
@@ -79,7 +79,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     }
     LhsVar(1) = Rhs+1;
 
-    CreateVar(Rhs+2,"d",&m1,&m1,&l2);
+    CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&m1,&l2);
     *stk(l2) = iflag; /* this is the window number */
     LhsVar(2) = Rhs+2;
     return 0;

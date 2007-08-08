@@ -61,10 +61,10 @@ int intex17c(fname)
   CheckLhs(minlhs,maxlhs) ;
 
   /*   Variable #1 (X = real vector)   */
-  GetRhsVar(1, "d", &m_X, &n_X, &l_X);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m_X, &n_X, &l_X);
 
   /*   Variable #2 (Y = real vector)   */
-  GetRhsVar(2, "d", &m_Y, &n_Y, &l_Y);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m_Y, &n_Y, &l_Y);
 
   /*   Variable #3 (f = "argument function")   */
   /*   ex17c(X,Y,f) 
@@ -83,7 +83,7 @@ int intex17c(fname)
 
   /*  Creating the output variable Z (#4) , real matrix variable with m_Z rows and n_Z columns    */
 
-  CreateVar(4, "d", &m_Z, &n_Z, &l_Z);
+  CreateVar(4,MATRIX_OF_DOUBLE_DATATYPE, &m_Z, &n_Z, &l_Z);
   
   /* If an error occurs while Z is calculated ... */
 
@@ -115,10 +115,10 @@ static int sciex17c(x, y, z)
   static int lhs=1,rhs=2;
   int scilab_i,scilab_j, un=1;
   /* Inputs (x(i),y(j)) at positions  (5,6) */
-  CreateVar(5, "d", &un, &un, &scilab_i);
+  CreateVar(5,MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &scilab_i);
   stk(scilab_i)[0] = x;
 
-  CreateVar(6, "d", &un, &un, &scilab_j);
+  CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &scilab_j);
   stk(scilab_j)[0] = y;
 
   /* executes the Scilab function (f) pointed to by sci_f. 

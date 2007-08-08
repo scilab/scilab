@@ -51,7 +51,7 @@ int sci_matplot(char *fname,unsigned long fname_len)
     Error(999); 
     return(0);
   }
-  GetRhsVar(1, "d", &m1, &n1, &l1);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
   if (m1 * n1 == 0) {  LhsVar(1)=0; return 0;} 
   GetStrf(fname,2,opts,&strf);
   GetRect(fname,3,opts,&rect);

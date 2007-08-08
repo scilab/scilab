@@ -30,7 +30,7 @@ int C2F(sci_ascii1) _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(1,4);
   switch ( GetType(1)) {
   case sci_strings :                  /* When input character string or matrix of strings. */
-		GetRhsVar(1,"S",&m1,&n1,&Str);
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 		mn = m1*n1;  
 		for (x=0;x<mn;x++)
 			for (y=0;y<strlen(Str[x]);y++)
@@ -44,7 +44,7 @@ int C2F(sci_ascii1) _PARAMS((char *fname,unsigned long fname_len))
 		C2F(putlhsvar)();
 		return 0;
    case sci_matrix :                /*When input vector of integer ascii codes  */
-	   GetRhsVar(1,"i",&m1,&n1,&l1);
+	   GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	   m4=istk(l1);
 	   Str3=(char**)MALLOC(sizeof(char*)*(m1*n1));
 	   for (i=0;i<m1*n1;i++)
@@ -58,7 +58,7 @@ int C2F(sci_ascii1) _PARAMS((char *fname,unsigned long fname_len))
        numRow   = 1 ;
        numCol   = m1*n1 ;
        outIndex = 0 ;
-       CreateVar(Rhs+1,"c",&numRow,&numCol,&outIndex);
+       CreateVar(Rhs+1,STRING_DATATYPE,&numRow,&numCol,&outIndex);
        strncpy(cstk(outIndex), &Str3[0][0] , m1*n1 ) ;
 	   LhsVar(1) = Rhs+1 ;
 	   C2F(putlhsvar)();

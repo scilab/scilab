@@ -18,7 +18,7 @@ int C2F(sci_removelinehistory) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		int N = -1;
 		int l1,m1=1,n1=1;
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		N=*istk(l1);
 
 		if ( (N < 0) || (N > getSizeScilabHistory()) )

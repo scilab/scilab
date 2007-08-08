@@ -41,11 +41,11 @@ int intex4c(char* fname)
   C2F(dblearray)( &l1,&m1,&n1,&ierr);
   if ( ierr > 0 )  { Scierror(999,"%s: Internal error \r\n",fname);  return 0;  }
   /* first example : l1 was allocated inside dblearray */ 
-  CreateVarFromPtr( 1, "d", &m1, &n1, &l1);
+  CreateVarFromPtr( 1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
   
   free(l1); /* freeing space allocated inside dblearray */ 
   /* second example : l2 is defined here */
-  CreateVarFromPtr( 2, "d", &m2, &n2, &ptr2);
+  CreateVarFromPtr( 2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &ptr2);
 
   LhsVar(1) = 1;
   LhsVar(2) = 2;
@@ -66,7 +66,7 @@ int intex4c_2(char* fname)
   CheckLhs(1,1);
   C2F(intarray)( &l1, &m1, &n1, &ierr);
   if ( ierr > 0 )  { Scierror(999,"%s: Internal error \r\n",fname);  return 0 ;  }
-  CreateVarFromPtr( 1, "i", &m1, &n1, &l1);
+  CreateVarFromPtr( 1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
   free(l1);
   /* we can access and change data through VarPtr
    * but it does not work for variables of type 's' (sparse) and 'S' 
@@ -90,7 +90,7 @@ int intex4c_3(char* fname)
   CheckLhs(1,1);
   C2F(crestr)( &l1,&m1,&ierr);
   if ( ierr > 0 )  { Scierror(999,"%s: Internal error \r\n",fname);  return 0;  }
-  CreateVarFromPtr( 1, "c", &m1, &n1, &l1);
+  CreateVarFromPtr( 1,STRING_DATATYPE, &m1, &n1, &l1);
   free(l1);
   LhsVar(1) = 1;
   return(0);
@@ -116,9 +116,9 @@ int intex4c_4(char* fname)
   C2F(dblearray)( &l3, &m3, &n3, &ierr);
   if ( ierr > 0 )  { Scierror(999,"%s: Internal error \r\n",fname);  return 0;  }
   /* Creating variable #1 of type character and dimension m1 x n1 (m1=1) */
-  CreateVarFromPtr( 1, "c", &m1, &n1, &l1);
-  CreateVarFromPtr( 2, "i", &m2, &n2, &l2);
-  CreateVarFromPtr( 3, "d", &m3, &n3, &l3);
+  CreateVarFromPtr( 1,STRING_DATATYPE, &m1, &n1, &l1);
+  CreateVarFromPtr( 2,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
+  CreateVarFromPtr( 3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
   /* Free  memory */
   free(l1);  free(l2);   free(l3);
   /* we change the first value of each variable */

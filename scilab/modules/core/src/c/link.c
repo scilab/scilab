@@ -89,7 +89,7 @@ int C2F(scilinknorhs)()
 			}
 		}
 
-		CreateVarFromPtr(Rhs+1, "S", &n1, &m1, ReturnArrayString);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &n1, &m1, ReturnArrayString);
 
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
@@ -109,7 +109,7 @@ int C2F(scilinknorhs)()
 		m1=0;
 		n1=0;
 		l1=0;
-		CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 	}

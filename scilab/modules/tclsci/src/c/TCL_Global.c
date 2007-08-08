@@ -64,7 +64,7 @@ char *Matrix2String(int RhsMatrix)
 	char *retstr=NULL;
 	char *tmpstr=NULL;
     
-	GetRhsVar(RhsMatrix,"d",&m1,&n1,&l1);
+	GetRhsVar(RhsMatrix,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	param=stk(l1);
 	
 	sz=m1*n1;

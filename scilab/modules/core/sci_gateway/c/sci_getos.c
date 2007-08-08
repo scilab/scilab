@@ -106,7 +106,7 @@ int C2F(intgetos) _PARAMS((char *fname))
 	output=(char*)MALLOC((strlen(OperatinSystem)+1)*sizeof(char));
 	sprintf(output,"%s",OperatinSystem);
 	n1=1;
-	CreateVarFromPtr( Rhs+1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 	if (output) {FREE(output);output=NULL;}
 	LhsVar(1)=Rhs+1;
 
@@ -116,7 +116,7 @@ int C2F(intgetos) _PARAMS((char *fname))
 		output2=(char*)MALLOC((strlen(Release)+1)*sizeof(char));
 		sprintf(output2,"%s",Release);
 		n1=1;
-		CreateVarFromPtr(Rhs+ 2, "c",(m1=(int)strlen(output2), &m1),&n1,&output2);
+		CreateVarFromPtr(Rhs+ 2,STRING_DATATYPE,(m1=(int)strlen(output2), &m1),&n1,&output2);
 		if (output2) {FREE(output2);output2=NULL;}
 		LhsVar(2)=Rhs+2;
 	}

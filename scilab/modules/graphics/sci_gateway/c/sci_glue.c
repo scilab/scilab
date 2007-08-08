@@ -28,10 +28,10 @@ int sci_glue( char * fname, unsigned long fname_len )
 
   /*  set or create a graphic window */
   SciWin();
-  GetRhsVar(1,"h",&numrow,&numcol,&l1); /* We get the scalar value if it is ones */
+  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1); /* We get the scalar value if it is ones */
   n=numrow*numcol;
-  CreateVar(Rhs+1,"d",&numrow,&numcol,&l2);
-  CreateVar(Rhs+2,"i",&numrow,&numcol,&lind);
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numrow,&numcol,&l2);
+  CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&numrow,&numcol,&lind);
   if (n>1) {
     C2F(dcopy)(&n, stk(l1), &cx1, stk(l2), &cx1);
     C2F(dsort)(stk(l2),&n,istk(lind));
@@ -75,7 +75,7 @@ int sci_glue( char * fname, unsigned long fname_len )
 
   numrow = 1;
   numcol = 1;
-  CreateVar(Rhs+3,"h",&numrow,&numcol,&outindex);
+  CreateVar(Rhs+3,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
   hstk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
   LhsVar(1) = Rhs+3;
   FREE(handelsvalue);

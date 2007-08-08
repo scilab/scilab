@@ -16,7 +16,7 @@ int intspvm_parent _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(0,0);
   CheckLhs(1,1);
   /* cross variable size checking */
-  CreateVar(Rhs+1,"i",&un,&un,&l1);/* named: res */
+  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l1);/* named: res */
   *istk(l1) = pvm_parent();
   LhsVar(1)= Rhs+1;
   C2F(putlhsvar)();

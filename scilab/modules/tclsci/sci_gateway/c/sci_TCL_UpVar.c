@@ -21,10 +21,10 @@ int C2F(sci_TCL_UpVar) _PARAMS((char *fname,unsigned long l))
 		char *sourceName=NULL,*destName=NULL;
 		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		sourceName=cstk(l1);
 			
-		GetRhsVar(2,"c",&m1,&n1,&l1);
+		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 		destName=cstk(l1);
 
 		if (TCLinterp == NULL)
@@ -67,7 +67,7 @@ int C2F(sci_TCL_UpVar) _PARAMS((char *fname,unsigned long l))
 			*paramoutINT=(int)(TRUE);
 		}
 		n1=1;
-		CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &paramoutINT);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}

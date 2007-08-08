@@ -24,8 +24,8 @@ int sci_matplot1( char * fname, unsigned long fname_len )
   }
 
   CheckRhs(2,2);
-  GetRhsVar(1, "d", &m1, &n1, &l1);
-  GetRhsVar(2, "d", &m2, &n2, &l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
   CheckLength(2,m2*n2,4);
   if ( m1 * n1 == 0 )
   {

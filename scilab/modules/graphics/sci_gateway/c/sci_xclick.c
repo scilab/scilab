@@ -47,23 +47,23 @@ int sci_xclick(char *fname,unsigned long fname_len)
   if ( Lhs == 1 )
   {
     LhsVar(1) = Rhs+1;
-    CreateVar(Rhs+1,"d",&un,&trois,&rep);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&un,&trois,&rep);
     *stk(rep) = (double) ix; *stk(rep + 1) = x; *stk(rep + 2) = y;
   }
   else 
   {
-    LhsVar(1) = Rhs+1; CreateVar(Rhs+1,"d",&un,&un,&rep); *stk(rep) = (double) ix ;
+    LhsVar(1) = Rhs+1; CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&rep); *stk(rep) = (double) ix ;
   }
   if ( Lhs >= 2) 
-  { LhsVar(2) = Rhs+2; CreateVar(Rhs+2,"d",&un,&un,&rep); *stk(rep) = x ;} 
+  { LhsVar(2) = Rhs+2; CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&rep); *stk(rep) = x ;} 
   if ( Lhs >= 3)
-  { LhsVar(3) = Rhs+3; CreateVar(Rhs+3,"d",&un,&un,&rep); *stk(rep) = y ;}
+  { LhsVar(3) = Rhs+3; CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&rep); *stk(rep) = y ;}
   if ( Lhs >=4 ) 
-  { LhsVar(4) = Rhs+4; CreateVar(Rhs+4,"d",&un,&un,&rep); *stk(rep) = (double) iw ;}
+  { LhsVar(4) = Rhs+4; CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&rep); *stk(rep) = (double) iw ;}
   if ( Lhs >= 5) 
   {
     if (istr == 0) { istr = 4; strcpy(C2F(cha1).buf,"void");}
-    LhsVar(5) = Rhs+5; CreateVar(Rhs+5,"c",&istr,&un,&rep); 
+    LhsVar(5) = Rhs+5; CreateVar(Rhs+5,STRING_DATATYPE,&istr,&un,&rep); 
     strncpy(cstk(rep),C2F(cha1).buf,istr);
   }
   return 0;

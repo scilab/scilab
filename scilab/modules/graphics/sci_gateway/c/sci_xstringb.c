@@ -42,13 +42,13 @@ int sci_xstringb(char *fname,unsigned long fname_len)
 
   CheckRhs(5,6);
 
-  GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1);  x = *stk(l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2);  y = *stk(l2);
-  GetRhsVar(3,"S",&m3,&n3,&Str);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); CheckScalar(1,m1,n1);  x = *stk(l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); CheckScalar(2,m2,n2);  y = *stk(l2);
+  GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&Str);
   if ( m3*n3 == 0 ) { LhsVar(1)=0; return 0;} 
 
-  GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);  w = *stk(l4);
-  GetRhsVar(5,"d",&m5,&n5,&l5); CheckScalar(5,m5,n5);  hx = *stk(l5);
+  GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4);  w = *stk(l4);
+  GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE,&m5,&n5,&l5); CheckScalar(5,m5,n5);  hx = *stk(l5);
 
   if (Rhs == 6)
   {

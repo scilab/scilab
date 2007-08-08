@@ -25,7 +25,7 @@ int sci_Beep __PARAMS((char *fname,unsigned long fname_len))
 	{
 		char *param1=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
 
 		if ( strcmp(param1,"on") == 0 )
@@ -52,7 +52,7 @@ int sci_Beep __PARAMS((char *fname,unsigned long fname_len))
 	if (BeepON) strcpy(output,"on");
 	else strcpy(output,"off");
 
-	CreateVarFromPtr( Rhs+1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 	FREE(output);
 	output=NULL;
 

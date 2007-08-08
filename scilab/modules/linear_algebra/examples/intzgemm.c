@@ -14,16 +14,16 @@ int intzgemm(fname)
   CheckRhs(minrhs,maxrhs) ;
   CheckLhs(minlhs,maxlhs) ;
   
-  GetRhsVar(1,"z", &m1,&n1,&lalfa);   /*      alpha */
+  GetRhsVar(1,MATRIX_OF_COMPLEX_DATATYPE, &m1,&n1,&lalfa);   /*      alpha */
   CheckScalar(1, m1, n1);
 
-  GetRhsVar(2,"z", &mA,&nA,&lA);      /*      A     */
-  GetRhsVar(3,"z", &mB,&nB,&lB);      /*      B     */
+  GetRhsVar(2,MATRIX_OF_COMPLEX_DATATYPE, &mA,&nA,&lA);      /*      A     */
+  GetRhsVar(3,MATRIX_OF_COMPLEX_DATATYPE, &mB,&nB,&lB);      /*      B     */
 
-  GetRhsVar(4,"z", &m4,&n4,&lbeta);   /*      beta */
+  GetRhsVar(4,MATRIX_OF_COMPLEX_DATATYPE, &m4,&n4,&lbeta);   /*      beta */
   CheckScalar(4, m4, n4);
 
-  GetRhsVar(5,"z", &mC,&nC,&lC);      /*      C     */
+  GetRhsVar(5,MATRIX_OF_COMPLEX_DATATYPE, &mC,&nC,&lC);      /*      C     */
 
   m=mA;  n=nB;
   if(nA != mB || mA != mC || nB != nC ) Scierror(999,"%f: invalid matrix dims \r\n",fname);

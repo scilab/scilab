@@ -33,8 +33,8 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 		char *param2=NULL;
 		char *result=(char*)MALLOC(PATH_MAX*sizeof(char));
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
-		GetRhsVar(2,"c",&m2,&n2,&l2);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		
 		if ( n1==1 ){
 			param1=cstk(l1);
@@ -64,7 +64,7 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 		
 		result = getrelativefilename(param1,param2);
 		
-		CreateVarFromPtr(Rhs+3,"c",(m1=(int)strlen(result), &m1),&n1,&result);
+		CreateVarFromPtr(Rhs+3,STRING_DATATYPE,(m1=(int)strlen(result), &m1),&n1,&result);
 		LhsVar(1)=Rhs+3;
 		if (result) {FREE(result);result=NULL;}
 		C2F(putlhsvar)();

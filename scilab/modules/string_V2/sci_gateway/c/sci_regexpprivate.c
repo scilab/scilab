@@ -73,9 +73,9 @@ int C2F(sci_regexppri) _PARAMS((char *fname,unsigned long fname_len))
   
 	switch ( VarType(1)) {
 		case 10 :
-			GetRhsVar(1,"S",&m1,&n1,&Str);
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 			mn = m1*n1;  
-			GetRhsVar(2,"S",&m2,&n2,&Str2);
+			GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str2);
 			pattern=*Str2;
 
 			out1=(regex_t *)malloc(sizeof(regex_t));
@@ -93,7 +93,7 @@ int C2F(sci_regexppri) _PARAMS((char *fname,unsigned long fname_len))
 					numRow   = 1 ;
 					outIndex = 0 ;
 			
-					CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
+					CreateVar(Rhs+1+x,STRING_DATATYPE,&numRow,&numCol,&outIndex);
 					LhsVar(x+1) = outIndex2 ;
 			
 					continue;
@@ -114,19 +114,19 @@ int C2F(sci_regexppri) _PARAMS((char *fname,unsigned long fname_len))
 	
 			numRow   = 1;
 			outIndex = 0;
-			CreateVar(Rhs+1,"d",&numRow,&nbstpoint,&outIndex);
+			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbstpoint,&outIndex);
 			for ( i = 0 ; i < nbstpoint ; i++ ){
 				stk(outIndex)[i] = (double)stpoint[i];
 			}	
 			LhsVar(1) = Rhs+1;
 			numRow   = 1;
 			outIndex = 0;
-			CreateVar(Rhs+2,"d",&numRow,&nbendpoint,&outIndex);
+			CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbendpoint,&outIndex);
 			for ( i = 0 ; i < nbendpoint ; i++ ){
 				stk(outIndex)[i] = (double)endpoint[i];
 			}	
 			LhsVar(2) = Rhs+2;	
-			CreateVarFromPtr( Rhs+3, "S", &numRow, &nbresult, result );
+			CreateVarFromPtr( Rhs+3,MATRIX_OF_STRING_DATATYPE, &numRow, &nbresult, result );
 			LhsVar(3) = Rhs+3;	
 	}
   

@@ -30,8 +30,8 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
   SciWin();
 
   CheckRhs(2,3);
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
   mn2 = m2 * n2;
   if ( mn2 == 0 ) {  LhsVar(1)=0; return 0; } 
@@ -39,7 +39,7 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
 
   if (Rhs == 3) 
   {
-    GetRhsVar(3,"i",&m3,&n3,&l3); 
+    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); 
 
     if (m3*n3==m1*n1) 
     { /* Code modified by polpoth 7/7/2000 */
@@ -61,7 +61,7 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
   else 
   {
     int un=1,ix;
-    CreateVar(3,"i",&un,&n2,&l3);
+    CreateVar(3,MATRIX_OF_INTEGER_DATATYPE,&un,&n2,&l3);
     for (ix = 0 ; ix < n2 ; ++ix) *istk(l3+ix) = 0;
     m3 = n3 = 1;
   }

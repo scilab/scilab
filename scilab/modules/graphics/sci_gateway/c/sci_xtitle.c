@@ -56,7 +56,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     {
       int n,m ;
       int boxPtr   = -1 ; /* pointer of box on the stack */
-      GetRhsVar(4,"i",&m,&n,&boxPtr);
+      GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&m,&n,&boxPtr);
       CheckScalar(4,m,n);
       box = *istk( boxPtr ) ;
       nbLabels-- ; /* it is not a label text */
@@ -89,7 +89,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     sciPointObj * modifiedLabel = NULL ;
     char * text ;
 
-    GetRhsVar(narg,"S",&m,&n,&Str);
+    GetRhsVar(narg,MATRIX_OF_STRING_DATATYPE,&m,&n,&Str);
     if ( m*n == 0 ) { continue ; }
     strcpy(C2F(cha1).buf,Str[0]);
     for ( i= 1 ; i < m*n ; i++) 

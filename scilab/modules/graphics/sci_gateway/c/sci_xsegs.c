@@ -27,14 +27,14 @@ int sci_xsegs(char *fname,unsigned long fname_len)
 
   CheckRhs(2,3);
 
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
   if (m2*n2 == 0) { LhsVar(1)=0; return 0;} 
 
   if (Rhs == 3)
   {
-    GetRhsVar(3,"i",&m3,&n3,&l3); CheckVector(3,m3,n3);
+    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); CheckVector(3,m3,n3);
     if (m3 * n3 == 1) dstyle = *istk(l3 );
     if (m3 * n3 != 1 && m2 * n2 / 2 != m3 * n3) {
       Scierror(999,"%s: style has a wrong size (%d), expecting (%d)\r\n",fname,m3 * n3, m2 * n2 / 2);

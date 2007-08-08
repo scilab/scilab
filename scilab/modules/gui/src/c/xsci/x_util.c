@@ -1010,7 +1010,7 @@ int XClearScreenConsole(char *fname)
 	}
       else
 	{
-	  GetRhsVar(1,"i",&m1,&n1,&l1);
+	  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	  NbLines = *istk(l1);
 	  if (NbLines>0)
 	    {

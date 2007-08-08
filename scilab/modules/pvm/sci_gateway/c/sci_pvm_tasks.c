@@ -20,7 +20,7 @@ int intspvm_tasks _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(0,1); 
   CheckLhs(1,1);
   if ( Rhs == 1) { 
-    GetRhsVar(1,"i",&m1,&n1,&l1); 
+    GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1); 
     CheckScalar(1,m1,n1);
     where = *istk(l1);
   }
@@ -33,15 +33,15 @@ int intspvm_tasks _PARAMS((char *fname,unsigned long fname_len))
     }
   /* Creation of output list of length 7*/
   Createlist(Rhs+1,7);
-  CreateListVarFromPtr(Rhs+1,1,"i",&un,&ne3,&ptid);
+  CreateListVarFromPtr(Rhs+1,1,MATRIX_OF_INTEGER_DATATYPE,&un,&ne3,&ptid);
   FREE(ptid);
-  CreateListVarFromPtr(Rhs+1,2,"i",&un,&ne3,&pptid);
+  CreateListVarFromPtr(Rhs+1,2,MATRIX_OF_INTEGER_DATATYPE,&un,&ne3,&pptid);
   FREE(pptid);
-  CreateListVarFromPtr(Rhs+1,3,"i",&un,&ne3,&pdtid);
+  CreateListVarFromPtr(Rhs+1,3,MATRIX_OF_INTEGER_DATATYPE,&un,&ne3,&pdtid);
   FREE(pdtid);
-  CreateListVarFromPtr(Rhs+1,4,"i",&un,&ne3,&pflag);
+  CreateListVarFromPtr(Rhs+1,4,MATRIX_OF_INTEGER_DATATYPE,&un,&ne3,&pflag);
   FREE(pflag);
-  CreateListVarFromPtr(Rhs+1,5,"S",&ne3,&un,pname);
+  CreateListVarFromPtr(Rhs+1,5,MATRIX_OF_STRING_DATATYPE,&ne3,&un,pname);
   if (pname)
   {
 	  int i=0;
@@ -57,8 +57,8 @@ int intspvm_tasks _PARAMS((char *fname,unsigned long fname_len))
 	  pname=NULL;
   }
 
-  CreateListVarFromPtr(Rhs+1,6,"i",&un,&un,(work=&ntask,&work));
-  CreateListVarFromPtr(Rhs+1,7,"i",&un,&un,(work=&info,&work));
+  CreateListVarFromPtr(Rhs+1,6,MATRIX_OF_INTEGER_DATATYPE,&un,&un,(work=&ntask,&work));
+  CreateListVarFromPtr(Rhs+1,7,MATRIX_OF_INTEGER_DATATYPE,&un,&un,(work=&info,&work));
   LhsVar(1)= Rhs+1;
   pvm_error_check(fname,info,fname_len);
 

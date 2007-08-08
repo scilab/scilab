@@ -27,7 +27,7 @@ int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 		{
 			static int l1,n1,m1;
 		
-			GetRhsVar(1,"i",&m1,&n1,&l1);
+			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 
 			if ( (m1 == 1) && (n1 == 1) )
 			{

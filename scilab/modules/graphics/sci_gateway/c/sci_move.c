@@ -22,7 +22,7 @@ int sci_move( char * fname, unsigned long fname_len )
   SciWin();
   opt = FALSE;
   if (Rhs ==3) {
-    GetRhsVar(3,"c",&m3,&n3,&l3);
+    GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
     if (strcmp(cstk(l3),"alone") == 0) { opt = TRUE; }
     else {
       Scierror(999,"%s: invalid option \r\n",fname); 
@@ -30,8 +30,8 @@ int sci_move( char * fname, unsigned long fname_len )
     }
   }
 
-  GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */    
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */    
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
   n=m2*n2;
   if (n != 2&&n !=3)

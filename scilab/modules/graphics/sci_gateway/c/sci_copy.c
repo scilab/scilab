@@ -30,7 +30,7 @@ int sci_copy(char *fname,unsigned long fname_len)
   /*  set or create a graphic window*/
   SciWin();
   lw = 1 + Top - Rhs;
-  GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
+  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument*/
   if (m1!=1||n1!=1) {
     C2F(overload)(&lw,"copy",4);
     return 0;
@@ -64,7 +64,7 @@ int sci_copy(char *fname,unsigned long fname_len)
       C2F(overload)(&lw,"copy",4);
       return 0;
     }
-    GetRhsVar(2,"h",&m1,&n1,&l2); /* Gets the command name */
+    GetRhsVar(2,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l2); /* Gets the command name */
     hdlparent = (unsigned long)*hstk(l2); /* on recupere le pointeur d'objet par le handle*/
     psubwinparenttarget = sciGetPointerFromHandle(hdlparent);
     if ( psubwinparenttarget == NULL) {
@@ -73,7 +73,7 @@ int sci_copy(char *fname,unsigned long fname_len)
     }
   }
   numrow   = 1;numcol   = 1;
-  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+  CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
   *hstk(outindex) = sciGetHandle(pcopyobj = sciCopyObj((sciPointObj *)pobj,(sciPointObj *)psubwinparenttarget));
   sciDrawObj((sciPointObj *)sciGetParentFigure(pcopyobj));
   LhsVar(1) = Rhs+1;

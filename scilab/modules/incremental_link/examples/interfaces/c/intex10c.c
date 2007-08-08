@@ -23,7 +23,7 @@ int intex10c(fname)
    */ 
 
   GetMatrixptr("param", &m, &n, &lp);
-  CreateVar(1, "d",  &m, &n, &l1);
+  CreateVar(1,MATRIX_OF_DOUBLE_DATATYPE,  &m, &n, &l1);
 
   for (k = 0; k < m*n ; ++k) 
     { 

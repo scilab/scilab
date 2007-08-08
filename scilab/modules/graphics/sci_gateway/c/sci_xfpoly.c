@@ -27,12 +27,12 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
   SciWin();
   CheckRhs(2,3);
 
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
 
   if (Rhs == 3) {
-    GetRhsVar(3,"d",&m3,&n3,&l3);
+    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
     CheckScalar(3,m3,n3);
     close = (integer) *stk(l3);
   } 

@@ -17,7 +17,7 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 	if (getNumberOfLinesInScilabHistory() <= 0)
 	{
 		m1=0; n1=0;
-		CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 		return 0;
@@ -29,19 +29,19 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			int N = 0;
 			char *line = NULL;
-			GetRhsVar(1,"i",&m1,&n1,&l1);
+			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 			N = *istk(l1);
 			line = getNthLineInScilabHistory(N);
 			if (line)
 			{
 				n1=1;
-				CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(line), &m1),&n1,&line);
+				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(line), &m1),&n1,&line);
 				FREE(line);
 			}
 			else
 			{
 				m1=0; n1=0;
-				CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 			}
 		}
 		else
@@ -65,7 +65,7 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 			m = nblines;
 			n = 1;
 
-			CreateVarFromPtr(Rhs+1, "S", &m, &n, lines);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n, lines);
 			LhsVar(1) = Rhs+1;
 			if (lines)
 			{
@@ -86,7 +86,7 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 		else
 		{
 			m1=0; n1=0;
-			CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		}
 	}
 	

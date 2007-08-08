@@ -39,7 +39,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 		return 0;
 	}
 
-	GetRhsVar(1,"c",&m1,&n1,&l1);
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	Param1String=cstk(l1);
 	DetachProcessOption=DetectDetachProcessInCommandLine(Param1String);
 
@@ -50,7 +50,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 			Scierror(999,"second parameter must be a string.\r\n");
 			return 0;
 		}
-		GetRhsVar(2,"c",&m1,&n1,&l1);
+		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 		Param2String=cstk(l1);
 
 		if (strcmp("-echo",Param2String))
@@ -120,7 +120,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 	if (Lhs == 1)
 	{
 		m1=1;n1=1;
-		CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &Status);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
 		LhsVar(1)=Rhs+1;
 	}
 	else /* Lhs == 2 */
@@ -129,7 +129,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 		{
 			m1=numberoflines;
 			n1=1;
-			CreateVarFromPtr(Rhs+1, "S",&m1, &n1, Output);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1, &n1, Output);
 			
 		}
 		else
@@ -137,13 +137,13 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 			m1=0;
 			n1=0;
 			l1=0;
-			CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		}
 		
 		LhsVar(1)=Rhs+1;
 
 		m1=1;n1=1;
-		CreateVarFromPtr(Rhs+2, "b", &n1, &n1, &Status);
+		CreateVarFromPtr(Rhs+2,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
 		LhsVar(2)=Rhs+2;
 	}
 

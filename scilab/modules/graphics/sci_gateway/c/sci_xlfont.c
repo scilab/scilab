@@ -48,7 +48,7 @@ int sci_xlfont( char * fname, unsigned long fname_len )
       S[i][sz[i]]='\0';
     } 
     S[m]= (char *) 0;
-    CreateVarFromPtr(Rhs+1,"S",&one,&m,S);
+    CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&one,&m,S);
 	if (S)
 	{
 		int j=0;
@@ -67,8 +67,8 @@ int sci_xlfont( char * fname, unsigned long fname_len )
     return 0;
   }
   CheckRhs(2,2);
-  GetRhsVar(1,"c",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);  CheckScalar(2,m2,n2);  num = (integer) *stk(l2);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);  CheckScalar(2,m2,n2);  num = (integer) *stk(l2);
   C2F(dr1)("xlfont",cstk(l1),&num,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,m1);
   LhsVar(1)=0;
   return 0;

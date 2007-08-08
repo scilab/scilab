@@ -22,7 +22,7 @@ int C2F(sci_TCL_gcf) _PARAMS((char *fname,unsigned long l))
 	
 	*paramoutINT=GetTclCurrentFigure();
 	n1=1;
-	CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();	
@@ -72,7 +72,7 @@ int C2F(sci_TCL_scf) _PARAMS((char *fname,unsigned long l))
 	{
 		int *Handle=NULL;
 
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		Handle=istk(l1);
 
 		*paramoutINT=SetTclCurrentFigure(*Handle);
@@ -85,7 +85,7 @@ int C2F(sci_TCL_scf) _PARAMS((char *fname,unsigned long l))
 	}
 	
 	n1=1;
-	CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();	

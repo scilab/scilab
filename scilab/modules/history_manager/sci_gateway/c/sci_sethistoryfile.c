@@ -24,7 +24,7 @@ int C2F(sci_sethistoryfile) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		int l1 = 0, m1 = 0, n1 = 0;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		filename=cstk(l1);
 		setFilenameScilabHistory(filename);
 	}

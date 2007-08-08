@@ -21,7 +21,7 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
     sciPointObj *pParent=NULL;
     int m1,n1,l1;
 
-    GetRhsVar(1,"h",&m1,&n1,&l1);
+    GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
     pParent = sciGetPointerFromHandle((long)*hstk(l1));
 
     if (sciGetEntityType (pParent) != SCI_FIGURE ) 

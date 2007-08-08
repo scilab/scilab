@@ -20,9 +20,9 @@ int intview(fname)
   CheckLhs(minlhs,maxlhs) ;
 
   /* Get X (1 ,double), Y (2, int) and  C (3, string) */
-  GetRhsVar(1, "d", &m1, &n1, &l1);
-  GetRhsVar(2, "i", &m2, &n2, &l2);
-  GetRhsVar(3, "c", &m3, &n3, &l3);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
+  GetRhsVar(3,STRING_DATATYPE, &m3, &n3, &l3);
 
   /* Call display function
      stk(l1)->X (double), istk(l2)->Y (int), cstk(l3)->Z  (char)    */

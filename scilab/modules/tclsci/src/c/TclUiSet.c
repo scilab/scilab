@@ -42,7 +42,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 			static int l1,n1,m1;
 			char *StrField=NULL;
 
-			GetRhsVar(RhsPropertieField,"c",&m1,&n1,&l1);
+			GetRhsVar(RhsPropertieField,STRING_DATATYPE,&m1,&n1,&l1);
 			StrField=cstk(l1);
 			nocase(StrField);
 
@@ -54,7 +54,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					char VarName[64];
 					int i=0;
 
-					GetRhsVar(RhsPropertieValue,"S",&m1,&n1,&Str);
+					GetRhsVar(RhsPropertieValue,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 					sprintf(VarName,"USERDATA_%d",Handle);
 
 					/* Efface valeur precedente */
@@ -84,7 +84,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 
 					sprintf(VarName,"USERDATA_%d",Handle);
 
-					GetRhsVar(RhsPropertieValue,"d",&m1,&n1,&l1);
+					GetRhsVar(RhsPropertieValue,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 
 					if ( (m1==0) && (n1==0) )
 					{
@@ -117,7 +117,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 						char VarName[64];
 						int i=0;
 
-						GetRhsVar(RhsPropertieValue,"S",&m1,&n1,&Str);
+						GetRhsVar(RhsPropertieValue,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 						sprintf(VarName,"STRING_%d",Handle);
 
 						/* Efface valeur precedente */
@@ -193,7 +193,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					{
 						char *TmpCharValue=NULL;
 
-						GetRhsVar(RhsPropertieValue,"c",&m1,&n1,&l1);
+						GetRhsVar(RhsPropertieValue,STRING_DATATYPE,&m1,&n1,&l1);
 						TmpCharValue=cstk(l1);
 
 						PropertieValue=(char*)MALLOC((strlen(TmpCharValue)+1)*sizeof(char));

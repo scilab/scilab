@@ -24,7 +24,7 @@ int cdffncI(char* fname,unsigned long l)
 	Nbvars = 0;
 	CheckRhs(minrhs,maxrhs);
 	CheckLhs(minlhs,maxlhs);
-	GetRhsVar(1, "c", &m1, &n1, &l1);
+	GetRhsVar(1,STRING_DATATYPE, &m1, &n1, &l1);
 	if ( strcmp(cstk(l1),"PQ")==0) 
 	{
 		static int callpos[6] = {4,5,0,1,2,3};

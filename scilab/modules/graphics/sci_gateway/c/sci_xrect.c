@@ -35,7 +35,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
   switch( Rhs )
   {
   case 1 :
-    GetRhsVar(1,"d",&m1,&n1,&l1); 
+    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); 
     CheckLength(1,m1*n1,4);
     startFigureDataWriting(pFigure);
     if (strcmp(fname,"xrect")==0)
@@ -63,10 +63,10 @@ int sci_xrect( char *fname, unsigned long fname_len )
 
     break;
   case 4 :
-    GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1);
-    GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2);
-    GetRhsVar(3,"d",&m3,&n3,&l3); CheckScalar(3,m3,n3);
-    GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);
+    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); CheckScalar(1,m1,n1);
+    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); CheckScalar(2,m2,n2);
+    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3);
+    GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4);
     startFigureDataWriting(pFigure);
     if (strcmp(fname,"xrect")==0)
     {	

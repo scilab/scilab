@@ -32,7 +32,7 @@ int C2F(sci_getcwd) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		static int n1,m1;
 		n1=1;
-		CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(path), &m1),&n1,&path);
+		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(path), &m1),&n1,&path);
 		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();	
 	}

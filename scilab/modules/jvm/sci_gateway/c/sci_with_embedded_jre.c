@@ -13,7 +13,7 @@ int C2F(sci_with_embedded_jre) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int n1=0,l1=0;
 	n1=1;
-	CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+	CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 	*istk(l1)=(int)withEmbeddedJRE();
 	
 	LhsVar(1)=Rhs+1;

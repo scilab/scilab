@@ -22,12 +22,12 @@ int C2F(sci_system_getproperty) _PARAMS((char *fname,unsigned long fname_len))
 		char *propertyName = NULL;
 		char *propertyValue = NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		propertyName=cstk(l1);
 		propertyValue=system_getproperty(propertyName,"unknown");
 
 		n1=1;
-		CreateVarFromPtr(Rhs+1, "c",(m1=(int)strlen(propertyValue), &m1),&n1,&propertyValue);
+		CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(propertyValue), &m1),&n1,&propertyValue);
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 		if (propertyValue) {FREE(propertyValue);propertyValue=NULL;}

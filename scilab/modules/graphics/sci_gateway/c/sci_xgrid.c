@@ -22,7 +22,7 @@ int sci_xgrid(char *fname,unsigned long fname_len)
   int status = 0 ;
   CheckRhs(-1,1);
   if (Rhs == 1) {
-    GetRhsVar(1,"d",&m1,&n1,&l1);
+    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
     CheckScalar(1,m1,n1);
     style = (integer) *stk(l1);
   }

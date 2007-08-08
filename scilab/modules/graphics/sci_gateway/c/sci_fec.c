@@ -61,17 +61,17 @@ int sci_fec(char *fname,unsigned long fname_len)
     Error(999); 
     return(0);
   }
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
 
-  GetRhsVar(3,"d",&m3,&n3,&l3);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
   if (n3 != 5) {
     Scierror(999,"%s: triangles have %d columns,expecting 5\r\n",fname,n3);
     return 0;
   }
 
-  GetRhsVar(4,"d",&m4,&n4,&l4);
+  GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4);
 
   if (m1 * n1 == 0 || m3 == 0) { LhsVar(1)=0;     return 0;} 
 

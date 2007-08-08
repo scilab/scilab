@@ -19,13 +19,13 @@ int intdsyev(fname)
   CheckRhs(minrhs,maxrhs) ;  CheckLhs(minlhs,maxlhs) ;
 
   /*--------------------A---------------------------*/
-  GetRhsVar(A, "d", &M, &N, &lA);
+  GetRhsVar(A,MATRIX_OF_DOUBLE_DATATYPE, &M, &N, &lA);
   /*  To be done: Check A symmetric and Real*/
   NLHS=Lhs;
   switch ( NLHS ) {
   case 2:        
     /*  [w,U]=dsyev(A)     */
-    CreateVar(W, "d", &N, &un, &lw);
+    CreateVar(W,MATRIX_OF_DOUBLE_DATATYPE, &N, &un, &lw);
     WORK=3;
     LWORKMIN = MAX(1, 3*N-1);
     LWORK = LWORKMIN;
@@ -33,7 +33,7 @@ int intdsyev(fname)
     if (LWORK < LWORKMIN) { 
       sciprint("not enough memory (use stacksize)");
       Error(9999); };
-    CreateVar(3, "d", &LWORK, &un, &lWORK);
+    CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &LWORK, &un, &lWORK);
     LDA = MAX(1,N);
     C2F(dsyev)("V", "L", &N, stk(lA), &LDA, stk(lw), stk(lWORK), &LWORK, &INFO);
     if (INFO != 0) C2F(errorinfo)("dsyev ", &INFO, 5L);
@@ -42,14 +42,14 @@ int intdsyev(fname)
     break;
   case 1:
     /*   w=dsyev(A)    */
-    CreateVar(W, "d", &N, &un, &lw);
+    CreateVar(W,MATRIX_OF_DOUBLE_DATATYPE, &N, &un, &lw);
     WORK=3;
     LWORKMIN = MAX(1, 3*N-1);
     LWORK=C2F(maxvol)(&WORK, "d", 1L);  /* max memory currently available */
     if (LWORK < LWORKMIN) { 
       sciprint("not enough memory (use stacksize)");
       Error(9999); };
-    CreateVar(3, "d", &LWORK, &un, &lWORK);
+    CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &LWORK, &un, &lWORK);
     LDA = MAX(1,N);
     C2F(dsyev)("N", "L", &N, stk(lA), &LDA, stk(lw), stk(lWORK), &LWORK, &INFO);
     if (INFO != 0) C2F(errorinfo)("dsyev ", &INFO, 5L);

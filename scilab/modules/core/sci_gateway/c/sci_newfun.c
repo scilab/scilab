@@ -24,10 +24,10 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 		char *VarName=NULL;
 		int nameptr=0;
 		
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName=cstk(l1);
 
-		GetRhsVar(2,"i",&m1,&n1,&l1);
+		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		nameptr=*istk(l1);
 
 		if (nameptr > 0)

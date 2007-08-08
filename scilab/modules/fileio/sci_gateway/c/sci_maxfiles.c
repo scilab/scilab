@@ -35,7 +35,7 @@ int C2F(sci_maxfiles) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		if ( GetType(1) == sci_matrix )
 		{
-			GetRhsVar(1,"d",&m1,&n1,&l1);
+			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 			if ( (m1 == 1) && (n1 == 1) )
 			{
 				int NewMaxFiles=0;
@@ -90,7 +90,7 @@ int DoOneLhs(void)
 	*paramoutINT= GetMaximumFileOpenedInScilab();
 
 	n1=1;m1=1;
-	CreateVarFromPtr(Rhs+1, "i", &n1, &m1, &paramoutINT);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();	

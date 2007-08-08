@@ -100,7 +100,7 @@ int sci_set(char *fname, unsigned long fname_len)
 			/* first is a scalar argument so it's a gset(hdl,"command",[param]) */
 			/* F.Leray; INFO: case 9 is considered for a matrix of graphic handles*/
 			CheckRhs(3,3);
-			GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
+			GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */
 			if ( *hstk(l1) != sciGetHandle(getFigureModel()) && *hstk(l1) != sciGetHandle(getAxesModel())
 			  &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_title)
 			  &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_x_label)
@@ -131,7 +131,7 @@ int sci_set(char *fname, unsigned long fname_len)
 					pobj = sciGetPointerFromHandle(hdl);
 				}
 
-			GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */  
+			GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */  
 			if ( *hstk(l1) != sciGetHandle(getFigureModel()) && *hstk(l1) != sciGetHandle(getAxesModel())
 			  &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_title)
 			  &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_x_label)
@@ -151,7 +151,7 @@ int sci_set(char *fname, unsigned long fname_len)
 			}
 			else if ( valueType == 9 )
 			{
-				GetRhsVar(3,"h",&numrow3,&numcol3,&l3);
+				GetRhsVar(3,GRAPHICAL_HANDLE_DATATYPE,&numrow3,&numcol3,&l3);
 			}
 			else if ( valueType == 10 ) 
 			{ 
@@ -161,18 +161,18 @@ int sci_set(char *fname, unsigned long fname_len)
 				  && strcmp( cstk(l2), "axes_reverse" ) != 0
 				  && strcmp( cstk(l2), "text"         ) != 0 )
 				{
-					GetRhsVar(3,"c",&numrow3,&numcol3,&l3);
+					GetRhsVar(3,STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				} 
 				else
 				{
-					GetRhsVar(3,"S",&numrow3,&numcol3,&l3);
+					GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				}
 		  }
 		  break;
 
 		case sci_strings:/* first is a string argument so it's a gset("command",[param]) */ 
 			CheckRhs(2,2);
-			GetRhsVar(1,"c",&m2,&n2,&l2);
+			GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
 			if (strcmp(cstk(l2),"default_figure") !=0 && strcmp(cstk(l2),"default_axes") !=0 )
 			{
 				if ((strcmp(cstk(l2),"old_style") ==0) || (strcmp(cstk(l2),"current_figure") ==0)) 
@@ -226,11 +226,11 @@ int sci_set(char *fname, unsigned long fname_len)
 
 			if (valueType == sci_matrix )
 			{
-				GetRhsVar(2,"d",&numrow3,&numcol3,&l3);
+				GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&numrow3,&numcol3,&l3);
 			}
 			else if ( valueType == sci_handles )
 			{
-				GetRhsVar(2,"h",&numrow3,&numcol3,&l3);
+				GetRhsVar(2,GRAPHICAL_HANDLE_DATATYPE,&numrow3,&numcol3,&l3);
 			}
 			else if ( valueType == sci_strings )
 			{
@@ -240,11 +240,11 @@ int sci_set(char *fname, unsigned long fname_len)
 				  && strcmp( cstk(l2), "axes_reverse" ) != 0
 				  && strcmp( cstk(l2), "text"      ) != 0 )
 				{
-					GetRhsVar(2,"c",&numrow3,&numcol3,&l3);
+					GetRhsVar(2,STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				} 
 				else
 				{
-					GetRhsVar(2,"S",&numrow3,&numcol3,&l3);
+					GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				}
 			}
 			break;

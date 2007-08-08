@@ -22,10 +22,10 @@ int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 		{
 			char *param1=NULL,*param2=NULL;
 			
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		    param1=cstk(l1);
 
-			GetRhsVar(2,"c",&m1,&n1,&l1);
+			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 		    param2=cstk(l1);
 
 			if ( DDEOpenConnection(param1,param2) )
@@ -33,7 +33,7 @@ int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 				int *paramoutINT=(int*)MALLOC(sizeof(int));
 				*paramoutINT=(int)(TRUE);
 				n1=1;
-				CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+				CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 				LhsVar(1)=Rhs+1;
 				FREE(paramoutINT);
 			}
@@ -42,7 +42,7 @@ int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 				int *paramoutINT=(int*)MALLOC(sizeof(int));
 				*paramoutINT=(int)(FALSE);
 				n1=1;
-				CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+				CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 				LhsVar(1)=Rhs+1;
 				FREE(paramoutINT);
 			}
@@ -71,7 +71,7 @@ int	InterfaceWindowsDDEclose _PARAMS((char *fname))
 		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		*paramoutINT=(int)TRUE;
 		n1=1;
-		CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 		LhsVar(1)=Rhs+1;
 		FREE(paramoutINT);
 	}
@@ -80,7 +80,7 @@ int	InterfaceWindowsDDEclose _PARAMS((char *fname))
 		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		*paramoutINT=(int)FALSE;
 		n1=1;
-		CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 		LhsVar(1)=Rhs+1;
 		FREE(paramoutINT);
 	}
@@ -104,7 +104,7 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 		int TypeVar2=GetType(2);
 		if (TypeVar2 == sci_matrix)
 		{
-			GetRhsVar(2,"i",&m1,&n1,&l1);
+			GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 			if ( (m1 == 1) && (n1 == 1) )
 			{
 				param2=istk(l1);
@@ -132,7 +132,7 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 	{
 		char *param1=NULL;
 			
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
 
 		if ( DDEExecute(param1,*param2) )
@@ -140,7 +140,7 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)TRUE;
 			n1=1;
-			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 			LhsVar(1)=Rhs+1;
 			FREE(paramoutINT);
 		}
@@ -149,7 +149,7 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)FALSE;
 			n1=1;
-			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 			LhsVar(1)=Rhs+1;
 			FREE(paramoutINT);
 		}
@@ -187,7 +187,7 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 		int TypeVar3=GetType(3);
 		if (TypeVar3 == sci_matrix)
 		{
-			GetRhsVar(3,"i",&m1,&n1,&l1);
+			GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 			if ( (m1 == 1) && (n1 == 1) )
 			{
 				param3=istk(l1);
@@ -215,10 +215,10 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 	{
 		char *param1=NULL,*param2=NULL;
 		
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
 
-		GetRhsVar(2,"c",&m1,&n1,&l1);
+		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 		param2=cstk(l1);
 
 		if ( DDEPoke(param1,param2,*param3) )
@@ -226,7 +226,7 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)TRUE;
 			n1=1;
-			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 			LhsVar(1)=Rhs+1;
 			FREE(paramoutINT);
 		}
@@ -235,7 +235,7 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)FALSE;
 			n1=1;
-			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 			LhsVar(1)=Rhs+1;
 			FREE(paramoutINT);
 		}
@@ -271,7 +271,7 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 		int TypeVar2=GetType(2);
 		if (TypeVar2 == sci_matrix)
 		{
-			GetRhsVar(2,"i",&m1,&n1,&l1);
+			GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 			if ( (m1 == 1) && (n1 == 1) )
 			{
 				param2=istk(l1);
@@ -300,7 +300,7 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 		char Buffer[512];
 		char *param1=NULL;
 			
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
 
 		if ( DDERequest(param1,*param2,Buffer) )
@@ -308,7 +308,7 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 			char *output=NULL ;
 			output=(char*)MALLOC((strlen(Buffer)+1)*sizeof(char));
 			wsprintf(output,"%s",Buffer);
-			CreateVarFromPtr( Rhs+1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 			FREE(output);
 			LhsVar(1)=Rhs+1;
 		}
@@ -317,7 +317,7 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 			m1=0;
 			n1=0;
 			l1=0;
-			CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 			LhsVar(1)=Rhs+1;
 		}
 	}
@@ -346,7 +346,7 @@ int	InterfaceWindowsDDEIsOpen _PARAMS((char *fname))
 
 	m1=n1=1;
 	
-	CreateVar(Rhs+1,"b",&m1,&n1,&l1);
+	CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE,&m1,&n1,&l1);
 	
 	if ( DDEIsOpen() )
 	{

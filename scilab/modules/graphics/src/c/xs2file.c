@@ -31,7 +31,7 @@ int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_
   CheckScalar(1,m1,n1) ;
   iwin = (integer) *stk(l1) ;
   /* the file name */ 
-  GetRhsVar(2,"c",&m2,&n2,&l2);
+  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
   /* color or n & b */ 
   if ( Rhs >= 3 )
   {

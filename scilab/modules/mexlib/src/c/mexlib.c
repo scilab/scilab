@@ -1888,7 +1888,7 @@ mxArray *mxCreateString(const char *string)
   i = strlen(string);
   lw=Nbvars+1;
   /* we do not increment Nbvars since it is done inside createvar */
-  if ( ! C2F(createvarfromptr)(&lw, "c", &one, &i, (double *) &string, 1L) ) {
+  if ( ! C2F(createvarfromptr)(&lw, STRING_DATATYPE, &one, &i, (double *) &string, 1L) ) {
     return (mxArray *) 0;
   }
   /* back conversion to Scilab coding */

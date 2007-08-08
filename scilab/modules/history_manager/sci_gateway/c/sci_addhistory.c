@@ -22,7 +22,7 @@ int C2F(sci_addhistory) _PARAMS((char *fname,unsigned long fname_len))
 		char **lines=NULL;
 		BOOL bOK = FALSE;
 
-		GetRhsVar(1,"S",&m1,&n1,&lines);
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&lines);
 		bOK = appendLinesToScilabHistory(lines,m1*n1);
 
 		LhsVar(1) = 0;

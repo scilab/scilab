@@ -52,7 +52,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 		 if (GetType(1) == sci_strings) 
 		 {
 			 char *Param1String=NULL;
-			 GetRhsVar(1,"c",&m1,&n1,&l1);
+			 GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			 Param1String=cstk(l1);
 
 			 if ( (strcmp(Param1String,"get")==0) ||
@@ -114,10 +114,10 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			  char *Param1String=NULL;
 			  char *Param2String=NULL;
 
-			  GetRhsVar(1,"c",&m1,&n1,&l1);
+			  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			  Param1String=cstk(l1);
 
-			  GetRhsVar(2,"c",&m1,&n1,&l1);
+			  GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 			  Param2String=cstk(l1);
 
 			  if (strcmp(Param2String,"sorted"))
@@ -337,10 +337,10 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 m=lenStructArray;
 	 n=1;
 
-	 CreateVarFromPtr(Rhs+1, "S", &m, &n, Tab);
+	 CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n, Tab);
 	 LhsVar(1) = Rhs+1;
 
-	 CreateVarFromPtr(Rhs+2, "i", &m, &n, &Size);
+	 CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &Size);
 	 LhsVar(2) = Rhs+2;
 
 	 C2F(putlhsvar)();
@@ -385,7 +385,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 
 	 m=lenStructArray;
 	 n=1;
-	 CreateVarFromPtr(Rhs+1, "S", &m, &n,LocalTab);
+	 CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n,LocalTab);
 	 LhsVar(1)=Rhs+1;
 
 	 if (LocalTab)

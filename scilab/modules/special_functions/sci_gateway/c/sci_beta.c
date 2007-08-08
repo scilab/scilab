@@ -30,8 +30,8 @@ int sci_beta(char *fname,unsigned long fname_len)
   double switch_limit = 2;
 
   CheckLhs(1,1); CheckRhs(2,2);
-  GetRhsCVar(1, "d", &itx, &mx, &nx, &lx, &lxc); x = stk(lx);
-  GetRhsCVar(2, "d", &ity, &my, &ny, &ly, &lyc); y = stk(ly);
+  GetRhsCVar(1,MATRIX_OF_DOUBLE_DATATYPE, &itx, &mx, &nx, &lx, &lxc); x = stk(lx);
+  GetRhsCVar(2,MATRIX_OF_DOUBLE_DATATYPE, &ity, &my, &ny, &ly, &lyc); y = stk(ly);
   CheckSameDims(1,2,mx,nx,my,ny);
   if ( itx == 1  ||  ity == 1 )
     {
@@ -39,7 +39,7 @@ int sci_beta(char *fname,unsigned long fname_len)
       return 0;
     };
 
-  CreateVar(Rhs+3, "d", &mx, &nx, &lz); z = stk(lz);
+  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lz); z = stk(lz);
 
   for ( i = 0 ; i < mx*nx ; i++ )
     {

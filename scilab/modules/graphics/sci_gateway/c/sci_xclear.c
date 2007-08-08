@@ -25,7 +25,7 @@ int sci_xclear( char * fname, unsigned long fname_len )
   SciWin();
   if (Rhs == 1) 
   {
-    GetRhsVar(1,"d",&m1,&n1,&l1);
+    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
     C2F(dr1)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
     for (ix = 0 ; ix < m1*n1 ; ++ix) 
     {

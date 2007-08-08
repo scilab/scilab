@@ -21,13 +21,13 @@ int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l))
 		char *LongName=NULL;
 		char *ShortName=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		ShortName=cstk(l1);
 
 		LongName = getlongpathname(ShortName,&bOK);
 
 		n1=1;
-		CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(LongName), &m1),&n1,&LongName);
+		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(LongName), &m1),&n1,&LongName);
 		LhsVar(1)=Rhs+1;
 
 		if (LongName) {FREE(LongName);LongName=NULL;}
@@ -38,7 +38,7 @@ int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l))
 
 			*bOkOutINT=bOK;
 			n1=1;
-			CreateVarFromPtr(Rhs+2, "b", &n1, &n1, &bOkOutINT);
+			CreateVarFromPtr(Rhs+2,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &bOkOutINT);
 			LhsVar(2)=Rhs+2;
 			if (bOkOutINT) {FREE(bOkOutINT);bOkOutINT=NULL;}
 		}

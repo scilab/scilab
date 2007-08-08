@@ -58,9 +58,9 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
   
   switch ( VarType(1)) {
   case 10 :
-    GetRhsVar(1,"S",&m1,&n1,&Str);
+    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
     mn = m1*n1;  
-	GetRhsVar(2,"S",&m2,&n2,&Str2);
+	GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str2);
     mn2 = m2*n2;  
     pattern=*Str2;
 
@@ -78,14 +78,14 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 			int numCol   = 1 ;
 			numRow   = 1 ;
             outIndex = 0 ;
-            CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
+            CreateVar(Rhs+1+x,STRING_DATATYPE,&numRow,&numCol,&outIndex);
   			LhsVar(x+1) = outIndex2 ;
 			
 			continue;
 		}
 		for (x1 = 0; x1 < nmatch && pm[x1].rm_so != -1; ++ x1) {
 			
-            //CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
+            //CreateVar(Rhs+1+x,STRING_DATATYPE,&numRow,&numCol,&outIndex);
             //strncpy(cstk(outIndex),substr(Str[x], pm[x1].rm_so, pm[x1].rm_eo), numCol);
 			stpoint[nbstpoint++]=pm[x1].rm_so+1;
 			endpoint[nbendpoint++]=pm[x1].rm_eo;

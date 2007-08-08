@@ -15,7 +15,7 @@ int intspvm_halt _PARAMS((char *fname,unsigned long fname_len))
   int res,un=1;
   CheckRhs(0,0);
   CheckLhs(1,1);
-  CreateVar(Rhs+1,"i",&un,&un,&res);
+  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&res);
   C2F(scipvmhalt)(istk(res));
   LhsVar(1)=Rhs+1;
 

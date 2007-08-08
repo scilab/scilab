@@ -26,7 +26,7 @@ int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len))
 	ncol=1;
 	nrow=Modules->numberofModules;
 
-	CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, Modules->ModuleList);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, Modules->ModuleList);
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
 

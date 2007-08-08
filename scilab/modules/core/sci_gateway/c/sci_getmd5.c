@@ -30,7 +30,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			FILE *fp=NULL;
 			char *MD5=NULL;
 
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			Param1=cstk(l1);
 
 			fp = fopen(Param1, "rb");
@@ -44,7 +44,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 				if (MD5) {FREE(MD5);MD5=NULL;}
 
 				n1=1;
-				CreateVarFromPtr(Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);
+				CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);
 				if (output) {FREE(output);output=NULL;}
 
 				LhsVar(1) = Rhs+1;
@@ -67,10 +67,10 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			char *Param1=NULL;
 			char *Param2=NULL;
 
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			Param1=cstk(l1);
 
-			GetRhsVar(2,"c",&m1,&n1,&l1);
+			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 			Param2=cstk(l1);
 
 #ifdef _MSC_VER
@@ -87,7 +87,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 				if (MD5) {FREE(MD5);MD5=NULL;}
 
 				n1=1;
-				CreateVarFromPtr( Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);
+				CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);
 				if (output) {FREE(output);output=NULL;}
 
 				LhsVar(1) = Rhs+1;

@@ -36,7 +36,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   CheckRhs(1,6);
   CheckLhs(0,1);
 
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
   for ( i = 0 ; i < NUMSETFONC ; i++ )
   {
@@ -67,7 +67,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   if (Rhs == 2 && VarType(2) != 1) 
   {
     /* second argument is not a scalar it must be a string */ 
-    GetRhsVar(2,"c",&m2,&n2,&l2);
+    GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
     C2F(xsetg)(cstk(l1),cstk(l2),m1,m2);
     LhsVar(1)=0; return 0;
   }
@@ -80,7 +80,7 @@ int sci_xset( char *fname, unsigned long fname_len )
 
   for ( i = 2 ; i <= Rhs ; i++ ) 
   {
-    GetRhsVar(i,"d",&xm[i-2],&xn[i-2],&lr);
+    GetRhsVar(i,MATRIX_OF_DOUBLE_DATATYPE,&xm[i-2],&xn[i-2],&lr);
     x[i - 2] = (integer) *stk(lr); xx[i - 2] = *stk(lr);
   }
   /* initialisation of a window if argument is not xset('window') 

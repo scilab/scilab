@@ -78,19 +78,19 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
   iarg=Rhs;
   if (Lhs > 1) {
     if (nrow==0) {/* eof encountered before any data */
-      CreateVar(++iarg, "d", &one, &one, &l);
+      CreateVar(++iarg,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &l);
       LhsVar(1) = iarg;
       *stk(l) = -1.0;
       for ( i = 2; i <= Lhs ; i++) 
       {
 	iarg++;
-	CreateVar(iarg,"d",&zero,&zero,&l);
+	CreateVar(iarg,MATRIX_OF_DOUBLE_DATATYPE,&zero,&zero,&l);
 	LhsVar(i) = iarg;
       }
       PutLhsVar();
       return 0;
     }
-    CreateVar(++iarg, "d", &one, &one, &l);
+    CreateVar(++iarg,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &l);
     *stk(l) = (double) retval_s;
     LhsVar(1)=iarg;
     if (ncol==0) goto Complete;
@@ -100,12 +100,12 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 	if( (temp = (char **) MALLOC(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
 	k=0;
 	for (j=0;j<nrow;j++) temp[k++]=data[i+ncol*j].s;
-	CreateVarFromPtr(++iarg, "S", &nrow, &one, temp);
+	CreateVarFromPtr(++iarg,MATRIX_OF_STRING_DATATYPE, &nrow, &one, temp);
 	FREE(temp);
 	/*for (j=0;j<nrow;j++) FREE(data[i+ncol*j].s);*/ 
       }
       else {
-	CreateVar(++iarg, "d", &nrow, &one, &l);
+	CreateVar(++iarg,MATRIX_OF_DOUBLE_DATATYPE, &nrow, &one, &l);
 	for ( j=0 ; j < nrow ; j++) 
 	  *stk(l+j)= data[i+ncol*j].d;
       }
@@ -118,7 +118,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
     for ( i = ncol+2; i <= Lhs ; i++) 
       {
 	iarg++;
-	CreateVar(iarg,"d",&zero,&zero,&l);
+	CreateVar(iarg,MATRIX_OF_DOUBLE_DATATYPE,&zero,&zero,&l);
 	LhsVar(i) = iarg;
       }
   }
@@ -136,7 +136,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
     if (multi) {
       i=(int)strlen(ltype);
       iarg=Rhs;
-      CreateVarFromPtr(++iarg, "c", &one, &i, &ltype); /* the mlist type field */
+      CreateVarFromPtr(++iarg,STRING_DATATYPE, &one, &i, &ltype); /* the mlist type field */
       cur_type=type[0];
       i=0;cur_i=i;
 
@@ -148,19 +148,19 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 	if (endblk) {
 	  colcount=i - cur_i;
 	  if (nrow==0) {
-	    CreateVar(++iarg, "d", &zero, &zero, &l);}
+	    CreateVar(++iarg,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);}
 	  else if ( (cur_type == SF_C) || (cur_type == SF_S) ) {
 	    if( (temp = (char **) MALLOC(nrow*colcount*sizeof(char **)))==NULL) return MEM_LACK;
 	    k=0;
 	    for (i1=cur_i;i1<i;i1++)
 	      for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
-	    CreateVarFromPtr(++iarg, "S", &nrow, &colcount,temp);
+	    CreateVarFromPtr(++iarg,MATRIX_OF_STRING_DATATYPE, &nrow, &colcount,temp);
 	    FREE(temp);
 	    /*for (i1=cur_i;i1<i;i1++)
 	      for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);*/
 	  }
 	  else {
-	    CreateVar(++iarg, "d", &nrow, &colcount, &l);
+	    CreateVar(++iarg,MATRIX_OF_DOUBLE_DATATYPE, &nrow, &colcount, &l);
 	    ii=0;
 	    for (i1=cur_i;i1<i;i1++) {
 	      for ( j=0 ; j < nrow ; j++) 
@@ -184,19 +184,19 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
     }
     else {
       if (nrow==0) {
-	CreateVar(Rhs+1, "d", &zero, &zero, &l);}
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);}
       else if ( (cur_type == SF_C) || (cur_type == SF_S) ) {
 	if( (temp = (char **) MALLOC(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
 	k=0;
 	for (i1=0;i1<ncol;i1++)
 	  for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
-	CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, temp);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, temp);
 	FREE(temp);
 	/*for (i1=0;i1<ncol;i1++)
 	  for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);*/
       }
       else {
-	CreateVar(Rhs+1, "d", &nrow, &ncol, &l);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &nrow, &ncol, &l);
 	ii=0;
 	for (i1=0;i1<ncol;i1++) {
 	  for ( j=0 ; j < nrow ; j++) 

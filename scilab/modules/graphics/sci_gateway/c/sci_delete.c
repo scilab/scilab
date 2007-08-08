@@ -32,17 +32,17 @@ int sci_delete(char *fname,unsigned long fname_len)
   switch(VarType(1))
   {
   case 9: /* delete Entity given by a handle */
-    GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
+    GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */
     if (m1!=1||n1!=1) {
       lw = 1 + Top - Rhs;
       C2F(overload)(&lw,"delete",6);return 0;}
     if (Rhs == 2)
-      GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */
+      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */
     hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
     break;
   case 10: /* delete("all") */
     CheckRhs(1,1);
-    GetRhsVar(1,"c",&m2,&n2,&l2);
+    GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
     if (strcmp(cstk(l2),"all") == 0)
     {
       SciWin();

@@ -20,7 +20,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-		GetRhsVar(1,"c",&m1,&n1,&l1);/* file name */
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
 	}
 	else
 	{
@@ -39,7 +39,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 		if (Cmplx != COMPLEXPART)
 		{
-			GetRhsVar(2,"d",&m2,&n2,&l2); /* data */
+			GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); /* data */
 		}
 		else
 		{
@@ -55,7 +55,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if ( Rhs >= 3) 
 	{
-		GetRhsVar(3,"c",&m3,&n3,&l3);/* format */
+		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);/* format */
 		StringConvert(cstk(l3));  /* conversion */
 		Format = cstk(l3);
 	}
@@ -66,7 +66,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if ( Rhs >= 4 )
 	{
-		GetRhsVar(4,"S",&mS,&nS,&Str2);
+		GetRhsVar(4,MATRIX_OF_STRING_DATATYPE,&mS,&nS,&Str2);
 	}
 
 	if (( f = fopen(cstk(l1),"w")) == (FILE *)0) 

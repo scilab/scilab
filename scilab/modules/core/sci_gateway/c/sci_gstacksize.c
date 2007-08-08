@@ -52,7 +52,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 		paramoutINT[1]=used;
 
 		n1=1;m1=2;
-		CreateVarFromPtr(Rhs+1, "i", &n1, &m1, &paramoutINT);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
 		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();	
@@ -63,7 +63,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		if ( GetType(1) == sci_matrix )
 		{
-			GetRhsVar(1,"d",&m1,&n1,&l1);
+			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 
 			if ( (m1 == 1) && (n1 == 1) )
 			{
@@ -121,7 +121,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				char *param=NULL;
 
-				GetRhsVar(1,"c",&m1,&n1,&l1);
+				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 				param=cstk(l1);
 
 				if ( strcmp("max",param) == 0 )

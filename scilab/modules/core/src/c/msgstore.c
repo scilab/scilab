@@ -67,17 +67,17 @@ int C2F(lasterror)(char *fname, unsigned long fname_len)
   CheckRhs(0,1);
   CheckLhs(1,4);
   if (msg_line_counter == 0) {
-    CreateVar(1,"d",&zero,&zero,&l1);
+    CreateVar(1,MATRIX_OF_DOUBLE_DATATYPE,&zero,&zero,&l1);
     LhsVar(1)=1;
     if (Lhs >= 2) {
-      CreateVar(2,"d",&one,&one,&l1);
+      CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&l1);
       *stk(l1) = (double)0.0;
       LhsVar(2)=2;
     }
     /* Francois VOGEL August 2004 - Added initialization of missing lhs vars in case
        there is no current 'last error' (bug 955)*/
     if (Lhs >= 3) {
-      CreateVar(3,"d",&one,&one,&l1);
+      CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&l1);
       *stk(l1) = (double)0.0;
       LhsVar(3)=3;
     }
@@ -91,26 +91,26 @@ int C2F(lasterror)(char *fname, unsigned long fname_len)
   else {
     clear = 1;
     if (Rhs==1) {
-      GetRhsVar(1,"b",&m1,&n1,&l1);
+      GetRhsVar(1,MATRIX_OF_BOOLEAN_DATATYPE,&m1,&n1,&l1);
       clear = *istk(l1);
     }
     for (k=0;k<msg_line_counter ; k++) 
       sz[k]=strlen(msg_buff[k])-1;
-    CreateVarFromPtr(&one, "S", &msg_line_counter, &one,(void *) msg_buff);
+    CreateVarFromPtr(&one,MATRIX_OF_STRING_DATATYPE, &msg_line_counter, &one,(void *) msg_buff);
     LhsVar(1) = 1;
     if (Lhs >= 2) {
-      CreateVar(2,"d",&one,&one,&l1);
+      CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&l1);
       *stk(l1) = (double)err_n;
       LhsVar(2)=2;
     }
     if (Lhs >= 3) {
-      CreateVar(3,"d",&one,&one,&l1);
+      CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&l1);
       *stk(l1) = (double)where;
       LhsVar(3)=3;
     }
     if (Lhs >= 4) {
       l1=strlen(funname);
-      CreateVar(&four,"c", &one,&l1 , &lr);
+      CreateVar(&four,STRING_DATATYPE, &one,&l1 , &lr);
       strcpy(cstk(lr),funname);
       LhsVar(4)=4;
     }

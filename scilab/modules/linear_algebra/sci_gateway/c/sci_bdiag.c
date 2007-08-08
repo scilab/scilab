@@ -31,12 +31,12 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
     CheckRhs(1,2);
     CheckLhs(1,3); 
 
-    GetRhsCVar(1, "d", &it, &m, &n, &la, &lai);
+    GetRhsCVar(1,MATRIX_OF_DOUBLE_DATATYPE, &it, &m, &n, &la, &lai);
     CheckSquare(1,m,n);
 
     if (n == 0) {
-	CreateVar(2, "d", &cx0, &cx0, &lx);
-	CreateVar(3, "d", &cx0, &cx0, &lbs);
+	CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE, &cx0, &cx0, &lx);
+	CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &cx0, &cx0, &lbs);
 	LhsVar(1) = 1;
 	LhsVar(2) = 2;
 	LhsVar(3) = 3;
@@ -49,7 +49,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 	return 0;
     }
     if (Rhs == 2) {
-	GetRhsVar(2, "d", &n1, &m1, &lrMax);
+	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &n1, &m1, &lrMax);
 	CheckScalar(2,n1,m1); 
 	rMax = *stk(lrMax );
     } else {
@@ -68,11 +68,11 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 	    lj += n;
 	}
     }
-    CreateCVar(2, "d", &it, &n, &n, &lxr, &lxi);
+    CreateCVar(2,MATRIX_OF_DOUBLE_DATATYPE, &it, &n, &n, &lxr, &lxi);
     ix1 = n << 1;
-    CreateVar(3, "d", &cx1, &ix1, &le);
-    CreateVar(4, "i", &cx1, &n, &lib);
-    CreateVar(5, "d", &cx1, &n, &lw);
+    CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &cx1, &ix1, &le);
+    CreateVar(4,MATRIX_OF_INTEGER_DATATYPE, &cx1, &n, &lib);
+    CreateVar(5,MATRIX_OF_DOUBLE_DATATYPE, &cx1, &n, &lw);
     if (it == 0) {
       /*     subroutine bdiag(lda,n,a,epsshr,rMax,er,ei,bs,x,xi,scale,job,fail) */
       C2F(bdiag)(&n, &n, stk(la ), &c_b40, &rMax, stk(le ), stk(le + n ),
@@ -90,7 +90,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
       nbloc = 0;
       for (k = 1; k <= n; ++k) 
 	if (*istk(lib + k - 2 +1) >= 0)  ++nbloc;
-      CreateVar(6, "d", &nbloc, &cx1, &lbs);
+      CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE, &nbloc, &cx1, &lbs);
       ix = 0;
       for (k = 1; k <= n; ++k) {
 	if (*istk(lib + k - 2 +1) >= 0) {

@@ -270,8 +270,8 @@ static int cre_hmat(int pos, HyperMat *H)
    */
   static char *Str[]= { "hm","dims","entries"}; int m1=1,n1=3;
   int mL=3,nL=1,lL, one=1, lr, lc, lar, lac;
-  CreateVar(pos,"m", &mL, &nL, &lL);
-  CreateListVarFromPtr(pos,1,"S", &m1, &n1, Str);
+  CreateVar(pos,MATRIX_ORIENTED_TYPED_LIST_DATATYPE, &mL, &nL, &lL);
+  CreateListVarFromPtr(pos,1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, Str);
   lr = 4; lar = -1;
   CreateListVarFrom(pos,2,"I", &one, &H->dimsize, &lr, &lar);
   H->dims = istk(lr);
@@ -288,7 +288,7 @@ static int cre_hmat(int pos, HyperMat *H)
       return 1;
       
     case (SCI_BOOLEAN):
-      CreateListVarFrom(pos, 3, "b", &H->size, &one, &lr, &lar);
+      CreateListVarFrom(pos, 3,MATRIX_OF_BOOLEAN_DATATYPE, &H->size, &one, &lr, &lar);
       H->P = (void *) istk(lr);
       return 1;
 
@@ -417,7 +417,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
     {
     case (SCI_REAL_OR_CMPLX):
 
-      GetRhsVar(pos, "d", &m, &n, &l);
+      GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
       if ( m == -1 )      /* implicit index : */
 	{
 	  *mn = nmax; *ind_max = nmax;
@@ -468,7 +468,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	return 0;
       *mn = m*n;
       l = sadr(il+9+*mn);
-      CreateVar( pos_ind, "d", mn, &one, &li); td = stk(li);
+      CreateVar( pos_ind,MATRIX_OF_DOUBLE_DATATYPE, mn, &one, &li); td = stk(li);
       x = (double) nmax; 
       C2F(ddmpev)( stk(l), istk(il+8), &one, &x, td, &one, &one, mn);
       ti = (int *)td;
@@ -504,7 +504,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 
     case (SCI_BOOLEAN) :
 
-      GetRhsVar(pos, "b", &m, &n, &l);
+      GetRhsVar(pos,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l);
       if ( m*n != nmax )
 	return 0;
       *mn = 0;
@@ -687,7 +687,7 @@ int C2F(intehm)()
 
   if ( H.size == 0 )   /* the hypermat is empty => return an empty matrix ? */
     {
-      CreateVar(dec+1, "d", &zero, &zero, &l);
+      CreateVar(dec+1,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);
       LhsVar(1) = dec+1;
       PutLhsVar();
       return 0;
@@ -704,7 +704,7 @@ int C2F(intehm)()
 	}
       if ( mn == 0 )   /* the vector index is [] => we return an empty matrix */
 	{
-	  CreateVar(dec+i+1, "d", &zero, &zero, &l);
+	  CreateVar(dec+i+1,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);
 	  LhsVar(1) = dec+i+1;
 	  PutLhsVar();
 	  return 0;
@@ -739,12 +739,12 @@ int C2F(intehm)()
       switch (H.type)
 	{
 	case (SCI_REAL_OR_CMPLX):
-	  CreateCVar(dec+Rhs, "d", &(H.it), &m, &n, &lr, &lc); 
+	  CreateCVar(dec+Rhs,MATRIX_OF_DOUBLE_DATATYPE, &(H.it), &m, &n, &lr, &lc); 
 	  He.R = stk(lr); 
 	  if ( H.it == 1 ) He.I = stk(lc);
 	  break;
 	case (SCI_BOOLEAN):
-	  CreateVar(dec+Rhs, "b", &m, &n, &lr); 
+	  CreateVar(dec+Rhs,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &lr); 
 	  He.P = (void *) istk(lr);
 	  break;
 	case (SCI_INTEGER):

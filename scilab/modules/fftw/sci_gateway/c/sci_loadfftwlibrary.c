@@ -17,19 +17,19 @@ int sci_loadfftwlibrary __PARAMS((char *fname,unsigned long fname_len))
 
 	if (GetType(1) == sci_strings)
 	{
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		FFTWLibname=cstk(l1);
 		setfftwlibname(FFTWLibname);
 
 		n1=1;
 		if ( LoadFFTWLibrary(FFTWLibname) )
 		{
-			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(TRUE);
 		}
 		else
 		{
-			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);
 		}
 

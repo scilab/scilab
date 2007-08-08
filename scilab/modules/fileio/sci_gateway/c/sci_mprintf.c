@@ -28,7 +28,7 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
     if (VarType(k) !=1 && VarType(k) !=10) {OverLoad(k);return 0;}
   }
 
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   ptrFormat=cstk(l1);
   for(i=0;i<(int)strlen(ptrFormat);i++)
   {

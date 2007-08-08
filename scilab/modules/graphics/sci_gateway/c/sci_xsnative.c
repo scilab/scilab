@@ -50,14 +50,14 @@ int sci_xsnative( char * fname, unsigned long fname_len )
     {
       if ( GetType(1) == 1 ) 
       {
-        GetRhsVar(1,"i",&m1,&n1,&l1);
+        GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
         NumBMP=*istk(l1);
       }
       else if( GetType(1) == 10 )
       {
         char *Input;
         int out_n;
-        GetRhsVar(1,"c",&m1,&n1,&l1);
+        GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
         Input=cstk(l1);
 
         C2F(cluni0)(Input,DefaultFilenameTests, &out_n,(long)strlen(Input),PATH_MAX);

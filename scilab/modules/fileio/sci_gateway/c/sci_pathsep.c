@@ -19,7 +19,7 @@ int C2F(sci_pathsep) _PARAMS((char *fname,unsigned long fname_len))
 	if (separator) strcpy(separator,PATH_SEPARATOR);
 	
 	n1 = 1;
-	CreateVarFromPtr(Rhs+1, "c",(m1=(int)strlen(separator), &m1),&n1,&separator);
+	CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(separator), &m1),&n1,&separator);
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
 

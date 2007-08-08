@@ -50,7 +50,7 @@ static int getversion_no_rhs(void)
 	char *v = Version ;
 
 	n1=1;
-	CreateVarFromPtr( Rhs+1, "c",(m1=strlen(Version), &m1),&n1,&v);
+	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=strlen(Version), &m1),&n1,&v);
 	LhsVar(1) = Rhs+1;
 	if (Lhs==2) 
 	{
@@ -162,7 +162,7 @@ static int getversion_no_rhs(void)
 		#endif
 
 		m1=1;
-		CreateVarFromPtr(Rhs+ 2, "S", &m1, &n1, Str);
+		CreateVarFromPtr(Rhs+ 2,MATRIX_OF_STRING_DATATYPE, &m1, &n1, Str);
 		LhsVar(2) = Rhs+2;
 	}
 	C2F(putlhsvar)();
@@ -184,7 +184,7 @@ static int getversion_one_rhs(void)
 		char *Param=NULL;
 		int *VERSIONMATRIX=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		Param=cstk(l1);
 
 		VERSIONMATRIX=(int *)MALLOC( (4)*sizeof(int) );
@@ -225,7 +225,7 @@ static int getversion_one_rhs(void)
 		}
 		m1=1;
 		n1=4;
-		CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&VERSIONMATRIX);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&VERSIONMATRIX);
 		LhsVar(1)=Rhs+1;
 		PutLhsVar();
 		if (VERSIONMATRIX){	FREE(VERSIONMATRIX); VERSIONMATRIX=NULL;}
@@ -251,7 +251,7 @@ static int getversion_two_rhs(void)
 		static int l2,n2,m2;
 		char *ParamRhs2=NULL;
 
-		GetRhsVar(2,"c",&m2,&n2,&l2);
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		ParamRhs2=cstk(l2);
 
 		if (strcmp(ParamRhs2,VERSION_STRING)==0)
@@ -259,7 +259,7 @@ static int getversion_two_rhs(void)
 			static int l1,n1,m1;
 			char *ParamRhs1=NULL;
 
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			ParamRhs1=cstk(l1);
 
 			if (strcmp(ParamRhs1,"scilab") == 0)
@@ -269,7 +269,7 @@ static int getversion_two_rhs(void)
 				sprintf(output,"%s",SCI_VERSION_STRING);
 
 				n1=1;
-				CreateVarFromPtr(Rhs+ 1, "c",(m1=strlen(output), &m1),&n1,&output);
+				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);
 				if (output) {FREE(output);output=NULL;}
 
 				LhsVar(1) = Rhs+1;
@@ -293,7 +293,7 @@ static int getversion_two_rhs(void)
 					sprintf(output,"%s",versionstring);
 
 					n1=1;
-					CreateVarFromPtr(Rhs+ 1, "c",(m1=strlen(output), &m1),&n1,&output);
+					CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);
 					if (output) {FREE(output);output=NULL;}
 
 					LhsVar(1) = Rhs+1;

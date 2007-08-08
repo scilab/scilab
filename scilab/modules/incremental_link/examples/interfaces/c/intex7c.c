@@ -16,8 +16,8 @@ int intex7c(fname)
   CheckRhs(minrhs,maxrhs) ;
   CheckLhs(minlhs,maxlhs) ;
 
-  GetRhsVar(1, "d", &m1, &n1, &l1);
-  GetRhsVar(2, "d", &m2, &n2, &l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
 
   /* 
    *  To call a function it is required that its input arguments are

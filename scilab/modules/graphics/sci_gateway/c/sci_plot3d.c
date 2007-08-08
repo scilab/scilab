@@ -62,8 +62,8 @@ int sci_plot3d( char * fname, unsigned long fname_len )
     return(0);
   }
 
-  GetRhsVar(1, "d", &m1, &n1, &l1);
-  GetRhsVar(2, "d", &m2, &n2, &l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
   if (m1 * n1 == 0) 	{ LhsVar(1) = 0; return 0;}
 
   if (Rhs >= 3) {
@@ -71,21 +71,21 @@ int sci_plot3d( char * fname, unsigned long fname_len )
     switch ( VarType(3) ) 
     {
     case 1 : 
-      GetRhsVar(3, "d", &m3, &n3, &l3);
+      GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
       izcol = 0;
       break;
     case 15 : 
       izcol = 1;
       /* z = list(z,colors) */
-      GetRhsVar(3,"l",&m3l,&n3l,&l3l);
+      GetRhsVar(3,LIST_DATATYPE,&m3l,&n3l,&l3l);
       if ( m3l != 2 ) 
       {
         Scierror(999,"%s: second argument has a wrong size (%d), expecting a list of size %d\r\n",
           fname,m3l,2);
         return 0;
       }
-      GetListRhsVar(3,1,"d",&m3,&n3,&l3);
-      GetListRhsVar(3,2,"d",&m3n,&n3n,&l3n);
+      GetListRhsVar(3,1,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
+      GetListRhsVar(3,2,MATRIX_OF_DOUBLE_DATATYPE,&m3n,&n3n,&l3n);
       zcol  = stk(l3n);
       if (m3n * n3n != n3 &&  m3n*n3n != m3*n3)
       {

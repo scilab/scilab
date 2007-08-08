@@ -37,20 +37,20 @@ int C2F(intdsaupd) _PARAMS((char *fname,unsigned long fname_len))
 
   CheckRhs(minrhs,maxrhs);  CheckLhs(minlhs,maxlhs);
   /*                                                  VARIABLE = NUMBER   */
-  GetRhsVar( 1, "i", &mIDO,    &nIDO,    &pIDO);           IDO  =  1;
-  GetRhsVar( 2, "c", &mBMAT,   &nBMAT,   &pBMAT);          BMAT =  2;
-  GetRhsVar( 3, "i", &mN,      &nN,      &pN);             N    =  3;  
-  GetRhsVar( 4, "c", &mWHICH,  &nWHICH,  &pWHICH);       WHICH  =  4; 
-  GetRhsVar( 5, "i", &mNEV,    &nNEV,    &pNEV);            NEV =  5;
-  GetRhsVar( 6, "d", &mTOL,    &nTOL,    &pTOL);            TOL =  6; 
-  GetRhsVar( 7, "d", &mRESID,  &nRESID,  &pRESID);        RESID =  7;
-  GetRhsVar( 8, "i", &mNCV,    &nNCV,    &pNCV);            NCV =  8;
-  GetRhsVar( 9, "d", &mV,      &nV,      &pV);               V  =  9;
-  GetRhsVar(10, "i", &mIPARAM, &nIPARAM, &pIPARAM);      IPARAM = 10;
-  GetRhsVar(11, "i", &mIPNTR,  &nIPNTR,  &pIPNTR);       IPNTR  = 11;
-  GetRhsVar(12, "d", &mWORKD,  &nWORKD,  &pWORKD);       WORKD  = 12;
-  GetRhsVar(13, "d", &mWORKL,  &nWORKL,  &pWORKL);       WORKL  = 13;
-  GetRhsVar(14, "i", &mINFO,   &nINFO,   &pINFO);          INFO = 14;
+  GetRhsVar( 1,MATRIX_OF_INTEGER_DATATYPE, &mIDO,    &nIDO,    &pIDO);           IDO  =  1;
+  GetRhsVar( 2,STRING_DATATYPE, &mBMAT,   &nBMAT,   &pBMAT);          BMAT =  2;
+  GetRhsVar( 3,MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);             N    =  3;  
+  GetRhsVar( 4,STRING_DATATYPE, &mWHICH,  &nWHICH,  &pWHICH);       WHICH  =  4; 
+  GetRhsVar( 5,MATRIX_OF_INTEGER_DATATYPE, &mNEV,    &nNEV,    &pNEV);            NEV =  5;
+  GetRhsVar( 6,MATRIX_OF_DOUBLE_DATATYPE, &mTOL,    &nTOL,    &pTOL);            TOL =  6; 
+  GetRhsVar( 7,MATRIX_OF_DOUBLE_DATATYPE, &mRESID,  &nRESID,  &pRESID);        RESID =  7;
+  GetRhsVar( 8,MATRIX_OF_INTEGER_DATATYPE, &mNCV,    &nNCV,    &pNCV);            NCV =  8;
+  GetRhsVar( 9,MATRIX_OF_DOUBLE_DATATYPE, &mV,      &nV,      &pV);               V  =  9;
+  GetRhsVar(10,MATRIX_OF_INTEGER_DATATYPE, &mIPARAM, &nIPARAM, &pIPARAM);      IPARAM = 10;
+  GetRhsVar(11,MATRIX_OF_INTEGER_DATATYPE, &mIPNTR,  &nIPNTR,  &pIPNTR);       IPNTR  = 11;
+  GetRhsVar(12,MATRIX_OF_DOUBLE_DATATYPE, &mWORKD,  &nWORKD,  &pWORKD);       WORKD  = 12;
+  GetRhsVar(13,MATRIX_OF_DOUBLE_DATATYPE, &mWORKL,  &nWORKL,  &pWORKL);       WORKL  = 13;
+  GetRhsVar(14,MATRIX_OF_INTEGER_DATATYPE, &mINFO,   &nINFO,   &pINFO);          INFO = 14;
 
   LWORKL = mWORKL*nWORKL;   LDV=MAX(1, *istk(pN));
 

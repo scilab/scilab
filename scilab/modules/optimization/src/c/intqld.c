@@ -38,15 +38,15 @@ int C2F(intqld)(fname)
   eps1=C2F(dlamch)("e",1L);
   next= Rhs+1;
   /*   Variable 1 (Q)   */
-  GetRhsVar(1, "d", &n, &nbis, &Q);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &n, &nbis, &Q);
   CheckSquare(1,n,nbis);
 
   /*   Variable 2 (p)   */
-  GetRhsVar(2, "d", &nbis, &unbis, &p);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &nbis, &unbis, &p);
   CheckLength(2,nbis*unbis,n);
   
   /*   Variable 3 (C)   */
-  GetRhsVar(3, "d", &m, &nbis, &C);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m, &nbis, &C);
   if (( nbis != n ) && (m > 0)) 
     {
       Scierror(205,"qld: Argument 3: wrong number of columns %d expected \r\n", n);
@@ -56,13 +56,13 @@ int C2F(intqld)(fname)
   mnn = m+n+n;
 
   /*   Variable 4 (b)   */  
-  GetRhsVar(4, "d", &mbis, &unbis, &b);
+  GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &mbis, &unbis, &b);
   CheckLength(4,mbis*unbis,m);
 
   /*   Variable 5 (lb)   */
-  GetRhsVar(5, "d", &nbis, &unbis, &lb);
+  GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE, &nbis, &unbis, &lb);
   if (nbis*unbis==0) {
-    CreateVar(next+1, "d", &n, &un, &lb);
+    CreateVar(next+1,MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &lb);
     for(k=0; k<n; k++)
     stk(lb)[k] = -C2F(dlamch)("o",1L);
     next=next+1;
@@ -72,9 +72,9 @@ int C2F(intqld)(fname)
 
 
   /*   Variable 6 (ub)   */
-  GetRhsVar(6, "d", &nbis, &unbis, &ub);
+  GetRhsVar(6,MATRIX_OF_DOUBLE_DATATYPE, &nbis, &unbis, &ub);
   if (nbis*unbis==0) {
-    CreateVar(next+1, "d", &n, &un, &ub);
+    CreateVar(next+1,MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &ub);
     for(k=0; k<n; k++)
     stk(ub)[k] = C2F(dlamch)("o",1L);
     next=next+1;
@@ -83,7 +83,7 @@ int C2F(intqld)(fname)
     CheckLength(6,nbis*unbis,n);
  
   /*   Variable 7 (me)   */  
-  GetRhsVar(7, "i", &pipo, &unbis, &me);
+  GetRhsVar(7,MATRIX_OF_INTEGER_DATATYPE, &pipo, &unbis, &me);
   CheckScalar(7,pipo,unbis);
   if ((*istk(me)<0) || (*istk(me)>n))
     {
@@ -94,33 +94,33 @@ int C2F(intqld)(fname)
 
   if(Rhs==8) {
     /*   Variable 8 (eps1)   */  
-    GetRhsVar(8, "d", &pipo, &unbis, &leps);
+    GetRhsVar(8,MATRIX_OF_DOUBLE_DATATYPE, &pipo, &unbis, &leps);
     CheckScalar(8,pipo,unbis);
     eps1= Max(eps1,*stk(leps));
   }
 
   next=Rhs;
   /* Internal variables: x, lambda, inform, C_mmax, b_mmax */
-  CreateVar(next+1, "d", &n, &un, &x);
+  CreateVar(next+1,MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &x);
 
-  CreateVar(next+2, "d", &mnn, &un, &lambda);
+  CreateVar(next+2,MATRIX_OF_DOUBLE_DATATYPE, &mnn, &un, &lambda);
  
-  CreateVar(next+3, "i", &un, &un, &inform);
+  CreateVar(next+3,MATRIX_OF_INTEGER_DATATYPE, &un, &un, &inform);
   
 
   lwar = 3*n*n/2+10*n+2*mmax+2;
-  CreateVar(next+4, "d", &lwar, &un, &war);
-  CreateVar(next+5, "i", &n, &un, &iwar);
+  CreateVar(next+4,MATRIX_OF_DOUBLE_DATATYPE, &lwar, &un, &war);
+  CreateVar(next+5,MATRIX_OF_INTEGER_DATATYPE, &n, &un, &iwar);
   istk(iwar)[0]=0;
  
   /* extend C and B to add a row and change the sign of C*/
-  CreateVar(next+6, "d", &mmax, &n, &C_mmax);
+  CreateVar(next+6,MATRIX_OF_DOUBLE_DATATYPE, &mmax, &n, &C_mmax);
   for(k=0; k<n; k++) {
     for(l=0; l<m; l++)
       stk(C_mmax)[k*mmax+l] = -stk(C)[k*m+l];
     stk(C_mmax)[k*mmax+m] = 0.0;}
 
-  CreateVar(next+7, "d", &mmax, &un, &b_mmax);
+  CreateVar(next+7,MATRIX_OF_DOUBLE_DATATYPE, &mmax, &un, &b_mmax);
   for(k=0; k<m; k++)
     stk(b_mmax)[k] = stk(b)[k];
   stk(b_mmax)[m] = 0.0;

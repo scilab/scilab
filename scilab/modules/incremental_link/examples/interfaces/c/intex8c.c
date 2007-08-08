@@ -24,11 +24,11 @@ int intex8c(fname)
   CheckLhs(minlhs,maxlhs) ;
 
   /* Getting x1 and x2 at l1 and l2 . x1 is m1 x n1 and x2 is m2 x n2 */
-  GetRhsVar(1, "d", &m1, &n1, &l1);
-  GetRhsVar(2, "d", &m2, &n2, &l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
   /* Getting the Scilab function:
      It is the 3rd input parameter of ex8c and it is a function ("f") */
-  GetRhsVar(3, "f", &mlhs, &mrhs, &lf);
+  GetRhsVar(3,EXTERNAL_DATATYPE, &mlhs, &mrhs, &lf);
   /*   It is at lf and has mlhs outputs and mrhs inputs */
 
   if ( mrhs != 2 ) 
@@ -47,10 +47,10 @@ int intex8c(fname)
    *  the following two copies would be un-necessary.
    */
 
-  CreateVar(3+1, "d", &m1, &n1, &l4);
+  CreateVar(3+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l4);
   for (i =0 ; i < m1*n1 ; i++) *stk(l4+i) = *stk(l1+i);
 
-  CreateVar(3+mrhs, "d", &m2, &n2, &l5);
+  CreateVar(3+mrhs,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l5);
   for (i =0 ; i < m1*n1 ; i++) *stk(l5+i) = *stk(l2+i);
 
   /* 

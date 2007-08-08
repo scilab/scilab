@@ -22,12 +22,12 @@ int sci_xarc(char *fname,unsigned long fname_len)
 
   SciWin();
   CheckRhs(6,6);
-  GetRhsVar(1,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
-  GetRhsVar(2,"d",&m1,&n1,&l2);CheckScalar(2,m1,n1);
-  GetRhsVar(3,"d",&m1,&n1,&l3);CheckScalar(3,m1,n1);
-  GetRhsVar(4,"d",&m1,&n1,&l4);CheckScalar(4,m1,n1);
-  GetRhsVar(5,"i",&m1,&n1,&l5);CheckScalar(5,m1,n1);
-  GetRhsVar(6,"i",&m1,&n1,&l6);CheckScalar(6,m1,n1);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);CheckScalar(1,m1,n1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);CheckScalar(2,m1,n1);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l3);CheckScalar(3,m1,n1);
+  GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l4);CheckScalar(4,m1,n1);
+  GetRhsVar(5,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l5);CheckScalar(5,m1,n1);
+  GetRhsVar(6,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l6);CheckScalar(6,m1,n1);
   curcolor = sciGetForeground(sciGetCurrentSubWin()); /* current color equivalent for new graphics mode */
   if ( strcmp(fname,"xarc") == 0 )
   {

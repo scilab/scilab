@@ -16,9 +16,9 @@ int intspvm_joingroup _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(1,1);
   CheckLhs(1,1);
   /*  checking variable group */
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   /* cross variable size checking */
-  CreateVar(Rhs+2,"i",&un,&un,&l2);/* named: inum */
+  CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l2);/* named: inum */
   *istk(l2) = pvm_joingroup(cstk(l1));
   LhsVar(1)= Rhs+2;
   

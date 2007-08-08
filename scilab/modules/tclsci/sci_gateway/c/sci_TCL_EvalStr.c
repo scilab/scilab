@@ -20,7 +20,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
         char **ReturnArrayString=NULL;
         int k=0;
 
-		GetRhsVar(1,"S",&m1,&n1,&Str);
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 
 		if (TCLinterp == NULL)
 		{
@@ -91,7 +91,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
                 ReturnArrayString[k++]=AsciiFromUTF8;
             }
 		}
-		CreateVarFromPtr(Rhs+1, "S", &m1, &n1, ReturnArrayString);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, ReturnArrayString);
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 

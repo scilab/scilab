@@ -25,7 +25,7 @@ int sci_unzoom(char *fname,unsigned long fname_len)
   else
   {
     int m,n,l,i;
-    GetRhsVar(1,"h",&m,&n,&l); 
+    GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m,&n,&l); 
     for (i=0;i<m*n;i++)
     {
       unzoom_one_axes((sciPointObj*)sciGetPointerFromHandle((long) *hstk(l+i))); /** Correction Bug 1476 + Warning Windows **/

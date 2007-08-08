@@ -30,9 +30,9 @@ int C2F(sci_convstr1) _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(1,4);
   switch ( VarType(1)) {
   case 10 :
-    GetRhsVar(1,"S",&m1,&n1,&Str);     /* To input the string matrix */
+    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);     /* To input the string matrix */
     mn = m1*n1;  
-    GetRhsVar(2,"c",&m4,&n4,&l4);
+    GetRhsVar(2,STRING_DATATYPE,&m4,&n4,&l4);
     if ( m4*n4 != 0) 
 	     typ = cstk(l4)[0];                  /* To put "flag" into typ; whether "u" or "l" */
 	Str3=(char**)MALLOC(sizeof(char*)*(m1*n1));

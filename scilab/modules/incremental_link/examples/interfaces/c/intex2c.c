@@ -27,7 +27,7 @@ int intex2c(fname)
 
   /** first non optional argument **/
 
-  GetRhsVar( 1, "c", &m1, &n1, &l1);
+  GetRhsVar( 1,STRING_DATATYPE, &m1, &n1, &l1);
   
   if ( get_optionals(fname,opts) == 0) return 0;
 

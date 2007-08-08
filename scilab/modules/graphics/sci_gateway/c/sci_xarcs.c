@@ -25,7 +25,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   SciWin();
   CheckRhs(1,2);
 
-  GetRhsVar(1,"d",&m1,&n1,&l1);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   if ( strcmp(fname,"xarcs") == 0) {
     if (m1 != 6) {
       Scierror(999,"%s: arcs has a wrong size (6,n) expected \r\n",fname);
@@ -40,7 +40,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
 
   if (Rhs == 2) 
   {
-    GetRhsVar(2,"i",&m2,&n2,&l2);
+    GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     CheckVector(2,m2,n2);
     if (m2 * n2 != n1) {
       Scierror(999,"%s: first and second arguments have incompatible length\r\n",fname);
@@ -50,7 +50,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   else 
   {
     int i2;
-    m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
+    m2=1,n2=n1; CreateVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     for (i2 = 0; i2 < n2; ++i2)
     { 
       *istk(l2 + i2) =  sciGetForeground(sciGetCurrentSubWin() );

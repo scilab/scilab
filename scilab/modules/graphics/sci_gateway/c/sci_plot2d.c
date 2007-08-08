@@ -83,8 +83,8 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 	    return(0);
     }
 
-    GetRhsVar(1+iskip, "d", &m2, &n2, &l2);
-    CreateVar(2+iskip,"d",  &m2, &n2, &l1);
+    GetRhsVar(1+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+    CreateVar(2+iskip,MATRIX_OF_DOUBLE_DATATYPE,  &m2, &n2, &l1);
     if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
     m1 = m2;  n1 = n2;
     for (i = 0; i < m2 ; ++i) 
@@ -108,10 +108,10 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     /** plot2d([loglags,] x,y,....); **/
 
     /* x */
-    GetRhsVar(1+iskip, "d", &m1, &n1, &l1);
+    GetRhsVar(1+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
 
     /* y */
-    GetRhsVar(2+iskip, "d", &m2, &n2, &l2);
+    GetRhsVar(2+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
 
     test = (m1*n1 == 0)||
       ((m1 == 1 || n1 == 1) && (m2 == 1 || n2 ==1) && (m1*n1 == m2*n2))  ||
@@ -121,7 +121,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 
     if (m1*n1 == 0)
     { /* default x=1:n */
-      CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
+      CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m2, &n2, &lt);
       if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
       for (i = 0; i < m2 ; ++i) 
       {
@@ -137,7 +137,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     else if ((m1 == 1 || n1 == 1) && (m2 != 1 && n2 != 1) )
     {
       /* a single x vector for mutiple columns for y */
-      CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
+      CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m2, &n2, &lt);
       for (i = 0; i < m2 ; ++i)
       {
 	      for (j = 0 ; j < n2 ;  ++j)
@@ -152,7 +152,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     else if ((m1 == 1 && n1 == 1) && (n2 != 1) )
     {
       /* a single y row vector  for a single x */
-      CreateVar(Rhs+1,"d",  &m1, &n2, &lt);
+      CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n2, &lt);
       for (j = 0 ; j < n2 ;  ++j)
       {
 	      *stk( lt + j ) = *stk(l1);

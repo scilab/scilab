@@ -26,7 +26,7 @@ int C2F(sci_getvariablesonstack) _PARAMS((char *fname,unsigned long fname_len))
 		if (GetType(1) == sci_strings)
 		{
 			char *parameter = NULL;
-			GetRhsVar(1,"c",&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			parameter = cstk(l1);
 
 			if ( ( strcmp(parameter,"local") == 0 ) || ( strcmp(parameter,"global") == 0) )
@@ -55,7 +55,7 @@ int C2F(sci_getvariablesonstack) _PARAMS((char *fname,unsigned long fname_len))
 
 	m1 = sizeVariables;
 	n1 = 1;
-	CreateVarFromPtr(Rhs+1, "S", &m1, &n1, Variables);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, Variables);
 
 	LhsVar(1) = Rhs + 1;
 	C2F(putlhsvar)();

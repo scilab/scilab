@@ -22,7 +22,7 @@ int C2F(sci_hidetoolbar) _PARAMS((char *fname,unsigned long l))
  {
 	int num_win=-2;
 
-	GetRhsVar(1,"i",&m1,&n1,&l1);
+	GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
  	num_win=*istk(l1);
 	#ifdef _MSC_VER
 		HideToolBarWin32(num_win); /* see "wsci/wmenu.c" */
@@ -53,7 +53,7 @@ int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l))
 		if ( GetType(1) == sci_matrix )
 		{
 			int numwin=-2;
-			GetRhsVar(1,"i",&m1,&n1,&l1);
+			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 
 			numwin=*istk(l1);
 
@@ -83,10 +83,10 @@ int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l))
 			int numwin=-2;
 			char *param=NULL;
 
-			GetRhsVar(1,"i",&m1,&n1,&l1);
+			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 			numwin=*istk(l1);
 
-			GetRhsVar(2,"c",&m1,&n1,&l1);
+			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 			param=cstk(l1);
 
 			if ( (strcmp(param,"off")==0) || (strcmp(param,"on")==0) )
@@ -118,7 +118,7 @@ int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l))
 	}
 
 	n1=1;
-	CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
+	CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();	
 	if (Output) {FREE(Output);Output=NULL;}

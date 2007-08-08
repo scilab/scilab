@@ -60,13 +60,13 @@ int sci_get(char *fname,unsigned long fname_len)
       break;
     case 9: /* scalar argument (hdl + string) */
       CheckRhs(2,2);
-      GetRhsVar(1,"h",&m1,&n1,&l1);
+      GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
       if (m1!=1||n1!=1) { 
 	lw = 1 + Top - Rhs;
 	C2F(overload)(&lw,"get",3);
         return 0;
       }
-      GetRhsVar(2,"c",&numrow2,&numcol2,&l2);
+      GetRhsVar(2,STRING_DATATYPE,&numrow2,&numcol2,&l2);
       if ( *hstk(l1) != sciGetHandle(getFigureModel()) && *hstk(l1) != sciGetHandle(getAxesModel())
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_title)
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_x_label)
@@ -91,7 +91,7 @@ int sci_get(char *fname,unsigned long fname_len)
       break;
     case 10:/* string argument (string) */
       CheckRhs(1,1);
-      GetRhsVar(1,"c",&numrow2,&numcol2,&l2);
+      GetRhsVar(1,STRING_DATATYPE,&numrow2,&numcol2,&l2);
       if (strcmp(cstk(l2),"default_figure") !=0 && strcmp(cstk(l2),"default_axes") !=0 )
 	{
 	  if (strcmp(cstk(l2),"old_style") == 0 || strcmp(cstk(l2),"current_figure") ==0) {

@@ -26,11 +26,11 @@ int C2F(sci_stripblanks1) _PARAMS((char *fname,unsigned long fname_len))
 	  Rhs = Max(0, Rhs);
 	  CheckRhs(1,4);
       Str3=(char**)MALLOC(sizeof(char*)*(50*50));	  
-      GetRhsVar(1,"S",&m1,&n1,&Str);
+      GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 	  mn = m1*n1;  
 	  if (Rhs >= 2) 
 	  {
-		GetRhsVar(2,"i",&m2,&n2,&l2);
+		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
 		n4=*istk(l2);   /*@ if n4==0 strips leading and trailing blanks , or strips leading and trailing tabs*/
 	  }
 	  else n4=0;

@@ -31,7 +31,7 @@ int C2F(sci_loadhistory) _PARAMS((char *fname,unsigned long fname_len))
 		int l1 = 0, m1 = 0, n1 = 0, out_n = 0;
 		char *Path = NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		Path=cstk(l1);
 		C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
 		loadScilabHistoryFromFile(line);

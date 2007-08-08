@@ -29,10 +29,10 @@ int intinterp1(char *fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
 
-  GetRhsVar(1,"d", &mt, &nt, &lt);
-  GetRhsVar(2,"d", &mx, &nx, &lx);
-  GetRhsVar(3,"d", &my, &ny, &ly);
-  GetRhsVar(4,"d", &md, &nd, &ld);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mt, &nt, &lt);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
+  GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &md, &nd, &ld);
 
   if ( mx != my  ||  nx != ny  ||  md != mx || nd != nx || (mx != 1  &&  nx != 1) || mx*nx < 2) 
     { 
@@ -56,10 +56,10 @@ int intinterp1(char *fname,unsigned long fname_len)
     outmode = C0;  /* default outmode */
 
   /* memory for st, dst, ddst, dddst */
-  CreateVar(Rhs+1, "d", &mt,  &nt, &lst);
-  CreateVar(Rhs+2, "d", &mt,  &nt, &ldst);
-  CreateVar(Rhs+3, "d", &mt,  &nt, &lddst);
-  CreateVar(Rhs+4, "d", &mt,  &nt, &ldddst);
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &mt,  &nt, &lst);
+  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &mt,  &nt, &ldst);
+  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mt,  &nt, &lddst);
+  CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &mt,  &nt, &ldddst);
 
   /*      subroutine EvalPWHermite(t, st, dst, ddst, dddst, m, x, y, d, n, outmode)
    *      integer m, n, outmode

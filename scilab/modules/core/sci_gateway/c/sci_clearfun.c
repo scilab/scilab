@@ -25,7 +25,7 @@ int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		char *VarName=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName=cstk(l1);
 
 		Status=(int*)MALLOC(sizeof(int));
@@ -46,7 +46,7 @@ int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 			*Status=FALSE;
 		}
 		m1=1;n1=1;
-		CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &Status);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
 		LhsVar(1)=Rhs+1;
 
 		C2F(putlhsvar)();

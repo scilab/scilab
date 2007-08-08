@@ -26,7 +26,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
   CheckLhs(0,1);
   /*  set or create a graphic window */
   SciWin();
-  GetRhsVar(1,"h",&m1,&n1,&l1);
+  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
   hdl = (unsigned long)*hstk(l1);
   pobj = sciGetPointerFromHandle(hdl);
   if (pobj == NULL)
@@ -46,7 +46,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
     }
     numrow   = i;
     numcol   = 1;
-    CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+    CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
     psonstmp = sciGetSons((sciPointObj *) pobj);
     i = 0;
     while ((psonstmp != (sciSons *)NULL) && (psonstmp->pointobj != (sciPointObj *)NULL))

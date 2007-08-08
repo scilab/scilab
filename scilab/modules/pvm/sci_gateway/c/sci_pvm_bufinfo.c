@@ -16,12 +16,12 @@ int intspvm_bufinfo _PARAMS((char *fname,unsigned long fname_len))
   int bytes,msgtag,tid,res,i;
   CheckRhs(1,1);
   CheckLhs(1,4);
-  GetRhsVar(1,"i",&m1,&n1,&l1);/* bufid */ 
+  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);/* bufid */ 
   CheckScalar(1,m1,n1);
-  CreateVar(Rhs+2,"i",&un,&un,&bytes);
-  CreateVar(Rhs+3,"i",&un,&un,&msgtag);
-  CreateVar(Rhs+4,"i",&un,&un,&tid);
-  CreateVar(Rhs+5,"i",&un,&un,&res);
+  CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&bytes);
+  CreateVar(Rhs+3,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&msgtag);
+  CreateVar(Rhs+4,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&tid);
+  CreateVar(Rhs+5,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&res);
   C2F(scipvmbufinfo)(istk(l1), istk(bytes), istk(msgtag), istk(tid), istk(res)); 
 
   for ( i = 1 ; i <= Lhs ; i++) LhsVar(i)= Rhs+i+1; 

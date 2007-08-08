@@ -53,7 +53,7 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 			BOOL bOK=FALSE;
 			char **CLASSPATHS=NULL;
 
-			GetRhsVar(1,"S",&m1,&n1,&CLASSPATHS);
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&CLASSPATHS);
 
 			for (i = 0; i<m1*n1 ;i++)
 			{

@@ -24,11 +24,11 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   CheckRhs(3,4);
   CheckLhs(2,2);
 
-  GetRhsVar(1, "d", &m1, &n1, &l1);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
   CheckVector(1,m1,n1);
-  GetRhsVar(2, "d", &m2, &n2, &l2);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
   CheckVector(2,m2,n2);
-  GetRhsVar(3, "d", &m3, &n3, &l3);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
   if (m3 * n3 == 0) { LhsVar(1) = 0; return 0; }
   if (m3 == 1 || n3 == 1) {
     Scierror(999,"%s: third argument is a vector, expecting a matrix\r\n",fname);
@@ -41,7 +41,7 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   /*     number of level curves */
   if ( Rhs == 4 ) 
   {
-    GetRhsVar(4, "d", &m4, &n4, &l4);
+    GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &m4, &n4, &l4);
     if (m4 * n4 == 1) {
       flagx = 0;  nz = Max(1,(integer) *stk(l4)),znz= stk(l4);
     } else {
@@ -50,7 +50,7 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   }
 
   ix4 = Max(nz,2);
-  CreateVar(Rhs+1,"i",&un,&ix4,&l5);
+  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,&ix4,&l5);
   for (i =0 ; i < ix4 ; ++i) *istk(l5 + i ) = i+1;
   if (nz == 1) *istk(l5 +1) = 1;
 
@@ -58,13 +58,13 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   C2F(getconts)(&hl1, &hl2, &m1, &n1);
   if (n1 == 0)
   {
-    CreateVar(Rhs+6,"d", &n1, &n1, &l1);
-    CreateVar(Rhs+7,"d", &n1, &n1, &l2);
+    CreateVar(Rhs+6,MATRIX_OF_DOUBLE_DATATYPE, &n1, &n1, &l1);
+    CreateVar(Rhs+7,MATRIX_OF_DOUBLE_DATATYPE, &n1, &n1, &l2);
   }
   else 
   {
-    CreateVarFromPtr(Rhs+6,"d", &m1, &n1, &hl1);
-    CreateVarFromPtr(Rhs+7,"d", &m1, &n1, &hl2);
+    CreateVarFromPtr(Rhs+6,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &hl1);
+    CreateVarFromPtr(Rhs+7,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &hl2);
   }
   LhsVar(1)=Rhs+6;
   LhsVar(2)=Rhs+7;

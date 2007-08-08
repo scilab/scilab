@@ -112,12 +112,12 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
     cur_fftw_flags=((int *)M1.D)[0];
    }
    else if (VarType(1)==1) { /* double */
-    GetRhsVar(1, "d", &m1, &n1, &l1);
+    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
     CheckDims(1,m1,n1,1,1);
     cur_fftw_flags=(int)*stk(l1);
    }
    else if (VarType(1)==10) { /* string */
-    GetRhsVar(1,"S",&m1,&n1,&Str1);
+    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str1);
 
     for (j=0;j<m1*n1;j++) {
      for (i=0;i<nb_flag;i++) {
@@ -202,8 +202,8 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
   }
 
   n1=1;
-  /*CreateVarFromPtr( 3, "S", &j, &n1, Str3);*/
-  CreateVarFromPtr( Rhs+3, "S", &j, &n1, Str3);
+  /*CreateVarFromPtr( 3,MATRIX_OF_STRING_DATATYPE, &j, &n1, Str3);*/
+  CreateVarFromPtr( Rhs+3,MATRIX_OF_STRING_DATATYPE, &j, &n1, Str3);
 
   /*LhsVar(1)=2;*/
   /*LhsVar(2)=3;*/

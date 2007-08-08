@@ -23,16 +23,16 @@ int sci_xarrows(char *fname,unsigned long fname_len)
   SciWin();
   CheckRhs(2,4);
 
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   mn2 = m2 * n2;
   CheckSameDims(1,2,m1,n1,m2,n2);
   if (mn2 == 0) {   LhsVar(1)=0;  return 0;} 
 
-  if (Rhs >= 3) { GetRhsVar(3,"d",&m3,&n3,&l3); CheckScalar(3,m3,n3); arsize = *stk(l3); } 
+  if (Rhs >= 3) { GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3); arsize = *stk(l3); } 
 
   if (Rhs >= 4) { 
-    GetRhsVar(4,"i",&m4,&n4,&l4); CheckVector(4,m4,n4);
+    GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&m4,&n4,&l4); CheckVector(4,m4,n4);
     if (m4 * n4 == 1) dstyle = *istk(l4);
     if (m4 * n4 != 1 && m2 * n2 / 2 != m4 * n4) {
       Scierror(999,"%s: style has a wrong size (%d), expecting (%d)\r\n",fname,m4*n4, m2 * n2 / 2 );

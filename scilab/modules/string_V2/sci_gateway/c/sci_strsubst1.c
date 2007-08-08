@@ -71,17 +71,17 @@ int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
     regex_t *out1;
     Rhs = Max(0, Rhs);
     CheckRhs(1,4);
-    GetRhsVar(1,"S",&m1,&n1,&Str);
+    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
     mn = m1*n1;  
-	GetRhsVar(2,"S",&m2,&n2,&Str2);
+	GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str2);
     mn2 = m2*n2;  
-	GetRhsVar(3,"S",&m3,&n3,&Str3);
+	GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&Str3);
     mn3 = m3*n3; 
 	lbuf=*Str;
 	pattern=*Str2;
     if (Rhs >= 4) 
 	{
-           GetRhsVar(4,"c",&m4,&n4,&l4);
+           GetRhsVar(4,STRING_DATATYPE,&m4,&n4,&l4);
            if ( m4*n4 != 0) 
 	         typ = cstk(l4)[0];
            if (typ == 'r' )      /*When we want to use the regular expression to do with this substring */
@@ -103,7 +103,7 @@ int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
 						loutIndex = 0 ;
 						numCol  = 1;
                         numRow   = 1;
-						CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
+						CreateVar(Rhs+1+x,STRING_DATATYPE,&numRow,&numCol,&loutIndex);
   						LhsVar(x+1) = outIndex2 ;
 						continue;
 					}
@@ -138,7 +138,7 @@ int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
 			lnumRow   = 1 ;
 			lnumCol   = mn ;
 			loutIndex = 0 ;
-			CreateVar(Rhs+1+x,"c",&lnumRow,&lnumCol,&loutIndex);
+			CreateVar(Rhs+1+x,STRING_DATATYPE,&lnumRow,&lnumCol,&loutIndex);
 			strncpy(cstk(loutIndex),Str[x], lnumCol);
 			CreateVarFromPtr( Rhs+1, "S", &lnumRow, &lnumCol, Str ) ;
 			LhsVar(x+1) = Rhs+x+1 ;

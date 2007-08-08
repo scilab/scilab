@@ -21,7 +21,7 @@ int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
 		char *pathlibrary = NULL;
 		char *libraryname = NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		libraryname = cstk(l1);
 
 		pathlibrary = getlibrarypath(libraryname);
@@ -38,14 +38,14 @@ int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				m = sizemacrosarray;
 				n = 1;
-				CreateVarFromPtr(Rhs+1, "S", &m, &n, macros);
+				CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n, macros);
 			}
 			else
 			{
 				n = 0;
 				m = 0;
 				l = 0;
-				CreateVarFromPtr(Rhs+1, "d",&n,&m,&l);
+				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&n,&m,&l);
 			}
 			LhsVar(1) = Rhs+1;
 
@@ -68,7 +68,7 @@ int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				n = 1;
 				m = (int)strlen(pathlibrary);
-				CreateVarFromPtr(Rhs+2, "c",&m,&n,&pathlibrary);
+				CreateVarFromPtr(Rhs+2,STRING_DATATYPE,&m,&n,&pathlibrary);
 				LhsVar(2) = Rhs+2;
 				if (pathlibrary) {FREE(pathlibrary);pathlibrary=NULL;}
 			}

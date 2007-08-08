@@ -35,11 +35,11 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	Nbvars = 0;
 	CheckRhs(1,1); /** just 1 **/
 	CheckLhs(1,2);
-	GetRhsVar(1,"c",&m1,&n1,&l1);/* file name */
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
 
 	if ( Rhs == 2) 
 	{
-		GetRhsVar(2,"c",&m2,&n2,&l2);/* format */
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);/* format */
 		StringConvert(cstk(l2));  /* conversion */
 		Format = cstk(l2);
 	}
@@ -97,7 +97,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 
 	if ( cols == 0 || rows == 0) rows=cols=0;
 
-	CreateVar(Rhs+1, "d", &rows, &cols, &lres);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &rows, &cols, &lres);
 
 	/** second pass to read data **/
 	rewind(f);
@@ -151,7 +151,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		if ( vl > 0 ) 
 		{
 			int i2=0;
-			CreateVarFromPtr(Rhs+2,"S",&vl,&un,Str);
+			CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE,&vl,&un,Str);
 			if (Str)
 			{
 				for (i2=0;i2<vl;i2++)
@@ -168,7 +168,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		}
 		else 
 		{
-			CreateVar(Rhs+2,"c",&zero,&zero,&l);
+			CreateVar(Rhs+2,STRING_DATATYPE,&zero,&zero,&l);
 		}
 
 		LhsVar(2)=Rhs+2;

@@ -32,14 +32,14 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
 		int m1_2=0;
 		int n1_2=0;
 		int l1_2=0;
-		CreateVar(1,"c",  &m1_2, &n1_2, &l1_2);
+		CreateVar(1,STRING_DATATYPE,  &m1_2, &n1_2, &l1_2);
 		LhsVar(1)=1;
 		C2F(putlhsvar)();
 	    return 0;
    }
    if (Rhs ==1) 
    {                                        /*With a matrix for input argument returns a zero length character strings matrix of the same size */
-		GetRhsVar(1,"S",&m1,&n1,&Str);
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 		mn = m1*n1;  
 		l1=0;
 		
@@ -48,14 +48,14 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
 				Str4[i]=(char*)MALLOC(sizeof(char*)*(1));
 				strcpy(Str4[i],"");
 			}
-		CreateVarFromPtr(1,"S",&m1, &n1, Str4);    /*m1 is the number of row ; n1 is the number of col*/
+		CreateVarFromPtr(1,MATRIX_OF_STRING_DATATYPE,&m1, &n1, Str4);    /*m1 is the number of row ; n1 is the number of col*/
 		LhsVar(1)=1;
    }
    if (Rhs == 2)
    {                                         /*With two integer arguments returns a m*n zero length character strings matrix */
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		m4=*istk(l1);
-		GetRhsVar(2,"i",&m2,&n2,&l2);
+		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
 		n4=*istk(l2);
 		Str4=(char**)MALLOC(sizeof(char*)*(m4*n4));
 		if (m4*n4!=0)
@@ -65,7 +65,7 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
 				Str4[i]=(char*)MALLOC(sizeof(char*)*(1));
 				strcpy(Str4[i],"");
 			}
-			CreateVarFromPtr(1,"S",&m4, &n4, Str4);    /*m4 is the number of row ; n4 is the number of col*/
+			CreateVarFromPtr(1,MATRIX_OF_STRING_DATATYPE,&m4, &n4, Str4);    /*m4 is the number of row ; n4 is the number of col*/
 			LhsVar(1)=1;
 		}
 		else 
@@ -73,7 +73,7 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
 			int m1_2=0;
 			int n1_2=0;
 			int l1_2=0;
-			CreateVar(1,"c",  &m1_2, &n1_2, &l1_2);
+			CreateVar(1,STRING_DATATYPE,  &m1_2, &n1_2, &l1_2);
 			LhsVar(1)=1;
 		}   
    }

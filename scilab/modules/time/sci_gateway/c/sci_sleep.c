@@ -13,7 +13,7 @@ int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len))
 	CheckRhs(1,1);
 	if (Rhs == 1) 
 	{ 
-		GetRhsVar(1,"d",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 		CheckScalar(1,m1,n1);
 		sec = (integer) *stk(l1);
 		if (sec <=0)

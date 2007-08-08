@@ -469,14 +469,14 @@ static int GetScalarInt(char *fname, int *prev, int *arg, int narg, int *ic, int
 		*prev = 1;
 	}
 
-	GetRhsVar(arg,"i",&mx,&nx,&lx);
+	GetRhsVar(arg,MATRIX_OF_INTEGER_DATATYPE,&mx,&nx,&lx);
 	
 	if ( (*ic>nx) || (*prev != 1)) 
 		{
 			*arg=*arg+1;
 			if (*arg > narg ) return NOT_ENOUGH_ARGS;
 			*ic=1;
-			GetRhsVar(arg,"i",&mx,&nx,&lx);
+			GetRhsVar(arg,MATRIX_OF_INTEGER_DATATYPE,&mx,&nx,&lx);
 		}
 
 	if (ir>mx) return RET_END;
@@ -527,13 +527,13 @@ static int GetScalarDouble(char *fname, int *prev, int *arg, int narg, int *ic, 
 		*ic=1;
 		*prev = 1;
 	}
-	GetRhsVar(arg,"d",&mx,&nx,&lx);
+	GetRhsVar(arg,MATRIX_OF_DOUBLE_DATATYPE,&mx,&nx,&lx);
 	if ( *ic>nx) 
 		{
 			*arg=*arg+1;
 			if (*arg > narg ) return NOT_ENOUGH_ARGS;
 			*ic=1;
-			GetRhsVar(arg,"d",&mx,&nx,&lx);
+			GetRhsVar(arg,MATRIX_OF_DOUBLE_DATATYPE,&mx,&nx,&lx);
 		}
 	if (ir>mx) return RET_END;
 	*dval =  *(stk(lx+ir-1+mx*(*ic-1)));

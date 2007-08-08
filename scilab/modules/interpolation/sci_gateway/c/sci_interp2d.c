@@ -36,11 +36,11 @@ int intinterp2d(char *fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
 
-  GetRhsVar(1,"d", &mxp, &nxp, &lxp);
-  GetRhsVar(2,"d", &myp, &nyp, &lyp);
-  GetRhsVar(3,"d", &mx, &nx, &lx);
-  GetRhsVar(4,"d", &my, &ny, &ly);
-  GetRhsVar(5,"d", &mc, &nc, &lc);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &lxp);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &myp, &nyp, &lyp);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
+  GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
+  GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE, &mc, &nc, &lc);
 
   if ( mxp != myp || nxp != nyp || mx != 1 || my != 1 || nc != 1 || nx < 2 || ny < 2
        || mc != 16*(nx-1)*(ny-1) )
@@ -64,7 +64,7 @@ int intinterp2d(char *fname,unsigned long fname_len)
     outmode = C0;
 
   /* memory for zp */
-  CreateVar( Rhs+1, "d", &mxp,  &nxp, &lzp);
+  CreateVar( Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &mxp,  &nxp, &lzp);
   m = mxp*nxp;
 
   if ( Lhs == 1 )
@@ -80,8 +80,8 @@ int intinterp2d(char *fname,unsigned long fname_len)
   else   /* got also the derivatives */
     {
       /* memory for dzdxp and dzdyp */
-      CreateVar( Rhs+2, "d", &mxp,  &nxp, &ldzdxp);
-      CreateVar( Rhs+3, "d", &mxp,  &nxp, &ldzdyp);
+      CreateVar( Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &mxp,  &nxp, &ldzdxp);
+      CreateVar( Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mxp,  &nxp, &ldzdyp);
 
       if ( Lhs <= 3 )
 	{
@@ -94,9 +94,9 @@ int intinterp2d(char *fname,unsigned long fname_len)
 	}
       else /* got also 2d derivatives */
 	{
-	  CreateVar( Rhs+4, "d", &mxp,  &nxp, &ld2zdx2p);
-	  CreateVar( Rhs+5, "d", &mxp,  &nxp, &ld2zdxyp);
-	  CreateVar( Rhs+6, "d", &mxp,  &nxp, &ld2zdy2p);
+	  CreateVar( Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &mxp,  &nxp, &ld2zdx2p);
+	  CreateVar( Rhs+5,MATRIX_OF_DOUBLE_DATATYPE, &mxp,  &nxp, &ld2zdxyp);
+	  CreateVar( Rhs+6,MATRIX_OF_DOUBLE_DATATYPE, &mxp,  &nxp, &ld2zdy2p);
 	  C2F(bicubicinterpwithgradandhes)(stk(lx), stk(ly), stk(lc), &nx, &ny, stk(lxp), 
 					   stk(lyp), stk(lzp), stk(ldzdxp), stk(ldzdyp), 
 					   stk(ld2zdx2p), stk(ld2zdxyp), stk(ld2zdy2p), 

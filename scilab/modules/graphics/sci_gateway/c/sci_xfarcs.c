@@ -24,14 +24,14 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
   SciWin();
   CheckRhs(1,2);
 
-  GetRhsVar(1,"d",&m1,&n1,&l1);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   if (m1 != 6) {
     Scierror(999,"%s: arcs has a wrong size (6,n) expected \r\n",fname);
     return 0;
   }
 
   if (Rhs == 2) {
-    GetRhsVar(2,"i",&m2,&n2,&l2);
+    GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     CheckVector(2,m2,n2);
     if ( n1 != m2*n2) {
       Scierror(999,"%s: arguments have incompatible size\r\n",fname);
@@ -40,7 +40,7 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
   }
   else 
   {
-    m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
+    m2=1,n2=n1; CreateVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     for (i = 0; i < n2; ++i) { *istk(l2 + i) = i+1 ; }
   }
 

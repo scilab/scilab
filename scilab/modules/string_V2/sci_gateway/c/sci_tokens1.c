@@ -33,11 +33,11 @@ int C2F(sci_tokens1) _PARAMS((char *fname,unsigned long fname_len))
   int numCol;
   Rhs = Max(0, Rhs);
   CheckRhs(1,2);
-    GetRhsVar(1,"S",&m1,&n1,&Str);
+    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
     mn = m1*n1;  
 	if (Rhs == 2) 
 	{
-		GetRhsVar(2,"S",&m2,&n2,&Str2);
+		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str2);
 		mn2=m2*n2;
 	}
 	else 

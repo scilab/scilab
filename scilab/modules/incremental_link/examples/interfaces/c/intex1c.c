@@ -26,27 +26,27 @@ int intex1c(fname)
    * n1 = # of columns = 1 default value for chains.
    * The chain starts at cstk(l1)  
    */
-  GetRhsVar(1, "c", &m1, &n1, &l1);
+  GetRhsVar(1,STRING_DATATYPE, &m1, &n1, &l1);
 
   /*  a=variable #2 is an integer ('i') matrix, getrhsvar returns its
    *   dimensions: m2 = # of rows , n2 = # of columns
    * values in matrix a are istk(l2), istk(l2+1), ... (columnwise) 
    */
-  GetRhsVar(2, "i", &m2, &n2, &l2);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
 
   /*  b=variable #3 is an real ('r') matrix, getrhsvar returns its
    * dimensions: m3 = # of rows , n3 = # of columns
    * values in matrix a are sstk(l2), sstk(l2+1), ... (columnwise) 
    */
 
-  GetRhsVar(3, "r", &m3, &n3, &l3);
+  GetRhsVar(3,MATRIX_OF_RATIONAL_DATATYPE, &m3, &n3, &l3);
 
   /*  c=variable #4 is an double ('d') matrix, getrhsvar returns its
    * dimensions: m4 = # of rows , n4 = # of columns
    *  values in matrix a are stk(l2), stk(l2+1), ... (columnwise)  
    */
   
-  GetRhsVar(4, "d", &m4, &n4, &l4);
+  GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &m4, &n4, &l4);
 
   /*  2-Create  Scilab variable #5  as double matrix of
    *  dimensions  m4 x n4. The first fourth parameters of
@@ -56,8 +56,8 @@ int intex1c(fname)
    *  to desired values.  
    */
 
-  CreateVar(5, "d", &m4, &n4, &l5);
-  CreateVar(6, "d", &m4, &n4, &l6);
+  CreateVar(5,MATRIX_OF_DOUBLE_DATATYPE, &m4, &n4, &l5);
+  CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE, &m4, &n4, &l6);
 
   i1 = n2 * m2;
   i2 = n3 * m3;

@@ -18,7 +18,7 @@ int sci_demo( char * fname, char * code, int * flagx )
 	static char name[] = "execstr" ;
 	Nbvars = 0 ;
 	
-	CreateVar(1, "c", &m1, &n1, &l1);
+	CreateVar(1,STRING_DATATYPE, &m1, &n1, &l1);
 	strcpy(cstk(l1),code);
 	
 	/* back conversion to Scilab coding */

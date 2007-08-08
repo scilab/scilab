@@ -29,8 +29,8 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 	{
 		if (VarType(k) !=1 && VarType(k) !=10) {OverLoad(k);return 0;}
 	}
-	GetRhsVar(1,"i",&m1,&n1,&l1); /* file id */
-	GetRhsVar(2,"c",&m2,&n2,&l2); /* format */
+	GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1); /* file id */
+	GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* format */
 	ptrFormat=cstk(l2);
 
 	param1=*istk(l1);

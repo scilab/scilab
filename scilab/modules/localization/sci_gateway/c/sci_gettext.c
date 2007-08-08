@@ -48,10 +48,10 @@ static int TwoRhs_gettext(void)
 		char *param1=NULL;
 		char *param2=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
 
-		GetRhsVar(2,"c",&m1,&n1,&l1);
+		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 		param2=cstk(l1);
 
 		if ((strcmp(param1,"errors")==0) || (strcmp(param1,"messages")==0) || (strcmp(param1,"menus")==0))
@@ -75,7 +75,7 @@ static int TwoRhs_gettext(void)
 			if (TranslatedString)
 			{
 				n1=1;
-				CreateVarFromPtr(Rhs+1, "c",(m1=(int)strlen(TranslatedString), &m1),&n1,&TranslatedString);
+				CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(TranslatedString), &m1),&n1,&TranslatedString);
 				LhsVar(1)=Rhs+1;
 				C2F(putlhsvar)();	
 				if (TranslatedString) {FREE(TranslatedString);TranslatedString=NULL;}
@@ -85,7 +85,7 @@ static int TwoRhs_gettext(void)
 				m1=0;
 				n1=0;
 				l1=0;
-				CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 				LhsVar(1)=Rhs+1;
 				C2F(putlhsvar)();
 			}
@@ -111,7 +111,7 @@ static int OneRhs_gettext(void)
 		static int l1,n1,m1;
 		char *param1=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
 
 		if ((strcmp(param1,"errors")==0) || (strcmp(param1,"messages")==0) || (strcmp(param1,"menus")==0))
@@ -155,7 +155,7 @@ static int OneRhs_gettext(void)
 					m=numberselemTAGS;
 					n=1;
 
-					CreateVarFromPtr(Rhs+1, "S", &m, &n,Tags);
+					CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n,Tags);
 					LhsVar(1) = Rhs+1;
 
 					if (Lhs == 2)
@@ -163,7 +163,7 @@ static int OneRhs_gettext(void)
 						m=numberselemSTRINGS;
 						n=1;
 
-						CreateVarFromPtr(Rhs+2, "S", &m, &n, Strings);
+						CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE, &m, &n, Strings);
 						LhsVar(2) = Rhs+2;
 					}
 

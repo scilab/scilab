@@ -41,7 +41,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
   int id, ierror, i, j, nudiff;
 
   CheckLhs(1,1); CheckRhs(3,4);
-  GetRhsVar(1, "d", &mN, &nN, &lN);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mN, &nN, &lN);
 
   if ( ! verify_cstr(stk(lN), mN*nN, &n1, &n2) )
     {
@@ -50,7 +50,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
     };
   if ( mN == 1 && nN == 1) N_is_scalar = 1;
 
-  GetRhsVar(2, "d", &mM, &nM, &lM);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &mM, &nM, &lM);
   if ( ! verify_cstr(stk(lM), mM*nM, &m1, &m2) )
     {
       Scierror(999,"%s: bad second argument\r\n", fname);
@@ -64,7 +64,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
       return 0;
     };
        
-  GetRhsCVar(3,"d", &it, &mx, &nx, &lx, &lc);
+  GetRhsCVar(3,MATRIX_OF_DOUBLE_DATATYPE, &it, &mx, &nx, &lx, &lc);
   if ( it != 0 )
     {
       Scierror(999,"%s: 3th argument must be a real matrix\r\n", fname);
@@ -82,7 +82,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
   
   if ( Rhs == 4 )
     {
-      GetRhsVar(4,"c", &ms, &ns, &ls);
+      GetRhsVar(4,STRING_DATATYPE, &ms, &ns, &ls);
       if ( strcmp(cstk(ls),"norm") == 0)
 	normalised = 1;
       else
@@ -93,8 +93,8 @@ int sci_legendre(char *fname,unsigned long fname_len)
   
   MNp1 = Max (n2 - n1, m2 - m1) + 1;
 
-  CreateVar(Rhs+1, "d", &MNp1, &mnx, &lpqa); pqa = stk(lpqa);
-  CreateVar(Rhs+2, "i", &MNp1, &mnx, &lipqa); ipqa = istk(lipqa);
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &MNp1, &mnx, &lpqa); pqa = stk(lpqa);
+  CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE, &MNp1, &mnx, &lipqa); ipqa = istk(lipqa);
 
   if ( normalised )
     id = 4;

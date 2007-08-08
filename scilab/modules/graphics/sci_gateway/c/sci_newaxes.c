@@ -28,7 +28,7 @@ int sci_newaxes( char * fname,unsigned long fname_len )
   {
     sciSetCurrentObj(masousfen);
     sciSetSelectedSubWin(masousfen);
-    CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+    CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
     *hstk(outindex) = sciGetHandle(masousfen);
 
 

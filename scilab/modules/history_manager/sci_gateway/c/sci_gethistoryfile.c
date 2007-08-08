@@ -23,7 +23,7 @@ int C2F(sci_gethistoryfile) _PARAMS((char *fname,unsigned long fname_len))
 	if (filename)
 	{
 		n1=1;
-		CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(filename), &m1),&n1,&filename);
+		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(filename), &m1),&n1,&filename);
 		if (filename) {FREE(filename);filename=NULL;}
 		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();	

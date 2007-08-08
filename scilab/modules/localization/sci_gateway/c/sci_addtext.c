@@ -26,7 +26,7 @@ int C2F(sci_addtext) _PARAMS((char *fname,unsigned long fname_len))
 		char **param2=NULL;
 		char **param3=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
 
 		if ((strcmp(param1,"errors")==0) || (strcmp(param1,"messages")==0) || (strcmp(param1,"menus")==0))
@@ -37,8 +37,8 @@ int C2F(sci_addtext) _PARAMS((char *fname,unsigned long fname_len))
 
 			if (Table)
 			{
-				GetRhsVar(2,"S",&m2,&n2,&param2);
-				GetRhsVar(3,"S",&m3,&n3,&param3);
+				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&param2);
+				GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&param3);
 				if ( (m2==m3) && (n2==n3) )
 				{
 					int i=0;
@@ -48,7 +48,7 @@ int C2F(sci_addtext) _PARAMS((char *fname,unsigned long fname_len))
 						if (!AppendHashTableLocalization(Table,param2[i],param3[i]))
 						{
 							n1=1;
-							CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+							CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 							*istk(l1)=(int)(FALSE);
 							LhsVar(1)=Rhs+1;
 							C2F(putlhsvar)();
@@ -59,7 +59,7 @@ int C2F(sci_addtext) _PARAMS((char *fname,unsigned long fname_len))
 
 					/* it is okay ;) */
 					n1=1;
-					CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+					CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 					*istk(l1)=(int)(TRUE);
 					LhsVar(1)=Rhs+1;
 					C2F(putlhsvar)();
@@ -73,7 +73,7 @@ int C2F(sci_addtext) _PARAMS((char *fname,unsigned long fname_len))
 			else
 			{
 				n1=1;
-				CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 				*istk(l1)=(int)(FALSE);
 				LhsVar(1)=Rhs+1;
 				C2F(putlhsvar)();

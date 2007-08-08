@@ -23,7 +23,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (GetType(1) == sci_strings)
 	{
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		partOfWord = cstk(l1);
 	}
 	else
@@ -52,7 +52,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 				char **Results = NULL;
 				int sizeResults = 0;
 
-				GetRhsVar(2,"c",&m1,&n1,&l1);
+				GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 				param2 = cstk(l1);
 
 				if ( strcmp(param2,"functions") == 0 )
@@ -175,7 +175,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 static int returnEmptyMatrix(int pos)
 {
 	int l1 = 0, m1 = 0, n1 = 0;
-	CreateVarFromPtr(Rhs+ pos, "d",&n1,&m1,&l1);
+	CreateVarFromPtr(Rhs+ pos,MATRIX_OF_DOUBLE_DATATYPE,&n1,&m1,&l1);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -186,7 +186,7 @@ static int putResultOnStack(int pos,char **result,int sizeresult)
 		int m1 = 0, n1 = 0;
 		m1 = sizeresult;
 		n1 = 1;
-		CreateVarFromPtr(Rhs+pos, "S", &m1, &n1, result);
+		CreateVarFromPtr(Rhs+pos,MATRIX_OF_STRING_DATATYPE, &m1, &n1, result);
 	}
 	else
 	{

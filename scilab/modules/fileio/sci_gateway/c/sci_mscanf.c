@@ -33,7 +33,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	if (Rhs==2) 
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		if (m1*n1 != 1) 
 		{
 			Scierror(999,"Error: in scanf: incorrect first argument\r\n");
@@ -48,7 +48,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 		maxrow=1;
 	}
 
-	GetRhsVar(iarg,"c",&m1,&n1,&l1); /** format **/
+	GetRhsVar(iarg,STRING_DATATYPE,&m1,&n1,&l1); /** format **/
 	n_count=StringConvert(cstk(l1))+1;  /* conversion */
 
 	/** Read a line with Scilab read function **/

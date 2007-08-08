@@ -48,10 +48,10 @@ int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len))
 		int nrowFunctions=SizeLocalFunctionsTab;
 		int nrowCommands=sizecommandwords;
 
-		CreateVarFromPtr(Rhs+1, "S", &nrowFunctions, &ncol, LocalFunctionsTab);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrowFunctions, &ncol, LocalFunctionsTab);
 		LhsVar(1)=Rhs+1;
 
-		CreateVarFromPtr(Rhs+2, "S", &nrowCommands, &ncol, commandwords);
+		CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE, &nrowCommands, &ncol, commandwords);
 		LhsVar(2)=Rhs+2;
 
 		for (i2=0;i2<nrowFunctions;i2++) { FREE(LocalFunctionsTab[i2]);LocalFunctionsTab[i2]=NULL; }

@@ -30,11 +30,11 @@ int intsplin3d(char * fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
 
-  GetRhsVar(1,"d", &mx, &nx, &lx);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
   CheckVector(1, mx, nx); x = stk(lx);
-  GetRhsVar(2,"d", &my, &ny, &ly);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
   CheckVector(2, my, ny); y = stk(ly);
-  GetRhsVar(3,"d", &mz, &nz, &lz);
+  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mz, &nz, &lz);
   CheckVector(2, mz, nz); z = stk(lz);
 
   nx = mx*nx; ny = my*ny; nz = mz*nz;
@@ -59,7 +59,7 @@ int intsplin3d(char * fname,unsigned long fname_len)
 
   if ( Rhs == 5 )
     {
-      GetRhsVar(5,"d", &mo, &no, &lo);
+      GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE, &mo, &no, &lo);
       if ( (mo != 1 && no != 1)  ||  mo*no != 3 )
 	{ 
 	  Scierror(999,"%s: the 4 th arg must be a vector with 3 components \r\n", fname);
@@ -85,21 +85,21 @@ int intsplin3d(char * fname,unsigned long fname_len)
   mwk = nx*ny*nz + 2*(Max(mwkx, mwkz));
   nxyz = nx*ny*nz;
 
-  CreateVar(Rhs+1,"t", &seven, &one, &ltlist);
-  CreateListVarFromPtr(Rhs+1, 1, "S", &one,  &seven, Str);
-  lar = -1; CreateListVarFrom(Rhs+1, 2, "d", &ntx, &one, &ltx, &lar);
-  lar = -1; CreateListVarFrom(Rhs+1, 3, "d", &nty, &one, &lty, &lar);
-  lar = -1; CreateListVarFrom(Rhs+1, 4, "d", &ntz, &one, &ltz, &lar);
+  CreateVar(Rhs+1,TYPED_LIST_DATATYPE, &seven, &one, &ltlist);
+  CreateListVarFromPtr(Rhs+1, 1,MATRIX_OF_STRING_DATATYPE, &one,  &seven, Str);
+  lar = -1; CreateListVarFrom(Rhs+1, 2,MATRIX_OF_DOUBLE_DATATYPE, &ntx, &one, &ltx, &lar);
+  lar = -1; CreateListVarFrom(Rhs+1, 3,MATRIX_OF_DOUBLE_DATATYPE, &nty, &one, &lty, &lar);
+  lar = -1; CreateListVarFrom(Rhs+1, 4,MATRIX_OF_DOUBLE_DATATYPE, &ntz, &one, &ltz, &lar);
   lorder = 4; 
   lar = -1; CreateListVarFrom(Rhs+1, 5, "I", &three, &one, &lorder, &lar);
   order = istk(lorder); order[0] = kx; order[1] = ky; order[2] = kz;
-  lar = -1; CreateListVarFrom(Rhs+1, 6, "d", &nxyz,  &one, &lbcoef, &lar);
-  lar = -1; CreateListVarFrom(Rhs+1, 7, "d", &six,  &one, &lxyzminmax, &lar); 
+  lar = -1; CreateListVarFrom(Rhs+1, 6,MATRIX_OF_DOUBLE_DATATYPE, &nxyz,  &one, &lbcoef, &lar);
+  lar = -1; CreateListVarFrom(Rhs+1, 7,MATRIX_OF_DOUBLE_DATATYPE, &six,  &one, &lxyzminmax, &lar); 
   xyzminmax = stk(lxyzminmax); 
   xyzminmax[0] = x[0]; xyzminmax[1] = x[nx-1];  
   xyzminmax[2] = y[0]; xyzminmax[3] = y[ny-1];  
   xyzminmax[4] = z[0]; xyzminmax[5] = z[nz-1];  
-  CreateVar(Rhs+2, "d", &mwk, &one, &lwork);    /* work */
+  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &mwk, &one, &lwork);    /* work */
 
   flag = 0;
   C2F(db3ink) ( stk(lx), &nx, stk(ly), &ny, stk(lz), &nz, V.R,

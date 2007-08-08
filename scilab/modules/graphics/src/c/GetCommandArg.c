@@ -28,7 +28,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
   { 
     if (VarType(pos))
     {
-	    GetRhsVar(pos, "i", &m, &n, &l);
+	    GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
 	    if (m * n < n1)
       {
 	      Scierror(999,"%s: style is too small (%d < %d)\r\n",fname,m*n,n1);
@@ -37,7 +37,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
 	    if ( n1 == 1 && m * n == 1 )
       {
 	      ix = 2;
-	      CreateVar(Nbvars+1,"i",&un,&ix,&l1);
+	      CreateVar(Nbvars+1,MATRIX_OF_INTEGER_DATATYPE,&un,&ix,&l1);
 	      *istk(l1)=*istk(l);
 	      *istk(l1+1)=1;
 	      l=l1;
@@ -47,7 +47,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
     else /* zero type argument --> default value */
 	  {
 	    ix = Max(n1,2);
-	    CreateVar(Nbvars+1,"i",&un,&ix,&l);
+	    CreateVar(Nbvars+1,MATRIX_OF_INTEGER_DATATYPE,&un,&ix,&l);
 	    for ( i = 0 ; i < n1 ; ++i )
       {
         *istk(l + i) = i+1 ;
@@ -61,7 +61,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
   }
   else if ((kopt=FindOpt("style",opts)))
   { /* named argument: style=value */
-    GetRhsVar(kopt, "i", &m, &n, &l);
+    GetRhsVar(kopt,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
     if (m * n < n1)
     {
       Scierror(999,"%s: style is too small (%d < %d)\r\n",fname,m*n,n1);
@@ -70,7 +70,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
     if (n1==1&&m*n==1)
     {
       ix = 2;
-      CreateVar(Nbvars+1,"i",&un,&ix,&l1);
+      CreateVar(Nbvars+1,MATRIX_OF_INTEGER_DATATYPE,&un,&ix,&l1);
       *istk(l1)=*istk(l);
       *istk(l1+1)=1;
       l=l1;
@@ -80,7 +80,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
   else /* unspecified argument --> default value */
   {
     ix = Max(n1,2);
-    CreateVar(Nbvars+1,"i",&un,&ix,&l);
+    CreateVar(Nbvars+1,MATRIX_OF_INTEGER_DATATYPE,&un,&ix,&l);
     for (i = 0 ; i < n1 ; ++i)
     {
       *istk(l + i) = i+1;
@@ -103,7 +103,7 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
   if (pos < first_opt) 
     { 
       if (VarType(pos)) {
-	GetRhsVar(pos, "d", &m, &n, &l);
+	GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 	if (m * n != 4) { 
 	  Scierror(999,"%s: rect has wrong size (%d), 4 expected \r\n",fname,m*n); 
 	  return 0;
@@ -125,7 +125,7 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
 	}
     }
   else if ((kopt=FindOpt("rect",opts))) {/* named argument: rect=value */
-    GetRhsVar(kopt, "d", &m, &n, &l);
+    GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
     if (m * n != 4) { 
       Scierror(999,"%s: rect has wrong size (%d), 4 expected \r\n",fname,m*n); 
       return 0;
@@ -157,7 +157,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
   { 
     if (VarType(pos))
     {
-	    GetRhsVar(pos, "c", &m, &n, &l);
+	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	    if ( m * n != 3 )
       { 
 	      Scierror(999,"%s: strf has wrong size (%d), 3 expected \r\n",fname,m*n); 
@@ -174,7 +174,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
   }
   else if ((kopt=FindOpt("strf",opts)))
   {
-    GetRhsVar(kopt, "c", &m, &n, &l);
+    GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     if (m * n != 3)
     { 
       Scierror(999,"%s: strf has wrong size (%d), 3 expected \r\n",fname,m*n); 
@@ -201,7 +201,7 @@ int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend )
   if (pos < first_opt) 
     { 
       if (VarType(pos)) {
-	GetRhsVar(pos, "c", &m, &n, &l);
+	GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	*legend = cstk(l); 
       }
       else
@@ -210,7 +210,7 @@ int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend )
 	}
     }
   else if ((kopt=FindOpt("leg",opts))) {
-    GetRhsVar(kopt, "c", &m, &n, &l);
+    GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     *legend = cstk(l); 
   }
   else
@@ -230,7 +230,7 @@ int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
   if (pos < first_opt) 
   { 
     if (VarType(pos)) {
-      GetRhsVar(pos, "c", &m, &n, &l);
+      GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
       *labels = cstk(l); 
     }
     else
@@ -251,7 +251,7 @@ int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
   }
   else if ((kopt=FindOpt("leg",opts)))
   {
-    GetRhsVar(kopt, "c", &m, &n, &l);
+    GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     *labels = cstk(l); 
   }
   else
@@ -281,7 +281,7 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
   {
     if (VarType(pos))
     {
-      GetRhsVar(pos, "i", &m, &n, &l);
+      GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
       CheckLength(pos,m*n,4);
       for (i = 0 ; i < 4; ++i)
       {
@@ -298,7 +298,7 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
   }
   else if ((kopt=FindOpt("nax",opts)))
   {
-    GetRhsVar(kopt, "i", &m, &n, &l);
+    GetRhsVar(kopt,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
     CheckLength(kopt,m*n,4);
     for (i = 0 ; i < 4; ++i)
     {
@@ -324,7 +324,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
   if (pos < first_opt) 
     { 
       if (VarType(pos)) {
-        GetRhsVar(pos, "d", &m, &n, &l);
+        GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 	if (m * n != 2) { 
 	  Scierror(999,"%s: zminmax has wrong size (%d), 2 expected \r\n",fname,m*n); 
 	  return 0;
@@ -340,7 +340,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
 	}
     }
   else if ((kopt=FindOpt("zminmax",opts))) {/* named argument: rect=value */
-    GetRhsVar(kopt, "d", &m, &n, &l);
+    GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
     if (m * n != 2) { 
       Scierror(999,"%s: zminmax has wrong size (%d), 2 expected \r\n",fname,m*n); 
       return 0;
@@ -367,7 +367,7 @@ int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax )
     {
       if (VarType(pos)) 
 	{
-	  GetRhsVar(pos, "i", &m, &n, &l);
+	  GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
 	  CheckLength(pos,m*n,2);
 	  *colminmax=istk(l);
 	}
@@ -381,7 +381,7 @@ int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax )
     }
   else if ((kopt=FindOpt("colminmax",opts))) 
     {
-      GetRhsVar(kopt, "i", &m, &n, &l);
+      GetRhsVar(kopt,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
       CheckLength(kopt,m*n,2);
       *colminmax=istk(l);
     }
@@ -404,7 +404,7 @@ int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout )
     {
       if (VarType(pos)) 
 	{
-	  GetRhsVar(pos, "i", &m, &n, &l);
+	  GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
 	  CheckLength(pos,m*n,2);
 	  *colout = istk(l);
 	}
@@ -418,7 +418,7 @@ int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout )
     }
   else if ((kopt=FindOpt("colout",opts))) 
     {
-      GetRhsVar(kopt, "i", &m, &n, &l);
+      GetRhsVar(kopt,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
       CheckLength(kopt,m*n,2);
       *colout=istk(l);
     }
@@ -440,7 +440,7 @@ int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh)
     {
       if (VarType(pos)) 
 	{
-	  GetRhsVar(pos, "b", &m, &n, &l);
+	  GetRhsVar(pos,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l);
 	  CheckLength(pos,m*n,1);
 	  *withMesh = *(istk(l));
 	}
@@ -453,7 +453,7 @@ int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh)
     }
   else if ((kopt=FindOpt("mesh",opts))) 
     {
-      GetRhsVar(kopt, "b", &m, &n, &l);
+      GetRhsVar(kopt,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l);
       CheckLength(kopt,m*n,1);
       *withMesh = *(istk(l));
     }
@@ -475,7 +475,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
   { 
     if (VarType(pos))
     {
-	    GetRhsVar(pos, "c", &m, &n, &l);
+	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	    if ((m * n != 2)&&(m * n != 3))
       {
 	      Scierror(999,"%s: logflag has wrong size (%d), expected 2 or 3\r\n",fname,m*n);
@@ -515,7 +515,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
   }
   else if ((kopt=FindOpt("logflag",opts)))
   { /* named argument: style=value */
-    GetRhsVar(kopt,"c", &m, &n, &l);
+    GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     if ((m * n != 2)&&(m * n != 3))
     {
       Scierror(999,"%s: logflag has wrong size (%d), expected 2 or 3\r\n",fname,m * n);
@@ -567,13 +567,13 @@ int get_optional_double_arg(     char  * fname,
   if (pos < first_opt) 
     { 
       if (VarType(pos)) {
-	GetRhsVar(pos, "d", &m, &n, &l);
+	GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 	CheckLength(pos,m*n,sz)
 	  *value = stk(l);
       }
     }
   else if ((kopt=FindOpt(name,opts))) {
-    GetRhsVar(kopt,"d", &m, &n, &l);
+    GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
     CheckLength(kopt,m*n,sz)
       *value = stk(l);
   }
@@ -592,13 +592,13 @@ int get_optional_int_arg(     char  * fname,
   if (pos < first_opt) 
     { 
       if (VarType(pos)) {
-	GetRhsVar(pos, "i", &m, &n, &l);
+	GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
 	CheckLength(pos,m*n,sz)
 	  *value = istk(l);
       }
     }
   else if ((kopt=FindOpt(name,opts))) {
-    GetRhsVar(kopt,"i", &m, &n, &l);
+    GetRhsVar(kopt,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
     CheckLength(kopt,m*n,sz)
       *value = istk(l);
   }

@@ -13,7 +13,7 @@ int C2F(sci_realtimeinit) _PARAMS((char *fname,unsigned long fname_len))
  CheckRhs(1,1);
  CheckLhs(1,1);
  /*  checking variable scale */
- GetRhsVar(1,"d",&m1,&n1,&l1);
+ GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
  CheckScalar(1,m1,n1);
  /* cross variable size checking */
  C2F(realtimeinit)(&zer,stk(l1));
@@ -27,7 +27,7 @@ int C2F(sci_realtime) _PARAMS((char *fname,unsigned long fname_len))
  CheckRhs(1,1);
  CheckLhs(1,1);
  /*  checking variable t */
- GetRhsVar(1,"d",&m1,&n1,&l1);
+ GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
  CheckScalar(1,m1,n1);
  /* cross variable size checking */
  C2F(realtime)(stk(l1));

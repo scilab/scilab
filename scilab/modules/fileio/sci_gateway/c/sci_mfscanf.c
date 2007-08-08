@@ -28,7 +28,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 
 	if (Rhs==3) 
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		if (m1*n1 != 1 ) 
 		{
 			Scierror(999,"Error: in fscanf: incorrect first argument\r\n");
@@ -43,8 +43,8 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 		maxrow=1;
 	}
 
-	GetRhsVar(iarg,"i",&m1,&n1,&l1);
-	GetRhsVar(iarg+1,"c",&m2,&n2,&l2);/* format */
+	GetRhsVar(iarg,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
+	GetRhsVar(iarg+1,STRING_DATATYPE,&m2,&n2,&l2);/* format */
 
 	param1=*istk(l1);
 	StringConvert(cstk(l2));  /* conversion */

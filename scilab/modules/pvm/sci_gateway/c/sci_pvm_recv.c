@@ -16,15 +16,15 @@ int intspvm_recv _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(2,2);
   CheckLhs(1,4);
   /*  checking variable tid */
-  GetRhsVar(1,"i",&m1,&n1,&l1);
+  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
   CheckScalar(1,m1,n1);
   tid=*istk(l1);
   /*  checking variable tag */
-  GetRhsVar(2,"i",&m2,&n2,&l2);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
   CheckScalar(2,m2,n2);
   tag=*istk(l2);
   /* space for info */ 
-  CreateVar(3,"i",&un,&un,&l3);/* named: res */
+  CreateVar(3,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l3);/* named: res */
   /* space for paking info */ 
   CreateWork(4,&size,&l5); 
   /* variable at position 4 is created as a scalar matrix 
@@ -40,13 +40,13 @@ int intspvm_recv _PARAMS((char *fname,unsigned long fname_len))
   LhsVar(4)=2;
   /* since 1 and 2 could be ref */ 
   if ( IsRef(1) ) { 
-    CreateVar(count,"i",&un,&un,&l);
+    CreateVar(count,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l);
     *istk(l)=tid;
     LhsVar(3)=count;
     count++;
   }
   if ( IsRef(2) ) { 
-    CreateVar(count,"i",&un,&un,&l);
+    CreateVar(count,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l);
     *istk(l)=tag;
     LhsVar(4)=count;
   }

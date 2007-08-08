@@ -30,14 +30,14 @@ int C2F(intstrcat) (char* fname)
 
   switch ( VarType(1)) {
   case 10 :
-    GetRhsVar(1,"S",&m1,&n1,&Str);
+    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
     mn = m1*n1;  
     if (Rhs >= 2) {
-      GetRhsVar(2,"c",&m2,&n2,&l2);
+      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
       sep = cstk(l2);
     }
     if (Rhs >= 3) {
-      GetRhsVar(3,"c",&m3,&n3,&l3);
+      GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
       if ( m3*n3 != 0) 
 	typ = cstk(l3)[0];
       if (typ != 'c' && typ != 'r' ) {
@@ -51,7 +51,7 @@ int C2F(intstrcat) (char* fname)
       /* just return one string */ 
       for ( i = 0 ; i < mn ; i++ ) nchars += (int)strlen(Str[i]);
       nchars += (mn-1)*(int)strlen(sep);
-      CreateVar(Rhs+1,"c",&un,&nchars,&l3);
+      CreateVar(Rhs+1,STRING_DATATYPE,&un,&nchars,&l3);
       k=0;
       for ( i = 0 ; i < mn ; i++ ) 
 	  {
@@ -99,7 +99,7 @@ int C2F(intstrcat) (char* fname)
 	  strcat(Str1[i],Str[i+ m1*j]);
 	}
       }
-      CreateVarFromPtr(Rhs+1,"S", &m1, &un, Str1);
+      CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &un, Str1);
 	  if (Str)
 	  {
 		  for ( i = 0 ; i < mn ; i++ )
@@ -155,7 +155,7 @@ int C2F(intstrcat) (char* fname)
 	  strcat(Str1[j],Str[i+ m1*j]);
 	}
       }
-      CreateVarFromPtr(Rhs+1,"S", &un, &n1, Str1);
+      CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &un, &n1, Str1);
 	  if (Str)
 	  {
 		  for ( i = 0 ; i < mn ; i++ )

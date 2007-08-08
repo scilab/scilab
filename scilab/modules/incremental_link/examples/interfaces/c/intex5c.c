@@ -26,7 +26,7 @@ int intex5c(fname)
     }
 
   n1=1;
-  CreateVarFromPtr( 1, "c", &m1, &n1, &l1);
+  CreateVarFromPtr( 1,STRING_DATATYPE, &m1, &n1, &l1);
   free(l1);
   LhsVar(1) = 1;
   return(0);

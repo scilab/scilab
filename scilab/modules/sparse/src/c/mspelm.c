@@ -132,8 +132,8 @@ int empty(void)
   int m2,n2,p2;
   int NZMAX=1;int jc=5;int ir;
   int *header;double *value;
-  GetRhsVar(1,"d",&m1,&n1,&p1);
-  GetRhsVar(2,"d",&m2,&n2,&p2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&p1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&p2);
   m= (int) *stk(p1);
   n= (int) *stk(p2);
   CreateData(3, (6+n+1)*sizeof(int)+sizeof(double));

@@ -38,7 +38,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 	{
 		char *filename=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		if ( n1==1 )
 		{
 			int i=0;
@@ -91,7 +91,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 				if (ierr) /* Problem to get current directory */
 				{
 					m1=0; n1=0; l1=0; /* returns a empty string */
-					CreateVar(Rhs+1,"c",  &m1, &n1, &l1);
+					CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
 					LhsVar(1)=Rhs+1;
 					C2F(putlhsvar)();
 					return 0;
@@ -107,7 +107,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 			}
 
 			n1=1;
-			CreateVarFromPtr( Rhs+1, "c",(m1=(int)strlen(absolute_file_path), &m1),&n1,&absolute_file_path);
+			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(absolute_file_path), &m1),&n1,&absolute_file_path);
 			LhsVar(1)=Rhs+1;
 			C2F(putlhsvar)();
 

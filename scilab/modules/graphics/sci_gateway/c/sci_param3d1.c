@@ -52,10 +52,10 @@ int sci_param3d1( char *fname, unsigned long fname_len )
     Error(999); 
     return(0);
   }
-  GetRhsVar(1, "d", &m1, &n1, &l1);/* x */
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);/* x */
   if (m1 == 1 && n1 > 1) {m1 = n1;n1 = 1;}
 
-  GetRhsVar(2, "d", &m2, &n2, &l2);/* y */
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);/* y */
   if (m2 == 1 && n2 > 1) {m2 = n2;n2 = 1;}
 
   if (m1 * n1 == 0) { LhsVar(1) = 0; return 0;};
@@ -65,20 +65,20 @@ int sci_param3d1( char *fname, unsigned long fname_len )
   {
   case 1 : 
     izcol = 0;
-    GetRhsVar(3, "d", &m3, &n3, &l3); /* z */
+    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3); /* z */
     break;
   case 15 : 
     izcol = 1;
     /* z = list(z,colors) */
-    GetRhsVar(3,"l",&m3l,&n3l,&l3l);
+    GetRhsVar(3,LIST_DATATYPE,&m3l,&n3l,&l3l);
     if ( m3l != 2 ) 
     {
       Scierror(999,"%s: second argument has a wrong size (%d), expecting a list of size %d\r\n",
         fname,m3l,2);
       return 0;
     }
-    GetListRhsVar(3,1,"d",&m3,&n3,&l3); /* z*/ 
-    GetListRhsVar(3,2,"d",&m3n,&n3n,&l3n); /* colors */
+    GetListRhsVar(3,1,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); /* z*/ 
+    GetListRhsVar(3,2,MATRIX_OF_DOUBLE_DATATYPE,&m3n,&n3n,&l3n); /* colors */
     zcol  = stk(l3n);
     if (m3n * n3n != n3) 
     {

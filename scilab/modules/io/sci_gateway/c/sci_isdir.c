@@ -30,7 +30,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		int out_n;
 		BOOL result=FALSE;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		if ( n1==1 )
 		{
 			path=cstk(l1);
@@ -79,7 +79,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		result=isdir(filename);
 		m1=1;
 		n1=1;
-		CreateVar(Rhs+1, "b", &m1, &n1 ,&l1); /* Create the space in the stack for result */
+		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1 ,&l1); /* Create the space in the stack for result */
 		*istk(l1)=result; /* Copy comm_size into the stack */
 		
 		LhsVar(1)= Rhs+1;

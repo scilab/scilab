@@ -26,12 +26,12 @@ int intspvm_config _PARAMS((char *fname,unsigned long fname_len))
       return 0;
     }
   Createlist(1,7);
-  CreateListVarFromPtr(1,1,"i",&un,&un,(work=&nhost,&work));
-  CreateListVarFromPtr(1,2,"i",&un,&un,(work=&narch,&work));
-  CreateListVarFromPtr(1,3,"i",&un,&ne3,&pdtid);
+  CreateListVarFromPtr(1,1,MATRIX_OF_INTEGER_DATATYPE,&un,&un,(work=&nhost,&work));
+  CreateListVarFromPtr(1,2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,(work=&narch,&work));
+  CreateListVarFromPtr(1,3,MATRIX_OF_INTEGER_DATATYPE,&un,&ne3,&pdtid);
   FREE(pdtid);
 
-  CreateListVarFromPtr(1,4,"S",&ne3,&un,pname);
+  CreateListVarFromPtr(1,4,MATRIX_OF_STRING_DATATYPE,&ne3,&un,pname);
   if (pname)
   {
 	  int i=0;
@@ -47,7 +47,7 @@ int intspvm_config _PARAMS((char *fname,unsigned long fname_len))
 	  pname=NULL;
   }
 
-  CreateListVarFromPtr(1,5,"S",&ne3,&un,parch);
+  CreateListVarFromPtr(1,5,MATRIX_OF_STRING_DATATYPE,&ne3,&un,parch);
   if (parch)
   {
 	  int i=0;
@@ -63,9 +63,9 @@ int intspvm_config _PARAMS((char *fname,unsigned long fname_len))
 	  parch=NULL;
   }
 
-  CreateListVarFromPtr(1,6,"i",&un,&ne3,&pspeed);
+  CreateListVarFromPtr(1,6,MATRIX_OF_INTEGER_DATATYPE,&un,&ne3,&pspeed);
   FREE(pspeed);
-  CreateListVarFromPtr(1,7,"i",&un,&un,(work=&info,&work));
+  CreateListVarFromPtr(1,7,MATRIX_OF_INTEGER_DATATYPE,&un,&un,(work=&info,&work));
   LhsVar(1)= 1;
   
   pvm_error_check(fname,info,fname_len);

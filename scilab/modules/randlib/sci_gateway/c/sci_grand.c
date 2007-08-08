@@ -127,7 +127,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
   if ( GetType(1) != 1) 
     {
      int un=1,deux=2, dim_state_mt=625, dim_state_fsultra = 40, dim_state_4=4;
-      GetRhsVar(1,"c",&ms,&ns,&ls);
+      GetRhsVar(1,STRING_DATATYPE,&ms,&ns,&ls);
       if ( strcmp(cstk(ls),"getsd")==0) 
 	{
 	  if ( Rhs != 1  ||  Lhs != 1) 
@@ -138,27 +138,27 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      switch(current_gen)
 		{
 		case(MT) :
-		  CreateVar(Rhs+2,"d",&dim_state_mt,&un,&lr);
+		  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&dim_state_mt,&un,&lr);
 		  get_state_mt(stk(lr));
 		  break;
 		case(KISS) :
-		  CreateVar(Rhs+2,"d",&dim_state_4,&un,&lr);
+		  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&dim_state_4,&un,&lr);
 		  get_state_kiss(stk(lr));
 		  break;
 		case(CLCG4) :
-		  CreateVar(Rhs+2,"d",&dim_state_4,&un,&lr);
+		  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&dim_state_4,&un,&lr);
 		  get_state_clcg4(current_clcg4, stk(lr));
 		  break;
 		case(CLCG2) :
-		  CreateVar(Rhs+2,"d",&deux,&un,&lr);
+		  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&deux,&un,&lr);
 		  get_state_clcg2(stk(lr));
 		  break;
 		case(URAND) : 
-		  CreateVar(Rhs+2,"d",&un,&un,&lr);
+		  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&lr);
 		  get_state_urand(stk(lr));
 		  break;
 		case(FSULTRA) : 
-		  CreateVar(Rhs+2,"d",&dim_state_fsultra,&un,&lr);
+		  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&dim_state_fsultra,&un,&lr);
 		  get_state_fsultra(stk(lr));
 		  break;
 		};
@@ -175,16 +175,16 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		  Scierror(999,"Rhs should be 5 for 'setall'  option\n\r");
 		  return 0;
 		}
-	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	      if ( m1*n1 != 1) { Scierror(999,"second argument must be scalar\r\n");
 	      return 0;}
-	      GetRhsVar(3,"d",&m1,&n1,&l2);
+	      GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);
 	      if ( m1*n1 != 1) { Scierror(999,"third argument must be scalar\r\n");
 	      return 0;}
-	      GetRhsVar(4,"d",&m1,&n1,&l3);
+	      GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l3);
 	      if ( m1*n1 != 1) { Scierror(999,"fourth argument must be scalar\r\n");
 	      return 0;}
-	      GetRhsVar(5,"d",&m1,&n1,&l4);
+	      GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l4);
 	      if ( m1*n1 != 1) { Scierror(999,"fifth argument must be scalar\r\n");
 	      return 0;}
 
@@ -206,7 +206,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		  Scierror(999,"Rhs should be 2 for 'setsd' option with the mt generator\n\r");
 		  return 0;
 		}
-	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	      if ( m1*n1 == 1)          /* simple init of mt     */
 		{ if (! set_state_mt_simple(*stk(l1)) ) {Error(999); return(0);}; }
 	      else if ( m1*n1 == 625 )  /* init of all the state */
@@ -221,7 +221,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    case(FSULTRA) :  
 	      if ( Rhs == 2 ) /* init via a "complete" state */ 
 		{
-		  GetRhsVar(2,"d",&m1,&n1,&l1);
+		  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 		  if ( m1 != 40  ||  n1 != 1)
 		    {
 		      Scierror(999,"the state for fsultra must be a 40x1 vector !\n\r");
@@ -231,10 +231,10 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		}
 	      else if ( Rhs == 3 ) /* init with 2 integers (like before) */
 		{
-		  GetRhsVar(2,"d",&m1,&n1,&l1);
+		  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 		  if ( m1*n1 != 1) 
 		    { Scierror(999,"second argument must be scalar\r\n"); return 0;};
-		  GetRhsVar(3,"d",&m1,&n1,&l2);
+		  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);
 		  if ( m1*n1 != 1) 
 		    { Scierror(999,"third argument must be scalar\r\n"); return 0;};
 		  if (! set_state_fsultra_simple(*stk(l1),*stk(l2)) ) {Error(999); return(0);}; 
@@ -253,16 +253,16 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		  Scierror(999,"Rhs should be 5 for 'setsd' option with the kiss or clcg4 generator\n\r");
 		  return 0;
 		}
-	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	      if ( m1*n1 != 1) 
 		{ Scierror(999,"second argument must be scalar\r\n"); return 0;}
-	      GetRhsVar(3,"d",&m1,&n1,&l2);
+	      GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);
 	      if ( m1*n1 != 1) 
 		{ Scierror(999,"third argument must be scalar\r\n"); return 0;}
-	      GetRhsVar(4,"d",&m1,&n1,&l3);
+	      GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l3);
 	      if ( m1*n1 != 1) 
 		{ Scierror(999,"fourth argument must be scalar\r\n"); return 0;}
-	      GetRhsVar(5,"d",&m1,&n1,&l4);
+	      GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l4);
 	      if ( m1*n1 != 1) 
 		{ Scierror(999,"fifth argument must be scalar\r\n"); return 0;}
 	      if (current_gen == KISS) 
@@ -278,10 +278,10 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		  Scierror(999,"Rhs should be 3 for 'setsd' option with the clcg2 generator\n\r");
 		  return 0;
 		}
-	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	      if ( m1*n1 != 1) 
 		{ Scierror(999,"second argument must be scalar\r\n"); return 0;};
-	      GetRhsVar(3,"d",&m1,&n1,&l2);
+	      GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);
 	      if ( m1*n1 != 1) 
 		{ Scierror(999,"third argument must be scalar\r\n"); return 0;};
 	      if (! set_state_clcg2(*stk(l1),*stk(l2))) 
@@ -294,7 +294,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		  Scierror(999,"Rhs should be 2 for 'setsd' option with the urand generator\n\r");
 		  return 0;
 		}
-	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	      if ( m1*n1 != 1) 
 		{ Scierror(999,"second argument must be scalar\r\n"); return 0;};
 	      if (! set_state_urand(*stk(l1))) 
@@ -312,8 +312,8 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      Scierror(999,"Rhs should be 2 for 'phr2sd' option and Lhs should be 1\n\r");
 	      return 0;
 	    }
-	  GetRhsVar(2,"c",&m1,&n1,&l1);
-	  CreateVar(3,"i",&un,&deux,&l2);
+	  GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
+	  CreateVar(3,MATRIX_OF_INTEGER_DATATYPE,&un,&deux,&l2);
 	  
 	  C2F(phrtsd)(cstk(l1),&m1,istk(l2),istk(l2+1),m1);
 	  LhsVar(1) = 3;
@@ -331,7 +331,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      Scierror(999,"Rhs should be 2 for 'initgn' option\n\r");
 	      return 0;
 	    }
-	  GetRhsVar(2,"i",&m1,&n1,&l1);
+	  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	  if ( *istk(l1) != 0 && *istk(l1)!= -1 && *istk(l1) != 1)
 	    {
 	      Scierror(999,"for initgn option argument must be -1,0 or 1\r\n");
@@ -352,7 +352,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      Scierror(999,"Rhs should be 2 for 'setcgn' option\n\r");
 	      return 0;
 	    }
-	  GetRhsVar(2,"i",&m1,&n1,&l1);
+	  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	  if ( *istk(l1) < 0 || *istk(l1) > Maxgen )
 	    {
 	      Scierror(999,"bad virtual number generator (must be in [0,%d])\n\r",Maxgen);
@@ -373,7 +373,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      Scierror(999,"Rhs should be 2 for 'advnst' option\n\r");
 	      return 0;
 	    }
-	  GetRhsVar(2,"i",&m1,&n1,&l1);
+	  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	  k = *istk(l1);
 	  if ( k < 1 )
 	    {
@@ -394,7 +394,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    }
 	  if ( current_gen != CLCG4 )
 	    sciprint("this information concerns only the clcg4 generator\n\r");
-	  CreateVar(2,"i",&un,&un,&l1);
+	  CreateVar(2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l1);
 	  *istk(l1) = current_clcg4; 
 	  LhsVar(1) = 2;
 	  PutLhsVar();
@@ -408,7 +408,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      Scierror(999,"Rhs should be 2 for 'setgen' option\n\r");
 	      return 0;
 	    }
-	  GetRhsVar(2,"c",&msb,&nsb,&lsb);
+	  GetRhsVar(2,STRING_DATATYPE,&msb,&nsb,&lsb);
 	  if (strcmp("mt",cstk(lsb))==0) 	  
 	    current_gen = MT;
 	  else if (strcmp("kiss",cstk(lsb))==0)
@@ -438,7 +438,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      Scierror(999,"Rhs should be 1 for 'getgen' option\n\r");
 	      return 0;
 	    }
-	  CreateVarFromPtr( Rhs+2, "S", &l_un, &l_un, &names_gen[current_gen]);
+	  CreateVarFromPtr( Rhs+2,MATRIX_OF_STRING_DATATYPE, &l_un, &l_un, &names_gen[current_gen]);
 	  LhsVar(1) = Rhs+2;
 	  PutLhsVar();
 	  return 0;
@@ -458,17 +458,17 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	if ( m1*n1 != 1) 
 	  { Scierror(999,"First argument must be scalar\r\n");return 0;}
       ResL= *istk(l1);
-      GetRhsVar(2, "i", &m2, &n2, &l2);
+      GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
       if ( m2*n2 != 1) 
 	{ Scierror(999,"First argument must be scalar\r\n");return 0;}
       ResC= *istk(l2);
-      GetRhsVar(3, "c", &ms, &ns, &ls);
+      GetRhsVar(3,STRING_DATATYPE, &ms, &ns, &ls);
       suite=4;
     }
   else 
     {
-      GetRhsVar(1, "i", &ResL, &ResC, &l1);
-      GetRhsVar(2, "c", &ms, &ns, &ls);
+      GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE, &ResL, &ResC, &l1);
+      GetRhsVar(2,STRING_DATATYPE, &ms, &ns, &ls);
       suite = 3;
     }
   if ( strcmp(cstk(ls),"bet")==0) 
@@ -476,11 +476,11 @@ int sci_Rand(char *fname,unsigned long fname_len)
       double minlog=1.e-37;
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing A and B for beta law\r\n");return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"A must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"B must be scalar\r\n");return 0;}
-      CreateVar(suite+2,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < minlog || *stk(lb) < minlog)
 	{
 	  Scierror(999,"Rand(...,'bet',..): A or B < %f \r\b",minlog);
@@ -498,11 +498,11 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing Dfn and Dfd for F law\r\n");return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"Dfn must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"Dfd must be scalar\r\n");return 0;}
-      CreateVar(suite+2,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) <= 0.0 || *stk(lb) <= 0.0)
 	{
 	  Scierror(999,"Degrees of freedom nonpositive \r\n");
@@ -527,16 +527,16 @@ int sci_Rand(char *fname,unsigned long fname_len)
       nn= *istk(l1);
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing N and P for MULtinomial law\r\n");return 0;}
-      GetRhsVar(suite, "i", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"N must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m2, &n2, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &lb);
       if ( n2 != 1 ) 
 	{ 
 	  Scierror(999,"P must be a column vector\r\n");
 	  return 0;
 	}
       ncat = m2+1;
-      CreateVar(suite+2,"i",&ncat,&nn,&lr);
+      CreateVar(suite+2,MATRIX_OF_INTEGER_DATATYPE,&ncat,&nn,&lr);
       if ( *istk(la) < 0 ) 
 	{
 	  Scierror(999,"N < 0 \r\n");
@@ -583,11 +583,11 @@ int sci_Rand(char *fname,unsigned long fname_len)
             bien A et R (idem pour le man)
 	*/
 	{ Scierror(999,"Missing shape and scale for Gamma law\r\n");return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"shape must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"scale must be scalar\r\n");return 0;}
-      CreateVar(suite+2,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( (*stk(la)) <= 0.0 ||  (*stk(lb)) <= 0.0 )
 	{
 	  Scierror(999,"grand(..'gam',A,R) : A <= 0.0 or R <= 0.0 \r\n"); return 0;
@@ -608,11 +608,11 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing Av and Sd for Normal law\r\n");return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"Av must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"Sd must be scalar\r\n");return 0;}
-      CreateVar(suite+2,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(lb) < 0 ) 
 	{
 	  Scierror(999,"SD < 0.0 \r\n");return 0;}
@@ -629,11 +629,11 @@ int sci_Rand(char *fname,unsigned long fname_len)
       double low, high;
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing Low and High for Uniform Real law\r\n");return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"Low must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"High must be scalar\r\n");return 0;}
-      CreateVar(suite+2,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       low = *stk(la) ; high =  *stk(lb);
       if ( low > high ) 
 	{
@@ -651,9 +651,9 @@ int sci_Rand(char *fname,unsigned long fname_len)
       double a, b;
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing Low and High for Uniform integer law\r\n");return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"Low must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"High must be scalar\r\n");return 0;}
       a = *stk(la) ; b = *stk(lb);
       if ( a != floor(a) || b != floor(b) || (b-a+1) > 2147483561 )
@@ -661,7 +661,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	  Scierror(999," a and b must integers with (b-a+1) <= 2147483561");
 	  return 0;
 	}
-      CreateVar(suite+2,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
 	*stk(lr+i)= C2F(ignuin)(stk(la),stk(lb));
       LhsVar(1) = suite+2;
@@ -675,7 +675,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	  Scierror(999,"Only %d arguments required for 'lgi' option",suite-1);
 	  return 0;
 	}
-      CreateVar(suite,"d",&ResL,&ResC,&lr);
+      CreateVar(suite,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
 	*stk(lr+i)= ignlgi();
       LhsVar(1) = suite;
@@ -695,10 +695,10 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{ 
 	  Scierror(999,"Missing vect for random permutation\r\n");
 	  return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( n1 != 1) { Scierror(999,"vect must be column vector\r\n");
       return 0;}
-      CreateVar(suite+1,"d",&m1,&nn,&lr);
+      CreateVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&nn,&lr);
       for ( i=0 ; i < nn ; i++) 
 	{
 	  int j ; 
@@ -713,11 +713,11 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing N and P for Negative Binomial law\r\n");return 0;}
-      GetRhsVar(suite, "i", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"N must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"P must be scalar\r\n");return 0;}
-      CreateVar(suite+2,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(lb) < 0.0 || *stk(lb) > 1.0 ) 
 	{
 	  Scierror(999,"P is not in [0,1] \r\n");
@@ -740,11 +740,11 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing N and P for Binomial law\r\n");return 0;}
-      GetRhsVar(suite, "i", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"N must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"P must be scalar\r\n");return 0;}
-      CreateVar(suite+2,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(lb) < 0.0 || *stk(lb) > 1.0 ) 
 	{
 	  Scierror(999,"P is not in [0,1] \r\n");
@@ -773,16 +773,16 @@ int sci_Rand(char *fname,unsigned long fname_len)
       nn= *istk(l1);
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing Mean and Cov for Multivariate Normal law\r\n");return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( n1 != 1) { Scierror(999,"Mean must be column vector\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m2, &n2, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &lb);
       if ( m2 != n2 ) { Scierror(999,"Cov must be a square matrix\r\n");return 0;}
       if ( m2 != m1 ) { Scierror(999,"Mean and Cov have incompatible dimensions\n");return 0;}
       
-      CreateVar(suite+2,"d",&m1,&nn,&lr);
-      CreateVar(suite+3,"d",&m1,&un,&work);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&nn,&lr);
+      CreateVar(suite+3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&un,&work);
       mp=m1*(m1+3)/2 + 1;
-      CreateVar(suite+4,"d",&mp,&un,&parm);
+      CreateVar(suite+4,MATRIX_OF_DOUBLE_DATATYPE,&mp,&un,&parm);
       if ( m1 <= 0 ) 
 	{
 	  Scierror(999,"Mean and Cov are of null size\r\n");
@@ -810,8 +810,8 @@ int sci_Rand(char *fname,unsigned long fname_len)
       nn= *istk(l1);
       if ( Rhs != suite +1 )
 	{ Scierror(999,"Missing P matrix and X0 for Markov chain\r\n");return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
-      GetRhsVar(suite+1, "i", &m2, &n2, &lb);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
+      GetRhsVar(suite+1,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &lb);
       if ( m1 != n1 && m1 != 1 ) 
 	{ 
 	  Scierror(999,"P must be a square matrix or a row vector\r\n");return 0;
@@ -826,10 +826,10 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    return 0;
 	  }
       mm= m2*n2;
-      CreateVar(suite+2,"i",&mm,&nn,&lr);
+      CreateVar(suite+2,MATRIX_OF_INTEGER_DATATYPE,&mm,&nn,&lr);
 
       n1p1=n1+1;
-      CreateVar(suite+3,"d",&m1,&n1p1,&lr1);
+      CreateVar(suite+3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1p1,&lr1);
       for ( i= 0 ; i < m1 ; i++ )
 	{
 	  double ptot = 0.0;
@@ -890,7 +890,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
       if ( Rhs != suite -1 ) 
 	{ Scierror(999,"no argument required for 'def' option\r\n");return 0;}
-      CreateVar(suite,"d",&ResL,&ResC,&lr);
+      CreateVar(suite,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
 	  *stk(lr+i)= C2F(ranf)();
@@ -904,11 +904,11 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing Df and Xnonc for non-central chi-square law\r\n");return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"Df must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"Xnonc must be scalar\r\n");return 0;}
-      CreateVar(suite+2,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < 1.0 || *stk(lb) < 0.0 )
 	{
 	  Scierror(999,"DF < 1 or XNONC < 0 \r\n");
@@ -928,13 +928,13 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{ 
 	  Scierror(999,"Missing Dfn, Dfd and Xnonc for non-central F law\r\n");
 	  return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"Dfn must be scalar\r\n");return 0;}
-      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
+      GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"Dfd must be scalar\r\n");return 0;}
-      GetRhsVar(suite+2, "d", &m1, &n1, &lc);
+      GetRhsVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lc);
       if ( m1*n1 != 1) { Scierror(999,"Xnonc must be scalar\r\n");return 0;}
-      CreateVar(suite+3,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+3,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < 1.0 || *stk(lb) < 0.0 || *stk(lc) < 0.0 ) 
 	{
 	  Scierror(999,"DF < 1.0 or DF <= 0.0 or Xnonc < 0.0 \r\n");
@@ -955,9 +955,9 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{ Scierror(999,"Missing Df for chi-square law\r\n");
 	return 0;
 	}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"Df must be scalar\r\n");return 0;}
-      CreateVar(suite+1,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if  ( *stk(la) <= 0.0)
 	{
 	  Scierror(999,"Rand: DF <= 0 \r\n");return 0;
@@ -975,9 +975,9 @@ int sci_Rand(char *fname,unsigned long fname_len)
       if ( Rhs != suite ) 
 	{ Scierror(999,"Missing Av for Poisson law\r\n");
 	return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"Av must be scalar\r\n");return 0;}
-      CreateVar(suite+1,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < 0.0 )
 	{
 	  Scierror(999,"Av < 0 \r\n");
@@ -997,12 +997,12 @@ int sci_Rand(char *fname,unsigned long fname_len)
       if ( Rhs != suite ) 
 	{ Scierror(999,"Missing p for Geometric law\r\n");
 	return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"p must be scalar\r\n");return 0;}
       p = *stk(la);
       if ( p < 1.3e-307 || p > 1 ) { Scierror(999,"p must be in [pmin,1]\r\n");return 0;}
       
-      CreateVar(suite+1,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
 	  *stk(lr+i)= igngeom(p);
@@ -1017,9 +1017,9 @@ int sci_Rand(char *fname,unsigned long fname_len)
       if ( Rhs != suite ) 
 	{ Scierror(999,"Missing Av for exponential law\r\n");
 	return 0;}
-      GetRhsVar(suite, "d", &m1, &n1, &la);
+      GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"Av must be scalar\r\n");return 0;}
-      CreateVar(suite+1,"d",&ResL,&ResC,&lr);
+      CreateVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < 0.0 ) 
 	{
 	  Scierror(999,"Av < 0.0 \r\n");

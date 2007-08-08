@@ -53,7 +53,7 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			if (GetType(1) == sci_strings)
 			{
-				GetRhsVar(1,"c",&m1,&n1,&l1);
+				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 				path=cstk(l1);
 				needtofreepath = FALSE;
 
@@ -74,11 +74,11 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 			{
-				GetRhsVar(1,"c",&m1,&n1,&l1);
+				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 				path=cstk(l1);
 				needtofreepath = FALSE;
 
-				GetRhsVar(2,"c",&m1,&n1,&l1);
+				GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 				filespec=cstk(l1);
 				needtofreefilespec = FALSE;
 			}
@@ -102,13 +102,13 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 		ncol=1;
 		nrow=sizeListReturned;
 
-		CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, FilesList);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, FilesList);
 		LhsVar(1) = Rhs+1;
 	}
 	else
 	{
 		n1=0;m1=0;l1=0;
-		CreateVarFromPtr(Rhs+ 1, "d",&n1,&m1,&l1);
+		CreateVarFromPtr(Rhs+ 1,MATRIX_OF_DOUBLE_DATATYPE,&n1,&m1,&l1);
 		LhsVar(1) = Rhs+1;
 	}
 

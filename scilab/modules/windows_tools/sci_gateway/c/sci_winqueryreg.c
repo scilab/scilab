@@ -43,15 +43,15 @@ int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 		}
 	}
 
-	GetRhsVar(1,"c",&m1,&n1,&l1);
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	param1=cstk(l1);
 
-	GetRhsVar(2,"c",&m1,&n1,&l1);
+	GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 	param2=cstk(l1);
 
 	if ( Rhs == 3 )
 	{
-		GetRhsVar(3,"c",&m1,&n1,&l1);
+		GetRhsVar(3,STRING_DATATYPE,&m1,&n1,&l1);
 		param3=cstk(l1);
 
 		if (strcmp(param1,"name") == 0)
@@ -68,7 +68,7 @@ int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 				{
 					int i=0;
 
-					CreateVarFromPtr( Rhs+1, "S", &NumbersElm, &n1, &ListKeysName);
+					CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &NumbersElm, &n1, &ListKeysName);
 
 					for (i=0; i<NumbersElm;i++)
 					{
@@ -91,7 +91,7 @@ int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 				m1=0;
 				n1=0;
 				l1=0;
-				CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 				LhsVar(1)=Rhs+1;
 				C2F(putlhsvar)();
 				return 0;
@@ -117,11 +117,11 @@ int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 		n1=1;
 		if ( OuputIsREG_SZ )
 		{
-			CreateVarFromPtr(Rhs+1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 		}
 		else
 		{
-			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 		}
 
 		LhsVar(1) = Rhs+1;

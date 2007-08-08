@@ -19,7 +19,7 @@ int C2F(sci_saveafterncommands) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		int n1 = 1, l1 = 0;
 		int num = getAfterHowManyLinesScilabHistoryIsSaved();
-		CreateVar(Rhs+1, "d", &n1,&n1,&l1);
+		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &n1,&n1,&l1);
 		*stk(l1) = (double)num;
 		LhsVar(1) = Rhs+1;
 	}
@@ -38,7 +38,7 @@ int C2F(sci_saveafterncommands) _PARAMS((char *fname,unsigned long fname_len))
 				filename = getFilenameScilabHistory();
 			}
 
-			GetRhsVar(1,"d",&m1,&n1,&l1);
+			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 			num = (int)*stk(l1);	
 			setAfterHowManyLinesScilabHistoryIsSaved(num);
 			LhsVar(1) = 0;

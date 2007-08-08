@@ -26,13 +26,13 @@ int C2F(sci_getdrives) _PARAMS((char *fname,unsigned long l))
 	{
 		m1=1;
 		n1=nbDrives;
-		CreateVarFromPtr(Rhs+1,"S", &m1, &n1,Drives);
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1,Drives);
 	}
 	else
 	{
 		m1=0; n1=0; l1=0; 
 		/* returns a [] */
-		CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 	}
 		
 	LhsVar(1) = Rhs+1;

@@ -27,7 +27,7 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 
 	if (Rhs==3)
 	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		if (m1*n1!=1)
 		{
 			Scierror(999,"Error: in sscanf: incorrect first argument\r\n");
@@ -45,7 +45,7 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 
 	lw = iarg + Top - Rhs; /* Scilab string vector */
 	if (! C2F(getwsmat)("sscanf",&Top,&lw,&m1,&n1,&il1,&ild1,6L)) return 0;
-	GetRhsVar(iarg+1,"c",&m2,&n2,&l2); /* Format */
+	GetRhsVar(iarg+1,STRING_DATATYPE,&m2,&n2,&l2); /* Format */
 	n_count=StringConvert(cstk(l2))+1;  /* conversion */
 
 	if ( (maxrow >= 0) && (maxrow*n_count>m1*n1) )

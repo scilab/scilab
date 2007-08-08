@@ -38,7 +38,7 @@ int C2F(sci_getlanguagestable) _PARAMS((char *fname,unsigned long fname_len))
 	
 	m1=NumberLanguages;
 	n1=2;
-	CreateVarFromPtr( Rhs+1, "S",&m1,&n1,Output);
+	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,Output);
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();	
 

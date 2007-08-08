@@ -43,10 +43,10 @@ int sci_UImenu( char *fname,unsigned long fname_len )
 	  pParent= (sciPointObj *) sciGetCurrentFigure(); 
 			
 
-	  GetRhsVar(1,"c",&m1,&n1,&l1);
+	  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	  labelmenu = cstk(l1); 
 
-	  GetRhsVar(2,"c",&m2,&n2,&l2);
+	  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 	  callbackmenu = cstk(l2); 
 	}
       else
@@ -60,7 +60,7 @@ int sci_UImenu( char *fname,unsigned long fname_len )
       /* Rhs == 3 */
       if ( (VarType(1) == sci_handles) && (VarType(2) == sci_strings) && (VarType(3) == sci_strings) )
 	{
-	  GetRhsVar(1,"h",&m1,&n1,&l1);
+	  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
 	  pParent=sciGetPointerFromHandle((long)*hstk(l1));
 	  if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
 	    {
@@ -69,10 +69,10 @@ int sci_UImenu( char *fname,unsigned long fname_len )
 	    }
 
 
-	  GetRhsVar(2,"c",&m2,&n2,&l2);
+	  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 	  labelmenu = cstk(l2); 
 
-	  GetRhsVar(3,"c",&m3,&n3,&l3);
+	  GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
 	  callbackmenu = cstk(l3); 
 
 	}
@@ -92,7 +92,7 @@ int sci_UImenu( char *fname,unsigned long fname_len )
 
   numrow   = 1;
   numcol   = 1;
-  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+  CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
   *hstk(outindex) = GraphicHandle;
 	
 

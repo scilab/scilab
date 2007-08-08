@@ -23,10 +23,10 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 		char *field=NULL;
 		char *value=NULL;
 			
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		field=cstk(l1);
 
-		GetRhsVar(2,"c",&m1,&n1,&l1);
+		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 		value=cstk(l1);
 
 		/* Removed to make example given in findobj.xml work */
@@ -50,7 +50,7 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 			m1=0;
 			n1=0;
 			l1=0;
-			CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		}
 		else
 		{
@@ -58,7 +58,7 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 			paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)(Handle);
 			n1=1;
-			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 			Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 		}
 	}

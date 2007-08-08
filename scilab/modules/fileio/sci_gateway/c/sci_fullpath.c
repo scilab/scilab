@@ -28,7 +28,7 @@ int C2F(sci_fullpath) _PARAMS((char *fname,unsigned long fname_len))
 		char *relPath=NULL;
 		char fullpath[PATH_MAX*4];
 		
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		relPath=cstk(l1);
 
 		if( _fullpath( fullpath, relPath, PATH_MAX*4 ) != NULL )
@@ -38,7 +38,7 @@ int C2F(sci_fullpath) _PARAMS((char *fname,unsigned long fname_len))
 			strcpy(Output,fullpath);
 
 			n1=1;
-			CreateVarFromPtr( Rhs+1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
+			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 			LhsVar(1) = Rhs+1;
 			C2F(putlhsvar)();	
 

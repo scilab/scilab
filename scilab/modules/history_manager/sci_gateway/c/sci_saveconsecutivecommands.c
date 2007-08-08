@@ -21,12 +21,12 @@ int C2F(sci_saveconsecutivecommands) _PARAMS((char *fname,unsigned long fname_le
 
 		if ( getSaveConsecutiveDuplicateLinesInScilabHistory() )
 		{
-			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(TRUE);
 		}
 		else
 		{
-			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);
 		}
 		LhsVar(1)=Rhs+1;
@@ -37,7 +37,7 @@ int C2F(sci_saveconsecutivecommands) _PARAMS((char *fname,unsigned long fname_le
 		{
 			int n1 = 0, l1 = 0, m1 = 0;
 			BOOL bOK = FALSE;
-			GetRhsVar(1,"b",&m1,&n1,&l1);
+			GetRhsVar(1,MATRIX_OF_BOOLEAN_DATATYPE,&m1,&n1,&l1);
 			bOK = *istk(l1);	
 			setSaveConsecutiveDuplicateLinesInScilabHistory(bOK);
 			LhsVar(1) = 0;

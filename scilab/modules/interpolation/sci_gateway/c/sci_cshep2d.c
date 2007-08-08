@@ -26,7 +26,7 @@ int intcshep2d(char *fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
 
-  GetRhsVar(1,"d", &n, &dim, &lxyz);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &n, &dim, &lxyz);
   if ( dim != 3  ||  n < 10 ) 
     { 
       Scierror(999,"%s: xyz must be a (n,3) real matrix with n >= 10 \r\n", fname);
@@ -43,21 +43,21 @@ int intcshep2d(char *fname,unsigned long fname_len)
   /* all the information for the "interpolant" will be stored
    * in a tlist (which also contains the entry xyz)  
    */
-  CreateVar(2,"t", &eight, &one, &ltlist);
-  CreateListVarFromPtr(2, 1, "S", &one,  &eight, Str);
-  CreateListVarFrom(2, 2, "d", &n ,   &dim,  &lxyzn, &lxyz);
+  CreateVar(2,TYPED_LIST_DATATYPE, &eight, &one, &ltlist);
+  CreateListVarFromPtr(2, 1,MATRIX_OF_STRING_DATATYPE, &one,  &eight, Str);
+  CreateListVarFrom(2, 2,MATRIX_OF_DOUBLE_DATATYPE, &n ,   &dim,  &lxyzn, &lxyz);
   lcell = 4; lar = -1;
   CreateListVarFrom(2, 3, "I", &nr,   &nr,   &lcell, &lar); /* lcell */
   lnext = 4; lar = -1;
   CreateListVarFrom(2, 4, "I", &one,  &n,    &lnext, &lar); /* lnext */
   lar = -1;
-  CreateListVarFrom(2, 5, "d", &one,  &four, &lgrid, &lar); /* xmin, ymin, dx, dy */
+  CreateListVarFrom(2, 5,MATRIX_OF_DOUBLE_DATATYPE, &one,  &four, &lgrid, &lar); /* xmin, ymin, dx, dy */
   lar = -1;
-  CreateListVarFrom(2, 6, "d", &one,  &one,  &lrmax, &lar); /* rmax */
+  CreateListVarFrom(2, 6,MATRIX_OF_DOUBLE_DATATYPE, &one,  &one,  &lrmax, &lar); /* rmax */
   lar = -1;
-  CreateListVarFrom(2, 7, "d", &one,  &n,    &lrw,   &lar); /* rw */
+  CreateListVarFrom(2, 7,MATRIX_OF_DOUBLE_DATATYPE, &one,  &n,    &lrw,   &lar); /* rw */
   lar = -1;
-  CreateListVarFrom(2, 8, "d", &nine, &n,    &la,    &lar); /* a */
+  CreateListVarFrom(2, 8,MATRIX_OF_DOUBLE_DATATYPE, &nine, &n,    &la,    &lar); /* a */
   grid = stk(lgrid);
   xyz = stk(lxyz);
   

@@ -24,7 +24,7 @@ int sciReturnString( const char * value )
   int numRow   = 1 ;
   int numCol   = strlen( value ) ;
   int outIndex = 0 ;
-  CreateVar(Rhs+1,"c",&numRow,&numCol,&outIndex);
+  CreateVar(Rhs+1,STRING_DATATYPE,&numRow,&numCol,&outIndex);
   strncpy(cstk(outIndex),value, numCol);
 
   return  0 ;
@@ -35,7 +35,7 @@ int sciReturnChar( char value )
   int nbRow    = 1 ;
   int nbCol    = 1 ;
   int outIndex = 0 ;
-  CreateVar(Rhs+1,"c",&nbRow,&nbCol,&outIndex);
+  CreateVar(Rhs+1,STRING_DATATYPE,&nbRow,&nbCol,&outIndex);
   strncpy(cstk(outIndex), &value , 1 ) ;
 
   return 0 ;
@@ -113,7 +113,7 @@ int sciReturnHandle( long handle )
   int numRow   = 1 ;
   int numCol   = 1 ;
   int outIndex = 0 ;
-  CreateVar(Rhs+1,"h",&numRow,&numCol,&outIndex);
+  CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numRow,&numCol,&outIndex);
   *hstk(outIndex) = handle ;
   return 0 ;
 }

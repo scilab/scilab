@@ -22,7 +22,7 @@ int intspvm_error_mode _PARAMS((char *fname,unsigned long fname_len))
   CheckLhs(1,1);
   if ( Rhs == 1 ) 
   { 
-      GetRhsVar(1,"c",&m1,&n1,&l1);
+      GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
       if ( strcmp(cstk(l1),stop) == 0) pvm_error = 1; 
       else if ( strcmp(cstk(l1),cont) == 0) pvm_error = 0; 
       else 
@@ -38,12 +38,12 @@ int intspvm_error_mode _PARAMS((char *fname,unsigned long fname_len))
       if ( pvm_error == 1 ) 
 	  { 
 		m = strlen(stop);
-		CreateVarFromPtr(Rhs+1,"c",&m,&un,(loc=stop,&loc));
+		CreateVarFromPtr(Rhs+1,STRING_DATATYPE,&m,&un,(loc=stop,&loc));
       } 
 	  else 
 	  { 
 		m = strlen(cont);
-		CreateVarFromPtr(Rhs+1,"c",&m,&un,(loc=cont,&loc));
+		CreateVarFromPtr(Rhs+1,STRING_DATATYPE,&m,&un,(loc=cont,&loc));
       }
       LhsVar(1)=Rhs+1;
   }

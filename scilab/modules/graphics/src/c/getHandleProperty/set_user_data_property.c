@@ -65,7 +65,7 @@ int set_user_data_property( sciPointObj * pobj, int stackPointer,  int valueType
 
   /*if ( isParameterDoubleMatrix( 3 ) )
   { 
-    GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
+    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&numrow3,&numcol3,&l3);
     if (numrow3==0||numcol3==0) delete_user_data=1;
   }
   else if (VarType(3) == 0) delete_user_data=1;

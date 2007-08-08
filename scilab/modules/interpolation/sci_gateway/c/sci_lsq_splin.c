@@ -25,8 +25,8 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
 
-  GetRhsVar(1,"d", &mxd, &nxd, &lxd);
-  GetRhsVar(2,"d", &myd, &nyd, &lyd);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mxd, &nxd, &lxd);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &myd, &nyd, &lyd);
   ndata = mxd*nxd;  /* number of data points */
   if ( ndata < 4  ||  mxd != myd  || nxd != nyd  ||  (mxd != 1  &&  nxd != 1) ) 
     { 
@@ -37,14 +37,14 @@ int intlsq_splin(char *fname,unsigned long fname_len)
 
   if ( Rhs == 4 ) 
     {
-      GetRhsVar(3,"d", &mwd, &nwd, &lwd);
+      GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mwd, &nwd, &lwd);
       if ( mxd != mwd  ||  nxd != nwd )
 	{ 
 	  Scierror(999,"%s: bad input for arg 3\r\n", fname);
 	  return 0;
 	}
     }
-  GetRhsVar(Rhs,"d", &mx, &nx, &lx);
+  GetRhsVar(Rhs,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
   n = mx*nx;
   if ( n < 2  ||  (mx != 1  &&  nx != 1) )
     { 
@@ -58,13 +58,13 @@ int intlsq_splin(char *fname,unsigned long fname_len)
       return 0;
     }
 
-  CreateVar(Rhs+1, "d", &mx,  &nx,   &ly);
-  CreateVar(Rhs+2, "d", &mx,  &nx,   &ld);
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &mx,  &nx,   &ly);
+  CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &mx,  &nx,   &ld);
   mwork = 7*n+18;
-  CreateVar(Rhs+3, "d", &mwork, &one, &lwork); 
+  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mwork, &one, &lwork); 
   if ( Rhs == 3 )
     {
-      CreateVar(Rhs+4, "d", &mxd, &nxd, &lwd);
+      CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &mxd, &nxd, &lwd);
       C2F(dset)( &ndata, &un, stk(lwd), &one);  /* set all the weight = 1  */ 
     }
 

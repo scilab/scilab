@@ -30,7 +30,7 @@ int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
 
  if (VarType(1)==10) {
 
-  GetRhsVar(1,"S",&m1,&n1,&Str1);
+  GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str1);
 
   len = 0; k = 0;
   for (j = 0; j < m1*n1; j++) {

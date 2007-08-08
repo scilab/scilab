@@ -30,13 +30,13 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   SciWin();
 
   CheckRhs(2,4);
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
   mn2 = m2 * n2;
 
   if (Rhs >= 3) {
-    GetRhsVar(3,"c",&m3,&n3,&l3);
+    GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
     if ( strcmp(cstk(l3),"lines") == 0) {
       strcpy(C2F(cha1).buf,"xlines"); 
       mark=1; /* NG */
@@ -53,7 +53,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     mark=1; /* NG */
   }
 
-  if (Rhs >= 4) { GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (integer) *stk(l4);} 
+  if (Rhs >= 4) { GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (integer) *stk(l4);} 
   /* NG beg */
 
   

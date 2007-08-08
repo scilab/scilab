@@ -47,7 +47,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			C2F(convertdate)(&dt,DATEMATRIX);
 			m1=1;
 			n1=10;
-			CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&DATEMATRIX);
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&DATEMATRIX);
 		}
 		
 	}
@@ -56,7 +56,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 		if (GetType(1) == sci_strings)
 		{
 			char *Param1=NULL;
-      GetRhsVar(1,"c",&m1,&n1,&l1);
+      GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			Param1=cstk(l1);
 
 			if (strcmp("s",Param1)==0)
@@ -67,7 +67,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 				DATEMATRIX[0]=(int)dt;
 				m1=1;
 				n1=1;
-				CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&DATEMATRIX);
+				CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&DATEMATRIX);
 			}
 			else
 			{
@@ -87,7 +87,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 				int *DATEARRAY=NULL;
 				int *DATEARRAYtmp=NULL;
 
-				GetRhsVar(1,"d",&m1,&n1,&l1);
+				GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 				param=stk(l1);
 
 				l=10*m1*n1;
@@ -115,7 +115,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 				n1=10;
 				DATEARRAYtmp=DATEARRAY;
 				DATEARRAY=InversionMatrixInt(n1,m1,DATEARRAY);
-				CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&DATEARRAY);
+				CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&DATEARRAY);
 
 				LhsVar(1)=Rhs+1;
 				C2F(putlhsvar)();

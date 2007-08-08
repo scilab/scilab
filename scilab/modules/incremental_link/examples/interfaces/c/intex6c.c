@@ -30,9 +30,9 @@ int intex6c(fname)
 
   n1=1;
   /* Creating variable #1 of type character and dimension m1 x n1 (m1=1) */
-  CreateVarFromPtr( 1, "c", &m1, &n1, &l1);
-  CreateVarFromPtr( 2, "i", &m2, &n2, &l2);
-  CreateVarFromPtr( 3, "d", &m3, &n3, &l3);
+  CreateVarFromPtr( 1,STRING_DATATYPE, &m1, &n1, &l1);
+  CreateVarFromPtr( 2,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
+  CreateVarFromPtr( 3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
 
   free(l1);  free(l2);   free(l3);
 

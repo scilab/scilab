@@ -17,14 +17,14 @@ int intspvm_bcast _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(3,3);
   CheckLhs(1,1);
   /*  checking variable group */
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   /*  checking variable buff */
   header = GetData(2);
   /*  checking variable msgtag */
-  GetRhsVar(3,"i",&m3,&n3,&l3);
+  GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
   CheckScalar(3,m3,n3);
   /* cross variable size checking */
-  CreateVar(Rhs+4,"i",&un,&un,&l4);/* named: res */
+  CreateVar(Rhs+4,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l4);/* named: res */
   /* Use the rest of the stack as working area */ 
   CreateWork(5,&size,&l5); 
   Ipack= (int *) stk(l5);

@@ -25,14 +25,14 @@ int sci_besseli(char *fname,unsigned long fname_len)
 
   kode = 1;
   if (Rhs==3) { /* normalized bessel required */
-    GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
+    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);CheckScalar(1,m1,n1);
     kode = (int)*stk(l1)+1;
   }
 
-  GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); /* get alpha */
   r1=l1>Lstk[Bot]; /* true if the variable has been passed by reference */
 
-  GetRhsCVar(2,"d",&it2,&m2,&n2,&l2,&l2i); /* get x */
+  GetRhsCVar(2,MATRIX_OF_DOUBLE_DATATYPE,&it2,&m2,&n2,&l2,&l2i); /* get x */
   r2=l2>Lstk[Bot];/* true if the variable has been passed by reference */
   
   if (m1*n1 == 0) { /*besseli([],x) */
@@ -61,7 +61,7 @@ int sci_besseli(char *fname,unsigned long fname_len)
 
   if (itr==1&&it2==0) { /* transform to complex */
     nl2=m2*n2;
-    CreateCVar(3,"d",&itr,&m2,&n2,&l2r,&l2i);
+    CreateCVar(3,MATRIX_OF_DOUBLE_DATATYPE,&itr,&m2,&n2,&l2r,&l2i);
     C2F(dcopy)(&nl2,stk(l2),&un,stk(l2r),&un);
     l2=l2r;
     C2F(dset)(&nl2,&zero,stk(l2i),&un);
@@ -78,7 +78,7 @@ int sci_besseli(char *fname,unsigned long fname_len)
     mr=m2;
     nr=n2;    
     if (r2) { 
-      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      CreateCVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&itr,&mr,&nr,&lr,&li);
       LhsVar(1)=lpos+1;
     }
     else { 
@@ -97,11 +97,11 @@ int sci_besseli(char *fname,unsigned long fname_len)
     int llwr,llwi,nw;
     mr=m1;
     nr=n1;   
-    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    CreateCVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&itr,&mr,&nr,&lr,&li);
     nx=1;
     na=m1*n1;
     nw=2*na;
-    CreateCVar(lpos+2,"d",&itr,&nx,&nw,&llwr,&llwi);
+    CreateCVar(lpos+2,MATRIX_OF_DOUBLE_DATATYPE,&itr,&nx,&nw,&llwr,&llwi);
     if (itr==0)
       C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(llwr),&ierr);
     else
@@ -113,11 +113,11 @@ int sci_besseli(char *fname,unsigned long fname_len)
     int lun=1,nw;
     mr=m2*n2;
     nr=m1*n1;
-    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    CreateCVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&itr,&mr,&nr,&lr,&li);
     nx=m2*n2;
     na=m1*n1;
     nw=2*na;
-    CreateCVar(lpos+2,"d",&itr,&lun,&nw,&lwr,&lwi);
+    CreateCVar(lpos+2,MATRIX_OF_DOUBLE_DATATYPE,&itr,&lun,&nw,&lwr,&lwi);
     if (itr==0)
       C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
     else
@@ -131,7 +131,7 @@ int sci_besseli(char *fname,unsigned long fname_len)
     mr=m2;
     nr=n2;  
     if (r2) {
-      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      CreateCVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&itr,&mr,&nr,&lr,&li);
       LhsVar(1)=lpos+1;
     }
     else {

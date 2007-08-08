@@ -18,18 +18,18 @@ int C2F(sci_deletefile) _PARAMS((char *fname,unsigned long fname_len))
 		int m1,n1,l1;
 		char *VarName=NULL;
 
-		GetRhsVar(1,"c",&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName=cstk(l1);
 
 		n1=1;
 		if ( deleteafile(VarName) )
 		{
-			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(TRUE);
 		}
 		else
 		{
-			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);
 		}
 

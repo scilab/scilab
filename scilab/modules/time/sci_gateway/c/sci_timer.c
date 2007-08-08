@@ -18,7 +18,7 @@ int C2F(sci_timer) _PARAMS((char *fname,unsigned long fname_len))
 	C2F(timer)(&timeval);
 
 	n1=1;
-	CreateVar(Rhs+1, "d", &n1, &n1,&l1);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &n1, &n1,&l1);
 	*stk(l1) = (double)timeval;
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();

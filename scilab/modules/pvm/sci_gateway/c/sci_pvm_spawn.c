@@ -21,27 +21,27 @@ int intspvm_spawn _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(2,4);
   CheckLhs(1,2);
   /*  checking variable task */
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   mn1=m1*n1; 
   /*  checking variable ntask */
-  GetRhsVar(2,"i",&m2,&n2,&l2);
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
   CheckScalar(2,m2,n2);
   nw = def_nw;
   if ( Rhs >= 3 ) { 
-    GetRhsVar(3,"c",&m3,&n3,&l3); 
+    GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3); 
     if ( m3*n3 != 0 && strcmp(cstk(l3),"nw")==0) 
       nw = cstk(l3); 
   }
   lnw= strlen(nw);
   where = def_where; 
   if ( Rhs >= 4 ) { 
-    GetRhsVar(4,"c",&m4,&n4,&l4); 
+    GetRhsVar(4,STRING_DATATYPE,&m4,&n4,&l4); 
     if ( m4*n4 != 0 ) 
       where = cstk(l4); 
   }
   lwhere=strlen(where);
-  CreateVar(Rhs+1,"i",&un,istk(l2),&tids);/* named: tids */
-  CreateVar(Rhs+2,"i",&un,&un,&res);/* named: res */
+  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,istk(l2),&tids);/* named: tids */
+  CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&res);/* named: res */
   C2F(scipvmspawn)(cstk(l1),&mn1,nw,&lnw,where,&lwhere,istk(l2),istk(tids),istk(res));
   LhsVar(1)= Rhs+1;
   LhsVar(2)= Rhs+2;

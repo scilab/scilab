@@ -28,10 +28,10 @@ int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(1,2);
   CheckLhs(0,1);
   /*  checking variable file */
-  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   if ( Rhs == 2 ) 
   {
-      GetRhsVar(2,"c",&m2,&n2,&l2);
+      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
       command = cstk(l2);
   }
   /*** first call to get the size **/
@@ -40,7 +40,7 @@ int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
   rep = C2F(playsound)(filename,command,(int)strlen(filename));
   if ( Lhs == 1 ) 
   {
-      CreateVar(Rhs+2,"d",&un,&un,&l2);
+      CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&l2);
       *stk(l2)= rep;
       LhsVar(1)=Rhs+2;
   }

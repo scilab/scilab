@@ -22,7 +22,7 @@ int C2F(sci_getio) _PARAMS((char *fname,unsigned long fname_len))
 	values[2] =  C2F(iop).wio;
 	values[3] =  C2F(iop).wte;
 
-	CreateVarFromPtr(Rhs+1,"i",&one,&four,&values);
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&one,&four,&values);
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();
 
