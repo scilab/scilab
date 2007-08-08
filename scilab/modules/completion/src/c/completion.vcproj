@@ -212,6 +212,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\Completion_wrap.c"
+				>
+			</File>
+			<File
 				RelativePath=".\completion_wrap_java.c"
 				>
 			</File>
@@ -250,10 +254,6 @@
 			</File>
 			<File
 				RelativePath=".\completion_generic.h"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\Completion_wrap.c"
 				>
 			</File>
 			<File

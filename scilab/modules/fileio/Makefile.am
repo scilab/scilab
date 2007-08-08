@@ -38,7 +38,8 @@ src/c/readline.c \
 src/c/getdrives.c \
 src/c/deleteafile.c \
 src/c/getshortpathname.c \
-src/c/getlongpathname.c
+src/c/getlongpathname.c \
+src/c/FindFileExtension.c
 
 
 GATEWAY_SOURCES = \
@@ -105,7 +106,8 @@ libscifileio_la_includedir=$(pkgincludedir)/fileio
 libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/sci_fileio.h \
-includes/findfiles.h
+includes/findfiles.h \
+includes/FindFileExtension.h
 
 
 #### fileio : demos files ####

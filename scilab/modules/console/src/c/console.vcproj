@@ -214,6 +214,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dropFiles.c"
+				>
+			</File>
+			<File
 				RelativePath=".\GuiManagement.c"
 				>
 			</File>
@@ -252,6 +256,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\ClearConsolePart.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dropFiles.h"
 				>
 			</File>
 			<File

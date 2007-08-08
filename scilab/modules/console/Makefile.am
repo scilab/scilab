@@ -18,7 +18,8 @@ src/c/GuiManagement.c \
 src/c/ClearConsole.c \
 src/c/ClearConsolePart.c \
 src/c/PromptToHome.c \
-src/c/ShellPrintf.c
+src/c/ShellPrintf.c \
+src/c/dropFiles.c
 
 else
 

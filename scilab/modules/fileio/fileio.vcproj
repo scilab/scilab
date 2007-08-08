@@ -235,6 +235,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\FindFileExtension.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\findfiles.c"
 				>
 			</File>
@@ -474,6 +478,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\fileio.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\FindFileExtension.h"
 				>
 			</File>
 			<File

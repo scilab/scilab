@@ -8,8 +8,8 @@
 #include "sci_raise_window.h"
 #ifdef _MSC_VER
 #include "../src/c/wsci/wtext.h"
-#include "../src/c/wsci/WinConsole.h"
 #include "../src/c/wsci/TextWindows.h"
+#include "scilabmode.h"
 #else
 #include "x_ptyxP.h"
 #include "x_data.h"
@@ -25,7 +25,7 @@ int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len ))
 {
 #ifdef _MSC_VER
   static int l1, m1, n1;	
-  if (IsWindowInterface())
+  if (getScilabMode() == SCILAB_STD)
   {
     if (Rhs == 0)
     {

@@ -5,6 +5,7 @@ EXPORTS
 ; core 
 ;
 StoreCommand1
+StoreCommand
 sxevents_
 scilines_
 ;
