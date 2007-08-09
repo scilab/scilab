@@ -89,6 +89,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\console\DropFiles.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\DropFilesJNI.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\console\GuiManagement.java"
 				>
 			</File>
@@ -121,6 +129,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\console\PasteClipboard.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\console\PreviousCharAction.java"
 				>
 			</File>
@@ -130,6 +142,10 @@
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\console\SciConsole.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\SciDropTargetListener.java"
 				>
 			</File>
 			<File
@@ -150,6 +166,10 @@
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\console\SciPromptView.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\SWIGTYPE_p_BOOL.java"
 				>
 			</File>
 			<File

@@ -303,6 +303,10 @@
 			Name="Swig Files"
 			>
 			<File
+				RelativePath="..\jni\DropFiles.i"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\GuiManagement.i"
 				>
 				<FileConfiguration
