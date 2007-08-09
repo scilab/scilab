@@ -26,7 +26,7 @@ public class HistoryManagement {
   
 	/**
 	* add a line to History manager
-	* @param a line to add
+	* @param line a line to add
 	* line isn't added if it is the same as previous (false)
 	* @return true or false
 	*/
@@ -37,8 +37,8 @@ public static boolean appendLineToScilabHistory(String line) {
   
 	/**
 	* append lines to History manager
-	* @param array of string
-	* @param size of the array of string
+	* @param lines array of string
+	* @param numberoflines size of the array of string
 	* @return true or false
 	*/
 public static boolean appendLinesToScilabHistory(String[] lines, int numberoflines) {
@@ -56,7 +56,7 @@ public static void displayScilabHistory() {
   
 	/**
 	* save history in a file
-	* @param a filename if NULL saves in default filename
+	* @param filename if NULL saves in default filename
 	* default filename --> SCIHOME/history.scilab
 	* @return true or false
 	*/
@@ -67,7 +67,7 @@ public static boolean writeScilabHistoryToFile(String filename) {
   
 	/**
 	* load history from a file
-	* @param a filename if NULL load from default filename
+	* @param filename if NULL load from default filename
 	* default filename --> SCIHOME/history.scilab
 	* @return true or false
 	*/
@@ -187,7 +187,12 @@ public static int getNumberOfLinesInScilabHistory() {
     return HistoryManagementJNI.getNumberOfLinesInScilabHistory();
   }
 
-  public static void setSaveConsecutiveDuplicateLinesInScilabHistory(boolean doit) {
+  
+	/**
+	* set consecutive duplicate lines are added
+	* @param doit (true or false)
+	*/
+public static void setSaveConsecutiveDuplicateLinesInScilabHistory(boolean doit) {
     HistoryManagementJNI.setSaveConsecutiveDuplicateLinesInScilabHistory(doit);
   }
 
@@ -203,7 +208,7 @@ public static boolean getSaveConsecutiveDuplicateLinesInScilabHistory() {
   
 	/**
 	* Set after how many lines history is saved
-	* @param number between 0 and Max
+	* @param num number between 0 and Max
 	* default value is 0 (disabled)
 	*/
 public static void setAfterHowManyLinesScilabHistoryIsSaved(int num) {
@@ -223,7 +228,7 @@ public static int getAfterHowManyLinesScilabHistoryIsSaved() {
   
 	/**
 	* Get the Nth Line in history
-	* @param N
+	* @param N the number of the line to get
 	* @return the Nth Line
 	*/
 public static String getNthLineInScilabHistory(int N) {
@@ -233,7 +238,7 @@ public static String getNthLineInScilabHistory(int N) {
   
 	/**
 	* delete the Nth Line in history
-	* @param N
+	* @param N the number of the line to delete
 	* @return true or false
 	*/
 public static boolean deleteNthLineScilabHistory(int N) {
