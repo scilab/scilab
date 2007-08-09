@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="module_skeleton">
+<GATEWAY name="windows_tools">
 <!-- =================== -->
 <!--
  Scilab
@@ -17,7 +17,7 @@
  primitiveName is the name of the Scilab function
 
  @author Allan CORNET
-  @date INRIA 2007
+ @date INRIA 2007
  ===================
  Don't touch if you do not know what you are doing
 -->
@@ -31,5 +31,6 @@
 <PRIMITIVE gatewayId="47" primitiveId="6" primitiveName="oemtochar" />
 <PRIMITIVE gatewayId="47" primitiveId="7" primitiveName="chartooem" />
 <PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="consolebox" />
-<PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="toprint" />
+<PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="printsetupbox" />
+<PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="toprint" />
 </GATEWAY>
