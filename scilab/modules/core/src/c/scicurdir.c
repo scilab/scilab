@@ -5,6 +5,7 @@
 #include "machine.h"
 #ifdef _MSC_VER 
 	#include <windows.h>
+	#include <direct.h>
 #else 
 	#include <unistd.h>
 	#define GETCWD(x,y) getcwd(x,y)
