@@ -487,6 +487,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\FigureScilabCall_wrap.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\getHandleDrawer.cpp"
 				>
 			</File>

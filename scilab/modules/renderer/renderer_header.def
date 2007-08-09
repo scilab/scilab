@@ -13,8 +13,8 @@ notifyObservers
 destroyHandleDrawer
 sciDrawObj
 displayChildren
-Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_displayFigure
-Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_redrawFigure
+displayFigure
+redrawFigure
 sciSetJavaColormap
 sciGetJavaColormap
 createDrawer
