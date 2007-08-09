@@ -218,6 +218,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\DropFiles_wrap.c"
+				>
+			</File>
+			<File
 				RelativePath=".\GuiManagement.c"
 				>
 			</File>
