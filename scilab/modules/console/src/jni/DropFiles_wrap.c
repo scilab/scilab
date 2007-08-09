@@ -181,8 +181,8 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT jlong JNICALL Java_org_scilab_modules_console_DropFilesJNI_dropFiles(JNIEnv *jenv, jclass jcls, jobjectArray jarg1) {
-  jlong jresult = 0 ;
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_console_DropFilesJNI_dropFiles(JNIEnv *jenv, jclass jcls, jobjectArray jarg1) {
+  jboolean jresult = 0 ;
   char **arg1 = (char **) 0 ;
   BOOL result;
   jint size1 ;
@@ -206,9 +206,8 @@ SWIGEXPORT jlong JNICALL Java_org_scilab_modules_console_DropFilesJNI_dropFiles(
   }
   result = dropFiles(arg1);
   {
-    BOOL * resultptr = (BOOL *) malloc(sizeof(BOOL));
-    memmove(resultptr, &result, sizeof(BOOL));
-    *(BOOL **)&jresult = resultptr;
+    if (result) jresult = JNI_TRUE   ;
+    else  jresult = JNI_FALSE   ;
   }
   {
     int i;
