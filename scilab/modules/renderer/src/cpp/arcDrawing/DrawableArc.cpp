@@ -6,23 +6,46 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableArc.h"
-extern "C"
-{
-#include "drawArcEntity.h"
-}
 
 namespace sciGraphics
 {
 
+
+/*------------------------------------------------------------------------------------------*/
+DrawableArc::DrawableArc( sciPointObj * pObj ) : DrawableClippedObject(pObj)
+{
+
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableArc::~DrawableArc( void )
+{
+  //removeDrawingStrategies();
+}
 /*------------------------------------------------------------------------------------------*/
 void DrawableArc::draw( void )
 {
-  //drawArcEntity( m_pDrawed ) ;
+  initializeDrawing() ;
+  if ( !checkVisibility() )
+  {
+    endDrawing();
+    return ;
+  }
+  clip();
+  drawArc() ;
+  unClip();
+  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableArc::show( void )
 {
-  draw() ;
+  clip();
+  showArc();
+  unClip();
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableArcBridge * DrawableArc::getArcImp( void )
+{
+  return dynamic_cast<DrawableArcBridge *>(m_pImp);
 }
 /*------------------------------------------------------------------------------------------*/
 

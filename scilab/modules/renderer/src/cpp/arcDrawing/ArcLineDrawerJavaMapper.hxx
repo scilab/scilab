@@ -1,27 +1,25 @@
 /*------------------------------------------------------------------------*/
-/* file: RectangleLineDrawerJavaMapper.hxx                                */
+/* file: ArcLineDrawerJavaMapper.hxx                                      */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Contains mapping of java method used by RectangleLineDrawer     */
+/* desc : Contains mapping of java method used by ArcLineDrawer           */
 /*------------------------------------------------------------------------*/
 
 #ifndef _RECTANGLE_LINE_DRAWER_JAVA_MAPPER_HXX_
 #define _RECTANGLE_LINE_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-#include "RectangleLineDrawerGL.hxx"
 
 namespace sciGraphics
 {
 
-class RectangleLineDrawerJavaMapper : public virtual DrawableObjectJavaMapper
+class ArcLineDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
-
 public:
 
-  RectangleLineDrawerJavaMapper(void);
+  ArcLineDrawerJavaMapper(void);
 
-  virtual ~RectangleLineDrawerJavaMapper(void);
+  virtual ~ArcLineDrawerJavaMapper(void);
 
   /*----------------------------------------------------------------------*/
   // Inherited From DrawableObjectJavaMapper
@@ -39,19 +37,14 @@ public:
   // specific for rectangle fill drawer
   virtual void setLineParameters(int lineColor, float thickness, int lineStyle);
 
-  virtual void drawRectangle(double corner1X, double corner1Y, double corner1Z,
-                             double corner2X, double corner2Y, double corner2Z,
-                             double corner3X, double corner3Y, double corner3Z,
-                             double corner4X, double corner4Y, double corner4Z);
+  virtual void drawArc( double centerX       , double centerY       , double centerZ       ,
+                        double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ,
+                        double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ,
+                        double startAngle    , double endAngle );
   /*----------------------------------------------------------------------*/
 
 private:
 
-  /**
-   * Giws generated wrapper.
-   */
-  org_scilab_modules_renderer_rectangleDrawing::RectangleLineDrawerGL * m_pJavaObject;
-  
 
 };
 

@@ -7,7 +7,18 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableArcFactory.h"
-#include "DrawableArc.h"
+#include "ConcreteDrawableArc.h"
+#include "DrawableArcBridgeFactory.hxx"
+#include "ArcLineDrawerJoGL.hxx"
+#include "ArcLineDrawerJavaMapper.hxx"
+#include "ArcFillDrawerJoGL.hxx"
+#include "ArcFillDrawerJavaMapper.hxx"
+#include "getHandleDrawer.h"
+
+extern "C"
+{
+#include "GetProperty.h"
+}
 
 namespace sciGraphics
 {
@@ -15,12 +26,38 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableArcFactory::create( void )
 {
-  return new DrawableArc( m_pDrawed ) ;
+  ConcreteDrawableArc * newArc = new ConcreteDrawableArc(m_pDrawed);
+  DrawableArcBridgeFactory fact;
+  fact.setDrawedArc(newArc);
+  newArc->setDrawableImp(fact.create());
+
+  return newArc;
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableArcFactory::update( void )
 {
-  // nothing for now
+  setStrategies(getArcDrawer(m_pDrawed));
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableArcFactory::setStrategies( DrawableArc * arc )
+{
+  arc->removeDrawingStrategies();
+
+
+  if ( sciGetIsLine(arc->getDrawedObject()) )
+  {
+    ArcLineDrawerJoGL * strategy = new ArcLineDrawerJoGL(arc);
+    strategy->setJavaMapper(new ArcLineDrawerJavaMapper());
+    arc->addDrawingStrategy(strategy);
+  }
+
+  if ( sciGetIsFilled(arc->getDrawedObject()) )
+  {
+    ArcFillDrawerJoGL * strategy = new ArcFillDrawerJoGL(arc);
+    strategy->setJavaMapper(new ArcFillDrawerJavaMapper());
+    arc->addDrawingStrategy(strategy);
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 

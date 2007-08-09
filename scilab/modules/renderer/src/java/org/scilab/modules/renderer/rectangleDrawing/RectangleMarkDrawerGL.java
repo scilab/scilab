@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: RectangleFillDrawerJoGL.java                                     */
+/* file: RectangleMarkDrawerJoGL.java                                     */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw marks    */
@@ -9,10 +9,9 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import org.scilab.modules.renderer.DrawableObjectGL;
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.utils.MarkDrawing.MarkDrawer;
+import org.scilab.modules.renderer.drawers.MarkDrawerGL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
@@ -21,13 +20,10 @@ import org.scilab.modules.renderer.utils.CoordinateTransformation;
  * Class containing functions called by RectangleMarkDrawerJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class RectangleMarkDrawerGL extends DrawableObjectGL {
+public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDrawerStrategy {
 	
 	private static final int NB_CORNERS = 4;
 	
-	
-	/** index of background color */
-	private MarkDrawer drawer;
 	
 	/** position of corners, needed to retrive pixels coordinates */
 	private Vector3D[] cornersPos;
@@ -36,90 +32,10 @@ public class RectangleMarkDrawerGL extends DrawableObjectGL {
 	 * Default Constructor
 	 */
 	public RectangleMarkDrawerGL() {
-		drawer = null;
+		super();
 		cornersPos = new Vector3D[NB_CORNERS];
 	}
 	
-	/**
-	 * Function called before beginning to use OpenGL methods.
-	 * @param parentFigureIndex index of the parent figure.
-	 *                          Needed to get the GL context to draw in.
-	 */
-	public void initializeDrawing(int parentFigureIndex) {
-		super.initializeDrawing(parentFigureIndex);
-		drawer = new MarkDrawer();
-		drawer.initializeDrawing(parentFigureIndex);
-	}
-	
-	/**
-	 * Function called at the end of the OpenGL use.
-	 */
-	public void endDrawing() {
-		drawer.endDrawing();
-		super.endDrawing();
-	}
-	
-	/**
-	 * Set rectangle background color
-	 * @param color index of background color
-	 */
-	public void setBackground(int color) {
-		drawer.setBackground(color);
-	}
-	
-	/**
-	 * Set rectangle foreground color
-	 * @param color index of foreground color
-	 */
-	public void setForeground(int color) {
-		drawer.setForeground(color);
-	}
-	
-	/**
-	 * Set the marksize unit to use, ie poitn or tabulated
-	 * @param markSizeUnit index of the kind of mark
-	 */
-	public void setMarkSizeUnit(int markSizeUnit) {
-		if (markSizeUnit == 2) {
-			drawer.setTabulatedUnit();
-		} else {
-			drawer.setPointUnit();
-		}
-	}
-	
-	/**
-	 * Specify a new size for marks
-	 * @param markSize new size
-	 */
-	public void setMarkSize(int markSize) {
-		drawer.setMarkSize(markSize);
-	}
-	
-	
-	/**
-	 * Specify the kind of mark to draw
-	 * @param markStyleIndex index of the markStyle
-	 */
-	public void setMarkStyle(int markStyleIndex) {
-		drawer.setMarkStyle(markStyleIndex);
-	}
-	
-	
-	/**
-	 * A single mothod to set every parameters
-	 * @param background index of background color
-	 * @param foreground index of foreground color
-	 * @param markSizeUnit index of markSize unit
-	 * @param markSize markSize in pixels or tabulated
-	 * @param markStyleIndex index of mark style
-	 */
-	public void setMarkParameters(int background, int foreground, int markSizeUnit, int markSize, int markStyleIndex) {
-		setBackground(background);
-		setForeground(foreground);
-		setMarkSizeUnit(markSizeUnit);
-		setMarkSize(markSize);
-		setMarkStyle(markStyleIndex);
-	}
 	
 	/**
 	 * Display the object by displaying its display list
@@ -148,7 +64,7 @@ public class RectangleMarkDrawerGL extends DrawableObjectGL {
 		for (int i = 0; i < NB_CORNERS; i++) {
 			// switch back to the new frame
 			Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
-			drawer.drawMark(curCoord.getX(), curCoord.getY(), curCoord.getZ());
+			getDrawer().drawMark(curCoord.getX(), curCoord.getY(), curCoord.getZ());
 		}
 		
 		GLTools.endPixelCoordinates(gl);
@@ -186,12 +102,4 @@ public class RectangleMarkDrawerGL extends DrawableObjectGL {
 		
 	}
 	
-	/**
-	 * To be called when the cpp object is destroyed
-	 * @param parentFigureIndex index of parent figure
-	 */
-	public void destroy(int parentFigureIndex) {
-		super.destroy(parentFigureIndex);
-		drawer.destroy(parentFigureIndex);
-	}
 }

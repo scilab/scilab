@@ -1,40 +1,41 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableArc.h                                                    */
+/* file: ConcreteDrawableArc.h                                            */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing the drawing routine for an arc object          */
+/* desc : Class containing implementation of driver independent           */
+/*        algorithms                                                      */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_ARC_H_
-#define _DRAWABLE_ARC_H_
+#ifndef _CONCRETE_DRAWABLE_ARC_
+#define _CONCRETE_DRAWABLE_ARC_
 
-
-#include "../DrawableClippedObject.h"
+#include "DrawableArc.h"
 #include "DrawArcStrategy.h"
-#include "DrawableArcBridge.h"
-
+#include <list>
 
 namespace sciGraphics
 {
 
-class DrawableArc : public DrawableClippedObject
+/**
+ * Class containing implementation of driver independent algorithms.
+ */
+class ConcreteDrawableArc : public DrawableArc
 {
-
 public:
 
-  DrawableArc( sciPointObj * pObj ) ;
+  ConcreteDrawableArc(sciPointObj * pObj);
 
-  virtual ~DrawableArc( void ) ;
+  virtual ~ConcreteDrawableArc(void);
 
   /**
    * Add a rendering algorithm
    */
-  virtual void addDrawingStrategy( DrawArcStrategy * strategy ) = 0 ;
+  virtual void addDrawingStrategy( DrawArcStrategy * strategy );
 
   /**
    * Remove all drawing strategies.
    */
-  virtual void removeDrawingStrategies( void ) = 0 ;
+  virtual void removeDrawingStrategies( void );
 
   /**
    * The arc is a part of an ellipse. Get the representation of the ellipse.
@@ -48,43 +49,26 @@ public:
    *                 End of the angular part to draw
    */
   virtual void getArcRepresentation(double center[3], double semiMinorAxis[3], double semiMajorAxis[3],
-                                    double & startAngle, double & endAngle) = 0;
-
-  /**
-   * Return the real type of implementation object
-   */
-  DrawableArcBridge * getArcImp( void ) ;
-
+                                    double & startAngle, double & endAngle);
 
 protected:
 
-  /*---------------------------------------------------------------------------------*/
-  /**
-   * Draw the graphic handle and store it representation in memory
-   * for later faster drawing.
-   */
-  virtual void draw( void ) ;
-
-  /**
-   * Fast draw of the graphic handle on the screen using the data created by draw.
-   * Warning, be sure that draw is called before show each time the handle is modified.
-   */
-  virtual void show( void ) ;
-
+  /*----------------------------------------------------------------------*/
   /**
    * Actually draw the arc on the screen
    */
-  virtual void drawArc(void) = 0;
+  virtual void drawArc(void);
 
   /**
    * Actually show the arc stored data
    */
-  virtual void showArc(void) = 0;
+  virtual void showArc(void);
+  /*----------------------------------------------------------------------*/
+  std::list<DrawArcStrategy *> m_oDrawingStrategies;
+  /*----------------------------------------------------------------------*/
 
-  /*---------------------------------------------------------------------------------*/
-
-} ;
+};
 
 }
 
-#endif /* _DRAWABLE_ARC_H_  */
+#endif /* _CONCRETE_DRAWABLE_ARC_ */

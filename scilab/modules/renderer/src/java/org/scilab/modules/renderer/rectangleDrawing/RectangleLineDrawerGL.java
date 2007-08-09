@@ -8,66 +8,25 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import org.scilab.modules.renderer.AutoDrawableObjectGL;
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.drawers.LineDrawerGL;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Class containing functions called by RectangleLineDrawerJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class RectangleLineDrawerGL extends AutoDrawableObjectGL {
-
-	private int   lineColor;
-	private float thickness;
-	private int   lineStyle;
+public class RectangleLineDrawerGL extends LineDrawerGL implements RectangleDrawerStrategy {
 	
 	/**
 	 * Default constructor
 	 */
 	public RectangleLineDrawerGL() {
 		super();
-		lineColor = 1;
-		thickness = 1.0f;
-		lineStyle = 1;
 	}
 	
-	/**
-	 * Set line Color
-	 * @param lineColor index of the line color in the colormap
-	 */
-	public void setLineColor(int lineColor) {
-		this.lineColor = lineColor;
-	}
-	
-	/**
-	 * Set the thickness
-	 * @param thickness thickness of the line in pixels
-	 */
-	public void setThickness(float thickness) {
-		this.thickness = thickness;
-	}
-	
-	/**
-	 * Set the line style
-	 * @param lineStyle index of the line Style
-	 */
-	public void setLineStyle(int lineStyle) {
-		this.lineStyle = lineStyle;
-	}
-	
-	/**
-	 * Set all line parameters at once, to avoid multiple Jni calls
-	 * @param lineColor index of the line color in the colormap
-	 * @param thickness thickness of the line in pixels
-	 * @param lineStyle index of the line Style
-	 */
-	public void setLineParameters(int lineColor, float thickness, int lineStyle) {
-		setLineColor(lineColor);
-		setThickness(thickness);
-		setLineStyle(lineStyle);
-	}
+
 	
 	/**
 	 * create the display list for the rectangle
@@ -91,11 +50,11 @@ public class RectangleLineDrawerGL extends AutoDrawableObjectGL {
 		GL gl = getGL();
 		
 		// set dash mode
-		gl.glLineWidth(thickness);
-		GLTools.beginDashMode(gl, lineStyle, thickness);
+		gl.glLineWidth(getThickness());
+		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 		
 		// set color
-		double[] color = getColorMap().getColor(lineColor);
+		double[] color = getLineColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
 		

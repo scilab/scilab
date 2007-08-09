@@ -15,7 +15,7 @@ using namespace sciGraphics ;
 /*------------------------------------------------------------------------------------------*/
 void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbColor )
 {
-  ((DrawableFigure *)getHandleDrawer(pFigure))->setColorMap( rgbMat, nbColor ) ;
+  getFigureDrawer(pFigure)->setColorMap( rgbMat, nbColor ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] )

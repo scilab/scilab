@@ -172,9 +172,14 @@ void iNormalize2d( int vect[2] ) ;
 void crossProduct( const double v1[3], const double v2[3], double res[3] ) ;
 
 /**
+ * Square norm of a 3D vector
+ */
+#define SQUARE_NORM_3D(v) ( DOT_PROD_3D((v),(v)) )
+
+/**
  * Norm of a 3D vector
  */
-#define NORM_3D(v) ( sqrt( DOT_PROD_3D((v),(v)) ) ) ;
+#define NORM_3D(v) ( sqrt( SQUARE_NORM_3D(v) ) ) ;
 
 /**
  * Normalize a 3D vector

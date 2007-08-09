@@ -72,4 +72,14 @@ DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle )
   return dynamic_cast<DrawableRectangle *>(getHandleDrawer(pRectangle));
 }
 /*------------------------------------------------------------------------------------------*/
+DrawableArc * getArcDrawer( sciPointObj * pArc )
+{
+  if ( sciGetEntityType(pArc) != SCI_ARC )
+  {
+    return NULL;
+  }
+
+  return dynamic_cast<DrawableArc *>(getHandleDrawer(pArc));
+}
+/*------------------------------------------------------------------------------------------*/
 }

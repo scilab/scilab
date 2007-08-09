@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: RectangleLinerawerJoGL.h                                         */
+/* file: RectangleLineDrawerJoGL.h                                        */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Strategy drawing the outline of a rectangle                     */

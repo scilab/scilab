@@ -63,7 +63,7 @@ int checkMonotony( double vector[], int nbElement )
   int i ;
   if( vector[1] >= vector[0] )
   {
-    /* might be incresing */
+    /* might be increasing */
     for ( i = 1 ; i < nbElement - 1 ; i++ )
     {
       if ( vector[i+1] < vector[i] )

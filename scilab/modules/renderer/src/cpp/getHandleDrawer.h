@@ -16,6 +16,7 @@ extern "C"
 #include "DrawableObject.h"
 #include "figureDrawing/DrawableFigure.h"
 #include "rectangleDrawing/DrawableRectangle.h"
+#include "arcDrawing/DrawableArc.h"
 
 namespace sciGraphics
 {
@@ -60,10 +61,16 @@ void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer) ;
 DrawableFigure * getFigureDrawer( sciPointObj * pFigure ) ;
 
 /**
-* Return a DrawableFigure object corresponding to a sciPointObj object.
-* @return the corresponding figure to pFigure if pFigure if of type figure, NULL otherwise
-*/
+ * Return a DrawableRectangle object corresponding to a sciPointObj object.
+ * @return the corresponding rectangle to pRectangle if pFigure if of type figure, NULL otherwise
+ */
 DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle ) ;
+
+/**
+ * Return a DrawableArc object corresponding to a sciPointObj object.
+ * @return the corresponding arc to pArc if pFigure if of type figure, NULL otherwise
+ */
+DrawableArc * getArcDrawer( sciPointObj * pArc ) ;
 
 }
 

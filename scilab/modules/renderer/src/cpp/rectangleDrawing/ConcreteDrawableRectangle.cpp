@@ -14,6 +14,14 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableRectangle::getCornersCoordinates( double corner1[3], double corner2[3], double corner3[3], double corner4[3] )
 {
+
+  //    <--- w --->
+  // (x,y)--------c4
+  //   |           |
+  // h |           |
+  //   |           |
+  //   c2---------c3
+
   sciRectangle * ppRect = pRECTANGLE_FEATURE(m_pDrawed) ;
   corner1[0] = ppRect->x ;
   corner1[1] = ppRect->y ;

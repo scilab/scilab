@@ -3,39 +3,29 @@
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw the      */
-/*        inside of a rectangle object                                   */
+/*        inside of a rectangle object                                    */
 /*------------------------------------------------------------------------*/
 
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import org.scilab.modules.renderer.AutoDrawableObjectGL;
+import org.scilab.modules.renderer.drawers.FillDrawerGL;
+
 import javax.media.opengl.GL;
 
 /**
  * Class containing functions called by RectangleFillDrawerJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class RectangleFillDrawerGL extends AutoDrawableObjectGL {
-	
-	/** index of background color */
-	private int backColor;
+public class RectangleFillDrawerGL extends FillDrawerGL implements RectangleDrawerStrategy {
 	
 	/**
 	 * Default Constructor
 	 */
 	public RectangleFillDrawerGL() {
-		backColor = -1;
+		super();
 	}
-	
-	/**
-	 * Set rectangle background color
-	 * @param color index of background color
-	 */
-	public void setBackColor(int color) {
-		backColor = color;
-	}
-	
+
 	/**
 	 * create the display list for the rectangle
 	 * @param corner1X first corner X coordinate
@@ -58,7 +48,7 @@ public class RectangleFillDrawerGL extends AutoDrawableObjectGL {
 		GL gl = getGL();
 		
 		// set color
-		double[] color = getColorMap().getColor(backColor);
+		double[] color = getBackColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
 		gl.glBegin(GL.GL_QUADS);
