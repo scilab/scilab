@@ -102,7 +102,8 @@ am__objects_1 = libscifileio_la-FileExist.lo libscifileio_la-xls.lo \
 	libscifileio_la-getdrives.lo libscifileio_la-deleteafile.lo \
 	libscifileio_la-getshortpathname.lo \
 	libscifileio_la-getlongpathname.lo \
-	libscifileio_la-FindFileExtension.lo
+	libscifileio_la-FindFileExtension.lo \
+	libscifileio_la-URIFileToFilename.lo
 am__objects_2 = libscifileio_la-sci_xls_read.lo \
 	libscifileio_la-gw_fileio.lo libscifileio_la-sci_fileio.lo \
 	libscifileio_la-sci_xls_open.lo libscifileio_la-intreadxls.lo \
@@ -344,7 +345,8 @@ src/c/getdrives.c \
 src/c/deleteafile.c \
 src/c/getshortpathname.c \
 src/c/getlongpathname.c \
-src/c/FindFileExtension.c
+src/c/FindFileExtension.c \
+src/c/URIFileToFilename.c
 
 GATEWAY_SOURCES = \
 sci_gateway/c/sci_xls_read.c \
@@ -404,7 +406,8 @@ libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/sci_fileio.h \
 includes/findfiles.h \
-includes/FindFileExtension.h
+includes/FindFileExtension.h \
+includes/URIFileToFilename.h
 
 
 #### fileio : demos files ####
@@ -533,6 +536,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-FileExist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-FindFileExtension.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-Status2Mode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-URIFileToFilename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-addfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-bt-int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-bytedecoders.Plo@am__quote@
@@ -871,6 +875,13 @@ libscifileio_la-FindFileExtension.lo: src/c/FindFileExtension.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/FindFileExtension.c' object='libscifileio_la-FindFileExtension.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-FindFileExtension.lo `test -f 'src/c/FindFileExtension.c' || echo '$(srcdir)/'`src/c/FindFileExtension.c
+
+libscifileio_la-URIFileToFilename.lo: src/c/URIFileToFilename.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-URIFileToFilename.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-URIFileToFilename.Tpo -c -o libscifileio_la-URIFileToFilename.lo `test -f 'src/c/URIFileToFilename.c' || echo '$(srcdir)/'`src/c/URIFileToFilename.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-URIFileToFilename.Tpo $(DEPDIR)/libscifileio_la-URIFileToFilename.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/URIFileToFilename.c' object='libscifileio_la-URIFileToFilename.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-URIFileToFilename.lo `test -f 'src/c/URIFileToFilename.c' || echo '$(srcdir)/'`src/c/URIFileToFilename.c
 
 libscifileio_la-sci_xls_read.lo: sci_gateway/c/sci_xls_read.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_xls_read.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_xls_read.Tpo -c -o libscifileio_la-sci_xls_read.lo `test -f 'sci_gateway/c/sci_xls_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xls_read.c

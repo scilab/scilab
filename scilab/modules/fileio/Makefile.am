@@ -39,9 +39,8 @@ src/c/getdrives.c \
 src/c/deleteafile.c \
 src/c/getshortpathname.c \
 src/c/getlongpathname.c \
-src/c/FindFileExtension.c \ 
+src/c/FindFileExtension.c \
 src/c/URIFileToFilename.c
-
 
 GATEWAY_SOURCES = \
 sci_gateway/c/sci_xls_read.c \
@@ -109,10 +108,8 @@ libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/sci_fileio.h \
 includes/findfiles.h \
-includes/FindFileExtension.h
+includes/FindFileExtension.h \
 includes/URIFileToFilename.h
-
-
 
 
 #### fileio : demos files ####
