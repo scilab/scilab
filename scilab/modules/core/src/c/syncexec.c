@@ -33,7 +33,6 @@ int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
 
 	Pt = Max(Pt,0);Pts=Pt;
 	Top = Max(Top,0);Tops=Top;
-	C2F(basbrk).interruptible = *seq == 0;
 	C2F(bexec)(str, ns, ierr, (*ns));
 	if (*ierr != 0) {
 		goto L9998;
@@ -45,6 +44,9 @@ int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
 	Ids[1 + Pt * nsiz] = Lhs;
 	Ids[2 + Pt * nsiz] = Rhs;
 	Ids[3 + Pt * nsiz] = C2F(com).sym;
+	Ids[4 + Pt * nsiz] =  C2F(basbrk).interruptible;
+	C2F(basbrk).interruptible = *seq == 0;
+
 	Rstk[Pt] = 1002;
 	++C2F(recu).niv;
 	C2F(com).fun = 0;
@@ -165,6 +167,7 @@ L200:
 	Lhs = Ids[1 + Pt * nsiz];
 	Rhs = Ids[2 + Pt * nsiz];
 	C2F(com).sym = Ids[3 + Pt * nsiz];
+	C2F(basbrk).interruptible = Ids[4 + Pt * nsiz];
 	--Pt;
 	--Top;
 	/* + */
@@ -175,6 +178,7 @@ L200:
 	return 0;
 L9998:
 	*ierr = 1;
+	C2F(basbrk).interruptible = Ids[4 + Pt * nsiz];
 	Pt=Pts;Top=Tops;
 	return 0;
 L9999:
@@ -182,6 +186,7 @@ L9999:
 	if (Err != 9999999) *ierr = 1;
 	--Top;
 	--C2F(recu).niv;
+	C2F(basbrk).interruptible = Ids[4 + Pt * nsiz];
 	Pt=Pts;Top=Tops;
 	return 0;
 } /* syncexec */
