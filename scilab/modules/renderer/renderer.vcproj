@@ -195,11 +195,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\src\jni\ArcFillDrawerGL.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\arcDrawing\ArcFillDrawerJavaMapper.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\src\cpp\arcDrawing\ArcFillDrawerJoGL.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\ArcLineDrawerGL.cpp"
 				>
 			</File>
 			<File
@@ -264,6 +272,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\arcDrawing\DrawableArcFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\DrawableArcGL.cpp"
 				>
 			</File>
 			<File
@@ -573,11 +585,19 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\src\jni\ArcFillDrawerGL.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\arcDrawing\ArcFillDrawerJavaMapper.hxx"
 				>
 			</File>
 			<File
 				RelativePath=".\src\cpp\arcDrawing\ArcFillDrawerJoGL.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\ArcLineDrawerGL.hxx"
 				>
 			</File>
 			<File
@@ -646,6 +666,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\arcDrawing\DrawableArcFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\DrawableArcGL.hxx"
 				>
 			</File>
 			<File
