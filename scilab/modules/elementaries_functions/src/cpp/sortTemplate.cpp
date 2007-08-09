@@ -163,7 +163,7 @@ void lgsorts(char **keys1,int *indices,int m1,int n1,char *typex, char *iord)  /
 	}
 }
 /*------------------------------------------------------------------------------------------*/
-void rowcolsortd(double *keys1, int *indices, int m1, int n1, char *typex, char *iord) /*When it is double matrix in 'r' or 'c'*/
+void rowcolsortd(double *keys, int *indices, int m1, int n1, char *typex, char *iord) /*When it is double matrix in 'r' or 'c'*/
 {
     int i,j,p;
 	if (typex[0]=='r') 
@@ -173,7 +173,7 @@ void rowcolsortd(double *keys1, int *indices, int m1, int n1, char *typex, char 
 		void my_qsortsingle(double *v,int *index, int left, int right,int p,char *iord,int m1);
 		for (p=0;p<n1;p++) 
 	    { 
-              my_qsortsingle( keys1,indices, 0, m1 - 1 ,p,iord,m1);            /*When it is double matrix in 'r' */
+              my_qsortsingle( keys,indices, 0, m1 - 1 ,p,iord,m1);            /*When it is double matrix in 'r' */
 		}
 	}
 	if (typex[0]=='c') 
@@ -183,19 +183,19 @@ void rowcolsortd(double *keys1, int *indices, int m1, int n1, char *typex, char 
 		void my_qsortsinglecol(double *v,int *index, int left, int right,int p,char *iord,int m1);
 		for (p=0;p<m1;p++) 
 	    { 
-              my_qsortsinglecol( keys1,indices, 0, n1 - 1 ,p,iord,m1);         /*When it is double matrix in 'c'*/
+              my_qsortsinglecol( keys,indices, 0, n1 - 1 ,p,iord,m1);         /*When it is double matrix in 'c'*/
 		}
 	}
 }
 /*------------------------------------------------------------------------------------------*/
-void wholesortd(double *keys1, int *indices, int m1, int n1, char *typex, char *iord)  /*When it is double matrix in 'g'*/
+void wholesortd(double *keys, int *indices, int m1, int n1, char *typex, char *iord)  /*When it is double matrix in 'g'*/
 {
     int i,j,k;
 	k=0;
     for (i=1;i<=m1;i++)
        for (j=1;j<=n1;j++) indices[k++]=(i-1)*n1+j;
 	void my_wholesortd(double *v,int *index, int left, int right,char *iord,int n1);
-    my_wholesortd( keys1, indices,0, m1*n1-1  ,iord,n1);
+    my_wholesortd( keys, indices,0, m1*n1-1  ,iord,n1);
 }
 /*------------------------------------------------------------------------------------------*/
 void wholesorts(char **keys, int *index, int m1, int n1, char *typex, char *iord)  /*When it is the string matrix in 'g'*/
