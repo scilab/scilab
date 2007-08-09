@@ -12,11 +12,15 @@ extern "C" {
 #endif
 void sortTemplate( void);
 void lgsortd(double *,int *,int ,int ,char *,char *);
-void lgsorts1(char *,int *,int ,int ,char *,char *);
+void lgsorts(char **,int *,int ,int ,char *,char *);
 void rowcolsortd(double *, int *, int , int , char *, char *);
 void wholesortd(double *, int *, int , int , char *, char *);
 void wholesorts(char **, int *, int , int , char *, char *);
-void rowcolsorts(char *, int *, int , int , char *, char *);
+void mywhole_swapd(double *v,int i, int j, int n);
+void my_qsortd(double *,int *, int , int ,char *,int ,int );
+void my_qsortdcol(double *v,int *, int , int ,char *,int ,int );
+void rowcolsorts(char **, int *, int , int , char *, char *);
+
 #ifdef __cplusplus
 }
 #endif
