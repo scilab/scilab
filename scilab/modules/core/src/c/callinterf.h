@@ -64,7 +64,8 @@
 
 /* 46 */						#include "../../../scicos/includes/gw_cscicos.h"
 
-/* 47 */						#include "../../../wintools/includes/gw_wintools.h"
+/* 47 */						#include "../../../windows_tools/includes/gw_windows_tools.h"
+
 /* 48 */						#include "../../../time/includes/gw_time.h"
 /* 49 */						#include "../../../sound/includes/gw_sound.h"
 /* 50 */						#include "../../../localization/includes/gw_localization.h"
@@ -74,9 +75,6 @@
 /* 53 */						#include "../../../shell/includes/gw_shell.h"
 /* 54 */						#include "../../../completion/includes/gw_completion.h"
 /* 55 */						#include "../../../history_manager/includes/gw_history_manager.h"
-
-/* REORGANISATION TEMPORAIRE 56 --> 47*/
-/* 56 */						#include "../../../windows_tools/includes/gw_windows_tools.h"
 
 
 void errjump (int n);
@@ -136,7 +134,7 @@ static OpTab Interfaces[] = {
 	/* 44  */ {C2F(gw_linear_algebra2)},
 	/* 45  */ {C2F(gw_scicos)},  
 	/* 46  */ {C2F(gw_cscicos)},
-	/* 47  */ {C2F(gw_wintools)},
+	/* 47  */ {C2F(gw_windows_tools)},
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)},
 	/* 50  */ {C2F(gw_localization)},
@@ -145,7 +143,6 @@ static OpTab Interfaces[] = {
 	/* 53  */ {C2F(gw_shell)},
 	/* 54  */ {C2F(gw_completion)},
 	/* 55  */ {C2F(gw_history_manager)},
-	/* 56 TEMPORAIRE */ {C2F(gw_windows_tools)}
 };
 
 
