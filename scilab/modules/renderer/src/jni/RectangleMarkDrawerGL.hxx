@@ -98,21 +98,21 @@ void endSynchronize();
 
 // Methods
 void display();
- 
+
 void initializeDrawing(long figureIndex);
- 
+
 void endDrawing();
- 
+
 void show(long figureIndex);
- 
+
 void destroy(long parentFigureIndex);
- 
+
 void setFigureIndex(long figureIndex);
- 
+
 void setMarkParameters(long background, long foreground, long markSizeUnit, long markSize, long markStyleIndex);
- 
+
 void drawRectangle(double corner1X, double corner1Y, double corner1Z, double corner2X, double corner2Y, double corner2Z, double corner3X, double corner3Y, double corner3Z, double corner4X, double corner4Y, double corner4Z);
- 
+
 
 };
 

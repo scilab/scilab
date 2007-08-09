@@ -100,25 +100,25 @@ void endSynchronize();
 
 // Methods
 void display();
- 
+
 void initializeDrawing(long figureIndex);
- 
+
 void endDrawing();
- 
+
 void show(long figureIndex);
- 
+
 void destroy(long parentFigureIndex);
- 
+
 void setFigureIndex(long figureIndex);
- 
+
 void clipX(double xMin, double xMax);
- 
+
 void clipY(double yMin, double yMax);
- 
+
 void clipZ(double zMin, double zMax);
- 
+
 void unClip();
- 
+
 
 };
 

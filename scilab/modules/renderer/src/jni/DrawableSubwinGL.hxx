@@ -96,17 +96,17 @@ void endSynchronize();
 
 // Methods
 void display();
- 
+
 void initializeDrawing(long figureIndex);
- 
+
 void endDrawing();
- 
+
 void show(long figureIndex);
- 
+
 void destroy(long figureIndex);
- 
+
 void setFigureIndex(long figureIndex);
- 
+
 
 };
 

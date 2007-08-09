@@ -91,7 +91,7 @@ void endSynchronize();
 
 // Methods
 void setFigureIndex(long figureIndex);
- 
+
 
 };
 

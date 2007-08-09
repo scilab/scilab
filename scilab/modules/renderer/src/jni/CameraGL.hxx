@@ -99,23 +99,23 @@ void endSynchronize();
 
 // Methods
 void display();
- 
+
 void initializeDrawing(long figureIndex);
- 
+
 void endDrawing();
- 
+
 void show(long figureIndex);
- 
+
 void destroy(long parentFigureIndex);
- 
+
 void setFigureIndex(long figureIndex);
- 
+
 void moveViewingArea(double transX, double transY, double scaleX, double scaleY);
- 
+
 void moveAxesBox(double scaleX, double scaleY, double scaleZ, double transX, double transY, double transZ);
- 
+
 void rotateAxesBox(double centerX, double centerY, double centerZ, double alpha, double theta, double reductionRatio);
- 
+
 
 };
 

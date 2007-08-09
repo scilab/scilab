@@ -75,7 +75,7 @@ void DrawableFigureJavaMapper::setBackgroundColor(int backgroundColor)
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setColorMapData(const double rgbmat[], int nbColor)
 {
-  // TODO
+  m_pJavaObject->setColorMapData((double *)rgbmat, nbColor);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::getColorMapData(double rgbmat[])

@@ -23,6 +23,11 @@
     <method name="setBackgroundColor" returnType="void">
       <param type="int" name="backgroundColor" />
     </method>
+    <method name="setColorMapData" returnType="void">
+      <param type="double[]" name="rgbmat" />
+    </method>
+    <method name="getColorMapData" returnType="double[]">
+    </method>
     <method name="getCanvasWidth" returnType="int">
     </method>
     <method name="getCanvasHeight" returnType="int">

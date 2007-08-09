@@ -112,6 +112,7 @@ voidsetFigureIndexjintID=NULL;
 voiddrawCanvasID=NULL; 
 voidcloseRenderingCanvasID=NULL; 
 voidsetBackgroundColorjintID=NULL; 
+voidsetColorMapDatajdoubleID=NULL; 
 jintgetCanvasWidthID=NULL; 
 jintgetCanvasHeightID=NULL; 
 voidsetCanvasSizejintjintID=NULL; 
@@ -327,6 +328,30 @@ exit(EXIT_FAILURE);
 }
 }
   curEnv->CallVoidMethod( this->instance, voidsetBackgroundColorjintID ,backgroundColor);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void DrawableFigureGL::setColorMapData (double * rgbmat, int rgbmatSize){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidsetColorMapDatajdoubleID == NULL)
+{
+this->voidsetColorMapDatajdoubleID = curEnv->GetMethodID(this->instanceClass, "setColorMapData", "([D)V" ) ;
+if (this->voidsetColorMapDatajdoubleID == NULL) {
+std::cerr << "Could not access to the method setColorMapData" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+jdoubleArray rgbmat_ = curEnv->NewDoubleArray( rgbmatSize ) ;
+curEnv->SetDoubleArrayRegion( rgbmat_, 0, rgbmatSize, (jdouble*) rgbmat ) ;
+
+  curEnv->CallVoidMethod( this->instance, voidsetColorMapDatajdoubleID ,rgbmat_);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

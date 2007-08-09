@@ -93,11 +93,11 @@ void endSynchronize();
 
 // Methods
 void wait();
- 
+
 void notify();
- 
+
 void notifyAll();
- 
+
 
 };
 

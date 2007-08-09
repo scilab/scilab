@@ -57,6 +57,7 @@ jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voiddrawCanvasID; // cache method id
 jmethodID voidcloseRenderingCanvasID; // cache method id
 jmethodID voidsetBackgroundColorjintID; // cache method id
+jmethodID voidsetColorMapDatajdoubleID; // cache method id
 jmethodID jintgetCanvasWidthID; // cache method id
 jmethodID jintgetCanvasHeightID; // cache method id
 jmethodID voidsetCanvasSizejintjintID; // cache method id
@@ -109,43 +110,45 @@ void endSynchronize();
 
 // Methods
 void display();
- 
+
 void initializeDrawing(long figureIndex);
- 
+
 void endDrawing();
- 
+
 void show(long figureIndex);
- 
+
 void destroy(long parentFigureIndex);
- 
+
 void setFigureIndex(long figureIndex);
- 
+
 void drawCanvas();
- 
+
 void closeRenderingCanvas();
- 
+
 void setBackgroundColor(long backgroundColor);
- 
+
+void setColorMapData(double * rgbmat, int rgbmatSize);
+
 long getCanvasWidth();
- 
+
 long getCanvasHeight();
- 
+
 void setCanvasSize(long width, long height);
- 
+
 long getWindowPosX();
- 
+
 long getWindowPosY();
- 
+
 void setWindowPosition(long posX, long posY);
- 
+
 long getWindowWidth();
- 
+
 long getWindowHeight();
- 
+
 void setWindowSize(long width, long height);
- 
+
 void setInfoMessage(char * infoMessage);
- 
+
 
 };
 
