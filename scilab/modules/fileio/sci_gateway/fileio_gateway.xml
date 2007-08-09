@@ -55,4 +55,5 @@
 <PRIMITIVE gatewayId="34" primitiveId="29" primitiveName="filesep"/>
 <PRIMITIVE gatewayId="34" primitiveId="30" primitiveName="getlongpathname"/>
 <PRIMITIVE gatewayId="34" primitiveId="31" primitiveName="getshortpathname"/>
+<PRIMITIVE gatewayId="34" primitiveId="32" primitiveName="fileext"/>
 </GATEWAY>

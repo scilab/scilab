@@ -65,7 +65,8 @@ sci_gateway/c/sci_deletefile.c \
 sci_gateway/c/sci_pathsep.c \
 sci_gateway/c/sci_filesep.c \
 sci_gateway/c/sci_getshortpathname.c \
-sci_gateway/c/sci_getlongpathname.c
+sci_gateway/c/sci_getlongpathname.c \
+sci_gateway/c/sci_fileext.c
 
 
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 

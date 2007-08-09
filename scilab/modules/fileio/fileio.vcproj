@@ -347,6 +347,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_fileext.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_fileio.c"
 				>
 			</File>

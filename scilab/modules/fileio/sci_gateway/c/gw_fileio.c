@@ -39,7 +39,8 @@ static gw_generic_table Tab[]={
 	{C2F(sci_pathsep),"pathsep"},
 	{C2F(sci_filesep),"filesep"},
 	{C2F(sci_getlongpathname),"getlongpathname"},
-	{C2F(sci_getshortpathname),"getshortpathname"}
+	{C2F(sci_getshortpathname),"getshortpathname"},
+	{C2F(sci_fileext),"fileext"}
 	};
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_fileio)(void)
