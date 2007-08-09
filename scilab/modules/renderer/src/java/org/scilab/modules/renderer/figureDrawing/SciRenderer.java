@@ -42,11 +42,10 @@ public class SciRenderer
    * @param gLDrawable The GLDrawable object.
    */    
   public void display(GLAutoDrawable gLDrawable) {
-      // should call the draw function of the corresponding figure
-	  gLDrawable.getContext().setSynchronized(true);
-	  FigureScilabCall call = new FigureScilabCall();
-	  call.displayFigure(renderedFigure);
-    }
+    // should call the draw function of the corresponding figure
+    gLDrawable.getContext().setSynchronized(true);
+    FigureScilabCall.displayFigure(renderedFigure);
+  }
     
     
   /** Called when the display mode has been changed.  <B>!! CURRENTLY UNIMPLEMENTED IN JOGL !!</B>
@@ -64,8 +63,7 @@ public class SciRenderer
   public void init(GLAutoDrawable gLDrawable) {
 	  
       if (isInit) {
-    	  FigureScilabCall call = new FigureScilabCall();
-    	  call.redrawFigure(renderedFigure);
+    	  FigureScilabCall.redrawFigure(renderedFigure);
       }
       final GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading

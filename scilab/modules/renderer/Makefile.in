@@ -170,7 +170,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/arcDrawing/ConcreteDrawableArc.cpp \
 	src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
 	src/jni/ArcLineDrawerGL.cpp src/jni/ArcFillDrawerGL.cpp \
-	src/jni/DrawableArcGL.cpp sci_gateway/c/gw_renderer.c
+	src/jni/DrawableArcGL.cpp src/jni/FigureScilabCall_wrap.c \
+	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -266,7 +267,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-ArcFillDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-ArcLineDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-ArcFillDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableArcGL.lo
+@GUI_TRUE@	libscirenderer_la-DrawableArcGL.lo \
+@GUI_TRUE@	libscirenderer_la-FigureScilabCall_wrap.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -558,7 +560,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
 @GUI_TRUE@src/jni/ArcLineDrawerGL.cpp \
 @GUI_TRUE@src/jni/ArcFillDrawerGL.cpp \
-@GUI_TRUE@src/jni/DrawableArcGL.cpp
+@GUI_TRUE@src/jni/DrawableArcGL.cpp \
+@GUI_TRUE@src/jni/FigureScilabCall_wrap.c
 
 
 # List of the gateway c files
@@ -787,6 +790,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawingBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FigureScilabCall.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GlobalSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizer.Plo@am__quote@
@@ -840,6 +844,13 @@ libscirenderer_la-norenderer.lo: src/norenderer/norenderer.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/norenderer/norenderer.c' object='libscirenderer_la-norenderer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirenderer_la-norenderer.lo `test -f 'src/norenderer/norenderer.c' || echo '$(srcdir)/'`src/norenderer/norenderer.c
+
+libscirenderer_la-FigureScilabCall_wrap.lo: src/jni/FigureScilabCall_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirenderer_la-FigureScilabCall_wrap.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Tpo -c -o libscirenderer_la-FigureScilabCall_wrap.lo `test -f 'src/jni/FigureScilabCall_wrap.c' || echo '$(srcdir)/'`src/jni/FigureScilabCall_wrap.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Tpo $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/FigureScilabCall_wrap.c' object='libscirenderer_la-FigureScilabCall_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirenderer_la-FigureScilabCall_wrap.lo `test -f 'src/jni/FigureScilabCall_wrap.c' || echo '$(srcdir)/'`src/jni/FigureScilabCall_wrap.c
 
 libscirenderer_la-gw_renderer.lo: sci_gateway/c/gw_renderer.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirenderer_la-gw_renderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-gw_renderer.Tpo -c -o libscirenderer_la-gw_renderer.lo `test -f 'sci_gateway/c/gw_renderer.c' || echo '$(srcdir)/'`sci_gateway/c/gw_renderer.c
