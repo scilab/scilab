@@ -14,11 +14,11 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	
 	// path    :     XML file
 	// xsl     :     abolute path of the xsl path
-
+	
 	if MSDOS then
 	  generate_cmd='sabcmd';
 	else
-	  generate_cmd='xsltproc';;
+	  generate_cmd='xsltproc';
 	end
 	
 	[lhs,rhs] = argn(0);
@@ -91,10 +91,10 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 			ok = %T;
 		end
 		
-		deletefile(path+"2");
+		unix_s(RM+path+"2");
 		
 		if needToBeCopied then
-			deletefile(path);
+			unix_s(RM+path);
 		end
 	else
 		ok = %T;
