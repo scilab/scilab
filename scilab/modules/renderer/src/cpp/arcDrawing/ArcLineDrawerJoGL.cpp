@@ -64,3 +64,4 @@ ArcLineDrawerJavaMapper * ArcLineDrawerJoGL::getLineDrawerJavaMapper(void)
 }
 /*------------------------------------------------------------------------------------------*/
 }
+

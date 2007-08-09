@@ -26,8 +26,8 @@
     <method name="setColorMapData" returnType="void">
       <param type="double[]" name="rgbmat" />
     </method>
-    <method name="getColorMapData" returnType="double[]">
-    </method>
+    <!-- method name="getColorMapData" returnType="void" -->
+    <!-- /method -->
     <method name="getCanvasWidth" returnType="int">
     </method>
     <method name="getCanvasHeight" returnType="int">

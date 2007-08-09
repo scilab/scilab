@@ -91,7 +91,18 @@ src/jni/DrawablePolylineGL.cpp \
 src/jni/DrawableRectangleGL.cpp \
 src/jni/RectangleFillDrawerGL.cpp \
 src/jni/RectangleLineDrawerGL.cpp \
-src/jni/RectangleMarkDrawerGL.cpp
+src/jni/RectangleMarkDrawerGL.cpp \
+src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp \
+src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp \
+src/cpp/arcDrawing/DrawableArcJavaMapper.cpp \
+src/cpp/arcDrawing/DrawableArcJoGL.cpp \
+src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp \
+src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp \
+src/cpp/arcDrawing/ConcreteDrawableArc.cpp \
+src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
+src/jni/ArcLineDrawerGL.cpp \
+src/jni/ArcFillDrawerGL.cpp \
+src/jni/DrawableArcGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c

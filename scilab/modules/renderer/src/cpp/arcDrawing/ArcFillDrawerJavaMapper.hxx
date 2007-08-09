@@ -9,6 +9,7 @@
 #define _RECTANGLE_FILL_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
+#include "ArcFillDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -43,7 +44,12 @@ public:
     double startAngle    , double endAngle );
   /*----------------------------------------------------------------------*/
 
-private:
+protected:
+
+  /**
+   * Giws generated wrapper.
+   */
+  org_scilab_modules_renderer_arcDrawing::ArcFillDrawerGL * m_pJavaObject;
 
 
 };

@@ -9,6 +9,7 @@
 #define _DRAWABLE_ARC_JAVA_MAPPER_HXX_
 
 #include "DrawableClippedObjectJavaMapper.hxx"
+#include "DrawableArcGL.hxx"
 
 namespace sciGraphics
 {
@@ -50,6 +51,11 @@ public:
 
 
 protected:
+
+  /**
+   * Giws generated wrapper
+   */
+  org_scilab_modules_renderer_arcDrawing::DrawableArcGL * m_pJavaObject;
 
 };
 

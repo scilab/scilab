@@ -7,7 +7,11 @@
 /*------------------------------------------------------------------------*/
 
 #include "ConcreteDrawableArc.h"
+
+extern "C"
+{
 #include "core_math.h"
+}
 
 using namespace std;
 
@@ -59,7 +63,7 @@ void ConcreteDrawableArc::getArcRepresentation(double center[3], double semiMino
   center[1] = ppArc->y - ppArc->height / 2.0 ;
   center[2] = ppArc->z ;
 
-  if ( abs(ppArc->width) > abs(ppArc->height) )
+  if ( Abs(ppArc->width) > Abs(ppArc->height) )
   {
     semiMinorAxis[0] = 0.0;
     semiMinorAxis[1] = -ppArc->height / 2.0;
