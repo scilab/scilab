@@ -96,7 +96,7 @@ int C2F(lasterror)(char *fname, unsigned long fname_len)
     }
     for (k=0;k<msg_line_counter ; k++) 
       sz[k]=strlen(msg_buff[k])-1;
-    CreateVarFromPtr(&one,MATRIX_OF_STRING_DATATYPE, &msg_line_counter, &one,(void *) msg_buff);
+    CreateVarFromPtr(one,MATRIX_OF_STRING_DATATYPE, &msg_line_counter, &one,(void *) msg_buff);
     LhsVar(1) = 1;
     if (Lhs >= 2) {
       CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&l1);
@@ -110,7 +110,7 @@ int C2F(lasterror)(char *fname, unsigned long fname_len)
     }
     if (Lhs >= 4) {
       l1=strlen(funname);
-      CreateVar(&four,STRING_DATATYPE, &one,&l1 , &lr);
+      CreateVar(four,STRING_DATATYPE, &one,&l1 , &lr);
       strcpy(cstk(lr),funname);
       LhsVar(4)=4;
     }
