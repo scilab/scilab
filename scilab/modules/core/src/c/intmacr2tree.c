@@ -426,7 +426,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
   switch(data[*index2]) {
   case 0: /* Deleted operation */
     /* This code is ignored */
-    *index2 += data[*index2+1];
+    *index2 += data[*index2+1]-1;;
     break;
   case 1: /* Stack put (Obsolete) */
     CreateEqualTList("code1",data,index2);
@@ -1831,7 +1831,7 @@ int complexity(int *data,int *index2,int *lgth)
       switch(data[cur_ind])
 	{
 	case 0: /* Deleted operation */
-	  cur_ind = cur_ind + data[cur_ind+1] + 1;
+	  cur_ind = cur_ind + data[cur_ind+1];
 	  break;
 	case 1: /* Stack put (Obsolete) */
 	  cur_ind = cur_ind + nsiz + 1;
