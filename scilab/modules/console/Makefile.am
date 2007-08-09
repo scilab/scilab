@@ -11,7 +11,8 @@ CONSOLE_CPP_SOURCES =  src/jni/ShellRead.cpp
 
 # List of the c files
 CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
-src/jni/GuiManagement_wrap.c
+src/jni/GuiManagement_wrap.c \
+src/jni/DropFiles_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
 src/c/GuiManagement.c \

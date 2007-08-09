@@ -6,6 +6,8 @@ package org.scilab.modules.console;
 import java.awt.Component;
 import java.awt.FontMetrics;
 import java.awt.Point;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +26,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	private static final String END_LINE = "\n";
 	private static final Point ERROR_POINT = new Point(0, 0);
 
+	private SciConsole console;
+
 	/**
 	 * Variable used to store the command entered by the user 
 	 */
@@ -39,6 +43,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	 */
 	public SciInputCommandView() {
 		super();
+		
 		// Input command line is not editable when created
 		this.setEditable(false);
 		canReadBuffer = new Semaphore(1);
@@ -95,7 +100,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	}
 	
 	/**
-	 * Sets the command buffer
+	 * Sets the command buffer after a user input in input command view
 	 * @param command the string to set to the buffer
 	 */
 	public void setCmdBuffer(String command) {
@@ -117,5 +122,16 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Sets the console object containing this input view
+	 * @param c the console associated 
+	 */
+	public void setConsole(SciConsole c) {
+		console = c;
+		
+		// Drag n' Drop handling
+		this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(console)));
 	}
 }

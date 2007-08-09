@@ -22,7 +22,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import com.artenum.console.interfaces.core.ConsoleConfiguration;
+import com.artenum.console.interfaces.core.InputParsingManager;
 import com.artenum.console.interfaces.ui.OutputView;
+import com.artenum.console.interfaces.ui.PromptView;
 import com.artenum.console.ui.Console;
 import com.artenum.console.util.ConfigurationBuilder;
 import com.artenum.console.util.ConsoleBuilder;
@@ -100,6 +102,9 @@ public class SciConsole extends JPanel {
 
 		// The console is given to the outputView so that updateScrollPosition is is accessible
 		((SciOutputView) config.getOutputView()).setConsole(this);
+
+		// The console is given to the outputView so that Drag&Drop can work
+		((SciInputCommandView) config.getInputCommandView()).setConsole(this);
 	}
 
 	/**
@@ -262,5 +267,70 @@ public class SciConsole extends JPanel {
 	 */
 	public Semaphore getCanReadUserInputValue() {
 		return canReadUserInputValue;
+	}
+	
+	/**
+	 * Send commands to be executed by Scilab (after a copy/paste or drag&drop...)
+	 * @param textToExec all text lines to executed
+	 */
+	public void sendCommandsToScilab(String textToExec) {
+		String[] linesToExec = textToExec.split(StringConstants.NEW_LINE);
+		int nbStatements = 0;
+		boolean firstPrompt = true;
+		
+		while (nbStatements < linesToExec.length) {
+		
+			// Send data to the console only if the prompt is visible 
+			boolean bufferAvailable = ((SciInputCommandView) config.getInputCommandView()).isEditable();
+
+			if (bufferAvailable) {
+				// This loop contains code very similar to the code of ValidationAction.java
+				InputParsingManager inputParsingManager = config.getInputParsingManager();
+				OutputView outputView = config.getOutputView();
+				PromptView promptView = config.getPromptView();
+
+				config.getInputCommandView().append(StringConstants.NEW_LINE);
+				
+				// Reset command line
+				inputParsingManager.reset();
+				promptView.updatePrompt();
+				
+				// Reset history settings
+				config.getHistoryManager().setInHistory(false);
+				
+				// Hide the prompt and command line
+				config.getInputCommandView().setEditable(false);
+				config.getPromptView().setVisible(false);
+
+				// Print the command in the output view
+				outputView.setCaretPositionToEnd();
+				
+				// Remove the prompt if present at the beginning of the text to execute
+				// TODO what about pause mode prompts ??
+				String prompt = config.getPromptView().getDefaultPrompt();
+				if (linesToExec[nbStatements].startsWith(prompt)) {
+					linesToExec[nbStatements] = linesToExec[nbStatements].substring(prompt.length());
+				}
+
+				// TODO must be linked to Scilab parser to know if we are in a block
+				outputView.append(StringConstants.NEW_LINE);
+				if (firstPrompt) {
+					firstPrompt = false;
+					outputView.append(promptView.getDefaultPrompt());
+				} else {
+					outputView.append(promptView.getInBlockPrompt());
+				}
+				outputView.append(linesToExec[nbStatements]);
+
+				outputView.append(StringConstants.NEW_LINE);
+
+				// Store the command in the buffer so that Scilab can read it
+				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements]);
+				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements]);
+
+				nbStatements++;
+			}
+		}
+		
 	}
 }

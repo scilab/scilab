@@ -4,6 +4,8 @@
 package org.scilab.modules.console;
 
 import java.awt.Dimension;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
@@ -98,6 +100,17 @@ public class SciOutputView extends ConsoleTextPane {
 	 */
 	public void setConsole(SciConsole c) {
 		console = c;
+		
+		// Drag n' Drop handling
+		this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(console)));
+	}
+
+	/**
+	 * Gets the console object containing this output view
+	 * @return the console associated 
+	 */
+	public SciConsole getConsole() {
+		return console;
 	}
 
 }

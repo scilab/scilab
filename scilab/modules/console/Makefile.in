@@ -84,14 +84,15 @@ libsciconsole_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__libsciconsole_la_SOURCES_DIST =  \
 	src/jni/InterpreterManagement_wrap.c \
-	src/jni/GuiManagement_wrap.c src/noconsole/noconsole.c \
-	src/c/InterpreterManagement.c src/c/GuiManagement.c \
-	src/c/ClearConsole.c src/c/ClearConsolePart.c \
-	src/c/PromptToHome.c src/c/ShellPrintf.c src/c/dropFiles.c \
-	src/jni/ShellRead.cpp
+	src/jni/GuiManagement_wrap.c src/jni/DropFiles_wrap.c \
+	src/noconsole/noconsole.c src/c/InterpreterManagement.c \
+	src/c/GuiManagement.c src/c/ClearConsole.c \
+	src/c/ClearConsolePart.c src/c/PromptToHome.c \
+	src/c/ShellPrintf.c src/c/dropFiles.c src/jni/ShellRead.cpp
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	libsciconsole_la-InterpreterManagement_wrap.lo \
-@GUI_TRUE@	libsciconsole_la-GuiManagement_wrap.lo
+@GUI_TRUE@	libsciconsole_la-GuiManagement_wrap.lo \
+@GUI_TRUE@	libsciconsole_la-DropFiles_wrap.lo
 @GUI_FALSE@am__objects_2 = libsciconsole_la-noconsole.lo
 @GUI_TRUE@am__objects_2 = libsciconsole_la-InterpreterManagement.lo \
 @GUI_TRUE@	libsciconsole_la-GuiManagement.lo \
@@ -297,7 +298,8 @@ top_srcdir = @top_srcdir@
 
 # List of the c files
 @GUI_TRUE@CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
-@GUI_TRUE@src/jni/GuiManagement_wrap.c
+@GUI_TRUE@src/jni/GuiManagement_wrap.c \
+@GUI_TRUE@src/jni/DropFiles_wrap.c
 
 
 # List of the c files
@@ -468,6 +470,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InterpreterManagement.Plo@am__quote@
@@ -512,6 +515,13 @@ libsciconsole_la-GuiManagement_wrap.lo: src/jni/GuiManagement_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/GuiManagement_wrap.c' object='libsciconsole_la-GuiManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
+
+libsciconsole_la-DropFiles_wrap.lo: src/jni/DropFiles_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-DropFiles_wrap.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-DropFiles_wrap.Tpo -c -o libsciconsole_la-DropFiles_wrap.lo `test -f 'src/jni/DropFiles_wrap.c' || echo '$(srcdir)/'`src/jni/DropFiles_wrap.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-DropFiles_wrap.Tpo $(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/DropFiles_wrap.c' object='libsciconsole_la-DropFiles_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-DropFiles_wrap.lo `test -f 'src/jni/DropFiles_wrap.c' || echo '$(srcdir)/'`src/jni/DropFiles_wrap.c
 
 libsciconsole_la-noconsole.lo: src/noconsole/noconsole.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-noconsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-noconsole.Tpo -c -o libsciconsole_la-noconsole.lo `test -f 'src/noconsole/noconsole.c' || echo '$(srcdir)/'`src/noconsole/noconsole.c
