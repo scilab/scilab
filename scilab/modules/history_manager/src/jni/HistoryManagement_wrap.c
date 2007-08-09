@@ -193,7 +193,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  result = (BOOL)appendLineToScilabHistory(arg1);
+  result = appendLineToScilabHistory(arg1);
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -228,7 +228,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
     arg1[i] = 0;
   }
   arg2 = (int)jarg2; 
-  result = (BOOL)appendLinesToScilabHistory(arg1,arg2);
+  result = appendLinesToScilabHistory(arg1,arg2);
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -262,7 +262,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  result = (BOOL)writeScilabHistoryToFile(arg1);
+  result = writeScilabHistoryToFile(arg1);
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -284,7 +284,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  result = (BOOL)loadScilabHistoryFromFile(arg1);
+  result = loadScilabHistoryFromFile(arg1);
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -306,7 +306,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  result = (BOOL)setFilenameScilabHistory(arg1);
+  result = setFilenameScilabHistory(arg1);
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -334,7 +334,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
   
   (void)jenv;
   (void)jcls;
-  result = (BOOL)setDefaultFilenameScilabHistory();
+  result = setDefaultFilenameScilabHistory();
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -401,7 +401,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  result = (BOOL)setSearchedTokenInScilabHistory(arg1);
+  result = setSearchedTokenInScilabHistory(arg1);
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -417,7 +417,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
   
   (void)jenv;
   (void)jcls;
-  result = (BOOL)resetSearchedTokenInScilabHistory();
+  result = resetSearchedTokenInScilabHistory();
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -493,7 +493,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
   
   (void)jenv;
   (void)jcls;
-  result = (BOOL)getSaveConsecutiveDuplicateLinesInScilabHistory();
+  result = getSaveConsecutiveDuplicateLinesInScilabHistory();
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -546,7 +546,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
   (void)jenv;
   (void)jcls;
   arg1 = (int)jarg1; 
-  result = (BOOL)deleteNthLineScilabHistory(arg1);
+  result = deleteNthLineScilabHistory(arg1);
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
@@ -573,7 +573,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
   
   (void)jenv;
   (void)jcls;
-  result = (BOOL)historyIsEnabled();
+  result = historyIsEnabled();
   {
     if (result) jresult = JNI_TRUE   ;
     else  jresult = JNI_FALSE   ;
