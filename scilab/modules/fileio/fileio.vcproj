@@ -435,6 +435,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\URIFileToFilename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\xls.c"
 				>
 			</File>
@@ -598,6 +602,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\Status2Mode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\URIFileToFilename.h"
 				>
 			</File>
 		</Filter>

@@ -9,6 +9,7 @@
 #include "MALLOC.h"
 #include "dynamic_menus.h" /* storecommand */
 #include "../../../fileio/includes/FindFileExtension.h"
+#include "../../../fileio/includes/URIFileToFilename.h"
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 	#define stricmp _stricmp
@@ -47,8 +48,13 @@ BOOL dropFiles(char **files)
 
 	while (files[len]) 
 	{
-		BOOL bCheck = LaunchFilebyExtension(files[len]);
-		if (!bCheck) return bCheck;
+		char *convertfile = URIFileToFilename(files[len]);
+
+		if (convertfile)
+		{
+			BOOL bCheck = LaunchFilebyExtension(convertfile);
+			if (!bCheck) return bCheck;
+		}
 		len++;
 	}
 	return bOK;
