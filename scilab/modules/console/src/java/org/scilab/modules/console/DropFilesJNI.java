@@ -34,5 +34,5 @@ public class DropFilesJNI {
     }
   }
 
-  public final static native long dropFiles(String[] jarg1);
+  public final static native boolean dropFiles(String[] jarg1);
 }

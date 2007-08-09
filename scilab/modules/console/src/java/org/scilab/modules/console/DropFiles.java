@@ -24,11 +24,11 @@ public class DropFiles {
   
 /**
 * drop function on all types for scilab
-* @param[in] list of files
+* @param files list of files
 * @return true or false
 */
-public static SWIGTYPE_p_BOOL dropFiles(String[] files) {
-    return new SWIGTYPE_p_BOOL(DropFilesJNI.dropFiles(files), true);
+public static boolean dropFiles(String[] files) {
+    return DropFilesJNI.dropFiles(files);
   }
 
 }
