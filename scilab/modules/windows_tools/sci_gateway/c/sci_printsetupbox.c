@@ -7,8 +7,6 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-//
-
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_printsetupbox) _PARAMS((char *fname,unsigned long l))
 {
