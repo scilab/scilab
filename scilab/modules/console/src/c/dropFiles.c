@@ -53,6 +53,7 @@ BOOL dropFiles(char **files)
 		if (convertfile)
 		{
 			BOOL bCheck = LaunchFilebyExtension(convertfile);
+			if (convertfile) {FREE(convertfile);convertfile = NULL;}
 			if (!bCheck) return bCheck;
 		}
 		len++;

@@ -19,12 +19,14 @@
 char *URIFileToFilename(char *uri)
 {
 	char *filename = NULL;
+
 	if (uri)
 	{
 		if (isURIFile(uri))
 		{
-			filename = (char*)MALLOC(sizeof(char)*(strlen(filename)+1));
-			if (filename) strcpy(filename,&uri[strlen(URI_BEGIN)+1]);
+			int pos = (int) strlen(URI_BEGIN);
+			filename = (char*)MALLOC(sizeof(char)*(strlen(uri)+1));
+			if (filename) strcpy(filename,&uri[pos]);
 		}
 		else
 		{
@@ -40,7 +42,7 @@ BOOL isURIFile(char *uri)
 	BOOL bOK = FALSE;
 	if (uri)
 	{
-		if (strlen(uri) > strlen(URI_BEGIN)	)
+		if (strlen(uri) > strlen(URI_BEGIN))
 		{
 			if ( strnicmp(uri,URI_BEGIN,strlen(URI_BEGIN)) == 0)
 			{
