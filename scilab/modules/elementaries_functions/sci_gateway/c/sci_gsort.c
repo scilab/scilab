@@ -1,13 +1,16 @@
 /*------------------------------------------------------------------------*/
 /* file: sci_gsort.c                                                      */
 /* Copyright INRIA 2007                                                   */
-/* Authors : Jean-baptiste Silvy, Allan CORNET (2007)                     */
+/* Authors : Jean-baptiste Silvy, Allan CORNET ,Cong Wu (2007)            */
 /*------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_elementaries_functions.h"
 #include "stack-c.h"
 #include "gsort.h"
+#include "string.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "sortTemplate.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 {
@@ -36,13 +39,13 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		switch (Type) 
 		{
 		case sci_strings : 
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&S);
+			GetRhsVar(1,"S",&m1,&n1,&S);
 			break;
 		case sci_matrix :
-			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+			GetRhsVar(1,"d",&m1,&n1,&l1);
 			break;
 		case sci_ints:
-			GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
+			GetRhsVar(1,"I",&m1,&n1,&Im);
 			break;
 		default :
 			Scierror(999,"%s: first argument has a wrong type, expecting scalar or string matrix\r\n",fname);
@@ -53,7 +56,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	if (Rhs >= 2)
 	{
 		char c;
-		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
+		GetRhsVar(2,"c",&m2,&n2,&l2);
 		if ( m2 == 0 ) 
 		{
 			Scierror(999,"%s: second argument is an empty string\r\n",fname);
@@ -70,7 +73,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 
 	if (Rhs == 3)
 	{
-		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
+		GetRhsVar(3,"c",&m3,&n3,&l3);
 		CheckLength(3,m3,1);
 		if ( *cstk(l3) != 'i' && *cstk(l3) != 'd') 
 		{
@@ -87,15 +90,14 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			ind_m1 = m1;
 			ind_n1 = 1;
 			ind_l1 = 0;
-			if (ind_m1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
+			indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
 		}
 		else 
 		{
 			ind_m1 = 1;
 			ind_n1 = n1;
 			ind_l1 = 0;
-			if (ind_n1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
-           
+			indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
 		}
 	}
 	else 
@@ -103,7 +105,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		ind_m1 = m1;
 		ind_n1 = n1;
 		ind_l1 = 0;
-		if ( ind_m1*ind_n1 != 0 )indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1));  /* return a matrix*/
+		indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1+1));  /* return a matrix*/
 	}
 
 	if (Lhs == 2) iflag = 1; 
@@ -113,17 +115,16 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	{
 	case sci_matrix:
 		{
-			int i = 0;
 			double *matrix = stk(l1);
 			double *tmp_matrix = NULL;
-			if ( m1*n1 != 0 ) tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1));
+			int i;
+			tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1+1));
 			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-
-			C2F(gsortd)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-
-			CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&tmp_matrix);
-			LhsVar(1)= Rhs+1 ;
-
+			if (typex[0]=='r' || typex[0]=='c') rowcolsortd(tmp_matrix,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
+			if (typex[0]=='g' ) wholesortd(tmp_matrix,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
+			if (typex[0]=='l') lgsortd(tmp_matrix,indices,m1,n1,typex,iord);  /* When it is going to be lr or lc*/
+			CreateVarFromPtr(Rhs+1,"d",&m1,&n1,&tmp_matrix);
+			LhsVar(1)= Rhs+1 ;                    /*Output */
 			if (Lhs == 2)
 			{
 				CreateVarFromPtr(Rhs+2,"i",&ind_m1,&ind_n1,&indices)
@@ -134,8 +135,37 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			if (tmp_matrix)	{ FREE(tmp_matrix); tmp_matrix = NULL;}
 		}
 		break;
-
-	case sci_ints:
+	case sci_strings:
+		{
+			int i;
+			char **Str =NULL;
+			Str=(char**)MALLOC(sizeof(char*)*(m1*n1));
+			for (i=0;i<m1*n1;i++) 
+			{
+				Str[i]=(char*)MALLOC(sizeof(char)*(strlen(S[i])+1));
+				if (Str[i]) strcpy(Str[i],S[i]);
+			}
+			if (typex[0]=='l') lgsorts(Str,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
+            if (typex[0]=='g' ) wholesorts(Str,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
+			if (typex[0]=='r' || typex[0]=='c') rowcolsorts(Str,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
+			CreateVarFromPtr(Rhs+1,"S", &m1, &n1, Str);    /*Output */
+			LhsVar(1)=Rhs+1;
+			if (Lhs == 2)
+			{
+				CreateVarFromPtr(Rhs+2,"i",&ind_m1,&ind_n1,&indices)
+				LhsVar(2)= Rhs+2 ;
+			}
+			C2F(putlhsvar)();
+			if (indices) {FREE(indices); indices = NULL;}
+			for (i=0;i<m1*n1;i++) 
+			{
+				if (Str[i]) {FREE(Str[i]); Str[i]=NULL;}
+			}
+            if (Str) {FREE(Str); Str=NULL;}
+		}
+		break;
+	
+	case sci_ints:               /* Can not find a example , so can not just remove it */
 		{
 			switch(Im.it)
 			{
@@ -168,26 +198,8 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			}
 			C2F(putlhsvar)();
 			if (indices) {FREE(indices); indices = NULL;}
-
 		}
 		break;
-
-	case sci_strings:
-		{
-			C2F(gsorts)(S,indices,&iflag,&m1,&n1,typex,iord);
-			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, S);
-			LhsVar(1)=Rhs+1;
-
-			if (Lhs == 2)
-			{
-				CreateVarFromPtr(Rhs+2,"i",&ind_m1,&ind_n1,&indices)
-				LhsVar(2)= Rhs+2 ;
-			}
-			C2F(putlhsvar)();
-			if (indices) {FREE(indices); indices = NULL;}
-		}
-		break;
-
 	default:
 		Scierror(999,"invalid type.\r\n");
 		return 0;
