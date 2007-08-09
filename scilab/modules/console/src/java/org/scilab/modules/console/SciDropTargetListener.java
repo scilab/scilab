@@ -39,6 +39,7 @@ public class SciDropTargetListener implements DropTargetListener {
 		 * @param dtde the drop event
 		 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 		 */
+		@Override
 		public void drop(DropTargetDropEvent dtde) { 
 			
 			dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
@@ -70,8 +71,7 @@ public class SciDropTargetListener implements DropTargetListener {
 					
 					// Crappy method to make Scilab parser execute the commands stored by dropFiles
 					((SciInputCommandView) associatedConsole.getConfiguration().getInputCommandView()).setCmdBuffer("");
-				}
-			else if (transferable.isDataFlavorSupported(uriListFlavor)) {
+				} else if (transferable.isDataFlavorSupported(uriListFlavor)) {
 					
 					// --- FILE(S) DROP ---
 
@@ -119,58 +119,6 @@ public class SciDropTargetListener implements DropTargetListener {
 				dtde.rejectDrop();
 				dtde.dropComplete(false);
 			}
-//			if (transferable.isDataFlavorSupported(uriListFlavor)) {
-//				// --- FILE DROP ---
-//				try {
-//					// Read drop data
-//					String data = (String) transferable.getTransferData(uriListFlavor);
-//					
-//					// Create data structure for Scilab
-//					String[] fileNames = null;
-//					int fileNumber = 0;
-//					for (StringTokenizer st = new StringTokenizer(data, "\r\n"); st.hasMoreTokens();) {
-//					      String s = st.nextToken();
-//					      // Have to test length because of last token which length is 1 and has to be ignored
-//					      if (s.length() > 1) {
-//					    	  fileNames[fileNumber++] = s;
-//					      }
-//				    }
-//					// Send file names to Scilab
-//					DropFiles.dropFiles(fileNames);
-//					System.out.println("Send files");
-//
-//				} catch (UnsupportedFlavorException e1) {
-//					e1.printStackTrace();
-//					dtde.rejectDrop();
-//					dtde.dropComplete(false);
-//				} catch (IOException e1) {
-//					e1.printStackTrace();
-//					dtde.rejectDrop();
-//					dtde.dropComplete(false);
-//				}
-//
-//			} else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-//				// --- TEXT DROP ---
-//				String dropContents = null; 
-//				try {
-//					dropContents = (String) transferable.getTransferData(DataFlavor.stringFlavor);
-//				} catch (UnsupportedFlavorException e) {
-//					e.printStackTrace();
-//					dtde.rejectDrop();
-//					dtde.dropComplete(false);
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//					dtde.rejectDrop();
-//					dtde.dropComplete(false);
-//				}
-//				
-//				// Send text to the console and remove prompts in text if there are
-//				associatedConsole.sendCommandsToScilab(dropContents);
-//			}
-//			
-//			// If we made it this far, everything worked.
-//	        dtde.dropComplete(true);
-
 		}
 
 		/**
