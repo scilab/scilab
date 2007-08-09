@@ -29,12 +29,8 @@
 <PRIMITIVE gatewayId="47" primitiveId="4" primitiveName="ddepoke" />
 <PRIMITIVE gatewayId="47" primitiveId="5" primitiveName="ddereq" />
 <PRIMITIVE gatewayId="47" primitiveId="6" primitiveName="ddeisopen" />
-<PRIMITIVE gatewayId="47" primitiveId="7" primitiveName="ClipBoard" />
-<PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="hidetoolbar" />
-<PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="toolbar" />
-<PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="setlanguagemenu" />
-<PRIMITIVE gatewayId="47" primitiveId="11" primitiveName="about" />
-<PRIMITIVE gatewayId="47" primitiveId="12" primitiveName="settextcolor" />
-<PRIMITIVE gatewayId="47" primitiveId="13" primitiveName="settextbackgroundcolor" />
-<PRIMITIVE gatewayId="47" primitiveId="14" primitiveName="filesassociationbox" />
+<PRIMITIVE gatewayId="47" primitiveId="7" primitiveName="setlanguagemenu" />
+<PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="settextcolor" />
+<PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="settextbackgroundcolor" />
+<PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="filesassociationbox" />
 </GATEWAY>

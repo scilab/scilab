@@ -222,7 +222,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_about.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_addmenu_old.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_ClipBoard.c"
 				>
 			</File>
 			<File
@@ -238,6 +246,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_hidetoolbar.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_raise_window.c"
 				>
 			</File>
@@ -247,6 +259,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_setmenu_old.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_toolbar.c"
 				>
 			</File>
 			<File

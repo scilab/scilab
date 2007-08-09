@@ -194,14 +194,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_about.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_clipboard.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_dde.c"
 				>
 			</File>
@@ -214,10 +206,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_toolbar.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\TryToGetDC.c"
 				>
 			</File>
@@ -227,11 +215,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\src\DDE.h"
+				RelativePath=".\src\c\DDE.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\DDE.h"
+				RelativePath=".\src\DDE.h"
 				>
 			</File>
 			<File

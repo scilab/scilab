@@ -85,7 +85,11 @@ sci_gateway/c/sci_addmenu_old.c \
 sci_gateway/c/sci_setmenu_old.c \
 sci_gateway/c/sci_getlookandfeel.c \
 sci_gateway/c/sci_getinstalledlookandfeels.c \
-sci_gateway/c/sci_setlookandfeel.c
+sci_gateway/c/sci_setlookandfeel.c \
+sci_gateway/c/sci_about.c \
+sci_gateway/c/sci_ClipBoard.c \
+sci_gateway/c/sci_hidetoolbar.c \
+sci_gateway/c/sci_toolbar.c 
 
 GATEWAY_FORTRAN_SOURCES =  \
 sci_gateway/fortran/sci_choices.f \

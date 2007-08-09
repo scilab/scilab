@@ -24,6 +24,10 @@ int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len )) ;
 int C2F(sci_getlookandfeel) _PARAMS(( char * fname, unsigned long fname_len )) ;
 int C2F(sci_getinstalledlookandfeels) _PARAMS(( char * fname, unsigned long fname_len )) ;
 int C2F(sci_setlookandfeel) _PARAMS(( char * fname, unsigned long fname_len )) ;
+int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l));
+int C2F(sci_hidetoolbar) _PARAMS((char *fname,unsigned long l));
+int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l));
+int C2F(sci_about) _PARAMS((char *fname,unsigned long l));
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*-----------------------------------------------------------------------------------*/
