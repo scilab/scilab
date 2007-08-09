@@ -7,8 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006)
-  $</DATE>
+  <DATE>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006)$</DATE>
 
   <SHORT_DESCRIPTION name="removelinehistory">remove the Nth line in history.</SHORT_DESCRIPTION>
 
