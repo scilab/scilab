@@ -46,7 +46,6 @@
 <module name="string" activate="1"/>
 <module name="symbolic" activate="1"/>
 <module name="time" activate="1"/>
-<module name="wintools" activate="1"/>
 <module name="windows_tools" activate="1"/>
 <module name="statistics" activate="1"/>
 <!-- comments -->

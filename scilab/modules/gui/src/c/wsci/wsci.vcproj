@@ -311,6 +311,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\printselection.c"
+				>
+			</File>
+			<File
 				RelativePath=".\registry.c"
 				>
 			</File>
@@ -348,6 +352,10 @@
 			</File>
 			<File
 				RelativePath=".\Transparency.c"
+				>
+			</File>
+			<File
+				RelativePath=".\TryToGetDC.c"
 				>
 			</File>
 			<File
@@ -686,6 +694,10 @@
 			</File>
 			<File
 				RelativePath=".\printf.h"
+				>
+			</File>
+			<File
+				RelativePath=".\printselection.h"
 				>
 			</File>
 			<File

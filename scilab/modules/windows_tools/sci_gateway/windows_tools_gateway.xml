@@ -23,12 +23,13 @@
 -->
 <!-- =================== -->
 
-<PRIMITIVE gatewayId="56" primitiveId="1" primitiveName="winopen" />
-<PRIMITIVE gatewayId="56" primitiveId="2" primitiveName="winqueryreg" />
-<PRIMITIVE gatewayId="56" primitiveId="3" primitiveName="findfileassociation" />
-<PRIMITIVE gatewayId="56" primitiveId="4" primitiveName="dos" />
-<PRIMITIVE gatewayId="56" primitiveId="5" primitiveName="mcisendstring" />
-<PRIMITIVE gatewayId="56" primitiveId="6" primitiveName="oemtochar" />
-<PRIMITIVE gatewayId="56" primitiveId="7" primitiveName="chartooem" />
-<PRIMITIVE gatewayId="56" primitiveId="8" primitiveName="consolebox" />
+<PRIMITIVE gatewayId="47" primitiveId="1" primitiveName="winopen" />
+<PRIMITIVE gatewayId="47" primitiveId="2" primitiveName="winqueryreg" />
+<PRIMITIVE gatewayId="47" primitiveId="3" primitiveName="findfileassociation" />
+<PRIMITIVE gatewayId="47" primitiveId="4" primitiveName="dos" />
+<PRIMITIVE gatewayId="47" primitiveId="5" primitiveName="mcisendstring" />
+<PRIMITIVE gatewayId="47" primitiveId="6" primitiveName="oemtochar" />
+<PRIMITIVE gatewayId="47" primitiveId="7" primitiveName="chartooem" />
+<PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="consolebox" />
+<PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="toprint" />
 </GATEWAY>
