@@ -8,6 +8,13 @@
 #define _GSORT_H_
 
 #include "machine.h"
+#define INCREASE_COMMAND 'i'
+#define DECREASE_COMMAND 'd'
+#define ROW_SORT 'r'
+#define COLUMN_SORT 'c'
+#define LIST_SORT 'l'
+#define GLOBAL_SORT 'g'
+
 
 void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
 int C2F(gsortd)(double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
