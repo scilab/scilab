@@ -41,7 +41,6 @@ console \
 renderer \
 gui \
 graphics \
-wintools \
 windows_tools \
 functions \
 incremental_link \
@@ -113,7 +112,6 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/sound/libscisound.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/time/libscitime.la \
-	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \

@@ -1118,7 +1118,6 @@ modules/gui/Makefile
 modules/pvm/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
-modules/wintools/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
 modules/fftw/Makefile

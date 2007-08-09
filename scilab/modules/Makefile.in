@@ -113,7 +113,6 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/sound/libscisound.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/time/libscitime.la \
-	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
@@ -162,11 +161,10 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell history_manager console \
-	renderer gui graphics wintools windows_tools functions \
-	incremental_link others overloading maple2scilab m2sci texmacs \
-	scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos fftw pvm jvm \
-	completion . javasci
+	renderer gui graphics windows_tools functions incremental_link \
+	others overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools scicos fftw pvm jvm completion . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -336,11 +334,10 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell history_manager console \
-	renderer gui graphics wintools windows_tools functions \
-	incremental_link others overloading maple2scilab m2sci texmacs \
-	scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos fftw pvm jvm \
-	completion . $(am__append_1)
+	renderer gui graphics windows_tools functions incremental_link \
+	others overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools scicos fftw pvm jvm completion . $(am__append_1)
 modulename = 
 
 #### Basic files ####
@@ -380,7 +377,6 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/sound/libscisound.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/time/libscitime.la \
-	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
