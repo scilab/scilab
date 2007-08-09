@@ -26,7 +26,9 @@ public class Scilab {
 	
 	  static {
 		  System.loadLibrary("sciconsole");
+                  System.loadLibrary("scirenderer");
 		  }
+
 	  /**
 	 * Constructor Scilab Class.
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
