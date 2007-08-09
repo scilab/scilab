@@ -4,8 +4,6 @@
 /* To run this file execute the command below from current directory */
 /*  swig -java -package org.scilab.modules.history_manager -outdir ../java/org/scilab/modules/history_manager/ HistoryManagement.i */
 
-%include <windows.i>
-
 %module HistoryManagement
 %{
 #include "machine.h"
@@ -13,86 +11,7 @@
 #include "../../includes/HistoryManager.h"
 %}
 
-/* String[] <--> char ** support */
-
-%typemap(in) char ** (jint size) {
-    int i = 0;
-    size = (*jenv)->GetArrayLength(jenv, $input);
-    $1 = (char **) MALLOC((size+1)*sizeof(char *));
-    /* make a copy of each string */
-    for (i = 0; i<size; i++) {
-        jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, $input, i);
-        const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-        $1[i] = MALLOC(strlen((c_string)+1)*sizeof(const char *));
-        strcpy($1[i], c_string);
-        (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
-        (*jenv)->DeleteLocalRef(jenv, j_string);
-    }
-    $1[i] = 0;
-}
-
-/* This cleans up the memory we malloc'd before the function call */
-%typemap(freearg) char ** {
-    int i;
-    for (i=0; i<size$argnum-1; i++)
-      FREE($1[i]);
-    FREE($1);
-}
-
-/* This allows a C function to return a char ** as a Java String array */
-%typemap(out) char ** {
-    int i;
-    int len=0;
-    jstring temp_string;
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-
-    while ($1[len]) len++;    
-    jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-    /* exception checking omitted */
-
-    for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-      (*jenv)->DeleteLocalRef(jenv, temp_string);
-    }
-}
-
-/* These 3 typemaps tell SWIG what JNI and Java types to use */
-%typemap(jni) char ** "jobjectArray"
-%typemap(jtype) char ** "String[]"
-%typemap(jstype) char ** "String[]"
-
-
-/* These 2 typemaps handle the conversion of the jtype to jstype typemap type
-   and visa versa */
-%typemap(javain) char ** "$javainput"
-%typemap(javaout) char ** {
-    return $jnicall;
-  }
-
-/* String[] <--> char ** support */
-
-
-/* boolean <--> BOOL support */
-
-%typemap(in) BOOL {
-	if ($input == JNI_TRUE) $1 = TRUE;
-	else $1 = FALSE;
-}
-
-%typemap(out) BOOL {
- if ($1) $result = JNI_TRUE   ;
- else  $result = JNI_FALSE   ;
-}
-
-/* This typemap tell SWIG what JNI and Java types to use */
-%typemap(jtype) BOOL "boolean"
-%typemap(jstype) BOOL "boolean"
-%typemap(jni) BOOL "jboolean"
-
-/* boolean <--> BOOL support */
-
-
+%include "../../../jvm/src/jni/scilab_typemaps.i"
 
 /* JavaDoc for HistoryManagementJNI class */
 %pragma(java) jniclassclassmodifiers=%{
@@ -151,7 +70,7 @@ public class";
 %javamethodmodifiers appendLineToScilabHistory(char *line) "
 	/**
 	* add a line to History manager
-	* @param a line to add
+	* @param line a line to add
 	* line isn't added if it is the same as previous (false)
 	* @return true or false
 	*/
@@ -161,8 +80,8 @@ public";
 %javamethodmodifiers appendLinesToScilabHistory(char **lines,int numberoflines) "
 	/**
 	* append lines to History manager
-	* @param array of string
-	* @param size of the array of string
+	* @param lines array of string
+	* @param numberoflines size of the array of string
 	* @return true or false
 	*/
 public";
@@ -178,7 +97,7 @@ public";
 %javamethodmodifiers writeScilabHistoryToFile(char *filename) "
 	/**
 	* save history in a file
-	* @param a filename if NULL saves in default filename
+	* @param filename if NULL saves in default filename
 	* default filename --> SCIHOME/history.scilab
 	* @return true or false
 	*/
@@ -188,7 +107,7 @@ public";
 %javamethodmodifiers loadScilabHistoryFromFile(char *filename) "
 	/**
 	* load history from a file
-	* @param a filename if NULL load from default filename
+	* @param filename if NULL load from default filename
 	* default filename --> SCIHOME/history.scilab
 	* @return true or false
 	*/
@@ -296,7 +215,7 @@ public";
 public";
 	int getNumberOfLinesInScilabHistory(void);
 
-%javamethodmodifiers setSaveConsecutiveDuplicateLinesInScilabHistory(boolean doit) "
+%javamethodmodifiers setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit) "
 	/**
 	* set consecutive duplicate lines are added
 	* @param doit (true or false)
@@ -315,7 +234,7 @@ public";
 %javamethodmodifiers setAfterHowManyLinesScilabHistoryIsSaved(int num) "
 	/**
 	* Set after how many lines history is saved
-	* @param number between 0 and Max
+	* @param num number between 0 and Max
 	* default value is 0 (disabled)
 	*/
 public";
@@ -333,7 +252,7 @@ public";
 %javamethodmodifiers getNthLineInScilabHistory(int N) "
 	/**
 	* Get the Nth Line in history
-	* @param N
+	* @param N the number of the line to get
 	* @return the Nth Line
 	*/
 public";
@@ -342,7 +261,7 @@ public";
 %javamethodmodifiers deleteNthLineScilabHistory(int N) "
 	/**
 	* delete the Nth Line in history
-	* @param N
+	* @param N the number of the line to delete
 	* @return true or false
 	*/
 public";
