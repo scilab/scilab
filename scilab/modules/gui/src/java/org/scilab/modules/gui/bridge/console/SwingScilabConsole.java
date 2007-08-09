@@ -57,6 +57,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		this.getConfiguration().getPromptView().setVisible(true);
 		
 		// Modify the size of the input command view (the prompt was not visible when last size modification done
+		// TODO why is this part commented out ??
 //		if (this.getInputCommandViewSizeForced()) {
 //
 //			JPanel promptView = ((JPanel) this.getConfiguration().getPromptView());
@@ -85,6 +86,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 //		}
 
 		// Remove last line returned given by Scilab (carriage return)
+		// TODO only of not in a block
 		try {
 			StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();			
 			int lastEOL = outputStyledDoc.getText(0, outputStyledDoc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
