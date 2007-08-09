@@ -15,6 +15,9 @@
 #include "../../../gui/includes/TerminateGui.h"
 #include "../../../localization/includes/TerminateLocalization.h"
 #include "../../../jvm/includes/TerminateJVM.h"
+#ifdef _MSC_VER
+#include "../../../windows_tools/includes/TerminateWindows_tools.h"
+#endif
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 int ExitScilab(void)
@@ -34,6 +37,10 @@ int ExitScilab(void)
 	}
 
 	TerminateCorePart2();
+
+	#ifdef _MSC_VER
+	TerminateWindows_tools();
+	#endif
 
 	return 0;
 }

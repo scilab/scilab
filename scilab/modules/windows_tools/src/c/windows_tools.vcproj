@@ -203,6 +203,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitializeWindows_tools.c"
+				>
+			</File>
+			<File
 				RelativePath=".\registry.c"
 				>
 			</File>
@@ -251,6 +255,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\TerminateWindows_tools.c"
+				>
+			</File>
+			<File
 				RelativePath=".\TextToPrint.c"
 				>
 			</File>
@@ -276,6 +284,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\InitializeWindows_tools.h"
+				>
+			</File>
+			<File
 				RelativePath=".\registry.h"
 				>
 			</File>
@@ -285,6 +297,10 @@
 			</File>
 			<File
 				RelativePath=".\spawncommand.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\TerminateWindows_tools.h"
 				>
 			</File>
 			<File
