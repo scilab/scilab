@@ -169,10 +169,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\org\scilab\modules\console\SWIGTYPE_p_BOOL.java"
-				>
-			</File>
-			<File
 				RelativePath=".\org\scilab\modules\console\ValidationAction.java"
 				>
 			</File>
