@@ -623,6 +623,56 @@ AC_DEFUN([AC_JAVA_ANT], [
 ])
 
 #------------------------------------------------------------------------
+# AC_JAVA_CHECK_PACKAGE
+#
+# Check if the package (generally a jar file) is available and the class 
+# usable
+#
+# Arguments:
+#	1. name of the package
+#   2. name of the class to test
+#   3. used by
+# VARIABLES SET:
+#	
+#
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
+	AC_MSG_CHECKING($1)
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/$1.jar" "$jardir/lib$1.jar" "$jardir/lib$1-java.jar" "$jardir/$1*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jar_resolved=`ls $jar 2>/dev/null`
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+          AC_JAVA_TRY_COMPILE([import $2;], , [
+            AC_MSG_RESULT([$jar_resolved])
+            found_jar=yes
+            break
+          ], [
+            ac_java_classpath=$saved_ac_java_classpath
+			
+          ])
+        fi
+      done
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      AC_MSG_RESULT([no])
+	AC_MSG_ERROR([Could not find Java package/jar $1 used by $3 (looking for package $2)])
+    fi
+])
+
+#------------------------------------------------------------------------
 # AC_JAVA_TOOLS_CHECK(VARIABLE, TOOL, PATH, NOERR)
 #
 #	Helper function that will look for the given tool on the
@@ -654,3 +704,6 @@ AC_DEFUN([AC_JAVA_TOOLS_CHECK], [
     ])
 ])
 
+
+
+    	
