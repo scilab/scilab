@@ -30,9 +30,17 @@ path = getshortpathname(path);
 
 clear  pathdemos;
 
+else
+
+	printf('\n');
+  warning('You choose to use scilab with fftw module.');
+  printf('This module requires : '+librarynamefftw+'\n');
+  printf('Scilab will use standard fft by default.\n');
+  printf('See help for more informations.\n');
+  
 end // if ( loadfftwlibrary(librarynamefftw) ) then
 
 clear librarynamefftw
 
-end
+
 // ====================================================================
