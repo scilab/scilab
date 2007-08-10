@@ -7,15 +7,12 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer., 30 août 2006)
-  $</DATE>
+  <DATE>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer., 30 août 2006)$</DATE>
 
-  <SHORT_DESCRIPTION name="addhistory">add lines to current
-  history.</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="addhistory">add lines to current history.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>addhistory(string)</CALLING_SEQUENCE_ITEM>
-
     <CALLING_SEQUENCE_ITEM>addhistory(string_matrix)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
