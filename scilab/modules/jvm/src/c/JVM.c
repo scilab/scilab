@@ -181,23 +181,11 @@ BOOL finishJVM(void)
 {
 	BOOL bOK=FALSE;
 
-	if (!HadAlreadyJavaVm)
+	if (FreeDynLibJVM())
 	{
-		if ( (*jvm_SCILAB)->DestroyJavaVM(jvm_SCILAB) ) bOK=FALSE;
-		else 
-		{
-			jvm_SCILAB = NULL;
-			bOK=TRUE;
-		}
-	}
-	else 
-	{
-		/* We don't destroy JavaVM because it used by another*/
 		jvm_SCILAB = NULL;
 		bOK=TRUE;
 	}
-
-	FreeDynLibJVM();
 
 	if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
 	if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}

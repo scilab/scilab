@@ -51,8 +51,12 @@ BOOL finishMainScilabObject(void)
 	JNIEnv * currentENV = getScilabJNIEnv();
 	JavaVM * currentJVM = getScilabJavaVM();
 
-	(*currentJVM)->AttachCurrentThread( currentJVM, (void **) &currentENV , NULL ) ;
-	(*currentENV)->DeleteGlobalRef(currentENV, ScilabObject);
+	jint result = (*currentJVM)->AttachCurrentThread( currentJVM, (void **) &currentENV , NULL ) ;
+	if (result == 0) 
+	{
+		(*currentENV)->DeleteGlobalRef(currentENV, ScilabObject);
+		bOK = TRUE;
+	}
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
