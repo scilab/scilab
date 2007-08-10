@@ -289,6 +289,10 @@
 				RelativePath="..\..\etc\modules.xml.vc"
 				>
 			</File>
+			<File
+				RelativePath="..\..\modules\helptools\macros\xmltohtml.sci.vc"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
