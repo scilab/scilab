@@ -60,7 +60,7 @@ void C2F(freemsgtable)()
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(lasterror)(char *fname, unsigned long fname_len)
 {
-  int k, one=1, l1, zero=0, m1, n1, clear, four=4,lr;
+  int k, one=1, l1, zero=0, m1, n1, clear, lr;
   int sz[MAX_MSG_LINES];
 
   Rhs = Max(0, Rhs);
@@ -83,7 +83,7 @@ int C2F(lasterror)(char *fname, unsigned long fname_len)
     }
     if (Lhs >= 4) {
       l1=0;
-      C2F(createvar)(&four,"c", &one,&l1 , &lr, 1L);
+      CreateVar(4,STRING_DATATYPE, &one,&l1 , &lr);
       strcpy(cstk(lr),"");
       LhsVar(4)=4;
     }
@@ -110,7 +110,7 @@ int C2F(lasterror)(char *fname, unsigned long fname_len)
     }
     if (Lhs >= 4) {
       l1=strlen(funname);
-      CreateVar(four,STRING_DATATYPE, &one,&l1 , &lr);
+      CreateVar(4,STRING_DATATYPE, &one,&l1 , &lr);
       strcpy(cstk(lr),funname);
       LhsVar(4)=4;
     }
