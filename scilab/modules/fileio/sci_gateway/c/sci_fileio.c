@@ -163,7 +163,7 @@ int intsmput(char *fname,unsigned long fname_len)
 	}
 	else 
 	{
-		type = "l";
+		type = LIST_DATATYPE;
 	}
 	if ( Rhs >= 3) 
 	{
@@ -205,7 +205,7 @@ int intsmget(char *fname,unsigned long fname_len)
 	}
 	else 
 	{
-		type = "l";
+		type = LIST_DATATYPE;
 	}
 	if ( Rhs >= 3) 
 	{
