@@ -7,19 +7,48 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "wresource.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// French (France) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
 #ifdef _WIN32
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #pragma code_page(1252)
 #endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_TEST           ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\TST.ICO"
+IDI_ICON_BIN            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\BIN.ICO"
+IDI_ICON_COS            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\COS.ICO"
+IDI_ICON_COSF           ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\COSF.ICO"
+IDI_ICON_DEM            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\DEM.ICO"
+IDI_ICON_GRAPH          ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\Graph.ICO"
+IDI_ICON_SAV            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\SAV.ICO"
+IDI_ICON_SCE            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\SCE.ICO"
+IDI_ICON_SCI            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\SCI.ICO"
+IDI_ICON_SCILAB         ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\scilab.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -34,7 +63,10 @@ END
 
 2 TEXTINCLUDE 
 BEGIN
-    "#include ""afxres.h""\r\n"
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""wresource.h""\r\n"
     "\0"
 END
 
@@ -46,36 +78,19 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-#endif    // English (U.S.) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////////////
-// French (France) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
-LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
-#pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Icon
+// DESIGNINFO
 //
 
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDI_ICON_TEST           ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\TST.ICO"
-IDI_ICON_BIN            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\BIN.ICO"
-IDI_ICON_COS            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\COS.ICO"
-IDI_ICON_COSF           ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\COSF.ICO"
-IDI_ICON_DEM            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\DEM.ICO"
-IDI_ICON_GRAPH          ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\Graph.ICO"
-IDI_ICON_SAV            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\SAV.ICO"
-IDI_ICON_SCE            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\SCE.ICO"
-IDI_ICON_SCI            ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\SCI.ICO"
-IDI_ICON_SCILAB         ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\scilab.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -100,7 +115,7 @@ BEGIN
         BLOCK "040c04b0"
         BEGIN
             VALUE "CompanyName", "INRIA"
-            VALUE "FileDescription", "WScilex Application"
+            VALUE "FileDescription", "Scilab 5.0 (GUI)"
             VALUE "FileVersion", "5, 0, 0, 0"
             VALUE "InternalName", "WScilex"
             VALUE "LegalCopyright", "Copyright (C) 2007"
