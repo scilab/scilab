@@ -454,7 +454,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
   CheckRhs(minrhs,maxrhs);
   if ( GetType(2) == 1 ) /** m,n,'string' */
     {
-      GetRhsVar(1, "i", &m1, &n1, &l1)
+		GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
 	if ( m1*n1 != 1) 
 	  { Scierror(999,"First argument must be scalar\r\n");return 0;}
       ResL= *istk(l1);
