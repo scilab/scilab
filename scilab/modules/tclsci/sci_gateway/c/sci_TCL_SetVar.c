@@ -32,7 +32,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 		/* three arguments given - get a pointer on the slave interpreter */
 		if (GetType(3) == sci_strings)
 		{
-			GetRhsVar(3,"c",&m2,&n2,&l2)
+			GetRhsVar(3,STRING_DATATYPE,&m2,&n2,&l2);
 			TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 			if (TCLinterpreter==NULL)
 			{

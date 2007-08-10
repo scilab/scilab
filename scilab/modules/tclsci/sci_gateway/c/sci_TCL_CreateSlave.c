@@ -25,7 +25,7 @@ int C2F(sci_TCL_CreateSlave) _PARAMS((char *fname,unsigned long l))
 			return 0;
 		}
 
-		GetRhsVar(1,"c",&m2,&n2,&l2)
+		GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
 		TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 		if (TCLinterpreter==NULL)
 		{

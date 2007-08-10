@@ -27,7 +27,7 @@ int C2F(sci_TCL_DeleteInterp) _PARAMS((char *fname,unsigned long l))
 			static int l2,n2,m2;
 			Tcl_Interp *TCLinterpreter=NULL;
 
-			GetRhsVar(1,"c",&m2,&n2,&l2)
+			GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
 			TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 			if (TCLinterpreter==NULL)
 			{
