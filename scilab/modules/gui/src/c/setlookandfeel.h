@@ -17,8 +17,13 @@
 * @param a string
 * @return BOOL
 */
-
 BOOL setlookandfeel(char *lookandfeekstr);
+
+/*
+* set system default look and feel
+* @return BOOL
+*/
+BOOL setsystemlookandfeel(void);
 
 #endif /* __SETLOOKANDFEEL_H__ */
 /*-----------------------------------------------------------------------------------*/

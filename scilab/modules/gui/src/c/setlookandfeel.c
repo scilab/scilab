@@ -27,3 +27,21 @@ BOOL setlookandfeel(char *lookandfeekstr)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
+BOOL setsystemlookandfeel(void)
+{
+	BOOL bOK=FALSE;
+	JNIEnv *env = getScilabJNIEnv();
+
+	if (env)
+	{
+		jclass classLookAndFeel = (*env)->FindClass(env, "org/scilab/modules/gui/utils/LookAndFeel");
+		if (classLookAndFeel)
+		{
+			jmethodID methodgetInstalledLookAndFeels = (*env)->GetStaticMethodID(env,classLookAndFeel, "setSystemLookAndFeel", "()Z"); 
+			jboolean jbool = (*env)->CallStaticBooleanMethod(env,classLookAndFeel,methodgetInstalledLookAndFeels);
+			bOK = (BOOL) jbool;
+		}
+	}
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 

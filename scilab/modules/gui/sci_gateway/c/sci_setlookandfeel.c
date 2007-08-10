@@ -12,12 +12,31 @@
 int C2F(sci_setlookandfeel) _PARAMS((char *fname,unsigned long fname_len))
 {
 	Rhs = Max(Rhs,0);
-	CheckRhs(1,1);
+	CheckRhs(0,1);
 	CheckLhs(0,1);
 
-	if ( GetType(1) == sci_strings )
+
+	if (Rhs == 0)
 	{
-		static int m1,n1=0,l1=0;
+		BOOL bOK = FALSE;
+		int n1 = 1;
+		int *paramoutINT=(int*)MALLOC(sizeof(int));
+
+		bOK = setsystemlookandfeel();
+		*paramoutINT=(int)bOK;
+
+		n1=1;
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
+		LhsVar(1)=Rhs+1;
+
+		C2F(putlhsvar)();
+
+		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
+
+	}
+	else if ( GetType(1) == sci_strings )
+	{
+		int m1,n1=0,l1=0;
 		BOOL bOK = FALSE;
 		char *looknfeel = NULL;
 		int *paramoutINT=(int*)MALLOC(sizeof(int));

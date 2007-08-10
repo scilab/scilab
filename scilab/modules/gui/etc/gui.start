@@ -2,6 +2,9 @@
 // gui module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
+//set system default look and feel
+setlookandfeel();
+// ====================================================================
 //Load  functions librarie
 load('SCI/modules/gui/macros/lib');
 // ====================================================================

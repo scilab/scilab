@@ -26,7 +26,7 @@ public class Scilab {
 	
 	  static {
 		  System.loadLibrary("sciconsole");
-                  System.loadLibrary("scirenderer");
+          System.loadLibrary("scirenderer");
 		  }
 
 	  /**
@@ -35,11 +35,7 @@ public class Scilab {
 	 */
 	public Scilab(int mode) {
 		this.mode = mode;
-		/*
-		 *	 by default we used O.S Look and Feel
-		 */		
-		LookAndFeel.setSystemLookAndFeel();
-		
+	
 		if (mode == 2) {
 			Window mainView = ScilabWindow.createWindow();
 			mainView.draw();
