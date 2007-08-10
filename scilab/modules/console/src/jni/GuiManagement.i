@@ -22,6 +22,22 @@ public class%}
   protected GuiManagementJNI() {
 	throw new UnsupportedOperationException();
   }";
+  
+/* static load of library */
+%pragma(java) jniclasscode=%{
+  static {
+    try {
+        System.loadLibrary("sciconsole");
+    } catch (SecurityException e) {
+		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
+		e.printStackTrace(System.err);
+	} catch (UnsatisfiedLinkError e)	{
+		System.err.println("The native library sciconsole does not exist or cannot be found.");
+		e.printStackTrace(System.err);
+    }
+  }
+%}
+
 
 /* JavaDoc for GuiManagement class */
 %pragma(java) moduleclassmodifiers="

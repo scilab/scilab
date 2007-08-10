@@ -21,15 +21,10 @@ public class Scilab {
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
-	private Console sciConsole;
+	private Console sciConsole = null;
 	private int mode;
 	
-	  static {
-		  System.loadLibrary("sciconsole");
-          System.loadLibrary("scirenderer");
-		  }
-
-	  /**
+	 /**
 	 * Constructor Scilab Class.
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
