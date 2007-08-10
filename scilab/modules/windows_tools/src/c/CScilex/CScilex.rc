@@ -7,19 +7,39 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "wresource.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// French (France) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
 #ifdef _WIN32
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #pragma code_page(1252)
 #endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_SCILAB         ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\scilab.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -34,7 +54,10 @@ END
 
 2 TEXTINCLUDE 
 BEGIN
-    "#include ""afxres.h""\r\n"
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""wresource.h""\r\n"
     "\0"
 END
 
@@ -46,27 +69,19 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-#endif    // English (U.S.) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////////////
-// French (France) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
-LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
-#pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Icon
+// DESIGNINFO
 //
 
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDI_ICON_SCILAB         ICON                    "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\scilab.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -91,11 +106,11 @@ BEGIN
         BLOCK "040c04b0"
         BEGIN
             VALUE "CompanyName", "INRIA"
-            VALUE "FileDescription", "CScilex Application (Console)"
+            VALUE "FileDescription", "Scilab 5.0 (NO GUI)"
             VALUE "FileVersion", "5, 0, 0, 0"
-            VALUE "InternalName", "CScilex"
+            VALUE "InternalName", "WScilex"
             VALUE "LegalCopyright", "Copyright (C) 2007"
-            VALUE "OriginalFilename", "CScilex.exe"
+            VALUE "OriginalFilename", "WScilex.exe"
             VALUE "ProductName", "Scilab 5.x Application"
             VALUE "ProductVersion", "5, 0, 0, 0"
         END
