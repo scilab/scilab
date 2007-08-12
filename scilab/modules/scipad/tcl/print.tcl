@@ -23,7 +23,8 @@ proc printsetup_unix {} {
     catch {destroy $print}
     toplevel $print
     wm title $print [mc "Print Setup"]
-    setwingeom $print
+    wm withdraw $print
+
     frame $print.top 
     frame $print.bottom
     label $print.top.label -text [mc "Print Command: "] -font $menuFont
@@ -47,6 +48,10 @@ proc printsetup_unix {} {
             -fill x -fill y -padx 10
     bind $print <Return> "addtoprint $print"
     bind $print <Escape> "destroy $print"
+
+    update idletasks
+    setwingeom $print
+    wm deiconify $print
 
     proc addtoprint {prnt} {
         global printCommand

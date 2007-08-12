@@ -10,6 +10,7 @@ set winTitle "SciPad"
 #                e. Tk bug 1169429 (relative to cursor blinking) is fixed, workaround hack removed
 #                f. -topmost option of toplevels used also on Linux
 #                g. string reverse (TIP #272) is used during undo/redo, improving performance drastically
+#                h. the replace cursor is a nice looking block cursor
 if { [package vcompare $tcl_version 8.5] >= 0 } {
     set Tcl85 1
 } else {

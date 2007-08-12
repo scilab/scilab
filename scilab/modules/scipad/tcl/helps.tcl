@@ -75,8 +75,7 @@ proc textbox {textfile {wtitle ""}} {
     catch {destroy $tbox}
     toplevel $tbox
     wm title $tbox $wtitle
-    setwingeom $tbox
-    wm resizable $tbox 1 1
+    wm withdraw $tbox
     frame $tbox.f1
     text $tbox.text -font $textFont
     set newnamefile [open $textfile r]
@@ -121,4 +120,8 @@ if {0} {
     bind $tbox.text <Shift-Button-3> {break}
     bind $tbox.text <Control-Button-3> {break}
     bind $tbox.text <ButtonRelease-2> {break}
+    update idletasks
+    setwingeom $tbox
+    wm resizable $tbox 1 1
+    wm deiconify $tbox
 }

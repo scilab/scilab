@@ -96,11 +96,15 @@ proc TextStyles { t } {
 }
 
 proc setwingeom {wintoset} {
-# proc to set child window position
+# set $wintoset toplevel position such that the window is centered both
+# horizontally and vertically in the screen
+# the window is also set to be of fixed size (i.e. non resizable)
+# note: this proc must obviously be called after the content of $wintoset
+# has been created
     global pad
     wm resizable $wintoset 0 0
-    set myx [expr {([winfo screenwidth $pad]/2) - \
-                ([winfo reqwidth $wintoset])}]
+    set myx [expr {([winfo screenwidth  $pad]/2) - \
+                ([winfo reqwidth  $wintoset]/2)}]
     set myy [expr {([winfo screenheight $pad]/2) - \
                 ([winfo reqheight $wintoset]/2)}]
     wm geometry $wintoset +$myx+$myy

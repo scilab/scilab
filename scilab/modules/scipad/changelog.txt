@@ -3117,3 +3117,16 @@ Francois VOGEL, 27/07/07
    a duplicate of #1599877) is fixed in both 8.4.15 and 8.5a6 versions of
    Tcl/Tk, and Scilab is now delivered with Tcl/Tk 8.4.15
  * version --> 6.122
+
+Francois VOGEL, 12/08/07
+ * Fixed the broken 8.4 fallback emulating a basic -stretch always option
+   (proc spaceallsasheskeeprelsizes) - Was broken since 6.78
+ * When using the Break command in the debugger, Scilab could stop on a nocode
+   line (a line containing only a comment for instance). If at this point
+   a variable was modified in the watch window by the user, it was not taken
+   into account by Scilab when resuming execution but its current value in
+   Scilab was restored. Now the Break command skips nocode lines like the
+   other debugger commands
+ * Fixed error in proc setwingeom - note that this proc must be called after
+   the content of its toplevel argument has been created
+ * version --> 6.123

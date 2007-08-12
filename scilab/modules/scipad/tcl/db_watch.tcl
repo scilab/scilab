@@ -12,38 +12,23 @@ proc showwatch_bp {} {
     global watchhpane1mins watchhpane2mins watchhsashcoord
     global led_debugstate led_scilabbusy
     global menuFont textFont
-    global tcl_platform
     global bptfunsindic totbptsindic
     global dockwatch
 
     set watch $pad.watch
     catch {destroy $watch}
+
     if {$dockwatch} {
         frame $watch
     } else {
         toplevel $watch
         wm title $watch [mc "Watch"]
-        if { $firsttimeinshowwatch == "true" } {
-            setwingeom $watch
-            wm resizable $watch 1 1
-        } else {
-            if {$showwatchvariablesarea == "false" && $showcallstackarea == "false"} {
-                # the two statements below seem to set the geometry to what it is already,
-                # at least for the position of the window - indeed it prevents the window
-                # from jumping in the screen when hiding areas in the watch window
-                # note: size is managed by the packer, nothing more to do
-                set watchgeompos [string trimleft $watchgeom 1234567890x=]
-                wm geometry $watch "$watchgeompos"
-                wm resizable $watch 0 0
-            } else {
-                wm resizable $watch 1 1
-                wm minsize $watch [lindex $watchmins 0] [lindex $watchmins 1]
-                wm geometry $watch $watchgeom
-            }
-        }
+        # hide the window until all elements are drawn, this avoids a flash
+        # when positioning the window on screen
+        wm withdraw $watch
     }
 
-    frame $watch.f
+    frame $watch.f ;# -bg black
 
     frame $watch.f.f1 ;# -bg pink
 
@@ -357,7 +342,7 @@ proc showwatch_bp {} {
         pack $watch.f.vpw -fill both -expand yes -side top
     }
 
-    pack $watch.f -fill both -expand 1
+    pack $watch.f -fill both -expand yes
 
     bind $led_scilabbusy <Enter> {update_bubble enter $led_scilabbusy [winfo pointerxy $watch] \
             [mc "Scilab busy indicator"] }
@@ -414,11 +399,11 @@ proc showwatch_bp {} {
 
     if {!$dockwatch} {
         bind $watch <Configure> { \
-            if {$showwatchvariablesarea == "true" && $firsttimeinshowwatch == "false"} { \
+            if {$showwatchvariablesarea && !$firsttimeinshowwatch} { \
                 set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]; \
                 set watchminw [expr {[lindex $watchminsinit 0] + [lindex $watchhsashcoord 0] - $watchhpane1mins - 4}]; \
                 set watchmins [lreplace $watchmins 0 0 $watchminw]; \
-                if {$showcallstackarea == "true"} { \
+                if {$showcallstackarea} { \
                     set watchvsashcoord [$watch.f.vpw sash coord 0]; \
                     set watchminh [expr {[lindex $watchminsinit 1] + [lindex $watchvsashcoord 1] - $watchvpane1mins - 4}]; \
                     set watchmins [lreplace $watchmins 1 1 $watchminh]; \
@@ -429,10 +414,40 @@ proc showwatch_bp {} {
         }
     }
 
+    update
+
+    if {!$dockwatch} {
+        if {$firsttimeinshowwatch} {
+            setwingeom $watch
+            wm resizable $watch 1 1
+        } else {
+            if {!$showwatchvariablesarea && !$showcallstackarea} {
+                # the two statements below seem to set the geometry to what it is already,
+                # at least for the position of the window - indeed it prevents the window
+                # from jumping in the screen when hiding areas in the watch window
+                # note: size is managed by the packer, nothing more to do
+                set watchgeompos [string trimleft $watchgeom 1234567890x=]
+                wm geometry $watch "$watchgeompos"
+                wm resizable $watch 0 0
+            } else {
+                wm resizable $watch 1 1
+                wm minsize $watch [lindex $watchmins 0] [lindex $watchmins 1]
+                wm geometry $watch $watchgeom
+            }
+        }
+    }
+
+    if {$dockwatch} {
+        pack $watch -in $pad -before $pad.pw0 -side bottom -fill x
+    } else {
+        wm deiconify $watch
+    }
+
     focus $watch
     update
-    if { $firsttimeinshowwatch == "true" } { 
-        if {$showwatchvariablesarea == "true"} {
+
+    if {$firsttimeinshowwatch} { 
+        if {$showwatchvariablesarea} {
             focus $buttonAddw
         }
         if {!$dockwatch} {
@@ -447,20 +462,16 @@ proc showwatch_bp {} {
             set watchhpane2mins [winfo width  $watch.f.vpw.f2.f2r.hpw.fr]
             set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]
         }
-        set firsttimeinshowwatch "false"
+        set firsttimeinshowwatch false
     }
 
-    if {$showwatchvariablesarea == "true"} {
+    if {$showwatchvariablesarea} {
         $watch.f.vpw paneconfigure $watch.f.vpw.f2 -minsize $watchvpane1mins
         $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.fl -minsize $watchhpane1mins
         $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.fr -minsize $watchhpane2mins
     }
-    if {$showcallstackarea == "true"} {
+    if {$showcallstackarea} {
         $watch.f.vpw paneconfigure $watch.f.vpw.f6 -minsize $watchvpane2mins
-    }
-
-    if {$dockwatch} {
-        pack $watch -in $pad -before $pad.pw0 -side bottom -fill x
     }
 }
 

@@ -9,9 +9,9 @@ array unset varsforautowatch       ; # list of current variables for the auto wa
 set callstackfuns ""
 set callstacklines ""
 set callstackcontent ""
-set firsttimeinshowwatch "true"
-set showwatchvariablesarea "true"
-set showcallstackarea "true"
+set firsttimeinshowwatch true
+set showwatchvariablesarea true
+set showcallstackarea true
 set watchalwaysontop 0
 set autowatchloc false
 set autowatchglo false

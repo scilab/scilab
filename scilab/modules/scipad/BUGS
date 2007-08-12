@@ -152,6 +152,17 @@ Old bugs/whishes which have been hacked but could have been done better:
  setbpt("funname",bptline).
  Two functions with the same name would therefore mix their breakpoints!
 
+-Avoid to destroy and recreate the whole watch window when hiding/displaying
+ one of its sub-areas. Would probably require -hide option for panedwindow,
+ but this one is only available from Tk 8.5 (TIP #179)
+ --I tried it and indeed using -hide avoids to redraw the watch window when
+   panes are hidden or remapped.
+   However, when both the variables area and the call stack area are hidden,
+   the watch window must be non resizable, thus wm resizable 0/1 0/1 when
+   switching panes. This wm resizable command always redraws the window
+   because of the need to redraw the border, and this creates a visual flash
+   of the window. I couldn't avoid it, and thus I just dropped this wish
+
 
 Wishes:
 -------
@@ -179,11 +190,6 @@ Debugger wishes:
  mr. lambda chooses the same name) and have the word scipad sneaked inside
  them to make things clearer.
 
--Avoid to destroy and recreate the whole watch window when hiding/displaying
- one of its sub-areas. Would probably require -hide option for panedwindow,
- but this one is only available from Tk 8.5 (TIP #179) - Use the global
- variable Tk85
-
 -include profiling into the debugger. The idea would be something like
  making "Run Profiling" another button/command of the debugger, disabled
  in editing mode, active only after Configure for Debug. Once started 
@@ -192,7 +198,7 @@ Debugger wishes:
  plotprofile() is called [plotprofile too needs to be adapted so
  that it won't create a new buffer, but refers to the original].
  "Run profiling" would also be callable again, for cumulation.
- 
+
  There is however a big potential showstopper. For profiling, the
  function (or wrapper) has to be getf(,"p"); we're now making the
  functions known to scilab with exec() instead. getf() has known bugs

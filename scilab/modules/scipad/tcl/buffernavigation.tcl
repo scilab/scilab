@@ -1147,8 +1147,9 @@ proc spaceallsasheskeeprelsizes {} {
     foreach pw $pwlist {
         set pwheight2 [winfo height $pw]
         set pwwidth2  [winfo width  $pw]
-        set incfacty [expr {$pwheight2. / $pwheight($pw)}]
-        set incfactx [expr {$pwwidth2.  / $pwwidth($pw) }]
+        # warning: here a case where expr must not be braced
+        set incfacty [expr $pwheight2. / $pwheight($pw)]
+        set incfactx [expr $pwwidth2.  / $pwwidth($pw) ]
         for {set i 0} {$i < [expr {$nbpanes($pw) - 1}]} {incr i} {
             set newx [expr {round([lindex $sashxy($pw,$i) 0] * $incfactx)}]
             set newy [expr {round([lindex $sashxy($pw,$i) 1] * $incfacty)}]
@@ -1501,7 +1502,7 @@ proc gotoline {} {
     catch {destroy $gotln}
     toplevel $gotln
     wm title $gotln [mc "Goto Line?"]
-    setwingeom $gotln
+    wm withdraw $gotln
 
     label $gotln.l1 -text [mc "Go to:"] -font $menuFont
     pack $gotln.l1 -anchor w -pady 5 -padx 3
@@ -1557,6 +1558,10 @@ proc gotoline {} {
             -font $menuFont -width $bestwidth \
             -command "destroy $gotln"
     pack $gotln.ok $gotln.cancel -side left -padx 5 -pady 5 -fill none -expand yes
+
+    update idletasks
+    setwingeom $gotln
+    wm deiconify $gotln
 
     focus $gotln.f1.en1
     $gotln.f1.en1 selection range 0 end

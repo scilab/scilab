@@ -21,7 +21,7 @@ proc findtextdialog {typ} {
     catch {destroy $find}
     toplevel $find
     wm title $find [mc "Find"]
-    setwingeom $find
+    wm withdraw $find
     # cancelfind must be called when closing the dialog with the upper right
     # cross, otherwise the fakeselection tag is not deleted
     wm protocol $find WM_DELETE_WINDOW {cancelfind}
@@ -322,6 +322,9 @@ proc findtextdialog {typ} {
     focus $find.u.f1.entry
     update
     grab $find
+
+    setwingeom $find
+    wm deiconify $find
 
     # the directory entry box is a drop target for text/plain content
     if {$typ == "find"} {

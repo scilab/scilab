@@ -321,6 +321,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
 # step by step mode, where all breakpoints were removed just before the call
 # to checkendofdebug_bp), check that step over did not enter an ancillary
 # (fix it if it happened), and skip no code lines
+
     global setbptonreallybreakpointedlinescmd
     global prevdbpauselevel initprevdbpauselevel
 
@@ -340,42 +341,40 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     # command below is an if and not a while
     # same principle is used for skipping breakpoints when running to cursor
     # or running to return point of the current function
-    # warning: this skipping behavior must be switched off in case the user
-    # has hit the break command, otherwise there is a resume sent by the
-    # skipping (stepbystepover_bp) code, and the debug does finally not stop
-    # as expected - the consequence of switching the skipping off is that
-    # the debug, on a break command only, might stop for instance on a comment,
-    # but this is not meant to be a problem in this particular case
-    # note also that in order to stack commands with the right order, this must
+    # note that in order to stack commands with the right order, this must
     # be a ScilabEval_lt(Tcl_EvalStr(ScilabEval_lt(TCL_EvalStr ...) seq) seq)
     switch -- $stepmode {
         "nostep"   {
-            # no need to define code for skipping no code lines since
-            # stops always occur on existing breakpoints set by the user,
-            # or on the current line when Break was hit
-            set skipline "TCL_EvalStr(\\\"\"updatewatchvars;unsetdebuggerbusycursor\\\"\",\\\"\"scipad\\\"\");"
+            # In principle there is no need to define code for skipping no code
+            # lines since stops always occur on existing breakpoints set by the user.
+            # The only exception is when Break was hit because Scilab might stop
+            # on a comment. In this case, the nocode lines are skipped by calling
+            # stepbystepover_bp, and a Break command is immediately issued to
+            # prevent from resuming at infinitum, which would otherwise look as
+            # if the user had not hit Break initially
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && \\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 0 ; break_bp} else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "into"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 0} else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} { stepbystepover_bp 0 0 ; if {\\\[isbreakhit_bp\\\]} {break_bp} } else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "over"     {
             # stepbystepover_bp 0 1, i.e. with rescanbuffers set to true,
             # because Scipad must rescan the buffer when leaving it on
             # step over - this is required to prevent Scipad to skip
             # nested libfuns contructs
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 1} else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} { stepbystepover_bp 0 1 ; if {\\\[isbreakhit_bp\\\]} {break_bp} } else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "out"      {
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 0} else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} { stepbystepover_bp 0 0 ; if {\\\[isbreakhit_bp\\\]} {break_bp} } else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "runtocur" {
             set skipline1 "TCL_EvalStr(\\\"\"if {!\\\[iscursorplace_bp\\\] && !\\\[isbreakhit_bp\\\]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
-            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 0} else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} { stepbystepover_bp 0 0 ; if {\\\[isbreakhit_bp\\\]} {break_bp} } else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
         "runtoret" {
             set skipline1 "TCL_EvalStr(\\\"\"if {!\\\[isreturnpoint_bp\\\] && !\\\[isbreakhit_bp\\\]} {runtoreturnpoint_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
-            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 0} else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} { stepbystepover_bp 0 0 ; if {\\\[isbreakhit_bp\\\]} {break_bp} } else {updatewatchvars;unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
     }

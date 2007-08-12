@@ -45,8 +45,7 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     set adda $w.adda
     toplevel $adda
     wm title $adda [mc "Add/Change"]
-    setwingeom $adda
-    wm resizable $adda 1 0
+    wm withdraw $adda
 
     # The add argument dialog must be a transient of $watch or $conf
     # otherwise it might be obscured by the watch window if always on top
@@ -115,7 +114,10 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     # variable name in the watch or configure window
     update
     grab $adda
+    setwingeom $adda
+    wm resizable $adda 1 0
     wm minsize $adda [winfo width $adda] [winfo height $adda]
+    wm deiconify $adda
 }
 
 proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {

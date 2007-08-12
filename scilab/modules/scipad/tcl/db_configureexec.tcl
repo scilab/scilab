@@ -37,7 +37,6 @@ proc configurefoo_bp {} {
         }
     }
 
-    setwingeom $conf
     frame $conf.f
 
     frame $conf.f.f1
@@ -115,6 +114,10 @@ proc configurefoo_bp {} {
     pack $conf.f.f9 -pady 4
 
     pack $conf.f
+
+    update idletasks
+    setwingeom $conf
+
 #    bind $conf <Return> "OKconf_bp $conf"
     bind $conf <Return> {if {[$spin get] != ""} {Addarg_bp $conf $buttonAddc $listboxinput $listboxinputval}}
     bind $listboxinput <Double-Button-1> {if {[$spin get] != ""} {Addarg_bp $conf $buttonAddc $listboxinput $listboxinputval}}

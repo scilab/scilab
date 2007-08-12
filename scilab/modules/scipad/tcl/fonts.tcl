@@ -47,7 +47,7 @@ proc choosefonts {} {
     catch {destroy $fch}
     toplevel $fch
     wm title $fch [mc "Choose font"]
-    setwingeom $fch
+    wm withdraw $fch
 
     frame $fch.f0
 
@@ -164,6 +164,9 @@ proc choosefonts {} {
     bind $fch <Alt-[fb $fch.f0.f3.lf3.mf]> {[winfo toplevel %W].f0.f3.lf3.mf invoke}
 
     focus $fch.f0.f3.button1
+    update idletasks
+    setwingeom $fch
+    wm deiconify $fch
 }
 
 proc updatesamplefont {{notused ""}} {
@@ -282,12 +285,12 @@ proc updatefont {{fontsource "newfont"}} {
         if {[winfo exists $watch]} {
             set saved_showwatchvariablesarea $showwatchvariablesarea
             set saved_showcallstackarea $showcallstackarea
-            set firsttimeinshowwatch "true"
+            set firsttimeinshowwatch true
             # the two following flags must be reset,
             # otherwise Tcl error "invalid sash index"
             # in proc showwatch_bp
-            set showwatchvariablesarea "true"
-            set showcallstackarea "true"
+            set showwatchvariablesarea true
+            set showcallstackarea true
             showwatch_bp
             # restore hide/show state for each area
             if {!$saved_showwatchvariablesarea} {

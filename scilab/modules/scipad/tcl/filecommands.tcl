@@ -411,7 +411,6 @@ proc opensourceof {} {
     catch {destroy $opensof}
     toplevel $opensof
     wm title $opensof [mc "Open source of..."]
-    setwingeom $opensof
 
     frame $opensof.f1
     label $opensof.f1.l1 -text [mc "Open source of:"] -font $menuFont
@@ -452,8 +451,9 @@ proc opensourceof {} {
     pack configure $opensof.f3 -side bottom
     pack configure $opensof.f1 -after $opensof.f3
 
-    wm resizable $opensof 1 1 
     update
+    setwingeom $opensof
+    wm resizable $opensof 1 1 
     wm minsize $opensof [winfo width $opensof] [winfo height $opensof]
 
     bind $opensof <Return> {OKopensourceof %W}
