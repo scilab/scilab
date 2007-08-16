@@ -9,6 +9,8 @@
 package org.scilab.modules.renderer.arcDrawing;
 
 import org.scilab.modules.renderer.drawers.LineDrawerGL;
+import org.scilab.modules.renderer.gluNurbsWrapping.GLUnurbsObj;
+import org.scilab.modules.renderer.gluNurbsWrapping.GluNurbsConst;
 
 /**
  * Class containing functions called by RectangleLineDrawerJoGL.cpp
@@ -35,16 +37,23 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	 * @param semiMajorAxisY Y coordinate of the ellipse minor axis
 	 * @param semiMajorAxisZ Z coordinate of the ellipse minor axis
 	 * @param startAngle lowest angle in radian, relative to the semi-major axis of the ellipse.
-     *                   Start of the angular part to draw.
+         *                   Start of the angular part to draw.
 	 * @param endAngle highest angle in radian, relative to the semi-major axis of the ellipse.
-     *                 End of the angular part to draw
+         *                 End of the angular part to draw
 	 */
 	public void drawArc(double centerX, double centerY, double centerZ,
 						double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ,
 						double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ,
 						double startAngle, double endAngle) {
 
-		System.err.println("DrawArc line.");
+          GLUnurbsObj nurbsObj = GLUnurbsObj.gluNewNurbsRenderer();
+
+          nurbsObj.gluBeginCurve();
+          System.out.println("GLU_NURBS_ERROR = " + GluNurbsConst.GLU_NURBS_ERROR);
+          nurbsObj.gluEndCurve();
+
+          GLUnurbsObj.gluDeleteNurbsRenderer(nurbsObj);
+
 	}
 	
 }

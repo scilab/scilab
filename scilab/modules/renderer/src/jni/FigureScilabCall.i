@@ -42,7 +42,7 @@ public class%}
 %pragma(java) moduleclassmodifiers="
  /** 
   * Call from the JoGL dislay thread to figure drawing code using JNI 
-  * @author Vincent COUVERT
+  * @author Jean-Baptiste Silvy
   * @copyright INRIA 2007 
   */
 public class";

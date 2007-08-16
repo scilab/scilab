@@ -103,7 +103,11 @@ src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
 src/jni/ArcLineDrawerGL.cpp \
 src/jni/ArcFillDrawerGL.cpp \
 src/jni/DrawableArcGL.cpp \
-src/jni/FigureScilabCall_wrap.c
+src/jni/FigureScilabCall_wrap.c \
+src/jni/GluNurbsWrapping_wrap.c \
+src/cpp/gluNurbsWrapping/gluNurbsWrapping.cpp \
+src/jni/GluNurbsConstWrapping_wrap.c \
+src/cpp/gluNurbsWrapping/gluNurbsConstWrapping.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c

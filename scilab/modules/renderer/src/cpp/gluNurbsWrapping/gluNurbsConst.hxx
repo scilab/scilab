@@ -1,0 +1,6 @@
+#ifndef _GLU_NURBS_CONST_WRAPPING_HXX_
+#define _GLU_NURBS_CONST_WRAPPING_HXX_
+
+#include <GL/glu.h>
+
+#endif /* _GLU_NURBS_CONST_WRAPPING_HXX_  */
