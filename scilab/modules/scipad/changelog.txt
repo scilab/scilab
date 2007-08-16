@@ -3130,3 +3130,11 @@ Francois VOGEL, 12/08/07
  * Fixed error in proc setwingeom - note that this proc must be called after
    the content of its toplevel argument has been created
  * version --> 6.123
+
+Francois VOGEL, 16/08/07
+ * Fixed: "Auto watch globals" checkbox is disabled when the watch window
+   is opened if the "Auto watch locals" checkbox is unchecked
+ * Added a new maskable pane in the watch window for generic expressions
+   watching - the expression may be anything, e.g. graphical command, so
+   that an array can be plotted at each debugger stop
+ * version --> 6.124

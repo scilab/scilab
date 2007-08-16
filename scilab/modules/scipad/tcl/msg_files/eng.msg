@@ -1,6 +1,6 @@
-# in sync at least with v6.82
+# in sync at least with v6.124
 # English is the original language of Scipad
-# Scipad tcl/tk source should use english texts
+# Scipad Tcl/Tk source should use english texts
 # for instance [mc "your text in english here"]
 # Translations are provided in other msg files
 # except for "expanded" text, like preference variables description
@@ -22,10 +22,9 @@
                     Danish translation by Kim B. Hansen 2007."
 
 
-
-
 # popupmenus.tcl
 ::msgcat::mcset eng "AddWatch" "Add %s as watch"
+::msgcat::mcset eng "AddGenExp" "Add %s as generic expression"
 
 
 # scilabexec.tcl

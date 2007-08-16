@@ -1,4 +1,4 @@
-proc Addarg_bp {w focusbut leftwin rightwin} {
+proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
 # Create the add argument dialog
 # This dialog can be called from the watch window or from the configure dialog
 # Calling this proc with $leftwin being an empty listbox or a non empty listbox
@@ -14,13 +14,23 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
         set emptylistbox false
     }
 
+    foreach {calledfromwatch_vars calledfromwatch_exps calledfromconfigure} [findaddargcallingcontext $leftwin $rightwin] {}
+
     set selecteditem [$leftwin curselection]
     if {!$emptylistbox && $selecteditem != ""} {
         set argname [$leftwin get $selecteditem]
-        set argvalue [$rightwin get $selecteditem]
+        if {$rightwin ne "norightwin"} {
+            set argvalue [$rightwin get $selecteditem]
+        } else {
+            # the generic expressions area in the watch window has no twin listbox
+            # so to avoid repeated tests on !$calledfromwatch_exps an empty default
+            # value is set for $argvalue
+            set argvalue ""
+        }
         # check that what the user selected for edit is actually editable
-        # (this check only concerns the watch window, not the configure box
-        if {[string first listboxinput $leftwin] == -1} {
+        # (this check only concerns the variables area of the watch window,
+        # not the configure box)
+        if {$calledfromwatch_vars} {
             set editable [isvareditable $argname]
             if {!$editable} {
                 tk_messageBox -message \
@@ -54,9 +64,15 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     frame $adda.f
 
     frame $adda.f.f1
-    set bestwidth [mcmaxra "Variable:" \
-                           "Value:"]
-    set tl [mc "Variable:"]
+    if {!$calledfromwatch_exps} {
+        set firstentrylabelname "Variable:"
+        set bestwidth [mcmaxra $firstentrylabelname \
+                               "Value:"]
+    } else {
+        set firstentrylabelname "Expression:"
+        set bestwidth [mcmaxra $firstentrylabelname]
+    }
+    set tl [mc $firstentrylabelname]
     label $adda.f.f1.label -text $tl -width $bestwidth -font $menuFont
     entry $adda.f.f1.entry -textvariable argname -width 0 -font $textFont
     pack $adda.f.f1.label $adda.f.f1.entry -side left
@@ -71,10 +87,12 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     pack $adda.f.f2.label $adda.f.f2.entry -side left
     pack $adda.f.f2.entry -expand 1 -fill x
     $adda.f.f2.entry selection range 0 end
-    pack $adda.f.f2 -expand 1 -fill x
-    if {[string first listboxinput $leftwin] == -1} {
-        # This checkbutton is only displayed when the dialog is used with the watch window,
-        # not with the configure box
+    if {!$calledfromwatch_exps} {
+        pack $adda.f.f2 -expand 1 -fill x
+    }
+    if {$calledfromwatch_vars} {
+        # This checkbutton is only displayed when the dialog is used with the variables area
+        # of the watch window only
         eval "checkbutton $adda.f.cbox1 [bl "&Get current value from Scilab"] \
                 -variable getvaluefromscilab \
                 -command togglegetvaluefromscilab \
@@ -102,7 +120,7 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     bind $adda <Alt-[fb $adda.f.cbox1]>           "$adda.f.cbox1 invoke"
     bind $adda <Alt-[fb $adda.f.f9.buttonCancel]> "$adda.f.f9.buttonCancel invoke"
 
-    if {$selecteditem != -1} {
+    if {$selecteditem != -1 && !$calledfromwatch_exps} {
         focus $adda.f.f2.entry
     } else {
         focus $adda.f.f1.entry
@@ -131,12 +149,15 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
 
     if {$argname != ""} {
 
+        foreach {calledfromwatch_vars calledfromwatch_exps calledfromconfigure} [findaddargcallingcontext $leftwin $rightwin] {}
+
         # 1. Some variables cannot be watched
         if {[lsearch -exact $debugger_unwatchable_vars $argname] != -1} {
             set mes [concat [mc "Sorry, variable"] $argname [mc "is special and cannot be watched."]]
             set tit [mc "Non watchable variable"]
             tk_messageBox -message $mes -icon error -title $tit
             if {$pos == -1} {set pos 0}
+            $leftwin selection clear 0 end
             $leftwin selection set $pos
             return
         }
@@ -156,26 +177,29 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
 
         # 3. In certain cases one cannot add variables when Scilab is busy
         if {$alreadyexists == "false" && \
-            [string first listboxinput $leftwin] == -1 && \
+            $calledfromwatch_vars && \
             ($argvalue == "" || $getvaluefromscilab == 1 || $argvalue == $unklabel) } {
-            # the proc was called from the watch window, $argname does not
-            # yet exist and $argvalue will in fine be set to $unklabel
+            # the proc was called from the variables area of the watch window,
+            # $argname does not yet exist and $argvalue will in fine be set
+            # to $unklabel
             # -> the value will be retrieved from Scilab
             if {[isscilabbusy 5]} {
                 if {$pos == -1} {set pos 0}
+                $leftwin selection clear 0 end
                 $leftwin selection set $pos
                 return
             }
         }
         if {$alreadyexists == "true" && \
-            [string first listboxinput $leftwin] == -1 && \
+            $calledfromwatch_vars && \
             ($getvaluefromscilab == 1 || $forceget == "true") } {
-            # the proc was called from the watch window, $argname does
-            # already exist and $argvalue will in fine be forced to Scilab's
-            # value
+            # the proc was called from variables area of the the watch window,
+            # $argname does already exist and $argvalue will in fine be forced
+            # to Scilab's value
             # -> the value will be retrieved from Scilab
             if {[isscilabbusy 5]} {
                 if {$pos == -1} {set pos 0}
+                $leftwin selection clear 0 end
                 $leftwin selection set $pos
                 return
             }
@@ -194,9 +218,10 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         # editable variables are prevented from being redefined, not only the
         # global ones
         if {$alreadyexists == "true" && \
-            [string first listboxinput $leftwin] == -1 && \
+            $calledfromwatch_vars && \
             ![isvareditable $argname]} {
             if {$pos == -1} {set pos 0}
+            $leftwin selection clear 0 end
             $leftwin selection set $pos
             return
         }
@@ -205,7 +230,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         # variable var has been modified, the watched var(1:2) (for instance)
         # will also be updated
         set mustdoScilabroundtrip false
-        if {[string first listboxinput $leftwin] == -1 && \
+        if {$calledfromwatch_vars && \
             [getdbstate] == "DebugInProgress" && \
             $getvaluefromscilab == 0 } {
             # the proc was called from the watch window, during a debug session,
@@ -214,15 +239,14 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             set mustdoScilabroundtrip true
             if {[isscilabbusy 5]} {
                 if {$pos == -1} {set pos 0}
+                $leftwin selection clear 0 end
                 $leftwin selection set $pos
                 return
             }
         }
 
         # 6. Add or change this variable in the calling box
-        # next line is a bit dirty... it is used to differentiate processing for the
-        # add argument box used with the watch window from the one use with the configure box
-        if {[string first listboxinput $leftwin] != -1} {
+        if {$calledfromconfigure} {
             set funname [$spin get]
         }
         if {$alreadyexists == "false"} {
@@ -230,12 +254,12 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             $leftwin selection clear $pos
             # set insert position after the currently selected item
             incr pos
-            if {[string first listboxinput $leftwin] != -1} {
-                # the proc was called from configure box
+            if {$calledfromconfigure} {
+                # the proc was called from the configure box
                 set funvars($funname) [linsert $funvars($funname) $pos $argname]
                 set funvarsvals($funname,$argname) $argvalue
-            } else {
-                # the proc was called from the watch window
+            } elseif {$calledfromwatch_vars} {
+                # the proc was called from the variables area of the watch window
                 if {$argvalue == "" || $getvaluefromscilab == 1} {set argvalue $unklabel}
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsprops($argname,value) $argvalue
@@ -247,24 +271,30 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                     ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsprops($argname,value)
                 }
+            } else {
+                #the proc was called from the expressions area of the watch window
+                # nothing to do: updating the listbox below will update the listvariable
             }
             $leftwin insert $pos $argname
-            $rightwin insert $pos $argvalue
+            if {$rightwin ne "norightwin"} {
+                $rightwin insert $pos $argvalue
+            }
+            $leftwin selection clear 0 end
             $leftwin selection set $pos
             $leftwin see $pos
         } else {
             # an existing variable was modified in the add box
             $leftwin selection clear $eltindex
-            if {[string first listboxinput $leftwin] != -1} {
-                # the proc was called from configure box
+            if {$calledfromconfigure} {
+                # the proc was called from the configure box
                 set funvarsvals($funname,$argname) $argvalue
                 set nextone [expr {$eltindex + 1}]
                 if {$nextone >= [$leftwin size]} {
                     set nextone 0
                 }
                 set selitem $nextone
-            } else {
-                # the proc was called from the watch window
+            } elseif {$calledfromwatch_vars} {
+                # the proc was called from the variables area of the watch window
                 if {$argvalue == ""} {set argvalue $unklabel}
                 if {$getvaluefromscilab == 1} {set forceget "true"}
                 set watchvarsprops($argname,value) $argvalue
@@ -277,11 +307,18 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                     set argvalue $watchvarsprops($argname,value)
                 }
                 set selitem $eltindex
+            } else {
+                #the proc was called from the expressions area of the watch window
+                # nothing to do: updating the listbox below will update the listvariable
+                set selitem $eltindex
             }
+            $leftwin selection clear 0 end
             $leftwin selection set $selitem
             $leftwin see $selitem
-            $rightwin delete $eltindex
-            $rightwin insert $eltindex $argvalue
+            if {$rightwin ne "norightwin"} {
+                $rightwin delete $eltindex
+                $rightwin insert $eltindex $argvalue
+            }
         }
 
         # 7. Perform a roundtrip to Scilab to:
@@ -299,6 +336,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
     } else {
         # $argname is empty
         if {$pos == -1} {set pos 0}
+        $leftwin selection clear 0 end
         $leftwin selection set $pos
     }
 }
@@ -307,27 +345,35 @@ proc Canceladda_bp {w pos leftwin} {
 # Close the add argument dialog and ignore the values of its fields
     destroy $w
     if {$pos == -1} {set pos 0}
+    $leftwin selection clear 0 end
     $leftwin selection set $pos
 }
 
-proc Removearg_bp {leftwin rightwin} {
-# Suppress a watch variable (if called from the watch window)
+proc Removearg_bp {leftwin {rightwin "norightwin"}} {
+# Suppress a watch variable (if called from the variables area of the watch window)
+# or a generic expression previously watched (if called for this area of the watch window)
 # or a function argument (if called from the configure box)
 # from their respective lists and update the calling dialog
     global spin
     global funvars funvarsvals
     set selecteditem [$leftwin curselection]
+    foreach {calledfromwatch_vars calledfromwatch_exps calledfromconfigure} [findaddargcallingcontext $leftwin $rightwin] {}
     if {$selecteditem != ""} {
-        if {[string first listboxinput $leftwin] != -1} {
+        if {$calledfromconfigure} {
             set funname [$spin get]
             set argname [$leftwin get $selecteditem]
             unset funvarsvals($funname,$argname)
             set funvars($funname) [lreplace $funvars($funname) \
                                             $selecteditem $selecteditem]
         }
+        # thanks to the -listvariable argument used for the generic expressions listbox,
+        # $watchgenexps is updated automatically by Tcl when deleting in the listbox
         $leftwin delete $selecteditem
         $leftwin see $selecteditem
-        $rightwin delete $selecteditem
+        if {$rightwin ne "norightwin"} {
+            $rightwin delete $selecteditem
+        }
+        $leftwin selection clear 0 end
         if {$selecteditem < [$leftwin size]} {
             $leftwin selection set $selecteditem
         } else {
@@ -348,13 +394,37 @@ proc togglegetvaluefromscilab {} {
     }
 }
 
-proc quickAddWatch_bp {watchvar} {
+proc findaddargcallingcontext {leftwin rightwin} {
+# determine what is the calling context of the Add argument dialog box
+# based on the analysis of the widget (a listbox) name passed
+# return a list of three booleans, among which at most one can be true
+# in case something unexpected happens, then return {false false false}
+    set calledfromwatch_vars false
+    set calledfromwatch_exps false
+    set calledfromconfigure  false
+    if {[string first "lbvarname" $leftwin] != -1} {
+        set calledfromwatch_vars true
+    } elseif {[string first "genexp" $leftwin] != -1} {
+        set calledfromwatch_exps true
+    } elseif {[string first "listboxinput" $leftwin] != -1} {
+        set calledfromconfigure true
+    } else {
+        tk_messageBox -message "Unexpected widget was received by proc findaddargcallingcontext: $leftwin - Please report"
+    }
+    if {$calledfromwatch_exps && ($rightwin ne "norightwin")} {
+        tk_messageBox -message "Inconsistency between calledfromwatch_exps and rightwin in proc findaddargcallingcontext ($calledfromwatch_exps;$rightwin) - Please report"
+    }
+    return [list $calledfromwatch_vars $calledfromwatch_exps $calledfromconfigure]
+}
+
+proc quickAddWatch_bp {texttoadd typeofquickadd} {
 # Quickly add a vatch variable
 # Variable name is passed to this proc as an input
 # Variable value is always got from Scilab
     global watch argname argvalue lbvarname lbvarval
     global getvaluefromscilab
     global dockwatch
+    global genexpwidget
     set watchalreadyopen "false"
     if {[info exists watch]} {
         if {[winfo exists $watch]} {
@@ -368,11 +438,16 @@ proc quickAddWatch_bp {watchvar} {
             wm deiconify $watch
         }
     }
-    set argname $watchvar
-    # set value to "" so that OKadda_bp will get it from the shell
-    set argvalue ""
-    set getvaluefromscilab 1
-    OKadda_bp -1 $lbvarname $lbvarval "true"
+    set argname $texttoadd
+    if {$typeofquickadd eq "watchvariable"} {
+        # set value to "" so that OKadda_bp will get it from the shell
+        set argvalue ""
+        set getvaluefromscilab 1
+        OKadda_bp -1 $lbvarname $lbvarval "true"
+    } else {
+        # $typeofquickadd eq "genericexpression"
+        OKadda_bp -1 $genexpwidget "norightwin"
+    }
 }
 
 proc syncwatchvarsfromlistbox {} {

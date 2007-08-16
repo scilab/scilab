@@ -6,11 +6,13 @@ set dragndroplb ""
 set watchvars ""
 array unset watchvarsprops
 array unset varsforautowatch       ; # list of current variables for the auto watch feature input, output, globals and locals)
+set watchgenexps {}
 set callstackfuns ""
 set callstacklines ""
 set callstackcontent ""
 set firsttimeinshowwatch true
 set showwatchvariablesarea true
+set showgenexparea true
 set showcallstackarea true
 set watchalwaysontop 0
 set autowatchloc false
@@ -38,6 +40,7 @@ set debugger_fun_ancillaries [list \
     "FormatInfNanForWatch" \
     "FormatWhereForWatch" \
     "ext_exists" \
+    "evstr" \
     ]
 
 # list of variables that cannot be watched for various reasons

@@ -12,15 +12,19 @@ proc showpopup2 {} {
         # a regexp (constructed from help names in Scilab) then the selection
         # is probably a valid variable to watch and the quick add watch menu
         # should pop up
+        # If the selected trimmed string doesn't match the regexp, then it is
+        # proposed for addition in the generic expression area
         # about block selections: they are collapsed to their first range
         # (line) before trying to match them against the regexp
         if {$mouseoversel == "true"} {
             set selindices [gettaselind $ta single]
-            set watchvar [string trim [gettatextstring $ta $selindices]]
-            regexp "\\A$snRE\\Z" $watchvar validwatchvar
-        }
-        if {[info exists validwatchvar]} {
-            showpopupdebugwsel $validwatchvar
+            set trimmedseltext [string trim [gettatextstring $ta $selindices]]
+            regexp "\\A$snRE\\Z" $trimmedseltext validwatchvar
+            if {[info exists validwatchvar]} {
+                showpopupdebugwsel $validwatchvar "watchvariable"
+            } else {
+                showpopupdebugwsel $trimmedseltext "genericexpression"
+            }
         } else {
             tk_popup $pad.filemenu.debug $numx $numy
         }
@@ -92,14 +96,19 @@ proc opensourcecommand {tagname curterm} {
     }
 }
 
-proc showpopupdebugwsel {watchvar} {
+proc showpopupdebugwsel {texttoadd typeofquickadd} {
     global pad menuFont
     set numx [winfo pointerx $pad]
     set numy [winfo pointery $pad]
     catch {destroy $pad.popdebugwsel}
     menu $pad.popdebugwsel -tearoff 0 -font $menuFont
-    set plabel [mc AddWatch $watchvar]
+    if {$typeofquickadd eq "watchvariable"} {
+        set plabel [mc AddWatch $texttoadd]
+    } else {
+        # $typeofquickadd eq "genericexpression"
+        set plabel [mc AddGenExp $texttoadd]
+    }
     $pad.popdebugwsel add command -label $plabel\
-        -command "quickAddWatch_bp {$watchvar}"
+        -command "quickAddWatch_bp {$texttoadd} $typeofquickadd"
     tk_popup $pad.popdebugwsel $numx $numy
 }

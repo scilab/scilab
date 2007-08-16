@@ -137,6 +137,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         ScilabEval_lt "$setbpcomm; $funnameargs;" "seq"
         updateactivebreakpoint
         getcallstackfromshell
+        evalgenericexpinshell
         checkendofdebug_bp $stepmode
         set execresult 0
     } else {
@@ -863,6 +864,7 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
         }
         updateactivebreakpoint
         getcallstackfromshell
+        evalgenericexpinshell
         checkendofdebug_bp $stepmode
     } else {
         # <TODO> .sce case if some day the parser uses pseudocode noops
@@ -923,6 +925,7 @@ proc break_bp {} {
                 # lines
                 ScilabEval_lt "$cmddel" "seq"
                 getcallstackfromshell
+                evalgenericexpinshell
                 # updateactivebreakpoint and getwatchvarfromshell are already
                 # queued by the previous command that stucked the script, it's
                 # not needed to repeat these commands here
@@ -975,6 +978,7 @@ proc canceldebug_bp {} {
             removescilab_bp "with_output"
             getwatchvarfromshell
             getcallstackfromshell
+            evalgenericexpinshell
             cleantmpScilabEvalfile
         }
     } else {

@@ -96,6 +96,12 @@ endfunction
  createsetinscishellcomm should be recursive)
  example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
 
+-Tk8.5 only: there is something fishy with the bindings in the watch window:
+ try Ctrl-f or Alt-f for instance. Text widget private Tk procs are called
+ with %W being $watch (which is a toplevel!) or the Add/Change button, well
+ the widget that has focus - how come that text widget bindings get fired
+ by other widgets??
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -169,14 +175,17 @@ Wishes:
 
 Debugger wishes:
 
--Conditional breakpoints
+-Don't update the watch variables and the generic expressions area when
+ skipping nocode lines
 
--Allow to watch a generic expression (bonus: the expression could be e.g.
- a graphical command, so that an array is *plotted* at each breakpoint)
- Way to go: add a pane with expressions to be executed and result of their
- evaluation displayed in the watch window area (e.g. size(a_matrix,"*"))
- Hmm, maybe a separate toplevel would be better - the watch is already a
- pretty large window...
+-Use the -listvariable option for $lbvarname and $lbvarval listboxes - this
+ could automate a lot of sync work with watchvars and watchvarsprops
+
+-Add an "Evaluate now!" button in the generic expressions area. Warning: then
+ a roundtrip to Scilab must be done before evaluating, or let the roundtrip be
+ mandatory when modifying any watch variable
+
+-Conditional breakpoints
 
 -Scipad defines and uses, mostly for the debugger, some variables in order to
  send values to Scipad. All these variables currently start with the prefix 
@@ -299,7 +308,7 @@ Other wishes:
     target window that will contain the search results)
   . More than one find in files thread at the same time
 
--detect duplicate/missing underlines detection in the message files
+-detect duplicate/missing underlines in the message files
 
 -Improve further the regexps for continued lines detection, the goal being
  to detect only legal (in the Scilab parser sense) continued lines.

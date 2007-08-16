@@ -3,13 +3,16 @@ proc showwatch_bp {} {
     global pad watch
     global lbvarname lbvarval scrolly
     global watchvars watchvarsprops buttonAddw
-    global firsttimeinshowwatch watchgeom watchmins watchminsinit
+    global autowatchloc
+    global watchgenexps
+    global firsttimeinshowwatch watchgeom
     global callstackwidget callstackcontent
     global watchwinicons watchwinstepicons db_butimages db_stepbutimages
     global watchalwaysontop
-    global showwatchvariablesarea showcallstackarea
-    global watchvpane1mins watchvpane2mins watchvsashcoord
-    global watchhpane1mins watchhpane2mins watchhsashcoord
+    global showwatchvariablesarea showgenexparea showcallstackarea
+    global watchvsashcoord1 watchvsashcoord2
+    global watchhsashcoord
+    global genexpwidget
     global led_debugstate led_scilabbusy
     global menuFont textFont
     global bptfunsindic totbptsindic
@@ -71,16 +74,9 @@ proc showwatch_bp {} {
          -padx 0 -pady 0 -side left
 
     frame $watch.f.f1.f1r ;# -bg orange
-    set bestwidth [mcmaxra "&Always on top" \
-                           "Hide watch &variables" \
+    set bestwidth [mcmaxra "Hide watch &variables" \
+                           "Hide e&xpressions" \
                            "Hide call &stack"]
-    set checkboxalwaysontop $watch.f.f1.f1r.watchalwaysontop
-    eval "checkbutton $checkboxalwaysontop [bl "&Always on top"] \
-            -variable watchalwaysontop \
-            -command \"managewatchontop_bp\" \
-            -width $bestwidth -font \[list $menuFont\] \
-            -anchor w -borderwidth 1 -pady 0 "
-    if {$dockwatch} {$checkboxalwaysontop configure -underline -1}
     set checkboxshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
     eval "checkbutton $checkboxshowwatchvariablesarea \
             -variable showwatchvariablesarea [bl "Hide watch &variables"] \
@@ -89,6 +85,14 @@ proc showwatch_bp {} {
             -width $bestwidth -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxshowwatchvariablesarea configure -underline -1}
+    set checkboxshowgenexparea $watch.f.f1.f1r.checkboxshowgenexparea
+    eval "checkbutton $checkboxshowgenexparea \
+            -variable showgenexparea [bl "Hide e&xpressions"] \
+            -command \"closewatch_bp; showwatch_bp\" \
+            -onvalue \"false\" -offvalue \"true\" \
+            -width $bestwidth -font \[list $menuFont\] \
+            -anchor w -borderwidth 1 -pady 0 "
+    if {$dockwatch} {$checkboxshowgenexparea configure -underline -1}
     set checkboxshowcallstackarea $watch.f.f1.f1r.showcallstackarea
     eval "checkbutton $checkboxshowcallstackarea [bl "Hide call &stack"] \
             -variable showcallstackarea \
@@ -98,22 +102,31 @@ proc showwatch_bp {} {
             -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxshowcallstackarea configure -underline -1}
 
-    pack $checkboxalwaysontop $checkboxshowwatchvariablesarea \
+    pack $checkboxshowwatchvariablesarea $checkboxshowgenexparea \
             $checkboxshowcallstackarea -pady 0 -anchor w
     pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 5 -pady 0 -anchor w
     managewatchontop_bp
 
     frame $watch.f.f1.f1fr ;# -bg lightblue
+    set bestwidth [mcmaxra "Always on to&p" \
+                           "&Dock"]
+    set checkboxalwaysontop $watch.f.f1.f1fr.watchalwaysontop
+    eval "checkbutton $checkboxalwaysontop [bl "Always on to&p"] \
+            -variable watchalwaysontop \
+            -command \"managewatchontop_bp\" \
+            -width $bestwidth -font \[list $menuFont\] \
+            -anchor w -borderwidth 1 -pady 0 "
+    if {$dockwatch} {$checkboxalwaysontop configure -underline -1}
     set checkboxdockwatch $watch.f.f1.f1fr.dockwatch
     eval "checkbutton $checkboxdockwatch [bl "&Dock"] \
             -variable dockwatch \
             -command \"managedockwatch_bp\" \
             -onvalue \"true\" -offvalue \"false\" \
-            -font \[list $menuFont\] \
+            -width $bestwidth -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxdockwatch configure -underline -1}
 
-    pack $checkboxdockwatch -anchor w
+    pack $checkboxalwaysontop $checkboxdockwatch -anchor w
     pack $watch.f.f1.f1fr -expand 1
     pack $watch.f.f1 -anchor w -expand 0 -fill both
     pack $watch.f.f1.f1fr -anchor w -expand 1 -fill both
@@ -194,7 +207,8 @@ proc showwatch_bp {} {
     set bestwidth [mcmaxra "Watch variables:" \
                            "Add/Chan&ge" \
                            "&Remove" \
-                           "A&uto (local variables)"]
+                           "A&uto (local variables)" \
+                           "Au&to watch globals too"]
     set tl [mc "Watch variables:"]
     label $watch.f.vpw.f2.f2l.label -text $tl -font $menuFont
     set buttonAddw $watch.f.vpw.f2.f2l.buttonAdd
@@ -219,7 +233,10 @@ proc showwatch_bp {} {
             -command \"manageautowatchglo_bp\" \
             -onvalue \"true\" -offvalue \"false\" \
             -width $bestwidth -font \[list $menuFont\] \
-            -anchor w -borderwidth 1 -pady 0 "
+            -anchor w -borderwidth 1 -pady 0"
+    if {!$autowatchloc} {
+        $checkboxautowatchglobals configure -state disabled
+    }
     if {$dockwatch} {$checkboxautowatchglobals configure -underline -1}
 
     pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove \
@@ -273,9 +290,56 @@ proc showwatch_bp {} {
 
     pack $watch.f.vpw.f2.f2r.hpw -side left -expand 1 -fill both -padx 2
     pack $watch.f.vpw.f2.f2l $watch.f.vpw.f2.f2r -side left -padx 2
-    pack $watch.f.vpw.f2.f2r -fill both -expand 1
-    if {$showwatchvariablesarea == "true"} {
+    pack $watch.f.vpw.f2.f2r -fill both -expand yes
+    if {$showwatchvariablesarea} {
         $watch.f.vpw add $watch.f.vpw.f2
+    }
+
+    frame $watch.f.vpw.f3 -relief groove -borderwidth 2 -padx 2 -pady 4
+
+    frame $watch.f.vpw.f3.f3l
+    set bestwidth [mcmaxra "Generic expressions:" \
+                           "&Add" \
+                           "Rem&ove" ]
+    set gel [mc "Generic expressions:"]
+    label $watch.f.vpw.f3.f3l.gelabel -text $gel -font $menuFont
+    pack $watch.f.vpw.f3.f3l.gelabel -anchor w -pady 4
+    set buttonAddge $watch.f.vpw.f3.f3l.buttonAdd
+    eval "button $buttonAddge [bl "&Add"] \
+            -width $bestwidth -font \[list $menuFont\] "
+    if {$dockwatch} {$buttonAddge configure -underline -1}
+    set buttonRemovege $watch.f.vpw.f3.f3l.buttonRemove
+    eval "button $buttonRemovege [bl "Rem&ove"] \
+            -width $bestwidth -font \[list $menuFont\] "
+    if {$dockwatch} {$buttonRemovege configure -underline -1}
+    pack $watch.f.vpw.f3.f3l.gelabel $buttonAddge $buttonRemovege -pady 4
+
+    frame $watch.f.vpw.f3.f3r
+    set genexpwidget $watch.f.vpw.f3.f3r.genexp
+    set gescrollx $watch.f.vpw.f3.f3r.xscroll
+    set gescrolly $watch.f.vpw.f3.f3r.yscroll
+    $buttonAddge    configure -command "Addarg_bp $watch $buttonAddge $genexpwidget"
+    $buttonRemovege configure -command "Removearg_bp $genexpwidget"
+    listbox $genexpwidget -height 6 -font $textFont \
+                          -xscrollcommand "$gescrollx set" \
+                          -yscrollcommand "$gescrolly set" \
+                          -takefocus 0 -exportselection 0 \
+                          -listvariable watchgenexps
+    scrollbar $gescrollx -command "$genexpwidget xview" -takefocus 0 -orient horizontal
+    scrollbar $gescrolly -command "$genexpwidget yview" -takefocus 0
+    pack $gescrollx -fill x -expand no -side bottom
+    pack $gescrolly $genexpwidget
+    pack configure $genexpwidget -fill both -expand yes
+    pack configure $gescrolly    -fill y    -expand no -side right  -padx 2
+    pack $watch.f.vpw.f3.f3l $watch.f.vpw.f3.f3r -side left -padx 2
+    pack configure $watch.f.vpw.f3.f3r -fill both -expand yes
+    pack configure $watch.f.vpw.f3.f3l -anchor n
+    if {[$genexpwidget size] > 0} {
+        $genexpwidget selection set 0
+        $genexpwidget see 0
+    }
+    if {$showgenexparea} {
+        $watch.f.vpw add $watch.f.vpw.f3
     }
 
     frame $watch.f.vpw.f6 -relief groove -borderwidth 2 -padx 2
@@ -289,9 +353,9 @@ proc showwatch_bp {} {
             -wrap word
     scrollbar $csscrolly -command "$callstackwidget yview" -takefocus 0
     pack $csscrolly $callstackwidget
-    pack configure $callstackwidget -fill both -expand 1
-    pack configure $csscrolly       -fill y    -expand 0 -padx 2 -side right
-    if {$showcallstackarea == "true"} {
+    pack configure $callstackwidget -fill both -expand yes
+    pack configure $csscrolly       -fill y    -expand no  -padx 2 -side right
+    if {$showcallstackarea} {
         $watch.f.vpw add $watch.f.vpw.f6
     }
     $callstackwidget delete 1.0 end
@@ -338,7 +402,7 @@ proc showwatch_bp {} {
     # have been packed in the wrong order
     # See Tk bug 1217762 (resolved as invalid, btw)
     pack $watch.f.f9 -pady 2 -side bottom -fill both -expand no
-    if {$showwatchvariablesarea == "true" || $showcallstackarea == "true"} {
+    if {[llength [$watch.f.vpw panes]] > 0} {
         pack $watch.f.vpw -fill both -expand yes -side top
     }
 
@@ -351,19 +415,22 @@ proc showwatch_bp {} {
             [mc "Debugger state indicator"] }
     bind $led_debugstate <Leave> {update_bubble leave $led_debugstate [winfo pointerxy $watch] ""}
 
-    update
-    if { $firsttimeinshowwatch != "true" && $showwatchvariablesarea == "true" && $showcallstackarea == "true"} {
-        $watch.f.vpw            sash place 0 [lindex $watchvsashcoord 0] [lindex $watchvsashcoord 1]
+    if {$showwatchvariablesarea} {
+        bind $watch <Return> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval}
+        bind $watch <BackSpace> {Removearg_bp $lbvarname $lbvarval;syncwatchvarsfromlistbox}
+        bind $watch <Delete>    {Removearg_bp $lbvarname $lbvarval;syncwatchvarsfromlistbox}
+    } elseif {$showgenexparea} {
+        bind $watch <Return> "Addarg_bp $watch $buttonAddge $genexpwidget"
+        bind $watch <BackSpace> "Removearg_bp $genexpwidget"
+        bind $watch <Delete>    "Removearg_bp $genexpwidget"
+    } else {
+        bind $watch <Return> {}
+        bind $watch <BackSpace> {}
+        bind $watch <Delete>    {}
     }
-    if { $firsttimeinshowwatch != "true" && $showwatchvariablesarea == "true"} {
-        $watch.f.vpw.f2.f2r.hpw sash place 0 [lindex $watchhsashcoord 0] [lindex $watchhsashcoord 1]
-    }
-
-    bind $watch <Return> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval}
-    bind $lbvarname <Double-Button-1> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval}
     bind $watch <Escape>    {closewatch_bp}
-    bind $watch <BackSpace> {Removearg_bp $lbvarname $lbvarval;syncwatchvarsfromlistbox}
-    bind $watch <Delete>    {Removearg_bp $lbvarname $lbvarval;syncwatchvarsfromlistbox}
+
+    bind $lbvarname <Double-Button-1> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval}
     bind $lbvarval <<ListboxSelect>> {selectinrightwin_bp $lbvarname $lbvarval}
     bind $lbvarname <Enter> "set go_on_update_bubble_watchvar true ; update_bubble_watchvar %W enter \[winfo pointerxy $pad\]"
     bind $lbvarname <Leave> "set go_on_update_bubble_watchvar false; update_bubble_watchvar %W leave \[list \]"
@@ -375,6 +442,14 @@ proc showwatch_bp {} {
     bind $watch <Right> {$lbvarval xview scroll  1 units}
     bind $watch <MouseWheel> {if {%D<0} {scrollarrows_bp $lbvarname down}\
                                         {scrollarrows_bp $lbvarname up}; }
+
+    bind $genexpwidget <Double-Button-1> "Addarg_bp $watch $buttonAddge $genexpwidget"
+    bind $watch <Shift-Up>    "scrollarrows_bp $genexpwidget up"
+    bind $watch <Shift-Down>  "scrollarrows_bp $genexpwidget down"
+    bind $watch <Shift-Left>  "$genexpwidget xview scroll -1 units"
+    bind $watch <Shift-Right> "$genexpwidget xview scroll  1 units"
+    bind $watch <Shift-MouseWheel> "if {%D<0} {scrollarrows_bp $genexpwidget down}\
+                                              {scrollarrows_bp $genexpwidget up}; "
 
     bind $callstackwidget <Double-Button-1> {openpointedstacklevel %W %x %y ; break}
 
@@ -389,50 +464,52 @@ proc showwatch_bp {} {
 
     bind $watch <Alt-[fb $checkboxalwaysontop]>            "$checkboxalwaysontop invoke"
     bind $watch <Alt-[fb $checkboxshowwatchvariablesarea]> "$checkboxshowwatchvariablesarea invoke"
+    bind $watch <Alt-[fb $checkboxshowgenexparea]>         "$checkboxshowgenexparea invoke"
     bind $watch <Alt-[fb $checkboxshowcallstackarea]>      "$checkboxshowcallstackarea invoke"
     bind $watch <Alt-[fb $checkboxdockwatch]>              "$checkboxdockwatch invoke"
     bind $watch <Alt-[fb $buttonAddw]>                     "$buttonAddw invoke"
     bind $watch <Alt-[fb $buttonRemove]>                   "$buttonRemove invoke"
     bind $watch <Alt-[fb $checkboxautowatchlocals]>        "$checkboxautowatchlocals invoke"
     bind $watch <Alt-[fb $checkboxautowatchglobals]>       "$checkboxautowatchglobals invoke"
+    bind $watch <Alt-[fb $buttonAddge]>                    "$buttonAddge invoke"
+    bind $watch <Alt-[fb $buttonRemovege]>                 "$buttonRemovege invoke"
     bind $watch <Alt-[fb $buttonClose]>                    "$buttonClose invoke"
 
-    if {!$dockwatch} {
-        bind $watch <Configure> { \
-            if {$showwatchvariablesarea && !$firsttimeinshowwatch} { \
-                set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]; \
-                set watchminw [expr {[lindex $watchminsinit 0] + [lindex $watchhsashcoord 0] - $watchhpane1mins - 4}]; \
-                set watchmins [lreplace $watchmins 0 0 $watchminw]; \
-                if {$showcallstackarea} { \
-                    set watchvsashcoord [$watch.f.vpw sash coord 0]; \
-                    set watchminh [expr {[lindex $watchminsinit 1] + [lindex $watchvsashcoord 1] - $watchvpane1mins - 4}]; \
-                    set watchmins [lreplace $watchmins 1 1 $watchminh]; \
-                } ; \
-                wm minsize $watch [lindex $watchmins 0] [lindex $watchmins 1]; \
-            }; \
-            set watchgeom [wm geometry $watch]; \
+    update
+    if {!$firsttimeinshowwatch} {
+        if {[llength [$watch.f.vpw panes]] >= 2} {
+            $watch.f.vpw            sash place 0 [lindex $watchvsashcoord1 0] [lindex $watchvsashcoord1 1]
+            if {[llength [$watch.f.vpw panes]] >= 3} {
+                $watch.f.vpw        sash place 1 [lindex $watchvsashcoord2 0] [lindex $watchvsashcoord2 1]
+            }
+        }
+        if {$showwatchvariablesarea} {
+            $watch.f.vpw.f2.f2r.hpw sash place 0 [lindex $watchhsashcoord 0] [lindex $watchhsashcoord 1]
         }
     }
 
-    update
-
     if {!$dockwatch} {
+
+        bind $watch <Configure> {if {!$firsttimeinshowwatch} {savewatchgeometry 0}}
+
+        # to avoid seeing the window jump on opening, wm geometry must
+        # be executed before wm deiconify
+        update
         if {$firsttimeinshowwatch} {
             setwingeom $watch
             wm resizable $watch 1 1
         } else {
-            if {!$showwatchvariablesarea && !$showcallstackarea} {
-                # the two statements below seem to set the geometry to what it is already,
-                # at least for the position of the window - indeed it prevents the window
-                # from jumping in the screen when hiding areas in the watch window
-                # note: size is managed by the packer, nothing more to do
-                set watchgeompos [string trimleft $watchgeom 1234567890x=]
-                wm geometry $watch "$watchgeompos"
+            # the two statements below seem to set the geometry to what it is already,
+            # at least for the position of the window - indeed it prevents the window
+            # from jumping in the screen when hiding areas in the watch window or
+            # when reopening a closed watch window
+            # note: size is managed by the packer, nothing more to do
+            set watchgeompos [string trimleft $watchgeom 1234567890x=]
+            wm geometry $watch "$watchgeompos"
+            if {[llength [$watch.f.vpw panes]] == 0} {
                 wm resizable $watch 0 0
             } else {
                 wm resizable $watch 1 1
-                wm minsize $watch [lindex $watchmins 0] [lindex $watchmins 1]
-                wm geometry $watch $watchgeom
             }
         }
     }
@@ -443,35 +520,86 @@ proc showwatch_bp {} {
         wm deiconify $watch
     }
 
-    focus $watch
     update
-
-    if {$firsttimeinshowwatch} { 
-        if {$showwatchvariablesarea} {
-            focus $buttonAddw
-        }
-        if {!$dockwatch} {
-            wm minsize $watch [winfo width $watch] [winfo height $watch]
-            set watchgeom [wm geometry $watch]
-            set watchmins [wm minsize $watch]
-            set watchminsinit $watchmins
-            set watchvpane1mins [winfo height $watch.f.vpw.f2]
-            set watchvpane2mins [winfo height $watch.f.vpw.f6]
-            set watchvsashcoord [$watch.f.vpw            sash coord 0]
-            set watchhpane1mins [winfo width  $watch.f.vpw.f2.f2r.hpw.fl]
-            set watchhpane2mins [winfo width  $watch.f.vpw.f2.f2r.hpw.fr]
-            set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]
-        }
-        set firsttimeinshowwatch false
-    }
+    savewatchgeometry 1
 
     if {$showwatchvariablesarea} {
-        $watch.f.vpw paneconfigure $watch.f.vpw.f2 -minsize $watchvpane1mins
-        $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.fl -minsize $watchhpane1mins
-        $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.fr -minsize $watchhpane2mins
+        focus $buttonAddw
+    } elseif {$showgenexparea} {
+        focus $buttonAddge
+    } else {
+        focus $buttonClose
     }
-    if {$showcallstackarea} {
-        $watch.f.vpw paneconfigure $watch.f.vpw.f6 -minsize $watchvpane2mins
+
+    if {$firsttimeinshowwatch} { 
+        set firsttimeinshowwatch false
+    }
+}
+
+proc savewatchgeometry {wminstructionsvalid} {
+# $wminstructionsvalid is used to prevent the triggering of further
+# <Configure> events, which would then lead to endless execution of
+# this proc
+    global watch watchgeom
+    global dockwatch firsttimeinshowwatch
+    global showwatchvariablesarea showgenexparea showcallstackarea
+    global watchhpane1mins watchhpane2mins
+    global watchhsashcoord
+    global watchvpane1mins watchvpane2mins watchvpane3mins
+    global watchvsashcoord1 watchvsashcoord2
+
+    if {!$dockwatch} {
+        # minimum size of each pane must be saved as being the size
+        # when the watch opens the first time
+        if {$firsttimeinshowwatch && 1} {
+            if {$showwatchvariablesarea} {
+                set watchhpane1mins [winfo width  $watch.f.vpw.f2.f2r.hpw.fl]
+                set watchhpane2mins [winfo width  $watch.f.vpw.f2.f2r.hpw.fr]
+                set watchvpane1mins [winfo height $watch.f.vpw.f2]
+           }
+            if {$showgenexparea} {
+                set watchvpane2mins [winfo height $watch.f.vpw.f3]
+            }
+            if {$showcallstackarea} {
+                set watchvpane3mins [winfo height $watch.f.vpw.f6]
+            }
+        }
+
+        # sash coordinates must be saved avery time it's moved, not only
+        # when the watch opens the first time
+        if {$showwatchvariablesarea} {
+            set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]
+        }
+        if {[llength [$watch.f.vpw panes]] >= 2} {
+            set watchvsashcoord1 [$watch.f.vpw sash coord 0]
+            if {[llength [$watch.f.vpw panes]] >= 3} {
+                set watchvsashcoord2 [$watch.f.vpw sash coord 1]
+            }
+        }
+    }
+
+    if {$wminstructionsvalid} {
+        if {$showwatchvariablesarea} {
+            $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.fl -minsize $watchhpane1mins
+            $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.fr -minsize $watchhpane2mins
+            $watch.f.vpw paneconfigure $watch.f.vpw.f2 -minsize $watchvpane1mins
+        }
+        if {$showgenexparea} {
+            $watch.f.vpw paneconfigure $watch.f.vpw.f3 -minsize $watchvpane2mins
+        }
+        if {$showcallstackarea} {
+            $watch.f.vpw paneconfigure $watch.f.vpw.f6 -minsize $watchvpane3mins
+        }
+    }
+
+    if {!$dockwatch} {
+        if {$wminstructionsvalid} {
+            # minimum size of the watch window
+            if {[llength [$watch.f.vpw panes]] > 0} {
+                wm minsize $watch [winfo width $watch] [winfo height $watch]
+            }
+        }
+        set watchgeom [wm geometry $watch]
     }
 }
 
@@ -592,7 +720,7 @@ proc managedockwatch_bp {} {
 # redraws the watch window in the new (docked or toplevel) state
     global watch watchalwaysontop
 
-    set checkboxalwaysontop $watch.f.f1.f1r.watchalwaysontop
+    set checkboxalwaysontop $watch.f.f1.f1fr.watchalwaysontop
 
     set saved_state $watchalwaysontop
 
@@ -1069,6 +1197,32 @@ proc createsetinscishellcomm {setofvars} {
         set retcomm "\[$retcomm\]=resume($retcomm);"
     }
     return [list $fullcomm $retcomm $viscomm]
+}
+
+proc evalgenericexpinshell {} {
+# evaluate in the Scilab shell the generic expressions listed in the
+# corresponding area of the watch window
+    global watchgenexps
+    set formattingstring1 [mc "evaluates to:"]
+    set formattingstring2 [mc "produces error"]
+    set formattingstring3 [mc "returns no result"]
+    foreach genexp $watchgenexps {
+        set onegenexp [duplicatechars $genexp "\""]
+        set percentescagenexp [duplicatechars $onegenexp "%"]
+        set comm1  "try;"
+        set comm2      "lines(0);\[db_evstrresult,db_evstrierr\]=evstr(\"$onegenexp\");"
+        set comm3      "if db_evstrierr==0 then"
+        set comm4          "mprintf(\"\n$percentescagenexp $formattingstring1\");"
+        set comm5          "disp(db_evstrresult);"
+        set comm6      "else"
+        set comm7          "mprintf(\"\n$percentescagenexp $formattingstring2\"+\"(\"+string(db_evstrierr)+\")\n\");"
+        set comm8      "end;"
+        set comm9  "catch;"
+        set comm10     "mprintf(\"\n$percentescagenexp $formattingstring3\n\");"
+        set comm11 "end;"
+        set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10 $comm11]
+        ScilabEval_lt $fullcomm "seq"
+    }
 }
 
 proc updateclickablelinetag {} {

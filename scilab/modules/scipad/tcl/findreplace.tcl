@@ -146,7 +146,7 @@ proc findtextdialog {typ} {
     listbox $searchtagslb -height 4 -width 15 -font $menuFont -takefocus 1 \
         -xscrollcommand "$find.l.f4.f1.f2.sbx set" \
         -yscrollcommand "$find.l.f4.f1.f2.f1.sby set" \
-        -selectmode extended -exportselection 0 -activestyle none -listvariable helloworld
+        -selectmode extended -exportselection 0 -activestyle none
     pack $searchtagslb $find.l.f4.f1.f2.f1.sby -side left -padx 1
     pack $find.l.f4.f1.f2.f1 $find.l.f4.f1.f2.sbx -side top -pady 1
     pack configure $searchtagslb -expand 1 -fill both 

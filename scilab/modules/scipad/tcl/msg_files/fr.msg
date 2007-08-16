@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.117
+# in sync at least with v6.124
 
 
 # commons
@@ -10,6 +10,7 @@
 ::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
 ::msgcat::mcset fr "Add/Chan&ge" "Ajouter/&Modifier"
 ::msgcat::mcset fr "&Remove" "&Supprimer"
+::msgcat::mcset fr "Rem&ove" "Supprime&r"
 ::msgcat::mcset fr "Untitled" "SansTitre"
 ::msgcat::mcset fr "Close" "Fermer"
 ::msgcat::mcset fr "&Close" "&Fermer"
@@ -51,6 +52,7 @@
                    "Une nouvelle variable espion va être créée."
 ::msgcat::mcset fr "Non editable variable" "Variable non éditable"
 ::msgcat::mcset fr "Variable:" "Variable :"
+::msgcat::mcset fr "Expression:" "Expression :"
 ::msgcat::mcset fr "Value:" "Valeur :"
 ::msgcat::mcset fr "&Get current value from Scilab" "Obtenir la valeur &actuelle dans Scilab"
 ::msgcat::mcset fr "Non watchable variable" "Variable non espionnable"
@@ -192,11 +194,14 @@
 ::msgcat::mcset fr "Watch variables:" "Variables espions :"
 ::msgcat::mcset fr "A&uto (local variables)" "A&uto (variables locales)"
 ::msgcat::mcset fr "Au&to watch globals too" "Espionner aussi les &globales"
+::msgcat::mcset fr "Generic expressions:" "Expressions génériques :"
 ::msgcat::mcset fr "Call stack:" "Pile des appels :"
-::msgcat::mcset fr "&Always on top" "Toujours à l'&avant-plan"
+::msgcat::mcset fr "Always on to&p" "Toujours à l'&avant-plan"
 ::msgcat::mcset fr "Hide watch &variables" "Cacher les &variables"
+::msgcat::mcset fr "Hide e&xpressions" "Cacher les e&xpressions"
 ::msgcat::mcset fr "Hide call &stack" "Cacher la &pile d'appel"
 ::msgcat::mcset fr "&Dock" "&Intégrer"
+::msgcat::mcset fr "&Add" "Ajout&er"
 ::msgcat::mcset fr "Breakpoints" "Points d'arrêt"
 ::msgcat::mcset fr "Breakpointed functions" "Fonctions avec breakpoints"
 ::msgcat::mcset fr "Scilab busy indicator" "Indicateur d'occupation de Scilab"
@@ -204,6 +209,8 @@
 ::msgcat::mcset fr "Undefined elements are not legal in variable" "Les éléments indéfinis sont illégaux pour la variable"
 ::msgcat::mcset fr ".\nThis variable will not be updated in Scilab." ".\nCette variable ne sera pas mise à jour dans Scilab"
 ::msgcat::mcset fr "Illegal undefined element found" "Elément indéfini illégal identifié"
+::msgcat::mcset fr "evaluates to:" "est évalué en:"
+::msgcat::mcset fr "produces error" "résulte en une erreur"
 ::msgcat::mcset fr "Scipad cannot find source code for the selected function.\nPlease open the adequate file manually and try again." \
                    "Scipad ne trouve pas le code source de la fonction sélectionnée.\nVeuillez ouvrir le fichier manuellement et réessayer."
 ::msgcat::mcset fr "Missing source code" "Code source manquant"
@@ -577,6 +584,7 @@
 # popupmenus.tcl
 ::msgcat::mcset fr "Open the source of" "Ouvrir le source de"
 ::msgcat::mcset fr "AddWatch" "Ajouter %s comme espion"
+::msgcat::mcset fr "AddGenExp" "Ajouter %s comme expression générique"
 ::msgcat::mcset fr "Jump to" "Sauter à"
 
 
