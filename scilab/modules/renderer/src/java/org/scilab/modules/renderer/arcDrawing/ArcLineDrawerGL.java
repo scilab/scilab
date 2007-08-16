@@ -8,6 +8,7 @@
 
 package org.scilab.modules.renderer.arcDrawing;
 
+
 import org.scilab.modules.renderer.drawers.LineDrawerGL;
 import org.scilab.modules.renderer.gluNurbsWrapping.GLUnurbsObj;
 import org.scilab.modules.renderer.gluNurbsWrapping.GluNurbsConst;
@@ -49,7 +50,7 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
           GLUnurbsObj nurbsObj = GLUnurbsObj.gluNewNurbsRenderer();
 
           nurbsObj.gluBeginCurve();
-          System.out.println("GLU_NURBS_ERROR = " + GluNurbsConst.GLU_NURBS_ERROR);
+          System.err.println("GLU_NURBS_ERROR = " + GluNurbsConst.GLU_NURBS_ERROR);
           nurbsObj.gluEndCurve();
 
           GLUnurbsObj.gluDeleteNurbsRenderer(nurbsObj);

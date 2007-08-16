@@ -1,4 +1,14 @@
+/*------------------------------------------------------------------------*/
+/* file: SciRenderer.java                                                 */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Contains Nurbs related GLU constants                            */
+/*------------------------------------------------------------------------*/
+
+
 package org.scilab.modules.renderer.gluNurbsWrapping;
+
+import org.scilab.modules.renderer.jni.GluNurbsConstWrapping;
 
 
 /**
@@ -98,7 +108,7 @@ public class GluNurbsConst {
   // NurbsSampling
   public static final int GLU_OBJECT_PARAMETRIC_ERROR = GluNurbsConstWrapping.getGluObjectParametricError();
   public static final int GLU_OBJECT_PARAMETRIC_ERROR_EXT = GluNurbsConstWrapping.getGluObjectParametricErrorExt();
-  public static final int GLU_OBJECT_PATH_LENGTH = GluNurbsConstWrapping. getGluObjectPathLength();
+  public static final int GLU_OBJECT_PATH_LENGTH = GluNurbsConstWrapping.getGluObjectPathLength();
   public static final int GLU_OBJECT_PATH_LENGTH_EXT = GluNurbsConstWrapping.getGluObjectPathLengthExt();
   public static final int GLU_PATH_LENGTH = GluNurbsConstWrapping.getGluPathLength();
   public static final int GLU_PARAMETRIC_ERROR = GluNurbsConstWrapping.getGluParametricError();

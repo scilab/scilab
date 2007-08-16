@@ -1,5 +1,5 @@
 /* Swig file: FigureScilabCallGuiManagement.i */
-/*  swig -java -package org.scilab.modules.renderer.figureDrawing -outdir ../java/org/scilab/modules/renderer/figureDrawing/ FigureScilabCall.i */
+/*  swig -java -package org.scilab.modules.renderer.jni -outdir ../java/org/scilab/modules/renderer/jni/ FigureScilabCall.i */
 %module FigureScilabCall
 %{
 #include "figureDrawing/FigureScilabCall.h"
@@ -62,7 +62,7 @@ public class";
   * Draw a figure inside the OpenGL context
   * @param figureId index of the figure to redraw
   */
-";
+public";
 void displayFigure(int figureId);
 
 /* JavaDoc */
@@ -71,5 +71,5 @@ void displayFigure(int figureId);
   * Redraw a figure and its all children inside the OpenGL context
   * @param figureId index of the figure to redraw
   */
-";
+public";
 void redrawFigure(int figureId);

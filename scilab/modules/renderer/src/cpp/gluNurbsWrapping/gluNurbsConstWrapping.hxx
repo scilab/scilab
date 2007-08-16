@@ -1,3 +1,12 @@
+/*------------------------------------------------------------------------*/
+/* file: gluNurbsWrapping.hxx                                             */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Wrapping of GLU constant related to NURBS. These functions are  */
+/*        to be used from Java code in order to retrieve the constants.   */
+/*------------------------------------------------------------------------*/
+
+
 #ifndef _GLU_NURBS_CONST_WRAPPING_HXX_
 #define _GLU_NURBS_CONST_WRAPPING_HXX_
 

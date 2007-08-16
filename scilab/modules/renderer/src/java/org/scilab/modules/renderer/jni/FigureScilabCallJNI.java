@@ -6,7 +6,7 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package org.scilab.modules.renderer.figureDrawing;
+package org.scilab.modules.renderer.jni;
 
 
  /** 

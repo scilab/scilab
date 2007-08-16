@@ -1,9 +1,8 @@
 /* Swig file: GluNurbsWrapping.i */
-/*  swig -java -package org.scilab.modules.renderer.gluNurbsWrapping -outdir ../java/org/scilab/modules/renderer/gluNurbsWrapping/  GluNurbsWrapping.i */
+/*  swig -java -package org.scilab.modules.renderer.jni -outdir ../java/org/scilab/modules/renderer/jni/  GluNurbsWrapping.i */
 %module GluNurbsWrapping
 %{
 #include "gluNurbsWrapping/gluNurbsWrapping.hxx"
-#include <GL/glu.h>
 %}
 
 /* JavaDoc for GluNurbsWrappingJNI class */
@@ -105,7 +104,8 @@ void gluEndCurveWrapping(GLUnurbsObj * nurbsObj);
   * @param nknots number of nots
   * @param knot array of knot
   * @param stride offset
-  * @param cltarray array of control points
+  * @param ctlarray array of control points
+  * @param order order of the nurbs curve
   * @param type attribute of the curve
   */
 public";
@@ -224,8 +224,9 @@ float gluGetNurbsPropertyWrapping(GLUnurbsObj * nurbsObj, int property);
  /**
   * Wrapping of gluLoadSamplingMatrices(GLUnurbsObj *, const GLfloat[16], const GLfloat[16], const GLint[4])
   * @param nurbsObj nurbs renderer to use
-  * @param property type of property to get
-  * @return queried value
+  * @param modelMatrix model view Matrix (4x4)
+  * @param projMatrix projection Matrix (4x4).
+  * @param viewPort current viewport (x,y,w,h)
   */
 public";
 void gluLoadSamplingMatricesWrapping(GLUnurbsObj * nurbsObj,

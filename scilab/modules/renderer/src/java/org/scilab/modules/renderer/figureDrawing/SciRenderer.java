@@ -12,6 +12,8 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.jni.FigureScilabCall;
+
 
 
 /**

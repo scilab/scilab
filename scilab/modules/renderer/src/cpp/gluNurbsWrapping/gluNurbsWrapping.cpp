@@ -1,4 +1,11 @@
-#include <stdio.h>
+/*------------------------------------------------------------------------*/
+/* file: gluNurbsWrapping.cpp                                             */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Wrapping of GLU nurbs related functions.                        */
+/*        Perform type conversion                                         */
+/*------------------------------------------------------------------------*/
+
 #include "gluNurbsWrapping.hxx"
 
 /*------------------------------------------------------------------------------------------*/

@@ -9,6 +9,8 @@
 
 package org.scilab.modules.renderer.arcDrawing;
 
+import java.lang.annotation.Inherited;
+
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
 
 /**

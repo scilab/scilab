@@ -1,5 +1,5 @@
 /* Swig file: GluNurbsConstWrapping.i */
-/*  swig -java -package org.scilab.modules.renderer.gluNurbsWrapping -outdir ../java/org/scilab/modules/renderer/gluNurbsWrapping/  GluNurbsConstWrapping.i */
+/*  swig -java -package org.scilab.modules.renderer.jni -outdir ../java/org/scilab/modules/renderer/jni/  GluNurbsConstWrapping.i */
 %module GluNurbsConstWrapping
 %{
 #include "gluNurbsWrapping/gluNurbsConstWrapping.hxx"

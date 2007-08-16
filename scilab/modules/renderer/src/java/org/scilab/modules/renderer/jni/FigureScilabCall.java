@@ -6,12 +6,12 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package org.scilab.modules.renderer.figureDrawing;
+package org.scilab.modules.renderer.jni;
 
 
  /** 
   * Call from the JoGL dislay thread to figure drawing code using JNI 
-  * @author Vincent COUVERT
+  * @author Jean-Baptiste Silvy
   * @copyright INRIA 2007 
   */
 public class FigureScilabCall {
@@ -27,7 +27,7 @@ public class FigureScilabCall {
   * Draw a figure inside the OpenGL context
   * @param figureId index of the figure to redraw
   */
- static void displayFigure(int figureId) {
+public static void displayFigure(int figureId) {
     FigureScilabCallJNI.displayFigure(figureId);
   }
 
@@ -36,7 +36,7 @@ public class FigureScilabCall {
   * Redraw a figure and its all children inside the OpenGL context
   * @param figureId index of the figure to redraw
   */
- static void redrawFigure(int figureId) {
+public static void redrawFigure(int figureId) {
     FigureScilabCallJNI.redrawFigure(figureId);
   }
 

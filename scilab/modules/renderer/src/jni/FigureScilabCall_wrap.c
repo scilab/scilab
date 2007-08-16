@@ -179,7 +179,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCallJNI_displayFigure(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJNI_displayFigure(JNIEnv *jenv, jclass jcls, jint jarg1) {
   int arg1 ;
   
   (void)jenv;
@@ -188,7 +188,8 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureSci
   displayFigure(arg1);
 }
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCallJNI_redrawFigure(JNIEnv *jenv, jclass jcls, jint jarg1) {
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJNI_redrawFigure(JNIEnv *jenv, jclass jcls, jint jarg1) {
   int arg1 ;
   
   (void)jenv;

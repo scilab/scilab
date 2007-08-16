@@ -13,6 +13,9 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<ToolFile
+			RelativePath="..\..\VS-2005-settings\swig.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -27,6 +30,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="swig rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -63,8 +69,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib graphics.lib"
+				AdditionalDependencies="LibScilab.lib graphics.lib glu32.lib"
 				OutputFile="../../bin/scirenderer.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="renderer.def"
@@ -112,6 +117,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="swig rule"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -148,7 +156,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib graphics.lib"
+				AdditionalDependencies="LibScilab.lib graphics.lib glu32.lib"
 				OutputFile="../../bin/scirenderer.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="renderer.def"
@@ -500,6 +508,22 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\GraphicSynchronization\GlobalSynchronizer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\gluNurbsWrapping\gluNurbsConstWrapping.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\GluNurbsConstWrapping_wrap.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\gluNurbsWrapping\gluNurbsWrapping.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\GluNurbsWrapping_wrap.c"
 				>
 			</File>
 			<File
@@ -933,6 +957,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\gluNurbsWrapping\gluNurbsConst.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\gluNurbsWrapping\gluNurbsConstWrapping.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\gluNurbsWrapping\gluNurbsWrapping.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizer.h"
 				>
 			</File>
@@ -1046,6 +1082,10 @@
 				RelativePath=".\languages\en_US\messages.xml"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Swig Files"
+			>
 		</Filter>
 		<File
 			RelativePath=".\LibScilab_Import.def"

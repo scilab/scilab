@@ -10,6 +10,9 @@
 #ifndef _GLU_NURBS_WRAPPING_HXX_
 #define _GLU_NURBS_WRAPPING_HXX_
 
+#ifdef _MSC_VER
+#include <Windows.h>
+#endif
 #include <GL/glu.h>
 
 #ifdef __cplusplus

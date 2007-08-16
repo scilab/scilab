@@ -1,12 +1,22 @@
+/*------------------------------------------------------------------------*/
+/* file: SciRenderer.java                                                 */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Wrapping for the GLUnurbsObj pointer and the nurbs realted GLU  */
+/*        functions                                                       */
+/*------------------------------------------------------------------------*/
+
 package org.scilab.modules.renderer.gluNurbsWrapping;
+
+import org.scilab.modules.renderer.jni.GluNurbsWrapping;
+import org.scilab.modules.renderer.jni.SWIGTYPE_p_GLUnurbsObj;
 
 /**
  * Wrapping for the GLUnurbsObj pointer and the nurbs realted GLU functions
  * @copyright INRIA 2007
  * @author Jean-Baptiste Silvy
  */
-public class GLUnurbsObj
-{
+public class GLUnurbsObj {
   
   /** Pointer on swig object */
   private SWIGTYPE_p_GLUnurbsObj swigPointer;
@@ -56,7 +66,8 @@ public class GLUnurbsObj
    * @param nknots number of nots
    * @param knot array of knot
    * @param stride offset
-   * @param cltarray array of control points
+   * @param ctlarray array of control points
+   * @param order order of the Nurbs curve
    * @param type attribute of the curve
    */
   public void gluNurbsCurve(int nknots, float[] knot,
@@ -95,7 +106,7 @@ public class GLUnurbsObj
   public void gluNurbsSurface(int sknot_count, float[] sknot, int tknot_count,
                               float[] tknot, int s_stride, int t_stride,
                               float[] ctlarray, int sorder, int torder, int type) {
-    GluNurbsWrapping.gluNurbsSurfaceWrapping(getSwigPointer(),sknot_count, sknot,
+    GluNurbsWrapping.gluNurbsSurfaceWrapping(getSwigPointer(), sknot_count, sknot,
                                              tknot_count, tknot, s_stride, t_stride,
                                              ctlarray, sorder, torder, type);
   }
@@ -150,8 +161,9 @@ public class GLUnurbsObj
   
   /**
    * Wrapping of gluLoadSamplingMatrices(GLUnurbsObj *, const GLfloat[16], const GLfloat[16], const GLint[4])
-   * @param property type of property to get
-   * @return queried value
+   * @param modelMatrix model view Matrix (4x4)
+   * @param projMatrix projection Matrix (4x4).
+   * @param viewPort current viewport (x,y,w,h)
    */
   public void gluLoadSamplingMatrices(float[] modelMatrix, float[] projMatrix, int[] viewPort) {
     GluNurbsWrapping.gluLoadSamplingMatricesWrapping(getSwigPointer(), modelMatrix, projMatrix, viewPort);
@@ -161,15 +173,16 @@ public class GLUnurbsObj
   
 
   /**
-   * Get the swig pointer on the glu object.
-   * To be used form other
+   * Get the swig pointer on the glu object. Use with caution.
+   * @return swig pointer on the glu renderer.
    */
   protected SWIGTYPE_p_GLUnurbsObj getSwigPointer() {
     return swigPointer;
   }
 
   /**
-   * Set the pointe to the swig object.
+   * Set the pointer to the swig object.
+   * @param swigPointer the pointer to use.
    */
   protected void setSwigPointer(SWIGTYPE_p_GLUnurbsObj swigPointer) {
     this.swigPointer = swigPointer;
