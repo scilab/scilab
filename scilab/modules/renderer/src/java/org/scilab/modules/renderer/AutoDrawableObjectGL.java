@@ -45,7 +45,6 @@ public class AutoDrawableObjectGL extends DrawableObjectGL {
 	@Override
 	public void initializeDrawing(int parentFigureIndex) {
 		// get the context from the drawing canvas
-		System.err.println("Calling initialize Drawing from AutoDrawableObjectJoGL.");
 		super.initializeDrawing(parentFigureIndex);
 		startRecordDL();
 	}
