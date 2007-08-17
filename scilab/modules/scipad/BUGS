@@ -96,12 +96,6 @@ endfunction
  createsetinscishellcomm should be recursive)
  example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
 
--Tk8.5 only: there is something fishy with the bindings in the watch window:
- try Ctrl-f or Alt-f for instance. Text widget private Tk procs are called
- with %W being $watch (which is a toplevel!) or the Add/Change button, well
- the widget that has focus - how come that text widget bindings get fired
- by other widgets??
-
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -174,9 +168,6 @@ Wishes:
 -------
 
 Debugger wishes:
-
--Don't update the watch variables and the generic expressions area when
- skipping nocode lines
 
 -Use the -listvariable option for $lbvarname and $lbvarval listboxes - this
  could automate a lot of sync work with watchvars and watchvarsprops

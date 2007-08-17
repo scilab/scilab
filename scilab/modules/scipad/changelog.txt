@@ -3138,3 +3138,14 @@ Francois VOGEL, 16/08/07
    watching - the expression may be anything, e.g. graphical command, so
    that an array can be plotted at each debugger stop
  * version --> 6.124
+
+Francois VOGEL, 17/08/07
+ * Changed the title of the Add dialog when called for a generic expression
+ * Removed double evaluation of the generic expressions when using the
+   Break debugger command
+ * Performance: the watch variables values are not updated and the generic
+   expressions are not evaluated when skipping nocode lines (this was anyway
+   useless)
+ * De-clutter: Added a checkbox allowing to hide errors from generic
+   expressions instead of displaying them in the shell
+ * version --> 6.125

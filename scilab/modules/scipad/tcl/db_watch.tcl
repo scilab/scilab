@@ -300,7 +300,8 @@ proc showwatch_bp {} {
     frame $watch.f.vpw.f3.f3l
     set bestwidth [mcmaxra "Generic expressions:" \
                            "&Add" \
-                           "Rem&ove" ]
+                           "Rem&ove" \
+                           "&Filter errors"]
     set gel [mc "Generic expressions:"]
     label $watch.f.vpw.f3.f3l.gelabel -text $gel -font $menuFont
     pack $watch.f.vpw.f3.f3l.gelabel -anchor w -pady 4
@@ -312,7 +313,15 @@ proc showwatch_bp {} {
     eval "button $buttonRemovege [bl "Rem&ove"] \
             -width $bestwidth -font \[list $menuFont\] "
     if {$dockwatch} {$buttonRemovege configure -underline -1}
-    pack $watch.f.vpw.f3.f3l.gelabel $buttonAddge $buttonRemovege -pady 4
+    set checkboxfiltererrors $watch.f.vpw.f3.f3l.filtererrors
+    eval "checkbutton $checkboxfiltererrors [bl "&Filter errors"] \
+            -variable filtergenexperrors \
+            -onvalue \"true\" -offvalue \"false\" \
+            -width $bestwidth -font \[list $menuFont\] \
+            -anchor w -borderwidth 1 -pady 0 "
+    if {$dockwatch} {$checkboxfiltererrors configure -underline -1}
+    pack $watch.f.vpw.f3.f3l.gelabel $buttonAddge $buttonRemovege \
+            $checkboxfiltererrors -pady 4
 
     frame $watch.f.vpw.f3.f3r
     set genexpwidget $watch.f.vpw.f3.f3r.genexp
@@ -473,6 +482,7 @@ proc showwatch_bp {} {
     bind $watch <Alt-[fb $checkboxautowatchglobals]>       "$checkboxautowatchglobals invoke"
     bind $watch <Alt-[fb $buttonAddge]>                    "$buttonAddge invoke"
     bind $watch <Alt-[fb $buttonRemovege]>                 "$buttonRemovege invoke"
+    bind $watch <Alt-[fb $checkboxfiltererrors]>           "$checkboxfiltererrors invoke"
     bind $watch <Alt-[fb $buttonClose]>                    "$buttonClose invoke"
 
     update
@@ -1203,24 +1213,31 @@ proc evalgenericexpinshell {} {
 # evaluate in the Scilab shell the generic expressions listed in the
 # corresponding area of the watch window
     global watchgenexps
+    global filtergenexperrors
     set formattingstring1 [mc "evaluates to:"]
     set formattingstring2 [mc "produces error"]
     set formattingstring3 [mc "returns no result"]
     foreach genexp $watchgenexps {
         set onegenexp [duplicatechars $genexp "\""]
         set percentescagenexp [duplicatechars $onegenexp "%"]
-        set comm1  "try;"
-        set comm2      "lines(0);\[db_evstrresult,db_evstrierr\]=evstr(\"$onegenexp\");"
-        set comm3      "if db_evstrierr==0 then"
-        set comm4          "mprintf(\"\n$percentescagenexp $formattingstring1\");"
-        set comm5          "disp(db_evstrresult);"
-        set comm6      "else"
-        set comm7          "mprintf(\"\n$percentescagenexp $formattingstring2\"+\"(\"+string(db_evstrierr)+\")\n\");"
-        set comm8      "end;"
-        set comm9  "catch;"
-        set comm10     "mprintf(\"\n$percentescagenexp $formattingstring3\n\");"
-        set comm11 "end;"
-        set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10 $comm11]
+        set comm1      "try;"
+        set comm2          "lines(0);\[db_evstrresult,db_evstrierr\]=evstr(\"$onegenexp\");"
+        set comm3          "if db_evstrierr==0 then"
+        set comm4              "mprintf(\"\n$percentescagenexp $formattingstring1\");"
+        set comm5              "disp(db_evstrresult);"
+        if {!$filtergenexperrors} {
+            set comm6      "else"
+            set comm7          "mprintf(\"\n$percentescagenexp $formattingstring2\"+\"(\"+string(db_evstrierr)+\")\n\");"
+            set comm8      "end;"
+            set comm9  "catch;"
+            set comm10     "mprintf(\"\n$percentescagenexp $formattingstring3\n\");"
+            set comm11 "end;"
+            set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10 $comm11]
+        } else {
+            set comm6      "end;"
+            set comm7  "end;"
+            set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7]
+        }
         ScilabEval_lt $fullcomm "seq"
     }
 }

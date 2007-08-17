@@ -54,7 +54,11 @@ proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
 
     set adda $w.adda
     toplevel $adda
-    wm title $adda [mc "Add/Change"]
+    if {!$calledfromwatch_exps} {
+        wm title $adda [mc "Add/Change"]
+    } else {
+        wm title $adda [mc "Add"]
+    }
     wm withdraw $adda
 
     # The add argument dialog must be a transient of $watch or $conf

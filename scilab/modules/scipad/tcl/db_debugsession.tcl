@@ -135,9 +135,9 @@ proc execfile_bp {{stepmode "nostep"}} {
             ScilabEval_lt "$watchsetcomm" "seq"
         }
         ScilabEval_lt "$setbpcomm; $funnameargs;" "seq"
-        updateactivebreakpoint
         getcallstackfromshell
         evalgenericexpinshell
+        updateactivebreakpoint
         checkendofdebug_bp $stepmode
         set execresult 0
     } else {
@@ -857,14 +857,14 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
             } else {
                 ScilabEval_lt "resume(0)" "seq"
             }
+            getcallstackfromshell
+            evalgenericexpinshell
         } else {
             # the debugger is currently skipping no code lines
             # the watch variables do not have to be updated
             ScilabEval_lt "resume(0)" "seq"
         }
         updateactivebreakpoint
-        getcallstackfromshell
-        evalgenericexpinshell
         checkendofdebug_bp $stepmode
     } else {
         # <TODO> .sce case if some day the parser uses pseudocode noops
@@ -924,11 +924,13 @@ proc break_bp {} {
                 # will anyway set breakpoints later on really breakpointed
                 # lines
                 ScilabEval_lt "$cmddel" "seq"
-                getcallstackfromshell
-                evalgenericexpinshell
-                # updateactivebreakpoint and getwatchvarfromshell are already
+                # updateactivebreakpoint, getwatchvarfromshell,
+                # getcallstackfromshell and evalgenericexpinshell are already
                 # queued by the previous command that stucked the script, it's
                 # not needed to repeat these commands here
+                # indeed this is even true when the break command occurs on a
+                # nocode line since the debugger now skips those lines even on
+                # a break (see proc checkendofdebug_bp)
             }
         } else {
             # <TODO> .sce case if some day the parser uses pseudocode noops

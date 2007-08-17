@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.124
+# in sync at least with v6.125
 
 
 # commons
@@ -46,6 +46,7 @@
 
 
 # db_argsmanagement.tcl
+::msgcat::mcset fr "Add" "Ajouter"
 ::msgcat::mcset fr "This variable can be watched but cannot be edited!" \
                    "Cette variable peut être espionnée mais ne peut pas être modifiée !"
 ::msgcat::mcset fr "A new watch variable will be created." \
@@ -202,6 +203,7 @@
 ::msgcat::mcset fr "Hide call &stack" "Cacher la &pile d'appel"
 ::msgcat::mcset fr "&Dock" "&Intégrer"
 ::msgcat::mcset fr "&Add" "Ajout&er"
+::msgcat::mcset fr "&Filter errors" "Fi&ltrer les erreurs"
 ::msgcat::mcset fr "Breakpoints" "Points d'arrêt"
 ::msgcat::mcset fr "Breakpointed functions" "Fonctions avec breakpoints"
 ::msgcat::mcset fr "Scilab busy indicator" "Indicateur d'occupation de Scilab"
