@@ -60,6 +60,7 @@ public abstract class ObjectGL {
 	 *                          Needed to get the GL context to draw in.
 	 */
 	public void initializeDrawing(int parentFigureIndex) {
+		System.err.println("Calling initialize Drawing from ObjectJoGL.");
 		// get the context from the drawing canvas
 		updateGLContext(parentFigureIndex);
 		updateColorMap(parentFigureIndex);

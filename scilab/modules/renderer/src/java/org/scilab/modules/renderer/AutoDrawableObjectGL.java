@@ -42,8 +42,10 @@ public class AutoDrawableObjectGL extends DrawableObjectGL {
 	 * @param parentFigureIndex index of the parent figure.
 	 *                          Needed to get the GL context to draw in.
 	 */
+	@Override
 	public void initializeDrawing(int parentFigureIndex) {
 		// get the context from the drawing canvas
+		System.err.println("Calling initialize Drawing from AutoDrawableObjectJoGL.");
 		super.initializeDrawing(parentFigureIndex);
 		startRecordDL();
 	}
@@ -51,6 +53,7 @@ public class AutoDrawableObjectGL extends DrawableObjectGL {
 	/**
 	 * Function called at the end of the OpenGL use.
 	 */
+	@Override
 	public void endDrawing() {
 		endRecordDL();
 		super.endDrawing();

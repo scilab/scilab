@@ -6,12 +6,27 @@
 /*        Perform type conversion                                         */
 /*------------------------------------------------------------------------*/
 
+#include <iostream>
+
 #include "gluNurbsWrapping.hxx"
 
 /*------------------------------------------------------------------------------------------*/
+/**
+ * Callback for when errors happens with nurbs.
+ */
+static void nurbsErrorDefault(GLenum errno)
+{
+  const GLubyte * errString;
+  errString = gluErrorString(errno);
+  std::cerr << errString << std::endl;
+}
+/*------------------------------------------------------------------------------------------*/
 GLUnurbsObj * gluNewNurbsRendererWrapping(void)
 {
-  return gluNewNurbsRenderer();
+  GLUnurbsObj * newRenderer = gluNewNurbsRenderer();
+  // set default error call back
+  //gluNurbsCallback(newRenderer, GLU_ERROR, &nurbsErrorDefault);
+  return newRenderer;
 }
 /*------------------------------------------------------------------------------------------*/
 void gluDeleteNurbsRendererWrapping(GLUnurbsObj * nurbsObj)
