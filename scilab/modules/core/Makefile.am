@@ -328,13 +328,8 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/fileio/libscifileio.la
-
-if STRINGV2
-	libscicore_la_LIBADD +=	$(top_builddir)/modules/string_V2/libscistring.la
-else
-	libscicore_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
-endif
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/string/libscistring.la
 
 
 #### Target ######
@@ -423,3 +418,4 @@ demos/intro/extc.sce \
 demos/intro/Makefile
 
 include $(top_srcdir)/Makefile.incl.am
+

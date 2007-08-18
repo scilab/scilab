@@ -14,7 +14,6 @@ boolean \
 linear_algebra \
 differential_equations \
 string \
-string_V2 \
 signal_processing \
 fileio \
 core \
@@ -119,14 +118,9 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
-	$(top_builddir)/modules/history_manager/libscihistory_manager.la
+	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
+        $(top_builddir)/modules/string/libscistring.la
 
-
-if STRINGV2
-libscilab_la_LIBADD += $(top_builddir)/modules/string_V2/libscistring.la
-else
-libscilab_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
-endif
 
 #if MPI
 #libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
@@ -140,7 +134,7 @@ libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
 
 libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
 
-##�Libs 
+## Libs 
 libscilab_la_LIBADD += \
 $(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la \

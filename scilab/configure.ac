@@ -670,6 +670,10 @@ AC_HEADER_TIME
 # check if the specific header is available or not | used in modules/core/src/c/link_SYSV.c
 AC_HEADER_SYS_WAIT
 
+# check for OpenGL (GLU)
+AC_CHECK_HEADERS([GL/gl.h GL/glu.h])
+
+
 #######################
 ## Test for structures ##
 #######################
@@ -795,11 +799,6 @@ AC_ARG_WITH(pcre,
 		)
 
 AC_PCRE()
-
-AC_ARG_WITH(cong-string,
-    [  --with-cong-string	           Use Cong Wu work on the string ])
-
-AM_CONDITIONAL(STRINGV2, test "$with_cong_string" = yes)
 
 #################
 ## Tcl/Tk library
@@ -1114,7 +1113,6 @@ modules/integer/Makefile
 modules/double/Makefile
 modules/fileio/Makefile
 modules/string/Makefile
-modules/string_V2/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
 modules/renderer/Makefile

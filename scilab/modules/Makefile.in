@@ -49,13 +49,11 @@ host_triplet = @host@
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @JAVASCI_TRUE@am__append_1 = javasci
-@STRINGV2_TRUE@am__append_2 = $(top_builddir)/modules/string_V2/libscistring.la
-@STRINGV2_FALSE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
 
 #if MPI
 #libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
 #endif
-@FFTW_TRUE@am__append_4 = $(top_builddir)/modules/fftw/libscifftw.la
+@FFTW_TRUE@am__append_2 = $(top_builddir)/modules/fftw/libscifftw.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 subdir = modules
@@ -121,7 +119,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(am__append_2) $(am__append_3) $(am__append_4) \
+	$(top_builddir)/modules/string/libscistring.la $(am__append_2) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
@@ -157,7 +155,7 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	arnoldi boolean linear_algebra differential_equations string \
-	string_V2 signal_processing fileio core metanet optimization \
+	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell history_manager console \
@@ -329,7 +327,7 @@ top_srcdir = @top_srcdir@
 #SUBDIRS += mpi
 #endif
 SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
-	boolean linear_algebra differential_equations string string_V2 \
+	boolean linear_algebra differential_equations string \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
@@ -385,7 +383,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(am__append_2) $(am__append_3) $(am__append_4) \
+	$(top_builddir)/modules/string/libscistring.la $(am__append_2) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \

@@ -89,7 +89,8 @@ libscicore_la_DEPENDENCIES = $(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/fileio/libscifileio.la
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/string/libscistring.la
 am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-tmpdir.lo libscicore_la-intmacr2tree.lo \
 	libscicore_la-fromjava.lo libscicore_la-cvstr.lo \
@@ -721,7 +722,8 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/fileio/libscifileio.la
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/string/libscistring.la
 
 
 #### Target ######
@@ -2943,9 +2945,6 @@ uninstall-am: uninstall-libscicore_la_demosintroDATA \
 	uninstall-libscicore_la_sci_gatewayDATA \
 	uninstall-libscicore_la_xmlDATA uninstall-pkglibLTLIBRARIES
 
-
-@STRINGV2_TRUE@	libscicore_la_LIBADD +=	$(top_builddir)/modules/string_V2/libscistring.la
-@STRINGV2_FALSE@	libscicore_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
 #.java .class .jar
 
 ########################### JAVA ######################################
