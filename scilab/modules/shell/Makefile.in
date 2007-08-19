@@ -85,13 +85,14 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscishell_la_DEPENDENCIES = $(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__libscishell_la_SOURCES_DIST = src/c/clc.c src/c/tohome.c \
-	src/c/zzledt_Linux.c src/c/PutChar_linux.c \
+	src/c/zzledt_Linux.c src/c/more.c src/c/PutChar_linux.c \
 	src/c/GetCharWithoutOutput.c sci_gateway/c/gw_shell.c \
 	sci_gateway/c/sci_clc.c sci_gateway/c/sci_tohome.c
 @GUI_TRUE@am__objects_1 = libscishell_la-PutChar_linux.lo \
 @GUI_TRUE@	libscishell_la-GetCharWithoutOutput.lo
 am__objects_2 = libscishell_la-clc.lo libscishell_la-tohome.lo \
-	libscishell_la-zzledt_Linux.lo $(am__objects_1)
+	libscishell_la-zzledt_Linux.lo libscishell_la-more.lo \
+	$(am__objects_1)
 am__objects_3 =
 am__objects_4 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo
@@ -287,7 +288,7 @@ SHELL_CPP_SOURCES =
 
 # List of the c files
 SHELL_C_SOURCES = src/c/clc.c src/c/tohome.c src/c/zzledt_Linux.c \
-	$(am__append_1)
+	src/c/more.c $(am__append_1)
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
@@ -447,6 +448,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-PutChar_linux.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-more.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-tohome.Plo@am__quote@
@@ -493,6 +495,13 @@ libscishell_la-zzledt_Linux.lo: src/c/zzledt_Linux.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/zzledt_Linux.c' object='libscishell_la-zzledt_Linux.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-zzledt_Linux.lo `test -f 'src/c/zzledt_Linux.c' || echo '$(srcdir)/'`src/c/zzledt_Linux.c
+
+libscishell_la-more.lo: src/c/more.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-more.lo -MD -MP -MF $(DEPDIR)/libscishell_la-more.Tpo -c -o libscishell_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-more.Tpo $(DEPDIR)/libscishell_la-more.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/more.c' object='libscishell_la-more.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
 
 libscishell_la-PutChar_linux.lo: src/c/PutChar_linux.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-PutChar_linux.lo -MD -MP -MF $(DEPDIR)/libscishell_la-PutChar_linux.Tpo -c -o libscishell_la-PutChar_linux.lo `test -f 'src/c/PutChar_linux.c' || echo '$(srcdir)/'`src/c/PutChar_linux.c

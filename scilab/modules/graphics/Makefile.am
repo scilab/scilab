@@ -10,7 +10,6 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes  -Iinc
 if GUI
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
-src/c/w_rottext.c \
 src/c/gifimg.c \
 src/c/WindowList.c \
 src/c/Events.c \
@@ -274,7 +273,6 @@ src/c/getHandleProperty/set_event_handler_property.c \
 src/c/getHandleProperty/set_event_handler_enable_property.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
-src/c/periX11.c \
 src/c/graphicSession.c \
 src/c/Xcall1.c \
 src/c/Axes.c \
@@ -340,7 +338,6 @@ src/c/TerminateGraphics.c \
 src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c \
 src/c/CheckColormap.c \
-src/c/CheckScilabXgc.c \
 src/c/deletePoints.c \
 src/c/fill_grid_rectangles.c \
 src/c/get_rgb.c \

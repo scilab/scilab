@@ -5,10 +5,6 @@
 #include "realmain.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-#ifndef _MSC_VER
-#include "xscion.h"
-#include "../../gui/includes/x_main.h"
-#endif
 #include "../../../gui/includes/IsNoInteractiveWindow.h"
 #include "inffic.h" /* get_sci_data_strings */
 #include "scirun.h"
@@ -110,24 +106,12 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
 		}
 
 #ifndef _MSC_VER
-	if ( getScilabMode() == SCILAB_STD ) 
-		{
-			/* we are in window mode */
-			main_sci(startup,strlen(startup),memory);
-		}
-	else 
-		{
-			if (! IsNoInteractiveWindow() )
-				{
-					/* As the mod NW will change in the near future, this will change */
-					InitXsession();
-				}
-			/* initialize scilab interp  */
-			C2F(inisci)(&initialization, &memory, &ierr);
-			if (ierr > 0) C2F(sciquit)() ;
-			/* execute the initial script and enter scilab */ 
-			C2F(scirun)(startup,strlen(startup));
-		}
+		/* initialize scilab interp  */
+		C2F(inisci)(&initialization, &memory, &ierr);
+		if (ierr > 0) C2F(sciquit)() ;
+		/* execute the initial script and enter scilab */ 
+		C2F(scirun)(startup,strlen(startup));
+
 #else
 	/* initialize scilab interp under Microsoft Windows  */
 	C2F(inisci)(&initialization, &memory, &ierr);

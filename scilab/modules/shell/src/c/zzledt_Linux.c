@@ -187,12 +187,6 @@ extern int XClearScreenConsole(char *fname);
 
 
 
-extern int  XEvorgetchar(int interrupt);  
-
-
-extern int  Xorgetchar(int interrupt);
-/* --- End extern functions ---  */
-
 /*  ---- interruption handling ---*/
 static char wk_buf_save[WK_BUF_SIZE + 1];
 static int cursor_save=0;
@@ -304,10 +298,10 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
         
   setSearchedTokenInScilabHistory(NULL);
 
-#ifdef WITH_JAVA_CONSOLE              
+
   if (getScilabMode()==SCILAB_NW || getScilabMode()==SCILAB_NWNI || getScilabMode()==SCILAB_API)
     {
-#endif
+
 
   while(1) {  /* main loop to read keyboard input */
     /* get next keystroke (no echo) returns -1 if interrupted */
@@ -622,7 +616,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
   }
 
-#ifdef WITH_JAVA_CONSOLE              
+
   }
  else
    {
@@ -641,7 +635,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
      	else *buf_size = 0;
      /* End of call to Java Console */
    }
-#endif
+
  exit:
   /* copy to return buffer */
   if(get_echo_mode()==0)  
@@ -851,10 +845,12 @@ static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max)
 
 int GetCharOrEvent(int interrupt)
 {
-  if(getScilabMode() == SCILAB_STD)
+  return getchar();
+/*  if(getScilabMode() == SCILAB_STD)
     return XEvorgetchar(interrupt);
   else
     return Xorgetchar(interrupt);
+*/
 }
 
  
@@ -1003,11 +999,6 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 {
   Scierror(999,"\nNot yet implemented. \n");	
   return 0;
-}
-
-int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
-{
-  return XClearScreenConsole(fname); /* In SCI/modules/gui/src/c/xsci/x_util.c */
 }
 
 int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len))
