@@ -1,7 +1,8 @@
 #include "machine.h"
 
-/* These DEFAULTNUMCOLORS colors come from Xfig */
+#ifndef _MSC_VER
 
+/* These DEFAULTNUMCOLORS colors come from Xfig */
 unsigned short default_colors[] = {
   0,   0,   0, /* Black: DEFAULTBLACK */
   0,   0, 255, /* Blue */
@@ -36,6 +37,8 @@ unsigned short default_colors[] = {
   255, 224, 224, /* Pink */
   255, 215,   0  /* Gold */
 };
+
+#endif
 
 int WithBackingStore(void)
 
