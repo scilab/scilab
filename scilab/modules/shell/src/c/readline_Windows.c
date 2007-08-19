@@ -822,7 +822,7 @@ static char msdos_getch ()
   {
 	  while( !_kbhit() && ismenu()==0)  /* Test on ismenu added (bug 1052) - Francois VOGEL */
 	  {
-		  C2F (sxevents) ();
+		  //C2F (sxevents) ();
 		  Sleep(1);
 	  }
   }

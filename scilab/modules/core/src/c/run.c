@@ -16,10 +16,8 @@
 #include "sciquit.h"
 #include "stack-c.h"
 #include "run.h"
-#include "timer.h"
 #include "basout.h"
-#include "../../gui/includes/checkevts.h"
-#include "../../gui/includes/sxevents.h"
+#include "ScilabEventsLoop.h"
 #include "dynamic_menus.h"
 #include "parse.h"
 
@@ -115,7 +113,6 @@ int C2F(run)()
   static int id[6], lc, kc, nc, lb, li, il, io, ip;
   static int ok;
   static int ir, lr, op;
-  static int inxsci;
   static int mm1;
   static int nn1;
   static int nentry, lastindpos;
@@ -125,7 +122,7 @@ int C2F(run)()
   static char tmp[80];
 
   tref = 0;
-  C2F(checkevts)(&inxsci);
+
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," run pt:%d rstk(pt):%d",Pt,Rstk[Pt]);
     C2F(basout)(&io, &C2F(iop).wte,tmp, strlen(tmp));
@@ -485,7 +482,7 @@ int C2F(run)()
   if (Pstk[Pt] != 0) {
     Lct[8] = Ids[2 + Pt * nsiz];
 
-    if (inxsci == 1 && scilab_timer_check() )  C2F(sxevents)();
+    ScilabEventsLoop();
     if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   }
@@ -595,7 +592,7 @@ int C2F(run)()
     Ids[1 + Pt * nsiz] = l0;
     Ids[2 + Pt * nsiz] = nc;
     Rstk[Pt] = 616;
-    if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
+    ScilabEventsLoop();
     if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   } else {
@@ -653,7 +650,7 @@ int C2F(run)()
 
  L70:
   /* re entering run to continue macro evaluation */
-  if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
+  ScilabEventsLoop();
   if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
 
  L71:
@@ -926,7 +923,7 @@ int C2F(run)()
   ++Lct[8];
   ++lc;
 
-  if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
+  ScilabEventsLoop();
   if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
 
   goto L10;

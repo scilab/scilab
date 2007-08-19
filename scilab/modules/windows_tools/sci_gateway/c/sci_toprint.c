@@ -19,6 +19,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 	int l1 = 0, m1 = 0, n1 = 0;
 
 	int *paramoutINT=(int*)MALLOC(sizeof(int));
+	*paramoutINT=(int)FALSE;
 
 	CheckRhs(1,2);
 	CheckLhs(0,1);
@@ -63,8 +64,9 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 					num_win=*istk(l1);
 					if (num_win>=0)
 					{
-						
-						*paramoutINT=(int)FigureToPrint(num_win,FALSE);
+						/* DISABLE */
+						sciprint("Not yet implemented.\n");
+						//*paramoutINT=(int)FigureToPrint(num_win,FALSE);
 					}
 					else
 					{
@@ -200,11 +202,15 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 					{
 						if ( strcmp(param,"pos")==0 )
 						{
-							*paramoutINT=(int)FigureToPrint(num_win,TRUE);
+							/* DISABLE */
+							sciprint("Not yet implemented.\n");
+							//*paramoutINT=(int)FigureToPrint(num_win,TRUE);
 						}
 						else
 						{
-							*paramoutINT=(int)FigureToPrint(num_win,FALSE);
+							/* DISABLE */
+							sciprint("Not yet implemented.\n");
+							//*paramoutINT=(int)FigureToPrint(num_win,FALSE);
 						}
 					}
 					else

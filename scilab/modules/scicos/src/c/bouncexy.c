@@ -1,6 +1,7 @@
 #include "scicos_block.h"
 #include <math.h>
 #include "machine.h"
+#include "ScilabEventsLoop.h"
 static int c__1 = 1;
 static int c__0 = 0;
 static int c_n1 = -1;
@@ -28,7 +29,6 @@ void bouncexy(scicos_block *block,int flag)
   static double rect[4];
   extern /* Subroutine */ int C2F(getlabel)();
   static double xmin, ymin, xmax, ymax;
-  extern /* Subroutine */ int C2F(sxevents)();
   static int i__, n, v;
   extern /* Subroutine */ int C2F(plot2d)();
   static int na;
@@ -186,7 +186,7 @@ void bouncexy(scicos_block *block,int flag)
     } else {
       C2F(dr)("xname\000", buf, &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &dv);
     }
-    C2F(sxevents)();
+    ScilabEventsLoop();
   }
   C2F(dr1)("xsetdr\000", "Rec\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
 	     dv);

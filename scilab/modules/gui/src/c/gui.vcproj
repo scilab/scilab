@@ -174,11 +174,23 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\buildMainWindowTitle.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getinstalledlookandfeels.c"
 				>
 			</File>
 			<File
 				RelativePath=".\getlookandfeel.c"
+				>
+			</File>
+			<File
+				RelativePath=".\getMainWindowTitle.c"
+				>
+			</File>
+			<File
+				RelativePath=".\getScreenProperties.c"
 				>
 			</File>
 			<File
@@ -190,35 +202,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\men_choice.c"
-				>
-			</File>
-			<File
-				RelativePath=".\men_choose.c"
-				>
-			</File>
-			<File
-				RelativePath=".\men_dialog.c"
-				>
-			</File>
-			<File
-				RelativePath=".\men_getfile.c"
-				>
-			</File>
-			<File
-				RelativePath=".\men_madial.c"
-				>
-			</File>
-			<File
-				RelativePath=".\men_mdial.c"
-				>
-			</File>
-			<File
-				RelativePath=".\men_message.c"
-				>
-			</File>
-			<File
-				RelativePath=".\men_print.c"
+				RelativePath=".\InitializeGUI.c"
 				>
 			</File>
 			<File
@@ -302,39 +286,11 @@
 				>
 			</File>
 			<File
+				RelativePath=".\setMainWindowTitle.c"
+				>
+			</File>
+			<File
 				RelativePath=".\TerminateGui.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wmen_choice.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wmen_choose.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wmen_dialog.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wmen_getfile.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wmen_madial.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wmen_mdial.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wmen_message.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wmen_print.c"
 				>
 			</File>
 		</Filter>
@@ -342,6 +298,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\buildMainWindowTitle.h"
+				>
+			</File>
 			<File
 				RelativePath=".\getinstalledlookandfeels.h"
 				>
@@ -351,11 +311,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getMainWindowTitle.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GraphicWindow.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_gui.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\InitializeGUI.h"
 				>
 			</File>
 			<File
@@ -380,6 +348,10 @@
 			</File>
 			<File
 				RelativePath=".\setlookandfeel.h"
+				>
+			</File>
+			<File
+				RelativePath=".\setMainWindowTitle.h"
 				>
 			</File>
 			<File

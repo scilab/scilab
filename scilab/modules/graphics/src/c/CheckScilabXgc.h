@@ -1,0 +1,2 @@
+
+int CheckScilabXgc(void);

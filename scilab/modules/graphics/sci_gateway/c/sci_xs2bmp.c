@@ -32,7 +32,7 @@ int sci_xs2bmp( char * fname, unsigned long fname_len )
       char *FileName=NULL;
       GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
       FileName=cstk(l1);
-      bOK=Interface_XS2BMP(figurenum,FileName);
+      // bOK=Interface_XS2BMP(figurenum,FileName);
     }
     else
     {

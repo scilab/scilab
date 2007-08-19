@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#ifndef __REALMAIN__
-#define __REALMAIN__
+#ifndef __REALMAIN_H__
+#define __REALMAIN_H__
 /*-----------------------------------------------------------------------------------*/
 #include <signal.h>
 #include <stdio.h>
@@ -55,6 +55,6 @@ void Set_no_startup_flag(int start);
 char ** create_argv(int *argc);
 #endif
 
-#endif /* __REALMAIN__ */
+#endif /* __REALMAIN_H__ */
 /*-----------------------------------------------------------------------------------*/
 

@@ -144,7 +144,7 @@ c
          call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax)
          call dr1('xset'//char(0),'thickness'//char(0),ipar(5),v,
      $        v,v,v,v,dv,dv,dv,dv)
-         call sxevents()
+         call scilabeventsloop()
 c first point drawing
 
          z(1)=0

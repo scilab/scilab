@@ -10,7 +10,7 @@
 #include "tmpdir.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-extern BOOL IsAFile(char *chainefichier);
+#include "FileExist.h"
 BOOL CallWindowsShell(char *command,BOOL WaitInput);
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -90,7 +90,7 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 
 	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen(FileTMPDir)+strlen("%s /a /c %s && echo DOS>%s")+1)*sizeof(char) );
 	sprintf(CmdLine,"%s /a /c %s && echo DOS>%s",shellCmd,command,FileTMPDir);
-	if (IsAFile(FileTMPDir)) DeleteFile(FileTMPDir);
+	if (FileExist(FileTMPDir)) DeleteFile(FileTMPDir);
 
 	if (CreateProcess(NULL, CmdLine, NULL, NULL, TRUE,0, NULL, NULL, &siStartInfo, &piProcInfo))
 	{
@@ -105,7 +105,7 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 
 		if (CmdLine) {FREE(CmdLine);CmdLine=NULL;}
 
-		if (IsAFile(FileTMPDir))
+		if (FileExist(FileTMPDir))
 		{
 			DeleteFile(FileTMPDir);
 			bReturn=TRUE;

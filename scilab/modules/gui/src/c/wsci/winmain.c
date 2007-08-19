@@ -49,7 +49,7 @@
 #define strnicmp _strnicmp
 /*-----------------------------------------------------------------------------------*/
 BOOL ScilabIsStarting=TRUE;
-int  sci_show_banner=1;
+int  sci_show_banner = 1;
 /*-----------------------------------------------------------------------------------*/
 extern void PrintFile(char *filename);
 extern void ChangeCursorWhenScilabIsReady(void);
@@ -63,437 +63,437 @@ extern void switch_rlgets (int i);
 /*-----------------------------------------------------------------------------------*/
 static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
-int Console_Main(int argc, char **argv)
-{
-  int nowin = 0, argcount = 0, lpath = 0, pathtype=SCILAB_SCRIPT;
-  char *path = NULL;
-  char *ScilabDirectory=NULL;
-  int i=0;
-
-  my_argc = -1;
-
-  ForbiddenToUseScilab();
-
-  setScilabMode(SCILAB_NW);
-
-  ScilabIsStarting=TRUE;
-  
-  setCommandLineArgs(argv, argc);
-
-  for (i=0;i<argc;i++)
-  {
-	  my_argv[i] = argv[i];
-  }
-  my_argc =argc;
-
-  ScilabDirectory=GetScilabDirectory(FALSE);
-
-  if (ScilabDirectory == NULL)
-  {
-	MessageBox (NULL, MSG_ERROR20 ,MSG_ERROR38, MB_ICONSTOP | MB_OK);
-	exit(1);
-  }
-
-  InitszGraphMenuName(ScilabDirectory);
- 
-  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
-
-  /* Load common control library * */
-  InitCommonControls ();
-
-  textwin=InitTWStruct();
-
-  textwin.hInstance = GetModuleHandle(MSG_SCIMSG9);
-  textwin.hPrevInstance = 0;
-  textwin.nCmdShow = 1;
-  textwin.Title = MSG_SCIMSG21;
-  textwin.lpmw = &menuwin;
-  textwin.ScreenSize.x = 120;
-  textwin.ScreenSize.y = 80;
-  textwin.KeyBufSize = 2048;
-  textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
- 
-  menuwin=InitMWStruct();
-  menuwin.szMenuName = GetszMenuName();
-
-  graphwin=InitGWStruct();  
-  graphwin.hInstance = GetModuleHandle(MSG_SCIMSG9);
-  graphwin.hPrevInstance = 0;
-  graphwin.Title =  MSG_SCIMSG23 ;
-  graphwin.szMenuName = GetszGraphMenuName();
-  graphwin.lptw = &textwin;
-  argcount = my_argc;
-  while (argcount > 0)
-    {
-      argcount--;
-      if (stricmp (my_argv[argcount], "-NW") == 0) nowin = 1;
-      else if (stricmp (my_argv[argcount], "-NS") == 0) startupf = 1;
-      else if ( stricmp(my_argv[argcount],"-NB") == 0) { sci_show_banner = 0; }
-      else if (stricmp (my_argv[argcount], "-NWNI") == 0)
-		{
-			setScilabMode(SCILAB_NWNI);
-		}
-      else if (stricmp (my_argv[argcount], "-F") == 0 && argcount + 1 < my_argc)
-		{
-			path = my_argv[argcount + 1];
-			lpath = strlen (my_argv[argcount + 1]);
-		}
-      else if (stricmp (my_argv[argcount], "-E") == 0 && argcount + 1 < my_argc)
-		{
-			path = my_argv[argcount + 1];
-			lpath = strlen (my_argv[argcount + 1]);
-			pathtype=SCILAB_CODE;
-		}
-      else if ( stricmp(my_argv[argcount],"-MEM") == 0 && argcount + 1 < my_argc)
-		{
-			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
-		} 
-	  else if ( stricmp(my_argv[argcount],"-TEXMACS") == 0 )
-	  {
-		  setScilabMode(SCILAB_NWNI);
-		  settexmacs();
-	  }
-	  else if ( stricmp(my_argv[argcount],"-NOGUI") == 0 )
-	  {
-		  setScilabMode(SCILAB_NWNI);
-	  }
-	  else if ( (stricmp (my_argv[argcount],"-VERSION")==0) ||
-		  (stricmp (my_argv[argcount],"-VER")==0) )
-	  {
-			disp_scilab_version();
-			exit(1);
-	  }
-	  else if ( (stricmp (my_argv[argcount],"-H")==0) ||
-		  (stricmp (my_argv[argcount],"-?")==0) ||
-		  (stricmp (my_argv[argcount],"-HELP")==0) )
-	  {
-		    printf(MSG_SCIMSG24B);
-		    printf(MSG_SCIMSG122); 
-			printf(MSG_SCIMSG123); 
-			printf(MSG_SCIMSG124); 
-			printf(MSG_SCIMSG125); 
-			printf(MSG_SCIMSG126); 
-			printf(MSG_SCIMSG127); 
-			printf(MSG_SCIMSG128); 
-			printf(MSG_SCIMSG129); 
-			printf(MSG_SCIMSG130); 
-			printf(MSG_SCIMSG131); 
-			printf(MSG_SCIMSG132); 
-			printf(MSG_SCIMSG133); 
-			printf(MSG_SCIMSG134); 
-			printf(MSG_SCIMSG135); 
-
-		  printf("\n");
-		  exit(1);
-	  }
-	}
-
-  hdllInstance = GetModuleHandle(MSG_SCIMSG9);
-
-
-  if ( (getScilabMode() == SCILAB_NWNI) || (getScilabMode() == SCILAB_NW) )
-    {
-	  SaveConsoleColors();
-	  if (getScilabMode() == SCILAB_NW)
-	  {
-		  RenameConsole();
-		  UpdateConsoleColors();
-	  }
-	  
-	  sci_windows_main (&startupf, path, pathtype, &lpath,memory);
-	 
-    }
-  else
-    {
-        MessageBox(NULL,MSG_ERROR79,MSG_ERROR20,MB_ICONWARNING);
-    }
-
-  ExitScilab();
-  
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
-{
-	int i=0;
-	BOOL ShortCircuitExec=FALSE;
-	BOOL LaunchAFile=FALSE;
-	BOOL ShowMessageBoxInfo=TRUE;		
-	char FileName[PATH_MAX];
-	int nowin = 0, argcount = 0, lpath = 0, pathtype=SCILAB_SCRIPT;
-	char *path = NULL;
-	char *ScilabDirectory=NULL;
-
-	HANDLE hOut = NULL;
-	
-	char *pFullCmdLine=NULL;
-	char *pFullCmdLineTmp=NULL;
-	char *pPathCmdLine=NULL;
-
-	ForbiddenToUseScilab();
-
-	setScilabMode(SCILAB_STD);
-
-	ScilabIsStarting=TRUE;
-
-	strcpy(FileName,"Empty");
-	
-	ScilabDirectory=GetScilabDirectory(FALSE);
-
-	if (ScilabDirectory == NULL)
-	{
-		MessageBox (NULL,MSG_ERROR20 , MSG_ERROR38, MB_ICONSTOP | MB_OK);
-		exit(1);
-	}	
-	InitszMenuName(ScilabDirectory);
-	InitszGraphMenuName(ScilabDirectory);
-
-	if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
-
-	/* Load common control library * */
-	InitCommonControls ();
-
-	textwin=InitTWStruct();
-
-	textwin.hInstance = hInstance;
-	textwin.hPrevInstance = hPrevInstance;
-	textwin.nCmdShow = iCmdShow;
-	textwin.Title = MSG_SCIMSG21;
-	textwin.lpmw = &menuwin;
-	textwin.ScreenSize.x = 120;
-	textwin.ScreenSize.y = 80;
-	textwin.KeyBufSize = 4096;
-	textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
-
-	menuwin=InitMWStruct();
-	menuwin.szMenuName = GetszMenuName();
-
-	graphwin=InitGWStruct();
-	graphwin.hInstance = hInstance;
-	graphwin.hPrevInstance = hPrevInstance;
-	graphwin.Title = MSG_SCIMSG23;
-	graphwin.szMenuName = GetszGraphMenuName();
-	graphwin.lptw = &textwin;
-
-	pFullCmdLineTmp=GetCommandLine();
-	{
-		char LineCommand[PATH_MAX];
-		char LineCommandBis[PATH_MAX];
-		char ShortPath[PATH_MAX];
-		char *pPathCmdLine=NULL;
-		char PathCmdLineCopy[1024];
-		char StrWscilexToSearch[PATH_MAX];
-		
-		sprintf(StrWscilexToSearch,"%s\" ",WSCILEX);
-
-		strcpy(LineCommand,pFullCmdLineTmp);
-		LineCommand[strlen(LineCommand)]='\0';
-		strcpy(LineCommandBis,pFullCmdLineTmp);
-		LineCommandBis[strlen(LineCommandBis)]='\0';
-
-		pPathCmdLine=stristr(LineCommand,StrWscilexToSearch);
-		
-		if ( (pPathCmdLine != NULL) && ( (strlen(pPathCmdLine)-strlen(StrWscilexToSearch)-1) > 0) ) 
-		{
-			char LINE[1024];
-
-			strcpy(PathCmdLineCopy,pPathCmdLine);	
-			if ( PathCmdLineCopy[strlen(StrWscilexToSearch)-2] == '\"' ) PathCmdLineCopy[strlen(StrWscilexToSearch)-2] = ' ';
-			strncpy(LINE,&LineCommandBis[1],strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1);
-			LINE[strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1]='\0';
-		
-			GetShortPathName(LINE,ShortPath,PATH_MAX);
-			strcat(ShortPath,PathCmdLineCopy);
-		
-			pFullCmdLine=(char*)MALLOC(sizeof(char)*(strlen(ShortPath)+1));
-			strcpy(pFullCmdLine,ShortPath);
-		}
-		else
-		{
-			pFullCmdLine=(char*)MALLOC(sizeof(char)*(strlen(LineCommandBis)+1));
-			strcpy(pFullCmdLine,LineCommandBis);
-		}
-		
-	}
-	
-	my_argv[++my_argc] = strtok (pFullCmdLine, " ");
-	while (my_argv[my_argc] != NULL)
-	{
-		my_argv[++my_argc] = strtok(NULL, " ");
-	}
-
-	setCommandLineArgs(my_argv, my_argc);
-	
-	for (i=1;i<my_argc;i++)
-	{
-		if  ( stricmp (my_argv[i], "-NB") == 0 )
-		{
-			ShowMessageBoxInfo=FALSE;
-		}
-	}
-
-	if (ShowMessageBoxInfo)
-	{
-		/* New Graphics Mode Warning */
-		MessageBoxNewGraphicMode();
-	}
-
-	for (i=1;i<my_argc;i++)
-	{
-		if  ( (stricmp (my_argv[i], "-NW") == 0) || (stricmp (my_argv[i], "-NWI") == 0) || (stricmp (my_argv[i], "-TEXMACS") == 0) || (stricmp (my_argv[i], "-NOGUI") == 0) )
-		{
-			MessageBox(NULL,"Not with Windows Console","Error",MB_ICONINFORMATION);
-			exit(1);
-		}
-
-		if ( (stricmp (my_argv[i], "-VERSION") == 0) ||
-			(stricmp (my_argv[i], "-VER") == 0) )
-		{
-			disp_scilab_version();
-			exit(1);
-		}
-
-		if ( (stricmp (my_argv[i], "-H") == 0) ||
-			 (stricmp (my_argv[i], "-?") == 0) ||
-			 (stricmp (my_argv[i], "-HELP") == 0) )
-		{
-			char Msg[2048];
-			strcpy(Msg,MSG_SCIMSG24);
-			strcat(Msg,MSG_SCIMSG122); 
-			strcat(Msg,MSG_SCIMSG123); 
-			strcat(Msg,MSG_SCIMSG124); 
-			strcat(Msg,MSG_SCIMSG125); 
-			strcat(Msg,MSG_SCIMSG126); 
-			strcat(Msg,MSG_SCIMSG127); 
-			strcat(Msg,MSG_SCIMSG128); 
-			strcat(Msg,MSG_SCIMSG129); 
-			strcat(Msg,MSG_SCIMSG130); 
-			strcat(Msg,MSG_SCIMSG131); 
-			strcat(Msg,MSG_SCIMSG132); 
-			strcat(Msg,MSG_SCIMSG133); 
-			strcat(Msg,MSG_SCIMSG134); 
-			strcat(Msg,MSG_SCIMSG135); 
-
-			MessageBox(NULL,Msg,MSG_SCIMSG30,MB_ICONINFORMATION);
-			exit(1);
-		}
-	}
-	argcount = my_argc;
-
-	if (argcount > 2)
-	{
-		if ( (stricmp (my_argv[1], "-X") == 0) ||
-		     (stricmp (my_argv[1], "-O") == 0) ||	
-		     (stricmp (my_argv[1], "-P") == 0) )
-		{
-			char *Commande=NULL;
-			int CodeAction=-1;
-			int j=0;
-
-			LaunchAFile=TRUE;
-
-			strcpy(FileName,my_argv[2]);
-			for (j=3;j<argcount;j++)
-			{
-				strcat(FileName," ");
-				strcat(FileName,my_argv[j]);
-			}
-			if (stricmp (my_argv[1], "-O") == 0) CodeAction=0;
-			if (stricmp (my_argv[1], "-X") == 0) CodeAction=1; 
-			if (stricmp (my_argv[1], "-P") == 0) CodeAction=2;
-
-			Commande=(char*)MALLOC(PATH_MAX*sizeof(char));
-			strcpy(Commande,"empty");
-			CommandByFileExtension(FileName,CodeAction,Commande);
-
-			if (
-				( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction==1) ) ||
-				( ( IsAGraphFile(FileName)== TRUE  ) && (CodeAction==1) )
-			    )
-			{
-				my_argc=-1;
-				my_argv[++my_argc]=Commande;
-				argcount = my_argc;
-				ShortCircuitExec=TRUE;
-			}
-			else
-			{
-				my_argc=-1;
-				my_argv[++my_argc] = strtok (Commande, " ");
-				while (my_argv[my_argc] != NULL)
-				{
-					my_argv[++my_argc] = strtok(NULL, " ");
-				}
-				argcount = my_argc;
-			}
-		}
-	}	
-	
-	if ( ShortCircuitExec == TRUE)
-	{
-		char PathWScilex[PATH_MAX];
-		int lenPathWScilex=0;
-		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, PATH_MAX);
-		lenPathWScilex=strlen(PathWScilex);
-		path = my_argv[argcount]+lenPathWScilex+3;
-		lpath = strlen (my_argv[argcount]+lenPathWScilex+3);
-		pathtype=SCILAB_CODE;
-		LaunchAFile=TRUE;
-	}
-	else
-	while (argcount > 0)
-	{
-    char ArgTmp[PATH_MAX];
-                
-		argcount--;
-		strcpy(ArgTmp,my_argv[argcount]);
-		
-		if (stricmp (ArgTmp, "-NS") == 0) startupf = 1;
-		else if ( stricmp(ArgTmp,"-NB") == 0) { sci_show_banner = 0; }
-		else if (stricmp (ArgTmp, "-F") == 0 && argcount + 1 < my_argc)
-		{
-			path = my_argv[argcount + 1];
-			lpath = strlen (my_argv[argcount + 1]);
-		}
-		else if (stricmp (ArgTmp, "-E") == 0 && argcount + 1 < my_argc)
-		{
-			path = my_argv[argcount + 1];
-			lpath = strlen (my_argv[argcount + 1]);
-			pathtype=SCILAB_CODE;
-		}
-		else if ( stricmp(ArgTmp,"-MEM") == 0 && argcount + 1 < my_argc)
-		{
-			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
-		}
-	}		
-	hdllInstance = hInstance;
-
-	/* Splashscreen*/
-	if ( (sci_show_banner) && (LaunchAFile == FALSE) )CreateSplashscreen();
-
-	CreateScilabConsole(sci_show_banner);
-
-	if (TextInit (&textwin)) exit (1);
-
-	textwin.hIcon = LoadIcon (hInstance, "texticon");
-	SetClassLong (textwin.hWndParent, GCL_HICON, (DWORD) textwin.hIcon);
-
-	switch_rlgets (1);
-
-	ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
-	ForceToActiveWindowParent();
-	HideScilex(); /* Cache la fenetre Console */
-
-	if (LaunchAFile) ChangeCursorWhenScilabIsReady();
-	
-	sci_windows_main (&startupf, path,pathtype, &lpath,memory);
-	
-	CloseScilabConsole();
-
-	ExitScilab();
-
-	return 0;
-}
+//int Console_Main(int argc, char **argv)
+//{
+//  int nowin = 0, argcount = 0, lpath = 0, pathtype=SCILAB_SCRIPT;
+//  char *path = NULL;
+//  char *ScilabDirectory=NULL;
+//  int i=0;
+//
+//  my_argc = -1;
+//
+//  ForbiddenToUseScilab();
+//
+//  setScilabMode(SCILAB_NW);
+//
+//  ScilabIsStarting=TRUE;
+//  
+//  setCommandLineArgs(argv, argc);
+//
+//  for (i=0;i<argc;i++)
+//  {
+//	  my_argv[i] = argv[i];
+//  }
+//  my_argc =argc;
+//
+//  ScilabDirectory=GetScilabDirectory(FALSE);
+//
+//  if (ScilabDirectory == NULL)
+//  {
+//	MessageBox (NULL, MSG_ERROR20 ,MSG_ERROR38, MB_ICONSTOP | MB_OK);
+//	exit(1);
+//  }
+//
+//  InitszGraphMenuName(ScilabDirectory);
+// 
+//  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
+//
+//  /* Load common control library * */
+//  InitCommonControls ();
+//
+//  textwin=InitTWStruct();
+//
+//  textwin.hInstance = GetModuleHandle(MSG_SCIMSG9);
+//  textwin.hPrevInstance = 0;
+//  textwin.nCmdShow = 1;
+//  textwin.Title = MSG_SCIMSG21;
+//  textwin.lpmw = &menuwin;
+//  textwin.ScreenSize.x = 120;
+//  textwin.ScreenSize.y = 80;
+//  textwin.KeyBufSize = 2048;
+//  textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
+// 
+//  menuwin=InitMWStruct();
+//  menuwin.szMenuName = GetszMenuName();
+//
+//  graphwin=InitGWStruct();  
+//  graphwin.hInstance = GetModuleHandle(MSG_SCIMSG9);
+//  graphwin.hPrevInstance = 0;
+//  graphwin.Title =  MSG_SCIMSG23 ;
+//  graphwin.szMenuName = GetszGraphMenuName();
+//  graphwin.lptw = &textwin;
+//  argcount = my_argc;
+//  while (argcount > 0)
+//    {
+//      argcount--;
+//      if (stricmp (my_argv[argcount], "-NW") == 0) nowin = 1;
+//      else if (stricmp (my_argv[argcount], "-NS") == 0) startupf = 1;
+//      else if ( stricmp(my_argv[argcount],"-NB") == 0) { sci_show_banner = 0; }
+//      else if (stricmp (my_argv[argcount], "-NWNI") == 0)
+//		{
+//			setScilabMode(SCILAB_NWNI);
+//		}
+//      else if (stricmp (my_argv[argcount], "-F") == 0 && argcount + 1 < my_argc)
+//		{
+//			path = my_argv[argcount + 1];
+//			lpath = strlen (my_argv[argcount + 1]);
+//		}
+//      else if (stricmp (my_argv[argcount], "-E") == 0 && argcount + 1 < my_argc)
+//		{
+//			path = my_argv[argcount + 1];
+//			lpath = strlen (my_argv[argcount + 1]);
+//			pathtype=SCILAB_CODE;
+//		}
+//      else if ( stricmp(my_argv[argcount],"-MEM") == 0 && argcount + 1 < my_argc)
+//		{
+//			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
+//		} 
+//	  else if ( stricmp(my_argv[argcount],"-TEXMACS") == 0 )
+//	  {
+//		  setScilabMode(SCILAB_NWNI);
+//		  settexmacs();
+//	  }
+//	  else if ( stricmp(my_argv[argcount],"-NOGUI") == 0 )
+//	  {
+//		  setScilabMode(SCILAB_NWNI);
+//	  }
+//	  else if ( (stricmp (my_argv[argcount],"-VERSION")==0) ||
+//		  (stricmp (my_argv[argcount],"-VER")==0) )
+//	  {
+//			disp_scilab_version();
+//			exit(1);
+//	  }
+//	  else if ( (stricmp (my_argv[argcount],"-H")==0) ||
+//		  (stricmp (my_argv[argcount],"-?")==0) ||
+//		  (stricmp (my_argv[argcount],"-HELP")==0) )
+//	  {
+//		    printf(MSG_SCIMSG24B);
+//		    printf(MSG_SCIMSG122); 
+//			printf(MSG_SCIMSG123); 
+//			printf(MSG_SCIMSG124); 
+//			printf(MSG_SCIMSG125); 
+//			printf(MSG_SCIMSG126); 
+//			printf(MSG_SCIMSG127); 
+//			printf(MSG_SCIMSG128); 
+//			printf(MSG_SCIMSG129); 
+//			printf(MSG_SCIMSG130); 
+//			printf(MSG_SCIMSG131); 
+//			printf(MSG_SCIMSG132); 
+//			printf(MSG_SCIMSG133); 
+//			printf(MSG_SCIMSG134); 
+//			printf(MSG_SCIMSG135); 
+//
+//		  printf("\n");
+//		  exit(1);
+//	  }
+//	}
+//
+//  hdllInstance = GetModuleHandle(MSG_SCIMSG9);
+//
+//
+//  if ( (getScilabMode() == SCILAB_NWNI) || (getScilabMode() == SCILAB_NW) )
+//    {
+//	  SaveConsoleColors();
+//	  if (getScilabMode() == SCILAB_NW)
+//	  {
+//		  RenameConsole();
+//		  UpdateConsoleColors();
+//	  }
+//	  
+//	  sci_windows_main (&startupf, path, pathtype, &lpath,memory);
+//	 
+//    }
+//  else
+//    {
+//        MessageBox(NULL,MSG_ERROR79,MSG_ERROR20,MB_ICONWARNING);
+//    }
+//
+//  ExitScilab();
+//  
+//  return 0;
+//}
+///*-----------------------------------------------------------------------------------*/
+//int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
+//{
+//	int i=0;
+//	BOOL ShortCircuitExec=FALSE;
+//	BOOL LaunchAFile=FALSE;
+//	BOOL ShowMessageBoxInfo=TRUE;		
+//	char FileName[PATH_MAX];
+//	int nowin = 0, argcount = 0, lpath = 0, pathtype=SCILAB_SCRIPT;
+//	char *path = NULL;
+//	char *ScilabDirectory=NULL;
+//
+//	HANDLE hOut = NULL;
+//	
+//	char *pFullCmdLine=NULL;
+//	char *pFullCmdLineTmp=NULL;
+//	char *pPathCmdLine=NULL;
+//
+//	ForbiddenToUseScilab();
+//
+//	setScilabMode(SCILAB_STD);
+//
+//	ScilabIsStarting=TRUE;
+//
+//	strcpy(FileName,"Empty");
+//	
+//	ScilabDirectory=GetScilabDirectory(FALSE);
+//
+//	if (ScilabDirectory == NULL)
+//	{
+//		MessageBox (NULL,MSG_ERROR20 , MSG_ERROR38, MB_ICONSTOP | MB_OK);
+//		exit(1);
+//	}	
+//	InitszMenuName(ScilabDirectory);
+//	InitszGraphMenuName(ScilabDirectory);
+//
+//	if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
+//
+//	/* Load common control library * */
+//	InitCommonControls ();
+//
+//	textwin=InitTWStruct();
+//
+//	textwin.hInstance = hInstance;
+//	textwin.hPrevInstance = hPrevInstance;
+//	textwin.nCmdShow = iCmdShow;
+//	textwin.Title = MSG_SCIMSG21;
+//	textwin.lpmw = &menuwin;
+//	textwin.ScreenSize.x = 120;
+//	textwin.ScreenSize.y = 80;
+//	textwin.KeyBufSize = 4096;
+//	textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
+//
+//	menuwin=InitMWStruct();
+//	menuwin.szMenuName = GetszMenuName();
+//
+//	graphwin=InitGWStruct();
+//	graphwin.hInstance = hInstance;
+//	graphwin.hPrevInstance = hPrevInstance;
+//	graphwin.Title = MSG_SCIMSG23;
+//	graphwin.szMenuName = GetszGraphMenuName();
+//	graphwin.lptw = &textwin;
+//
+//	pFullCmdLineTmp=GetCommandLine();
+//	{
+//		char LineCommand[PATH_MAX];
+//		char LineCommandBis[PATH_MAX];
+//		char ShortPath[PATH_MAX];
+//		char *pPathCmdLine=NULL;
+//		char PathCmdLineCopy[1024];
+//		char StrWscilexToSearch[PATH_MAX];
+//		
+//		sprintf(StrWscilexToSearch,"%s\" ",WSCILEX);
+//
+//		strcpy(LineCommand,pFullCmdLineTmp);
+//		LineCommand[strlen(LineCommand)]='\0';
+//		strcpy(LineCommandBis,pFullCmdLineTmp);
+//		LineCommandBis[strlen(LineCommandBis)]='\0';
+//
+//		pPathCmdLine=stristr(LineCommand,StrWscilexToSearch);
+//		
+//		if ( (pPathCmdLine != NULL) && ( (strlen(pPathCmdLine)-strlen(StrWscilexToSearch)-1) > 0) ) 
+//		{
+//			char LINE[1024];
+//
+//			strcpy(PathCmdLineCopy,pPathCmdLine);	
+//			if ( PathCmdLineCopy[strlen(StrWscilexToSearch)-2] == '\"' ) PathCmdLineCopy[strlen(StrWscilexToSearch)-2] = ' ';
+//			strncpy(LINE,&LineCommandBis[1],strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1);
+//			LINE[strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1]='\0';
+//		
+//			GetShortPathName(LINE,ShortPath,PATH_MAX);
+//			strcat(ShortPath,PathCmdLineCopy);
+//		
+//			pFullCmdLine=(char*)MALLOC(sizeof(char)*(strlen(ShortPath)+1));
+//			strcpy(pFullCmdLine,ShortPath);
+//		}
+//		else
+//		{
+//			pFullCmdLine=(char*)MALLOC(sizeof(char)*(strlen(LineCommandBis)+1));
+//			strcpy(pFullCmdLine,LineCommandBis);
+//		}
+//		
+//	}
+//	
+//	my_argv[++my_argc] = strtok (pFullCmdLine, " ");
+//	while (my_argv[my_argc] != NULL)
+//	{
+//		my_argv[++my_argc] = strtok(NULL, " ");
+//	}
+//
+//	setCommandLineArgs(my_argv, my_argc);
+//	
+//	for (i=1;i<my_argc;i++)
+//	{
+//		if  ( stricmp (my_argv[i], "-NB") == 0 )
+//		{
+//			ShowMessageBoxInfo=FALSE;
+//		}
+//	}
+//
+//	if (ShowMessageBoxInfo)
+//	{
+//		/* New Graphics Mode Warning */
+//		MessageBoxNewGraphicMode();
+//	}
+//
+//	for (i=1;i<my_argc;i++)
+//	{
+//		if  ( (stricmp (my_argv[i], "-NW") == 0) || (stricmp (my_argv[i], "-NWI") == 0) || (stricmp (my_argv[i], "-TEXMACS") == 0) || (stricmp (my_argv[i], "-NOGUI") == 0) )
+//		{
+//			MessageBox(NULL,"Not with Windows Console","Error",MB_ICONINFORMATION);
+//			exit(1);
+//		}
+//
+//		if ( (stricmp (my_argv[i], "-VERSION") == 0) ||
+//			(stricmp (my_argv[i], "-VER") == 0) )
+//		{
+//			disp_scilab_version();
+//			exit(1);
+//		}
+//
+//		if ( (stricmp (my_argv[i], "-H") == 0) ||
+//			 (stricmp (my_argv[i], "-?") == 0) ||
+//			 (stricmp (my_argv[i], "-HELP") == 0) )
+//		{
+//			char Msg[2048];
+//			strcpy(Msg,MSG_SCIMSG24);
+//			strcat(Msg,MSG_SCIMSG122); 
+//			strcat(Msg,MSG_SCIMSG123); 
+//			strcat(Msg,MSG_SCIMSG124); 
+//			strcat(Msg,MSG_SCIMSG125); 
+//			strcat(Msg,MSG_SCIMSG126); 
+//			strcat(Msg,MSG_SCIMSG127); 
+//			strcat(Msg,MSG_SCIMSG128); 
+//			strcat(Msg,MSG_SCIMSG129); 
+//			strcat(Msg,MSG_SCIMSG130); 
+//			strcat(Msg,MSG_SCIMSG131); 
+//			strcat(Msg,MSG_SCIMSG132); 
+//			strcat(Msg,MSG_SCIMSG133); 
+//			strcat(Msg,MSG_SCIMSG134); 
+//			strcat(Msg,MSG_SCIMSG135); 
+//
+//			MessageBox(NULL,Msg,MSG_SCIMSG30,MB_ICONINFORMATION);
+//			exit(1);
+//		}
+//	}
+//	argcount = my_argc;
+//
+//	if (argcount > 2)
+//	{
+//		if ( (stricmp (my_argv[1], "-X") == 0) ||
+//		     (stricmp (my_argv[1], "-O") == 0) ||	
+//		     (stricmp (my_argv[1], "-P") == 0) )
+//		{
+//			char *Commande=NULL;
+//			int CodeAction=-1;
+//			int j=0;
+//
+//			LaunchAFile=TRUE;
+//
+//			strcpy(FileName,my_argv[2]);
+//			for (j=3;j<argcount;j++)
+//			{
+//				strcat(FileName," ");
+//				strcat(FileName,my_argv[j]);
+//			}
+//			if (stricmp (my_argv[1], "-O") == 0) CodeAction=0;
+//			if (stricmp (my_argv[1], "-X") == 0) CodeAction=1; 
+//			if (stricmp (my_argv[1], "-P") == 0) CodeAction=2;
+//
+//			Commande=(char*)MALLOC(PATH_MAX*sizeof(char));
+//			strcpy(Commande,"empty");
+//			CommandByFileExtension(FileName,CodeAction,Commande);
+//
+//			if (
+//				( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction==1) ) ||
+//				( ( IsAGraphFile(FileName)== TRUE  ) && (CodeAction==1) )
+//			    )
+//			{
+//				my_argc=-1;
+//				my_argv[++my_argc]=Commande;
+//				argcount = my_argc;
+//				ShortCircuitExec=TRUE;
+//			}
+//			else
+//			{
+//				my_argc=-1;
+//				my_argv[++my_argc] = strtok (Commande, " ");
+//				while (my_argv[my_argc] != NULL)
+//				{
+//					my_argv[++my_argc] = strtok(NULL, " ");
+//				}
+//				argcount = my_argc;
+//			}
+//		}
+//	}	
+//	
+//	if ( ShortCircuitExec == TRUE)
+//	{
+//		char PathWScilex[PATH_MAX];
+//		int lenPathWScilex=0;
+//		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, PATH_MAX);
+//		lenPathWScilex=strlen(PathWScilex);
+//		path = my_argv[argcount]+lenPathWScilex+3;
+//		lpath = strlen (my_argv[argcount]+lenPathWScilex+3);
+//		pathtype=SCILAB_CODE;
+//		LaunchAFile=TRUE;
+//	}
+//	else
+//	while (argcount > 0)
+//	{
+//    char ArgTmp[PATH_MAX];
+//                
+//		argcount--;
+//		strcpy(ArgTmp,my_argv[argcount]);
+//		
+//		if (stricmp (ArgTmp, "-NS") == 0) startupf = 1;
+//		else if ( stricmp(ArgTmp,"-NB") == 0) { sci_show_banner = 0; }
+//		else if (stricmp (ArgTmp, "-F") == 0 && argcount + 1 < my_argc)
+//		{
+//			path = my_argv[argcount + 1];
+//			lpath = strlen (my_argv[argcount + 1]);
+//		}
+//		else if (stricmp (ArgTmp, "-E") == 0 && argcount + 1 < my_argc)
+//		{
+//			path = my_argv[argcount + 1];
+//			lpath = strlen (my_argv[argcount + 1]);
+//			pathtype=SCILAB_CODE;
+//		}
+//		else if ( stricmp(ArgTmp,"-MEM") == 0 && argcount + 1 < my_argc)
+//		{
+//			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
+//		}
+//	}		
+//	hdllInstance = hInstance;
+//
+//	/* Splashscreen*/
+//	if ( (sci_show_banner) && (LaunchAFile == FALSE) )CreateSplashscreen();
+//
+//	CreateScilabConsole(sci_show_banner);
+//
+//	if (TextInit (&textwin)) exit (1);
+//
+//	textwin.hIcon = LoadIcon (hInstance, "texticon");
+//	SetClassLong (textwin.hWndParent, GCL_HICON, (DWORD) textwin.hIcon);
+//
+//	switch_rlgets (1);
+//
+//	ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
+//	ForceToActiveWindowParent();
+//	HideScilex(); /* Cache la fenetre Console */
+//
+//	if (LaunchAFile) ChangeCursorWhenScilabIsReady();
+//	
+//	sci_windows_main (&startupf, path,pathtype, &lpath,memory);
+//	
+//	CloseScilabConsole();
+//
+//	ExitScilab();
+//
+//	return 0;
+//}
 /*-----------------------------------------------------------------------------------*/
 void InitWindowGraphDll(void)
 /* Modification Allan CORNET*/
@@ -584,34 +584,34 @@ BOOL ForbiddenToUseScilab(void)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
-/* strstr case insensitive */
-char *stristr(const char *psz,const char *tofind)
-{
-	const char *ptr = psz;
-	const char *ptr2;
-
-	while(1)
-	{
-		ptr = strchr(psz,toupper(*tofind));
-		ptr2 = strchr(psz,tolower(*tofind));
-		if (!ptr)
-		{
-			ptr = ptr2; /* was ptr2 = ptr.  Big bug fixed 10/22/99 */
-		}
-		if (!ptr)
-		{
-			break;
-		}
-		if (ptr2 && (ptr2 < ptr))
-		{
-			ptr = ptr2;
-		}
-		if (!strnicmp(ptr,tofind,strlen(tofind)))
-		{
-			return (char *) ptr;
-		}
-		psz = ptr+1;
-	}
-	return 0;
-} 
-/*-----------------------------------------------------------------------------------*/
+///* strstr case insensitive */
+//char *stristr(const char *psz,const char *tofind)
+//{
+//	const char *ptr = psz;
+//	const char *ptr2;
+//
+//	while(1)
+//	{
+//		ptr = strchr(psz,toupper(*tofind));
+//		ptr2 = strchr(psz,tolower(*tofind));
+//		if (!ptr)
+//		{
+//			ptr = ptr2; /* was ptr2 = ptr.  Big bug fixed 10/22/99 */
+//		}
+//		if (!ptr)
+//		{
+//			break;
+//		}
+//		if (ptr2 && (ptr2 < ptr))
+//		{
+//			ptr = ptr2;
+//		}
+//		if (!strnicmp(ptr,tofind,strlen(tofind)))
+//		{
+//			return (char *) ptr;
+//		}
+//		psz = ptr+1;
+//	}
+//	return 0;
+//} 
+///*-----------------------------------------------------------------------------------*/

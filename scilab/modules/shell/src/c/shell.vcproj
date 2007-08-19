@@ -209,11 +209,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\readshell.c"
+				RelativePath=".\more.c"
 				>
 			</File>
 			<File
-				RelativePath=".\readwindows.c"
+				RelativePath=".\readshell.c"
 				>
 			</File>
 			<File

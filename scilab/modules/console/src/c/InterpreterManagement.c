@@ -1,17 +1,21 @@
+/*-----------------------------------------------------------------------------------*/
 /** 
  * @copyright INRIA 2007
  * @author Vincent COUVERT
  */
-
+/*-----------------------------------------------------------------------------------*/
 #include "InterpreterManagement.h"
-
+#include "dynamic_menus.h"
+#include "ScilabEventsLoop.h"
+/*-----------------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
-  return StoreCommand1(command, 1);
+  return StoreCommand(command);
 }
-
+/*-----------------------------------------------------------------------------------*/
 int execScilabEventLoop(void)
 {
-  C2F(sxevents)();
-  return 0;
+	ScilabEventsLoop();
+	return 0;
 }
+/*-----------------------------------------------------------------------------------*/

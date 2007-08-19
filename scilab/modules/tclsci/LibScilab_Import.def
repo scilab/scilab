@@ -2,7 +2,6 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
- ConvertPathUnixToWindowsFormat
  getScilabMode
  gettype_
  vstk_
@@ -32,3 +31,4 @@ EXPORTS
  error_scilab
  message_scilab
  callFunctionFromGateway
+ scilab_timer_check

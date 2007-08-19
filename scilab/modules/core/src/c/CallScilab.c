@@ -6,7 +6,7 @@
 #include "MALLOC.h"
 #include "../../../graphics/includes/WindowList.h"
 #include "../../../graphics/includes/GetProperty.h"
-#include "../../../gui/includes/sxevents.h"
+#include "ScilabEventsLoop.h"
 #include "../../../io/includes/setenvc.h"
 #include "setgetSCIpath.h"
 #include "fromc.h"
@@ -18,6 +18,10 @@
 #include "scilabmode.h"
 #include "dynamic_menus.h"
 #include "scilabDefaults.h"
+#ifdef _MSC_VER
+#include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
+#include "../../../windows_tools/src/c/scilab_windows/getScilabDirectory.h"
+#endif
 
 #ifdef _MSC_VER
 #define putenv _putenv
@@ -27,25 +31,18 @@
 static int StartScilabIsOK=FALSE;
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-extern char *GetScilabDirectory(BOOL UnixStyle);
-extern void InitWindowGraphDll(void);
-extern void TextMessage1 (int ctrlflag);
-extern void set_sci_env(char *DefaultSCIPATH);
-#endif
-/*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
 static void SetSciEnv(void)
 {
   char *ScilabDirectory=NULL;
 
-  ScilabDirectory=GetScilabDirectory(TRUE);
+  ScilabDirectory = getScilabDirectory(TRUE);
 
   if (ScilabDirectory == NULL)
   {
-	MessageBox (NULL, "Error", "GetScilabDirectory()", MB_ICONSTOP | MB_OK);
+	MessageBox (NULL, "Error", "getScilabDirectory()", MB_ICONSTOP | MB_OK);
 	exit(1);
   }
-  set_sci_env(ScilabDirectory);
+  SetScilabEnvironmentVariables(ScilabDirectory);
 
   if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
   
@@ -125,10 +122,6 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
       return bOK;
     }
 
-#ifdef _MSC_VER
-	InitWindowGraphDll();
-#endif
-
 	lengthStringToScilab=(int)(strlen("exec(\"SCI/etc/scilab.start\",-1);quit;")+strlen(ScilabStartupUsed));
 	InitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 	sprintf(InitStringToScilab,"exec(\"%s\",-1);quit;",ScilabStartupUsed);
@@ -160,11 +153,7 @@ void ScilabDoOneEvent(void)
 {
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
-		#ifdef _MSC_VER
-			TextMessage1 (1);
-		#else 
-			C2F(sxevents)();
-		#endif
+		ScilabEventsLoop();
 
 		while(ismenu()==1 ) 
 		{

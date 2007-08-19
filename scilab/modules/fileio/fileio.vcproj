@@ -207,6 +207,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\ConvertPathUnixToWindows.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\deleteafile.c"
 				>
 			</File>
@@ -458,6 +462,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\bytedecoders.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\ConvertPathUnixToWindows.h"
 				>
 			</File>
 			<File

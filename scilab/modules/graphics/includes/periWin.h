@@ -27,12 +27,10 @@
  extern void C2F(drawpolyline)();
  extern void C2F(drawClippedPolyline)();
  extern void C2F(fillpolylines)();
- extern void C2F(drawpolylines)();
- extern void C2F(drawpolymark)();
+  extern void C2F(drawpolymark)();
  extern void C2F(setpopupname)();
  extern void C2F(getFontMaxSize)();
- extern void C2F(displaynumbers)();
- extern void C2F(drawrectangle)();
+  extern void C2F(drawrectangle)();
  extern void C2F(drawrectangles)();
  extern void C2F(drawsegments)();
  extern void C2F(xselgraphic)();
@@ -44,6 +42,8 @@
  extern void C2F(loadfamily)();
  extern void  C2F(queryfamily)();
  extern void C2F(xinfo)();
+extern void C2F(drawpolylines)();
+extern void C2F(displaynumbers)();
  
 /** set and get the number of the background or foreground */
 void C2F(setforeground)( integer * num, integer * v2, integer * v3, integer * v4) ;

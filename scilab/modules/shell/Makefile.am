@@ -9,7 +9,9 @@ SHELL_CPP_SOURCES =
 # List of the c files
 SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
-src/c/zzledt_Linux.c 
+src/c/zzledt_Linux.c \
+src/c/more.c
+
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \

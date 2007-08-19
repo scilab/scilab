@@ -157,7 +157,7 @@ c
          endif
          call dr1('xset'//char(0),'alufunction'//char(0),6,v,v,v,v,v,
      $        dv,dv,dv,dv)
-         call sxevents()
+         call scilabeventsloop()
 c first point drawing
          if(ipar(4).lt.0) then
             call dr1('xset'//char(0),'mark'//char(0),ipar(4),ipar(5),

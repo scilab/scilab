@@ -1,6 +1,10 @@
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"
 #include "getcommandlineargs.h"
+#ifdef _MSC_VER
+#include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
+#endif
+
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA 2005 */
@@ -73,7 +77,7 @@ void Initialize(void)
 				else
 				{
 					*p='\0';
-					set_sci_env(modname);
+					SetScilabEnvironmentVariables(modname);
 				}
 			}
 		}
@@ -82,7 +86,7 @@ void Initialize(void)
 	{
 		char *pathSCI=(char*)MALLOC((strlen(p1)+1)*sizeof(char));
 		sprintf(pathSCI,"%s",p1);
-		set_sci_env(pathSCI);
+		SetScilabEnvironmentVariables(pathSCI);
 		if (pathSCI) {FREE(pathSCI);pathSCI=NULL;}
 	}
   #else
@@ -108,11 +112,6 @@ void Initialize(void)
       exit(1);
     }
 
-  /* Init of the graphical window */
-  #ifdef _MSC_VER
-    InitWindowGraphDll();
-  #endif
-  
   /* Load of Scilab.start */
   C2F(scirun)(initstr,(int)strlen(initstr));
  

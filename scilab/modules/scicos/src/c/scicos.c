@@ -21,11 +21,13 @@
 #include <math.h>
 #include "core_math.h"
 #include "sci_mem_alloc.h"  /* malloc */
-
+#include "ScilabEventsLoop.h"
 
 #include "scicos-def.h"
 #include "sciprint.h"
 #include "cvstr.h"
+
+
 
 typedef struct {
 	integer iero;
@@ -108,13 +110,10 @@ extern  integer C2F(dcopy)();
 extern  integer C2F(iset)();
 extern  integer C2F(realtime)();
 extern  integer C2F(realtimeinit)();
-extern  integer C2F(sxevents)();
 extern  integer C2F(stimer)();
 extern  integer C2F(xscion)();
 extern  integer C2F(ddaskr)();
 extern  integer C2F(lsodar2)();
-
-extern int scilab_timer_check();
 
 ScicosImport  scicos_imp;
 
@@ -971,7 +970,6 @@ int C2F(scicos)(
   static integer istate, ntimer;
 
   static double rhotmp;
-  static integer inxsci;
 
   static integer kpo, kev;
 
@@ -1021,7 +1019,7 @@ int C2F(scicos)(
   C2F(coshlt).halt = 0;
   *ierr = 0;
 
-  C2F(xscion)(&inxsci);
+
   /*     initialization */
   C2F(iset)(&niwp, &c__0, &ihot[1], &c__1);
   C2F(dset)(&nrwp, &c_b14, &rhot[1], &c__1);
@@ -1056,10 +1054,9 @@ int C2F(scicos)(
 
   while(*told < *tf) {
 
-    if (inxsci == 1 && scilab_timer_check() == 1) {
-      C2F(sxevents)();
-      /*     .     sxevents can modify halt */
-    }
+    ScilabEventsLoop();
+     /*     .     scilabeventsloop can modify halt */
+
     if (C2F(coshlt).halt != 0) {
       C2F(coshlt).halt = 0;
       freeall;
@@ -1326,7 +1323,7 @@ int C2F(scicos)(
   static integer jj, jt;
   static integer istate, ntimer;
   static double rhotmp;
-  static integer inxsci;
+  
   static integer kpo, kev;
 
   double *rhot;
@@ -1413,7 +1410,7 @@ int C2F(scicos)(
   jt = 2;
 
   /*      stuck=.false. */
-  C2F(xscion)(&inxsci);
+  
   /*     initialization */
   C2F(iset)(&niwp, &c__0, &ihot[1], &c__1);
   C2F(dset)(&nrwp, &c_b14, &rhot[1], &c__1);
@@ -1470,10 +1467,9 @@ int C2F(scicos)(
   }
   /*     main loop on time */
   while (*told < *tf) {
-    if (inxsci == 1 && scilab_timer_check() == 1) {
-      C2F(sxevents)();
-      /*     .     sxevents can modify halt */
-    }
+    ScilabEventsLoop();
+      /*     .     scilabeventsloop can modify halt */
+    
     if (C2F(coshlt).halt != 0) {
       C2F(coshlt).halt = 0;
       freeallx;
@@ -1746,10 +1742,10 @@ int C2F(scicos)(
 	    }
 	  }
 	}
-	if (inxsci == 1 && scilab_timer_check() == 1) {
-	  C2F(sxevents)();
+	if ( scilab_timer_check() == 1) {
+	  C2F(ScilabEventsLoop)();
 	  otimer = ntimer;
-	  /*     .     sxevents can modify halt */
+	  /*     .     scilabeventsloop can modify halt */
 	}
 	if (C2F(coshlt).halt != 0) {
 	  C2F(coshlt).halt = 0;

@@ -5,12 +5,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "sciprint.h"
-#ifdef _MSC_VER
-#include "../../gui/src/c/wsci/wgnuplib.h"
-#else
-#include "../../gui/src/c/xsci/xscisrn.h"
-#endif
-
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -18,39 +12,24 @@
 #include "../../localization/includes/QueryStringMessage.h"
 #include "../../console/includes/ShellPrintf.h"
 #include "scilabmode.h"
-#include "xscion.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
-  TW textwin;
-  TW * getTextWin( void )
-  {
-    return &textwin;
-  }
 #endif
-
-/* Variable used in order to avoid multiple call on xscion which 
- * will always return the same thing 
- * -1 here is used to specific that it is not initialized
-*/
-
 /*-----------------------------------------------------------------------------------*/ 
 extern int getdiary __PARAMS(());
 extern void diary_nnl __PARAMS((char *str,int *n));
 /*-----------------------------------------------------------------------------------*/ 
 void sciprint(char *fmt,...) 
 {
-	static int xscionSingleton = -1;
-	int i;
-	integer lstr;
 	va_list ap;
-	char s_buf[MAXPRINTF];
-	int count=0;
+	static char s_buf[MAXPRINTF];
 
 	va_start(ap,fmt);
 
 #if defined(linux) || defined(_MSC_VER)
 {
+	int count=0;
 	count= vsnprintf(s_buf,MAXPRINTF-1, fmt, ap );
 	if (count == -1)
 	{
@@ -60,28 +39,22 @@ void sciprint(char *fmt,...)
 #else
 	(void )vsprintf(s_buf, fmt, ap );
 #endif
-	lstr=strlen(s_buf);
-	if (xscionSingleton==-1) {
-		/* We haven't called this function before ... Then we call it and 
-		   store the result once for all because it won't change */
-		C2F(xscion)(&xscionSingleton);
-	}
+	va_end(ap);
 
-	if (xscionSingleton == 0) 
+	if (getScilabMode() == SCILAB_STD)
+	{
+		ShellPrintf(s_buf);
+	}
+	else
 	{
 		printf("%s",s_buf); 
 	}
-	else 
+	
+	if (getdiary()) 
 	{
-		#ifdef _MSC_VER
-		 TextPutS (getTextWin(),s_buf);
-		#else
-		 C2F(xscisrn)(s_buf,&lstr,0L);
-		#endif
-		if (getScilabMode() != SCILAB_NWNI) ShellPrintf(s_buf);
+		integer lstr = strlen(s_buf);
+		diary_nnl(s_buf,&lstr);
 	}
-	if (getdiary()) diary_nnl(s_buf,&lstr);
-	va_end(ap);
 }
 /*-----------------------------------------------------------------------------------*/ 
 /* as sciprint but with an added first argument which is ignored (used in do_printf) */

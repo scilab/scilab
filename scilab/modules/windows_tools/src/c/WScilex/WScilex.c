@@ -26,7 +26,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 		return -1;
 	}
 
-	hinstLib = LoadLibrary(TEXT("Libscilab")); 	
+	hinstLib = LoadLibrary(TEXT("scilab_windows")); 	
 	if (hinstLib != NULL) 
 	{ 
 		Windows_Main = (MYPROC) GetProcAddress(hinstLib, TEXT("Windows_Main")); 
@@ -41,7 +41,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 
 	if (! fRunTimeLinkSuccess) 
 	{
-		MessageBox(NULL,"Wscilex.exe : Libscilab.dll not found !","Warning",MB_ICONERROR); 
+		MessageBox(NULL,"Wscilex.exe : scilab_windows.dll not found !","Warning",MB_ICONERROR); 
 		exit(1);
 	}
 	else exit(0);

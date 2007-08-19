@@ -170,7 +170,7 @@ c
          else
             call dr('xname'//char(0),buf,v,v,v,v,v,v,dv,dv,dv,dv)
          endif
-         call sxevents()
+         call ScilabEventsLoop()
          z(1)=0.0d0
 c	 
 	 call oldgraphics(0)

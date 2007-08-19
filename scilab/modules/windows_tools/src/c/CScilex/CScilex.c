@@ -64,7 +64,7 @@ int main (int argc, char **argv)
 		argcbis=argc;
 	}
     	
-	hinstLib = LoadLibrary(TEXT("Libscilab")); 	
+	hinstLib = LoadLibrary(TEXT("scilab_windows")); 	
     
 	if (hinstLib != NULL) 
 	{ 
@@ -80,7 +80,7 @@ int main (int argc, char **argv)
 
 	if (! fRunTimeLinkSuccess) 
 	{
-		MessageBox(NULL,"scilex.exe : Libscilab.dll not found !","Warning",MB_ICONERROR); 
+		MessageBox(NULL,"scilex.exe : scilab_windows not found !","Warning",MB_ICONERROR); 
 		exit(1);
 	}
 	else exit(0);

@@ -6,7 +6,7 @@
 #include "getcommandlineargs.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
-#define MAXCMDTOKENS 256
+
 /*-----------------------------------------------------------------------------------*/ 
 static int scilab_nbargs = 0;
 static char *scilab_argv[MAXCMDTOKENS];

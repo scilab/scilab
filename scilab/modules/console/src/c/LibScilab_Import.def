@@ -6,6 +6,8 @@ EXPORTS
 ;
 StoreCommand1
 StoreCommand
-sxevents_
 scilines_
+getScilabMode
+scilab_timer_check
+ScilabEventsLoop
 ;

@@ -14,6 +14,7 @@
 
 #include "getScilabJavaVM.h"
 #include "JniUtils.h"
+#include "deletePoints.h"
 
 #include "GraphicSynchronizerInterface.h"
 

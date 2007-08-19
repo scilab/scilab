@@ -53,6 +53,8 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 				else
 				{
 					/* scilab has his own window */
+					// DISABLE
+
 					C2F(xscimore)(&ich);
 				}
 

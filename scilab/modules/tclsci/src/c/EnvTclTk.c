@@ -12,8 +12,7 @@
 #include "tk.h"
 #include "MALLOC.h"
 #include "../../localization/includes/QueryStringError.h"
-/*-----------------------------------------------------------------------------------*/
-extern BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
+#include "../../fileio/includes/ConvertPathUnixToWindows.h"
 /*-----------------------------------------------------------------------------------*/
 BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 {

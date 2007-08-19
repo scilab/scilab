@@ -24,6 +24,8 @@ public class Scilab {
 	private Console sciConsole = null;
 	private int mode;
 	
+	private Window mainView;
+	
 	 /**
 	 * Constructor Scilab Class.
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
@@ -32,8 +34,9 @@ public class Scilab {
 		this.mode = mode;
 	
 		if (mode == 2) {
-			Window mainView = ScilabWindow.createWindow();
+			mainView = ScilabWindow.createWindow();
 			mainView.draw();
+			mainView.setTitle("Scilab-5.0");
 			/* CONSOLE */
 			/* Create a tab to put console into */
 			Tab consoleTab = ScilabTab.createTab("Console Scilab");
@@ -43,19 +46,6 @@ public class Scilab {
 			sciConsole = ScilabConsole.createConsole();
 			consoleTab.addMember(sciConsole);
 			mainView.draw();
-			/* FIGURE */
-			/* Create the tab to put a canvas into */
-			//Tab figureTab = ScilabTab.createTab("Scilab Figure");
-// 			/figureTab.setName("Scilab Figure");
-// 			mainView.addTab(figureTab);
-
-// 			/* Create the canvas */
-// 			Canvas figureCanvas = ScilabCanvas.createCanvas();
-// 			figureCanvas.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
-// 			figureCanvas.draw();
-// 			figureTab.addMember(figureCanvas);
-// 			figureTab.draw();
-// 			mainView.draw();
 		} else {
 			System.out.println("mode -NW");
 		}
@@ -76,6 +66,11 @@ public class Scilab {
 	 */
 	public void setSciConsole(Console sciConsole) {
 		this.sciConsole = sciConsole;
+	}
+	
+	public Window getMainWindow()
+	{
+		return mainView;
 	}
 }
 /*--------------------------------------------------------------------------*/

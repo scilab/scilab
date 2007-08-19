@@ -11,6 +11,7 @@
 #ifdef _MSC_VER
 #include "../../../windows_tools/includes/InitializeWindows_tools.h"
 #endif
+#include "../../../gui/includes/InitializeGUI.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(initscilab)(void)
@@ -25,6 +26,7 @@ int C2F(initscilab)(void)
 	{
 
 		InitializeJVM();
+		InitializeGUI();
 		/* create needed data structure if not already created */
 		loadGraphicModule() ;
 	}

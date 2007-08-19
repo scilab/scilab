@@ -18,6 +18,7 @@
 #ifdef _MSC_VER
 #include "../../../windows_tools/includes/TerminateWindows_tools.h"
 #endif
+#include "../../../gui/includes/TerminateGui.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 int ExitScilab(void)
@@ -33,6 +34,7 @@ int ExitScilab(void)
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
 		TerminateGraphics();
+		TerminateGUI();
 		TerminateJVM();
 	}
 

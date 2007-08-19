@@ -8,9 +8,7 @@
 BOOL InitializeTclTk(void)
 {
 	BOOL bOK=FALSE;
-
-	initTCLTK ();
-
+	initTCLTK();
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 

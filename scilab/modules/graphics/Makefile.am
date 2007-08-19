@@ -338,7 +338,16 @@ src/c/handleDrawing/drawSurfaceEntity.c \
 src/c/handleDrawing/drawTextEntity.c \
 src/c/TerminateGraphics.c \
 src/c/CurrentObjectsManagement.c \
-src/c/ObjectSelection.c
+src/c/ObjectSelection.c \
+src/c/CheckColormap.c \
+src/c/CheckScilabXgc.c \
+src/c/deletePoints.c \
+src/c/fill_grid_rectangles.c \
+src/c/get_rgb.c \
+src/c/getcolordef.c \
+src/c/getwindowdim.c \
+src/c/periEmpty.c \
+src/c/SciViewportGet.c 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_readgif.c \

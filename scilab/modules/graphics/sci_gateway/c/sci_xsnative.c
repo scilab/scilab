@@ -98,7 +98,7 @@ int sci_xsnative( char * fname, unsigned long fname_len )
 
     if (ScilabGC != (struct BCG *) 0)
     {
-      ExportBMP(ScilabGC,FilenameBMP);
+      //ExportBMP(ScilabGC,FilenameBMP);
       NumBMP++;
     }
   }

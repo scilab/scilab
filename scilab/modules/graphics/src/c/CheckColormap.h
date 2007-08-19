@@ -1,0 +1,2 @@
+
+int CheckColormap(int *m);

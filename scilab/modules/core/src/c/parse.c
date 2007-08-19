@@ -5,14 +5,12 @@
 /* *------------------------------------------------------------------ */
 #include <string.h>
 #include <stdio.h>
-#include "timer.h"
 #include "stack-c.h"
 #include "dynamic_menus.h"
 /*-----------------------------------------------------------------------------------*/
 #include "parse.h"
 #include "basout.h"
-#include "../../gui/includes/checkevts.h"
-#include "../../gui/includes/sxevents.h"
+#include "ScilabEventsLoop.h"
 #include "../../tclsci/includes/tksynchro.h"
 #include "cvstr.h"
 /*-----------------------------------------------------------------------------------*/
@@ -159,7 +157,6 @@ int C2F(parse)()
   static int excnt;
   static int l1;
   static int id[6], lb, io, ir;
-  static int inxsci;
   static int dotsep;
   static int icount;
   static int nentry, lastindpos;
@@ -168,7 +165,6 @@ int C2F(parse)()
 
 
   itime = 10000;
-  C2F(checkevts)(&inxsci);
  L1:
   r = 0;
   if (Pt > 0) {
@@ -286,7 +282,7 @@ int C2F(parse)()
   /*     Beginning of a new statement, clause expression or command */
   /* ------------------------------------------------------------ */
  L15:
-  if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
+  ScilabEventsLoop();
   if (ismenu() == 1 && C2F(basbrk).interruptible) {
     iret = 1;
     goto L96;

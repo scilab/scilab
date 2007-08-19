@@ -1,10 +1,11 @@
+/*-----------------------------------------------------------------------------------*/
 /** 
  * @copyright INRIA 2007
  * @author Vincent COUVERT
  */
-
-#include "../../../core/includes/dynamic_menus.h"
-#include "../../../gui/includes/sxevents.h"
+/*-----------------------------------------------------------------------------------*/
+#ifndef __INTERPRETERMANAGEMENT_H__
+#define __INTERPRETERMANAGEMENT_H__
 
 /**
  * Put a command in Scilab command queue so that Scilab executes it
@@ -13,11 +14,13 @@
  * @param command the command to execute
  * @return execution status
  */
-
 int putCommandInScilabQueue(char *command);
 
-/**
- * Executes Scilab event loop so that queued callbacks can be executed
- * @return execution status
- */
-int C2F(sxevents)(void);
+/*
+* exec ScilabEventLoop
+* @return 0
+*/
+int execScilabEventLoop(void);
+/*-----------------------------------------------------------------------------------*/
+
+#endif /* __INTERPRETERMANAGEMENT_H__ */

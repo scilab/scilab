@@ -5,6 +5,10 @@
 #ifndef __GETCOMMANDLINEARGS_H__
 #define __GETCOMMANDLINEARGS_H__
 
+/* max of command token */
+
+#define MAXCMDTOKENS 256
+
 /**
 * get command line arguments
 * @param returns nbargs number of arguments

@@ -360,10 +360,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\createdir.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\directories.h"
 				>
 			</File>
@@ -396,11 +392,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\setenvc.h"
+				RelativePath=".\setenvc.h"
 				>
 			</File>
 			<File
-				RelativePath=".\setenvc.h"
+				RelativePath="..\..\includes\setenvc.h"
 				>
 			</File>
 			<File

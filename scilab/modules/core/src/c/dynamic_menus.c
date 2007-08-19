@@ -85,13 +85,13 @@ int StoreCommand ( char *command)
 int StoreCommand1 (char *command,int flag)
 {
 #ifdef _MSC_VER
- if ( (flag == 1) && ( !IsToThePrompt () ) ) flag=0;
+ //if ( (flag == 1) && ( !IsToThePrompt () ) ) flag=0;
 #endif
  switch (flag)
  {
  case 1: /* the command is shown in scilab window (if at prompt) */
 		{
-			write_scilab (command);
+			//write_scilab (command);
 			return (0);
 		}
 		break;
@@ -127,7 +127,7 @@ int StoreCommand1 (char *command,int flag)
 					q->next = p;
 				}
 #ifdef _MSC_VER
-			if (IsToThePrompt ()) write_scilab ("\n");
+			//if (IsToThePrompt ()) write_scilab ("\n");
 #endif
 			return (0);
 			

@@ -28,7 +28,7 @@
 
 #define MIN_STACKSIZE 180000
 
-#define MAXCMDTOKENS 128
+
 
 /** test if we are using a file or not **/
 #define isterm(f) (f==stdin || f==stdout || f==stderr)

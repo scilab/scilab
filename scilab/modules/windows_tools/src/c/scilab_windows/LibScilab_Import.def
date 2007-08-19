@@ -1,0 +1,17 @@
+LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+ExitScilab
+disp_scilab_version
+setCommandLineArgs
+setScilabMode
+getScilabMode
+settexmacs
+setSCIpath
+IsFromJava
+IsFromC
+sciquit_
+sciprint
+realmain

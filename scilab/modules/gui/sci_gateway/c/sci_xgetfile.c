@@ -6,11 +6,13 @@
 #include "machine.h"
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intsxgetfile) _PARAMS((char *fname,unsigned long fname_len));
+//extern int C2F(intsxgetfile) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intsxgetfile)(fname,fname_len);
+//	C2F(intsxgetfile)(fname,fname_len);
+	LhsVar(1)=0;
+	C2F(putlhsvar)();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

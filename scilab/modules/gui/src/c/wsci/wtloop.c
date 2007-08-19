@@ -86,61 +86,61 @@ static void interrupt_setup (void)
   (void) signal (SIGINT, inter);
 }
 /*-----------------------------------------------------------------------------------*/
-void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory)
-{
-  setbuf (stderr, (char *) NULL);
-  if (!setjmp (env))
-    {
-      /* first time */
-      interrupt_setup ();
-    }
-  else
-    {
-      /* come back here from int_error() */
-		if (getScilabMode() == SCILAB_STD ) SetCursor (LoadCursor ((HINSTANCE) NULL, IDC_ARROW));
-    }
-  /* take commands from stdin */
-  realmain(*nos,path,pathtype,memory);
-
-}
+//void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory)
+//{
+//  setbuf (stderr, (char *) NULL);
+//  if (!setjmp (env))
+//    {
+//      /* first time */
+//      interrupt_setup ();
+//    }
+//  else
+//    {
+//      /* come back here from int_error() */
+//		if (getScilabMode() == SCILAB_STD ) SetCursor (LoadCursor ((HINSTANCE) NULL, IDC_ARROW));
+//    }
+//  /* take commands from stdin */
+//  realmain(*nos,path,pathtype,memory);
+//
+//}
 /*-----------------------------------------------------------------------------------*/
-void sci_clear_and_exit(int n) /* used with handlers */ 
-{
-#ifdef _DEBUG
-  char Message[256];
-  switch (n)
-  {
-	  case SIGINT:
-		  wsprintf(Message,MSG_ERROR59);
-		  break;
-	  case SIGILL:
-		  wsprintf(Message,MSG_ERROR60);
-		  break;
-	  case SIGFPE:
-		  wsprintf(Message,MSG_ERROR61);
-		  break;
-	  case SIGSEGV:
-		  wsprintf(Message,MSG_ERROR62);
-		  break;
-	  case SIGTERM:
-		  wsprintf(Message,MSG_ERROR63);
-		  break;
-	  case SIGBREAK:
-		  wsprintf(Message,MSG_ERROR64);
-		  break;
-	  case SIGABRT:
-		  wsprintf(Message,MSG_ERROR65);
-		  break;
-	  default:
-		  wsprintf(Message,MSG_ERROR66);
-		  break;
-  }
-  MessageBox(NULL,Message,MSG_ERROR20,MB_ICONWARNING);
-#else
-  /*MessageBox(NULL,MSG_WARNING30,MSG_WARNING22,MB_ICONWARNING);*/
-#endif
-  C2F(sciquit)();
-}
+//void sci_clear_and_exit(int n) /* used with handlers */ 
+//{
+//#ifdef _DEBUG
+//  char Message[256];
+//  switch (n)
+//  {
+//	  case SIGINT:
+//		  wsprintf(Message,MSG_ERROR59);
+//		  break;
+//	  case SIGILL:
+//		  wsprintf(Message,MSG_ERROR60);
+//		  break;
+//	  case SIGFPE:
+//		  wsprintf(Message,MSG_ERROR61);
+//		  break;
+//	  case SIGSEGV:
+//		  wsprintf(Message,MSG_ERROR62);
+//		  break;
+//	  case SIGTERM:
+//		  wsprintf(Message,MSG_ERROR63);
+//		  break;
+//	  case SIGBREAK:
+//		  wsprintf(Message,MSG_ERROR64);
+//		  break;
+//	  case SIGABRT:
+//		  wsprintf(Message,MSG_ERROR65);
+//		  break;
+//	  default:
+//		  wsprintf(Message,MSG_ERROR66);
+//		  break;
+//  }
+//  MessageBox(NULL,Message,MSG_ERROR20,MB_ICONWARNING);
+//#else
+//  /*MessageBox(NULL,MSG_WARNING30,MSG_WARNING22,MB_ICONWARNING);*/
+//#endif
+//  C2F(sciquit)();
+//}
 /*-----------------------------------------------------------------------------------*/
 /*-------------------------------------------------------
  * usr1 signal : used to transmit a Control C to 

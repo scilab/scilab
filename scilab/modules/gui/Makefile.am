@@ -68,7 +68,13 @@ src/c/xmen_dialog.c \
 src/c/xmen_Utils.c \
 src/c/men_choice.c \
 src/c/men_print.c \
-src/c/guitable.c
+src/c/guitable.c \
+src/c/buildMainWindowTitle.c \
+src/c/getMainWindowTitle.c \
+src/c/getScreenProperties.c \
+src/c/InitializeGUI.c \
+src/c/setMainWindowTitle.c
+
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_x_message_modeless.c \
@@ -157,7 +163,9 @@ includes/men_scilab.h \
 includes/gw_gui.h \
 includes/wmen_scilab.h \
 includes/sci_raise_window.h \
-includes/GraphicWindow.h
+includes/GraphicWindow.h \
+includes/InitializeGUI.h
+
 
 
 #### gui : demos files ####

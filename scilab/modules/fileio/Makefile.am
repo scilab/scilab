@@ -40,7 +40,9 @@ src/c/deleteafile.c \
 src/c/getshortpathname.c \
 src/c/getlongpathname.c \
 src/c/FindFileExtension.c \
-src/c/URIFileToFilename.c
+src/c/URIFileToFilename.c \
+src/c/ConvertPathUnixToWindows.c
+
 
 GATEWAY_SOURCES = \
 sci_gateway/c/sci_xls_read.c \
@@ -109,7 +111,9 @@ includes/gw_fileio.h \
 includes/sci_fileio.h \
 includes/findfiles.h \
 includes/FindFileExtension.h \
-includes/URIFileToFilename.h
+includes/URIFileToFilename.h \
+includes/ConvertPathUnixToWindows.h
+
 
 
 #### fileio : demos files ####

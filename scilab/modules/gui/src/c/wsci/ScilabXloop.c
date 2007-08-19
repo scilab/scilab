@@ -68,7 +68,7 @@ int C2F (sxevents) ()
   {
 	  if (getINXscilab() == 1 || BasicScilab == 0 )
 	  {
-		  TextMessage1 (1);
+		  //TextMessage1 (1);
 	  }
   }
   return (0);
