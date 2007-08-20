@@ -3,27 +3,30 @@
 ### INRIA - Scilab 2007
 ##########
 
+# List of the cpp files
+SHELL_CPP_SOURCES =
+
+# List of the c files
+SHELL_C_SOURCES = src/c/clc.c \
+src/c/tohome.c \
+src/c/more.c \
+src/c/others/mainscic.c \
+src/c/others/GetCharWithEventsLoop.c \
+src/c/others/zzledt.c
+
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
 sci_gateway/c/sci_clc.c \
-sci_gateway/c/sci_tohome.c 
-
-# List of the c files
-SHELL_C_SOURCES = src/c/linux/mainscic.c \
-src/c/linux/GetCharWithEventsLoop.c \
-src/c/linux/zzledt_Linux.c \
-src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c
-
-# List of the cpp files
-SHELL_CPP_SOURCES = 
+sci_gateway/c/sci_tohome.c
 
 # Includes need for the compilation
-libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ \
+-Isrc/c/others/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
-libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/linux/ -Isrc/c/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ -I$(top_srcdir)/modules/history_manager/includes/
+libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/c/others/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/history_manager/includes/
 
 libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
@@ -32,13 +35,11 @@ libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
 pkglib_LTLIBRARIES = libscishell.la
 
 # All the sources needed by libscishell.la
-libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(SHELL_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
+libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(SHELL_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 ## Libraries necessary
-libscishell_la_LIBADD = \
-	$(top_builddir)/libs/blas/libsciblas.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
+libscishell_la_LIBADD = $(top_builddir)/libs/blas/libsciblas.la \
+$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 modulename=shell
 
@@ -66,3 +67,4 @@ endif
 
 # Provides macros compilation, Java compilation, cleaning
 include $(top_srcdir)/Makefile.incl.am
+
