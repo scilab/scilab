@@ -35,7 +35,7 @@ int GetCharWithoutOutput(void)
                         jmethodID mid = (*env)->GetMethodID(env, cls, "getCharWithoutOutput", "()I");
                         if (mid)
                           {
-                            intValue = (int) (*env)->CallObjectMethod(env, jConsole, mid);
+                            intValue = (int) (*env)->CallIntMethod(env, jConsole, mid);
                           }
                       }
                   }
