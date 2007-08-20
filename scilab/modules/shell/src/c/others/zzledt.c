@@ -73,8 +73,6 @@
 	#define TERMCAP
 #endif
 /*-----------------------------------------------------------------------------------*/
-
-
 #ifndef HAVE_TERMCAP
 	#undef TERMCAP
 #endif

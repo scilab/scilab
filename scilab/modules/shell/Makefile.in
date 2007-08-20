@@ -81,10 +81,10 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscishell_la_DEPENDENCIES = $(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__objects_1 = libscishell_la-mainscic.lo \
+am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
+	libscishell_la-more.lo libscishell_la-mainscic.lo \
 	libscishell_la-GetCharWithEventsLoop.lo \
-	libscishell_la-zzledt_Linux.lo libscishell_la-clc.lo \
-	libscishell_la-tohome.lo libscishell_la-more.lo
+	libscishell_la-zzledt.lo
 am__objects_2 =
 am__objects_3 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo
@@ -275,29 +275,34 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
-# List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
-sci_gateway/c/sci_clc.c \
-sci_gateway/c/sci_tohome.c 
-
-
-# List of the c files
-SHELL_C_SOURCES = src/c/linux/mainscic.c \
-src/c/linux/GetCharWithEventsLoop.c \
-src/c/linux/zzledt_Linux.c \
-src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c
-
-
 # List of the cpp files
 SHELL_CPP_SOURCES = 
 
-# Includes need for the compilation
-libscishell_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+# List of the c files
+SHELL_C_SOURCES = src/c/clc.c \
+src/c/tohome.c \
+src/c/more.c \
+src/c/others/mainscic.c \
+src/c/others/GetCharWithEventsLoop.c \
+src/c/others/zzledt.c
+
+
+# List of the gateway c files
+GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
+sci_gateway/c/sci_clc.c \
+sci_gateway/c/sci_tohome.c
+
 
 # Includes need for the compilation
-libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/linux/ -Isrc/c/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ -I$(top_srcdir)/modules/history_manager/includes/
+libscishell_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ \
+-Isrc/c/others/ -I$(top_srcdir)/libs/MALLOC/includes/
+
+
+# Includes need for the compilation
+libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/c/others/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/history_manager/includes/
+
 libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
@@ -305,10 +310,9 @@ libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
 pkglib_LTLIBRARIES = libscishell.la
 
 # All the sources needed by libscishell.la
-libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(SHELL_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
-libscishell_la_LIBADD = \
-	$(top_builddir)/libs/blas/libsciblas.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(SHELL_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscishell_la_LIBADD = $(top_builddir)/libs/blas/libsciblas.la \
+$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 modulename = shell
 
@@ -449,7 +453,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-tohome.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-zzledt_Linux.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-zzledt.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -472,27 +476,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscishell_la-mainscic.lo: src/c/linux/mainscic.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-mainscic.lo -MD -MP -MF $(DEPDIR)/libscishell_la-mainscic.Tpo -c -o libscishell_la-mainscic.lo `test -f 'src/c/linux/mainscic.c' || echo '$(srcdir)/'`src/c/linux/mainscic.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-mainscic.Tpo $(DEPDIR)/libscishell_la-mainscic.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/linux/mainscic.c' object='libscishell_la-mainscic.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-mainscic.lo `test -f 'src/c/linux/mainscic.c' || echo '$(srcdir)/'`src/c/linux/mainscic.c
-
-libscishell_la-GetCharWithEventsLoop.lo: src/c/linux/GetCharWithEventsLoop.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-GetCharWithEventsLoop.lo -MD -MP -MF $(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Tpo -c -o libscishell_la-GetCharWithEventsLoop.lo `test -f 'src/c/linux/GetCharWithEventsLoop.c' || echo '$(srcdir)/'`src/c/linux/GetCharWithEventsLoop.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Tpo $(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/linux/GetCharWithEventsLoop.c' object='libscishell_la-GetCharWithEventsLoop.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-GetCharWithEventsLoop.lo `test -f 'src/c/linux/GetCharWithEventsLoop.c' || echo '$(srcdir)/'`src/c/linux/GetCharWithEventsLoop.c
-
-libscishell_la-zzledt_Linux.lo: src/c/linux/zzledt_Linux.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-zzledt_Linux.lo -MD -MP -MF $(DEPDIR)/libscishell_la-zzledt_Linux.Tpo -c -o libscishell_la-zzledt_Linux.lo `test -f 'src/c/linux/zzledt_Linux.c' || echo '$(srcdir)/'`src/c/linux/zzledt_Linux.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-zzledt_Linux.Tpo $(DEPDIR)/libscishell_la-zzledt_Linux.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/linux/zzledt_Linux.c' object='libscishell_la-zzledt_Linux.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-zzledt_Linux.lo `test -f 'src/c/linux/zzledt_Linux.c' || echo '$(srcdir)/'`src/c/linux/zzledt_Linux.c
-
 libscishell_la-clc.lo: src/c/clc.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-clc.lo -MD -MP -MF $(DEPDIR)/libscishell_la-clc.Tpo -c -o libscishell_la-clc.lo `test -f 'src/c/clc.c' || echo '$(srcdir)/'`src/c/clc.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-clc.Tpo $(DEPDIR)/libscishell_la-clc.Plo
@@ -513,6 +496,27 @@ libscishell_la-more.lo: src/c/more.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/more.c' object='libscishell_la-more.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
+
+libscishell_la-mainscic.lo: src/c/others/mainscic.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-mainscic.lo -MD -MP -MF $(DEPDIR)/libscishell_la-mainscic.Tpo -c -o libscishell_la-mainscic.lo `test -f 'src/c/others/mainscic.c' || echo '$(srcdir)/'`src/c/others/mainscic.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-mainscic.Tpo $(DEPDIR)/libscishell_la-mainscic.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/mainscic.c' object='libscishell_la-mainscic.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-mainscic.lo `test -f 'src/c/others/mainscic.c' || echo '$(srcdir)/'`src/c/others/mainscic.c
+
+libscishell_la-GetCharWithEventsLoop.lo: src/c/others/GetCharWithEventsLoop.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-GetCharWithEventsLoop.lo -MD -MP -MF $(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Tpo -c -o libscishell_la-GetCharWithEventsLoop.lo `test -f 'src/c/others/GetCharWithEventsLoop.c' || echo '$(srcdir)/'`src/c/others/GetCharWithEventsLoop.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Tpo $(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/GetCharWithEventsLoop.c' object='libscishell_la-GetCharWithEventsLoop.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-GetCharWithEventsLoop.lo `test -f 'src/c/others/GetCharWithEventsLoop.c' || echo '$(srcdir)/'`src/c/others/GetCharWithEventsLoop.c
+
+libscishell_la-zzledt.lo: src/c/others/zzledt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libscishell_la-zzledt.Tpo -c -o libscishell_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-zzledt.Tpo $(DEPDIR)/libscishell_la-zzledt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/zzledt.c' object='libscishell_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
 
 libscishell_la-gw_shell.lo: sci_gateway/c/gw_shell.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-gw_shell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-gw_shell.Tpo -c -o libscishell_la-gw_shell.lo `test -f 'sci_gateway/c/gw_shell.c' || echo '$(srcdir)/'`sci_gateway/c/gw_shell.c
