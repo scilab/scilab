@@ -7,14 +7,6 @@
 #include "TclEvents.h"
 #ifndef _MSC_VER
  #include <dirent.h>
- #include <X11/Xlib.h>
- #include <X11/Xatom.h>
- #include <X11/Xutil.h>
- #include <X11/cursorfont.h>
- #include <X11/Intrinsic.h>
- #include <X11/StringDefs.h>
- #include <X11/Shell.h>
- #include <X11/Xos.h>
  #include <ctype.h>
 #endif
 #include "setgetSCIpath.h"
@@ -24,9 +16,6 @@
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
-#ifndef _MSC_VER
-  int XTKsocket=0;
-#endif
 /*-----------------------------------------------------------------------------------*/ 
 char *GetSciPath(void);
 /*-----------------------------------------------------------------------------------*/
@@ -147,11 +136,6 @@ int OpenTCLsci(void)
   if (TKmainWindow == NULL)
     {
       TKmainWindow = Tk_MainWindow(TCLinterp);
-	  #ifndef _MSC_VER
-        XTKdisplay=Tk_Display(TKmainWindow);
-        XTKsocket = ConnectionNumber(XTKdisplay);
-	  #endif
-      
       Tk_GeometryRequest(TKmainWindow,2,2);
 
   	  if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
