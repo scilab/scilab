@@ -12,7 +12,6 @@
 #include <X11/Xlib.h>
 #include <X11/Intrinsic.h>
 #else
-#include "../../gui/src/c/wsci/wgnuplib.h"
 #endif 
 
 #include "machine.h" /* to be sure that WITH_XXX are defined */
@@ -105,25 +104,6 @@ typedef struct BCG
   /*int graphicsversion;*/ /* old style is dead */
   /* NG end */
 #ifdef _MSC_VER
-  /** windows specific objects **/
-  HWND	hWndParent;     /* parent window handle */
-  HWND CWindow ;   /** window of the top level widget of the graphic window **/
-  HWND Statusbar;    /* status window */
-  HDC hdcCompat ;  /** for pixmap version */
-  HBITMAP hbmCompat ;  /** for pixmap version */
-  MW  lpmw;        /** graphic window menu **/
-  int in_sizemove ;   /** graphic window is in resize move */
-  /** A reprendre avec des pointeurs comme en X11 XXXXXX **/
-  COLORREF *Colors;/* vector of colors */ 
-  HPEN hPen ;  /** the current pen for graphic window **/
-  HBRUSH hBrush; /** the current brush **/
-  LPGW   lpgw; /** to store a pointer to the graphwin structure **/
-  int Inside_init; /** a flag to inhibit Graproc actions while in 
-		     initgraphic **/
-  SCROLLINFO vertsi;
-  SCROLLINFO horzsi;
-  HMENU hMenuRoot;
-  int IDM_Count;
 #else 
   /** Xwindow specific objects **/
   Drawable Cdrawable ; /** The drawable = CWindow or a Pixmap */

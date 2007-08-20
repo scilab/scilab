@@ -17,8 +17,8 @@
 #ifdef _MSC_VER
 
 #include "Os_specific.h"
-#include "../../gui/src/c/wsci/Errors.h"
-#include "../../gui/src/c/wsci/ExportBmpEmf.h"
+//#include "../../gui/src/c/wsci/Errors.h"
+//#include "../../gui/src/c/wsci/ExportBmpEmf.h"
 #include "GetProperty.h"
 #include "WindowList.h"
 #include "MALLOC.h"
@@ -65,7 +65,7 @@ int sci_xsnative( char * fname, unsigned long fname_len )
       }
       else
       {
-        Scierror(999,MSG_ERROR35);
+        //Scierror(999,MSG_ERROR35);
         LhsVar(1)=0;
         return 0;
       }
@@ -75,7 +75,7 @@ int sci_xsnative( char * fname, unsigned long fname_len )
 
   default:
     {
-      Scierror(999,MSG_ERROR35);
+      //Scierror(999,MSG_ERROR35);
       LhsVar(1)=0;
       return 0;
     }

@@ -7,8 +7,9 @@
 
 #ifdef _MSC_VER
 #include "sci_xs2emf.h"
-#include "../../gui/src/c/wsci/ExportBmpEmf.h"
 #endif
+#include "machine.h"
+#include "stack-c.h"
 #include "sciprint.h"
 #include "gw_graphics.h"
 /*-----------------------------------------------------------------------------------*/

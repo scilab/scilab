@@ -45,13 +45,6 @@ integer sciGetwresize();
 integer sciGetPixmapStatus();
 
 /**
- * used to get panner position through scilab command.
- * @param[in] struct BCG *ScilabGC : structure associated to a Scilab Graphic window
- * @param[in] int x,y : the x,y point of the graphic window to be moved at the up-left position of the viewport
- **/
-void SciViewportGet __PARAMS((struct BCG *ScilabXgc,int *x,int *y));
-
-/**
  * used to move the panner and the viewport interactively 
  * through scilab command.
  * @param[in] struct BCG *ScilabGC : structure associated to a Scilab Graphic window

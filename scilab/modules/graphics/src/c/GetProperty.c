@@ -34,6 +34,7 @@
 #include "BasicAlgos.h"
 
 #include "MALLOC.h" /* MALLOC */
+#include "SciViewportGet.h"
 
 
 extern sciHandleTab *PENDOFHANDLETAB;

@@ -6,10 +6,9 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_xs2bmp.h"
-#ifdef _MSC_VER
-#include "../../gui/src/c/wsci/ExportBmpEmf.h"
-#endif
 #include "sciprint.h"
+#include "machine.h"
+#include "stack-c.h"
 
 /*-----------------------------------------------------------------------------------*/
 extern int IsAScalar(int RhsNumber);
