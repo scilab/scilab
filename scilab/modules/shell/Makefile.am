@@ -10,21 +10,14 @@ SHELL_CPP_SOURCES =
 SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
 src/c/zzledt_Linux.c \
-src/c/more.c
+src/c/more.c \
+src/c/PutChar_linux.c
 
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
 sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_tohome.c 
-
-if GUI
-SHELL_C_SOURCES += src/c/PutChar_linux.c \
-src/c/GetCharWithoutOutput.c
-else
-src/c/PutChar_linux_nogui.c \
-src/c/GetCharWithoutOutput_nogui.c
-endif
 
 
 # Includes need for the compilation

@@ -222,6 +222,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GetCharWithoutOutput.c"
+				>
+			</File>
+			<File
 				RelativePath=".\GuiManagement.c"
 				>
 			</File>
@@ -264,6 +268,10 @@
 			</File>
 			<File
 				RelativePath=".\dropFiles.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetCharWithoutOutput.h"
 				>
 			</File>
 			<File

@@ -20,7 +20,8 @@ src/c/ClearConsole.c \
 src/c/ClearConsolePart.c \
 src/c/PromptToHome.c \
 src/c/ShellPrintf.c \
-src/c/dropFiles.c
+src/c/dropFiles.c \
+src/c/GetCharWithoutOutput.c
 
 else
 
@@ -65,7 +66,9 @@ src/jni/GuiManagement.i
 #### console : include files ####
 libscishell_la_includedir=$(pkgincludedir)/console
 libscishell_la_include_HEADERS = includes/ShellRead.h \
-includes/ShellPrintf.h
+includes/ShellPrintf.h \
+includes/GetCharWithoutOutput.h
+
 
 
 # Provides macros compilation, Java compilation, cleaning

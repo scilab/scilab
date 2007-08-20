@@ -5,7 +5,6 @@
 
 #include <stdio.h>
 #include "PutChar.h"
-#include "scilabmode.h"
 
 void PutChar(int c)
 {

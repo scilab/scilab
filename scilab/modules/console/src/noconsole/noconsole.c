@@ -2,11 +2,13 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdlib.h>
 #include "machine.h" 
 #include "ShellPrintf.h"
 #include "ShellRead.h"
 #include "ClearConsolePart.h"
 #include "ClearConsole.h"
+#include "PromptToHome.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -33,6 +35,16 @@ BOOL ClearConsolePart(int nbLines)
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL ClearConsole(void)
+{
+	return FALSE;
+}
+/*-----------------------------------------------------------------------------------*/
+int GetCharWithoutOutput()
+{
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL PromptToHome(void)
 {
 	return FALSE;
 }
