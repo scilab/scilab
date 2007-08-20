@@ -67,7 +67,6 @@
 
 #include <string.h>
 #include "sciprint.h"
-#include "../../gui/src/c/xsci/x_charproc.h"
 #include "tmpdir.h"
 #include "setgetSCIpath.h"
 #include "sciprint_nd.h"
