@@ -11,7 +11,7 @@ SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
 src/c/zzledt_Linux.c \
 src/c/more.c \
-src/c/PutChar_linux.c
+src/c/GetCharWithEventsLoop.c
 
 
 # List of the gateway c files
