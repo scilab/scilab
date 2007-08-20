@@ -201,7 +201,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\command_Windows.c"
+				RelativePath=".\windows\command_Windows.c"
 				>
 			</File>
 			<File
@@ -213,7 +213,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\readshell.c"
+				RelativePath=".\windows\readshell.c"
 				>
 			</File>
 			<File
@@ -229,7 +229,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\x_zzledt_Windows.c"
+				RelativePath=".\windows\x_zzledt_Windows.c"
 				>
 			</File>
 		</Filter>

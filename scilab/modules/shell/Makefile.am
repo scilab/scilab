@@ -9,9 +9,10 @@ SHELL_CPP_SOURCES =
 # List of the c files
 SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
-src/c/zzledt_Linux.c \
 src/c/more.c \
-src/c/GetCharWithEventsLoop.c
+src/c/zzledt_Linux.c \
+src/c/GetCharWithEventsLoop.c \
+src/c/mainscic.c
 
 
 # List of the gateway c files

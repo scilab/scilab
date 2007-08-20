@@ -22,7 +22,7 @@
 #include "core_math.h"
 #include "Scierror.h"
 #include "prompt.h"
-#include "../../../gui/src/c/xsci/x_VTPrsTbl.h"
+#include "x_VTPrsTbl.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef aix
 	#define ATTUNIX

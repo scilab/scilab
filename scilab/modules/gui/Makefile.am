@@ -9,10 +9,10 @@ include $(top_srcdir)/Makefile.incl.am
 libscigui_la_CFLAGS=  -Isrc/c/ -Isrc/c/xsci/ -Iincludes/ -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/shell/includes/ $(TCL_INC_PATH) $(Tk_INC_PATH) \
 -I$(top_srcdir)/libs/doublylinkedlist/includes
 
-GUI_C_SOURCES = src/c/xsci/mainscic.c 
+
 
 if GUI
-GUI_C_SOURCES += \
+GUI_C_SOURCES = \
 src/c/getlookandfeel.c \
 src/c/setlookandfeel.c \
 src/c/getinstalledlookandfeels.c \
@@ -61,7 +61,7 @@ libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
 
 else
 
-GUI_C_SOURCES += src/nogui/nogui.c 
+GUI_C_SOURCES = src/nogui/nogui.c 
 
 endif
 
