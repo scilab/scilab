@@ -16,29 +16,26 @@
     <CALLING_SEQUENCE_ITEM>addhistory(string_matrix)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>string</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: a string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>string_matrix</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+	<PARAM>
+		<PARAM_INDENT>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>string</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+				<SP>: a string</SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>string_matrix</PARAM_NAME>
+				
+				<PARAM_DESCRIPTION>
+				<SP>: a string matrix</SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+		
+		</PARAM_INDENT>
+	</PARAM>
 
   <DESCRIPTION>
     <P>add lines to current history.</P>

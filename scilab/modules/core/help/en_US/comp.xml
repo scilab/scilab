@@ -42,7 +42,7 @@
     The osolete opt==1 option was specific to code analysis purposes and 
     is now ignored, i.e treated as opt==0.</P>
    <P>
-   <B>Note:</B> the compilation takes part "in place", i.e the original function is modified 
+   Note: the compilation takes part "in place", i.e the original function is modified
    and no new object is created.
    </P>
    </DESCRIPTION>
