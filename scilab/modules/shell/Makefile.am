@@ -1,31 +1,29 @@
 ##########
 ### Allan CORNET
 ### INRIA - Scilab 2007
-########## *
-
-# List of the cpp files
-SHELL_CPP_SOURCES = 
-
-# List of the c files
-SHELL_C_SOURCES = src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c \
-src/c/zzledt_Linux.c \
-src/c/GetCharWithEventsLoop.c \
-src/c/mainscic.c
-
+##########
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
 sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_tohome.c 
 
+# List of the c files
+SHELL_C_SOURCES = src/c/linux/mainscic.c \
+src/c/linux/GetCharWithEventsLoop.c \
+src/c/linux/zzledt_Linux.c \
+src/c/clc.c \
+src/c/tohome.c \
+src/c/more.c
+
+# List of the cpp files
+SHELL_CPP_SOURCES = 
 
 # Includes need for the compilation
 libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
-libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ -I$(top_srcdir)/modules/history_manager/includes/
+libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/linux/ -Isrc/c/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ -I$(top_srcdir)/modules/history_manager/includes/
 
 libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
@@ -48,15 +46,15 @@ modulename=shell
 libscishell_la_rootdir = $(mydatadir)
 libscishell_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-####�shell : init scripts #### 
+#### shell : init scripts #### 
 libscishell_la_etcdir = $(mydatadir)/etc
 libscishell_la_etc_DATA = etc/shell.quit etc/shell.start
 
-####�shell : gateway declaration #### 
+#### shell : gateway declaration #### 
 libscishell_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
-####�shell : include files ####
+#### shell : include files ####
 libscishell_la_includedir=$(pkgincludedir)/shell
 libscishell_la_include_HEADERS = includes/gw_shell.h
 
