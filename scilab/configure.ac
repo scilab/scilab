@@ -89,9 +89,6 @@ AC_ARG_WITH(gui,
 AC_ARG_WITH(swig-generation,
     [  --with-swig-generation  Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)])
 
-AC_ARG_WITH(java-console,
-    [  --with-java-console     Use the "in development" Java console (for development purpose only)])
-
 
 ##############################
 ##########" compilator detection
@@ -567,12 +564,6 @@ if test "$with_javasci" != no -a "$with_gui" != no; then
 		AC_SUBST(SWIG_BIN)
 		AC_SUBST(SWIG_JAVA)
 	fi
-
-        # Under development
-        if test "$with_java_console" = yes; then
-           AC_DEFINE([WITH_JAVA_CONSOLE],[],[Use the Java Console instead of X-window console])
-        fi
-
 fi
 
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
@@ -1061,7 +1052,6 @@ AM_CONDITIONAL(GUI_X11, test "$GUI" = "X11")
 AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
 AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 
-AC_CONFIG_COMMANDS_POST([chmod +x $SCIDIR/modules/gui/src/c/xsci/ad2c.sh])
 AC_CONFIG_COMMANDS_POST([chmod +x $SCIDIR/modules/scicos/src/c/GenBlocks.sh])
 
 dnl #########################
@@ -1278,16 +1268,6 @@ echo "  SWIG_JAVA ........... = $SWIG_JAVA"
 else
 echo "  SWIG generation disabled"
 fi
-
-
-echo ""
-echo "Scilab Console:"
-if test "$with_java_console" = yes; then
-echo "  Use Java Console"
-else
-echo "  Use X Console"
-fi
-
 
 echo ""
 echo "Libtool config:"

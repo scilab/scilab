@@ -369,9 +369,6 @@
 /* With the JAVA stuff (GUI, Console, JOGL... */
 #undef WITH_GUI
 
-/* Use the Java Console instead of X-window console */
-#undef WITH_JAVA_CONSOLE
-
 /* With OCAML */
 #undef WITH_OCAML
 
