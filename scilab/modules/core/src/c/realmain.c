@@ -5,13 +5,11 @@
 #include "realmain.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-#include "../../../gui/includes/IsNoInteractiveWindow.h"
 #include "inffic.h" /* get_sci_data_strings */
 #include "scirun.h"
 #include "realmain.h" /* enum InitScriptType */
 #include "sciquit.h"
 #include "tmpdir.h"
-#include "scilabmode.h"
 #include "inisci-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern void sci_clear_and_exit(int n);

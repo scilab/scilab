@@ -47,9 +47,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@am__append_1 = src/c/PutChar_linux.c \
-@GUI_TRUE@src/c/GetCharWithoutOutput.c
-
 DIST_COMMON = $(libscishell_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/shell
@@ -84,20 +81,14 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscishell_la_DEPENDENCIES = $(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__libscishell_la_SOURCES_DIST = src/c/clc.c src/c/tohome.c \
-	src/c/zzledt_Linux.c src/c/more.c src/c/PutChar_linux.c \
-	src/c/GetCharWithoutOutput.c sci_gateway/c/gw_shell.c \
-	sci_gateway/c/sci_clc.c sci_gateway/c/sci_tohome.c
-@GUI_TRUE@am__objects_1 = libscishell_la-PutChar_linux.lo \
-@GUI_TRUE@	libscishell_la-GetCharWithoutOutput.lo
-am__objects_2 = libscishell_la-clc.lo libscishell_la-tohome.lo \
+am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
 	libscishell_la-zzledt_Linux.lo libscishell_la-more.lo \
-	$(am__objects_1)
-am__objects_3 =
-am__objects_4 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
+	libscishell_la-GetCharWithEventsLoop.lo
+am__objects_2 =
+am__objects_3 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo
-am_libscishell_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4)
+am_libscishell_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 libscishell_la_OBJECTS = $(am_libscishell_la_OBJECTS)
 libscishell_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscishell_la_CFLAGS) \
@@ -115,7 +106,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscishell_la_SOURCES)
-DIST_SOURCES = $(am__libscishell_la_SOURCES_DIST)
+DIST_SOURCES = $(libscishell_la_SOURCES)
 libscishell_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscishell_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscishell_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -287,8 +278,12 @@ top_srcdir = @top_srcdir@
 SHELL_CPP_SOURCES = 
 
 # List of the c files
-SHELL_C_SOURCES = src/c/clc.c src/c/tohome.c src/c/zzledt_Linux.c \
-	src/c/more.c $(am__append_1)
+SHELL_C_SOURCES = src/c/clc.c \
+src/c/tohome.c \
+src/c/zzledt_Linux.c \
+src/c/more.c \
+src/c/GetCharWithEventsLoop.c
+
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
@@ -444,8 +439,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-GetCharWithoutOutput.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-PutChar_linux.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-more.Plo@am__quote@
@@ -503,19 +497,12 @@ libscishell_la-more.lo: src/c/more.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
 
-libscishell_la-PutChar_linux.lo: src/c/PutChar_linux.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-PutChar_linux.lo -MD -MP -MF $(DEPDIR)/libscishell_la-PutChar_linux.Tpo -c -o libscishell_la-PutChar_linux.lo `test -f 'src/c/PutChar_linux.c' || echo '$(srcdir)/'`src/c/PutChar_linux.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-PutChar_linux.Tpo $(DEPDIR)/libscishell_la-PutChar_linux.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/PutChar_linux.c' object='libscishell_la-PutChar_linux.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_la-GetCharWithEventsLoop.lo: src/c/GetCharWithEventsLoop.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-GetCharWithEventsLoop.lo -MD -MP -MF $(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Tpo -c -o libscishell_la-GetCharWithEventsLoop.lo `test -f 'src/c/GetCharWithEventsLoop.c' || echo '$(srcdir)/'`src/c/GetCharWithEventsLoop.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Tpo $(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetCharWithEventsLoop.c' object='libscishell_la-GetCharWithEventsLoop.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-PutChar_linux.lo `test -f 'src/c/PutChar_linux.c' || echo '$(srcdir)/'`src/c/PutChar_linux.c
-
-libscishell_la-GetCharWithoutOutput.lo: src/c/GetCharWithoutOutput.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-GetCharWithoutOutput.lo -MD -MP -MF $(DEPDIR)/libscishell_la-GetCharWithoutOutput.Tpo -c -o libscishell_la-GetCharWithoutOutput.lo `test -f 'src/c/GetCharWithoutOutput.c' || echo '$(srcdir)/'`src/c/GetCharWithoutOutput.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-GetCharWithoutOutput.Tpo $(DEPDIR)/libscishell_la-GetCharWithoutOutput.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetCharWithoutOutput.c' object='libscishell_la-GetCharWithoutOutput.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-GetCharWithoutOutput.lo `test -f 'src/c/GetCharWithoutOutput.c' || echo '$(srcdir)/'`src/c/GetCharWithoutOutput.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-GetCharWithEventsLoop.lo `test -f 'src/c/GetCharWithEventsLoop.c' || echo '$(srcdir)/'`src/c/GetCharWithEventsLoop.c
 
 libscishell_la-gw_shell.lo: sci_gateway/c/gw_shell.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-gw_shell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-gw_shell.Tpo -c -o libscishell_la-gw_shell.lo `test -f 'sci_gateway/c/gw_shell.c' || echo '$(srcdir)/'`sci_gateway/c/gw_shell.c
@@ -812,8 +799,6 @@ uninstall-am: uninstall-libscishell_la_etcDATA \
 	uninstall-libscishell_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-@GUI_FALSE@src/c/PutChar_linux_nogui.c \
-@GUI_FALSE@src/c/GetCharWithoutOutput_nogui.c
 #.java .class .jar
 
 ########################### JAVA ######################################
