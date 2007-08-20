@@ -139,7 +139,7 @@ END
 // Bitmap
 //
 
-IDB_BITMAP_SPLASHSCREEN BITMAP                  "D:\\TRUNK\\scilab\\modules\\windows_tools\\src\\c\\resources\\scilab_splashscreen.bmp"
+IDB_BITMAP_SPLASHSCREEN BITMAP                  "..\\resources\\scilab_splashscreen.bmp"
 #endif    // French (France) resources
 /////////////////////////////////////////////////////////////////////////////
 
