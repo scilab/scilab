@@ -290,7 +290,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\helptools\macros\xmltohtml.sci.vc"
+				RelativePath="..\..\modules\helptools\macros\xmlfiletohtml.sci.vc"
 				>
 			</File>
 		</Filter>
