@@ -32,7 +32,7 @@ proc aboutme {} {
 # about
     global winTitle ScipadVersion
     tk_messageBox -title [mc "About"] -type ok -message \
-        " $winTitle  $ScipadVersion [mc aboutme_message]"
+        " $winTitle  $ScipadVersion - Tcl/Tk [info patchlevel] \n [mc aboutme_message]"
 }
 
 proc helpme {} {

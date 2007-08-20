@@ -455,7 +455,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     # now create the full command to be ScilabEval-ed at the end
     # of each debug command
     # note: all this is highly polished and should only be changed after
-    # having thinked twice (hmm, no, three times). For instance, $commc3,
+    # having thought twice (hmm, no, three times). For instance, $commc3,
     # $commc6 and $commc9 contain identical code but must not be factorized
     # because this would change execution order of this complicated
     # code structure (TCL_EvalStr(ScilabEval(TCL_EvalStr...) seq) associated

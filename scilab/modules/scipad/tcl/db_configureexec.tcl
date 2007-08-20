@@ -496,11 +496,22 @@ proc Obtainall_bp {} {
 
     # the debugger ancillaries cannot be debugged and shouldn't be configured
     # for debug, therefore remove them from the list of functions found
-    for {set i 0} {$i < [llength $funsinfo]} {incr i 3} {
+    for {set i [expr {[llength $funsinfo] - 3}]} {$i >= 0} {incr i -3} {
         set funname [lindex $funsinfo $i]
         if {[lsearch -exact $debugger_fun_ancillaries $funname] != -1} {
             set funsinfo [lreplace $funsinfo $i [expr {$i + 2}]]
         }
+    }
+
+    # $debugger_fun_ancillaries is supposed to be maintained in sync with the
+    # Scipad ancillary files, which cannot be debugged, therefore when no
+    # function remains in $funsinfo after the ancillaries filtering above,
+    # it means that the current buffer is indeed a Scipad ancillary file
+    if {[llength $funsinfo] == 0} {
+        tk_messageBox -icon warning -type ok -title [mc "Scipad ancillary file"] \
+                -message [mc "The current file contains only Scipad ancillaries that cannot be debugged in Scipad. Please select another buffer."]
+        set debugassce false
+        return
     }
 
     if {[lindex $funsinfo 0] != "0NoFunInBuf"} {

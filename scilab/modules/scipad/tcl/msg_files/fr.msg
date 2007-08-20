@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.125
+# in sync at least with v6.126
 
 
 # commons
@@ -95,6 +95,9 @@
                         dans la boîte de dialogue de configuration."
 ::msgcat::mcset fr "Error in selected function arguments" "Erreur sur les arguments de la fonction sélectionnée"
 ::msgcat::mcset fr "Main level code found" "Présence de code hors fonction"
+::msgcat::mcset fr "Scipad ancillary file" "Fichier de sous-routines de Scipad"
+::msgcat::mcset fr "The current file contains only Scipad ancillaries that cannot be debugged in Scipad. Please select another buffer." \
+                   "Le fichier actuel ne contient que des sous-routines utilisées par Scipad, et qui ne peuvent pas être débugguées dans Scipad. Veuillez choisir un autre fichier."
 ::msgcat::mcset fr "This file contains main level code.\nDebug as a single .sce file?" \
                    "Ce fichier contient du code hors définition de fonction.\nDébugguer en tant qu'unique entité .sce ?"
 ::msgcat::mcset fr "No function found" "Aucune fonction trouvée"

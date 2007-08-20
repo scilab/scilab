@@ -3149,3 +3149,12 @@ Francois VOGEL, 17/08/07
  * De-clutter: Added a checkbox allowing to hide errors from generic
    expressions instead of displaying them in the shell
  * version --> 6.125
+
+Francois VOGEL, 20/08/07
+ * Scipad shows the Tcl/Tk version in the About box
+ * Fixed wrong detection algorithm of non debuggable functions (Scipad
+   ancillaries), and added a message box to inform the user
+ * Polished the list of non debuggable functions
+ * Added Shift bindings to the generic expressions buttons, active when
+   the watch variables and generic expressions areas are both visible
+ * version --> 6.126

@@ -316,10 +316,6 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  is meant:
 http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c3/47482ff7037343ab
 
--string comparisons (eq/ne) should be used instead of ==/!= when comparing
- as strings. Must review Scipad's source code and make the change where
- appropriate
-
 -remove the scilab4/scilab5 environment detection once scilab5 is stabilized
  and if it doesn't ease backporting to scilab-gtk. Code to remove can be
  found by highlighting differences between versions 6.117 and 6.118 of Scipad.

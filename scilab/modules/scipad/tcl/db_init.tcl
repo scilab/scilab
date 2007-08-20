@@ -33,14 +33,23 @@ set breakcommandtriggered false
 
 # list of functions names that cannot be debugged
 # because they are debugger ancillaries
+# note: with Scilab 5 one could have thought about using
+#       libraryinfo("scipadinternalslib"), but this instruction:
+#         - does not provide macro names that do not match the file name,
+#           i.e. if file1.sci contains functions file1 and file2, only
+#           file1 is returned (this is bug 2465)
+#         - will never provide evstr (that cannot be debugged because it
+#           is directly used in a ScilabEval for generic expressions), nor
+#           macrovar and ancillaries (used for the autowatched variables)
 set debugger_fun_ancillaries [list \
     "LocalizeForScipad" \
     "FormatStringsForWatch" \
-    "StringMatrixFormat" \
     "FormatInfNanForWatch" \
+    "StringMatrixForWatch" \
     "FormatWhereForWatch" \
     "ext_exists" \
     "evstr" \
+    "macrovar" "listvars" "addvar" "addget" \
     ]
 
 # list of variables that cannot be watched for various reasons

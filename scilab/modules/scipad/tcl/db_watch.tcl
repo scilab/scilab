@@ -428,6 +428,11 @@ proc showwatch_bp {} {
         bind $watch <Return> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval}
         bind $watch <BackSpace> {Removearg_bp $lbvarname $lbvarval;syncwatchvarsfromlistbox}
         bind $watch <Delete>    {Removearg_bp $lbvarname $lbvarval;syncwatchvarsfromlistbox}
+        if {$showgenexparea} {
+            bind $watch <Shift-Return> "Addarg_bp $watch $buttonAddge $genexpwidget"
+            bind $watch <Shift-BackSpace> "Removearg_bp $genexpwidget"
+            bind $watch <Shift-Delete>    "Removearg_bp $genexpwidget"
+        }
     } elseif {$showgenexparea} {
         bind $watch <Return> "Addarg_bp $watch $buttonAddge $genexpwidget"
         bind $watch <BackSpace> "Removearg_bp $genexpwidget"
@@ -1226,6 +1231,7 @@ proc evalgenericexpinshell {} {
         set comm4              "mprintf(\"\n$percentescagenexp $formattingstring1\");"
         set comm5              "disp(db_evstrresult);"
         if {!$filtergenexperrors} {
+            # don't filter errors from the shell display
             set comm6      "else"
             set comm7          "mprintf(\"\n$percentescagenexp $formattingstring2\"+\"(\"+string(db_evstrierr)+\")\n\");"
             set comm8      "end;"
@@ -1234,6 +1240,7 @@ proc evalgenericexpinshell {} {
             set comm11 "end;"
             set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10 $comm11]
         } else {
+            # generic expressions evaluating to an error or to no result are silent
             set comm6      "end;"
             set comm7  "end;"
             set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7]
