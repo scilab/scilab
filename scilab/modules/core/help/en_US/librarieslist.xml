@@ -3,16 +3,16 @@
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
 
-  <TITLE>librairieslist</TITLE>
+  <TITLE>librarieslist</TITLE>
 
   <TYPE>Scilab Function</TYPE>
 
   <DATE>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</DATE>
 
-  <SHORT_DESCRIPTION name="librairieslist">get scilab libraries</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="librarieslist">get scilab libraries</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>s=librairieslist()</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=librarieslist()</CALLING_SEQUENCE_ITEM>
 
   </CALLING_SEQUENCE>
 
@@ -29,10 +29,10 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>return in <VERB>s</VERB> all librairies on scilab stack. </P>
+    <P>return in <VERB>s</VERB> all libraries on scilab stack. </P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[librairieslist()
+  <EXAMPLE><![CDATA[librarieslist()
 
    ]]></EXAMPLE>
 
