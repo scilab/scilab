@@ -7,7 +7,7 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.utils.LookAndFeel;
-//import org.scilab.modules.gui.utils.Size;
+
 
 
 
@@ -32,8 +32,9 @@ public class Scilab {
 	 */
 	public Scilab(int mode) {
 		this.mode = mode;
-	
+		LookAndFeel.setSystemLookAndFeel();
 		if (mode == 2) {
+			
 			mainView = ScilabWindow.createWindow();
 			mainView.draw();
 			mainView.setTitle("Scilab-5.0");

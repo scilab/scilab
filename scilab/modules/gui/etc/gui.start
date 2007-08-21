@@ -2,11 +2,6 @@
 // gui module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
-//set system default look and feel
-if ( (getscilabmode() == 'NW') | (getscilabmode() == 'STD') ) then
-  setlookandfeel();
-end
-// ====================================================================
 //Load  functions librarie
 load('SCI/modules/gui/macros/lib');
 // ====================================================================
