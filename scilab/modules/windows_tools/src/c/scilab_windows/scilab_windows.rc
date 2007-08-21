@@ -7,7 +7,8 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
+#include <windows.h>
+#include "resource_scilab_windows.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -38,10 +39,6 @@ BEGIN
     "\0"
 END
 
-2 TEXTINCLUDE 
-BEGIN
-    "#include ""afxres.h""\r\0"
-END
 
 #endif    // APSTUDIO_INVOKED
 
@@ -51,7 +48,7 @@ END
 // Version
 //
 
-1 VERSIONINFO
+VS_VERSION_INFO VERSIONINFO
  FILEVERSION 5,0,0,0
  PRODUCTVERSION 5,0,0,0
  FILEFLAGSMASK 0x17L
@@ -82,6 +79,7 @@ BEGIN
         VALUE "Translation", 0x40c, 1200
     END
 END
+
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -9,6 +9,7 @@
 #include "version.h"
 #include "scilabmode.h"
 #include "MALLOC.h"
+#include "scilab_windows/console.h"
 /*-----------------------------------------------------------------------------------*/
 static int Windows_Console_State = 0;/* 0 Hide 1 Show */
 /*-----------------------------------------------------------------------------------*/

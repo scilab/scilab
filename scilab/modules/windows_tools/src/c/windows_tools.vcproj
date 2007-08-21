@@ -149,7 +149,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib scilab_windows.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="windows_tools.def"
