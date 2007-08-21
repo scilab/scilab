@@ -201,7 +201,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\windows\command_Windows.c"
+				RelativePath=".\windows\command.c"
 				>
 			</File>
 			<File
@@ -213,7 +213,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\windows\readshell.c"
+				RelativePath=".\windows\readline.c"
 				>
 			</File>
 			<File
@@ -229,7 +229,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\windows\x_zzledt_Windows.c"
+				RelativePath=".\windows\zzledt.c"
 				>
 			</File>
 		</Filter>
@@ -239,6 +239,10 @@
 			>
 			<File
 				RelativePath=".\clc.h"
+				>
+			</File>
+			<File
+				RelativePath=".\windows\command.h"
 				>
 			</File>
 			<File
