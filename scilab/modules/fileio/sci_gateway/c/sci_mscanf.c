@@ -8,12 +8,12 @@
 #include "do_xxscanf.h"
 #include "do_xxprintf.h"
 #include "gw_fileio.h"
+#include "../../../shell/includes/zzledt.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define MAXSTR 512
 /*-----------------------------------------------------------------------------------*/ 
 extern int StringConvert __PARAMS((char *str));
 extern int C2F(xscion) __PARAMS((int *));
-extern void C2F (zzledt) ();
 extern int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type);
 extern int Store_Scan __PARAMS((int *nrow,int *ncol,sfdir *type_s,sfdir *type,int *retval, int*retval_s, rec_entry *buf, entry **data,int rowcount,int n));
 extern int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s);
@@ -51,9 +51,6 @@ int int_objscanf(char *fname,unsigned long fname_len)
 	GetRhsVar(iarg,STRING_DATATYPE,&m1,&n1,&l1); /** format **/
 	n_count=StringConvert(cstk(l1))+1;  /* conversion */
 
-	/** Read a line with Scilab read function **/
-	C2F(xscion)(&iflag);
-
 	if (n_count>1) 
 	{
 		Scierror(999,"Error: in scanf: format cannot include \\n \r\n");
@@ -69,7 +66,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 
 		/* get a line */
 		C2F(xscion)(&iflag);
-		C2F(zzledt)(String,&len,&lline,&status,&interrupt,&iflag,strlen(String));
+		C2F(zzledt)(String,&len,&lline,&status,&interrupt,&iflag,(long int)strlen(String));
 
 		if(status != 0) 
 		{
