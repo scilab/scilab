@@ -5,6 +5,10 @@
 //Load  functions librarie
 //load('SCI/modules/windows_tools/macros/lib');
 // ====================================================================
+if (getscilabmode() == 'STD') then 
+  consolebox('off');
+end
+// ====================================================================
 //add help chapter
 add_module_help_chapter('windows_tools');
 clear add_module_help_chapter;
