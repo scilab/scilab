@@ -11,16 +11,13 @@
 #include "../../fileio/includes/diary.h"
 #include "sciprint.h"
 #include "MALLOC.h"
-#include "xscion.h"
 #include "../../../gui/includes/xscimore.h"
-
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(writelunitstring)();
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 {
-	static integer iflagSingleton=-1;
-
 	static integer ich;
 
 	if (*lunit == C2F(iop).wte)
@@ -29,10 +26,6 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 
 		/* We haven't called this function before ... Then we call it and 
 		   store the result once for all because it won't change */
-		if (iflagSingleton==-1){
-			C2F(xscion)(&iflagSingleton);
-		}
-
 		*io = 0;
 		if (C2F(iop).lct[0] == -1) { return 0; }
 		if (C2F(iop).lct[1] > 0) 
@@ -42,7 +35,7 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 			{
 				/* Number of max line reached, management of the 'more' */
 				C2F(iop).lct[0] = 0;
-				if (iflagSingleton == 0) 
+				if (getScilabMode() != SCILAB_STD) 
 				{
 					int ch;
 					/* Scilab has not his own window */
@@ -53,8 +46,6 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 				else
 				{
 					/* scilab has his own window */
-					// DISABLE
-
 					C2F(xscimore)(&ich);
 				}
 
@@ -71,7 +62,7 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 			}
 		}
 
-		if (iflagSingleton == 0) 
+		if (getScilabMode() != SCILAB_STD)
 		{
 			C2F(writelunitstring)(lunit, string,nbcharacters);
 			/* write to diary file if required */
