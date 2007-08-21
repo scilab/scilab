@@ -1,25 +1,22 @@
-/************************************
- * reading functions for scilab 
- ************************************/
-
+/*-----------------------------------------------------------------------------------*/
+/* INRIA */
+/*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "machine.h"
 #include "command.h"
 #include "../../core/src/c/flags.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "scilabmode.h"
 #include "ShellRead.h"
+#include "zzledt.h"
+#include "prompt.h"
 /*-----------------------------------------------------------------------------------*/
-char save_prompt[10];
-/* Fonction Récuperant la ligne à executer par Scilab */
-extern char input_line[MAX_LINE_LEN + 1];
-extern void GetCurrentPrompt(char *CurrentPrompt);
-
+static char save_prompt[10];
+/*-----------------------------------------------------------------------------------*/
+extern char input_line[MAX_LINE_LEN + 1]; /* defined in command.c */
 extern int C2F (scilines) (int *nl, int *nc);
-extern void set_is_reading(int);
 /*-----------------------------------------------------------------------------------*/
 void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* interrupt, int *modex, long int dummy1)
 {

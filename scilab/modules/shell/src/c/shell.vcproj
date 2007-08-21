@@ -213,7 +213,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\windows\readline.c"
+				RelativePath=".\windows\readline_nw.c"
 				>
 			</File>
 			<File
@@ -246,11 +246,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\getCommentDateSession.h"
+				RelativePath="..\..\includes\gw_shell.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\gw_shell.h"
+				RelativePath=".\windows\readline_nw.h"
 				>
 			</File>
 			<File
