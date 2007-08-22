@@ -265,6 +265,10 @@
 			Name="Resource Files"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
+			<File
+				RelativePath=".\libscilab_f2c.rc"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
