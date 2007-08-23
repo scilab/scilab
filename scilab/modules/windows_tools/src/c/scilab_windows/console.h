@@ -31,12 +31,6 @@ void RenameConsole(void);
 void CreateScilabConsole(BOOL ShowBanner);
 
 /**
-* Find first free scilex number
-* @return a value
-*/
-int FindFreeScilexNumber(void);
-
-/**
 * Close Scilab Console
 */
 void CloseScilabConsole(void);

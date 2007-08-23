@@ -14,6 +14,7 @@
 #include "sciquit.h"
 #include "scilab_main.h"
 #include "console.h"
+#include "WndThread.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
 /*-----------------------------------------------------------------------------------*/ 
@@ -40,7 +41,6 @@ int Console_Main(int argc, char **argv)
 
   setScilabMode(SCILAB_NW);
 
-  
   setCommandLineArgs(argv, argc);
 
   for (i=0;i<argc;i++)
@@ -127,6 +127,7 @@ int Console_Main(int argc, char **argv)
 
   hdllInstance = GetModuleHandle("LibScilab");
 
+  if (getScilabMode() != SCILAB_NWNI) CreateScilabHiddenWndThread();
 
   if ( (getScilabMode() == SCILAB_NWNI) || (getScilabMode() == SCILAB_NW) )
     {

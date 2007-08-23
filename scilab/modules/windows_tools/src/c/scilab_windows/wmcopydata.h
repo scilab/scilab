@@ -32,7 +32,7 @@ BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowN
 BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine);
 
 /**
-* Receinve data from another scilab
+* Receive data from another scilab
 * @param[in] Handle on Window
 * @param[in] COPYDATASTRUCT
 * @return TRUE or FALSE

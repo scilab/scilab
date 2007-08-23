@@ -15,8 +15,9 @@
 #include "FindScilab.h"
 #include "wmcopydata.h"
 /*-----------------------------------------------------------------------------------*/
-extern void ReplaceSlash(char *pathout,char *pathin);
 extern void PrintFile(char *filename);
+/*-----------------------------------------------------------------------------------*/
+static void ReplaceSlash(char *pathout,char *pathin);
 /*-----------------------------------------------------------------------------------*/
 #define MSG_SCIMSG1 "%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');"
 #define MSG_SCIMSG2 "%s -e scicos(getlongpathname('%s'));"
@@ -166,73 +167,68 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 	if (IsAFile(fichier))
 	{
 		GetShortPathName(fichier,ShortPath,MAX_PATH); /* Recuperation du nom du fichier au format 8.3 */
-		//ReplaceSlash(FinalFileName,ShortPath);
+		ReplaceSlash(FinalFileName,ShortPath);
 		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, MAX_PATH);
 		Retour=TRUE;
 
 		switch (OpenCode)
-		   {
+		{
 			case 1: /* Execute -X*/
+			{
+				if ( IsABinOrSavFile(FinalFileName) == TRUE )
 				{
-					if ( IsABinOrSavFile(FinalFileName)== TRUE )
-					{
-						/* C'est un fichier .BIN ou .SAV d'ou load */
-						wsprintf(Cmd,MSG_SCIMSG1,PathWScilex,FinalFileName,FinalFileName);
-					}
-					else
-					if  ( IsAScicosFile(fichier)== TRUE )
-					{
-					  ExtensionFileIntoLowerCase(FinalFileName);	
-						wsprintf(Cmd,MSG_SCIMSG2,PathWScilex,FinalFileName);
-					}
-					else
-					if ( IsAGraphFile(fichier)== TRUE )
-					{
-						ExtensionFileIntoLowerCase(FinalFileName);	
-						wsprintf(Cmd,MSG_SCIMSG3,PathWScilex,FinalFileName);
-					}
-					else wsprintf(Cmd,MSG_SCIMSG4,PathWScilex,FinalFileName);
+					/* C'est un fichier .BIN ou .SAV d'ou load */
+					wsprintf(Cmd,MSG_SCIMSG1,PathWScilex,FinalFileName,FinalFileName);
 				}
+				else
+				if  ( IsAScicosFile(fichier) == TRUE )
+				{
+					ExtensionFileIntoLowerCase(FinalFileName);	
+					wsprintf(Cmd,MSG_SCIMSG2,PathWScilex,FinalFileName);
+				}
+				else
+				if ( IsAGraphFile(fichier) == TRUE )
+				{
+					ExtensionFileIntoLowerCase(FinalFileName);	
+					wsprintf(Cmd,MSG_SCIMSG3,PathWScilex,FinalFileName);
+				}
+				else wsprintf(Cmd,MSG_SCIMSG4,PathWScilex,FinalFileName);
+			}
 			break;
 			case 2: /* Print -P*/
-				{
-					PrintFile(fichier);
-					strcpy(Cmd," ");
-					exit(0);
-				}
+			{
+				PrintFile(fichier);
+				strcpy(Cmd," ");
+				exit(0);
+			}
 			break;
 			case 0:default: /* Open -O*/
+			{
+				if (! HaveAnotherWindowScilab())
 				{
-					if (! HaveAnotherWindowScilab())
+					wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
+				}
+				else
+				{
+					char *ScilabDestination=NULL;
+
+					wsprintf(Cmd,MSG_SCIMSG6,FinalFileName);
+					ScilabDestination = (char*)ChooseAnotherWindowScilab();
+					if (ScilabDestination)
 					{
-						wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
+						SendCommandToAnotherScilab(MSG_SCIMSG7,ScilabDestination,Cmd);
+						FREE(ScilabDestination);
+						exit(0);
 					}
 					else
 					{
-						char *ScilabDestination=NULL;
-						wsprintf(Cmd,MSG_SCIMSG6,FinalFileName);
-
-						ScilabDestination=(char*)ChooseAnotherWindowScilab();
-						if (ScilabDestination)
-						{
-							SendCommandToAnotherScilab(MSG_SCIMSG7,ScilabDestination,Cmd);
-							FREE(ScilabDestination);
-							exit(0);
-						}
-						else
-						{
-							wsprintf(Cmd,MSG_SCIMSG8,PathWScilex,FinalFileName);
-						}
-						
+						wsprintf(Cmd,MSG_SCIMSG8,PathWScilex,FinalFileName);
 					}
 				}
+			}
 			break;
-		
-	}
-	
+		}
 	}	
-	
-	
 	return Retour;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -257,5 +253,16 @@ void ExtensionFileIntoLowerCase(char *fichier)
 	strcpy(&fichier[strlen(fichier)-strlen(ext)],ext);
 	
 	FREE(tmpfile);
+}
+/*-----------------------------------------------------------------------------------*/
+static void ReplaceSlash(char *pathout,char *pathin)
+{
+	int i=0;
+	for (i=0;i < (int)strlen(pathin);i++)
+	{
+		if (pathin[i]=='\\') pathout[i]='/';
+		else pathout[i]=pathin[i];
+	}
+	pathout[i]='\0';
 }
 /*-----------------------------------------------------------------------------------*/

@@ -5,6 +5,8 @@
 #include <Windows.h>
 #include "splashScreen.h"
 #include "resource.h"
+#include "version.h"
+#include "WndThread.h"
 /*-----------------------------------------------------------------------------------*/ 
 static DWORD WINAPI ThreadSplashScreen( LPVOID lpParam ) ;
 /*-----------------------------------------------------------------------------------*/ 
@@ -26,27 +28,24 @@ void splashScreen(void)
 static DWORD WINAPI ThreadSplashScreen( LPVOID lpParam ) 
 { 
 	int i = 0;
+	char titleMainWindow[MAX_PATH];
+	HWND hWndMainScilab = NULL;
 	DWORD CurrentProcessId = GetCurrentProcessId();
 	HINSTANCE hInstanceThisDll = (HINSTANCE)GetModuleHandle("scilab_windows");
 	HWND hdlg = CreateDialog(hInstanceThisDll, MAKEINTRESOURCE(IDD_SPLASHSCREEN), NULL,NULL);
 
+	wsprintf(titleMainWindow,"%s (%d)",SCI_VERSION_STRING,getCurrentScilabId());
 
 	ShowWindow(hdlg, SW_SHOWNORMAL);
 	UpdateWindow(hdlg);
-		
-	while (i< 1500)
+
+	SetWindowPos(hdlg,HWND_TOPMOST,0,0,0,0,SWP_NOSIZE|SWP_NOMOVE);
+	
+	while ( (i< 1500) || (hWndMainScilab == NULL) ) 
 	{
-		if  (GetForegroundWindow() != hdlg)
-		{
-			SetForegroundWindow(hdlg);
-			SetActiveWindow(hdlg);
-		}
-		else
-		{
-			Sleep(1);
-		}
-		i++;
-		
+		hWndMainScilab = FindWindow(NULL,titleMainWindow);
+		if (hWndMainScilab) break;
+		else Sleep(1);
 	}
 	DestroyWindow(hdlg);
 	return 0; 

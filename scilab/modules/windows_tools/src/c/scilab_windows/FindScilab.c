@@ -2,24 +2,25 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <string.h>
 #include "FindScilab.h"
 #include "version.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "WndThread.h"
+#include "resource.h"
 /*-----------------------------------------------------------------------------------*/
 #define LineMax 255
 #define NumberScilabMax 10
 /*-----------------------------------------------------------------------------------*/
-static char BeginningWindowScilabName[LineMax];
-
+static char BeginningHiddenScilabWindow[LineMax];
 static char ListScilabName[NumberScilabMax][LineMax];
 static int NumberScilab=0;
 static BOOL MoreMaxNumberScilabMax=FALSE;
+static int ItemChooseScilab;
 /*-----------------------------------------------------------------------------------*/
 static BOOL ExposeDialogBox=FALSE;
-char * ChooseScilabBox(void);
-void ExposeChooseScilabBox(void);
-BOOL CALLBACK ChooseDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam);
-static int ItemChooseScilab;
+static char * ChooseScilabBox(void);
+static BOOL CALLBACK ChooseScilabDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam);
 /*-----------------------------------------------------------------------------------*/
 BOOL HaveAnotherWindowScilab(void)
 {
@@ -28,74 +29,67 @@ BOOL HaveAnotherWindowScilab(void)
 	
 	int a=0;
 
-	wsprintf(BeginningWindowScilabName,"%s (",SCI_VERSION_STRING);
+	wsprintf(BeginningHiddenScilabWindow,FORMAT_TITLE_HIDDEN_WINDOWS,SCI_VERSION_STRING,0);
+	/* scilab-5.0 hidden window */
+	BeginningHiddenScilabWindow[strlen(BeginningHiddenScilabWindow)-4] = '\0';
 	
-	CurrenthWnd=GetWindow(GetDesktopWindow(),GW_CHILD);
-	CurrenthWnd=GetWindow(CurrenthWnd,GW_HWNDFIRST);
+	CurrenthWnd = GetWindow(GetDesktopWindow(),GW_CHILD);
+	CurrenthWnd = GetWindow(CurrenthWnd,GW_HWNDFIRST);
 
-	while ( CurrenthWnd!= NULL )
+	while ( CurrenthWnd != NULL )
 	{
 		char Title[LineMax];
 
-		GetWindowText(CurrenthWnd,Title,(int)strlen(BeginningWindowScilabName)+1);
-		if (strcmp(Title,BeginningWindowScilabName) == 0)
+		GetWindowText(CurrenthWnd,Title,(int)strlen(BeginningHiddenScilabWindow)+1);
+		if (strcmp(Title,BeginningHiddenScilabWindow) == 0)
 		{
 			GetWindowText(CurrenthWnd,Title,LineMax);
 			if (NumberScilab<NumberScilabMax)
 			{
 				wsprintf(ListScilabName[NumberScilab],"%s",Title);
 			}
-			else MoreMaxNumberScilabMax=TRUE;
+			else MoreMaxNumberScilabMax = TRUE;
 			NumberScilab++;
-			Retour=TRUE;
+			Retour = TRUE;
 		}
-	
-		CurrenthWnd=GetWindow(CurrenthWnd,GW_HWNDNEXT);
+		CurrenthWnd = GetWindow(CurrenthWnd,GW_HWNDNEXT);
 	}
-
 	return Retour;
 }
 /*-----------------------------------------------------------------------------------*/
 char * ChooseAnotherWindowScilab(void)
 {
-	char *TitleScilabChoose=NULL;
+	char *TitleScilabChoose = NULL;
 	if (NumberScilab == 1)
 	{
-		TitleScilabChoose=MALLOC( (strlen(ListScilabName[NumberScilab-1])+1) * sizeof(char) );
+		TitleScilabChoose = (char*)MALLOC( (strlen(ListScilabName[NumberScilab-1])+1) * sizeof(char) );
 		wsprintf(TitleScilabChoose,"%s",ListScilabName[NumberScilab-1]);
 	}
 	else
 	{
-		HWND hWndScilab=NULL;
-		TitleScilabChoose=ChooseScilabBox();
-		hWndScilab=FindWindow(NULL,TitleScilabChoose);
-		if (hWndScilab==NULL) /* La fenetre n'existe plus */
+		HWND hWndScilab = NULL;
+		TitleScilabChoose = ChooseScilabBox();
+		hWndScilab = FindWindow(NULL,TitleScilabChoose);
+		if (hWndScilab == NULL) /* La fenetre n'existe plus */
 		{
 			FREE(TitleScilabChoose);
-			TitleScilabChoose=NULL;
+			TitleScilabChoose = NULL;
 		}
 	}
-
 	return TitleScilabChoose;
-
-
 }
 /*-----------------------------------------------------------------------------------*/
-char * ChooseScilabBox(void)
+static char * ChooseScilabBox(void)
 {
-	extern HINSTANCE hdllInstance;
-	MSG msg;
 	HWND hWndChooseScilabBox=NULL;
 	char *TitleScilabChoose=NULL;
-	DLGPROC   MyChooseScilabDlgProc ;
-
+	HINSTANCE hInstanceThisDll = (HINSTANCE)GetModuleHandle("scilab_windows");
 	
-	MyChooseScilabDlgProc = (DLGPROC) GetProcAddress((HINSTANCE)GetModuleHandle("LibScilab"),"ChooseScilabDlgProc");
-	
-	//hWndChooseScilabBox= CreateDialog((HINSTANCE)GetModuleHandle(NULL),(LPCSTR)IDD_CHOOSEASCILAB,NULL,MyChooseScilabDlgProc) ;
+	hWndChooseScilabBox= CreateDialog(hInstanceThisDll,(LPCSTR)IDD_CHOOSEASCILAB,NULL,(DLGPROC)ChooseScilabDlgProc);
 
 	if (hWndChooseScilabBox)
 	{
+		MSG msg;
 		ExposeDialogBox=TRUE;
 		ShowWindow(hWndChooseScilabBox, SW_SHOW);
 		UpdateWindow(hWndChooseScilabBox);
@@ -105,24 +99,22 @@ char * ChooseScilabBox(void)
           TranslateMessage(&msg);
 	      DispatchMessage(&msg);
 		}
-    
 	}
 
-	if (ItemChooseScilab==0) // Launch A new Scilab
+	if (ItemChooseScilab == 0) // Launch A new Scilab
 	{
-		TitleScilabChoose=NULL;
+		TitleScilabChoose = NULL;
 	}
 	else
 	{
-		TitleScilabChoose=MALLOC( (strlen(ListScilabName[ItemChooseScilab-1])+1) * sizeof(char) );
+		TitleScilabChoose = MALLOC( (strlen(ListScilabName[ItemChooseScilab-1])+1) * sizeof(char) );
 		wsprintf(TitleScilabChoose,"%s",ListScilabName[ItemChooseScilab-1]);
 	}
 
 	return TitleScilabChoose;
 }
 /*-----------------------------------------------------------------------------------*/
-
-BOOL CALLBACK ChooseScilabDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
+static BOOL CALLBACK ChooseScilabDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
 {
   switch (wmsg) 
   {
@@ -130,45 +122,44 @@ BOOL CALLBACK ChooseScilabDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lp
 		{
 			int i=0;
 
-//			SendDlgItemMessage(hdlg, IDC_LISTCHOOSEASCILAB, LB_ADDSTRING, 0, (LPARAM)((LPSTR)"New Scilab"));
+			SendDlgItemMessage(hdlg, IDC_LISTCHOOSEASCILAB, LB_ADDSTRING, 0, (LPARAM)((LPSTR)"New Scilab"));
 			for (i=0; i < NumberScilab  ; i++)
-				{
-//				 if (i < NumberScilabMax) SendDlgItemMessage(hdlg, IDC_LISTCHOOSEASCILAB, LB_ADDSTRING, 0, (LPARAM)((LPSTR)ListScilabName[i] ));
-				}
+			{
+				 if (i < NumberScilabMax) SendDlgItemMessage(hdlg, IDC_LISTCHOOSEASCILAB, LB_ADDSTRING, 0, (LPARAM)((LPSTR)ListScilabName[i] ));
+			}
 			/* Par défaut , le premier Scilab Trouvé est selectionné */
-//			SendDlgItemMessage(hdlg, IDC_LISTCHOOSEASCILAB, LB_SETCURSEL,1, 0L);
+			SendDlgItemMessage(hdlg, IDC_LISTCHOOSEASCILAB, LB_SETCURSEL,1, 0L);
 		}
 	return TRUE;
+
 	case WM_COMMAND:
 		switch (LOWORD(wparam)) 
 		{
-			//case IDC_LISTCHOOSEASCILAB:
-			//	if ( HIWORD( wparam ) == LBN_DBLCLK )
-			//	{
-			//		ItemChooseScilab=(UINT)SendDlgItemMessage(hdlg,IDC_LISTCHOOSEASCILAB,LB_GETCURSEL,0,0L);
-			//		ExposeDialogBox=FALSE;
-			//		DestroyWindow(hdlg);
-			//		return TRUE;
-			//	}
-			//return FALSE;
+			case IDC_LISTCHOOSEASCILAB:
+				if ( HIWORD( wparam ) == LBN_DBLCLK )
+				{
+					ItemChooseScilab = (UINT)SendDlgItemMessage(hdlg,IDC_LISTCHOOSEASCILAB,LB_GETCURSEL,0,0L);
+					ExposeDialogBox = FALSE;
+					DestroyWindow(hdlg);
+					return TRUE;
+				}
+			return FALSE;
 
-			//case IDC_OK:
-			//	{
-			//		ItemChooseScilab=(UINT)SendDlgItemMessage(hdlg,IDC_LISTCHOOSEASCILAB,LB_GETCURSEL,0,0L);
-			//		ExposeDialogBox=FALSE;
-			//		DestroyWindow(hdlg);
-			//	}
-			//return TRUE;
-
+			case IDC_OK:
+				{
+					ItemChooseScilab = (UINT)SendDlgItemMessage(hdlg,IDC_LISTCHOOSEASCILAB,LB_GETCURSEL,0,0L);
+					ExposeDialogBox = FALSE;
+					DestroyWindow(hdlg);
+				}
+			return TRUE;
 		}
 	break;
 	case WM_CLOSE:
-		ExposeDialogBox=FALSE;
+		ExposeDialogBox = FALSE;
 		DestroyWindow(hdlg);
 		exit(0);
 		return TRUE;
 	break ;
-
   }
   return FALSE;
 }

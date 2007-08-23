@@ -19,6 +19,7 @@
 #include "../WinConsole.h"
 #include "StartupMessageBox.h"
 #include "splashScreen.h"
+#include "WndThread.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
 #define WSCILEX "wscilex.exe"
@@ -52,6 +53,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	setScilabMode(SCILAB_STD);
 
+	CreateScilabHiddenWndThread();
 
 	strcpy(FileName,"Empty");
 
@@ -65,7 +67,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
 
-	pFullCmdLineTmp=GetCommandLine();
+	pFullCmdLineTmp = GetCommandLine();
 
 	{
 		char LineCommand[PATH_MAX];
@@ -254,7 +256,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			}
 		}		
 		hdllInstance = hInstance;
-
 
 		if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
 

@@ -195,6 +195,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\buildMainWindowTitle_Windows.c"
+				>
+			</File>
+			<File
 				RelativePath=".\console.c"
 				>
 			</File>
@@ -250,11 +254,19 @@
 				RelativePath=".\wmcopydata.c"
 				>
 			</File>
+			<File
+				RelativePath=".\WndThread.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\buildMainWindowTitle_Windows.h"
+				>
+			</File>
 			<File
 				RelativePath=".\console.h"
 				>
@@ -315,6 +327,10 @@
 				RelativePath=".\wmcopydata.h"
 				>
 			</File>
+			<File
+				RelativePath=".\WndThread.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -326,6 +342,10 @@
 		</Filter>
 		<File
 			RelativePath=".\LibScilab_Import.def"
+			>
+		</File>
+		<File
+			RelativePath="..\resources\scilab_splashscreen.bmp"
 			>
 		</File>
 		<File

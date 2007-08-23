@@ -5,4 +5,5 @@ EXPORTS
 ; --------------------------------------- 
 ; scilab_windows
 ; --------------------------------------- 
+ buildMainWindowTitle_Windows
  getScilexConsoleName

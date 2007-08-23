@@ -11,6 +11,7 @@
 #include "version.h"
 #include "MALLOC.h"
 #include "../WinConsole.h"
+#include "WndThread.h"
 /*-----------------------------------------------------------------------------------*/
 #define NameConsole "Console" 
 /*-----------------------------------------------------------------------------------*/
@@ -86,16 +87,12 @@ void RenameConsole(void)
 /*-----------------------------------------------------------------------------------*/
 void CreateScilabConsole(int ShowBanner)
 {
-
 	HWND hScilex=NULL;
-
-	int Current_Number_of_Scilex=-1; 
 
 	SetConsoleState(0);  /* Console DOS Cachée par défaut */
 	AllocConsole();
 
-	Current_Number_of_Scilex=FindFreeScilexNumber();
-	wsprintf(ScilexConsoleName,"%s %s (%d)",NameConsole,SCI_VERSION_STRING,Current_Number_of_Scilex);
+	wsprintf(ScilexConsoleName,"%s %s (%d)",NameConsole,SCI_VERSION_STRING,getCurrentScilabId());
 	SetConsoleTitle(ScilexConsoleName);
 
 	CreateConsoleScreenBuffer(GENERIC_READ|GENERIC_WRITE,FILE_SHARE_WRITE,NULL,CONSOLE_TEXTMODE_BUFFER,NULL);
@@ -129,24 +126,6 @@ void CreateScilabConsole(int ShowBanner)
 		/* Cache la fenetre Console */
 		ShowWindow(hScilex,SW_HIDE); 
 	}
-}
-/*-----------------------------------------------------------------------------------*/
-/* Retourne un numéro valide pour nommer les fenetres associées à ce process */
-int FindFreeScilexNumber(void)
-{
-	HWND hScilexN=NULL;
-	int Number_of_Scilex=0;
-	char NameScilex[MAX_PATH];
-
-	wsprintf(NameScilex,"%s (%d)",SCI_VERSION_STRING,Number_of_Scilex);
-	hScilexN=FindWindow(NULL,NameScilex);
-	while ( hScilexN )
-	{
-		Number_of_Scilex++;
-		wsprintf(NameScilex,"%s (%d)",SCI_VERSION_STRING,Number_of_Scilex);
-		hScilexN = FindWindow(NULL,NameScilex);
-	}
-	return Number_of_Scilex;
 }
 /*-----------------------------------------------------------------------------------*/
 void CloseScilabConsole(void)
