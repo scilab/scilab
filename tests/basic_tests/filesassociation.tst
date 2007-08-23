@@ -3,8 +3,6 @@
 // Tests files Association by Inno Setup in registry
 // Tests for Default Installation
 //---------------------------------------------------------------------------------
-global LANGUAGE;
-//---------------------------------------------------------------------------------
 v=getversion('scilab');
 
 if (v(4)<>0) then
@@ -28,7 +26,8 @@ endfunction;
 PATHREF=convstr(getlongpathname(strsubst(SCI,'/','\'))+'\bin\wscilex.exe','u');
 NBRTESTOK=0;
 //---------------------------------------------------------------------------------
-SCE1DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\open\command');
+SCE_ENTRY = ".sce File (Scilab 5.x)";
+SCE1DIA=winqueryreg('HKEY_CLASSES_ROOT',SCE_ENTRY+'\shell\open\command');
 [PATHSCE1DIA,OPTIONSSCE1DIA]=GetPathAndOptionsInThisString(SCE1DIA);
 OPTIONSSCE1REF='""'+' -O ""%1""'; 
 if ( (PATHSCE1DIA==PATHREF) & (OPTIONSSCE1DIA==OPTIONSSCE1REF) ) then
@@ -40,10 +39,10 @@ else
 end;
 clear SCE1DIA PATHSCE1DIA OPTIONSSCE1DIA OPTIONSSCE1REF;
 //---------------------------------------------------------------------------------
-if (LANGUAGE=='fr') then
-  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Executer avec '+VERSTRING+'\command');
+if (getlanguage() == 'fr_FR') then
+  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT',SCE_ENTRY+'\shell\Executer avec '+VERSTRING+'\command');
 else
-  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Run with '+VERSTRING+'\command');
+  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT',SCE_ENTRY+'\shell\Run with '+VERSTRING+'\command');
 end  
 [PATHSCE2DIA,OPTIONSSCE2DIA]=GetPathAndOptionsInThisString(SCE2DIA);
 OPTIONSSCE2REF='""'+' -X ""%1""'; 
@@ -56,7 +55,7 @@ else
 end;
 clear SCE2DIA PATHSCE2DIA OPTIONSSCE2DIA OPTIONSSCE2REF;
 //---------------------------------------------------------------------------------
-SCE3DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\print\command');
+SCE3DIA=winqueryreg('HKEY_CLASSES_ROOT',SCE_ENTRY+'\shell\print\command');
 [PATHSCE3DIA,OPTIONSSCE3DIA]=GetPathAndOptionsInThisString(SCE3DIA);
 OPTIONSSCE3REF='""'+' -P ""%1""'; 
 if ( (PATHSCE3DIA==PATHREF) & (OPTIONSSCE3DIA==OPTIONSSCE3REF) ) then
@@ -68,7 +67,8 @@ else
 end;
 clear SCE3DIA PATHSCE3DIA OPTIONSSCE3DIA OPTIONSSCE3REF;
 //---------------------------------------------------------------------------------
-SCI1DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\open\command');
+SCI_ENTRY = ".sci File (Scilab 5.x)";
+SCI1DIA=winqueryreg('HKEY_CLASSES_ROOT',SCI_ENTRY+'\shell\open\command');
 [PATHSCI1DIA,OPTIONSSCI1DIA]=GetPathAndOptionsInThisString(SCI1DIA);
 OPTIONSSCI1REF='""'+' -O ""%1""'; 
 if ( (PATHSCI1DIA==PATHREF) & (OPTIONSSCI1DIA==OPTIONSSCI1REF) ) then
@@ -80,10 +80,10 @@ else
 end;
 clear SCI1DIA PATHSCI1DIA OPTIONSSCI1DIA OPTIONSSCI1REF;
 //---------------------------------------------------------------------------------
-if (LANGUAGE=='fr') then
-  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Executer avec '+VERSTRING+'\command');
+if (getlanguage() == 'fr_FR') then
+  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT',SCI_ENTRY+'\shell\Executer avec '+VERSTRING+'\command');
 else
-  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Run with '+VERSTRING+'\command');
+  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT',SCI_ENTRY+'\shell\Run with '+VERSTRING+'\command');
 end
 [PATHSCI2DIA,OPTIONSSCI2DIA]=GetPathAndOptionsInThisString(SCI2DIA);
 OPTIONSSCI2REF='""'+' -X ""%1""'; 
@@ -96,7 +96,7 @@ else
 end;
 clear SCI2DIA PATHSCI2DIA OPTIONSSCI2DIA OPTIONSSCI2REF;
 //---------------------------------------------------------------------------------
-SCI3DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\print\command');
+SCI3DIA=winqueryreg('HKEY_CLASSES_ROOT',SCI_ENTRY+'\shell\print\command');
 [PATHSCI3DIA,OPTIONSSCI3DIA]=GetPathAndOptionsInThisString(SCI3DIA);
 OPTIONSSCI3REF='""'+' -P ""%1""'; 
 if ( (PATHSCI3DIA==PATHREF) & (OPTIONSSCI3DIA==OPTIONSSCI3REF) ) then
@@ -108,7 +108,8 @@ else
 end;
 clear SCI3DIA PATHSCI3DIA OPTIONSSCI3DIA OPTIONSSCI3REF;
 //---------------------------------------------------------------------------------
-TST1DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\open\command');
+TST_ENTRY = ".tst File (Scilab 5.x)";
+TST1DIA=winqueryreg('HKEY_CLASSES_ROOT',TST_ENTRY+'\shell\open\command');
 [PATHTST1DIA,OPTIONSTST1DIA]=GetPathAndOptionsInThisString(TST1DIA);
 OPTIONSTST1REF='""'+' -O ""%1""'; 
 if ( (PATHTST1DIA==PATHREF) & (OPTIONSTST1DIA==OPTIONSTST1REF) ) then
@@ -120,10 +121,10 @@ else
 end;
 clear TST1DIA PATHTST1DIA OPTIONSTST1DIA OPTIONSTST1REF;
 //---------------------------------------------------------------------------------
-if (LANGUAGE=='fr') then
-  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Executer avec '+VERSTRING+'\command');
+if (getlanguage() == 'fr_FR') then
+  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT',TST_ENTRY+'\shell\Executer avec '+VERSTRING+'\command');
 else
-  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Run with '+VERSTRING+'\command');
+  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT',TST_ENTRY+'\shell\Run with '+VERSTRING+'\command');
 end  
 [PATHTST2DIA,OPTIONSTST2DIA]=GetPathAndOptionsInThisString(TST2DIA);
 OPTIONSTST2REF='""'+' -X ""%1""'; 
@@ -136,7 +137,7 @@ else
 end;
 clear TST2DIA PATHTST2DIA OPTIONSTST2DIA OPTIONSTST2REF;
 //---------------------------------------------------------------------------------
-TST3DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\print\command');
+TST3DIA=winqueryreg('HKEY_CLASSES_ROOT',TST_ENTRY+'\shell\print\command');
 [PATHTST3DIA,OPTIONSTST3DIA]=GetPathAndOptionsInThisString(TST3DIA);
 OPTIONSTST3REF='""'+' -P ""%1""'; 
 if ( (PATHTST3DIA==PATHREF) & (OPTIONSTST3DIA==OPTIONSTST3REF) ) then
@@ -148,7 +149,8 @@ else
 end;
 clear TST3DIA PATHTST3DIA OPTIONSTST3DIA OPTIONSTST3REF;
 //---------------------------------------------------------------------------------
-DEM1DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\open\command');
+DEM_ENTRY = ".dem File (Scilab 5.x)";
+DEM1DIA=winqueryreg('HKEY_CLASSES_ROOT',DEM_ENTRY+'\shell\open\command');
 [PATHDEM1DIA,OPTIONSDEM1DIA]=GetPathAndOptionsInThisString(DEM1DIA);
 OPTIONSDEM1REF='""'+' -O ""%1""'; 
 if ( (PATHDEM1DIA==PATHREF) & (OPTIONSDEM1DIA==OPTIONSDEM1REF) ) then
@@ -160,10 +162,10 @@ else
 end;
 clear DEM1DIA PATHDEM1DIA OPTIONSDEM1DIA OPTIONSDEM1REF;
 //---------------------------------------------------------------------------------
-if (LANGUAGE=='fr') then
-  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Executer avec '+VERSTRING+'\command');
+if (getlanguage() == 'fr_FR') then
+  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT',DEM_ENTRY+'\shell\Executer avec '+VERSTRING+'\command');
 else
-  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Run with '+VERSTRING+'\command');
+  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT',DEM_ENTRY+'\shell\Run with '+VERSTRING+'\command');
 end  
 [PATHDEM2DIA,OPTIONSDEM2DIA]=GetPathAndOptionsInThisString(DEM2DIA);
 OPTIONSDEM2REF='""'+' -X ""%1""'; 
@@ -176,7 +178,7 @@ else
 end;
 clear DEM2DIA PATHDEM2DIA OPTIONSDEM2DIA OPTIONSDEM2REF;
 //---------------------------------------------------------------------------------
-DEM3DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\print\command');
+DEM3DIA=winqueryreg('HKEY_CLASSES_ROOT',DEM_ENTRY+'\shell\print\command');
 [PATHDEM3DIA,OPTIONSDEM3DIA]=GetPathAndOptionsInThisString(DEM3DIA);
 OPTIONSDEM3REF='""'+' -P ""%1""'; 
 if ( (PATHDEM3DIA==PATHREF) & (OPTIONSDEM3DIA==OPTIONSDEM3REF) ) then
@@ -188,7 +190,8 @@ else
 end;
 clear DEM3DIA PATHDEM3DIA OPTIONSDEM3DIA OPTIONSDEM3REF;
 //---------------------------------------------------------------------------------  
-GRAPH1DIA=winqueryreg('HKEY_CLASSES_ROOT','GRAPH_scilab_file\shell\open\command');
+GRAPH_ENTRY = ".graph File (Scilab 5.x)";
+GRAPH1DIA=winqueryreg('HKEY_CLASSES_ROOT',GRAPH_ENTRY+'\shell\open\command');
 [PATHGRAPH1DIA,OPTIONSGRAPH1DIA]=GetPathAndOptionsInThisString(GRAPH1DIA);
 OPTIONSGRAPH1REF='""'+' -X ""%1""'; 
 if ( (PATHGRAPH1DIA==PATHREF) & (OPTIONSGRAPH1DIA==OPTIONSGRAPH1REF) ) then
@@ -200,7 +203,8 @@ else
 end;
 clear GRAPH1DIA PATHGRAPH1DIA OPTIONSGRAPH1DIA OPTIONSGRAPH1REF;
 //---------------------------------------------------------------------------------  
-GRAPH2DIA=winqueryreg('HKEY_CLASSES_ROOT','GRAPHB_scilab_file\shell\open\command');
+GRAPHB_ENTRY = ".graphb File (Scilab 5.x)";
+GRAPH2DIA=winqueryreg('HKEY_CLASSES_ROOT',GRAPHB_ENTRY+'\shell\open\command');
 [PATHGRAPH2DIA,OPTIONSGRAPH2DIA]=GetPathAndOptionsInThisString(GRAPH2DIA);
 OPTIONSGRAPH2REF='""'+' -X ""%1""'; 
 if ( (PATHGRAPH2DIA==PATHREF) & (OPTIONSGRAPH2DIA==OPTIONSGRAPH2REF) ) then
@@ -212,7 +216,8 @@ else
 end;
 clear GRAPH2DIA PATHGRAPH2DIA OPTIONSGRAPH2DIA OPTIONSGRAPH2REF;
 //---------------------------------------------------------------------------------
-execstr('SAVDIA=winqueryreg(''HKEY_CLASSES_ROOT'',''SAV_scilab_file\shell\open\command'');','errcatch');
+SAV_ENTRY = ".sav File (Scilab 5.x)";
+execstr('SAVDIA=winqueryreg(''HKEY_CLASSES_ROOT'',SAV_ENTRY+''\shell\open\command'');','errcatch');
 if isdef('SAVDIA') then
   [PATHSAVDIA,OPTIONSSAVDIA]=GetPathAndOptionsInThisString(SAVDIA);
   OPTIONSSAVREF='""'+' -X ""%1""'; 
@@ -227,7 +232,8 @@ else
   disp('sav not associate (Default)');
 end;
 //---------------------------------------------------------------------------------  
-execstr('BINDIA=winqueryreg(''HKEY_CLASSES_ROOT'',''BIN_scilab_file\shell\open\command'');','errcatch');
+BIN_ENTRY = ".bin File (Scilab 5.x)";
+execstr('BINDIA=winqueryreg(''HKEY_CLASSES_ROOT'',BIN_ENTRY+''\shell\open\command'');','errcatch');
 if isdef('BINDIA') then
   [PATHBINDIA,OPTIONSBINDIA]=GetPathAndOptionsInThisString(BINDIA);
   OPTIONSBINREF='""'+' -X ""%1""'; 

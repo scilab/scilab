@@ -86,7 +86,7 @@ tests = ['arma.tst';
 	end
 	
 	if ~MSDOS then
-		tests(find(tests=='filesassocation.tst'))=[];
+		tests(find(tests=='filesassociation.tst'))=[];
 		tests(find(tests=='scicos_filesassociation.tst'))=[];
 	end
 	
