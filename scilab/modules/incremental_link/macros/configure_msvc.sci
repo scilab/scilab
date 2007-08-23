@@ -133,28 +133,33 @@ if MSDOS then
   
   err=setenv('PATH',DevEnvDir+';'+MSVCDir+'\bin;'+MSVSDir+'\Common7\Tools;'+MSVSDir+'\SDK\v2.0\bin;'+MSVCDir+'\VCPackages;'+PATH+";"+WSCI+"\bin;");
   if (err == %F) then bOK=%F,return,end
-    
-  ierr1=execstr("W2003R2SDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1'',''Install Dir'');","errcatch");
-  ierr2=execstr("W2003SDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3'',''Install Dir'');","errcatch");
+  
+  ierr1=execstr("VISTASDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\Microsoft SDKs\Windows'',''CurrentInstallFolder'');","errcatch");  
+  ierr2=execstr("W2003R2SDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1'',''Install Dir'');","errcatch");
+  ierr3=execstr("W2003SDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3'',''Install Dir'');","errcatch");
   
   if (ierr1 == 0) then
-    W2003SDK=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1','Install Dir');
-  else
-    W2003SDK=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3','Install Dir');
+    WINDOWSSDK = winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\Microsoft SDKs\Windows','CurrentInstallFolder');
     lasterror(%T); // The error message is cleared
-  end
-  
-  if (ierr2 <> 0) then
-    lasterror(%T); // The error message is cleared
+  else 
+    if (ierr2 == 0) then
+      WINDOWSSDK = winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1','Install Dir');
+      lasterror(%T); // The error message is cleared
+    else
+      if (ierr3 == 0) then
+        WINDOWSSDK = winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3','Install Dir');
+        lasterror(%T); // The error message is cleared
+      end
+    end
   end
   
   INCLUDE=getenv('INCLUDE','');  
-  INCLUDE=MSVCDir+'\INCLUDE;'+W2003SDK+'INCLUDE;'
+  INCLUDE=MSVCDir+'\INCLUDE;'+WINDOWSSDK+'INCLUDE;'
   err=setenv("INCLUDE",INCLUDE);
   if (err == %F) then bOK=%F,return,end
   
   LIB=getenv('LIB',''); 
-  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+W2003SDK+'Lib;'+LIB;
+  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+WINDOWSSDK+'Lib;'+LIB;
   err=setenv("LIB",LIB);
   if (err == %F) then bOK=%F,return,end
   
