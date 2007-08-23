@@ -62,36 +62,23 @@ public class ValidationAction extends AbstractConsoleAction {
 				return;
 			}
 			
-			// Reset command line
-			inputParsingManager.reset();
-			promptView.updatePrompt();
-			
-			// Reset history settings
-			configuration.getHistoryManager().setTmpEntry(null);
-			
-			// Hide the prompt and command line
-			configuration.getInputCommandView().setEditable(false);
-			configuration.getPromptView().setVisible(false);
-
 			// Print the command in the output view
 			boolean firstPrompt = true;
 			outputView.setCaretPositionToEnd();
 			for (String line : cmdToExecute.split(StringConstants.NEW_LINE)) {
-
-				outputView.append(StringConstants.NEW_LINE);
 				if (firstPrompt) {
 					firstPrompt = false;
+					outputView.append(StringConstants.NEW_LINE);
 					outputView.append(promptView.getDefaultPrompt());
-				} else {
-					outputView.append(promptView.getInBlockPrompt());
 				}
 				outputView.append(line);
+				outputView.append(StringConstants.NEW_LINE);
 			}
 			outputView.append(StringConstants.NEW_LINE);
-
-			// Store the command in the buffer so that Scilab can read it
-			((SciInputCommandView) configuration.getInputCommandView()).setCmdBuffer(cmdToExecute);
-			((SciHistoryManager) configuration.getHistoryManager()).addEntry(cmdToExecute);
+			
+			// Send data to Scilab
+			((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab(cmdToExecute, false);
+					
 		}
 
 	}

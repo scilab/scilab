@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -272,8 +271,9 @@ public class SciConsole extends JPanel {
 	/**
 	 * Send commands to be executed by Scilab (after a copy/paste or drag&drop...)
 	 * @param textToExec all text lines to executed
+	 * @param displayCmdInOutput flag indicating if the input command has to be displayed in the output view
 	 */
-	public void sendCommandsToScilab(String textToExec) {
+	public void sendCommandsToScilab(String textToExec, boolean displayCmdInOutput) {
 		String[] linesToExec = textToExec.split(StringConstants.NEW_LINE);
 		int nbStatements = 0;
 		boolean firstPrompt = true;
@@ -313,17 +313,18 @@ public class SciConsole extends JPanel {
 				}
 
 				// TODO must be linked to Scilab parser to know if we are in a block
-				outputView.append(StringConstants.NEW_LINE);
-				if (firstPrompt) {
-					firstPrompt = false;
-					outputView.append(promptView.getDefaultPrompt());
-				} else {
-					outputView.append(promptView.getInBlockPrompt());
+				if (displayCmdInOutput) {
+					outputView.append(StringConstants.NEW_LINE);
+					if (firstPrompt) {
+						firstPrompt = false;
+						outputView.append(promptView.getDefaultPrompt());
+					} else {
+						outputView.append(promptView.getInBlockPrompt());
+					}
+					outputView.append(linesToExec[nbStatements]);
+
+					outputView.append(StringConstants.NEW_LINE);
 				}
-				outputView.append(linesToExec[nbStatements]);
-
-				outputView.append(StringConstants.NEW_LINE);
-
 				// Store the command in the buffer so that Scilab can read it
 				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements]);
 				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements]);

@@ -90,7 +90,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		try {
 			StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();			
 			int lastEOL = outputStyledDoc.getText(0, outputStyledDoc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
-			outputStyledDoc.remove(lastEOL - 2, outputStyledDoc.getLength() - lastEOL + 2);
+
+			if (lastEOL > 1) { // To avoid a "javax.swing.text.BadLocationException: Invalid remove" exception
+				outputStyledDoc.remove(lastEOL - 2, outputStyledDoc.getLength() - lastEOL + 2);
+			}
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -103,7 +106,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		
 		// Avoids reading of an empty buffer
 		((SciInputCommandView) this.getConfiguration().getInputCommandView()).setBufferProtected();
-		
+
 		// Reads the buffer
 		cmd = ((SciInputCommandView) this.getConfiguration().getInputCommandView()).getCmdBuffer();
 

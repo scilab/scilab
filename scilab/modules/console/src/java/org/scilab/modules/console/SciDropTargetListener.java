@@ -39,9 +39,8 @@ public class SciDropTargetListener implements DropTargetListener {
 		 * @param dtde the drop event
 		 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 		 */
-		@Override
 		public void drop(DropTargetDropEvent dtde) { 
-			
+
 			dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
 			
 			Transferable transferable = dtde.getTransferable();
@@ -55,7 +54,7 @@ public class SciDropTargetListener implements DropTargetListener {
 				dtde.rejectDrop();
 				dtde.dropComplete(false);
 			}
-			
+
 			try {
 
 				if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
@@ -100,11 +99,12 @@ public class SciDropTargetListener implements DropTargetListener {
 				} else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
 					
 					// --- TEXT DROP ---
-					
+
 					String dropContents = (String) transferable.getTransferData(DataFlavor.stringFlavor);
 					
 					// Send text to the console and remove prompts in text if there are
-					associatedConsole.sendCommandsToScilab(dropContents);
+					//associatedConsole.sendCommandsToScilab(dropContents, true);
+					((SciInputCommandView) associatedConsole.getConfiguration().getInputCommandView()).append(dropContents);
 				}
 				
 				// If we made it this far, everything worked.

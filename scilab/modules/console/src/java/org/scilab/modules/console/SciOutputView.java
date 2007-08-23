@@ -45,7 +45,7 @@ public class SciOutputView extends ConsoleTextPane {
 
 		/* Change the size of the input command view if necessary */
 		/* - if the console size has been forced to a value */
-		/* - if a carriage return has been appened */
+		/* - if a carriage return has been appended */
 		if (console != null && console.getInputCommandViewSizeForced() && lines.length > 0) {
 			JTextPane outputView = ((JTextPane) console.getConfiguration().getOutputView());
 			
@@ -83,6 +83,7 @@ public class SciOutputView extends ConsoleTextPane {
 		if (console != null) {
 			console.updateScrollPosition();
 		}
+		
 	}
 	/**
 	 * Gets the minimum size of this component
