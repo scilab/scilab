@@ -627,11 +627,9 @@ char *HistoryManager::getNextLine(void)
 	if (my_search.getSize() > 0)
 	{
 		std::string line = my_search.getNextLine();
-		if (!line.empty())
-		{
-			returnedline = (char*)MALLOC(sizeof(char)*(line.length()+1));
-			if (returnedline) strcpy(returnedline,line.c_str());
-		}
+		returnedline = (char*)MALLOC(sizeof(char)*(line.length()+1));
+		if (returnedline) strcpy(returnedline,line.c_str());
+
 	}
 	return returnedline;
 }
