@@ -19,6 +19,7 @@ public class SciHistoryManager implements HistoryManager {
 	 * Constructor
 	 */
 	public SciHistoryManager() {
+		HistoryManagement.setSearchedTokenInScilabHistory("");
 	}
 
 	/**
