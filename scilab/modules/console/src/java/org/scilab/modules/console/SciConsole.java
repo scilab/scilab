@@ -146,7 +146,7 @@ public class SciConsole extends JPanel {
 		}
 		
 		int numberOfLines = outputViewHeight / charHeight - 1; /* -1 because of the size of the InputCommandLine */
-		int promptWidth = ((JLabel) this.getConfiguration().getPromptView()).getWidth();
+		int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getWidth();
 		int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth;
 		
 		GuiManagement.setScilabLines(numberOfLines, numberOfColumns);
@@ -332,5 +332,15 @@ public class SciConsole extends JPanel {
 			}
 		}
 		
+	}
+	
+	/**
+	 * Intercept doLayout events to send the new size of the console to Scilab
+	 * @see java.awt.Container#doLayout()
+	 */
+	public void doLayout() {
+		super.doLayout();
+		// Send the size of the console to Scilab to adjust display
+		scilabLinesUpdate();
 	}
 }
