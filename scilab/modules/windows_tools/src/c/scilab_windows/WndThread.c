@@ -127,7 +127,7 @@ static BOOL ON_WND_HIDDEN_WM_COPYDATA(HWND hwnd,HWND hWndSend,PCOPYDATASTRUCT My
 char *getCurrentTitleScilabHiddenWindow(void)
 {
 	char *currentTitle = NULL;
-	if ( (titleHiddenScilabWindow) && (strcmp(titleHiddenScilabWindow,"")) )
+	if ( strcmp(titleHiddenScilabWindow,"") )
 	{
 		currentTitle = (char*)MALLOC(sizeof(char)*(strlen(titleHiddenScilabWindow)+1));
 		if (currentTitle) strcpy(currentTitle,titleHiddenScilabWindow);
