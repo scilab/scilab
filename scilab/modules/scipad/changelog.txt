@@ -3158,3 +3158,9 @@ Francois VOGEL, 20/08/07
  * Added Shift bindings to the generic expressions buttons, active when
    the watch variables and generic expressions areas are both visible
  * version --> 6.126
+
+Francois VOGEL, 24/08/07
+ * The message box displaying execution errors can be turned off - This is
+   a newsgroup request, see:
+   http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/5114c502b986bbf0/
+ * version --> 6.127

@@ -362,6 +362,15 @@ proc createmenues {} {
                 -variable bindstyle -value $l -command \"rebind\"" 
         }
     }
+    menu $pad.filemenu.options.messageboxes -tearoff 0
+    eval "$pad.filemenu.options add cascade [me "Execution &errors"] \
+           -menu $pad.filemenu.options.messageboxes "
+        eval "$pad.filemenu.options.messageboxes add radiobutton \
+            [me "In Scilab &shell only"] \
+             -value false -variable ScilabErrorMessageBox"
+        eval "$pad.filemenu.options.messageboxes add radiobutton \
+            [me "Copied in a &message box"] \
+             -value true -variable ScilabErrorMessageBox"
 
     # windows menu
     menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"]

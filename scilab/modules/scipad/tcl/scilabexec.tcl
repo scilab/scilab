@@ -343,6 +343,7 @@ proc isscilabbusy {{messagenumber "nomessage"} args} {
 }
 
 proc scilaberror {funnameargs} {
+    global ScilabErrorMessageBox
     global errnum errline errmsg errfunc
     ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();\
                    TCL_EvalStr(\"global errnum errline errmsg errfunc; \
@@ -363,10 +364,12 @@ proc scilaberror {funnameargs} {
                                                                      ,\"\]\",\"\\\]\") \
                                                    +\"\"\" \" , \"scipad\" )" \
                   "sync" "seq"
-    tk_messageBox -title [mc "Scilab execution error"] \
-      -message [concat [mc "The shell reported an error while trying to execute "]\
-      $funnameargs [mc ": error "] $errnum ", " $errmsg ", " [mc "at line "]\
-      $errline [mc " of "] $errfunc]
+    if {$ScilabErrorMessageBox} {
+        tk_messageBox -title [mc "Scilab execution error"] \
+          -message [concat [mc "The shell reported an error while trying to execute "]\
+          $funnameargs [mc ": error "] $errnum ", " $errmsg ", " [mc "at line "]\
+          $errline [mc " of "] $errfunc]
+    }
     showinfo [mc "Execution aborted!"]
     if {[getdbstate] != "NoDebug"} {
         canceldebug_bp

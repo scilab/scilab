@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.126
+# in sync at least with v6.127
 
 
 # commons
@@ -562,6 +562,9 @@
     ::msgcat::mcset fr "&Recent files" "&Fichiers récents"
     ::msgcat::mcset fr "&Backup files depth" "Profond&eur de sauvegarde"
     ::msgcat::mcset fr "&Locale" "&Langue"
+    ::msgcat::mcset fr "Execution &errors" "E&rreurs d'exécution"
+        ::msgcat::mcset fr "In Scilab &shell only" "Dans la fenêtre &Scilab seulement"
+        ::msgcat::mcset fr "Copied in a &message box" "Recopiées dans une &boîte de dialogue"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset fr "&Maximize" "&Maximiser"
