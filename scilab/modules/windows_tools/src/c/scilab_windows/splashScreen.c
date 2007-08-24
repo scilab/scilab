@@ -46,6 +46,7 @@ static DWORD WINAPI ThreadSplashScreen( LPVOID lpParam )
 		hWndMainScilab = FindWindow(NULL,titleMainWindow);
 		if (hWndMainScilab) break;
 		else Sleep(1);
+		i++;
 	}
 	DestroyWindow(hdlg);
 	return 0; 
