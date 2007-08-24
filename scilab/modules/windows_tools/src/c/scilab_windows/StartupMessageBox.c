@@ -40,7 +40,7 @@ void StartupMessageBox(void)
 	if (DontShowStartupMessageBox == 0)
 	{
 		HINSTANCE hInstanceThisDll = (HINSTANCE)GetModuleHandle("scilab_windows");
-		INT_PTR ierr = DialogBox(hInstanceThisDll,MAKEINTRESOURCE(IDD_STARTUPBOX), NULL,(DLGPROC)StartupMessageBoxDlgProc);
+		DialogBox(hInstanceThisDll,MAKEINTRESOURCE(IDD_STARTUPBOX), NULL,(DLGPROC)StartupMessageBoxDlgProc);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -75,7 +75,7 @@ static BOOL ON_STARTUPMESSAGEBOX_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM 
 
 	if ( RegQueryValueEx(key, "Language", 0, NULL, (LPBYTE)&Language, &size) !=  ERROR_SUCCESS )
 	{
-		MessageBoxLanguageCode = 0; /* English Default*/
+		MessageBoxLanguageCode = 83; /* English Default*/
 	}
 	else
 	{
@@ -87,14 +87,14 @@ static BOOL ON_STARTUPMESSAGEBOX_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM 
 	 CheckDlgButton(hDlg, IDC_CHECKSTARTUP, BST_UNCHECKED);
 	 switch (MessageBoxLanguageCode)
 	 {
-		case 1:
+		case 91:
 			SetWindowText(hDlg,"Remarque Importante");
 			SetDlgItemText(hDlg,IDC_OPENRELEASENOTES,"Ouvrir release_notes.txt");
 			SetDlgItemText(hDlg,IDC_STARTUPMESSAGE,"Scilab 5.0 :\n\nVeuillez lire le fichier release_notes pour plus de détails.");
 			SetDlgItemText(hDlg,IDC_CHECKSTARTUP,"Ne plus afficher ce message");
 		break;
 
-		case 0: default:
+		case 83: default:
 			SetWindowText(hDlg,"Warning");
 			SetDlgItemText(hDlg,IDC_OPENRELEASENOTES,"Open release_notes.txt");
 			SetDlgItemText(hDlg,IDC_STARTUPMESSAGE,"Scilab 5.0 :\n\nPlease read the release_notes file for more details.");
@@ -158,11 +158,11 @@ static BOOL ON_STARTUPMESSAGEBOX_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UIN
 			{
 				switch (MessageBoxLanguageCode)
 				{
-					case 1:
+					case 91:
 						MessageBox(hwnd,"Impossible d'ouvrir le fichier release_notes.txt","Attention",MB_ICONWARNING);
 					break;
 
-					case 0: default:
+					case 83: default:
 						MessageBox(hwnd,"Couldn't Open release_notes.txt","Warning",MB_ICONWARNING);
 					break;
 				}

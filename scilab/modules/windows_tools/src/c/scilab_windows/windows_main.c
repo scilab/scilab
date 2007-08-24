@@ -38,16 +38,16 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	BOOL LaunchAFile=FALSE;
 	BOOL ShowMessageBoxInfo=TRUE;		
 	char FileName[PATH_MAX];
-	int nowin = 0, argcount = 0, lpath = 0;
+	int  argcount = 0, lpath = 0;
 	InitScriptType pathtype = SCILAB_SCRIPT;
 	char *path = NULL;
 	char *ScilabDirectory=NULL;
 
-	HANDLE hOut = NULL;
+
 
 	char *pFullCmdLine=NULL;
 	char *pFullCmdLineTmp=NULL;
-	char *pPathCmdLine=NULL;
+
 
 	forbiddenToUseScilab();
 

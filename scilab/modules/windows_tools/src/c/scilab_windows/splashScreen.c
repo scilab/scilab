@@ -30,7 +30,6 @@ static DWORD WINAPI ThreadSplashScreen( LPVOID lpParam )
 	int i = 0;
 	char titleMainWindow[MAX_PATH];
 	HWND hWndMainScilab = NULL;
-	DWORD CurrentProcessId = GetCurrentProcessId();
 	HINSTANCE hInstanceThisDll = (HINSTANCE)GetModuleHandle("scilab_windows");
 	HWND hdlg = CreateDialog(hInstanceThisDll, MAKEINTRESOURCE(IDD_SPLASHSCREEN), NULL,NULL);
 

@@ -17,7 +17,6 @@ BOOL forbiddenToUseScilab(void)
 	{
 		MessageBox(NULL,"Warning", "Scilab supports only 256 colors or more.\n",MB_ICONSTOP);
 		exit(1);
-		return bOK;
 	}
 
 	bOK=TRUE;
