@@ -39,7 +39,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	BOOL LaunchAFile=FALSE;
 	BOOL ShowMessageBoxInfo=TRUE;		
 	char FileName[PATH_MAX];
-	int nowin = 0, argcount = 0, lpath = 0, pathtype=SCILAB_SCRIPT;
+	int nowin = 0, argcount = 0, lpath = 0;
+	InitScriptType pathtype = SCILAB_SCRIPT;
 	char *path = NULL;
 	char *ScilabDirectory=NULL;
 
@@ -263,7 +264,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	
 		HideScilex(); /* Cache la fenetre Console */
 
-		sci_windows_main (&startupf, path,pathtype, &lpath,memory);
+		sci_windows_main (&startupf, path,(InitScriptType)pathtype, &lpath,memory);
 
 		CloseScilabConsole();
 

@@ -30,7 +30,8 @@ int sci_show_banner = 1;
 /*-----------------------------------------------------------------------------------*/ 
 int Console_Main(int argc, char **argv)
 {
-  int nowin = 0, argcount = 0, lpath = 0, pathtype = SCILAB_SCRIPT;
+  int nowin = 0, argcount = 0, lpath = 0;
+  InitScriptType pathtype = SCILAB_SCRIPT;
   char *path = NULL;
   char *ScilabDirectory = NULL;
   int i=0;
@@ -138,7 +139,7 @@ int Console_Main(int argc, char **argv)
 		  UpdateConsoleColors();
 	  }
 	  
-	  sci_windows_main (&startupf, path, pathtype, &lpath,memory);
+	  sci_windows_main (&startupf, path, (InitScriptType)pathtype, &lpath,memory);
 	 
     }
   else
