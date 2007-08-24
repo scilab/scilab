@@ -22,7 +22,6 @@ static LPSTR my_argv[MAXCMDTOKENS];
 static int my_argc = -1;
 static int startupf = 0; /** 0 if we execute startup else 1 **/
 static int  memory = MIN_STACKSIZE;
-HINSTANCE hdllInstance;
 /*-----------------------------------------------------------------------------------*/ 
 extern void settexmacs(void);
 /*-----------------------------------------------------------------------------------*/ 
@@ -125,8 +124,6 @@ int Console_Main(int argc, char **argv)
 		exit(1);
 	}
   }
-
-  hdllInstance = GetModuleHandle("LibScilab");
 
   if (getScilabMode() != SCILAB_NWNI) CreateScilabHiddenWndThread();
 

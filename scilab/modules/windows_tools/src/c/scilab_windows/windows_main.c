@@ -28,7 +28,6 @@ static LPSTR my_argv[MAXCMDTOKENS];
 static int my_argc = -1;
 static int startupf = 0; /** 0 if we execute startup else 1 **/
 static int  memory = MIN_STACKSIZE;
-HINSTANCE hdllInstance;
 /*-----------------------------------------------------------------------------------*/ 
 extern int sci_show_banner ; 
 /*-----------------------------------------------------------------------------------*/ 
@@ -256,7 +255,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 				memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
 			}
 		}		
-		hdllInstance = hInstance;
 
 		if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
 
