@@ -8,7 +8,6 @@
 #include "sci_show_window.h"
 #include "getHandleProperty/getPropertyAssignedValue.h"
 #include "HandleManagement.h"
-#include "Xcall1.h"
 #include "stack-c.h"
 #include "sciprint.h"
 #include "SetProperty.h"
@@ -75,8 +74,6 @@ int sci_show_window( char *fname,unsigned long fname_len )
     sciSetUsedWindow( winNum ) ;
 
   }
-
-  C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,8L,2L);
   
   /* if no window were opened (ie curFigure is NULL) then we created the first figure */
   /* and it is already the selected one */

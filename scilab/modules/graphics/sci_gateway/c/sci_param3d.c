@@ -58,7 +58,6 @@ int sci_param3d( char * fname, unsigned long fname_len )
   CheckSameDims(1,2,m1,n1,m2,n2);
   CheckSameDims(2,3,m2,n2,m3,n3);
 
-  SciWin();
   GetOptionalDoubleArg(fname,4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(fname,5,"alpha",&alpha,1,opts);
   GetLabels(fname,6,opts,&labels);

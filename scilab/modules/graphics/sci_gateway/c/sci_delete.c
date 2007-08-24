@@ -13,7 +13,6 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
-#include "Xcall1.h"
 #include "Interaction.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
@@ -45,7 +44,6 @@ int sci_delete(char *fname,unsigned long fname_len)
     GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
     if (strcmp(cstk(l2),"all") == 0)
     {
-      SciWin();
       sciXbasc();return 0;
     }
     else

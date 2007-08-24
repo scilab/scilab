@@ -3,5 +3,5 @@
 
 void getcolordef( int * screenc )
 {
-  
+  screenc = 0;
 }

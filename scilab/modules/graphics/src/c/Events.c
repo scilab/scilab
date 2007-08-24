@@ -4,7 +4,6 @@
  --------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
-#include "bcg.h"
 #include "WindowList.h"
 #include "Events.h"
 #include "GetProperty.h"
@@ -44,25 +43,26 @@ int scig_click_handler_none (int win,int x,int y,int ibut,
 int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
 {
   static char buf[256];
-  struct BCG  * SciGc = (struct BCG *) NULL;
   sciPointObj * pFigure = NULL ;
 
-  SciGc = getWindowXgcNumber(win);
+  pFigure = getFigureFromIndex(win);
 
-  if(SciGc == (struct BCG *) NULL) 
-	  return 0;
+  if(pFigure == NULL)
+  {
+    return 0;
+  }
 
-  pFigure = SciGc->mafigure ;
-
-  if (   pFigure != NULL
-      && sciGetIsEventHandlerEnable(pFigure)
+  if (   sciGetIsEventHandlerEnable(pFigure)
       && strlen(sciGetEventHandler(pFigure)) > 0 )
   {
     sprintf(buf,"%s(%d,%d,%d,%d)",sciGetEventHandler(pFigure),win,x,y,ibut);
     StoreCommand(buf);
-    return 1;}
+    return 1;
+  }
   else
+  {
     return 0;
+  }
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -90,11 +90,9 @@ void scig_deletegwin_handler_none (int win)
 void scig_deletegwin_handler_sci (int win)
 {
   static char buf[256];
-  struct BCG  * SciGc;
   sciPointObj * pFigure = NULL ;
 
-  SciGc = getWindowXgcNumber(win);
-  pFigure = SciGc->mafigure ;
+  pFigure = getFigureFromIndex(win);
   if (   pFigure != NULL
       && sciGetIsEventHandlerEnable(pFigure)
       && strlen(sciGetEventHandler(pFigure)) > 0 )

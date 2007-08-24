@@ -9,7 +9,6 @@
 #include <math.h>
 #include "math_graphics.h"
 #include "PloEch.h"
-#include "Xcall1.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "Format.h"
@@ -36,7 +35,6 @@ static integer ffnd __PARAMS((ptr_level_f,integer,integer,integer,integer,intege
 
 static int Gcont_size = 0;
 
-static void ContourTrace __PARAMS((double Cont, integer style));
 static level_f GContStore2;
 static void GContStore2Last __PARAMS((void));
 static double x_cont __PARAMS((integer i));
@@ -266,10 +264,15 @@ static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb,
       }
     }
   }
-  if ( func == GContStore2 ) 
+  if ( func == GContStore2 )
+  {
     GContStore2Last();
-  else 
-    ContourTrace(Cont,style);
+  }
+  else
+  {
+    /* contour2di only computes level curves, not display them. */
+    sciprint("Contourdi, is only made to compute level curves and not display them.\n");
+  }
 }
 
 
@@ -462,49 +465,6 @@ static integer ffnd (ptr_level_f func, integer i1, integer i2, integer i3, integ
   if ( qq==1 && bdyp(i1,jj1) && bdyp(i2,jj2)) *zds = 1 ;
   if ( revflag == 1  &&  ! oddp (i) )  i = i+2;
   return ( 1 + (  ( i + ent + 2) % 4));
-}
-
-/*--------------------------------------------------------------
- * Storing and tracing level curves 
- *----------------------------------------------------------------*/
-
-static integer cont_size ;
-
-/* 
- * Explicit drawing of the current level curve with a dash style 
- * The curve level is also drawn as a string according to current 
- * floating point format 
- */
-
-static void ContourTrace(double Cont, integer style)
-{ 
-  char *F;
-  integer verbose=0 ,Dnarg,Dvalue[10];
-  integer close=0, flag=0, uc;
-  double angle=0.0;
-  char str[100];
-
-  C2F(dr)("xget","use color",&verbose,&uc,&Dnarg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if (uc) {
-    C2F(dr)("xget","color",&verbose,Dvalue,&Dnarg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xset","color",&style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xlines","void",&cont_size,xcont,ycont,&close,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xset","color",Dvalue,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  }
-  else {
-    C2F(dr)("xget","line style",&verbose,Dvalue,&Dnarg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xset","line style",&style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xlines","void",&cont_size,xcont,ycont,&close,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xset","line style",Dvalue,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  }
-
-  F=getFPF();
-  if ( F[0] == '\0') 
-    sprintf(str,ContNumFormat,Cont);
-  else 
-    sprintf(str,F,Cont);
-  C2F(dr)("xstring",str, &xcont[cont_size / 2],&ycont[cont_size /2],
-	  PI0,&flag,PI0,PI0, &angle,PD0,PD0,PD0,0L,0L);
 }
 
 /*--------------------------------------------------------------

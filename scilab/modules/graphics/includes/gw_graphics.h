@@ -82,7 +82,6 @@ int sci_draw                       _PARAMS((char *fname, unsigned long fname_len
 int sci_xs2gif                     _PARAMS((char *fname, unsigned long fname_len));
 int sci_xs2ppm                     _PARAMS((char *fname, unsigned long fname_len));
 int sci_set_posfig_dim             _PARAMS((char *fname, unsigned long fname_len));
-int sci_xsnative                   _PARAMS((char *fname, unsigned long fname_len));
 int sci_zoom_rect                  _PARAMS((char *fname, unsigned long fname_len));
 int sci_unzoom                     _PARAMS((char *fname, unsigned long fname_len));
 int sci_xs2bmp                     _PARAMS((char *fname, unsigned long fname_len));

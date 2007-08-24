@@ -23,7 +23,6 @@ int sci_xsegs(char *fname,unsigned long fname_len)
   double arsize = 0.0 ;
   sciPointObj * psubwin = NULL ;
 
-  SciWin();
 
   CheckRhs(2,3);
 

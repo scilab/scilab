@@ -25,7 +25,6 @@ int sci_xchange( char * fname, unsigned long fname_len )
   GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
   CheckSameDims(1,2,m1,n1,m2,n2);
 
-  SciWin();
   if ( strcmp(cstk(l3),"i2f") == 0) 
   {
     GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);

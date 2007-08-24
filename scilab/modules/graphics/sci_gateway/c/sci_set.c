@@ -6,7 +6,6 @@
 /*------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 #include "sci_set.h"
-#include "bcg.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
@@ -15,7 +14,6 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "DrawObjects.h"
-#include "Xcall1.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 
@@ -62,7 +60,7 @@ int sci_set(char *fname, unsigned long fname_len)
   }
   else /* others types */
   {
-	  integer m1,n1,l1,m2,n2,l2,num,cur,na,verb=0;
+	  integer m1,n1,l1,m2,n2,l2;
 	  integer numrow3 = 0 ;
 	  integer numcol3 = 0 ;
 	  integer l3 = 0 ;
@@ -131,17 +129,7 @@ int sci_set(char *fname, unsigned long fname_len)
 					pobj = sciGetPointerFromHandle(hdl);
 				}
 
-			GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */  
-			if ( *hstk(l1) != sciGetHandle(getFigureModel()) && *hstk(l1) != sciGetHandle(getAxesModel())
-			  &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_title)
-			  &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_x_label)
-			  &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_y_label) 
-			  &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_z_label))
-			{
-				if ((strcmp(cstk(l2),"old_style") !=0) 
-				  &&(strcmp(cstk(l2),"default_figure") !=0) 
-				  && (strcmp(cstk(l2),"default_axes") !=0) ) SciWin();
-			}
+			GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */ 
 
 			valueType = VarType(3) ;
 
@@ -182,7 +170,6 @@ int sci_set(char *fname, unsigned long fname_len)
 				}
 				else
 				{
-					SciWin();
 					if ((strcmp(cstk(l2),"zoom_") !=0) && 
 					  (strcmp(cstk(l2),"auto_") !=0) && 
 					  (strcmp(cstk(l2),"clip_box") !=0) )   
@@ -289,21 +276,13 @@ int sci_set(char *fname, unsigned long fname_len)
 				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label )
 			 { 
 				 /* Addings F.Leray 10.06.04 */
-				 num= sciGetNumFigure (pobj);    
-				 C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				 C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-
-				 //sciDrawObj(sciGetParentFigure(pobj)); /* F.Leray we redraw here */
 				 sciDrawObj(pobj) ;
-
-				 C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			 }
 		 }
 	 }
 	 else if ( ( setStatus = sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3) ) < 0 )
 	 {
-		// endGraphicDataWriting();
-		// return 0;
+
 	 }
 
 	 endGraphicDataWriting();

@@ -73,12 +73,6 @@ int sci_get(char *fname,unsigned long fname_len)
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_y_label) /* Addings here F.Leray 10.06.04 */
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_z_label))
 	{
-	  if ((strcmp(cstk(l2),"old_style") !=0)
-	      &&(strcmp(cstk(l2),"default_figure") !=0) 
-              && (strcmp(cstk(l2),"default_axes") !=0) )
-          {
-            SciWin();
-          }
 
 	  hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle */
           
@@ -100,7 +94,6 @@ int sci_get(char *fname,unsigned long fname_len)
 	  else
 	    {
               sciPointObj * ppobj;
-	      SciWin();
 
               /* Test debug F.Leray 13.04.04 */
               if ((strcmp(cstk(l2),"children") != 0) &&  

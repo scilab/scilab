@@ -14,6 +14,7 @@
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xrects( char *fname, unsigned long fname_len )
@@ -21,8 +22,8 @@ int sci_xrects( char *fname, unsigned long fname_len )
   integer m1,n1,l1,m2,n2,l2;
   long  hdl;
   int i;
-  sciPointObj * psubwin = NULL ;
-  SciWin();
+  sciPointObj * psubwin = NULL;
+  sciPointObj * pFigure = NULL;
   CheckRhs(1,2);
 
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -49,8 +50,11 @@ int sci_xrects( char *fname, unsigned long fname_len )
     for (i = 0; i < n2; ++i)  { *istk(l2 + i) = 0; }
   }  
   
+  startGraphicDataWriting();
   psubwin = sciGetCurrentSubWin();
-
+  pFigure = sciGetParentFigure(psubwin);
+  endGraphicDataWriting();
+  startFigureDataWriting(pFigure);
   for (i = 0; i < n1; ++i) { 
     /*       j = (i==0) ? 0 : 1; */
     if (*istk(l2+i) == 0){
@@ -75,9 +79,12 @@ int sci_xrects( char *fname, unsigned long fname_len )
     }
   }
   /** construct Compound and make it current object **/
-  sciSetCurrentObj (ConstructCompoundSeq (n1));  
+  sciSetCurrentObj(ConstructCompoundSeq(n1));
+  endFigureDataWriting(pFigure);
 
-  sciDrawObjIfRequired(sciGetCurrentObj ());
+  startFigureDataReading(pFigure);
+  sciDrawObjIfRequired(sciGetCurrentObj());
+  endFigureDataReading(pFigure);
 
   LhsVar(1)=0;
   return 0;

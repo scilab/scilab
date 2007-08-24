@@ -42,4 +42,6 @@ sciPointObj * getAxesModel( void ) ;
 
 void destroyDefaultObjects( void ) ;
 
+void sciSetDefaultColorMap(sciPointObj * pFigure);
+
 #endif /* __SCI_INIT_GRAPHICS__ */

@@ -20,7 +20,6 @@
 #include "CloneObjects.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"
-#include "bcg.h"
 #include "SetProperty.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"

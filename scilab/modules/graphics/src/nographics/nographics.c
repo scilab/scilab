@@ -4,7 +4,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "bcg.h"
 #include "ObjectStructure.h"
-#include "clipping.h"
 #include "Events.h"
 #include "WindowList.h"
 #include "machine.h"
@@ -27,34 +26,14 @@ BOOL TerminateGraphics(void)
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/ 
-int getWinsMaxId( void )
-{
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
 int scig_2dzoom(integer win_num)
 {
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-struct BCG * getWindowXgcNumber( integer i ) 
-{
-	 return NULL ;
-}
-/*-----------------------------------------------------------------------------------*/ 
-void getWins( integer * Num, integer * Ids, integer * flag ) 
-{
-
-}
-/*-----------------------------------------------------------------------------------*/ 
 int GetDriverId( void ) 
 {
 	return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
-WindowList * getScilabWindowList( void )
-{
-	return NULL;
 }
 /*-----------------------------------------------------------------------------------*/ 
 int CheckClickQueue(int *win,int *x,int *y,int *ibut,int *motion,int *release)
@@ -102,16 +81,6 @@ double Mini(double *vect, integer n)
 	return 0.0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-struct BCG * addWindowItem( void ) 
-{
-	return NULL;
-}
-/*-----------------------------------------------------------------------------------*/ 
-int removeWindowItem( struct BCG * window )
-{
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
 int scig_3drot(integer win_num)
 {
 	return 0;
@@ -132,16 +101,6 @@ void scig_loadsg(int win_num, char *filename)
 
 }
 /*-----------------------------------------------------------------------------------*/ 
-struct BCG * getFirstWindow( void )
-{
-	return NULL;
-}
-/*-----------------------------------------------------------------------------------*/ 
-BOOL isWindowListEmpty( void )
-{
-	return TRUE;
-}
-/*-----------------------------------------------------------------------------------*/ 
 void del_window_scale( integer i ) 
 {
 
@@ -153,15 +112,6 @@ void scig_savesg( int win_num, char * filename )
 }
 /*-----------------------------------------------------------------------------------*/ 
 void Cscale2default( void )
-{
-
-}
-/*-----------------------------------------------------------------------------------*/ 
-void C2F(clipPolyLine)( integer       n     , 
-					   integer     * vx    , 
-					   integer     * vy    , 
-					   integer       closed,
-					   SClipRegion * clipping )
 {
 
 }
@@ -191,13 +141,6 @@ int C2F(entier2d)( integer * n, double * dx,integer * s )
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(dr)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
-			integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
-			integer lx0, integer lx1) 
-{
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
 void scig_sel(integer win_num)
 {
 
@@ -206,13 +149,6 @@ void scig_sel(integer win_num)
 void DeleteObjs(integer win_num)
 {
 
-}
-/*-----------------------------------------------------------------------------------*/ 
-int C2F(dr1)( char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
-			 integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
-			 integer lx0, integer lx1) 
-{
-	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
 void sciRedrawF(int *num)
@@ -234,11 +170,6 @@ void sciRedrawF(int *num)
 int PushClickQueue (int win,int x,int y,int ibut,int motion,int release)
 {
 	return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
-void sciGetIdFigure (int *vect, int *id, int *flag)
-{
-
 }
 /*-----------------------------------------------------------------------------------*/ 
 void set_cf_type( int val ) 

@@ -6,10 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableLegend.h"
-extern "C"
-{
-#include "drawLegendEntity.h"
-}
 
 namespace sciGraphics
 {
@@ -17,7 +13,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableLegend::draw( void )
 {
-  //drawLegendEntity( m_pDrawed ) ;
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableLegend::show( void )

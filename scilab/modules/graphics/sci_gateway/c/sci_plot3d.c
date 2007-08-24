@@ -106,7 +106,6 @@ int sci_plot3d( char * fname, unsigned long fname_len )
       return 0;
     }
   }
-  SciWin();
   iflag_def[1]=8;
 
   GetOptionalDoubleArg(fname,4,"theta",&theta,1,opts);
@@ -137,7 +136,6 @@ int sci_plot3d( char * fname, unsigned long fname_len )
   }
 
   if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
-  SciWin();
   SciGerase() ;
 
   /******************** 24/015/2002 ********************/

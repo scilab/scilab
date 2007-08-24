@@ -24,7 +24,6 @@ int sci_addcb(char *fname,unsigned long fname_len)
   CheckLhs(0,1);
 
   /*  set or create a graphic window*/
-  SciWin();
   switch(VarType(1)) 
   {
   case 1: /* first is a scalar argument so it's a legend(hdl,"str1",...)*/

@@ -37,7 +37,7 @@ int set_figure_id_property( sciPointObj * pobj, int stackPointer, int valueType,
   }
   else
   {
-    return sciSetNum( getFigureModel(), &id ) ;
+    return sciSetNum( getFigureModel(), id ) ;
   }
   return SET_PROPERTY_ERROR ;
 }

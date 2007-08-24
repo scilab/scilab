@@ -31,7 +31,6 @@ int sci_xsetech(char* fname,unsigned long fname_len)
   int minrhs = 0,maxrhs = 0,minlhs=0,maxlhs=1,nopt;
 
   nopt = NumOpt();
-  SciWin();
 
   if ( nopt == 0) 
   {
@@ -86,7 +85,6 @@ int sci_xsetech(char* fname,unsigned long fname_len)
       wrect = stk(opts[3].l);	CheckLength(opts[3].position,opts[3].m*opts[3].n,4);
     } 
   }
-  SciWin();
   C2F(Nsetscale2d)(wrect,arect,frect,logflag,0L);
   LhsVar(1)=0;
   return 0;

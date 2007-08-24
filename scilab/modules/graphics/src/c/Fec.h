@@ -8,9 +8,6 @@
 #ifndef _FEC_H_
 #define _FEC_H_
 
-void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
-            integer *Ntr,double *zminmax,integer *colminmax, integer *colout, BOOL with_mesh) ;
-
 /**
  *  Iso contour with grey level or colors 
  *  for a function defined by finite elements 

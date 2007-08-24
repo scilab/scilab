@@ -181,7 +181,6 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   GetNax( 7+iskip, opts, &nax, &flagNax ) ;
   if (iskip==0) { GetLogflags( fname, 8, opts, &logFlags ) ; }
 
-  SciWin(); 
   SciGerase() ;
 
   if ( isDefStrf( strf ) )

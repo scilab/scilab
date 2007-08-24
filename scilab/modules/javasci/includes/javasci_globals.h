@@ -64,7 +64,6 @@ extern void C2F(banier)(int *x) ;
 extern void initTCLTK();
 extern int C2F(inisci)(int *,int *,int *);
 extern void C2F(storeversion)(char *str,int n);
-extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern int GetLastErrorCode(void);
 extern void *GetDataFromName( char *name );
 /********************************************************************************************************/

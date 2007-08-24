@@ -19,7 +19,6 @@
 #include "BuildObjects.h"
 #include "Axes.h"
 #include "BasicAlgos.h"
-#include "clipping.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 
@@ -123,13 +122,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   
   ppsubwin->alpha  = 0.0;
   ppsubwin->theta  = 270.0;
-  
-  if (sciGetSurface(psubwin) != (sciPointObj *) NULL){
-    if(sciGetCurrentScilabXgc () != (struct BCG *) NULL)
-      UpdateSubwinScale(psubwin);
-    ppsubwin->is3d = FALSE;
-  }
-
 
   /* Force psubwin->axes.aaint to those given by argument aaint*/
   /* F.Leray 07.10.04 REMOVE AAINT*/
@@ -211,7 +203,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
-    frame_clip_on ();
     if ((hdltab = MALLOC ((*n1+2) * sizeof (long))) == NULL) {
       sciprint ("Running out of memory for plot2d\n");
       return 0;   
@@ -251,8 +242,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     
     DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing once is sufficient (F.Leray 10.01.05) */
     
-    frame_clip_off ();
-
+    
     /*---- Drawing the Legends ----*/
     if (with_leg) {
       sciSetCurrentObj (ConstructLegend

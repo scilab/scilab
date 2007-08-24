@@ -28,16 +28,15 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
-#include "bcg.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
-#include "Xcall1.h"
 #include "math_graphics.h" /* GET_NB_DIGITS */
 #include "sciprint.h"
 #include "../../gui/includes/GraphicWindow.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BasicAlgos.h"
+#include "WindowList.h"
 
 #include "SetJavaProperty.h"
 
@@ -181,7 +180,7 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
 
   if ( pobj == getFigureModel() )
   {
-    // colormap is stored in the object
+    /* colormap is stored in the object */
     FREE(pFIGURE_FEATURE(pobj)->pModelData->colorMap) ;
     pFIGURE_FEATURE(pobj)->pModelData->colorMap = createDoubleArrayCopy(rgbmat, m * n ) ;
     pFIGURE_FEATURE(pobj)->pModelData->numColors = m * n ;
@@ -483,10 +482,6 @@ int sciInitNumColors( sciPointObj * pobj, int numcolors)
   switch (sciGetEntityType (pobj))
   {
   case SCI_FIGURE:
-    if ( sciGetScilabXgc( pobj ) != NULL )
-    {
-      sciGetScilabXgc( pobj )->Numcolors = numcolors ;
-    }
     pFIGURE_FEATURE(pobj)->numcolors = numcolors ;
     return 0 ;
   default:
@@ -534,22 +529,6 @@ int sciSetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
  */
 int sciInitMdlBackground( sciPointObj * pobj, int colorIndex )
 {
-  int m = sciGetNumColors(pobj); 
-  int goodIndex ;
-  if(colorIndex < -2 || colorIndex > m+2) return 0;
-
-  goodIndex = sciSetGoodIndex(pobj,colorIndex);
-
-  
-  /* code taken in void C2F(setbackground)(num, v2, v3, v4) from JPC */
-  if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
-  {
-    /* COLORREF px;                           COLORREF ? "periWin-bgc"*/
-    sciGetScilabXgc (pobj)->NumBackground =
-      Max (0, Min (goodIndex - 1, m + 1));
-    C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
-            PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-  }
   return  sciInitBackground( pobj, colorIndex ) ;
 }
 
@@ -643,19 +622,6 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
  */
 int sciInitMdlForeground( sciPointObj * pObj, int colorIndex )
 {
-  int m = sciGetNumColors(pObj);
-  int goodIndex ;
-  if(colorIndex < -2 || colorIndex > m+2) return 0;
-  
-  goodIndex = sciSetGoodIndex(pObj,colorIndex);
-  
-  if (sciGetScilabXgc (pObj)->CurColorStatus == 1)
-  { 
-    sciGetScilabXgc (pObj)->NumForeground =
-      Max (0, Min (goodIndex - 1, m + 1));
-    C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pObj)->CurDrawFunction),
-            PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
-  }
   return sciInitForeground( pObj, colorIndex ) ;
 }
 
@@ -1728,6 +1694,20 @@ sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth)
  
 }
 
+/*--------------------------------------------------------------------------------------------*/
+int sciInitFontWidth(sciPointObj * pobj, int width)
+{
+  return sciInitFontDeciWidth(pobj, width * 100);
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * Sets the font size.
+ */
+int sciSetFontWidth(sciPointObj * pobj, int width)
+{
+  return sciSetFontDeciWidth(pobj, width * 100);
+}
+/*--------------------------------------------------------------------------------------------*/
 
 int sciInitFontOrientation( sciPointObj * pobj, int textorientation )
 {
@@ -2915,21 +2895,13 @@ sciSetDefaultValues (void)
     sciprint("\r\n default values cant not be loaded !");
     return -1 ;
   }
-  else
-  {
-    C2F(dr)("xset","default",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,7L); 
-    return 0 ;
-  }
+  return 0;
 }
 
 
 
 int sciInitXorMode( sciPointObj * pobj, int value )
 {
-  if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
-  {
-    C2F(dr)("xset","alufunction",&(value),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
-  }
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -3087,15 +3059,7 @@ sciSetVisibility (sciPointObj * pobj, BOOL value)
 
 int sciInitResize( sciPointObj * pobj, BOOL value )
 {
-  integer num1 = (value ? 1 : 0);
   
-  if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
-    { 
-      if (sciGetScilabXgc (pobj)->CurResizeStatus != num1)
-	{
-	  C2F(dr)("xset","wresize",&(num1),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);  
-	}
-    }
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -3211,7 +3175,6 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
           sprintf( str, pvalue, figureNumber ) ;
           length = realLength - 1 ;
         }
-	C2F(dr)("xname",str,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,(long) length ) ;
         FREE(str) ;
       }
       
@@ -3227,18 +3190,17 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
   return 0 ;
 }
 
-int sciInitNum( sciPointObj * pobj, int * value )
+int sciInitNum( sciPointObj * pobj, int value )
 {
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      pFIGURE_FEATURE (pobj)->number = *value;
+      pFIGURE_FEATURE(pobj)->number = value;
       break;
     case SCI_SUBWIN:
-      pSUBWIN_FEATURE (pobj)->number = *value;
-      sciSetNum (sciGetParentFigure (pobj), value);
+      pSUBWIN_FEATURE(pobj)->number = value;
+      sciSetNum(sciGetParentFigure (pobj), value);
       break;
-    case SCI_AGREG:
     default:
       sciprint ("Only Figure be numerated\n");
       return -1 ;
@@ -3253,10 +3215,10 @@ int sciInitNum( sciPointObj * pobj, int * value )
  * @param int value: the value of the number of the windows
  */
 int
-sciSetNum (sciPointObj * pobj, int *value )
+sciSetNum (sciPointObj * pobj, int value )
 {
 
-  if ( sciGetNum(pobj) == *value )
+  if ( sciGetNum(pobj) == value )
   {
     /* nothing to do */
     return 1 ;
@@ -3284,8 +3246,6 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
     case SCI_SUBWIN:
       pSUBWIN_FEATURE (pobj)->windimwidth = newWidth ;
       pSUBWIN_FEATURE (pobj)->windimheight = newHeight;
-      if (pobj != getAxesModel())
-	C2F(dr)("xset","wdim",&newWidth, &newHeight,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
       break;
     case SCI_CONSOLE:
       /* TODO */
@@ -3355,7 +3315,7 @@ int sciSetWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
 {
   if ( sciGetWindowWidth(pobj) == newWidth || sciGetWindowHeight(pobj) == newHeight )
   {
-    // nothing to do
+    /* nothing to do */
     return 1 ;
   }
   return sciInitWindowDim(pobj, newWidth, newHeight ) ;
@@ -3378,18 +3338,6 @@ int sciInitScreenPosition( sciPointObj * pobj, int pposx, int pposy )
         sciSetJavaWindowPosition(pobj, pos) ;
       }
       return 0;
-      /*if (pobj != getFigureModel()) {
-	num=pFIGURE_FEATURE(pobj)->number;
-	C2F(dr)("xget","window",&y,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-	C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	C2F(dr)("xset","wpos",&pposx,&pposy,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
-	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-      }
-      pFIGURE_FEATURE (pobj)->inrootposx = pposx;
-      pFIGURE_FEATURE (pobj)->inrootposy = pposy;*/
-      /*return 0;
-      break;*/
     case SCI_CONSOLE:
       /* nothing for now */
       break ;
@@ -4063,37 +4011,37 @@ sciSetdrawmode (BOOL mode)
   
 }
 
-int sciSwitchWindow(int *winnum)
+int sciSwitchWindow(int winnum)
 { 
-  struct BCG *CurXGC; 
   static sciPointObj *mafigure;
   static sciPointObj *masousfen;  
-  integer v=0;
-  double dv=0.0; 
   /* find if exist figure winnum */
   /* une autre methode c est de tester CurXGC->mafigure = NULL */
-  if ( (sciPointObj *) sciIsExistingFigure(winnum) == (sciPointObj *) NULL) 
+  if ( !sciIsExistingFigure(winnum) ) 
+  {
+    /** Figure winnum don't exist **/
+    /* For now, no higher entities than figure */
+    if ((mafigure = ConstructFigure(NULL)) != NULL)
     {
-      /** Figure winnum don't exist **/
-      /** Create Figure **/ 
-      C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&CurXGC,&dv,&dv,&dv,5L,10L);/* ????? SS*/
-      /* For now, no higher entities than figure */
-      if ((mafigure = ConstructFigure(NULL, CurXGC)) != NULL)
-	{
-	  sciSetCurrentObj (mafigure); /* F.Leray 25.03.04*/
-	  CurXGC->mafigure = mafigure;
-	  if ((masousfen = ConstructSubWin (mafigure, CurXGC->CurWindow)) != NULL) {
-	    sciSetCurrentObj (masousfen);
-	    sciSetOriginalSubWin (mafigure, masousfen);
-	    set_cf_type(1);/* current figure is a graphic one */
-	  }
-	}
-      else
-	return -1; /* failed to switch */
-       
+      sciSetCurrentObj(mafigure); /* F.Leray 25.03.04*/
+      sciSetCurrentFigure(mafigure);
+      if ((masousfen = ConstructSubWin (mafigure)) != NULL)
+      {
+        sciSetCurrentObj(masousfen);
+        sciSetOriginalSubWin(mafigure, masousfen);
+        set_cf_type(1);/* current figure is a graphic one */
+      }
     }
+    else
+    {
+	return -1; /* failed to switch */
+    }
+     
+  }
   else
+  {
     set_cf_type(1);/* current figure is a graphic one */
+  }
   return 0;
 }
 
@@ -4102,12 +4050,8 @@ int sciSwitchWindow(int *winnum)
  * In new graphic style, select a window and create one if not already done.
  */ 
 int sciInitUsedWindow( int winNum )
-{
-  int verbose = 0 ;
-  /* select or create the window in the driver */
-  C2F(dr)("xset","window",&winNum,&verbose,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L) ;
-  
-  return sciSwitchWindow( &winNum ) ; /* create the handle */
+{ 
+  return sciSwitchWindow( winNum ) ; /* create the handle */
 }
 
 /*-------------------------------------------------------------------------------------------*/
@@ -4117,7 +4061,7 @@ int sciInitUsedWindow( int winNum )
 int sciSetUsedWindow( int winNum )
 {
   /* select or create the window in the driver */
-  if ( sciGetCurPointedFigure() != NULL && sciGetNum( sciGetCurPointedFigure() ) == winNum )
+  if ( sciHasFigures() && sciGetNum( sciGetCurrentFigure() ) == winNum )
   {
     /* nothing to do */
     return 1 ;
@@ -4628,9 +4572,9 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
        Obj_RedrawNewAngle( pObj,
                            pSUBWIN_FEATURE (pObj)->theta_kp,
                            pSUBWIN_FEATURE (pObj)->alpha_kp ) ;
-       wininfo("alpha=%.1f,theta=%.1f",
-               pSUBWIN_FEATURE (pObj)->alpha_kp,
-               pSUBWIN_FEATURE (pObj)->theta_kp ) ;
+       setInfoMessageWithRotationAngles(pObj,
+                                        pSUBWIN_FEATURE (pObj)->alpha_kp,
+                                        pSUBWIN_FEATURE (pObj)->theta_kp ) ;
      }
      else
      {
@@ -4644,10 +4588,6 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
        pSUBWIN_FEATURE (pObj)->alpha_kp=pSUBWIN_FEATURE (pObj)->alpha;
        pSUBWIN_FEATURE (pObj)->alpha  = 0.0;
        pSUBWIN_FEATURE (pObj)->theta  = 270.0;
-       if(sciGetCurrentScilabXgc () !=  NULL)
-       {
-         UpdateSubwinScale(pObj);
-       }
        pSUBWIN_FEATURE(pObj)->is3d = FALSE; /*...and here */
        return 0 ;
      }
@@ -4742,7 +4682,7 @@ int sciInitViewport( sciPointObj * pObj, int xSize, int ySize )
   switch( sciGetEntityType( pObj ) )
   {
   case SCI_FIGURE:
-    SciViewportMove( sciGetScilabXgc(pObj), xSize, ySize ) ;
+    /* TODO */
     return 0 ;
   default:
     sciprint( "This object has no viewport property.\n" ) ;
@@ -4781,7 +4721,7 @@ int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
     {
       sciFigure * ppFigure = pFIGURE_FEATURE(pObj) ;
       
-      // We keep a copy of the message for convinience
+      /* We keep a copy of the message for convenience */
       if ( newMessage == NULL )
       {
         FREE( ppFigure->infoMessage ) ;
@@ -4801,7 +4741,7 @@ int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
         strcpy( ppFigure->infoMessage, newMessage ) ;
       }
 
-      // set the java message
+      /* set the java message */
       if ( pObj != getFigureModel() )
       {
         sciSetJavaInfoMessage(pObj, newMessage);
@@ -4893,23 +4833,6 @@ int sciSetIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
 }
 /*--------------------------------------------------------------------------------------------*/
 /**
- * To specify if an object can be rendered
- */
-int sciInitIsReadyForRendering( sciPointObj * pObj, BOOL isReady )
-{
-  switch(sciGetEntityType(pObj))
-  {
-  case SCI_FIGURE:
-    pFIGURE_FEATURE(pObj)->isReadyForRendering = isReady ;
-    break;
-  default:
-    sciprint( "This object has no IsReadyForRendering property.\n" ) ;
-    return -1 ;
-  }
-  return 0 ;
-}
-/*--------------------------------------------------------------------------------------------*/
-/**
  * Set data-bounds defined by the user.
  * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
  */
@@ -4969,11 +4892,31 @@ int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta)
   sciGetViewingAngles(pObj, &curAlpha, &curTheta);
   if ( curAlpha == alpha && curTheta == theta )
   {
-    // nothing to do
+    /* nothing to do */
     return 1;
   }
 
   return sciInitViewingAngles(pObj, alpha, theta) ;
+
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * Set the info message of a figure with the information about rotation angles
+ */
+int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double theta)
+{
+  int returnStatus = -1;
+
+  /* size is 8 for "alpha =", 10 for ", theta =" and at most 5 for each digit (such as "123.5")
+      and 1 for fir the NULL terminating character */
+  char infoMessage[29];
+
+  sprintf(infoMessage, "alpha = %.1f, theta = %.1f", alpha, theta) ;
+
+  returnStatus = sciSetInfoMessage(pFigure, infoMessage) ;
+
+  return returnStatus;
+  
 
 }
 /*--------------------------------------------------------------------------------------------*/

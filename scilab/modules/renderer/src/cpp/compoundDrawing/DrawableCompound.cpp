@@ -7,10 +7,6 @@
 
 
 #include "DrawableCompound.h"
-extern "C"
-{
-#include "drawCompoundEntity.h"
-}
 
 namespace sciGraphics
 {
@@ -18,7 +14,11 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableCompound::draw( void )
 {
-  drawCompoundEntity( m_pDrawed ) ;
+  if ( !checkVisibility())
+  {
+    return;
+  }
+  displayChildren();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableCompound::show( void )

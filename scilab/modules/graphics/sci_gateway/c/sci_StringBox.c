@@ -62,7 +62,6 @@ int sci_StringBox( char * fname, unsigned long fname_len )
   }
 
   /* create a window if needed to initialize the X11 graphic context  */
-  SciWin() ;
 
   /* get the string box */
   getTextBoundingBox( pText, NULL, corners ) ;

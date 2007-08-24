@@ -11,7 +11,6 @@
 #include "returnProperty.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
-#include "Xcall1.h"
 #include "CurrentObjectsManagement.h"
 
 
@@ -24,8 +23,6 @@ int get_current_figure_property( sciPointObj * pobj )
   
   if ( get_cf_type() == 1 )
   {
-    /* graphic window */
-    C2F(sciwin)() ;
     /* return handle on the current figure */
     return sciReturnHandle( sciGetHandle( sciGetCurrentFigure() ) ) ;
   }

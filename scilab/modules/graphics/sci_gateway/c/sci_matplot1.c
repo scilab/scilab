@@ -32,7 +32,6 @@ int sci_matplot1( char * fname, unsigned long fname_len )
     LhsVar(1) = 0 ;
     return 0 ;
   } 
-  SciWin();
 
   /* NG beg */
 

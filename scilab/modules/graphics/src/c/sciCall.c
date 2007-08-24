@@ -16,7 +16,6 @@
 #include "math_graphics.h"
 #include "PloEch.h"
 #include "Axes.h"
-#include "Xcall1.h"
 #include "sciprint.h"
 #include "Fec.h"
 #include "GrayPlot.h"
@@ -273,9 +272,6 @@ void Objstring( char            ** fname      ,
                 sciTextAlignment   alignment   )
 {
   BOOL redraw = FALSE ;
-  integer v;
-  double dv;
-  integer x1,yy1,n=1,rect1[4];
   sciPointObj *psubwin, *pobj;
   
    
@@ -310,13 +306,6 @@ void Objstring( char            ** fname      ,
   {
     sciDrawObjIfRequired(pobj);
   }
-
-  updateScaleIfRequired( sciGetParentSubwin( pobj ) ) ;
-  x1 = XDouble2Pixel(x);
-  yy1 = YDouble2Pixel(y);
-  C2F(dr)("xstringl",fname[0],&x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,0L);
-  C2F(echelle2d)(box,box+1,rect1,rect1+1,&n,&n,"i2f",3L);
-  C2F(echelle2dl)(box+2,box+3,rect1+2,rect1+3,&n,&n,"i2f");
  
 }
 /*-----------------------------------------------------------

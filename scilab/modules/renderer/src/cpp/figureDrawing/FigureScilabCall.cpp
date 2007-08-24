@@ -13,7 +13,7 @@
 
 extern "C"
 {
-#include "GetProperty.h"
+#include "WindowList.h"
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -21,18 +21,15 @@ void displayFigure(int figureId)
 {
   startGraphicDataDisplaying();
 
-  sciPointObj * curFig = sciIsExistingFigure(&figureId) ;
+  sciPointObj * curFig = getFigureFromIndex(figureId) ;
   if ( curFig == NULL )
   {
     endGraphicDataDisplaying();
     return ;
   }
-  
-  if ( sciGetIsReadyForRendering(curFig) )
-  {
-    (sciGraphics::getFigureDrawer(curFig))->drawInContext() ;
-  }
-
+ 
+ (sciGraphics::getFigureDrawer(curFig))->drawInContext() ;
+ 
   endGraphicDataDisplaying();
 }
 /*-----------------------------------------------------------------------------------*/
@@ -42,17 +39,14 @@ void redrawFigure(int figureId)
 {
   startGraphicDataDisplaying();
 
-  sciPointObj * curFig = sciIsExistingFigure(&figureId) ;
+  sciPointObj * curFig = getFigureFromIndex(figureId) ;
   if ( curFig == NULL )
   {
     endGraphicDataDisplaying();
     return ;
   }
 
-  if ( sciGetIsReadyForRendering(curFig) )
-  {
-    redrawHierarchy(curFig) ;
-  }
+  redrawHierarchy(curFig) ;
 
   endGraphicDataDisplaying();
 }

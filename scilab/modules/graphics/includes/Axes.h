@@ -10,72 +10,6 @@
 
 #include "ObjectStructure.h"
 
-/*--------------------------------------------------------------------------------------*/
-/* check if the graduation text foo is inside the old_rect */
-/* in this case it should not been displayed */
-BOOL CheckDisplay( double fact_h, double fact_w, char logflag, char *foo,int *posi,int *fontid,int *old_rect) ;
-
-/* The unit is the pixel */
-/* return 0 if the point is inside the rect */
-/* 1 if it is actually outside the rect */
-/* (rect[0],rect[1]) : upper left point of the bounding box  in pixel */
-/* (rect[2],rect[3]) : width and height in pixel */
-/* point[0] : x component */
-/* point[1] : y component */
-BOOL IsInsideRectangle(int * rect, int *point) ;
-
-/* get the bounding rectangle of a label of a ticks */
-/* similar to stringBoundingRect but only for ticks labels */
-void getTicksLabelBox( double   fact_h   ,
-                       double   fact_w   , 
-                       char   * label    ,
-                       int      pos[2]   ,
-                       int      fontId[2],
-                       char     logflag  ,
-                       int      bbox[4]  ,
-                       BOOL     changeFont ) ;
-
-/* remove the concealed ticks before display on the X and Y axis */
-BOOL checkXAxes2dTics( sciPointObj * psubwin  ,
-                       char          side     ,
-                       double        y        ,
-                       char        * cFormat  ,
-                       int           fontId[2],
-                       int           smallersize ) ;
-
-/* remove the concealed ticks before display on the X and Y axis */
-BOOL checkYAxes2dTics( sciPointObj * psubwin  ,
-                       char          side     ,
-                       double        x        ,
-                       char        * cFormat  ,
-                       int           fontId[2],
-                       int           smallersize ) ;
-
-
-void updateXaxesTics( sciPointObj * psubwin  ,
-                      char          side     ,
-                      double        y        ,
-                      int           fontId[2],
-                      int           smallersize ) ;
-
-void updateYaxesTics( sciPointObj * psubwin  ,
-                      char          side     ,
-                      double        x        ,
-                      int           fontId[2],
-                      int           smallersize ) ;
-
-/* remove in the ticks array the indices i such as removedTicks[i] */
-/* is true. The value nbtics is an in-out variable */
-void removeBadTicks( double * ticks, BOOL * removedTicks, int * nbTicks ) ;
-
-/* remove an element in the array from translating the next
-   elements on step backward */
-void removeIndex( double * changedArray, int size, int ind ) ;
-
-/* compute the needed formats to display the ticks of a subWin */
-void findFormat( sciPointObj * pSubWin, char formatX[5], char formatY[5] ) ;
-
-/*--------------------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------------------*/
 
@@ -99,43 +33,4 @@ void initSubWinBounds( sciPointObj * pSubWin ) ;
 BOOL checkRedrawing( void ) ;
 
 /*--------------------------------------------------------------------------------------*/
-/**
-* Update the current scale factors from a modified SubWindow.
-* This is sometimes required when the redraw is disable.
-*/
-void updateSubWinScale( sciPointObj * pSubWin ) ;
-
-/**
-* update the scale factors only if the SubWindow won't be automatically redrawn.
-* Should be called before dr("xstringl") for example.
-*/
-void updateScaleIfRequired( sciPointObj * pSubWin ) ;
-/*--------------------------------------------------------------------------------------*/
-/**
- * Draw the grid of an axes object if needed.
- */
-void drawAxesGrid( sciPointObj * psubwin ) ;
-/*--------------------------------------------------------------------------------------*/
-extern void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD); /* DRAWINGS */
-extern void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD); /* DRAWINGS */
-void DrawAxesBackground( void ) ;
-int labels2D_draw( sciPointObj * psubwin ) ;
-void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG) ;
-void axis_draw2(char strflag[]) ;
-void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
-              char *str[], int subtics, char *format, int fontsize, int textcolor, 
-              int fontstyle, int ticscolor, char logflag, int seg_flag, int axisbuild_flag) ;
-/**
- * Trace un triedre : Indices[4] donne les indices des points qui 
- * constituent le triedre dans les tableaux xbox et ybox
- */
-void DrawAxis(double xbox[8], double ybox[8], integer Indices[4], integer style) ;
-
-/**
- * @author F.Leray 18.10.04
- */
-int Axes3dStrings2( integer * ixbox, integer * iybox, integer * xind ) ;
-
-/*--------------------------------------------------------------------------------------*/
-
 #endif /*__SCI_AXES_H_*/

@@ -12,7 +12,6 @@
 #include "returnProperty.h"
 #include "sciprint.h"
 #include "InitObjects.h"
-#include "Xcall1.h"
 
 /*------------------------------------------------------------------------*/
 int get_figure_size_property( sciPointObj * pobj )

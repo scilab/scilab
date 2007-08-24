@@ -17,14 +17,12 @@
 #include "BuildObjects.h"
 #include "Interaction.h"
 #include "DrawObjects.h"
-#include "Xcall1.h"
 #include "Plo2dEch.h"
 #include "PloEch.h"
 #include "Vertices.h"
 #include "GraphicZoom.h"
 #include "axesScale.h"
 #include "sciprint.h"
-#include "periScreen.h"
 #include "Format.h"
 #include "scirun.h"
 #include "CurrentObjectsManagement.h"
@@ -43,7 +41,6 @@ extern int StoreCommand( char *command);
 
 static void scale_copy __PARAMS((WCScaleList *s1, WCScaleList *s2));
 static integer curwin __PARAMS((void));
-static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin);
 static void set_scale_win __PARAMS((ScaleList **listptr, integer i, WCScaleList *s));
 static WCScaleList *new_wcscale __PARAMS(( WCScaleList *val));
 static WCScaleList *check_subwin_wcscale __PARAMS((WCScaleList *listptr, double *));
@@ -375,9 +372,7 @@ static void scale_copy( WCScaleList * s1, WCScaleList * s2 )
 
 static integer curwin( void )
 {
-  integer verbose=0,narg,winnum;
-  C2F(dr)("xget","window",&verbose,&winnum,&narg ,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  return(winnum);
+  return sciGetNum(sciGetCurrentFigure());
 }
 
 /*-------------------------------------------
@@ -491,7 +486,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
     
       if (( masousfen = sciIsExistingSubWin (WRect)) != (sciPointObj *)NULL)
         sciSetSelectedSubWin(masousfen);
-      else if ((masousfen = ConstructSubWin (sciGetCurrentFigure(), 0)) != NULL)
+      else if ((masousfen = ConstructSubWin (sciGetCurrentFigure())) != NULL)
       {
         /* F.Leray Adding here 26.03.04*/
         sciSetCurrentObj(masousfen);
@@ -648,16 +643,16 @@ void set_scale( char    flag[6]        ,
      /* [xlogflag,ylogflag,zlogflag (NOT USED HERE)] */
      /* [mfact_xl, mfact_xr,mfact_yu,mfact_yd]; */
 {
-  char c;
   char wdim_changed= 'f',subwin_changed='f';
   char frame_values_changed='f',aaint_changed='f';
   char logflag_changed='f';
   char axis_changed = 'f';
-  integer  verbose=0,narg,wdim[2];
+  integer wdim[2];
   int i;
   if ( flag[0] == 't'  ) 
     {
-      C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      wdim[0] = sciGetWindowWidth(sciGetCurrentFigure());
+      wdim[1] = sciGetWindowHeight(sciGetCurrentFigure());
       if ( Cscale.wdim[0] != wdim[0] || Cscale.wdim[1] != wdim[1]) 
 	{ 
 	  Cscale.wdim[0] = wdim[0]; Cscale.wdim[1] = wdim[1]; 
@@ -777,11 +772,8 @@ void set_scale( char    flag[6]        ,
       Cscale.ytics[3] = Cscale.Waaint1[3];
     }
  
-  /** Cscale changes are copied int current window scale */
-  if ( (c=GetDriver()) == 'X' ||  c == 'R' || c == 'I' || c == 'G' || c == 'W' )
-    {
-      set_window_scale(curwin(),&Cscale);
-    }  
+    set_window_scale(curwin(),&Cscale);
+
 }
 
 /*--------------------------------------------------------------------
@@ -790,8 +782,8 @@ void set_scale( char    flag[6]        ,
 
 void get_cwindow_dims(int wdims[2])
 {
-  int verbose=0,narg;
-  C2F(dr)("xget","wdim",&verbose,wdims,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  wdims[0] = sciGetWindowWidth(sciGetCurrentFigure());
+  wdims[1] = sciGetWindowHeight(sciGetCurrentFigure());
 }
 
 /* for x only */
@@ -1054,96 +1046,15 @@ extern int EchCheckSCPlots();
 
 int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel)
 {
-  /* Using the mouse to get the new rectangle to fix boundaries */
-  integer th,th1=1;
-  integer pixmode,alumode,color,style[10],fg,verbose=0,narg;
-  integer ibutton,in,iwait=0,istr=0;
-  integer modes[2];
-  double x0,yy0,x,y,xl,yl;
-  int pixel_x, pixel_y;
-  int pixel_x0, pixel_y0;
-  /*   int i; */
+  x_pixel[0] = 0;
+  x_pixel[1] = 0;
+  y_pixel[0] = 0;
+  y_pixel[1] = 0;
+  bbox[0] = 0.0;
+  bbox[1] = 0.0;
+  bbox[2] = 0.0;
+  bbox[3] = 0.0;
 
-  modes[0]=1;modes[1]=0; /* for xgemouse only get mouse mouvement*/
-
-  C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","thickness",&verbose,&th,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","color",&verbose,&color,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","line style",&verbose,style,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-#ifdef _MSC_VER
-  SetWinhdc();
-  SciMouseCapture();
-#endif 
-  C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  C2F(dr)("xset","thickness",&th1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","line style",(in=1,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
- 
-  /** XXXXXX : a regler pour Win32 in = 6 **/
-  C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  /*  C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L); */
-  xclick_2("xclick","one",&ibutton,&iwait,&istr,&x_pixel[0],&y_pixel[0],PI0,&x0,&yy0,PD0,PD0,0L,0L);
-
-  
-  if(ibutton == -100){
-    sciprint("Error: window closed while zooming\t\n");
-    return 1; /* error catch : no need to go further F.Leray 07.09.05 */
-  }
-  
-  x=x0;y=yy0;
-
-  pixel_x = pixel_x0 = x_pixel[0];
-  pixel_y = pixel_y0 = y_pixel[0];
-
-  ibutton=-1;
-  while ( ibutton == -1 ) 
-    {
-      /* dessin d'un rectangle */
-      /* following line commented to solve bug 1314 */
-      /*       C2F (dr) ("xset", "color",&noir,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0, PD0,0L,0L); */
-      zoom_rect2(pixel_x0,pixel_y0,pixel_x,pixel_y);
-      if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      xgetmouse2("xgetmouse","one",&ibutton,&iwait,&x_pixel[1],&y_pixel[1],modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
-      
-      if (ibutton==-100) return 1; /* the window has been closed */  /* error catch : no need to go further F.Leray 07.09.05 */
-      /* effacement du rectangle */
-      zoom_rect2(pixel_x0,pixel_y0,pixel_x,pixel_y);
-      if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      x=xl;y=yl;
-      
-      pixel_x = x_pixel[1];
-      pixel_y = y_pixel[1];
-    }   
-#ifndef _MSC_VER
-  /** XXXX */
-  C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#endif
-  /* Back to the default driver which must be Rec and redraw the recorded
-   * graphics with the new scales
-   */
-  /* F.Leray With the new graphic standard, driver has not to be Rec*/
-
-
-  /*   printf("JE SORS et...\n"); */
- 
-  bbox[0]=Min(x0,x);
-  bbox[1]=Min(yy0,y);
-  bbox[2]=Max(x0,x);
-  bbox[3]=Max(yy0,y);
-
-
-  C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","thickness",&th,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","line style",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","color",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-#ifdef _MSC_VER
-  ReleaseWinHdc();
-  SciMouseRelease();
-#endif
   return 0;
 }
 
@@ -1369,18 +1280,14 @@ int zoom()
 
 extern void unzoom()
 {
-  integer ww,verbose=0,narg;
   /** 17/09/2002 ***/
   double fmin,fmax,lmin,lmax;
   integer min,max,puiss,deux=2,dix=10;
   sciPointObj *psousfen;
   sciSons *psonstmp;
 
-
-  C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /***** 02/10/2002 ****/
-  psonstmp = sciGetSons (sciGetCurrentFigure());
+  psonstmp = sciGetSons(sciGetCurrentFigure());
   while (psonstmp != (sciSons *) NULL)
   {
     if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
@@ -1712,81 +1619,6 @@ double Zoom3d_YPi2R(int y)
   
   sciprint("Error in Zoom3d_YScale\n");
   return -9000;
-}
-
-
-
-
-
-
-
-/**
-   Win32, warning when using xor mode
-   colors are changed and black is turned to white
-   so we must use an other pattern than the black one
-   inside dbox
-**/
-
-static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin)
-{
-  int closeflag=0;
-  int cinq=5;
-  
-  int xm[5], ym[5];
-  
-  #ifdef _MSC_VER
-    integer verbose=0,pat,pat1=3,narg;
-  #endif
-
-  if(xpix_ini < xpix_fin){
-    xm[0] = xpix_ini;
-    xm[1] = xpix_ini;
-    xm[4] = xpix_ini;
-
-    xm[2] = xpix_fin;
-    xm[3] = xpix_fin;
-  }
-  else{
-    xm[0] = xpix_fin;
-    xm[1] = xpix_fin;
-    xm[4] = xpix_fin;
-
-    xm[2] = xpix_ini;
-    xm[3] = xpix_ini;
-  }
-
-  if(ypix_ini < ypix_fin){
-    ym[0] = ypix_ini;
-    ym[3] = ypix_ini;
-    ym[4] = ypix_ini;
-
-    ym[1] = ypix_fin;
-    ym[2] = ypix_fin;
-  }
-  else{
-    ym[0] = ypix_fin;
-    ym[3] = ypix_fin;
-    ym[4] = ypix_fin;
-    
-    ym[1] = ypix_ini;
-    ym[2] = ypix_ini;
-  }
-  
-#ifdef _MSC_VER
-  C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#endif
-
-  /*   C2F(dr1)("xrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&xi,&yi,&w,&h,0L,0L); */
-
-
-  C2F (dr) ("xlines", "xv", &cinq, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-
-
-
-#ifdef _MSC_VER
-  C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#endif
 }
 
 void scizoom( double bbox[4], sciPointObj * pobj )

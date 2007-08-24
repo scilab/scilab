@@ -9,7 +9,6 @@
 
 #include "sci_xset.h"
 #include "stack-c.h"
-#include "Xcall1.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "ObjectStructure.h"
@@ -19,15 +18,19 @@
 #include "DrawObjects.h"
 #include "InitObjects.h"
 #include "XsetXgetParameters.h"
-#include "periScreen.h"
 #include "CurrentObjectsManagement.h"
 #include "sciprint.h"
+#include "Format.h"
+#include "ObjectSelection.h"
+
+/*-----------------------------------------------------------------------------------*/
+int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1) ;
 /*-----------------------------------------------------------------------------------*/
 int sci_xset( char *fname, unsigned long fname_len )
 {
-  integer m1,n1,l1,m2,n2,l2, xm[5],xn[5],x[5], i, v, isdc;
-  integer lr, mark[2], font[2], verb=0;
-  double  xx[5],dv ;
+  integer m1,n1,l1,m2,n2,l2, xm[5],xn[5],x[5], i, v;
+  integer lr, fontSize;
+  double  xx[5];
   sciPointObj *subwin = NULL; 
   BOOL keyFound = FALSE ;
 
@@ -83,16 +86,6 @@ int sci_xset( char *fname, unsigned long fname_len )
     GetRhsVar(i,MATRIX_OF_DOUBLE_DATATYPE,&xm[i-2],&xn[i-2],&lr);
     x[i - 2] = (integer) *stk(lr); xx[i - 2] = *stk(lr);
   }
-  /* initialisation of a window if argument is not xset('window') 
-  * with special cases if xset('colormap') or xset('default') 
-  * and window does not exists we want to get into set_default_colormap 
-  * only once 
-  */
-  isdc = 0;
-  if (strcmp(cstk(l1),"colormap") == 0 || strcmp(cstk(l1),"default") == 0) { C2F(sedeco)(&isdc); }
-  if (strcmp(cstk(l1),"window") != 0) { SciWin(); }
-  isdc = 1;
-  if (strcmp(cstk(l1),"colormap") == 0 || strcmp(cstk(l1),"default") == 0) C2F(sedeco)(&isdc);
   if (strcmp(cstk(l1),"wdim") == 0 || strcmp(cstk(l1),"wpdim") == 0) {
     /* Xwindows limits dimensions to 2^16 */
     if ( (x[0]>65535)||(x[1]>65535)) {
@@ -103,23 +96,22 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
   }
 
-  if (strcmp(cstk(l1),"clipping") == 0) 
-    C2F(dr1)("xset",cstk(l1),&v,&v,&v,&v,&v,&v,&xx[0],&xx[1],&xx[2],&xx[3],5L,bsiz);
+  if (strcmp(cstk(l1),"clipping") == 0)
+  {
+    sciSetClipping(sciGetCurrentObj(),xx);
+  }
   else if ( strcmp(cstk(l1),"colormap") == 0)
   {
     sciSetColormap (sciGetCurrentFigure(), stk(lr), *xm, *xn);
     sciRedrawFigure();
   }
-  else if ( strcmp(cstk(l1),"mark size") == 0) {
-    C2F(dr1)("xget","mark",&verb,mark,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+  else if ( strcmp(cstk(l1),"mark size") == 0)
+  {
 
     subwin = sciGetCurrentSubWin() ;
     sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
-
-
-    mark[1]=(int)xx[0];
     subwin = sciGetCurrentSubWin();
-    sciSetMarkSize(subwin,mark[1]);
+    sciSetMarkSize(subwin,(int)xx[0]);
     
   }
   else if ( strcmp(cstk(l1),"mark") == 0)
@@ -131,10 +123,9 @@ int sci_xset( char *fname, unsigned long fname_len )
     
   }
   else if ( strcmp(cstk(l1),"font size") == 0) {
-    verb=0;
-    C2F(dr1)("xget","font",&verb,font,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
-    font[1]=(int)xx[0];
-    C2F(dr1)("xset","font",&(font[0]),&(font[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
+    fontSize = (int)xx[0];
+    sciSetFontWidth(sciGetCurrentSubWin(), fontSize);
+    sciSetFontWidth(sciGetParent(subwin), fontSize);
   } 
   /* NG beg */
   else if ( strcmp(cstk(l1),"old_style") == 0)
@@ -172,11 +163,13 @@ int sci_xset( char *fname, unsigned long fname_len )
     sciPointObj * psubwin = sciGetCurrentSubWin();
     pSUBWIN_FEATURE(psubwin)->hiddencolor = x[0];
   }
-  else 
-    C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
+  else
+  {
+    sciprint("Unhandled property.\n");
+  }
   /* NG beg */
   if ( strcmp(cstk(l1),"window") == 0 )
-    if (sciSwitchWindow(&x[0]) != 0){
+    if (sciSwitchWindow(x[0]) != 0){
       Scierror(999,"%s: It was not possible to create the requested figure",fname);
     }
 
@@ -212,9 +205,8 @@ int sci_xset( char *fname, unsigned long fname_len )
         sciSetColormap(sciGetParent(subwin), stk(lr),xm[0], xn[0]);
       }
       else if ( strcmp(cstk(l1),"font size") == 0) {
-        int fontsize_ = 100*font[1];
-        sciSetFontDeciWidth(subwin, fontsize_); 
-        sciSetFontDeciWidth(sciGetParent(subwin), fontsize_);
+        sciSetFontWidth(subwin, fontSize); 
+        sciSetFontWidth(sciGetParent(subwin), fontSize);
       }     
       else if ( strcmp(cstk(l1),"dashes") == 0) {
         sciSetLineStyle(subwin, x[0]); 
@@ -290,5 +282,33 @@ int sci_xset( char *fname, unsigned long fname_len )
     /* NG end */    
     LhsVar(1)=0;
     return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
+{
+  if ( strcmp(str,"fpf") == 0) 
+  {
+    strncpy(getFPF(),str1,32);
+  }
+  else if ( strcmp(str,"auto clear")==0) 
+  {
+    sciPointObj * subwin = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
+    if (strcmp(str1,"on")==0 )
+    {
+      sciSetAddPlot( subwin,FALSE);
+    }
+    else{
+      sciSetAddPlot( subwin,TRUE);
+    }
+  }
+  else if ( strcmp(str,"default")==0)
+  {
+    getFPF()[0]='\0';
+  }
+  else 
+  {
+    sciprint("xset(arg,<string>): Unrecognized arg: %s\r\n",str);
+  }
+  return 0;
 }
 /*-----------------------------------------------------------------------------------*/

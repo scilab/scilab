@@ -6,10 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawablePolyline.h"
-extern "C"
-{
-#include "drawPolylineEntity.h"
-}
 
 namespace sciGraphics
 {

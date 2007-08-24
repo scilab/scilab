@@ -9,16 +9,15 @@
 
 #include "xs2file.h"
 #include "stack-c.h"
-#include "Xcall1.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "periScreen.h"
 #include "graphicSession.h"
 #include "DrawObjects.h"
 #include "ColorMapManagement.h"
 #include "MALLOC.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
+#include "getcolordef.h"
 
 /*-----------------------------------------------------------------------------------*/
 int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_len )
@@ -47,9 +46,7 @@ int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_
 /*-----------------------------------------------------------------------------------*/
 int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
 {
-  char name[4];
   integer ierr;
-  integer verb=0,cur,na ;
   int save_xinitxend_flag = isGraphicSessionOpened();
   sciPointObj * curFig = sciGetCurrentFigure ();
   integer bg ;
@@ -58,37 +55,21 @@ int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
   int colorMapSize = sciGetNumColors( curFig ) ;
 
   ierr = 0;
-  GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);  
-  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
+
 
   if( curFig == (sciPointObj *) NULL )
   {
     Scierror(999,"No current graphic window %d found for exporting to %s\r\n",win_num,driver);
-    C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    /* to force a reset in the graphic scales for the graphic window number cur */
-    if(GetDriverId() == 1) { SwitchWindow(&cur); }
     return ierr;
   }
 
-  C2F(dr)("xget","background",&verb,&bg,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,11L);
   /* Rajout F.Leray 06.04.04 */
   bg = sciGetBackground(curFig);
-  C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  /* xinit from screen (for the colormap definition) */
-  C2F(dr)("xinit2",bufname,&win_num,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
   if (ierr != 0)
   {
-    C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    /* to force a reset in the graphic scales */
-    SwitchWindow(&cur);
     return ierr ;
   }
-
-  sciSetCurrentFigure(curFig);
 
   if ( colored == 0 )
   {
@@ -102,12 +83,10 @@ int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
     bwColorMap = NULL ;
   }
 
-  C2F(dr)("xset","background",&bg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
   closeGraphicSession() ; /* we force to draw */
   sciDrawObj(curFig);
 
 
-  C2F(dr)("xend","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( save_xinitxend_flag )
   {
     openGraphicSession() ;
@@ -116,7 +95,6 @@ int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
   {
     closeGraphicSession() ;
   }
-  C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
   if ( colored == 0 )
   {
@@ -124,11 +102,7 @@ int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
     FREE( curColorMap ) ;
     curColorMap = NULL ;
   }
-  
 
-  C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  /* to force a reset in the graphic scales */
-  SwitchWindow(&cur);
   return ierr;
 }
 /*-----------------------------------------------------------------------------------*/

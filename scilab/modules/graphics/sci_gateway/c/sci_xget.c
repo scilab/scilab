@@ -9,13 +9,17 @@
 #include "stack-c.h"
 #include "sci_demo.h"
 #include "XsetXgetParameters.h"
-#include "Xcall1.h"
 #include "GetProperty.h"
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
+#include "Format.h"
+#include "sciprint.h"
+#include "ObjectSelection.h"
 
+/*-----------------------------------------------------------------------------------*/
+int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1);
 /*-----------------------------------------------------------------------------------*/
 int sci_xget(char *fname,unsigned long fname_len)
 {
@@ -24,7 +28,6 @@ int sci_xget(char *fname,unsigned long fname_len)
   int one = 1 ;
   BOOL keyFound = FALSE ;
 
-  SciWin();
   if ( Rhs <= 0 )
   {
     int zero = 0 ;
@@ -157,7 +160,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else
     {
-      C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
+      sciprint("Unhandled propery.\n");
     }
     if (x2 > 0) {
       CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
@@ -168,6 +171,32 @@ int sci_xget(char *fname,unsigned long fname_len)
       CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&x2,&x2,&l3);
     }
     LhsVar(1)=Rhs+1;
+  }
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
+{
+  if ( strcmp(str,"fpf") == 0) 
+  {
+    strncpy(str1,getFPF(),32);
+    *len= (integer)strlen(str1);
+  }
+  else if ( strcmp(str,"auto clear")==0) 
+  {
+    int autoclear;
+    sciPointObj * subwin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
+    autoclear = !(sciGetAddPlot(subwin));
+    if (autoclear == 1) 
+    {
+      strncpy(str1,"on",2);
+      *len=2;
+    }
+    else 
+    {
+      strncpy(str1,"off",3);
+      *len=3;
+    }
   }
   return 0;
 }

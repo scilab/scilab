@@ -1,5 +1,4 @@
 #include "javasci_Scilab.h"
-#include "../../../modules/graphics/includes/periScreen.h"
 #include "../../../modules/graphics/includes/WindowList.h"
 /********************************************************************************************************/
 /* Allan CORNET */
@@ -26,11 +25,11 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_Events(JNIEnv *env , jobject obj_this
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject obj_this)
 /********************************************************************************************************/
 {
-	integer iflag =0,ids,num;
-	jboolean bOK=0;
+	
+	jboolean bOK=JNI_FALSE;
 
-    sciGetIdFigure (&ids,&num,&iflag);
-    if (num > 0) { bOK=1; }
+    
+    if (sciHasFigures()) { bOK=JNI_TRUE; }
 
 	return bOK;
 }

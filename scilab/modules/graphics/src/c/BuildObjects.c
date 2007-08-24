@@ -28,17 +28,16 @@
 #include "GetProperty.h"
 #include "InitObjects.h"
 #include "DestroyObjects.h"
-#include "bcg.h"
 #include "BuildObjects.h"
 #include "SetProperty.h"
 #include "CloneObjects.h"
 #include "StringMatrix.h"
-#include "Xcall1.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
+#include "WindowList.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -96,30 +95,13 @@ ConstructStatusBar (sciPointObj * pparentfigure)
       return (sciPointObj *) NULL;
     }
 }
-
-
-/*-----------------------------------------------------------------------------*/
-/**
- * Create a new graphic window if any is selected.
- */
-int C2F(sciwin)( void )
-{
-  integer verb = 0 ;
-  integer win  = 0 ;
-  integer v    = 1 ;
-  integer na       ;
-  double  dv       ;
-  C2F(dr)("xget","window",&verb,&win,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
-  C2F(dr)("xset","window",&win,&v,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
-  return sciSwitchWindow(&win); 
-} 
 /*-----------------------------------------------------------------------------*/
 
 /**ConstructFigure
  * This function creates the parents window (manager) and the elementaries structures
  */
 /************ 18/01/2002 ***********/
-sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC ) 
+sciPointObj * ConstructFigure(sciPointObj * pparent) 
 {
  
   sciPointObj *pobj = (sciPointObj *) NULL;
@@ -145,15 +127,10 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   
   ppFigure = pFIGURE_FEATURE(pobj) ;
 
-  sciInitIsReadyForRendering(pobj, FALSE) ;
-
   if ( sciStandardBuildOperations( pobj, pparent ) == NULL )
   {
     return NULL ;
   }
-
-  ppFigure->pScilabXgc = XGC;
-  XGC->mafigure = pobj ;
 
   /* initialisation de context et mode graphique par defaut (figure model)*/
   if (sciInitGraphicContext (pobj) == -1)
@@ -179,23 +156,10 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
-  sciInitNum (pobj, &(XGC->CurWindow));		   
+  sciInitNum(pobj, getUnusedFigureIndex());
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciInitResize((sciPointObj *) pobj,sciGetResize(pobj));
-  /*ppFigure->windowdimwidth=ppModel->windowdimwidth;  
-  ppFigure->windowdimheight=ppModel->windowdimheight;
-  C2F(dr)("xset","wdim",&(ppFigure->windowdimwidth),
-	  &(ppFigure->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-  ppFigure->figuredimwidth = ppModel->figuredimwidth;
-  ppFigure->figuredimheight = ppModel->figuredimheight;
-  C2F(dr)("xset","wpdim",&(ppFigure->figuredimwidth),
-	  &(ppFigure->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-  
-  /*C2F(dr)("xget","wpos",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
-  x[0]=(ppModel->inrootposx <0)?x[0]:ppModel->inrootposx;
-  x[1]=(ppModel->inrootposy <0)?x[1]:ppModel->inrootposy;
-  x[0]=(ppModel->inrootposx <0)?x[0]:ppModel->inrootposx;
-  x[1]=(ppModel->inrootposy <0)?x[1]:ppModel->inrootposy;*/
+
   ppFigure->isiconified = ppModel->isiconified;
   ppFigure->isselected = ppModel->isselected; 
   ppFigure->rotstyle = ppModel->rotstyle;
@@ -217,15 +181,6 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   ppFigure->pcolormap = NULL ;
   sciInitNumColors(pobj, 0) ;
 
-  /*sciSetColormap( pobj, ppModel->pcolormap, sciGetNumColors(pfiguremdl), 3 ) ;*/
-  colorMap = MALLOC( sciGetNumColors(pfiguremdl) * 3 * sizeof(double) ) ;
-  if ( colorMap == NULL )
-  {
-    Scierror(999, "Unable to allocate colormap, memory full.\n") ;
-    DestroyFigure(pobj) ;
-    return NULL;
-  }
-
   sciInitDimension(pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl)) ;
   sciInitWindowDim(pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
@@ -234,12 +189,13 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   ppFigure->infoMessage = NULL ; /* needed otherwise it will be realloc */
   sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
 
-  sciGetColormap(pfiguremdl, colorMap) ;
-  sciSetColormap( pobj, colorMap, sciGetNumColors(pfiguremdl), 3 ) ;
+  /* Colormap */
+  sciSetDefaultColorMap(pobj);
 
   FREE(colorMap);
 
-  sciInitIsReadyForRendering(pobj, TRUE) ;
+  /* Add the figure in the list of created figures */
+  addNewFigureToList(pobj);
 
   return pobj;
 }
@@ -254,7 +210,7 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
  * This function creates the Subwindow (the Axe) and the elementaries structures
  */
 sciPointObj *
-ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
+ConstructSubWin(sciPointObj * pparentfigure)
 {
 
   char dir;
@@ -2411,12 +2367,6 @@ ConstructCompoundSeq (int number)
   /* disconnect chain s2->s3->...->sn+1 out of subwin children list */
   ppsubwin->relationship.psons->pnext = lastsons->pnext;
   ppsubwin->relationship.psons->pprev = NULL;
-  /* attach the Compound to the current subwin */
-  /* the subwin children list is now null->A->sn+1->...->null */
-  /* if (!(sciAddThisToItsParent (pobj, (sciPointObj *)psubwin))) { */
-/*     FREE(pobj->pfeatures);FREE(pobj); */
-/*     return (sciPointObj *) NULL; */
-/*   } */
   sciInitSelectedSons(pobj);
   /* the subwin children list is now null->A->sn+1->...->null */
 
@@ -2878,7 +2828,6 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
   
 
   pObj->pDrawer = NULL ;
-  //createDrawer(pObj) ;
 
   return pObj ;
 

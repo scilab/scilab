@@ -6,10 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableGrayplot.h"
-extern "C"
-{
-#include "drawGrayplotEntity.h"
-}
+
 
 namespace sciGraphics
 {
@@ -17,7 +14,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableGrayplot::draw( void )
 {
-  //drawGrayplotEntity( m_pDrawed ) ;
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableGrayplot::show( void )

@@ -18,7 +18,6 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
   int x_pixel=0,y_pixel=0;
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
-  SciWin() ;
   if (Rhs <= 0) 
   {
     zoom();

@@ -7,161 +7,97 @@
 /*------------------------------------------------------------------------*/
 
 #include "WindowList.h"
-#include "MALLOC.h"
-#include "Scierror.h"
-#include "core_math.h"
+#include "GetProperty.h"
 
 /**
  * list of all graphic windows
  */
-static WindowList * The_List = NULL ;
+static FigureList * sciFigureList = DoublyLinkedList_new() ;
+
+/**
+ * Return true if the window has Id winNum
+ * @param[in] figure actually a (sciPointObj *)
+ * @param[in] figNum actually an int *.
+ */
+static BOOL figureHasId(void * figure, void * figNum);
 
 /*---------------------------------------------------------------------------------*/
-BOOL isWindowListEmpty( void )
+BOOL sciHasFigures( void )
 {
-  return The_List == NULL ;
+  return sciFigureList != NULL;
 }
 /*---------------------------------------------------------------------------------*/
-WindowList * getScilabWindowList( void )
+FigureList * getScilabFigureList( void )
 {
-  return The_List ;
+  return sciFigureList;
 }
 /*---------------------------------------------------------------------------------*/
-struct BCG * getFirstWindow( void )
+sciPointObj * getFirstFigure( void )
 {
-  return &(The_List->winxgc) ;
+  return (sciPointObj *) List_data(sciFigureList);
 }
 /*---------------------------------------------------------------------------------*/
-struct BCG * addWindowItem( void )
+void addNewFigureToList( sciPointObj * figure )
 {
-  WindowList * newItem = MALLOC( sizeof( WindowList ) ) ;
-
-  if ( newItem == NULL )
-  {
-    Scierror(999,"No more memory for allocating new window\n." ) ;
-    return NULL ;
-  }
-
-  newItem->next = NULL ;
-
-  if ( The_List == NULL )
-  {
-    The_List = newItem ;
-  }
-  else
-  {
-    WindowList * lastItem = getLastWindowItem() ;
-    lastItem->next = newItem ;
-  }
-  return &(newItem->winxgc) ;
+  sciFigureList = List_push(sciFigureList, figure);
 }
 /*---------------------------------------------------------------------------------*/
-int removeWindowItem( struct BCG * window )
+void removeFigureFromList( sciPointObj * figure )
 {
-  WindowList * removedItem  = NULL ;
-  WindowList * previousItem = NULL ;
-  
-  findWindowItem( window, &removedItem, &previousItem ) ;
-
-  if ( removedItem == NULL )
-  {
-    return -1 ;
-  }
-
-  if ( previousItem == NULL )
-  {
-    /* removedItem is the first in the list */
-    The_List = removedItem->next ;
-  }
-  else
-  {
-    previousItem->next = removedItem->next ;
-  }
-
-  FREE( removedItem ) ;
-  return 0 ;
-  
-
+  sciFigureList = List_free_item(sciFigureList, figure);
 }
 /*---------------------------------------------------------------------------------*/
-struct BCG * getWindowXgcNumber( integer i )
+static BOOL figureHasId(void * figure, void * figNum)
 {
-  WindowList * curItem = The_List ;
-  while( curItem != NULL )
-  {
-    if ( curItem->winxgc.CurWindow == i )
-    {
-      return &(curItem->winxgc) ;
-    }
-    curItem = curItem->next ;
-  }
-  return NULL ;
+  return sciGetNum((sciPointObj *) figure) == *((int *) figNum);
 }
 /*---------------------------------------------------------------------------------*/
-void getWins( integer * Num, integer * Ids, integer * flag )
+sciPointObj * getFigureFromIndex(int figNum)
 {
-  WindowList * listptr = The_List ;
-  *Num = 0 ;
-  if ( *flag == 0 )
+  return (sciPointObj *) List_data(List_find_full(sciFigureList, &figNum, figureHasId)) ;
+}
+/*---------------------------------------------------------------------------------*/
+BOOL sciIsExistingFigure(int figNum)
+{
+  return (getFigureFromIndex(figNum) != NULL);
+}
+/*---------------------------------------------------------------------------------*/
+int sciGetNbFigure(void)
+{
+  return List_nb_item(sciFigureList);
+}
+/*---------------------------------------------------------------------------------*/
+void sciGetFiguresId(int ids[])
+{
+  FigureList * iterator = sciFigureList;
+  int i = 0;
+
+  while( !List_is_end(sciFigureList,iterator) )
   {
-    while ( listptr != NULL ) 
-    {
-      (*Num)++;
-      listptr = listptr->next ;
-    }
-  }
-  else 
-  {
-    while ( listptr != NULL ) 
-    {
-      Ids[*Num] = listptr->winxgc.CurWindow;
-      (*Num)++;
-      listptr = listptr->next;
-    }
+    ids[i] = sciGetNum((sciPointObj *) List_data(iterator));
+    i++;
+    iterator = List_next(sciFigureList, iterator);
   }
 }
 /*---------------------------------------------------------------------------------*/
-int getWinsMaxId( void )
+int sciGetFiguresMaxId( void )
 {
-  WindowList *listptr = The_List;
-  int Num = -1;
-  while ( listptr != NULL ) 
+  FigureList * iterator = sciFigureList;
+  int res = -1;
+  int i = 0;
+
+  while( !List_is_end(sciFigureList,iterator) )
   {
-    Num = Max( listptr->winxgc.CurWindow, Num ) ;
-    listptr = listptr->next;
+    int curIndex = sciGetNum((sciPointObj *) List_data(iterator));
+    if (curIndex > res) { res = curIndex; }
+    i++;
+    iterator = List_next(sciFigureList, iterator);
   }
-  return(Num);
+  return res;
 }
 /*---------------------------------------------------------------------------------*/
-WindowList * getLastWindowItem( void )
+int getUnusedFigureIndex(void)
 {
-  WindowList * curItem = The_List ;
-  while ( curItem != NULL && curItem->next != NULL )
-  {
-    curItem = curItem->next ;
-  }
-  return curItem ;
-}
-/*---------------------------------------------------------------------------------*/
-void findWindowItem( struct BCG * window, WindowList ** item, WindowList ** previous )
-{
-  *item     = The_List ;
-  *previous = NULL     ;
-  
-  if ( *item == NULL ) { return ; }
-
-  while( *item != NULL )
-  {
-    if( &((*item)->winxgc) == window )
-    {
-      /* found!!! */
-      return ;
-    }
-    *previous = *item ;
-    *item = (*item)->next ;
-  }
-
-  *previous = NULL ;
-
+  return sciGetFiguresMaxId() + 1;
 }
 /*---------------------------------------------------------------------------------*/

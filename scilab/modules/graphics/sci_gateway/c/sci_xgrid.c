@@ -26,7 +26,6 @@ int sci_xgrid(char *fname,unsigned long fname_len)
     CheckScalar(1,m1,n1);
     style = (integer) *stk(l1);
   }
-  SciWin();
   LhsVar(1)=0;
   status = sciSetGridStyle( sciGetCurrentSubWin(), style, style, style ) ;
   if ( status == 0 )

@@ -47,7 +47,6 @@ int sci_xstring( char *fname, unsigned long fname_len )
     flagx = (integer) *stk(l5);
   }
 
-  SciWin();
   wc = 0.;/* to keep the size of the largest line */
 
 

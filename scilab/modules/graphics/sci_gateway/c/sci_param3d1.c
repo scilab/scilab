@@ -104,7 +104,6 @@ int sci_param3d1( char *fname, unsigned long fname_len )
   GetOptionalDoubleArg(fname,8,"ebox",&ebox,6,opts);
 
   if (m1 == 1 && n1 > 1) { m1 = n1;    n1 = 1; }
-  SciWin();
   SciGerase() ;
   /* NG beg */
   isfac=-1;

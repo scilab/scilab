@@ -9,82 +9,77 @@
 #ifndef _WINDOW_LIST_
 #define _WINDOW_LIST_
 
-#include "bcg.h"
 #include "machine.h"
+#include "ObjectStructure.h"
+#include "DoublyLinkedList.h"
 
 /**
- * definition of the list of windows
+ * List of all scilab figure
  */
-typedef struct WindowList
-{
-  struct BCG winxgc ;
-  struct WindowList * next ;
-} WindowList  ;
+typedef DoublyLinkedList FigureList;
 
 /**
  * to know if there are some opened graphic windows
  */
-BOOL isWindowListEmpty( void ) ;
+BOOL sciHasFigures( void ) ;
 
 /**
  * retrieve the scilab window list (The_List).
  */
-WindowList * getScilabWindowList( void ) ;
+FigureList * getScilabFigureList( void ) ;
 
 /**
  * get the fist BCG in the list
  */
-struct BCG * getFirstWindow( void ) ;
+sciPointObj * getFirstFigure( void ) ;
 
 /**
  * create a new element at the end of the scilab
  * window List and return it's BCG.
  */
-struct BCG * addWindowItem( void ) ;
+void addNewFigureToList(sciPointObj * figure);
 
 /**
- * remove the window with a certain BCG from the list
+ * remove a figure from the list.
  * @return 0  if the item was removed successfully
  *         -1 if the item has not been find.
  */
-int removeWindowItem( struct BCG * window ) ;
+void removeFigureFromList(sciPointObj * figure);
 
 /**
  * returns the graphic context of window i
  * or NULL if this window does not exists
  */
-struct BCG * getWindowXgcNumber( integer i ) ;
+sciPointObj * getFigureFromIndex(int figNum) ;
 
 /**
- * get ids of scilab windows
- * in array Ids,
- * @param[out] Num gives the number of windows
- * @param[in] flag if 1 ==> get the Ids 
- *                 if 0 ==> just get the Number Num 
+ * @return TRUE if the figure with index id exists
  */
-void getWins( integer * Num, integer * Ids, integer * flag ) ;
+BOOL sciIsExistingFigure(int figNum);
+
+
 
 /**
- * get the highest Id of scilab windows
+ * @return number of opened windows in Scilab.
+ */
+int sciGetNbFigure(void);
+
+/**
+ * Fill the array Ids with all the figure ids currently used by Scilab.
+ * @param ids should be as long as there are figures.
+ */
+void sciGetFiguresId(int ids[]);
+
+/**
+ * get the highest Id of Scilab figures.
  * or -1 if no windows
  */
-int getWinsMaxId( void ) ;
-
-/*----------------------------------------------------------------------------------*/
-/* Private */
-/**
- * find the last item in the windowList
- */
-WindowList * getLastWindowItem( void ) ;
+int sciGetFiguresMaxId( void ) ;
 
 /**
- * find an item in the windowList and its previous.
- * @param[in] window the looked for BCG
- * @param[out] item a pointer on the item. If it has not been find NULL.
- * @param[out] previous a pointer on the previous item. If the item is the first
- *                      in the list or has not been find NULL.
+ * @return an unused index by graphic figures. Used when creating a new window.
  */
-void findWindowItem( struct BCG * window, WindowList ** item, WindowList ** previous ) ;
+int getUnusedFigureIndex(void);
 
-/*----------------------------------------------------------------------------------*/
+
 #endif /* _WINDOW_LIST */

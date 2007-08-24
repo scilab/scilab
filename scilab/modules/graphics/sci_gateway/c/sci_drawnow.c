@@ -23,7 +23,6 @@ int sci_drawnow(char *fname,unsigned long fname_len)
 
   startGraphicDataWriting();
 
-  SciWin(); 
   CheckRhs(0,0);
   CheckLhs(0,1); 
 

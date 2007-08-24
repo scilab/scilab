@@ -19,10 +19,8 @@
 #include <time.h>
 
 #include "GetProperty.h"
-#include "bcg.h"
 #include "BuildObjects.h"
 #include "SetProperty.h"
-#include "Xcall1.h"
 #include "WindowList.h"
 #include "sciprint.h"
 #include "PloEch.h"
@@ -34,7 +32,7 @@
 #include "BasicAlgos.h"
 
 #include "MALLOC.h" /* MALLOC */
-#include "SciViewportGet.h"
+/*#include "SciViewportGet.h"*/
 
 
 extern sciHandleTab *PENDOFHANDLETAB;
@@ -2530,53 +2528,6 @@ sciGetNumFigure (sciPointObj * pobj)
     }
   return -1;
 }
-
-/**sciGetScilabXgc
- * Returns the ScilabXgc of the root recursively...
- */
-struct BCG *
-sciGetScilabXgc (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return pFIGURE_FEATURE (pobj)->pScilabXgc;
-      break;
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:  
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_SUBWIN:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-      /* on recherche la root par recursivite 
-	 puisque scilabxgc n'est connu que par le parent */
-      return (struct BCG *) sciGetScilabXgc (sciGetParent (pobj));	
-      break;
-    default:
-      return (struct BCG *) NULL;
-      break;
-    }
-  return (struct BCG *) NULL;
-}
-
-
-
  
 /**sciGetGraphicMode
  * Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
@@ -3276,7 +3227,6 @@ int sciGetWidth (sciPointObj * pobj)
  */
 int sciGetHeight (sciPointObj * pobj)
 {
-  //struct BCG *Xgc;
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -3542,33 +3492,6 @@ sciIsExistingSubWin (WRect)
   return (sciPointObj *)NULL;
 }
 
-sciPointObj * sciIsExistingFigure( int *value )
-{
-  struct BCG *figGC = NULL;
-  integer v=0;
-  double dv=0.0; 
-
-  if(GetDriverId() == 0) /* driver Win32 or X11 F.Leray 26.08.04 */
-  {
-      figGC=getWindowXgcNumber(*value);
-  }
-  else
-  {
-    /* drivers GIF, Pos or Xfig are always the current one (only window number "value" at a given time) (for now) F.Leray 26.08.04 */
-    /* So let's get the current gc */
-    C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&figGC,&dv,&dv,&dv,5L,10L);
-  }
-
-  if ((figGC != (struct BCG *) NULL) && (figGC->mafigure != (sciPointObj *) NULL)) /* ajout F.Leray 22.07.04 */
-    return figGC->mafigure;
-  else
-    return  (sciPointObj *) NULL;    
-
-}
-
-
-
-
 /**sciGetScrollPosV
  * Returns the vertical scrollbar position
  * @param sciPointObj * pobj: the pointer to the entity
@@ -3644,8 +3567,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       tab[1] =  (double) sciGetSubwindowPosY (pthis);
       tab[2] = (double)sciGetWidth (pthis);
       tab[3] = (double)sciGetHeight (pthis);
-      tab[4] = (double)sciGetScilabXgc(pthis)->CWindowWidthView; 
-      tab[5] = (double)sciGetScilabXgc(pthis)->CWindowHeightView; 
+      tab[4] = (double)sciGetWindowWidth(sciGetParentFigure(pthis));
+      tab[5] = (double)sciGetWindowHeight(sciGetParentFigure(pthis)); 
       return (double*)tab;
       break;
     case SCI_POLYLINE:
@@ -4340,63 +4263,6 @@ int sciType (marker, pobj)
 }
 /*----------------------------------------------------------------------------------------*/
 /**
- * return the number of figures
- */
-int sciGetNbFigure( void )
-{
-  int nbFig = 0 ;
-  int flag  = 0 ;
-  sciGetIdFigure( NULL, &nbFig, &flag ) ;
-  return nbFig ;
-}
-/*----------------------------------------------------------------------------------------*/
-/**
- * Fill the array figIds withe the list of all opened figures
- * @param[out] figIds should be allocated before the call of the routine.
- *                    sciGetNbFigure might be used to retrieve the number of opened
- *                    figures.
- */
-void sciGetFiguresId( int figIds[] )
-{
-  int flag  = 1 ;
-  sciGetIdFigure( figIds, NULL, &flag ) ;
-}
-/*----------------------------------------------------------------------------------------*/
-/**
- * private, use sciGetNbFigure and sciGetFiguresId instead.
- */
-void
-sciGetIdFigure ( int * vect, int * id, int * flag )
-{
-  sciHandleTab *hdl;
-  sciPointObj  *pobj;
-  int nbFig = 0 ;
-  
-  hdl = PENDOFHANDLETAB;
-  while (hdl != NULL)
-    { 
-      sciFigure * ppfigure = NULL; 
-      pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
-      ppfigure = pFIGURE_FEATURE(pobj);
-      if (sciGetEntityType(pobj) == SCI_FIGURE)
-	{
-          if ( *flag != 0 )
-          {
-            vect[nbFig] = sciGetNum(pobj);
-          }
-	  nbFig++ ;
-	} 
-      hdl = hdl->pprev;
-    }
-    if ( id != NULL )
-    {
-      *id = nbFig ;
-    }
-
-}
-
-
-/**
  * Return the first surface found within the descendant of the object.
  * @param[in] psubwin Object from which the surface will be searched.
  * @return The first surface object if found, NULL otherwise.
@@ -5014,7 +4880,9 @@ void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize )
   case SCI_FIGURE:
     if ( !sciGetResize(pObj) )
     {
-      SciViewportGet( sciGetScilabXgc(pObj), xSize, ySize ) ;
+      /** TODO, update */
+      *xSize = 0 ;
+      *ySize = 0 ;
     }
     else
     {
@@ -5072,16 +4940,6 @@ void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
       sciGetJavaWindowPosition(pObj, pos) ;
       *posX = pos[0] ;
       *posY = pos[1] ;
-      /*int num = sciGetNum(pObj) ;
-      int cur = sciGetNum(sciGetCurrentFigure()) ;
-      int verbose = 0 ;
-      int na = 0 ;
-      int pos[2] ;  
-      sciSetUsedWindow( num ) ;
-      C2F(dr)("xget","wpos",&verbose,pos,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
-      sciSetUsedWindow( cur ) ;
-      *posX = pos[0] ;
-      *posY = pos[1] ;*/
     }
     break ;
   case SCI_CONSOLE:
@@ -5152,21 +5010,6 @@ double * sciGetMargins( sciPointObj * pObj )
     sciprint( "This object has no margins property.\n" ) ;
     return NULL ;
   }
-}
-/*-------------------------------------------------------------------------------------------*/
-/**
- * To know if an object can be rendered
- */
-BOOL sciGetIsReadyForRendering( sciPointObj * pobj )
-{
-  switch(sciGetEntityType(pobj))
-  {
-  case SCI_FIGURE:
-    return pFIGURE_FEATURE(pobj)->isReadyForRendering ;
-  default:
-    sciprint( "This object has no IsReadyForRendering property.\n" ) ;
-  }
-  return NULL ;
 }
 /*-------------------------------------------------------------------------------------------*/
 /**
@@ -5245,5 +5088,15 @@ void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
     *theta = 0.0;
     break;
   }
+}
+/*-------------------------------------------------------------------------------------------*/
+int sciGetWhiteColorIndex(sciPointObj * pObj)
+{
+  return sciGetNumColors(pObj) + 1;
+}
+/*-------------------------------------------------------------------------------------------*/
+int sciGetBlackColorIndex(sciPointObj * pObj)
+{
+  return sciGetNumColors(pObj) + 2;
 }
 /*-------------------------------------------------------------------------------------------*/

@@ -23,8 +23,7 @@ int sci_newaxes( char * fname,unsigned long fname_len )
   CheckRhs(minrhs,maxrhs) ;
   CheckLhs(minlhs,maxlhs) ;
 
-  SciWin();
-  if ((masousfen = ConstructSubWin (sciGetCurrentFigure(), 0)) != NULL)
+  if ((masousfen = ConstructSubWin (sciGetCurrentFigure())) != NULL)
   {
     sciSetCurrentObj(masousfen);
     sciSetSelectedSubWin(masousfen);

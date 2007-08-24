@@ -7,10 +7,6 @@
 
 
 #include "DrawableSurface.h"
-extern "C"
-{
-#include "drawSurfaceEntity.h"
-}
 
 namespace sciGraphics
 {

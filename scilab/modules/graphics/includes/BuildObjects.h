@@ -21,12 +21,8 @@
 
 extern sciPointObj *ConstructStatusBar (sciPointObj * pparentfigure); /* BUILD */
 
-#define SciWin() { if( C2F(sciwin)() != 0 ) { Scierror(999,"%s :Requested figure cannot be created \r\n",fname) ; return 0 ; } }
-int C2F(sciwin)( void ) ;
-
-sciPointObj * ConstructFigure ( sciPointObj * pparent, struct BCG *XGC ) ;/* BUILD */
-extern sciPointObj *ConstructSubWin (sciPointObj * pparentfigure,
-				     int pwinnum); /* BUILD */
+sciPointObj * ConstructFigure (sciPointObj * pparent) ;/* BUILD */
+extern sciPointObj *ConstructSubWin (sciPointObj * pparentfigure); /* BUILD */
 extern sciPointObj *ConstructScrollV (sciPointObj * pparentfigure); /* BUILD */
 extern sciPointObj *ConstructScrollH (sciPointObj * pparentfigure); /* BUILD */
 

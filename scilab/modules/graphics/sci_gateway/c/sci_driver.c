@@ -9,25 +9,22 @@
 
 #include "sci_driver.h"
 #include "stack-c.h"
-#include "Xcall1.h"
+#include "returnProperty.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_driver(char *fname,unsigned long fname_len)
 {
-  integer m1=3,n1=1,l1,v ;
-  double dv;
+  integer m1=3,n1=1,l1;
   CheckRhs(-1,1);
   CheckLhs(0,1);
   if (Rhs <= 0) 
   {
-    CreateVar(Rhs+1,STRING_DATATYPE,&m1,&n1,&l1);
-    C2F(dr1)("xgetdr", cstk(l1), &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &dv, 7L, m1);
-    LhsVar(1) = Rhs+1;
+    return sciReturnString("Rec");
   } 
   else 
   {
     GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-    C2F(dr1)("xsetdr", cstk(l1), &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &dv, 7L, m1);
+
     LhsVar(1)=0;
   }
   return 0;

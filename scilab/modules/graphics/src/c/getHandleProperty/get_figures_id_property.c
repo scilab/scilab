@@ -10,6 +10,7 @@
 #include "returnProperty.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "WindowList.h"
 
 /*------------------------------------------------------------------------*/
 int get_figures_id_property( sciPointObj * pobj )

@@ -6,10 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableSegs.h"
-extern "C"
-{
-#include "drawSegsEntity.h"
-}
 
 namespace sciGraphics
 {
@@ -17,7 +13,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableSegs::draw( void )
 {
-  //drawSegsEntity( m_pDrawed ) ;
+  
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSegs::show( void )

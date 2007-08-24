@@ -9,7 +9,6 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "Xcall1.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
@@ -21,7 +20,6 @@ int sci_xname(char *fname,unsigned long fname_len)
   CheckRhs(1,1);
   CheckLhs(1,1);
   GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-  SciWin();
   
   sciSetName( sciGetCurrentFigure(), cstk(l1), m1 ) ;
 

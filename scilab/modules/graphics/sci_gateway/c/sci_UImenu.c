@@ -39,7 +39,6 @@ int sci_UImenu( char *fname,unsigned long fname_len )
     {
       if ( (VarType(1) == sci_strings) && (VarType(2) == sci_strings) )
 	{
-	  SciWin();
 	  pParent= (sciPointObj *) sciGetCurrentFigure(); 
 			
 

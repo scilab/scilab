@@ -11,7 +11,6 @@
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
-#include "Xcall1.h"
 
 /*------------------------------------------------------------------------*/
 int set_current_figure_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )

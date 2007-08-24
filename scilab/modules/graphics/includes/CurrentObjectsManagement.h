@@ -9,7 +9,6 @@
 #define _GET_CURRENT_OBJECTS_H_
 
 #include "ObjectStructure.h"
-#include "bcg.h"
 
 /**
 * To know if the current figure is a graphic one.
@@ -22,18 +21,13 @@ void set_cf_type( int val ) ;
  */
 sciPointObj * sciGetCurrentFigure( void ) ;
 
+/**
+ * To know if a figure is the selected one.
+ */
+BOOL sciIsCurrentFigure(sciPointObj * pFigure);
+
 int sciInitCurrentFigure( sciPointObj * mafigure ) ;
 int sciSetCurrentFigure(  sciPointObj * mafigure ) ;
-
-/**
- * as sciGetCurrentFigure but do not create any figure if none exists.
- */
-sciPointObj * sciGetCurPointedFigure( void ) ;
-/*-----------------------------------------------------------------------------*/
-/**
- * Return the Bcg of the currently selected figure
- */
-struct BCG * sciGetCurrentScilabXgc( void ) ;
 /*-----------------------------------------------------------------------------*/
 /**
  * Get the current Object

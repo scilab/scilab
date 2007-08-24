@@ -27,7 +27,6 @@ int sci_glue( char * fname, unsigned long fname_len )
   CheckLhs(0,1);
 
   /*  set or create a graphic window */
-  SciWin();
   GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1); /* We get the scalar value if it is ones */
   n=numrow*numcol;
   CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numrow,&numcol,&l2);

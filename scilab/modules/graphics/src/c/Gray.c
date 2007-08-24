@@ -17,7 +17,6 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "Axes.h"
-#include "Xcall1.h"
 #include "Gray.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
@@ -27,22 +26,9 @@
 #include "MALLOC.h" /* MALLOC */
 
 
-extern void fill_grid_rectangles __PARAMS(( integer *x,  integer *y, 
-					    double *z, integer n1, integer n2));
 
-extern void fill_grid_rectangles1 __PARAMS(( integer *x,  integer *y,  
-					     double *z, integer n1, integer n2));
 
-extern void GraySquare __PARAMS((integer *x,integer *y,double *z,
-				integer n1,integer n2));
-extern void GraySquare1 __PARAMS((integer *x,integer *y,double *z,
-				 integer n1,integer n2));
 
-extern void GraySquare1_NGreverse(integer *x, integer *y, double *z, 
-				  integer n1, integer n2, sciPointObj * psubwin);
-
-extern void GraySquareDirect(integer *x, integer *y, double *z, integer n1, integer n2); /* for NG, grayplot direct mode */
-extern void GraySquareScaled(integer *x, integer *y, double *z, integer n1, integer n2); /* for NG, grayplot direct mode */
 
 extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
@@ -165,54 +151,6 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
   return(0);
 }
 
-
-static void GraySquare_base(integer *x, integer *y, double *z, integer n1, integer n2)
-{
-  double zmoy,zmax,zmin,zmaxmin;
-  integer i,j,verbose=0,whiteid,narg,fill[1],cpat,xz[2];
-  zmin=Mini(z,(n1)*(n2));
-  zmax=Maxi(z,(n1)*(n2));
-  zmaxmin=zmax-zmin;
-  if (zmaxmin <= SMDOUBLE) zmaxmin=SMDOUBLE;
-  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-  for (i = 0 ; i < (n1)-1 ; i++)
-    for (j = 0 ; j < (n2)-1 ; j++)
-      {
-	integer w,h;
-	zmoy=1/4.0*(z[i+n1*j]+z[i+n1*(j+1)]+z[i+1+n1*j]+z[i+1+n1*(j+1)]);
-	fill[0]=1 + inint((whiteid-1)*(zmoy-zmin)/(zmaxmin));  
-        if (x[n1] == 1) fill[0]= inint(z[j+ (i*n2)]); /* NG ????? */
-	C2F(dr)("xset","pattern",&(fill[0]),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-        w=Abs(x[i+1]-x[i]);h=Abs(y[j+1]-y[j]);
-	/* We don't trace rectangle which are totally out **/
-	if ( w != 0 && h != 0 && x[i] < xz[0] && y[j+1] < xz[1] && x[i]+w > 0 && y[j+1]+h > 0 )
-	  {
-	    if ( Abs(x[i]) < int16max && Abs(y[j+1]) < int16max && w < uns16max && h < uns16max)
-	      {
-		C2F(dr)("xfrect","v",&x[i],&y[j+1],&w,&h,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      }
-	    else 
-	      {
-		/* fprintf(stderr,"Rectangle too large \n"); */
-	      }
-	  }
-      }
-
-  C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-}
-
-
-extern void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2)
-{
-  if ( GetDriverId() == 0 )
-    /** accelerated version for X11 or Windows **/
-    fill_grid_rectangles(x, y, z, n1, n2);
-  else 
-      GraySquare_base(x, y, z, n1, n2);
-}
 
 
 
@@ -368,184 +306,3 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
   return (0);
 }
  
-
-
-/*-------------------------------------------------------
- *  x : of size n1 gives the x-values of the grid 
- *  y : of size n2 gives the y-values of the grid 
- *  z : of size (n1-1)*(n2-1)  gives the f-values on the middle 
- *  of each rectangle. 
- *  z[i,j] is the value on the middle of rectangle 
- *        P1= x[i],y[j] x[i+1],y[j+1]
- *-------------------------------------------------------*/
-
-static void GraySquare1_base(integer *x, integer *y, double *z, integer n1, integer n2)
-{
-  integer i,j,verbose=0,narg,fill[1],cpat,xz[2];
-  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  for (i = 0 ; i < (n1)-1 ; i++)
-    for (j = 0 ; j < (n2)-1 ; j++)
-      {
-	integer w,h;
-	fill[0]= (integer) (z[i+(n1-1)*j]);
-	C2F(dr)("xset","pattern",&(fill[0]),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-	w=Abs(x[j+1]-x[j]);
-	h=Abs(y[i+1]-y[i]);
-	/* We don't trace rectangle which are totally out **/
-	if ( w != 0 && h != 0 && x[j] < xz[0] && y[i] < xz[1] && x[j]+w > 0 && y[i]+h > 0 )
-	  if ( Abs(x[j]) < int16max && Abs(y[i+1]) < int16max && w < uns16max && h < uns16max)
-	    C2F(dr)("xfrect","v",&x[j],&y[i],&w,&h,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      }
-  C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-}
-
-void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2)
-{
- 
-  if ( GetDriverId() == 0 ) 
-    /** accelerated version for X11 or Windows **/
-    fill_grid_rectangles1(x, y, z, n1, n2);
-  else 
-    GraySquare1_base(x, y, z, n1, n2);
-}
-
-
-
-/* Only for new graphics */
-/* NG: New Graphics */
-/* reverse means reverse case on X and/or Y axis */
-void GraySquare1_NGreverse(integer * x, integer *y, double *z, integer n1, integer n2, sciPointObj * psubwin)
-{
-  int i,j;
-  integer verbose=0,narg,fill[1],cpat,xz[2];
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
-  integer *tmpx = MALLOC(n2*sizeof(integer));
-  integer *tmpy = MALLOC(n1*sizeof(integer));
-
-  for (i = 0 ; i < (n2) ; i++) tmpx[i] = x[i];
-  for (i = 0 ; i < (n1) ; i++) tmpy[i] = y[i];
-  
-  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  for (i = 0 ; i < (n1)-1 ; i++)
-    for (j = 0 ; j < (n2)-1 ; j++)
-      {
-	integer w,h;
-	int xx,yy;
-	fill[0]= (integer) (z[i+(n1-1)*j]);
-	C2F(dr)("xset","pattern",&(fill[0]),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-	
-	w=Abs(tmpx[j+1]-tmpx[j]);
-	h=Abs(tmpy[i+1]-tmpy[i]);
-	/* We don't trace rectangle which are totally out **/
-	if ( w != 0 && h != 0 && x[j] < xz[0] && y[i] < xz[1] && x[j]+w > 0 && y[i]+h > 0 )
-	  if ( Abs(x[j]) < int16max && Abs(y[i+1]) < int16max && w < uns16max && h < uns16max)
-	    {
-	      if(ppsubwin->axes.reverse[0] == TRUE)
-		xx = x[j] -w;
-	      else
-		xx = x[j];
-	      
-	      if(ppsubwin->axes.reverse[1] == TRUE)
-		yy = y[i] -h;
-	      else
-		yy = y[i];
-	      
-	      C2F(dr)("xfrect","v",&xx,&yy,&w,&h,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      }
-  
-  
-  FREE(tmpx); tmpx = NULL;
-  FREE(tmpy); tmpy = NULL;
-  
-}
-
-void GraySquareDirect(integer *x, integer *y, double *z, integer n1, integer n2)
-{
-  integer i,j,verbose=0,whiteid,narg,fill,cpat,xz[2];
-  integer vertexx[5], vertexy[5];
-  int cinq = 5, un = 1;
-  
-  int *xm = x;
-  int *ym = y;
-
-  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-  for (i = 0 ; i < (n1)-1 ; i++)
-    for (j = 0 ; j < (n2)-1 ; j++)
-      {
-	fill= - (int) z[j+n1*i];
-	C2F(dr)("xset","pattern",&fill,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
- 	
-	vertexx[0] = xm[i+n1*j];
-	vertexx[1] = xm[i+n1*(j+1)];
-	vertexx[2] = xm[i+1+n1*(j+1)];
-	vertexx[3] = xm[i+1+n1*j];
-	vertexx[4] = xm[i+n1*j];
-	
-	vertexy[0] = ym[j+n2*i];
-	vertexy[1] = ym[j+1+n2*i];
-	vertexy[2] = ym[j+1+n2*(i+1)];
-	vertexy[3] = ym[j+n2*(i+1)];
-	vertexy[4] = ym[j+n2*i];
-		  
-	C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
-		PI0,PD0,PD0,PD0,PD0,0L,0L);
-      }
-  
-  C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-}
-
-
-
-extern void GraySquareScaled(integer *x, integer *y, double *z, integer n1, integer n2)
-{
-  double zmoy,zmax,zmin,zmaxmin;
-  integer i,j,verbose=0,whiteid,narg,fill,cpat,xz[2];
-  integer vertexx[5], vertexy[5];
-  int cinq = 5, un = 1;
-  
-  int *xm = x;
-  int *ym = y;
-  
-  zmin=Mini(z,(n1)*(n2));
-  zmax=Maxi(z,(n1)*(n2));
-  zmaxmin=zmax-zmin;
-  if (zmaxmin <= SMDOUBLE) zmaxmin=SMDOUBLE;
-  
-  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-  for (i = 0 ; i < (n1)-1 ; i++)
-    for (j = 0 ; j < (n2)-1 ; j++)
-      {
-	zmoy=1/4.0*(z[i+n1*j]+z[i+n1*(j+1)]+z[i+1+n1*j]+z[i+1+n1*(j+1)]);
-	fill= - (1 + inint((whiteid-1)*(zmoy-zmin)/(zmaxmin)));
-	
-	C2F(dr)("xset","pattern",&fill,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	
-	vertexx[0] = xm[i+n1*j];
-	vertexx[1] = xm[i+n1*(j+1)];
-	vertexx[2] = xm[i+1+n1*(j+1)];
-	vertexx[3] = xm[i+1+n1*j];
-	vertexx[4] = xm[i+n1*j];
-	
-	vertexy[0] = ym[j+n2*i];
-	vertexy[1] = ym[j+1+n2*i];
-	vertexy[2] = ym[j+1+n2*(i+1)];
-	vertexy[3] = ym[j+n2*(i+1)];
-	vertexy[4] = ym[j+n2*i];
-		  	
-	C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
-		PI0,PD0,PD0,PD0,PD0,0L,0L);
-      }
-  
-  C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-}
-

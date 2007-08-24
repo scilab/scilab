@@ -20,7 +20,6 @@
 #include "GetProperty.h"
 #include "BasicAlgos.h"
 #include "sciprint.h"
-#include "clipping.h"
 #include "CurrentObjectsManagement.h"
 
 /* Add those lines for FD algo on Theticks */
@@ -1311,6 +1310,18 @@ char ** copyFormatedArray( const double values[], int nbStrings, const char form
 
   return res ;
 
+}
+/*-----------------------------------------------------------------------------------*/
+/**************************************************
+* Global values which are set at this level and 
+* not redirected to each driver
+**************************************************/
+
+static char FPF[32]={'\0'};
+
+char * getFPF(void)
+{
+  return(FPF);
 }
 /*-----------------------------------------------------------------------------------*/
 

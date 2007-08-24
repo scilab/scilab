@@ -164,19 +164,6 @@ void ScilabDoOneEvent(void)
 /*-----------------------------------------------------------------------------------*/
 int ScilabHaveAGraph(void)
 {
-	integer iflag =0,ids,num;
-	int vInt=0;
-
-	if ( getScilabMode() != SCILAB_NWNI )
-	{
-          sciGetIdFigure (&ids,&num,&iflag);
-          if (num > 0) { vInt = 1 ; }
-	}
-	else
-	{
-		vInt=0;
-	}
-
-	return vInt;
+  return sciHasFigures();
 }
 /*-----------------------------------------------------------------------------------*/

@@ -73,7 +73,6 @@ static gw_generic_table Tab[]={
 	{sci_xs2bmp,"xs2bmp"},
 	{sci_xs2emf,"xs2emf"},
 	{sci_set_posfig_dim,"set_posfig_dim"},
-	{sci_xsnative,"xsnative"},
 	{sci_zoom_rect,"zoom_rect"},
 	{sci_unzoom,"unzoom"},
 	{sci_StringBox,"StringBox"},

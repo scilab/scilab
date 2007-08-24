@@ -15,17 +15,14 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "Axes.h"
-#include "Xcall1.h"
 #include "Champ.h"
 #include "sciprint.h"
-#include "periScreen.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 
 
 #include "MALLOC.h" /* MALLOC */
 
-static double MiniD __PARAMS((double *x,integer n));
 extern void initsubwin();
 /* extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect); */
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
@@ -69,14 +66,6 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   /* or champ1 (normed vector + color) is enabled */
   int typeofchamp = ( colored == 0 ? 0 : 1 ) ;
 
-  /* get default dash for arrows **/
-  integer verbose=0,narg,xz[10],uc;
-
-  C2F(dr)("xget","use color",&verbose, &uc, &narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if (uc)
-    C2F(dr)("xget","color",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  else
-    C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** The arrowsize acording to the windowsize **/
   n=2*(*n1)*((*n2)+1); /*F.Leray 17.02.04*/
   
@@ -189,180 +178,6 @@ int C2F(champ1)(double *x, double *y, double *fx, double *fy, integer *n1, integ
 }
 
 
-/*----------------------------------
- * Returns min( abs(x)) excluding null x(i)  values 
- * if x==0 then 1 is returned 
- *----------------------------------*/
-
-static double MiniD(double *x, integer n)
-{
-  int i;
-  double dx=1,mindx=1;
-  if ( n < 2 ) return(mindx);
-  mindx= Abs(x[1]-x[0]);
-  mindx = ( mindx != 0 ) ? mindx : 1;
-  for ( i = 2 ; i < n ; i++) 
-    {
-      dx = Abs(x[i]-x[i-1]);
-      if ( dx < mindx && dx != 0 ) mindx=dx;
-    }
-  return(mindx);
-}
-
-
-/* F.Leray 11.03.05 */
-/* For new graphic style only */
-/* same thing has above (Champ2DRealToPixel) */
-/* only difference is in the typeofchamp treatment (that replaces the colored flag) */
-void sciChamp2DRealToPixel( integer * xm         ,
-                            integer * ym         ,
-                            integer * zm         ,
-                            integer * na         ,
-                            integer * arsize     ,
-                            double  * x          ,
-                            double  * y          ,
-                            double  * fx         ,
-                            double  * fy         ,
-                            integer * n1         ,
-                            integer * n2         ,
-                            double  * arfact     ,
-                            int     * typeofchamp,
-                            BOOL      clipping    )
-{  
-
-  integer i,j;
-  double  maxx;
-  double  nx,ny,sc,sfx,sfy,sfx2,sfy2;
-  double  arsize1=0.5,arsize2=0.5;
-  /* get default dash for arrows **/
-  integer verbose=0,narg;
-  int xfacteur = 1;
-  int yfacteur = 1;
-
-  sciPointObj * psubwin = sciGetCurrentSubWin();
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
-
-  if ( ppsubwin->axes.reverse[0] ) { xfacteur = -1 ; }
-  if ( ppsubwin->axes.reverse[1] ) { yfacteur = -1 ; }
-
-  /* From double to pixels */
-  for ( i = 0 ; i < *n1 ; i++)
-  {
-    for ( j =0 ; j < *n2 ; j++)
-    {
-      xm[2*(i +(*n1)*j)]= XScale(x[i]);
-      ym[2*(i +(*n1)*j)]= YScale(y[j]);
-    }
-  }
-
-  /** Scaling **/
-  nx=MiniD(x,*n1)*Cscale.Wscx1;
-  ny=MiniD(y,*n2)*Cscale.Wscy1;
-  sfx= Cscale.Wscx1;
-  sfy= Cscale.Wscy1;
-  sfx2= sfx*sfx;
-  sfy2= sfy*sfy;
-  maxx = getLongestVector( fx, fy, *n1, *n2, sfx, sfy ) ;
-  sc=maxx;
-  sc= sqrt(nx*nx+ny*ny)/sc;
-  sfx *= sc;
-  sfy *= sc;
-  /** size of arrow **/
-  arsize1= ((double) Cscale.WIRect1[2])/(5*(*n1));
-  arsize2= ((double) Cscale.WIRect1[3])/(5*(*n2));
-  *arsize=  (arsize1 < arsize2) ? inint(arsize1*10.0) : inint(arsize2*10.0) ;
-  *arsize = (int)((*arsize)*(*arfact));
-
-  set_clip_box(Cscale.WIRect1[0],Cscale.WIRect1[0]+Cscale.WIRect1[2],Cscale.WIRect1[1],
-    Cscale.WIRect1[1]+Cscale.WIRect1[3]);
-
-  if ( *typeofchamp == 0 ) 
-  {
-    int j2=0;
-    for ( i = 0 ; i < (*n1)*(*n2) ; i++)
-    {
-      integer x1n,y1n,x2n,y2n,flag1=0;
-      xm[1+2*j2]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
-      xm[2*j2]  = (int)(xm[2*i]);
-      ym[1+2*j2]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
-      ym[2*j2]  = (int)(ym[2*i]);
-      clip_line(xm[2*j2],ym[2*j2],xm[2*j2+1],ym[2*j2+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-      if ( flag1 != 0 )
-      {
-        if (flag1==1||flag1==3)
-        {
-          xm[2*j2] = x1n ;
-          ym[2*j2] = y1n ;
-        }
-        if (flag1==2||flag1==3)
-        {
-          xm[2*j2+1] = x2n ;
-          ym[2*j2+1] = y2n ;
-        }
-        j2++;
-      }
-      else if ( !clipping )
-      {
-        j2++ ;
-      }
-    }
-    *na=2*j2;
-  }
-  else 
-  {
-    integer x1n,y1n,x2n,y2n,flag1=0;
-    integer whiteid;
-    int j2=0;
-    C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    for ( i = 0 ; i < (*n1)*(*n2) ; i++)
-    {
-      double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
-      zm[j2] = inint( ((double) whiteid -1 )*(1.0 - nor/maxx)) +1;
-      nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
-
-      /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
-      *        at the point (before the arrow was placed such as the corresponding
-      *        point was at the middle of the arrow)       
-      *
-      *        this is the old code :
-      *
-      * 	  xm[1+2*j2]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
-      * 	  xm[2*j2]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
-      * 	  ym[1+2*j2]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
-      * 	  ym[2*j2]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
-      *
-      *        the new code :
-      */
-      xm[1+2*j2]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
-      xm[2*j2]  = (int)(xm[2*i]);
-      ym[1+2*j2]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
-      ym[2*j2]  = (int)(ym[2*i]);
-      /* end of the modif */
-
-      clip_line(xm[2*j2],ym[2*j2],xm[2*j2+1],ym[2*j2+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-      if ( flag1 != 0 )
-      {
-        if (flag1==1||flag1==3)
-        {
-          xm[2*j2] = x1n ;
-          ym[2*j2] = y1n ;
-        }
-        if (flag1==2||flag1==3)
-        {
-          xm[2*j2+1] = x2n ;
-          ym[2*j2+1] = y2n ;
-        }
-        j2++;
-      }
-      else if ( !clipping )
-      {
-        j2++ ;
-      }
-    }
-    *na=2*j2;
-  }
-}
-
 /*-------------------------------------------------------------------------------------------*/
 /**
 * Compute the size of the area used by a champ object( ie scisegs with ptype = 1).
@@ -395,7 +210,7 @@ void getChampDataBounds( double   xCoords[]  ,
   int    * yPixCoords   = NULL              ;
   int    * zPixCoords   = NULL              ;
   int      nbArrowEnds  = 2 * nbRow * nbCol ; /* 2 time the number of arrows */
-  int      nbArrows                         ;
+  int      nbArrows     = 0                 ;
   int      arrowSize     = 0                ; /* arrow size does not modify bounds for now */
   double   arrowSizeFact = 0.0              ;
 
@@ -427,7 +242,7 @@ void getChampDataBounds( double   xCoords[]  ,
   }
 
   /* get the bounds in pixels */
-  sciChamp2DRealToPixel( xPixCoords    ,
+  /*sciChamp2DRealToPixel( xPixCoords    ,
     yPixCoords    ,
     zPixCoords    ,
     &nbArrows     ,
@@ -440,7 +255,7 @@ void getChampDataBounds( double   xCoords[]  ,
     &nbCol        ,
     &arrowSizeFact,
     &typeOfChamp  ,
-    FALSE          ) ;
+    FALSE          ) ;*/
 
 
 
@@ -503,18 +318,13 @@ double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol )
 /*-------------------------------------------------------------------------------------------*/
 int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int ind )
 {
-  integer whiteid;
-  int verbose = 0 ;
-  int narg = 0 ;
+  integer whiteid = sciGetWhiteColorIndex(sciGetCurrentFigure());
   int color = 0 ;
   double scx = Cscale.Wscx1 ;
   double scy = Cscale.Wscy1 ;
 
   double nor = sqrt( scx*scx*gridX[ind]*gridX[ind] + scy*scy*gridY[ind]*gridY[ind] ) ;
   double max = getLongestVector( gridX, gridY, nbRow, nbCol, scx, scy ) ;
-  
-  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  
   
   color = inint( (whiteid-1) * (1.0-nor/max) ) + 1 ;
 

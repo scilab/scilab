@@ -73,4 +73,6 @@ int TheTicks( double * xminv ,
 
 int GradEqual( const double grads[], const int * ngrads) ;
 
+char * getFPF(void);
+
 #endif /* _FORMAT_H_ */

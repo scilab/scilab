@@ -26,7 +26,6 @@
 #include "SetProperty.h"
 #include "Interaction.h" /* for callback funtions */
 #include "StringMatrix.h"
-#include "Xcall1.h"
 #include "WindowList.h"
 #include "PloEch.h"
 #include "sciprint.h"
@@ -245,28 +244,25 @@ sciDelGraphicObj (sciPointObj * pthis)
  */
 int C2F(scigerase)( void )
 {
-  integer verb=0,lstr,v,na,win;
-  double dv;
-  char str[4];
-  C2F(xgetg)("auto clear",str,&lstr,11L,4L);
-  if (strcmp(str,"on") == 0) {
-    C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7754L);
-    C2F(dr1)("xclear",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
-    C2F(dr1)("xstart",C2F(cha1).buf,&win,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
+  if ( sciGetIsAutoDrawable(sciGetCurrentFigure()) )
+  {
+    sciClearFigure(sciGetCurrentFigure());
   }
   return 0;
 } 
 /*-----------------------------------------------------------------------------*/
 
 /**DestroyFigure
- * This function destroies the parents window (manager) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
+ * This function destroys the parents window (manager) and the elementary structures and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
 int DestroyFigure (sciPointObj * pthis)
 {
-  /* This code has to be validated on all systems
-   * because sciGetPointerToFeature returns a void
-   */
+  removeFigureFromList(pthis);
+  if ( sciIsCurrentFigure(pthis) )
+  {
+    sciSetCurrentFigure(getFirstFigure()) ;
+  }
   sciSetIsEventHandlerEnable(pthis, FALSE ) ;
   FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
   FREE ((sciGetFontContext(pthis))->pfontname);
@@ -274,7 +270,6 @@ int DestroyFigure (sciPointObj * pthis)
   FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   sciStandardDestroyOperations(pthis) ;
-  /* delete windows() */
   return 0;
 }
 
@@ -589,20 +584,16 @@ int DestroyCompound (sciPointObj * pthis)
 void DeleteObjs(integer win_num)
 {
   sciPointObj *figure;
-  struct BCG *Xgc;
 
-  figure = (sciPointObj *)  sciIsExistingFigure(&win_num);
-  if (  figure != (sciPointObj *) NULL )
-    {
-      Xgc = (struct BCG *) pFIGURE_FEATURE(figure)->pScilabXgc;
-      
+  figure = getFigureFromIndex(win_num);
+  if ( figure != NULL )
+    { 
       DestroyAllGraphicsSons (figure);
 
       /* close ged to prevent errors when using it */
       sciDestroyGed( sciGetNum(figure) ) ;
 
       DestroyFigure (figure);
-      Xgc->mafigure = (sciPointObj *) NULL;
     }
 }
 
@@ -744,32 +735,26 @@ DestroySciMenu (sciPointObj * pthis)
 void delete_sgwin_entities( int win_num )
 {
   double dv=0;
-  double *XGC;
-  struct BCG *CurrentScilabXgc; 
   int v=0;
   /* Need to reset the new current figure returned by sciGetCurrentFigure */
   sciHandleTab *hdl = NULL;
   sciPointObj  *pobj= NULL;
 
-  C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
-  CurrentScilabXgc=(struct BCG *)XGC;
-
-
   hdl = sciGetpendofhandletab();
 
-  if(CurrentScilabXgc != NULL)
-    while (hdl != NULL)
+  while (hdl != NULL)
+  {
+    pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
+    if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == sciGetNum(sciGetCurrentFigure()) ) /* Adding F.Leray 19.04.04 */
     {
-      pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
-      if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == CurrentScilabXgc->CurWindow ) /* Adding F.Leray 19.04.04 */
-      {
-        sciSetCurrentFigure(pobj);
-        sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
-        break;
+      sciSetCurrentFigure(pobj);
+      sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
+      break;
 
-      }
-      hdl = hdl->pprev;
     }
+    hdl = hdl->pprev;
+  }
+
 }
 
 /*------------------------------------------------------------------------------------*/
@@ -787,13 +772,12 @@ void clearUserData( sciPointObj * pObj )
   }
 }
 /*------------------------------------------------------------------------------------*/
-extern int C2F(deletewin)(integer *number);
 /**
  * Close the figure with number winNum.
  */
 void sciDeleteWindow( int winNum )
 {
-  C2F(deletewin)( &winNum ) ;
+  sciDelGraphicObj(getFigureFromIndex(winNum));
 }
 /*-----------------------------------------------------------------------------------------*/
 void AllGraphWinDelete( void )
@@ -803,7 +787,7 @@ void AllGraphWinDelete( void )
   int num = sciGetNbFigure() ;
   int *ArrayWGraph = NULL ;
 
-  //sciGetIdFigure (ArrayWGraph,&num,&iflag);
+  /* sciGetIdFigure (ArrayWGraph,&num,&iflag); */
 
   if (num > 0)
   {
@@ -815,7 +799,7 @@ void AllGraphWinDelete( void )
 
     for (i=0;i<num;i++)
     {
-      C2F (deletewin) (&ArrayWGraph[i]);
+      sciDeleteWindow(ArrayWGraph[i]);
     }
     FREE (ArrayWGraph);
     ArrayWGraph=NULL;

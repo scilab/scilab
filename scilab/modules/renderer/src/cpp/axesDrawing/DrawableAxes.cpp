@@ -6,10 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableAxes.h"
-extern "C"
-{
-#include "drawAxesEntity.h"
-}
 
 namespace sciGraphics
 {
@@ -17,7 +13,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableAxes::draw( void )
 {
-  //drawAxesEntity( m_pDrawed ) ;
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableAxes::show( void )

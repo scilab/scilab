@@ -6,10 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableText.h"
-extern "C"
-{
-#include "drawTextEntity.h"
-}
 
 namespace sciGraphics
 {
@@ -17,7 +13,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableText::draw( void )
 {
-  //drawTextEntity( m_pDrawed ) ;
+  
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableText::show( void )

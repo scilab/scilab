@@ -46,7 +46,7 @@ public class ScilabGraphicWindow extends ScilabWindow {
 		DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
 		associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
 		
-		graphicCanvas.display();
+		//graphicCanvas.display();
 	}
 
 	/**

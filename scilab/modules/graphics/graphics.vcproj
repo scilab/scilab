@@ -227,10 +227,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\clipping.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\CloneObjects.c"
 				>
 			</File>
@@ -259,63 +255,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\handleDrawing\drawArcEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawAxesEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawCompoundEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawFecEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawFigureEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawGrayplotEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawLegendEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\drawMarks.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\DrawObjects.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawPolylineEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawRectangleEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawSegsEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawSubWinEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawSurfaceEntity.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawTextEntity.c"
 				>
 			</File>
 			<File
@@ -919,22 +859,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\periEmpty.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\periFig.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\periGif.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\periPos.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\pixel_mode.c"
 				>
 			</File>
@@ -948,10 +872,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\Plo3d.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Plo3dn.c"
 				>
 			</File>
 			<File
@@ -1259,10 +1179,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_xsnative.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_xstring.c"
 				>
 			</File>
@@ -1292,10 +1208,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\sciMatrix.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\SciViewportGet.c"
 				>
 			</File>
 			<File
@@ -1831,14 +1743,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\Xcall.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Xcall1.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\xs2file.c"
 				>
 			</File>
@@ -1865,10 +1769,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\bcg.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\BuildObjects.h"
 				>
 			</File>
@@ -1882,10 +1782,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\CheckTicksProperty.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\clipping.h"
 				>
 			</File>
 			<File
@@ -1917,63 +1813,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\handleDrawing\drawArcEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawAxesEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawCompoundEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawFecEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawFigureEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawGrayplotEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawLegendEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\drawMarks.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\DrawObjects.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawPolylineEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawRectangleEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawSegsEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawSubWinEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawSurfaceEntity.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawTextEntity.h"
 				>
 			</File>
 			<File
@@ -2093,26 +1933,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\periFig.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\periGif.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\periMac.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\periPos.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\periScreen.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\pixel_mode.h"
 				>
 			</File>
@@ -2122,10 +1942,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\Plo3d.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Plo3dn.h"
 				>
 			</File>
 			<File
@@ -2441,10 +2257,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_xsnative.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_xstring.h"
 				>
 			</File>
@@ -2473,15 +2285,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\scigraphic.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sciMatrix.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\SciViewportGet.h"
 				>
 			</File>
 			<File
@@ -2534,10 +2338,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\WindowList.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\Xcall1.h"
 				>
 			</File>
 			<File

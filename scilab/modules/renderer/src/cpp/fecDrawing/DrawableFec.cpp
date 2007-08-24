@@ -6,10 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableFec.h"
-extern "C"
-{
-#include "drawFecEntity.h"
-}
 
 namespace sciGraphics
 {
@@ -17,7 +13,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableFec::draw( void )
 {
-  //drawFecEntity( m_pDrawed ) ;
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFec::show( void )

@@ -21,7 +21,6 @@
 #include "ObjectStructure.h"
 #include "HandleManagement.h"
 #include "StringMatrix.h"
-#include "bcg.h"
 
 void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
 void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr); /* GET */
@@ -90,7 +89,6 @@ POINT2D sciGetLegendPos (sciPointObj * pobj);
 sciPointObj *sciGetParentFigure (sciPointObj * pobj); /* GET */
 sciPointObj *sciGetParentSubwin (sciPointObj * pobj); /* GET */
 int sciGetNumFigure (sciPointObj * pobj); /* GET */
-struct BCG *sciGetScilabXgc (sciPointObj * pobj); /* GET */
 
 /* GMODE */
 scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
@@ -120,11 +118,9 @@ BOOL sciGetIsFigureIconified (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosX (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosY (sciPointObj * pobj);  /* GET */
 sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
-sciPointObj *sciIsExistingFigure(int *value); /* GET */ /* WARNING special case here */
 int sciGetScrollPosV (sciPointObj * pobj);  /* GET */
 int sciGetScrollPosH (sciPointObj * pobj);  /* GET */
 
-sciPointObj * sciGetCurPointedFigure( void ) ; /* GET */
 BOOL sciGetReplay (void); /* GET */
 
 
@@ -138,11 +134,7 @@ sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin); /* GE
 
 int sciType (char *marker, sciPointObj *pobj); /* GET */
 
-int  sciGetNbFigure( void ) ; /* GET */
-void sciGetFiguresId( int figIds[] ) ; /* GET */
-void sciGetIdFigure (int *vect, int *id, int *flag); /* GET */
 unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
-/* struct BCG *sciGetCurrentScilabXgc (); /\* GET *\/ */
 
 sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
 
@@ -208,11 +200,12 @@ char * sciGetEventHandler( sciPointObj * pObj ) ;
 double * sciGetAxesBounds( sciPointObj * pObj ) ;
 double * sciGetMargins( sciPointObj * pObj ) ;
 
-BOOL sciGetIsReadyForRendering( sciPointObj * pobj ) ; /* GET */
-
 void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
 void sciGetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
 
 void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) ; /* GET */
+
+int sciGetWhiteColorIndex(sciPointObj * pObj); /* GET */
+int sciGetBlackColorIndex(sciPointObj * pObj); /* GET */
 
 #endif /* __SCI_GET_PROPERTY__ */

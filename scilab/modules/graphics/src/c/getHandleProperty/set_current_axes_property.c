@@ -11,7 +11,6 @@
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
-#include "Xcall1.h"
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/

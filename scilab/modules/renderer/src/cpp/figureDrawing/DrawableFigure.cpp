@@ -9,7 +9,6 @@
 #include "DrawableFigureBridge.h"
 extern "C"
 {
-#include "drawFigureEntity.h"
 #include "GetProperty.h"
 }
 

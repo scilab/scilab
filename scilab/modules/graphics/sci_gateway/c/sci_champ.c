@@ -86,7 +86,6 @@ int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
   GetRect(fname,6,opts,&rect);
   GetStrf(fname,7,opts,&strf);
 
-  SciWin();
   SciGerase() ;
 
   if ( isDefStrf( strf ) )

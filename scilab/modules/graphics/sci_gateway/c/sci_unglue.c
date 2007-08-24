@@ -25,7 +25,6 @@ int sci_unglue(char *fname,unsigned long fname_len)
   CheckRhs(1,1);
   CheckLhs(0,1);
   /*  set or create a graphic window */
-  SciWin();
   GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
   hdl = (unsigned long)*hstk(l1);
   pobj = sciGetPointerFromHandle(hdl);

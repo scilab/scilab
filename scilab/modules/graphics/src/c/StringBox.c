@@ -7,7 +7,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "StringBox.h"
-#include "Xcall1.h"
 #include "GetProperty.h"
 #include "Axes.h"
 #include "math_graphics.h"
@@ -19,17 +18,23 @@
 /*----------------------------------------------------------------------------------------*/
 void getStringBbox( char * string, int center[2], int rect[4] )
 {
-  C2F(dr)("xstringl",string,&(center[0]),&(center[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,9L,bsiz);
+  center[0] = 0;
+  center[1] = 0;
+  rect[0] = 0;
+  rect[1] = 0;
+  rect[2] = 0;
+  rect[3] = 0;
 }
 /*----------------------------------------------------------------------------------------*/
 void callXstringL( char * string, int posX, int posY, int boundingRect[4] )
 {
   sciPointObj * parentSubWin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
 
-  updateScaleIfRequired( parentSubWin ) ;
-
   /* now we can call xstringl */
-  C2F(dr)("xstringl",string,&posX,&posY,boundingRect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  boundingRect[0] = 0;
+  boundingRect[1] = 0;
+  boundingRect[2] = 0;
+  boundingRect[3] = 0;
 
 }
 /*----------------------------------------------------------------------------------------*/
@@ -176,9 +181,8 @@ void getStringsRectSized( StringMatrix  * strMat           ,
                           int             userSize[2]      ,
                           int           * newFontSize       )
 {
-  integer curFont[2]  ;
+  integer curFont[2] = {0,0}  ;
   integer verbose = 0 ;
-  integer v           ;
   integer fontSizeOne = 1 ;
   double homothFactors[2] ;
 
@@ -186,10 +190,10 @@ void getStringsRectSized( StringMatrix  * strMat           ,
 
   /* get the current font */
   /* we need to change the defaut font before using xstringl */
-  C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L);
+  /* C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L); */
 
   /* set the new font */
-  C2F(dr)("xset","font",&(curFont[0]),&fontSizeOne,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* C2F(dr)("xset","font",&(curFont[0]),&fontSizeOne,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 
   /* get the displaying array */
   getStringsRect( strMat, textPos, stringPosition, boundingBox ) ;
@@ -212,7 +216,7 @@ void getStringsRectSized( StringMatrix  * strMat           ,
   }
 
   /* return to the previous font */
-  C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 }
 /*----------------------------------------------------------------------------------------*/
 void getStringsPositions( StringMatrix  * strMat        ,
@@ -226,25 +230,24 @@ void getStringsPositions( StringMatrix  * strMat        ,
                           Vect2iMatrix  * stringPosition,
                           int             boundingBox[4][2] )
 {
-  integer curFont[2]  ;
+  integer curFont[2] = {0, 0}  ;
   integer verbose = 0 ;
-  integer v           ;
   int trans[2] ;
 
   if ( autoSize )
   {
     /* get the current font */
     /* we need to change the defaut font before using xstringl */
-    C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L);
+    /* C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L); */
 
     /* set the new font */
-    C2F(dr)("xset","font",fontId,fontSize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    /* C2F(dr)("xset","font",fontId,fontSize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 
     /* compute the stringPosition and bounding box in pixels without rotation */
     getStringsRect( strMat, textPos, stringPosition, boundingBox ) ;
 
     /* return to the previous font */
-    C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    /* C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
   }
   else
   {
@@ -293,8 +296,6 @@ void getTextBoundingBox( sciPointObj * pText        ,
   textPos[0] = ppText->x ;
   textPos[1] = ppText->y ;
   textPos[2] = ppText->z ;
-
-  updateScaleIfRequired( parentSW ) ;
 
   if ( sciGetIs3d( pText ) )
   {
@@ -486,22 +487,20 @@ int computeSuitableFont( StringMatrix  * strMat, Vect2iMatrix  * stringPosition 
 {
   int nbRow = getMatNbRow( strMat ) ;
   int nbCol = getMatNbCol( strMat ) ;
-  int largestFont  ;
-  int smallestFont ;
+  int largestFont = 0 ;
+  int smallestFont = 1 ;
   int i ;
   int j ; 
-  integer curFont[2]  ;
-  integer verbose = 0 ;
-  integer v ;
+  integer curFont[2] = {0,0} ;
 
-  C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L) ;
+  /* C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L) ; */
 
   /* the largest font is the minimum of all largest font which can be used for each cells */
   /* initializeit with the largest font the driver can display */
-  C2F(dr)( "xfontmxs","", &smallestFont, &largestFont, PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L ) ;
+  /* C2F(dr)( "xfontmxs","", &smallestFont, &largestFont, PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L ) ; */
 
   /* set the largest font */
-  C2F(dr)("xset","font",&(curFont[0]),&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* C2F(dr)("xset","font",&(curFont[0]),&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 
   for ( i = 0 ; i < nbRow ; i++ )
   {
@@ -518,17 +517,17 @@ int computeSuitableFont( StringMatrix  * strMat, Vect2iMatrix  * stringPosition 
         if ( largestFont == smallestFont )
         {
           /* we reach the minimum size, no need to continue */
-          C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ; 
+          /* C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ; */
           return smallestFont ;
         }
         /* set the new font */
-        C2F(dr)("xset","font",&(curFont[0]),&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+        /* C2F(dr)("xset","font",&(curFont[0]),&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
       }
     }
   }
 
   /* return to the previous font */
-  C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+  /* C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  */
   return largestFont ;
 
 }

@@ -19,7 +19,6 @@ int sci_move( char * fname, unsigned long fname_len )
 
   CheckRhs(1,3);
   /*  set or create a graphic window */
-  SciWin();
   opt = FALSE;
   if (Rhs ==3) {
     GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);

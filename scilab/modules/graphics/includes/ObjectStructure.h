@@ -213,7 +213,7 @@ typedef struct
 {/** */
   sciEntityType entitytype;
   /**  points to the characteristic of the structure (figure, axes...) */
-  void *pfeatures;
+  void * pfeatures;
   /** List of all observers watching this object */
   DoublyLinkedList * pObservers ;
   /** Drawing object used to actually draw the graphic handle */
@@ -440,8 +440,7 @@ FigureModelData ;
  * Structure used to specify Figure (different to XGC) 
  */
 typedef struct
-{/** will be integrated in the new structure      */
-  struct BCG *pScilabXgc;	
+{	
   sciRelationShip relationship;
   scigMode gmode;
   sciGraphicContext graphiccontext; /* the only property used here is background */
@@ -452,9 +451,6 @@ typedef struct
   int namelen;
   /** specifies the number of this window            */
   int number;
-
-  /** Specifies if the object has been totally build and is ready to be rendered on the screen */
-  BOOL isReadyForRendering;
 
   /** specifies the colr map                         */
   double *pcolormap;

@@ -26,24 +26,8 @@ void getChampDataBounds( double   xCoords[]  ,
                         double * yMin       ,
                         double * yMax        ) ;
 
-void sciChamp2DRealToPixel( integer * xm         ,
-                           integer * ym         ,
-                           integer * zm         ,
-                           integer * na         ,
-                           integer * arsize     ,
-                           double  * x          ,
-                           double  * y          ,
-                           double  * fx         ,
-                           double  * fy         ,
-                           integer * n1         ,
-                           integer * n2         ,
-                           double  * arfact     ,
-                           int     * typeofchamp,
-                           BOOL      clipping    ) ;
 
 double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol ) ;
-
-int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int ind ) ;
 
 double getLongestVector( double vectX[], double vectY[], int nbRow, int nbCol, double scx, double scy ) ;
 

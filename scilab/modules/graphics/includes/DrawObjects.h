@@ -21,12 +21,9 @@
 #include "../../sparse/includes/spConfig.h"
 
 
-#include "bcg.h"
 #include "PloEch.h"
 #include "Vect2Matrix.h"
 #include "StringMatrix.h"
-
-void wininfo  __PARAMS((char *fmt,...));
 
 int get_cf_type( void ) ;
 
@@ -55,12 +52,12 @@ extern HFONT sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight, int iD
 
 extern void sciRedrawFigure(void); /* DRAWINGS */
 extern void sciRedrawF(int *num); /* DRAWINGS */
+void sciClearFigure(sciPointObj * pFigure) ; /* DRAWINGS */
 extern void sciXbasc(void);  /* DRAWINGS */
 extern void sciXclear(void); /* DRAWINGS */
  
 /* 3 next are in plo3d.c*/
 extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag); /* DRAWINGS */
-extern void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, char *legend, integer *flag, double *bbox); /* DRAWINGS */
 
 extern void Nextind(integer ind1, integer *ind2, integer *ind3); /* DRAWINGS */
 extern int GradLog(double _min, double _max, double *_grads, int * n_grads, int compNgrads );
@@ -73,23 +70,12 @@ extern void sciGetDisplayedBounds( sciPointObj * pSubWin,
                                    double      * ymax   ,
                                    double      * zmin   ,
                                    double      * zmax    ) ;
-extern void updateScale3d( sciPointObj * pobj    ,
-                           double        dbox[6] ,
-                           double        xbox[8] ,
-                           double        ybox[8] ,
-                           double        zbox[8]  );
 extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
 extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
 
 extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input); /* DRAWINGS */
-extern int ComputeNbSubTicsFor3dUse(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input);
 extern int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbox, integer *xind, integer *InsideU, integer *InsideD); /* DRAWINGS */
 extern int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind); /* DRAWINGS */
-extern int AdaptGraduationsOnZ(int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double zminval, double zmaxval, double fx, double fy, double fz);
-extern int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double xminval, double xmaxval, double fx, double fy, double fz);
-extern int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double yminval, double ymaxval, double fx, double fy, double fz);
-extern int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double xminval, double xmaxval, double fx, double fy, double fz);
-extern int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double yminval, double ymaxval, double fx, double fy, double fz);
 
 extern int CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *posi,int *fontid,int *old_rect);
 
@@ -99,9 +85,6 @@ extern int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, d
 extern void DrawAxesIfRequired(sciPointObj*); /* DRAWINGS */
 extern void DrawAxes(sciPointObj*); /* DRAWINGS */
 
-extern void UpdateSubwinScale(sciPointObj * pobj); /* DRAWINGS */
-
-//extern int sciDrawObj (sciPointObj * pobj); /* DRAWINGS */
 extern int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
 extern int sciRefreshObj( sciPointObj * pobj ) ; /* DRAWINGS */
 
@@ -118,7 +101,6 @@ extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill
 extern int CheckPixelStatus(void);
 
 extern int GetDPIFromDriver(int * DPI);
-extern int ChooseFormatForOneGrad(char *c_format, double *grad);
 extern int GetBarNumber(sciPointObj * pobj);
 extern double FindWidth(sciPointObj * pobj, int n1, int bar_number, double *x);
 

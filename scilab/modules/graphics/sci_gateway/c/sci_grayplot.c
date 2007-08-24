@@ -64,7 +64,6 @@ int sci_grayplot( char *fname, unsigned long fname_len )
   GetRect(fname,5,opts,&rect);
   GetNax(6,opts,&nax,&flagNax);
 
-  SciWin();
   SciGerase() ;
 
   if ( isDefStrf( strf ) )

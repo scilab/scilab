@@ -12,7 +12,6 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "sciprint.h"
-#include "periScreen.h"
 #include "DrawObjects.h" 
 
 /*------------------------------------------------------------------------*/
@@ -34,7 +33,7 @@ int set_rotation_angles_property( sciPointObj * pobj, int stackPointer, int valu
   }
 
   Obj_RedrawNewAngle( pobj, values[1], values[0] ) ;
-  wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha,pSUBWIN_FEATURE (pobj)->theta);
+  setInfoMessageWithRotationAngles(pobj, values[0], values[1]);
 
   return SET_PROPERTY_SUCCEED ;
 

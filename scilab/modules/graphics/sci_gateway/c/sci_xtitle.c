@@ -77,7 +77,6 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     nbLabels-- ; /* it is not a label text */
   }
 
-  SciWin();
 
   psubwin = sciGetCurrentSubWin();
 

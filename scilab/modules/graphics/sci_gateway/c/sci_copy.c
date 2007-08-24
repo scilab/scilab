@@ -28,7 +28,6 @@ int sci_copy(char *fname,unsigned long fname_len)
   CheckLhs(0,1);
 
   /*  set or create a graphic window*/
-  SciWin();
   lw = 1 + Top - Rhs;
   GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument*/
   if (m1!=1||n1!=1) {

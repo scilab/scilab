@@ -20,13 +20,11 @@
 #include "InitObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
-#include "bcg.h"
 #include "PloEch.h"
 #include "Axes.h"
 #include "DestroyObjects.h"
 #include "CloneObjects.h"
 #include "BuildObjects.h"
-#include "Xcall1.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
@@ -36,8 +34,8 @@
 static char error_message[70]; /* DJ.A 08/01/04 */
 extern unsigned short defcolors[];
 
-static sciPointObj * pfiguremdl = (sciPointObj *) NULL;
-static sciPointObj * paxesmdl = (sciPointObj *) NULL;
+static sciPointObj * pfiguremdl = NULL;
+static sciPointObj * paxesmdl = NULL;
 
 sciPointObj * getFigureModel( void )
 {
@@ -738,13 +736,10 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
 {
   /* integer i , m, n; */
   integer x[2], verbose=0, narg=0; 
-  struct BCG *XGC=NULL;
   
 
   if(sciGetEntityType(pobj)!=SCI_FIGURE) /* MUST BE used for figure entities only */
     return -1;
-
-  XGC = pFIGURE_FEATURE (pobj)->pScilabXgc;
   
   pFIGURE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
   pFIGURE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
@@ -784,24 +779,11 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
       FREE(pobj);
       return -1;
     }
-  sciSetNum (pobj, &(XGC->CurWindow));		   
+  /* sciSetNum(pobj, getUnusedFigureIndex()); Number can not be modified */
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
-  /*pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
-  pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;*/
   sciSetWindowDim( pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
-  /*C2F(dr)("xset","wdim",&(pFIGURE_FEATURE(pobj)->windowdimwidth),
-	  &(pFIGURE_FEATURE(pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
   sciSetDimension( pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl) ) ;
-  /*pFIGURE_FEATURE (pobj)->figuredimwidth = pFIGURE_FEATURE (pfiguremdl)->figuredimwidth;
-  pFIGURE_FEATURE (pobj)->figuredimheight = pFIGURE_FEATURE (pfiguremdl)->figuredimheight;
-  C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE(pobj)->figuredimwidth),
-	  &(pFIGURE_FEATURE(pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","wpos",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
-  x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
-  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
-  x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
-  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;*/
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
   sciSetScreenPosition(pobj,x[0],x[1]);
   pFIGURE_FEATURE (pobj)->isiconified = pFIGURE_FEATURE (pfiguremdl)->isiconified;
@@ -1014,3 +996,21 @@ void destroyFigureModelData( FigureModelData * data )
   }
 }
 /*------------------------------------------------------------------------------------------*/
+/**
+ * Set the colormap of a figure to the default one.
+ */
+void sciSetDefaultColorMap(sciPointObj * pFigure)
+{
+  int numColor = sciGetNumColors(getFigureModel()); 
+  double * colorMap = MALLOC( 3 * numColor * sizeof(double) );
+  if (colorMap == NULL)
+  {
+    sciprint("Unable to allocate colormap, memory full.\n");
+  }
+  sciGetColormap(getFigureModel(), colorMap);
+  sciSetColormap(pFigure, colorMap, numColor, 3);
+
+  FREE(colorMap);
+}
+/*------------------------------------------------------------------------------------------*/
+

@@ -11,17 +11,9 @@ void loadGraphicModule(void);
 
 BOOL TerminateGraphics(void);
 
-int getWinsMaxId(void);
-
 int scig_2dzoom(integer win_num);
 
-struct BCG * getWindowXgcNumber(integer i);
-
-void getWins(integer * Num, integer * Ids, integer * flag);
-
 int GetDriverId(void);
-
-WindowList * getScilabWindowList(void);
 
 int CheckClickQueue(int *win,int *x,int *y,int *ibut,int *motion,int *release);
 
@@ -41,10 +33,6 @@ double Maxi(double *vect,integer n);
 
 double Mini(double *vect, integer n);
 
-struct BCG * addWindowItem(void);
-
-int removeWindowItem(struct BCG * window);
-
 int scig_3drot(integer win_num);
 
 void scig_replay(integer win_num);
@@ -53,17 +41,11 @@ void scig_erase(integer win_num);
 
 void scig_loadsg(int win_num, char *filename);
 
-struct BCG * getFirstWindow(void);
-
-BOOL isWindowListEmpty(void);
-
 void del_window_scale(integer i);
 
 void scig_savesg(int win_num, char * filename);
 
 void Cscale2default(void);
-
-void C2F(clipPolyLine)(integer n, integer *vx, integer *vy, integer closed, SClipRegion * clipping);
 
 int scig_toPs(integer win_num, integer colored, char * bufname, char * driver);
 

@@ -10,7 +10,6 @@
 #include "DestroyObjects.h"
 #include "graphicModuleLoad.h"
 #include "InitObjects.h"
-#include "periScreen.h"
 
 #include "getScilabJavaVM.h"
 #include "JniUtils.h"

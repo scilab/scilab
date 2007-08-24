@@ -6,25 +6,28 @@
 /*------------------------------------------------------------------------*/
 
 #include "CurrentObjectsManagement.h"
-#include "Xcall1.h"
 #include "BuildObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "ObjectSelection.h"
 #include "GraphicSynchronizerInterface.h"
+#include "WindowList.h"
+#include "InitObjects.h"
 
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
 /* singleton, there is only one screen */
 static sciPointObj * sciScreenRoot     = NULL ;
 static sciPointObj * sciCurrentObject  = NULL ;
+static sciPointObj * sciCurrentFigure  = NULL ;
 
 /* there can be only one console and one screen root */
 BOOL sciIsConsoleCreated = FALSE ;
 BOOL sciIsScreenCreated  = FALSE ;
-
 /*----------------------------------------------------------------------------------*/
 static int cf_type = 1 ;
+/*----------------------------------------------------------------------------------*/
+static sciPointObj * getCurrentPointedFigure(void);
 /*----------------------------------------------------------------------------------*/
 int get_cf_type( void )
 {
@@ -36,77 +39,56 @@ void set_cf_type( int val )
   cf_type = val ;
 }
 /*----------------------------------------------------------------------------------*/
+static sciPointObj * getCurrentPointedFigure(void)
+{
+  return sciCurrentFigure;
+}
+/*----------------------------------------------------------------------------------*/
 sciPointObj * sciGetCurrentFigure( void )
 {
   /* debug F.Leray 22.07.04 */
-  struct BCG * moncurScilabXgc = NULL;
-  sciPointObj * pfigure = NULL;
+  sciPointObj * pfigure = getCurrentPointedFigure();
+  sciPointObj * pSousFen = NULL;
 
-
-  static sciPointObj *mafigure;
-  static sciPointObj *masousfen;
-
-  moncurScilabXgc = sciGetCurrentScilabXgc();
-  if(moncurScilabXgc == (struct BCG *) NULL)
-    return (sciPointObj *) NULL;
-
-  pfigure = (sciPointObj *) (moncurScilabXgc->mafigure);
-
-  if(pfigure == (sciPointObj *) NULL )
+  if( !sciHasFigures() )
   {
     /* it would mean that we have change the driver to GIF,Pos or PPM and perform a xinit F.Leray 22.07.04 */
     /* for now, no higher entities than figure */
-    if ((mafigure = ConstructFigure( NULL, moncurScilabXgc)) != NULL)
+    if ( (pfigure = ConstructFigure(NULL)) != NULL )
     {
-      sciSetCurrentObj (mafigure); 
-      moncurScilabXgc->mafigure = mafigure;
-      if ((masousfen = ConstructSubWin (mafigure, moncurScilabXgc->CurWindow)) != NULL) {
-        sciSetCurrentObj (masousfen);
-        sciSetOriginalSubWin (mafigure, masousfen);
+      sciSetCurrentObj(pfigure);
+      sciInitCurrentFigure(pfigure);
+      if ((pSousFen = ConstructSubWin(pfigure)) != NULL) {
+        sciSetCurrentObj (pSousFen);
+        sciSetOriginalSubWin (pfigure, pSousFen);
         set_cf_type(1);/* current figure is a graphic one */
       }
     }
   }
 
-  return sciGetCurrentScilabXgc()->mafigure  ;
+  return pfigure;
+}
+/*----------------------------------------------------------------------------------*/
+BOOL sciIsCurrentFigure(sciPointObj * pFigure)
+{
+  return (pFigure != getFigureModel()) && (pFigure == sciGetCurrentFigure());
 }
 /*----------------------------------------------------------------------------------*/
 int sciInitCurrentFigure( sciPointObj * mafigure )
 {
-  sciGetCurrentScilabXgc()->mafigure = mafigure ;
+  sciCurrentFigure = mafigure ;
   set_cf_type(1);/* current figure is a graphic one */
   return 0 ;
 }
 /*----------------------------------------------------------------------------------*/
 int sciSetCurrentFigure ( sciPointObj * mafigure )
 {
-  if ( sciGetCurPointedFigure() == mafigure )
+  if ( sciGetCurrentFigure() == mafigure )
   {
     /* nothing to do */
     return 1 ;
   }
   return sciInitCurrentFigure( mafigure ) ;
-}
-/*----------------------------------------------------------------------------------*/
-sciPointObj * sciGetCurPointedFigure( void )
-{
-  if ( sciGetCurrentScilabXgc() != NULL )
-  {
-    return sciGetCurrentScilabXgc()->mafigure ;
-  }
-  else
-  {
-    return NULL ;
-  }
-}
-/*----------------------------------------------------------------------------------*/
-struct BCG * sciGetCurrentScilabXgc( void )
-{
-  int verbose = 0 ;
-  double * XGC = NULL ;
-
-  C2F(dr)("xget","gc",&verbose,PI0,PI0,PI0,PI0,PI0,(double*)&XGC,PD0,PD0,PD0,5L,10L) ;
-  return (struct BCG *) XGC;
 }
 /*----------------------------------------------------------------------------------*/
 sciPointObj * sciGetCurrentObj( void )

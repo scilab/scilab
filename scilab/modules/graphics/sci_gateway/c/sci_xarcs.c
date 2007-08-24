@@ -12,6 +12,7 @@
 #include "GetProperty.h"
 #include "sciCall.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xarcs(char *fname,unsigned long fname_len)
@@ -21,8 +22,8 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   /* NG beg */
   long  hdl;
   int i,a1,a2;
+  sciPointObj * pFigure = NULL;
   /* NG end */
-  SciWin();
   CheckRhs(1,2);
 
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -38,6 +39,10 @@ int sci_xarcs(char *fname,unsigned long fname_len)
     }
   }
 
+  startGraphicDataWriting();
+  pFigure = sciGetCurrentFigure();
+  endGraphicDataWriting();
+  startFigureDataWriting(pFigure);
   if (Rhs == 2) 
   {
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
@@ -53,7 +58,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
     m2=1,n2=n1; CreateVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     for (i2 = 0; i2 < n2; ++i2)
     { 
-      *istk(l2 + i2) =  sciGetForeground(sciGetCurrentSubWin() );
+      *istk(l2 + i2) = sciGetForeground(sciGetCurrentSubWin() );
     }
   }  
   /* NG beg */
@@ -65,7 +70,8 @@ int sci_xarcs(char *fname,unsigned long fname_len)
       stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),NULL,FALSE,TRUE,&hdl); 
   }
   /** construct Compound and make it current object **/
-  sciSetCurrentObj (ConstructCompoundSeq (n1));
+  sciSetCurrentObj(ConstructCompoundSeq(n1));
+  endFigureDataWriting(pFigure);
   /* NG end */
   LhsVar(1)=0;
   return 0;

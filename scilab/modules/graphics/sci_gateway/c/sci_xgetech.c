@@ -25,7 +25,7 @@ int sci_xgetech( char *fname, unsigned long fname_len )
   if ( Lhs >=2 ) { CreateVar( 2,MATRIX_OF_DOUBLE_DATATYPE, &un, &quatre,&l2); F= stk(l2);}
   if ( Lhs >=3 ) { CreateVar( 3,STRING_DATATYPE, &un, &deux,  &l3); L= cstk(l3);}
   if ( Lhs >=4 ) { CreateVar( 4,MATRIX_OF_DOUBLE_DATATYPE, &un, &quatre,&l4); A= stk(l4);}
-  SciWin();
+
   getscale2d(W,F,L,A);
   for ( i = 1 ; i <= Lhs ; i++) LhsVar(i) = i;
   return 0;

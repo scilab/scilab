@@ -8,7 +8,6 @@
 #include <string.h>
 
 #include "sci_xclick.h"
-#include "Xcall1.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
@@ -16,32 +15,35 @@
 /*-----------------------------------------------------------------------------------*/
 int sci_xclick(char *fname,unsigned long fname_len)
 {
-  int un=1,trois=3,rep,iw;
-  integer istr,ix,iflag,v;
-  double x,y,dv;
+  int un=1,trois=3,rep;
+  int iw = 0;
+  integer istr;
+  int ix = 0;
+  int iflag = 0;
+  double x = 0.0;
+  double y = 0.0;
 
   CheckRhs(-1,1) ;
   CheckLhs(1,5) ;
 
   iflag = ( Rhs >= 1) ? 1 :0;
 
-  SciWin();
 
   switch (Lhs) {
   case 4 : 
-    C2F(dr1)("xclickany","xv",&ix,&iw,&iflag,&v,&v,&v,&x,&y,&dv,&dv,10L,3L);
+    /* C2F(dr1)("xclickany","xv",&ix,&iw,&iflag,&v,&v,&v,&x,&y,&dv,&dv,10L,3L); */
     break;
   case 5 :
     istr = 1;
-    C2F(dr1)("xclickany",C2F(cha1).buf,&ix,&iw,&iflag,&v,&v,&istr,&x,&y,&dv,&dv,10L,bsiz);
+    /* C2F(dr1)("xclickany",C2F(cha1).buf,&ix,&iw,&iflag,&v,&v,&istr,&x,&y,&dv,&dv,10L,bsiz); */
     break;
   default :
     istr = 0;
-    C2F(dr1)("xclick","xv",&ix,&iflag,&istr,&v,&v,&v,&x,&y,&dv,&dv,7L,3L);
+    /* C2F(dr1)("xclick","xv",&ix,&iflag,&istr,&v,&v,&v,&x,&y,&dv,&dv,7L,3L); */
   }
 
   if ( ix < 0 ) {
-    x=y=-1; /*C2F(returnanan)(); */ /* to better manage string conversion of the output */ /* F.Leray 20.04.05 */
+    x=y=-1; /* to better manage string conversion of the output */ /* F.Leray 20.04.05 */
   }
 
   if ( Lhs == 1 )

@@ -10,7 +10,6 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
-#include "Xcall1.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
 #include "SetPropertyStatus.h"

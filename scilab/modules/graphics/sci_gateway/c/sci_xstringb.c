@@ -16,7 +16,6 @@
 #include "GetProperty.h"
 #include "MALLOC.h"
 #include "sciCall.h"
-#include "Xcall1.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xstringb(char *fname,unsigned long fname_len)
@@ -28,8 +27,6 @@ int sci_xstringb(char *fname,unsigned long fname_len)
   double rect[4],angle=0;
   long hdlstr;
   double userSize[2] ;
-
-  SciWin();
 
   if ( Rhs <= 0 )
   {

@@ -9,15 +9,15 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "stack-c.h"
-#include "Xcall1.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xgetmouse( char *fname,unsigned long fname_len )
 {
-  integer  m1=1,n1=3,l1,l2,button,v;
+  integer  m1=1,n1=3,l1,l2;
+  int button = 0;
   integer iflag;
   integer sel[2],m,n,v2;
-  double x,y,dv;
+  double x,y;
 
   CheckRhs(0,2);
   CheckLhs(1,2);
@@ -44,12 +44,10 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     }
   }
 
-  SciWin();
 
   switch (Lhs) {
   case 1: 
     v2=0;
-    C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v2,&x,&y,&dv,&dv,10L,3L); 
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
     if (button==-100)
     {
@@ -65,7 +63,6 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     return 0;
   case 2:
     v2=2;
-    C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v2,&x,&y,&dv,&dv,10L,3L);
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
     if (button==-100)
     {

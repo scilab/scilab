@@ -410,7 +410,6 @@ sci_gateway/c/sci_showalluimenushandles.c \
 sci_gateway/c/sci_xend.c \
 sci_gateway/c/sci_unglue.c \
 sci_gateway/c/gw_graphics.c \
-sci_gateway/c/sci_xsnative.c \
 sci_gateway/c/sci_zoom_rect.c \
 sci_gateway/c/sci_delete.c \
 sci_gateway/c/sci_xs2fig.c \
@@ -487,7 +486,6 @@ includes/periWin.h \
 includes/graphicSession.h \
 includes/periPos.h \
 includes/sci_xgraduate.h \
-includes/Xcall1.h \
 includes/sci_unzoom.h \
 includes/sci_xs2ppm.h \
 includes/sci_xsegs.h \
@@ -533,7 +531,6 @@ includes/sci_set_posfig_dim.h \
 includes/sci_set.h \
 includes/sci_help_gtk.h \
 includes/bcg.h \
-includes/sci_xsnative.h \
 includes/sci_delete.h \
 includes/sci_plot2d.h \
 includes/clipping.h \

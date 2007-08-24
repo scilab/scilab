@@ -24,7 +24,6 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"
-#include "bcg.h"
 #include "WindowList.h"
 #include "DoublyLinkedList.h"
 #include "sciprint.h"
@@ -541,7 +540,7 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
     if ( sciGetNbTypedObjects( oldParent, SCI_SUBWIN ) == 0 )
     {
       /* we need to recreate a subwin */
-      sciPointObj * newSubWin = ConstructSubWin( oldParent, sciGetNumFigure( oldParent ) ) ;
+      sciPointObj * newSubWin = ConstructSubWin( oldParent ) ;
       if ( newSubWin == NULL )
       {
         return -1 ;
@@ -553,18 +552,6 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
   }
 
   return 0 ;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
- * @return number of graphic windows in Scilab.
- */
-int sciGetNbFigures( void )
-{
-  int nbFigure = 0 ;
-  int flag     = 0 ;
-  int ids          ;
-  getWins( &nbFigure, &ids, &flag ) ;
-  return nbFigure ;
 }
 /*-----------------------------------------------------------------------------------*/
 /**
@@ -664,7 +651,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   }
 
   /* allocate the array with as much space as number of figures. */
-  nbFigure = sciGetNbFigures() ;
+  nbFigure = sciGetNbFigure() ;
 
   /* now move each object */
   for ( i = 0 ; i < nbHandles ; i++ )

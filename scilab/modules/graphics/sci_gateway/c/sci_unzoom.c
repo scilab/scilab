@@ -16,8 +16,7 @@
 int sci_unzoom(char *fname,unsigned long fname_len)
 {
   CheckRhs(0,1) ;
-  CheckLhs(0,1) ;
-  SciWin() ;
+  CheckLhs(0,1) ;;
   if ( Rhs == 0 )
   {
     unzoom();

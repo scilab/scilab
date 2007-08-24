@@ -24,8 +24,6 @@ int sci_xrect( char *fname, unsigned long fname_len )
   sciPointObj * pFigure = NULL;
 
   CheckRhs(1,4);
-  
-  SciWin();
 
   startGraphicDataWriting();
   pFigure = sciGetCurrentFigure();

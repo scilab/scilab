@@ -22,8 +22,6 @@ int sci_draw( char * fname, unsigned long fname_len )
   sciPointObj *pobj, *psubwin, *tmpsubwin;
   integer m,n,l,lw;
 
-
-  SciWin() ;
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
 

@@ -23,8 +23,6 @@ int sci_xarc(char *fname,unsigned long fname_len)
   sciPointObj * psubwin = NULL;
   sciPointObj * pFigure = NULL;
 
-  SciWin();
-
   startGraphicDataWriting();
   pFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();

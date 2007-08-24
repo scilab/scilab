@@ -11,12 +11,8 @@
 #ifndef _GRAY_H_
 #define _GRAY_H_
 
-void GraySquareDirect(integer *x, integer *y, double *z, integer n1, integer n2) ;
+int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, BOOL flagNax, long int l1) ;
 
-void GraySquareScaled(integer *x, integer *y, double *z, integer n1, integer n2) ;
-
-void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2) ;
-
-void GraySquare1_NGreverse(integer * x, integer *y, double *z, integer n1, integer n2, sciPointObj * psubwin) ;
+int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, BOOL flagNax, long int l1) ;
 
 #endif /* _GRAY_H_ */

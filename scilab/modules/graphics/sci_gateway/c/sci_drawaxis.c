@@ -44,8 +44,6 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
 
   nopt = NumOpt();
 
-  SciWin();
-
   CheckRhs(minrhs,maxrhs+nopt) ;
   CheckLhs(minlhs,maxlhs) ;
 

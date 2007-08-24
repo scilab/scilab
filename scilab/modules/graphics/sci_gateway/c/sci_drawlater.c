@@ -17,9 +17,7 @@
 int sci_drawlater( char * fname, unsigned long fname_len )
 {
   sciPointObj *pfigure = NULL;
-  /*   integer m,n,l,i; */
 
-  SciWin(); 
   CheckRhs(0,0);
   CheckLhs(0,1); 
 

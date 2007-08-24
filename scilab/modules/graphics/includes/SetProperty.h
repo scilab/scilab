@@ -83,11 +83,13 @@ extern int sciSetBoxType ( sciPointObj * pobj, EAxesBoxType type ) ; /* SET */
 
 extern int sciInitIsBoxed(sciPointObj * pobj, BOOL isboxed);
 extern int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
-/* extern int sciSetIsInterpShaded (sciPointObj * pobj, BOOL isinterpshaded); /\* SET *\/ */
 
 /* Text Functions */
-extern int sciInitFontDeciWidth(sciPointObj * pobj, int fontdeciwidth);
+extern int sciInitFontDeciWidth(sciPointObj * pobj, int fontdeciwidth); /* SET */
 extern int sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth); /* SET */
+
+int sciInitFontWidth(sciPointObj * pobj, int width); /* SET */
+int sciSetFontWidth(sciPointObj * pobj, int width); /* SET */
 
 extern int sciInitFontOrientation(sciPointObj * pobj, int textorientation); /* SET */
 extern int sciSetFontOrientation (sciPointObj * pobj, int textorientation); /* SET */
@@ -155,8 +157,8 @@ extern int sciSetDefaultValues (void); /* SET */
 
 /* Window Functions */
 extern int sciSetName (sciPointObj * pobj, char *pvalue, int length); /* SET */
-extern int sciInitNum( sciPointObj * pobj, int * value ) ;
-extern int sciSetNum ( sciPointObj * pobj, int * value ) ; /* SET */
+extern int sciInitNum( sciPointObj * pobj, int value ) ;
+extern int sciSetNum ( sciPointObj * pobj, int value ) ; /* SET */
 
 extern int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight ) ;
 extern int sciSetDimension(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
@@ -180,15 +182,12 @@ extern int sciSetSelectedSubWin (sciPointObj * psubwinobj); /* SET */
 
 extern int sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin); /* SET */
 
-extern int sciInitCurrentFigure(sciPointObj * mafigure);
-extern int sciSetCurrentFigure (sciPointObj * mafigure); /* SET */
-
 extern int sciSetReplay (BOOL value); /* SET */
 /* extern int sciSetHDC (sciPointObj * pobj); /\* SET *\/ /\* unused?? *\/ */
 extern int sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol); /* SET */
 
 extern int sciSetdrawmode(BOOL mode); /* SET */
-extern int sciSwitchWindow(int *winnum); /* SET */
+extern int sciSwitchWindow(int winnum); /* SET */
 
 extern int sciInitUsedWindow( int winNum ) ; /* SET */
 extern int sciSetUsedWindow( int winNum ) ; /* SET */
@@ -245,13 +244,12 @@ int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable ) ;
 int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
 
 int sciSetSelectedObject( sciPointObj * pObj ) ;
-
-int sciInitIsReadyForRendering( sciPointObj * pObj, BOOL isReady ) ;
-
 int sciSetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* SET */
 
 int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta) ;
 int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta); /* SET */
+
+int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double theta);
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */

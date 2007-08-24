@@ -6,23 +6,28 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_winsid.h"
-#include "stack-c.h"
-#include "periScreen.h"
-#undef Top
+#include "MALLOC.h"
 #include "WindowList.h"
+#include "sciprint.h"
+#include "returnProperty.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_winsid(char *fname,unsigned long fname_len)
 {
-  integer iflag =0,ids,num,un=1,l1;
+  int one = 1;
+  int * ids = NULL;
+  int nbFigure = sciGetNbFigure();
+  CheckRhs(-1,0);
 
-  CheckRhs(-1,0) ;
-  getWins(&num,&ids ,&iflag);
-  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,&num,&l1);
-  iflag = 1; 
-  getWins(&num,istk(l1),&iflag);
-  LhsVar(1)=Rhs+1;
+  ids = MALLOC(nbFigure * sizeof(int));
+  if (ids == NULL)
+  {
+    sciprint("Error in function winsid, unable to perform operations, memory full.\n");
+    return 0;
+  }
 
-  return 0;
+  sciGetFiguresId(ids);
+
+  return sciReturnRowVectorFromInt(ids, nbFigure);
 }
 /*-----------------------------------------------------------------------------------*/

@@ -20,7 +20,6 @@ int sci_xarrows(char *fname,unsigned long fname_len)
   integer m4,n4,l4,mn2;
   double arsize=-1.0;
 
-  SciWin();
   CheckRhs(2,4);
 
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);

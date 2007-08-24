@@ -27,8 +27,6 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   sciPointObj * pobj    = NULL ;
   sciPointObj * psubwin = NULL ;
 
-  SciWin();
-
   CheckRhs(2,4);
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
