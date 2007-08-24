@@ -313,6 +313,30 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Libraries Dependencies"
+			>
+			<File
+				RelativePath="..\..\..\..\bin\fileio.lib"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\bin\graphics.lib"
+				>
+			</File>
+			<File
+				RelativePath=".\LibScilab.lib"
+				>
+			</File>
+			<File
+				RelativePath=".\LibScilab_Import.def"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\bin\MALLOC.lib"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\completion.iss"
 			>
@@ -323,10 +347,6 @@
 		</File>
 		<File
 			RelativePath=".\completion_header.def"
-			>
-		</File>
-		<File
-			RelativePath=".\LibScilab_Import.def"
 			>
 		</File>
 		<File

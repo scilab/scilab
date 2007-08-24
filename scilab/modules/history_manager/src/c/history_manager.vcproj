@@ -361,6 +361,14 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Libraries Dependencies"
+			>
+			<File
+				RelativePath="..\..\..\..\bin\MALLOC.lib"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\history_manager.iss"
 			>

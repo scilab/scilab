@@ -392,11 +392,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\setenvc.h"
+				RelativePath="..\..\includes\setenvc.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\setenvc.h"
+				RelativePath=".\setenvc.h"
 				>
 			</File>
 			<File

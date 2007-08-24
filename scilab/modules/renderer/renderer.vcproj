@@ -1103,10 +1103,22 @@
 			Name="Swig Files"
 			>
 		</Filter>
-		<File
-			RelativePath=".\LibScilab_Import.def"
+		<Filter
+			Name="Libraries Dependencies"
 			>
-		</File>
+			<File
+				RelativePath="..\..\bin\doublylinkedlist.lib"
+				>
+			</File>
+			<File
+				RelativePath="..\..\bin\libjvm.lib"
+				>
+			</File>
+			<File
+				RelativePath=".\LibScilab_Import.def"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\Makefile.am"
 			>
