@@ -10,7 +10,6 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes  -Iinc
 if GUI
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
-src/c/gifimg.c \
 src/c/WindowList.c \
 src/c/Events.c \
 src/c/getHandleProperty/get_figure_position_property.c \
@@ -272,18 +271,14 @@ src/c/getHandleProperty/set_dimension_property.c \
 src/c/getHandleProperty/set_event_handler_property.c \
 src/c/getHandleProperty/set_event_handler_enable_property.c \
 src/c/DefaultCommandArg.c \
-src/c/periPos.c \
 src/c/graphicSession.c \
-src/c/Xcall1.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
-src/c/Xcall.c \
 src/c/DrawObjects.c \
 src/c/Vect2Matrix.c \
 src/c/xs2file.c \
 src/c/Plo3d.c \
 src/c/GetProperty.c \
-src/c/periFig.c \
 src/c/Contour.c \
 src/c/nues1.c \
 src/c/SetProperty.c \
@@ -297,43 +292,18 @@ src/c/Format.c \
 src/c/Champ.c \
 src/c/StringMatrix.c \
 src/c/FeC.c \
-src/c/Plo3dn.c \
 src/c/Actions.c \
 src/c/Plo2dEch.c \
 src/c/Plo2dn.c \
 src/c/Gray.c \
 src/c/DestroyObjects.c \
-src/c/clipping.c \
 src/c/math_graphics.c \
 src/c/Interaction.c \
-src/c/periGif.c \
 src/c/HandleManagement.c \
-src/gd/gdfonts/gdfontmb.c \
-src/gd/gdfonts/gdfonts.c \
-src/gd/gdfonts/gdfontt.c \
-src/gd/gdfonts/gdfontg.c \
-src/gd/gdfonts/gdfontl.c \
-src/gd/bdftogd.c \
-src/gd/xfonts.c \
-src/gd/gd.c \
 src/c/StringBox.c \
-src/c/drawMarks.c \
 src/c/axesScale.c \
 src/c/Vertices.c \
 src/c/GraphicZoom.c \
-src/c/handleDrawing/drawArcEntity.c \
-src/c/handleDrawing/drawAxesEntity.c \
-src/c/handleDrawing/drawCompoundEntity.c \
-src/c/handleDrawing/drawFecEntity.c \
-src/c/handleDrawing/drawFigureEntity.c \
-src/c/handleDrawing/drawGrayplotEntity.c \
-src/c/handleDrawing/drawLegendEntity.c \
-src/c/handleDrawing/drawPolylineEntity.c \
-src/c/handleDrawing/drawRectangleEntity.c \
-src/c/handleDrawing/drawSegsEntity.c \
-src/c/handleDrawing/drawSubWinEntity.c \
-src/c/handleDrawing/drawSurfaceEntity.c \
-src/c/handleDrawing/drawTextEntity.c \
 src/c/TerminateGraphics.c \
 src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c \
@@ -343,8 +313,7 @@ src/c/fill_grid_rectangles.c \
 src/c/get_rgb.c \
 src/c/getcolordef.c \
 src/c/getwindowdim.c \
-src/c/periEmpty.c \
-src/c/SciViewportGet.c 
+src/c/periEmpty.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_readgif.c \
@@ -428,7 +397,7 @@ sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c
 
-libscigraphics_la_CFLAGS +=  $(JAVA_JNI_INCLUDE) -Iincludes/handleDrawing -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/renderer/includes/
+libscigraphics_la_CFLAGS +=  $(JAVA_JNI_INCLUDE) -Isrc/cpp $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/renderer/includes/
 
 libscigraphics_la_CXXFLAGS =  -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 
@@ -480,11 +449,8 @@ includes/sci_xlfont.h \
 includes/GetCommandArg.h \
 includes/sci_xgrid.h \
 includes/sci_geom3d.h \
-includes/scigraphic.h \
 includes/DefaultCommandArg.h \
-includes/periWin.h \
 includes/graphicSession.h \
-includes/periPos.h \
 includes/sci_xgraduate.h \
 includes/sci_unzoom.h \
 includes/sci_xs2ppm.h \
@@ -505,7 +471,6 @@ includes/xs2file.h \
 includes/sci_matplot.h \
 includes/color.h \
 includes/sci_readxbm.h \
-includes/periMac.h \
 includes/sci_drawaxis.h \
 includes/Plo3d.h \
 includes/sci_xrect.h \
@@ -530,10 +495,8 @@ includes/sci_xinit.h \
 includes/sci_set_posfig_dim.h \
 includes/sci_set.h \
 includes/sci_help_gtk.h \
-includes/bcg.h \
 includes/sci_delete.h \
 includes/sci_plot2d.h \
-includes/clipping.h \
 includes/sci_StringBox.h \
 includes/sci_xgetmouse.h \
 includes/Interaction.h \
@@ -547,7 +510,6 @@ includes/sci_matplot1.h \
 includes/XsetXgetParameters.h \
 includes/sci_UImenu.h \
 includes/sci_xfpolys.h \
-includes/gifimg.h \
 includes/WindowList.h \
 includes/sci_xget.h \
 includes/sci_swap_handles.h \
@@ -570,7 +532,6 @@ includes/sci_xs2bmp.h \
 includes/sci_xpoly.h \
 includes/sci_xchange.h \
 includes/sci_demo.h \
-includes/periFig.h \
 includes/ObjectStructure.h \
 includes/sci_draw.h \
 includes/sci_plot3d.h \
@@ -582,12 +543,10 @@ includes/sci_xarcs.h \
 includes/pixel_mode.h \
 includes/sci_champ.h \
 includes/Champ.h \
-includes/periX11.h \
 includes/StringMatrix.h \
 includes/sci_xend.h \
 includes/sci_unglue.h \
 includes/gw_graphics.h \
-includes/periScreen.h \
 includes/sci_zoom_rect.h \
 includes/sci_xs2fig.h \
 includes/DestroyObjects.h \
@@ -595,9 +554,7 @@ includes/sci_xrects.h \
 includes/sci_xtitle.h \
 includes/math_graphics.h \
 includes/sci_drawnow.h \
-includes/giffonts.h \
 includes/sci_param3d.h \
-includes/periGif.h \
 includes/CurrentObjectsManagement.h \
 includes/ObjectSelection.h
 
