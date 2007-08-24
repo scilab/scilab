@@ -195,15 +195,12 @@ std::string HistorySearch::getPreviousLine(void)
 
 	if (my_lines)
 	{
-		if ( (moveOnNext) && (this->current_position == this->my_sizearray)) this->current_position--;
+		if  (moveOnNext) this->current_position++;
 
 		if (this->current_position <= 0) this->current_position = 0;
 		else this->current_position--;
 
-		if (my_lines[this->current_position])
-		{
-			line.assign(my_lines[this->current_position]);		
-		}
+		if (my_lines[this->current_position]) line.assign(my_lines[this->current_position]);
 	}
 
 	moveOnNext = FALSE;
@@ -223,7 +220,11 @@ std::string HistorySearch::getNextLine(void)
 			line.assign(my_lines[this->current_position]);
 		}
 
-		if (this->current_position == this->my_sizearray) line = this->getToken();
+		if (this->current_position == this->my_sizearray) 
+		{
+			line = this->getToken();
+			this->current_position--;
+		}
 	}
 
 	moveOnNext = TRUE;
