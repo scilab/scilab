@@ -811,10 +811,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\gifimg.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\graphicModuleLoad.c"
 				>
 			</File>
@@ -1874,10 +1870,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\giffonts.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\gifimg.h"
 				>
 			</File>
 			<File
