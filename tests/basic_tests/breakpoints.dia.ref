@@ -770,3 +770,21 @@ Stop after row     6 in function foo2.
  
  
  
+ 
+// non regression test for bug 2474
+ 
+for i=1;delbpt();end  // should not say:
+ 
+//                  !--error 115
+ 
+//Stack problem detected within a loop
+ 
+// a primitive function has been called with wrong number
+ 
+// of lhs arguments. No lhs test made for this function;
+ 
+// please report this bug
+ 
+//                  !
+ 
+ 

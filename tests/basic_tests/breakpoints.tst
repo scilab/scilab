@@ -226,3 +226,13 @@ setbpt("foo1",[1:2]);setbpt("foo2",[1:10]);setbpt("foo3",[1:5]);
 // and not Stop after row     1 in function foo3 :
 resume
 
+
+// non regression test for bug 2474
+for i=1;delbpt();end  // should not say:
+//                  !--error 115
+//Stack problem detected within a loop
+// a primitive function has been called with wrong number
+// of lhs arguments. No lhs test made for this function;
+// please report this bug
+//                  !
+
