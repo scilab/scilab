@@ -5,6 +5,7 @@ c Francois VOGEL, January  2005 - Bug 1187 fixed
 c Francois VOGEL, February 2005 - Request 156 fixed - delbpt()
 c Francois VOGEL, February 2005 - Vector argument now allowed
 c Bruno PINCON,   = = = = = = = - slight pbs of goto (most removed)
+c Francois VOGEL, August   2007 - Bug 2474 fixed
       include 'stack.h'
       integer id(nsiz)
       logical checkrhs,checklhs,getsmat,getrvect,checkval,eqid
@@ -64,6 +65,7 @@ c        rhs is 1 or 2 (macro name is provided)
       else ! rhs = 0: delete all bpt of all functions
          nmacs = 0
          lgptrs(1) = 0   ! est-ce nécessaire ?  
+         top=top+1
          goto 360
       endif
 
