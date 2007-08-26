@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.112
+# in sync at least with v6.128
 
 
 # commons
@@ -10,6 +10,7 @@
 ::msgcat::mcset it "Add/Change" "Aggiungi/modifica"
 ::msgcat::mcset it "Add/Chan&ge" "Aggiungi/&modifica"
 ::msgcat::mcset it "&Remove" "&Rimuovi"
+::msgcat::mcset it "Rem&ove" "Rimu&ovi"
 ::msgcat::mcset it "Untitled" "SenzaTitolo"
 ::msgcat::mcset it "Close" "Chiudi"
 ::msgcat::mcset it "&Close" "&Chiudi"
@@ -51,6 +52,7 @@
 
 
 # db_argsmanagement.tcl
+::msgcat::mcset it "Add" "Aggiungi"
 ::msgcat::mcset it "This variable can be watched but cannot be edited!"\
                    "Questa variabile può essere osservata, ma non modificata!"
 ::msgcat::mcset it "A new watch variable will be created."\
@@ -58,6 +60,7 @@
                     osservare."
 ::msgcat::mcset it "Non editable variable" "Variabile non modificabile"
 ::msgcat::mcset it "Variable:" "Variabile:"
+::msgcat::mcset it "Expression:" "Espressione:"
 ::msgcat::mcset it "Value:" "Valore:"
 ::msgcat::mcset it "&Get current value from Scilab"\
                    "Recupera il valore &attuale in Scilab"
@@ -112,6 +115,14 @@
 ::msgcat::mcset it "Error in selected function arguments"\
                    "Errore negli argomenti della funzione selezionata"
 ::msgcat::mcset it "Main level code found" "Codice a livello principale"
+::msgcat::mcset it "Scipad ancillary file"\
+                   "File ancillario di Scipad"
+::msgcat::mcset it "The current file contains only Scipad ancillaries that\
+                    cannot be debugged in Scipad. Please select another\
+                    buffer."\
+                   "Il file attuale contiene funzioni usate da Scipad,\
+                    che non possono essere debuggate all'interno di\
+                    Scipad. Scegliere eventualmente un altro file."
 ::msgcat::mcset it "This file contains main level code.\nDebug as a single\
                     .sce file?"\
                    "Questo file contiene codice a livello principale.\
@@ -128,6 +139,29 @@
                     debugger!"
 ::msgcat::mcset it "The debugger needs colorization"\
                    "Il debugger ha bisogno della colorazione"
+::msgcat::mcset it "Warning!\n\n  A function missing the closing\
+                    \"endfunction\" has been found in the currently opened\
+                    files.\n  Such syntax is now obsolete.\n\n  Please\
+                    terminate function "\
+                   "Attenzione!\n E' stata trovata una funzione non\
+                    terminata dalla parola chiave \"endfunction\"\
+                    in uno dei files correntemente aperti. Questa sintassi\
+                    è obsoleta. Terminare la funzione con \"endfunction\""
+::msgcat::mcset it " and try again." "e riprovare."
+::msgcat::mcset it "Note: This message might also be triggered by a string\n \
+                    quoted with single quotes and containing the word\
+                    \"function\",\n  when \"Colorize 'strings\"' is\
+                    unchecked in the Options menu."\
+                   "Nota : questo messaggio può anche essere dovuto ad\
+                    una stringa contenente la parola \"function\" delimitata\
+                     da apostrofi invece che da virgolette, se l'opzione\
+                    \"Colora \'stringhe\' non è selezionata nel menu Opzioni."
+::msgcat::mcset it "This known bug can be worked around simply by checking\
+                    \"Colorize \'&strings\"'."\
+                   "Questo baco, noto, può essere evitato semplicemente\
+                    selezionando l\'opzione suddetta."
+::msgcat::mcset it "Unterminated function definition found"\
+                   "Trovata funzione non terminata"
 ::msgcat::mcset it "Warning!\n\n  One or more function is defined more than\
                     once in the currently opened files.\n  The debugger\
                     cannot cope with multiple copies of functions.\n  The\
@@ -223,24 +257,29 @@
                    "&Auto (tutte le variabili locali)"
 ::msgcat::mcset it "Au&to watch globals too"\
                    "Anche variabili &globali usate dalla funzione"
+::msgcat::mcset it "Generic expressions:" "Espressioni generiche:"
 ::msgcat::mcset it "Call stack:" "stack di programma:"
-::msgcat::mcset it "&Always on top" "Sempre in &primo piano"
+::msgcat::mcset it "Always on to&p" "Sempre in &primo piano"
 ::msgcat::mcset it "Hide watch &variables" "Nascondi le &variabili"
+::msgcat::mcset it "Hide e&xpressions" "Nascondi le &espressioni"
 ::msgcat::mcset it "Hide call &stack" "Nascondi lo &stack"
 ::msgcat::mcset it "&Dock" "&Incassa"
+::msgcat::mcset it "&Add" "Agg&ungi"
+::msgcat::mcset it "&Filter errors" "&Filtra (non mostrare) gli errori"
 ::msgcat::mcset it "Breakpoints" "Punti d'arresto"
 ::msgcat::mcset it "Breakpointed functions" "Funzioni con arresti"
 ::msgcat::mcset it "Scilab busy indicator"\
                    "indicatore per Scilab pronto/occupato"
 ::msgcat::mcset it "Debugger state indicator"\
                    "indicatore dello stato del debugger"
-::msgcat::mcset it "Undefined elements are not legal in\
-                    variable"\
+::msgcat::mcset it "Undefined elements are not legal in variable"\
                    "Gli elementi indefiniti sono illegali in questa variabile"
 ::msgcat::mcset it ".\nThis variable will not be updated in Scilab."\
                    ".\nQuesta variabile non sarà aggiornata in Scilab"
 ::msgcat::mcset it "Illegal undefined element found"\
                    "Trovato un elemento indefinito"
+::msgcat::mcset it "evaluates to:" "risulta in:"
+::msgcat::mcset it "produces error" "produce un errore"
 ::msgcat::mcset it "Scipad cannot find source code for the selected\
                     function.\nPlease open the adequate file manually and\
                     try again."\
@@ -625,6 +664,11 @@
 ::msgcat::mcset it "&Recent files" "&Numero files recenti"
 ::msgcat::mcset it "&Backup files depth" "Numero &versioni backup"
 ::msgcat::mcset it "&Locale" "&Localizzazione"
+::msgcat::mcset it "Execution &errors" "&Errori d'esecuzione"
+::msgcat::mcset it "In Scilab &shell only"\
+                   "Solo nella finestra di &Scilab"
+::msgcat::mcset it "Copied in a &message box"\
+                   "Anche in una finestra di &dialogo"
 
 # menues.tcl - Windows menu
 ::msgcat::mcset it "&Maximize" "&Massimizza"
@@ -655,6 +699,7 @@
 # popupmenus.tcl
 ::msgcat::mcset it "Open the source of" "Apri la sorgente di"
 ::msgcat::mcset it "AddWatch" "Tieni %s sotto controllo"
+::msgcat::mcset it "AddGenExp" "Aggiungere %s come espressione generica"
 ::msgcat::mcset it "Jump to" "Salta a"
 
 
