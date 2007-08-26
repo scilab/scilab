@@ -3164,3 +3164,8 @@ Francois VOGEL, 24/08/07
    a newsgroup request, see:
    http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/5114c502b986bbf0/
  * version --> 6.127
+
+ES, 26/08/07
+ * added an emulation of gettext() in msgdiff.sci, for backporting to BUILD_4
+ * version --> 6.128
+

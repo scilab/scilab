@@ -37,6 +37,30 @@
 /////////////////////////////////////////////////////////////
 
 function report=msgdiff(msgfile1,msgfile2)
+
+// find out if we are in scilab4 or scilab5, and
+//  make some workarounds for scilab4
+    if listfiles(SCI+"/modules/scipad/")<>[] then
+      scilab5=%t;
+    else
+      scilab5=%f;
+    end 
+    if ~scilab5 then
+      function s=gettext(scope,sss)
+        labels=["scipad_message_"+string(14:21)]
+        results=["Finding missing entries in "
+        " and writing the result..."
+        "Translations missing in file "
+        "Finding unused entries in "
+        "Unused strings in file "
+        "Parsing file "
+        ", be patient..."
+        "WARNING: THE FOLLOWING LINE SEEMS WRONG HERE AND WILL BE IGNORED"
+        ]
+        s=results(labels==sss)
+      endfunction
+    end
+
   [M1_1,M2_1,after1,lastcomment1]=msglist(msgfile1);
   if exists("msgfile2","local") then
     [M1_2,M2_2,after2,lastcomment2]=msglist(msgfile2);
