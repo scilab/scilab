@@ -2,7 +2,6 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "bcg.h"
 #include "ObjectStructure.h"
 #include "Events.h"
 #include "WindowList.h"
