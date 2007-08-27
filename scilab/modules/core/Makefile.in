@@ -199,12 +199,12 @@ am__objects_3 = libscicore_la-sci_stacksize.lo \
 am__objects_4 = sci_errclear.lo sci_c_link.lo sci_funcprot.lo \
 	sci_global.lo sci_mtlb_mode.lo sci_resume.lo sci_dispbpt.lo \
 	sci_useascommand.lo sci_whereis.lo sci_intppty.lo sci_ieee.lo \
-	sci_notify.lo sci_macrovar.lo sci_funptr.lo sci_exists.lo \
-	sci_errcatch.lo sci_clear.lo sci_argn.lo sci_format.lo \
-	sci_link.lo sci_comp.lo sci_setbpt.lo sci_predef.lo \
-	sci_typnam.lo sci_clearglobal.lo sci_fort.lo sci_delbpt.lo \
-	where.lo sci_iserror.lo sci_type.lo sci_mode.lo \
-	sci_addinter.lo sci_debug.lo sci_error.lo sci_isglobal.lo
+	sci_macrovar.lo sci_funptr.lo sci_exists.lo sci_errcatch.lo \
+	sci_clear.lo sci_argn.lo sci_format.lo sci_link.lo sci_comp.lo \
+	sci_setbpt.lo sci_predef.lo sci_typnam.lo sci_clearglobal.lo \
+	sci_fort.lo sci_delbpt.lo where.lo sci_iserror.lo sci_type.lo \
+	sci_mode.lo sci_addinter.lo sci_debug.lo sci_error.lo \
+	sci_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -682,7 +682,6 @@ sci_gateway/fortran/sci_useascommand.f \
 sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
-sci_gateway/fortran/sci_notify.f \
 sci_gateway/fortran/sci_macrovar.f \
 sci_gateway/fortran/sci_funptr.f \
 sci_gateway/fortran/sci_exists.f \
@@ -2560,9 +2559,6 @@ sci_intppty.lo: sci_gateway/fortran/sci_intppty.f
 
 sci_ieee.lo: sci_gateway/fortran/sci_ieee.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ieee.lo `test -f 'sci_gateway/fortran/sci_ieee.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_ieee.f
-
-sci_notify.lo: sci_gateway/fortran/sci_notify.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_notify.lo `test -f 'sci_gateway/fortran/sci_notify.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_notify.f
 
 sci_macrovar.lo: sci_gateway/fortran/sci_macrovar.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_macrovar.lo `test -f 'sci_gateway/fortran/sci_macrovar.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_macrovar.f
