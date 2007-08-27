@@ -480,7 +480,7 @@ function gener_whatis(wtitle)
 			whatis_title='Help chapter'
 		end
 	end
-  
+	
 	head=["<html>"
 		"	<head>"
 		"		<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
@@ -489,39 +489,37 @@ function gener_whatis(wtitle)
 		""
 		"	<body bgcolor=""#FFFFFF"">"
 		"		<dl>"];
-  
+	
 	l=0;
 	
-	line = [];
+	line  = [];
 	line2 = [];
 	
 	for k1=1:size(xml,'*')  // loop on .xml files
-		path=xml(k1);
-		txt=mgetl(path);
-		d=grep(txt,"<SHORT_DESCRIPTION");
-		f=grep(txt,"</SHORT_DESCRIPTION");
-		if d<>[] then 
-			
+		path = xml(k1);
+		txt  = mgetl(path);
+		d    = grep(txt,"<SHORT_DESCRIPTION");
+		f    = grep(txt,"</SHORT_DESCRIPTION");
+		if d<>[] then
 			// Remove <VERB> and </VERB> tags
-			
 			txt = strsubst(txt,'<VERB>','');
 			txt = strsubst(txt,'</VERB>','');
-			
 			// Loop on the lines of short description if necessary
 			for k2=1:size(d,"*")
 				tt="";
 				for k3=d(k2):f(k2)
 					tt=tt+txt(k3);
 				end
-				i=strindex(tt,"""");
-				name=part(tt,i(1)+1:i(2)-1);
-				i1=strindex(tt,">");
-				i2=strindex(tt,"<");
-				desc=stripblanks(part(tt,i1(1)+1:i2(2)-1));
-				l=l+1; fname=part(path,[1:length(path)-4])+".htm";
-				fname=strsubst(fname,'//','/');
-				line(l)="			<dd><A HREF="""+fname+""">"+name+"</A> - "+desc+"</dd>";
-				line2(l)="- "+name+"==>"+fname;
+				i        = strindex(tt,"""");
+				name     = stripblanks(part(tt,i(1)+1:i(2)-1));
+				i1       = strindex(tt,">");
+				i2       = strindex(tt,"<");
+				desc     = stripblanks(part(tt,i1(1)+1:i2(2)-1));
+				l        = l+1;
+				fname    = part(path,[1:length(path)-4])+".htm";
+				fname    = strsubst(fname,'//','/');
+				line(l)  = "			<dd><A HREF="""+fname+""">"+name+"</A> - "+desc+"</dd>";
+				line2(l) = "- "+name+"==>"+fname;
 			end
 		end
 	end
@@ -536,8 +534,8 @@ function gener_whatis(wtitle)
 	
 	trimmed=emptystr(line);
 	for i=1:size(line,"r")
-		r=strindex(line(i),".htm"">")+6;
-		trimmed(i)=part(line(i),r:length(line(i)));
+		r         = strindex(line(i),".htm"">")+6;
+		trimmed(i)= part(line(i),r:length(line(i)));
 	end
 	
 	//  now sort the trimmed array, and keep the k indices describing how it was sorted
