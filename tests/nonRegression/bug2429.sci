@@ -15,4 +15,4 @@ stacksize(1d5)
 
 ierr=execstr('test()','errcatch')
 stacksize(S(1))
-affich_result(ierr=0,2429) ;
+affich_result(ierr==0,2429) ;
