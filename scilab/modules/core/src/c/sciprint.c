@@ -11,6 +11,7 @@
 #include "message_scilab.h"
 #include "../../localization/includes/QueryStringMessage.h"
 #include "../../console/includes/ShellPrintf.h"
+#include "../../shell/includes/scilines.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -98,7 +99,7 @@ void sciprint_full(char *fmt,...)
   }
 
   /* number of columns as set by command lines() */
-  colwidth = C2F(iop).lct[4];  /* lct[4] in C is lct(5) from fortran */
+  colwidth = getLinesSize();
   /* clamp to a minimum: value is arbitrary */
   if (colwidth < 20) {colwidth=20;}
   /* clamp to a maximum: value is selected so that each line fits in a single console line */

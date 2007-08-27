@@ -6,7 +6,6 @@ EXPORTS
 ;
 StoreCommand1
 StoreCommand
-scilines_
 getScilabMode
 scilab_timer_check
 ScilabEventsLoop

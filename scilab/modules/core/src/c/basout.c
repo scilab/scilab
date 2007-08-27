@@ -12,6 +12,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "../../../gui/includes/xscimore.h"
+#include "../../../shell/includes/scilines.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(writelunitstring)();
@@ -28,10 +29,10 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 		   store the result once for all because it won't change */
 		*io = 0;
 		if (C2F(iop).lct[0] == -1) { return 0; }
-		if (C2F(iop).lct[1] > 0) 
+		if (getColumnsSize() > 0) 
 		{
 			/* Management of the page numbering (pagination in French) */
-			if (C2F(iop).lct[0] + 3 > C2F(iop).lct[1])
+			if (C2F(iop).lct[0] + 3 > getColumnsSize())
 			{
 				/* Number of max line reached, management of the 'more' */
 				C2F(iop).lct[0] = 0;

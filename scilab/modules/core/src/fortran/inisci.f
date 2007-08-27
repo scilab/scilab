@@ -184,8 +184,8 @@ c     .  ---------------------------------------------------
       else
          lct(2) = 0
       endif
-c @TODO : what is 28 & 72 ?
-      call scilines(28,72)
+c     set default values number of lines and columns
+      call scilinesdefault()
 
 c     .  en mode fenetre ces valeurs sont remplacees par les dimension effectives
 

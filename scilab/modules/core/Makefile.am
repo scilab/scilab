@@ -106,7 +106,6 @@ src/fortran/functionsforbasout.f \
 src/fortran/setgetmode.f \
 src/fortran/errmsgf.f \
 src/fortran/showstack.f \
-src/fortran/scilines.f \
 src/fortran/misops.f \
 src/fortran/iseye.f \
 src/fortran/chkvar.f \

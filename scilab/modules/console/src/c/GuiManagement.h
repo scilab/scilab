@@ -1,10 +1,11 @@
+/*-----------------------------------------------------------------------------------*/
 /** 
  * @copyright INRIA 2007
  * @author Vincent COUVERT
  */
-
-#include "machine.h"
-extern int C2F (scilines) __PARAMS((int *nl, int *nc));
+/*-----------------------------------------------------------------------------------*/
+#ifndef __GUIMANAGEMENT_H__
+#define __GUIMANAGEMENT_H__
 
 /**
   * Sets Scilab parameters used to display data according the size of the console
@@ -12,3 +13,7 @@ extern int C2F (scilines) __PARAMS((int *nl, int *nc));
   * @param nbCols number of columns that can be used to display data
   */
 void setScilabLines(int nbRows, int nbCols);
+
+#endif /* __GUIMANAGEMENT_H__ */
+/*-----------------------------------------------------------------------------------*/
+

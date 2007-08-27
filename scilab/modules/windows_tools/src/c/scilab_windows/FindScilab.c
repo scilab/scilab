@@ -14,6 +14,7 @@
 /*-----------------------------------------------------------------------------------*/
 static char BeginningHiddenScilabWindow[LineMax];
 static char ListScilabName[NumberScilabMax][LineMax];
+static char ListHiddenScilabName[NumberScilabMax][LineMax];
 static int NumberScilab=0;
 static BOOL MoreMaxNumberScilabMax=FALSE;
 static int ItemChooseScilab;
@@ -27,8 +28,6 @@ BOOL HaveAnotherWindowScilab(void)
 	BOOL Retour=FALSE;
 	HWND CurrenthWnd=NULL;
 	
-	int a=0;
-
 	wsprintf(BeginningHiddenScilabWindow,FORMAT_TITLE_HIDDEN_WINDOWS,SCI_VERSION_STRING,0);
 	/* scilab-5.0 hidden window */
 	BeginningHiddenScilabWindow[strlen(BeginningHiddenScilabWindow)-4] = '\0';
@@ -46,7 +45,7 @@ BOOL HaveAnotherWindowScilab(void)
 			GetWindowText(CurrenthWnd,Title,LineMax);
 			if (NumberScilab<NumberScilabMax)
 			{
-				wsprintf(ListScilabName[NumberScilab],"%s",Title);
+				wsprintf(ListHiddenScilabName[NumberScilab],"%s",Title);
 			}
 			else MoreMaxNumberScilabMax = TRUE;
 			NumberScilab++;
@@ -60,6 +59,7 @@ BOOL HaveAnotherWindowScilab(void)
 char * ChooseAnotherWindowScilab(void)
 {
 	char *TitleScilabChoose = NULL;
+
 	if (NumberScilab == 1)
 	{
 		TitleScilabChoose = (char*)MALLOC( (strlen(ListScilabName[NumberScilab-1])+1) * sizeof(char) );
@@ -158,7 +158,6 @@ static BOOL CALLBACK ChooseScilabDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LP
 		ExposeDialogBox = FALSE;
 		DestroyWindow(hdlg);
 		exit(0);
-		return TRUE;
 	break ;
   }
   return FALSE;

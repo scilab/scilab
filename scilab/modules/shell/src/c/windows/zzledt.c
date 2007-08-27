@@ -16,7 +16,6 @@
 static char save_prompt[10];
 /*-----------------------------------------------------------------------------------*/
 extern char input_line[MAX_LINE_LEN + 1]; /* defined in command.c */
-extern int C2F (scilines) (int *nl, int *nc);
 /*-----------------------------------------------------------------------------------*/
 void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* interrupt, int *modex, long int dummy1)
 {

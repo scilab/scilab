@@ -10,6 +10,7 @@ SHELL_CPP_SOURCES =
 SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
 src/c/more.c \
+src/c/scilines.c \
 src/c/others/mainscic.c \
 src/c/others/GetCharWithEventsLoop.c \
 src/c/others/zzledt.c
@@ -57,7 +58,7 @@ libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
 #### shell : include files ####
 libscishell_la_includedir=$(pkgincludedir)/shell
-libscishell_la_include_HEADERS = includes/gw_shell.h
+libscishell_la_include_HEADERS = includes/gw_shell.h includes/scilines.h
 
 if GUI
 
