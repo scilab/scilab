@@ -653,10 +653,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_notify.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_predef.c"
 				>
 			</File>
@@ -1258,10 +1254,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_mtlb_mode.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_notify.f"
 				>
 			</File>
 			<File

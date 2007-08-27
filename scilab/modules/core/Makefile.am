@@ -285,7 +285,6 @@ sci_gateway/fortran/sci_useascommand.f \
 sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
-sci_gateway/fortran/sci_notify.f \
 sci_gateway/fortran/sci_macrovar.f \
 sci_gateway/fortran/sci_funptr.f \
 sci_gateway/fortran/sci_exists.f \
