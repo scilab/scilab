@@ -8,6 +8,8 @@
 /*-----------------------------------------------------------------------------------*/
 #define DEFAULT_NUMBERS_LINES 72
 #define DEFAULT_NUMBERS_COLUMNS 28
+#define MIN_NUMBERS_LINES 0
+#define MIN_NUMBERS_COLUMNS 0
 /*-----------------------------------------------------------------------------------*/
 int scilines(int nl, int nc)
 {
@@ -36,9 +38,10 @@ int C2F(scilinesdefault)(void)
 BOOL setColumnsSize(int colums)
 {
 	BOOL bOK = FALSE;
-	if (getColumnsSize() != 0) 
+
+	if (colums >= MIN_NUMBERS_COLUMNS)
 	{
-		C2F(iop).lct[1] = Max(0,colums);
+		C2F(iop).lct[1] = Max(MIN_NUMBERS_COLUMNS,colums);
 		bOK = TRUE;
 	}
 	return bOK;
@@ -47,9 +50,9 @@ BOOL setColumnsSize(int colums)
 BOOL setLinesSize(int lines)
 {
 	BOOL bOK = FALSE;
-	if (lines >= 0)
+	if (lines >= MIN_NUMBERS_LINES)
 	{
-		C2F(iop).lct[4] = lines;
+		C2F(iop).lct[4] = Max(MIN_NUMBERS_LINES,lines);
 		bOK = TRUE;
 	}
 	return bOK;
