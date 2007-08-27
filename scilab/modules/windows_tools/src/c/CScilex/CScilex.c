@@ -3,10 +3,21 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <Windows.h>
-#include "stdio.h"
+#include <string.h>
+#include <stdio.h>
 #include "../../../../../libs/DetectFramework2/DetectFramework.h"
 #include "../../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
 #include "../../../../../libs/MALLOC/includes/win_mem_alloc.h" /* MALLOC */
+/*-----------------------------------------------------------------------------------*/
+#define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
+#define MSG_DETECT_FRAMEWORK "The .NET Framework 2.0 is not installed"
+#define MSG_WARNING "Warning"
+#define MSG_LOAD_LIBRARIES "scilex.exe : Impossible to load Scilab libraries."
+#define MAIN_FUNCTION "Console_Main"
+#define LIBRARY_TO_LOAD "scilab_windows"
+#define ARG_NW "-nw"
+#define ARG_NWNI "-nwni"
+#define ARG_NOGUI "-nogui"
 /*-----------------------------------------------------------------------------------*/
 typedef int (*MYPROC) (int , char **);
 /*-----------------------------------------------------------------------------------*/
@@ -14,40 +25,40 @@ int main (int argc, char **argv)
 {
 	#define MAXCMDTOKENS 128
 
-	HINSTANCE hinstLib; 
-	MYPROC Console_Main; 
+	HINSTANCE hinstLib = NULL; 
+	MYPROC Console_Main = NULL; 
 
-	BOOL fFreeResult, fRunTimeLinkSuccess = FALSE; 
+	BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
 	
-	int argcbis=-1;
+	int argcbis = -1;
 	LPSTR argvbis[MAXCMDTOKENS];
-	int i=0;
-	int FindNW=0;
-
-	if (GetWindowsVersion()<OS_WIN32_WINDOWS_2000)
-	{
-		MessageBox(NULL,"Scilab requires Windows 2000 or more.","Warning",MB_ICONWARNING);
-		return -1;
-	}
+	int i = 0;
+	int FindNW = 0;
 
 	if (!DetectFrameWorkNET2())
 	{
-		MessageBox(NULL,"The .NET Framework 2.0 is not installed","Warning",MB_ICONWARNING);
+		MessageBox(NULL,MSG_DETECT_FRAMEWORK,MSG_WARNING,MB_ICONWARNING);
+		return -1;
+	}
+
+	if (GetWindowsVersion()<OS_WIN32_WINDOWS_2000)
+	{
+		MessageBox(NULL,MSG_DETECT_2K_OR_MORE,MSG_WARNING,MB_ICONWARNING);
 		return -1;
 	}
 
 	for (i=0;i<argc;i++)
 	{
-		if ( (strcmp(argv[i],"-nw")==0) || (strcmp(argv[i],"-NW")==0) ) FindNW=1;
-		if ( (strcmp(argv[i],"-nwni")==0) || (strcmp(argv[i],"-NWNI")==0) ) FindNW=1;
-		if ( (strcmp(argv[i],"-nogui")==0) || (strcmp(argv[i],"-NOGUI")==0) ) FindNW=1;
+		if ( _stricmp(argv[i],ARG_NW) == 0 ) FindNW=1;
+		if ( _stricmp(argv[i],ARG_NWNI) == 0 ) FindNW=1;
+		if ( _stricmp(argv[i],ARG_NOGUI) == 0 ) FindNW=1;
 	}
 
-	if (FindNW==0)
+	if ( FindNW == 0 )
 	{
 		char *nwparam=NULL;
-		nwparam=(char*)MALLOC((strlen("-nw")+1)*sizeof(char));
-		strcpy(nwparam,"-nw");
+		nwparam=(char*)MALLOC((strlen(ARG_NW)+1)*sizeof(char));
+		strcpy(nwparam,ARG_NW);
 		for (i=0;i<argc;i++)
 		{
 			argvbis[i]=argv[i];
@@ -64,11 +75,11 @@ int main (int argc, char **argv)
 		argcbis=argc;
 	}
     	
-	hinstLib = LoadLibrary(TEXT("scilab_windows")); 	
+	hinstLib = LoadLibrary(TEXT(LIBRARY_TO_LOAD)); 	
     
 	if (hinstLib != NULL) 
 	{ 
-		Console_Main = (MYPROC) GetProcAddress(hinstLib, TEXT("Console_Main")); 
+		Console_Main = (MYPROC) GetProcAddress(hinstLib, TEXT(MAIN_FUNCTION)); 
 
 		if (NULL != Console_Main) 
 		{
@@ -80,7 +91,7 @@ int main (int argc, char **argv)
 
 	if (! fRunTimeLinkSuccess) 
 	{
-		MessageBox(NULL,"scilex.exe : scilab_windows not found !","Warning",MB_ICONERROR); 
+		MessageBox(NULL,MSG_LOAD_LIBRARIES,MSG_WARNING,MB_ICONERROR); 
 		exit(1);
 	}
 	else exit(0);
