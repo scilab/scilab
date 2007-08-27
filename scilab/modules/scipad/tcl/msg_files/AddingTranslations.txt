@@ -66,7 +66,7 @@ Such files are found in the trunk SVN version of scilab and in recent unstable
 versions; we recommend to start from the very latest files available on the 
 scilab SVN repository (see 
 http://viewvc.scilab.org/bin/cgi/viewvc.cgi/trunk/scilab/modules/scipad/tcl/msg_files/
-and http://scilabsoft.inria.fr/download/index_download.php?page=SVN.html)
+and http://www.scilab.org/download/index_download.php?page=SVN.html)
 If you have difficulties in getting them, let us know, we can forward 
 by email.
 
