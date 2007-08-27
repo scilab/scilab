@@ -2,3 +2,4 @@ LIBRARY    libshell.dll
 
 
 EXPORTS
+scilines
