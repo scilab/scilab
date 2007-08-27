@@ -82,7 +82,8 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscishell_la_DEPENDENCIES = $(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
-	libscishell_la-more.lo libscishell_la-mainscic.lo \
+	libscishell_la-more.lo libscishell_la-scilines.lo \
+	libscishell_la-mainscic.lo \
 	libscishell_la-GetCharWithEventsLoop.lo \
 	libscishell_la-zzledt.lo
 am__objects_2 =
@@ -282,6 +283,7 @@ SHELL_CPP_SOURCES =
 SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
 src/c/more.c \
+src/c/scilines.c \
 src/c/others/mainscic.c \
 src/c/others/GetCharWithEventsLoop.c \
 src/c/others/zzledt.c
@@ -330,7 +332,7 @@ libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
 #### shell : include files ####
 libscishell_la_includedir = $(pkgincludedir)/shell
-libscishell_la_include_HEADERS = includes/gw_shell.h
+libscishell_la_include_HEADERS = includes/gw_shell.h includes/scilines.h
 @GUI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -452,6 +454,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-more.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_tohome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-scilines.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-zzledt.Plo@am__quote@
 
@@ -496,6 +499,13 @@ libscishell_la-more.lo: src/c/more.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/more.c' object='libscishell_la-more.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
+
+libscishell_la-scilines.lo: src/c/scilines.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-scilines.lo -MD -MP -MF $(DEPDIR)/libscishell_la-scilines.Tpo -c -o libscishell_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-scilines.Tpo $(DEPDIR)/libscishell_la-scilines.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scilines.c' object='libscishell_la-scilines.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
 
 libscishell_la-mainscic.lo: src/c/others/mainscic.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-mainscic.lo -MD -MP -MF $(DEPDIR)/libscishell_la-mainscic.Tpo -c -o libscishell_la-mainscic.lo `test -f 'src/c/others/mainscic.c' || echo '$(srcdir)/'`src/c/others/mainscic.c

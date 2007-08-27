@@ -141,23 +141,23 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	dldsp.lo bcol.lo getlin.lo isany.lo hmcreate.lo nextj.lo \
 	functionsforbasout.lo setgetmode.lo errmsgf.lo showstack.lo \
-	scilines.lo misops.lo iseye.lo chkvar.lo setippty.lo compil.lo \
-	funnam.lo isnum.lo cmdstr.lo logops.lo atome.lo hndlops.lo \
-	cmplxt.lo skpins.lo folhp.lo cvname.lo funs.lo fact.lo \
-	inibrk.lo typ2cod.lo prompt.lo intstr.lo createref.lo btof.lo \
-	matzs.lo getnum.lo btofm.lo getsym.lo findequal.lo stackg.lo \
-	find.lo israt.lo setlnb.lo mrknmd.lo stackgl.lo allops.lo \
-	print.lo mname.lo prntid.lo command.lo ref2val.lo namstr.lo \
-	stack.lo isbrk.lo majmin.lo dmdspf.lo xerbla.lo dtosci.lo \
-	bexec.lo varfunptr.lo getfun.lo savlod.lo error.lo cvdm.lo \
-	tradsl.lo mkindx.lo whatln.lo errmgr.lo defmat.lo mklist.lo \
-	dmdsp.lo sigbas.lo indxg.lo matz.lo istrue.lo inisci.lo \
-	ptover.lo getfunction.lo stackp.lo dbasin.lo macro.lo \
-	lspdsp.lo extlarg.lo getstr.lo cvwm.lo storeglobal.lo \
-	lst2vars.lo fmttyp.lo basnms.lo matc.lo ptrback.lo getch.lo \
-	ftob.lo seteol.lo basin.lo clause.lo compcl.lo termf.lo \
-	expsum.lo eqid.lo copyvar.lo putid.lo itosci.lo \
-	formatnumber.lo wmdsp.lo stackr2d.lo stacki2d.lo stackc2i.lo
+	misops.lo iseye.lo chkvar.lo setippty.lo compil.lo funnam.lo \
+	isnum.lo cmdstr.lo logops.lo atome.lo hndlops.lo cmplxt.lo \
+	skpins.lo folhp.lo cvname.lo funs.lo fact.lo inibrk.lo \
+	typ2cod.lo prompt.lo intstr.lo createref.lo btof.lo matzs.lo \
+	getnum.lo btofm.lo getsym.lo findequal.lo stackg.lo find.lo \
+	israt.lo setlnb.lo mrknmd.lo stackgl.lo allops.lo print.lo \
+	mname.lo prntid.lo command.lo ref2val.lo namstr.lo stack.lo \
+	isbrk.lo majmin.lo dmdspf.lo xerbla.lo dtosci.lo bexec.lo \
+	varfunptr.lo getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo \
+	mkindx.lo whatln.lo errmgr.lo defmat.lo mklist.lo dmdsp.lo \
+	sigbas.lo indxg.lo matz.lo istrue.lo inisci.lo ptover.lo \
+	getfunction.lo stackp.lo dbasin.lo macro.lo lspdsp.lo \
+	extlarg.lo getstr.lo cvwm.lo storeglobal.lo lst2vars.lo \
+	fmttyp.lo basnms.lo matc.lo ptrback.lo getch.lo ftob.lo \
+	seteol.lo basin.lo clause.lo compcl.lo termf.lo expsum.lo \
+	eqid.lo copyvar.lo putid.lo itosci.lo formatnumber.lo wmdsp.lo \
+	stackr2d.lo stacki2d.lo stackc2i.lo
 am__objects_3 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
@@ -504,7 +504,6 @@ src/fortran/functionsforbasout.f \
 src/fortran/setgetmode.f \
 src/fortran/errmsgf.f \
 src/fortran/showstack.f \
-src/fortran/scilines.f \
 src/fortran/misops.f \
 src/fortran/iseye.f \
 src/fortran/chkvar.f \
@@ -2238,9 +2237,6 @@ errmsgf.lo: src/fortran/errmsgf.f
 
 showstack.lo: src/fortran/showstack.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o showstack.lo `test -f 'src/fortran/showstack.f' || echo '$(srcdir)/'`src/fortran/showstack.f
-
-scilines.lo: src/fortran/scilines.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o scilines.lo `test -f 'src/fortran/scilines.f' || echo '$(srcdir)/'`src/fortran/scilines.f
 
 misops.lo: src/fortran/misops.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o misops.lo `test -f 'src/fortran/misops.f' || echo '$(srcdir)/'`src/fortran/misops.f
