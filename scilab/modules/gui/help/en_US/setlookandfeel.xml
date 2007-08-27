@@ -71,7 +71,7 @@ setlookandfeel(currentlnf)
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>getintalledlookandfeels</LINK>
+      <LINK>getinstalledlookandfeels</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>getlookandfeel</LINK>

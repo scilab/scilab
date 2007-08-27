@@ -64,10 +64,11 @@
   </DESCRIPTION>
 
   <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>who , </LINK>
-
-      <LINK>stacksize</LINK>
+	  <SEE_ALSO_ITEM>
+		  <LINK>who</LINK>
+	  </SEE_ALSO_ITEM>
+	  <SEE_ALSO_ITEM>
+		  <LINK>stacksize</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -161,10 +161,6 @@ del_help_chapter(my_english_help_title);]]>
 			<LINK>add_help_chapter</LINK>
 		</SEE_ALSO_ITEM>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>del_help_chapter</LINK>
-		</SEE_ALSO_ITEM>
-		
 	</SEE_ALSO>
 
 </MAN>
