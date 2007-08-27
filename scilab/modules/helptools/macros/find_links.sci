@@ -1,7 +1,7 @@
 // =============================================================================================
 // find_links
 // Copyright INRIA
-// 
+//
 // Private function !!!
 // =============================================================================================
 
@@ -18,7 +18,7 @@ function flag = find_links(filein,fileout)
 	if rhs<>2 then error(39), end
 	
 	sep=filesep();
-		
+	
 	txt=mgetl(filein);
 	
 	//------------------------------------------------------------------------------------------
@@ -96,7 +96,7 @@ function t=getlink(name,absolute_path,path)
 	
 	if MSDOS then
 		sep='\';
-	else 
+	else
 		sep='/';
 	end
 	
@@ -107,15 +107,28 @@ function t=getlink(name,absolute_path,path)
 	//------------------------------------------------------------------------------------------
 	
 	if fileinfo(absolute_path+'.list_htm') <> [] then
+		
 		whatis=mgetl(absolute_path+'.list_htm');
-		f=grep(whatis,'- '+name+'==>');
+		// 1er test ( avec le contenu de la balise title )
+		f = grep(whatis,'- '+name+'==>');
 		if f<>[] then
-			for k1=f 
+			for k1=f
 				w = whatis(k1);
 				w = strsubst(w,'- '+name+'==>','');
 				man_found = absolute_path + w;
 			end
+		else
+			// 2nd test ( avec le nom du fichier )
+			f = grep(whatis,'==>'+name+'.htm');
+			if f<>[] then
+				for k1=f
+					w = whatis(k1);
+					w = strsubst(w,'- '+name+'==>','');
+					man_found = absolute_path + name + '.htm';
+				end
+			end
 		end
+		
 	end
 	
 	//------------------------------------------------------------------------------------------
@@ -131,16 +144,28 @@ function t=getlink(name,absolute_path,path)
 			if fileinfo(current_help_path+'.list_htm') <> [] then
 				
 				whatis=mgetl(current_help_path+'.list_htm');
-				f=grep(whatis,'- '+name+'==>');
+				// 1er test ( avec le contenu de la balise title )
+				f = grep(whatis,'- '+name+'==>');
 				if f<>[] then
-					for k1=f 
+					for k1=f
 						w = whatis(k1);
 						w = strsubst(w,'- '+name+'==>','');
 						man_found = current_help_path + w;
 					end
+				else
+					// 2nd test ( avec le nom du fichier )
+					f = grep(whatis,'==>'+name+'.htm');
+					if f<>[] then
+						for k1=f
+							w = whatis(k1);
+							w = strsubst(w,'- '+name+'==>','');
+							man_found = current_help_path + name + '.htm';
+						end
+					end
 				end
+				
 				if man_found<>[] then break; end
-		
+				
 			else
 				
 				whatis=mgetl(%HELPS(k,1)+sep+'whatis.htm')
