@@ -16,7 +16,6 @@
 @del /Q double_f.vcdef
 @del /Q elementaries_functions.vcdef
 @del /Q elementaries_functions_f.vcdef
-@del /Q gd.vcdef
 @del /Q integer.vcdef
 @del /Q interpolation.vcdef
 @del /Q interpolation_f.vcdef
