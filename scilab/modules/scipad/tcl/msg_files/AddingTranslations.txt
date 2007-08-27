@@ -63,10 +63,10 @@ First of all, choose one of the existing files
 SCI/modules/scipad/tcl/msg_files/*.msg as a template. The files fr.msg and
 it.msg are the best candidates, as they are most frequently updated.
 Such files are found in the trunk SVN version of scilab and in recent unstable 
-versions; we recommend to start from the very latest files available on the scilab
-SVN (see
-http://jarron.inria.fr/viewvc/bin/cgi/viewvc.cgi/trunk/scilab/modules/scipad/tcl/msg_files/
-and http://scilabsoft.inria.fr/download/index_download.php?page=SVN.html
+versions; we recommend to start from the very latest files available on the 
+scilab SVN repository (see 
+http://viewvc.scilab.org/bin/cgi/viewvc.cgi/trunk/scilab/modules/scipad/tcl/msg_files/
+and http://scilabsoft.inria.fr/download/index_download.php?page=SVN.html)
 If you have difficulties in getting them, let us know, we can forward 
 by email.
 
@@ -180,7 +180,8 @@ THE msgdiff TOOL
 The directory SCI/modules/scipad/macros/scipad_internals/ contains also a
 Scilab script which can be used to check the cross-consistency of the 
 existing message files. The script is called msgdiff.sci and is automatically
-loaded in Scilab at startup. Files can be checked calling from Scilab
+loaded in Scilab at startup [trunk scilab5 version -- in the BUILD_4 version 
+it still has to be loaded with exec]. Files can be checked calling from Scilab
 
   msgdiff <firstfile.msg> <secondfile.msg>
 
