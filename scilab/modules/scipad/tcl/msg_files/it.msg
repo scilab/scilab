@@ -115,14 +115,13 @@
 ::msgcat::mcset it "Error in selected function arguments"\
                    "Errore negli argomenti della funzione selezionata"
 ::msgcat::mcset it "Main level code found" "Codice a livello principale"
-::msgcat::mcset it "Scipad ancillary file"\
-                   "File ancillario di Scipad"
+::msgcat::mcset it "Scipad ancillary file" "File ancillario di Scipad"
 ::msgcat::mcset it "The current file contains only Scipad ancillaries that\
                     cannot be debugged in Scipad. Please select another\
                     buffer."\
-                   "Il file attuale contiene funzioni usate da Scipad,\
-                    che non possono essere debuggate all'interno di\
-                    Scipad. Scegliere eventualmente un altro file."
+                   "Il file attuale contiene funzioni usate da Scipad, che\
+                    non possono essere debuggate all'interno di Scipad.\
+                    Scegliere eventualmente un altro file."
 ::msgcat::mcset it "This file contains main level code.\nDebug as a single\
                     .sce file?"\
                    "Questo file contiene codice a livello principale.\
@@ -144,20 +143,21 @@
                     files.\n  Such syntax is now obsolete.\n\n  Please\
                     terminate function "\
                    "Attenzione!\n E' stata trovata una funzione non\
-                    terminata dalla parola chiave \"endfunction\"\
-                    in uno dei files correntemente aperti. Questa sintassi\
-                    è obsoleta. Terminare la funzione con \"endfunction\""
+                    terminata dalla parola chiave \"endfunction\" in uno dei\
+                    files correntemente aperti. Questa sintassi è obsoleta.\
+                    Terminare la funzione con \"endfunction\""
 ::msgcat::mcset it " and try again." "e riprovare."
 ::msgcat::mcset it "Note: This message might also be triggered by a string\n \
                     quoted with single quotes and containing the word\
-                    \"function\",\n  when \"Colorize 'strings\"' is\
+                    \"function\",\n  when \"Colorize \'strings\'\" is\
                     unchecked in the Options menu."\
-                   "Nota : questo messaggio può anche essere dovuto ad\
-                    una stringa contenente la parola \"function\" delimitata\
-                     da apostrofi invece che da virgolette, se l'opzione\
-                    \"Colora \'stringhe\' non è selezionata nel menu Opzioni."
+                   "Nota : questo messaggio può anche essere dovuto ad una\
+                    stringa contenente la parola \"function\" delimitata da\
+                    apostrofi invece che da virgolette, se l'opzione\
+                    \"Colora \'stringhe\' non è selezionata nel menu\
+                    Opzioni."
 ::msgcat::mcset it "This known bug can be worked around simply by checking\
-                    \"Colorize \'&strings\"'."\
+                    \"Colorize \'&strings\'\"."\
                    "Questo baco, noto, può essere evitato semplicemente\
                     selezionando l\'opzione suddetta."
 ::msgcat::mcset it "Unterminated function definition found"\
@@ -665,8 +665,7 @@
 ::msgcat::mcset it "&Backup files depth" "Numero &versioni backup"
 ::msgcat::mcset it "&Locale" "&Localizzazione"
 ::msgcat::mcset it "Execution &errors" "&Errori d'esecuzione"
-::msgcat::mcset it "In Scilab &shell only"\
-                   "Solo nella finestra di &Scilab"
+::msgcat::mcset it "In Scilab &shell only" "Solo nella finestra di &Scilab"
 ::msgcat::mcset it "Copied in a &message box"\
                    "Anche in una finestra di &dialogo"
 
