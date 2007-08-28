@@ -11,7 +11,7 @@
 #include "../../fileio/includes/diary.h"
 #include "sciprint.h"
 #include "MALLOC.h"
-#include "../../../gui/includes/xscimore.h"
+#include "../../../shell/includes/more.h"
 #include "../../../shell/includes/scilines.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -36,19 +36,8 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 			{
 				/* Number of max line reached, management of the 'more' */
 				C2F(iop).lct[0] = 0;
-				if (getScilabMode() != SCILAB_STD) 
-				{
-					int ch;
-					/* Scilab has not his own window */
-					sciprint(" more ? ");
-					ch = getchar();
-					if ( (ch != ' ') && (ch != '\n') && (ch != 'y') ) ich = 1;
-				}
-				else
-				{
-					/* scilab has his own window */
-					C2F(xscimore)(&ich);
-				}
+
+				ich = linesmore();
 
 				if (ich == 1) 
 				{

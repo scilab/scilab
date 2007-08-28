@@ -11,6 +11,7 @@
 #include "PromptToHome.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "GetCharWithoutOutput.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_console)()
 {
