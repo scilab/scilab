@@ -22,7 +22,7 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 		
 		paramoutINT[0] = getLinesSize();
 		paramoutINT[1] = getColumnsSize();
-
+		
 		n1=1; m1=2;
 		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
@@ -33,21 +33,6 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		if ( GetType(1) == sci_matrix )
-		{
-			int l1 = 0,n1 = 0, m1 = 0;
-			int columns = 0;
-
-			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-			columns = (int)*stk(l1);
-			setColumnsSize(columns);
-		}
-		else
-		{
-			Scierror(999,"Invalid parameter(s).\n");
-			return 0;
-		}
-
 		if (Rhs == 2)
 		{
 			if ( GetType(2) == sci_matrix )
@@ -64,6 +49,21 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 				Scierror(999,"Invalid parameter(s).\n");
 				return 0;
 			}
+		}
+
+		if ( GetType(1) == sci_matrix )
+		{
+			int l1 = 0,n1 = 0, m1 = 0;
+			int columns = 0;
+
+			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+			columns = (int)*stk(l1);
+			setColumnsSize(columns);
+		}
+		else
+		{
+			Scierror(999,"Invalid parameter(s).\n");
+			return 0;
 		}
 
 		LhsVar(1) = 0;
