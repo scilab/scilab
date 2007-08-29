@@ -6,3 +6,5 @@ EXPORTS
 	ClearConsolePart
 	PromptToHome
 	ShellRead
+	ShellPrintf
+	GetCharWithoutOutput
