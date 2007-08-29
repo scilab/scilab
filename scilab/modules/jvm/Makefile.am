@@ -34,7 +34,6 @@ includes/getScilabJavaVM.h \
 includes/getScilabJNIEnv.h \
 includes/InitializeJVM.h \
 includes/gw_jvm.h \
-includes/JniUtils.h \
 includes/addToClasspath.h \
 includes/addToLibrarypath.h
 
@@ -51,7 +50,6 @@ JVM_C_SOURCES = src/c/InitializeJVM.c \
 src/c/TerminateJVM.c \
 src/c/JVM_Unix.c \
 src/c/JVM.c \
-src/c/JniUtils.c \
 src/c/addToClasspath.c \
 src/c/getClasspath.c \
 src/c/system_getproperty.c \
