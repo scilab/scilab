@@ -23,8 +23,8 @@ void Objrect ( double * x         ,
                long   * hdl       ,
                BOOL     flagstring ) ;
 
-void Objarc( int    * angle1    ,
-             int    * angle2    ,
+void Objarc( double * angle1    ,
+             double * angle2    ,
              double * x         ,
              double * y         ,
              double * width     ,

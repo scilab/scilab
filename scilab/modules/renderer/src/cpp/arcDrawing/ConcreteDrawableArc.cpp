@@ -63,7 +63,7 @@ void ConcreteDrawableArc::getArcRepresentation(double center[3], double semiMino
   center[1] = ppArc->y - ppArc->height / 2.0 ;
   center[2] = ppArc->z ;
 
-  if ( Abs(ppArc->width) > Abs(ppArc->height) )
+  if ( Abs(ppArc->width) >= Abs(ppArc->height) )
   {
     semiMinorAxis[0] = 0.0;
     semiMinorAxis[1] = -ppArc->height / 2.0;
@@ -75,6 +75,8 @@ void ConcreteDrawableArc::getArcRepresentation(double center[3], double semiMino
 
     startAngle = Min(ppArc->alphabegin, ppArc->alphabegin + ppArc->alphaend);
     endAngle   = Max(ppArc->alphabegin, ppArc->alphabegin + ppArc->alphaend);
+    startAngle += M_PI / 2.0;
+    endAngle   += M_PI / 2.0;
   }
   else
   {
@@ -88,8 +90,8 @@ void ConcreteDrawableArc::getArcRepresentation(double center[3], double semiMino
     semiMajorAxis[2] = 0.0;
     startAngle = Min(ppArc->alphabegin, ppArc->alphabegin + ppArc->alphaend);
     endAngle   = Max(ppArc->alphabegin, ppArc->alphabegin + ppArc->alphaend);
-    startAngle -= M_PI / 2.0;
-    endAngle   -= M_PI / 2.0;
+    //startAngle -= M_PI / 2.0;
+    //endAngle   -= M_PI / 2.0;
   }
 
   

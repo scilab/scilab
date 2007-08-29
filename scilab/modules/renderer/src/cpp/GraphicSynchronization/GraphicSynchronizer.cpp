@@ -37,7 +37,6 @@ void GraphicSynchronizer::startWriting( void )
   {
     // writer must be alone
     wait();
-    jniUpdateCurrentEnv();
   }
   addWriter();
   exitCriticalSection();
@@ -58,7 +57,6 @@ void GraphicSynchronizer::startReading( void )
   {
     // Thread can not read while someone is writing
     wait();
-    jniUpdateCurrentEnv();
   }
   addReader();
   exitCriticalSection();
@@ -79,7 +77,6 @@ void GraphicSynchronizer::startDisplaying( void )
   {
     // only one display at a time and can not display while writing
     wait();
-    jniUpdateCurrentEnv();
   }
   addDisplayer();
   exitCriticalSection();

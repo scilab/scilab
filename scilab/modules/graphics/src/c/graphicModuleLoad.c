@@ -29,8 +29,6 @@ void loadGraphicModule( void )
   createScilabGetHashTable() ;
   createScilabSetHashTable() ;
 
-  jniInitUtils( getScilabJavaVM() ) ;
-
   /* Create data for synchronization */
   createGraphicSynchronizer();
 
@@ -58,8 +56,6 @@ void closeGraphicModule( void )
 
   /* Delete synchronization data */
   destroyGraphicSynchronizer();
-
-  jniCloseUtils() ;
 
   isGraphicModuleLoaded = FALSE ;
 

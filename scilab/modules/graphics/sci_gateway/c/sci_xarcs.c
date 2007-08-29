@@ -21,7 +21,9 @@ int sci_xarcs(char *fname,unsigned long fname_len)
 
   /* NG beg */
   long  hdl;
-  int i,a1,a2;
+  int i;
+  double angle1;
+  double angle2;
   sciPointObj * pFigure = NULL;
   /* NG end */
   CheckRhs(1,2);
@@ -64,9 +66,9 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   /* NG beg */
   for (i = 0; i < n1; ++i)
   { 
-    a1=(int)(*stk(l1+(6*i)+4));
-    a2=(int)(*stk(l1+(6*i)+5));
-    Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
+    angle1 = DEG2RAD(*stk(l1+(6*i)+4) / 64.0);
+    angle2 = DEG2RAD(*stk(l1+(6*i)+5) / 64.0);
+    Objarc (&angle1,&angle2,stk(l1+(6*i)),stk(l1+(6*i)+1),
       stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),NULL,FALSE,TRUE,&hdl); 
   }
   /** construct Compound and make it current object **/

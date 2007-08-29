@@ -198,6 +198,13 @@ public class Vector3D {
 	}
 	
 	/**
+	 * @return a vector which is the opposite of this
+	 */
+	public Vector3D getOpposite() {
+		return new Vector3D(-xCoord, -yCoord, -zCoord);
+	}
+	
+	/**
 	 * Print the vector
 	 * @return text of the vector
 	 */

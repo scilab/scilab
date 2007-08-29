@@ -83,8 +83,8 @@ void Objrect ( double * x         ,
  * Objarc : 
  *-----------------------------------------------*/
 
-void Objarc( int    * angle1    ,
-             int    * angle2    ,
+void Objarc( double * angle1    ,
+             double * angle2    ,
              double * x         ,
              double * y         ,
              double * width     ,
@@ -103,7 +103,7 @@ void Objarc( int    * angle1    ,
   
   sciSetCurrentObj (ConstructArc
          (psubwin,*x,*y,
-	  *height, *width, DEG2RAD(*angle1 * 64.0), DEG2RAD(*angle2 * 64.0), foreground, background, isfilled, isline));
+	  *height, *width, *angle1, *angle2, foreground, background, isfilled, isline));
   pobj = sciGetCurrentObj();
  
   *hdl=sciGetHandle(pobj);

@@ -1869,10 +1869,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\giffonts.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\graphicModuleLoad.h"
 				>
 			</File>
