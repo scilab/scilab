@@ -177,6 +177,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\gui\console\SimpleConsole.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\gui\utils\Size.java"
 				>
 			</File>
