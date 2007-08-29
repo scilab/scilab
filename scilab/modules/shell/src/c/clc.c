@@ -8,6 +8,9 @@
 #include "scilabmode.h"
 #include "ClearConsole.h"
 #include "ClearConsolePart.h"
+#ifdef _MSC_VER
+#include "windows/clrscr_nw.h"
+#endif
 /*-----------------------------------------------------------------------------------*/
 BOOL clc(int nblines)
 {
@@ -23,7 +26,7 @@ BOOL clc(int nblines)
 		else
 		{
 #ifdef  _MSC_VER
-			system("cls");	
+			clrscr_nw();
 			bOK = TRUE;
 #else
 			/* only on Windows */

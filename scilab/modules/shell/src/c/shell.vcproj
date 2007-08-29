@@ -201,11 +201,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\windows\clrscr_nw.c"
+				>
+			</File>
+			<File
 				RelativePath=".\windows\command.c"
 				>
 			</File>
 			<File
 				RelativePath=".\windows\GetCharWithEventsLoop.c"
+				>
+			</File>
+			<File
+				RelativePath=".\windows\gotoxy_nw.c"
 				>
 			</File>
 			<File
@@ -250,11 +258,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\windows\clrscr_nw.h"
+				>
+			</File>
+			<File
 				RelativePath=".\windows\command.h"
 				>
 			</File>
 			<File
 				RelativePath=".\windows\GetCharWithEventsLoop.h"
+				>
+			</File>
+			<File
+				RelativePath=".\windows\gotoxy_nw.h"
 				>
 			</File>
 			<File
