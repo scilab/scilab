@@ -1,4 +1,4 @@
-            Scilab version 4.1.1 for Windows (2000/XP/Vista)
+            Scilab version 4.1.2 for Windows (2000/XP/Vista)
             ************************************************
 
 ******************************************************************************
@@ -13,10 +13,10 @@
 I - TO RUN SCILAB (BINARY VERSION)
 ******************************************************************************
 
-    1 - You have already installed Scilab by executing "scilab-4.1.1.exe".
-        By default Scilab is in "C:\Program Files\scilab-4.1.1" directory.
+    1 - You have already installed Scilab by executing "scilab-4.1.2.exe".
+        By default Scilab is in "C:\Program Files\scilab-4.1.2" directory.
 
-    2 - Run Scilab by executing "Scilab 4.1.1" from the startup menu.
+    2 - Run Scilab by executing "Scilab 4.1.2" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin",
         so you can run Scilab by executing directly "wscilex.exe".
 
@@ -25,13 +25,13 @@ I - TO RUN SCILAB (BINARY VERSION)
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
 
-    4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 4.1.1
+    4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 4.1.2
         download and install "Windows Server 2003 SP1 Platform SDK"
         at http://www.microsoft.com/downloads
         and download and install "Microsoft Visual C++ 2005 Express"
         at http://msdn.microsoft.com/vstudio/express/visualc/
 
-    5 - If you want use LCC-Win32 (C compiler) with Scilab 4.1.1
+    5 - If you want use LCC-Win32 (C compiler) with Scilab 4.1.2
         See Readme_LCC.txt in lcc directory.
         You can download at http://www.cs.virginia.edu/~lcc-win32/
 
@@ -45,7 +45,7 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 ******************************************************************************
 
     To uninstall Scilab you can use the unintaller. You will find it in the
-    "Scilab 4.1.1" item of the Program Group.
+    "Scilab 4.1.2" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
 
 ******************************************************************************
