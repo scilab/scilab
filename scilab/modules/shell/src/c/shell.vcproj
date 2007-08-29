@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\windows\clrscrPart_nw.c"
+				>
+			</File>
+			<File
 				RelativePath=".\windows\command.c"
 				>
 			</File>
@@ -259,6 +263,10 @@
 			</File>
 			<File
 				RelativePath=".\windows\clrscr_nw.h"
+				>
+			</File>
+			<File
+				RelativePath=".\windows\clrscrPart_nw.h"
 				>
 			</File>
 			<File

@@ -10,6 +10,7 @@
 #include "ClearConsolePart.h"
 #ifdef _MSC_VER
 #include "windows/clrscr_nw.h"
+#include "windows/clrscrPart_nw.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
 BOOL clc(int nblines)
@@ -17,11 +18,18 @@ BOOL clc(int nblines)
 	BOOL bOK = FALSE;
 	if ( getScilabMode() == SCILAB_NWNI || getScilabMode() == SCILAB_NW )
 	{
+		
 		/* console C */
 		if (nblines != -1)
 		{
+			#ifdef  _MSC_VER
+				clrscrPart_nw(nblines);
+				return TRUE;
+			#else
 			/* impossible in this mode */
-			return FALSE;
+				return FALSE;
+			#endif
+			
 		}
 		else
 		{
