@@ -314,7 +314,7 @@ proc findtextdialog {typ} {
     bind $find <Alt-[fb $find.l.f4.f1.f1.down]> { $find.l.f4.f1.f1.down  invoke }
     bind $find <Escape> "cancelfind"
     # after 0 in the following Alt binding is mandatory for Linux only
-    # This is Tk bug 1236306 (fixed since Tk8.4.13RC1 or Tk 8.5a4RC3)
+    # This is Tk bug 1236306 (still unfixed in Tk8.4.15 and Tk 8.5a6)
     bind $find <Alt-[fb $find.f2.button2]> "after 0 cancelfind"
     bind $find <Visibility> {raise $find $pad ; focus $find.u.f1.entry}
     bind $pad  <Expose>     {catch {raise $find ; focus $find.u.f1.entry}}

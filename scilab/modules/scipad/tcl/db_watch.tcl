@@ -488,7 +488,9 @@ proc showwatch_bp {} {
     bind $watch <Alt-[fb $buttonAddge]>                    "$buttonAddge invoke"
     bind $watch <Alt-[fb $buttonRemovege]>                 "$buttonRemovege invoke"
     bind $watch <Alt-[fb $checkboxfiltererrors]>           "$checkboxfiltererrors invoke"
-    bind $watch <Alt-[fb $buttonClose]>                    "$buttonClose invoke"
+    # after 0 in the following Alt binding is mandatory for Linux only
+    # This is Tk bug 1236306 (still unfixed in Tk8.4.15 and Tk 8.5a6)
+    bind $watch <Alt-[fb $buttonClose]>                    "after 0 {$buttonClose invoke}"
 
     update
     if {!$firsttimeinshowwatch} {
@@ -1233,18 +1235,21 @@ proc evalgenericexpinshell {} {
         if {!$filtergenexperrors} {
             # don't filter errors from the shell display
             set comm6      "else"
-            set comm7          "mprintf(\"\n$percentescagenexp $formattingstring2\"+\"(\"+string(db_evstrierr)+\")\n\");"
+            set comm7          "lasterror(%t);mprintf(\"\n$percentescagenexp $formattingstring2\"+\"(\"+string(db_evstrierr)+\")\n\");"
             set comm8      "end;"
             set comm9  "catch;"
-            set comm10     "mprintf(\"\n$percentescagenexp $formattingstring3\n\");"
+            set comm10     "lasterror(%t);mprintf(\"\n$percentescagenexp $formattingstring3\n\");"
             set comm11 "end;"
-            set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10 $comm11]
         } else {
             # generic expressions evaluating to an error or to no result are silent
-            set comm6      "end;"
-            set comm7  "end;"
-            set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7]
+            set comm6      "else"
+            set comm7          "lasterror(%t);"
+            set comm8      "end;"
+            set comm9  "catch;"
+            set comm10     "lasterror(%t);"
+            set comm11  "end;"
         }
+        set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10 $comm11]
         ScilabEval_lt $fullcomm "seq"
     }
 }

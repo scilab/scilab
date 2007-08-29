@@ -120,6 +120,8 @@ if {0} {
     bind $tbox.text <Shift-Button-3> {break}
     bind $tbox.text <Control-Button-3> {break}
     bind $tbox.text <ButtonRelease-2> {break}
+    bind $tbox.text <Return> "destroy $tbox;break"
+    bind $tbox.text <KP_Enter> "destroy $tbox;break"
     update idletasks
     setwingeom $tbox
     wm resizable $tbox 1 1
