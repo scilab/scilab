@@ -145,7 +145,9 @@ function [M1,M2,after,lastcomment]=msglist(msgfile)
       lastcomment(j)=a
       j=j+1
     elseif grep(a,"::msgcat::mcset "+lang)==1 then
-      a=strsubst(a,"\""","\~\~")
+      a=strsubst(a,"\""","\u022") // quotes in the string itself (escaped
+                                 // as \" in tcl) need to be moved
+                                 // out of way first
       t=tokenpos(a,"""");
     // normally the line contains 4 quotes, enclosing two quoted strings 
       if size(t,1)==2 then
@@ -156,8 +158,8 @@ function [M1,M2,after,lastcomment]=msglist(msgfile)
         a1=part(a,t($-2,1):t($-2,2));          
       end
       a2=part(a,t($,1):t($,2)); 
-      M1(k)=strsubst(a1,"\~\~","\""");
-      M2(k)=strsubst(a2,"\~\~","\""");
+      M1(k)=strsubst(a1,"\u022","\""");  //restore readable \" quotes
+      M2(k)=strsubst(a2,"\u022","\""");
       after(k)=j-1; k=k+1
     else
       write(%io(2),gettext('messages','scipad_message_21'))
