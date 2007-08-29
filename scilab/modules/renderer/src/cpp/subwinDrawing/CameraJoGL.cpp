@@ -7,11 +7,6 @@
 
 #include "CameraJoGL.h"
 #include "DrawableSubwin.h"
-extern "C"
-{
-#include "JniUtils.h"
-}
-
 
 namespace sciGraphics
 {

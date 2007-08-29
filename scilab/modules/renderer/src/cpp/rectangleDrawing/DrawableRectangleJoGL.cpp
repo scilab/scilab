@@ -11,11 +11,6 @@
 #include "DrawableRectangle.h"
 #include "DrawableRectangleJoGL.h"
 
-extern "C"
-{
-#include "JniUtils.h"
-}
-
 
 namespace sciGraphics
 {

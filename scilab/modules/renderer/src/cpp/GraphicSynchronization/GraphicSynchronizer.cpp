@@ -8,12 +8,6 @@
 
 #include "GraphicSynchronizer.h"
 
-extern "C"
-{
-#include "MALLOC.h" // for NULL
-#include "JniUtils.h"
-}
-
 namespace sciGraphics
 {
 

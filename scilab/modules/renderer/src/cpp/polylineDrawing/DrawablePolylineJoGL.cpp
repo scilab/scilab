@@ -9,11 +9,6 @@
 #include "DrawablePolylineJoGL.h"
 #include "DrawablePolyline.h"
 
-extern "C"
-{
-#include "JniUtils.h"
-}
-
 namespace sciGraphics
 {
 

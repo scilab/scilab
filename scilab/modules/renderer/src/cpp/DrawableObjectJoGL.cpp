@@ -9,7 +9,6 @@
 #include "DrawableObject.h"
 extern "C"
 {
-#include "JniUtils.h"
 #include "GetProperty.h"
 }
 

@@ -9,11 +9,6 @@
 #include "DrawableClippedObjectJoGL.h"
 #include "DrawableObjectBridge.h"
 
-extern "C"
-{
-#include "JniUtils.h"
-}
-
 
 namespace sciGraphics
 {

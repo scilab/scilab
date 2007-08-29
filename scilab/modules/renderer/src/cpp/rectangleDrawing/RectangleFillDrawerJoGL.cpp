@@ -10,7 +10,6 @@
 extern "C"
 {
 #include "GetProperty.h"
-#include "JniUtils.h"
 }
 
 namespace sciGraphics
