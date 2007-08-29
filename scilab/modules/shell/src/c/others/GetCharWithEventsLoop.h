@@ -7,7 +7,7 @@
 
 /**
 * getchar -nw mode (linux only) with Events loop
-* @param[in] interrupt mode
+* @param[in] interrupt mode 
 * @return 1 or 0
 */
 int GetCharWithEventsLoop(int interrupt);

@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\windows\GetCharWithEventsLoop.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_shell.c"
 				>
 			</File>
@@ -247,6 +251,10 @@
 			</File>
 			<File
 				RelativePath=".\windows\command.h"
+				>
+			</File>
+			<File
+				RelativePath=".\windows\GetCharWithEventsLoop.h"
 				>
 			</File>
 			<File

@@ -8,6 +8,11 @@
 #include "sciprint.h"
 #include "../../../console/includes/GetCharWithoutOutput.h"
 #include "../../../console/includes/ShellPrintf.h"
+#if _MSC_VER
+#include "windows/GetCharWithEventsLoop.h"
+#else
+#include "others/GetCharWithEventsLoop.h"
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 #define MSG_MORE "[More (y or n ) ?] "
 /*-----------------------------------------------------------------------------------*/ 
@@ -19,8 +24,11 @@ int linesmore(void)
 		int ch = 0;
 		/* Scilab has not his own window */
 		sciprint(MSG_MORE);
-		ch = getchar();
+
+		ch = GetCharWithEventsLoop(1);
+	
 		if ( (ch != ' ') && (ch != '\n') && (ch != 'y') ) retval = 1;
+		sciprint("\n");
 	}
 	else
 	{
