@@ -8,7 +8,7 @@
 #include "machine.h"
 #include "stack-def.h"
 #include "basout.h"
-#include "../../fileio/includes/diary.h"
+#include "../../../fileio/includes/diary.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "../../../shell/includes/more.h"
@@ -26,7 +26,8 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 		/* Display on the standard output */
 
 		/* We haven't called this function before ... Then we call it and 
-		   store the result once for all because it won't change */
+		   store the result once for all because it won't change 
+		 */
 		*io = 0;
 		if (C2F(iop).lct[0] == -1) { return 0; }
 		if (getColumnsSize() > 0) 
