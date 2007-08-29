@@ -31,6 +31,12 @@ public interface SimpleConsole {
 	void clear();
 	
 	/**
+     * Clears lines from the end of the output view
+     * @param nbLines the number of lines to be deleted
+     */
+    void clear(int nbLines);
+	
+	/**
 	 * Gets the size of an Console (width and height)
 	 * @return the size of the Console
 	 */

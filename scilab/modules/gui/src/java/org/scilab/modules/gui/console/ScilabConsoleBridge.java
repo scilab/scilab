@@ -51,7 +51,6 @@ public class ScilabConsoleBridge {
 	}
 
 	/**
-<<<<<<< .mine
 	 * Add a member (dockable element) to a tab and returns the index of this member
 	 * @param tab the tab where we want to add the member
 	 * @param member the member to add
@@ -62,8 +61,6 @@ public class ScilabConsoleBridge {
 	}
 
 	/**
-=======
->>>>>>> .r17541
 	 * Draw a console
 	 * @param console the console to draw
 	 */
@@ -131,6 +128,15 @@ public class ScilabConsoleBridge {
 	 */
 	public static void clear(Console console) {
 		console.getAsSimpleConsole().clear();
+	}
+	
+	/**
+     * Clears lines from the end of the output view
+     * @param console the console to be cleared
+     * @param nbLines the number of lines to be deleted
+     */
+    public static void clear(Console console,int nbLines) {
+		console.getAsSimpleConsole().clear(nbLines);
 	}
 
 	/**

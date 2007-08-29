@@ -28,10 +28,10 @@ BOOL ClearConsolePart(int nbLines)
                   jclass cls = (*env)->GetObjectClass(env, jConsole);
                   if (cls)
                     {
-                      jmethodID mid = (*env)->GetMethodID(env, cls, "clearPart", "(I)V");
+                      jmethodID mid = (*env)->GetMethodID(env, cls, "clear", "(I)V");
                       if (mid)
                         {
-                          (*env)->CallIntMethod(env, jConsole, mid, nbLines);
+                          (*env)->CallVoidMethod(env, jConsole, mid, nbLines);
                           return TRUE;
                         }
                       else

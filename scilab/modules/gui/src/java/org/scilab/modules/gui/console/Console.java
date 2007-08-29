@@ -34,5 +34,11 @@ public interface Console extends Dockable {
 	 * Clears the console (all output view is cleared)
 	 */
 	void clear();
+	
+	/**
+     * Clears lines from the end of the output view
+     * @param nbLines the number of lines to be deleted
+     */
+    void clear(int nbLines);
 
 }

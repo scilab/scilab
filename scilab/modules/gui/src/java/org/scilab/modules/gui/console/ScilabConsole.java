@@ -126,6 +126,14 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	public void clear() {
 		ScilabBridge.clear(this);
 	}
+	
+	/**
+     * Clears lines from the end of the output view
+     * @param nbLines the number of lines to be deleted
+     */
+    public void clear(int nbLines) {
+		ScilabBridge.clear(this,nbLines);
+	}
 
 	/**
 	 * Reads one user input char
