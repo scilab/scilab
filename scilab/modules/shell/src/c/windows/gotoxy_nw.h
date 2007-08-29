@@ -6,9 +6,9 @@
 #define __GOTOXY_NW_H__
 
 /**
-*
-* @param[in]
-* @param[in]
+* move cursor in -nw mode
+* @param[in] x
+* @param[in] y
 */
 void gotoxy_nw(int x, int y);
 
