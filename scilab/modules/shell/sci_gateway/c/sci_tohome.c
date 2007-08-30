@@ -11,10 +11,12 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_tohome) _PARAMS((char *fname,unsigned long fname_len))
 {
-	BOOL bOK = tohome();
-	Rhs = Max(Rhs,0);
+	BOOL bOK = FALSE;
+
 	CheckRhs(0,0);
 	CheckLhs(0,1);
+
+	bOK = tohome();
 
 	if (!bOK)
 	{

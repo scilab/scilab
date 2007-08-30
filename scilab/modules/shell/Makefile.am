@@ -13,7 +13,9 @@ src/c/more.c \
 src/c/scilines.c \
 src/c/others/mainscic.c \
 src/c/others/GetCharWithEventsLoop.c \
-src/c/others/zzledt.c
+src/c/others/zzledt.c \
+src/c/others/gotoxy_nw.c \
+src/c/others/clrscr_nw.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
