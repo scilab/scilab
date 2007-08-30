@@ -3646,15 +3646,15 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	  tab[2] = pARC_FEATURE (pthis)->z;
 	  tab[3] = pARC_FEATURE (pthis)->width;
 	  tab[4] = pARC_FEATURE (pthis)->height;
-	  tab[5] = pARC_FEATURE (pthis)->alphabegin;
-	  tab[6] = pARC_FEATURE (pthis)->alphaend;
+	  tab[5] = RAD2DEG(pARC_FEATURE (pthis)->alphabegin);
+	  tab[6] = RAD2DEG(pARC_FEATURE (pthis)->alphaend);
 	}
       else
 	{
 	  tab[2] = pARC_FEATURE (pthis)->width;
 	  tab[3] = pARC_FEATURE (pthis)->height;
-	  tab[4] = pARC_FEATURE (pthis)->alphabegin;
-	  tab[5] = pARC_FEATURE (pthis)->alphaend;
+	  tab[4] = RAD2DEG(pARC_FEATURE (pthis)->alphabegin);
+	  tab[5] = RAD2DEG(pARC_FEATURE (pthis)->alphaend);
  
 	}
       return (double*)tab;

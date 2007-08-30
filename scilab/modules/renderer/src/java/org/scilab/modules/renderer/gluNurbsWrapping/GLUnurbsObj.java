@@ -114,7 +114,7 @@ public class GLUnurbsObj {
    /**
     * Wrapping of gluBeginTrim(GLUnurbsObj *)
     */
-  public void gluBeginTrimWrapping() {
+  public void gluBeginTrim() {
     GluNurbsWrapping.gluBeginTrimWrapping(getSwigPointer());
   }
 
@@ -122,7 +122,7 @@ public class GLUnurbsObj {
   /**
    * Wrapping of gluEndTrim(GLUnurbsObj *)
    */
-  public void gluEndTrimWrapping() {
+  public void gluEndTrim() {
     GluNurbsWrapping.gluEndTrimWrapping(getSwigPointer());
   }
 

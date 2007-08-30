@@ -16,8 +16,6 @@ import javax.media.opengl.glu.GLU;
 import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.drawers.LineDrawerGL;
 import org.scilab.modules.renderer.gluNurbsWrapping.GLUnurbsObj;
-import org.scilab.modules.renderer.gluNurbsWrapping.GluNurbsConst;
-import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
@@ -27,45 +25,19 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  */
 public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 
-	/** Number of controm points to draw an circle arc*/
-	private static final int NB_CONTROL_POINTS = 3;
-	/** Order of the nurbs, i.e. the nurbs will be polynoms of degree 3. */
-	private static final int NURBS_ORDER = 3;
-	/** Number of coordinates of a control point */
-	private static final int CP_SIZE = 4;
-	
-	/** vector of knot. Size 6 = NB_CONTROL_POINTS + NURBS_ORDER */
-	private static final float[] KNOT = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
-
 	/** Angle for a quarter of a circle */
 	private static final double QUARTER_ANGLE = Math.PI / 2.0;
 	
 	/** number of quarter in a circle */
 	private static final int NB_QUARTER_MAX = 4;
 	
-	/** Maximal sampling tolerance */
-	private static final float SAMPLING_TOLERANCE = 5.0f;
-	
-
-	/** scale to transform th ellipse into a circle */
-	private Vector3D scale;
-	/** To put the ellipse in the right position */
-	private Matrix4D rotationMatrix;
-	/** center of the ellipse */
-	private Vector3D center;
-	/** starting angle */
-	private double startAngle;
-	/**size of the angular region of the arc */
-	private double angularRegion;
+	private NurbsArcGL nurbsTools;
 	
 	/**
 	 * Default constructor
 	 */
 	public ArcLineDrawerGL() {
 		super();
-		rotationMatrix = new Matrix4D();
-		scale = new Vector3D();
-		center = new Vector3D();
 	}
 
 	
@@ -90,24 +62,11 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 						double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ,
 						double startAngle, double endAngle) {
 		
-		center = new Vector3D(centerX, centerY, centerZ);
+		Vector3D center = new Vector3D(centerX, centerY, centerZ);
 		Vector3D semiMinorAxis = new Vector3D(semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ);
 		Vector3D semiMajorAxis = new Vector3D(semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ);
-		Vector3D thirdVector = semiMinorAxis.crossProduct(semiMajorAxis).getNormalized();
-		System.err.println("semiMinorAxis = " + semiMinorAxis);
-		System.err.println("semiMajorAxis = " + semiMajorAxis);
-		System.err.println("thirdVector = " + thirdVector);
 		
-		rotationMatrix.setFromRotatedBasis(semiMinorAxis, semiMajorAxis, thirdVector);
-		
-		System.err.println("rotationMatrix = " + rotationMatrix);
-		
-		// the arc is flat, Z coordinate does not matter.
-		scale.setValues(semiMinorAxis.getNorm(), semiMajorAxis.getNorm() , 1.0);
-		
-		this.startAngle = startAngle;
-		this.angularRegion = endAngle - startAngle;
-		
+		nurbsTools = new NurbsArcGL(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 		
 		drawArc();
 
@@ -156,19 +115,14 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 		
 		// transform the ellipse so we can draw a circle
 		gl.glPushMatrix();
-		gl.glTranslated(center.getX(), center.getY(), center.getZ());
-		gl.glMultMatrixd(rotationMatrix.getOpenGLRepresentation(), 0);
-		gl.glScaled(scale.getX(), scale.getY(), scale.getZ());
-		// Put the minimum angle has greatest axis, so the draw sart at Y = 0.
-		gl.glRotated(Math.toDegrees(startAngle), 0.0, 0.0, 1.0);
+		nurbsTools.setCoordinatesToCircleGL(gl);
 		
 		// display circle has a nurbs
 		GLUnurbsObj nurbsObj = GLUnurbsObj.gluNewNurbsRenderer();
-		nurbsObj.gluNurbsProperty(GluNurbsConst.GLU_CULLING, GL.GL_TRUE);
-		nurbsObj.gluNurbsProperty(GluNurbsConst.GLU_SAMPLING_TOLERANCE, SAMPLING_TOLERANCE);
+		nurbsTools.setGluProperties(nurbsObj);
 
         nurbsObj.gluBeginCurve();
-        drawArc(gl, nurbsObj, angularRegion);
+        drawArc(nurbsObj, nurbsTools.getSweepAngle());
         nurbsObj.gluEndCurve();
         
 		GLUnurbsObj.gluDeleteNurbsRenderer(nurbsObj);
@@ -184,62 +138,39 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	 * Draw an arc starting from the point (1,0) (ie angle = 0) to the angular region.
 	 * The arc is centered on the origin. Unlike draw arc segment, this function can handle
 	 * angles higher than Pi.
-	 * @param gl current OpenGL pipeline
 	 * @param nurbsObj nurbsObj used to draw
 	 * @param angle size of the arc segment in radian. Should be positive.
 	 */
-	private void drawArc(GL gl, GLUnurbsObj nurbsObj, double angle) {
+	private void drawArc(GLUnurbsObj nurbsObj, double angle) {
 		// We draw has many quarter of circle has needed, but at most 4 (more is useless)
 		// Then we draw the remaining part
-		double remainingAngle = angle;
+		double displayedAngle = 0.0;
 		int nbQuarter = 0;
 		
-		while (nbQuarter < NB_QUARTER_MAX && remainingAngle >= QUARTER_ANGLE) {
-			drawArcSegment(nurbsObj, QUARTER_ANGLE);
-			gl.glRotated(Math.toDegrees(QUARTER_ANGLE), 0.0, 0.0, 1.0);
-			remainingAngle -= QUARTER_ANGLE;
+		while (nbQuarter < NB_QUARTER_MAX && displayedAngle < angle - QUARTER_ANGLE) {
+			drawArcSegment(nurbsObj, displayedAngle, QUARTER_ANGLE);
+			displayedAngle += QUARTER_ANGLE;
 			nbQuarter++;
 		}
 		
-		// finish the ramining arc if the circle is not complete
+		// finish the ramining arc if the circle is not already complete
 		if (nbQuarter < NB_QUARTER_MAX) {
-			drawArcSegment(nurbsObj, remainingAngle);
+			drawArcSegment(nurbsObj, displayedAngle, angle - displayedAngle);
 		}
 	}
 	
 	/**
-	 * Draw part af circle starting from the point (1,0) (ie angle = 0) to angular region.
+	 * Draw part af circle starting from the point of angle start angle to angular region.
 	 * The arc is centered on the origin.
 	 * @param nurbsObj nurbsObj used to draw
-	 * @param angle size of the arc segment in radian. Should be lower than Pi and gt 0.
+	 * @param startAngle angle of the begining of the arc.
+	 * @param sweepAngle size of the arc segment in radian. Should be lower than Pi and gt 0.
 	 */
-	private void drawArcSegment(GLUnurbsObj nurbsObj, double angle) {
-		// The control polygon is made of three points.
-		// The first and last are the starting and end point of the arc (ie [1,0] and [cos(angle),sin(angle)]).
-		// The middle point is such has the three forms an isocele triangle. Its two angles on the first and
-		// last control points are equal to angle/2.
-		
-		// middle of the isocele triangle base
-		Vector3D baseMiddle = new Vector3D((Math.cos(angle) + 1.0) / 2.0, Math.sin(angle) / 2.0, 0.0);
-		
-		// height of the isocele triangle bewteen the first and last control points.
-		double height = Math.sin(angle / 2.0) * Math.tan(angle / 2.0);
-		
-		// the three points origin, baseMult and the middle control points are aligned
-		// and cp = O + baseMiddle + height * dir, where dir is the direction between the three
-		Vector3D controlPoint = baseMiddle.add(baseMiddle.getNormalized().scalarMult(height));
-		
-		
-		// the wheight of the middle point is cos(angle / 2.0), so
-		controlPoint = controlPoint.scalarMult(Math.cos(angle / 2.0));
-		
-		float[] controlPoints = {1.0f, 0.0f, 0.0f, 1.0f,
-								 (float) controlPoint.getX(), (float) controlPoint.getY(),
-								 (float) controlPoint.getZ(), (float) Math.cos(angle / 2.0),
-								 (float) Math.cos(angle), (float) Math.sin(angle), 0.0f, 1.0f };
-		
+	private void drawArcSegment(GLUnurbsObj nurbsObj, double startAngle, double sweepAngle) {
+		float[] controlPoints = nurbsTools.computeArcControlPoints4D(startAngle, sweepAngle);
 		nurbsObj.gluBeginCurve();
-	    nurbsObj.gluNurbsCurve(NB_CONTROL_POINTS + NURBS_ORDER, KNOT, CP_SIZE, controlPoints, NURBS_ORDER, GL.GL_MAP1_VERTEX_4);
+	    nurbsObj.gluNurbsCurve(NurbsArcGL.KNOTS.length, NurbsArcGL.KNOTS, NurbsArcGL.SIZE_4D,
+	    					   controlPoints, NurbsArcGL.NURBS_ORDER, GL.GL_MAP1_VERTEX_4);
 	    nurbsObj.gluEndCurve();
 		
 	}

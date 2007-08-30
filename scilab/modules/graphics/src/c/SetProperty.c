@@ -3697,15 +3697,15 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  pARC_FEATURE (pthis)->z          = tab[2];
 	  pARC_FEATURE (pthis)->width      = tab[3];
 	  pARC_FEATURE (pthis)->height     = tab[4];
-	  pARC_FEATURE (pthis)->alphabegin = tab[5];
-	  pARC_FEATURE (pthis)->alphaend   = tab[6];
+	  pARC_FEATURE (pthis)->alphabegin = DEG2RAD(tab[5]);
+	  pARC_FEATURE (pthis)->alphaend   = DEG2RAD(tab[6]);
 	}
       else
 	{
 	  pARC_FEATURE (pthis)->width      = tab[2];
 	  pARC_FEATURE (pthis)->height     = tab[3];
-	  pARC_FEATURE (pthis)->alphabegin = tab[4];
-	  pARC_FEATURE (pthis)->alphaend   = tab[5]; 
+	  pARC_FEATURE (pthis)->alphabegin = DEG2RAD(tab[4]);
+	  pARC_FEATURE (pthis)->alphaend   = DEG2RAD(tab[5]); 
 	}
       return 0;
       break;
