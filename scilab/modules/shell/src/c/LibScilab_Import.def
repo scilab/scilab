@@ -34,7 +34,7 @@ set_is_reading
 GetCurrentPrompt
 get_is_reading
 ismenu
-SignalCtrC
+sigbas_
 IsFromC
 ;
 

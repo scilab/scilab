@@ -36,15 +36,155 @@
 #define BACKSPACE 0x08		/* ^H */
 #define SPACE	' '
 #define isterm(f) ((f==stdin)|| f==stdout || f==stderr)
+
+#ifdef PIPE
+#undef PIPE
+#endif 
+#define PIPE 255
+
+#ifdef CTRL_A
+#undef CTRL_A
+#endif 
+#define CTRL_A 001
+
+#ifdef CTRL_B
+#undef CTRL_B
+#endif 
+#define CTRL_B 002
+
+#ifdef CTRL_C
+#undef CTRL_C
+#endif 
+#define CTRL_C 003
+
+#ifdef CTRL_D
+#undef CTRL_D
+#endif 
+#define CTRL_D 004
+
+#ifdef CTRL_E
+#undef CTRL_E
+#endif 
+#define CTRL_E 005
+
+#ifdef CTRL_F
+#undef CTRL_F
+#endif 
+#define CTRL_F 006
+
+#ifdef CTRL_H
+#undef CTRL_H
+#endif 
+#define CTRL_H 010
+
+#ifdef CTRL_K
+#undef CTRL_K
+#endif 
+#define CTRL_K 013
+
+#ifdef CTRL_L
+#undef CTRL_L
+#endif 
+#define CTRL_L 014
+
+#ifdef CTRL_N
+#undef CTRL_N
+#endif 
+#define CTRL_N 016
+
+#ifdef CTRL_P
+#undef CTRL_P
+#endif 
+#define CTRL_P 020
+
+#ifdef CTRL_R
+#undef CTRL_R
+#endif 
+#define CTRL_R 022
+
+#ifdef CTRL_U
+#undef CTRL_U
+#endif 
+#define CTRL_U 025
+
+#ifdef CTRL_W
+#undef CTRL_W
+#endif 
+#define CTRL_W 027
+
+#ifdef ESC_KEY
+#undef ESC_KEY
+#endif 
+#define ESC_KEY 033
+
+#ifdef DEL
+#undef DEL
+#endif 
+#define DEL 0177
+
+#ifdef CR_1
+#undef CR_1
+#endif 
+#define CR_1 '\n'
+
+#ifdef CR_2
+#undef CR_2
+#endif 
+#define CR_2 '\r'
+
+#ifdef LEFT_ARROW
+#undef LEFT_ARROW
+#endif 
+#define LEFT_ARROW 75
+
+#ifdef RIGHT_ARROW
+#undef RIGHT_ARROW
+#endif 
+#define RIGHT_ARROW 77
+
+#ifdef UP_ARROW
+#undef UP_ARROW
+#endif 
+#define UP_ARROW 72
+
+#ifdef DOWN_ARROW
+#undef DOWN_ARROW
+#endif 
+#define DOWN_ARROW 80
+
+#ifdef HOME_KEY
+#undef HOME_KEY
+#endif 
+#define HOME_KEY 71
+
+#ifdef END_KEY
+#undef END_KEY
+#endif 
+#define END_KEY 79
+
+#ifdef DELETE_KEY
+#undef DELETE_KEY
+#endif 
+#define DELETE_KEY 83
+
+#ifdef CTRL_LEFT_ARROW
+#undef CTRL_LEFT_ARROW
+#endif 
+#define CTRL_LEFT_ARROW 115
+
+#ifdef CTRL_RIGHT_ARROW
+#undef CTRL_RIGHT_ARROW
+#endif 
+#define CTRL_RIGHT_ARROW 116
 /*-----------------------------------------------------------------------------------*/
 char cur_line[MAXBUF];	/* current contents of the line */
 /*-----------------------------------------------------------------------------------*/
 extern int IsFromC(void);
-extern void  SignalCtrC(void);
+extern int C2F(sigbas)();
 /*-----------------------------------------------------------------------------------*/
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;		/* maximum character position */
-static int sendprompt=1;
+static int sendprompt = 1;  /* default */
 /*-----------------------------------------------------------------------------------*/
 static char msdos_getch ();
 static void fix_line ();
@@ -116,7 +256,6 @@ static int NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
 * a pointer to an allocated zone (alloc) where
 * the read characters are stored is returned 
 ***************************************************/
-
 char * readline_nw (char *prompt, int interrupt)
 {
 	unsigned char cur_char;
@@ -182,7 +321,7 @@ char * readline_nw (char *prompt, int interrupt)
 
 			switch (cur_char)
 			{
-			case 255:		/* Pipe */
+			case PIPE: 
 				if (new_line) {FREE(new_line);new_line=NULL;}
 				new_line = (char *)MALLOC(sizeof(char)*2);
 				if (new_line)
@@ -194,39 +333,39 @@ char * readline_nw (char *prompt, int interrupt)
 
 			case EOF:
 				return ((char *) NULL);
-			case 001:		/* ^A */
+			case CTRL_A: 
 				while (cur_pos > 0)
 				{
 					cur_pos -= 1;
 					backspace ();
 				}
 				break;
-			case 002:		/* ^B */
+			case CTRL_B: 
 				if (cur_pos > 0)
 				{
 					cur_pos -= 1;
 					backspace ();
 				}
 				break;
-			case 005:		/* ^E */
+			case CTRL_E: 
 				while (cur_pos < max_pos)
 				{
 					user_putc (cur_line[cur_pos]);
 					cur_pos += 1;
 				}
 				break;
-			case 006:		/* ^F */
+			case CTRL_F: 
 				if (cur_pos < max_pos)
 				{
 					user_putc (cur_line[cur_pos]);
 					cur_pos += 1;
 				}
 				break;
-			case 013:		/* ^K */
+			case CTRL_K: 
 				clear_eoline ();
 				max_pos = cur_pos;
 				break;
-			case 020:		/* ^P */
+			case CTRL_P: 
 				{
 					/* move in history */
 					cur_line[max_pos + 1] = '\0';
@@ -247,7 +386,7 @@ char * readline_nw (char *prompt, int interrupt)
 					}
 				}
 				break;
-			case 016:		/* ^N */
+			case CTRL_N: 
 				{
 					/* move in history */
 					cur_line[max_pos + 1] = '\0';
@@ -268,13 +407,11 @@ char * readline_nw (char *prompt, int interrupt)
 					}
 				}
 				break;
-			case 014:		/* ^L */
-			case 022:		/* ^R */
+			case CTRL_L: case CTRL_R:
 				putc ('\n', stdout);	/* go to a fresh line */
 				redraw_line (prompt);
 				break;
-			case 0177:		/* DEL */
-			case 010:		/* ^H */
+			case DEL: case CTRL_H:
 				if (cur_pos > 0)
 				{
 					cur_pos -= 1;
@@ -284,7 +421,7 @@ char * readline_nw (char *prompt, int interrupt)
 					fix_line ();
 				}
 				break;
-			case 004:		/* ^D */
+			case CTRL_D:		/* ^D */
 				if (max_pos == 0) return ((char *) NULL);
 				if (cur_pos < max_pos)
 				{
@@ -294,10 +431,10 @@ char * readline_nw (char *prompt, int interrupt)
 					fix_line ();
 				}
 				break;
-			case 025:		/* ^U */
+			case CTRL_U:		/* ^U */
 				clear_line (prompt);
 				break;
-			case 027:		/* ^W */
+			case CTRL_W:		/* ^W */
 				while ((cur_pos > 0) && (cur_line[cur_pos - 1] == SPACE))
 				{
 					cur_pos -= 1;
@@ -311,8 +448,7 @@ char * readline_nw (char *prompt, int interrupt)
 				clear_eoline ();
 				max_pos = cur_pos;
 				break;
-			case '\n':		/* ^J */
-			case '\r':		/* ^M */
+			case CR_1: case CR_2:
 				cur_line[max_pos + 1] = '\0';
 				if (cur_line[0]=='!')
 				{
@@ -423,7 +559,7 @@ static void copy_line (char *line)
 /* Convert Arrow keystrokes to Control characters: */
 static char msdos_getch ()
 {
-	char c ;
+	char c = 0;
 
 	if (!IsFromC())
 	{
@@ -439,11 +575,11 @@ static char msdos_getch ()
 
 	Sleep(1);
 
-	if (c == 3)
+	if (c == CTRL_C)
 	{
 		/** control-C : we return a \n for stopping line processing **/
-		//SignalCtrC ();
-
+		int j = 2;
+		C2F (sigbas) (&j);
 		return ((int) '\n');
 	}
 
@@ -453,39 +589,39 @@ static char msdos_getch ()
 
 		switch (c)
 		{
-		case 75:		/* Left Arrow. */
-			c = 002;
+		case LEFT_ARROW:
+			c = CTRL_B;
 			break;
-		case 77:		/* Right Arrow. */
-			c = 006;
-			break;
-		case 72:		/* Up Arrow. */
 
-			c = 020;
+		case RIGHT_ARROW:
+			c = CTRL_F;
 			break;
-		case 80:		/* Down Arrow. */
-			c = 016;
+
+		case UP_ARROW:
+			c = CTRL_P;
 			break;
-		case 115:		/* Ctl Left Arrow. */
-		case 71:		/* Home */
-			c = 001;
+
+		case DOWN_ARROW:
+			c = CTRL_N;
 			break;
-		case 116:		/* Ctl Right Arrow. */
-		case 79:		/* End */
-			c = 005;
+		case CTRL_LEFT_ARROW: case HOME_KEY:
+			c = CTRL_A;
 			break;
-		case 83:		/* Delete */
-			c = 004;
+		case CTRL_RIGHT_ARROW: case END_KEY:
+			c = CTRL_E;
+			break;
+		case DELETE_KEY:
+			c = CTRL_D;
 			break;
 		default:
 			c = 0;
 			break;
 		}
 	}
-	else if (c == 033)
+	else if (c == ESC_KEY)
 	{				
 		/* ESC */
-		c = 025;
+		c = CTRL_U;
 	}
 	return c;
 }
