@@ -110,7 +110,7 @@ void sciClearFigure(sciPointObj * pFigure)
   sciPointObj * newSubWin = NULL;
   DestroyAllGraphicsSons(pFigure);
 
-  if ((newSubWin = ConstructSubWin(newSubWin)) != NULL)
+  if ((newSubWin = ConstructSubWin(pFigure)) != NULL)
   {
     sciSetCurrentObj(newSubWin);
     sciSetOriginalSubWin(pFigure, newSubWin);
