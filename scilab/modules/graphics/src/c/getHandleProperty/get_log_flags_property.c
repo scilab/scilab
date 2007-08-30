@@ -14,13 +14,16 @@
 /*------------------------------------------------------------------------*/
 int get_log_flags_property( sciPointObj * pobj )
 {
-  
+  char logFlagsString[4];
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
     sciprint( "log_flag property undefined for this object\n." ) ;
     return -1 ;
   }
 
-  return sciReturnString( pSUBWIN_FEATURE (pobj)->logflags ) ;
+  /* Set the three first character of log flags.*/
+  sciGetLogFlags(pobj, logFlagsString);
+  logFlagsString[4] = 0; /* 0 terminating character */
+  return sciReturnString( logFlagsString ) ;
 }
 /*------------------------------------------------------------------------*/

@@ -5100,3 +5100,21 @@ int sciGetBlackColorIndex(sciPointObj * pObj)
   return sciGetNumColors(pObj) + 2;
 }
 /*-------------------------------------------------------------------------------------------*/
+/**
+ * Copy the logflags of a subwin to an array of size 3.
+ */
+void sciGetLogFlags(sciPointObj * pObj, char flags[3])
+{
+  switch( sciGetEntityType(pObj) )
+  {
+  case SCI_SUBWIN:
+    flags[0] = pSUBWIN_FEATURE(pObj)->logflags[0];
+    flags[1] = pSUBWIN_FEATURE(pObj)->logflags[1];
+    flags[2] = pSUBWIN_FEATURE(pObj)->logflags[2];
+    break;
+  default:
+    sciprint("This object has no log_flags.\n");
+    break;
+  }
+}
+/*-------------------------------------------------------------------------------------------*/
