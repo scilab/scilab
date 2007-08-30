@@ -573,13 +573,21 @@ public class ScilabBridge {
 	}
 	
 	/**
-     * Clears lines from the end of the output view
-     * @param console the console to be cleared
-     * @param nbLines the number of lines to be deleted
-     */
-    public static void clear(Console console,int nbLines) {
-		ScilabConsoleBridge.clear(console,nbLines);
+   * Clears lines from the end of the output view
+   * @param console the console to be cleared
+   * @param nbLines the number of lines to be deleted
+   */
+  public static void clear(Console console, int nbLines) {
+		ScilabConsoleBridge.clear(console, nbLines);
 	}
+	
+	/**
+   * Puts the prompt in the top left corner of the console
+   * @param console the console used
+   */
+  public static void toHome(Console console) {
+  	ScilabConsoleBridge.toHome(console);
+  }
 	
 	/**
 	 * Reads one user input char

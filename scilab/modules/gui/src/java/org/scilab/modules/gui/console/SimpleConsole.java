@@ -31,10 +31,15 @@ public interface SimpleConsole {
 	void clear();
 	
 	/**
-     * Clears lines from the end of the output view
-     * @param nbLines the number of lines to be deleted
-     */
-    void clear(int nbLines);
+   * Clears lines from the end of the output view
+   * @param nbLines the number of lines to be deleted
+   */
+  void clear(int nbLines);
+  
+  /**
+   * Puts the prompt in the top left corner of the console
+   */
+  void toHome();
 	
 	/**
 	 * Gets the size of an Console (width and height)
