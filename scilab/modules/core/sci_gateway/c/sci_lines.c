@@ -20,8 +20,8 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 		int *paramoutINT = NULL;
 		paramoutINT=(int*)MALLOC(sizeof(int)*2);
 		
-		paramoutINT[0] = getLinesSize();
-		paramoutINT[1] = getColumnsSize();
+		paramoutINT[0] = getColumnsSize();
+		paramoutINT[1] = getLinesSize();
 		
 		n1=1; m1=2;
 		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
@@ -38,11 +38,11 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 			if ( GetType(2) == sci_matrix )
 			{
 				int l2 = 0,n2 = 0, m2 = 0;
-				int lines = 0;
+				int columns = 0;
 
 				GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
-				lines = (int)*stk(l2);
-				setLinesSize(lines);
+				columns = (int)*stk(l2);
+				setColumnsSize(columns);
 			}
 			else
 			{
@@ -54,11 +54,11 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 		if ( GetType(1) == sci_matrix )
 		{
 			int l1 = 0,n1 = 0, m1 = 0;
-			int columns = 0;
+			int lines = 0;
 
 			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-			columns = (int)*stk(l1);
-			setColumnsSize(columns);
+			lines = (int)*stk(l1);
+			setLinesSize(lines);
 		}
 		else
 		{
