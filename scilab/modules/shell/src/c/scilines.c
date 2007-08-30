@@ -6,8 +6,8 @@
 #include "core_math.h"
 #include "stack-def.h"
 /*-----------------------------------------------------------------------------------*/
-#define DEFAULT_NUMBERS_LINES 72
-#define DEFAULT_NUMBERS_COLUMNS 28
+#define DEFAULT_NUMBERS_LINES 28
+#define DEFAULT_NUMBERS_COLUMNS 72
 #define MIN_NUMBERS_LINES 10
 #define MIN_NUMBERS_COLUMNS 0
 /*-----------------------------------------------------------------------------------*/
@@ -40,6 +40,7 @@ BOOL setColumnsSize(int colums)
 	BOOL bOK = FALSE;
 
 	C2F(iop).lct[1] = Max(MIN_NUMBERS_COLUMNS,colums);
+        printf("Number of column = %d\n", C2F(iop).lct[1]);
 	bOK = TRUE;
 
 	return bOK;
@@ -50,6 +51,7 @@ BOOL setLinesSize(int lines)
 	BOOL bOK = FALSE;
 
 	C2F(iop).lct[4] = Max(MIN_NUMBERS_LINES,lines);
+        printf("Number of lines = %d\n", C2F(iop).lct[4]);
 	bOK = TRUE;
 
 	return bOK;
