@@ -211,6 +211,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\createdirectory.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\deleteafile.c"
 				>
 			</File>
@@ -279,6 +283,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\isdir.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\isDrive.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\logger.c"
 				>
 			</File>
@@ -343,6 +355,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\removedir.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\ripole.c"
 				>
 			</File>
@@ -388,6 +404,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_getshortpathname.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_isdir.c"
 				>
 			</File>
 			<File
@@ -469,6 +489,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\createdirectory.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\deleteafile.h"
 				>
 			</File>
@@ -537,6 +561,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\isdir.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\isDrive.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\logger.h"
 				>
 			</File>
@@ -594,6 +626,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\pldstr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\removedir.h"
 				>
 			</File>
 			<File

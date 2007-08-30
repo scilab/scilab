@@ -6,7 +6,6 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "scicurdir.h"
-#include "../../../io/includes/directories.h"
 #include "MALLOC.h"
 #include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/

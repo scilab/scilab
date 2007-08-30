@@ -10,7 +10,8 @@
 #include "version.h"
 #include "machine.h"
 
-#include "../../../io/includes/directories.h"
+#include "../../../fileio/includes/createdirectory.h"
+#include "../../../fileio/includes/isdir.h"
 #include "../../../io/includes/getenvc.h"
 #include "scilabDefaults.h"
 /*-----------------------------------------------------------------------------------*/
@@ -69,8 +70,8 @@ BOOL setSCIHOME(void)
 
 	if (!isdir(SCIHOMEPATH))
 	{
-		if(!isdir(USERPATHSCILAB)) CreateDir(USERPATHSCILAB);
-		if (CreateDir(SCIHOMEPATH))
+		if(!isdir(USERPATHSCILAB)) createdirectory(USERPATHSCILAB);
+		if (createdirectory(SCIHOMEPATH))
 		{
 			bOK=TRUE;
 			return bOK;

@@ -6,9 +6,7 @@
 IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
-src/c/getenvc.c \
-src/c/directories.c
-
+src/c/getenvc.c 
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \

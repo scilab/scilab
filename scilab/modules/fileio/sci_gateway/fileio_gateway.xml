@@ -56,4 +56,5 @@
 <PRIMITIVE gatewayId="34" primitiveId="30" primitiveName="getlongpathname"/>
 <PRIMITIVE gatewayId="34" primitiveId="31" primitiveName="getshortpathname"/>
 <PRIMITIVE gatewayId="34" primitiveId="32" primitiveName="fileext"/>
+<PRIMITIVE gatewayId="34" primitiveId="33" primitiveName="isdir"/>
 </GATEWAY>

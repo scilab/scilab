@@ -3,7 +3,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "machine.h"
-#include "../../../io/includes/directories.h"
+#include "../../../fileio/includes/removedir.h"
+#include "../../../fileio/includes/createdirectory.h"
 #include <string.h>
 #include "MALLOC.h" /* MALLOC */
 
@@ -80,7 +81,7 @@ void C2F(settmpdir)(void)
   }
 #else 
   sprintf(tmp_dir,"/tmp/SD_%d_",(int) getpid());
-  CreateDir(tmp_dir) ;
+  createdirectory(tmp_dir) ;
 #endif 
   sprintf(buf,"TMPDIR=%s",tmp_dir);
   putenv(buf);
@@ -104,7 +105,7 @@ char *get_sci_tmp_dir(void)
 void C2F(tmpdirc)(void)
 {
   char *tmp_dir2 = get_sci_tmp_dir(); 
-  RemoveDir(tmp_dir2);
+  removedir(tmp_dir2);
 }
 /*-----------------------------------------------------------------------------------*/
 char *getTMPDIR(void)

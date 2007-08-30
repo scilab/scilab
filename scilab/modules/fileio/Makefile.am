@@ -41,7 +41,11 @@ src/c/getshortpathname.c \
 src/c/getlongpathname.c \
 src/c/FindFileExtension.c \
 src/c/URIFileToFilename.c \
-src/c/ConvertPathUnixToWindows.c
+src/c/ConvertPathUnixToWindows.c \
+src/c/createdirectory.c \
+src/c/isdir.c \
+src/c/isDrive.c \
+src/c/removedir.c
 
 
 GATEWAY_SOURCES = \
@@ -68,8 +72,8 @@ sci_gateway/c/sci_pathsep.c \
 sci_gateway/c/sci_filesep.c \
 sci_gateway/c/sci_getshortpathname.c \
 sci_gateway/c/sci_getlongpathname.c \
-sci_gateway/c/sci_fileext.c
-
+sci_gateway/c/sci_fileext.c \
+sci_gateway/c/sci_isdir.c
 
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 
@@ -112,9 +116,10 @@ includes/sci_fileio.h \
 includes/findfiles.h \
 includes/FindFileExtension.h \
 includes/URIFileToFilename.h \
-includes/ConvertPathUnixToWindows.h
-
-
+includes/ConvertPathUnixToWindows.h \
+includes/createdirectory.h \
+includes/isdir.h \
+includes/removedir.h
 
 #### fileio : demos files ####
 libscifileio_la_demosdir=$(mydatadir)

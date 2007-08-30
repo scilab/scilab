@@ -5,7 +5,7 @@
 #include <jni.h>
 #include "addToLibrarypath.h"
 #include "getScilabJNIEnv.h"
-#include "../../io/includes/directories.h"
+#include "../../fileio/includes/isdir.h"
 #include "fromjava.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL addToLibrarypath(char *librarypathstring)

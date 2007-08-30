@@ -5,7 +5,7 @@
 #include <jni.h>
 #include "addToClasspath.h"
 #include "getScilabJNIEnv.h"
-#include "../../io/includes/directories.h"
+#include "../../fileio/includes/isdir.h"
 #include "../../fileio/includes/FileExist.h"
 #include "fromjava.h"
 /*-----------------------------------------------------------------------------------*/ 

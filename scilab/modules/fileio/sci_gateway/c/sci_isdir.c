@@ -3,8 +3,8 @@
  * @author Sylvestre LEDRU - INRIA 2007
  */
 /*-----------------------------------------------------------------------------------*/ 
-#include "gw_io.h"
-#include "directories.h"
+#include "gw_fileio.h"
+#include "isdir.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "cluni0.h"

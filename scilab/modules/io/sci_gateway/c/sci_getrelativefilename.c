@@ -7,14 +7,15 @@
 #include "gw_io.h"
 #include "MALLOC.h"
 #include "sci_getrelativefilename.h"
-#include "directories.h"
 #include "machine.h"
+ /*-----------------------------------------------------------------------------------*/
+#define MAX_FILENAME_LEN 512
+ /*-----------------------------------------------------------------------------------*/
 /* ================================================================================== */
 // sci_getrelativefilename
 // 
 // scilab interface to getrelativefilename
 /* ================================================================================== */
-
 int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 {
 	static int l1,n1,m1,l2,n2,m2;

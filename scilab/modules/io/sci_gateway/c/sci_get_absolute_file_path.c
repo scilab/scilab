@@ -15,7 +15,6 @@
 #include "gw_io.h"
 #include "FileExist.h"
 #include "../../../core/src/c/scicurdir.h"
-#include "directories.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
