@@ -21,7 +21,7 @@ I - TO RUN SCILAB (BINARY VERSION)
         so you can run Scilab by executing directly "wscilex.exe".
  
     3 - Scilab has been compiled with Visual C++ .NET 2005 Pro
-	      (Intel C 9.1 & Fortran 9.1, see III below).
+	      (Intel C 10 & Fortran 10, see III below).
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
  
@@ -53,11 +53,10 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 III - TO COMPILE SCILAB FROM A SOURCE VERSION
 ******************************************************************************
  
-    We have compiled this distribution with Visual Studio 2005 (Intel C 9.1 &
-    Fortran 9.1). 
+    We have compiled this distribution with Visual Studio 2005 (Intel C 10 &
+    Fortran 10). 
 
-    1 - To compile with Visual C++ .NET 2005,  see Readme_visual.txt 
-  
+    To compile with Visual C++ .NET 2005,  see Readme_visual.txt 
  
 ******************************************************************************
 IV - DOCUMENTATION
@@ -88,22 +87,18 @@ V - SOME IMPORTANT FILES AND DIRECTORIES
  etc/scilab.start : startup file for Scilab instructions in this file
               are executed when Scilab is executed. Note that
               you can also have your own startup file "scilab.ini" 
-              in your current directory.
+              in your SCIHOME directory.
  
  Makefile.incl.mak: file included by all Makefile's.
  
  Scilab.sln : Visual Studio 2005 Scilab Solution with Intel Fortran.
  
  Scilab_f2c.sln : Visual Studio 2005 Scilab Solution without Intel Fortran.
-  
-  
- examples/ : examples of dynamic links and interface code.
- 
+    
  bin/	   : executable code and scripts.
 
  		scilex  : executable code of Scilab (Console version).
 		wscilex  : executable code of Scilab (Windows version).
- 
   
  ******************************************************************************
 

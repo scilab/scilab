@@ -23,7 +23,7 @@ svn co --username anonymous --password Scilab svn://frioul.inria.fr/scilab/trunk
 copy all files in your scilab directory
 
 -----------------------------------------------------------------------
-How to compile with visual studio C++ .Net 2005 and Intel Fortran 9.1 ?
+How to compile with visual studio C++ .Net 2005 and Intel Fortran 10 ?
 -----------------------------------------------------------------------
 
 If you use Intel fortran to build scilab , you need to import some settings.
@@ -43,10 +43,10 @@ In this case, do :
 Tools --> Options --> Projects and Solutions --> VC++ Directories
 Select "Library files" in "Show directories for"
 and add
-C:\Program Files (x86)\Intel\Compiler\Fortran\9.1\IA32\Lib    for Win32 build on XP 64 bits
-C:\Program Files\Intel\Compiler\Fortran\9.1\IA32\Lib          for Win32 build on XP 32 bits
-C:\Program Files (x86)\Intel\Compiler\Fortran\9.1\em64t\Lib   for x64 build on XP 64 bits
-C:\Program Files\Intel\Compiler\Fortran\9.1\em64t\Lib   			for x64 build on XP 32 bits
+C:\Program Files (x86)\Intel\Compiler\Fortran\10.0\IA32\Lib    for Win32 build on XP 64 bits
+C:\Program Files\Intel\Compiler\Fortran\10.0\IA32\Lib          for Win32 build on XP 32 bits
+C:\Program Files (x86)\Intel\Compiler\Fortran\10.0\em64t\Lib   for x64 build on XP 64 bits
+C:\Program Files\Intel\Compiler\Fortran\10.0\em64t\Lib   			for x64 build on XP 32 bits
 
 click on scilab.sln (to launch Visual) or devenv scilab.sln /build "Release" (via command line, to build scilab)
 
