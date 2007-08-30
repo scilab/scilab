@@ -8,11 +8,8 @@
 
 function tests=testslist()
 tests = ['arma.tst';
-	'auto.tst';
 	'binary.tst';
 	'binary_representation.tst';
-	'breakpoints.tst';
-	'bvode.tst';
 	'calpol.tst';
 	'clause.tst';
 	'cmp.tst';
@@ -52,8 +49,6 @@ tests = ['arma.tst';
 	'norm.tst';
 	'odedc.tst';
 	'odedi.tst';
-	'opcode.tst';
-	'pause.tst';
 	'polelm.tst';
 	'polops.tst';
 	'pvm.tst';
@@ -68,17 +63,23 @@ tests = ['arma.tst';
 	'sprintf.tst';
 	'sscanf.tst';
 	'strelm.tst';
-	'swap_handles.tst';
 	'trycatch.tst';
 	'parse.tst';
-	'TCL_SetGet.tst';
-	'filesassocation.tst';
-	'scicos_filesassociation.tst';
+	'bvode.tst';
 	'basiclink.tst';
 	'links.tst';
 	'algebra.tst';
 	'intops.tst';
-	'matsys.tst';];
+	'matsys.tst';
+	'opcode.tst';
+	'TCL_SetGet.tst';
+	'breakpoints.tst';
+	'pause.tst';
+	'swap_handles.tst'; // graphics is broken 
+	'auto.tst'; // graphics is broken 
+	'filesassociation.tst';
+	'scicos_filesassociation.tst';];
+	
 	
 	if ~%scicos then
 		tests(find(tests=='scicos.tst'))=[];
