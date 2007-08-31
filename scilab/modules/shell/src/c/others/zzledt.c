@@ -645,7 +645,10 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   {
     *len_line = strlen(wk_buf);
     strncpy(buffer, wk_buf,*buf_size);
-    putchar('\r');  putchar('\n');
+    if(getScilabMode() != SCILAB_STD) 
+    {
+      putchar('\r');  putchar('\n');
+    }
   }
 #ifdef KEYPAD
   if(getScilabMode() != SCILAB_STD) 
