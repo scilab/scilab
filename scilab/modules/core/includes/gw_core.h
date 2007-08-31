@@ -11,7 +11,7 @@ int C2F(gw_core)(void);
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_debug) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_argn) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_comp) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_fort) _PARAMS((char *fname,unsigned long fname_len));
@@ -66,7 +66,6 @@ int C2F(sci_fromjava) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getmemory) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_fromc) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len));

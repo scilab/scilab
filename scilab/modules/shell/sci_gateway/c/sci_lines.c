@@ -5,7 +5,7 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "../../../shell/includes/scilines.h"
+#include "scilines.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/

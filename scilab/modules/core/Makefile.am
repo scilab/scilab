@@ -209,7 +209,6 @@ sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
 sci_gateway/c/sci_banner.c \
 sci_gateway/c/sci_where.c \
-sci_gateway/c/sci_lines.c \
 sci_gateway/c/sci_errcatch.c \
 sci_gateway/c/sci_getos.c \
 sci_gateway/c/sci_ulink.c \

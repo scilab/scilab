@@ -26,7 +26,7 @@
 
 <PRIMITIVE gatewayId="13" primitiveId="1" primitiveName="debug" />
 <PRIMITIVE gatewayId="13" primitiveId="2" primitiveName="who" />
-<PRIMITIVE gatewayId="13" primitiveId="3" primitiveName="lines" />
+<PRIMITIVE gatewayId="13" primitiveId="3" primitiveName="warning" />
 <PRIMITIVE gatewayId="13" primitiveId="4" primitiveName="argn" />
 <PRIMITIVE gatewayId="13" primitiveId="5" primitiveName="fort" />
 <PRIMITIVE gatewayId="13" primitiveId="6" primitiveName="comp" />
@@ -82,14 +82,13 @@
 <PRIMITIVE gatewayId="13" primitiveId="55" primitiveName="getmemory" />
 <PRIMITIVE gatewayId="13" primitiveId="56" primitiveName="fromc" />
 <PRIMITIVE gatewayId="13" primitiveId="57" primitiveName="getmd5" />
-<PRIMITIVE gatewayId="13" primitiveId="58" primitiveName="warning" />
-<PRIMITIVE gatewayId="13" primitiveId="59" primitiveName="getmodules" />
-<PRIMITIVE gatewayId="13" primitiveId="60" primitiveName="with_module" />
-<PRIMITIVE gatewayId="13" primitiveId="61" primitiveName="getdynlibext" />
-<PRIMITIVE gatewayId="13" primitiveId="62" primitiveName="islittleendian" />
-<PRIMITIVE gatewayId="13" primitiveId="63" primitiveName="getscilabmode" />
-<PRIMITIVE gatewayId="13" primitiveId="64" primitiveName="librarieslist" />
-<PRIMITIVE gatewayId="13" primitiveId="65" primitiveName="libraryinfo" />
-<PRIMITIVE gatewayId="13" primitiveId="66" primitiveName="getvariablesonstack" />
+<PRIMITIVE gatewayId="13" primitiveId="58" primitiveName="getmodules" />
+<PRIMITIVE gatewayId="13" primitiveId="59" primitiveName="with_module" />
+<PRIMITIVE gatewayId="13" primitiveId="60" primitiveName="getdynlibext" />
+<PRIMITIVE gatewayId="13" primitiveId="61" primitiveName="islittleendian" />
+<PRIMITIVE gatewayId="13" primitiveId="62" primitiveName="getscilabmode" />
+<PRIMITIVE gatewayId="13" primitiveId="63" primitiveName="librarieslist" />
+<PRIMITIVE gatewayId="13" primitiveId="64" primitiveName="libraryinfo" />
+<PRIMITIVE gatewayId="13" primitiveId="65" primitiveName="getvariablesonstack" />
 <PRIMITIVE gatewayId="14" primitiveId="1" primitiveName="user" />
 </GATEWAY>

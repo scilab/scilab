@@ -11,7 +11,7 @@ static gw_generic_table Tab[]=
 {
 {C2F(sci_debug),"debug"},
 {C2F(sci_who),"who"},
-{C2F(sci_lines),"lines"},
+{C2F(sci_warning),"warning"},
 {C2F(sci_argn),"argn"},
 {C2F(sci_fort),"fort"},
 {C2F(sci_comp),"comp"},
@@ -66,7 +66,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_getmemory),"getmemory"},
 {C2F(sci_fromc),"fromc"},
 {C2F(sci_getmd5),"getmd5"},
-{C2F(sci_warning),"warning"},
 {C2F(sci_getmodules),"getmodules"},
 {C2F(sci_with_module),"with_module"},
 {C2F(sci_getdynlibext),"getdynlibext"},

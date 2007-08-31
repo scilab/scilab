@@ -237,6 +237,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_lines.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_tohome.c"
 				>
 			</File>
