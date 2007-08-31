@@ -14,7 +14,7 @@ BOOL isDrive(const char *strname)
 	#ifdef _MSC_VER
 	if (strname)
 	{
-		if ( (strlen(strname) == 2) || (strlen(strname) == 3) && (strname[1]== ':') )
+		if ( ((strlen(strname) == 2) || (strlen(strname) == 3)) && (strname[1]== ':') )
 		{
 			if (strlen(strname) == 3)
 			{
