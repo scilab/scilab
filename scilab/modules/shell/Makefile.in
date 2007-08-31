@@ -89,7 +89,7 @@ am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
 	libscishell_la-clrscr_nw.lo
 am__objects_2 =
 am__objects_3 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
-	libscishell_la-sci_tohome.lo
+	libscishell_la-sci_tohome.lo libscishell_la-sci_lines.lo
 am_libscishell_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscishell_la_OBJECTS = $(am_libscishell_la_OBJECTS)
@@ -295,7 +295,8 @@ src/c/others/clrscr_nw.c
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
 sci_gateway/c/sci_clc.c \
-sci_gateway/c/sci_tohome.c
+sci_gateway/c/sci_tohome.c \
+sci_gateway/c/sci_lines.c
 
 
 # Includes need for the compilation
@@ -458,6 +459,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-mainscic.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-more.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_clc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_lines.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-scilines.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-tohome.Plo@am__quote@
@@ -567,6 +569,13 @@ libscishell_la-sci_tohome.lo: sci_gateway/c/sci_tohome.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tohome.c' object='libscishell_la-sci_tohome.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
+
+libscishell_la-sci_lines.lo: sci_gateway/c/sci_lines.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-sci_lines.lo -MD -MP -MF $(DEPDIR)/libscishell_la-sci_lines.Tpo -c -o libscishell_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-sci_lines.Tpo $(DEPDIR)/libscishell_la-sci_lines.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_lines.c' object='libscishell_la-sci_lines.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-sci_lines.lo `test -f 'sci_gateway/c/sci_lines.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lines.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
