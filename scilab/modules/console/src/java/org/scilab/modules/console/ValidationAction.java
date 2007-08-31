@@ -74,7 +74,6 @@ public class ValidationAction extends AbstractConsoleAction {
 				outputView.append(line);
 				outputView.append(StringConstants.NEW_LINE);
 			}
-			outputView.append(StringConstants.NEW_LINE);
 			
 			// Send data to Scilab
 			((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab(cmdToExecute, false);
