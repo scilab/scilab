@@ -68,6 +68,8 @@ jmethodID jintgetWindowWidthID; // cache method id
 jmethodID jintgetWindowHeightID; // cache method id
 jmethodID voidsetWindowSizejintjintID; // cache method id
 jmethodID voidsetInfoMessagejstringID; // cache method id
+jmethodID voidsetPixmapModejintID; // cache method id
+jmethodID jintgetPixmapModeID; // cache method id
 
 
 /**
@@ -148,6 +150,10 @@ long getWindowHeight();
 void setWindowSize(long width, long height);
 
 void setInfoMessage(char * infoMessage);
+
+void setPixmapMode(long onOrOff);
+
+long getPixmapMode();
 
 
 };

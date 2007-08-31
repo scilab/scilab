@@ -123,6 +123,8 @@ jintgetWindowWidthID=NULL;
 jintgetWindowHeightID=NULL; 
 voidsetWindowSizejintjintID=NULL; 
 voidsetInfoMessagejstringID=NULL; 
+voidsetPixmapModejintID=NULL; 
+jintgetPixmapModeID=NULL; 
 
 
 }
@@ -581,6 +583,50 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
+
+}
+
+void DrawableFigureGL::setPixmapMode (long onOrOff){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidsetPixmapModejintID == NULL)
+{
+this->voidsetPixmapModejintID = curEnv->GetMethodID(this->instanceClass, "setPixmapMode", "(I)V" ) ;
+if (this->voidsetPixmapModejintID == NULL) {
+std::cerr << "Could not access to the method setPixmapMode" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidsetPixmapModejintID ,onOrOff);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+long DrawableFigureGL::getPixmapMode (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->jintgetPixmapModeID == NULL)
+{
+this->jintgetPixmapModeID = curEnv->GetMethodID(this->instanceClass, "getPixmapMode", "()I" ) ;
+if (this->jintgetPixmapModeID == NULL) {
+std::cerr << "Could not access to the method getPixmapMode" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+ jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetPixmapModeID );
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+return res;
 
 }
 
