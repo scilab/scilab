@@ -12,7 +12,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 {
-	int l1,n1,m1;
+	int l1 = 0,n1 = 0,m1 = 0;
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
@@ -24,11 +24,11 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		char *path=NULL, *myPath=NULL;
+		char *path = NULL, *myPath = NULL;
 		char filename[FILENAME_MAX];
 		long int lout;
 		int out_n;
-		BOOL result=FALSE;
+		BOOL result = FALSE;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		if ( n1==1 )
@@ -52,20 +52,20 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		 * the Scilab macros
 		 * cluni0 waits for SCI/ or ~/. It doesn't detect isdir("SCI")
 		 */
-		if(strcmp(path,"SCI")==0)
+		if(strcmp(path,"SCI") == 0)
 		{
-			myPath=MALLOC((m1+2)*sizeof(char)); /* +2 because the / added + \0 */
+			myPath = (char*)MALLOC((m1+2)*sizeof(char)); /* +2 because the / added + \0 */
 			strcpy(myPath,"SCI/");
 		}
-		if(strcmp(path,"~")==0)
+		if(strcmp(path,"~") == 0)
 		{
-			myPath=MALLOC((m1+2)*sizeof(char)); /* +2 because the / added + \0 */
+			myPath = (char*)MALLOC((m1+2)*sizeof(char)); /* +2 because the / added + \0 */
 			strcpy(myPath,"~/");
 		}
 		/* End of the crappy workaround */
 
-		lout=FILENAME_MAX;
-		if(myPath==NULL)
+		lout = FILENAME_MAX;
+		if(myPath == NULL)
 		{
 			/* Replaces SCI, ~, HOME by the real path */
 			C2F(cluni0)(path, filename, &out_n,m1*n1,lout);
@@ -76,15 +76,15 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 			C2F(cluni0)(myPath, filename, &out_n,m1*n1,lout);
 		}
 
-		result=isdir(filename);
-		m1=1;
-		n1=1;
+		result = isdir(filename);
+		m1 = 1;
+		n1 = 1;
 		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1 ,&l1); /* Create the space in the stack for result */
-		*istk(l1)=result; /* Copy comm_size into the stack */
+		*istk(l1) = result; /* Copy result into the stack */
 		
-		LhsVar(1)= Rhs+1;
+		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();
-		if (myPath) {FREE(myPath);myPath=NULL;}
+		if (myPath) {FREE(myPath);myPath = NULL;}
 	}
 	return 0;
 	

@@ -363,6 +363,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_createdir.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_deletefile.c"
 				>
 			</File>
@@ -444,6 +448,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_pathsep.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_removedir.c"
 				>
 			</File>
 			<File

@@ -73,7 +73,9 @@ sci_gateway/c/sci_filesep.c \
 sci_gateway/c/sci_getshortpathname.c \
 sci_gateway/c/sci_getlongpathname.c \
 sci_gateway/c/sci_fileext.c \
-sci_gateway/c/sci_isdir.c
+sci_gateway/c/sci_isdir.c \
+sci_gateway/c/sci_removedir.c \
+sci_gateway/c/sci_createdir.c 
 
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 
@@ -84,11 +86,6 @@ libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 libscifileio_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
     $(top_builddir)/libs/libst/libscilibst.la
-
-# cyclic deps
-#	$(top_builddir)/modules/core/libscicore.la
-
-
 
 
 #### Target ######
