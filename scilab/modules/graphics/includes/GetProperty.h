@@ -208,4 +208,6 @@ void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) ; 
 int sciGetWhiteColorIndex(sciPointObj * pObj); /* GET */
 int sciGetBlackColorIndex(sciPointObj * pObj); /* GET */
 
+void sciGetLogFlags(sciPointObj * pObj, char flags[3]); /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */

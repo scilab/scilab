@@ -23,7 +23,7 @@ int get_log_flags_property( sciPointObj * pobj )
 
   /* Set the three first character of log flags.*/
   sciGetLogFlags(pobj, logFlagsString);
-  logFlagsString[4] = 0; /* 0 terminating character */
+  logFlagsString[3] = 0; /* 0 terminating character */
   return sciReturnString( logFlagsString ) ;
 }
 /*------------------------------------------------------------------------*/
