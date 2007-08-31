@@ -2945,3 +2945,14 @@ sciPointObj * sciConstructScreen( sciPointObj * pparent )
 
 }
 /*-------------------------------------------------------------------------------------*/
+/**
+ * Create a figure if none exists.
+ */
+void SciWin(void)
+{
+  if (!sciHasFigures())
+  {
+    sciGetCurrentFigure();
+  }
+}
+/*-------------------------------------------------------------------------------------*/

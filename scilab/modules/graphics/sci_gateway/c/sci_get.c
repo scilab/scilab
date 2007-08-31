@@ -101,12 +101,13 @@ int sci_get(char *fname,unsigned long fname_len)
                 (strcmp(cstk(l2),"clip_box") !=0) && 
                 (strcmp(cstk(l2),"auto_") !=0)) 
               {
+                SciWin();
                 ppobj = sciGetCurrentObj();
-                hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ());
+                hdl = (unsigned long) sciGetHandle(sciGetCurrentObj());
               }
               else
               {
-                hdl = (unsigned long ) sciGetHandle(sciGetCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
+                hdl = (unsigned long) sciGetHandle(sciGetCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
               }
 
 	    }/* DJ.A 08/01/04 */

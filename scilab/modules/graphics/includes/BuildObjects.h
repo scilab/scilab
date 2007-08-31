@@ -114,4 +114,6 @@ sciPointObj * sciConstructScreen(      sciPointObj * pparent ) ;
 
 sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent ) ;
 
+void SciWin(void);
+
 #endif /* __SCI_BUILD__ */
