@@ -81,6 +81,12 @@ public class ScilabRendererProperties implements RendererProperties {
 		
 	}
 
-	
+	public void setPixmapMode(boolean onOrOff) {
+		parentCanvas.setAutoSwapBufferMode(onOrOff);
+	}
+    
+    public boolean getPixmapMode() {
+    	return parentCanvas.getAutoSwapBufferMode();
+    }
 	
 }

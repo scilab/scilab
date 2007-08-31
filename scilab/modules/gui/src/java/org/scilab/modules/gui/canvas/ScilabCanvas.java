@@ -142,6 +142,20 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	}
 	
 	/**
+	 * @param onOrOff set wether the swap buffer mode is on or off.
+	 */
+	public void setAutoSwapBufferMode(boolean onOrOff) {
+		ScilabBridge.setAutoSwapBufferMode(this, onOrOff);
+	}
+	
+	/**
+	 * @return set wether the swap buffer mode is on or off.
+	 */
+	public boolean getAutoSwapBufferMode() {
+		return ScilabBridge.getAutoSwapBufferMode(this);
+	}
+	
+	/**
 	 * Force the canvas to render itself with synchronisation with its OpenGL process.
 	 */
 	public void repaint() {

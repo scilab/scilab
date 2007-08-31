@@ -259,5 +259,27 @@ public class DrawableFigureGL extends ObjectGL {
 		return guiProperties.getGLPipeline();
 	}
 	
+	/**
+	 * @param onOrOff if 0 set pixmap mode to false, otherwise set it to true.
+	 */
+	public void setPixmapMode(int onOrOff) {
+		if (onOrOff == 0) {
+			guiProperties.setPixmapMode(false);
+		} else {
+			guiProperties.setPixmapMode(true);
+		}
+	}
+	
+	/**
+	 * @return 0 if pixmap mode is false, 1 otherwise.
+	 */
+	public int getPixmapMode() {
+		if (guiProperties.getPixmapMode()) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
   	
 }

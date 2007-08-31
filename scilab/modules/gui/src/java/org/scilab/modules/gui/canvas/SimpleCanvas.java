@@ -60,17 +60,27 @@ public interface SimpleCanvas {
 	/**
 	 * Force the canvas to render itself immediately.
 	 */
-	 void display();
+	void display();
 	 
-	 /**
-	  * Get the GL pipeline used by the canvas
-	  * @return GL pipeline
-	  */
-	 GL getGL();
+	/**
+	 * Get the GL pipeline used by the canvas
+	 * @return GL pipeline
+	 */
+	GL getGL();
 	 
-	 /**
-	  * Force the canvas to render itself with synchronisation with its OpenGL process.
-	  */
-	 void repaint();
+	/**
+	 * @param onOrOff set wether the swap buffer mode is on or off.
+	 */
+	void setAutoSwapBufferMode(boolean onOrOff);
+	
+	/**
+	 * @return set wether the swap buffer mode is on or off.
+	 */
+	boolean getAutoSwapBufferMode();
+	 
+	/**
+	 * Force the canvas to render itself with synchronisation with its OpenGL process.
+	 */
+	void repaint();
 	
 }

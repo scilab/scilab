@@ -127,6 +127,20 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public GL getGL() {
 		return super.getGL();
 	}
+	
+	/**
+	 * @param onOrOff set wether the swap buffer mode is on or off.
+	 */
+	public void setAutoSwapBufferMode(boolean onOrOff) {
+		super.setAutoSwapBufferMode(onOrOff);
+	}
+	
+	/**
+	 * @return set wether the swap buffer mode is on or off.
+	 */
+	public boolean getAutoSwapBufferMode() {
+		return super.getAutoSwapBufferMode();
+	}
 	 
 	/**
 	 * Force the canvas to render itself with synchronisation with its OpenGL process.

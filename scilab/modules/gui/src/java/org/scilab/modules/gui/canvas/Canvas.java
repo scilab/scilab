@@ -30,6 +30,17 @@ public interface Canvas extends Dockable {
 	  */
 	 GL getGL();
 	 
+	 
+	 /**
+	  * @param onOrOff set wether the swap buffer mode is on or off.
+	  */
+	 void setAutoSwapBufferMode(boolean onOrOff);
+	
+	 /**
+	  * @return set wether the swap buffer mode is on or off.
+	  */
+	 boolean getAutoSwapBufferMode();
+	 
 	 /**
 	  * Force the canvas to render itself with synchronisation with its OpenGL process.
 	  */

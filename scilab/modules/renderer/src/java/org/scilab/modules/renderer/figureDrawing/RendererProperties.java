@@ -96,4 +96,15 @@ public interface RendererProperties {
 	 */
 	void setWindowPosition(int posX, int posY);
 	
+	/**
+     * Set the pixmap mode of the canvas to on or off.
+	 * @param onOrOff specufy on or off
+	 */
+    void setPixmapMode(boolean onOrOff);
+    
+    /**
+     * @return wether the pixmap mode is on or off.
+     */
+    boolean getPixmapMode();
+	
 }
