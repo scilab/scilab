@@ -14,3 +14,4 @@
 ::msgcat::mcset $lang "pl locale (pl)" "Polski (pl)"
 ::msgcat::mcset $lang "se locale (se)" "Svenska (se)"
 ::msgcat::mcset $lang "zh_tw locale (zh_tw)" "\u4E2D\u6587\u7E41\u9AD4 (zh_tw)"
+::msgcat::mcset $lang "zh_cn locale (zh_cn)" "\u4e2d\u6587\u7c21\u4f53 (zh_cn)"
