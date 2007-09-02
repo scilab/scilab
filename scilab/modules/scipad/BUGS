@@ -95,6 +95,9 @@ endfunction
  element resets the watched variable to an empty list (perhaps proc
  createsetinscishellcomm should be recursive)
  example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
+ 
+-the call stack panel in the debug watch window shows ??? for the localized
+ chinese text, even if the current locale is chinese.
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -162,6 +165,21 @@ Old bugs/whishes which have been hacked but could have been done better:
    switching panes. This wm resizable command always redraws the window
    because of the need to redraw the border, and this creates a visual flash
    of the window. I couldn't avoid it, and thus I just dropped this wish
+
+-during debug, string variables which contain data which does not make sense as
+ text in the current locale, are shown as mangled in the watch variable area.
+ This can happen for example when watching a chinese string in a latin locale.
+ The behavior is intrinsic in tcl, and after all undersandable as such. While we
+ don't make any effort to circumvent tcl interpretation of illogically coded
+ strings, the fact could have side effects on the original variables if debug
+ exits abnormally.
+ Snippet to demonstrate the intrinsic problem:
+ 
+   $ setenv LANG ja ; scilab -nw -nb
+  -->a=ascii([230,173,164]); TCL_SetVar("atcl",a);
+  ascii(TCL_GetVar("atcl"))
+    ans  =
+       186.    161.
 
 
 Wishes:

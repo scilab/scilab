@@ -231,10 +231,19 @@ function s=linesplit(longstring,lindent)
       else
         k=find((p(:,2)+d+2-j+1)<maxline & p(:,1)>j)
       end
-      if k==[] then
+      if k==[] then  //the rest of the text can't fit into maxline (?)
         m=m+1
-        if m<size(p,1) then q=p(m+1,1)-2; else q=p(m,2); end
-        s(i)=part(longstring,j:q-1) 
+        if j==0 then //long word at the beginning of the string
+          j=1; q=p(1,2);
+        else
+          j=j+2
+          if m<size(p,1) then 
+            q=p(m+1,1)-2; //not last token; take next pos minus " "
+          else 
+            q=p(m,2);  // last token: take to the end
+          end
+        end
+        s(i)=part(longstring,j:q) 
       else
         if k($)<size(p,1) then q=p(k($)+1,1)-2; else q=p(k($),2); end
         s(i)=part(longstring,(j+1):q)
