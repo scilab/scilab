@@ -96,9 +96,6 @@ endfunction
  createsetinscishellcomm should be recursive)
  example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
  
--the call stack panel in the debug watch window shows ??? for the localized
- chinese text, even if the current locale is chinese.
-
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
