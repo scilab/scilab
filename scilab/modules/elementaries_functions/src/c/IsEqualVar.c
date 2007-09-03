@@ -158,7 +158,9 @@ int C2F(intisequalvar)(char * fname, int *job, long int fl)
 /**IsEqualOverloaded
  * Used to call the overloading function when testing unknown data type  for equality
  * @param double *d1: pointer on the beginning of the first variable structure
+ * @param int n1: memory size used by the first variable, only used for overloading
  * @param double *d2: pointer on the beginning of the first variable structure
+ * @param int n2: memory size used by the second variable, only used for overloading
  * @return 0 is the variables differ and 1 if they are identical, -1 for recursion purpose
  * @author Serge Steer
  * @see IsEqualVar
