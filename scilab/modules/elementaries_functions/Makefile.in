@@ -202,7 +202,8 @@ am__objects_2 = libscielementaries_functions_la-sci_tools.lo \
 	libscielementaries_functions_la-qsort-double.lo \
 	libscielementaries_functions_la-qsort-int.lo \
 	libscielementaries_functions_la-qsort-short.lo \
-	libscielementaries_functions_la-qsort-string.lo
+	libscielementaries_functions_la-qsort-string.lo \
+	libscielementaries_functions_la-IsEqualVar.lo
 am__objects_3 = libscielementaries_functions_la-psi.lo \
 	libscielementaries_functions_la-wasum.lo \
 	libscielementaries_functions_la-dexpm1.lo \
@@ -388,7 +389,8 @@ am__objects_4 = libscielementaries_functions_la-sci_isequal.lo \
 	libscielementaries_functions_la-sci_imult.lo \
 	libscielementaries_functions_la-sci_exp.lo \
 	libscielementaries_functions_la-sci_maxi.lo \
-	libscielementaries_functions_la-sci_gsort.lo
+	libscielementaries_functions_la-sci_gsort.lo \
+	libscielementaries_functions_la-sci_isequalbitwise.lo
 am__objects_5 = libscielementaries_functions_la-sci_f_isequal.lo \
 	libscielementaries_functions_la-sci_f_maxi.lo \
 	libscielementaries_functions_la-sci_f_testmatrix.lo \
@@ -660,8 +662,8 @@ src/c/qsort-char.c \
 src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
-src/c/qsort-string.c 
-
+src/c/qsort-string.c \
+src/c/IsEqualVar.c 
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp
@@ -938,7 +940,8 @@ sci_gateway/c/sci_int.c \
 sci_gateway/c/sci_imult.c \
 sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
-sci_gateway/c/sci_gsort.c 
+sci_gateway/c/sci_gsort.c \
+sci_gateway/c/sci_isequalbitwise.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_isequal.f \
 sci_gateway/fortran/sci_f_maxi.f \
@@ -1164,6 +1167,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libdummy_elementaries_functions_la-unsfdcopy.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-IsEqualVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-cmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-finite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-gsort.Plo@am__quote@
@@ -1201,6 +1205,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_imult.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_isequal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_isequalbitwise.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_isreal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_kron.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_log.Plo@am__quote@
@@ -1395,6 +1400,13 @@ libscielementaries_functions_la-qsort-string.lo: src/c/qsort-string.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-string.c' object='libscielementaries_functions_la-qsort-string.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
+
+libscielementaries_functions_la-IsEqualVar.lo: src/c/IsEqualVar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-IsEqualVar.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-IsEqualVar.Tpo -c -o libscielementaries_functions_la-IsEqualVar.lo `test -f 'src/c/IsEqualVar.c' || echo '$(srcdir)/'`src/c/IsEqualVar.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-IsEqualVar.Tpo $(DEPDIR)/libscielementaries_functions_la-IsEqualVar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/IsEqualVar.c' object='libscielementaries_functions_la-IsEqualVar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-IsEqualVar.lo `test -f 'src/c/IsEqualVar.c' || echo '$(srcdir)/'`src/c/IsEqualVar.c
 
 libscielementaries_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_isequal.Tpo -c -o libscielementaries_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
@@ -1738,6 +1750,13 @@ libscielementaries_functions_la-sci_gsort.lo: sci_gateway/c/sci_gsort.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_gsort.c' object='libscielementaries_functions_la-sci_gsort.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_gsort.lo `test -f 'sci_gateway/c/sci_gsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gsort.c
+
+libscielementaries_functions_la-sci_isequalbitwise.lo: sci_gateway/c/sci_isequalbitwise.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_isequalbitwise.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_isequalbitwise.Tpo -c -o libscielementaries_functions_la-sci_isequalbitwise.lo `test -f 'sci_gateway/c/sci_isequalbitwise.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequalbitwise.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_isequalbitwise.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_isequalbitwise.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_isequalbitwise.c' object='libscielementaries_functions_la-sci_isequalbitwise.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_isequalbitwise.lo `test -f 'sci_gateway/c/sci_isequalbitwise.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequalbitwise.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

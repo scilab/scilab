@@ -7,8 +7,9 @@
  --------------------------------------------------------------------------*/
 
 #include <string.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 #include "IsEqualVar.h"
+#include "MALLOC.h"
 
 static int IsEqualDoubleMat(double *d1, double *d2);
 static int IsEqualPolyMat(double *d1, double *d2);
