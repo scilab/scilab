@@ -17,6 +17,7 @@
 #include "HistoryManager.h"
 #include "MALLOC.h"
 #include "ShellRead.h"
+#include "SetConsolePrompt.h"
 #include "GetCharWithEventsLoop.h"
 #include "machine.h"
 #include "core_math.h"
@@ -281,7 +282,9 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   }
   else 
   {
-    if(sendprompt) sciprint_nd(Sci_Prompt);/* write prompt */
+    //if(sendprompt) sciprint_nd(Sci_Prompt);/* write prompt */
+    /* Send new prompt to Java Console, do not disply it */
+    SetConsolePrompt(Sci_Prompt);
   }
   
   sendprompt=1;

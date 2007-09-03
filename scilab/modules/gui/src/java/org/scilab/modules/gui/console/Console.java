@@ -46,4 +46,10 @@ public interface Console extends Dockable {
    */
   void toHome();
 
+  /**
+   * Sets the prompt displayed in the console
+   * @param prompt the prompt to be displayed in the console
+   */
+  void setPrompt(String prompt);
+
 }

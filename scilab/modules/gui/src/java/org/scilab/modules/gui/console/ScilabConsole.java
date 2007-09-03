@@ -151,4 +151,11 @@ public class ScilabConsole extends ScilabDockable implements Console {
 		return ScilabBridge.getCharWithoutOutput(this);
 	}
 
+    /**
+	   * Sets the prompt displayed in the console
+	   * @param prompt the prompt to be displayed in the console
+	   */
+	public void setPrompt(String prompt) {
+		ScilabBridge.setPrompt(this, prompt);
+	}
 }

@@ -31,6 +31,8 @@ public class SciPromptView extends JPanel implements PromptView {
 	private static final String SEMI_COLON = ";";
 	private static final String PARAGRAPH_END = "</P>";
 	private static final String ZERO_STRING = "0";
+	private static final int LEFT_BORDER = 2;
+	private static final int BOTTOM_BORDER = 2;
 	
 	private String defaultPrompt;
 	private String inBlockPrompt;
@@ -51,7 +53,7 @@ public class SciPromptView extends JPanel implements PromptView {
 		
 		// Gui part
 		promptUI = new JLabel();
-		promptUI.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+		promptUI.setBorder(BorderFactory.createEmptyBorder(0, LEFT_BORDER, BOTTOM_BORDER, 0));
 		promptUI.setOpaque(true);
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(promptUI);
@@ -98,7 +100,7 @@ public class SciPromptView extends JPanel implements PromptView {
 		promptTextContent.append(HTML_START);
 		
 		// Text Color
-		String textStyle = "<P style=\"color:" + colorToString(promptUI.getForeground()) + SEMI_COLON;
+		String textStyle = "<P style=\"padding:1px;color:" + colorToString(promptUI.getForeground()) + SEMI_COLON;
 		
 		// Text Font
 		if (promptUI.isFontSet()) {

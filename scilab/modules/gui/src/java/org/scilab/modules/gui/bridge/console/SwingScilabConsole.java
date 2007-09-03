@@ -86,16 +86,14 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 //		}
 
 		// Remove last line returned given by Scilab (carriage return)
-		// TODO only of not in a block
 		try {
 			StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();			
 			int lastEOL = outputStyledDoc.getText(0, outputStyledDoc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
 
 			if (lastEOL > 1) { // To avoid a "javax.swing.text.BadLocationException: Invalid remove" exception
-				outputStyledDoc.remove(lastEOL - 2, outputStyledDoc.getLength() - lastEOL + 2);
+				outputStyledDoc.remove(lastEOL, outputStyledDoc.getLength() - lastEOL);
 			}
 		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -218,5 +216,13 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 */
 	public void clear() {
 		super.clear();
+	}
+
+	/**
+	   * Sets the prompt displayed in the console
+	   * @param prompt the prompt to be displayed in the console
+	   */
+	public void setPrompt(String prompt) {
+		this.getConfiguration().getPromptView().setDefaultPrompt(prompt);
 	}
 }

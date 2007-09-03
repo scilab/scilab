@@ -599,6 +599,15 @@ public class ScilabBridge {
 		return ScilabConsoleBridge.getCharWithoutOutput(console);
 	}
 
+	/**
+	   * Sets the prompt displayed in the console
+	   * @param console the console where the prompt is set
+	   * @param prompt the prompt to be displayed in the console
+	   */
+	public static void setPrompt(Console console, String prompt) {
+		ScilabConsoleBridge.setPrompt(console, prompt);
+	}
+
 	/*****************/
 	/* Canvas Bridge */
 	/*****************/

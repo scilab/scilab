@@ -7,7 +7,9 @@
 if GUI
 
 # List of the cpp files
-CONSOLE_CPP_SOURCES =  src/jni/ShellRead.cpp 
+CONSOLE_CPP_SOURCES =  src/cpp/ShellRead.cpp \
+src/cpp/SetConsolePrompt.cpp \
+src/jni/org_scilab_modules_gui_bridge_console.cpp
 
 # List of the c files
 CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \

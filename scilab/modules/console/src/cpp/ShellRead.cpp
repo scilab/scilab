@@ -11,22 +11,43 @@
 extern "C" {
 #include "../../../jvm/includes/getScilabJNIEnv.h"
 #include "../../../jvm/includes/getScilabObject.h"
+#include "../../../jvm/includes/getScilabJavaVM.h"
 }
-//#include "../jni/org_scilab_modules_gui_bridge_console.hxx"
+#include "../jni/org_scilab_modules_gui_bridge_console.hxx"
 #include "ShellRead.hxx"
 #include "MALLOC.h"
 
 /*-----------------------------------------------------------------------------------*/
 #define WK_BUF_SIZE 520
 /*-----------------------------------------------------------------------------------*/
-//using namespace  org_scilab_modules_gui_bridge_console;
+using namespace  org_scilab_modules_gui_bridge_console;
 char *ShellRead()
 {
   /* Character string to be return */
   char *strRead = NULL;
 
+  /* WITH GIWS GENERATED FILES */
+//   JavaVM scilabJVM = *getScilabJavaVM();
+  
+//   SwingScilabConsole *sciConsole = new SwingScilabConsole(&scilabJVM);
+  
+//   /* Call Java to get the user input */
+//   char *strValue = (*sciConsole).readLine();
+  
+//   if (strValue)
+//     {
+//       strRead = (char*) MALLOC(sizeof(char)*(WK_BUF_SIZE + 1));
+//       if (strRead) 
+//         strcpy(strRead,strValue);
+//       else
+//         std::cerr << "Could not alloc return variable." << std::endl;
+//     }
+//   else
+//     std::cerr << "Could not read user input value." << std::endl;
+  /* END WITH GIWS GENERATED FILES */
+
   /* Gets Scilab JNI environment */
-  JNIEnv *env = getScilabJNIEnv();
+ JNIEnv *env = getScilabJNIEnv();
   if (env)
     {
       /* Gets Scilab JAVA object */
@@ -45,24 +66,6 @@ char *ShellRead()
                   jobject sciConsoleObj = env->CallObjectMethod(scilabObj, getSciConsoleID);
                   if (sciConsoleObj) 
                     {
-                      /* WITH GIWS GENERATED FILES */
-//                       SwingScilabConsole *sciConsole = new SwingScilabConsole(env, sciConsoleObj);
-                      
-//                       /* Call Java to get the user input */
-//                       char *strValue = (*sciConsole).readLine();
-                      
-//                       if (strValue)
-//                         {
-//                           strRead = (char*) MALLOC(sizeof(char)*(WK_BUF_SIZE + 1));
-//                           if (strRead) 
-//                             strcpy(strRead,strValue);
-//                           else
-//                             std::cerr << "Could not alloc return variable." << std::endl;
-//                         }
-//                       else
-//                         std::cerr << "Could not read user input value." << std::endl;
-                      /* END WITH GIWS GENERATED FILES */
-                      
                       jclass sciConsoleObjClass = env->GetObjectClass(sciConsoleObj);
                       if (sciConsoleObjClass)
                         {

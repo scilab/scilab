@@ -11,6 +11,7 @@ import java.awt.dnd.DropTarget;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.BorderFactory;
 import javax.swing.text.BadLocationException;
 
 import com.artenum.console.interfaces.ui.InputCommandView;
@@ -25,6 +26,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	private static final long serialVersionUID = 1L;
 	private static final String END_LINE = "\n";
 	private static final Point ERROR_POINT = new Point(0, 0);
+	private static final int TOP_BORDER = 1;
+	private static final int BOTTOM_BORDER = 2;
 
 	private SciConsole console;
 
@@ -43,6 +46,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	 */
 	public SciInputCommandView() {
 		super();
+		setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
 		
 		// Input command line is not editable when created
 		this.setEditable(false);

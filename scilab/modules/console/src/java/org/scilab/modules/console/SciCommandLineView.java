@@ -23,7 +23,6 @@ public class SciCommandLineView extends JPanel implements CommandLineView {
 	 * Constructor
 	 */
 	public SciCommandLineView() {
-		setLayout(new BorderLayout());
 		setMinimumSize(OutputView.SMALL);
 	}
 
