@@ -69,6 +69,13 @@ public class Scilab {
 		this.sciConsole = sciConsole;
 	}
 	
+	/**
+	 * Sets the prompt displayed in Scilab console
+	 * @param prompt the prompt to be displayed as a String
+	 */
+	public void setPrompt(String prompt) {
+		this.sciConsole.setPrompt(prompt);;
+	}
 	public Window getMainWindow()
 	{
 		return mainView;
