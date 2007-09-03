@@ -402,7 +402,9 @@ includes/getvariablesname.h \
 includes/commandwords.h \
 includes/existfunction.h \
 includes/getfunctionslist.h \
-includes/ScilabEventsLoop.h
+includes/ScilabEventsLoop.h \
+includes/timerEvents.h
+
 
 
 #### core : demos files ####

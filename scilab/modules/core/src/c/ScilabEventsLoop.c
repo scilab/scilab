@@ -5,7 +5,7 @@
 #include "ScilabEventsLoop.h"
 #include "scilabmode.h"
 #include "../../../tclsci/includes/TclEvents.h"
-#include "timer.h"
+#include "timerEvents.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F (ScilabEventsLoop) (void)
 {
@@ -20,7 +20,6 @@ BOOL ScilabEventsLoop(void)
 	{
 		if (scilab_timer_check())
 		{
-			flushTKEvents ();
 			TclEventsLoop() ;
 			bOK = TRUE;
 		}

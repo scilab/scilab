@@ -10,9 +10,7 @@ void flushTKEvents(void)
 {
 	if( getScilabMode() != SCILAB_NWNI ) 
 	{
-		while (Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT)==1)
-		{
-		}
+		while (TclEventsLoop()) {}
 	}
 }
 /*-----------------------------------------------------------------------------------*/
