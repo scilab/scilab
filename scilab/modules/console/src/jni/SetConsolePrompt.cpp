@@ -13,12 +13,12 @@ extern "C" {
 #include "../../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJavaVM.h"
 }
-#include "../jni/org_scilab_modules_gui_bridge_console.hxx"
+//#include "../jni/org_scilab_modules_gui_bridge_console.hxx"
 #include "SetConsolePrompt.hxx"
 #include "MALLOC.h"
 
 /*-----------------------------------------------------------------------------------*/
-using namespace  org_scilab_modules_gui_bridge_console;
+//using namespace  org_scilab_modules_gui_bridge_console;
 BOOL SetConsolePrompt(char *Sci_prompt)
 {
   /* Boolean flag to be return */
