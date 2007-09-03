@@ -246,6 +246,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\SetConsolePrompt.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ShellPrintf.c"
 				>
 			</File>
@@ -288,6 +292,18 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\PromptToHome.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetConsolePrompt.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetConsolePrompt.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ShellRead.hxx"
 				>
 			</File>
 		</Filter>
