@@ -282,8 +282,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   }
   else 
   {
-    //if(sendprompt) sciprint_nd(Sci_Prompt);/* write prompt */
-    /* Send new prompt to Java Console, do not disply it */
+    /* Send new prompt to Java Console, do not display it */
     SetConsolePrompt(Sci_Prompt);
   }
   
