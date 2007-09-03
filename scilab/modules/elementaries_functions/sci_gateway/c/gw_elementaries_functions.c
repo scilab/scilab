@@ -57,7 +57,8 @@ static gw_generic_table Tab[]=
 	{C2F(sci_dsearch),"dsearch"},
 	{C2F(sci_isequal),"isequal"},
 	{C2F(sci_spones),"spones"},
-	{C2F(sci_gsort),"gsort"}
+	{C2F(sci_gsort),"gsort"},
+	{C2F(sci_isequalbitwise),"isequalbitwise"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_elementaries_functions)(void)
