@@ -8,3 +8,4 @@ EXPORTS
 	ShellRead
 	ShellPrintf
 	GetCharWithoutOutput
+	SetConsolePrompt
