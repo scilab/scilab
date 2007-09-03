@@ -202,6 +202,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\IsEqualVar.c"
+				>
+			</File>
+			<File
 				RelativePath=".\qsort-char.c"
 				>
 			</File>
@@ -319,6 +323,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_isequal.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_isequalbitwise.c"
 				>
 			</File>
 			<File
@@ -493,6 +501,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\int2db.h"
+				>
+			</File>
+			<File
+				RelativePath=".\IsEqualVar.h"
 				>
 			</File>
 			<File
