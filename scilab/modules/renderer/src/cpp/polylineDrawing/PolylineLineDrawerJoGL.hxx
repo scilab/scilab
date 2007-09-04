@@ -39,8 +39,8 @@ public:
 protected:
 
   /**
-  * Get the object performing mapping with Java class.
-  */
+   * Get the object performing mapping with Java class.
+   */
   PolylineLineDrawerJavaMapper * getLineDrawerJavaMapper(void);
 
 

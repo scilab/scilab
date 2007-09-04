@@ -9,7 +9,7 @@
 #define _POLYLINE_LINE_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-//#include "PolylineLineDrawerGL.hxx"
+#include "PolylineLineDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -38,15 +38,18 @@ public:
   // specific for polyline line drawer
   virtual void setLineParameters(int lineColor, float thickness, int lineStyle);
 
-  virtual void drawPolyline(double xCoords[], double yCoords[], double zCoords[], int nbCoords);
+  virtual void drawPolyline(const double xCoords[],
+                            const double yCoords[],
+                            const double zCoords[],
+                            int nbCoords);
   /*----------------------------------------------------------------------*/
 
 protected:
 
   /**
-  * Giws generated wrapper.
-  */
-  //org_scilab_modules_renderer_polylineDrawing::PolylineLineDrawerGL * m_pJavaObject;
+   * Giws generated wrapper.
+   */
+  org_scilab_modules_renderer_polylineDrawing::PolylineLineDrawerGL * m_pJavaObject;
 
 
 };

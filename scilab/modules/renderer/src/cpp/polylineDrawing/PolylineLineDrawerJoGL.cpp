@@ -20,12 +20,13 @@ namespace sciGraphics
 PolylineLineDrawerJoGL::PolylineLineDrawerJoGL( DrawablePolyline * polyline )
   : DrawPolylineStrategy(polyline), DrawableObjectJoGL(polyline)
 {
-  
+  setJavaMapper(new PolylineLineDrawerJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 PolylineLineDrawerJoGL::~PolylineLineDrawerJoGL(void)
 {
-  
+  delete getJavaMapper();
+  setJavaMapper(NULL);
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineLineDrawerJoGL::drawPolyline( void )
