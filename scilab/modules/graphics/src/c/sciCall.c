@@ -141,12 +141,12 @@ void Objpoly ( double  * x     ,
   if (mark <= 0)
     { 
       int absmark = abs(mark);
-      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1,
+      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
 					  NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE,FALSE));
     }
   else
     {
-      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1,
+      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
 					  &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
     }
   
@@ -183,7 +183,7 @@ void Objfpoly ( double  * x    ,
     {
       /* interpolated shading is "on" */
       sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-					  1,1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE));
+					  1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE));
     }
   else
     {
@@ -191,7 +191,7 @@ void Objfpoly ( double  * x    ,
       if (*style < 0){
 	fillcolor = abs(*style);
 	sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-					    1,1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE));
+					    1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE));
       }
       else if (*style == 0){
 	contourcolor = sciGetForeground(psubwin);
@@ -722,14 +722,14 @@ void Objplot3d ( char    * fname ,
 	    int intzcol = (int) zcol[i];
 	    sciSetCurrentObj (ConstructPolyline
 			      (sciGetCurrentSubWin(),
-			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,1,
+			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,
 			       &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
 	  }
 	  else {
 	    int intzcol = (int) -zcol[i];
 	    sciSetCurrentObj (ConstructPolyline
 			      (sciGetCurrentSubWin(),
-			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,1,
+			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,
 			       NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE));  
 	  }
 	}
@@ -737,7 +737,7 @@ void Objplot3d ( char    * fname ,
 	  int curcolor = sciGetForeground(sciGetCurrentSubWin()); /* current color equivalent for new graphics mode */
 	  sciSetCurrentObj (ConstructPolyline
 			    (sciGetCurrentSubWin(),
-			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,1,
+			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,
 			     &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
 	}
 
