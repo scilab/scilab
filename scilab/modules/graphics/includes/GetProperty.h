@@ -214,4 +214,8 @@ BOOL sciGetPixmapMode(sciPointObj * pObj); /* GET */
 
 int sciGetNbPoints(sciPointObj * pObj); /* GET */
 
+int sciGetPolylineStyle(sciPointObj * pObj); /* GET */
+
+BOOL sciGetIsClosed(sciPointObj * pObj); /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */

@@ -1,0 +1,103 @@
+/*------------------------------------------------------------------------*/
+/* file: StairCaseDecomposition.cpp                                       */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Decompose polyline with creating a stair case between each      */
+/*        data.                                                           */
+/*------------------------------------------------------------------------*/
+
+#include "StairCaseDecomposition.hxx"
+
+extern "C"
+{
+#include "GetProperty.h"
+#include "BasicAlgos.h"
+};
+
+namespace sciGraphics
+{
+/*------------------------------------------------------------------------------------------*/
+StairCaseDecomposition::StairCaseDecomposition( DrawablePolyline * polyline )
+  : DecomposeLineStrategy(polyline)
+{
+
+}
+/*------------------------------------------------------------------------------------------*/
+StairCaseDecomposition::~StairCaseDecomposition( void )
+{
+
+}
+/*------------------------------------------------------------------------------------------*/
+void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[], double zCoords[])
+{
+  sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
+  int nbPolylinePoints = sciGetNbPoints(m_pDrawed->getDrawedObject()); /* number of points specified by the user */
+  int nbVertices = 2 * nbPolylinePoints - 1;
+  double * xPoints = pPOLYLINE_FEATURE(pPolyline)->pvx;
+  double * yPoints = pPOLYLINE_FEATURE(pPolyline)->pvy;
+  double * zPoints = pPOLYLINE_FEATURE(pPolyline)->pvz;
+
+  if ( zPoints == NULL )
+  {
+    for ( int i = 0 ; i < nbPolylinePoints - 1 ; i++ )
+    {
+      xCoords[2 * i] = xPoints[i];
+      yCoords[2 * i] = yPoints[i];
+      
+      xCoords[2 * i + 1] = xPoints[i+1];
+      yCoords[2 * i + 1] = yPoints[i];
+    }
+
+    // the last point is the same for the two curves
+    xCoords[nbVertices - 1] = xPoints[nbPolylinePoints - 1];
+    yCoords[nbVertices - 1] = yPoints[nbPolylinePoints - 1];
+
+    setDoubleArraySingleValue(zCoords, 0.0, nbVertices);
+  }
+  else
+  {
+    for ( int i = 0 ; i < nbPolylinePoints - 1 ; i++ )
+    {
+      xCoords[2 * i] = xPoints[i];
+      yCoords[2 * i] = yPoints[i];
+      zCoords[2 * i] = zPoints[i];
+
+      xCoords[2 * i + 1] = xPoints[i+1];
+      yCoords[2 * i + 1] = yPoints[i];
+      zCoords[2 * i + 1] = zPoints[i];
+    }
+
+    // the last point is the same for the two curves
+    xCoords[nbVertices - 1] = xPoints[nbPolylinePoints - 1];
+    yCoords[nbVertices - 1] = xPoints[nbPolylinePoints - 1];
+    zCoords[nbVertices - 1] = zPoints[nbPolylinePoints - 1];
+  }
+
+  // one more stair case
+  if (sciGetIsClosed(pPolyline))
+  {
+    xCoords[nbVertices] = xCoords[0];
+    yCoords[nbVertices] = yCoords[nbVertices - 1];
+    zCoords[nbVertices] = zCoords[nbVertices - 1];
+
+    xCoords[nbVertices + 1] = xCoords[0];
+    yCoords[nbVertices + 1] = yCoords[0];
+    zCoords[nbVertices + 1] = zCoords[0];
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+int StairCaseDecomposition::getDrawnVerticesLength(void)
+{
+  int res = 2 * sciGetNbPoints(m_pDrawed->getDrawedObject()) - 1;
+
+  // one more stair case
+  if (sciGetIsClosed(m_pDrawed->getDrawedObject()))
+  {
+    res += 2;
+  }
+
+  return res;
+}
+/*------------------------------------------------------------------------------------------*/
+
+}

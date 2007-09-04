@@ -3,7 +3,7 @@
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Decompose polyline with creating interpolation between each     */
-/*        data (this is the defautl mode)                                 */
+/*        data (this is the default mode)                                 */
 /*------------------------------------------------------------------------*/
 
 #include "DecomposeLineStrategy.hxx"
@@ -26,7 +26,7 @@ public:
   * Retrieve the vertices of the polyline which will be used to draw it directly.
   * In the polyline sciPointObj, x, y and z vectors does not always stands for the real vertices
   * of the drawn line (specially when staircase mode is on).
-  * To allocate the array for retrieving vertices, user shoud use the getDrawnVerticesLength.
+  * To allocate the array for retrieving vertices, user should use the getDrawnVerticesLength.
   * @param xCoords X coordinates of the drawn vertices
   * @param yCoords Y coordinates of the drawn vertices
   * @param zCoords Z coordinates of the drawn vertices

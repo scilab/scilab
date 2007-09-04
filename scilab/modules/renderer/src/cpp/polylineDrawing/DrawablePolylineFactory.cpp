@@ -13,6 +13,12 @@
 #include "getHandleDrawer.h"
 #include "PolylineLineDrawerJoGL.hxx"
 #include "InterpolatedDecomposition.hxx"
+#include "StairCaseDecomposition.hxx"
+
+extern "C"
+{
+#include "GetProperty.h"
+};
 
 namespace sciGraphics
 {
@@ -36,12 +42,21 @@ void DrawablePolylineFactory::update( void )
 void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
 {
   ConcreteDrawablePolyline * cPolyline = dynamic_cast<ConcreteDrawablePolyline *>(polyline);
+  sciPointObj * pPolyline = polyline->getDrawedObject();
 
   cPolyline->removeDecompositionStrategy();
   cPolyline->removeDrawingStrategies();
 
   cPolyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
-  cPolyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
+  if ( sciGetPolylineStyle(pPolyline) == 2 )
+  {
+    cPolyline->setDecompositionStrategy(new StairCaseDecomposition(polyline));
+  }
+  else
+  {
+    cPolyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
+  }
+  
 }
 /*------------------------------------------------------------------------------------------*/
 

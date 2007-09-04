@@ -5158,3 +5158,29 @@ int sciGetNbPoints(sciPointObj * pObj)
   return -1;
 }
 /*-------------------------------------------------------------------------------------------*/
+int sciGetPolylineStyle(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_POLYLINE:
+    return pPOLYLINE_FEATURE(pObj)->plot;
+  default:
+    sciprint("This object has no polyline_style.\n");
+    break;
+  }
+  return -1;
+}
+/*-------------------------------------------------------------------------------------------*/
+BOOL sciGetIsClosed(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_POLYLINE:
+    return pPOLYLINE_FEATURE(pObj)->closed;
+  default:
+    sciprint("This object has no closed property.\n");
+    break;
+  }
+  return FALSE;
+}
+/*-------------------------------------------------------------------------------------------*/

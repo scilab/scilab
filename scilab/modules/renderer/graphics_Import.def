@@ -49,3 +49,5 @@ sciGetParentSubwin
 sciGetIsClipping
 getFigureFromIndex
 sciGetNbPoints
+sciGetPolylineStyle
+sciGetIsClosed

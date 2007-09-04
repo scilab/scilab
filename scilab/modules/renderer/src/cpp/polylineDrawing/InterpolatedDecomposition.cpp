@@ -31,7 +31,7 @@ InterpolatedDecomposition::~InterpolatedDecomposition( void )
 void InterpolatedDecomposition::getDrawnVertices(double xCoords[], double yCoords[], double zCoords[])
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
-  int nbVertices = getDrawnVerticesLength();
+  int nbVertices = sciGetNbPoints(m_pDrawed->getDrawedObject());
 
   doubleArrayCopy(xCoords, pPOLYLINE_FEATURE(pPolyline)->pvx, nbVertices);
   doubleArrayCopy(yCoords, pPOLYLINE_FEATURE(pPolyline)->pvy, nbVertices);
@@ -43,11 +43,25 @@ void InterpolatedDecomposition::getDrawnVertices(double xCoords[], double yCoord
   {
     doubleArrayCopy(zCoords, pPOLYLINE_FEATURE(pPolyline)->pvz, nbVertices);
   }
+
+  if (sciGetIsClosed(pPolyline))
+  {
+    xCoords[nbVertices] = xCoords[0];
+    yCoords[nbVertices] = yCoords[0];
+    zCoords[nbVertices] = zCoords[0];
+  }
+
 }
 /*------------------------------------------------------------------------------------------*/
 int InterpolatedDecomposition::getDrawnVerticesLength(void)
 {
-  return sciGetNbPoints(m_pDrawed->getDrawedObject());
+  int res = sciGetNbPoints(m_pDrawed->getDrawedObject());
+  if (sciGetIsClosed(m_pDrawed->getDrawedObject()))
+  {
+    res++;
+  }
+  
+  return res;
 }
 /*------------------------------------------------------------------------------------------*/
 
