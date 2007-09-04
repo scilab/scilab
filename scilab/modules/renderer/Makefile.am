@@ -110,6 +110,7 @@ src/jni/GluNurbsConstWrapping_wrap.c \
 src/cpp/gluNurbsWrapping/gluNurbsConstWrapping.cpp \
 src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
 src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
+src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
 src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp \
 src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp \
 src/jni/PolylineLineDrawerGL.cpp
