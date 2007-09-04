@@ -44,4 +44,4 @@ protected:
 
 }
 
-#endif _INTERPOLATED_DECOMPOSITION_HXX_
+#endif /* _INTERPOLATED_DECOMPOSITION_HXX_ */

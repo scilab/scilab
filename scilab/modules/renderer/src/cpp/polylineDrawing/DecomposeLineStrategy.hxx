@@ -45,4 +45,4 @@ protected:
 
 }
 
-#endif _DECOMPOSE_LINE_STRATEGY_HXX_
+#endif /* _DECOMPOSE_LINE_STRATEGY_HXX_ */
