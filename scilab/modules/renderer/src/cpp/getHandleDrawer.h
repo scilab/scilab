@@ -17,6 +17,7 @@ extern "C"
 #include "figureDrawing/DrawableFigure.h"
 #include "rectangleDrawing/DrawableRectangle.h"
 #include "arcDrawing/DrawableArc.h"
+#include "polylineDrawing/DrawablePolyline.h"
 
 namespace sciGraphics
 {
@@ -71,6 +72,12 @@ DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle ) ;
  * @return the corresponding arc to pArc if pFigure if of type figure, NULL otherwise
  */
 DrawableArc * getArcDrawer( sciPointObj * pArc ) ;
+
+/**
+ * Return a DrawablePolyline object corresponding to a sciPointObj object.
+ * @return the corresponding arc to pArc if pFigure if of type figure, NULL otherwise
+ */
+DrawablePolyline * getPolylineDrawer( sciPointObj * pPolyline );
 
 }
 

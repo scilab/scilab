@@ -59,6 +59,9 @@ public:
   virtual void setWindowSize(int width, int height);
 
   virtual void setInfoMessage(char * infoMessage);
+
+  virtual void setPixmapMode(bool onOrOff);
+  virtual bool getPixmapMode(void);
   /*----------------------------------------------------------------------*/
 
 protected:

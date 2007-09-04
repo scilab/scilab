@@ -117,6 +117,16 @@ void DrawableFigureJoGL::setInfoMessage( const char * message )
   delete[] infoMessage;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setPixmapMode(bool onOrOff)
+{
+  getFigureJavaMapper()->setPixmapMode(onOrOff);
+}
+/*------------------------------------------------------------------------------------------*/
+bool DrawableFigureJoGL::getPixmapMode(void)
+{
+  return getFigureJavaMapper()->getPixmapMode();
+}
+/*------------------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
 {
   return dynamic_cast<DrawableFigure *>(getDrawer()) ;

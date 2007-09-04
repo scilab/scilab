@@ -38,3 +38,15 @@ void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage )
   getFigureDrawer(pFigure)->setInfoMessage(infoMessage);
 }
 /*------------------------------------------------------------------------------------------*/
+void sciSetJavaPixmapMode(sciPointObj * pFigure, BOOL onOrOff)
+{
+  if (onOrOff)
+  {
+    getFigureDrawer(pFigure)->setPixmapMode(true);
+  }
+  else
+  {
+    getFigureDrawer(pFigure)->setPixmapMode(false);
+  } 
+}
+/*------------------------------------------------------------------------------------------*/

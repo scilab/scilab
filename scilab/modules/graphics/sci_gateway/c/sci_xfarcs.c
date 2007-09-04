@@ -19,7 +19,9 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
 {
   int m1,n1,l1,m2,n2,l2;
   long  hdl;
-  int i,a1,a2;
+  int i;
+  double angle1;
+  double angle2;
 
   CheckRhs(1,2);
 
@@ -45,9 +47,9 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
 
   for (i = 0; i < n1; ++i)
   { 
-    a1 = (int)(*stk(l1+(6*i)+4));
-    a2 = (int)(*stk(l1+(6*i)+5));
-    Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
+    angle1 = DEG2RAD(*stk(l1+(6*i)+4) / 64.0);
+    angle2 = DEG2RAD(*stk(l1+(6*i)+5) / 64.0);
+    Objarc (&angle1,&angle2,stk(l1+(6*i)),stk(l1+(6*i)+1),
       stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),istk(l2+i),TRUE,FALSE,&hdl); 
   }
   /** construct Compound and make it current object **/

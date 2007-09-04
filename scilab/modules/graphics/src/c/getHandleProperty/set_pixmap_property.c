@@ -23,11 +23,11 @@ int set_pixmap_property( sciPointObj * pobj, int stackPointer, int valueType, in
 
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
-    pFIGURE_FEATURE(pobj)->pixmap = 1 ;
+    sciSetPixmapMode(pobj, TRUE) ;
   }
   else if ( isStringParamEqual( stackPointer, "off" ) )
   {
-    pFIGURE_FEATURE(pobj)->pixmap = 0 ;
+    sciSetPixmapMode(pobj, FALSE);
   }
   else
   {

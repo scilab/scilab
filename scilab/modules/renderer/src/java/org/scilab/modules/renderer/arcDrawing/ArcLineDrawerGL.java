@@ -11,9 +11,6 @@ package org.scilab.modules.renderer.arcDrawing;
 
 
 import javax.media.opengl.GL;
-import javax.media.opengl.glu.GLU;
-
-import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.drawers.LineDrawerGL;
 import org.scilab.modules.renderer.gluNurbsWrapping.GLUnurbsObj;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;

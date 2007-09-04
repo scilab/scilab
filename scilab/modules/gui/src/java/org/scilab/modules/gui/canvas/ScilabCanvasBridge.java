@@ -120,7 +120,7 @@ public class ScilabCanvasBridge {
 	 * @param onOrOff set wether the swap buffer mode is on or off.
 	 */
 	public static void setAutoSwapBufferMode(Canvas canvas, boolean onOrOff) {
-		canvas.setAutoSwapBufferMode(onOrOff);
+		canvas.getAsSimpleCanvas().setAutoSwapBufferMode(onOrOff);
 	}
 	
 	/**
@@ -128,7 +128,7 @@ public class ScilabCanvasBridge {
 	 * @return set wether the swap buffer mode is on or off.
 	 */
 	public static boolean getAutoSwapBufferMode(Canvas canvas) {
-		return canvas.getAutoSwapBufferMode();
+		return canvas.getAsSimpleCanvas().getAutoSwapBufferMode();
 	}
 	
 	/**

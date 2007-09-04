@@ -275,7 +275,7 @@ ClonePolyline (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   /* DJ.A 2003 */
   if (!(pobj = ConstructPolyline (subwinparent, pPOLYLINE_FEATURE(pthis)->pvx, pPOLYLINE_FEATURE(pthis)->pvy,pPOLYLINE_FEATURE(pthis)->pvz,
-				  pPOLYLINE_FEATURE(pthis)->closed, pPOLYLINE_FEATURE(pthis)->n1,pPOLYLINE_FEATURE(pthis)->n2,pPOLYLINE_FEATURE(pthis)->plot,
+				  pPOLYLINE_FEATURE(pthis)->closed, pPOLYLINE_FEATURE(pthis)->n1,pPOLYLINE_FEATURE(pthis)->plot,
 				  &foreground, &background,
 				  &mark_style, &mark_foreground, &mark_background,
 				  sciGetIsLine(pthis),  sciGetIsFilled(pthis), 
@@ -284,9 +284,6 @@ ClonePolyline (sciPointObj * pthis)
   }
   else {
     sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
-
-  
-  pPOLYLINE_FEATURE(pobj)->dim_icv = pPOLYLINE_FEATURE(pthis)->dim_icv; /* copy the dimension of the interp. color vector */
   
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;

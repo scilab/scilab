@@ -11,6 +11,7 @@
 
 namespace sciGraphics
 {
+
 /*------------------------------------------------------------------------------------------*/
 DrawablePolylineBridge * DrawablePolylineBridgeFactory::create( void )
 {
@@ -18,7 +19,6 @@ DrawablePolylineBridge * DrawablePolylineBridgeFactory::create( void )
   imp->setJavaMapper(new DrawablePolylineJavaMapper()) ;
   return imp ;
 }
-
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolylineBridgeFactory::setDrawedPolyline( DrawablePolyline * poly )
 {

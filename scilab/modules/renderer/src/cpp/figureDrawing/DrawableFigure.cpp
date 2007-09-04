@@ -132,5 +132,14 @@ void DrawableFigure::setWindowPosition( const int pos[2] )
   getFigureImp()->setWindowPosition(pos) ;
 }
 /*------------------------------------------------------------------------------------------*/
-
+void DrawableFigure::setPixmapMode(bool onOrOff)
+{
+  getFigureImp()->setPixmapMode(onOrOff);
+}
+/*------------------------------------------------------------------------------------------*/
+bool DrawableFigure::getPixmapMode(void)
+{
+  return getFigureImp()->getPixmapMode();
+}
+/*------------------------------------------------------------------------------------------*/
 }

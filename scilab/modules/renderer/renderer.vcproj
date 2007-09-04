@@ -267,6 +267,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\polylineDrawing\ConcreteDrawablePolyline.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\rectangleDrawing\ConcreteDrawableRectangle.cpp"
 				>
 			</File>
@@ -571,11 +575,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\polylineDrawing\InterpolatedDecompostion.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\GraphicSynchronization\LocalSynchronizer.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\src\jni\Object.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\polylineDrawing\PolylineDrawerJavaMapper.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\polylineDrawing\PolylineLineDrawerJoGL.cpp"
 				>
 			</File>
 			<File
@@ -693,7 +709,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\polylineDrawing\ConcreteDrawablePolyline.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\rectangleDrawing\ConcreteDrawableRectangle.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\polylineDrawing\DecomposeLineStrategy.hxx"
 				>
 			</File>
 			<File
@@ -953,6 +977,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\polylineDrawing\DrawPolylineStrategy.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\rectangleDrawing\DrawRectangleStrategy.h"
 				>
 			</File>
@@ -1021,6 +1049,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\polylineDrawing\InterpolatedDecomposition.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\GraphicSynchronization\LocalSynchronizer.h"
 				>
 			</File>
@@ -1030,6 +1062,14 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\Observer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\polylineDrawing\PolylineLineDrawerJavaMapper.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\polylineDrawing\PolylineLineDrawerJoGL.hxx"
 				>
 			</File>
 			<File

@@ -3621,8 +3621,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
           pPOLYLINE_FEATURE (pthis)->pvz=pvz;
         }
 
-        pPOLYLINE_FEATURE (pthis)->n1      = n1 ;
-        pPOLYLINE_FEATURE (pthis)->dim_icv = n1 ;
+        pPOLYLINE_FEATURE (pthis)->n1 = n1 ;
 
       }
       else
@@ -4920,3 +4919,41 @@ int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double
 
 }
 /*--------------------------------------------------------------------------------------------*/
+/**
+ * To set the pixmap mode of a figure to on or off
+ */
+int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_FIGURE:
+    if (pObj == getFigureModel())
+    {
+      pFIGURE_FEATURE(pObj)->pModelData->pixmapMode = onOrOff;
+    }
+    else
+    {
+      sciSetJavaPixmapMode(pObj, onOrOff);
+    }
+    return 0;
+  default:
+    sciprint("This object has no pixmap.\n");
+    break;
+  }
+  return -1;
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * To set the pixmap mode of a figure to on or off
+ */
+int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff)
+{
+  if (sciGetPixmapMode(pObj) == onOrOff)
+  {
+    /* Nothing to do */
+    return 1;
+  }
+  return sciInitPixmapMode(pObj, onOrOff);
+}
+/*-------------------------------------------------------------------------------------------*/
+

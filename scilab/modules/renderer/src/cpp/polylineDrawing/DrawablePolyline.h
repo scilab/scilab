@@ -25,12 +25,29 @@ public:
   virtual ~DrawablePolyline( void ) {}
 
   /**
+   * Retrieve the vertices of the polyline which will be used to draw it directly.
+   * In the polyline sciPointObj, x, y and z vectors does not always stands for the real vertices
+   * of the drawn line (specially when staircase mode is on).
+   * To allocate the array for retrieving vertices, user shoud use the getDrawnVerticesLength.
+   * @param xCoords X coordinates of the drawn vertices
+   * @param yCoords Y coordinates of the drawn vertices
+   * @param zCoords Z coordinates of the drawn vertices
+   */
+  virtual void getDrawnVertices(double xCoords[], double yCcoords[], double zCcoords[]) = 0 ;
+
+  /**
+   * @return number of vertices which will be computed by the getDrawnVertices routine.
+   */
+  virtual int getDrawnVerticesLength(void) = 0 ;
+
+  /**
    * Return the real type of implementation object
    */
   DrawablePolylineBridge * getPolylineImp( void ) ;
 
 protected:
 
+  /*---------------------------------------------------------------------------------*/
   /**
    * Draw the graphic handle and store it representation in memory
    * for later faster drawing.
@@ -43,6 +60,16 @@ protected:
    */
   virtual void show( void ) ;
 
+  /**
+   * Actually draw the arc on the screen
+   */
+  virtual void drawPolyline(void) = 0;
+
+  /**
+  * Actually show the arc stored data
+  */
+  virtual void showPolyline(void) = 0;
+  /*---------------------------------------------------------------------------------*/
 
 } ;
 

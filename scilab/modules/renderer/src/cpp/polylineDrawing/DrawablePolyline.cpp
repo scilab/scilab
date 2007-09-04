@@ -19,12 +19,22 @@ DrawablePolylineBridge * DrawablePolyline::getPolylineImp( void )
 void DrawablePolyline::draw( void )
 {
   initializeDrawing() ;
+  if ( !checkVisibility() )
+  {
+    endDrawing();
+    return ;
+  }
+  clip();
+  drawPolyline() ;
+  unClip();
   endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolyline::show( void )
 {
-  draw() ;
+  clip();
+  showPolyline();
+  unClip();
 }
 /*------------------------------------------------------------------------------------------*/
 

@@ -260,13 +260,27 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
+	 * @param onOrOff specify if we set the pixmap on or off
+	 */
+	public void setPixmapMode(boolean onOrOff) {
+		
+	}
+	
+	/**
+	 * @return wether the pixmap mode is on ar off.
+	 */
+	public boolean getPixmapModeB() {
+		return false;
+	}
+	
+	/**
 	 * @param onOrOff if 0 set pixmap mode to false, otherwise set it to true.
 	 */
 	public void setPixmapMode(int onOrOff) {
 		if (onOrOff == 0) {
-			guiProperties.setPixmapMode(false);
+			setPixmapMode(false);
 		} else {
-			guiProperties.setPixmapMode(true);
+			setPixmapMode(true);
 		}
 	}
 	
@@ -274,7 +288,7 @@ public class DrawableFigureGL extends ObjectGL {
 	 * @return 0 if pixmap mode is false, 1 otherwise.
 	 */
 	public int getPixmapMode() {
-		if (guiProperties.getPixmapMode()) {
+		if (getPixmapModeB()) {
 			return 1;
 		} else {
 			return 0;

@@ -47,3 +47,4 @@ sciGetClipping
 sciGetParentSubwin
 sciGetIsClipping
 getFigureFromIndex
+sciGetNbPoints

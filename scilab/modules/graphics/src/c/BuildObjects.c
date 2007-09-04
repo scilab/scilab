@@ -167,7 +167,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent)
   ppFigure->auto_redraw = ppModel->auto_redraw;
 
   ppFigure->numsubwinselected = ppModel->numsubwinselected;
-  ppFigure->pixmap = ppModel->pixmap ; 
   ppFigure->wshow = ppModel->wshow ; 
   ppFigure->allredraw = ppModel->allredraw;
 
@@ -188,6 +187,8 @@ sciPointObj * ConstructFigure(sciPointObj * pparent)
 
   ppFigure->infoMessage = NULL ; /* needed otherwise it will be realloc */
   sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
+
+  sciInitPixmapMode(pobj, sciGetPixmapMode(pfiguremdl));
 
   /* Colormap */
   sciSetDefaultColorMap(pobj);
@@ -999,7 +1000,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
  */
 sciPointObj *
 ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
-		   int closed, int n1, int n2,int plot, int *foreground, int *background,
+		   int closed, int n1,int plot, int *foreground, int *background,
 		   int *mark_style, int *mark_foreground, int *mark_background,
 		   BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
@@ -1111,7 +1112,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       }
 
       ppoly->n1 = n1;	  /* memorisation du nombre de points */
-      ppoly->n2 = n2;	  /* memorisation du nombre des courbes */
       ppoly->closed = (closed > 0) ? 1 : 0;
       ppoly->plot = plot;
  
@@ -1138,8 +1138,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	sciInitForeground(pobj,(*foreground));
       
       ppoly->scvector = (int *) NULL;
-      
-      ppoly->dim_icv = n1;
       
       if(background != NULL){
 	if(isinterpshaded == TRUE){ /* 3 or 4 values to store */

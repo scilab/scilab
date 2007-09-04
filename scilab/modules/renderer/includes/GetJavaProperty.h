@@ -39,6 +39,11 @@ void sciGetJavaWindowSize( sciPointObj * pFigure, int size[2] ) ;
  */
 void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] ) ;
 
+/**
+ * Get the pixmap mode for figures.
+ */
+BOOL sciGetJavaPixmapMode(sciPointObj * pFigure);
+
 #ifdef __cplusplus
 }
 #endif

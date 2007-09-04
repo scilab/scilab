@@ -1,0 +1,48 @@
+/*------------------------------------------------------------------------*/
+/* file: DecomposeLineStrategy.hxx                                        */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Strategy interface for the getArcRepresentation algorithm       */
+/*------------------------------------------------------------------------*/
+
+#include "DrawablePolyline.h"
+
+#ifndef _DECOMPOSE_LINE_STRATEGY_HXX_
+#define _DECOMPOSE_LINE_STRATEGY_HXX_
+
+namespace sciGraphics
+{
+
+class DecomposeLineStrategy
+{
+public:
+
+  DecomposeLineStrategy( DrawablePolyline * polyline ) {m_pDrawed = polyline;}
+
+  virtual ~DecomposeLineStrategy( void ) {m_pDrawed = NULL;}
+
+  /**
+   * Retrieve the vertices of the polyline which will be used to draw it directly.
+   * In the polyline sciPointObj, x, y and z vectors does not always stands for the real vertices
+   * of the drawn line (specially when staircase mode is on).
+   * To allocate the array for retrieving vertices, user shoud use the getDrawnVerticesLength.
+   * @param xCoords X coordinates of the drawn vertices
+   * @param yCoords Y coordinates of the drawn vertices
+   * @param zCoords Z coordinates of the drawn vertices
+   */
+  virtual void getDrawnVertices(double xCoords[], double yCcoords[], double zCcoords[]) = 0;
+
+  /**
+   * @return number of vertices which will be computed by the getDrawnVertices routine.
+   */
+  virtual int getDrawnVerticesLength(void) = 0;
+
+protected:
+
+  DrawablePolyline * m_pDrawed;
+
+};
+
+}
+
+#endif _DECOMPOSE_LINE_STRATEGY_HXX_

@@ -17,7 +17,8 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   int button = 0;
   integer iflag;
   integer sel[2],m,n,v2;
-  double x,y;
+  double x = 0.0;
+  double y = 0.0;
 
   CheckRhs(0,2);
   CheckLhs(1,2);

@@ -9,8 +9,10 @@
 #include "DrawablePolylineFactory.h"
 #include "DrawablePolyline.h"
 #include "DrawablePolylineBridgeFactory.h"
-
-#include "../subwinDrawing/DrawableSubwinFactory.h"
+#include "ConcreteDrawablePolyline.hxx"
+#include "getHandleDrawer.h"
+#include "PolylineLineDrawerJoGL.hxx"
+#include "InterpolatedDecomposition.hxx"
 
 namespace sciGraphics
 {
@@ -18,20 +20,28 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawablePolylineFactory::create( void )
 {
-  /*DrawablePolyline * newPoly = new DrawablePolyline( m_pDrawed ) ;
+  DrawablePolyline * newPoly = new ConcreteDrawablePolyline( m_pDrawed ) ;
   DrawablePolylineBridgeFactory imp ;
   imp.setDrawedPolyline( newPoly ) ;
   newPoly->setDrawableImp( imp.create() ) ;
 
-  return newPoly ;*/
-  DrawableSubwinFactory fact ;
-  fact.setGraphicObj(m_pDrawed) ;
-  return fact.create();
+  return newPoly ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolylineFactory::update( void )
 {
-  // nothing for now
+  setStrategies(getPolylineDrawer(m_pDrawed));
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
+{
+  ConcreteDrawablePolyline * cPolyline = dynamic_cast<ConcreteDrawablePolyline *>(polyline);
+
+  cPolyline->removeDecompositionStrategy();
+  cPolyline->removeDrawingStrategies();
+
+  cPolyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
+  cPolyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
 }
 /*------------------------------------------------------------------------------------------*/
 

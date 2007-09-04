@@ -90,8 +90,6 @@ void ConcreteDrawableArc::getArcRepresentation(double center[3], double semiMino
     semiMajorAxis[2] = 0.0;
     startAngle = Min(ppArc->alphabegin, ppArc->alphabegin + ppArc->alphaend);
     endAngle   = Max(ppArc->alphabegin, ppArc->alphabegin + ppArc->alphaend);
-    //startAngle -= M_PI / 2.0;
-    //endAngle   -= M_PI / 2.0;
   }
 
   

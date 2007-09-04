@@ -433,6 +433,7 @@ typedef struct
   int windowPosition[2] ;
   double * colorMap ;
   int numColors ;
+  BOOL pixmapMode ;
 }
 FigureModelData ;
 
@@ -466,7 +467,7 @@ typedef struct
   /** specifies the number of the selected son         */
   int numsubwinselected;
   /** specifies the current pixmap status         */
-  int pixmap; /* DJ.A 30/12 */
+  /*int pixmap; */ /* DJ.A 30/12 */
   int wshow ;
   
   BOOL allredraw;
@@ -909,8 +910,7 @@ typedef struct
   double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
   double *pvy;			/* vecteur des points y doublon avec pvector*/
   double *pvz; /**DJ.Abdemouche 2003**/
-  int n1;                       /** number of points */
-  int n2;                       /** numbre of curves if Plot **/ 
+  int n1;                       /** number of points, for interp vector shoud be 3 or 4 */
   int closed;                   /** is it a closed polyline */
   int plot;                     /** defines the polyline_style (interpolated, staircase, bar_plot,...) : is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
   BOOL isselected;
@@ -926,8 +926,7 @@ typedef struct
   int size_of_user_data;
   BOOL isfilled; /* to know if a polyline is filled or not */
   BOOL isinterpshaded;
-  int *scvector;
-  int dim_icv; /* dimension of the interpolated color vector (3 or 4) */
+  int *scvector; /* interpolation vector */
   int bar_layout;
 
   double * x_shift;

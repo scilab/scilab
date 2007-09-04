@@ -270,7 +270,7 @@ int sci_xset( char *fname, unsigned long fname_len )
 
       } /*Ajout A.Djalel le 10/11/03 */
       else if ( strcmp(cstk(l1),"pixmap") == 0) {
-        pFIGURE_FEATURE(sciGetParent(subwin))->pixmap=x[0];
+        sciSetPixmapMode(sciGetParent(subwin), x[0]);
       }  
       else if ( strcmp(cstk(l1),"wshow") == 0) { /* a supprimer ce n'est pas une propriete mais une action */
         pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;

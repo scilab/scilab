@@ -33,3 +33,15 @@ void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] )
   getFigureDrawer(pFigure)->getWindowPosition(pos) ;
 }
 /*------------------------------------------------------------------------------------------*/
+BOOL sciGetJavaPixmapMode(sciPointObj * pFigure)
+{
+  if (getFigureDrawer(pFigure)->getPixmapMode())
+  {
+    return TRUE;
+  }
+  else
+  {
+    return FALSE;
+  }
+}
+/*------------------------------------------------------------------------------------------*/

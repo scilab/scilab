@@ -96,6 +96,16 @@ public:
   virtual void setInfoMessage( const char * message ) ;
 
   /**
+   * Set pixmap mode to on or off
+   */
+  virtual void setPixmapMode(bool onOrOff);
+
+  /**
+   * Get the pixmap status (on or off).
+   */
+  virtual bool getPixmapMode(void);
+
+  /**
    * Return the drawn object
    */
   DrawableFigure * getFigureDrawer( void ) ;

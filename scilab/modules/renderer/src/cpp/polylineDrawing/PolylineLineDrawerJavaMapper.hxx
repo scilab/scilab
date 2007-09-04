@@ -1,26 +1,26 @@
 /*------------------------------------------------------------------------*/
-/* file: ArcLineDrawerJavaMapper.hxx                                      */
+/* file: PolylineLineDrawerJavaMapper.hxx                                 */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Contains mapping of java method used by ArcLineDrawer           */
+/* desc : Contains mapping of java method used by PolylineLineDrawer      */
 /*------------------------------------------------------------------------*/
 
-#ifndef _ARC_LINE_DRAWER_JAVA_MAPPER_HXX_
-#define _ARC_LINE_DRAWER_JAVA_MAPPER_HXX_
+#ifndef _POLYLINE_LINE_DRAWER_JAVA_MAPPER_HXX_
+#define _POLYLINE_LINE_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-#include "ArcLineDrawerGL.hxx"
+//#include "PolylineLineDrawerGL.hxx"
 
 namespace sciGraphics
 {
 
-class ArcLineDrawerJavaMapper : public virtual DrawableObjectJavaMapper
+class PolylineLineDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
 public:
 
-  ArcLineDrawerJavaMapper(void);
+  PolylineLineDrawerJavaMapper(void);
 
-  virtual ~ArcLineDrawerJavaMapper(void);
+  virtual ~PolylineLineDrawerJavaMapper(void);
 
   /*----------------------------------------------------------------------*/
   // Inherited From DrawableObjectJavaMapper
@@ -35,25 +35,22 @@ public:
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
-  // specific for arc line drawer
+  // specific for polyline line drawer
   virtual void setLineParameters(int lineColor, float thickness, int lineStyle);
 
-  virtual void drawArc( double centerX       , double centerY       , double centerZ       ,
-                        double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ,
-                        double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ,
-                        double startAngle    , double endAngle );
+  virtual void drawPolyline(double xCoords[], double yCoords[], double zCoords[], int nbCoords);
   /*----------------------------------------------------------------------*/
 
 protected:
 
   /**
-   * Giws generated wrapper.
-   */
-  org_scilab_modules_renderer_arcDrawing::ArcLineDrawerGL * m_pJavaObject;
+  * Giws generated wrapper.
+  */
+  //org_scilab_modules_renderer_polylineDrawing::PolylineLineDrawerGL * m_pJavaObject;
 
 
 };
 
 }
 
-#endif /* _ARC_LINE_DRAWER_JAVA_MAPPER_HXX_ */
+#endif /* _RECTANGLE_LINE_DRAWER_JAVA_MAPPER_HXX_ */

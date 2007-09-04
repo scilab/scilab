@@ -498,8 +498,8 @@ int InitFigureModel( void )
   pFIGURE_FEATURE (pfiguremdl)->user_data = (int *) NULL; /* pour completude */
   pFIGURE_FEATURE (pfiguremdl)->size_of_user_data = 0; /* pour completude */
 
-  pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
-  pFIGURE_FEATURE (pfiguremdl)->pixmap = 0 ; 
+  pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0;
+  sciInitPixmapMode(pfiguremdl, FALSE);
   pFIGURE_FEATURE (pfiguremdl)->wshow = 0 ;
 
   pFIGURE_FEATURE(pfiguremdl)->infoMessage = NULL ;
@@ -792,7 +792,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   pFIGURE_FEATURE (pobj)->visible = pFIGURE_FEATURE (pfiguremdl)->visible;
   pFIGURE_FEATURE (pobj)->auto_redraw = pFIGURE_FEATURE (pfiguremdl)->auto_redraw;
   pFIGURE_FEATURE (pobj)->numsubwinselected = pFIGURE_FEATURE (pfiguremdl)->numsubwinselected;
-  pFIGURE_FEATURE (pobj)->pixmap = pFIGURE_FEATURE (pfiguremdl)->pixmap ; 
+  sciInitPixmapMode(pobj, sciGetPixmapMode(pfiguremdl));
   pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
 
   return 0;

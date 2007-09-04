@@ -5118,3 +5118,43 @@ void sciGetLogFlags(sciPointObj * pObj, char flags[3])
   }
 }
 /*-------------------------------------------------------------------------------------------*/
+/**
+ * To know if the pixmap mode a figure is on or off.
+ */
+BOOL sciGetPixmapMode(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_FIGURE:
+    if (pObj == getFigureModel())
+    {
+      return pFIGURE_FEATURE(pObj)->pModelData->pixmapMode;
+    }
+    else
+    {
+      return sciGetJavaPixmapMode(pObj);
+    }
+    break;
+  default:
+    sciprint("This object has no pixmap.\n");
+    break;
+  }
+  return FALSE;
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * @return number of vertices of a pointObj
+ */
+int sciGetNbPoints(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_POLYLINE:
+    return pPOLYLINE_FEATURE(pObj)->n1;
+  default:
+    sciprint("This object has no points.\n");
+    break;
+  }
+  return -1;
+}
+/*-------------------------------------------------------------------------------------------*/

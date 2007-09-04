@@ -45,6 +45,11 @@ void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
  */
 void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage ) ;
 
+/**
+ * Set the pixmap mode for figures.
+ */
+void sciSetJavaPixmapMode(sciPointObj * pFigure, BOOL onOrOff);
+
 #ifdef __cplusplus
 }
 #endif

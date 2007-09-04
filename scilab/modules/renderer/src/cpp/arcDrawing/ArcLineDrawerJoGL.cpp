@@ -36,7 +36,7 @@ void ArcLineDrawerJoGL::drawArc( void )
                                                (float)sciGetLineWidth(pObj),
                                                sciGetLineStyle(pObj));
 
-  // get the data of thar arc
+  // get the data of the arc
   double center[3];
   double semiMinorAxis[3];
   double semiMajorAxis[3];

@@ -19,7 +19,7 @@ int get_pixmap_property( sciPointObj * pobj )
     sciprint( "pixmap property undefined for this object" ) ;
     return -1;
   }
-  if ( pFIGURE_FEATURE(pobj)->pixmap == 1 )
+  if ( sciGetPixmapMode(pobj) )
   {
     return sciReturnString( "on" ) ;
   }

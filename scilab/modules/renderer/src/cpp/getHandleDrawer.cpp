@@ -82,4 +82,14 @@ DrawableArc * getArcDrawer( sciPointObj * pArc )
   return dynamic_cast<DrawableArc *>(getHandleDrawer(pArc));
 }
 /*------------------------------------------------------------------------------------------*/
+DrawablePolyline * getPolylineDrawer( sciPointObj * pPolyline )
+{
+  if ( sciGetEntityType(pPolyline) != SCI_POLYLINE )
+  {
+    return NULL;
+  }
+
+  return dynamic_cast<DrawablePolyline *>(getHandleDrawer(pPolyline));
+}
+/*------------------------------------------------------------------------------------------*/
 }

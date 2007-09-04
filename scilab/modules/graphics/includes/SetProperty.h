@@ -251,6 +251,9 @@ int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta); /* SET
 
 int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double theta);
 
+int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff);
+int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff); /* SET */
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

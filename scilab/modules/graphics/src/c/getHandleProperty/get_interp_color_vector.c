@@ -23,7 +23,7 @@ int get_interp_color_vector_property( sciPointObj * pobj )
   interpVector = sciGetInterpVector( pobj ) ;
   if( interpVector != NULL )
   {
-    return sciReturnRowVectorFromInt( interpVector, pPOLYLINE_FEATURE(pobj)->dim_icv ) ;
+    return sciReturnRowVectorFromInt( interpVector, pPOLYLINE_FEATURE(pobj)->n1 ) ;
   }
   else
   {

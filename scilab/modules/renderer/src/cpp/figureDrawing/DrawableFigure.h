@@ -83,6 +83,16 @@ public:
    void setInfoMessage( const char * infoMessage ) ;
 
    /**
+    * Set pixmap mode to on or off
+    */
+   void setPixmapMode(bool onOrOff);
+
+   /**
+    * Get the pixmap status (on or off).
+    */
+   bool getPixmapMode(void);
+
+   /**
     * Create the rendering canvas for the figure.
     */
    void openRenderingCanvas( void ) ;

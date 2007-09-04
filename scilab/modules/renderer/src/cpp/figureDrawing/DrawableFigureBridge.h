@@ -90,9 +90,19 @@ public:
   virtual void setWindowPosition( const int pos[2] ) = 0 ;
 
   /**
-  * Set the displayed the info message of the window
-  */
+   * Set the displayed the info message of the window
+   */
   virtual void setInfoMessage( const char * infoMessage ) = 0 ;
+
+  /**
+   * Set pixmap mode to on or off
+   */
+  virtual void setPixmapMode(bool onOrOff) = 0;
+
+  /**
+   * Get the pixmap status (on or off).
+   */
+  virtual bool getPixmapMode(void) = 0;
 
   /**
    * Return the drawed object

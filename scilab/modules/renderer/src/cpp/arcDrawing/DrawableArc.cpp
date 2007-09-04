@@ -19,7 +19,7 @@ DrawableArc::DrawableArc( sciPointObj * pObj ) : DrawableClippedObject(pObj)
 /*------------------------------------------------------------------------------------------*/
 DrawableArc::~DrawableArc( void )
 {
-  //removeDrawingStrategies();
+  
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableArc::draw( void )

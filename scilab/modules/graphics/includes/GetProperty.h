@@ -210,4 +210,8 @@ int sciGetBlackColorIndex(sciPointObj * pObj); /* GET */
 
 void sciGetLogFlags(sciPointObj * pObj, char flags[3]); /* GET */
 
+BOOL sciGetPixmapMode(sciPointObj * pObj); /* GET */
+
+int sciGetNbPoints(sciPointObj * pObj); /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */

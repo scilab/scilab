@@ -18,5 +18,7 @@ redrawFigure
 sciSetJavaColormap
 sciGetJavaColormap
 createDrawer
+sciSetJavaPixmapMode
+sciGetJavaPixmapMode
 ; --------------------------------------- 
 
