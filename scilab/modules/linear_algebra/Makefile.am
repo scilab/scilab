@@ -3,7 +3,8 @@
 ### INRIA - Scilab 2006
 ##########
 
-LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c
+LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
+src/c/issymmetric.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
 src/fortran/intzgeqpf4.f \
@@ -63,8 +64,8 @@ src/fortran/intdgetri.f \
 src/fortran/intdgebal.f \
 src/fortran/intzschur.f \
 src/fortran/intzgeqpf3.f \
-src/fortran/writebuf.f \
-src/fortran/issymmetric.f
+src/fortran/writebuf.f
+#src/fortran/issymmetric.f
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \

@@ -97,8 +97,9 @@ am__objects_1 = intdggbal.lo intzgeqpf4.lo intzheev.lo intzgehrd.lo \
 	intdgesvd1.lo intdgehrd.lo intzgees0.lo intdgesvd2.lo \
 	intzgees1.lo intzdet.lo doldqr.lo scischur.lo intdgetrf.lo \
 	intzgelsy.lo intdgetri.lo intdgebal.lo intzschur.lo \
-	intzgeqpf3.lo writebuf.lo issymmetric.lo
-am__objects_2 = libscilinear_algebra_la-schurtable.lo
+	intzgeqpf3.lo writebuf.lo
+am__objects_2 = libscilinear_algebra_la-schurtable.lo \
+	libscilinear_algebra_la-issymmetric.lo
 am__objects_3 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_hess.lo \
 	libscilinear_algebra_la-sci_rcond.lo \
@@ -309,7 +310,9 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c
+LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
+src/c/issymmetric.c
+
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
 src/fortran/intzgeqpf4.f \
 src/fortran/intzheev.f \
@@ -368,9 +371,9 @@ src/fortran/intdgetri.f \
 src/fortran/intdgebal.f \
 src/fortran/intzschur.f \
 src/fortran/intzgeqpf3.f \
-src/fortran/writebuf.f \
-src/fortran/issymmetric.f
+src/fortran/writebuf.f
 
+#src/fortran/issymmetric.f
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \
 sci_gateway/c/sci_hess.c \
 sci_gateway/c/sci_rcond.c \
@@ -534,6 +537,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-issymmetric.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-schurtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_backslash.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_balanc.Plo@am__quote@
@@ -578,6 +582,13 @@ libscilinear_algebra_la-schurtable.lo: src/c/schurtable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/schurtable.c' object='libscilinear_algebra_la-schurtable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-schurtable.lo `test -f 'src/c/schurtable.c' || echo '$(srcdir)/'`src/c/schurtable.c
+
+libscilinear_algebra_la-issymmetric.lo: src/c/issymmetric.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-issymmetric.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-issymmetric.Tpo -c -o libscilinear_algebra_la-issymmetric.lo `test -f 'src/c/issymmetric.c' || echo '$(srcdir)/'`src/c/issymmetric.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-issymmetric.Tpo $(DEPDIR)/libscilinear_algebra_la-issymmetric.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/issymmetric.c' object='libscilinear_algebra_la-issymmetric.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-issymmetric.lo `test -f 'src/c/issymmetric.c' || echo '$(srcdir)/'`src/c/issymmetric.c
 
 libscilinear_algebra_la-sci_backslash.lo: sci_gateway/c/sci_backslash.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-sci_backslash.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-sci_backslash.Tpo -c -o libscilinear_algebra_la-sci_backslash.lo `test -f 'sci_gateway/c/sci_backslash.c' || echo '$(srcdir)/'`sci_gateway/c/sci_backslash.c
@@ -883,9 +894,6 @@ intzgeqpf3.lo: src/fortran/intzgeqpf3.f
 
 writebuf.lo: src/fortran/writebuf.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
-
-issymmetric.lo: src/fortran/issymmetric.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o issymmetric.lo `test -f 'src/fortran/issymmetric.f' || echo '$(srcdir)/'`src/fortran/issymmetric.f
 
 Ex-schur.lo: sci_gateway/fortran/Ex-schur.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'sci_gateway/fortran/Ex-schur.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-schur.f
