@@ -196,13 +196,13 @@ void Objfpoly ( double  * x    ,
       else if (*style == 0){
 	contourcolor = sciGetForeground(psubwin);
 	sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-					    1,1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
+					    1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
       }
       else{ /* *style > 0*/
 	fillcolor = *style;
 	contourcolor = sciGetForeground(psubwin);
 	sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-					    1,1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE));
+					    1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE));
       }
       
       pobj = sciGetCurrentObj();
