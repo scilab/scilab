@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 
@@ -78,8 +78,12 @@ PROGRAMS = $(bin_PROGRAMS)
 am_scilab_bin_OBJECTS = main_linux.$(OBJEXT)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
-scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
-	$(am__DEPENDENCIES_1)
+@GUI_FALSE@scilab_bin_DEPENDENCIES =  \
+@GUI_FALSE@	$(top_builddir)/modules/libscilab.la \
+@GUI_FALSE@	$(am__DEPENDENCIES_1)
+@GUI_TRUE@scilab_bin_DEPENDENCIES =  \
+@GUI_TRUE@	$(top_builddir)/modules/libscilab.la \
+@GUI_TRUE@	$(am__DEPENDENCIES_1)
 binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 SCRIPTS = $(bin_SCRIPTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
@@ -292,8 +296,11 @@ ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES
 bin_SCRIPTS = bin/scilab
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/c/main_linux.c
-scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
+@GUI_FALSE@scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
+@GUI_FALSE@	$(X_EXTRA_LIBS) -lXt -lX11 -lSM
+
+@GUI_TRUE@scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
+@GUI_TRUE@	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
 
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
@@ -927,7 +934,7 @@ check-local:
 	$(top_builddir)/scilab-bin -nb -l fr -e check_help();exit;
 	$(top_builddir)/scilab-bin -nb -l en -e check_help();exit;
 
-distclean-local::	
+distclean-local::
 clean-local:
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

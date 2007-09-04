@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 ## Process this file with automake to produce Makefile.in (which will be changed by the ./configure)
@@ -20,8 +20,15 @@ bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
 
+
+if GUI
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
+else
+scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
+	$(X_EXTRA_LIBS)
+endif
+
 
 rootdir=$(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
@@ -54,7 +61,7 @@ check-local:
 	$(top_builddir)/scilab-bin -nb -l fr -e check_help();exit;
 	$(top_builddir)/scilab-bin -nb -l en -e check_help();exit;
 
-distclean-local::	
+distclean-local::
 clean-local:
 #	@..\..\..\bin\scilex -nb -l en -nouserstartup -nwni -e clean_help();exit;
 #	@..\..\..\bin\scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;
