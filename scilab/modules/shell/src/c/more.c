@@ -7,7 +7,7 @@
 #include "scilabmode.h"
 #include "sciprint.h"
 #include "../../../console/includes/GetCharWithoutOutput.h"
-#include "../../../console/includes/ShellPrintf.h"
+#include "../../../console/includes/ConsolePrintf.h"
 #if _MSC_VER
 #include "windows/GetCharWithEventsLoop.h"
 #else
@@ -34,10 +34,10 @@ int linesmore(void)
 	{
 		/* scilab has his own window */
 		int ch = 0;
-		ShellPrintf(MSG_MORE);
+		ConsolePrintf(MSG_MORE);
 		ch = GetCharWithoutOutput();
 		if ( ch == 110 ) retval = 1;
-		ShellPrintf("\n");
+		ConsolePrintf("\n");
 	}
 	return retval;
 }

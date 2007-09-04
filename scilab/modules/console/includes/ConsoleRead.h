@@ -1,5 +1,5 @@
-#ifndef __SHELLREAD_H__
-#define __SHELLREAD_H__
+#ifndef __CONSOLEREAD_H__
+#define __CONSOLEREAD_H__
 /*-----------------------------------------------------------------------------------*/
 /**
 * @author Vincent COUVERT - INRIA 2007
@@ -7,11 +7,11 @@
 /*-----------------------------------------------------------------------------------*/
 
 /**
-* ShellRead function 
+* ConsoleRead function 
 * @return characters read in console
 */
-char *ShellRead(void);
+char *ConsoleRead(void);
 
 /*-----------------------------------------------------------------------------------*/
-#endif /* __SHELLREAD_H__ */
+#endif /* __CONSOLEREAD_H__ */
 

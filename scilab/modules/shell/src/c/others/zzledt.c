@@ -16,7 +16,7 @@
 #include "sciprint_nd.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"
-#include "ShellRead.h"
+#include "ConsoleRead.h"
 #include "SetConsolePrompt.h"
 #include "GetCharWithEventsLoop.h"
 #include "machine.h"
@@ -623,7 +623,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
      *len_line = 0;
      cursor = 0;
      
-     line = ShellRead();
+     line = ConsoleRead();
      if (line) 
      {
      	strcpy(wk_buf,line);

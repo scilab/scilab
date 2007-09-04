@@ -14,14 +14,14 @@ extern "C" {
 #include "../../../jvm/includes/getScilabJavaVM.h"
 }
 //#include "../jni/org_scilab_modules_gui_bridge_console.hxx"
-#include "ShellRead.hxx"
+#include "ConsoleRead.hxx"
 #include "MALLOC.h"
 
 /*-----------------------------------------------------------------------------------*/
 #define WK_BUF_SIZE 520
 /*-----------------------------------------------------------------------------------*/
 //using namespace  org_scilab_modules_gui_bridge_console;
-char *ShellRead()
+char *ConsoleRead()
 {
   /* Character string to be return */
   char *strRead = NULL;

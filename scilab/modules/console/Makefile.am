@@ -7,22 +7,22 @@
 if GUI
 
 # List of the cpp files
-CONSOLE_CPP_SOURCES =  src/jni/ShellRead.cpp \
+CONSOLE_CPP_JNI_SOURCES =  src/jni/ClearConsole.cpp \
+src/jni/ClearConsolePart.cpp \
+src/jni/ConsolePrintf.cpp \
+src/jni/ConsoleRead.cpp \
+src/jni/GetCharWithoutOutput.cpp \
+src/jni/PromptToHome.cpp \
 src/jni/SetConsolePrompt.cpp
 
 # List of the c files
-CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
+CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
 src/jni/GuiManagement_wrap.c \
 src/jni/DropFiles_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
 src/c/GuiManagement.c \
-src/c/ClearConsole.c \
-src/c/ClearConsolePart.c \
-src/c/PromptToHome.c \
-src/c/ShellPrintf.c \
-src/c/dropFiles.c \
-src/c/GetCharWithoutOutput.c
+src/c/dropFiles.c
 
 else
 
@@ -41,7 +41,7 @@ libsciconsole_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdi
 pkglib_LTLIBRARIES = libsciconsole.la
 
 # All the sources needed by libsciconsole.la
-libsciconsole_la_SOURCES = $(CONSOLE_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_SOURCES)
+libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
@@ -66,9 +66,13 @@ src/jni/GuiManagement.i
 
 #### console : include files ####
 libscishell_la_includedir=$(pkgincludedir)/console
-libscishell_la_include_HEADERS = includes/ShellRead.h \
-includes/ShellPrintf.h \
-includes/GetCharWithoutOutput.h
+libscishell_la_include_HEADERS = includes/ClearConsole.h \
+includes/ClearConsolePart.h \
+includes/ConsolePrintf.h \
+includes/ConsoleRead.h \
+includes/GetCharWithoutOutput.h \
+includes/PromptToHome.h \
+includes/SetConsolePrompt.h
 
 
 

@@ -9,7 +9,7 @@
 #include "../../core/src/c/flags.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "scilabmode.h"
-#include "ShellRead.h"
+#include "ConsoleRead.h"
 #include "zzledt.h"
 #include "prompt.h"
 #include "SetConsolePrompt.h"
@@ -30,7 +30,7 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
   {
 	  SetConsolePrompt(save_prompt);
 	  i = 0;
-	  line = ShellRead();
+	  line = ConsoleRead();
 	  if (line)
 	  {
 		  strcpy(input_line,line);

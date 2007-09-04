@@ -5,7 +5,7 @@ EXPORTS
 	ClearConsole
 	ClearConsolePart
 	PromptToHome
-	ShellRead
-	ShellPrintf
+	ConsoleRead
+	ConsolePrintf
 	GetCharWithoutOutput
 	SetConsolePrompt

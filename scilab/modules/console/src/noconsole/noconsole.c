@@ -4,8 +4,8 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include "machine.h" 
-#include "ShellPrintf.h"
-#include "ShellRead.h"
+#include "ConsolePrintf.h"
+#include "ConsoleRead.h"
 #include "ClearConsolePart.h"
 #include "ClearConsole.h"
 #include "PromptToHome.h"
@@ -19,12 +19,12 @@ int C2F(gw_console)()
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-char *ShellRead(void)
+char *ConsoleRead(void)
 {
 	return NULL;
 }
 /*-----------------------------------------------------------------------------------*/ 
-int ShellPrintf(char *line)
+int ConsolePrintf(char *line)
 {
 	int len = 0;
 	return len;

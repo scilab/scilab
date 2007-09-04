@@ -6,10 +6,12 @@
 #include <stdlib.h>
 #include <jni.h>
 #include "machine.h"
+extern "C" {
 #include "./../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJNIEnv.h"
+}
 #include "MALLOC.h"
-#include "GetCharWithoutOutput.h"
+#include "GetCharWithoutOutput.hxx"
 /*-----------------------------------------------------------------------------------*/
 int GetCharWithoutOutput(void)
 {
@@ -20,22 +22,22 @@ int GetCharWithoutOutput(void)
   
   if (env)
     {
-      jclass class_Mine = (*env)->GetObjectClass(env, ScilabObj);
+      jclass class_Mine = env->GetObjectClass(ScilabObj);
       if (class_Mine)
         {
-            jfieldID id_Console =  (*env)->GetFieldID(env, class_Mine, "sciConsole","Lorg/scilab/modules/gui/console/Console;");
+            jfieldID id_Console =  env->GetFieldID(class_Mine, "sciConsole","Lorg/scilab/modules/gui/console/Console;");
             if (id_Console)
               {
-                jobject jConsole = (*env)->GetObjectField(env, ScilabObj, id_Console);
+                jobject jConsole = env->GetObjectField(ScilabObj, id_Console);
                 if (jConsole)
                   {
-                    jclass cls = (*env)->GetObjectClass(env, jConsole);
+                    jclass cls = env->GetObjectClass(jConsole);
                     if (cls)
                       {
-                        jmethodID mid = (*env)->GetMethodID(env, cls, "getCharWithoutOutput", "()I");
+                        jmethodID mid = env->GetMethodID(cls, "getCharWithoutOutput", "()I");
                         if (mid)
                           {
-                            intValue = (int) (*env)->CallIntMethod(env, jConsole, mid);
+                            intValue = (int) env->CallIntMethod(jConsole, mid);
                           }
                       }
                   }

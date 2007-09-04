@@ -86,10 +86,10 @@ am__libsciconsole_la_SOURCES_DIST =  \
 	src/jni/InterpreterManagement_wrap.c \
 	src/jni/GuiManagement_wrap.c src/jni/DropFiles_wrap.c \
 	src/noconsole/noconsole.c src/c/InterpreterManagement.c \
-	src/c/GuiManagement.c src/c/ClearConsole.c \
-	src/c/ClearConsolePart.c src/c/PromptToHome.c \
-	src/c/ShellPrintf.c src/c/dropFiles.c \
-	src/c/GetCharWithoutOutput.c src/jni/ShellRead.cpp \
+	src/c/GuiManagement.c src/c/dropFiles.c \
+	src/jni/ClearConsole.cpp src/jni/ClearConsolePart.cpp \
+	src/jni/ConsolePrintf.cpp src/jni/ConsoleRead.cpp \
+	src/jni/GetCharWithoutOutput.cpp src/jni/PromptToHome.cpp \
 	src/jni/SetConsolePrompt.cpp
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	libsciconsole_la-InterpreterManagement_wrap.lo \
@@ -98,13 +98,13 @@ am__libsciconsole_la_SOURCES_DIST =  \
 @GUI_FALSE@am__objects_2 = libsciconsole_la-noconsole.lo
 @GUI_TRUE@am__objects_2 = libsciconsole_la-InterpreterManagement.lo \
 @GUI_TRUE@	libsciconsole_la-GuiManagement.lo \
-@GUI_TRUE@	libsciconsole_la-ClearConsole.lo \
+@GUI_TRUE@	libsciconsole_la-dropFiles.lo
+@GUI_TRUE@am__objects_3 = libsciconsole_la-ClearConsole.lo \
 @GUI_TRUE@	libsciconsole_la-ClearConsolePart.lo \
+@GUI_TRUE@	libsciconsole_la-ConsolePrintf.lo \
+@GUI_TRUE@	libsciconsole_la-ConsoleRead.lo \
+@GUI_TRUE@	libsciconsole_la-GetCharWithoutOutput.lo \
 @GUI_TRUE@	libsciconsole_la-PromptToHome.lo \
-@GUI_TRUE@	libsciconsole_la-ShellPrintf.lo \
-@GUI_TRUE@	libsciconsole_la-dropFiles.lo \
-@GUI_TRUE@	libsciconsole_la-GetCharWithoutOutput.lo
-@GUI_TRUE@am__objects_3 = libsciconsole_la-ShellRead.lo \
 @GUI_TRUE@	libsciconsole_la-SetConsolePrompt.lo
 am_libsciconsole_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
@@ -298,12 +298,17 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the cpp files
-@GUI_TRUE@CONSOLE_CPP_SOURCES = src/jni/ShellRead.cpp \
+@GUI_TRUE@CONSOLE_CPP_JNI_SOURCES = src/jni/ClearConsole.cpp \
+@GUI_TRUE@src/jni/ClearConsolePart.cpp \
+@GUI_TRUE@src/jni/ConsolePrintf.cpp \
+@GUI_TRUE@src/jni/ConsoleRead.cpp \
+@GUI_TRUE@src/jni/GetCharWithoutOutput.cpp \
+@GUI_TRUE@src/jni/PromptToHome.cpp \
 @GUI_TRUE@src/jni/SetConsolePrompt.cpp
 
 
 # List of the c files
-@GUI_TRUE@CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
+@GUI_TRUE@CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
 @GUI_TRUE@src/jni/GuiManagement_wrap.c \
 @GUI_TRUE@src/jni/DropFiles_wrap.c
 
@@ -312,12 +317,7 @@ top_srcdir = @top_srcdir@
 @GUI_FALSE@CONSOLE_C_SOURCES = src/noconsole/noconsole.c
 @GUI_TRUE@CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
 @GUI_TRUE@src/c/GuiManagement.c \
-@GUI_TRUE@src/c/ClearConsole.c \
-@GUI_TRUE@src/c/ClearConsolePart.c \
-@GUI_TRUE@src/c/PromptToHome.c \
-@GUI_TRUE@src/c/ShellPrintf.c \
-@GUI_TRUE@src/c/dropFiles.c \
-@GUI_TRUE@src/c/GetCharWithoutOutput.c
+@GUI_TRUE@src/c/dropFiles.c
 
 
 # Includes need for the compilation
@@ -330,7 +330,7 @@ libsciconsole_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdi
 pkglib_LTLIBRARIES = libsciconsole.la
 
 # All the sources needed by libsciconsole.la
-libsciconsole_la_SOURCES = $(CONSOLE_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_SOURCES)
+libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES)
 libsciconsole_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
@@ -354,9 +354,13 @@ src/jni/GuiManagement.i
 
 #### console : include files ####
 libscishell_la_includedir = $(pkgincludedir)/console
-libscishell_la_include_HEADERS = includes/ShellRead.h \
-includes/ShellPrintf.h \
-includes/GetCharWithoutOutput.h
+libscishell_la_include_HEADERS = includes/ClearConsole.h \
+includes/ClearConsolePart.h \
+includes/ConsolePrintf.h \
+includes/ConsoleRead.h \
+includes/GetCharWithoutOutput.h \
+includes/PromptToHome.h \
+includes/SetConsolePrompt.h
 
 
 # Provides macros compilation, Java compilation, cleaning
@@ -478,6 +482,8 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsolePrintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsoleRead.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
@@ -486,8 +492,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InterpreterManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-PromptToHome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ShellPrintf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ShellRead.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-dropFiles.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-noconsole.Plo@am__quote@
 
@@ -554,47 +558,12 @@ libsciconsole_la-GuiManagement.lo: src/c/GuiManagement.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GuiManagement.lo `test -f 'src/c/GuiManagement.c' || echo '$(srcdir)/'`src/c/GuiManagement.c
 
-libsciconsole_la-ClearConsole.lo: src/c/ClearConsole.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-ClearConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/c/ClearConsole.c' || echo '$(srcdir)/'`src/c/ClearConsole.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo $(DEPDIR)/libsciconsole_la-ClearConsole.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ClearConsole.c' object='libsciconsole_la-ClearConsole.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/c/ClearConsole.c' || echo '$(srcdir)/'`src/c/ClearConsole.c
-
-libsciconsole_la-ClearConsolePart.lo: src/c/ClearConsolePart.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-ClearConsolePart.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo -c -o libsciconsole_la-ClearConsolePart.lo `test -f 'src/c/ClearConsolePart.c' || echo '$(srcdir)/'`src/c/ClearConsolePart.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo $(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ClearConsolePart.c' object='libsciconsole_la-ClearConsolePart.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-ClearConsolePart.lo `test -f 'src/c/ClearConsolePart.c' || echo '$(srcdir)/'`src/c/ClearConsolePart.c
-
-libsciconsole_la-PromptToHome.lo: src/c/PromptToHome.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-PromptToHome.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-PromptToHome.Tpo -c -o libsciconsole_la-PromptToHome.lo `test -f 'src/c/PromptToHome.c' || echo '$(srcdir)/'`src/c/PromptToHome.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-PromptToHome.Tpo $(DEPDIR)/libsciconsole_la-PromptToHome.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/PromptToHome.c' object='libsciconsole_la-PromptToHome.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-PromptToHome.lo `test -f 'src/c/PromptToHome.c' || echo '$(srcdir)/'`src/c/PromptToHome.c
-
-libsciconsole_la-ShellPrintf.lo: src/c/ShellPrintf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-ShellPrintf.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ShellPrintf.Tpo -c -o libsciconsole_la-ShellPrintf.lo `test -f 'src/c/ShellPrintf.c' || echo '$(srcdir)/'`src/c/ShellPrintf.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ShellPrintf.Tpo $(DEPDIR)/libsciconsole_la-ShellPrintf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ShellPrintf.c' object='libsciconsole_la-ShellPrintf.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-ShellPrintf.lo `test -f 'src/c/ShellPrintf.c' || echo '$(srcdir)/'`src/c/ShellPrintf.c
-
 libsciconsole_la-dropFiles.lo: src/c/dropFiles.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-dropFiles.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-dropFiles.Tpo -c -o libsciconsole_la-dropFiles.lo `test -f 'src/c/dropFiles.c' || echo '$(srcdir)/'`src/c/dropFiles.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-dropFiles.Tpo $(DEPDIR)/libsciconsole_la-dropFiles.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dropFiles.c' object='libsciconsole_la-dropFiles.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-dropFiles.lo `test -f 'src/c/dropFiles.c' || echo '$(srcdir)/'`src/c/dropFiles.c
-
-libsciconsole_la-GetCharWithoutOutput.lo: src/c/GetCharWithoutOutput.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-GetCharWithoutOutput.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Tpo -c -o libsciconsole_la-GetCharWithoutOutput.lo `test -f 'src/c/GetCharWithoutOutput.c' || echo '$(srcdir)/'`src/c/GetCharWithoutOutput.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Tpo $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetCharWithoutOutput.c' object='libsciconsole_la-GetCharWithoutOutput.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GetCharWithoutOutput.lo `test -f 'src/c/GetCharWithoutOutput.c' || echo '$(srcdir)/'`src/c/GetCharWithoutOutput.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -617,12 +586,47 @@ libsciconsole_la-GetCharWithoutOutput.lo: src/c/GetCharWithoutOutput.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciconsole_la-ShellRead.lo: src/jni/ShellRead.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ShellRead.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ShellRead.Tpo -c -o libsciconsole_la-ShellRead.lo `test -f 'src/jni/ShellRead.cpp' || echo '$(srcdir)/'`src/jni/ShellRead.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ShellRead.Tpo $(DEPDIR)/libsciconsole_la-ShellRead.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ShellRead.cpp' object='libsciconsole_la-ShellRead.lo' libtool=yes @AMDEPBACKSLASH@
+libsciconsole_la-ClearConsole.lo: src/jni/ClearConsole.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ClearConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/jni/ClearConsole.cpp' || echo '$(srcdir)/'`src/jni/ClearConsole.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo $(DEPDIR)/libsciconsole_la-ClearConsole.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ClearConsole.cpp' object='libsciconsole_la-ClearConsole.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ShellRead.lo `test -f 'src/jni/ShellRead.cpp' || echo '$(srcdir)/'`src/jni/ShellRead.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/jni/ClearConsole.cpp' || echo '$(srcdir)/'`src/jni/ClearConsole.cpp
+
+libsciconsole_la-ClearConsolePart.lo: src/jni/ClearConsolePart.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ClearConsolePart.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo -c -o libsciconsole_la-ClearConsolePart.lo `test -f 'src/jni/ClearConsolePart.cpp' || echo '$(srcdir)/'`src/jni/ClearConsolePart.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo $(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ClearConsolePart.cpp' object='libsciconsole_la-ClearConsolePart.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ClearConsolePart.lo `test -f 'src/jni/ClearConsolePart.cpp' || echo '$(srcdir)/'`src/jni/ClearConsolePart.cpp
+
+libsciconsole_la-ConsolePrintf.lo: src/jni/ConsolePrintf.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ConsolePrintf.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ConsolePrintf.Tpo -c -o libsciconsole_la-ConsolePrintf.lo `test -f 'src/jni/ConsolePrintf.cpp' || echo '$(srcdir)/'`src/jni/ConsolePrintf.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ConsolePrintf.Tpo $(DEPDIR)/libsciconsole_la-ConsolePrintf.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ConsolePrintf.cpp' object='libsciconsole_la-ConsolePrintf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ConsolePrintf.lo `test -f 'src/jni/ConsolePrintf.cpp' || echo '$(srcdir)/'`src/jni/ConsolePrintf.cpp
+
+libsciconsole_la-ConsoleRead.lo: src/jni/ConsoleRead.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ConsoleRead.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ConsoleRead.Tpo -c -o libsciconsole_la-ConsoleRead.lo `test -f 'src/jni/ConsoleRead.cpp' || echo '$(srcdir)/'`src/jni/ConsoleRead.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ConsoleRead.Tpo $(DEPDIR)/libsciconsole_la-ConsoleRead.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ConsoleRead.cpp' object='libsciconsole_la-ConsoleRead.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ConsoleRead.lo `test -f 'src/jni/ConsoleRead.cpp' || echo '$(srcdir)/'`src/jni/ConsoleRead.cpp
+
+libsciconsole_la-GetCharWithoutOutput.lo: src/jni/GetCharWithoutOutput.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-GetCharWithoutOutput.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Tpo -c -o libsciconsole_la-GetCharWithoutOutput.lo `test -f 'src/jni/GetCharWithoutOutput.cpp' || echo '$(srcdir)/'`src/jni/GetCharWithoutOutput.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Tpo $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GetCharWithoutOutput.cpp' object='libsciconsole_la-GetCharWithoutOutput.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-GetCharWithoutOutput.lo `test -f 'src/jni/GetCharWithoutOutput.cpp' || echo '$(srcdir)/'`src/jni/GetCharWithoutOutput.cpp
+
+libsciconsole_la-PromptToHome.lo: src/jni/PromptToHome.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-PromptToHome.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-PromptToHome.Tpo -c -o libsciconsole_la-PromptToHome.lo `test -f 'src/jni/PromptToHome.cpp' || echo '$(srcdir)/'`src/jni/PromptToHome.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-PromptToHome.Tpo $(DEPDIR)/libsciconsole_la-PromptToHome.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PromptToHome.cpp' object='libsciconsole_la-PromptToHome.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-PromptToHome.lo `test -f 'src/jni/PromptToHome.cpp' || echo '$(srcdir)/'`src/jni/PromptToHome.cpp
 
 libsciconsole_la-SetConsolePrompt.lo: src/jni/SetConsolePrompt.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-SetConsolePrompt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-SetConsolePrompt.Tpo -c -o libsciconsole_la-SetConsolePrompt.lo `test -f 'src/jni/SetConsolePrompt.cpp' || echo '$(srcdir)/'`src/jni/SetConsolePrompt.cpp
