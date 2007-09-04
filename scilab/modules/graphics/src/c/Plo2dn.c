@@ -220,14 +220,14 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       if (style[jj] > 0) { 
 	sciSetCurrentObj (ConstructPolyline
 			  (sciGetCurrentSubWin(),&(x[jj*(*n2)]),
-			   &(y[jj*(*n2)]),PD0,closeflag,*n2,*n1,ptype,
+			   &(y[jj*(*n2)]),PD0,closeflag,*n2,ptype,
 			   &style[jj],NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
       }
       else {
 	int minusstyle = -style[jj];
 	sciSetCurrentObj (ConstructPolyline
 			  (sciGetCurrentSubWin(),&(x[jj*(*n2)]),
-			   &(y[jj*(*n2)]),PD0,closeflag,*n2,*n1,ptype,
+			   &(y[jj*(*n2)]),PD0,closeflag,*n2,ptype,
 			   NULL,NULL,&minusstyle,NULL,NULL,FALSE,FALSE,TRUE,FALSE));
       }
       pobj = sciGetCurrentObj();
