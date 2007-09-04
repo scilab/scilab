@@ -31,9 +31,18 @@ InterpolatedDecomposition::~InterpolatedDecomposition( void )
 void InterpolatedDecomposition::getDrawnVertices(double xCoords[], double yCoords[], double zCoords[])
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
-  doubleArrayCopy(xCoords, pPOLYLINE_FEATURE(pPolyline)->pvx, getDrawnVerticesLength());
-  doubleArrayCopy(yCoords, pPOLYLINE_FEATURE(pPolyline)->pvy, getDrawnVerticesLength());
-  doubleArrayCopy(zCoords, pPOLYLINE_FEATURE(pPolyline)->pvz, getDrawnVerticesLength());
+  int nbVertices = getDrawnVerticesLength();
+
+  doubleArrayCopy(xCoords, pPOLYLINE_FEATURE(pPolyline)->pvx, nbVertices);
+  doubleArrayCopy(yCoords, pPOLYLINE_FEATURE(pPolyline)->pvy, nbVertices);
+  if ( pPOLYLINE_FEATURE(pPolyline)->pvz == NULL )
+  {
+    setDoubleArraySingleValue(zCoords, 0.0, nbVertices);
+  }
+  else
+  {
+    doubleArrayCopy(zCoords, pPOLYLINE_FEATURE(pPolyline)->pvz, nbVertices);
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 int InterpolatedDecomposition::getDrawnVerticesLength(void)

@@ -16,6 +16,7 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )
@@ -26,6 +27,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   int mark;/* NG */
   sciPointObj * pobj    = NULL ;
   sciPointObj * psubwin = NULL ;
+  sciPointObj * pFigure = NULL;
 
   CheckRhs(2,4);
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -55,10 +57,13 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   /* NG beg */
 
   
-  psubwin = sciGetCurrentSubWin() ;
+  startGraphicDataWriting();
+  pFigure = sciGetCurrentFigure();
+  psubwin = sciGetCurrentSubWin();
+  endGraphicDataWriting();
 
+  startFigureDataWriting(pFigure);
   Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
-
   pobj = sciGetCurrentObj(); /* the polyline newly created */
   if(mark == 0){ 
     /* marks are enabled but markstyle & foreground 
@@ -74,8 +79,11 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
     sciSetForeground (pobj, sciGetForeground (psubwin));
   }
+  endFigureDataWriting(pFigure);
 
+  startFigureDataReading(pFigure);
   sciDrawObjIfRequired(pobj);
+  endFigureDataReading(pFigure);
 
   /* NG end */
   LhsVar(1)=0;

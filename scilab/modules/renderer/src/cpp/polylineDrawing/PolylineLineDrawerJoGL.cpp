@@ -25,8 +25,7 @@ PolylineLineDrawerJoGL::PolylineLineDrawerJoGL( DrawablePolyline * polyline )
 /*------------------------------------------------------------------------------------------*/
 PolylineLineDrawerJoGL::~PolylineLineDrawerJoGL(void)
 {
-  delete getJavaMapper();
-  setJavaMapper(NULL);
+
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineLineDrawerJoGL::drawPolyline( void )
