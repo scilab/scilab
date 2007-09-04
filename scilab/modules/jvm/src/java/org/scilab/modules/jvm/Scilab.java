@@ -21,7 +21,7 @@ public class Scilab {
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
-	private Console sciConsole = null;
+	private Console sciConsole;
 	private int mode;
 	
 	private Window mainView;
@@ -74,10 +74,14 @@ public class Scilab {
 	 * @param prompt the prompt to be displayed as a String
 	 */
 	public void setPrompt(String prompt) {
-		this.sciConsole.setPrompt(prompt);;
+		this.sciConsole.setPrompt(prompt);
 	}
-	public Window getMainWindow()
-	{
+	
+	/**
+	 * Get main Scilab Window
+	 * @return main Scilab window
+	 */
+	public Window getMainWindow() {
 		return mainView;
 	}
 }
