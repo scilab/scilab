@@ -10,7 +10,7 @@
 #include "MALLOC.h"
 #include "message_scilab.h"
 #include "../../localization/includes/QueryStringMessage.h"
-#include "../../console/includes/ShellPrintf.h"
+#include "../../console/includes/ConsolePrintf.h"
 #include "../../shell/includes/scilines.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
@@ -44,7 +44,7 @@ void sciprint(char *fmt,...)
 
 	if (getScilabMode() == SCILAB_STD)
 	{
-		ShellPrintf(s_buf);
+		ConsolePrintf(s_buf);
 	}
 	else
 	{

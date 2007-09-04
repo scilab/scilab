@@ -10,7 +10,7 @@
 #include "sciprint_nd.h"
 #include <stdarg.h>
 #include "scilabmode.h"
-#include "../../console/includes/ShellPrintf.h"
+#include "../../console/includes/ConsolePrintf.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define MAXPRINTF 512
 /*-----------------------------------------------------------------------------------*/ 
@@ -35,7 +35,7 @@ void sciprint_nd(char *fmt,...)
 
 	if (getScilabMode() == SCILAB_STD)
 	{
-		ShellPrintf(buf);
+		ConsolePrintf(buf);
 	}
 	else
 	{
