@@ -11,7 +11,7 @@
 #include "getScilabJavaVM.h"
 #include "fromjava.h"
 /*-----------------------------------------------------------------------------------*/ 
-/* #define _JNI_DEBUG_TRACE */
+/*#define _JNI_DEBUG_TRACE*/
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *jvm_SCILAB=NULL;
 /*-----------------------------------------------------------------------------------*/ 
@@ -80,9 +80,9 @@ BOOL startJVM(char *SCI_PATH)
 			long status=0;
 			JavaVMInitArgs vm_args;
 #ifdef _JNI_DEBUG_TRACE
-			JavaVMOption jvm_options[5];
+			JavaVMOption jvm_options[8];
 #else
-			JavaVMOption jvm_options[3];
+			JavaVMOption jvm_options[4];
 #endif
 			int length_JAVACLASSPATH=0;
 			int length_JAVALIBRARYPATH=0;
@@ -132,16 +132,20 @@ BOOL startJVM(char *SCI_PATH)
 			jvm_options[0].optionString = "-Djava.compiler=NONE"; /* disable JIT */
 			jvm_options[1].optionString = JAVACLASSPATH;
 			jvm_options[2].optionString = JAVALIBRARYPATH;
+                        jvm_options[3].optionString = "-Dsun.java2d.opengl=true";
 #ifdef _JNI_DEBUG_TRACE
-			jvm_options[3].optionString = "-verbose:jni";  /* print JNI msgs */
-			jvm_options[4].optionString = "-Xcheck:jni";  /* print JNI errors */
+                        jvm_options[3].optionString = "-Dsun.java2d.opengl=True";
+                        jvm_options[4].optionString = "-Djogl.debug.Java2D";
+                        jvm_options[5].optionString = "-Djogl.debug.GLJPanel";
+			jvm_options[6].optionString = "-verbose:jni";  /* print JNI msgs */
+			jvm_options[7].optionString = "-Xcheck:jni";  /* print JNI errors */
 #endif
 
 			vm_args.options = jvm_options;
 #ifdef _JNI_DEBUG_TRACE
-			vm_args.nOptions = 5;
+			vm_args.nOptions = 8;
 #else
-			vm_args.nOptions = 3;
+			vm_args.nOptions = 4;
 #endif
 			vm_args.ignoreUnrecognized = TRUE;
 
