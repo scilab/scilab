@@ -206,11 +206,19 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\ClearConsole.c"
+				RelativePath="..\jni\ClearConsole.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ClearConsolePart.c"
+				RelativePath="..\jni\ClearConsolePart.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\ConsolePrintf.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\ConsoleRead.cpp"
 				>
 			</File>
 			<File
@@ -222,7 +230,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\GetCharWithoutOutput.c"
+				RelativePath="..\jni\GetCharWithoutOutput.cpp"
 				>
 			</File>
 			<File
@@ -242,19 +250,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\PromptToHome.c"
+				RelativePath="..\jni\PromptToHome.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\jni\SetConsolePrompt.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ShellPrintf.c"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\ShellRead.cpp"
 				>
 			</File>
 		</Filter>
@@ -263,19 +263,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\ClearConsole.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\ClearConsolePart.h"
-				>
-			</File>
-			<File
 				RelativePath=".\dropFiles.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\GetCharWithoutOutput.h"
 				>
 			</File>
 			<File
@@ -283,27 +271,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\HistoryManagement.h"
-				>
-			</File>
-			<File
 				RelativePath=".\InterpreterManagement.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\PromptToHome.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\SetConsolePrompt.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\SetConsolePrompt.hxx"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\ShellRead.hxx"
 				>
 			</File>
 		</Filter>
