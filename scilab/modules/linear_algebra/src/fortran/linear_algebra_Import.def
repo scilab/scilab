@@ -30,3 +30,4 @@ EXPORTS
 	schtst
 	intslash_
 	intsvd_
+        issymmetric_

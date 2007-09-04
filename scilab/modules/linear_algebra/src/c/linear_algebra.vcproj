@@ -203,6 +203,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\issymmetric.c"
+				>
+			</File>
+			<File
 				RelativePath=".\schurtable.c"
 				>
 			</File>
