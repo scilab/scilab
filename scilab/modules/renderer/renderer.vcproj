@@ -587,10 +587,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\polylineDrawing\PolylineDrawerJavaMapper.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\polylineDrawing\PolylineLineDrawerJoGL.cpp"
 				>
 			</File>
