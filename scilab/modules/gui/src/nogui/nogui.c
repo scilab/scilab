@@ -2,37 +2,35 @@
 /* INRIA 2006/2007 */
 /* @author Allan CORNET */
 /* @author Sylvestre LEDRU */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <errno.h>
-#include "machine.h" 
+#include "machine.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "nogui.h"
-#include "sxevents.h"
 #include "xscimore.h"
-#include "checkevts.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int C2F(gw_gui)()
 {
 	Scierror(999,"GUI interface not installed.\r\n");
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 BOOL TerminateGUI(void)
 {
 	return TRUE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int XClearScreenConsole(char *fname)
 {
 	sciprint("\n Only in Window Mode \n");
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int C2F(sxevents)(){
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 void C2F(xscimore)(int *n){
 	n=0;
 }
@@ -41,21 +39,21 @@ int C2F(checkevts)(int *i){
 	i=0;
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 void str_to_xterm ( register char * string, int nbytes){
 
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 void Click_menu(int n){
-	
+
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int GetScreenProperty(char *prop, char *value){
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 #define LF                    0x000a
-/* @TODO : this code is for a part duplicated from gui/src/c/xsci/inter.c 
+/* @TODO : this code is for a part duplicated from gui/src/c/xsci/inter.c
 with some stuff removed (TCL/TK and a few other things)
 */
 int Xorgetchar(int interrupt){
@@ -80,8 +78,8 @@ int inter_max_plus1 = 0;
   inter_max_plus1++;
 
 	  for( ; ; ) {
-    fflush(stdout); 
-    fflush(stderr); 
+    fflush(stdout);
+    fflush(stderr);
 
     /* Initialize masks  */
     select_mask = Select_mask_ref;
@@ -92,23 +90,23 @@ int inter_max_plus1 = 0;
     i = select(inter_max_plus1, &select_mask, &write_mask, (fd_set *)NULL, &select_timeout);
     if (i < 0) {
 		if (errno != EINTR) /* EINTR  A signal was caught. */
-	{ 
+	{
 	  sciprint("Error.\n");
 	  exit(0);
 	  continue;
 	}
-    } 
+    }
 
     /* if there's something to output */
-    if ( FD_ISSET(fd_out,&write_mask)) { 
-      fflush(stdout); 
+    if ( FD_ISSET(fd_out,&write_mask)) {
+      fflush(stdout);
     }
-    if ( FD_ISSET(fd_err,&write_mask)) { 
-      fflush(stderr); 
+    if ( FD_ISSET(fd_err,&write_mask)) {
+      fflush(stderr);
     }
 
     /* if there's something to read */
-    if (FD_ISSET(fd_in,&select_mask)) 
+    if (FD_ISSET(fd_in,&select_mask))
       state=1;
 
     if (state) {
@@ -116,7 +114,7 @@ int inter_max_plus1 = 0;
       if (i==LF) state=0;
       return(i);
     }
-	
+
     if (interrupt&&(ismenu()==1)) return(-1);
 
   }
@@ -132,4 +130,9 @@ void main_sci (char *startup, int lstartup,int memory){
 /*-----------------------------------------------------------------------------------*/
 void InitXsession(void){
 	Scierror(999,"GUI interface not installed.\r\n");
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL InitializeGUI(void)
+{
+  return TRUE;
 }
