@@ -15,11 +15,11 @@
 #
 # Scilab can be installed/used in different ways :
 # * ./configure; make install
-#    => will install Scilab into /usr/local/ and split files to 
+#    => will install Scilab into /usr/local/ and split files to
 #    /usr/local/bin, /usr/local/share/scilab/, /usr/local/lib/scilab/,
 #    /usr/local/include/scilab/
 # * ./configure --prefix=/my/dir/; make install
-#    => will install Scilab into /usr/local/ and split files to 
+#    => will install Scilab into /usr/local/ and split files to
 #    /my/dir/bin/, /my/dir/share/scilab/, /my/dir/lib/scilab/
 #    /my/dir/include/scilab/
 # * ./configure; make install prefix=$(DESTDIR)/usr \
@@ -30,10 +30,10 @@
 ## First, this script will look for scilab-bin in :
 # * If specified, in the $SCI variable
 # * Into the scilab/bin/ directory
-# * Into the scilab/ directory (if the user is using a source version and 
+# * Into the scilab/ directory (if the user is using a source version and
 # scilab has been compiled in this directory)
 # * if this file is a simlink to the real one. We browse symlink(s) until we
-# find the real "scilab" script file and consider that it is the right 
+# find the real "scilab" script file and consider that it is the right
 # directory
 # * That is all. Don't hesitate to contact us if you see one missing.
 #
@@ -65,7 +65,7 @@ if test -x "$run_sci"; then # scilab-bin is in the /bin/ directory
 	found=1
 else
 	run_sci="$curdir/../scilab-bin"
-	if test -x "$run_sci"; then # scilab-bin is in the / directory 
+	if test -x "$run_sci"; then # scilab-bin is in the / directory
 		# which is the case in a dev env
 		cd "$curdir/../"
 		SCI=`pwd`
@@ -113,7 +113,7 @@ fi
 export SCI
 
 ############# JAVA DETECTION ##############
-# Basic inspiration from Eclipse 
+# Basic inspiration from Eclipse
 #
 # Scilab is looking for Java in various places with different ways :
 # * if JAVA_HOME is specificed, use it
@@ -122,7 +122,7 @@ export SCI
 # * look in the PATH if there is a java binary
 # if it is the case, resolve the symlink and set the JAVA_HOME from it
 #
-# Once we have JAVA_HOME, we check that native libraries (libjava.so and 
+# Once we have JAVA_HOME, we check that native libraries (libjava.so and
 # 2 others) are available
 ###
 
@@ -166,7 +166,7 @@ if test -z "$JAVA_HOME"; then
 				_cur=`ls -ld "$_cur" | sed 's/.* -> //'`
 			done
 			# symlink resolved to the real file
-			
+
 			# Now, create JAVA_HOME
 			TMP=`dirname $_cur`
 			JAVA_HOME=`dirname $TMP`
@@ -180,7 +180,7 @@ fi
 if test ! -z "$JAVA_HOME"; then
 	echo "JAVA_HOME : $JAVA_HOME"
 
-# Manage JRE & JDK because libjava.so and others are stored in the JRE 
+# Manage JRE & JDK because libjava.so and others are stored in the JRE
 	if test -d $JAVA_HOME/jre; then
 		JRE_HOME=$JAVA_HOME/jre
 	else
@@ -202,19 +202,19 @@ if test ! -z "$JAVA_HOME"; then
 			;;
 	esac
 
-# Check if the lib exists or not (we should manage system where .so is not the 
+# Check if the lib exists or not (we should manage system where .so is not the
 # ext for library
 	LIBJAVA="$JRE_HOME/lib/$proc/libjava.so"
 	if test ! -f $LIBJAVA; then
 		echo "Cannot find $LIBJAVA"
 	else
-		export CLASSPATH=$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar
-		export LD_LIBRARY_PATH=$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH
+		export CLASSPATH="$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar"
+		export LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH"
 	fi
 else
 	echo "Have not been able to find any Java VM on this computer. Scilab maybe not be working"
 fi
-	
+
 ####### END OF JAVA ENV DETECTION/SETTING ######
 
 
@@ -245,8 +245,8 @@ else
 fi
 export LD_LIBRARY_PATH
 
-# --suppressions=$SCI/tools/valgrind.supp 
-# --gen-suppressions=all 
+# --suppressions=$SCI/tools/valgrind.supp
+# --gen-suppressions=all
 VALGRIND_OPTIONS=" --num-callers=6 --trace-children=yes --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
 
 do_scilex()
@@ -258,7 +258,7 @@ do_scilex()
     export XAPPLRESDIR
 
 #    tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
-    $SCILABBIN $* 
+    $SCILABBIN $*
 }
 
 do_scilex_now()
@@ -269,7 +269,7 @@ do_scilex_now()
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
 
-    $SCILABBIN $* 
+    $SCILABBIN $*
 }
 
 do_help()
@@ -313,9 +313,9 @@ do_compile()
 	echo "predef();getf('$name.sci');save('$name.bin');quit"\
 	      | $SCILABBIN -ns -nw | sed 1,8d 1>report 2>&1
 	if (grep error report 1> /dev/null  2>&1);
-	then cat report;echo " " 
+	then cat report;echo " "
 	   echo see `pwd`/report for more informations
-	   grep libok report>/dev/null; 
+	   grep libok report>/dev/null;
 	else rm -f report;
 	fi
 	umask 022
@@ -329,9 +329,9 @@ do_lib()
 	echo "$1=lib('$2/');save('$2/lib',$1);quit"\
 	      | $SCILABBIN -ns -nw |sed 1,/--\>/d 1>report 2>&1
 	if (grep error report 1> /dev/null  2>&1);
-	then cat report;echo " " 
+	then cat report;echo " "
 		echo see `pwd`/report for more informations
-		grep libok report>/dev/null; 
+		grep libok report>/dev/null;
 	else rm -f report;
 	fi
 	umask 022
@@ -339,21 +339,21 @@ do_lib()
 }
 
 
-do_print() 
+do_print()
 {
-	$SCI/bin/BEpsf $1 $2 
+	$SCI/bin/BEpsf $1 $2
 	lpr -P$3 $2.eps
 	rm -f $2 $2.eps
 }
 
-do_save() 
+do_save()
 {
-	case $3 in 
+	case $3 in
            Postscript)
-		
+
                 wantedName=$2.eps #add a .eps because BEpsf will do it wrong
                 mv $2 $wantedName
-                
+
                 $SCI/bin/BEpsf $1 $wantedName
                 rm -f $wantedName.temp 1> /dev/null  2>&1
                 ;;
@@ -370,13 +370,13 @@ do_save()
                 mv $newTex $newTex.scilab.temp 1> /dev/null  2>&1
 
 		$SCI/bin/Blatexpr $1 1.0 1.0 $2
-                
+
                 if test $newEps != $wantedEpsName ; then
                         mv $newEps $wantedEpsName
                         mv $newEps.scilab.temp $newEps 1> /dev/null  2>&1 #move the temp file back
                 fi
 
-                
+
                 if test $newTex != $wantedTexName ; then
                         mv $newTex $wantedTexName
                         mv $newTex.scilab.temp $newTex 1> /dev/null  2>&1 #move the temp file back
@@ -492,7 +492,7 @@ if test "$rest" = "yes"; then
   prevarg=
   language=
   fontname=
-  for sciarg 
+  for sciarg
   do
     # If the previous argument needs an argument, assign it.
     if test -n "$prevarg"; then
@@ -513,10 +513,10 @@ if test "$rest" = "yes"; then
       -nb)
 	  sci_args="$sci_args -nb"
           ;;
-      -debug) 
+      -debug)
           DEBUG="-debug"
           ;;
-      -profiling) 
+      -profiling)
           PROFILING="-profiling"
           ;;
       -nw)
@@ -602,7 +602,7 @@ if test "$rest" = "yes"; then
         $sci_exe $sci_args
     else
         sci_exe="do_scilex"
-        $sci_exe $sci_args 
+        $sci_exe $sci_args
 		fi
     fi
   fi
