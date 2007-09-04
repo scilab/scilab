@@ -5,31 +5,29 @@
 ** Made by  Bruno JOFRET <bruno.jofret@inria.fr>
 **
 ** Started on  Thu Jul 19 12:12:28 2007 bruno
-** Last update Thu Jul 26 16:28:13 2007 bruno
+** Last update Tue Sep  4 14:48:18 2007 bruno
 **
 ** Copyright INRIA 2007
 */
 
 #include "stack-c.h"
 
-#define SYMETRIC	1
-#define NOT_SYMETRIC	0
+#define SYMMETRIC	1
+#define NOT_SYMMETRIC	0
 
 /*
-** Check wether or not a Matrix is Symetric.
+** Check wether or not a Matrix is Symmetric.
 */
-
-/** TODO : Check With SERGE. */
 
 /*
 **   Two cases :
 **   ~ Real Case :
 **   --------------
-**   - Check that symetrics elements are strictly equals.
+**   - Check that symmetrics elements are strictly equals.
 **
 **   ~ Complex Case :
 **   -----------------
-**   - Check that symetrics elements are conjugate.
+**   - Check that symmetrics elements are conjugate.
 **   - Check that diagonal's elements are Real.
 */
 
@@ -45,14 +43,16 @@ int C2F(issymmetric)(int *stackPosition) {
   int size = m * n;
 
   /* Local variables */
-    int lineIterator = 0;
-    int columnIterator = 0;
-    int elementAddress = 0;
-    int symetricElementAddress = 0;
+  int lineIterator = 0;
+  int columnIterator = 0;
+  int elementAddress = 0;
+  int symetricElementAddress = 0;
+  double realRest = 0;
+  double imagRest = 0;
 
   /** If the matrix is not Square, it can not be symmetric */
   if (m != n) {
-    return(NOT_SYMETRIC);
+    return(NOT_SYMMETRIC);
   }
 
   if (isComplex(intAddress)) {
@@ -63,14 +63,14 @@ int C2F(issymmetric)(int *stackPosition) {
       for (columnIterator = 0 ; columnIterator < lineIterator ; ++columnIterator) {
 	elementAddress = l + columnIterator + lineIterator * n;
 	symetricElementAddress = l + columnIterator * n + lineIterator;
-	double rest = abs(getElementByAddress(elementAddress) - getElementByAddress(symetricElementAddress));
-	if (rest > 0) {
-	  return NOT_SYMETRIC;
+	realRest = fabs(getElementByAddress(elementAddress) - getElementByAddress(symetricElementAddress));
+	if (realRest > 0) {
+	  return NOT_SYMMETRIC;
 	}
       }
     }
     /* We have not detected the Matrix is not Symetric */
-    return SYMETRIC;
+    return SYMMETRIC;
   }
   else {
     /*
@@ -85,8 +85,8 @@ int C2F(issymmetric)(int *stackPosition) {
     for(lineIterator = 0 ; lineIterator < n ; ++lineIterator) {
       elementAddress = l + lineIterator + lineIterator * n;
       symetricElementAddress = elementAddress + size;
-      if (abs(getElementByAddress(symetricElementAddress)) > 0) {
-	return NOT_SYMETRIC;
+      if (fabs(getElementByAddress(symetricElementAddress)) > 0) {
+	return NOT_SYMMETRIC;
       }
     }
     /** END : Diag Check */
@@ -96,14 +96,14 @@ int C2F(issymmetric)(int *stackPosition) {
       for (columnIterator = 1 ; columnIterator <= lineIterator ; ++columnIterator) {
 	elementAddress = l + columnIterator - 1 + lineIterator * n;
 	symetricElementAddress = l + (columnIterator - 1) * n + lineIterator;
-	double realRest = abs(getElementByAddress(elementAddress) - getElementByAddress(symetricElementAddress));
-	double imagRest = abs(getElementByAddress(elementAddress + size) + getElementByAddress(symetricElementAddress + size));
+	realRest = fabs(getElementByAddress(elementAddress) - getElementByAddress(symetricElementAddress));
+	imagRest = fabs(getElementByAddress(elementAddress + size) + getElementByAddress(symetricElementAddress + size));
 	if (realRest > 0 || imagRest > 0) {
-	  return NOT_SYMETRIC;
+	  return NOT_SYMMETRIC;
 	}
       }
     }
     /* We have not detected the Matrix is not Symetric */
-    return SYMETRIC;
+    return SYMMETRIC;
   }
 }
