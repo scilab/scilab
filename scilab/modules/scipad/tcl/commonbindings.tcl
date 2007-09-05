@@ -129,7 +129,7 @@ if {$tcl_platform(platform) == "unix"} {
                    {event generate %W <[string range %K 3 end]>}}
                bind all <Control-KP_$k> {if {[expr {%s & 16}] == 0} \
                    {event generate %W <Control-[string range %K 3 end]>}}
-        }
+          }
     }
 }
 
