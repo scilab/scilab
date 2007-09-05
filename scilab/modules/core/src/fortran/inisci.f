@@ -179,13 +179,14 @@ c
 c     .  Initial values for main window row and column sizes
 c     .  ---------------------------------------------------
 
-      if (intexmacs().eq.0) then
-         lct(2) = 1
-      else
-         lct(2) = 0
-      endif
+c     commented out by Vincent COUVERT 05/09/2007 (now called by InitializeShell.c)
+c     if (intexmacs().eq.0) then
+c        lct(2) = 1
+c     else
+c        lct(2) = 0
+c     endif
 c     set default values number of lines and columns
-      call scilinesdefault()
+c     call scilinesdefault()
 
 c     .  en mode fenetre ces valeurs sont remplacees par les dimension effectives
 
