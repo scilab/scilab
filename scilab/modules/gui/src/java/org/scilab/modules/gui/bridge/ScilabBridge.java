@@ -607,6 +607,16 @@ public class ScilabBridge {
 	public static void setPrompt(Console console, String prompt) {
 		ScilabConsoleBridge.setPrompt(console, prompt);
 	}
+	
+	/**
+	 * Updates Scilab internal variables containing the size of the console
+	 * These variables are used to format data before displaying it
+	 * @param console object we want to get the size
+	 */
+	public static void scilabLinesUpdate(Console console) {
+		ScilabConsoleBridge.scilabLinesUpdate(console);
+	}
+
 
 	/*****************/
 	/* Canvas Bridge */

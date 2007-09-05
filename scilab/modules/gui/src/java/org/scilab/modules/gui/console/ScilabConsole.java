@@ -158,4 +158,13 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	public void setPrompt(String prompt) {
 		ScilabBridge.setPrompt(this, prompt);
 	}
+	
+	/**
+	 * Updates Scilab internal variables containing the size of the console
+	 * These variables are used to format data before displaying it
+	 */
+	public void scilabLinesUpdate() {
+		ScilabBridge.scilabLinesUpdate(this);
+	}
+
 }

@@ -86,7 +86,8 @@ am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
 	libscishell_la-mainscic.lo \
 	libscishell_la-GetCharWithEventsLoop.lo \
 	libscishell_la-zzledt.lo libscishell_la-gotoxy_nw.lo \
-	libscishell_la-clrscr_nw.lo
+	libscishell_la-clrscr_nw.lo libscishell_la-InitializeShell.lo \
+	libscishell_la-TerminateShell.lo
 am__objects_2 =
 am__objects_3 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo libscishell_la-sci_lines.lo
@@ -289,7 +290,9 @@ src/c/others/mainscic.c \
 src/c/others/GetCharWithEventsLoop.c \
 src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
-src/c/others/clrscr_nw.c
+src/c/others/clrscr_nw.c \
+src/c/InitializeShell.c \
+src/c/TerminateShell.c
 
 
 # List of the gateway c files
@@ -336,7 +339,11 @@ libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
 #### shell : include files ####
 libscishell_la_includedir = $(pkgincludedir)/shell
-libscishell_la_include_HEADERS = includes/gw_shell.h includes/scilines.h
+libscishell_la_include_HEADERS = includes/gw_shell.h \
+includes/scilines.h \
+includes/InitializeShell.h \
+includes/TerminateShell.h
+
 @GUI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -452,6 +459,8 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-GetCharWithEventsLoop.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-InitializeShell.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-TerminateShell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clrscr_nw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gotoxy_nw.Plo@am__quote@
@@ -548,6 +557,20 @@ libscishell_la-clrscr_nw.lo: src/c/others/clrscr_nw.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/clrscr_nw.c' object='libscishell_la-clrscr_nw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
+
+libscishell_la-InitializeShell.lo: src/c/InitializeShell.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-InitializeShell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-InitializeShell.Tpo -c -o libscishell_la-InitializeShell.lo `test -f 'src/c/InitializeShell.c' || echo '$(srcdir)/'`src/c/InitializeShell.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-InitializeShell.Tpo $(DEPDIR)/libscishell_la-InitializeShell.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeShell.c' object='libscishell_la-InitializeShell.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-InitializeShell.lo `test -f 'src/c/InitializeShell.c' || echo '$(srcdir)/'`src/c/InitializeShell.c
+
+libscishell_la-TerminateShell.lo: src/c/TerminateShell.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-TerminateShell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-TerminateShell.Tpo -c -o libscishell_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-TerminateShell.Tpo $(DEPDIR)/libscishell_la-TerminateShell.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateShell.c' object='libscishell_la-TerminateShell.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
 
 libscishell_la-gw_shell.lo: sci_gateway/c/gw_shell.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-gw_shell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-gw_shell.Tpo -c -o libscishell_la-gw_shell.lo `test -f 'sci_gateway/c/gw_shell.c' || echo '$(srcdir)/'`sci_gateway/c/gw_shell.c

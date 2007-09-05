@@ -51,5 +51,10 @@ public interface Console extends Dockable {
    * @param prompt the prompt to be displayed in the console
    */
   void setPrompt(String prompt);
-
+  
+  /**
+   * Updates Scilab internal variables containing the size of the console
+   * These variables are used to format data before displaying it
+   */
+  void scilabLinesUpdate();
 }

@@ -15,7 +15,9 @@ src/c/others/mainscic.c \
 src/c/others/GetCharWithEventsLoop.c \
 src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
-src/c/others/clrscr_nw.c
+src/c/others/clrscr_nw.c \
+src/c/InitializeShell.c \
+src/c/TerminateShell.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
@@ -61,7 +63,10 @@ libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
 #### shell : include files ####
 libscishell_la_includedir=$(pkgincludedir)/shell
-libscishell_la_include_HEADERS = includes/gw_shell.h includes/scilines.h
+libscishell_la_include_HEADERS = includes/gw_shell.h \
+includes/scilines.h \
+includes/InitializeShell.h \
+includes/TerminateShell.h
 
 if GUI
 

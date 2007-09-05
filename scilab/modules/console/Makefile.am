@@ -13,6 +13,7 @@ src/jni/ConsolePrintf.cpp \
 src/jni/ConsoleRead.cpp \
 src/jni/GetCharWithoutOutput.cpp \
 src/jni/PromptToHome.cpp \
+src/jni/ScilabLinesUpdate.cpp \
 src/jni/SetConsolePrompt.cpp
 
 # List of the c files
@@ -20,9 +21,11 @@ CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
 src/jni/GuiManagement_wrap.c \
 src/jni/DropFiles_wrap.c
 
-CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
+CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
+src/c/InterpreterManagement.c \
 src/c/GuiManagement.c \
-src/c/dropFiles.c
+src/c/dropFiles.c \
+src/c/TerminateConsole.c
 
 else
 
@@ -71,9 +74,11 @@ includes/ClearConsolePart.h \
 includes/ConsolePrintf.h \
 includes/ConsoleRead.h \
 includes/GetCharWithoutOutput.h \
+includes/InitializeConsole.h \
 includes/PromptToHome.h \
-includes/SetConsolePrompt.h
-
+includes/ScilabLinesUpdate.h \
+includes/SetConsolePrompt.h \
+includes/TerminateConsole.h
 
 
 # Provides macros compilation, Java compilation, cleaning
