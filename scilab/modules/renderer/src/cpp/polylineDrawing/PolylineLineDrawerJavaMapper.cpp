@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: ArcLineDrawerJavaMapper.cpp                                      */
+/* file: PolylineLineDrawerJavaMapper.cpp                                 */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Contains mapping of java method used by ArcLineDrawer           */

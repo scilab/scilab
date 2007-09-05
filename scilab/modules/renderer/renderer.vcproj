@@ -406,6 +406,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineFillDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineFillDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\PolylineLineDrawerGL.cpp"
 					>
 				</File>
@@ -921,6 +929,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\polylineDrawing\InterpolatedDecomposition.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineFillDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineFillDrawerJoGL.hxx"
 					>
 				</File>
 				<File

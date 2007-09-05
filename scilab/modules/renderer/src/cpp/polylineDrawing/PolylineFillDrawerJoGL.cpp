@@ -1,11 +1,11 @@
 /*------------------------------------------------------------------------*/
-/* file: PolylineLineDrawerJoGL.cpp                                       */
+/* file: PolylineFillDrawerJoGL.cpp                                       */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Strategy drawing the line of a polyline object                  */
+/* desc : Strategy filling the inside of a polygon curve                  */
 /*------------------------------------------------------------------------*/
 
-#include "PolylineLineDrawerJoGL.hxx"
+#include "PolylineFillDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -17,26 +17,24 @@ namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-PolylineLineDrawerJoGL::PolylineLineDrawerJoGL( DrawablePolyline * polyline )
+PolylineFillDrawerJoGL::PolylineFillDrawerJoGL( DrawablePolyline * polyline )
   : DrawPolylineStrategy(polyline), DrawableObjectJoGL(polyline)
 {
-  setJavaMapper(new PolylineLineDrawerJavaMapper());
+  setJavaMapper(new PolylineFillDrawerJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
-PolylineLineDrawerJoGL::~PolylineLineDrawerJoGL(void)
+PolylineFillDrawerJoGL::~PolylineFillDrawerJoGL(void)
 {
 
 }
 /*------------------------------------------------------------------------------------------*/
-void PolylineLineDrawerJoGL::drawPolyline( void )
+void PolylineFillDrawerJoGL::drawPolyline( void )
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
   initializeDrawing() ;
 
   // set the line parameters
-  getLineDrawerJavaMapper()->setLineParameters(sciGetGraphicContext(pObj)->foregroundcolor,
-                                               (float)sciGetLineWidth(pObj),
-                                               sciGetLineStyle(pObj));
+  getFillDrawerJavaMapper()->setBackColor(sciGetGraphicContext(pObj)->backgroundcolor) ;
 
   // get the data of the polyline
   int      nbVertices = 0   ;
@@ -62,7 +60,7 @@ void PolylineLineDrawerJoGL::drawPolyline( void )
   m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
 
   // display the rectangle
-  getLineDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  getFillDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
 
   delete[] xCoords;
   delete[] yCoords;
@@ -70,14 +68,14 @@ void PolylineLineDrawerJoGL::drawPolyline( void )
   endDrawing() ;
 }
 /*------------------------------------------------------------------------------------------*/
-void PolylineLineDrawerJoGL::showPolyline( void )
+void PolylineFillDrawerJoGL::showPolyline( void )
 {
   show();
 }
 /*------------------------------------------------------------------------------------------*/
-PolylineLineDrawerJavaMapper * PolylineLineDrawerJoGL::getLineDrawerJavaMapper(void)
+PolylineFillDrawerJavaMapper * PolylineFillDrawerJoGL::getFillDrawerJavaMapper(void)
 {
-  return dynamic_cast<PolylineLineDrawerJavaMapper *>(getJavaMapper());
+  return dynamic_cast<PolylineFillDrawerJavaMapper *>(getJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 

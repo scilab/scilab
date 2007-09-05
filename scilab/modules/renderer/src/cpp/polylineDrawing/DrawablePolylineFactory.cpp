@@ -12,6 +12,7 @@
 #include "ConcreteDrawablePolyline.hxx"
 #include "getHandleDrawer.h"
 #include "PolylineLineDrawerJoGL.hxx"
+#include "PolylineFillDrawerJoGL.hxx"
 #include "InterpolatedDecomposition.hxx"
 #include "StairCaseDecomposition.hxx"
 
@@ -47,7 +48,16 @@ void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
   cPolyline->removeDecompositionStrategy();
   cPolyline->removeDrawingStrategies();
 
-  cPolyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
+  if (sciGetIsLine(pPolyline))
+  {
+    cPolyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
+  }
+
+  if (sciGetIsFilled(pPolyline))
+  {
+    cPolyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
+  }
+  
   if ( sciGetPolylineStyle(pPolyline) == 2 )
   {
     cPolyline->setDecompositionStrategy(new StairCaseDecomposition(polyline));
