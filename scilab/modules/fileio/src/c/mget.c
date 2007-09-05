@@ -18,13 +18,13 @@ int swap = 0;
 #define MGET_CHAR_NC(Type) \
 {\
 	Type *val = (Type *) res ;\
-	items=fread(val,sizeof(Type),n,fa);\
+	items=(int)fread(val,sizeof(Type),n,fa);\
 }
 /*-----------------------------------------------------------------------------------*/
 #define MGET_NC(Type,Fswap) \
 {\
 	Type *val = (Type *) res ;\
-	items=fread(val,sizeof(Type),n,fa);\
+	items=(int)fread(val,sizeof(Type),n,fa);\
 	if (swap) \
 	for (i=0;i<items;i++) \
 	val[i]=Fswap(val[i]);\
