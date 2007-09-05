@@ -84,7 +84,6 @@ libscihistory_manager_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__libscihistory_manager_la_SOURCES_DIST =  \
-	src/nohistory_manager/nohistory_manager.c \
 	src/c/getCommentDateSession.c src/jni/HistoryManagement_wrap.c \
 	src/cpp/CommandLine.cpp src/cpp/HistoryFile.cpp \
 	src/cpp/HistoryManager.cpp src/cpp/HistorySearch.cpp \
@@ -103,14 +102,33 @@ am__libscihistory_manager_la_SOURCES_DIST =  \
 	sci_gateway/c/sci_sethistoryfile.c \
 	sci_gateway/c/sci_historymanager.c
 @GUI_FALSE@am__objects_1 =  \
-@GUI_FALSE@	libscihistory_manager_la-nohistory_manager.lo
+@GUI_FALSE@	libscihistory_manager_la-getCommentDateSession.lo
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	libscihistory_manager_la-getCommentDateSession.lo \
 @GUI_TRUE@	libscihistory_manager_la-HistoryManagement_wrap.lo
+@GUI_FALSE@am__objects_2 = libscihistory_manager_la-CommandLine.lo \
+@GUI_FALSE@	libscihistory_manager_la-HistoryFile.lo \
+@GUI_FALSE@	libscihistory_manager_la-HistoryManager.lo \
+@GUI_FALSE@	libscihistory_manager_la-HistorySearch.lo
 @GUI_TRUE@am__objects_2 = libscihistory_manager_la-CommandLine.lo \
 @GUI_TRUE@	libscihistory_manager_la-HistoryFile.lo \
 @GUI_TRUE@	libscihistory_manager_la-HistoryManager.lo \
 @GUI_TRUE@	libscihistory_manager_la-HistorySearch.lo
+@GUI_FALSE@am__objects_3 =  \
+@GUI_FALSE@	libscihistory_manager_la-gw_history_manager.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_addhistory.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_displayhistory.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_gethistory.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_gethistoryfile.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_historysize.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_loadhistory.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_removelinehistory.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_resethistory.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_saveafterncommands.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_saveconsecutivecommands.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_savehistory.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_sethistoryfile.lo \
+@GUI_FALSE@	libscihistory_manager_la-sci_historymanager.lo
 @GUI_TRUE@am__objects_3 =  \
 @GUI_TRUE@	libscihistory_manager_la-gw_history_manager.lo \
 @GUI_TRUE@	libscihistory_manager_la-sci_addhistory.lo \
@@ -326,7 +344,11 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the cpp files
-@GUI_FALSE@HISTORY_MANAGER_CPP_SOURCES = 
+@GUI_FALSE@HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \
+@GUI_FALSE@src/cpp/HistoryFile.cpp \
+@GUI_FALSE@src/cpp/HistoryManager.cpp \
+@GUI_FALSE@src/cpp/HistorySearch.cpp
+
 
 # List of the cpp files
 @GUI_TRUE@HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \
@@ -336,7 +358,7 @@ top_srcdir = @top_srcdir@
 
 
 # List of the c files
-@GUI_FALSE@HISTORY_MANAGER_C_SOURCES = src/nohistory_manager/nohistory_manager.c
+@GUI_FALSE@HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c
 
 # List of the c files
 @GUI_TRUE@HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c \
@@ -344,7 +366,21 @@ top_srcdir = @top_srcdir@
 
 
 # List of the gateway c files
-@GUI_FALSE@GATEWAY_C_SOURCES = 
+@GUI_FALSE@GATEWAY_C_SOURCES = sci_gateway/c/gw_history_manager.c \
+@GUI_FALSE@sci_gateway/c/sci_addhistory.c  \
+@GUI_FALSE@sci_gateway/c/sci_displayhistory.c  \
+@GUI_FALSE@sci_gateway/c/sci_gethistory.c  \
+@GUI_FALSE@sci_gateway/c/sci_gethistoryfile.c  \
+@GUI_FALSE@sci_gateway/c/sci_historysize.c  \
+@GUI_FALSE@sci_gateway/c/sci_loadhistory.c  \
+@GUI_FALSE@sci_gateway/c/sci_removelinehistory.c  \
+@GUI_FALSE@sci_gateway/c/sci_resethistory.c  \
+@GUI_FALSE@sci_gateway/c/sci_saveafterncommands.c  \
+@GUI_FALSE@sci_gateway/c/sci_saveconsecutivecommands.c  \
+@GUI_FALSE@sci_gateway/c/sci_savehistory.c  \
+@GUI_FALSE@sci_gateway/c/sci_sethistoryfile.c  \
+@GUI_FALSE@sci_gateway/c/sci_historymanager.c
+
 
 # List of the gateway c files
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_history_manager.c \
@@ -370,12 +406,12 @@ libscihistory_manager_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -
 libscihistory_manager_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ -I$(top_srcdir)/modules/history_manager/includes/
 libscihistory_manager_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscihistory_manager.la
 
 # All the sources needed by libscihistory_manager.la
-libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
+libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 libscihistory_manager_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
@@ -386,11 +422,11 @@ modulename = history_manager
 libscihistory_manager_la_rootdir = $(mydatadir)
 libscihistory_manager_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### history_manager : init scripts #### 
+#### history_manager : init scripts ####
 libscihistory_manager_la_etcdir = $(mydatadir)/etc
 libscihistory_manager_la_etc_DATA = etc/history_manager.quit etc/history_manager.start
 
-#### history_manager : gateway declaration #### 
+#### history_manager : gateway declaration ####
 libscihistory_manager_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihistory_manager_la_sci_gateway_DATA = sci_gateway/history_manager_gateway.xml
 
@@ -524,7 +560,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-HistorySearch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-getCommentDateSession.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-gw_history_manager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-nohistory_manager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-sci_addhistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-sci_displayhistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-sci_gethistory.Plo@am__quote@
@@ -559,13 +594,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscihistory_manager_la-nohistory_manager.lo: src/nohistory_manager/nohistory_manager.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-nohistory_manager.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-nohistory_manager.Tpo -c -o libscihistory_manager_la-nohistory_manager.lo `test -f 'src/nohistory_manager/nohistory_manager.c' || echo '$(srcdir)/'`src/nohistory_manager/nohistory_manager.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscihistory_manager_la-nohistory_manager.Tpo $(DEPDIR)/libscihistory_manager_la-nohistory_manager.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nohistory_manager/nohistory_manager.c' object='libscihistory_manager_la-nohistory_manager.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-nohistory_manager.lo `test -f 'src/nohistory_manager/nohistory_manager.c' || echo '$(srcdir)/'`src/nohistory_manager/nohistory_manager.c
 
 libscihistory_manager_la-getCommentDateSession.lo: src/c/getCommentDateSession.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-getCommentDateSession.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-getCommentDateSession.Tpo -c -o libscihistory_manager_la-getCommentDateSession.lo `test -f 'src/c/getCommentDateSession.c' || echo '$(srcdir)/'`src/c/getCommentDateSession.c

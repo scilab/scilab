@@ -3,7 +3,6 @@
 ### INRIA - Scilab 2007
 ########## *
 
-if GUI
 
 # List of the cpp files
 HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \
@@ -12,8 +11,7 @@ src/cpp/HistoryManager.cpp \
 src/cpp/HistorySearch.cpp
 
 # List of the c files
-HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c \
-src/jni/HistoryManagement_wrap.c
+HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_history_manager.c \
@@ -31,17 +29,11 @@ sci_gateway/c/sci_savehistory.c  \
 sci_gateway/c/sci_sethistoryfile.c  \
 sci_gateway/c/sci_historymanager.c
 
-else
-
-# List of the cpp files
-HISTORY_MANAGER_CPP_SOURCES = 
+if GUI
 
 # List of the c files
-HISTORY_MANAGER_C_SOURCES = src/nohistory_manager/nohistory_manager.c
-
-# List of the gateway c files
-GATEWAY_C_SOURCES = 
-
+HISTORY_MANAGER_C_SOURCES = $(HISTORY_MANAGER_C_SOURCES) \
+src/jni/HistoryManagement_wrap.c
 
 endif
 
@@ -55,12 +47,12 @@ libscihistory_manager_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(to
 
 libscihistory_manager_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscihistory_manager.la
 
 # All the sources needed by libscihistory_manager.la
-libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
+libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 ## Libraries necessary
 libscihistory_manager_la_LIBADD = \
@@ -74,11 +66,11 @@ modulename=history_manager
 libscihistory_manager_la_rootdir = $(mydatadir)
 libscihistory_manager_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### history_manager : init scripts #### 
+#### history_manager : init scripts ####
 libscihistory_manager_la_etcdir = $(mydatadir)/etc
 libscihistory_manager_la_etc_DATA = etc/history_manager.quit etc/history_manager.start
 
-#### history_manager : gateway declaration #### 
+#### history_manager : gateway declaration ####
 libscihistory_manager_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihistory_manager_la_sci_gateway_DATA = sci_gateway/history_manager_gateway.xml
 
