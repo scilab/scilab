@@ -30,10 +30,10 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 		 */
 		*io = 0;
 		if (C2F(iop).lct[0] == -1) { return 0; }
-		if (getColumnsSize() > 0) 
+		if (getLinesSize() > 0) 
 		{
 			/* Management of the page numbering (pagination in French) */
-			if (C2F(iop).lct[0] + 3 > getColumnsSize())
+			if (C2F(iop).lct[0] + 3 > getLinesSize())
 			{
 				/* Number of max line reached, management of the 'more' */
 				C2F(iop).lct[0] = 0;
