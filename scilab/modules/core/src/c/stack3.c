@@ -540,12 +540,12 @@ void *Name2ptr(char *namex)
 {
   int l1; int *loci;
   integer id[nsiz];
-  C2F(str2name)(namex, id, strlen(namex));
+  C2F(str2name)(namex, id, (unsigned long)strlen(namex));
   /* get the position in fin */
   Fin = -1;
   C2F(stackg)(id);
   if (Fin == 0) {
-    error_scilab(4,"core_error_4",get_fname(namex,strlen(namex)));
+    error_scilab(4,"core_error_4",get_fname(namex,(unsigned long)strlen(namex)));
     return 0;
   }
   /* get data */
@@ -577,13 +577,13 @@ int Name2where(char *namex)
 {
   int loci;
   integer id[nsiz];
-  C2F(str2name)(namex, id, strlen(namex));
+  C2F(str2name)(namex, id, (unsigned long)strlen(namex));
   /* get the position in fin */
   Fin = -1;
   C2F(stackg)(id);
   if (Fin == 0) 
   {
-	error_scilab(4,"core_error_4",get_fname(namex,strlen(namex)));
+	error_scilab(4,"core_error_4",get_fname(namex,(unsigned long)strlen(namex)));
     return 0;
   }
   loci = *Lstk(Fin);
@@ -732,7 +732,7 @@ int getlengthchain(char *namex)
 	integer id[nsiz];
 	integer lr1;
 	integer nlr1;
-	unsigned long name_len= strlen(namex);
+	unsigned long name_len= (unsigned long)strlen(namex);
 
 	Err = 0;
 	C2F(str2name)(namex, id, name_len);

@@ -126,7 +126,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	InitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 	sprintf(InitStringToScilab,"exec(\"%s\",-1);quit;",ScilabStartupUsed);
 	
-	C2F(scirun)(InitStringToScilab,strlen(InitStringToScilab));
+	C2F(scirun)(InitStringToScilab,(long int)strlen(InitStringToScilab));
 
 	if (ScilabStartupUsed) {FREE(ScilabStartupUsed);ScilabStartupUsed=NULL;}
 	if (InitStringToScilab) {FREE(InitStringToScilab);InitStringToScilab=NULL;}

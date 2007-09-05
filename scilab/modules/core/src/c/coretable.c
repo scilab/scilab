@@ -54,7 +54,7 @@ void C2F(interf)(void * x1, void * x2, void * x3, void * x4, void * x5, void * x
 
 void C2F(interf1)(char *name, long int size)
 {
-	((interff1) *interffonc)(name,strlen(name));
+	((interff1) *interffonc)(name,(long)strlen(name));
 }
 
 /** fixes the function associated to name **/

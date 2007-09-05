@@ -29,7 +29,7 @@ BOOL getversionmodule(char *modulename,
 		int len=0;
 
 		SciPath=getSCIpath();
-		len=strlen(FORMATVERSIONFILENAME)+strlen(SciPath)+strlen(modulename)+1;
+		len=(int)strlen(FORMATVERSIONFILENAME)+(int)strlen(SciPath)+(int)strlen(modulename)+1;
 		filename_VERSION_module=(char*)MALLOC(sizeof(char)*len);
 		sprintf(filename_VERSION_module,FORMATVERSIONFILENAME,SciPath,modulename);
 		if (SciPath){FREE(SciPath);SciPath=NULL;}

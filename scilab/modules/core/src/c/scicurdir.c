@@ -55,7 +55,7 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
     else 
 	{
 		*path= cur_dir;
-		*lpath=strlen(cur_dir);
+		*lpath=(int)strlen(cur_dir);
 		*err=0;
 	}
     return 0;

@@ -30,7 +30,7 @@ void str2sci(char** x,int n,int m)
   *istk(il+3) = 0;
   *istk(il+4) = 1;
   for (i = 1; i <= n*m; i++){
-	  n1=strlen(x[i-1]);
+	  n1=(int)strlen(x[i-1]);
 	  *istk(il+4+i) =  *istk(il+4+i-1)+n1;
 	  if (n1 > 0) 
 		  C2F(cvstr)(&n1,istk(il+m*n+5 -1 + *istk(il+3+i)),x[i-1],&zero,(unsigned long) n1);

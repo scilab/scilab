@@ -498,7 +498,7 @@ int main(int argc, char **argv)
 	    pos = 0;
 	    for (i = 0; i < arg; i++) {
 		strcpy(&cmdline[pos], argv[i]);
-		pos += strlen(&cmdline[pos]) + 1;
+		pos += (int)strlen(&cmdline[pos]) + 1;
 		fargv[i] = argv[i];
 	    }
 	    fgets(&cmdline[pos], sizeof(cmdline), fargs);

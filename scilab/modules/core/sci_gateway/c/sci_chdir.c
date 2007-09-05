@@ -38,7 +38,7 @@ int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len))
 			strcpy(shortpath,cstk(l1));
 		}
 
-		C2F(cluni0)(shortpath,path,&out_n,strlen(shortpath),MAX_PATH_STR);
+		C2F(cluni0)(shortpath,path,&out_n,(long)strlen(shortpath),MAX_PATH_STR);
 		C2F(scichdir)(path,&ierr);
 
 		n1=1;

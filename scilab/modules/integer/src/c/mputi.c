@@ -47,7 +47,7 @@ void C2F(mputi) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
   swap = GetSwapStatus(*fd);
   ft = &ftf; 
   ft->fp = fa;
-  nc=strlen(type);
+  nc=(int)strlen(type);
   if ( nc == 0) 
     {
       sciprint("mputi : format is of 0 length  \r\n",type);

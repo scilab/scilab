@@ -22,7 +22,7 @@ int sciReturnEmptyMatrix( void )
 int sciReturnString( const char * value )
 {
   int numRow   = 1 ;
-  int numCol   = strlen( value );
+  int numCol   = (int)strlen( value );
   int outIndex = 0 ;
   CreateVar(Rhs+1,STRING_DATATYPE,&numRow,&numCol,&outIndex);
   strncpy(cstk(outIndex),value, numCol);

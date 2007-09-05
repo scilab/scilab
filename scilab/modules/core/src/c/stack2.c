@@ -237,7 +237,7 @@ integer C2F(overloadtype)(integer *lw,char *fname,char *typ)
 
   }
   if (*istk(il ) != ityp) {
-    return C2F(overload)(lw,fname,strlen(fname));
+    return C2F(overload)(lw,fname,(unsigned long)strlen(fname));
   }
   return 1;
 }
@@ -2715,7 +2715,7 @@ int Ref2val(int from , int to )
       /* from contains a reference */ 
       lw= *istk(il+2); 
       lwd = to + Top -Rhs;
-      C2F(copyobj)("copyref", &lw, &lwd, strlen("copyref"));
+      C2F(copyobj)("copyref", &lw, &lwd, (unsigned long)strlen("copyref"));
     }
   return 0;
 }
@@ -2747,7 +2747,7 @@ void strcpy_tws(char *str1,char *str2, int len)
 {
   int i; 
   for ( i =0 ; i  < (int)strlen(str2); i++ ) str1[i]=str2[i];
-  for (i = strlen(str2) ; i < len ; i++) str1[i]=' ';
+  for (i = (int)strlen(str2) ; i < len ; i++) str1[i]=' ';
   str1[len-1] ='\0';
 }
 
@@ -3080,7 +3080,7 @@ void *GetDataFromName( char *name )
      /* usage:  header = (int *) GetDataFromName("pipo"); header[0] = type of variable pipo etc... */
 {
   void *header; int lw; int fin;
- if (C2F(objptr)(name,&lw,&fin,strlen(name))) {
+ if (C2F(objptr)(name,&lw,&fin,(unsigned long)strlen(name))) {
     header = istk( iadr(*Lstk(fin)));  
     return (void *) header;
   }
@@ -3129,7 +3129,7 @@ int C2F(createreffromname)(int number, char *name)
   int *header; int lw; int fin;
   CreateData(number, 4*sizeof(int));
   header = (int *) GetData(number);
-  if (C2F(objptr)(name,&lw,&fin,strlen(name))) {
+  if (C2F(objptr)(name,&lw,&fin,(unsigned long)strlen(name))) {
     header[0]= - *istk( iadr(*Lstk(fin))); /* type of reference = - type of pointed variable */
     header[1]= lw; /* pointed adress */
     header[2]= fin; /* pointed variable */

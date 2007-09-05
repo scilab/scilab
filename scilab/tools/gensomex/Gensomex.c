@@ -40,7 +40,7 @@ int main(argc,argv)
     {
       int j;
       if ( fscanf(filei1,"%s",nam1) == EOF ) break;
-      j= strlen(nam1);
+      j= (int)strlen(nam1);
       suffix=nam1[j-1];
       while ( j != 0 && nam1[j] != '/' ) j--; 
       nam1[j]= '\0';
@@ -64,7 +64,7 @@ int main(argc,argv)
     {
       int j;
       if ( fscanf(filei1,"%s",nam1) == EOF ) break;
-      j= strlen(nam1);
+      j= (int)strlen(nam1);
       suffix=nam1[j-1];
       while ( j != 0 && nam1[j] != '/' ) j--; 
       nam1[j]= '\0';

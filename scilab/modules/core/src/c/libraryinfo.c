@@ -18,7 +18,7 @@ char *getlibrarypath(char *libraryname)
 	char *path = NULL;
 	int lw = 0; int fin = 0;
 
-	if (C2F(objptr)(libraryname,&lw,&fin,strlen(libraryname))) 
+	if (C2F(objptr)(libraryname,&lw,&fin,(unsigned long)strlen(libraryname))) 
 	{
 		int *header = istk(iadr(*Lstk(fin)));  
 		if ( (header) && (header[0] == sci_lib ) ) 
@@ -49,7 +49,7 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
 		char *fullfilename = NULL;
 		int out_n = 0;
 
-		C2F(cluni0)(pathlibrary,expandedpath, &out_n,strlen(pathlibrary),PATH_MAX);
+		C2F(cluni0)(pathlibrary,expandedpath, &out_n,(long)strlen(pathlibrary),PATH_MAX);
 
 		fullfilename = (char*)MALLOC(sizeof(char)*(strlen(expandedpath)+strlen(filenameNAMES)+1));
 		if (fullfilename)

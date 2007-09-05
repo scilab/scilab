@@ -23,13 +23,13 @@ int SendScilabJob(char *job)
 	char ScirunCommand[]="Err=execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;";
 	char ClearTmpVariables[]="clear TMP_EXEC_STRING;clear Err;quit;";
 	
-	lencommand=strlen(job);
+	lencommand=(int)strlen(job);
 	command=MALLOC(sizeof(char)*(lencommand+1));
 
 	if (command)
 	{
 		/* clear prev. Err , TMP_EXEC_STRING scilab variables */
-		C2F(scirun)(ClearTmpVariables,strlen(ClearTmpVariables));
+		C2F(scirun)(ClearTmpVariables,(long int)strlen(ClearTmpVariables));
 
 		strcpy(command,job);
 		SetLastJob(command);
@@ -48,11 +48,11 @@ int SendScilabJob(char *job)
 		{
 			int m=0,n=0,lp=0;
 
-			C2F(scirun)(ScirunCommand,strlen(ScirunCommand));
+			C2F(scirun)(ScirunCommand,(long int)strlen(ScirunCommand));
 
 			/* get error code from scilab */
 
-			if ( ! C2F(cmatptr)("Err", &m, &n, &lp,strlen("Err")))
+			if ( ! C2F(cmatptr)("Err", &m, &n, &lp,(unsigned long)strlen("Err")))
 			{
 				fprintf(stderr,"Error : SendScilabJob (2) 'Err'.\n");
 				retCode = -2;
@@ -73,7 +73,7 @@ int SendScilabJob(char *job)
 			}
 
 			/* clear prev. Err , TMP_EXEC_STRING scilab variables */
-			C2F(scirun)(ClearTmpVariables,strlen(ClearTmpVariables));
+			C2F(scirun)(ClearTmpVariables,(long int)strlen(ClearTmpVariables));
 		}
 		if (command) {FREE(command);command=NULL;}
 	}
@@ -243,7 +243,7 @@ static BOOL RemoveCharsFromEOL(char *line,char CharToRemove)
 	BOOL bOK=FALSE;
 	int len=0;
 
-	len=strlen(line);
+	len=(int)strlen(line);
 	for (l=len-1;l>0;l--)
 	{
 		if (line[l] == CharToRemove)
@@ -263,7 +263,7 @@ static BOOL RemoveComments(char *line)
 	int len=0;
 	int idx=-1;
 
-	len=strlen(line);
+	len=(int)strlen(line);
 	for (l=len-1;l>0;l--)
 	{
 		if (line[l] == '/') 

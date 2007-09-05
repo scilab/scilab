@@ -138,7 +138,7 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
 
 		}
 #else
-	C2F(scirun)(startup,strlen(startup));
+	C2F(scirun)(startup,(long int)strlen(startup));
 #endif
 #endif
 	FREE(startup);

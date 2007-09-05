@@ -3107,7 +3107,7 @@ char *Forname2Int(str)
       return(unknown);
     }
   if (strncmp(str,"stk",3) == 0) {
-    l = strlen(str);
+    l = (int)strlen(str);
     p = (char *)malloc((unsigned)(l + 6));
     sprintf(p,"int(%s)",str);
     return p;

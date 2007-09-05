@@ -37,7 +37,7 @@ int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 			int fptr=0;
 			int job=4;
 
-			C2F(cvname)(id,VarName,&zero,strlen(VarName));
+			C2F(cvname)(id,VarName,&zero,(unsigned long)strlen(VarName));
 			C2F(funtab)(id,&fptr,&job,"NULL_NAME",0);
 			*Status=TRUE;
 		}

@@ -39,8 +39,8 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 				int fptr=nameptr;
 				int job=3;
 
-				C2F(cvname)(id,VarName,&zero,strlen(VarName));
-				C2F(funtab)(id,&fptr,&job,VarName,strlen(VarName));
+				C2F(cvname)(id,VarName,&zero,(unsigned long)strlen(VarName));
+				C2F(funtab)(id,&fptr,&job,VarName,(unsigned long)strlen(VarName));
 
 				LhsVar(1)=0;
 				PutLhsVar();

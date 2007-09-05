@@ -378,11 +378,11 @@ static int IsDefinedVar(char *name)
     {
       if(strlen(name)>=strlen(varnames[k]))
 	{
-	  maxlgth=strlen(name);
+	  maxlgth=(int)strlen(name);
 	}
       else
 	{
-	  maxlgth=strlen(varnames[k]);
+	  maxlgth=(int)strlen(varnames[k]);
 	}
       if(varnames[k][0]=='\0')
 	{

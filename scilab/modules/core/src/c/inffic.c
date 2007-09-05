@@ -22,7 +22,7 @@ static char *dataStrings[] = {
 
 void C2F(inffic)(integer *iopt, char *name, integer *nc)
 {
-  *nc=strlen(dataStrings[Max(Min(*iopt-1,MAXDATA),0)]);
+  *nc=(integer)strlen(dataStrings[Max(Min(*iopt-1,MAXDATA),0)]);
   strcpy(name,dataStrings[Max(Min(*iopt-1,MAXDATA),0)]);
 }
 
@@ -32,7 +32,7 @@ void C2F(inffic)(integer *iopt, char *name, integer *nc)
 
 void C2F(infficl)(integer *iopt, integer *nc)
 {
-  *nc=strlen(dataStrings[Max(Min(*iopt-1,MAXDATA),0)]);
+  *nc=(integer)strlen(dataStrings[Max(Min(*iopt-1,MAXDATA),0)]);
 }
 
 

@@ -31,7 +31,7 @@ void sciprint_nd(char *fmt,...)
 	(void ) vsprintf(buf, fmt, args );
 #endif
 	va_end(args);
-	lstr=strlen(buf);
+	lstr=(int)strlen(buf);
 
 	if (getScilabMode() == SCILAB_STD)
 	{

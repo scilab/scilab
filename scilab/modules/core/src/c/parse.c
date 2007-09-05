@@ -173,7 +173,7 @@ int C2F(parse)()
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," TOP    pt:%d rstk(pt):%d icall: %d niv: %d err:%d",
 	    Pt,Rstk[Pt], C2F(recu).icall, C2F(recu).niv,C2F(iop).err);
-    C2F(basout)(&io, &C2F(iop).wte,tmp, strlen(tmp));
+    C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
   }
 
   if (C2F(recu).icall == 5) {
@@ -295,7 +295,7 @@ int C2F(parse)()
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," parse  pt:%d rstk(pt):%d top: %d niv: %d err:%d",
 	    Pt,r,Top, C2F(recu).niv,C2F(iop).err);
-    C2F(basout)(&io, &C2F(iop).wte,tmp, strlen(tmp));
+    C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
   }
 
   excnt = 0;
@@ -955,7 +955,7 @@ int C2F(parse)()
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," finish  pt:%d rstk(pt):%d  pstk(pt):%d lpt(1): %d niv: %d macr:%d, paus:%d",
 	    Pt,r,p, Lpt[1],C2F(recu).niv,C2F(recu).macr,C2F(recu).paus);
-    C2F(basout)(&io, &C2F(iop).wte,tmp, strlen(tmp));
+    C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
   }
   if (C2F(errgst).err1 != 0) {
     /* a catched error has occured */

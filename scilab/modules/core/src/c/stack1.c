@@ -1470,7 +1470,7 @@ int cre_smat_from_str_i(char *fname, integer *lw, integer *m, integer *n, char *
   integer *pos;
 
   nnchar = 0;
-  for (ix = 0 ; ix < (*m)*(*n) ; ++ix) nnchar += strlen(Str[ix]);
+  for (ix = 0 ; ix < (*m)*(*n) ; ++ix) nnchar += (integer)strlen(Str[ix]);
   
   il = iadr(*lw);
   ix1 = il + 4 + (nnchar + 1) + (*m * *n + 1);
@@ -1488,7 +1488,7 @@ int cre_smat_from_str_i(char *fname, integer *lw, integer *m, integer *n, char *
   ix = 0;
   ix1 = ilp + *m * *n;
   for (kij = ilp + 1; kij <= ix1; ++kij) {
-    *istk(kij ) = *istk(kij - 1) + strlen(Str[ix]);
+    *istk(kij ) = *istk(kij - 1) + (int)strlen(Str[ix]);
     ++ix;
   }
   ilast = ilp + *m * *n;
@@ -1496,7 +1496,7 @@ int cre_smat_from_str_i(char *fname, integer *lw, integer *m, integer *n, char *
   pos = istk(lr1);
   for ( ix = 0 ; ix < (*m)*(*n) ; ix++) 
     {
-      int l = strlen(Str[ix]);
+      int l = (int)strlen(Str[ix]);
       C2F(cvstr)(&l, pos, Str[ix], &cx0, l);
       pos += l;
     }

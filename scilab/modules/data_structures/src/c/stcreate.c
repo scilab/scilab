@@ -121,7 +121,7 @@ int sttyp(int *ivt, char *job, int *nf, char *fnames[])
     if (strcmp(job, "size") == 0) {
 /*        size of header = ["st","dims","f_1",...,"f_nf"] */
       ls=0;
-      for ( k= 0; k < *nf; k++) ls += strlen(fnames[k]);
+      for ( k= 0; k < *nf; k++) ls += (int)strlen(fnames[k]);
       ivt[0] = 4 + (2 +*nf) + 1 + 2 + 4 + ls;  /* 2 + *nf strings */
       /* if (ivt[0] % 2) ivt[0]++;  */
     } else {
@@ -149,7 +149,7 @@ int sttyp(int *ivt, char *job, int *nf, char *fnames[])
 	l += shft;stp++;
 /*        strings 3:2+nf = ["field_1","field_2","field_nf"]    */
 	for (k=0; k < *nf; k++) {
-	shft = strlen(fnames[k]);
+	shft = (int)strlen(fnames[k]);
 	C2F(cvstr)(&shft,&ivt[l],fnames[k],(Job=0,&Job),shft);
 	ivt[stp+1] = ivt[stp] + shft;
 	l += shft;stp++;

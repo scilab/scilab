@@ -19,7 +19,7 @@ int getfreememory()
     #define MEMOK 1
     MEMORYSTATUS stat;
     GlobalMemoryStatus (&stat);
-    return stat.dwAvailPhys/kooctet;
+    return (int)(stat.dwAvailPhys/kooctet);
   }
 #endif
 
@@ -87,7 +87,7 @@ int getmemorysize()
   {
     MEMORYSTATUS stat;
     GlobalMemoryStatus (&stat);
-    return stat.dwTotalPhys/kooctet;
+    return (int)(stat.dwTotalPhys/kooctet);
   }
 #endif
 
@@ -96,7 +96,7 @@ int getmemorysize()
   {
     struct pst_static pst;
     pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
-    return (pst.physical_memory)/kooctet;
+    return (int)((pst.physical_memory)/kooctet);
   }
 #endif
 

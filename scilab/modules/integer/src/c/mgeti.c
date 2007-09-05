@@ -50,7 +50,7 @@ void C2F(mgeti) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
   swap = GetSwapStatus(*fd);
   ft = &ftf; 
   ft->fp = fa;
-  nc=strlen(type);
+  nc=(int)strlen(type);
   if ( nc == 0) 
     {
       sciprint("mgeti : format is of 0 length  \r\n",type);
@@ -184,7 +184,7 @@ void C2F(mgeti) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
 int SWAP(char type[],integer *fd)
 {
 int nc,swap;
-  nc=strlen(type);
+  nc=(int)strlen(type);
   swap = GetSwapStatus(*fd);
   if ( nc > 1) {
     switch (type[1])  {

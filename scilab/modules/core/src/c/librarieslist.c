@@ -29,7 +29,7 @@ char **getlibrarieslist(int *sizearray)
 		for (j=1;j<Lused+1;++j)
 		{
 			char *NameVariable = getLocalNamefromId(j);
-			if (C2F(objptr)(NameVariable,&lw,&fin,strlen(NameVariable))) 
+			if (C2F(objptr)(NameVariable,&lw,&fin,(unsigned long)strlen(NameVariable))) 
 			{
 				int *header = istk( iadr(*Lstk(fin)));
 				if ( (header) && (header[0] == sci_lib ) ) 
@@ -68,7 +68,7 @@ static int getnumberoflibraries(void)
 		int lw = 0; int fin = 0;
 		char *NameVariable = getLocalNamefromId(j);
 		
-		if (C2F(objptr)(NameVariable,&lw,&fin,strlen(NameVariable))) 
+		if (C2F(objptr)(NameVariable,&lw,&fin,(unsigned long)strlen(NameVariable))) 
 		{
 			int *header = istk( iadr(*Lstk(fin)));  
 			if ( (header) && (header[0] == sci_lib ) )  nbrlibraries++;

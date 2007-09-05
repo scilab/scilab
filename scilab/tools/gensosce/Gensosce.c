@@ -37,7 +37,7 @@ fprintf(file, "scilab_functions=[... \n");
     {
       int j;
       if ( fscanf(filei1,"%s",nam1) == EOF ) break;
-      j= strlen(nam1);
+      j= (int)strlen(nam1);
       while ( j != 0 && nam1[j] != '/' ) j--; 
       nam1[j]= '\0';
       fprintf(file, "\"%s\";\n",nam1); 

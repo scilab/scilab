@@ -53,7 +53,7 @@ void sciprint(char *fmt,...)
 	
 	if (getdiary()) 
 	{
-		integer lstr = strlen(s_buf);
+		integer lstr = (integer)strlen(s_buf);
 		diary_nnl(s_buf,&lstr);
 	}
 }
@@ -130,7 +130,7 @@ void sciprint_full(char *fmt,...)
 
   va_end(ap);
 
-  lstr=strlen(s_buf);
+  lstr=(integer)strlen(s_buf);
 
   if (lstr<colwidth)
   {

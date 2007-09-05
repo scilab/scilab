@@ -41,7 +41,7 @@ void LoadFunctionsTab(void)
 	for (j=0;j<Modules->numberofModules;j++)
 	{
 		char *filename_primitives_list=NULL;
-		int len=strlen(FORMATGATEWAYFILENAME)+strlen(SciPath)+strlen(Modules->ModuleList[j])*2;
+		int len=(int)strlen(FORMATGATEWAYFILENAME)+(int)strlen(SciPath)+(int)strlen(Modules->ModuleList[j])*2;
 
 		filename_primitives_list=(char*)MALLOC((len+1)*sizeof(char));
 		sprintf(filename_primitives_list,FORMATGATEWAYFILENAME,SciPath,Modules->ModuleList[j],Modules->ModuleList[j]);
@@ -61,7 +61,7 @@ static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data)
 	int ldata;
 	int id[nsiz];
 	int zero=0;
-	C2F(cvname)(id,str,&zero,strlen(str));
+	C2F(cvname)(id,str,&zero,(unsigned long)strlen(str));
 	ldata= (*dataI)*100+*data;
 	return( action_hashtable_scilab_functions(id,str,&ldata,SCI_HFUNCTIONS_ENTER));
 }

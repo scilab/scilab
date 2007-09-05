@@ -85,7 +85,7 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
   int ierr,iflag=0,l1buf=lbuf;
   C2F(getenvc)(&ierr,"COMPILER",buf,&l1buf,&iflag);
   if ( ierr== 1) strncpy(buf,"NO",lbuf);
-  *nbuf = strlen(buf);
+  *nbuf = (int)strlen(buf);
   return 0;
 }
 
@@ -129,7 +129,7 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 	SetSci();
 	pathtmp=getSCIpath();
 	strcpy(buf,pathtmp);
-	*nbuf = strlen(buf);
+	*nbuf = (int)strlen(buf);
 	if (pathtmp) {FREE(pathtmp);pathtmp=NULL;}
 	return 0;
 }
@@ -161,7 +161,7 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 
 	pathtmp=getSCIHOME();
 	strcpy(buf,pathtmp);
-	*nbuf = strlen(buf);
+	*nbuf = (int)strlen(buf);
 	if (pathtmp) {FREE(pathtmp);pathtmp=NULL;}
 
 	return 0;
@@ -180,7 +180,7 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 #endif
 		exit(1);
 	}
-	*nbuf = strlen(buf);
+	*nbuf = (int)strlen(buf);
 	return 0;
 }
 /*************************************************************************************************/

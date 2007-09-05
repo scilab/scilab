@@ -910,7 +910,7 @@ char *Forname2Int(VARPTR var,int i)
   if ( var->C_name[i] != (char *) 0) 
     return var->C_name[i];
   if (strncmp(var->for_name[i],"stk",3) == 0) {
-    l = strlen(var->for_name[i]);
+    l = (int)strlen(var->for_name[i]);
     p = (char *)malloc((unsigned)(l + 6));
     sprintf(p,"int(%s)",var->for_name[i]);
     return p;

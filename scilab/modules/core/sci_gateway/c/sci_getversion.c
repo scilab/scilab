@@ -50,7 +50,7 @@ static int getversion_no_rhs(void)
 	char *v = Version ;
 
 	n1=1;
-	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=strlen(Version), &m1),&n1,&v);
+	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Version), &m1),&n1,&v);
 	LhsVar(1) = Rhs+1;
 	if (Lhs==2) 
 	{
@@ -269,7 +269,7 @@ static int getversion_two_rhs(void)
 				sprintf(output,"%s",SCI_VERSION_STRING);
 
 				n1=1;
-				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);
+				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 				if (output) {FREE(output);output=NULL;}
 
 				LhsVar(1) = Rhs+1;
@@ -293,7 +293,7 @@ static int getversion_two_rhs(void)
 					sprintf(output,"%s",versionstring);
 
 					n1=1;
-					CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);
+					CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 					if (output) {FREE(output);output=NULL;}
 
 					LhsVar(1) = Rhs+1;

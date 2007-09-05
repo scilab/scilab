@@ -50,7 +50,7 @@ if (retval == -1)
 	 s_buf[bsiz-1]='\0';
 }
 
-lstr=strlen(s_buf);
+lstr=(integer)strlen(s_buf);
 va_end(ap);
 Scierror_internal(&iv,s_buf);
 return retval;
@@ -81,7 +81,7 @@ static int Scierror_internal(integer *n,char *buffer)
 		errtyp=0;
 		C2F(freemsgtable)();
 		C2F(errstore)(n);
-		len=strlen(buffer);
+		len=(integer)strlen(buffer);
 		C2F(msgstore)(buffer,&len);
 		if (C2F(iop).lct[0] != -1)
 		{

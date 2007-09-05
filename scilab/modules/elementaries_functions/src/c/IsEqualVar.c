@@ -148,7 +148,7 @@ int C2F(intisequalvar)(char * fname, int *job, long int fl)
 
  END:
   Top = top1;
-  C2F(crebmat)(fname, &top1, &one, &one, &l, strlen(fname));
+  C2F(crebmat)(fname, &top1, &one, &one, &l, (unsigned long)strlen(fname));
   *istk(l)=res;
   FreeRec();
 

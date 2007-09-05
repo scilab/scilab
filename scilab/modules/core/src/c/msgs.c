@@ -1324,7 +1324,7 @@ static int msg_110(integer *n, integer *ierr)
 static int msg_default(integer *n, integer *ierr)
 {
 	char *localbuf=NULL;
-	int len=strlen(BUF);
+	int len=(int)strlen(BUF);
 	int i=0;
 	localbuf=(char*)MALLOC(sizeof(char)*(len+1));
 	strncpy(localbuf,BUF,len);

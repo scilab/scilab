@@ -125,7 +125,7 @@ int C2F(run)()
 
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," run pt:%d rstk(pt):%d",Pt,Rstk[Pt]);
-    C2F(basout)(&io, &C2F(iop).wte,tmp, strlen(tmp));
+    C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
   }
 
   l0 = 0;
