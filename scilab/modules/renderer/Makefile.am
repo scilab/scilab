@@ -113,7 +113,9 @@ src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
 src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
 src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp \
 src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp \
-src/jni/PolylineLineDrawerGL.cpp
+src/jni/PolylineLineDrawerGL.cpp \
+src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp \
+src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
