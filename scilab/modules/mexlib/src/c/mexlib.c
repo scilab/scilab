@@ -1311,7 +1311,7 @@ int mxGetNumberOfFields(const mxArray *ptr)
 void *mxRealloc(void *ptr, size_t nsize)
 {
   int m;  vraiptrst lrd=(vraiptrst)NULL; 
-  m = (nsize) /sizeof(double) + 1;
+  m = (int) ((nsize) /sizeof(double) + 1);
   mxFree((void *) lrd);
   if (! C2F(createstkptr)( &m, &lrd)) return 0;
   memcpy((void *) lrd, ptr, nsize);
@@ -1324,7 +1324,7 @@ void *mxCalloc(size_t n, size_t size)
   static int one=1; int N;
   static double zero = 0.0;
   int nsize;
-  nsize=n*size;
+  nsize=(int)(n*size);
   m = nsize /sizeof(double) + 1;
   if (! C2F(createstkptr)( &m, &lrd)) {
     return 0;
@@ -1345,7 +1345,7 @@ void *mxCalloc(size_t n, size_t size)
 void *mxMalloc(size_t nsize)
 {
   int m;  vraiptrst lrd;
-  m = (nsize) /sizeof(double) + 1;
+  m = (int)((nsize) /sizeof(double) + 1);
   if (! C2F(createstkptr)( &m, &lrd)) {
     return 0;
   }
@@ -1885,7 +1885,7 @@ mxArray *mxCreateString(const char *string)
 {
   static int i, lw;
   static int one=1;
-  i = strlen(string);
+  i = (int)strlen(string);
   lw=Nbvars+1;
   /* we do not increment Nbvars since it is done inside createvar */
   if ( ! C2F(createvarfromptr)(&lw, STRING_DATATYPE, &one, &i, (double *) &string, 1L) ) {
@@ -1985,7 +1985,7 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
 	}
     }
   i1 = nv + 1;
-  if (! C2F(scistring)(&i1, name, &nlhs, &nrhs, strlen(name) )) { 
+  if (! C2F(scistring)(&i1, name, &nlhs, &nrhs,(unsigned long) strlen(name) )) { 
     if ( jumpflag == 1) 
       {
 	mexErrMsgTxt("mexCallSCILAB: evaluation failed ");
@@ -2055,7 +2055,7 @@ int fortran_mex_gateway(char *fname, FGatefuncH F)
 
 int sci_gateway(char *fname, GatefuncS F)
 {
-  (*F)(fname,strlen(fname));
+  (*F)(fname,(int)strlen(fname));
   if (!C2F(putlhsvar)()) {return 0;}
   return 0;
 }
@@ -2145,7 +2145,7 @@ mxArray *mexGetArray(char *name, char *workspace)
 {
   int lw, fin, new ; int *header;
   /* mxArray *mxPointed; */
-  if (C2F(objptr)(name,&lw,&fin,strlen(name))) {
+  if (C2F(objptr)(name,&lw,&fin,(unsigned long)strlen(name))) {
     /*    mxPointed = (mxArray *) lw;   */
     Nbvars++; new=Nbvars; 
     CreateData(new, 4*sizeof(int));
@@ -2164,7 +2164,7 @@ const mxArray *mexGetVariablePtr(const char *workspace, const char *var_name)
 {
   int lw, fin, new ; int *header;
   /* mxArray *mxPointed; */
-  if (C2F(objptr)((char*)var_name,&lw,&fin,strlen(var_name))) 
+  if (C2F(objptr)((char*)var_name,&lw,&fin,(unsigned long)strlen(var_name))) 
     {
     /*    mxPointed = (mxArray *) lw;   */
     Nbvars++; new=Nbvars; 
@@ -2184,7 +2184,7 @@ mxArray *mexGetVariable(const char *workspace, const char *name)
 {
   int lw, fin, new ; int *header;
   /* mxArray *mxPointed; */
-  if (C2F(objptr)((char*)name,&lw,&fin,strlen(name))) {
+  if (C2F(objptr)((char*)name,&lw,&fin,(unsigned long)strlen(name))) {
     /*    mxPointed = (mxArray *) lw;   */
     Nbvars++; new=Nbvars; 
     CreateData(new, 4*sizeof(int));

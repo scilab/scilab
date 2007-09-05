@@ -154,22 +154,22 @@ void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)()
   }
 
   pn = a + n * es;
-  r = Min(pa - (char *)a, pb - pa);
+  r = (int)Min(pa - (char *)a, pb - pa);
   vecswap(a, pb - r, r);
 
   tabn = tab + n*es1 ;
-  r1 = Min(taba - (char *) tab, tabb - taba);
+  r1 = (int)Min(taba - (char *) tab, tabb - taba);
   vecswapind(tab, tabb - r1, r1);
 
-  r = Min(pd - pc, pn - pd - es);
+  r = (int)Min(pd - pc, pn - pd - es);
   vecswap(pb, pn - r, r);
 
-  r1 = Min(tabd - tabc, tabn - tabd - es1 );
+  r1 = (int)Min(tabd - tabc, tabn - tabd - es1 );
   vecswapind(tabb, tabn - r1, r1);
 
-  if ((r = pb - pa) > es )
+  if ((r = (int)(pb - pa)) > es )
     sciqsort(a, tab,flag, r / es, es, es1, cmp,swapcode,lswapcodeind);
-  if ((r = pd - pc) > es) { 
+  if ((r = (int)(pd - pc)) > es) { 
     /* Iterate rather than recurse to save stack space */
     a = pn - r;
     tab = tabn - (tabd - tabc);

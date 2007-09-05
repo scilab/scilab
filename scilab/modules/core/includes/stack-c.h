@@ -225,7 +225,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define WriteMatrix(ct,mx,nx,w)  if (! C2F(cwritemat)(ct,mx,nx,w,strlen(ct) )) {	return 0; }
 
-#define PutVar(num, nam)  if (! C2F(putvar)( (c_local=num, &c_local), nam, strlen(nam) )) {	return 0; }
+#define PutVar(num, nam)  if (! C2F(putvar)( (c_local=num, &c_local), nam, (unsigned long)strlen(nam) )) {	return 0; }
 
 #define ReadString(ct,mx,w)  if (! C2F(creadchain)(ct,mx,w,strlen(ct),strlen(w) )) {	return 0; }
 
