@@ -183,7 +183,7 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/jni/PolylineLineDrawerGL.cpp \
 	src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp \
 	src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp \
-	sci_gateway/c/gw_renderer.c
+	src/jni/PolylineFillDrawerGL.cpp sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -292,7 +292,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-PolylineLineDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-PolylineLineDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-PolylineFillDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineFillDrawerJoGL.lo
+@GUI_TRUE@	libscirenderer_la-PolylineFillDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-PolylineFillDrawerGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -597,7 +598,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp \
 @GUI_TRUE@src/jni/PolylineLineDrawerGL.cpp \
 @GUI_TRUE@src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp
+@GUI_TRUE@src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp \
+@GUI_TRUE@src/jni/PolylineFillDrawerGL.cpp
 
 
 # List of the gateway c files
@@ -842,6 +844,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-InterpolatedDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LocalSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-Object.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineFillDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineFillDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineFillDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineLineDrawerGL.Plo@am__quote@
@@ -1683,6 +1686,13 @@ libscirenderer_la-PolylineFillDrawerJoGL.lo: src/cpp/polylineDrawing/PolylineFil
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp' object='libscirenderer_la-PolylineFillDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineFillDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp
+
+libscirenderer_la-PolylineFillDrawerGL.lo: src/jni/PolylineFillDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineFillDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineFillDrawerGL.Tpo -c -o libscirenderer_la-PolylineFillDrawerGL.lo `test -f 'src/jni/PolylineFillDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineFillDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-PolylineFillDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineFillDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PolylineFillDrawerGL.cpp' object='libscirenderer_la-PolylineFillDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineFillDrawerGL.lo `test -f 'src/jni/PolylineFillDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineFillDrawerGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

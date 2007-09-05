@@ -18,55 +18,55 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 PolylineFillDrawerJavaMapper::PolylineFillDrawerJavaMapper(void)
 {
-  //m_pJavaObject = new org_scilab_modules_renderer_polylineDrawing::PolylineFillDrawerGL(getScilabJavaVM());
+  m_pJavaObject = new org_scilab_modules_renderer_polylineDrawing::PolylineFillDrawerGL(getScilabJavaVM());
 }
 /*------------------------------------------------------------------------------------------*/
 PolylineFillDrawerJavaMapper::~PolylineFillDrawerJavaMapper(void)
 {
-  //delete m_pJavaObject;
-  //m_pJavaObject = NULL;
+  delete m_pJavaObject;
+  m_pJavaObject = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineFillDrawerJavaMapper::display(void)
 {
-  //m_pJavaObject->display();
+  m_pJavaObject->display();
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineFillDrawerJavaMapper::initializeDrawing(int figureIndex)
 {
-  //m_pJavaObject->initializeDrawing(figureIndex);
+  m_pJavaObject->initializeDrawing(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineFillDrawerJavaMapper::endDrawing(void)
 {
-  //m_pJavaObject->endDrawing();
+  m_pJavaObject->endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineFillDrawerJavaMapper::show(int figureIndex)
 {
-  //m_pJavaObject->show(figureIndex);
+  m_pJavaObject->show(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineFillDrawerJavaMapper::destroy(int figureIndex)
 {
-  //m_pJavaObject->destroy(figureIndex);
+  m_pJavaObject->destroy(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineFillDrawerJavaMapper::setFigureIndex(int figureIndex)
 {
-  //m_pJavaObject->setFigureIndex(figureIndex);
+  m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineFillDrawerJavaMapper::setBackColor(int color)
 {
-  //m_pJavaObject->setBackColor(color);
+  m_pJavaObject->setBackColor(color);
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineFillDrawerJavaMapper::drawPolyline(const double xCoords[], const double yCoords[], const double zCoords[], int nbCoords)
 {
-  //m_pJavaObject->drawPolyline((double *)xCoords, nbCoords,
-  //                            (double *)yCoords, nbCoords,
-  //                            (double *)zCoords, nbCoords);
+  m_pJavaObject->drawPolyline((double *)xCoords, nbCoords,
+                              (double *)yCoords, nbCoords,
+                              (double *)zCoords, nbCoords);
 }
 /*------------------------------------------------------------------------------------------*/
 }
