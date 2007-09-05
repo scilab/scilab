@@ -9,6 +9,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "system_getproperty.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_system_getproperty) _PARAMS((char *fname,unsigned long fname_len))
 {

@@ -10,7 +10,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 char * system_getproperty(char *property,char *defaultproperty)
 {
-	char *retValue=NULL;
+	char *retValue = NULL;
 	JNIEnv * currentENV = getScilabJNIEnv();
 
 	if (currentENV)
@@ -36,7 +36,7 @@ char * system_getproperty(char *property,char *defaultproperty)
 				if (strValue)
 				{
 					retValue = (char*)MALLOC(sizeof(char)*(strlen(strValue)+1));
-					strcpy(retValue,strValue);
+					if (retValue) strcpy(retValue,strValue);
 				}
 				(*currentENV)->ReleaseStringUTFChars(currentENV, jstrValue , strValue);
 			}
