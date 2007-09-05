@@ -242,6 +242,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitializeConsole.c"
+				>
+			</File>
+			<File
 				RelativePath=".\InterpreterManagement.c"
 				>
 			</File>
@@ -254,7 +258,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\ScilabLinesUpdate.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\SetConsolePrompt.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\TerminateConsole.c"
 				>
 			</File>
 		</Filter>
@@ -263,7 +275,47 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\ClearConsole.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ClearConsole.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ClearConsolePart.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ClearConsolePart.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ConsolePrintf.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ConsolePrintf.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ConsoleRead.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ConsoleRead.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\dropFiles.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetCharWithoutOutput.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetCharWithoutOutput.hxx"
 				>
 			</File>
 			<File
@@ -271,7 +323,39 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\InitializeConsole.h"
+				>
+			</File>
+			<File
 				RelativePath=".\InterpreterManagement.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\PromptToHome.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\PromptToHome.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ScilabLinesUpdate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ScilabLinesUpdate.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetConsolePrompt.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetConsolePrompt.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\TerminateConsole.h"
 				>
 			</File>
 		</Filter>

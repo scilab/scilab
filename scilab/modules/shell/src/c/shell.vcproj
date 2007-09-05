@@ -225,6 +225,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitializeShell.c"
+				>
+			</File>
+			<File
 				RelativePath=".\more.c"
 				>
 			</File>
@@ -246,6 +250,10 @@
 			</File>
 			<File
 				RelativePath=".\scilines.c"
+				>
+			</File>
+			<File
+				RelativePath=".\TerminateShell.c"
 				>
 			</File>
 			<File
@@ -290,11 +298,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\InitializeShell.h"
+				>
+			</File>
+			<File
 				RelativePath=".\windows\readline_nw.h"
 				>
 			</File>
 			<File
 				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\TerminateShell.h"
 				>
 			</File>
 		</Filter>
