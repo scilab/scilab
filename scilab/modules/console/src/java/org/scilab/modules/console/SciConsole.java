@@ -182,31 +182,41 @@ public class SciConsole extends JPanel {
 
     /**
      * Clears lines from the end of the output view
+     * If nbLines == -1 ==> Called from SwingScilabConsole.getCharWithoutOutput() ([more y or n ?])
+     * If nbLines == 0 ==> Clear the InputCommandLine
      * @param nbLines the number of lines to be deleted
      */
     public void clear(int nbLines) {
-    	try {
-    		// We have to remove the command entered by the user
-    		int totalNumberOfLines = nbLines + LINE_NUMBER_IN_PROMPT;
+    	
+    	if (nbLines == 0) {
+    		// Clear the prompt
+    		config.getInputCommandView().reset();
+    	} else {
+    		// Clear lines in output command view
+    		try {	
+    			// We have to remove the command entered by the user
+    			int totalNumberOfLines = nbLines + LINE_NUMBER_IN_PROMPT;
     		
-    		StyledDocument outputStyle = config.getOutputViewStyledDocument();
-    		String outputTxt =  outputStyle.getText(0, outputStyle.getLength());
+    			StyledDocument outputStyle = config.getOutputViewStyledDocument();
+    			String outputTxt =  outputStyle.getText(0, outputStyle.getLength());
 			
-			// Are there enough lines in the output view ?
-			String[] allLines = outputTxt.split(StringConstants.NEW_LINE);
-			if (allLines.length < totalNumberOfLines) {
-				// TODO : error message in console
-				System.out.println("Out of Screen");
-			} else {
-				// Delete lines
-				for (int i = 0; i < totalNumberOfLines; i++) {
-					int lastEOL = outputStyle.getText(0, outputStyle.getLength()).lastIndexOf(StringConstants.NEW_LINE);
-					outputStyle.remove(lastEOL, outputStyle.getLength() - lastEOL);
-				}
-			}
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+    			// Are there enough lines in the output view ?
+    			String[] allLines = outputTxt.split(StringConstants.NEW_LINE);
+    			if (allLines.length < totalNumberOfLines) {
+    				config.getOutputView().append("Out of Screen");
+    			} else {
+    				// Delete lines
+    				int lastEOL;
+    				for (int i = 0; i < totalNumberOfLines; i++) {
+    					outputTxt = outputStyle.getText(0, outputStyle.getLength());
+    					lastEOL = outputTxt.lastIndexOf(StringConstants.NEW_LINE);
+    					outputStyle.remove(lastEOL, outputStyle.getLength() - lastEOL);
+    				}
+    			}
+    		} catch (BadLocationException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
 		}
     }
 

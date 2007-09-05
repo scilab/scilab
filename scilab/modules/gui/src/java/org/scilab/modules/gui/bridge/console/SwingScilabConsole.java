@@ -145,9 +145,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		
 		// Reads the buffer
 		retChar = this.getUserInputValue();
+		((SciConsole) this).getCanReadUserInputValue().release();
 
 		// Remove the "more" message and replace it by an empty line
-		this.clear(1);
+		this.clear(-1);
 		this.display("\n");
 
 		this.removeKeyListener(keyListener);

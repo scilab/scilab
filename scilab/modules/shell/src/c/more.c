@@ -37,7 +37,6 @@ int linesmore(void)
 		ConsolePrintf(MSG_MORE);
 		ch = GetCharWithoutOutput();
 		if ( ch == 110 ) retval = 1;
-		ConsolePrintf("\n");
 	}
 	return retval;
 }
