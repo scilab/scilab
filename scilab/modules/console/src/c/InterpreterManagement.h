@@ -18,9 +18,15 @@ int putCommandInScilabQueue(char *command);
 
 /*
 * exec ScilabEventLoop
-* @return 0
+* @return execution status
 */
 int execScilabEventLoop(void);
+
+/*
+* Stops Scilab current work
+* @return execution status
+*/
+int interruptScilab(void);
 /*-----------------------------------------------------------------------------------*/
 
 #endif /* __INTERPRETERMANAGEMENT_H__ */

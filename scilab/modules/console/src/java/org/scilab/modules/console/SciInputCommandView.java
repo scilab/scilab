@@ -84,6 +84,9 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	 * @return the command buffer
 	 */
 	public String getCmdBuffer() {
+		this.setEditable(true);
+		this.setFocusable(true);
+		this.grabFocus();
 		// Have to be allowed to write...
 		try {
 			//canReadBuffer.acquire();

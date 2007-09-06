@@ -43,4 +43,13 @@ public class InterpreterManagement {
     return InterpreterManagementJNI.execScilabEventLoop();
   }
 
+  
+ /**
+  * Stop Scilab current work
+  * @return execution status
+  */
+ static int interruptScilab() {
+    return InterpreterManagementJNI.interruptScilab();
+  }
+
 }

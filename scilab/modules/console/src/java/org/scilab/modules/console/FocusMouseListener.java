@@ -1,0 +1,83 @@
+
+/* Copyright INRIA 2007 */
+
+package org.scilab.modules.console;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JTextPane;
+
+/**
+ * Mouse listener for the output view
+ * Automatically forward the focus to input view
+ * @author Vincent COUVERT
+ */
+public class FocusMouseListener implements MouseListener {
+
+	private SciConsole c;
+	
+    /**
+     * @param console the console object associated
+     */
+    public FocusMouseListener(SciConsole console) {
+    	super();
+    	c = console;
+    }
+
+    /**
+     * User click
+     * @param e the event to threat
+     * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+     */
+    public void mouseClicked(MouseEvent e) {
+    	// If the user clicks in the Outputview then the focus is given to the input command view
+    	((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
+    }
+
+    /**
+     * Mouse enters in the object
+     * @param e the event to threat
+     * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+     */
+    public void mouseEntered(MouseEvent e) {
+    	
+    }
+
+    /**
+     * Mouse exists from the object
+     * @param e the event to threat
+     * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+     */
+    public void mouseExited(MouseEvent e) {
+    	
+    }
+
+    /**
+     * Mouse button pressed
+     * @param e the event to threat
+     * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+     */
+    public void mousePressed(MouseEvent e) {
+    	
+    }
+
+    /**
+     * Mouse button released
+     * @param e the event to threat
+     * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+     */
+    public void mouseReleased(MouseEvent e) {
+    	
+    }
+    
+    /**
+     * Mouse stay over the object
+     * @param e the event to threat
+     * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+     */
+    public void mouseOver(MouseEvent e) {
+       	// If the user clicks in the Outputview then the focus is given to the input command view
+    	((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
+    }
+}

@@ -3,6 +3,7 @@
 
 package org.scilab.modules.gui.bridge.console;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
@@ -19,6 +20,7 @@ import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
+import com.artenum.console.interfaces.ui.InputCommandView;
 import com.artenum.console.util.StringConstants;
 
 /**
@@ -55,10 +57,16 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 */
 	public String readLine() {
 		String cmd;
+		
+		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 
 		// Show the prompt
-		this.getConfiguration().getInputCommandView().setEditable(true);
 		this.getConfiguration().getPromptView().setVisible(true);
+
+		// Show the input command view and its hidden components
+		inputCmdView.setEditable(true);
+		((JTextPane) inputCmdView).grabFocus();
+		((JTextPane) inputCmdView).setCaretColor(Color.black);
 		updateScrollPosition();
 		
 		// Modify the size of the input command view (the prompt was not visible when last size modification done
@@ -70,8 +78,8 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 			JScrollPane jSP = ((SciConsole) this).getJScrollPane();
 			Dimension jSPExtSize = jSP.getViewport().getExtentSize();
 			
-			int height = ((JTextPane) this.getConfiguration().getInputCommandView()).getPreferredSize().height;
-			int width = ((JTextPane) this.getConfiguration().getInputCommandView()).getPreferredSize().width - jSPExtSize.width;
+			int height = ((JTextPane) inputCmdView).getPreferredSize().height;
+			int width = ((JTextPane) inputCmdView).getPreferredSize().width - jSPExtSize.width;
 			int promptViewHeight = ((SciPromptView) promptView).getPromptUI().getPreferredSize().height;
 			
 			/* New dimension for the input command view */
@@ -88,9 +96,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 				newDim = new Dimension(width, promptViewHeight);
 				this.setInputCommandViewSizeForced(false);
 			}
-        	((JTextPane) this.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
-        	((JTextPane) this.getConfiguration().getInputCommandView()).invalidate();
-	    	((JTextPane) this.getConfiguration().getInputCommandView()).doLayout();
+        	((JTextPane) inputCmdView).setPreferredSize(newDim);
+        	((JTextPane) inputCmdView).invalidate();
+	    	((JTextPane) inputCmdView).doLayout();
 
 		}
 
@@ -106,23 +114,22 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 			e.printStackTrace();
 		}
 		
-		//updateScrollPosition();
-		
 		// Gets the focus to have the caret visible
-		this.getConfiguration().getInputCommandView().requestFocus();
+		((JTextPane) inputCmdView).grabFocus();
 
 		// Avoids reading of an empty buffer
-		((SciInputCommandView) this.getConfiguration().getInputCommandView()).setBufferProtected();
+		((SciInputCommandView) inputCmdView).setBufferProtected();
 
 		// Reads the buffer
-		cmd = ((SciInputCommandView) this.getConfiguration().getInputCommandView()).getCmdBuffer();
-
-		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
-		this.requestFocus();
+		cmd = ((SciInputCommandView) inputCmdView).getCmdBuffer();
 
 		// Hide the prompt
-		this.getConfiguration().getInputCommandView().setEditable(false);
 		this.getConfiguration().getPromptView().setVisible(false);
+
+		// Show the input command view and its hidden components
+		inputCmdView.setEditable(false);
+		((JTextPane) inputCmdView).grabFocus(); /* To manage CTRL+Y: stop execution */
+		((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getBackground());
 		
 		return cmd;
 	}

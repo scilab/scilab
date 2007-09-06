@@ -31,7 +31,7 @@ public class SciPromptView extends JPanel implements PromptView {
 	private static final String SEMI_COLON = ";";
 	private static final String PARAGRAPH_END = "</P>";
 	private static final String ZERO_STRING = "0";
-	private static final int LEFT_BORDER = 2;
+	private static final int LEFT_BORDER = 0;
 	private static final int BOTTOM_BORDER = 2;
 	
 	private String defaultPrompt;

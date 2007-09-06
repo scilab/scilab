@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -23,6 +24,11 @@ public class SciOutputView extends ConsoleTextPane {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private static final int TOP_BORDER = 0;
+	private static final int BOTTOM_BORDER = 0;
+	private static final int LEFT_BORDER = 0;
+	private static final int RIGHT_BORDER = 0;
+
 	private SciConsole console;
 	
 	/**
@@ -30,6 +36,7 @@ public class SciOutputView extends ConsoleTextPane {
 	 */
 	public SciOutputView() {
 		super();
+		setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, LEFT_BORDER, BOTTOM_BORDER, RIGHT_BORDER));
 	}
 	
 	/**
@@ -111,6 +118,9 @@ public class SciOutputView extends ConsoleTextPane {
 		
 		// Drag n' Drop handling
 		this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(console)));
+		
+		FocusMouseListener focusGrabber = new FocusMouseListener(console);
+		this.addMouseListener(focusGrabber);
 	}
 
 	/**

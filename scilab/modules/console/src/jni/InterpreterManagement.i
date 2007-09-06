@@ -76,3 +76,12 @@ int putCommandInScilabQueue(char *command);
   */
 ";
 int execScilabEventLoop(void);
+
+/* JavaDoc */
+%javamethodmodifiers interruptScilab(void) "
+ /**
+  * Stop Scilab current work
+  * @return execution status
+  */
+";
+int interruptScilab(void);
