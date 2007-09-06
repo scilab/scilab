@@ -12,9 +12,11 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 	if (GetType(1) == sci_strings)
 	{
 		char **Str=NULL;
-		int m1,n1,i,RET;
+		int m1,n1,i,j,RET;
 		int m2,n2,l2;
-    Tcl_Interp *TCLinterpreter=NULL;
+        Tcl_Interp *TCLinterpreter=NULL;
+        char **ReturnArrayString=NULL;
+        int k=0;
 
 		GetRhsVar(1,"S",&m1,&n1,&Str);
 
@@ -49,8 +51,13 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 			TCLinterpreter=TCLinterp;
 		}
 
+        ReturnArrayString = (char **) MALLOC(m1*n1*sizeof(char **));
+
 		for (i = 0; i<m1*n1 ;i++)
 		{
+			char *RetStr=NULL;
+			char *AsciiFromUTF8=NULL;
+
 			RET=Tcl_Eval(TCLinterpreter,Str[i]);
 
 			if (RET==TCL_ERROR)
@@ -65,11 +72,20 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 				}
 				FreeRhsSVar(Str);
 				return 0;
-			}
+            } else {
+                /* return result of the successful evaluation of the script */
+                /* return a matrix of string results */
+                RetStr = (char*)Tcl_GetStringResult(TCLinterpreter);
+                AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
+                ReturnArrayString[k++]=AsciiFromUTF8;
+            }
 		}
-		FreeRhsSVar(Str);
-		LhsVar(1) = 0;
+		CreateVarFromPtr(Rhs+1, "S", &m1, &n1, ReturnArrayString);
+		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
+
+		for (i=0;i<n1;i++) for (j=0;j<m1;j++) { FREE(ReturnArrayString[i+n1*j]);ReturnArrayString[i+n1*j]=NULL; }
+		FREE(ReturnArrayString);
 	}
 	else
 	{
