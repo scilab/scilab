@@ -15,7 +15,8 @@ c     Copyright INRIA
       real rzs(*)
       external simul
       double precision dnrm2 ! (blas routine) added by Bruno to get
-                             ! a better information concerning directionnal derivative
+                                ! a better information concerning directionnal derivative
+      integer vfinite ! added by Serge to avoid Inf and Nan's
  1000 format (46h n1qn1 ne peut demarrer (contrainte implicite))
  1001 format (40h n1qn1 termine par voeu de l'utilisateur)
  1010 format (45h n1qn1 remplace le hessien initial (qui n'est,
@@ -26,6 +27,8 @@ c              calcul initial de fonction-gradient
 c
       indic=4
       call simul (indic,n,x,f,g,izs,rzs,dzs)
+c     next line added by Serge to avoid Inf and Nan's (04/2007)
+      if (vfinite(1,f).ne.1.and.vfinite(n,g).ne.1) indic=-1
       if (indic.gt.0) go to 13
       if (iprint.eq.0) go to 12
       if (indic.lt.0) write (lp,1000)
@@ -177,6 +180,8 @@ c              calcul de fonction-gradient
   180 xb(i)=xa(i)+c*d(i)
       indic=4
       call simul (indic,n,xb,fb,gb,izs,rzs,dzs)
+c     next line added by Serge to avoid Inf and Nan's (04/2007)
+      if (vfinite(1,fb).ne.1.and.vfinite(n,gb).ne.1) indic=-1
 c              test sur indic
       if (indic.gt.0) goto 185
       if (indic.lt.0) goto 183
