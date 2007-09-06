@@ -10,7 +10,7 @@ LIBRARY = $(SCIDIR)/libs/system2.lib
 
 OBJSC = intmacr2tree.obj 
 
-OBJSF = fmttyp.obj formatnumber.oobj getfun.obj chkvar.obj\
+OBJSF = fmttyp.obj formatnumber.obj getfun.obj chkvar.obj\
 	btof.obj btofm.obj ftob.obj \
 	bschur.obj bjac.obj bintg.obj bj2.obj bydot.obj boptim.obj bgety.obj bgetx.obj \
 	badd.obj bresid.obj bfeval.obj bresd.obj bjacd.obj \

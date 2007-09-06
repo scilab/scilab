@@ -54,7 +54,6 @@ c     acquisition d'une ligne du fichier
       call getfiletype(lunit,ltype,info)
       if(info.ne.0) goto 90 
       icount=0
-
  11   buf=' '
       if(ltype.eq.1) then
          call basin(ierr,lunit,buf(1:lrecl),'*',0)
@@ -82,7 +81,7 @@ c     strip blanks at the beginning of the line
       if(buf(m:m).eq.' ') goto 16
 c
       if(buf(m:m+10).eq.'endfunction') goto 61
-      if(buf(m:m+7).eq.'function'.or.buf(m:m+7).eq.'FUNCTION') then
+      if(buf(m:m+7).eq.'function') then
          if(first.eq.1) then
             j=m+7
             goto 25            
@@ -153,7 +152,7 @@ c
 
 c     first line
  24   if(l.gt.lpt(1)) goto 26
-      if(buf(m:m+7).eq.'function'.or.buf(m:m+7).eq.'FUNCTION') then
+      if(buf(m:m+7).eq.'function') then
          j=m+6
       elseif(k.ne.slash .or. buf(m+1:m+1).ne.buf(m:m)) then
          ierr=4
@@ -383,6 +382,12 @@ c
          istk(l)=eol
          l=l+1
          sym=eol
+      elseif (sym.ne.eol) then
+         call getsym
+         if (sym.ne.eol) then
+            ierr=4
+            goto 90
+         endif
       endif
       if(lunit.eq.0) goto 33
       first=0
@@ -434,6 +439,7 @@ c     buffer limit
  93   continue
 c     invalid syntax
       err=nlines
+
       call error(37)
       return
  94   err=lstk(bot)-sadr(l)

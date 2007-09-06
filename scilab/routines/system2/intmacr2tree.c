@@ -212,6 +212,8 @@ int C2F(macr2tree) _PARAMS((char *fname))
 
 	      return 0;
 	    }
+
+
  	  if(cod_sav==15 && data[cod_ind+1]==29) /* EOL as the last component of a column concatenation */
 	    {
 	      /* a = ['a'
@@ -414,11 +416,10 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
       return 0;
     }
   (name[0])[nlgh]='\0';
-
   switch(data[*index]) {
   case 0: /* Deleted operation */
     /* This code is ignored */
-    *index += data[*index+1];
+    *index += data[*index+1]-1;
     break;
   case 1: /* Stack put (Obsolete) */
     CreateEqualTList("code1",data,index);
@@ -1813,7 +1814,7 @@ int complexity(int *data,int *index,int *lgth)
       switch(data[cur_ind])
 	{
 	case 0: /* Deleted operation */
-	  cur_ind = cur_ind + data[cur_ind+1] + 1;
+	  cur_ind = cur_ind + data[cur_ind+1];
 	  break;
 	case 1: /* Stack put (Obsolete) */
 	  cur_ind = cur_ind + nsiz + 1;

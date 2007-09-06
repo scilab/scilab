@@ -52,6 +52,7 @@ c     Extra arguments in calling list that westore on the Scilab stack
       endif
 c     Macro execution 
 c     
+      iero=0
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
@@ -79,7 +80,7 @@ c     avec test du cas complexe
       il=iadr(lstk(top))
       if(istk(il).ne.1) then 
          call error(98)
-         return
+         goto 9999
       endif
       itype=istk(il+3)
       call btof(xres,itype+1)
