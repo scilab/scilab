@@ -640,26 +640,35 @@ c     left division by a matrix -->macro coded
          return
       endif
 c     left division by a scalar
-      sr=stk(l1)
-      si=0.0d+0
-      if(it1.eq.1) si=stk(l1+1)
-      e1=max(abs(sr),abs(si))
-      if(e1.eq.0.0d+0) then
-         call error(27)
-         return
+c     invert the scalar
+      if (it1.eq.0) then
+         if(stk(l1).eq.0.0d0) then
+            call error(27)
+            return
+         endif
+         sr=1.0/stk(l1)
+         si=0.0d+0
+      else
+         sr=stk(l1)
+         si=stk(l1+1)
+         e1=max(abs(sr),abs(si))
+         if(e1.eq.0.0d+0) then
+            call error(27)
+            return
+         endif
+         sr=sr/e1
+         si=si/e1
+         e1=e1*(sr*sr+si*si)
+         sr=sr/e1
+         si=-si/e1
       endif
-      sr=sr/e1
-      si=si/e1
-      e1=e1*(sr*sr+si*si)
-      sr=sr/e1
-      si=-si/e1
       if(istk(il2).eq.1) then
          call icopy(4,istk(il2),1,istk(il1),1)
          l1=sadr(il1+4)
          nel2=mn2
          call unsfdcopy(nel2*(it2+1),stk(l2),1,stk(l1),1)
       else
-         call icopy(5+2*nel2,istk(il2),1,istk(il1),1)
+         call icopy(5+m2+nel2,istk(il2),1,istk(il1),1)
          l1=sadr(il1+5+m2+nel2)
          call unsfdcopy(nel2*(it2+1),stk(l2),1,stk(l1),1)
       endif
