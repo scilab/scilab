@@ -19,6 +19,7 @@ extern int PushClickQueue(int win,int x,int y,int ibut,int motion,int release) ;
 extern void set_wait_click(val);
 extern BOOL SendMacroEntityPicker(struct BCG * ScilabGC,int id);
 /*-----------------------------------------------------------------------------------*/
+BOOL ON_WND_GRAPH_WM_SETFOCUS(HWND hwnd, HWND hwndOldFocus);
 BOOL ON_WND_GRAPH_WM_CLOSE(HWND hwnd);
 BOOL ON_WND_GRAPH_WM_DESTROY(HWND hwnd);
 BOOL ON_WND_GRAPH_WM_DROPFILES(HWND hwnd,HDROP hDrop);
@@ -35,6 +36,7 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 {
 	struct BCG *ScilabGC = (struct BCG *) NULL;
 	ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	GetEventKeyboardAndMouse(message,wParam,lParam,ScilabGC);
 
 	switch (message)
@@ -49,6 +51,7 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 		HANDLE_MSG(hwnd,WM_DROPFILES,ON_WND_GRAPH_WM_DROPFILES);
 		HANDLE_MSG(hwnd,WM_DESTROY,ON_WND_GRAPH_WM_DESTROY);
 		HANDLE_MSG(hwnd,WM_CLOSE,ON_WND_GRAPH_WM_CLOSE);
+		HANDLE_MSG(hwnd,WM_SETFOCUS,ON_WND_GRAPH_WM_SETFOCUS);
 	}
 	return DefWindowProc (hwnd, message, wParam, lParam);
 }
@@ -404,6 +407,13 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 	}
 		
 
+	return TRUE;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL ON_WND_GRAPH_WM_SETFOCUS(HWND hwnd, HWND hwndOldFocus)
+{
+	extern BOOL focushaschanged;
+	focushaschanged = TRUE;
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/

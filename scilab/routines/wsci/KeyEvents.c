@@ -13,7 +13,7 @@ extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
 #endif
 
 /* Code à la linux */
-#define SCI_VK_CANCEL	65288
+#define SCI_VK_CANCEL	66377
 #define SCI_VK_PAUSE	65299
 #define SCI_VK_SLEEP	65300 
 #define SCI_VK_INSERT	65379
@@ -22,7 +22,7 @@ extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
 #define SCI_VK_HOME	65360
 #define SCI_VK_PRIOR	65365
 #define SCI_VK_NEXT	65366
-#define SCI_VK_BACK	65289
+#define SCI_VK_BACK	65288
 #define SCI_VK_NUMLOCK 65407 
 #define SCI_VK_SCROLL 65300 
 #define SCI_VK_SNAPSHOT 0

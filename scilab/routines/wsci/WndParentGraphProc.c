@@ -171,8 +171,8 @@ BOOL ON_WND_PARENTGRAPH_WM_GETMINMAXINFO(HWND hwnd, LPMINMAXINFO lpMinMaxInfo)
 	POINT *MMinfo = (POINT *) lpMinMaxInfo;
 	/* minimum size */
 	/* same minimum size as Linux */
-	MMinfo[3].x = 400;
-	MMinfo[3].y =320;
+	MMinfo[3].x = 0;
+	MMinfo[3].y = 10;
 	
 	return TRUE;
 }
