@@ -22,5 +22,3 @@ contents of the "lcc" directory:
 18/03/2004  09:01               596 Readme_LCC.txt
 18/03/2004  08:51    <REP>          src
 
-
-
