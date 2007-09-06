@@ -53,12 +53,12 @@ void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
     cPolyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
   }
 
-  if (sciGetIsFilled(pPolyline))
+  if (sciGetIsFilled(pPolyline) || sciGetPolylineStyle(pPolyline) == 5)
   {
     cPolyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
   }
   
-  if ( sciGetPolylineStyle(pPolyline) == 2 )
+  if (sciGetPolylineStyle(pPolyline) == 2)
   {
     cPolyline->setDecompositionStrategy(new StairCaseDecomposition(polyline));
   }

@@ -34,7 +34,17 @@ void PolylineFillDrawerJoGL::drawPolyline( void )
   initializeDrawing() ;
 
   // set the line parameters
-  getFillDrawerJavaMapper()->setBackColor(sciGetGraphicContext(pObj)->backgroundcolor) ;
+  if ( sciGetPolylineStyle(pObj) == 5)
+  {
+    // strange mode
+    getFillDrawerJavaMapper()->setBackColor(sciGetGraphicContext(pObj)->foregroundcolor) ;
+  }
+  else
+  {
+    // normal mode
+    getFillDrawerJavaMapper()->setBackColor(sciGetGraphicContext(pObj)->backgroundcolor) ;
+  }
+  
 
   // get the data of the polyline
   int      nbVertices = 0   ;
