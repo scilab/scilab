@@ -900,6 +900,7 @@ c     Working areas
       else
          call cmpse2(mm,n,mode,bgetx,bgety,stk(lxa),stk(lxr),
      1        stk(lxi),stk(lzr),stk(lzi),ierr)
+         if (err.gt.0.or.err1.gt.0) return
          if(ierr.gt.0) then
             buf='fft call : needs a power of 2'
             call error(999)

@@ -33,6 +33,7 @@ c!
       double precision xmean,ymean,xsum,ysum,xmnr,xmni
       double precision xir,xii,yir,yii,yirbis,fn
       external dgetx,dgety
+      common/  iercorr /iero
 c
 c
       lshft=m/2
@@ -45,11 +46,13 @@ c
       do 70 k=1,nsect
       if(k.eq.nsect) nrd=n-(k-1)*nrd
       call dgetx(xa,nrd,iss)
+      if (iero.gt.0) return 
       do 40 i=1,nrd
       xsum=xsum+xa(i)
  40   continue
       if(mode.eq.2) goto 60
       call dgety(xa,nrd,iss)
+      if (iero.gt.0) return 
       do 50 i=1,nrd
       ysum=ysum+xa(i)
   50  continue
@@ -79,12 +82,14 @@ c
       xi(i)=0.0d+0
  100  continue
  110  call dgetx(xa,nrdy,iss)
+      if (iero.gt.0) return 
       do 120 i=1,nrdy
       xr(i)=xa(i)
       xi(i)=xa(i)
  120  continue
       if(mode.eq.0..or.mode.eq.2) goto 140
       call dgety(xa,nrdy,iss)
+      if (iero.gt.0) return 
       do 130 i=1,nrdy
       xi(i)=xa(i)
  130  continue
