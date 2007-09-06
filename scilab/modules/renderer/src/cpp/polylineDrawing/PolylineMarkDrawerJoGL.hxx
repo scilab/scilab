@@ -5,82 +5,48 @@
 /* desc : Strategy drawing the marks on a polyline object                 */
 /*------------------------------------------------------------------------*/
 
-#include "PolylineMarkDrawerJoGL.hxx"
 
-extern "C"
-{
-#include "GetProperty.h"
-#include "sciprint.h"
-};
+#ifndef _POLYLINE_MARK_DRAWER_JOGL_HXX_
+#define _POLYLINE_MARK_DRAWER_JOGL_HXX_
+
+#include "DrawablePolyline.h"
+#include "DrawPolylineStrategy.hxx"
+#include "DrawableObjectJoGL.h"
+#include "PolylineMarkDrawerJavaMapper.hxx"
+
 
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
-PolylineMarkDrawerJoGL::PolylineMarkDrawerJoGL( DrawablePolyline * polyline )
-  : DrawPolylineStrategy(polyline), DrawableObjectJoGL(polyline)
-{
-  setJavaMapper(new PolylineMarkDrawerJavaMapper());
-}
-/*------------------------------------------------------------------------------------------*/
-PolylineMarkDrawerJoGL::~PolylineMarkDrawerJoGL(void)
+class PolylineMarkDrawerJoGL : public DrawPolylineStrategy, public DrawableObjectJoGL
 {
 
-}
-/*------------------------------------------------------------------------------------------*/
-void PolylineMarkDrawerJoGL::drawPolyline( void )
-{
-  sciPointObj * pObj = m_pDrawed->getDrawedObject();
-  initializeDrawing() ;
+public:
 
-  // set the line parameters
-  getMarkDrawerJavaMapper()->setMarkParameters(sciGetGraphicContext(pObj)->markbackground,
-                                               sciGetGraphicContext(pObj)->markforeground,
-                                               sciGetMarkSizeUnit(pObj),
-                                               sciGetMarkSize(pObj),
-                                               sciGetMarkStyle(pObj));
+  PolylineMarkDrawerJoGL( DrawablePolyline * polyline ) ;
 
-  // get the data of the polyline
-  int      nbVertices = 0   ;
-  double * xCoords    = NULL;
-  double * yCoords    = NULL;
-  double * zCoords    = NULL;
+  virtual ~PolylineMarkDrawerJoGL(void);
 
-  nbVertices = m_pDrawed->getDrawnVerticesLength();
-  xCoords = new double[nbVertices];
-  yCoords = new double[nbVertices];
-  zCoords = new double[nbVertices];
+  /**
+   * Main algorithm
+   */
+  virtual void drawPolyline( void );
 
-  if (xCoords == NULL || yCoords == NULL || zCoords == NULL)
-  {
-    sciprint("Unable to render polyline, memory full.\n");
-    if(xCoords != NULL) { delete[] xCoords; }
-    if(yCoords != NULL) { delete[] yCoords; }
-    if(zCoords != NULL) { delete[] zCoords; }
-    endDrawing();
-    return;
-  }
+  /**
+   * Call the display list of an object
+   */
+  virtual void showPolyline( void );
 
-  m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
+protected:
 
-  // display the rectangle
-  getLineDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
+  /**
+  * Get the object performing mapping with Java class.
+  */
+  PolylineMarkDrawerJavaMapper * getMarkDrawerJavaMapper(void);
 
-  delete[] xCoords;
-  delete[] yCoords;
-  delete[] zCoords;
-  endDrawing() ;
-}
-/*------------------------------------------------------------------------------------------*/
-void PolylineMarkDrawerJoGL::showPolyline( void )
-{
-  show();
-}
-/*------------------------------------------------------------------------------------------*/
-PolylineMarkDrawerJavaMapper * PolylineMarkDrawerJoGL::getLineDrawerJavaMapper(void)
-{
-  return dynamic_cast<PolylineMarkDrawerJavaMapper *>(getJavaMapper());
-}
-/*------------------------------------------------------------------------------------------*/
+
+};
 
 }
+
+#endif /* _POLYLINE_LINE_DRAWER_JOGL_HXX_ */

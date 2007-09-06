@@ -9,7 +9,7 @@
 #define _POLYLINE_MARK_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-//#include "PolylineMarkDrawerGL.hxx"
+#include "PolylineMarkDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -49,7 +49,7 @@ protected:
   /**
    * Giws generated wrapper.
    */
-  //org_scilab_modules_renderer_polylineDrawing::PolylineMarkDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_polylineDrawing::PolylineMarkDrawerGL * m_pJavaObject;
 
 
 };

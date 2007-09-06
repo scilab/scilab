@@ -430,6 +430,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\PolylineMarkDrawerGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\polylineDrawing\PolylineMarkDrawerJavaMapper.cpp"
 					>
 				</File>
@@ -965,6 +969,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\polylineDrawing\PolylineLineDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\PolylineMarkDrawerGL.hxx"
 					>
 				</File>
 				<File

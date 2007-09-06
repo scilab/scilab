@@ -15,6 +15,7 @@
 #include "PolylineFillDrawerJoGL.hxx"
 #include "InterpolatedDecomposition.hxx"
 #include "StairCaseDecomposition.hxx"
+#include "PolylineMarkDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -48,11 +49,6 @@ void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
   cPolyline->removeDecompositionStrategy();
   cPolyline->removeDrawingStrategies();
 
-  if (sciGetIsLine(pPolyline))
-  {
-    cPolyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
-  }
-
   if (sciGetIsFilled(pPolyline) || sciGetPolylineStyle(pPolyline) == 5)
   {
     cPolyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
@@ -65,6 +61,16 @@ void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
   else
   {
     cPolyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
+  }
+
+  if (sciGetIsLine(pPolyline))
+  {
+    cPolyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
+  }
+
+  if (sciGetIsMark(pPolyline))
+  {
+    cPolyline->addDrawingStrategy(new PolylineMarkDrawerJoGL(polyline));
   }
   
 }
