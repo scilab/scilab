@@ -297,7 +297,7 @@ changelogs = CHANGES
 bin_SCRIPTS = bin/scilab
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/c/main_linux.c
 @GUI_FALSE@scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-@GUI_FALSE@	$(X_EXTRA_LIBS) -lXt -lX11 -lSM
+@GUI_FALSE@	$(X_EXTRA_LIBS)
 
 @GUI_TRUE@scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 @GUI_TRUE@	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
