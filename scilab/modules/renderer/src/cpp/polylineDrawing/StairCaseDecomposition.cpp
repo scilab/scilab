@@ -44,7 +44,7 @@ void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[]
       xCoords[2 * i] = xPoints[i];
       yCoords[2 * i] = yPoints[i];
       
-      xCoords[2 * i + 1] = xPoints[i+1];
+      xCoords[2 * i + 1] = xPoints[i + 1];
       yCoords[2 * i + 1] = yPoints[i];
     }
 
@@ -62,14 +62,14 @@ void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[]
       yCoords[2 * i] = yPoints[i];
       zCoords[2 * i] = zPoints[i];
 
-      xCoords[2 * i + 1] = xPoints[i+1];
+      xCoords[2 * i + 1] = xPoints[i + 1];
       yCoords[2 * i + 1] = yPoints[i];
       zCoords[2 * i + 1] = zPoints[i];
     }
 
     // the last point is the same for the two curves
     xCoords[nbVertices - 1] = xPoints[nbPolylinePoints - 1];
-    yCoords[nbVertices - 1] = xPoints[nbPolylinePoints - 1];
+    yCoords[nbVertices - 1] = yPoints[nbPolylinePoints - 1];
     zCoords[nbVertices - 1] = zPoints[nbPolylinePoints - 1];
   }
 
