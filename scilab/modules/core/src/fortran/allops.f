@@ -112,6 +112,11 @@ c     .     a() -->a
       endif
       do 03 i=1,nt
          vt1=abs(ogettype(top+1-i))
+         if(vt1.eq.0) then
+            err=nt
+            call error(44)
+            return
+         endif
          if(vt1.gt.vt) vt=vt1
  03   continue
 
