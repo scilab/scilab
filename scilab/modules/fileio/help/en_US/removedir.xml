@@ -42,6 +42,7 @@ removedir(SCIHOME+'/Directory_test')
     <SEE_ALSO_ITEM>
       <LINK>rmdir</LINK>
     </SEE_ALSO_ITEM>
+  </SEE_ALSO>
 
   <AUTHORS>
     <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
