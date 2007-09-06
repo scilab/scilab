@@ -19,7 +19,8 @@ MSDOS = getenv('WIN32','NO')=='OK' & ..
 TMPDIR=getenv('TMPDIR');
 
 if ~with_modelica_compiler() then quit,end
-models=stripblanks(mgetl('models'))
+//models=stripblanks(mgetl('models'))
+models=stripblanks(models);
 if MSDOS then
   compilerpath=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
 else
@@ -44,5 +45,3 @@ for k=1:size(models,1)
     end
   end
 end
-
-
