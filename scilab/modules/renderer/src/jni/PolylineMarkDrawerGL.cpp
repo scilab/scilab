@@ -109,7 +109,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetLineParametersjintjintjintjintjintID=NULL; 
+voidsetMarkParametersjintjintjintjintjintID=NULL; 
 voiddrawPolylinejdoublejdoublejdoubleID=NULL; 
 
 
@@ -261,19 +261,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void PolylineMarkDrawerGL::setLineParameters (long background, long foreground, long markSizeUnit, long markSize, long markStyleIndex){
+void PolylineMarkDrawerGL::setMarkParameters (long background, long foreground, long markSizeUnit, long markSize, long markStyleIndex){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidsetLineParametersjintjintjintjintjintID == NULL)
+if (this->voidsetMarkParametersjintjintjintjintjintID == NULL)
 {
-this->voidsetLineParametersjintjintjintjintjintID = curEnv->GetMethodID(this->instanceClass, "setLineParameters", "(IIIII)V" ) ;
-if (this->voidsetLineParametersjintjintjintjintjintID == NULL) {
-std::cerr << "Could not access to the method setLineParameters" << std::endl;
+this->voidsetMarkParametersjintjintjintjintjintID = curEnv->GetMethodID(this->instanceClass, "setMarkParameters", "(IIIII)V" ) ;
+if (this->voidsetMarkParametersjintjintjintjintjintID == NULL) {
+std::cerr << "Could not access to the method setMarkParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  curEnv->CallVoidMethod( this->instance, voidsetLineParametersjintjintjintjintjintID ,background, foreground, markSizeUnit, markSize, markStyleIndex);
+  curEnv->CallVoidMethod( this->instance, voidsetMarkParametersjintjintjintjintjintID ,background, foreground, markSizeUnit, markSize, markStyleIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
