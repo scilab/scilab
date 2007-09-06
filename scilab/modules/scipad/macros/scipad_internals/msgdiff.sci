@@ -20,19 +20,27 @@
 //  5) a continuation of 3)
 //
 //  Use (from scilab):
+//
 //   msgdiff(master_msgfile_path,derived_msgfile_path)
-// or
+//
+//  or
+//
 //   report=msgdiff(master_msgfile_path,derived_msgfile_path);
 //   mprintf("%s\n",report)
 //
-//   msgdiff(master_msgfile_path)  just reports syntax warnings and
-//         generates a reformatted rev file
+//   msgdiff(master_msgfile_path) // just reports syntax warnings and
+//                                // generates a reformatted rev file
 //
 //  known bugs: 
 //   -unquoted label names are wrapped by quotes in the rev file (apparently
 //    harmless
-//   -Quoted strings ending by \ (there is one such occurrence in fr.msg)
-//    confuse the parser, the result has a " too much
+//   -line reformatting is based on the byte count, not character count. strings
+//    written in multi-byte encodings can get split across more lines than
+//    aesthetically necessary
+//   -any intentional indentation in the original file is ironed out. Too
+//    difficult to discriminate an intentional, systematic block indentation
+//    from just sloppy formatting, therefore I implement a simple and robust 
+//    scheme.
 //
 /////////////////////////////////////////////////////////////
 
@@ -177,7 +185,7 @@ endfunction
 
 function l=lineformat(lang,orig,transl)
   prefix="::msgcat::mcset "+lang+" "
-  lindent="                   "
+  lindent=part(" ",1:length(prefix))
   n1=length(prefix)
   n2=length(orig)
   n3=length(transl)

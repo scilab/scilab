@@ -1,6 +1,6 @@
 # Scipad texts in norwegian
 # in sync at least with v6.129
-# by Torbj?rn Pettersen, 5/9/2007
+# by Torbjørn Pettersen, 5/9/2007
 
 # commons
 ::msgcat::mcset no "Cancel" "Avbryt"
