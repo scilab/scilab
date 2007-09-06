@@ -30,7 +30,7 @@ public class PolylineMarkDrawerGL extends MarkDrawerGL implements PolylineDrawer
 	 * Default constructor
 	 */
 	public PolylineMarkDrawerGL() {
-		super;
+		super();
 		verticesPositions = null;
 	}
 	
