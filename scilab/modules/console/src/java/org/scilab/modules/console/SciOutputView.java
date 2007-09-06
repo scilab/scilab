@@ -8,6 +8,7 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
 import com.artenum.console.ui.ConsoleTextPane;
@@ -47,16 +48,21 @@ public class SciOutputView extends ConsoleTextPane {
 		/* - if the console size has been forced to a value */
 		/* - if a carriage return has been appended */
 		if (console != null && console.getInputCommandViewSizeForced() && lines.length > 0) {
+
 			JTextPane outputView = ((JTextPane) console.getConfiguration().getOutputView());
 			
+			// Get JScrollPane viewport size to adapt input command view size
+			JScrollPane jSP = console.getJScrollPane();
+			Dimension jSPExtSize = jSP.getViewport().getExtentSize();
+
 			/* Height of a text line in the ouput view */
 			int charHeight = outputView.getFontMetrics(outputView.getFont()).getHeight();
 
 			JPanel promptView = ((JPanel) console.getConfiguration().getPromptView());
 			
 			/* Input command view dimensions */
-			int height = ((JPanel) promptView.getParent()).getPreferredSize().height;
-			int width = ((JPanel) promptView.getParent()).getPreferredSize().width;
+			int height = ((JTextPane) console.getConfiguration().getInputCommandView()).getPreferredSize().height;
+			int width = ((JTextPane) console.getConfiguration().getInputCommandView()).getPreferredSize().width - jSPExtSize.width;
 
 			int promptViewHeight = promptView.getPreferredSize().height;
 
@@ -75,9 +81,10 @@ public class SciOutputView extends ConsoleTextPane {
 				console.setInputCommandViewSizeForced(false);
 			}
 			/* Change the input command view size */
-			((JPanel) promptView.getParent()).setPreferredSize(newDim);
-			((JPanel) promptView.getParent()).invalidate();
-			((JPanel) promptView.getParent()).doLayout();
+	       	((JTextPane) console.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
+        	((JTextPane) console.getConfiguration().getInputCommandView()).invalidate();
+	    	((JTextPane) console.getConfiguration().getInputCommandView()).doLayout();
+			
 		}			
 		
 		if (console != null) {

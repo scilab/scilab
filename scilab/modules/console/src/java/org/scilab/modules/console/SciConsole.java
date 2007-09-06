@@ -226,9 +226,9 @@ public class SciConsole extends JPanel {
     public void toHome() {
     	Dimension jSPExtSize = jSP.getViewport().getExtentSize();
     	Dimension newDim = new Dimension(jSPExtSize.width - jSP.getVerticalScrollBar().getPreferredSize().width, jSPExtSize.height);
-    	((JPanel) config.getPromptView()).getParent().setPreferredSize(newDim);
-    	((JPanel) config.getPromptView()).getParent().invalidate();
-    	((JPanel) config.getPromptView()).getParent().doLayout();
+    	((JTextPane) config.getInputCommandView()).setPreferredSize(newDim);
+    	((JTextPane) config.getInputCommandView()).invalidate();
+    	((JTextPane) config.getInputCommandView()).doLayout();
     	inputCommandViewSizeForced = true;
    }
     
@@ -355,5 +355,13 @@ public class SciConsole extends JPanel {
 		super.doLayout();
 		// Send the size of the console to Scilab to adjust display
 		scilabLinesUpdate();
+	}
+	
+	/**
+	 * Get the JScrollPane associated to the console
+	 * @return the JScrollPane associated to the console
+	 */
+	public JScrollPane getJScrollPane() {
+		return jSP;
 	}
 }
