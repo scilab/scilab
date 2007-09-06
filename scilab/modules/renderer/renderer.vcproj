@@ -430,6 +430,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineMarkDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineMarkDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\polylineDrawing\StairCaseDecomposition.cpp"
 					>
 				</File>
@@ -957,6 +965,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\polylineDrawing\PolylineLineDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineMarkDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineMarkDrawerJoGL.hxx"
 					>
 				</File>
 				<File

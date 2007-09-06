@@ -8,9 +8,14 @@
 
 package org.scilab.modules.renderer.drawers;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.renderer.DrawableObjectGL;
 
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.MarkDrawing.MarkDrawer;
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Parent class for mark drawing algorithms
@@ -118,6 +123,31 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		setMarkSizeUnit(markSizeUnit);
 		setMarkSize(markSize);
 		setMarkStyle(markStyleIndex);
+	}
+
+	/**
+	 * Display the marks at the positions specified by marksPosition
+	 * @param marksPosition positions in 3D of marks
+	 */
+	public void drawMarks(Vector3D[] marksPosition) {
+		GL gl = getGL();
+		
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation();
+		
+		// need to perform this befaore swithching to pixel coordinates
+		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, marksPosition);
+		
+		
+		// switch to pixel coordinates
+		GLTools.usePixelCoordinates(gl);
+		
+		for (int i = 0; i < marksPosition.length; i++) {
+			// switch back to the new frame
+			Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
+			getDrawer().drawMark(curCoord.getX(), curCoord.getY(), curCoord.getZ());
+		}
+		
+		GLTools.endPixelCoordinates(gl);
 	}
 	
 	/**

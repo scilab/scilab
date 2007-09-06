@@ -9,12 +9,8 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import javax.media.opengl.GL;
-
 import org.scilab.modules.renderer.drawers.MarkDrawerGL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
-import org.scilab.modules.renderer.utils.glTools.GLTools;
-import org.scilab.modules.renderer.utils.CoordinateTransformation;
 
 /**
  * Class containing functions called by RectangleMarkDrawerJoGL.cpp
@@ -50,24 +46,7 @@ public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDraw
 	 * using data stored in cornersPos
 	 */
 	public void drawRectangle() {
-		GL gl = getGL();
-		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation();
-		
-		// need to perform this befaore swithching to pixel coordinates
-		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, cornersPos);
-		
-		
-		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl);
-		
-		for (int i = 0; i < NB_CORNERS; i++) {
-			// switch back to the new frame
-			Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
-			getDrawer().drawMark(curCoord.getX(), curCoord.getY(), curCoord.getZ());
-		}
-		
-		GLTools.endPixelCoordinates(gl);
+		drawMarks(cornersPos);
 	}
 	
 	/**
