@@ -40,8 +40,7 @@ public class PolylineMarkDrawerGL extends MarkDrawerGL implements PolylineDrawer
 	 */
 	@Override
 	public void show(int parentFigureIndex) {
-		// TODO Auto-generated method stub
-
+		drawRectangle();
 	}
 
 	/**
