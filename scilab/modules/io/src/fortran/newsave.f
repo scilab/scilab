@@ -393,6 +393,8 @@ c     write id and type
  10      call savelist(fd,il1,ierr)
       elseif(istk(il1).eq.128) then 
          call saveptr(fd,il1,ierr)
+      elseif(istk(il1).eq.130) then 
+         call savefptr(fd,il1,ierr)
       else
 c     .  call an external function
          fun=-il1
@@ -456,6 +458,8 @@ c     read id and type
          call loadlist(fd,il1,nn,ierr)
       elseif(istk(il1).eq.128) then 
          call loadptr(fd,il1,nn,ierr)
+      elseif(istk(il1).eq.130) then 
+         call loadfptr(fd,il1,nn,ierr)
       else
          fun=-il1
          lstk(top+1)=sadr(il1)
@@ -541,8 +545,9 @@ c     .  a sublist
          il=il1
          goto 10
       elseif(istk(il1).eq.128) then 
-         
          call saveptr(fd,il1,ierr)
+      elseif(istk(il1).eq.130) then 
+         call savefptr(fd,il1,ierr)
       else
 c     .  call an external function
          if (ptover(1,psiz)) return
@@ -673,6 +678,8 @@ c     .  a sublist
          goto 10
       elseif(istk(il1).eq.128) then 
          call loadptr(fd,il1,nne,ierr)
+      elseif(istk(il1).eq.130) then 
+         call loadfptr(fd,il1,nne,ierr)
       else
 c     .  call an external function
          if (ptover(1,psiz)) return
@@ -1477,6 +1484,46 @@ c     read pointer
       n=iadr(l+1)-il
 c      n=4+2*1
       return
+      end
+      subroutine savefptr(fd,il,ierr)
+c     Copyright INRIA
+c     Save a pointer on sparse lu factorization
+      include 'stack.h'
+c
+      integer fd
+      character*3 fmti,fmtd
+      integer sadr
+c
+      fmti='il'//char(0)
+      fmtd='dl'//char(0)
+
+c     write matrix header type excluded
+      call mputnc (fd,istk(il+1),2+nsiz,fmti,ierr)
+
+      end
+
+      subroutine loadfptr(fd,il,n,ierr)
+c     Copyright INRIA
+c     Save a pointer on sparse lu factorization
+      include 'stack.h'
+c
+      integer fd
+      character*3 fmti,fmtd
+      integer sadr
+c
+      sadr(l)=(l/2)+1
+
+      fmti='il'//char(0)
+      fmtd='dl'//char(0)
+
+      err=sadr(il+3+nsiz)-lstk(bot)
+      if(err.gt.0) then
+         call error(17)
+         return
+      endif
+      call mgetnc (fd,istk(il+1),2+nsiz,fmti,ierr)
+      if(ierr.ne.0) return
+      n=3+nsiz
       end
 
       subroutine saveint(fd,il,ierr)
