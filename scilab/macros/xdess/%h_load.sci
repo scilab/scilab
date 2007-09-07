@@ -102,7 +102,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
   case "Axes"
     
     a=gca() ;
-    title=a.title ;
+    Title=a.title ;
     x_label=a.x_label ;
     y_label=a.y_label ;
     set(a,"visible"              , toggle(mget(1,'c',fd))) // visible
@@ -125,22 +125,21 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     view            =  ascii(mget(2,'c',fd)); // view
 
     // title
-    set(title,"visible"   , toggle(mget(1,'c',fd))) // title.visible
-    set(title,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
-    set(title,"foreground", mget(1,'il',fd)); // title.foreground
+    set(Title,"visible"   , toggle(mget(1,'c',fd))) // title.visible
+    set(Title,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
+    set(Title,"foreground", mget(1,'il',fd)); // title.foreground
     if is_higher_than([3 1 0 0]) then
-      set(title,"background"       , mget(1,'il',fd)); // title.background
-      set(title,"fill_mode"        , toggle(mget(1,'c',fd))); //title.fill_mode
+      set(Title,"background"       , mget(1,'il',fd)); // title.background
+      set(Title,"fill_mode"        , toggle(mget(1,'c',fd))); //title.fill_mode
     end
-    
-    set(title,"font_style"       , mget(1,'c',fd)); // title.font_style
-    set(title,"font_size"        , mget(1,'c',fd)); // title.font_size
+    set(Title,"font_style"       , mget(1,'c',fd)); // title.font_style
+    set(Title,"font_size"        , mget(1,'c',fd)); // title.font_size
 
     if is_higher_than([3 1 0 0]) then
-      set(title,"auto_rotation", toggle(mget(1,'c',fd))) // title.auto_rotation
-      set(title,"font_angle"   , mget(1,'dl',fd)); // title.font_angle
-      set(title,"auto_position", toggle(mget(1,'c',fd))) // title.auto_position
-      set(title,"position"     , mget(2,'dl',fd)); // title.position
+      set(Title,"auto_rotation", toggle(mget(1,'c',fd))) // title.auto_rotation
+      set(Title,"font_angle"   , mget(1,'dl',fd)); // title.font_angle
+      set(Title,"auto_position", toggle(mget(1,'c',fd))) // title.auto_position
+      set(Title,"position"     , mget(2,'dl',fd)); // title.position
     end
     
     // x_label
@@ -1009,6 +1008,7 @@ endfunction
 
 function load_user_data(fd)
   if is_higher_than([3 1 0 0]) then
+    h; //make a copy of the calling context h here
     load(fd,'user_data')
     if user_data<>[] then 
       h.user_data=user_data;

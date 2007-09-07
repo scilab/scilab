@@ -124,8 +124,8 @@ function colorbar(umin, umax, colminmax,fmt)
 
     
     //draw the colorbar
-    y = linspace(umin,umax,nb_colors+1)
-    col=[colminmax(1) colminmax(1):colminmax(2)]
+    y = linspace(umin,umax,nb_colors)
+    col=[colminmax(1):colminmax(2)]
     Sgrayplot([0 1],y,[col;col],colminmax=colminmax)
 
     //reset the initial values 
