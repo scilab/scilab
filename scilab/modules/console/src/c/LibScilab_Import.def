@@ -9,4 +9,5 @@ StoreCommand
 getScilabMode
 scilab_timer_check
 ScilabEventsLoop
+sigbas_
 ;
