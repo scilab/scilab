@@ -37,11 +37,11 @@ for i = 2:n-1,
   for j= 2:m-1,
     xDiff = intens( i+1, j   ) - intens( i-1, j   ) ;
     yDiff = intens( i,   j+1 ) - intens( i  , j-1 ) ;
-    
+
     // get the number of the baquet
     histo_color = ( intens(i,j) * nb_baquet ) / 256 + 1 ;
     histo( histo_color ) = histo( histo_color ) + 1 ;
-    
+
     //edges(i,j) = 0.25 * sqrt( xDiff * xDiff + yDiff * yDiff ) ;
     edges(i,j) = 0.5 * ( abs( xDiff ) + abs( yDiff ) ) ;
   end
@@ -67,7 +67,7 @@ SetPosition() ;
 drawnow() ;
 
 realtimeinit(1.0)
-for i=1:10, 
+for i=1:10,
   realtime(i);
 end
 xdel() ;
@@ -92,7 +92,7 @@ SetPosition() ;
 drawnow() ;
 
 realtimeinit(1.0)
-for i=1:10, 
+for i=1:10,
   realtime(i);
 end
 xdel() ;
@@ -112,7 +112,7 @@ drawnow();
 
 
 realtimeinit(1.0)
-for i=1:10, 
+for i=1:10,
   realtime(i);
 end
 
@@ -130,7 +130,7 @@ endfunction
 
 function [RGB,m]=ppm2sci(m,flag)
 [nr,nc]=size(m);
-// this function can be improved by the use of short integers but this 
+// this function can be improved by the use of short integers but this
 // require a sort for short ints
 if flag=='p' then // color
   //get the colormap
@@ -180,15 +180,15 @@ while c=='#',
   lignecourante=read(u,1,1,'(a)');
   head=[head;lignecourante];
   c=sscanf(lignecourante,'%c');
-end; 			
+end;
 [sz1,sz2]=sscanf(lignecourante,'%d%d');
-if niveau~=0 then 
+if niveau~=0 then
   head=[head;read(u,1,1,'(a)')];
 end;
 
-if niveau==2 then 
+if niveau==2 then
   m=matrix(read(u,1,3*sz1*sz2),3*sz1,sz2);
-else 
+else
   m=matrix(read(u,1,sz1*sz2),sz1,sz2);
 end;
 
@@ -229,7 +229,7 @@ head=getimgline(u)
 h=head
 if h~='P'+string([1 2 3 4 5 6]) then
   error('Not a PBM/PGM/PPM file')
-end   
+end
 ftyp=evstr(part(h,2))
 
 
@@ -239,20 +239,20 @@ while c=='#',
   lignecourante=getimgline(u)
   head=[head;lignecourante];
   c=part(lignecourante,1)
-end; 			
+end;
 //image size
 execstr('sz=['+lignecourante+']')
 // number of colors
 
-if and(ftyp<>[1 4]) then 
+if and(ftyp<>[1 4]) then
   execstr('nc='+getimgline(u))
 else
   nc=2
 end;
-if or(ftyp==[3 6]) then 
+if or(ftyp==[3 6]) then
   nv=3*sz(1)*sz(2),
   m=uint8(0);m(3*sz(1),sz(2))=uint8(0);
-else  
+else
   nv=sz(1)*sz(2),
   m=uint8(0);m(sz(1),sz(2))=uint8(0);
 end
@@ -332,13 +332,18 @@ endfunction
 
 function l=getimgline(u)
 h=[]
-while %t 
+while %t
  c=mget(1,'uc',u)
  if c==10 then break,end
  h=[h c]
 end
 
-if MSDOS then
+//
+// Correcting BUG : Vince & Titiii
+// We have to take care about the file Format !
+// We do not care about the OS *<8-)
+//
+if h($) == 13 then
   s = size(h);
   s = s(2) - 1 ;
   l = ascii(h(1:s)) ;
