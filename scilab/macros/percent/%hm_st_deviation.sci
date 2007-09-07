@@ -1,5 +1,5 @@
 function x=%hm_st_deviation(m,d)
-if argn(2)==1 then
+if argn(2)==1|d=='*' then
   x=st_deviation(m.entries)
   return
 end
