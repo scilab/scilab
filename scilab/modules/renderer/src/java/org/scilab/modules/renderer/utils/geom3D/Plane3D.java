@@ -217,7 +217,7 @@ public class Plane3D {
 	 * @return text representation of the plane
 	 */
 	public String toString() {
-		return a + "x + " + b + "y + " + c + ".z + " + d + " = 0";
+		return a + "x + " + b + "y + " + c + "z + " + d + " = 0";
 	}
 
 }

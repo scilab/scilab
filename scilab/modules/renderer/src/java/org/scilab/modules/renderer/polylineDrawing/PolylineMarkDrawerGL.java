@@ -9,12 +9,9 @@
 
 package org.scilab.modules.renderer.polylineDrawing;
 
-import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.drawers.MarkDrawerGL;
-import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
-import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Class containing the driver dependant routines to draw marks

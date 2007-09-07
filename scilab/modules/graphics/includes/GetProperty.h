@@ -218,4 +218,6 @@ int sciGetPolylineStyle(sciPointObj * pObj); /* GET */
 
 BOOL sciGetIsClosed(sciPointObj * pObj); /* GET */
 
+int sciGetArrowSize(sciPointObj * pObj); /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */

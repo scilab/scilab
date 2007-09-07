@@ -21,7 +21,7 @@ public class MarkDrawer extends DrawableObjectGL {
 	/**
 	 * The two kinds of markSize unit
 	 */
-	public static enum SizeUnit { POINT, TABULATED };
+	private static enum SizeUnit { POINT, TABULATED };
 	
 	/**
 	 * Mapping between tabulated sizes and point sizes

@@ -19,6 +19,6 @@ int get_arrow_size_property( sciPointObj * pobj )
     sciprint("arrow_size property does not exist for this handle.\n") ;
     return -1 ;
   }
-  return sciReturnDouble( pSEGS_FEATURE (pobj)->arrowsize ) ;
+  return sciReturnDouble( sciGetArrowSize(pobj) ) ;
 }
 /*------------------------------------------------------------------------*/

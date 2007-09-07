@@ -51,3 +51,4 @@ getFigureFromIndex
 sciGetNbPoints
 sciGetPolylineStyle
 sciGetIsClosed
+sciGetArrowSize

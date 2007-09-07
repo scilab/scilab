@@ -5184,3 +5184,18 @@ BOOL sciGetIsClosed(sciPointObj * pObj)
   return FALSE;
 }
 /*-------------------------------------------------------------------------------------------*/
+int sciGetArrowSize(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_POLYLINE:
+    return pPOLYLINE_FEATURE(pObj)->arsize_factor;
+  case SCI_SEGS:
+    return pSEGS_FEATURE(pObj)->arrowsize;
+  default:
+    sciprint("This object has no arrow_size property.\n");
+    break;
+  }
+  return -1;
+}
+/*-------------------------------------------------------------------------------------------*/
