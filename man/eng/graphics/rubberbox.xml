@@ -9,6 +9,7 @@
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox(initial_rect)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox(edition_mode)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -19,6 +20,15 @@
   initial rectangle  defined by [x_left, y_top, width, height], with
   two entries width and height are supposed to be 0.
   coordinates of the upper-left corner of</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>edition_mode</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:a boolean, if edition_mode==%t; button press selects the first corner, release
+	    selects the opposite corner.if edition_mode==%f, button press or
+	    click selects the first corner, a click is requested to select the
+	    opposite corner. The default value is  edition_mode=%f </SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -33,6 +43,7 @@
           <SP>:an integer, the number of the mouse button clicked</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
