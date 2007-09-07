@@ -118,7 +118,7 @@ else
 	linespec2sci(varargin(k+1),curh)
 	k=k+2
       elseif ~isempty(strindex("markeredgecolor",opt)) then
-	warning("MarkerEdgeColor option ignored");
+	warning(gettext("messages","compatibility_functions_message_23"));
 	k=k+2
       elseif ~isempty(strindex("markerfacecolor",opt)) then
 	curh=markplot.children(1)
@@ -145,6 +145,11 @@ else
 end
 a=gca()
 a.auto_clear="on"
+// Log axis ?
+global mtlb_log_mod
+if ~isempty(mtlb_log_mod)
+  a.log_flags = mtlb_log_mod;
+end
 h=a.children
 endfunction
 
@@ -182,7 +187,7 @@ styl=scilinestyles(ind)
 if styl>=0 then
   cur_handle.line_style=styl
 elseif ~isempty(ind) then
-  warning("Unknown line style found in ''"+linespec+"'' -> set to 6");
+  warning(msprintf(gettext("messages","compatibility_functions_message_24"),linespec));
   cur_handle.line_style=6
 end
 
@@ -200,7 +205,7 @@ if ~isempty(clr) then
   cur_handle.foreground=color(clr)
   mtlbColor=name2rgb(clr)
 elseif ~isempty(ind) then
-  warning("Unknown color found in ''"+linespec+"'' -> set to black");
+  warning(msprintf(gettext("messages","compatibility_functions_message_25"),linespec));
   cur_handle.foreground=color("black")
   mtlbColor=name2rgb("black")
 end
