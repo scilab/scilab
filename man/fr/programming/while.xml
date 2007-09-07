@@ -8,12 +8,9 @@
   <SHORT_DESCRIPTION name="while"> mot-clé utilisé dans une structure while
     ... end  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>while expr ,instructions,...[,else instructions],
-      end</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>while expr do instructions,...[,else instructions],
-      end</CALLING_SEQUENCE_ITEM>
-   <CALLING_SEQUENCE_ITEM>while expr then instructions,...[,else instructions],
-      end</CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>while expr ,instructions,...[,else instructions], end</CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>while expr do instructions,...[,else instructions], end</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>while expr then instructions,...[,else instructions], end</CALLING_SEQUENCE_ITEM>
 
   </CALLING_SEQUENCE>
 
@@ -30,8 +27,11 @@
 
       <DESCRIPTION_ITEM> 
 	<SP>
-	  Les mot-clés <VERB>then</VERB> et <VERB>do</VERB> peuvent être
-	  remplacés par un passage à la ligne ou une virgule.
+	  Les mot-clés <VERB>then</VERB> et <VERB>do</VERB> peuvent
+	  être remplacés par un passage à la ligne ou une
+	  virgule. Pour la compatibilité avec Matlab, il est aussi
+	  possible, mais non recommendé de mettre un espace à la
+	  place de ces séparateurs.
 	</SP>
       </DESCRIPTION_ITEM>
 
