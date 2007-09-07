@@ -1,0 +1,20 @@
+mode(-1)
+p=get_absolute_file_path('icse.dem');
+old=pwd();
+chdir(p)
+getd('./')
+while %t
+  num=x_choose(['lqv','Serotonine','Shuttle'],'Choose a demonstration')
+  select num
+  case 0 then
+    break
+  case 1 then
+    exec ('lqv.sce')
+  case 2 then
+    exec ('seros.sce')
+  case 3 then
+    exec ('navet.sce')
+
+  end
+end
+chdir(old)

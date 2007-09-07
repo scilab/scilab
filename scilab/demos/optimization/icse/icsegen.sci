@@ -28,10 +28,9 @@ itv=itu;
 itv(nitv)=0;
 dtv=[dtu,y0,tob,matrix(obs,1,ny*nob),don,ech,cof,b,fy1,fu1];
 dtv(ndtv)=0;
-debug(imp);
 [co,u,g,itv,dtv]=optim(simu,'b',binf,bsup,u, alg, df0, 'ar',nap,...
                        'ti',itv,'td',dtv,'si','sd')
-debug(0);
+endfunction
 
 
 

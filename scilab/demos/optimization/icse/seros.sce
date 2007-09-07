@@ -6,7 +6,11 @@
 //
 // contexte : tue les variables de nom reserve
 // Copyright INRIA
-exec('icse.contexte');
+libn=ilib_for_link('icsest','icsest.o',[],'f')
+nlink=link('./'+libn,'icsest','f')
+
+//clear icse contexte
+clear nu u uc uv itu dtu y0 tob binf bsup b fy fu obs don;
 t0=0.d0;    // instant initial
 tf=18.d1;   // instant final
 dti=1;  // premier pas de temps
@@ -69,7 +73,7 @@ obs=[0,1,1,1;0,1,0,1]; // matrice d'observation obs(nob,ny)
 //  don(nex*ntob*nob)  :mesures prealablement entrees dans le fichier
 //                      sero.mes.Il s'agit de donnees simulees avec
 //                      uc=[2.d-4,1.d-3,1.d-2,1.d-7,1.d-6,1.d-9,1.d-7]
-don=read('sero.mes',1,nex*ntob*nob,'(5d15.7)');
+don=read(p1+'sero.mes',1,nex*ntob*nob,'(5d15.7)');
 //
 
 nap=20;     // nombre d'appels du simulateur
@@ -78,5 +82,8 @@ large=100;  // taille de nu au dela de laquelle on choisit un optimiseur
        // pour les problemes de grande taille (alg='gc' dans l'appel de optim)
 //
 exec('icseinit.sce');
-[co,u,g,itv,dtv]=icse(u,'icsest',nap,imp);
-
+u0=u
+[co,u,g,itv,dtv]=icse(u0,'icsest',nap,imp);
+plot(u0)
+plot(u)
+ulink(nlink)

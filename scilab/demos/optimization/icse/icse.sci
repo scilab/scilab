@@ -21,6 +21,5 @@ nu=prod(size(u))
 ech=ones(1,nu);
 cof=ones(1,nob*ntob);
 [co,u,g,itv,dtv]=icsegen(u,simu,nap,imp)
-
-
+endfunction
 
