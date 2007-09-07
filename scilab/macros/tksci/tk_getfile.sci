@@ -9,6 +9,7 @@ if exists("file_mask","local")==1 then
 end;
 if exists("path","local")==1 then
   path = pathconvert(path,%f,%t)
+  path=strsubst(path,"\","/")
   arg = arg+" -initialdir {"+path+"}"
 else
   if MSDOS then
@@ -49,6 +50,7 @@ if MSDOS then
   if ~p=="" then
     global("%tk_getfile_defaultpath");
     %tk_getfile_defaultpath = dirname(p(1));
+    %tk_getfile_defaultpath=strsubst(%tk_getfile_defaultpath,"\","/")
   end;
 end;
 

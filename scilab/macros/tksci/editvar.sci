@@ -38,18 +38,7 @@ function editvar(%_name)
       clear namesheet;
   end
 
-  //
-  // This is a slow manner to move the data ...
-  // Anyone have a faster method than TCL_SetVar
-  // I would like set some tcl variable like varname(pos_i,pos_j)
-  //
-
-  for %_j=1:%_nj,
-    for %_i=1:%_ni,
-      %_varname="sciGUITable(win,"+%_winId+",data,"+string(%_i)+","+string(%_j)+")";
-      TCL_SetVar(%_varname,%_var(%_i,%_j));
-    end
-  end
+  editvar_set_values( %_var, %_winId ) ;
 
   TCL_EvalStr("sciGUIEditVarDrawGrid "+%_winId);
 
