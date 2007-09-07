@@ -9,7 +9,7 @@
 #define _POLYLINE_ARROW_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-//#include "RectangleArrowDrawerGL.hxx"
+#include "PolylineArrowDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -39,6 +39,10 @@ public:
   // specific for polyline arrow drawer
   virtual void setArrowParameters(int arrowColor, double arrowSize);
 
+  virtual void setAxesBounds(double xMin, double xMax,
+                             double yMin, double yMax,
+                             double zMin, double zMax);
+
   virtual void drawPolyline(const double xCoords[],
                             const double yCoords[],
                             const double zCoords[],
@@ -50,7 +54,7 @@ private:
   /**
    * Giws generated wrapper.
    */
-  //org_scilab_modules_renderer_polylineDrawing::polylineArrowDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_polylineDrawing::PolylineArrowDrawerGL * m_pJavaObject;
 
 
 };

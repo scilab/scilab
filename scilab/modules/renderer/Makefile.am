@@ -119,7 +119,10 @@ src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp \
 src/jni/PolylineFillDrawerGL.cpp \
 src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp \
 src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp \
-src/jni/PolylineMarkDrawerGL.cpp
+src/jni/PolylineMarkDrawerGL.cpp \
+src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp \
+src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp \
+src/jni/PolylineArrowDrawerGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c

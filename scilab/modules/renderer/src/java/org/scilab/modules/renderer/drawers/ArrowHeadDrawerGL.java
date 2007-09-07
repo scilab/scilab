@@ -57,7 +57,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	 * @param colorIndex index in the colormap
 	 * @param size size of the arrow for default resolution.
 	 */
-	public void setArrowProperties(int colorIndex, double size) {
+	public void setArrowParameters(int colorIndex, double size) {
 		setArrowColor(colorIndex);
 		setArrowSize(size);
 	}
@@ -71,7 +71,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	 * @param zMin minimun bound along Z axis
 	 * @param zMax maximum bound along Z axis
 	 */
-	public void setAxesPixelBounds(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax) {
+	public void setAxesBounds(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax) {
 		
 		GL gl = getGL();
 		
