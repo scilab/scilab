@@ -4,11 +4,11 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>1</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>2001</DATE>
-  <SHORT_DESCRIPTION name="isequal"> objects comparison</SHORT_DESCRIPTION>
+  <DATE>2007</DATE>
+  <SHORT_DESCRIPTION name="isequalbitwise"> bitwise comparison of variables</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>t=isequal(a,b)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>t=isequal(a,b,..)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>t=isequalbitwise(a,b)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>t=isequalbitwise(a,b,..)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -27,31 +27,24 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <SP><VERB> isequal</VERB> compares its arguments. If all of them
+    <SP><VERB> isequalbitwise</VERB> compares its arguments. If all of them
     are equals function returns <VERB> %t</VERB> and in the other case
-    it returns <VERB> %f</VERB> .</SP>
+    it returns <VERB> %f</VERB>.</SP>
     <P> When comparing list's, structures,... the comparison is made
     recursively, the order of the fields matters. </P>
-    <P>floating point data are compared according to IEEE rule, i.e.
-    NaN values are not equal. See <LINK>isequalbitwise</LINK> for bitwise
+    <P>floating point data are compared bitwise, i.e.
+    NaN values are not equal, double(1) and int32(1) are not equal. See <LINK>isequal</LINK> for IEEE
     comparisons. </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-a=[1 2]
-isequal(a,[1 2])
-isequal(a,1)
+a=list(1:5,%s+1,'ABCDEFG');
+isequalbitwise(a,a)
    ]]>
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>isequalbitwise</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>equal</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>less</LINK>
+      <LINK>isequal</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
