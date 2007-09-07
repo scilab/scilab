@@ -5,10 +5,13 @@ function [tree]=sci_generic(tree)
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 // V.C.
-
-for i=1:size(tree.lhs)
-  tree.lhs(i).dims=list(-1,-1)
-  tree.lhs(i).type=Type(-1,-1)
+if typeof(tree)=="operation"
+  tree.out(1).dims=list(-1,-1)
+  tree.out(1).type=Type(-1,-1)
+else
+  for i=1:size(tree.lhs)
+    tree.lhs(i).dims=list(-1,-1)
+    tree.lhs(i).type=Type(-1,-1)
+  end
 end
-
 endfunction

@@ -293,7 +293,7 @@ if kc<>0 then // Current line has or is a comment
   com=strsubst(com,dquote,dquote+dquote)
   if part(com,1:12)=="m2sciassume " | part(com,1:13)=="m2scideclare " then // User has given a clue to help translation
     if part(com,1:12)=="m2sciassume " then
-      warning("m2sciassume is obsolete, used m2scideclare instead");
+      warning(gettext("messages","m2sci_message_64"));
     end
     com=";m2scideclare("+quote+part(com,13:length(com))+quote+")"
   else
@@ -494,6 +494,33 @@ else
     end
     txt=[txt(first_ncl);txt(1:first_ncl(1)-1);txt(first_ncl($)+1:$)]
   end
+  // Beginning of BUG 2341 fix: function prototype with no comma between output parameters names
+  begb=strindex(txt(1),"[");
+  endb=strindex(txt(1),"]");
+  if ~isempty(begb) & ~isempty(endb)
+    outputparams = stripblanks(part(txt(1),(begb+1):(endb-1)))+"   ";
+    k=0;
+    while k<length(outputparams)
+      k=k+1;
+      while (and(part(outputparams,k)<>[","," "])) & (k<length(outputparams)) // skip identifier
+	k=k+1;
+      end
+      while (part(outputparams,k)==" ") & (k<length(outputparams)) // skip spaces before comma (or next identifier)
+	k=k+1;
+      end
+      if (part(outputparams,k)<>",") & (k<length(outputparams))
+	outputparams=part(outputparams,1:(k-1))+","+part(outputparams,k:length(outputparams));
+	k=k+1;
+      else
+	k=k+1;
+	while (part(outputparams,k)==" ") & (k<length(outputparams)) // skip spaces after comma
+	  k=k+1;
+	end
+      end
+    end
+    txt(1)=stripblanks(part(txt(1),1:begb)+outputparams+part(txt(1),endb:length(txt(1))));
+  end
+  // END of BUG 2341 fix: function prototype with no comma between output parameters names
 end
 
 endfunction
