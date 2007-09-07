@@ -15,22 +15,40 @@
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label=".">
-        <SP>Dot is used to mark decimal point for numbers : 3.25 and 0.001</SP>
+        <P>Dot is used to mark decimal point for numbers : 3.25 and 0.001</P>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label=".&lt;op&gt;">
-        <SP>used in cunjunction with other operator symbols (<VERB>* / \ ^ '</VERB>) to form other operators.  Element-by-element multiplicative operations are obtained using <VERB> .* , .^ , ./ , .\</VERB> or <VERB>.'</VERB>.  For example, C = A ./ B is the matrix with elements c(i,j) = a(i,j)/b(i,j). Kronecker product is noted .*. .  Note that when dot follows a number it is alway prt of the number so 2.*x is evaluated as 2.0*x and 2 .*x is evaluated as (2).*x</SP>
+        <P>used in conjunction with other operator symbols (<VERB>* / \ ^ '</VERB>) to form other operators.  Element-by-element multiplicative operations are obtained using <VERB> .* , .^ , ./ , .\</VERB> or <VERB>.'</VERB>.  For example, C = A ./ B is the matrix with elements c(i,j) = a(i,j)/b(i,j). Kronecker product is noted .*. .  Note that when dot follows a number it is alway prt of the number so 2.*x is evaluated as 2.0*x and 2 .*x is evaluated as (2).*x</P>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="..">
-        <SP>Continuation.  Two or more decimal points at the end of a line causes the following line to be a continuation.</SP>
+        <P>Continuation mark.  Two or more decimal points at the end
+        of a line (or followed by a comment) causes the following line
+        to be a continuation.</P>
+	 <P> Continuation lines are handled by a preprocessor wich
+        builds a long logical line from a given sequence of
+        continuation lines. So the continuation marks can be used to
+        cut a line at any point.</P>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
+//decimal point
 1.345
+
+//used as part of an operator
 x=[1 2 3];x.^2 .*x // a space is required between 2 and dot
-[123,..
- 456]
+
+// used to enter continuation lines
+T=[123,..//first element
+   456] //second one
+
+a="here I start a very long string...  //but I'm not in the mood of continuing
+     - and here I go on"
+y=12..
+45
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

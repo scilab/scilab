@@ -12,7 +12,29 @@
   <SHORT_DESCRIPTION name="comments">comments</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
-    <P>Command lines which begin by <VERB> // </VERB> are not interpreted by
-    Scilab.</P>
+    <P>A sequence of two consecutives slashes <VERB> // </VERB> out of
+    a string definition marks the beginning of a comment. The slashes
+    as well as all the following characters up to the end of the lines
+    are not interpreted.
+    </P>
+    <P>Inside a function, the first comment lines, up to the first
+    instruction or an empty line may be used to provide the default
+    contents for the function help. </P>
   </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+g=9.81// the gravity
+
+text='a//b'
+
+function y=myfunction(x)
+// myfunction computes y=x^2+1
+// x shoud be a vector or matrix
+  y=x^2+1
+endfunction
+
+help myfunction
+
+ ]]>
+ </EXAMPLE>
 </MAN>
