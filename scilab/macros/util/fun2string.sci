@@ -232,7 +232,7 @@ function [txt,ilst]=cod2sci(lst,ilst)
       txt=catcode(txt,'continue,')
     case '29' then //affectation
       ip=evstr(op(2))
-      if ip==99 then 
+      if ip==99|ip==2 then 
 	ip=''
       else
 	ip=code2str(ip)

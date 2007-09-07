@@ -200,7 +200,7 @@ endfunction
 
 function r=with_scipad()
   if with_tk() then
-    if ~TCL_ExistInterp("scipad") then scipad(),end
+    scipad(),
     r=%t
   else
     r=%f

@@ -3,16 +3,16 @@ function xmltohtml(dirs,titles,xsl,step)
 	//------------------------------------------------------------------------------------------
 	// Copyright Enpc (Jean-Philippe Chancelier)
 	//------------------------------------------------------------------------------------------
-	// dirs is a set of directories 
-	// for which html manuals are to be generated 
-	// + and index and toc file 
+	// dirs is a set of directories
+	// for which html manuals are to be generated
+	// + and index and toc file
 	// titles are associated title strings (optional or [])
-	// if dirs is not specified or [] then 
-	// standard scilab man are assumed and titles 
-	// are searched in %helps 
+	// if dirs is not specified or [] then
+	// standard scilab man are assumed and titles
+	// are searched in %helps
 	// updated by HUYNH Olivier on the 9/03/2004
 	//------------------------------------------------------------------------------------------
-
+	
 	curdir=pwd()
 	
 	help=utillib.help;
@@ -38,9 +38,16 @@ function xmltohtml(dirs,titles,xsl,step)
 	//------------------------------------------------------------------------------------------
 	//patch because scicos is not written in xml
 	//------------------------------------------------------------------------------------------
-	
-	scs=grep(%helps(std,1),'scicos')
-	if size(scs,'*')==1 then std(scs)=[],end
+
+	scs=grep(%helps(std,1),'/scicos')
+	if size(scs,'*')==1 then
+          std(scs)=[]
+        else
+          scs=grep(%helps(std,1),'\scicos')
+          if size(scs,'*')==1 then
+            std(scs)=[]
+          end
+        end
 	
 	man_dirs = basename(%helps(std,1));
 	man_titles= %helps(std,2);
@@ -48,22 +55,31 @@ function xmltohtml(dirs,titles,xsl,step)
 		error('I cannot find man dirs');
 		return 
 	end
-  
-	[lhs,rhs]=argn(0) 
+	
+	//------------------------------------------------------------------------------------------
+	// is_scilab_man = %T if we are compiling the whote online help
+	//------------------------------------------------------------------------------------------
+	whole_online_help = %F;
+	
+	[lhs,rhs]=argn(0)
 	
 	if rhs > 4 then error(39),return; end
 	if rhs <= 3 then step='all';end 
 	if rhs <= 2 then xsl= 'html-rev.xsl'; end 
-	if rhs <= 1 then titles= H + emptystr(dirs);end 
-	if rhs <= 0 then dirs = man_dirs ;end 
-	if titles==[] then titles= H+ emptystr(dirs);end 
-	if dirs == [] then 
+	if rhs <= 1 then titles= H + emptystr(dirs);end
+	if rhs <= 0 then
+		dirs = man_dirs;
+		whole_online_help = %T;
+	end
+	if titles==[] then titles= H+ emptystr(dirs);end
+	if dirs == [] then
 		dirs = 'SCI/man/'+LANGUAGE+'/'+man_dirs ;
 		titles= man_titles;
+		whole_online_help = %T;
 	end
- 
+	
 	//------------------------------------------------------------------------------------------
-	// first build all the whatis 
+	// first build all the whatis
 	//------------------------------------------------------------------------------------------
 	
 	if step=='all' | step == 'whatis' then 
@@ -71,14 +87,14 @@ function xmltohtml(dirs,titles,xsl,step)
 			mprintf('Creating whatis.htm in %s\n',dirs(k));
 			dirs(k)=pathconvert(dirs(k),%f,%t)
 			chdir(dirs(k));
-			if titles(k) == H then 
+			if titles(k) == H then
 				titles(k) = titles(k)+' ('+dirs(k)+')';
 			end
 			gener_whatis(titles(k))
 			chdir('../')
 		end
 	end
-  
+ 
 	//------------------------------------------------------------------------------------------
 	// the perform the  html generation
 	//------------------------------------------------------------------------------------------
@@ -96,7 +112,7 @@ function xmltohtml(dirs,titles,xsl,step)
 				%helps=[%helps;'./',"Temp"];
 				%helps=saved_helps;
 			end
-	
+			
 			xml = listfiles('*.xml');
 			if xml <> [] then 
 				for k1=1:size(xml,'*')  // loop on .xml files 
@@ -111,12 +127,13 @@ function xmltohtml(dirs,titles,xsl,step)
 	
 	//------------------------------------------------------------------------------------------
 	// now the index
+	// Only if we are compiling the whote online help, else, not needed and incoherent
 	//------------------------------------------------------------------------------------------
 	
-	if step=='all' | step == 'index' then 
+	if (step=='all' | step == 'index') & (whole_online_help) then
 		mprintf('Creating index.htm \n');
 		if rhs <= 0 then 
-			gener_index() 
+			gener_index()
 		else
 			gener_index(dirs,titles)
 		end
@@ -124,12 +141,13 @@ function xmltohtml(dirs,titles,xsl,step)
 	
 	//------------------------------------------------------------------------------------------
 	// now the contents
+	// Only if we are compiling the whote online help, else, not needed and incoherent
 	//------------------------------------------------------------------------------------------
 	
-	if step=='all' | step == 'contents' then 
+	if (step=='all' | step == 'contents') & (whole_online_help) then
 		mprintf('Creating contents.htm  \n');
 		if rhs <= 0 then 
-			gener_contents() 
+			gener_contents()
 		else
 			gener_contents(dirs)
 		end
@@ -137,15 +155,13 @@ function xmltohtml(dirs,titles,xsl,step)
 	
 	//------------------------------------------------------------------------------------------
 	// now help workshop (Only under Windows and only if
-	// we build the scilab man (SCI/man/fr and SCI/man/eng )
+	// if we are compiling the whote online help, else, not needed and incoherent
 	//------------------------------------------------------------------------------------------
 	
 	if MSDOS then
-		if step=='all' | step == 'hw' then
-			if (strindex(dirs(1),'\eng\') <> []) | (strindex(dirs(1),'\fr\') <> []) then
-				mprintf('Creating sciman.hh* \n');
-				gener_hh(dirs,titles)
-			end
+		if (step=='all' | step == 'hw') & (whole_online_help) then
+			mprintf('Creating sciman.hh* \n');
+			gener_hh(dirs,titles)
 		end
 	end
 
@@ -156,25 +172,25 @@ endfunction
 function gener_whatis(Title)
 
 	//------------------------------------------------------------------------------------------
-	// generate a whatis.htm file 
+	// generate a whatis.htm file
 	// using *.xml man files
 	//------------------------------------------------------------------------------------------
 	
-	[lhs,rhs]=argn(0); 
+	[lhs,rhs]=argn(0);
 	
 	lines(0);
 	// look for .xml files
 	xml = listfiles('*.xml');
 	
 	if MSDOS& xml<>[] then 
-		// on MSDOS listfiles *.xml also 
+		// on MSDOS listfiles *.xml also
 		// returns *.xml* !!!!!
 		ind = grep(xml,'xml2');
 		xml(ind)=[];
 	end
 	
 	if rhs == 1 then 
-		whatis_title= Title 
+		whatis_title= Title
 	else
 		// find the title 
 		ind=grep(%helps(:,1),getcwd());
@@ -235,7 +251,7 @@ endfunction
 function gener_index(dirs,txt)
 
 	//------------------------------------------------------------------------------------------
-	// use %helps to generate an index file 
+	// use %helps to generate an index file
 	//------------------------------------------------------------------------------------------
 	
 	lines(0);
