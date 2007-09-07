@@ -40,6 +40,7 @@ includes/addToLibrarypath.h
 if GUI
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
+sci_gateway/c/sci_system_setproperty.c \
 sci_gateway/c/sci_with_embedded_jre.c \
 sci_gateway/c/sci_javaclasspath.c \
 sci_gateway/c/gw_jvm.c \
@@ -53,6 +54,7 @@ src/c/JVM.c \
 src/c/addToClasspath.c \
 src/c/getClasspath.c \
 src/c/system_getproperty.c \
+src/c/system_setproperty.c \
 src/c/loadClasspath.c \
 src/c/createMainScilabObject.c \
 src/c/JVM_commons.c \

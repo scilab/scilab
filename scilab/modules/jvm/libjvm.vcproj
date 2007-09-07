@@ -267,11 +267,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_system_setproperty.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_with_embedded_jre.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\system_getproperty.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\system_setproperty.c"
 				>
 			</File>
 			<File
@@ -354,6 +362,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\system_getproperty.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\system_setproperty.h"
 				>
 			</File>
 			<File
