@@ -1487,7 +1487,7 @@ c      n=4+2*1
       end
       subroutine savefptr(fd,il,ierr)
 c     Copyright INRIA
-c     Save a pointer on sparse lu factorization
+c     Save a pointer on  a primitive
       include 'stack.h'
 c
       integer fd
@@ -1504,7 +1504,7 @@ c     write matrix header type excluded
 
       subroutine loadfptr(fd,il,n,ierr)
 c     Copyright INRIA
-c     Save a pointer on sparse lu factorization
+c     load a pointer on a primitive
       include 'stack.h'
 c
       integer fd
