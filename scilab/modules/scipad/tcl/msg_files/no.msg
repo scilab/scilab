@@ -68,7 +68,7 @@
 
 
 # db_bptsmanagement.tcl
-::msgcat::mcset no "No breakpoint here!" "Ingen stopp punkter her!"
+::msgcat::mcset no "No breakpoint here!" "Ingen stoppsignal her!"
 
 
 # db_configureexec.tcl
@@ -167,31 +167,31 @@
 
 # db_debugsession.tcl
 ::msgcat::mcset no "Too many breakpointed functions"\
-                   "For mange funksjoner med stopp punkt"
+                   "For mange funksjoner med stoppsignal"
 ::msgcat::mcset no "You have currently" "Du har for øyeblikket"
 ::msgcat::mcset no "functions in your opened files." "funksjoner."
 ::msgcat::mcset no "Scilab supports a maximum of" "Scilag støtte maksimalt"
 ::msgcat::mcset no "possible breakpointed functions (see help setbpt)."\
-                   "mulige funksjoner med stopp punkt (se help setbpt)."
+                   "mulige funksjoner med stoppsignal (se help setbpt)."
 ::msgcat::mcset no "Step-by-step hence cannot be performed."\
                    "Steg-for-steg feilsøk kan derfor utføres."
 ::msgcat::mcset no "This command will actually run to the next breakpoint."\
-                   "Denne kommandoen vil kjøre til neste  stopp punkt."
+                   "Denne kommandoen vil kjøre til neste  stoppsignal."
 ::msgcat::mcset no "Break hence cannot be performed."\
                    "Stopp kan derfor ikke utføres."
-::msgcat::mcset no "Too many breakpoints" "For mange stopp punkter"
+::msgcat::mcset no "Too many breakpoints" "For mange stoppsignal"
 ::msgcat::mcset no "Executing this command would require to set"\
                    "Kjøring av denne kommandoen vil kreve at det settes"
 ::msgcat::mcset no "breakpoints in your opened files."\
-                   "stopp punkter i dine åpne filer."
+                   "stoppsignal i åpne filer."
 ::msgcat::mcset no "possible breakpoints in Scilab (see help setbpt)."\
-                   "mulige stopp punkter i Scilab (se help setbpt)."
+                   "mulige stoppsignal i Scilab (se help setbpt)."
 ::msgcat::mcset no "Cursor must be in a function"\
                    "Kursor må være innenfor en funksjon"
 ::msgcat::mcset no "This command cannot succeed if the function where the\
                     debug just stopped is not opened in Scipad!"\
                    "Denne kommandoen kan ikke utføres hvis funksjonen hvor\
-                    feilsøkingen nettopp stoppet ikke åpnes i Scilab!"
+                    feilsøkingen nettopp stoppet ikke er tilgjengelig i Scilab!"
 ::msgcat::mcset no "Cannot run to return point"\
                    "Kan ikke kjøre fram til return punktet."
 ::msgcat::mcset no "Warning!\nThe line where the debugger just stopped\
@@ -251,8 +251,8 @@
 ::msgcat::mcset no "&Dock" "Integrer"
 ::msgcat::mcset no "&Add" "Legg til"
 ::msgcat::mcset no "&Filter errors" "Filtrer feil"
-::msgcat::mcset no "Breakpoints" "Stopp punkter"
-::msgcat::mcset no "Breakpointed functions" "Funksjoner med stopp punkter"
+::msgcat::mcset no "Breakpoints" "Stoppsignal"
+::msgcat::mcset no "Breakpointed functions" "Funksjoner med stoppsignal"
 ::msgcat::mcset no "Scilab busy indicator" "Scilab opptattindikator"
 ::msgcat::mcset no "Debugger state indicator"\
                    "Tilstandsindikator for feilsøker"
@@ -480,7 +480,7 @@
 
 
 # FormatWhereForWatch.sci
-::msgcat::mcset no "Breakpoint" "Stopp punkt"
+::msgcat::mcset no "Breakpoint" "Stoppsignal"
 ::msgcat::mcset no "called at line" "kallet på linje "
 ::msgcat::mcset no "of exec file" "i exec fil"
 ::msgcat::mcset no "of execstr instruction" "i execstr instruksjon"
@@ -575,7 +575,7 @@
 ::msgcat::mcset no "&Insert/Remove breakpoint" "&Legg til/Fjern stoppsignal"
 ::msgcat::mcset no "Remove &all breakpoints" "&Fjern alle stoppsignal"
 ::msgcat::mcset no "&Configure execution..." "Konfigurer kjøring..."
-::msgcat::mcset no "Go to next b&reakpoint" "Gå til neste stoppested"
+::msgcat::mcset no "Go to next b&reakpoint" "Gå til neste stoppsignal"
 ::msgcat::mcset no "&Step by step" "Steg for steg"
 ::msgcat::mcset no "Step &into" "Steg &inn i"
 ::msgcat::mcset no "Step o&ver" "Steg &over"
@@ -596,7 +596,7 @@
 ::msgcat::mcset no "&Colorize" "Fargelegg"
 
 # menues.tcl - Options menu
-::msgcat::mcset no "&Fonts..." "Fonter..."
+::msgcat::mcset no "&Fonts..." "Skrifttyper..."
 ::msgcat::mcset no "&Colors" "&Farger"
 ::msgcat::mcset no "Colori&ze" "Fargelegg"
 ::msgcat::mcset no "&Always" "Alltid"
@@ -608,7 +608,7 @@
 ::msgcat::mcset no "&Left aligned" "Venstrejustert"
 ::msgcat::mcset no "&Right aligned" "Høyrejustert"
 ::msgcat::mcset no "Show c&ontinued lines" "Vis forlengede linjer"
-::msgcat::mcset no "Word &wrap" "&Brekk linjer"
+::msgcat::mcset no "Word &wrap" "&Bryt lange linjer"
 ::msgcat::mcset no "&Double-click behavior" "Oppførsel ved dobbeltklikk"
 ::msgcat::mcset no "&Linux" "&Linux"
 ::msgcat::mcset no "Windo&ws" "Windo&ws"
@@ -631,7 +631,7 @@
 ::msgcat::mcset no "&Full path" "&Komplett filsti"
 ::msgcat::mcset no "Full path if &ambiguous" "Komplett filsti hvis &tvetydig"
 ::msgcat::mcset no "&Unambiguous pruned path" "&Tvetydig forkortet sti"
-::msgcat::mcset no "Windows menu &sorting" "Windows menysortering"
+::msgcat::mcset no "Windows menu &sorting" "Sortering av filnavn"
 ::msgcat::mcset no "&File opening order" "Rekkefølge for filåpning"
 ::msgcat::mcset no "&Alphabetically" "Alfabetisk"
 ::msgcat::mcset no "&Most recently used" "Sist brukte"
@@ -658,13 +658,13 @@
 ::msgcat::mcset no "&Help..." "&Hjelp..."
 ::msgcat::mcset no "&What's?..." "&Hva er?..."
 ::msgcat::mcset no "&About" "&Om"
-::msgcat::mcset no "Adding &translations..." "Legger til oversettelser..."
+::msgcat::mcset no "Adding &translations..." "Bidra med oversettelser..."
 ::msgcat::mcset no "Adding Scipad Translations..."\
-                   "Legger til Scipad oversettelser:"
-::msgcat::mcset no "&Bugs \& wishlist" "Feil \& ønskeliste"
-::msgcat::mcset no "Scipad Known bugs" "Kjente Scipad feil"
+                   "Bidra med oversettelser av Scipad:"
+::msgcat::mcset no "&Bugs \& wishlist" "Scipad bugs and wishlist"
+::msgcat::mcset no "Scipad Known bugs" "Kjente feil i Scipad"
 ::msgcat::mcset no "Change&log" "Endringslogg"
-::msgcat::mcset no "Changes in the Scipad codebase" "Endringer I Scipad kode"
+::msgcat::mcset no "Changes in the Scipad codebase" "Endringer i koden til Scipad"
 
 
 # popupmenus.tcl
@@ -786,7 +786,7 @@
 ::msgcat::mcset no "XMLCOLOR" "XML"
 ::msgcat::mcset no "NUMCOLOR" "Tall"
 ::msgcat::mcset no "SELCOLOR" "Markering"
-::msgcat::mcset no "BREAKPOINTCOLOR" "Stoppestedsfarge"
+::msgcat::mcset no "BREAKPOINTCOLOR" "Farge for stoppsignal"
 ::msgcat::mcset no "LFUNCOLOR" "Biblioteksrutiner"
 ::msgcat::mcset no "PDEFCOLOR" "Predefinierte variabler"
 ::msgcat::mcset no "FOUNDTEXTCOLOR" "Funnet tekst"
