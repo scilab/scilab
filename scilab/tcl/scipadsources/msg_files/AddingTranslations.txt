@@ -62,11 +62,14 @@ EDITING THE MESSAGE FILE
 First of all, choose one of the existing files 
 SCI/tcl/scipadsources/msg_files/*.msg as a template. The files fr.msg and
 it.msg are the best candidates, as they are most frequently updated.
-Such files are found in the CVS version of scilab and in recent unstable 
-versions; we recommend to start from the very latest files available on CVS 
-(see
-http://agon.inria.fr:8080/viewcvs/cgi/viewcvs.cgi/tcl/scipadsources/msg_files/
-and http://scilabsoft.inria.fr/download/index_download.php?page=CVS.html).
+The file eng.msg is NOT a good starting point, because it contains only
+very few strings [for most strings, the english text itself is used as 
+identifier in the strings database, and doesn't need to be resolved further].
+Such files are found in the trunk SVN version of scilab and in recent unstable 
+versions; we recommend to start from the very latest files available on the 
+scilab SVN repository (see 
+http://viewvc.scilab.org/bin/cgi/viewvc.cgi/trunk/scilab/modules/scipad/tcl/msg_files/
+and http://www.scilab.org/download/index_download.php?page=SVN.html)
 If you have difficulties in getting them, let us know, we can forward 
 by email.
 
@@ -105,10 +108,12 @@ ENCODING ISSUES
 
 Localization files could require a particular encoding for displaying
 correctly latin accented characters, or non-latin ones. We have seen that
-ISO-8859-15 and UTF-8 work fine, and we have used consistently ISO-8559-15
+ISO-8859-15 and UTF-8 work fine, and we had used consistently ISO-8559-15
 for French and Italian. As a rule of thumb, everything should be fine for
 Scipad if, opening it, it recognizes the encoding you used. Tcl seems to have
-some ability of doing it by itself. 
+some ability of doing it by itself. Currently all msg files are now in UTF-8
+in order to support the chinese characters displayed in the Options/locale
+menu.
 We also have some tools for transcoding, if needed, though our systems might
 lack the proper fonts.
 
@@ -156,7 +161,7 @@ will do, without any need to restart Scipad. Unless you have introduced Tcl
 syntax errors with your editing, Scipad should display menues and dialogs 
 in this new locale.
 
-Should you have dropped a tcl syntax error (the most common are to
+Should you have dropped a Tcl syntax error (the most common are to
 forget a " or a \), Scipad should warn you with an error message 
 detailed enough to find the offending line. If you have wish 
 installed, it might be more explicative to run scipad.tcl in wish, e.g.
@@ -171,24 +176,22 @@ Should you have omitted the translation of one string (or changed
 inadvertently the original, or deleted a line by mistake, etc.),
 you'll see its english fallback by default.
 
-Please check also that whenever space is limited (for instance in 
-dialogs), your translation is reasonably short and fits within the
-given space constraints.
 
 THE msgdiff TOOL
 ----------------
 
-The directory SCI/tcl/scipadsources/msg_files/ contains also a Scilab script
-which can be used to check the cross-consistency of the existing message 
-files. The script is called msgdiff.sci and has to be loaded in Scilab by 
-getf(). Once this is done, files can be checked calling from Scilab
+The directory SCI/tcl/scipadsources/msg_files/ contains also a
+Scilab script which can be used to check the cross-consistency of the 
+existing message files. The script is called msgdiff.sci and is automatically
+loaded in Scilab at startup [trunk scilab5 version -- in the BUILD_4 version 
+it still has to be loaded with exec]. Files can be checked calling from Scilab
 
   msgdiff <firstfile.msg> <secondfile.msg>
 
 or
 
   msgdiff <firstfile.msg>
-  
+
 In the first form, msgdiff compares the two files and reports the strings
 defined in <firstfile.msg> but not in <secondfile.msg> and viceversa.
 Moreover, it generates a new file called <secondfile.msg>.rev, which contains
@@ -200,6 +203,7 @@ the entries are nicely reformatted (this implies losing any original
 indentation, for the moment). 
 Some really minimal syntax check is done in both cases. Further comments are
 written in the header of msgdiff.sci.
+
 
 UPDATES
 --------

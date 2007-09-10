@@ -1,5 +1,5 @@
 proc showpopup2 {} {
-    global pad mouseoversel
+    global pad mouseoversel snRE
     set numx [winfo pointerx $pad]
     set numy [winfo pointery $pad]
     # if there is no debug session, popup menu is the edit menu
@@ -8,18 +8,23 @@ proc showpopup2 {} {
         tk_popup $pad.filemenu.edit $numx $numy
     } else {
         set ta [gettextareacur]
-        # If there is a selection, and the selected text contains only one active
-        # tag, which is sel, and if the selected trimmed string matches a regexp
-        # (constructed from help names in Scilab) then the selection is probably
-        # a valid variable to watch and the quick add watch menu should pop up
+        # If there is a selection, and if the selected trimmed string matches
+        # a regexp (constructed from help names in Scilab) then the selection
+        # is probably a valid variable to watch and the quick add watch menu
+        # should pop up
+        # If the selected trimmed string doesn't match the regexp, then it is
+        # proposed for addition in the generic expression area
+        # about block selections: they are collapsed to their first range
+        # (line) before trying to match them against the regexp
         if {$mouseoversel == "true"} {
-            if {[lsearch [$ta tag names sel.first] "sel"] != -1} {
-                set watchvar [string trim [$ta get sel.first sel.last]]
-                regexp {\A[\%_\#\!\$\?a-zA-Z][_\#\!\$\?a-zA-Z0-9]*\Z} $watchvar validwatchvar
+            set selindices [gettaselind $ta single]
+            set trimmedseltext [string trim [gettatextstring $ta $selindices]]
+            regexp "\\A$snRE\\Z" $trimmedseltext validwatchvar
+            if {[info exists validwatchvar]} {
+                showpopupdebugwsel $validwatchvar "watchvariable"
+            } else {
+                showpopupdebugwsel $trimmedseltext "genericexpression"
             }
-        }
-        if {[info exists validwatchvar]} {
-            showpopupdebugwsel $validwatchvar
         } else {
             tk_popup $pad.filemenu.debug $numx $numy
         }
@@ -41,35 +46,69 @@ proc showpopupfont {} {
 }
 
 proc showpopupsource {ind} {
-    global pad textareacur menuFont
+    global pad menuFont words
+    set textareacur [gettextareacur]
     set numx [winfo pointerx $pad]
     set numy [winfo pointery $pad]
     catch {destroy $pad.popsource}
-    if {[lsearch [$textareacur tag names $ind] "libfun"] ==-1} return
-    set lrange [$textareacur tag prevrange libfun "$ind+1c"]
-    if {$lrange==""} {set lrange [$textareacur tag nextrange libfun $ind]}
+    set tagname ""
+    if {[lsearch [$textareacur tag names $ind] "libfun"] != -1} {
+        set tagname libfun
+    } elseif {[lsearch [$textareacur tag names $ind] "scicos"] != -1} {
+        set tagname scicos
+    } elseif {[lsearch [$textareacur tag names $ind] "userfun"] != -1} {
+        set tagname userfun
+    } else {
+        return
+    }
+    set lrange [$textareacur tag prevrange $tagname "$ind+1c"]
+    if {$lrange==""} {set lrange [$textareacur tag nextrange $tagname $ind]}
     set curterm [$textareacur get [lindex $lrange 0] [lindex $lrange 1]]
     if {[info exists curterm]} {
         set curterm [string trim $curterm]
         if {$curterm!=""} {
-            set sourcecommand "scipad(get_function_path(\"$curterm\"))"
+            if {$tagname == "userfun"} {
+                set nameinitial [string range $curterm 0 0]
+                set candidates $words(scilab.$tagname.$nameinitial)
+                for {set i 0} {$i<[llength $candidates]} {incr i} {
+                    if {[lindex [lindex $candidates $i] 0] == $curterm} {
+                        set plabel [concat [mc "Jump to"] $curterm ]
+                        set sourcecommand \
+                            "dogotoline \"physical\" 1 \"function\" [list [lindex $candidates $i]]"
+                        break
+                    }
+                }
+            } else {
+                # scicos or libfun
+                set plabel [concat [mc "Open the source of"] $curterm ]
+                set sourcecommand "opensourcecommand $tagname $curterm"
+            }
             menu $pad.popsource -tearoff 0 -font $menuFont
-            set plabel [concat [mc "Open the source of"] $curterm ]
-            $pad.popsource add command -label $plabel\
-              -command "ScilabEval_lt $sourcecommand"
-        }
+            $pad.popsource add command -label $plabel -command $sourcecommand
+            tk_popup $pad.popsource $numx $numy
+       }
     }
-    tk_popup $pad.popsource $numx $numy
 }
 
-proc showpopupdebugwsel {watchvar} {
+proc opensourcecommand {tagname curterm} {
+    if {![isscilabbusy 0]} {
+        doopenfunsource $tagname $curterm
+    }
+}
+
+proc showpopupdebugwsel {texttoadd typeofquickadd} {
     global pad menuFont
     set numx [winfo pointerx $pad]
     set numy [winfo pointery $pad]
     catch {destroy $pad.popdebugwsel}
     menu $pad.popdebugwsel -tearoff 0 -font $menuFont
-    set plabel [mc AddWatch $watchvar]
+    if {$typeofquickadd eq "watchvariable"} {
+        set plabel [mc AddWatch $texttoadd]
+    } else {
+        # $typeofquickadd eq "genericexpression"
+        set plabel [mc AddGenExp $texttoadd]
+    }
     $pad.popdebugwsel add command -label $plabel\
-        -command "quickAddWatch_bp {$watchvar}"
+        -command "quickAddWatch_bp {$texttoadd} $typeofquickadd"
     tk_popup $pad.popdebugwsel $numx $numy
 }

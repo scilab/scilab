@@ -18,7 +18,7 @@
 #   Elements of $listboxinput
 #   Elements of $listboxinputval
 #   Elements of $spin
-#   funname: function name shown by spin
+#   funname: function name shown by $spin
 #   funvars($funname): arguments list of function $funname, e.g. {arg1 arg2}
 #   funvarsvals($funname,var): content of argument var from function $funname
 #   funnames: list of all the different function names found by Obtainall_bp
@@ -27,7 +27,10 @@
 #   Elements of $lbvarname
 #   Elements of $lbvarval
 #   watchvars: list of watch variables, e.g. {var1 var2}
-#   watchvarsvals(var): content of variable var
+#   watchvarsprops($var,value)    : content of variable $var
+#   watchvarsprops($var,prevvalue): content of variable $var at previous debug stop
+#   watchvarsprops($var,tysi)     : type and size (in a single string) of variable $var
+#   watchvarsprops($var,editable) : editability (true or false) of variable $var
 #
 # One further level down: ($adda level)
 # -----------------------
@@ -42,14 +45,13 @@
 #
 #######################################################################
 
-set sourced [file join "$env(SCIPATH)" "tcl" "scipadsources"]
-source [file join $sourced db_states.tcl]
-source [file join $sourced db_bptsmanagement.tcl]
-source [file join $sourced db_actbptmanagement.tcl]
-source [file join $sourced db_debugsession.tcl]
-source [file join $sourced db_configureexec.tcl]
-source [file join $sourced db_watch.tcl]
-source [file join $sourced db_argsmanagement.tcl]
+source [file join $sourcedir db_states.tcl]
+source [file join $sourcedir db_bptsmanagement.tcl]
+source [file join $sourcedir db_actbptmanagement.tcl]
+source [file join $sourcedir db_debugsession.tcl]
+source [file join $sourcedir db_configureexec.tcl]
+source [file join $sourcedir db_watch.tcl]
+source [file join $sourcedir db_argsmanagement.tcl]
 
 #######################################################################
 ##################### End of breakpoint stuff #########################

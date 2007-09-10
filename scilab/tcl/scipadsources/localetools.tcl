@@ -39,6 +39,37 @@ proc mcra {mlabel} {
     return [lindex $clu 1]
 }
 
+proc mcmaxra {args} {
+# Given several strings each one containing or not an ampersand,
+# this returns the length of the longest translated string, taking
+# the ampersand case into account, i.e. :
+#     max length among the ampersanded strings is mcmax of these strings
+# minus 1 (because of the ampersand, that is supposed to be present also
+# in the translated string if it is present in the untranslated string)
+#     max length among the strings without ampersand is mcmax of these
+# strings (an untranslated string with no ampersand is supposed to translate
+# into a string without ampersand)
+# return value is the maximum of these maxima
+    set cmda   [list mcmax]
+    set cmdnoa [list mcmax]
+    # mcmax is applied separately on the elements that contain an ampersand
+    # and on elements that do not contain an ampersand
+    foreach arg $args {
+        if {[string first "&" $arg] == -1} {
+            lappend cmdnoa $arg
+        } else {
+            lappend cmda $arg
+        }
+    }
+    set maxlen_amp   [eval $cmda]
+    set maxlen_noamp [eval $cmdnoa]
+    if {$maxlen_amp > $maxlen_noamp} {
+        return [expr {$maxlen_amp - 1}]
+    } else {
+        return $maxlen_noamp
+    }
+}
+
 proc fb {w} {
 # Flexible binding ancillary
 # Given a widget containing a -text (or -label) and a -underline option,
@@ -56,22 +87,33 @@ proc fb {w} {
 }
 
 proc relocalize {} {
-global lang sourcedir
+global lang msgsdir
 # carry on all the changes when the locale is changed on the fly via
 # the Options/Locale menu
     global pad listoftextarea
     ::msgcat::mclocale $lang
-    ::msgcat::mcload [file join $sourcedir msg_files]
+# the names of the locales are common for all languages (each one is the
+# native language name), and are defined in a separate file.
+# the common definition can anyway be overridden by a definition in the
+# $msgsdir/$lang.msg file
+    source [file join "$msgsdir" "localenames.tcl"]
+    ::msgcat::mcload $msgsdir
     createmenues
     setdbmenuentriesstates_bp
     updatepanestitles
+    set bestwidth [mcmaxra "Hide" \
+                           "Close"]
     foreach ta $listoftextarea {
         if {[isdisplayed $ta]} {
-            [getpaneframename $ta].clbutton configure -text [mc "Close"]
+            [getpaneframename $ta].clbutton configure -text [mc "Close"] -width $bestwidth
+            [getpaneframename $ta].hibutton configure -text [mc "Hide"]  -width $bestwidth
+            # tooltips on hide and close buttons do not need to be updated
+            # because localization occurs on the fly each time the tooltip
+            # displays its string content
         }
     }
     keyposn [gettextareacur]
 # labels in opened non-modal dialogs are not updated, but let's not 
 # pretend too much... Same for the title of unsaved buffers named 
-# UntitledN.sce
+# UntitledN.sce, and ditto for the call stack area text
 }

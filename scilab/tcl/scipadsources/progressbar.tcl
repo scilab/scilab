@@ -1,10 +1,11 @@
 # This file has been downloaded from Donal K. Fellows' Tcl archive at
 #   http://www.man.ac.uk/~zzcgudf/tcl/mwidx.html#progress
 #
-# A few words about it's licence can be found at 
+# A few words about it's license can be found at 
 #   http://www.cs.man.ac.uk/~fellowsd/tcl/
 #
-# It has been edited to remove the demo code and tune a bit the widget
+# It has been edited to remove the demo code, tune a bit the widget
+# and add functionalities such as changing colors
 
 ######################################################################
 
@@ -29,6 +30,8 @@ option add *Progress.relief           sunken widgetDefault
 proc Progress {w args} {
     uplevel 1 [list frame $w -class Progress] $args
 
+    global textFont
+
     foreach {val} {
         undoneForeground doneForeground
         undoneBackground doneBackground
@@ -42,11 +45,13 @@ proc Progress {w args} {
 
     frame $w.l -borderwidth 0 -background $undoneBackground
     label $w.l.l -textvariable $varname -borderwidth 0 \
-        -foreground $undoneForeground -background $undoneBackground
+        -foreground $undoneForeground -background $undoneBackground \
+        -font $textFont
     $w.l configure -height [expr {int([winfo reqheight $w.l.l]+2)}]
     frame $w.l.fill -background $doneBackground
     label $w.l.fill.l -textvariable $varname -borderwidth 0 \
-        -foreground $doneForeground -background $doneBackground
+        -foreground $doneForeground -background $doneBackground \
+        -font $textFont
 
     bind $w.l <Configure> [list ProgressConf $w "%w"]
 
@@ -63,10 +68,31 @@ proc ProgressConf {w width} {
     place conf $w.l.fill.l -x [expr {int($width/2)}]
 }
 
-proc SetProgress {win value {range 100} {textlabel ""}} {
+proc SetProgress {win value {range 100} {textlabel ""} {autocolor ""}} {
     global progressPercent
     set progress [expr {int(100*$value)/int($range)}]
     set relwidth [expr {double($value)/double($range)}]
     place conf $win.l.fill -relwidth $relwidth
     set progressPercent($win) "$textlabel - ${progress}%"
+    if {$autocolor != ""} {
+        if {$relwidth < [lindex $autocolor 0]} {
+            SetProgressDoneColor $win green4
+        } elseif {$relwidth < [lindex $autocolor 1]} {
+            SetProgressDoneColor $win orange
+        } else {
+            SetProgressDoneColor $win red
+        }
+    }
+}
+
+proc SetProgressDoneColor {w colo} {
+    $w.l.fill configure -background $colo
+    $w.l.fill.l configure -background $colo
+}
+
+proc SetProgressBarNarrow {w} {
+    global textsmallerFont
+    $w.l.l configure -font $textsmallerFont
+    $w.l.fill.l configure -font $textsmallerFont
+    $w.l configure -height [expr {int([winfo reqheight $w.l.l]-2)}]
 }

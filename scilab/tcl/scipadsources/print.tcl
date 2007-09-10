@@ -23,7 +23,8 @@ proc printsetup_unix {} {
     catch {destroy $print}
     toplevel $print
     wm title $print [mc "Print Setup"]
-    setwingeom $print
+    wm withdraw $print
+
     frame $print.top 
     frame $print.bottom
     label $print.top.label -text [mc "Print Command: "] -font $menuFont
@@ -31,16 +32,26 @@ proc printsetup_unix {} {
     $print.top.print delete 0 end
     set printvar $printCommand 
     $print.top.print insert 0 $printvar
-    button $print.bottom.ok -text [mc "OK"] -command "addtoprint $print" -font $menuFont
-    button $print.bottom.cancel -text [mc "Cancel"] -command "destroy $print" -font $menuFont
-    pack $print.top -side top -expand 0 
-    pack $print.bottom -side bottom -expand 0 
+    set bestwidth [mcmaxra "OK" \
+                           "Cancel"]
+    button $print.bottom.ok -text [mc "OK"] \
+            -command "addtoprint $print" \
+            -width $bestwidth -font $menuFont
+    button $print.bottom.cancel -text [mc "Cancel"] \
+            -command "destroy $print" \
+            -width $bestwidth -font $menuFont
+    pack $print.top -side top -expand 0 -pady 2
+    pack $print.bottom -side bottom -expand 0 -pady 2
     pack $print.top.label $print.top.print -in $print.top -side left -fill x \
             -fill y
     pack $print.bottom.ok $print.bottom.cancel -in $print.bottom -side left \
-            -fill x -fill y
+            -fill x -fill y -padx 10
     bind $print <Return> "addtoprint $print"
     bind $print <Escape> "destroy $print"
+
+    update idletasks
+    setwingeom $print
+    wm deiconify $print
 
     proc addtoprint {prnt} {
         global printCommand
@@ -52,9 +63,12 @@ proc printsetup_unix {} {
 proc selectprint_unix {textarea} {
 # procedure to print on unix systems
     global printCommand listoffile
-    if {[ismodified $textarea]} {
+    # testing for file exists needed because Ctrl+n followed by print
+    # prints garbage or leads to an error otherwise
+    if {[ismodified $textarea] ||
+        ![file exists $listoffile("$textarea",fullname)]} {
         set TempPrintFile [open /tmp/SciPadtmpfile w]
-        puts -nonewline $TempPrintFile [$textarea get 0.0 end]
+        puts -nonewline $TempPrintFile [$textarea get 1.0 end]
         close $TempPrintFile
         catch {eval exec "$printCommand /tmp/SciPadtmpfile"} result
     } else {
@@ -66,16 +80,21 @@ proc selectprint_unix {textarea} {
 
 proc printsetup_win {} {
 # procedure to setup the printer on windows systems
+    if {[isscilabbusy 0]} {return}
     ScilabEval_lt "printsetupbox()"
 }
 
 proc selectprint_win {textarea} {
 # procedure to print on windows systems
     global tmpdir listoffile
-    if {[ismodified $textarea]} {
+    if {[isscilabbusy 0]} {return}
+    # testing for file exists needed because Ctrl+n followed by print
+    # prints garbage or leads to an error otherwise
+    if {[ismodified $textarea] ||
+        ![file exists $listoffile("$textarea",fullname)]} {
         set fname [file join $tmpdir SciPadtmpfile]
         set TempPrintFile [open $fname w]
-        puts -nonewline $TempPrintFile [$textarea get 0.0 end]
+        puts -nonewline $TempPrintFile [$textarea get 1.0 end]
         close $TempPrintFile
         ScilabEval_lt "toprint(\"$fname\")" "sync"
         file delete $fname

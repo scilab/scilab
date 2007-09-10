@@ -53,26 +53,11 @@ proc dupWidgetOption {widget name} {
            "[string tolower [winfo class $widget]] $name [nondefOpts $widget]"]
 }
 
-proc dupWidgetText {widget name} {
-    $name insert end [$widget get 1.0 end]
-}
-
-###ES: who uses this, besides TextStyles which sets it? 
-# set the indent spacing (in cm) for lists
-# TK uses a "weird" tabbing model that causes \t to insert a single
-# space if the current line position is past the tab setting
-proc scipadindent {textarea cm} {
-    set tabs [expr $cm / 2.0]
-    $textarea configure -tabs ${tabs}c
-    set tab [expr 1 * $cm]
-    $textarea tag configure indentation -lmargin1 ${tab}c -lmargin2 ${tab}c \
-        -tabs "[expr $tab + $tabs]c [expr $tab + 2*$tabs]c"
-}
-
 proc TextStyles { t } {
     global colorpref
     foreach c1 $colorpref {global $c1}
-    global actbptextFont textFont
+    global actbptextFont
+    global linenumbersmargins
 
     set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR
     set FAKESELCOLOR $SELCOLOR
@@ -86,75 +71,42 @@ proc TextStyles { t } {
     $t tag configure intfun -foreground $INTFCOLOR
     $t tag configure command -foreground $COMMCOLOR
     $t tag configure libfun -foreground $LFUNCOLOR
+    $t tag configure userfun -foreground $USERFUNCOLOR
     $t tag configure scicos -foreground $SCICCOLOR
     $t tag configure predef -foreground $PDEFCOLOR
     $t tag configure operator -foreground $OPCOLOR
-    $t tag configure text -foreground $FGCOLOR
     $t tag configure textquoted -foreground $QTXTCOLOR
     $t tag configure rem2 -foreground $REMCOLOR
     $t tag configure xmltag -foreground $XMLCOLOR
     $t tag configure number -foreground $NUMCOLOR
-    scipadindent $t .8
     $t tag configure breakpoint -background $BREAKPOINTCOLOR
+    $t tag configure activebreakpoint -background $BREAKPOINTCOLOR
     $t tag configure activebreakpoint -font $actbptextFont \
         -relief raised -borderwidth 2
     $t tag configure foundtext -background $FOUNDTEXTCOLOR
     $t tag configure replacedtext -background $REPLACEDTEXTCOLOR
     $t tag configure fakeselection -background $FAKESELCOLOR
+    $t tag raise activebreakpoint breakpoint
     $t tag raise sel activebreakpoint
-    $t tag raise sel breakpoint
-}
 
-proc setfontscipad {FontSize} {
-    global textFont menuFont pad
-    global listoftextarea watch firsttimeinshowwatch
-    set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
-    set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
-    set actbptextFont -Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*
-    # change the font of all of the entries in the menu tree and status bar
-    set allmenus1 "$pad.statusind $pad.statusind2 $pad.statusmes $pad.filemenu"
-    set allmenus ""
-    while {$allmenus != $allmenus1} {
-        set allmenus $allmenus1
-        foreach m "$allmenus" { append allmenus1 { } [winfo children $m] }
-        set allmenus1 [lsort -unique $allmenus1]
+    if {$linenumbersmargins != "hide" && [isdisplayed $t]} {
+        set tapwfr [getpaneframename $t]
+        $tapwfr.margin configure -background $BGLNMARGCOLOR -foreground $FGLNMARGCOLOR
     }
-    foreach m "$allmenus" {$m configure -font $menuFont}
-
-    foreach textarea $listoftextarea {
-        $textarea configure -font $textFont
-        $textarea tag configure activebreakpoint -font $actbptextFont
-        if {[isdisplayed $textarea]} {
-            set tapwfr [getpaneframename $textarea]
-            $tapwfr.panetitle configure -font $menuFont
-            $tapwfr.clbutton  configure -font $menuFont
-        }
-    }
-
-    # This sets the font used in all dialogs (Unix only - on Windows
-    # native platform dialogs are used by Tk)
-    set dialogFont -adobe-helvetica-medium-r-normal--$FontSize-*
-    option add *Dialog.msg.font    $dialogFont userDefault  ; # for all tk_messageBox and tk_dialog
-    option add *TkFDialog*Font     $dialogFont userDefault  ; # file open / save as dialogs
-    option add *TkColorDialog*Font $dialogFont userDefault  ; # color picker dialog
-    # If the watch window was open, refresh it
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            set firsttimeinshowwatch "true"
-            showwatch_bp
-        }
-    }
-    showinfo [concat [mc "Font size"] $FontSize ]
 }
 
 proc setwingeom {wintoset} {
-# proc to set child window position
+# set $wintoset toplevel position such that the window is centered both
+# horizontally and vertically in the screen
+# the window is also set to be of fixed size (i.e. non resizable)
+# note: this proc must obviously be called after the content of $wintoset
+# has been created
     global pad
     wm resizable $wintoset 0 0
-    set myx [expr (([winfo screenwidth $pad]/2) - \
-                ([winfo reqwidth $wintoset]))]
-    set myy [expr (([winfo screenheight $pad]/2) - \
-                ([winfo reqheight $wintoset]/2))]
+    set myx [expr {([winfo screenwidth  $pad]/2) - \
+                ([winfo reqwidth  $wintoset]/2)}]
+    set myy [expr {([winfo screenheight $pad]/2) - \
+                ([winfo reqheight $wintoset]/2)}]
     wm geometry $wintoset +$myx+$myy
 }
 
@@ -167,5 +119,64 @@ proc highlighttextarea {textarea} {
             $pa configure -background gray
         }
     }
-    [getpaneframename $textarea] configure -background black
+    if {[isdisplayed $textarea]} {
+        [getpaneframename $textarea] configure -background black
+    } else {
+        # should never happen because highlighttextarea is supposed
+        # to be called only with a currently visible textarea argument
+        # however, at least one case is still not solved that will trigger
+        # the "invalid command name "none"" bug, but I couldn't reproduce
+        # yet: it has to do with clicking Button-1 in Scipad while a dnd is
+        # processed - Detailed error message is:
+        #
+        # invalid command name "none"
+        # invalid command name "none"
+        #     while executing
+        # "[getpaneframename $textarea] configure -background black"
+        #     (procedure "highlighttextarea" line 10)
+        #     invoked from within
+        # "highlighttextarea $textarea"
+        #     (procedure "focustextarea" line 19)
+        #     invoked from within
+        # "focustextarea .scipad.new4 "
+        #     invoked from within
+        # "if {$dndinitiated == "true"} {  set dndinitiated "false" ;  } else {  if {[info exists listoffile(".scipad.new4",fullname)]} {  focustextarea .scipad....}}"
+        #     (command bound to event)
+        #
+        tk_messageBox -message "Unexpected condition triggered in proc highlighttextarea. Clicking OK in this dialog will display the full error message. Please report to the Bugzilla and detail precisely what you were doing when this happened."
+        # trigger the error
+        [getpaneframename $textarea] configure -background black
+    }
+}
+
+proc togglewordwrap {} {
+    global wordWrap listoftextarea
+    foreach ta $listoftextarea {
+        $ta configure -wrap $wordWrap
+    }
+    if {$wordWrap != "none"} {        
+        # remove x scrollbars
+        foreach ta $listoftextarea {
+            if {[isdisplayed $ta]} {
+                set tapwfr [getpaneframename $ta]
+                pack forget $tapwfr.xscroll
+                destroy $tapwfr.xscroll
+                pack forget $tapwfr.bottom
+                destroy $tapwfr.bottom
+            }
+        }
+    } else {
+        # display x scrollbars
+        foreach ta $listoftextarea {
+            if {[isdisplayed $ta]} {
+                set tapwfr [getpaneframename $ta]
+                frame $tapwfr.bottom
+                pack $tapwfr.bottom -side bottom -expand 0 -fill both
+                scrollbar $tapwfr.xscroll -command "$ta xview" \
+                    -takefocus 0 -orient horizontal
+                pack $tapwfr.xscroll -in $tapwfr.bottom -side bottom \
+                    -expand 1 -fill x
+            }
+        }
+    }
 }

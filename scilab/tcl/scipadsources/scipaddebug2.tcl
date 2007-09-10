@@ -16,35 +16,49 @@ if {$debuglog} {
     timestamp \
     tk_optionMenu \
     escapespecialchars \
-    mc amp mcra keyposn dokeyposn ismodified whichfun modifiedtitle \
+    mc amp mcra mcmax mcmaxra bl \
+    keyposn dokeyposn ismodified whichfun modifiedtitle \
     showinfo delinfo showinfo_menu_file showinfo_menu_wind \
     GetFirstRecentInd extractindexfromlabel \
     checkifanythingchangedondisk checkiffilechangedondisk \
-    TextStyles scipadindent managescroll \
+    TextStyles managescroll \
     schememenus setdbmenuentriesstates_bp getdbstate pbind \
     Button1BindTextArea IsBufferEditable changedmodified \
     gettextareacur settextareacur countcontlines reshape_bp \
-    undoredo srevert commonPrefix \
+    undoredo sreverse listreverse commonPrefix \
     iscontinuedline getstartofcontline getendofcontline \
     colorize remalltags tagcontline \
     colorizestringsandcomments_sd colorizestringsandcomments \
     backgroundcolorize dobackgroundcolorize \
     getstartofcolorization getendofcolorization \
     Progress SetProgress \
+    backgroundcolorizeuserfun docolorizeuserfun \
+    colorizetag \
+    getallfunsintextarea \
+    trimcontandcomments extractfunnamefromfunline \
+    bindenable binddisable findbinding \
+    setwindowsmenuentrylabel addwindowsmenuentry sortwindowsmenuentries \
+    update_bubble cancel_bubble_deletion update_bubble_watchvar \
+    generic_update_bubble_watch update_bubble_watch_step update_bubble_watch \
+    update_bubble_panetitle \
+    displaybusystate \
     ]
+#    set excludedScipadprocs [list ]
+
+    # delete procs that were renamed during the previous Scipad session
+    # that was launched from the same Scilab session
+    foreach pr [info procs] {
+        if {[info procs ScipadLog_$pr] != ""} {
+            rename ScipadLog_$pr ""
+        }
+    }    
 
     # for each Scipad proc not excluded in the list above, this surrounds the existing
     # proc with log info: proc called with input arguments, and proc return value
     set logid 0
     foreach pr [info procs] {
         if {[lsearch $nologprocs $pr] == -1 && \
-            [lsearch $excludedScipadprocs $pr] == -1 && \
-            [regexp "^ScipadLog_.*" $pr] == 0 } {
-            # delete procs that were renamed during the previous Scipad session
-            # that was launched from the same Scilab session
-            if {[info procs ScipadLog_$pr] != ""} {
-                rename ScipadLog_$pr ""
-            }
+            [lsearch $excludedScipadprocs $pr] == -1 } {
             # add log info to the proc
             rename $pr ScipadLog_$pr
             eval "proc $pr {args} {global logid; \

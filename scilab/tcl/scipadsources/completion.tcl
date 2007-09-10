@@ -23,7 +23,7 @@ proc getcompletions {tok {mode ""}} {
         # given "scilab" to mode
     }
     regsub -all "$mode." [array names chset -glob $mode\.*] "" tags
- 
+
     foreach tag $tags {
         set indofinitial [string first $tokinitial $chset($mode.$tag)]
         if {$indofinitial == -1} {
@@ -35,6 +35,15 @@ proc getcompletions {tok {mode ""}} {
             set candidates \
                 $words($mode.$tag.[string index $chset($mode.$tag) $indofinitial])
             set complfound {}
+            if {$tag == "userfun"} {
+                # special case : $words($mode.$tag) does not only contain
+                # the functions names, therefore $candidates shall be reworked
+                set funcand {}
+                foreach elt $candidates {
+                    lappend funcand [lindex $elt 0]
+                }
+                set candidates $funcand
+            }
             foreach cand $candidates {
                 if {[string match "$tok*" $cand]} {
                     # beginning of candidate keyword matches the token
@@ -130,8 +139,8 @@ proc popup_completions {} {
         catch {destroy $pad.popcompl}
         text $pad.popcompl -font $menuFont \
                 -bd 1 -relief solid -padx 2 -pady 2 -background $BGCOLOR
-        set xpaddingspace [expr ([$pad.popcompl cget -bd] + [$pad.popcompl cget -padx]) * 2]
-        set ypaddingspace [expr ([$pad.popcompl cget -bd] + [$pad.popcompl cget -pady]) * 2]
+        set xpaddingspace [expr {([$pad.popcompl cget -bd] + [$pad.popcompl cget -padx]) * 2}]
+        set ypaddingspace [expr {([$pad.popcompl cget -bd] + [$pad.popcompl cget -pady]) * 2}]
         set popw $xpaddingspace
         set poph $ypaddingspace
         foreach posscompl $compl {
@@ -140,8 +149,8 @@ proc popup_completions {} {
             $pad.popcompl insert end "$completedword\n"
             # compute popup size
             set itemw [font measure [$pad.popcompl cget -font] "$completedword\n"]
-            if {$popw < [expr $itemw + $xpaddingspace]} {
-                set popw [expr $itemw + $xpaddingspace]
+            if {$popw < [expr {$itemw + $xpaddingspace}]} {
+                set popw [expr {$itemw + $xpaddingspace}]
             }
             # colorization settings
             $pad.popcompl tag add $tag "insert - 1c linestart" insert
@@ -158,6 +167,7 @@ proc popup_completions {} {
                 predef  {set col $PDEFCOLOR}
                 libfun  {set col $LFUNCOLOR}
                 scicos  {set col $SCICCOLOR}
+                userfun {set col $USERFUNCOLOR}
                 default {set col black ;# shouldn't happen}
             }
             $pad.popcompl tag configure $tag \
@@ -202,13 +212,13 @@ proc popup_completions {} {
         set startofline [$ta get "insert linestart" insert]
         set startoflinewidth [font measure $textFont $startofline]
         set insertbbox [$ta dlineinfo insert]
-        set posx [expr [lindex $insertbbox 0] + $startoflinewidth]
-        set posy [expr [lindex $insertbbox 1] + [lindex $insertbbox 3]]
-        if {[expr $posx + $popw] > [winfo width $ta]} {
-            set posx [expr $posx - $popw]
+        set posx [expr {[lindex $insertbbox 0] + $startoflinewidth}]
+        set posy [expr {[lindex $insertbbox 1] + [lindex $insertbbox 3]}]
+        if {[expr {$posx + $popw}] > [winfo width $ta]} {
+            set posx [expr {$posx - $popw}]
         }
-        if {[expr $posy + $poph] > [winfo height $ta]} {
-            set posy [expr $posy - $poph - [lindex $linebbox 3]]
+        if {[expr {$posy + $poph}] > [winfo height $ta]} {
+            set posy [expr {$posy - $poph - [lindex $linebbox 3]}]
         }
         # place at final position
         place $pad.popcompl -in $ta \
@@ -227,24 +237,27 @@ proc popup_completions {} {
         grab $pad.popcompl
 
         # usability bindings
+        # [string map {"%" "%%"} $compl] is needed in the binding to prevent
+        # Tcl from interpreting the possible % char as a substitution char, which
+        # would lead to inserted completions starting by ?? (unknown completion)
         bind $pad.popcompl <Escape> \
                 "destroy $pad.popcompl ; focus $ta ; break"
         bind $pad.popcompl <Return> \
-                "completewith [list $compl] $ind $ta ; destroy $pad.popcompl ; focus $ta ; break"
+                "completewith [list [string map {"%" "%%"} $compl]] $ind $ta ; destroy $pad.popcompl ; focus $ta ; break"
         bind $pad.popcompl <KP_Enter> \
                 [bind $pad.popcompl <Return>]
         bind $pad.popcompl <Down> \
-                "selectnextcompletion %W [list $compl] ; break"
+                "selectnextcompletion %W [list [string map {"%" "%%"} $compl]] ; break"
         bind $pad.popcompl <Up> \
-                "selectpreviouscompletion %W [list $compl] ; break"
+                "selectpreviouscompletion %W [list [string map {"%" "%%"} $compl]] ; break"
         bind $pad.popcompl <Next> \
-                "selectlastcompletion %W [list $compl] ; break"
+                "selectlastcompletion %W [list [string map {"%" "%%"} $compl]] ; break"
         bind $pad.popcompl <Prior> \
-                "selectfirstcompletion %W [list $compl] ; break"
+                "selectfirstcompletion %W [list [string map {"%" "%%"} $compl]] ; break"
         bind $pad.popcompl <Motion> \
-                "selectmouseoverlaycompletion %W %x %y [list $compl] $popw $poph ; break"
+                "selectmouseoverlaycompletion %W %x %y [list [string map {"%" "%%"} $compl]] $popw $poph ; break"
         bind $pad.popcompl <Button-1> \
-                "completewithmouseselected %W %x %y [list $compl] $ind $ta $popw $poph ; break"
+                "completewithmouseselected %W %x %y [list [string map {"%" "%%"} $compl]] $ind $ta $popw $poph ; break"
         bind $pad.popcompl <KeyPress>  {popup_completions_again_KP %W %A %K %s ; break}
         bind $pad.popcompl <BackSpace> {popup_completions_again_BS %W ; break}
         bind $pad.popcompl <Delete>    {}
@@ -259,7 +272,7 @@ proc selectnextcompletion {w compl} {
 
     unselectcompletion $w $compl $currentselcompl
 
-    set lastcompl [expr [llength $compl] -1]
+    set lastcompl [expr {[llength $compl] - 1}]
     incr currentselcompl
     if {$currentselcompl > $lastcompl} {
         set currentselcompl 0
@@ -276,7 +289,7 @@ proc selectpreviouscompletion {w compl} {
 
     incr currentselcompl -1
     if {$currentselcompl < 0} {
-        set currentselcompl [expr [llength $compl] -1]
+        set currentselcompl [expr {[llength $compl] - 1}]
     }
 
     selectcompletion $w $compl $currentselcompl
@@ -290,14 +303,14 @@ proc unselectcompletion {w compl cn} {
 
 proc selectcompletion {w compl cn} {
 # highlight completion identified by $cn
-    set newpos "[expr $cn + 1].0"
+    set newpos "[expr {$cn + 1}].0"
     set curseltag [lindex [lindex $compl $cn] 0]
     $w tag add sel$curseltag $newpos "$newpos + 1l linestart"
 }
 
 proc selectlastcompletion {w compl} {
 # highlight the last possible completion in the popup
-    selectcompletionnumber $w $compl [expr [llength $compl] -1]
+    selectcompletionnumber $w $compl [expr {[llength $compl] - 1}]
 }
 
 proc selectfirstcompletion {w compl} {
@@ -352,7 +365,7 @@ proc completionmouseselect {w x y compl popw poph {ind ""} {ta ""}} {
         unselectcompletion $w $compl $currentselcompl
 
         set mousepos [$w index "@$x,$y linestart"]
-        scan [expr $mousepos - 1] "%d.%d" currentselcompl junk
+        scan [expr {$mousepos - 1}] "%d.%d" currentselcompl junk
         set curseltag [lindex [lindex $compl $currentselcompl] 0]
         $w tag add sel$curseltag $mousepos "$mousepos + 1l linestart"
 
@@ -397,7 +410,7 @@ proc completewith {str ind ta} {
     }
 
     $ta delete $ind [$ta index insert]
-    puttext $ta $str
+    puttext $ta $str "replaceallowed"
     if {$oldSeparator} {
         $ta edit separator
         $ta configure -autoseparators 1
@@ -420,17 +433,17 @@ proc popup_completions_again_KP {w character keysym modstate} {
 
     if {$character != ""} {
         # non-shifted character
-        puttext [gettextareacur] $character
+        puttext [gettextareacur] $character "replaceallowed"
         popup_completions
 
     } elseif {$keysym == "Shift_L" || $keysym == "Shift_R"} {
         # first event firing when the user hits a shift key
         popup_completions
 
-    } elseif {[expr $modstate & 1] != 0} {
+    } elseif {[expr {$modstate & 1}] != 0} {
         # modstate (actually %s field of the KeyPress event) has
         # bit 1 set (LSB) if the shift key is pressed
-        puttext [gettextareacur] $character
+        puttext [gettextareacur] $character "replaceallowed"
         popup_completions
 
     } else {
@@ -465,6 +478,15 @@ proc gettagfromkeyword {keyw} {
             # therefore $keyw cannot be tagged with $tag
         } else {
             set candidates $words($mode.$tag.$tokinitial)
+            if {$tag == "userfun"} {
+                # special case : $words($mode.$tag) does not only contain
+                # the functions names, therefore $candidates shall be reworked
+                set funcand {}
+                foreach elt $candidates {
+                    lappend funcand [lindex $elt 0]
+                }
+                set candidates $funcand
+            }
             foreach cand $candidates {
                 if {$keyw == $cand} {
                     return $tag
@@ -486,7 +508,7 @@ proc SetCompletionBinding {} {
     global Shift_Tab
 
     if {![info exists oldcompletionbinding]} {
-        # this is the first call of the proc (from bindings.tcl)
+        # this is the first call of the proc (from commonbindings.tcl)
     } else {
         # the proc was called from the options/completion menu
 

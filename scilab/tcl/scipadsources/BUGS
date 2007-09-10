@@ -11,21 +11,25 @@ Bugs:
     existing (visible) textquoted tag used for colorization, and use only
     invisibletextquoted for Scilab function detection within buffers, in
     other words, separate the strings detection from their colorization
+    Note: when done, the messageBox in proc checkforduplicateorunterminatedfuns
+    must be updated (and the msg files as well)
+
+-proc blinkbrace blinks even if the brackets/braces are quoted, e.g. "[" "]"
+
+-proc blinkquote blinks even for partially commented text, e.g.
+ a "string.. // this is no "string
+
+-On some platforms certain bindings for blinking character never trigger,
+ e.g. for bracketleft on Windows (AltGr-5, french keyboard) one gets
+ Control_L plus parenleft - this one however blinks through the parenleft
+ binding, but others such as braceleft do never trigger and gives
+ Control_L plus quoteright - depends on keyboard, platform and whatnot...
 
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
--On Windows, opening files and then closing one of them makes the remaining
- ones unselectable in the windows menu. This is Tk bug 1224330.
-
--When two buffers are opened containing the same function (or function name) to
- debug, then the wrong buffer may become the active one to show the active
- breakpoint - same issue in configureexec: if a function is defined in more
- than one buffer, proc checkarglist may detect the wrong one and prevent
- correct configuration of the debugger
-
 -When a function definition line ends with a comment, the line numbering is
- wrong 1 unit, resulting is various strange behaviors: execution not stopping
+ wrong 1 unit, resulting in various strange behaviors: execution not stopping
  at breakpoints or not up-to-date value of variables in the watch window
  This is Scilab bug 1469 (outside of Scipad) that deals with the general
  issue of mismatch between line numbering as reported by fun2string and that
@@ -39,26 +43,77 @@ Bugs:
  Also related to bug 1469 - better wait for clarification on this one instead
  of working around Scilab parser bugs
 
+-step-by-step debugging may highlight the wrong line in Scipad when continued
+ lines without dots are present before the breakpoint stop. Bug 1469 again!!!
+
+-Bug 1469 once more in the following case (mind the spaces before
+ "endfunction"):
+function test
+  a=1
+  endfunction
+ In this case the debugger in single step mode will highlight line 1 after
+ line 3 whereas this won't happen for:
+function test
+  a=1
+endfunction
+
+-watching some very large variable content looks like the variable is empty
+ This is Tk bug 1449858.
+
+-Multiple file open in the file dialog: There is a Tcl bug on tk_getOpenFile,
+ which does not correctly work on Linux with -multiple 1 option. See Tcl
+ bug 1614032. I have proposed a patch for this bug to the Tcl core team, but
+ it is not yet committed in the Tcl source code. There is also bug 1578519
+ about special dirs on Windows, still for tk_getOpenFile.
+
+-When there are wrapped lines of varying lengths, as the user scrolls, the
+ length of the scroll box changes. 
+ This is actually fixed in Tk 8.5: http://www.tcl.tk/cgi-bin/tct/tip/155.html
+ No workaround available in 8.4, this is a deep Tk core issue.
+
+-Line numbers of lines located after the active breakpoint are slightly
+ misaligned with the lines they're facing. This is due to the font of the
+ active breakpoint tag ($actbptextFont), which has a slightly larger size
+ than $textFont, the latter being used for the line numbers.
+ A general scheme should be derived so that line numbers support different
+ font sizes in the text they face. The algorithm could be something like:
+   . Check what tags has the line in front of the line number
+   . Retrieve the -font option of the highest priority tag
+   . If this is not empty, extract the -size attribute of the font and tag
+     the line number with a modified $textFont having this -size
+   . Otherwise (the -font option of the higest priority tag is an empty
+     list) check out the tag that is of priority just below the highest
+     and run the game again
+   . When there is no tag left, use the $textFont -size value as a fallback
+ Beware of performance issues here! This must be done for each visible line!
+ Moreover, this would still not be perfect: mixed sizes inside single lines
+ would not be supported (but such complications are anyway not used in
+ Scipad currently)
+ Easier fix: use the same size for all the fonts displayed in textareas!
+
+-watching a list containing a list with an undefined
+ element resets the watched variable to an empty list (perhaps proc
+ createsetinscishellcomm should be recursive)
+ example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
+ 
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
-
--On Windows, trying to save a file in C:\Documents and Settings\<account>\My Documents
- usually produces a read-only warning and prevents the user from saving there.
- This is Tcl bug 1193497. A patch has been forced in by the operational team.
- The fix for the Tcl bug exists but is not yet applied to the Tcl cvs tree.
 
 -the window geometry is now managed in pixels. This is fine for restoring
  exactly the same window geometry as in the previous session, but loses
  some advantages of the previously broken grid management, such as resize
  of the window upon font size changes.
 
--2nd-button now succeds in importing an X external selection into scipad
+-2nd-button now succeeds in importing an X external selection into scipad
  under linux. With one remaining glitch, the insertion cursor zomps back
  to the beginning of the insertion at the end of the process.
  Under windows 2nd-button is ineffective if the selection is external, 
  but has the side effect (with some glitches) to drop at the mouse point the
  selection it is within scipad
+ On Windows:btn-2 in the same textarea as the selection: it's a move (wrong!),
+ while btn-2 in another textarea: it's a copy/paste
+ On Linux: always copy/paste (correct)
 
 -Make printing from Scipad work on Linux and implement it for Windows.
  Try to preserve the colorization in the process.
@@ -73,23 +128,126 @@ Old bugs/whishes which have been hacked but could have been done better:
  http://www.du.edu/~mschwart/tclextensions.html (printer extension)
  http://www.nyx.net/~mschwart/ (printer extension)
  -- Printing works on Linux and now also on Windows. It makes use of Scilab
-    internal new functions that does not preserve colorization. I'm convinced
+    internal new functions that do not preserve colorization. I'm convinced
     that an internal Tk printing scheme would be better.
 
--The bindings in findreplace.tcl used for the F3 case and for find in files live
- in the textarea forever. Find a solution to get rid of these!
+-trying to debug functions with names > 24 characters does not work. This is
+ a very general Scilab limitation (in the debugger context, setbpt looses
+ characters for long names, that's why it doesn't work). Currently 
+ a check on name length when colorizing user functions has been added to
+ remind the user from this limit. Only this visual hint is provided, i.e.
+ configure execution will propose too long names. Scipad or the debugger
+ is not limited to 24 chars, but Scilab still is. Let's wait for Scilab
+ improvement instead of restraining the debugger!
+
+-anything could happen during debug if the same function name can be found more
+ than once among the opened buffers, for instance the wrong buffer could become
+ the active one to show the active breakpoint - same issue in configureexec:
+ if a function is defined in more than one buffer, proc checkarglist may
+ detect the wrong one and prevent correct configuration of the debugger
+ Since duplicate function definitions are not supported by the debugger, a
+ warning is issued to the user, and the debugger refuses to execute
+ To let the debugger support this would perhaps be desirable, but very difficult
+ since the internals in Scilab store breakpoints linked to a function name:
+ setbpt("funname",bptline).
+ Two functions with the same name would therefore mix their breakpoints!
+
+-Avoid to destroy and recreate the whole watch window when hiding/displaying
+ one of its sub-areas. Would probably require -hide option for panedwindow,
+ but this one is only available from Tk 8.5 (TIP #179)
+ --I tried it and indeed using -hide avoids to redraw the watch window when
+   panes are hidden or remapped.
+   However, when both the variables area and the call stack area are hidden,
+   the watch window must be non resizable, thus wm resizable 0/1 0/1 when
+   switching panes. This wm resizable command always redraws the window
+   because of the need to redraw the border, and this creates a visual flash
+   of the window. I couldn't avoid it, and thus I just dropped this wish
+
+-during debug, string variables which contain data which does not make sense as
+ text in the current locale, are shown as mangled in the watch variable area.
+ This can happen for example when watching a chinese string in a latin locale.
+ The behavior is intrinsic in tcl, and after all undersandable as such. While we
+ don't make any effort to circumvent tcl interpretation of illogically coded
+ strings, the fact could have side effects on the original variables if debug
+ exits abnormally.
+ Snippet to demonstrate the intrinsic problem:
+ 
+   $ setenv LANG ja ; scilab -nw -nb
+  -->a=ascii([230,173,164]); TCL_SetVar("atcl",a);
+  ascii(TCL_GetVar("atcl"))
+    ans  =
+       186.    161.
 
 
 Wishes:
 -------
 
--the debugger works well for functions but shell scripts are not supported yet.
- Step by step execution remains to be implemented, but this requires Scilab
- core support.
+Debugger wishes:
 
--default fonts modifiable within the program
- See TIP 213 for a possible implementation (new tk_chooseFont command
- possibly available in Tk 8.5)
+-Use the -listvariable option for $lbvarname and $lbvarval listboxes - this
+ could automate a lot of sync work with watchvars and watchvarsprops
+
+-Add an "Evaluate now!" button in the generic expressions area. Warning: then
+ a roundtrip to Scilab must be done before evaluating, or let the roundtrip be
+ mandatory when modifying any watch variable
+
+-Conditional breakpoints
+
+-Scipad defines and uses, mostly for the debugger, some variables in order to
+ send values to Scipad. All these variables currently start with the prefix 
+ db_, in order to reduce the risk of the use of such variable names in Scilab
+ for another purpose, e.g. in the function to be debugged. We could use more
+ sophisticated things to be absolutely sure that the variable names 
+ instantiated by Scipad are not used in Scilab, so that conflicts would 
+ always be avoided. For instance, browsing the existing known
+ variables and checking for existence, etc. could be used (who, who_user...)
+ At least, db_xx names should be made 24 char long (longest=less likely that
+ mr. lambda chooses the same name) and have the word scipad sneaked inside
+ them to make things clearer.
+
+-include profiling into the debugger. The idea would be something like
+ making "Run Profiling" another button/command of the debugger, disabled
+ in editing mode, active only after Configure for Debug. Once started 
+ profiling, all the debugger stepping and watch commands would be disabled,
+ except for "break" and "cancel debug". At the end of the run, 
+ plotprofile() is called [plotprofile too needs to be adapted so
+ that it won't create a new buffer, but refers to the original].
+ "Run profiling" would also be callable again, for cumulation.
+
+ There is however a big potential showstopper. For profiling, the
+ function (or wrapper) has to be getf(,"p"); we're now making the
+ functions known to scilab with exec() instead. getf() has known bugs
+ (1968, 2072, 2253) and limitations in comparison with exec().
+ In particular it doesn't support nested function definitions (bug 1564).
+
+
+-breakpoint, activebreakpoint and continued lines tags are not visible
+ when selected. No solution found so far. Only one tag with -background
+ option has highest priority, and there is no -selectbackground option
+ for tags (the latter is Tk request #1759972)
+ This problem has been submitted in comp.lang.tcl, see:
+ http://groups.google.com/group/comp.lang.tcl/browse_frm/thread/d60973524b786c0e/14a82aef3b1dd24f
+ It has been suggested to create a tag that has the desired background
+ attributes, add an execution trace on the widget command, and whenever
+ the selection changes (e.g.: when the execution trace fires on a
+ "tag add sel"), add this tag to the selected range.
+ Personnally, I think this is a very complicated way of making this
+ work, especially considering that three tags with background should
+ be dealt with and combined (what about a continued line also tagged
+ as a breakpointed line, in which some characters are selected?)
+ Not worth the effort and complication I think.
+ Now that one side margin is implemented (for line numbers), it is pretty
+ easy to add further margins and this could be used to tag breakpoints
+ instead of tagging the line (but there is a lot of implications: for
+ instance the debugger currently scans the textarea for breakpoint tags
+ and does not maintain a list of breakpointed lines)
+
+-add a debugger command: "Show next instruction", with a little yellow arrow
+ in the margin, and perhaps a breakpoint pink dot in that margin, or other
+ debugger info
+
+
+Other wishes:
 
 -parentheses and brackets get colorized in colors according to their level
  of nesting
@@ -108,92 +266,19 @@ Wishes:
  Note: a first step to this has been implemented. During a debug session, 
  the popup menu is a debug menu.
 
--smart indentation (i.e., for automatically indents the next line, end
- automatically indents back, etc)
- Note: proc scipadindent should be removed, since scipad now uses physical
- indentation
- 
--"auto smart wrap on": lines exceeding a margin could be truncated at
- word boundaries with .. dots and \n
- 
 -(customizable?) tool bar
  Note: a first step to this has been implemented in the debugger watch window.
- 
--Conditional breakpoints
 
--make use of the vector argument for setbpt and delbpt to shorten the
- ScilabEval command - this is less needed since long ScilabEvals can
- now be evaluated without errors
-
--Allow to watch a generic expression (bonus: the expression could be e.g.
- a graphical command, so that an array is *plotted* at each breakpoint)
- Way to go: add a pane with expressions to be executed and result of their
- evaluation displayed in the watch window area (e.g. size(a_matrix,"*"))
-
--Improve the aesthetics of Scipad (see sciGUI)
-   . Find dialog
-
--Blink (single or double) quotes. Must find a way to distinguish between 
- opening and closing quotes in proc blinkbrace. This is not that easy since
- these are the same character, therefore the direction to search is difficult
- to determine.
+-Blink single quotes. More difficult than to blink double quotes because
+ of the transpose case
 
 -'Matlab' colorization scheme for .m files
 
--Scipad defines and uses, mostly for the debugger, some variables in order to
- send values to Scipad. All these variables currently start with the prefix 
- db_, in order to reduce the risk of the use of such variable names in Scilab
- for another purpose, e.g. in the function to be debugged. We could use more
- sophisticated things to be absolutely sure that the variable names 
- instantiated by Scipad are not used in Scilab, so that conflicts would 
- always be avoided. For instance, browsing the existing known
- variables and checking for existence, etc. could be used (who, who_user...)
-
--Highlight wrapped lines so that they can be more easily identified.
- Could make use of indentation or other suitable scheme TBD, or add
- some sort of left grey band in which some more information could be
- put (breakpoint pink dot, yellow arrow to show the next instruction
- to be executed like in Visual C++ or Matlab, or wrapped lines sign).
-
--Block selection, copy/paste, move with dnd, indent/unindent, comment
- and uncomment. See last snaphot in http://www.winedt.com/ for an
- example. Add an option to toggle between line mode (current mode) and
- block mode. In block mode, word wrapping should be disabled. This is
- part of request 179.
+-"auto smart wrap on": lines exceeding a margin could be truncated at
+ word boundaries with .. dots and \n
+ Hint: some clever use of the -wraplength option of text widgets?
 
 -Add an eventual "revert to defaults button" (colors option menu)
-
--Carefully study whether the debugger would benefit from using editvar
- or browsevar for the watch window variables. Drawbacks:
-   . sciGUI is not localized
-   . lists cannot be used yet with editvar
-
--Avoid to destroy and recreate the whole watch window when hiding/displaying
- one of its sub-areas. Would probably require -hide option for panedwindow,
- but this one is only available from Tk 8.5 (TIP #179)
-
--Currently any character typed in the buffer is inserted if there is
- no selection. Add a mode toggled by the Ins key in which characters
- would replace the existing ones. Add a visual indicator of this state.
- Note: this should be manageable in Tk8.4 using a combination of a delete
- and an insert (or perhaps selecting the next character and then puttext)
- but there will be a new text widget subcommand .text replace in Tk 8.5
- that will do it at once and manage the undo/redo stacks at the same time.
- See TIP #155 for details: http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html
-
--paned window to allow for viewing two different parts of the same text buffer
- at the same time. Would be nice if the output of .text -dump could be feeded
- into another text widget, but it's not currently the case.
- Another (better) approach would be peer text widget as described in TIP #169:
- http://www.tcl.tk/cgi-bin/tct/tip/169.html (this is already available in
- Tk 8.5a3)
- F6/F7 should display the next/previous buffer of the full list in the
- current active pane only, creating peer widgets as necessary
- -- Waiting for Scilab's adoption of 8.5, maybe Scipad could implement it
-    in advance in order to be ready for the transition to 8.5 and make use
-    of its functions without delay. A global variable Tk85 already exists
-    in Scipad for similar purposes and could be used to make Scipad work
-    both with 8.4 and 8.5 (and use peer widgets of 8.5)
 
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one
@@ -201,65 +286,51 @@ Wishes:
              widget was abandoned, but maybe it could be feasible to detect
              changes in the undo stacks of more than one buffer at the same
              time - still tricky...
+ Note that as per TIP 169 peers already share one single undo stack
 
 -minimal Scipad wm size: Probably it would be wise to make the minimum
  dependent on the number of tiles, so that all the features (menu, title,
  textbuffer, scrollbars...) remain visible - take fontsize and locale into
  account
  warning: updating minsize on file open or dnd could lead to a very large
- window
+ window, therefore minsize should also be clamped to some clever maximum
 
 -Improvements for find/replace:
+  . Dynamical indices in the find in files results: Currently: launch find
+    in files, then delete a line in the buffer between two matches, then
+    click on the second match. The wrong line is highlighted. Beware of
+    performance while fixing this!
   . The find/replace entries in the dialog could be comboboxes retaining
     the strings previously searched or replaced
       o combobox 2.3 and BWidgets 1.7.0 are currently in the Scilab distro
         and both provide comboboxes. We could link Scipad to them, but
         apparently the Tile package, which also provides combos, is now
         included in Tk and will be part of Tk 8.5.
-  . Search among tagged text only, e.g. among comments (must be consistent
-    with the language scheme)
-  . Popup menu providing a list of ready cooked regexps
-  . Multiline find/replace and find in files (must wait Tk8.5 since .text
-    search searches on a per line basis - or use regexp instead of .text
-    search, big work...) - Automatically expand the entry widgets size
-    according to the length of what is pasted inside them
+  . Multiline find/replace and find in files (must wait for Tk8.5 since in
+    8.4 .text search searches on a per line basis - or use regexp instead
+    of .text search, big work...) - Automatically expand the entry widgets
+    size according to the length of what is pasted inside them
+  . More than one results window for find in files (user can select a
+    target window that will contain the search results)
+  . More than one find in files thread at the same time
 
--Add an option menu about the sorting of the buffers in the Windows menu.
- Possible options could be:
-   . "Sort by opening order" (which is the current way it is) - keep it?
-   . "Sort alphabetically"
-   . "Sort by MRU" (Most Recently Used)
-
--Add underlined numbers in the Windows menu, as for the File menu.
-
--Make use of ::msgcat::mcmax ?src-string src-string ...?
- Given several source strings, ::msgcat::mcmax returns the length of the 
- longest translated string. This is useful when designing localized GUIs, 
- which may require that all buttons, for example, be a fixed width (which 
- will be the width of the widest button).
- -- Currently some button labels are truncated in certain locales
- -- Once done, update AddingTranslations.txt starting at line 176
-
--Perhaps rethink how to sort out the duplication of "Open", "Open in
- new", "Open Source of.." and "Open function source". Four entries
- scattered in the same menu starts to be much...
-
--include profiling into the debugger
-
--detect duplicate/missing underlines detection in the message files
-
--get the names of all the functions defined in
- the opened buffers, make their list a keyword list. Colorize them
- accordingly (does it need a 2nd pass colorization run? then better not).
- Integrate "Open source of...", Ctrl-/ and the like with them (here it is
- a matter of making order, as the functionality already exists in Goto
- line/in function). The idea would have the drawback that those keywords
- can be colorized or not depending on their defining buffer being opened
- or not, but I think it could be useful nevertheless when opening those
- files defining several ancillaries
+-detect duplicate/missing underlines in the message files
 
 -Improve further the regexps for continued lines detection, the goal being
  to detect only legal (in the Scilab parser sense) continued lines.
 
 -Emacs bindings in Scipad. Proposed list is at:
 http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0807b11fb118ab/9fe94a45d23f92fe
+
+-Add a function "Beautify code" for Scilab schemes: (optionally) suppress
+ tabs, and reindents according to keywords (if, function, while, for...)
+
+-Request 262: tabbed buffers (see discussion in this request)
+
+-Use eq/neq instead of ==/!= throughout the code whenever string comparison
+ is meant:
+http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c3/47482ff7037343ab
+
+-remove the scilab4/scilab5 environment detection once scilab5 is stabilized
+ and if it doesn't ease backporting to scilab-gtk. Code to remove can be
+ found by highlighting differences between versions 6.117 and 6.118 of Scipad.

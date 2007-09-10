@@ -71,7 +71,8 @@ proc dokeyposn {textarea} {
 
     # enable Open function source contextually
     if {[lsearch [$textarea tag names $indexin] "libfun"]!=-1 || \
-        [lsearch [$textarea tag names $indexin] "scicos"]!=-1 } {
+        [lsearch [$textarea tag names $indexin] "scicos"]!=-1 || \
+        [lsearch [$textarea tag names $indexin] "userfun"]!=-1 } {
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Open &function source"]) -state normal
     } else {
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Open &function source"]) -state disabled
@@ -80,43 +81,53 @@ proc dokeyposn {textarea} {
     # enable Undo if the buffer was modified
     if {[ismodified $textarea]} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Undo"]) -state normal
-        bind Text <Control-z> {undo %W}
+        bindenable Text {undo [gettextareacur]}
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Undo"]) -state disabled
-        bind Text <Control-z> {}
+        binddisable Text {undo [gettextareacur]}
     }
 
     # enable Redo if the redo stack is not empty
     if {$listoffile("$textarea",redostackdepth) == 0} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Redo"]) -state disabled
-        bind Text <Control-Z> {}
+        binddisable Text {redo [gettextareacur]}
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Redo"]) -state normal
-        bind Text <Control-Z> {redo %W}
+        bindenable Text {redo [gettextareacur]}
     }
 
     # enable Cut and Copy and Evaluate selection if there is a selection
-    if {[catch {selection get -selection PRIMARY}] == 1} {
+    if {[gettaselind $textarea any] == {}} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state disabled
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "B&lock cut"]) -state disabled
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state disabled
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Evaluate selection"]) -state disabled
-        bind Text <Control-x> {}
-        bind $pad <Control-c> {}
+        binddisable Text {cuttext normal}
+        binddisable Text {cuttext block}
+        binddisable $pad copytext
+        binddisable $pad execselection
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state normal
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "B&lock cut"]) -state normal
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state normal
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Evaluate selection"]) -state normal
-        bind Text <Control-x> {cuttext}
-        bind $pad <Control-c> {copytext}
-    }
+        bindenable Text {cuttext normal}
+        bindenable Text {cuttext block}
+        bindenable $pad copytext
+        bindenable $pad execselection
+   }
 
     # enable Paste if the clipboard contains something
     if {[catch {clipboard get}] == 1} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state disabled
-        bind Text <Control-v> {}
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Block paste"]) -state disabled
+        binddisable Text {pastetext normal}
+        binddisable Text {pastetext block}
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state normal
-        bind Text <Control-v> {pastetext}
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Block paste"]) -state normal
+        bindenable Text {pastetext normal}
+        bindenable Text {pastetext block}
     }
 }
 
@@ -127,13 +138,18 @@ proc modifiedtitle {textarea {panesonly "false"}} {
 # Update also the visual indications of the modified state of the buffer.
 # This includes title bar, colorization of the windows menu entry and
 # colorization of an area in the status bar
-    global pad winTitle listoffile
+    global pad winTitle ScipadVersion listoffile
     global MenuEntryId
     set fname $listoffile("$textarea",displayedname)
     set ind [extractindexfromlabel $pad.filemenu.wind $fname]
     set mod1 ""; set mod2 ""
     if {$listoffile("$textarea",readonly) == 1} { 
         set mod1 [mc " \[ReadOnly\]"]
+    }
+    if {[isanymodified]} {
+        $pad.statusind configure -background PeachPuff
+    } else {
+        $pad.statusind configure -background [$pad.filemenu cget -background]
     }
     if {[ismodified $textarea]} {
         set mod2 [mc " (modified)"]
@@ -147,10 +163,15 @@ proc modifiedtitle {textarea {panesonly "false"}} {
             $pad.filemenu.wind entryconfigure $ind -background "" \
                -activebackground ""
         }
-        $pad.statusind configure -background [$pad.filemenu cget -background]
     }
     if {$panesonly == "false"} {
-        wm title $pad "$winTitle - $fname$mod1$mod2"
+        # catched because scan will fail when launched from wish
+        if {[catch {
+            scan $ScipadVersion "%s - %s" ScipadVersionNumber ScipadVersionString
+            wm title $pad "$winTitle $ScipadVersionNumber - $fname$mod1$mod2"
+                   }] } {
+            wm title $pad "$winTitle - $fname$mod1$mod2"
+        }
     }
     if {[isdisplayed $textarea]} {
         [getpaneframename $textarea].panetitle configure \
@@ -160,11 +181,11 @@ proc modifiedtitle {textarea {panesonly "false"}} {
           $listoffile("$textarea",thetime) !=0} { 
         $pad.filemenu.files entryconfigure \
           $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state normal
-        bind $pad <Control-R> {revertsaved [gettextareacur]}
+        bindenable $pad {revertsaved \[gettextareacur\]}
     } else {
         $pad.filemenu.files entryconfigure \
           $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state disabled
-        bind $pad <Control-R> {}
+        binddisable $pad {revertsaved \[gettextareacur\]}
     }
 }
 
@@ -178,4 +199,27 @@ proc updatepanestitles {} {
     }
     # update file name in Scipad title bar (and in the current textarea pane)
     modifiedtitle [gettextareacur]
+}
+
+proc displaybusystate {} {
+# a visual indicator of the availability of the scilab prompt, for the
+# main window and for the debug watch window. This proc keeps rescheduling
+# itself as long as $pad.statusmes (hence the main window) exists
+    global sciprompt pad watch led_scilabbusy
+    if {[info exists pad]} {
+        if {[string compare $sciprompt -1] == 0} {
+            set bok [catch {$pad.statusmes configure -background orange}]
+            if {[info exists watch] && [winfo exists $watch]} { 
+                $led_scilabbusy itemconfigure all -image led_scilabbusy_busy
+            }
+        } else {
+            set bok [catch {$pad.statusmes configure -background lightblue}]
+            if {[info exists watch] && [winfo exists $watch]} { 
+                $led_scilabbusy itemconfigure all -image led_scilabbusy_ready
+            }
+        }
+        if {$bok == 0} {
+            after 100 {displaybusystate}
+        }
+    }
 }

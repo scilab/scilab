@@ -9,6 +9,8 @@
 ::msgcat::mcset pl "Scilab working" "Scilab pracuje"
 ::msgcat::mcset pl "All files" "Wszystkie pliki"
 ::msgcat::mcset pl "Add/Change" "Dodaj/Zmie\u0144"
+::msgcat::mcset pl "Add/Chan&ge" "&Dodaj/Zmie\u0144"
+::msgcat::mcset pl "&Remove" "&Usu\u0144"
 ::msgcat::mcset pl "Untitled" "BezNazwy"
 ::msgcat::mcset pl "Close" "Zamknij"
 ::msgcat::mcset pl "&Close" "&Zamknij"
@@ -39,17 +41,16 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset pl "Variable:" "Zmienna :"
 ::msgcat::mcset pl "Value:" "Warto\u015B\u0107 :"
-::msgcat::mcset pl "Get current value from Scilab"\
-                   "Pobiera bierz\u0105c\u0105\
+::msgcat::mcset pl "&Get current value from Scilab"\
+                   "Pobiera &bierz\u0105c\u0105\
                    warto\u015B\u0107 z programu Scilab"
 
 
 # db_configureexec.tcl
 ::msgcat::mcset pl "Configure execution" "Konfiguracja wykonania"
 ::msgcat::mcset pl "Function name:" "Nazwa funkcji :"
-::msgcat::mcset pl "Obtain" "Otrzymano"
+::msgcat::mcset pl "&Obtain" "&Otrzymano"
 ::msgcat::mcset pl "Input arguments:" "Parametry wej\u015Bciowe :"
-::msgcat::mcset pl "Remove" "Usu\u0144"
 ::msgcat::mcset pl "Function name or input arguments do\
                    not match definition of the function"\
                    "Nazwa funkcji lub jej argumenty, nie\
@@ -88,7 +89,7 @@
 ::msgcat::mcset pl "The shell reported an error while trying to execute "\
                    "Pow\u0142oka wys\u0142a\u0142a\
                    b\u0142\u0105d, podczas pr\u00F3by wykonywania "
-::msgcat::mcset pl " at line " " w linii "
+::msgcat::mcset pl "at line " "w linii "
 ::msgcat::mcset pl " of " " na "
 ::msgcat::mcset pl "Execution aborted!" "Wykonywanie przerwane!"
 
@@ -108,12 +109,9 @@
 # db_watch.tcl
 ::msgcat::mcset pl "Watch" "Obserwowane"
 ::msgcat::mcset pl "Watch variables:" "Zmienne obserwowane :"
-::msgcat::mcset pl "Remove" "Usu\u0144"
 ::msgcat::mcset pl "Call stack:" "Stos wywo\u0142a\u0144:"
-::msgcat::mcset pl "Show watch variables" "Wy\u015Bwietl zmienne obserwowane"
-::msgcat::mcset pl "Hide watch variables" "Ukryj zmienne obserwowane"
-::msgcat::mcset pl "Show call stack" "Wy\u015Bwietl stos wywo\u0142a\u0144"
-::msgcat::mcset pl "Hide call stack" "Ukryj stos wywo\u0142a\u0144"
+::msgcat::mcset pl "Hide watch &variables" "Ukryj zmienne &obserwowane"
+::msgcat::mcset pl "Hide call &stack" "Ukryj &stos wywo\u0142a\u0144"
 ::msgcat::mcset pl "Undefined elements are not legal in variable"\
                    "Niezdefiniowane elementy nie s\u0105\
                    prawid\u0142owe w zmiennej"
@@ -124,7 +122,7 @@
 
 
 # filecommands.tcl
-::msgcat::mcset pl "New Script" "Nowy skrypt"
+::msgcat::mcset pl "New script" "Nowy skrypt"
 ::msgcat::mcset pl "The contents of" "Zawarto\u015B\u0107"
 ::msgcat::mcset pl "may have changed, do you wish to save your changes?"\
                    "mog\u0142a ulec zmianie. Czy chcesz zapisa\u0107 zmiany?"
@@ -246,9 +244,9 @@
                    "\n Program zapocz\u0105tkowany przez\
                    Joseph Acosta, joeja@mindspring.com.\n Zmodyfikowany\
                    przez Konsorcjum Scilab.\n Skorygowany przez Enrico Segre\
-                   2003-2005.\n R\u00F3\u017Cnorodne ulepszenia,\
+                   2003-2006.\n R\u00F3\u017Cnorodne ulepszenia,\
                    narz\u0119dzia debuguj\u0105ce, zosta\u0142y stworzone\
-                   przez Francois Vogel 2004-2005.\n Autorem szwedzkiej\
+                   przez Francois Vogel 2004-2007.\n Autorem szwedzkiej\
                    lokalizacji jest Lindholm 2005.\n Norweskej lokalizacji\
                    jest Torbj\u0159rn Pettersen 2005.\n Niemieckiej lokalizacji\
                    jest Dirk Reusch 2005.\n Polskiej lokalizacji jest\
@@ -360,7 +358,7 @@
 ::msgcat::mcset pl "&large" "&du\u017Ca"
 ::msgcat::mcset pl "&Colors" "&Kolory"
 ::msgcat::mcset pl "Colorize \'&strings\'" "K&oloruj \'\u0142a\u0144cuchy\'"
-::msgcat::mcset pl "Word &Wrap" "&Zawijaj wiersze"
+::msgcat::mcset pl "Word &wrap" "&Zawijaj wiersze"
 ::msgcat::mcset pl "&Tabs and indentation" "&Tabulator i wci\u0119cia"
 ::msgcat::mcset pl "Tab inserts &spaces" "Klawisz Tab wstawia &spacje"
 ::msgcat::mcset pl "&Indentation spaces"\
@@ -383,15 +381,6 @@
                    "&Jednoznaczna obci\u0119ta \u015Bcie\u017Cka"
 ::msgcat::mcset pl "&Recent files" "O&statnie pliki"
 ::msgcat::mcset pl "&Locale" "&J\u0119zyk"
-# locale names (common)
-::msgcat::mcset pl "de locale (de)" "Deutsch (de)"
-::msgcat::mcset pl "fr locale (fr)" "Fran\u00E7ais (fr)"
-::msgcat::mcset pl "eng locale (eng)" "English (eng)"
-::msgcat::mcset pl "es locale (es)" "Español (es)"
-::msgcat::mcset pl "it locale (it)" "Italiano (it)"
-::msgcat::mcset pl "no locale (no)" "Norsk (no)"
-::msgcat::mcset pl "pl locale (pl)" "Polski (pl)"
-::msgcat::mcset pl "se locale (se)" "Svenska (se)"
 
 # menues.tcl - Windows menu
 ::msgcat::mcset pl "&Maximize" "&Maksymalizuj"

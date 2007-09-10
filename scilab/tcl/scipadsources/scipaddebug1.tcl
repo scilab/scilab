@@ -15,7 +15,7 @@ set DebugScipadWithRamDebugger no
 catch {
     if {$DebugScipadWithRamDebugger && $tcl_platform(platform) == "windows"} {
         lappend ::auto_path K:/Francois/Developpement/RamDebugger5.5/addons
-        lappend ::auto_path D:/RamDebugger5.5/addons
+        lappend ::auto_path D:/Scilab/Tools/RamDebugger5.5/addons
         package require commR
         comm::register Scipad 1
     }
@@ -49,7 +49,17 @@ if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
         console eval {wm geometry . 67x20+0+0}
         console title "Scipad debug"
     }
-    
+
+    # give a value to tmpdir (when Scipad is launched from Scilab,
+    # this is done in scipad.sci)
+    set tmpdir $env(SCIHOME)
+
+    # deiconify now with no need to have Scilab running since
+    # ScilabEval "TCL_EvalStr(\"wm deiconify $pad\",\"scipad\")" "seq"
+    # at the end of scipad.tcl won't run - anyway, dynamickeywords is
+    # not executed
+    after idle {wm deiconify $pad}
+
     set standaloneScipad true
 
 } else {
@@ -63,15 +73,32 @@ if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
 
 
 #############
-# Debug settings for the new Scipad debugger commands (Run to cursor and Break)
+# Debug settings for the latest Scipad debugger features
 
 # Committed versions should have this attribute set to false
-# In that case, the Run to Cursor and Break commands are hidden
-# since there are issues with them in the Scilab parsers
+# so that features that are believed to be too unstable are
+# disabled (usually because of issues in the Scilab parsers)
+# Currently this flag is not used
 
-set dev_debug "false"
+set dev_debug false
 
-# End of debug settings for the new debugger commands (Run to cursor and Break)
+# End of debug settings for the latest Scipad debugger features
+#############
+
+
+#############
+# Flags to adjust Scipad to the host Scilab version
+
+# The break command can only be used with Scilab versions having bug 2384 fixed
+# Currently (30/04/07), this is done in svn trunk and BUILD4 branches
+# but nowhere else, e.g. in scilab-gtk
+# The flag below allows for easy adjustment of Scipad to Scilab versions,
+# especially with backported Scipad versions in mind
+# Bug 2384 in fact fixes the sync seq options of ScilabEval (interruptibility)
+
+set bug2384_fixed true
+
+# End of flags to adjust Scipad to the host Scilab version
 #############
 
 
@@ -121,7 +148,10 @@ if {0} {
 
 if {0} {
     proc dispsthg {} {
-        set str [countcontlines [gettextareacur] 1.0 [[gettextareacur] index insert]]
+#        set str [countcontlines [gettextareacur] 1.0 [[gettextareacur] index insert]]
+#        set str [time {colorize [gettextareacur] 1.0 end}]
+#        set str "[getlogicallinenumbersranges allscilabbuffers "stepbystep"]\n\n[getlogicallinenumbersranges current&ancill "stepbystep"]"
+        set str "[getlistofancillaries [gettextareacur] FOO1 libfun]"
         tk_messageBox -message "$str"
     }
     bind all <Control-equal> {dispsthg}
@@ -138,6 +168,18 @@ if {0} {
     bind all <Control-equal> { \
         puts [time {colorizestringsandcomments_sd [gettextareacur] 1.0 end}] ; \
         showinfo "colorize done (strings+comments)"
+    }
+    bind all <Control-equal> { \
+        parray words; parray chset \
+    }
+    bind all <Control-equal> { \
+        if {[isscilabbusy]} {tk_messageBox -message "BUSY"} else {tk_messageBox -message "IDLE"}
+    }
+    bind all <Control-equal> { \
+        checkexecutionerror_bp \
+    }
+    bind all <Control-equal> { \
+        runtoreturnpoint_bp \
     }
 }
 
@@ -184,19 +226,19 @@ if {$debuglog} {
         if {$Tcl85} {
             # Tcl >= 8.5, clock milliseconds is better
             set stamp [clock milliseconds]
-            set secs [expr $stamp / 1000]
-            set fract [expr $stamp - ($secs * 1000)]
+            set secs [expr {$stamp / 1000}]
+            set fract [expr {$stamp - ($secs * 1000)}]
 
         } else {
             # Tcl < 8.5, use what available
             set secs [clock seconds]
             set ms [clock clicks -milliseconds]
-            set base [expr { $secs * 1000 }]
-            set fract [expr { $ms - $base }]
+            set base [expr {$secs * 1000}]
+            set fract [expr {$ms - $base}]
             if { $fract > 1000 } {
-                set diff [expr { $fract / 1000 }]
+                set diff [expr {$fract / 1000}]
                 incr secs $diff
-                incr fract [expr { -1000 * $diff }]
+                incr fract [expr {-1000 * $diff}]
             }
 
         }

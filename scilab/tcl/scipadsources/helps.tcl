@@ -1,34 +1,69 @@
-proc helpme {} {
-# help
-    ScilabEval_lt "help scipad"
+proc setScipadVersionString {} {
+# set the version string for Scipad, using the information from the
+# VERSION file of the Scipad module
+    global ScipadVersion
+    # empty placeholder for when launched outside of Scilab,
+    # or for filling in manually when backporting Scipad from
+    # the trunk to the BUILD4 environment (BUILD4 does not
+    # understand instruction getversion)
+    set ScipadVersion "6.129BP1"
+    # try/end so that this code portion can be kept with no change
+    # even in a backported version
+    set comm1 "try;"
+    set comm2   "ScipadVer=getversion(\"scipad\");"
+    set comm3   "if ScipadVer(3)==0 then"
+    set comm4     "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
+    set comm5   "else"
+    set comm6     "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\".\"+string(ScipadVer(3))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
+    set comm7   "end;"
+    set comm8 "end;"
+    # update title bar
+    set comm9 "TCL_EvalStr(\"modifiedtitle [gettextareacur]\",\"scipad\");"
+    # <TODO> SCI_VERSION_REVISION is not used until some automatic way to
+    #        fill in this field at commit exists
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9]
+    # Warning: "sync" "seq" would have been the natural options to use,
+    #          but see proc loadwords for some explanations about why
+    #          the sole seq is mandatory
+    ScilabEval_lt $fullcomm "seq"
 }
 
 proc aboutme {} {
 # about
-    global winTitle version
+    global winTitle ScipadVersion
     tk_messageBox -title [mc "About"] -type ok -message \
-        " $winTitle $version [mc aboutme_message]"
+        " $winTitle  $ScipadVersion - Tcl/Tk [info patchlevel] \n [mc aboutme_message]"
+}
+
+proc helpme {} {
+# help
+    if {[isscilabbusy 0]} {return}
+    ScilabEval_lt "help scipad"
 }
 
 proc helpword {} {
-    global textareacur
-    set seltexts [selection own]
-    if {[catch {selection get -selection PRIMARY} sel] ||$seltexts != $textareacur} {
-        # if there is no selection in the current textarea, select the word at the cursor position
+    if {[isscilabbusy 0]} {return}
+    set textareacur [gettextareacur]
+    # if there is a block selection, collapse it to its first range
+    set selindices [gettaselind $textareacur single]
+    if {$selindices == {}} {
+        # if there is no selection in the current textarea,
+        # select the word at the cursor position
         set i1 [$textareacur index insert]
         $textareacur tag add sel [$textareacur index "$i1 wordstart"] \
                                  [$textareacur index "$i1 wordend"]
-        set curterm [selection get]
-    } else {
-        set cursel [string trim [selection get]]
-        # get only the first word of the selection (or a symbol)
-        regexp "(\\A\\w*\\M|\\A\\W)" $cursel curterm
+        set selindices [gettaselind $textareacur single]
     }
+    set cursel [string trim [gettatextstring $textareacur $selindices]]
+    # get only the first word of the selection (or a symbol)
+    regexp "(\\A\\w*\\M|\\A\\W)" $cursel curterm
     if {[info exists curterm]} {
         set curterm [string trim $curterm]
         set curterm [duplicatechars $curterm "\""]
         set curterm [duplicatechars $curterm "'"]
-        if {$curterm!=""} { ScilabEval_lt "help \"$curterm\"" }
+        if {$curterm!=""} {
+            ScilabEval_lt "help \"$curterm\""
+        }
     }
 }
 
@@ -40,8 +75,7 @@ proc textbox {textfile {wtitle ""}} {
     catch {destroy $tbox}
     toplevel $tbox
     wm title $tbox $wtitle
-    setwingeom $tbox
-    wm resizable $tbox 1 1
+    wm withdraw $tbox
     frame $tbox.f1
     text $tbox.text -font $textFont
     set newnamefile [open $textfile r]
@@ -67,7 +101,7 @@ if {0} {
     frame $tbox.f2
     button $tbox.f2.button -text [mc "Close"] \
             -command "destroy $tbox" \
-            -width 10 -height 1 -font $menuFont
+            -font $menuFont
     pack $tbox.f2.button -in $tbox.f2
     pack configure $tbox.f2 -pady 4 -after $tbox.f1 -expand 0 -fill both
     pack $tbox.f2 -in $tbox -side bottom -before $tbox.f1
@@ -81,4 +115,15 @@ if {0} {
     bind $tbox <Return> "destroy $tbox"
     bind $tbox <KP_Enter> "destroy $tbox"
     bind $tbox <Escape> "destroy $tbox"
+    # prevent unwanted Text class bindings from triggering
+    bind $tbox.text <Button-3> {break}
+    bind $tbox.text <Shift-Button-3> {break}
+    bind $tbox.text <Control-Button-3> {break}
+    bind $tbox.text <ButtonRelease-2> {break}
+    bind $tbox.text <Return> "destroy $tbox;break"
+    bind $tbox.text <KP_Enter> "destroy $tbox;break"
+    update idletasks
+    setwingeom $tbox
+    wm resizable $tbox 1 1
+    wm deiconify $tbox
 }

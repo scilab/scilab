@@ -17,14 +17,10 @@ sbind Text <Control-h><Control-KeyPress> {validpostfix %A %s "f"; break}
 
 
 #nb: compound bindings like C-x-k defined for $pad need to be defined 
-# also particulatly for Text so that the specific long binding overrides 
+# also particularly for Text so that the specific long binding overrides 
 # that to puttext; the second binding needs to end with break to prevent
 # double firing, the first not, so that the accelerator lookup finds it
 #(that seems to be the easiest way to get out of the prefix troubles)
-
-
-sbind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
-
 
 
 #delete "native" text sbindings in the textarea -- we want all text
@@ -34,6 +30,7 @@ sbind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
 sbind Text <Control-k> {}
 sbind Text <Control-t> {}
 sbind Text <Control-i> {}
+sbind Text <Control-f> {} ; # avoids selection deletion on find box open
 
 
 sbind $pad <Control-x><Control-f> {showopenwin currenttile}
@@ -47,9 +44,11 @@ sbind Text <Control-Z> {redo [gettextareacur]}
 sbind $pad <Alt-percent> {findtextdialog replace}
 sbind $pad <F3> {findnext}
 
-sbind Text <Control-w> {cuttext}
+sbind Text <Control-w> {cuttext normal}
+sbind Text <Control-W> {cuttext block}
 sbind $pad <Alt-w>     {copytext}
-sbind Text <Control-y> {pastetext}
+sbind Text <Control-y> {pastetext normal}
+sbind Text <Control-Y> {pastetext block}
 sbind Text <Control-d> {deletetext}
 
 #cut-copy-paste for entries
@@ -61,8 +60,8 @@ sbind Text <Control-slash> ""
 sbind Text <Control-x><h> {selectall}
 
 
-sbind $pad <Control-x><Key-k> {closecur yesnocancel}
-sbind Text <Control-x><Key-k> {closecur yesnocancel; break}
+sbind $pad <Control-x><Key-k> {closecurfile yesnocancel}
+sbind Text <Control-x><Key-k> {closecurfile yesnocancel; break}
 #sbind $pad <Control-x><Control-f> {filesetasnew}
 sbind $pad <Control-x><Control-c> {idleexitapp}
 sbind $pad <Control-g> {gotoline}
@@ -96,15 +95,10 @@ sbind $pad <Control-h><Control-f> {helpword}
 sbind $pad <Control-Alt-backslash> {IndentSel}
 sbind $pad <Control-D> {UnIndentSel}
 
-sbind $pad <F7> {nextbuffer}
-sbind $pad <F6> {prevbuffer}
-sbind $pad <Control-F7> {nextbuffer}
-sbind $pad <Control-F6> {prevbuffer}
-
-sbind $pad <Control-plus> {set FontSize [expr round($FontSize*1.11)]; \
-                            setfontscipad $FontSize}
-sbind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
-                            setfontscipad $FontSize}
+sbind $pad <F7> {nextbuffer all}
+sbind $pad <F6> {prevbuffer all}
+sbind $pad <Control-F7> {nextbuffer visible}
+sbind $pad <Control-F6> {prevbuffer visible}
 
 sbind $pad <F4> {importmatlab}
 
@@ -119,13 +113,13 @@ sbind Text <Control-l> {[gettextareacur] see insert}
 #emacs pure movements: duplicate movement keys, hopefully more robust
 sbind Text <Control-v> [bind Text <Next>]
 sbind Text <Alt-v>     [bind Text <Prior>]
-sbind All <Control-a>  [bind Text <Home>]
-sbind All <Control-e>  [bind Text <End>]
-sbind All <Control-p>  [bind Text <Up>]
-sbind All <Control-n>  [bind Text <Down>]
-sbind All <Control-b>  [bind Text <Left>]
-sbind All <Control-f>  [bind Text <Right>]
-sbind All <Alt-b>      [bind Text <Control-Left>]
-sbind All <Alt-f>      [bind Text <Control-Right>]
+sbind all <Control-a>  [bind Text <Home>]
+sbind all <Control-e>  [bind Text <End>]
+sbind all <Control-p>  [bind Text <Up>]
+sbind all <Control-n>  [bind Text <Down>]
+sbind all <Control-b>  [bind Text <Left>]
+sbind all <Control-f>  [bind Text <Right>]
+sbind all <Alt-b>      [bind Text <Control-Left>]
+sbind all <Alt-f>      [bind Text <Control-Right>]
 sbind Text <Alt-less>  [bind Text <Control-Home>]
 sbind Text <Alt-greater> [bind Text <Control-End>]

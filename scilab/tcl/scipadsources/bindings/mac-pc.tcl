@@ -8,10 +8,12 @@ sbind Text <Control-h> {backspacetext}
 sbind Text <Control-k> {}
 sbind Text <Control-t> {}
 sbind Text <Control-i> {}
+sbind Text <Control-f> {} ; # avoids selection deletion on find box open
 # remove the default sbind ctrl-d=delete char
 sbind Text <Control-d> ""
-sbind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
 
+# remove the default sbind ctrl-o=insert new line
+sbind Text <Control-o> {}
 sbind $pad <Control-o>     {showopenwin currenttile}
 sbind $pad <Control-Key-4> {showopenwin horizontal}
 sbind $pad <Control-Key-5> {showopenwin vertical}
@@ -24,9 +26,11 @@ sbind $pad <Control-f> {findtextdialog find}
 sbind $pad <Control-r> {findtextdialog replace}
 sbind $pad <F3> {findnext}
 
-sbind Text <Control-x> {cuttext}
+sbind Text <Control-x> {cuttext normal}
+sbind Text <Control-X> {cuttext block}
 sbind $pad <Control-c> {copytext}
-sbind Text <Control-v> {pastetext}
+sbind Text <Control-v> {pastetext normal}
+sbind Text <Control-V> {pastetext block}
 sbind Text <Delete>    {deletetext}
 
 #cut-copy-paste for entries
@@ -38,7 +42,7 @@ sbind Text <Control-slash> ""
 sbind $pad <Control-a> {selectall}
 
 
-sbind $pad <Control-w> {closecur yesnocancel} 
+sbind $pad <Control-w> {closecurfile yesnocancel} 
 sbind $pad <Control-n> {filesetasnew}
 sbind $pad <Control-q> {idleexitapp}
 sbind $pad <Control-g> {gotoline}
@@ -68,15 +72,10 @@ sbind $pad <Control-F1> {helpword}
 sbind $pad <Control-d> {IndentSel}
 sbind $pad <Control-D> {UnIndentSel}
 
-sbind $pad <F7> {nextbuffer}
-sbind $pad <F6> {prevbuffer}
-sbind $pad <Control-F7> {nextbuffer}
-sbind $pad <Control-F6> {prevbuffer}
-
-sbind $pad <Control-plus> {set FontSize [expr round($FontSize*1.11)]; \
-                            setfontscipad $FontSize}
-sbind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
-                            setfontscipad $FontSize}
+sbind $pad <F7> {nextbuffer all}
+sbind $pad <F6> {prevbuffer all}
+sbind $pad <Control-F7> {nextbuffer visible}
+sbind $pad <Control-F6> {prevbuffer visible}
 
 sbind $pad <F4> {importmatlab}
 
