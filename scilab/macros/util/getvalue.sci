@@ -1,4 +1,7 @@
-function [%ok,%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=getvalue(%desc,%labels,%typ,%ini)
+function [%ok,%1,%2,%3,%4,%5,...
+          %6,%7,%8,%9,%10,...
+          %11,%12,%13,%14,%15,...
+          %16,%17,%18,%19,%20]=getvalue(%desc,%labels,%typ,%ini)
 //  getvalues - %window dialog for data acquisition 
 //%Synta%
 //  [%ok,%1,..,%11]=getvalue(desc,labels,typ,ini)
@@ -18,10 +21,10 @@ function [%ok,%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=ge
 //                   'pol' : stands for polynomials
 //                   'r'   : stands for rational
 //            dimi : defines the size of the ith required value
-//                   it must be 
-//                    - an integer or a 2-vector of integers (-1 stands for 
+//                   it must be
+//                    - an integer or a 2-vector of integers (-1 stands for
 //                      arbitrary dimension)
-//                    - an evaluatable character string 
+//                    - an evaluatable character string
 //  ini     : n column vector of strings, ini(i) gives the suggested
 //            response for the ith required value
 //  %ok      : boolean ,%t if %ok button pressed, %f if cancel button pressed
@@ -41,6 +44,14 @@ function [%ok,%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=ge
 //%See also
 // x_mdialog, x_dialog
 //!
+// 17/01/07 -Alan- This version of getvalue is different of scilab 4.1 :
+//         - %scicos_context behavior reviewed in accordance to context_evstr macro
+//         - (u)int(8/16/32) allowed in field of type vec/mat/row/col (F. Nassif's Work)
+//
+// 05/02/07 -Alan- : update to %20 rhs parameters
+//
+// 12/02/07 -Alan- : fix (variable evaluation of %scicos_context)
+//
 // Copyright INRIA
 [%lhs,%rhs]=argn(0)
 
@@ -49,27 +60,16 @@ if %lhs<>%nn+2&%lhs<>%nn+1 then error(41),end
 if size(%typ)<>2*%nn then
   error('%typ : list(''type'',[sizes],...)')
 end
-%1=[];%2=[];%3=[];%4=[];%5=[];%6=[];%7=[];%8=[];%9=[];%10=[];%11=[];
-%12=[];%13=[];%14=[];
-%15=[];%16=[];%17=[];%18=[];
-
-if exists('%scicos_context') then
-  %mm=getfield(1,%scicos_context)
-  for %mi=%mm(3:$)
-    if execstr(%mi+'=%scicos_context(%mi)','errcatch')<>0 then
-      disp(lasterror())
-      %ok=%f
-      return
-    end
-  end
-end 
+%1=[];%2=[];%3=[];%4=[];%5=[];
+%6=[];%7=[];%8=[];%9=[];%10=[];
+%11=[];%12=[];%13=[];%14=[];%15=[];
+%16=[];%17=[];%18=[];%19=[];%20=[];
 
 if %rhs==3 then  %ini=emptystr(%nn,1),end
 %ok=%t
 while %t do
-  %str1=x_mdialog(%desc,%labels,%ini)
-  if %str1==[] then %ok=%f,%str=[];break,end
-  %str=%str1;
+  %str=x_mdialog(%desc,%labels,%ini)
+  if %str==[] then %ok=%f,%str=[];break,end
   for %kk=1:%nn
     %cod=ascii(%str(%kk))
     %spe=find(%cod==10)
@@ -79,13 +79,31 @@ while %t do
       %str(%kk)=ascii(%cod)
     end
   end
+
+  if exists('%scicos_context')
+    %mm=getfield(1,%scicos_context)
+    for %mi=%mm(3:$)
+     if execstr(%mi+'=%scicos_context(%mi)','errcatch')<>0 then
+       disp(lasterror())
+       %ok=%f
+       return
+     end
+    end
+  end
+
   %nok=0
   for %kk=1:%nn
     select part(%typ(2*%kk-1),1:3)
     case 'mat'
-      %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
+      if exists('%scicos_context') then
+        [%vv,%ierr]=evstr(%str(%kk))
+      else
+        %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
+      end
       if %ierr<>0 then %nok=-%kk;break,end
-      if type(%vv)<>1 then %nok=-%kk,break,end
+      //29/12/06
+      //the type of %vv is accepted if it is constant or integer
+      if and(type(%vv)<>[1 8]) then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       [%mv,%nv]=size(%vv)
       %ssz=string(%sz(1))+' x '+string(%sz(2))
@@ -96,15 +114,25 @@ while %t do
 	if %sz(2)>=0 then if %nv<>%sz(2) then %nok=%kk,break,end,end
       end
     case 'vec'
-      %ierr=execstr('%vv=['+%str(%kk)+']','errcatch')
+      if exists('%scicos_context') then
+        [%vv,%ierr]=evstr(%str(%kk))
+      else
+        %ierr=execstr('%vv=['+%str(%kk)+']','errcatch')
+      end
       if %ierr<>0 then %nok=-%kk;break,end
-      if type(%vv)<>1 then %nok=-%kk,break,end
+      //17/01/07
+      //the type of %vv is accepted if it is constant or integer
+      if and(type(%vv)<>[1 8]) then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       %ssz=string(%sz(1))
       %nv=prod(size(%vv))
       if %sz(1)>=0 then if %nv<>%sz(1) then %nok=%kk,break,end,end
     case 'pol'
-      %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
+      if exists('%scicos_context') then
+        [%vv,%ierr]=evstr(%str(%kk))
+      else
+        %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
+      end
       if %ierr<>0 then %nok=-%kk;break,end
       if type(%vv)>2 then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
@@ -112,9 +140,15 @@ while %t do
       %nv=prod(size(%vv))
       if %sz(1)>=0 then if %nv<>%sz(1) then %nok=%kk,break,end,end
     case 'row'
-      %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
+      if exists('%scicos_context') then
+        [%vv,%ierr]=evstr(%str(%kk))
+      else
+        %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
+      end
       if %ierr<>0 then %nok=-%kk;break,end
-      if type(%vv)<>1 then %nok=-%kk,break,end
+      //17/01/07
+      //the type of %vv is accepted if it is constant or integer
+      if and(type(%vv)<>[1 8]) then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       if %sz(1)<0 then
 	%ssz='1 x *'
@@ -125,9 +159,15 @@ while %t do
       if %mv<>1 then %nok=%kk,break,end,
       if %sz(1)>=0 then if %nv<>%sz(1) then %nok=%kk,break,end,end
     case 'col'
-      %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
-      if %ierr<>0 then %nok=-%kk;break,end      
-      if type(%vv)<>1 then %nok=-%kk,break,end
+      if exists('%scicos_context') then
+        [%vv,%ierr]=evstr(%str(%kk))
+      else
+        %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
+      end
+      if %ierr<>0 then %nok=-%kk;break,end
+      //17/01/07
+      //the type of %vv is accepted if it is constant or integer
+      if and(type(%vv)<>[1 8]) then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       if %sz(1)<0 then
 	%ssz='* x 1'
@@ -138,8 +178,8 @@ while %t do
       if %nv<>1 then %nok=%kk,break,end,
       if %sz(1)>=0 then if %mv<>%sz(1) then %nok=%kk,break,end,end
     case 'str'
-      %sde=%str1(%kk)
-      %spe=find(ascii(%str1(%kk))==10)
+      %sde=%str(%kk)
+      %spe=find(ascii(%str(%kk))==10)
       %spe($+1)=length(%sde)+1
       %vv=[];%kk1=1
       for %kkk=1:size(%spe,'*')
@@ -151,15 +191,23 @@ while %t do
       %nv=prod(size(%vv))
       if %sz(1)>=0 then if %nv<>%sz(1) then %nok=%kk,break,end,end
     case 'lis'
-      %ierr=execstr('%vv='+%str(%kk),'errcatch');
-      if %ierr<>0 then %nok=-%kk;break,end      
+      if exists('%scicos_context') then
+        [%vv,%ierr]=evstr(%str(%kk))
+      else
+        %ierr=execstr('%vv='+%str(%kk),'errcatch');
+      end
+      if %ierr<>0 then %nok=-%kk;break,end
       if type(%vv)<>15& type(%vv)<>16 then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       %ssz=string(%sz(1))
       %nv=size(%vv)
       if %sz(1)>=0 then if %nv<>%sz(1) then %nok=%kk,break,end,end
     case 'r  '
-      %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
+      if exists('%scicos_context') then
+        [%vv,%ierr]=evstr(%str(%kk))
+      else
+        %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
+      end
       if %ierr<>0 then %nok=-%kk;break,end 
       if type(%vv)<>16 then %nok=-%kk,break,end
       if typeof(%vv)<>'rational' then %nok=-%kk,break,end
@@ -177,17 +225,17 @@ while %t do
     end
     execstr('%'+string(%kk)+'=%vv')
   end
-  if %nok>0 then 
-    x_message(['answer given for  '+%labels(%nok);
+  if %nok>0 then
+    x_message(['answer given for '+%labels(%nok);
              'has invalid dimension: ';
              'waiting for dimension  '+%ssz])
     %ini=%str
   elseif %nok<0 then
     if %ierr==0 then
-      x_message(['answer given for  '+%labels(-%nok);
+      x_message(['answer given for '+%labels(-%nok);
 	'has incorrect type :'+ %typ(-2*%nok-1)])
     else
-      x_message(['answer given for  '+%labels(-%nok);
+      x_message(['answer given for '+%labels(-%nok);
 	'is incorrect:'+lasterror()])
     end
     %ini=%str
