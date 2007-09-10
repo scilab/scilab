@@ -4571,7 +4571,7 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
        Obj_RedrawNewAngle( pObj,
                            pSUBWIN_FEATURE (pObj)->theta_kp,
                            pSUBWIN_FEATURE (pObj)->alpha_kp ) ;
-       setInfoMessageWithRotationAngles(pObj,
+       setInfoMessageWithRotationAngles(sciGetParentFigure(pObj),
                                         pSUBWIN_FEATURE (pObj)->alpha_kp,
                                         pSUBWIN_FEATURE (pObj)->theta_kp ) ;
      }
