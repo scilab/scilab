@@ -2,15 +2,16 @@
 c     Author Serge Steer, Copyright INRIA, 2005
 c     extends cbesy for the case where alpha is negative
       double precision alpha
-      double precision x1r, x1i, yr(n), yi(n), wr(n),wi(n)
+      double precision x1r, x1i, yr(n), yi(n), wr(2*n),wi(2*n)
       integer kode,n,nz,ierr
 c
-      double precision a,b,pi,inf,xr, xi,a1
+      double precision a,b,pi,inf,eps,xr, xi,a1
       integer ier1,ier2
       double precision dlamch
 
       data pi /3.14159265358979324D0/
       inf=dlamch('o')*2.0d0   
+      eps=dlamch('p')
 
       xr=x1r
       xi=x1i

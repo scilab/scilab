@@ -171,6 +171,12 @@ SCILABSCRIPT=scilab.g
 #   for HPUX use "fgetarg-hpux.f"
 FGETARG=fgetarg
 GETARG=getarg
+# Fortran program in routines/calelm: default is "scidcopy.f" 
+#   for HPUX use "scidcopy-hpux.f"
+SCIDCOPY=scidcopy
+# Fortran program in routines/calelm: default is "unsfdcopy.f" 
+#   for HPUX use "unsfdcopy-hpux.f"
+UNSFDCOPY=unsfdcopy
 # For old Hp computer (9.x), used in "routines/os_specific/Makefile.in"
 #   for choosing the good file between link_std.c and link_SYSV.c
 HPPA_OLD=
@@ -1093,6 +1099,8 @@ i*86-*-linux-gnu | *-linux-gnu )
     fi
     MAKEFILE_TARGET=Makefile.hpux9
     FGETARG=fgetarg-hpux
+    SCIDCOPY=scidcopy-hpux
+    UNSFDCOPY=unsfdcopy-hpux
     ;;
 # HP 10
   *-*-hpux10.*)
@@ -1137,6 +1145,8 @@ i*86-*-linux-gnu | *-linux-gnu )
     fi
     MAKEFILE_TARGET=Makefile.hpux
     FGETARG=fgetarg-hpux
+    SCIDCOPY=scidcopy-hpux
+    UNSFDCOPY=unsfdcopy-hpux
     ;;
 # HP 11
   *-*-hpux11.*)
@@ -1186,6 +1196,8 @@ i*86-*-linux-gnu | *-linux-gnu )
     MAKEFILE_TARGET=Makefile.hpux11
     GETARG=getarg-hpux
     FGETARG=fgetarg-hpux
+    SCIDCOPY=scidcopy-hpux
+    UNSFDCOPY=unsfdcopy-hpux
     cp -f $SCIDIR/pvm3/conf/HPPA.def $SCIDIR/pvm3/conf/HPPA.def.orig
     cp -f $SCIDIR/pvm3/conf/HPPA11.def $SCIDIR/pvm3/conf/HPPA.def
     ;;
@@ -2237,6 +2249,8 @@ AC_SUBST(SCILAB_GS)
 AC_SUBST(SCILABSCRIPT)
 AC_SUBST(FGETARG)
 AC_SUBST(GETARG)
+AC_SUBST(SCIDCOPY)
+AC_SUBST(UNSFDCOPY)
 AC_SUBST(HPPA_OLD)
 AC_SUBST(DLDLIB)
 AC_SUBST(DLD_SUBDIR)
