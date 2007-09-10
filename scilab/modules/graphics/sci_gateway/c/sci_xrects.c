@@ -54,13 +54,15 @@ int sci_xrects( char *fname, unsigned long fname_len )
   psubwin = sciGetCurrentSubWin();
   pFigure = sciGetParentFigure(psubwin);
   endGraphicDataWriting();
-  startFigureDataWriting(pFigure);
   for (i = 0; i < n1; ++i) { 
     /*       j = (i==0) ? 0 : 1; */
     if (*istk(l2+i) == 0){
       /** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
       /* color setting is done now */
-      int foreground = sciGetForeground(psubwin);
+      int foreground;
+      startFigureDataReading(pFigure);
+      foreground = sciGetForeground(psubwin);
+      endFigureDataReading(pFigure);
       Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
         &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
     }
@@ -79,6 +81,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
     }
   }
   /** construct Compound and make it current object **/
+  startFigureDataWriting(pFigure);
   sciSetCurrentObj(ConstructCompoundSeq(n1));
   endFigureDataWriting(pFigure);
 

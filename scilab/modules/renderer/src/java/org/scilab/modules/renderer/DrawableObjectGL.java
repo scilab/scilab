@@ -66,7 +66,7 @@ public abstract class DrawableObjectGL extends ObjectGL {
 			getGL().glDeleteLists(dlIndex, 1);
 		}
 		dlIndex = getGL().glGenLists(1);
-		getGL().glNewList(dlIndex, GL.GL_COMPILE);
+		getGL().glNewList(dlIndex, GL.GL_COMPILE_AND_EXECUTE);
 	}
 	
 	/**

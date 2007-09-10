@@ -53,6 +53,14 @@ void displayChildren( sciPointObj * pObj )
 void redrawHierarchy( sciPointObj * pObj )
 {
   getHandleDrawer(pObj)->familyHasChanged();
-  getHandleDrawer(pObj)->display();
+  if ( sciGetEntityType(pObj) == SCI_FIGURE)
+  {
+    // don't use display here or we will call Java display again.
+    getFigureDrawer(pObj)->drawInContext();
+  }
+  else
+  {
+    getHandleDrawer(pObj)->display();
+  }
 }
 /*------------------------------------------------------------------------------------------*/

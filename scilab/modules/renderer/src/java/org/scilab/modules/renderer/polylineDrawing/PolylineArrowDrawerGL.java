@@ -10,6 +10,7 @@
 package org.scilab.modules.renderer.polylineDrawing;
 
 import org.scilab.modules.renderer.drawers.ArrowHeadDrawerGL;
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
  * Class containing the driver dependant routines to draw arrow
@@ -18,6 +19,11 @@ import org.scilab.modules.renderer.drawers.ArrowHeadDrawerGL;
  */
 public class PolylineArrowDrawerGL extends ArrowHeadDrawerGL implements PolylineDrawerStrategy {
 
+	/** first point of the segments */
+	private Vector3D[] startPoints;
+	/** end points of the segments */
+	private Vector3D[] endPoints;
+	
 	/**
 	 * Default contructor
 	 */
@@ -32,7 +38,17 @@ public class PolylineArrowDrawerGL extends ArrowHeadDrawerGL implements Polyline
 	 * @param zCoords Z coordinates of the polylines vertices
 	 */
 	public void drawPolyline(double[] xCoords, double[] yCoords, double[] zCoords) {
-		System.err.println("Draw arrows");
+		
+		startPoints = new Vector3D[xCoords.length - 1];
+		endPoints = new Vector3D[xCoords.length - 1];
+		
+		// store the two endpoints of each arrow
+		for (int i = 0; i < xCoords.length - 1; i++) {
+			startPoints[i] = new Vector3D(xCoords[i], yCoords[i], zCoords[i]);
+			endPoints[i] = new Vector3D(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1]);
+		}
+		
+		drawPolyline();
 	}
 
 	/**
@@ -40,7 +56,14 @@ public class PolylineArrowDrawerGL extends ArrowHeadDrawerGL implements Polyline
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) {
-		
+		drawPolyline();
+	}
+	
+	/**
+	 * Draw the stored arrows coordinates.
+	 */
+	public void drawPolyline() {
+		drawArrowHeads(startPoints, endPoints);
 	}
 	
 	

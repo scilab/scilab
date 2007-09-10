@@ -25,14 +25,6 @@ int sci_xarc(char *fname,unsigned long fname_len)
   double angle1 = 0.0;
   double angle2 = 0.0;
 
-  startGraphicDataWriting();
-  pFigure = sciGetCurrentFigure();
-  psubwin = sciGetCurrentSubWin();
-  endGraphicDataWriting();
-
-  startFigureDataReading(pFigure);
-  curcolor = sciGetForeground(psubwin); /* current color equivalent for new graphics mode */
-  endFigureDataReading(pFigure);
 
   CheckRhs(6,6);
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);CheckScalar(1,m1,n1);
@@ -45,17 +37,22 @@ int sci_xarc(char *fname,unsigned long fname_len)
   angle1 = DEG2RAD(*istk(l5) / 64.0); /* convert to radian */
   angle2 = DEG2RAD(*istk(l6) / 64.0);
 
+  startGraphicDataWriting();
+  pFigure = sciGetCurrentFigure();
+  psubwin = sciGetCurrentSubWin();
+  endGraphicDataWriting();
+
+  startFigureDataReading(pFigure);
+  curcolor = sciGetForeground(psubwin); /* current color equivalent for new graphics mode */
+  endFigureDataReading(pFigure);
+
   if ( strcmp(fname,"xarc") == 0 )
   {
-    startFigureDataWriting(pFigure);
     Objarc (&angle1,&angle2,stk(l1),stk(l2),stk(l3),stk(l4),&curcolor,NULL,FALSE,TRUE,&hdl);
-    endFigureDataWriting(pFigure);
   }
   else /* xfarc case */
   {
-    startFigureDataWriting(pFigure);
     Objarc (&angle1,&angle2,stk(l1),stk(l2),stk(l3),stk(l4),NULL,&curcolor,TRUE,FALSE,&hdl);
-    endFigureDataWriting(pFigure);
   }
   LhsVar(1)=0;
   return 0;

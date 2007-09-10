@@ -40,7 +40,11 @@ void DrawableObject::display( void )
     draw() ;
     m_bNeedRedraw = false ;
   }
-  show() ;
+  else
+  {
+    show() ;
+  }
+  
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::hasChanged( void )

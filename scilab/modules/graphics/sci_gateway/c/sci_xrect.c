@@ -65,7 +65,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
     GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); CheckScalar(2,m2,n2);
     GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3);
     GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4);
-    startFigureDataWriting(pFigure);
+    startFigureDataReading(pFigure);
     if (strcmp(fname,"xrect")==0)
     {	
       int foreground = sciGetForeground(psubwin);
@@ -78,7 +78,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
       Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
         NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
     }
-    endFigureDataWriting(pFigure);
+    endFigureDataReading(pFigure);
 
     if ( hdl < 0 )
     {

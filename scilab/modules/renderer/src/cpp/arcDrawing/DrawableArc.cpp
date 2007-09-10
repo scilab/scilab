@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableArc.h"
+#include <iostream>
 
 namespace sciGraphics
 {
@@ -14,7 +15,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableArc::DrawableArc( sciPointObj * pObj ) : DrawableClippedObject(pObj)
 {
-
+  
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableArc::~DrawableArc( void )

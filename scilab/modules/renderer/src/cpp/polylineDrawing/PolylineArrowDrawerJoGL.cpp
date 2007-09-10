@@ -35,7 +35,14 @@ void PolylineArrowDrawerJoGL::drawPolyline( void )
   initializeDrawing() ;
 
   // set the line parameters
-  getArrowDrawerJavaMapper()->setArrowParameters(sciGetGraphicContext(pObj)->foregroundcolor, sciGetArrowSize(pObj));
+  getArrowDrawerJavaMapper()->setArrowParameters(sciGetGraphicContext(pObj)->foregroundcolor,
+                                                 sciGetArrowSize(pObj) * sciGetLineWidth(pObj));
+
+  double bounds[6];
+  sciGetRealDataBounds(sciGetParentSubwin(pObj), bounds);
+  getArrowDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1],
+                                            bounds[2], bounds[3],
+                                            bounds[4], bounds[5]);
 
   // get the data of the polyline
   int      nbVertices = 0   ;

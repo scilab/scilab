@@ -72,8 +72,8 @@ void PolylineArrowDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
 void PolylineArrowDrawerJavaMapper::drawPolyline(const double xCoords[], const double yCoords[], const double zCoords[], int nbCoords)
 {
   m_pJavaObject->drawPolyline((double *)xCoords, nbCoords,
-                                (double *)yCoords, nbCoords,
-                                (double *)zCoords, nbCoords);
+                              (double *)yCoords, nbCoords,
+                              (double *)zCoords, nbCoords);
 }
 /*------------------------------------------------------------------------------------------*/
 }

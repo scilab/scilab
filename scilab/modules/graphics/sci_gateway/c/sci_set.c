@@ -5,6 +5,8 @@
 /* desc : interface for sci_set routine                                   */
 /*------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
+#include <stdio.h>
+
 #include "sci_set.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
@@ -24,6 +26,7 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "DrawingBridge.h"
+
 /*-----------------------------------------------------------------------------------*/
 static int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol) ;
 /*-----------------------------------------------------------------------------------*/
@@ -276,7 +279,9 @@ int sci_set(char *fname, unsigned long fname_len)
 				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label )
 			 { 
 				 /* Addings F.Leray 10.06.04 */
+                                 endGraphicDataWriting();
 				 sciDrawObj(pobj) ;
+                                 startGraphicDataWriting();
 			 }
 		 }
 	 }

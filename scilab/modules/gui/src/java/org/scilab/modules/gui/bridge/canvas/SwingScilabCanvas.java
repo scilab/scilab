@@ -23,7 +23,7 @@ import org.scilab.modules.renderer.figureDrawing.SciRenderer;
  * @author Jean-Baptiste Silvy
  */
 public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
-
+	
 	/**
 	 * Constructor
 	 * @param cap GLCapabilities associated to the GLJPanel
@@ -144,6 +144,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 
 	/**
 	 * Force the canvas to render itself with synchronisation with its OpenGL process.
+	 * Might not always call the display function if many calls are performed.
 	 */
 	@Override
 	public void repaint() {

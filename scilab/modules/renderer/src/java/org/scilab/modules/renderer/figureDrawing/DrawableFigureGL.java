@@ -32,6 +32,8 @@ public class DrawableFigureGL extends ObjectGL {
 	/** To get all the objects which needs to be destroyed */
 	private ObjectGLCleaner destroyedObjects;
 	
+	private int nbRendering = 0;
+	
 	/**
 	 * Default Constructor
 	 */

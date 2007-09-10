@@ -29,7 +29,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	}
 	
 	public void forceDisplay() {
-		parentCanvas.repaint();
+		parentCanvas.display();
 	}
 
 	public int getCanvasHeight() {

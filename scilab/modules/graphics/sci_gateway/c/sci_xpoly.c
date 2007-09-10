@@ -62,9 +62,10 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   psubwin = sciGetCurrentSubWin();
   endGraphicDataWriting();
 
-  startFigureDataWriting(pFigure);
+  
   Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
   pobj = sciGetCurrentObj(); /* the polyline newly created */
+  startFigureDataWriting(pFigure);
   if(mark == 0){ 
     /* marks are enabled but markstyle & foreground 
     is determined by parents' markstyle & foreground */

@@ -175,8 +175,18 @@ public class Vector3D {
 	 * @param scalar scalar to use
 	 * @return new vector result of mutiplying this by a scalar
 	 */
-	public Vector3D scalarMult(double scalar) {
+	public Vector3D getScalarMult(double scalar) {
 		return new Vector3D(scalar * xCoord, scalar * yCoord, scalar * zCoord);
+	}
+	
+	/**
+	 * Multiply this vector by a scalar.
+	 * @param scalar scalar to use
+	 */
+	public void scalarMult(double scalar) {
+		xCoord = scalar * xCoord;
+		yCoord = scalar * yCoord;
+		zCoord = scalar * zCoord;
 	}
 	
 	/**

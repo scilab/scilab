@@ -20,6 +20,7 @@
 #include "Fec.h"
 #include "GrayPlot.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -52,23 +53,25 @@ void Objrect ( double * x         ,
   sciPointObj * newObj = NULL ;
   BOOL redraw = FALSE ;
   sciPointObj *psubwin;
+  sciPointObj * pFigure = sciGetCurrentFigure();
+
+  startFigureDataWriting(pFigure);
   psubwin = sciGetCurrentSubWin();
-  
   /* check if the auto_clear property is on and then erase everything */
   redraw = checkRedrawing() ;
-
   newObj = ConstructRectangle(psubwin ,*x,*y,*height, *width, 0, 0,
                               foreground, background, isfilled, isline, n, flagstring) ;
     
   if ( newObj == NULL )
   {
+    endFigureDataWriting(pFigure);
     /* an error occured */
     *hdl = -1 ;
     return ;
   }
-
   sciSetCurrentObj( newObj ) ; 
-  *hdl=sciGetHandle( newObj ) ; 
+  *hdl=sciGetHandle( newObj ) ;
+  endFigureDataWriting(pFigure);
 
   /* if the window has been cleared we must redraw everything */
   if ( redraw )
@@ -97,17 +100,18 @@ void Objarc( double * angle1    ,
 { 
   BOOL redraw = FALSE ;
   sciPointObj *psubwin, *pobj;
-  psubwin = sciGetCurrentSubWin() ;
 
+  startFigureDataWriting(sciGetCurrentFigure());
+  psubwin = sciGetCurrentSubWin() ;
   redraw = checkRedrawing() ;
-  
   sciSetCurrentObj (ConstructArc
          (psubwin,*x,*y,
 	  *height, *width, *angle1, *angle2, foreground, background, isfilled, isline));
   pobj = sciGetCurrentObj();
- 
+
   *hdl=sciGetHandle(pobj);
-  
+  endFigureDataWriting(sciGetCurrentFigure());
+
   /* if the window has been cleared we must redraw everything */
   if ( redraw )
   {
@@ -133,11 +137,15 @@ void Objpoly ( double  * x     ,
                long    * hdl    )
 { 
   BOOL redraw = FALSE ;
+  sciPointObj * pFigure = NULL;
   sciPointObj *psubwin, *pobj;
+
+  pFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();  
 
-  redraw = checkRedrawing() ;
   
+  redraw = checkRedrawing() ;
+  startFigureDataWriting(pFigure);
   if (mark <= 0)
     { 
       int absmark = abs(mark);
@@ -149,7 +157,7 @@ void Objpoly ( double  * x     ,
       sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
 					  &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
     }
-  
+   endFigureDataWriting(pFigure);
    pobj = sciGetCurrentObj();
    *hdl=sciGetHandle(pobj);
 

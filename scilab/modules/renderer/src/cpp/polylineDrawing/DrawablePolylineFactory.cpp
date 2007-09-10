@@ -16,6 +16,7 @@
 #include "InterpolatedDecomposition.hxx"
 #include "StairCaseDecomposition.hxx"
 #include "PolylineMarkDrawerJoGL.hxx"
+#include "PolylineArrowDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -61,6 +62,10 @@ void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
   else
   {
     cPolyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
+  }
+
+  if (sciGetPolylineStyle(pPolyline) == 4) {
+    cPolyline->addDrawingStrategy(new PolylineArrowDrawerJoGL(polyline));
   }
 
   if (sciGetIsLine(pPolyline))

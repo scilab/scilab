@@ -45,7 +45,7 @@ public class SciRenderer
    */    
   public void display(GLAutoDrawable gLDrawable) {
     // should call the draw function of the corresponding figure
-    gLDrawable.getContext().setSynchronized(true);
+    //gLDrawable.getContext().setSynchronized(true);
     FigureScilabCall.displayFigure(renderedFigure);
   }
     

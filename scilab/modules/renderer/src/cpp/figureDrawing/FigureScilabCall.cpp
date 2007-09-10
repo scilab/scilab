@@ -11,6 +11,8 @@
 #include "getHandleDrawer.h"
 #include "GraphicSynchronizerInterface.h"
 
+#include <iostream>
+
 extern "C"
 {
 #include "WindowList.h"
