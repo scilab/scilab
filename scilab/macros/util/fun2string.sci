@@ -19,7 +19,7 @@ function txt=fun2string(fun,nam)
   lcount=1;level=[0,0];
   quote=''''
   dquote='""'
-  CR='\@'
+  CR='\'+ascii(10)
   opstable()
   // add input variable in the defined variables
   inputs=lst(3);outputs=lst(2)

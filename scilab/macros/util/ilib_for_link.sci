@@ -194,7 +194,7 @@ function ilib_link_gen_Make_win32(names,files,libs,Makename,libname,ldflags, ...
   for x=files(:)' ; mfprintf(fd," %s",strsubst(x,".o",".obj"));end
   mfprintf(fd,"\n# added libraries \n");
   mfprintf(fd,"OTHERLIBS = ");
-  for x=libs(:)' ; mfprintf(fd," ""%s.ilib"" ",x);end
+  for x=libs(:)' ; mfprintf(fd," %s.ilib",x);end
   mfprintf(fd,"\n");
   mfprintf(fd,"!include $(SCIDIR1)\\Makefile.incl.mak\n");
   if cc<>"" then 
@@ -263,7 +263,7 @@ function ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,ldflags,cflags
   mfprintf(fd,"\n# added libraries \n");
   mfprintf(fd,"OTHERLIBS =");
   for x=libs(:)' ;
-  	mfprintf(fd," ""%s.ilib"" ",x);
+  	mfprintf(fd," ""%s.ilib""",x);
   end
   mfprintf(fd,"\n");
   
