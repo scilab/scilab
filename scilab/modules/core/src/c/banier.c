@@ -30,7 +30,8 @@ void banner(void)
 
 	sciprint("\r\n\r\n");
 	sciprint("!!! WARNING !!!\r\n");
-	sciprint("This software is being provided \"as is\", without any express or implied warranty.\r\n");
+	sciprint("This software is being provided \"as is\", without any express or \r\n");
+	sciprint("implied warranty.\r\n");
 	sciprint("This is a development and not at all a final or stable version of Scilab 5.0\r\n");
 	sciprint("that will be released in the future. A lot of features are missing and buggy.\r\n");
 	sciprint("In no event will the authors be held liable for any damages arising from,\r\n");
