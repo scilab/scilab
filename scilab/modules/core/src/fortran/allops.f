@@ -53,7 +53,7 @@ c     . insertions
          icall=0
          nt=2
          vt1=abs(ogettype(top))
-         if(vt1.eq.15.or.vt1.eq.16) then
+         if(vt1.eq.15.or.vt1.eq.16.or.vt1.eq.17) then
 c     .     every thing can be inserted in a list
             goto 50
          endif
