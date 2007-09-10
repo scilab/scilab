@@ -83,6 +83,7 @@
 {"zeros",		IN_matelm,	40,	0},
 {"isequal",		IN_matelm,	49,	0},
 {"spones",		IN_matelm,	50,	0},
+{"isequalbitwise",	IN_matelm,	51,	0},
 	
 #define  IN_matdes  7  
 {"champ",		IN_matdes,	1,	2},	
