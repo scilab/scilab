@@ -73,6 +73,41 @@ void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[]
     zCoords[nbVertices - 1] = zPoints[nbPolylinePoints - 1];
   }
 
+  double * xShift = pPOLYLINE_FEATURE(pPolyline)->x_shift;
+  double * yShift = pPOLYLINE_FEATURE(pPolyline)->y_shift;
+  double * zShift = pPOLYLINE_FEATURE(pPolyline)->z_shift;
+
+  // add shifting to all vertices
+  if (xShift != NULL)
+  {
+    for(int i = 0; i < nbPolylinePoints - 1; i++)
+    {
+      xCoords[2 * i] += xShift[i];
+      xCoords[2 * i + 1] += xShift[i + 1];
+    }
+    xCoords[nbVertices - 1] += xShift[nbPolylinePoints - 1];
+  }
+
+  if (yShift != NULL)
+  {
+    for(int i = 0; i < nbPolylinePoints - 1; i++)
+    {
+      yCoords[2 * i] += yShift[i];
+      yCoords[2 * i + 1] += yShift[i];
+    }
+    yCoords[nbVertices - 1] += yShift[nbPolylinePoints - 1];
+  }
+
+  if (zShift != NULL)
+  {
+    for(int i = 0; i < nbPolylinePoints - 1; i++)
+    {
+      zCoords[2 * i] += zShift[i];
+      zCoords[2 * i + 1] += zShift[i];
+    }
+    zCoords[nbVertices - 1] += zShift[nbPolylinePoints - 1];
+  }
+
   // one more stair case
   if (sciGetIsClosed(pPolyline))
   {

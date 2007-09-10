@@ -32,9 +32,16 @@ void InterpolatedDecomposition::getDrawnVertices(double xCoords[], double yCoord
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
   int nbVertices = sciGetNbPoints(m_pDrawed->getDrawedObject());
+  double * xPoints = pPOLYLINE_FEATURE(pPolyline)->pvx;
+  double * yPoints = pPOLYLINE_FEATURE(pPolyline)->pvy;
+  double * zPoints = pPOLYLINE_FEATURE(pPolyline)->pvz;
+  double * xShift = pPOLYLINE_FEATURE(pPolyline)->x_shift;
+  double * yShift = pPOLYLINE_FEATURE(pPolyline)->y_shift;
+  double * zShift = pPOLYLINE_FEATURE(pPolyline)->z_shift;
 
-  doubleArrayCopy(xCoords, pPOLYLINE_FEATURE(pPolyline)->pvx, nbVertices);
-  doubleArrayCopy(yCoords, pPOLYLINE_FEATURE(pPolyline)->pvy, nbVertices);
+  doubleArrayCopy(xCoords, xPoints, nbVertices);
+  doubleArrayCopy(yCoords, yPoints, nbVertices);
+  
   if ( pPOLYLINE_FEATURE(pPolyline)->pvz == NULL )
   {
     setDoubleArraySingleValue(zCoords, 0.0, nbVertices);
@@ -42,6 +49,30 @@ void InterpolatedDecomposition::getDrawnVertices(double xCoords[], double yCoord
   else
   {
     doubleArrayCopy(zCoords, pPOLYLINE_FEATURE(pPolyline)->pvz, nbVertices);
+  }
+
+  if (xShift != NULL)
+  {
+    for(int i = 0; i < nbVertices; i++)
+    {
+      xCoords[i] += xShift[i];
+    }
+  }
+
+  if (yShift != NULL)
+  {
+    for(int i = 0; i < nbVertices; i++)
+    {
+      yCoords[i] += yShift[i];
+    }
+  }
+
+  if (zShift != NULL)
+  {
+    for(int i = 0; i < nbVertices; i++)
+    {
+      zCoords[i] += zShift[i];
+    }
   }
 
   if (sciGetIsClosed(pPolyline))
