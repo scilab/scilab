@@ -843,6 +843,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
 	  *yy1 = 0;
 	  *ibutton    = -100;
 	  set_wait_click(0);
+	  set_event_select(1+2+4); 
 	  return ;
 	}
 
@@ -861,6 +862,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
 
     }
   set_wait_click(0);
+  set_event_select(1+2+4); 
 }
 /*-----------------------------------------------------------------------------------*/
 void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
@@ -1021,7 +1023,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  *x1= 0 ;
 	  *yy1= 0;
 	  *ibutton=-100; 
-	  set_event_select(1+4);
+	  set_event_select(1+2+4);
 	  set_wait_click(0);
 	  return;
 	}
@@ -1033,7 +1035,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  *ibutton = -2;
 	  *x1=0;
 	  *yy1=0;
-	  set_event_select(1+4);
+	  set_event_select(1+2+4);
 	  set_wait_click(0);
 	  return ;
 	}
@@ -1046,7 +1048,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  break ;
 	}
     }
-  set_event_select(1+4);
+  set_event_select(1+2+4);
   set_wait_click(0);
 }
  
@@ -1152,8 +1154,8 @@ void C2F(setwindowdim)(x, y, v3, v4)
       sciGetScrollInfo(ScilabXgc, SB_VERT, &vertsi);
       sciGetScrollInfo(ScilabXgc, SB_HORZ, &horzsi);
     
-      ScilabXgc->CWindowWidth = Max((int) *x,50);
-      ScilabXgc->CWindowHeight =Max((int) *y,50);
+      ScilabXgc->CWindowWidth = Max((int) *x,10);
+      ScilabXgc->CWindowHeight =Max((int) *y,10);
       if ( sciGetwresize() == 1 ) {
 	ScilabXgc->CWindowWidthView  = ScilabXgc->CWindowWidth;
 	ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;

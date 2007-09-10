@@ -173,7 +173,7 @@ ConstructFigure (XGC)
   /* try to install the colormap in the graphic context */
   C2F(dr)("xset","colormap",&m,&n,&succeed,PI0,PI0,PI0,
 	  pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
-  
+
   if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
     sciprint ("Failed to load default colormap : Allocation failed or missing xinit detected\n");
     return (sciPointObj *) NULL;
@@ -227,6 +227,9 @@ ConstructFigure (XGC)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
+
+
+
   sciSetNum (pobj, &(XGC->CurWindow));		   
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
@@ -254,6 +257,9 @@ ConstructFigure (XGC)
   pFIGURE_FEATURE (pobj)->pixmap = pFIGURE_FEATURE (pfiguremdl)->pixmap ; 
   pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
   pFIGURE_FEATURE (pobj)->allredraw = pFIGURE_FEATURE (pfiguremdl)->allredraw;
+
+  pFIGURE_FEATURE (pobj)->infoMessage = NULL ; /* needed otherwise it will be realloc */
+  sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
 
   return pobj;
 }

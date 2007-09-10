@@ -164,4 +164,7 @@ extern BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ; /* GET */
 
 int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ; /* GET */
 
+char * sciGetInfoMessage( sciPointObj * pObj ) ; /* GET */
+int sciGetInfoMessageLength( sciPointObj * pObj ) ;
+
 #endif /* __SCI_GET_PROPERTY__ */

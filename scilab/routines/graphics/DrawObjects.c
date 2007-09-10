@@ -4707,13 +4707,8 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
   ppsubwin->axes.xlim[3] = ppsubwin->axes.nxgrads;
   ppsubwin->axes.ylim[3] = ppsubwin->axes.nygrads;
   ppsubwin->axes.zlim[3] = ppsubwin->axes.nzgrads;
-   
      
-  /*   ppsubwin->axes.reverse[0] = FALSE; /\*TRUE;*\/ */
-  /*   ppsubwin->axes.reverse[1] = FALSE; /\*TRUE;*\/  */
-  /*   ppsubwin->axes.reverse[2] = FALSE; /\*TRUE;*\/  */
-     
-  wininfo("alpha=%.1f,theta=%.1f",ppsubwin->alpha,ppsubwin->theta); 
+  /*wininfo("alpha=%.1f,theta=%.1f",ppsubwin->alpha,ppsubwin->theta);*/
     
   for(i=0;i<6;i++)
     if(ppsubwin->FRect[i] != ExistingFRect[i]){
@@ -7941,8 +7936,8 @@ sciDrawObj (sciPointObj * pobj)
 	  if ( !sciGetVisibility(pobj) ) { break ; }
       
       n1=1;
-	  if ((xm = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL) { return -1 ; }
-	  if ((ym = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL) { return -1 ; }
+	  if ((xm = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL) { break ; }
+	  if ((ym = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL) { break ; }
 
       if( !pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d )
 	{
@@ -7957,9 +7952,9 @@ sciDrawObj (sciPointObj * pobj)
 	  int n = pFEC_FEATURE (pobj)->Nnode;
 	  
 
-	  if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+	  if ((xvect = MALLOC (n*sizeof (double))) == NULL) break;
 	  if ((yvect = MALLOC (n*sizeof (double))) == NULL){
-	    FREE(xvect); xvect = (double *) NULL; return -1;
+	    FREE(xvect); xvect = (double *) NULL; break;
 	  }
 	  
 	  for(i=0;i<n;i++){
@@ -8035,10 +8030,10 @@ sciDrawObj (sciPointObj * pobj)
         
         n=pSEGS_FEATURE (pobj)->Nbr1;
 	  
-        if ((xm = MALLOC (n*sizeof (integer))) == NULL)	{ return -1 ; }
-        if ((ym = MALLOC (n*sizeof (integer))) == NULL)	{ return -1 ; } /* F.Leray 18.02.04 Correction suivante:*/
+        if ((xm = MALLOC (n*sizeof (integer))) == NULL)	{ break ; }
+        if ((ym = MALLOC (n*sizeof (integer))) == NULL)	{ break ; } /* F.Leray 18.02.04 Correction suivante:*/
 	  
-        if ((pstyle = MALLOC ((int)(n/2)*sizeof (integer))) == NULL) { return -1 ; } /* SS 19.04*/
+        if ((pstyle = MALLOC ((int)(n/2)*sizeof (integer))) == NULL) { break ; } /* SS 19.04*/
         if (pSEGS_FEATURE (pobj)->iflag == 1)
         {
           for ( i =0 ; i <(int) (n/2) ; i++)
@@ -8056,8 +8051,8 @@ sciDrawObj (sciPointObj * pobj)
           double * yvect = NULL;
           double * zvect = NULL;
 
-          if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-          if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((xvect = MALLOC (n*sizeof (double))) == NULL) break;
+          if ((yvect = MALLOC (n*sizeof (double))) == NULL) break;
 
           for( i = 0 ; i < n ; i++ )
           {
@@ -8067,7 +8062,7 @@ sciDrawObj (sciPointObj * pobj)
 
           if ( pSEGS_FEATURE (pobj)->vz != NULL )
           {
-            if ((zvect = MALLOC (n*sizeof (double))) == NULL) { return -1 ; }
+            if ((zvect = MALLOC (n*sizeof (double))) == NULL) { break ; }
             for( i = 0 ; i < n ; i++ )
             {
               zvect[i] = pSEGS_FEATURE (pobj)->vz[i];
@@ -8163,7 +8158,7 @@ sciDrawObj (sciPointObj * pobj)
         if ( xm == NULL || ym == NULL) 
         {
           sciprint("Running out of memory \n");
-          return -1;
+          break;
         }      
         if ( pSEGS_FEATURE (pobj)->typeofchamp == 1 )
         { /* champ1 has been called */
@@ -8173,7 +8168,7 @@ sciDrawObj (sciPointObj * pobj)
           if (  zm == NULL ) 
           {
             sciprint("Running out of memory \n");
-            return -1;
+            break;
           }      
         }
         
@@ -8195,9 +8190,9 @@ sciDrawObj (sciPointObj * pobj)
           double * yvect = NULL;
           double * zvect = NULL;
 	      
-          if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-          if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-          if ((zvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((xvect = MALLOC (n*sizeof (double))) == NULL) break;
+          if ((yvect = MALLOC (n*sizeof (double))) == NULL) break;
+          if ((zvect = MALLOC (n*sizeof (double))) == NULL) break;
 	      
           for(i=0;i<n;i++){
             xvect[i] = XPi2R(xm[i]);
@@ -8270,9 +8265,9 @@ sciDrawObj (sciPointObj * pobj)
 
 	    /* F.Leray 19.05.05 : Now I use only xliness (not xfrect) */
 	    /* to better manage axes reversing */
-	    if ((xm = MALLOC (n1*n2*sizeof (integer))) == NULL)	return -1;
+	    if ((xm = MALLOC (n1*n2*sizeof (integer))) == NULL)	break;
 	    if ((ym = MALLOC (n2*n1*sizeof (integer))) == NULL){
-	      FREE(xm); xm = (integer *) NULL; return -1; 
+	      FREE(xm); xm = (integer *) NULL; break; 
 	    }
 
 	    for ( i =0 ; i < n1 ; i++)  /* on x*/
@@ -8307,18 +8302,18 @@ sciDrawObj (sciPointObj * pobj)
 	    double * xvect = NULL;
 	    double * yvect = NULL;
 	
-	    if ((xvect = MALLOC (n1*sizeof (double))) == NULL) return -1;
+	    if ((xvect = MALLOC (n1*sizeof (double))) == NULL) break;
 	    if ((yvect = MALLOC (n2*sizeof (double))) == NULL){
-	      FREE(xvect); xvect = (double *) NULL; return -1;
+	      FREE(xvect); xvect = (double *) NULL; break;
 	    }
 	    
 	    for(i=0;i<n1;i++) xvect[i] = pGRAYPLOT_FEATURE (pobj)->pvecx[i];
 	    for(i=0;i<n2;i++) yvect[i] = pGRAYPLOT_FEATURE (pobj)->pvecy[i];
 
 
-	    if ((xm = MALLOC (n1*n2*sizeof (integer))) == NULL)	return -1;
+	    if ((xm = MALLOC (n1*n2*sizeof (integer))) == NULL)	break;
 	    if ((ym = MALLOC (n2*n1*sizeof (integer))) == NULL){
-	      FREE(xm); xm = (integer *) NULL; return -1; 
+	      FREE(xm); xm = (integer *) NULL; break; 
 	    }
 	    
 	    ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n1);
@@ -8405,9 +8400,9 @@ sciDrawObj (sciPointObj * pobj)
 	    
 	    if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
 	      if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
-		return -1;
+		break;
 	      if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
-		FREE(xm);xm = (integer *) NULL; return -1;  /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
+		FREE(xm);xm = (integer *) NULL; break;  /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
 	      }
 	     
 	      for ( j =0 ; j < n2 ; j++) xm[j]= XScale(j+0.5);
@@ -8437,18 +8432,18 @@ sciDrawObj (sciPointObj * pobj)
 	      double * yvect = NULL;
 	   
 	      /* Warning here (Matplot case) : n1 becomes n2 and vice versa */
-	      if ((xvect = MALLOC (n2*sizeof (double))) == NULL) return -1;
+	      if ((xvect = MALLOC (n2*sizeof (double))) == NULL) break;
 	      if ((yvect = MALLOC (n1*sizeof (double))) == NULL){
-		FREE(xvect); xvect = (double *) NULL; return -1;
+		FREE(xvect); xvect = (double *) NULL; break;
 	      }
 	    
 	      for(i=0;i<n2;i++) xvect[i] = i+0.5;
 	      for(i=0;i<n1;i++) yvect[i] = n1-1-i+0.5;
 	    
 
-	      if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	return -1;
+	      if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	break;
 	      if ((ym = MALLOC (n1*n2*sizeof (integer))) == NULL){
-		FREE(xm); xm = (integer *) NULL; return -1; 
+		FREE(xm); xm = (integer *) NULL; break; 
 	      }
 	    
 	      ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n2);
@@ -8511,9 +8506,9 @@ sciDrawObj (sciPointObj * pobj)
 	  
 	  if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
 	    if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
-	      return -1;
+	      break;
 	    if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
-	      FREE(xm);xm = (integer *) NULL; return -1; /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
+	      FREE(xm);xm = (integer *) NULL; break; /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
 	    }
 	  
 	    xx[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[0];
@@ -8547,9 +8542,9 @@ sciDrawObj (sciPointObj * pobj)
 	    double * yvect = NULL;
 	   
 	    /* Warning here (Matplot case) : n1 becomes n2 and vice versa */
-	    if ((xvect = MALLOC (n2*sizeof (double))) == NULL) return -1;
+	    if ((xvect = MALLOC (n2*sizeof (double))) == NULL) break;
 	    if ((yvect = MALLOC (n1*sizeof (double))) == NULL){
-	      FREE(xvect); xvect = (double *) NULL; return -1;
+	      FREE(xvect); xvect = (double *) NULL; break;
 	    }
 	   
 	    xx[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[0];
@@ -8566,9 +8561,9 @@ sciDrawObj (sciPointObj * pobj)
 	      yvect[j]= (( yy[0]*j + yy[1]*((n1-1)-j) )/ (n1-1)); 
 	   
 	   
-	    if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	return -1;
+	    if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	break;
 	    if ((ym = MALLOC (n1*n2*sizeof (integer))) == NULL){
-	      FREE(xm); xm = (integer *) NULL; return -1; 
+	      FREE(xm); xm = (integer *) NULL; break; 
 	    }
 	   
 	    ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n2);
@@ -8693,11 +8688,11 @@ sciDrawObj (sciPointObj * pobj)
 
 	  if(n1==0) continue;
 	  
-	  if ((xm = MALLOC ((2*n1)*sizeof (integer))) == NULL)	return -1;
-	  if ((ym = MALLOC ((2*n1)*sizeof (integer))) == NULL)	return -1;
-	  if ((xzz = MALLOC ((2*n1)*sizeof (double))) == NULL)	return -1;
-	  if ((yzz = MALLOC ((2*n1)*sizeof (double))) == NULL)	return -1;
-	  if ((zzz = MALLOC ((2*n1)*sizeof (double))) == NULL)	return -1;
+	  if ((xm = MALLOC ((2*n1)*sizeof (integer))) == NULL)	break;
+	  if ((ym = MALLOC ((2*n1)*sizeof (integer))) == NULL)	break;
+	  if ((xzz = MALLOC ((2*n1)*sizeof (double))) == NULL)	break;
+	  if ((yzz = MALLOC ((2*n1)*sizeof (double))) == NULL)	break;
+	  if ((zzz = MALLOC ((2*n1)*sizeof (double))) == NULL)	break;
 	  
 	  /**DJ.Abdemouche 2003**/
 	  switch (pPOLYLINE_FEATURE (pobj)->plot)
@@ -9752,10 +9747,11 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     default:
-      return -1;
       break;
     }
   sciSetSelectedSubWin (currentsubwin);
+  /* draw the info Message. Always need to be done otherwise it disepears. */
+  C2F(dr)("xinfo",sciGetInfoMessage(sciGetParentFigure(pobj)),PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,6L,0L);
   return -1;
 }
 

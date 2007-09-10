@@ -536,6 +536,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
     select(0, 0, 0, 0, &delay);
   }
   set_wait_click(0);
+  set_event_select(1+2+4);
   set_client_message_off();
 
   /** Cleanup **/
@@ -639,7 +640,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  *x1   =  -1;
 	  *yy1  =  -1;
 	  *ibutton = -100;
-	  set_event_select(1+4); 
+	  set_event_select(1+2+4); 
 	  set_wait_click(0);
 	  return;
 	}
@@ -657,7 +658,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
       delay.tv_sec = 0; delay.tv_usec = 10;
       select(0, 0, 0, 0, &delay);
     }
-  set_event_select(1+4); 
+  set_event_select(1+2+4); 
   set_wait_click(0);
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
     XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);

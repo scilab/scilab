@@ -4035,3 +4035,41 @@ int checkPercent( char * string )
 }
 
 /*---------------------------------------------------------------------------*/
+/**
+ * Modify the string in the info bar of the graphic window
+ */
+int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_FIGURE:
+    {
+      sciFigure * ppFigure = pFIGURE_FEATURE(pObj) ;
+      
+      if ( newMessage == NULL )
+      {
+        FREE( ppFigure->infoMessage ) ;
+        ppFigure->infoMessage = NULL ;
+      }
+      else
+      {
+        int messageSize = strlen( newMessage ) + 1 ;
+        if ( ppFigure->infoMessage != NULL )
+        {
+          ppFigure->infoMessage = REALLOC( ppFigure->infoMessage, messageSize * sizeof(char) ) ;
+        }
+        else
+        {
+          ppFigure->infoMessage = MALLOC( messageSize * sizeof(char) ) ;
+        }
+        strcpy( ppFigure->infoMessage, newMessage ) ;
+      }
+
+      return 0 ;
+    }
+  default:
+    sciprint( "This object has no info_message property.\n" ) ;
+    return -1 ;
+  }
+}
+/*--------------------------------------------------------------------------------------------*/

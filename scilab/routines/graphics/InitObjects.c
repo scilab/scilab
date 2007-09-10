@@ -157,6 +157,9 @@ int C2F(graphicsmodels) ()
   pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
   pFIGURE_FEATURE (pfiguremdl)->wshow = 0; 
 
+  pFIGURE_FEATURE(pfiguremdl)->infoMessage = NULL ;
+  sciSetInfoMessage( pfiguremdl, "" ) ;
+
   /* F.Leray Adding some FontContext Info for InitFontContext function */
   /*  pFIGURE_FEATURE (pfiguremdl)->fontcontext.backgroundcolor = */
 
@@ -1101,6 +1104,10 @@ int InitFigureModel()
   pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
   pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
   pFIGURE_FEATURE (pfiguremdl)->wshow = 0;
+
+  pFIGURE_FEATURE(pfiguremdl)->infoMessage = NULL ;
+  sciSetInfoMessage( pfiguremdl, "" ) ;
+
   return 1;
 }
 

@@ -132,33 +132,41 @@ int PushClickQueue(int win,int x,int y,int ibut, int motion,int release)
   if (  event_select==0 &&(motion == 1 || release == 1) ) return 0;
 		
   if (((event_select&2)&&motion)||((event_select&4)&&release)||(motion==0&&release==0))
-	{
-		/* store click event in a queue */
-	  if ( lastc == MaxCB ) 
     {
-      int i;
-      for ( i= 1 ; i < MaxCB ; i ++ ) 
-			{
-				ClickBuf[i-1]=ClickBuf[i];
-			}
-      ClickBuf[lastc-1].win = win;
-      ClickBuf[lastc-1].x = x;
-      ClickBuf[lastc-1].y = y;
-      ClickBuf[lastc-1].ibutton = ibut;
-      ClickBuf[lastc-1].motion = motion;
-      ClickBuf[lastc-1].release = release;
+      /* if there is a move already recorded for the same window just update it */
+      if (motion&&lastc>0 && (ClickBuf[lastc-1].motion && win== ClickBuf[lastc-1].win)){
+	ClickBuf[lastc-1].ibutton = ibut;
+	ClickBuf[lastc-1].x = x;
+	ClickBuf[lastc-1].y = y;
+      }	
+      else {
+	/* store click event in a queue */
+	if ( lastc == MaxCB ) 
+	  {
+	    int i;
+	    for ( i= 1 ; i < MaxCB ; i ++ ) 
+	      {
+		ClickBuf[i-1]=ClickBuf[i];
+	      }
+	    ClickBuf[lastc-1].win = win;
+	    ClickBuf[lastc-1].x = x;
+	    ClickBuf[lastc-1].y = y;
+	    ClickBuf[lastc-1].ibutton = ibut;
+	    ClickBuf[lastc-1].motion = motion;
+	    ClickBuf[lastc-1].release = release;
+	  }
+	else 
+	  {
+	    ClickBuf[lastc].win = win;
+	    ClickBuf[lastc].x = x;
+	    ClickBuf[lastc].y = y;
+	    ClickBuf[lastc].ibutton = ibut;
+	    ClickBuf[lastc].motion = motion;
+	    ClickBuf[lastc].release = release;
+	    lastc++;
+	  }
+      }
     }
-		else 
-    {
-      ClickBuf[lastc].win = win;
-      ClickBuf[lastc].x = x;
-      ClickBuf[lastc].y = y;
-      ClickBuf[lastc].ibutton = ibut;
-      ClickBuf[lastc].motion = motion;
-      ClickBuf[lastc].release = release;
-      lastc++;
-    }
-  }
   return(0);
 }
 /*-----------------------------------------------------------------------------------*/

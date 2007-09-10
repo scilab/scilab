@@ -232,6 +232,7 @@ DestroyFigure (sciPointObj * pthis)
   FREE(pFIGURE_FEATURE(pthis)->pcolormap);
   FREE(pFIGURE_FEATURE(pthis)->user_data);
   pFIGURE_FEATURE(pthis)->size_of_user_data = 0;
+  FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
   /* delete windows() */
