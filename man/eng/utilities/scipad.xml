@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -7,7 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>1st-Nov-2004 - Revised 2005</DATE>
+  <DATE>$LastChangedDate: 2007-05-12 12:26:27 +0300 (Sat, 12 May 2007) $</DATE>
 
   <SHORT_DESCRIPTION name="scipad">Embedded Scilab text
   editor</SHORT_DESCRIPTION>
@@ -15,9 +15,7 @@
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>scipad()</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>scipad(f)</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>scipad([f1,f2,...])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>scipad(f1[,f2,...])</CALLING_SEQUENCE_ITEM>
 
     <CALLING_SEQUENCE_ITEM>scipad f1 f2 ...</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -25,23 +23,26 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>f, f1, f2...</PARAM_NAME>
+        <PARAM_NAME>f1, f2...</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: file pathnames</SP>
+          <SP>: (strings or vectors of strings) file or directory pathnames</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>Scipad is an embedded Scilab text editor written in TCL/TK. It can be
-    started with the "Editor" button on top of the main Scilab window, or from
-    Scilab command line with the instruction <VERB>scipad()</VERB> or
-    <VERB>scipad f</VERB>.</P>
+    <P>Scipad is an embedded Scilab text editor written in Tcl/Tk. It can be
+    started with a fresh text buffer pressing the "Editor" button on top of 
+    the main Scilab window, or from Scilab command line with the instruction 
+    <VERB>scipad()</VERB>, or it can open specific files if invoked
+    with any of the calling sequences above.</P>
 
-    <P>The same invocation adds further files to an already opened scipad
-    session. Scipad allows Windows like edition modes. Keyboard shortcuts are
+    <P>The same invocation adds further files to an already opened Scipad.
+    If any of the arguments is a directory pathname, a file chooser
+    starting in that directory pops up, allowing (multiple) selection of files.</P>
+    <P>Scipad allows Windows like edition modes. Keyboard shortcuts are
     defined for most possible editing actions and reported by the menu
     entries.</P>
 
@@ -61,18 +62,30 @@
       </TABLE_NEW_ROW>
 
       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>&lt;F6&gt;, &lt;Control-F6&gt;</TABLE_NEW_COLUMN>
-
-        <TABLE_NEW_COLUMN>Show next buffer</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>&lt;F7&gt;, &lt;Control-F7&gt;</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>&lt;F6&gt;</TABLE_NEW_COLUMN>
 
         <TABLE_NEW_COLUMN>Show previous buffer</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
 
       <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;F7&gt;</TABLE_NEW_COLUMN>
+
+        <TABLE_NEW_COLUMN>Show next buffer</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+
+        <TABLE_NEW_ROW>
+            <TABLE_NEW_COLUMN>&lt;Control-F6&gt;</TABLE_NEW_COLUMN>
+
+            <TABLE_NEW_COLUMN>Switch to previous visible buffer</TABLE_NEW_COLUMN>
+        </TABLE_NEW_ROW>
+
+        <TABLE_NEW_ROW>
+            <TABLE_NEW_COLUMN>&lt;Control-F7&gt;</TABLE_NEW_COLUMN>
+
+            <TABLE_NEW_COLUMN>Switch to next visible buffer</TABLE_NEW_COLUMN>
+        </TABLE_NEW_ROW>
+
+        <TABLE_NEW_ROW>
         <TABLE_NEW_COLUMN>&lt;double-click
         mouse-button1&gt;</TABLE_NEW_COLUMN>
 
@@ -89,8 +102,7 @@
       <TABLE_NEW_ROW>
         <TABLE_NEW_COLUMN>&lt;Shift-Control-mouse-button1&gt;</TABLE_NEW_COLUMN>
 
-        <TABLE_NEW_COLUMN>Open the source of the library function under the
-        pointer</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Select a block</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
 
       <TABLE_NEW_ROW>
@@ -116,6 +128,14 @@
         <TABLE_NEW_COLUMN>&lt;Control-mouse-button3&gt;</TABLE_NEW_COLUMN>
 
         <TABLE_NEW_COLUMN>Popup Options menu</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;Shift-Control-mouse-button3&gt;</TABLE_NEW_COLUMN>
+
+        <TABLE_NEW_COLUMN>Open the source of the library function under the
+        pointer</TABLE_NEW_COLUMN>
+
       </TABLE_NEW_ROW>
 
       <TABLE_NEW_ROW>
@@ -160,14 +180,15 @@
   </DESCRIPTION>
 
   <SECTION label="Debugger">
-    <P>Scipad 2.0 or later includes a debugger (for .sci files only). The user
-    can:</P>
+    <P>Scipad includes a debugger targeted to Scilab scripts and macros. The
+    user can:</P>
 
     <P></P>
 
     <ITEMIZE>
       <ITEM label="Set/remove breakpoints anywhere in the opened files.">
-        <SP>The breakpointed lines get pink background.</SP>
+        <SP>The breakpointed lines get pink background. No breakpoint can be
+        set on empty, blank or commented lines.</SP>
 
         <P></P>
       </ITEM>
@@ -177,46 +198,36 @@
         names, and variable values. To ease this step, a scan of the currently
         displayed buffer is implemented to look for functions defined in it,
         scan their names and variable names. All this is displayed to the user
-        in a dialog for easy selection. First, he has to select a function in
-        a spinbox, then eventually one of its variables. Once a variable is
-        selected, the user can set/change its value (another dialog pops).
-        Variable values and names are displayed in listboxes. The user can
-        also add a new variable or remove already defined variables. This is
-        in case the user changes the input variables of his function in the
-        file, and he does not want to scan the buffer again (which causes all
-        the variable values to reset to a null value, actually "").</SP>
-
-        <P></P>
-      </ITEM>
-
-      <ITEM label="Launch execution with breakpoints.">
-        <SP>Scipad execs the currently displayed buffer as well as all the
-        opened buffers that contain functions, sends to Scilab the buffer as
-        well as all the opened buffers that contain functions, sends to Scilab
-        the setbpt instructions relative to all the breakpoints that have been
-        set, and executes the selected function with the input variable values
-        provided during the configure execution step. Then the execution is
-        automagically stopped by Scilab at the first breakpoint.</SP>
+        in a dialog for easy selection. First, the user has to select a
+        function in a spinbox, then eventually one of its variables. Once a
+        variable is selected, the user can set/change its value (another
+        dialog pops). Variable values and names are displayed in listboxes.
+        The user can also add a new variable or remove already defined
+        variables. This is in case the user changes the input variables of his
+        function in the file, and he does not want to scan the buffer again
+        (which causes all the variable values to be reset to a null value).
+        Note also that the <LINK>varargin</LINK> keyword is fully supported,
+        and that variables that are not given a value by the user are ignored
+        when Scipad launches the function for debug. If the current file
+        contains main level code (i.e. executable code outside of a function
+        definition), Scipad proposes to debug this file as a .sce file (see
+        below).</SP>
 
         <P></P>
       </ITEM>
     </ITEMIZE>
 
-    <P>At this point there are several possibilities for the user:</P>
-
-    <P></P>
-
     <ITEMIZE>
-      <ITEM label="Continue up to next breakpoint.">
-        <SP>Scilab resumes execution, and stops at the next breakpoint or goes
-        to the end of the file if there are no more breakpoints. The active
-        breakpoint is emphasized in Scipad so that it can easily be
+      <ITEM label="Go to next breakpoint.">
+        <SP>Scilab executes the code, and stops at the next breakpoint or goes
+        to the end of the file if there is no more breakpoints. The active
+        breakpoint is highlighted in Scipad so that it can easily be
         identified.</SP>
 
         <P></P>
       </ITEM>
 
-      <ITEM label="Insert a new breakpoint or remove existing breakpoint during the debug.">
+      <ITEM label="Insert a new breakpoint or remove an existing breakpoint during the debug.">
         <SP>The breakpointed lines get pink background, and lines where
         breakpoints are removed restore their normal background. The new
         breakpoint configuration is taken into account for the next steps of
@@ -225,18 +236,51 @@
         <P></P>
       </ITEM>
 
-      <ITEM label="Execute step by step.">
-        <SP>This is currently not available (it is always disabled in the
-        Debug menu). See proc stepbystep_bp in
-        SCI/tcl/scipadsources/db_debugsession.tcl for further details about
-        the problems encountered for this item.</SP>
+      <ITEM label="Execute step by step, going into functions (step into).">
+        <SP>Scilab stops before execution of each line. The active stop
+        position is highlighted in Scipad so that it can easily be identified.
+        Every line of code in functions from opened files is taken into
+        account, but Scipad does not search for or open files by itself in
+        order to step into them. Lines with no executable code (blank or
+        commented lines) are skipped.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Execute step by step, without going into ancillary functions (step over).">
+        <SP>Similar to step into, but ancillaries are executed at once without
+        stepping into them. However, if the user has set a breakpoint in an
+        ancillary, Scilab will nevertheless stop at this breakpoint.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Execute step by step, starting back from the return point of the current function (step out).">
+        <SP>Scilab executes instructions until the function returns from the
+        current context, i.e. the next stop occurs just after the current
+        function has returned. However, if the user has set a breakpoint in
+        the current function or in an ancillary, Scilab will nevertheless stop
+        at this breakpoint. Lines with no executable code (blank or commented
+        lines) are skipped.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Run execution up to the cursor position.">
+        <SP>Scilab executes instructions until the cursor position is reached.
+        If the user has set breakpoints in the current function or in an
+        ancillary, Scilab will skip them and stop only when the cursor
+        position is reached. Lines with no executable code (blank or commented
+        lines) are also skipped: if the cursor is in such a line, Scilab will
+        stop just before executing the next line carrying executable
+        code.</SP>
 
         <P></P>
       </ITEM>
 
       <ITEM label="Continue ignoring any breakpoint.">
-        <SP>Finish execution in Scilab as if there was no breakpoint at all:
-        Breakpoints are removed from Scilab but kept in Scipad.</SP>
+        <SP>Finish execution in Scilab as if there was no breakpoint at
+        all.</SP>
 
         <P></P>
       </ITEM>
@@ -256,26 +300,33 @@
       </ITEM>
     </ITEMIZE>
 
+    <P>When one of the commands above is triggered for the first time, Scipad
+    launches execution, i.e. it execs the currently displayed buffer as well
+    as all the opened buffers that contain functions, sends to Scilab the
+    <LINK>setbpt</LINK> instructions relative to all the breakpoints that have
+    been set, and executes the selected function with the input variable
+    values provided during the configure execution step. Then the execution is
+    automagically stopped by Scilab according to the debug command that was
+    launched. A new debug command can then be executed.</P>
+
+    <P></P>
+
     <P>At any time during the debug, a <BD>watch window</BD> can be displayed
     on user request. It allows to monitor any variable value, or change a
     variable value during a breakpoint stop and relaunch execution with the
-    modified value. The watch window also displays the calling stack.</P>
-
-    <P>After the end of the execution, the breakpoints are removed from Scilab
-    (but kept in Scipad).</P>
+    modified value. A watchable variable can be part of a larger structure,
+    for instance if A is a 20x20 matrix, the shorter sub-matrix A(2:4,7:9)
+    can be watched. The watch window also displays the calling stack and
+    contains a toolbar with the most useful commands from the debug menu.</P>
 
     <P></P>
 
     <P>In its current development state the debugger works well with
     functions, i.e. <BD>pure .sci files</BD>. Support of .sce files or mixed
-    .sce/.sci files has been foreseen but not yet implemented. That means that
-    a .sce file will not crash Scipad, which is the very least, but more, once
-    a feasible solution for debugging this type of files is figured out, it
-    should be easy to add the functionality in the Scipad source code. Anyway,
-    if actually a debug is required in a .sce, you should first convert it
-    into a .sci function just by adding (output_vars)=function foo(input_vars)
-    / endfunction and that's it. The absence of breakpoints management for
-    .sce is therefore not such a major drawback.</P>
+    .sce/.sci files is implemented but should be considered as a beta
+    functionality. Debug of .sce or mixed .sce/sci files makes use of the
+    implementation for the .sci case after having wrapped the code in a
+    function/endfunction clause.</P>
 
     <P></P>
   </SECTION>
@@ -283,18 +334,20 @@
   <SECTION label="Remarks">
     <ITEMIZE>
       <ITEM label="Localisation:">
+        <P></P>
+
         <SP>Scipad menues and messages can be translated to several languages.
-        By default, they appear in the language of Scilab, which is either
-        English or French (see <LINK>setlanguage</LINK>), but other languages
+        By default they appear in English, but other languages
         are being added. The localization in effect can be selected with the
         menu Options/Locale, and is remembered across sessions. Currently, the
-        supported languages are: "de" (German) ,"eng" (English), "fr"
-        (French), "it" (Italian), "no" (Norwegian), "se" (Swedish).</SP>
+        supported languages are: "da" (Danish), "de" (German) ,"eng" (English),
+        "es" (Spanish), "fr" (French), "it" (Italian), "no" (Norwegian), "pl"
+        (Polish), "se" (Swedish), "zh_tw" (Chinese-Taiwan).</SP>
 
         <SP>Further languages can be added by creating the proper translation
-        file and putting it in SCI/tcl/scipadsources/msg_files/. If you plan
-        to do such a job, please check the file
-        <VERB>SCI/tcl/scipadsources/msg_files/AddingTranslations.txt</VERB>
+        file and putting it in <VERB>SCI/modules/scipad/tcl/msg_files/</VERB>.
+        If you plan to do such a job, please check the file
+        <VERB>SCI/modules/scipad/tcl/msg_files/AddingTranslations.txt</VERB>
         for detailed instructions, and consider to contribute it to the
         community.</SP>
 
@@ -302,9 +355,11 @@
       </ITEM>
 
       <ITEM label="Drag and drop:">
+        <P></P>
+
         <SP>DnD has been implemented in Scipad for moving around text, for
         dropping selected text from and to external applications, and for
-        opening files or for list of files.</SP>
+        opening a file or a list of files.</SP>
 
         <P>Dragging one or more files from an explorer and dropping to Scipad
         will open the file(s) in Scipad. Doing the same with a directory will
@@ -319,21 +374,22 @@
         (http://sourceforge.net/projects/tkdnd). Presence of this package
         should be automatically detected by Scipad, enabling the corresponding
         features at that time. Windows and linux-i386 binary versions of
-        Scilab are currently shipped with Tkdnd. If not, here are some
+        Scilab are currently shipped with TkDnD. If not, here are some
         installation instructions:</P>
 
         <P>Windows platforms: Download the full package (currently
         tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the content of
-        lib\tkdnd and paste it into SCI\tcl\tk8.4\tkdnd. That's all!</P>
+        lib\tkdnd and paste it into <VERB>SCI\modules\tclsci\tcl\tk8.4\tkdnd</VERB>.
+        That's all!</P>
 
         <P>linux-i386 platforms: Download the rpm package (currently
         tkdnd-1.0-b2.i386.rpm). Install it with rpm -U (may have to force
-        --nodeps if it doesn't recognize an existing tcl installation). If you
-        have a source version of Scilab and an installation of tcl-tk, check
-        where they are installed (e.g. /usr/share/) and move the newly created
-        directory /usr/lib/tkdnd1.0/ to there. If you have a binary version of
-        Scilab, move tkdnd1.0/ to SCI/tcl/, where the supplied tcl-tk binaries
-        are.</P>
+        --nodeps if it doesn't recognize an existing Tcl installation). If you
+        have a source version of Scilab and an installation of Tcl/Tk, check
+        where they are installed (e.g. <VERB>/usr/share/</VERB>) and move the newly created
+        directory <VERB>/usr/lib/tkdnd1.0/</VERB> to there. If you have a binary version of
+        Scilab, move <VERB>tkdnd1.0/</VERB> to <VERB>SCI/modules/tclsci/tcl/</VERB>, where the supplied
+        Tcl/Tk binaries are.</P>
 
         <P></P>
       </ITEM>
@@ -348,8 +404,28 @@
       </ITEM>
 
       <ITEM label="Bugs:">
+        <P></P>
+
         <SP>There are still a few... Details can be found in file
-        SCI/tcl/scipadsources/BUGS</SP>
+        <VERB>SCI/modules/scipad/BUGS</VERB>. Officially reported bugs are filed in the
+        Bugzilla http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi
+        and can be easily retrieved by filtering entries wrt the "Scipad
+        Editor" element.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Additional features in Scipad and most recent developments:">
+        <P></P>
+
+        <SP>Currently Scilab is shipped with Tcl/Tk 8.4. However, Scipad
+        offers a handful of quite handy features that are available as soon
+        as Tcl/Tk 8.5 is running in its background. For instance, peer text
+        widgets are available from Tk 8.5, and this capability is used in
+        Scipad to allow for displaying more than one contiguous area of an
+        opened file at a time in tile mode. Instructions about how to upgrade
+        to Tcl/Tk 8.5 can be found on the Scilab wiki:
+        http://wiki.scilab.org/Linking_Scilab_with_Tcl/Tk_8.5 .</SP>
 
         <P></P>
       </ITEM>
@@ -357,7 +433,7 @@
   </SECTION>
 
   <EXAMPLE><![CDATA[
-   scipad SCI/scilab.star 
+   scipad SCI/etc/scilab.start 
 ]]></EXAMPLE>
 
   <SEE_ALSO>
@@ -380,8 +456,8 @@
 
     <AUTHORS_ITEM>Mathieu Philippe, INRIA, 2001;</AUTHORS_ITEM>
 
-    <AUTHORS_ITEM>Enrico Segre, Weizmann Institute, 2003-2005;</AUTHORS_ITEM>
+    <AUTHORS_ITEM>Enrico Segre, Weizmann Institute, 2003-2006;</AUTHORS_ITEM>
 
-    <AUTHORS_ITEM>Francois Vogel, 2004-2005.</AUTHORS_ITEM>
+    <AUTHORS_ITEM>Francois Vogel, 2004-2007.</AUTHORS_ITEM>
   </AUTHORS>
 </MAN>
