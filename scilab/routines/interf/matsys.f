@@ -50,7 +50,7 @@ c     resu form  isdef   exists errcatch errclear iserror predef
 c     11   12     13    14      15       16       17      18
 c     newfun clearfun  funptr  macr2lst setbpt delbpt dispbpt
 c     19      20       21       22       23     24      25
-c     funcprot whereis where   timer         havewindow stacksize
+c     funcprot whereis where   timer  notify havewindow stacksize
 c     26         27    28      29       30       31       32
 c     mtlb_mode  link     ulink  c_link addinter <free>   <free>
 c     33         34        35     36    37       38        39
@@ -62,8 +62,8 @@ c     lasterror version loadhistory savehistory gethistory resethistory macr2tre
 c     53         54        55          56         57          58        59
 c     sleep getos
 c     60    61 
-c     banner fromjava Calendar getmemory fromc
-c     62     63       64        65       66
+c     banner fromjava Calendar getmemory fromc bytecode
+c     62     63       64        65       66      67
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' matsys '//buf(1:4))
@@ -78,7 +78,7 @@ c
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
      +      694,695,697,698,699,700,701,702,703,
-     +      705,706,707,708,709,710,711),fin
+     +      705,706,707,708,709,710,711,712),fin
 c     
 c     debug
  10   call intdebug()
@@ -225,7 +225,7 @@ c     mtlb_mode
       goto 999
  660  call intclear("clear")
       goto 999
- 670  call intwhat("what")
+ 670  call intwhat("what"//char(0))
       goto 999
  680  call intsciargs("sciargs")
       goto 999
@@ -251,31 +251,33 @@ c     mtlb_mode
       goto 999
  697  call lasterror('lasterror')
       goto 999
- 698  call intversion('version')
+ 698  call intversion('version'//char(0))
       goto 999
- 699  call loadhistory('loadhistory')
+ 699  call loadhistory('loadhistory'//char(0))
       goto 999
- 700  call savehistory('savehistory')
+ 700  call savehistory('savehistory'//char(0))
       goto 999
- 701  call gethistory('gethistory')
+ 701  call gethistory('gethistory'//char(0))
       goto 999
- 702  call resethistory('resethistory')
+ 702  call resethistory('resethistory'//char(0))
       goto 999
  703  call macr2tree('macr2tree')
       goto 999
- 705  call intsleep('sleep')
+ 705  call intsleep('sleep'//char(0))
       goto 999 
- 706  call intgetos('getos')
+ 706  call intgetos('getos'//char(0))
       goto 999 
- 707  call intbanner('banner')
+ 707  call intbanner('banner'//char(0))
       goto 999     
- 708  call intfromjava('fromjava')
+ 708  call intfromjava('fromjava'//char(0))
       goto 999
- 709  call intcalendar('Calendar')
+ 709  call intcalendar('Calendar'//char(0))
       goto 999
- 710  call intgetmemory('getmemory')
+ 710  call intgetmemory('getmemory'//char(0))
       goto 999
- 711  call intfromc('fromc')
+ 711  call intfromc('fromc'//char(0))
+      goto 999   
+ 712  call intbytecode()
       goto 999   
  998  continue
 c     fake calls : only to force the 
@@ -1360,7 +1362,7 @@ c
 c     .  look for this variable in the global area
          kg=isiz+1
  06      continue
-         kg=kg+1
+         kg=kg+1 
          if(kg.gt.gtop) then
 c     .     no such variable exists, ignored
             goto 10
@@ -1374,24 +1376,26 @@ c     .     pack
             vk=ls-ll
 c     .     translate "values" up
             call unsfdcopy(lstk(gtop+1)-lstk(kg+1),stk(ls),1,stk(ll),1)
-            do 09 i = kg, gtop-1
+            do 09 i = kg, gtop
 c     .        translate names up
                call putid(idstk(1,i),idstk(1,i+1))
 c     .        translate property up
                infstk(i)=infstk(i+1)
 c     .        update pointers 
                lstk(i) = lstk(i+1)-vk
-c     .        update pointers in variables which refer this global var
-               do 07 j=bot,isiz-1
-                  if(infstk(j).eq.2) then
-                     if(eqid(idstk(1,j),idstk(1,i))) then
-c     .                 variable j refers this global var
-                        ilj=iadr(lstk(j))
-                        istk(ilj+1)=lstk(i)
-                        istk(ilj+2)=i
+               if (i.lt.gtop) then
+c     .           update pointers in variables which refer this global var
+                  do 07 j=bot,isiz-1
+                     if(infstk(j).eq.2) then
+                        if(eqid(idstk(1,j),idstk(1,i))) then
+c     .                    variable j refers this global var
+                           ilj=iadr(lstk(j))
+                           istk(ilj+1)=lstk(i)
+                           istk(ilj+2)=i
+                        endif
                      endif
-                  endif
- 07            continue
+ 07               continue
+               endif
  09         continue
          endif
          gtop=gtop-1
@@ -1547,6 +1551,7 @@ c Francois VOGEL, January  2005 - Bug 1187 fixed
 c Francois VOGEL, February 2005 - Request 156 fixed - delbpt()
 c Francois VOGEL, February 2005 - Vector argument now allowed
 c Bruno PINCON,   = = = = = = = - slight pbs of goto (most removed)
+c Francois VOGEL, August   2007 - Bug 2474 fixed
       include '../stack.h'
       integer id(nsiz)
       logical checkrhs,checklhs,getsmat,getrvect,checkval,eqid
@@ -1606,6 +1611,7 @@ c        rhs is 1 or 2 (macro name is provided)
       else ! rhs = 0: delete all bpt of all functions
          nmacs = 0
          lgptrs(1) = 0   ! est-ce nécessaire ?  
+         top=top+1
          goto 360
       endif
 
@@ -3331,5 +3337,73 @@ c
       il=iadr(lstk(top))
       istk(il)=0
       lstk(top+1)=lstk(top)+1
+      return
+      end
+
+      subroutine intbytecode()
+c     Copyright INRIA
+      include '../stack.h'
+      logical checkrhs,checklhs,cremat,getscalar,getrmat
+      integer gettype, volk
+      logical byref
+c
+      integer iadr,sadr
+c    
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+
+
+      rhs=max(0,rhs)
+      if(.not.checkrhs('bytecode',1,1)) return
+      if(.not.checklhs('bytecode',1,1)) return
+      il=iadr(lstk(top))
+      il0=il
+      if(istk(il).lt.0) then
+        ilres=il
+        il=iadr(istk(il+1))
+        k=istk(il+2)
+        if (k.eq.0) then
+           vol=istk(il+3)
+        else
+           vol=(lstk(k+1)-lstk(k))
+        endif
+        err=lstk(top)+vol+2-lstk(bot)
+        if(err.gt.0) then
+            call error(17)
+            return
+         endif
+
+      endif
+
+
+      ilres=iadr(lstk(top+1))
+
+      if(abs(istk(il)).eq.13) then
+c     .  function to bytecode
+c     .  first remove padding (looking for opcode 15 at the end
+ 10      ilres=ilres-1
+         if(istk(ilres).ne.15) goto 10
+         n=ilres-il
+         err=lstk(top+1)+4-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call icopy(n,istk(il+1),-1,istk(il+4),-1)
+         lstk(top+1)=sadr(il+3+n)
+         istk(il)=8
+         istk(il+1)=1
+         istk(il+2)=n
+         istk(il+3)=4
+      elseif(istk(il).eq.8.and.istk(il+3).eq.4) then
+c     .  bytecode to function
+         n=istk(il+1)*istk(il+2)
+         call icopy(n,istk(il+4),-1,istk(il+1),-1)
+         lstk(top+1)=sadr(il+n)
+         istk(il)=13
+      else
+         err=1
+         call error(44)
+      endif
       return
       end

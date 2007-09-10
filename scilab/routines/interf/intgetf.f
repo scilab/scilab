@@ -46,7 +46,8 @@ c
       endif
 c     loop on all function defined in the file
       nline=0
- 55   call getfun(lunit,nline)
+ 55   continue
+      call getfun(lunit,nline)
       fun=0
       job=fin
       if(err.gt.0.or.err1.gt.0) then
@@ -76,6 +77,7 @@ c     .  getf without compilation, just store the variable
          ids(2,pt)=0
       endif
       ids(3,pt)=icomp
+      ids(4,pt)=nline
       if(icomp.eq.2) then
          top=top+1
          if (.not.cremat('getf',top,0,1,1,lr1,lc1)) return
@@ -94,6 +96,7 @@ c     *call* comp
       lunit=ids(1,pt)
       opened=ids(2,pt).eq.1
       icomp=ids(3,pt)
+      nline=ids(4,pt)
 c
       pt=pt-1
       if (err1.eq.0) top=top-1

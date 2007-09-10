@@ -134,7 +134,7 @@ c     contraintes de borne (chaine "b" , xinf , xsup )
          endif
          top2=top2+1
          il=iadr(lstk(top2))
-         if(istk(il).gt.2)  then
+         if(istk(il).gt.2.or.istk(il).eq.0)  then
             err=top2-topin
             call error(54)
             return
@@ -149,7 +149,7 @@ c     contraintes de borne (chaine "b" , xinf , xsup )
          endif
          top2=top2+1
          il=iadr(lstk(top2))
-         if(istk(il).gt.2)  then
+         if(istk(il).gt.2.or.istk(il).eq.0)  then
             err=top2-topin
             call error(54)
             return
@@ -172,7 +172,7 @@ c     contraintes de borne (chaine "b" , xinf , xsup )
       end if
 c     
 c     point initial
-      if(istk(il).gt.2)  then
+      if(istk(il).gt.2.or.istk(il).eq.0)  then
          err=top2-topin
          call error(54)
          return

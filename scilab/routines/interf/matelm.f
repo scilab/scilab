@@ -28,15 +28,19 @@ c     sqrt log   ^  sign clean floor ceil expm cumsum  cumprod testmatrix
 c      27   28   29  30   31     32   33   34    35      36      37
 c     isreal frexp zeros tan  log1p imult  asin acos number_properties
 c       38     39    40   41     42    43   44   45      46
-c     nearfloat dsearch isequal spones
-c       47        48      49     50
+c     nearfloat dsearch isequal spones  isequalbitwise 
+c       47        48      49     50       51
 c!
 c
+      if(rstk(pt).eq.914) goto 350
+      if(rstk(pt).eq.915) goto 330
+
       goto (10 ,15 ,20 ,25 ,30 ,35 ,40 ,45 ,50 ,60,
      1      61 ,62 ,70 ,72 ,71 ,90 ,91 ,105,110,110,
      2      110,130,140,150,160,170,180,190,200,210,
      3      220,37 ,39 ,173,46 ,47, 230,240,250,260,
-     4      165,195,196,152,154,300,310,320,330,340 ),fin
+     4      165,195,196,152,154,300,310,320,330,340,
+     5     350),fin
 
  10   continue
       call intabs(id)
@@ -294,11 +298,18 @@ c
 c     isequal
 c
  330  call intisequal(id)
+C for future release
+c 330  call intisequalvar('isequal'//char(0),1)
       goto 900
 c
 c     spones
 c
  340  call intspones('spones',id)
+      goto 900
+c
+c     isequalvar
+c
+ 350  call intisequalvar('isequalbitwise'//char(0),0)
       goto 900
 c
  900  return
@@ -2633,7 +2644,7 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-      if (lhs .ne. 1) then
+      if (lhs .gt. 1) then
          call error(41)
          return
       endif
@@ -5432,6 +5443,7 @@ c variables are different
 
 
       end
+
       subroutine getdimfromvar(k,num,n)
       integer k,num,n
 c     Copyright INRIA

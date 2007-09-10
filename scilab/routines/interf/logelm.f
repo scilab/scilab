@@ -44,6 +44,7 @@ c
       if(rhs.eq.2) then
 c     max number of index to find
          call getrmat('find', top, top, m2, n2, l2)
+         if(err.gt.0.or.err1.gt.0) return
          nmax=stk(l2)
          if(nmax.le.0.and.nmax.ne.-1) then
             err=2

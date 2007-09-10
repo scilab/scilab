@@ -742,6 +742,9 @@ cd .. &gt;nul
 				RelativePath=".\intUImenu.c">
 			</File>
 			<File
+				RelativePath=".\IsEqualVar.c">
+			</File>
+			<File
 				RelativePath=".\matdes.c">
 			</File>
 			<File
@@ -786,6 +789,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intshowalluimenushandles.h">
+			</File>
+			<File
+				RelativePath=".\IsEqualVar.h">
 			</File>
 			<File
 				RelativePath="matdes.h">

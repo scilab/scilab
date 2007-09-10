@@ -372,7 +372,7 @@ c     close
             mode(1)=0
             do 151 i=1,n
                lunit=int(stk(l-1+i))
-               if(lunit.ge.0) then
+               if(lunit.gt.0) then
                   call clunit(-lunit,buf,mode)
                endif
  151        continue

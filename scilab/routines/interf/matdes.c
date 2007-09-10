@@ -1645,6 +1645,13 @@ int scixpolys(char *fname,unsigned long fname_len)
   GetRhsVar(2,"d",&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
 
+  if ( m1 * n1 == 0 || m2 * n2 == 0 )
+  {
+    /* dimension 0, 0 polyline to draw */
+    LhsVar(1)=0 ;
+    return 0 ;
+  }
+
   if (Rhs == 3) 
     {
       GetRhsVar(3,"i",&m3,&n3,&l3); CheckVector (3,m3,n3); CheckDimProp(1,3,m3 * n3 < n1);
@@ -1657,13 +1664,7 @@ int scixpolys(char *fname,unsigned long fname_len)
     } 
   if (version_flag() == 0)
   {
-	sciPointObj * psubwin ;
-    if ( n1 == 0 )
-    {
-      /* dimension 0, 0 polyline to draw */
-      return 0 ;
-    }
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+	sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     for (i = 0; i < n1; ++i) 
       Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
 
@@ -1704,7 +1705,8 @@ int scixset(char *fname,unsigned long fname_len)
 {
   integer m1,n1,l1,m2,n2,l2, xm[5],xn[5],x[5], i, v, isdc;
   integer lr, mark[2], font[2], verb=0;
-  double  xx[5],dv ;
+  double  xx[5];
+  double dv = 0.0 ;
   sciPointObj *subwin = NULL; 
 
   if (Rhs <= 0) {int zero=0; sci_demo(fname,"xsetm();",&zero); return 0; }
@@ -2641,11 +2643,12 @@ int scixtape(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 int scixinfo(char *fname,unsigned long fname_len)
 {
-  double dv;
-  integer m1,n1,l1,v;
+  integer m1,n1,l1;
   CheckRhs(1,1);
   GetRhsVar(1,"c",&m1,&n1,&l1);
-  C2F(dr)("xinfo",cstk(l1),&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,m1);
+  SciWin();
+  C2F(dr)("xinfo",cstk(l1),PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,6L,m1);
+  sciSetInfoMessage(sciGetCurrentFigure(),cstk(l1));
   LhsVar(1) =0;
   return 0;
 }

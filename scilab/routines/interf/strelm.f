@@ -871,7 +871,17 @@ c     -------------------------------------
          endif
          m=istk(il+1)
          n=istk(il+2)
-         if(m*n.eq.0) goto 999
+         if(m*n.eq.0) then
+            if (ref) then
+               istk(ilr)=1
+               istk(ilr+1)=0
+               istk(ilr+2)=0
+               istk(ilr+3)=0
+               lstk(top+1)=sadr(ilr+4)
+            endif
+               
+            goto 999
+         endif
          it=istk(il+3)
          l=sadr(il+4)
          if(ref) then

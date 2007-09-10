@@ -7,7 +7,7 @@ c     Copyright INRIA
       character*(5) fname
       character*(nlgh+1) namef
       integer iero 
-      common/ierajf/iero
+      common/iertwo/iero
       external bint2d,fint2d
       double precision tol,result,erro
       logical getexternal,getrmat,type ,cremat,checkval
@@ -107,7 +107,7 @@ c
 
       endif
 
-      if(err.gt.0)return
+      if(err.gt.0.or.err1.gt.0)return
       if(iflag.gt.0) then
          if(iflag.eq.1) then
 c     termination for lack of space to divide triangle
