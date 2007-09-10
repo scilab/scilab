@@ -45,7 +45,7 @@ c
       endif
 
       lhs=1
-c      call ref2val
+      call ref2val
       call lstelm
       rhs=srhs
       lhs=slhs

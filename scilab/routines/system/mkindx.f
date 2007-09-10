@@ -8,6 +8,7 @@ c     Copyright INRIA
       integer n,m
       
       if(err1.gt.0) return
+      lhss=lhs
       if(m.gt.1) then
 c     .  last is (i,j)
          rhs=m
@@ -15,11 +16,13 @@ c     .  last is (i,j)
          lhs=1
          call lstelm
       endif
-      if(n.eq.0) return
+      if(n.eq.0) goto 10
       rhs=n
       fin=1
       lhs=1
       call lstelm
       rhs=1
+ 10   continue
+      lhs=lhss 
       return
       end

@@ -1539,10 +1539,8 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   static int *Rstk = C2F(recu).rstk-1;
   static int *Lstk = C2F(vstk).lstk-1;
   static int *Infstk  = C2F(vstk).infstk-1;
-
   Pt = max(Pt,0);Pts=Pt;
   Top = max(Top,0);Tops=Top;
-  C2F(basbrk).interruptible = *seq != 0;
   C2F(bexec)(str, ns, ierr, (*ns));
   if (*ierr != 0) {
     goto L9998;
@@ -1554,6 +1552,9 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   Ids[1 + Pt * nsiz] = Lhs;
   Ids[2 + Pt * nsiz] = Rhs;
   Ids[3 + Pt * nsiz] = C2F(com).sym;
+  Ids[4 + Pt * nsiz] =  C2F(basbrk).interruptible;
+  C2F(basbrk).interruptible = *seq == 0;
+
   Rstk[Pt] = 1002;
   ++C2F(recu).niv;
   C2F(com).fun = 0;
@@ -1671,6 +1672,8 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   Lhs = Ids[1 + Pt * nsiz];
   Rhs = Ids[2 + Pt * nsiz];
   C2F(com).sym = Ids[3 + Pt * nsiz];
+  C2F(basbrk).interruptible = Ids[4 + Pt * nsiz];
+
   --Pt;
   --Top;
   /* + */
@@ -1678,21 +1681,19 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   *ierr = 0;
   C2F(recu).icall = 0;
   C2F(com).fin = 3;
-  C2F(basbrk).interruptible = TRUE_;
   return 0;
  L9998:
   *ierr = 1;
+  C2F(basbrk).interruptible = Ids[4 + Pt * nsiz];
   Pt=Pts;Top=Tops;
-  C2F(basbrk).interruptible = TRUE_;
-
   return 0;
  L9999:
   /* Err == 9999999 arises if abort has been used to terminate the callback execution */
   if (Err != 9999999) *ierr = 1;
   --Top;
   --C2F(recu).niv;
+  C2F(basbrk).interruptible = Ids[4 + Pt * nsiz];
   Pt=Pts;Top=Tops;
-  C2F(basbrk).interruptible = TRUE_;
   return 0;
 } /* syncexec */
 
