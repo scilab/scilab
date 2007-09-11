@@ -1,26 +1,26 @@
 /*------------------------------------------------------------------------*/
-/* file: InterpolatedDecomposition.hxx                                    */
+/* file: StairCaseDecomposition.hxx                                       */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Decompose polyline with creating interpolation between each     */
-/*        data (this is the default mode)                                 */
+/* desc : Decompose polyline to get data for bar drawing                  */
 /*------------------------------------------------------------------------*/
+
 
 #include "DecomposeLineStrategy.hxx"
 
-#ifndef _INTERPOLATED_DECOMPOSITION_HXX_
-#define _INTERPOLATED_DECOMPOSITION_HXX_
+#ifndef _BAR_DECOMPOSITION_HXX_
+#define _BAR_DECOMPOSITION_HXX_
 
 namespace sciGraphics
 {
 
-class InterpolatedDecomposition : public DecomposeLineStrategy
+class BarDecomposition : public DecomposeLineStrategy
 {
 public:
 
-  InterpolatedDecomposition( DrawablePolyline * polyline );
+  BarDecomposition( DrawablePolyline * polyline );
 
-  virtual ~InterpolatedDecomposition( void );
+  virtual ~BarDecomposition( void );
 
   /**
    * Retrieve the vertices of the polyline which will be used to draw it directly.
@@ -38,10 +38,16 @@ public:
    */
   virtual int getDrawnVerticesLength(void);
 
+  /**
+   * Get the height of each bar to draw.
+   * @param height array containg the height of size getDrawnVerticesLength().
+   */
+  void getBarHeight(double heights[]);
+
 protected:
 
 };
 
 }
 
-#endif /* _INTERPOLATED_DECOMPOSITION_HXX_ */
+#endif /* _BAR_DECOMPOSITION_HXX_ */

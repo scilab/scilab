@@ -374,6 +374,10 @@
 				Name="PolylineDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\polylineDrawing\BarDecomposition.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\polylineDrawing\ConcreteDrawablePolyline.cpp"
 					>
 				</File>
@@ -415,6 +419,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\polylineDrawing\PolylineArrowDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineBarDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineBarDrawerJoGL.cpp"
 					>
 				</File>
 				<File
@@ -872,6 +884,10 @@
 				Name="PolylineDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\polylineDrawing\BarDecomposition.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\polylineDrawing\ConcreteDrawablePolyline.hxx"
 					>
 				</File>
@@ -925,6 +941,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\polylineDrawing\PolylineArrowDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineBarDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\PolylineBarDrawerJoGL.hxx"
 					>
 				</File>
 				<File

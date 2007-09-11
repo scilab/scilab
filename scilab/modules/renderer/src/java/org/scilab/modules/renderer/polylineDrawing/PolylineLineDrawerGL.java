@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: ArcLineDrawerGL.java                                             */
+/* file: PolylineLineDrawerGL.java                                        */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw the      */

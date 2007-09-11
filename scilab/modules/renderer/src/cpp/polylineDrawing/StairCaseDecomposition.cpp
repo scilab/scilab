@@ -31,7 +31,7 @@ StairCaseDecomposition::~StairCaseDecomposition( void )
 void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[], double zCoords[])
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
-  int nbPolylinePoints = sciGetNbPoints(m_pDrawed->getDrawedObject()); /* number of points specified by the user */
+  int nbPolylinePoints = sciGetNbPoints(pPolyline); /* number of points specified by the user */
   int nbVertices = 2 * nbPolylinePoints - 1;
   double * xPoints = pPOLYLINE_FEATURE(pPolyline)->pvx;
   double * yPoints = pPOLYLINE_FEATURE(pPolyline)->pvy;
