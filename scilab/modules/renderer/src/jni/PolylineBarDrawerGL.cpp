@@ -109,7 +109,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetLineParametersjintjintjfloatjintjdoubleID=NULL; 
+voidsetBarParametersjintjintjfloatjintjdoubleID=NULL; 
 voiddrawPolylinejdoublejdoublejdoublejdoubleID=NULL; 
 
 
@@ -261,19 +261,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void PolylineBarDrawerGL::setLineParameters (long background, long foreground, float thickness, long lineStyle, double barWidth){
+void PolylineBarDrawerGL::setBarParameters (long background, long foreground, float thickness, long lineStyle, double barWidth){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidsetLineParametersjintjintjfloatjintjdoubleID == NULL)
+if (this->voidsetBarParametersjintjintjfloatjintjdoubleID == NULL)
 {
-this->voidsetLineParametersjintjintjfloatjintjdoubleID = curEnv->GetMethodID(this->instanceClass, "setLineParameters", "(IIFID)V" ) ;
-if (this->voidsetLineParametersjintjintjfloatjintjdoubleID == NULL) {
-std::cerr << "Could not access to the method setLineParameters" << std::endl;
+this->voidsetBarParametersjintjintjfloatjintjdoubleID = curEnv->GetMethodID(this->instanceClass, "setBarParameters", "(IIFID)V" ) ;
+if (this->voidsetBarParametersjintjintjfloatjintjdoubleID == NULL) {
+std::cerr << "Could not access to the method setBarParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  curEnv->CallVoidMethod( this->instance, voidsetLineParametersjintjintjfloatjintjdoubleID ,background, foreground, thickness, lineStyle, barWidth);
+  curEnv->CallVoidMethod( this->instance, voidsetBarParametersjintjintjfloatjintjdoubleID ,background, foreground, thickness, lineStyle, barWidth);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

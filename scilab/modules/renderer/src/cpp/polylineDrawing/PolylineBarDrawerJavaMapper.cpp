@@ -60,7 +60,7 @@ void PolylineBarDrawerJavaMapper::setFigureIndex(int figureIndex)
 void PolylineBarDrawerJavaMapper::setBarParameters(int background, int foreground, float thickness,
                                                    int lineStyle, double barWidth)
 {
-  m_pJavaObject->setLineParameters(background, foreground, thickness, lineStyle,barWidth);
+  m_pJavaObject->setBarParameters(background, foreground, thickness, lineStyle, barWidth);
 }
 /*------------------------------------------------------------------------------------------*/
 void PolylineBarDrawerJavaMapper::drawPolyline(const double topX[], const double topY[],
