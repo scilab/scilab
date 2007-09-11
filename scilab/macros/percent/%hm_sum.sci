@@ -30,7 +30,7 @@ function x=%hm_sum(m,d)
   end
   if size(dims,'*')==2 then 
     x=matrix(x,dims(1),dims(2))
-  else
+  elseif dims<>[] then
     if flag==1 then dims=int32(dims);end
     x=hypermat(dims,x)
   end
