@@ -37,13 +37,17 @@ c     fortran external
          return
       endif
 c     
+c     external is a Scilab function
+
+c     on return iero=1 is used to notify to the ode solver that
+c     scilab was not able to evaluate the external
+      iero=1
+
 c     transfer of input parameters
 c+    
       call ftob(t,1,istk(il+1))
-      if(err.gt.0) goto 9999
-c **************************************
-c      call ftob(y,n+nd,istk(il+2))
-c      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
+
       top=top+1
       il=iadr(lstk(top))
       istk(il)=1
@@ -58,9 +62,7 @@ c      if(err.gt.0) goto 9999
       endif
       call unsfdcopy(n,y,1,stk(l),1)
       lstk(top+1)=l+n
-c
-c      call ftob(y(n+1),nd,istk(il+2))
-c      if(err.gt.0) goto 9999
+
       top=top+1
       il=iadr(lstk(top))
       istk(il)=1
@@ -75,10 +77,9 @@ c      if(err.gt.0) goto 9999
       endif
       call unsfdcopy(nd,y(n+1),1,stk(l),1)
       lstk(top+1)=l+nd
-c      call ftob(dble(nd),1,istk(il+1))
-c      if(err.gt.0) goto 9999
+
       call ftob(dble(iflag),1,istk(il1+1))
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 c  *****************************************
 c+    
 c     
@@ -102,12 +103,12 @@ c
          vol=istk(ils+nelt+1)-istk(ils+1)
          if(top+1+nelt.ge.bot) then
             call error(18)
-            if(err.gt.0) goto 9999
+            return
          endif
          err=lstk(top+1)+vol-lstk(bot)
          if(err.gt.0) then
             call error(17)
-            if(err.gt.0) goto 9999
+            return
          endif
          call unsfdcopy(vol,stk(l),1,stk(lstk(top+1)),1)
          do 11 i=1,nelt
@@ -120,11 +121,10 @@ c
 c     
 c     execute scilab external
 c     
-      iero=0
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
-         goto 9999
+         return
       endif
       ids(1,pt)=lhs
       ids(2,pt)=rhs
@@ -141,6 +141,7 @@ c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 c     transfer of output parameters of external to fortran
       if(iflag.eq.0) then
@@ -148,19 +149,19 @@ c     transfer of output parameters of external to fortran
       else
          call btof(ydot,nd)
       endif
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 c+    
-      niv=niv-1
+c     normal return iero set to 0
+      iero=0 
       return
 c     
  9999 continue
+      niv=niv-1
       if(err1.gt.0) then
          lhs=ids(1,pt)
          rhs=ids(2,pt)
          pt=pt-1
          fun=0
       endif
-      iero=1
-      niv=niv-1
       return
       end

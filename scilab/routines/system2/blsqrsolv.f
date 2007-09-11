@@ -46,15 +46,24 @@ c     cas d'un simulateur en fortran ou C
          call lsqrsolvf(m,n,x,fvec,iflag)
          return
       endif
+      iflag1=iflag
 c     
+c     external is a Scilab function
+
+c     on return iflag=-1 is used to notify to the ode solver that
+c     scilab was not able to evaluate the external
+      iflag=-1
+
+c     Putting Fortran arguments on Scilab stack 
+
 c     transfert des arguments d'entree minimaux du simulateur
 c     la valeur de ces arguments vient du contexte fortran (liste d'appel)
 c     la structure vient du contexte 
 c+    
       call ftob(x,n,istk(il+1))
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
       call ftob(dble(m),1,istk(il+2))
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 
 c+    
 c     
@@ -82,12 +91,12 @@ c
          vol=istk(ils+nelt+1)-istk(ils+1)
          if(top+1+nelt.ge.bot) then
             call error(18)
-            if(err.gt.0) goto 9999
+            return
          endif
          err=lstk(top+1)+vol-lstk(bot)
          if(err.gt.0) then
             call error(17)
-            if(err.gt.0) goto 9999
+            return
          endif
          call unsfdcopy(vol,stk(l),1,stk(lstk(top+1)),1)
          do 11 i=1,nelt
@@ -100,11 +109,10 @@ c
 c     
 c     execution de la macro definissant le simulateur
 c     
-      iero=0
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
-         goto 9999
+         return
       endif
       ids(1,pt)=lhs
       ids(2,pt)=rhs
@@ -127,23 +135,26 @@ c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 c     transfert des variables  de sortie vers fortran
       call btof(fvec,m)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 
 c+    
-      niv=niv-1
+c     normal return iflag set to its input value
+      iflag=iflag1
       return
 c     
  9999 continue
+      niv=niv-1
       if(err1.gt.0) then
          lhs=ids(1,pt)
          rhs=ids(2,pt)
          pt=pt-1
          fun=0
       endif
-      iflag=-1
-      niv=niv-1
       return
       end
+     
+ 

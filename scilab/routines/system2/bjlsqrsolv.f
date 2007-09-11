@@ -1,4 +1,4 @@
-      subroutine bjlsqrsolv(m,n,x,fvec,fjac,ldfjac,iflag)
+      subroutine bjlsqrsolv(m,n,x,fvec,fjac,ldfjac,iero)
 c     
 c ======================================================================
 c      external for   lsqrsolve
@@ -23,6 +23,7 @@ c
          write(buf(1:12),'(3i4)') top,r,sym
          call basout(io,wte,' bjlsqrsolve  top:'//buf(1:4))
       endif
+      iflag=iero
 c
 c     iflag est le numero d'ordre de cet external dans la structure
 c     de donnee,
@@ -48,15 +49,20 @@ c     cas d'un simulateur en fortran
          endif
          return
       endif
+c     external is a Scilab function
+
+c     on return iero=-1 is used to notify to the  solver that
+c     scilab was not able to evaluate the external
+      iero=-1
 c     
 c     transfert des arguments d'entree minimaux du simulateur
 c     la valeur de ces arguments vient du contexte fortran (liste d'appel)
 c     la structure vient du contexte 
 c+    
       call ftob(x,n,istk(il+1))
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
       call ftob(dble(m),1,istk(il+2))
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 
 c+    
 c     
@@ -84,12 +90,12 @@ c
          vol=istk(ils+nelt+1)-istk(ils+1)
          if(top+1+nelt.ge.bot) then
             call error(18)
-            if(err.gt.0) goto 9999
+            return
          endif
          err=lstk(top+1)+vol-lstk(bot)
          if(err.gt.0) then
             call error(17)
-            if(err.gt.0) goto 9999
+            return
          endif
          call unsfdcopy(vol,stk(l),1,stk(lstk(top+1)),1)
          do 11 i=1,nelt
@@ -102,7 +108,6 @@ c
 c     
 c     execution de la macro definissant le simulateur
 c     
-      iero=0
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
@@ -119,16 +124,11 @@ c
       icall=5
 c
       include "../callinter.h"
-c======================================================================
-c     this include file contains code relative to interfaces calling. We use
-c     include file instead of subroutine to avoid recursion pb's. This file
-c     must be included in each routine which compute an external
-c
-c======================================================================
 c     
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 c     transfert des variables  de sortie vers fortran
       if (iflag.eq.1) then
@@ -136,20 +136,20 @@ c     transfert des variables  de sortie vers fortran
       else
          call btof(fjac,m*n)
       endif
-      if(err.gt.0) goto 9999
-
+      if(err.gt.0.or.err1.gt.0) return
 c+    
-      niv=niv-1
+c     normal return iero set to 0
+      iero=0 
       return
 c     
  9999 continue
+      niv=niv-1
+      iflag=-1
       if(err1.gt.0) then
          lhs=ids(1,pt)
          rhs=ids(2,pt)
          pt=pt-1
          fun=0
       endif
-      iflag=-1
-      niv=niv-1
       return
       end

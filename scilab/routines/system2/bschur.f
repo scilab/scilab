@@ -1,8 +1,9 @@
+
       integer function bschur(ls,al,be,s,p)
 c     
 c     ====================================================================
 c     
-c     gestion macros external  relatif a schur
+c     gestion macros external  relatif a schur . n'est plus utilisee
 c     
 c     ====================================================================
 c     
@@ -12,7 +13,7 @@ c     Copyright INRIA
       integer iadr,sadr
 c     
       logical allowptr
-      common/ierinv/iero
+      common/ierschur/iero
 c     
       double precision al,be,s,p,sflag,x(3)
       integer vol,tops,nordre
@@ -20,37 +21,45 @@ c
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
+      iero=0
 c     
 c     nordre est le numero d'ordre de cet external dans la structure
 c     de donnee,
 c     mlhs (mrhs) est le nombre de parametres de sortie (entree)
 c     du simulateur 
 c     
-      iero=0
-      mrhs=1
+       mrhs=1
 c     
       ilp=iadr(lstk(top))
       il=istk(ilp+nordre)
+
+c     external is a Scilab function
+
+c     on return iero=1 is used to notify to the ode solver that
+c     scilab was not able to evaluate the external
+      iero=1
+
+c     Putting Fortran arguments on Scilab stack 
+
 c     
 c     transfert des arguments d'entree minimaux du simulateur
 c     la valeur de ces arguments vient du contexte fortran (liste d'appel)
 c     la structure vient du contexte 
 c+    
       if(ls.eq.1) then
-c     
-c     
          x(1)=dble(ls)
          x(2)=al
          x(3)=be
          call ftob(x,3,istk(il+1))
+         if(err.gt.0.or.err1.gt.0) return
       endif
       if(ls.eq.2) then
          x(1)=dble(ls)
          x(2)=s
          x(3)=p
          call ftob(x,3,istk(il+1))
+         if(err.gt.0.or.err1.gt.0) return
       endif
-      if(err.gt.0) goto 9999
 c+    
 c     
       tops=istk(il)
@@ -79,12 +88,12 @@ c
       vol=istk(ils+nelt+1)-istk(ils+1)
       if(top+1+nelt.ge.bot) then
          call error(18)
-         if(err.gt.0) goto 9999
+         return
       endif
       err=lstk(top+1)+vol-lstk(bot)
       if(err.gt.0) then
          call error(17)
-         if(err.gt.0) goto 9999
+         return
       endif
       call unsfdcopy(vol,stk(l),1,stk(lstk(top+1)),1)
       do 11 i=1,nelt
@@ -96,11 +105,10 @@ c
 c     
 c     execution de la macro definissant le simulateur
 c     
-      iero=0
       pt=pt+1
       if(pt.gt.psiz) then
          call error(26)
-         goto 9999
+         return
       endif
       ids(1,pt)=lhs
       ids(2,pt)=rhs
@@ -117,28 +125,30 @@ c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 c     transfert des variables  de sortie vers fortran
       call btof(sflag,1)
+      if(err.gt.0.or.err1.gt.0) return
       if(sflag.eq.1.0d0) then
         bschur=1
       else
-        bschur=-1
+        bschur=0
       endif
-      if(err.gt.0) goto 9999
 c+    
-      niv=niv-1
+c     normal return iero set to 0
+      iero=0 
       return
 c     
  9999 continue
+      niv=niv-1
+      bschur=0
       if(err1.gt.0) then
          lhs=ids(1,pt)
          rhs=ids(2,pt)
          pt=pt-1
          fun=0
       endif
-      iero=1
-      niv=niv-1
-      bschur=1
       return
       end
+

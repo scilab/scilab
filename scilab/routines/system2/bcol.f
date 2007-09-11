@@ -27,12 +27,18 @@ c       Fortran case
         call fcoldg(ii,z,dg)
         return
       endif
+c     external is a Scilab function
+c+ 
+c     on return iero=1 is used to notify to the ode solver that
+c     scilab was not able to evaluate the external
+      iero=1
+
 c     Putting Fortran arguments on Scilab stack 
-c+    
+
       call ftob(dble(ii),1,ki)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
       call ftob(z,mstar,kz)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 c+    
       if(itdgsub.ne.15) then
          fin=lstk(kdgsub)
@@ -45,13 +51,13 @@ c     external adress
          fin=l
 c     Extra arguments in calling list that westore on the Scilab stack
          call extlarg(l,ils,nelt,mrhs)
-         if (err.gt.0) goto 9999
+         if(err.gt.0.or.err1.gt.0) return
       endif
 c     Macro execution 
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
-         goto 9999
+         return
       endif
       ids(1,pt)=lhs
       ids(2,pt)=rhs
@@ -67,17 +73,23 @@ c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 C     Scilab to Fortran convertion 
       call btof(dg,mstar)
-      if(err.gt.0) goto 9999
-c+    
-      niv=niv-1
+      if(err.gt.0.or.err1.gt.0) return
+c     normal return iero set to 0
+      iero=0
       return
 c     
  9999 continue
-      iero=1
       niv=niv-1
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       return
       end
 
@@ -111,12 +123,21 @@ c       Fortran case
         call fcolg(ii,z,g)
         return
       endif
+
+
+c     external is a Scilab function
+
+c     on return iero=1 is used to notify to the ode solver that
+c     scilab was not able to evaluate the external
+      iero=1
+
+
 c     Putting Fortran arguments on Scilab stack 
 c+    
       call ftob(dble(ii),1,ki)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
       call ftob(z,mstar,kz)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 c+    
       if(itgsub.ne.15) then
          fin=lstk(kgsub)
@@ -129,13 +150,13 @@ c     external adress
          fin=l
 c     Extra arguments in calling list that westore on the Scilab stack
          call extlarg(l,ils,nelt,mrhs)
-         if (err.gt.0) goto 9999
+         if(err.gt.0.or.err1.gt.0) return
       endif
 c     Macro execution 
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
-         goto 9999
+         return
       endif
       ids(1,pt)=lhs
       ids(2,pt)=rhs
@@ -151,17 +172,24 @@ c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 C     Scilab to Fortran convertion 
       call btof(g,1)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
+c     normal return iero set to 0
+      iero=0
 c+    
-      niv=niv-1
       return
 c     
  9999 continue
-      iero=1
       niv=niv-1
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       return
       end
 
@@ -193,12 +221,20 @@ c       Fortran case
         call fcoldf(x,z,df)
         return
       endif
+
+c     external is a Scilab function
+
+c     on return iero=1 is used to notify to the ode solver that
+c     scilab was not able to evaluate the external
+      iero=1
+
+
 c     Putting Fortran arguments on Scilab stack 
 c+    
       call ftob(x,1,kx)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
       call ftob(z,mstar,kz)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 c+    
       if(itdfsub.ne.15) then
          fin=lstk(kdfsub)
@@ -211,13 +247,13 @@ c     external adress
          fin=l
 c     Extra arguments in calling list that westore on the Scilab stack
          call extlarg(l,ils,nelt,mrhs)
-         if (err.gt.0) goto 9999
+         if(err.gt.0.or.err1.gt.0) return
       endif
 c     Macro execution 
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
-         goto 9999
+         return
       endif
       ids(1,pt)=lhs
       ids(2,pt)=rhs
@@ -233,17 +269,24 @@ c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 C     Scilab to Fortran convertion 
       call btof(df,mstar*ncomp)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
+c     normal return iero set to 0
+      iero=0
 c+    
-      niv=niv-1
       return
 c     
  9999 continue
-      iero=1
       niv=niv-1
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       return
       end
 
@@ -276,12 +319,19 @@ c       Fortran case
         call fcolf(x,z,f)
         return
       endif
+c     external is a Scilab function
+
+c     on return iero=1 is used to notify to the ode solver that
+c     scilab was not able to evaluate the external
+      iero=1
+
+
 c     Putting Fortran arguments on Scilab stack 
 c+    
       call ftob(x,1,kx)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
       call ftob(z,mstar,kz)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 c+    
       if(itfsub.ne.15) then
          fin=lstk(kfsub)
@@ -294,13 +344,13 @@ c     external adress
          fin=l
 c     Extra arguments in calling list that westore on the Scilab stack
          call extlarg(l,ils,nelt,mrhs)
-         if (err.gt.0) goto 9999
+         if(err.gt.0.or.err1.gt.0) return
       endif
 c     Macro execution 
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
-         goto 9999
+         return
       endif
       ids(1,pt)=lhs
       ids(2,pt)=rhs
@@ -316,20 +366,26 @@ c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 C     Scilab to Fortran convertion 
       call btof(f,ncomp)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
+c     normal return iero set to 0
+      iero=0
 c+    
-      niv=niv-1
       return
 c     
  9999 continue
-      iero=1
       niv=niv-1
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       return
       end
-
 
       subroutine dguess(x,z,dmval)
 c ======================================================================
@@ -359,10 +415,17 @@ c       Fortran case
         call fcolgu(x,z,dmval)
         return
       endif
+c     external is a Scilab function
+
+c     on return iero=1 is used to notify to the ode solver that
+c     scilab was not able to evaluate the external
+      iero=1
+
+
 c     Putting Fortran arguments on Scilab stack 
 c+    
       call ftob(x,1,kx)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
 c+    
       if(itguess.ne.15) then
          fin=lstk(kguess)
@@ -375,13 +438,13 @@ c     external adress
          fin=l
 c     Extra arguments in calling list that westore on the Scilab stack
          call extlarg(l,ils,nelt,mrhs)
-         if (err.gt.0) goto 9999
+         if(err.gt.0.or.err1.gt.0) return
       endif
 c     Macro execution 
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
-         goto 9999
+         return
       endif
       ids(1,pt)=lhs
       ids(2,pt)=rhs
@@ -397,25 +460,26 @@ c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 C     Scilab to Fortran convertion 
       call btof(dmval,ncomp)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
       call btof(z,mstar)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
+c     normal return iero set to 0
+      iero=0
 c+    
-      niv=niv-1
       return
 c     
  9999 continue
+      niv=niv-1
       if(err1.gt.0) then
          lhs=ids(1,pt)
          rhs=ids(2,pt)
          pt=pt-1
          fun=0
       endif
-      iero=1
-      niv=niv-1
       return
       end
 
