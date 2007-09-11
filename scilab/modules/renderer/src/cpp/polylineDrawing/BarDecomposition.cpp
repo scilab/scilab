@@ -102,5 +102,26 @@ void BarDecomposition::getBarHeight(double heights[])
   }
 }
 /*------------------------------------------------------------------------------------------*/
+void BarDecomposition::getBarPlotMarkVertices(double xCoords[], double yCoords[], double zCoords[])
+{
+  // first half
+  getDrawnVertices(xCoords, yCoords, zCoords);
+
+  int semiSize = getDrawnVerticesLength();
+
+  // second half
+  for (int i = 0; i < semiSize ; i++)
+  {
+    xCoords[i + semiSize] = xCoords[i];
+    yCoords[i + semiSize] = 0.0;
+    zCoords[i + semiSize] = zCoords[i];
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+int BarDecomposition::getBarPlotMarkVerticesLength(void)
+{
+  return 2 * getDrawnVerticesLength();
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

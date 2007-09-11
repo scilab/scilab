@@ -44,6 +44,16 @@ public:
    */
   void getBarHeight(double heights[]);
 
+  /**
+   * Bar plot mode (ie polyline_style = 3), also draws mark on y = 0 line.
+   */
+  void getBarPlotMarkVertices(double xCoords[], double yCoords[], double zCoords[]);
+
+  /**
+   * @return number of vertices for bar plot drawing of marks
+   */
+  int getBarPlotMarkVerticesLength(void);
+
 protected:
 
 };

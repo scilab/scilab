@@ -13,6 +13,8 @@ extern "C"
 #include "sciprint.h"
 };
 
+#include "BarDecomposition.hxx"
+
 namespace sciGraphics
 {
 
@@ -46,7 +48,19 @@ void PolylineMarkDrawerJoGL::drawPolyline( void )
   double * yCoords    = NULL;
   double * zCoords    = NULL;
 
-  nbVertices = m_pDrawed->getDrawnVerticesLength();
+  // special case for bar plot
+  BarDecomposition barPoltDecomposer(m_pDrawed);
+
+  if (sciGetPolylineStyle(pObj) == 3)
+  {
+    // bar plot also draw marks on y = 0 plane
+    nbVertices = barPoltDecomposer.getBarPlotMarkVerticesLength();
+  }
+  else
+  {
+    nbVertices = m_pDrawed->getDrawnVerticesLength();
+  }
+  
   xCoords = new double[nbVertices];
   yCoords = new double[nbVertices];
   zCoords = new double[nbVertices];
@@ -61,7 +75,14 @@ void PolylineMarkDrawerJoGL::drawPolyline( void )
     return;
   }
 
-  m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
+  if (sciGetPolylineStyle(pObj) == 3)
+  {
+    barPoltDecomposer.getBarPlotMarkVertices(xCoords, yCoords, zCoords);
+  }
+  else
+  {
+    m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
+  }
 
   // display the rectangle
   getMarkDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);

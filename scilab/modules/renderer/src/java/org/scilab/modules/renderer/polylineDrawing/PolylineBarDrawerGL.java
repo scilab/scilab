@@ -13,6 +13,7 @@ package org.scilab.modules.renderer.polylineDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.AutoDrawableObjectGL;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Class containing the driver dependant routines to draw bar
@@ -115,6 +116,22 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 	}
 	
 	/**
+	 * Set all parameters to draw bars in one function
+	 * @param background background color index
+	 * @param foreground line color index
+	 * @param thickness thickness of the outlin ein pixel
+	 * @param lineStyle index of the line style
+	 * @param barWidth width of bars in pixel coordinates
+	 */
+	public void setBarParameters(int background, int foreground, float thickness, int lineStyle, double barWidth) {
+		setBackColorIndex(background);
+		setLineColorIndex(foreground);
+		setThickness(thickness);
+		setLineStyle(lineStyle);
+		setBarWidth(barWidth);
+	}
+	
+	/**
 	 * Draw the bar plot. The number of bar to draw is the length of the array.
 	 * The length of each array must be the same.
 	 * @param topX X coordinate of the middle of the top segment of each bar
@@ -172,9 +189,13 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 
 
 		// set color
-		double[] color = getBackColor();
+		double[] color = getLineColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
+		// set dash mode
+		gl.glLineWidth(getThickness());
+		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
+				
 		for (int i = 0; i < topX.length; i++) {
 			gl.glBegin(GL.GL_LINE_LOOP);
 			gl.glVertex3d(topX[i] - semiBarWidth, topY[i] - height[i], topZ[i]);
@@ -183,6 +204,9 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 			gl.glVertex3d(topX[i] - semiBarWidth, topY[i], topZ[i]);
 			gl.glEnd();
 		}
+		
+		GLTools.endDashMode(gl);
+		
 	}
 	
 	
