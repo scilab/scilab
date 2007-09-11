@@ -9,7 +9,7 @@
 #define _POLYLINE_BAR_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-//#include "PolylineBarDrawerGL.hxx"
+#include "PolylineBarDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -51,7 +51,7 @@ protected:
   /**
    * Giws generated wrapper.
    */
-  //org_scilab_modules_renderer_polylineDrawing::PolylineBarDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_polylineDrawing::PolylineBarDrawerGL * m_pJavaObject;
 
 
 };
