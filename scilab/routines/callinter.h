@@ -26,6 +26,9 @@ c     .     back to matsys
          elseif((ir.ge.2.and.ir.le.9).or.ir.eq.13) then
 c     .     back to matio
             k=5
+         elseif(ir.eq.14.or.ir.eq.15) then
+c     .     back to matelm
+            k=6
          elseif(ir.eq.10) then
 c     .     end of overloaded function
             goto 96
