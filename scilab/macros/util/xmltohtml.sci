@@ -38,9 +38,16 @@ function xmltohtml(dirs,titles,xsl,step)
 	//------------------------------------------------------------------------------------------
 	//patch because scicos is not written in xml
 	//------------------------------------------------------------------------------------------
-	
-	scs=grep(%helps(std,1),'scicos')
-	if size(scs,'*')==1 then std(scs)=[],end
+
+	scs=grep(%helps(std,1),'/scicos')
+	if size(scs,'*')==1 then
+          std(scs)=[]
+        else
+          scs=grep(%helps(std,1),'\scicos')
+          if size(scs,'*')==1 then
+            std(scs)=[]
+          end
+        end
 	
 	man_dirs = basename(%helps(std,1));
 	man_titles= %helps(std,2);
