@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////
 // utility script for Scipad translators:
-//  Compares two SCI/tcl/scipadsources/msg_files/*.msg files,
+//  Compares two SCI/modules/scipad/tcl/msg_files/*.msg files,
 //   generally, a master one like fr.msg or it.msg, updated by
 //   the mantainers of Scipad, and a derived msg file, mantained by
 //   one of the contributing translators;
@@ -20,23 +20,55 @@
 //  5) a continuation of 3)
 //
 //  Use (from scilab):
+//
 //   msgdiff(master_msgfile_path,derived_msgfile_path)
-// or
+//
+//  or
+//
 //   report=msgdiff(master_msgfile_path,derived_msgfile_path);
 //   mprintf("%s\n",report)
 //
-//   msgdiff(master_msgfile_path)  just reports syntax warnings and
-//         generates a reformatted rev file
+//   msgdiff(master_msgfile_path) // just reports syntax warnings and
+//                                // generates a reformatted rev file
 //
 //  known bugs: 
 //   -unquoted label names are wrapped by quotes in the rev file (apparently
 //    harmless
-//   -Quoted strings ending by \ (there is one such occurrence in fr.msg)
-//    confuse the parser, the result has a " too much
+//   -line reformatting is based on the byte count, not character count. strings
+//    written in multi-byte encodings can get split across more lines than
+//    aesthetically necessary
+//   -any intentional indentation in the original file is ironed out. Too
+//    difficult to discriminate an intentional, systematic block indentation
+//    from just sloppy formatting, therefore I implement a simple and robust 
+//    scheme.
 //
 /////////////////////////////////////////////////////////////
 
 function report=msgdiff(msgfile1,msgfile2)
+
+// find out if we are in scilab4 or scilab5, and
+//  make some workarounds for scilab4
+    if listfiles(SCI+"/modules/scipad/")<>[] then
+      scilab5=%t;
+    else
+      scilab5=%f;
+    end 
+    if ~scilab5 then
+      function s=gettext(scope,sss)
+        labels=["scipad_message_"+string(14:21)]
+        results=["Finding missing entries in "
+        " and writing the result..."
+        "Translations missing in file "
+        "Finding unused entries in "
+        "Unused strings in file "
+        "Parsing file "
+        ", be patient..."
+        "WARNING: THE FOLLOWING LINE SEEMS WRONG HERE AND WILL BE IGNORED"
+        ]
+        s=results(labels==sss)
+      endfunction
+    end
+
   [M1_1,M2_1,after1,lastcomment1]=msglist(msgfile1);
   if exists("msgfile2","local") then
     [M1_2,M2_2,after2,lastcomment2]=msglist(msgfile2);
@@ -46,8 +78,8 @@ function report=msgdiff(msgfile1,msgfile2)
   end
   lang2=basename(msgfile2)
 //find missing entries and write the result file
-  disp("Finding missing entries in "+msgfile2+" and writing the result...")
-  report(1)="Translations missing in file "+msgfile2+":";
+  disp(gettext('messages','scipad_message_14')+msgfile2+gettext('messages','scipad_message_15'))
+  report(1)=gettext('messages','scipad_message_16')+msgfile2+":";
   report(2)=""; j=2; section1=""; k=1
   revfile=msgfile2+".rev"
   mdelete(revfile)
@@ -74,11 +106,11 @@ function report=msgdiff(msgfile1,msgfile2)
     end
   end
   mclose(fd)
-  
+
 //unused strings
-  disp("Finding unused entries in " +msgfile2+"...")
+  disp(gettext('messages','scipad_message_17') +msgfile2+"...")
   j=j+1; report(j)=""; 
-  j=j+1; report(j)="Unused strings in file "+msgfile2+":"; 
+  j=j+1; report(j)=gettext('messages','scipad_message_18')+msgfile2+":"; 
   section1=""
   for i=1:size(M1_2,1)
     if ~or(M1_1==M1_2(i)) then
@@ -98,7 +130,7 @@ endfunction
 
 
 function [M1,M2,after,lastcomment]=msglist(msgfile)
-  disp("Parsing file "+msgfile+", be patient...")
+  disp(gettext('messages','scipad_message_19')+msgfile+gettext('messages','scipad_message_20'))
   lang=basename(msgfile)
 //read the file
   M=""; i=1
@@ -121,7 +153,11 @@ function [M1,M2,after,lastcomment]=msglist(msgfile)
       lastcomment(j)=a
       j=j+1
     elseif grep(a,"::msgcat::mcset "+lang)==1 then
-      a=strsubst(a,"\""","''''")
+      a=strsubst(a,"\\","\u05c") // literal backslashes are first
+                                  // of all moved out of way
+      a=strsubst(a,"\""","\u022") // quotes in the string itself (escaped
+                              // as \" in tcl) need to be moved out
+                              // of way, because tokenization is based on "
       t=tokenpos(a,"""");
     // normally the line contains 4 quotes, enclosing two quoted strings 
       if size(t,1)==2 then
@@ -132,11 +168,12 @@ function [M1,M2,after,lastcomment]=msglist(msgfile)
         a1=part(a,t($-2,1):t($-2,2));          
       end
       a2=part(a,t($,1):t($,2)); 
-      M1(k)=strsubst(a1,"''''","\""");
-      M2(k)=strsubst(a2,"''''","\""");
+      //restore readable \" quotes and backslashes
+      M1(k)=strsubst(strsubst(a1,"\u022","\"""),"\u05c","\\");  
+      M2(k)=strsubst(strsubst(a2,"\u022","\"""),"\u05c","\\"); 
       after(k)=j-1; k=k+1
     else
-      write(%io(2),"WARNING: THE FOLLOWING LINE SEEMS WRONG HERE AND WILL BE IGNORED")
+      write(%io(2),gettext('messages','scipad_message_21'))
       write(%io(2),a)
     end
   a1=a;
@@ -148,13 +185,13 @@ endfunction
 
 function l=lineformat(lang,orig,transl)
   prefix="::msgcat::mcset "+lang+" "
-  lindent="                   "
+  lindent=part(" ",1:length(prefix))
   n1=length(prefix)
   n2=length(orig)
   n3=length(transl)
   n4=length(lindent)
   maxline=80
-  
+
   if n1+n2+3+n3+2<maxline then
 //all on a single line, ok
     l=prefix+""""+orig+""" """+transl+""""
@@ -202,10 +239,19 @@ function s=linesplit(longstring,lindent)
       else
         k=find((p(:,2)+d+2-j+1)<maxline & p(:,1)>j)
       end
-      if k==[] then
+      if k==[] then  //the rest of the text can't fit into maxline (?)
         m=m+1
-        if m<size(p,1) then q=p(m+1,1)-2; else q=p(m,2); end
-        s(i)=part(longstring,j:q-1) 
+        if j==0 then //long word at the beginning of the string
+          j=1; q=p(1,2);
+        else
+          j=j+2
+          if m<size(p,1) then 
+            q=p(m+1,1)-2; //not last token; take next pos minus " "
+          else 
+            q=p(m,2);  // last token: take to the end
+          end
+        end
+        s(i)=part(longstring,j:q) 
       else
         if k($)<size(p,1) then q=p(k($)+1,1)-2; else q=p(k($),2); end
         s(i)=part(longstring,(j+1):q)
