@@ -128,8 +128,8 @@ src/cpp/polylineDrawing/BarDecomposition.cpp \
 src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp \
 src/jni/PolylineBarDrawerGL.cpp \
 src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
-src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp
-
+src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
+src/jni/PolylineInterpColorDrawerGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c

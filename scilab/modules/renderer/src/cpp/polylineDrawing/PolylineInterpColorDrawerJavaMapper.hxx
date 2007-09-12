@@ -9,7 +9,7 @@
 #define _POLYLINE_INTERP_COLOR_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-//#include "PolylineInterpColorDrawerGL.hxx"
+#include "PolylineInterpColorDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -49,7 +49,7 @@ protected:
   /**
    * Giws generated wrapper.
    */
-  //org_scilab_modules_renderer_polylineDrawing::PolylineInterpColorDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_polylineDrawing::PolylineInterpColorDrawerGL * m_pJavaObject;
 
 
 };
