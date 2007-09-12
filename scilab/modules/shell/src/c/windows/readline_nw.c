@@ -112,6 +112,11 @@
 #endif 
 #define CTRL_W 027
 
+#ifdef CTRL_X
+#undef CTRL_X
+#endif 
+#define CTRL_X 030
+
 #ifdef ESC_KEY
 #undef ESC_KEY
 #endif 
@@ -575,7 +580,7 @@ static char msdos_getch ()
 
 	Sleep(1);
 
-	if (c == CTRL_C)
+	if ( (c == CTRL_C) || (c == CTRL_X) )
 	{
 		/** control-C : we return a \n for stopping line processing **/
 		int j = 2;

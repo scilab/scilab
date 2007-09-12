@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>Keyboard Shortcuts</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>$LastChangedDate: 2007-08-31 09:08:25 +0200 (ven., 31 août 2007) $</DATE>
+  <SHORT_DESCRIPTION name="Keyboard Shortcuts">Keyboard Shortcuts in Scilab</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+    <P>List of arrow and control keys that serve as shortcuts for using the Scilab.</P>
+    <TABLE>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>Up</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>call previous line</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>Down</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>call next line</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>Left</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Move back one character.</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>Right</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Move forward one character.</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>CTRL + B</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Move back one character.</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>CTRL + F</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Move forward one character.</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+            
+      <TABLE_NEW_ROW>
+      	<TABLE_NEW_COLUMN>CTRL + C</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Interrupt Scilab</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+      <TABLE_NEW_ROW>
+      	<TABLE_NEW_COLUMN> CTRL + X</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Interrupt Scilab</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+      <TABLE_NEW_ROW>
+      	<TABLE_NEW_COLUMN>Delete</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Delete character at cursor.</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+      <TABLE_NEW_ROW>
+      	<TABLE_NEW_COLUMN>CTRL + A</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Move to beginning of current line.</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+      <TABLE_NEW_ROW>
+      	<TABLE_NEW_COLUMN>CTRL + D</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Delete character at cursor.</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+	</TABLE>
+        
+  </DESCRIPTION>
+</MAN>

@@ -16,8 +16,8 @@
 		<VerticalWrapAllowed useCache="true" value="false"/>
 		<HorizontalWrapAllowed useCache="true" value="false"/>
 		<FontName useCache="true" value="monospaced"/>
-                <FontStyle useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-                <FontSize useCache="true" value="12"/>
+    <FontStyle useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+    <FontSize useCache="true" value="12"/>
 
 		<!-- Core part -->
 		<OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
@@ -29,25 +29,26 @@
 		<HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
 		
 		<!-- Key mapping -->
-                <!--<Key name="VK_INS" mask="SHIFT_MASK" action="PASTE"/>-->
-                <!--<Key name="VK_V" mask="CTRL_MASK" action="PASTE"/>-->
+    <!--<Key name="VK_INS" mask="SHIFT_MASK" action="PASTE"/>-->
+    <!--<Key name="VK_V" mask="CTRL_MASK" action="PASTE"/>-->
 		<KeyMapping>
 			<Key name="VK_ENTER" mask="" action="VALIDATE"/>
 			<Key name="VK_SPACE" mask="CTRL_MASK" action="COMPLETION"/>
 			<Key name="VK_UP" mask="" action="PREVIOUS_HISTORY_LINE"/>
 			<Key name="VK_DOWN" mask="" action="NEXT_HISTORY_LINE"/>
-                        <Key name="VK_A" mask="CTRL_MASK" action="LINE_BEGINNING"/>
-                        <Key name="VK_B" mask="CTRL_MASK" action="PREVIOUS_CHAR"/>
-                        <Key name="VK_C" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK"/>
-                        <Key name="VK_D" mask="CTRL_MASK" action="DEL_NEXT_CHAR"/>
-                        <Key name="VK_E" mask="CTRL_MASK" action="LINE_END"/>
-                        <Key name="VK_F" mask="CTRL_MASK" action="NEXT_CHAR"/>
-                        <Key name="VK_H" mask="CTRL_MASK" action="DEL_PREVIOUS_CHAR"/>
-                        <Key name="VK_K" mask="CTRL_MASK" action="DEL_END_OF_LINE"/>
+      <Key name="VK_A" mask="CTRL_MASK" action="LINE_BEGINNING"/>
+      <Key name="VK_B" mask="CTRL_MASK" action="PREVIOUS_CHAR"/>
+      <Key name="VK_C" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK"/>
+      <Key name="VK_D" mask="CTRL_MASK" action="DEL_NEXT_CHAR"/>
+      <Key name="VK_E" mask="CTRL_MASK" action="LINE_END"/>
+      <Key name="VK_F" mask="CTRL_MASK" action="NEXT_CHAR"/>
+      <Key name="VK_H" mask="CTRL_MASK" action="DEL_PREVIOUS_CHAR"/>
+      <Key name="VK_K" mask="CTRL_MASK" action="DEL_END_OF_LINE"/>
 			<Key name="VK_N" mask="CTRL_MASK" action="NEXT_HISTORY_LINE"/>
 			<Key name="VK_P" mask="CTRL_MASK" action="PREVIOUS_HISTORY_LINE"/>
-                        <Key name="VK_U" mask="CTRL_MASK" action="DEL_WHOLE_LINE"/>
-                        <Key name="VK_W" mask="CTRL_MASK" action="DEL_LAST_WORD"/>
+      <Key name="VK_U" mask="CTRL_MASK" action="DEL_WHOLE_LINE"/>
+      <Key name="VK_W" mask="CTRL_MASK" action="DEL_LAST_WORD"/>
+      <Key name="VK_X" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK"/>
 		</KeyMapping>
 
 		<!-- Key mapping -->

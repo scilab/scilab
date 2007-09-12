@@ -118,6 +118,7 @@
 #define CTRL_L                0x000c  /* delete to end of line */
 #define CTRL_N                0x000e  /* next line */
 #define CTRL_P                0x0010  /* previous line */
+#define CTRL_X                0x0010  /* Break scilab */
 #define CTRL_Y                0x0019  /* paste */
 #define CTRL_Z                0x0020  /* stop */
 #define CASE_PRINT            63      /* from x_VTparse.h */
@@ -314,11 +315,11 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
         return;
       }
 
-      if ( keystroke ==  CTRL_C ) /* did not exist in old gtk version */
+      if ( (keystroke ==  CTRL_C) || (keystroke == CTRL_X) ) /* did not exist in old gtk version */
       {
-	int j = SIGINT;
-	C2F(sigbas)(&j);
-	keystroke = '\n';
+		int j = SIGINT;
+		C2F(sigbas)(&j);
+		keystroke = '\n';
       };
 
       /* check for ascii extended characters */
@@ -388,7 +389,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	    insert_flag = !insert_flag;
 	  break;
 		    
-	  case CTRL_C: /** we never get there CTRL_C is explored above **/
+	  case CTRL_X : case CTRL_C: /** we never get there CTRL_C is explored above **/
 	  {
 	    int j = SIGINT;
 	    C2F(sigbas)(&j);
