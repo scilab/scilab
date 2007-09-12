@@ -446,6 +446,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\PolylineInterpColorDrawerGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\polylineDrawing\PolylineInterpColorDrawerJavaMapper.cpp"
 					>
 				</File>
@@ -977,6 +981,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\polylineDrawing\PolylineFillDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\PolylineInterpColorDrawerGL.hxx"
 					>
 				</File>
 				<File
