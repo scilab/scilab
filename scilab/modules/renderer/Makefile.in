@@ -193,7 +193,10 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp \
 	src/cpp/polylineDrawing/BarDecomposition.cpp \
 	src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp \
-	src/jni/PolylineBarDrawerGL.cpp sci_gateway/c/gw_renderer.c
+	src/jni/PolylineBarDrawerGL.cpp \
+	src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
+	src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
+	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -313,7 +316,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-PolylineBarDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-BarDecomposition.lo \
 @GUI_TRUE@	libscirenderer_la-PolylineBarDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineBarDrawerGL.lo
+@GUI_TRUE@	libscirenderer_la-PolylineBarDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-PolylineInterpColorDrawerJoGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -629,7 +634,9 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/polylineDrawing/BarDecomposition.cpp \
 @GUI_TRUE@src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp \
-@GUI_TRUE@src/jni/PolylineBarDrawerGL.cpp
+@GUI_TRUE@src/jni/PolylineBarDrawerGL.cpp \
+@GUI_TRUE@src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp
 
 
 # List of the gateway c files
@@ -884,6 +891,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineFillDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineFillDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineFillDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineLineDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineLineDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineLineDrawerJoGL.Plo@am__quote@
@@ -1803,6 +1812,20 @@ libscirenderer_la-PolylineBarDrawerGL.lo: src/jni/PolylineBarDrawerGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PolylineBarDrawerGL.cpp' object='libscirenderer_la-PolylineBarDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineBarDrawerGL.lo `test -f 'src/jni/PolylineBarDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineBarDrawerGL.cpp
+
+libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo: src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJavaMapper.Tpo -c -o libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp' object='libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp
+
+libscirenderer_la-PolylineInterpColorDrawerJoGL.lo: src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineInterpColorDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJoGL.Tpo -c -o libscirenderer_la-PolylineInterpColorDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp' object='libscirenderer_la-PolylineInterpColorDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineInterpColorDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
