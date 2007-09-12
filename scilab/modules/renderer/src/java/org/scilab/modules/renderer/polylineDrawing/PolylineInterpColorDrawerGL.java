@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: PolylineInterpColorDrawer.java                                   */
+/* file: PolylineInterpColorDrawerGL.java                                 */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to fill the area */
@@ -16,12 +16,12 @@ import org.scilab.modules.renderer.AutoDrawableObjectGL;
  *        enclosed by the polyline with interpolated colors 
  * @author Jean-Baptiste Silvy
  */
-public class PolylineInterpColorDrawer extends AutoDrawableObjectGL {
+public class PolylineInterpColorDrawerGL extends AutoDrawableObjectGL {
 	
 	/**
 	 * Default constructor
 	 */
-	public PolylineInterpColorDrawer() {
+	public PolylineInterpColorDrawerGL() {
 		
 	}
 	
