@@ -29,8 +29,8 @@ int set_interp_color_vector_property( sciPointObj * pobj, int stackPointer, int 
     return SET_PROPERTY_ERROR ;
   }
 
-  if( ( nbCol == 3 && pPOLYLINE_FEATURE(pobj)->n1 == 3 ) || 
-      ( nbCol == 4 && pPOLYLINE_FEATURE(pobj)->n1 == 4 ) )
+  if( ( nbCol == 3 && sciGetNbPoints(pobj) == 3 ) || 
+      ( nbCol == 4 && sciGetNbPoints(pobj) == 4 ) )
   {
     int tmp[4] ;
     getDoubleMatrixFromStack( stackPointer ) ;

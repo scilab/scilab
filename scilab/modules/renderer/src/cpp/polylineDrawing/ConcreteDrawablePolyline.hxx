@@ -37,6 +37,13 @@ public:
   virtual void getDrawnVertices(double xCoords[], double yCcoords[], double zCcoords[]);
 
   /**
+  * Retrieve the colors to use for each vertex. To be used for color interpolation.
+  * The size of the array must be retrieved by getDrawnVerticesLength().
+  * @param colors color inddex of the draw vertices
+  */
+  virtual void getDrawnVerticesColor(int colors[]);
+
+  /**
    * @return number of vertices which will be computed by the getDrawnVertices routine.
    */
   virtual int getDrawnVerticesLength(void);

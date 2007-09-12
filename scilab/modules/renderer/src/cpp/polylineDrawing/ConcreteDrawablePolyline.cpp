@@ -59,6 +59,11 @@ void ConcreteDrawablePolyline::getDrawnVertices(double xCoords[], double yCcoord
   m_pDecomposeStrategy->getDrawnVertices(xCoords, yCcoords, zCcoords);
 }
 /*------------------------------------------------------------------------------------------*/
+void ConcreteDrawablePolyline::getDrawnVerticesColor(int colors[])
+{
+  m_pDecomposeStrategy->getDrawnVerticesColor(colors);
+}
+/*------------------------------------------------------------------------------------------*/
 int ConcreteDrawablePolyline::getDrawnVerticesLength(void)
 {
   return m_pDecomposeStrategy->getDrawnVerticesLength();

@@ -121,6 +121,28 @@ void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[]
   }
 }
 /*------------------------------------------------------------------------------------------*/
+void StairCaseDecomposition::getDrawnVerticesColor(int colors[])
+{
+  sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
+  int nbPoints = sciGetNbPoints(pPolyline);
+  int nbVertices = 2 * nbPoints - 1;
+  int * interpColors = sciGetInterpVector(pPolyline);
+
+  for (int i = 0; i < nbPoints ; i++ )
+  {
+    colors[2 * i    ] = interpColors[i];
+    colors[2 * i + 1] = interpColors[i];
+  }
+  colors[nbVertices - 1] = interpColors[nbPoints - 1];
+
+  // one more stair case
+  if (sciGetIsClosed(pPolyline))
+  {
+    colors[nbVertices]     = colors[0];
+    colors[nbVertices + 1] = colors[0];
+  }
+}
+/*------------------------------------------------------------------------------------------*/
 int StairCaseDecomposition::getDrawnVerticesLength(void)
 {
   int res = 2 * sciGetNbPoints(m_pDrawed->getDrawedObject()) - 1;

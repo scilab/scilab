@@ -4506,8 +4506,7 @@ sciGetIsBoxed (sciPointObj * pobj)
   return 0;
 }
 
-int *
-sciGetInterpVector(sciPointObj * pobj)
+int * sciGetInterpVector(sciPointObj * pobj)
 {
 
   if(sciGetEntityType(pobj) != SCI_POLYLINE)
@@ -4516,6 +4515,18 @@ sciGetInterpVector(sciPointObj * pobj)
   return pPOLYLINE_FEATURE(pobj)->scvector;
 }
 
+BOOL sciGetIsColorInterpolated(sciPointObj * pobj)
+{
+  switch ( sciGetEntityType (pobj) )
+  {
+  case SCI_POLYLINE:
+    return pPOLYLINE_FEATURE(pobj)->isinterpshaded;
+  default:
+    sciprint ("This object has no interpolation vector\n");
+    break;
+  }
+  return FALSE;
+}
 
 /**sciGetPosition
  * Returns the position (in pixels) for the label object

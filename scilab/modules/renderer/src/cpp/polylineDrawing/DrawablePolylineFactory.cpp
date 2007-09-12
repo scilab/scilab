@@ -18,6 +18,7 @@
 #include "PolylineMarkDrawerJoGL.hxx"
 #include "PolylineArrowDrawerJoGL.hxx"
 #include "PolylineBarDrawerJoGL.hxx"
+#include "PolylineInterpColorDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -51,11 +52,22 @@ void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
   cPolyline->removeDecompositionStrategy();
   cPolyline->removeDrawingStrategies();
 
-  if (sciGetIsFilled(pPolyline) || sciGetPolylineStyle(pPolyline) == 5)
+  if (sciGetPolylineStyle(pPolyline) == 5)
   {
     cPolyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
   }
-  
+  else if (sciGetIsFilled(pPolyline))
+  {
+    if (sciGetIsColorInterpolated(pPolyline))
+    {
+      cPolyline->addDrawingStrategy(new PolylineInterpColorDrawerJoGL(polyline));
+    }
+    else
+    {
+      cPolyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
+    }
+  }
+
   if (sciGetPolylineStyle(pPolyline) == 2)
   {
     cPolyline->setDecompositionStrategy(new StairCaseDecomposition(polyline));

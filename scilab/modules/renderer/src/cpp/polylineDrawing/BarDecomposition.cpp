@@ -77,6 +77,11 @@ void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], doub
   
 }
 /*------------------------------------------------------------------------------------------*/
+void BarDecomposition::getDrawnVerticesColor(int colors[])
+{
+  // unused for now
+}
+/*------------------------------------------------------------------------------------------*/
 int BarDecomposition::getDrawnVerticesLength(void)
 {
   // can't be closed

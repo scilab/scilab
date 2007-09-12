@@ -84,6 +84,20 @@ void InterpolatedDecomposition::getDrawnVertices(double xCoords[], double yCoord
 
 }
 /*------------------------------------------------------------------------------------------*/
+void InterpolatedDecomposition::getDrawnVerticesColor(int colors[])
+{
+  sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
+  int nbVertices = sciGetNbPoints(pPolyline);
+  int * interpColors = sciGetInterpVector(pPolyline);
+  
+  intArrayCopy(colors, interpColors, nbVertices);
+  
+  if (sciGetIsClosed(pPolyline))
+  {
+    colors[nbVertices] = colors[0];
+  }
+}
+/*------------------------------------------------------------------------------------------*/
 int InterpolatedDecomposition::getDrawnVerticesLength(void)
 {
   int res = sciGetNbPoints(m_pDrawed->getDrawedObject());

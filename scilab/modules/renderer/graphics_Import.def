@@ -40,6 +40,7 @@ sciGetMarkStyle
 sciGetAxesBounds
 sciGetMargins
 doubleArrayCopy
+intArrayCopy
 setDoubleArraySingleValue
 sciGetIsReadyForRendering
 sciGetRealDataBounds
@@ -52,3 +53,5 @@ sciGetNbPoints
 sciGetPolylineStyle
 sciGetIsClosed
 sciGetArrowSize
+sciGetIsColorInterpolated
+sciGetInterpVector
