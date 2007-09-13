@@ -54,6 +54,7 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
+jmethodID voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 
 
 /**
@@ -106,6 +107,8 @@ void show(long figureIndex);
 void destroy(long figureIndex);
 
 void setFigureIndex(long figureIndex);
+
+void drawBox(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax);
 
 
 };

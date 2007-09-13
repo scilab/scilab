@@ -109,6 +109,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
+voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 
 
 }
@@ -251,6 +252,27 @@ exit(EXIT_FAILURE);
 }
 }
   curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void DrawableSubwinGL::drawBox (double xMin, double xMax, double yMin, double yMax, double zMin, double zMax){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL)
+{
+this->voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "drawBox", "(DDDDDD)V" ) ;
+if (this->voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method drawBox" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID ,xMin, xMax, yMin, yMax, zMin, zMax);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
