@@ -88,6 +88,7 @@ void C2F(convertdate)(time_t *dt,int w[10])
 		nowstruct = localtime(dt);
 		if (nowstruct)
 		{
+			/** @TODO replace [int] by defines ... */
 			w[0] = 1900 + nowstruct->tm_year;
 			w[1] = 1    + nowstruct->tm_mon;
 			w[2] = week_number(nowstruct);

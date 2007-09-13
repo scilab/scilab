@@ -18,7 +18,7 @@
  * @param dt
  * @param ierr
  */
-void C2F(scigetdate) __PARAMS ((time_t *dt, int *ierr));
+void C2F(scigetdate) (time_t *dt, int *ierr);
 
 
 /**
@@ -26,6 +26,6 @@ void C2F(scigetdate) __PARAMS ((time_t *dt, int *ierr));
  * @param dt
  * @param w
  */
-void C2F(convertdate) __PARAMS ((time_t *dt, int w[]));
+void C2F(convertdate) (time_t *dt, int w[]);
 
 #endif /* __GETDATE_H__ */
