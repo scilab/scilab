@@ -120,9 +120,9 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			int i;
 			tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1+1));
 			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) rowcolsortd(tmp_matrix,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
-			if (typex[0]==GLOBAL_SORT ) wholesortd(tmp_matrix,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
-			if (typex[0]==LIST_SORT) lgsortd(tmp_matrix,indices,m1,n1,typex,iord);  /* When it is going to be lr or lc*/
+			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) rowcolsortdouble(tmp_matrix,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
+			if (typex[0]==GLOBAL_SORT ) wholesortdouble(tmp_matrix,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
+			if (typex[0]==LIST_SORT) lgsortdouble(tmp_matrix,indices,m1,n1,typex,iord);  /* When it is going to be lr or lc*/
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&tmp_matrix);
 			LhsVar(1)= Rhs+1 ;                    /*Output */
 			if (Lhs == 2)
@@ -145,9 +145,9 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 				Str[i]=(char*)MALLOC(sizeof(char)*(strlen(S[i])+1));
 				if (Str[i]) strcpy(Str[i],S[i]);
 			}
-			if (typex[0]==LIST_SORT) lgsorts(Str,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
-            if (typex[0]==GLOBAL_SORT ) wholesorts(Str,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
-			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) rowcolsorts(Str,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
+			if (typex[0]==LIST_SORT) lgsortstring(Str,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
+            if (typex[0]==GLOBAL_SORT ) wholesortstring(Str,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
+			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) rowcolsortstring(Str,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, Str);    /*Output */
 			LhsVar(1)=Rhs+1;
 			if (Lhs == 2)

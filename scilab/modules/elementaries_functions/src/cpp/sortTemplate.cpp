@@ -9,7 +9,6 @@ using namespace std;
 
 void mywhole_swapd(double *v,int i, int j, int n);
 
-
 /*------------------------------------------------------------------------------------------*/
 template <class T>
 T GetMax (T a, T b) {
@@ -57,7 +56,7 @@ void my_swap(int *index, int i, int j)
    index[j] = temp;
 }
 /*------------------------------------------------------------------------------------------*/
-void my_swapd(double *index, int i, int j)
+void my_swapdouble(double *index, int i, int j)
 {
    double temp;
    temp = index[i];
@@ -360,7 +359,7 @@ void lgsortdouble(double *Input_Matrix,int *indices,int RowNum,int RowCol,char *
 }
 /*------------------------------------------------------------------------------------------*/
 
-void rowcolsortd(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord) /*When it is double matrix in ROW_SORT or COLUMN_SORT*/
+void rowcolsortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord) /*When it is double matrix in ROW_SORT or COLUMN_SORT*/
 {
     int i,j,position;
 	if (typex[0]==ROW_SORT) 
@@ -436,10 +435,10 @@ void my_wholesortdouble(double *Input_Matrix,int *index, int left, int right,cha
 {
    int i, last;
    void my_swap(int *index, int i, int j);
-   void my_swapd(double *v,int i, int j);
+   void my_swapdouble(double *v,int i, int j);
    if (left >= right) /* do nothing if array contains */
        return;        /* fewer than two elements */
-   my_swapd(Input_Matrix, left, (left + right)/2); /* move partition elem */
+   my_swapdouble(Input_Matrix, left, (left + right)/2); /* move partition elem */
    my_swap(index, left, (left + right)/2);
    last = left;                        /* to v[0] */
    for (i = left + 1; i <= right; i++) 
@@ -449,7 +448,7 @@ void my_wholesortdouble(double *Input_Matrix,int *index, int left, int right,cha
 		   if (Input_Matrix[i]<Input_Matrix[left])
 		   {
 			   ++last;
-			   my_swapd(Input_Matrix, last, i);
+			   my_swapdouble(Input_Matrix, last, i);
 			   my_swap(index, last, i);
 		   }
 	   }
@@ -458,12 +457,12 @@ void my_wholesortdouble(double *Input_Matrix,int *index, int left, int right,cha
 	       if (Input_Matrix[i]>Input_Matrix[left])
 		   {
 			   ++last;
-			   my_swapd(Input_Matrix, last, i);
+			   my_swapdouble(Input_Matrix, last, i);
 			   my_swap(index, last, i);
 		   }
 	   }
    }
-   my_swapd(Input_Matrix, left, last);
+   my_swapdouble(Input_Matrix, left, last);
    my_swap(index, left, last);   /* restore partition elem */
    my_wholesortdouble(Input_Matrix,index, left, last-1,iord,RowCol);
    my_wholesortdouble(Input_Matrix,index, last+1, right,iord,RowCol);

@@ -66,7 +66,7 @@ void lgsortstring(char **Input_Matrix,int *indices,int RowNum,int RowCol,char *t
      * @param typex 
      * @param iord	
 	 */
-	void wholesortd(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord);
+	void wholesortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord);
 
     /**
      *  @TODO add comment
