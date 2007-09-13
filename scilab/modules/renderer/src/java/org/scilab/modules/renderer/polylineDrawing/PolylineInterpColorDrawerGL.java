@@ -17,7 +17,9 @@ import com.sun.opengl.util.texture.Texture;
 
 /**
  * Class containing the driver dependant routines to fill the area
- *        enclosed by the polyline with interpolated colors 
+ * enclosed by the polyline with interpolated colors.
+ * Note that this class might be more generic by using a glu tesselator like
+ * in fill drawing. 
  * @author Jean-Baptiste Silvy
  */
 public class PolylineInterpColorDrawerGL extends AutoDrawableObjectGL {

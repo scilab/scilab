@@ -26,6 +26,8 @@ namespace sciGraphics
 
     virtual ~DrawableSubwinJoGL( void ) ;
 
+    virtual void drawBox(const double bounds[6]);
+
     /**
      * Return the drawn object
      */

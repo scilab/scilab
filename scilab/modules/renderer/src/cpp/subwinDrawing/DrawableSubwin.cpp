@@ -50,6 +50,9 @@ void DrawableSubwin::draw( void )
   sciGetViewingAngles(m_pDrawed, &alpha, &theta);
   m_pCamera->setRotationAngles(alpha, theta);
   m_pCamera->renderPosition();
+
+  drawBox(bounds);
+
   displayChildren() ;
   endDrawing();
 }
@@ -57,6 +60,11 @@ void DrawableSubwin::draw( void )
 void DrawableSubwin::show( void )
 {
   draw() ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableSubwin::drawBox(const double bounds[6])
+{
+  getSubwinImp()->drawBox(bounds);
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableSubwinBridge * DrawableSubwin::getSubwinImp( void )

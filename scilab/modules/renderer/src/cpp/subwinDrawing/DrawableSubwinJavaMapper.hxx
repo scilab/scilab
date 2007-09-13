@@ -39,7 +39,9 @@ public:
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for subwins
-
+  void drawBox(double xMin, double xMax,
+               double yMin, double yMax,
+               double zMin, double zMax);
   /*----------------------------------------------------------------------*/
 
 protected:

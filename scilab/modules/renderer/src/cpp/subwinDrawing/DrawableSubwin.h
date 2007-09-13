@@ -50,6 +50,11 @@ protected:
   virtual void show( void ) ;
 
   /**
+   * Draw the bounding box of the sunwin object.
+   */
+  void drawBox(const double bounds[6]);
+
+  /**
    * Return the real type of implementation object
    */
   DrawableSubwinBridge * getSubwinImp( void ) ;

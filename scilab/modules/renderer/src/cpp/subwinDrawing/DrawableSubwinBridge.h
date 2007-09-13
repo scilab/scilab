@@ -15,27 +15,28 @@
 namespace sciGraphics
 {
 
-  // To avoid cyclic dependances. 
-  class DrawableSubwin;
+// To avoid cyclic dependances. 
+class DrawableSubwin;
 
-  class DrawableSubwinBridge : public virtual DrawableObjectBridge
-  {
+class DrawableSubwinBridge : public virtual DrawableObjectBridge
+{
 
-  public:
+public:
 
-    DrawableSubwinBridge( void ) {}
+  DrawableSubwinBridge( void ) {}
 
-    virtual ~DrawableSubwinBridge( void ) {}
+  virtual ~DrawableSubwinBridge( void ) {}
 
+  virtual void drawBox(const double bounds[6]) = 0;
 
-  protected:
+protected:
 
-    /**
-     * Return the drawed object
-     */
-    virtual DrawableSubwin * getSubwinDrawer( void ) = 0 ;
+  /**
+   * Return the drawed object
+   */
+  virtual DrawableSubwin * getSubwinDrawer( void ) = 0 ;
 
-  } ;
+} ;
 
 }
 

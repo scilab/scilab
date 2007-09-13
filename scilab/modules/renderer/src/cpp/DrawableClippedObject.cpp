@@ -35,7 +35,7 @@ void DrawableClippedObject::setClipBox( void )
   case 0: // clipgrf state, use axes bounds
     {
       double clipBounds[6] ;
-      sciGetRealDataBounds(sciGetParentSubwin(pObj), clipBounds ) ;
+      sciGetRealDataBounds(sciGetParentSubwin(pObj), clipBounds) ;
       setClipBox(clipBounds[0], clipBounds[1], clipBounds[2],
                  clipBounds[3], clipBounds[4], clipBounds[5] ) ;
       m_bXClippingEnable = true ;

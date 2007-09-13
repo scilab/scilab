@@ -13,8 +13,8 @@ extern "C"
 #include "math_graphics.h"
 }
 
-// distance between two farthest edges of a cube
-#define FIT_WINDOW_RATIO ((1.0)/(sqrt(3.0)))
+// distance between two farthest edges of a square
+#define FIT_WINDOW_RATIO ((1.0)/(sqrt(2.0)))
 
 namespace sciGraphics
 {
