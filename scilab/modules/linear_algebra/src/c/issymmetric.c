@@ -5,15 +5,12 @@
 ** Made by  Bruno JOFRET <bruno.jofret@inria.fr>
 **
 ** Started on  Thu Jul 19 12:12:28 2007 bruno
-** Last update Tue Sep  4 14:48:18 2007 bruno
+** Last update Thu Sep 13 09:48:48 2007 bruno
 **
 ** Copyright INRIA 2007
 */
 
-#include "stack-c.h"
-
-#define SYMMETRIC	1
-#define NOT_SYMMETRIC	0
+#include "issymmetric.h"
 
 /*
 ** Check wether or not a Matrix is Symmetric.
