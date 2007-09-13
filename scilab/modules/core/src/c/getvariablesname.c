@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
+#include <stdlib.h>
 #include "getvariablesname.h"
 #include "stackinfo.h"
 #include "MALLOC.h"
