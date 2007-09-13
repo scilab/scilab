@@ -32,8 +32,7 @@ sci_gateway/c/sci_historymanager.c
 if GUI
 
 # List of the c files
-HISTORY_MANAGER_C_SOURCES = $(HISTORY_MANAGER_C_SOURCES) \
-src/jni/HistoryManagement_wrap.c
+HISTORY_MANAGER_C_SOURCES += src/jni/HistoryManagement_wrap.c
 
 endif
 
