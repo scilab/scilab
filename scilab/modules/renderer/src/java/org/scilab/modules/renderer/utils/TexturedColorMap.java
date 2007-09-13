@@ -1,0 +1,152 @@
+/*------------------------------------------------------------------------*/
+/* file: TexturedColorMap.java                                            */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Colormap which can create a textre of itself                    */
+/*------------------------------------------------------------------------*/
+
+package org.scilab.modules.renderer.utils;
+
+import java.awt.image.BufferedImage;
+
+import com.sun.opengl.util.texture.Texture;
+import com.sun.opengl.util.texture.TextureData;
+import com.sun.opengl.util.texture.TextureIO;
+import javax.media.opengl.GL;
+
+/**
+ * Colormap which can create a textre of itself
+ * @author Jean-Baptiste Silvy
+ */
+public class TexturedColorMap extends ColorMap {
+
+	private static final double IMAGE_SCALING = 255.0;
+	private static final int RED_SHIFT = 16;
+	private static final int GREEN_SHIFT = 8;
+	private static final int BLUE_SHIFT = 0;
+	
+	private Texture colorMapTexture;
+	private BufferedImage textureImage;
+	
+	/** To konw if the colormap has changed and if we need to recreate a new colormap */
+	private boolean hasChanged;
+	
+	/**
+	 * Default constructor
+	 */
+	public TexturedColorMap() {
+		super();
+		colorMapTexture = null;
+		textureImage = null;
+		hasChanged = true;
+	}
+	
+	/**
+	 * static factory
+	 * @return new instance of textured colormap
+	 */
+	public static TexturedColorMap create() {
+		return new TexturedColorMap();
+	}
+	
+	/**
+	 * Set new data to the colorMap
+	 * @param newData nbColor x 3 matrix containign the 3 channels
+	 *                the matrix is stored rowwise like in Scilab
+	 */
+	@Override
+	public void setData(double[] newData) {
+		super.setData(newData);
+		hasChanged = true;
+	}
+	
+	/**
+	 * Get the texture corresponding to the colormap
+	 * @return 1D texture containing the colormap 
+	 */
+	public Texture getTexture() {
+		
+		if (colorMapTexture == null) {
+			colorMapTexture = createTexture();
+			hasChanged = false;
+		} else if (hasChanged) {
+			// need to recreate a new texture data
+			colorMapTexture.updateImage(createTextureData());
+			hasChanged = false;
+		}
+		
+		return colorMapTexture;
+	}
+	
+	/**
+	 * Create a new texture of the colormap
+	 * @return 1D texture containing the colormap
+	 */
+	private Texture createTexture() {
+		Texture res = TextureIO.newTexture(getTextureData());
+		res.setTexParameteri(GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST);
+		res.setTexParameteri(GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST);
+		return res;
+	}
+	
+	/**
+	 * @return The buffered image used to draw the texture
+	 */
+	private BufferedImage getImage() {
+		if (textureImage == null) {
+			// create a new image
+			int colorMapSize = getSize();
+			textureImage = new BufferedImage(colorMapSize, 1, BufferedImage.TYPE_INT_RGB);
+			
+			// fill the image
+			for (int i = 0; i < colorMapSize; i++) {	
+				textureImage.setRGB(i, 0, toRGBcolor(getRedChannel(i), getGreenChannel(i), getBlueChannel(i)));
+			}
+		}
+		return textureImage;
+	}
+	
+	/**
+	 * Convert a color ginving its three channels between 0 and 1 to an integer value.
+	 * The resulting int second byte is red channel, third byte is green and last is blue.
+	 * @param red red channel
+	 * @param green green chanel
+	 * @param blue blue chanel
+	 * @return int containg the three chanels
+	 */
+	private int toRGBcolor(double red, double green, double blue) {
+		int rgbColor = 0x000000;
+		rgbColor |= ((int) (red   * IMAGE_SCALING)) << RED_SHIFT;
+		rgbColor |= ((int) (green * IMAGE_SCALING)) << GREEN_SHIFT;
+		rgbColor |= ((int) (blue  * IMAGE_SCALING)) << BLUE_SHIFT;
+		return rgbColor;
+	}
+	
+	/**
+	 * Create a new texture when colormap has been modified.
+	 * @return a new texture data.
+	 */
+	private TextureData createTextureData() {
+		textureImage = null;
+		return getTextureData();
+	}
+	
+	/**
+	 * Create a new data to be used by the texture.
+	 * @return new texture data corresponding to the colormap.
+	 */
+	private TextureData getTextureData() {
+		return TextureIO.newTextureData(getImage(), false);
+	}
+	
+	/**
+	 * Desalocate ressources used by the texture
+	 */
+	public void clearTexture() {
+		if (colorMapTexture != null) {
+			colorMapTexture.dispose();
+			colorMapTexture = null;
+		}
+	}
+	
+}

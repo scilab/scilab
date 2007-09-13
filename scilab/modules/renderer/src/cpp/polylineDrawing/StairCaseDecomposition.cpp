@@ -128,7 +128,7 @@ void StairCaseDecomposition::getDrawnVerticesColor(int colors[])
   int nbVertices = 2 * nbPoints - 1;
   int * interpColors = sciGetInterpVector(pPolyline);
 
-  for (int i = 0; i < nbPoints ; i++ )
+  for (int i = 0; i < nbPoints - 1; i++ )
   {
     colors[2 * i    ] = interpColors[i];
     colors[2 * i + 1] = interpColors[i];

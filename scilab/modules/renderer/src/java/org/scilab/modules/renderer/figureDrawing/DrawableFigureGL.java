@@ -14,7 +14,7 @@ import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.utils.ColorMap;
+import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.ObjectGLCleaner;
 
 
@@ -32,15 +32,13 @@ public class DrawableFigureGL extends ObjectGL {
 	/** To get all the objects which needs to be destroyed */
 	private ObjectGLCleaner destroyedObjects;
 	
-	private int nbRendering = 0;
-	
 	/**
 	 * Default Constructor
 	 */
 	public DrawableFigureGL() {
 		super();
       	guiProperties = null;
-      	setColorMap(ColorMap.create());
+      	setColorMap(TexturedColorMap.create());
       	figureId = -1; // figure ids should be greater than 0.
       	destroyedObjects = new ObjectGLCleaner();
     }

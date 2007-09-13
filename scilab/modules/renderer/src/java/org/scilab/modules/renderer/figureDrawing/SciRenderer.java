@@ -12,6 +12,7 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.jni.FigureScilabCall;
 
 
@@ -65,6 +66,7 @@ public class SciRenderer
   public void init(GLAutoDrawable gLDrawable) {
 	  
       if (isInit) {
+    	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
     	  FigureScilabCall.redrawFigure(renderedFigure);
       }
       final GL gl = gLDrawable.getGL();

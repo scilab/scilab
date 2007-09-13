@@ -10,7 +10,7 @@ package org.scilab.modules.renderer;
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 
-import org.scilab.modules.renderer.utils.ColorMap;
+import org.scilab.modules.renderer.utils.TexturedColorMap;
 
 /**
  * Object which can be rendered in a GL pipeline
@@ -23,7 +23,7 @@ public abstract class ObjectGL {
 	/** current context to draw in */
 	private GL glPipeline;
 	/** current colorMap to use */
-	private ColorMap curColorMap;
+	private TexturedColorMap curColorMap;
 
 	/**
 	 * Default constructor
@@ -105,7 +105,7 @@ public abstract class ObjectGL {
 	 * @param figureIndex index of the figure correspondingto the canvas
 	 * @return updated colormap
 	 */
-	protected ColorMap updateColorMap(int figureIndex) {
+	protected TexturedColorMap updateColorMap(int figureIndex) {
 		curColorMap = FigureMapper.getCorrespondingFigure(figureIndex).getColorMap();
 		return curColorMap;
 	}
@@ -114,7 +114,7 @@ public abstract class ObjectGL {
 	 * Get the current colormap, ie the colormap of the parent canvas
 	 * @return current colormap
 	 */
-	protected ColorMap getColorMap() {
+	public TexturedColorMap getColorMap() {
 		return curColorMap;
 	}
 	
@@ -122,7 +122,7 @@ public abstract class ObjectGL {
 	 * Set the colormap
 	 * @param cmap new colormap
 	 */
-	protected void setColorMap(ColorMap cmap) {
+	protected void setColorMap(TexturedColorMap cmap) {
 		curColorMap = cmap;
 	}
 	

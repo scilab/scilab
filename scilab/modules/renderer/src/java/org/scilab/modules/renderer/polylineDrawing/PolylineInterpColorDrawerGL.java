@@ -9,7 +9,11 @@
 
 package org.scilab.modules.renderer.polylineDrawing;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.renderer.AutoDrawableObjectGL;
+
+import com.sun.opengl.util.texture.Texture;
 
 /**
  * Class containing the driver dependant routines to fill the area
@@ -17,6 +21,9 @@ import org.scilab.modules.renderer.AutoDrawableObjectGL;
  * @author Jean-Baptiste Silvy
  */
 public class PolylineInterpColorDrawerGL extends AutoDrawableObjectGL {
+	
+	/** Move a little the indice in order to get the right color in the colormap */
+	private static final double COLOR_OFFSET = 0.5;
 	
 	/**
 	 * Default constructor
@@ -34,8 +41,22 @@ public class PolylineInterpColorDrawerGL extends AutoDrawableObjectGL {
 	 */
 	public void drawPolyline(double[] xCoords, double[] yCoords,
 							 double[] zCoords, int[] colors) {
-		System.err.println("Fill with interpolated colors.");
+		GL gl = getGL();
+		double size = getColorMap().getSize();
 		
+		Texture colormapTexture = getColorMap().getTexture();
+		colormapTexture.enable();
+		colormapTexture.bind();
+		
+		gl.glColor3d(1.0, 1.0, 1.0);
+		gl.glBegin(GL.GL_TRIANGLE_FAN); // works with triangles and quads
+		for (int i = 0; i < xCoords.length; i++) {
+			gl.glTexCoord1d((colors[i] - COLOR_OFFSET) / size);
+			gl.glVertex3d(xCoords[i], yCoords[i], zCoords[i]);
+		}
+		gl.glEnd();
+		colormapTexture.disable();
+			
 	}
 	
 	

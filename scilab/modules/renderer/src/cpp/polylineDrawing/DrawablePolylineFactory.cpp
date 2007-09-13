@@ -58,7 +58,7 @@ void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
   }
   else if (sciGetIsFilled(pPolyline))
   {
-    if (sciGetIsColorInterpolated(pPolyline))
+    if (sciGetIsColorInterpolated(pPolyline) && sciGetPolylineStyle(pPolyline) != 2)
     {
       cPolyline->addDrawingStrategy(new PolylineInterpColorDrawerJoGL(polyline));
     }
