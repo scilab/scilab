@@ -13,12 +13,12 @@
 /**
  * Callback for when errors happens with nurbs.
  */
-static void /*CALLBACK*/ nurbsErrorDefault(GLenum errno)
-{
-  const GLubyte * errString;
-  errString = gluErrorString(errno);
-  printf("%s\n", errString);
-}
+//static void /*CALLBACK*/ nurbsErrorDefault(GLenum errno)
+//{
+//  const GLubyte * errString;
+//  errString = gluErrorString(errno);
+//  printf("%s\n", errString);
+//}
 /*------------------------------------------------------------------------------------------*/
 GLUnurbsObj * gluNewNurbsRendererWrapping(void)
 {

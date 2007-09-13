@@ -42,13 +42,13 @@ void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], doub
   doubleArrayCopy(xCoords, xPoints, nbVertices);
   doubleArrayCopy(yCoords, yPoints, nbVertices);
 
-  if ( pPOLYLINE_FEATURE(pPolyline)->pvz == NULL )
+  if ( zPoints == NULL )
   {
     setDoubleArraySingleValue(zCoords, 0.0, nbVertices);
   }
   else
   {
-    doubleArrayCopy(zCoords, pPOLYLINE_FEATURE(pPolyline)->pvz, nbVertices);
+    doubleArrayCopy(zCoords, zPoints, nbVertices);
   }
 
   if (xShift != NULL)
@@ -80,6 +80,10 @@ void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], doub
 void BarDecomposition::getDrawnVerticesColor(int colors[])
 {
   // unused for now
+  for(int i = 0; i < getDrawnVerticesLength(); i++)
+  {
+    colors[i] = 0;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 int BarDecomposition::getDrawnVerticesLength(void)

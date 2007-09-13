@@ -44,8 +44,8 @@ void DrawableFigureJoGL::drawCanvas( void )
 void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
 {
   m_pJavaWindow = new org_scilab_modules_gui_graphicWindow::ScilabGraphicWindow(getScilabJavaVM());
-  getFigureJavaMapper()->setFigureIndex(sciGetNum(getDrawer()->getDrawedObject()));
-  m_pJavaWindow->setFigureIndex(sciGetNum(getDrawer()->getDrawedObject()));
+  getFigureJavaMapper()->setFigureIndex(figureIndex);
+  m_pJavaWindow->setFigureIndex(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeRenderingCanvas( void )

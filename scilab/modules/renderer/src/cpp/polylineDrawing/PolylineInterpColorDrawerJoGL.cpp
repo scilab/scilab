@@ -31,7 +31,6 @@ PolylineInterpColorDrawerJoGL::~PolylineInterpColorDrawerJoGL(void)
 /*------------------------------------------------------------------------------------------*/
 void PolylineInterpColorDrawerJoGL::drawPolyline( void )
 {
-  sciPointObj * pObj = m_pDrawed->getDrawedObject();
   initializeDrawing() ;
 
   // get the data of the polyline
