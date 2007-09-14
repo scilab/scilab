@@ -545,6 +545,7 @@ if test "$with_javasci" != no -a "$with_gui" != no; then
 		AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
 		AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.GL],[Scilab 3D rendering])
 		AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
+		AC_JAVA_CHECK_PACKAGE([Console-API],[com.artenum.console.interfaces.core.ConsoleConfiguration],[Console Artenum / Scilab])
 
 
 		AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...])
