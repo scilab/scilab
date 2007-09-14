@@ -17,7 +17,7 @@
 <classpath path="$SCILAB/thirdparty/jogl.jar"/>
 <classpath path="$SCILAB/thirdparty/gluegen-rt.jar"/>
 <classpath path="$SCILAB/thirdparty/flexdock-0.5.1.jar"/>
-<classpath path="$SCILAB/thirdparty/Console-1.0-API.jar"/>
+<classpath path="$SCILAB/thirdparty/Console-API-1.0.jar"/>
 <classpath path="$SCILAB/thirdparty/Console-1.0.jar"/>
 <classpath path="$SCILAB/thirdparty/skinlf.jar"/>
 <classpath path="$SCILAB/thirdparty/looks-2.1.1.jar"/>
