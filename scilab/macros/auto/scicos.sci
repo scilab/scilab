@@ -1,5 +1,5 @@
 function [scs_m,newparameters,needcompile,edited]=scicos(scs_m,menus)
-// scicos - block diagram graphic editor
+// scicos - block diagram graphic editor 
 //%SYNTAX
 // scs_m=scicos(scs_m,job)
 //%PARAMETERS
