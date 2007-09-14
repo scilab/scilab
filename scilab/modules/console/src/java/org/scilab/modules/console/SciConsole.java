@@ -39,6 +39,8 @@ public class SciConsole extends JPanel {
 	
 	private static final int LINE_NUMBER_IN_PROMPT = 2;
 	
+	private static final String BACKSLASH_R = "\r";
+	
 	/**
 	 * Maximum length of a command send to Scilab 
 	 */
@@ -350,8 +352,8 @@ public class SciConsole extends JPanel {
 					return;
 				}
 				
-				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements]);
-				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements]);
+				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
+				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
 
 				nbStatements++;
 			}
