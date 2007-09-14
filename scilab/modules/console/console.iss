@@ -14,7 +14,7 @@
 Source: bin\sciconsole.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CONSOLE}\jar\org.scilab.modules.console.jar;DestDir: {app}\modules\{#CONSOLE}\jar; Components: {#COMPN_SCILAB}
-Source: thirdparty\Console-1.0-API.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\Console-API-1.0.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\Console-1.0.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: modules\{#CONSOLE}\etc\configuration.xml; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB};
 ;
