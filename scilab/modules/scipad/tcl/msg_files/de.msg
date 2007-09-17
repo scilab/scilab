@@ -152,14 +152,14 @@
                     Sie es erneut."
 ::msgcat::mcset de "Note: This message might also be triggered by a string\n \
                     quoted with single quotes and containing the word\
-                    \"function\",\n  when \"Colorize 'strings\"' is\
+                    \"function\",\n  when \"Colorize 'strings'\" is\
                     unchecked in the Options menu."\
                    "Diese Meldung kann auch durch eine Zeichenkette\
                     \"function\" in einfachen Anf\u00FChrungszeichen ausgel\u00F6st\
                     werden, wenn die \"Farbige 'Zeichenketten'\" im Men\u00FC\
                     Optionen nicht aktiviert ist."
 ::msgcat::mcset de "This known bug can be worked around simply by checking\
-                    \"Colorize \'&strings\"'."\
+                    \"Colorize \'&strings'\"."\
                    "Dieser bekannte Fehler kann durch die Aktvierung von\
                     \"Farbige 'Zeichenketten'\" einfach behoben werden."
 ::msgcat::mcset de "Unterminated function definition found"\
