@@ -144,14 +144,14 @@
                     terminate function "\
                    "Attenzione!\n E' stata trovata una funzione non\
                     terminata dalla parola chiave \"endfunction\" in uno dei\
-                    files correntemente aperti. Questa sintassi è obsoleta.\
-                    Terminare la funzione con \"endfunction\""
-::msgcat::mcset it " and try again." "e riprovare."
+                    files correntemente aperti. Questa sintassi è obsoleta.\n\n\
+                    Terminare la funzione "
+::msgcat::mcset it " and try again." " con \"endfunction\" e riprovare."
 ::msgcat::mcset it "Note: This message might also be triggered by a string\n \
                     quoted with single quotes and containing the word\
                     \"function\",\n  when \"Colorize \'strings\'\" is\
                     unchecked in the Options menu."\
-                   "Nota : questo messaggio può anche essere dovuto ad una\
+                   "Nota: questo messaggio può anche essere dovuto ad una\
                     stringa contenente la parola \"function\" delimitata da\
                     apostrofi invece che da virgolette, se l'opzione\
                     \"Colora \'stringhe\' non è selezionata nel menu\
