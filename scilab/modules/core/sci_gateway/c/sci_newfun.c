@@ -7,8 +7,7 @@
 #include "stack-c.h"
 #include "error_scilab.h"
 #include "Funtab.h"
-/*-----------------------------------------------------------------------------------*/
-extern int IsAScalar(int RhsNumber);
+#include "IsAScalar.h"
 /*-----------------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname);
 /*-----------------------------------------------------------------------------------*/
