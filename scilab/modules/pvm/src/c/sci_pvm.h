@@ -2,11 +2,13 @@
 #define SCI_PVM 
 
 #ifdef _MSC_VER
-  #include "pvm3/include/pvm3.h"
+#include "pvm3/include/pvm3.h"
 #else
-  #include "pvm3.h"
+#include "pvm3.h"
 #endif
 #include "stack-c.h"
+
+#define PVM_CONFIG_FILE "/.pvmd.conf"
 
 /**
  * TODO: Add comments
@@ -19,10 +21,7 @@
  * @param msgtag    
  * @param res   
  */
-void C2F(scipvmbcast)(char *group, int *l, 
-		      int *pack, int *n, 
-		      double *buff,
-		      int *msgtag, int *res); 
+void C2F(scipvmbcast)(char *group, int *l, int *pack, int *n, double *buff, int *msgtag, int *res); 
 
 /**
  * TODO: Add comments
@@ -89,21 +88,21 @@ void C2F(scipvmtasks)(int *where, int *ntask,
 void C2F(scipvmbufinfo)(int *bufid, int *bytes, int *msgtag, int * tid, int *res); 
 
 /**
- * TODO: Add comments
+ * Retrieve the description of the error message from the PVM error code
  *
- * @param err   
- * @return <ReturnValue>
+ * @param err the error code
+ * @return The error message
  */
 char *scipvm_error_msg(int err); 
 
 /**
  * Start PVM
  *
- * @param res   
- * @param hostfile  
- * @param l 
+ * @param res Result of the operation
+ * @param hostfile the file containing the list of host file
+ * @param hostfile_len
  */
-void C2F(scipvmstart)(int *res, char *hostfile, int *l);
+void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len);
 
 
 
@@ -196,7 +195,7 @@ void C2F(scipvmsendvar)(int *tids, int *p, char *buff,
 /**
  * TODO: add comments
  *
- * @param tids  
+ * @param taskId The task identification
  * @param p 
  * @param pack  
  * @param n 
@@ -204,7 +203,7 @@ void C2F(scipvmsendvar)(int *tids, int *p, char *buff,
  * @param msgtag    
  * @param res   
  */
-void C2F(scipvmsend)(int *tids, int *p, 
+void C2F(scipvmsend)(int *taskId, int *p, 
 		     int *pack, int *n, 
 		     double *buff,
 		     int *msgtag, int *res);
@@ -284,8 +283,8 @@ int C2F(varpak)(int *k, int *pack, int *n, int *nMax, int *ierr);
 /**
  * Return the error message
  *
- * @param n 
- * @return <ReturnValue>
+ * @param n the code of the error
+ * @return The error message
  */
 char *pvm_geterror(int n);
 
