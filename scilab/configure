@@ -11667,7 +11667,7 @@ echo $ECHO_N "checking Console-1.0... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
 // #line 11669 "configure"
-import com.artenum.console.core.action;
+import com.artenum.console.core.action.AbstractConsoleAction;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -11706,8 +11706,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar Console-1.0 used by Console Core Artenum / Scilab (looking for package com.artenum.console.core.action)" >&5
-echo "$as_me: error: Could not find Java package/jar Console-1.0 used by Console Core Artenum / Scilab (looking for package com.artenum.console.core.action)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar Console-1.0 used by Console Core Artenum / Scilab (looking for package com.artenum.console.core.action.AbstractConsoleAction)" >&5
+echo "$as_me: error: Could not find Java package/jar Console-1.0 used by Console Core Artenum / Scilab (looking for package com.artenum.console.core.action.AbstractConsoleAction)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
