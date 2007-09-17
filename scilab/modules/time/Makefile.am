@@ -6,7 +6,8 @@
 ###  SOURCES ###
 TIME_C_SOURCES = src/c/realtime.c \
 src/c/timer.c \
-src/c/getdate.c
+src/c/getdate.c \
+src/c/InversionMatrixInt.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_realtime.c \
 sci_gateway/c/sci_timer.c \

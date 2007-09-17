@@ -12,7 +12,6 @@ static int isBissextile (unsigned annee);
 static unsigned months_to_days (unsigned mois);
 static long years_to_days (unsigned annee);
 static long ymd_to_scalar (unsigned annee, unsigned mois, unsigned jour);
-int *InversionMatrixInt(int W,int L,int *Matrix);
 /*-----------------------------------------------------------------------------------*/
 #define NBRDAY 7
 #define NBRWEEK 6
@@ -120,15 +119,4 @@ static long ymd_to_scalar (unsigned annee, unsigned mois, unsigned jour)
     return scalaire;
 }
 /*-----------------------------------------------------------------------------------*/
-int *InversionMatrixInt(int W,int L,int *Matrix)
-{
-	int *buffer = (int *)MALLOC( (W*L)*sizeof(int) );
 
-	int i=0;
-	int j=0;
-
-	for (i=0; i<W; i++) for (j=0; j<L; j++) buffer[i*L+j] = Matrix[j*W+i];
-
-	return buffer;
-}
-/*-----------------------------------------------------------------------------------*/

@@ -17,8 +17,7 @@
 #include "error_scilab.h"
 #include "MALLOC.h"
 #include "getdate.h"
-/*-----------------------------------------------------------------------------------*/
-extern int *InversionMatrixInt(int W,int L,int *Matrix);
+#include "InversionMatrixInt.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 {
