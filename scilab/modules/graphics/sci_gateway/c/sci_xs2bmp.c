@@ -9,9 +9,7 @@
 #include "sciprint.h"
 #include "machine.h"
 #include "stack-c.h"
-
-/*-----------------------------------------------------------------------------------*/
-extern int IsAScalar(int RhsNumber);
+#include "IsAScalar.h"
 /*-----------------------------------------------------------------------------------*/
 int sci_xs2bmp( char * fname, unsigned long fname_len )
 {

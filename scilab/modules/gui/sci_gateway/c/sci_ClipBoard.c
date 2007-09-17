@@ -10,7 +10,7 @@
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "scilabmode.h"
-#include "../../../core/src/c/IsAScalar.h"
+#include "IsAScalar.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 {

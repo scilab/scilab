@@ -13,8 +13,7 @@
 #include "sciprint.h"
 #include "gw_graphics.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-extern int IsAScalar(int RhsNumber);
+#include "IsAScalar.h"
 /*-----------------------------------------------------------------------------------*/
 int sci_xs2emf( char * fname, unsigned long fname_len )
 {
