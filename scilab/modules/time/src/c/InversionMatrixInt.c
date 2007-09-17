@@ -4,6 +4,7 @@
  * -----------------------------------------------------------------------------------*/ 
 
 #include "InversionMatrixInt.h"
+#include "MALLOC.h"
 
 int *InversionMatrixInt(int W,int L,int *Matrix)
 {

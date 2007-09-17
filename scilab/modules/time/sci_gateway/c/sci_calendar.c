@@ -5,8 +5,7 @@
 #include "MALLOC.h"
 #include "sci_calendar.h"
 #include "error_scilab.h"
-/*-----------------------------------------------------------------------------------*/
-extern int IsAScalar(int RhsNumber);
+#include "IsAScalar.h"
 /*-----------------------------------------------------------------------------------*/
 static int isBissextile (unsigned annee);
 static unsigned months_to_days (unsigned mois);
