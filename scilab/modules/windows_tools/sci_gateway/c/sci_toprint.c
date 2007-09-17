@@ -10,8 +10,8 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "../../../fileio/includes/FileExist.h"
+#include "IsAScalar.h"
 /*-----------------------------------------------------------------------------------*/
-extern int IsAScalar(int RhsNumber);
 extern BOOL FigureToPrint(int figurenumber,BOOL Postscript);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
