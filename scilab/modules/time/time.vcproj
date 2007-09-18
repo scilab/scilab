@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\InversionMatrixInt.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\realtime.c"
 				>
 			</File>
