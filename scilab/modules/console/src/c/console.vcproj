@@ -46,7 +46,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -206,19 +206,19 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\jni\ClearConsole.cpp"
+				RelativePath="..\cpp\ClearConsole.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\jni\ClearConsolePart.cpp"
+				RelativePath="..\cpp\ClearConsolePart.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\jni\ConsolePrintf.cpp"
+				RelativePath="..\cpp\ConsolePrintf.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\jni\ConsoleRead.cpp"
+				RelativePath="..\cpp\ConsoleRead.cpp"
 				>
 			</File>
 			<File
@@ -230,7 +230,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\jni\GetCharWithoutOutput.cpp"
+				RelativePath="..\cpp\GetCharWithoutOutput.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetScilabConsoleObject.cpp"
 				>
 			</File>
 			<File
@@ -254,15 +258,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\jni\PromptToHome.cpp"
+				RelativePath="..\jni\org_scilab_modules_gui_bridge_console.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\jni\ScilabLinesUpdate.cpp"
+				RelativePath="..\cpp\PromptToHome.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\jni\SetConsolePrompt.cpp"
+				RelativePath="..\cpp\ScilabLinesUpdate.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetConsolePrompt.cpp"
 				>
 			</File>
 			<File
@@ -319,6 +327,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetScilabConsoleObject.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetScilabConsoleObject.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\GuiManagement.h"
 				>
 			</File>
@@ -328,6 +344,10 @@
 			</File>
 			<File
 				RelativePath=".\InterpreterManagement.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\org_scilab_modules_gui_bridge_console.hxx"
 				>
 			</File>
 			<File
