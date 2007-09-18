@@ -14,7 +14,10 @@ src/jni/ConsoleRead.cpp \
 src/jni/GetCharWithoutOutput.cpp \
 src/jni/PromptToHome.cpp \
 src/jni/ScilabLinesUpdate.cpp \
-src/jni/SetConsolePrompt.cpp
+src/jni/SetConsolePrompt.cpp \
+src/jni/org_scilab_modules_gui_bridge_console.cpp
+
+CONSOLE_CPP_SOURCES =  src/cpp/GetScilabConsoleObject.cpp
 
 # List of the c files
 CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
@@ -35,7 +38,7 @@ CONSOLE_C_SOURCES = src/noconsole/noconsole.c
 endif
 
 # Includes need for the compilation
-libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
@@ -44,7 +47,7 @@ libsciconsole_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdi
 pkglib_LTLIBRARIES = libsciconsole.la
 
 # All the sources needed by libsciconsole.la
-libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES)
+libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib

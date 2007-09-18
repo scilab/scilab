@@ -1,48 +1,27 @@
 /*-----------------------------------------------------------------------------------*/
 /**
 * @author Allan CORNET - INRIA 2007
+* @author Vincent COUVERT - INRIA 2007
 */
 /*-----------------------------------------------------------------------------------*/
-#include <stdlib.h>
-#include <jni.h>
-extern "C" {
-#include "./../../jvm/includes/getScilabObject.h"
-#include "../../../jvm/includes/getScilabJNIEnv.h"
-}
 #include "ConsolePrintf.hxx"
 /*-----------------------------------------------------------------------------------*/
+using namespace  org_scilab_modules_gui_bridge_console;
 int ConsolePrintf(char *line)
 {
-	int len = 0;
-	jobject  ScilabObj = getScilabObject();
-	JNIEnv *env = getScilabJNIEnv();
+  JavaVM scilabJVM = *getScilabJavaVM();
+  jobject scilabConsoleObj = GetScilabConsoleObject();
 
-	/* get the class */
-	jclass class_Mine = env->GetObjectClass(ScilabObj);
+  if (scilabConsoleObj) 
+    {
+      SwingScilabConsole *jConsole = new SwingScilabConsole(&scilabJVM, scilabConsoleObj);
+      
+      (*jConsole).display(line);
 
-	jfieldID id_Console =  env->GetFieldID(class_Mine, "sciConsole","Lorg/scilab/modules/gui/console/Console;");
-	if (id_Console)
-	{
-		jobject jConsole = env->GetObjectField(ScilabObj, id_Console);
-		{
-			if (jConsole)
-			{
-				jclass cls = env->GetObjectClass(jConsole);
-				if (cls)
-				{
-					jmethodID mid = env->GetMethodID(cls, "display", "(Ljava/lang/String;)V");
-					if (mid)
-					{
-						jstring jstr;
-						jstr = env->NewStringUTF(line);
-						env->CallVoidMethod(jConsole, mid, jstr);
-					}
-				}
-			}
-		}
-	}
+      delete(jConsole);
+    }
 
-
-	return len;
+  /* Should return the length of the string displayed */
+  return 0;
 }
 /*-----------------------------------------------------------------------------------*/

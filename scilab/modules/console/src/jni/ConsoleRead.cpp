@@ -3,114 +3,35 @@
 * @author Vincent COUVERT - INRIA 2007
 */
 /*-----------------------------------------------------------------------------------*/
-#include <iostream>
-
-#include <stdlib.h>
-#include <jni.h>
-#include "machine.h"
-extern "C" {
-#include "../../../jvm/includes/getScilabJNIEnv.h"
-#include "../../../jvm/includes/getScilabObject.h"
-#include "../../../jvm/includes/getScilabJavaVM.h"
-}
-//#include "../jni/org_scilab_modules_gui_bridge_console.hxx"
 #include "ConsoleRead.hxx"
-#include "MALLOC.h"
-
 /*-----------------------------------------------------------------------------------*/
 #define WK_BUF_SIZE 520
 /*-----------------------------------------------------------------------------------*/
-//using namespace  org_scilab_modules_gui_bridge_console;
+using namespace  org_scilab_modules_gui_bridge_console;
 char *ConsoleRead()
 {
-  /* Character string to be return */
+  /* Character string to be returned */
   char *strRead = NULL;
+  char *strValue = NULL;
 
-  /* WITH GIWS GENERATED FILES */
-//   JavaVM scilabJVM = *getScilabJavaVM();
-  
-//   SwingScilabConsole *sciConsole = new SwingScilabConsole(&scilabJVM);
-  
-//   /* Call Java to get the user input */
-//   char *strValue = (*sciConsole).readLine();
-  
-//   if (strValue)
-//     {
-//       strRead = (char*) MALLOC(sizeof(char)*(WK_BUF_SIZE + 1));
-//       if (strRead) 
-//         strcpy(strRead,strValue);
-//       else
-//         std::cerr << "Could not alloc return variable." << std::endl;
-//     }
-//   else
-//     std::cerr << "Could not read user input value." << std::endl;
-  /* END WITH GIWS GENERATED FILES */
+  JavaVM scilabJVM = *getScilabJavaVM();
+  jobject scilabConsoleObj = GetScilabConsoleObject();
 
-  /* Gets Scilab JNI environment */
- JNIEnv *env = getScilabJNIEnv();
-  if (env)
+  if (scilabConsoleObj) 
     {
-      /* Gets Scilab JAVA object */
-      jobject scilabObj = getScilabObject();
-      if (scilabObj)
+      SwingScilabConsole *jConsole = new SwingScilabConsole(&scilabJVM, scilabConsoleObj);
+      
+      strValue = (*jConsole).readLine();
+
+      if (strValue)
         {
-          /* Gets Scilab object class */
-          jclass scilabObjClass = env->GetObjectClass(scilabObj);
-          if (scilabObjClass)
-            {
-              /* Get the ID of the method which returns the sciConsole object */
-              jmethodID getSciConsoleID =  env->GetMethodID(scilabObjClass, "getSciConsole", "()Lorg/scilab/modules/gui/console/Console;");
-              if (getSciConsoleID)
-                {
-                  /* Gets sciConsole object */
-                  jobject sciConsoleObj = env->CallObjectMethod(scilabObj, getSciConsoleID);
-                  if (sciConsoleObj) 
-                    {
-                      jclass sciConsoleObjClass = env->GetObjectClass(sciConsoleObj);
-                      if (sciConsoleObjClass)
-                        {
-                          jmethodID readlineID = env->GetMethodID(sciConsoleObjClass, "readLine", "()Ljava/lang/String;");
-                          if (readlineID)
-                            {
-                              jstring jstrValue = (jstring) env->CallObjectMethod(sciConsoleObj, readlineID);
-                              if (jstrValue)
-                                {
-                                  const char *strValue = NULL;
-                                  strValue = env->GetStringUTFChars(jstrValue, (jboolean) 0);
-                                  if (strValue)
-                                    {
-                                      strRead = (char*) MALLOC(sizeof(char)*(WK_BUF_SIZE + 1));
-                                      if (strRead) 
-                                        strcpy(strRead,strValue);
-                                      else
-                                        std::cerr << "Could not alloc return variable." << std::endl;
-                                    }
-                                  else
-                                    std::cerr << "Could not get user input value." << std::endl;
-                                }
-                              else
-                                std::cerr << "Could not read user input value." << std::endl;
-                            }
-                          else
-                            std::cerr << "Could not get readline method." << std::endl;
-                        }
-                      else
-                        std::cerr << "Could not get Scilab Console object class." << std::endl;
-                    }
-                  else
-                    std::cerr << "Could not get sciConsole object." << std::endl;
-                }
-              else
-                std::cerr << "Could not get getSciConsole method ID." << std::endl;
-            }
-          else
-            std::cerr << "Could not get Scilab JAVA object class." << std::endl;
+          strRead = new char[WK_BUF_SIZE+1];
+          if (strRead) 
+            strcpy(strRead,strValue);
         }
-      else
-        std::cerr << "Could not get Scilab JAVA object." << std::endl;
+      
+      delete(jConsole);
     }
-  else
-    std::cerr << "Could not get Scilab JNI environment." << std::endl;
-  
+
   return strRead;
 }
