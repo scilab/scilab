@@ -668,7 +668,7 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
     done
     if test "$found_jar" = "no"; then
       AC_MSG_RESULT([no])
-	AC_MSG_ERROR([Could not find Java package/jar $1 used by $3 (looking for package $2)])
+	AC_MSG_ERROR([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])
     fi
 ])
 
