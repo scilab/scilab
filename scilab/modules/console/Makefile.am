@@ -7,17 +7,17 @@
 if GUI
 
 # List of the cpp files
-CONSOLE_CPP_JNI_SOURCES =  src/jni/ClearConsole.cpp \
-src/jni/ClearConsolePart.cpp \
-src/jni/ConsolePrintf.cpp \
-src/jni/ConsoleRead.cpp \
-src/jni/GetCharWithoutOutput.cpp \
-src/jni/PromptToHome.cpp \
-src/jni/ScilabLinesUpdate.cpp \
-src/jni/SetConsolePrompt.cpp \
-src/jni/org_scilab_modules_gui_bridge_console.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/org_scilab_modules_gui_bridge_console.cpp
 
-CONSOLE_CPP_SOURCES =  src/cpp/GetScilabConsoleObject.cpp
+CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
+src/cpp/ClearConsolePart.cpp \
+src/cpp/ConsolePrintf.cpp \
+src/cpp/ConsoleRead.cpp \
+src/cpp/GetCharWithoutOutput.cpp \
+src/cpp/PromptToHome.cpp \
+src/cpp/ScilabLinesUpdate.cpp \
+src/cpp/SetConsolePrompt.cpp \
+src/cpp/GetScilabConsoleObject.cpp
 
 # List of the c files
 CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
