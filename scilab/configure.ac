@@ -522,7 +522,7 @@ fi
 ## test for JAVA compiler
 ###########################
 
-if test "$with_javasci" != no -a "$with_gui" != no; then
+if test "$with_javasci" != no -o "$with_gui" != no; then
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
