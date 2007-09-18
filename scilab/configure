@@ -11586,13 +11586,13 @@ echo "$as_me: error: Could not find Java package/jar gluegen-rt used by Scilab 3
     fi
 
 
-	{ echo "$as_me:$LINENO: checking Console-API" >&5
-echo $ECHO_N "checking Console-API... $ECHO_C" >&6; }
+	{ echo "$as_me:$LINENO: checking JRosetta-API" >&5
+echo $ECHO_N "checking JRosetta-API... $ECHO_C" >&6; }
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/Console-API.jar" "$jardir/libConsole-API.jar" "$jardir/libConsole-API-java.jar" "$jardir/Console-API*.jar"; do
+      for jar in "$jardir/JRosetta-API.jar" "$jardir/libJRosetta-API.jar" "$jardir/libJRosetta-API-java.jar" "$jardir/JRosetta-API*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
 #	echo "protected $jar"
 #	jar_resolved=`ls $jar 2>/dev/null`
@@ -11604,7 +11604,7 @@ echo $ECHO_N "checking Console-API... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
 // #line 11606 "configure"
-import com.artenum.console.interfaces.core.ConsoleConfiguration;
+import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -11643,19 +11643,19 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar Console-API used by Console API Artenum / Scilab (looking for package com.artenum.console.interfaces.core.ConsoleConfiguration)" >&5
-echo "$as_me: error: Could not find Java package/jar Console-API used by Console API Artenum / Scilab (looking for package com.artenum.console.interfaces.core.ConsoleConfiguration)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar JRosetta-API used by JRosetta : Console API Artenum / Scilab (looking for package com.artenum.rosetta.interfaces.core.ConsoleConfiguration)" >&5
+echo "$as_me: error: Could not find Java package/jar JRosetta-API used by JRosetta : Console API Artenum / Scilab (looking for package com.artenum.rosetta.interfaces.core.ConsoleConfiguration)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
 
-	{ echo "$as_me:$LINENO: checking Console-1.0" >&5
-echo $ECHO_N "checking Console-1.0... $ECHO_C" >&6; }
+	{ echo "$as_me:$LINENO: checking JRosetta-1.0" >&5
+echo $ECHO_N "checking JRosetta-1.0... $ECHO_C" >&6; }
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/Console-1.0.jar" "$jardir/libConsole-1.0.jar" "$jardir/libConsole-1.0-java.jar" "$jardir/Console-1.0*.jar"; do
+      for jar in "$jardir/JRosetta-1.0.jar" "$jardir/libJRosetta-1.0.jar" "$jardir/libJRosetta-1.0-java.jar" "$jardir/JRosetta-1.0*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
 #	echo "protected $jar"
 #	jar_resolved=`ls $jar 2>/dev/null`
@@ -11667,7 +11667,7 @@ echo $ECHO_N "checking Console-1.0... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
 // #line 11669 "configure"
-import com.artenum.console.core.action.AbstractConsoleAction;
+import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -11706,8 +11706,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar Console-1.0 used by Console Core Artenum / Scilab (looking for package com.artenum.console.core.action.AbstractConsoleAction)" >&5
-echo "$as_me: error: Could not find Java package/jar Console-1.0 used by Console Core Artenum / Scilab (looking for package com.artenum.console.core.action.AbstractConsoleAction)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar JRosetta-1.0 used by JRosetta : Console Core Artenum / Scilab (looking for package com.artenum.rosetta.core.action.AbstractConsoleAction)" >&5
+echo "$as_me: error: Could not find Java package/jar JRosetta-1.0 used by JRosetta : Console Core Artenum / Scilab (looking for package com.artenum.rosetta.core.action.AbstractConsoleAction)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 

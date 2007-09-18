@@ -66,9 +66,9 @@
 		
 		<pathelement location="${gluegen.jar}"/>
 		
-		<pathelement location="${Console-API-1.0.jar}"/>
+		<pathelement location="${JRosetta-API-1.0.jar}"/>
 		
-		<pathelement location="${Console-1.0.jar}"/>
+		<pathelement location="${JRosetta-1.0.jar}"/>
 
 		<pathelement location="${looks.jar}"/>
 		
