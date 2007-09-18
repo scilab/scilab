@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.text.BadLocationException;
 
-import com.artenum.console.core.action.AbstractConsoleAction;
+import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 /**
  * Delete the line from the caret postion to the end of the line when an event occurs

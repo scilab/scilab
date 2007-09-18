@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
 
-import com.artenum.console.core.action.AbstractConsoleAction;
-import com.artenum.console.util.StringConstants;
+import com.artenum.rosetta.core.action.AbstractConsoleAction;
+import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Stops Scilab current work to enter pause mode

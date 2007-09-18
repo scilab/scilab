@@ -5,7 +5,7 @@ package org.scilab.modules.console;
 
 import java.awt.event.ActionEvent;
 
-import com.artenum.console.core.action.AbstractConsoleAction;
+import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 /**
  * Moves the caret of character to the left when an event occurs

@@ -20,8 +20,8 @@ import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
-import com.artenum.console.interfaces.ui.InputCommandView;
-import com.artenum.console.util.StringConstants;
+import com.artenum.rosetta.interfaces.ui.InputCommandView;
+import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Swing implementation for Scilab Console in GUIs

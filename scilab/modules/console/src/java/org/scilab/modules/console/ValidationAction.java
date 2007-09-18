@@ -2,11 +2,11 @@ package org.scilab.modules.console;
 
 import java.awt.event.ActionEvent;
 
-import com.artenum.console.core.action.AbstractConsoleAction;
-import com.artenum.console.interfaces.core.InputParsingManager;
-import com.artenum.console.interfaces.ui.OutputView;
-import com.artenum.console.interfaces.ui.PromptView;
-import com.artenum.console.util.StringConstants;
+import com.artenum.rosetta.core.action.AbstractConsoleAction;
+import com.artenum.rosetta.interfaces.core.InputParsingManager;
+import com.artenum.rosetta.interfaces.ui.OutputView;
+import com.artenum.rosetta.interfaces.ui.PromptView;
+import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Class used to call Scilab interpreter

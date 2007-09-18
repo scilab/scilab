@@ -5,7 +5,7 @@ package org.scilab.modules.console;
 
 import java.awt.event.ActionEvent;
 
-import com.artenum.console.core.action.AbstractConsoleAction;
+import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 /**
  * Delete character preceeding the caret when an event occurs (equivalent of a BACKSPACE key press)

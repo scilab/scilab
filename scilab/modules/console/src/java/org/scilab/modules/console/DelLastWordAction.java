@@ -5,7 +5,7 @@ package org.scilab.modules.console;
 
 import java.awt.event.ActionEvent;
 
-import com.artenum.console.core.action.AbstractConsoleAction;
+import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 /**
  * Delete last word and trailing spaces of the line when an event occurs

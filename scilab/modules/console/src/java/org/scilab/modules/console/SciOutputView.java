@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-import com.artenum.console.ui.ConsoleTextPane;
-import com.artenum.console.util.StringConstants;
+import com.artenum.rosetta.ui.ConsoleTextPane;
+import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Scilab Console UI which contains the previous commands and their outputs

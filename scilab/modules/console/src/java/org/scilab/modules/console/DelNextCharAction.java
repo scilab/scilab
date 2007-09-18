@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.text.BadLocationException;
 
-import com.artenum.console.core.action.AbstractConsoleAction;
+import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 /**
  * Delete character following the caret when an event occurs (equivalent of a SUPPR key press)

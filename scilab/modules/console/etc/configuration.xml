@@ -22,10 +22,10 @@
 		<!-- Core part -->
 		<OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
 		<InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
-		<InputParsingManager useCache="true" value="com.artenum.console.core.DefaultInputParsingManager"/>
+		<InputParsingManager useCache="true" value="com.artenum.rosetta.core.DefaultInputParsingManager"/>
 		<GenericInterpreter useCache="true" value="org.scilab.modules.console.SciInterpreter"/>
-		<CompletionManager useCache="true" value="com.artenum.console.implementation.FakeDictionnaryCompletionManager"/>
-		<CompletionWindow useCache="true" value="com.artenum.console.ui.CompletionWindowImpl"/>
+		<CompletionManager useCache="true" value="com.artenum.rosetta.implementation.FakeDictionnaryCompletionManager"/>
+		<CompletionWindow useCache="true" value="com.artenum.rosetta.ui.CompletionWindowImpl"/>
 		<HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
 		
 		<!-- Key mapping -->
@@ -55,10 +55,10 @@
 		<!--<Action name="PASTE" className="org.scilab.modules.console.PasteClipboard"/>-->
 		<ActionMapping>
 			<Action name="VALIDATE" className="org.scilab.modules.console.ValidationAction"/>
-			<Action name="COMPLETION" className="com.artenum.console.core.action.CompletionAction"/>
+			<Action name="COMPLETION" className="com.artenum.rosetta.core.action.CompletionAction"/>
 			<Action name="LINE_BEGINNING" className="org.scilab.modules.console.LineBeginningAction"/>
-			<Action name="PREVIOUS_HISTORY_LINE" className="com.artenum.console.core.action.GetPreviousAction"/>
-			<Action name="NEXT_HISTORY_LINE" className="com.artenum.console.core.action.GetNextAction"/>
+			<Action name="PREVIOUS_HISTORY_LINE" className="com.artenum.rosetta.core.action.GetPreviousAction"/>
+			<Action name="NEXT_HISTORY_LINE" className="com.artenum.rosetta.core.action.GetNextAction"/>
 			<Action name="LINE_END" className="org.scilab.modules.console.LineEndAction"/>
 			<Action name="PREVIOUS_CHAR" className="org.scilab.modules.console.PreviousCharAction"/>
 			<Action name="NEXT_CHAR" className="org.scilab.modules.console.NextCharAction"/>

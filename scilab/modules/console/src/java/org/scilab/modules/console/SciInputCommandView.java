@@ -14,8 +14,8 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.BorderFactory;
 import javax.swing.text.BadLocationException;
 
-import com.artenum.console.interfaces.ui.InputCommandView;
-import com.artenum.console.ui.ConsoleTextPane;
+import com.artenum.rosetta.interfaces.ui.InputCommandView;
+import com.artenum.rosetta.ui.ConsoleTextPane;
 
 /**
  * Scilab UI that contains the line edited by th euser
@@ -56,7 +56,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	/**
 	 * Gets the location of the caret in the UI
 	 * @return the location as a Point object
-	 * @see com.artenum.console.interfaces.ui.InputCommandView#getCaretLocation()
+	 * @see com.artenum.rosetta.interfaces.ui.InputCommandView#getCaretLocation()
 	 */
 	public Point getCaretLocation() {
 		FontMetrics fontMetric = getFontMetrics(getFont());

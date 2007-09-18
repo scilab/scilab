@@ -8,8 +8,8 @@ import java.awt.BorderLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import com.artenum.console.interfaces.ui.CommandLineView;
-import com.artenum.console.interfaces.ui.OutputView;
+import com.artenum.rosetta.interfaces.ui.CommandLineView;
+import com.artenum.rosetta.interfaces.ui.OutputView;
 
 /**
  * Scilab Console UI where the user enters a new command to execute including the prompt
@@ -29,7 +29,7 @@ public class SciCommandLineView extends JPanel implements CommandLineView {
 	/**
 	 * Sets the component where the user will enter the command
 	 * @param command java commponent 
-	 * @see com.artenum.console.interfaces.ui.CommandLineView#setInputCommandView(javax.swing.JComponent)
+	 * @see com.artenum.rosetta.interfaces.ui.CommandLineView#setInputCommandView(javax.swing.JComponent)
 	 */
 	public void setInputCommandView(JComponent command) {
 		add(command, BorderLayout.CENTER);
@@ -38,7 +38,7 @@ public class SciCommandLineView extends JPanel implements CommandLineView {
 	/**
 	 * Sets the component where th eprompt will be displayed
 	 * @param prompt java component
-	 * @see com.artenum.console.interfaces.ui.CommandLineView#setPromptView(javax.swing.JComponent)
+	 * @see com.artenum.rosetta.interfaces.ui.CommandLineView#setPromptView(javax.swing.JComponent)
 	 */
 	public void setPromptView(JComponent prompt) {
 		add(prompt, BorderLayout.WEST);

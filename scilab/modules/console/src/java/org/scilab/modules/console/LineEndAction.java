@@ -5,7 +5,7 @@ package org.scilab.modules.console;
 
 import java.awt.event.ActionEvent;
 
-import com.artenum.console.core.action.AbstractConsoleAction;
+import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 /**
  * Go to the end of the line when an event occurs

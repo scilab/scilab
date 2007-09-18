@@ -20,14 +20,14 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import com.artenum.console.interfaces.core.ConsoleConfiguration;
-import com.artenum.console.interfaces.core.InputParsingManager;
-import com.artenum.console.interfaces.ui.OutputView;
-import com.artenum.console.interfaces.ui.PromptView;
-import com.artenum.console.ui.Console;
-import com.artenum.console.util.ConfigurationBuilder;
-import com.artenum.console.util.ConsoleBuilder;
-import com.artenum.console.util.StringConstants;
+import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
+import com.artenum.rosetta.interfaces.core.InputParsingManager;
+import com.artenum.rosetta.interfaces.ui.OutputView;
+import com.artenum.rosetta.interfaces.ui.PromptView;
+import com.artenum.rosetta.ui.Console;
+import com.artenum.rosetta.util.ConfigurationBuilder;
+import com.artenum.rosetta.util.ConsoleBuilder;
+import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Main class for Scilab Console based on Generic Console from Artenum
