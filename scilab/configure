@@ -11454,8 +11454,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar flexdock used by Scilab Gui (looking for package org.flexdock.docking.DockingManager)" >&5
-echo "$as_me: error: Could not find Java package/jar flexdock used by Scilab Gui (looking for package org.flexdock.docking.DockingManager)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar flexdock used by Scilab Gui (looking for package org.flexdock.docking.DockingManager)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar flexdock used by Scilab Gui (looking for package org.flexdock.docking.DockingManager)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
@@ -11517,8 +11517,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar jogl used by Scilab 3D rendering (looking for package javax.media.opengl.GL)" >&5
-echo "$as_me: error: Could not find Java package/jar jogl used by Scilab 3D rendering (looking for package javax.media.opengl.GL)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar jogl used by Scilab 3D rendering (looking for package javax.media.opengl.GL)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar jogl used by Scilab 3D rendering (looking for package javax.media.opengl.GL)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
@@ -11580,8 +11580,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar gluegen-rt used by Scilab 3D rendering (looking for package com.sun.gluegen.runtime.CPU)" >&5
-echo "$as_me: error: Could not find Java package/jar gluegen-rt used by Scilab 3D rendering (looking for package com.sun.gluegen.runtime.CPU)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar gluegen-rt used by Scilab 3D rendering (looking for package com.sun.gluegen.runtime.CPU)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar gluegen-rt used by Scilab 3D rendering (looking for package com.sun.gluegen.runtime.CPU)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
@@ -11643,8 +11643,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar JRosetta-API used by JRosetta : Console API Artenum / Scilab (looking for package com.artenum.rosetta.interfaces.core.ConsoleConfiguration)" >&5
-echo "$as_me: error: Could not find Java package/jar JRosetta-API used by JRosetta : Console API Artenum / Scilab (looking for package com.artenum.rosetta.interfaces.core.ConsoleConfiguration)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar JRosetta-API used by JRosetta : Console API Artenum / Scilab (looking for package com.artenum.rosetta.interfaces.core.ConsoleConfiguration)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar JRosetta-API used by JRosetta : Console API Artenum / Scilab (looking for package com.artenum.rosetta.interfaces.core.ConsoleConfiguration)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
@@ -11706,8 +11706,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar JRosetta-1.0 used by JRosetta : Console Core Artenum / Scilab (looking for package com.artenum.rosetta.core.action.AbstractConsoleAction)" >&5
-echo "$as_me: error: Could not find Java package/jar JRosetta-1.0 used by JRosetta : Console Core Artenum / Scilab (looking for package com.artenum.rosetta.core.action.AbstractConsoleAction)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar JRosetta-1.0 used by JRosetta : Console Core Artenum / Scilab (looking for package com.artenum.rosetta.core.action.AbstractConsoleAction)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar JRosetta-1.0 used by JRosetta : Console Core Artenum / Scilab (looking for package com.artenum.rosetta.core.action.AbstractConsoleAction)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
@@ -11769,8 +11769,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find Java package/jar commons-logging used by Apache logging (looking for package org.apache.commons.logging.LogFactory)" >&5
-echo "$as_me: error: Could not find Java package/jar commons-logging used by Apache logging (looking for package org.apache.commons.logging.LogFactory)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar commons-logging used by Apache logging (looking for package org.apache.commons.logging.LogFactory)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar commons-logging used by Apache logging (looking for package org.apache.commons.logging.LogFactory)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
