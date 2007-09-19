@@ -22,10 +22,16 @@ char **completion_generic(char **dictionary,int sizedictionary,
 				char *copybuf = NULL;
 
 				nbElements++;
-				if (results) results = (char**)REALLOC(results,sizeof(char*)*(nbElements));
-				else results = (char**)MALLOC(sizeof(char*)*(nbElements));
-
-				copybuf = (char*)MALLOC(sizeof(char)*(strlen(dictionary[i])+1));
+                                /* +1 in MALLOC because a NULL element is inserted at the end of the array */
+                                /* This NULL element is used in Java wrapper to know the size of the array */
+				if (results) 
+                                  results = (char**)REALLOC(results,sizeof(char*)*(nbElements+1)); 
+				else 
+                                  results = (char**)MALLOC(sizeof(char*)*(nbElements+1));
+                                
+                                results[nbElements]=NULL; /* Last element set to NULL */
+				
+                                copybuf = (char*)MALLOC(sizeof(char)*(strlen(dictionary[i])+1));
 				if (copybuf) strcpy(copybuf,dictionary[i]);
 				results[nbElements-1] = copybuf;
 			}
