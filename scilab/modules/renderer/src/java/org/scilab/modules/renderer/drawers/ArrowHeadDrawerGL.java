@@ -112,7 +112,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 								  new Vector3D(xMax, yMax, zMax)};
 		
 		// transform axesCorners in pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		axesCorners = transform.getCanvasCoordinates(gl, axesCorners);
 		
 		// Extrems corner along each axis
@@ -159,7 +159,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	public void drawArrowHeads(Vector3D[] startPoints, Vector3D[] endPoints) {
 		GL gl = getGL();
 		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		// need to perform this befaore swithching to pixel coordinates
 		Vector3D[] startPixCoords = transform.getCanvasCoordinates(gl, startPoints);
@@ -167,6 +167,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
+		transform.update(gl);
 		
 		// set color
 		double[] color = getArrowColor();

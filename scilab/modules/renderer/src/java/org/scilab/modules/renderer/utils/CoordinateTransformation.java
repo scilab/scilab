@@ -12,6 +12,7 @@ package org.scilab.modules.renderer.utils;
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 
+import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -28,53 +29,50 @@ public class CoordinateTransformation {
 	/** Singleton */
 	private static CoordinateTransformation transform;
 	
-	private double[] modelViewMatrix;
-	private double[] projectionMatrix;
-	private int[] viewPort;
+	private Matrix4D projectMatrix;
+	private Matrix4D unprojectMatrix;
 	
 	
 	/**
 	 * default constructor
 	 */
 	protected CoordinateTransformation() {
-		modelViewMatrix = new double[MATRIX_4X4_SIZE];
-		projectionMatrix = new double[MATRIX_4X4_SIZE];
-		viewPort = new int[VIEWPORT_SIZE];
+		projectMatrix = null;
+		unprojectMatrix = null;
 	}
 	
 	/**
 	 * Factory of the singleton
+	 * @param gl current OpenGL pipeline
 	 * @return only instance of singleton
 	 */
-	public static synchronized CoordinateTransformation getTransformation() {
+	public static synchronized CoordinateTransformation getTransformation(GL gl) {
 		if (transform == null) {
 			transform = new CoordinateTransformation();
 		}
+		transform.update(gl);
 		return transform;
 	}
 	
 	/**
-	 * Update the model view matrix from the current transformation.
-	 * @param gl current OpenGL pipeline
+	 * Update the projection data of the coordinates.
+	 * @param gl current Gl pipeline
 	 */
-	public void updateModelViewMatrix(GL gl) {
-		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, modelViewMatrix, 0);
-	}
-	
-	/**
-	 * Update the projection view matrix from the current transformation.
-	 * @param gl current OpenGL pipeline
-	 */
-	public void updateProjectionMatrix(GL gl) {
-		gl.glGetDoublev(GL.GL_PROJECTION_MATRIX, projectionMatrix, 0);
-	}
-	
-	/**
-	 * Update view port vector from current transformation.
-	 * @param gl current OpenGL pipeline
-	 */
-	public void updateViewPort(GL gl) {
-		gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
+	public void update(GL gl) {
+		
+		// get OpenGL transformation matrices
+		double[] oglModelViewMatrix = new double[MATRIX_4X4_SIZE];
+		double[] oglProjectionMatrix = new double[MATRIX_4X4_SIZE];
+		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, oglModelViewMatrix, 0);
+		gl.glGetDoublev(GL.GL_PROJECTION_MATRIX, oglProjectionMatrix, 0);
+		
+		// projection (without viewport is done by v' = P.M.v
+		// where v' is the canvas coordinates and v scene coordinates
+		projectMatrix = new Matrix4D(oglModelViewMatrix);
+		projectMatrix = projectMatrix.mult(new Matrix4D(oglProjectionMatrix));
+		
+		// unproject is done by v = (P.M)^-1.v'
+		unprojectMatrix = projectMatrix.getInverse();
 	}
 	
 	/**
@@ -84,14 +82,8 @@ public class CoordinateTransformation {
 	 * @return array of size 3 containing the X, Y and Z positions in the canvas frame.
 	 */
 	public Vector3D getCanvasCoordinates(GL gl, Vector3D pos) {
-		double[] canvasCoord = {0.0, 0.0, 0.0};
-		GLU glu = new GLU();
-		updateModelViewMatrix(gl);
-		updateProjectionMatrix(gl);
-		updateViewPort(gl);
-		
-		glu.gluProject(pos.getX(), pos.getY(), pos.getZ(), modelViewMatrix, 0, projectionMatrix, 0, viewPort, 0, canvasCoord, 0);
-		return new Vector3D(canvasCoord);
+		// I first used gluProject, but it is slower since it will always perform matrices multiplications and inverse.
+		return projectMatrix.mult(pos);
 	}
 	
 	/**
@@ -119,17 +111,9 @@ public class CoordinateTransformation {
 	 * @return coodinates in object frame
 	 */
 	public Vector3D retrieveSceneCoordinates(GL gl, Vector3D canvasPos) {
-		double[] objectPos = {0.0, 0.0, 0.0};
-		// get current matrices
-		GLU glu = new GLU();
-		updateModelViewMatrix(gl);
-		updateProjectionMatrix(gl);
-		updateViewPort(gl);
+		// I first used gluProject, but it is slower since it will always perform matrices multiplications and inverse.
 		
-		glu.gluUnProject(canvasPos.getX(), canvasPos.getY(), canvasPos.getZ(),
-						 modelViewMatrix, 0, projectionMatrix, 0, viewPort, 0, objectPos, 0);
-		
-		return new Vector3D(objectPos);
+		return unprojectMatrix.mult(canvasPos);
 	}
 	
 }

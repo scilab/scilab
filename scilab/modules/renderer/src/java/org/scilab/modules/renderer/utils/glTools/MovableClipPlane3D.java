@@ -123,9 +123,10 @@ public class MovableClipPlane3D extends ClipPlane3D {
 		
 		
 		getThreePointsOnPlane(point1, point2, point3);
-		point1 = CoordinateTransformation.getTransformation().getCanvasCoordinates(gl, point1);
-		point2 = CoordinateTransformation.getTransformation().getCanvasCoordinates(gl, point2);
-		point3 = CoordinateTransformation.getTransformation().getCanvasCoordinates(gl, point3);
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		point1 = transform.getCanvasCoordinates(gl, point1);
+		point2 = transform.getCanvasCoordinates(gl, point2);
+		point3 = transform.getCanvasCoordinates(gl, point3);
 			
 	}
 	
@@ -135,7 +136,7 @@ public class MovableClipPlane3D extends ClipPlane3D {
 	 */
 	public void changeFrame(GL gl) {
 
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		Vector3D newPoint1 = transform.retrieveSceneCoordinates(gl, point1);
 		Vector3D newPoint2 = transform.retrieveSceneCoordinates(gl, point2);

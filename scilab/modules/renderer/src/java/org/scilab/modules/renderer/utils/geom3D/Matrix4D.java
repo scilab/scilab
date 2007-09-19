@@ -24,7 +24,26 @@ public class Matrix4D {
 	 * Default contructor. Set matrix to identity.
 	 */
 	public Matrix4D() {
-		setToIdentity();
+		setToZero();
+	}
+	
+	/**
+	 * Create a new matrix whose data are given by an OpenGL matrix 
+	 * @param openGLRepresentation array of size 16, stored column wise.
+	 */
+	public Matrix4D(double[] openGLRepresentation) {
+		setFromOpenGLRepresentation(openGLRepresentation);
+	}
+	
+	/**
+	 * Set the matrix to the 0 matrix.
+	 */
+	public void setToZero() {
+		for (int i = 0; i < MATRIX_SIZE; i++) {
+			for (int j = 0; j < MATRIX_SIZE; j++) {
+				values[i][j] = 0.0;
+			}
+		}
 	}
 	
 	/**
@@ -36,6 +55,19 @@ public class Matrix4D {
 				values[i][j] = 0.0;
 			}
 			values[i][i] = 1.0;
+		}
+	}
+	
+	/**
+	 * Set a matrix from an OpenGL representation of matrix
+	 * @param openGLMatrix an array of size 16, stored column wise.
+	 */
+	public void setFromOpenGLRepresentation(double[] openGLMatrix) {
+		for (int j = 0; j < MATRIX_SIZE; j++) {
+			values[0][j] = openGLMatrix[MATRIX_SIZE * j];
+			values[1][j] = openGLMatrix[MATRIX_SIZE * j + 1];
+			values[2][j] = openGLMatrix[MATRIX_SIZE * j + 2];
+			values[MATRIX_SIZE - 1][j] = openGLMatrix[MATRIX_SIZE * j + MATRIX_SIZE - 1];
 		}
 	}
 	
@@ -76,6 +108,166 @@ public class Matrix4D {
 			res[MATRIX_SIZE * j + MATRIX_SIZE - 1] = values[MATRIX_SIZE - 1][j];
 		}
 		return res;
+	}
+	
+	/**
+	 * Change an element of the matrix
+	 * @param numRow index of the element row
+	 * @param numCol index of the element column
+	 * @param value new value to set
+	 */
+	public void setElement(int numRow, int numCol, double value) {
+		values[numRow][numCol] = value;
+	}
+	
+	/**
+	 * Return the product of this matrix by a vector
+	 * @param vect vector to multiply
+	 * @return new vector, result of the product
+	 */
+	public Vector3D mult(Vector3D vect) {
+		double[] resValues = new double[MATRIX_SIZE];
+		
+		// w coordinate of the vector is supposed to be 1;
+        for (int i = 0; i < MATRIX_SIZE; i++) {
+            resValues[i]  =   vect.getX() * values[i][0] + vect.getY() * values[i][1]
+                            + vect.getZ() * values[i][2] + values[i][MATRIX_SIZE - 1];
+        }
+        resValues[0] /= resValues[MATRIX_SIZE - 1];
+        resValues[1] /= resValues[MATRIX_SIZE - 1];
+        resValues[2] /= resValues[MATRIX_SIZE - 1];
+        return new Vector3D(resValues);
+	}
+	
+	/**
+	 * Return the product of this matrix by an other matrix
+	 * @param mat matrix to multiply
+	 * @return new matrix, result of the product
+	 */
+	public Matrix4D mult(Matrix4D mat) {
+		Matrix4D res = new Matrix4D();
+
+        for (int i = 0; i < MATRIX_SIZE; i++)  {
+        	for (int j = 0; j < MATRIX_SIZE; j++) {
+        		for (int c = 0; c < MATRIX_SIZE; c++) {
+        			res.values[i][j] += this.values[i][c] * mat.values[c][j];
+        		}
+        	}
+        }
+        return res;
+	}
+	
+	/**
+	 * Return the inverse of this matrix.
+	 * @return new matrix which is the inverse of this one.
+	 */
+	public Matrix4D getInverse() {
+		Matrix4D res = new Matrix4D();
+
+		double[][] s = new double[MATRIX_SIZE][2 * MATRIX_SIZE];
+        double[] tmprow = null;
+
+        
+        int i;
+        int j;
+        int p;
+        int jj;
+        for (i = 0; i < MATRIX_SIZE; i++) {
+            for (j = 0; j < MATRIX_SIZE; j++) {
+                s[i][j] = values[i][j];
+                if (i == j)	{
+                	s[i][j + MATRIX_SIZE] = 1.0;
+                } else {
+                	s[i][j + MATRIX_SIZE] = 0.0;
+                }
+            }
+        }
+        
+        double[] scp = new double[MATRIX_SIZE];
+        for (i = 0; i < MATRIX_SIZE; i++) {
+            scp[i] = Math.abs(s[i][0]);
+            for (j = 1; j < MATRIX_SIZE; j++) {
+                if (Math.abs(s[i][j]) > scp[i]) {
+                	scp[i] = Math.abs(s[i][j]);
+                }
+            }
+            if (scp[i] == 0.0) {
+            	return res; // singular matrix! }
+            }
+        }
+
+        int pivotTo;
+        double scpMax;
+        for (i = 0; i < MATRIX_SIZE; i++) {
+            // select pivot row
+            pivotTo = i;
+            scpMax = Math.abs(s[i][i] / scp[i]);
+            // find out which row should be on top
+            for (p = i + 1; p < MATRIX_SIZE; p++) {
+                if (Math.abs(s[p][i] / scp[p]) > scpMax) {
+                    scpMax = Math.abs(s[p][i] / scp[p]);
+                    pivotTo = p;
+                }
+            }
+            
+            // Pivot if necessary
+            if (pivotTo != i) {
+                tmprow = s[i];
+                s[i] = s[pivotTo];
+                s[pivotTo] = tmprow;
+                double tmpscp;
+                tmpscp = scp[i];
+                scp[i] = scp[pivotTo];
+                scp[pivotTo] = tmpscp;
+            }
+
+            double mji;
+            // perform gaussian elimination
+            for (j = i + 1; j < MATRIX_SIZE; j++) {
+                mji = s[j][i] / s[i][i];
+                s[j][i] = 0.0;
+                for (jj = i + 1; jj < 2 * MATRIX_SIZE; jj++) {
+                    s[j][jj] -= mji * s[i][jj];
+                }
+            }
+        }
+        if (s[MATRIX_SIZE - 1][MATRIX_SIZE - 1] == 0.0) {
+        	return res; // singular matrix! }
+        }
+
+        //
+        // Now we have an upper triangular matrix.
+        //
+        //  x x x x | y y y y
+        //  0 x x x | y y y y 
+        //  0 0 x x | y y y y
+        //  0 0 0 x | y y y y
+        //
+        //  we'll back substitute to get the inverse
+        //
+        //  1 0 0 0 | z z z z
+        //  0 1 0 0 | z z z z
+        //  0 0 1 0 | z z z z
+        //  0 0 0 1 | z z z z 
+        //
+
+        double mij;
+        for (i = MATRIX_SIZE - 1; i > 0; i--) {
+            for (j = i - 1; j > -1; j--) {
+                mij = s[j][i] / s[i][i];
+                for (jj = j + 1; jj < 2 * MATRIX_SIZE; jj++) {
+                    s[j][jj] -= mij * s[i][jj];
+                }
+            }
+        }
+
+        for (i = 0; i < MATRIX_SIZE; i++) {
+            for (j = 0; j < MATRIX_SIZE; j++) {
+            	res.values[i][j] = s[i][j + MATRIX_SIZE] / s[i][i];
+            }
+        }
+
+        return res;
 	}
 	
 	/**

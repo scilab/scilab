@@ -132,7 +132,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	public void drawMarks(Vector3D[] marksPosition) {
 		GL gl = getGL();
 		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		// need to perform this befaore swithching to pixel coordinates
 		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, marksPosition);
@@ -140,6 +140,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
+		transform.update(gl);
 		
 		for (int i = 0; i < marksPosition.length; i++) {
 			// switch back to the new frame
