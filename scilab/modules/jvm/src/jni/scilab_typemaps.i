@@ -13,7 +13,7 @@
     for (i = 0; i<size; i++) {
         jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, $input, i);
         const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-        $1[i] = MALLOC(strlen((c_string)+1)*sizeof(const char *));
+        $1[i] = MALLOC((strlen(c_string)+1)*sizeof(const char *));
         strcpy($1[i], c_string);
         (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
         (*jenv)->DeleteLocalRef(jenv, j_string);
