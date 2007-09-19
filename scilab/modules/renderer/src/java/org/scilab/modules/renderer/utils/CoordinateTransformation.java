@@ -68,8 +68,8 @@ public class CoordinateTransformation {
 		
 		// projection (without viewport is done by v' = P.M.v
 		// where v' is the canvas coordinates and v scene coordinates
-		projectMatrix = new Matrix4D(oglModelViewMatrix);
-		projectMatrix = projectMatrix.mult(new Matrix4D(oglProjectionMatrix));
+		projectMatrix = new Matrix4D(oglProjectionMatrix);
+		projectMatrix = projectMatrix.mult(new Matrix4D(oglModelViewMatrix));
 		
 		// unproject is done by v = (P.M)^-1.v'
 		unprojectMatrix = projectMatrix.getInverse();
