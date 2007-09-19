@@ -54,8 +54,8 @@ public class CameraGL extends ObjectGL {
 		gl.glMatrixMode(GL.GL_PROJECTION);
 	    gl.glLoadIdentity();
 	    // with this the drawing view current scale for the view is [0,1]x[0,1]
-	    // for perspective view, we need to use glFrustum, not gluPerpective
-	    gl.glOrtho(0.0, 1.0, 0.0, 1.0, 0.0, FAR_PLANE_DISTANCE);
+	    // for perspective view, we need to use glFrustum, not glOrtho
+	    gl.glOrtho(0.0, 1.0, 0.0, 1.0, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
 	    gl.glMatrixMode(GL.GL_MODELVIEW);
 	    gl.glLoadIdentity();
 
@@ -78,6 +78,7 @@ public class CameraGL extends ObjectGL {
 		GL gl = getGL();
 		gl.glScaled(scaleX, scaleY, scaleZ);
 		gl.glTranslated(transX, transY, transZ);
+		
 	}
 	
 	/**
