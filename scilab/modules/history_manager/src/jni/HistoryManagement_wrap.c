@@ -220,7 +220,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
     for (i = 0; i<size1; i++) {
       jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, jarg1, i);
       const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-      arg1[i] = MALLOC(strlen((c_string)+1)*sizeof(const char *));
+      arg1[i] = MALLOC((strlen(c_string)+1)*sizeof(const char *));
       strcpy(arg1[i], c_string);
       (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
       (*jenv)->DeleteLocalRef(jenv, j_string);
