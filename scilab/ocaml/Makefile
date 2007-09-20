@@ -29,7 +29,7 @@ DOCS=parseTree.mli\
 PLATFORM=$(shell uname -s)
 
 EXE=../bin/modelicac
-TRANSLATOR=../../bin/translator
+#TRANSLATOR=../../bin/translator
 
 
 .SUFFIXES: .ml .mli .cmo .cmi .cmx .mlp .mpi
