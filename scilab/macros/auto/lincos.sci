@@ -35,9 +35,22 @@ function sys=lincos(scs_m,x0,u0,param)
 //             load('mysystem.cos')
 // which creates by default a variable called scs_m.
 
-
 [lhs,rhs]=argn(0)
 IN=[];OUT=[];
+
+//check version
+current_version = get_scicos_version()
+scicos_ver = find_scicos_version(scs_m)
+
+//do version
+if scicos_ver<>current_version then
+  ierr=execstr('scs_m=do_version(scs_m,scicos_ver)','errcatch')
+  if ierr<>0 then
+    error('Can''t convert old diagram (problem in version)')
+    return
+  end
+end
+
 for i=1:size(scs_m.objs)
   if typeof(scs_m.objs(i))=='Block' then  
     if scs_m.objs(i).gui=='IN_f' then
@@ -73,7 +86,7 @@ if ~ok then
 end 
 sim=%cpr.sim;state=%cpr.state;
 //
-lnkptr=sim.lnkptr;inplnk=sim.inplnk;inpptr=sim.inpptr;
+inplnk=sim.inplnk;inpptr=sim.inpptr;
 outlnk=sim.outlnk;outptr=sim.outptr;ipptr=sim.ipptr;
 
 ki=[];ko=[];nyptr=1;
@@ -93,15 +106,17 @@ end
 
 pointo=[];
 for k=ko' 
-  pointo=[pointo;[lnkptr(inplnk(inpptr(k))):lnkptr(inplnk(inpptr(k))+1)-1]']
+  pointo=[pointo;inplnk(inpptr(k))]
 end
 pointi=[];
 
 for k=ki' 
-  pointi=[pointi;[lnkptr(outlnk(outptr(k))):lnkptr(outlnk(outptr(k))+1)-1]']
+  pointi=[pointi;outlnk(outptr(k))]
 end
 
-nx=size(state.x,'*');nu=size(pointi,'*');ny=size(pointo,'*');
+nx=size(state.x,'*');
+nu=0; for k=pointi', nu=nu+size(state.outtb(k),'*'), end
+ny=0; for k=pointo', ny=ny+size(state.outtb(k),'*'), end
 
 if rhs<3 then 
   x0=zeros(nx,1);u0=zeros(nu,1);
@@ -121,9 +136,17 @@ end
 x0=x0(:);u0=u0(:)
   
 state.x=x0;
-state.outtb(pointi)=u0;
+Uind=1
+for k=pointi'
+ state.outtb(k)=matrix(u0(Uind:Uind+size(state.outtb(k),'*')-1),size(state.outtb(k)));
+ Uind=size(state.outtb(k),'*')+1;
+end
 [state,t]=scicosim(state,t,t,sim,'linear',[.1,.1,.1,.1]);
-y0=state.outtb(pointo);
+Yind=1
+for k=pointo'
+ y0(Yind:Yind+size(state.outtb(k),'*')-1)=state.outtb(k)(:);
+ Yind=size(state.outtb(k),'*')+1
+end
 xp0=state.x;
 zo0=[xp0;y0];
 
@@ -135,10 +158,20 @@ for i=1:nx+nu
   dz=zer;dz(i)=del(i);
   z=z0+dz;
   state.x=z(1:nx);
-  state.outtb(pointi)=z(nx+1:nx+nu);
+  Uind=nx+1
+  for k=pointi'
+   state.outtb(k)=matrix(z(Uind:Uind+size(state.outtb(k),'*')-1),size(state.outtb(k)));
+   Uind=size(state.outtb(k),'*')+1;
+  end
   [state,t]=scicosim(state,t,t,sim,'linear',[.1,.1,.1,.1]);
-  zo=[state.x;state.outtb(pointo)];
+  zo=[]
+  Yind=1
+  for k=pointo'
+   zo(Yind:Yind+size(state.outtb(k),'*')-1)=state.outtb(k)(:);
+   Yind=size(state.outtb(k),'*')+1
+  end
+  zo=[state.x;zo];
   F(:,i)=(zo-zo0)/del(i);
-end  
+end
 sys=syslin('c',F(1:nx,1:nx),F(1:nx,nx+1:nx+nu),F(nx+1:nx+ny,1:nx),F(nx+1:nx+ny,nx+1:nx+nu));
 endfunction
