@@ -4,6 +4,8 @@
 
 #if WIN32
 #define NULL    0
+#define max(a,b) ((a) >= (b) ? (a) : (b))
+#define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif
 
 extern void sciprint __PARAMS((char *fmt,...));

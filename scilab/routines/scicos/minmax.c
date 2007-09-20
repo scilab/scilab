@@ -1,5 +1,13 @@
-#include "scicos_block.h"
 #include <math.h>
+#include "scicos_block.h"
+
+#ifndef min
+#define min(a,b) ((a) <= (b) ? (a) : (b))
+#endif
+
+#ifndef max
+#define max(a,b) ((a) >= (b) ? (a) : (b))
+#endif
 
 void minmax(scicos_block *block,int flag)
 { /*ipar[0]=1 -> min,  ipar[0]=2 -> max */

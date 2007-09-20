@@ -43,6 +43,8 @@ c     .     read a new buffer
 c     output
             call dcopy(ny,z(3+n*ievt+k),n,y,1)
             z(1)=z(1)+1.0d0
+         elseif(k+1.gt.kmax) then
+            call dcopy(ny,z(3+n*ievt+kmax),n,y,1)
          endif
 c
       elseif(flag.eq.3) then

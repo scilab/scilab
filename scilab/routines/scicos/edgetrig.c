@@ -1,9 +1,7 @@
 #include "scicos_block.h"
 #include <math.h>
 
-#if WIN32
 extern void sciprint();
-#endif
 
 void edgetrig(scicos_block *block,int flag)
 {

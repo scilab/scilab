@@ -28,6 +28,7 @@ double *inptr[],*outptr[],*t;
     /*int nev,ic;*/
     integer one=1,skip;
     integer nu,ny;
+    integer nu2,ny2;
     integer mlhs=5,mrhs=8;
     integer ltop;
 
@@ -51,7 +52,9 @@ double *inptr[],*outptr[],*t;
     for (k=0;k<*nin;k++) {
 	u=(double *)inptr[k];
 	nu=insz[k];
-	C2F(dtosci)(u,&nu,&one);
+	nu2=insz[*nin+k];
+//	C2F(dtosci)(u,&nu,&one);
+	C2F(dtosci)(u,&nu,&nu2);
 	if (C2F(scierr)()!=0) goto err;
     }
     C2F(mklist)(nin);
@@ -80,7 +83,9 @@ double *inptr[],*outptr[],*t;
 	for (k=*nout-1;k>=0;k--) {
 	  y=(double *)outptr[k];
 	  ny=outsz[k];
-	  C2F(scitod)(y,&ny,&one);
+	  ny2=outsz[*nout+k];
+//	  C2F(scitod)(y,&ny,&one);
+	  C2F(scitod)(y,&ny,&ny2);
 	  if (C2F(scierr)()!=0) goto err;
 	}
 	/* list2vars has changed the Lstk(top+1) value. 

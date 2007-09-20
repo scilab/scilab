@@ -12,6 +12,14 @@ int isinf(double x) { return !finite(x) && x==x; }
 int isinf(double x) { return !finite(x) && x==x; }
 #endif
 
+#ifndef min
+#define min(a,b) ((a) <= (b) ? (a) : (b))
+#endif
+
+#ifndef max
+#define max(a,b) ((a) >= (b) ? (a) : (b))
+#endif
+
 #if WIN32
 /*
 arcsinh z = log (z+sqrt(1+z2))

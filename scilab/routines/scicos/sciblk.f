@@ -16,7 +16,6 @@ C        y      column vector block output
 C        xd     column vector block state derivative
 C!
       include "../stack.h"
-      integer iadr
 C
 
       double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
@@ -29,8 +28,6 @@ C
 C
       common /ierode/ iero
       common /scsptr/ ptr
-C
-      iadr(l) = l + l - 1
 C
       if (ddt .eq. 4) then
         write (buf(1:12),"(3i4)") top, ptr

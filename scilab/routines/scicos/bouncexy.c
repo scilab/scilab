@@ -1,193 +1,189 @@
-#include "scicos_block.h"
-#include <math.h>
-#include "../machine.h"
-static int c__1 = 1;
-static int c__0 = 0;
-static int c_n1 = -1;
-static int c__3 = 3;
-static integer c__5 = 5;
-static integer c__6 = 6;
+/**
+   \file bouncexy.c
+   \author Benoit Bayol
+   \version 1.0
+   \date September 2006 - January 2007
+   \brief BOUNCEXY has to be used with bounce_ball block
+   \see BOUNCEXY.sci in macros/scicos_blocks/Misc/
+*/
 
-void bouncexy(scicos_block *block,int flag)
+#include "scoMemoryScope.h"
+#include "scoWindowScope.h"
+#include "scoMisc.h"
+#include "scoGetProperty.h"
+#include "scoSetProperty.h"
+#include "scicos_block4.h"
+
+/** \fn bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+    \brief Function to draw or redraw the window
+*/
+void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
-  int nevprt=block->nevprt;
-  double t;
-  double *z__;
-  int nz;
+  scoGraphicalObject pAxes;
+  scoGraphicalObject pTemp;
+  double * z;
   double *rpar;
-  int nrpar, *ipar, nipar;
-  double *u,*y;
-  int nu,kfun;
+  int *ipar, nipar;  
+  int i,j;
+  int dimension;
+  double ymin, ymax, xmin, xmax;
+  int win;
+  int number_of_subwin;
+  int number_of_curves_by_subwin;
+  int * colors;
+  int imode;
+  double * size_balls;
+  double radius_max;
 
- 
-  static int cur = 0;
-  static int verb = 0;
-  static int c400=400;
-  int i__1;
-  
-  static double rect[4];
-  extern /* Subroutine */ int C2F(getlabel)();
-  static double xmin, ymin, xmax, ymax;
-  extern /* Subroutine */ int C2F(sxevents)();
-  static int i__, n, v;
-  extern /* Subroutine */ int C2F(plot2d)();
-  static int na;
-  extern /* Subroutine */ int C2F(dr)();
-  static double dv;
-  static int on;
-  static double zz[10];
-  static int nxname;
-  extern /* Subroutine */ int C2F(sciwin)(), C2F(dr1)();
-  static char buf[40];
-  static int wid, nax[4];
-  
-  /*     Copyright INRIA */
-  /*     Scicos block simulator */
-  /*     ipar(1) = win_num */
-  /*     ipar(2) = mode : animated =0 fixed=1 */
-  /*     ipar(3:3+nu-1) = colors of balls */
-  
-  /*     rpar(1)=xmin */
-  /*     rpar(2)=xmax */
-  /*     rpar(3)=ymin */
-  /*     rpar(4)=ymax */
-  nevprt=block->nevprt;
-  nz=block->nz;
-  nrpar=block->nrpar; 
-  nipar=block->nipar;
-  nu=block->insz[0];
-  z__=block->z;
-  rpar=block->rpar;
-  ipar=block->ipar;
-  u=block->inptr[0];
-  y=block->inptr[1];
-  t=get_scicos_time();
-
-  
-  /* Parameter adjustments */
-  --u;
-  --y;
-  --ipar;
-  --rpar;
-  --z__;
-  
-  /* Function Body */
-  
-  if (flag == 2) {
-    wid = ipar[1];
-    n = nu;
-    
-    C2F(dr1)("xget\000", "window\000", &verb, &cur, &na, &v, &v, &v, &dv, &dv,
-	     &dv, &dv);
-    if (cur != wid) {
-      C2F(dr1)("xset\000", "window\000", &wid, &v, &v, &v, &v, &v, &dv, &dv,
-	       &dv, &dv);
+  /*Retrieving Parameters*/
+  rpar = GetRparPtrs(block);
+  ipar = GetIparPtrs(block);
+  nipar = GetNipar(block);
+  win = ipar[0];
+  if (win == -1)
+    {
+      win = 20000 + get_block_number() ; 
     }
-    C2F(dr1)("xsetdr\000", "X11\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
-	     dv);
-    rect[0] = xmin;
-    rect[1] = ymin;
-    rect[2] = xmax;
-    rect[3] = ymax;
-    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, "030", buf, rect, nax);
-    /*     draw new point */
-    i__1 = nu;
-    for (i__ = 1; i__ <= i__1; ++i__) {
-      z__[(i__ - 1) * 6 + 1] = u[i__] - z__[(i__ - 1) * 6 + 3] / 2;
-      z__[(i__ - 1) * 6 + 2] = y[i__] + z__[(i__ - 1) * 6 + 4] / 2;
+  dimension = 2;
+  imode = ipar[1];
+  number_of_curves_by_subwin = GetInPortRows(block,1);
+  radius_max = 0;
+  size_balls = (double*)scicos_malloc(number_of_curves_by_subwin*sizeof(double));
+  z = GetDstate(block);
+  for(i = 0 ; i < number_of_curves_by_subwin ; i++)
+    {
+      size_balls[i] = z[6*i+2];
+      if(radius_max < size_balls[i])
+	{
+	  radius_max = size_balls[i];
+	}
     }
-    C2F(dr1)("xset\000", "wwpc\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
-	     dv);
-    C2F(dr1)("xfarcs\000", "v\000", &v, &ipar[3], &n, &v, &v, &v, &z__[1], &
-	     dv, &dv, &dv);
-    xmin = rpar[1];
-    xmax = rpar[2];
-    ymin = rpar[3];
-    ymax = rpar[4];
-    zz[0] = xmin;
-    zz[1] = xmin;
-    zz[2] = xmax;
-    zz[3] = xmax;
-    zz[4] = xmin;
-    zz[5] = ymax;
-    zz[6] = ymin;
-    zz[7] = ymin;
-    zz[8] = ymax;
-    zz[9] = ymax;
-    C2F(dr1)("xpolys\000", "v\000", &v, &v, &c__1, &c__1, &c__5, &v, zz, &zz[5], &dv, &dv);
-    C2F(dr1)("xset\000", "wshow\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
-	     dv);
-  } else if (flag == 4) {
-    wid = ipar[1];
-    n = nu;
-    xmin = rpar[1];
-    xmax = rpar[2];
-    ymin = rpar[3];
-    ymax = rpar[4];
-    nax[0] = 2;
-    nax[1] = 10;
-    nax[2] = 2;
-    nax[3] = 10;
-    C2F(sciwin)();
-
-    C2F(dr1)("xset\000", "window\000", &wid, &v, &v, &v, &v, &v, &dv, &dv,
-	       &dv, &dv);
-    
-    C2F(dr1)("xset\000", "wdim\000", &c400, &c400, &v, &v, &
-	       v, &v, &dv, &dv, &dv, &dv);
-  C2F(dr1)("xset\000", "window\000", &wid, &v, &v, &v, &v, &v, &dv, &dv,
-	       &dv, &dv);
-
-    C2F(dr1)("xsetdr\000", "X11\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
-	     dv);
-    on = 1;
-    C2F(dr1)("xset\000", "pixmap\000", &on, &v, &v, &v, &v, &v, &dv, &dv, &dv,
-	     &dv);
-    rect[0] = xmin;
-    rect[1] = ymin;
-    rect[2] = xmax;
-    rect[3] = ymax;
-    C2F(dr1)("xset\000", "use color\000", &c__1, &c__0, &c__0, &c__0, &c__0, &
-	     v, &dv, &dv, &dv, &dv);
-    C2F(dr1)("xset\000", "alufunction\000", &c__3, &c__0, &c__0, &c__0, &c__0,
-	     &v, &dv, &dv, &dv, &dv);
-    C2F(dr1)("xclear\000", "v\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
-	     dv);
-    C2F(dr)("xstart\000", "v\000", &wid, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
-	    dv);
-    C2F(dr1)("xset\000", "thickness\000", &c__1, &v, &v, &v, &v, &v, &dv, &dv,
-	     &dv, &dv);
-    C2F(dr1)("xset\000", "dashes\000", &c__0, &c__0, &c__0, &c__0, &c__0, &v, 
-	     &dv, &dv, &dv, &dv);
-    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, "030", buf, rect, nax);
-
-    zz[0] = xmin;
-    zz[1] = xmin;
-    zz[2] = xmax;
-    zz[3] = xmax;
-    zz[4] = xmin;
-    zz[5] = ymax;
-    zz[6] = ymin;
-    zz[7] = ymin;
-    zz[8] = ymax;
-    zz[9] = ymax;
-    C2F(dr1)("xpolys\000", "v\000", &v, &v, &c__1, &c__1, &c__5, &v, zz, &zz[5], &dv, &dv);
-    C2F(dr1)("xset\000", "wshow\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
-	     dv);
-    nxname = 40;
-    kfun=get_block_number();
-    C2F(getlabel)(&kfun, buf, &nxname);
-    if (nxname > 39) {
-      nxname = 39;
+  number_of_subwin = 1;
+  xmin = rpar[0];
+  xmax = rpar[1];
+  ymin = rpar[2];
+  ymax = rpar[3];
+  colors = (int*)scicos_malloc(number_of_curves_by_subwin*sizeof(int));
+  for(i = 0 ; i < number_of_curves_by_subwin ; i++)
+    {
+      colors[i] = ipar[i+2];
     }
-    i__1 = nxname;
-    *(buf+i__1)=*"\000";
-    if (nxname == 1 && *(unsigned char *)buf == ' ' || nxname == 0) {
-    } else {
-      C2F(dr)("xname\000", buf, &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &dv);
+  if(firstdraw == 1)
+    {
+      /*Allocating memory*/
+      scoInitScopeMemory(block->work,pScopeMemory, number_of_subwin, &number_of_curves_by_subwin);
     }
-    C2F(sxevents)();
-  }
-  C2F(dr1)("xsetdr\000", "Rec\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
-	     dv);
-} 
+  /*Creating the Scope*/
+  scoInitOfWindow(*pScopeMemory, dimension, win, NULL, NULL, &xmin, &xmax, &ymin, &ymax, NULL, NULL);
+  if(scoGetScopeActivation(*pScopeMemory) == 1)
+    {
+  pTemp = scoGetPointerScopeWindow(*pScopeMemory);
+  pAxes = scoGetPointerAxes(*pScopeMemory,0);
+
+  pSUBWIN_FEATURE(pAxes)->isoview = TRUE;
+
+  (pSUBWIN_FEATURE(pAxes)->axes).axes_visible[0] = FALSE;
+  (pSUBWIN_FEATURE(pAxes)->axes).axes_visible[1] = FALSE;
+
+  sciSetIsBoxed(pAxes, FALSE);
+
+  pFIGURE_FEATURE(pTemp)->pixmap = 1;
+  pFIGURE_FEATURE(pTemp)->wshow = 1;
+
+  for(j = 0 ; j < number_of_curves_by_subwin ; j++)
+    {
+      scoAddSphereForShortDraw(*pScopeMemory, 0, j, size_balls[j], colors[j]);
+    }
+  scoAddRectangleForLongDraw(*pScopeMemory,0,0,xmin,(ymax-fabs(ymin)),fabs(xmax-xmin),fabs(ymax-ymin));
+  sciDrawObj(scoGetPointerLongDraw(*pScopeMemory,0,0));
+    }
+  scicos_free(colors);
+  scicos_free(size_balls);
+
+}
+
+/** \fn void bouncexy(scicos_block * block,int flag)
+    \brief the computational function
+    \param block A pointer to a scicos_block
+    \param flag An integer which indicates the state of the block (init, update, ending)
+*/
+void bouncexy(scicos_block * block,int flag)
+{
+  ScopeMemory * pScopeMemory;
+  scoGraphicalObject pShortDraw;
+  scoGraphicalObject pLongDraw;
+  double * z;
+  double t;
+  int i;
+  double * u1, *u2;
+  double * size_balls;
+  switch(flag) 
+    {
+    case Initialization:
+      {
+	bouncexy_draw(block,&pScopeMemory,1);
+	break;
+      }
+    case StateUpdate:
+      {
+
+	/*Retreiving Scope in the block->work*/
+	scoRetrieveScopeMemory(block->work,&pScopeMemory);
+	if(scoGetScopeActivation(pScopeMemory) == 1)
+	  {
+	    t = get_scicos_time();
+	/*If window has been destroyed we recreate it*/
+	if(scoGetPointerScopeWindow(pScopeMemory) == NULL)
+	  {
+	    bouncexy_draw(block,&pScopeMemory,0);
+	  }
+
+	//Cannot be factorized depends of the scope
+	size_balls = (double*)scicos_malloc(scoGetNumberOfCurvesBySubwin(pScopeMemory,0)*sizeof(double));
+	z = GetDstate(block);
+	for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+	  {
+	    size_balls[i] = z[6*i+2];
+	  }
+	u1 = GetRealInPortPtrs(block,1);
+	u2 = GetRealInPortPtrs(block,2);
+	for (i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+	  {
+	    pShortDraw  = scoGetPointerShortDraw(pScopeMemory,0,i);
+	    pLongDraw  = scoGetPointerLongDraw(pScopeMemory,0,i);
+	    pARC_FEATURE(pShortDraw)->x = u1[i]-size_balls[i]/2;
+	    pARC_FEATURE(pShortDraw)->y = u2[i]+size_balls[i]/2;
+
+	  }
+
+	sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+	
+	if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+	  {
+	    C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
+	  }
+	else
+	  {
+	    sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
+	  }
+
+	scicos_free(size_balls);
+	  }
+	break;
+      }
+    case Ending:
+      {
+	scoRetrieveScopeMemory(block->work, &pScopeMemory);
+	if(scoGetScopeActivation(pScopeMemory) == 1)
+	  {
+	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+	    pShortDraw = sciGetCurrentFigure();
+	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
+	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
+	  }
+	scoFreeScopeMemory(block->work, &pScopeMemory);
+	break;  
+      }
+    }
+}

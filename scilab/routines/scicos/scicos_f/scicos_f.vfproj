@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="8.10" ProjectIdGuid="{566E524B-D327-4416-A865-9C83503FAB7B}">
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="9.10" ProjectIdGuid="{566E524B-D327-4416-A865-9C83503FAB7B}">
 	<Platforms>
 		<Platform Name="Win32"/></Platforms>
 	<Configurations>
@@ -16,7 +16,7 @@ cd .."/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/></Configuration>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
@@ -30,7 +30,7 @@ cd .."/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="PIV_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
@@ -42,7 +42,7 @@ del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Pentium_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
@@ -56,7 +56,7 @@ del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Debug with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
@@ -84,8 +84,8 @@ del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="PIV_Release with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
@@ -99,10 +99,10 @@ copy scicos_f.def ..\..\..\..\libs\scicos_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Debug without Java|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
@@ -114,8 +114,8 @@ del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" Preprocess="preprocessYes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Debug with Atlas without Java|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
@@ -129,10 +129,10 @@ copy scicos_f.def ..\..\..\..\libs\scicos_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/></Configuration>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/></Configuration>
 		<Configuration Name="Release with Atlas without Java|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
@@ -144,10 +144,10 @@ copy scicos_f.def ..\..\..\..\libs\scicos_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release with Debug Information|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
@@ -159,13 +159,14 @@ del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/scicos_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\affich.f"/>
+		<File RelativePath="..\affich2.f"/>
 		<File RelativePath="..\constraint.f"/>
 		<File RelativePath="..\coselm.f"/>
 		<File RelativePath="..\csslti.f"/>
@@ -177,12 +178,11 @@ cd .."/>
 		<File RelativePath="..\dlradp.f"/>
 		<File RelativePath="..\dollar.f"/>
 		<File RelativePath="..\dsslti.f"/>
+		<File RelativePath="..\dtosci.f"/>
 		<File RelativePath="..\eselect.f"/>
-		<File RelativePath="..\evscpe.f"/>
 		<File RelativePath="..\evtdly.f"/>
 		<File RelativePath="..\expblk.f"/>
 		<File RelativePath="..\forblk.f"/>
-		<File RelativePath="..\fscope.f"/>
 		<File RelativePath="..\fsv.f"/>
 		<File RelativePath="..\ftree2.f"/>
 		<File RelativePath="..\ftree3.f"/>
@@ -199,6 +199,7 @@ cd .."/>
 		<File RelativePath="..\intrpl.f"/>
 		<File RelativePath="..\invblk.f"/>
 		<File RelativePath="..\iocopy.f"/>
+		<File RelativePath="..\itosci.f"/>
 		<File RelativePath="..\list2vars.f"/>
 		<File RelativePath="..\logblk.f"/>
 		<File RelativePath="..\lookup.f"/>
@@ -208,7 +209,6 @@ cd .."/>
 		<File RelativePath="..\memo.f"/>
 		<File RelativePath="..\mfclck.f"/>
 		<File RelativePath="..\minblk.f"/>
-		<File RelativePath="..\mscope.f"/>
 		<File RelativePath="..\mux.f"/>
 		<File RelativePath="..\pload.f"/>
 		<File RelativePath="..\powblk.f"/>
@@ -226,9 +226,6 @@ cd .."/>
 		<File RelativePath="..\scitod.f"/>
 		<File RelativePath="..\scitoi.f"/>
 		<File RelativePath="..\scitovv.f"/>
-		<File RelativePath="..\scope.f"/>
-		<File RelativePath="..\scopxy.f"/>
-		<File RelativePath="..\scoxy.f"/>
 		<File RelativePath="..\sctree.f"/>
 		<File RelativePath="..\selblk.f"/>
 		<File RelativePath="..\sinblk.f"/>

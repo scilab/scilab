@@ -30,18 +30,18 @@ void tcsltj4(scicos_block *block,int flag)
   int* insz=block->insz;
     
   lb=nx*nx;
-  lc=lb;
+  lc=lb+nx*insz[0];
   
   if (flag ==1 || flag ==6){
-    /* y=c*x*/  
-    C2F(dmmul)(&rpar[lc],outsz,x,&nx,y,outsz,outsz,&nx,&un);    
+    /* y=c*x*/
+    C2F(dmmul)(&rpar[lc],outsz,x,&nx,y,outsz,outsz,&nx,&un);
   }else if (flag == 2 && block->nevprt == 1){
-    
     /* x+=u2 */
     memcpy(x,u2 ,nx*sizeof(double));
   }else if (flag ==0 && block->nevprt == 0){
-    /* xd=a*x*/
+    /* xd=a*x+b*u1*/
     C2F(dmmul)(&rpar[0],&nx,x,&nx,xd,&nx,&nx,&nx,&un);
+    C2F(dmmul1)(&rpar[lb],&nx,u1,&insz[0],xd,&nx,&nx,&insz[0],&un);
   }
 }
 

@@ -9,13 +9,10 @@ c     Copyright INRIA
       include "../stack.h"
       integer ptr
       integer mlhs,mrhs
-      integer iadr
       logical allowptr
 C
       common /scsptr/ ptr   
 c
-      iadr(l) = l + l - 1
-c   
 
 C     macro execution 
 C     

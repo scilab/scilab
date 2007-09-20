@@ -4,7 +4,9 @@
 #ifdef __STDC__
 #include <stdlib.h>
 #else 
-#include <malloc.h>
+	#ifndef WIN32
+		#include <malloc.h>
+	#endif
 #endif 
 
 typedef void (*voidg)();
@@ -16,6 +18,10 @@ typedef struct {
   int scsptr;
   int nz;
   double *z;
+  int noz;
+  int *ozsz;
+  int *oztyp;
+  void **ozptr;
   int nx;
   double *x;
   double *xd;
@@ -32,6 +38,10 @@ typedef struct {
   double *rpar;
   int nipar;
   int *ipar;
+  int nopar;
+  int *oparsz;
+  int *opartyp;
+  void **oparptr;
   int ng;
   double *g;
   int ztyp;
@@ -60,8 +70,10 @@ void Set_Jacobian_flag(int flag);
 #undef max
 #endif
 
+#ifndef WIN32
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
+#endif
 
 extern int s_copy();
 extern int s_cmp();

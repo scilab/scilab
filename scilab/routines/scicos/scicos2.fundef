@@ -1,7 +1,0 @@
-#define  IN_coselm  35  
-{"curblock",		IN_coselm,	5,	3},	
-{"getblocklabel",	IN_coselm,	6,	3},	
-{"getscicosvars",	IN_coselm,	3,	2},	
-{"setscicosvars",	IN_coselm,	4,	2},	
-{"var2vec",		IN_coselm,	1,	2},	
-{"vec2var",		IN_coselm,	2,	2},
