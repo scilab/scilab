@@ -12,7 +12,7 @@ let check_reserved = function
     | "block" -> BLOCK
     | "class" -> CLASS
     | "connect" -> CONNECT
-    | "connector" -> CONNECTOR
+    | "connector" -> CLASS
     | "constant" -> CONSTANT
     | "discrete" -> DISCRETE
     | "else" -> ELSE
@@ -34,7 +34,7 @@ let check_reserved = function
     | "inner" -> INNER
     | "input" -> INPUT
     | "loop" -> LOOP
-    | "model" -> MODEL
+    | "model" -> CLASS
     | "not" -> NOT
     | "or" -> OR
     | "outer" -> OUTER

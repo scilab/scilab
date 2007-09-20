@@ -9,6 +9,7 @@ OCAMLYACC=ocamlyacc
 OCAMLLEX=ocamllex
 RM=del
 EXEC=modelicac.exe
+TRANSLATOR=translator.exe
 
 MLS=parseTree.ml linenum.ml parser.ml lexer.ml\
 	precompilation.ml compilation.ml instantiation.ml\
@@ -34,6 +35,9 @@ CMXACMX=linenum.cmx nums.cmxa parseTree.cmx parser.cmx \
        xMLCodeGeneration.cmx optimizingCompiler.cmx	
 
 all:: step1 step2 step3 step4 step5 step6
+
+translator:
+	@cd modelica;$(MAKE) depend;$(MAKE);copy translation\$(TRANSLATOR) ..\..\bin\$(TRANSLATOR)	
 
 
 step1: 
@@ -119,9 +123,12 @@ clean::
 	-$(RM)  linenum.ml
 	-$(RM)  *.exe
 	-$(RM)  ..\bin\$(EXEC)
-	
+#	@cd modelica;$(MAKE) clean; 
+#	-$(RM)  ..\bin\$(TRANSLATOR)
+
+
 distclean::
-  -$(RM)  *.cmi
+	-$(RM)  *.cmi
 	-$(RM)  *.cmo
 	-$(RM)  *.cmx
 	-$(RM)  *.obj
@@ -129,3 +136,4 @@ distclean::
 	-$(RM)  lexer.ml
 	-$(RM)  linenum.ml
 	-$(RM)  *.exe
+

@@ -29,6 +29,7 @@ DOCS=parseTree.mli\
 PLATFORM=$(shell uname -s)
 
 EXE=../bin/modelicac
+TRANSLATOR=../../bin/translator
 
 
 .SUFFIXES: .ml .mli .cmo .cmi .cmx .mlp .mpi
@@ -74,7 +75,6 @@ EXE=../bin/modelicac
 	@ocamllex $(<)
 
 
-
 all : depend $(EXE)
 
 $(EXE): $(MLIS:.mli=.cmi) $(MLS:.ml=.cmx)
@@ -117,6 +117,8 @@ depend : .depend
 
 include .depend
 
+$(TRANSLATOR):
+	@cd modelica;$(MAKE) depend;$(MAKE);mv translation/translator $(TRANSLATOR)
 
 clean:
 	@$(RM) -f *.cmxa
@@ -129,6 +131,8 @@ clean:
 	@$(RM) -f parser.ml
 	@$(RM) -f lexer.ml
 	@$(RM) -f $(EXE)
+#	@cd modelica;$(MAKE) clean; 
+#	@$(RM) -f $(TRANSLATOR)
 
 distclean : clean
 	@$(RM) -rf doc $(EXE) 

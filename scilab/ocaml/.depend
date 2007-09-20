@@ -1,13 +1,13 @@
 parseTree.cmo: parseTree.cmi 
 parseTree.cmx: parseTree.cmi 
-parser.cmo: linenum.cmo parseTree.cmi 
-parser.cmx: linenum.cmx parseTree.cmx 
+parser.cmo: parseTree.cmi linenum.cmo 
+parser.cmx: parseTree.cmx linenum.cmx 
 lexer.cmo: parser.cmo 
 lexer.cmx: parser.cmx 
 precompilation.cmo: parseTree.cmi precompilation.cmi 
 precompilation.cmx: parseTree.cmx precompilation.cmi 
-compilation.cmo: parseTree.cmi precompilation.cmi compilation.cmi 
-compilation.cmx: parseTree.cmx precompilation.cmx compilation.cmi 
+compilation.cmo: precompilation.cmi parseTree.cmi compilation.cmi 
+compilation.cmx: precompilation.cmx parseTree.cmx compilation.cmi 
 instantiation.cmo: compilation.cmi instantiation.cmi 
 instantiation.cmx: compilation.cmx instantiation.cmi 
 graphNodeSet.cmo: graphNodeSet.cmi 
@@ -22,25 +22,25 @@ hungarianMethod.cmo: hungarianMethod.cmi
 hungarianMethod.cmx: hungarianMethod.cmi 
 causalityGraph.cmo: causalityGraph.cmi 
 causalityGraph.cmx: causalityGraph.cmi 
-optimization.cmo: bipartiteGraph.cmi causalityGraph.cmi compilation.cmi \
-    hungarianMethod.cmi instantiation.cmi squareSparseMatrix.cmi \
-    symbolicExpression.cmi optimization.cmi 
-optimization.cmx: bipartiteGraph.cmx causalityGraph.cmx compilation.cmx \
-    hungarianMethod.cmx instantiation.cmx squareSparseMatrix.cmx \
-    symbolicExpression.cmx optimization.cmi 
-xMLCodeGeneration.cmo: optimization.cmi symbolicExpression.cmi \
+optimization.cmo: symbolicExpression.cmi squareSparseMatrix.cmi \
+    instantiation.cmi hungarianMethod.cmi compilation.cmi causalityGraph.cmi \
+    bipartiteGraph.cmi optimization.cmi 
+optimization.cmx: symbolicExpression.cmx squareSparseMatrix.cmx \
+    instantiation.cmx hungarianMethod.cmx compilation.cmx causalityGraph.cmx \
+    bipartiteGraph.cmx optimization.cmi 
+xMLCodeGeneration.cmo: symbolicExpression.cmi optimization.cmi \
     xMLCodeGeneration.cmi 
-xMLCodeGeneration.cmx: optimization.cmx symbolicExpression.cmx \
+xMLCodeGeneration.cmx: symbolicExpression.cmx optimization.cmx \
     xMLCodeGeneration.cmi 
-optimizingCompiler.cmo: compilation.cmi instantiation.cmi lexer.cmo \
-    optimization.cmi parser.cmo precompilation.cmi xMLCodeGeneration.cmi \
+optimizingCompiler.cmo: xMLCodeGeneration.cmi precompilation.cmi parser.cmo \
+    optimization.cmi lexer.cmo instantiation.cmi compilation.cmi \
     optimizingCompiler.cmi 
-optimizingCompiler.cmx: compilation.cmx instantiation.cmx lexer.cmx \
-    optimization.cmx parser.cmx precompilation.cmx xMLCodeGeneration.cmx \
+optimizingCompiler.cmx: xMLCodeGeneration.cmx precompilation.cmx parser.cmx \
+    optimization.cmx lexer.cmx instantiation.cmx compilation.cmx \
     optimizingCompiler.cmi 
-scicosCodeGeneration.cmo: optimization.cmi symbolicExpression.cmi \
+scicosCodeGeneration.cmo: symbolicExpression.cmi optimization.cmi \
     scicosCodeGeneration.cmi 
-scicosCodeGeneration.cmx: optimization.cmx symbolicExpression.cmx \
+scicosCodeGeneration.cmx: symbolicExpression.cmx optimization.cmx \
     scicosCodeGeneration.cmi 
-scicosOptimizingCompiler.cmo: optimizingCompiler.cmi scicosCodeGeneration.cmi 
-scicosOptimizingCompiler.cmx: optimizingCompiler.cmx scicosCodeGeneration.cmx 
+scicosOptimizingCompiler.cmo: scicosCodeGeneration.cmi optimizingCompiler.cmi 
+scicosOptimizingCompiler.cmx: scicosCodeGeneration.cmx optimizingCompiler.cmx 
