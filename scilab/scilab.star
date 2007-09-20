@@ -175,8 +175,11 @@ clear  scicos_pal // explicitly clear %helps scicos_pal variables
        ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
        ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
        ~isdef("scicos_pal_libs") ) then
-    [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
-     %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables()
+    
+    [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
+     %scicos_display_mode, modelica_libs,scicos_pal_libs, ...
+     %scicos_lhb_list, %CmenuTypeOneVector ] = initial_scicos_tables() 
+     
     clear initial_scicos_tables
   end
   //======================================================================
