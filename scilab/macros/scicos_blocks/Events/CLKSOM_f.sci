@@ -9,15 +9,26 @@ case 'plot' then
   orient=arg1.graphics.flip;
 
   thick=xget('thickness');xset('thickness',2)
-  dash=xget('dashes');xset('dashes',default_color(-1))
+  //** dash=xget('dashes');xset('dashes',default_color(-1))
   rx=sz(1)*p/2
   ry=sz(2)/2
   gr_i=arg1.graphics.gr_i;
   if type(gr_i)==15 then 
     xfarcs([orig(1);orig(2)+sz(2);sz(1)*p;sz(2);0;360*64],gr_i(2))
+    gh_temp = gce();
+    if gh_temp.type=='Compound' then
+      gh_temp.children(1).foreground = default_color(-1);
+    else
+      gh_temp.foreground = default_color(-1);
+    end
   end
   xarc(orig(1),orig(2)+sz(2),sz(1)*p,sz(2),0,360*64)
+  gh_temp = gce();
+  gh_temp.foreground = default_color(-1);
   xsegs(orig(1)+rx*[1/2.3 1;2-1/2.3 1],orig(2)+ry*[1 2-1/2.3;1,1/2.3],0)
+  gh_temp = gce();
+  gh_temp.segs_color = [default_color(-1), default_color(-1)];
+
   xset('thickness',thick);
   if orient then  //standard orientation
     out= [0  -1/14
@@ -30,7 +41,10 @@ case 'plot' then
  	   0   1/14]*3
     xfpoly(sz(1)*out(:,1)+orig(1),sz(2)*out(:,2)+orig(2)+sz(2)/2,1)
   end
-  xset('dashes',dash)
+  gh_temp = gce(); 
+  gh_temp.foreground = default_color(-1);
+  gh_temp.background = default_color(-1);
+  //** xset('dashes',dash)
 case 'getinputs' then
   orig=arg1.graphics.orig;
   sz=arg1.graphics.sz;

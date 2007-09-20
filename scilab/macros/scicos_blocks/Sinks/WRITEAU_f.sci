@@ -19,7 +19,7 @@ case 'set' then
   lunit=dstate(2)
   while %t do
     [ok,N,swap,exprs]=getvalue(..
-	'Set WRITEC block parameters',..
+	'Set WRITEAU block parameters',..
 	['Buffer size';
 	'Swap mode 0/1'],..
 	 list('vec',1,'vec',1),exprs)

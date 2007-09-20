@@ -1,4 +1,4 @@
-class VanneReglante 
+model VanneReglante 
   parameter Real Cvmax "CV max";
   parameter Real p_rho "Si > 0, masse volumique imposée du fluide";
 //  parameter Integer mode=0 "Région IF97. 1:liquide - 2:vapeur - 4:saturation - 0:calcul automatique";

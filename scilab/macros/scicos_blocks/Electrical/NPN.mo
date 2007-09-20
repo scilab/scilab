@@ -1,4 +1,4 @@
-class NPN "Simple BJT according to Ebers-Moll" 
+model NPN "Simple BJT according to Ebers-Moll" 
   parameter Real Bf=50 "Forward beta";
   parameter Real Br=0.1 "Reverse beta";
   parameter Real Is=1.e-16 "Transport saturation current";
@@ -50,8 +50,8 @@ equation
      else if noEvent(vbe/Vt > EMax) then Is*(ExMax*(vbe/Vt - EMax + 1) - 1) + vbe*Gbe
      else Is*(Modelica.Math.exp(vbe/Vt) - 1) + vbe*Gbe;
 
-  Capcjc = if noEvent(vbc/Phic > 0) then Cjc*(1 + Mc*vbc/Phic) else Cjc*(1 - vbc/Phic);
-  Capcje = if noEvent(vbe/Phie > 0) then Cje*(1 + Me*vbe/Phie) else Cje*(1 - vbe/Phie);
+  Capcjc = if (vbc/Phic > 0) then Cjc*(1 + Mc*vbc/Phic) else Cjc*(1 - vbc/Phic);
+  Capcje = if (vbe/Phie > 0) then Cje*(1 + Me*vbe/Phie) else Cje*(1 - vbe/Phie);
 
   cbc = if noEvent(vbc/Vt < EMin) then Taur*Is/Vt*ExMin*(vbc/Vt - EMin + 1) + Capcjc
      else if noEvent(vbc/Vt > EMax) then Taur*Is/Vt*ExMax*(vbc/Vt - EMax + 1) + Capcjc

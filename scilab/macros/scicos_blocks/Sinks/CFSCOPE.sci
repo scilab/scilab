@@ -1,4 +1,4 @@
-function [x,y,typ]=FSCOPE_f(job,arg1,arg2)
+function [x,y,typ]=CFSCOPE(job,arg1,arg2)
 // Copyright INRIA
 x=[];y=[];typ=[]
 select job
@@ -15,12 +15,12 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   if size(exprs)<9 then exprs(9)='0',end // compatibility
   model=arg1.model;
-  dstate=model.in
+  //dstate=model.in
   while %t do
     [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,wu,exprs]=getvalue(..
 	'Set Scope parameters',..
 	['Color (>0) or mark (<0) vector (8 entries)';
-	'Output window number';
+	'Output window number (-1 for automatic)';
 	'Output window position';
 	'Output window sizes';
 	'Ymin';
@@ -41,8 +41,8 @@ case 'set' then
       mess=[mess;'Window dim must be [] or a 2 vector';' ']
       ok=%f
     end
-    if win<0 then
-      mess=[mess;'Window number can''t be negative';' ']
+    if win<-1 then
+      mess=[mess;'Window number cannot be inferior than -1';' ']
       ok=%f
     end
     if per<=0 then
@@ -72,8 +72,9 @@ case 'set' then
       if size(clrs,'*')>8 then clrs=clrs(1:8);end
       if size(clrs,'*')<8 then clrs(8)=0;end
       ipar=[win;1;N;clrs(:);wpos(:);wdim(:);size(wu,'*');wu(:)]
-      if prod(size(dstate))<>(8+1)*N+1 then dstate=-eye((8+1)*N+1,1),end
-      model.dstate=dstate;model.rpar=rpar;model.ipar=ipar
+      //if prod(size(dstate))<>(8+1)*N+1 then dstate=-eye((8+1)*N+1,1),end
+      //model.dstate=dstate;
+      model.rpar=rpar;model.ipar=ipar
       model.firing=[] //compatibility
       model.dep_ut=[%t %f] //compatibility
       graphics.exprs=exprs;
@@ -82,16 +83,15 @@ case 'set' then
     end
   end
 case 'define' then
-  win=101;
+  win=-1;
   wdim=[600;400]
   wpos=[-1;-1]
   clrs=[1;3;5;7;9;11;13;15];
   N=2;
   ymin=-15;ymax=+15;per=30;
   model=scicos_model()
-  model.sim=list('fscope',1)
+  model.sim=list('cfscope',4)
   model.evtin=1
-  model.dstate=-eye((8+1)*N+1,1)
   model.rpar=[0;ymin;ymax;per]
   model.ipar=[win;1;N;clrs;wpos;wdim;1;1]
   model.blocktype='c'

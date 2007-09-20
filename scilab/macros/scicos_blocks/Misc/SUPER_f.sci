@@ -1,6 +1,7 @@
 function [x,y,typ]=SUPER_f(job,arg1,arg2)
 // Copyright INRIA
 x=[];y=[],typ=[]
+
 select job
 case 'plot' then
   standard_draw(arg1)
@@ -26,29 +27,39 @@ case 'getorigin' then
     else
       %r=2
       %r=message(['SUPER BLOCK needs to be edited;';
-		  'Edit or exit by removing all edition'],['Edit'; ...
+		  'Edit or exit by removing all recent changes'],['Edit'; ...
 		    'Exit'])
       if %r==2 then 
+	xdel(curwin)
 	typ=list()
 	%exit=resume(%t),
       else
-	if ~or(curwin==winsid()) then  // in case super block is closed
-	  xset("window",curwin)
-	end
+        global %scicos_navig
+        global Scicos_commands 
+        global inactive_windows
+        %scicos_navig=[];Scicos_commands=[]
+        %diagram_open=%t
+        scf(curwin)
+        indx=find(curwin==inactive_windows(2))
+        if size(indx,'*')==1 then
+	   inactive_windows(1)(indx)=null();inactive_windows(2)(indx)=[]
+        elseif size(indx,'*')>1 then
+           disp('SUPER'),pause
+        end
       end
     end
   end
   
 case 'define' then
-  scs=scicos_diagram()
-  scs.props.title='Super Block'
-  model=scicos_model()
-  model.sim='super'
-  model.in=1
-  model.out=1
-  model.rpar=scs
-  model.blocktype='h'
-  model.dep_ut=[%f %f]
+  scs=scicos_diagram();
+  scs.props.title='Super Block';
+  model=scicos_model();
+  model.sim='super';
+  model.in=1;
+  model.out=1;
+  model.rpar=scs;
+  model.blocktype='h';
+  model.dep_ut=[%f %f];
 
   gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
     'xx=orig(1)+      [2 4 4]*(sz(1)/7);';

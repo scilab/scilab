@@ -34,14 +34,15 @@ case 'set' then
 case 'define' then
   model=scicos_model()
   model.in=[-1]
+  model.in2=[1]
   prt=1
   model.sim='outimpl'
   model.ipar=[1]
   model.blocktype='c'
   model.dep_ut=[%f %f]
   mo=modelica()
-    mo.model='PORT'
-    mo.inputs='n'
+  mo.model='PORT'
+  mo.inputs='n'
   model.equations=mo
   exprs='1'
   gr_i=['prt=string(model.ipar);xstringb(orig(1),orig(2),prt,sz(1),sz(2))']

@@ -1,4 +1,4 @@
-class Ground "Ground"
+model Ground "Ground"
 	Pin p;
 equation
 	p.v = 0;

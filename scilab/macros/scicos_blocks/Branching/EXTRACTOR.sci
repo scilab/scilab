@@ -14,7 +14,6 @@ function [x,y,typ]=EXTRACTOR(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      
       [ok,ind,exprs]=..
 	  getvalue('Set block parameters',..
 		   ['indices to extract'],..
@@ -37,13 +36,10 @@ function [x,y,typ]=EXTRACTOR(job,arg1,arg2)
     model.out=1
     model.blocktype='c'
     model.dep_ut=[%t %f]
-    
+    model.ipar=ind
     exprs=[sci2exp(ind)]
-    
-     gr_i=['txt=[''Extractor''];';
-        'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
-     
-
+    gr_i=['txt=[''Extractor''];';
+          'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
     x=standard_define([2 2],model,exprs,gr_i)
   end
 endfunction

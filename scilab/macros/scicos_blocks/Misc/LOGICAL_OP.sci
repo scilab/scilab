@@ -15,28 +15,62 @@ case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
+  if size(exprs,1)==2 then exprs=[exprs;sci2exp(1);sci2exp(0)];end
   while %t do
-    [ok,nin,rule,exprs]=getvalue('Set parameters',..
+    [ok,nin,rule,Datatype,tp,exprs]=getvalue('Set parameters',..
 	['number of inputs';..
-	 'Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)'],..
-	list('vec',1,'vec',1),exprs)
+	 'Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)'
+         'Datatype (1=double 3=int32 ...)';..
+         'Bitwise Rule(0=No 1=yes)'],..
+	list('vec',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
-    nin=int(nin);rule=int(rule);
+    nin=int(nin);rule=int(rule);tp=int(tp)
     if nin<1 then
-      message('Number of inputs must be >=1 ')
+      message('Number of inputs must be >=1 ');ok=%f
     elseif (rule<0)|(rule>5) then
-      message('Incorrect operator '+string(rule)+' ; must be 0 to 5.')
+      message('Incorrect operator '+string(rule)+' ; must be 0 to 5.');ok=%f
     elseif (rule==5)&(nin>1) then
       message('Only one input allowed for NOT operation')
-    else
-      if (rule<>5)&(nin==1) then
-	[model,graphics,ok]=check_io(model,graphics,-ones(nin,1),1,[],[])
+      nin=1
+    elseif ((Datatype==1)&(tp~=0))
+      message ("Bitwise Rule is only activated when Data type is integer");ok=%f
+    end
+    if ok then
+      if (tp~=0) then tp=1; end
+      if Datatype==1 then
+	model.sim=list('logicalop',4)
+	model.ipar=[rule],
       else
-	[model,graphics,ok]=check_io(model,graphics,-ones(nin,1),-1,[],[])
+        if Datatype==3 then 
+	  model.sim=list('logicalop_i32',4)
+        elseif Datatype==4 then
+	  model.sim=list('logicalop_i16',4)
+        elseif Datatype==5 then
+	  model.sim=list('logicalop_i8',4)
+        elseif Datatype==6 then
+	  model.sim=list('logicalop_ui32',4)
+        elseif Datatype==7 then
+	  model.sim=list('logicalop_ui16',4)
+        elseif Datatype==8 then
+	  model.sim=list('logicalop_ui8',4)
+        else message ("Datatype is not supported");ok=%f;
+        end
+        model.ipar=[rule;tp];
+      end
+      if ok then
+	it=Datatype*ones(nin,1);
+	ot=Datatype;
+	in=[-ones(nin,1) -2*ones(nin,1)]
+      	if (rule<>5)&(nin==1) then
+	    out=[1 1]
+	    [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
+        else
+	    out=[-1 -2]
+	    [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
+        end
       end
       if ok then
 	graphics.exprs=exprs;
-	model.ipar=[rule],
 	x.graphics=graphics;x.model=model
 	break
       end

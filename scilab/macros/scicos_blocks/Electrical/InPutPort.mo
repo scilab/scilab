@@ -1,4 +1,4 @@
-class InPutPort
+model InPutPort
   Real vo;
   input Real vi;
  equation

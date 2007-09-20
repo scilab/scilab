@@ -94,6 +94,8 @@ case 'define' then
   model=scicos_model()
   model.sim='input'
   model.out=-1
+  model.out2=-2
+  model.outtyp=-1
   model.ipar=prt
   model.blocktype='c'
   model.dep_ut=[%f %f]

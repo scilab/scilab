@@ -19,13 +19,22 @@ case 'set' then
   while %t do
     [ok,sgn,exprs]=getvalue('Set sum block parameters',..
     			   'Inputs ports signs/gain',list('vec',-1),exprs)
-    if ~ok then break,end
-    in=-ones(size(sgn,'*'),1)
-    [model,graphics,ok]=check_io(model,graphics,in,-1,[],[])
-    model.rpar=sgn(:)
-    graphics.exprs=exprs
-    x.graphics=graphics;x.model=model
-    break
+    if ~ok then
+      break
+    end
+    
+    in = -ones(size(sgn,'*'),1)
+    
+    //** Patch: check added 
+    [model,graphics,ok] = check_io(model,graphics,in,-1,[],[]);
+    if ok then
+      model.rpar = sgn(:)    ;
+      graphics.exprs = exprs ;
+      x.graphics = graphics;
+      x.model = model ;
+      break
+    end
+       
   end
 case 'define' then
   sgn=[1;1]

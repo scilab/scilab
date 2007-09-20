@@ -84,8 +84,9 @@ case 'set' then
   typ=newpar
 case 'define' then
   model = mlist(..
-  ['model','sim','in','out','evtin','evtout','state','dstate','rpar','ipar','blocktype',..
-  'firing','dep_ut','label','nzcross','nmode','equations'],'csuper',[],-1,[],[],[],[],..
+  ['model','sim','in','in2','intyp','out','out2','outtyp','evtin','evtout','state','dstate',..
+  'odstate','rpar','ipar','opar','blocktype','firing','dep_ut','label','nzcross','nmode','equations'],..
+  'csuper',[],[],1,-1,[],1,[],[],[],[],list(),..
   mlist(['diagram','props','objs'],..
   tlist(..
   ['params','wpar','title','tol','tf','context','void1','options','void2','void3','doc'],..
@@ -101,9 +102,10 @@ case 'define' then
   list(['txt=[''Step''];';'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');'],8),..
   emptystr(),[],[]),..
   mlist(..
-  ['model','sim','in','out','evtin','evtout','state','dstate','rpar','ipar','blocktype',..
-  'firing','dep_ut','label','nzcross','nmode','equations'],list('step_func',4),[],1,1,1,[],..
-  [],[0;1],[],'c',1,[%f,%t],emptystr(),0,0,list()),'STEP',list()),..
+  ['model','sim','in','in2','intyp','out','out2','outtyp','evtin','evtout','state','dstate',..
+  'odstate','rpar','ipar','opar','blocktype','firing','dep_ut','label','nzcross','nmode','equations'],..
+  list('step_func',4),[],[],1,1,[],1,1,1,[],..
+  [],list(),[0;1],[],list(),'c',1,[%f,%t],emptystr(),0,0,list()),'STEP',list()),..
   mlist(['Link','xx','yy','id','thick','ct','from','to'],..
   [102.2306;102.2306;63.708992;63.708992;102.2306;102.2306],..
   [646.96701;622.2884;622.2884;711.98452;711.98452;698.39559],'drawlink',[0,0],[5,-1],..
@@ -114,11 +116,12 @@ case 'define' then
   'in_implicit','out_implicit'],[150.80203,662.6813],[20,20],%t,'1',4,[],[],[],list(' ',8),..
   emptystr(),[],[]),..
   mlist(..
-  ['model','sim','in','out','evtin','evtout','state','dstate','rpar','ipar','blocktype',..
-  'firing','dep_ut','label','nzcross','nmode','equations'],'output',-1,[],[],[],[],[],[],1,..
+  ['model','sim','in','in2','intyp','out','out2','outtyp','evtin','evtout','state','dstate',..
+  'odstate','rpar','ipar','opar','blocktype','firing','dep_ut','label','nzcross','nmode','equations'],..
+  'output',-1,[],1,[],[],1,[],[],[],[],list(),[],1,list(),..
   'c',[],[%f,%f],emptystr(),0,0,list()),'OUT_f',list()),..
   mlist(['Link','xx','yy','id','thick','ct','from','to'],[130.80203;150.80203],..
-  [672.6813;672.6813],'drawlink',[0,0],[1,1],[1,1,0],[3,1,1]))),[],'h',[],[%f,%f],emptystr(),..
+  [672.6813;672.6813],'drawlink',[0,0],[1,1],[1,1,0],[3,1,1]))),[],list(),'h',[],[%f,%f],emptystr(),..
   0,0,list())
   gr_i=[  'thick=xget(''thickness'')'
 	  'pat=xget(''pattern'')'

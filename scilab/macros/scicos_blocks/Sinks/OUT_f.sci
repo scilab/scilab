@@ -103,10 +103,12 @@ case 'define' then
   model=scicos_model()
   model.sim='output'
   model.in=-1
+  model.in2=-2
+  model.intyp=-1
   model.ipar=prt
   model.blocktype='c'
   model.dep_ut=[%f %f]
-  
+
   exprs=string(prt)
   gr_i=' '
   x=standard_define([1 1],model,exprs,gr_i)

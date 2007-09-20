@@ -67,7 +67,7 @@ case 'set' then
 	         ' ';mess])
 	   end
     if ok then
-      [model,graphics,ok]=check_io(model,graphics,-1,[],ones(1-heritance,1),[])
+      [model,graphics,ok]=set_io(model,graphics,list([-1 1],1),list(),ones(1-heritance,1),[])
     end
     
     if ok then
@@ -76,9 +76,7 @@ case 'set' then
       rpar=[0;ymin;ymax;per]
       ipar=[win;1;N;clrs(:);wpos(:);wdim(:)]
       //if prod(size(dstate))<>(8+1)*N+1 then dstate=-eye((8+1)*N+1,1),end
-      model.dstate=[];
-      //model.dstate=dstate;
-      
+      //model.dstate=[];      
       model.rpar=rpar;model.ipar=ipar
       model.evtin=ones(1-heritance,1)
       model.label=nom;
@@ -99,6 +97,7 @@ case 'define' then
   model=scicos_model()
   model.sim=list('cscope',4)
   model.in=-1
+  model.in2=1
   model.evtin=1
   model.rpar=[0;ymin;ymax;per]
   model.ipar=[win;1;N;clrs;wpos;wdim]

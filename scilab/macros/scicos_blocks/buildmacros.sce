@@ -1,22 +1,24 @@
 lines(0);
-CurrentDirectoryScicosBlocks=pwd();
- SubDirectoriesScicosBlocks=["Branching",
+CurrentDirScicosBlocks=pwd();
+ SubDirsScicosBlocks=["Branching",
 		    "Events",
 		    "Linear",
 		    "Misc",
 		    "NonLinear",
 		    "Sinks",
 		    "Sources",
+		    "MatrixOp",
 		    "Threshold",
 		    "Hydraulics",
 		    "Electrical",
-		    "PDE"];
+		    "PDE",
+		    "IntegerOp"];
  
-Dim=size(SubDirectoriesScicosBlocks);
+Dim=size(SubDirsScicosBlocks);
 for i=1:Dim(1) do 
-  chdir(SubDirectoriesScicosBlocks(i));
-  disp('-------- Creation of '+SubDirectoriesScicosBlocks(i)+' (Macros) for scicos_blocks --------');
+  chdir(SubDirsScicosBlocks(i));
+  disp('-------- Creation of '+SubDirsScicosBlocks(i)+' (Macros) for scicos_blocks --------');
   exec('buildmacros.sce');
-  chdir(CurrentDirectoryScicosBlocks);
+  chdir(CurrentDirScicosBlocks);
 end
-clear Dim CurrentDirectoryScicosBlocks SubDirectoriesScicosBlocks
+clear Dim CurrentDirScicosBlocks SubDirsScicosBlocks

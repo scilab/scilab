@@ -17,7 +17,7 @@ case 'set' then
   model=arg1.model;
   while %t do
     [ok,L,exprs]=getvalue('Set Inductor block parameter',..
-    			   'L (T)',list('vec',1),exprs)
+    			   'L (H)',list('vec',1),exprs)
     if ~ok then break,end
     model.rpar=L
     model.equations.parameters(2)=list(L)

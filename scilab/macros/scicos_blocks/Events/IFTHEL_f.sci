@@ -38,6 +38,8 @@ case 'define' then
   model=scicos_model()
   model.sim=list('ifthel',-1)
   model.in=1
+  model.in2=1
+  model.intyp=-1
   model.evtin=1
   model.evtout=[1;1]
   model.blocktype='l'
@@ -45,7 +47,7 @@ case 'define' then
   model.dep_ut=[%t %f]
   model.nmode=1
   model.nzcross=1
-  
+
   gr_i=['txt=[''If in>0'';'' '';'' then    else''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
   exprs=[string(model.in);string(model.nmode)];

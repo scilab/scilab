@@ -1,4 +1,4 @@
-class VariableResistor
+model VariableResistor
 	Pin p, n;
 	Real R "Resistance";
 equation

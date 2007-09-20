@@ -1,4 +1,4 @@
-class VVsourceAC "Sin-wave voltage source"
+model VVsourceAC "Sin-wave voltage source"
 	Pin p, n;
 	Real v;
 	Real VA "voltage";

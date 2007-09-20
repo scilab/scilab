@@ -1,4 +1,4 @@
- class PotentialSensor 
+model PotentialSensor 
   Pin p;
   Real v;
  equation

@@ -1,4 +1,4 @@
- class CurrentSensor 
+model CurrentSensor 
   Pin p;
   Pin n;
   Real i;

@@ -1,4 +1,4 @@
-class Inductor "Ideal electrical inductor"
+model Inductor "Ideal electrical inductor"
 	Pin p, n;
 	Real v;
 	Real i;

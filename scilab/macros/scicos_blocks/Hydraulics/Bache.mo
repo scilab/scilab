@@ -1,4 +1,4 @@
-class Bache 
+model Bache 
   parameter Real Patm "Pression dans le ciel de la bache";
   parameter Real A "Section de la bache";
   parameter Real ze1 "Altitude du piquage d'entrée 1";

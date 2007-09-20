@@ -1,4 +1,4 @@
-class PortPHQ1 
+connector PortPHQ1 
 //  extends ThermoLib.Connecteurs.PortPHQ;
   Real P "Pression du fluide";
   Real H "Enthalpie spécifique du fluide";
