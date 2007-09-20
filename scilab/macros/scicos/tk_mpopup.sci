@@ -11,25 +11,28 @@ function Cmenu=tk_mpopup(ll)
     return
   end
 
-  [txt,MM] = create_popup(ll)
+  txt = create_popup(ll)
   ierr = execstr('TCL_EvalStr(txt)','continue')
 endfunction
 //**-------------------------------------------------------------------------------------------------------------------
 
 
-function [txt,MM]=create_popup(ll)
-  MM=[];
-  global j
+
+function txt=create_popup(ll)
+//  global j
   j=0
 txt='catch {destroy .scicoslhb};toplevel .scicoslhb;wm state .scicoslhb withdrawn;'
-[txte,MM]=createmenu(ll,'','.scicoslhb.edit',MM)
+txte=createmenu(ll,'','.scicoslhb.edit',j)
 txt=txt+txte
+
+txt=txt+'bind .scicoslhb.edit <Unmap> {ScilabEval '"Done=''1'''"};'
+
 txt=txt+' proc showpopup {} {set numx [winfo pointerx .];set numy [winfo pointery .];set z {expr {$numy+2}};set numz [eval $z];tk_popup .scicoslhb.edit $numx $numz;.scicoslhb.edit activate 0};showpopup'
 endfunction
 
 
-function [txt,MM]=createmenu(ll,txt,path,MM)
-  global j
+function [txt,j]=createmenu(ll,txt,path,j)
+//  global j
   i=1
   txt1=[];
   txt2=[];
@@ -42,20 +45,18 @@ function [txt,MM]=createmenu(ll,txt,path,MM)
 	   l+''''"};'
       j=j+1
     else
+
       if length(l)<2 then error('A menu is empty'),end
       cpath=path+'.edit'+string(i);
       txt1=txt1+path+' add cascade -label '"'+l(1)+''"  -menu '+cpath+';'
-      l(1)=null(1)
-      [txt3,MM]=createmenu(l,txt,cpath,MM);
+      l(1)=null()
+      [txt31,j]=createmenu(l,txt,cpath,j);
+      txt3=txt3+txt31
     end
   end
-  MM=[MM,path]
   txt=txt+'menu '+ path+' -tearoff 0;'+txt1+txt2+txt3
+
 endfunction
-
-
-// ll=list('choix',list('sdf','dd',list('d',list('df','deewq'))),'voo'); 
-//  Cmenu=tk_mpopup(ll)
 
 
 
