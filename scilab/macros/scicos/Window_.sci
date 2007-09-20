@@ -1,5 +1,5 @@
 function Window_()
-    Cmenu='Open/Set'
+    Cmenu=[]
     disablemenus()
 
     params=scs_m.props;

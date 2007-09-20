@@ -1,6 +1,6 @@
 function Eval_()
     Cmenu='Replot'
-    disablemenus()
+
     %now_win=xget('window')
 
     [%scicos_context,ierr]=script2var(scs_m.props.context,%scicos_context)
@@ -25,5 +25,5 @@ function Eval_()
     else
       message(['Incorrect context definition, ';lasterror()] )
     end
-    enablemenus()
+
 endfunction

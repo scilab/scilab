@@ -3,7 +3,8 @@ function [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcom
 //parameter changes
 //!
 // Copyright INRIA
-ok=%t 
+
+ok=%t
 select needcompile
  case 0 then  // only parameter changes 
   if size(newparameters)<>0 then
@@ -49,19 +50,27 @@ select needcompile
   [ok,bllst]=adjust(bllst,sim('inpptr'),sim('outptr'),sim('inplnk'),..
 		    sim('outlnk'))
   if ok then
-    %cpr.sim('lnkptr')=lnkptrcomp(bllst,sim('inpptr'),sim('outptr'),..
-				  sim('inplnk'),sim('outlnk'))
-    %cpr.state('outtb')=0*ones(%cpr.sim('lnkptr')($)-1,1)
-    %state0('outtb')=0*ones(%cpr.sim('lnkptr')($)-1,1)
+    [lnksz,lnktyp]=lnkptrcomp(bllst,sim('inpptr'),sim('outptr'),...
+                                     sim('inplnk'),sim('outlnk'))
+    %cpr.state('outtb')=buildouttb(lnksz,lnktyp)
+    %state0('outtb')=buildouttb(lnksz,lnktyp)
     needcompile=0
   end
  
  case 2 then // partial recompilation
   alreadyran=do_terminate()
   [%cpr,ok]=c_pass3(scs_m,%cpr)
-  %state0=%cpr.state
-  if ~ok then return,end
-  needcompile=0
+  if ok then
+    %state0=%cpr.state
+    needcompile=0; 
+    return;
+  end
+  disp("Partial compilation failed. Attempting a full compilation.");
+  [%cpr,ok]=do_compile(scs_m)
+  if ok then
+    %state0=%cpr.state
+    needcompile=0
+  end
  case 4 then  // full compilation
   alreadyran=do_terminate()
   [%cpr,ok]=do_compile(scs_m)
@@ -70,4 +79,5 @@ select needcompile
     needcompile=0
   end
 end
+
 endfunction

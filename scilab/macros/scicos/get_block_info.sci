@@ -1,14 +1,20 @@
-function txt=get_block_info(scs_m,k,ksave)
+function txt = get_block_info(scs_m, k, ksave)
+//**
 // Copyright INRIA
-  if argn(2)>2 then super_path;super_path($+1)=ksave,end
-txt=[]
-o=scs_m.objs(k)
-ksave=k //pour creer super_path
+//**   
+if argn(2)>2 then
+    super_path;
+    super_path($+1) = ksave
+end
+txt = [] ;
+o = scs_m.objs(k)
+ksave = k // pour creer super_path
 //select o(1)
+
 select typeof(o)
-case 'Block' then
+case "Block" then
   txt = standard_document(o,k)
-  txt=[txt;' ']
+  txt = [txt;' ']
   
   if o.model.sim=='super'|o.model.sim=='csuper' then
     objet=o.model.rpar
@@ -69,11 +75,11 @@ case 'Block' then
 	' '
 	texte_2]
   end
-case 'Link' then
+case "Link" then
   txt = standard_document(o,k)
-case 'Text' then
+case "Text" then
   txt = standard_document(o,k)
-case 'Deleted' then
+case "Deleted" then
   txt=[]
 end
 endfunction

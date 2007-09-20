@@ -1,4 +1,4 @@
-function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m)
+function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,flgcdgen)
   //derived from c_pass1 for implicit diagrams
 //%Purpose
 // Determine one level blocks and connections matrix
@@ -24,7 +24,45 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m)
 //!
 // Serge Steer 2003, Copyright INRIA
 //c_pass1;
-  [cor,corinvt,links_table,cur_fictitious,ok]=scicos_flat(scs_m);
+  if argn(2)<=1 then flgcdgen=-1, end
+  freof=[]; 
+  [cor,corinvt,links_table,cur_fictitious,sco_mat,ok]=scicos_flat(scs_m);
+  if ok then
+     [links_table,sco_mat,ok]=global_case(links_table,sco_mat)
+  end
+  if ~ok then 
+    blklst=[];cmat=[],ccmat=[],cor=[],corinv=[]
+    return;
+  end
+  index1=find(sco_mat(:,2)=='-1')
+  if index1<>[] then
+       for i=index1
+         [path]=findinlist(cor,-evstr(sco_mat(i,1)))
+         full_path=path(1)
+         if flgcdgen<>-1 then full_path=[numk full_path];scs_m=all_scs_m;end
+            hilite_path(full_path,"Error in compilation, There is a FROM ''"+(sco_mat(i,3))+ "'' without a GOTO",%t)
+//          else     
+//           mxwin=maxi(winsid())
+//           for k=1:size(full_path,'*')
+//               hilite_obj(numk(k))
+//               scs_m1=all_scs_m.objs(numk(k)).model.rpar;
+//               scs_show(scs_m1,mxwin+k)
+//           end
+//           hilite_obj(full_path($))          
+//           message("Error in compilation, There is a FROM ''"+(sco_mat(i,3))+"'' without a GOTO");
+//           for k=size(full_path,'*'):-1:1,
+//              gh_del = scf(mxwin+k);
+//              delete(gh_del)
+//           end
+//           scf(gh_wins);
+//           unhilite_obj(numk(1))
+//           scs_m1=[]
+//          end 
+          ok=%f;
+          blklst=[];cmat=[],ccmat=[],cor=[],corinv=[]
+          return;
+        end
+  end
   nb=size(corinvt);
   reg=1:nb
   //form the block lists
@@ -39,6 +77,11 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m)
     if is_modelica_block(o) then
       km=km+1;blklstm(km)=o.model;
       ind(kb)=-km;
+      [modelx,okx]=build_block(o); // compile modelica block type 30004
+      if ~okx then 
+	cmat=[],ccmat=[],cor=[],corinv=[]
+	return
+      end
     else
       [model,ok]=build_block(o);
       if ~ok then 
@@ -52,8 +95,18 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m)
       ind(kb)=kr;
     end
   end
-
-  
+  if (find(sco_mat(:,5)==string(4))<>[]) then
+   if flgcdgen ==-1 then
+    [links_table,blklst,corinvt,ind,ok]=sample_clk(sco_mat,links_table,blklst,corinvt,scs_m,ind,flgcdgen)
+   else 
+    [links_table,blklst,corinvt,ind,ok,scs_m,flgcdgen,freof]=sample_clk(sco_mat,links_table,blklst,corinvt,scs_m,ind,flgcdgen)
+   end
+     if ~ok then
+        cmat=[],ccmat=[],cor=[],corinv=[]
+	return,
+      end
+  end
+  nb=size(corinvt)
   nl=size(links_table,1)/2
   links_table=[links_table(:,1:3) matrix([1;1]*(1:nl),-1,1) links_table(:,4) ];
 
@@ -110,7 +163,6 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m)
 	ok=%f;return
       end
     end
-
     //renumber blocks according to their types	
     corinv=list();corinvm=list();
     for kb=1:nb
@@ -198,15 +250,30 @@ endfunction
 
 function mat=cmatfromT(Ts,nb)
 //S. Steer, R. Nikoukhah 2003. Copyright INRIA
-  k=find(Ts(:,1)<0) //superblock ports links
+//this function has been modified to support 
+// CLKGOTO et CLKFROM
+// Fady NASSIF: 11/07/2007
+  k=find(Ts(:,1)<0) //superblock ports links and CLKGOTO/CLKFROM
   K=unique(Ts(k,1));
   Ts=remove_fictitious(Ts,K)
   
   if Ts==[] then mat=[],return,end
-  if size(Ts,1)<>int(size(Ts,1)/2)*2 then disp('PB'),pause,end
+//  if size(Ts,1)<>int(size(Ts,1)/2)*2 then disp('PB'),pause,end
   [s,k]=gsort(Ts(:,[4,3]),'lr','i');Ts=Ts(k,:)
-  
-  mat=[Ts(1:2:$,1:2) Ts(2:2:$,1:2)]
+  // modified to support the CLKGOTO/CLKFROM
+  //mat=[Ts(1:2:$,1:2) Ts(2:2:$,1:2)]
+//----------------------------------
+
+  J=find(Ts(:,3)==1); //find the destination block of the link
+  v=find([Ts(:,3);-1]==-1) // find the source block of the link
+  // many destination blocks can be connected to one source block
+  // so we have to find the number of destination blocks for each source block
+  // v(2:$)-v(1:$-1)-1
+  // then create the vector I that must be compatible with the vector J.
+  I=duplicate(v(1:$-1),v(2:$)-v(1:$-1)-1); 
+  mat=[Ts(I,1:2),Ts(J,1:2)]
+
+//----------------------------------
   K=unique(Ts(Ts(:,1)>nb))
   Imat=[];
   for u=matrix(K,1,-1)
@@ -254,6 +321,8 @@ function cor=update_cor(cor,reg)
       p=find(cor(k)==reg)
       if p<>[] then 
 	cor(k)=p
+      elseif cor(k)<0 then  // GOTO FROM cases
+	cor(k)=0
       elseif cor(k)<>0 then
 	cor(k)=size(reg,'*')+1
       end

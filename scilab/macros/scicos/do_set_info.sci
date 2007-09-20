@@ -1,15 +1,18 @@
 function [ok,new_info]=do_set_info(info)
-//This function may be redefined by the user to handle definition 
-//of the informations associated with the current diagram
+// This function may be redefined by the user to handle definition 
+// of the informations associated with the current diagram
 // Copyright INRIA
 if prod(size(info))==0 then
-  info=list(' ')
+  info = list(' ')
 end
-new_info=x_dialog('Set Diagram informations',info(1))
+
+new_info = x_dialog('Set Diagram informations',info(1))
+
 if new_info==[] then 
-  ok=%f
+  ok = %f
 else
-  ok=%t
-  new_info=list(new_info)
+  ok = %t
+  new_info = list(new_info)
 end
+
 endfunction

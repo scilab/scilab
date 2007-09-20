@@ -1,30 +1,33 @@
 function Cmenu=tk_mpopupX(ll)
-  Cmenu=[]
-  if length(ll)==0 then return;end
-  [txt,MM]=create_popup(ll)
-  ierr=execstr('TCL_EvalStr(txt)','continue')
-  done=0
-  while ~done,end
+// To make it work like in windows case
+  
+  Cmenu = []
+  Done = []
+  if length(ll)==0 then
+    return
+  end
+
+  [txt,MM] = create_popup(ll)
+  ierr = execstr('TCL_EvalStr(txt)','continue')
+  while (Cmenu==[]&Done==[])
+     xpause(1000)
+  end
+
 endfunction
+//**-------------------------------------------------------------------------------------------------------------------
+
 
 function [txt,MM]=create_popup(ll)
   MM=[];
   global j
   j=0
-  'set numx [winfo pointerx .]'
-'set numy [winfo pointery .]'
-'wm geometry $w +$numx+$numy'
-'wm title $w '"Set Block properties'"'
-  
-  
-txt='catch {destroy .zz};toplevel .zz;set numx [winfo pointerx .];set"+...
-    " numy [winfo pointery .];wm geometry .zz +$numx+$numy;wm title .zz '" '";frame .zz.scicoslhb;menubutton .zz.scicoslhb.xx -text '"Possible operations'" -underline 0 -menu .zz.scicoslhb.xx.edit -relief raised;'
-[txte,MM]=createmenu(ll,'','.zz.scicoslhb.xx.edit',MM)
+txt='catch {destroy .scicoslhb};toplevel .scicoslhb;wm state .scicoslhb withdrawn;'
+[txte,MM]=createmenu(ll,'','.scicoslhb.edit',MM)
 txt=txt+txte
-txt=txt+' pack .zz.scicoslhb.xx -side left -in .zz.scicoslhb;button"+...
-    " .zz.scicoslhb.xy -text Cancel -command {destroy .zz};pack"+...
-    " .zz.scicoslhb.xy -side right -in .zz.scicoslhb;"+...
-"pack .zz.scicoslhb;bind .zz <Destroy> {ScilabEval '"done=1'"}'
+
+txt=txt+'bind .scicoslhb.edit <Unmap> {ScilabEval '"Done=''1'''"};'
+
+txt=txt+' proc showpopup {} {set numx [winfo pointerx .];set numy [winfo pointery .];set z {expr {$numy+2}};set numz [eval $z];tk_popup .scicoslhb.edit $numx $numz;.scicoslhb.edit activate 0};showpopup'
 endfunction
 
 
@@ -39,7 +42,7 @@ function [txt,MM]=createmenu(ll,txt,path,MM)
       i=i+1
       txt1=txt1+path+' add command -label '"'+l+''"  -command scicosl'+string(j)+';'
       txt2=txt2+'proc scicosl'+string(j)+' {} {ScilabEval '"Cmenu='''+ ...
-	   l+''''";destroy .zz};'
+	   l+''''"};'
       j=j+1
     else
       if length(l)<2 then error('A menu is empty'),end
@@ -53,7 +56,7 @@ function [txt,MM]=createmenu(ll,txt,path,MM)
   txt=txt+'menu '+ path+' -tearoff 0;'+txt1+txt2+txt3
 endfunction
 
-//getf tk_mpopup.sci
+
 // ll=list('choix',list('sdf','dd',list('d',list('df','deewq'))),'voo'); 
 //  Cmenu=tk_mpopup(ll)
 

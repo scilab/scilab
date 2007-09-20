@@ -9,7 +9,7 @@ function ok=set_cmap(cmap)
       d=[d;cmap(k,:)]
     end
   end
-  ierr=execstr('xset(''colormap'',d)','errcatch')
+  ierr=execstr('set(gcf(),'"color_map'",d)','errcatch')
   if ierr<>0 then
     ok=%f
   else

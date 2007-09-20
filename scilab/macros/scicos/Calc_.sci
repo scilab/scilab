@@ -1,11 +1,16 @@
 function Calc_()
-    Cmenu=[]
-    xinfo('You may enter any Scilab instruction. enter return to terminate')
-    scs_gc=save_scs_gc()
-    disablemenus()
-    pause
-    //xinfo(' ')
-    restore_scs_gc(scs_gc);scs_gc=null()
-    enablemenus()
-    Cmenu='Replot'
+//** INRIA
+//** Comments by Simone Mannori 
+
+    Cmenu = [] ;
+    
+    xinfo("You may enter any Scilab instruction. Enter ''return'' keyword to come back to Scicos")
+    
+    xinfo_flag = 1 ; //** keep the message  
+//    disablemenus(xinfo_flag);
+      pause ; //** recurse in the Scilab command line 
+//    enablemenus(); 
+    
+    Cmenu ="Replot" ; //** force a Replot of the diagram 
+    
 endfunction

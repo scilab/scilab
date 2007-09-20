@@ -5,16 +5,21 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 // Copyright INRIA
   xptr=sim.xptr
   zptr=sim.zptr
+  ozptr=sim.ozptr
   rpptr=sim.rpptr
   ipptr=sim.ipptr
+  opptr=sim.opptr
   ipar=sim.ipar
   rpar=sim.rpar
+  opar=sim.opar
   ztyp=sim.ztyp
   labels=sim.labels
   st=state.x
   dst=state.z
+  odst=state.oz
   st0=%state0.x
   dst0=%state0.z
+  odst0=%state0.oz
 
   Impl=%f
   if xptr($)-1 < size(st,'*') then
@@ -26,17 +31,14 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
   end
 
   nb=prod(size(rpptr))-1
-
-
   for k=newparameters
     if prod(size(k))==1 then //parameter of a simple block
       kc=cor(k) //index of modified block in compiled structure
       o=scs_m.objs(k)
     else
-      kc=get_tree_elt(cor,k); 
+      kc=get_tree_elt(cor,k);
       o=scs_m(get_subobj_path(k))
     end
-    
     if is_modelica_block(o) then
       parameters=o.model.equations.parameters
       rpark=[];for p=parameters(2),rpark=[rpark;p(:)];end
@@ -54,9 +56,10 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
     else
       statekd=[]
       om=o.model
-      [fun,statek,dstatek,rpark,ipark]=(om.sim,om.state,om.dstate,om.rpar,om.ipar);
+      [fun,statek,dstatek,odstatek,rpark,ipark,opark]=...
+          (om.sim,om.state,om.dstate,om.odstate,om.rpar,om.ipar,om.opar);
       if type(fun)==15 then
-	if (fun(2)==3 | fun(2)==5 |  fun(2)==10005) then 
+	if (fun(2)==3 | fun(2)==5 |  fun(2)==10005) then
 	  if rpark<>[] then rpark=var2vec(rpark); end
 	  if dstatek<>[] then dstatek=var2vec(dstatek),end
 	end
@@ -65,6 +68,7 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 	  statek=statek(1:$/2)
 	end
       end
+
       if kc>0 then
 	//Change continuous state
 	nek=prod(size(statek))-(xptr(kc+1)-xptr(kc))
@@ -85,7 +89,8 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 	  std(xptr(kc):xptr(kc+1)-1)=statekd(:),
 	  std0(xptr(kc):xptr(kc+1)-1)=statekd(:),
 	end
-	//Change discrete  state
+
+	//Change discrete state
 	nek=prod(size(dstatek))-(zptr(kc+1)-zptr(kc))
 	sel=zptr(kc+1):zptr($)-1
 	if nek<>0&sel<>[] then
@@ -93,10 +98,50 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 	  dst0(nek+sel)=dst0(sel)
 	end
 	zptr(kc+1:$)=zptr(kc+1:$)+nek
-	dst(zptr(kc):zptr(kc+1)-1)=dstatek(:),
-	dst0(zptr(kc):zptr(kc+1)-1)=dstatek(:),
+	dst(zptr(kc):zptr(kc+1)-1)=dstatek(:)
+	dst0(zptr(kc):zptr(kc+1)-1)=dstatek(:)
 
-	
+        //Change objects discrete state
+        if ((type(odstatek)<>15) | ...
+           (type(fun)<>15)) then //old sci blocks or odstatek not a list
+          nek=-(ozptr(kc+1)-ozptr(kc))
+        elseif ((fun(2)==5) | (fun(2)==10005)) then // sciblocks type 5 | 10005
+          if lstsize(odstatek)>0 then
+            nek=1-(ozptr(kc+1)-ozptr(kc)) //nombre d'�tats suppl�mentaires
+          else
+            nek=-(ozptr(kc+1)-ozptr(kc))
+          end
+        elseif ((fun(2)==4) | (fun(2)==10004)) then // C blocks type 4 | 10004
+          nek=lstsize(odstatek)-(ozptr(kc+1)-ozptr(kc))
+        else // other C and sci blocks
+          nek=-(ozptr(kc+1)-ozptr(kc))
+        end
+        sel=ozptr(kc+1):ozptr($)-1
+        if nek<>0&sel<>[] then
+          while lstsize(odst)<max(nek+sel), odst($+1)=[], end
+          while lstsize(odst0)<max(nek+sel), odst0($+1)=[], end
+//          if nek>0 then sel=fftshift(sel), end
+          if nek>0 then sel=gsort(sel), end
+          for j=sel
+            odst(j+nek)=odst(j)
+            odst0(j+nek)=odst0(j)
+          end
+        end
+        ozptr(kc+1:$)=ozptr(kc+1:$)+nek;
+        if ((type(odstatek)==15) & (type(fun)==15)) then
+          if ((fun(2)==5) | (fun(2)==10005)) then // sciblocks
+            if lstsize(odstatek)>0 then
+              odst(ozptr(kc))=odstatek;
+              odst0(ozptr(kc))=odstatek;
+            end
+          elseif ((fun(2)==4) | (fun(2)==10004)) then  // C blocks
+            for j=1:lstsize(odstatek)
+              odst(ozptr(kc)+j-1)=odstatek(j);
+              odst0(ozptr(kc)+j-1)=odstatek(j);
+            end
+          end
+        end
+
 	//Change real parameters
 	nek=prod(size(rpark))-(rpptr(kc+1)-rpptr(kc))
 	sel=rpptr(kc+1):rpptr($)-1
@@ -116,16 +161,48 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 	  ipptr(kc+1:$)=ipptr(kc+1:$)+nek
 	  ipar(ipptr(kc):ipptr(kc+1)-1)=ipark,
 	end
-	
+        //Change objects parameters
+        if ((type(opark)<>15) | ...
+           (type(fun)<>15)) then //old sci blocks or odstatek not a list
+          neopark=-(opptr(kc+1)-opptr(kc))
+        elseif ((fun(2)==5) | (fun(2)==10005)) then // sciblocks
+          if lstsize(opark)>0 then
+            nek=1-(opptr(kc+1)-opptr(kc)) //nombre de param�tres suppl�mentaires
+          else
+            nek=-(opptr(kc+1)-opptr(kc))
+          end
+        elseif ((fun(2)==4) | (fun(2)==10004)) then //C blocks
+          nek=lstsize(opark)-(opptr(kc+1)-opptr(kc))
+        else // other C and sci blocks
+          nek=-(ozptr(kc+1)-ozptr(kc))
+        end
+        sel=opptr(kc+1):opptr($)-1
+        if nek<>0&sel<>[] then
+          while lstsize(opar)<max(nek+sel), opar($+1)=[], end
+  //        if nek>0 then sel=fftshift(sel), end
+        if nek>0 then sel=gsort(sel), end
+          for j=sel, opar(j+nek)=opar(j); end
+        end
+        opptr(kc+1:$)=opptr(kc+1:$)+nek;
+        if ((type(opark)==15) & (type(fun)==15)) then
+          if ((fun(2)==5) | (fun(2)==10005)) then // sciblocks
+           if lstsize(opark)>0 then
+             opar(opptr(kc))=opark;
+           end
+          elseif ((fun(2)==4) | (fun(2)==10004)) then //C blocks
+            for j=1:lstsize(opark), opar(opptr(kc)+j-1)=opark(j), end
+          end
+        end
 	//Change simulation routine
 	if type(sim('funs')(kc))<>13 then   //scifunc
 	  sim('funs')(kc)=fun(1);
-	  if prod(size(fun))> 1 then 
+	  if prod(size(fun))> 1 then
 	    sim('funtyp')(kc)=fun(2);
-	  else 
+	  else
 	    sim('funtyp')(kc)==0;
 	  end
 	end
+
 	//Change label
 	labels(kc)=o.model.label
       end
@@ -134,10 +211,13 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 
   sim.xptr=xptr
   sim.zptr=zptr
-  sim.rpar=rpar;
-  sim.rpptr=rpptr;
-  sim.ipar=ipar;
+  sim.ozptr=ozptr
+  sim.rpar=rpar
+  sim.rpptr=rpptr
+  sim.ipar=ipar
   sim.ipptr=ipptr
+  sim.opar=opar
+  sim.opptr=opptr
   sim.labels=labels
 
   if Impl then
@@ -147,11 +227,13 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
   end
 
   state.z=dst
+  state.oz=odst
   if Impl then
     %state0.x=[st0;std0]
   else
     %state0.x=st0
   end
   %state0.z=dst0
+  %state0.oz=odst0
 
 endfunction

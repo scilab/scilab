@@ -1,4 +1,10 @@
 function Export_()
-    do_export(scs_m)
-    Cmenu='Replot'
+//** INRIA     
+//**    
+
+  do_export(scs_m) ;
+  scf(gh_current_window); 
+  drawnow() ; show_pixmap() ;
+
+  Cmenu=[]   ;
 endfunction

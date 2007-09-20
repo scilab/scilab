@@ -1,6 +1,8 @@
 function texte = standard_document(objet, k)
-//
-// standard_document - documentation d'un bloc Scicos
+//**
+// Copyright INRIA
+//**   
+// standard_document - Scicos block documentation 
 //
 // Copyright INRIA
 
@@ -8,10 +10,10 @@ function texte = standard_document(objet, k)
   //
   select type_objet
 
-   case 'Text' then
-    texte='This is a TEXT block'
+   case "Text" then
+    texte = 'This is a TEXT block'
     
-    case 'Block' then
+    case "Block" then
     //- Initialisations 
     modele = objet.model
     graphique = objet.graphics
@@ -31,6 +33,8 @@ function texte = standard_document(objet, k)
 	language = '4 (C code)'
       elseif fonction(2) == 5 then
 	language = '5 (Scilab function)'
+      elseif fonction(2) == 99 then
+	language = '99 (Scicos debug block)'
        elseif fonction(2) < 0  then
 	language = '<0 (synchro block)'
       elseif fonction(2) <10000 then
@@ -113,27 +117,136 @@ function texte = standard_document(objet, k)
     end
     //- Entrees / sorties 
 
-    tableau = ['Port type', 'Number', 'Size', 'Link'; '-', '-', '-', '-']
+    //tableau = ['Port type', 'Number', 'Size', 'Link'; '-', '-', '-', '-']
+    tableau = ['Port type', 'Number', 'I/E', 'Size', 'Data type', 'Link';
+               '-', '-', '-', '-', '-', '-']
     //- Entrees standard
     for i = 1 : min(size(modele.in,'*'),size(graphique.pin,'*'))
-      tableau = [tableau; 'Regular input', string(i),..
-		 string(modele.in(i)), string(graphique.pin(i))]
+      // General information
+      txt = ['Regular input', string(i)]
+      // Info. for implicit/explicit port
+      ierr=execstr('tt=string(graphique.in_implicit(i))','errcatch')
+      if ierr<>0 then
+        txt = [txt, '?'] //not specified
+      else
+        if tt==[] then 
+          txt = [txt, '?'] //not specified
+        else 
+          txt = [txt, tt]
+        end
+      end
+      // Info. for size of port
+      txt = [txt ,'['];
+      tt=string(modele.in(i)) //first dim.
+      if tt==[] then 
+        txt($) = txt($)+'?' //not specified
+      else 
+        txt($) = txt($)+tt
+      end
+      txt($)=txt($)+';'
+      ierr=execstr('tt=string(modele.in2(i))','errcatch')//sec. dim.
+      if ierr<>0 then 
+        txt($) = txt($)+'?' //not specified
+      else
+        if tt==[] then 
+          txt($) = txt($)+'?' //not specified
+        else 
+          txt($) = txt($)+tt
+        end
+      end
+      txt($)=txt($)+']'
+      // Info for data type
+      ierr=execstr('ttyp=modele.intyp(i)','errcatch')
+      if ierr<> 0 then
+        tt='?' //not specified
+      else
+        if ttyp==-1 then tt='-1'
+        elseif ttyp==1 tt='double'
+        elseif ttyp==2 tt='complex'
+        elseif ttyp==3 tt='int32'
+        elseif ttyp==4 tt='int16'
+        elseif ttyp==5 tt='int8'
+        elseif ttyp==6 tt='uint32'
+        elseif ttyp==7 tt='uint16'
+        elseif ttyp==8 tt='uint8'
+        else tt='?' //Unknown
+        end
+      end
+      txt = [txt, tt]
+      //Info for link
+      txt = [txt,string(graphique.pin(i))]
+      //update tableau
+      tableau = [tableau; txt]
     end
 
     //- Sorties standard
     for i = 1 : min(size(modele.out,'*'),size(graphique.pout,'*'))
-      tableau = [tableau; 'Regular output', string(i),..
-		 string(modele.out(i)), string(graphique.pout(i))]
+      //General informations.
+      txt = ['Regular output', string(i)]
+      // Info. for implicit/explicit port
+      ierr=execstr('tt=string(graphique.out_implicit(i))','errcatch')
+      if ierr<>0 then
+          txt = [txt, '?'] //not specified
+      else
+        if tt==[] then 
+          txt = [txt, '?'] //not specified
+        else 
+          txt = [txt, tt]
+        end
+      end
+      // Info. for size of port
+      txt = [txt ,'['];
+      tt=string(modele.out(i)) //first dim.
+      if tt==[] then 
+        txt($) = txt($)+'?' //not specified
+      else 
+        txt($) = txt($)+tt
+      end
+      txt($)=txt($)+';'
+      ierr=execstr('tt=string(modele.out2(i))','errcatch') //sec. dim.
+      if ierr<>0 then
+          txt($) = txt($)+ '?' //not specified
+      else
+        if tt==[] then 
+          txt($) = txt($)+ '?' //not specified
+        else 
+          txt($) = txt($)+ tt
+        end
+      end
+      txt($)=txt($)+']'
+      // Info for data type
+      ierr=execstr('ttyp=modele.outtyp(i)','errcatch')
+      if ierr<>0 then
+        tt='?' //not specified
+      else
+        if ttyp==-1 then tt='-1'
+        elseif ttyp==1 then tt='double'
+        elseif ttyp==2 tt='complex'
+        elseif ttyp==3 tt='int32'
+        elseif ttyp==4 tt='int16'
+        elseif ttyp==5 tt='int8'
+        elseif ttyp==6 tt='uint32'
+        elseif ttyp==7 tt='uint16'
+        elseif ttyp==8 tt='uint8'
+        else tt='?' //Unknown
+        end
+      end
+      txt = [txt, tt]
+      //Info for link
+      txt = [txt,string(graphique.pout(i))]
+      //update tableau
+      tableau = [tableau; txt]
     end
+
     //- Entrees evenements 
     for i = 1 : min(size(modele.evtin,'*'),size(graphique.pein,'*'))
-      tableau = [tableau; 'Event input', string(i),..
-		 string(modele.evtin(i)), string(graphique.pein(i))]
+      tableau = [tableau; 'Event input', string(i),'',..
+		 string(modele.evtin(i)),'', string(graphique.pein(i))]
     end
     //- Sorties evenements 
     for i = 1 : min(size(modele.evtout,'*'),size(graphique.peout,'*'))
-      tableau = [tableau; 'Event output', string(i),..
-		 string(modele.evtout(i)), string(graphique.peout(i))]
+      tableau = [tableau; 'Event output', string(i),'',..
+		 string(modele.evtout(i)),'', string(graphique.peout(i))]
     end
     //
     texte = [texte; 'Input / output'; 
@@ -179,18 +292,15 @@ function texte = standard_document(objet, k)
 	     'Object type                : '+sous_type;
 	     'Object Identification      : '+identification'; 
 	     'Object number in diagram   : '+string(k); ' ']
-
-    //this is a default value
-    txt = ['Compiled link memory zone  : Not available';' '];
     from=objet.from
     if %cpr<>list() then
-      if sous_type == 'Regular Link' then
+      if sous_type == 'Regular Link' then 
 	scs_m_tmp=scs_m
-
+	
 	while %t
 	  obji=scs_m_tmp.objs(from(1))
 	  if obji.model.sim=='lsplit' then
-
+	    
 	  elseif obji.model.sim=='super' then
 	    super_path;super_path($+1)=from(1)
 	    scs_m_tmp=obji.model.rpar
@@ -201,96 +311,42 @@ function texte = standard_document(objet, k)
 		end
 	      end
 	    end
-          elseif obji.model.sim=='input' then
-
-            //we are in a super_block
-            ko=%f;
-            #link=obji.graphics.pout;
-
-             //forward search
-            while ~ko
-             #new_link=[];
-             for i=1:size(#link,'*')
-               to=scs_m_tmp.objs(#link(i)).to;
-               obji=scs_m_tmp.objs(to(1));
-               //we see a lsplit
-               if obji.model.sim=='lsplit' then
-                   #new_link=[#new_link;obji.graphics.pout]
-               //we see a super block
-               elseif obji.model.sim=='super' then
-                 txt = ['Compiled link memory zone  : Not yet solved';' '];
-                 from=0;
-                 ko=%t;
-                 break;
-               //we see something else
-               else
-                 if type(obji.model.sim)==15 then
-                   //we see a sum block
-                   if obji.model.sim(1)=='plusblk' then
-                     //it may exist something to do here !!
-                     if (i==size(#link,'*'))&(#new_link==[]) then
-                       txt = ['Compiled link memory zone  : Not yet solved';' '];
-                       from=0;
-                       ko=%t;
-                       break;
-                     end
-                   else
-                    from=to;
-                    ko=%t;
-                    break;
-                   end
-                 else
-                   //we see an output port
-                   if obji.model.sim=='output' then
-                     //there is nothing to do here
-                     if (i==size(#link,'*'))&(#new_link==[]) then
-                       txt = ['Compiled link memory zone  : Unsolved';' '];
-                       from=0;
-                       ko=%t;
-                       break;
-                     end
-                   else
-                    from=to;
-                    ko=%t;
-                    break;
-
-                   end
-                 end
-               end
-             end
-             #link=#new_link;
-            end
-
-            break;
-
 	  else
 	    break
 	  end
 	  #link=obji.graphics.pin
 	  from=scs_m_tmp.objs(#link).from
 	end
-	cor = %cpr.cor;
-	path=list();
+	cor = %cpr.cor
+	path=list()
 	for kp=1:size(super_path,'*'),path(kp)=super_path(kp);end
-	path($+1)=from(1);
-        ierr=execstr('ind=cor(path)','errcatch')
-        if ierr==0 then
-          if type(ind)==1&ind<>0 then
-            if obji.model.sim=='input' then
-              kl=%cpr.sim.inplnk(%cpr.sim.inpptr(ind)+(from(2)-1));
+	path($+1)=from(1)
+	ind=cor(path)
+	if type(ind)==1 then
+	  kl=%cpr.sim('outlnk')(%cpr.sim('outptr')(ind)+(from(2)-1));
+          kmin=[];kmax=[];count=1;
+          for j=1:size(%cpr.state('outtb'))
+            if j==kl then
+              kmin=count;
+              kmax=count+size(%cpr.state.outtb(j),'*')-1;
+              break
             else
-              kl=%cpr.sim.outlnk(%cpr.sim.outptr(ind)+(from(2)-1))
+              count=count+size(%cpr.state.outtb(j),'*');
             end
-            beg=%cpr.sim.lnkptr(kl)
-            fin=%cpr.sim.lnkptr(kl+1)-1
-            txt = ['Compiled link memory zone  : ['+..
-                   string(beg)+':'+string(fin)+']'; ' ']
           end
-        end
+          txt =   ['Compiled link memory zone  : outtb('+string(kl)+')']
+          txt=[txt;'                     Area  : ['+string(kmin)+':'+string(kmax)+']']
+          txt=[txt;'                     Type  : '+typeof(%cpr.state.outtb(kl))']
+          txt=[txt;'                     Size  : '+sci2exp(size(%cpr.state.outtb(kl)))';' ']
+	else
+	  txt = ['Compiled link memory zone  : Not available';' ']
+	end
       end
+    else
+      txt = ['Compiled link memory zone  : Not available';' ']
     end
-    texte=[texte;txt]
-
+    texte=[texte;txt]   
+    
     //- Connexions 
 
     tableau = [' ', 'Block', 'Port' ; '-', '-', '-'; 

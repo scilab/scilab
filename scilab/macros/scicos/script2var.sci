@@ -1,6 +1,11 @@
-function [%ll,%ierr]=script2var(%txt,%ll)
-  %ierr=0
-  %mm=getfield(1,%ll)
+function [%ll,%ierr] = script2var(%txt, %ll)
+//** [%scicos_context, ierr] = script2var(context, %scicos_context)
+
+// Copyright INRIA
+//**
+//** 10 Jan 2006 
+  %ierr = 0 ; //** init 
+  %mm = getfield(1,%ll)
   for %mi=%mm(3:$)
     if execstr(%mi+'=%ll(%mi)','errcatch')<>0 then
       disp(lasterror())
@@ -9,12 +14,13 @@ function [%ll,%ierr]=script2var(%txt,%ll)
     end
   end
   
-  [%ll,%ierr]=getvardef(%txt,%ll)
+  [%ll,%ierr] = getvardef(%txt,%ll)
   if %ierr<>0 then 
     return,
   end
 endfunction
 
+//**--------------------------------------------------------------------------
 function [%ll,%ierr]=getvardef(%txt,%ll)
   %nww='';%ierr=0;  // to make sure %ww does not enter the difference
   %nww=size(who('get'),'*')

@@ -1,4 +1,3 @@
-
 function tt=sci2tcl(ttx)
   for t=['\',''"','[',']','{','}']
     ttx=strsubst(ttx,t,'\'+t)

@@ -1,6 +1,12 @@
 function SmartMove_()
-    Cmenu='Open/Set'
-    xinfo('Click object to move, drag and click (left to fix, right to cancel)')
-    [%pt,scs_m]=do_move(%pt,scs_m)
-    xinfo(' ')
+//** INRIA
+//** 18 Jul 2006: go Smartmove !
+//** 06 Set 2006: start final revision .... (I hope)
+  
+  Cmenu = []; // Cmenu Quit can come out
+  
+  [scs_m] = do_move(%pt, scs_m) ;
+  
+ // Cmenu = 'Replot'; %pt = [];
+  
 endfunction

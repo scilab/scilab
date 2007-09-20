@@ -6,6 +6,7 @@ corinv=cpr.corinv;
 sim=cpr.sim;
 for k=1:size(corinv)
   if type(corinv(k))==1 then
+    if corinv(k)>size(%cpr.cor) then ok=%f;cpr=list();return;end
     if size(corinv(k),'*')==1 then
       bllst(k)=scs_m.objs(corinv(k)).model;
     else
@@ -13,6 +14,12 @@ for k=1:size(corinv)
       bllst(k)=scs_m(path);
     end
   else
+
+    //-Alan/Masoud 19/12/06-
+    //We force here update of parameters for THE modelica block
+    [%state0,state,sim]=modipar(corinv(k),%state0,cpr.state,sim,scs_m,cpr.cor);
+    cpr.state=state;
+
     m=scicos_model();
 
     //here it is assumed that modelica blocs have only scalar inputs/outputs
@@ -42,16 +49,18 @@ end
 [ok,bllst]=adjust(bllst,inpptr,outptr,inplnk,outlnk)
 if ~ok then return; end
 
-lnkptr=lnkptrcomp(bllst,inpptr,outptr,inplnk,outlnk)
+[lnksz,lnktyp]=lnkptrcomp(bllst,inpptr,outptr,inplnk,outlnk)
 //
-xptr=1;zptr=1;rpptr=1;ipptr=1;xc0=[];xcd0=[];xd0=[];
-rpar=[];ipar=[];initexe=[];funtyp=[];labels=[];
+xptr=1;zptr=1;ozptr=1;rpptr=1;ipptr=1;opptr=1;
+xc0=[];xcd0=[];xd0=[];oxd0=list();
+rpar=[];ipar=[];opar=list();initexe=[];funtyp=[];labels=[];
 //
 for i=1:length(bllst)
   ll=bllst(i)
   labels=[labels;ll.label];
   if type(ll.sim)==15 then funtyp(i,1)=ll.sim(2); else funtyp(i,1)=0;end
-  //
+
+  //state
   X0=ll.state(:)
   if funtyp(i,1)<10000 then
     xcd0=[xcd0;0*X0]
@@ -62,7 +71,8 @@ for i=1:length(bllst)
     xc0=[xc0;X0(1:$/2)]
     xptr(i+1)=xptr(i)+size(ll.state,'*')/2
   end
-  
+
+  //discrete state
   if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
      if ll.dstate==[] then xd0k=[]; else xd0k=var2vec(ll.dstate);end
   else
@@ -70,23 +80,76 @@ for i=1:length(bllst)
   end
   xd0=[xd0;xd0k];
   zptr=[zptr;zptr($)+size(xd0k,'*')]
-  
+
+  //object discrete state
+  if type(ll.odstate)==15 then
+    if ((funtyp(i,1)==5) | (funtyp(i,1)==10005)) then //sciblocks : don't extract
+      if lstsize(ll.odstate)>0 then
+        oxd0($+1)=ll.odstate
+        ozptr=[ozptr;ozptr($)+1];
+      else
+        ozptr=[ozptr;ozptr($)];
+      end
+    elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004))  //C blocks : extract
+      ozsz=lstsize(ll.odstate);
+      if ozsz>0 then
+        for j=1:ozsz, oxd0($+1)=ll.odstate(j), end;
+        ozptr=[ozptr;ozptr($)+ozsz];
+      else
+        ozptr=[ozptr;ozptr($)];
+      end
+    else
+      ozptr=[ozptr;ozptr($)];
+    end
+  else
+    //add an error message here please !
+    ozptr=[ozptr;ozptr($)];
+  end
+
+  //rpar
   if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
     if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end
   else
     rpark=ll.rpar(:)
   end
   rpar=[rpar;rpark]
-  
   rpptr=[rpptr;rpptr($)+size(rpark,'*')]
-  //
-  if type(ll.ipar)==1 then 
-    ipar=[ipar;ll.ipar(:)];ipptr=[ipptr;ipptr($)+size(ll.ipar,'*')]
+
+  //ipar
+  if type(ll.ipar)==1 then
+    ipar=[ipar;ll.ipar(:)]
+    ipptr=[ipptr;ipptr($)+size(ll.ipar,'*')]
   else
     ipptr=[ipptr;ipptr($)]
   end
+
+  //opar
+  if type(ll.opar)==15 then
+    if ((funtyp(i,1)==5) | (funtyp(i,1)==10005)) then //sciblocks : don't extract
+      if lstsize(ll.opar)>0 then
+        opar($+1)=ll.opar
+        opptr=[opptr;opptr($)+1];
+       else
+         opptr=[opptr;opptr($)];
+       end
+    elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004)) then //C blocks : extract
+      oparsz=lstsize(ll.opar);
+      if oparsz>0 then
+        for j=1:oparsz, opar($+1)=ll.opar(j), end;
+        opptr=[opptr;opptr($)+oparsz];
+      else
+        opptr=[opptr;opptr($)];
+      end
+    else
+      opptr=[opptr;opptr($)];
+    end
+  else
+    //add an error message here please !
+    opptr=[opptr;opptr($)];
+  end
+
   //
-  if ll.evtout<>[] then  
+  if ll.evtout<>[] then
     ll11=ll.firing
     if type(ll11)==4 then
       //this is for backward compatibility
@@ -104,21 +167,24 @@ end
 
 sim.xptr=xptr
 sim.zptr=zptr
+sim.ozptr=ozptr
 
 sim.inpptr=inpptr
 sim.outptr=outptr
 sim.inplnk=inplnk
 sim.outlnk=outlnk
-sim.lnkptr=lnkptr
 sim.rpar=rpar
 sim.rpptr=rpptr
 sim.ipar=ipar
 sim.ipptr=ipptr
+sim.opar=opar
+sim.opptr=opptr
 sim.clkptr=clkptr
 sim.labels=labels
 cpr.sim=sim;
 
-outtb=0*ones(lnkptr($)-1,1)
+outtb=list();
+outtb=buildouttb(lnksz,lnktyp);
 
 if exists('%scicos_solver')==0 then %scicos_solver=0,end
 if max(funtyp)>10000 &%scicos_solver==0 then
@@ -133,6 +199,7 @@ iz0=zeros(nb,1);
 state=cpr.state
 state.x=xc0;
 state.z=xd0;
+state.oz=oxd0;
 state.iz=iz0;
 state.tevts=tevts;
 state.evtspt=evtspt;

@@ -2,8 +2,10 @@ function scs_m=do_version(scs_m,version)
 // Copyright INRIA
 //translate scicos data structure to new version
 if version<>'scicos2.2'&version<>'scicos2.3'&version<>'scicos2.3.1'&..
-    version<>'scicos2.4'&version<>'scicos2.5.1'&version<>'scicos2.7'&version<>'scicos2.7.1' then
-error('No version update defined to '+version+' version')
+   version<>'scicos2.4'&version<>'scicos2.5.1'&version<>'scicos2.7'&..
+   version<>'scicos2.7.1'&version<>'scicos2.7.3'&version<>'scicos4'&..
+   version<>'scicos4.0.1'&version<>'scicos4.0.2' then
+   error('No version update defined to '+version+' version')
 end
 
 if version=='scicos2.2' then scs_m=do_version22(scs_m);version='scicos2.3';end
@@ -26,10 +28,394 @@ if version=='scicos2.7' then
   version='scicos2.7.1';
 end
 if version=='scicos2.7.1' then scs_m=do_version272(scs_m),version='scicos2.7.2';end
-  if version=='scicos2.7.2' then scs_m=do_version273(scs_m),version='scicos2.7.3';end
+if version=='scicos2.7.2' then scs_m=do_version273(scs_m),version='scicos2.7.3';end
+if version=='scicos2.7.3' | version=='scicos4' |...
+   version=='scicos4.0.1' | version=='scicos4.0.2' then
+  //********************************//
+  ncl=lines()
+  lines(0)
+  //printf("Update old scicos diagram. Please wait... ")
+  //tic;
+  version='scicos4.2';
+  //*** do certification ***//
+  scs_m=update_scs_m(scs_m);
+  //*** update scope ***//
+  scs_m=do_version42(scs_m);
+  //printf("Done ! (%s s)\n",string(toc()))
+  lines(ncl(2))
+  //*********************************//
+end
 endfunction
 
+//*** update scope ***//
+function scs_m_new=do_version42(scs_m)
+  scs_m_new=scs_m
+  n=size(scs_m.objs);
+  for j=1:n //loop on objects
+    o=scs_m.objs(j);
+    if typeof(o)=='Block' then
+      omod=o.model;
+      //SUPER BLOCK
+      if omod.sim=='super'|omod.sim=='csuper' then
+        rpar=do_version42(omod.rpar)
+        scs_m_new.objs(j).model.rpar=rpar
+      //name of gui and sim list change
+      elseif o.gui=='SCOPE_f' then
+        scs_m_new.objs(j).gui='CSCOPE'
+	scs_m_new.objs(j).model.dstate=[]
+        scs_m_new.objs(j).model.sim=list('cscope', 4)
+	in = scs_m_new.objs(j).model.in(:);
+	a = size(in,1);
+	in2 = ones(a,1);
+	scs_m_new.objs(j).model.in2 = in2;
+	scs_m_new.objs(j).model.intyp = in2;
+      elseif o.gui=='BOUNCEXY' then
+	in = scs_m_new.objs(j).model.in(:);
+	a = size(in,1);
+	in2 = ones(a,1);
+	scs_m_new.objs(j).model.in2 = in2;
+	scs_m_new.objs(j).model.intyp = in2;
+      elseif o.gui=='MSCOPE_f' then
+        scs_m_new.objs(j).gui='CMSCOPE'
+	scs_m_new.objs(j).model.dstate=[]
+        scs_m_new.objs(j).model.sim=list('cmscope', 4)
+	in = scs_m_new.objs(j).model.in(:);
+	a = size(in,1);
+	B=stripblanks(scs_m.objs(j).graphics.exprs(8));
+	B(1:a)=B;
+        B = strcat(B', ' ');
+        scs_m_new.objs(j).graphics.exprs(8) = B;
+	rpar=scs_m_new.objs(j).model.rpar(:);
+	N=scs_m_new.objs(j).model.ipar(2);
+	period = [];
+	for i=1:N
+	   period(i)=rpar(2);
+	end
+	scs_m_new.objs(j).model.rpar = [rpar(1);period(:);rpar(3:size(rpar,1))]
+	in2 = ones(a,1);
+	scs_m_new.objs(j).model.in2 = in2;
+	scs_m_new.objs(j).model.intyp = in2;
+      elseif o.gui=='ANIMXY_f' then
+        scs_m_new.objs(j).gui='CANIMXY'
+	scs_m_new.objs(j).model.dstate=[]
+        scs_m_new.objs(j).model.sim=list('canimxy', 4)
+	in = scs_m_new.objs(j).model.in(:);
+	a = size(in,1);
+	in2 = ones(a,1);
+	scs_m_new.objs(j).model.in2 = in2;
+	scs_m_new.objs(j).model.intyp = in2;
+	scs_m_new.objs(j).graphics.exprs = [string(1);scs_m_new.objs(j).graphics.exprs(:)]
+	scs_m_new.objs(j).model.ipar = [scs_m_new.objs(j).model.ipar(:);1]
+      elseif o.gui=='EVENTSCOPE_f' then
+        scs_m_new.objs(j).gui='CEVENTSCOPE'
+	scs_m_new.objs(j).model.dstate=[]
+        scs_m_new.objs(j).model.sim=list('cevscpe', 4)
+	in = scs_m_new.objs(j).model.in(:);
+	a = size(in,1);
+	in2 = ones(a,1);
+	scs_m_new.objs(j).model.in2 = in2;
+	scs_m_new.objs(j).model.intyp = in2;
+      elseif o.gui=='FSCOPE_f' then
+        scs_m_new.objs(j).gui='CFSCOPE'
+	scs_m_new.objs(j).model.dstate=[]
+        scs_m_new.objs(j).model.sim=list('cfscope', 4)
+	in = scs_m_new.objs(j).model.in(:);
+	a = size(in,1);
+	in2 = ones(a,1);
+	scs_m_new.objs(j).model.in2 = in2;
+	scs_m_new.objs(j).model.intyp = in2;
+      elseif o.gui=='SCOPXY_f' then
+        scs_m_new.objs(j).gui='CSCOPXY'
+	scs_m_new.objs(j).model.dstate=[]
+        scs_m_new.objs(j).model.sim=list('cscopxy', 4)
+	in = scs_m_new.objs(j).model.in(:);
+	a = size(in,1);
+	in2 = ones(a,1);
+	scs_m_new.objs(j).model.in2 = in2;
+	scs_m_new.objs(j).model.intyp = in2;
+	scs_m_new.objs(j).graphics.exprs = [string(1);scs_m_new.objs(j).graphics.exprs(:)]
+	scs_m_new.objs(j).model.ipar = [scs_m_new.objs(j).model.ipar(:);1]
+      elseif o.gui=='CMSCOPE' then
+        scs_m_new.objs(j).model.dstate=[]
+	in = scs_m_new.objs(j).model.in(:);
+	a = size(in,1);
+        B=stripblanks(scs_m.objs(j).graphics.exprs(8));
+        B(1:a)=B;
+        B = strcat(B', ' ');
+        scs_m_new.objs(j).graphics.exprs(8)=B;
+        rpar=scs_m_new.objs(j).model.rpar(:);
+        N=scs_m_new.objs(j).model.ipar(2);
+        period = [];
+        for i=1:N
+          period(i)=rpar(2);
+        end
+        scs_m_new.objs(j).model.rpar = [rpar(1);period(:);rpar(3:size(rpar,1))]
+        in2 = ones(a,1);
+        scs_m_new.objs(j).model.in2 = in2;
+        scs_m_new.objs(j).model.intyp = in2;
+      elseif o.gui=='IN_f' then
+        scs_m_new.objs(j).model.out    = -1;
+        scs_m_new.objs(j).model.out2   = -2;
+        scs_m_new.objs(j).model.outtyp = -1;
+      elseif o.gui=='OUT_f' then
+        scs_m_new.objs(j).model.in    = -1;
+        scs_m_new.objs(j).model.in2   = -2;
+        scs_m_new.objs(j).model.intyp = -1;
+      elseif o.gui=='INIMPL_f' then
+        scs_m_new.objs(j).model.out    = -1;
+        scs_m_new.objs(j).model.out2   = 1;
+        scs_m_new.objs(j).model.outtyp = -1;
+      elseif o.gui=='OUTIMPL_f' then
+        scs_m_new.objs(j).model.in    = -1;
+        scs_m_new.objs(j).model.in2   = 1;
+        scs_m_new.objs(j).model.intyp = -1;
+      end
+    end
+  end
+endfunction
 
+// update_scs_m : function to do certification of
+//                main data structure of
+//                a scicos diagram (scs_m)
+//                for current version of scicos
+//
+//   certification is done through initial value of fields in :
+//      scicos_diagram()
+//         scicos_params()
+//         scicos_block()
+//            scicos_graphics()
+//            scicos_model()
+//         scicos_link()
+//
+// Initial rev 12/05/07 : Alan
+//
+function scs_m_new = update_scs_m(scs_m,version)
+  rhs = argn(2)
+  if rhs<2 then
+    version=get_scicos_version();
+  end
+
+  scs_m_new = scicos_diagram();
+
+  F = getfield(1,scs_m);
+
+  for i=2:size(F,2)
+
+    select F(i)
+
+      //******************* props *******************//
+      case 'props' then
+
+        sprops = scs_m.props;
+        T = getfield(1,scs_m.props);
+        T_txt = [];
+        for j=2:size(T,2)
+          T_txt = T_txt + strsubst(T(1,j),'title','Title') + ...
+                  "=" + "sprops." + T(1,j);
+          if j<>size(T,2) then
+             T_txt = T_txt + ',';
+          end
+        end
+        T_txt = 'sprops=scicos_params(' + T_txt + ')';
+        ierr  = execstr(T_txt,'errcatch')
+        if ierr<>0 then
+           error("Problem in convertion of props in diagram.")
+        end
+        scs_m_new.props = sprops;
+      //*********************************************//
+
+      //******************** objs *******************//
+      case 'objs' then
+
+        for j=1:lstsize(scs_m.objs) //loop on objects
+
+          o=scs_m.objs(j);
+
+          select typeof(o)
+
+            //************** Block ***************//
+            case 'Block' then
+
+              o_new=scicos_block();
+              T = getfield(1,o);
+
+              for k=2:size(T,2)
+                select T(k)
+                  //*********** graphics **********//
+                  case 'graphics' then
+                    ogra  = o.graphics;
+                    G     = getfield(1,ogra);
+                    G_txt = [];
+                    for l=2:size(G,2)
+                      G_txt = G_txt + G(1,l) + ...
+                              "=" + "ogra." + G(1,l);
+                      if l<>size(G,2) then
+                        G_txt = G_txt + ',';
+                      end
+                    end
+                    G_txt = 'ogra=scicos_graphics(' + G_txt + ')';
+                    ierr  = execstr(G_txt,'errcatch')
+                    if ierr<>0 then
+                      error("Problem in convertion of graphics in block.")
+                    end
+                    o_new.graphics = ogra;
+                  //*******************************//
+
+                  //************* model ***********//
+                  case 'model' then
+                    omod  = o.model;
+                    M     = getfield(1,o.model);
+                    M_txt = [];
+                    for l=2:size(M,2)
+                      M_txt = M_txt + M(1,l) + ...
+                              "=" + "omod." + M(1,l);
+                      if l<>size(M,2) then
+                        M_txt = M_txt + ',';
+                      end
+                    end
+                    M_txt = 'omod=scicos_model(' + M_txt + ')';
+                    ierr  = execstr(M_txt,'errcatch')
+                    if ierr<>0 then
+                      error("Problem in convertion of model in block.")
+                    end
+                    //******** super block case ********//
+                    if omod.sim=='super'|omod.sim=='csuper' then
+                      rpar=update_scs_m(omod.rpar,version)
+                      omod.rpar=rpar
+                    end
+                    o_new.model = omod;
+                  //*******************************//
+
+                  //************* other ***********//
+                  else
+                    T_txt = "o."+T(k);
+                    T_txt = "o_new." + T(k) + "=" + T_txt;
+                    ierr  = execstr(T_txt,'errcatch')
+                    if ierr<>0 then
+                      error("Problem in convertion in objs.")
+                    end
+                  //*******************************//
+
+                end  //end of select T(k)
+              end  //end of for k=
+              scs_m_new.objs(j) = o_new;
+            //************************************//
+
+            //************** Link ****************//
+            case 'Link' then
+
+              T     = getfield(1,o);
+              T_txt = [];
+              for k=2:size(T,2)
+                T_txt = T_txt + T(1,k) + ...
+                        "=" + "o." + T(1,k);
+                if k<>size(T,2) then
+                  T_txt = T_txt + ',';
+                end
+              end
+              T_txt = 'o_new=scicos_link(' + T_txt + ')';
+              ierr  = execstr(T_txt,'errcatch')
+              if ierr<>0 then
+                error("Problem in convertion of link in objs.")
+              end
+              scs_m_new.objs(j) = o_new;
+            //************************************//
+
+            //************** Text ****************//
+            case 'Text' then
+              o_new = mlist(['Text','graphics','model','void','gui'],...
+                            scicos_graphics(),scicos_model(),' ','TEXT_f')
+
+              T     = getfield(1,o);
+              T_txt = [];
+              for k=2:size(T,2)
+                select T(k)
+                  //*********** graphics **********//
+                  case 'graphics' then
+                    ogra  = o.graphics;
+                    G     = getfield(1,ogra);
+                    G_txt = [];
+                    for l=2:size(G,2)
+                      G_txt = G_txt + G(1,l) + ...
+                              "=" + "ogra." + G(1,l);
+                      if l<>size(G,2) then
+                        G_txt = G_txt + ',';
+                      end
+                    end
+                    G_txt = 'ogra=scicos_graphics(' + G_txt + ')';
+                    ierr  = execstr(G_txt,'errcatch')
+                    if ierr<>0 then
+                      error("Problem in convertion of graphics in text.")
+                    end
+                    o_new.graphics = ogra;
+                  //*******************************//
+
+                  //************* model ***********//
+                  case 'model' then
+                    omod  = o.model;
+                    M     = getfield(1,o.model);
+                    M_txt = [];
+                    for l=2:size(M,2)
+                      M_txt = M_txt + M(1,l) + ...
+                              "=" + "omod." + M(1,l);
+                      if l<>size(M,2) then
+                        M_txt = M_txt + ',';
+                      end
+                    end
+                    M_txt = 'omod=scicos_model(' + M_txt + ')';
+                    ierr  = execstr(M_txt,'errcatch')
+                    if ierr<>0 then
+                      error("Problem in convertion of model in text.")
+                    end
+                    //******** super block case ********//
+                    if omod.sim=='super'|omod.sim=='csuper' then
+                      rpar=update_scs_m(omod.rpar,version)
+                      omod.rpar=rpar
+                    end
+                    o_new.model = omod;
+                  //*******************************//
+
+                  //************* other ***********//
+                  else
+                    T_txt = "o."+T(k);
+                    T_txt = "o_new." + T(k) + "=" + T_txt;
+                    ierr  = execstr(T_txt,'errcatch')
+                    if ierr<>0 then
+                      error("Problem in convertion in objs.")
+                    end
+                  //*******************************//
+
+                end  //end of select T(k)
+              end  //end of for k=
+              scs_m_new.objs(j) = o_new;
+            //************************************//
+
+            //************* other ***********//
+            else  // ??
+                  // Alan : JESAISPASIYADAUTRESOBJS
+                  // QUEDESBLOCKSDESLINKETDUTEXTESDANSSCICOS
+                  // ALORSICIJEFAISRIEN
+              scs_m_new.objs(j) = o;
+            //************************************//
+
+          end //end of select typeof(o)
+
+        end //end of for j=
+       //*********************************************//
+
+      //** version **//
+      case 'version' then
+          //do nothing here
+          //this should be done later
+
+    end  //end of select  F(i)
+
+  end //end of for i=
+
+  //**update version **//
+  scs_m_new.version = version;
+
+endfunction
 
 function scs_m_new=do_version273(scs_m)
   scs_m_new=scs_m;
@@ -1153,7 +1539,7 @@ function scs_m_new=do_version27(scs_m)
   if size(tol,'*')<5 then tol(5)=0,end
   if size(tol,'*')<6 then tol(6)=0,end
   for iix=size(scs_m(1))+1:10,scs_m(1)(iix)=[];end
-  scs_m_new.props=scicos_params(wpar=scs_m(1)(1),title=scs_m(1)(2),..
+  scs_m_new.props=scicos_params(wpar=scs_m(1)(1),Title=scs_m(1)(2),..
 				tol=tol,tf=tf,..
 				context=scs_m(1)(5),options=scs_m(1)(7),..
 				doc=scs_m(1)(10))

@@ -1,4 +1,7 @@
 function prt=splitted_links(scs_m,keep,del)
+//
+// Copyright INRIA
+//
 // given a vectors of indexes of "kept" blocks and "deleted" blocks 
 // forms at table prt. Each line of prt is relative to a link beetween 
 // a kept and a deleted block as follow:
@@ -8,8 +11,13 @@ function prt=splitted_links(scs_m,keep,del)
 //    x=1 kept block  port is an "input"
 //    y=0 del block   port is an "output"
 //    y=1 del block   port is an "input"
-
+//
 // Copyright INRIA
+//
+//** 11 Jan 2007 : 'Block' / 'Text' bug validation: this function is OK.
+//** 
+
+
 prt=[]
 
 //keep :objs into the future super block

@@ -7,7 +7,7 @@ needcompile1=max(2,needcompile)
 funcprot(0) 
 getvalue=setvalue;
 
-deff('message(txt)','x_message([''In block ''+o.gui+'': '';txt]);%scicos_prob=resume(%t)')
+deff('message(txt)','x_message(''In block ''+o.gui+'': ''+txt);%scicos_prob=resume(%t)')
 
 %scicos_prob=%f
 deff('[ok,tt]=FORTR(funam,tt,i,o)','ok=%t')
@@ -17,16 +17,34 @@ deff('[x,y,ok,gc]=edit_curv(x,y,job,tit,gc)','ok=%t')
 deff('[ok,tt,dep_ut]=genfunc1(tt,ni,no,nci,nco,nx,nz,nrp,type_)',..
     'dep_ut=model.dep_ut;ok=%t')
 deff('result=dialog(labels,valueini)','result=valueini')
-funcprot(%mprt)
 %nx=lstsize(scs_m.objs)
-
-
-
+deff('[ok,tt]=MODCOM(funam,tt,vinp,vout)',..
+   '[dirF,nameF,extF]=fileparts(funam);..
+    tarpath=pathconvert(TMPDIR+''/Modelica/'',%f,%t);..
+    if (extF=='''')  then,..
+        funam1=tarpath+nameF+''.mo'';..
+    elseif fileinfo(funam)==[] then,..
+        funam1=funam;..
+    end;..
+    mputl(tt,funam1);..
+    compilerpath=pathconvert(SCI+''/bin/'',%f,%t);..
+    if MSDOS then,..
+ 	compilerpath=compilerpath+''modelicac.exe'';..
+    else,.. 
+        compilerpath=compilerpath+''modelicac'';..
+    end;..
+    ..
+    if execstr(''unix_s(compilerpath+'''' -c ''''+funam1+'''' -o ''''+tarpath+nameF+''''.moc'''')'',''errcatch'')<>0 then,..
+ 	ok=%f;..
+    else,..
+        ok=%t;..
+      end;')
+funcprot(%mprt)
 for %kk=1:%nx
   o=scs_m.objs(%kk)
   if typeof(o)=='Block' then
     model=o.model
-    if model.sim=='super'|model.sim=='csuper' then
+    if model.sim=='super'| (model.sim=='csuper'&model.ipar<>1) then  //exclude mask
       sblock=model.rpar
       context=sblock.props.context
 

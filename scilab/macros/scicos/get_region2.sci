@@ -1,6 +1,8 @@
-function [reg,rect,prt]=get_region2(xc,yc,win)
+function [reg, rect, prt] = get_region2(xc, yc, win)
+//** INRIA
+//
 //Creates in reg the superblock formed with the objects selected 
-  
+//
 //prt is a matrix, each row contains information on the links passing
 //throught the superblock rectangle.
 //    [io,old_internal_block_#, superblock_port_#, link_type, link_color,..
@@ -11,42 +13,60 @@ function [reg,rect,prt]=get_region2(xc,yc,win)
 //    io = 4 : event link from superblock to extern 
 //    io = 5 : implicit link from extern to superblock
 //    io = 6 : implicit link from superblock to extern 
-
-
+//
+//
 // Copyright INRIA
-  ok=%t
-  alu=xget('alufunction')
-  wins=curwin
-  xset('window',win)
-  xset('alufunction',6)
-  reg=list();rect=[]
-  kc=find(win==windows(:,2))
+//
+//** 29 Jun 2006 
+//** xx/01/07 : Alan - review (introduce rubberbox here)
+//
+//** 11 Jan 2007 : 'Block' / 'Text' bug validation: this function is OK.
+//** 
+  ok = %t
+  wins = curwin ; //** save the semi-global current window variable 
+  scf(win); //** set the current wind. from calling arg.
+  
+  //** window filter 
+  reg = list(); rect = []
+  kc = find (win==windows(:,2) )
   if kc==[] then
-    message('This window is not an active palette')
-    return
-  elseif windows(kc,1)<0 then //click dans une palette
-    kpal=-windows(kc,1)
-    scs_m=palettes(kpal)
-  elseif win==curwin then //click dans la fenetre courante
-    scs_m=scs_m
+    message('This window is not an active palette') ;
+    return ; //** ---> Exit point 
+  elseif windows(kc,1)<0 then // click inside a palette window 
+    kpal  = -windows(kc,1)  ;
+    scs_m = palettes(kpal)  ;
+  elseif win==curwin then     //click inside the current window 
+    scs_m = scs_m
   elseif pal_mode&win==lastwin then 
-    scs_m=scs_m_s
+    scs_m = scs_m_s
   elseif slevel>1 then
-    execstr('scs_m=scs_m_'+string(windows(kc,1)))
+    execstr('scs_m=scs_m_'+string(windows(kc,1))) ;
   else
     message('This window is not an active palette')
-    return
+    return ;
   end
 
+  drawnow(); //** this calling look unuseful 
+  //** residual old code 
+  // [ox, oy, w, h, ok] = get_rectangle(xc,yc) ; //** <-- key function !
+
+  [rect,button] = rubberbox([xc; yc; 0; 0], %t) ;
+  if or(button == [2 5 12 -100]) then // right button exit OR active window has been closed
+    prt  = [] ;
+    rect = [] ;
+    return ; //** ---> Exit point
+  end
+  ox=rect(1), oy=rect(2), w=rect(3), h=rect(4);
   
-  [ox,oy,w,h,ok]=get_rectangle(xc,yc)
-  if ~ok then prt=[];rect=[];return;end
+  clear rect ; //** just for safety because the variable is reused later  
 
-  [keep,del]=get_blocks_in_rect(scs_m,ox,oy,w,h);
-  //keep:objects in the region ,del :object outside the region
+  [keep, del] = get_blocks_in_rect(scs_m,ox,oy,w,h); //** see file "get_blocks_in_rect.sci"
+  //** this function looks OK because filter in both 'Block' and 'Text'
+  // keep: objects in the region 
+  // del : object outside the region
 
+  //** ... some 'Block' are not allowed ;)
   for bkeep=keep
-
     if typeof(scs_m.objs(bkeep))=='Block' then
       if or(scs_m.objs(bkeep).gui==['IN_f' 
 		    'OUT_f'
@@ -58,25 +78,23 @@ function [reg,rect,prt]=get_region2(xc,yc,win)
 		    'OUTIMPL_f']) then
 	message('Input/Output ports are not allowed in the region.')
 	prt=[];rect=[];return
-      end
-    end
-  end
+      end //** some 'Block' are not allowed 
+    end //** look for dangerous 'Block'
+  end //** ... scanning 
 
   //preserve information on splitted links
+  prt = splitted_links(scs_m,keep,del) //** the 'Text' does not have 'Links' ;)
 
-  prt=splitted_links(scs_m,keep,del)
-
-  [reg,DEL]=do_delete2(scs_m,del,%f)
-
-  rect=[ox,oy-h,w,h]
-
-  xset('window',wins)
-  xset('alufunction',alu)
-
-  nin=0
-  nout=0
-  ncin=0
-  ncout=0
+  [reg,DEL] = do_delete2(scs_m,del,%f) //** potentialy dangerous.....
+                                       //** but the gr arg is always false %f
+  
+  rect = [ox,oy-h,w,h] ;
+  scf(wins); 
+  
+  nin   = 0
+  nout  = 0
+  ncin  = 0
+  ncout = 0
  
   //add input and output ports
   for k=1:size(prt,1)
@@ -189,10 +207,12 @@ function [reg,rect,prt]=get_region2(xc,yc,win)
 	prt(k,2)=ncout
       end
     end
-    lk=scicos_link(xx=xl,yy=yl,ct=[prt(k,4),typ],from=from,to=to)
+    
+    lk = scicos_link(xx=xl,yy=yl,ct=[prt(k,4),typ],from=from,to=to)
     reg.objs(nreg+1)=sp
     reg.objs(nreg+2)=lk
     reg.objs(k1)=o1
   end
-  reg=do_purge(reg)
+  reg = do_purge(reg)
+
 endfunction

@@ -10,7 +10,7 @@ if alreadyran then
 end
 
 timer()
-disablemenus()
+
 IN=[];OUT=[];
 for i=1:lstsize(scs_m.objs)
   if typeof(scs_m.objs(i))=='Block' then 
@@ -29,24 +29,22 @@ IN=-sort(-IN);
 if or(IN<>[1:size(IN,'*')]) then 
   ok=%f;%cpr=list()
   message('Input ports are not numbered properly.')
-  enablemenus()
   return
 end
 OUT=-sort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
   ok=%f;%cpr=list()
   message('Output ports are not numbered properly.')
-  enablemenus()
   return
 end
 [bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m);
 if show_trace then disp('c_pass1:'+string(timer())),end
-if ~ok then %cpr=list(),enablemenus(),return,end
+if ~ok then %cpr=list(),return,end
 
 if size(connectmat,2)==6 then connectmat=connectmat(:,[1 2 4 5]),end
 //pause
 scs_m=null()
-if ~ok then %cpr=list(),enablemenus(),return,end
+if ~ok then %cpr=list(),return,end
 
 //newc_pass2 destroys the corinv component associated
 //to the modelica blocks preserve it
@@ -61,5 +59,4 @@ if ~ok then %cpr=list(),enablemenus(),return,end
 
 if %cpr==list() then ok=%f,end 
 
-enablemenus()
 endfunction

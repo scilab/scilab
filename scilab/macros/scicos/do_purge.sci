@@ -27,7 +27,7 @@ function scs_m_new=do_purge(scs_m)
   old_to_new=ones(1,nx);old_to_new(deleted)=0*deleted;
   old_to_new=rtitr(1,%z-1,old_to_new)';
 
-  scs_m_new=scicos_diagram();
+  scs_m_new=scicos_diagram(version=get_scicos_version());
   scs_m_new.props=scs_m.props
   for k=1:size(retained,'*')
     o=scs_m.objs(retained(k))

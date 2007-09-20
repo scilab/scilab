@@ -1,10 +1,21 @@
 function Cmenu=tk_mpopup(ll)
-  Cmenu=[]
-  if length(ll)==0 then return;end
+//** INRIA
+//**
+//** 2 April 2007: right mouse button operation 
+//**
+//**     WindowZ version 
+//**
+  
+  Cmenu = []
+  if length(ll)==0 then
+    return
+  end
 
-  [txt,MM]=create_popup(ll)
-  ierr=execstr('TCL_EvalStr(txt)','continue')
+  [txt,MM] = create_popup(ll)
+  ierr = execstr('TCL_EvalStr(txt)','continue')
 endfunction
+//**-------------------------------------------------------------------------------------------------------------------
+
 
 function [txt,MM]=create_popup(ll)
   MM=[];

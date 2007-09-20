@@ -1,6 +1,6 @@
 function Shortcuts_()
 %rr=lines()
-%scicos_short;
+%scicos_short
 lines(0)
 disp(%scicos_short)
 lines(%rr(2));

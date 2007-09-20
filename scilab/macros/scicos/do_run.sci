@@ -28,10 +28,29 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   else
     choix=[]
   end
-  
-  
+
+  issequal=%t;
   if ~isequal(%state0_n,%state0) then //initial state has been changed
-    %state0=%state0_n
+    issequal=%f
+  else
+    //test typeof outtb element
+    for i=1:lstsize(%state0_n.outtb)
+      if typeof(%state0_n.outtb(i))<>typeof(%state0.outtb(i))
+        issequal=%f
+        break
+      end
+    end
+    //test typeof oz element
+    for i=1:lstsize(%state0_n.oz)
+      if typeof(%state0_n.oz(i))<>typeof(%state0.oz(i))
+        issequal=%f
+        break
+      end
+    end
+  end
+
+  if ~issequal then
+     %state0=%state0_n
     [alreadyran,%cpr]=do_terminate()
     choix=[]
   end
@@ -64,10 +83,10 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       state=%cpr.state
       needstart=%t
       tf=scs_m.props.tf;
-      disablemenus()
+
       ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 		   '''finish'',tolerances)','errcatch')
-      enablemenus()
+
       %cpr.state=state
       alreadyran=%f
       if ierr<>0 then
@@ -77,7 +96,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 	  path=corinv(kfun)
 	  xset('window',curwin)
 	  bad_connection(path,..
-			 ['End problem with hilited block';lasterror()],0,0,-1,0)
+			 ['End problem with hilited block';lasterror()],0,1,0,-1,0,1)
 	else
 	  message(['End problem:';lasterror()])
 	end
@@ -106,10 +125,10 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       x_message(['Simulation parameters not set';'use setup button']);
       return;
     end
-    disablemenus()
+
     ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 		 '''start'',tolerances)','errcatch')
-    enablemenus()
+
     %cpr.state=state
     if ierr<>0 then
       kfun=curblock()
@@ -118,7 +137,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 	xset('window',curwin)
 	path=corinv(kfun)
 	bad_connection(path,..
-		       ['Initialisation problem with hilited block:';lasterror()],0,0,-1,0)
+		       ['Initialisation problem with hilited block:';lasterror()],0,1,0,-1,0,1)
       else
 	message(['Initialisation problem:';lasterror()])
       end
@@ -134,9 +153,9 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   // simulation
 
   tf=scs_m.props.tf;
-  disablemenus()
+
   setmenu(curwin,'stop')
-  timer()
+//  timer()
   needreplay=%t
 
   ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
@@ -152,21 +171,22 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       %tcur=t
     end
   else
+    alreadyran=%f
     kfun=curblock()
     corinv=%cpr.corinv
     if kfun<>0 then
       path=corinv(kfun)
       xset('window',curwin)
       bad_connection(path,..
-		     ['Simulation problem with hilited block:';lasterror()],0,0,-1,0)
+		     ['Simulation problem with hilited block:';lasterror()],0,1,0,-1,0,1)
     else
       message(['Simulation problem:';lasterror()])
     end
     ok=%f
   end
   xset('window',curwin)
-  disp(timer())
+  //disp(timer())
   unsetmenu(curwin,'stop')
-  enablemenus()
+
   needreplay=resume(needreplay)
 endfunction
