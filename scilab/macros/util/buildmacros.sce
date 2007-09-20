@@ -8,5 +8,6 @@ exec('SCI/util/genmacros.sce');
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
+stacksize(5000000);
 genlib('utillib','SCI/macros/util');
 //------------------------------------
