@@ -14,23 +14,47 @@ demos_name=[
     'Controller.cosf'
     'System-Observer.cosf'
 	'bouncing balls'	
-    'Synchro Block demo'];
+    'Synchro Block demo'
+    'Kalman filter'
+    'Discrete-Kalman Filter'
+    'Inverted Pendulum'
+    'Datatype'
+    'Digital Pulse Generator'
+    'WaterTank'
+    'Goto/From Demonstration'];
 
 // disabled problem with .au file
 //if ~MSDOS then demos_name=[demos_name;'sound demo'];end
 if with_modelica_compiler() then
   demos_name=[demos_name;
+              'Colpitts oscillator'
 	      'Electrical circuit: RLC'
 	      'Electrical circuit: Rectifier'
               'Regulated Thermo Hydraulic plant'];
 end
 
-    demos_name=[demos_name;'Live tutorials']        
+//    demos_name=[demos_name;'Live tutorials']        
 
 while %t do
   n=tk_choose(demos_name,'Choose a demo')
   if n ==0 then break,end
   select demos_name(n)
+  case 'Goto/From Demonstration' then
+   scicos('SCI/demos/scicos/goto_demo.cosf');
+  case 'Discrete-Kalman Filter' then
+   scicos('SCI/demos/scicos/Discrete-KalmanFilter.cosf');
+  case 'Inverted Pendulum' then
+   exec (SCI+'/demos/scicos/setw.sci');
+   getf(SCI+'/macros/scicos_blocks/Sources/RAND_m.sci');
+   scicos('SCI/demos/scicos/Inverted_pendulum.cosf');
+  case 'Datatype' then
+   scicos('SCI/demos/scicos/demo_Datatype.cosf');
+  case 'Digital Pulse Generator' then
+   scicos('SCI/demos/scicos/demo_flipflop.cosf');
+  case 'WaterTank' then
+   scicos('SCI/demos/scicos/demo_watertank.cosf');
+  case 'Kalman filter' then  
+    scicos('SCI/demos/scicos/Kalman_1.cosf');
   case 'Simple Thermostat' then  
     scicos('SCI/demos/scicos/demo1.cosf');
   case 'Continuous Plant discrete controller' then  
@@ -57,13 +81,19 @@ while %t do
     scicos('SCI/demos/scicos/System-Observer.cosf');
   case 	'bouncing balls' then
     scicos('SCI/demos/scicos/bounce.cosf');
-  case 'Live demo' then
-    getf('SCI/demos/scicos/scicos_play.sci','n')
-    scicos_play('SCI/demos/scicos/live.dat')
+//  case 'Live demo' then
+//    getf('SCI/demos/scicos/scicos_play.sci','n')
+//    scicos_play('SCI/demos/scicos/live.dat')
   case 'sound demo' then  
     scicos('SCI/demos/scicos/sound.cosf');
   case 'Synchro Block demo' then  
     scicos('SCI/demos/scicos/Ifsub.cosf');
+  case 'Colpitts oscillator' then
+    if ~(haveacompiler()) then
+      x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
+    else
+      scicos('SCI/demos/scicos/Colpitts.cosf');
+    end
   case 'Electrical circuit: RLC' then  
     if ~(haveacompiler()) then
       x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
