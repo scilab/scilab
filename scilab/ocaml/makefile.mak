@@ -9,7 +9,7 @@ OCAMLYACC=ocamlyacc
 OCAMLLEX=ocamllex
 RM=del
 EXEC=modelicac.exe
-TRANSLATOR=translator.exe
+#TRANSLATOR=translator.exe
 
 MLS=parseTree.ml linenum.ml parser.ml lexer.ml\
 	precompilation.ml compilation.ml instantiation.ml\
