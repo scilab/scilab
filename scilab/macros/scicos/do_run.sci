@@ -180,7 +180,25 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       bad_connection(path,..
 		     ['Simulation problem with hilited block:';lasterror()],0,1,0,-1,0,1)
     else
-      message(['Simulation problem:';lasterror()])
+      str_err=lasterror();
+
+      //** Alan's patch : fix the unreadble error messages
+      //** returned by the simulator.
+      ind_bl=strindex(str_err,' ');
+      if find(ind_bl>50)<>[] then
+        ind_bl2=ind_bl; nind=[];
+        for i=1:size(ind_bl,2)
+           if ind_bl2(i)>50 then
+             nind=[nind;ind_bl(i)];
+             ind_bl2=ind_bl2-ind_bl2(i);
+           end
+        end
+        str_err=strsplit(str_err,nind)
+      end
+      //** end of patch
+
+      message(['Simulation problem:';str_err])
+
     end
     ok=%f
   end
