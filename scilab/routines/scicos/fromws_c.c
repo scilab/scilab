@@ -8,18 +8,20 @@
 #include <stdio.h>
 #include <string.h>
 #include "../machine.h"
+#include <math.h>
 
 #if WIN32
 #define NULL    0
 #endif
 
 #define Fnlength  block->ipar[0]
+#define FName     block->ipar[1]
 #define Order     block->ipar[1+Fnlength]
 #define ZC        block->ipar[2+Fnlength]
 #define OutEnd    block->ipar[3+Fnlength]
 #define T0        ptr->workt[0]
 #define TNm1      ptr->workt[nPoints-1]
-#define TP        TNm1-T0
+#define TP        (TNm1-0)
 
 extern int C2F(cvstr) __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
 extern int C2F(mgetnc)();
@@ -53,7 +55,8 @@ typedef struct {
   int cnt1;
   int cnt2;
   int EVindex;
-  int EVcnt;
+  int PerEVcnt;
+  int firstevent;
   void *work;
   double *workt;
 } fromwork_struct ;
@@ -61,7 +64,7 @@ typedef struct {
 
 void fromws_c(scicos_block *block,int flag)
 {
-  double t,a,b,c,y1,y2,t1,t2;
+  double t,a,b,c,y1,y2,yc1,yc2,t1,t2,r;
   int i,inow;
   double *y;
   double  d1,d2,h, dh, ddh, dddh;
@@ -76,7 +79,7 @@ void fromws_c(scicos_block *block,int flag)
   int ierr;
   int Ytype, nPoints, mY, YsubType, my, ytype,j,jfirst;
   int Ydim[10];
-  int cnt1, cnt2, EVindex, EVcnt;
+  int cnt1, cnt2, EVindex, PerEVcnt;
   /* generic pointer */
   SCSREAL_COP *y_d,*y_cd,*ptr_d;
   SCSINT8_COP *y_c,*ptr_c;
@@ -100,10 +103,10 @@ void fromws_c(scicos_block *block,int flag)
 
  my=GetOutPortRows(block,1); /* number of rows of Outputs*/
 
+
  if (flag==4){
-   C2F(cvstr)(&(block->ipar[0]),&(block->ipar[1]),str,(j=1,&j), \
-               (unsigned long)strlen(str));
-   str[block->ipar[1]] = '\0';
+   C2F(cvstr)(&(Fnlength),&(FName),str,(j=1,&j),(unsigned long)strlen(str));
+   str[Fnlength] = '\0';
 
    /* retrieve path of TMPDIR/workspace */
    strcpy(env,getenv("TMPDIR"));
@@ -117,7 +120,7 @@ void fromws_c(scicos_block *block,int flag)
    lout=FILENAME_MAX;
    C2F(cluni0)(env, filename, &out_n,1,lout);
    C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
-   sciprint("ierr=%d",ierr);
+
    if (ierr!=0) {sciprint("The indicated variable does not exst"); set_block_error(-16);return;};
 
    /* read x */
@@ -130,14 +133,13 @@ void fromws_c(scicos_block *block,int flag)
    mY=Ydim[8]; 
    YsubType=Ydim[9];
    ytype=GetOutType(block,1);     /* output type */
-   sciprint("Ytype=%d ytype=%d ",Ytype,ytype);
 
-   if (mY!=my) {sciprint("Data dimentions are incoherent"); set_block_error(-16);return;};
+   if (mY!=my) {sciprint("Data dimentions are incoherent:\n\r Variable size=%d \n\r Block output size=%d",mY,my); set_block_error(-16);return;};
 
    if (Ytype==1) { /*real/complex cases*/
      switch (YsubType) {
      case 0: if (ytype!=10) {sciprint("Output should be of Real type"); set_block_error(-16);return;};break;
-     case 1: if (ytype!=11) {sciprint("Output should be of copmlex type"); set_block_error(-16);return;};break;
+     case 1: if (ytype!=11) {sciprint("Output should be of complex type"); set_block_error(-16);return;};break;
      }
    }else if(Ytype==8) { /*integer cases*/
      switch (YsubType) {
@@ -153,8 +155,7 @@ void fromws_c(scicos_block *block,int flag)
      set_block_error(-16);
      return;
    }
-   ptr = *(block->work);
-  
+   ptr = *(block->work);  
 
    if (Ytype==1) { /*real/complex case*/
      switch (YsubType) {
@@ -185,6 +186,8 @@ void fromws_c(scicos_block *block,int flag)
        if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(long)))==NULL) {set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return; }
        ptr_l = (SCSINT32_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_l, (j=nPoints*mY,&j), fmtl, &ierr);  /* read short data */
+       sciprint("The Tim==%d %d  ))))))))))",ptr_l[12],ptr_l[15]); 
+
        break;
      case 11 :   // uint8
        if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned char)))==NULL) { set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return;   }
@@ -210,14 +213,14 @@ void fromws_c(scicos_block *block,int flag)
    C2F(mgetnc) (&fd, &Ydim[7], (j=3,&j), fmti, &ierr);  /* read sci header */
    
    if (nPoints!=Ydim[7]) {
-     sciprint("The size of the Time and Data vectors  are incoherent");
+     sciprint("The size of the Time(%d) and Data(%d) vectors are incoherent",Ydim[7],nPoints);
      set_block_error(-16);*(block->work)=NULL;
      scicos_free(ptr->work);
      scicos_free(ptr);
      return;
    };
    if ((Ydim[6]!=1)| (Ydim[9]|=0)) {
-     sciprint("The Time vector is not double"); 
+     sciprint("The Time vector type is not ""double"""); 
      set_block_error(-16);*(block->work)=NULL;
      scicos_free(ptr->work);
      scicos_free(ptr);
@@ -242,24 +245,17 @@ void fromws_c(scicos_block *block,int flag)
        break;
      }
    }
-
-   jfirst=nPoints; // finding first positive tie instant
-   for (j=0;j<nPoints;j++){		
-     if (ptr->workt[j]>0) {
-       jfirst=j;
-       break;
-     }
-   }
-   
    ptr->nPoints=nPoints;
    ptr->Yt=Ytype;
    ptr->Yst=YsubType;
    ptr->cnt1=cnt1;
    ptr->cnt2=cnt2;
-   ptr->EVindex=jfirst;
-   ptr->EVcnt=0;
+   ptr->EVindex=0;
+   ptr->PerEVcnt=0;
+   ptr->firstevent=1;
    return;   
-   /******************** **********************************/
+   /*******************************************************/
+   /*******************************************************/
  }else if (flag==1){   /* event date computation */
    ptr = *(block->work);
    nPoints=ptr->nPoints;
@@ -267,152 +263,287 @@ void fromws_c(scicos_block *block,int flag)
    cnt1=ptr->cnt1;
    cnt2=ptr->cnt2;
    EVindex= ptr->EVindex;
-   EVcnt=ptr->EVcnt;
-   if (OutEnd==2) t-=(EVcnt-1)*TP;
+   PerEVcnt=ptr->PerEVcnt;
+   t1=t;
 
-   inow=nPoints-1;
-   for (i=cnt1;i<nPoints;i++){		
-     if (i==-1) continue;
-     if (t<ptr->workt[i]) {
-       inow=i-1;
-       if (inow<cnt2){
-	 cnt2=inow;
-       }else{
-	 cnt1=cnt2;
-	 cnt2=inow;
+   if (ZC==1){
+     if (OutEnd==2) t-=(PerEVcnt)*TP;
+     inow=nPoints-1;
+     for (i=cnt1;i<nPoints;i++){
+       if (i==-1) continue;
+       if (t<ptr->workt[i]) {
+	 inow=i-1;
+	 if (inow<cnt2){
+	   cnt2=inow;
+	 }else{
+	   cnt1=cnt2;
+	   cnt2=inow;
+	 }
+       break;
+       }
+     }
+   }else{
+     if (OutEnd==2){ if (TP!=0) r=floor((t/TP));else r=0;t-=((int)r)*TP;};
+     inow=nPoints-1;
+     for (i=0;i<nPoints;i++){
+       if (t<ptr->workt[i]){inow=i-1; break;}
+     }
+   }
+
+   ptr->cnt1=cnt1;
+   ptr->cnt2=cnt2;
+   ptr->EVindex=EVindex;
+   ptr->PerEVcnt=PerEVcnt;
+
+   if (ptr->Yt==1){
+     switch (ptr->Yst){
+     case 0: // -------------double----------------------------
+       y_d = GetRealOutPortPtrs(block,1);
+       ptr_d=(double*) ptr->work;
+       
+       for (j=0;j<my;j++){
+	 if (inow>=nPoints-1){
+	   if (OutEnd==0){
+	     y_d[j]=0.0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_d[j]=ptr_d[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Order==0){	 	       
+	   if (inow<0){
+	     y_d[j]=0.0;
+	   }else{
+	     y_d[j]=ptr_d[inow+(j)*nPoints];
+	   }
+	 }else if (Order==1){	     
+	   if (inow<0){inow=0;}
+	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=ptr_d[inow+j*nPoints];
+	   y2=ptr_d[inow+1+j*nPoints];
+	   y_d[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;	   
+	 }
+       }
+       break;
+     case 1: // --------------Complex----------------------
+       y_d  = GetRealOutPortPtrs(block,1);
+       y_cd = GetImagOutPortPtrs(block,1);
+       ptr_d=(double*) ptr->work;
+       for (j=0;j<my;j++){
+	 if (inow>=nPoints-1){
+	   if (OutEnd==0){
+	     y_d[j]=0.0;// outputs set to zero
+	     y_cd[j]=0.0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_d[j]=ptr_d[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	     y_cd[j]=ptr_d[nPoints*my+nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Order==0){	 	       
+	   if (inow<0){
+	     y_d[j] =0.0;
+	     y_cd[j]=0.0;// outputs set to zero
+	   }else{
+	     y_d[j] =ptr_d[inow+(j)*nPoints];
+	     y_cd[j]=ptr_d[nPoints*my+inow+(j)*nPoints];
+	   }
+	 }else if (Order==1){	     
+	   if (inow<0){inow=0;}
+	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=ptr_d[inow+j*nPoints];
+	   y2=ptr_d[inow+1+j*nPoints];
+	   yc1=ptr_d[nPoints*my+inow+j*nPoints];
+	   yc2=ptr_d[nPoints*my+inow+1+j*nPoints];
+	   y_d[j] =(y2-y1)*(t-t1)/(t2-t1)+y1;
+	   y_cd[j]=(yc2-yc1)*(t-t1)/(t2-t1)+yc1;	   
+	 }
+       }
+       break;       
+     }
+   }else if (ptr->Yt==8){
+     switch (ptr->Yst){
+     case 1: // ---------------------int8 char  ----------------------------
+       y_c = Getint8OutPortPtrs(block,1);
+       ptr_c=(char*) ptr->work;
+       for (j=0;j<my;j++){
+	 //y_c[j]=ptr_c[inow+(j)*nPoints];
+	 if (inow>=nPoints-1){
+	   if (OutEnd==0){
+	     y_c[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_c[j]=ptr_c[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if ((Order==0)|(Order==1)){	 	       
+	   if (inow<0){
+	     y_c[j]=0;
+	   }else{
+	     y_c[j]=ptr_c[inow+(j)*nPoints];
+	   }
+	 }
+       }
+       break;
+     case 2: // ---------------------int16 short---------------------
+       y_s = Getint16OutPortPtrs(block,1);
+       ptr_s=(short*) ptr->work;
+       for (j=0;j<my;j++){
+	 // y_s[j]=ptr_s[inow+(j)*nPoints];
+	 if (inow>=nPoints-1){
+	   if (OutEnd==0){
+	     y_s[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_s[j]=ptr_s[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if ((Order==0)|(Order==1)){	 	       
+	   if (inow<0){
+	     y_s[j]=0;
+	   }else{
+	     y_s[j]=ptr_s[inow+(j)*nPoints];
+	   }
+	 }
+
+       }
+       break;
+     case 4: // ---------------------int32 long---------------------
+       y_l = Getint32OutPortPtrs(block,1);
+       ptr_l=(long*) ptr->work;
+       for (j=0;j<my;j++){
+	 //y_l[j]=ptr_l[inow+(j)*nPoints];
+	 if (inow>=nPoints-1){
+	   if (OutEnd==0){
+	     y_l[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_l[j]=ptr_l[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if ((Order==0)|(Order==1)){	 	       
+	   if (inow<0){
+	     y_l[j]=0;
+	   }else{
+	     y_l[j]=ptr_l[inow+(j)*nPoints];
+	   }
+	 }
+       }       
+       break;
+     case 11: //--------------------- uint8 uchar---------------------
+       y_uc = Getuint8OutPortPtrs(block,1);
+       ptr_uc=(unsigned char*) ptr->work;
+       for (j=0;j<my;j++){
+	 //y_uc[j]=ptr_uc[inow+(j)*nPoints];
+	 if (inow>=nPoints-1){
+	   if (OutEnd==0){
+	     y_uc[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_uc[j]=ptr_uc[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if ((Order==0)|(Order==1)){	 	       
+	   if (inow<0){
+	     y_uc[j]=0;
+	   }else{
+	     y_uc[j]=ptr_uc[inow+(j)*nPoints];
+	   }
+	 }
+       }
+       break;
+     case 12: // ---------------------uint16 ushort---------------------
+       y_us = Getuint16OutPortPtrs(block,1);
+       ptr_us=(unsigned short*) ptr->work;
+       for (j=0;j<my;j++){
+	 // y_us[j]=ptr_us[inow+(j)*nPoints];
+	 if (inow>=nPoints-1){
+	   if (OutEnd==0){
+	     y_us[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_us[j]=ptr_us[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if ((Order==0)|(Order==1)){	 	       
+	   if (inow<0){
+	     y_us[j]=0;
+	   }else{
+	     y_us[j]=ptr_us[inow+(j)*nPoints];
+	   }
+	 }
+       }
+       break;
+     case 14: // ---------------------uint32 ulong---------------------
+       y_ul = Getuint32OutPortPtrs(block,1);
+       ptr_ul=(unsigned long*) ptr->work;
+       for (j=0;j<my;j++){
+	 // y_ul[j]=ptr_ul[inow+(j)*nPoints];
+	 if (inow>=nPoints-1){
+	   if (OutEnd==0){
+	     y_ul[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_ul[j]=ptr_ul[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if ((Order==0)|(Order==1)){	 	       
+	   if (inow<0){
+	     y_ul[j]=0;
+	   }else{
+	     y_ul[j]=ptr_ul[inow+(j)*nPoints];
+	   }
+	 }
        }
        break;
      }
    }
-   sciprint("\n\r flag=2 inow=%d, nP=%d typ=%d, stype=%d",inow,nPoints,ptr->Yt,ptr->Yst);
-
-   if (Order==0) {
-     if (ptr->Yt==1){
-       switch (ptr->Yst){
-       case 0: // -------------double----------------------------
-	 y_d = GetRealOutPortPtrs(block,1);
-	 ptr_d=(double*) ptr->work;
-
-	 for (j=0;j<my;j++){
-	   if (inow<0){
-	     y_d[j]=0.0;
-	   }else if (inow>=nPoints-1){
-	     if (OutEnd==0){
-	       y_d[j]=0.0;// outputs set to zero
-	     }else if (OutEnd==1){
-	       y_d[j]=ptr_d[nPoints-1+(j)*nPoints]; // hold outputs at the end
-	     }	     
-	   }else{
-	     y_d[j]=ptr_d[inow+(j)*nPoints];
-	     sciprint(" yyy=%g ",y_d[j]);
-	   }
-	 }
-	 break;
-       case 1: // --------------Complex----------------------
-	 y_d  = GetRealInPortPtrs(block,1);
-	 y_cd = GetImagInPortPtrs(block,1);
-	 ptr_d=(double*) ptr->work;
-	 for (j=0;j<my;j++){
-	   y_d[j]=ptr_d[inow+(j)*nPoints];
-	   y_cd[j]=ptr_d[nPoints*my+inow+(j)*nPoints];
-	 }
-	 break;       
-       }
-     }else if (ptr->Yt==8){
-       switch (ptr->Yst){
-       case 0: // int8 char  
-	 y_c = Getint8OutPortPtrs(block,1);
-	 ptr_c=(char*) ptr->work;
-	 for (j=0;j<my;j++){
-	   y_c[j]=ptr_c[inow+(j)*nPoints];
-	 }
-	 break;
-       case 2: // int16 short
-	 y_s = Getint16OutPortPtrs(block,1);
-	 ptr_s=(short*) ptr->work;
-	 for (j=0;j<my;j++){
-	   y_s[j]=ptr_s[inow+(j)*nPoints];
-	 }
-	 break;
-       case 4: // int32 long
-	 y_l = Getint32OutPortPtrs(block,1);
-	 ptr_l=(long*) ptr->work;
-	 for (j=0;j<my;j++){
-	   y_l[j]=ptr_l[inow+(j)*nPoints];
-	 }
-	 break;
-       case 11: // uint8 uchar
-	 y_uc = Getuint8OutPortPtrs(block,1);
-	 ptr_uc=(unsigned char*) ptr->work;
-	 for (j=0;j<my;j++){
-	   y_uc[j]=ptr_uc[inow+(j)*nPoints];
-	 }
-	 break;
-       case 12: // uint16 ushort
-	 y_us = Getuint16OutPortPtrs(block,1);
-	 ptr_us=(unsigned short*) ptr->work;
-	 for (j=0;j<my;j++){
-	   y_us[j]=ptr_us[inow+(j)*nPoints];
-	 }
-	 break;
-       case 14: // uint32 ulong
- 	 y_ul = Getuint32OutPortPtrs(block,1);
-	 ptr_ul=(unsigned long*) ptr->work;
-	 for (j=0;j<my;j++){
-	   y_ul[j]=ptr_ul[inow+(j)*nPoints];
-	 }
-	 break;
-       }
-     }
-   }
-     /*  if(Order==1) {
-	 t1=ptr->workt[inow];
-	 t2=ptr->workt[inow+1];
-	 y1=ptr->work[inow];
-	 y2=ptr->work[inow+1];
-	 y[0]=(y2-y1)*(t-t1)/(t2-t1)+y1;
-	 break;
-	 }*/
    /********************************************************************/
- }else if(flag==3){   /* event date computation */
-   t=get_scicos_time();
+}else if(flag==3){   /* event date computation */
+  t=get_scicos_time();
    ptr = *(block->work);
    nPoints=ptr->nPoints;
    cnt1=ptr->cnt1;
    cnt2=ptr->cnt2;
    EVindex= ptr->EVindex;
-   EVcnt=ptr->EVcnt;
-
-   if (ZC==1) {// generate Events only if ZC is active
+   PerEVcnt=ptr->PerEVcnt;
+   sciprint(" \n\r flag3 t=%g EI=%d",t,EVindex );
+   if (ZC==1) {/* generate Events only if ZC is active */
      if ((Order==1)||(Order==0)){
-       sciprint("\n\r flag=3 t=%g  EVindex=%d",t,EVindex);
+       //-------------------------
+       if (ptr->firstevent==1){
+	 jfirst=nPoints-1; // finding first positive time instant
+	 for (j=0;j<nPoints;j++){		
+	   if (ptr->workt[j]>0) {
+	     jfirst=j;
+	     break;
+	   }
+	 }
+	 block->evout[0]=ptr->workt[jfirst];
+	 sciprint(" tx=%g",ptr->workt[jfirst] );
 
+	 EVindex=jfirst;
+	 ptr->EVindex=EVindex;
+	 ptr->firstevent=0;
+	 return;
+       }
+       //------------------------
        i=EVindex;
+       //------------------------
+       if (i<nPoints-1) {
+	 block->evout[0]=ptr->workt[i+1]-ptr->workt[i];
+	 EVindex=i+1;
+       }
+       //------------------------
        if (i==nPoints-1){ 
 	 if (OutEnd==2) {
-	   i=0;
 	   cnt1=-1;
-	   cnt2=0;	   
+	   cnt2=0;	
+	   PerEVcnt++;/* When OutEnd==2 (perodic output)*/
+	   jfirst=nPoints-1; // finding first positive time instant
+	   for (j=0;j<nPoints;j++){		
+	     if (ptr->workt[j]>0) {
+	       jfirst=j;
+	       break;
+	     }
+	   }
+	   block->evout[0]=ptr->workt[jfirst];
+	   EVindex=jfirst;
 	 }
        }
-       if (i<nPoints-1 & i>0) {
-	 block->evout[0]=ptr->workt[i+1]-ptr->workt[i];	 
-	 EVindex=i+1;
-       }
-
-       if (i==0) {
-	 block->evout[0]=ptr->workt[i];	 
-	 EVindex=i+1;
-       }
- 
-       if (EVindex==1)  EVcnt++;/* When OutEnd==2 (perodic output)*/
-
-     }
+       //--------------------------
+     };
 
      ptr->cnt1=cnt1;
      ptr->cnt2=cnt2;
      ptr->EVindex=EVindex;
-     ptr->EVcnt=EVcnt;
+     ptr->PerEVcnt=PerEVcnt;
    }
    /***********************************************************************/
  }else if (flag==5){   /* finish */
