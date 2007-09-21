@@ -232,7 +232,7 @@ void convert(scicos_block *block,int flag)
 	  	   u=Getint8InPortPtrs(block,1);
 	           y=Getint16OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
-		        {y[i]=(short)w;}
+		        {y[i]=(short)u[i];}
 		   break;}
 	    case 21:{
 		   char *u;
@@ -248,7 +248,7 @@ void convert(scicos_block *block,int flag)
 	  	   u=Getint8InPortPtrs(block,1);
 	           y=Getuint16OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
-		        {y[i]=(unsigned short)w;}
+		        {y[i]=(unsigned short)u[i];}
 		   break;}
 	    case 23:{
 		   unsigned long *u;
@@ -376,7 +376,7 @@ void convert(scicos_block *block,int flag)
 	  	   u=Getuint8InPortPtrs(block,1);
 	           y=Getint16OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
-		        {y[i]=(short)w;}
+		        {y[i]=(short)u[i];}
 		   break;}
 	    case 36:{
 		   unsigned char *u;
@@ -392,7 +392,7 @@ void convert(scicos_block *block,int flag)
 	  	   u=Getuint8InPortPtrs(block,1);
 	           y=Getuint16OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
-		        {y[i]=(unsigned short)w;}
+		        {y[i]=(unsigned short)u[i];}
 		   break;}
 	    case 38:{
 		   double *u;
@@ -739,10 +739,11 @@ void convert(scicos_block *block,int flag)
 	           y=Getint32OutPortPtrs(block,1);
 		   k=pow(2,32);
 		   for (i=0;i<m*n;i++)
-		       {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
-		           {sciprint("overflow error");
-			    set_block_error(-4);
-			    return;}
+		   {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
+		           {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		        else {y[i]=(long)(u[i]);}
 		       }
 		   break;}
@@ -754,9 +755,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
-		           {sciprint("overflow error");
-			    set_block_error(-4);
-			    return;}
+		           {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		        else {y[i]=(short)(u[i]);}
 		       }
 		   break;}
@@ -768,9 +770,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
-		           {sciprint("overflow error");
-			    set_block_error(-4);
-			    return;}
+		           {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		        else {y[i]=(char)(u[i]);}
 		       }
 		   break;}
@@ -782,9 +785,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,32);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
-		       	   {sciprint("overflow error");
-			    set_block_error(-4);
-			    return;}
+		           {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned long)(u[i]);}
 		   	}
 		   break;}
@@ -796,9 +800,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
-		       	    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
 		   	}
 		   break;}
@@ -810,9 +815,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
-		       	    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
 		   	}
 		   break;}
@@ -824,9 +830,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
-		            {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		            {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		        else {y[i]=(short)(u[i]);}
 		       }
 		   break;}
@@ -838,9 +845,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
-		            {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		            {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		        else {y[i]=(char)(u[i]);}
 		       }
 		   break;}
@@ -851,9 +859,10 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint32OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
 		   	{if (u[i]<0)
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+			    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned long)(u[i]);}
 		   	}
 		   break;}
@@ -865,9 +874,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
-		       	    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
 		   	}
 		   break;}
@@ -879,9 +889,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
-		       	    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
 		   	}
 		   break;}
@@ -893,9 +904,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
-		            {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		        else {y[i]=(char)(u[i]);}
 		       }
 		   break;}
@@ -906,9 +918,10 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint32OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]<0)  
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 			 else y[i]=(unsigned long)u[i];}
 		   break;}
 	    case 78:{
@@ -918,9 +931,10 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint16OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
 		   	{if (u[i]<0)
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+			    {if (flag==1) 
+                                {sciprint("overflow error");
+			         set_block_error(-4);
+			         return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
 		   	}
 		   break;}
@@ -931,10 +945,11 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if ((u[i]>=k) | (u[i]<0))
-		       	    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		        {if (((u[i]>=k) | (u[i]<0))& (flag==1))
+		       	    {if (flag==1) 
+                                 {sciprint("overflow error");
+			          set_block_error(-4);
+			          return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
 		   	}
 		   break;}
@@ -945,9 +960,10 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint32OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
 			{if (u[i]<0)
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 			 else y[i]=(unsigned long)u[i];}
 		   break;}
 	    case 81:{
@@ -957,9 +973,10 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint16OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]<0)
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
 		   	}
 		   break;}
@@ -970,9 +987,10 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint8OutPortPtrs(block,1);
 		   for (i=0;i<m*n;i++) 
 		   	{if (u[i]<0)
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
 		   	}
 		   break;}
@@ -984,9 +1002,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,32);
 		   for (i=0;i<m*n;i++) 
 		   	{if (u[i]>(k/2-1))
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(long)(u[i]);}
 		   	}
 		   break;}
@@ -998,9 +1017,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(short)(u[i]);}
 		   	}
 		   break;}
@@ -1012,9 +1032,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(char)(u[i]);}
 		   	}
 		   break;}
@@ -1026,9 +1047,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
 		   	}
 		   break;}
@@ -1040,9 +1062,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
 		   	}
 		   break;}
@@ -1054,9 +1077,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(short)(u[i]);}
 		   	}
 		   break;}
@@ -1068,9 +1092,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(char)(u[i]);}
 		   	}
 		   break;}
@@ -1082,9 +1107,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
 		   	}
 		   break;}
@@ -1096,9 +1122,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
-			    {sciprint("overflow error");
-			     set_block_error(-4);
-			     return;}
+		       	    {if (flag==1)
+                               {sciprint("overflow error");
+			        set_block_error(-4);
+			        return;}}
 		   	else {y[i]=(char)(u[i]);}
 		   	}
 		   break;}
