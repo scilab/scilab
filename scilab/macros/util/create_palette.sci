@@ -46,7 +46,7 @@ function [routines,IntFunc]=create_palette(Path)
 	      'SAWTOOTH_f.sci'; 'STEP_FUNCTION.sci';
 	      'CLOCK_c.sci'; 'GENSIN_f.sci'; 'IN_f.sci';   'READC_f.sci';
 	      'TIME_f.sci'; 'Modulo_Count.sci';'Sigbuilder.sci';'Counter.sci';
-              'SampleCLK.sci';'FROMWS_c.sci']
+              'SampleCLK.sci';'TKSCALE.sci';'FROMWS_c.sci']
 
       elseif txt=='Sinks' then
 	lisf=['AFFICH_m.sci';   'CMSCOPE.sci';
