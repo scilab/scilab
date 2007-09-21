@@ -33,7 +33,6 @@ extern void sciprint __PARAMS((char *fmt,...));
 
 //int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
 
-static int id[nsiz];
 static char fmtd[3]={'d','l','\000'};
 static char fmti[3]={'i','l','\000'};
 static char fmtl[3]={'l','l','\000'};
@@ -64,10 +63,9 @@ typedef struct {
 
 void fromws_c(scicos_block *block,int flag)
 {
-  double t,a,b,c,y1,y2,yc1,yc2,t1,t2,r;
+  double t,y1,y2,yc1,yc2,t1,t2,r;
   int i,inow;
-  double *y;
-  double  d1,d2,h, dh, ddh, dddh;
+  /*  double  a,b,c,*y, d1,d2,h, dh, ddh, dddh;*/
   int fd;
   char *status;
   int swap = 1;
@@ -186,8 +184,6 @@ void fromws_c(scicos_block *block,int flag)
        if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(long)))==NULL) {set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return; }
        ptr_l = (SCSINT32_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_l, (j=nPoints*mY,&j), fmtl, &ierr);  /* read short data */
-       sciprint("The Tim==%d %d  ))))))))))",ptr_l[12],ptr_l[15]); 
-
        break;
      case 11 :   // uint8
        if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned char)))==NULL) { set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return;   }
@@ -346,13 +342,14 @@ void fromws_c(scicos_block *block,int flag)
 	     y_cd[j]=ptr_d[nPoints*my+inow+(j)*nPoints];
 	   }
 	 }else if (Order==1){	     
-	   if (inow<0){inow=0;}
+	   if (inow<0){inow=0;} // extrapolation for 0<t<X(0)
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=ptr_d[inow+j*nPoints];
 	   y2=ptr_d[inow+1+j*nPoints];
 	   yc1=ptr_d[nPoints*my+inow+j*nPoints];
 	   yc2=ptr_d[nPoints*my+inow+1+j*nPoints];
+
 	   y_d[j] =(y2-y1)*(t-t1)/(t2-t1)+y1;
 	   y_cd[j]=(yc2-yc1)*(t-t1)/(t2-t1)+yc1;	   
 	 }
@@ -372,12 +369,19 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_c[j]=ptr_c[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if ((Order==0)|(Order==1)){	 	       
+	 }else if (Order==0){	 	       
 	   if (inow<0){
 	     y_c[j]=0;
 	   }else{
 	     y_c[j]=ptr_c[inow+(j)*nPoints];
 	   }
+	 }else if (Order==1){	 
+    	   if (inow<0){inow=0;}
+	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=(double)ptr_c[inow+j*nPoints];
+	   y2=(double)ptr_c[inow+1+j*nPoints];
+	   y_c[j] =(char)((y2-y1)*(t-t1)/(t2-t1)+y1);
 	 }
        }
        break;
@@ -392,12 +396,19 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_s[j]=ptr_s[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if ((Order==0)|(Order==1)){	 	       
+	 }else if (Order==0){	 	       
 	   if (inow<0){
 	     y_s[j]=0;
 	   }else{
 	     y_s[j]=ptr_s[inow+(j)*nPoints];
 	   }
+	 }else if (Order==1){
+	   if (inow<0){inow=0;}
+	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=(double)ptr_s[inow+j*nPoints];
+	   y2=(double)ptr_s[inow+1+j*nPoints];
+	   y_s[j] =(short)((y2-y1)*(t-t1)/(t2-t1)+y1);
 	 }
 
        }
@@ -413,12 +424,19 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_l[j]=ptr_l[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if ((Order==0)|(Order==1)){	 	       
+	 }else if (Order==0){	 	       
 	   if (inow<0){
 	     y_l[j]=0;
 	   }else{
 	     y_l[j]=ptr_l[inow+(j)*nPoints];
 	   }
+	 }else if (Order==1){
+	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=(double)ptr_l[inow+j*nPoints];
+	   y2=(double)ptr_l[inow+1+j*nPoints];
+	   y_l[j] =(long)((y2-y1)*(t-t1)/(t2-t1)+y1);
+
 	 }
        }       
        break;
@@ -433,12 +451,18 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_uc[j]=ptr_uc[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if ((Order==0)|(Order==1)){	 	       
+	 }else if (Order==0){	 	       
 	   if (inow<0){
 	     y_uc[j]=0;
 	   }else{
 	     y_uc[j]=ptr_uc[inow+(j)*nPoints];
 	   }
+	 }else if (Order==1){	 
+  	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=(double)ptr_uc[inow+j*nPoints];
+	   y2=(double)ptr_uc[inow+1+j*nPoints];
+	   y_uc[j] =(unsigned char)((y2-y1)*(t-t1)/(t2-t1)+y1);
 	 }
        }
        break;
@@ -453,12 +477,18 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_us[j]=ptr_us[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if ((Order==0)|(Order==1)){	 	       
+	 }else if (Order==0){	 	       
 	   if (inow<0){
 	     y_us[j]=0;
 	   }else{
 	     y_us[j]=ptr_us[inow+(j)*nPoints];
 	   }
+	 }else if (Order==1){	
+       	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=(double)ptr_us[inow+j*nPoints];
+	   y2=(double)ptr_us[inow+1+j*nPoints];
+	   y_us[j] =(unsigned short)((y2-y1)*(t-t1)/(t2-t1)+y1);
 	 }
        }
        break;
@@ -473,12 +503,18 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_ul[j]=ptr_ul[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if ((Order==0)|(Order==1)){	 	       
+	 }else if (Order==0){	 	       
 	   if (inow<0){
 	     y_ul[j]=0;
 	   }else{
 	     y_ul[j]=ptr_ul[inow+(j)*nPoints];
 	   }
+	 }else if (Order==1){
+	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=(double)ptr_ul[inow+j*nPoints];
+	   y2=(double)ptr_ul[inow+1+j*nPoints];
+	   y_ul[j] =(unsigned long)((y2-y1)*(t-t1)/(t2-t1)+y1);
 	 }
        }
        break;
@@ -493,7 +529,6 @@ void fromws_c(scicos_block *block,int flag)
    cnt2=ptr->cnt2;
    EVindex= ptr->EVindex;
    PerEVcnt=ptr->PerEVcnt;
-   sciprint(" \n\r flag3 t=%g EI=%d",t,EVindex );
    if (ZC==1) {/* generate Events only if ZC is active */
      if ((Order==1)||(Order==0)){
        //-------------------------
@@ -506,8 +541,6 @@ void fromws_c(scicos_block *block,int flag)
 	   }
 	 }
 	 block->evout[0]=ptr->workt[jfirst];
-	 sciprint(" tx=%g",ptr->workt[jfirst] );
-
 	 EVindex=jfirst;
 	 ptr->EVindex=EVindex;
 	 ptr->firstevent=0;
