@@ -480,7 +480,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
   Cmenu = []     ; //** valid command = empty
   %pt   = []     ; //** valid last mouse position = empty
   %win  = curwin ; //** curwin is dynamically modified if a superblock window is open 
-
+  %curwpar = []  ; // window dimensions 
 
   //** 'Select' and 'Select_back' are matrix;
   //**  Each line is:  [object_id win_id] : "object_id" is the same INDEX used in "scs_m.obj"
@@ -531,9 +531,10 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       // store win dims, it should only be in do_exit but not possible
       // now
       data_bounds=gh_current_window.children.data_bounds
-      scs_m.props.wpar=[data_bounds(:)',gh_current_window.axes_size,..
-			xget('viewport'),gh_current_window.figure_size,..
-		       gh_current_window.figure_position,%zoom]
+      winsize=gh_current_window.figure_size;
+      winpos=gh_current_window.figure_position;
+      %curwpar=[data_bounds(:)',gh_current_window.axes_size,..
+			xget('viewport'),winsize,winpos,%zoom]
     end    
     
     
@@ -687,6 +688,21 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
   end //**--->  end of the while loop: the only way to exit is with the 'Quit' command 
 
   if Cmenu=='Quit' then
+    if %curwpar<>[] then
+      TCL_EvalStr('set qxcx [wm  maxsize .];') 
+      screensz=evstr(TCL_GetVar('qxcx')) // get screen size
+      winsize=%curwpar(9:10)
+      winpos=%curwpar(11:12)
+      if min(winsize)>0  then  // window is not iconified
+          winpos=max(0,winpos-max(0,-screensz+winpos+winsize) )
+          %curwpar(11:12)=winpos  // make sure window remains inside screen
+      end
+
+
+      scs_m.props.wpar=%curwpar  // keep window dimensions  
+    end
+
+
     do_exit() ; //** this function is executed in case of 'Quit'
     if ~super_block then
       mdelete(TMPDIR+'/BackupSave.cos') // no backup needed
