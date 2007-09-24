@@ -53,7 +53,7 @@ function scs_m=do_icon_edit(%pt,scs_m)
     count=count+1
     realtime(count)
   end
-  ok=or(win==winsid())&fig.user_data=='ok';
+  if and(win<>winsid()) then scf(gh_curwin),return,end //window destroyed 
   //Edition finish, disable handler and menus
   delmenu(win,'Edit');
   seteventhandler('') //remove the ged event handler
