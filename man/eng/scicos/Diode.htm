@@ -36,12 +36,12 @@ Electrical diode
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=Diode.eps,width=90.00pt}$
+ $\epsfig{file=Diode.eps,height=45pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="92" ALIGN="BOTTOM" BORDER="0"
- SRC="Diode_img1.gif"
- ALT="\epsfig{file=Diode.eps,width=90.00pt}">
+ WIDTH="135" HEIGHT="72" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/Diode_blk.gif"
+ ALT="\epsfig{file=Diode.eps,height=45pt}">
 
 </DIV>
 <BR>
@@ -52,32 +52,41 @@ Contents</A>
 <!--Table of Contents-->
 
 <UL CLASS="TofC">
-<LI><A NAME="tex2html3"
+<LI><A NAME="tex2html6"
   HREF="Diode.htm#SECTION00010000000000000000">Electrical diode</A>
 <UL>
-<LI><A NAME="tex2html4"
-  HREF="Diode.htm#SECTION00021000000000000000">Description</A>
-<LI><A NAME="tex2html5"
-  HREF="Diode.htm#SECTION00022000000000000000">Dialog box</A>
-<LI><A NAME="tex2html6"
-  HREF="Diode.htm#SECTION00023000000000000000">Default properties</A>
 <LI><A NAME="tex2html7"
-  HREF="Diode.htm#SECTION00024000000000000000">Interfacing function</A>
+  HREF="Diode.htm#SECTION00021000000000000000">Palette</A>
 <LI><A NAME="tex2html8"
-  HREF="Diode.htm#SECTION00025000000000000000">Modelica model</A>
+  HREF="Diode.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="Diode.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html10"
+  HREF="Diode.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html11"
+  HREF="Diode.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html12"
+  HREF="Diode.htm#SECTION00026000000000000000">Modelica model</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
-Description</A>
+Palette</A>
 </font></H3>
 
-<P>
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Electrical_pal.htm">Electrical.cosf - Electrical toolbox</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
 
 <P>
 This component consists of a simple diode parallel with an ohmic
 resistance (<SPAN CLASS="MATH"><IMG
  WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="Diode_img2.gif"
+ SRC="../../images/scicos/Diode_img2_eng.gif"
  ALT="$ R$"></SPAN>
 ). The current passing through this component is
 defined as a function of the voltage across the ports, <I>i.e.</I>,
@@ -91,8 +100,8 @@ i = I_{ds} ( \exp^{v/V_t}- 1)+\frac{v}{R}
 </P>
 <DIV ALIGN="CENTER" CLASS="mathdisplay">
 <IMG
- WIDTH="187" HEIGHT="47" ALIGN="MIDDLE" BORDER="0"
- SRC="Diode_img3.gif"
+ WIDTH="187" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Diode_img3_eng.gif"
  ALT="$\displaystyle i = I_{ds} ( \exp^{v/V_t}- 1)+\frac{v}{R}$">
 </DIV><P>
 </P>
@@ -100,119 +109,152 @@ i = I_{ds} ( \exp^{v/V_t}- 1)+\frac{v}{R}
 <P>
 where <SPAN CLASS="MATH"><IMG
  WIDTH="26" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="Diode_img4.gif"
+ SRC="../../images/scicos/Diode_img4_eng.gif"
  ALT="$ I_{ds}$"></SPAN>
  and <SPAN CLASS="MATH"><IMG
  WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="Diode_img5.gif"
+ SRC="../../images/scicos/Diode_img5_eng.gif"
  ALT="$ V_t$"></SPAN>
  are the saturation current and the voltage
 equivalent of temperature, respectively. If the exponent <SPAN CLASS="MATH"><IMG
- WIDTH="38" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
- SRC="Diode_img6.gif"
+ WIDTH="38" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Diode_img6_eng.gif"
  ALT="$ v/V_t$"></SPAN>
 
 reaches a certain limit (<SPAN CLASS="MATH"><IMG
  WIDTH="69" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="Diode_img7.gif"
+ SRC="../../images/scicos/Diode_img7_eng.gif"
  ALT="$ Maxexp$"></SPAN>
-), the diode characterisic becomes
+), the diode characteristic becomes
 linear to avoid overflow.
 
-<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Dialog box</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set Diode block parameter</TD>
-<TD ALIGN="CENTER">&nbsp;</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Saturation cuurent (A)</TD>
-<TD ALIGN="CENTER">0.000001</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Voltage equivalent to temperature (Volt)</TD>
-<TD ALIGN="CENTER">0.04</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Max exponent for linear continuation</TD>
-<TD ALIGN="CENTER">15</TD>
-</TR>
-<TR><TD ALIGN="CENTER">R (ohm)</TD>
-<TD ALIGN="CENTER">1.000E+08</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="477" HEIGHT="149" BORDER="0"
+ SRC="../../images/scicos/Diode_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=Diode_gui.eps,width=300pt}
+\end{center}\end{figure}">
 </DIV>
 
 <P>
 
 <UL>
-<LI><b>Saturation cuurent (A) </b> : Type 'vec' of size 1. Saturation current
-</LI>
-<LI><b>Voltage equivalent to temperature (Volt) </b> : Type 'vec' of size 1. Voltage equivalent of temperature
-</LI>
-<LI><b>Max exponent for linear continuation </b> : Type 'vec' of size 1. Max exponent for linear continuation
-</LI>
-<LI><b>R (ohm) </b> : Type 'vec' of size 1. Parallel ohmic resistance.
-</LI>
-</UL>
+<LI><b>Saturation current (A)</b>
+<BR>
+Saturation current
+<BR>
+Properties : Type 'vec' of size 1.
 
-<H3><font color="blue"><A NAME="SECTION00023000000000000000">
-Default properties</A>
-</font></H3>
+<P>
+</LI>
+<LI><b>Voltage equivalent to temperature (Volt)</b>
+<BR>
+Voltage equivalent of temperature
+<BR>
+Properties : Type 'vec' of size 1.
 
-<UL>
-<LI><b>always active:</b> no
+<P>
 </LI>
-<LI><b>direct-feedthrough:</b> yes
+<LI><b>Max exponent for linear continuation</b>
+<BR>
+Max exponent for linear continuation
+<BR>
+Properties : Type 'vec' of size 1.
+
+<P>
 </LI>
-<LI><b>zero-crossing:</b> no
-</LI>
-<LI><b>mode:</b> no
-</LI>
-<LI><b>number/sizes of inputs:</b> 1 / 1
-</LI>
-<LI><b>number/sizes of outputs:</b> 1 / 1
-</LI>
-<LI><b>number/sizes of activation inputs:</b> 0 / 
-</LI>
-<LI><b>number/sizes of activation outputs:</b> 0 / 
-</LI>
-<LI><b>continuous-time state:</b> no
-</LI>
-<LI><b>discrete-time state:</b> no
-</LI>
-<LI><b>name of modelica function:</b> <EM>Diode</EM>
+<LI><b>R (ohm)</b>
+<BR>
+Parallel ohmic resistance.
+<BR>
+Properties : Type 'vec' of size 1.
 </LI>
 </UL>
 
 <H3><font color="blue"><A NAME="SECTION00024000000000000000">
-Interfacing function</A>
+Default properties</A>
 </font></H3>
-<TT>Diode.sci</TT>
+
+<UL>
+<LI><B>Inputs :</B>
+  
+<UL>
+<LI><B>Modelica variable name :</B> 'p'
+<BR>
+Implicit <B>variable.</B>
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Outputs :</B>
+  
+<UL>
+<LI><B>Modelica variable name :</B> 'n'
+<BR>
+Implicit <B>variable.</B>
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Parameters :</B>
+  
+<UL>
+<LI><B>Modelica parameter name :</B> 'Ids'
+<BR>         <B>Default value :</B> 0.000001
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+<LI><B>Modelica parameter name :</B> 'Vt'
+<BR>         <B>Default value :</B> 0.04
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+<LI><B>Modelica parameter name :</B> 'Maxexp'
+<BR>         <B>Default value :</B> 15
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+<LI><B>Modelica parameter name :</B> 'R'
+<BR>         <B>Default value :</B> 1.000E+08
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>File name of the model :</B> Diode
+</LI>
+</UL>
 
 <H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/Diode.sci <A NAME="tex2html4"
+  HREF="Diode_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
 Modelica model</A>
 </font></H3>
- <SMALL CLASS="TINY">  </SMALL>
-<BR>
-<PRE  CLASS="verbatim">class Diode "Simple diode" 
-   Pin p, n;
-    parameter Real Ids=1.e-6 "Saturation current";
-    parameter Real Vt=0.04   "Voltage equivalent of temperature (kT/qn)";
-    parameter Real Maxexp=15 "Max. exponent for linear continuation";
-    parameter Real R=1.e8 "Parallel ohmic resistance";
-    Real v;
-  equation 
-   v = p.v - n.v;
 
-   p.i = if noEvent(v/Vt &gt; Maxexp) then 
-	Ids*(Modelica.Math.exp(Maxexp)*(1 + v/Vt - Maxexp) - 1) + v/R 
-  else 
-	Ids*(Modelica.Math.exp(v/Vt) - 1) + v/R;
-
-   p.i = -n.i;
-
-  end Diode;
-</PRE>
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/Diode.mo <A NAME="tex2html5"
+  HREF="Diode_routcos.htm">[view code]</A>
+</LI>
+</UL>
 
 <BR>
 

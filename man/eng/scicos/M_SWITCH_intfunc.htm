@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>M_SWITCH_intfunc</TITLE>
+<META NAME="description" CONTENT="M_SWITCH_intfunc">
+<META NAME="keywords" CONTENT="M_SWITCH_intfunc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="M_SWITCH_intfunc.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Interfacing function
+<BR><A NAME="tex2html1"
+  HREF="./M_SWITCH_intfunc.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="M_SWITCH_intfunc"></A>
+<BR>
+M_SWITCH
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+File content</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">function [x,y,typ]=M_SWITCH(job,arg1,arg2)
+x=[];y=[];typ=[]
+select job
+case 'plot' then
+  standard_draw(arg1)
+case 'getinputs' then
+  [x,y,typ]=standard_inputs(arg1)
+case 'getoutputs' then
+  [x,y,typ]=standard_outputs(arg1)
+case 'getorigin' then
+  [x,y]=standard_origin(arg1)
+case 'set' then
+  x=arg1;
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  while %t do
+    [ok,nin,base,rule,exprs]=getvalue('Set parameters',..
+	['number of inputs';'zero base indexing (0), otherwise 1';..
+	 'rounding rule: int (0), round (1), ceil (2), floor (3)'],..
+	list('vec',1,'vec',1,'vec',1),exprs)
+    if ~ok then break,end
+    nin=int(nin);base=int(base);
+    if nin&lt;2 then
+      message('Number of inputs must be &gt;=2 ')
+     elseif ~((base==1)|(base==0)) then
+      message('base indexing must be 1 or 0')
+    elseif ~((rule==1)|(rule==0)|(rule==2)|(rule==3)) then
+      message('incorrect rounding rule')
+    else
+      [model,graphics,ok]=check_io(model,graphics,[1;-ones(nin,1)],-1,[],[])
+      if ok then
+	graphics.exprs=exprs;
+	model.ipar=[base;rule],
+	x.graphics=graphics;x.model=model
+	break
+      end
+    end
+  end
+case 'define' then
+  in=[1;-1;-1]
+  ipar=[1;3]
+  nin=2
+  
+  model=scicos_model()
+  model.sim=list('mswitch',4)
+  model.in=in
+  model.out=-1
+  model.ipar=ipar
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+  
+  exprs=[string(nin);string(ipar)]
+  
+  gr_i=['d=sz(2)/(1+evstr(arg1.graphics.exprs(1)))';
+   'xsegs([orig(1),orig(1)+sz(1)],[orig(2)+sz(2)-d,orig(2)+sz(2)-d])';
+  'xstringb(orig(1),orig(2)+sz(2)-d,''control'',sz(1),d,''fill'')';
+  'xstringb(orig(1),orig(2),[''M_Port'';''switch''],sz(1),sz(2)-d,''fill'');']
+  x=standard_define([2 2],model,exprs,gr_i)
+end
+endfunction
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

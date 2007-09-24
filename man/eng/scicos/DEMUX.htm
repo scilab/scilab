@@ -1,170 +1,197 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Demultiplexer </TITLE>
-<META NAME="description" CONTENT="Demultiplexer ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>DEMUX</TITLE>
+<META NAME="description" CONTENT="DEMUX">
+<META NAME="keywords" CONTENT="DEMUX">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="DEMUX.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/DEMUX.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./DEMUX.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html3481"
-  HREF="DEMUX.htm#SECTION00531100000000000000">Library</A>
-<LI><A NAME="tex2html3482"
-  HREF="DEMUX.htm#SECTION00531200000000000000">Description</A>
-<LI><A NAME="tex2html3483"
-  HREF="DEMUX.htm#SECTION00531300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html3484"
-  HREF="DEMUX.htm#SECTION00531400000000000000">Default properties</A>
-<LI><A NAME="tex2html3485"
-  HREF="DEMUX.htm#SECTION00531500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html3486"
-  HREF="DEMUX.htm#SECTION00531600000000000000">Computational function (type 4)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION00531000000000000000"></A><A NAME="DEMUX"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="DEMUX"></A>
 <BR>
-Demultiplexer 
+Demultiplexer
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=DEMUX.eps,width=90.00pt}$
+ $\epsfig{file=DEMUX.eps,height=90pt}$
  -->
 <IMG
- WIDTH="146" HEIGHT="172" ALIGN="BOTTOM" BORDER="0"
- SRC="img54.gif"
- ALT="\epsfig{file=DEMUX.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION00531100000000000000">
-Library</A>
-</font></H3>
-Branching
+ WIDTH="68" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/DEMUX_blk.gif"
+ ALT="\epsfig{file=DEMUX.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION00531200000000000000">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="DEMUX.htm#SECTION00010000000000000000">Demultiplexer</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="DEMUX.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="DEMUX.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="DEMUX.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html10"
+  HREF="DEMUX.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html11"
+  HREF="DEMUX.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html12"
+  HREF="DEMUX.htm#SECTION00026000000000000000">Computational function</A>
+<LI><A NAME="tex2html13"
+  HREF="DEMUX.htm#SECTION00027000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Branching_pal.htm">Branching - Branching palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
+
+<P>
 Given a vector valued input this block splits inputs over vector
 valued outputs. So <!-- MATH
  $u=[y_1;y_2,\cdots;y_n]$
  -->
-<IMG
- WIDTH="146" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
- SRC="img55.gif"
- ALT="$ u=[y_1;y_2,\cdots;y_n]$"> , where  <IMG
- WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img56.gif"
- ALT="$ y_i$"> are
+<SPAN CLASS="MATH"><IMG
+ WIDTH="146" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/DEMUX_img2_eng.gif"
+ ALT="$ u=[y_1;y_2,\cdots;y_n]$"></SPAN>
+ , where  <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/DEMUX_img3_eng.gif"
+ ALT="$ y_i$"></SPAN>
+ are
 numbered from top to bottom. Input and Output port sizes are
 determined by the context.    
 
-<H3><font color="blue"><A NAME="SECTION00531300000000000000">
-Dialog Box</A>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set DEMUX block parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">number of output ports or vector of sizes</TD>
-<TD ALIGN="CENTER">2</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="477" HEIGHT="79" BORDER="0"
+ SRC="../../images/scicos/DEMUX_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=DEMUX_gui.eps,width=300pt}
+\end{center}\end{figure}">
 </DIV>
 
+<P>
+
 <UL>
-<LI>number of output ports or vector of sizes:positive integer less than or equal to <IMG
+<LI><B>number of output ports or vector of sizes</B>
+<BR>
+positive integer less than or equal to <SPAN CLASS="MATH"><IMG
  WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img57.gif"
- ALT="$ 8$">. 
+ SRC="../../images/scicos/DEMUX_img5_eng.gif"
+ ALT="$ 8$"></SPAN>
+.  
+<BR>
+Properties : Type 'vec' of size -1
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00531400000000000000">
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
 Default properties</A>
 </font></H3>
 
 <UL>
-<LI>always active: no
+<LI><b>always active:</b> no
 </LI>
-<LI>direct-feedthrough: yes
+<LI><b>direct-feedthrough:</b> yes
 </LI>
-<LI>zero-crossing: no
+<LI><b>zero-crossing:</b> no
 </LI>
-<LI>mode: no
+<LI><b>mode:</b> no
 </LI>
-<LI>number/sizes of inputs: 1 / 0
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [0,1] / type 1</b>
+<BR></LI>
+<LI><b>regular outputs:</b>
+<BR>   <b>   - port 1 : size [-1,1] / type 1</b>
+<BR>   <b>   - port 2 : size [-2,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 0
 </LI>
-<LI>number/sizes of outputs: 2 / -1  -2
+<LI><b>number/sizes of activation outputs:</b> 0
 </LI>
-<LI>number/sizes of activation inputs: 0 / 
+<LI><b>continuous-time state:</b> no
 </LI>
-<LI>number/sizes of activation outputs: 0 / 
+<LI><b>discrete-time state:</b> no
 </LI>
-<LI>continuous-time state: no
+<LI><b>object discrete-time state:</b> no
 </LI>
-<LI>discrete-time state: no
-</LI>
-<LI>name of computational function: <EM>multiplex</EM>
+<LI><b>name of computational function:</b> <EM>multiplex</EM>
 </LI>
 </UL>
-<H3><font color="blue"><A NAME="SECTION00531500000000000000">
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
 Interfacing function</A>
 </font></H3>
-<TT>scilab/macros/scicos_blocks/branching/DEMUX.sci</TT>
 
-<H3><font color="blue"><A NAME="SECTION00531600000000000000">
-Computational function (type 4)</A>
+<UL>
+<LI>SCI/macros/scicos_blocks/Branching/DEMUX.sci <A NAME="tex2html4"
+  HREF="DEMUX_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Computational function</A>
 </font></H3>
-<BR>
-<PRE>#include "scicos_block.h"
-#include &lt;math.h&gt;
 
-void multiplex(scicos_block *block,int flag)
-{
-  int i,j,k;
-  if (block-&gt;nin==1){
-    k=0;
-    for (i=0;i&lt;block-&gt;nout;++i){
-      for (j=0;j&lt;block-&gt;outsz[i];++j){
-	block-&gt;outptr[i][j]=block-&gt;inptr[0][k];
-	++k;
-      }
-    }
-  }else {
-    k=0;
-    for (i=0;i&lt;block-&gt;nin;++i){
-      for (j=0;j&lt;block-&gt;insz[i];++j){
-	block-&gt;outptr[0][k]=block-&gt;inptr[i][j];
-	++k;
-      }
-    }
-  }
-}
-</PRE>
-<BR><HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+<UL>
+<LI>SCI/routines/scicos/multiplex.c (Type 4) <A NAME="tex2html5"
+  HREF="multiplex_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Authors</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
 </BODY>
 </HTML>

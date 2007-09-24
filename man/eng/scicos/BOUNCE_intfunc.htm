@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>BOUNCE_intfunc</TITLE>
+<META NAME="description" CONTENT="BOUNCE_intfunc">
+<META NAME="keywords" CONTENT="BOUNCE_intfunc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="BOUNCE_intfunc.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Interfacing function
+<BR><A NAME="tex2html1"
+  HREF="./BOUNCE_intfunc.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="BOUNCE_intfunc"></A>
+<BR>
+BOUNCE
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+File content</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">function [x,y,typ]=BOUNCE(job,arg1,arg2)
+// Copyright INRIA
+x=[];y=[];typ=[];
+select job
+case 'plot' then
+  standard_draw(arg1)
+case 'getinputs' then
+  x=[];y=[];typ=[];
+case 'getoutputs' then
+  [x,y,typ]=standard_outputs(arg1)
+case 'getorigin' then
+  [x,y]=standard_origin(arg1)
+case 'set' then
+  x=arg1;
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  if size(exprs,'*')&lt;9 then exprs(8)='9.81';exprs(9)='0';end
+  while %t do
+    [ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=getvalue(['Set Bounce Block'],..
+	    ['Mass';'Radius';'[xmin,xmax,ymin,ymax]';'xpos';'xdpos';'ypos';..
+	     'ydpos';'g (gravity)';'C (aerodynamic coeff'],..
+	    list('vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,..
+		 'vec',-1,'vec',-1,'vec',1,'vec',1),exprs)
+    if ~ok then break,end
+    xt=xt(:);y=y(:);xd=xd(:);yd=yd(:);
+    rpar1=rpar1(:);rpar2=rpar2(:);
+    n=size(xt,'*');
+    walls=walls(:);
+    if walls(1)&gt;walls(2) then walls=walls([2,1]);end
+    if walls(3)&gt;walls(3) then walls=walls([3,4]);end
+    if n&lt;&gt;size(y,'*')|n&lt;&gt;size(rpar1,'*')|n&lt;&gt;size(rpar2,'*')|..
+    n&lt;&gt;size(xd,'*')|n&lt;&gt;size(yd,'*') then
+      message('All vectors must have equal size')
+      ok=%f
+    elseif  ~(min([rpar1;rpar2])&gt;0) then
+      message('Mass and radius must be &gt;0')
+      ok=%f
+    end
+    if ~ok then break,end
+    [model,graphics,ok]=check_io(model,graphics,[],[n,n],[],[])
+    if ok then
+      k=1;ipar=[];
+      for i=1:n
+	for j=i+1:n
+	  ipar(k)=i
+	  k=k+1
+	  ipar(k)=j
+	  k=k+1
+	end
+      end
+      model.rpar=[rpar1;rpar2;walls;g;C];
+      model.ipar=ipar;
+      state=[xt,xd,y,yd];state=state';
+      model.state=state(:)
+      model.nzcross=n*(n-1)/2+4*n;
+      graphics.exprs=exprs;
+      x.graphics=graphics;x.model=model
+      break
+    end
+  end
+ case 'define' then
+  n=2
+  k=1;ipar=[];
+  for i=1:n
+    for j=i+1:n
+      ipar(k)=i
+      k=k+1
+      ipar(k)=j
+      k=k+1
+    end
+  end
+  walls=[0;5;0;5]
+  x=[2;2.5];xd=[0;0];y=[3;5];yd=[0;0];g=9.81;C=0
+  rpar1=ones(n,1);rpar2=rpar1;
+  state=[x,xd,y,yd];state=state';
+  model=scicos_model()
+  model.sim=list('bounce_ball',4)
+  model.in=[]
+  model.out=[n;n]
+  model.state=state(:)
+  model.rpar=[rpar1;rpar2;walls;g;C];
+  model.ipar=ipar;
+  model.nzcross=n*(n-1)/2+4*n;
+  model.blocktype='c'
+  model.dep_ut=[%f %t]
+  
+  exprs=[strcat(sci2exp(rpar1));strcat(sci2exp(rpar2));strcat(sci2exp(walls));strcat(sci2exp(x));strcat(sci2exp(xd));strcat(sci2exp(y));strcat(sci2exp(yd))]
+  gr_i=['txt=[''Bouncing'';''balls''];';
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
+  x=standard_define([3 2],model,exprs,gr_i)
+end
+endfunction
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

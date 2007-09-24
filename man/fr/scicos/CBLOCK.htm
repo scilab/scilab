@@ -1,197 +1,297 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>New C </TITLE>
-<META NAME="description" CONTENT="New C ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>CBLOCK</TITLE>
+<META NAME="description" CONTENT="CBLOCK">
+<META NAME="keywords" CONTENT="CBLOCK">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="CBLOCK.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./CBLOCK.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/CBLOCK.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html4670"
-  HREF="CBLOCK.htm#SECTION00576100000000000000">Library</A>
-<LI><A NAME="tex2html4671"
-  HREF="CBLOCK.htm#SECTION00576200000000000000">Description</A>
-<LI><A NAME="tex2html4672"
-  HREF="CBLOCK.htm#SECTION00576300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html4673"
-  HREF="CBLOCK.htm#SECTION00576400000000000000">Default properties</A>
-<LI><A NAME="tex2html4674"
-  HREF="CBLOCK.htm#SECTION00576500000000000000">Interfacing function</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION00576000000000000000"></A><A NAME="CBLOCK"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="CBLOCK"></A>
 <BR>
-New C 
+New C
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=CBLOCK.eps,width=90.00pt}$
+ $\epsfig{file=CBLOCK.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
- SRC="img129.gif"
- ALT="\epsfig{file=CBLOCK.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION00576100000000000000">
-Library</A>
-</font></H3>
-Others
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CBLOCK_blk.gif"
+ ALT="\epsfig{file=CBLOCK.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION00576200000000000000">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html5"
+  HREF="CBLOCK.htm#SECTION00010000000000000000">New C</A>
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="CBLOCK.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html7"
+  HREF="CBLOCK.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html8"
+  HREF="CBLOCK.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html9"
+  HREF="CBLOCK.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html10"
+  HREF="CBLOCK.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html11"
+  HREF="CBLOCK.htm#SECTION00026000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Others_pal.htm">Others - Palette Others</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
-This block can be used to write on-line a C interfacing function of
-type 4. 
-<P>
 
-<H3><font color="blue"><A NAME="SECTION00576300000000000000">
-Dialog Box</A>
+<P>
+Ce bloc crée une fonction de calcul squelette en C.
+Il crée aussi une librairie et un fichier objet à la compilation.
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set C-Block2 block parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">simulation function</TD>
-<TD ALIGN="CENTER">toto</TD>
-</TR>
-<TR><TD ALIGN="CENTER">is block implicit? (y,n)</TD>
-<TD ALIGN="CENTER">n</TD>
-</TR>
-<TR><TD ALIGN="CENTER">input ports sizes</TD>
-<TD ALIGN="CENTER">1</TD>
-</TR>
-<TR><TD ALIGN="CENTER">output ports sizes</TD>
-<TD ALIGN="CENTER">1</TD>
-</TR>
-<TR><TD ALIGN="CENTER">input event ports sizes</TD>
-<TD ALIGN="CENTER">[]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">output events ports sizes</TD>
-<TD ALIGN="CENTER">[]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">initial continuous state</TD>
-<TD ALIGN="CENTER">[]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">number of zero crossing surfaces</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-<TR><TD ALIGN="CENTER">initial discrete state</TD>
-<TD ALIGN="CENTER">[]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Real parameters vector</TD>
-<TD ALIGN="CENTER">[]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Integer parameters vector</TD>
-<TD ALIGN="CENTER">[]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">initial firing vector (<IMG
- WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img1.gif"
- ALT="$ &lt;$">0 for no firing)</TD>
-<TD ALIGN="CENTER">[]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">direct feedthrough (y or n)</TD>
-<TD ALIGN="CENTER">y</TD>
-</TR>
-<TR><TD ALIGN="CENTER">time dependence (y or n)</TD>
-<TD ALIGN="CENTER">n</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="477" HEIGHT="401" BORDER="0"
+ SRC="../../images/scicos/CBLOCK_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=CBLOCK_gui.eps,width=300pt}
+\end{center}\end{figure}">
 </DIV>
 
+<P>
+
 <UL>
-<LI>simulation function: the name of the simulation function, either a
-Scilab function or, a C or fortran routine already linked with Scilab
+<LI><B>simulation function</B>
+<BR>
+Nom de la fonction de simulation à générer.
+<BR>
+Propriétés : Type 'str' de taille 1
+
+<P>
 </LI>
-<LI>is block implicit? : for most cases the answer is no
+<LI><B>is block implicit? </B>
+<BR>
+Si oui (y), le bloc appelera le solveur implicite
+	sinon (n), il appelera le solveur explicite.
+<BR>
+Propriétés : Type 'str' de taille 1
+
+<P>
 </LI>
-<LI>input ports sizes: the number and sizes of ports, for example 1,3
-means two inputs: the first has size 1 and the other 3.
+<LI><B>input ports sizes</B>
+<BR>
+Nombre de ports réguliers d'entrée.
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
 </LI>
-<LI>output ports sizes: same for outputs
+<LI><B>output ports sizes</B>
+<BR>
+Nombre de ports réguliers de sortie.
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
 </LI>
-<LI>input event ports sizes: same but sizes can only be one
+<LI><B>input event ports sizes</B>
+<BR>
+Nombre de ports événementiels d'entrée.
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
 </LI>
-<LI>output events ports sizes: same
+<LI><B>output events ports sizes</B>
+<BR>
+Nombre de ports événementiels de sortie.
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
 </LI>
-<LI>initial continuous state: this must be a column vector
+<LI><B>initial continuous state</B>
+<BR>
+Conditions initiales des états continus.
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
 </LI>
-<LI>number of zero crossing surfaces: zero if none
+<LI><B>number of zero crossing surfaces</B>
+<BR>
+Permet l'utilisation de la détection
+	'zero-crossing'.
+<BR>
+Propriétés : Type 'vec' de taille 1
+
+<P>
 </LI>
-<LI>initial discrete state: column vector
+<LI><B>initial discrete state</B>
+<BR>
+Conditions initiales des états discrets.
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
 </LI>
-<LI>Real parameters vector: column vector
+<LI><B>Real parameters vector</B>
+<BR>
+Vecteur des paramètres réels.
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
 </LI>
-<LI>Integer parameters vector: column vector
+<LI><B>Integer parameters vector</B>
+<BR>
+Vecteur des paramètres entiers.
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
 </LI>
-<LI>initial firing vector : column vector the size of which must
-correspond to the number of output event ports
+<LI><B>initial firing vector </B>
+<BR>
+Un vecteur. La taille de ce vecteur correspond
+	au nombre de sorties événementielles.
+	La valeur de la <!-- MATH
+ $i^{\rm\grave{e}me}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="35" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CBLOCK_img3_fr.gif"
+ ALT="$ i^{\rm\grave{e}me}$"></SPAN>
+ entrée
+	spécifie la date initiale préprogrammée du 
+	<!-- MATH
+ $i^{\rm\grave{e}me}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="35" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CBLOCK_img3_fr.gif"
+ ALT="$ i^{\rm\grave{e}me}$"></SPAN>
+ port événementiel de sortie.
+	Si la valeur est inférieure à zéro, alors aucun
+	événement n'est préprogrammé.
+<BR>
+Propriétés : Type 'vec' de taille 'sum(%6)'
+
+<P>
 </LI>
-<LI>direct feedthrough : is the output of the block directly affected
-by the input (and not through a delay or integrator)
+<LI><B>direct feedthrough </B>
+<BR>
+L'entrée du bloc à un instant donné, détermine
+	la sortie du bloc à ce même instant.
+	Cela force le bloc à répondre instantanément, comme
+	si le système était en régime établi.
+<BR>
+Propriétés : Type 'str' de taille 1
+
+<P>
 </LI>
-<LI>time dependence : is the block always active
+<LI><B>time dependence </B>
+<BR>
+Permet de déterminer si le bloc doit être
+	marqué comme temps dépendant.
+<BR>
+Propriétés : Type 'str' de taille 1
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00576400000000000000">
-Default properties</A>
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
 </font></H3>
 
 <UL>
-<LI>always active: no
+<LI><b>toujours actif:</b> non
 </LI>
-<LI>direct-feedthrough: yes
+<LI><b>direct-feedthrough:</b> oui
 </LI>
-<LI>zero-crossing: no
+<LI><b>détection de passage à zéro:</b> non
 </LI>
-<LI>mode: no
+<LI><b>mode:</b> non
 </LI>
-<LI>number/sizes of inputs: 1 / 1
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
 </LI>
-<LI>number/sizes of outputs: 1 / 1
+<LI><b>nombre des sorties évènementielles:</b> 0
 </LI>
-<LI>number/sizes of activation inputs: 0 / 
+<LI><b>possède un état continu:</b> non
 </LI>
-<LI>number/sizes of activation outputs: 0 / 
+<LI><b>possède un état discret:</b> non
 </LI>
-<LI>continuous-time state: no
+<LI><b>possède un état objet:</b> non
 </LI>
-<LI>discrete-time state: no
-</LI>
-<LI>name of computational function: <EM>toto</EM>
+<LI><b>nom de la fonction de calcul:</b> 
 </LI>
 </UL>
-<H3><font color="blue"><A NAME="SECTION00576500000000000000">
-Interfacing function</A>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
 </font></H3>
-<TT>scilab/macros/scicos_blocks/misc/CBLOCK.sci</TT>
-<HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Misc/CBLOCK.sci <A NAME="tex2html4"
+  HREF="CBLOCK_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
 </BODY>
 </HTML>

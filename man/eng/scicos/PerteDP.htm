@@ -36,12 +36,12 @@ Thermohydraulic pipe
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=PerteDP.eps,width=90.00pt}$
+ $\epsfig{file=PerteDP.eps,height=22.5pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="90" ALIGN="BOTTOM" BORDER="0"
- SRC="PerteDP_img1.gif"
- ALT="\epsfig{file=PerteDP.eps,width=90.00pt}">
+ WIDTH="135" HEIGHT="36" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/PerteDP_blk.gif"
+ ALT="\epsfig{file=PerteDP.eps,height=22.5pt}">
 
 </DIV>
 <BR>
@@ -52,22 +52,33 @@ Contents</A>
 <!--Table of Contents-->
 
 <UL CLASS="TofC">
-<LI><A NAME="tex2html3"
+<LI><A NAME="tex2html6"
   HREF="PerteDP.htm#SECTION00010000000000000000">Thermohydraulic pipe</A>
 <UL>
-<LI><A NAME="tex2html4"
-  HREF="PerteDP.htm#SECTION00021000000000000000">Description</A>
-<LI><A NAME="tex2html5"
-  HREF="PerteDP.htm#SECTION00022000000000000000">Dialog box</A>
-<LI><A NAME="tex2html6"
-  HREF="PerteDP.htm#SECTION00023000000000000000">Default properties</A>
 <LI><A NAME="tex2html7"
-  HREF="PerteDP.htm#SECTION00024000000000000000">Interfacing function</A>
+  HREF="PerteDP.htm#SECTION00021000000000000000">Palette</A>
 <LI><A NAME="tex2html8"
-  HREF="PerteDP.htm#SECTION00025000000000000000">Modelica model</A>
+  HREF="PerteDP.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="PerteDP.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html10"
+  HREF="PerteDP.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html11"
+  HREF="PerteDP.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html12"
+  HREF="PerteDP.htm#SECTION00026000000000000000">Modelica model</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="ThermoHydraulics_pal.htm">ThermoHydraulics.cosf - ThermoHydraulics toolbox</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
 
@@ -86,166 +97,172 @@ P_{loss}=P_{black}-P_{white}
 <DIV ALIGN="CENTER" CLASS="mathdisplay">
 <IMG
  WIDTH="172" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="PerteDP_img2.gif"
+ SRC="../../images/scicos/PerteDP_img2_eng.gif"
  ALT="$\displaystyle P_{loss}=P_{black}-P_{white}$">
 </DIV><P>
 </P>.  The key parameters of this
 block are the pipes' length, the pipe's diameter, inlet and outlet
-altitudes, and some other thermo-hydraulic coefficients.
+altitudes, and some other thermal-hydraulic coefficients.
 
-<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Dialog box</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Parametres du tuyau</TD>
-<TD ALIGN="CENTER">&nbsp;</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Longueur du tube : L (m)</TD>
-<TD ALIGN="CENTER">10</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Diamètre interne du tube : D (m)</TD>
-<TD ALIGN="CENTER">0.2</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Coefficient de perte de charge-frottement(S.U) : lambda</TD>
-<TD ALIGN="CENTER">0.03</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Altitude entrée tuyauterie : z1 (m)</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Altitude sortie tuyauterie : z2 (m)</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Si <SPAN CLASS="MATH"><IMG
- WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="PerteDP_img3.gif"
- ALT="$ &gt;$"></SPAN>
-0, masse volumique imposée fu fluide : p_rho (kg/m3)</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="477" HEIGHT="164" BORDER="0"
+ SRC="../../images/scicos/PerteDP_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=PerteDP_gui.eps,width=300pt}
+\end{center}\end{figure}">
 </DIV>
 
 <P>
 
 <UL>
-<LI><b>Longueur du tube : L (m) </b> : Type 'vec' of size -1. Length of pipe
+<LI><b>Longueur du tube : L (m)</b>
+<BR>
+Length of pipe
+<BR>
+Properties : Type 'vec' of size -1.
+
+<P>
 </LI>
-<LI><b>Diamètre interne du tube : D (m) </b> : Type 'vec' of size -1. Pipe diameter
+<LI><b>Diamètre interne du tube : D (m)</b>
+<BR>
+Pipe diameter
+<BR>
+Properties : Type 'vec' of size -1.
+
+<P>
 </LI>
-<LI><b>Coefficient de perte de charge-frottement(S.U) : lambda </b> : Type 'vec' of size -1. Coefficient of thermohydraluc resistance
+<LI><b>Coefficient de perte de charge-frottement(S.U) : lambda</b>
+<BR>
+Coefficient of thermohydraluc resistance
+<BR>
+Properties : Type 'vec' of size -1.
+
+<P>
 </LI>
-<LI><b>Altitude entrée tuyauterie : z1 (m) </b> : Type 'vec' of size -1. Altitude of the first port (z1)
+<LI><b>Altitude entrée tuyauterie : z1 (m)</b>
+<BR>
+Altitude of the first port (z1)
+<BR>
+Properties : Type 'vec' of size -1.
+
+<P>
 </LI>
-<LI><b>Altitude sortie tuyauterie : z2 (m) </b> : Type 'vec' of size -1. Altitude of the second port (z2)
+<LI><b>Altitude sortie tuyauterie : z2 (m)</b>
+<BR>
+Altitude of the second port (z2)
+<BR>
+Properties : Type 'vec' of size -1.
+
+<P>
 </LI>
 <LI><b>Si <SPAN CLASS="MATH"><IMG
- WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="PerteDP_img3.gif"
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/PerteDP_img4_eng.gif"
  ALT="$ &gt;$"></SPAN>
-0, masse volumique imposée fu fluide : p_rho (kg/m3) </b> : Type 'vec' of size -1. Fluid density
-</LI>
-</UL>
-
-<H3><font color="blue"><A NAME="SECTION00023000000000000000">
-Default properties</A>
-</font></H3>
-
-<UL>
-<LI><b>always active:</b> no
-</LI>
-<LI><b>direct-feedthrough:</b> yes
-</LI>
-<LI><b>zero-crossing:</b> no
-</LI>
-<LI><b>mode:</b> no
-</LI>
-<LI><b>number/sizes of inputs:</b> 1 / 1
-</LI>
-<LI><b>number/sizes of outputs:</b> 1 / 1
-</LI>
-<LI><b>number/sizes of activation inputs:</b> 0 / 
-</LI>
-<LI><b>number/sizes of activation outputs:</b> 0 / 
-</LI>
-<LI><b>continuous-time state:</b> no
-</LI>
-<LI><b>discrete-time state:</b> no
-</LI>
-<LI><b>name of modelica function:</b> <EM>PerteDP</EM>
+0, masse volumique imposée fu fluide : p_rho (kg/m3)</b>
+<BR>
+Fluid density
+<BR>
+Properties : Type 'vec' of size -1.
 </LI>
 </UL>
 
 <H3><font color="blue"><A NAME="SECTION00024000000000000000">
-Interfacing function</A>
+Default properties</A>
 </font></H3>
-<TT>PerteDP.sci</TT>
+
+<UL>
+<LI><B>Inputs :</B>
+  
+<UL>
+<LI><B>Modelica variable name :</B> 'C1'
+<BR>
+Implicit <B>variable.</B>
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Outputs :</B>
+  
+<UL>
+<LI><B>Modelica variable name :</B> 'C2'
+<BR>
+Implicit <B>variable.</B>
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Parameters :</B>
+  
+<UL>
+<LI><B>Modelica parameter name :</B> 'L'
+<BR>         <B>Default value :</B> 10
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+<LI><B>Modelica parameter name :</B> 'D'
+<BR>         <B>Default value :</B> 0.2
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+<LI><B>Modelica parameter name :</B> 'lambda'
+<BR>         <B>Default value :</B> 0.03
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+<LI><B>Modelica parameter name :</B> 'z1'
+<BR>         <B>Default value :</B> 0
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+<LI><B>Modelica parameter name :</B> 'z2'
+<BR>         <B>Default value :</B> 0
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+<LI><B>Modelica parameter name :</B> 'p_rho'
+<BR>         <B>Default value :</B> 0
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>File name of the model :</B> PerteDP
+</LI>
+</UL>
 
 <H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Hydraulics/PerteDP.sci <A NAME="tex2html4"
+  HREF="PerteDP_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
 Modelica model</A>
 </font></H3>
- <SMALL CLASS="TINY">  </SMALL>
-<BR>
-<PRE  CLASS="verbatim">class PerteDP 
-  parameter Real L "Longueur du tube";
-  parameter Real D "Diametre interne du tube";
-  parameter Real lambda "Coefficient de perte de charge-frottement (s.u.)";
-  parameter Real z1 "Altitude entree tuyauterie";
-  parameter Real z2 "Altitude sortie tuyauterie";
-  parameter Real p_rho "Si &gt; 0, masse volumique imposée du fluide";
-//  parameter Integer mode "Région IF97. 1:liquide - 2:vapeur - 4:saturation - 0:calcul automatique";
-  
-  parameter Real g = 9.80665 "Accélération de la pesanteur";
-  parameter Real pi = 3.1415927;
-  parameter Real eps = 1.e-0 "Limite inf. de la fonction carrée";
-  Real khi "Coefficient de perte de charge hydraulique";
-  Real deltaPf "Perte de charge par frottement";
-  Real deltaP "Perte de charge totale";
-  Real Q (start=500) "Débit massique";
-  Real rho (start=998) "Masse volumique";
-  Real Tm (start=290) "Température moyenne";
-  Real Pm (start=1.e5) "Pression moyenne";
-  Real Hm (start=100000) "Enthalpie spécifique moyenne";
-  Real region (start=1) "Numéro de région IF97";
-  Real ThermoCar;
 
-public 
-  PortPHQ1 C1 ;
-  PortPHQ2 C2 ;
-
-equation
-
-  C1.P - C2.P = deltaP;
-  C2.Q = C1.Q;
-  C2.H = C1.H;
-  
-  Q = C1.Q;
-
-  /* Inversions de débit */
-  0 = if (Q &gt; 0.0) then (C1.H - C1.Hm) else (C2.H - C2.Hm);
-  
-  /* Calcul des pertes de charges */
-  deltaP = deltaPf + rho*g*(z2 - z1);
-
-  ThermoCar = if (abs(Q) &gt; eps) then Q*abs(Q) else Q*eps;
-  deltaPf = 8*khi*ThermoCar/(pi^2*D^4*rho);
-  
-  
-    /* Formule de Darcy-Weisbach (Idel'cik p. 55). On suppose qu'on est en régime quadratique. */
-  khi = lambda*L/D;
-  
-  /* Calcul des propriétés thermodynamiques */
-  Pm = (C1.P + C2.P)/2;
-  Hm = (C1.H + C2.H)/2;
-  
-
-  Tm = Hm/4187 + 273.15;
-  region = 1;
-  
-  rho = 998;
-
-end PerteDP;
-</PRE>
+<UL>
+<LI>SCI/macros/scicos_blocks/Hydraulics/PerteDP.mo <A NAME="tex2html5"
+  HREF="PerteDP_routcos.htm">[view code]</A>
+</LI>
+</UL>
 
 <BR>
 

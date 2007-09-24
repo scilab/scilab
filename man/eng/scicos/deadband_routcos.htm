@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>deadband_routcos</TITLE>
+<META NAME="description" CONTENT="deadband_routcos">
+<META NAME="keywords" CONTENT="deadband_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="deadband_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Computational routine
+<BR><A NAME="tex2html1"
+  HREF="./deadband_routcos.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="deadband_routcos"></A>
+<BR>
+deadband
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+File content</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">#include "scicos_block.h"
+#include &lt;math.h&gt;
+void deadband(scicos_block *block,int flag)
+{/* rpar[0]:upper limit,  rpar[1]:lower limit */
+  if (flag==1){
+    if (get_phase_simulation()==1||block-&gt;ng==0) {
+      if (*block-&gt;inptr[0]&gt;=block-&gt;rpar[0]){
+	block-&gt;outptr[0][0]=*block-&gt;inptr[0]-block-&gt;rpar[0];
+      }else if (*block-&gt;inptr[0]&lt;=block-&gt;rpar[1]){
+	block-&gt;outptr[0][0]=*block-&gt;inptr[0]-block-&gt;rpar[1];
+      }else {
+	block-&gt;outptr[0][0]=0.0;
+      }
+    }else{
+      if (block-&gt;mode[0]==1){
+	block-&gt;outptr[0][0]=*block-&gt;inptr[0]-block-&gt;rpar[0];
+      }else if(block-&gt;mode[0]==2) {
+	block-&gt;outptr[0][0]=*block-&gt;inptr[0]-block-&gt;rpar[1];
+      }else{
+	block-&gt;outptr[0][0]=0.0;
+      } 
+    }
+  } else if (flag==9){
+    block-&gt;g[0]=*block-&gt;inptr[0]-(block-&gt;rpar[0]);
+    block-&gt;g[1]=*block-&gt;inptr[0]-(block-&gt;rpar[1]);
+    if (get_phase_simulation()==1) {
+      if (block-&gt;g[0]&gt;=0){
+	block-&gt;mode[0]=1;
+      }else if (block-&gt;g[1]&lt;=0){
+	block-&gt;mode[0]=2;
+      }else {
+	block-&gt;mode[0]=3;
+      }
+    }
+  }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

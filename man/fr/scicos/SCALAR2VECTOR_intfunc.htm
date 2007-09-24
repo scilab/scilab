@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>SCALAR2VECTOR_intfunc</TITLE>
+<META NAME="description" CONTENT="SCALAR2VECTOR_intfunc">
+<META NAME="keywords" CONTENT="SCALAR2VECTOR_intfunc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="SCALAR2VECTOR_intfunc.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction d'interfaçage
+<BR><A NAME="tex2html1"
+  HREF="./SCALAR2VECTOR_intfunc.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="SCALAR2VECTOR_intfunc"></A>
+<BR>
+SCALAR2VECTOR
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">function [x,y,typ]=SCALAR2VECTOR(job,arg1,arg2)
+  x=[];y=[];typ=[]
+  select job
+   case 'plot' then
+    standard_draw(arg1)
+   case 'getinputs' then
+    [x,y,typ]=standard_inputs(arg1)
+   case 'getoutputs' then
+    [x,y,typ]=standard_outputs(arg1)
+   case 'getorigin' then
+    [x,y]=standard_origin(arg1)
+   case 'set' then
+    x=arg1;
+    graphics=arg1.graphics;exprs=graphics.exprs
+    model=arg1.model;
+    while %t do
+      [ok,nout,exprs]=..
+	  getvalue('Set block parameters',..
+		   ['size of output (-1: if don''t know)'],..
+	  list('vec',1),exprs)
+      if ~ok then break,end
+      nout=int(nout)
+      if(nout&lt;&gt;-1 &amp; (nout&lt;=0)) then
+	message('size of output must be -1 or &gt;0')
+	ok=%f
+      end
+      if ok then
+	[model,graphics,ok]=check_io(model,graphics,[1],nout,[],[])
+      end	   
+      if ok then
+	graphics.exprs=exprs;// Correction ED le 24/11/04
+	x.graphics=graphics;x.model=model
+	break
+      end
+    end
+   case 'define' then
+    nout=-1
+    model=scicos_model()
+    model.sim=list('scalar2vector',4)
+    model.out=nout
+    model.in=1
+    model.blocktype='c'
+    model.dep_ut=[%t %f]
+    
+    exprs=[string([nout])]
+    gr_i=['txt=[''Scalar'';''  to '';''vector''];';
+	  'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
+    
+    x=standard_define([2 3],model,exprs,gr_i)
+  end
+endfunction
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

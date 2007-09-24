@@ -1,166 +1,180 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Exp </TITLE>
-<META NAME="description" CONTENT="Exp ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>EXPBLK_f</TITLE>
+<META NAME="description" CONTENT="EXPBLK_f">
+<META NAME="keywords" CONTENT="EXPBLK_f">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="EXPBLK_f.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./EXPBLK_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/EXPBLK_f.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html3869"
-  HREF="EXPBLK_f.htm#SECTION00543100000000000000">Library</A>
-<LI><A NAME="tex2html3870"
-  HREF="EXPBLK_f.htm#SECTION00543200000000000000">Description</A>
-<LI><A NAME="tex2html3871"
-  HREF="EXPBLK_f.htm#SECTION00543300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html3872"
-  HREF="EXPBLK_f.htm#SECTION00543400000000000000">Default properties</A>
-<LI><A NAME="tex2html3873"
-  HREF="EXPBLK_f.htm#SECTION00543500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html3874"
-  HREF="EXPBLK_f.htm#SECTION00543600000000000000">Computational function (type 0)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION00543000000000000000"></A><A NAME="EXPBLK_f"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="EXPBLK_f"></A>
 <BR>
-Exp 
+Exponentielle (Ancien bloc)
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=EXPBLK_f.eps,width=90.00pt}$
+ $\epsfig{file=EXPBLK_f.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
- SRC="img76.gif"
- ALT="\epsfig{file=EXPBLK_f.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION00543100000000000000">
-Library</A>
-</font></H3>
-Non_linear
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/EXPBLK_f_blk.gif"
+ ALT="\epsfig{file=EXPBLK_f.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION00543200000000000000">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html5"
+  HREF="EXPBLK_f.htm#SECTION00010000000000000000">Exponentielle (Ancien bloc)</A>
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="EXPBLK_f.htm#SECTION00021000000000000000">Description</A>
+<LI><A NAME="tex2html7"
+  HREF="EXPBLK_f.htm#SECTION00022000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html8"
+  HREF="EXPBLK_f.htm#SECTION00023000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html9"
+  HREF="EXPBLK_f.htm#SECTION00024000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html10"
+  HREF="EXPBLK_f.htm#SECTION00025000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html11"
+  HREF="EXPBLK_f.htm#SECTION00026000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
 Description</A>
 </font></H3>
-This block realizes  <!-- MATH
+
+<P>
+Ce bloc calcule <!-- MATH
  $y(i)=a^u(i)$
  -->
-<IMG
- WIDTH="94" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
- SRC="img77.gif"
- ALT="$ y(i)=a^u(i)$">. The input and output port sizes are
-determined by the compiler.   
+<SPAN CLASS="MATH"><IMG
+ WIDTH="94" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/EXPBLK_f_img2_fr.gif"
+ ALT="$ y(i)=a^u(i)$"></SPAN>
+. 
+Les tailles des ports d'entrée et de sortie sont déterminées par
+le compilateur.
 
-<H3><font color="blue"><A NAME="SECTION00543300000000000000">
-Dialog Box</A>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Boîte de dialogue</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set a&#251;  block parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">a (<IMG
- WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img2.gif"
- ALT="$ &gt;$">0)</TD>
-<TD ALIGN="CENTER">%e</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="382" HEIGHT="103" BORDER="0"
+ SRC="../../images/scicos/EXPBLK_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=EXPBLK_f_gui.eps,width=240pt}
+\end{center}\end{figure}">
 </DIV>
 
-<UL>
-<LI>a : A real positive scalar 
-</LI>
-</UL>
-
-<H3><font color="blue"><A NAME="SECTION00543400000000000000">
-Default properties</A>
-</font></H3>
+<P>
 
 <UL>
-<LI>always active: no
-</LI>
-<LI>direct-feedthrough: yes
-</LI>
-<LI>zero-crossing: no
-</LI>
-<LI>mode: no
-</LI>
-<LI>number/sizes of inputs: 1 / -1
-</LI>
-<LI>number/sizes of outputs: 1 / -1
-</LI>
-<LI>number/sizes of activation inputs: 0 / 
-</LI>
-<LI>number/sizes of activation outputs: 0 / 
-</LI>
-<LI>continuous-time state: no
-</LI>
-<LI>discrete-time state: no
-</LI>
-<LI>name of computational function: <EM>expblk</EM>
-</LI>
-</UL>
-<H3><font color="blue"><A NAME="SECTION00543500000000000000">
-Interfacing function</A>
-</font></H3>
-<TT>scilab/macros/scicos_blocks/nonlinear/EXPBLK_f.sci</TT>
-
-<H3><font color="blue"><A NAME="SECTION00543600000000000000">
-Computational function (type 0)</A>
-</font></H3>
+<LI><b>a (<SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/EXPBLK_f_img4_fr.gif"
+ ALT="$ &gt;$"></SPAN>
+0)</b>
 <BR>
-<PRE>      subroutine expblk(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
-     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
-c     Copyright INRIA
+Un scalaire à valeur réelle positive donnant le nombre élévé à la puissance u.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+</LI>
+</UL>
 
-c     Scicos block simulator
-c     Outputs a^u(i)
-c     a=rpar(1)
-c
-      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
-      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
-      integer nipar,nu,ny
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Propriétés par défaut</A>
+</font></H3>
 
-c
-      if(flag.eq.1) then
-         do 15 i=1,nu
-               y(i)=exp(log(rpar(1))*u(i))
- 15      continue
-      endif
-      if(flag.ge.4) then
-         do 20 i=1,nu
-               y(i)=exp(log(rpar(1))*u(i))
- 20      continue
-      endif
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>expblk</EM>
+</LI>
+</UL>
 
-      end
-</PRE>
-<BR><HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/NonLinear/EXPBLK_f.sci <A NAME="tex2html3"
+  HREF="EXPBLK_f_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/expblk.f (Type 0) <A NAME="tex2html4"
+  HREF="expblk_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
 </BODY>
 </HTML>

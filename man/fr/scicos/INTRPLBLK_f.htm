@@ -1,181 +1,213 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Interpolation </TITLE>
-<META NAME="description" CONTENT="Interpolation ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>INTRPLBLK_f</TITLE>
+<META NAME="description" CONTENT="INTRPLBLK_f">
+<META NAME="keywords" CONTENT="INTRPLBLK_f">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="INTRPLBLK_f.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./INTRPLBLK_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/INTRPLBLK_f.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html3905"
-  HREF="INTRPLBLK_f.htm#SECTION00545100000000000000">Library</A>
-<LI><A NAME="tex2html3906"
-  HREF="INTRPLBLK_f.htm#SECTION00545200000000000000">Description</A>
-<LI><A NAME="tex2html3907"
-  HREF="INTRPLBLK_f.htm#SECTION00545300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html3908"
-  HREF="INTRPLBLK_f.htm#SECTION00545400000000000000">Default properties</A>
-<LI><A NAME="tex2html3909"
-  HREF="INTRPLBLK_f.htm#SECTION00545500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html3910"
-  HREF="INTRPLBLK_f.htm#SECTION00545600000000000000">Computational function (type 0)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION00545000000000000000"></A><A NAME="INTRPLBLK_f"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="INTRPLBLK_f"></A>
 <BR>
-Interpolation 
+Interpolation
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=INTRPLBLK_f.eps,width=90.00pt}$
+ $\epsfig{file=INTRPLBLK_f.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
- SRC="img85.gif"
- ALT="\epsfig{file=INTRPLBLK_f.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION00545100000000000000">
-Library</A>
-</font></H3>
-Non_linear
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/INTRPLBLK_f_blk.gif"
+ ALT="\epsfig{file=INTRPLBLK_f.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION00545200000000000000">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="INTRPLBLK_f.htm#SECTION00010000000000000000">Interpolation</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="INTRPLBLK_f.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="INTRPLBLK_f.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="INTRPLBLK_f.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html10"
+  HREF="INTRPLBLK_f.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html11"
+  HREF="INTRPLBLK_f.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html12"
+  HREF="INTRPLBLK_f.htm#SECTION00026000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html13"
+  HREF="INTRPLBLK_f.htm#SECTION00027000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Non_linear_pal.htm">Non_linear - Palette Non-linéaire</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
-The output of this block is a function of the input obtained by linear
-interpolation. This block has a single scalar input and a single
-scalar output port. The <IMG
- WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img81.gif"
- ALT="$ X$"> coord. and <IMG
- WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img82.gif"
- ALT="$ Y$"> coord. give respectively the <IMG
- WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img81.gif"
- ALT="$ X$">
-coordinate and the <IMG
- WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img82.gif"
- ALT="$ Y$"> coordinate of the data points to be
-interpolated. <IMG
- WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img81.gif"
- ALT="$ X$"> coord must be strictly increasing.   
 
-<H3><font color="blue"><A NAME="SECTION00545300000000000000">
-Dialog Box</A>
+<P>
+La sortie de ce bloc est fonction de l'entrée obtenue par interpolation
+linéaire.
+Ce bloc a une seule entrée scalaire et une seule sortie scalaire.
+Les grandeurs <SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/INTRPLBLK_f_img2_fr.gif"
+ ALT="$ X$"></SPAN>
+ et <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/INTRPLBLK_f_img3_fr.gif"
+ ALT="$ Y$"></SPAN>
+ donnent respectivement les coordonnées
+<SPAN CLASS="MATH"><IMG
+ WIDTH="41" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/INTRPLBLK_f_img4_fr.gif"
+ ALT="$ X,Y$"></SPAN>
+ des points de données qui seront interpolés.
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/INTRPLBLK_f_img2_fr.gif"
+ ALT="$ X$"></SPAN>
+ doit être strictement croissant.
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set Interpolation block parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">X coord.</TD>
-<TD ALIGN="CENTER">[0;1]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Y coord.</TD>
-<TD ALIGN="CENTER">[0;1]</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="382" HEIGHT="128" BORDER="0"
+ SRC="../../images/scicos/INTRPLBLK_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=INTRPLBLK_f_gui.eps,width=240pt}
+\end{center}\end{figure}">
 </DIV>
 
-<UL>
-<LI>X coord.:A vector (strictly increasing). 
-</LI>
-<LI>Y coord.:A vector (same size as <IMG
- WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img81.gif"
- ALT="$ X$"> coord). 
-</LI>
-</UL>
-
-<H3><font color="blue"><A NAME="SECTION00545400000000000000">
-Default properties</A>
-</font></H3>
+<P>
 
 <UL>
-<LI>always active: no
-</LI>
-<LI>direct-feedthrough: yes
-</LI>
-<LI>zero-crossing: no
-</LI>
-<LI>mode: no
-</LI>
-<LI>number/sizes of inputs: 1 / 1
-</LI>
-<LI>number/sizes of outputs: 1 / 1
-</LI>
-<LI>number/sizes of activation inputs: 0 / 
-</LI>
-<LI>number/sizes of activation outputs: 0 / 
-</LI>
-<LI>continuous-time state: no
-</LI>
-<LI>discrete-time state: no
-</LI>
-<LI>name of computational function: <EM>intrpl</EM>
-</LI>
-</UL>
-<H3><font color="blue"><A NAME="SECTION00545500000000000000">
-Interfacing function</A>
-</font></H3>
-<TT>scilab/macros/scicos_blocks/nonlinear/INTRPLBLK_f.sci</TT>
-
-<H3><font color="blue"><A NAME="SECTION00545600000000000000">
-Computational function (type 0)</A>
-</font></H3>
+<LI><B>X coord.</B>
 <BR>
-<PRE>      subroutine intrpl(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
-     &amp;     rpar,nrpar,ipar,nipar,u1,nu1,y1,ny1)
-c     Copyright INRIA
+un vecteur (strictement croissant).
+<BR>
+Propriétés : Type 'vec' de taille -1
 
-c     Scicos block simulator
-c     ipar(1) : the number of input
-c
-      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*)
-      double precision y1,u1
-      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*),i
-      integer nipar
-c
-c    
-      do 100 i=2,nrpar/2
-         if (u1.le.rpar(i)) goto 200 
- 100  continue
-      i=nrpar/2
- 200  continue
-      y1=rpar(nrpar/2+i-1) + ((rpar(nrpar/2+i)-rpar(nrpar/2+i-1))/
-     $     (rpar(i)-rpar(i-1)))*(u1-rpar(i-1))
-      return
-      end
+<P>
+</LI>
+<LI><B>Y coord.</B>
+<BR>
+un vecteur (de même taille que <SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/INTRPLBLK_f_img2_fr.gif"
+ ALT="$ X$"></SPAN>
+).
+<BR>
+Propriétés : Type 'vec' de taille -1
 
-</PRE>
-<HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+<P>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>intrpl</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/NonLinear/INTRPLBLK_f.sci <A NAME="tex2html4"
+  HREF="INTRPLBLK_f_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/intrpl.f (Type 0) <A NAME="tex2html5"
+  HREF="intrpl_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
 </BODY>
 </HTML>

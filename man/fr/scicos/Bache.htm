@@ -36,12 +36,12 @@ Bache thermohydraulique
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=Bache.eps,width=90.00pt}$
+ $\epsfig{file=Bache.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="184" ALIGN="BOTTOM" BORDER="0"
- SRC="Bache_img1.gif"
- ALT="\epsfig{file=Bache.eps,width=90.00pt}">
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/Bache_blk.gif"
+ ALT="\epsfig{file=Bache.eps,height=90pt}">
 
 </DIV>
 <BR>
@@ -52,22 +52,33 @@ Contenu</A>
 <!--Table of Contents-->
 
 <UL CLASS="TofC">
-<LI><A NAME="tex2html3"
+<LI><A NAME="tex2html6"
   HREF="Bache.htm#SECTION00010000000000000000">Bache thermohydraulique</A>
 <UL>
-<LI><A NAME="tex2html4"
-  HREF="Bache.htm#SECTION00021000000000000000">Description</A>
-<LI><A NAME="tex2html5"
-  HREF="Bache.htm#SECTION00022000000000000000">Boîte de dialogue</A>
-<LI><A NAME="tex2html6"
-  HREF="Bache.htm#SECTION00023000000000000000">Propriétés par défaut</A>
 <LI><A NAME="tex2html7"
-  HREF="Bache.htm#SECTION00024000000000000000">Fonction d'interface</A>
+  HREF="Bache.htm#SECTION00021000000000000000">Palette</A>
 <LI><A NAME="tex2html8"
-  HREF="Bache.htm#SECTION00025000000000000000">Modèle Modelica</A>
+  HREF="Bache.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="Bache.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html10"
+  HREF="Bache.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html11"
+  HREF="Bache.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html12"
+  HREF="Bache.htm#SECTION00026000000000000000">Modèle Modelica</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="ThermoHydraulics_pal.htm">ThermoHydraulics.cosf - Boîte à outils  des composants thermohydrauliques</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
 
@@ -81,234 +92,220 @@ ports de sortie est quand le fluide <B>sort</B> des port de sortie
 l'altitude initiale du fluide peuvent être definies par l'utilisateur.
 Si un port reste non-utilisé, il doit être bouché par le bloc <B>Bouchon</B>.
 
-<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Boîte de dialogue</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Parametres de la bache</TD>
-<TD ALIGN="CENTER">&nbsp;</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Pression dans le ciel de la bache : Patm (Pa)</TD>
-<TD ALIGN="CENTER">101300</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Section de la bache : A (m2)</TD>
-<TD ALIGN="CENTER">1</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Altitude du piquage d entrée 1: ze1 (m)</TD>
-<TD ALIGN="CENTER">40</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Altitude du piquage d entrée 2: ze2 (m)</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Altitude du piquage de sortie 1: zs1 (m)</TD>
-<TD ALIGN="CENTER">40</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Altitude du piquage de sortie 2: zs2 (m)</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Altitude initiale du fluide : z0 (m)</TD>
-<TD ALIGN="CENTER">30</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Température initiale du fluide : T0 (K)</TD>
-<TD ALIGN="CENTER">290</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Si <SPAN CLASS="MATH"><IMG
- WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="Bache_img2.gif"
- ALT="$ &gt;$"></SPAN>
-0, masse volumique imposée du fluide : p_rho (kg/m3)</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="541" HEIGHT="251" BORDER="0"
+ SRC="../../images/scicos/Bache_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=Bache_gui.eps,width=340pt}
+\end{center}\end{figure}">
 </DIV>
 
 <P>
 
 <UL>
-<LI><b>Pression dans le ciel de la bache : Patm (Pa) </b> : Type 'vec' de taille -1. Pression dans le ciel de la bache
+<LI><b>Pression dans le ciel de la bache : Patm (Pa)</b>
+<BR>
+Pression dans le ciel de la bache
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
 </LI>
-<LI><b>Section de la bache : A (m2) </b> : Type 'vec' de taille -1. Surface de la bache
+<LI><b>Section de la bache : A (m2)</b>
+<BR>
+Surface de la bache
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
 </LI>
-<LI><b>Altitude du piquage d entrée 1: ze1 (m) </b> : Type 'vec' de taille -1. Altitude du piquage d'entrée (ze1)
+<LI><b>Altitude du piquage d entrée 1: ze1 (m)</b>
+<BR>
+Altitude du piquage d'entrée (ze1)
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
 </LI>
-<LI><b>Altitude du piquage d entrée 2: ze2 (m) </b> : Type 'vec' de taille -1. Altitude du piquage d'entrée (ze2)
+<LI><b>Altitude du piquage d entrée 2: ze2 (m)</b>
+<BR>
+Altitude du piquage d'entrée (ze2)
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
 </LI>
-<LI><b>Altitude du piquage de sortie 1: zs1 (m) </b> : Type 'vec' de taille -1. Altitude du piquage de sortie (zs1)
+<LI><b>Altitude du piquage de sortie 1: zs1 (m)</b>
+<BR>
+Altitude du piquage de sortie (zs1)
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
 </LI>
-<LI><b>Altitude du piquage de sortie 2: zs2 (m) </b> : Type 'vec' de taille -1.Altitude du piquage de sortie (zs2)
+<LI><b>Altitude du piquage de sortie 2: zs2 (m)</b>
+<BR>
+Altitude du piquage de sortie (zs2)
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
 </LI>
-<LI><b>Altitude initiale du fluide : z0 (m) </b> : Type 'vec' de taille -1. Altitude initiale du fluide
+<LI><b>Altitude initiale du fluide : z0 (m)</b>
+<BR>
+Altitude initiale du fluide
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
 </LI>
-<LI><b>Température initiale du fluide : T0 (K) </b> : Type 'vec' de taille -1. Température initiale du fluide
+<LI><b>Température initiale du fluide : T0 (K)</b>
+<BR>
+Température initiale du fluide
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
 </LI>
 <LI><b>Si <SPAN CLASS="MATH"><IMG
- WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="Bache_img2.gif"
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Bache_img3_fr.gif"
  ALT="$ &gt;$"></SPAN>
-0, masse volumique imposée du fluide : p_rho (kg/m3) </b> : Type 'vec' de taille -1. masse volumique imposée du fluide
-</LI>
-</UL>
-
-<H3><font color="blue"><A NAME="SECTION00023000000000000000">
-Propriétés par défaut</A>
-</font></H3>
-
-<UL>
-<LI><b>toujours actif:</b> non
-</LI>
-<LI><b>direct-feedthrough:</b> oui
-</LI>
-<LI><b>détection de passage à zéro:</b> non
-</LI>
-<LI><b>mode:</b> non
-</LI>
-<LI><b>nombre/taille des entrées régulières:</b> 2 / 1  1
-</LI>
-<LI><b>nombre/taille des sorties sorties régulières:</b> 3 / 1  1  1
-</LI>
-<LI><b>nombre/taille des entrées évènementielles:</b> 0 / 
-</LI>
-<LI><b>nombre/taille des sorties évènementielles:</b> 0 / 
-</LI>
-<LI><b>possède un état continu:</b> non
-</LI>
-<LI><b>possède un état discret:</b> non
-</LI>
-<LI><b>nom de la fonction modelica:</b> <EM>Bache</EM>
+0, masse volumique imposée du fluide : p_rho (kg/m3)</b>
+<BR>
+masse volumique imposée du fluide
+<BR>
+Propriétés : Type 'vec' de taille -1.
 </LI>
 </UL>
 
 <H3><font color="blue"><A NAME="SECTION00024000000000000000">
-Fonction d'interface</A>
+Propriétés par défaut</A>
 </font></H3>
-<TT>Bache.sci</TT>
+
+<UL>
+<LI><B>Entrées :</B>
+  
+<UL>
+<LI><B>Nom de la variable Modelica :</B> 'Ce1'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+<LI><B>Nom de la variable Modelica :</B> 'Ce2'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Sorties :</B>
+  
+<UL>
+<LI><B>Nom de la variable Modelica :</B> 'Cs1'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+<LI><B>Nom de la variable Modelica :</B> 'Cs2'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+<LI><B>Nom de la variable Modelica :</B> 'yNiveau'
+<BR>          <B>Variable</B> explicite.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Paramètres :</B>
+  
+<UL>
+<LI><B>Nom du paramètre Modelica :</B> 'Patm'
+<BR>         <B>Valeur par défaut :</B> 101300
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'A'
+<BR>         <B>Valeur par défaut :</B> 1
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'ze1'
+<BR>         <B>Valeur par défaut :</B> 40
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'ze2'
+<BR>         <B>Valeur par défaut :</B> 0
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'zs1'
+<BR>         <B>Valeur par défaut :</B> 40
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'zs2'
+<BR>         <B>Valeur par défaut :</B> 0
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'z0'
+<BR>         <B>Valeur par défaut :</B> 30
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'T0'
+<BR>         <B>Valeur par défaut :</B> 290
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'p_rho'
+<BR>         <B>Valeur par défaut :</B> 0
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Nom du fichier model :</B> Bache
+</LI>
+</UL>
 
 <H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Hydraulics/Bache.sci <A NAME="tex2html4"
+  HREF="Bache_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
 Modèle Modelica</A>
 </font></H3>
- <SMALL CLASS="TINY">  </SMALL>
-<BR>
-<PRE  CLASS="verbatim">class Bache 
-  parameter Real Patm "Pression dans le ciel de la bache";
-  parameter Real A "Section de la bache";
-  parameter Real ze1 "Altitude du piquage d'entrée 1";
-  parameter Real ze2 "Altitude du piquage d'entrée 2";
-  parameter Real zs1 "Altitude du piquage de sortie 1";
-  parameter Real zs2 "Altitude du piquage de sortie 2";
-  parameter Real z0 "Altitude initiale du fluide";
-  parameter Real T0 "Temperature initiale du fluide";
-  parameter Real p_rho 
-    "Si &gt; 0, masse volumique imposée du fluide";
-//  parameter Integer mode "Région IF97. 1:liquide - 2:vapeur - 4:saturation - 0:calcul automatique";
-  
-  parameter Real g=9.80665 "Accélération de la pesanteur";
-  parameter Real e=0.25 "Ouverture des piquages";
-  parameter Real k=1
-    "Coefficient de perte de charge des piquages";
-  parameter Real eps=1.e-0 "Limite inf. de la fonction carrée";
-  parameter Real zmin=1.e-6 
-    "Hauteur minimum d'eau pour l'équation de l'énergie";
-  Real z(start=z0) "Hauteur du fluide";
-  Real Tm(start=T0) "Température moyenne";
-  Real Pm(start=1.e5) "Pression moyenne";
-  Real Hm(start=100000) "Enthalpie spécifique moyenne";
-  Real rho(start=998) "Masse volumique";
-  Real BQ "Bilan de masse";
-  Real BH "Bilan d'énergie";
-  Real Oe1;
-  Real Oe2;
-  Real Os1;
-  Real Os2;
-  Real region(start=1) "Numéro de région IF97";
-  Real Max_e1;
-  Real Max_e2;
-  Real Max_s1;
-  Real Max_s2;
-  Real ThermoCar1;
-  Real ThermoCar2;
 
-  Real yNiveau ;
-
-public 
-//  SortieReelle yNiveau ;
-  PortPHQ1 Ce1 ;
-  PortPHQ2 Cs2 ;
-//  PortTher Cth ; /* Port non utilisé dans le modèle désiré, non implanté sur le bloc SCICOS */
-  PortPHQ1 Ce2 ;
-  PortPHQ2 Cs1 ;
-
-//initial equation 
-
-//  Hm = 100000;
-  
-equation
-
-  Ce2.Q = 0;
-  Ce2.H = 1.e5;
-
-  Cs1.Q = 0;
-  Cs1.H = 1.e5;
-
-  Max_e1 = if (z - ze1 &lt; 0.0) then 0.0 else (z - ze1);
-  ThermoCar1 = if (abs(Ce1.Q) &gt; eps) then Ce1.Q*abs(Ce1.Q) else Ce1.Q*eps;
-  (Patm + rho*g*Max_e1 - Ce1.P)*Oe1 = k*ThermoCar1/2/rho;
-
-  Oe1 = if (Ce1.Q &gt;= 0.0) then 1.0
-	elseif (z &gt; ze1 + e) then 1.0
-	elseif (z &lt; ze1) then 0.0
-	else (z - ze1)/e;
-
-
-   Max_e2 = if (z - ze2 &lt; 0.0) then 0.0 else (z - ze2);
-
-  Ce2.P = Patm + rho*g*Max_e2;
-  Oe2 = 0;
-
-  Max_s1 = if (z - zs1 &lt; 0.0) then 0.0 else (z - zs1);
-  Cs1.P = Patm + rho*g*Max_s1;
-  Os1 = 0;
-
-  Max_s2 = if (z - zs2 &lt; 0.0) then 0.0 else (z - zs2);
-  ThermoCar2 =if (abs(Cs2.Q) &gt; eps) then Cs2.Q*abs(Cs2.Q) else Cs2.Q*eps;
-  (Patm + rho*g*Max_s2 - Cs2.P)*Os2 = k*ThermoCar2/2/rho;
-
-  Os2 = if (Cs2.Q &lt;= 0.0) then 1.0
-    elseif (z &gt; zs2 + e) then 1.0
-    elseif (z &lt; zs2) then 0.0
-    else (z - zs2)/e;
-
-
-  /* Bilan de masse */
-  BQ = Ce1.Q + Ce2.Q - Cs1.Q - Cs2.Q;
-  rho*A*der(z) = BQ;
-  
-  /* Bilan d'énergie */
-  /* le port thermique n'est pas utilisé ici  "+ Cth.W" (on a W=0)*/
-  BH = Ce1.Q*(Ce1.H - Hm) + Ce2.Q*(Ce2.H - Hm) - Cs1.Q*(Cs1.H - Hm) - Cs2.Q*(Cs2.H - Hm);
-
-  der(Hm) = if (z &gt; zmin) then BH/(rho*A*z) else 0.0;
-
-  Ce1.Hm = Hm;
-  Ce2.Hm = Hm;
-  Cs1.Hm = Hm;
-  Cs2.Hm = Hm;
-  
-//  Cth.T = Tm; /* le port thermique n'est pas utilisé ici*/
-  
-  /* Capteur de niveau */
-  yNiveau = z;
-  
-  /* Calcul des propriétés thermodynamiques */
-  Pm = Patm + rho*g*z/2;
-  
-  Tm = Hm/4187 + 273.15;
-  region = 1.0;
-  
-  rho = 998.0;
-
-end Bache;
-</PRE>
+<UL>
+<LI>SCI/macros/scicos_blocks/Hydraulics/Bache.mo <A NAME="tex2html5"
+  HREF="Bache_routcos.htm">[voir code]</A>
+</LI>
+</UL>
 
 <BR>
 

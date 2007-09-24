@@ -1,675 +1,196 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Mathematical expression </TITLE>
-<META NAME="description" CONTENT="Mathematical expression ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>EXPRESSION</TITLE>
+<META NAME="description" CONTENT="EXPRESSION">
+<META NAME="keywords" CONTENT="EXPRESSION">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="EXPRESSION.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./EXPRESSION.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/EXPRESSION.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html4064"
-  HREF="EXPRESSION.htm#SECTION005414100000000000000">Library</A>
-<LI><A NAME="tex2html4065"
-  HREF="EXPRESSION.htm#SECTION005414200000000000000">Description</A>
-<LI><A NAME="tex2html4066"
-  HREF="EXPRESSION.htm#SECTION005414300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html4067"
-  HREF="EXPRESSION.htm#SECTION005414400000000000000">Default properties</A>
-<LI><A NAME="tex2html4068"
-  HREF="EXPRESSION.htm#SECTION005414500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html4069"
-  HREF="EXPRESSION.htm#SECTION005414600000000000000">Computational function (type 4)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION005414000000000000000"></A><A NAME="EXPRESSION"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="EXPRESSION"></A>
 <BR>
-Mathematical expression 
+Expression mathématique
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=EXPRESSION.eps,width=90.00pt}$
+ $\epsfig{file=EXPRESSION.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="108" ALIGN="BOTTOM" BORDER="0"
- SRC="img105.gif"
- ALT="\epsfig{file=EXPRESSION.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION005414100000000000000">
-Library</A>
-</font></H3>
-Others
+ WIDTH="203" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/EXPRESSION_blk.gif"
+ ALT="\epsfig{file=EXPRESSION.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION005414200000000000000">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="EXPRESSION.htm#SECTION00010000000000000000">Expression mathématique</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="EXPRESSION.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="EXPRESSION.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="EXPRESSION.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html10"
+  HREF="EXPRESSION.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html11"
+  HREF="EXPRESSION.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html12"
+  HREF="EXPRESSION.htm#SECTION00026000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html13"
+  HREF="EXPRESSION.htm#SECTION00027000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Non_linear_pal.htm">Non_linear - Palette Non-linéaire</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
-The Expression block allows the definition of a formula in terms of
-u1,u2,u3... The u's can be scalar inputs of the block or scalar
-components of the unique input vector. The formula must be defined in
-Scilab syntax using elementary operators and the following
-functions: sin, cos, tan, exp, log, sinh, cosh, tanh, int, round,
-ceil, floor, sign, abs, max, min, asin, acos, atan, asinh, acosh,
-atanh, atan2, log10.
-<H3><font color="blue"><A NAME="SECTION005414300000000000000">
-Dialog Box</A>
+
+<P>
+Le bloc EXPRESSION applique à son entrée les fonctions Scilab spécifiées
+en paramètre.
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Give a scalar scilab expression using inputs u1, u2,...</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">ex: (dd*u1+sin(u2)<IMG
- WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img2.gif"
- ALT="$ &gt;$">0)*u3</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">Note that here dd must be defined in context</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">number of inputs</TD>
-<TD ALIGN="CENTER">2</TD>
-</TR>
-<TR><TD ALIGN="CENTER">scilab expression</TD>
-<TD ALIGN="CENTER">(u1<IMG
- WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img2.gif"
- ALT="$ &gt;$">0)*sin(u2)2</TD>
-</TR>
-<TR><TD ALIGN="CENTER">use zero-crossing (0: no, 1 yes)</TD>
-<TD ALIGN="CENTER">1</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="477" HEIGHT="180" BORDER="0"
+ SRC="../../images/scicos/EXPRESSION_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=EXPRESSION_gui.eps,width=300pt}
+\end{center}\end{figure}">
 </DIV>
 
-<UL>
-<LI>number of inputs: Block input can be a scalar or vector. 
-</LI>
-<LI>scilab expression: The Scilab expression applied to the input. 
-</LI>
-<LI>use zero-crossing :Select to enable zero crossing detection. 
-</LI>
-</UL>
-
-<H3><font color="blue"><A NAME="SECTION005414400000000000000">
-Default properties</A>
-</font></H3>
+<P>
 
 <UL>
-<LI>always active: no
-</LI>
-<LI>direct-feedthrough: yes
-</LI>
-<LI>zero-crossing: yes
-</LI>
-<LI>mode: yes
-</LI>
-<LI>number/sizes of inputs: 2 / 1  1
-</LI>
-<LI>number/sizes of outputs: 1 / 1
-</LI>
-<LI>number/sizes of activation inputs: 0 / 
-</LI>
-<LI>number/sizes of activation outputs: 0 / 
-</LI>
-<LI>continuous-time state: no
-</LI>
-<LI>discrete-time state: no
-</LI>
-<LI>name of computational function: <EM>evaluate_expr</EM>
-</LI>
-</UL>
-<H3><font color="blue"><A NAME="SECTION005414500000000000000">
-Interfacing function</A>
-</font></H3>
-<TT>scilab/macros/scicos_blocks/misc/EXPRESSION.sci</TT>
-
-<H3><font color="blue"><A NAME="SECTION005414600000000000000">
-Computational function (type 4)</A>
-</font></H3>
+<LI><b>number of inputs</b>
 <BR>
-<PRE>#include "scicos_block.h"
-#include &lt;math.h&gt;
-#if WIN32
-#include &lt;float.h&gt;
-#endif
+Un scalaire à valeur entière donnant le nombre de port d'entrée régulier. Ces entrées peuvent-être scalaires ou vectorielles.
+<BR>
+Type 'vec' de taille 1.
 
-#if defined(solaris)
-#include &lt;ieeefp.h&gt;
-int isinf(double x) { return !finite(x) &amp;&amp; x==x; }
-#endif
+<P>
+</LI>
+<LI><b>scilab expression</b>
+<BR>
+Chaine de caractères définissant la relation mathématique à appliquer aux entrées. C'est une expression scilab.
+<BR>
+Type 'str' de taille 1.
 
-#if WIN32
-/*
-arcsinh z = log (z+sqrt(1+z2))
-*/
-double asinh(double x)
-{
-  return log(x+sqrt(x*x+1));
-}
+<P>
+</LI>
+<LI><b>use zero-crossing (0: no, 1 yes)</b>
+<BR>
+A sélectionner pour permettre la détection de passages à zéro.
+<BR>
+Type 'vec' de taille 1.
+</LI>
+</UL>
 
-double acosh(double x)
-{
-  return log(x+sqrt(x*x-1));
-}
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
 
-/* atanh(x)
- *      For x&gt;=0.5
- *                  1              2x                          x
- *	atanh(x) = --- * log(1 + -------) = 0.5 * log1p(2 * --------)
- *                  2             1 - x                      1 - x
- *	
- * 	For x&lt;0.5
- *	atanh(x) = 0.5*log1p(2x+2x*x/(1-x))
- *
- */
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> oui
+</LI>
+<LI><b>mode:</b> oui
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR>   <b>   - port 2 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>evaluate_expr</EM>
+</LI>
+</UL>
 
-double atanh(double x)
-{
-	if (x &gt;=0.5) 
-	{
-		return 0.5*log((1+x)/(1-x));
-	}
-	else
-	{
-		return 0.5*log((2*x)+(2*x)*x/(1-x));
-	}
-  
-}
-#endif
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
 
-void evaluate_expr(scicos_block *block,int flag)
-{
-  static double stack [1000];
-  static int count,bottom,nzcr,i,phase; 
-  int j;  
-  if (flag==1||flag==9){
-    phase=get_phase_simulation();
-    bottom=-1;
-    count=-1;
-    nzcr=-1;
-    while (count&lt;block-&gt;nipar-1){
-      count=count+1;
-      switch (block-&gt;ipar[count]) {
-      case 2:
-	count=count+1;
-	bottom=bottom+1;
-	if(bottom&gt;999){
-	  set_block_error(-16);
-	  return;
-	}
-	if (block-&gt;nin&gt;1){
-	  stack[bottom]=block-&gt;inptr[block-&gt;ipar[count]-1][0];
-	}else{
-	  j=block-&gt;ipar[count]-1;
-	  if (j&lt;block-&gt;insz[0]){
-	    stack[bottom]=block-&gt;inptr[0][block-&gt;ipar[count]-1];
-	  }else{
-	    stack[bottom]=0.;
-	  }
-	}
-	break;
-      case 6:
-	count=count+1;
-	bottom=bottom+1;
-	if(bottom&gt;999){
-	  set_block_error(-16);
-	  return;
-	}
-	stack[bottom]=block-&gt;rpar[block-&gt;ipar[count]-1];
-	break;
-      case 5:
-	count=count+1;
-	switch (block-&gt;ipar[count]) {
-	case 1:
-	  stack[bottom-1]=stack[bottom-1]+stack[bottom];
-	  bottom=bottom-1;
-	  break;
-	case 2:
-	  stack[bottom-1]=stack[bottom-1]-stack[bottom];
-	  bottom=bottom-1;
-	  break;
-	case 3:
-	  stack[bottom-1]=stack[bottom-1]*stack[bottom];
-	  bottom=bottom-1;
-	  break;
-	case 7:
-	  stack[bottom-1]=stack[bottom-1]/stack[bottom];
-	  bottom=bottom-1;
-	  break;
-	case 15:
-	  stack[bottom-1]=pow(stack[bottom-1],stack[bottom]);
-	  bottom=bottom-1;
-	  break;
-	case 16: /* case == */
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    block-&gt;g[nzcr]=stack[bottom-1]-stack[bottom];
-	    if(phase==1) {
-	      block-&gt;mode[nzcr]=(stack[bottom-1]==stack[bottom]);
-	    }
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    i=(stack[bottom-1]==stack[bottom]);
-	  } else{
-	    i=block-&gt;mode[nzcr];
-	  }
-	  stack[bottom-1]=(double)i;
-	  bottom=bottom-1;
-	  break;
+<UL>
+<LI>SCI/macros/scicos_blocks/Misc/EXPRESSION.sci <A NAME="tex2html4"
+  HREF="EXPRESSION_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
 
-	case 17:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    block-&gt;g[nzcr]=stack[bottom-1]-stack[bottom];
-	    if(phase==1) {
-	      block-&gt;mode[nzcr]=(stack[bottom-1]&lt;stack[bottom]);
-	    }
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    i=(stack[bottom-1]&lt;stack[bottom]);
-	  } else{
-	    i=block-&gt;mode[nzcr];
-	  }
-	  stack[bottom-1]=(double)i;
-	  bottom=bottom-1;
-	  break;
-	case 18:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    block-&gt;g[nzcr]=stack[bottom-1]-stack[bottom];
-	    if(phase==1) {
-	      block-&gt;mode[nzcr]=(stack[bottom-1]&gt;stack[bottom]);
-	    }
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    i=(stack[bottom-1]&gt;stack[bottom]);
-	  } else{
-	    i=block-&gt;mode[nzcr];
-	  }
-	  stack[bottom-1]=(double)i;
-	  bottom=bottom-1;
-	  break;
-	case 19:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    block-&gt;g[nzcr]=stack[bottom-1]-stack[bottom];
-	    if(phase==1) {
-	      block-&gt;mode[nzcr]=(stack[bottom-1]&lt;=stack[bottom]);
-	    }
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    i=(stack[bottom-1]&lt;=stack[bottom]);
-	  } else{
-	    i=block-&gt;mode[nzcr];
-	  }
-	  stack[bottom-1]=(double)i;
-	  bottom=bottom-1;
-	  break;
-	case 20:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    block-&gt;g[nzcr]=stack[bottom-1]-stack[bottom];
-	    if(phase==1) {
-	      block-&gt;mode[nzcr]=(stack[bottom-1]&gt;=stack[bottom]);
-	    }
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    i=(stack[bottom-1]&gt;=stack[bottom]);
-	  } else{
-	    i=block-&gt;mode[nzcr];
-	  }
-	  stack[bottom-1]=(double)i;
-	  bottom=bottom-1;
-	  break;
-	case 21:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    block-&gt;g[nzcr]=stack[bottom-1]-stack[bottom];
-	    if(phase==1) {
-	      block-&gt;mode[nzcr]=(stack[bottom-1]!=stack[bottom]);
-	    }
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    i=(stack[bottom-1]!=stack[bottom]);
-	  } else{
-	    i=block-&gt;mode[nzcr];
-	  }
-	  stack[bottom-1]=(double)i;
-	  bottom=bottom-1;
-	  break;
-	case 28:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    block-&gt;g[nzcr]=stack[bottom-1]-stack[bottom];
-	    if(phase==1) {
-	      block-&gt;mode[nzcr]=((int)stack[bottom-1]||(int)stack[bottom]);
-	    }
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    i=((int)stack[bottom-1]||(int)stack[bottom]);
-	  } else{
-	    i=block-&gt;mode[nzcr];
-	  }
-	  stack[bottom-1]=(double)i;
-	  bottom=bottom-1;
-	  break;
-	case 29:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    block-&gt;g[nzcr]=stack[bottom-1]-stack[bottom];
-	    if(phase==1) {
-	      block-&gt;mode[nzcr]=((int)stack[bottom-1]&amp;&amp;(int)stack[bottom]);
-	    }
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    i=((int)stack[bottom-1]&amp;&amp;(int)stack[bottom]);
-	  } else{
-	    i=block-&gt;mode[nzcr];
-	  }
-	  stack[bottom-1]=(double)i;
-	  bottom=bottom-1;
-	  break;
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3>
 
-	case 30:
-	  if (flag==9) {
-	    block-&gt;g[nzcr]=stack[bottom];
-	    if(phase==1) {
-	      block-&gt;mode[nzcr]=(0.0==stack[bottom]);
-	    }
-	  }
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if(phase==1||block-&gt;ng==0){
-	    i=(stack[bottom]==0.0);
-	  }else{
-	    i=block-&gt;mode[nzcr];
-	  }
-	  if (i){
-	    stack[bottom]=1.0;
-	  }else{
-	    stack[bottom]=0.0;   
-	  }
-	  break;
-	case 99:
-	  stack[bottom]=-stack[bottom];
-	  break;
-	case 101:
-	  stack[bottom]=sin(stack[bottom]);
-	  break;
-	case 102:
-	  stack[bottom]=cos(stack[bottom]);
-	  break;
-	case 103:
-	  stack[bottom]=tan(stack[bottom]);
-	  break;
-	case 104:
-	  stack[bottom]=exp(stack[bottom]);
-	  break;
-	case 105:
-	  stack[bottom]=log(stack[bottom]);
-	  break;
-	case 106:
-	  stack[bottom]=sinh(stack[bottom]);
-	  break;
-	case 107:
-	  stack[bottom]=cosh(stack[bottom]);
-	  break;
-	case 108:
-	  stack[bottom]=tanh(stack[bottom]);
-	  break;
+<UL>
+<LI>SCI/routines/scicos/evaluate_expr.c (Type 4) <A NAME="tex2html5"
+  HREF="evaluate_expr_routcos.htm">[voir code]</A>
+</LI>
+</UL>
 
-	case 109:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    if (stack[bottom]&gt;0) {
-	      i=floor(stack[bottom]);
-	    }else{
-	      i=ceil(stack[bottom]);
-	    }
-	    if(i==0)  {
-	      block-&gt;g[nzcr]=(stack[bottom]-1)*(stack[bottom]+1);
-	    }else if(i&gt;0){
-	      block-&gt;g[nzcr]=(stack[bottom]-i-1.)*(stack[bottom]-i);
-	    }else{
-	      block-&gt;g[nzcr]=(stack[bottom]-i)*(stack[bottom]-i+1);
-	    }
-	    if(i%2)  block-&gt;g[nzcr]=-block-&gt;g[nzcr];
-	    if(phase==1) block-&gt;mode[nzcr]=i;
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    if (stack[bottom]&gt;0) {
-	      stack[bottom]=floor(stack[bottom]);
-	    }else{
-	      stack[bottom]=ceil(stack[bottom]);
-	    }
-	  }else{
-	    stack[bottom]=(double) block-&gt;mode[nzcr];
-	  }
-	  break;
-	  /*
-	  if (stack[bottom]&gt;0) {
-	    stack[bottom]=floor(stack[bottom]);
-	  }else{
-	    stack[bottom]=ceil(stack[bottom]);
-	    }*/
-	  break;
-	case 110:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    if (stack[bottom]&gt;0) {
-	      i=floor(stack[bottom]+.5);
-	    }else{
-	      i=ceil(stack[bottom]-.5);
-	    }
-	    block-&gt;g[nzcr]=(stack[bottom]-i-.5)*(stack[bottom]-i+.5);
-	    if(i%2)  block-&gt;g[nzcr]=-block-&gt;g[nzcr];
-	    if(phase==1) block-&gt;mode[nzcr]=i;
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    if (stack[bottom]&gt;0) {
-	      stack[bottom]=floor(stack[bottom]+.5);
-	    }else{
-	      stack[bottom]=ceil(stack[bottom]-.5);
-	    }
-	  }else{
-	    stack[bottom]=(double) block-&gt;mode[nzcr];
-	  }
-	  break;
-	  /*  if (stack[bottom]&gt;0) {
-	    stack[bottom]=floor(stack[bottom]+.5);
-	  }else{
-	    stack[bottom]=ceil(stack[bottom]-.5);
-	  }*/
-	case 111:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    i=ceil(stack[bottom]);
-	    block-&gt;g[nzcr]=(stack[bottom]-i)*(stack[bottom]-i+1);
-	    if(i%2)  block-&gt;g[nzcr]=-block-&gt;g[nzcr];
-	    if(phase==1) block-&gt;mode[nzcr]=i;
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    stack[bottom]=ceil(stack[bottom]);
-	  }else{
-	    stack[bottom]=(double) block-&gt;mode[nzcr];
-	  }
-	  break;
-	case 112:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    i=floor(stack[bottom]);
-	    block-&gt;g[nzcr]=(stack[bottom]-i-1)*(stack[bottom]-i);
-	    if(i%2)  block-&gt;g[nzcr]=-block-&gt;g[nzcr];
-	    if(phase==1) block-&gt;mode[nzcr]=i;
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    stack[bottom]=floor(stack[bottom]);
-	  }else{
-	    stack[bottom]=(double) block-&gt;mode[nzcr];
-	  }
-	  break;
-	case 113:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    if (stack[bottom]&gt;0) {
-	      i=1;
-	    }else if (stack[bottom]&lt;0){
-	      i=-1;
-	    }else{
-	      i=0;
-	    }
-	    block-&gt;g[nzcr]=stack[bottom];
-	    if(phase==1) block-&gt;mode[nzcr]=i;
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    if (stack[bottom]&gt;0) {
-	      stack[bottom]=1.0;
-	    }else if(stack[bottom]&lt;0){
-	      stack[bottom]=-1.0;
-	    }else{
-	      stack[bottom]=0.0;
-	    }
-	  }else{
-	    stack[bottom]=(double) block-&gt;mode[nzcr];
-	  }
-	  break;
-	  /* if (stack[bottom]&gt;0) {
-	    stack[bottom]=1.0;
-	  }else if(stack[bottom]&lt;0){
-	    stack[bottom]=-1.0;
-	  }else{
-	    stack[bottom]=0.0;
-	    }*/
-	case 114:  /* abs */
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    if (stack[bottom]&gt;0) {
-	      i=1;
-	    }else if (stack[bottom]&lt;0){
-	      i=-1;
-	    }else{
-	      i=0;
-	    }
-	    block-&gt;g[nzcr]=stack[bottom];
-	    if(phase==1) block-&gt;mode[nzcr]=i;
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    if (stack[bottom]&gt;0) {
-	      stack[bottom]=stack[bottom];
-	    }else {
-	      stack[bottom]=-stack[bottom];
-	    }
-	  }else{
-	    stack[bottom]=stack[bottom]*(block-&gt;mode[nzcr]);
-	  }
-	  break;
-	  /* if (stack[bottom]&gt;0) {
-	    stack[bottom]=stack[bottom];
-	  }else {
-	    stack[bottom]=-stack[bottom];
-	    }*/
-	case 115:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    if (stack[bottom]&gt;stack[bottom-1]) {
-	      i=0;
-	    }else {
-	      i=1;
-	    }
-	    block-&gt;g[nzcr]=stack[bottom]-stack[bottom-1];
-	    if(phase==1) block-&gt;mode[nzcr]=i;
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    stack[bottom-1]=max(stack[bottom-1],stack[bottom]);
-	  }else{
-	    stack[bottom-1]=stack[bottom-block-&gt;mode[nzcr]];
-	  }
-	  bottom=bottom-1;
-	  break;
-	case 116:
-	  if(block-&gt;ng&gt;0) nzcr=nzcr+1;
-	  if (flag==9) {
-	    if (stack[bottom]&lt;stack[bottom-1]) {
-	      i=0;
-	    }else {
-	      i=1;
-	    }
-	    block-&gt;g[nzcr]=stack[bottom]-stack[bottom-1];
-	    if(phase==1) block-&gt;mode[nzcr]=i;
-	  }
-	  if(phase==1||block-&gt;ng==0){
-	    stack[bottom-1]=min(stack[bottom-1],stack[bottom]);
-	  }else{
-	    stack[bottom-1]=stack[bottom-block-&gt;mode[nzcr]];
-	  }
-	  bottom=bottom-1;
-	  break;
-	case 117:
-	  stack[bottom]=asin(stack[bottom]);
-	  break;
-	case 118:
-	  stack[bottom]=acos(stack[bottom]);
-	  break;
-	case 119:
-	  stack[bottom]=atan(stack[bottom]);
-	  break;
-	case 120:
-	  stack[bottom]=asinh(stack[bottom]);
-	  break;
-	case 121:
-	  stack[bottom]=acosh(stack[bottom]);
-	  break;
-	case 122:
-	  stack[bottom]=atanh(stack[bottom]);
-	  break;
-	case 123:
-	  stack[bottom-1]=atan2(stack[bottom-1],stack[bottom]);
-	  bottom=bottom-1;
-	  break;
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
 
-	case 124:
-	  stack[bottom]=log10(stack[bottom]);
-	  break;
-	}
-      }
-    }
-    #if WIN32
-    if(!_finite(stack[bottom])||_isnan(stack[bottom])){
-    #else
-     if(isinf(stack[bottom])||isnan(stack[bottom])){
-    #endif
-      set_block_error(-2);
-      return;
-    }else{
-      block-&gt;outptr[0][0]=stack[bottom];
-    }
-  }
-}
-</PRE>
-<HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+<BR>
+
+
+
+
 </BODY>
 </HTML>

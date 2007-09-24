@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>GotoTagVisibilityMO_intfunc</TITLE>
+<META NAME="description" CONTENT="GotoTagVisibilityMO_intfunc">
+<META NAME="keywords" CONTENT="GotoTagVisibilityMO_intfunc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="GotoTagVisibilityMO_intfunc.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction d'interfaçage
+<BR><A NAME="tex2html1"
+  HREF="./GotoTagVisibilityMO_intfunc.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="GotoTagVisibilityMO_intfunc"></A>
+<BR>
+GotoTagVisibilityMO
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">function [x,y,typ]=GotoTagVisibilityMO(job,arg1,arg2)
+// Copyright INRIA
+  x=[];y=[],typ=[]
+  select job
+   case 'plot' then
+    standard_draw(arg1)
+   case 'getinputs' then
+    [x,y,typ]=standard_inputs(arg1)
+   case 'getoutputs' then
+    [x,y,typ]=standard_outputs(arg1)
+   case 'getorigin' then
+    [x,y]=standard_origin(arg1)
+   case 'set' then
+    x=arg1
+    graphics=arg1.graphics;exprs=graphics.exprs
+    model=arg1.model;
+    while %t do
+      [ok,tag,exprs]=getvalue('Set parameters',..
+	  ['GotoTag'],..
+	  list('str',-1),exprs)
+      if ~ok then break,end
+      if ok then
+	if model.opar&lt;&gt;list(tag) then needcompile=4;y=needcompile,end
+	graphics.exprs=exprs;
+	model.opar=list(tag);
+	x.graphics=graphics;x.model=model;
+	break
+      end
+    end
+   needcompile=resume(needcompile)
+   case 'define' then
+   model=scicos_model()
+   model.sim='gototagvisibilitymo'
+   model.in=[]
+   model.in2=[]
+   model.out=[]
+   model.out2=[]
+   model.evtin=[]
+   model.intyp=1
+   model.outtyp=1
+   model.opar=list('A');
+   model.blocktype='c'
+   model.firing=%f
+   model.dep_ut=[%f %f]
+   exprs='A'
+   gr_i=['xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');';
+         'wd=xget(''wdim'').*[1.016,1.12];';
+	       'thick=xget(''thickness'');xset(''thickness'',2);';
+	       'p=wd(2)/wd(1);p=1;';
+	       'xarcs([orig(1)+0.05*sz(1);';
+	       'orig(2)+0.95*sz(2);';
+	          '0.9*sz(1)*p;';
+	          '0.9*sz(2);';
+	          '0;';
+	       '360*64],scs_color(3));';
+	       'xset(''thickness'',thick)']
+ //        'g=gca();'
+    //     'g.children.font_foreground=5']
+   x=standard_define([2 2],model,exprs,gr_i)
+   x.graphics.id=["Goto Tag";"Visibility"]
+  end
+endfunction
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

@@ -1,236 +1,247 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Continuous state-space system </TITLE>
-<META NAME="description" CONTENT="Continuous state-space system ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>CLSS_f</TITLE>
+<META NAME="description" CONTENT="CLSS_f">
+<META NAME="keywords" CONTENT="CLSS_f">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="CLSS_f.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./CLSS_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/CLSS_f.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html5159"
-  HREF="CLSS_f.htm#SECTION005812100000000000000">Library</A>
-<LI><A NAME="tex2html5160"
-  HREF="CLSS_f.htm#SECTION005812200000000000000">Description</A>
-<LI><A NAME="tex2html5161"
-  HREF="CLSS_f.htm#SECTION005812300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html5162"
-  HREF="CLSS_f.htm#SECTION005812400000000000000">Default properties</A>
-<LI><A NAME="tex2html5163"
-  HREF="CLSS_f.htm#SECTION005812500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html5164"
-  HREF="CLSS_f.htm#SECTION005812600000000000000">Computational function (type 1)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION005812000000000000000"></A><A NAME="CLSS_f"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="CLSS_f"></A>
 <BR>
-Continuous state-space system 
+Système d'équations d'état continu (Ancien bloc)
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=CLSS_f.eps,width=90.00pt}$
+ $\epsfig{file=CLSS_f.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="81" ALIGN="BOTTOM" BORDER="0"
- SRC="img152.gif"
- ALT="\epsfig{file=CLSS_f.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION005812100000000000000">
-Library</A>
-</font></H3>
-Linear
+ WIDTH="270" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CLSS_f_blk.gif"
+ ALT="\epsfig{file=CLSS_f.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION005812200000000000000">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html5"
+  HREF="CLSS_f.htm#SECTION00010000000000000000">Système d'équations d'état continu (Ancien bloc)</A>
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="CLSS_f.htm#SECTION00021000000000000000">Description</A>
+<LI><A NAME="tex2html7"
+  HREF="CLSS_f.htm#SECTION00022000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html8"
+  HREF="CLSS_f.htm#SECTION00023000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html9"
+  HREF="CLSS_f.htm#SECTION00024000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html10"
+  HREF="CLSS_f.htm#SECTION00025000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html11"
+  HREF="CLSS_f.htm#SECTION00026000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
 Description</A>
 </font></H3>
-This block realizes a continuous-time linear state-space system.  
-<P></P>
-<DIV ALIGN="CENTER"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
-<TR VALIGN="MIDDLE">
-<TD NOWRAP ALIGN="RIGHT"><IMG
- WIDTH="14" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img153.gif"
- ALT="$\displaystyle \dot x$"></TD>
-<TD NOWRAP ALIGN="LEFT"><IMG
- WIDTH="91" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img154.gif"
- ALT="$\displaystyle =Ax+Bu$"></TD>
-<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
-(4.1)</TD></TR>
-<TR VALIGN="MIDDLE">
-<TD NOWRAP ALIGN="RIGHT"><IMG
- WIDTH="14" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img155.gif"
- ALT="$\displaystyle y$"></TD>
-<TD NOWRAP ALIGN="LEFT"><IMG
- WIDTH="126" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img156.gif"
- ALT="$\displaystyle =C*x+D*u$"></TD>
-<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
-(4.2)</TD></TR>
-</TABLE></DIV>
-<BR CLEAR="ALL"><P></P>
-The system is defined by the <IMG
- WIDTH="96" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
- SRC="img141.gif"
- ALT="$ (A,B,C,D)$"> matrices and the initial state
-<IMG
- WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img142.gif"
- ALT="$ x_0$">. The dimensions must be compatible.   
 
-<H3><font color="blue"><A NAME="SECTION005812300000000000000">
-Dialog Box</A>
+<P>
+Ce bloc réalise un système linéaire d'équations d'état en temporel continu.
+<BR>
+<DIV ALIGN="RIGHT" CLASS="mathdisplay">
+<P ALIGN="LEFT"><!-- MATH
+ \begin{eqnarray}
+\htmlimage{align=left}
+\dot x&=&Ax+Bu\\
+  y   &=&C*x+D*u
+\end{eqnarray}
+ -->
+<IMG
+ WIDTH="556" HEIGHT="57" ALIGN="LEFT"
+ SRC="../../images/scicos/CLSS_f_img2_fr.gif"
+ ALT="\begin{eqnarray}
+\dot x&amp;=&amp;Ax+Bu\\
+y &amp;=&amp;C*x+D*u
+\end{eqnarray}">
+<BR CLEAR="ALL">
+<P>
+<BR CLEAR="ALL"></DIV><P></P>
+Le système est défini par les matrices <SPAN CLASS="MATH"><IMG
+ WIDTH="96" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/CLSS_f_img3_fr.gif"
+ ALT="$ (A,B,C,D)$"></SPAN>
+
+et par l'état initial <SPAN CLASS="MATH"><IMG
+ WIDTH="22" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/CLSS_f_img4_fr.gif"
+ ALT="$ x_0$"></SPAN>
+.
+Les dimensions des matrices et de l'état initial doivent être appropriées.
+
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Boîte de dialogue</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set continuous linear system parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">A matrix</TD>
-<TD ALIGN="CENTER">-1</TD>
-</TR>
-<TR><TD ALIGN="CENTER">B matrix</TD>
-<TD ALIGN="CENTER">1</TD>
-</TR>
-<TR><TD ALIGN="CENTER">C matrix</TD>
-<TD ALIGN="CENTER">1</TD>
-</TR>
-<TR><TD ALIGN="CENTER">D matrix</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Initial state</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="349" HEIGHT="186" BORDER="0"
+ SRC="../../images/scicos/CLSS_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=CLSS_f_gui.eps,width=220pt}
+\end{center}\end{figure}">
 </DIV>
 
-<UL>
-<LI><IMG
- WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img157.gif"
- ALT="$ A$"> matrix: square matrix. The <IMG
- WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img157.gif"
- ALT="$ A$"> matrix 
-</LI>
-<LI>B matrix: the <IMG
- WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img158.gif"
- ALT="$ B $"> matrix,  []  if system has no input 
-</LI>
-<LI>C matrix: the  <IMG
- WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img159.gif"
- ALT="$ C$"> matrix ,  []  if system has no output 
-</LI>
-<LI>D matrix: the <IMG
- WIDTH="19" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img160.gif"
- ALT="$ D$"> matrix,  []  if system has no  D  term.
-</LI>
-<LI>Initial state: A vector/scalar initial state of the system. 
-</LI>
-</UL>
-
-<H3><font color="blue"><A NAME="SECTION005812400000000000000">
-Default properties</A>
-</font></H3>
+<P>
 
 <UL>
-<LI>always active: yes
-</LI>
-<LI>direct-feedthrough: no
-</LI>
-<LI>zero-crossing: no
-</LI>
-<LI>mode: no
-</LI>
-<LI>number/sizes of inputs: 1 / 1
-</LI>
-<LI>number/sizes of outputs: 1 / 1
-</LI>
-<LI>number/sizes of activation inputs: 0 / 
-</LI>
-<LI>number/sizes of activation outputs: 0 / 
-</LI>
-<LI>continuous-time state: yes
-</LI>
-<LI>discrete-time state: no
-</LI>
-<LI>name of computational function: <EM>csslti</EM>
-</LI>
-</UL>
-<H3><font color="blue"><A NAME="SECTION005812500000000000000">
-Interfacing function</A>
-</font></H3>
-<TT>scilab/macros/scicos_blocks/linear/CLSS_f.sci</TT>
-
-<H3><font color="blue"><A NAME="SECTION005812600000000000000">
-Computational function (type 1)</A>
-</font></H3>
+<LI><B><SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CLSS_f_img6_fr.gif"
+ ALT="$ A$"></SPAN>
+ matrix</B> 
 <BR>
-<PRE>      subroutine csslti(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
-     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
-c     Copyright INRIA
-c     Scicos block simulator
-c     continuous state space linear system simulator
-c     rpar(1:nx*nx)=A
-c     rpar(nx*nx+1:nx*nx+nx*nu)=B
-c     rpar(nx*nx+nx*nu+1:nx*nx+nx*nu+nx*ny)=C
-c     rpar(nx*nx+nx*nu+nx*ny+1:nx*nx+nx*nu+nx*ny+ny*nu)=D
-c
-      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
-      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
-      integer nipar,nu,ny
+Une matrice carré. 
+<BR>
+Propriétés : Type 'mat' de taille [-1,-1].
 
-c
-      la=1
-      lb=nx*nx+la
-      lc=lb+nx*nu
+<P>
+</LI>
+<LI><B>B matrix</B> 
+<BR>
+La matrice <SPAN CLASS="MATH"><IMG
+ WIDTH="19" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CLSS_f_img7_fr.gif"
+ ALT="$ B$"></SPAN>
+, [] si le système n'a pas d'entrées.
+<BR>
+Propriétés : Type 'mat' de taille ["size(%1,2)","-1"].
 
-      if(flag.eq.1.or.flag.eq.6) then
-c     y=c*x+d*u     
-         ld=lc+nx*ny
-         call dmmul(rpar(lc),ny,x,nx,y,ny,ny,nx,1)
-         call dmmul1(rpar(ld),ny,u,nu,y,ny,ny,nu,1)
-c         if(t.gt.64.0) write(6,'(e15.8,10(e10.3,x))') t,x(1),x(2),
-c     $        u(1),y(1) 
-      elseif(flag.eq.0) then
-c     xd=a*x+b*u
-         call dmmul(rpar(la),nx,x,nx,xd,nx,nx,nx,1)
-         call dmmul1(rpar(lb),nx,u,nu,xd,nx,nx,nu,1)
-c         if(t.gt.64.0) write(6,'(e15.8,10(e10.3,x))') t,x(1),x(2),
-c     $        xd(1),xd(2),u(1)
-      endif
-      return
-      end
-</PRE>
-<HR>
+<P>
+</LI>
+<LI><B>C matrix</B> 
+<BR>
+La matrice <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CLSS_f_img8_fr.gif"
+ ALT="$ C$"></SPAN>
+, [] si le système n'a pas de sorties.
+<BR>
+Propriétés : Type 'mat' de taille ["-1","size(%1,2)"].
 
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+<P>
+</LI>
+<LI><B>D matrix</B> 
+<BR>
+La matrice <SPAN CLASS="MATH"><IMG
+ WIDTH="19" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CLSS_f_img9_fr.gif"
+ ALT="$ D$"></SPAN>
+, [] si le système n'a pas de terme D.
+<BR>
+Propriétés : Type 'mat' de taille [-1,-1].
+
+<P>
+</LI>
+<LI><B>Initial state</B> 
+<BR>
+Un état initial du système ( vectoriel ou scalaire).
+<BR>
+Propriétés : Type 'vec' de taille "size(%1,2)".
+
+<P>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> oui
+</LI>
+<LI><b>direct-feedthrough:</b> non
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> oui
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>csslti</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Linear/CLSS_f.sci <A NAME="tex2html3"
+  HREF="CLSS_f_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/csslti.f (Type 1) <A NAME="tex2html4"
+  HREF="csslti_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
 </BODY>
 </HTML>

@@ -36,12 +36,12 @@ Electrical capacitor
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=Capacitor.eps,width=90.00pt}$
+ $\epsfig{file=Capacitor.eps,height=49.5pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="101" ALIGN="BOTTOM" BORDER="0"
- SRC="Capacitor_img1.gif"
- ALT="\epsfig{file=Capacitor.eps,width=90.00pt}">
+ WIDTH="115" HEIGHT="79" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/Capacitor_blk.gif"
+ ALT="\epsfig{file=Capacitor.eps,height=49.5pt}">
 
 </DIV>
 <BR>
@@ -52,41 +52,50 @@ Contents</A>
 <!--Table of Contents-->
 
 <UL CLASS="TofC">
-<LI><A NAME="tex2html3"
+<LI><A NAME="tex2html6"
   HREF="Capacitor.htm#SECTION00010000000000000000">Electrical capacitor</A>
 <UL>
-<LI><A NAME="tex2html4"
-  HREF="Capacitor.htm#SECTION00021000000000000000">Description</A>
-<LI><A NAME="tex2html5"
-  HREF="Capacitor.htm#SECTION00022000000000000000">Dialog box</A>
-<LI><A NAME="tex2html6"
-  HREF="Capacitor.htm#SECTION00023000000000000000">Default properties</A>
 <LI><A NAME="tex2html7"
-  HREF="Capacitor.htm#SECTION00024000000000000000">Interfacing function</A>
+  HREF="Capacitor.htm#SECTION00021000000000000000">Palette</A>
 <LI><A NAME="tex2html8"
-  HREF="Capacitor.htm#SECTION00025000000000000000">Modelica model</A>
+  HREF="Capacitor.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="Capacitor.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html10"
+  HREF="Capacitor.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html11"
+  HREF="Capacitor.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html12"
+  HREF="Capacitor.htm#SECTION00026000000000000000">Modelica model</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
-Description</A>
+Palette</A>
 </font></H3>
 
-<P>
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Electrical_pal.htm">Electrical.cosf - Electrical toolbox</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
 
 <P>
 A capacitor is an electrical component that can store energy in
 electrical circuits. The relationship between the voltage <SPAN CLASS="MATH"><IMG
  WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="Capacitor_img2.gif"
+ SRC="../../images/scicos/Capacitor_img2_eng.gif"
  ALT="$ V$"></SPAN>
  across a
 capacitor with capacitance <SPAN CLASS="MATH"><IMG
  WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="Capacitor_img3.gif"
+ SRC="../../images/scicos/Capacitor_img3_eng.gif"
  ALT="$ C$"></SPAN>
  and the current <SPAN CLASS="MATH"><IMG
  WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="Capacitor_img4.gif"
+ SRC="../../images/scicos/Capacitor_img4_eng.gif"
  ALT="$ I$"></SPAN>
  passing through it
 is given by the:
@@ -99,91 +108,115 @@ I = C\frac{dV}{dt}
 <DIV ALIGN="CENTER" CLASS="mathdisplay">
 <IMG
  WIDTH="77" HEIGHT="56" ALIGN="MIDDLE" BORDER="0"
- SRC="Capacitor_img5.gif"
+ SRC="../../images/scicos/Capacitor_img5_eng.gif"
  ALT="$\displaystyle I = C\frac{dV}{dt}
 $">
 </DIV><P>
 </P>
 Capacitors can also be used to differentiate between high-frequency
 and low-frequency signals and this makes them useful in electronic
-filters. A capacitor has a hight impedence when a signal is low frequency
+filters. A capacitor has a high impedance when a signal is low frequency
 signals.
 
-<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Dialog box</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set Capacitor block parameter</TD>
-<TD ALIGN="CENTER">&nbsp;</TD>
-</TR>
-<TR><TD ALIGN="CENTER">C (F)</TD>
-<TD ALIGN="CENTER">0.01</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Initial Voltage</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="382" HEIGHT="117" BORDER="0"
+ SRC="../../images/scicos/Capacitor_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=Capacitor_gui.eps,width=240pt}
+\end{center}\end{figure}">
 </DIV>
 
 <P>
 
 <UL>
-<LI><b>C (F) </b> : Type 'vec' of size 1. Capasitance
-</LI>
-<LI><b>Initial Voltage </b> : Type 'vec' of size 1. Initial Voltage
-</LI>
-</UL>
+<LI><b>C (F)</b>
+<BR>
+Capacitance
+<BR>
+Properties : Type 'vec' of size 1.
 
-<H3><font color="blue"><A NAME="SECTION00023000000000000000">
-Default properties</A>
-</font></H3>
-
-<UL>
-<LI><b>always active:</b> no
+<P>
 </LI>
-<LI><b>direct-feedthrough:</b> yes
-</LI>
-<LI><b>zero-crossing:</b> no
-</LI>
-<LI><b>mode:</b> no
-</LI>
-<LI><b>number/sizes of inputs:</b> 1 / 1
-</LI>
-<LI><b>number/sizes of outputs:</b> 1 / 1
-</LI>
-<LI><b>number/sizes of activation inputs:</b> 0 / 
-</LI>
-<LI><b>number/sizes of activation outputs:</b> 0 / 
-</LI>
-<LI><b>continuous-time state:</b> no
-</LI>
-<LI><b>discrete-time state:</b> no
-</LI>
-<LI><b>name of modelica function:</b> <EM>Capacitor</EM>
+<LI><b>Initial Voltage</b>
+<BR>
+Initial Voltage
+<BR>
+Properties : Type 'vec' of size 1.
 </LI>
 </UL>
 
 <H3><font color="blue"><A NAME="SECTION00024000000000000000">
-Interfacing function</A>
+Default properties</A>
 </font></H3>
-<TT>Capacitor.sci</TT>
+
+<UL>
+<LI><B>Inputs :</B>
+  
+<UL>
+<LI><B>Modelica variable name :</B> 'p'
+<BR>
+Implicit <B>variable.</B>
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Outputs :</B>
+  
+<UL>
+<LI><B>Modelica variable name :</B> 'n'
+<BR>
+Implicit <B>variable.</B>
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Parameters :</B>
+  
+<UL>
+<LI><B>Modelica parameter name :</B> 'C'
+<BR>         <B>Default value :</B> 0.01
+<BR>         <B>Is a state variable :</B> no.
+
+<P>
+</LI>
+<LI><B>Modelica parameter name :</B> 'v'
+<BR>         <B>Default value :</B> 0
+<BR>         <B>Is a state variable :</B> yes.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>File name of the model :</B> Capacitor
+</LI>
+</UL>
 
 <H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/Capacitor.sci <A NAME="tex2html4"
+  HREF="Capacitor_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
 Modelica model</A>
 </font></H3>
- <SMALL CLASS="TINY">  </SMALL>
-<BR>
-<PRE  CLASS="verbatim">class Capacitor
-	Pin p, n;
-	Real v;
-	parameter Real C "Capacitance";
-equation
-	C*der(v) = p.i;
-	v = p.v - n.v;
-	p.i = -n.i;
-end Capacitor;
-</PRE>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/Capacitor.mo <A NAME="tex2html5"
+  HREF="Capacitor_routcos.htm">[view code]</A>
+</LI>
+</UL>
 
 <BR>
 

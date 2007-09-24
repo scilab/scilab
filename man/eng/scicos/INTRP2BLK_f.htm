@@ -1,208 +1,235 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>2D interpolation </TITLE>
-<META NAME="description" CONTENT="2D interpolation ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>INTRP2BLK_f</TITLE>
+<META NAME="description" CONTENT="INTRP2BLK_f">
+<META NAME="keywords" CONTENT="INTRP2BLK_f">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="INTRP2BLK_f.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/INTRP2BLK_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./INTRP2BLK_f.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html3887"
-  HREF="INTRP2BLK_f.htm#SECTION00544100000000000000">Library</A>
-<LI><A NAME="tex2html3888"
-  HREF="INTRP2BLK_f.htm#SECTION00544200000000000000">Description</A>
-<LI><A NAME="tex2html3889"
-  HREF="INTRP2BLK_f.htm#SECTION00544300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html3890"
-  HREF="INTRP2BLK_f.htm#SECTION00544400000000000000">Default properties</A>
-<LI><A NAME="tex2html3891"
-  HREF="INTRP2BLK_f.htm#SECTION00544500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html3892"
-  HREF="INTRP2BLK_f.htm#SECTION00544600000000000000">Computational function (type 1)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION00544000000000000000"></A><A NAME="INTRP2BLK_f"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="INTRP2BLK_f"></A>
 <BR>
-2D interpolation 
+2D interpolation
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=INTRP2BLK_f.eps,width=90.00pt}$
+ $\epsfig{file=INTRP2BLK_f.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="108" ALIGN="BOTTOM" BORDER="0"
- SRC="img78.gif"
- ALT="\epsfig{file=INTRP2BLK_f.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION00544100000000000000">
-Library</A>
-</font></H3>
-Non_linear
+ WIDTH="203" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/INTRP2BLK_f_blk.gif"
+ ALT="\epsfig{file=INTRP2BLK_f.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION00544200000000000000">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="INTRP2BLK_f.htm#SECTION00010000000000000000">2D interpolation</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="INTRP2BLK_f.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="INTRP2BLK_f.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="INTRP2BLK_f.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html10"
+  HREF="INTRP2BLK_f.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html11"
+  HREF="INTRP2BLK_f.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html12"
+  HREF="INTRP2BLK_f.htm#SECTION00026000000000000000">Computational function</A>
+<LI><A NAME="tex2html13"
+  HREF="INTRP2BLK_f.htm#SECTION00027000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Non_linear_pal.htm">Non_linear - Non-Linear palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
+
+<P>
 The output of this block is a function of the inputs obtained by
 bilinear interpolation. This block has two scalar inputs and a single
-scalar output. The <IMG
- WIDTH="40" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
- SRC="img79.gif"
- ALT="$ X(i)$"> and <IMG
- WIDTH="38" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
- SRC="img80.gif"
- ALT="$ Y(i)$"> give respectively the <IMG
+scalar output. The <SPAN CLASS="MATH"><IMG
+ WIDTH="40" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/INTRP2BLK_f_img2_eng.gif"
+ ALT="$ X(i)$"></SPAN>
+ and <SPAN CLASS="MATH"><IMG
+ WIDTH="38" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/INTRP2BLK_f_img3_eng.gif"
+ ALT="$ Y(i)$"></SPAN>
+ give respectively the <SPAN CLASS="MATH"><IMG
  WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img81.gif"
- ALT="$ X$"> coordinate
-and the <IMG
+ SRC="../../images/scicos/INTRP2BLK_f_img4_eng.gif"
+ ALT="$ X$"></SPAN>
+ coordinate
+and the <SPAN CLASS="MATH"><IMG
  WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img82.gif"
- ALT="$ Y$"> coordinate of the <IMG
+ SRC="../../images/scicos/INTRP2BLK_f_img5_eng.gif"
+ ALT="$ Y$"></SPAN>
+ coordinate of the <SPAN CLASS="MATH"><IMG
  WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="img11.gif"
- ALT="$ i$">-th data point to be interpolated and
+ SRC="../../images/scicos/INTRP2BLK_f_img6_eng.gif"
+ ALT="$ i$"></SPAN>
+-th data point to be interpolated and
 <!-- MATH
  $Z(Y(i),X(i))$
  -->
-<IMG
- WIDTH="108" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
- SRC="img83.gif"
- ALT="$ Z(Y(i),X(i))$"> its value.   
+<SPAN CLASS="MATH"><IMG
+ WIDTH="108" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/INTRP2BLK_f_img7_eng.gif"
+ ALT="$ Z(Y(i),X(i))$"></SPAN>
+ its value.   
 
-<H3><font color="blue"><A NAME="SECTION00544300000000000000">
-Dialog Box</A>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set Interpolation block parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">X coord.</TD>
-<TD ALIGN="CENTER">[0;1]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Y coord.</TD>
-<TD ALIGN="CENTER">[0;1]</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Z values</TD>
-<TD ALIGN="CENTER">[0,1;1,2]</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="382" HEIGHT="156" BORDER="0"
+ SRC="../../images/scicos/INTRP2BLK_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=INTRP2BLK_f_gui.eps,width=240pt}
+\end{center}\end{figure}">
 </DIV>
 
+<P>
+
 <UL>
-<LI>X coord.: an n-vector (strictly increasing) 
+<LI><B>X coord.</B> 
+<BR>
+an n-vector (strictly increasing).
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
 </LI>
-<LI>Y coord.: an m-vector (strictly increasing) 
+<LI><B>Y coord.</B> 
+<BR>
+an m-vector (strictly increasing).
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
 </LI>
-<LI>Z values: an <!-- MATH
+<LI><B>Z values</B> 
+<BR>
+an <!-- MATH
  $m \times n$
  -->
-<IMG
- WIDTH="51" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="img84.gif"
- ALT="$ m \times n$"> matrix 
+<SPAN CLASS="MATH"><IMG
+ WIDTH="52" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/INTRP2BLK_f_img9_eng.gif"
+ ALT="$ m \times n$"></SPAN>
+ matrix.
+<BR>
+Properties : Type 'mat' of size [-1,-1]
+
+<P>
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00544400000000000000">
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
 Default properties</A>
 </font></H3>
 
 <UL>
-<LI>always active: no
+<LI><b>always active:</b> no
 </LI>
-<LI>direct-feedthrough: yes
+<LI><b>direct-feedthrough:</b> yes
 </LI>
-<LI>zero-crossing: no
+<LI><b>zero-crossing:</b> no
 </LI>
-<LI>mode: no
+<LI><b>mode:</b> no
 </LI>
-<LI>number/sizes of inputs: 2 / 1  1
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [1,1] / type 1</b>
+<BR>   <b>   - port 2 : size [1,1] / type 1</b>
+<BR></LI>
+<LI><b>regular outputs:</b>
+<BR>   <b>   - port 1 : size [1,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 0
 </LI>
-<LI>number/sizes of outputs: 1 / 1
+<LI><b>number/sizes of activation outputs:</b> 0
 </LI>
-<LI>number/sizes of activation inputs: 0 / 
+<LI><b>continuous-time state:</b> no
 </LI>
-<LI>number/sizes of activation outputs: 0 / 
+<LI><b>discrete-time state:</b> no
 </LI>
-<LI>continuous-time state: no
+<LI><b>object discrete-time state:</b> no
 </LI>
-<LI>discrete-time state: no
-</LI>
-<LI>name of computational function: <EM>intrp2</EM>
+<LI><b>name of computational function:</b> <EM>intrp2</EM>
 </LI>
 </UL>
-<H3><font color="blue"><A NAME="SECTION00544500000000000000">
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
 Interfacing function</A>
 </font></H3>
-<TT>scilab/macros/scicos_blocks/nonlinear/INTRP2BLK_f.sci</TT>
 
-<H3><font color="blue"><A NAME="SECTION00544600000000000000">
-Computational function (type 1)</A>
+<UL>
+<LI>SCI/macros/scicos_blocks/NonLinear/INTRP2BLK_f.sci <A NAME="tex2html4"
+  HREF="INTRP2BLK_f_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Computational function</A>
 </font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/intrp2.f (Type 1) <A NAME="tex2html5"
+  HREF="intrp2_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Authors</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
 <BR>
-<PRE>      subroutine intrp2(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
-     &amp;     rpar,nrpar,ipar,nipar,u1,nu1,u2,nu2,y1,ny1)
-c     Copyright INRIA
 
-c     Scicos block simulator
-c     ipar(1) : the number of input
-c
-      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*)
-      double precision y1,u1,u2
-      double precision vx1,vx2,vy1,vy2,vz1,vz2,vz3,vz4
-      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*),i
-      integer nipar
-c
-c    
-      do 100 i=2,ipar(1)
-         if (u1.le.rpar(i)) goto 200 
- 100  continue
-      i=ipar(1)
- 200  do 300 j=2,ipar(2)
-         if (u2.le.rpar(j+ipar(1))) goto 400 
- 300  continue
-      j=ipar(2)
- 400  continue
-      vy1=rpar(ipar(1)+j-1)
-      vy2=rpar(ipar(1)+j)
-      vz1=rpar(ipar(1)+ipar(2)+(i-2)*ipar(2)+j-1)
-      vz4=rpar(ipar(1)+ipar(2)+(i-2)*ipar(2)+j)
-      vz2=rpar(ipar(1)+ipar(2)+(i-1)*ipar(2)+j-1)
-      vz3=rpar(ipar(1)+ipar(2)+(i-1)*ipar(2)+j)
-      vx1=rpar(i-1)
-      vx2=rpar(i)     
-      y1=(1.0d0-(u2-vy1)/(vy2-vy1))*(vz1+(vz2-vz1)*(u1-vx1)/(vx2-vx1))
-     $     +((u2-vy1)/(vy2-vy1))*(vz4+(vz3-vz4)*(u1-vx1)/(vx2-vx1))
-      return
-      end
 
-</PRE>
-<HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+
+
 </BODY>
 </HTML>

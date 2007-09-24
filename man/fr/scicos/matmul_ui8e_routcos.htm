@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>matmul_ui8e_routcos</TITLE>
+<META NAME="description" CONTENT="matmul_ui8e_routcos">
+<META NAME="keywords" CONTENT="matmul_ui8e_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="matmul_ui8e_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction de calcul
+<BR><A NAME="tex2html1"
+  HREF="./matmul_ui8e_routcos.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="matmul_ui8e_routcos"></A>
+<BR>
+matmul_ui8e
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim"># include "scicos_block4.h"
+# include "../machine.h"
+# include &lt;math.h&gt;
+# include &lt;stdio.h&gt;
+extern int sciprint();
+void matmul_ui8e(scicos_block *block,int flag)
+{
+ if ((flag==1)|(flag==6)) {
+  unsigned char *u1,*u2,*y; 
+  double k,C,D;
+  int mu1,nu1,nu2,i,j,l,ji,jl,il;
+  int *ipar;
+
+  mu1=GetInPortRows(block,1);
+  nu1=GetInPortCols(block,1);
+  nu2=GetInPortCols(block,2);
+  u1=Getuint8InPortPtrs(block,1);
+  u2=Getuint8InPortPtrs(block,2);
+  y=Getuint8OutPortPtrs(block,1);
+  ipar=GetIparPtrs(block);
+
+     k=pow(2,8);
+       for (l=0;l&lt;nu2;l++)
+	    {for(j=0;j&lt;mu1;j++)
+	        {D=0;
+	        for(i=0;i&lt;nu1;i++)
+		   {ji=j+i*mu1;
+		    jl=j+l*mu1;
+		    il=i+l*nu1;
+		    C=(double)(u1[ji])*(double)(u2[il]);
+		    D=D + C;}
+		    if ((D&gt;(k-1)) |(D&lt;0))
+		        {sciprint("overflow error");
+			 set_block_error(-4);
+			 return;}
+		    else {y[jl]=(unsigned char)(D);}
+		    }
+		 }
+	     }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

@@ -1,249 +1,223 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Write binary data </TITLE>
-<META NAME="description" CONTENT="Write binary data ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>WRITEC_f</TITLE>
+<META NAME="description" CONTENT="WRITEC_f">
+<META NAME="keywords" CONTENT="WRITEC_f">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="WRITEC_f.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./WRITEC_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/WRITEC_f.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html3204"
-  HREF="WRITEC_f.htm#SECTION00524100000000000000">Library</A>
-<LI><A NAME="tex2html3205"
-  HREF="WRITEC_f.htm#SECTION00524200000000000000">Description</A>
-<LI><A NAME="tex2html3206"
-  HREF="WRITEC_f.htm#SECTION00524300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html3207"
-  HREF="WRITEC_f.htm#SECTION00524400000000000000">Default properties</A>
-<LI><A NAME="tex2html3208"
-  HREF="WRITEC_f.htm#SECTION00524500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html3209"
-  HREF="WRITEC_f.htm#SECTION00524600000000000000">Computational function (type 2)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION00524000000000000000"></A><A NAME="WRITEC_f"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="WRITEC_f"></A>
 <BR>
-Write binary data 
+Ecriture de donnée binaire
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=WRITEC_f.eps,width=90.00pt}$
+ $\epsfig{file=WRITEC_f.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="108" ALIGN="BOTTOM" BORDER="0"
- SRC="img39.gif"
- ALT="\epsfig{file=WRITEC_f.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION00524100000000000000">
-Library</A>
-</font></H3>
-Sinks
+ WIDTH="203" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/WRITEC_f_blk.gif"
+ ALT="\epsfig{file=WRITEC_f.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION00524200000000000000">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="WRITEC_f.htm#SECTION00010000000000000000">Ecriture de donnée binaire</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="WRITEC_f.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="WRITEC_f.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="WRITEC_f.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html10"
+  HREF="WRITEC_f.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html11"
+  HREF="WRITEC_f.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html12"
+  HREF="WRITEC_f.htm#SECTION00026000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html13"
+  HREF="WRITEC_f.htm#SECTION00027000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Sinks_pal.htm">Sinks - Palette Affichage</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
-This block allows user to write datas in a C binary file.  
 
-<H3><font color="blue"><A NAME="SECTION00524300000000000000">
-Dialog Box</A>
+<P>
+Ce bloc permet d'écrire des données dans un fichier C au format binaire.
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set WRITEC block parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">Input size</TD>
-<TD ALIGN="CENTER">1</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Output file name</TD>
-<TD ALIGN="CENTER">foo</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Output Format</TD>
-<TD ALIGN="CENTER">c</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Buffer size</TD>
-<TD ALIGN="CENTER">2</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Swap mode 0/1</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="413" HEIGHT="202" BORDER="0"
+ SRC="../../images/scicos/WRITEC_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=WRITEC_f_gui.eps,width=260pt}
+\end{center}\end{figure}">
 </DIV>
 
-<UL>
-<LI>Input size: a scalar, the size of the input. 
-</LI>
-<LI>Output file name: a character string defining the output file
-  name. 
-</LI>
-<LI>Output Format: a character string defining the format to use 
-</LI>
-<LI>Buffer size: o improve efficiency it is possible to buffer the
-  input data. read on the file is only done after each <B>Buffer
-    size</B>  call to the block.  
-</LI>
-<LI>Swap mode 0/1:With  <B>Swap mode=1</B>  the file is supposed to be
-  coded in ``little endian IEEE format'' and data are swaped if
-  necessary to match the IEEE format of the processor. If  <B>Swap mode=0</B>
-  then automatic bytes swap is disabled.   
-</LI>
-</UL>
-
-<H3><font color="blue"><A NAME="SECTION00524400000000000000">
-Default properties</A>
-</font></H3>
+<P>
 
 <UL>
-<LI>always active: no
-</LI>
-<LI>direct-feedthrough: yes
-</LI>
-<LI>zero-crossing: no
-</LI>
-<LI>mode: no
-</LI>
-<LI>number/sizes of inputs: 1 / 1
-</LI>
-<LI>number/sizes of outputs: 0 / 
-</LI>
-<LI>number/sizes of activation inputs: 1 / 1
-</LI>
-<LI>number/sizes of activation outputs: 0 / 
-</LI>
-<LI>continuous-time state: no
-</LI>
-<LI>discrete-time state: yes
-</LI>
-<LI>name of computational function: <EM>writec</EM>
-</LI>
-</UL>
-<H3><font color="blue"><A NAME="SECTION00524500000000000000">
-Interfacing function</A>
-</font></H3>
-<TT>scilab/macros/scicos_blocks/sinks/WRITEC_f.sci</TT>
-
-<H3><font color="blue"><A NAME="SECTION00524600000000000000">
-Computational function (type 2)</A>
-</font></H3>
+<LI><B>Input size</B> 
 <BR>
-<PRE>#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
+un scalaire, la taille de l'entrée.
+<BR>
+Propriétés : Type 'vec' de taille 1
 
-#include "../machine.h"
+<P>
+</LI>
+<LI><B>Output file name</B> 
+<BR>
+une chaîne de caractères définissant le chemin du fichier.
+<BR>
+Propriétés : Type 'str' de taille 1
 
-extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
-extern void sciprint __PARAMS((char *fmt,...));
-void mput2  __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));
+<P>
+</LI>
+<LI><B>Output Format</B> 
+<BR>
+une chaîne de caractères définissant le format
+        à utiliser.
+<BR>
+Propriétés : Type 'str' de taille 1
 
-void 
-writec(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
-	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
-double x[],xd[],z[],tvec[],rpar[];
-double *inptr[],*outptr[],*t;
-     /*
-     ipar[1]   = lfil : file name length
-     ipar[2:4] = fmt  : numbers type ascii code
-     ipar[5]   = n : buffer length in number of records
-     ipar[6]   = swap
-     ipar[7:6+lfil] = character codes for file name
-     */
-{
-  char str[100],type[4];
-  int job = 1,three=3;
-  FILE *fd;
-  int n, k,/* m,*/ i, ierr;
-  double *buffer,*record;
-/*  long offset;*/
-  
+<P>
+</LI>
+<LI><B>Buffer size</B> 
+<BR>
+Pour améliorer l'efficacité du bloc, il est possible de
+        mettre les données dans un buffer.
+        L'écriture dans le fichier est alors fait après chaque
+        appel au bloc lorsque le buffer est rempli.
+<BR>
+Propriétés : Type 'vec' de taille 1
 
-  --ipar;
-  --z;
-  fd=(FILE *)(long)z[2];
-  buffer = (z+3);
-  ierr=0;
-  /*
-    k    : record counter within the buffer
-  */
+<P>
+</LI>
+<LI><B>Initial record index</B> 
+<BR>
+Un scalaire. Cela définit le premier enregistrement à lire dans le
+        fichier.
+<BR>
+Propriétés : Type 'vec' de taille 1
 
-  if (*flag==2&amp;&amp;*nevprt&gt;0) { /* add a new record to the buffer */
-    n    = ipar[5];
-    k    = (int)z[1];
-    /* copy current record to output */
-    record=buffer+(k-1)*(insz[0]);
+<P>
+</LI>
+<LI><B>Swap mode 0/1</B> 
+<BR>
+Avec le paramètre <B>Swap mode=1</B> le fichier est supposé être
+        au format IEEE "little endian" et les données sont 
+        entrelacées si nécessaire pour répondre au format IEEE du processeur.
+        Si <B>Swap mode=0</B> alors l'entrelacement est désactivé. 
+<BR>
+Propriétés : Type 'vec' de taille 1
+</LI>
+</UL>
 
-    for (i=0;i&lt;insz[0];i++)
-      record[i] = *(inptr[0]+i);
-    if (k&lt;n) 
-      z[1] = z[1]+1.0;
-    else {/* buffer is full write it to the file */
-      F2C(cvstr)(&amp;three,&amp;(ipar[2]),type,&amp;job,strlen(type));
-      for (i=2;i&gt;=0;i--)
-	if (type[i]!=' ') { type[i+1]='\0';break;}
-      mput2(fd,ipar[6],buffer,ipar[5]*insz[0],type,&amp;ierr);
-      if(ierr!=0) {
-	*flag = -3;
-	return;
-      }
-      z[1] = 1.0;
-    }
-  }
-  else if (*flag==4) {
-    F2C(cvstr)(&amp;(ipar[1]),&amp;(ipar[7]),str,&amp;job,strlen(str));
-    str[ipar[1]] = '\0';
-    fd = fopen(str,"wb");
-    if (!fd ) {
-      sciprint("Could not open the file!\n");
-      *flag = -3;
-      return;
-    }
-    z[2]=(long)fd;
-    z[1] = 1.0;
-  }
-  else if (*flag==5) {
-    if(z[2]==0) return;
-    k    =(int) z[1];
-    if (k&gt;=1) {/* flush rest of buffer */
-      F2C(cvstr)(&amp;three,&amp;(ipar[2]),type,&amp;job,strlen(type));
-      for (i=2;i&gt;=0;i--)
-	if (type[i]!=' ') { type[i+1]='\0';break;}
-      mput2(fd,ipar[6],buffer,(k-1)*insz[0],type,&amp;ierr);
-      if(ierr!=0) {
-	*flag = -3;
-	return;
-      }
-    }
-    fclose(fd);
-    z[2] = 0.0;
-  }
-  return;
-}
-</PRE>
-<HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 1
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> oui
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>writec</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Sinks/WRITEC_f.sci <A NAME="tex2html4"
+  HREF="WRITEC_f_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/writec.c (Type 2) <A NAME="tex2html5"
+  HREF="writec_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
 </BODY>
 </HTML>

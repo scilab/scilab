@@ -1,318 +1,211 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Read AU sound file </TITLE>
-<META NAME="description" CONTENT="Read AU sound file ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>READAU_f</TITLE>
+<META NAME="description" CONTENT="READAU_f">
+<META NAME="keywords" CONTENT="READAU_f">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="READAU_f.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/READAU_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./READAU_f.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html2893"
-  HREF="READAU_f.htm#SECTION00519100000000000000">Library</A>
-<LI><A NAME="tex2html2894"
-  HREF="READAU_f.htm#SECTION00519200000000000000">Description</A>
-<LI><A NAME="tex2html2895"
-  HREF="READAU_f.htm#SECTION00519300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html2896"
-  HREF="READAU_f.htm#SECTION00519400000000000000">Default properties</A>
-<LI><A NAME="tex2html2897"
-  HREF="READAU_f.htm#SECTION00519500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html2898"
-  HREF="READAU_f.htm#SECTION00519600000000000000">Computational function (type 2)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION00519000000000000000"></A><A NAME="READAU_f"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="READAU_f"></A>
 <BR>
-Read AU sound file 
+Read AU sound file
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=READAU_f.eps,width=90.00pt}$
+ $\epsfig{file=READAU_f.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="81" ALIGN="BOTTOM" BORDER="0"
- SRC="img18.gif"
- ALT="\epsfig{file=READAU_f.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION00519100000000000000">
-Library</A>
-</font></H3>
-Sources
+ WIDTH="270" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/READAU_f_blk.gif"
+ ALT="\epsfig{file=READAU_f.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION00519200000000000000">
-Description</A>
-</font></H3>
-Read from an audio file in .au format.
-<P>
-
-<H3><font color="blue"><A NAME="SECTION00519300000000000000">
-Dialog Box</A>
-</font></H3>
-<DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set READAU block parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">Input file name</TD>
-<TD ALIGN="CENTER">test.au</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Buffer size</TD>
-<TD ALIGN="CENTER">20</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Swap mode 0/1</TD>
-<TD ALIGN="CENTER">0</TD>
-</TR>
-</TABLE>
 </DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="READAU_f.htm#SECTION00010000000000000000">Read AU sound file</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="READAU_f.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="READAU_f.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="READAU_f.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html10"
+  HREF="READAU_f.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html11"
+  HREF="READAU_f.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html12"
+  HREF="READAU_f.htm#SECTION00026000000000000000">Computational function</A>
+<LI><A NAME="tex2html13"
+  HREF="READAU_f.htm#SECTION00027000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
 
 <UL>
-<LI>Input file name: the name of the .au file
+<LI><A NAME="tex2html3"
+  HREF="Sources_pal.htm">Sources - Sources palette</A>
 </LI>
-<LI>Buffer size: how much buffer to use.
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Loads a sound file specified by the string *.au file, returning the
+ sampled data in y. The .au extension is appended if no extension is
+ given. Amplitude values are in the range [-1,+1]. auread supports
+ multichannel data in the following formats: 
+
+<UL>
+<LI>8-bit mu-law 
 </LI>
-<LI>Swap mode 0/1: whether or not to swap
+<LI>8-, 16-, and 32-bit linear
+</LI>
+<LI>Floating-point
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00519400000000000000">
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="413" HEIGHT="165" BORDER="0"
+ SRC="../../images/scicos/READAU_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=READAU_f_gui.eps,width=260pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><B>Input file name</B> 
+<BR>
+a character string defining the path of the file.
+<BR>
+Properties : Type 'str' of size 1
+
+<P>
+</LI>
+<LI><B>Buffer size</B> 
+<BR>
+To improve efficiency it is possible to buffer
+        the input data. 
+        Read on the file is only done after each  Buffer
+        size call to the block.
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+<LI><B>Swap mode 0/1</B> 
+<BR>
+With  <B>Swap mode=1</B> the file is supposed to be
+        coded in "little endian IEEE format" and data are swaped if
+        necessary to match the IEEE format of the processor.
+        If <B>Swap mode=0</B> then automatic bytes swap is disabled.
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
 Default properties</A>
 </font></H3>
 
 <UL>
-<LI>always active: no
+<LI><b>always active:</b> no
 </LI>
-<LI>direct-feedthrough: no
+<LI><b>direct-feedthrough:</b> no
 </LI>
-<LI>zero-crossing: no
+<LI><b>zero-crossing:</b> no
 </LI>
-<LI>mode: no
+<LI><b>mode:</b> no
 </LI>
-<LI>number/sizes of inputs: 0 / 
+<LI><b>regular outputs:</b>
+<BR>   <b>   - port 1 : size [1,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 1
 </LI>
-<LI>number/sizes of outputs: 1 / 1
+<LI><b>number/sizes of activation outputs:</b> 0
 </LI>
-<LI>number/sizes of activation inputs: 1 / 1
+<LI><b>continuous-time state:</b> no
 </LI>
-<LI>number/sizes of activation outputs: 0 / 
+<LI><b>discrete-time state:</b> yes
 </LI>
-<LI>continuous-time state: no
+<LI><b>object discrete-time state:</b> no
 </LI>
-<LI>discrete-time state: yes
-</LI>
-<LI>name of computational function: <EM>readau</EM>
+<LI><b>name of computational function:</b> <EM>readau</EM>
 </LI>
 </UL>
-<H3><font color="blue"><A NAME="SECTION00519500000000000000">
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
 Interfacing function</A>
 </font></H3>
-<TT>scilab/macros/scicos_blocks/sources/READAU_f.sci</TT>
 
-<H3><font color="blue"><A NAME="SECTION00519600000000000000">
-Computational function (type 2)</A>
+<UL>
+<LI>SCI/macros/scicos_blocks/Sources/READAU_f.sci <A NAME="tex2html4"
+  HREF="READAU_f_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Computational function</A>
 </font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/readau.c (Type 2) <A NAME="tex2html5"
+  HREF="readau_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Authors</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
 <BR>
-<PRE>#include &lt;stdio.h&gt;
-#include &lt;math.h&gt; 
-#include &lt;string.h&gt; 
-#include "../machine.h"
-extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
-extern void sciprint __PARAMS((char *fmt,...));
-extern void mget2 __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));
-void 
-readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
-	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-     /*
-     ipar[1]   = lfil : file name length
-     ipar[2:4] = fmt  : numbers type ascii code
-     ipar[5]   = void
-     ipar[6]   = n : buffer length in number of records
-     ipar[7]   = maxvoie : record size
-     ipar[8]   = swap
-     ipar[9]   = first : first record to read
-     ipar[10:9+lfil] = character codes for file name
-     */
-integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar;
-integer insz[],*nin,outsz[],*nout;
-double x[],xd[],z[],tvec[],rpar[];
-double *inptr[],*outptr[],*t;
 
-{
-  char str[100],type[4];
-  int job = 1,three=3;
-  FILE *fd;
-  int n, k, kmax, /*no, lfil,*/ m, i, irep,/* nm,*/ ierr;
-  double *buffer,*record;
-  long offset;
-  double y;
-  /*  div_t divt;*/int quot, rem;
-  double SCALE=0.000030517578125;
-  /*  int ETAB[8]={0, 132, 396, 924, 1980, 4092, 8316, 16764}; */
-  int ETAB[8];
-  int mu;
-  int sig;
-  int e;
-  int f;
-/*  double ff;*/
 
-  ETAB[0]=0; ETAB[1]=132; ETAB[2]= 396; ETAB[3]=924; ETAB[4]=1980;
-  ETAB[5]=4092; ETAB[6]=8316; ETAB[7]=16764;
 
-  --ipar;
-  --z;
-  fd=(FILE *)(long)z[3];
-  buffer = (z+4);
-    
-  /*
-    k    : record counter within the buffer
-    kmax :  number of records in the buffer
-  */
 
-  if (*flag==1) {
-    n    = ipar[6];
-    k    = (int)z[1];
-    /* copy current record to output */
-    record=buffer+(k-1)*ipar[7];
-
-    for (i=0;i&lt;*nout;i++)
-      {
-	mu=(int) record[i];
-
-	mu=255-mu;
-	if(mu&gt;127)
-	  sig=1;
-	else
-	  sig=0;
-	/* comment out for SUNOS SS 8/10/99 
-	divt=div(mu,16);
-	e=divt.quot-8*sig+1;
-	f=divt.rem;
-	*/
-	quot=mu/16;rem=mu-16*quot;
-	e=quot-8*sig+1;
-	f=rem;
-
-	y=ldexp((double)(f),(e+2));
-	/* ff=(double)(e+2);
-	   y=((double) f) * pow(two, ff); */
-
-	e=ETAB[e-1];
-
-	y=SCALE*(1-2*sig)*(e+y);
-
-	*outptr[i]=y;
-      }
-    if (*nevprt&gt;0) {
-      /*     discrete state */
-      kmax =(int) z[2];
-      if (k&gt;=kmax&amp;&amp;kmax==n) {
-	/*     read a new buffer */
-	m=ipar[6]*ipar[7];
-	F2C(cvstr)(&amp;three,&amp;(ipar[2]),type,&amp;job,strlen(type));
-	for (i=2;i&gt;=0;i--)
-	  if (type[i]!=' ') { type[i+1]='\0';break;}
-	ierr=0;
-	mget2(fd,ipar[8],buffer,m,type,&amp;ierr);
-	if (ierr&gt;0) {
-	  sciprint("Read error!\n");
-	  fclose(fd);
-	  z[3] = 0.0;
-	  *flag = -1;
-	  return;
-	}
-	else if (ierr&lt;0) { /* EOF reached */
-	  kmax=-(ierr+1)/ipar[7];
-	}
-	else
-	  kmax=ipar[6];
-
-	z[1] = 1.0;
-	z[2] = kmax;
-      }
-      else if (k&lt;kmax) 
-	z[1] = z[1]+1.0;
-    }
-  }
-  else if (*flag==4) {
-    F2C(cvstr)(&amp;(ipar[1]),&amp;(ipar[10]),str,&amp;job,strlen(str));
-    str[ipar[1]] = '\0';
-    fd = fopen(str,"rb");
-    if (!fd ) {
-      sciprint("Could not open the file!\n");
-      *flag = -1;
-      return;
-    }
-    z[3]=(long)fd;
-    /* skip first records */
-    if (ipar[9]&gt;1) {
-      F2C(cvstr)(&amp;three,&amp;(ipar[2]),type,&amp;job,strlen(type));
-      for (i=2;i&gt;=0;i--)
-	  if (type[i]!=' ') { type[i+1]='\0';break;}
-      offset=(ipar[9]-1)*ipar[7]*sizeof(char);
-      irep = fseek(fd,offset,0) ;
-      if ( irep != 0 ) 
-	{
-	  sciprint("Read error\r\n");
-	  *flag = -1;
-	  fclose(fd);
-	  z[3] = 0.0;
-	  return;
-	}
-    }
-    /* read first buffer */
-    m=ipar[6]*ipar[7];
-    F2C(cvstr)(&amp;three,&amp;(ipar[2]),type,&amp;job,strlen(type));
-    for (i=2;i&gt;=0;i--)
-	  if (type[i]!=' ') { type[i+1]='\0';break;}
-    mget2(fd,ipar[8],buffer,m,type,&amp;ierr);
-    if (ierr&gt;0) {
-      sciprint("Read error!\n");
-      *flag = -1;
-      fclose(fd);
-      z[3] = 0.0;
-      return;
-    }
-    else if (ierr&lt;0) { /* EOF reached */
-      kmax=-(ierr+1)/ipar[7];
-    }
-    else
-      kmax=ipar[6];
-
-    z[1] = 1.0;
-    z[2] = kmax;
-  }
-  else if (*flag==5) {
-    if(z[3]==0) return;
-    fclose(fd);
-    z[3] = 0.0;
-  }
-  return;
-}
-</PRE>
-<BR><HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
 </BODY>
 </HTML>

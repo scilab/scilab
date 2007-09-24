@@ -1,174 +1,181 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Discrete transfer function </TITLE>
-<META NAME="description" CONTENT="Discrete transfer function ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>DLR_f</TITLE>
+<META NAME="description" CONTENT="DLR_f">
+<META NAME="keywords" CONTENT="DLR_f">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="DLR_f.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/DLR_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./DLR_f.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html4964"
-  HREF="DLR_f.htm#SECTION00581100000000000000">Library</A>
-<LI><A NAME="tex2html4965"
-  HREF="DLR_f.htm#SECTION00581200000000000000">Description</A>
-<LI><A NAME="tex2html4966"
-  HREF="DLR_f.htm#SECTION00581300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html4967"
-  HREF="DLR_f.htm#SECTION00581400000000000000">Default properties</A>
-<LI><A NAME="tex2html4968"
-  HREF="DLR_f.htm#SECTION00581500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html4969"
-  HREF="DLR_f.htm#SECTION00581600000000000000">Computational function (type 0)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION00581000000000000000"></A><A NAME="DLR_f"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="DLR_f"></A>
 <BR>
-Discrete transfer function 
+Discrete transfer function (Old block)
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=DLR_f.eps,width=90.00pt}$
+ $\epsfig{file=DLR_f.eps,height=101.25pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
- SRC="img139.gif"
- ALT="\epsfig{file=DLR_f.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION00581100000000000000">
-Library</A>
-</font></H3>
-Linear
+ WIDTH="152" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/DLR_f_blk.gif"
+ ALT="\epsfig{file=DLR_f.eps,height=101.25pt}">
 
-<H3><font color="blue"><A NAME="SECTION00581200000000000000">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html5"
+  HREF="DLR_f.htm#SECTION00010000000000000000">Discrete transfer function (Old block)</A>
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="DLR_f.htm#SECTION00021000000000000000">Description</A>
+<LI><A NAME="tex2html7"
+  HREF="DLR_f.htm#SECTION00022000000000000000">Dialog box</A>
+<LI><A NAME="tex2html8"
+  HREF="DLR_f.htm#SECTION00023000000000000000">Default properties</A>
+<LI><A NAME="tex2html9"
+  HREF="DLR_f.htm#SECTION00024000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html10"
+  HREF="DLR_f.htm#SECTION00025000000000000000">Computational function</A>
+<LI><A NAME="tex2html11"
+  HREF="DLR_f.htm#SECTION00026000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
 Description</A>
 </font></H3>
+
+<P>
 This block realizes a SISO linear system represented by its rational
 transfer function (in the symbolic variable z). The rational function
 must be proper.   
 
-<H3><font color="blue"><A NAME="SECTION00581300000000000000">
-Dialog Box</A>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Dialog box</A>
 </font></H3>
+
 <DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set discrete SISO transfer parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">Numerator (z)</TD>
-<TD ALIGN="CENTER">1</TD>
-</TR>
-<TR><TD ALIGN="CENTER">Denominator (z)</TD>
-<TD ALIGN="CENTER">1+z</TD>
-</TR>
-</TABLE>
+<IMG
+ WIDTH="413" HEIGHT="122" BORDER="0"
+ SRC="../../images/scicos/DLR_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=DLR_f_gui.eps,width=260pt}
+\end{center}\end{figure}">
 </DIV>
 
+<P>
+
 <UL>
-<LI>Numerator :A polynomial in <B>z</B>. 
+<LI><B>Numerator (z)</B> 
+<BR>
+This parameter sets the numerator of the transfer function.
+<BR>
+This must be a polynomial in <B>z</B>.
+<BR>
+Properties : Type 'pol' of size 1.
+
+<P>
 </LI>
-<LI>Denominator : A polynomial in <B>z</B>. 
+<LI><B>Denominator (z)</B> 
+<BR>
+This parameter sets the denominator of the transfer function.
+<BR>
+This must be a polynomial in <B>z</B>.
+<BR>
+Properties : Type 'pol' of size 1.
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00581400000000000000">
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Default properties</A>
 </font></H3>
 
 <UL>
-<LI>always active: no
+<LI><b>always active:</b> no
 </LI>
-<LI>direct-feedthrough: no
+<LI><b>direct-feedthrough:</b> no
 </LI>
-<LI>zero-crossing: no
+<LI><b>zero-crossing:</b> no
 </LI>
-<LI>mode: no
+<LI><b>mode:</b> no
 </LI>
-<LI>number/sizes of inputs: 1 / 1
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [1,1] / type 1</b>
+<BR></LI>
+<LI><b>regular outputs:</b>
+<BR>   <b>   - port 1 : size [1,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 1
 </LI>
-<LI>number/sizes of outputs: 1 / 1
+<LI><b>number/sizes of activation outputs:</b> 0
 </LI>
-<LI>number/sizes of activation inputs: 1 / 1
+<LI><b>continuous-time state:</b> no
 </LI>
-<LI>number/sizes of activation outputs: 0 / 
+<LI><b>discrete-time state:</b> yes
 </LI>
-<LI>continuous-time state: no
+<LI><b>object discrete-time state:</b> no
 </LI>
-<LI>discrete-time state: yes
-</LI>
-<LI>name of computational function: <EM>dsslti</EM>
+<LI><b>name of computational function:</b> <EM>dsslti</EM>
 </LI>
 </UL>
-<H3><font color="blue"><A NAME="SECTION00581500000000000000">
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
 Interfacing function</A>
 </font></H3>
-<TT>scilab/macros/scicos_blocks/linear/DLR_f.sci</TT>
 
-<H3><font color="blue"><A NAME="SECTION00581600000000000000">
-Computational function (type 0)</A>
+<UL>
+<LI>SCI/macros/scicos_blocks/Linear/DLR_f.sci <A NAME="tex2html3"
+  HREF="DLR_f_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Computational function</A>
 </font></H3>
-<BR>
-<PRE>      subroutine dsslti(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
-     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
-c     Copyright INRIA
 
-c     Scicos block simulator
-c     discrete state space linear system simulator
-c     rpar(1:nx*nx)=A
-c     rpar(nx*nx+1:nx*nx+nx*nu)=B
-c     rpar(nx*nx+nx*nu+1:nx*nx+nx*nu+nx*ny)=C
-c
-      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
-      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
-      integer nipar,nu,ny
-      double precision w(100)
-c
-c
-      la=1
-      lb=nz*nz+la
-      lc=lb+nz*nu
-      if(flag.eq.4) then
-         if(nz.gt.100) then
-            flag=-1
-            return
-         endif
-      elseif(flag.eq.2) then
-c     x+=a*x+b*u
-         call dcopy(nz,z,1,w,1)
-         call dmmul(rpar(la),nz,w,nz,z,nz,nz,nz,1)
-         call dmmul1(rpar(lb),nz,u,nu,z,nz,nz,nu,1)
-      elseif(flag.eq.1.or.flag.eq.6) then
-c     y=c*x+d*u
-         ld=lc+nz*ny
-         call dmmul(rpar(lc),ny,z,nz,y,ny,ny,nz,1)
-         call dmmul1(rpar(ld),ny,u,nu,y,ny,ny,nu,1)
-      endif
-      end
-</PRE>
-<BR><HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+<UL>
+<LI>SCI/routines/scicos/dsslti.f (Type 0) <A NAME="tex2html4"
+  HREF="dsslti_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Authors</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
 </BODY>
 </HTML>

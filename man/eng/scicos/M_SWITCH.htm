@@ -1,178 +1,200 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
 original version by:  Nikos Drakos, CBLU, University of Leeds
 * revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
 * with significant contributions from:
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Multi-port switch </TITLE>
-<META NAME="description" CONTENT="Multi-port switch ">
-<META NAME="keywords" CONTENT="main">
+<TITLE>M_SWITCH</TITLE>
+<META NAME="description" CONTENT="M_SWITCH">
+<META NAME="keywords" CONTENT="M_SWITCH">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
 <META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
 <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
 
-<LINK REL="STYLESHEET" HREF="main.css">
+<LINK REL="STYLESHEET" HREF="M_SWITCH.css">
 
 </HEAD>
 
 <BODY bgcolor="#FFFFFF">
 
-<!--Table of Child-Links-->
-<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/M_SWITCH.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./M_SWITCH.htm">eng</A>
 
-<UL>
-<LI><A NAME="tex2html3660"
-  HREF="M_SWITCH.htm#SECTION005311100000000000000">Library</A>
-<LI><A NAME="tex2html3661"
-  HREF="M_SWITCH.htm#SECTION005311200000000000000">Description</A>
-<LI><A NAME="tex2html3662"
-  HREF="M_SWITCH.htm#SECTION005311300000000000000">Dialog Box</A>
-<LI><A NAME="tex2html3663"
-  HREF="M_SWITCH.htm#SECTION005311400000000000000">Default properties</A>
-<LI><A NAME="tex2html3664"
-  HREF="M_SWITCH.htm#SECTION005311500000000000000">Interfacing function</A>
-<LI><A NAME="tex2html3665"
-  HREF="M_SWITCH.htm#SECTION005311600000000000000">Computational function (type 4)</A>
-</UL>
-<!--End of Table of Child-Links-->
-<HR>
-
-<H2><A NAME="SECTION005311000000000000000"></A><A NAME="M_SWITCH"></A>
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="M_SWITCH"></A>
 <BR>
-Multi-port switch 
+Multi-port switch
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
- $\epsfig{file=M_SWITCH.eps,width=90.00pt}$
+ $\epsfig{file=M_SWITCH.eps,height=90pt}$
  -->
 <IMG
- WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
- SRC="img70.gif"
- ALT="\epsfig{file=M_SWITCH.eps,width=90.00pt}">
-</DIV>
-<H3><font color="blue"><A NAME="SECTION005311100000000000000">
-Library</A>
-</font></H3>
-Branching
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/M_SWITCH_blk.gif"
+ ALT="\epsfig{file=M_SWITCH.eps,height=90pt}">
 
-<H3><font color="blue"><A NAME="SECTION005311200000000000000">
-Description</A>
-</font></H3>
-Multiple switch block. The output comes from the input indiacted by
-the control input.
-<P>
-
-<H3><font color="blue"><A NAME="SECTION005311300000000000000">
-Dialog Box</A>
-</font></H3>
-<DIV ALIGN="CENTER">
-<TABLE CELLPADDING=3 BORDER="1">
-<TR><TD ALIGN="CENTER">Set parameters</TD>
-<TD></TD>
-</TR>
-<TR><TD ALIGN="CENTER">number of inputs</TD>
-<TD ALIGN="CENTER">2</TD>
-</TR>
-<TR><TD ALIGN="CENTER">zero base indexing (0), otherwise 1</TD>
-<TD ALIGN="CENTER">1</TD>
-</TR>
-<TR><TD ALIGN="CENTER">rounding rule: int (0), round (1), ceil (2), floor (3)</TD>
-<TD ALIGN="CENTER">3</TD>
-</TR>
-</TABLE>
 </DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="M_SWITCH.htm#SECTION00010000000000000000">Multi-port switch</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="M_SWITCH.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="M_SWITCH.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="M_SWITCH.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html10"
+  HREF="M_SWITCH.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html11"
+  HREF="M_SWITCH.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html12"
+  HREF="M_SWITCH.htm#SECTION00026000000000000000">Computational function</A>
+<LI><A NAME="tex2html13"
+  HREF="M_SWITCH.htm#SECTION00027000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
 
 <UL>
-<LI>number of inputs: it changes the number of input ports
+<LI><A NAME="tex2html3"
+  HREF="Branching_pal.htm">Branching - Branching palette</A>
 </LI>
-<LI>zero base indexing : how to count, from 0 or from 1.
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The Multi-Port Switch block chooses between a number of inputs. The
+first (top) input is called the control input, while the rest of the
+inputs are called data inputs. The value of the control input
+determines which data input is passed through to the output port. 
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="114" BORDER="0"
+ SRC="../../images/scicos/M_SWITCH_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=M_SWITCH_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><B>number of inputs</B>
+<BR>
+Specify the number of data inputs to the block. 
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
 </LI>
-<LI>rounding rule: if first input is not an integer, how should it be
-rounded to one.
+<LI><B>zero base indexing </B>
+<BR>
+If selected, the block uses zero-based
+        indexing. Otherwise, the block uses one-based indexing.  
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+<LI><B>rounding rule: int </B>
+<BR>
+Select the rounding mode for the output. 
+<BR>
+Properties : Type 'vec' of size 1
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION005311400000000000000">
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
 Default properties</A>
 </font></H3>
 
 <UL>
-<LI>always active: no
+<LI><b>always active:</b> no
 </LI>
-<LI>direct-feedthrough: yes
+<LI><b>direct-feedthrough:</b> yes
 </LI>
-<LI>zero-crossing: no
+<LI><b>zero-crossing:</b> no
 </LI>
-<LI>mode: no
+<LI><b>mode:</b> no
 </LI>
-<LI>number/sizes of inputs: 3 / 1  -1  -1
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [1,1] / type 1</b>
+<BR>   <b>   - port 2 : size [-1,1] / type 0</b>
+<BR>   <b>   - port 3 : size [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>regular outputs:</b>
+<BR>   <b>   - port 1 : size [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 0
 </LI>
-<LI>number/sizes of outputs: 1 / -1
+<LI><b>number/sizes of activation outputs:</b> 0
 </LI>
-<LI>number/sizes of activation inputs: 0 / 
+<LI><b>continuous-time state:</b> no
 </LI>
-<LI>number/sizes of activation outputs: 0 / 
+<LI><b>discrete-time state:</b> no
 </LI>
-<LI>continuous-time state: no
+<LI><b>object discrete-time state:</b> no
 </LI>
-<LI>discrete-time state: no
-</LI>
-<LI>name of computational function: <EM>mswitch</EM>
+<LI><b>name of computational function:</b> <EM>mswitch</EM>
 </LI>
 </UL>
-<H3><font color="blue"><A NAME="SECTION005311500000000000000">
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
 Interfacing function</A>
 </font></H3>
-<TT>scilab/macros/scicos_blocks/branching/M_SWITCH.sci</TT>
 
-<H3><font color="blue"><A NAME="SECTION005311600000000000000">
-Computational function (type 4)</A>
+<UL>
+<LI>SCI/macros/scicos_blocks/Branching/M_SWITCH.sci <A NAME="tex2html4"
+  HREF="M_SWITCH_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Computational function</A>
 </font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/mswitch.c (Type 4) <A NAME="tex2html5"
+  HREF="mswitch_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Authors</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
 <BR>
-<PRE>#include "scicos_block.h"
-#include &lt;math.h&gt;
 
-#define max(a,b) ((a) &gt;= (b) ? (a) : (b))
-#define min(a,b) ((a) &lt;= (b) ? (a) : (b))
 
-void  mswitch(scicos_block *block,int flag)
-{
-  int i,j;
-  i=block-&gt;ipar[1];
-  if (i==0) {
-    if (*block-&gt;inptr[0]&gt;0) {
-      j=floor(*block-&gt;inptr[0]);
-    }else{
-      j=ceil(*block-&gt;inptr[0]);
-    }
-  }else if (i==1) {
-    if (*block-&gt;inptr[0]&gt;0) {
-      j=floor(*block-&gt;inptr[0]+.5);
-    }else{
-      j=ceil(*block-&gt;inptr[0]-.5);
-    }
-  }else if (i==2) {
-    j=ceil(*block-&gt;inptr[0]);
-  }else if (i==3) {
-    j=floor(*block-&gt;inptr[0]);
-  }
-  j=j+1-block-&gt;ipar[0];
-  j=max(j,1);
-  j=min(j,block-&gt;nin-1);
-  for (i=0;i&lt;block-&gt;insz[j];i++) {
-    block-&gt;outptr[0][i]=block-&gt;inptr[j][i];
-  }
-}
-</PRE>
-<BR><HR>
-<ADDRESS>
-Ramine Nikoukhah
-2004-06-22
-</ADDRESS>
+
+
 </BODY>
 </HTML>
