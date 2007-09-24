@@ -1430,6 +1430,12 @@ When t=2 we loop back to 0.
 </EXAMPLE>
 </FILE>
 
+<FILE name='TKSCALE' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='TOWS_c' type='XML'>
   <EXAMPLE>
 

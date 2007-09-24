@@ -2792,6 +2792,18 @@ La seule sortie régulière de ce bloc donne le temps courant de la
 simulation.
 </FILE>
 
+<FILE name='TKSCALE' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='TOWS_c' type='LATEX'>
 Ce bloc est utilisé pour transférer des données simulées dans
 l'environnement Scilab.\\

@@ -6093,6 +6093,50 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 </PARAM>
 </FILE>
 
+<FILE name='TKSCALE' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Min value</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Max value</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 2.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Normalization</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 3.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='TOWS_c' type='XML'>
   <PARAM>
     <PARAM_INDENT>

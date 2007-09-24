@@ -1715,6 +1715,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='TKSCALE' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='TOWS_c' type='XML'>
   <USED_FUNCTIONS>
 
