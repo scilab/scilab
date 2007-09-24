@@ -382,10 +382,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       prot = funcprot();
       funcprot(0);
       
-      getfile  = tk_getfile;  //** Tk function definition 
-      
-      savefile = tk_savefile; //** Tk    "        "
-      
       getcolor = tk_getcolor; //** Tk    "        "
       
       //** --------- Popup OS dependent definition -----------------
@@ -394,7 +390,11 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	getvalue = tk_getvalue ;
 	mpopup   = tk_mpopup   ; //** the pop up Windowz
 	choose   = tk_scicos_choose   ;
-      else
+        getfile  = xgetfile;  // tk version  crashes scilab in some cases
+        savefile = xgetfile; // tk version  crashes scilab in some cases
+      else      
+        getfile  = tk_getfile;  //** Tk function definition 
+        savefile = tk_savefile; //** Tk    "        "
 	getvalue = tk_getvalue ;
 	mpopup = tk_mpopupX    ; //** for the Penguin 
 	deff('x=choose(varargin)', 'x=x_choose(varargin(1:$))');
@@ -535,6 +535,14 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       winpos=gh_current_window.figure_position;
       %curwpar=[data_bounds(:)',gh_current_window.axes_size,..
 			xget('viewport'),winsize,winpos,%zoom]
+      screensz=evstr(TCL_EvalStr('wm  maxsize .')) 
+      if min(winsize)>0  then  // window is not iconified
+          winpos=max(0,winpos-max(0,-screensz+winpos+winsize) )
+          %curwpar(11:12)=winpos  // make sure window remains inside screen
+      end
+      if ~isequal(scs_m.props.wpar,%curwpar) then
+         scs_m.props.wpar=%curwpar  // keep window dimensions  
+      end
     end    
     
     
@@ -688,20 +696,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
   end //**--->  end of the while loop: the only way to exit is with the 'Quit' command 
 
   if Cmenu=='Quit' then
-    if %curwpar<>[] then
-      TCL_EvalStr('set qxcx [wm  maxsize .];') 
-      screensz=evstr(TCL_GetVar('qxcx')) // get screen size
-      winsize=%curwpar(9:10)
-      winpos=%curwpar(11:12)
-      if min(winsize)>0  then  // window is not iconified
-          winpos=max(0,winpos-max(0,-screensz+winpos+winsize) )
-          %curwpar(11:12)=winpos  // make sure window remains inside screen
-      end
-
-
-      scs_m.props.wpar=%curwpar  // keep window dimensions  
-    end
-
 
     do_exit() ; //** this function is executed in case of 'Quit'
     if ~super_block then
