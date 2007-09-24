@@ -390,8 +390,8 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	getvalue = tk_getvalue ;
 	mpopup   = tk_mpopup   ; //** the pop up Windowz
 	choose   = tk_scicos_choose   ;
-        getfile  = xgetfile;  // tk version  crashes scilab in some cases
-        savefile = xgetfile; // tk version  crashes scilab in some cases
+        getfile  = tk_UXstygetfile;  // use unix style to avoid scilab crash
+        savefile = tk_UXstysavefile; //  use unix style to avoid scilab crash
       else      
         getfile  = tk_getfile;  //** Tk function definition 
         savefile = tk_savefile; //** Tk    "        "
