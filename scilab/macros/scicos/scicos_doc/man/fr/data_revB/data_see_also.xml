@@ -570,8 +570,6 @@
 <FILE name='Events_pal' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
@@ -596,13 +594,15 @@
 
 <FILE name='FROMWSB' type='XML'>
   <SEE_ALSO>
-
+   <SEE_ALSO_ITEM> <LINK>TOWS_c</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM><LINK>FROMWS_c</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
 </FILE>
 
 <FILE name='FROMWS_c' type='XML'>
   <SEE_ALSO>
-  <SEE_ALSO_ITEM> <LINK>TOWS_c</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>TOWS_c</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM><LINK>FROMWSB</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
 </FILE>
 
@@ -640,15 +640,11 @@
 <FILE name='GENSIN_f' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='GENSQR_f' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -682,15 +678,11 @@
 <FILE name='Ground' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='HALT_f' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -698,15 +690,11 @@
 <FILE name='HYSTHERESIS' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='IFTHEL_f' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -720,15 +708,11 @@
 <FILE name='INIMPL_f' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='INTEGRAL' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -753,8 +737,6 @@
 
 <FILE name='INTRP2BLK_f' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>

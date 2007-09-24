@@ -758,7 +758,7 @@
 </FILE>
 
 <FILE name='FROMWSB' type='XML'>
-  <SHORT_DESCRIPTION name="FROMWSB">FROMWSB</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="FROMWSB">Données de l'environnement Scilab vers Scicos</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='FROMWSB_intfunc' type='XML'>
@@ -766,7 +766,7 @@
 </FILE>
 
 <FILE name='FROMWS_c' type='XML'>
-  <SHORT_DESCRIPTION name="FROMWS_c">FROMWS_c</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="FROMWS_c">Données de l'environnement Scilab vers Scicos</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='FROMWS_c_intfunc' type='XML'>
