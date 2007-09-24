@@ -675,7 +675,8 @@ utilpath=SCI+'/macros/util/';
 //define %gendoc list (for scitexgendoc)
 %gendoc=gendoc_def(lang=['fr' 'eng'],..
                    man_path=doc_path+'man/',..
-                   rout_path=SCI+'/routines/scicos/',..
+                   rout_path=[SCI+'/routines/scicos/';
+                              SCI+'/macros/scicos/'],..
                    mod_flag='Scicos',..
                    path_flag='SCI',..
                    pal_path=palpath,..

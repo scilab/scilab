@@ -423,6 +423,10 @@
 	dial_width_html=220pt
 </FILE>
 
+<FILE name='TKSCALE' type='SPECIALDESC'>
+	dial_width_html=260pt
+</FILE>
+
 <FILE name='TOWS_c' type='SPECIALDESC'>
 	dial_width_html=280pt
 </FILE>

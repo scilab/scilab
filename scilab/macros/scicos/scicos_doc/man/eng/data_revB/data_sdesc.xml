@@ -3524,6 +3524,10 @@
   <SHORT_DESCRIPTION name="time_delay">time_delay</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='tkscaleblk_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="tkscaleblk">tkscaleblk</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='tows_c_routcos' type='XML'>
   <SHORT_DESCRIPTION name="tows_c">tows_c</SHORT_DESCRIPTION>
 </FILE>
