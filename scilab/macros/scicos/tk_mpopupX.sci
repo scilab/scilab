@@ -44,7 +44,7 @@ function [txt,j]=createmenu(ll,txt,path,j)
 	   l+''''"};'
       j=j+1
     else
-
+      i=i+1
       if length(l)<2 then error('A menu is empty'),end
       cpath=path+'.edit'+string(i);
       txt1=txt1+path+' add cascade -label '"'+l(1)+''"  -menu '+cpath+';'
