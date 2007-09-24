@@ -220,7 +220,7 @@ model=scicos_model(..
          nzcross=0,..
          nmode=0,..
          equations=list())
-  gr_i='xstringb(orig(1),orig(2),''FROMWSB'',sz(1),sz(2),''fill'')';
-  x=standard_define([2 2],model,[],gr_i)
+  gr_i='xstringb(orig(1),orig(2),''From workspace'',sz(1),sz(2),''fill'')';
+  x=standard_define([3.5 2],model,[],gr_i)
 end
 endfunction
