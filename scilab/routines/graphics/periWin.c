@@ -4172,6 +4172,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 		SetViewportExtEx(hdc, rect.right, rect.bottom,NULL);
 		SetTextAlign(hdc, TA_LEFT|TA_BOTTOM);
 		SetFocus( ScilabXgc->CWindow);
+		SetActiveWindow( ScilabXgc->CWindow);
 
 		if (EntryCounter == 0)
 		{
