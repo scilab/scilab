@@ -600,16 +600,16 @@ endfunction
 
 //gen_scicos_whatis : generate the whatis fileS
 function gen_scicos_whatis(%gd)
-  gen_whatis(%gd.mpath.data(1)+'/ABCDblocks.xml',%gd);
-  for i=1:size(%gd.mpath.html,1)
-    unix_g(%gd.cmd.mv+%gd.mpath.html(i)+...
-            'whatis.htm '+%gd.mpath.html(i)+'ABCD_Blocks.htm');
-  end
-  gen_whatis(%gd.mpath.data(1)+'/outline.xml',%gd);
-  for i=1:size(%gd.mpath.html,1)
-    unix_g(%gd.cmd.mv+%gd.mpath.html(i)+...
-            'whatis.htm '+%gd.mpath.html(i)+'whatis_scicos.htm');
-  end
+  gen_whatis(%gd.mpath.data(1)+'/ABCD_Blocks.xml',%gd);
+//   for i=1:size(%gd.mpath.html,1)
+//     unix_g(%gd.cmd.mv+%gd.mpath.html(i)+...
+//             'whatis.htm '+%gd.mpath.html(i)+'ABCD_Blocks.htm');
+//   end
+  gen_whatis(%gd.mpath.data(1)+'/whatis_scicos.xml',%gd);
+//   for i=1:size(%gd.mpath.html,1)
+//     unix_g(%gd.cmd.mv+%gd.mpath.html(i)+...
+//             'whatis.htm '+%gd.mpath.html(i)+'whatis_scicos.htm');
+//   end
   gen_whatis(%gd.mpath.data(1)+'/whatis.xml',%gd);
   for i=1:size(%gd.mpath.html,1)
     tt=mgetl(%gd.mpath.html(i)+'whatis.htm');
@@ -690,6 +690,7 @@ utilpath=SCI+'/macros/util/';
                    verbose=%t,..
                    with_log=%t,..
                    html_subtitle_color='blue',..
+                   whatis_name='whatis_scicos.htm',...
                    name_log='BUILD_4_scicos_doc.log');
 
 //set behavior of documentation target directories
@@ -908,7 +909,7 @@ list_of_scistruc = [opath2(1),"scicos_diagram.sci","sci";
 
 //**------------------outline.xml generation------------------**//
 outline_txt=generate_scs_outline();
-mputl(outline_txt,%gendoc.mpath.data(1)+'/outline.xml');
+mputl(outline_txt,%gendoc.mpath.data(1)+'/whatis_scicos.xml');
 //**----------------------------------------------------------**//
 
 
@@ -950,7 +951,7 @@ list_of_ABCDblocks=[my_list(find(my_list(:,3)=='block'),:);
 [s,k]=gsort(convstr(list_of_ABCDblocks(:,2)),'r','i');
 list_of_ABCDblocks=list_of_ABCDblocks(k,:);
 outline_txt=gen_outline_block(list_of_ABCDblocks);
-mputl(outline_txt,%gendoc.mpath.data(1)+'/ABCDblocks.xml');
+mputl(outline_txt,%gendoc.mpath.data(1)+'/ABCD_Blocks.xml');
 //**----------------------------------------------------------**//
 
 //**------------------whatis.xml generation------------------**//
