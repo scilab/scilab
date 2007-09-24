@@ -6185,7 +6185,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	<PARAM_NAME>Amplitude (Volt)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    Amplitude du signal sinosoïde.
+	    Amplitude de la sinusoïde.
 	  </SP>
 	  <SP>
 	    Propriétés : Type 'vec' de taille 1.
@@ -6197,7 +6197,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	<PARAM_NAME>phase (rad)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    Phase du signal sinosoïde
+	    Phase de la sinusoïde.
 	  </SP>
 	  <SP>
 	    Propriétés : Type 'vec' de taille 1.
@@ -6209,7 +6209,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	<PARAM_NAME>Frequency (Hz)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    Fréquence du signal sinosoïde
+	    Fréquence de la sinusoïde.
 	  </SP>
 	  <SP>
 	    Propriétés : Type 'vec' de taille 1.
@@ -6221,7 +6221,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	<PARAM_NAME>Voltageoffset (V)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    Voltage offset du signal sinosoïde
+	    Tension de décalage de la sinusoïde.
 	  </SP>
 	  <SP>
 	    Propriétés : Type 'vec' de taille 1.
@@ -6233,8 +6233,8 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	<PARAM_NAME>Timeoffset (s)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    Décalage de temps. Durant ce temps, le signal de sortie
-	reste constant égal au voltage offset.
+	    Décalage temporel. Durant ce temps, le signal de sortie
+	    reste constant et égal à la tension de décalage.
 	  </SP>
 	  <SP>
 	    Propriétés : Type 'vec' de taille 1.
