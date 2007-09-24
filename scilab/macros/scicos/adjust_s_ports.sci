@@ -30,7 +30,7 @@ for k=1:lstsize(scs_m.objs)
       out2=[out2;o.model.in2]
       outtyp=[outtyp;o.model.intyp]
       // graphics.out_implicit=[graphics.out_implicit;'I']
-      out_implicit=[out_implicit; nout]
+      out_implicit=[out_implicit; o.model.ipar]//RN corrected, need checking
     case 'OUT_f' then
       nout=nout+1
       outp=[outp o.model.ipar]
@@ -44,7 +44,7 @@ for k=1:lstsize(scs_m.objs)
       in2=[in2;o.model.out2]
       intyp=[intyp;o.model.outtyp]
       //graphics.in_implicit=[graphics.in_implicit;'I']
-      in_implicit=[in_implicit;nin]
+      in_implicit=[in_implicit;o.model.ipar]  //RN corrected, need checking
     case 'CLKIN_f' then
       nclkin=nclkin+1
       cinp=[cinp o.model.ipar]
