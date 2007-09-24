@@ -10,9 +10,16 @@ if %exp_dir<>[] then
 	fname=%exp_dir+'/'+'navigator'
   end
 
+if 0 then
   driv=driver();
   driver('Pos');
+  set_posfig_dim(400,600)
   xinit(fname);
+else
+  win_nag=max(winsid())+1
+  scf(win_nag)
+end
+
   gh_axes=gca();
   
   
@@ -98,20 +105,31 @@ if %exp_dir<>[] then
   
   end
   drawnow()
-  xend();driver(driv);
+
+
+if 0 then
+  xend();
+  set_posfig_dim(0,0)
+  driver(driv);
+  fname=pathconvert(fname,%f,%t,'w')
+else 
+  if MSDOS then
+    fname=pathconvert(fname,%f,%t,'w')
+  end
+  xs2ps(win_nag,fname)
+  xdel(win_nag)
+end
 
   opt=' ';//' -landscape '
   if MSDOS then
-      fname=pathconvert(fname,%f,%t,'w')
       comm=pathconvert(SCI+'\bin\BEpsf',%f,%f,'w')
       rep=unix_g(comm+' '+opt+'""'+fname+'""')
-    else
+  else
       rep=unix_g(SCI+'/bin/BEpsf '+opt+fname)
-    end
+  end
     
-    if rep<>[] then 
+  if rep<>[] then 
       message(['Problem generating ps file.';'perhaps directory not writable'] )
-    end
+  end
 end
 endfunction
-  
