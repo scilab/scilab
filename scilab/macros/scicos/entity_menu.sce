@@ -4,7 +4,7 @@ function add_entity_menu(win)
     scf(win)
   end
   old=gcf()
-  EntityMenus=["Browser","Copy","Paste",'Move","Delete","New","Ok","Cancel"];
+  EntityMenus=["Browser","Copy","Paste",'Move","Delete","Insert","Ok","Cancel"];
   //delmenu(win,'Entities')
   addmenu(win,'Edit',EntityMenus,list(2,'entity_menu'));
   //seteventhandler('entity_handler')
@@ -229,6 +229,7 @@ function txt=gen_code(win)
 	 graphical_object_code(ax.children(k))]
    
   end
+  if txt==[] then txt=' ',end
   scf(old)
 endfunction
 
@@ -275,9 +276,18 @@ function txt=graphical_object_code(rk)
     dx='orig(1)+sz(1)*'+num2string(rk.data(1))
     dy='orig(2)+sz(2)*'+num2string(rk.data(2))
     t=sci2exp(rk.text)
-    txt=[txt;
-	 'xstring('+dx+','+dy+','+t+');'
-	 text_opt(rk)]
+    if rk.text_box_mode <> "filled" then
+      txt=[txt;
+	   'xstring('+dx+','+dy+','+t+');'
+	   text_opt(rk)]
+    else //patch because of xstringb patch in scicos
+      w='sz(1)*'+num2string(rk.text_box(1))
+      h='sz(2)*'+num2string(rk.text_box(2))
+
+      txt=[txt;
+	   'xstringb('+dx+','+dy+','+t+','+w+','+h+',''fill'');'
+	   textb_opt(rk)]
+    end
   case 'Compound' then //multiple line string
     n=size(rk.children,'*')
     if n==1 then
@@ -353,6 +363,23 @@ function opts=text_opt(e)
     end
   end
   opts=[fontopt;boxopt;lineopt]
+  if opts<>[] then
+    opts=['e=gce()';opts]
+    opts= strcat(opts,';')+';'
+  end
+endfunction
+
+function opts=textb_opt(e)
+  fontopt=font_opt(e)
+  lineopt=[];
+  if rk.fill_mode == "on" then
+    lineopt='e.fill_mode='+sci2exp(e.fill_mode)
+    if e.foreground<>-1 then
+      lineopt=[lineopt
+	       'e.foreground='+sci2exp(e.foreground)]
+    end
+  end
+  opts=[fontopt;lineopt]
   if opts<>[] then
     opts=['e=gce()';opts]
     opts= strcat(opts,';')+';'

@@ -36,11 +36,15 @@ function scs_m=do_icon_edit(%pt,scs_m)
   // draw the current icon (creates the graphical objects)
   sz=[1 1];orig=[0 0];
   deff('c=scs_color(c)',' ')
-  if execstr(gr_i(1),"errcatch")<>0 then
+  //patch because xstringb has been overloaded by scicos
+  newfun('xstringb3',funptr('xstringb'))
+  instr=strsubst(gr_i(1),'xstringb','xstringb3')
+  if execstr(instr,"errcatch")<>0 then
     message(['The current icon depends on block parameter'
 	     'part of the icon cannot be imported here'
 	     'Use icon menu to check the content'])
   end
+  clearfun('xstringb3')
   //create and start the menus
   delmenu(win,'Edit');delmenu(win,'3D Rot.'); //remove unused default menus
   exec('SCI/macros/scicos/entity_menu.sce',-1);
