@@ -19,7 +19,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
   double rect[4],wc,x,y,yi,angle=0.0;
   integer flagx=0;
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
-  char **Str;
+  char **Str = NULL;
   long hdlstr ;
   BOOL isboxed = FALSE;
 

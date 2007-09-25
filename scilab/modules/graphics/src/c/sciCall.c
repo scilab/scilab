@@ -280,13 +280,18 @@ void Objstring( char            ** fname      ,
                 sciTextAlignment   alignment   )
 {
   BOOL redraw = FALSE ;
-  sciPointObj *psubwin, *pobj;
-  
-   
+  sciPointObj * psubwin = NULL;
+  sciPointObj * pobj = NULL;
+  sciPointObj * pFigure = NULL;
+
+  startGraphicDataWriting();
+  pFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();
+  endGraphicDataWriting();
 
   redraw = checkRedrawing() ;
 
+  startFigureDataWriting(pFigure);
   sciSetCurrentObj( ConstructText( psubwin   ,
                                    fname     ,
                                    nbRow     ,
@@ -302,6 +307,9 @@ void Objstring( char            ** fname      ,
                                    isline    ,
                                    isfilled  ,
                                    alignment  ) ) ;
+  endFigureDataWriting(pFigure);
+
+  startFigureDataReading(pFigure);
   pobj=sciGetCurrentObj ();
   *hdl= sciGetHandle(pobj);
   sciSetFontOrientation (pobj, (int) (*angle *  10)); 
@@ -314,6 +322,7 @@ void Objstring( char            ** fname      ,
   {
     sciDrawObjIfRequired(pobj);
   }
+  endFigureDataReading(pFigure);
  
 }
 /*-----------------------------------------------------------
