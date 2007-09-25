@@ -197,7 +197,10 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
 	src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
 	src/jni/PolylineInterpColorDrawerGL.cpp \
-	sci_gateway/c/gw_renderer.c
+	src/cpp/textDrawing/DrawableTextJoGL.cpp \
+	src/cpp/textDrawing/DrawableTextBridgeFactory.cpp \
+	src/cpp/textDrawing/DrawableTextJavaMapper.cpp \
+	src/jni/DrawableTextGL.cpp sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -320,7 +323,11 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-PolylineBarDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-PolylineInterpColorDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineInterpColorDrawerGL.lo
+@GUI_TRUE@	libscirenderer_la-PolylineInterpColorDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableTextJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableTextBridgeFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableTextJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableTextGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -639,7 +646,11 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/PolylineBarDrawerGL.cpp \
 @GUI_TRUE@src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/PolylineInterpColorDrawerGL.cpp
+@GUI_TRUE@src/jni/PolylineInterpColorDrawerGL.cpp \
+@GUI_TRUE@src/cpp/textDrawing/DrawableTextJoGL.cpp \
+@GUI_TRUE@src/cpp/textDrawing/DrawableTextBridgeFactory.cpp \
+@GUI_TRUE@src/cpp/textDrawing/DrawableTextJavaMapper.cpp \
+@GUI_TRUE@src/jni/DrawableTextGL.cpp
 
 
 # List of the gateway c files
@@ -867,7 +878,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurfaceFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableText.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawingBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FigureScilabCall.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Plo@am__quote@
@@ -1837,6 +1852,34 @@ libscirenderer_la-PolylineInterpColorDrawerGL.lo: src/jni/PolylineInterpColorDra
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PolylineInterpColorDrawerGL.cpp' object='libscirenderer_la-PolylineInterpColorDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineInterpColorDrawerGL.lo `test -f 'src/jni/PolylineInterpColorDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineInterpColorDrawerGL.cpp
+
+libscirenderer_la-DrawableTextJoGL.lo: src/cpp/textDrawing/DrawableTextJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableTextJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableTextJoGL.Tpo -c -o libscirenderer_la-DrawableTextJoGL.lo `test -f 'src/cpp/textDrawing/DrawableTextJoGL.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableTextJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableTextJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableTextJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/textDrawing/DrawableTextJoGL.cpp' object='libscirenderer_la-DrawableTextJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableTextJoGL.lo `test -f 'src/cpp/textDrawing/DrawableTextJoGL.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableTextJoGL.cpp
+
+libscirenderer_la-DrawableTextBridgeFactory.lo: src/cpp/textDrawing/DrawableTextBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableTextBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableTextBridgeFactory.Tpo -c -o libscirenderer_la-DrawableTextBridgeFactory.lo `test -f 'src/cpp/textDrawing/DrawableTextBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableTextBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableTextBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableTextBridgeFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/textDrawing/DrawableTextBridgeFactory.cpp' object='libscirenderer_la-DrawableTextBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableTextBridgeFactory.lo `test -f 'src/cpp/textDrawing/DrawableTextBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableTextBridgeFactory.cpp
+
+libscirenderer_la-DrawableTextJavaMapper.lo: src/cpp/textDrawing/DrawableTextJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableTextJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableTextJavaMapper.Tpo -c -o libscirenderer_la-DrawableTextJavaMapper.lo `test -f 'src/cpp/textDrawing/DrawableTextJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableTextJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableTextJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableTextJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/textDrawing/DrawableTextJavaMapper.cpp' object='libscirenderer_la-DrawableTextJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableTextJavaMapper.lo `test -f 'src/cpp/textDrawing/DrawableTextJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableTextJavaMapper.cpp
+
+libscirenderer_la-DrawableTextGL.lo: src/jni/DrawableTextGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableTextGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableTextGL.Tpo -c -o libscirenderer_la-DrawableTextGL.lo `test -f 'src/jni/DrawableTextGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableTextGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableTextGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableTextGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableTextGL.cpp' object='libscirenderer_la-DrawableTextGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableTextGL.lo `test -f 'src/jni/DrawableTextGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableTextGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -129,7 +129,11 @@ src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp \
 src/jni/PolylineBarDrawerGL.cpp \
 src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
 src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
-src/jni/PolylineInterpColorDrawerGL.cpp
+src/jni/PolylineInterpColorDrawerGL.cpp \
+src/cpp/textDrawing/DrawableTextJoGL.cpp \
+src/cpp/textDrawing/DrawableTextBridgeFactory.cpp \
+src/cpp/textDrawing/DrawableTextJavaMapper.cpp \
+src/jni/DrawableTextGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c

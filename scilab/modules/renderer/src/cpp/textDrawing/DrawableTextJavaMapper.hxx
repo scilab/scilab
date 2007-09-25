@@ -9,7 +9,7 @@
 #define _DRAWABLE_TEXT_JAVA_MAPPER_HXX_
 
 #include "DrawableClippedObjectJavaMapper.hxx"
-//#include "DrawableTextGL.hxx"
+#include "DrawableTextGL.hxx"
 
 namespace sciGraphics
 {
@@ -53,7 +53,7 @@ private:
   /**
    * Giws generated wrapper
    */
-//  org_scilab_modules_renderer_textDrawing::DrawabletextGL * m_pJavaObject;
+  org_scilab_modules_renderer_textDrawing::DrawableTextGL * m_pJavaObject;
 
 };
 

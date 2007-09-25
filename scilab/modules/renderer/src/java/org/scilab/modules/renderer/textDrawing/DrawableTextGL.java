@@ -29,7 +29,7 @@ public class DrawableTextGL extends DrawableClippedObjectGL {
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) {
-		System.err.println("I'm printing text.");
+		System.err.println("I'm printing text. " + parentFigureIndex);
 	}
 	
 }
