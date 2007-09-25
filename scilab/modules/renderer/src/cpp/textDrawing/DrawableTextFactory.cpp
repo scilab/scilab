@@ -20,7 +20,7 @@ DrawableObject * DrawableTextFactory::create( void )
   DrawableTextBridgeFactory fact;
   fact.setDrawedText(newText);
   newText->setDrawableImp(fact.create());
-  return create();
+  return newText;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableTextFactory::update( void )
