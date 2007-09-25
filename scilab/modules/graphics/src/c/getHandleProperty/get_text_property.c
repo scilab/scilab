@@ -18,6 +18,13 @@ int get_text_property( sciPointObj * pobj )
   int nbCol = 0 ;
   /* get the size of the text matrix */
   sciGetTextSize( pobj , &nbRow, &nbCol ) ;
+
+  if ( nbRow < 0 || nbCol < 0 )
+  {
+    sciprint("text property does not exist for this handle.\n") ;
+    return -1;
+  }
+
   return sciReturnStringMatrix( getStrMatData( sciGetText( pobj ) ), nbRow, nbCol ) ;
 }
 /*------------------------------------------------------------------------*/

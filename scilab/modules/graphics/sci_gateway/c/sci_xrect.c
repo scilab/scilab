@@ -61,34 +61,34 @@ int sci_xrect( char *fname, unsigned long fname_len )
 
     break;
   case 4 :
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); CheckScalar(1,m1,n1);
-    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); CheckScalar(2,m2,n2);
-    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3);
-    GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4);
-    startFigureDataReading(pFigure);
-    if (strcmp(fname,"xrect")==0)
-    {	
-      int foreground = sciGetForeground(psubwin);
-      Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
-        &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE) ;
-    }
-    else
     {
-      int foreground = sciGetForeground(psubwin);
-      Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
-        NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
+      int foreground = 0;
+      startFigureDataReading(pFigure);
+      foreground = sciGetForeground(psubwin);
+      endFigureDataReading(pFigure);
+      GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); CheckScalar(1,m1,n1);
+      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); CheckScalar(2,m2,n2);
+      GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3);
+      GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4);   
+      if (strcmp(fname,"xrect")==0)
+      {
+        Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
+                 &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE) ;
+      }
+      else
+      {
+          Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
+                   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
+      }
+      if ( hdl < 0 )
+      {
+        break;
+      }
+
+      startFigureDataReading(pFigure);
+      sciDrawObjIfRequired(sciGetCurrentObj ());
+      endFigureDataReading(pFigure);
     }
-    endFigureDataReading(pFigure);
-
-    if ( hdl < 0 )
-    {
-      break;
-    }
-
-    startFigureDataReading(pFigure);
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-    endFigureDataReading(pFigure);
-
     break;
   default :
     Scierror(999,"%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\r\n",fname,Rhs);
