@@ -69,69 +69,77 @@ Paramètres</A>
 <UL>
 <LI><b>str,str1,str2,... :</b>
    Ce paramètre est soit une chaîne de caractères ou une matrice de chaine de caractère. Les entrées suivantes sont permises :
-<BR>   "x" :
-<BR>   "nx" :
-<BR>   "xptr" :
-<BR>   "zcptr" :
-<BR>   "z" :
-<BR>   "nz" :
-<BR>   "zptr" :
-<BR>   "noz" :
-<BR>   "oz" :
-<BR>   "ozsz" :
-<BR>   "oztyp" :
-<BR>   "ozptr" :
-<BR>   "rpar" :
-<BR>   "rpptr" :
-<BR>   "ipar" :
-<BR>   "ipptr" :
-<BR>   "opar" :
-<BR>   "oparsz" :
-<BR>   "opartyp" :
-<BR>   "opptr" :
-<BR>   "outtb" :
-<BR>   "inpptr" :
-<BR>   "outptr" :
-<BR>   "inplnk" :
-<BR>   "outlnk" :
-<BR>   "subs" :
-<BR>   "tevts" :
-<BR>   "evtspt" :
-<BR>   "pointi" :
-<BR>   "iord" :
-<BR>   "oord" :
-<BR>   "zord" :
-<BR>   "funtyp" :
-<BR>   "ztyp" :
-<BR>   "cord" :
-<BR>   "ordclk" :
-<BR>   "clkptr" :
-<BR>   "ordptr" :
-<BR>   "critev" :
-<BR>   "mod" :
-<BR>   "nmod" :
-<BR>   "iz" :
-<BR>   "izptr" :
-<BR>   "nblk" :
-<BR>   "outtbptr" :
-<BR>   "outtbpsz" :
-<BR>   "outtbtyp" :
-<BR>   "nlnk" :
-<BR>   "ncord" :
-<BR>   "nordptr" :
-<BR>   "iwa" :
-<BR>   "blocks" :
-<BR>   "ng" :
-<BR>   "g" :
-<BR>   "t0" :
-<BR>   "tf" :
-<BR>   "Atol" :
-<BR>   "rtol" :
-<BR>   "ttol" :
-<BR>   "deltat" :
-<BR>   "hmax" :
-<BR>   "nelem" :
-<BR>   "outtb_elem" :
+<BR>   "x" : retourne le registre des états continus.
+<BR>   "nx" : retourne la longueur du registre des états continus.
+<BR>   "xptr" : retourne le registre des pointeurs du registre des états continus.
+<BR>   "zcptr" : retourne le registre des pointeurs du registre des détections de surfaces.
+<BR>   "z" : retourne le registre des états discrets.
+<BR>   "nz" : retourne la longueur des registres des états discrets.
+<BR>   "zptr" : retourne le registre des pointeurs du registre des états discrets.
+<BR>   "noz" : retourne le nombre d'éléments de la liste de l'état discret objet.
+<BR>   "oz" : retourne la liste de l'état discret objet.
+<BR>   "ozsz" : retourne les tailles des éléments de la liste l'état discret objet.
+<BR>   "oztyp" : retourne les types des éléments de la liste l'état discret objet.
+<BR>   "ozptr" : retourne le registre des pointeurs de la liste l'état discret objet.
+<BR>   "rpar" : retourne le registre des paramètres réels.
+<BR>   "rpptr" : retourne le registre des pointeurs du registre des paramètres réels.
+<BR>   "ipar" : retourne le registre des paramètres entiers.
+<BR>   "ipptr" : retourne le registre des pointeurs du registre des paramètres entiers.
+<BR>   "opar" : retourne la liste des paramètres objets.
+<BR>   "oparsz" : retourne les tailles des éléments de la liste des paramètres objets.
+<BR>   "opartyp" : retourne les types des éléments de la liste des paramètres objets.
+<BR>   "opptr" : retourne le registre des pointeurs de la liste des paramètres objets.
+<BR>   "outtb" : retourne le registre des sorties.
+<BR>   "inpptr" : retourne le registre des pointeurs des ports réguliers d'entrée.
+<BR>   "outptr" : retourne le registre des pointeurs des ports réguliers de sorties.
+<BR>   "inplnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers d'entrée.
+<BR>   "outlnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers de sortie.
+<BR>   "subs" : pas utilisé.
+<BR>   "tevts" : retourne le registre des dates courantes de l'agenda.
+<BR>   "evtspt" : retourne le registre des événements courants de l'agenda.
+<BR>   "pointi" : retourne le prochain événement à activer.
+<BR>   "iord" : retourne le vecteur des blocs activés au début de la simulation.
+<BR>   "oord" : retourne le vecteur des blocs dont les sorties affectent le calcul des états continus.
+<BR>   "zord" : retourne le vecteur des blocs dont les sorties affectent le calcul des détections de surfaces.
+<BR>   "funtyp" : retourne le vecteur des types des fonctions de calcul.
+<BR>   "ztyp" : retourne le vecteur de pointeurs pour les blocs utilisant les détections de surface.
+<BR>   "cord" : retourne le vecteur des blocs dont les sorties évoluent continuellement.
+<BR>   "ordclk" : retourne la matrice associée aux blocs activés par événements.
+<BR>   "clkptr" : retourne le vecteur de pointeurs pour les ports de sortie d'activation.
+<BR>   "ordptr" : retourne le vecteur de pointeurs (à partir de ordclk) qui désigne les parties de ordclk correspondant à une activation donnée.
+<BR>   "critev" : retourne le vecteur des événements critiques.
+<BR>   "mod" : retourne le vecteur de pointeurs des modes des blocs.
+<BR>   "nmod" : retourne la longueur du vecteur de pointeurs des modes des blocs.
+<BR>   "iz" : retourne le registre qui contient les pointeurs C sur block-<SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/getscicosvars_img1_fr.gif"
+ ALT="$ &gt;$"></SPAN>
+work.
+<BR>   "izptr" : retourne le vecteur de pointeurs sur le registre qui contient les pointeurs C sur block-<SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/getscicosvars_img1_fr.gif"
+ ALT="$ &gt;$"></SPAN>
+work.
+<BR>   "nblk" : retourne le nombre de blocs.
+<BR>   "outtbptr" : retourne le registre qui contient les pointeurs C de outtb.
+<BR>   "outtbpsz" : retourne le registre qui contient les tailles des éléments de outtb.
+<BR>   "outtbtyp" : retourne le registre qui contient les types des éléments de outtb.
+<BR>   "nlnk" : retourne le nombre de sortie.
+<BR>   "ncord" : retourne le nombre de blocs qui évoluent continuellement.
+<BR>   "nordptr" : retourne le nombre de blocs qui évoluent par activation.
+<BR>   "iwa" : n.d.
+<BR>   "blocks" : retourne une liste scilab qui contient toutes les structures des blocs contenus dans le diagramme.
+<BR>   "ng" : retourne la longueur du registre des détections de surface.
+<BR>   "g" : retourne le registre des détections de surfaces.
+<BR>   "t0" : retourne le temps courant de la simulation.
+<BR>   "tf" : retourne le temps final de la simulation.
+<BR>   "Atol" : retourne la tolérance absolue de l'intégrateur du solveur numérique.
+<BR>   "rtol" : retourne la tolérance relative de l'intégrateur du solveur numérique.
+<BR>   "ttol" : retourne la tolérance sur le temps du simulateur.
+<BR>   "deltat" : retourne le temps maximal d'intégration.
+<BR>   "hmax" : retourne le pas maximal d'intégration du solveur numérique.
+<BR>   "nelem" : retourne le nombre d'éléments dans outtb.
+<BR>   "outtb_elem" : retourne le vecteur contenant les numéro d'éléments dans outtb.
 </LI>
 <LI><b>myvar :</b>
    Ce paramètre de sortie peut-être soit une matrice de nombre int32, une matrice de nombre réel (double) ou bien une Tlist, suivant le paramètre donné en entrée.

@@ -69,69 +69,77 @@ Parameters</A>
 <UL>
 <LI><b>str,str1,str2,... :</b>
    That parameter can be a string or a matrix of string. The following entries are allowed :
-<BR>   "x" :
-<BR>   "nx" :
-<BR>   "xptr" :
-<BR>   "zcptr" :
-<BR>   "z" :
-<BR>   "nz" :
-<BR>   "zptr" :
-<BR>   "noz" :
-<BR>   "oz" :
-<BR>   "ozsz" :
-<BR>   "oztyp" :
-<BR>   "ozptr" :
-<BR>   "rpar" :
-<BR>   "rpptr" :
-<BR>   "ipar" :
-<BR>   "ipptr" :
-<BR>   "opar" :
-<BR>   "oparsz" :
-<BR>   "opartyp" :
-<BR>   "opptr" :
-<BR>   "outtb" :
-<BR>   "inpptr" :
-<BR>   "outptr" :
-<BR>   "inplnk" :
-<BR>   "outlnk" :
-<BR>   "subs" :
-<BR>   "tevts" :
-<BR>   "evtspt" :
-<BR>   "pointi" :
-<BR>   "iord" :
-<BR>   "oord" :
-<BR>   "zord" :
-<BR>   "funtyp" :
-<BR>   "ztyp" :
-<BR>   "cord" :
-<BR>   "ordclk" :
-<BR>   "clkptr" :
-<BR>   "ordptr" :
-<BR>   "critev" :
-<BR>   "mod" :
-<BR>   "nmod" :
-<BR>   "iz" :
-<BR>   "izptr" :
-<BR>   "nblk" :
-<BR>   "outtbptr" :
-<BR>   "outtbpsz" :
-<BR>   "outtbtyp" :
-<BR>   "nlnk" :
-<BR>   "ncord" :
-<BR>   "nordptr" :
-<BR>   "iwa" :
-<BR>   "blocks" :
-<BR>   "ng" :
-<BR>   "g" :
-<BR>   "t0" :
-<BR>   "tf" :
-<BR>   "Atol" :
-<BR>   "rtol" :
-<BR>   "ttol" :
-<BR>   "deltat" :
-<BR>   "hmax" :
-<BR>   "nelem" :
-<BR>   "outtb_elem" :
+<BR>   "x" : get the continuous state register.
+<BR>   "nx" : get the length of the continuous state register.
+<BR>   "xptr" : get the pointers register of the continuous state register.
+<BR>   "zcptr" : get the pointers register of the zero-crossing surfaces register.
+<BR>   "z" : get the discrete state register.
+<BR>   "nz" : get the length of the continuous state register.
+<BR>   "zptr" : get the pointers register of the discrete state register.
+<BR>   "noz" : get the number of elements of the discrete object state list.
+<BR>   "oz" : get the discrete object state list.
+<BR>   "ozsz" : get the size of the elements of the discrete object state list.
+<BR>   "oztyp" : get the type of the elements of the discrete object state list.
+<BR>   "ozptr" : get the pointers register of the discrete object state list.
+<BR>   "rpar" : get the real parameter register.
+<BR>   "rpptr" : get the pointers register of the real parameter register.
+<BR>   "ipar" : get the integer parameter register.
+<BR>   "ipptr" : get the pointers register of the integer parameter register.
+<BR>   "opar" : get the object parameter list.
+<BR>   "oparsz" : get the size of the elements of the object parameter list.
+<BR>   "opartyp" : get the type of the elements of the object parameter list.
+<BR>   "opptr" : get the pointers register of the object parameter list.
+<BR>   "outtb" : get the output register.
+<BR>   "inpptr" : get the pointers register of the number of regular input ports.
+<BR>   "outptr" :  get the pointers register of the number of regular output ports.
+<BR>   "inplnk" : get the pointers register of the links connected to regular input ports.
+<BR>   "outlnk" : get the pointers register of the links connected to regular output ports.
+<BR>   "subs" : not used
+<BR>   "tevts" : get the current date register of the agenda.
+<BR>   "evtspt" : get the current event register of the agenda.
+<BR>   "pointi" : get the next event to be activated.
+<BR>   "iord" : get the vector of blocks activated at the start of the simulation.
+<BR>   "oord" : get the vector of blocks whose outputs affects computation of continuous state derivatives.
+<BR>   "zord" : get the vector of blocks whose outputs affects computation of zero-crossing surfaces.
+<BR>   "funtyp" : get the vector of type of computational functions.
+<BR>   "ztyp" : get the pointers vector for blocks which use zero-crossing surfaces.
+<BR>   "cord" : get the vector of blocks whose outputs evolve continuously.
+<BR>   "ordclk" : get the matrix associated to blocks activated by output activation ports.
+<BR>   "clkptr" : get the pointers vector for output activation ports.
+<BR>   "ordptr" : get the pointers vector to ordclk designating the part of ordclk corresponding to a given activation.
+<BR>   "critev" : get the vector of the critical events.
+<BR>   "mod" : get the vector pointers of block modes.
+<BR>   "nmod" : get the length of the vector pointers of block modes.
+<BR>   "iz" : get the register that store pointers of block-<SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/getscicosvars_img1_eng.gif"
+ ALT="$ &gt;$"></SPAN>
+work.
+<BR>   "izptr" : get the pointers vector of the register that store C pointers of block-<SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/getscicosvars_img1_eng.gif"
+ ALT="$ &gt;$"></SPAN>
+work.
+<BR>   "nblk" : get the number of block.
+<BR>   "outtbptr" : get the register that store C pointers of outtb.
+<BR>   "outtbpsz" : get the register that store the size of the elements of outtb.
+<BR>   "outtbtyp" : get the register that store the type of the elements of outtb.
+<BR>   "nlnk" : get the number of output.
+<BR>   "ncord" : get the number of blocks whose outputs evolve continuously.
+<BR>   "nordptr" : get the number of blocks whose outputs evolve by activation.
+<BR>   "iwa" : n.d.
+<BR>   "blocks" : get a scilab list that contains all block structures contains in the diagram.
+<BR>   "ng" : get length of the zero-crossing surfaces register.
+<BR>   "g" : get the zero-crossing surfaces register.
+<BR>   "t0" : get the current time of the simulation.
+<BR>   "tf" : get the final time of the simulation.
+<BR>   "Atol" : get the integrator absolute tolerance for the numerical solver.
+<BR>   "rtol" :  get the integrator relative tolerance for the numerical solver.
+<BR>   "ttol" : get the tolerance on time of the simulator.
+<BR>   "deltat" : get the maximum integration time interval.
+<BR>   "hmax" : get the maximum step size for the numerical solver.
+<BR>   "nelem" : get the number of elements in outtb.
+<BR>   "outtb_elem" : get the vector of the number of elements in outtb.
 </LI>
 <LI><b>myvar :</b>
    That output parameter can be an int32 matrix, a double matrix or a Tlist. This is given by the input parameter.

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Context</TITLE>
+<META NAME="description" CONTENT="Context">
+<META NAME="keywords" CONTENT="Context">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Context.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Editor
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/Context.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./Context.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="Context"></A>
+<BR>
+<b>Context</b> - Using symbolic parameters, context and masking in Scicos
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Modules</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+Introduction</A>
+</font></H3>
+In most cases, double clicking on a Scicos block leads to the opening of a dialog box used
+to set the values of block parameters. These parameters, which we refer to as GUI parameters,
+are not necessarily the exact duplicate of the block parameters used in the <EM>computational function</EM>
+of the block used during simulation. For example the GUI parameters of a linear system block can be
+the numerator and the denominator of its transfer function, whereas the parameters used during the
+simulation are the <B>A</B>, <B>B</B>, <B>C</B> and <B>D</B> matrices associated with the time domain specification of
+this transfer function. It is the role of the <EM>interfacing function</EM> of the block to examine the
+GUI parameters given by the user, generate error messages if needed, and convert them into simulation
+parameters.
+
+<P>
+In specifying the GUI parameters, the user can enter numerical expressions in the dialog box, for example
+<TT>23</TT> or <TT>[1,4;0,2]</TT>, but he can also enter Scilab expressions such as: <TT>exp(.4*3)+sin(.3)</TT> or 
+<TT>ones(5,5)+diag([1:5])</TT>. But more importantly, the user can enter expressions using Scilab
+variables: <TT>A</TT>, <TT>cos(theta)/2</TT>. These variables, which we call <EM>symbolic parameters</EM> of the block,
+must have been previously defined; in most cases this is done in a <EM>context</EM>.
+
+<P>
+Using symbolic parameters in specifying GUI parameters allows the user to easily change a system parameter
+affecting multiple blocks (otherwise the GUI parameter of each block has to be individually changed). To
+make an analogy with standard programming languages such as C, it would be like setting <TT>double mass=0.3;</TT> 
+and using <TT>mass</TT> everywhere in the program instead of <TT>0.3</TT>. Symbolic parameters can also be used to
+construct parameterized models, for example it is possible to build the model
+of a fully generic linear-system-Kalman-filter system in which even the size of the blocks' states 
+and input/outputs are not determined in advance and vary depending on the value of the parameters. 
+Indeed, the sizes of the symbolic parameters can also be changed if it does not create inconsistencies in the diagram.  
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Diagram context</A>
+</font></H3>
+Each Scicos diagram (the main diagram as well as the Super Blocks) has a context associated with it.
+The context is a <EM>Scilab script</EM>; it can be edited interactively using the ``Diagram/Context'' menu of
+the diagram. To use a symbolic parameter, say the matrix <TT>A</TT>, to be used in defining 
+the GUI parameter of a block, <TT>A</TT>
+can be defined in the context of the diagram. But all the symbolic parameters of all the blocks in a diagram
+are not necessarily defined in the context of that same diagram.
+
+<P>
+
+<H3><A NAME="SECTION00013100000000000000">
+Scope of a context variable</A>
+</H3>
+A Scilab variable defined in the context of a diagram is accessible not only to the blocks of that diagram,
+but also to the contexts and the blocks of all sub-diagrams below it. For example if <TT>A</TT> is defined in the
+context of Diagram D1, and Diagram D2 is a sub-diagram of D1 (is the content of a super block of D1), then
+<TT>A</TT> is available to the context of D2 and can be used in the definition of the GUI parameters of its blocks.
+The context of D2 can for example contain the following instruction: <TT>B=A+2</TT>.
+
+<P>
+If the variable <TT>A</TT> is redefined in the context of Dn, one of the sub-diagrams of D1, then it is the new value
+that is available in the blocks of Dn, and the context and the blocks of the sub-diagrams below it. So in general, to
+find the definition of a symbolic parameter used in a block, first the context of the diagram containing the
+block must be examined. If the parameter is not defined there, the context of the diagram containing the
+first diagram must be examined and so on until the definition of the parameter is found.  
+
+<P>
+This hierarchical treatment of parameter definition using multiple contexts as opposed to a single workspace
+has many advantages. The most important advantage is that a Super Block can be placed inside a diagram
+without any risk of conflict, even if symbolic parameters with similar names are used in both. Another advantage
+is its natural usage in the masking operation that we shall see later.
+
+<P>
+
+<H3><A NAME="SECTION00013200000000000000">
+Evaluation of the context</A>
+</H3>
+As previously stated, a context is nothing but a list of Scilab instructions: a Scilab script. The context
+of a diagram must be evaluated (script executed) in order to compute 
+the symbolic parameters that are used in the definition of the GUI parameters of its blocks. The contexts
+are evaluated only when necessary, in particular when the content of a context is modified. In that case,
+all the GUI parameters of all the blocks in the diagram in which the context has been modified are re-evaluated, and
+so are the context and the blocks' GUI parameters of all the sub-diagrams below it. The reason for re-evaluating
+the sub-diagrams below it has to do with the scope of the parameters defined in the context of the first diagram.
+Indeed any change in this context can affect GUI parameters of all the blocks within sub-diagrams below this first
+diagram.
+
+<P>
+When a diagram is opened, its context is also evaluated so that symbolic parameters are 
+made available in the environment.
+The GUI parameters of the blocks are however not re-evaluated. The reason is that it is assumed that two
+evaluation of the same identical contexts leads necessary to the same values of symbolic parameters. So, since
+the content of the context of the diagram has not changed since it has last been saved, the blocks GUI parameters
+must be up to date. This assumption holds in most cases, but not if functions such as <TT>rand</TT> or <TT>date</TT> are
+used in the context. Another instruction that can invalidate the assumption is the execution of an external
+script, for example <TT>exec('myprog.sce')</TT>. Clearly if the file <TT>myprog.sce</TT> is modified, the re-evaluation
+of the context can lead to different values for the symbolic parameters. Scicos attempts to identify the presence 
+of such commands inside the text of the context and issues a full re-evaluation if it finds it necessary when
+a diagram is opened. But this identification is not full proof and a manual ``Evaluate'' button is provided to
+force a full re-evaluation if the user finds it necessary. 
+
+<P>
+The ``Evaluate'' button is particularly useful when the context contains an <TT>exec</TT> command since Scicos
+does not know if the executed file is edited. In such a case, it is up to the user to force an evaluation.
+
+<P>
+Finally it should be noted that all the variables defined in a context, except for functions, are available 
+as symbolic parameters. So it is recommended that intermediate variables used in the context be cleared at
+the end of the context to avoid overloading the list of symbolic parameters. 
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00014000000000000000">
+Masking operation</A>
+</font></H3>
+The masking operation consists of modifying a Super Block in such a way that it resembles a regular block.
+Double clicking on a masked block, opens a GUI, just as in the case of a regular block (double clicking on
+a Super Block opens up the diagram contained in the Super Block). The GUI parameters of a masked block
+are the symbolic parameters needed to evaluate its content. These parameters are identified automatically
+when the ``Create Mask'' operation is applied to a Super Block. 
+
+<P>
+By choosing to define or not to define in the context various symbolic parameters needed in a Super Block, user
+can specify the GUI parameters of the block obtained after the masking operation. This is an easy way of
+constructing custom blocks. The dialog box associated with the block can also be customized using the
+``Customize Mask'' operation. Finally, the mask can be removed  by the ``Remove Mask'' operation. 
+
+<H3><font color="blue"><A NAME="SECTION00015000000000000000">
+Authors</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

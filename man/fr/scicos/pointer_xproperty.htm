@@ -32,7 +32,7 @@ Fonction Scilab
 </DIV>
 <BR><A NAME="SECTION00010000000000000000"></A><A NAME="pointer_xproperty"></A>
 <BR>
-<b>pointer_xproperty</b> - Retourne le type du système d'équations d'état
+<b>pointer_xproperty</b> - Retourne le type d'une variable d'état à temps continu
 
 
 <H3><font color="blue"><A NAME="SECTION00011000000000000000">
@@ -50,7 +50,7 @@ Description</A>
 </font></H3>
 
 <P>
-Ajoutez ici un paragraphe pour la description de la fonction  
+Cette fonction retourne un vecteur indiquant le type (algébrique ou différentiel) des variables d'états continues utilisées dans un bloc.  
 <BR>
 <H3><font color="blue"><A NAME="SECTION00013000000000000000">
 Séquence d'appel</A>
@@ -64,8 +64,27 @@ Paramètres</A>
 </font></H3>
 
 <UL>
-<LI><b>Nom du paramètre :</b>
-   ajoutez ici la description du paramètre
+<LI><B>xprop</B> 
+<BR>
+La valeur donne le type des états :
+    
+<UL>
+<LI>-1 : un état algébrique.
+<BR></LI>
+<LI>1  : un état différentiel.
+    
+</LI>
+</UL>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00015000000000000000">
+Voir aussi</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html4"
+  HREF="set_xproperty.htm">set_xproperty - Définit le type d'une variable d'état à temps continu (Fonction Scilab)</A>
 </LI>
 </UL>
 
