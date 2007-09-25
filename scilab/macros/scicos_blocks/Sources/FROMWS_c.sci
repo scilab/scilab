@@ -19,8 +19,8 @@ case 'set' then
 	['Variable name';'Interpolation order';'Enable zero crossing(0:No, 1:Yes)?';'Output at end(0:Zero, 1:Hold, 2:Repeat)'],...
 	list('str',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
-    if order<0 | order>1 then 
-      x_message('Interpolation order should be either 0 or 1');
+    if ~(order==0 | order==1| order==3) then 
+      x_message('Interpolation order should be chosen in [0, 1, 3]');
       ok=%f;
     end
     

@@ -30,13 +30,15 @@ extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int n
                                 long int nams_len));
 extern void C2F(mclose) __PARAMS((integer *fd, double *res));
 extern void sciprint __PARAMS((char *fmt,...));
+int Mytridiagldltsolve(double *d__, double * l, double * b, int n);
+int Myevalhermite2(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
 
 //int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
 
 static char fmtd[3]={'d','l','\000'};
 static char fmti[3]={'i','l','\000'};
 static char fmtl[3]={'l','l','\000'};
-static char fmts[3]={'s','l','\000'};
+static char fmts[3]={'s','l','\000'}; 
 static char fmtc[3]={'c','l','\000'};
 static char fmtul[3]={'u','l','\000'};
 static char fmtus[3]={'u','s','\000'};
@@ -56,6 +58,7 @@ typedef struct {
   int EVindex;
   int PerEVcnt;
   int firstevent;
+  double *d;
   void *work;
   double *workt;
 } fromwork_struct ;
@@ -65,7 +68,9 @@ void fromws_c(scicos_block *block,int flag)
 {
   double t,y1,y2,yc1,yc2,t1,t2,r;
   int i,inow;
-  /*  double  a,b,c,*y, d1,d2,h, dh, ddh, dddh;*/
+  double *spline, *A_d, *A_sd, *qdy;
+  /* double  a,b,c,*y;*/
+  double d1,d2,h, dh, ddh, dddh;
   int fd;
   char *status;
   int swap = 1;
@@ -79,7 +84,7 @@ void fromws_c(scicos_block *block,int flag)
   int Ydim[10];
   int cnt1, cnt2, EVindex, PerEVcnt;
   /* generic pointer */
-  SCSREAL_COP *y_d,*y_cd,*ptr_d;
+  SCSREAL_COP *y_d,*y_cd,*ptr_d, *ptr_T, *ptr_D;
   SCSINT8_COP *y_c,*ptr_c;
   SCSUINT8_COP *y_uc, *ptr_uc;
   SCSINT16_COP *y_s,*ptr_s;
@@ -229,9 +234,65 @@ void fromws_c(scicos_block *block,int flag)
      scicos_free(ptr);
      return;
    }
-   ptr_d = (SCSREAL_COP *) ptr->workt;
-   C2F(mgetnc) (&fd, ptr_d, (j=nPoints,&j), fmtd, &ierr);  /* read data of t */
+   ptr_T = (SCSREAL_COP *) ptr->workt;
+   C2F(mgetnc) (&fd, ptr_T, (j=nPoints,&j), fmtd, &ierr);  /* read data of t */
    //================================
+   // check for an increasing time data
+   for(j = 0; j < nPoints-1; j++)
+     if(ptr_T[j] > ptr_T[j+1]) {
+       sciprint("The Time vector should be an increasing vector"); 
+       set_block_error(-16);*(block->work)=NULL;
+       scicos_free(ptr->workt);
+       scicos_free(ptr->work);
+       scicos_free(ptr);
+       return;
+     };
+   //=================================
+   if ((Order>2)&&((Ytype==1)&&( YsubType==0))) {/* double */
+
+     if((ptr->d=(double *) scicos_malloc(nPoints*sizeof(double)))==NULL) {
+       set_block_error(-16);*(block->work)=NULL;
+       scicos_free(ptr->workt);
+       scicos_free(ptr->work);
+       scicos_free(ptr);
+       return;
+     }
+
+     if((spline=(double *) scicos_malloc((3*nPoints-2)*sizeof(double)))==NULL){
+       sciprint("Allocation problem in spline"); 
+       set_block_error(-16);*(block->work)=NULL;
+       scicos_free(ptr->d);
+       scicos_free(ptr->workt);
+       scicos_free(ptr->work);
+       scicos_free(ptr);
+       return;
+     }
+     A_d=spline;
+     A_sd=A_d+nPoints;
+     qdy=A_sd+nPoints-1;
+
+     for (i=0;i<=nPoints-2;i++){
+       A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
+       qdy[i] = (ptr_d[i+1] - ptr_d[i]) * A_sd[i]*A_sd[i];         
+     }
+
+     for (i=1;i<=nPoints-2;i++){
+       A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
+       ptr->d[i] = 3.0*(qdy[i-1]+qdy[i]);
+     }
+
+     /*  s'''(x(2)-) = s'''(x(2)+) */
+
+     r = A_sd[1]/A_sd[0];
+     A_d[0]= A_sd[0]/(1.0 + r);
+     ptr->d[0]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
+     /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
+     r = A_sd[nPoints-3]/A_sd[nPoints-2];
+     A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
+     ptr->d[nPoints-1] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
+     Mytridiagldltsolve(A_d, A_sd, ptr->d, nPoints);
+   }
+   //===================================
    cnt1=nPoints-1;
    cnt2=nPoints;
    for (i=0;i<nPoints;i++){ // finding the first positive time instant
@@ -296,7 +357,8 @@ void fromws_c(scicos_block *block,int flag)
      case 0: // -------------double----------------------------
        y_d = GetRealOutPortPtrs(block,1);
        ptr_d=(double*) ptr->work;
-       
+       ptr_D=(double*) ptr->d;
+
        for (j=0;j<my;j++){
 	 if (inow>=nPoints-1){
 	   if (OutEnd==0){
@@ -317,6 +379,15 @@ void fromws_c(scicos_block *block,int flag)
 	   y1=ptr_d[inow+j*nPoints];
 	   y2=ptr_d[inow+1+j*nPoints];
 	   y_d[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;	   
+	 }else if (Order==3){
+	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=ptr_d[inow+j*nPoints];
+	   y2=ptr_d[inow+1+j*nPoints];
+	   d1=ptr_D[inow+j*nPoints];
+	   d2=ptr_D[inow+1+j*nPoints];
+	   Myevalhermite2(&t, &t1,&t2, &y1,&y2, &d1,&d2, &h, &dh, &ddh, &dddh, &inow);
+	   y_d[j]=h;
 	 }
        }
        break;
@@ -593,4 +664,54 @@ void fromws_c(scicos_block *block,int flag)
  }
  /*************************************************************************/
 }
+
+
+int Mytridiagldltsolve(double *d__, double * l, double * b, int n)
+{
+    int i__1;
+    double temp;
+    int i__;
+    --b;
+    --l;
+    --d__;
+
+    i__1 = n;
+    for (i__ = 2; i__ <= i__1; ++i__) {
+	temp = l[i__ - 1];
+	l[i__ - 1] /= d__[i__ - 1];
+	d__[i__] -= temp * l[i__ - 1];
+	b[i__] -= l[i__ - 1] * b[i__ - 1];
+    }
+    b[n] /= d__[n];
+    for (i__ = n - 1; i__ >= 1; --i__) {
+	b[i__] = b[i__] / d__[i__] - l[i__] * b[i__ + 1];
+    }
+    return 0;
+}
+
+int Myevalhermite2(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i)
+{
+  double tmxa, p, c2, c3, dx;
+
+  /*    if (old_i != *i) {*/
+/*        compute the following Newton form : */
+/*           h(t) = ya + da*(t-xa) + c2*(t-xa)^2 + c3*(t-xa)^2*(t-xb) */
+	dx = 1. / (*xb - *xa);
+	p = (*yb - *ya) * dx;
+	c2 = (p - *da) * dx;
+	c3 = (*db - p + (*da - p)) * (dx * dx);
+	/*	}	 old_i = *i;*/
+
+/*     eval h(t), h'(t), h"(t) and h"'(t), by a generalised Horner 's scheme */
+    tmxa = *t - *xa;
+    *h = c2 + c3 * (*t - *xb);
+    *dh = *h + c3 * tmxa;
+    *ddh = (*dh + c3 * tmxa) * 2.;
+    *dddh = c3 * 6.;
+    *h = *da + *h * tmxa;
+    *dh = *h + *dh * tmxa;
+    *h = *ya + *h * tmxa;
+    return 0; 
+} /* evalhermite_ */
+
 
