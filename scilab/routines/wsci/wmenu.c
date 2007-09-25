@@ -1654,34 +1654,33 @@ EXPORT BOOL CALLBACK InputBoxDlgProc (HWND hDlg, UINT message, WPARAM wParam, LP
     }
 }
 /*-----------------------------------------------------------------------------------*/
-
 BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *file)
 {
 	BOOL Retour=FALSE;
 	char szBuffer[MAX_PATH] = "";
 	OPENFILENAME OFN;
 		
-	ZeroMemory(&OFN, sizeof(OFN));
-  OFN.lStructSize = sizeof(OFN);
-  
-  OFN.hwndOwner = hWndParent;
-  OFN.hInstance = NULL;
-  OFN.lpstrFilter = FileExt;
-  OFN.nFilterIndex=1;
-  OFN.lpstrFile = NULL;/*FILE NAME*/
-  OFN.nMaxFile = 0;/*SIZE OF FILE NAME*/
-  OFN.lpstrFile = szBuffer;
-  OFN.nMaxFile = MAX_PATH;
-  OFN.lpstrTitle = titre;
+	/* Initialize OPENFILENAME */
+	ZeroMemory(&OFN, sizeof(OPENFILENAME));
+	OFN.lStructSize = sizeof(OPENFILENAME);
+  	OFN.hwndOwner = hWndParent;
+	OFN.hInstance = NULL;
+	OFN.lpstrFilter = FileExt;
+	OFN.nFilterIndex=1;
+	OFN.lpstrFile = NULL;/*FILE NAME*/
+	OFN.nMaxFile = 0;/*SIZE OF FILE NAME*/
+	OFN.lpstrFile = szBuffer;
+	OFN.nMaxFile = MAX_PATH;
+	OFN.lpstrTitle = titre;
  
-  if (read == TRUE)
+	if (read == TRUE)
 	{
 	 	/* Lecture */
-	 	OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
-	  if( GetOpenFileName( &OFN ) )
-  	{
+		OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
+		if( GetOpenFileName( &OFN ) )
+  		{
    			lstrcpy(file,OFN.lpstrFile);
-      	Retour=TRUE;
+      		Retour=TRUE;
 		}
 		else Retour=FALSE;
 	}
@@ -1689,14 +1688,13 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
 	{
 	 	/* Ecriture */
 	 	OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR|OFN_HIDEREADONLY;
-	  if(GetSaveFileName ( &OFN ) )
-    {
+		if(GetSaveFileName ( &OFN ) )
+		{
 			lstrcpy(file,OFN.lpstrFile);
 			Retour=TRUE;
 		}
 		else Retour=FALSE;
 	}
-	
 	return Retour;
 }
 /*-----------------------------------------------------------------------------------*/
