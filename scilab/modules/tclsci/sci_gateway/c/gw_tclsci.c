@@ -48,12 +48,12 @@ int C2F(gw_tclsci)()
 		}
 		else
 		{
-			message_scilab("tclsci_message_1");
+			message_scilab("Warning: Problem(s) with TCL/TK interface. Interface not enabled.");
 		}
 	}
 	else
 	{
-		error_scilab(999,"tclsci_error_1");
+		error_scilab(999,"Tcl/TK interface disabled in -nogui mode.");
 		return 0;
 	}
 	

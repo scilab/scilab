@@ -38,7 +38,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 		C2F(scigetdate)(&dt,&ierr);
 		if (ierr)
 		{
-			error_scilab(999,"time_error_4");
+			error_scilab(999,"Impossible to get the date...");
 			return 0;
 		}
 		else
@@ -70,7 +70,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,"time_error_5");
+				error_scilab(999,"Parameter must be a "s" or a integer.");
 				return 0;
 			}
 		}
@@ -126,7 +126,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,"time_error_5");
+				error_scilab(999,"Parameter must be a "s" or a integer.");
 				return 0;
 			}
 		}

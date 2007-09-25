@@ -26,7 +26,7 @@ BOOL InitializeCore(void)
 
 	if ( create_hashtable_scilab_functions(MAXELEMENTFUNCTIONLIST) == 0 ) 
 	{
-		message_scilab("core_message_128");
+		message_scilab("Fatal Error : Can't create table for scilab functions.");
 		exit(1);
 	}
 

@@ -29,35 +29,35 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 		{
 		case TCL_ALPHA_RELEASE:
 			{
-				char *msg=QueryStringMessage("tclsci_message_17");
+				char *msg=QueryStringMessage("Alpha Release");
 				sprintf(ReleaseType,msg);
 				if (msg) {FREE(msg);msg=NULL;}
 			}
 			break;
 		case TCL_BETA_RELEASE:
 			{
-				char *msg=QueryStringMessage("tclsci_message_18");
+				char *msg=QueryStringMessage("Beta Release");
 				sprintf(ReleaseType,msg);
 				if (msg) {FREE(msg);msg=NULL;}
 			}
 			break;
 		case TCL_FINAL_RELEASE:
 			{
-				char *msg=QueryStringMessage("tclsci_message_19");
+				char *msg=QueryStringMessage("Final Release");
 				sprintf(ReleaseType,msg);
 				if (msg) {FREE(msg);msg=NULL;}
 			}
 			break;
 		default:
 			{
-				char *msg=QueryStringMessage("tclsci_message_20");
+				char *msg=QueryStringMessage("Unknown Release");
 				sprintf(ReleaseType,msg);
 				if (msg) {FREE(msg);msg=NULL;}
 			}
 			break;
 		}
 
-		msg_=QueryStringMessage("tclsci_message_21");
+		msg_=QueryStringMessage("TCL/TK %d.%d.%d %s");
 		sprintf(VersionString,msg_,major,minor,patchLevel,ReleaseType);
 		if (msg_) {FREE(msg_);msg_=NULL;}
 
@@ -100,12 +100,12 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				error_scilab(999,"tclsci_error_26",fname);
+				error_scilab(999,"%s: invalid rhs parameter : help TCL_GetVersion.",fname);
 			}
 		}
 		else
 		{
-			error_scilab(999,"tclsci_error_26",fname);
+			error_scilab(999,"%s: invalid rhs parameter : help TCL_GetVersion.",fname);
 		}
 		
 	}

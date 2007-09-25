@@ -63,7 +63,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else if ( getWarningMode() )
 			{
-				char *MSG=QueryStringMessage("core_message_137");
+				char *MSG=QueryStringMessage("WARNING : %s");
 				if (MSG)
 				{
 					sciprint(MSG,Param);
@@ -75,7 +75,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		error_scilab(999,"core_error_177");
+		error_scilab(999,"Parameter must be a string.");
 		return 0;
 	}
 	LhsVar(1)=0;

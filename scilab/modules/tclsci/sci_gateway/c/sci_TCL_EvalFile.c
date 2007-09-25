@@ -26,13 +26,13 @@ int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 
 	if (TCLinterp == NULL)
 	{
-		error_scilab(999,"tclsci_error_12",fname);
+		error_scilab(999,"%s : Error main TCL interpreter not initialized.",fname);
 		return 0;
 	}
 
 	if(!FileExist(cstk(l1)))
 	{
-		error_scilab(999,"tclsci_error_17",cstk(l1));
+		error_scilab(999,"file %s not found.",cstk(l1));
 		return 0;
 	}
 
@@ -45,13 +45,13 @@ int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 			TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 			if (TCLinterpreter==NULL)
 			{
-				error_scilab(999,"tclsci_error_16",fname);
+				error_scilab(999,"%s: No such slave interpreter.",fname);
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,"tclsci_error_15",fname);
+			error_scilab(999,"%s : Argument type must be character string.",fname);
 			return 0;
 		}
 	}
@@ -68,18 +68,18 @@ int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 		const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
 		if (C2F(iop).err>0) 
 		{
-			message_scilab("tclsci_message_5",fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
+			message_scilab("%s, at line %i of file %s.\n	%s.",fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
 		}
         else
 		{
-			error_scilab(999,"tclsci_error_18",fname,TCLinterpreter->errorLine,cstk(l1),TCLinterpreter->result,(char *)trace);
+			error_scilab(999,"%s, at line %i of file %s\n	%s.",fname,TCLinterpreter->errorLine,cstk(l1),TCLinterpreter->result,(char *)trace);
 			return 0;
 		}
     }
   }
   else
   {
-	  error_scilab(999,"tclsci_error_15",fname);
+	  error_scilab(999,"%s : Argument type must be character string.",fname);
 	  return 0;
   }
 

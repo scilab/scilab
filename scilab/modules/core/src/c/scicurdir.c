@@ -32,7 +32,7 @@ int C2F(scichdir)(char *path,int *err)
 	if (SetCurrentDirectory(path) == 0)
 #endif
 	{
-		if ( getWarningMode() ) message_scilab("core_message_142", path); 
+		if ( getWarningMode() ) message_scilab("Can't go to directory %s .", path); 
 	    *err=1;
 	} 
 	return 0;
@@ -47,7 +47,7 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
 #endif
 	{
 		/* get current working dir */
-		if ( getWarningMode() ) message_scilab("core_message_143");
+		if ( getWarningMode() ) message_scilab("Can't get current directory.");
 		*cur_dir = '\0';
 		*lpath=0;
 		*err=1;

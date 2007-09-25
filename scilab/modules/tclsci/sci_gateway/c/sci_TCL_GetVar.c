@@ -26,7 +26,7 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 
 		if (TCLinterp == NULL)
 		{
-			error_scilab(999,"tclsci_error_12",fname);
+			error_scilab(999,"%s : Error main TCL interpreter not initialized.",fname);
 			return 0;
 		}
 
@@ -39,13 +39,13 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 				TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 				if (TCLinterpreter==NULL)
 				{
-					error_scilab(999,"tclsci_error_16",fname);
+					error_scilab(999,"%s: No such slave interpreter.",fname);
 					return 0;
 				}
 			}
 			else
 			{
-				error_scilab(999,"tclsci_error_15",fname);
+				error_scilab(999,"%s : Argument type must be character string.",fname);
 				return 0;
 			}
 		}
@@ -110,14 +110,14 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				error_scilab(999,"tclsci_error_25");
+				error_scilab(999,"TCL_GetVar: Could not read Tcl Var.");
 				return 0;
 			}
 		}
 	}
 	else
 	{
-		error_scilab(999,"tclsci_error_15",fname);
+		error_scilab(999,"%s : Argument type must be character string.",fname);
 		return 0;
 	}
 	
@@ -137,7 +137,7 @@ int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName)
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			error_scilab(999,"tclsci_error_5",TCLinterpreter->result);
+			error_scilab(999,"Tcl Error : %s",TCLinterpreter->result);
 			return 0;
 		}
 
@@ -166,7 +166,7 @@ int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName)
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			error_scilab(999,"tclsci_error_5",TCLinterpreter->result);
+			error_scilab(999,"Tcl Error : %s",TCLinterpreter->result);
 			return 0;
 		}
 
@@ -195,7 +195,7 @@ int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			error_scilab(999,"tclsci_error_5",TCLinterpreter->result);
+			error_scilab(999,"Tcl Error : %s",TCLinterpreter->result);
 			return 0;
 		}
 

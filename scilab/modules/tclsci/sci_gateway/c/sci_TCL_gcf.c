@@ -41,7 +41,7 @@ int GetTclCurrentFigure(void)
 
 	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
     {
-		error_scilab(999,"tclsci_error_5",TCLinterp->result);
+		error_scilab(999,"Tcl Error : %s",TCLinterp->result);
 		return 0;
 	}
 
@@ -49,7 +49,7 @@ int GetTclCurrentFigure(void)
 
 	if ( StrHandle == NULL  )
     {
-		error_scilab(999,"tclsci_error_23");
+		error_scilab(999,"Tcl Error: GetTclCurrentFigure.");
 		return 0;
 	}
 
@@ -80,7 +80,7 @@ int C2F(sci_TCL_scf) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		error_scilab(999,"tclsci_error_8");
+		error_scilab(999,"Invalid parameter(s) type.");
 		return 0;
 	}
 	
@@ -104,7 +104,7 @@ int SetTclCurrentFigure(int num)
 
 	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
     {
-		error_scilab(999,"tclsci_error_5",TCLinterp->result);
+		error_scilab(999,"Tcl Error : %s",TCLinterp->result);
 		return 0;
 	}
 
@@ -112,7 +112,7 @@ int SetTclCurrentFigure(int num)
 
 	if ( StrHandle == NULL  )
     {
-		error_scilab(999,"tclsci_error_24");
+		error_scilab(999,"Tcl Error: SetTclCurrentFigure.");
 		return 0;
 	}
 	

@@ -23,7 +23,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 
 	if (TCLinterp == NULL)
 	{
-		error_scilab(999,"tclsci_error_12",fname);
+		error_scilab(999,"%s : Error main TCL interpreter not initialized.",fname);
 		return 0;
 	}
 
@@ -36,13 +36,13 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 			TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 			if (TCLinterpreter==NULL)
 			{
-				error_scilab(999,"tclsci_error_16",fname);
+				error_scilab(999,"%s: No such slave interpreter.",fname);
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,"tclsci_error_15",fname);
+			error_scilab(999,"%s : Argument type must be character string.",fname);
 			return 0;
 		}
 	}
@@ -95,7 +95,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 		header = (int *) GetData(2);   Cmplx=header[3];
 		if (Cmplx==COMPLEX)
 		{
-			error_scilab(999,"tclsci_error_27");
+			error_scilab(999,"doesn't work with Complex");
 			return 0;
 		}
 		
@@ -106,7 +106,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 
 		if ( (m1==0) && (n1==0) )
 		{
-			error_scilab(999,"tclsci_error_31");
+			error_scilab(999,"[] doesn't work with Tcl/Tk.");
 			return 0;
 		}
 
@@ -122,7 +122,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 	else
 	{
 		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-		error_scilab(999,"tclsci_error_28",fname);
+		error_scilab(999,"%s: Invalid argument type.",fname);
 		return 0;
 	}
 	
@@ -172,13 +172,13 @@ int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,in
 
 			if ( (bOKsprintf1 == -1) || (bOKsprintf2 == -1) )
 			{
-				error_scilab(999,"tclsci_error_29");
+				error_scilab(999,"Variable too long.");
 				return 0;
 			}
 
 			if (TCLinterpreter == NULL)
 			{
-				error_scilab(999,"tclsci_error_30");
+				error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
 				return 0;
 			}
 
@@ -203,7 +203,7 @@ int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 
 	if (TCLinterpreter == NULL)
 	{
-		error_scilab(999,"tclsci_error_30");
+		error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
 		return 0;
 	}
 
@@ -231,7 +231,7 @@ int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int 
 
 	if (TCLinterpreter == NULL)
 	{
-		error_scilab(999,"tclsci_error_30");
+		error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
 		return 0;
 	}
 
@@ -262,7 +262,7 @@ int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str)
 
 	if (TCLinterpreter == NULL)
 	{
-		error_scilab(999,"tclsci_error_30");
+		error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
 		return 0;
 	}
 

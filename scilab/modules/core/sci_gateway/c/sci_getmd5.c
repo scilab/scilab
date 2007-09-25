@@ -52,12 +52,12 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,"core_error_148",Param1);
+				error_scilab(999,"file %s doesn't exist.",Param1);
 			}
 		}
 		else
 		{
-			error_scilab(999,"core_error_149");
+			error_scilab(999,"Invalid type parameter. it must be a string (a filename).");
 		}
 	}
 	else /* Rhs == 2 */
@@ -95,12 +95,12 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,"core_error_150");
+				error_scilab(999,"Invalid second parameter. It must be "string".");
 			}
 		}
 		else
 		{
-			error_scilab(999,"core_error_151");
+			error_scilab(999,"Invalid type parameter. parameters must be strings.");
 		}
 	}
 	return 0;

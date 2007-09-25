@@ -54,7 +54,7 @@ int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		error_scilab(999,"core_error_164");
+		error_scilab(999,"must be a name of function in scilab.");
 		return 0;
 	}
 

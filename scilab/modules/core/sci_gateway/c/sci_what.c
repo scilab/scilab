@@ -73,7 +73,7 @@ static void DispInternalFunctions(void)
 	int i=0;
 
 	sciprint("\n");
-	message_scilab("core_message_138");
+	message_scilab("Internal Functions: ");
 	sciprint("\n");
 	for (i=1;i<SizeLocalFunctionsTab-1;i++)
 	{
@@ -90,7 +90,7 @@ static void DispCommands(void)
 	char **commandwords = getcommandkeywords(&sizecommandwords);
 
 	sciprint("\n");
-	message_scilab("core_message_139");
+	message_scilab("Commands: ");
 	sciprint("\n");
 	for (i=1;i <sizecommandwords+1;i++)
 	{

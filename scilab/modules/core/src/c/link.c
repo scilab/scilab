@@ -179,7 +179,7 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
     }
   if (*ilib >= 0) 
   {
-	  if (getWarningMode()) message_scilab("core_message_130");
+	  if (getWarningMode()) message_scilab("Link done.");
   }
 }
 
@@ -218,14 +218,14 @@ void SciLink(iflag,rhs,ilib,files,en_names,strf)
      int iflag,*ilib,*rhs;
      char *files[],*en_names[],*strf;
 {
-  if (getWarningMode()) message_scilab("core_message_131");
+  if (getWarningMode()) message_scilab("Sorry : Dynamic linking is not implemented.");
 }
 
 
 void C2F(isciulink)(i) 
      integer *i;
 {
-  if (getWarningMode()) message_scilab("core_message_132");
+  if (getWarningMode()) message_scilab("Sorry : Unlinking is not implemented.");
 }
 
 #endif
@@ -363,14 +363,14 @@ static int SearchFandS(char *op, int ilib)
 void  ShowDynLinks(void)
 {
   int i=0,count=0;
-  if (getWarningMode()) message_scilab("core_message_133",NEpoints);
-  if (getWarningMode()) message_scilab("core_message_134");
+  if (getWarningMode()) message_scilab("Number of entry points %d.",NEpoints);
+  if (getWarningMode()) message_scilab("Shared libs : [");
   for ( i = 0 ; i < Nshared ; i++) 
     if ( hd[i].ok == OK) { if (getWarningMode())sciprint("%d ",i);count++;}
-  if (getWarningMode()) message_scilab("core_message_135",count);
+  if (getWarningMode()) message_scilab("] : %d libs.",count);
   for ( i = NEpoints-1 ; i >=0 ; i--) 
     {
-      if (getWarningMode()) message_scilab("core_message_136",EP[i].name,EP[i].Nshared);
+      if (getWarningMode()) message_scilab("Entry point %s in shared lib %d.",EP[i].name,EP[i].Nshared);
     }
 }
 

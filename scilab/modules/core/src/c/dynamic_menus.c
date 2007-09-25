@@ -106,7 +106,7 @@ int StoreCommand1 (char *command,int flag)
 			  p = (CommandRec *) MALLOC (sizeof (CommandRec));
 			  if (p == (CommandRec *) 0)
 				{
-					message_scilab("core_message_124");
+					message_scilab("send_command : No more memory");
 					return (1);
 				}
 			  p->flag = 0;
@@ -114,7 +114,7 @@ int StoreCommand1 (char *command,int flag)
 			  if (p->command == (char *) 0)
 				{
 				  FREE(p);
-				  message_scilab("core_message_124");
+				  message_scilab("send_command : No more memory");
 				  return (1);
 				}
 			  strcpy (p->command, command);

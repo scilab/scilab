@@ -23,7 +23,7 @@ void C2F(setprlev)( int *pause)
 		{
 			if (getWarningMode())
 			{
-				message_scilab("core_message_186");
+				message_scilab("Type 'resume' or 'abort' to return to standard level prompt.");
 				sciprint("\n");
 				dispWarningLevelPrompt=FALSE;
 			}

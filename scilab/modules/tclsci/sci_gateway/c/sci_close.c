@@ -44,32 +44,32 @@ int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 					}
 					else
 					{
-						error_scilab(999,"tclsci_error_6");
+						error_scilab(999,"parameter must be >= 0");
 						return 0;
 					}
 				}
 				else
 				{
 					DoCloseFigure=FALSE;
-					message_scilab("tclsci_message_4",Handle);
+					message_scilab("Warning : Figure %d does not exist.",Handle);
 				}
 			}
 			else
 			{
-				error_scilab(999,"tclsci_error_7");
+				error_scilab(999,"Invalid parameter type: must be an integer.");
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,"tclsci_error_7");
+			error_scilab(999,"Invalid parameter type: must be an integer.");
 			return 0;
 		}
 	}
 	
     if ( DoCloseFigure && ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  ) )
     {
-		error_scilab(999,"tclsci_error_5",TCLinterp->result);
+		error_scilab(999,"Tcl Error : %s",TCLinterp->result);
 		return 0;
 	}
 	else

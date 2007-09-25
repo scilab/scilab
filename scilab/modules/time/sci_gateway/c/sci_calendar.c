@@ -43,19 +43,19 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (year<1800) || (year>3000) )
 		{
-			error_scilab(999,"time_error_1");
+			error_scilab(999,"Error : year (1800 - 3000).");
 			return 0;
 		}
 				
 		if ( (month<1) || (month>12) )
 		{
-			error_scilab(999,"time_error_2");
+			error_scilab(999,"Error : month (1 - 12).");
 			return 0;
 		}
 	}
 	else
 	{
-		error_scilab(999,"time_error_3");
+		error_scilab(999,"Invalid argument(s) type.");
 		return 0;
 	}
 	CALMONTH=(int *)MALLOC( (NBRDAY*NBRWEEK)*sizeof(int) );

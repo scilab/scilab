@@ -77,9 +77,9 @@ void C2F(convertdate)(time_t *dt,int w[10])
 		w[7] = 0;
 		w[8] = 0;
 		w[9] = 0;
-		if (*dt<0)	message_scilab("time_message_1");
+		if (*dt<0)	message_scilab("dt=getdate(x) x must be > 0.");
 		#ifdef _MSC_VER
-		else message_scilab("time_message_2",_MAX__TIME64_T);
+		else message_scilab("dt=getdate(x) x must be < %d.",_MAX__TIME64_T);
 		#endif
 	}
 	else

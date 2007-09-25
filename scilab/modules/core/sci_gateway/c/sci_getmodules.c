@@ -19,7 +19,7 @@ int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len))
 	Modules=getmodules();
 	if (!Modules)
 	{
-		error_scilab(999,"core_error_165",fname);
+		error_scilab(999,"Warning : Problems with %s.",fname);
 		return 0;
 	}
 

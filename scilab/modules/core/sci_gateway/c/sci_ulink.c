@@ -47,7 +47,7 @@ int C2F(intulink) __PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			error_scilab(999,"core_error_176");
+			error_scilab(999,"Parameter must be a integer.");
 			return 0;
 		}
 	}

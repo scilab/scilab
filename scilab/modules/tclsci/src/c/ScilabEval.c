@@ -36,7 +36,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	/* trace for debugging */
     int argc=1;
 	char *AsciiFromUTF8=NULL;
-	char *msg=QueryStringMessage("tclsci_message_11");
+	char *msg=QueryStringMessage("TCL_EvalScilabCmd %s");
 
 	AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 
@@ -65,19 +65,19 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       command = (char *) MALLOC (bsiz * sizeof (char));
       if (command == (char *) 0)
       {
-		message_scilab("tclsci_message_6");
+		message_scilab("TCL_EvalScilabCmd: No more memory.");
         return TCL_ERROR;
       }
       memset(command,'\0',bsiz);
       strncpy(command,AsciiFromUTF8,bsiz-1);
-	  message_scilab("tclsci_message_7",bsiz-1);
+	  message_scilab("Warning: ScilabEval command is too long and has been truncated to %d characters!",bsiz-1);
     }
 	else
 	{
       command = (char *) MALLOC ((strlen (AsciiFromUTF8) + 1) * sizeof (char));
       if (command == (char *) 0)
       {
-		  message_scilab("tclsci_message_6");
+		  message_scilab("TCL_EvalScilabCmd: No more memory.");
           return TCL_ERROR;
       }
       strcpy(command,AsciiFromUTF8);
@@ -92,7 +92,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       ns=(int)strlen(command); 
       if (C2F(iop).ddt==-1)
 	  {
-		  char *msg=QueryStringMessage("tclsci_message_12");
+		  char *msg=QueryStringMessage(" Execution starts for %s");
 		  sciprint_full(msg,command);
 		  if (msg){FREE(msg);msg=NULL;}
           sciprint("\n");
@@ -100,7 +100,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       C2F(syncexec)(command,&ns,&ierr,&seq,ns);
       if (C2F(iop).ddt==-1)
 	  {
-		  char *msg=QueryStringMessage("tclsci_message_13");
+		  char *msg=QueryStringMessage(" Execution ends for %s");
 		  sciprint_full(msg,command);
 		  if (msg){FREE(msg);msg=NULL;}
           sciprint("\n");
@@ -111,19 +111,19 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     else if (strncmp(command,"flush",5)==0)
 	{
       /* flush */
-      if (C2F(iop).ddt==-1) message_scilab("tclsci_message_8");
+      if (C2F(iop).ddt==-1) message_scilab(" Flushing starts for queued commands.");
       while (ismenu() && ncomm<arbitrary_max_queued_callbacks-1)
 	  {
         ncomm++;
         comm[ncomm] = (char *) MALLOC (bsiz+1);
         if (comm[ncomm] == (char *) 0)
         {
-			message_scilab("tclsci_message_6");
+			message_scilab("TCL_EvalScilabCmd: No more memory.");
 			return TCL_ERROR;
         }
         seqf[ncomm]=GetCommand (comm[ncomm]);
       }
-      if (ismenu()) message_scilab("tclsci_message_9");
+      if (ismenu()) message_scilab("Warning: Too many callbacks in queue!");
       for (nc = 0 ; nc <= ncomm ; nc++ )
 	  {
         C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
@@ -131,14 +131,14 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         {
 	      if (seqf[nc]==0)
 		  {
-			  char *msg=QueryStringMessage("tclsci_message_14");
+			  char *msg=QueryStringMessage(" Flushed execution starts for %s - No option");
 			  sciprint_full(msg,comm[nc]);
 			  if (msg){FREE(msg);msg=NULL;}
               sciprint("\n");
 		  }
 	      else
 		  {
-			  char *msg=QueryStringMessage("tclsci_message_15");
+			  char *msg=QueryStringMessage(" Flushed execution starts for %s - seq");
 			  sciprint_full(msg,comm[nc]);
 			  if (msg){FREE(msg);msg=NULL;}
               sciprint("\n");
@@ -148,7 +148,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
         if (C2F(iop).ddt==-1)
         {
-			char *msg=QueryStringMessage("tclsci_message_16");
+			char *msg=QueryStringMessage(" Flushed execution ends for %s");
 			sciprint_full(msg,comm[nc]);
 			if (msg){FREE(msg);msg=NULL;}
             sciprint("\n");
@@ -157,7 +157,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         C2F(tksynchro)(&C2F(recu).paus);
         if (ierr != 0) return TCL_ERROR;
       }
-      if (C2F(iop).ddt==-1) message_scilab("tclsci_message_10");
+      if (C2F(iop).ddt==-1) message_scilab(" Flushing ends");
     }
     else
 	{
@@ -180,7 +180,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
   else
   {
 	/* ScilabEval called without argument */
-	error_scilab(999,"tclsci_error_39");
+	error_scilab(999,"ScilabEval: at least one argument is required.");
   }
 
   return TCL_OK;
