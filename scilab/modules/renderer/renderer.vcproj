@@ -291,14 +291,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\textDrawing\DrawableText.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\textDrawing\DrawableTextFactory.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\DrawingBridge.cpp"
 				>
 			</File>
@@ -738,6 +730,30 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="TextDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableText.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableTextBridgeFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableTextFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableTextJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableTextJoGL.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -846,14 +862,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceFactory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\textDrawing\DrawableText.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\textDrawing\DrawableTextFactory.h"
 				>
 			</File>
 			<File
@@ -1309,6 +1317,34 @@
 				</File>
 				<File
 					RelativePath=".\src\jni\ScilabGraphicWindow.hxx"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="TextDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableText.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableTextBridge.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableTextBridgeFactory.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableTextFactory.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableTextJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawableTextJoGL.hxx"
 					>
 				</File>
 			</Filter>

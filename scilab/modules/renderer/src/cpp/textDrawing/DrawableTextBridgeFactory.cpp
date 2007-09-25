@@ -1,31 +1,28 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableTextFactory.cpp                                          */
+/* file: DrawableTextBridgeFactory.cpp                                    */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Factory for text objects. Automaticaly create a text            */
-/*        drawer with the right algorithms from the garphic handle        */
+/* desc : Factory for DrawableTextBridge                                  */
 /*------------------------------------------------------------------------*/
 
-#include "DrawableTextFactory.h"
-#include "DrawableText.h"
 #include "DrawableTextBridgeFactory.hxx"
+#include "DrawableTextJoGL.hxx"
+#include "DrawableTextJavaMapper.hxx"
 
 namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-DrawableObject * DrawableTextFactory::create( void )
+DrawableTextBridge * DrawableTextBridgeFactory::create( void )
 {
-  DrawableText * newText = new DrawableText( m_pDrawed ) ;
-  DrawableTextBridgeFactory fact;
-  fact.setDrawedText(newText);
-  newText->setDrawableImp(fact.create());
-  return create();
+  DrawableTextJoGL * imp = new DrawableTextJoGL( m_pDrawable ) ;
+  imp->setJavaMapper(new DrawableTextJavaMapper()) ;
+  return imp ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableTextFactory::update( void )
+void DrawableTextBridgeFactory::setDrawedText( DrawableText* poly )
 {
-  // nothing for now
+  m_pDrawable = poly ;
 }
 /*------------------------------------------------------------------------------------------*/
 

@@ -2,11 +2,11 @@
 /* file: DrawablePolylineBridgeFactory.h                                  */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Factory for DrawableRectangleBridge                             */
+/* desc : Factory for DrawablePolylineBridge                             */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_SUBWIN_BRIDGE__FACTORY_H_
-#define _DRAWABLE_SUBWIN_BRIDGE__FACTORY_H_
+#ifndef _DRAWABLE_POLYLINE_BRIDGE_FACTORY_H_
+#define _DRAWABLE_POLYLINE_BRIDGE_FACTORY_H_
 
 #include "DrawablePolyline.h"
 
@@ -27,7 +27,7 @@ public:
   virtual DrawablePolylineBridge * create( void ) ;
 
   /**
-   * Set the DrawableRectangle wich needs algorithms
+   * Set the DrawablePolyline which needs algorithms
    */
   void setDrawedPolyline( DrawablePolyline * poly ) ;
 
@@ -39,4 +39,4 @@ protected:
 
 }  
 
-#endif /* _DRAWABLE_SUBWIN_BRIDGE__FACTORY_H_ */
+#endif /* _DRAWABLE_POLYLINE_BRIDGE_FACTORY_H_ */

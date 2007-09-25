@@ -24,7 +24,6 @@ public class CoordinateTransformation {
 
 	/** transformation matrices sizes */
 	private static final int MATRIX_4X4_SIZE = 16;
-	private static final int VIEWPORT_SIZE   = 4;
 	
 	/** Singleton */
 	private static CoordinateTransformation transform;
@@ -111,7 +110,7 @@ public class CoordinateTransformation {
 	 * @return coodinates in object frame
 	 */
 	public Vector3D retrieveSceneCoordinates(GL gl, Vector3D canvasPos) {
-		// I first used gluProject, but it is slower since it will always perform matrices multiplications and inverse.
+		// I first used gluUnproject, but it is slower since it will always perform matrices multiplications and inverse.
 		
 		return unprojectMatrix.mult(canvasPos);
 	}

@@ -8,14 +8,9 @@
 
 package org.scilab.modules.renderer.subwinDrawing;
 
-import java.awt.Font;
-
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.DrawableObjectGL;
-
-import com.sun.opengl.util.j2d.TextRenderer;
-import com.sun.opengl.util.j2d.TextRenderer.RenderDelegate;
 
 /**
  * Class containing functions called by DrawableSubwinJoGL.cpp

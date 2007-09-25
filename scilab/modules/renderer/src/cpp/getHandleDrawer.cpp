@@ -92,4 +92,15 @@ DrawablePolyline * getPolylineDrawer( sciPointObj * pPolyline )
   return dynamic_cast<DrawablePolyline *>(getHandleDrawer(pPolyline));
 }
 /*------------------------------------------------------------------------------------------*/
+DrawableText * getTextDrawer( sciPointObj * pText )
+{
+  if ( sciGetEntityType(pText) != SCI_TEXT )
+  {
+    return NULL;
+  }
+
+  return dynamic_cast<DrawableText *>(getHandleDrawer(pText));
+}
+/*------------------------------------------------------------------------------------------*/
+
 }
