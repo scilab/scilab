@@ -723,7 +723,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
                 //used to continue simulation
       if ~exists('%tcur') then %tcur=[];end
       if ~exists('%scicos_solver') then %scicos_solver=0;end
-      save(TMPDIR+'/BackupInfo', needcompile,alreadyran, %cpr,%state0,%tcur,..
+      save(TMPDIR+'/BackupInfo', edited,needcompile,alreadyran, %cpr,%state0,%tcur,..
                                             %scicos_solver,inactive_windows)
     end
     if ~ok then
