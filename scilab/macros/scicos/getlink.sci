@@ -87,6 +87,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
     impi  = graphics1.pin
     cop   = graphics1.peout
     [xout,yout,typout]=getoutputports(o1)
+    
+    i_ImplIndx=find(graphics1.in_implicit=='I')
 
     if xout==[] then
         hilite_obj(kfrom)
@@ -128,7 +130,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
     elseif (typo==2 & k>size(op,'*')) then //implicit  input port
       typpfrom='in' 
       k=k-size(op,'*')
-      port_number=k,//out port
+//      port_number=k,//out port
+      port_number=i_ImplIndx(k)
       if impi(port_number)<>0 then
           hilite_obj(kfrom)
           message('Selected port is already connected.')
@@ -248,6 +251,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       impo  = graphics2.pout
       cip   = graphics2.pein
       [xin,yin,typin] = getinputports(o2)
+      
+      o_ImplIndx=find(graphics2.out_implicit=='I')
 
       //check connection
       if xin==[] then
@@ -402,8 +407,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
 
         k=k-size(ip,'*')
         typpto='out'
-        port_number=k
-
+        //port_number=k
+        port_number=o_ImplIndx(k)  //RN: explicit outputs are excluded
+                                   //in the computation of k
         if impo(port_number)<>0 then
            message('Selected port is already connected.'),
            p_size = size(gh_curwin.children.children)
