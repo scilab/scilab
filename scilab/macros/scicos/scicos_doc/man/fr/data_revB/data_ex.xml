@@ -298,6 +298,11 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='Context' type='XML'>
+<EXAMPLE>
+</EXAMPLE>
+</FILE>
+
 <FILE name='Counter' type='XML'>
 <EXAMPLE>
 
@@ -1019,15 +1024,17 @@
 <FILE name='Modulo_Count' type='XML'>
 <EXAMPLE>
 
+</EXAMPLE>
+</FILE>
 
+<FILE name='Multiwindow' type='XML'>
+<EXAMPLE>
 
 </EXAMPLE>
 </FILE>
 
 <FILE name='NEGTOPOS_f' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -1040,8 +1047,6 @@
 
 <FILE name='NRMSOM_f' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>

@@ -421,6 +421,14 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='Context' type='XML'>
+  <AUTHORS>
+   <AUTHORS_ITEM label='Ramine Nikoukhah'>
+    INRIA
+   </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='Counter' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Fady NASSIF'>
@@ -1274,6 +1282,14 @@ INRIA
 INRIA
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='Multiwindow' type='XML'>
+  <AUTHORS>
+   <AUTHORS_ITEM label='Ramine Nikoukhah'>
+    INRIA
+   </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='NEGTOPOS_f' type='XML'>

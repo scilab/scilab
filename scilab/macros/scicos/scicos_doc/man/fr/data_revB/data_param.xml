@@ -1970,6 +1970,12 @@
   </PARAM>
 </FILE>
 
+<FILE name='Context' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
 <FILE name='Counter' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -4712,6 +4718,12 @@
          Propriétés : Type 'vec' de taille 1
 
 \end{itemize}
+</FILE>
+
+<FILE name='Multiwindow' type='XML'>
+  <PARAM>
+
+  </PARAM>
 </FILE>
 
 <FILE name='NEGTOPOS_f' type='XML'>

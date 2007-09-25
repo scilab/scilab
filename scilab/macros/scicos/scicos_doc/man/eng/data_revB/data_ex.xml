@@ -328,6 +328,12 @@ B=[12;15;18]
 </EXAMPLE>
 </FILE>
 
+<FILE name='Context' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='Counter' type='XML'>
 <EXAMPLE>
 <P>
@@ -1054,6 +1060,12 @@ When t=2 we loop back to 0.
 <FILE name='Modulo_Count' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
+</FILE>
+
+<FILE name='Multiwindow' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='NEGTOPOS_f' type='XML'>

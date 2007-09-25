@@ -1941,6 +1941,12 @@
   </PARAM>
 </FILE>
 
+<FILE name='Context' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
 <FILE name='Counter' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -4411,6 +4417,12 @@ should be edited with another text editor.
          Properties : Type 'vec' of size 1
 
 \end{itemize}
+</FILE>
+
+<FILE name='Multiwindow' type='XML'>
+  <PARAM>
+
+  </PARAM>
 </FILE>
 
 <FILE name='NEGTOPOS_f' type='XML'>
@@ -7127,7 +7139,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	    "deltat" : get the maximum integration time interval.
 	  </SP>
 	  <SP>
-	    "hmax" : get the maximum step size for the numerical solver. 
+	    "hmax" : get the maximum step size for the numerical solver.
 	  </SP>
 	  <SP>
 	    "nelem" : get the number of elements in outtb.

@@ -358,6 +358,12 @@
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='Context' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='Counter' type='XML'>
 <USED_FUNCTIONS>
 <SP>
@@ -370,14 +376,11 @@
 <USED_FUNCTIONS>
 
 
-
 </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='DEADBAND' type='XML'>
 <USED_FUNCTIONS>
-
-
 
 </USED_FUNCTIONS>
 </FILE>
@@ -1247,6 +1250,12 @@ for this block we have four differents functions:
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='Multiwindow' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='NEGTOPOS_f' type='XML'>

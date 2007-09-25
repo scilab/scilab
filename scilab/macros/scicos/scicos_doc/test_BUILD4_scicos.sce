@@ -122,6 +122,8 @@ function tt=generate_scs_outline()
               "  <CHAPTER eng=""Editor"" fr=""Editeur"">";
               "    <SCI varpath="""" name=""Menu_entries""></SCI>"
               "    <SCI varpath="""" name=""Keyboard_shortcuts""></SCI>"
+              "    <SCI varpath="""" name=""Context""></SCI>"
+              "    <SCI varpath="""" name=""Multiwindow""></SCI>"
               "  </CHAPTER>"
               "";
               "  <CHAPTER eng=""Blocks"" fr=""Blocs"">";
@@ -565,6 +567,120 @@ function gen_scs_editor_help(typdoc,%gd)
                      '\end{document}']
       //**---------------------**//
 
+      //**------ Context ------**//
+      //** generate body of the tex file
+
+      //** generate tex head
+      head_tex=get_head_tex(["","Context","sci"],typdoc,i,%gd)
+      //** change title of html head
+      if %gd.lang(i)=='fr' then
+         head_tex=strsubst(head_tex,'Fonction Scilab','Editeur Scicos')
+      elseif %gd.lang(i)=='eng' then
+         head_tex=strsubst(head_tex,'Scilab Function','Scicos Editor')
+      end
+
+      name=get_extname(["","Context","sci"],%gd) 
+
+      if fileinfo(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_mod.tex')<>[] then
+
+        tt=['\subsection{Modules}'
+            mgetl(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_mod.tex')];
+      else
+        tt=[];
+      end
+
+      if fileinfo(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_long.tex')<>[] then
+        tt=[tt;
+            mgetl(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_long.tex')];
+      end
+
+      if fileinfo(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_authors.tex')<>[] then
+        if %gd.lang(i)=='fr' then
+          tt_sub = '\subsection{Auteurs}'
+        else
+          tt_sub = '\subsection{Authors}'
+        end
+        tt=[tt;
+            tt_sub;
+            mgetl(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_authors.tex')];
+      end
+
+      //** generate txt of tex file
+      txt_context=[head_tex;
+                   tt
+                   '\htmlinfo*'
+                   '\end{document}']
+      //**---------------------**//
+
+      //**------ Multiwindow ------**//
+      //** generate body of the tex file
+
+      //** generate tex head
+      head_tex=get_head_tex(["","Multiwindow","sci"],typdoc,i,%gd)
+      //** change title of html head
+      if %gd.lang(i)=='fr' then
+         head_tex=strsubst(head_tex,'Fonction Scilab','Editeur Scicos')
+      elseif %gd.lang(i)=='eng' then
+         head_tex=strsubst(head_tex,'Scilab Function','Scicos Editor')
+      end
+
+      name=get_extname(["","Multiwindow","sci"],%gd) 
+
+      if fileinfo(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_mod.tex')<>[] then
+
+        tt=['\subsection{Modules}'
+            mgetl(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_mod.tex')];
+      else
+        tt=[];
+      end
+
+      if fileinfo(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_long.tex')<>[] then
+        tt=[tt;
+            mgetl(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_long.tex')];
+      end
+
+      if fileinfo(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_authors.tex')<>[] then
+        if %gd.lang(i)=='fr' then
+          tt_sub = '\subsection{Auteurs}'
+        else
+          tt_sub = '\subsection{Authors}'
+        end
+        tt=[tt;
+            tt_sub;
+            mgetl(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_authors.tex')];
+      end
+
+      //** generate txt of tex file
+      txt_multiwin=[head_tex;
+                   tt
+                   '\htmlinfo*'
+                   '\end{document}']
+      //**---------------------**//
+
       //create lang directory
       if fileinfo(%gd.lang(i)+'/')==[] then
        mkdir(%gd.lang(i))
@@ -593,6 +709,32 @@ function gen_scs_editor_help(typdoc,%gd)
       end
 
       mputl(txt_shortcuts,%gd.lang(i)+...
+            '/'+name+...
+            '/'+name+'.tex');
+
+      name=get_extname(["","Context","sci"],%gd)
+
+      //create object directory for
+      //tex compilation
+      if fileinfo(%gd.lang(i)+'/'+...
+                   name)==[] then
+        mkdir(%gd.lang(i)+'/'+name)
+      end
+
+      mputl(txt_context,%gd.lang(i)+...
+            '/'+name+...
+            '/'+name+'.tex');
+
+      name=get_extname(["","Multiwindow","sci"],%gd)
+
+      //create object directory for
+      //tex compilation
+      if fileinfo(%gd.lang(i)+'/'+...
+                   name)==[] then
+        mkdir(%gd.lang(i)+'/'+name)
+      end
+
+      mputl(txt_multiwin,%gd.lang(i)+...
             '/'+name+...
             '/'+name+'.tex');
    end
@@ -890,7 +1032,9 @@ listf_of_ABCD=["","ABCD_Blocks","sci"];
 
 //**--Editor--*/
 list_of_editor = ["","Menu_entries","sci";
-                  "","Keyboard_shortcuts","sci";];
+                  "","Keyboard_shortcuts","sci";
+                  "","Context","sci";
+                  "","Multiwindow","sci"];
 //**------------*/
 
 //**--scilab structure--*/
