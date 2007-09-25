@@ -45,6 +45,7 @@ public:
 
   virtual void setColorMapData(const double rgbmat[], int nbColor);
   virtual void getColorMapData(double rgbmat[]);
+  virtual int getColorMapSize(void);
 
   virtual int getCanvasWidth(void);
   virtual int getCanvasHeight(void);

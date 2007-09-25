@@ -56,11 +56,11 @@ jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetArrowParametersjintjdoubleID; // cache method id
 jmethodID voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
-jmethodID voiddrawPolylinejdoublejdoublejdoubleID; // cache method id
+jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID; // cache method id
 
 
 /**
-* Get the environmebnt matching to the current thread.
+* Get the environment matching to the current thread.
 */
 JNIEnv * getCurrentEnv();
 
@@ -77,8 +77,8 @@ PolylineArrowDrawerGL(JavaVM * jvm_);
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
-* @TODO removed because don't remember with we did it :$
 */
+PolylineArrowDrawerGL(JavaVM * jvm_, jobject JObj);
 
 // Destructor
 ~PolylineArrowDrawerGL();

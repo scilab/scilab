@@ -102,7 +102,7 @@ if(this->instance == NULL){
 std::cerr << "Could not create a new global ref of " << className << std::endl;
 exit(EXIT_FAILURE);
 }
-
+                /* Methods ID set to NULL */
 voiddisplayID=NULL; 
 voidinitializeDrawingjintID=NULL; 
 voidendDrawingID=NULL; 
@@ -110,7 +110,36 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetMarkParametersjintjintjintjintjintID=NULL; 
-voiddrawPolylinejdoublejdoublejdoubleID=NULL; 
+voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
+
+
+}
+
+PolylineMarkDrawerGL::PolylineMarkDrawerGL(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
+
+        JNIEnv * curEnv = getCurrentEnv();
+
+        this->instanceClass = (jclass) curEnv->NewGlobalRef(curEnv->GetObjectClass(JObj));
+        if (this->instanceClass == NULL) {
+               std::cerr << "Could not create a Global Ref of " << this->instanceClass <<  std::endl;
+               exit(EXIT_FAILURE);
+        }
+
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+               std::cerr << "Could not create a new global ref of " << this->instanceClass << std::endl;
+               exit(EXIT_FAILURE);
+        }
+        /* Methods ID set to NULL */
+        voiddisplayID=NULL; 
+voidinitializeDrawingjintID=NULL; 
+voidendDrawingID=NULL; 
+voidshowjintID=NULL; 
+voiddestroyjintID=NULL; 
+voidsetFigureIndexjintID=NULL; 
+voidsetMarkParametersjintjintjintjintjintID=NULL; 
+voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
 
 
 }
@@ -286,10 +315,10 @@ void PolylineMarkDrawerGL::drawPolyline (double * xCoords, int xCoordsSize, doub
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voiddrawPolylinejdoublejdoublejdoubleID == NULL)
+if (this->voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID == NULL)
 {
-this->voiddrawPolylinejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "drawPolyline", "([D[D[D)V" ) ;
-if (this->voiddrawPolylinejdoublejdoublejdoubleID == NULL) {
+this->voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID = curEnv->GetMethodID(this->instanceClass, "drawPolyline", "([D[D[D)V" ) ;
+if (this->voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID == NULL) {
 std::cerr << "Could not access to the method drawPolyline" << std::endl;
 exit(EXIT_FAILURE);
 }
@@ -303,7 +332,7 @@ curEnv->SetDoubleArrayRegion( yCoords_, 0, yCoordsSize, (jdouble*) yCoords ) ;
 jdoubleArray zCoords_ = curEnv->NewDoubleArray( zCoordsSize ) ;
 curEnv->SetDoubleArrayRegion( zCoords_, 0, zCoordsSize, (jdouble*) zCoords ) ;
 
-  curEnv->CallVoidMethod( this->instance, voiddrawPolylinejdoublejdoublejdoubleID ,xCoords_, yCoords_, zCoords_);
+  curEnv->CallVoidMethod( this->instance, voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID ,xCoords_, yCoords_, zCoords_);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

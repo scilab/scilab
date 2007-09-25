@@ -54,11 +54,11 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID voiddrawPolylinejdoublejdoublejdoublejintID; // cache method id
+jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjintArrayID; // cache method id
 
 
 /**
-* Get the environmebnt matching to the current thread.
+* Get the environment matching to the current thread.
 */
 JNIEnv * getCurrentEnv();
 
@@ -75,8 +75,8 @@ PolylineInterpColorDrawerGL(JavaVM * jvm_);
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
-* @TODO removed because don't remember with we did it :$
 */
+PolylineInterpColorDrawerGL(JavaVM * jvm_, jobject JObj);
 
 // Destructor
 ~PolylineInterpColorDrawerGL();

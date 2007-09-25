@@ -57,7 +57,9 @@ jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voiddrawCanvasID; // cache method id
 jmethodID voidcloseRenderingCanvasID; // cache method id
 jmethodID voidsetBackgroundColorjintID; // cache method id
-jmethodID voidsetColorMapDatajdoubleID; // cache method id
+jmethodID voidsetColorMapDatajdoubleArrayID; // cache method id
+jmethodID jdoubleArraygetColorMapDataID; // cache method id
+jmethodID jintgetColorMapSizeID; // cache method id
 jmethodID jintgetCanvasWidthID; // cache method id
 jmethodID jintgetCanvasHeightID; // cache method id
 jmethodID voidsetCanvasSizejintjintID; // cache method id
@@ -73,7 +75,7 @@ jmethodID jintgetPixmapModeID; // cache method id
 
 
 /**
-* Get the environmebnt matching to the current thread.
+* Get the environment matching to the current thread.
 */
 JNIEnv * getCurrentEnv();
 
@@ -90,8 +92,8 @@ DrawableFigureGL(JavaVM * jvm_);
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
-* @TODO removed because don't remember with we did it :$
 */
+DrawableFigureGL(JavaVM * jvm_, jobject JObj);
 
 // Destructor
 ~DrawableFigureGL();
@@ -130,6 +132,10 @@ void closeRenderingCanvas();
 void setBackgroundColor(long backgroundColor);
 
 void setColorMapData(double * rgbmat, int rgbmatSize);
+
+double * getColorMapData();
+
+long getColorMapSize();
 
 long getCanvasWidth();
 

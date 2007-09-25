@@ -80,7 +80,19 @@ void DrawableFigureJavaMapper::setColorMapData(const double rgbmat[], int nbColo
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::getColorMapData(double rgbmat[])
 {
-  // TODO
+  int cmapSize = getColorMapSize();
+  double * javaCmap = m_pJavaObject->getColorMapData();
+
+  for ( int i = 0 ; i < 3 * cmapSize ; i++ ) {
+    rgbmat[i] = javaCmap[i];
+  }
+
+  delete[] javaCmap;
+}
+/*------------------------------------------------------------------------------------------*/
+int DrawableFigureJavaMapper::getColorMapSize(void)
+{
+  return m_pJavaObject->getColorMapSize();
 }
 /*------------------------------------------------------------------------------------------*/
 int DrawableFigureJavaMapper::getCanvasWidth(void)

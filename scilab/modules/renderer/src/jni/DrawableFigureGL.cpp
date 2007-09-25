@@ -102,7 +102,7 @@ if(this->instance == NULL){
 std::cerr << "Could not create a new global ref of " << className << std::endl;
 exit(EXIT_FAILURE);
 }
-
+                /* Methods ID set to NULL */
 voiddisplayID=NULL; 
 voidinitializeDrawingjintID=NULL; 
 voidendDrawingID=NULL; 
@@ -112,7 +112,54 @@ voidsetFigureIndexjintID=NULL;
 voiddrawCanvasID=NULL; 
 voidcloseRenderingCanvasID=NULL; 
 voidsetBackgroundColorjintID=NULL; 
-voidsetColorMapDatajdoubleID=NULL; 
+voidsetColorMapDatajdoubleArrayID=NULL; 
+jdoubleArraygetColorMapDataID=NULL; 
+jintgetColorMapSizeID=NULL; 
+jintgetCanvasWidthID=NULL; 
+jintgetCanvasHeightID=NULL; 
+voidsetCanvasSizejintjintID=NULL; 
+jintgetWindowPosXID=NULL; 
+jintgetWindowPosYID=NULL; 
+voidsetWindowPositionjintjintID=NULL; 
+jintgetWindowWidthID=NULL; 
+jintgetWindowHeightID=NULL; 
+voidsetWindowSizejintjintID=NULL; 
+voidsetInfoMessagejstringID=NULL; 
+voidsetPixmapModejintID=NULL; 
+jintgetPixmapModeID=NULL; 
+
+
+}
+
+DrawableFigureGL::DrawableFigureGL(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
+
+        JNIEnv * curEnv = getCurrentEnv();
+
+        this->instanceClass = (jclass) curEnv->NewGlobalRef(curEnv->GetObjectClass(JObj));
+        if (this->instanceClass == NULL) {
+               std::cerr << "Could not create a Global Ref of " << this->instanceClass <<  std::endl;
+               exit(EXIT_FAILURE);
+        }
+
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+               std::cerr << "Could not create a new global ref of " << this->instanceClass << std::endl;
+               exit(EXIT_FAILURE);
+        }
+        /* Methods ID set to NULL */
+        voiddisplayID=NULL; 
+voidinitializeDrawingjintID=NULL; 
+voidendDrawingID=NULL; 
+voidshowjintID=NULL; 
+voiddestroyjintID=NULL; 
+voidsetFigureIndexjintID=NULL; 
+voiddrawCanvasID=NULL; 
+voidcloseRenderingCanvasID=NULL; 
+voidsetBackgroundColorjintID=NULL; 
+voidsetColorMapDatajdoubleArrayID=NULL; 
+jdoubleArraygetColorMapDataID=NULL; 
+jintgetColorMapSizeID=NULL; 
 jintgetCanvasWidthID=NULL; 
 jintgetCanvasHeightID=NULL; 
 voidsetCanvasSizejintjintID=NULL; 
@@ -342,10 +389,10 @@ void DrawableFigureGL::setColorMapData (double * rgbmat, int rgbmatSize){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidsetColorMapDatajdoubleID == NULL)
+if (this->voidsetColorMapDatajdoubleArrayID == NULL)
 {
-this->voidsetColorMapDatajdoubleID = curEnv->GetMethodID(this->instanceClass, "setColorMapData", "([D)V" ) ;
-if (this->voidsetColorMapDatajdoubleID == NULL) {
+this->voidsetColorMapDatajdoubleArrayID = curEnv->GetMethodID(this->instanceClass, "setColorMapData", "([D)V" ) ;
+if (this->voidsetColorMapDatajdoubleArrayID == NULL) {
 std::cerr << "Could not access to the method setColorMapData" << std::endl;
 exit(EXIT_FAILURE);
 }
@@ -353,12 +400,70 @@ exit(EXIT_FAILURE);
 jdoubleArray rgbmat_ = curEnv->NewDoubleArray( rgbmatSize ) ;
 curEnv->SetDoubleArrayRegion( rgbmat_, 0, rgbmatSize, (jdouble*) rgbmat ) ;
 
-  curEnv->CallVoidMethod( this->instance, voidsetColorMapDatajdoubleID ,rgbmat_);
+  curEnv->CallVoidMethod( this->instance, voidsetColorMapDatajdoubleArrayID ,rgbmat_);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
+
+}
+
+double * DrawableFigureGL::getColorMapData (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->jdoubleArraygetColorMapDataID == NULL)
+{
+this->jdoubleArraygetColorMapDataID = curEnv->GetMethodID(this->instanceClass, "getColorMapData", "()[D" ) ;
+if (this->jdoubleArraygetColorMapDataID == NULL) {
+std::cerr << "Could not access to the method getColorMapData" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+ jdoubleArray res =  (jdoubleArray) curEnv->CallObjectMethod( this->instance, jdoubleArraygetColorMapDataID );
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jdouble *resultsArray = (jdouble *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+double * myArray= new double[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
+
+}
+
+long DrawableFigureGL::getColorMapSize (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->jintgetColorMapSizeID == NULL)
+{
+this->jintgetColorMapSizeID = curEnv->GetMethodID(this->instanceClass, "getColorMapSize", "()I" ) ;
+if (this->jintgetColorMapSizeID == NULL) {
+std::cerr << "Could not access to the method getColorMapSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+ jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetColorMapSizeID );
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+return res;
 
 }
 

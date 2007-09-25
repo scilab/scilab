@@ -54,7 +54,7 @@ jmethodID voidnotifyAllID; // cache method id
 
 
 /**
-* Get the environmebnt matching to the current thread.
+* Get the environment matching to the current thread.
 */
 JNIEnv * getCurrentEnv();
 
@@ -71,8 +71,8 @@ Object(JavaVM * jvm_);
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
-* @TODO removed because don't remember with we did it :$
 */
+Object(JavaVM * jvm_, jobject JObj);
 
 // Destructor
 ~Object();

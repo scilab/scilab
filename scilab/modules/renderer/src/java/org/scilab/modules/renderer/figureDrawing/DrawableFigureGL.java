@@ -118,7 +118,7 @@ public class DrawableFigureGL extends ObjectGL {
    	}
   
   /**
-   * Set a new colormap to the figure
+   * Set a new colormap to the figure.
    * @param rgbMat matrix containing the new data. This is a nbColor x 3 matrix
    *               where 3 is the number of color in the colormap
    */
@@ -134,6 +134,14 @@ public class DrawableFigureGL extends ObjectGL {
   	public double[] getColorMapData() {
   		return getColorMap().getData();
   	}
+  
+  /**
+   * Get the size of te colormap
+   * @return number of color in the colorMap
+   */
+  public int getColorMapSize() {
+    return getColorMap().getSize();
+  }
   	
   	/**
   	 * Get the raw data of the figure colormap
