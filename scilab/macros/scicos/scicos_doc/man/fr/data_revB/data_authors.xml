@@ -2058,7 +2058,7 @@ INRIA
 
 <FILE name='scicos_debug' type='XML'>
   <AUTHORS>
-    <AUTHORS_ITEM label='Alan Layec' to='alan.layec@inria.fr?subject=scicos_debug_doc'>
+    <AUTHORS_ITEM label='Alan Layec'>
       INRIA
     </AUTHORS_ITEM>
     <AUTHORS_ITEM label='Ramine Nikoukhah'>

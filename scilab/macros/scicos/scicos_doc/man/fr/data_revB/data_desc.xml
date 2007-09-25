@@ -3055,7 +3055,8 @@ linked before simulation.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Ajoutez ici un paragraphe pour la description de la fonction
+    Cette fonction retourne un vecteur indiquant le type (algébrique ou différentiel)
+    des variables d'états continues utilisées dans un bloc.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -3261,7 +3262,8 @@ is slower. For more information see Scicos reference manual.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Ajoutez ici un paragraphe pour la description de la fonction
+    Cette fonction permet de définir un vecteur indiquant le type (algébrique ou différentiel)
+    des variables d'états continues utilisées dans un bloc.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

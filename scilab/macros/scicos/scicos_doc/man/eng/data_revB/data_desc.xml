@@ -2953,7 +2953,8 @@ linked before simulation.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+    This function returns a vector that informs the type (algebraic or differential)
+    of the continuous state variables of a block.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -3162,7 +3163,8 @@ is slower. For more information see Scicos reference manual.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+    This function set a vector to inform the type (algebraic or differential)
+    of the continuous state variables of a block.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

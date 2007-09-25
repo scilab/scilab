@@ -3045,7 +3045,7 @@
 </FILE>
 
 <FILE name='pointer_xproperty' type='XML'>
-	<SHORT_DESCRIPTION name="pointer_xproperty">Get the type of the state equation system</SHORT_DESCRIPTION>
+	<SHORT_DESCRIPTION name="pointer_xproperty">Get the type of a continuous time state variable</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='powblk_routcos' type='XML'>
@@ -3309,7 +3309,7 @@
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>
-	<SHORT_DESCRIPTION name="set_xproperty">Set the type of the state equation system</SHORT_DESCRIPTION>
+	<SHORT_DESCRIPTION name="set_xproperty">Set the type of a continuous time state variable</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='shift_16_LA_routcos' type='XML'>

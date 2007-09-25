@@ -3499,7 +3499,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-	<PARAM_NAME>L (T)</PARAM_NAME>
+	<PARAM_NAME>L (H)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Inductance
@@ -6947,193 +6947,193 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	    The following entries are allowed :
 	  </SP>
 	  <SP>
-	    "x" :
+	    "x" : get the continuous state register.
 	  </SP>
 	  <SP>
-	    "nx" :
+	    "nx" : get the length of the continuous state register.
 	  </SP>
 	  <SP>
-	    "xptr" :
+	    "xptr" : get the pointers register of the continuous state register.
 	  </SP>
 	  <SP>
-	    "zcptr" :
+	    "zcptr" : get the pointers register of the zero-crossing surfaces register.
 	  </SP>
 	  <SP>
-	    "z" :
+	    "z" : get the discrete state register.
 	  </SP>
 	  <SP>
-	    "nz" :
+	    "nz" : get the length of the continuous state register.
 	  </SP>
 	  <SP>
-	    "zptr" :
+	    "zptr" : get the pointers register of the discrete state register.
 	  </SP>
 	  <SP>
-	    "noz" :
+	    "noz" : get the number of elements of the discrete object state list.
 	  </SP>
 	  <SP>
-	    "oz" :
+	    "oz" : get the discrete object state list.
 	  </SP>
 	  <SP>
-	    "ozsz" :
+	    "ozsz" : get the size of the elements of the discrete object state list.
 	  </SP>
 	  <SP>
-	    "oztyp" :
+	    "oztyp" : get the type of the elements of the discrete object state list.
 	  </SP>
 	  <SP>
-	    "ozptr" :
+	    "ozptr" : get the pointers register of the discrete object state list.
 	  </SP>
 	  <SP>
-	    "rpar" :
+	    "rpar" : get the real parameter register.
 	  </SP>
 	  <SP>
-	    "rpptr" :
+	    "rpptr" : get the pointers register of the real parameter register.
 	  </SP>
 	  <SP>
-	    "ipar" :
+	    "ipar" : get the integer parameter register.
 	  </SP>
 	  <SP>
-	    "ipptr" :
+	    "ipptr" : get the pointers register of the integer parameter register.
 	  </SP>
 	  <SP>
-	    "opar" :
+	    "opar" : get the object parameter list.
 	  </SP>
 	  <SP>
-	    "oparsz" :
+	    "oparsz" : get the size of the elements of the object parameter list.
 	  </SP>
 	  <SP>
-	    "opartyp" :
+	    "opartyp" : get the type of the elements of the object parameter list.
 	  </SP>
 	  <SP>
-	    "opptr" :
+	    "opptr" : get the pointers register of the object parameter list.
 	  </SP>
 	  <SP>
-	    "outtb" :
+	    "outtb" : get the output register.
 	  </SP>
 	  <SP>
-	    "inpptr" :
+	    "inpptr" : get the pointers register of the number of regular input ports.
 	  </SP>
 	  <SP>
-	    "outptr" :
+	    "outptr" :  get the pointers register of the number of regular output ports.
 	  </SP>
 	  <SP>
-	    "inplnk" :
+	    "inplnk" : get the pointers register of the links connected to regular input ports.
 	  </SP>
 	  <SP>
-	    "outlnk" :
+	    "outlnk" : get the pointers register of the links connected to regular output ports.
 	  </SP>
 	  <SP>
-	    "subs" :
+	    "subs" : not used
 	  </SP>
 	  <SP>
-	    "tevts" :
+	    "tevts" : get the current date register of the agenda.
 	  </SP>
 	  <SP>
-	    "evtspt" :
+	    "evtspt" : get the current event register of the agenda.
 	  </SP>
 	  <SP>
-	    "pointi" :
+	    "pointi" : get the next event to be activated.
 	  </SP>
 	  <SP>
-	    "iord" :
+	    "iord" : get the vector of blocks activated at the start of the simulation.
 	  </SP>
 	  <SP>
-	    "oord" :
+	    "oord" : get the vector of blocks whose outputs affects computation of continuous state derivatives.
 	  </SP>
 	  <SP>
-	    "zord" :
+	    "zord" : get the vector of blocks whose outputs affects computation of zero-crossing surfaces.
 	  </SP>
 	  <SP>
-	    "funtyp" :
+	    "funtyp" : get the vector of type of computational functions.
 	  </SP>
 	  <SP>
-	    "ztyp" :
+	    "ztyp" : get the pointers vector for blocks which use zero-crossing surfaces.
 	  </SP>
 	  <SP>
-	    "cord" :
+	    "cord" : get the vector of blocks whose outputs evolve continuously.
 	  </SP>
 	  <SP>
-	    "ordclk" :
+	    "ordclk" : get the matrix associated to blocks activated by output activation ports.
 	  </SP>
 	  <SP>
-	    "clkptr" :
+	    "clkptr" : get the pointers vector for output activation ports.
 	  </SP>
 	  <SP>
-	    "ordptr" :
+	    "ordptr" : get the pointers vector to ordclk designating the part of ordclk corresponding to a given activation.
 	  </SP>
 	  <SP>
-	    "critev" :
+	    "critev" : get the vector of the critical events.
 	  </SP>
 	  <SP>
-	    "mod" :
+	    "mod" : get the vector pointers of block modes.
 	  </SP>
 	  <SP>
-	    "nmod" :
+	    "nmod" : get the length of the vector pointers of block modes.
 	  </SP>
 	  <SP>
-	    "iz" :
+	    "iz" : get the register that store pointers of block->work.
 	  </SP>
 	  <SP>
-	    "izptr" :
+	    "izptr" : get the pointers vector of the register that store C pointers of block->work.
 	  </SP>
 	  <SP>
-	    "nblk" :
+	    "nblk" : get the number of block.
 	  </SP>
 	  <SP>
-	    "outtbptr" :
+	    "outtbptr" : get the register that store C pointers of outtb.
 	  </SP>
 	  <SP>
-	    "outtbpsz" :
+	    "outtbpsz" : get the register that store the size of the elements of outtb.
 	  </SP>
 	  <SP>
-	    "outtbtyp" :
+	    "outtbtyp" : get the register that store the type of the elements of outtb.
 	  </SP>
 	  <SP>
-	    "nlnk" :
+	    "nlnk" : get the number of output.
 	  </SP>
 	  <SP>
-	    "ncord" :
+	    "ncord" : get the number of blocks whose outputs evolve continuously.
 	  </SP>
 	  <SP>
-	    "nordptr" :
+	    "nordptr" : get the number of blocks whose outputs evolve by activation.
 	  </SP>
 	  <SP>
-	    "iwa" :
+	    "iwa" : n.d.
 	  </SP>
 	  <SP>
-	    "blocks" :
+	    "blocks" : get a scilab list that contains all block structures contains in the diagram.
 	  </SP>
 	  <SP>
-	    "ng" :
+	    "ng" : get length of the zero-crossing surfaces register.
 	  </SP>
 	  <SP>
-	    "g" :
+	    "g" : get the zero-crossing surfaces register.
 	  </SP>
 	  <SP>
-	    "t0" :
+	    "t0" : get the current time of the simulation.
 	  </SP>
 	  <SP>
-	    "tf" :
+	    "tf" : get the final time of the simulation.
 	  </SP>
 	  <SP>
-	    "Atol" :
+	    "Atol" : get the integrator absolute tolerance for the numerical solver.
 	  </SP>
 	  <SP>
-	    "rtol" :
+	    "rtol" :  get the integrator relative tolerance for the numerical solver.
 	  </SP>
 	  <SP>
-	    "ttol" :
+	    "ttol" : get the tolerance on time of the simulator.
 	  </SP>
 	  <SP>
-	    "deltat" :
+	    "deltat" : get the maximum integration time interval.
 	  </SP>
 	  <SP>
-	    "hmax" :
+	    "hmax" : get the maximum step size for the numerical solver. 
 	  </SP>
 	  <SP>
-	    "nelem" :
+	    "nelem" : get the number of elements in outtb.
 	  </SP>
 	  <SP>
-	    "outtb_elem" :
+	    "outtb_elem" : get the vector of the number of elements in outtb.
 	  </SP>
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -7241,21 +7241,15 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
   </PARAM>
 </FILE>
 
-<FILE name='pointer_xproperty' type='XML'>
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Name of param.</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      add here the parameter description
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-  </PARAM_INDENT>
-  </PARAM>
+<FILE name='pointer_xproperty' type='LATEX'>
+\begin{itemize}
+  \item {\bf xprop} \\
+    The value gives the type of the states :
+    \begin{itemize}
+      \item -1 : an algebraic state.\\
+      \item 1  : a differential state.
+    \end{itemize}
+\end{itemize}
 </FILE>
 
 <FILE name='scicos' type='XML'>
@@ -7310,7 +7304,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	    <PARAM_NAME>0</PARAM_NAME>
 	    <PARAM_DESCRIPTION>
 	      <SP>
-
+               no debugging.
 	      </SP>
 	    </PARAM_DESCRIPTION>
 	  </PARAM_ITEM>
@@ -7320,7 +7314,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	    <PARAM_NAME>1</PARAM_NAME>
 	    <PARAM_DESCRIPTION>
 	      <SP>
-
+               light debugging information printout.
 	      </SP>
 	    </PARAM_DESCRIPTION>
 	  </PARAM_ITEM>
@@ -7330,7 +7324,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	    <PARAM_NAME>2</PARAM_NAME>
 	    <PARAM_DESCRIPTION>
 	      <SP>
-
+              more information printout and execution of Debug Block if any in diagram.
 	      </SP>
 	    </PARAM_DESCRIPTION>
 	  </PARAM_ITEM>
@@ -7340,7 +7334,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	    <PARAM_NAME>3</PARAM_NAME>
 	    <PARAM_DESCRIPTION>
 	      <SP>
-
+              silent debugging mode (no information printout) and execution of Debug Block if any in diagram.
 	      </SP>
 	    </PARAM_DESCRIPTION>
 	  </PARAM_ITEM>
@@ -7684,21 +7678,15 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
  \end{itemize}
 </FILE>
 
-<FILE name='set_xproperty' type='XML'>
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Name of param.</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      add here the parameter description
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-  </PARAM_INDENT>
-  </PARAM>
+<FILE name='set_xproperty' type='LATEX'>
+\begin{itemize}
+  \item {\bf xprop} \\
+    The value gives the type of the states :
+    \begin{itemize}
+      \item -1 : an algebraic state.\\
+      \item 1  : a differential state.
+    \end{itemize}
+\end{itemize}
 </FILE>
 
 <FILE name='steadycos' type='XML'>

@@ -1789,7 +1789,7 @@
 
 <FILE name='pointer_xproperty' type='XML'>
   <SEE_ALSO>
-
+  <SEE_ALSO_ITEM> <LINK>set_xproperty</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </FILE>
 
@@ -1896,7 +1896,7 @@
 
 <FILE name='set_xproperty' type='XML'>
   <SEE_ALSO>
-
+  <SEE_ALSO_ITEM> <LINK>pointer_xproperty</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </FILE>
 

@@ -3742,7 +3742,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-	<PARAM_NAME>L (T)</PARAM_NAME>
+	<PARAM_NAME>L (H)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Inductance
@@ -7302,193 +7302,193 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	    chaine de caractère. Les entrées suivantes sont permises :
 	  </SP>
 	  <SP>
-	    "x" :
+	    "x" : retourne le registre des états continus.
 	  </SP>
 	  <SP>
-	    "nx" :
+	    "nx" : retourne la longueur du registre des états continus.
 	  </SP>
 	  <SP>
-	    "xptr" :
+	    "xptr" : retourne le registre des pointeurs du registre des états continus.
 	  </SP>
 	  <SP>
-	    "zcptr" :
+	    "zcptr" : retourne le registre des pointeurs du registre des détections de surfaces.
 	  </SP>
 	  <SP>
-	    "z" :
+	    "z" : retourne le registre des états discrets.
 	  </SP>
 	  <SP>
-	    "nz" :
+	    "nz" : retourne la longueur des registres des états discrets.
 	  </SP>
 	  <SP>
-	    "zptr" :
+	    "zptr" : retourne le registre des pointeurs du registre des états discrets.
 	  </SP>
 	  <SP>
-	    "noz" :
+	    "noz" : retourne le nombre d'éléments de la liste de l'état discret objet.
 	  </SP>
 	  <SP>
-	    "oz" :
+	    "oz" : retourne la liste de l'état discret objet.
 	  </SP>
 	  <SP>
-	    "ozsz" :
+	    "ozsz" : retourne les tailles des éléments de la liste l'état discret objet.
 	  </SP>
 	  <SP>
-	    "oztyp" :
+	    "oztyp" : retourne les types des éléments de la liste l'état discret objet.
 	  </SP>
 	  <SP>
-	    "ozptr" :
+	    "ozptr" : retourne le registre des pointeurs de la liste l'état discret objet.
 	  </SP>
 	  <SP>
-	    "rpar" :
+	    "rpar" : retourne le registre des paramètres réels.
 	  </SP>
 	  <SP>
-	    "rpptr" :
+	    "rpptr" : retourne le registre des pointeurs du registre des paramètres réels.
 	  </SP>
 	  <SP>
-	    "ipar" :
+	    "ipar" : retourne le registre des paramètres entiers.
 	  </SP>
 	  <SP>
-	    "ipptr" :
+	    "ipptr" : retourne le registre des pointeurs du registre des paramètres entiers.
 	  </SP>
 	  <SP>
-	    "opar" :
+	    "opar" : retourne la liste des paramètres objets.
 	  </SP>
 	  <SP>
-	    "oparsz" :
+	    "oparsz" : retourne les tailles des éléments de la liste des paramètres objets.
 	  </SP>
 	  <SP>
-	    "opartyp" :
+	    "opartyp" : retourne les types des éléments de la liste des paramètres objets.
 	  </SP>
 	  <SP>
-	    "opptr" :
+	    "opptr" : retourne le registre des pointeurs de la liste des paramètres objets.
 	  </SP>
 	  <SP>
-	    "outtb" :
+	    "outtb" : retourne le registre des sorties.
 	  </SP>
 	  <SP>
-	    "inpptr" :
+	    "inpptr" : retourne le registre des pointeurs des ports réguliers d'entrée.
 	  </SP>
 	  <SP>
-	    "outptr" :
+	    "outptr" : retourne le registre des pointeurs des ports réguliers de sorties.
 	  </SP>
 	  <SP>
-	    "inplnk" :
+	    "inplnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers d'entrée.
 	  </SP>
 	  <SP>
-	    "outlnk" :
+	    "outlnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers de sortie.
 	  </SP>
 	  <SP>
-	    "subs" :
+	    "subs" : pas utilisé.
 	  </SP>
 	  <SP>
-	    "tevts" :
+	    "tevts" : retourne le registre des dates courantes de l'agenda.
 	  </SP>
 	  <SP>
-	    "evtspt" :
+	    "evtspt" : retourne le registre des événements courants de l'agenda.
 	  </SP>
 	  <SP>
-	    "pointi" :
+	    "pointi" : retourne le prochain événement à activer.
 	  </SP>
 	  <SP>
-	    "iord" :
+	    "iord" : retourne le vecteur des blocs activés au début de la simulation.
 	  </SP>
 	  <SP>
-	    "oord" :
+	    "oord" : retourne le vecteur des blocs dont les sorties affectent le calcul des états continus.
 	  </SP>
 	  <SP>
-	    "zord" :
+	    "zord" : retourne le vecteur des blocs dont les sorties affectent le calcul des détections de surfaces.
 	  </SP>
 	  <SP>
-	    "funtyp" :
+	    "funtyp" : retourne le vecteur des types des fonctions de calcul.
 	  </SP>
 	  <SP>
-	    "ztyp" :
+	    "ztyp" : retourne le vecteur de pointeurs pour les blocs utilisant les détections de surface.
 	  </SP>
 	  <SP>
-	    "cord" :
+	    "cord" : retourne le vecteur des blocs dont les sorties évoluent continuellement.
 	  </SP>
 	  <SP>
-	    "ordclk" :
+	    "ordclk" : retourne la matrice associée aux blocs activés par événements.
 	  </SP>
 	  <SP>
-	    "clkptr" :
+	    "clkptr" : retourne le vecteur de pointeurs pour les ports de sortie d'activation.
 	  </SP>
 	  <SP>
-	    "ordptr" :
+	    "ordptr" : retourne le vecteur de pointeurs (à partir de ordclk) qui désigne les parties de ordclk correspondant à une activation donnée.
 	  </SP>
 	  <SP>
-	    "critev" :
+	    "critev" : retourne le vecteur des événements critiques.
 	  </SP>
 	  <SP>
-	    "mod" :
+	    "mod" : retourne le vecteur de pointeurs des modes des blocs.
 	  </SP>
 	  <SP>
-	    "nmod" :
+	    "nmod" : retourne la longueur du vecteur de pointeurs des modes des blocs.
 	  </SP>
 	  <SP>
-	    "iz" :
+	    "iz" : retourne le registre qui contient les pointeurs C sur block->work.
 	  </SP>
 	  <SP>
-	    "izptr" :
+	    "izptr" : retourne le vecteur de pointeurs sur le registre qui contient les pointeurs C sur block->work.
 	  </SP>
 	  <SP>
-	    "nblk" :
+	    "nblk" : retourne le nombre de blocs.
 	  </SP>
 	  <SP>
-	    "outtbptr" :
+	    "outtbptr" : retourne le registre qui contient les pointeurs C de outtb.
 	  </SP>
 	  <SP>
-	    "outtbpsz" :
+	    "outtbpsz" : retourne le registre qui contient les tailles des éléments de outtb.
 	  </SP>
 	  <SP>
-	    "outtbtyp" :
+	    "outtbtyp" : retourne le registre qui contient les types des éléments de outtb.
 	  </SP>
 	  <SP>
-	    "nlnk" :
+	    "nlnk" : retourne le nombre de sortie.
 	  </SP>
 	  <SP>
-	    "ncord" :
+	    "ncord" : retourne le nombre de blocs qui évoluent continuellement.
 	  </SP>
 	  <SP>
-	    "nordptr" :
+	    "nordptr" : retourne le nombre de blocs qui évoluent par activation.
 	  </SP>
 	  <SP>
-	    "iwa" :
+	    "iwa" : n.d.
 	  </SP>
 	  <SP>
-	    "blocks" :
+	    "blocks" : retourne une liste scilab qui contient toutes les structures des blocs contenus dans le diagramme.
 	  </SP>
 	  <SP>
-	    "ng" :
+	    "ng" : retourne la longueur du registre des détections de surface.
 	  </SP>
 	  <SP>
-	    "g" :
+	    "g" : retourne le registre des détections de surfaces.
 	  </SP>
 	  <SP>
-	    "t0" :
+	    "t0" : retourne le temps courant de la simulation.
 	  </SP>
 	  <SP>
-	    "tf" :
+	    "tf" : retourne le temps final de la simulation.
 	  </SP>
 	  <SP>
-	    "Atol" :
+	    "Atol" : retourne la tolérance absolue de l'intégrateur du solveur numérique.
 	  </SP>
 	  <SP>
-	    "rtol" :
+	    "rtol" : retourne la tolérance relative de l'intégrateur du solveur numérique.
 	  </SP>
 	  <SP>
-	    "ttol" :
+	    "ttol" : retourne la tolérance sur le temps du simulateur.
 	  </SP>
 	  <SP>
-	    "deltat" :
+	    "deltat" : retourne le temps maximal d'intégration.
 	  </SP>
 	  <SP>
-	    "hmax" :
+	    "hmax" : retourne le pas maximal d'intégration du solveur numérique.
 	  </SP>
 	  <SP>
-	    "nelem" :
+	    "nelem" : retourne le nombre d'éléments dans outtb.
 	  </SP>
 	  <SP>
-	    "outtb_elem" :
+	    "outtb_elem" : retourne le vecteur contenant les numéro d'éléments dans outtb.
 	  </SP>
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -7600,21 +7600,15 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
   </PARAM>
 </FILE>
 
-<FILE name='pointer_xproperty' type='XML'>
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Nom du paramètre</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      ajoutez ici la description du paramètre
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-  </PARAM_INDENT>
-  </PARAM>
+<FILE name='pointer_xproperty' type='LATEX'>
+\begin{itemize}
+  \item {\bf xprop} \\
+    La valeur donne le type des états :
+    \begin{itemize}
+      \item -1 : un état algébrique.\\
+      \item 1  : un état différentiel.
+    \end{itemize}
+\end{itemize}
 </FILE>
 
 <FILE name='scicos' type='XML'>
@@ -7669,7 +7663,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	    <PARAM_NAME>0</PARAM_NAME>
 	    <PARAM_DESCRIPTION>
 	      <SP>
-
+              pas de débogage.
 	      </SP>
 	    </PARAM_DESCRIPTION>
 	  </PARAM_ITEM>
@@ -7679,7 +7673,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	    <PARAM_NAME>1</PARAM_NAME>
 	    <PARAM_DESCRIPTION>
 	      <SP>
-
+              debogage léger et informations affichées dans la console Scilab.
 	      </SP>
 	    </PARAM_DESCRIPTION>
 	  </PARAM_ITEM>
@@ -7689,7 +7683,8 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	    <PARAM_NAME>2</PARAM_NAME>
 	    <PARAM_DESCRIPTION>
 	      <SP>
-
+              debogage fort : plus d'informations affichées dans la console Scilab
+	      et éxécution du bloc "debug" si celui ci est présent dans le diagramme.
 	      </SP>
 	    </PARAM_DESCRIPTION>
 	  </PARAM_ITEM>
@@ -7699,7 +7694,8 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	    <PARAM_NAME>3</PARAM_NAME>
 	    <PARAM_DESCRIPTION>
 	      <SP>
-
+              debogage silencieux : pas d'informations affichées dans la console Scilab
+	      et éxécution du bloc "debug" si celui ci est présent dans le diagramme.
 	      </SP>
 	    </PARAM_DESCRIPTION>
 	  </PARAM_ITEM>
@@ -8062,21 +8058,15 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
  \end{itemize}
 </FILE>
 
-<FILE name='set_xproperty' type='XML'>
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Nom du paramètre</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      ajoutez ici la description du paramètre
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-  </PARAM_INDENT>
-  </PARAM>
+<FILE name='set_xproperty' type='LATEX'>
+\begin{itemize}
+  \item {\bf xprop} \\
+    La valeur donne le type des états :
+    \begin{itemize}
+      \item -1 : un état algébrique.\\
+      \item 1  : un état différentiel.
+    \end{itemize}
+\end{itemize}
 </FILE>
 
 <FILE name='steadycos' type='XML'>
