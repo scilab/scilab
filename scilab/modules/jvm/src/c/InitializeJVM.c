@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "InitializeJVM.h"
-#include "loadproperty.h"
 #include "loadClasspath.h"
 #include "loadLibrarypath.h"
 #include "setgetSCIpath.h"
@@ -17,7 +16,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 static void DoLoadClasspathInEtc(char *SCIPATH);
 static void DoLoadLibrarypathInEtc(char *SCIPATH);
-static void DoLoadSystemPropertiesInEtc(char *SCIPATH);
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeJVM(void)
 {
@@ -38,7 +36,6 @@ BOOL InitializeJVM(void)
 	}
 	else
 	{
-		DoLoadSystemPropertiesInEtc(SCIPATH);
 		DoLoadLibrarypathInEtc(SCIPATH);
 		DoLoadClasspathInEtc(SCIPATH);
 
@@ -79,13 +76,5 @@ static void DoLoadLibrarypathInEtc(char *SCIPATH)
 	if (librarypathfile) {FREE(librarypathfile); librarypathfile = NULL;}
 }
 /*-----------------------------------------------------------------------------------*/ 
-static void DoLoadSystemPropertiesInEtc(char *SCIPATH)
-{
-	char *systempropertiesfile = NULL;
-	systempropertiesfile = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(XMLSYSTEMPROPERTIES)+1));
-	sprintf(systempropertiesfile,XMLSYSTEMPROPERTIES,SCIPATH);
-	loadProperty(systempropertiesfile);
-	if (systempropertiesfile) {FREE(systempropertiesfile); systempropertiesfile = NULL;}
 
-}
-/*-----------------------------------------------------------------------------------*/ 
+
