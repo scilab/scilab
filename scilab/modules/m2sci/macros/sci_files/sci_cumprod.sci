@@ -49,7 +49,7 @@ else
 	A.out=tree.lhs
       end
       tree=A;
-      set_infos(msprintf(gettext("messages","m2sci_message_76"),"cumprod"),1)
+      set_infos(msprintf(gettext("messages","Scilab %s() does not work when dim input argument is greater than number of dims of first rhs..."),"cumprod"),1)
       return
     end
   end

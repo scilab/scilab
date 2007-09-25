@@ -9,7 +9,7 @@ function [tree]=sci_fscanf(tree)
 
 RHS=[]
 
-set_infos(msprintf(gettext("messages","m2sci_message_102"),"mtlb_fscanf"),0);
+set_infos(msprintf(gettext("messages","No simple equivalent, so %s() is called."),"mtlb_fscanf"),0);
 
 tree.name="mtlb_fscanf"
 

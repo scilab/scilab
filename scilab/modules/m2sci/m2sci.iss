@@ -23,7 +23,7 @@ Source: modules\{#M2SCI}\help\removechapter.sce; DestDir: {app}\modules\{#M2SCI}
 ;
 Source: modules\{#M2SCI}\help\*.htm; DestDir: {app}\modules\{#M2SCI}\help; Flags: recursesubdirs; Components: {#COMPN_M2SCI}
 ;
-Source: modules\{#M2SCI}\languages\*.xml; DestDir: {app}\modules\{#M2SCI}\languages; Flags: recursesubdirs; Components: {#COMPN_M2SCI}
+Source: modules\{#M2SCI}\locales\*.xml; DestDir: {app}\modules\{#M2SCI}\locales; Flags: recursesubdirs; Components: {#COMPN_M2SCI}
 ;
 Source: modules\{#M2SCI}\tcl\*.tcl; DestDir: {app}\modules\{#M2SCI}\tcl; Components: {#COMPN_M2SCI}
 ;

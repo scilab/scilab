@@ -4,6 +4,6 @@ function cste=%type_i_cste(field,inslist,cste)
 if field=="type" then
   cste.infer.type=inslist
 else
-  error(gettext("errors","m2sci_error_2"))
+  error(gettext("errors","Not yet implemented."))
 end
 endfunction

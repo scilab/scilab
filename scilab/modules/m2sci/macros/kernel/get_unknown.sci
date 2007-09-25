@@ -11,12 +11,12 @@ function [sci_equiv]=get_unknown(varname,lhslist)
 
 // Check if it is a Matlab function not converted yet
 if or(varname==not_yet_converted()) then
-  set_infos(msprintf(gettext("messages","m2sci_message_41"),varname),2)
+  set_infos(msprintf(gettext("messages","Matlab function %s not yet converted."),varname),2)
   tmpvar=Variable(varname,Infer())
   sci_equiv=Funcall("mtlb",1,Rhs(tmpvar),lhslist)
 else
   // Other cases: I am not able to determine what is nam
-  set_infos(msprintf(gettext("messages","m2sci_message_42"),varname,varname,varname,varname),1)
+  set_infos(msprintf(gettext("messages","mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."),varname,varname,varname,varname),1)
   tmpvar=Variable(varname,Infer())
   sci_equiv=Funcall("mtlb",1,Rhs(tmpvar),lhslist)
 end

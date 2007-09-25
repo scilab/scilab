@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+	<msgpreviousid>scipad_message_1</msgpreviousid>
+	<msgid> Scilab in no window no interactive mode : Scipad unavailable.</msgid>
+	<msgstr> Scilab in no window no interactive mode : Scipad unavailable.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_2</msgpreviousid>
+	<msgid>Function </msgid>
+	<msgstr>Function </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_3</msgpreviousid>
+	<msgid>is not contained in a loaded library, </msgid>
+	<msgstr>is not contained in a loaded library, </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_4</msgpreviousid>
+	<msgid>Scipad doesn't know where to find its source</msgid>
+	<msgstr>Scipad doesn't know where to find its source</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_5</msgpreviousid>
+	<msgid>Scipad cannot open a </msgid>
+	<msgstr>Scipad cannot open a </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_6</msgpreviousid>
+	<msgid> object!</msgid>
+	<msgstr> object!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_7</msgpreviousid>
+	<msgid>Editor works only with Tcl/Tk.</msgid>
+	<msgstr>Editor works only with Tcl/Tk.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_8</msgpreviousid>
+	<msgid>the last error did not occur inside a library function.</msgid>
+	<msgstr>the last error did not occur inside a library function.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_9</msgpreviousid>
+	<msgid>opening file </msgid>
+	<msgstr>opening file </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_10</msgpreviousid>
+	<msgid> on line </msgid>
+	<msgstr> on line </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_11</msgpreviousid>
+	<msgid>the source file of the function </msgid>
+	<msgstr>the source file of the function </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_12</msgpreviousid>
+	<msgid> was not found in any library path</msgid>
+	<msgstr> was not found in any library path</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_13</msgpreviousid>
+	<msgid>no pending error recorded!</msgid>
+	<msgstr>no pending error recorded!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_14</msgpreviousid>
+	<msgid>Finding missing entries in </msgid>
+	<msgstr>Finding missing entries in </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_15</msgpreviousid>
+	<msgid> and writing the result...</msgid>
+	<msgstr> and writing the result...</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_16</msgpreviousid>
+	<msgid>Translations missing in file </msgid>
+	<msgstr>Translations missing in file </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_17</msgpreviousid>
+	<msgid>Finding unused entries in </msgid>
+	<msgstr>Finding unused entries in </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_18</msgpreviousid>
+	<msgid>Unused strings in file </msgid>
+	<msgstr>Unused strings in file </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_19</msgpreviousid>
+	<msgid>Parsing file </msgid>
+	<msgstr>Parsing file </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_20</msgpreviousid>
+	<msgid>, be patient...</msgid>
+	<msgstr>, be patient...</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>scipad_message_21</msgpreviousid>
+	<msgid>WARNING: THE FOLLOWING LINE SEEMS WRONG HERE AND WILL BE IGNORED</msgid>
+	<msgstr>WARNING: THE FOLLOWING LINE SEEMS WRONG HERE AND WILL BE IGNORED</msgstr>
+</entry>	
+
+</LOCALIZATION>

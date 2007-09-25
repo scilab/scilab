@@ -65,7 +65,7 @@ else
     tree.lhs(2).type=Type(A.vtype,prop)
   // [Q,R,E] = qr(A,0)
   else
-    set_infos(gettext("messages","m2sci_message_118"),0)
+    set_infos(gettext("messages","Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used."),0)
     tree.name="mtlb_qr"
     tree.lhs(1).dims=list(Unknown,Unknown)
     tree.lhs(1).type=Type(A.vtype,prop)

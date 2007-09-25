@@ -20,7 +20,7 @@ static BOOL FreeElmsArray(char **ElemsArray,int nbrElems);
 int C2F(sci_gettext) _PARAMS((char *fname,unsigned long fname_len))
 {
 	CheckRhs(1,2);
-	CheckLhs(1,2);
+	CheckLhs(1,3);
 
 	if (Rhs == 1)
 	{
@@ -35,9 +35,9 @@ int C2F(sci_gettext) _PARAMS((char *fname,unsigned long fname_len))
 /*-----------------------------------------------------------------------------------*/
 static int TwoRhs_gettext(void)
 {
-	if (Lhs == 2)
+	if ( (Lhs == 2) || (Lhs == 3) )
 	{
-		error_scilab(78,"core_error_78","gettext");
+		error_scilab(78,"%s : wrong number of lhs arguments","gettext");
 		return 0;
 	}
 
@@ -136,15 +136,20 @@ static int OneRhs_gettext(void)
 			{
 				int numberselemTAGS=0;
 				int numberselemSTRINGS=0;
+				int numberselemPATHS=0;
+
 				char **Tags=NULL;
 				char **Strings=NULL;
+				char **Paths=NULL;
+
 				int n=0;
 				int m=0;
 
 				Tags=getTAGSinhashtable(Table,&numberselemTAGS);
 				Strings=getSTRINGSinhashtable(Table,&numberselemSTRINGS);
+				Paths=getPATHSinhashtable(Table,&numberselemPATHS);
 
-				if (numberselemSTRINGS != numberselemTAGS)
+				if ( (numberselemSTRINGS != numberselemTAGS) && (numberselemTAGS!= numberselemPATHS) )
 				{
 					Scierror(999,"Problem(s) with hashtable (1).\n");
 					return 0;
@@ -158,7 +163,7 @@ static int OneRhs_gettext(void)
 					CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n,Tags);
 					LhsVar(1) = Rhs+1;
 
-					if (Lhs == 2)
+					if (Lhs >= 2)
 					{
 						m=numberselemSTRINGS;
 						n=1;
@@ -167,11 +172,21 @@ static int OneRhs_gettext(void)
 						LhsVar(2) = Rhs+2;
 					}
 
+					if (Lhs == 3)
+					{
+						m=numberselemPATHS;
+						n=1;
+
+						CreateVarFromPtr(Rhs+3,MATRIX_OF_STRING_DATATYPE, &m, &n, Paths);
+						LhsVar(3) = Rhs+3;
+					}
+
 					C2F(putlhsvar)();
 				}
 
 				FreeElmsArray(Tags,numberselemTAGS);
 				FreeElmsArray(Strings,numberselemSTRINGS);
+				FreeElmsArray(Paths,numberselemPATHS);
 
 			}
 			else

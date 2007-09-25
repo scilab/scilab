@@ -226,7 +226,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 	else
 	{
 		/* Handle numero incorrect */
-		error_scilab(999,"Invalid Handle. it must be >0.");
+		error_scilab(999,"Invalid Handle. it must be &gt;0.");
 		return 0;
 	}
 	return bOK;

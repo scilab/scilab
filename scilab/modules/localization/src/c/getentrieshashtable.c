@@ -73,3 +73,36 @@ char **getSTRINGSinhashtable(struct hashtable *tableIN,int *numbersEntries)
 	return return_entries;
 }
 /*-----------------------------------------------------------------------------------*/
+char **getPATHSinhashtable(struct hashtable *tableIN,int *numbersEntries)
+{
+	char **return_entries=NULL;
+	unsigned int i=0;
+	unsigned int j=0;
+	struct entry *e=NULL;
+	struct entry **table = tableIN->table;
+
+	*numbersEntries=tableIN->entrycount;
+	if (*numbersEntries>0)
+	{
+		return_entries=(char **)MALLOC(sizeof(char *)*tableIN->entrycount);
+		if (return_entries)
+		{
+			j=0;
+			for (i = 0; i < tableIN->tablelength; i++)
+			{
+				e = table[i];
+				while (NULL != e)
+				{ 
+					struct value_string *Key=NULL;
+					Key=e->v;
+					return_entries[j]=(char *)MALLOC(sizeof(char)*(strlen(Key->Path_String)+1));
+					if (return_entries[j]) strcpy(return_entries[j],Key->Path_String);
+					e = e->next;
+					j++;
+				}
+			}
+		}
+	}
+	return return_entries;
+}
+/*-----------------------------------------------------------------------------------*/

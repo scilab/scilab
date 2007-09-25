@@ -7,7 +7,7 @@ function [tree]=sci_feval(tree)
 // Emulation function: mtlb_feval()
 // V.C.
 
-set_infos(gettext("messages","m2sci_message_96"),2)
+set_infos(gettext("messages","Verify that expression evaluated by execstr() is Scilab compatible."),2)
 
 RHS="("
 for k=2:rhs

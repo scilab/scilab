@@ -6,15 +6,15 @@ rhs=argn(2)
 
 // Verify input value
 if rhs~=4 then
-  error(gettext("errors","m2sci_error_5"));
+  error(gettext("errors","Wrong number of inputs."));
 elseif typeof(name)~="string" then
-  error(msprintf(gettext("errors","m2sci_error_9"),typeof(name))); 
+  error(msprintf(gettext("errors","name must be a string instead of a: %s."),typeof(name))); 
 elseif typeof(lhsnb)~="constant" then
-  error(msprintf(gettext("errors","m2sci_error_10"),typeof(lhsnb))); 
+  error(msprintf(gettext("errors","lhsnb must be a constant instead of a: %s."),typeof(lhsnb))); 
 elseif typeof(rhslist)~="list" & rhslist<>[] then
-  error(msprintf(gettext("errors","m2sci_error_11"),typeof(rhslist))); 
+  error(msprintf(gettext("errors","rhslist must be a list instead of a: %s."),typeof(rhslist))); 
 elseif typeof(lhslist)~="list" then
-  error(msprintf(gettext("errors","m2sci_error_12"),typeof(lhslist))); 
+  error(msprintf(gettext("errors","lhslist must be a list instead of a: %s."),typeof(lhslist))); 
 end  
 
 funcall_tlist=tlist(["funcall","name","lhsnb","rhs","lhs"],name,lhsnb,rhslist,lhslist)

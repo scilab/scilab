@@ -1,6 +1,6 @@
 function [a,nvars,errmsg,nextindex] = mtlb_sscanf(s,fmt,sz)
 [lhs,rhs]=argn()
-if lhs==4 then error(gettext("errors","compatibility_functions_error_65")),end
+if lhs==4 then error(gettext("errors","mtlb_sscanf: nextindex not implemented.")),end
 if rhs<3 then sz=%inf,end
 nmx=prod(sz)
 nvars=0
@@ -13,7 +13,7 @@ lvars=msscanf(s,fmt);
 if lvars==-1 then
   a=''
   return
-  errmsg=gettext("errors","compatibility_functions_error_66");
+  errmsg=gettext("errors","End of string reached before a datun has been read.");
 else
   nvars=size(lvars)
   nv=min(nvars,nmx)

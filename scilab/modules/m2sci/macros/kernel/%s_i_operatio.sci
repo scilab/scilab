@@ -5,6 +5,6 @@ if field=="vtype" then
 elseif field=="property" then
   op.type.property=cste
 else
-  error(gettext("errors","m2sci_error_2"))
+  error(gettext("errors","Not yet implemented."))
 end
 endfunction

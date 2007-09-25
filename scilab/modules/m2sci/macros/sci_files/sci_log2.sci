@@ -20,7 +20,7 @@ else
     X = Funcall("real",1,list(X),list(Variable("",X.infer)))
   elseif ~is_real(X) then
     newX = Funcall("real",1,list(X),list(Variable("",X.infer)))
-    repl_poss(newX,X,X,gettext("messages","m2sci_message_77"));
+    repl_poss(newX,X,X,gettext("messages","is Real."));
     X=newX
   end
   tree.rhs=Rhs(X)

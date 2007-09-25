@@ -22,7 +22,7 @@ if rhs==1 then
     tree.lhs(1).type=Type(Double,Unknown)
   // [V,D] = eig(A)
   else
-    set_infos(msprintf(gettext("messages","m2sci_message_88"),tree.lhs(1).name),0)
+    set_infos(msprintf(gettext("messages","mtlb_eig() called because Scilab and Matlab value do not always match for %s."),tree.lhs(1).name),0)
     tree.name="mtlb_eig"
     tree.lhs(1).dims=list(A.dims(1),A.dims(1))
     tree.lhs(1).type=Type(Double,Unknown)
@@ -35,7 +35,7 @@ elseif rhs==2 then
   
   // 'nobalance'
   if B.vtype==String then
-    no_equiv(gettext("messages","m2sci_message_89"))
+    no_equiv(gettext("messages","''nobalance'' option, IGNORED."))
     tree.rhs=Rhs(tree.rhs(1))
     if lhs==1 then
       tree.name="spec"
@@ -55,7 +55,7 @@ elseif rhs==2 then
   end
   
   if B.vtype<>Double then
-    set_infos(gettext("messages","m2sci_message_90"),2)
+    set_infos(gettext("messages","eig() with 2 inputs: consider generalized eigen. Check."),2)
   end
   m=A.dims(1)
   n=A.dims(2)
@@ -83,7 +83,7 @@ elseif rhs==2 then
   end
 // eig(A,B,flag)
 else
-  no_equiv(msprintf(gettext("messages","m2sci_message_91"),expression2code(tree)))
+  no_equiv(msprintf(gettext("messages","%s, flag IGNORED."),expression2code(tree)))
   
   tree.rhs(3)=null()
   

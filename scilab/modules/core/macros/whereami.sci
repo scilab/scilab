@@ -9,16 +9,16 @@ txt=[]
 for k=2:nn
   if mac(k)=='exec' then
     txt=[txt;
-        part(mac(k-1),1:lm)+gettext('messages','core_message_160')+string(linn(k))+gettext('messages','core_message_161')]
+        part(mac(k-1),1:lm)+gettext('messages',' called at line ')+string(linn(k))+gettext('messages',' of exec_file.')]
   elseif mac(k)=='execstr' then
     txt=[txt;
-        part(mac(k-1),1:lm)+gettext('messages','core_message_160')+string(linn(k))+gettext('messages','core_message_162')]
+        part(mac(k-1),1:lm)+gettext('messages',' called at line ')+string(linn(k))+gettext('messages',' of execstr instruction.')]
   elseif mac(k)=='pause' then
      txt=[txt;
         part(mac(k-1),1:lm)+' called under pause']
   else
     txt=[txt;
-        part(mac(k-1),1:lm)+gettext('messages','core_message_160')+string(linn(k))+gettext('messages','core_message_163')+mac(k)]
+        part(mac(k-1),1:lm)+gettext('messages',' called at line ')+string(linn(k))+gettext('messages',' of macro ')+mac(k)]
   end
 end
 write(%io(2),txt)

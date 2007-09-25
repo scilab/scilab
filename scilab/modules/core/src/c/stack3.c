@@ -71,7 +71,7 @@ int C2F(creadmat)(char *namex, integer *m, integer *n, double *scimat, unsigned 
     C2F(stackg)(id);
     if (Err > 0) return FALSE_ ; 
     if (Fin == 0) {
-      error_scilab(4,"Undefined variable %s.",get_fname(namex,name_len));
+		error_scilab(4,"Undefined variable %s.",get_fname(namex,name_len));
       return FALSE_;
     }
     if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
@@ -545,7 +545,7 @@ void *Name2ptr(char *namex)
   Fin = -1;
   C2F(stackg)(id);
   if (Fin == 0) {
-    error_scilab(4,"Undefined variable %s.",get_fname(namex,(unsigned long)strlen(namex)));
+    error_scilab(4,"Undefined variable %s.",get_fname(namex,strlen(namex)));
     return 0;
   }
   /* get data */
@@ -583,7 +583,7 @@ int Name2where(char *namex)
   C2F(stackg)(id);
   if (Fin == 0) 
   {
-	error_scilab(4,"Undefined variable %s.",get_fname(namex,(unsigned long)strlen(namex)));
+	error_scilab(4,"Undefined variable %s.",get_fname(namex,strlen(namex)));
     return 0;
   }
   loci = *Lstk(Fin);

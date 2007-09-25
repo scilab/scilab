@@ -14,11 +14,11 @@ if ~is_a_scalar(A) & typeof(A)<>"variable" then
   insert(Equal(list(n),A))
   B=Operation("ext",list(n,Cste(1)),list())
   repl_poss(B,..
-      A,A,gettext("messages","m2sci_message_80"))
+      A,A,gettext("messages","is a scalar."))
 elseif ~is_a_scalar(A) then
   B=Operation("ext",list(A,Cste(1)),list())
   repl_poss(B,..
-      A,A,gettext("messages","m2sci_message_80"))
+      A,A,gettext("messages","is a scalar."))
 else
   B=A
 end

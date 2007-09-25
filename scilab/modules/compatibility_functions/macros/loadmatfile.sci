@@ -8,7 +8,7 @@ function loadmatfile(varargin)
 // Verify that all inputs are character strings
 for k=1:size(varargin)
   if type(varargin(k))<>10 then
-    error(gettext("errors","compatibility_functions_error_9"));
+    error(gettext("errors","All inputs must be character strings."));
   end
 end
 
@@ -35,7 +35,7 @@ else // Try to find type binary or ASCII ?
       bin=%F
       k=k+1
     case "-regexp"
-      warning(msprintf(gettext("messages","compatibility_functions_message_1"),"-regexp"));
+      warning(msprintf(gettext("messages","Option %s not implemented: IGNORED."),"-regexp"));
       while k<=lstsize(varargin) & and(varargin(k)<>["-mat","-ascii"])
 	k=k+1
       end
@@ -75,7 +75,7 @@ if bin then
   if ierr<>0 then
     errmsg=lasterror()
     // This line has to be mofified according to error message in 'matfile_header' function
-    if stripblanks(errmsg)==gettext("errors","compatibility_functions_error_13") then 
+    if stripblanks(errmsg)==gettext("errors","Invalid level 5 binary MAT-file!.") then 
       // Level 4 binary file ?
       level=4;
     else
@@ -117,7 +117,7 @@ if bin then
     b_flags=['db','fb','lb','sb','ubs','uc']
     deff('Error(msg)',['mclose(fd)' ;'error(msg)'])
     [fd,err]=mopen(fil,'rb',0)
-    if err<>0 then error(msprintf(gettext("errors","compatibility_functions_error_19"),fil)),end
+    if err<>0 then error(msprintf(gettext("errors","File %s cannot be opened for reading."),fil)),end
     
     vars=list() //list to store loaded variables
     names=[]  // vector of variables names
@@ -131,7 +131,7 @@ if bin then
 	mopt=mget(1,'uib',fd)
 	
 	if mopt>5000 then
-	  Error(gettext("errors","compatibility_functions_error_20"));
+	  Error(gettext("errors","Incorrect file."));
 	end
       end
       MOPT=[]
@@ -148,19 +148,19 @@ if bin then
 	fl='uib'
 	flag=b_flags(MOPT(3)+1)
       case 2
-	Error(gettext("errors","compatibility_functions_error_21"));
+	Error(gettext("errors","VAX D-float not handled."));
       case 3
-	Error(gettext("errors","compatibility_functions_error_22"));
+	Error(gettext("errors","VAX G-float not handled."));
       case 4
-	Error(gettext("errors","compatibility_functions_error_23"));
+	Error(gettext("errors","Cray encoding not handled."));
       else
-	Error(gettext("errors","compatibility_functions_error_24"));
+	Error(gettext("errors","Unknown binary number format."));
       end
       t=mget(4,fl,fd);
-      if meof(fd)<>0 then Error(gettext("errors","compatibility_functions_error_20")),end
+      if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
       m=t(1);n=t(2);it=t(3),namelen=t(4)
       name=mget(namelen,"c",fd);
-      if meof(fd)<>0 then Error(gettext("errors","compatibility_functions_error_20")),end
+      if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
       name=ascii(name(1:namelen-1))
       
       // Old version compatibility | Name has been given
@@ -170,7 +170,7 @@ if bin then
       
       if MOPT(4)==0 then  // regular matrix
 	v=mget((it+1)*m*n,flag,fd);
-	if meof(fd)<>0 then Error(gettext("errors","compatibility_functions_error_20")),end
+	if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
 	if it==0 then
 	  mat=matrix(v,m,n);
 	elseif it==1
@@ -178,7 +178,7 @@ if bin then
 	end
       elseif MOPT(4)==1 // vector of strings
 	v=mget(m*n,flag,fd);
-	if meof(fd)<>0 then Error(gettext("errors","compatibility_functions_error_20")),end
+	if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
 	mat=matrix(v(1:m*n),m,n);
 	w=mat;
 	mat=[];
@@ -188,11 +188,11 @@ if bin then
       elseif MOPT(4)==2 //sparse matrix
 	//sparse
 	Nnz=m-1;
-	it=n-3;if it<>0&it<>1 then Error(gettext("errors","compatibility_functions_error_25")),end
+	it=n-3;if it<>0&it<>1 then Error(gettext("errors","Unknown sparse type.")),end
 	ir=mget(Nnz,flag,fd);m=mget(1,"d",fd);
 	jc=mget(Nnz,flag,fd);n=mget(1,"d",fd);
 	v=mget(Nnz,flag,fd);junk=mget(1,"d",fd);
-	if meof(fd)<>0 then Error(gettext("errors","compatibility_functions_error_20")),end
+	if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
 	if it==1 then
 	  //complex
 	  v=v+%i*mget(Nnz,flag,fd);
@@ -208,7 +208,7 @@ if bin then
     //form execstr instruction to resume variables in the calling environment
     execstr('['+strcat(names,',')+']=resume(vars(:))')  
   else
-    error(gettext("errors","compatibility_functions_error_26"));
+    error(gettext("errors","Unknown Matlab binary file format."));
   end
    
 // --- ASCII FILE (Copy/Paste from mtlb_load.sci) ---

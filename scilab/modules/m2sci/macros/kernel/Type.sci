@@ -8,13 +8,13 @@ if rhs<2 then
 end
 
 if and(vtype~=[Double,Boolean,String,Unknown,Sparse,Cell,Struct,Int,Handle]) then
-  error(msprintf(gettext("errors","m2sci_error_22"),string(vtype)))
+  error(msprintf(gettext("errors","%s is not yet implemented."),string(vtype)))
 end
 
 if typeof(property)=="list" then
-  error(gettext("errors","m2sci_error_23"))
+  error(gettext("errors","list of properties is not yet implemented."))
 elseif and(property~=[Real,Complex,Unknown]) then
-  error(msprintf(gettext("errors","m2sci_error_24"),string(property)))
+  error(msprintf(gettext("errors","wrong property %s."),string(property)))
 end  
 
 Type_tlist=tlist(["type","vtype","property"],vtype,property)

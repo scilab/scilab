@@ -68,7 +68,7 @@ else
     rmdir(pathconvert(TMPDIR)+base_name,'s')
   end
   mkdir(pathconvert(TMPDIR),base_name)
-  write(%io(2),msprintf(gettext("messages","m2sci_message_48"),fil));
+  write(%io(2),msprintf(gettext("messages"," -- File %s contains more than one function -- "),fil));
      
   bval= %t
   
@@ -93,8 +93,8 @@ else
     mputl(functxt,pathconvert(TMPDIR)+base_name+sep+tmpfiles($)+".m")
   end
   
-  write(%io(2),msprintf(gettext("messages","m2sci_message_49"),strcat(tmpfiles," ")));
-  write(%io(2),msprintf(gettext("messages","m2sci_message_50"),pathconvert(TMPDIR)));
+  write(%io(2),msprintf(gettext("messages"," -- Each function converted separately: %s -- "),strcat(tmpfiles," ")));
+  write(%io(2),msprintf(gettext("messages"," -- Temporary files put in: %s -- "),pathconvert(TMPDIR)));
 
   // Conversion of each file
 

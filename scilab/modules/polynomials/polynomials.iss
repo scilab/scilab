@@ -25,7 +25,7 @@ Source: modules\{#POLYNOMIALS}\help\removechapter.sce; DestDir: {app}\modules\{#
 ;
 Source: modules\{#POLYNOMIALS}\help\*.htm; DestDir: {app}\modules\{#POLYNOMIALS}\help\; Flags: recursesubdirs; Components: {#COMPN_POLY}
 ;
-Source: modules\{#POLYNOMIALS}\languages\*.xml; DestDir: {app}\modules\{#POLYNOMIALS}\languages; Flags: recursesubdirs; Components: {#COMPN_POLY}
+Source: modules\{#POLYNOMIALS}\locales\*.xml; DestDir: {app}\modules\{#POLYNOMIALS}\locales; Flags: recursesubdirs; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\includes\*.h; DestDir: {app}\modules\{#POLYNOMIALS}\includes; Components: {#COMPN_POLY}
 ;

@@ -5,6 +5,6 @@ function variable=%contents_i_variable(field,contlist,variable)
 if field=="contents" then
   variable.infer.contents=contlist
 else
-  error(gettext("errors","m2sci_error_2"))
+  error(gettext("errors","Not yet implemented."))
 end
 endfunction

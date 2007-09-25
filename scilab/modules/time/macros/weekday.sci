@@ -14,15 +14,15 @@ function [N,S] = weekday(D,form)
 	rhs=argn(2);
 	
 	if rhs < 1 | rhs > 2 then
-		error(gettext("errors","time_error_9"));
+		error(gettext("errors","Number of parameters incorrect."));
 	end
 	
 	if type(D) <> 1 then
-		error(gettext("errors","time_error_39"));
+		error(gettext("errors","The first argument must a real constant matrix."));
 	end
 	
 	if (rhs==2) & (form <> 'long') & (form <> 'short') then
-		error(gettext("errors","time_error_40"));
+		error(gettext("errors","The second parameter must be the string ''long'' or ''short''."));
 	end
 	
 	normal_year = [0,31,59,90,120,151,181,212,243,273,304,334,365];

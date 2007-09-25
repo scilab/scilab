@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+	<msgpreviousid>tclsci_error_1</msgpreviousid>
+	<msgid>Tcl/TK interface disabled in -nogui mode.</msgid>
+	<msgstr>Tcl/TK interface disabled in -nogui mode.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>tclsci_error_2</msgpreviousid>
+	<msgid>Tcl Error  : Tcl_CreateInterp.</msgid>
+	<msgstr>Tcl Error  : Tcl_CreateInterp.</msgstr>
+</entry>	
+		
+<entry>
+	<msgpreviousid>tclsci_error_3</msgpreviousid>
+	<msgid>Tcl Error  : Tcl_Init.</msgid>
+	<msgstr>Tcl Error  : Tcl_Init.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>tclsci_error_4</msgpreviousid>
+	<msgid>Tcl Error  : Tk_Init.</msgid>
+	<msgstr>Tcl Error  : Tk_Init.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>tclsci_error_5</msgpreviousid>
+	<msgid>Tcl Error : %s</msgid>
+	<msgstr>Tcl Error : %s</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_6</msgpreviousid>
+	<msgid>parameter must be &gt;= 0</msgid>
+	<msgstr>parameter must be &gt;= 0</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>tclsci_error_7</msgpreviousid>
+	<msgid>Invalid parameter type: must be an integer.</msgid>
+	<msgstr>Invalid parameter type: must be an integer.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_8</msgpreviousid>
+	<msgid>Invalid parameter(s) type.</msgid>
+	<msgstr>Invalid parameter(s) type.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_9</msgpreviousid>
+	<msgid>uicontrol %d doesn't exist.</msgid>
+	<msgstr>uicontrol %d doesn't exist.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_10</msgpreviousid>
+	<msgid>Handle must be an integer.</msgid>
+	<msgstr>Handle must be an integer.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_11</msgpreviousid>
+	<msgid>Field parameter must be a string.</msgid>
+	<msgstr>Field parameter must be a string.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_12</msgpreviousid>
+	<msgid>%s : Error main TCL interpreter not initialized.</msgid>
+	<msgstr>%s : Error main TCL interpreter not initialized.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_13</msgpreviousid>
+	<msgid>%s: Could not create a slave interpreter.</msgid>
+	<msgstr>%s: Could not create a slave interpreter.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_14</msgpreviousid>
+	<msgid>%s: %s interpreter already exist.</msgid>
+	<msgstr>%s: %s interpreter already exist.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_15</msgpreviousid>
+	<msgid>%s : Argument type must be character string.</msgid>
+	<msgstr>%s : Argument type must be character string.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_16</msgpreviousid>
+	<msgid>%s: No such slave interpreter.</msgid>
+	<msgstr>%s: No such slave interpreter.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_17</msgpreviousid>
+	<msgid>file %s not found.</msgid>
+	<msgstr>file %s not found.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_18</msgpreviousid>
+	<msgid>%s, at line %i of file %s</msgid>
+	<msgstr>%s, at line %i of file %s
+	%s.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>tclsci_error_19</msgpreviousid>
+	<msgid>%s, ScilabEval error at line %i</msgid>
+	<msgstr>%s, ScilabEval error at line %i
+	%s.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>tclsci_error_20</msgpreviousid>
+	<msgid>%s, %s at line %i</msgid>
+	<msgstr>%s, %s at line %i
+	%s</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>tclsci_error_21</msgpreviousid>
+	<msgid>Argument type incorrect: Must be a string or vector of strings.</msgid>
+	<msgstr>Argument type incorrect: Must be a string or vector of strings.</msgstr>
+</entry>					
+
+<entry>
+	<msgpreviousid>tclsci_error_22</msgpreviousid>
+	<msgid>Error : tksynchro %s.</msgid>
+	<msgstr>Error : tksynchro %s.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>tclsci_error_23</msgpreviousid>
+	<msgid>Tcl Error: GetTclCurrentFigure.</msgid>
+	<msgstr>Tcl Error: GetTclCurrentFigure.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>tclsci_error_24</msgpreviousid>
+	<msgid>Tcl Error: SetTclCurrentFigure.</msgid>
+	<msgstr>Tcl Error: SetTclCurrentFigure.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_25</msgpreviousid>
+	<msgid>TCL_GetVar: Could not read Tcl Var.</msgid>
+	<msgstr>TCL_GetVar: Could not read Tcl Var.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_26</msgpreviousid>
+	<msgid>%s: invalid rhs parameter : help TCL_GetVersion.</msgid>
+	<msgstr>%s: invalid rhs parameter : help TCL_GetVersion.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_27</msgpreviousid>
+	<msgid>tclsci_error_27</msgid>
+	<msgstr>doesn't work with Complex</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_28</msgpreviousid>
+	<msgid>%s: Invalid argument type.</msgid>
+	<msgstr>%s: Invalid argument type.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_29</msgpreviousid>
+	<msgid>Variable too long.</msgid>
+	<msgstr>Variable too long.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_30</msgpreviousid>
+	<msgid>tclsci_error_30</msgid>
+	<msgstr>TCL_SetVar: Error TCL interpreter not initialized.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_31</msgpreviousid>
+	<msgid>[] doesn't work with Tcl/Tk.</msgid>
+	<msgstr>[] doesn't work with Tcl/Tk.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>tclsci_error_32</msgpreviousid>
+	<msgid>ScilabEval: at least one argument is required.</msgid>
+	<msgstr>ScilabEval: at least one argument is required.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>tclsci_error_33</msgpreviousid>
+	<msgid>Unknown property %s.</msgid>
+	<msgstr>Unknown property %s.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_34</msgpreviousid>
+	<msgid>tclsci_error_34</msgid>
+	<msgstr>Error property not found.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_35</msgpreviousid>
+	<msgid>Invalid Handle. it must be &gt;0.</msgid>
+	<msgstr>Invalid Handle. it must be &gt;0.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_36</msgpreviousid>
+	<msgid>Argument type incorrect: Must be a string.</msgid>
+	<msgstr>Argument type incorrect: Must be a string.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_37</msgpreviousid>
+	<msgid>Tcl Command > %d characters.</msgid>
+	<msgstr>Tcl Command > %d characters.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_38</msgpreviousid>
+	<msgid>Invalid parameter(s) type (Style).</msgid>
+	<msgstr>Invalid parameter(s) type (Style).</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_39</msgpreviousid>
+	<msgid>ScilabEval: at least one argument is required.</msgid>
+	<msgstr>ScilabEval: at least one argument is required.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_40</msgpreviousid>
+	<msgid>Incorrect TCL_LIBRARY environment variable</msgid>
+	<msgstr>Incorrect TCL_LIBRARY environment variable</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_41</msgpreviousid>
+	<msgid>Incorrect TK_LIBRARY environment variable</msgid>
+	<msgstr>Incorrect TK_LIBRARY environment variable</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_42</msgpreviousid>
+	<msgid>TK_LIBRARY has been redefined to </msgid>
+	<msgstr>TK_LIBRARY has been redefined to </msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_43</msgpreviousid>
+	<msgid>TCL_LIBRARY has been redefined to </msgid>
+	<msgstr>TCL_LIBRARY has been redefined to </msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_44</msgpreviousid>
+	<msgid>Tcl/Tk interface not defined.</msgid>
+	<msgstr>Tcl/Tk interface not defined.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_45</msgpreviousid>
+	<msgid>Too many input arguments.</msgid>
+	<msgstr>Too many input arguments.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_46</msgpreviousid>
+	<msgid> Value must be numeric.</msgid>
+	<msgstr> Value must be numeric.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_47</msgpreviousid>
+	<msgid>Incorrect property </msgid>
+	<msgstr>Incorrect property </msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_48</msgpreviousid>
+	<msgid>figure : invalid value type.</msgid>
+	<msgstr>figure : invalid value type.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_49</msgpreviousid>
+	<msgid> Value must be a string.</msgid>
+	<msgstr> Value must be a string.</msgstr>
+</entry>		
+
+<entry>
+	<msgpreviousid>tclsci_error_50</msgpreviousid>
+	<msgid>Error in Property specification : bad argument specified.</msgid>
+	<msgstr>Error in Property specification : bad argument specified.</msgstr>
+</entry>		
+
+
+</LOCALIZATION>

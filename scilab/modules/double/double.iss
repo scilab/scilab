@@ -23,7 +23,7 @@ Source: modules\{#DOUBLE}\help\removechapter.sce; DestDir: {app}\modules\{#DOUBL
 ;
 ;Source: modules\{#DOUBLE}\help\*.htm; DestDir: {app}\modules\{#DOUBLE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DOUBLE}\languages\*.xml; DestDir: {app}\modules\{#DOUBLE}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\locales\*.xml; DestDir: {app}\modules\{#DOUBLE}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#DOUBLE}\includes\*.h; DestDir: {app}\modules\{#DOUBLE}\includes; Components: {#COMPN_SCILAB}
 ;

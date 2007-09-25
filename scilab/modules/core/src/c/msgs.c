@@ -481,7 +481,7 @@ int C2F(msgs)(integer *n, integer *ierr)
 static int msg_1(integer *n, integer *ierr)
 {
 	message_scilab(" Warning : ");
-	message_scilab("  Non convergence in the QZ algorithm.");
+	message_scilab("  Non convergence in the QZ algorithm. ");
 	if (*ierr > 0)
 	{
 		message_scilab("  The top %d  x %d blocks may not be in generalized Schur form.",*ierr);
@@ -553,7 +553,7 @@ static int msg_7(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_8(integer *n, integer *ierr)
 {
-	message_scilab("core_message_13");
+	message_scilab(" Warning : 3");
 	C2F(showstack)();
 	return 0;
 }
@@ -703,7 +703,7 @@ static int msg_28(integer *n, integer *ierr)
 	localbuf[1]=BUF[11];
 	localbuf[2]=BUF[12];
 	localbuf[3]='\0';
-	message_scilab("%s lines in help.",localbuf);
+	message_scilab("  The top %d  x %d blocks may not be in generalized Schur form.2",localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -711,20 +711,20 @@ static int msg_29(integer *n, integer *ierr)
 {
 	char localbuf[nlgh+1];
 	strncpy(localbuf,BUF,nlgh);
-	message_scilab(" sorry, no help for %s.",localbuf);
+	message_scilab("  The top %d  x %d blocks may not be in generalized Schur form.3",localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_30(integer *n, integer *ierr)
 {
-	message_scilab(" Warning: recursion problem..., cleared.\n will be cleared with next error...");
+	message_scilab(" Warning: recursion problem..., cleared.");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_31(integer *n, integer *ierr)
 {
 	int cerr=-1;
-	message_scilab(" warning: stack problem..., cleared.\n will be cleared with next error...");
+	message_scilab(" warning: stack problem..., cleared");
 	C2F(error)(&cerr);
 	return 0;
 }
@@ -918,25 +918,25 @@ static int msg_49(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_50(integer *n, integer *ierr)
 {
-	message_scilab("core_message_52");
+	message_scilab("arl2: Loop on two orders detected.");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_51(integer *n, integer *ierr)
 {
-	message_scilab("arl2: Impossible to reach required order.\n   previous order computed solution returned.");
+	message_scilab("arl2: Impossible to reach required order.");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_52(integer *n, integer *ierr)
 {
-	message_scilab("arl2: Failure when looking for the intersection with domains boundaries.\n   previous order computed solution returned.");
+	message_scilab("arl2: Failure when looking for the intersection with domains boundaries.");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_53(integer *n, integer *ierr)
 {
-	message_scilab("arl2: Too many solutions found.\n   previous order computed solution returned.");
+	message_scilab("arl2: Too many solutions found.");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -978,7 +978,7 @@ static int msg_59(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_60(integer *n, integer *ierr)
 {
-	message_scilab("Warning : loaded file has been created with a previous version of scilab\nor you are trying to load a file saved on a different architecture.\n          please update it !");
+	message_scilab("Warning : loaded file has been created with a previous version of scilab");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -994,7 +994,7 @@ static int msg_61(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_62(integer *n, integer *ierr)
 {
-	message_scilab("Warning : use of standard list to define typed structures\n          is obsolete. Use tlist.");
+	message_scilab("Warning : use of standard list to define typed structures");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1074,25 +1074,25 @@ static int msg_74(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_75(integer *n, integer *ierr)
 {
-	message_scilab(" Warning: Jacobian external is given, but\n not used!,  see %ODEOPTIONS(6).");
+	message_scilab(" Warning: Jacobian external is given, but");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_76(integer *n, integer *ierr)
 {
-	message_scilab(" Warning: No Jacobian external given but\n one is required by %ODEOPTIONS(6) value !");
+	message_scilab("  The first %d singular values may be incorrect.7");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_77(integer *n, integer *ierr)
 {
-	message_scilab(" itask=2,3 or 5: At most one value of t\n is allowed, the last element of t is used.");
+	message_scilab(" itask=2,3 or 5: At most one value of t");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_78(integer *n, integer *ierr)
 {
-	message_scilab(" Warning: odedc forces itask=4 and handles\n tcrit.");
+	message_scilab(" Warning: odedc forces itask=4 and handles");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1122,7 +1122,7 @@ static int msg_82(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_83(integer *n, integer *ierr)
 {
-	message_scilab("int2d: termination for relative error < (5.0*%eps).");
+	message_scilab("int2d: termination for relative error &lt; (5.0*%eps).");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1271,7 +1271,7 @@ static int msg_102(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_103(integer *n, integer *ierr)
 {
-	message_scilab(" roundoff errors make leading eigenvalues\n in the Schur form no longer satisfy criterion.");
+	message_scilab(" roundoff errors make leading eigenvalues");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1286,7 +1286,7 @@ static int msg_105(integer *n, integer *ierr)
 	char *localbuf=NULL;
 	localbuf=(char*)MALLOC(sizeof(char)*(*ierr +1));
 	strncpy(localbuf,BUF,*ierr);
-	message_scilab(" unknown key <%s> ignored.",localbuf);
+	message_scilab(" unknown key &lt;%s&gt; ignored.",localbuf);
 	if (localbuf) {FREE(localbuf);localbuf=NULL;}
 	return 0;
 }

@@ -10,7 +10,7 @@ function scipad(varargin)
     end 
     if ~scilab5 then
       function s=gettext(scope,sss)
-        labels=["scipad_message_"+string(1:6), "scipad_error_1"]
+        labels=["scipad_message_"+string(1:6), "Scilab has not been built with Tcl/Tk: Scipad unavailable."]
         results=[" Scilab in no window no interactive mode : Scipad unavailable"
                  "Function ";
                  "is not contained in a loaded library, ";
@@ -37,7 +37,7 @@ function scipad(varargin)
     noguimode=find(sciargs()=="-nogui");
     if (nwnimode <>[] | noguimode <>[]) then
         clear nwnimode noguimode
-        warning(gettext('messages','scipad_message_1'));
+        warning(gettext('messages',' Scilab in no window no interactive mode : Scipad unavailable.'));
         abort;
     end;
     clear nwnimode noguimode
@@ -94,12 +94,12 @@ function scipad(varargin)
 //                          //the correspondance between function and file name it is tacitly assumed
 //                          filetoopen=pathconvert(libpath+funname+".sci",%f)
 //                      else
-//                          warning(gettext('messages','scipad_message_2')+funname+gettext('messages','scipad_message_3') ..
-//                                  +gettext('messages','scipad_message_4'))
+//                          warning(gettext('messages','Function ')+funname+gettext('messages','is not contained in a loaded library, ') ..
+//                                  +gettext('messages','Scipad doesn't know where to find its source'))
 //                      end
 //                  end
                 else
-                    warning(gettext('messages','scipad_message_5')+typeof(f)+gettext('messages','scipad_message_6'))
+                    warning(gettext('messages','Scipad cannot open a ')+typeof(f)+gettext('messages',' object!'))
                 end
                 if validfile then
                     // Tcl handles the filenames correctly with any path separator but on Windows the separator
@@ -120,7 +120,7 @@ function scipad(varargin)
     else 
         // with_tk() is %f
         clearglobal SCIPADISSTARTING
-        error(gettext('errors','scipad_error_1'))
+        error(gettext('errors','Scilab has not been built with Tcl/Tk: Scipad unavailable.'))
     end
     clearglobal SCIPADISSTARTING
 endfunction

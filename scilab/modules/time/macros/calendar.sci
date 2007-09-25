@@ -18,13 +18,13 @@ function listcal = calendar(varargin)
       M=varargin(2);
       if (size(Y) == [1,1]) & (size(M) == [1,1]) then
       else
-        error(gettext('errors','time_error_20'));
+        error(gettext('errors','Y and M must be scalars.'));
       end
-      if (M < 1) | (M > 12) then error(gettext('errors','time_error_21'));,end
+      if (M < 1) | (M > 12) then error(gettext('errors','M must contain values between 1 and 12.'));,end
       c=[Y,M,1];
     break
   else
-     error(gettext('errors','time_error_22'));
+     error(gettext('errors','Number of parameters incorrect.'));
   end
 
   

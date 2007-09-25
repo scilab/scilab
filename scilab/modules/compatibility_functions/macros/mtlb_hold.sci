@@ -17,7 +17,7 @@ else
   elseif flag=="off" then
     a=gca();a.auto_clear="on"
   else
-    error(gettext("errors","compatibility_functions_error_5"))
+    error(gettext("errors","Not implemented."))
   end
 end
 endfunction

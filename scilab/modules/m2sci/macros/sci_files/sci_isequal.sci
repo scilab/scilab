@@ -7,7 +7,7 @@ function [tree]=sci_isequal(tree)
 // V.C.
 
 if tree.rhs(1).vtype==Struct then
-  set_infos(gettext("messages","m2sci_message_109"),2);
+  set_infos(gettext("messages","isequal requires fields are in the same order for structs to be equal."),2);
 end
 
 tree.lhs(1).dims=list(1,1)

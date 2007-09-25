@@ -25,7 +25,7 @@ Source: modules\{#DATASTRUCT}\help\removechapter.sce; DestDir: {app}\modules\{#D
 ;
 Source: modules\{#DATASTRUCT}\help\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DATASTRUCT}\languages\*.xml; DestDir: {app}\modules\{#DATASTRUCT}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\locales\*.xml; DestDir: {app}\modules\{#DATASTRUCT}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DATASTRUCT}\includes\*.h; DestDir: {app}\modules\{#DATASTRUCT}\includes; Components: {#COMPN_SCILAB}
 ;

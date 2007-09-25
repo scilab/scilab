@@ -27,7 +27,7 @@ Source: modules\{#CACSD}\help\removechapter.sce; DestDir: {app}\modules\{#CACSD}
 ;
 Source: modules\{#CACSD}\help\*.htm; DestDir: {app}\modules\{#CACSD}\help; Flags: recursesubdirs; Components: {#COMPN_CACSD}
 ;
-Source: modules\{#CACSD}\languages\*.xml; DestDir: {app}\modules\{#CACSD}\languages; Flags: recursesubdirs; Components: {#COMPN_CACSD}
+Source: modules\{#CACSD}\locales\*.xml; DestDir: {app}\modules\{#CACSD}\locales; Flags: recursesubdirs; Components: {#COMPN_CACSD}
 ;
 Source: modules\{#CACSD}\includes\*.h; DestDir: {app}\modules\{#CACSD}\includes; Components: {#COMPN_CACSD}
 ;

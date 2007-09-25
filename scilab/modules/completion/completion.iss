@@ -33,7 +33,7 @@ Source: modules\{#COMPLETION}\etc\{#COMPLETION}.start; DestDir: {app}\modules\{#
 ;
 Source: modules\{#COMPLETION}\help\*.htm; DestDir: {app}\modules\{#COMPLETION}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\languages\*.xml; DestDir: {app}\modules\{#COMPLETION}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\locales\*.xml; DestDir: {app}\modules\{#COMPLETION}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#COMPLETION}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#COMPLETION}\macros\*.bin; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}

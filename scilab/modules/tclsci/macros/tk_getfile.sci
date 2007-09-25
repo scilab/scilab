@@ -1,6 +1,6 @@
 function [p] = tk_getfile(file_mask,path,Title,multip)
 if ~with_tk() then
-   error(gettext('errors','tclsci_error_44'));
+   error(gettext('errors','Tcl/Tk interface not defined.'));
 end;
 arg = ""
 if exists("file_mask","local")==1 then

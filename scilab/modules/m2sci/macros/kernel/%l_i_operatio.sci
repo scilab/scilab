@@ -7,6 +7,6 @@ if field=="dims" then
 elseif field=="type" then
   operation.out(1).type=inslist
 else
-  error(gettext("errors","m2sci_error_2"))
+  error(gettext("errors","Not yet implemented."))
 end
 endfunction

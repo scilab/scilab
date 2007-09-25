@@ -24,7 +24,7 @@ if lhs==1 then
   tree.lhs(1).type=X.type
   // [R,p] = chol(X)
 else
-  no_equiv(gettext("messages","m2sci_message_81"))
+  no_equiv(gettext("messages","Call to chol() with 2 outputs."))
 end
 
 endfunction

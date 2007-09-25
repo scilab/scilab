@@ -5,7 +5,7 @@ function str=mtlb_is(sto,sfrom,i,j)
 [mto,nto]=size(sto)
 // convert sto to a regular matrix
 if type(sto)==10 then
-  if nto<>1 then error(gettext("errors","compatibility_functions_error_51")),end
+  if nto<>1 then error(gettext("errors","First argument is not a Matlab vector of strings.")),end
   if mto==1 then
     lnto=length(sto)
     sto=ascii(sto)
@@ -21,7 +21,7 @@ end
 [mfrom,nfrom]=size(sfrom)
 // convert sfrom to a regular matrix
 if type(sfrom)==10 then
-  if nfrom<>1 then error(gettext("errors","compatibility_functions_error_51")),end
+  if nfrom<>1 then error(gettext("errors","First argument is not a Matlab vector of strings.")),end
   if mfrom==1 then
     lnfrom=length(sfrom)
     sfrom=ascii(sfrom)

@@ -173,7 +173,7 @@ static BOOL AppendModules(char *xmlfilename)
 							/* we found the tag name */
 							const char *str=(const char*)attrib->children->content;
 							name=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-							strcpy(name,str);
+							if (name) strcpy(name,str);
 						}
 						else if (xmlStrEqual (attrib->name, (const xmlChar*) "activate"))
 						{ 

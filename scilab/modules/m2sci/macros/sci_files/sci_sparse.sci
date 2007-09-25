@@ -9,7 +9,7 @@ function [tree]=sci_sparse(tree)
 // nzmax does not exist in Scilab
 if rhs==6 then
   rhs=5
-  set_infos(gettext("messages","m2sci_message_124"),0)
+  set_infos(gettext("messages","Call to sparse(): nzmax option ignored."),0)
 end
 
 // S = sparse(A)
@@ -51,7 +51,7 @@ elseif rhs==3 then
   
   // Matlab tolerates length(i)<>length(j)...
   if size(i.dims)<>size(j.dims) | size(i.dims)<>size(s.dims) then
-    set_infos(gettext("messages","m2sci_message_125"),2)
+    set_infos(gettext("messages","For Scilab sparse(), input values must have the same size, not sure they have."),2)
   end
   
   if i.dims(2)==1 & j.dims(2)==1 then

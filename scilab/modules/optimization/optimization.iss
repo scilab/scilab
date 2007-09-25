@@ -25,7 +25,7 @@ Source: modules\{#OPTIMIZATION}\help\removechapter.sce; DestDir: {app}\modules\{
 ;
 Source: modules\{#OPTIMIZATION}\help\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help; Flags: recursesubdirs; Components: {#COMPN_OPTIM}
 ;
-Source: modules\{#OPTIMIZATION}\languages\*.xml; DestDir: {app}\modules\{#OPTIMIZATION}\languages; Flags: recursesubdirs; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\locales\*.xml; DestDir: {app}\modules\{#OPTIMIZATION}\locales; Flags: recursesubdirs; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\includes\*.h; DestDir: {app}\modules\{#OPTIMIZATION}\includes; Components: {#COMPN_OPTIM}
 ;

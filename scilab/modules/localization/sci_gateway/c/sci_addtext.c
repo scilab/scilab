@@ -45,7 +45,7 @@ int C2F(sci_addtext) _PARAMS((char *fname,unsigned long fname_len))
 
 					for (i=0;i<m2*n2;i++)
 					{
-						if (!AppendHashTableLocalization(Table,param2[i],param3[i]))
+						if (!AppendHashTableLocalization(Table,param2[i],param3[i],"MEMORY"))
 						{
 							n1=1;
 							CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);

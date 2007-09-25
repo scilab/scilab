@@ -68,11 +68,11 @@ int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 		const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
 		if (C2F(iop).err>0) 
 		{
-			message_scilab("%s, at line %i of file %s.\n	%s.",fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
+			message_scilab("%s, at line %i of file %s.",fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
 		}
         else
 		{
-			error_scilab(999,"%s, at line %i of file %s\n	%s.",fname,TCLinterpreter->errorLine,cstk(l1),TCLinterpreter->result,(char *)trace);
+			error_scilab(999,"%s, at line %i of file %s",fname,TCLinterpreter->errorLine,cstk(l1),TCLinterpreter->result,(char *)trace);
 			return 0;
 		}
     }

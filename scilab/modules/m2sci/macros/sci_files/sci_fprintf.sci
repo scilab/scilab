@@ -7,7 +7,7 @@ function [tree]=sci_fprintf(tree)
 // Emulation function: mtlb_fprintf()
 // V.C.
 
-set_infos(msprintf(gettext("messages","m2sci_message_102"),"mtlb_fprintf"),0);
+set_infos(msprintf(gettext("messages","No simple equivalent, so %s() is called."),"mtlb_fprintf"),0);
 
 tree.name="mtlb_fprintf"
 

@@ -18,27 +18,31 @@ static struct hashtable *Table_Scilab_Menus=NULL;
 /*-----------------------------------------------------------------------------------*/ 
 static char *QueryString(struct hashtable *Table,char *Tag);
 /*-----------------------------------------------------------------------------------*/ 
-BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr)
+BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr,char *Path)
 {
 	BOOL bOK=FALSE;
 	struct key_string *k=NULL;
 	struct value_string *v=NULL;
 	char *Key_Tag=NULL;
 	char *Key_Value=NULL;
+	char *Key_Path = NULL;
 
 	k=(struct key_string*)MALLOC(sizeof(struct key_string));
 	v=(struct value_string*)MALLOC(sizeof(struct value_string));
 
 	Key_Tag=(char*)MALLOC(sizeof(char)*(strlen(Tag)+1));
 	Key_Value=(char*)MALLOC(sizeof(char)*(strlen(MsgStr)+1));
+	Key_Path=(char*)MALLOC(sizeof(char)*(strlen(Path)+1));
 
-	if (k && v && Key_Tag && Key_Value)
+	if (k && v && Key_Tag && Key_Value && Key_Path)
 	{
 		strcpy(Key_Tag,Tag);
 		strcpy(Key_Value,MsgStr);
+		strcpy(Key_Path,Path);
 
-		k->Key_String=Key_Tag;
-		v->Value_String=Key_Value;
+		k->Key_String = Key_Tag;
+		v->Value_String = Key_Value;
+		v->Path_String = Key_Path;
 
 		if (InsertHashtable_string(Table,k, v)) bOK=TRUE;
 
@@ -131,11 +135,12 @@ char *QueryStringMenu(char *Tag)
 static char *QueryString(struct hashtable *Table,char *Tag)
 {
 	char *RetString=NULL;
-	if (Table==NULL){
-		printf("Internal error: localisation table empty (looking for %s)!\nAre you sure that the localisation files have been loaded ?\n",Tag);
+	if (Table==NULL)
+	{
+		printf("Internal error: localization table empty (looking for %s)!\nAre you sure that the localization files have been loaded ?\n",Tag);
 		exit(-1);
 	}
-	RetString=SearchHashtable_string(Table,Tag);
+	RetString = SearchHashtable_string(Table,Tag);
 	return RetString;
 }
 /*-----------------------------------------------------------------------------------*/ 

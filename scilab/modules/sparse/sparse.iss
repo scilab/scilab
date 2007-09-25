@@ -27,7 +27,7 @@ Source: modules\{#SPARSE}\help\removechapter.sce; DestDir: {app}\modules\{#SPARS
 ;
 Source: modules\{#SPARSE}\help\*.htm; DestDir: {app}\modules\{#SPARSE}\help; Flags: recursesubdirs; Components: {#COMPN_SPARSE}
 ;
-Source: modules\{#SPARSE}\languages\*.xml; DestDir: {app}\modules\{#SPARSE}\languages; Flags: recursesubdirs; Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\locales\*.xml; DestDir: {app}\modules\{#SPARSE}\locales; Flags: recursesubdirs; Components: {#COMPN_SPARSE}
 ;
 Source: modules\{#SPARSE}\includes\*.h; DestDir: {app}\modules\{#SPARSE}\includes; Components: {#COMPN_SPARSE}
 ;

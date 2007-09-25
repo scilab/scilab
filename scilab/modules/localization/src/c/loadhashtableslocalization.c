@@ -106,14 +106,14 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 				if (child->children!=NULL)
 				{ 
 					/* No value found between <xmltag></xmltag> */
-					if (xmlStrEqual (child->name, (const xmlChar*) "tag"))
+					if (xmlStrEqual (child->name, (const xmlChar*) "msgid"))
 					{ 
 						/* we found <tag> */
 						const char *tag=(const char*)child->children->content;
 						TAGVALUE=(char*)MALLOC(sizeof(char)*(strlen((const char*)tag)+1));
 						if (TAGVALUE) strcpy(TAGVALUE,tag);
 					}
-					else if (xmlStrEqual (child->name, (const xmlChar*)"string"))
+					else if (xmlStrEqual (child->name, (const xmlChar*)"msgstr"))
 					{ 
 						/* we found <string> */
 						const char *str=(const char*)child->children->content;
@@ -129,7 +129,7 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 				/* remove case TAGVALUE=''  STRINGVALUE='' */
 				if ( (strlen(TAGVALUE)>0) & (strlen(STRINGVALUE)>0) ) 
 				{
-					AppendHashTableLocalization(table,TAGVALUE,STRINGVALUE);
+					AppendHashTableLocalization(table,TAGVALUE,STRINGVALUE,filenamexml);
 				}
 				if (TAGVALUE) {FREE(TAGVALUE);TAGVALUE=NULL;}
 				if (STRINGVALUE) {FREE(STRINGVALUE);STRINGVALUE=NULL;}

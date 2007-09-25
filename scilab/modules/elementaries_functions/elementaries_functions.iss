@@ -27,7 +27,7 @@ Source: modules\{#ELEMFUNCTIONS}\help\removechapter.sce; DestDir: {app}\modules\
 ;
 Source: modules\{#ELEMFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#ELEMFUNCTIONS}\languages\*.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\locales\*.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#ELEMFUNCTIONS}\includes; Components: {#COMPN_SCILAB}
 ;

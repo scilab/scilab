@@ -23,7 +23,7 @@ Source: modules\{#INTERSCI}\help\removechapter.sce; DestDir: {app}\modules\{#INT
 ;
 Source: modules\{#INTERSCI}\help\*.htm; DestDir: {app}\modules\{#INTERSCI}\help; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
 ;
-Source: modules\{#INTERSCI}\languages\*.xml; DestDir: {app}\modules\{#INTERSCI}\languages; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\locales\*.xml; DestDir: {app}\modules\{#INTERSCI}\locales; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
 ;
 ;Source: modules\{#INTERSCI}\macros\lib; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
 ;Source: modules\{#INTERSCI}\macros\names; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}

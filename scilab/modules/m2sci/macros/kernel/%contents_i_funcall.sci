@@ -5,6 +5,6 @@ function funcall=%contents_i_funcall(field,contlist,funcall)
 if field=="contents" then
   funcall.lhs(1).infer.contents=contlist
 else
-  error(gettext("errors","m2sci_error_2"))
+  error(gettext("errors","Not yet implemented."))
 end
 endfunction

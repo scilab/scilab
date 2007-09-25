@@ -13,7 +13,7 @@ if rhs==1 then
   
   if ~is_real(D) then
     newD=Funcall("real",1,list(D),list(D))
-    repl_poss(newD,D,D,gettext("messages","m2sci_message_77"));
+    repl_poss(newD,D,D,gettext("messages","is Real."));
     D=newD
   end 
   tree.rhs=list(D)

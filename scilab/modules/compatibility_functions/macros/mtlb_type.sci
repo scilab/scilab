@@ -19,7 +19,7 @@ else
       if ierr==0 then // filename.sci exists
 	disp(mgetl(mopen(SCIfilename,"r")))
       else
-	disp(msprintf(gettext("messages","compatibility_functions_message_26"),filename,Mfilename,SCIfilename)); 
+	disp(msprintf(gettext("messages","Could not open neither %s nor %s nor %s."),filename,Mfilename,SCIfilename)); 
       end
     end
   end

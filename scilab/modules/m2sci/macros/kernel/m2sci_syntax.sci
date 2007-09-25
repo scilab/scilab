@@ -293,7 +293,7 @@ if kc<>0 then // Current line has or is a comment
   com=strsubst(com,dquote,dquote+dquote)
   if part(com,1:12)=="m2sciassume " | part(com,1:13)=="m2scideclare " then // User has given a clue to help translation
     if part(com,1:12)=="m2sciassume " then
-      warning(gettext("messages","m2sci_message_64"));
+      warning(gettext("messages","m2sciassume is obsolete, used m2scideclare instead."));
     end
     com=";m2scideclare("+quote+part(com,13:length(com))+quote+")"
   else

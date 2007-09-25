@@ -25,7 +25,7 @@ Source: modules\{#SIGPROC}\help\removechapter.sce; DestDir: {app}\modules\{#SIGP
 ;
 Source: modules\{#SIGPROC}\help\*.htm; DestDir: {app}\modules\{#SIGPROC}\help;Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\languages\*.xml; DestDir: {app}\modules\{#SIGPROC}\languages; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\locales\*.xml; DestDir: {app}\modules\{#SIGPROC}\locales; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\macros\lib; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\macros\names; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}

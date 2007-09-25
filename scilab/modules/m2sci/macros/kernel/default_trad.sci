@@ -31,24 +31,24 @@ end
 [mtlbpath,ismtlbtoolfun]=mtlbtoolfun(name)
 //Matlab reference functions
 if or(name==not_yet_converted()) then
-  set_infos(msprintf(gettext("messages","m2sci_message_34"),name),2)
+  set_infos(msprintf(gettext("messages","Matlab function %s not yet converted, original calling sequence used."),name),2)
   if ~or(name==mtlbref_fun(:,1)) then
     mtlbref_fun($+1,1)=name
     if ispriminame then
-      mtlbref_fun($,2)=msprintf(gettext("messages","m2sci_message_35"),name,name1);
+      mtlbref_fun($,2)=msprintf(gettext("messages","(Warning name conflict: function name changed from %s to %s)."),name,name1);
     else
       mtlbref_fun($,2)=""
     end
   end   
   //Matlab toolboxes functions 
 elseif ismtlbtoolfun then
-  set_infos(msprintf(gettext("messages","m2sci_message_36"),name),2)
+  set_infos(msprintf(gettext("messages","OFF6"),name),2)
   if ~or(name==mtlbtool_fun(:,1)) then
     mtlbtool_fun($+1,1)=name
     if ispriminame then
-      mtlbtool_fun($,2)=msprintf(gettext("messages","m2sci_message_37"),name,name1,mtlbpath)
+      mtlbtool_fun($,2)=msprintf(gettext("messages","Matlab toolbox(es) function %s not converted, original calling sequence used."),name,name1,mtlbpath)
     else
-      mtlbtool_fun($,2)=msprintf(gettext("messages","m2sci_message_38"),mtlbpath)
+      mtlbtool_fun($,2)=msprintf(gettext("messages","(Find this function in matlab/%s)."),mtlbpath)
     end
   end 
 elseif isdefinedvar(Variable(tree.name,Infer())) then
@@ -62,18 +62,18 @@ elseif isdefinedvar(Variable(tree.name,Infer())) then
 
   //Not matlbb function
 else 
-  set_infos(msprintf(gettext("messages","m2sci_message_39"),name),2)  
+  set_infos(msprintf(gettext("messages","Unknown function %s not converted, original calling sequence used."),name),2)  
   if ~or(name==not_mtlb_fun(:,1)) then
     not_mtlb_fun($+1,1)=name
     if ispriminame then 
-      not_mtlb_fun($,2)=msprintf(gettext("messages","m2sci_message_35"),name,name1);
+      not_mtlb_fun($,2)=msprintf(gettext("messages","(Warning name conflict: function name changed from %s to %s)."),name,name1);
     else
       not_mtlb_fun($,2)=""
     end
   end
 end
 if ispriminame then
-  set_infos(msprintf(gettext("messages","m2sci_message_35"),name,name1),0)
+  set_infos(msprintf(gettext("messages","(Warning name conflict: function name changed from %s to %s)."),name,name1),0)
 end
 [tree]=sci_generic(tree)
 endfunction

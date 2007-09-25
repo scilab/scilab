@@ -14,7 +14,7 @@ if rhs==2 then
     m=Funcall("real",1,list(m),list(Variable("",m.infer)))
   elseif ~is_real(m) then
     newm=Funcall("real",1,list(m),list(Variable("",m.infer)))
-    repl_poss(newm,m,m,gettext("messages","m2sci_message_77"));
+    repl_poss(newm,m,m,gettext("messages","is Real."));
     m=newm
   end
   vtype=A.vtype
@@ -84,14 +84,14 @@ else
     m=Funcall("real",1,list(m),list(Variable("",m.infer)))
   elseif ~is_real(m) then
     newm=Funcall("real",1,list(m),list(Variable("",m.infer)))
-    repl_poss(newm,m,m,gettext("messages","m2sci_message_77"));
+    repl_poss(newm,m,m,gettext("messages","is Real."));
     m=newm
   end
   if is_complex(n) then
     n=Funcall("real",1,list(n),list(Variable("",n.infer)))
   elseif ~is_real(n) then
     newn=Funcall("real",1,list(n),list(Variable("",n.infer)))
-    repl_poss(newn,n,n,gettext("messages","m2sci_message_77"));
+    repl_poss(newn,n,n,gettext("messages","is Real."));
     n=newn
   end
   vtype=A.vtype

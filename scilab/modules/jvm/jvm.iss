@@ -38,5 +38,5 @@ Source: modules\{#JVM}\macros\*.sci; DestDir: {app}\modules\{#JVM}\macros; Compo
 Source: modules\{#JVM}\help\addchapter.sce; DestDir: {app}\modules\{#JVM}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 Source: modules\{#JVM}\help\removechapter.sce; DestDir: {app}\modules\{#JVM}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\languages\*.xml; DestDir: {app}\modules\{#JVM}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\locales\*.xml; DestDir: {app}\modules\{#JVM}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;--------------------------------------------------------------------------------------------------------------

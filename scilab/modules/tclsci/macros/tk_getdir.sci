@@ -1,5 +1,5 @@
 function p=tk_getdir(startdir,title)
-  if ~with_tk() then error(gettext('errors','tclsci_error_44')),end
+  if ~with_tk() then error(gettext('errors','Tcl/Tk interface not defined.')),end
   arg=''
   if exists("startdir","local")==1 then 
     startdir=pathconvert(startdir,%f,%t)

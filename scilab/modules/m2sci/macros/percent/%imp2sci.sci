@@ -22,7 +22,7 @@ if size(tree.operands)==2 then
   tree.operands=list(A,B)
   
   if  is_empty(A) | is_empty(B) then
-    set_infos(msprintf(gettext("messages","m2sci_message_129"),expression2code(tree)),1);
+    set_infos(msprintf(gettext("messages","One operand is an empty matrix in : %s, result set to []."),expression2code(tree)),1);
     tree=Cste([])
     tree.dims=list(1,0)
   elseif not_empty(A) & not_empty(B) then
@@ -57,7 +57,7 @@ else
   tree.operands=list(A,inc,B)
 
   if is_empty(A) | is_empty(B) | is_empty(inc) then
-    set_infos(msprintf(gettext("messages","m2sci_message_129"),expression2code(tree)),1);
+    set_infos(msprintf(gettext("messages","One operand is an empty matrix in : %s, result set to []."),expression2code(tree)),1);
     tree=Cste([])
     tree.dims=list(1,0)
   elseif not_empty(A) & not_empty(B) & not_empty(inc) then

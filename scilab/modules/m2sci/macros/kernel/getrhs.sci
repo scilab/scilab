@@ -4,7 +4,7 @@ function [varargout] = getrhs(instr_tree)
 varargout=list()
 
 if typeof(instr_tree)<>"funcall" then
-  error(gettext("errors","m2sci_error_31"))
+  error(gettext("errors","Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."))
 end
 
 rhsnb=size(instr_tree.rhs)

@@ -25,14 +25,14 @@ elseif rhs==1 then
     elseif arg1=="off" then
       a.grid=[-1 -1]
     elseif arg1=="minor" then
-      warning(gettext("messages","compatibility_functions_message_21"));
+      warning(gettext("messages","No minor grid."));
       if and(a.grid==[-1 -1]) then
 	a.grid=[1 1]
       else
 	a.grid=[-1 -1]
       end
     else
-      error(gettext("errors","compatibility_functions_error_50"));
+      error(gettext("errors","Wrong option."));
     end
   end
 elseif rhs==2 then
@@ -41,14 +41,14 @@ elseif rhs==2 then
   elseif arg2=="off" then
     arg1.grid=[-1 -1]
   elseif arg2=="minor" then
-    warning(gettext("messages","compatibility_functions_message_21"));
+    warning(gettext("messages","No minor grid."));
     if and(arg1.grid==[-1 -1]) then
       arg1.grid=[1 1]
     else
       arg1.grid=[-1 -1]
     end
   else
-    error(gettext("errors","compatibility_functions_error_50"));
+    error(gettext("errors","Wrong option."));
   end
 end
 endfunction

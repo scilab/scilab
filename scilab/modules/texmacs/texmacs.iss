@@ -17,7 +17,7 @@ Source: modules\{#TEXMACS}\help\removechapter.sce; DestDir: {app}\modules\{#TEXM
 ;
 Source: modules\{#TEXMACS}\help\*.htm; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
-Source: modules\{#TEXMACS}\languages\*.xml; DestDir: {app}\modules\{#TEXMACS}\languages; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\locales\*.xml; DestDir: {app}\modules\{#TEXMACS}\locales; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
 Source: modules\{#TEXMACS}\macros\lib; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\macros\names; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}

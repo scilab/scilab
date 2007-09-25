@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+	<msgpreviousid>core_error_1</msgpreviousid>
+	<msgid>Undefined variable %s.</msgid>
+	<msgstr>Undefined variable %s.</msgstr>
+</entry>	
+
+
+<entry>
+	<msgpreviousid>core_error_17</msgpreviousid>
+	<msgid>%s : stack size exceeded (Use stacksize function to increase it).</msgid>
+	<msgstr>%s : stack size exceeded (Use stacksize function to increase it).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_18</msgpreviousid>
+	<msgid>%s : too many names.</msgid>
+	<msgstr>%s : too many names.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_22</msgpreviousid>
+	<msgid>%s : recursion problems. Sorry ...</msgid>
+	<msgstr>%s : recursion problems. Sorry ...</msgstr>
+</entry>	
+
+
+<entry>
+	<msgpreviousid>core_error_39</msgpreviousid>
+	<msgid>incorrect number of arguments.</msgid>
+	<msgstr>incorrect number of arguments.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_41</msgpreviousid>
+	<msgid>incompatible LHS.</msgid>
+	<msgstr>incompatible LHS.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_50</msgpreviousid>
+	<msgid>%s : entry point %s not found in predefined tables or link table.</msgid>
+	<msgstr>%s : entry point %s not found in predefined tables or link table.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_77</msgpreviousid>
+	<msgid>%s : wrong number of rhs arguments</msgid>
+	<msgstr>%s : wrong number of rhs arguments</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_78</msgpreviousid>
+	<msgid>%s : wrong number of lhs arguments</msgid>
+	<msgstr>%s : wrong number of lhs arguments</msgstr>
+</entry>	
+
+
+<entry>
+	<msgpreviousid>core_error_146</msgpreviousid>
+	<msgid>%s : external %s not found.</msgid>
+	<msgstr>%s : external %s not found.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_147</msgpreviousid>
+	<msgid>SIGSTP: aborting current computation</msgid>
+	<msgstr>SIGSTP: aborting current computation</msgstr>
+</entry>	
+		
+<entry>
+	<msgpreviousid>core_error_148</msgpreviousid>
+	<msgid>file %s doesn't exist.</msgid>
+	<msgstr>file %s doesn't exist.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_149</msgpreviousid>
+	<msgid>Invalid type parameter. it must be a string (a filename).</msgid>
+	<msgstr>Invalid type parameter. it must be a string (a filename).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_150</msgpreviousid>
+	<msgid>Invalid second parameter. It must be a string.</msgid>
+	<msgstr>Invalid second parameter. It must be "string".</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_151</msgpreviousid>
+	<msgid>Invalid type parameter. parameters must be strings.</msgid>
+	<msgstr>Invalid type parameter. parameters must be strings.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_152</msgpreviousid>
+	<msgid>acr2tree: input argument must be a named variable</msgid>
+	<msgstr>macr2tree: input argument must be a named variable</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_153</msgpreviousid>
+	<msgid>macr2tree: Wrong input type (must be a compiled macro)!</msgid>
+	<msgstr>macr2tree: Wrong input type (must be a compiled macro)!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_154</msgpreviousid>
+	<msgid>macr2tree: No more memory available.</msgid>
+	<msgstr>macr2tree: No more memory available.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_155</msgpreviousid>
+	<msgid>macr2tree: Out of code</msgid>
+	<msgstr>macr2tree: Out of code</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_156</msgpreviousid>
+	<msgid>macr2tree: wrong Top value %d instead of %d</msgid>
+	<msgstr>macr2tree: wrong Top value %d instead of %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_157</msgpreviousid>
+	<msgid>%s : No more memory available.</msgid>
+	<msgstr>%s : No more memory available.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_158</msgpreviousid>
+	<msgid>%s : code %d not yet implemented.</msgid>
+	<msgstr>%s : code %d not yet implemented.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_159</msgpreviousid>
+	<msgid>GetInstruction: unknown code %d at index2 %d.</msgid>
+	<msgstr>GetInstruction: unknown code %d at index2 %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_160</msgpreviousid>
+	<msgid>GetControlInstruction: old version of if and while not yet implemented.</msgid>
+	<msgstr>GetControlInstruction: old version of if and while not yet implemented.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_161</msgpreviousid>
+	<msgid>CreateCsteTList: wrong type value.</msgid>
+	<msgstr>CreateCsteTList: wrong type value.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_162</msgpreviousid>
+	<msgid>CreateOperationTList: unknown operator %d.</msgid>
+	<msgstr>CreateOperationTList: unknown operator %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_163</msgpreviousid>
+	<msgid>CreateEqualTList: wrong fromwhat value %s</msgid>
+	<msgstr>CreateEqualTList: wrong fromwhat value %s</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_164</msgpreviousid>
+	<msgid>must be a name of function in scilab.</msgid>
+	<msgstr>must be a name of function in scilab.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_165</msgpreviousid>
+	<msgid>Warning : Problems with %s.</msgid>
+	<msgstr>Warning : Problems with %s.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_166</msgpreviousid>
+	<msgid>Error : file VERSION in %s.</msgid>
+	<msgstr>Error : file VERSION in "%s".</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_167</msgpreviousid>
+	<msgid>Error : incorrect module name %s.</msgid>
+	<msgstr>Error : incorrect module name "%s".</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_168</msgpreviousid>
+	<msgid>invalid argument.</msgid>
+	<msgstr>invalid argument.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_169</msgpreviousid>
+	<msgid>incorrect second parameter.</msgid>
+	<msgstr>incorrect second parameter.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_170</msgpreviousid>
+	<msgid>invalid argument(s).</msgid>
+	<msgstr>invalid argument(s).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_171</msgpreviousid>
+	<msgid>%s : can't alloc more memory.</msgid>
+	<msgstr>%s : can't alloc more memory.
+	try gstacksize('max').</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_172</msgpreviousid>
+	<msgid>%s : Out of bounds value not in [%lu,%lu].</msgid>
+	<msgstr>%s : Out of bounds value not in [%lu,%lu].</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_173</msgpreviousid>
+	<msgid>function-name is incorrect.</msgid>
+	<msgstr>function-name is incorrect.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_174</msgpreviousid>
+	<msgid>nameptr argument must be &gt;0.</msgid>
+	<msgstr>nameptr argument must be &gt;0.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_175</msgpreviousid>
+	<msgid>%s : can't alloc more memory. stacksize</msgid>
+	<msgstr>%s : can't alloc more memory.
+try stacksize('max').</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_176</msgpreviousid>
+	<msgid>Parameter must be a integer.</msgid>
+	<msgstr>Parameter must be a integer.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_177</msgpreviousid>
+	<msgid>Parameter must be a string.</msgid>
+	<msgstr>Parameter must be a string.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_178</msgpreviousid>
+	<msgid>See help newfun.</msgid>
+	<msgstr>See help newfun.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_179</msgpreviousid>
+	<msgid>first parameter must be 'local' , 'get' , 'global' or 'sorted'.</msgid>
+	<msgstr>first parameter must be 'local' , 'get' , 'global' or 'sorted'.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_180</msgpreviousid>
+	<msgid>second parameter must be 'sorted'.</msgid>
+	<msgstr>second parameter must be 'sorted'.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_181</msgpreviousid>
+	<msgid>first parameter must be 'local' , 'get' or 'global'.</msgid>
+	<msgstr>first parameter must be 'local' , 'get' or 'global'.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_182</msgpreviousid>
+	<msgid>first parameter must be 'local' , 'get' , 'global' and second parameter must be 'sorted'.</msgid>
+	<msgstr>first parameter must be 'local' , 'get' , 'global' and second parameter must be 'sorted'.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_183</msgpreviousid>
+	<msgid>%s : argument %d should be a list of size at least %d.</msgid>
+	<msgstr>%s : argument %d should be a list of size at least %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_184</msgpreviousid>
+	<msgid>%s : argument %d &gt;(%d) should be a real or complex matrix.</msgid>
+	<msgstr>%s : argument %d &gt;(%d) should be a real or complex matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_185</msgpreviousid>
+	<msgid>%s : argument %d should be a list of size at least %d.</msgid>
+	<msgstr>%s : argument %d should be a list of size at least %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_197</msgpreviousid>
+	<msgid>%s : argument %d &gt;(%d) should be a boxed pointer.</msgid>
+	<msgstr>%s : argument %d &gt;(%d) should be a boxed pointer.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_198</msgpreviousid>
+	<msgid>%s : argument %d should be a boxed pointer.</msgid>
+	<msgstr>%s : argument %d should be a boxed pointer.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_199</msgpreviousid>
+	<msgid>%s : argument %d should be a matrix.</msgid>
+	<msgstr>%s : argument %d should be a matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_200</msgpreviousid>
+	<msgid>%s : argument %d should be a matrix of handle.</msgid>
+	<msgstr>%s : argument %d should be a matrix of handle.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_201</msgpreviousid>
+	<msgid>%s : argument %d should be a real or complex matrix.</msgid>
+	<msgstr>%s : argument %d should be a real or complex matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_202</msgpreviousid>
+	<msgid>%s : Argument %d: wrong type argument expecting a real matrix.</msgid>
+	<msgstr>%s : Argument %d: wrong type argument expecting a real matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_203</msgpreviousid>
+	<msgid>%s : Argument %d: wrong type argument expecting a real vector.</msgid>
+	<msgstr>%s : Argument %d: wrong type argument expecting a real vector.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_204</msgpreviousid>
+	<msgid>%s : Argument 1: wrong type argument expecting a scalar or 'min' or 'max'.</msgid>
+	<msgstr>%s : Argument 1: wrong type argument expecting a scalar or 'min' or 'max'.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_205</msgpreviousid>
+	<msgid>%s : Argument %d: wrong matrix size (%d,%d) expected.</msgid>
+	<msgstr>%s : Argument %d: wrong matrix size (%d,%d) expected.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_206</msgpreviousid>
+	<msgid>%s : Argument %d wrong vector size (%d) expected.</msgid>
+	<msgstr>%s : Argument %d wrong vector size (%d) expected.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_207</msgpreviousid>
+	<msgid>%s : Argument %d : wrong type argument, expecting a matrix of strings</msgid>
+	<msgstr>%s : Argument %d : wrong type argument, expecting a matrix of strings</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_208</msgpreviousid>
+	<msgid>%s : argument %d should be a boolean matrix.</msgid>
+	<msgstr>%s : argument %d should be a boolean matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_209</msgpreviousid>
+	<msgid>%s : Argument %d wrong type argument, expecting a matrix</msgid>
+	<msgstr>%s : Argument %d wrong type argument, expecting a matrix</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_210</msgpreviousid>
+	<msgid>%s : Argument %d: wrong type argument, expecting a list.</msgid>
+	<msgstr>%s : Argument %d: wrong type argument, expecting a list.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_211</msgpreviousid>
+	<msgid>%s : Argument %d: wrong type argument, expecting a function</msgid>
+	<msgstr>%s : Argument %d: wrong type argument, expecting a function
+		or string (external function).</msgstr>
+</entry>	
+
+
+<entry>
+	<msgpreviousid>core_error_212</msgpreviousid>
+	<msgid>%s : Argument %d: wrong type argument, expecting a polynomial matrix.</msgid>
+	<msgstr>%s : Argument %d: wrong type argument, expecting a polynomial matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_213</msgpreviousid>
+	<msgid>%s : Argument %d: wrong type argument, expecting a working</msgid>
+	<msgstr>%s : Argument %d: wrong type argument, expecting a working
+		integer matrix</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_214</msgpreviousid>
+	<msgid>%s : Argument %d: wrong type argument expecting a vector.</msgid>
+	<msgstr>%s : Argument %d: wrong type argument expecting a vector.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_215</msgpreviousid>
+	<msgid>Not enough memory</msgid>
+	<msgstr>Not enough memory</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_216</msgpreviousid>
+	<msgid>scifunction: Running out of memory.</msgid>
+	<msgstr>scifunction: Running out of memory.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_217</msgpreviousid>
+	<msgid>invalid time domain.</msgid>
+	<msgstr>invalid time domain.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_218</msgpreviousid>
+	<msgid>invalid system.</msgid>
+	<msgstr>invalid system.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_219</msgpreviousid>
+	<msgid>A matrix non square!</msgid>
+	<msgstr>A matrix non square!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_220</msgpreviousid>
+	<msgid>Invalid %c,%c matrices.</msgid>
+	<msgstr>Invalid %c,%c matrices.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_221</msgpreviousid>
+	<msgid>%s : argument %d &gt;(%d) should be an int matrix.</msgid>
+	<msgstr>%s : argument %d &gt;(%d) should be an int matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_222</msgpreviousid>
+	<msgid>%s : argument %d should be a list of size at least %d.</msgid>
+	<msgstr>%s : argument %d should be a list of size at least %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_223</msgpreviousid>
+	<msgid>%s : argument %d &gt;(%d) should be a boolean matrix.</msgid>
+	<msgstr>%s : argument %d &gt;(%d) should be a boolean matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_224</msgpreviousid>
+	<msgid>%s : argument %d &gt;(%d) should be a sparse matrix.</msgid>
+	<msgstr>%s : argument %d &gt;(%d) should be a sparse matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_225</msgpreviousid>
+	<msgid>%s : argument %d should be a sparse matrix.</msgid>
+	<msgstr>%s : argument %d should be a sparse matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_226</msgpreviousid>
+	<msgid>%s : argument %d &gt; (%d) should be a vector.</msgid>
+	<msgstr>%s : argument %d &gt; (%d) should be a vector.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_227</msgpreviousid>
+	<msgid>%s : argument %d &gt; (%d) should be a scalar.</msgid>
+	<msgstr>%s : argument %d &gt; (%d) should be a scalar.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_228</msgpreviousid>
+	<msgid>%s : argument %d &gt;(%d) should be a matrix of strings.</msgid>
+	<msgstr>%s : argument %d &gt;(%d) should be a matrix of strings.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_229</msgpreviousid>
+	<msgid>%s : argument %d &gt;(%d) should be a row vector.</msgid>
+	<msgstr>%s : argument %d &gt;(%d) should be a row vector.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_230</msgpreviousid>
+	<msgid>%s : argument %d should be a row vector.</msgid>
+	<msgstr>%s : argument %d should be a row vector.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_231</msgpreviousid>
+	<msgid>%s : argument %d >(%d) should be a column vector.</msgid>
+	<msgstr>%s : argument %d >(%d) should be a column vector.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_232</msgpreviousid>
+	<msgid>%s : argument %d should be a column vector.</msgid>
+	<msgstr>%s : argument %d should be a column vector.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_233</msgpreviousid>
+	<msgid>%s : incompatible sizes.</msgid>
+	<msgstr>%s : incompatible sizes.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_234</msgpreviousid>
+	<msgid>%s : optional argument %d not given and default value %s not found.</msgid>
+	<msgstr>%s : optional argument %d not given and default value %s not found.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_235</msgpreviousid>
+	<msgid>%f: No more space to store string arguments.</msgid>
+	<msgstr>%f: No more space to store string arguments.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_236</msgpreviousid>
+	<msgid>%s : argument %d &gt;(%d) should be a matrix of handle.</msgid>
+	<msgstr>%s : argument %d &gt;(%d) should be a matrix of handle.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_237</msgpreviousid>
+	<msgid>%s : optional arguments name=val must be at the end.</msgid>
+	<msgstr>%s : optional arguments name=val must be at the end.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_238</msgpreviousid>
+	<msgid>isref: bad call to isref! (1rst argument).</msgid>
+	<msgstr>isref: bad call to isref! (1rst argument).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_239</msgpreviousid>
+	<msgid>%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.</msgid>
+	<msgstr>%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_240</msgpreviousid>
+	<msgid>%s : bad call to %s! (1rst argument).</msgid>
+	<msgstr>%s : bad call to %s! (1rst argument).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_241</msgpreviousid>
+	<msgid>%s : (createlistvar) bad third argument!</msgid>
+	<msgstr>%s : (createlistvar) bad third argument!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_242</msgpreviousid>
+	<msgid>%s : (createlistcvar) bad third argument!</msgid>
+	<msgstr>%s : (createlistcvar) bad third argument!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_243</msgpreviousid>
+	<msgid>%s : (createlistcvarfromptr) bad third argument!</msgid>
+	<msgstr>%s : (createlistcvarfromptr) bad third argument!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_244</msgpreviousid>
+	<msgid>%s : bad call to %s! (1rst argument).</msgid>
+	<msgstr>%s : bad call to %s! (1rst argument).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_245</msgpreviousid>
+	<msgid>Waiting for a complex argument(z).</msgid>
+	<msgstr>Waiting for a complex argument(z).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_246</msgpreviousid>
+	<msgid>%s : bad call to elementtype!</msgid>
+	<msgstr>%s : bad call to elementtype!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_247</msgpreviousid>
+	<msgid>%s : argument %d &gt;(%d) should be a complex matrix.</msgid>
+	<msgstr>%s : argument %d &gt;(%d) should be a complex matrix.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_248</msgpreviousid>
+	<msgid>%s : getlistrhsvar was called with bad third argument (%c).</msgid>
+	<msgstr>%s : getlistrhsvar was called with bad third argument (%c).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_249</msgpreviousid>
+	<msgid>%s : bad call to getlistrhscvar! (1rst argument).</msgid>
+	<msgstr>%s : bad call to getlistrhscvar! (1rst argument).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_250</msgpreviousid>
+	<msgid>%s : getlistrhscvar was called with bad third argument!</msgid>
+	<msgstr>%s : getlistrhscvar was called with bad third argument!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_251</msgpreviousid>
+	<msgid>%s : createvarfromptr was called with bad second argument!</msgid>
+	<msgstr>%s : createvarfromptr was called with bad second argument!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_252</msgpreviousid>
+	<msgid>%s : createcvarfromptr: too many arguments on the stack, enlarge intersiz.</msgid>
+	<msgstr>%s : createcvarfromptr: too many arguments on the stack, enlarge intersiz.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_253</msgpreviousid>
+	<msgid>%s : createcvarfromptr was called with bad second argument!</msgid>
+	<msgstr>%s : createcvarfromptr was called with bad second argument!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_254</msgpreviousid>
+	<msgid>scistring: %s is not a Scilab function.</msgid>
+	<msgstr>scistring: %s is not a Scilab function.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_255</msgpreviousid>
+	<msgid>putlhsvar: intersiz is too small.</msgid>
+	<msgstr>putlhsvar: intersiz is too small.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_256</msgpreviousid>
+	<msgid>copyref: bad call to isref! (1rst argument).</msgid>
+	<msgstr>copyref: bad call to isref! (1rst argument).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_257</msgpreviousid>
+	<msgid>%s : %s has wrong dimensions (%d,%d), expecting (%d,%d).</msgid>
+	<msgstr>%s : %s has wrong dimensions (%d,%d), expecting (%d,%d).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_258</msgpreviousid>
+	<msgid>%s : %s has wrong %s dimension (%d), expecting (%d).</msgid>
+	<msgstr>%s : %s has wrong %s dimension (%d), expecting (%d).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_259</msgpreviousid>
+	<msgid>%s : %s has wrong length %d, expecting (%d).</msgid>
+	<msgstr>%s : %s has wrong length %d, expecting (%d).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_260</msgpreviousid>
+	<msgid>%s : %s have incompatible dimensions (%dx%d) # (%dx%d)</msgid>
+	<msgstr>%s : %s have incompatible dimensions (%dx%d) # (%dx%d)</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_261</msgpreviousid>
+	<msgid>%s : %s have incompatible dimensions.</msgid>
+	<msgstr>%s : %s have incompatible dimensions.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_262</msgpreviousid>
+	<msgid>%s : %s should be a list with %d-element being %s.</msgid>
+	<msgstr>%s : %s should be a list with %d-element being %s.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_263</msgpreviousid>
+	<msgid>%s : argument %d(%d) has wrong %s dimension (%d), expecting (%d).</msgid>
+	<msgstr>%s : argument %d(%d) has wrong %s dimension (%d), expecting (%d).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_264</msgpreviousid>
+	<msgid>%s : bad call to createdata! (1rst argument).</msgid>
+	<msgstr>%s : bad call to createdata! (1rst argument).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_265</msgpreviousid>
+	<msgid>GetDataFromName: variable %s not found.</msgid>
+	<msgstr>GetDataFromName: variable %s not found.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_266</msgpreviousid>
+	<msgid>CreateRefFromName: variable %s not found.</msgid>
+	<msgstr>CreateRefFromName: variable %s not found.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_267</msgpreviousid>
+	<msgid>creadchain: argument must be a string.</msgid>
+	<msgstr>creadchain: argument must be a string.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_268</msgpreviousid>
+	<msgid>%s : argument should be a polygon.</msgid>
+	<msgstr>%s : argument should be a polygon.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_error_269</msgpreviousid>
+	<msgid>%s : internal error, info=%d.</msgid>
+	<msgstr>%s : internal error, info=%d.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_270</msgpreviousid>
+	<msgid>whos requires zeros or two arguments.</msgid>
+	<msgstr>whos requires zeros or two arguments.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_271</msgpreviousid>
+	<msgid>First argument must be ''-name'' or ''-type''.</msgid>
+	<msgstr>First argument must be "-name" or "-type".</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_272</msgpreviousid>
+	<msgid>Argument must be a string.</msgid>
+	<msgstr>Argument must be a string.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_273</msgpreviousid>
+	<msgid>second argument should give the path to a scilab script file.</msgid>
+	<msgstr>second argument should give the path to a scilab script file.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_274</msgpreviousid>
+	<msgid>file: </msgid>
+	<msgstr>file: </msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_275</msgpreviousid>
+	<msgid> do not exist.</msgid>
+	<msgstr> do not exist.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_276</msgpreviousid>
+	<msgid>Unable to find Perl file: </msgid>
+	<msgstr>Unable to find Perl file: </msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_277</msgpreviousid>
+	<msgid>All input arguments must be strings.</msgid>
+	<msgstr>All input arguments must be strings.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_278</msgpreviousid>
+	<msgid>No perl command specified.</msgid>
+	<msgstr>No perl command specified.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_279</msgpreviousid>
+	<msgid>Unable to find Perl in: </msgid>
+	<msgstr>Unable to find Perl in: </msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_280</msgpreviousid>
+	<msgid>Unable to find Perl.</msgid>
+	<msgstr>Unable to find Perl.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_281</msgpreviousid>
+	<msgid>System error: </msgid>
+	<msgstr>System error: </msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_282</msgpreviousid>
+	<msgid> Command executed: </msgid>
+	<msgstr> Command executed: </msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>core_error_283</msgpreviousid>
+	<msgid>First input argument must be a Perl File.</msgid>
+	<msgstr>First input argument must be a Perl File.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_error_284</msgpreviousid>
+  <msgid>Internal Error.</msgid>
+  <msgstr>Internal Error.</msgstr>
+</entry>
+
+</LOCALIZATION>

@@ -9,13 +9,13 @@ function [resultat,status] = perl(varargin)
     // Verification que le premier parametre est un fichier 
     [x,ierr]=fileinfo(varargin(1));
     if (x == []) then
-      msgerr=gettext('errors','core_error_276')+string(varargin(1));
+      msgerr=gettext('errors','Unable to find Perl file: ')+string(varargin(1));
     	error(msgerr);
     else
       // Verification que les parametres sont des chaines de caracteres
       for i=1:1:rhs,
         if ~(type(varargin(i)) == 10) then
-          error(gettext('errors','core_error_277'));
+          error(gettext('errors','All input arguments must be strings.'));
         end
         
         idx=strindex(varargin(i),' ');
@@ -30,7 +30,7 @@ function [resultat,status] = perl(varargin)
       end
       
       if (Chainecmd == '') then
-        error(gettext('errors','core_error_278'));
+        error(gettext('errors','No perl command specified.'));
       else
         if MSDOS then
           // Pour Windows
@@ -38,7 +38,7 @@ function [resultat,status] = perl(varargin)
           
           [x,ierr]=fileinfo(CheminPerl+'perl.exe');
           if (x == []) then
-            msgerr=gettext('errors','core_error_279')+CheminPerl;
+            msgerr=gettext('errors','Unable to find Perl in: ')+CheminPerl;
             error(msgerr);
           else
             Chainecmd = 'perl'+' '+Chainecmd;
@@ -55,16 +55,16 @@ function [resultat,status] = perl(varargin)
             status = unix(Chainecmd);
             resultat=mgetl(TMPDIR+'\script');
           else
-            error(gettext('errors','core_error_280'));
+            error(gettext('errors','Unable to find Perl.'));
           end
         end
       end
       if (status~=0) then
-        msgerr= gettext('errors','core_error_281')+ resultat+gettext('errors','core_error_282')+ Chainecmd;
+        msgerr= gettext('errors','System error: ')+ resultat+gettext('errors',' Command executed: ')+ Chainecmd;
         error(msgerr);
       end
     end  
   else
-    error(gettext('errors','core_error_283'));
+    error(gettext('errors','First input argument must be a Perl File.'));
   end
 endfunction

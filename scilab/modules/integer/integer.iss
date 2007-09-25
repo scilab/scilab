@@ -27,7 +27,7 @@ Source: modules\{#INTEGER}\help\removechapter.sce; DestDir: {app}\modules\{#INTE
 ;
 Source: modules\{#INTEGER}\help\*.htm; DestDir: {app}\modules\{#INTEGER}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTEGER}\languages\*.xml; DestDir: {app}\modules\{#INTEGER}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\locales\*.xml; DestDir: {app}\modules\{#INTEGER}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\includes\*.h; DestDir: {app}\modules\{#INTEGER}\includes; Components: {#COMPN_SCILAB}
 ;

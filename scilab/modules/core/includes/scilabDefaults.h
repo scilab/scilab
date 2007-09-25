@@ -38,6 +38,9 @@
 /* Where the library list file is */
 #define XMLLIBRARYPATH "%s/etc/librarypath.xml"
 
+/* Where the system properties are */
+#define XMLSYSTEMPROPERTIES "%s/modules/jvm/etc/jvm-property.xml"
+
 /* Name of the localisation XML file containing the errors message strings */
 #define FILELOCALIZATIONERROR "errors"
 
@@ -48,7 +51,7 @@
 #define FILELOCALIZATIONMENUS "menus"
 
 /* Where the localizations files can be found */
-#define FILELOCALIZATIONFORMATPATH "%s/modules/%s/languages/%s/%s.xml"
+#define FILELOCALIZATIONFORMATPATH "%s/modules/%s/locales/%s/%s.xml"
 
 /* Where is the gateway file of a module */
 #define FORMATGATEWAYFILENAME "%s/modules/%s/sci_gateway/%s_gateway.xml"

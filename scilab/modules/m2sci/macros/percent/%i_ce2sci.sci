@@ -28,7 +28,7 @@ if to.vtype<>Struct then
       [bval,index]=isdefinedvar(to)
       varslist(index).infer.type.vtype=Cell
     else
-      error(msprintf(gettext("errors","m2sci_error_49"),to.name,string(to.vtype)))
+      error(msprintf(gettext("errors","destination variable is not a cell: %s is of type %s."),to.name,string(to.vtype)))
     end
   elseif to.vtype==Unknown then
     insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
@@ -55,7 +55,7 @@ if rhs==1 then
 	  tree.out(1).contents.index($+1)=list(tree.operands(2),Cste("entries"))
 	  tree.out(1).contents.data($+1)=from.contents.data(1)
 	else
-	  error(gettext("errors","m2sci_error_2"))
+	  error(gettext("errors","Not yet implemented."))
 	end
       else
 	tree.out(1).infer=from.infer
@@ -158,7 +158,7 @@ if lstsize(from.contents.index)==1 then
 elseif lstsize(from.contents.index)==0 then
   tree.out(1).contents=Contents()
 else
-  error(gettext("errors","m2sci_error_2"))
+  error(gettext("errors","Not yet implemented."))
 end
 end
 endfunction

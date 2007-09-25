@@ -28,7 +28,7 @@ Source: modules\{#TCLSCI}\help\removechapter.sce; DestDir: {app}\modules\{#TCLSC
 ;
 Source: modules\{#TCLSCI}\help\*.htm; DestDir: {app}\modules\{#TCLSCI}\help; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
 ;
-Source: modules\{#TCLSCI}\languages\*.xml; DestDir: {app}\modules\{#TCLSCI}\languages; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\locales\*.xml; DestDir: {app}\modules\{#TCLSCI}\locales; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#TCLSCI}\includes; Components: {#COMPN_TCLSCI}
 ;

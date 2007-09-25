@@ -18,6 +18,7 @@ struct key_string
 struct value_string
 {
 	char *Value_String;
+	char *Path_String;
 };
 /*-----------------------------------------------------------------------------------*/ 
 /**

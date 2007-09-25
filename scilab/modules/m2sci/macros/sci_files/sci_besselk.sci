@@ -7,7 +7,7 @@ function  [tree]=sci_besselk(tree)
 // F.B
 
 if size(tree.lhs)==2 then // [y,ierr]=besselk(alpha,x)
-  error(gettext("errors","m2sci_error_43"))
+  error(gettext("errors","Bessel function is not implemented for 2 outputs arguments."))
 end
 
 if rhs==2 then

@@ -27,7 +27,7 @@ else
     fmt=strcat(fmt(ones(1,mult))) // duplicate format 
     s=msprintf(fmt,varargin(:))
   else
-    error(gettext("errors","compatibility_functions_error_64"))
+    error(gettext("errors","mtlb_printf : this particular case is not implemented."))
   end
 end
 K=strindex(s,'\n')

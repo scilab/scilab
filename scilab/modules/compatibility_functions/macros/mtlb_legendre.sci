@@ -5,7 +5,7 @@ function y=mtlb_legendre(n,x,flag)
 
 rhs=argn(2)
 if ndims(n) <> 2 | size(n,"*") <> 1 | floor(n)-n <> 0 | n<0 then
-  error(gettext("errors","compatibility_functions_error_53"));
+  error(gettext("errors","First argument must be a positive integer."));
 end
 
 m = 0:n;

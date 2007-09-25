@@ -95,7 +95,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,"Invalid second parameter. It must be "string".");
+				error_scilab(999,"Invalid second parameter. It must be a string.");
 			}
 		}
 		else

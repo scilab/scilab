@@ -6,10 +6,10 @@ function [Q,R,E]=mtlb_qr(A,B)
 [lhs,rhs]=argn()
 
 if lhs<>3 then
-  error(msprintf(gettext("errors","compatibility_functions_error_55"),lhs));
+  error(msprintf(gettext("errors","Not yet implemented for %d lhs argument(s)."),lhs));
 end
 if rhs<>2 then
-  error(msprintf(gettext("errors","compatibility_functions_error_56"),rhs));
+  error(msprintf(gettext("errors","Not yet implemented for %d rhs argument(s)."),rhs));
 end  
 
 [Q,R,E] = qr(A)

@@ -6,15 +6,15 @@ rhs=argn(2)
 
 // Verify input value
 if rhs~=3 then
-  error(gettext("errors","m2sci_error_5"))
+  error(gettext("errors","Wrong number of inputs."))
 end
 
 if typeof(operator)~="string" then
-  error(msprintf(gettext("errors","m2sci_error_19"),typeof(operator)));; 
+  error(msprintf(gettext("errors","operator must be a string instead of a: %s."),typeof(operator)));; 
 elseif typeof(operands)~="list" then
-  error(msprintf(gettext("errors","m2sci_error_20"),typeof(operands))); 
+  error(msprintf(gettext("errors","operands must be a list instead of a: %s."),typeof(operands))); 
 elseif typeof(out)~="list" then
-  error(msprintf(gettext("errors","m2sci_error_21"),typeof(out)));
+  error(msprintf(gettext("errors","out must be a list instead of a: %s."),typeof(out)));
 end  
 
 operation_tlist=tlist(["operation","operator","operands","out"],operator,operands,out)

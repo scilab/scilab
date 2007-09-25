@@ -52,7 +52,7 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			error_scilab(999,"nameptr argument must be >0.");
+			error_scilab(999,"nameptr argument must be &gt;0.");
 			return 0;
 		}
 	}

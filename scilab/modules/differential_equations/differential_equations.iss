@@ -25,7 +25,7 @@ Source: modules\{#DIFFEQU}\help\removechapter.sce; DestDir: {app}\modules\{#DIFF
 ;
 Source: modules\{#DIFFEQU}\help\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\languages\*.xml; DestDir: {app}\modules\{#DIFFEQU}\languages; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\locales\*.xml; DestDir: {app}\modules\{#DIFFEQU}\locales; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 ;
 ;Source: modules\{#DIFFEQU}\includes\*.h; DestDir: {app}\modules\{#DIFFEQU}\includes; Components: {#COMPN_EQUDIF}
 ;

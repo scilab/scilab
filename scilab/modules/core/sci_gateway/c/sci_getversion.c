@@ -214,13 +214,13 @@ static int getversion_one_rhs(void)
 			}
 			else
 			{
-				error_scilab(999,"Error : file VERSION in "%s".",Param);
+				error_scilab(999,"Error : file VERSION in %s.",Param);
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,"Error : incorrect module name "%s".",Param);
+			error_scilab(999,"Error : incorrect module name %s.",Param);
 			return 0;
 		}
 		m1=1;
@@ -302,13 +302,13 @@ static int getversion_two_rhs(void)
 				}
 				else
 				{
-					error_scilab(999,"Error : file VERSION in "%s".",ParamRhs1);
+					error_scilab(999,"Error : file VERSION in %s.",ParamRhs1);
 					return 0;
 				}
 			}
 			else
 			{
-				error_scilab(999,"Error : incorrect module name "%s".",ParamRhs1);
+				error_scilab(999,"Error : incorrect module name %s.",ParamRhs1);
 				return 0;
 			}
 		}

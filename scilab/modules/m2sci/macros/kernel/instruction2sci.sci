@@ -19,7 +19,7 @@ elseif typeof(mtlb_instr)=="comment" then
   [converted_instr]=mtlb_instr
   
 else
-  error(gettext("errors","m2sci_error_32"),typeof(mtlb_instr))
+  error(gettext("errors","unknown instruction type %s."),typeof(mtlb_instr))
 end
 
 endfunction

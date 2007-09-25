@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+	<msgid>tag1</msgid>
+	<msgstr>string1</msgstr>
+</entry>	
+
+<entry>
+	<msgid>tag2</msgid>
+	<msgstr>string2</msgstr>
+</entry>	
+		
+<entry>
+	<msgid></msgid>
+	<msgstr></msgstr>
+</entry>	
+
+</LOCALIZATION>

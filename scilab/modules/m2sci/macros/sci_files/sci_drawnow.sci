@@ -6,6 +6,6 @@ function [tree]=sci_drawnow(tree)
 // Ouput: tree = Scilab equivalent for tree
 // V.C.
 
-set_infos(gettext("messages","m2sci_message_87"),0);
+set_infos(gettext("messages","Drawing events are not queued in Scilab."),0);
 tree=Funcall("%comment",1,list(Cste(tree.name)),list())
 endfunction

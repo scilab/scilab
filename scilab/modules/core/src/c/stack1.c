@@ -146,7 +146,7 @@ int C2F(getmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *it
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   if (*istk(il ) != 1) {
     if (*inlistx) 
-      error_scilab(999,"%s : argument %d >(%d) should be a real or complex matrix.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
+      error_scilab(999,"%s : argument %d &gt;(%d) should be a real or complex matrix.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
       error_scilab(201,"%s : argument %d should be a real or complex matrix.",get_fname(fname,fname_len),
 	       Rhs + (*spos - *topk));
@@ -207,7 +207,7 @@ int C2F(cremat)(char *fname,integer *lw,integer *it,integer *m,integer *n,intege
 {
 
   if (*lw + 1 >= Bot) {
-    error_scilab(18,"%s : too many names.",get_fname(fname,fname_len));
+	  error_scilab(18,"%s : too many names.",get_fname(fname,fname_len));
     return FALSE_;
   }
   if ( C2F(cremati)(fname, Lstk(*lw ), it, m, n, lr, lc, &c_true, fname_len) == FALSE_)
@@ -243,7 +243,7 @@ int C2F(cremati)(char *fname,integer *stlw,integer *it,integer *m,integer *n,int
   ix1 = il + 4;
   Err = sadr(ix1) - *Lstk(Bot );
   if ( (double) Err > -size ) {
-    error_scilab(17,"%s : stack size exceeded (Use stacksize function to increase it).",get_fname(fname,fname_len));
+	  error_scilab(17,"%s : stack size exceeded (Use stacksize function to increase it).",get_fname(fname,fname_len));
     return FALSE_;
   };
   if (*flagx) {
@@ -438,7 +438,7 @@ int C2F(getimati)(char *fname,integer *topk,integer *spos,integer *lw,integer *i
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   if (*istk(il ) != 8 ) {
     if (*inlistx) 
-      error_scilab(999,"%s : argument %d >(%d) should be an int matrix.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
+      error_scilab(999,"%s : argument %d &gt;(%d) should be an int matrix.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
       error_scilab(201,"%s : argument %d should be a real or complex matrix.",get_fname(fname,fname_len),Rhs + (*spos - *topk));
     return  FALSE_;
@@ -607,7 +607,7 @@ int C2F(getbmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m
 
   if (*istk(il ) != 4) {
     if (*inlistx) 
-      error_scilab(999,"%s : argument %d >(%d) should be a boolean matrix.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
+      error_scilab(999,"%s : argument %d &gt;(%d) should be a boolean matrix.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
       error_scilab(208,"%s : argument %d should be a boolean matrix.",get_fname(fname,fname_len),
 	       Rhs + (*spos - *topk));
@@ -801,7 +801,7 @@ int C2F(getsparsei)(char *fname,integer *topk,integer *spos,integer *lw,integer 
 
   if (*istk(il ) != 5) {
     if (*inlistx) 
-      error_scilab(999,"%s : argument %d >(%d) should be a sparse matrix.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nellist);
+      error_scilab(999,"%s : argument %d &gt;(%d) should be a sparse matrix.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nellist);
     else 
       error_scilab(999,"%s : argument %d should be a sparse matrix.",get_fname(fname,fname_len), Rhs + (*spos - *topk));
     return FALSE_;
@@ -928,7 +928,7 @@ int C2F(getlistvect)(char *fname,integer *topk,integer *spos,integer *lnum,integ
     return FALSE_;
 
   if (*m != 1 && *n != 1) {
-    error_scilab(999,"%s : argument %d > (%d) should be a vector.",get_fname(fname,fname_len),Rhs + (*spos - *topk), *lnum);
+    error_scilab(999,"%s : argument %d &gt; (%d) should be a vector.",get_fname(fname,fname_len),Rhs + (*spos - *topk), *lnum);
     return  FALSE_;
   }
   return TRUE_;
@@ -1023,7 +1023,7 @@ int C2F(getlistscalar)(char *fname,integer *topk,integer *spos,integer *lnum,int
     return FALSE_;
 
   if (m * n != 1) {
-    error_scilab(999,"%s : argument %d > (%d) should be a scalar.",get_fname(fname,fname_len), Rhs+(*spos - *topk), *lnum);
+    error_scilab(999,"%s : argument %d &gt; (%d) should be a scalar.",get_fname(fname,fname_len), Rhs+(*spos - *topk), *lnum);
     return FALSE_;
   }
   return TRUE_;
@@ -1173,7 +1173,7 @@ static int C2F(getwsmati)(char *fname,integer *topk,integer *spos,integer *lw,in
     if (*istk(il ) < 0) il = iadr(*istk(il +1));
     if (*istk(il ) != 10) {
       if (*inlistx)
-	error_scilab(999,"%s : argument %d >(%d) should be a matrix of strings.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
+	error_scilab(999,"%s : argument %d &gt;(%d) should be a matrix of strings.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
       else 
 	error_scilab(207,"%s : Argument %d : wrong type argument, expecting a matrix of strings",get_fname(fname,fname_len), Rhs + (*spos - *topk));
       return FALSE_;
@@ -1195,7 +1195,7 @@ int C2F(getsmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   if (*istk(il ) != 10 ) {
     if (*inlistx) 
-      error_scilab(999,"%s : argument %d >(%d) should be a row vector.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
+      error_scilab(999,"%s : argument %d &gt;(%d) should be a row vector.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
       error_scilab(201,"%s : argument %d should be a real or complex matrix.",get_fname(fname,fname_len),
 	       Rhs + (*spos - *topk));
@@ -2175,7 +2175,7 @@ int C2F(getwimat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,in
     il = iadr(*istk(il +1));
   }
   if (*istk(il ) != 4) {
-    error_scilab(213,"%s : Argument %d: wrong type argument, expecting a working\n		integer matrix",get_fname(fname,fname_len),Rhs + (*lw - *topk));
+    error_scilab(213,"%s : Argument %d: wrong type argument, expecting a working",get_fname(fname,fname_len),Rhs + (*lw - *topk));
     return FALSE_;
   };
   *m = *istk(il + 1);
@@ -2345,7 +2345,7 @@ int C2F(getlistvectrow)(char *fname,integer *topk,integer *spos,integer *lnum,in
       FALSE_) 
     return FALSE_;
   if (*m != 1) {
-    error_scilab(999,"%s : argument %d >(%d) should be a row vector.",get_fname(fname,fname_len),Rhs + (*spos - *topk), *lnum);
+    error_scilab(999,"%s : argument %d &gt;(%d) should be a row vector.",get_fname(fname,fname_len),Rhs + (*spos - *topk), *lnum);
     return FALSE_;
   }
   return TRUE_;
@@ -2504,7 +2504,7 @@ int C2F(getpointeri)(char *fname,integer *topk,integer *spos,integer *lw,integer
   if (*istk(il ) != 128) {
     message_scilab("----%d",*istk(il));
     if (*inlistx) 
-      error_scilab(197,"%s : argument %d >(%d) should be a boxed pointer.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
+      error_scilab(197,"%s : argument %d &gt;(%d) should be a boxed pointer.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
       error_scilab(198,"%s : argument %d should be a boxed pointer.",get_fname(fname,fname_len),
 	       Rhs + (*spos - *topk));
@@ -2525,7 +2525,7 @@ int C2F(mspcreate)(integer *lw,integer *m,integer *n,integer *nzMax,integer *it)
   int k,pr;
   double size;
   if (*lw + 1 >= Bot) {
-    error_scilab(18,"%s : too many names.");
+    error_scilab(18,"%s : too many names.","");
     return FALSE_;
   }
 
@@ -2536,7 +2536,7 @@ int C2F(mspcreate)(integer *lw,integer *m,integer *n,integer *nzMax,integer *it)
   size = (*it + 1) * NZMAX ;
   Err = sadr(ix1)  - *Lstk(Bot );
   if (Err > -size ) {
-    error_scilab(17,"%s : stack size exceeded (Use stacksize function to increase it).");
+    error_scilab(17,"%s : stack size exceeded (Use stacksize function to increase it).","");
     return FALSE_;
   };
   *istk(il ) = 7;
@@ -2782,7 +2782,7 @@ int C2F(stackinfo)(integer *lw,integer *typ)
   n = *istk(il + 1 +1);
 
   message_scilab("-----------------stack-info-----------------");
-  message_scilab("lw=%d -[istk]-> il lw+1 -[istk]-> %d.",*lw,iadr(*Lstk(*lw+1)));
+  message_scilab("lw=%d -[istk]-> il lw+1 -[istk]-> %d",*lw,iadr(*Lstk(*lw+1)));
   message_scilab("istk(%d:..) ->[%d %d %d %d ....]",il, istk(il),istk(il+1),istk(il+2),istk(il+3) );
   if (*typ == 1) {
     l = sadr(il+4);
@@ -2905,13 +2905,13 @@ int C2F(getexternal)(char *fname,integer *topk,integer *lw,char *namex,int *type
 	(*setfun)(namex, &irep); /* , name_len); */
 	if (irep == 1) 
 	  {
-	    error_scilab(50,"%s : entry point %s not found in predefined tables or link table.",get_fname(fname,fname_len),namex);
+		  error_scilab(50,"%s : entry point %s not found in predefined tables or link table.",get_fname(fname,fname_len),namex);
 	    ret_value = FALSE_;
 	  }
       }
     break;
   default: 
-    error_scilab(211,"%s : Argument %d: wrong type argument, expecting a function\n		or string (external function).",get_fname(fname,fname_len), Rhs + (*lw - *topk));
+    error_scilab(211,"%s : Argument %d: wrong type argument, expecting a function",get_fname(fname,fname_len), Rhs + (*lw - *topk));
     ret_value = FALSE_;
     break;
   }
@@ -3145,7 +3145,7 @@ int C2F(gethmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   if (*istk(il ) != 9) {
     if (*inlistx) 
-      error_scilab(999,"%s : argument %d >(%d) should be a matrix of handle.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
+      error_scilab(999,"%s : argument %d &gt;(%d) should be a matrix of handle.",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
       error_scilab(200,"%s : argument %d should be a matrix of handle.",get_fname(fname,fname_len),
 	       Rhs + (*spos - *topk));

@@ -10,20 +10,20 @@ function t=etime(t1,t0)
 // V.C. 2004
 
 if type(t1)<>1 then
-  error(gettext('errors','time_error_13'));
+  error(gettext('errors','Wrong type for first input: must be a real vector.'));
 end
 if type(t0)<>1 then
-  error(gettext('errors','time_error_14'));
+  error(gettext('errors','Wrong type for second input: must be a real vector.'));
 end
 if and(size(t1,2)<>[6,10]) then
-  error(gettext('errors','time_error_15'));
+  error(gettext('errors','Wrong size for first input: must be a 6 or 10 element long vector.'));
 end
 if and(size(t0,2)<>[6,10]) then
-  error(gettext('errors','time_error_16'));
+  error(gettext('errors','Wrong size for second input: must be a 6 or 10 element long vector.'));
 end
 
 if size(t1,"*")<>size(t0,"*") then
-  error(gettext('errors','time_error_17'));
+  error(gettext('errors','Both operands must have the same size.'));
 end
 
 if size(t1,2)==10 then

@@ -29,7 +29,7 @@ Source: modules\{#ARNOLDI}\help\removechapter.sce; DestDir: {app}\modules\{#ARNO
 ;
 Source: modules\{#ARNOLDI}\help\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help; Flags: recursesubdirs; Components: {#COMPN_ARNOLDI}
 ;
-Source: modules\{#ARNOLDI}\languages\*.xml; DestDir: {app}\modules\{#ARNOLDI}\languages; Flags: recursesubdirs; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\locales\*.xml; DestDir: {app}\modules\{#ARNOLDI}\locales; Flags: recursesubdirs; Components: {#COMPN_ARNOLDI}
 ;
 ;Source: modules\{#ARNOLDI}\includes\*.h; DestDir: {app}\modules\{#ARNOLDI}\includes; Components: {#COMPN_ARNOLDI}
 ;

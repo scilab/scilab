@@ -23,7 +23,7 @@ Source: modules\{#COMPATFUNCTIONS}\help\removechapter.sce; DestDir: {app}\module
 ;
 Source: modules\{#COMPATFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS}
 ;
-Source: modules\{#COMPATFUNCTIONS}\languages\*.xml; DestDir: {app}\modules\{#COMPATFUNCTIONS}\languages; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS}
+Source: modules\{#COMPATFUNCTIONS}\locales\*.xml; DestDir: {app}\modules\{#COMPATFUNCTIONS}\locales; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS}
 ;
 ;Source: modules\{#COMPATFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#COMPATFUNCTIONS}\includes; Components: {#COMPN_COMPATFUNCTIONS}
 ;

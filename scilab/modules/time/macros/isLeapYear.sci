@@ -31,7 +31,7 @@ function Rep=isLeapYear(year)
 				end
 			end
 		else
-			error(gettext('errors','time_error_12'));
+			error(gettext('errors','Number of parameters incorrect.'));
 		end
 	
 endfunction

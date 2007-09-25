@@ -57,7 +57,7 @@ int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
   
   if ( Rhs < *iMin || Rhs > *iMax) 
     {
-      error_scilab(77,"%s : wrong number of rhs arguments",get_fname(fname,fname_len));
+		error_scilab(77,"%s : wrong number of rhs arguments",get_fname(fname,fname_len));
       return FALSE_; 
     }
   return TRUE_;
@@ -71,7 +71,7 @@ int C2F(checklhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 {
   if ( Lhs < *iMin || Lhs > *iMax) 
     {
-      error_scilab(78,"%s : wrong number of lhs arguments",get_fname(fname,fname_len));
+		error_scilab(78,"%s : wrong number of lhs arguments",get_fname(fname,fname_len));
       return FALSE_;
     }
   return TRUE_;
@@ -1535,7 +1535,7 @@ int C2F(getlistrhsvar)(integer *lnumber,integer *number,char *typex,integer *m,i
     if (! C2F(getlistmat)(fname, &topk, &lw,number, &it, m, n, lr, &lc, nlgh)) return FALSE_;
     ix2 = *m * *n;
     if ((it != 1) && (ix2 !=0)){
-      error_scilab(999,"%s : argument %d >(%d) should be a complex matrix.",fname, Rhs + (lw -topk) , *number);
+      error_scilab(999,"%s : argument %d &gt;(%d) should be a complex matrix.",fname, Rhs + (lw -topk) , *number);
       return FALSE_;
     };
       if (!(*lr % 2) ) {  /* bad adress (lr is even) shift up the stack */
@@ -1899,7 +1899,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
 
  L89:
   if (Top < Rhs) {
-    error_scilab(22,"%s : recursion problems. Sorry ...","scifunction");
+	  error_scilab(22,"%s : recursion problems. Sorry ...","scifunction");
     goto L9999;
   }
   if (Top - Rhs + Lhs + 1 >= Bot) {
@@ -2129,7 +2129,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
     goto L9999;
   }
   if (Top - Rhs + Lhs + 1 >= Bot) {
-    error_scilab(18,"%s : too many names.");
+    error_scilab(18,"%s : too many names.","");
     goto L9999;
   }
   goto L91;

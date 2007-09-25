@@ -30,7 +30,7 @@ Source: modules\{#RANDLIB}\help\removechapter.sce; DestDir: {app}\modules\{#RAND
 ;
 Source: modules\{#RANDLIB}\help\*.htm; DestDir: {app}\modules\{#RANDLIB}\help; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
 ;
-Source: modules\{#RANDLIB}\languages\*.xml; DestDir: {app}\modules\{#RANDLIB}\languages; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\locales\*.xml; DestDir: {app}\modules\{#RANDLIB}\locales; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\includes\*.h; DestDir: {app}\modules\{#RANDLIB}\includes; Components: {#COMPN_RANDLIB}
 ;

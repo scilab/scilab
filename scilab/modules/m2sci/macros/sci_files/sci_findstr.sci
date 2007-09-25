@@ -7,7 +7,7 @@ function [tree]=sci_findstr(tree)
 // Emulation function: mtlb_findstr()
 // V.C.
 
-set_infos(gettext("messages","m2sci_message_97"),0);
+set_infos(gettext("messages","No equivalent for findstr() in Scilab so mtlb_findstr() is called."),0);
 
 tree.name="mtlb_findstr"
 

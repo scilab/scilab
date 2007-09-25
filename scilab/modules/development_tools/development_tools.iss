@@ -23,7 +23,7 @@ Source: modules\{#DEVTOOLS}\help\removechapter.sce; DestDir: {app}\modules\{#DEV
 ;
 ;Source: modules\{#DEVTOOLS}\help\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
-Source: modules\{#DEVTOOLS}\languages\*.xml; DestDir: {app}\modules\{#DEVTOOLS}\languages; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\locales\*.xml; DestDir: {app}\modules\{#DEVTOOLS}\locales; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
 ;Source: modules\{#DEVTOOLS}\includes\*.h; DestDir: {app}\modules\{#DEVTOOLS}\includes; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;

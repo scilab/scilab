@@ -28,7 +28,7 @@ function tklib=gettklib()
 			if (ierr== 0) then
 				tklib=libname+getdynlibext()+'.0';
 			else
-				mprintf(gettext('messages','tclsci_message_25')+libname+getdynlibext()+' :""'+lasterror()+'""')
+				mprintf(gettext('messages','Warning: Error loading ')+libname+getdynlibext()+' :""'+lasterror()+'""')
 			end
 		end
 		clear libname;

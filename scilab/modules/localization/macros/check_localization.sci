@@ -1,16 +1,26 @@
 //------------------------------------
 // Allan CORNET INRIA 2007
 //------------------------------------
-function ret=check_localization()
+function ret=check_localization(varargin)
+ lhs=argn(1);   
+ rhs=argn(2);
+  
  ret=%T;
+ 
+ if (rhs == 0) then 
  modules=getmodules();
  szmodules=size(modules);
+ else
+ modules = varargin;
+ szmodules = rhs;
+ end
+
 
  filesxml=['messages.xml','menus.xml','errors.xml'];
 
  for i=1:1:szmodules(1)
    bOK=%T;
-   directory_to_check=SCI+'/modules/'+modules(i)+'/languages/'+getlanguage()+'/';
+   directory_to_check=SCI+'/modules/'+modules(i)+'/locales/'+getlanguage()+'/';
    printf('checking : '+modules(i)+'\n');
    for k2=1:1:3
      try

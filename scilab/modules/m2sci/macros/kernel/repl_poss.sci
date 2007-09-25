@@ -7,10 +7,10 @@ txt=[]
 nposs=size(varargin)
 
 if nposs==0 | fix(nposs/3)*3~=nposs then
-  error(gettext("errors","m2sci_error_5"))
+  error(gettext("errors","Wrong number of inputs."))
 end
 
-txt=[expression2code(expr)+gettext("messages","m2sci_message_68")]
+txt=[expression2code(expr)+gettext("messages"," may be replaced by:")]
 for k=1:3:nposs
   vars=""
   if typeof(varargin(k+1))<>"list" then
@@ -25,7 +25,7 @@ for k=1:3:nposs
   end
   txt=[
       txt
-      "   --> "+expression2code(varargin(k))+" "+gettext("messages","m2sci_message_69")+" "+vars+" "+varargin(k+2)]
+      "   --> "+expression2code(varargin(k))+" "+gettext("messages","if")+" "+vars+" "+varargin(k+2)]
 end
 
 set_infos(txt,1)

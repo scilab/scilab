@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+	<msgpreviousid>compatibility_functions_menu_1</msgpreviousid>
+	<msgid>Close</msgid>
+	<msgstr>Close</msgstr>
+</entry>	
+
+<entry>
+	<msgid></msgid>
+	<msgstr></msgstr>
+</entry>	
+		
+<entry>
+	<msgid></msgid>
+	<msgstr></msgstr>
+</entry>	
+
+</LOCALIZATION>

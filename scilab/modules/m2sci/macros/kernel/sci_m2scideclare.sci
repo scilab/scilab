@@ -41,9 +41,9 @@ seppos=[seppos,length(userdata)+1]
 nbsep=size(seppos,"*")
 
 if nbsep<3 then
-  error(gettext("errors","m2sci_error_36"));
+  error(gettext("errors","not enough data, you should give at least variable_name|dimensions|datatype."));
 elseif nbsep>4 then
-  error(gettext("errors","m2sci_error_37"));
+  error(gettext("errors","too much data."));
 end
 
 name=stripblanks(part(userdata,1:seppos(1)-1))
@@ -78,7 +78,7 @@ if or(datatype==["double","boolean","string","int","handle","sparse","cell","str
   datatype=convstr(part(datatype,1),"u")+convstr(part(datatype,2:length(datatype)),"l")
   vtype=evstr(datatype)
 else
-  error(msprintf(gettext("errors","m2sci_error_38"),datatypetxt));
+  error(msprintf(gettext("errors","Unknown datatype %s."),datatypetxt));
 end
 
 // Property
@@ -88,7 +88,7 @@ if or(prop==["real","complex","homogen","unknown"]) then
   prop=convstr(part(prop,1),"u")+part(prop,2:length(prop))
   property=evstr(prop)
 else
-  error(msprintf(gettext("errors","m2sci_error_39"),proptxt));
+  error(msprintf(gettext("errors","Unknown property %s."),proptxt));
 end
 // Property correction
 if or(vtype==[Boolean,String]) then
@@ -126,7 +126,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
       if ~isempty(strindex(part(name,min(strindex(name,"(")):min(strindex(name,")"))),"*")) then // Generic command *
 	vardims="generic"
       else
-	error(gettext("errors","m2sci_error_40"));
+	error(gettext("errors","Wrong dimensions user data."));
       end
     end
   else
@@ -185,7 +185,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     
     // Update dimensions
     if err then
-      set_infos(msprintf(gettext("messages","m2sci_message_70"),varname,dims2str(vardims),dims2str(infereddims)),2)
+      set_infos(msprintf(gettext("messages","Dimensions current value and m2scideclare statements conflict for: %s"),varname,dims2str(vardims),dims2str(infereddims)),2)
     else
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(vardims,Type(varslist(index).type.vtype,property)))
     end
@@ -194,7 +194,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     if varslist(index).type.vtype==Unknown then
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(vardims,Type(vartype,varslist(index).property)))
     elseif varslist(index).type.vtype~=vartype then
-      set_infos(msprintf(gettext("messages","m2sci_message_71"),varname,tp2str(vartype),tp2str(varslist(index).type.vtype)),2)
+      set_infos(msprintf(gettext("messages","Type current value and m2scideclare statements conflict for: %s"),varname,tp2str(vartype),tp2str(varslist(index).type.vtype)),2)
     end
 
     // Update property
@@ -203,7 +203,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     elseif property==Unknown then
       varslist(index).type.property=Unknown
     elseif varslist(index).type.property~=property then
-      set_infos(msprintf(gettext("messages","m2sci_message_72"),name,prop2str(Unknown),prop2str(varslist(index).type.property)),2)
+      set_infos(msprintf(gettext("messages","Property current value and m2scideclare statements conflict for: %s"),name,prop2str(Unknown),prop2str(varslist(index).type.property)),2)
     end
     
     // Update contents (no verification made...too complex)
@@ -242,7 +242,7 @@ else // Variable m2scideclare
   if name=="%graphicswindow" then
     global %graphicswindow
     if and(vtype<>[Handle,Double]) then
-      set_infos(gettext("messages","m2sci_message_73"),2);
+      set_infos(gettext("messages","%graphicswindow set to default value Handle."),2);
     else
       %graphicswindow=vtype
     end
@@ -266,7 +266,7 @@ else // Variable m2scideclare
     end
 
     if err then
-      set_infos(msprintf(gettext("messages","m2sci_message_70"),name,dims2str(dims),dims2str(infereddims)),2)
+      set_infos(msprintf(gettext("messages","Dimensions current value and m2scideclare statements conflict for: %s"),name,dims2str(dims),dims2str(infereddims)),2)
     else
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).sciname,Infer(dims,varslist(index).type))
     end
@@ -275,14 +275,14 @@ else // Variable m2scideclare
     if varslist(index).type.vtype==Unknown then
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).sciname,Infer(varslist(index).dims,Type(vtype,varslist(index).type.property)))
     elseif varslist(index).type.vtype~=vtype then
-      set_infos(msprintf(gettext("messages","m2sci_message_71"),name,tp2str(vtype),tp2str(varslist(index).type.vtype)),2)
+      set_infos(msprintf(gettext("messages","Type current value and m2scideclare statements conflict for: %s"),name,tp2str(vtype),tp2str(varslist(index).type.vtype)),2)
     end
     
     // Update property
     if varslist(index).type.property==Unknown then
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).sciname,Infer(varslist(index).dims,Type(varslist(index).type.vtype,property)))
     elseif varslist(index).type.property~=property then
-      set_infos(msprintf(gettext("messages","m2sci_message_72"),name,prop2str(property),prop2str(varslist(index).type.property)),2)
+      set_infos(msprintf(gettext("messages","Property current value and m2scideclare statements conflict for: %s"),name,prop2str(property),prop2str(varslist(index).type.property)),2)
     end
   end
 end
@@ -312,7 +312,7 @@ elseif tp==17 then
 elseif tp==-1 then
   str="Unknown"
 else
-  error(msprintf(gettext("errors","m2sci_error_41"),tp))
+  error(msprintf(gettext("errors","type %d is not implemented."),tp))
 end
 endfunction
 
@@ -322,7 +322,7 @@ if type(prop)==10 then
 elseif prop==-1 then
   str="Unknown"
 else
-  error(msprintf(gettext("errors","m2sci_error_41"),prop))
+  error(msprintf(gettext("errors","type %d is not implemented."),prop))
 end
 endfunction
 

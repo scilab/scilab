@@ -281,7 +281,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 		}
 		else
 		{
-			error_scilab(999,"Invalid Handle. it must be >0.");
+			error_scilab(999,"Invalid Handle. it must be &gt;0.");
 			return 0;
 		}
 	}

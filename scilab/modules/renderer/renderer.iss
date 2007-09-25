@@ -40,7 +40,7 @@ Source: modules\{#RENDERER}\etc\{#RENDERER}.start; DestDir: {app}\modules\{#REND
 ;
 ;Source: modules\{#RENDERER}\help\*.htm; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\languages\*.xml; DestDir: {app}\modules\{#RENDERER}\languages; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
+Source: modules\{#RENDERER}\locales\*.xml; DestDir: {app}\modules\{#RENDERER}\locales; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#RENDERER}\macros\buildmacros.sce; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
 ;Source: modules\{#RENDERER}\macros\*.bin; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}

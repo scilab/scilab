@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+	<msgpreviousid>tclsci_menu_1</msgpreviousid>
+	<msgid>Cancel</msgid>
+	<msgstr>Cancel</msgstr>
+</entry>	
+
+<entry>
+
+	<msgid></msgid>
+	<msgstr></msgstr>
+</entry>	
+		
+<entry>
+
+	<msgid></msgid>
+	<msgstr></msgstr>
+</entry>	
+
+</LOCALIZATION>

@@ -7,7 +7,7 @@ if typeof(infer)=="infer" then
     dims=[dims,string(infer.dims(l))]
   end
 else
-  error(gettext("errors","m2sci_error_2"))
+  error(gettext("errors","Not yet implemented."))
 end
 dims=strcat(dims," ")
 

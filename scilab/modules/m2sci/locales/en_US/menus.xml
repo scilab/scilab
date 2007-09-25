@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+	<msgpreviousid>m2sci_menu_1</msgpreviousid>
+	<msgid>m2sci_menu_1</msgid>
+	<msgstr>&lt;enter a file name&gt;</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_2</msgpreviousid>
+	<msgid>Matlab to Scilab conversion tool</msgid>
+	<msgstr>Matlab to Scilab conversion tool</msgstr>
+</entry>	
+		
+<entry>
+	<msgpreviousid>m2sci_menu_3</msgpreviousid>
+	<msgid>FILES SELECTION</msgid>
+	<msgstr>FILES SELECTION</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_4</msgpreviousid>
+	<msgid>Convert a whole directory</msgid>
+	<msgstr>Convert a whole directory</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_5</msgpreviousid>
+	<msgid>Directory name: </msgid>
+	<msgstr>Directory name: </msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_6</msgpreviousid>
+	<msgid>Browse</msgid>
+	<msgstr>Browse</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_7</msgpreviousid>
+	<msgid>Convert a single file</msgid>
+	<msgstr>Convert a single file</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_8</msgpreviousid>
+	<msgid>m2sci_menu_8</msgid>
+	<msgstr>File name:</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_9</msgpreviousid>
+	<msgid>OUTPUT FILES DIRECTORY</msgid>
+	<msgstr>OUTPUT FILES DIRECTORY</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_10</msgpreviousid>
+	<msgid>Directory name:</msgid>
+	<msgstr>Directory name:</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_11</msgpreviousid>
+	<msgid>CONVERSION OPTIONS</msgid>
+	<msgstr>CONVERSION OPTIONS</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_12</msgpreviousid>
+	<msgid>Recursive conversion:</msgid>
+	<msgstr>Recursive conversion:</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_13</msgpreviousid>
+	<msgid>Yes</msgid>
+	<msgstr>Yes</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_14</msgpreviousid>
+	<msgid>No</msgid>
+	<msgstr>No</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_15</msgpreviousid>
+	<msgid>YES</msgid>
+	<msgstr>YES</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_16</msgpreviousid>
+	<msgid>NO</msgid>
+	<msgstr>NO</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_17</msgpreviousid>
+	<msgid>Only double values used:</msgid>
+	<msgstr>Only double values used:</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_18</msgpreviousid>
+	<msgid>Verbose Mode:</msgid>
+	<msgstr>Verbose Mode:</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_19</msgpreviousid>
+	<msgid>Generate pretty printed code:</msgid>
+	<msgstr>Generate pretty printed code:</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_20</msgpreviousid>
+	<msgid>VALIDATION</msgid>
+	<msgstr>VALIDATION</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_21</msgpreviousid>
+	<msgid>m2sci_menu_21</msgid>
+	<msgstr>Convert</msgstr> 
+</entry>	
+
+<entry>
+	<msgpreviousid>m2sci_menu_22</msgpreviousid>
+	<msgid>Cancel</msgid>
+	<msgstr>Cancel</msgstr> 
+</entry>	
+
+</LOCALIZATION>

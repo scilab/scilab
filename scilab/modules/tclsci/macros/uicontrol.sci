@@ -15,7 +15,7 @@ function h=uicontrol(varargin)
         TCL_scf(TCL_gcf());
       else
         if (Rhs <3) then
-          error(gettext('messages','tclsci_error_45'),999);
+          error(gettext('messages','Too many input arguments.'),999);
         else
           [bOK,k]=TestParamUiControl(varargin,2);
           
@@ -82,7 +82,7 @@ function h=CreateUiControl(FigureHandle,Style)
     h=evstr(TCL_GetVar('TclScilabTmpVar'));
     TCL_UnsetVar('TclScilabTmpVar');
   else
-    error(string(FigureHandle)+gettext('errors','tclsci_error_46'),999);
+    error(string(FigureHandle)+gettext('errors',' Value must be numeric.'),999);
   end
 endfunction
 // -----------------------------------------------------------

@@ -16,6 +16,6 @@ elseif field=="property" then
 elseif field=="contents" then
   val=m2scitlist.lhs(1).infer.contents
 else
-  error(msprintf(gettext("errors","m2sci_error_3"),string(field),typeof(m2scitlist)))
+  error(msprintf(gettext("errors","Extraction of %s from ''%s'' tlist is not yet implemented."),string(field),typeof(m2scitlist)))
 end
 endfunction

@@ -7,7 +7,7 @@ function tictoctime=toc()
 global TICTOC;
 
 if isempty(TICTOC) then
-  error(gettext('errors','time_error_7'));
+  error(gettext('errors','You must call tic() before calling toc().'));
 end
 
 tictoctime=etime(getdate(),TICTOC);

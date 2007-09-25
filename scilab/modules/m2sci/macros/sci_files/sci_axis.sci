@@ -68,7 +68,7 @@ if rhs>0 then
 	  
 	  // axis square
 	elseif tree.rhs(krhs).value=="square" then
-	  set_infos(gettext("messages","m2sci_message_75"),2);
+	  set_infos(gettext("messages","cube_scaling only used in 3d mode."),2);
 	  tree=Funcall("set",1,Rhs(a,"cube_scaling","on"),tree.lhs)
 	  
 	  // axis vis3d

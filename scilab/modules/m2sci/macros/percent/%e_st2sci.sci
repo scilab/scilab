@@ -45,7 +45,7 @@ if rhs==1 then
       
     [bval,index]=isdefinedvar(var)
     if ~bval then
-      error(msprintf(gettext("errors","m2sci_error_47"),var.name))
+      error(msprintf(gettext("errors","M2SCI bug: extraction from unknown variable %s in varslist."),var.name))
     else
       tmp=get_contents_infer(var,infertree);
       tree.out(1).dims=tmp.dims
@@ -87,7 +87,7 @@ if rhs==1 then
     // this case should happen only if var(ind.value) contains only one value
     [bval,index]=isdefinedvar(var)
     if ~bval then
-      error(msprintf(gettext("errors","m2sci_error_47"),var.name))
+      error(msprintf(gettext("errors","M2SCI bug: extraction from unknown variable %s in varslist."),var.name))
     else
       if varslist(index).vtype<>Struct then
 	// variable not defined as a struct, modify inference

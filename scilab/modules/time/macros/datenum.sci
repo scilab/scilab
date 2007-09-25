@@ -30,24 +30,24 @@ function n=datenum(varargin)
 			DateIn = varargin(1);
 			
 			if type(DateIn)<> 1 then
-				error(gettext('errors','time_error_23'));
+				error(gettext('errors','Type of parameters incorrect.'));
 			end
 			
 			[nr,nc] = size(DateIn);
 			
 			if (nc <> 3) & (nc <> 6) then
-				error(gettext('errors','time_error_24'));
+				error(gettext('errors','Argument must be a m*3 matrix or a m*6 matrix.'));
 			end
 			
 			if nc == 3 then
 				for i=1:nr
 					
 					if DateIn(i,2)<1 | DateIn(i,2)>12 then
-						error(gettext('errors','time_error_25'));
+						error(gettext('errors','Month argument must be between 1 and 12.'));
 					end
 					
 					if DateIn(i,3)<1 | DateIn(i,3)>31 then
-						error(gettext('errors','time_error_26'));
+						error(gettext('errors','Day argument must be between 1 and 31.'));
 					end
 					
 					Y(i,1) = DateIn(i,1);
@@ -60,23 +60,23 @@ function n=datenum(varargin)
 			else
 				for i=1:nr
 					if DateIn(i,2)<1 | DateIn(i,2)>12 then
-						error(gettext('errors','time_error_25'));
+						error(gettext('errors','Month argument must be between 1 and 12.'));
 					end
 					
 					if DateIn(i,3)<1 | DateIn(i,3)>31 then
-						error(gettext('errors','time_error_26'));
+						error(gettext('errors','Day argument must be between 1 and 31.'));
 					end
 					
 					if DateIn(i,4)<0 | DateIn(i,4)>23 then
-						error(gettext('errors','time_error_27'));
+						error(gettext('errors','Hour argument must be between 0 and 23.'));
 					end
 					
 					if DateIn(i,5)<0 | DateIn(i,5)>59 then
-						error(gettext('errors','time_error_28'));
+						error(gettext('errors','Minute argument must be between 0 and 59.'));
 					end
 					
 					if DateIn(i,6)<0 | DateIn(i,6)>59 then
-						error(gettext('errors','time_error_29'));
+						error(gettext('errors','Second argument must be between 0 and 59.'));
 					end
 				
 				
@@ -95,11 +95,11 @@ function n=datenum(varargin)
 			DayIn = varargin(3);
 			
 			if (type(YearIn)<> 1) | (type(MonthIn)<> 1) | (type(DayIn)<> 1) then
-				error(gettext('errors','time_error_23'));
+				error(gettext('errors','Type of parameters incorrect.'));
 			end
 			
 			if (size(YearIn) <> size(MonthIn)) | (size(YearIn) <> size(DayIn)) then
-				error(gettext('errors','time_error_30'));
+				error(gettext('errors','The three arguments must have the same size.'));
 			end
 			
 			[nr,nc] = size(YearIn);
@@ -110,11 +110,11 @@ function n=datenum(varargin)
 					compteur = compteur + 1;
 					
 					if MonthIn(i,j)<1 | MonthIn(i,j)>12 then
-						error(gettext('errors','time_error_31'));
+						error(gettext('errors','The second argument must be between 1 and 12.'));
 					end
 					
 					if DayIn(i,j)<1 | DayIn(i,j)>31 then
-						error(gettext('errors','time_error_32'));
+						error(gettext('errors','The third argument must be between 1 and 31.'));
 					end
 					
 					Y(compteur,1) = YearIn(i,j);
@@ -139,12 +139,12 @@ function n=datenum(varargin)
 			SecIn = varargin(6);
 			
 			if (type(YearIn)<> 1) | (type(MonthIn)<> 1) | (type(DayIn)<> 1) | (type(HourIn)<> 1) | (type(MinIn)<> 1) | (type(SecIn)<> 1) then
-			  error(gettext('errors','time_error_23'));
+			  error(gettext('errors','Type of parameters incorrect.'));
 			end
 			
 			
 			if (size(YearIn) <> size(MonthIn)) | (size(YearIn) <> size(DayIn)) | (size(YearIn) <> size(HourIn)) | (size(YearIn) <> size(MinIn)) | (size(YearIn) <> size(SecIn)) then
-			  error(gettext('errors','time_error_33'));
+			  error(gettext('errors','The six arguments must have the same size.'));
 			end
 			
 			[nr,nc] = size(YearIn);
@@ -156,23 +156,23 @@ function n=datenum(varargin)
 					compteur = compteur + 1;
 					
 					if MonthIn(i,j)<1 | MonthIn(i,j)>12 then
-						error(gettext('errors','time_error_34'));
+						error(gettext('errors','The second argument must be between 1 and 12.'));
 					end
 					
 					if DayIn(i,j)<1 | DayIn(i,j)>31 then
-						error(gettext('errors','time_error_35'));
+						error(gettext('errors','The third argument must be between 1 and 31.'));
 					end
 					
 					if HourIn(i,j)<0 | HourIn(i,j)>23 then
-						error(gettext('errors','time_error_36'));
+						error(gettext('errors','The fourth argument must be between 0 and 23.'));
 					end
 					
 					if MinIn(i,j)<0 | MinIn(i,j)>59 then
-						error(gettext('errors','time_error_37'));
+						error(gettext('errors','The fifth argument must be between 0 and 59.'));
 					end
 					
 					if SecIn(i,j)<0 | SecIn(i,j)>59 then
-						error(gettext('errors','time_error_38'));
+						error(gettext('errors','The sixth argument must be between 0 and 59.'));
 					end
 					
 					Y(compteur,1) = YearIn(i,j);
@@ -187,7 +187,7 @@ function n=datenum(varargin)
 			nr = compteur;
 			break
 		else
-			error(gettext('errors','time_error_9'));
+			error(gettext('errors','Number of parameters incorrect.'));
 	end
 	
 	for i=1:nr

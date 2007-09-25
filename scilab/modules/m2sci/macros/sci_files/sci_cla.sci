@@ -7,7 +7,7 @@ function [tree]=sci_cla(tree)
 // V.C.
 
 if rhs<1 then
-  set_infos(gettext("messages","m2sci_message_82"),2);
+  set_infos(gettext("messages","All children will be deleted, no HandleVisibility property in Scilab graphics."),2);
 end
 
 // a=gca()

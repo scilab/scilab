@@ -25,7 +25,7 @@ Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.start; DestDir: {app}\modules\{#HE
 Source: modules\{#HELPTOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\help\removechapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\languages\*.xml; DestDir: {app}\modules\{#HELPTOOLS}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\locales\*.xml; DestDir: {app}\modules\{#HELPTOOLS}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\help\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

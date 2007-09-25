@@ -29,11 +29,11 @@ if rhs<3 then prec="uchar";end
 
 [l,k]=find(prec==prectbl)
 if l==[] then
-  error(msprintf(gettext("errors","compatibility_functions_error_46"),prec));
+  error(msprintf(gettext("errors","The format: %s is unknown."),prec));
 end
 Prec=prectbl(l,1)
 if Prec=="?" then 
-  error(msprintf(gettext("errors","compatibility_functions_error_47"),prec));
+  error(msprintf(gettext("errors","The format: %s is not yet handled."),prec));
 end
 mput(a,Prec,fid)
 count=size(a,"*")

@@ -24,7 +24,7 @@ Source: modules\{#OVERLOADING}\help\removechapter.sce; DestDir: {app}\modules\{#
 ;
 Source: modules\{#OVERLOADING}\help\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#OVERLOADING}\languages\*.xml; DestDir: {app}\modules\{#OVERLOADING}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\locales\*.xml; DestDir: {app}\modules\{#OVERLOADING}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#OVERLOADING}\includes\*.h; DestDir: {app}\modules\{#OVERLOADING}\includes; Components: {#COMPN_SCILAB}
 ;

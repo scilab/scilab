@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+  <msgpreviousid>core_message_1</msgpreviousid>
+  <msgid> Warning : </msgid>
+  <msgstr> Warning : </msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_2</msgpreviousid>
+  <msgid>  Non convergence in the QZ algorithm.</msgid>
+  <msgstr>  Non convergence in the QZ algorithm.</msgstr>
+</entry>
+  
+<entry>
+  <msgpreviousid>core_message_3</msgpreviousid>
+  <msgid>  The top %d  x %d blocks may not be in generalized Schur form.</msgid>
+  <msgstr>  The top %d  x %d blocks may not be in generalized Schur form.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_4</msgpreviousid>
+  <msgid>  Non convergence in QR steps.</msgid>
+  <msgstr>  Non convergence in QR steps.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_5</msgpreviousid>
+  <msgid>  The top %d x %d block may not be in Schur form.</msgid>
+  <msgstr>  The top %d x %d block may not be in Schur form.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_6</msgpreviousid>
+  <msgid>  The first %d singular values may be incorrect.</msgid>
+  <msgstr>  The first %d singular values may be incorrect.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_7</msgpreviousid>
+  <msgid> Warning:  Result may be inaccurate.</msgid>
+  <msgstr> Warning:  Result may be inaccurate.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_8</msgpreviousid>
+  <msgid> matrix is close to singular or badly scaled. rcond = %s</msgid>
+  <msgstr> matrix is close to singular or badly scaled. rcond = %s</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_9</msgpreviousid>
+  <msgid>computing least squares solution. (see lsq).</msgid>
+  <msgstr>computing least squares solution. (see lsq).</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_10</msgpreviousid>
+  <msgid> eigenvectors are badly conditioned.</msgid>
+  <msgstr> eigenvectors are badly conditioned.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_11</msgpreviousid>
+  <msgid> results may be inaccurate. rcond = %s</msgid>
+  <msgstr> results may be inaccurate. rcond = %s</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_13</msgpreviousid>
+  <msgid> Warning: obsolete use of '=' instead of '==' .</msgid>
+  <msgstr> Warning: obsolete use of '=' instead of '==' .</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_14</msgpreviousid>
+  <msgid>rank defficient. rank = %d</msgid>
+  <msgstr>rank defficient. rank = %d</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_15</msgpreviousid>
+  <msgid>  Quapro encounters cycles on degenerate point.</msgid>
+  <msgstr>  Quapro encounters cycles on degenerate point.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_16</msgpreviousid>
+  <msgid> norm of projected gradient lower than %s.</msgid>
+  <msgstr> norm of projected gradient lower than %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_17</msgpreviousid>
+  <msgid> at last iteration f decreases by less than %s.</msgid>
+  <msgstr> at last iteration f decreases by less than %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_18</msgpreviousid>
+  <msgid> optimization stops because too small variations for x.</msgid>
+  <msgstr> optimization stops because too small variations for x.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_19</msgpreviousid>
+  <msgid>optim stops:  maximum number of calls to f is reached.</msgid>
+  <msgstr>optim stops:  maximum number of calls to f is reached.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_20</msgpreviousid>
+  <msgid>optim stops: maximum number of iterations is reached.</msgid>
+  <msgstr>optim stops: maximum number of iterations is reached.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_21</msgpreviousid>
+  <msgid>optim stops: too small variations in gradient direction.</msgid>
+  <msgstr>optim stops: too small variations in gradient direction.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_22</msgpreviousid>
+  <msgid> stop during calculation of descent direction.</msgid>
+  <msgstr> stop during calculation of descent direction.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_23</msgpreviousid>
+  <msgid> stop during calculation of estimated hessian.</msgid>
+  <msgstr> stop during calculation of estimated hessian.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_24</msgpreviousid>
+  <msgid> end of optimization.</msgid>
+  <msgstr> end of optimization.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_25</msgpreviousid>
+  <msgid> end of optimization (linear search fails).</msgid>
+  <msgstr> end of optimization (linear search fails).</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_26</msgpreviousid>
+  <msgid> sfact : uncomplete convergence relative precision reached : 10**(%s).</msgid>
+  <msgstr> sfact : uncomplete convergence relative precision reached : 10**(%s).</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_27</msgpreviousid>
+  <msgid> help file inconsistent...</msgid>
+  <msgstr> help file inconsistent...</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_28</msgpreviousid>
+  <msgid> Functions files location : %s.</msgid>
+  <msgstr> Functions files location : %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_29</msgpreviousid>
+  <msgid>    : %s.</msgid>
+  <msgstr>    : %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_30</msgpreviousid>
+  <msgid> pause mode: enter empty lines to continue.</msgid>
+  <msgstr> pause mode: enter empty lines to continue.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_31</msgpreviousid>
+  <msgid> breakpoints of function : %s</msgid>
+  <msgstr> breakpoints of function : %s</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_32</msgpreviousid>
+  <msgid>%s lines in help.</msgid>
+  <msgstr>%s lines in help.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_33</msgpreviousid>
+  <msgid> sorry, no help for %s.</msgid>
+  <msgstr> sorry, no help for %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_34</msgpreviousid>
+  <msgid> Warning: recursion problem..., cleared.</msgid>
+  <msgstr> Warning: recursion problem..., cleared.
+ will be cleared with next error...</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_35</msgpreviousid>
+  <msgid> warning: stack problem..., cleared.</msgid>
+  <msgstr> warning: stack problem..., cleared.
+ will be cleared with next error...</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_36</msgpreviousid>
+  <msgid>Stop after row %s in function %s.</msgid>
+  <msgstr>Stop after row %s in function %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_37</msgpreviousid>
+  <msgid>   the identifier : %s</msgid>
+  <msgstr>   the identifier : %s</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_38</msgpreviousid>
+  <msgid>   has been truncated to: %s.</msgid>
+  <msgstr>   has been truncated to: %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_39</msgpreviousid>
+  <msgid>real part</msgid>
+  <msgstr>real part</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_40</msgpreviousid>
+  <msgid>imaginary part</msgid>
+  <msgstr>imaginary part</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_41</msgpreviousid>
+  <msgid> maximum size of buffer : %d characters.</msgid>
+  <msgstr> maximum size of buffer : %d characters.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_42</msgpreviousid>
+  <msgid> rang deficient : rang = %s  - tol = %s .</msgid>
+  <msgstr> rang deficient : rang = %s  - tol = %s .</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_43</msgpreviousid>
+  <msgid>your variables are...</msgid>
+  <msgstr>your variables are...</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_44</msgpreviousid>
+  <msgid> using %s elements  out of %s.</msgid>
+  <msgstr> using %s elements  out of %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_45</msgpreviousid>
+  <msgid> and %s variables out of %s.</msgid>
+  <msgstr> and %s variables out of %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_46</msgpreviousid>
+  <msgid>System functions : </msgid>
+  <msgstr>System functions : </msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_47</msgpreviousid>
+  <msgid> Commands:</msgid>
+  <msgstr> Commands:</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_48</msgpreviousid>
+  <msgid>Warning : redefining function : %s</msgid>
+  <msgstr>Warning : redefining function : %s</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_49</msgpreviousid>
+  <msgid>         inside function: %s.</msgid>
+  <msgstr>         inside function: %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_50</msgpreviousid>
+  <msgid> Not enough memory to perform simplification.</msgid>
+  <msgstr> Not enough memory to perform simplification.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_51</msgpreviousid>
+  <msgid>your global variables are...</msgid>
+  <msgstr>your global variables are...</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_52</msgpreviousid>
+  <msgid>arl2: Loop on two orders detected.</msgid>
+  <msgstr>arl2: Loop on two orders detected.
+   previous order computed solution returned.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_53</msgpreviousid>
+  <msgid>arl2: Impossible to reach required order.</msgid>
+  <msgstr>arl2: Impossible to reach required order.
+   previous order computed solution returned.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_54</msgpreviousid>
+  <msgid>arl2: Failure when looking for the intersection with domains boundaries.</msgid>
+  <msgstr>arl2: Failure when looking for the intersection with domains boundaries.
+   previous order computed solution returned.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_55</msgpreviousid>
+  <msgid>arl2: Too many solutions found.</msgid>
+  <msgstr>arl2: Too many solutions found.
+   previous order computed solution returned.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_56</msgpreviousid>
+  <msgid>Warning : loaded file has been created with a previous version of scilab</msgid>
+  <msgstr>Warning : loaded file has been created with a previous version of scilab
+or you are trying to load a file saved on a different architecture.
+          please update it !</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_57</msgpreviousid>
+  <msgid>	Impossible to load variable %s.</msgid>
+  <msgstr>	Impossible to load variable %s.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_58</msgpreviousid>
+  <msgid>Warning : use of standard list to define typed structures</msgid>
+  <msgstr>Warning : use of standard list to define typed structures
+          is obsolete. Use tlist.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_59</msgpreviousid>
+  <msgid>Warning : division by zero...</msgid>
+  <msgstr>Warning : division by zero...</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_60</msgpreviousid>
+  <msgid>Warning : singularity of 'log' or 'tan' function.</msgid>
+  <msgstr>Warning : singularity of 'log' or 'tan' function.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_61</msgpreviousid>
+  <msgid>at time : %s ,Too many iteration to achieve required precision.</msgid>
+  <msgstr>at time : %s ,Too many iteration to achieve required precision.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_62</msgpreviousid>
+  <msgid>stepsize not significant in rkqc.</msgid>
+  <msgstr>stepsize not significant in rkqc.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_63</msgpreviousid>
+  <msgid> Warning : variable %%ODEOPTIONS not found.</msgid>
+  <msgstr> Warning : variable %%ODEOPTIONS not found.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_64</msgpreviousid>
+  <msgid> Warning : integration up to tcrit.</msgid>
+  <msgstr> Warning : integration up to tcrit.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_65</msgpreviousid>
+  <msgid> Warning : integration not completed! check tolerance parameters or step size.</msgid>
+  <msgstr> Warning : integration not completed! check tolerance parameters or step size.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_66</msgpreviousid>
+  <msgid> Warning: Jacobian external is given, but</msgid>
+  <msgstr> Warning: Jacobian external is given, but
+ not used!,  see %ODEOPTIONS(6).</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_67</msgpreviousid>
+  <msgid> Warning: No Jacobian external given but</msgid>
+  <msgstr> Warning: No Jacobian external given but
+ one is required by %ODEOPTIONS(6) value !</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_68</msgpreviousid>
+  <msgid> itask=2,3 or 5: At most one value of t</msgid>
+  <msgstr> itask=2,3 or 5: At most one value of t
+ is allowed, the last element of t is used.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_69</msgpreviousid>
+  <msgid> Warning: odedc forces itask=4 and handles</msgid>
+  <msgstr> Warning: odedc forces itask=4 and handles
+ tcrit.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_70</msgpreviousid>
+  <msgid> Warning: function is already compiled.</msgid>
+  <msgstr> Warning: function is already compiled.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_71</msgpreviousid>
+  <msgid>int2d: termination for lack of space to divide triangle.</msgid>
+  <msgstr>int2d: termination for lack of space to divide triangle.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_72</msgpreviousid>
+  <msgid>int2d: termination because of roundoff noise.</msgid>
+  <msgstr>int2d: termination because of roundoff noise.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_73</msgpreviousid>
+  <msgid>int2d: termination for relative error &lt; (5.0*%eps).</msgid>
+  <msgstr>int2d: termination for relative error &lt; (5.0*%eps).</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_74</msgpreviousid>
+  <msgid>int2d: termination: function evaluations > MEVALS.</msgid>
+  <msgstr>int2d: termination: function evaluations > MEVALS.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_75</msgpreviousid>
+  <msgid>int3d:maxpts was too small to obtain the required accuracy.</msgid>
+  <msgstr>int3d:maxpts was too small to obtain the required accuracy.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_76</msgpreviousid>
+  <msgid>Too many input/output ports for hilited block.</msgid>
+  <msgstr>Too many input/output ports for hilited block.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_77</msgpreviousid>
+  <msgid>Too many input/output entries for hilited block.</msgid>
+  <msgstr>Too many input/output entries for hilited block.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_78</msgpreviousid>
+  <msgid>Undefined display for this data type.</msgid>
+  <msgstr>Undefined display for this data type.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_79</msgpreviousid>
+  <msgid> Warning : primitive function %s has moved.</msgid>
+  <msgstr> Warning : primitive function %s has moved.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_80</msgpreviousid>
+  <msgid> rebuild your function libraries.</msgid>
+  <msgstr> rebuild your function libraries.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_81</msgpreviousid>
+  <msgid> Warning : primitive function %s is now a Scilab function.</msgid>
+  <msgstr> Warning : primitive function %s is now a Scilab function.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_82</msgpreviousid>
+  <msgid> rebuild your function libraries.</msgid>
+  <msgstr> rebuild your function libraries.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_83</msgpreviousid>
+  <msgid> roundoff errors make leading eigenvalues</msgid>
+  <msgstr> roundoff errors make leading eigenvalues
+ in the Schur form no longer satisfy criterion.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_84</msgpreviousid>
+  <msgid> Formal variable name has been truncated.</msgid>
+  <msgstr> Formal variable name has been truncated.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_85</msgpreviousid>
+  <msgid> unknown key &lt;%s&gt; ignored.</msgid>
+  <msgstr> unknown key &lt;%s&gt; ignored.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_86</msgpreviousid>
+  <msgid>xset: window dimensions have been set less than 2^16.</msgid>
+  <msgstr>xset: window dimensions have been set less than 2^16.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_87</msgpreviousid>
+  <msgid>Some data have not been computed they are replaced by NaN.</msgid>
+  <msgstr>Some data have not been computed they are replaced by NaN.</msgstr>
+</entry>
+
+
+
+<entry>
+	<msgpreviousid>core_message_111</msgpreviousid>
+	<msgid>Error in function %s.</msgid>
+	<msgstr>Error in function %s.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_112</msgpreviousid>
+	<msgid>Interface %d.</msgid>
+	<msgstr>Interface %d.</msgstr>
+</entry>	
+		
+<entry>
+	<msgpreviousid>core_message_113</msgpreviousid>
+	<msgid>Invalid interface number %d.</msgid>
+	<msgstr>Invalid interface number %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_114</msgpreviousid>
+	<msgid>Interface %s not linked.</msgid>
+	<msgstr>Interface %s not linked.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_115</msgpreviousid>
+	<msgid>Maximum number of dynamic interfaces %d</msgid>
+	<msgstr>Maximum number of dynamic interfaces %d</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_116</msgpreviousid>
+	<msgid>has been reached</msgid>
+	<msgstr>has been reached</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_117</msgpreviousid>
+	<msgid>addinter failed for %s Not  found!</msgid>
+	<msgstr>addinter failed for %s Not  found!</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_118</msgpreviousid>
+	<msgid>Interface %s not linked.</msgid>
+	<msgstr>Interface %s not linked.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_119</msgpreviousid>
+	<msgid>                 Copyright (c) 1989-2007                   </msgid>
+	<msgstr>                 Copyright (c) 1989-2007                   </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_120</msgpreviousid>
+	<msgid>              Consortium Scilab (INRIA, ENPC)              </msgid>
+	<msgstr>              Consortium Scilab (INRIA, ENPC)              </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_121</msgpreviousid>
+	<msgid>%s interface not loaded.</msgid>
+	<msgstr>%s interface not loaded.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_122</msgpreviousid>
+	<msgid>Trying to stop scilab in the middle of an interface.</msgid>
+	<msgstr>Trying to stop scilab in the middle of an interface.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_123</msgpreviousid>
+	<msgid>Do you really want to abort computation (y or n ?) </msgid>
+	<msgstr>Do you really want to abort computation (y or n ?) </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_124</msgpreviousid>
+	<msgid>send_command : No more memory</msgid>
+	<msgstr>send_command : No more memory</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_125</msgpreviousid>
+	<msgid>Warning !!! exception 2</msgid>
+	<msgstr>Warning !!!
+Scilab has found a critical error (%s)
+with "%s" function.
+Save your data and restart Scilab.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_126</msgpreviousid>
+	<msgid>Warning !!! exception 1</msgid>
+	<msgstr>Warning !!!
+Scilab has found a critical error (%s).
+Save your data and restart Scilab.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_127</msgpreviousid>
+	<msgid>Wrong parameter in %s ! (number %d).</msgid>
+	<msgstr>Wrong parameter in %s ! (number %d).</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_128</msgpreviousid>
+	<msgid>Fatal Error : Can't create table for scilab functions.</msgid>
+	<msgstr>Fatal Error : Can't create table for scilab functions.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_129</msgpreviousid>
+	<msgid>complexity: wrong code %d.</msgid>
+	<msgstr>complexity: wrong code %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_130</msgpreviousid>
+	<msgid>Link done.</msgid>
+	<msgstr>Link done.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_131</msgpreviousid>
+	<msgid>Sorry : Dynamic linking is not implemented.</msgid>
+	<msgstr>Sorry : Dynamic linking is not implemented.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_132</msgpreviousid>
+	<msgid>Sorry : Unlinking is not implemented.</msgid>
+	<msgstr>Sorry : Unlinking is not implemented.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_133</msgpreviousid>
+	<msgid>Number of entry points %d.</msgid>
+	<msgstr>Number of entry points %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_134</msgpreviousid>
+	<msgid>Shared libs : [</msgid>
+	<msgstr>Shared libs : [</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_135</msgpreviousid>
+	<msgid>] : %d libs.</msgid>
+	<msgstr>] : %d libs.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_136</msgpreviousid>
+	<msgid>Entry point %s in shared lib %d.</msgid>
+	<msgstr>Entry point %s in shared lib %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_137</msgpreviousid>
+	<msgid>WARNING : %s</msgid>
+	<msgstr>WARNING : %s</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_138</msgpreviousid>
+	<msgid>Internal Functions: </msgid>
+	<msgstr>Internal Functions: </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_139</msgpreviousid>
+	<msgid>Commands: </msgid>
+	<msgstr>Commands: </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_140</msgpreviousid>
+	<msgid> using %10d elements out of  %10d.</msgid>
+	<msgstr> using %10d elements out of  %10d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_141</msgpreviousid>
+	<msgid> and   %10d variables out of %10d.</msgid>
+	<msgstr> and   %10d variables out of %10d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_142</msgpreviousid>
+	<msgid>Can't go to directory %s .</msgid>
+	<msgstr>Can't go to directory %s .</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_143</msgpreviousid>
+	<msgid>Can't get current directory.</msgid>
+	<msgstr>Can't get current directory.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_144</msgpreviousid>
+	<msgid>No space to allocate Scilab stack.</msgid>
+	<msgstr>No space to allocate Scilab stack.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_145</msgpreviousid>
+	<msgid>sciprint_full : No more memory.</msgid>
+	<msgstr>sciprint_full : No more memory.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_146</msgpreviousid>
+	<msgid>  (cont'd) %s</msgid>
+	<msgstr>  (cont'd) %s</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_147</msgpreviousid>
+	<msgid>     (end) %s</msgid>
+	<msgstr>     (end) %s</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_148</msgpreviousid>
+	<msgid>----%d</msgid>
+	<msgstr>----%d</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_149</msgpreviousid>
+	<msgid>-----------------stack-info-----------------</msgid>
+	<msgstr>-----------------stack-info-----------------</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_150</msgpreviousid>
+	<msgid>lw=%d -[istk]-> il lw+1 -[istk]-> %d.</msgid>
+	<msgstr>lw=%d -[istk]-> il lw+1 -[istk]-> %d.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_151</msgpreviousid>
+	<msgid>istk(%d:..) ->[%d %d %d %d ....]</msgid>
+	<msgstr>istk(%d:..) ->[%d %d %d %d ....]</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_152</msgpreviousid>
+	<msgid>-----------------stack-info-----------------</msgid>
+	<msgstr>-----------------stack-info-----------------</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_153</msgpreviousid>
+	<msgid>%s : unrecognized optional arguments %s.</msgid>
+	<msgstr>%s : unrecognized optional arguments %s.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_154</msgpreviousid>
+	<msgid>optional argument list is empty.</msgid>
+	<msgstr>optional argument list is empty.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_155</msgpreviousid>
+	<msgid>optional arguments list: </msgid>
+	<msgstr>optional arguments list: </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_156</msgpreviousid>
+	<msgid>and %s.</msgid>
+	<msgstr>and %s.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_157</msgpreviousid>
+	<msgid>User variables are:</msgid>
+	<msgstr>User variables are:</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_158</msgpreviousid>
+	<msgid>using </msgid>
+	<msgstr>using </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_159</msgpreviousid>
+	<msgid> elements out of </msgid>
+	<msgstr> elements out of </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_160</msgpreviousid>
+	<msgid> called at line </msgid>
+	<msgstr> called at line </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_161</msgpreviousid>
+	<msgid> of exec_file.</msgid>
+	<msgstr> of exec_file.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_162</msgpreviousid>
+	<msgid> of execstr instruction.</msgid>
+	<msgstr> of execstr instruction.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_163</msgpreviousid>
+	<msgid> of macro </msgid>
+	<msgstr> of macro </msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_164</msgpreviousid>
+	<msgid>constant</msgid>
+	<msgstr>constant</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_165</msgpreviousid>
+	<msgid>polynomial</msgid>
+	<msgstr>polynomial</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_166</msgpreviousid>
+	<msgid>boolean</msgid>
+	<msgstr>boolean</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_167</msgpreviousid>
+	<msgid>sparse</msgid>
+	<msgstr>sparse</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_168</msgpreviousid>
+	<msgid>boolean sparse</msgid>
+	<msgstr>boolean sparse</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_169</msgpreviousid>
+	<msgid>Matlab sparse</msgid>
+	<msgstr>Matlab sparse</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_170</msgpreviousid>
+	<msgid>handle</msgid>
+	<msgstr>handle</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_171</msgpreviousid>
+	<msgid>string</msgid>
+	<msgstr>string</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_172</msgpreviousid>
+	<msgid>function</msgid>
+	<msgstr>function</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_173</msgpreviousid>
+	<msgid>library</msgid>
+	<msgstr>library</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_174</msgpreviousid>
+	<msgid>pointer</msgid>
+	<msgstr>pointer</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_175</msgpreviousid>
+	<msgid>size implicit</msgid>
+	<msgstr>size implicit</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_176</msgpreviousid>
+	<msgid>list</msgid>
+	<msgstr>list</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_177</msgpreviousid>
+	<msgid>rational</msgid>
+	<msgstr>rational</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_178</msgpreviousid>
+	<msgid>state-space</msgid>
+	<msgstr>state-space</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_179</msgpreviousid>
+	<msgid>hypermat</msgid>
+	<msgstr>hypermat</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_180</msgpreviousid>
+	<msgid>unknown</msgid>
+	<msgstr>unknown</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_181</msgpreviousid>
+	<msgid> is already compiled.</msgid>
+	<msgstr> is already compiled.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_182</msgpreviousid>
+	<msgid> Obsolete: Define SCIHOME and HOME before to launch Scilab.</msgid>
+	<msgstr> Obsolete: Define SCIHOME and HOME before to launch Scilab.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_183</msgpreviousid>
+	<msgid>error(s) : see help powershell'';''verify your script without scilab.</msgid>
+	<msgstr>error(s) : see help powershell';'verify your script without scilab.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_184</msgpreviousid>
+	<msgid>only for Windows.</msgid>
+	<msgstr>only for Windows.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_message_185</msgpreviousid>
+	<msgid>Powershell not found.</msgid>
+	<msgstr>Powershell not found.</msgstr>
+</entry>
+
+<entry>
+  <msgpreviousid>core_message_186</msgpreviousid>
+  <msgid>Type 'resume' or 'abort' to return to standard level prompt.</msgid>
+  <msgstr>Type 'resume' or 'abort' to return to standard level prompt.</msgstr>
+</entry>
+
+</LOCALIZATION>

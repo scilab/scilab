@@ -7,7 +7,7 @@ function  [mtlbpath,ismtlb]=mtlbtoolfun(namefun)
 //mtlbpath : the path where is the function in the matlab toolbox (if it is in matlab)
 //ismtlb : boolean, true if the function is in a matlab toolbox
 //F.B
-mtlbpath=gettext("messages","m2sci_message_33");
+mtlbpath=gettext("messages","not matlab path");
 ismtlb=%f
 
 //tb : table which contains all the matlab functions(exept the matlab function reference) and their access path  

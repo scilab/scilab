@@ -85,7 +85,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 
   if (stkdata[0] > 0) /* Not a reference to variable */
     {
-	  error_scilab(999,"macr2tree: input argument must be a named variable");
+		error_scilab(999,"acr2tree: input argument must be a named variable");
       return 0;
     }
   else
@@ -96,19 +96,19 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   /* Verify good type for input: must be a compiled macro (type 13) */
   if(stkdata[0] != 13)
     {
-	  error_scilab(999,"macr2tree: Wrong input type (must be a compiled macro)!");
+		error_scilab(999,"macr2tree: Wrong input type (must be a compiled macro)!");
       return 0;
     }
 
   /* Memory allocation */
   if((name=CALLOC(1,sizeof(char)))==NULL)
     {
-	  error_scilab(999,"macr2tree: No more memory available.");
+		error_scilab(999,"macr2tree: No more memory available.");
       return 0;
     }
   if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
     {
-	  error_scilab(999,"macr2tree: Out of code");
+		error_scilab(999,"macr2tree: Out of code");
       return 0;
     }
   (name[0])[nlgh]='\0';
@@ -184,7 +184,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   /* Error handling (S. Steer */
   if (*Lstk(Top+1) >= *Lstk(Bot)) 
   {
-	error_scilab(17,"%s : stack size exceeded (Use stacksize function to increase it).");
+	  error_scilab(17,"%s : stack size exceeded (Use stacksize function to increase it).");
 
     /* Free memory */
     FREE(name[0]);
@@ -251,7 +251,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 	}
       if(TopSave!=Top-1) 
 	  {
-		  error_scilab(999,"macr2tree: wrong Top value %d instead of %d.",Top,TopSave+1);
+		  error_scilab(999,"macr2tree: wrong Top value %d instead of %d",Top,TopSave+1);
 
 
 	/* Free memory */
@@ -549,17 +549,17 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     CreateCsteTList("code23",data,index2);
     break;
   case 24: /* Create an object with type 0 */
-    error_scilab(999,"%s : code %d not yet implemented.","GetInstruction",data[*index2]);
+    error_scilab(999,"%s : No more memory available.","GetInstruction",data[*index2]);
     break;
   case 25: /* Compute profiling data */
  /* This code is ignored */
     *index2 += 2;
     break;
   case 26: /* Vector of strings */
-    error_scilab(999,"%s : code %d not yet implemented.","GetInstruction",data[*index2]);
+    error_scilab(999,"%s : No more memory available.","GetInstruction",data[*index2]);
     break;
   case 27: /* varfunptr */
-    error_scilab(999,"%s : code %d not yet implemented.","GetInstruction",data[*index2]);
+    error_scilab(999,"%s : No more memory available.","GetInstruction",data[*index2]);
     break;
   case 28: /* continue */
     CreateFuncallTList("datacode",data,index2);

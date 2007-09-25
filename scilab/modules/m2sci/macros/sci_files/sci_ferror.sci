@@ -12,7 +12,7 @@ fid=getrhs(tree)
 if rhs==2 then
   tree.rhs(2)=null()
   if lhs==2 then
-    no_equiv(msprintf(gettext("messages","m2sci_message_95"),expression2code(tree)));
+    no_equiv(msprintf(gettext("messages","%s with two outputs."),expression2code(tree)));
   else
     tree.name="mclearerr"
     tree.lhs(1).dims=list(1,Unknown)
@@ -21,7 +21,7 @@ if rhs==2 then
 // ferror(fid)
 else
   if lhs==2 then
-    no_equiv(msprintf(gettext("messages","m2sci_message_95"),expression2code(tree)));
+    no_equiv(msprintf(gettext("messages","%s with two outputs."),expression2code(tree)));
   else
     tree.name="merror"
     tree.lhs(1).dims=list(1,1)

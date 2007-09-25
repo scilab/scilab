@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+	<msgpreviousid>core_menu_1</msgpreviousid>
+	<msgid>toolboxes</msgid>
+	<msgstr>toolboxes</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>core_menu_2</msgpreviousid>
+	<msgid>Click to choose a demo</msgid>
+	<msgstr>Click to choose a demo</msgstr>
+</entry>	
+		
+<entry>
+	<msgid></msgid>
+	<msgstr></msgstr>
+</entry>	
+
+</LOCALIZATION>

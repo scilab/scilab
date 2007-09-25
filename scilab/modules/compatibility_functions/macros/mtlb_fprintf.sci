@@ -32,7 +32,7 @@ elseif type(varargin(1))==10 then
     mprintf(fmt,l(:))
     count=size(a,"*")
   elseif nv==0 then
-    error(msprintf(gettext("errors","compatibility_functions_error_42"),fmt));
+    error(msprintf(gettext("errors","In mtlb_fprintf: mprintf(%s) is not implemented."),fmt));
   else
     sz=[]
     for k=1:nv
@@ -46,7 +46,7 @@ elseif type(varargin(1))==10 then
       mprintf(fmt,varargin(2:$))
       count=size(sz,"*")
     else
-      error(gettext("errors","compatibility_functions_error_43"))
+      error(gettext("errors","In mtlb_fprintf: mprintf Scilab function does not work with more than one row variables."))
     end
   end  
 // mtlb_fprintf(fid,fmt,...)
@@ -81,9 +81,9 @@ else
     count=length(varargin(2))
   elseif nv==0 then
     if or(fid==[1 2]) then
-      error(gettext("errors","compatibility_functions_error_44"))
+      error(gettext("errors","In mtlb_fprintf: mprintf(format) is not implemented."))
     else
-      error(gettext("errors","compatibility_functions_error_45"))
+      error(gettext("errors","In mtlb_fprintf: mfprintf(fid,format) is not implemented."))
     end 
   else
     sz=[]
@@ -103,7 +103,7 @@ else
       end
     else
       if or(fid==[1 2]) then
-	error(gettext("errors","compatibility_functions_error_43"))
+	error(gettext("errors","In mtlb_fprintf: mprintf Scilab function does not work with more than one row variables."))
       else
 	mfprintfMat(fid,varargin(3:$),fmt)
 	for k=1:nv

@@ -118,7 +118,7 @@ else
 	linespec2sci(varargin(k+1),curh)
 	k=k+2
       elseif ~isempty(strindex("markeredgecolor",opt)) then
-	warning(gettext("messages","compatibility_functions_message_23"));
+	warning(gettext("messages","MarkerEdgeColor option ignored."));
 	k=k+2
       elseif ~isempty(strindex("markerfacecolor",opt)) then
 	curh=markplot.children(1)
@@ -187,7 +187,7 @@ styl=scilinestyles(ind)
 if styl>=0 then
   cur_handle.line_style=styl
 elseif ~isempty(ind) then
-  warning(msprintf(gettext("messages","compatibility_functions_message_24"),linespec));
+  warning(msprintf(gettext("messages","Unknown line style found in ''%s'' -> set to 6."),linespec));
   cur_handle.line_style=6
 end
 
@@ -205,7 +205,7 @@ if ~isempty(clr) then
   cur_handle.foreground=color(clr)
   mtlbColor=name2rgb(clr)
 elseif ~isempty(ind) then
-  warning(msprintf(gettext("messages","compatibility_functions_message_25"),linespec));
+  warning(msprintf(gettext("messages","Unknown color found in ''%s'' -> set to black."),linespec));
   cur_handle.foreground=color("black")
   mtlbColor=name2rgb("black")
 end

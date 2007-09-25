@@ -78,8 +78,8 @@ function report=msgdiff(msgfile1,msgfile2)
   end
   lang2=basename(msgfile2)
 //find missing entries and write the result file
-  disp(gettext('messages','scipad_message_14')+msgfile2+gettext('messages','scipad_message_15'))
-  report(1)=gettext('messages','scipad_message_16')+msgfile2+":";
+  disp(gettext('messages','Finding missing entries in ')+msgfile2+gettext('messages',' and writing the result...'))
+  report(1)=gettext('messages','Translations missing in file ')+msgfile2+":";
   report(2)=""; j=2; section1=""; k=1
   revfile=msgfile2+".rev"
   mdelete(revfile)
@@ -108,9 +108,9 @@ function report=msgdiff(msgfile1,msgfile2)
   mclose(fd)
 
 //unused strings
-  disp(gettext('messages','scipad_message_17') +msgfile2+"...")
+  disp(gettext('messages','Finding unused entries in ') +msgfile2+"...")
   j=j+1; report(j)=""; 
-  j=j+1; report(j)=gettext('messages','scipad_message_18')+msgfile2+":"; 
+  j=j+1; report(j)=gettext('messages','Unused strings in file ')+msgfile2+":"; 
   section1=""
   for i=1:size(M1_2,1)
     if ~or(M1_1==M1_2(i)) then
@@ -130,7 +130,7 @@ endfunction
 
 
 function [M1,M2,after,lastcomment]=msglist(msgfile)
-  disp(gettext('messages','scipad_message_19')+msgfile+gettext('messages','scipad_message_20'))
+  disp(gettext('messages','Parsing file ')+msgfile+gettext('messages',', be patient...'))
   lang=basename(msgfile)
 //read the file
   M=""; i=1
@@ -173,7 +173,7 @@ function [M1,M2,after,lastcomment]=msglist(msgfile)
       M2(k)=strsubst(strsubst(a2,"\u022","\"""),"\u05c","\\"); 
       after(k)=j-1; k=k+1
     else
-      write(%io(2),gettext('messages','scipad_message_21'))
+      write(%io(2),gettext('messages','WARNING: THE FOLLOWING LINE SEEMS WRONG HERE AND WILL BE IGNORED'))
       write(%io(2),a)
     end
   a1=a;

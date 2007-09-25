@@ -11,6 +11,7 @@
 /* get a array of strings from hastable tableIN */
 char **getTAGSinhashtable(struct hashtable *tableIN,int *numbersEntries);
 char **getSTRINGSinhashtable(struct hashtable *tableIN,int *numbersEntries);
+char **getPATHSinhashtable(struct hashtable *tableIN,int *numbersEntries);
 
 #endif
 /*-----------------------------------------------------------------------------------*/

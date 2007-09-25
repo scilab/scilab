@@ -39,15 +39,15 @@ function [y]=toolboxes(path,flag,force)
 	exec('builder.sce');
 	chdir('../');
       else
-	 write(%io(2),contribs(k)+gettext('messages','core_message_181')+'\n');
+	 write(%io(2),contribs(k)+gettext('messages',' is already compiled.')+'\n');
       end
     end
   end
 
   if contribs<>[] & grep(sciargs(),"-nw")==[] then 
   	if ( ~fromjava() & ~fromc() ) then
-    	delmenu(gettext('menus','core_menu_1'));
-    	addmenu(gettext('menus','core_menu_1'),contribs);
+    	delmenu(gettext('menus','toolboxes'));
+    	addmenu(gettext('menus','toolboxes'),contribs);
     	// If you also want a build meny 
     	//addmenu('build',contribs);
     end

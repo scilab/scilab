@@ -14,11 +14,11 @@ void ExceptionMessage(DWORD ExceptionCode,char *functionname)
 	char *ExceptionString=GetExceptionString(ExceptionCode);
 	if (functionname)
 	{
-		message_scilab("Warning !!!\nScilab has found a critical error (%s)\nwith "%s" function.\nSave your data and restart Scilab.",ExceptionString,functionname);
+		message_scilab("Warning !!! exception 2",ExceptionString,functionname);
 	}
 	else
 	{
-		message_scilab("Warning !!!\nScilab has found a critical error (%s).\nSave your data and restart Scilab.",ExceptionString);
+		message_scilab("Warning !!! exception 1",ExceptionString);
 	}
 	if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
 }

@@ -5,7 +5,7 @@ function const=Cste(value)
 rhs=argn(2)
 
 if rhs~=1 then
-  error(gettext("errors","m2sci_error_5"));
+  error(gettext("errors","Wrong number of inputs."));
 end
 
 dims=list()

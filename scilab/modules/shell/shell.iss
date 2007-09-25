@@ -32,7 +32,7 @@ Source: modules\{#SHELL}\etc\{#SHELL}.start; DestDir: {app}\modules\{#SHELL}\etc
 ;
 Source: modules\{#SHELL}\help\*.htm; DestDir: {app}\modules\{#SHELL}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SHELL}\languages\*.xml; DestDir: {app}\modules\{#SHELL}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\locales\*.xml; DestDir: {app}\modules\{#SHELL}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SHELL}\macros\buildmacros.sce; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#SHELL}\macros\*.bin; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}

@@ -33,10 +33,10 @@ while k<=n
   txt=[txt;strcat(nams(k:k-1+m))];
   k=k+m;
 end
-txt=[gettext('messages','core_message_157');
+txt=[gettext('messages','User variables are:');
     '';
     txt;
     '';
-    gettext('messages','core_message_158')+string(sum(mem))+gettext('messages','core_message_159')+string(st(1)-(st(2)-sum(mem)))]
+    gettext('messages','using ')+string(sum(mem))+gettext('messages',' elements out of ')+string(st(1)-(st(2)-sum(mem)))]
 write(%io(2),txt,'(1x,a)')
 endfunction

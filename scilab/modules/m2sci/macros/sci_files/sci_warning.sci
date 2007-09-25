@@ -20,14 +20,14 @@ if rhs==0 then
 elseif rhs<=2 then
   if rhs==2 then
   // First arg is a msg_id
-    set_infos(gettext("messages","m2sci_message_126"),2)
+    set_infos(gettext("messages","message_id ignored in following line."),2)
     tree.rhs(1)=Cste(tree.rhs(1).value+" "+tree.rhs(2).value)
     tree.rhs(2)=null()
   end
 
   if typeof(tree.rhs(1))=="cste" & or(convstr(tree.rhs(1).value)==["""on""","""off""","""backtrace""","""debug""","""once""","""always"""]) then
     if tree.lhs(1).name<>"ans" then
-      no_equiv(msprintf(gettext("messages","m2sci_message_127"),expression2code(tree)))
+      no_equiv(msprintf(gettext("messages","%s: Output value set to ''on''."),expression2code(tree)))
       tree=Cste("on")
     else
       no_equiv(expression2code(tree))

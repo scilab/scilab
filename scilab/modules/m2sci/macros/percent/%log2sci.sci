@@ -32,7 +32,7 @@ tree.out(1).type=Type(Boolean,Real)
 if is_empty(A) | is_empty(B) then 
     // For >, <, >= and <= : Scilab gives an error message if both operands are []
     // For == and ~= : Scilab returns %T or %F
-    set_infos(msprintf(gettext("messages","m2sci_message_130"),expression2code(tree)),1);
+    set_infos(msprintf(gettext("messages","At least one operand is an empty matrix for operator: %s, result set to []."),expression2code(tree)),1);
     tree=Cste([])
 elseif is_a_scalar(A) & not_empty(B) then
     tree.out(1).dims=B.dims

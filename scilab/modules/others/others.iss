@@ -23,7 +23,7 @@ Source: modules\{#OTHERS}\help\removechapter.sce; DestDir: {app}\modules\{#OTHER
 ;
 Source: modules\{#OTHERS}\help\*.htm; DestDir: {app}\modules\{#OTHERS}\help; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 ;
-Source: modules\{#OTHERS}\languages\*.xml; DestDir: {app}\modules\{#OTHERS}\languages; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\locales\*.xml; DestDir: {app}\modules\{#OTHERS}\locales; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 ;
 ;Source: modules\{#OTHERS}\includes\*.h; DestDir: {app}\modules\{#OTHERS}\includes; Components: {#COMPN_OTHERS}
 ;

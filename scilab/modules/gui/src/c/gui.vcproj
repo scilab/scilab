@@ -369,15 +369,15 @@
 			Name="localization"
 			>
 			<File
-				RelativePath="..\..\languages\en_US\errors.xml"
+				RelativePath="..\..\locales\en_US\errors.xml"
 				>
 			</File>
 			<File
-				RelativePath="..\..\languages\en_US\menus.xml"
+				RelativePath="..\..\locales\en_US\menus.xml"
 				>
 			</File>
 			<File
-				RelativePath="..\..\languages\en_US\messages.xml"
+				RelativePath="..\..\locales\en_US\messages.xml"
 				>
 			</File>
 		</Filter>

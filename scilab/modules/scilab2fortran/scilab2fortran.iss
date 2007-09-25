@@ -23,7 +23,7 @@ Source: modules\{#SCI2FOR}\help\removechapter.sce; DestDir: {app}\modules\{#SCI2
 ;
 Source: modules\{#SCI2FOR}\help\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
 ;
-Source: modules\{#SCI2FOR}\languages\*.xml; DestDir: {app}\modules\{#SCI2FOR}\languages; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
+Source: modules\{#SCI2FOR}\locales\*.xml; DestDir: {app}\modules\{#SCI2FOR}\locales; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
 ;
 Source: modules\{#SCI2FOR}\macros\lib; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\macros\names; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}

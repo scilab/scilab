@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE LOCALIZATION SYSTEM "../../../localization/xml/localization.dtd">
+<LOCALIZATION>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_1</msgpreviousid>
+	<msgid>Input argument: inconsistent size.</msgid>
+	<msgstr>Input argument: inconsistent size.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_2</msgpreviousid>
+	<msgid>Not yet implemented.</msgid>
+	<msgstr>Not yet implemented.</msgstr>
+</entry>	
+		
+<entry>
+	<msgpreviousid>compatibility_functions_error_3</msgpreviousid>
+	<msgid>Cell elements must be characters arrays.</msgid>
+	<msgstr>Cell elements must be characters arrays.</msgstr>
+</entry>	
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_4</msgpreviousid>
+	<msgid>Cell elements must be arrays chars.</msgid>
+	<msgstr>Cell elements must be arrays chars.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_5</msgpreviousid>
+	<msgid>Not implemented.</msgid>
+	<msgstr>Not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_6</msgpreviousid>
+	<msgid>Input argument must be a cell.</msgid>
+	<msgstr>Input argument must be a cell.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_7</msgpreviousid>
+	<msgid>Inputs arguments must be characters arrays.</msgid>
+	<msgstr>Inputs arguments must be characters arrays.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_8</msgpreviousid>
+	<msgid>mseek: Unknown reference flag.</msgid>
+	<msgstr>mseek: Unknown reference flag.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_9</msgpreviousid>
+	<msgid>All inputs must be character strings.</msgid>
+	<msgstr>All inputs must be character strings.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_10</msgpreviousid>
+	<msgid>Found Datatype=%d, expecting %d.</msgid>
+	<msgstr>Found Datatype=%d, expecting %d.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_11</msgpreviousid>
+	<msgid>Unknown Class.</msgid>
+	<msgstr>Unknown Class.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_12</msgpreviousid>
+	<msgid>Not implemented DataType: %d.</msgid>
+	<msgstr>Not implemented DataType: %d.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_13</msgpreviousid>
+	<msgid>Invalid level 5 binary MAT-file!.</msgid>
+	<msgstr>Invalid level 5 binary MAT-file!.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_14</msgpreviousid>
+	<msgid>Unknown integer type: %s.</msgid>
+	<msgstr>Unknown integer type: %s.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_15</msgpreviousid>
+	<msgid>%s mlist type not yet implemented.</msgid>
+	<msgstr>%s mlist type not yet implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_16</msgpreviousid>
+	<msgid>%s not yet implemented.</msgid>
+	<msgstr>%s not yet implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_17</msgpreviousid>
+	<msgid>Error while writing MI.</msgid>
+	<msgstr>Error while writing MI.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_18</msgpreviousid>
+	<msgid>DataType: %s is not implemented.</msgid>
+	<msgstr>DataType: %s is not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_19</msgpreviousid>
+	<msgid>File %s cannot be opened for reading.</msgid>
+	<msgstr>File %s cannot be opened for reading.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_20</msgpreviousid>
+	<msgid>Incorrect file.</msgid>
+	<msgstr>Incorrect file.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_21</msgpreviousid>
+	<msgid>VAX D-float not handled.</msgid>
+	<msgstr>VAX D-float not handled.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_22</msgpreviousid>
+	<msgid>VAX G-float not handled.</msgid>
+	<msgstr>VAX G-float not handled.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_23</msgpreviousid>
+	<msgid>Cray encoding not handled.</msgid>
+	<msgstr>Cray encoding not handled.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_24</msgpreviousid>
+	<msgid>Unknown binary number format.</msgid>
+	<msgstr>Unknown binary number format.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_25</msgpreviousid>
+	<msgid>Unknown sparse type.</msgid>
+	<msgstr>Unknown sparse type.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_26</msgpreviousid>
+	<msgid>Unknown Matlab binary file format.</msgid>
+	<msgstr>Unknown Matlab binary file format.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_27</msgpreviousid>
+	<msgid>Dimensions and entries do not match.</msgid>
+	<msgstr>Dimensions and entries do not match.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_28</msgpreviousid>
+	<msgid>Not written for hypermatrices.</msgid>
+	<msgstr>Not written for hypermatrices.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_29</msgpreviousid>
+	<msgid>Input argument must be a caracter string matrix.</msgid>
+	<msgstr>Input argument must be a caracter string matrix.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_30</msgpreviousid>
+	<msgid>a.data_bounds must be a vector.</msgid>
+	<msgstr>a.data_bounds must be a vector.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_31</msgpreviousid>
+	<msgid>a.data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax] not implemented.</msgid>
+	<msgstr>a.data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax] not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_32</msgpreviousid>
+	<msgid>Bad affectation for a.data_bounds.</msgid>
+	<msgstr>Bad affectation for a.data_bounds.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_33</msgpreviousid>
+	<msgid>axis fill not implemented.</msgid>
+	<msgstr>axis fill not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_34</msgpreviousid>
+	<msgid>axis image not implemented.</msgid>
+	<msgstr>axis image not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_35</msgpreviousid>
+	<msgid>axis normal not implemented.</msgid>
+	<msgstr>axis normal not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_36</msgpreviousid>
+	<msgid>axis %s not implemented.</msgid>
+	<msgstr>axis %s not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_37</msgpreviousid>
+	<msgid>Argument of type %d not implemented.</msgid>
+	<msgstr>Argument of type %d not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_38</msgpreviousid>
+	<msgid>Matrix must be square.</msgid>
+	<msgstr>Matrix must be square.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_39</msgpreviousid>
+	<msgid>The second input argument must be 1, 2,''fro'' or ''inf''.</msgid>
+	<msgstr>The second input argument must be 1, 2,'fro' or 'inf'.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_40</msgpreviousid>
+	<msgid>mtlb_eig() used with 2 rhs: not yet implemented.</msgid>
+	<msgstr>mtlb_eig() used with 2 rhs: not yet implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_41</msgpreviousid>
+	<msgid>Unknown type in mtlb_format().</msgid>
+	<msgstr>Unknown type in mtlb_format().</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_42</msgpreviousid>
+	<msgid>In mtlb_fprintf: mprintf(%s) is not implemented.</msgid>
+	<msgstr>In mtlb_fprintf: mprintf(%s) is not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_43</msgpreviousid>
+	<msgid>In mtlb_fprintf: mprintf Scilab function does not work with more than one row variables.</msgid>
+	<msgstr>In mtlb_fprintf: mprintf Scilab function does not work with more than one row variables.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_44</msgpreviousid>
+	<msgid>In mtlb_fprintf: mprintf(format) is not implemented.</msgid>
+	<msgstr>In mtlb_fprintf: mprintf(format) is not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_45</msgpreviousid>
+	<msgid>In mtlb_fprintf: mfprintf(fid,format) is not implemented.</msgid>
+	<msgstr>In mtlb_fprintf: mfprintf(fid,format) is not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_46</msgpreviousid>
+	<msgid>The format: %s is unknown.</msgid>
+	<msgstr>The format: %s is unknown.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_47</msgpreviousid>
+	<msgid>The format: %s is not yet handled.</msgid>
+	<msgstr>The format: %s is not yet handled.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_48</msgpreviousid>
+	<msgid>End of file reached before all matrix is read.</msgid>
+	<msgstr>End of file reached before all matrix is read.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_49</msgpreviousid>
+	<msgid>compatibility_functions_error_49</msgid>
+	<msgstr>mtlb_get, no equivalent to property: %s.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_50</msgpreviousid>
+	<msgid>Wrong option.</msgid>
+	<msgstr>Wrong option.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_51</msgpreviousid>
+	<msgid>First argument is not a Matlab vector of strings.</msgid>
+	<msgstr>First argument is not a Matlab vector of strings.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_52</msgpreviousid>
+	<msgid>Unhandled class: %s.</msgid>
+	<msgstr>Unhandled class: %s.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_53</msgpreviousid>
+	<msgid>First argument must be a positive integer.</msgid>
+	<msgstr>First argument must be a positive integer.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_54</msgpreviousid>
+	<msgid>%s: Unknown option.</msgid>
+	<msgstr>%s: Unknown option.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_55</msgpreviousid>
+	<msgid>Not yet implemented for %d lhs argument(s).</msgid>
+	<msgstr>Not yet implemented for %d lhs argument(s).</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_56</msgpreviousid>
+	<msgid>Not yet implemented for %d rhs argument(s).</msgid>
+	<msgstr>Not yet implemented for %d rhs argument(s).</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_57</msgpreviousid>
+	<msgid>qz: pencil is not diagonalizable.</msgid>
+	<msgstr>qz: pencil is not diagonalizable.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_58</msgpreviousid>
+	<msgid>Wrong number of inputs.</msgid>
+	<msgstr>Wrong number of inputs.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_59</msgpreviousid>
+	<msgid>All inputs must be character strings.</msgid>
+	<msgstr>All inputs must be character strings.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_60</msgpreviousid>
+	<msgid>Name conflict: it is not possible to save variable with name %s.</msgid>
+	<msgstr>Name conflict: it is not possible to save variable with name %s.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_61</msgpreviousid>
+	<msgid>Attempt to write an unsupported data type to an ASCII file.</msgid>
+	<msgstr>Attempt to write an unsupported data type to an ASCII file.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_62</msgpreviousid>
+	<msgid>Unknown or misplaced option %s.</msgid>
+	<msgstr>Unknown or misplaced option %s.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_63</msgpreviousid>
+	<msgid>Second input argument must be a column vector.</msgid>
+	<msgstr>Second input argument must be a column vector.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_64</msgpreviousid>
+	<msgid>mtlb_printf : this particular case is not implemented.</msgid>
+	<msgstr>mtlb_printf : this particular case is not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_65</msgpreviousid>
+	<msgid>mtlb_sscanf: nextindex not implemented.</msgid>
+	<msgstr>mtlb_sscanf: nextindex not implemented.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_66</msgpreviousid>
+	<msgid>End of string reached before a datun has been read.</msgid>
+	<msgstr>End of string reached before a datun has been read.</msgstr>
+</entry>
+
+<entry>
+	<msgpreviousid>compatibility_functions_error_67</msgpreviousid>
+	<msgid>Version %d MAT-file not implemented.</msgid>
+	<msgstr>Version %d MAT-file not implemented.</msgstr>
+</entry>
+
+	
+</LOCALIZATION>

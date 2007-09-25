@@ -20,7 +20,7 @@ int DisposeHashTableScilabErrors(void);
 int DisposeHashTableScilabMessages(void);
 int DisposeHashTableScilabMenus(void);
 /*-----------------------------------------------------------------------------------*/ 
-BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr);
+BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr,char* Path);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __LOCALIZATION_H__ */
 /*-----------------------------------------------------------------------------------*/ 
