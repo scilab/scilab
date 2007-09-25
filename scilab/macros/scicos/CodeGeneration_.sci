@@ -1,7 +1,7 @@
 function CodeGeneration_()
 //Input editor function of Scicos code generator
 //
-//@l@n, 22/08/07
+//@l@n, 25/09/07
 //
 //
 //** 10 Set 2007 : cleaner startup code by Simone Mannori  
@@ -1363,7 +1363,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof]=do_compile_superblock42(
   rpat=getcwd();
   libs='';
   label1=[hname;getcwd()+'/'+hname;''];
- 
+
   while %t do
     ok=%t  // to avoid infinite loop
     [okk,..
@@ -1836,7 +1836,7 @@ function Code=make_actuator(standalone)
   end
 
   // pour fprintf
-  nc=size(act,'*') // Alan : d'oï¿½ viens act ?????
+  nc=size(act,'*') // Alan : d'où viens act ?????
                    // reponse : de do_compile_superblock!
   typ=['""%f ']; //time
   for i=1:nc
@@ -3191,7 +3191,7 @@ endfunction
 //
 //Copyright INRIA
 //
-// rmq : La fonction zdoit n'est pas utilisï¿½e pour le moment
+// rmq : La fonction zdoit n'est pas utilisée pour le moment
 function Code=make_standalone42()
   x=cpr.state.x;
   modptr=cpr.sim.modptr;
