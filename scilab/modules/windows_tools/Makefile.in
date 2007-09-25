@@ -345,7 +345,7 @@ MACROBINMASK = *.bin
 # List of the function of a module
 FUNCTION_NAMES = macros/names
 # Localisation directory name
-LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
 # Where to export JAVA files (.jar)
 JARDIR = jar/
 # JAR files

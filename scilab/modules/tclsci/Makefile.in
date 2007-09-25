@@ -735,9 +735,9 @@ top_srcdir = @top_srcdir@
 # List of the function of a module
 @TCLTK_TRUE@FUNCTION_NAMES = macros/names
 # Localisation directory name
-@TCLTK_FALSE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+@TCLTK_FALSE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
 # Localisation directory name
-@TCLTK_TRUE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+@TCLTK_TRUE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
 # Where to export JAVA files (.jar)
 @TCLTK_FALSE@JARDIR = jar/
 # Where to export JAVA files (.jar)

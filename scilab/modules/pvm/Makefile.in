@@ -512,9 +512,9 @@ top_srcdir = @top_srcdir@
 # List of the function of a module
 @PVM_TRUE@FUNCTION_NAMES = macros/names
 # Localisation directory name
-@PVM_FALSE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+@PVM_FALSE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
 # Localisation directory name
-@PVM_TRUE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+@PVM_TRUE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
 # Where to export JAVA files (.jar)
 @PVM_FALSE@JARDIR = jar/
 # Where to export JAVA files (.jar)
