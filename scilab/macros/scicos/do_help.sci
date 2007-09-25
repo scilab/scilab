@@ -21,9 +21,9 @@ obj_selected = sel_items(1) ;
 if obj_selected==0 then 
   //** ---------------- No object selected ---------------------------------   
   while %t do //** infinite while 
-    
+    EnableAllMenus()
     [btn, %pt, cwin, Cmenu] = cosclick();
-    
+    DisableAllMenus()
     //**         Click                 Press       
     if (Cmenu<>"SelectLink") & (Cmenu<>"MoveLink") then
       name = Cmenu ;
