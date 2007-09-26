@@ -1211,7 +1211,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   "                    foreground colors."
                   "                    The default value is [8,1]."
                   " ";
-                  "  -- {scicos_link}       : Default link colors for regular and activation links."
+                  "  -- {link}       : Default link colors for regular and activation links."
                   "                    These colors are used only at link construction."
                   "                    Changing them does not affect already constructed links."
                   "                    The default value is [1,5], which corresponds to black and"
