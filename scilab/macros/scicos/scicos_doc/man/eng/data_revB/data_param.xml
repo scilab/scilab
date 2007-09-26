@@ -7264,30 +7264,15 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 \end{itemize}
 </FILE>
 
-<FILE name='scicos' type='XML'>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>toto</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    either a Scicos diagram structure (scs_m) or a  character
-	    string containing the path of the diagram file (.cos or .cosf
-	    extension).  If no input argument is used, an empty diagram is
-	    opened (default name Untitled).
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>scs_m</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    Scicos diagram structure after edition.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+<FILE name='scicos' type='LATEX'>
+\begin{itemize}
+  \item {\bf toto : } either a Scicos diagram structure (scs\_m) or a  character
+    string containing the path of the diagram file (.cos or .cosf
+    extension).  If no input argument is used, an empty diagram is
+    opened (default name Untitled).
+
+  \item {\bf scs\_m : } Scicos diagram structure after edition.
+\end{itemize}
 </FILE>
 
 <FILE name='scicos_block' type='XML'>

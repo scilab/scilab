@@ -89,12 +89,16 @@ scalar or vector inputs.
   </DESCRIPTION>
 </FILE>
 
-<FILE name='BOUNCE' type='LATEX'>
+<FILE name='BOUNCE' type='XML'>
+<DESCRIPTION>
 
+</DESCRIPTION>
 </FILE>
 
-<FILE name='BOUNCEXY' type='LATEX'>
+<FILE name='BOUNCEXY' type='XML'>
+<DESCRIPTION>
 
+</DESCRIPTION>
 </FILE>
 
 <FILE name='Bache' type='LATEX'>
@@ -3137,27 +3141,16 @@ linked before simulation.
   </DESCRIPTION>
 </FILE>
 
-<FILE name='scicos' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM>
-	<P>
-	  Scicos is a visual editor for constructing models of hybrid
-	  dynamical systems. Invoking Scicos with no argument opens up an
-	  empty Scicos window. Models can then be assembled, loaded,
-	  saved, compiled, simulated, using GUI of Scicos.  Scicos
-	  serves as an interface to the various block diagram compilers
-	  and the hybrid simulator scicosim.
-	</P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<P>
-	  The input and output arguments are useful for debugging
-          purposes.
-	</P>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='scicos' type='LATEX'>
+Scicos is a visual editor for constructing models of hybrid
+dynamical systems.\\
+Invoking Scicos with no argument opens up an
+empty Scicos window. Models can then be assembled, loaded,
+saved, compiled, simulated, using GUI of Scicos.  Scicos
+serves as an interface to the various block diagram compilers
+and the hybrid simulator scicosim.
+The input and output arguments are useful for debugging
+purposes.
 </FILE>
 
 <FILE name='scicos_block' type='XML'>

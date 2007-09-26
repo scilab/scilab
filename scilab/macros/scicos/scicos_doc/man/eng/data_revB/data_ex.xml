@@ -1624,6 +1624,19 @@ When t=2 we loop back to 0.
 
 <FILE name='scicos' type='XML'>
 <EXAMPLE>
+    <P>// Open a new diagram </P>
+    <P>  scicos();</P>
+    <P>  scicos</P>
+    <P> </P>
+    <P> </P>
+    <P>// Load a diagram  </P>
+    <P> scicos SCI/demos/scicos/bounce.cosf; </P>
+    <P> scs_m=scicos('SCI/demos/scicos/bounce.cosf'); </P>
+    <P> </P>
+    <P> </P>
+    <P>// Load a structure </P>
+    <P> load('mondiagr.cos'); </P>
+    <P>  scs_m=scicos(scs_m);</P>
 </EXAMPLE>
 </FILE>
 

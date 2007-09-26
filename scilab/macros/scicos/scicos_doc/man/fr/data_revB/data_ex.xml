@@ -1660,8 +1660,9 @@
 </FILE>
 
 <FILE name='getblocklabel' type='XML'>
-  <EXAMPLE><![CDATA[
-  ]]></EXAMPLE>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='getscicosvars' type='XML'>
@@ -1688,6 +1689,17 @@
 
 <FILE name='scicos' type='XML'>
 <EXAMPLE>
+    <P>// Ouvrir un nouveau diagramme </P>
+    <P>  scicos();</P>
+    <P>  scicos</P>
+    <P> </P>
+    <P>// Charge un diagramme  </P>
+    <P> scicos SCI/demos/scicos/bounce.cosf; </P>
+    <P> scs_m=scicos('SCI/demos/scicos/bounce.cosf'); </P>
+    <P> </P>
+    <P>// Charge une structure </P>
+    <P> load('mondiagr.cos'); </P>
+    <P>  scs_m=scicos(scs_m);</P>
 </EXAMPLE>
 </FILE>
 

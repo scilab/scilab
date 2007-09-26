@@ -204,6 +204,8 @@ function tt=generate_scs_outline()
                "    <SCI varpath=""autopath"" name=""set_xproperty""></SCI>"
                "    <SCI varpath=""autopath"" name=""var2vec""></SCI>"
                "    <SCI varpath=""autopath"" name=""vec2var""></SCI>"
+               "    <SCI varpath=""utilpath"" name=""create_palette""></SCI>"
+               "    <SCI varpath=""utilpath"" name=""get_scicos_version""></SCI>"
                "  </CHAPTER>"
                ""
                "</WHATIS>"];
@@ -884,7 +886,8 @@ my_listf=[// "","EXPRESSION.sci","block"; //CEST ENDOUBLE
           ];
 
 //util macros
-listf_of_utilsci=[];
+listf_of_utilsci=[utilpath,"create_palette.sci","sci";
+                  utilpath,"get_scicos_version.sci","sci"];
 
 //auto macros
 listf_of_autosci=[autopath,"scicos.sci","sci";

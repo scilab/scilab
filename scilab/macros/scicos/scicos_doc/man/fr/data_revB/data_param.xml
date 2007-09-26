@@ -7623,30 +7623,16 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 \end{itemize}
 </FILE>
 
-<FILE name='scicos' type='XML'>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>toto</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    either a Scicos diagram structure (scs_m) or a  character
-	    string containing the path of the diagram file (.cos or .cosf
-	    extension).  If no input argument is used, an empty diagram is
-	    opened (default name Untitled).
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>scs_m</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    Scicos diagram structure after edition.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+<FILE name='scicos' type='LATEX'>
+\begin{itemize}
+  \item {\bf toto : } ce paramètre peut aussi bien être une structure de diagramme Scicos
+    (scs\_m)) qu'une chaîne de caractères indiquant le chemin du fichier
+    du diagramme à charger dans l'éditeur (extension .cos ou .cosf). Si 
+    aucun argument d'entrée est utilisé, un diagramme vide est ouvert 
+    (avec un nom par défaut 'Untitled').
+
+  \item {\bf scs\_m : } une structure de diagramme Scicos après édition.
+\end{itemize}
 </FILE>
 
 <FILE name='scicos_block' type='XML'>
