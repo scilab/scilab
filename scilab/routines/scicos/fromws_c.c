@@ -58,7 +58,7 @@ typedef struct {
   int EVindex;
   int PerEVcnt;
   int firstevent;
-  double *d;
+  double *D;
   void *work;
   double *workt;
 } fromwork_struct ;
@@ -247,10 +247,11 @@ void fromws_c(scicos_block *block,int flag)
        scicos_free(ptr);
        return;
      };
+   ptr->D=NULL;
    //=================================
-   if ((Order>2)&&((Ytype==1)&&( YsubType==0))) {/* double */
+   if ((Order==3)&&((Ytype==1)&&( YsubType==0))) {/* double */
 
-     if((ptr->d=(double *) scicos_malloc(nPoints*sizeof(double)))==NULL) {
+     if((ptr->D=(double *) scicos_malloc(nPoints*mY*sizeof(double)))==NULL) {
        set_block_error(-16);*(block->work)=NULL;
        scicos_free(ptr->workt);
        scicos_free(ptr->work);
@@ -261,7 +262,7 @@ void fromws_c(scicos_block *block,int flag)
      if((spline=(double *) scicos_malloc((3*nPoints-2)*sizeof(double)))==NULL){
        sciprint("Allocation problem in spline"); 
        set_block_error(-16);*(block->work)=NULL;
-       scicos_free(ptr->d);
+       scicos_free(ptr->D);
        scicos_free(ptr->workt);
        scicos_free(ptr->work);
        scicos_free(ptr);
@@ -271,27 +272,99 @@ void fromws_c(scicos_block *block,int flag)
      A_sd=A_d+nPoints;
      qdy=A_sd+nPoints-1;
 
-     for (i=0;i<=nPoints-2;i++){
-       A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
-       qdy[i] = (ptr_d[i+1] - ptr_d[i]) * A_sd[i]*A_sd[i];         
+     for (j=0;j<mY;j++){
+
+       for (i=0;i<=nPoints-2;i++){
+	 A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
+	 qdy[i] = (ptr_d[i+1+j*nPoints] - ptr_d[i+j*nPoints]) * A_sd[i]*A_sd[i];         
+       }
+       
+       for (i=1;i<=nPoints-2;i++){
+	 A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
+	 ptr->D[i+j*nPoints] = 3.0*(qdy[i-1]+qdy[i]);
+       }
+       
+       /*  s'''(x(2)-) = s'''(x(2)+) */
+       
+       r = A_sd[1]/A_sd[0];
+       A_d[0]= A_sd[0]/(1.0 + r);
+       ptr->D[j*nPoints]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
+       /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
+       r = A_sd[nPoints-3]/A_sd[nPoints-2];
+       A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
+       ptr->D[nPoints-1+j*nPoints] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
+       Mytridiagldltsolve(A_d, A_sd, &ptr->D[j*nPoints], nPoints);
+     }
+     scicos_free(spline);
+     /*-----------------------------------------------------------*/
+   }else if ((Order==3)&&((Ytype==1)&&( YsubType==1))) {/* Complex */
+
+    if((ptr->D=(double *) scicos_malloc(2*nPoints*mY*sizeof(double)))==NULL) {
+       set_block_error(-16);*(block->work)=NULL;
+       scicos_free(ptr->workt);
+       scicos_free(ptr->work);
+       scicos_free(ptr);
+       return;
      }
 
-     for (i=1;i<=nPoints-2;i++){
-       A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
-       ptr->d[i] = 3.0*(qdy[i-1]+qdy[i]);
+     if((spline=(double *) scicos_malloc((3*nPoints-2)*sizeof(double)))==NULL){
+       sciprint("Allocation problem in spline"); 
+       set_block_error(-16);*(block->work)=NULL;
+       scicos_free(ptr->D);
+       scicos_free(ptr->workt);
+       scicos_free(ptr->work);
+       scicos_free(ptr);
+       return;
      }
-
-     /*  s'''(x(2)-) = s'''(x(2)+) */
-
-     r = A_sd[1]/A_sd[0];
-     A_d[0]= A_sd[0]/(1.0 + r);
-     ptr->d[0]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
-     /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
-     r = A_sd[nPoints-3]/A_sd[nPoints-2];
-     A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
-     ptr->d[nPoints-1] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
-     Mytridiagldltsolve(A_d, A_sd, ptr->d, nPoints);
+     A_d=spline;
+     A_sd=A_d+nPoints;
+     qdy=A_sd+nPoints-1;
+     for (j=0;j<mY;j++){
+       for (i=0;i<=nPoints-2;i++){
+	 A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
+	 qdy[i] = (ptr_d[i+1+j*nPoints] - ptr_d[i+j*nPoints]) * A_sd[i]*A_sd[i];         
+       }
+       
+       for (i=1;i<=nPoints-2;i++){
+	 A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
+	 ptr->D[i+j*nPoints] = 3.0*(qdy[i-1]+qdy[i]);
+       }
+       
+       /*  s'''(x(2)-) = s'''(x(2)+) */
+       
+       r = A_sd[1]/A_sd[0];
+       A_d[0]= A_sd[0]/(1.0 + r);
+       ptr->D[+j*nPoints]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
+       /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
+       r = A_sd[nPoints-3]/A_sd[nPoints-2];
+       A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
+       ptr->D[nPoints-1+j*nPoints] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
+       Mytridiagldltsolve(A_d, A_sd, &ptr->D[j*nPoints], nPoints);
+       
+       /* ********* */
+       for (i=0;i<=nPoints-2;i++){
+	 A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
+	 qdy[i] = (ptr_d[nPoints+i+1+j*nPoints] - ptr_d[nPoints+i+j*nPoints]) * A_sd[i]*A_sd[i];         
+       }
+       
+       for (i=1;i<=nPoints-2;i++){
+	 A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
+	 ptr->D[i+j*nPoints+nPoints] = 3.0*(qdy[i-1]+qdy[i]);
+       }
+       /*  s'''(x(2)-) = s'''(x(2)+) */
+       r = A_sd[1]/A_sd[0];
+       A_d[0]= A_sd[0]/(1.0 + r);
+       ptr->D[nPoints+j*nPoints]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
+       /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
+       r = A_sd[nPoints-3]/A_sd[nPoints-2];
+       A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
+       ptr->D[nPoints+nPoints-1+j*nPoints] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
+       Mytridiagldltsolve(A_d, A_sd, &ptr->D[nPoints+j*nPoints], nPoints);
+     }
+     /* ********* */
+     scicos_free(spline);
    }
+
    //===================================
    cnt1=nPoints-1;
    cnt2=nPoints;
@@ -336,7 +409,7 @@ void fromws_c(scicos_block *block,int flag)
 	   cnt1=cnt2;
 	   cnt2=inow;
 	 }
-       break;
+	 break;
        }
      }
    }else{
@@ -346,7 +419,6 @@ void fromws_c(scicos_block *block,int flag)
        if (t<ptr->workt[i]){inow=i-1; break;}
      }
    }
-
    ptr->cnt1=cnt1;
    ptr->cnt2=cnt2;
    ptr->EVindex=EVindex;
@@ -357,7 +429,7 @@ void fromws_c(scicos_block *block,int flag)
      case 0: // -------------double----------------------------
        y_d = GetRealOutPortPtrs(block,1);
        ptr_d=(double*) ptr->work;
-       ptr_D=(double*) ptr->d;
+       ptr_D=(double*) ptr->D;
 
        for (j=0;j<my;j++){
 	 if (inow>=nPoints-1){
@@ -378,7 +450,7 @@ void fromws_c(scicos_block *block,int flag)
 	   t2=ptr->workt[inow+1];
 	   y1=ptr_d[inow+j*nPoints];
 	   y2=ptr_d[inow+1+j*nPoints];
-	   y_d[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;	   
+	   y_d[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;	  
 	 }else if (Order==3){
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
@@ -395,7 +467,9 @@ void fromws_c(scicos_block *block,int flag)
        y_d  = GetRealOutPortPtrs(block,1);
        y_cd = GetImagOutPortPtrs(block,1);
        ptr_d=(double*) ptr->work;
-       for (j=0;j<my;j++){
+       ptr_D=(double*) ptr->D;
+
+       for (j=0;j<my;j++){ 
 	 if (inow>=nPoints-1){
 	   if (OutEnd==0){
 	     y_d[j]=0.0;// outputs set to zero
@@ -423,6 +497,21 @@ void fromws_c(scicos_block *block,int flag)
 
 	   y_d[j] =(y2-y1)*(t-t1)/(t2-t1)+y1;
 	   y_cd[j]=(yc2-yc1)*(t-t1)/(t2-t1)+yc1;	   
+	 }else if (Order==3){
+	   t1=ptr->workt[inow];
+	   t2=ptr->workt[inow+1];
+	   y1=ptr_d[inow+j*nPoints];
+	   y2=ptr_d[inow+1+j*nPoints];
+	   d1=ptr_D[inow+j*nPoints];
+	   d2=ptr_D[inow+1+j*nPoints];
+	   Myevalhermite2(&t, &t1,&t2, &y1,&y2, &d1,&d2, &h, &dh, &ddh, &dddh, &inow);
+	   y_d[j]=h;
+	   y1=ptr_d[inow+j*nPoints+nPoints];
+	   y2=ptr_d[inow+1+j*nPoints+nPoints];
+	   d1=ptr_D[inow+j*nPoints+nPoints];
+	   d2=ptr_D[inow+1+j*nPoints+nPoints];
+	   Myevalhermite2(&t, &t1,&t2, &y1,&y2, &d1,&d2, &h, &dh, &ddh, &dddh, &inow);
+	   y_cd[j]=h;
 	 }
        }
        break;       
@@ -626,7 +715,7 @@ void fromws_c(scicos_block *block,int flag)
        }
        //------------------------
        if (i==nPoints-1){ 
-	 if (OutEnd==2) {
+	 if (OutEnd==2) {/*  Periodic*/
 	   cnt1=-1;
 	   cnt2=0;	
 	   PerEVcnt++;/* When OutEnd==2 (perodic output)*/
@@ -642,8 +731,19 @@ void fromws_c(scicos_block *block,int flag)
 	 }
        }
        //--------------------------
-     };
-
+     }else if (Order>1){
+       if (ptr->firstevent==1){
+	   block->evout[0]=TP;
+	   ptr->firstevent=0;
+       }else{
+	 if (OutEnd==2){
+	   block->evout[0]=TP;
+	 }
+	 PerEVcnt++;
+       }
+       cnt1=-1;
+       cnt2=0;
+     }
      ptr->cnt1=cnt1;
      ptr->cnt2=cnt2;
      ptr->EVindex=EVindex;
@@ -653,6 +753,9 @@ void fromws_c(scicos_block *block,int flag)
  }else if (flag==5){   /* finish */
    ptr = *(block->work);
    if (ptr!=NULL) {
+     if (ptr->D!=NULL) {
+       scicos_free(ptr->D);
+     }
      if (ptr->work!=NULL) {
        scicos_free(ptr->work);
      }
