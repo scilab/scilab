@@ -19,8 +19,8 @@ case 'set' then
 	['Variable name';'Interpolation order';'Enable zero crossing(0:No, 1:Yes)?';'Output at end(0:Zero, 1:Hold, 2:Repeat)'],...
 	list('str',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
-    if ~(order==0 | order==1| order==3) then 
-      x_message('Interpolation order should be chosen in [0, 1, 3]');
+    if ~(order==0 | order==1| order==2| order==3) then 
+      x_message('Interpolation order should be chosen in [0,1,2,3]');
       ok=%f;
     end
     
@@ -75,7 +75,7 @@ case 'define' then
  model.evtout=[1];
  model.firing=[0];
  model.blocktype='d';
- model.dep_ut=[%f %f];
+ model.dep_ut=[%f %t];
  gr_i=['txt=[''From workspace''];'..
        ;'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']   
  exprs=[string(varnam),string(order),string(ZC),string(OutEnd)];
