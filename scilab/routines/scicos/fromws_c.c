@@ -16,7 +16,7 @@
 
 #define Fnlength  block->ipar[0]
 #define FName     block->ipar[1]
-#define Order     block->ipar[1+Fnlength]
+#define Method     block->ipar[1+Fnlength]
 #define ZC        block->ipar[2+Fnlength]
 #define OutEnd    block->ipar[3+Fnlength]
 #define T0        ptr->workt[0]
@@ -249,9 +249,7 @@ void fromws_c(scicos_block *block,int flag)
      };
    ptr->D=NULL;
    //=================================
-   sciprint("sssssssssssssAllocation problem in spline=%d ",Order); 
-
-   if ((Order>1)&&((Ytype==1)&&( YsubType==0))) {/* double */
+   if ((Method>1)&&((Ytype==1)&&( YsubType==0))) {/* double */
 
      if((ptr->D=(double *) scicos_malloc(nPoints*mY*sizeof(double)))==NULL) {
        set_block_error(-16);*(block->work)=NULL;
@@ -286,30 +284,30 @@ void fromws_c(scicos_block *block,int flag)
 	 ptr->D[i+j*nPoints] = 3.0*(qdy[i-1]+qdy[i]);
        }
 
-       if (Order==2){
+       if (Method==2){
 	 A_d[0] =  2.0*A_sd[0];
 	 ptr->D[0+j*nPoints] = 3.0 * qdy[0];
          A_d[nPoints-1] =  2.0*A_sd[nPoints-2];
          ptr->D[nPoints-1+j*nPoints] =  3.0 * qdy[nPoints-2];
 	 Mytridiagldltsolve(A_d, A_sd, &ptr->D[j*nPoints], nPoints);
-	 sciprint("  tt=%d  ss=%g",Order, ptr->D[j*nPoints]); 
+	 sciprint("  tt=%d  ss=%g",Method, ptr->D[j*nPoints]); 
        }
 
-       if (Order==3){
-       /*  s'''(x(2)-) = s'''(x(2)+) */
-       r = A_sd[1]/A_sd[0];
-       A_d[0]= A_sd[0]/(1.0 + r);
-       ptr->D[j*nPoints]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
-       /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
-       r = A_sd[nPoints-3]/A_sd[nPoints-2];
-       A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
-       ptr->D[nPoints-1+j*nPoints] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
-       Mytridiagldltsolve(A_d, A_sd, &ptr->D[j*nPoints], nPoints);
+       if (Method==3){
+	 /*  s'''(x(2)-) = s'''(x(2)+) */
+	 r = A_sd[1]/A_sd[0];
+	 A_d[0]= A_sd[0]/(1.0 + r);
+	 ptr->D[j*nPoints]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
+	 /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
+	 r = A_sd[nPoints-3]/A_sd[nPoints-2];
+	 A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
+	 ptr->D[nPoints-1+j*nPoints] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
+	 Mytridiagldltsolve(A_d, A_sd, &ptr->D[j*nPoints], nPoints);
        }
      }
      scicos_free(spline);
      /*-----------------------------------------------------------*/
-   }else if ((Order>1)&&((Ytype==1)&&( YsubType==1))) {/* Complex */
+   }else if ((Method>1)&&((Ytype==1)&&( YsubType==1))) {/* Complex */
 
     if((ptr->D=(double *) scicos_malloc(2*nPoints*mY*sizeof(double)))==NULL) {
        set_block_error(-16);*(block->work)=NULL;
@@ -342,7 +340,7 @@ void fromws_c(scicos_block *block,int flag)
 	 ptr->D[i+j*nPoints] = 3.0*(qdy[i-1]+qdy[i]);
        }
        
-       if (Order==2){
+       if (Method==2){
 	 A_d[0] =  2.0*A_sd[0];
 	 ptr->D[0+j*nPoints] = 3.0 * qdy[0];
          A_d[nPoints-1] =  2.0*A_sd[nPoints-2];
@@ -350,7 +348,7 @@ void fromws_c(scicos_block *block,int flag)
 	 Mytridiagldltsolve(A_d, A_sd, &ptr->D[j*nPoints], nPoints);
        }
 
-       if (Order==3){
+       if (Method==3){
 	 /*  s'''(x(2)-) = s'''(x(2)+) */
 	 r = A_sd[1]/A_sd[0];
 	 A_d[0]= A_sd[0]/(1.0 + r);
@@ -372,7 +370,7 @@ void fromws_c(scicos_block *block,int flag)
 	 ptr->D[i+j*nPoints+nPoints] = 3.0*(qdy[i-1]+qdy[i]);
        }
 
-       if (Order==2){
+       if (Method==2){
 	 A_d[0] =  2.0*A_sd[0];
 	 ptr->D[nPoints+0+j*nPoints] = 3.0 * qdy[0];
          A_d[nPoints-1] =  2.0*A_sd[nPoints-2];
@@ -380,7 +378,7 @@ void fromws_c(scicos_block *block,int flag)
 	 Mytridiagldltsolve(A_d, A_sd, &ptr->D[nPoints+j*nPoints], nPoints);
        }
 
-       if (Order==3){
+       if (Method==3){
 	 /*  s'''(x(2)-) = s'''(x(2)+) */
 	 r = A_sd[1]/A_sd[0];
 	 A_d[0]= A_sd[0]/(1.0 + r);
@@ -468,20 +466,20 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_d[j]=ptr_d[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Order==0){	 	       
+	 }else if (Method==0){	 	       
 	   if (inow<0){
 	     y_d[j]=0.0;
 	   }else{
 	     y_d[j]=ptr_d[inow+(j)*nPoints];
 	   }
-	 }else if (Order==1){
+	 }else if (Method==1){
 	   if (inow<0){inow=0;}
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=ptr_d[inow+j*nPoints];
 	   y2=ptr_d[inow+1+j*nPoints];
 	   y_d[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;	  
-	 }else if (Order<=3){
+	 }else if (Method>=2){
 	   t1=ptr->workt[inow]; 
 	   t2=ptr->workt[inow+1];
 	   y1=ptr_d[inow+j*nPoints];
@@ -500,20 +498,20 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_cd[j]=ptr_d[nPoints*my+nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Order==0){	 	       
+	 }else if (Method==0){	 	       
 	   if (inow<0){
 	     y_cd[j]=0.0;// outputs set to zero
 	   }else{
 	     y_cd[j]=ptr_d[nPoints*my+inow+(j)*nPoints];
 	   }
-	 }else if (Order==1){	     
+	 }else if (Method==1){	     
 	   if (inow<0){inow=0;} // extrapolation for 0<t<X(0)
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=ptr_d[nPoints*my+inow+j*nPoints];
 	   y2=ptr_d[nPoints*my+inow+1+j*nPoints];
 	   y_cd[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;	   
-	 }else if (Order<=3){
+	 }else if (Method>=2){
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=ptr_d[inow+j*nPoints+nPoints];
@@ -536,13 +534,13 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_c[j]=ptr_c[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Order==0){	 	       
+	 }else if (Method==0){	 	       
 	   if (inow<0){
 	     y_c[j]=0;
 	   }else{
 	     y_c[j]=ptr_c[inow+(j)*nPoints];
 	   }
-	 }else if (Order==1){	 
+	 }else if (Method>=1){	 
     	   if (inow<0){inow=0;}
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
@@ -561,13 +559,13 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_s[j]=ptr_s[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Order==0){	 	       
+	 }else if (Method==0){	 	       
 	   if (inow<0){
 	     y_s[j]=0;
 	   }else{
 	     y_s[j]=ptr_s[inow+(j)*nPoints];
 	   }
-	 }else if (Order==1){
+	 }else if (Method>=1){
 	   if (inow<0){inow=0;}
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
@@ -586,13 +584,13 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_l[j]=ptr_l[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Order==0){	 	       
+	 }else if (Method==0){	 	       
 	   if (inow<0){
 	     y_l[j]=0;
 	   }else{
 	     y_l[j]=ptr_l[inow+(j)*nPoints];
 	   }
-	 }else if (Order==1){
+	 }else if (Method>=1){
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=(double)ptr_l[inow+j*nPoints];
@@ -611,13 +609,13 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_uc[j]=ptr_uc[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Order==0){	 	       
+	 }else if (Method==0){	 	       
 	   if (inow<0){
 	     y_uc[j]=0;
 	   }else{
 	     y_uc[j]=ptr_uc[inow+(j)*nPoints];
 	   }
-	 }else if (Order==1){	 
+	 }else if (Method>=1){	 
   	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=(double)ptr_uc[inow+j*nPoints];
@@ -635,13 +633,13 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_us[j]=ptr_us[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Order==0){	 	       
+	 }else if (Method==0){	 	       
 	   if (inow<0){
 	     y_us[j]=0;
 	   }else{
 	     y_us[j]=ptr_us[inow+(j)*nPoints];
 	   }
-	 }else if (Order==1){	
+	 }else if (Method>=1){	
        	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=(double)ptr_us[inow+j*nPoints];
@@ -659,13 +657,13 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_ul[j]=ptr_ul[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Order==0){	 	       
+	 }else if (Method==0){	 	       
 	   if (inow<0){
 	     y_ul[j]=0;
 	   }else{
 	     y_ul[j]=ptr_ul[inow+(j)*nPoints];
 	   }
-	 }else if (Order==1){
+	 }else if (Method>=1){
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=(double)ptr_ul[inow+j*nPoints];
@@ -686,7 +684,7 @@ void fromws_c(scicos_block *block,int flag)
    EVindex= ptr->EVindex;
    PerEVcnt=ptr->PerEVcnt;
    if (ZC==1) {/* generate Events only if ZC is active */
-     if ((Order==1)||(Order==0)){
+     if ((Method==1)||(Method==0)){
        //-------------------------
        if (ptr->firstevent==1){
 	 jfirst=nPoints-1; // finding first positive time instant
@@ -727,7 +725,7 @@ void fromws_c(scicos_block *block,int flag)
 	 }
        }
        //--------------------------
-     }else if (Order<=3){
+     }else if (Method<=3){
        if (ptr->firstevent==1){
 	   block->evout[0]=TP;
 	   ptr->firstevent=0;
