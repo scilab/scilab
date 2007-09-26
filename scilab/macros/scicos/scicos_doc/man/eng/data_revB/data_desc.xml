@@ -48,16 +48,40 @@ This block, with two event inputs and a regular output, outputs +1 or
  \end{enumerate}
 </FILE>
 
-<FILE name='About_scicos' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='About_scicos' type='LATEX'>
+ \subsection{About scicos...}
+
+  Scicos 4.2 have been developed in the Metalau Project-Team very close
+  to the Scilab consortium at INRIA unit of Rocquencourt.
+
+  The main contributers of that version are :
+
+  {\bf Designers :} \\
+  \begin{itemize}
+       \item {\bf Fady Nassif} (INRIA) \\
+          Matrix/integer blocks set.\\
+          Simulink behavior (SampleClk/Goto-from blocks set.)
+
+       \item {\bf Masoud Najafi} (INRIA) \\
+          Modelica implementation. \\
+          Simulator Sundials implementation.
+
+       \item {\bf Simone Mannori} (INRIA) \\
+          New graphic editor design.
+
+       \item {\bf Alan Layec} (INRIA) \\
+          Matrix typed data implementation.\\
+          Core of C code generator.\\
+          Html documentation.
+
+       \item {\bf Benoit Bayol} (Student) \\
+          New graphic scope blocks set.
+
+ \end{itemize}
+
+  {\bf Guru : Serge Steer} (INRIA)
+
+  {\bf Mentor : Ramine Nikoukhah} (INRIA)
 </FILE>
 
 <FILE name='BACKLASH' type='LATEX'>

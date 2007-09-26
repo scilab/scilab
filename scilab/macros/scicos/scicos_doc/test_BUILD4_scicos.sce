@@ -119,6 +119,14 @@ function tt=generate_scs_outline()
               "  <TITLE eng=""Scicos Documentation"" fr=""Documentation Scicos""></TITLE>";
               "  <DATE>19 Septembre 2007</DATE>";
               "";
+              "  <CHAPTER eng=""Batch functions"" fr=""Fonctions en ligne de commande"">"
+              "    <SCI varpath=""autopath"" name=""scicos.sci""></SCI>"
+              "    <SCI varpath=""autopath"" name=""scicosim.sci""></SCI>"
+              "    <SCI varpath=""autopath"" name=""scicos_simulate.sci""></SCI>"
+              "    <SCI varpath=""autopath"" name=""lincos.sci""></SCI>"
+              "    <SCI varpath=""autopath"" name=""steadycos.sci""></SCI>"
+              "  </CHAPTER>"
+              "";
               "  <CHAPTER eng=""Editor"" fr=""Editeur"">";
               "    <SCI varpath="""" name=""Menu_entries""></SCI>"
               "    <SCI varpath="""" name=""Keyboard_shortcuts""></SCI>"
@@ -188,12 +196,13 @@ function tt=generate_scs_outline()
                "   </SUBCHAPTER>";
                "  </CHAPTER>"
                ""
-               "  <CHAPTER eng=""Batch functions"" fr=""Fonctions en ligne de commande"">"
-               "    <SCI varpath=""autopath"" name=""scicos.sci""></SCI>"
-               "    <SCI varpath=""autopath"" name=""scicosim.sci""></SCI>"
-               "    <SCI varpath=""autopath"" name=""scicos_simulate.sci""></SCI>"
-               "    <SCI varpath=""autopath"" name=""lincos.sci""></SCI>"
-               "    <SCI varpath=""autopath"" name=""steadycos.sci""></SCI>"
+               "  <CHAPTER eng=""Scilab Utilities functions"" fr=""Fonctions utilitaires Scilab"">"
+               "    <SCI varpath=""autopath"" name=""buildouttb""></SCI>"
+               "    <SCI varpath=""autopath"" name=""scicos_debug""></SCI>"
+               "    <SCI varpath=""utilpath"" name=""create_palette""></SCI>"
+               "    <SCI varpath=""utilpath"" name=""get_scicos_version""></SCI>"
+               "    <SCI varpath=""autopath"" name=""var2vec""></SCI>"
+               "    <SCI varpath=""autopath"" name=""vec2var""></SCI>"
                "  </CHAPTER>"
                ""
                "  <CHAPTER eng=""Scilab Data Structures"" fr=""Structures de donnée scilab"">"
@@ -214,15 +223,6 @@ function tt=generate_scs_outline()
                "    <SCI varpath=""opath2(1)"" name=""scicos_state""></SCI>"
                "    <SCI varpath=""opath2(1)"" name=""scicos_sim""></SCI>"
                "   </SECTION>";
-               "  </CHAPTER>"
-               ""
-               "  <CHAPTER eng=""Scilab Utilities functions"" fr=""Fonctions utilitaires Scilab"">"
-               "    <SCI varpath=""autopath"" name=""buildouttb""></SCI>"
-               "    <SCI varpath=""autopath"" name=""scicos_debug""></SCI>"
-               "    <SCI varpath=""utilpath"" name=""create_palette""></SCI>"
-               "    <SCI varpath=""utilpath"" name=""get_scicos_version""></SCI>"
-               "    <SCI varpath=""autopath"" name=""var2vec""></SCI>"
-               "    <SCI varpath=""autopath"" name=""vec2var""></SCI>"
                "  </CHAPTER>"
                ""
                "  <SCI varpath="""" name=""About_scicos""></SCI>"
@@ -760,6 +760,71 @@ function gen_scs_editor_help(typdoc,%gd)
    end
 endfunction
 
+//gen_scs_about_help : main generator for scitexgendoc of tex files
+//for the scicos about
+function gen_scs_about_help(typdoc,%gd)
+
+   for i=1:size(%gd.lang,1)
+
+      tt=[];
+
+      //** generate tex head
+      head_tex=get_head_tex(["","About_scicos","sci"],typdoc,i,%gd)
+      //** change title of html head
+      if %gd.lang(i)=='fr' then
+         head_tex=strsubst(head_tex,'Fonction Scilab','Au sujet de Scicos')
+      elseif %gd.lang(i)=='eng' then
+         head_tex=strsubst(head_tex,'Scilab Function','About Scicos')
+      end
+
+      name=get_extname(["","About_scicos","sci"],%gd)
+
+      if fileinfo(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_mod.tex')<>[] then
+
+        tt=['\subsection{Modules}'
+            mgetl(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_mod.tex')];
+      else
+        tt=[];
+      end
+
+      if fileinfo(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_long.tex')<>[] then
+        tt=[tt;
+            mgetl(%gd.lang(i)+...
+                  '/'+name+...
+                  '/'+name+'_long.tex')];
+      end
+
+      //** generate txt of tex file
+      txt_about=[head_tex;
+                   tt
+                   '\htmlinfo*'
+                   '\end{document}']
+      //**---------------------**//
+
+      //create lang directory
+      if fileinfo(%gd.lang(i)+'/')==[] then
+       mkdir(%gd.lang(i))
+      end
+      //create object directory for
+      //tex compilation
+      if fileinfo(%gd.lang(i)+'/'+...
+                   name)==[] then
+        mkdir(%gd.lang(i)+'/'+name)
+      end
+
+      mputl(txt_about,%gd.lang(i)+...
+            '/'+name+...
+            '/'+name+'.tex');
+
+   end
+endfunction
+
 //gen_scicos_whatis : generate the whatis fileS
 function gen_scicos_whatis(%gd)
   gen_whatis(%gd.mpath.data(1)+'/ABCD_Blocks.xml',%gd);
@@ -794,6 +859,7 @@ function gen_scicos_doc(my_list,typdoc,%gd)
   generate_aux_tex_file(my_list,typdoc,%gd);
   gen_scs_editor_help(typdoc,%gd);
   gen_scs_scilst_help(typdoc,%gd);
+  gen_scs_about_help(typdoc,%gd)
   generate_html_file(my_list,%gd);
   gen_scicos_whatis(%gd)
 endfunction

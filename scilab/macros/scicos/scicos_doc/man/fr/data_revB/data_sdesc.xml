@@ -54,7 +54,7 @@
 </FILE>
 
 <FILE name='About_scicos' type='XML'>
-  <SHORT_DESCRIPTION name="About_scicos">Au sujet de scicos ...</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="About_scicos">Au sujet de scicos...</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='BACKLASH' type='XML'>

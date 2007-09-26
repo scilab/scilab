@@ -46,16 +46,41 @@ délivre +1 ou -1 sur sa sortie régulière suivant ses entrées événementielles.
  \end{enumerate}
 </FILE>
 
-<FILE name='About_scicos' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Ajoutez ici un paragraphe pour la description de la fonction
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='About_scicos' type='LATEX'>
+ \subsection{Au sujet de Scicos...}
+
+  Scicos version 4.2 a été développé dans l'équipe-projet 'Metalau', de
+  manière très proche au consortium Scilab, à l'unité de Rocquencourt de
+  l'INRIA.
+
+  Les principaux contributeurs de cette version sont :
+
+  {\bf Designers :} \\
+  \begin{itemize}
+       \item {\bf Fady Nassif} (INRIA) \\
+          Jeu de blocs matriciels/entiers.\\
+          Comportement simulink (blocs SampleClk/Goto-from).
+
+       \item {\bf Masoud Najafi} (INRIA) \\
+          Intégration Modelica.\\
+          Intégration 'Sundials' dans le simulateur.
+
+       \item {\bf Simone Mannori} (INRIA) \\
+          Conception de l'éditeur nouveau graphique.
+
+       \item {\bf Alan Layec} (INRIA) \\
+          Intégration des données matricielles typées.\\
+          Coeur du générateur de code C.\\
+          Documentation Html.
+
+       \item {\bf Benoit Bayol} (Etudiant) \\
+          Jeu de blocs pour l'affichage des données (nouveau graphique)
+
+ \end{itemize}
+
+  {\bf Guru : Serge Steer} (INRIA)
+
+  {\bf Mentor : Ramine Nikoukhah} (INRIA)
 </FILE>
 
 <FILE name='BACKLASH' type='LATEX'>
