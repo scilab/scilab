@@ -52,6 +52,10 @@
   <SHORT_DESCRIPTION name="ANDLOG_f">ANDLOG_f</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='About_scicos' type='XML'>
+  <SHORT_DESCRIPTION name="About_scicos">About scicos...</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='BACKLASH' type='XML'>
 <SHORT_DESCRIPTION name="BACKLASH">Backlash </SHORT_DESCRIPTION>
 </FILE>
@@ -410,6 +414,18 @@
 
 <FILE name='CURV_f_intfunc' type='XML'>
   <SHORT_DESCRIPTION name="CURV_f">CURV_f</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <SHORT_DESCRIPTION name="C_macros">Utilities C macros</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <SHORT_DESCRIPTION name="C_struct">Block structure</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <SHORT_DESCRIPTION name="C_utils">Utilities C functions</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Capacitor' type='XML'>
@@ -3202,6 +3218,10 @@
 
 <FILE name='scalar2vector_routcos' type='XML'>
   <SHORT_DESCRIPTION name="scalar2vector">scalar2vector</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
+  <SHORT_DESCRIPTION name="sci_struct">Block structure</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='scicos' type='XML'>
