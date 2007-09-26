@@ -28,7 +28,7 @@ function [routines,IntFunc]=create_palette(Path)
       end
     end
     lisf(to_del)=[];
-    routines=build_palette(lisf,Path,PalName)
+    routines=build_palette(lisf,Path,PalName);IntFunc=lisf
   else
     [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
      %scicos_display_mode, modelica_libs,scicos_pal_libs] = initial_scicos_tables()
