@@ -670,23 +670,38 @@ Tools menu</A>
 <UL>
 <LI><B>Tools:Create Mask</B>
 <BR>
+This menu applies only to a Super Block, transforming it into a
+       block that resembles a basic block with a standard dialog box. The block
+       parameters are identifed automatically by searching all the symbolic
+       parameters used in the definition of the block parameters inside the
+       Super block that are not defined in the appropriate contexts within
+       the Super Block;
+
 <P>
 </LI>
 <LI><B>Tools:Remove Mask</B>
 <BR>
+This menu applies only to an already masked block. It removes the mask
+       and the Super Block within it can be recovered. Note that the icon of the
+       Super Block remains the same as that of the masked block.
+
 <P>
 </LI>
 <LI><B>Tools:Customize Mask</B>
 <BR>
+Creating a mask leads to a block with parameters that can be set by the
+       block's dialog box. The title and the description of the parameters in the
+       dialog box can be set by this menu.
+
 <P>
 </LI>
 <LI><B>Tools:Get Info (i)</B>
 <BR>
-This menu allows to get information on an object and on 
+This menu allows user to obtain information on an object and on 
        its connection with other diagram objects.
 
 <P>
-Select this menu and click on an object.
+Select this menu and click on an object. See also 'Details' menu.
 
 <P>
 </LI>
@@ -702,33 +717,34 @@ This item can be applied to a block, link or text. It can also be
 <BR>
 This menu opens a graphic window with a tree 
        representation of the super blocks hierarchy.
-       Each node represents a superblock.
+       Each node represents a Super Block.
 
 <P>
-Browser window is useful to open directly a super-block
-       everywhere in the hierarchy.
+Browser window is useful to open directly a Super Block
+       everywhere in the hierarchy. To open the main diagram if it has
+       been closed, use the 'Up to Main Diagram' menu.
 
 <P>
 </LI>
 <LI><B>Tools:Code Generation</B>
 <BR>
 This menu allows to generate the simulation code associated with
-       a discrete time Superblock.
+       a discrete time Super Block.
 
 <P>
 The code generation is obtained simply by selecting this menu and  
-       then the desired superblock.
+       then the desired Super Block.
 
 <P>
-If the superblock satisfies the required conditions, a dialog box
+If the Super Block satisfies the required conditions, a dialog box
        pops up to ask for a block name, a directory where to put the
        generated files and for optional libraries requested by the linker.
 
 <P>
 Given this information the code is generated, compiled and linked with 
-       Scilab. The superblock is automatically replaced by a new block which 
+       Scilab. The Super Block is automatically replaced by a new block which 
        implements the generated code. It is then possible to run the modified 
-       diagram.
+       diagram. The code for standalone use is also generated.
 
 <P>
 </LI>
@@ -753,17 +769,8 @@ This item activates the Scilab window without closing the Scicos diagram.
 When you select this menu item you switch Scilab to 
        the pause mode (see the help on pause).
        In the Scilab main window and you may enter Scilab instructions
-       to compute whatever you want.
-       To go back to Scicos you need enter the "return" or
-       "[...]=return(...)" Scilab instruction.
-
-<P>
-If you use "[...]=return(...)" Scilab instruction take care
-       not to modify Scicos variables such as "scs_m".
-
-<P>
-If you have modified Scicos graphic window you may restore it 
-       using the Scicos "Replot" menu.
+       as usual. In most cases, user should use the 'Activate Scilab Window'
+       menu instead. The 'Calc' menu should only be used for advanced debugging.
 
 <P>
 </LI>
