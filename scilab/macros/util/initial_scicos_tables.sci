@@ -1445,7 +1445,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   " ";
                   " Objects state can be any types of scilab variable.";
                   " In the computational function case of type 4 (C blocks)";
-                  " only elements containig matrix of real, complex,";
+                  " only elements containing matrix of real, complex,";
                   " int32, int16 ,int8 ,uint32, uit16 and uint8 will be correctly";
                   " provided for readind/writing.";
                   " ";
@@ -1475,7 +1475,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   " ";
                   " Objects parameters can be any types of scilab variable.";
                   " In the computational function case of type 4 (C blocks)";
-                  " only elements containig matrix of real, complex,";
+                  " only elements containing matrix of real, complex,";
                   " int32, int16 ,int8 ,uint32, uit16 and uint8 will be correctly";
                   " provided for reading.";
                   " ";
