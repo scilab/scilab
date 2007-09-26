@@ -3100,6 +3100,24 @@ Ce bloc crée une fonction de calcul squelette en C.
 Il crée aussi une librairie et un fichier objet à la compilation.
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      Cette fonction génére une palette si Path est une chaîne de caractères
+      indiquant un répertoire où se trouvent des fonctions d'interfaçages de
+      blocs scicos.
+      Si Path est absent ou bien si celui est égal à %t, les palettes
+      standards de Scicos sont construites.
+      Si Path est égal à %f, alors seul le paramètre IntFunc est retourné
+      (le paramètre routines est vide dans ce cas).
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='curblock' type='XML'>
   <DESCRIPTION>
 
@@ -3152,6 +3170,18 @@ not the block contains a direct feed-through term. The function
 realising computational functions of generic blocks of a scicos
 diagram must be saved along with the diagram and loaded or dynamically
 linked before simulation. 
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     Cette fonction retourne le numéro de version courant de Scicos.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='getblocklabel' type='XML'>

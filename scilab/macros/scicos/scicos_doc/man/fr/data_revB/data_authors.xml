@@ -1960,6 +1960,12 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
+</FILE>
+
 <FILE name='curblock' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Ramine Nikoukhah'>
@@ -2012,6 +2018,14 @@ INRIA
   <AUTHORS_ITEM label='Ramine Nikoukhah'>
   INRIA
   </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
   </AUTHORS>
 </FILE>
 

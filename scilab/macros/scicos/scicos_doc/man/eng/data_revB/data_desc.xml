@@ -3022,6 +3022,24 @@ This block creates skeleton of the C computing function. Also it
 creates library file and object files.  
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This function generates a palette if Path is a string indicating
+      the directoy in which the interfacing functions of the blocks are
+      to be found.
+      If Path is not present or if it is %t, then standard scicos
+      palettes are regenerated. If %f, then only IntFunc (list of
+      interfacing functions) is returned. List of routines is empty in
+      this case.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='curblock' type='XML'>
   <DESCRIPTION>
 
@@ -3074,6 +3092,18 @@ not the block contains a direct feed-through term. The function
 realising computational functions of generic blocks of a Scicos
 diagram must be saved along with the diagram and loaded or dynamically
 linked before simulation. 
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     This function is used to know the current version number of Scicos.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='getblocklabel' type='XML'>

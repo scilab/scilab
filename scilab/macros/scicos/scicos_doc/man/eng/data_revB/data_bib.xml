@@ -1716,6 +1716,12 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='curblock' type='XML'>
 <BIBLIO>
 
@@ -1758,6 +1764,12 @@
 </FILE>
 
 <FILE name='generic_block3' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
   <BIBLIO>
 
   </BIBLIO>

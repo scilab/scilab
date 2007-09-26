@@ -6559,6 +6559,40 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 \end{itemize}
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Path</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+        a string given the directory path that contains Scicos blocks interfacing functions.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>routines</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+        a vector of strings that contains names of computational functions used in scicos blocks.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>IntFunc</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       a vector of strings that contains names of interfacing functions used in scicos blocks.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='curblock' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -6921,6 +6955,22 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	specifies if block output depends explicitly on time. \\
 	Properties : Type 'vec' of size 1
 \end{itemize}
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>scicos_ver</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       a string given the current number version of Scicos.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='getblocklabel' type='XML'>

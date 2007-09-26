@@ -1834,6 +1834,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='curblock' type='XML'>
 <USED_FUNCTIONS>
 
@@ -1880,6 +1886,12 @@ for this block we have four differents functions:
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='getblocklabel' type='XML'>

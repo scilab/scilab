@@ -2168,6 +2168,14 @@
   <SHORT_DESCRIPTION name="counter">counter</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <SHORT_DESCRIPTION name="create_palette">Palette generator</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='create_palette_scifunc' type='XML'>
+  <SHORT_DESCRIPTION name="create_palette">create_palette</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='cscope_routcos' type='XML'>
   <SHORT_DESCRIPTION name="cscope">cscope</SHORT_DESCRIPTION>
 </FILE>
@@ -2630,6 +2638,14 @@
 
 <FILE name='gensqr_routcos' type='XML'>
   <SHORT_DESCRIPTION name="gensqr">gensqr</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <SHORT_DESCRIPTION name="get_scicos_version">Get the current Scicos version</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='get_scicos_version_scifunc' type='XML'>
+  <SHORT_DESCRIPTION name="get_scicos_version">get_scicos_version</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='getblocklabel' type='XML'>

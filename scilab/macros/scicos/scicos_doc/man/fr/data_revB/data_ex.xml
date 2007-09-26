@@ -1614,6 +1614,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='curblock' type='XML'>
 <EXAMPLE><![CDATA[
 ]]></EXAMPLE>
@@ -1657,6 +1663,13 @@
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <EXAMPLE>
+    <P>//Retourne la version de scicos </P>
+    <P>  get_scicos_version()</P>
+  </EXAMPLE>
 </FILE>
 
 <FILE name='getblocklabel' type='XML'>

@@ -6889,6 +6889,40 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 \end{itemize}
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Path</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+        une chaîne de caractères qui donne le chemein du répertoire contenant des fonctions d'interfaçage de blocs Scicos.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>routines</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+        un vecteur de chaînes de caractères contenat les noms des fonctions de calcul utilisées dans les blocs Scicos.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>IntFunc</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       un vecteur de chaînes de caractères contenant les noms des fonctions d'interfaçage des blocs Scicos.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='curblock' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -7277,6 +7311,22 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
 	marqué comme temps dépendant.\\
 	Propriétés : Type 'vec' de taille 1
 \end{itemize}
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>scicos_ver</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       une chaîne de caractère indiquant le numéro de version.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='getblocklabel' type='XML'>

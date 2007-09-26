@@ -43,11 +43,23 @@
   </CALLING_SEQUENCE>
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[routines,IntFunc] = create_palette(Path)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
 <FILE name='curblock' type='XML'>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>
       blk=curblock()
     </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>scicos_ver = get_scicos_version</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>
 

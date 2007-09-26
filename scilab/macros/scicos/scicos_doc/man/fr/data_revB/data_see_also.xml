@@ -1730,6 +1730,12 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='create_palette' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='curblock' type='XML'>
 <SEE_ALSO>
 
@@ -1772,6 +1778,12 @@
 <SEE_ALSO>
 
 </SEE_ALSO>
+</FILE>
+
+<FILE name='get_scicos_version' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
 </FILE>
 
 <FILE name='getblocklabel' type='XML'>
