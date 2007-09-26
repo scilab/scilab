@@ -256,7 +256,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
       'Popup',                 ''                                  ;
       'Label',                 "Click block to label";
       'Get Info',              "Click on object  to get information on it";
-      'Code Generation',       "Click on a Superblock (without activation output) to obtain a coded block!" ;
+      'Code Generation',       "Click on a Super Block (without activation output) to obtain a coded block!" ;
       'Icon',                  "Click on block to edit its icon";
       'Color',                 "Click on object to choose its color";
       'Identification',        "Click on an object to set or get identification";
@@ -743,26 +743,34 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 
   //***** Tools Menu ******/
   //***********************/
-
-  //TODO
   %scs_help_menu=scicos_help(%scs_help_menu,...
-               'Create Mask',...
-               [""])
+               'Create Mask',..
+               [" This menu applies only to a Super Block, transforming it into a";
+                " block that resembles a basic block with a standard dialog box. The block";
+                " parameters are identifed automatically by searching all the symbolic";
+                " parameters used in the definition of the block parameters inside the"
+                " Super block that are not defined in the appropriate contexts within";
+                " the Super Block;"]) 
 
   %scs_help_menu=scicos_help(%scs_help_menu,...
-               'Remove Mask',...
-               [""])
+              'Remove Mask',..
+              [" This menu applies only to an already masked block. It removes the mask";
+               " and the Super Block within it can be recovered. Note that the icon of the";
+               " Super Block remains the same as that of the masked block."])
 
   %scs_help_menu=scicos_help(%scs_help_menu,...
-               'Customize Mask',...
-               [""])
+              'Customize Mask',...
+              [" Creating a mask leads to a block with parameters that can be set by the";
+               " block''s dialog box. The title and the description of the parameters in the";
+               " dialog box can be set by this menu."])
+
 
   %scs_help_menu=scicos_help(%scs_help_menu,...
                'Get Info',...
-               [" This menu allows to get information on an object and on ";
+               [" This menu allows user to obtain information on an object and on ";
                 " its connection with other diagram objects.";
                 " ";
-                " Select this menu and click on an object."])
+                " Select this menu and click on an object. See also ''Details'' menu."])
 
    %scs_help_menu=scicos_help(%scs_help_menu,...
                 'Details',...
@@ -774,27 +782,28 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                'Browser',...
                [" This menu opens a graphic window with a tree ";
                 " representation of the super blocks hierarchy.";
-                " Each node represents a superblock.";
+                " Each node represents a Super Block.";
                 " ";
-                " Browser window is useful to open directly a super-block";
-                " everywhere in the hierarchy."]);
+                " Browser window is useful to open directly a Super Block";
+                " everywhere in the hierarchy. To open the main diagram if it has";
+                " been closed, use the ''Up to Main Diagram'' menu."]);
 
   %scs_help_menu=scicos_help(%scs_help_menu,...
                'Code Generation',...
                [" This menu allows to generate the simulation code associated with";
-                " a discrete time Superblock.";
+                " a discrete time Super Block.";
                 "";
                 " The code generation is obtained simply by selecting this menu and  ";
-                " then the desired superblock.";
+                " then the desired Super Block.";
                 " ";
-                " If the superblock satisfies the required conditions, a dialog box";
+                " If the Super Block satisfies the required conditions, a dialog box";
                 " pops up to ask for a block name, a directory where to put the";
                 " generated files and for optional libraries requested by the linker.";
                 " ";
                 " Given this information the code is generated, compiled and linked with ";
-                " Scilab. The superblock is automatically replaced by a new block which ";
+                " Scilab. The Super Block is automatically replaced by a new block which ";
                 " implements the generated code. It is then possible to run the modified ";
-                " diagram."])
+                " diagram. The code for standalone use is also generated."])
 
   %scs_help_menu=scicos_help(%scs_help_menu,...
                'Shortcuts',...
@@ -814,15 +823,8 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                [" When you select this menu item you switch Scilab to ";
                 " the pause mode (see the help on pause).";
                 " In the Scilab main window and you may enter Scilab instructions";
-                " to compute whatever you want.";
-                " To go back to Scicos you need enter the ""return"" or";
-                " ""[...]=return(...)"" Scilab instruction.";
-                " ";
-                " If you use ""[...]=return(...)"" Scilab instruction take care";
-                " not to modify Scicos variables such as ""scs_m"".";
-                " ";
-                " If you have modified Scicos graphic window you may restore it ";
-                " using the Scicos ""Replot"" menu."])
+                " as usual. In most cases, user should use the ''Activate Scilab Window''";
+                " menu instead. The ''Calc'' menu should only be used for advanced debugging."]) 
 
   //****** Help Menu ******/
   //***********************/
@@ -1044,7 +1046,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scs_help_block=scicos_help(%scs_help_block,...
                  'gui',...
                  [" The name of the Scilab GUI function associated"
-                  " with the block"
+                  " with the block."
                   " ";
                   " Size : 1.";
                   " Type : string."])
@@ -1176,7 +1178,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scs_help_params=scicos_help(%scs_help_params,...
                  'context',...
                  [" A vector of strings containing Scilab instructions"
-                  " defining Scilab variables to be used inside block GUIs"
+                  " defining Scilab variables to be used inside block''s dialog box"
                   " as symbolic parameters."
                   " All valid Scilab instructions can be used and "
                   " also comments.";
