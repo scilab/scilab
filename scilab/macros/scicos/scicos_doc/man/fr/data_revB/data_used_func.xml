@@ -43,6 +43,12 @@
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='About_scicos' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='BACKLASH' type='XML'>
 <USED_FUNCTIONS>
 
@@ -342,6 +348,24 @@
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='Capacitor' type='XML'>
@@ -1918,6 +1942,12 @@ for this block we have four differents functions:
 </FILE>
 
 <FILE name='pointer_xproperty' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
   <USED_FUNCTIONS>
 
   </USED_FUNCTIONS>

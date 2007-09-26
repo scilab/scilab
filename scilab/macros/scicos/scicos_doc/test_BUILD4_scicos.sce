@@ -164,6 +164,30 @@ function tt=generate_scs_outline()
                "   </SECTION>";
                "  </CHAPTER>"
                ""
+               "  <CHAPTER eng=""Programming Scicos blocks (under construction)"" fr=""Programmation des blocs Scicos (en construction)"">"
+               "   <SUBCHAPTER eng=""Interfacing functions"" fr=""Fonctions d''interfaçage"">";
+               "   </SUBCHAPTER>";
+               "   <SUBCHAPTER eng=""C computational functions (Type 4)"" fr=""Fonctions de calcul en C (Type 4)"">";
+               "     <SCI varpath="""" name=""C_struct""></SCI>"
+               "     <SCI varpath="""" name=""C_macros""></SCI>"
+               "     <SCI varpath="""" name=""C_utils""></SCI>"
+               "   </SUBCHAPTER>";
+               "   <SUBCHAPTER eng=""Scilab computational functions (Type 5)"" fr=""Fonctions de calcul Scilab (Type 5)"">";
+               "     <SCI varpath="""" name=""sci_struct""></SCI>"
+               "     <SECTION eng=""Utilities functions"" fr=""Fonctions utilitaires"">";
+               "        <SCI varpath=""autopath"" name=""curblock""></SCI>"
+               "        <SCI varpath=""autopath"" name=""getblocklabel""></SCI>"
+               "        <SCI varpath=""autopath"" name=""getscicosvars""></SCI>"
+               "        <SCI varpath=""autopath"" name=""phase_simulation""></SCI>"
+               "        <SCI varpath=""autopath"" name=""pointer_xproperty""></SCI>"
+               "       <SCI varpath=""autopath"" name=""scicos_time""></SCI>"
+               "       <SCI varpath=""autopath"" name=""set_xproperty""></SCI>"
+               "     </SECTION>";
+               "   </SUBCHAPTER>";
+               "   <SUBCHAPTER eng=""Use of Modelica"" fr=""Utilisation de Modelica"">";
+               "   </SUBCHAPTER>";
+               "  </CHAPTER>"
+               ""
                "  <CHAPTER eng=""Batch functions"" fr=""Fonctions en ligne de commande"">"
                "    <SCI varpath=""autopath"" name=""scicos.sci""></SCI>"
                "    <SCI varpath=""autopath"" name=""scicosim.sci""></SCI>"
@@ -192,22 +216,16 @@ function tt=generate_scs_outline()
                "   </SECTION>";
                "  </CHAPTER>"
                ""
-               "  <CHAPTER eng=""Scilab built-in functions"" fr=""Fonctions utilitaires Scilab"">"
+               "  <CHAPTER eng=""Scilab Utilities functions"" fr=""Fonctions utilitaires Scilab"">"
                "    <SCI varpath=""autopath"" name=""buildouttb""></SCI>"
-               "    <SCI varpath=""autopath"" name=""curblock""></SCI>"
-               "    <SCI varpath=""autopath"" name=""getblocklabel""></SCI>"
-               "    <SCI varpath=""autopath"" name=""getscicosvars""></SCI>"
-               "    <SCI varpath=""autopath"" name=""phase_simulation""></SCI>"
-               "    <SCI varpath=""autopath"" name=""pointer_xproperty""></SCI>"
                "    <SCI varpath=""autopath"" name=""scicos_debug""></SCI>"
-               "    <SCI varpath=""autopath"" name=""scicos_time""></SCI>"
-               "    <SCI varpath=""autopath"" name=""set_xproperty""></SCI>"
-               "    <SCI varpath=""autopath"" name=""var2vec""></SCI>"
-               "    <SCI varpath=""autopath"" name=""vec2var""></SCI>"
                "    <SCI varpath=""utilpath"" name=""create_palette""></SCI>"
                "    <SCI varpath=""utilpath"" name=""get_scicos_version""></SCI>"
+               "    <SCI varpath=""autopath"" name=""var2vec""></SCI>"
+               "    <SCI varpath=""autopath"" name=""vec2var""></SCI>"
                "  </CHAPTER>"
                ""
+               "  <SCI varpath="""" name=""About_scicos""></SCI>"
                "</WHATIS>"];
 endfunction
 
@@ -1052,6 +1070,16 @@ list_of_scistruc = [opath2(1),"scicos_diagram.sci","sci";
                     opath2(1),"scicos_sim.sci","sci";];
 //**------------*/
 
+//**--program blocs --*/
+list_of_prgblk   = ["","C_struct","sci";
+                    "","C_macros","sci";
+                    "","C_utils","sci";
+                    "","sci_struct","sci";];
+//**------------*/
+
+//**-- About_scicos --*/
+list_of_about   = ["","About_scicos","sci"];
+
 //**----------------------------------------------------------**//
 
 
@@ -1091,7 +1119,9 @@ my_list = [my_listf;
            listf_of_demos;
            list_of_editor;
            listf_of_ABCD;
-           list_of_scistruc];
+           list_of_scistruc
+           list_of_prgblk
+           list_of_about];
 
 //**------------------ABCDblocks.xml generation------------------**//
 list_of_ABCDblocks=[my_list(find(my_list(:,3)=='block'),:);

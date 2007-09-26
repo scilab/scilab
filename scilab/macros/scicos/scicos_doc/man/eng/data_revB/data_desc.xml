@@ -48,6 +48,18 @@ This block, with two event inputs and a regular output, outputs +1 or
  \end{enumerate}
 </FILE>
 
+<FILE name='About_scicos' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='BACKLASH' type='LATEX'>
 The Backlash block implements a system in which a change in input
 causes an equal change in output. However, when the input changes
@@ -491,6 +503,42 @@ This block defines a tabulated function of time. Between mesh points
 block performs a linear interpolation. Outside tabulation block
 outputs last tabulated value.  User may define the tabulation of the
 function using a curve editor.  
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='Capacitor' type='LATEX'>
@@ -3165,6 +3213,18 @@ linked before simulation.
     <P>
     This function returns a vector that informs the type (algebraic or differential)
     of the continuous state variables of a block.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

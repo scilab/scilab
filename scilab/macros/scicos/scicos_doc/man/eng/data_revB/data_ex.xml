@@ -42,6 +42,11 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='About_scicos' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
 <FILE name='BACKLASH' type='XML'>
 <EXAMPLE>
 
@@ -314,6 +319,21 @@ B=[12;15;18]
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='Capacitor' type='XML'>
@@ -1631,6 +1651,11 @@ When t=2 we loop back to 0.
 </FILE>
 
 <FILE name='pointer_xproperty' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
   <EXAMPLE><![CDATA[
   ]]></EXAMPLE>
 </FILE>

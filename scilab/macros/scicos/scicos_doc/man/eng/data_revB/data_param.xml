@@ -124,6 +124,12 @@
 </PARAM>
 </FILE>
 
+<FILE name='About_scicos' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
 <FILE name='BACKLASH' type='LATEX'>
 %automatically generated, please edit
 \begin{itemize}
@@ -1892,6 +1898,24 @@
 
 </PARAM_INDENT>
 </PARAM>
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <PARAM>
+
+  </PARAM>
 </FILE>
 
 <FILE name='Capacitor' type='XML'>
@@ -7312,6 +7336,12 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
       \item 1  : a differential state.
     \end{itemize}
 \end{itemize}
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
+  <PARAM>
+
+  </PARAM>
 </FILE>
 
 <FILE name='scicos' type='LATEX'>

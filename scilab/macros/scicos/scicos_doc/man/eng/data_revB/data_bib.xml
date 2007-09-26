@@ -42,6 +42,12 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='About_scicos' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='BACKLASH' type='XML'>
 <BIBLIO>
 
@@ -316,6 +322,24 @@
 <BIBLIO>
 
 </BIBLIO>
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
 </FILE>
 
 <FILE name='Capacitor' type='XML'>
@@ -1800,6 +1824,12 @@
 </FILE>
 
 <FILE name='pointer_xproperty' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
   <BIBLIO>
 
   </BIBLIO>

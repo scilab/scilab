@@ -126,6 +126,12 @@
 </PARAM>
 </FILE>
 
+<FILE name='About_scicos' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
 <FILE name='BACKLASH' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -1921,6 +1927,24 @@
 
 </PARAM_INDENT>
 </PARAM>
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <PARAM>
+
+  </PARAM>
 </FILE>
 
 <FILE name='Capacitor' type='XML'>
@@ -7671,6 +7695,12 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
       \item 1  : un état différentiel.
     \end{itemize}
 \end{itemize}
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
+  <PARAM>
+
+  </PARAM>
 </FILE>
 
 <FILE name='scicos' type='LATEX'>

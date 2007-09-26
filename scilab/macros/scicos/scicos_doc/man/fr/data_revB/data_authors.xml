@@ -50,6 +50,12 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='About_scicos' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
+</FILE>
+
 <FILE name='BACKLASH' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Ramine Nikoukhah'>
@@ -407,6 +413,30 @@ Masoud Najafi, INRIA
 INRIA
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='Capacitor' type='XML'>
@@ -2063,6 +2093,14 @@ INRIA
 <FILE name='pointer_xproperty' type='XML'>
   <AUTHORS>
 
+  </AUTHORS>
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
   </AUTHORS>
 </FILE>
 

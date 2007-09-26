@@ -39,6 +39,11 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='About_scicos' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
 <FILE name='BACKLASH' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
@@ -286,6 +291,21 @@
 <FILE name='CURV_f' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
+</FILE>
+
+<FILE name='C_macros' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
+<FILE name='C_struct' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
+<FILE name='C_utils' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='Capacitor' type='XML'>
@@ -1698,6 +1718,11 @@
   <EXAMPLE>
 
   </EXAMPLE>
+</FILE>
+
+<FILE name='sci_struct' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='scicos' type='XML'>
