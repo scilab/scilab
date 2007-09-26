@@ -50,11 +50,17 @@ Description</A>
 </font></H3>
 
 <P>
-Scicos is a visual editor for constructing models of hybrid dynamical systems. Invoking Scicos with no argument opens up an empty Scicos window. Models can then be assembled, loaded, saved, compiled, simulated, using GUI of Scicos.  Scicos serves as an interface to the various block diagram compilers and the hybrid simulator scicosim.  
+Scicos is a visual editor for constructing models of hybrid
+dynamical systems.
 <BR>
-<P>
-The input and output arguments are useful for debugging purposes.  
-<BR>
+Invoking Scicos with no argument opens up an
+empty Scicos window. Models can then be assembled, loaded,
+saved, compiled, simulated, using GUI of Scicos.  Scicos
+serves as an interface to the various block diagram compilers
+and the hybrid simulator scicosim.
+The input and output arguments are useful for debugging
+purposes.
+
 <H3><font color="blue"><A NAME="SECTION00013000000000000000">
 Calling Sequence</A>
 </font></H3>
@@ -67,15 +73,33 @@ Parameters</A>
 </font></H3>
 
 <UL>
-<LI><b>toto :</b>
-   either a Scicos diagram structure (scs_m) or a  character string containing the path of the diagram file (.cos or .cosf extension).  If no input argument is used, an empty diagram is opened (default name Untitled).
+<LI><B>toto : </B> either a Scicos diagram structure (scs_m) or a  character
+    string containing the path of the diagram file (.cos or .cosf
+    extension).  If no input argument is used, an empty diagram is
+    opened (default name Untitled).
+
+<P>
 </LI>
-<LI><b>scs_m :</b>
-   Scicos diagram structure after edition.
+<LI><B>scs_m : </B> Scicos diagram structure after edition.
 </LI>
 </UL>
 
 <H3><font color="blue"><A NAME="SECTION00015000000000000000">
+Example</A>
+</font></H3>
+<PRE>
+// Open a new diagram 
+scicos();
+scicos
+// Load a diagram  
+scicos SCI/demos/scicos/bounce.cosf; 
+scs_m=scicos('SCI/demos/scicos/bounce.cosf'); 
+// Load a structure 
+load('mondiagr.cos'); 
+scs_m=scicos(scs_m);
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00016000000000000000">
 File content</A>
 </font></H3>
 
@@ -85,7 +109,7 @@ File content</A>
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00016000000000000000">
+<H3><font color="blue"><A NAME="SECTION00017000000000000000">
 See Also</A>
 </font></H3>
 
@@ -94,14 +118,9 @@ See Also</A>
   HREF="scicosim.htm">scicosim - Scicos (batch) simulation function (Scilab Function)</A>
 </LI>
 <LI><A NAME="tex2html6"
-  HREF="scicos_simulate.htm">scicos_simulate - Function for running scicos simulation in batch mode. (Scilab Function)</A>
+  HREF="scicos_simulate.htm">scicos_simulate - Function for running scicos simulation in batch mode (Scilab Function)</A>
 </LI>
 </UL>
-
-<H3><font color="blue"><A NAME="SECTION00017000000000000000">
-Authors</A>
-</font></H3>
-<b>Ramine Nikoukhah</b> INRIA
 
 <BR>
 

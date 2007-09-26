@@ -15,6 +15,15 @@ Scicos Documentation
 </DIV>
 <BR>
 <BR>
+<b><LI>Batch functions</b>
+<UL>
+<BR><A HREF="scicos.htm">scicos</A> - Block diagram editor and GUI for the hybrid simulator
+<BR><A HREF="scicosim.htm">scicosim</A> - Scicos (batch) simulation function
+<BR><A HREF="scicos_simulate.htm">scicos_simulate</A> - Function for running scicos simulation in batch mode
+<BR><A HREF="lincos.htm">lincos</A> - Constructs by linearization a linear state-space model from a general dynamical system described by a scicos diagram
+<BR><A HREF="steadycos.htm">steadycos</A> - Finds an equilibrium state of a general  dynamical system described by a scicos diagram
+</UL>
+<BR>
 <b><LI>Editor</b>
 <UL>
 <BR><A HREF="Menu_entries.htm">Menu_entries</A> - Editor menu entries
@@ -263,13 +272,48 @@ Scicos Documentation
 </P>
 </UL>
 <BR>
-<b><LI>Batch functions</b>
+<b><LI>Programming Scicos blocks (under construction)</b>
 <UL>
-<BR><A HREF="scicos.htm">scicos</A> - Block diagram editor and GUI for the hybrid simulator
-<BR><A HREF="scicosim.htm">scicosim</A> - Scicos (batch) simulation function
-<BR><A HREF="scicos_simulate.htm">scicos_simulate</A> - Function for running scicos simulation in batch mode.
-<BR><A HREF="lincos.htm">lincos</A> - Constructs by linearization a linear state-space model from a general dynamical system described by a scicos diagram
-<BR><A HREF="steadycos.htm">steadycos</A> - Finds an equilibrium state of a general  dynamical system described by a scicos diagram
+<BR>
+<LI>Interfacing functions
+<UL>
+</UL>
+<BR>
+<LI>C computational functions (Type 4)
+<UL>
+<BR><A HREF="C_struct.htm">C_struct</A> - Block structure
+<BR><A HREF="C_macros.htm">C_macros</A> - Utilities C macros
+<BR><A HREF="C_utils.htm">C_utils</A> - Utilities C functions
+</UL>
+<BR>
+<LI>Scilab computational functions (Type 5)
+<UL>
+<BR><A HREF="sci_struct.htm">sci_struct</A> - Block structure
+<P>
+<LI>Utilities functions
+<BR><A HREF="curblock.htm">curblock</A> - Return the current called scicos block during the simulation
+<BR><A HREF="getblocklabel.htm">getblocklabel</A> - Get the label of a scicos block
+<BR><A HREF="getscicosvars.htm">getscicosvars</A> - Supervisor utility function
+<BR><A HREF="phase_simulation.htm">phase_simulation</A> - Get the current simulation phase
+<BR><A HREF="pointer_xproperty.htm">pointer_xproperty</A> - Get the type of a continuous time state variable
+<BR><A HREF="scicos_time.htm">scicos_time</A> - Returns the current time during simulation
+<BR><A HREF="set_xproperty.htm">set_xproperty</A> - Set the type of a continuous time state variable
+</P>
+</UL>
+<BR>
+<LI>Use of Modelica
+<UL>
+</UL>
+</UL>
+<BR>
+<b><LI>Scilab Utilities functions</b>
+<UL>
+<BR><A HREF="buildouttb.htm">buildouttb</A> - Build of the sublist %cpr.state.outtb
+<BR><A HREF="scicos_debug.htm">scicos_debug</A> - Set the level of the Scicos debugging
+<BR><A HREF="create_palette.htm">create_palette</A> - Palette generator
+<BR><A HREF="get_scicos_version.htm">get_scicos_version</A> - Get the current Scicos version
+<BR><A HREF="var2vec.htm">var2vec</A> - Transform a scilab variable in a vector of double
+<BR><A HREF="vec2var.htm">vec2var</A> - Transform a vector of double in a scilab variable
 </UL>
 <BR>
 <b><LI>Scilab Data Structures</b>
@@ -296,19 +340,5 @@ Scicos Documentation
 <BR><A HREF="scicos_sim.htm">scicos_sim</A> - Define a sim structure
 </P>
 </UL>
-<BR>
-<b><LI>Scilab built-in functions</b>
-<UL>
-<BR><A HREF="buildouttb.htm">buildouttb</A> - Build of the sublist %cpr.state.outtb
-<BR><A HREF="curblock.htm">curblock</A> - Return the current called scicos block during the simulation
-<BR><A HREF="getblocklabel.htm">getblocklabel</A> - Get the label of a scicos block
-<BR><A HREF="getscicosvars.htm">getscicosvars</A> - Supervisor utility function
-<BR><A HREF="phase_simulation.htm">phase_simulation</A> - Get the current simulation phase
-<BR><A HREF="pointer_xproperty.htm">pointer_xproperty</A> - Get the type of a continuous time state variable
-<BR><A HREF="scicos_debug.htm">scicos_debug</A> - Set the level of the Scicos debugging
-<BR><A HREF="scicos_time.htm">scicos_time</A> - Returns the current time during simulation
-<BR><A HREF="set_xproperty.htm">set_xproperty</A> - Set the type of a continuous time state variable
-<BR><A HREF="var2vec.htm">var2vec</A> - Transform a scilab variable in a vector of double
-<BR><A HREF="vec2var.htm">vec2var</A> - Transform a vector of double in a scilab variable
-</UL>
+<BR><A HREF="About_scicos.htm">About_scicos</A> - About scicos...
 </body></html>
