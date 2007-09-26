@@ -15,7 +15,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,varnam,order,ZC,OutEnd,exprs]=getvalue('Set From_Workspace block parameters',..
+    [ok,varnam,Method,ZC,OutEnd,exprs]=getvalue('Set From_Workspace block parameters',..
 	['Variable name';'Interpolation Method';'Enable zero crossing(0:No, 1:Yes)?';'Output at end(0:Zero, 1:Hold, 2:Repeat)'],...
 	list('str',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
