@@ -645,6 +645,18 @@ constructing custom blocks. The dialog box associated with the block can also be
 ``Customize Mask'' operation. Finally, the mask can be removed  by the ``Remove Mask'' operation. 
 </FILE>
 
+<FILE name='Counter' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+	<P>
+	Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou d'un maximum vers un minimun.
+	</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='CurrentSensor' type='LATEX'>
 Ce bloc est inséré en série dans un circuit électrique pour mesurer le
 courant qui passe à travers. Si le courant positif {\bf entre} par le
