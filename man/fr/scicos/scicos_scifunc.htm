@@ -567,28 +567,40 @@ Contenu du fichier</A>
       disp("Stacksize increased to "+string(2*%stack(1))) //
     end    
     
-    if edited&amp;or(winsid()==curwin) then
-      // store win dims, it should only be in do_exit but not possible
-      // now
-      data_bounds=gh_current_window.children.data_bounds
+    if or(winsid()==curwin) then
       winsize=gh_current_window.figure_size;
-      winpos=gh_current_window.figure_position;
-      %curwpar=[data_bounds(:)',gh_current_window.axes_size,..
-			xget('viewport'),winsize,winpos,%zoom]
-      screensz=evstr(TCL_EvalStr('wm  maxsize .')) 
-      if min(winsize)&gt;0  then  // window is not iconified
+      axsize=gh_current_window.axes_size;
+      
+      if or(winsize &gt; axsize+21) then   // +21 is to compensate for
+		// scrollbar under windows
+		//disp(winsize,axsize)
+		window_set_size(gh_current_window,xget('viewport'))
+		drawnow();
+		show_pixmap() ;
+      end     
+      if edited then
+	// store win dims, it should only be in do_exit but not possible
+	// now
+	data_bounds=gh_current_window.children.data_bounds
+	
+	winpos=gh_current_window.figure_position;
+	%curwpar=[data_bounds(:)',gh_current_window.axes_size,..
+		  xget('viewport'),winsize,winpos,%zoom]
+	screensz=evstr(TCL_EvalStr('wm  maxsize .')) 
+	if min(winsize)&gt;0  then  // window is not iconified
           winpos=max(0,winpos-max(0,-screensz+winpos+winsize) )
           %curwpar(11:12)=winpos  // make sure window remains inside screen
-      end
-      if ~isequal(scs_m.props.wpar,%curwpar) then
-         scs_m.props.wpar=%curwpar  // keep window dimensions  
-      end
-    end    
+	end
+	if ~isequal(scs_m.props.wpar,%curwpar) then
+	  scs_m.props.wpar=%curwpar  // keep window dimensions  
+	end
+      end    
+    end
     
     
     if %scicos_navig==[] then 
       if Scicos_commands&lt;&gt;[] then
-//	    disp(Scicos_commands(1))
+	//	    disp(Scicos_commands(1))
 	execstr(Scicos_commands(1))
 	Scicos_commands(1)=[]
       end
@@ -754,10 +766,8 @@ Contenu du fichier</A>
       close_inactive_windows(inactive_windows,[])
       clearglobal inactive_windows
     end
+
   elseif Cmenu=="Leave" then
-    
-  
-    
     ok=do_save(scs_m,TMPDIR+'/BackupSave.cos') 
     if ok then  //need to save %cpr because the one in .cos cannot be
                 //used to continue simulation

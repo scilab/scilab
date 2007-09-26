@@ -50,11 +50,18 @@ Description</A>
 </font></H3>
 
 <P>
-Scicos is a visual editor for constructing models of hybrid dynamical systems. Invoking Scicos with no argument opens up an empty Scicos window. Models can then be assembled, loaded, saved, compiled, simulated, using GUI of Scicos.  Scicos serves as an interface to the various block diagram compilers and the hybrid simulator scicosim.  
+Scicos est un éditeur graphique pour construire des modèles
+de systèmes dynamiques hybrides.
 <BR>
-<P>
-The input and output arguments are useful for debugging purposes.  
-<BR>
+L'appel à Scicos sans argument ouvre une fenêtre vierge de l'éditeur.
+Les modèles peuvent alors être assemblés, chargés, sauvegardés,
+compilés, simulés en utilisant les différentes interfaces utilisateur
+graphiques (GUI) de l'éditeur.
+Scicos est en fait une interface pour la compilation et le
+simulateur 'scicosim'.
+Des arguments en entrée et en sortie de la commande scicos peuvent
+aussi être utilisées pour réaliser des opérations de débogage.
+
 <H3><font color="blue"><A NAME="SECTION00013000000000000000">
 Séquence d'appel</A>
 </font></H3>
@@ -67,15 +74,34 @@ Paramètres</A>
 </font></H3>
 
 <UL>
-<LI><b>toto :</b>
-   either a Scicos diagram structure (scs_m) or a  character string containing the path of the diagram file (.cos or .cosf extension).  If no input argument is used, an empty diagram is opened (default name Untitled).
+<LI><B>toto : </B> ce paramètre peut aussi bien être une structure de diagramme Scicos
+    (scs_m)) qu'une chaîne de caractères indiquant le chemin du fichier
+    du diagramme à charger dans l'éditeur (extension .cos ou .cosf). Si 
+    aucun argument d'entrée est utilisé, un diagramme vide est ouvert 
+    (avec un nom par défaut 'Untitled').
+
+<P>
 </LI>
-<LI><b>scs_m :</b>
-   Scicos diagram structure after edition.
+<LI><B>scs_m : </B> une structure de diagramme Scicos après édition.
 </LI>
 </UL>
 
 <H3><font color="blue"><A NAME="SECTION00015000000000000000">
+Exemple</A>
+</font></H3>
+<PRE>
+// Ouvrir un nouveau diagramme 
+scicos();
+scicos
+// Charge un diagramme  
+scicos SCI/demos/scicos/bounce.cosf; 
+scs_m=scicos('SCI/demos/scicos/bounce.cosf'); 
+// Charge une structure 
+load('mondiagr.cos'); 
+scs_m=scicos(scs_m);
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00016000000000000000">
 Contenu du fichier</A>
 </font></H3>
 
@@ -85,7 +111,7 @@ Contenu du fichier</A>
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00016000000000000000">
+<H3><font color="blue"><A NAME="SECTION00017000000000000000">
 Voir aussi</A>
 </font></H3>
 
@@ -97,11 +123,6 @@ Voir aussi</A>
   HREF="scicos_simulate.htm">scicos_simulate - Fonction pour éxécuter une simulation scicos en ligne de commmande (Fonction Scilab)</A>
 </LI>
 </UL>
-
-<H3><font color="blue"><A NAME="SECTION00017000000000000000">
-Auteurs</A>
-</font></H3>
-<b>Ramine Nikoukhah</b> INRIA
 
 <BR>
 
