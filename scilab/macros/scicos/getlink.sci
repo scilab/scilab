@@ -113,7 +113,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       port_number=k
       if op(port_number)<>0 then
           hilite_obj(kfrom)
-          message('Selected port is already connected.')
+          message(['Selected port is already connected.';..
+		   'To start a link off another link, place the cursor';..
+		   'on the split point and double click, or type l.'])
           unhilite_obj(kfrom)
         return
       end
@@ -122,7 +124,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       port_number=k
       if op(port_number)<>0 then
           hilite_obj(kfrom)
-          message('Selected port is already connected.')
+          message(['Selected port is already connected.';..
+		   'To start a link off another link, place the cursor';..
+		   'on the split point and double click, or type l.'])
           unhilite_obj(kfrom)
         return
       end
@@ -134,7 +138,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       port_number=i_ImplIndx(k)
       if impi(port_number)<>0 then
           hilite_obj(kfrom)
-          message('Selected port is already connected.')
+          message(['Selected port is already connected.';..
+		   'To start a link off another link, place the cursor';..
+		   'on the split point and double click, or type l.'])
           unhilite_obj(kfrom)
         return
       end
@@ -143,7 +149,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       port_number=k-prod(size(find(typout==1)))
       if cop(port_number)<>0 then
           hilite_obj(kfrom)
-          message('Selected port is already connected.')
+          message(['Selected port is already connected.';..
+		   'To start a link off another link, place the cursor';..
+		   'on the split point and double click, or type l.'])
           unhilite_obj(kfrom)
         return
       end
@@ -307,7 +315,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         port_number = k ;
         if ip(port_number)<>0 then
              hilite_obj(kto)
-             message('Selected port is already connected.'),
+             message(['Selected port is already connected.';..
+		   'To start a link off another link, place the cursor';..
+		   'on the split point and double click, or type l.']),
              p_size = size(gh_curwin.children.children)
              d_size = p_size(1)-o_size(1);
              if d_size > 0 then
@@ -379,7 +389,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       elseif typi==2 & k<=size(ip,'*') then //implicit "input" port
         port_number = k
         if ip(port_number)<>0 then
-           message('Selected port is already connected.'),
+           message(['Selected port is already connected.';..
+		   'To start a link off another link, place the cursor';..
+		   'on the split point and double click, or type l.']),
            p_size = size(gh_curwin.children.children)
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
@@ -411,7 +423,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         port_number=o_ImplIndx(k)  //RN: explicit outputs are excluded
                                    //in the computation of k
         if impo(port_number)<>0 then
-           message('Selected port is already connected.'),
+           message(['Selected port is already connected.';..
+		   'To start a link off another link, place the cursor';..
+		   'on the split point and double click, or type l.']),
            p_size = size(gh_curwin.children.children)
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
@@ -440,7 +454,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
 
         if cip(port_number)<>0 then
             hilite_obj(kto)
-            message('Selected port is already connected.'),
+            message(['Selected port is already connected.';..
+		   'To start a link off another link, place the cursor';..
+		   'on the split point and double click, or type l.']),
             p_size = size(gh_curwin.children.children)
             d_size = p_size(1)-o_size(1);
             if d_size > 0 then
@@ -529,7 +545,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
   nx=prod(size(xl))
 
   if from==to then
-      message('Selected port is already connected.'),
+      message(['Selected port is already connected.';..
+		   'To start a link off another link, place the cursor';..
+		   'on the split point and double click, or type l.']),
       p_size = size(gh_curwin.children.children)
       d_size = p_size(1)-o_size(1);
       if d_size > 0 then
