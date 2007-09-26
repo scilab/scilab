@@ -2447,7 +2447,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   "  -- {Background} : Un vecteur avec deux entrées: la couleur d''arrière plan et"
                   "                   la couleur d''avant plan. La valeur par défaut est [8,1].";
                   " ";
-                  "  -- {scicos_link}       : Les couleurs par défauts pour les liens réguleurs et les"
+                  "  -- {link}       : Les couleurs par défauts pour les liens réguleurs et les"
                   "                   liens d''activations. Ces couleurs sont utilisées uniquement";
                   "                   pour de nouvelles constructions. Ces choix n''affectent pas";
                   "                   les liens déjà présent sur le diagramme.";
