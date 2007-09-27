@@ -366,7 +366,6 @@ includes/getmodules.h \
 includes/callinter.h \
 includes/InitScilab.h \
 includes/sciquit.h \
-includes/msg_errors.h \
 includes/gw_core.h \
 includes/stack-c.h \
 includes/version.h \

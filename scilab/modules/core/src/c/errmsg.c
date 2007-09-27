@@ -7,7 +7,6 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "msg_errors.h"
 #include "msgstore.h"
 #include "inffic.h"
 #include "msgout.h"

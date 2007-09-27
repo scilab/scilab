@@ -1029,10 +1029,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\msg_errors.h"
-				>
-			</File>
-			<File
 				RelativePath=".\msgout.h"
 				>
 			</File>
