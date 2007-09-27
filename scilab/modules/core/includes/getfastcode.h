@@ -6,8 +6,9 @@
 #define __GETFASTCODE_H__
 
 #include "machine.h"
+
 /**
-*   converts from ascii to Scilab internal coding 
+* converts from ascii to Scilab internal coding 
 * @param n integer, length of the string to be converted integer
 * @param line: integer array (where Scilab coded string are stored ) 
 * @param string: string 
