@@ -183,9 +183,9 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 			
 			// secondPoint = end - SIN60.dir + COS60.ortho
 			// thirdPoint = end - SIN60.dir - cos60.ortho
-			orthoDir.scalarMult(COS60 * arrowPixelSize);
+			orthoDir.scalarMultSelf(COS60 * arrowPixelSize);
 			
-			Vector3D projOnDir = endPixCoords[i].substract(segmentDir.getScalarMult(SIN60 * arrowPixelSize));
+			Vector3D projOnDir = endPixCoords[i].substract(segmentDir.scalarMult(SIN60 * arrowPixelSize));
 			Vector3D secondPoint = projOnDir.add(orthoDir);
 			Vector3D thirdPoint = projOnDir.substract(orthoDir);
 			

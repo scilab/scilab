@@ -11,7 +11,7 @@
 
 
 #include "../DrawableObjectFactory.h"
-#include "DrawablePolyline.h"
+#include "ConcreteDrawablePolyline.hxx"
 
 namespace sciGraphics
 {
@@ -24,7 +24,7 @@ public:
   /**
    * Create a new drawer from the drawed object.
    */
-  DrawableObject * create( void ) ;
+  virtual DrawableObject * create( void ) ;
 
   /**
    * Update the drawer of the drawed object.
@@ -36,9 +36,9 @@ protected:
 
   /**
    * Create the drawing strategies.
-   * @param arc Object on which to create the strategies
+   * @param polyline Object on which to create the strategies
    */
-  void setStrategies( DrawablePolyline * polyline ) ;
+  void setStrategies( ConcreteDrawablePolyline * polyline ) ;
 
 } ;
 

@@ -10,32 +10,32 @@
 
 namespace sciGraphics
 {
-  // cross reference
-  class DrawableRectangleBridge ;
+// cross reference
+class DrawableRectangleBridge ;
 
-  class DrawRectangleStrategy
-  {
-  public:
+class DrawRectangleStrategy
+{
+public:
 
-    DrawRectangleStrategy( DrawableRectangleBridge * drawer ) { m_pDrawed = drawer ; }
-    
-    virtual ~DrawRectangleStrategy( void ) {}
+  DrawRectangleStrategy( DrawableRectangleBridge * drawer ) { m_pDrawed = drawer ; }
+  
+  virtual ~DrawRectangleStrategy( void ) {}
 
-    /**
-     * Main algorithm
-     */
-    virtual void drawRectangle( void ) = 0;
+  /**
+   * Main algorithm
+   */
+  virtual void drawRectangle( void ) = 0;
 
-    /**
-     * Call the display list of an object
-     */
-    virtual void show( void ) = 0;
+  /**
+   * Call the display list of an object
+   */
+  virtual void show( void ) = 0;
 
-  protected:
+protected:
 
-    DrawableRectangleBridge * m_pDrawed ;
+  DrawableRectangleBridge * m_pDrawed ;
 
-  };
+};
   
 
 }

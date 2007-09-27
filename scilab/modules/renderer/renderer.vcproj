@@ -734,6 +734,10 @@
 				Name="TextDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\textDrawing\ConcreteDrawableText.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\textDrawing\DrawableText.cpp"
 					>
 				</File>
@@ -746,11 +750,23 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\DrawableTextGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\textDrawing\DrawableTextJavaMapper.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\DrawableTextJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\StandardTextDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\StandardTextDrawerJoGL.cpp"
 					>
 				</File>
 			</Filter>
@@ -866,10 +882,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\DrawingBridge.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\rectangleDrawing\DrawRectangleStrategy.h"
 				>
 			</File>
 			<File
@@ -1128,6 +1140,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\rectangleDrawing\DrawRectangleStrategy.h"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\RectangleFillDrawerGL.hxx"
 					>
 				</File>
@@ -1324,6 +1340,10 @@
 				Name="TextDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\textDrawing\ConcreteDrawableText.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\textDrawing\DrawableText.h"
 					>
 				</File>
@@ -1340,11 +1360,31 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\DrawableTextGL.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\textDrawing\DrawableTextJavaMapper.hxx"
 					>
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\DrawableTextJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawTextBoxStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\DrawTextContentStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\StandardTextDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\StandardTextDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

@@ -75,6 +75,51 @@ public class Vector3D {
 		return zCoord;
 	}
 	
+	/**
+	 * @return Vector X coordinates as float
+	 */
+	public float getXf() {
+		return (float) xCoord;
+	}
+	
+	/**
+	 * @return Vector Y coordinates as float
+	 */
+	public float getYf() {
+		return (float) yCoord;
+	}
+	
+	/**
+	 * @return Vector Z coordinates as float
+	 */
+	public float getZf() {
+		return (float) zCoord;
+	}
+	
+	/**
+	 * Specify a new X coordinate
+	 * @param xCoord new coordinate
+	 */
+	public void setX(double xCoord) {
+		this.xCoord = xCoord;
+	}
+	
+	/**
+	 * Specify a new Y coordinate
+	 * @param yCoord new coordinate
+	 */
+	public void setY(double yCoord) {
+		this.yCoord = yCoord;
+	}
+	
+	/**
+	 * Specify a new Z coordinate
+	 * @param zCoord new coordinate
+	 */
+	public void setZ(double zCoord) {
+		this.zCoord = zCoord;
+	}
+	
 	
 	/**
 	 * Set new coordinates for the vector
@@ -175,7 +220,7 @@ public class Vector3D {
 	 * @param scalar scalar to use
 	 * @return new vector result of mutiplying this by a scalar
 	 */
-	public Vector3D getScalarMult(double scalar) {
+	public Vector3D scalarMult(double scalar) {
 		return new Vector3D(scalar * xCoord, scalar * yCoord, scalar * zCoord);
 	}
 	
@@ -183,7 +228,7 @@ public class Vector3D {
 	 * Multiply this vector by a scalar.
 	 * @param scalar scalar to use
 	 */
-	public void scalarMult(double scalar) {
+	public void scalarMultSelf(double scalar) {
 		xCoord = scalar * xCoord;
 		yCoord = scalar * yCoord;
 		zCoord = scalar * zCoord;
@@ -218,9 +263,45 @@ public class Vector3D {
 	 * Print the vector
 	 * @return text of the vector
 	 */
+	@Override
 	public String toString() {
 		final String comma = ", ";
 		return "[" + xCoord + comma + yCoord + comma + zCoord + "]";
+	}
+	
+	/**
+	 * @return an other vector copy of this one.
+	 */
+	public Vector3D getCopy() {
+		return new Vector3D(xCoord, yCoord, zCoord);
+	}
+	
+	/**
+	 * Compute the rotation of this vector (as a point) around an axis.
+	 * @param axisCenter point on the axis
+	 * @param axisDir direction of the axis
+	 * @param angle rotation angle in radian
+	 * @return new vector, result of the rotation (as a point)
+	 */
+	public Vector3D rotate(Vector3D axisCenter, Vector3D axisDir, double angle) {
+		axisDir.normalize();
+		
+		// Olinde Rodrigues formula
+		// V = cosa.U + (1-cosa)(U.N).N + sina.N^U
+		// where V is the result, U the intial point and N the axes
+		// which is supposed to be centered on the origin.
+		// For us we need to translate to the axes center A.
+		// in our case: P' = A + cosa.AP + (1-cosa).(AP.N).N + sina.N.AP
+		// where P is the point to rotate and P' the resulting point
+		Vector3D ap = this.substract(axisCenter);
+		Vector3D firstPart = ap.scalarMult(Math.cos(angle));
+		Vector3D secondPart = axisDir.scalarMult(ap.dotProduct(axisDir));
+		secondPart.scalarMultSelf(1.0 - Math.cos(angle)); // we got the second part of the formula
+		Vector3D thirdPart = axisDir.crossProduct(ap).scalarMult(Math.sin(angle));
+		
+		// sum all
+		return axisCenter.add(firstPart.add(secondPart.add(thirdPart)));
+		
 	}
 	
 }

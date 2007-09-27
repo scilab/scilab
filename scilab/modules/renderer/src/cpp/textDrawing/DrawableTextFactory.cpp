@@ -7,8 +7,10 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableTextFactory.h"
-#include "DrawableText.h"
+#include "ConcreteDrawableText.hxx"
 #include "DrawableTextBridgeFactory.hxx"
+#include "StandardTextDrawerJoGL.hxx"
+#include "getHandleDrawer.h"
 
 namespace sciGraphics
 {
@@ -16,16 +18,29 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableTextFactory::create( void )
 {
-  DrawableText * newText = new DrawableText( m_pDrawed ) ;
+  ConcreteDrawableText * newText = new ConcreteDrawableText( m_pDrawed ) ;
   DrawableTextBridgeFactory fact;
   fact.setDrawedText(newText);
   newText->setDrawableImp(fact.create());
+  setStrategies(newText);
+
   return newText;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableTextFactory::update( void )
 {
-  // nothing for now
+  setStrategies(dynamic_cast<ConcreteDrawableText *>(getTextDrawer(m_pDrawed)));
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableTextFactory::setStrategies(ConcreteDrawableText * text)
+{
+  text->removeTextDrawingStrategy();
+  text->removeBoxDrawingStrategies();
+
+
+  text->setTextDrawingStrategy(new StandardTextDrawerJoGL(text));
+
+
 }
 /*------------------------------------------------------------------------------------------*/
 

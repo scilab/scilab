@@ -31,70 +31,70 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawablePolylineFactory::create( void )
 {
-  DrawablePolyline * newPoly = new ConcreteDrawablePolyline( m_pDrawed ) ;
+  ConcreteDrawablePolyline * newPoly = new ConcreteDrawablePolyline( m_pDrawed ) ;
   DrawablePolylineBridgeFactory imp ;
   imp.setDrawedPolyline( newPoly ) ;
   newPoly->setDrawableImp( imp.create() ) ;
+  setStrategies(newPoly);
 
   return newPoly ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolylineFactory::update( void )
 {
-  setStrategies(getPolylineDrawer(m_pDrawed));
+  setStrategies(dynamic_cast<ConcreteDrawablePolyline *>(getPolylineDrawer(m_pDrawed)));
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawablePolylineFactory::setStrategies( DrawablePolyline * polyline )
+void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline )
 {
-  ConcreteDrawablePolyline * cPolyline = dynamic_cast<ConcreteDrawablePolyline *>(polyline);
   sciPointObj * pPolyline = polyline->getDrawedObject();
 
-  cPolyline->removeDecompositionStrategy();
-  cPolyline->removeDrawingStrategies();
+  polyline->removeDecompositionStrategy();
+  polyline->removeDrawingStrategies();
 
   if (sciGetPolylineStyle(pPolyline) == 5)
   {
-    cPolyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
+    polyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
   }
   else if (sciGetIsFilled(pPolyline))
   {
     if (sciGetIsColorInterpolated(pPolyline) && sciGetPolylineStyle(pPolyline) != 2)
     {
-      cPolyline->addDrawingStrategy(new PolylineInterpColorDrawerJoGL(polyline));
+      polyline->addDrawingStrategy(new PolylineInterpColorDrawerJoGL(polyline));
     }
     else
     {
-      cPolyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
+      polyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
     }
   }
 
   if (sciGetPolylineStyle(pPolyline) == 2)
   {
-    cPolyline->setDecompositionStrategy(new StairCaseDecomposition(polyline));
+    polyline->setDecompositionStrategy(new StairCaseDecomposition(polyline));
   }
   else
   {
-    cPolyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
+    polyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
   }
 
   if (sciGetPolylineStyle(pPolyline) == 4)
   {
-    cPolyline->addDrawingStrategy(new PolylineArrowDrawerJoGL(polyline));
+    polyline->addDrawingStrategy(new PolylineArrowDrawerJoGL(polyline));
   }
 
   if (sciGetPolylineStyle(pPolyline) == 3 || sciGetPolylineStyle(pPolyline) == 6)
   {
-    cPolyline->addDrawingStrategy(new PolylineBarDrawerJoGL(polyline));
+    polyline->addDrawingStrategy(new PolylineBarDrawerJoGL(polyline));
   }
 
   if (sciGetIsLine(pPolyline))
   {
-    cPolyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
+    polyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
   }
 
   if (sciGetIsMark(pPolyline))
   {
-    cPolyline->addDrawingStrategy(new PolylineMarkDrawerJoGL(polyline));
+    polyline->addDrawingStrategy(new PolylineMarkDrawerJoGL(polyline));
   }
   
 }

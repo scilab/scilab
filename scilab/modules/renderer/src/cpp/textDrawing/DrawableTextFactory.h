@@ -11,6 +11,7 @@
 
 
 #include "../DrawableObjectFactory.h"
+#include "ConcreteDrawableText.hxx"
 
 namespace sciGraphics
 {
@@ -23,13 +24,21 @@ public:
   /**
    * Create a new drawer from the drawed object.
    */
-  DrawableObject * create( void ) ;
+  virtual DrawableObject * create( void ) ;
 
   /**
    * Update the drawer of the drawed object.
    * To be used when an object was deeply modified and to avoid to create it again completely.
    */
   virtual void update( void ) ;
+
+protected:
+
+  /**
+   * Create the drawing strategies.
+   * @param text Object on which to create the strategies
+   */
+  void setStrategies(ConcreteDrawableText * text) ;
 
 } ;
 

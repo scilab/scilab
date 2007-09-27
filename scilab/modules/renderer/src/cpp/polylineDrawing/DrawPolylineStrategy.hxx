@@ -11,33 +11,33 @@
 namespace sciGraphics
 {
 
-  class DrawablePolyline;
+class DrawablePolyline;
 
-  class DrawPolylineStrategy
-  {
+class DrawPolylineStrategy
+{
 
-  public:
+public:
 
-    DrawPolylineStrategy( DrawablePolyline * polyline ) { m_pDrawed = polyline ; }
+  DrawPolylineStrategy( DrawablePolyline * polyline ) { m_pDrawed = polyline ; }
 
-    virtual ~DrawPolylineStrategy( void ) {m_pDrawed = NULL;}
+  virtual ~DrawPolylineStrategy( void ) {m_pDrawed = NULL;}
 
 
-    /**
-    * Main algorithm
-    */
-    virtual void drawPolyline( void ) = 0 ;
+  /**
+   * Main algorithm
+   */
+  virtual void drawPolyline( void ) = 0 ;
 
-    /**
-    * Call the display list of an object
-    */
-    virtual void showPolyline( void ) = 0;
+  /**
+   * Call the display list of an object
+   */
+  virtual void showPolyline( void ) = 0;
 
-  protected:
+protected:
 
-    DrawablePolyline * m_pDrawed;
+  DrawablePolyline * m_pDrawed;
 
-  };
+};
 
 }
 

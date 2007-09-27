@@ -1,0 +1,92 @@
+/*------------------------------------------------------------------------*/
+/* file: ConcreteDrawableText.hxx                                         */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Class containing implementation of driver independent           */
+/*        algorithms                                                      */
+/*------------------------------------------------------------------------*/
+
+#ifndef _CONCRETE_DRAWABLE_TEXT_H_
+#define _CONCRETE_DRAWABLE_TEXT_H_
+
+#include <list>
+
+#include "DrawableText.h"
+#include "DrawTextBoxStrategy.hxx"
+#include "DrawTextContentStrategy.hxx"
+
+namespace sciGraphics
+{
+
+class ConcreteDrawableText : public DrawableText
+{
+public:
+
+  ConcreteDrawableText(sciPointObj * pObj);
+
+  virtual ~ConcreteDrawableText(void);
+
+  /**
+   * Get the 4 corners of the text bounding rectangle (the text lies within a plane).
+   * Used to draw the rectangle around the text.
+   */
+  virtual void getBoundingRectangle(double corner1[3], double corner2[3], double corner3[3], double corner4[3]);
+
+  /**
+   * Get the bounding box of the displayed text. Used to detect overlapping text.
+   */
+  virtual void getScreenBoundingBox(int * xPos, int * yPos, int * width, int * height);
+
+  /**
+   * Add a new strategy to draw the bounding rectangle of text.
+   */
+  void addBoxDrawingStrategy(DrawTextBoxStrategy * strategy);
+
+  /**
+   * Remove all strategies used to draw the bounding rectangle of text.
+   */
+  void removeBoxDrawingStrategies(void);
+
+  /**
+   * Set the strategy to use for drawing text.
+   */
+  void setTextDrawingStrategy(DrawTextContentStrategy * strategy);
+
+  /**
+   * Delete the strategy used for drawing text.
+   */
+  void removeTextDrawingStrategy(void);
+
+protected:
+
+  /*---------------------------------------------------------------------------------*/
+  /**
+   * Draw the rectangle surrounding the text.
+   */
+  virtual void drawBox(void);
+
+  /**
+   * Draw the text of the object.
+   */
+  virtual void drawTextContent(void);
+
+  /**
+   * Display the rectangle surrounding the text using display lists.
+   */
+  virtual void showBox(void);
+
+  /**
+   * Display the text using display lists.
+   */
+  virtual void showTextContent(void);
+  /*---------------------------------------------------------------------------------*/
+  DrawTextContentStrategy * m_pDrawingTextStrategy;
+  std::list<DrawTextBoxStrategy *> m_oDrawingBoxStrategies;
+  /*---------------------------------------------------------------------------------*/
+
+
+};
+
+}
+
+#endif /* _CONCRETE_DRAWABLE_TEXT_H_ */

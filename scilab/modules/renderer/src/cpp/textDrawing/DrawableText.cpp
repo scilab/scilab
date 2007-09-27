@@ -20,13 +20,18 @@ void DrawableText::draw( void )
     return ;
   }
   clip();
+  //drawBox();
+  drawTextContent();
   unClip();
   endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableText::show( void )
 {
-  draw() ;
+  clip();
+  //showBox();
+  showTextContent();
+  unClip();
 }
 /*------------------------------------------------------------------------------------------*/
 

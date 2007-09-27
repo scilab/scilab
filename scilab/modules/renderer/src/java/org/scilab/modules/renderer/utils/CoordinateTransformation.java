@@ -10,7 +10,6 @@
 package org.scilab.modules.renderer.utils;
 
 import javax.media.opengl.GL;
-import javax.media.opengl.glu.GLU;
 
 import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;

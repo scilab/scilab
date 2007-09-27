@@ -21,6 +21,19 @@ public:
 
   DrawableText( sciPointObj * pObj ) : DrawableClippedObject( pObj ) {}
 
+  virtual ~DrawableText( void ) {}
+
+  /**
+   * Get the 4 corners of the text bounding rectangle (the text lies within a plane).
+   * Used to draw the rectangle around the text.
+   */
+  virtual void getBoundingRectangle(double corner1[3], double corner2[3], double corner3[3], double corner4[3]) = 0;
+
+  /**
+   * Get the bounding box of the displayed text in pixels. Used to detect overlapping text.
+   */
+  virtual void getScreenBoundingBox(int * xPos, int * yPos, int * width, int * height) = 0;
+
 protected:
 
   /**
@@ -34,6 +47,26 @@ protected:
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
   virtual void show( void ) ;
+
+  /**
+   * Draw the rectangle surrounding the text.
+   */
+  virtual void drawBox(void) = 0;
+
+  /**
+   * Draw the text of the object.
+   */
+  virtual void drawTextContent(void) = 0;
+
+  /**
+   * Display the rectangle surrounding the text using display lists.
+   */
+  virtual void showBox(void) = 0;
+
+  /**
+   * Display the text using display lists.
+   */
+  virtual void showTextContent(void) = 0;
 
 
 } ;

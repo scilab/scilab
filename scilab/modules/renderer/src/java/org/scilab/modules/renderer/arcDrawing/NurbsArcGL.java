@@ -127,11 +127,11 @@ public class NurbsArcGL {
 		
 		// the three points origin, baseMult and the middle control points are aligned
 		// and cp = O + baseMiddle + height * dir, where dir is the direction between the three
-		Vector3D controlPoint = baseMiddle.add(baseMiddle.getNormalized().getScalarMult(height));
+		Vector3D controlPoint = baseMiddle.add(baseMiddle.getNormalized().scalarMult(height));
 		
 		
 		// the wheight of the middle point is cos(angle / 2.0), so
-		controlPoint = controlPoint.getScalarMult(Math.cos(sweepAngle / 2.0));
+		controlPoint = controlPoint.scalarMult(Math.cos(sweepAngle / 2.0));
 		
 		float[] controlPoints = {(float) Math.cos(startAngle), (float) Math.sin(startAngle), 0.0f, 1.0f,
 								 (float) controlPoint.getX(), (float) controlPoint.getY(),

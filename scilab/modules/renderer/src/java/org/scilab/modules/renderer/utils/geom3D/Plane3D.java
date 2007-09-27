@@ -140,7 +140,7 @@ public class Plane3D {
 	}
 	
 	/**
-	 * Set plane equation by knowing its normal and a poinr on the plane
+	 * Set plane equation by knowing its normal and a point on the plane
 	 * @param point point on the plane
 	 * @param normal normal of the plane
 	 */
