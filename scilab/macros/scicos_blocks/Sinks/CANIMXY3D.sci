@@ -6,7 +6,7 @@ select job
 case 'plot' then
   standard_draw(arg1)
 case 'getinputs' then
-  [x,y,typ]=standard_inputs(o)
+  [x,y,typ]=standard_inputs(arg1)
 case 'getoutputs' then
   x=[];y=[];typ=[];
 case 'getorigin' then
