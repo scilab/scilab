@@ -1,0 +1,434 @@
+
+/*
+
+Copyright 2007 INRIA
+
+Author : Sylvestre Ledru
+
+This software is a computer program whose purpose is to hide the complexity
+of accessing Java objects/methods from C++ code.
+
+This software is governed by the CeCILL-B license under French law and
+abiding by the rules of distribution of free software.  You can  use, 
+modify and/ or redistribute the software under the terms of the CeCILL-B
+license as circulated by CEA, CNRS and INRIA at the following URL
+"http://www.cecill.info". 
+
+As a counterpart to the access to the source code and  rights to copy,
+modify and redistribute granted by the license, users are provided only
+with a limited warranty  and the software's author,  the holder of the
+economic rights,  and the successive licensors  have only  limited
+liability. 
+
+In this respect, the user's attention is drawn to the risks associated
+with loading,  using,  modifying and/or developing or reproducing the
+software by the user in light of its specific status of free software,
+that may mean  that it is complicated to manipulate,  and  that  also
+therefore means  that it is reserved for developers  and  experienced
+professionals having in-depth computer knowledge. Users are therefore
+encouraged to load and test the software's suitability as regards their
+requirements in conditions enabling the security of their systems and/or 
+data to be ensured and,  more generally, to use and operate it in the 
+same conditions as regards security. 
+
+The fact that you are presently reading this means that you have had
+knowledge of the CeCILL-B license and that you accept its terms.
+*/
+#include "StandardTextDrawerGL.hxx"
+
+#include <string>
+#include <iostream>
+#include <stdlib.h>
+#include <jni.h>
+
+namespace org_scilab_modules_renderer_textDrawing {
+
+// Returns the current env
+
+JNIEnv * StandardTextDrawerGL::getCurrentEnv() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread((void **) &curEnv, NULL);
+return curEnv;
+}
+// Destructor
+
+StandardTextDrawerGL::~StandardTextDrawerGL() {
+JNIEnv * curEnv = NULL;
+this->jvm->AttachCurrentThread((void **) &curEnv, NULL);
+
+curEnv->DeleteGlobalRef(this->instance);
+curEnv->DeleteGlobalRef(this->instanceClass);
+}
+
+// Constructors
+
+StandardTextDrawerGL::StandardTextDrawerGL(JavaVM * jvm_) {
+jmethodID constructObject = NULL ;
+jobject localInstance ;
+jclass localClass ;
+const std::string className="org/scilab/modules/renderer/textDrawing/StandardTextDrawerGL";
+const std::string construct="<init>";
+const std::string param="()V";
+jvm=jvm_;
+
+JNIEnv * curEnv = getCurrentEnv();
+
+localClass = curEnv->FindClass( className.c_str() ) ;
+if (localClass == NULL) {
+std::cerr << "Could not get the Class " << className <<  std::endl;
+exit(EXIT_FAILURE);
+}
+
+this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass) ;
+if (this->instanceClass == NULL) {
+std::cerr << "Could not create a Global Ref of " << className <<  std::endl;
+exit(EXIT_FAILURE);
+}
+
+constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
+if(constructObject == NULL){
+std::cerr << "Could not retrieve the constructor of the class " << className << " with the profile : " << construct << param << std::endl;
+exit(EXIT_FAILURE);
+}
+
+localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
+if(localInstance == NULL){
+std::cerr << "Could not instance the object " << className << " with the constructor : " << construct << param << std::endl;
+exit(EXIT_FAILURE);
+}
+ 
+this->instance = curEnv->NewGlobalRef(localInstance) ;
+if(this->instance == NULL){
+std::cerr << "Could not create a new global ref of " << className << std::endl;
+exit(EXIT_FAILURE);
+}
+                /* Methods ID set to NULL */
+voiddisplayID=NULL; 
+voidinitializeDrawingjintID=NULL; 
+voidendDrawingID=NULL; 
+voidshowjintID=NULL; 
+voiddestroyjintID=NULL; 
+voidsetFigureIndexjintID=NULL; 
+voidsetTextParametersjintjintjintjdoubleID=NULL; 
+voidsetTextContentjstringjintjintID=NULL; 
+voiddrawTextContentjdoublejdoublejdoubleID=NULL; 
+jdoubleArraygetBoundingRectangleID=NULL; 
+jintArraygetScreenBoundingBoxID=NULL; 
+
+
+}
+
+StandardTextDrawerGL::StandardTextDrawerGL(JavaVM * jvm_, jobject JObj) {
+        jvm=jvm_;
+
+        JNIEnv * curEnv = getCurrentEnv();
+
+        this->instanceClass = (jclass) curEnv->NewGlobalRef(curEnv->GetObjectClass(JObj));
+        if (this->instanceClass == NULL) {
+               std::cerr << "Could not create a Global Ref of " << this->instanceClass <<  std::endl;
+               exit(EXIT_FAILURE);
+        }
+
+        this->instance = curEnv->NewGlobalRef(JObj) ;
+        if(this->instance == NULL){
+               std::cerr << "Could not create a new global ref of " << this->instanceClass << std::endl;
+               exit(EXIT_FAILURE);
+        }
+        /* Methods ID set to NULL */
+        voiddisplayID=NULL; 
+voidinitializeDrawingjintID=NULL; 
+voidendDrawingID=NULL; 
+voidshowjintID=NULL; 
+voiddestroyjintID=NULL; 
+voidsetFigureIndexjintID=NULL; 
+voidsetTextParametersjintjintjintjdoubleID=NULL; 
+voidsetTextContentjstringjintjintID=NULL; 
+voiddrawTextContentjdoublejdoublejdoubleID=NULL; 
+jdoubleArraygetBoundingRectangleID=NULL; 
+jintArraygetScreenBoundingBoxID=NULL; 
+
+
+}
+
+// Generic methods
+
+
+void StandardTextDrawerGL::synchronize() {
+if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
+std::cerr << "Fail to enter monitor." << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+
+
+void StandardTextDrawerGL::endSynchronize() {
+if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
+std::cerr << "Fail to exit monitor." << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+
+// Method(s)
+
+void StandardTextDrawerGL::display (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voiddisplayID == NULL)
+{
+this->voiddisplayID = curEnv->GetMethodID(this->instanceClass, "display", "()V" ) ;
+if (this->voiddisplayID == NULL) {
+std::cerr << "Could not access to the method display" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voiddisplayID );
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::initializeDrawing (long figureIndex){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidinitializeDrawingjintID == NULL)
+{
+this->voidinitializeDrawingjintID = curEnv->GetMethodID(this->instanceClass, "initializeDrawing", "(I)V" ) ;
+if (this->voidinitializeDrawingjintID == NULL) {
+std::cerr << "Could not access to the method initializeDrawing" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::endDrawing (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidendDrawingID == NULL)
+{
+this->voidendDrawingID = curEnv->GetMethodID(this->instanceClass, "endDrawing", "()V" ) ;
+if (this->voidendDrawingID == NULL) {
+std::cerr << "Could not access to the method endDrawing" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidendDrawingID );
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::show (long figureIndex){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidshowjintID == NULL)
+{
+this->voidshowjintID = curEnv->GetMethodID(this->instanceClass, "show", "(I)V" ) ;
+if (this->voidshowjintID == NULL) {
+std::cerr << "Could not access to the method show" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidshowjintID ,figureIndex);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::destroy (long parentFigureIndex){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voiddestroyjintID == NULL)
+{
+this->voiddestroyjintID = curEnv->GetMethodID(this->instanceClass, "destroy", "(I)V" ) ;
+if (this->voiddestroyjintID == NULL) {
+std::cerr << "Could not access to the method destroy" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::setFigureIndex (long figureIndex){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidsetFigureIndexjintID == NULL)
+{
+this->voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
+if (this->voidsetFigureIndexjintID == NULL) {
+std::cerr << "Could not access to the method setFigureIndex" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidsetTextParametersjintjintjintjdoubleID == NULL)
+{
+this->voidsetTextParametersjintjintjintjdoubleID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIID)V" ) ;
+if (this->voidsetTextParametersjintjintjintjdoubleID == NULL) {
+std::cerr << "Could not access to the method setTextParameters" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoubleID ,textAlignment, color, fontStyle, fontSize);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::setTextContent (char * text, long nbRow, long nbCol){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidsetTextContentjstringjintjintID == NULL)
+{
+this->voidsetTextContentjstringjintjintID = curEnv->GetMethodID(this->instanceClass, "setTextContent", "(Ljava/lang/String;II)V" ) ;
+if (this->voidsetTextContentjstringjintjintID == NULL) {
+std::cerr << "Could not access to the method setTextContent" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+jstring text_ = curEnv->NewStringUTF( text );
+
+  curEnv->CallVoidMethod( this->instance, voidsetTextContentjstringjintjintID ,text_, nbRow, nbCol);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::drawTextContent (double centerX, double centerY, double centerZ){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voiddrawTextContentjdoublejdoublejdoubleID == NULL)
+{
+this->voiddrawTextContentjdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "drawTextContent", "(DDD)V" ) ;
+if (this->voiddrawTextContentjdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method drawTextContent" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voiddrawTextContentjdoublejdoublejdoubleID ,centerX, centerY, centerZ);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+double * StandardTextDrawerGL::getBoundingRectangle (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->jdoubleArraygetBoundingRectangleID == NULL)
+{
+this->jdoubleArraygetBoundingRectangleID = curEnv->GetMethodID(this->instanceClass, "getBoundingRectangle", "()[D" ) ;
+if (this->jdoubleArraygetBoundingRectangleID == NULL) {
+std::cerr << "Could not access to the method getBoundingRectangle" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+ jdoubleArray res =  (jdoubleArray) curEnv->CallObjectMethod( this->instance, jdoubleArraygetBoundingRectangleID );
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jdouble *resultsArray = (jdouble *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+double * myArray= new double[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
+
+}
+
+long * StandardTextDrawerGL::getScreenBoundingBox (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->jintArraygetScreenBoundingBoxID == NULL)
+{
+this->jintArraygetScreenBoundingBoxID = curEnv->GetMethodID(this->instanceClass, "getScreenBoundingBox", "()[I" ) ;
+if (this->jintArraygetScreenBoundingBoxID == NULL) {
+std::cerr << "Could not access to the method getScreenBoundingBox" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+ jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArraygetScreenBoundingBoxID );
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
+
+}
+
+}

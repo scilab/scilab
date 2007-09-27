@@ -9,7 +9,7 @@
 #define _STANDARD_TEXT_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-//#include "StandardTextDrawerGL.hxx"
+#include "StandardTextDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -37,7 +37,7 @@ public:
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for rectangle text drawer
-  virtual void setTextParameters(int textAlignement, int color, int fontStyle, double fontSize);
+  virtual void setTextParameters(int textAlignment, int color, int fontStyle, double fontSize);
 
   virtual void setTextContent(const char text[], int nbRow, int nbCol);
 
@@ -53,7 +53,7 @@ private:
   /**
    * Giws generated wrapper.
    */
-  //org_scilab_modules_renderer_textDrawing::StandardTextDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_textDrawing::StandardTextDrawerGL * m_pJavaObject;
 
 
 };
