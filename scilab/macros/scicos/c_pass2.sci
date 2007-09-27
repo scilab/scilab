@@ -1382,7 +1382,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     m=maxi(find(outptr<=j))
     n=j-outptr(m)+1
     nm=bllst(m).out(n)
-    if nm<1 then 
+    if nm<1 then
       under_connection(corinv(m),n,nm,-1,0,0),ok=%f,return,
     end
     nm2=bllst(m).out2(n)
@@ -1394,6 +1394,26 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     lnktyp($+1)=bllst(m).outtyp(n);
     outlnk(j)=maxi(outlnk)+1
   end
+
+  //store unconnected inputs, if any, at the end of outtb
+  unco=find(inplnk==0);
+  for j=unco
+    m=maxi(find(inpptr<=j))
+    n=j-inpptr(m)+1
+    nm=bllst(m).in(n)
+    if nm<1 then 
+     under_connection(corinv(m),n,nm,-2,0,0),ok=%f,return,
+    end
+    nm2=bllst(m).in2(n)
+    if nm2<1 then
+     under_connection(corinv(m),n,nm2,-2,0,0),ok=%f,return,
+    end
+    lnksz($+1,1)=bllst(m).in(n);
+    lnksz($,2)=bllst(m).in2(n);
+    lnktyp($+1)=bllst(m).intyp(n);
+    inplnk(j)=maxi([inplnk;maxi(outlnk)])+1
+  end
+
 endfunction
 
 function [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
@@ -1991,19 +2011,22 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
 // path_in  : Path of the "to block" in scs_m
 //!
 
-  if %scicos_debug_gr then
-    disp("c_pass2 : under_connection...")
-  end
-
   //** save the current figure handle
   gh_wins = gcf();
 
   if path_in==-1 then
-    //hilite_obj(scs_m.objs(path_out));
     hilite_obj(path_out);
     message(['One of this block''s outputs has negative size';
 	     'Please check.'])
-    //hilite_obj(scs_m.objs(path_out));
+    unhilite_obj(path_out);
+    ninnout=0
+    return
+  end
+
+  if path_in==-2 then
+    hilite_obj(path_out);
+    message(['The input port '+string(prt_out)+' of this block have a negative size.';
+	     'Please check.'])
     unhilite_obj(path_out);
     ninnout=0
     return
@@ -2293,7 +2316,12 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
 
   //store unconnected outputs, if any, at the end of outtb
   for unco=find(outlnk==0);
-    outlnk(unco)=maxi(outlnk)+1  
+    outlnk(unco)=maxi(outlnk)+1
+  end
+
+  //store unconnected inputs, if any, at the end of outtb
+  for unco=find(inplnk==0);
+    inplnk(unco)=maxi([inplnk;maxi(outlnk)])+1
   end
 endfunction
 
