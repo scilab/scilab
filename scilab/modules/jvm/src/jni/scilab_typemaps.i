@@ -31,6 +31,8 @@
 
 /* This allows a C function to return a char ** as a Java String array */
 %typemap(out) char ** {
+  if ($1 != NULL)
+  {
     int i;
     int len=0;
     jstring temp_string;
@@ -45,6 +47,7 @@
       (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
       (*jenv)->DeleteLocalRef(jenv, temp_string);
     }
+  }       
 }
 
 /* These 3 typemaps tell SWIG what JNI and Java types to use */

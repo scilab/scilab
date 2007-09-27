@@ -194,20 +194,23 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
   }
   result = (char **)searchAllDictionaries(arg1);
   {
-    int i;
-    int len=0;
-    jstring temp_string;
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-    
-    while (result[len]) len++;    
-    jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-    /* exception checking omitted */
-    
-    for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-      (*jenv)->DeleteLocalRef(jenv, temp_string);
-    }
+    if (result != NULL)
+    {
+      int i;
+      int len=0;
+      jstring temp_string;
+      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
+      
+      while (result[len]) len++;    
+      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
+      /* exception checking omitted */
+      
+      for (i=0; i<len; i++) {
+        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
+        (*jenv)->DeleteLocalRef(jenv, temp_string);
+      }
+    }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
@@ -228,20 +231,23 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
   }
   result = (char **)searchFunctionsDictionary(arg1);
   {
-    int i;
-    int len=0;
-    jstring temp_string;
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-    
-    while (result[len]) len++;    
-    jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-    /* exception checking omitted */
-    
-    for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-      (*jenv)->DeleteLocalRef(jenv, temp_string);
-    }
+    if (result != NULL)
+    {
+      int i;
+      int len=0;
+      jstring temp_string;
+      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
+      
+      while (result[len]) len++;    
+      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
+      /* exception checking omitted */
+      
+      for (i=0; i<len; i++) {
+        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
+        (*jenv)->DeleteLocalRef(jenv, temp_string);
+      }
+    }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
@@ -262,20 +268,23 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
   }
   result = (char **)searchCommandsDictionary(arg1);
   {
-    int i;
-    int len=0;
-    jstring temp_string;
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-    
-    while (result[len]) len++;    
-    jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-    /* exception checking omitted */
-    
-    for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-      (*jenv)->DeleteLocalRef(jenv, temp_string);
-    }
+    if (result != NULL)
+    {
+      int i;
+      int len=0;
+      jstring temp_string;
+      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
+      
+      while (result[len]) len++;    
+      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
+      /* exception checking omitted */
+      
+      for (i=0; i<len; i++) {
+        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
+        (*jenv)->DeleteLocalRef(jenv, temp_string);
+      }
+    }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
@@ -296,20 +305,23 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
   }
   result = (char **)searchMacrosDictionary(arg1);
   {
-    int i;
-    int len=0;
-    jstring temp_string;
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-    
-    while (result[len]) len++;    
-    jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-    /* exception checking omitted */
-    
-    for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-      (*jenv)->DeleteLocalRef(jenv, temp_string);
-    }
+    if (result != NULL)
+    {
+      int i;
+      int len=0;
+      jstring temp_string;
+      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
+      
+      while (result[len]) len++;    
+      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
+      /* exception checking omitted */
+      
+      for (i=0; i<len; i++) {
+        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
+        (*jenv)->DeleteLocalRef(jenv, temp_string);
+      }
+    }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
@@ -330,20 +342,23 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
   }
   result = (char **)searchVariablesDictionary(arg1);
   {
-    int i;
-    int len=0;
-    jstring temp_string;
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-    
-    while (result[len]) len++;    
-    jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-    /* exception checking omitted */
-    
-    for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-      (*jenv)->DeleteLocalRef(jenv, temp_string);
-    }
+    if (result != NULL)
+    {
+      int i;
+      int len=0;
+      jstring temp_string;
+      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
+      
+      while (result[len]) len++;    
+      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
+      /* exception checking omitted */
+      
+      for (i=0; i<len; i++) {
+        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
+        (*jenv)->DeleteLocalRef(jenv, temp_string);
+      }
+    }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
@@ -364,20 +379,23 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
   }
   result = (char **)searchFilesDictionary(arg1);
   {
-    int i;
-    int len=0;
-    jstring temp_string;
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-    
-    while (result[len]) len++;    
-    jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-    /* exception checking omitted */
-    
-    for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-      (*jenv)->DeleteLocalRef(jenv, temp_string);
-    }
+    if (result != NULL)
+    {
+      int i;
+      int len=0;
+      jstring temp_string;
+      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
+      
+      while (result[len]) len++;    
+      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
+      /* exception checking omitted */
+      
+      for (i=0; i<len; i++) {
+        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
+        (*jenv)->DeleteLocalRef(jenv, temp_string);
+      }
+    }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
@@ -398,20 +416,23 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
   }
   result = (char **)searchHandleGraphicsPropertiesDictionary(arg1);
   {
-    int i;
-    int len=0;
-    jstring temp_string;
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-    
-    while (result[len]) len++;    
-    jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-    /* exception checking omitted */
-    
-    for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-      (*jenv)->DeleteLocalRef(jenv, temp_string);
-    }
+    if (result != NULL)
+    {
+      int i;
+      int len=0;
+      jstring temp_string;
+      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
+      
+      while (result[len]) len++;    
+      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
+      /* exception checking omitted */
+      
+      for (i=0; i<len; i++) {
+        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
+        (*jenv)->DeleteLocalRef(jenv, temp_string);
+      }
+    }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;

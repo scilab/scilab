@@ -358,20 +358,23 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_history_1manager_History
   (void)jcls;
   result = (char **)getAllLinesOfScilabHistory();
   {
-    int i;
-    int len=0;
-    jstring temp_string;
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-    
-    while (result[len]) len++;    
-    jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-    /* exception checking omitted */
-    
-    for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-      (*jenv)->DeleteLocalRef(jenv, temp_string);
-    }
+    if (result != NULL)
+    {
+      int i;
+      int len=0;
+      jstring temp_string;
+      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
+      
+      while (result[len]) len++;    
+      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
+      /* exception checking omitted */
+      
+      for (i=0; i<len; i++) {
+        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
+        (*jenv)->DeleteLocalRef(jenv, temp_string);
+      }
+    }       
   }
   return jresult;
 }
