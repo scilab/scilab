@@ -124,7 +124,7 @@ void fromws_c(scicos_block *block,int flag)
    C2F(cluni0)(env, filename, &out_n,1,lout);
    C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
 
-   if (ierr!=0) {sciprint("The indicated variable does not exst"); set_block_error(-16);return;};
+   if (ierr!=0) {sciprint("The'%s' variable does not exst",str); set_block_error(-16);return;};
 
    /* read x */
    C2F(mgetnc) (&fd, &Ydim[0], (j=nsiz,&j), fmti, &ierr);  /* read sci id */
@@ -159,6 +159,9 @@ void fromws_c(scicos_block *block,int flag)
      return;
    }
    ptr = *(block->work);  
+   ptr->D=NULL;
+   ptr->workt=NULL;
+   ptr->work=NULL;
 
    if (Ytype==1) { /*real/complex case*/
      switch (YsubType) {
@@ -247,7 +250,6 @@ void fromws_c(scicos_block *block,int flag)
        scicos_free(ptr);
        return;
      };
-   ptr->D=NULL;
    //=================================
    if ((Method>1)&&((Ytype==1)&&( YsubType==0))) {/* double */
 
@@ -290,7 +292,6 @@ void fromws_c(scicos_block *block,int flag)
          A_d[nPoints-1] =  2.0*A_sd[nPoints-2];
          ptr->D[nPoints-1+j*nPoints] =  3.0 * qdy[nPoints-2];
 	 Mytridiagldltsolve(A_d, A_sd, &ptr->D[j*nPoints], nPoints);
-	 sciprint("  tt=%d  ss=%g",Method, ptr->D[j*nPoints]); 
        }
 
        if (Method==3){
@@ -761,8 +762,6 @@ void fromws_c(scicos_block *block,int flag)
  }
  /*************************************************************************/
 }
-
-
 int Mytridiagldltsolve(double *d__, double * l, double * b, int n)
 {
     int i__1;
