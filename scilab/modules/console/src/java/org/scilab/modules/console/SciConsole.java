@@ -111,6 +111,14 @@ public class SciConsole extends JPanel {
 
 		// The console is given to the outputView so that Drag&Drop can work
 		((SciInputCommandView) config.getInputCommandView()).setConsole(this);
+
+		// The console is given to the CompletionWindow
+		((SciCompletionWindow) config.getCompletionWindow()).setConsole(this);
+		((SciCompletionWindow) config.getCompletionWindow()).setGraphicalContext(this);
+		
+		// The promptview is given to the Parsing Manager
+		// Used to get the position of the CompletionWindow
+		((SciInputParsingManager) config.getInputParsingManager()).setPromptView(this.getConfiguration().getPromptView());
 	}
 
 	/**
@@ -378,4 +386,13 @@ public class SciConsole extends JPanel {
 	public JScrollPane getJScrollPane() {
 		return jSP;
 	}
+	
+	/**
+	 * Get the Console object associated to the console
+	 * @return the Console object associated to the console
+	 */
+	public Console getSciConsole() {
+		return sciConsole;
+	}
+	
 }

@@ -12,6 +12,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
@@ -75,6 +76,9 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		while (currentComponent != null) {
 			result.translate(currentComponent.getLocation().x, currentComponent.getLocation().y);
 			currentComponent = currentComponent.getParent();
+			if (currentComponent instanceof JPanel) {
+				return result;
+			}
 		}
 		return result;
 	}
