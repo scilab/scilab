@@ -5,12 +5,12 @@ function Color_()
     nc_save = needcompile ;
     enable_undo = %t      ;
     
-    [%pt,scs_m] = do_color(%pt,scs_m)
+    [scs_m] = do_color(%win, %pt, scs_m); 
     
-    Cmenu=[]; %pt = [];
+    Cmenu = []; %pt = [];
     
     edited = %t
 
-    drawnow(); show_pixmap();
+//    drawnow(); show_pixmap();
     
 endfunction

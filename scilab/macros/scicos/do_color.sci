@@ -1,15 +1,22 @@
-function [%pt,scs_m] = do_color(%pt,scs_m)
+function [scs_m] = do_color(%win, %pt, scs_m)
 // Copyright INRIA
 //
 // do_block - edit a block icon
 //
-  win = %win;
+//** 28 Sept 2007 : Bugfix for multi win Scicos Editor
+//**                Forgive the men that don't know what are doing.
+//**
+
+disp(%win) ; 
+
   
-  if win<>curwin then return, end //** Exit point  
+  if %win<>curwin then
+     return ; //** Exit point  
+  end 
   
   if Select==[] then
     
-     xc = %pt(1);yc = %pt(2); %pt = [] ;
+     xc = %pt(1);yc = %pt(2);
     
      KK = getobj(scs_m,[xc;yc])
      
@@ -17,9 +24,10 @@ function [%pt,scs_m] = do_color(%pt,scs_m)
   
   else
     
-    KK = Select(:,1)'; //** take all the object selected 
-    %pt = [] ; 
-  
+   //** BEWARE : look at the win_id of the selected object !!!
+   //** TO DO: look at the variable  and filter the right object 
+   KK = Select(:,1)'; //** take all the object selected 
+
   end
   //
   //**-----------------------------------------------------
@@ -28,7 +36,7 @@ function [%pt,scs_m] = do_color(%pt,scs_m)
   
   //**----------------------------------------------------------
   //** the code below is modified according the new graphics API
-  gh_curwin = gh_current_window ; 
+  gh_curwin = scf(%win);
   
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure 
   //** I need an equivalent index for the graphics 
@@ -38,6 +46,7 @@ function [%pt,scs_m] = do_color(%pt,scs_m)
   //** "k" is the object index in the data structure "scs_m"
   //** compute the equivalent "gh_k" for the graphics datastructure 
   //** gh_k = o_size(1) - k + 1 ; //** semi empirical equation :)
+  //** Alan Layec has do this in the function get_gri();
   //** gh_blk = gh_curwin.children.children(gh_k);
   
   for K = KK //** for all the selected object(s)
@@ -88,7 +97,7 @@ function [%pt,scs_m] = do_color(%pt,scs_m)
 	  scs_m.objs(K) = o ;
 	  size_of_graphic_objext = size(gh_compound.children) ;
 	  first_graphic_objext = size_of_graphic_objext(1)    ;
-	  gh_compound.children(first_graphic_objext).background = coln; //** update the proriety 
+	  gh_compound.children(first_graphic_objext).background = coln; //** update the propriety
 	end
       
       end
@@ -98,4 +107,7 @@ function [%pt,scs_m] = do_color(%pt,scs_m)
       //not implemented
     end
   end
+
+  drawnow(); show_pixmap();
+
 endfunction
