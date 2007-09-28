@@ -102,9 +102,10 @@ function [scs_m] = do_color(%win, %pt, scs_m)
 	if coln<>coli then
 	  o.graphics.gr_i(2) = coln ; 
 	  scs_m.objs(K) = o ;
-	  size_of_graphic_objext = size(gh_compound.children) ;
-	  first_graphic_objext = size_of_graphic_objext(1)    ;
-	  gh_compound.children(first_graphic_objext).background = coln; //** update the propriety
+          update_gr(gh_obj_K,o)
+	  //size_of_graphic_objext = size(gh_compound.children) ;
+	  //first_graphic_objext = size_of_graphic_objext(1)    ;
+	  //gh_compound.children(first_graphic_objext).background = coln; //** update the propriety
 	end
       
       end
