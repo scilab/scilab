@@ -546,11 +546,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	winpos=gh_current_window.figure_position;
 	%curwpar=[data_bounds(:)',gh_current_window.axes_size,..
 		  xget('viewport'),winsize,winpos,%zoom]
-	screensz=evstr(TCL_EvalStr('wm  maxsize .')) 
-	if min(winsize)>0  then  // window is not iconified
-          winpos=max(0,winpos-max(0,-screensz+winpos+winsize) )
-          %curwpar(11:12)=winpos  // make sure window remains inside screen
-	end
 	if ~isequal(scs_m.props.wpar,%curwpar) then
 	  scs_m.props.wpar=%curwpar  // keep window dimensions  
 	end
