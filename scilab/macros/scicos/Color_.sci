@@ -10,7 +10,5 @@ function Color_()
     Cmenu = []; %pt = [];
     
     edited = %t
-
-//    drawnow(); show_pixmap();
     
 endfunction

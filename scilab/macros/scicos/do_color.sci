@@ -6,9 +6,11 @@ function [scs_m] = do_color(%win, %pt, scs_m)
 //** 28 Sept 2007 : Bugfix for multi win Scicos Editor
 //**                Forgive the men that don't know what are doing.
 //**
-
-disp(%win) ; 
-
+//**
+//
+//** disp("------------");
+//** disp(%win) ; 
+//
   
   if %win<>curwin then
      return ; //** Exit point  
@@ -16,16 +18,21 @@ disp(%win) ;
   
   if Select==[] then
     
-     xc = %pt(1);yc = %pt(2);
+     xc = %pt(1); yc = %pt(2);
     
      KK = getobj(scs_m,[xc;yc])
      
-     if KK==[] then return, end //** Exit point 
+     if KK==[] then
+         return ; //** Exit point -> No object found 
+     end 
   
   else
     
    //** BEWARE : look at the win_id of the selected object !!!
    //** TO DO: look at the variable  and filter the right object 
+   
+//**   disp("Select=");disp(Select);
+
    KK = Select(:,1)'; //** take all the object selected 
 
   end
@@ -55,7 +62,7 @@ disp(%win) ;
     gh_compound = gh_curwin.children.children(gh_obj_K); //** get the compound handle 
     
     //** ------------------ Link --------------------------
-    if typeof(o)=='Link' then
+    if typeof(o)=="Link" then
       [nam,pos,ct] = (o.id,o.thick,o.ct) ;
       c = coul ;
       
@@ -76,14 +83,14 @@ disp(%win) ;
       end
     
     //** ------------------  Block -------------------------  
-    elseif typeof(o)=='Block' then
+    elseif typeof(o)=="Block" then
       
       if type(o.graphics.gr_i)==10 then,
-	o.graphics.gr_i=list(o.graphics.gr_i,[]),
+	o.graphics.gr_i = list(o.graphics.gr_i,[]),
       end
       
       if o.graphics.gr_i(2)==[] then
-	coli = 0
+	coli = 0 ; 
       else
 	coli = o.graphics.gr_i(2);
       end
@@ -93,7 +100,7 @@ disp(%win) ;
       if coln<>[] then
 	
 	if coln<>coli then
-	  o.graphics.gr_i(2) = coln
+	  o.graphics.gr_i(2) = coln ; 
 	  scs_m.objs(K) = o ;
 	  size_of_graphic_objext = size(gh_compound.children) ;
 	  first_graphic_objext = size_of_graphic_objext(1)    ;
@@ -107,6 +114,8 @@ disp(%win) ;
       //not implemented
     end
   end
+
+ //** pause
 
   drawnow(); show_pixmap();
 
