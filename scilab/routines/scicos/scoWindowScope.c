@@ -425,14 +425,29 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 scoGraphicalObject scoCreatePolyline(scoGraphicalObject pAxes, scoInteger polyline_size, int color)
 {
   scoGraphicalObject pPolyline;
+  int i;
   double * vx, * vy, *vz;
 
   vx = (double*)scicos_malloc(polyline_size*sizeof(double));
   vy = (double*)scicos_malloc(polyline_size*sizeof(double));
 
+  /* Alan, 29/09/07 : initial value set to zero for buffer
+   * to disable random display at the beginning of the simulation
+   */
+  for (i=0;i<polyline_size;i++) {
+   vx[i] = 0.0;
+   vy[i] = 0.0;
+  }
+
   if (pSUBWIN_FEATURE(pAxes)->axes.axes_visible[2] == TRUE) //3D
     {
       vz = (double*)scicos_malloc(polyline_size*sizeof(double));
+      /* Alan, 29/09/07 : initial values set to zero for buffer
+       * to disable random display at the beginning of the simulation
+       */
+      for (i=0;i<polyline_size;i++) {
+        vz[i] = 0.0;
+      }
       pPolyline=ConstructPolyline(pAxes,vx,vy,vz,0,polyline_size,1,1, NULL,NULL,NULL,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
       scicos_free(vz);
     }
