@@ -18,6 +18,7 @@ demos_name=[
     'Kalman filter'
     'Discrete-Kalman Filter'
     'Inverted Pendulum'
+    'Lorentz attractor'
     'Datatype'
     'Digital Pulse Generator'
     'WaterTank'
@@ -47,6 +48,8 @@ while %t do
    exec (SCI+'/demos/scicos/setw.sci');
    getf(SCI+'/macros/scicos_blocks/Sources/RAND_m.sci');
    scicos('SCI/demos/scicos/Inverted_pendulum.cosf');
+  case 'Lorentz attractor' then
+   scicos('SCI/demos/scicos/Lorentz.cosf');
   case 'Datatype' then
    scicos('SCI/demos/scicos/demo_Datatype.cosf');
   case 'Digital Pulse Generator' then
