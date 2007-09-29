@@ -1,10 +1,10 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[10.798027,712.98299,-196.3393,524.3977,957,982,60,92,817,832,62,64,1.4],..
-            Title=["Lorentz","/home/alan/scilab_BUILD_412/"],..
+            wpar=[10.798026,712.98299,-196.3393,524.3977,957,982,140,123,670,758,0,7,1.4],..
+            Title=["Lorentz","/home/alan/scilab_BUILD_412/demos/scicos/"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
-            tf=1000,..
+            tf=15000,..
             context=["//set sampling time";
             "Tsampl=3e-3";
             "";
