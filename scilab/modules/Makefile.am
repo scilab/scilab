@@ -35,6 +35,7 @@ tclsci \
 sparse \
 io \
 shell \
+completion \
 history_manager \
 console \
 renderer \
@@ -56,8 +57,7 @@ helptools \
 scicos \
 fftw \
 pvm \
-jvm \
-completion
+jvm 
 
 #if MPI
 #SUBDIRS += mpi
