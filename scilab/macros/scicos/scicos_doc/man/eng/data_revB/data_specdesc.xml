@@ -236,6 +236,12 @@
 	lr_margin_html=.5
 </FILE>
 
+<FILE name='Lorentz_diagr' type='SPECIALDESC'>
+scope_order=[2;1]
+scope_caption=['(a) Time domain waveforms of state variables (x,y,z)';
+               '(b) Trajectories in the phase plan (x,y,z)']
+</FILE>
+
 <FILE name='LOGBLK_f' type='SPECIALDESC'>
 	dial_width_html=240pt
 </FILE>

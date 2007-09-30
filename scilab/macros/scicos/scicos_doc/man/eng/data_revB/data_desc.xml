@@ -1544,6 +1544,16 @@ Q(t-1)\\
 </DESCRIPTION>
 </FILE>
 
+<FILE name='Lorentz_diagr' type='LATEX'>
+The Lorentz's system is defined by the following continuous system : 
+\begin{eqnarray}
+\frac{dx(t)}{dt}&=&a\left(-x(t)+y(t)\right)\\
+\frac{dy(t)}{dt}&=&bx(t)-y(t)-x(t)y(t)\\
+\frac{dz(t)}{dt}&=&-cx(t)+x(t)y(t)
+\end{eqnarray}
+The state variables $x(t)$, $y(t)$ and $z(t)$ are respectively temperature of the air, speed of wind and a third variable which represents the variation of temperature according to the altitude.
+</FILE>
+
 <FILE name='LOGBLK_f' type='LATEX'>
 This block realizes  $y(i)=log(u(i))/log(a)$ . The input and output port
 sizes are determined by the context.  

@@ -1583,6 +1583,19 @@ Q(t-1)\\
 </DESCRIPTION>
 </FILE>
 
+<FILE name='Lorentz_diagr' type='LATEX'>
+Le système de Lorentz est défini par le système continu
+d'équations non-linéaires différentielles suivant :
+\begin{eqnarray}
+\frac{dx(t)}{dt}&=&a\left(-x(t)+y(t)\right)\\
+\frac{dy(t)}{dt}&=&bx(t)-y(t)-x(t)y(t)\\
+\frac{dz(t)}{dt}&=&-cx(t)+x(t)y(t)
+\end{eqnarray}
+Les variables d'états $x(t)$, $y(t)$ et $z(t)$ sont respectivement la température de
+l'air, la vitesse du vent et une troisième variable qui représente la variation de la
+température en fonction de l'altitude.
+</FILE>
+
 <FILE name='LOGBLK_f' type='LATEX'>
 Ce bloc calcule $y(i)=log(u(i))/log(a)$. 
 Les tailles des ports d'entrée/sortie sont déterminés par le contexte.

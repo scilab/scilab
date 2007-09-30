@@ -2757,6 +2757,10 @@
   <SHORT_DESCRIPTION name="logicalop_ui8">logicalop_ui8</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='Lorentz_diagr' type='XML'>
+  <SHORT_DESCRIPTION name="Lorentz">Attracteur de Lorentz</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='lookup_routcos' type='XML'>
   <SHORT_DESCRIPTION name="lookup">lookup</SHORT_DESCRIPTION>
 </FILE>

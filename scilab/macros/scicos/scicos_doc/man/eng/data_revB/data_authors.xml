@@ -1048,6 +1048,14 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='Lorentz_diagr' type='XML'>
+<AUTHORS>
+ <AUTHORS_ITEM label='Alan Layec'>
+ INRIA
+ </AUTHORS_ITEM>
+</AUTHORS>
+</FILE>
+
 <FILE name='Linear_pal' type='XML'>
 <AUTHORS>
 

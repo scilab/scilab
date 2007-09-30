@@ -2760,6 +2760,10 @@
   <SHORT_DESCRIPTION name="lookup">lookup</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='Lorentz_diagr' type='XML'>
+<SHORT_DESCRIPTION name="Lorentz">Lorentz's attractor</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='lsplit_routcos' type='XML'>
   <SHORT_DESCRIPTION name="lsplit">lsplit</SHORT_DESCRIPTION>
 </FILE>

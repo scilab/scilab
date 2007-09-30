@@ -1146,6 +1146,11 @@ list_of_prgblk   = ["","C_struct","sci";
 //**-- About_scicos --*/
 list_of_about   = ["","About_scicos","sci"];
 
+
+//**-- Demos --*/
+list_of_demos=[SCI+'/demos/scicos/','Lorentz.cosf',"diagr"];
+//**------------*/
+
 //**----------------------------------------------------------**//
 
 
