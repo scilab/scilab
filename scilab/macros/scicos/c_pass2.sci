@@ -2090,17 +2090,22 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
       kk=[];
       for k=1:size(path,'*')
 	//hilite_obj(scs_m.objs(path(k)))
-        //hilite_obj(path(k))
-        kk=[kk;path(k)]
+        hilite_obj(path(k))
 	scs_m=scs_m.objs(path(k)).model.rpar;
 	scs_show(scs_m,mxwin+k)
       end
       //hilite_obj(scs_m.objs(path_out))
-      //hilite_obj(path_out)
-      kk=[kk;path_out]
+      kk=[path_out]
       //if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
-      //if or(path_in<>path_out) then hilite_obj(path_in),end
       if or(path_in<>path_out) then kk=[kk;path_in], end
+      if prt_in<>[] & prt_out<>[] then
+        if prt_in >0 & prt_out >0 then
+          if scs_m.objs(path_out).graphics.pout(prt_out) == ...
+              scs_m.objs(path_in).graphics.pin(prt_in) then 
+                kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
+          end
+        end
+      end
       hilite_obj(kk)
       ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
 		    'with  sizes that cannot be determined by the context';
