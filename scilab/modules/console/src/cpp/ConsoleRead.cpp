@@ -5,10 +5,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "ConsoleRead.hxx"
 /*-----------------------------------------------------------------------------------*/
-#define WK_BUF_SIZE 520
-/*-----------------------------------------------------------------------------------*/
 using namespace  org_scilab_modules_gui_bridge_console;
-char *ConsoleRead()
+char *ConsoleRead(void)
 {
   /* Character string to be returned */
   char *strRead = NULL;
@@ -19,9 +17,7 @@ char *ConsoleRead()
   if (scilabConsoleObj)
     {
       SwingScilabConsole *jConsole = new SwingScilabConsole(&scilabJVM, scilabConsoleObj);
-
       strRead = (*jConsole).readLine();
-
       delete(jConsole);
     }
 
