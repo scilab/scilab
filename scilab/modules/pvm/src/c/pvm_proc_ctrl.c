@@ -204,7 +204,7 @@ static strings Scipvm_error[]= {
 	"No such task", /* 25 */
 	"No such (group,instance)", /* 26 */
 	"(group,instance) already exists", /* 27 */
-	"Unknown error", /* 28 */
+	"Unknown Error", /* 28 */
 };
 
 /*--------------------------------------------------
