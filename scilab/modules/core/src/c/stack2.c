@@ -2786,7 +2786,7 @@ static char *Get_Iname()
  *---------------------------------------------------------------------*/
 
 static char *pos[] ={"first","second","third","fourth"};
-static char arg_position[56];
+static char arg_position[56]; /* @TODO WTF is 56 ? */
 
 char *ArgPosition(int i)
 {
