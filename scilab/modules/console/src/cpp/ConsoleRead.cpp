@@ -24,14 +24,17 @@ char *ConsoleRead()
       strValue = (*jConsole).readLine();
 
       if (strValue)
-        {
-          strRead = new char[WK_BUF_SIZE+1];
-          if (strRead) 
-            strcpy(strRead,strValue);
-        }
+      {
+         strRead = (char*)MALLOC(sizeof(char)*(WK_BUF_SIZE+1));
+         if (strRead) strcpy(strRead,strValue);
+		 free(strValue); // malloc in (*jConsole).readLine
+		 strValue = NULL;
+      }
       
       delete(jConsole);
     }
 
   return strRead;
 }
+/*-----------------------------------------------------------------------------------*/
+

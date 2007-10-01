@@ -30,15 +30,13 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
   {
 	  SetConsolePrompt(save_prompt);
 	  i = 0;
-
-	  // GIWS problem MALLOC incompatible 
 	  line = ConsoleRead();
 
 	  if (line)
 	  {
 		  strcpy(input_line,line);
-		  // GIWS problem FREE incompatible FREE --> free
-		  free(line);
+		  FREE(line);
+		  line = NULL;
 		  *len_line = (int)strlen(input_line);
 	  }
 	  SetConsolePrompt(save_prompt);
