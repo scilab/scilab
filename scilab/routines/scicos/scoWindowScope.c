@@ -115,8 +115,10 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	}
       if(win_dim != NULL)
 	{
-	  if (win_dim[0] >= 0)
+	  if (win_dim[0] >= 0) {
 	    sciSetDim(pTemp, &win_dim[0], &win_dim[1]);
+	    sciSetDim(pTemp2, &win_dim[0], &win_dim[1]);
+          }
 	}
 
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));

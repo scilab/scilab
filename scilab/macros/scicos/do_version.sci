@@ -63,6 +63,10 @@ function scs_m_new=do_version42(scs_m)
       elseif o.gui=='SCOPE_f' then
         scs_m_new.objs(j).gui='CSCOPE'
 	scs_m_new.objs(j).model.dstate=[]
+        //Alan's patch 01/10/07 : remove the last parameter
+        // (inheritance not used in cscope)
+        ipar = scs_m_new.objs(j).model.ipar(:);
+	scs_m_new.objs(j).model.ipar = ipar(1:$-1);
         scs_m_new.objs(j).model.sim=list('cscope', 4)
 	in = scs_m_new.objs(j).model.in(:);
 	a = size(in,1);
