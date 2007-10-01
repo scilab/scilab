@@ -26,8 +26,7 @@ function [As,Es,Z,dim]= gschur(A,E,extern)
        //flag=extern(x) 
        //x(1) ==1 ==> x(2:3)=[al,be]
        //x(1) ==2 ==> x(2:3)=[s,p]
-       warning('Obsolete function. Please, replace gschur by schur and adapt"+...
-	       " the external')
+       warning('Obsolete function. Please, replace gschur by schur and adapt the external')
        deff('t=%_rule(Alpha,Beta)',['if imag(Alpha)==0 then'
 		    '  t=extern([1,real(Alpha),Beta])==1'
 		    'else		    '
