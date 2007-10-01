@@ -61,8 +61,6 @@ extern integer C2F(my_ignore_) __PARAMS((integer *sig, integer *code, integer *s
 /*  "plevel-n.c.X1" */
 extern int C2F(plevel) __PARAMS((integer *n));  
 /*  "sigbas-n.c.X1" */
-extern int C2F(sigbas) __PARAMS((integer *n));  
-/*  "systemc-n.c.X1" */
 extern int C2F(systemc) __PARAMS((char *command, integer *stat));  
 /*  "timer-n.c.X1" */
 extern int C2F(stimer) __PARAMS((void));  

@@ -31,6 +31,7 @@
 #include "ScilabEventsLoop.h"
 #include "HistoryManager.h"
 #include "scilabmode.h"
+#include "sigbas.h"
 /*-----------------------------------------------------------------------------------*/
 #define MAXBUF	512
 #define BACKSPACE 0x08		/* ^H */
@@ -185,7 +186,6 @@
 char cur_line[MAXBUF];	/* current contents of the line */
 /*-----------------------------------------------------------------------------------*/
 extern int IsFromC(void);
-extern int C2F(sigbas)();
 /*-----------------------------------------------------------------------------------*/
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;		/* maximum character position */

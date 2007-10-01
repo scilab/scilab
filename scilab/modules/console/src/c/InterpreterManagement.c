@@ -4,10 +4,11 @@
  * @author Vincent COUVERT
  */
 /*-----------------------------------------------------------------------------------*/
+#include <signal.h> /* for SIGINT */
 #include "InterpreterManagement.h"
 #include "dynamic_menus.h"
 #include "ScilabEventsLoop.h"
-#include <signal.h> /* for SIGINT */
+#include "sigbas.h"
 /*-----------------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {

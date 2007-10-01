@@ -2,6 +2,7 @@
 
 #include "banier.h"
 #include "csignal.h"
+#include "sigbas.h"
 
 extern int C2F(sigbas)(); /*  __PARAMS((integer *));*/
 
