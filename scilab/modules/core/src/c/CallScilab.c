@@ -10,7 +10,7 @@
 #include "../../../io/includes/setenvc.h"
 #include "setgetSCIpath.h"
 #include "fromc.h"
-#include "sciquit.h"
+#include "sciquit.h" /* ExitScilab */
 #include "tmpdir.h"
 #include "fromc.h"
 #include "inisci-c.h"
