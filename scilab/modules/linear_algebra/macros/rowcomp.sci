@@ -22,8 +22,7 @@ function [w,rk]=rowcomp(A,flag,tol)
     tol=sqrt(%eps)*norm(A,1)
   else
     if size(tol,'*')>1|~isreal(tol)|tol<0 then
-      error('rowcomp: third argument should be a real non negative s"+...
-	    " calar')
+      error('rowcomp: third argument should be a real non negative scalar')
     end
   end
   select flag
