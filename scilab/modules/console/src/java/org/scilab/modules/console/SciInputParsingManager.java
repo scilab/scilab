@@ -121,8 +121,14 @@ public class SciInputParsingManager implements InputParsingManager {
 		}
 		/* Skip all blanks following , or ; and preceeding the function name */
 		index++;
+		if (index < 0) {
+			return null;
+		}
 		while (lineToParse.charAt(index) == ' ') {
 			index++;
+			if (index >= lineToParse.length()) {
+				return null;
+			}
 		}
 		/* Search the beginning of the path or file name */
 		/* cd toto */
@@ -141,7 +147,11 @@ public class SciInputParsingManager implements InputParsingManager {
 			indexdquote = lineToParse.length();
 		}
 		index = Math.min(indexspace, Math.min(indexquote, indexdquote));
-		return lineToParse.substring(index + 1).trim();
+		if (lineToParse.substring(index + 1).trim().equals("")) {
+			return null;
+		} else {
+			return lineToParse.substring(index + 1).trim();
+		}
 	}
 
 	/**
