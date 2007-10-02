@@ -5,6 +5,7 @@ package org.scilab.modules.console;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.FocusEvent;
@@ -103,12 +104,14 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 		scrollPane.setCorner(JScrollPane.LOWER_RIGHT_CORNER, windowResizeCorner);
 		window.add(scrollPane, BorderLayout.CENTER);
 		window.setSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
-
+		window.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		
 		// Overide Listener
 		listUI.getInputMap().clear();
 		scrollPane.getInputMap().clear();
 		listUI.addKeyListener(this);
 		listUI.addFocusListener(this);
+		listUI.addMouseListener(this);
 		((JTextPane) sciConsole.getConfiguration().getInputCommandView()).add(window);
 		window.setVisible(false);
 	}
@@ -359,6 +362,24 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	 * @param e event
 	 */
 	public void mouseClicked(MouseEvent e) {
+		if (e.getClickCount() >= 2) { /* Double click = the user validates the item */
+			/* Select the list item under the mouse */
+			if (model.getSize() > 0) {
+				listUI.setSelectedIndex((listUI.getSelectedIndex()) % model.getSize());
+			}
+
+			/* Add text to the input command view */
+			inputParsingManager.writeCompletionPart(((CompletionItem) listUI.getSelectedValue()).getReturnValue());
+			
+			/* Hide the completion window and give the focus to the console */ 
+			window.setVisible(false);
+			focusOutComponent.grabFocus();
+		} else {
+			/* Select the list item under the mouse */
+			if (model.getSize() > 0) {
+				listUI.setSelectedIndex((listUI.getSelectedIndex()) % model.getSize());
+			}
+		}
 	}
 
 	/**
