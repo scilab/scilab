@@ -7,7 +7,7 @@
 #include "machine.h"
 #include "command.h"
 #include "../../core/src/c/flags.h"
-#include "win_mem_alloc.h" /* MALLOC */
+#include "sci_mem_alloc.h"
 #include "scilabmode.h"
 #include "ConsoleRead.h"
 #include "zzledt.h"
@@ -34,10 +34,10 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
 
 	  if (line)
 	  {
-		  strcpy(input_line,line);
-		  FREE(line);
+		  strcpy(input_line,line);  
+		  *len_line = (int)strlen(line);
+		  FREE(line); /* malloc in ConsoleRead */
 		  line = NULL;
-		  *len_line = (int)strlen(input_line);
 	  }
 	  SetConsolePrompt(save_prompt);
   }
