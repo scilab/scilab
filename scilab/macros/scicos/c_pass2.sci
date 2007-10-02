@@ -1383,11 +1383,11 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     n=j-outptr(m)+1
     nm=bllst(m).out(n)
     if nm<1 then
-      under_connection(corinv(m),n,nm,-1,0,0),ok=%f,return,
+      under_connection(corinv(m),n,nm,-1,0,0,1),ok=%f,return,
     end
     nm2=bllst(m).out2(n)
     if nm2<1 then
-      under_connection(corinv(m),n,nm2,-1,0,0),ok=%f,return,
+      under_connection(corinv(m),n,nm2,-1,0,0,1),ok=%f,return,
     end
     lnksz($+1,1)=bllst(m).out(n);
     lnksz($,2)=bllst(m).out2(n);
@@ -1402,11 +1402,11 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     n=j-inpptr(m)+1
     nm=bllst(m).in(n)
     if nm<1 then 
-     under_connection(corinv(m),n,nm,-2,0,0),ok=%f,return,
+     under_connection(corinv(m),n,nm,-2,0,0,1),ok=%f,return,
     end
     nm2=bllst(m).in2(n)
     if nm2<1 then
-     under_connection(corinv(m),n,nm2,-2,0,0),ok=%f,return,
+     under_connection(corinv(m),n,nm2,-2,0,0,1),ok=%f,return,
     end
     lnksz($+1,1)=bllst(m).in(n);
     lnksz($,2)=bllst(m).in2(n);
@@ -1899,7 +1899,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
             findflag=%t;
             //
             ninnout=under_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nout(1,ndim),..
-                                       corinv(connectmat(jj,3)),connectmat(jj,4),nin(1,ndim))
+                                       corinv(connectmat(jj,3)),connectmat(jj,4),nin(1,ndim),1)
             //
             if size(ninnout,2) <> 2 then ok=%f;return;end
             if ninnout==[] then ok=%f;return;end
@@ -1998,14 +1998,14 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
      if ~findflag then 
         message(['I cannot find a link with undetermined size';
                  'My guess is that you have a block with unconnected';
-                 'undetermined  output ports']);
+                 'undetermined output ports']);
         ok=%f;return;
      end
   end
 endfunction
 
 //19/01/07, Alan : under_connection show bad link and returns two dimensions now
-function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
+function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg)
 // alert for badly connected blocks
 // path_out : Path of the "from block" in scs_m
 // path_in  : Path of the "to block" in scs_m
@@ -2052,9 +2052,16 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
     hilite_obj(path_out)
     //if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
     if or(path_in<>path_out) then hilite_obj(path_in),end
-    ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+    if flagg==1 then
+      ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
 		    'with  sizes that cannot be determined by the context';
-		    'what is the size of this link'],'[1,1]'))
+		  'what is the size of this link'],'[1,1]'))
+    else 
+      ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+		    'with  types that cannot be determined by the context';
+		    'what is the size of this link'],'1'))
+    end
+	      
     for k=size(path,'*'):-1:1,
       //** select the mxwin+k window and get the handle
       gh_del = scf(mxwin+k);
@@ -2081,9 +2088,15 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
         end
       end
       hilite_obj(kk)
-      ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-		    'with  sizes that cannot be determined by the context';
-		    'what is the size of this link'],'[1,1]'))
+      if flagg==1 then
+	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	    'with  sizes that cannot be determined by the context';
+	    'what is the size of this link'],'[1,1]'))
+      else
+	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	    'with  types that cannot be determined by the context';
+	    'what is the size of this link'],'1'))
+      end
       unhilite_obj(kk)
     else
       mxwin=maxi(winsid())
@@ -2107,9 +2120,16 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
         end
       end
       hilite_obj(kk)
-      ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-		    'with  sizes that cannot be determined by the context';
-		    'what is the size of this link'],'[1,1]'))
+      if flagg==1 then
+	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	    'with  sizes that cannot be determined by the context';
+	    'what is the size of this link'],'[1,1]'))
+      else
+	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	    'with  types that cannot be determined by the context';
+	    'what is the size of this link'],'1'))
+      end
+      
       //for k=size(path,'*'):-1:1,xdel(mxwin+k),end //TOBEDONE
       for k=size(path,'*'):-1:1,
         //** select the mxwin+k window and get the handle
@@ -2474,92 +2494,130 @@ endfunction
 
 function [ok,bllst]=adjust_typ(bllst,connectmat)
 
-  for i=1:length(bllst)
-	if size(bllst(i).in,1)<>size(bllst(i).intyp,2) then
-		bllst(i).intyp=bllst(i).intyp(1)*ones(size(bllst(i).in,1),1);
-	end
-	if size(bllst(i).out,1)<>size(bllst(i).outtyp,2) then
-		bllst(i).outtyp=bllst(i).outtyp(1)*ones(size(bllst(i).out,1),1);
-	end
+for i=1:length(bllst)
+  if size(bllst(i).in,1)<>size(bllst(i).intyp,2) then
+    bllst(i).intyp=bllst(i).intyp(1)*ones(size(bllst(i).in,1),1);
   end
-  nlnk=size(connectmat,1) 
-  for hhjj=1:length(bllst)+1
-     for hh=1:length(bllst)+1 
-        ok=%t
-        for jj=1:nlnk 
-	   nnout(1,1)=bllst(connectmat(jj,1)).out(connectmat(jj,2))
-           nnout(1,2)=bllst(connectmat(jj,1)).out2(connectmat(jj,2))
-           nnin(1,1)=bllst(connectmat(jj,3)).in(connectmat(jj,4))
-           nnin(1,2)=bllst(connectmat(jj,3)).in2(connectmat(jj,4))
- 	   outtyp = bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))
-           intyp = bllst(connectmat(jj,3)).intyp(connectmat(jj,4))
-
-              //first case : types of source and
-              //             target ports are explicitly informed
-              //             with positive types
-              if(intyp>0 & outtyp>0) then
-                 //if types of source and target port doesn't match and aren't double and complex
-                 //then call bad_connection, set flag ok to false and exit
-
-		if intyp<>outtyp then
-             	    if (intyp==1 & outtyp==2) then
-               		bllst(connectmat(jj,3)).intyp(connectmat(jj,4))=2;
-             	    elseif (intyp==2 & outtyp==1) then
-               		bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))=2;
-             	    else
-                   	bad_connection(corinv(connectmat(jj,1)),connectmat(jj,2),..
-                           	     	nnout,outtyp,..
-                              	 	corinv(connectmat(jj,3)),connectmat(jj,4),..
-                               		 nnin,intyp,1)
-                 	ok=%f;
-                 	return
-                    end
-                 end
-
-              //second case : type of source port is
-              //              positive and type of
-              //              target port is negative
-              elseif(outtyp>0&intyp<0) then
-                 //find vector of input ports of target block with
-                 //type equal to intyp
-                 //and assign it to outtyp
-                 ww=find(bllst(connectmat(jj,3)).intyp==intyp)
-                 bllst(connectmat(jj,3)).intyp(ww)=outtyp
-
-                 //find vector of output ports of target block with
-                 //type equal to intyp
-                 //and assign it to outtyp
-                 ww=find(bllst(connectmat(jj,3)).outtyp==intyp)
-                 bllst(connectmat(jj,3)).outtyp(ww)=outtyp
-
-              //third case : type of source port is
-              //             negative and type of
-              //             target port is positive
-              elseif(outtyp<0&intyp>0) then
-                 //find vector of output ports of source block with
-                 //type equal to outtyp
-                 //and assign it to intyp
-                 ww=find(bllst(connectmat(jj,1)).outtyp==outtyp)
-                 bllst(connectmat(jj,1)).outtyp(ww)=intyp
-
-                 //find vector of input ports of source block with
-                 //type equal to size outtyp
-                 //and assign it to intyp
-                 ww=find(bllst(connectmat(jj,1)).intyp==outtyp)
-                 bllst(connectmat(jj,1)).intyp(ww)=intyp
-
-
-              //fourth (& last) case : type of both source 
-              //                      and target port are negatives
-              else
-                 ok=%f //set flag ok to false
-              end
-           end
-        if ok then return, end //if ok is set true then exit adjust_typ
-     end
-     //if failed then display message
-     message(['Not enough information to find port type']);
-
+  if size(bllst(i).out,1)<>size(bllst(i).outtyp,2) then
+    bllst(i).outtyp=bllst(i).outtyp(1)*ones(size(bllst(i).out,1),1);
   end
+end
+nlnk=size(connectmat,1) 
+for hhjj=1:length(bllst)+1
+  for hh=1:length(bllst)+1 
+    ok=%t
+    for jj=1:nlnk 
+      nnout(1,1)=bllst(connectmat(jj,1)).out(connectmat(jj,2))
+      nnout(1,2)=bllst(connectmat(jj,1)).out2(connectmat(jj,2))
+      nnin(1,1)=bllst(connectmat(jj,3)).in(connectmat(jj,4))
+      nnin(1,2)=bllst(connectmat(jj,3)).in2(connectmat(jj,4))
+      outtyp = bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))
+      intyp = bllst(connectmat(jj,3)).intyp(connectmat(jj,4))
+      
+      //first case : types of source and
+      //             target ports are explicitly informed
+      //             with positive types
+      if (intyp>0 & outtyp>0) then
+	//if types of source and target port doesn't match and aren't double and complex
+	//then call bad_connection, set flag ok to false and exit
+	
+	if intyp<>outtyp then
+	  if (intyp==1 & outtyp==2) then
+	    bllst(connectmat(jj,3)).intyp(connectmat(jj,4))=2;
+	  elseif (intyp==2 & outtyp==1) then
+	    bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))=2;
+	  else
+	    bad_connection(corinv(connectmat(jj,1)),connectmat(jj,2),..
+		nnout,outtyp,..
+		corinv(connectmat(jj,3)),connectmat(jj,4),..
+		nnin,intyp,1)
+	    ok=%f;
+	    return
+	  end
+	end
+	
+	//second case : type of source port is
+	//              positive and type of
+	//              target port is negative
+      elseif(outtyp>0&intyp<0) then
+	//find vector of input ports of target block with
+	//type equal to intyp
+	//and assign it to outtyp
+	ww=find(bllst(connectmat(jj,3)).intyp==intyp)
+	bllst(connectmat(jj,3)).intyp(ww)=outtyp
+	
+	//find vector of output ports of target block with
+	//type equal to intyp
+	//and assign it to outtyp
+	ww=find(bllst(connectmat(jj,3)).outtyp==intyp)
+	bllst(connectmat(jj,3)).outtyp(ww)=outtyp
+	
+	//third case : type of source port is
+	//             negative and type of
+	//             target port is positive
+      elseif(outtyp<0&intyp>0) then
+	//find vector of output ports of source block with
+	//type equal to outtyp
+	//and assign it to intyp
+	ww=find(bllst(connectmat(jj,1)).outtyp==outtyp)
+	bllst(connectmat(jj,1)).outtyp(ww)=intyp
+	
+	//find vector of input ports of source block with
+	//type equal to size outtyp
+	//and assign it to intyp
+	ww=find(bllst(connectmat(jj,1)).intyp==outtyp)
+	bllst(connectmat(jj,1)).intyp(ww)=intyp
+	
+	
+	//fourth (& last) case : type of both source 
+	//                      and target port are negatives
+      else
+	ok=%f //set flag ok to false
+      end
+    end
+    if ok then return, end //if ok is set true then exit adjust_typ
+  end
+  //if failed then display message
+  message(['Not enough information to find port type';..
+	   'I will try to find the problem']);
+  findflag=%f 
+  for jj=1:nlnk 
+    nouttyp=bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))
+    nintyp=bllst(connectmat(jj,3)).intyp(connectmat(jj,4))
+    
+    //loop on the two dimensions of source/target port
+    //only case : target and source ports are both
+    //            negatives or null
+    if nouttyp<=0 & nintyp<=0 then
+      findflag=%t;
+      //
+      inouttyp=under_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nouttyp,..
+	  corinv(connectmat(jj,3)),connectmat(jj,4),nintyp,2)			   
+      //
+      if inouttyp<1|inouttyp>8 then ok=%f;return;end
+      //
+      ww=find(bllst(connectmat(jj,1)).outtyp==nouttyp)
+      bllst(connectmat(jj,1)).outtyp(ww)=inouttyp
+      
+      //
+      ww=find(bllst(connectmat(jj,1)).intyp==nouttyp)
+      bllst(connectmat(jj,1)).intyp(ww)=inouttyp
+      
+      ww=find(bllst(connectmat(jj,3)).intyp==nintyp)
+      bllst(connectmat(jj,3)).intyp(ww)=inouttyp
+      //
+      ww=find(bllst(connectmat(jj,3)).outtyp==nintyp)
+      bllst(connectmat(jj,3)).outtyp(ww)=inouttyp
+      
+      //
+    end
+  end
+  //if failed then display message
+  if ~findflag then 
+    message(['I cannot find a link with undetermined size';
+	'My guess is that you have a block with unconnected';
+	'undetermined types']);
+    ok=%f;return;
+  end
+end
 endfunction
-
