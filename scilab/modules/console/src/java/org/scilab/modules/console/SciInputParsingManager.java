@@ -89,8 +89,31 @@ public class SciInputParsingManager implements InputParsingManager {
 		String lineToParse = wholeLine.substring(0, caretPos);
 		
 		/* Code to emulate Scilab Parser */
-		char[] symbs = {'+', '-', '*', '/', '\\', '(', '[', ' ', '^', ' ', ',', ';', '=', '{',
-				'+', '-', '*', '/', '\\', ',', ';', ' ', '^', '.', '&', '|', '\'', ']', ')', '}'};
+		char[] symbs = {'+', '-', '*', '/', '\\', '(', '[', ' ', '^', ',', ';', '=', '{',
+				'.', '&', '|', '\'', ']', ')', '}', ':'};
+		int index = -1;
+		
+		for (int i = 0; i < symbs.length; i++) {
+			index = Math.max(index, lineToParse.lastIndexOf(symbs[i]));
+		}
+
+		return lineToParse.substring(index + 1);
+	}
+
+	/**
+	 * Get the string to use for completion (see completion level)
+	 * @param level the level used for completion
+	 * @return the string to use as a keyword for completion
+	 * @see com.artenum.rosetta.interfaces.core.InputParsingManager#getPartLevel(int)
+	 */
+	public String getFilePartLevel(int level) {
+		String wholeLine = getCommandLine();
+		int caretPos = getCaretPosition();
+		
+		String lineToParse = wholeLine.substring(0, caretPos);
+		
+		/* Code to emulate Scilab Parser */
+		char[] symbs = {' '};
 		int index = -1;
 		
 		for (int i = 0; i < symbs.length; i++) {

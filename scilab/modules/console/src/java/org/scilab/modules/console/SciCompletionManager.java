@@ -34,17 +34,22 @@ public class SciCompletionManager implements CompletionManager {
 	 * @see com.artenum.rosetta.interfaces.core.CompletionManager#getCompletionItems()
 	 */
 	public List<CompletionItem> getCompletionItems() {
-		// Get the completion part used to filter the dictionary
-		String searchedPattern = inputParsingManager.getPartLevel(inputParsingManager.getCompletionLevel());
+		int compLevel = inputParsingManager.getCompletionLevel();
 		
 		// Build dictionnary
 		dictionnary	= new ArrayList<CompletionItem>();
 
+		// Get the completion part used to filter the paths/files dictionary
+		String fileSearchedPattern = ((SciInputParsingManager) inputParsingManager).getFilePartLevel(compLevel);
+		
+		String[] scilabFilesDictionnary = Completion.searchFilesDictionary(fileSearchedPattern);
+		addItemsToDictionnary("File or Directory", scilabFilesDictionnary);
+
+		// Get the completion part used to filter the dictionary
+		String searchedPattern = inputParsingManager.getPartLevel(compLevel);
+
 		String[] scilabCommandsDictionnary = Completion.searchCommandsDictionary(searchedPattern);
 		addItemsToDictionnary("Scilab Command", scilabCommandsDictionnary);
-		
-		String[] scilabFilesDictionnary = Completion.searchFilesDictionary(searchedPattern);
-		addItemsToDictionnary("File or Directory", scilabFilesDictionnary);
 		
 		String[] scilabFunctionsDictionnary = Completion.searchFunctionsDictionary(searchedPattern);
 		addItemsToDictionnary("Scilab Function", scilabFunctionsDictionnary);
