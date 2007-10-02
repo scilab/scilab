@@ -119,15 +119,17 @@ public class SciInputParsingManager implements InputParsingManager {
 		for (int i = 0; i < symbs.length; i++) {
 			index = Math.max(index, lineToParse.lastIndexOf(symbs[i]));
 		}
-		/* Skip all blanks following , or ; and preceeding the function name */
 		index++;
-		if (index < 0) {
-			return null;
-		}
-		while (lineToParse.charAt(index) == ' ') {
-			index++;
-			if (index >= lineToParse.length()) {
+		if (index != 0) {
+			/* Skip all blanks following , or ; and preceeding the function name */
+			if (index < 0) {
 				return null;
+			}
+			while (lineToParse.charAt(index) == ' ') {
+				index++;
+				if (index >= lineToParse.length()) {
+					return null;
+				}
 			}
 		}
 		/* Search the beginning of the path or file name */
@@ -147,10 +149,10 @@ public class SciInputParsingManager implements InputParsingManager {
 			indexdquote = lineToParse.length();
 		}
 		index = Math.min(indexspace, Math.min(indexquote, indexdquote));
-		if (lineToParse.substring(index + 1).trim().equals("")) {
+		if (index <= 0 | lineToParse.substring(index).trim().equals("")) {
 			return null;
 		} else {
-			return lineToParse.substring(index + 1).trim();
+			return lineToParse.substring(index).trim();
 		}
 	}
 
