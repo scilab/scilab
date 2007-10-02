@@ -6,6 +6,7 @@ package org.scilab.modules.console;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
 /**
@@ -32,7 +33,12 @@ public class FocusMouseListener implements MouseListener {
      */
     public void mouseClicked(MouseEvent e) {
     	// If the user clicks in the Outputview then the focus is given to the input command view
-    	((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
+    	if (((JPanel) c.getConfiguration().getPromptView()).isVisible()) {
+    		((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
+    	} else {
+    		// In case of "more ?"
+    		c.grabFocus();
+    	}
     }
 
     /**
@@ -78,6 +84,11 @@ public class FocusMouseListener implements MouseListener {
      */
     public void mouseOver(MouseEvent e) {
        	// If the user clicks in the Outputview then the focus is given to the input command view
-    	((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
+    	if (((JPanel) c.getConfiguration().getPromptView()).isVisible()) {
+    		((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
+    	} else {
+    		// In case of "more ?"
+    		c.grabFocus();
+    	}
     }
 }
