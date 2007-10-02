@@ -88,7 +88,7 @@ BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 	extract_bit_u32_UH1.o extract_bit_u16_UH1.o extract_bit_u8_UH1.o extract_bit_u32_MSB1.o\
 	extract_bit_u16_MSB1.o extract_bit_u8_MSB1.o extract_bit_u32_RB1.o extract_bit_u16_RB1.o \
         extract_bit_u8_RB1.o rndblk_m.o relational_op.o curve_c.o counter.o m_frequ.o \
-        tows_c.o rndblkz_m.o fromws_c.o
+        tows_c.o rndblkz_m.o fromws_c.o mathermit_m.o
 
 OBJSF=intcos.o coselm.o sciblk.o  \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
@@ -237,7 +237,220 @@ delay4.o: delay4.c scicos_block.h
 readf4.o: readf4.c ../machine.h scicos_block.h
 tree.o: tree.c ../machine.h ../sci_mem_alloc.h
 matmul_m.o: matmul_m.c scicos_block4.h
-mattram_m.o: mattran_m.c scicos_block4.h
+mattran_m.o: mattran_m.c scicos_block4.h
+extdiag.o:extdiag.c  scicos_block4.h ../machine.h
+exttril.o: exttril.c scicos_block4.h ../machine.h
+mat_bksl.o: mat_bksl.c scicos_block4.h ../machine.h
+mat_diag.o:mat_diag.c scicos_block4.h ../machine.h
+mat_lu.o: mat_lu.c scicos_block4.h ../machine.h
+mat_svd.o:mat_svd.c scicos_block4.h ../machine.h
+matz_absc.o: matz_absc.c scicos_block4.h ../machine.h
+matz_conj.o: matz_conj.c scicos_block4.h ../machine.h
+matz_expm.o: matz_expm.c scicos_block4.h ../machine.h
+matz_reim.o: matz_reim.c scicos_block4.h ../machine.h
+matz_svd.o: matz_svd.c scicos_block4.h ../machine.h
+root_coef.o:root_coef.c scicos_block4.h 
+extdiagz.o: extdiagz.c scicos_block4.h ../machine.h
+exttrilz.o:exttrilz.c scicos_block4.h ../machine.h
+mat_cath.o: mat_cath.c scicos_block4.h ../machine.h
+mat_div.o: mat_div.c scicos_block4.h ../machine.h
+mat_pinv.o: mat_pinv.c scicos_block4.h ../machine.h
+mat_vps.o: mat_vps.c scicos_block4.h ../machine.h
+matz_bksl.o:matz_bksl.c scicos_block4.h ../machine.h
+matz_det.o: matz_det.c scicos_block4.h ../machine.h
+matz_inv.o: matz_inv.c scicos_block4.h ../machine.h
+matz_reimc.o: matz_reimc.c scicos_block4.h ../machine.h
+matz_vps.o: matz_vps.c scicos_block4.h ../machine.h
+rootz_coef.o: rootz_coef.c scicos_block4.h
+extract.o: extract.c scicos_block4.h ../machine.h
+exttriu.o:exttriu.c scicos_block4.h ../machine.h
+mat_catv.o: mat_catv.c scicos_block4.h ../machine.h
+mat_expm.o: mat_expm.c scicos_block4.h ../machine.h
+mat_reshape.o: mat_reshape.c scicos_block4.h ../machine.h
+mat_vpv.o: mat_vpv.c scicos_block4.h ../machine.h
+matz_cath.o: matz_cath.c scicos_block4.h ../machine.h
+matz_diag.o: matz_diag.c scicos_block4.h ../machine.h
+matz_lu.o:matz_lu.c scicos_block4.h ../machine.h
+matz_reshape.o: matz_reshape.c scicos_block4.h ../machine.h
+matz_vpv.o: matz_vpv.c scicos_block4.h ../machine.h
+submat.o: submat.c scicos_block4.h ../machine.h
+extractz.o: extractz.c scicos_block4.h ../machine.h
+exttriuz.o: exttriuz.c scicos_block4.h ../machine.h
+mat_det.o: mat_det.c scicos_block4.h ../machine.h
+mat_inv.o:mat_inv.c scicos_block4.h ../machine.h
+mat_sing.o: mat_sing.c scicos_block4.h ../machine.h
+matz_abs.o: matz_abs.c scicos_block4.h ../machine.h
+matz_catv.o: matz_catv.c scicos_block4.h ../machine.h
+matz_div.o: matz_div.c scicos_block4.h ../machine.h
+matz_pinv.o: matz_pinv.c scicos_block4.h ../machine.h
+matz_sing.o: matz_sing.c scicos_block4.h ../machine.h
+ricc_m.o:ricc_m.c scicos_block4.h ../machine.h
+submatz.o: submatz.c scicos_block4.h ../machine.h
+switch2_m.o: switch2_m.c scicos_block4.h 
+dollar4_m.o: dollar4_m.c scicos_block4.h
+cstblk4_m.o: cstblk4_m.c scicos_block4.h
+integralz_func.o: integralz_func.c scicos_block4.h
+matzmul_m.o: matzmul_m.c scicos_block4.h ../machine.h
+matztran_m.o: matztran_m.c scicos_block4.h ../machine.h
+mat_sum.o: mat_sum.c scicos_block4.h ../machine.h
+mat_sumc.o: mat_sumc.c scicos_block4.h ../machine.h
+mat_suml.o: mat_suml.c scicos_block4.h ../machine.h
+cumsum_c.o: cumsum_c.c scicos_block4.h ../machine.h
+cumsum_m.o: cumsum_m.c scicos_block4.h ../machine.h
+cumsum_r.o: cumsum_r.c scicos_block4.h ../machine.h
+matz_sum.o: matz_sum.c scicos_block4.h ../machine.h
+matz_sumc.o: matz_sumc.c scicos_block4.h ../machine.h
+matz_suml.o: matz_suml.c scicos_block4.h ../machine.h
+cumsumz_c.o: cumsumz_c.c scicos_block4.h ../machine.h
+cumsumz_m.o: cumsumz_m.c scicos_block4.h ../machine.h
+cumsumz_r.o: cumsumz_r.c scicos_block4.h ../machine.h
+selector_m.o: selector_m.c scicos_block4.h ../machine.h
+summation_z.o: summation_z.c scicos_block4.h
+convert.o: convert.c scicos_block4.h ../machine.h 
+logicalop_i32.o: logicalop_i32.c scicos_block4.h
+logicalop_ui32.o: logicalop_ui32.c scicos_block4.h
+logicalop_i16.o: logicalop_i16.c scicos_block4.h
+logicalop_ui16.o: logicalop_ui16.c scicos_block4.h
+logicalop_i8.o: logicalop_i8.c scicos_block4.h
+logicalop_ui8.o: logicalop_ui8.c scicos_block4.h
+logicalop_m.o: logicalop_m.c scicos_block4.h
+samphold4_m.o: samphold4_m.c scicos_block4.h
+matmul_i32s.o: matmul_i32s.c scicos_block4.h ../machine.h
+matmul_i32n.o: matmul_i32n.c scicos_block4.h ../machine.h
+matmul_i32e.o: matmul_i32e.c scicos_block4.h ../machine.h
+matmul_i16s.o: matmul_i16s.c scicos_block4.h ../machine.h
+matmul_i16n.o: matmul_i16n.c scicos_block4.h ../machine.h
+matmul_i16e.o: matmul_i16e.c scicos_block4.h ../machine.h
+matmul_i8s.o: matmul_i8s.c scicos_block4.h ../machine.h
+matmul_i8n.o: matmul_i8n.c scicos_block4.h ../machine.h
+matmul_i8e.o: matmul_i8e.c scicos_block4.h ../machine.h
+matmul_ui32s.o: matmul_ui32s.c scicos_block4.h ../machine.h 
+matmul_ui32n.o: matmul_ui32n.c scicos_block4.h ../machine.h 
+matmul_ui32e.o: matmul_ui32e.c scicos_block4.h ../machine.h
+matmul_ui16s.o: matmul_ui16s.c scicos_block4.h ../machine.h
+matmul_ui16n.o: matmul_ui16n.c scicos_block4.h ../machine.h
+matmul_ui16e.o: matmul_ui16e.c scicos_block4.h ../machine.h
+matmul_ui8s.o: matmul_ui8s.c scicos_block4.h ../machine.h
+matmul_ui8n.o: matmul_ui8n.c scicos_block4.h ../machine.h
+matmul_ui8e.o: matmul_ui8e.c scicos_block4.h ../machine.h
+summation_i32s.o: summation_i32s.c scicos_block4.h 
+summation_i32n.o: summation_i32n.c scicos_block4.h 
+summation_i32e.o: summation_i32e.c scicos_block4.h
+summation_i16s.o: summation_i16s.c scicos_block4.h 
+summation_i16n.o: summation_i16n.c scicos_block4.h 
+summation_i16e.o: summation_i16e.c scicos_block4.h 
+summation_i8s.o: summation_i8s.c scicos_block4.h 
+summation_i8n.o: summation_i8n.c scicos_block4.h 
+summation_i8e.o: summation_i8e.c scicos_block4.h 
+summation_ui32s.o: summation_ui32s.c scicos_block4.h 
+summation_ui32n.o: summation_ui32n.c scicos_block4.h 
+summation_ui32e.o: summation_ui32e.c scicos_block4.h 
+summation_ui16s.o: summation_ui16s.c scicos_block4.h
+summation_ui16n.o: summation_ui16n.c scicos_block4.h
+summation_ui16e.o: summation_ui16e.c scicos_block4.h
+summation_ui8s.o: summation_ui8s.c scicos_block4.h
+summation_ui8n.o: summation_ui8n.c scicos_block4.h
+summation_ui8e.o: summation_ui8e.c scicos_block4.h
+gainblk_i32s.o: gainblk_i32s.c scicos_block4.h ../machine.h
+gainblk_i32n.o: gainblk_i32n.c scicos_block4.h ../machine.h
+gainblk_i32e.o: gainblk_i32e.c scicos_block4.h ../machine.h
+gainblk_i16s.o: gainblk_i16s.c scicos_block4.h ../machine.h
+gainblk_i16n.o: gainblk_i16n.c scicos_block4.h ../machine.h
+gainblk_i16e.o: gainblk_i16e.c scicos_block4.h ../machine.h
+gainblk_i8s.o: gainblk_i8s.c scicos_block4.h ../machine.h
+gainblk_i8n.o: gainblk_i8n.c scicos_block4.h ../machine.h
+gainblk_i8e.o: gainblk_i8e.c scicos_block4.h ../machine.h
+gainblk_ui32s.o: gainblk_ui32s.c scicos_block4.h ../machine.h
+gainblk_ui32n.o: gainblk_ui32n.c scicos_block4.h ../machine.h
+gainblk_ui32e.o: gainblk_ui32e.c scicos_block4.h ../machine.h
+gainblk_ui16s.o: gainblk_ui16s.c scicos_block4.h ../machine.h
+gainblk_ui16n.o: gainblk_ui16n.c scicos_block4.h ../machine.h
+gainblk_ui16e.o: gainblk_ui16e.c scicos_block4.h ../machine.h
+gainblk_ui8s.o: gainblk_ui8s.c scicos_block4.h ../machine.h
+gainblk_ui8n.o: gainblk_ui8n.c scicos_block4.h ../machine.h
+gainblk_ui8e.o: gainblk_ui8e.c scicos_block4.h ../machine.h
+delay4_i32.o: delay4_i32.c scicos_block4.h
+delay4_i16.o: delay4_i16.c scicos_block4.h
+delay4_i8.o: delay4_i8.c scicos_block4.h
+delay4_ui32.o: delay4_ui32.c scicos_block4.h
+delay4_ui16.o: delay4_ui16.c scicos_block4.h
+delay4_ui8.o: delay4_ui8.c scicos_block4.h
+mat_sqrt.o: mat_sqrt.c scicos_block4.h ../machine.h
+matz_sqrt.o: matz_sqrt.c scicos_block4.h ../machine.h 
+relational_op_i32.o: relational_op_i32.c scicos_block4.h
+relational_op_ui32.o: relational_op_ui32.c scicos_block4.h
+relational_op_i16.o: relational_op_i16.c scicos_block4.h
+relational_op_ui16.o: relational_op_ui16.c scicos_block4.h
+relational_op_i8.o: relational_op_i8.c scicos_block4.h
+relational_op_ui8.o: relational_op_ui8.c scicos_block4.h
+evtdly4.o: evtdly4.c scicos_block4.h
+matmul2_m.o: matmul2_m.c scicos_block4.h ../machine.h
+matzmul2_m.o: matzmul2_m.c scicos_block4.h ../machine.h
+expblk_m.o: expblk_m.c scicos_block4.h ../machine.h
+logic.o: logic.c scicos_block4.h
+bit_clear_32.o: bit_clear_32.c scicos_block4.h
+bit_clear_16.o: bit_clear_16.c scicos_block4.h
+bit_clear_8.o: bit_clear_8.c scicos_block4.h
+bit_set_32.o: bit_set_32.c scicos_block4.h
+bit_set_16.o: bit_set_16.c scicos_block4.h
+bit_set_8.o: bit_set_8.c scicos_block4.h
+extract_bit_32_UH0.o: extract_bit_32_UH0.c scicos_block4.h
+extract_bit_16_UH0.o: extract_bit_16_UH0.c scicos_block4.h
+extract_bit_8_UH0.o: extract_bit_8_UH0.c scicos_block4.h
+extract_bit_32_UH1.o: extract_bit_32_UH1.c scicos_block4.h
+extract_bit_16_UH1.o: extract_bit_16_UH1.c scicos_block4.h
+extract_bit_8_UH1.o: extract_bit_8_UH1.c scicos_block4.h
+extract_bit_32_LH.o: extract_bit_32_LH.c scicos_block4.h
+extract_bit_16_LH.o: extract_bit_16_LH.c scicos_block4.h
+extract_bit_8_LH.o: extract_bit_8_LH.c scicos_block4.h
+extract_bit_32_MSB0.o: extract_bit_32_MSB0.c scicos_block4.h
+extract_bit_16_MSB0.o: extract_bit_16_MSB0.c scicos_block4.h
+extract_bit_8_MSB0.o: extract_bit_8_MSB0.c scicos_block4.h
+extract_bit_32_MSB1.o: extract_bit_32_MSB1.c scicos_block4.h
+extract_bit_16_MSB1.o: extract_bit_16_MSB1.c scicos_block4.h
+extract_bit_8_MSB1.o: extract_bit_8_MSB1.c scicos_block4.h
+extract_bit_32_LSB.o: extract_bit_32_LSB.c scicos_block4.h
+extract_bit_16_LSB.o: extract_bit_16_LSB.c scicos_block4.h
+extract_bit_8_LSB.o:extract_bit_8_LSB.c scicos_block4.h
+extract_bit_32_RB0.o: extract_bit_32_RB0.c scicos_block4.h
+extract_bit_16_RB0.o: extract_bit_16_RB0.c scicos_block4.h
+extract_bit_8_RB0.o: extract_bit_8_RB0.c scicos_block4.h
+extract_bit_32_RB1.o: extract_bit_32_RB1.c scicos_block4.h
+extract_bit_16_RB1.o: extract_bit_16_RB1.c scicos_block4.h
+extract_bit_8_RB1.o: extract_bit_8_RB1.c scicos_block4.h
+shift_8_LA.o: shift_8_LA.c scicos_block4.h ../machine.h
+shift_16_LA.o: shift_16_LA.c scicos_block4.h ../machine.h
+shift_32_LA.o: shift_32_LA.c scicos_block4.h ../machine.h
+shift_8_LC.o: shift_8_LC.c scicos_block4.h ../machine.h
+shift_16_LC.o: shift_16_LC.c scicos_block4.h ../machine.h
+shift_32_LC.o: shift_32_LC.c scicos_block4.h ../machine.h
+shift_8_RA.o: shift_8_RA.c scicos_block4.h ../machine.h
+shift_16_RA.o: shift_16_RA.c scicos_block4.h ../machine.h
+shift_32_RA.o: shift_32_RA.c scicos_block4.h ../machine.h
+shift_8_RC.o: shift_8_RC.c scicos_block4.h ../machine.h
+shift_16_RC.o: shift_16_RC.c scicos_block4.h ../machine.h
+shift_32_RC.o: shift_32_RC.c scicos_block4.h ../machine.h
+shift_u8_RA.o: shift_u8_RA.c scicos_block4.h ../machine.h
+shift_u16_RA.o: shift_u16_RA.c scicos_block4.h ../machine.h
+shift_u32_RA.o: shift_u32_RA.c scicos_block4.h ../machine.h
+extract_bit_u32_UH1.o: extract_bit_u32_UH1.c scicos_block4.h
+extract_bit_u16_UH1.o: extract_bit_u16_UH1.c scicos_block4.h
+extract_bit_u8_UH1.o: extract_bit_u8_UH1.c scicos_block4.h
+extract_bit_u32_MSB1.o: extract_bit_u32_MSB1.c scicos_block4.h
+extract_bit_u16_MSB1.o: extract_bit_u16_MSB1.c scicos_block4.h
+extract_bit_u8_MSB1.o: extract_bit_u8_MSB1.c scicos_block4.h
+extract_bit_u32_RB1.o: extract_bit_u32_RB1.c scicos_block4.h
+extract_bit_u16_RB1.o: extract_bit_u16_RB1.c scicos_block4.h
+extract_bit_u8_RB1.o: extract_bit_u8_RB1.c scicos_block4.h 
+rndblk_m.o: rndblk_m.c scicos_block4.h ../machine.h
+relational_op.o: relational_op.c scicos_block4.h
+curve_c.o: curve_c.c scicos_block4.h
+counter.o: counter.c scicos_block4.h
+m_frequ.o: m_frequ.c scicos_block4.h
+tows_c.o: tows_c.c scicos_block4.h ../machine.h ../stack.h
+rndblkz_m.o: rndblkz_m.c scicos_block4.h ../machine.h
+fromws_c.o: fromws_c.c scicos_block4.h 
+mathermit_m.o: mathermit_m.c scicos_block4.h ../machine.h
 
 sundials/cvode.o: sundials/cvode.c
 	$(CC) $(CFLAGS) -o $@ -c $<

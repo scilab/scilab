@@ -355,6 +355,7 @@ extern void m_frequ __PARAMS((ARGS_scicos));
 extern void tows_c __PARAMS((ARGS_scicos));
 extern void rndblkz_m __PARAMS((ARGS_scicos));
 extern void fromws_c __PARAMS((ARGS_scicos));
+extern void mathermit_m __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -535,6 +536,7 @@ OpTab tabsim[] ={
 {"mat_diag",(ScicosF) mat_diag},
 {"mat_div",(ScicosF) mat_div},
 {"mat_expm",(ScicosF) mat_expm},
+{"mathermit_m",(ScicosF) mathermit_m},
 {"mat_inv",(ScicosF) mat_inv},
 {"mat_lu",(ScicosF) mat_lu},
 {"matmul2_m",(ScicosF) matmul2_m},
@@ -712,6 +714,6 @@ OpTab tabsim[] ={
 {"zcross",(ScicosF) F2C(zcross)},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 353 ;
+int ntabsim= 354 ;
 #endif 
 /***********************************/
