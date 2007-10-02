@@ -1198,6 +1198,9 @@ cd .. &gt;nul
 				RelativePath=".\mat_vpv.c">
 			</File>
 			<File
+				RelativePath=".\mathermit_m.c">
+			</File>
+			<File
 				RelativePath=".\matmul2_m.c">
 			</File>
 			<File
