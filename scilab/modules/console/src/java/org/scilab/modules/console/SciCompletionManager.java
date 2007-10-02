@@ -41,28 +41,29 @@ public class SciCompletionManager implements CompletionManager {
 
 		// Get the completion part used to filter the paths/files dictionary
 		String fileSearchedPattern = ((SciInputParsingManager) inputParsingManager).getFilePartLevel(compLevel);
-		
+
 		String[] scilabFilesDictionnary = Completion.searchFilesDictionary(fileSearchedPattern);
 		addItemsToDictionnary("File or Directory", scilabFilesDictionnary);
 
-		// Get the completion part used to filter the dictionary
-		String searchedPattern = inputParsingManager.getPartLevel(compLevel);
-
-		String[] scilabCommandsDictionnary = Completion.searchCommandsDictionary(searchedPattern);
-		addItemsToDictionnary("Scilab Command", scilabCommandsDictionnary);
-		
-		String[] scilabFunctionsDictionnary = Completion.searchFunctionsDictionary(searchedPattern);
-		addItemsToDictionnary("Scilab Function", scilabFunctionsDictionnary);
-		
-		String[] scilabHandlesDictionnary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
-		addItemsToDictionnary("Graphics handle field", scilabHandlesDictionnary);
-		
-		String[] scilabMacrosDictionnary = Completion.searchMacrosDictionary(searchedPattern);
-		addItemsToDictionnary("Scilab Macro", scilabMacrosDictionnary);
-		
-		String[] scilabVariablesDictionnary = Completion.searchVariablesDictionary(searchedPattern);
-		addItemsToDictionnary("Scilab Variable", scilabVariablesDictionnary);
-
+		if (scilabFilesDictionnary == null) {
+			// Get the completion part used to filter the dictionary
+			String searchedPattern = inputParsingManager.getPartLevel(compLevel);
+	
+			String[] scilabCommandsDictionnary = Completion.searchCommandsDictionary(searchedPattern);
+			addItemsToDictionnary("Scilab Command", scilabCommandsDictionnary);
+			
+			String[] scilabFunctionsDictionnary = Completion.searchFunctionsDictionary(searchedPattern);
+			addItemsToDictionnary("Scilab Function", scilabFunctionsDictionnary);
+			
+			String[] scilabHandlesDictionnary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
+			addItemsToDictionnary("Graphics handle field", scilabHandlesDictionnary);
+			
+			String[] scilabMacrosDictionnary = Completion.searchMacrosDictionary(searchedPattern);
+			addItemsToDictionnary("Scilab Macro", scilabMacrosDictionnary);
+			
+			String[] scilabVariablesDictionnary = Completion.searchVariablesDictionary(searchedPattern);
+			addItemsToDictionnary("Scilab Variable", scilabVariablesDictionnary);
+		}
 		return dictionnary;
 	}
 

@@ -113,14 +113,35 @@ public class SciInputParsingManager implements InputParsingManager {
 		String lineToParse = wholeLine.substring(0, caretPos);
 		
 		/* Code to emulate Scilab Parser */
-		char[] symbs = {' '};
+		char[] symbs = {';', ','};
 		int index = -1;
 		
 		for (int i = 0; i < symbs.length; i++) {
 			index = Math.max(index, lineToParse.lastIndexOf(symbs[i]));
 		}
-
-		return lineToParse.substring(index + 1);
+		/* Skip all blanks following , or ; and preceeding the function name */
+		index++;
+		while (lineToParse.charAt(index) == ' ') {
+			index++;
+		}
+		/* Search the beginning of the path or file name */
+		/* cd toto */
+		/* cd("toto */
+		lineToParse = lineToParse.substring(index).trim();
+		int indexspace = lineToParse.indexOf(' ');
+		if (indexspace == -1) {
+			indexspace = lineToParse.length();
+		}
+		int indexquote = lineToParse.indexOf('\"');
+		if (indexquote == -1) {
+			indexquote = lineToParse.length();
+		}
+		int indexdquote = lineToParse.indexOf('\"');
+		if (indexdquote == -1) {
+			indexdquote = lineToParse.length();
+		}
+		index = Math.min(indexspace, Math.min(indexquote, indexdquote));
+		return lineToParse.substring(index + 1).trim();
 	}
 
 	/**
