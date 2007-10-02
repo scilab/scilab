@@ -412,8 +412,8 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_GRAPH_WM_SETFOCUS(HWND hwnd, HWND hwndOldFocus)
 {
-	extern BOOL focushaschanged;
-	focushaschanged = TRUE;
+	extern BOOL focus;
+	if (!focus) focus = TRUE;
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/

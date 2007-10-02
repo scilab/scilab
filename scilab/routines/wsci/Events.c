@@ -5,8 +5,15 @@
 #include "MouseEvents.h"
 #include "KeyEvents.h"
 /*-----------------------------------------------------------------------------------*/
+static BOOL firstCall = TRUE;
+/*-----------------------------------------------------------------------------------*/
 BOOL GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 {
+	if (firstCall)
+	{
+		InitializeButtons();
+		firstCall = FALSE;
+	}
 	switch(message)
 	{
 		HANDLE_MSG(ScilabGC->CWindow,WM_KEYDOWN,ON_EVENT_GRAPH_WM_KEYDOWN);
