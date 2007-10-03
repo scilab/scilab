@@ -1,0 +1,127 @@
+function fname=do_saveblockgui(o)
+  tit = ["Use .sci extension because GUI is a Scilab function"];
+  fname = savefile('*.sci',emptystr(),tit)
+
+  if fname==emptystr() then
+    return
+  end
+
+  [path,bname,ext] = splitfilepath_cos(fname)
+  [u,err]=file('open',fname,'unknown')
+
+  if err<>0 then
+    message(path+': Directory or file write access denied')
+    return
+  end
+
+  graphics=o.graphics
+  exprs0=graphics.exprs(2)(1)
+  btitre=graphics.exprs(2)(2)
+  if exprs0==[] then 
+     txtset='x=arg1,return'
+  else
+     tt='%scicos_context.'+exprs0(1);
+     ss=list('mat',[-1,-1])
+     for i=2:size(exprs0,1)
+       tt=tt+',%scicos_context.'+exprs0(i),
+       ss($+1)='mat';ss($+1)=[-1,-1];
+     end
+     
+     txtset=[
+          '  y=needcompile'
+          '  typ=list()'
+          '  graphics=arg1.graphics;'
+          '  exprs=graphics.exprs'
+          '  %scicos_context=struct()'
+          '  [ok,'+tt+',exprs]=getvalue('+sci2exp(btitre)+','+strcat(sci2exp(exprs0))+','+strcat(sci2exp(ss))+',exprs)'
+          '  if ok then'
+          '     x=arg1'
+          '     sblock=x.model.rpar'
+          '     [sblock,%w,needcompile2,ok]=do_eval(sblock,list())'
+          '     y=max(2,needcompile,needcompile2)'
+          '     x.graphics.exprs=exprs'
+          '     x.model.rpar=sblock'
+          ' else '
+          '     x=arg1'
+          ' end ']
+  end
+
+
+
+  txt=['function [x,y,typ]='+bname+'(job,arg1,arg2)'
+       '//Generated from '+o.model.rpar.props.title(1)+' on '+date()
+       'x=[];y=[];typ=[];'
+       'select job'
+       'case ''plot'' then'
+       '  standard_draw(arg1)'
+       'case ''getinputs'' then'
+       '  [x,y,typ]=standard_inputs(arg1)'
+       'case ''getoutputs'' then'
+       '  [x,y,typ]=standard_outputs(arg1)'
+       'case ''getorigin'' then'
+       '  [x,y]=standard_origin(arg1)'
+       'case ''set'' then'
+       txtset
+       'case ''define'' then'
+       ]
+
+  ierr=execstr('write(u,txt,''(a)'')','errcatch','n')
+  if ierr<>0 then 
+    message('Impossible to write in this file; possibly locked.')
+    file('close',u)
+  fname=emptystr()
+  end
+  dimen=o.graphics.sz/20
+  dimen=dimen(:)'
+
+  textdef=['  model=scicos_model()']
+  model=o.model
+  cc=getfield(1,model)
+  cos2cosf(u,model.rpar,0)
+  for ch=cc(2:$)
+     if ch=='rpar' then
+        textdef=[textdef;
+                 '  model.rpar=scs_m_1']
+     else
+        chval=sci2exp(evstr('model.'+ch))
+        textdef=[textdef;
+                 '  model.'+ch+'='+chval(1);
+                 chval(2:$)]
+     end
+  end
+
+  for i=1:size(exprs0,1)
+    textdef=[textdef;
+             '  '+exprs0(i)+'='+strcat(sci2exp(evstr(exprs0(i))))
+            ];
+  end
+
+
+  textdef=[textdef;
+           '  exprs=[..';
+           '       strcat(sci2exp('+exprs0+'))'
+           '        ]'
+          ]
+
+  gr_i_tmp = sci2exp(o.graphics.gr_i);
+  if size(gr_i_tmp,1)<>1 then
+      textdef=[textdef;
+          '  gr_i='+gr_i_tmp(1)
+          '       '+gr_i_tmp(2:$)];
+  else
+      textdef=[textdef;
+          '  gr_i='+gr_i_tmp];
+  end
+  
+  textdef=[textdef;
+              '  x=standard_define('+sci2exp(dimen)+',model,exprs,gr_i)']
+  
+
+  txt=[ textdef
+       'end'
+       'endfunction'
+       ]
+
+  write(u,txt,'(a)')
+  file('close',u)
+endfunction

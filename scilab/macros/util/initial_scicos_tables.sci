@@ -115,6 +115,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
               'Create Mask',..
               'Remove Mask',..
               'Customize Mask',..
+              'Save Block GUI',..
               'Get Info',..
               'Details',..
               'Browser',..
@@ -169,7 +170,8 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                              list( 'Mask',..
                                    'Create Mask',..
                                    'Remove Mask',..
-                                   'Customize Mask'),..
+                                   'Customize Mask',..
+                                   'Save Block GUI'),..
 			     'Region to Super Block',..
 			     'Help');
 
@@ -763,6 +765,15 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
               [" Creating a mask leads to a block with parameters that can be set by the";
                " block''s dialog box. The title and the description of the parameters in the";
                " dialog box can be set by this menu."])
+
+  %scs_help_menu=scicos_help(%scs_help_menu,...
+              'Save Block GUI',..
+              [" This operation can only be applied to a masked block (see Create Mask operation).";
+               " The result, the interfacing function of this block, is saved in an .sci file, which ";
+               " can be placed in any diagram/palette using the Add New Block operation. ";
+               " The interfacing function is loaded autmatically for immediate use after the operation.";
+               " ";
+               " Note that the resulting block is not a masked block; it is a compiled super block."])
 
 
   %scs_help_menu=scicos_help(%scs_help_menu,...
