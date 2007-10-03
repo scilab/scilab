@@ -1192,9 +1192,9 @@ void WriteMainHeader(FILE *f,char *fname)
   Fprintf(f,indent,"subroutine %s\n",fname);
   scidir = getenv("SCI");
   if ( scidir != NULL) 
-    Fprintf(f,indent,"include '%s/routines/stack.h'\n",scidir);
+    Fprintf(f,indent,"include '%s/modules/core/includes/stack.h'\n",scidir);
   else 
-    Fprintf(f,indent,"include 'SCIDIR/routines/stack.h'\n");
+    Fprintf(f,indent,"include 'SCIDIR/modules/core/includes/stack.h'\n");
   Fprintf(f,indent,"rhs = max(0,rhs)\n");
   FCprintf(f,"c\n");
 }
