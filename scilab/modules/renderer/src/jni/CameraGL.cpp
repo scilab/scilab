@@ -174,7 +174,7 @@ if (this->voiddisplayID == NULL)
 {
 this->voiddisplayID = curEnv->GetMethodID(this->instanceClass, "display", "()V" ) ;
 if (this->voiddisplayID == NULL) {
-std::cerr << "Could not access to the method display" << std::endl;
+std::cerr << "Could not access to the method " << "display" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -195,7 +195,7 @@ if (this->voidinitializeDrawingjintID == NULL)
 {
 this->voidinitializeDrawingjintID = curEnv->GetMethodID(this->instanceClass, "initializeDrawing", "(I)V" ) ;
 if (this->voidinitializeDrawingjintID == NULL) {
-std::cerr << "Could not access to the method initializeDrawing" << std::endl;
+std::cerr << "Could not access to the method " << "initializeDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -216,7 +216,7 @@ if (this->voidendDrawingID == NULL)
 {
 this->voidendDrawingID = curEnv->GetMethodID(this->instanceClass, "endDrawing", "()V" ) ;
 if (this->voidendDrawingID == NULL) {
-std::cerr << "Could not access to the method endDrawing" << std::endl;
+std::cerr << "Could not access to the method " << "endDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -237,7 +237,7 @@ if (this->voidshowjintID == NULL)
 {
 this->voidshowjintID = curEnv->GetMethodID(this->instanceClass, "show", "(I)V" ) ;
 if (this->voidshowjintID == NULL) {
-std::cerr << "Could not access to the method show" << std::endl;
+std::cerr << "Could not access to the method " << "show" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -258,7 +258,7 @@ if (this->voiddestroyjintID == NULL)
 {
 this->voiddestroyjintID = curEnv->GetMethodID(this->instanceClass, "destroy", "(I)V" ) ;
 if (this->voiddestroyjintID == NULL) {
-std::cerr << "Could not access to the method destroy" << std::endl;
+std::cerr << "Could not access to the method " << "destroy" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -279,7 +279,7 @@ if (this->voidsetFigureIndexjintID == NULL)
 {
 this->voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
 if (this->voidsetFigureIndexjintID == NULL) {
-std::cerr << "Could not access to the method setFigureIndex" << std::endl;
+std::cerr << "Could not access to the method " << "setFigureIndex" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -300,7 +300,7 @@ if (this->voidmoveViewingAreajdoublejdoublejdoublejdoubleID == NULL)
 {
 this->voidmoveViewingAreajdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "moveViewingArea", "(DDDD)V" ) ;
 if (this->voidmoveViewingAreajdoublejdoublejdoublejdoubleID == NULL) {
-std::cerr << "Could not access to the method moveViewingArea" << std::endl;
+std::cerr << "Could not access to the method " << "moveViewingArea" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -321,7 +321,7 @@ if (this->voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL)
 {
 this->voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "moveAxesBox", "(DDDDDD)V" ) ;
 if (this->voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
-std::cerr << "Could not access to the method moveAxesBox" << std::endl;
+std::cerr << "Could not access to the method " << "moveAxesBox" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -342,7 +342,7 @@ if (this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL)
 {
 this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "rotateAxesBox", "(DDDDDD)V" ) ;
 if (this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
-std::cerr << "Could not access to the method rotateAxesBox" << std::endl;
+std::cerr << "Could not access to the method " << "rotateAxesBox" << std::endl;
 exit(EXIT_FAILURE);
 }
 }

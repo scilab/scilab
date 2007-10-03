@@ -204,7 +204,7 @@ if (this->voiddisplayID == NULL)
 {
 this->voiddisplayID = curEnv->GetMethodID(this->instanceClass, "display", "()V" ) ;
 if (this->voiddisplayID == NULL) {
-std::cerr << "Could not access to the method display" << std::endl;
+std::cerr << "Could not access to the method " << "display" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -225,7 +225,7 @@ if (this->voidinitializeDrawingjintID == NULL)
 {
 this->voidinitializeDrawingjintID = curEnv->GetMethodID(this->instanceClass, "initializeDrawing", "(I)V" ) ;
 if (this->voidinitializeDrawingjintID == NULL) {
-std::cerr << "Could not access to the method initializeDrawing" << std::endl;
+std::cerr << "Could not access to the method " << "initializeDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -246,7 +246,7 @@ if (this->voidendDrawingID == NULL)
 {
 this->voidendDrawingID = curEnv->GetMethodID(this->instanceClass, "endDrawing", "()V" ) ;
 if (this->voidendDrawingID == NULL) {
-std::cerr << "Could not access to the method endDrawing" << std::endl;
+std::cerr << "Could not access to the method " << "endDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -267,7 +267,7 @@ if (this->voidshowjintID == NULL)
 {
 this->voidshowjintID = curEnv->GetMethodID(this->instanceClass, "show", "(I)V" ) ;
 if (this->voidshowjintID == NULL) {
-std::cerr << "Could not access to the method show" << std::endl;
+std::cerr << "Could not access to the method " << "show" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -288,7 +288,7 @@ if (this->voiddestroyjintID == NULL)
 {
 this->voiddestroyjintID = curEnv->GetMethodID(this->instanceClass, "destroy", "(I)V" ) ;
 if (this->voiddestroyjintID == NULL) {
-std::cerr << "Could not access to the method destroy" << std::endl;
+std::cerr << "Could not access to the method " << "destroy" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -309,7 +309,7 @@ if (this->voidsetFigureIndexjintID == NULL)
 {
 this->voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
 if (this->voidsetFigureIndexjintID == NULL) {
-std::cerr << "Could not access to the method setFigureIndex" << std::endl;
+std::cerr << "Could not access to the method " << "setFigureIndex" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -330,7 +330,7 @@ if (this->voiddrawCanvasID == NULL)
 {
 this->voiddrawCanvasID = curEnv->GetMethodID(this->instanceClass, "drawCanvas", "()V" ) ;
 if (this->voiddrawCanvasID == NULL) {
-std::cerr << "Could not access to the method drawCanvas" << std::endl;
+std::cerr << "Could not access to the method " << "drawCanvas" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -351,7 +351,7 @@ if (this->voidcloseRenderingCanvasID == NULL)
 {
 this->voidcloseRenderingCanvasID = curEnv->GetMethodID(this->instanceClass, "closeRenderingCanvas", "()V" ) ;
 if (this->voidcloseRenderingCanvasID == NULL) {
-std::cerr << "Could not access to the method closeRenderingCanvas" << std::endl;
+std::cerr << "Could not access to the method " << "closeRenderingCanvas" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -372,7 +372,7 @@ if (this->voidsetBackgroundColorjintID == NULL)
 {
 this->voidsetBackgroundColorjintID = curEnv->GetMethodID(this->instanceClass, "setBackgroundColor", "(I)V" ) ;
 if (this->voidsetBackgroundColorjintID == NULL) {
-std::cerr << "Could not access to the method setBackgroundColor" << std::endl;
+std::cerr << "Could not access to the method " << "setBackgroundColor" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -393,7 +393,7 @@ if (this->voidsetColorMapDatajdoubleArrayID == NULL)
 {
 this->voidsetColorMapDatajdoubleArrayID = curEnv->GetMethodID(this->instanceClass, "setColorMapData", "([D)V" ) ;
 if (this->voidsetColorMapDatajdoubleArrayID == NULL) {
-std::cerr << "Could not access to the method setColorMapData" << std::endl;
+std::cerr << "Could not access to the method " << "setColorMapData" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -417,7 +417,7 @@ if (this->jdoubleArraygetColorMapDataID == NULL)
 {
 this->jdoubleArraygetColorMapDataID = curEnv->GetMethodID(this->instanceClass, "getColorMapData", "()[D" ) ;
 if (this->jdoubleArraygetColorMapDataID == NULL) {
-std::cerr << "Could not access to the method getColorMapData" << std::endl;
+std::cerr << "Could not access to the method " << "getColorMapData" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -452,7 +452,7 @@ if (this->jintgetColorMapSizeID == NULL)
 {
 this->jintgetColorMapSizeID = curEnv->GetMethodID(this->instanceClass, "getColorMapSize", "()I" ) ;
 if (this->jintgetColorMapSizeID == NULL) {
-std::cerr << "Could not access to the method getColorMapSize" << std::endl;
+std::cerr << "Could not access to the method " << "getColorMapSize" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -475,7 +475,7 @@ if (this->jintgetCanvasWidthID == NULL)
 {
 this->jintgetCanvasWidthID = curEnv->GetMethodID(this->instanceClass, "getCanvasWidth", "()I" ) ;
 if (this->jintgetCanvasWidthID == NULL) {
-std::cerr << "Could not access to the method getCanvasWidth" << std::endl;
+std::cerr << "Could not access to the method " << "getCanvasWidth" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -498,7 +498,7 @@ if (this->jintgetCanvasHeightID == NULL)
 {
 this->jintgetCanvasHeightID = curEnv->GetMethodID(this->instanceClass, "getCanvasHeight", "()I" ) ;
 if (this->jintgetCanvasHeightID == NULL) {
-std::cerr << "Could not access to the method getCanvasHeight" << std::endl;
+std::cerr << "Could not access to the method " << "getCanvasHeight" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -521,7 +521,7 @@ if (this->voidsetCanvasSizejintjintID == NULL)
 {
 this->voidsetCanvasSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setCanvasSize", "(II)V" ) ;
 if (this->voidsetCanvasSizejintjintID == NULL) {
-std::cerr << "Could not access to the method setCanvasSize" << std::endl;
+std::cerr << "Could not access to the method " << "setCanvasSize" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -542,7 +542,7 @@ if (this->jintgetWindowPosXID == NULL)
 {
 this->jintgetWindowPosXID = curEnv->GetMethodID(this->instanceClass, "getWindowPosX", "()I" ) ;
 if (this->jintgetWindowPosXID == NULL) {
-std::cerr << "Could not access to the method getWindowPosX" << std::endl;
+std::cerr << "Could not access to the method " << "getWindowPosX" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -565,7 +565,7 @@ if (this->jintgetWindowPosYID == NULL)
 {
 this->jintgetWindowPosYID = curEnv->GetMethodID(this->instanceClass, "getWindowPosY", "()I" ) ;
 if (this->jintgetWindowPosYID == NULL) {
-std::cerr << "Could not access to the method getWindowPosY" << std::endl;
+std::cerr << "Could not access to the method " << "getWindowPosY" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -588,7 +588,7 @@ if (this->voidsetWindowPositionjintjintID == NULL)
 {
 this->voidsetWindowPositionjintjintID = curEnv->GetMethodID(this->instanceClass, "setWindowPosition", "(II)V" ) ;
 if (this->voidsetWindowPositionjintjintID == NULL) {
-std::cerr << "Could not access to the method setWindowPosition" << std::endl;
+std::cerr << "Could not access to the method " << "setWindowPosition" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -609,7 +609,7 @@ if (this->jintgetWindowWidthID == NULL)
 {
 this->jintgetWindowWidthID = curEnv->GetMethodID(this->instanceClass, "getWindowWidth", "()I" ) ;
 if (this->jintgetWindowWidthID == NULL) {
-std::cerr << "Could not access to the method getWindowWidth" << std::endl;
+std::cerr << "Could not access to the method " << "getWindowWidth" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -632,7 +632,7 @@ if (this->jintgetWindowHeightID == NULL)
 {
 this->jintgetWindowHeightID = curEnv->GetMethodID(this->instanceClass, "getWindowHeight", "()I" ) ;
 if (this->jintgetWindowHeightID == NULL) {
-std::cerr << "Could not access to the method getWindowHeight" << std::endl;
+std::cerr << "Could not access to the method " << "getWindowHeight" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -655,7 +655,7 @@ if (this->voidsetWindowSizejintjintID == NULL)
 {
 this->voidsetWindowSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setWindowSize", "(II)V" ) ;
 if (this->voidsetWindowSizejintjintID == NULL) {
-std::cerr << "Could not access to the method setWindowSize" << std::endl;
+std::cerr << "Could not access to the method " << "setWindowSize" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -676,7 +676,7 @@ if (this->voidsetInfoMessagejstringID == NULL)
 {
 this->voidsetInfoMessagejstringID = curEnv->GetMethodID(this->instanceClass, "setInfoMessage", "(Ljava/lang/String;)V" ) ;
 if (this->voidsetInfoMessagejstringID == NULL) {
-std::cerr << "Could not access to the method setInfoMessage" << std::endl;
+std::cerr << "Could not access to the method " << "setInfoMessage" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -699,7 +699,7 @@ if (this->voidsetPixmapModejintID == NULL)
 {
 this->voidsetPixmapModejintID = curEnv->GetMethodID(this->instanceClass, "setPixmapMode", "(I)V" ) ;
 if (this->voidsetPixmapModejintID == NULL) {
-std::cerr << "Could not access to the method setPixmapMode" << std::endl;
+std::cerr << "Could not access to the method " << "setPixmapMode" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -720,7 +720,7 @@ if (this->jintgetPixmapModeID == NULL)
 {
 this->jintgetPixmapModeID = curEnv->GetMethodID(this->instanceClass, "getPixmapMode", "()I" ) ;
 if (this->jintgetPixmapModeID == NULL) {
-std::cerr << "Could not access to the method getPixmapMode" << std::endl;
+std::cerr << "Could not access to the method " << "getPixmapMode" << std::endl;
 exit(EXIT_FAILURE);
 }
 }

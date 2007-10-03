@@ -158,7 +158,7 @@ if (this->voidsetFigureIndexjintID == NULL)
 {
 this->voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
 if (this->voidsetFigureIndexjintID == NULL) {
-std::cerr << "Could not access to the method setFigureIndex" << std::endl;
+std::cerr << "Could not access to the method " << "setFigureIndex" << std::endl;
 exit(EXIT_FAILURE);
 }
 }

@@ -162,7 +162,7 @@ if (this->voidwaitID == NULL)
 {
 this->voidwaitID = curEnv->GetMethodID(this->instanceClass, "wait", "()V" ) ;
 if (this->voidwaitID == NULL) {
-std::cerr << "Could not access to the method wait" << std::endl;
+std::cerr << "Could not access to the method " << "wait" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -183,7 +183,7 @@ if (this->voidnotifyID == NULL)
 {
 this->voidnotifyID = curEnv->GetMethodID(this->instanceClass, "notify", "()V" ) ;
 if (this->voidnotifyID == NULL) {
-std::cerr << "Could not access to the method notify" << std::endl;
+std::cerr << "Could not access to the method " << "notify" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -204,7 +204,7 @@ if (this->voidnotifyAllID == NULL)
 {
 this->voidnotifyAllID = curEnv->GetMethodID(this->instanceClass, "notifyAll", "()V" ) ;
 if (this->voidnotifyAllID == NULL) {
-std::cerr << "Could not access to the method notifyAll" << std::endl;
+std::cerr << "Could not access to the method " << "notifyAll" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
