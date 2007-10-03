@@ -1,0 +1,42 @@
+# Localization of the module signal_processing
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - signal_processing\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: macros/detrend.sci, line: 25
+msgid	"detrend: bad number of arguments"
+msgstr	""
+#
+# File: macros/detrend.sci, line: 33
+msgid	"detrend: x must be a vector or matrix of numbers"
+msgstr	""
+#
+# File: macros/detrend.sci, line: 36
+msgid	"detrend: flag must be a string"
+msgstr	""
+#
+# File: macros/detrend.sci, line: 39
+msgid	"detrend: breakpoints must be a vector of real numbers"
+msgstr	""
+#
+# File: macros/detrend.sci, line: 82
+msgid	"detrend: unknown flag specifier"
+msgstr	""
+#
+# File: macros/fft2.sci, line: 47
+msgid	"wrong number of input arguments"
+msgstr	""
+

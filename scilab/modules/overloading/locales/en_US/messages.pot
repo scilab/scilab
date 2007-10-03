@@ -1,0 +1,71 @@
+# Localization of the module overloading
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - overloading\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: macros/%st_e.sci, line: 13
+# File: macros/%ce_e.sci, line: 13
+msgid	"invalid field name"
+msgstr	""
+#
+# File: macros/%ar_p.sci, line: 33
+# File: macros/%ar_p.sci, line: 114
+msgid	" This is not an ARMAX"
+msgstr	""
+#
+# File: macros/%b_string.sci, line: 3
+msgid	"FT"
+msgstr	""
+#
+# File: macros/%hm_matrix.sci, line: 35
+msgid	" of elements')"
+msgstr	""
+#
+# File: macros/%sp_i_sp.sci, line: 24
+msgid	" sparse insertion case not treated"
+msgstr	""
+#
+# File: macros/%s_i_st.sci, line: 41
+msgid	"Not yet implemented"
+msgstr	""
+#
+# File: macros/%sp_p_s.sci, line: 5
+msgid	"A^p with A sparse is not handled for non scalar p"
+msgstr	""
+#
+# File: macros/%sp_p_s.sci, line: 8
+msgid	"A^p with A sparse is not handled for non integer p"
+msgstr	""
+#
+# File: macros/%hm_g_hm.sci, line: 8
+# File: macros/%hm_h_hm.sci, line: 8
+msgid	"operand not a boolean hypermat"
+msgstr	""
+#
+# File: macros/%hm_g_hm.sci, line: 17
+# File: macros/%hm_h_hm.sci, line: 17
+msgid	"incompatible operand dimensions"
+msgstr	""
+#
+# File: macros/createstruct.sci, line: 155
+# File: macros/createstruct.sci, line: 167
+msgid	"Not implemented"
+msgstr	""
+#
+# File: macros/generic_i_ce.sci, line: 5
+msgid	"Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y"
+msgstr	""
+

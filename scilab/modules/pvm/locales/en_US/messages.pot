@@ -1,0 +1,267 @@
+# Localization of the module pvm
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - pvm\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: src/nopvm/nopvm.c, line: 11
+msgid	"PVM interface not installed.\r\n"
+msgstr	""
+#
+# File: src/c/sci_tools.c, line: 81
+#, c-format
+msgid	"SciToF77: Error malloc\n"
+msgstr	""
+#
+# File: src/c/sci_tools.c, line: 105
+#, c-format
+msgid	"F77ToSci: Error malloc\n"
+msgstr	""
+#
+# File: src/c/pvm_recv.c, line: 57
+#, c-format
+msgid	"RECV: %d:%d:%d\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 179
+msgid	"OK"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 180
+msgid	"Bad parameter"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 181
+msgid	"Barrier count mismatch"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 182
+msgid	"Read past end of buffer"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 183
+msgid	"No such host"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 184
+msgid	"No such executable"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 185
+msgid	"Can not get memory"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 186
+msgid	"Can not decode received msg"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 187
+msgid	"Daemon pvmd is not responding"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 188
+msgid	"No current buffer"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 189
+msgid	"Bad message id"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 190
+msgid	"Null group name is illegal"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 191
+msgid	"Already in group"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 192
+msgid	"No group with that name"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 193
+msgid	"Not in group"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 194
+msgid	"No such instance in group"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 195
+msgid	"Host failed"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 196
+msgid	"No parent task"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 197
+msgid	"Function not implemented"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 198
+msgid	"Pvmd system error"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 199
+msgid	"Pvmd-pvmd protocol mismatch"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 200
+msgid	"Out of ressources"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 201
+msgid	"Host already configured (Duplicate host)"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 202
+msgid	"Failed to exec new slave pvmd"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 203
+msgid	"Already oing operation"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 204
+msgid	"No such task"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 205
+msgid	"No such (group,instance)"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 206
+msgid	"(group,instance) already exists"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 207
+# File: src/c/pvm_proc_ctrl.c, line: 221
+msgid	"Unknown Error"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 292
+#, c-format
+msgid	"Error MALLOC in pvm_error\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 301
+#, possible-c-format
+msgid	"The configuration file\n"
+	" %s\n"
+	"is used.\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 303
+#, possible-c-format
+msgid	"Warning: PVM_ROOT is set to %s\r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 304
+msgid	"\tbut there exists no configuration file:\r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 311
+#, c-format
+msgid	"Error malloc in pvm_error\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 318
+#, possible-c-format
+msgid	"The standard configuration file $SCI%s will be used.\r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 319
+#, possible-c-format
+msgid	"\tWith SCI=%s\r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 320
+msgid	"\tSCI will have to be set on remote hosts \r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 321
+msgid	"\tin order to spawn scilab\r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 326
+#, possible-c-format
+msgid	"Warning: The standard configuration file $SCI%s was not found.\r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 327
+msgid	"\tWe supposed that PVM and scilab are in standard place on your net"
+	"\r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 328
+msgid	"\t (Cf. man pvmd3)\r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 333
+#, possible-c-format
+msgid	"%s: No such file or directory\r\n"
+msgstr	""
+#
+# File: src/c/pvm_proc_ctrl.c, line: 352
+# File: src/c/pvm_proc_ctrl.c, line: 363
+# File: src/c/pvm_proc_ctrl.c, line: 369
+#, c-format
+msgid	"Error pvm_halt - signal\n"
+msgstr	""
+#
+# File: src/c/pvm_grp.c, line: 110
+#, c-format
+msgid	"Error pvm_reduce: Not scalar type\n"
+msgstr	""
+#
+# File: src/c/pvm_grp.c, line: 128
+#, c-format
+msgid	"Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr	""
+#
+# File: src/c/pvm_info.c, line: 39
+#, possible-c-format
+msgid	"pvm_config: Error  %d\n"
+msgstr	""
+#
+# File: src/c/pvm_info.c, line: 102
+#, possible-c-format
+msgid	"pvm_tasks: Error in C routine pvm_tasks  %d\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_pvm_send.c, line: 38
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 37
+#, possible-c-format
+msgid	"%s: work space (stacksize) is too small d\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_pvm_send.c, line: 40
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 39
+#, possible-c-format
+msgid	"%s: Unknow type or not yet implemented\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_pvm_tasks.c, line: 31
+# File: sci_gateway/c/sci_pvm_config.c, line: 25
+#, possible-c-format
+msgid	"%s: Error \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_pvm_error_mode.c, line: 30
+#, possible-c-format
+msgid	"%s: first argument should be \"stop\" or \"continue\"\r\n"
+msgstr	""
+

@@ -1,0 +1,117 @@
+# Localization of the module incremental_link
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+, c-format
+msgid	""
+msgstr	"Project-Id-Version: Scilab - incremental_link\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+
+#
+# File: macros/ilib_for_link.sci, line: 133
+#, c-format
+msgid	"Copy compilation files to "
+msgstr	""
+#
+# File: macros/ilib_for_link.sci, line: 152
+#, c-format
+msgid	"Modification of the makefile in "
+msgstr	""
+#
+# File: examples/gateway/intview.c, line: 46
+#, possible-c-format
+msgid	"First parameter (matrix) is %i x %i:\r\n"
+msgstr	""
+#
+# File: examples/gateway/intview.c, line: 47
+#, possible-c-format
+msgid	"its (1,1) entry is %e (double).\r\n"
+msgstr	""
+#
+# File: examples/gateway/intview.c, line: 48
+#, possible-c-format
+msgid	"Second parameter (matrix) is %i x %i:\r\n"
+msgstr	""
+#
+# File: examples/gateway/intview.c, line: 49
+#, possible-c-format
+msgid	"its (1,1) entry is %i (int).\r\n"
+msgstr	""
+#
+# File: examples/gateway/intview.c, line: 50
+#, possible-c-format
+msgid	"Third parameter (string) is %i character long: it is the string \"%s"
+	"\"\r\n"
+msgstr	""
+#
+# File: examples/gateway/intmatmul.c, line: 26
+#, possible-c-format
+msgid	"%s: Incompatible inputs \r\n"
+msgstr	""
+#
+# File: examples/dynamic_links_c_and_fortran/ext14c.c, line: 26
+#, possible-c-format
+msgid	"%s :Incompatible dimensions\r\n"
+msgstr	""
+#
+# File: examples/interfaces/c/intex15c.c, line: 31
+#, possible-c-format
+msgid	"Mystr= \"%s\", length %d \r\n"
+msgstr	""
+#
+# File: examples/interfaces/c/intex17c.c, line: 92
+# File: examples/interfaces/c/intex1c.c, line: 70
+# File: examples/interfaces/c/intex5c.c, line: 24
+# File: examples/interfaces/c/intex2c.c, line: 54
+# File: examples/interfaces/c/intex4c.c, line: 42
+# File: examples/interfaces/c/intex4c.c, line: 68
+# File: examples/interfaces/c/intex4c.c, line: 92
+# File: examples/interfaces/c/intex4c.c, line: 117
+# File: examples/interfaces/c/intex6c.c, line: 27
+#, possible-c-format
+msgid	"%s: Internal error \r\n"
+msgstr	""
+#
+# File: examples/interfaces/c/as2osc.c, line: 16
+#, possible-c-format
+msgid	"character string length %d\r\n"
+msgstr	""
+#
+# File: examples/interfaces/c/intex16c.c, line: 13
+msgid	"Pilgrim said he, where can it be this land of Eldorado"
+msgstr	""
+#
+# File: examples/interfaces/c/crestrc.c, line: 62
+# File: examples/interfaces/c/intex4c.c, line: 187
+msgid	"Scilab is ..."
+msgstr	""
+#
+# File: examples/interfaces/c/crestrc.c, line: 78
+# File: examples/interfaces/c/intex4c.c, line: 203
+#, c-format
+msgid	"malloc : No more space \r\n"
+msgstr	""
+#
+# File: examples/interfaces/c/intex8c.c, line: 36
+#, possible-c-format
+msgid	"%s: Third argument has an invalid rhs\r\n"
+msgstr	""
+#
+# File: examples/call_dll_in_scilab/tdll.c, line: 27
+#, c-format
+msgid	"Enter doit %f %f\n"
+msgstr	""
+#
+# File: examples/call_dll_in_scilab/tdll.c, line: 29
+#, c-format
+msgid	"Exit doit %f %f\n"
+msgstr	""

@@ -1,0 +1,928 @@
+# Localization of the module fileio
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - fileio\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: macros/fullfile.sci, line: 7
+msgid	"Wrong number of inputs!"
+msgstr	""
+#
+# File: macros/fullfile.sci, line: 22
+# File: macros/mdelete.sci, line: 26
+# File: macros/mdelete.sci, line: 30
+# File: macros/mdelete.sci, line: 40
+# File: src/c/getdrives.c, line: 46
+msgid	"/"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 6
+# File: src/c/ole.c, line: 1443
+# File: sci_gateway/c/sci_fileio.c, line: 52
+# File: sci_gateway/c/intreadxls.c, line: 151
+msgid	"rb"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 8
+msgid	"constant"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 9
+msgid	"polynomial"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 10
+msgid	"???boolean"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 12
+msgid	"sparse"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 13
+msgid	"boolean sparse"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 14
+msgid	"Matlab sparse"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 15
+msgid	"integergraphic handle"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 17
+msgid	"string"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 18
+msgid	"function"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 19
+msgid	"???function"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 21
+msgid	"library"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 22
+msgid	"listtlistmlist"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 33
+msgid	"Name"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 33
+msgid	"Type"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 33
+msgid	"Size"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 34
+msgid	"Bytes"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 35
+msgid	"---------------------------------------------------------------"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 39
+# File: macros/listvarinfile.sci, line: 81
+# File: macros/listvarinfile.sci, line: 85
+# File: macros/listvarinfile.sci, line: 92
+# File: macros/listvarinfile.sci, line: 95
+# File: macros/listvarinfile.sci, line: 102
+# File: macros/listvarinfile.sci, line: 109
+# File: macros/listvarinfile.sci, line: 117
+# File: macros/listvarinfile.sci, line: 123
+# File: macros/listvarinfile.sci, line: 154
+# File: macros/listvarinfile.sci, line: 156
+# File: macros/listvarinfile.sci, line: 162
+# File: macros/listvarinfile.sci, line: 164
+# File: macros/listvarinfile.sci, line: 166
+# File: macros/listvarinfile.sci, line: 171
+# File: macros/listvarinfile.sci, line: 173
+# File: macros/listvarinfile.sci, line: 175
+# File: macros/listvarinfile.sci, line: 179
+# File: macros/listvarinfile.sci, line: 182
+# File: macros/listvarinfile.sci, line: 188
+# File: macros/listvarinfile.sci, line: 196
+# File: macros/listvarinfile.sci, line: 204
+# File: macros/listvarinfile.sci, line: 214
+# File: macros/listvarinfile.sci, line: 217
+msgid	"il"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 40
+# File: macros/mdelete.sci, line: 20
+msgid	"*"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 47
+msgid	"pointer"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 49
+msgid	"size implicit"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 51
+msgid	"primitive"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 53
+msgid	"Unknown variable type ("
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 53
+msgid	"?), maybe wrong or corrupted file"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 59
+msgid	" by "
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 61
+msgid	"unknown         unknown"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 62
+msgid	".... unknown structure, I''m forced to stop here (bug 2387)"
+msgstr	""
+#
+# File: macros/listvarinfile.sci, line: 88
+# File: macros/listvarinfile.sci, line: 94
+# File: macros/listvarinfile.sci, line: 98
+# File: macros/listvarinfile.sci, line: 105
+# File: macros/listvarinfile.sci, line: 111
+# File: macros/listvarinfile.sci, line: 112
+# File: macros/listvarinfile.sci, line: 119
+# File: macros/listvarinfile.sci, line: 127
+# File: macros/listvarinfile.sci, line: 131
+# File: macros/listvarinfile.sci, line: 135
+# File: macros/listvarinfile.sci, line: 139
+# File: macros/listvarinfile.sci, line: 143
+# File: macros/listvarinfile.sci, line: 147
+# File: macros/listvarinfile.sci, line: 158
+# File: macros/listvarinfile.sci, line: 163
+# File: macros/listvarinfile.sci, line: 165
+# File: macros/listvarinfile.sci, line: 167
+# File: macros/listvarinfile.sci, line: 172
+# File: macros/listvarinfile.sci, line: 174
+# File: macros/listvarinfile.sci, line: 176
+# File: macros/listvarinfile.sci, line: 180
+# File: macros/listvarinfile.sci, line: 184
+# File: macros/listvarinfile.sci, line: 185
+# File: macros/listvarinfile.sci, line: 189
+# File: macros/listvarinfile.sci, line: 197
+# File: macros/listvarinfile.sci, line: 205
+# File: macros/listvarinfile.sci, line: 216
+# File: macros/listvarinfile.sci, line: 220
+# File: src/c/mseek.c, line: 37
+# File: src/c/xls.c, line: 613
+# File: src/c/xls.c, line: 614
+msgid	"cur"
+msgstr	""
+#
+# File: macros/mdelete.sci, line: 21
+msgid	"Wrong type argument, expecting a character string"
+msgstr	""
+#
+# File: macros/mdelete.sci, line: 33
+msgid	"./"
+msgstr	""
+#
+# File: macros/mdelete.sci, line: 40
+msgid	"\");"
+msgstr	""
+#
+# File: src/c/do_xxprintf.c, line: 40
+msgid	"Error:\tprintf: not enough arguments\r\n"
+msgstr	""
+#
+# File: src/c/do_xxprintf.c, line: 249
+msgid	"Error:\tsprintf problem, buffer too small\r\n"
+msgstr	""
+#
+# File: src/c/do_xxprintf.c, line: 353
+msgid	"Warning:\tprintf: bad conversion l or h flag mixed with s directive"
+	"\r\n"
+msgstr	""
+#
+# File: src/c/do_xxprintf.c, line: 357
+msgid	"Warning:\tprintf: bad conversion l or h flag mixed with c directive"
+	"\r\n"
+msgstr	""
+#
+# File: src/c/do_xxprintf.c, line: 415
+# File: src/c/do_xxprintf.c, line: 437
+msgid	"Error:\tprintf: bad conversion\r\n"
+msgstr	""
+#
+# File: src/c/do_xxprintf.c, line: 432
+msgid	"Error:\tprintf: \"o\" format not allowed\r\n"
+msgstr	""
+#
+
+# File: src/c/mput.c, line: 47
+# File: src/c/mput.c, line: 125
+# File: src/c/mput.c, line: 176
+#, possible-c-format
+msgid	"mput : %s format not recognized \r\n"
+msgstr	""
+#
+# File: src/c/mput.c, line: 59
+# File: src/c/mput.c, line: 180
+# File: src/c/mget.c, line: 55
+# File: src/c/mget.c, line: 170
+#, possible-c-format
+msgid	"No input file associated to logical unit %d\r\n"
+msgstr	""
+#
+# File: src/c/mput.c, line: 168
+msgid	"mput : format is of length 0\r\n"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 25
+msgid	"0.2.0 - 12-December-2005 (C) PLDaniels http:/*www.pldaniels.com/"
+	"ripole"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 26
+msgid	"ripOLE -i <OLE2 file> [ -d <directory> ] [--save-unknown-streams] [--"
+	"version|-V] [--verbose|-v] [--debug] [--help|-h]"
+msgstr	""
+
+#
+# File: src/c/ripole.c, line: 110
+msgid	"verbose"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 114
+msgid	"save-unknown-streams"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 117
+msgid	"debug"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 120
+msgid	"version"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 124
+msgid	"help"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 129
+# File: src/c/ripole.c, line: 138
+#, c-format
+msgid	"Cannot interpret option \"%s\"\n"
+	"%s\n"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 205
+#, possible-c-format
+msgid	"Decoding filename=%s"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 284
+#, c-format
+msgid	"ripOLE requires an input file to decode\n"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 318
+msgid	"ripOLE: Cannot allocate memory for OLE object"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 345
+#, possible-c-format
+msgid	"Cannot locate input file '%s'"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 348
+#, possible-c-format
+msgid	"File '%s' is not OLE2 format"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 351
+#, possible-c-format
+msgid	"OLE input file '%s' is insane"
+msgstr	""
+#
+# File: src/c/ripole.c, line: 354
+# File: src/c/ripole.c, line: 398
+#, possible-c-format
+msgid	"ripOLE: decoding of %s resulted in error %d\n"
+msgstr	""
+#
+# File: src/c/mseek.c, line: 31
+msgid	"mseek: wrong file logical unit \r\n"
+msgstr	""
+#
+# File: src/c/mseek.c, line: 35
+# File: src/c/xls.c, line: 75
+# File: src/c/xls.c, line: 97
+# File: src/c/xls.c, line: 289
+# File: src/c/xls.c, line: 659
+# File: src/c/xls.c, line: 690
+# File: sci_gateway/c/sci_fileio.c, line: 329
+msgid	"set"
+msgstr	""
+#
+# File: src/c/mseek.c, line: 39
+msgid	"end"
+msgstr	""
+#
+# File: src/c/mseek.c, line: 43
+#, possible-c-format
+msgid	"mseek : flag = %s not recognized \r\n"
+msgstr	""
+#
+# File: src/c/mseek.c, line: 59
+msgid	"mseek: error\r\n"
+msgstr	""
+#
+# File: src/c/mtell.c, line: 15
+msgid	"mtell: wrong file logical unit \r\b"
+msgstr	""
+#
+# File: src/c/mputstr.c, line: 16
+# File: src/c/mgetstr.c, line: 34
+# File: src/c/mgetstr.c, line: 54
+msgid	"No input file \r\n"
+msgstr	""
+#
+# File: src/c/mgetstr.c, line: 22
+msgid	"No more memory \r\n"
+msgstr	""
+#
+# File: src/c/olestream-unwrap.c, line: 156
+#, possible-c-format
+msgid	"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string "
+	"from '%s' and '%s'"
+msgstr	""
+#
+# File: src/c/olestream-unwrap.c, line: 168
+#, possible-c-format
+msgid	"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to "
+	"file %s\n"
+msgstr	""
+#
+# File: src/c/olestream-unwrap.c, line: 175
+#, possible-c-format
+msgid	"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%"
+	"s)\n"
+msgstr	""
+#
+# File: src/c/olestream-unwrap.c, line: 248
+#, possible-c-format
+msgid	"unknown-%ld"
+msgstr	""
+#
+# File: src/c/olestream-unwrap.c, line: 281
+#, possible-c-format
+msgid	"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %"
+	"d\n"
+msgstr	""
+#
+# File: src/c/olestream-unwrap.c, line: 293
+#, possible-c-format
+msgid	"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the "
+	"filename"
+msgstr	""
+#
+# File: src/c/olestream-unwrap.c, line: 334
+#, possible-c-format
+msgid	"Unable to decode stream with element string '%s'\n"
+msgstr	""
+#
+# File: src/c/olestream-unwrap.h, line: 3
+msgid	"Ole10Native"
+msgstr	""
+#
+# File: src/c/ole.c, line: 100
+#, c-format
+msgid	"ripOLE: %s\n"
+msgstr	""
+#
+# File: src/c/ole.c, line: 250
+#, possible-c-format
+msgid	"%s:%d:OLE_set_debug: Debug level set to %d"
+msgstr	""
+#
+# File: src/c/ole.c, line: 332
+#, possible-c-format
+msgid	"%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
+msgstr	""
+#
+# File: src/c/ole.c, line: 346
+#, possible-c-format
+msgid	"%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
+msgstr	""
+#
+# File: src/c/ole.c, line: 361
+#, possible-c-format
+msgid	"%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
+msgstr	""
+#
+# File: src/c/ole.c, line: 371
+#, possible-c-format
+msgid	"%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
+msgstr	""
+#
+# File: src/c/ole.c, line: 387
+#, possible-c-format
+msgid	"%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
+msgstr	""
+#
+# File: src/c/ole.c, line: 517
+#, c-format
+msgid	"%02X "
+msgstr	""
+#
+# File: src/c/ole.c, line: 713
+#, c-format
+msgid	"Minor version = %d\n"
+	"DLL version = %d\n"
+	"Byte order = %d\n"
+	"\n"
+	"Sector shift = %d\n"
+	"Sector size  = %d\n"
+	"Mini Sector shift = %d\n"
+	"Mini sector size  = %d\n"
+	"\n"
+	"FAT sector count = %d\n"
+	"First FAT sector = %d\n"
+	"\n"
+	"Maximum ministream size = %d\n"
+	"\n"
+	"First MiniFAT sector = %d\n"
+	"MiniFAT sector count = %d\n"
+	"\n"
+	"First DIF sector = %d\n"
+	"DIF sector count = %d\n"
+	"--------------------------------\n"
+msgstr	""
+#
+# File: src/c/ole.c, line: 753
+#, c-format
+msgid	"FAT[%d] = %d\n"
+msgstr	""
+#
+# File: src/c/ole.c, line: 869
+#, c-format
+msgid	"Element Name = %s\n"
+	"Element type = %d\n"
+	"Element colour = %d\n"
+	"Left Child = %d\n"
+	"Right Child = %d\n"
+	"Root = %d\n"
+	"User flags = %d\n"
+	"Start sector = %d\n"
+	"Stream Size = %d\n"
+msgstr	""
+#
+# File: src/c/ole.c, line: 977
+#, possible-c-format
+msgid	"%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1031
+#, possible-c-format
+msgid	"%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%"
+	"x, fat position = 0x%x"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1047
+# File: src/c/ole.c, line: 1054
+#, possible-c-format
+msgid	"%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1059
+#, possible-c-format
+msgid	"%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1313
+#, possible-c-format
+msgid	"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for "
+	"miniChain"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1391
+#, possible-c-format
+msgid	"%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1434
+#, possible-c-format
+msgid	"%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1449
+#, possible-c-format
+msgid	"%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1491
+#, possible-c-format
+msgid	"%s:%d:OLE_open_directory:ERROR: %s"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1548
+#, possible-c-format
+msgid	"%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string "
+	"from '%s' and '%s'"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1556
+#, possible-c-format
+msgid	"%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1565
+#, possible-c-format
+msgid	"%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1731
+# File: src/c/ole.c, line: 1733
+# File: src/c/ole.c, line: 1888
+# File: sci_gateway/c/intreadxls.c, line: 150
+msgid	"Workbook"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1731
+# File: src/c/ole.c, line: 1888
+msgid	"Book"
+msgstr	""
+#
+# File: src/c/ole.c, line: 1742
+#, possible-c-format
+msgid	"ole-stream.%d"
+msgstr	""
+#
+# File: src/c/logger.c, line: 117
+#, possible-c-format
+msgid	"LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
+msgstr	""
+#
+# File: src/c/logger.c, line: 119
+#, c-format
+msgid	"LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
+msgstr	""
+#
+# File: src/c/logger.c, line: 342
+#, c-format
+msgid	"LOGGER-Default: %s%s"
+msgstr	""
+#
+# File: src/c/mclose.c, line: 45
+#, possible-c-format
+msgid	"File %d not active \r\n"
+msgstr	""
+#
+# File: src/c/mclose.c, line: 51
+msgid	"No file to close \r\n"
+msgstr	""
+#
+# File: src/c/fileio.c, line: 75
+msgid	"Error:\ttoo many directive in scanf\r\n"
+msgstr	""
+#
+# File: src/c/pldstr.c, line: 499
+#, possible-c-format
+msgid	"%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to "
+	"perform replacement operation"
+msgstr	""
+#
+# File: src/c/pldstr.c, line: 581
+#, possible-c-format
+msgid	"%s:%d:PLD_strreplace_general: Allocated memory ran out while "
+	"replacing '%s' with '%s'"
+msgstr	""
+#
+# File: src/c/mopen.c, line: 25
+#, possible-c-format
+msgid	"Warning : file '%s' already opened in scilab.\r\n"
+msgstr	""
+#
+# File: src/c/mget.c, line: 41
+# File: src/c/mget.c, line: 166
+#, possible-c-format
+msgid	"mget : %s format not recognized \r\n"
+msgstr	""
+#
+# File: src/c/mget.c, line: 157
+msgid	"mget : format is of length 0\r\n"
+msgstr	""
+#
+#
+# File: src/c/do_xxscanf.c, line: 123
+msgid	"Error:\tscanf, unclosed [ directive\r\n"
+msgstr	""
+#
+# File: src/c/do_xxscanf.c, line: 134
+msgid	"Error:\tscanf unclosed [ directive\r\n"
+msgstr	""
+#
+# File: src/c/do_xxscanf.c, line: 151
+#, possible-c-format
+msgid	"Error:\tscanf too many (> %d) conversion required\r\n"
+msgstr	""
+#
+# File: src/c/do_xxscanf.c, line: 162
+#, possible-c-format
+msgid	"Error:\tscanf, width field %d is too long (> %d) for %%[ directive"
+	"\r\n"
+msgstr	""
+#
+# File: src/c/do_xxscanf.c, line: 174
+# File: src/c/do_xxscanf.c, line: 194
+# File: src/c/do_xxscanf.c, line: 260
+# File: src/c/do_xxscanf.c, line: 276
+msgid	"Error:\tscanf: bad conversion\r\n"
+msgstr	""
+#
+# File: src/c/do_xxscanf.c, line: 181
+#, possible-c-format
+msgid	"Error:\tscanf, width field %d is too long (< %d) for %%s directive"
+	"\r\n"
+msgstr	""
+#
+# File: src/c/do_xxscanf.c, line: 203
+#, possible-c-format
+msgid	"Error:\tscanf width field %d is too long (< %d) for %%c directive\r\n"
+msgstr	""
+#
+# File: src/c/do_xxscanf.c, line: 304
+#, possible-c-format
+msgid	"Error:\tscanf, format is too long (> %d) \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_fileext.c, line: 45
+# File: sci_gateway/c/sci_deletefile.c, line: 41
+msgid	"Invalid parameter , it must be a filename (string).\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_fscanfMat.c, line: 29
+# File: sci_gateway/c/sci_fscanfMat.c, line: 66
+# File: sci_gateway/c/sci_fscanfMat.c, line: 89
+# File: sci_gateway/c/sci_fscanfMat.c, line: 112
+# File: sci_gateway/c/sci_fscanfMat.c, line: 128
+# File: sci_gateway/c/sci_fscanfMat.c, line: 140
+#, possible-c-format
+msgid	"Error: in function %s, cannot allocate enough memory\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_fscanfMat.c, line: 53
+# File: sci_gateway/c/sci_fprintfMat.c, line: 74
+#, possible-c-format
+msgid	"Error: in function %s, cannot open file %s\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_fscanfMat.c, line: 76
+#, possible-c-format
+msgid	"Error: in function %s, cannot read data in file %s\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_createdir.c, line: 39
+msgid	"Warning: Directory already exists.\n"
+	"\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_createdir.c, line: 52
+# File: sci_gateway/c/sci_removedir.c, line: 46
+msgid	"Invalid parameter , it must be a directory (string).\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_msprintf.c, line: 28
+# File: sci_gateway/c/sci_mprintf.c, line: 22
+msgid	"Error:\tRhs must be > 0\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_msprintf.c, line: 47
+msgid	"sprintf: Invalid format.\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_msprintf.c, line: 138
+msgid	"sprintf: cannot allocate cannot allocate more memory \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_findfiles.c, line: 40
+msgid	"Problem with current directory.\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_findfiles.c, line: 66
+# File: sci_gateway/c/sci_fullpath.c, line: 54
+msgid	"Invalid parameter , it must be a path (string).\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_findfiles.c, line: 87
+msgid	"Invalid parameter(s) , it must be a path and a filespec (string).\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_fileio.c, line: 75
+#, possible-c-format
+msgid	"%s:  Could not open the file!\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mscanf.c, line: 39
+msgid	"Error: in scanf: incorrect first argument\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mscanf.c, line: 56
+msgid	"Error: in scanf: format cannot include \\n \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mscanf.c, line: 73
+msgid	"Error: in scanf\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mscanf.c, line: 98
+# File: sci_gateway/c/sci_mfscanf.c, line: 82
+msgid	"Error: in fscanf: data mismatch\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mscanf.c, line: 105
+msgid	"Error: in scanf: cannot allocate more memory \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mscanf.c, line: 117
+# File: sci_gateway/c/sci_mfscanf.c, line: 101
+# File: sci_gateway/c/sci_msscanf.c, line: 98
+# File: sci_gateway/c/sci_msscanf.c, line: 110
+msgid	"Error: in sscanf: cannot allocate more memory \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_maxfiles.c, line: 47
+#, possible-c-format
+msgid	"Warning : %d > Maximum of files (%d).\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_maxfiles.c, line: 58
+msgid	"Problem to extend the limit of scilab's files opened.\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_maxfiles.c, line: 65
+msgid	"Warning : only extend the limit for the number of scilab's files "
+	"opened simultaneously.\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_maxfiles.c, line: 71
+msgid	"invalid numbers of parameters.\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_maxfiles.c, line: 77
+msgid	"invalid parameter type.\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 27
+msgid	"first parameter must be a filename.\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 46
+# File: sci_gateway/c/sci_fprintfMat.c, line: 52
+#, possible-c-format
+msgid	"%s works only with reals.\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_isdir.c, line: 22
+msgid	"parameter incorrect must be a string (a file pathname).\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_isdir.c, line: 40
+msgid	"First parameter incorrect, must be a string (a file pathname).\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_isdir.c, line: 48
+#, possible-c-format
+msgid	"The parameter is too long : must be less than %d caracters.\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_getshortpathname.c, line: 50
+# File: sci_gateway/c/sci_getlongpathname.c, line: 49
+msgid	"Not a path string"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mfscanf.c, line: 34
+msgid	"Error: in fscanf: incorrect first argument\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mfscanf.c, line: 53
+#, possible-c-format
+msgid	"fprintf:\t wrong file descriptor %d\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mfscanf.c, line: 90
+msgid	"Error: in fscanf: cannot allocate more memory \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_fullpath.c, line: 49
+msgid	"Invalid path.\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 48
+#, possible-c-format
+msgid	"%s :Not enough memory to allocate results \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 53
+#, possible-c-format
+msgid	"%s :Failed to read expected data, may be invalid xls file \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 58
+#, possible-c-format
+msgid	"%s :End of File \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 137
+#, possible-c-format
+msgid	"%s :There is no  file %s \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 143
+#, possible-c-format
+msgid	"%s :file %s is not an ole2 file\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 145
+#, possible-c-format
+msgid	"%s :file %s  cannot be opened\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 154
+#, possible-c-format
+msgid	"%s :There is no xls stream in the ole2 file %s \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 171
+#, possible-c-format
+msgid	"%s :Not an ole2 file \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 176
+#, possible-c-format
+msgid	"%s : the file has no Workbook directory \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 181
+#, possible-c-format
+msgid	"%s : impossible to alloc enough memory \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 186
+#, possible-c-format
+msgid	"%s : incorrect or corrupted file \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/intreadxls.c, line: 191
+#, possible-c-format
+msgid	"%s : Only BIFF8 file format is handled \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mprintf.c, line: 44
+# File: sci_gateway/c/sci_mfprintf.c, line: 55
+msgid	"mfprintf: Invalid format.\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mfprintf.c, line: 25
+msgid	"Error:\tRhs must be >= 2\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_mfprintf.c, line: 40
+#, possible-c-format
+msgid	"mfprintf:\t wrong file descriptor %d\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_msscanf.c, line: 33
+msgid	"Error: in sscanf: incorrect first argument\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_msscanf.c, line: 53
+msgid	"Error: in sscanf: not enough entries in str\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_msscanf.c, line: 91
+msgid	"Error: in sscanf: data mismatch\r\n"
+msgstr	""

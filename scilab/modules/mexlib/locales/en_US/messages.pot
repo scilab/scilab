@@ -1,0 +1,154 @@
+# Localization of the module mexlib
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - mexlib\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: src/c/mexlib.c, line: 413
+# File: src/c/mexlib.c, line: 920
+msgid	"No more memory available: increase stacksize"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 807
+msgid	"Routine mxIsSingle not implemented \r\n"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 857
+msgid	"Variable is not logical"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 1957
+msgid	"Warning: "
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 1976
+msgid	"mexCallSCILAB: invalid pointer passed to called function"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 1991
+msgid	"mexCallSCILAB: evaluation failed "
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2085
+msgid	"GetElementSize error"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2205
+msgid	"Function mexPutArray is obsolete, use mexPutVariable! \n"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2218
+msgid	"Routine mxSetName not implemented ! \r\n"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2224
+msgid	"Routine mxSetData  not implemented \r\n"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2245
+# File: src/c/mexlib.c, line: 2256
+# File: src/c/mexlib.c, line: 2280
+# File: src/c/mexlib.c, line: 2291
+msgid	"Last warning"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2245
+# File: src/c/mexlib.c, line: 2256
+# File: src/c/mexlib.c, line: 2280
+# File: src/c/mexlib.c, line: 2291
+msgid	"Warning"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2257
+#, c-format
+msgid	"%s: mxSetPr overwriting destination by %i bytes.\n"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2292
+#, c-format
+msgid	"%s: mxSetPi overwriting destination by %i bytes.\n"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2300
+msgid	"Routine mxGetName  not implemented \r\n"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2307
+msgid	"Routine mxSetDimensions  not implemented \r\n"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2425
+msgid	"Invalid string matrix (at most one column!)"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2432
+msgid	"Column length of string matrix must agree!"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2437
+msgid	"Use mtlb_sparse(sparse( ))!"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2448
+msgid	"Invalid input"
+msgstr	""
+#
+# File: src/c/mexlib.c, line: 2668
+msgid	"Running out of memory"
+msgstr	""
+#
+# File: includes/mex.h, line: 70
+msgid	"mexPutFull failed\r\n"
+msgstr	""
+#
+# File: examples/interface/fmex1.c, line: 12
+# File: examples/interface/fmex2.c, line: 12
+msgid	"This function requires 1 input!"
+msgstr	""
+#
+# File: examples/interface/fmex1.c, line: 13
+# File: examples/interface/fmex2.c, line: 13
+msgid	"This function requires at most 1 output !"
+msgstr	""
+#
+# File: examples/interface/fmex1.c, line: 15
+# File: examples/interface/fmex2.c, line: 15
+# File: examples/mexglx/foo.c, line: 16
+msgid	"First argument must be numeric matrix."
+msgstr	""
+#
+# File: examples/mexglx/foo.c, line: 4
+msgid	"hello world"
+msgstr	""
+#
+# File: examples/mexglx/foo.c, line: 14
+msgid	"This function requires 2 inputs!"
+msgstr	""
+#
+# File: examples/mexglx/foo.c, line: 15
+msgid	"This function requires at most 3 outputs!"
+msgstr	""
+#
+# File: examples/mexglx/foo.c, line: 17
+msgid	"Second argument must be a string."
+msgstr	""
+#
+# File: examples/cppmex/temptst.cpp, line: 9
+msgid	"Need at least one argument"
+msgstr	""
+#
+# File: examples/cppmex/temptst.cpp, line: 11
+msgid	"First argument must have at least one entry"
+msgstr	""

@@ -1,0 +1,57 @@
+# Localization of the module differential_equations
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - differential_equations\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: macros/odeoptions.sci, line: 20
+msgid	"Defining %ODEOPTIONS variable"
+msgstr	""
+#
+# File: macros/odeoptions.sci, line: 48
+msgid	" are used"
+msgstr	""
+#
+# File: macros/odeoptions.sci, line: 55
+msgid	"tcrit (assumes itask=4 or 5)"
+msgstr	""
+#
+# File: macros/odeoptions.sci, line: 56
+msgid	"h0 (first step tried)"
+msgstr	""
+#
+# File: macros/odeoptions.sci, line: 57
+msgid	"hmax (max step size)"
+msgstr	""
+#
+# File: macros/odeoptions.sci, line: 57
+msgid	"hmin (min step size)"
+msgstr	""
+#
+# File: macros/odeoptions.sci, line: 58
+msgid	"mxstep (max number of steps allowed)"
+msgstr	""
+#
+# File: macros/odeoptions.sci, line: 59
+msgid	"maxordn (maximum non-stiff order allowed, at most 12)"
+msgstr	""
+#
+# File: macros/odeoptions.sci, line: 60
+msgid	"maxords(maximum stiff order allowed, at most 5) "
+msgstr	""
+#
+# File: macros/odeoptions.sci, line: 61
+msgid	"ixpr (print level 0 or 1)"
+msgstr	""

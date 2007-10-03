@@ -1,0 +1,322 @@
+# Localization of the module sound
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - sound\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: src/c/raw.c, line: 136
+msgid	"No U-Law support for shorts\r\n"
+msgstr	""
+#
+# File: src/c/raw.c, line: 140
+msgid	"No A-Law support for shorts\r\n"
+msgstr	""
+#
+# File: src/c/raw.c, line: 155
+msgid	"Drop through in rawread!\r\n"
+msgstr	""
+#
+# File: src/c/raw.c, line: 158
+#, possible-c-format
+msgid	"Sorry, don't have code to read %s, %s\r\n"
+msgstr	""
+#
+# File: src/c/raw.c, line: 241
+msgid	"No U-Law support for shorts (try -b option ?)\r\n"
+msgstr	""
+#
+# File: src/c/raw.c, line: 245
+msgid	"No A-Law support for shorts (try -b option ?)\r\n"
+msgstr	""
+#
+# File: src/c/raw.c, line: 259
+msgid	"Drop through in rawwrite!\r\n"
+msgstr	""
+#
+# File: src/c/raw.c, line: 264
+#, possible-c-format
+msgid	"Sorry, don't have code to write %s, %s\r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 64
+#, possible-c-format
+msgid	"Can't open input file '%s': %s\r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 81
+# File: src/c/sox.c, line: 88
+# File: src/c/sox.c, line: 111
+msgid	"Error while reading \r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 94
+#, possible-c-format
+msgid	"Input file: using sample rate %lu\r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 96
+#, possible-c-format
+msgid	"\tsize %s, style %s, %d %s\r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 118
+msgid	" Sorry wav file too big \r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 162
+#, possible-c-format
+msgid	"Can't open output file '%s': %s\r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 273
+#, possible-c-format
+msgid	"Sampling rate for %s file was not given\r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 279
+#, possible-c-format
+msgid	"Sampling rate %lu for %s file is bogus\r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 287
+#, possible-c-format
+msgid	"Data size was not given for %s file\r\n"
+msgstr	""
+#
+# File: src/c/sox.c, line: 293
+#, possible-c-format
+msgid	"Data style was not given for %s file\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 68
+msgid	"Sorry, .wav input file must be a file, not a pipe\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 75
+msgid	"Sorry, not a RIFF file\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 84
+msgid	"Sorry, not a WAVE file\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 93
+msgid	"Sorry, missing fmt spec\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 108
+msgid	"Sorry, fmt chunk is too short\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 117
+msgid	"Sorry, this WAV file is in Microsoft Official Unknown format.\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 122
+# File: src/c/wav.c, line: 134
+# File: src/c/wav.c, line: 140
+# File: src/c/wav.c, line: 205
+# File: src/c/wav.c, line: 215
+# File: src/c/wav.c, line: 225
+msgid	"User options overiding style read in .wav header\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 126
+msgid	"Sorry, this WAV file is in Microsoft ADPCM format.\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 144
+msgid	"Sorry, this WAV file is in OKI ADPCM format.\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 150
+msgid	"Sorry, this WAV file is in Digistd format.\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 155
+msgid	"Sorry, this WAV file is in Digifix format.\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 160
+msgid	"Sorry, this WAV file is in IBM U-law format.\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 165
+msgid	"Sorry, this WAV file is in IBM A-law format.\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 170
+msgid	"Sorry, this WAV file is in IBM ADPCM format.\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 175
+msgid	"Sorry, don't understand format\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 184
+msgid	"User options overiding channels read in .wav header\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 189
+msgid	"User options overiding rate read in .wav header\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 201
+# File: src/c/wav.c, line: 211
+# File: src/c/wav.c, line: 221
+msgid	"User options overiding size read in .wav header\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 229
+msgid	"Sorry, don't understand .wav size\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 245
+msgid	"Sorry, missing data chunk\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 262
+#, possible-c-format
+msgid	"Reading Wave file: %s format, %d channel%s, %d samp/sec\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 265
+#, possible-c-format
+msgid	"        %d byte/sec, %d block align, %d bits/samp, %u data bytes\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 291
+msgid	"Premature EOF on .wav input file\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 318
+msgid	"Length in output .wav header will wrong since can't seek to fix it"
+	"\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 342
+# File: src/c/wav.c, line: 349
+# File: src/c/wav.c, line: 356
+msgid	"User options overiding style written to .wav header\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 363
+#, possible-c-format
+msgid	"Sciprinting - writing bad .wav file using %s\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 372
+#, possible-c-format
+msgid	"Sciprinting - writing bad .wav file using unsigned data and %d bits/"
+	"sample\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 377
+#, possible-c-format
+msgid	"Sciprinting - writing bad .wav file using signed data and %d bits/"
+	"sample\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 382
+#, possible-c-format
+msgid	"Sciprinting - writing bad .wav file using A-law data and %d bits/"
+	"sample\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 387
+#, possible-c-format
+msgid	"Sciprinting - writing bad .wav file using U-law data and %d bits/"
+	"sample\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 420
+#, possible-c-format
+msgid	"Writing Wave file: %s format, %d channel%s, %d samp/sec\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 423
+#, possible-c-format
+msgid	"        %d byte/sec, %d block align, %d bits/samp\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 427
+#, possible-c-format
+msgid	"Finished writing Wave file, %u data bytes\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 446
+msgid	"Sorry, can't rewind output file to rewrite .wav header.\r\n"
+msgstr	""
+#
+# File: src/c/wav.c, line: 462
+msgid	"Microsoft Official Unknown"
+msgstr	""
+#
+# File: src/c/wav.c, line: 464
+msgid	"Microsoft PCM"
+msgstr	""
+#
+# File: src/c/wav.c, line: 466
+msgid	"Microsoft ADPCM"
+msgstr	""
+#
+# File: src/c/wav.c, line: 468
+msgid	"Microsoft A-law"
+msgstr	""
+#
+# File: src/c/wav.c, line: 470
+msgid	"Microsoft U-law"
+msgstr	""
+#
+# File: src/c/wav.c, line: 472
+msgid	"OKI ADPCM format."
+msgstr	""
+#
+# File: src/c/wav.c, line: 474
+msgid	"Digistd format."
+msgstr	""
+#
+# File: src/c/wav.c, line: 476
+msgid	"Digifix format."
+msgstr	""
+#
+# File: src/c/wav.c, line: 478
+msgid	"IBM U-law format."
+msgstr	""
+#
+# File: src/c/wav.c, line: 480
+msgid	"IBM A-law"
+msgstr	""
+#
+# File: src/c/wav.c, line: 482
+msgid	"IBM ADPCM"
+msgstr	""
+#
+# File: src/c/wav.c, line: 484
+msgid	"Unknown"
+msgstr	""
+#
+# File: src/nosound/nosound.c, line: 11
+msgid	"sound interface not installed.\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_beep.c, line: 41
+msgid	"Unknown command option.\r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_PlaySound.c, line: 51
+msgid	"Error in PlaySound\r\n"
+msgstr	""
+#

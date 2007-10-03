@@ -1,0 +1,146 @@
+# Localization of the module cacsd
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - cacsd\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:30+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: macros/armax.sci, line: 48
+msgid	"/ / we must find a=1,b=[0,0.2]''"
+msgstr	""
+#
+# File: macros/armax.sci, line: 62
+msgid	"if  r==0 and s==-1 there''s nothing to identify"
+msgstr	""
+#
+# File: macros/armax.sci, line: 74
+msgid	"Warning: z.z'' is numerically singular"
+msgstr	""
+#
+# File: macros/armax.sci, line: 109
+msgid	"  Standard deviation of the estimator a :"
+msgstr	""
+#
+# File: macros/armax.sci, line: 113
+msgid	"  Standard deviation of the estimator b :"
+msgstr	""
+#
+# File: macros/arsimul.sci, line: 60
+msgid	"up should be set to []"
+msgstr	""
+#
+# File: macros/arsimul.sci, line: 66
+# File: macros/narsimul.sci, line: 59
+msgid	" up=[u(0),u(-1),..,] must be of dimension ("
+msgstr	""
+#
+# File: macros/arsimul.sci, line: 80
+msgid	"yp should be set to []"
+msgstr	""
+#
+# File: macros/arsimul.sci, line: 86
+# File: macros/narsimul.sci, line: 67
+msgid	" yp=[y(0),y(-1),..,] must be of dimension ("
+msgstr	""
+#
+# File: macros/arsimul.sci, line: 100
+msgid	"ep should be set to []"
+msgstr	""
+#
+# File: macros/arsimul.sci, line: 106
+# File: macros/narsimul.sci, line: 75
+msgid	" ep=[e(0),e(-1),..,] must be of dimension ("
+msgstr	""
+#
+# File: macros/copfac.sci, line: 22
+msgid	"first argument should be a linear dynamic system"
+msgstr	""
+#
+# File: macros/reglin.sci, line: 14
+msgid	"reglin: [n1,n2]=size(x),[p1,p2]=size(y), n2 must be equal to p2"
+msgstr	""
+#
+# File: macros/h_inf_st.sci, line: 27
+msgid	" D12 not full rank !"
+msgstr	""
+#
+# File: macros/h_inf_st.sci, line: 31
+msgid	" D21 not full rank !"
+msgstr	""
+#
+# File: macros/armac.sci, line: 15
+msgid	"armac: a(:,1) must be of dimension "
+msgstr	""
+#
+# File: macros/armac.sci, line: 20
+msgid	"armac: b(:,1) must be of dimension "
+msgstr	""
+#
+# File: macros/armac.sci, line: 25
+msgid	"armac: number of columns of b are incompatible with nu');"
+msgstr	""
+#
+# File: macros/armac.sci, line: 31
+msgid	"armac: d(:,1) must be of dimension "
+msgstr	""
+#
+# File: macros/augment.sci, line: 37
+# File: macros/augment.sci, line: 109
+# File: macros/augment.sci, line: 170
+# File: macros/augment.sci, line: 238
+msgid	"option ''"
+msgstr	""
+#
+# File: macros/augment.sci, line: 37
+# File: macros/augment.sci, line: 170
+msgid	"'' not allowed, use ''SRT'' "
+msgstr	""
+#
+# File: macros/augment.sci, line: 109
+# File: macros/augment.sci, line: 238
+msgid	"'' not allowed use ''SR'', ''ST'' or ''RT'' "
+msgstr	""
+#
+# File: macros/h_norm.sci, line: 73
+msgid	"Warning:norm cannot be computed rel. accuracy smaller than 1e-3"
+msgstr	""
+#
+# File: macros/arma2p.sci, line: 4
+msgid	" This is not an ARMAX"
+msgstr	""
+#
+# File: macros/ss2des.sci, line: 9
+msgid	"ss2des: unknown flag!"
+msgstr	""
+#
+# File: macros/tf2des.sci, line: 11
+msgid	"tf2des: unknown flag"
+msgstr	""
+#
+# File: sci_gateway/c/sci_tzer.c, line: 16
+msgid	"incompatible RHS.\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_tzer.c, line: 21
+msgid	"incompatible LHS.\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_contr.c, line: 35
+msgid	"Invalid A,B matrices \r\n"
+msgstr	""
+#
+# File: sci_gateway/c/sci_contr.c, line: 40
+msgid	"TOL must be in [0 1]\r\n"
+msgstr	""
+

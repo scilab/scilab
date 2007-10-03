@@ -1,0 +1,29 @@
+# Localization of the module sci2c
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - sci2c\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: macros/sci2c.sci, line: 22
+msgid	"Usage : sci2c(<file_name>)"
+msgstr	""
+#
+# File: macros/sci2c.sci, line: 26
+msgid	"Begin of a Scilab 2 C Tool..."
+msgstr	""
+#
+# File: macros/sci2c.sci, line: 27
+msgid	"Need a better name for further sexy behaviour..."
+msgstr	""

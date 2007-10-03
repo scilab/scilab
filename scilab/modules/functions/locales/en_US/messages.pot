@@ -1,0 +1,158 @@
+# Localization of the module functions
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - functions\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: macros/getd.sci, line: 26
+msgid	"incorrect function in file "
+msgstr	""
+#
+# File: macros/recompilefunction.sci, line: 5
+msgid	"No variable named: "
+msgstr	""
+#
+# File: macros/recompilefunction.sci, line: 10
+msgid	" must be the name of a scilab function variable"
+msgstr	""
+#
+# File: macros/recompilefunction.sci, line: 15
+msgid	" is already noncompiled, nothing to do!"
+msgstr	""
+#
+# File: macros/recompilefunction.sci, line: 31
+msgid	" is already compiled, nothing to do!"
+msgstr	""
+#
+# File: macros/recompilefunction.sci, line: 35
+msgid	" is already compiled for profiling, nothing to do!"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 35
+msgid	"Perhaps the function(s) has not been loaded for profiling?"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 68
+msgid	"Complexity"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 74
+msgid	"Cpu time (total "
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 74
+msgid	" sec)"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 84
+# File: macros/plotprofile.sci, line: 227
+msgid	"3D Rot."
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 85
+# File: macros/plotprofile.sci, line: 230
+msgid	"Edit"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 86
+msgid	"Editer"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 87
+# File: macros/plotprofile.sci, line: 232
+msgid	"Insert"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 89
+msgid	"3D &Rot."
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 90
+# File: macros/plotprofile.sci, line: 242
+msgid	"&Edit"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 91
+# File: macros/plotprofile.sci, line: 237
+msgid	"&Editer"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 92
+# File: macros/plotprofile.sci, line: 244
+msgid	"&Insert"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 93
+# File: macros/plotprofile.sci, line: 239
+msgid	"&Inserer"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 95
+msgid	"Exit"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 96
+msgid	"click to get corresponding line, move with a-z"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 146
+# File: macros/plotprofile.sci, line: 149
+msgid	"line "
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 149
+msgid	" calls, "
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 228
+msgid	"UnZoom"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 229
+msgid	"Zoom"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 231
+msgid	"File"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 236
+msgid	"&Fichier"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 238
+msgid	"&Outils"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 241
+msgid	"&File"
+msgstr	""
+#
+# File: macros/plotprofile.sci, line: 243
+msgid	"&Tools"
+msgstr	""
+#
+# File: macros/get_function_path.sci, line: 13
+msgid	" there is no file named "
+msgstr	""
+#
+# File: macros/get_function_path.sci, line: 13
+msgid	".sci in the library directory "
+msgstr	""
+#
+# File: macros/profile.sci, line: 8
+msgid	"The function has not been built for profiling"
+msgstr	""
+

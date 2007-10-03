@@ -1,0 +1,121 @@
+# Localization of the module optimization
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid	""
+msgstr	"Project-Id-Version: Scilab - optimization\n"
+	"Report-Msgid-Bugs-To: \n"
+	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+	"PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
+	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+	"Language-Team: Scilab <localization@scilab.org>\n"
+	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ISO-8859-1\n"
+	"Content-Transfer-Encoding: 8bit\n"
+#
+# File: src/c/sp.c, line: 268
+msgid	"m must be at least one. \n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 273
+msgid	"L must be at least one. \n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 278
+#, possible-c-format
+msgid	"blck_szs[%d] must be at least one.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 283
+msgid	"nu must be at least 1.0. \n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 304
+msgid	"The matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 318
+msgid	"Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 354
+#, possible-c-format
+msgid	"Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 410
+# File: src/c/sp.c, line: 595
+#, possible-c-format
+msgid	"Error in dspgv, info = %d.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 412
+msgid	"x0 is not strictly primal feasible.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 425
+msgid	"Z0 is not positive definite.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 428
+msgid	"F(x)*Z has a negative eigenvalue.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 450
+msgid	"\n"
+	"    primal obj.  dual obj.  dual. gap  \n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 507
+#, possible-c-format
+msgid	"Error in dgels, info = %d.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 519
+#, possible-c-format
+msgid	"Error in dtrcon, info = %d.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 523
+msgid	"The matrices F_i, i=1,...,m are linearly dependent (or the initial "
+	"points are very badly conditioned).\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 568
+#, possible-c-format
+msgid	"Error in dspst, info = %d.\n"
+msgstr	""
+#
+# File: src/c/sp.c, line: 576
+#, possible-c-format
+msgid	"Error in dspev, info = %d.\n"
+msgstr	""
+#
+# File: src/c/intqld.c, line: 52
+#, possible-c-format
+msgid	"qld: Argument 3: wrong number of columns %d expected \r\n"
+msgstr	""
+#
+# File: src/c/intqld.c, line: 147
+#, possible-c-format
+msgid	"qld: Too many iterations (more than %d) \r\n"
+msgstr	""
+#
+# File: src/c/intqld.c, line: 149
+msgid	"qld: Accuracy insufficient to statify convergence criterion.\r\n"
+msgstr	""
+#
+# File: src/c/intqld.c, line: 151
+msgid	"qld: Length of working array is too short.\r\n"
+msgstr	""
+#
+# File: src/c/intqld.c, line: 153
+msgid	"qld: The constraints are inconsistent.\r\n"
+msgstr	""
+#
+# File: demos/lmitool/sylvester.sci, line: 14
+msgid	"invalid dimensions"
+msgstr	""
