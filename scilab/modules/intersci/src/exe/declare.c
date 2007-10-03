@@ -13,10 +13,11 @@ extern char target ; /* langage for generation */
 
 
 static struct Declare {
-  int type;
-  char *nameF,*nameC;
-  char **decls ; /* declaration de logical */
-  int  ndecls;
+	int type;
+	char *nameF; /* Name fortran */
+	char *nameC; /* Name C */
+	char **decls ; /* declaration of logical */
+	int  ndecls;
 } Init[] = {
   { DEC_CHAR,"character","char",(char **) 0,0},
   { DEC_INT ,"integer","int",(char **) 0,0},
