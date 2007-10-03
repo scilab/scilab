@@ -138,7 +138,7 @@ if (this->voiddisplayjstringID == NULL)
 {
 this->voiddisplayjstringID = curEnv->GetMethodID(this->instanceClass, "display", "(Ljava/lang/String;)V" ) ;
 if (this->voiddisplayjstringID == NULL) {
-std::cerr << "Could not access to the method display" << std::endl;
+std::cerr << "Could not access to the method " << "display" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -161,7 +161,7 @@ if (this->jstringreadLineID == NULL)
 {
 this->jstringreadLineID = curEnv->GetMethodID(this->instanceClass, "readLine", "()Ljava/lang/String;" ) ;
 if (this->jstringreadLineID == NULL) {
-std::cerr << "Could not access to the method readLine" << std::endl;
+std::cerr << "Could not access to the method " << "readLine" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -189,7 +189,7 @@ if (this->voidclearID == NULL)
 {
 this->voidclearID = curEnv->GetMethodID(this->instanceClass, "clear", "()V" ) ;
 if (this->voidclearID == NULL) {
-std::cerr << "Could not access to the method clear" << std::endl;
+std::cerr << "Could not access to the method " << "clear" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -210,7 +210,7 @@ if (this->voidclearjintID == NULL)
 {
 this->voidclearjintID = curEnv->GetMethodID(this->instanceClass, "clear", "(I)V" ) ;
 if (this->voidclearjintID == NULL) {
-std::cerr << "Could not access to the method clear" << std::endl;
+std::cerr << "Could not access to the method " << "clear" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -231,7 +231,7 @@ if (this->jintgetCharWithoutOutputID == NULL)
 {
 this->jintgetCharWithoutOutputID = curEnv->GetMethodID(this->instanceClass, "getCharWithoutOutput", "()I" ) ;
 if (this->jintgetCharWithoutOutputID == NULL) {
-std::cerr << "Could not access to the method getCharWithoutOutput" << std::endl;
+std::cerr << "Could not access to the method " << "getCharWithoutOutput" <<  std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -254,7 +254,7 @@ if (this->voidtoHomeID == NULL)
 {
 this->voidtoHomeID = curEnv->GetMethodID(this->instanceClass, "toHome", "()V" ) ;
 if (this->voidtoHomeID == NULL) {
-std::cerr << "Could not access to the method toHome" << std::endl;
+std::cerr << "Could not access to the method " << "toHome" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -275,7 +275,7 @@ if (this->voidscilabLinesUpdateID == NULL)
 {
 this->voidscilabLinesUpdateID = curEnv->GetMethodID(this->instanceClass, "scilabLinesUpdate", "()V" ) ;
 if (this->voidscilabLinesUpdateID == NULL) {
-std::cerr << "Could not access to the method scilabLinesUpdate" << std::endl;
+std::cerr << "Could not access to the method " << "scilabLinesUpdate" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
@@ -296,7 +296,7 @@ if (this->voidsetPromptjstringID == NULL)
 {
 this->voidsetPromptjstringID = curEnv->GetMethodID(this->instanceClass, "setPrompt", "(Ljava/lang/String;)V" ) ;
 if (this->voidsetPromptjstringID == NULL) {
-std::cerr << "Could not access to the method setPrompt" << std::endl;
+std::cerr << "Could not access to the method " << "setPrompt" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
