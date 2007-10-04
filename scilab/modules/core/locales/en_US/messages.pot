@@ -59,15 +59,6 @@ msgstr	""
 msgid	"can't create new process: %s\n"
 msgstr	""
 #
-# File: src/c/link_std.c, line: 299
-msgid	"no child !\n"
-msgstr	""
-#
-# File: src/c/link_std.c, line: 304
-#, possible-c-format
-msgid	"ld returned bad status: %x\n"
-msgstr	""
-#
 # File: src/c/link_std.c, line: 316
 #, possible-c-format
 msgid	"Cannot open %s\n"
@@ -1373,11 +1364,13 @@ msgstr	""
 msgid	"can't create new process: \n"
 msgstr	""
 #
+# File: src/c/link_std.c, line: 299
 # File: src/c/link_SYSV.c, line: 394
 # File: src/c/link_SYSV.c, line: 465
 msgid	"no child !\n"
 msgstr	""
 #
+# File: src/c/link_std.c, line: 304
 # File: src/c/link_SYSV.c, line: 398
 #, possible-c-format
 msgid	"ld returned bad status: %x\n"

@@ -20,6 +20,13 @@ msgstr	"Project-Id-Version: Scilab - intersci\n"
 # File: src/exe/declare.c, line: 134
 # File: src/exe/intersci.c, line: 3237
 # File: src/exe/intersci.c, line: 3243
+# File: examples/ex15c.c, line: 76
+# File: examples/ex6c.c, line: 24
+# File: examples/ex8c.c, line: 19
+# File: examples/ex12c.c, line: 26
+# File: examples/ex12c.c, line: 34
+# File: examples/ex14c.c, line: 173
+# File: examples/ex16c.c, line: 47
 #, c-format
 msgid	"No more space\n"
 msgstr	""
@@ -763,16 +770,6 @@ msgstr	""
 # File: src/exe/getrhs.c, line: 494
 #, c-format
 msgid	"Wrong type in Get function \n"
-msgstr	""
-#
-# File: examples/ex15c.c, line: 76
-# File: examples/ex6c.c, line: 24
-# File: examples/ex8c.c, line: 19
-# File: examples/ex12c.c, line: 26
-# File: examples/ex12c.c, line: 34
-# File: examples/ex14c.c, line: 173
-# File: examples/ex16c.c, line: 47
-msgid	"No more space\n"
 msgstr	""
 #
 # File: examples/ex14c.c, line: 16

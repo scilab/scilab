@@ -4,7 +4,7 @@
 # This file is distributed under the same license as the Scilab package.
 # Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
 #
-, c-format
+
 msgid	""
 msgstr	"Project-Id-Version: Scilab - incremental_link\n"
 	"Report-Msgid-Bugs-To: \n"
