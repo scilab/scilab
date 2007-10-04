@@ -122,9 +122,6 @@ public class SciInputParsingManager implements InputParsingManager {
 		index++;
 		if (index != 0) {
 			/* Skip all blanks following , or ; and preceeding the function name */
-			if (index < 0) {
-				return null;
-			}
 			while (lineToParse.charAt(index) == ' ') {
 				index++;
 				if (index >= lineToParse.length()) {
@@ -135,24 +132,34 @@ public class SciInputParsingManager implements InputParsingManager {
 		/* Search the beginning of the path or file name */
 		/* cd toto */
 		/* cd("toto */
-		lineToParse = lineToParse.substring(index).trim();
+		lineToParse = lineToParse.substring(index);
+		index = lineToParse.length();
 		int indexspace = lineToParse.indexOf(' ');
-		if (indexspace == -1) {
-			indexspace = lineToParse.length();
+		if (indexspace != -1) {
+			/* In case of more than 1 blanks, have to skip all but the last one */
+			while (lineToParse.charAt(indexspace) == ' ') {
+				indexspace++;
+				if (indexspace >= lineToParse.length()) {
+					return null;
+				}
+			}
+			/* Descrease index because last value read was not a ' ' */
+			indexspace--;
+			index = Math.min(index, indexspace);
 		}
-		int indexquote = lineToParse.indexOf('\"');
-		if (indexquote == -1) {
-			indexquote = lineToParse.length();
+		int indexquote = lineToParse.indexOf('\'');
+		if (indexquote != -1) {
+			index = Math.min(index, indexquote);
 		}
 		int indexdquote = lineToParse.indexOf('\"');
-		if (indexdquote == -1) {
-			indexdquote = lineToParse.length();
+		if (indexdquote != -1) {
+			index = Math.min(index, indexdquote);
 		}
-		index = Math.min(indexspace, Math.min(indexquote, indexdquote));
-		if (index <= 0 | lineToParse.substring(index).trim().equals("")) {
+		index++;
+		if (index <= 0 | lineToParse.substring(index).equals("")) {
 			return null;
 		} else {
-			return lineToParse.substring(index).trim();
+			return lineToParse.substring(index);
 		}
 	}
 
