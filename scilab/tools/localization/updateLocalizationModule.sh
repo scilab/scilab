@@ -1,8 +1,18 @@
 #!/bin/sh
+# Copyright INRIA/Scilab 2007
+# Author : Sylvestre Ledru <sylvestre.ledru@inria.fr>
 # This script goes into a module and updates the localization file by checking
 # the _( and gettext( calls in the code
 
+# TODO : 
+# * Write Small documentation
+# * Provide a recursive option for parsing all Scilab
+# 
+
 if test $# -ne 1; then
+	echo "This script goes into a module and updates the localization file "
+	echo "by checking the _(xxx) and gettext(xxx) calls in the code"
+	echo
 	echo "Syntax : $0 <module>"
 	exit
 fi
@@ -13,6 +23,12 @@ if test -z "$SCI"; then
 fi
 
 MODULE=$1
+PATHTOPROCESS=$SCI/modules/$MODULE/
+if test ! -d $PATHTOPROCESS; then
+	echo "Cannot find module $PATHTOPROCESS"
+	exit
+fi
+
 
 XGETTEXT=/usr/bin/xgettext
 MSGMERGE=/usr/bin/msgmerge
@@ -35,7 +51,7 @@ while [ "$i" -lt "$NB_ELEMENT" ]; do
 	fi
 	i=$((i + 1))
 done
-PATHTOPROCESS=$SCI/modules/$MODULE/
+
 cd $PATHTOPROCESS
 FILES=`eval $FILES`
 
