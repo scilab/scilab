@@ -60,7 +60,7 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 				bOK=addToClasspath(CLASSPATHS[i]);
 				if (!bOK)
 				{
-					Scierror(999,"could not add URL to system classloader : %s.\r\n",CLASSPATHS[i]);
+					Scierror(999,"could not add URL to system classloader : %s.\n",CLASSPATHS[i]);
 					return 0;
 				}
 			}
@@ -69,7 +69,7 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"invalid parameter(s).\r\n");
+			Scierror(999,"invalid parameter(s).\n");
 		}
 	}
 	return 0;

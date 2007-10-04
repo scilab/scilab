@@ -23,7 +23,7 @@ int ext14cI(char *fname)
   GetRhsVar( 3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
   if ( m3*n3 != m2*n2) 
     {
-      sciprint("%s :Incompatible dimensions\r\n",fname);
+      sciprint("%s :Incompatible dimensions\n",fname);
       Error(999); return(0);
     }
   CreateVar( 4,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l4);

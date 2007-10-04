@@ -38,7 +38,7 @@ int C2F(intslash)(char *fname,unsigned long fname_len)
 	  ret = C2F(intzgesv4)("slash",5L);
 	  break;
   default:
-	  Scierror(999,"%s: Invalid input! \r\n",fname);
+	  Scierror(999,"%s: Invalid input! \n",fname);
 	  break;
 	  }
 	  return 0;
@@ -54,12 +54,12 @@ int C2F(intslash)(char *fname,unsigned long fname_len)
 	  ret = C2F(intzgesv4)("slash",5L);
 	  break;
   default:
-	  Scierror(999,"%s: Invalid input! \r\n",fname);
+	  Scierror(999,"%s: Invalid input! \n",fname);
 	  break;
 	  }
 	  return 0;
   default :
-	  Scierror(999,"%s: Invalid input! \r\n",fname);
+	  Scierror(999,"%s: Invalid input! \n",fname);
 	  return 0;
 	}
 }

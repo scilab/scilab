@@ -101,7 +101,7 @@ int LinkStatus()
 void C2F(isciulink)(i) 
      integer *i;
 {
-  sciprint("aout link : No unlink up to now \r\n");
+  sciprint("aout link : No unlink up to now \n");
 }
 
 
@@ -163,7 +163,7 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
   char current_char;
 
 #ifdef DEBUG
-  sciprint("ename1 [%s]\r\n",ename1);
+  sciprint("ename1 [%s]\n",ename1);
   sciprint("lastlink %d, entry=%d\n",lastlink,*ii);
 #endif
 
@@ -185,7 +185,7 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
 	    {
 	      dld_unlink_by_file (current_object_file,1);
 #ifdef DEBUG
-	      sciprint("unloading : \"%s\"\r\n",current_object_file);
+	      sciprint("unloading : \"%s\"\n",current_object_file);
 #endif
 	    };
 	};
@@ -213,7 +213,7 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
 	current_object_file[j] = '\0';
 	if(strlen(current_object_file)>0){
 #ifdef DEBUG
-	  sciprint("loading : \"%s\"\r\n",current_object_file);
+	  sciprint("loading : \"%s\"\n",current_object_file);
 #endif
 	  *err = dld_link (current_object_file);
 	  if(*err){
@@ -253,7 +253,7 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
 	  return;
 	};
 #ifdef DEBUG
-      sciprint("procedure numero %d \"%s\" located in \"%s\"\r\n",*ii,ename1,loaded_files);
+      sciprint("procedure numero %d \"%s\" located in \"%s\"\n",*ii,ename1,loaded_files);
 #endif
       EP[*ii].epoint = func;
       lastlink=lastlink+1;
@@ -278,7 +278,7 @@ int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
   int i,j;
 
 #ifdef DEBUG
-  sciprint("ename1 [%s]\r\n",ename1);
+  sciprint("ename1 [%s]\n",ename1);
   sciprint("lastlink %d, entry=%d\n",lastlink,*ii);
 #endif
   sciprint("linking  \"%s\" defined in ",ename1);
@@ -287,7 +287,7 @@ int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
     {
       sciprint("\"%s\" ", loaded_files[i]); i++;
     }
-  sciprint("\r\n");
+  sciprint("\n");
   *err = 0;
   if ( (*err = dyninit_())) return; /* Error on init */
   /* scaning and loading  objects files */
@@ -302,7 +302,7 @@ int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
 	    {
 	      dld_unlink_by_file (loaded_files[i],1);
 #ifdef DEBUG
-	      sciprint("unloading : \"%s\"\r\n",loaded_files[i]);
+	      sciprint("unloading : \"%s\"\n",loaded_files[i]);
 #endif
 	    }
 	}
@@ -314,7 +314,7 @@ int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
     {
       if(strlen(loaded_files[i])>0){
 #ifdef DEBUG
-	  sciprint("loading : \"%s\"\r\n",loaded_files[i]);
+	  sciprint("loading : \"%s\"\n",loaded_files[i]);
 #endif
 	  *err = dld_link (loaded_files[i]);
 	  if(*err){
@@ -339,7 +339,7 @@ int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
 	  return;
 	};
 #ifdef DEBUG
-      sciprint("procedure numero %d \"%s\" located in \"%s\" .... \r\n",*ii,ename1,loaded_files[0]);
+      sciprint("procedure numero %d \"%s\" located in \"%s\" .... \n",*ii,ename1,loaded_files[0]);
 #endif
       EP[*ii].epoint = func;
       lastlink=lastlink+1;

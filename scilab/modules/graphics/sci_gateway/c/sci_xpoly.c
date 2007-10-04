@@ -44,7 +44,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
       strcpy(C2F(cha1).buf,"xmarks"); 
       mark=0; /* NG */
     } else {
-      Scierror(999,"%s:  dtype must be \"lines\" or \"marks\"\r\n",fname);
+      Scierror(999,"%s:  dtype must be \"lines\" or \"marks\"\n",fname);
       return 0;
     } 
   }

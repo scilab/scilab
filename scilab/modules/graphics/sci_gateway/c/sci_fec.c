@@ -56,7 +56,7 @@ int sci_fec(char *fname,unsigned long fname_len)
 
   if ( get_optionals(fname,opts) == 0) return 0;
   if ( FirstOpt() < 5) {
-    sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
+    sciprint("%s: misplaced optional argument, first must be at position %d \n",
       fname,5);
     Error(999); 
     return(0);
@@ -67,7 +67,7 @@ int sci_fec(char *fname,unsigned long fname_len)
 
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
   if (n3 != 5) {
-    Scierror(999,"%s: triangles have %d columns,expecting 5\r\n",fname,n3);
+    Scierror(999,"%s: triangles have %d columns,expecting 5\n",fname,n3);
     return 0;
   }
 

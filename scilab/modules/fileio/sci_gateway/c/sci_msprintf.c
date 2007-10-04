@@ -25,7 +25,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	CheckLhs(0,1);
 	if ( Rhs < 1 ) 
 	{ 
-		Scierror(999,"Error:\tRhs must be > 0\r\n");
+		Scierror(999,"Error:\tRhs must be > 0\n");
 		return 0;
 	}
 	for (k=2;k<=Rhs;k++) {
@@ -44,7 +44,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 
 	if (NumberPercent<Rhs-1)
 	{
-		Scierror(999,"sprintf: Invalid format.\r\n");
+		Scierror(999,"sprintf: Invalid format.\n");
 		return 0;
 	}
 
@@ -135,7 +135,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	PutLhsVar();    
 	return 0;
 mem:
-	Scierror(999,"sprintf: cannot allocate cannot allocate more memory \r\n");
+	Scierror(999,"sprintf: cannot allocate cannot allocate more memory \n");
 	return 0;
 }  
 /*-----------------------------------------------------------------------------------*/ 

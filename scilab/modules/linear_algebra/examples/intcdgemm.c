@@ -24,7 +24,7 @@ int intcdgemm(fname)
   n=nB;
   if(nA != mB || m1*n1*m4*n4 != 1 )
     {
-      sciprint("Bad call to dgemm\r\n");
+      sciprint("Bad call to dgemm\n");
       Error(9999);     return 0;
     }
   if(mA != mC || nB != nC )

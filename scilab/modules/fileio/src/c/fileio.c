@@ -72,7 +72,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 
   /* create Scilab variable with each column of data */
   if (ncol+Rhs > intersiz ){
-    Scierror(998,"Error:\ttoo many directive in scanf\r\n");
+    Scierror(998,"Error:\ttoo many directive in scanf\n");
     return RET_BUG;
   }
   iarg=Rhs;

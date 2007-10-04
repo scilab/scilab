@@ -30,7 +30,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
   pobj = sciGetPointerFromHandle(hdl);
   if (pobj == NULL)
   {
-    Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+    Scierror(999,"%s :the handle is not or no more valid\n",fname);
     return 0;
   }
   if (sciGetEntityType (pobj) == SCI_AGREG)
@@ -59,7 +59,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
   }
   else
   {
-    Scierror(999,"%s: Object must be an Compound\r\n",fname);
+    Scierror(999,"%s: Object must be an Compound\n",fname);
   }
   return 0;
 }

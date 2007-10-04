@@ -13,7 +13,7 @@ void C2F(mputstr) (int *fd, char *str, double *res, int *ierr)
 	fa = GetFileOpenedInScilab(*fd);
 	if (!fa) 
 	{
-		sciprint("No input file \r\n");
+		sciprint("No input file \n");
 		*ierr=1;
 	}
 	else 

@@ -8,13 +8,13 @@
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_scicos)()
 {
-	Scierror(999,"Scicos interface not installed.\r\n");
+	Scierror(999,"Scicos interface not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_cscicos)()
 {
-	Scierror(999,"Scicos interface not installed.\r\n");
+	Scierror(999,"Scicos interface not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

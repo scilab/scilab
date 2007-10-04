@@ -116,7 +116,7 @@ int LinkStatus()
 void C2F(isciulink)(i) 
      integer *i;
 {
-  sciprint("Std link : No unlink up to now \r\n");
+  sciprint("Std link : No unlink up to now \n");
 }
 
 
@@ -150,7 +150,7 @@ int C2F(dynload)(ii,ename1,loaded_files,err)
    extern errno;
 
 #ifdef DEBUG
-  sciprint("ename1 [%s]\r\n",ename1);
+  sciprint("ename1 [%s]\n",ename1);
   sciprint("lastlink %d, entry=%d\n",lastlink,*ii);
 #endif
 
@@ -562,7 +562,7 @@ int SetArgv1(argv,files,first,max,err)
       argv[j] = loc; j++;
       if ( j == max ) 
 	{
-	  sciprint("Link too many files \r\n");
+	  sciprint("Link too many files \n");
 	  *err=1;
 	  break;
 	}

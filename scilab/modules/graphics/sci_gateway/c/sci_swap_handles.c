@@ -27,7 +27,7 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
 
   if ( firstHdlRow * firstHdlCol != 1 || secondHdlRow * secondHdlCol != 1 )
   {
-    Scierror(999,"%s : Routine can only swap two single handles.\r\n",fname);
+    Scierror(999,"%s : Routine can only swap two single handles.\n",fname);
     return 0 ;
   }
 

@@ -58,13 +58,13 @@ int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
   } 
   else if ( Rhs < 4 ) 
   {
-    Scierror(999,"%s: expecting at least 4 arguments\r\n",fname);
+    Scierror(999,"%s: expecting at least 4 arguments\n",fname);
     return 0;
   }
   if ( get_optionals(fname,opts) == 0) { return 0 ; }
   if ( FirstOpt() < 5 )
   {
-    sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
+    sciprint("%s: misplaced optional argument, first must be at position %d \n",
       fname,5);
     Error(999); 
     return(0);

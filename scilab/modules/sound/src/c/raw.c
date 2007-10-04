@@ -112,7 +112,7 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	      /* scale signed up to long's range */
 	      *buf++ = datum =  LEFT(datum, 16);
 	      /** if ( count < 5 ) {
-		sciprint("datum %d %d %d \r\n",*(buf-1),sizeof(long),sizeof(int));
+		sciprint("datum %d %d %d \n",*(buf-1),sizeof(long),sizeof(int));
 		count++;
 		}
 	      **/
@@ -133,11 +133,11 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	    }
 	  return done;
 	case ULAW:
-	  sciprint("No U-Law support for shorts\r\n");
+	  sciprint("No U-Law support for shorts\n");
 	  ft->ierr=1;
 	  return done;
 	case ALAW:
-	  sciprint("No A-Law support for shorts\r\n");
+	  sciprint("No A-Law support for shorts\n");
 	  ft->ierr=1;
 	  return done;
 	}
@@ -152,10 +152,10 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	}
       return done;
     default:
-      sciprint("Drop through in rawread!\r\n");
+      sciprint("Drop through in rawread!\n");
       ft->ierr=1;
     }
-  sciprint("Sorry, don't have code to read %s, %s\r\n",
+  sciprint("Sorry, don't have code to read %s, %s\n",
 	   styles[ft->info.style], sizes[ft->info.size]);
   ft->ierr=1;
   return done;
@@ -238,11 +238,11 @@ void rawwrite(ft_t ft, long int *buf, long int nsamp)
       }
       return;
     case ULAW:
-      sciprint("No U-Law support for shorts (try -b option ?)\r\n");
+      sciprint("No U-Law support for shorts (try -b option ?)\n");
       ft->ierr=1;
       return;
     case ALAW:
-      sciprint("No A-Law support for shorts (try -b option ?)\r\n");
+      sciprint("No A-Law support for shorts (try -b option ?)\n");
       ft->ierr=1;
       return;
     }
@@ -256,12 +256,12 @@ void rawwrite(ft_t ft, long int *buf, long int nsamp)
       return;
     default: 
       {
-	sciprint("Drop through in rawwrite!\r\n");
+	sciprint("Drop through in rawwrite!\n");
 	ft->ierr=1;
       }
       
     }
-  sciprint("Sorry, don't have code to write %s, %s\r\n",styles[ft->info.style], sizes[ft->info.size]);
+  sciprint("Sorry, don't have code to write %s, %s\n",styles[ft->info.style], sizes[ft->info.size]);
 	ft->ierr=1;
 }
 /*-----------------------------------------------------------------------------------*/ 

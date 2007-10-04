@@ -91,7 +91,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
     }
     break;
   default :
-    Scierror(999,"%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\r\n",fname,Rhs);
+    Scierror(999,"%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\n",fname,Rhs);
     break ;
   }
 

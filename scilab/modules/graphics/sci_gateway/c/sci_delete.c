@@ -48,7 +48,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     }
     else
     {
-      Scierror(999,"%s :Incorrect argument\r\n",fname);
+      Scierror(999,"%s :Incorrect argument\n",fname);
       return 0;
     }
     break;
@@ -61,7 +61,7 @@ int sci_delete(char *fname,unsigned long fname_len)
   pobj = sciGetPointerFromHandle(hdl);
   if (pobj == NULL)
   {
-    Scierror(999,"%s :the handle is not valid\r\n",fname);
+    Scierror(999,"%s :the handle is not valid\n",fname);
     return 0;
   }
   

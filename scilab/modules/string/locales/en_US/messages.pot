@@ -34,7 +34,7 @@ msgstr	""
 #
 # File: src/c/strcat-c.c, line: 44
 #, possible-c-format
-msgid	"%s: third argument should be 'c' or 'r'\r\n"
+msgid	"%s: third argument should be 'c' or 'r'\n"
 msgstr	""
 #
 # File: src/c/strcat-c.c, line: 80
@@ -42,6 +42,6 @@ msgstr	""
 # File: src/c/strcat-c.c, line: 136
 # File: src/c/strcat-c.c, line: 148
 #, possible-c-format
-msgid	"%s: Out of memory\r\n"
+msgid	"%s: Out of memory\n"
 msgstr	""
 

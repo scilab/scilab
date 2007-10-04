@@ -201,7 +201,7 @@ msgid	"Invalid parameter(s) type (Style)."
 msgstr	""
 #
 # File: src/notclsci/notclsci.c, line: 55
-msgid	"TCL/TK interface not installed.\r\n"
+msgid	"TCL/TK interface not installed.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_TCL_CreateSlave.c, line: 24

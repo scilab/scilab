@@ -19,7 +19,7 @@ msgstr	"Project-Id-Version: Scilab - io\n"
 # File: src/c/getenvc.c, line: 19
 # File: src/c/getenvc.c, line: 31
 #, possible-c-format
-msgid	"You must define the environment variable %s\r\n"
+msgid	"You must define the environment variable %s\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_newest.c, line: 61
@@ -71,10 +71,10 @@ msgid	"Invalid type : string required"
 msgstr	""
 #
 # File: sci_gateway/c/sci_get_absolute_file_path.c, line: 33
-msgid	"parameter incorrect must be a string (a filename).\r\n"
+msgid	"parameter incorrect must be a string (a filename).\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_get_absolute_file_path.c, line: 119
-msgid	"First parameter incorrect, must be a string (a file).\r\n"
+msgid	"First parameter incorrect, must be a string (a file).\n"
 msgstr	""
 

@@ -29,7 +29,7 @@ int intcshep2d(char *fname,unsigned long fname_len)
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &n, &dim, &lxyz);
   if ( dim != 3  ||  n < 10 ) 
     { 
-      Scierror(999,"%s: xyz must be a (n,3) real matrix with n >= 10 \r\n", fname);
+      Scierror(999,"%s: xyz must be a (n,3) real matrix with n >= 10 \n", fname);
       return 0;
     }
 
@@ -70,7 +70,7 @@ int intcshep2d(char *fname,unsigned long fname_len)
 
   if ( ier != 0 )
     {
-      Scierror(999,"%s: duplicate nodes or all nodes colinears (ier = %d) \r\n", fname, ier);
+      Scierror(999,"%s: duplicate nodes or all nodes colinears (ier = %d) \n", fname, ier);
       return 0;
     }
 

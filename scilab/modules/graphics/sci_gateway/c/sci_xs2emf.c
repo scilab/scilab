@@ -36,7 +36,7 @@ int sci_xs2emf( char * fname, unsigned long fname_len )
     }
     else
     {
-      Scierror(999,"%s: First Argument. Must be >=0.\r\n",fname);
+      Scierror(999,"%s: First Argument. Must be >=0.\n",fname);
       return 0;
     }
 
@@ -45,18 +45,18 @@ int sci_xs2emf( char * fname, unsigned long fname_len )
   {
     if ( IsAScalar(1) )
     {
-      Scierror(999,"%s: First Argument. Must be a integer scalar.\r\n",fname);
+      Scierror(999,"%s: First Argument. Must be a integer scalar.\n",fname);
       return 0;
     }
     if ( GetType(2) != sci_strings)
     {
-      Scierror(999,"%s: Second Argument. Must be a string.\r\n",fname);
+      Scierror(999,"%s: Second Argument. Must be a string.\n",fname);
       return 0;
     }
   }
 
 #else
-  sciprint("%s: Only for Windows.\r\n",fname);
+  sciprint("%s: Only for Windows.\n",fname);
   bOK=0;
 #endif
   return bOK;

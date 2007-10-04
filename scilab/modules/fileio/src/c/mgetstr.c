@@ -19,7 +19,7 @@ void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 		*start= (char *) MALLOC((*n+1)*sizeof(char));
 		if ( *start == (char *) 0)
 		{       
-			sciprint("No more memory \r\n");
+			sciprint("No more memory \n");
 			*ierr=1;
 			return;
 		}
@@ -31,7 +31,7 @@ void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 		}
 		return;
 	}
-	sciprint("No input file \r\n");
+	sciprint("No input file \n");
 	*ierr=1;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -51,7 +51,7 @@ void C2F(mgetstr1) (integer *fd, char *start, integer *n, integer *ierr)
 		}
 		return;
 	}
-	sciprint("No input file \r\n");
+	sciprint("No input file \n");
 	*ierr=1;
 }
 /*-----------------------------------------------------------------------------------*/

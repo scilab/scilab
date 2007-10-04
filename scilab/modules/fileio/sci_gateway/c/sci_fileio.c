@@ -72,7 +72,7 @@ int intsmopen(char *fname,unsigned long fname_len)
 			}
 			else if ( err == 2)
 			{
-				Scierror(999,"%s:  Could not open the file!\r\n",fname);
+				Scierror(999,"%s:  Could not open the file!\n",fname);
 				return 0;
 			}
 			else 
@@ -112,7 +112,7 @@ int intsmputstr(char *fname,unsigned long fname_len)
 	C2F(mputstr)(&fd,cstk(l1),stk(l3),&err);
 	if (err >  0)
 	{
-		/*sciprint("%s: Internal Error \r\n",fname);*/
+		/*sciprint("%s: Internal Error \n",fname);*/
 		Error(10000);
 		return 0;
 	};
@@ -173,7 +173,7 @@ int intsmput(char *fname,unsigned long fname_len)
 	C2F(mput)(&fd,stk(l1),&n1,type,&err);
 	if (err >  0)
 	{
-		/* sciprint("%s: Internal Error \r\n",fname);*/
+		/* sciprint("%s: Internal Error \n",fname);*/
 		Error(10000);
 		return 0;
 	};
@@ -217,7 +217,7 @@ int intsmget(char *fname,unsigned long fname_len)
 	C2F(mget)(&fd,stk(l4),&n,type,&err);
 	if (err >  0) 
 	{
-		/*      sciprint("%s: Internal Error \r\n",fname);*/
+		/*      sciprint("%s: Internal Error \n",fname);*/
 		Error(10000);
 		return 0;
 	}
@@ -262,7 +262,7 @@ int intsmgetstr(char *fname,unsigned long fname_len)
 	LhsVar(1)=Rhs+1;
 	if (err >  0) 
 	{
-		/*      sciprint("%s: Internal Error \r\n",fname);*/
+		/*      sciprint("%s: Internal Error \n",fname);*/
 		Error(10000);
 		return 0;
 	}
@@ -331,7 +331,7 @@ int intsmseek(char *fname,unsigned long fname_len)
 	C2F(mseek)(&fd,istk(l1),flag,&err);
 	if (err >  0)
 	{
-		/* sciprint("%s: Internal Error \r\n",fname);*/
+		/* sciprint("%s: Internal Error \n",fname);*/
 		Error(10000);
 		return 0;
 	};
@@ -359,7 +359,7 @@ int intsmtell(char *fname,unsigned long fname_len)
 	C2F(mtell)(&fd,stk(l2),&err);
 	if (err >  0)
 	{
-		/*sciprint("%s: Internal Error \r\n",fname);*/
+		/*sciprint("%s: Internal Error \n",fname);*/
 		Error(10000);
 		return 0;
 	};

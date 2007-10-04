@@ -13,14 +13,14 @@ int F2C(ext14ca)(it,m,n,nel,mnel,icol,ar,ai)
   int i,iof = 0, j;
   for ( i = 0; i < *m ; i++) 
     {
-      sciprint("Row %d, %d non zero elements\r\n",i+1,mnel[i]);
+      sciprint("Row %d, %d non zero elements\n",i+1,mnel[i]);
       for ( j = 0; j < mnel[i]; j++) 
 	{
 	  if (*it == 1) 
-	      sciprint("(%d,%d) -> %f +i%f\r\n",i+1,icol[iof+j],
+	      sciprint("(%d,%d) -> %f +i%f\n",i+1,icol[iof+j],
 		       ar[iof+j],ai[iof+j]);
 	  else 
-	      sciprint("(%d,%d) -> %f \r\n",i+1,icol[iof+j],
+	      sciprint("(%d,%d) -> %f \n",i+1,icol[iof+j],
 		       ar[iof+j]);
 	}
       iof += mnel[i];
@@ -71,14 +71,14 @@ int F2C(ext14cc)(it,m,n,nel,mnel,icol,ar,ai)
   int i,iof = 0, j;
   for ( i = 0; i < *m ; i++) 
     {
-      sciprint("Row %d, %d non zero elements\r\n",i+1,mnel[i]);
+      sciprint("Row %d, %d non zero elements\n",i+1,mnel[i]);
       for ( j = 0; j < mnel[i]; j++) 
 	{
 	  if (*it == 1) 
-	      sciprint("(%d,%d) -> %d +i%d\r\n",i+1,icol[iof+j],
+	      sciprint("(%d,%d) -> %d +i%d\n",i+1,icol[iof+j],
 		       ar[iof+j],ai[iof+j]);
 	  else 
-	      sciprint("(%d,%d) -> %d \r\n",i+1,icol[iof+j],
+	      sciprint("(%d,%d) -> %d \n",i+1,icol[iof+j],
 		       ar[iof+j]);
 	}
       iof += mnel[i];
@@ -170,7 +170,7 @@ int F2C(ext14ce)(it,m,n,nel,mnel,icol,ar,ai,x,mx,nx,nelx,itx,err)
   *x = NewSparse(it,m,n,nel);
   if ( *x == (SciSparse *) 0) 
     {
-      sciprint("No more space\r\n");
+      sciprint("No more space\n");
       *err = 1;return;
     }
   *mx = *m ;

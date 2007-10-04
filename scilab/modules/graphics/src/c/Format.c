@@ -275,8 +275,8 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, integer 
       xma1 = *xmi+exp10((double) - iexp);
       if ( count > 1 ) 
 	{
-	  sciprint("Internal Error: Loop in graduate1 \r\n");
-	  sciprint("Please send a Bug report to scilab@inria.fr\r\n");
+	  sciprint("Internal Error: Loop in graduate1 \n");
+	  sciprint("Please send a Bug report to scilab@inria.fr\n");
 	}
       graduate1(&xmi1,&xma1,xi,xa,np1,np2,kminr,kmaxr,ar,count+1);
       return;
@@ -975,7 +975,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
     }
     break;
   default: 
-    sciprint("Sci_Axis: wrong type argument xy_type\r\n");
+    sciprint("Sci_Axis: wrong type argument xy_type\n");
   }
   switch (pos ) 
   {

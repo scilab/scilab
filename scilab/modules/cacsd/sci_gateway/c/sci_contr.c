@@ -32,12 +32,12 @@ int intab01od(char* fname)
 	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&mB,&nB,&ptrB);   B=2;        /*     B */
 	M=nB;
 	if (nA != mB || mA != nA )
-	{ Scierror(999,"Invalid A,B matrices \r\n");  return 0; }
+	{ Scierror(999,"Invalid A,B matrices \n");  return 0; }
 	if (Rhs == 3) {
 		/*    TOL is given:   ab01od(A,B,tol)   */
 		GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&mtol,&ntol,&ptrTOL);  theTOL=*stk(ptrTOL);    /*     TOL */
 		if (theTOL>1.0||theTOL<0.0) {
-			Scierror(999,"TOL must be in [0 1]\r\n");  return 0; 
+			Scierror(999,"TOL must be in [0 1]\n");  return 0; 
 		}
 	}
 

@@ -140,7 +140,7 @@ void scig_loadsg(int win_num, char *filename)
   C2F(syncexec)(macroCall,&macroCallLength,&ierr,&seq, macroCallLength );
 
   FREE( macroCall ) ;
-  if(ierr != 0) { sciprint("Wrong plot file : %s\r\n",filename) ; }
+  if(ierr != 0) { sciprint("Wrong plot file : %s\n",filename) ; }
 
   sciSetUsedWindow(curFigId);
 

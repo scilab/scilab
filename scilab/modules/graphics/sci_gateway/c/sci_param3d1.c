@@ -47,7 +47,7 @@ int sci_param3d1( char *fname, unsigned long fname_len )
 
   if ( get_optionals(fname,opts) == 0) return 0;
   if ( FirstOpt() < 4) {
-    sciprint("%s: misplaced optional argument, first must be at osition %d \r\n",
+    sciprint("%s: misplaced optional argument, first must be at osition %d \n",
       fname,4);
     Error(999); 
     return(0);
@@ -73,7 +73,7 @@ int sci_param3d1( char *fname, unsigned long fname_len )
     GetRhsVar(3,LIST_DATATYPE,&m3l,&n3l,&l3l);
     if ( m3l != 2 ) 
     {
-      Scierror(999,"%s: second argument has a wrong size (%d), expecting a list of size %d\r\n",
+      Scierror(999,"%s: second argument has a wrong size (%d), expecting a list of size %d\n",
         fname,m3l,2);
       return 0;
     }
@@ -82,7 +82,7 @@ int sci_param3d1( char *fname, unsigned long fname_len )
     zcol  = stk(l3n);
     if (m3n * n3n != n3) 
     {
-      Scierror(999,"%s: third argument: color specification has wrong size, expecting %d \r\n",fname,n3);
+      Scierror(999,"%s: third argument: color specification has wrong size, expecting %d \n",fname,n3);
       return 0;
     }
     break ;

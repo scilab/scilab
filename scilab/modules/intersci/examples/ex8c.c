@@ -16,7 +16,7 @@ C2F(ccalc8) ( a,m,n,err)
   if ( *a == (int *) 0 ) 
     {
       *err=1;
-      sciprint("No more space\r\n");
+      sciprint("No more space\n");
     }
   *err=0;
   for ( i= 0 ; i < (*m)*(*n) ; i++) (*a)[i] = i ;

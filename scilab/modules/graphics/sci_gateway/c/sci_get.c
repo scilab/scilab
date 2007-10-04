@@ -122,14 +122,14 @@ int sci_get(char *fname,unsigned long fname_len)
       lw = 1 + Top - Rhs;
       C2F(overload)(&lw,"get",3);
 	  return 0;
-      /*Scierror(999,"%s: Incorrect argument\r\n",fname);*/
+      /*Scierror(999,"%s: Incorrect argument\n",fname);*/
       break;
     }
   /* cstk(l2) est la commande, l3 l'indice sur les parametres de la commande */
   CheckLhs(0,1);
   if (hdl == (unsigned long)0 ) {
     if (sciGet((sciPointObj *) NULL, cstk(l2))!=0) {
-      Scierror(999,"%s: %s\r\n",fname,error_message);
+      Scierror(999,"%s: %s\n",fname,error_message);
       return 0;
     }
   }
@@ -140,13 +140,13 @@ int sci_get(char *fname,unsigned long fname_len)
 
       if (sciGet(pobj, cstk(l2))!=0)
       {
-        Scierror(999,"%s: %s\r\n",fname,error_message);
+        Scierror(999,"%s: %s\n",fname,error_message);
         return 0;
       }
     }
     else
     {
-      Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+      Scierror(999,"%s :the handle is not or no more valid\n",fname);
     }
   }
   LhsVar(1)=Rhs+1;

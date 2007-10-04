@@ -140,7 +140,7 @@ msgid	"use color"
 msgstr	""
 #
 # File: src/c/nometanet/nometanet.c, line: 11
-msgid	"Metanet interface not installed.\r\n"
+msgid	"Metanet interface not installed.\n"
 msgstr	""
 #
 #

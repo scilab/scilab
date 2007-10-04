@@ -22,7 +22,7 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 
 	if ( getWarningMode() && IsAlreadyOpenedInScilab(file) )
 	{
-		sciprint("Warning : file '%s' already opened in scilab.\r\n",file);
+		sciprint("Warning : file '%s' already opened in scilab.\n",file);
 	}
 
 	swap =0;

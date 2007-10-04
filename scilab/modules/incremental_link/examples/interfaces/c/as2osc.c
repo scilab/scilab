@@ -13,7 +13,7 @@ int as2osc(thechain)
 {
   static int k, l;
   l = strlen(thechain);
-  sciprint("character string length %d\r\n",l);
+  sciprint("character string length %d\n",l);
   for (k = 0 ; k < l; k++) 
     {
       if ( thechain[k] == 'a' ) thechain[k]='o';

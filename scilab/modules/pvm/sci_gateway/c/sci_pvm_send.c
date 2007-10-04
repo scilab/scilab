@@ -35,9 +35,9 @@ int intspvm_send _PARAMS((char *fname,unsigned long fname_len))
   address = Top-Rhs+2;
   C2F(varpak)(&address,Ipack,&used,&size,&ierr); 
   switch (ierr ) { 
-  case 1: Scierror(999,"%s: work space (stacksize) is too small d\r\n",fname);
+  case 1: Scierror(999,"%s: work space (stacksize) is too small d\n",fname);
     return 0;
-  case 2: Scierror(999,"%s: Unknow type or not yet implemented\r\n",fname);
+  case 2: Scierror(999,"%s: Unknow type or not yet implemented\n",fname);
     return 0; 
   }
 

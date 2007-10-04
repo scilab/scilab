@@ -187,29 +187,29 @@ msgid	"addPath"
 msgstr	""
 #
 # File: src/nojvm/nojvm.c, line: 17
-msgid	"TCL/TK interface not installed.\r\n"
+msgid	"TCL/TK interface not installed.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_javalibrarypath.c, line: 63
 #, possible-c-format
-msgid	"could not add path to java.library.path : %s.\r\n"
+msgid	"could not add path to java.library.path : %s.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_javalibrarypath.c, line: 72
 # File: sci_gateway/c/sci_javaclasspath.c, line: 72
-msgid	"invalid parameter(s).\r\n"
+msgid	"invalid parameter(s).\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_javaclasspath.c, line: 63
 #, possible-c-format
-msgid	"could not add URL to system classloader : %s.\r\n"
+msgid	"could not add URL to system classloader : %s.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_system_setproperty.c, line: 54
 # File: sci_gateway/c/sci_system_getproperty.c, line: 38
-msgid	"invalid parameter.\r\n"
+msgid	"invalid parameter.\n"
 msgstr	""
 #
 # File: sci_gateway/c/gw_jvm.c, line: 32
-msgid	"JVM interface disabled in -nogui or -nwni modes.\r\n"
+msgid	"JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr	""

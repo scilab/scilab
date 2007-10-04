@@ -48,7 +48,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&Im);
 			break;
 		default :
-			Scierror(999,"%s: first argument has a wrong type, expecting scalar or string matrix\r\n",fname);
+			Scierror(999,"%s: first argument has a wrong type, expecting scalar or string matrix\n",fname);
 			return 0;
 		}
 	}
@@ -59,13 +59,13 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		if ( m2 == 0 ) 
 		{
-			Scierror(999,"%s: second argument is an empty string\r\n",fname);
+			Scierror(999,"%s: second argument is an empty string\n",fname);
 			return 0;
 		}
 		c = *cstk(l2);
 		if (c != ROW_SORT && c != COLUMN_SORT && c != GLOBAL_SORT && c != LIST_SORT) 
 		{
-			Scierror(999,"%s: second argument has a wrong value %s should be in r,c,g,lr,lc\r\n",fname,cstk(l2));
+			Scierror(999,"%s: second argument has a wrong value %s should be in r,c,g,lr,lc\n",fname,cstk(l2));
 			return 0;
 		}
 		strcpy(typex,cstk(l2));
@@ -77,7 +77,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		CheckLength(3,m3,1);
 		if ( *cstk(l3) != INCREASE_COMMAND && *cstk(l3) != DECREASE_COMMAND)
 		{
-			Scierror(999,"%s: third argument must be \"i\" or \"d\"\r\n",fname);
+			Scierror(999,"%s: third argument must be \"i\" or \"d\"\n",fname);
 			return 0;
 		}
 		iord[0] = *cstk(l3);
@@ -185,7 +185,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 				C2F(gsortuint)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
 				break;
 			default:
-				Scierror(999,"invalid type.\r\n");
+				Scierror(999,"invalid type.\n");
 				return 0;
 			}
 
@@ -201,7 +201,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		}
 		break;
 	default:
-		Scierror(999,"invalid type.\r\n");
+		Scierror(999,"invalid type.\n");
 		return 0;
 		break;
 	}

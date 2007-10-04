@@ -522,7 +522,7 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     default:
-      sciprint ("\r\nNo Foreground is associated with this Entity");
+      sciprint ("\nNo Foreground is associated with this Entity");
       return -1;
       break;
     }
@@ -688,7 +688,7 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
     case SCI_AGREG:
 	case SCI_UIMENU:
     default:
-      sciprint ("\r\nNo Background is associated with this Entity");
+      sciprint ("\nNo Background is associated with this Entity");
       return -1;
       break;
     }
@@ -818,7 +818,7 @@ sciGetMarkForegroundToDisplay (sciPointObj * pobj)
     case SCI_SBV:		/* pas de context graphics */
 	case SCI_UIMENU:
     default:
-      sciprint ("\r\nNo Mark Foreground is associated with this Entity");
+      sciprint ("\nNo Mark Foreground is associated with this Entity");
       return -1;
       break;
     }
@@ -951,7 +951,7 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     default:
-      sciprint ("\r\nNo Mark Background is associated with this Entity");
+      sciprint ("\nNo Mark Background is associated with this Entity");
       return -1;
       break;
     }
@@ -1861,7 +1861,7 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
     case SCI_AGREG:
 	case SCI_UIMENU:
     default:
-       sciprint ("\r\nNo FontBackground is associated with this Entity");
+       sciprint ("\nNo FontBackground is associated with this Entity");
       return -1;
       break;
     }
@@ -1961,7 +1961,7 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
     case SCI_AGREG:
 	case SCI_UIMENU:
     default:
-      sciprint ("\r\nNo FontForeground is associated with this Entity");
+      sciprint ("\nNo FontForeground is associated with this Entity");
       return -1;
       break;
     }
@@ -2895,7 +2895,7 @@ sciGetZooming (sciPointObj * pobj)
 	case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\r\nThis object cannot be zoomed. \r\n");
+      sciprint ("\nThis object cannot be zoomed. \n");
       return FALSE;
       break;
     }
@@ -2940,7 +2940,7 @@ sciGetXorMode (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
 	case SCI_UIMENU:
     default:
-      sciprint ("\r\nNothing to do\n");
+      sciprint ("\nNothing to do\n");
       return FALSE;
       break;
     }
@@ -3718,7 +3718,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         }
       }
       else {
-	sciprint("Impossible case: champ object is now treated as a tlist. See set/getchampdata\r\n");
+	sciprint("Impossible case: champ object is now treated as a tlist. See set/getchampdata\n");
 	return (double *) NULL;
       }
       return (double*)tab;

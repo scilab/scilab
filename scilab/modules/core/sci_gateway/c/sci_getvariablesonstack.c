@@ -42,13 +42,13 @@ int C2F(sci_getvariablesonstack) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"Invalid parameter(s).\r\n");
+				Scierror(999,"Invalid parameter(s).\n");
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"Invalid parameter(s).\r\n");
+			Scierror(999,"Invalid parameter(s).\n");
 			return 0;
 		}
 	}

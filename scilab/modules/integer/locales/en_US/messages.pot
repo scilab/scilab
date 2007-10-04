@@ -17,32 +17,32 @@ msgstr	"Project-Id-Version: Scilab - integer\n"
 	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: src/c/mputi.c, line: 53
-msgid	"mputi : format is of 0 length  \r\n"
+msgid	"mputi : format is of 0 length  \n"
 msgstr	""
 #
 # File: src/c/mputi.c, line: 155
 # File: src/c/mputi.c, line: 161
 #, possible-c-format
-msgid	"mputi : %s format not recognized \r\n"
+msgid	"mputi : %s format not recognized \n"
 msgstr	""
 #
 # File: src/c/mputi.c, line: 168
 # File: src/c/mgeti.c, line: 180
-msgid	"No input file \r\n"
+msgid	"No input file \n"
 msgstr	""
 #
 # File: src/c/mgeti.c, line: 56
-msgid	"mgeti : format is of 0 length  \r\n"
+msgid	"mgeti : format is of 0 length  \n"
 msgstr	""
 #
 # File: src/c/mgeti.c, line: 163
 # File: src/c/mgeti.c, line: 169
 #, possible-c-format
-msgid	"mget : %s format not recognized \r\n"
+msgid	"mget : %s format not recognized \n"
 msgstr	""
 #
 # File: src/c/mgeti.c, line: 198
 #, possible-c-format
-msgid	"mgeti : unknown format %s  \r\n"
+msgid	"mgeti : unknown format %s  \n"
 msgstr	""
 

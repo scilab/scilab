@@ -40,7 +40,7 @@ int sci_savewave __PARAMS((char *fname,unsigned long fname_len))
   C2F(savewave)(filename,stk(l2),&rate,&mn2,&channels,&err);
   if (err >  0)
 	{
-    /*sciprint("%s: Internal Error \r\n",fname);*/
+    /*sciprint("%s: Internal Error \n",fname);*/
     Error(10000);
     return 0;
   };

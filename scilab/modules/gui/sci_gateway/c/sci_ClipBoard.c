@@ -55,7 +55,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,"unknown first parameter.\r\n");
+				Scierror(999,"unknown first parameter.\n");
 				return 0;
 			}
 		}
@@ -296,10 +296,10 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 		}
 		else
 		{
-			Scierror(999,"Only on Windows mode.\r\n");
+			Scierror(999,"Only on Windows mode.\n");
 			return 0;
 		}
-		Scierror(999,"Only on Windows mode.\r\n");
+		Scierror(999,"Only on Windows mode.\n");
 		return 0;
 	}
 	return 0;

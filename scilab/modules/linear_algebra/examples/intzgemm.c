@@ -26,7 +26,7 @@ int intzgemm(fname)
   GetRhsVar(5,MATRIX_OF_COMPLEX_DATATYPE, &mC,&nC,&lC);      /*      C     */
 
   m=mA;  n=nB;
-  if(nA != mB || mA != mC || nB != nC ) Scierror(999,"%f: invalid matrix dims \r\n",fname);
+  if(nA != mB || mA != mC || nB != nC ) Scierror(999,"%f: invalid matrix dims \n",fname);
 
   k=nA;
   C2F(zgemm)("n","n",&m ,&n ,&k,zstk(lalfa),

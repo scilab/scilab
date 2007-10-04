@@ -31,12 +31,12 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   if ( strcmp(fname,"xarcs") == 0) {
     if (m1 != 6) {
-      Scierror(999,"%s: arcs has a wrong size (6,n) expected \r\n",fname);
+      Scierror(999,"%s: arcs has a wrong size (6,n) expected \n",fname);
       return 0;
     }
   } else {
     if (m1 != 4) {
-      Scierror(999,"%s: rects has a wrong size (4,n) expected \r\n",fname);
+      Scierror(999,"%s: rects has a wrong size (4,n) expected \n",fname);
       return 0;
     }
   }
@@ -49,7 +49,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     CheckVector(2,m2,n2);
     if (m2 * n2 != n1) {
-      Scierror(999,"%s: first and second arguments have incompatible length\r\n",fname);
+      Scierror(999,"%s: first and second arguments have incompatible length\n",fname);
       return 0;
     }
   }

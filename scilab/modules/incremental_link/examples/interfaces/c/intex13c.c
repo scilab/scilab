@@ -22,7 +22,7 @@ int intex13c(fname)
   
   if (ierr > 0) 
     {
-      Scierror(999,"%s: Internal Error\r\n",fname);
+      Scierror(999,"%s: Internal Error\n",fname);
       return 0;
     }
   LhsVar(1) = 1;

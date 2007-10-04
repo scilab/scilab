@@ -31,7 +31,7 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
   if (m3 * n3 == 0) { LhsVar(1) = 0; return 0; }
   if (m3 == 1 || n3 == 1) {
-    Scierror(999,"%s: third argument is a vector, expecting a matrix\r\n",fname);
+    Scierror(999,"%s: third argument is a vector, expecting a matrix\n",fname);
     return 0;
   }
 

@@ -12,7 +12,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_gui)()
 {
-	Scierror(999,"GUI interface not installed.\r\n");
+	Scierror(999,"GUI interface not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -125,11 +125,11 @@ int XEvorgetchar(int interrupt){
 }
 /*-----------------------------------------------------------------------------------*/
 void main_sci (char *startup, int lstartup,int memory){
-	Scierror(999,"GUI interface not installed.\r\n");
+	Scierror(999,"GUI interface not installed.\n");
 }
 /*-----------------------------------------------------------------------------------*/
 void InitXsession(void){
-	Scierror(999,"GUI interface not installed.\r\n");
+	Scierror(999,"GUI interface not installed.\n");
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL InitializeGUI(void)

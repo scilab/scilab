@@ -41,7 +41,7 @@ void SciLink(int iflag,int *rhs,int *ilib,char *files[],char *en_names[],char *s
 	if (*ilib  == -1 ) return;
 	if ( iflag == 0) 
 	{
-		if (getWarningMode()) sciprint("shared archive loaded\r\n");
+		if (getWarningMode()) sciprint("shared archive loaded\n");
 	}
 	if ( *rhs >= 2) 
 	{
@@ -93,12 +93,12 @@ int Sci_dlopen( char *loaded_files[], int global)
 	while ( loaded_files[count] != NULL) count++;
 	if ( count != 1 ) 
 	{
-		if (getWarningMode()) sciprint("link: first argument must be a unique dll name\r\n");
+		if (getWarningMode()) sciprint("link: first argument must be a unique dll name\n");
 	}
 	hd1 =   LoadDynLibrary (loaded_files[0]);
 	if ( hd1 == NULL ) 
 	{
-		if (getWarningMode()) sciprint("link failed for dll %s\r\n",loaded_files[0]);
+		if (getWarningMode()) sciprint("link failed for dll %s\n",loaded_files[0]);
 		return(-1);
 	}
 	for ( i = 0 ; i < Nshared ; i++ ) 
@@ -114,7 +114,7 @@ int Sci_dlopen( char *loaded_files[], int global)
 
 	if ( Nshared == ENTRYMAX ) 
 	{
-		if (getWarningMode()) sciprint("You can't open shared files maxentry %d reached\r\n",ENTRYMAX);
+		if (getWarningMode()) sciprint("You can't open shared files maxentry %d reached\n",ENTRYMAX);
 		return(FAIL);
 	}
 
@@ -145,31 +145,31 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 	/* lookup the address of the function to be called */
 	if ( NEpoints == ENTRYMAX ) 
 	{
-		if (getWarningMode()) sciprint("You can't link more functions maxentry %d reached\r\n",ENTRYMAX);
+		if (getWarningMode()) sciprint("You can't link more functions maxentry %d reached\n",ENTRYMAX);
 		return(FAIL);
 	}
 	if ( hd[ish].ok == FAIL ) 
 	{
-		if (getWarningMode()) sciprint("Shared lib %d does not exists\r\n",ish);
+		if (getWarningMode()) sciprint("Shared lib %d does not exists\n",ish);
 		return(FAIL);
 	}
 	/** entry was previously loaded **/
 	if ( SearchFandS(ename,ish) >= 0 ) 
 	{
-		if (getWarningMode()) sciprint("Entry name %s is already loaded from lib %d\r\n",ename,ish);
+		if (getWarningMode()) sciprint("Entry name %s is already loaded from lib %d\n",ename,ish);
 		return(OK);
 	}
 	hd1 = (DynLibHandle)  hd[ish].shl;
 	EP[NEpoints].epoint = (function) GetDynLibFuncPtr (hd1,enamebuf);
 	if ( EP[NEpoints].epoint == NULL )
 	{
-		if (getWarningMode()) sciprint("%s is not an entry point \r\n",enamebuf);
+		if (getWarningMode()) sciprint("%s is not an entry point \n",enamebuf);
 		return(FAIL);
 	}
 	else 
 	{
 		/* we don't add the _ in the table */
-		if (debug) sciprint("Linking %s \r\n",ename);
+		if (debug) sciprint("Linking %s \n",ename);
 		strncpy(EP[NEpoints].name,ename,MAXNAME);
 		EP[NEpoints].Nshared = ish;
 		NEpoints++;

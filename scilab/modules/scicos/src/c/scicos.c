@@ -368,12 +368,12 @@ int C2F(scicos)(
         Blocks[kf].funpt=F2C(sciblk);
         break;
       case 1:
-        sciprint("type 1 function not allowed for scilab blocks\r\n");
+        sciprint("type 1 function not allowed for scilab blocks\n");
         *ierr =1000+kf+1;
         FREE_blocks();
         return 0;
       case 2:
-        sciprint("type 2 function not allowed for scilab blocks\r\n");
+        sciprint("type 2 function not allowed for scilab blocks\n");
         *ierr =1000+kf+1;
         FREE_blocks();
         return 0;
@@ -396,7 +396,7 @@ int C2F(scicos)(
         Blocks[kf].type=10004;
         break;
       default :
-        sciprint("Undefined Function type\r\n");
+        sciprint("Undefined Function type\n");
         *ierr =1000+kf+1;
         FREE_blocks();
         return 0;
@@ -413,7 +413,7 @@ int C2F(scicos)(
       i -= (ntabsim+1);
       GetDynFunc(i,&Blocks[kf].funpt);
       if ( Blocks[kf].funpt == (voidf) 0) {
-        sciprint("Function not found\r\n");
+        sciprint("Function not found\n");
         *ierr =1000+kf+1;
         FREE_blocks();
         return 0;
@@ -1130,7 +1130,7 @@ int C2F(scicos)(
 	}
         if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
         {
-	  sciprint("****lsodar from: %f to %f hot= %d  \r\n", *told,t,hot);
+	  sciprint("****lsodar from: %f to %f hot= %d  \n", *told,t,hot);
 	}
 
 	if(hmax==0){
@@ -1176,7 +1176,7 @@ int C2F(scicos)(
 	} else {
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
           {
-	    sciprint("****lsodar reached: %f\r\n",*told);
+	    sciprint("****lsodar reached: %f\n",*told);
 	  }
 	  hot = 1;
 	}
@@ -1195,7 +1195,7 @@ int C2F(scicos)(
 	  hot = 0;
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
           {
-	    sciprint("root found at t=: %f\r\n",*told);
+	    sciprint("root found at t=: %f\n",*told);
 	  }
 	  /*     .        update outputs affecting ztyp blocks ONLY FOR OLD BLOCKS */
 	  zdoit(g, xd, x,told);
@@ -1277,19 +1277,19 @@ int C2F(scicos)(
       /*     .  t==told */
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
       {
-	sciprint("Event: %d activated at t=%f\r\n",*pointi,*told);
+	sciprint("Event: %d activated at t=%f\n",*pointi,*told);
 	for(kev=0;kev<nblk;kev++){
 	  if (Blocks[kev].nmode>0){
 	    sciprint("mode of block %d=%d, ",kev,Blocks[kev].mode[0]);
 	  }
 	}
-	sciprint("**mod**\r\n");
+	sciprint("**mod**\n");
       }
 
       ddoit(told);
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
       {
-	sciprint("End of activation\r\n");
+	sciprint("End of activation\n");
       }
       if (*ierr != 0) {
 	freeall;
@@ -1619,7 +1619,7 @@ int C2F(scicos)(
 	phase=2;
 	if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
         {
-	  sciprint("****daskr from: %f to %f hot= %d  \r\n", *told,t,hot);
+	  sciprint("****daskr from: %f to %f hot= %d  \n", *told,t,hot);
 	}
 
 	/*--discrete zero crossings----dzero--------------------*/
@@ -1643,7 +1643,7 @@ int C2F(scicos)(
 	}
 
 	if (istate == -1)
-	  sciprint("**** Stiffness at: %26.18f %d\r\n",*told,istate);
+	  sciprint("**** Stiffness at: %26.18f %d\n",*told,istate);
 
 	phase=1;
 	if (*ierr > 5) {
@@ -1658,7 +1658,7 @@ int C2F(scicos)(
 	} else {
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
           {
-	    sciprint("****daskr reached: %f\r\n",*told);
+	    sciprint("****daskr reached: %f\n",*told);
 	  }
 	  hot = 1;/* successful return from DDASKR => hot restart*/
 	}
@@ -1675,7 +1675,7 @@ int C2F(scicos)(
 	  hot = 0;
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
           {
-	    sciprint("root found at t=: %f\r\n",*told);
+	    sciprint("root found at t=: %f\n",*told);
 	  }
 	  /*     .        update outputs affecting ztyp blocks  ONLY FOR OLD BLOCKS*/
 	  zdoit(g, xd, x,told);
@@ -1778,7 +1778,7 @@ int C2F(scicos)(
       /*     .  t==told */
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
       {
-	sciprint("Event: %d activated at t=%f\r\n",*pointi,*told);
+	sciprint("Event: %d activated at t=%f\n",*pointi,*told);
       }
 
       ddoit(told);
@@ -2570,11 +2570,11 @@ callf(t,xtd,xt,residual,g,flag)
     {
      sciprint("block %d is called ",kf);
      sciprint("with flag %d ",*flag);
-     sciprint("at time %f \r\n",*t);
+     sciprint("at time %f \n",*t);
     }
     if(debug_block>-1)
     {
-      if (cosd != 3) sciprint("Entering the block \r\n");
+      if (cosd != 3) sciprint("Entering the block \n");
       call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
       if (*flag<0) return;  /* error in debug block */
     }
@@ -2628,7 +2628,7 @@ callf(t,xtd,xt,residual,g,flag)
     if ( cosd > 1){
       if(debug_block>-1){
 	if (*flag<0) return;  /* error in block */
-	if (cosd != 3) sciprint("Leaving block %d \r\n",kf);
+	if (cosd != 3) sciprint("Leaving block %d \n",kf);
 	call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
       }
     }
@@ -2902,7 +2902,7 @@ callf(t,xtd,xt,residual,g,flag)
     }
     break;
   default:
-    sciprint("Undefined Function type\r\n");
+    sciprint("Undefined Function type\n");
     *flag=-1000;
     return;
   }
@@ -2925,7 +2925,7 @@ callf(t,xtd,xt,residual,g,flag)
   if ( cosd > 1){
     if(debug_block>-1){
       if (*flag<0) return;  /* error in block */
-      if (cosd != 3) sciprint("Leaving block %d \r\n",kf);
+      if (cosd != 3) sciprint("Leaving block %d \n",kf);
       call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
     }
   }
@@ -2975,7 +2975,7 @@ void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
       (*loc4)(&Blocks[kf-1],*flag);
     }
   }
-  if (*flag<0) sciprint("Error in the Debug block \r\n");
+  if (*flag<0) sciprint("Error in the Debug block \n");
 }
 
 

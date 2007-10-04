@@ -13,7 +13,7 @@ int getdiary(void)
 void C2F(diary)(char *str,int *n)
 {
 #if defined(_MSC_VER)
-	char newline[2]="\r\n";
+	char newline[2]="\n";
 	int nn=2;
 #else
 	char newline[1]="\n";

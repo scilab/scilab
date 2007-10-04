@@ -8,7 +8,7 @@ extern int  Scierror __PARAMS((int iv,char *fmt,...));
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_pvm)()
 {
-	Scierror(999,"PVM interface not installed.\r\n");
+	Scierror(999,"PVM interface not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

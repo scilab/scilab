@@ -39,7 +39,7 @@ int intex4c(char* fname)
   CheckRhs(0,0);
   CheckLhs(1,2);
   C2F(dblearray)( &l1,&m1,&n1,&ierr);
-  if ( ierr > 0 )  { Scierror(999,"%s: Internal error \r\n",fname);  return 0;  }
+  if ( ierr > 0 )  { Scierror(999,"%s: Internal error \n",fname);  return 0;  }
   /* first example : l1 was allocated inside dblearray */ 
   CreateVarFromPtr( 1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
   
@@ -65,7 +65,7 @@ int intex4c_2(char* fname)
   CheckRhs(0,0);
   CheckLhs(1,1);
   C2F(intarray)( &l1, &m1, &n1, &ierr);
-  if ( ierr > 0 )  { Scierror(999,"%s: Internal error \r\n",fname);  return 0 ;  }
+  if ( ierr > 0 )  { Scierror(999,"%s: Internal error \n",fname);  return 0 ;  }
   CreateVarFromPtr( 1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
   free(l1);
   /* we can access and change data through VarPtr
@@ -89,7 +89,7 @@ int intex4c_3(char* fname)
   CheckRhs(0,0);
   CheckLhs(1,1);
   C2F(crestr)( &l1,&m1,&ierr);
-  if ( ierr > 0 )  { Scierror(999,"%s: Internal error \r\n",fname);  return 0;  }
+  if ( ierr > 0 )  { Scierror(999,"%s: Internal error \n",fname);  return 0;  }
   CreateVarFromPtr( 1,STRING_DATATYPE, &m1, &n1, &l1);
   free(l1);
   LhsVar(1) = 1;
@@ -114,7 +114,7 @@ int intex4c_4(char* fname)
   C2F(crestr)( &l1, &m1, &ierr);
   C2F(intarray)( &l2, &m2, &n2, &ierr);
   C2F(dblearray)( &l3, &m3, &n3, &ierr);
-  if ( ierr > 0 )  { Scierror(999,"%s: Internal error \r\n",fname);  return 0;  }
+  if ( ierr > 0 )  { Scierror(999,"%s: Internal error \n",fname);  return 0;  }
   /* Creating variable #1 of type character and dimension m1 x n1 (m1=1) */
   CreateVarFromPtr( 1,STRING_DATATYPE, &m1, &n1, &l1);
   CreateVarFromPtr( 2,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
@@ -200,7 +200,7 @@ int C2F(crestr)( a, m, ierr)
   else
     {
       *ierr=1;
-      printf("malloc : No more space \r\n");
+      printf("malloc : No more space \n");
     }
   return(0);
 }

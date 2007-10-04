@@ -23,7 +23,7 @@ C2F(ccalc12) ( a,m,n,err)
   if ( *a == (Array *) 0) 
     {
       *err=1;
-      sciprint("No more space\r\n");
+      sciprint("No more space\n");
     }
   *m = (*a)->m = 1;
   *n = (*a)->n = 10;
@@ -31,7 +31,7 @@ C2F(ccalc12) ( a,m,n,err)
   if ( (*a)->val  == (double *) 0 ) 
     {
       *err=1;
-      sciprint("No more space\r\n");
+      sciprint("No more space\n");
     }
   *err=0;
   for ( i= 0 ; i < (*m)*(*n) ; i++) (*a)->val[i] = i ;

@@ -41,7 +41,7 @@ int C2F(intstrcat) (char* fname)
       if ( m3*n3 != 0) 
 	typ = cstk(l3)[0];
       if (typ != 'c' && typ != 'r' ) {
-	Scierror(999,"%s: third argument should be 'c' or 'r'\r\n",fname);
+	Scierror(999,"%s: third argument should be 'c' or 'r'\n",fname);
 	return 0;
       }
     }
@@ -77,7 +77,7 @@ int C2F(intstrcat) (char* fname)
       /* return a column matrix */ 
       if ( (Str1 = MALLOC((m1+1)*sizeof(char *)))==NULL) 
 	{
-	  Scierror(999,"%s: Out of memory\r\n",fname);
+	  Scierror(999,"%s: Out of memory\n",fname);
 	  return 0;
 	}
       Str1[m1]=NULL;
@@ -88,7 +88,7 @@ int C2F(intstrcat) (char* fname)
 	nchars += (n1-1)*(int)strlen(sep);
 	if ( (Str1[i]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 	  {
-	    Scierror(999,"%s: Out of memory\r\n",fname);
+	    Scierror(999,"%s: Out of memory\n",fname);
 	    return 0;
 	  }
 	/* fill the string */ 
@@ -133,7 +133,7 @@ int C2F(intstrcat) (char* fname)
       /* return a row matrix */ 
       if ( (Str1 = MALLOC((n1+1)*sizeof(char *)))==NULL) 
 	{
-	  Scierror(999,"%s: Out of memory\r\n",fname);
+	  Scierror(999,"%s: Out of memory\n",fname);
 	  return 0;
 	}
       Str1[n1]=NULL;
@@ -145,7 +145,7 @@ int C2F(intstrcat) (char* fname)
 	nchars += (m1-1)*(int)strlen(sep);
 	if ( (Str1[j]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 	  {
-	    Scierror(999,"%s: Out of memory\r\n",fname);
+	    Scierror(999,"%s: Out of memory\n",fname);
 	    return 0;
 	  }
 	/* fill the string */ 

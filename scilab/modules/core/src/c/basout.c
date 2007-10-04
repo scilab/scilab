@@ -63,7 +63,7 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 		{
 			if (nbcharacters > 0)
 			{
-				#define bufferformat "%s\r\n"
+				#define bufferformat "%s\n"
 				char *buffer = NULL;
 				buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+strlen(bufferformat)+1));
 				if (buffer)

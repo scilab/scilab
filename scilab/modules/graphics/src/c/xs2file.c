@@ -59,7 +59,7 @@ int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
 
   if( curFig == (sciPointObj *) NULL )
   {
-    Scierror(999,"No current graphic window %d found for exporting to %s\r\n",win_num,driver);
+    Scierror(999,"No current graphic window %d found for exporting to %s\n",win_num,driver);
     return ierr;
   }
 

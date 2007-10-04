@@ -22,7 +22,7 @@ msgid	"No more memory available: increase stacksize"
 msgstr	""
 #
 # File: src/c/mexlib.c, line: 807
-msgid	"Routine mxIsSingle not implemented \r\n"
+msgid	"Routine mxIsSingle not implemented \n"
 msgstr	""
 #
 # File: src/c/mexlib.c, line: 857
@@ -50,11 +50,11 @@ msgid	"Function mexPutArray is obsolete, use mexPutVariable! \n"
 msgstr	""
 #
 # File: src/c/mexlib.c, line: 2218
-msgid	"Routine mxSetName not implemented ! \r\n"
+msgid	"Routine mxSetName not implemented ! \n"
 msgstr	""
 #
 # File: src/c/mexlib.c, line: 2224
-msgid	"Routine mxSetData  not implemented \r\n"
+msgid	"Routine mxSetData  not implemented \n"
 msgstr	""
 #
 # File: src/c/mexlib.c, line: 2245
@@ -82,11 +82,11 @@ msgid	"%s: mxSetPi overwriting destination by %i bytes.\n"
 msgstr	""
 #
 # File: src/c/mexlib.c, line: 2300
-msgid	"Routine mxGetName  not implemented \r\n"
+msgid	"Routine mxGetName  not implemented \n"
 msgstr	""
 #
 # File: src/c/mexlib.c, line: 2307
-msgid	"Routine mxSetDimensions  not implemented \r\n"
+msgid	"Routine mxSetDimensions  not implemented \n"
 msgstr	""
 #
 # File: src/c/mexlib.c, line: 2425
@@ -110,7 +110,7 @@ msgid	"Running out of memory"
 msgstr	""
 #
 # File: includes/mex.h, line: 70
-msgid	"mexPutFull failed\r\n"
+msgid	"mexPutFull failed\n"
 msgstr	""
 #
 # File: examples/interface/fmex1.c, line: 12

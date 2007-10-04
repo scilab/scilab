@@ -21,7 +21,7 @@ C2F(ccalc6b)(a,m,n,err)
   *a =(char **) malloc((unsigned) (nstring * sizeof(char *)));
   if ( *a ==0) 
     {
-      sciprint("No more space\r\n");
+      sciprint("No more space\n");
       *err=1;
       return;
     }

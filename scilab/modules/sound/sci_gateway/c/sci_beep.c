@@ -38,7 +38,7 @@ int sci_Beep __PARAMS((char *fname,unsigned long fname_len))
 			{
 				BeepON=0;
 			}
-			else Scierror(999,"Unknown command option.\r\n");
+			else Scierror(999,"Unknown command option.\n");
 		}
 	}
 	else

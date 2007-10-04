@@ -52,14 +52,14 @@ int intdgeesx(fname)
 	switch ( NLHS ){
 		case 3:     /* [W,VS,A]=dgeesx(A) */
 		case 2:     /* [W,VS]=dgeesx(A)   */
-			printf("== 2 ==\r\n");
+			printf("== 2 ==\n");
 			JOBVS="V";
 			/*--------------------VS---------------------------*/
 			CreateVar(VS,MATRIX_OF_DOUBLE_DATATYPE, &N, &N, &lVS);
 			/*--------------------WORK---------------------------*/
 			WORK=4; LWORKMIN = MAX(1, 3*N);
 			LWORK=Maxvol(WORK,"d");  /* max memory currently available */
-			if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize) \r\n",fname);
+			if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize) \n",fname);
 			
 			LIWORK = 1;
 			
@@ -77,7 +77,7 @@ int intdgeesx(fname)
 			/*--------------------WORK---------------------------*/
 			WORK=3; LWORKMIN = MAX(1, 3*N);
 			LWORK=Maxvol(WORK, "d"); /* max memory currently available */
-			if (LWORK < LWORKMIN)  Scierror(999,"%s:  not enough memory (use stacksize) \r\n",fname); 
+			if (LWORK < LWORKMIN)  Scierror(999,"%s:  not enough memory (use stacksize) \n",fname); 
 			CreateVar(WORK,MATRIX_OF_DOUBLE_DATATYPE, &LWORK, &un, &lWORK);
 			
 			C2F(dgeesx)(JOBVS, SORT, select, SENSE, &N, stk(lA), &LDA, &SDIM, 

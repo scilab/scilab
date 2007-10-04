@@ -67,7 +67,7 @@ int intex1c(fname)
   
   if (ierr > 0) 
     {
-      Scierror(999,"%s: Internal error \r\n",fname);
+      Scierror(999,"%s: Internal error \n",fname);
       return 0;
     }
   

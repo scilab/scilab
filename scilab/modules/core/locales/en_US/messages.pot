@@ -37,7 +37,7 @@ msgid	"Functions compiled with very old versions are no more handled"
 msgstr	""
 #
 # File: src/c/link_std.c, line: 119
-msgid	"Std link : No unlink up to now \r\n"
+msgid	"Std link : No unlink up to now \n"
 msgstr	""
 #
 # File: src/c/link_std.c, line: 162
@@ -109,7 +109,7 @@ msgstr	""
 #
 # File: src/c/link_std.c, line: 565
 # File: src/c/link_SYSV.c, line: 627
-msgid	"Link too many files \r\n"
+msgid	"Link too many files \n"
 msgstr	""
 #
 # File: src/c/msgs.c, line: 483
@@ -1199,56 +1199,56 @@ msgstr	""
 #
 # File: src/c/link_W95.c, line: 44
 # File: src/c/link_SYSV.c, line: 125
-msgid	"shared archive loaded\r\n"
+msgid	"shared archive loaded\n"
 msgstr	""
 #
 # File: src/c/link_W95.c, line: 96
-msgid	"link: first argument must be a unique dll name\r\n"
+msgid	"link: first argument must be a unique dll name\n"
 msgstr	""
 #
 # File: src/c/link_W95.c, line: 101
 #, possible-c-format
-msgid	"link failed for dll %s\r\n"
+msgid	"link failed for dll %s\n"
 msgstr	""
 #
 # File: src/c/link_W95.c, line: 117
 # File: src/c/link_SYSV.c, line: 305
 #, possible-c-format
-msgid	"You can't open shared files maxentry %d reached\r\n"
+msgid	"You can't open shared files maxentry %d reached\n"
 msgstr	""
 #
 # File: src/c/link_W95.c, line: 148
 # File: src/c/link_SYSV.c, line: 500
 #, possible-c-format
-msgid	"You can't link more functions maxentry %d reached\r\n"
+msgid	"You can't link more functions maxentry %d reached\n"
 msgstr	""
 #
 # File: src/c/link_W95.c, line: 153
 # File: src/c/link_SYSV.c, line: 505
 #, possible-c-format
-msgid	"Shared lib %d does not exists\r\n"
+msgid	"Shared lib %d does not exists\n"
 msgstr	""
 #
 # File: src/c/link_W95.c, line: 159
 # File: src/c/link_SYSV.c, line: 511
 #, possible-c-format
-msgid	"Entry name %s is already loaded from lib %d\r\n"
+msgid	"Entry name %s is already loaded from lib %d\n"
 msgstr	""
 #
 # File: src/c/link_W95.c, line: 166
 # File: src/c/link_SYSV.c, line: 529
 #, possible-c-format
-msgid	"%s is not an entry point \r\n"
+msgid	"%s is not an entry point \n"
 msgstr	""
 #
 # File: src/c/link_W95.c, line: 172
 # File: src/c/link_SYSV.c, line: 541
 #, possible-c-format
-msgid	"Linking %s \r\n"
+msgid	"Linking %s \n"
 msgstr	""
 #
 # File: src/c/link_linux.c, line: 104
-msgid	"aout link : No unlink up to now \r\n"
+msgid	"aout link : No unlink up to now \n"
 msgstr	""
 #
 # File: src/c/link_linux.c, line: 125
@@ -1273,7 +1273,7 @@ msgstr	""
 # File: src/c/link_linux.c, line: 188
 # File: src/c/link_linux.c, line: 305
 #, possible-c-format
-msgid	"unloading : \"%s\"\r\n"
+msgid	"unloading : \"%s\"\n"
 msgstr	""
 #
 # File: src/c/link_linux.c, line: 203
@@ -1284,7 +1284,7 @@ msgstr	""
 # File: src/c/link_linux.c, line: 216
 # File: src/c/link_linux.c, line: 317
 #, possible-c-format
-msgid	"loading : \"%s\"\r\n"
+msgid	"loading : \"%s\"\n"
 msgstr	""
 #
 # File: src/c/link_linux.c, line: 220
@@ -1312,7 +1312,7 @@ msgstr	""
 #
 # File: src/c/link_linux.c, line: 256
 #, possible-c-format
-msgid	"procedure numero %d \"%s\" located in \"%s\"\r\n"
+msgid	"procedure numero %d \"%s\" located in \"%s\"\n"
 msgstr	""
 #
 # File: src/c/link_linux.c, line: 263
@@ -1333,11 +1333,11 @@ msgstr	""
 #
 # File: src/c/link_linux.c, line: 342
 #, possible-c-format
-msgid	"procedure numero %d \"%s\" located in \"%s\" .... \r\n"
+msgid	"procedure numero %d \"%s\" located in \"%s\" .... \n"
 msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 181
-msgid	"No global constructor(s) call\r\n"
+msgid	"No global constructor(s) call\n"
 msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 190
@@ -1346,16 +1346,16 @@ msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 240
 #, possible-c-format
-msgid	"Loading shared executable %s\r\n"
+msgid	"Loading shared executable %s\n"
 msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 277
-msgid	"Link : scilab is not a valid first argument on your machine\r\n"
+msgid	"Link : scilab is not a valid first argument on your machine\n"
 msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 288
 # File: src/c/link_SYSV.c, line: 534
-msgid	"link error\r\n"
+msgid	"link error\n"
 msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 326
@@ -1365,27 +1365,27 @@ msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 333
 # File: src/c/link_SYSV.c, line: 423
-msgid	" to create a shared executable\r\n"
+msgid	" to create a shared executable\n"
 msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 389
 # File: src/c/link_SYSV.c, line: 460
-msgid	"can't create new process: \r\n"
+msgid	"can't create new process: \n"
 msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 394
 # File: src/c/link_SYSV.c, line: 465
-msgid	"no child !\r\n"
+msgid	"no child !\n"
 msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 398
 #, possible-c-format
-msgid	"ld returned bad status: %x\r\n"
+msgid	"ld returned bad status: %x\n"
 msgstr	""
 #
 # File: src/c/link_SYSV.c, line: 469
 #, possible-c-format
-msgid	"collect2 returned bad status: %x\r\n"
+msgid	"collect2 returned bad status: %x\n"
 msgstr	""
 #
 # File: src/c/version.c, line: 16
@@ -1677,12 +1677,12 @@ msgstr	""
 #
 # File: src/c/dynamic_menus.c, line: 171
 #, possible-c-format
-msgid	"   Unqueuing %s - No option\r\n"
+msgid	"   Unqueuing %s - No option\n"
 msgstr	""
 #
 # File: src/c/dynamic_menus.c, line: 172
 #, possible-c-format
-msgid	"   Unqueuing %s - seq\r\n"
+msgid	"   Unqueuing %s - seq\n"
 msgstr	""
 #
 # File: src/c/getmodules.c, line: 72
@@ -1719,56 +1719,56 @@ msgid	"              Consortium Scilab (INRIA, ENPC)              "
 msgstr	""
 #
 # File: src/c/banier.c, line: 32
-msgid	"!!! WARNING !!!\r\n"
+msgid	"!!! WARNING !!!\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 33
 msgid	"This software is being provided \"as is\", without any express or "
-	"\r\n"
+	"\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 34
-msgid	"implied warranty.\r\n"
+msgid	"implied warranty.\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 35
 msgid	"This is a development and not at all a final or stable version of "
-	"Scilab 5.0\r\n"
+	"Scilab 5.0\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 36
 msgid	"that will be released in the future. A lot of features are missing "
-	"and buggy.\r\n"
+	"and buggy.\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 37
 msgid	"In no event will the authors be held liable for any damages arising "
-	"from,\r\n"
+	"from,\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 38
 msgid	"out of or in connection with the software or the use or other "
-	"dealings\r\n"
+	"dealings\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 39
-msgid	"in the software.\r\n"
+msgid	"in the software.\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 43
 # File: src/c/banier.c, line: 49
-msgid	"Warning: the operational team of the Scilab Consortium\r\n"
+msgid	"Warning: the operational team of the Scilab Consortium\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 44
 msgid	"   doesn't provide and doesn't support the port of Scilab to MacOS."
-	"\r\n"
-	"\r\n"
+	"\n"
+	"\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 50
 msgid	"   doesn't provide and doesn't support this version of Scilab built "
-	"with\r\n"
+	"with\n"
 msgstr	""
 #
 # File: src/c/InitializeCore.c, line: 29
@@ -2202,13 +2202,13 @@ msgid	"incompatible LHS."
 msgstr	""
 #
 # File: sci_gateway/c/sci_libraryinfo.c, line: 80
-msgid	"Invalid library.\r\n"
+msgid	"Invalid library.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_libraryinfo.c, line: 85
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 45
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 51
-msgid	"Invalid parameter(s).\r\n"
+msgid	"Invalid parameter(s).\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_with_module.c, line: 39
@@ -2296,7 +2296,7 @@ msgid	"Invalid type parameter. parameters must be strings."
 msgstr	""
 #
 # File: sci_gateway/c/sci_chdir.c, line: 55
-msgid	"Invalid parameter.\r\n"
+msgid	"Invalid parameter.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_clearfun.c, line: 57

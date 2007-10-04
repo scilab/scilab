@@ -63,7 +63,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   /* Bloque la commande xset('window') sans numero de fenetre */
   if (Rhs == 1 && (strcmp(cstk(l1),"window") == 0) )
   {
-    sciprint("xset(\"window\",window-number): window-number must be set\r\n");
+    sciprint("xset(\"window\",window-number): window-number must be set\n");
     LhsVar(1)=0; return 0;
   }
 
@@ -307,7 +307,7 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
   }
   else 
   {
-    sciprint("xset(arg,<string>): Unrecognized arg: %s\r\n",str);
+    sciprint("xset(arg,<string>): Unrecognized arg: %s\n",str);
   }
   return 0;
 }

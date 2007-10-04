@@ -47,7 +47,7 @@ int cdfchiI(char* fname,unsigned long l)
 	}
 	else 
 	{
-		Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
+		Scierror(999,"%s: Wrong first argument %s\n",fname,cstk(l1));
 	}      
 	return 0;
 }
@@ -57,12 +57,12 @@ static void cdfchiErr(int status,double bound)
 	static char *param[7]={"X", "P","Q","X","Df"};
 	switch ( status ) 
 	{
-	case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
-	case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
-	case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
-	case 10 : Scierror(999,"cdfchi: Error in  cumgam\r\n");break;
+	case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\n",bound);break;
+	case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\n",bound);break;
+	case 3 : Scierror(999," P + Q .ne. 1 \n");break ;
+	case 10 : Scierror(999,"cdfchi: Error in  cumgam\n");break;
 	default : 
-		Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		Scierror(999,"input parameter %c is out of range \n\tbound exceeded: %f\n",
 			param[-status-1],bound);
 	}
 }

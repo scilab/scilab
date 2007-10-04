@@ -150,14 +150,14 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
       return 0;
     break;
   default :
-    Scierror(999,"%s: tics has a wrong value \"%c\" should be one of \"r\",\"v\" and \"i\" \r\n", 
+    Scierror(999,"%s: tics has a wrong value \"%c\" should be one of \"r\",\"v\" and \"i\" \n", 
       fname,dir);
     return 0;
   }
 
   if ( val != 0) 
   {
-    /** sciprint("nombre de tics %d\r\n",ntics); **/
+    /** sciprint("nombre de tics %d\n",ntics); **/
     CheckLength( opts[8].position, opts[8].m*opts[8].n,ntics);
     nb_tics_labels = opts[8].m*opts[8].n;
   }
@@ -208,7 +208,7 @@ int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
     }
     break;
   default :
-    Scierror(999,"%s: dir has a wrong value \"%c\" should be one of \"u\",\"d\",\"r\" and \"l\"\r\n", 
+    Scierror(999,"%s: dir has a wrong value \"%c\" should be one of \"u\",\"d\",\"r\" and \"l\"\n", 
       fname,dir);
     return 0;
   }

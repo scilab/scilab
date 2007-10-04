@@ -27,7 +27,7 @@ int intspvm_error_mode _PARAMS((char *fname,unsigned long fname_len))
       else if ( strcmp(cstk(l1),cont) == 0) pvm_error = 0; 
       else 
 	  {
-		Scierror(999,"%s: first argument should be \"stop\" or \"continue\"\r\n",fname);
+		Scierror(999,"%s: first argument should be \"stop\" or \"continue\"\n",fname);
 		return 0;
       }
       LhsVar(1)=0;
@@ -55,7 +55,7 @@ void pvm_error_check _PARAMS((char *fname,int err, unsigned long fname_len))
 {
   if ( pvm_error == 1 && err != 0 ) 
     {
-      Scierror(999,"%s: %s\r\n",fname,scipvm_error_msg(err));
+      Scierror(999,"%s: %s\n",fname,scipvm_error_msg(err));
     }
 }
 /*-----------------------------------------------------------------------------------*/ 

@@ -84,7 +84,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 	  }
 	  break;
   default :   /*  rhs > 2 */
-	  Scierror(999,"%s: Invalid call! \r\n",fname);
+	  Scierror(999,"%s: Invalid call! \n",fname);
 	  break;
 	}
 	return 0;

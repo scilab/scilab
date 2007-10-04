@@ -14,7 +14,7 @@ int C2F(gw_jvm)(void);
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_jvm)()
 {
-	Scierror(999,"TCL/TK interface not installed.\r\n");
+	Scierror(999,"TCL/TK interface not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

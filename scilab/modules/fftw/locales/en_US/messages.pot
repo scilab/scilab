@@ -17,7 +17,7 @@ msgstr	"Project-Id-Version: Scilab - fftw\n"
 	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: src/nofftw/nofftw.c, line: 10
-msgid	"FFTW interface not installed.\r\n"
+msgid	"FFTW interface not installed.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_fftw_flags.c, line: 127
@@ -55,11 +55,11 @@ msgstr	""
 #
 # File: sci_gateway/c/gw_fftw.c, line: 35
 #, possible-c-format
-msgid	"FFTW Library %s not found.\r\n"
+msgid	"FFTW Library %s not found.\n"
 msgstr	""
 #
 # File: sci_gateway/c/gw_fftw.c, line: 39
-msgid	"FFTW Library not found.\r\n"
+msgid	"FFTW Library not found.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_fftw.c, line: 89

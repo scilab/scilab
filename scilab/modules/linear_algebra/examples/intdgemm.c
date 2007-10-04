@@ -29,7 +29,7 @@ int intdgemm(fname)
   GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE, &mC,&nC,&lC);      /*      C     */
 
   m=mA;  n=nB;
-  if(nA != mB || mA != mC || nB != nC ) Scierror(999,"%f: invalid matrix dims \r\n",fname);
+  if(nA != mB || mA != mC || nB != nC ) Scierror(999,"%f: invalid matrix dims \n",fname);
 
   k=nA;
   C2F(dgemm)("n","n",&m ,&n ,&k,stk(lalfa),

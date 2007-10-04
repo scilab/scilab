@@ -99,7 +99,7 @@ void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, 
  * Converts a Scilab array of 
  * String coded as integer array [ a crazy old feature]
  * into a C  string where all the Scilab strings are
- * separated by '\n' or '\r\n'
+ * separated by '\n' or '\n'
  * desc,nd,ptrdesc : scilab string info 
  * strh : the C coded string 
  ********************************************************/
@@ -137,7 +137,7 @@ void ScilabMStr2C(int *desc, int *nd, int *ptrdesc, char **strh, int *ierr)
 
 
 /********************************************************
- * Converts a C string containing \n or \r\n 
+ * Converts a C string containing \n or \n 
  * into a Scilab matrix of String 
  ********************************************************/
 

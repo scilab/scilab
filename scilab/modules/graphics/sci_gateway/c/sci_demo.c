@@ -26,12 +26,12 @@ int sci_demo( char * fname, char * code, int * flagx )
 	
 	/* execute the Scilab execstr function */
 	if ( *flagx == 1){
-		sciprint("\r\n");
-		sciprint("Demo of %s()\r\n",fname);
+		sciprint("\n");
+		sciprint("Demo of %s()\n",fname);
 		sciprint("========================================");
-		sciprint("\r\n");
-		sciprint("%s\r\n",code);
-		sciprint("\r\n");
+		sciprint("\n");
+		sciprint("%s\n",code);
+		sciprint("\n");
 	}
 	
 	C2F(recu).krec=-1; /* added to avoid recursion errors */

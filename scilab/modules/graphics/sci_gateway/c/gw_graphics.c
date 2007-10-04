@@ -111,7 +111,7 @@ int C2F(gw_graphics)(void)
   }
   else
   {
-	Scierror(999,"graphic interface disabled -nogui or -nwni mode.\r\n");
+	Scierror(999,"graphic interface disabled -nogui or -nwni mode.\n");
 	return 0;
   }
 

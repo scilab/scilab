@@ -40,7 +40,7 @@ int sci_addcb(char *fname,unsigned long fname_len)
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2); /* Gets the mouse event */
     break;
   default: 
-    Scierror(999,"%s: Pad parameters\r\n",fname);
+    Scierror(999,"%s: Pad parameters\n",fname);
     return 0;
     break;
 
@@ -48,7 +48,7 @@ int sci_addcb(char *fname,unsigned long fname_len)
   if ((pobj = sciGetPointerFromHandle(hdl)) != NULL )
     sciAddCallback((sciPointObj *)pobj, cstk(l1),m1*n1,*istk(l2));
   else {
-    Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+    Scierror(999,"%s :the handle is not or no more valid\n",fname);
     return 0;
   }
   LhsVar(1)=0;

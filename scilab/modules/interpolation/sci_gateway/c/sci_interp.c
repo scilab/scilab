@@ -36,7 +36,7 @@ int intinterp1(char *fname,unsigned long fname_len)
 
   if ( mx != my  ||  nx != ny  ||  md != mx || nd != nx || (mx != 1  &&  nx != 1) || mx*nx < 2) 
     { 
-      Scierror(999,"%s: bad inputs \r\n", fname);
+      Scierror(999,"%s: bad inputs \n", fname);
       return 0;
     }
   n = mx*nx;    /* number of interpolation points */

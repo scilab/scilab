@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_completion)()
 {
-	Scierror(999,"completion interface not installed.\r\n");
+	Scierror(999,"completion interface not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

@@ -80,7 +80,7 @@ function  [cor,corinv,links_table,cur_fictitious,ok]=scicos_flat(scs_m,ksup)
         //ficitious blocks
 	Pinds=[];if exists('Pind') then Pinds=Pind,end
 	Pind=[] //base of ports numbering
-	//mprintf("entering superblock at level '+string(size(path,'*'))+"\r\n")
+	//mprintf("entering superblock at level '+string(size(path,'*'))+"\n")
 	for port_type=['pin','pout','pein','peout']
 	  Pind=[Pind cur_fictitious]
 	  ip=scs_m.objs(k).graphics(port_type);ki=find(ip>0)

@@ -19,7 +19,7 @@ int C2F(sci_winopen) _PARAMS((char *fname,unsigned long l))
 	if (bOK) LhsVar(1) = 0;
 	else
 	{
-		Scierror(999,"Couldn't Open this document\r\n");
+		Scierror(999,"Couldn't Open this document\n");
 		return 0;
 	}
 	

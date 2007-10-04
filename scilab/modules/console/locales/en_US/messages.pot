@@ -15,7 +15,7 @@ msgstr	"Project-Id-Version: Scilab - console\n"
 	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: src/noconsole/noconsole.c, line: 18
-msgid	"console interface not installed.\r\n"
+msgid	"console interface not installed.\n"
 msgstr	""
 #
 # File: src/jni/org_scilab_modules_gui_bridge_console.cpp, line: 44

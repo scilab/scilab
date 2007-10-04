@@ -25,13 +25,13 @@ msgid	"The native library scicompletion does not exist or cannot be found."
 msgstr	""
 #
 # File: src/nocompletion/nocompletion.c, line: 11
-msgid	"completion interface not installed.\r\n"
+msgid	"completion interface not installed.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_completion.c, line: 31
 # File: sci_gateway/c/sci_completion.c, line: 84
 # File: sci_gateway/c/sci_completion.c, line: 95
 # File: sci_gateway/c/sci_completion.c, line: 107
-msgid	"Invalid parameter(s).\r\n"
+msgid	"Invalid parameter(s).\n"
 msgstr	""
 

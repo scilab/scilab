@@ -36,7 +36,7 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
 
   if ( parentCol * parentRow != 1 )
   {
-    Scierror(999,"%s :Handles must be relocated under a single parent.\r\n",fname);
+    Scierror(999,"%s :Handles must be relocated under a single parent.\n",fname);
     return 0 ;
   }
 
@@ -44,7 +44,7 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
   handleArray = MALLOC( nbHandle * sizeof( unsigned long ) ) ;
   if ( handleArray == NULL )
   {
-    Scierror(999,"Memory full, aborting operation.\r\n",fname);
+    Scierror(999,"Memory full, aborting operation.\n",fname);
     return 0 ;
   }
 

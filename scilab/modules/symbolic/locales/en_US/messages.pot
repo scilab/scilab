@@ -17,5 +17,5 @@ msgstr	"Project-Id-Version: Scilab - symbolic\n"
 	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: sci_gateway/c/gw_symbolic.c, line: 23
-msgid	"incorrect number of arguments.\r\n"
+msgid	"incorrect number of arguments.\n"
 msgstr	""

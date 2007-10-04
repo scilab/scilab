@@ -225,7 +225,7 @@ int LOGGER_clean_output( char *string, char **buffer )
 		{
 			if (isspace((int)*q))
 			{
-				next_space = strpbrk( (q+1), "\t\r\n\v " );
+				next_space = strpbrk( (q+1), "\t\n\v " );
 				if (next_space != NULL)
 				{
 					if ((line_size +(next_space -q)) >= LOGGER_glb.wraplength)

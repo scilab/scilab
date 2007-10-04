@@ -772,12 +772,12 @@ msgstr	""
 # File: examples/ex12c.c, line: 34
 # File: examples/ex14c.c, line: 173
 # File: examples/ex16c.c, line: 47
-msgid	"No more space\r\n"
+msgid	"No more space\n"
 msgstr	""
 #
 # File: examples/ex14c.c, line: 16
 # File: examples/ex14c.c, line: 74
 #, possible-c-format
-msgid	"Row %d, %d non zero elements\r\n"
+msgid	"Row %d, %d non zero elements\n"
 msgstr	""
 

@@ -724,7 +724,7 @@ void Objplot3d ( char    * fname ,
   else
     {
       if ((hdltab = MALLOC (*n * sizeof (long))) == NULL) {
-	Scierror(999,"%s: No more memory available\r\n",fname);
+	Scierror(999,"%s: No more memory available\n",fname);
 	return; 
       }
       for (i = 0; i < *n; ++i) { 

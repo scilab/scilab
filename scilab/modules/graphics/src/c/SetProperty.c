@@ -2856,7 +2856,7 @@ int sciInitZooming( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("\r\nThis object cannot be zoomed\r\n");
+      sciprint ("\nThis object cannot be zoomed\n");
       return -1 ;
       break;
     }
@@ -2892,7 +2892,7 @@ sciSetDefaultValues (void)
       (sciInitGraphicMode (sciGetCurrentFigure()) == -1) ||
       (sciInitFontContext (sciGetCurrentFigure()) == -1)) /* Adding F.Leray 13.04.04 to have the completed init.*/
   {
-    sciprint("\r\n default values cant not be loaded !");
+    sciprint("\n default values cant not be loaded !");
     return -1 ;
   }
   return 0;
@@ -2929,7 +2929,7 @@ int sciInitXorMode( sciPointObj * pobj, int value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("\r\nNothing to do\n");
+      sciprint ("\nNothing to do\n");
       return -1 ;
       break;
     }

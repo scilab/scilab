@@ -378,7 +378,7 @@ int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, in
     {
       if ( ( zconst = MALLOC( (*nz) * sizeof(double) ) ) == 0 ) 
 	{
-	  sciprint("Running out of memory\r\n");
+	  sciprint("Running out of memory\n");
 	  return 0;
 	}
       for ( i =0 ; i < *nz ; i++) 

@@ -616,7 +616,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   /* check parent */
   if ( parentObj == NULL )
   {
-    Scierror( 999,"The parent handle is not or no more valid.\r\n" ) ;
+    Scierror( 999,"The parent handle is not or no more valid.\n" ) ;
     return -1 ;
   }
 
@@ -624,7 +624,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   movedObjs = MALLOC( nbHandles * sizeof(sciPointObj *) ) ;
   if ( movedObjs == NULL )
   {
-    Scierror(999,"Memory full, aborting operation.\r\n") ;
+    Scierror(999,"Memory full, aborting operation.\n") ;
     return -1 ;
   }
 
@@ -637,14 +637,14 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
     /* check handle validity */
     if ( movedObjs[i] == NULL )
     {
-       Scierror(999,"Handle number %d is not or no more valid.\r\n", i + 1  ) ;
+       Scierror(999,"Handle number %d is not or no more valid.\n", i + 1  ) ;
        FREE( movedObjs ) ;
        return -1 ;
     }
     /* check that handles can be inserted under the parent */
     if ( !sciCanBeSonOf( movedObjs[i], parentObj ) )
     {
-      Scierror(999,"Handle number %d is not compatible with the parent handle.\r\n", i + 1 ) ;
+      Scierror(999,"Handle number %d is not compatible with the parent handle.\n", i + 1 ) ;
       FREE( movedObjs ) ;
       return -1 ;
     }
@@ -712,13 +712,13 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
   /* check compatibility of the objects with new parents */
   if ( !sciCanBeSonOf( firstObject, sciGetParent( secondObject ) ) )
   {
-    Scierror(999,"First handle is not compatible with its new parent.\r\n" ) ;
+    Scierror(999,"First handle is not compatible with its new parent.\n" ) ;
     return -1 ;
   }
   
   if ( !sciCanBeSonOf( secondObject, sciGetParent( firstObject ) ) )
   {
-    Scierror(999,"Second handle is not compatible with its new parent.\r\n" ) ;
+    Scierror(999,"Second handle is not compatible with its new parent.\n" ) ;
     return -1 ;
   }
 
@@ -728,12 +728,12 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
   /* check if the sons are correct. This should always be true. */
   if ( firstSon == NULL )
   {
-    Scierror( 999,"First object is not correctly placed in the hierarchy.\r\n" ) ;
+    Scierror( 999,"First object is not correctly placed in the hierarchy.\n" ) ;
     return -1 ;
   }
   if ( secondSon == NULL )
   {
-    Scierror( 999,"Second object is not correctly placed in the hierarchy.\r\n" ) ;
+    Scierror( 999,"Second object is not correctly placed in the hierarchy.\n" ) ;
     return -1 ;
   }
 
@@ -766,13 +766,13 @@ int swapHandles( unsigned long firstHdl, unsigned long secondHdl )
   
   if ( firstObject == NULL )
   {
-    Scierror( 999,"First handle is not or no more valid.\r\n" ) ;
+    Scierror( 999,"First handle is not or no more valid.\n" ) ;
     return -1 ;
   }
 
   if ( secondObject == NULL )
   {
-     Scierror( 999,"Second handle is not or no more valid.\r\n" ) ;
+     Scierror( 999,"Second handle is not or no more valid.\n" ) ;
     return -1 ;
   }
 

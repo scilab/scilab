@@ -89,7 +89,7 @@ int intex17c(fname)
 
   if (( returned_from_longjump = setjmp(ex17cenv)) != 0 )
     {
-      Scierror(999,"%s: Internal error \r\n",fname);
+      Scierror(999,"%s: Internal error \n",fname);
       return 0;
     } 
   

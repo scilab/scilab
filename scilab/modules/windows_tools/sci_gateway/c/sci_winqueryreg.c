@@ -8,9 +8,9 @@
 #include "registry.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
-#define MSG_WERROR1 "parameter(s) type incorrect.\r\n"
-#define MSG_WERROR2 "Error.\r\n"
-#define MSG_WERROR3 "Cannot query value of this type.\r\n"
+#define MSG_WERROR1 "parameter(s) type incorrect.\n"
+#define MSG_WERROR2 "Error.\n"
+#define MSG_WERROR3 "Cannot query value of this type.\n"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 {

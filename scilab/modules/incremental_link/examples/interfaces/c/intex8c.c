@@ -33,7 +33,7 @@ int intex8c(fname)
 
   if ( mrhs != 2 ) 
     {
-      Scierror(999,"%s: Third argument has an invalid rhs\r\n",fname);
+      Scierror(999,"%s: Third argument has an invalid rhs\n",fname);
       return 0;
     }
 

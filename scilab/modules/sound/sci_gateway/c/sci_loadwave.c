@@ -30,7 +30,7 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   C2F(loadwave)(filename,(double *) 0,&n2,0,&Wi,&err);
   if (err >  0)
 	{
-    /*sciprint("%s: Internal Error \r\n",fname);*/
+    /*sciprint("%s: Internal Error \n",fname);*/
     Error(10000);
     return 0;
   };
@@ -55,7 +55,7 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   C2F(loadwave)(filename,stk(l2),&n2,1,&Wi,&err);
   if (err >  0)
 	{
-    /*sciprint("%s: Internal Error \r\n",fname);*/
+    /*sciprint("%s: Internal Error \n",fname);*/
     Error(10000);
     return 0;
   };

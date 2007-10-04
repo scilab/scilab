@@ -24,7 +24,7 @@ int C2F(gw_special_functions2)(void)
 	Rhs = Max(0, Rhs);
 	if (setjmp_slatec_jmp_env()) 
 	{ 
-		Scierror(999,"%s: arguments must be positive \r\n", Tab[Fin-1].name);
+		Scierror(999,"%s: arguments must be positive \n", Tab[Fin-1].name);
 		return 0;
 	}
 	callFunctionFromGateway(Tab);

@@ -137,10 +137,10 @@ msgid	"incompatible LHS.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_contr.c, line: 35
-msgid	"Invalid A,B matrices \r\n"
+msgid	"Invalid A,B matrices \n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_contr.c, line: 40
-msgid	"TOL must be in [0 1]\r\n"
+msgid	"TOL must be in [0 1]\n"
 msgstr	""
 

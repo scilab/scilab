@@ -42,13 +42,13 @@ void C2F(mclose) (integer *fd, double *res)
 			else
 			{
 				*res = 0.0;
-				sciprint("File %d not active \r\n",fd1);
+				sciprint("File %d not active \n",fd1);
 			}
 		}
 		else 
 		{
 			*res = -1.0;
-			sciprint("No file to close \r\n",fd1);
+			sciprint("No file to close \n",fd1);
 		}
 	}
 }

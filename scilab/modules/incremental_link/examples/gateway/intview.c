@@ -43,11 +43,11 @@ void displ(a, ma, na, b, mb, nb, c, mc, nc)
      double *a; int *b; char *c;
      int ma, na, mb, nb, mc, nc;
 {
-  sciprint("First parameter (matrix) is %i x %i:\r\n",ma,na);
-  sciprint("its (1,1) entry is %e (double).\r\n", a[0]);
-  sciprint("Second parameter (matrix) is %i x %i:\r\n",mb,nb);
-  sciprint("its (1,1) entry is %i (int).\r\n", b[0]);
-  sciprint("Third parameter (string) is %i character long: it is the string \"%s\"\r\n",mc*nc, c);
+  sciprint("First parameter (matrix) is %i x %i:\n",ma,na);
+  sciprint("its (1,1) entry is %e (double).\n", a[0]);
+  sciprint("Second parameter (matrix) is %i x %i:\n",mb,nb);
+  sciprint("its (1,1) entry is %i (int).\n", b[0]);
+  sciprint("Third parameter (string) is %i character long: it is the string \"%s\"\n",mc*nc, c);
 }
 
 

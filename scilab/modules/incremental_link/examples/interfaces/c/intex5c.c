@@ -21,7 +21,7 @@ int intex5c(fname)
   crestrc( &l1,&m1,&ierr);
   if ( ierr > 0 ) 
     {
-      Scierror(999,"%s: Internal error \r\n",fname);
+      Scierror(999,"%s: Internal error \n",fname);
       return 0;
     }
 

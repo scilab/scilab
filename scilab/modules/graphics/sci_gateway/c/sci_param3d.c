@@ -45,7 +45,7 @@ int sci_param3d( char * fname, unsigned long fname_len )
 
   if ( get_optionals(fname,opts) == 0) return 0;
   if ( FirstOpt() < 4) {
-    sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
+    sciprint("%s: misplaced optional argument, first must be at position %d \n",
       fname,4);
     Error(999); 
     return(0);

@@ -49,7 +49,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  ret = C2F(intzgees0)("schur",5L);
 	  break;
   default :
-	  Scierror(999,"%s: Invalid input! \r\n",fname);
+	  Scierror(999,"%s: Invalid input! \n",fname);
 	  break;
 	  }
 	  break;
@@ -65,7 +65,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  ret = C2F(intzschur)("schur",5L);
 	  break;
   default :
-	  Scierror(999,"%s: Invalid input! \r\n",fname);
+	  Scierror(999,"%s: Invalid input! \n",fname);
 	  break;
 	  }
 	  break;
@@ -79,7 +79,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  ret = C2F(intdgees1)("schur",5L);
 	  break;
   case COMPLEX:
-	  Scierror(999,"%s: Invalid call! \r\n",fname);
+	  Scierror(999,"%s: Invalid call! \n",fname);
 	  break;
 	  }
 	  return 0;
@@ -128,7 +128,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  ret = C2F(intzgges)("schur",6L);
 	  break;
   default :
-	  Scierror(999,"%s: Invalid input! \r\n",fname);
+	  Scierror(999,"%s: Invalid input! \n",fname);
 	  break;
 	  }
 	  break;
@@ -161,7 +161,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  ret = C2F(intozgschur)("schur",6L);
 	  break;
   default :
-	  Scierror(999,"%s: Invalid input! \r\n",fname);
+	  Scierror(999,"%s: Invalid input! \n",fname);
 	  break;
 	  }
 	  break;
@@ -174,7 +174,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  ret = C2F(intzgschur)("schur",6L);
 	  break;
   default :
-	  Scierror(999,"%s: Invalid input! \r\n",fname);
+	  Scierror(999,"%s: Invalid input! \n",fname);
 	  break;
 	  }
 	  break;
@@ -183,7 +183,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  }
 	  break; /* end of case 3 */
   default : 
-	  Scierror(999,"%s: Invalid call! \r\n",fname);
+	  Scierror(999,"%s: Invalid call! \n",fname);
 	  break;
 	} /*end of switch(Rhs) */
 	return 0;

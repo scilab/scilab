@@ -35,7 +35,7 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
   if ( mx != my  ||  nx != ny ) 
     { 
-      Scierror(999,"%s: xp and yp must have the same dimension \r\n", fname);
+      Scierror(999,"%s: xp and yp must have the same dimension \n", fname);
       return 0;
     }
 
@@ -56,7 +56,7 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
 			Str=NULL;
 		}
 
-      Scierror(999,"%s: Argument 2 is not an cshep2d tlist\r\n", fname);
+      Scierror(999,"%s: Argument 2 is not an cshep2d tlist\n", fname);
       return 0;
     }
   /* Free Str */

@@ -52,7 +52,7 @@ int TclEventsLoop(void)
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_tclsci)()
 {
-	Scierror(999,"TCL/TK interface not installed.\r\n");
+	Scierror(999,"TCL/TK interface not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

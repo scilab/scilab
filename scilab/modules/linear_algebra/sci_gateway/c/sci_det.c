@@ -32,7 +32,7 @@ int C2F(intdet)(char *fname,unsigned long fname_len)
 	  return 0;
 	  break;
   default:
-	  Scierror(999,"%s: Invalid input! \r\n",fname);
+	  Scierror(999,"%s: Invalid input! \n",fname);
 	  return 0;
 	}
 }

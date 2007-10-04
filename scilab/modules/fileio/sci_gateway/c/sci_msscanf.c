@@ -30,7 +30,7 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		if (m1*n1!=1)
 		{
-			Scierror(999,"Error: in sscanf: incorrect first argument\r\n");
+			Scierror(999,"Error: in sscanf: incorrect first argument\n");
 			return 0;
 		}
 
@@ -50,7 +50,7 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 
 	if ( (maxrow >= 0) && (maxrow*n_count>m1*n1) )
 	{
-		Scierror(999,"Error: in sscanf: not enough entries in str\r\n");
+		Scierror(999,"Error: in sscanf: not enough entries in str\n");
 		return 0;
 	}
 
@@ -75,7 +75,7 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 		{
 			/* 
 			first returned argument wil be set to -1 
-			Scierror(999,"Error: in %s: end of string reached\r\n",fname);
+			Scierror(999,"Error: in %s: end of string reached\n",fname);
 			return 0;
 			*/
 		}
@@ -88,14 +88,14 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 				if (maxrow>=0) 
 				{
 					Free_Scan(rowcount,ncol,type_s,&data);
-					Scierror(999,"Error: in sscanf: data mismatch\r\n");
+					Scierror(999,"Error: in sscanf: data mismatch\n");
 					return 0;
 				}
 				break;
 
 			case MEM_LACK:
 				Free_Scan(rowcount,ncol,type_s,&data);
-				Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");
+				Scierror(999,"Error: in sscanf: cannot allocate more memory \n");
 				return 0;
 				break;
 			}
@@ -107,7 +107,7 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 	/* create Scilab variables with each column of data */
 	err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
 	Free_Scan(rowcount,ncol,type_s,&data);
-	if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
+	if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \n");}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

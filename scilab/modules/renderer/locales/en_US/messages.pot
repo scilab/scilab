@@ -533,6 +533,6 @@ msgid	"Unable to render polyline, memory full.\n"
 msgstr	""
 #
 # File: src/norenderer/norenderer.c, line: 11
-msgid	"Module Renderer interface not installed.\r\n"
+msgid	"Module Renderer interface not installed.\n"
 msgstr	""
 

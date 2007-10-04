@@ -47,7 +47,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 
   if ( pText == NULL )
   {
-    Scierror(999,"%s : The handle is not valid.\r\n",fname);
+    Scierror(999,"%s : The handle is not valid.\n",fname);
     return 0 ;
   }
 

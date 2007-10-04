@@ -96,24 +96,24 @@ msgstr	""
 #
 # File: src/c/intqld.c, line: 52
 #, possible-c-format
-msgid	"qld: Argument 3: wrong number of columns %d expected \r\n"
+msgid	"qld: Argument 3: wrong number of columns %d expected \n"
 msgstr	""
 #
 # File: src/c/intqld.c, line: 147
 #, possible-c-format
-msgid	"qld: Too many iterations (more than %d) \r\n"
+msgid	"qld: Too many iterations (more than %d) \n"
 msgstr	""
 #
 # File: src/c/intqld.c, line: 149
-msgid	"qld: Accuracy insufficient to statify convergence criterion.\r\n"
+msgid	"qld: Accuracy insufficient to statify convergence criterion.\n"
 msgstr	""
 #
 # File: src/c/intqld.c, line: 151
-msgid	"qld: Length of working array is too short.\r\n"
+msgid	"qld: Length of working array is too short.\n"
 msgstr	""
 #
 # File: src/c/intqld.c, line: 153
-msgid	"qld: The constraints are inconsistent.\r\n"
+msgid	"qld: The constraints are inconsistent.\n"
 msgstr	""
 #
 # File: demos/lmitool/sylvester.sci, line: 14

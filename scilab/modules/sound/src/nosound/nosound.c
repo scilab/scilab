@@ -8,7 +8,7 @@ extern int  Scierror __PARAMS((int iv,char *fmt,...));
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_sound)()
 {
-	Scierror(999,"sound interface not installed.\r\n");
+	Scierror(999,"sound interface not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

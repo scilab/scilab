@@ -804,7 +804,7 @@ bool mxIsDouble(const mxArray *ptr)
 
 bool mxIsSingle(const mxArray *ptr)
 {
-  mexPrintf("Routine mxIsSingle not implemented \r\n");
+  mexPrintf("Routine mxIsSingle not implemented \n");
   exit(1);  /* TO BE DONE */
   return 0;
 }
@@ -1372,7 +1372,7 @@ void *mxCalloc_m(unsigned int n, unsigned int size)
       {
 	if (calloc_table[i].keep == 0 ) 
 	  {
-	    /* sciprint("calloc installed at position %d\r\n",i); */
+	    /* sciprint("calloc installed at position %d\n",i); */
 	    calloc_table[i].adr = loc;
 	    calloc_table[i].keep = 1;
 	    return loc ; 
@@ -1393,7 +1393,7 @@ void *mxMalloc_m(unsigned int n)
       {
 	if (calloc_table[i].keep == 0 ) 
 	  {
-	    /* sciprint("malloc installed at position %d\r\n",i); */
+	    /* sciprint("malloc installed at position %d\n",i); */
 	    calloc_table[i].adr = loc;
 	    calloc_table[i].keep = 1;
 	    return loc ; 
@@ -1432,7 +1432,7 @@ void mxFree_m(void *ptr){
 	/* allocated and preserved */
 	if  (calloc_table[i].keep != 0 ) 
 	  {
-	    /* sciprint("mxFree position %d \r\n",i); */
+	    /* sciprint("mxFree position %d \n",i); */
 	    FREE(ptr);
 	    calloc_table[i].keep = 0;
 	    calloc_table[i].adr = NULL;
@@ -1451,7 +1451,7 @@ static void mxFree_m_all() {
   for ( i = 0 ; i < rec_size ; i++) {
     if  (calloc_table[i].keep == 1 ) 
       {
-	/* sciprint("mxFree all position %d \r\n",i); */
+	/* sciprint("mxFree all position %d \n",i); */
         FREE(calloc_table[i].adr);
 	calloc_table[i].keep = 0;
 	calloc_table[i].adr = NULL;
@@ -1571,11 +1571,11 @@ void mxFreeMatrix(mxArray *ptr)
 {
   /* If we free the last stored object we can decrement Nbvars */
   if ( (int)ptr == C2F(vstk).lstk[Top - Rhs + Nbvars - 1]) {
-    /* sciprint("XXXX OK %dvar %d \r\n",(int)ptr,Nbvars); */
+    /* sciprint("XXXX OK %dvar %d \n",(int)ptr,Nbvars); */
     Nbvars--;
   }
   else {
-    /* sciprint("XXXX Fail %d var %d\r\n",(int)ptr,Nbvars); */
+    /* sciprint("XXXX Fail %d var %d\n",(int)ptr,Nbvars); */
   }
   /* Automatically freed when return from mexfunction */
   return ;
@@ -1846,12 +1846,12 @@ void mxFree(void *ptr)
     /*    if ( !(C2F(locptr)(stk(C2F(intersci).lad[Nbvars - 1])) == C2F(locptr)((&header[2])))) return;  */
     if ( (vraiptrst) ptr ==  C2F(locptr)(&header[2])) 
       {
-	/* sciprint("XXXX mxfree OK  %d \r\n",Nbvars); */ 
+	/* sciprint("XXXX mxfree OK  %d \n",Nbvars); */ 
 	Nbvars--;
       }
     else 
       {
-	/* sciprint("XXXX mxfree NOTOK %d \r\n",Nbvars); */ 
+	/* sciprint("XXXX mxfree NOTOK %d \n",Nbvars); */ 
       }
   }
   return ;
@@ -2215,13 +2215,13 @@ int mexPutVariable(const char *workspace, char *var_name, mxArray *array_ptr)
 
 void mxSetName(mxArray *array_ptr, const char *name)
 {
-  mexErrMsgTxt("Routine mxSetName not implemented ! \r\n");
+  mexErrMsgTxt("Routine mxSetName not implemented ! \n");
   exit(1);  /* TO BE DONE */
 }
 
 void mxSetData(mxArray *array_ptr, void *data_ptr)
 {
-  mexErrMsgTxt("Routine mxSetData  not implemented \r\n");
+  mexErrMsgTxt("Routine mxSetData  not implemented \n");
   exit(1);  /* TO BE DONE */
 }
 
@@ -2297,14 +2297,14 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
 
 const char *mxGetName(const mxArray *array_ptr)
 {
-    mexPrintf("Routine mxGetName  not implemented \r\n");
+    mexPrintf("Routine mxGetName  not implemented \n");
     exit(1); 
 	return 0;
 }
 
 int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 {
-  mexPrintf("Routine mxSetDimensions  not implemented \r\n");
+  mexPrintf("Routine mxSetDimensions  not implemented \n");
   exit(1);  /* TO BE DONE */
   return 0;
 }
@@ -2529,13 +2529,13 @@ void clear_mex(integer nlhs, mxArray **plhs, integer nrhs, mxArray **prhs)
 }
 
 void mexInfo(char *str) {
-  fprintf(stderr,"%s %d\r\n",str,Nbvars);
+  fprintf(stderr,"%s %d\n",str,Nbvars);
   fflush(stderr);
 }
 
 int mexCheck(char *str,int nbvars) { 
   if ( nbvars != -1 && Nbvars != nbvars) 
-    fprintf(stderr,"%s %d %d\r\n",str,Nbvars,nbvars);
+    fprintf(stderr,"%s %d %d\n",str,Nbvars,nbvars);
   return Nbvars ;
 }
 

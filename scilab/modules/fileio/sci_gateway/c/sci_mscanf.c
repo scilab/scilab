@@ -36,7 +36,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		if (m1*n1 != 1) 
 		{
-			Scierror(999,"Error: in scanf: incorrect first argument\r\n");
+			Scierror(999,"Error: in scanf: incorrect first argument\n");
 			return 0;
 		}
 		iarg=2;
@@ -53,7 +53,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 
 	if (n_count>1) 
 	{
-		Scierror(999,"Error: in scanf: format cannot include \\n \r\n");
+		Scierror(999,"Error: in scanf: format cannot include \\n \n");
 		return 0;
 	}
 
@@ -70,7 +70,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 
 		if(status != 0) 
 		{
-			Scierror(999,"Error: in scanf\r\n");
+			Scierror(999,"Error: in scanf\n");
 			return 0;
 		}
 
@@ -82,7 +82,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 		if ( retval == EOF)
 		{
 			/* 
-			Scierror(999,"Error: in %s: end of file reached\r\n",fname);
+			Scierror(999,"Error: in %s: end of file reached\n",fname);
 			return 0;
 			*/
 		}
@@ -95,14 +95,14 @@ int int_objscanf(char *fname,unsigned long fname_len)
 				if (maxrow>=0)
 				{
 					Free_Scan(rowcount,ncol,type_s,&data);
-					Scierror(999,"Error: in fscanf: data mismatch\r\n");
+					Scierror(999,"Error: in fscanf: data mismatch\n");
 					return 0;
 				}
 				break;
 
 			case MEM_LACK:
 				Free_Scan(rowcount,ncol,type_s,&data);
-				Scierror(999,"Error: in scanf: cannot allocate more memory \r\n");
+				Scierror(999,"Error: in scanf: cannot allocate more memory \n");
 				return 0;
 				break;
 			}
@@ -114,7 +114,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 	/* create Scilab variables with each column of data */
 	err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
 	Free_Scan(rowcount,ncol,type_s,&data);
-	if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
+	if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \n");}
 	return 0;
 } 
 /*-----------------------------------------------------------------------------------*/ 

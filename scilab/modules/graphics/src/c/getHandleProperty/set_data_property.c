@@ -45,7 +45,7 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
   /* check dim */
   if ( nbCol[0] != 1 || nbCol[1] != 1 )
   {
-    sciprint("Inside the Tlist : the first argument must be columns vectors\r\n") ;
+    sciprint("Inside the Tlist : the first argument must be columns vectors\n") ;
     FREE( vx  ) ;
     FREE( vy  ) ;
     FREE( vfx ) ;
@@ -56,7 +56,7 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
 
   if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] || nbRow[3] != nbRow[2] || nbCol[3] != nbCol[2] )
   {
-    sciprint( "Inside the Tlist : incompatible length in the third and/or fourth argument(s)\r\n" ) ;
+    sciprint( "Inside the Tlist : incompatible length in the third and/or fourth argument(s)\n" ) ;
     FREE( vx  ) ;
     FREE( vy  ) ;
     FREE( vfx ) ;
@@ -112,7 +112,7 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
 
   if ( nbCol[0] != 1 || nbCol[1] != 1 )
   {
-    sciprint("the Tlist : the first argument must be columns vectors\r\n" ) ;
+    sciprint("the Tlist : the first argument must be columns vectors\n" ) ;
     FREE( pvecx ) ;
     FREE( pvecy ) ;
     FREE( pvecz ) ;
@@ -121,7 +121,7 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
 
   if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] )
   {
-    sciprint("the Tlist : incompatible length in the third argument\r\n" ) ;
+    sciprint("the Tlist : incompatible length in the third argument\n" ) ;
     FREE( pvecx ) ;
     FREE( pvecy ) ;
     FREE( pvecz ) ;
@@ -176,7 +176,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   {
     if ( !(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3) )
     {
-      sciprint("Inside the Tlist (third argument): The three first arguments have incompatible length \r\n") ;
+      sciprint("Inside the Tlist (third argument): The three first arguments have incompatible length \n") ;
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -184,17 +184,17 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   {
     if ( m2 * n2 != n3 )
     {
-      sciprint( "Inside the Tlist (third argument): The second and third arguments have incompatible length\r\n" ) ;
+      sciprint( "Inside the Tlist (third argument): The second and third arguments have incompatible length\n" ) ;
       return SET_PROPERTY_ERROR ;
     }
     if ( m1 * n1 != m3 )
     {
-      sciprint( "Inside the Tlist (third argument): The first and third arguments have incompatible length\r\n");
+      sciprint( "Inside the Tlist (third argument): The first and third arguments have incompatible length\n");
       return SET_PROPERTY_ERROR ;
     }
     if ( m1 * n1 <= 1 || m2 * n2 <= 1 ) 
     {
-      sciprint( "Inside the Tlist (third argument):The first and second arguments should be of size >= 2\r\n");
+      sciprint( "Inside the Tlist (third argument):The first and second arguments should be of size >= 2\n");
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -230,7 +230,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   { /* case isfac=1;*/
     if( psurf->isfac != 1 )
     {
-      sciprint("Can not change the typeof3d of graphic object: its type is SCI_PLOT3D\r\n");
+      sciprint("Can not change the typeof3d of graphic object: its type is SCI_PLOT3D\n");
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -239,7 +239,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     /* case isfac=0;*/
     if(psurf->isfac != 0)
     {
-      sciprint("Can not change the typeof3d of graphic object: its type is SCI_FAC3D\r\n");
+      sciprint("Can not change the typeof3d of graphic object: its type is SCI_FAC3D\n");
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -613,7 +613,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
     if( !isParameterTlist( valueType ) )
     {
-      sciprint( "Incorrect argument, must be a Tlist!\r\n" ) ;
+      sciprint( "Incorrect argument, must be a Tlist!\n" ) ;
       return SET_PROPERTY_ERROR ;
     }
   
@@ -635,7 +635,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
     if( !isParameterTlist( valueType ) )
     {
-      sciprint( "Incorrect argument, must be a Tlist!\r\n" ) ;
+      sciprint( "Incorrect argument, must be a Tlist!\n" ) ;
       return SET_PROPERTY_ERROR ;
     }
 
@@ -658,7 +658,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
     if( !isParameterTlist( valueType ) )
     {
-      sciprint( "Incorrect argument, must be a Tlist!\r\n" ) ;
+      sciprint( "Incorrect argument, must be a Tlist!\n" ) ;
       return SET_PROPERTY_ERROR ;
     }
 
@@ -674,7 +674,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int valueType, int 
     }
     else
     {
-      sciprint("Error the tlist size must be equal to 4 or 5\r\n");
+      sciprint("Error the tlist size must be equal to 4 or 5\n");
       return SET_PROPERTY_ERROR ;
     }
 

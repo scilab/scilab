@@ -103,15 +103,15 @@ void CreateScilabConsole(int ShowBanner)
 	{
 		char line[80];
 
-		strcpy(line,"        ___________________________________________\r\n");
+		strcpy(line,"        ___________________________________________\n");
 		printf(line);
-		wsprintf(line,"                         %s\r\n\n",SCI_VERSION_STRING);
+		wsprintf(line,"                         %s\n\n",SCI_VERSION_STRING);
 		printf(line);
-		strcpy(line,"                  Copyright (c) 1989-2007          \r\n");
+		strcpy(line,"                  Copyright (c) 1989-2007          \n");
 		printf(line);
-		strcpy(line,"              Consortium Scilab (INRIA, ENPC)      \r\n");
+		strcpy(line,"              Consortium Scilab (INRIA, ENPC)      \n");
 		printf(line);
-		strcpy(line,"        ___________________________________________\r\n\r\n");
+		strcpy(line,"        ___________________________________________\n\n");
 		printf(line);
 	}
 

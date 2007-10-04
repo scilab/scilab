@@ -71,7 +71,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if (( f = fopen(cstk(l1),"w")) == (FILE *)0) 
 	{
-		Scierror(999,"Error: in function %s, cannot open file %s\r\n",fname,cstk(l1));
+		Scierror(999,"Error: in function %s, cannot open file %s\n",fname,cstk(l1));
 		return 0;
 	}
 

@@ -34,7 +34,7 @@ int sci_newaxes( char * fname,unsigned long fname_len )
     LhsVar(1)=1;
   }
   else {
-    Scierror(999,"%s: running out of memory \r\n",fname);
+    Scierror(999,"%s: running out of memory \n",fname);
   }
   return 0;
 

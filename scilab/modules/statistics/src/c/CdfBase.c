@@ -12,7 +12,7 @@ int  CdfBase(char *fname,int inarg,int oarg,int *callpos,char *option,char *errn
 	double bound;
 	if ( Rhs != inarg+1 ) 
 	{
-		Scierror(999,"%s: Rhs must be %d for '%s' option'\r\n",fname,inarg+1,option);
+		Scierror(999,"%s: Rhs must be %d for '%s' option'\n",fname,inarg+1,option);
 		return 1;
 	}
 	for ( i = 0 ; i < inarg ; i++ )
@@ -22,7 +22,7 @@ int  CdfBase(char *fname,int inarg,int oarg,int *callpos,char *option,char *errn
 	for ( i = 1 ; i < inarg ; i++) 
 		if ( m[i] != m[i-1] || n[i] != n[i-1]) 
 		{
-			Scierror(999,"%s %s must have same size\r\n",fname,errnames);
+			Scierror(999,"%s %s must have same size\n",fname,errnames);
 			return 1;
 		} 
 		for ( i = 0 ; i < oarg ; i++) 
@@ -51,7 +51,7 @@ int  CdfBase(char *fname,int inarg,int oarg,int *callpos,char *option,char *errn
 					&status,&bound);
 				if (status != 0) 
 				{
-					/** Scierror(999,"i=%d\r\n",i); **/
+					/** Scierror(999,"i=%d\n",i); **/
 					(*foncErr)(status,bound); return 1;
 				}
 			}

@@ -111,7 +111,7 @@ msgid	"Dec"
 msgstr	""
 #
 # File: src/nohistory_manager/nohistory_manager.c, line: 14
-msgid	"history_manager interface not installed.\r\n"
+msgid	"history_manager interface not installed.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_saveafterncommands.c, line: 48

@@ -301,25 +301,25 @@ msgstr	""
 # File: sci_gateway/c/sci_gsort.c, line: 51
 #, possible-c-format
 msgid	"%s: first argument has a wrong type, expecting scalar or string "
-	"matrix\r\n"
+	"matrix\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_gsort.c, line: 62
 #, possible-c-format
-msgid	"%s: second argument is an empty string\r\n"
+msgid	"%s: second argument is an empty string\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_gsort.c, line: 68
 #, possible-c-format
-msgid	"%s: second argument has a wrong value %s should be in r,c,g,lr,lc\r\n"
+msgid	"%s: second argument has a wrong value %s should be in r,c,g,lr,lc\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_gsort.c, line: 80
 #, possible-c-format
-msgid	"%s: third argument must be \"i\" or \"d\"\r\n"
+msgid	"%s: third argument must be \"i\" or \"d\"\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_gsort.c, line: 188
 # File: sci_gateway/c/sci_gsort.c, line: 204
-msgid	"invalid type.\r\n"
+msgid	"invalid type.\n"
 msgstr	""

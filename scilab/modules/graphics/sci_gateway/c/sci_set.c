@@ -110,7 +110,7 @@ int sci_set(char *fname, unsigned long fname_len)
 				{
 					if (m1!=1||n1!=1) 
 					{ 
-						Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+						Scierror(999,"%s :the handle is not or no more valid\n",fname);
 						endGraphicDataWriting();
 						return 0;
 					}
@@ -203,14 +203,14 @@ int sci_set(char *fname, unsigned long fname_len)
 			t2=sciType(cstk(l2),pobj);
 			if (t2<0) 
 			{
-				Scierror(999,"%s: unknown property name '%s' \r\n",fname,cstk(l2));
+				Scierror(999,"%s: unknown property name '%s' \n",fname,cstk(l2));
 				return 0;
 			} 
 			if ( valueType != t2 ) if(strcmp(cstk(l2),"current_figure") != 0 && VarType(2) !=1 )
 			{  
 				/* F.Leray : special unique case here set("current_figure", HANDLE);*/
 				/* HANDLE type is 9 */
-				Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
+				Scierror(999,"%s: uncompatible values for property type  '%s' \n",fname,cstk(l2));
 				return 0;
 			}
 
@@ -240,7 +240,7 @@ int sci_set(char *fname, unsigned long fname_len)
 			break;
 
 	  default:
-		  Scierror(999,"%s : invalid parameter(s).\r\n",fname);
+		  Scierror(999,"%s : invalid parameter(s).\n",fname);
 		  endGraphicDataWriting();
 		  return 0;
 		  break;
@@ -252,7 +252,7 @@ int sci_set(char *fname, unsigned long fname_len)
 		 pobj = sciGetPointerFromHandle(hdl);
 		 if ( pobj == NULL )
 		 {
-			 Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+			 Scierror(999,"%s :the handle is not or no more valid\n",fname);
 			 endGraphicDataWriting();
 			 return 0;
 		 }

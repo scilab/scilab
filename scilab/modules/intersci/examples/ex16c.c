@@ -44,7 +44,7 @@ int F2C(ext16ce)(ar1,m,n,err)
   if ( *ar1 == (int*) 0) 
     {
       *err=1;
-      sciprint("No more space\r\n");
+      sciprint("No more space\n");
       return;
     }
   *err=0;

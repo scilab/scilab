@@ -39,19 +39,19 @@ int intsplin(char *fname,unsigned long fname_len)
 
   if ( mx != my  ||  nx != ny  ||  (mx != 1  &&  nx != 1) ) 
     { 
-      Scierror(999,"%s: arg1 and arg2 must be 2 vectors with same size\r\n", fname);
+      Scierror(999,"%s: arg1 and arg2 must be 2 vectors with same size\n", fname);
       return 0;
     }
   n = mx*nx;    /* number of interpolation points */
   if ( n < 2 ) 
     { 
-      Scierror(999,"%s: the number of interpolation points must be >= 2\r\n", fname);
+      Scierror(999,"%s: the number of interpolation points must be >= 2\n", fname);
       return 0;
     }
   x = stk(lx); y = stk(ly);
   if (! good_order(x, n))  /* verify strict increasing abscissae */
     {
-      Scierror(999,"%s: elts of arg 1 not (strictly) increasing or +-inf detected\r\n", fname);
+      Scierror(999,"%s: elts of arg 1 not (strictly) increasing or +-inf detected\n", fname);
       return 0;
     }
 

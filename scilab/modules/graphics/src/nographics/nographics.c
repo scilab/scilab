@@ -11,7 +11,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_graphics)()
 {
-	Scierror(999,"Graphics interface not installed.\r\n");
+	Scierror(999,"Graphics interface not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

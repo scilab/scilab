@@ -17,7 +17,7 @@ msgstr	"Project-Id-Version: Scilab - pvm\n"
 	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: src/nopvm/nopvm.c, line: 11
-msgid	"PVM interface not installed.\r\n"
+msgid	"PVM interface not installed.\n"
 msgstr	""
 #
 # File: src/c/sci_tools.c, line: 81
@@ -166,11 +166,11 @@ msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 303
 #, possible-c-format
-msgid	"Warning: PVM_ROOT is set to %s\r\n"
+msgid	"Warning: PVM_ROOT is set to %s\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 304
-msgid	"\tbut there exists no configuration file:\r\n"
+msgid	"\tbut there exists no configuration file:\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 311
@@ -180,39 +180,39 @@ msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 318
 #, possible-c-format
-msgid	"The standard configuration file $SCI%s will be used.\r\n"
+msgid	"The standard configuration file $SCI%s will be used.\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 319
 #, possible-c-format
-msgid	"\tWith SCI=%s\r\n"
+msgid	"\tWith SCI=%s\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 320
-msgid	"\tSCI will have to be set on remote hosts \r\n"
+msgid	"\tSCI will have to be set on remote hosts \n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 321
-msgid	"\tin order to spawn scilab\r\n"
+msgid	"\tin order to spawn scilab\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 326
 #, possible-c-format
-msgid	"Warning: The standard configuration file $SCI%s was not found.\r\n"
+msgid	"Warning: The standard configuration file $SCI%s was not found.\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 327
 msgid	"\tWe supposed that PVM and scilab are in standard place on your net"
-	"\r\n"
+	"\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 328
-msgid	"\t (Cf. man pvmd3)\r\n"
+msgid	"\t (Cf. man pvmd3)\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 333
 #, possible-c-format
-msgid	"%s: No such file or directory\r\n"
+msgid	"%s: No such file or directory\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 352
@@ -245,23 +245,23 @@ msgstr	""
 # File: sci_gateway/c/sci_pvm_send.c, line: 38
 # File: sci_gateway/c/sci_pvm_bcast.c, line: 37
 #, possible-c-format
-msgid	"%s: work space (stacksize) is too small d\r\n"
+msgid	"%s: work space (stacksize) is too small d\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_pvm_send.c, line: 40
 # File: sci_gateway/c/sci_pvm_bcast.c, line: 39
 #, possible-c-format
-msgid	"%s: Unknow type or not yet implemented\r\n"
+msgid	"%s: Unknow type or not yet implemented\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_pvm_tasks.c, line: 31
 # File: sci_gateway/c/sci_pvm_config.c, line: 25
 #, possible-c-format
-msgid	"%s: Error \r\n"
+msgid	"%s: Error \n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_pvm_error_mode.c, line: 30
 #, possible-c-format
-msgid	"%s: first argument should be \"stop\" or \"continue\"\r\n"
+msgid	"%s: first argument should be \"stop\" or \"continue\"\n"
 msgstr	""
 

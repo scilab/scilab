@@ -56,7 +56,7 @@ int sci_xstringb(char *fname,unsigned long fname_len)
     } 
     else
     {
-      Scierror(999,"%s: optional argument has a wrong value 'fill' expected\r\n",
+      Scierror(999,"%s: optional argument has a wrong value 'fill' expected\n",
         fname);
       return 0;
     }

@@ -161,7 +161,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_LABEL: /* F.Leray 28.05.04 */
 	
     default:
-      sciprint ("\r\n No Callback is associated with this Entity");
+      sciprint ("\n No Callback is associated with this Entity");
       return -1;
       break;
     }
@@ -224,7 +224,7 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\r\nNo Callback is associetad with this Entity");
+      sciprint ("\nNo Callback is associetad with this Entity");
       return (char *)NULL;
       break;
     }
@@ -282,7 +282,7 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\r\nNo Callback is associated with this Entity");
+      sciprint ("\nNo Callback is associated with this Entity");
       return 100;
       break;
     }
@@ -340,7 +340,7 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\r\nNo Callback is associated with this Entity");
+      sciprint ("\nNo Callback is associated with this Entity");
       return 100;
       break;
     }
@@ -398,7 +398,7 @@ sciGetCallbackLen (sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\r\nNo Callback is associated with this Entity");
+      sciprint ("\nNo Callback is associated with this Entity");
       return -1;
       break;
     }
@@ -477,7 +477,7 @@ sciDelCallback (sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\r\nNo Callback is associated with this Entity");
+      sciprint ("\nNo Callback is associated with this Entity");
       return -1;
       break;
     }
@@ -514,7 +514,7 @@ sciExecCallback (sciPointObj * pthis)
 	  LhsVar(1) = 0; 
 	  return 0;
 	}
-      else sciprint ("\r\nNo Callback is associated with this Entity");
+      else sciprint ("\nNo Callback is associated with this Entity");
       return 0;
       break;
     case SCI_TEXT:
@@ -534,7 +534,7 @@ sciExecCallback (sciPointObj * pthis)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("\r\nNo Callback is associated with this Entity");
+      sciprint ("\nNo Callback is associated with this Entity");
       return -1;
       break;
     }
@@ -704,7 +704,7 @@ int Objmove (long *hdl, double *d, int m,BOOL opt)
     case SCI_LEGEND:
     case SCI_UIMENU:
     default:
-      sciprint ("This object can not be moved\r\n");
+      sciprint ("This object can not be moved\n");
       return -1;
       break;
     }    

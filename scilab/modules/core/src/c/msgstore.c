@@ -41,7 +41,7 @@ int C2F(msgstore)(char *str,int *n)
     return(MAX_LINES);
   if ( (line = (char *) MALLOC((*n + 1)*sizeof(char))) == (char *)0) 
     return(MEM_LACK);
-  /* do not store \r\n" */ 
+  /* do not store \n" */ 
   for ( i= 0 ; i < *n ; i++ ) 
     if ( (c=str[i]) != '\n' && c != '\r') line[count++]=c;
   line[count]='\0';

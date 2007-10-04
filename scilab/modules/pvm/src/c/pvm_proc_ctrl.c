@@ -300,9 +300,9 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 					argv[0] = path;
 					sciprint_nd("The configuration file\n %s\nis used.\n", path);
 				} else {
-					sciprint_nd("Warning: PVM_ROOT is set to %s\r\n",ro);
-					sciprint_nd("\tbut there exists no configuration file:\r\n");
-					sciprint_nd("\t%s\r\n", path);
+					sciprint_nd("Warning: PVM_ROOT is set to %s\n",ro);
+					sciprint_nd("\tbut there exists no configuration file:\n");
+					sciprint_nd("\t%s\n", path);
 					FREE(path);
 				}
 			} /* PVM_ROOT + HOME */
@@ -315,22 +315,22 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 				strcpy(path, rd);
 				strcat(path, PVM_CONFIG_FILE); 
 				if (stat(path, &buf) == 0){
-					sciprint_nd("The standard configuration file $SCI%s will be used.\r\n",PVM_CONFIG_FILE);
-					sciprint_nd("\tWith SCI=%s\r\n",rd);
-					sciprint_nd("\tSCI will have to be set on remote hosts \r\n");
-					sciprint_nd("\tin order to spawn scilab\r\n",rd);
+					sciprint_nd("The standard configuration file $SCI%s will be used.\n",PVM_CONFIG_FILE);
+					sciprint_nd("\tWith SCI=%s\n",rd);
+					sciprint_nd("\tSCI will have to be set on remote hosts \n");
+					sciprint_nd("\tin order to spawn scilab\n",rd);
 					argc = 1;
 					argv[0] = path;
 				} else {
 					FREE(path);
-					sciprint_nd("Warning: The standard configuration file $SCI%s was not found.\r\n",PVM_CONFIG_FILE);
-					sciprint_nd("\tWe supposed that PVM and scilab are in standard place on your net\r\n");
-					sciprint_nd("\t (Cf. man pvmd3)\r\n");
+					sciprint_nd("Warning: The standard configuration file $SCI%s was not found.\n",PVM_CONFIG_FILE);
+					sciprint_nd("\tWe supposed that PVM and scilab are in standard place on your net\n");
+					sciprint_nd("\t (Cf. man pvmd3)\n");
 				}
 			} /* SCI */
 		} else {
 			if (stat(hostfile, &buf) == -1){
-				sciprint("%s: No such file or directory\r\n", hostfile);
+				sciprint("%s: No such file or directory\n", hostfile);
 			} else {
 				argv[0] = hostfile;
 				argc = 1;
@@ -438,10 +438,10 @@ void C2F(scipvmspawn)(char *task,  int *l1, char *win,   int *l2, char *where, i
   if ( strcmp(win, "nw") == 0 )  arg[++nargs] = "-nw";
   arg[++nargs]=NULL;
   /* 
-  sciprint("cmd=[%s]\r\n",cmd) ;
+  sciprint("cmd=[%s]\n",cmd) ;
   nargs = 0; 
   for ( i = 0 ; arg[i] != NULL ; i++) 
-    sciprint("arg %d =[%s]\r\n",i,arg[i]) ;
+    sciprint("arg %d =[%s]\n",i,arg[i]) ;
   */
   *res = pvm_spawn(cmd, arg, flag, where, *ntask, taskId);
 }

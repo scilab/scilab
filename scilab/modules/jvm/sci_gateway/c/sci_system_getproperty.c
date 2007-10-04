@@ -35,7 +35,7 @@ int C2F(sci_system_getproperty) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"invalid parameter.\r\n");
+		Scierror(999,"invalid parameter.\n");
 		return 0;
 	}
 	return 0;
