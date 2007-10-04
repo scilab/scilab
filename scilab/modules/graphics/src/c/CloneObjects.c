@@ -65,6 +65,7 @@ CloneText (sciPointObj * pthis)
   int background = sciGetBackground(pthis);
   int nbRow ;
   int nbCol ;
+  double textPos[3];
  
   subwinparent = pthis;
 
@@ -76,9 +77,9 @@ CloneText (sciPointObj * pthis)
   }
   
   sciGetTextSize( pthis, &nbRow, &nbCol ) ;
-
+  sciGetTextPos(pthis, textPos);
   if (!(pobj = ConstructText (subwinparent, getStrMatData( sciGetText(pthis) ), nbRow, nbCol, 
-			      sciGetTextPosX(pthis), sciGetTextPosY(pthis),sciGetAutoSize(pthis),
+			      textPos[0], textPos[1], sciGetAutoSize(pthis),
                               pTEXT_FEATURE(pthis)->userSize,pTEXT_FEATURE(pthis)->centeredPos,
 			      &foreground,&background,pTEXT_FEATURE(pthis)->isboxed,
 			      sciGetIsLine(pthis), sciGetIsFilled(pthis), sciGetAlignment(pthis))))
@@ -96,7 +97,7 @@ CloneText (sciPointObj * pthis)
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
     return (sciPointObj *)NULL;
   
-  if (sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (pthis)) == -1)
+  if (sciSetFontSize(pobj, sciGetFontSize(pthis)) < 0.0)
     return (sciPointObj *)NULL;
   
   if (sciSetFontOrientation(pobj, sciGetFontOrientation (pthis)) == -1)
@@ -456,7 +457,7 @@ int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
   destFC->backgroundcolor = sourceFC->backgroundcolor ;
   destFC->foregroundcolor = sourceFC->foregroundcolor ;
   destFC->fonttype        = sourceFC->fonttype        ;
-  destFC->fontdeciwidth   = sourceFC->fontdeciwidth   ;
+  destFC->fontSize        = sourceFC->fontSize        ;
   destFC->textorientation = sourceFC->textorientation ;
   return 0 ;
 }

@@ -8,10 +8,9 @@
 
 package org.scilab.modules.renderer.textDrawing;
 
-import com.sun.opengl.util.j2d.TextRenderer;
 
 /**
- * 
+ * Interface for drawing text inside a position matrix with different alignment.
  * @author Jean-Baptiste Silvy
  */
 public interface TextAlignementStrategy {
@@ -22,7 +21,7 @@ public interface TextAlignementStrategy {
 	 * @param text matrix of strings
 	 * @param positionMatrix matrix of positions.
 	 */
-	void drawTextContent(TextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix);
+	void drawTextContent(SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix);
 	
 	
 }

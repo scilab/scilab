@@ -386,9 +386,9 @@ sciInitFontContext (sciPointObj * pobj)
     if (pobj == pfiguremdl)
     {
       sciInitFontStyle (pobj, 6); /* set helvetica font */
-      (sciGetFontContext(pobj))->backgroundcolor = -3;
-      (sciGetFontContext(pobj))->foregroundcolor = -2;
-      (sciGetFontContext(pobj))->fontdeciwidth = 100;
+      (sciGetFontContext(pobj))->backgroundcolor = 33;
+      (sciGetFontContext(pobj))->foregroundcolor = 32;
+      (sciGetFontContext(pobj))->fontSize = 1.0;
       (sciGetFontContext(pobj))->textorientation = 0;
       (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
 	  

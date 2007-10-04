@@ -53,7 +53,7 @@ int sciGetFillStyle (sciPointObj * pobj); /* GET */
 
 /* Text Functions */
 sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */
-int sciGetFontDeciWidth (sciPointObj * pobj); /* GET */
+double sciGetFontSize(sciPointObj * pobj); /* GET */
 int sciGetFontOrientation (sciPointObj * pobj); /* GET */
 StringMatrix * sciGetText (sciPointObj * pobj); /* GET */
 void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol ) ; /* GET */
@@ -72,10 +72,6 @@ int sciGetMarkForegroundToDisplay (sciPointObj * pobj); /* GET */
 int sciGetFontStyle (sciPointObj * pobj); /* GET */
 char *sciGetFontName (sciPointObj * pobj); /* GET */
 unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
-double sciGetTextPosX (sciPointObj * pobj); /* GET */
-double sciGetTextPosY (sciPointObj * pobj); /* GET */
-double sciGetTextPosWidth (sciPointObj * pobj); /* GET */
-double sciGetTextPosHeight (sciPointObj * pobj); /* GET */
 
 /*Title Functions */
 POINT2D sciGetTitlePos (sciPointObj * pobj); /* GET */
@@ -151,7 +147,6 @@ HMENU sciGethPopMenu (sciPointObj * pthis);
 
 int * sciGetInterpVector(sciPointObj * pobj); /* GET */
 BOOL sciGetIsColorInterpolated(sciPointObj * pobj); /* GET */
-int sciGetPosition (sciPointObj * pobj, double *x, double *y);
 
 BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
 BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
@@ -219,6 +214,8 @@ int sciGetPolylineStyle(sciPointObj * pObj); /* GET */
 
 BOOL sciGetIsClosed(sciPointObj * pObj); /* GET */
 
-int sciGetArrowSize(sciPointObj * pObj); /* GET */
+double sciGetArrowSize(sciPointObj * pObj); /* GET */
+
+void sciGetTextPos(sciPointObj * pObj, double position[3]); /* GET */
 
 #endif /* __SCI_GET_PROPERTY__ */

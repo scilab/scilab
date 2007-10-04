@@ -9,8 +9,6 @@
 
 package org.scilab.modules.renderer.textDrawing;
 
-import com.sun.opengl.util.j2d.TextRenderer;
-
 
 
 /**
@@ -19,7 +17,7 @@ import com.sun.opengl.util.j2d.TextRenderer;
  * @author Jean-Baptiste Silvy
  */
 public class StandardTextDrawerGL extends TextContentDrawerGL {
-
+	
 	/**
 	 * Default contructor
 	 */
@@ -45,7 +43,6 @@ public class StandardTextDrawerGL extends TextContentDrawerGL {
 	 */
 	@Override
 	public int[] getScreenBoundingBox() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -56,19 +53,16 @@ public class StandardTextDrawerGL extends TextContentDrawerGL {
 	@Override
 	protected TextGrid getStringsPositions() {
 		StringMatrixGL curText = getTextMatrix();
-		TextRenderer curRenderer = getRenderer();
-		double cellsHeights = curText.getHighestString(curRenderer);
+		SciTextRenderer curRenderer = getRenderer();
+		curText.update(curRenderer);
 		
-		// array containing heigth of rows
+		double cellsHeights = curText.getTallestString();
 		double[] heights = new double[curText.getNbRow()];
 		for (int i = 0; i < curText.getNbRow(); i++) {
 			heights[i] = cellsHeights;
 		}
 		
-		double[] widths = new double[curText.getNbCol()];
-		for (int j = 0; j < curText.getNbCol(); j++) {
-			widths[j] = curText.getLongestString(curRenderer, j);
-		}
+		double[] widths = curText.getLongestStrings();
 		
 		TextGrid res = new TextGrid(curText.getNbRow(), curText.getNbCol(), heights, widths);
 		return res;

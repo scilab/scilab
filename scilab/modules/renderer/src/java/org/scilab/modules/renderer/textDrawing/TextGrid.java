@@ -19,6 +19,11 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  */
 public class TextGrid {
 
+	/** Extend the cells a little bit to give a better fitting */
+	public static final float EXTEND_FACTOR_X = 0.1f;
+	/** Extend the cells a little bit to give a better fitting */
+	public static final float EXTEND_FACTOR_Y = 0.2f;
+	
 	/** We store every grid intersections. So the matrix size is (nbRow+1) x (nbCol+1) */
 	private Vector3D[][] cellsEdges;
 	private int nbRow;
@@ -37,10 +42,19 @@ public class TextGrid {
 		this.nbRow = nbRow;
 		cellsEdges = new Vector3D[nbRow + 1][nbCol + 1];
 		
-		for (int i = 0; i < nbRow; i++) {
-			for (int j = 0; j < nbCol; j++) {
+		for (int i = 0; i <= nbRow; i++) {
+			for (int j = 0; j <= nbCol; j++) {
 				cellsEdges[i][j] = new Vector3D(0.0, 0.0, 0.0);
 			}
+		}
+		
+		// extend a little width and height
+		for (int i = 0; i < nbRow; i++) {
+			rowHeights[i] *= (1.0 + EXTEND_FACTOR_Y);
+		}
+		
+		for (int j = 0; j < nbRow; j++) {
+			colWidths[j] *= (1.0 + EXTEND_FACTOR_X);
 		}
 		
 		setColumnWidth(colWidths);
@@ -76,30 +90,30 @@ public class TextGrid {
 		double curHeight = gridHeight;
 		for (int i = 0; i < nbRow; i++) {
 			for (int j = 0; j <= nbCol; j++) {
-				cellsEdges[i][j].setX(curHeight);
+				cellsEdges[i][j].setY(curHeight);
 			}
 			curHeight -= heights[i];
 		}
 		for (int j = 0; j <= nbCol; j++) {
-			cellsEdges[nbRow][j].setX(0.0);
+			cellsEdges[nbRow][j].setY(0.0);
 		}
 	}
 	
 	/**
 	 * Specify a new widths of rows.
-	 * @param widths array of size nbCol containing the width of each row.
+	 * @param widths array of size nbCol containing the width of each column.
 	 */
 	protected void setColumnWidth(double[] widths) {
 		
 		double curWidth = 0.0;
-		for (int i = 0; i < nbRow; i++) {
-			for (int j = 0; j <= nbCol; j++) {
-				cellsEdges[i][j].setY(curWidth);
+		for (int j = 0; j < nbCol; j++) {
+			for (int i = 0; i <= nbRow; i++) {
+				cellsEdges[i][j].setX(curWidth);
 			}
-			curWidth += widths[i];
+			curWidth += widths[j];
 		}
-		for (int j = 0; j <= nbCol; j++) {
-			cellsEdges[nbRow][j].setY(curWidth);
+		for (int i = 0; i <= nbRow; i++) {
+			cellsEdges[i][nbCol].setX(curWidth);
 		}
 	}
 	
@@ -110,10 +124,10 @@ public class TextGrid {
 	 * @return array of size 4 conating the 4 corners of the cell.
 	 */
 	public Vector3D[] getCellCoordinates(int numRow, int numCol) {
-		Vector3D[] res = {cellsEdges[numRow][numCol].getCopy(),
-						  cellsEdges[numRow + 1][numCol].getCopy(),
-						  cellsEdges[numRow + 1][numCol + 1].getCopy(),
-						  cellsEdges[numRow][numCol + 1].getCopy()};
+		Vector3D[] res = {cellsEdges[numRow][numCol],
+						  cellsEdges[numRow + 1][numCol],
+						  cellsEdges[numRow + 1][numCol + 1],
+						  cellsEdges[numRow][numCol + 1]};
 		return res;
 	}
 	
@@ -122,9 +136,21 @@ public class TextGrid {
 	 * @param trans translation vector.
 	 */
 	public void translate(Vector3D trans) {
-		for (int i = 0; i < nbRow; i++) {
+		for (int i = 0; i <= nbRow; i++) {
 			for (int j = 0; j <= nbCol; j++) {
 				cellsEdges[i][j] = cellsEdges[i][j].add(trans);
+			}
+		}
+	}
+	
+	/**
+	 * Use a scale factor to modify the matrix along the two dimensions
+	 * @param factor scale factor
+	 */
+	public void scale(double factor) {
+		for (int i = 0; i <= nbRow; i++) {
+			for (int j = 0; j <= nbCol; j++) {
+				cellsEdges[i][j].scalarMultSelf(factor);
 			}
 		}
 	}
@@ -136,11 +162,25 @@ public class TextGrid {
 	 * @param angle rotation angle in radian
 	 */
 	public void rotate(Vector3D axisCenter, Vector3D axisDir, double angle) {
-		for (int i = 0; i < nbRow; i++) {
+		for (int i = 0; i <= nbRow; i++) {
 			for (int j = 0; j <= nbCol; j++) {
 				cellsEdges[i][j] = cellsEdges[i][j].rotate(axisCenter, axisDir, angle);
 			}
 		}
+	}
+	
+	/**
+	 * @return String representation of the object.
+	 */
+	@Override
+	public String toString() {
+		String res = "";
+		for (int i = 0; i <= nbRow; i++) {
+			for (int j = 0; j <= nbCol; j++) {
+				res += "cellsEdge[" + i + "," + j + "] = " + cellsEdges[i][j] + "\n";
+			}
+		}
+		return res;
 	}
 	
 }

@@ -57,6 +57,8 @@ public class StringMatrix {
 	public void setData(String[] text, int nbRow, int nbCol) {
 		if (data == null || this.nbRow != nbRow || this.nbCol != nbCol) {
 			data = new String[nbRow][nbCol];
+			this.nbCol = nbCol;
+			this.nbRow = nbRow;
 		}
 		for (int i = 0; i < nbRow; i++) {
 			for (int j = 0; j < nbCol; j++) {
@@ -96,6 +98,21 @@ public class StringMatrix {
 	 */
 	public int getNbRow() {
 		return nbRow;
+	}
+	
+	/**
+	 * @return String representation of the object.
+	 */
+	@Override
+	public String toString() {
+		String res = "";
+		for (int i = 0; i < nbRow; i++) {
+			for (int j = 0; j < nbCol; j++) {
+				res += data[i][j];
+			}
+			res += "\n";
+		}
+		return res;
 	}
 	
 }

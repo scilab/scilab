@@ -29,7 +29,8 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1) ;
 int sci_xset( char *fname, unsigned long fname_len )
 {
   integer m1,n1,l1,m2,n2,l2, xm[5],xn[5],x[5], i, v;
-  integer lr, fontSize;
+  integer lr;
+  double fontSize;
   double  xx[5];
   sciPointObj *subwin = NULL; 
   BOOL keyFound = FALSE ;
@@ -123,9 +124,9 @@ int sci_xset( char *fname, unsigned long fname_len )
     
   }
   else if ( strcmp(cstk(l1),"font size") == 0) {
-    fontSize = (int)xx[0];
-    sciSetFontWidth(sciGetCurrentSubWin(), fontSize);
-    sciSetFontWidth(sciGetParent(subwin), fontSize);
+    fontSize = xx[0];
+    sciSetFontSize(sciGetCurrentSubWin(), fontSize);
+    sciSetFontSize(sciGetParent(subwin), fontSize);
   } 
   /* NG beg */
   else if ( strcmp(cstk(l1),"old_style") == 0)
@@ -205,8 +206,8 @@ int sci_xset( char *fname, unsigned long fname_len )
         sciSetColormap(sciGetParent(subwin), stk(lr),xm[0], xn[0]);
       }
       else if ( strcmp(cstk(l1),"font size") == 0) {
-        sciSetFontWidth(subwin, fontSize); 
-        sciSetFontWidth(sciGetParent(subwin), fontSize);
+        sciSetFontSize(subwin, fontSize); 
+        sciSetFontSize(sciGetParent(subwin), fontSize);
       }     
       else if ( strcmp(cstk(l1),"dashes") == 0) {
         sciSetLineStyle(subwin, x[0]); 
@@ -214,9 +215,9 @@ int sci_xset( char *fname, unsigned long fname_len )
       }  
       else if ( strcmp(cstk(l1),"font") == 0) {
         sciSetFontStyle(subwin, x[0]); 
-        sciSetFontDeciWidth(subwin,  x[1]*100);  
+        sciSetFontSize(subwin,  x[1]);  
         sciSetFontStyle(sciGetParent(subwin), x[0]); 
-        sciSetFontDeciWidth(sciGetParent(subwin),x[1]*100);  
+        sciSetFontSize(sciGetParent(subwin), x[1]);  
       } 
       else if ( strcmp(cstk(l1),"alufunction") == 0) {
         sciSetXorMode(subwin, x[0]); 

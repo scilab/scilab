@@ -1561,77 +1561,20 @@ sciGetFontContext (sciPointObj * pobj)
 
 
 /****************************************** TEXT ******************************
- **sciGetFontDeciWidth
+ **sciGetFontSize
  * Gets the Font Size
  */
-int
-sciGetFontDeciWidth (sciPointObj * pobj)
+double sciGetFontSize(sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /* return -1*/
-      /* Adding F.Leray 08.04.04 */
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_SUBWIN:
-      /* return -1;*/
-      /* Adding F.Leray 08.04.04 */
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_TEXT:
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_TITLE:
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_LEGEND:
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_ARC:
-      return -1;
-      break;
-    case SCI_POLYLINE:
-      return -1;
-      break;
-    case SCI_RECTANGLE:
-      return -1;
-      break;
-    case SCI_SURFACE:
-      return -1;
-      break;
-    case SCI_LIGHT:
-      return -1;
-      break;
-    case SCI_AXES:  
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_MENU:
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_MENUCONTEXT:
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_STATUSB:
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_LABEL:
-      return (sciGetFontContext(pobj))->fontdeciwidth;
-      break;
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no fontdeciwidth\n");
-      return -1;
-      break;
-    }
-  return 0;
+  if (sciGetFontContext(pobj) != NULL)
+  {
+    return (sciGetFontContext(pobj))->fontSize;
+  }
+  else
+  {
+    sciprint ("This object has no font size.\n");
+    return -1.0;
+  }
 }
 
 
@@ -2125,189 +2068,6 @@ sciGetFontNameLength (sciPointObj * pobj)
       return 0;
       break;
     }
-}
-
-
-
-/**sciGetTextPosX
- * Sets size of Text in TEXT, TITLE or LEGEND
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  int 0 if not OK, over 0 if ok
- */
-double
-sciGetTextPosX (sciPointObj * pobj)
-{
-
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      return pTEXT_FEATURE (pobj)->x;
-      break;
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no text !\n");
-      return 0;
-      break;
-    }
-  return -1;
-}
-
-
-
-/**sciGetTextPosWidth
- * Sets size of Text in TEXT, TITLE or LEGEND
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  int 0 if not OK, over 0 if ok
- */
-double
-sciGetTextPosWidth (sciPointObj * pobj)
-{
-
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      return 0;
-      break;
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no text !\n");
-      return 0;
-      break;
-    }
-  return -1;
-}
-
-
-
-/**sciGetTextPosHeight
- * Sets size of Text in TEXT, TITLE or LEGEND
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  int 0 if not OK, over 0 if ok
- */
-double
-sciGetTextPosHeight (sciPointObj * pobj)
-{
-
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      return 0;
-      break;
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no text !\n");
-      return 0;
-      break;
-    }
-  return -1;
-}
-
-
-
-/**sciGetTextPosY
- * Sets size of Text in TEXT, TITLE or LEGEND
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  int 0 if not OK, over 0 if ok
- */
-double
-sciGetTextPosY (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      return pTEXT_FEATURE (pobj)->y;
-      break;
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE: 
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no text !\n");
-      return 0;
-      break;
-    }
-  return -1;
 }
 
 
@@ -4528,50 +4288,6 @@ BOOL sciGetIsColorInterpolated(sciPointObj * pobj)
   return FALSE;
 }
 
-/**sciGetPosition
- * Returns the position (in pixels) for the label object
- */
-int
-sciGetPosition (sciPointObj * pobj, double *x, double *y)
-{
-  switch ( sciGetEntityType (pobj) )
-    {
-    case SCI_LABEL:
-      *x = sciGetTextPosX( pLABEL_FEATURE(pobj)->text ) ;
-      *y = sciGetTextPosY( pLABEL_FEATURE(pobj)->text ) ;
-      return 0;
-      break;
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_ARC:
-    case SCI_TEXT:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_FEC:
-    case SCI_SEGS:
-    case SCI_LEGEND:
-    case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_PANNER:	/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_TITLE:
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no position\n");
-      return -1;
-      break;
-    }
-  return 0;
-}
-
-
 BOOL sciGetAutoRotation ( sciPointObj * pObj )
 {
    switch (sciGetEntityType (pObj))
@@ -5195,7 +4911,7 @@ BOOL sciGetIsClosed(sciPointObj * pObj)
   return FALSE;
 }
 /*-------------------------------------------------------------------------------------------*/
-int sciGetArrowSize(sciPointObj * pObj)
+double sciGetArrowSize(sciPointObj * pObj)
 {
   switch(sciGetEntityType(pObj))
   {
@@ -5208,5 +4924,26 @@ int sciGetArrowSize(sciPointObj * pObj)
     break;
   }
   return -1;
+}
+/*-------------------------------------------------------------------------------------------*/
+void sciGetTextPos(sciPointObj * pObj, double position[3])
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_TEXT:
+    position[0] = pTEXT_FEATURE(pObj)->x;
+    position[1] = pTEXT_FEATURE(pObj)->y;
+    position[2] = pTEXT_FEATURE(pObj)->z;
+    break;
+  case SCI_LABEL:
+    sciGetTextPos(pLABEL_FEATURE(pObj)->text, position);
+    break;
+  default:
+    sciprint("This object has no positions property.\n");
+    position[0] = 0.0;
+    position[1] = 0.0;
+    position[2] = 0.0;
+    break;
+  }
 }
 /*-------------------------------------------------------------------------------------------*/

@@ -21,8 +21,8 @@ int get_position_property( sciPointObj * pobj )
   }
   else if ( sciGetEntityType(pobj) == SCI_LABEL )
   {
-    double position[2] ;
-    sciGetPosition( pobj, &(position[0]), &(position[1]) ) ;
+    double position[3] ;
+    sciGetTextPos( pobj, position ) ;
     return sciReturnRowVector( position, 2 ) ;
   }
   sciprint( "position does not exist for this handle.\n" ) ;

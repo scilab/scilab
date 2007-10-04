@@ -684,10 +684,9 @@ int Objmove (long *hdl, double *d, int m,BOOL opt)
       break;
     case SCI_LABEL:
     {
-      double posX ;
-      double posY ;
-      sciGetPosition( pLABEL_FEATURE(pobj)->text, &posX, &posY ) ;
-      sciSetPosition( pLABEL_FEATURE(pobj)->text, posX + x, posY + y ) ;
+      double pos[3];
+      sciGetTextPos(pobj, pos) ;
+      sciSetTextPos(pobj, pos[0] + x, pos[1] + y, pos[2]) ;
       pLABEL_FEATURE(pobj)->auto_position = FALSE;
       break;
     }

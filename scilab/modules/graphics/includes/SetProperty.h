@@ -85,11 +85,8 @@ extern int sciInitIsBoxed(sciPointObj * pobj, BOOL isboxed);
 extern int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
 
 /* Text Functions */
-extern int sciInitFontDeciWidth(sciPointObj * pobj, int fontdeciwidth); /* SET */
-extern int sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth); /* SET */
-
-int sciInitFontWidth(sciPointObj * pobj, int width); /* SET */
-int sciSetFontWidth(sciPointObj * pobj, int width); /* SET */
+extern int sciInitFontSize(sciPointObj * pobj, double fontSize); /* SET */
+extern int sciSetFontSize (sciPointObj * pobj, double fontSize); /* SET */
 
 extern int sciInitFontOrientation(sciPointObj * pobj, int textorientation); /* SET */
 extern int sciSetFontOrientation (sciPointObj * pobj, int textorientation); /* SET */
@@ -107,12 +104,6 @@ extern int sciInitFontStyle(sciPointObj * pobj, int iAttributes ) ;
 extern int sciSetFontStyle (sciPointObj * pobj, int iAttributes ) ; /* SET */
 
 extern int sciSetFontName (sciPointObj * pobj, char pfontname[], int n); /* SET */
-
-extern int sciInitTextPosX(sciPointObj * pobj, double x);
-extern int sciSetTextPosX (sciPointObj * pobj, double x); /* SET */
-
-extern int sciInitTextPosY(sciPointObj * pobj, double y);
-extern int sciSetTextPosY (sciPointObj * pobj, double y); /* SET */
 
 /*Title Functions */
 extern int sciSetTitlePos (sciPointObj * pobj, int x, int y); /* SET */
@@ -194,9 +185,6 @@ extern int sciSetUsedWindow( int winNum ) ; /* SET */
 
 extern int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
 
-extern int sciInitPosition( sciPointObj * pobj, double x, double y);
-extern int sciSetPosition(  sciPointObj * pobj, double x, double y); /* SET */
-
 extern int sciInitAutoRotation( sciPointObj * pObj, BOOL value ) ;
 extern int sciSetAutoRotation ( sciPointObj * pObj, BOOL value ) ;
 
@@ -253,6 +241,9 @@ int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double
 
 int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff);
 int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff); /* SET */
+
+int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
+int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */

@@ -137,7 +137,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 			}
 		}
 		
-		axesPixelWidth  = maxX  - minX;
+		axesPixelWidth  = maxX - minX;
 		axesPixelHeight = maxY - minY;
 		
 		updateArrowPixelSize();

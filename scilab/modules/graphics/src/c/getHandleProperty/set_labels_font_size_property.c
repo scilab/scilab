@@ -28,7 +28,7 @@ int set_labels_font_size_property( sciPointObj * pobj, int stackPointer, int val
   }
   else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE)
   {
-    return sciSetFontDeciWidth( pobj, (int) ( 100 * getDoubleFromStack(stackPointer) ) ) ; /* F.Leray 08.04.04 */
+    return sciSetFontSize( pobj, getDoubleFromStack(stackPointer) ) ; /* F.Leray 08.04.04 */
   }
   else
   {

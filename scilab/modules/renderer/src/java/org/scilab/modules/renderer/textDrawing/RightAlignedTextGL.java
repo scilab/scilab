@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: LeftAlignedTextGL.java                                           */
+/* file: RightAlignedTextGL.java                                          */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class which draw left aligned text                              */
@@ -15,12 +15,12 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * Class which draw left aligned text
  * @author Jean-Baptiste Silvy
  */
-public class LeftAlignedTextGL implements TextAlignementStrategy {
+public class RightAlignedTextGL implements TextAlignementStrategy {
 
 	/**
 	 * Default constructor
 	 */
-	public LeftAlignedTextGL() {
+	public RightAlignedTextGL() {
 		
 	}
 	
@@ -36,7 +36,7 @@ public class LeftAlignedTextGL implements TextAlignementStrategy {
 		for (int i = 0; i < text.getNbRow(); i++) {
 			for (int j = 0; j < text.getNbCol(); j++) {
 				Vector3D[] curCell = positionMatrix.getCellCoordinates(i, j);
-				double xCoord = curCell[1].getX();
+				double xCoord = curCell[2].getX() - TextGrid.EXTEND_FACTOR_X / 2.0 - text.getStringWidth(i, j);
 				double yCoord = curCell[1].getY() - (curCell[1].getY() - curCell[0].getY()) * TextGrid.EXTEND_FACTOR_Y / 2.0;
 				renderer.draw3D(text.getMatrixElement(i, j), xCoord,
 						        yCoord, curCell[1].getZ());

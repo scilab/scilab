@@ -282,7 +282,7 @@ void getTextBoundingBox( sciPointObj * pText        ,
                         double        corners[4][2] )
 {
   int           fontId   = sciGetFontStyle( pText ) ;
-  int           fontSize = sciGetFontDeciWidth( pText ) / 100 ;
+  int           fontSize = (int) sciGetFontSize( pText ) ;
   double        angle    = DEG2RAD( sciGetFontOrientation (pText) / 10 ) ; 
   int           position[2] ;
   double        textPos[3]  ;

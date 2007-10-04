@@ -20,7 +20,7 @@ int get_labels_font_size_property( sciPointObj * pobj )
   }
   else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE)
   {
-    return sciReturnDouble( sciGetFontDeciWidth(pobj) / 100 ) ; /* F.Leray 08.04.04 */
+    return sciReturnDouble( sciGetFontSize(pobj) ) ; /* F.Leray 08.04.04 */
   }
   else
   {

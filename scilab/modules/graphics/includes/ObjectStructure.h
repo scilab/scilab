@@ -372,7 +372,7 @@ typedef struct
   /** */
   int fonttype; /* scilab font index 0 to 9 */
   /** Gets the width of the character in tenth of point */
-  int fontdeciwidth;		
+  double fontSize;		
   /** this is coded in tenth of a degree */
   int textorientation;		
 }/** */
@@ -486,7 +486,7 @@ typedef struct
 }/** */
 sciFigure;  
 
-typedef enum { ALIGN_NONE, ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT } sciTextAlignment ;
+typedef enum { ALIGN_NONE = 0, ALIGN_LEFT = 1, ALIGN_CENTER = 2, ALIGN_RIGHT = 3 } sciTextAlignment ;
 
 /**@name Text
  * Structure used to specify Text

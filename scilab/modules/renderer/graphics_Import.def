@@ -57,3 +57,9 @@ sciGetIsColorInterpolated
 sciGetInterpVector
 sciGetTextPosX
 sciGetTextPosY
+sciGetFontSize
+sciGetTextPos
+sciGetFontForeground
+sciGetFontContext
+sciGetAlignment
+sciGetFontStyle

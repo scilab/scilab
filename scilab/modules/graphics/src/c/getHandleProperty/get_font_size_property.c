@@ -13,6 +13,6 @@
 /*------------------------------------------------------------------------*/
 int get_font_size_property( sciPointObj * pobj )
 {
-  return sciReturnInt( sciGetFontDeciWidth( pobj ) / 100 ) ;
+  return sciReturnDouble(sciGetFontSize(pobj) ) ;
 }
 /*------------------------------------------------------------------------*/

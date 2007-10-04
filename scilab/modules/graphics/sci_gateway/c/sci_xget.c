@@ -143,11 +143,11 @@ int sci_xget(char *fname,unsigned long fname_len)
     x2=0;
     if(strcmp(cstk(l1),"font")==0){
       x1[0] = sciGetFontStyle(psubwin);
-      x1[1] = sciGetFontDeciWidth(psubwin)/100;
+      x1[1] = sciGetFontSize(psubwin);
       x2 = 2;
     }
     else if(strcmp(cstk(l1),"font size")==0){
-      x1[0] = sciGetFontDeciWidth(psubwin)/100;
+      x1[0] = sciGetFontSize(psubwin);
       x2 = 1;
     }
     else if(strcmp(cstk(l1),"dashes")==0){

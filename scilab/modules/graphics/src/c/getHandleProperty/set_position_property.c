@@ -36,7 +36,9 @@ int set_position_property( sciPointObj * pobj, int stackPointer, int valueType, 
   else if( sciGetEntityType(pobj) == SCI_LABEL )
   {
     double * values = getDoubleMatrixFromStack( stackPointer ) ;
-    return sciSetPosition( pobj, values[0], values[1] ) ;
+    double curPos[3];
+    sciGetTextPos(pobj, curPos);
+    return sciSetTextPos( pobj, values[0], values[1], curPos[2] ) ;
   }
   else
   {

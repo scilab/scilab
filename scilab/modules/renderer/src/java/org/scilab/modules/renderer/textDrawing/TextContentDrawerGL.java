@@ -14,24 +14,26 @@ import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.AutoDrawableObjectGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
+import org.scilab.modules.renderer.utils.FontManager;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
-import com.sun.opengl.util.j2d.TextRenderer;
 
 /**
  * Abstract class containing for drawing text content of a text object
  * @author Jean-Baptiste Silvy
  */
 public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
-	
-	private static final int DEFAULT_FONT_SIZE = 1;
+
 	
 	private StringMatrixGL textMatrix;
 	private TextAlignementStrategy textDrawer;
 	private int fontColorIndex;
 	private Font fontType;
-	private TextRenderer renderer;
+	private SciTextRenderer renderer;
+	/** Rotation angle in radian */
+	private double rotationAngle;
+	private Vector3D textCenter;
 	
 	/**
 	 * Default constructor
@@ -42,6 +44,8 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 		fontColorIndex = 0;
 		fontType = null;
 		renderer = null;
+		rotationAngle = 0.0;
+		textCenter = null;
 	}
 	
 	/**
@@ -49,8 +53,19 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 	 * @param alignmentIndex kind of alignement
 	 */
 	public void setTextAlignement(int alignmentIndex) {
-		if (alignmentIndex == 0) {
+		switch(alignmentIndex) {
+		case 1:
 			textDrawer = new LeftAlignedTextGL();
+			break;
+		case 2:
+			textDrawer = new CenteredAlignedTextGL();
+			break;
+		case 2 + 1:
+			textDrawer = new RightAlignedTextGL();
+			break;
+		default:
+			textDrawer = new LeftAlignedTextGL();	
+			break;
 		}
 	}
 	
@@ -70,15 +85,6 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 	}
 	
 	/**
-	 * Specify the kind of font to display strings
-	 * @param fontTypeIndex index of the font in the font array.
-	 */
-	public void setFontType(int fontTypeIndex) {
-		// TODO select font from index
-		fontType = new Font("Serif", Font.PLAIN, DEFAULT_FONT_SIZE);
-	}
-	
-	/**
 	 * @return Font to use to display strings.
 	 */
 	public Font getFont() {
@@ -86,25 +92,33 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 	}
 	
 	/**
+	 * Specify a new angle for the text.
+	 * @param angle angle in radian
+	 */
+	public void setRotationAngle(double angle) {
+		rotationAngle = -angle;
+	}
+	
+	/**
 	 * Specify a new fotn size to draw the fonts.
+	 * @param fontTypeIndex index of the font in the font array.
 	 * @param fontSize font size to use.
 	 */
-	public void setFontSize(double fontSize) {
-		fontType = fontType.deriveFont((float) fontSize);
+	public void setFont(int fontTypeIndex, double fontSize) {
+		fontType = FontManager.getSciFontManager().getFontFromIndex(fontTypeIndex, fontSize);
 	}
 	
 	/**
 	 * Set many text parameters in one function.
 	 * @param textAlignement kind of alignement.
 	 * @param color index of the color in the colormap.
-	 * @param fontType index of the font in the font array.
+	 * @param fontTypeIndex index of the font in the font array.
 	 * @param fontSize font size to use.
 	 */
-	public void setTextParameters(int textAlignement, int color, int fontType, double fontSize) {
+	public void setTextParameters(int textAlignement, int color, int fontTypeIndex, double fontSize) {
 		setTextAlignement(textAlignement);
 		setFontColor(color);
-		setFontType(fontType);
-		setFontSize(fontSize);
+		setFont(fontTypeIndex, fontSize);
 	}
 	
 	/**
@@ -118,9 +132,9 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 		if (textMatrix == null) {
 			textMatrix = new StringMatrixGL();
 		}
-		String[] texto = {text};
+		String[] texto = {"Hello", "I like scilab", "So much", "and you?"};
 		
-		textMatrix.setData(texto, nbRow, nbCol);
+		textMatrix.setData(texto, 2, 2);
 
 	}
 	
@@ -135,7 +149,7 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 	/**
 	 * @return text drawer used to draw the text.
 	 */
-	protected TextRenderer getRenderer() {
+	protected SciTextRenderer getRenderer() {
 		return renderer;
 	}
 	
@@ -150,22 +164,31 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
-		Vector3D textPos = new Vector3D(centerX, centerY, centerZ);
-		textPos = transform.getCanvasCoordinates(gl, textPos);
+		textCenter = new Vector3D(centerX, centerY, centerZ);
+		textCenter = transform.getCanvasCoordinates(gl, textCenter);
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		transform.update(gl);
 		
-		textPos = transform.retrieveSceneCoordinates(gl, textPos);
+		textCenter = transform.retrieveSceneCoordinates(gl, textCenter);
+//		gl.glPointSize(5.0f);
+//		gl.glColor3d(1.0, 0.0, 0.0);
+//		gl.glBegin(GL.GL_POINTS);
+//		gl.glVertex3d(textCenter.getX(), textCenter.getY(), textCenter.getZ());
+//		gl.glEnd();
 		
-		renderer = new TextRenderer(fontType);
+		renderer = SciTextRenderer.create(fontType);
+		double[] color = getFontColor();
+		renderer.setColor(color[0], color[1], color[2]);
 		TextGrid stringPos = getStringsPositions();
-		stringPos.translate(textPos);
+		// move the text base.
+		gl.glTranslated(textCenter.getX(), textCenter.getY(), textCenter.getZ());
+		gl.glRotated(Math.toDegrees(rotationAngle), 0.0, 0.0, 1.0);
 		textDrawer.drawTextContent(renderer, textMatrix,
 								   stringPos);
 		renderer.dispose();
-		renderer = null;
+		
 		
 		GLTools.endPixelCoordinates(gl);
 	}

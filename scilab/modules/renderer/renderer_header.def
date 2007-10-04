@@ -20,5 +20,20 @@ sciGetJavaColormap
 createDrawer
 sciSetJavaPixmapMode
 sciGetJavaPixmapMode
+sciGetJavaFigureSize
+sciGetJavaWindowSize
+sciGetJavaWindowPosition
+createGraphicSynchronizer
+destroyGraphicSynchronizer
+endGraphicDataWriting
+startGraphicDataWriting
+endFigureDataReading
+startFigureDataReading
+sciSetJavaFigureSize
+sciSetJavaWindowSize
+sciSetJavaWindowPosition
+sciSetJavaInfoMessage
+endFigureDataWriting
+startFigureDataWriting
 ; --------------------------------------- 
 

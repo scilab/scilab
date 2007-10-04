@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: LeftAlignedTextGL.java                                           */
+/* file: CenteredAlignedTextGL.java                                       */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class which draw left aligned text                              */
+/* desc : Class which draw centered text                                  */
 /*------------------------------------------------------------------------*/
 
 package org.scilab.modules.renderer.textDrawing;
@@ -12,15 +12,15 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 
 /**
- * Class which draw left aligned text
+ * Class which draw centered text.
  * @author Jean-Baptiste Silvy
  */
-public class LeftAlignedTextGL implements TextAlignementStrategy {
+public class CenteredAlignedTextGL implements TextAlignementStrategy {
 
 	/**
 	 * Default constructor
 	 */
-	public LeftAlignedTextGL() {
+	public CenteredAlignedTextGL() {
 		
 	}
 	
@@ -36,7 +36,9 @@ public class LeftAlignedTextGL implements TextAlignementStrategy {
 		for (int i = 0; i < text.getNbRow(); i++) {
 			for (int j = 0; j < text.getNbCol(); j++) {
 				Vector3D[] curCell = positionMatrix.getCellCoordinates(i, j);
-				double xCoord = curCell[1].getX();
+				// put the middle of the string in the middle of the cell
+				double xCoord =   curCell[1].getX()
+				               + ((curCell[2].getX() - curCell[1].getX()) - text.getStringWidth(i, j)) / 2.0;
 				double yCoord = curCell[1].getY() - (curCell[1].getY() - curCell[0].getY()) * TextGrid.EXTEND_FACTOR_Y / 2.0;
 				renderer.draw3D(text.getMatrixElement(i, j), xCoord,
 						        yCoord, curCell[1].getZ());

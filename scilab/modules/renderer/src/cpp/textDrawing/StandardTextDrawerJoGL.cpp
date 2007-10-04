@@ -68,13 +68,15 @@ void StandardTextDrawerJoGL::drawTextContent(void)
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
   initializeDrawing();
-
-  getStandardTextDrawerJavaMapper()->setTextParameters(0, sciGetGraphicContext(pObj)->foregroundcolor,
-                                                       0, 10);
+  int foreground =  sciGetFontContext(pObj)->foregroundcolor;
+  getStandardTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), foreground,
+                                                       sciGetFontStyle(pObj), sciGetFontSize(pObj) );
 
   getStandardTextDrawerJavaMapper()->setTextContent("toto est beau", 1, 1);
 
-  getStandardTextDrawerJavaMapper()->drawTextContent(sciGetTextPosX(pObj), sciGetTextPosY(pObj), 0.0);
+  double textPos[3];
+  sciGetTextPos(pObj, textPos);
+  getStandardTextDrawerJavaMapper()->drawTextContent(textPos[0], textPos[1], textPos[2]);
 
   endDrawing();
 }

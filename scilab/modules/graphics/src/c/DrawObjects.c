@@ -1178,9 +1178,10 @@ void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2]
   wantedBlPoint[0] = round( axisMiddle[0] + centerDist * centerDir[0] + corners[0][0] ) ;
   wantedBlPoint[1] = round( axisMiddle[1] + centerDist * centerDir[1] + corners[0][1] ) ;
 
-  sciSetPosition( pLabel,
-                  XPixel2Double( wantedBlPoint[0] ),
-                  YPixel2Double( wantedBlPoint[1] ) ) ;
+  sciSetTextPos( pLabel,
+                 XPixel2Double( wantedBlPoint[0] ),
+                 YPixel2Double( wantedBlPoint[1] ),
+                 0.0 ) ;
 
 }
 /*------------------------------------------------------------------------------------------*/
