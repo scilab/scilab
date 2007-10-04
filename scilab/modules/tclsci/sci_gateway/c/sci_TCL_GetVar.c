@@ -2,10 +2,15 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <stdio.h>
+#include <string.h>
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "sci_TCL_GetVar.h"
+#include "TCL_ArrayExist.h"
+#include "TCL_ArrayDim.h"
+#include "TCL_ArrayGetVar.h"
 #include "error_scilab.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 {
@@ -122,137 +127,5 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 	}
 	
 	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName)
-{
-	int bExist=FALSE;
-
-	if (strcmp(VarName,"TclScilabTmpVar"))
-	{
-		char MyTclCommand[2048];
-		char *StrArrayExist=NULL;
-
-		sprintf(MyTclCommand, "set TclScilabTmpVar [array exists %s];",VarName); 
-
-		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
-		{
-			error_scilab(999,"Tcl Error : %s",TCLinterpreter->result);
-			return 0;
-		}
-
-		StrArrayExist = (char *) Tcl_GetVar(TCLinterpreter, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
-
-		if (StrArrayExist)
-		{
-			bExist=(int)atoi(StrArrayExist);
-			Tcl_UnsetVar(TCLinterpreter, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
-		}
-	}
-	
-	return bExist;
-}
-/*-----------------------------------------------------------------------------------*/
-int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName)
-{
-	int ArraySize=0;
-
-	if (strcmp(VarName,"TclScilabTmpVar"))
-	{
-		char MyTclCommand[2048];
-		char *StrArraySize=NULL;
-
-		sprintf(MyTclCommand, "set TclScilabTmpVar [array size %s];",VarName); 
-
-		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
-		{
-			error_scilab(999,"Tcl Error : %s",TCLinterpreter->result);
-			return 0;
-		}
-
-		StrArraySize = (char *) Tcl_GetVar(TCLinterpreter, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
-
-		if (StrArraySize)
-		{
-			ArraySize=(int)atoi(StrArraySize);
-			Tcl_UnsetVar(TCLinterpreter, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
-		}
-	}
-	return ArraySize;
-}
-/*-----------------------------------------------------------------------------------*/
-int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
-{
-	int Bok=FALSE;
-	*m=0;
-	*n=0;
-	if (strcmp(VarName,"TclScilabTmpVar"))
-	{
-		char MyTclCommand[2048];
-		char *StrArrayDims=NULL;
-		
-		sprintf(MyTclCommand, "set TclScilabTmpVar [lsort -dictionary [array names %s *,*]];",VarName); 
-
-		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
-		{
-			error_scilab(999,"Tcl Error : %s",TCLinterpreter->result);
-			return 0;
-		}
-
-		StrArrayDims = (char *) Tcl_GetVar(TCLinterpreter, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
-
-		if (StrArrayDims)
-		{
-			char *token=NULL;
-			char StrDimensions[256];
-			int DimX;
-			int DimY;
-			token = strrchr( StrArrayDims,' ');
-			if (token)
-			{
-				int loop=0;
-				if (token[0]==' ') token=&token[1];
-				for(loop=0;loop<(int)strlen(token);loop++) if (token[loop] == ',') token[loop]=' ';
-				sprintf(StrDimensions,"%s",token);
-				sscanf(StrDimensions,"%d %d",&DimX,&DimY);
-				*n=DimX;
-				*m=DimY;
-			}
-			else /* just a element */
-			{
-				int loop=0;
-				for(loop=0;loop<(int)strlen(StrArrayDims);loop++) if ( StrArrayDims[loop] == ',')  StrArrayDims[loop]=' ';
-				sprintf(StrDimensions,"%s", StrArrayDims);
-				sscanf(StrDimensions,"%d %d",&DimX,&DimY);
-				*n=DimX;
-				*m=DimY;
-			}
-			Tcl_UnsetVar(TCLinterpreter, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
-			Bok=TRUE;
-		}
-	}
-	return Bok;
-}
-/*-----------------------------------------------------------------------------------*/
-char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j)
-{
-	char *RetStr=NULL;
-	char * StrValue=NULL;
-	char ArrayName[2048];
-	sprintf(ArrayName,"%s(%d,%d)",VarName,i,j);
-	RetStr= (char*)Tcl_GetVar(TCLinterpreter, ArrayName, TCL_GLOBAL_ONLY);
-
-	if (RetStr)
-	{
-		StrValue=MALLOC((strlen(RetStr)+1)*sizeof(char));
-		sprintf(StrValue,"%s",RetStr);
-	}
-	else
-	{
-		StrValue=MALLOC((strlen("#NOT DEF.#")+1)*sizeof(char));
-		sprintf(StrValue,"%s","#NOT DEF.#");
-	}
-
-	return StrValue;
 }
 /*-----------------------------------------------------------------------------------*/

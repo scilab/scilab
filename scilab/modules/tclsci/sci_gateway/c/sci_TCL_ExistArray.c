@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "sci_TCL_GetVar.h"
+#include "TCL_ArrayExist.h"
 #include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_ExistArray) _PARAMS((char *fname,unsigned long l))

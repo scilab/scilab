@@ -16,7 +16,13 @@ src/c/setenvtcl.c \
 src/c/TclUiSet.c \
 src/c/InitializeTclTk.c \
 src/c/TerminateTclTk.c \
-src/c/withtk.c
+src/c/withtk.c \
+src/c/setvar.c \
+src/c/TCL_ArrayDim.c \
+src/c/TCL_ArrayExist.c \
+src/c/TCL_ArrayGetVar.c \
+src/c/TCL_ArraySize.c
+
 
 GATEWAY_C_SOURCES =  sci_gateway/c/sci_TCL_CreateSlave.c \
 sci_gateway/c/sci_opentk.c \
@@ -260,8 +266,7 @@ libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 
 #### tclsci : include files ####
 libscitclsci_la_includedir=$(pkgincludedir)/tclsci
-libscitclsci_la_include_HEADERS = includes/sci_TCL_GetVar.h \
-includes/TclUiSet.h \
+libscitclsci_la_include_HEADERS = includes/TclUiSet.h \
 includes/setenvtcl.h\
 includes/GedManagement.h \
 includes/TCL_Global.h \

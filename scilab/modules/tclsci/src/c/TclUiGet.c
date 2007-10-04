@@ -3,9 +3,12 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "TclUiGet.h"
-#include "sci_TCL_GetVar.h"
+#include "TCL_ArrayExist.h"
+#include "TCL_ArrayGetVar.h"
+#include "TCL_ArrayDim.h"
 #include "error_scilab.h"
 #include "../../gui/includes/GetScreenProperty.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 int TCL_UiGet(int  Handle,int RhsPropertieField)
 {

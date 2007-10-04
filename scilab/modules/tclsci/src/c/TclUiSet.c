@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TclUiSet.h"
 #include "error_scilab.h"
-#include "sci_TCL_SetVar.h"
+#include "setvar.h"
 /*-----------------------------------------------------------------------------------*/
 #define NBRSTYLE 9
 char *UiStyleInternalName[NBRSTYLE] = {"button",

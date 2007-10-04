@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;includes\tcltk\include;includes\tcltk\include\X11"
+				AdditionalIncludeDirectories=".;includes;src/c;../../libs/MALLOC/includes;../core/includes;includes\tcltk\include;includes\tcltk\include\X11"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;TCLSCI_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;includes\tcltk\include;includes\tcltk\include\X11"
+				AdditionalIncludeDirectories=".;includes;src/c;../../libs/MALLOC/includes;../core/includes;includes\tcltk\include;includes\tcltk\include\X11"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;TCLSCI_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -303,6 +303,26 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\setvar.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\TCL_ArrayDim.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\TCL_ArrayExist.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\TCL_ArrayGetVar.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\TCL_ArraySize.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\TCL_Global.c"
 				>
 			</File>
@@ -361,83 +381,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_close.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_findobj.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_get.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_opentk.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_set.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_CreateSlave.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_DeleteInterp.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_DoOneEvent.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_EvalFile.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_EvalStr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_ExistArray.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_ExistInterp.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_ExistVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_gcf.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_GetVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_GetVersion.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_SetVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_UnsetVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_TCL_UpVar.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\ScilabEval.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\setvar.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\TCL_ArrayDim.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\TCL_ArrayExist.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\TCL_ArrayGetVar.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\TCL_ArraySize.h"
 				>
 			</File>
 			<File

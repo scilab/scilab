@@ -6,6 +6,7 @@
 #include "sci_calendar.h"
 #include "error_scilab.h"
 #include "IsAScalar.h"
+#include "InversionMatrixInt.h"
 /*-----------------------------------------------------------------------------------*/
 static int isBissextile (unsigned annee);
 static unsigned months_to_days (unsigned mois);
