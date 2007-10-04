@@ -13,7 +13,7 @@ case 'getorigin' then
 case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
-  if size(exprs)<9 then exprs(9)='0',end // compatibility
+
   model=arg1.model;
   //dstate=model.in
   while %t do

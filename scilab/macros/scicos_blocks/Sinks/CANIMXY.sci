@@ -16,7 +16,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   //dstate=model.dstate
-  if size(exprs,'*')==8 then exprs=[1;exprs(1:3);'[]';'[]';exprs(4:8)],end
+
   while %t do
     [ok,nbr_curves,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=getvalue(..
 	'Set Scope parameters',..

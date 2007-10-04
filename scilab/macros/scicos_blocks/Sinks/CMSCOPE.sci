@@ -13,9 +13,8 @@ case 'getorigin' then
 case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
-  if size(exprs)<10 then exprs(10)='0',end // compatibility
-  if size(exprs)<11 then exprs(11)=emptystr(),end // compatibility
-  if ~or(stripblanks(exprs(10))==['0','1']) then exprs(10)='0',end
+
+
   model=arg1.model;
   //dstate=model.in
   //pause

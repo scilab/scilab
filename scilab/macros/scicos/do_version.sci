@@ -73,6 +73,16 @@ function scs_m_new=do_version42(scs_m)
 	in2 = ones(a,1);
 	scs_m_new.objs(j).model.in2 = in2;
 	scs_m_new.objs(j).model.intyp = in2;
+        //Alan's patch 04/10/07 : update exprs
+        exprs = scs_m.objs(j).graphics.exprs;
+        if size(exprs)<9 then exprs(9)='0',end // compatibility
+        if size(exprs)<10 then exprs(10)=emptystr(),end // compatibility
+        scs_m_new.objs(j).graphics.exprs=exprs;
+      elseif o.gui=='CSCOPE' then
+        //Alan's patch 04/10/07 : update exprs
+        exprs = scs_m.objs(j).graphics.exprs;
+        if size(exprs)<10 then exprs(10)=emptystr(),end // compatibility
+        scs_m_new.objs(j).graphics.exprs=exprs;
       elseif o.gui=='BOUNCEXY' then
 	in = scs_m_new.objs(j).model.in(:);
 	a = size(in,1);
@@ -80,6 +90,11 @@ function scs_m_new=do_version42(scs_m)
 	scs_m_new.objs(j).model.in2 = in2;
 	scs_m_new.objs(j).model.intyp = in2;
       elseif o.gui=='MSCOPE_f' then
+        //Alan's patch 04/10/07 : update exprs
+        exprs = scs_m.objs(j).graphics.exprs;
+        if size(exprs)<10 then exprs(10)='0',end // compatibility
+        if size(exprs)<11 then exprs(11)=emptystr(),end // compatibility
+        scs_m_new.objs(j).graphics.exprs=exprs;
         scs_m_new.objs(j).gui='CMSCOPE'
 	scs_m_new.objs(j).model.dstate=[]
         scs_m_new.objs(j).model.sim=list('cmscope', 4)
@@ -110,6 +125,10 @@ function scs_m_new=do_version42(scs_m)
 	scs_m_new.objs(j).model.intyp = in2;
 	scs_m_new.objs(j).graphics.exprs = [string(1);scs_m_new.objs(j).graphics.exprs(:)]
 	scs_m_new.objs(j).model.ipar = [scs_m_new.objs(j).model.ipar(:);1]
+        //Alan's patch 04/10/07 : update exprs
+        exprs = scs_m_new.objs(j).graphics.exprs(:)
+        if size(exprs,'*')==8 then exprs=[1;exprs(1:3);'[]';'[]';exprs(4:8)],end
+        scs_m_new.objs(j).graphics.exprs=exprs;
       elseif o.gui=='EVENTSCOPE_f' then
         scs_m_new.objs(j).gui='CEVENTSCOPE'
 	scs_m_new.objs(j).model.dstate=[]
@@ -128,6 +147,10 @@ function scs_m_new=do_version42(scs_m)
 	in2 = ones(a,1);
 	scs_m_new.objs(j).model.in2 = in2;
 	scs_m_new.objs(j).model.intyp = in2;
+        //Alan's patch 04/10/07 : update exprs
+        exprs = scs_m.objs(j).graphics.exprs;
+        if size(exprs)<9 then exprs(9)='0',end // compatibility
+        scs_m_new.objs(j).graphics.exprs=exprs;
       elseif o.gui=='SCOPXY_f' then
         scs_m_new.objs(j).gui='CSCOPXY'
 	scs_m_new.objs(j).model.dstate=[]
@@ -140,6 +163,10 @@ function scs_m_new=do_version42(scs_m)
 	scs_m_new.objs(j).graphics.exprs = [string(1);scs_m_new.objs(j).graphics.exprs(:)]
 	scs_m_new.objs(j).model.ipar = [scs_m_new.objs(j).model.ipar(:);1]
       elseif o.gui=='CMSCOPE' then
+        //Alan's patch 04/10/07 : update exprs
+        exprs = scs_m.objs(j).graphics.exprs;
+        if size(exprs)<11 then exprs(11)=emptystr(),end // compatibility
+        scs_m_new.objs(j).graphics.exprs=exprs;
         scs_m_new.objs(j).model.dstate=[]
 	in = scs_m_new.objs(j).model.in(:);
 	a = size(in,1);
