@@ -334,13 +334,13 @@ scs_m.objs(4)=mlist(["Text","graphics","model","void","gui"],..
               ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
               "peout","gr_i","id","in_implicit","out_implicit"],..
               [244.82238,415.61053],[37.422199,5.812163],%t,0,..
-              ["Watertrank";"5";"6"],[],[],[],[],[],"",[],[]),..
+              ["Watertank";"5";"6"],[],[],[],[],[],"",[],[]),..
               mlist(..
               ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
               "evtout","state","dstate","odstate","rpar","ipar","opar",..
               "blocktype","firing","dep_ut","label","nzcross","nmode",..
               "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
-              "Watertrank",[5;6],list(),"c",[],[%f,%f],"",0,0,list())," ",..
+              "Watertank",[5;6],list(),"c",[],[%f,%f],"",0,0,list())," ",..
               "TEXT_f")
 scs_m.objs(5)=mlist(["Text","graphics","model","void","gui"],..
               mlist(..
@@ -373,13 +373,13 @@ scs_m.objs(7)=mlist(["Text","graphics","model","void","gui"],..
               ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
               "peout","gr_i","id","in_implicit","out_implicit"],..
               [329.93992,247.85425],[68.253124,7.3087638],%t,0,..
-              ["Water-Trank System";"3";"2"],[],[],[],[],[],"",[],[]),..
+              ["Water-Tank System";"3";"2"],[],[],[],[],[],"",[],[]),..
               mlist(..
               ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
               "evtout","state","dstate","odstate","rpar","ipar","opar",..
               "blocktype","firing","dep_ut","label","nzcross","nmode",..
               "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
-              "Water-Trank System",[3;2],list(),"c",[],[%f,%f],"",0,0,list()),..
+              "Water-Tank System",[3;2],list(),"c",[],[%f,%f],"",0,0,list()),..
               " ","TEXT_f")
 scs_m.objs(8)=scicos_block(..
               gui="CMSCOPE",..
@@ -398,13 +398,13 @@ scs_m.objs(8)=scicos_block(..
                        "100 100";
                        "20";
                        "0";
-                       "Water trank control"],..
+                       "Water tank control"],..
                        pin=[20;29],..
                        pout=[],..
                        pein=11,..
                        peout=[],..
                        gr_i=list("xstringb(orig(1),orig(2),''MScope'',sz(1),sz(2),''fill'')",7),..
-                       id="Water trank control",..
+                       id="Water tank control",..
                        in_implicit=["E";"E"],..
                        out_implicit=[]),..
               model=scicos_model(..
@@ -426,7 +426,7 @@ scs_m.objs(8)=scicos_block(..
                        blocktype="c",..
                        firing=[],..
                        dep_ut=[%t,%f],..
-                       label="Water trank control",..
+                       label="Water tank control",..
                        nzcross=0,..
                        nmode=0,..
                        equations=list()),..
@@ -1675,13 +1675,13 @@ scs_m.objs(23)=mlist(["Text","graphics","model","void","gui"],..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
                [247.92674,337.97973],[68.253124,7.3087638],%t,0,..
-               ["Water-Trank System";"3";"2"],[],[],[],[],[],"",[],[]),..
+               ["Water-Tank System";"3";"2"],[],[],[],[],[],"",[],[]),..
                mlist(..
                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
                "evtout","state","dstate","odstate","rpar","ipar","opar",..
                "blocktype","firing","dep_ut","label","nzcross","nmode",..
                "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
-               "Water-Trank System",[3;2],list(),"c",[],[%f,%f],"",0,0,list()),..
+               "Water-Tank System",[3;2],list(),"c",[],[%f,%f],"",0,0,list()),..
                " ","TEXT_f")
 scs_m.objs(24)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
