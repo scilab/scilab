@@ -134,6 +134,8 @@ public class SciInputParsingManager implements InputParsingManager {
 		/* cd("toto */
 		lineToParse = lineToParse.substring(index);
 		index = lineToParse.length();
+		
+		/* Searching for the beginning of a white space */
 		int indexspace = lineToParse.indexOf(' ');
 		if (indexspace != -1) {
 			/* In case of more than 1 blanks, have to skip all but the last one */
@@ -147,15 +149,20 @@ public class SciInputParsingManager implements InputParsingManager {
 			indexspace--;
 			index = Math.min(index, indexspace);
 		}
+		/* Searching for the beginning of a character string */
 		int indexquote = lineToParse.indexOf('\'');
 		if (indexquote != -1) {
 			index = Math.min(index, indexquote);
 		}
+		/* Searching for the beginning of a character string */
 		int indexdquote = lineToParse.indexOf('\"');
 		if (indexdquote != -1) {
 			index = Math.min(index, indexdquote);
 		}
-		index++;
+		/* If index found in not the end of the line, add 1 to get substring beginning at the next char */
+		if (index < lineToParse.length()) {
+			index++;
+		}
 		if (index <= 0 | lineToParse.substring(index).equals("")) {
 			return null;
 		} else {
