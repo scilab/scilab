@@ -1,0 +1,58 @@
+# Localization of the module Scipad
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+
+msgid   ""
+msgstr  "Project-Id-Version: Scilab\n"
+        "Report-Msgid-Bugs-To: localization@scilab.org\n"
+        "POT-Creation-Date: 2007-09-27 16:24+0200\n"
+        "PO-Revision-Date: 2007-10-04 11:09:56+02:00\n"
+        "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+        "Language-Team: Scilab Localization <localization@scilab.org>\n"
+        "MIME-Version: 1.0\n"
+        "Content-Type: text/plain; charset=ISO-8859-1\n"
+        "Content-Transfer-Encoding: 8bit\n"
+#
+# File: macros/scipad_internals/msgdiff.sci, line: 59
+msgid	"Finding missing entries in  and writing the result...Translations "
+	"missing in file Finding unused entries in Unused strings in file "
+	"Parsing file , be patient...WARNING: THE FOLLOWING LINE SEEMS WRONG "
+	"HERE AND WILL BE IGNORED"
+msgstr	""
+#
+# File: macros/scipad.sci, line: 13
+msgid	"Scilab has not been built with Tcl/Tk: Scipad unavailable."
+msgstr	""
+#
+# File: macros/scipad.sci, line: 14
+msgid	" Scilab in no window no interactive mode : Scipad "
+	"unavailableFunction "
+msgstr	""
+#
+# File: macros/scipad.sci, line: 16
+msgid	"is not contained in a loaded library, "
+msgstr	""
+#
+# File: macros/scipad.sci, line: 17
+msgid	"Scipad doesn''t know where to find its source"
+msgstr	""
+#
+# File: macros/scipad.sci, line: 18
+msgid	"Scipad cannot open a "
+msgstr	""
+#
+# File: macros/scipad.sci, line: 18
+msgid	" object!"
+msgstr	""
+#
+# File: macros/scipad.sci, line: 19
+msgid	" Scilab has not been built with tk: Scipad unavailable"
+msgstr	""
+#
+# File: macros/scipad.sci, line: 47
+msgid	"interp create scipad"
+msgstr	""
+
