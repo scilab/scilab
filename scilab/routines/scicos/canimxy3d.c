@@ -96,6 +96,7 @@ void canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
 	      Pinceau = scoGetPointerShortDraw(*pScopeMemory,0,i);
 
 	      sciSetMarkSize(Pinceau, line_size[i]);
+	      sciSetMarkSizeUnit(Pinceau, 1);
 
 	      pPOLYLINE_FEATURE(Pinceau)->n1 = 1;
 	    }
@@ -133,8 +134,11 @@ void canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
 		  Trait = scoGetPointerLongDraw(*pScopeMemory,0,i);
 
 		  sciSetMarkSize(Pinceau, line_size[i]);
+	          sciSetMarkSizeUnit(Pinceau, 1);
 		  sciSetMarkSize(Gomme, line_size[i]);
-		  sciSetMarkSize(Trait, line_size[i]);		   
+	          sciSetMarkSizeUnit(Gomme, 1);
+		  sciSetMarkSize(Trait, line_size[i]);
+	          sciSetMarkSizeUnit(Trait, 1);
  
 		  pPOLYLINE_FEATURE(Pinceau)->n1 = 1;
 		  pPOLYLINE_FEATURE(Gomme)->n1 = 1;
@@ -163,8 +167,11 @@ void canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
 		  Trait = scoGetPointerLongDraw(*pScopeMemory,0,i);
 		    
 		  sciSetLineWidth(Pinceau, line_size[i]);
+	          sciSetMarkSizeUnit(Pinceau, 1);
 		  sciSetLineWidth(Gomme, line_size[i]);
+	          sciSetMarkSizeUnit(Gomme, 1);
 		  sciSetLineWidth(Trait, line_size[i]);
+	          sciSetMarkSizeUnit(Trait, 1);
 
 		  pPOLYLINE_FEATURE(Pinceau)->n1 = 2;
 		  pPOLYLINE_FEATURE(Gomme)->n1 = 2;

@@ -93,10 +93,14 @@ void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
 	  ShortDraw = scoGetPointerShortDraw(*pScopeMemory,0,i);
 	  LongDraw = scoGetPointerLongDraw(*pScopeMemory,0,i);
 	  
+          /* Set ShortDraw properties */
 	  sciSetLineWidth(ShortDraw, line_size[i]);
 	  sciSetMarkSize(ShortDraw, line_size[i]);
+	  sciSetMarkSizeUnit(ShortDraw, 1);
+          /* Set LongDraw properties */
 	  sciSetLineWidth(LongDraw, line_size[i]);
 	  sciSetMarkSize(LongDraw, line_size[i]);
+	  sciSetMarkSizeUnit(LongDraw, 1);
 	}
     }
   scicos_free(color);

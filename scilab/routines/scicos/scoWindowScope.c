@@ -491,6 +491,7 @@ scoGraphicalObject scoCreatePolyline(scoGraphicalObject pAxes, scoInteger polyli
       sciSetLineStyle(pPolyline, 0);
       sciSetIsMark(pPolyline, 1);
       sciSetMarkStyle(pPolyline, -color);
+      sciSetMarkSizeUnit(pPolyline, 1);
     }
   sciSetIsClipping(pPolyline, 0);
 

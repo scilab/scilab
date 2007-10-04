@@ -75,10 +75,14 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	  scoAddPolylineForLongDraw(*pScopeMemory,0,i,color[0]);
 	  ShortDraw = scoGetPointerShortDraw(*pScopeMemory,0,i);
 	  LongDraw = scoGetPointerLongDraw(*pScopeMemory,0,i);
+          /* Set ShortDraw properties */
 	  sciSetLineWidth(ShortDraw, line_size);
 	  sciSetMarkSize(ShortDraw, line_size);
+	  sciSetMarkSizeUnit(ShortDraw, 1);
+          /* Set LongDraw properties */
 	  sciSetLineWidth(LongDraw, line_size);
 	  sciSetMarkSize(LongDraw, line_size);
+	  sciSetMarkSizeUnit(LongDraw, 1);
 	}
       scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
     }
