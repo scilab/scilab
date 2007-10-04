@@ -39,7 +39,7 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   /* Initialization */
   ipar =  GetIparPtrs(block);
   win = ipar[0];
-  color_flag = ipar[1];
+  color_flag = ipar[1]; /*not used*/
   rpar = GetRparPtrs(block);
   period = rpar[0];
   nipar = GetNipar(block);
@@ -56,10 +56,10 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   ymin = 0;
   ymax = 1;
 
-  win_pos[0] = 100;
-  win_pos[1] = 100;
-  win_dim[0] = 640;
-  win_dim[1] = 400;
+  win_pos[0] = ipar[(nipar-1) - 3];
+  win_pos[1] = ipar[(nipar-1) - 2];
+  win_dim[0] = ipar[(nipar-1) - 1];
+  win_dim[1] = ipar[nipar-1];
 
   if(firstdraw == 1)
     {
