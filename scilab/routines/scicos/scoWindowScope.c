@@ -277,6 +277,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
   int c__1 = 1;
   int i,j;
   int NbrPtsShort,NbrPtsLong,inc;
+  int NbrPtsToCopy;
   int current_period_counter;
   scoGraphicalObject pLongDraw;
   scoGraphicalObject pShortDraw;
@@ -368,14 +369,27 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 	      /*End of Block for Draw*/
 
 	      /*Block for Memory*/
-	      inc = NbrPtsLong!=0; //A trick to handle the trace empty case
+
+              /*
+               * Alan's patch, 04/10/2007 : add NbrPtsToCopy
+               * to copy good numbers of pts for the first buffer
+               * in LongDraw
+               */
+
+              /*
+               * Tricks to handle the trace empty case
+               */
+              inc = NbrPtsLong!=0; 
+              NbrPtsToCopy = NbrPtsShort + (NbrPtsLong==0);
+
 	      switch(sciGetEntityType(pShortDraw))
 		{
 		case SCI_POLYLINE:
+                  NbrPtsToCopy = NbrPtsShort + (NbrPtsLong==0);
 		  //We have draw but now we have to copy values in the memory of the shortdraw
-		  C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvx+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
-		  C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvy+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
-		  pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong+NbrPtsShort;
+		  C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvx+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
+		  C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvy+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
+		  pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong+NbrPtsToCopy;
 		  break;
 		case SCI_SEGS:
 		  C2F(dcopy)(&NbrPtsShort,pSEGS_FEATURE(pShortDraw)->vx,&c__1,pSEGS_FEATURE(pLongDraw)->vx+NbrPtsLong,&c__1);
