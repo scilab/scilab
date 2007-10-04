@@ -102,6 +102,8 @@ am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
 	src/c/tksynchro.c src/c/InitTclTk.c src/c/ScilabEval.c \
 	src/c/TclEvents.c src/c/setenvtcl.c src/c/TclUiSet.c \
 	src/c/InitializeTclTk.c src/c/TerminateTclTk.c src/c/withtk.c \
+	src/c/setvar.c src/c/TCL_ArrayDim.c src/c/TCL_ArrayExist.c \
+	src/c/TCL_ArrayGetVar.c src/c/TCL_ArraySize.c \
 	sci_gateway/c/sci_TCL_CreateSlave.c sci_gateway/c/sci_opentk.c \
 	sci_gateway/c/sci_TCL_gcf.c sci_gateway/c/sci_close.c \
 	sci_gateway/c/sci_TCL_SetVar.c \
@@ -128,7 +130,12 @@ am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
 @TCLTK_TRUE@	libscitclsci_la-TclUiSet.lo \
 @TCLTK_TRUE@	libscitclsci_la-InitializeTclTk.lo \
 @TCLTK_TRUE@	libscitclsci_la-TerminateTclTk.lo \
-@TCLTK_TRUE@	libscitclsci_la-withtk.lo
+@TCLTK_TRUE@	libscitclsci_la-withtk.lo \
+@TCLTK_TRUE@	libscitclsci_la-setvar.lo \
+@TCLTK_TRUE@	libscitclsci_la-TCL_ArrayDim.lo \
+@TCLTK_TRUE@	libscitclsci_la-TCL_ArrayExist.lo \
+@TCLTK_TRUE@	libscitclsci_la-TCL_ArrayGetVar.lo \
+@TCLTK_TRUE@	libscitclsci_la-TCL_ArraySize.lo
 @TCLTK_TRUE@am__objects_2 = libscitclsci_la-sci_TCL_CreateSlave.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_opentk.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_gcf.lo \
@@ -183,12 +190,11 @@ DATA = $(libscitclsci_la_demossciGUI_DATA) \
 	$(libscitclsci_la_root_DATA) \
 	$(libscitclsci_la_sci_gateway_DATA) \
 	$(nobase_libscitclsci_la_tcl_DATA)
-am__libscitclsci_la_include_HEADERS_DIST = includes/sci_TCL_GetVar.h \
-	includes/TclUiSet.h includes/setenvtcl.h \
-	includes/GedManagement.h includes/TCL_Global.h \
-	includes/ScilabEval.h includes/InitTclTk.h \
-	includes/TclEvents.h includes/gw_tclsci.h includes/TclUiGet.h \
-	includes/InitializeTclTk.h
+am__libscitclsci_la_include_HEADERS_DIST = includes/TclUiSet.h \
+	includes/setenvtcl.h includes/GedManagement.h \
+	includes/TCL_Global.h includes/ScilabEval.h \
+	includes/InitTclTk.h includes/TclEvents.h includes/gw_tclsci.h \
+	includes/TclUiGet.h includes/InitializeTclTk.h
 libscitclsci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscitclsci_la_include_HEADERS)
 ETAGS = etags
@@ -362,7 +368,12 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@src/c/TclUiSet.c \
 @TCLTK_TRUE@src/c/InitializeTclTk.c \
 @TCLTK_TRUE@src/c/TerminateTclTk.c \
-@TCLTK_TRUE@src/c/withtk.c
+@TCLTK_TRUE@src/c/withtk.c \
+@TCLTK_TRUE@src/c/setvar.c \
+@TCLTK_TRUE@src/c/TCL_ArrayDim.c \
+@TCLTK_TRUE@src/c/TCL_ArrayExist.c \
+@TCLTK_TRUE@src/c/TCL_ArrayGetVar.c \
+@TCLTK_TRUE@src/c/TCL_ArraySize.c
 
 @TCLTK_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_TCL_CreateSlave.c \
 @TCLTK_TRUE@sci_gateway/c/sci_opentk.c \
@@ -388,7 +399,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_FALSE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_TRUE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_FALSE@libscitclsci_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/
-@TCLTK_TRUE@libscitclsci_la_CFLAGS = -Iincludes/ -Isci_gateway/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH) 
+@TCLTK_TRUE@libscitclsci_la_CFLAGS = -Iincludes/ -Isrc/c -Isci_gateway/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH) 
 @TCLTK_TRUE@libscitclsci_la_LDFLAGS = $(TCLTK_LIBS)
 @TCLTK_FALSE@libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES)
 @TCLTK_TRUE@libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -621,8 +632,7 @@ top_srcdir = @top_srcdir@
 
 #### tclsci : include files ####
 @TCLTK_TRUE@libscitclsci_la_includedir = $(pkgincludedir)/tclsci
-@TCLTK_TRUE@libscitclsci_la_include_HEADERS = includes/sci_TCL_GetVar.h \
-@TCLTK_TRUE@includes/TclUiSet.h \
+@TCLTK_TRUE@libscitclsci_la_include_HEADERS = includes/TclUiSet.h \
 @TCLTK_TRUE@includes/setenvtcl.h\
 @TCLTK_TRUE@includes/GedManagement.h \
 @TCLTK_TRUE@includes/TCL_Global.h \
@@ -823,6 +833,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-InitTclTk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-InitializeTclTk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-ScilabEval.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_ArrayDim.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_ArrayExist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_ArrayGetVar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_ArraySize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_Global.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TclEvents.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TclUiGet.Plo@am__quote@
@@ -850,6 +864,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_opentk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_set.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-setenvtcl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-setvar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-tksynchro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-withtk.Plo@am__quote@
 
@@ -964,6 +979,41 @@ libscitclsci_la-withtk.lo: src/c/withtk.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/withtk.c' object='libscitclsci_la-withtk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-withtk.lo `test -f 'src/c/withtk.c' || echo '$(srcdir)/'`src/c/withtk.c
+
+libscitclsci_la-setvar.lo: src/c/setvar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-setvar.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-setvar.Tpo -c -o libscitclsci_la-setvar.lo `test -f 'src/c/setvar.c' || echo '$(srcdir)/'`src/c/setvar.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-setvar.Tpo $(DEPDIR)/libscitclsci_la-setvar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setvar.c' object='libscitclsci_la-setvar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-setvar.lo `test -f 'src/c/setvar.c' || echo '$(srcdir)/'`src/c/setvar.c
+
+libscitclsci_la-TCL_ArrayDim.lo: src/c/TCL_ArrayDim.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_ArrayDim.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_ArrayDim.Tpo -c -o libscitclsci_la-TCL_ArrayDim.lo `test -f 'src/c/TCL_ArrayDim.c' || echo '$(srcdir)/'`src/c/TCL_ArrayDim.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-TCL_ArrayDim.Tpo $(DEPDIR)/libscitclsci_la-TCL_ArrayDim.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArrayDim.c' object='libscitclsci_la-TCL_ArrayDim.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_ArrayDim.lo `test -f 'src/c/TCL_ArrayDim.c' || echo '$(srcdir)/'`src/c/TCL_ArrayDim.c
+
+libscitclsci_la-TCL_ArrayExist.lo: src/c/TCL_ArrayExist.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_ArrayExist.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_ArrayExist.Tpo -c -o libscitclsci_la-TCL_ArrayExist.lo `test -f 'src/c/TCL_ArrayExist.c' || echo '$(srcdir)/'`src/c/TCL_ArrayExist.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-TCL_ArrayExist.Tpo $(DEPDIR)/libscitclsci_la-TCL_ArrayExist.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArrayExist.c' object='libscitclsci_la-TCL_ArrayExist.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_ArrayExist.lo `test -f 'src/c/TCL_ArrayExist.c' || echo '$(srcdir)/'`src/c/TCL_ArrayExist.c
+
+libscitclsci_la-TCL_ArrayGetVar.lo: src/c/TCL_ArrayGetVar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_ArrayGetVar.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_ArrayGetVar.Tpo -c -o libscitclsci_la-TCL_ArrayGetVar.lo `test -f 'src/c/TCL_ArrayGetVar.c' || echo '$(srcdir)/'`src/c/TCL_ArrayGetVar.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-TCL_ArrayGetVar.Tpo $(DEPDIR)/libscitclsci_la-TCL_ArrayGetVar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArrayGetVar.c' object='libscitclsci_la-TCL_ArrayGetVar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_ArrayGetVar.lo `test -f 'src/c/TCL_ArrayGetVar.c' || echo '$(srcdir)/'`src/c/TCL_ArrayGetVar.c
+
+libscitclsci_la-TCL_ArraySize.lo: src/c/TCL_ArraySize.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_ArraySize.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_ArraySize.Tpo -c -o libscitclsci_la-TCL_ArraySize.lo `test -f 'src/c/TCL_ArraySize.c' || echo '$(srcdir)/'`src/c/TCL_ArraySize.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-TCL_ArraySize.Tpo $(DEPDIR)/libscitclsci_la-TCL_ArraySize.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArraySize.c' object='libscitclsci_la-TCL_ArraySize.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_ArraySize.lo `test -f 'src/c/TCL_ArraySize.c' || echo '$(srcdir)/'`src/c/TCL_ArraySize.c
 
 libscitclsci_la-sci_TCL_CreateSlave.lo: sci_gateway/c/sci_TCL_CreateSlave.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-sci_TCL_CreateSlave.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-sci_TCL_CreateSlave.Tpo -c -o libscitclsci_la-sci_TCL_CreateSlave.lo `test -f 'sci_gateway/c/sci_TCL_CreateSlave.c' || echo '$(srcdir)/'`sci_gateway/c/sci_TCL_CreateSlave.c
