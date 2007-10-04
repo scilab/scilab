@@ -166,8 +166,9 @@ if typeof(o)=="Block" then
 	  needcompile=2
 	end
 	if (size(model.in,'*')<>size(model_n.in,'*'))|..
-	      (size(model.out,'*')<>size(model_n.out,'*')) then  
-	  // number of input or output  changed
+	      (size(model.out,'*')<>size(model_n.out,'*'))|..
+	       (size(model.evtin,'*')<>size(model_n.evtin,'*')) then
+	  // number of input (evt or regular ) or output  changed
 	  needcompile=4
 	end
 	if model.sim=='input'|model.sim=='output' then

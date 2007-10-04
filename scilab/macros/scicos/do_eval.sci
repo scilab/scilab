@@ -49,7 +49,7 @@ for %kk=1:%nx
       context=sblock.props.context
 
       [%scicos_context,ierr]=script2var(context,%scicos_context)
-      
+
       if ierr <>0 then
 	%now_win=xget('window')
         message(['Cannot evaluate a context';lasterror()])
@@ -60,15 +60,28 @@ for %kk=1:%nx
         if ok then
           scs_m.objs(%kk).model.rpar=sblock
         end
-      end        
+      end
     else
       model=o.model
       execstr('o='+o.gui+'(''set'',o)')
       needcompile1=max(needcompile1,needcompile) // for scifunc_block
       model_n=o.model
       if or(model.blocktype<>model_n.blocktype)|.. // type 'c','d','z','l'
-	        or(model.dep_ut<>model_n.dep_ut)|(model.nzcross<>model_n.nzcross)|(model.nmode<>model_n.nmode) then 
-	needcompile1=4
+            or(model.dep_ut<>model_n.dep_ut)|..
+              (model.nzcross<>model_n.nzcross)|..
+              (model.nmode<>model_n.nmode) then
+         needcompile1=4
+      end
+      if (size(model.in,'*')<>size(model_n.in,'*'))|..
+           (size(model.out,'*')<>size(model_n.out,'*'))|..
+            (size(model.evtin,'*')<>size(model_n.evtin,'*')) then
+         // number of input (evt or regular ) or output  changed
+         needcompile1=4
+      end
+      if model.sim=='input'|model.sim=='output' then
+        if model.ipar<>model_n.ipar then
+           needcompile1=4
+        end
       end
       scs_m.objs(%kk)=o
     end
@@ -77,5 +90,3 @@ end
 needcompile=needcompile1
 if needcompile==4 then cpr=list(),end
 endfunction
-
-
