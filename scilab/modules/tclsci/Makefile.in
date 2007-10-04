@@ -387,8 +387,8 @@ top_srcdir = @top_srcdir@
 
 @TCLTK_FALSE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_TRUE@pkglib_LTLIBRARIES = libscitclsci.la
-@TCLTK_FALSE@libscitclsci_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-@TCLTK_TRUE@libscitclsci_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
+@TCLTK_FALSE@libscitclsci_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/
+@TCLTK_TRUE@libscitclsci_la_CFLAGS = -Iincludes/ -Isci_gateway/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH) 
 @TCLTK_TRUE@libscitclsci_la_LDFLAGS = $(TCLTK_LIBS)
 @TCLTK_FALSE@libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES)
 @TCLTK_TRUE@libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)

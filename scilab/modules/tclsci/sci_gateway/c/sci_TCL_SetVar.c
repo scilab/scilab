@@ -5,11 +5,8 @@
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "error_scilab.h"
-/*-----------------------------------------------------------------------------------*/
-int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n);
-int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str);
-int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n);
-int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue);
+#include "sci_TCL_SetVar.h"
+
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 {

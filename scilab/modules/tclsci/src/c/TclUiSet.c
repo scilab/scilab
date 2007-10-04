@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TclUiSet.h"
 #include "error_scilab.h"
+#include "sci_TCL_SetVar.h"
 /*-----------------------------------------------------------------------------------*/
 #define NBRSTYLE 9
 char *UiStyleInternalName[NBRSTYLE] = {"button",
@@ -25,11 +26,7 @@ char *UiStyleExternalName[NBRSTYLE] = {"pushbutton",
                                "listbox",
 				               "popupmenu"};
 /*-----------------------------------------------------------------------------------*/
-int GetStyleInternalName(char *StyleStr);
-int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n);
-int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str);
-int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n);
-int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue);
+static int GetStyleInternalName(char *StyleStr);
 /*-----------------------------------------------------------------------------------*/
 int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValue)
 {
@@ -287,7 +284,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
-int GetStyleInternalName(char *StyleStr)
+static int GetStyleInternalName(char *StyleStr)
 {
 	int IndexInternalName=-1;
 	int i=0;

@@ -41,7 +41,7 @@ sci_gateway/c/sci_TCL_UpVar.c
 
 pkglib_LTLIBRARIES = libscitclsci.la
 
-libscitclsci_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
+libscitclsci_la_CFLAGS=  -Iincludes/ -Isci_gateway/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH) 
 libscitclsci_la_LDFLAGS= $(TCLTK_LIBS)
 
 libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -307,7 +307,7 @@ else
 TCLSCI_C_SOURCES = src/notclsci/notclsci.c
 pkglib_LTLIBRARIES = libscitclsci.la
 
-libscitclsci_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscitclsci_la_CFLAGS=  -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/
 
 libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES)
 
