@@ -353,16 +353,6 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
   return 0;
 }
 
-#define MAX_ENV 256 
-
-void BuildName(char *name, char *str)
-{
-  int  nc= MAX_ENV;
-  GetenvB("SCI",name,nc);
-  strcat(name,"/libs/");
-  strcat(name,str);
-}
-
 void CallDynInterf(int *pos, int num_names, int namepos, char **names,
 		  int *nums, char **files)
 {
