@@ -6,19 +6,21 @@ function check_help(dirs)
 	// Copyright INRIA
 	//
 	// Date : 08/08/2006
+	//
+	// Update by Sylvestre LEDRU <sylvestre.ledru@inria.fr> on the 04/10/2007
 	// 
 	// dirs is a set of directories for which html manuals are to be generated
 	// =========================================================================================
 	
 	
-	// Sauvegarde du chemin courant et de la variable %helps
+	// Save the current path and the variable %helps
 	//------------------------------------------------------------------------------------------
 	
 	current_directory = pwd();
 	
 	[lhs,rhs]=argn(0);
 	
-	// Trop de paramètres
+	// Too many parameters
 	// -----------------------------------------------------------------------------------------
 	
 	if rhs > 1 then
@@ -26,7 +28,7 @@ function check_help(dirs)
 		return;
 	end
 	
-	// Cas par défaut : Vérification de l'aide en ligne de Scilab
+	// Default case : Check of the Scilab Online help
 	// -----------------------------------------------------------------------------------------
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
@@ -39,7 +41,7 @@ function check_help(dirs)
 		clear %HELPS;
 		
 		//----------------------------------------------------------------------------------
-		// Patch because scicos is not written in xml
+		// Special case because scicos is not written in xml
 		//----------------------------------------------------------------------------------
 		scs = grep(dirs_to_build,'scicos');
 		if size(scs,'*') == 1 then dirs_to_build(scs,:)=[]; end
@@ -48,7 +50,7 @@ function check_help(dirs)
 		dirs = dirs_to_build(:,1);
 	end
 	
-	// On transforme le ou les chemins donnés en chemin absolu
+	// Transform the relative path to the absolute one
 	// -----------------------------------------------------------------------------------------
 	
 	for k=1:size(dirs,'*');
@@ -61,36 +63,36 @@ function check_help(dirs)
 		chdir(current_directory);
 	end
 	
-	// Gestion du fichier de log
+	// Management of the log file
 	//------------------------------------------------------------------------------------------
 	logfile = pathconvert(SCIHOME+"/check_help_"+getlanguage()+".log",%f,%f);
 		
 	logfile_id = mopen(logfile,"w");
 	mclose(logfile_id);
 	
-	// Nombre de fichiers ayant une mauvaise syntaxe dans tous les répertoires traités
+	// Number of files with a bad XML syntax in all the processed directories
 	//------------------------------------------------------------------------------------------
 	
 	nb_badfiles = 0;
 	badfiles = [];
 	
-	// Boucle sur les répertoires
+	// Loop on the directory
 	//------------------------------------------------------------------------------------------
 	
 	for k1=1:size(dirs,'*')
 		
-		// Nombre de fichiers ayant une mauvaise syntaxe dans le répertoire traité
+		// Number of files with a bad XML syntax in the current directory
 		//----------------------------------------------------------------------------------
 		nb_badfiles_dir = 0;
 		
-		// Etablissement de la liste des fichiers XML
+		// Creation of the XML list file
 		//----------------------------------------------------------------------------------
 		chdir(dirs(k1));
 		xml = listfiles('*.xml');
 		
 		if xml <> [] then
 		
-			// On vérifie si le répertoire à besoin d'être vérifié
+			// Check if we must verify this directory
 			//--------------------------------------------------------------------------
 			
 			if fileinfo(".last_successful_check") == [] then
@@ -98,7 +100,7 @@ function check_help(dirs)
 			else
 				exec(".last_successful_check",-1);
 				
-				// On détermine le fichier XML le plus récent
+				// Check which file is the more recent
 				//------------------------------------------------------------------
 				
 				max_change_date = 0;
@@ -117,7 +119,7 @@ function check_help(dirs)
 				end
 			end
 			
-			// Boucle sur les fichiers XML
+			// Loop on the XML files
 			//--------------------------------------------------------------------------
 			
 			if need_to_be_checked then
@@ -157,7 +159,7 @@ function check_help(dirs)
 					end
 				end
 				
-				// Création du fichier "directory/.last_successful_check"
+				// Creation of the file "directory/.last_successful_check"
 				//------------------------------------------------------------------
 				
 				if nb_badfiles_dir == 0 then
@@ -190,7 +192,7 @@ function check_help(dirs)
 		end
 	end
 	
-	// On remet l'environement initial
+	// Restore the initial environement 
 	//------------------------------------------------------------------------------------------
 	
 	chdir(current_directory);
