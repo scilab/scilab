@@ -87,7 +87,6 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	      Pinceau = scoGetPointerShortDraw(*pScopeMemory,0,i);
 	      pPOLYLINE_FEATURE(Pinceau)->n1 = 1;
 	      sciSetMarkSize(Pinceau, line_size);
-              sciSetMarkSizeUnit(Pinceau, 1);
 
 	    }
 	}
@@ -107,7 +106,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	  gomme_color = sciGetBackground(scoGetPointerAxes(*pScopeMemory,0));
 	  //sciSetIsBoxed(scoGetPointerAxes(*pScopeMemory,0),FALSE);
 	  /*if mark style*/
-	  if(color[0] < 0)
+	  if(color[0] <= 0)
 	    {
 	      if(firstdraw == 1)
 		{
@@ -131,11 +130,8 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 		  pPOLYLINE_FEATURE(Trait)->n1 = buffer_size-1;
 
 		  sciSetMarkSize(Pinceau, line_size);
-                  sciSetMarkSizeUnit(Pinceau, 1);
 		  sciSetMarkSize(Gomme, line_size);
-	          sciSetMarkSizeUnit(Gomme, 1);
 		  sciSetMarkSize(Trait, line_size);
-	          sciSetMarkSizeUnit(Trait, 1);
 		}
 	    }
 	  /*if line style*/

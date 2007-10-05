@@ -78,11 +78,9 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
           /* Set ShortDraw properties */
 	  sciSetLineWidth(ShortDraw, line_size);
 	  sciSetMarkSize(ShortDraw, line_size);
-	  sciSetMarkSizeUnit(ShortDraw, 1);
           /* Set LongDraw properties */
 	  sciSetLineWidth(LongDraw, line_size);
 	  sciSetMarkSize(LongDraw, line_size);
-	  sciSetMarkSizeUnit(LongDraw, 1);
 	}
       scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
     }

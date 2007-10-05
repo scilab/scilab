@@ -21,7 +21,7 @@ case 'set' then
     [ok,nbr_curves,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=getvalue(..
 	'Set Scope parameters',..
 	['Number of Curves';
-	'color (<0) or mark (>0)';
+	'color (>0) or mark (<0)';
 	'line or mark size';
 	'Output window number (-1 for automatic)';
 	'Output window position';
