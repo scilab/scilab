@@ -256,7 +256,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			}
 		}		
 
+#ifndef _DEBUG
 		if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
+#endif
 
 		CreateScilabConsole(sci_show_banner);
 	
