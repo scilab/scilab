@@ -1581,66 +1581,17 @@ double sciGetFontSize(sciPointObj * pobj)
 /*sciGetFontOrientation
  * gets the Font Orientation
  */
-int
+double
 sciGetFontOrientation (sciPointObj * pobj)
 {
-  int tmp;
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      tmp = (sciGetFontContext(pobj))->textorientation;
-      return tmp;
-      break;
-    case SCI_TITLE:
-      return (sciGetFontContext(pobj))->textorientation;
-      break;
-    case SCI_LEGEND:
-      return (sciGetFontContext(pobj))->textorientation;
-      break;
-    case SCI_AXES:
-      return (sciGetFontContext(pobj))->textorientation;
-      break;
-    case SCI_MENU:
-      return (sciGetFontContext(pobj))->textorientation;
-      break;
-    case SCI_MENUCONTEXT:
-      return (sciGetFontContext(pobj))->textorientation;
-      break;
-    case SCI_STATUSB:
-      return (sciGetFontContext(pobj))->textorientation;
-      break;
-    case SCI_SUBWIN:
-      /* Adding F.Leray 08.04.04 */
-      /* Is text orientation usefull with Axes ??*/
-      return (sciGetFontContext(pobj))->textorientation;
-      break;
-    case SCI_FIGURE:
-      /* Adding F.Leray 08.04.04 */
-      return (sciGetFontContext(pobj))->textorientation;
-      break;
-    case SCI_LABEL:
-      /* Adding F.Leray 28.05.04 */
-      return (sciGetFontContext(pobj))->textorientation;
-      break;
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no textorientation\n");
-      return 0;
-      break;
-    }
+
+  if (sciGetFontContext(pobj) != NULL)
+  {
+    return (sciGetFontContext(pobj))->textorientation;
+  }
+  sciprint ("This object has no textorientation\n");
   return 0;
+
 }
 
 

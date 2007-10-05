@@ -773,6 +773,10 @@
 					RelativePath=".\src\cpp\textDrawing\StandardTextDrawerJoGL.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\TextContentDrawerJoGL.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -1393,6 +1397,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\StandardTextDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\TextContentDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\TextContentDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

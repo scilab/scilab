@@ -38,7 +38,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
   {
     GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4);
     CheckScalar(4,m4,n4);
-    angle = *stk(l4 );
+    angle = DEG2RAD(*stk(l4));
   }
   if (Rhs >= 5)
   { 

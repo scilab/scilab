@@ -373,8 +373,8 @@ typedef struct
   int fonttype; /* scilab font index 0 to 9 */
   /** Gets the width of the character in tenth of point */
   double fontSize;		
-  /** this is coded in tenth of a degree */
-  int textorientation;		
+  /** this is coded in radian*/
+  double textorientation;		
 }/** */
 sciFont;  
 

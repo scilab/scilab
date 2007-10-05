@@ -13,6 +13,6 @@
 /*------------------------------------------------------------------------*/
 int get_font_angle_property( sciPointObj * pobj )
 {
-  return sciReturnInt( sciGetFontOrientation(pobj) / 10 ) ;
+  return sciReturnDouble( RAD2DEG(sciGetFontOrientation(pobj)) ) ;
 }
 /*------------------------------------------------------------------------*/

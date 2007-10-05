@@ -8,13 +8,13 @@
 #ifndef _STANDARD_TEXT_DRAWER_JAVA_MAPPER_HXX_
 #define _STANDARD_TEXT_DRAWER_JAVA_MAPPER_HXX_
 
-#include "DrawableObjectJavaMapper.hxx"
+#include "TextContentDrawerJavaMapper.hxx"
 #include "StandardTextDrawerGL.hxx"
 
 namespace sciGraphics
 {
 
-class StandardTextDrawerJavaMapper : public virtual DrawableObjectJavaMapper
+class StandardTextDrawerJavaMapper : public virtual TextContentDrawerJavaMapper
 {
 
 public:
@@ -36,16 +36,18 @@ public:
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
-  // specific for rectangle text drawer
-  virtual void setTextParameters(int textAlignment, int color, int fontStyle, double fontSize);
-
+  // Inherited from TextContentDrawerJavaMapper
   virtual void setTextContent(const char text[], int nbRow, int nbCol);
-
-  virtual void drawTextContent(double centerX, double centerY, double centerZ);
+  virtual void setCenterPosition(double centerX, double centerY, double centerZ);
+  virtual void drawTextContent(void);
 
   virtual double * getBoundingRectangle(void);
 
   virtual long * getScreenBoundingBox(void);
+  /*----------------------------------------------------------------------*/
+  // specific for rectangle text drawer
+  virtual void setTextParameters(int textAlignment, int color, int fontStyle,
+                                 double fontSize, double rotationAngle);
   /*----------------------------------------------------------------------*/
 
 private:

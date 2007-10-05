@@ -88,8 +88,8 @@ extern int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
 extern int sciInitFontSize(sciPointObj * pobj, double fontSize); /* SET */
 extern int sciSetFontSize (sciPointObj * pobj, double fontSize); /* SET */
 
-extern int sciInitFontOrientation(sciPointObj * pobj, int textorientation); /* SET */
-extern int sciSetFontOrientation (sciPointObj * pobj, int textorientation); /* SET */
+extern int sciInitFontOrientation(sciPointObj * pobj, double textorientation); /* SET */
+extern int sciSetFontOrientation (sciPointObj * pobj, double textorientation); /* SET */
 
 extern int sciSetStrings( sciPointObj * pobj, const StringMatrix * pStrings ) ; /* SET */
 extern int sciSetText (   sciPointObj * pobj, char ** text, int nbRow, int nbCol ) ; /* SET */

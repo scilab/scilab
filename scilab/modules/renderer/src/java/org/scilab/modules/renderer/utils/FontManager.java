@@ -27,9 +27,6 @@ public class FontManager {
 	private static final String SERIF = "Serif";
 	private static final String SANS_SERIF = "SansSerif";
 	
-	// scilab default fonts (taken from doc)
-	//private static final String COURIER_ROMAN = "Courier Roman";
-	
 	private static final Font DEFAULT_FONT = new Font("Default", Font.PLAIN, 1);
 	
 	/** Singleton instance */
@@ -71,10 +68,6 @@ public class FontManager {
 		sciFonts.add(createFont(SANS_SERIF, false, true));
 		sciFonts.add(createFont(SANS_SERIF, true, true));
 		sciFonts.add(createFont(MONOSPACED, true, false));
-		String[] listnames = getAllFontsName();
-		for (int i = 0; i < listnames.length; i++) {
-			System.err.println(listnames[i]);
-		}
 	}
 	
 	/**

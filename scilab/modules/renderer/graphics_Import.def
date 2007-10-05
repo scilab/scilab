@@ -63,3 +63,4 @@ sciGetFontForeground
 sciGetFontContext
 sciGetAlignment
 sciGetFontStyle
+sciGetFontOrientation

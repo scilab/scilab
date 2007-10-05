@@ -1606,91 +1606,32 @@ int sciSetFontSize(sciPointObj * pobj, double fontSize)
  
 }
 
-int sciInitFontOrientation( sciPointObj * pobj, int textorientation )
+int sciInitFontOrientation( sciPointObj * pobj, double textorientation )
 {
-  if (textorientation < 0)
-    {
-      sciprint ("The font angle must be greater than 0\n");
-      return -1;
-    }
-  else
-    {
-      switch (sciGetEntityType (pobj))
-	{
-	case SCI_TEXT:
-	  (sciGetFontContext(pobj))->textorientation = textorientation;
-	  return 0;
-	  break;
-	case SCI_TITLE:
-	  (sciGetFontContext(pobj))->textorientation =	    textorientation;
-	  return 0;
-	  break;
-	case SCI_LEGEND:
-	  (sciGetFontContext(pobj))->textorientation =	    textorientation;
-	  return 0;
-	  break;
-	case SCI_AXES:
-	  (sciGetFontContext(pobj))->textorientation =	    textorientation;
-	  return 0;
-	  break;
-	case SCI_MENU:
-	  (sciGetFontContext(pobj))->textorientation =	    textorientation;
-	  return 0;
-	  break;
-	case SCI_MENUCONTEXT:
-	  (sciGetFontContext(pobj))->textorientation =	    textorientation;
-	  return 0;
-	  break;
-	case SCI_STATUSB:
-	  (sciGetFontContext(pobj))->textorientation =	    textorientation;
-	  break;
-	case SCI_SUBWIN: /* F.Leray 08.04.04*/
-	  /* Is text orientation usefull with Axes ?? */
-	  (sciGetFontContext(pobj))->textorientation = textorientation;
-	  return 0;
-	  break;
-	case SCI_FIGURE: /* F.Leray 08.04.04*/
-	  (sciGetFontContext(pobj))->textorientation = textorientation;
-	  return 0;
-	  break;
-	case SCI_LABEL: /* F.Leray 28.05.04*/
-	  (sciGetFontContext(pobj))->textorientation = textorientation;
-	  return 0;
-	  break;
-	case SCI_ARC:
-	case SCI_SEGS: 
-	case SCI_FEC: 
-	case SCI_GRAYPLOT: 
-	case SCI_POLYLINE:
-	case SCI_RECTANGLE:
-	case SCI_SURFACE:
-	case SCI_LIGHT:
-	case SCI_PANNER:
-	case SCI_SBH:
-	case SCI_SBV:
-	case SCI_AGREG:
-	case SCI_UIMENU:
-	default:
-	  /* pas de context graphics */
-	  sciprint ("This object has no  font width \n");
-	  return -1;
-	  break;
-
-	}
-    }
-  return 0;
+  if (textorientation < 0.0)
+  {
+    sciprint ("The font angle must be greater than 0\n");
+    return -1;
+  }
+  else if (sciGetFontOrientation(pobj) != NULL)
+  {
+    (sciGetFontContext(pobj))->textorientation = textorientation;
+    return 0;
+  }
+  sciprint("This object has no  font width.\n");
+  return -1;
 }
 
 /**sciSetFontOrientation
  * Sets the font Orientation
  */
 int
-sciSetFontOrientation (sciPointObj * pobj, int textorientation)
+sciSetFontOrientation (sciPointObj * pobj, double textorientation)
 {
   
   if ( sciGetFontOrientation( pobj ) == textorientation )
   {
-    /* nothingto do */
+    /* nothing to do */
     return 1 ;
   }
   return sciInitFontOrientation( pobj, textorientation ) ;

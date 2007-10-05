@@ -312,7 +312,7 @@ void Objstring( char            ** fname      ,
   startFigureDataReading(pFigure);
   pobj=sciGetCurrentObj ();
   *hdl= sciGetHandle(pobj);
-  sciSetFontOrientation (pobj, (int) (*angle *  10)); 
+  sciSetFontOrientation (pobj, *angle); 
 
   if ( redraw )
   {

@@ -53,6 +53,18 @@ public class SciTextRenderer extends TextRenderer {
 	}
 	
 	/**
+	 * Static factory
+	 * @param font font to use for the display
+	 * @param color initialize renderer with a certain font
+	 * @return new instance of SciTextRenderer
+	 */
+	static SciTextRenderer create(Font font, double[] color) {
+		SciTextRenderer res = create(font);
+		res.setColor(color[0], color[1], color[2]);
+		return res;
+	}
+	
+	/**
 	 * Display a string at the desired 3D location.
 	 * (x,y,z) is the baseline of the leftmost character.
 	 * @param str string to draw

@@ -824,7 +824,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
       
       ppTitle->ptype = type;
 
-      ppTitle->text.fontcontext.textorientation = 0;
+      ppTitle->text.fontcontext.textorientation = 0.0;
 
       ppTitle->titleplace = SCI_TITLE_IN_TOP;
       ppTitle->isselected = TRUE;
@@ -954,7 +954,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
 
 
 
-      ppLegend->text.fontcontext.textorientation = 0;
+      ppLegend->text.fontcontext.textorientation = 0.0;
       ppLegend->pos.x = 0;
       ppLegend->pos.y = 0;
       ppLegend->width = 0;

@@ -170,6 +170,19 @@ public class TextGrid {
 	}
 	
 	/**
+	 * Get the 4 extrem corners of the TextGrid.
+	 * @return array of size 4 with the positions.
+	 */
+	public Vector3D[] getExtremBounds() {
+		Vector3D[] res = new Vector3D[2 + 2];
+		res[0] = new Vector3D(cellsEdges[0][0]);
+		res[1] = new Vector3D(cellsEdges[nbRow][0]);
+		res[2] = new Vector3D(cellsEdges[nbRow][nbCol]);
+		res[2 + 1] = new Vector3D(cellsEdges[0][nbCol]);
+		return res;
+	}
+	
+	/**
 	 * @return String representation of the object.
 	 */
 	@Override

@@ -23,14 +23,16 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * Abstract class containing for drawing text content of a text object
  * @author Jean-Baptiste Silvy
  */
-public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
+public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implements TextRenderingPipeline {
 
+	private static final int LEFT_ALIGNED_INDEX = 1;
+	private static final int CENTERED_ALIGNED_INDEX = 2;
+	private static final int RIGHT_ALIGNED_INDEX = 3;
 	
 	private StringMatrixGL textMatrix;
 	private TextAlignementStrategy textDrawer;
 	private int fontColorIndex;
 	private Font fontType;
-	private SciTextRenderer renderer;
 	/** Rotation angle in radian */
 	private double rotationAngle;
 	private Vector3D textCenter;
@@ -43,7 +45,6 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 		textDrawer = null;
 		fontColorIndex = 0;
 		fontType = null;
-		renderer = null;
 		rotationAngle = 0.0;
 		textCenter = null;
 	}
@@ -54,13 +55,13 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 	 */
 	public void setTextAlignement(int alignmentIndex) {
 		switch(alignmentIndex) {
-		case 1:
+		case LEFT_ALIGNED_INDEX:
 			textDrawer = new LeftAlignedTextGL();
 			break;
-		case 2:
+		case CENTERED_ALIGNED_INDEX:
 			textDrawer = new CenteredAlignedTextGL();
 			break;
-		case 2 + 1:
+		case RIGHT_ALIGNED_INDEX:
 			textDrawer = new RightAlignedTextGL();
 			break;
 		default:
@@ -100,7 +101,14 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 	}
 	
 	/**
-	 * Specify a new fotn size to draw the fonts.
+	 * @return rotation angle of the text.
+	 */
+	public double getRotationAngle() {
+		return rotationAngle;
+	}
+	
+	/**
+	 * Specify a new font draw the text object.
 	 * @param fontTypeIndex index of the font in the font array.
 	 * @param fontSize font size to use.
 	 */
@@ -119,6 +127,23 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 		setTextAlignement(textAlignement);
 		setFontColor(color);
 		setFont(fontTypeIndex, fontSize);
+	}
+	
+	/**
+	 * Set the position of the text center.
+	 * @param centerX center X coordinate
+	 * @param centerY center Y coordinate
+	 * @param centerZ center Z  coordinate
+	 */
+	public void setTextCenter(double centerX, double centerY, double centerZ) {
+		textCenter = new Vector3D(centerX, centerY, centerZ);
+	}
+	
+	/**
+	 * @return text center.
+	 */
+	public Vector3D getTextCenter() {
+		return textCenter;
 	}
 	
 	/**
@@ -147,13 +172,6 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 	}
 	
 	/**
-	 * @return text drawer used to draw the text.
-	 */
-	protected SciTextRenderer getRenderer() {
-		return renderer;
-	}
-	
-	/**
 	 * Draw a text on the screen.
 	 * @param centerX X coordinate of the center point of the text.
 	 * @param centerY Y coordinate of the center point of the text.
@@ -164,33 +182,26 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
-		textCenter = new Vector3D(centerX, centerY, centerZ);
-		textCenter = transform.getCanvasCoordinates(gl, textCenter);
+		setTextCenter(centerX, centerY, centerZ);
+		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		transform.update(gl);
 		
-		textCenter = transform.retrieveSceneCoordinates(gl, textCenter);
+		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
 //		gl.glPointSize(5.0f);
 //		gl.glColor3d(1.0, 0.0, 0.0);
 //		gl.glBegin(GL.GL_POINTS);
 //		gl.glVertex3d(textCenter.getX(), textCenter.getY(), textCenter.getZ());
 //		gl.glEnd();
 		
-		renderer = SciTextRenderer.create(fontType);
-		double[] color = getFontColor();
-		renderer.setColor(color[0], color[1], color[2]);
-		TextGrid stringPos = getStringsPositions();
-		// move the text base.
-		gl.glTranslated(textCenter.getX(), textCenter.getY(), textCenter.getZ());
-		gl.glRotated(Math.toDegrees(rotationAngle), 0.0, 0.0, 1.0);
-		textDrawer.drawTextContent(renderer, textMatrix,
-								   stringPos);
-		renderer.dispose();
+		// draw the text using the new coordinates
+		drawTextContentPix(textCenterPix);
 		
 		
 		GLTools.endPixelCoordinates(gl);
+		
 	}
 	
 	/**
@@ -198,19 +209,135 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL {
 	 * @return array of size 12 which is the concatenation of the 4 corners
 	 *         where a corner is the array {cornerX, cornerY, cornerZ}.
 	 */
-	public abstract double[] getBoundingRectangle();
+	public double[] getBoundingRectangle() {
+		Vector3D[] resVect = getBoundingRectangle3D();
+		int nbCorner = resVect.length;
+		int nbDim = 2 + 1;
+		double[] res = new double[nbCorner * nbDim];
+		for (int i = 0; i < nbCorner; i++) {
+			res[nbDim * i] = resVect[i].getX();
+			res[nbDim * i + 1] = resVect[i].getY();
+			res[nbDim * i + 2] = resVect[i].getZ();
+		}
+		return res;
+	}
 	
 	/**
 	 * Get the bounding box of the text in pixels on the screen.
 	 * @return array of size 8 which is the concatenation of the 4 corners
 	 *         where a corner is the array {cornerX, cornerY}.
 	 */
-	public abstract int[] getScreenBoundingBox();
+	public int[] getScreenBoundingBox() {
+		Vector3D[] resVect = getBoundingRectangle2D();
+		int nbCorner = resVect.length;
+		int nbDim = 2;
+		int[] res = new int[nbCorner * nbDim];
+		for (int i = 0; i < nbCorner; i++) {
+			res[nbDim * i] = (int) resVect[i].getX();
+			res[nbDim * i + 1] = (int) resVect[i].getY();
+		}
+		return res;
+	}
+	
+	/**
+	 * Get the 4 corners of the text bounding box in user coordinate system.
+	 * @return array of size 4 containing the corners of the bounding rectangle.
+	 */
+	protected Vector3D[] getBoundingRectangle3D() {
+		GL gl = getGL();		
+		Vector3D[] res = getBoundingRectangle2D();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		for (int i = 0; i < res.length; i++) {
+			res[i] = transform.retrieveSceneCoordinates(gl, res[i]);
+		}
+		return res;
+	}
+	
+	/**
+	 * Get the screen position in pixels of the text bounding box.
+	 * @return array of size 4 containing the 4 vertices.
+	 */
+	protected Vector3D[] getBoundingRectangle2D() {
+		GL gl = getGL();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
+		
+		GLTools.usePixelCoordinates(gl);
+		transform.update(gl);
+		
+		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
+		
+		Vector3D[] resPix = getBoundingRectanglePix(textCenterPix);
+		
+		GLTools.endPixelCoordinates(gl);
+		return resPix;
+	}
+	
+	/**
+	 * Compute a matrix with the size of every of its strings/
+	 * @param renderer text renderer to display strings.
+	 * @param inputMatrix matrix of text
+	 * @return the new matrix filled.
+	 */
+	public StringMatrixGL computeStringSizes(SciTextRenderer renderer, StringMatrixGL inputMatrix) {
+		inputMatrix.update(renderer);
+		return inputMatrix;
+	}
+	
+	/**
+	 * Draw the text at the right position.
+	 * @param renderer TextRenderer used to render the text.
+	 * @param text Matrix of the string to display
+	 * @param stringPositions positons of the strings
+	 */
+	public void drawText(SciTextRenderer renderer, StringMatrixGL text, TextGrid stringPositions) {
+		textDrawer.drawTextContent(renderer, text, stringPositions);
+	}
+	
+	/**
+	 * Draw the text using pixel coordinates.
+	 * @param textCenterPix center of text to draw in pixels
+	 */
+	public abstract void drawTextContentPix(Vector3D textCenterPix);
+	
+	/**
+	 * Compute the 4 corners of the bounding rectangle of the text in pixels coordinates.
+	 * @param textCenterPix center of the text in pixel coordinates.
+	 * @return array of size 4 with the four corners.
+	 */
+	public abstract Vector3D[] getBoundingRectanglePix(Vector3D textCenterPix);
 	
 	/**
 	 * Compute the matrix containing the positions of all texts.
+	 * @param text matrix of string with their size to draw
 	 * @return matrix of positions
 	 */
-	protected abstract TextGrid getStringsPositions();
+	public abstract TextGrid getStringsPositions(StringMatrixGL text);
+	
+	/**
+	 * Get the bounding box of the text matrix centerd at the origin.
+	 * @param text matrix of strings with the size of each string already computed.
+	 * @return 4 corners of the bounding box.
+	 */
+	public abstract Vector3D[] getBoundingBox(StringMatrixGL text);
+	
+	/**
+	 * Move the bounding box to the right position.
+	 * @param bbox intial bounding box centered at the origin.
+	 * @param textCenter text center
+	 * @param rotationAngle rotation angle around the text center
+	 * @return new bouding box turned
+	 */
+	public abstract Vector3D[] placeBoundingBox(Vector3D[] bbox, Vector3D textCenter, double rotationAngle);
+	
+	/**
+	 * Put the text grid at the righ tposition
+	 * @param stringPositions Initial position of strings, centered on (0,0).
+	 * @param textCenterPix position of the center in pixel coordinates
+	 * @param rotationAngle angle in radian.
+	 * @return the new text grid ut at the right position.
+	 */
+	public abstract TextGrid placeTextGrid(TextGrid stringPositions, Vector3D textCenterPix, double rotationAngle);
+	
 	
 }

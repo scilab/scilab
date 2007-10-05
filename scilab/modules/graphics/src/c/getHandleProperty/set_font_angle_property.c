@@ -26,7 +26,7 @@ int set_font_angle_property( sciPointObj * pobj, int stackPointer, int valueType
   {
     sciSetAutoRotation( pobj, FALSE ) ;
   }
-  return sciSetFontOrientation( pobj,(int) ( getDoubleFromStack(stackPointer) * 10 ) ) ;
+  return sciSetFontOrientation( pobj, DEG2RAD(getDoubleFromStack(stackPointer))  ) ;
 
 }
 /*------------------------------------------------------------------------*/

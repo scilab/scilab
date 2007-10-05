@@ -57,7 +57,8 @@ void StandardTextDrawerJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
-void StandardTextDrawerJavaMapper::setTextParameters(int textAlignment, int color, int fontStyle, double fontSize)
+void StandardTextDrawerJavaMapper::setTextParameters(int textAlignment, int color, int fontStyle,
+                                                     double fontSize, double rotationAngle)
 {
   m_pJavaObject->setTextParameters(textAlignment, color, fontStyle, fontSize);
 }
@@ -67,9 +68,14 @@ void StandardTextDrawerJavaMapper::setTextContent(const char text[], int nbRow, 
   m_pJavaObject->setTextContent( (char *)text, nbRow, nbCol);
 }
 /*------------------------------------------------------------------------------------------*/
-void StandardTextDrawerJavaMapper::drawTextContent(double centerX, double centerY, double centerZ)
+void StandardTextDrawerJavaMapper::setCenterPosition(double centerX, double centerY, double centerZ)
 {
-  m_pJavaObject->drawTextContent(centerX, centerY, centerZ);
+
+}
+/*------------------------------------------------------------------------------------------*/
+void StandardTextDrawerJavaMapper::drawTextContent(void)
+{
+  m_pJavaObject->drawTextContent(0.0, 0.0, 0.0);
 }
 /*------------------------------------------------------------------------------------------*/
 double * StandardTextDrawerJavaMapper::getBoundingRectangle(void)

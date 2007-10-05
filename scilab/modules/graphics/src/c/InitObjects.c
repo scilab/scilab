@@ -389,7 +389,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->backgroundcolor = 33;
       (sciGetFontContext(pobj))->foregroundcolor = 32;
       (sciGetFontContext(pobj))->fontSize = 1.0;
-      (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->textorientation = 0.0;
       (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
 	  
       if (
