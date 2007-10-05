@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 /*-----------------------------------------------------------------------------------*/
+#include "machine.h"
 #include "gw_io.h"
 #include "MALLOC.h"
 #include "sciprint.h"
@@ -161,7 +162,7 @@ int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
 		char *FileName=NULL;
 		int out_n;
 		long int lin=(long int)strlen(ListFilename[i]);
-		long int lout=(long int)strlen(ListFilename[i])+MAX_PATH;
+		long int lout=(long int)strlen(ListFilename[i])+PATH_MAX;
 
 		FileName=(char*)MALLOC(sizeof(char)*(lout+1));
 		C2F(cluni0)(ListFilename[i], FileName, &out_n,lin,lout);
