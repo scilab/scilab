@@ -67,7 +67,7 @@ void mexPrintf __PARAMS((char *fmt,...));
 /** Put a matrix in Scilab Workspace */ 
 #define mexPutFull(name,m,n,ptrM,tag) \
   if ( ! C2F(cwritemat)(name,(c_local=m,&c_local),(c1_local=n,&c1_local),ptrM,strlen(name))) {	\
-      mexErrMsgTxt("mexPutFull failed\r\n");return; }
+      mexErrMsgTxt("mexPutFull failed\n");return; }
 
 /* prototypes */
 

@@ -120,7 +120,7 @@ int ScilabPsToEps(char orientation,char *filein,char *fileout)
   env = getenv("SCI");
   if (env == NULL) 
     {
-      sciprint("Environment variable SCI must be defined\r\n");
+      sciprint("Environment variable SCI must be defined\n");
       return(1);
     }
   sprintf(entete,"%s/tools/printer/NperiPos.ps",env);
@@ -204,7 +204,7 @@ int ScilabPsToEps(char orientation,char *filein,char *fileout)
   if ( rep >= 1 ) 
     {
       if ( rep == 1) 
-	sciprint("input file doesn't need to be changed to epsf \r\n");
+	sciprint("input file doesn't need to be changed to epsf \n");
       remove(fileout);
       exit(0);
     }
@@ -238,7 +238,7 @@ static void ConvertName(char *filein,char *fileout)
     }
   else 
     sprintf(fileout,"%s.eps",filein);
-  /** sciprint("[%s]=>[%s]\r\n",filein,fileout); **/
+  /** sciprint("[%s]=>[%s]\n",filein,fileout); **/
 }
 
 
@@ -298,7 +298,7 @@ int Sed(int flag, char *file, FILE *fileo, char *strin1, char *strout1,
     }
   else 
     {
-      sciprint("file %s not found \r\n",file);
+      sciprint("file %s not found \n",file);
       return(2);
     }
   return(0);

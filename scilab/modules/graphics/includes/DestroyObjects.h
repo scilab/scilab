@@ -24,7 +24,7 @@
 extern int DestroyAllGraphicsSons (sciPointObj * pthis); /* DESTROY */
 void AllGraphWinDelete( void ) ;
 
-#define SciGerase() { if( C2F(scigerase)() !=0 ) { Scierror(999,"%s :Requested figure cannot be created \r\n",fname) ; return 0 ; } }
+#define SciGerase() { if( C2F(scigerase)() !=0 ) { Scierror(999,"%s :Requested figure cannot be created\n",fname) ; return 0 ; } }
 int C2F(scigerase)( void ) ;
 
 extern int DestroyFigure (sciPointObj * pthis); /* DESTROY */

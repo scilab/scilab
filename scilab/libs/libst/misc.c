@@ -62,7 +62,7 @@ void wlshort(ft_t ft, short unsigned int us)
   putc(us >> 8, ft->fp);
   if (ferror(ft->fp))
   {
-      printf("%s\r\n",writerr);
+      printf("%s\n",writerr);
       ft->ierr=1;
   }
 }
@@ -74,7 +74,7 @@ void wbshort(ft_t ft, short unsigned int us)
   putc(us, ft->fp);
   if (ferror(ft->fp))
     {
-      printf("%s\r\n",writerr);
+      printf("%s\n",writerr);
       ft->ierr=1;
     }
 }
@@ -115,7 +115,7 @@ void wllong(ft_t ft, long unsigned int ul)
   putc(datum, ft->fp);
   if (ferror(ft->fp))
     {
-      printf("%s\r\n",writerr);
+      printf("%s\n",writerr);
       ft->ierr=1;
     }
 }
@@ -135,7 +135,7 @@ void wblong(ft_t ft, long unsigned int ul)
   putc(datum, ft->fp);
   if (ferror(ft->fp))
     {
-      printf("%s\r\n",writerr);
+      printf("%s\n",writerr);
       ft->ierr=1;
     }
 }
@@ -158,7 +158,7 @@ void wshort(ft_t ft, short unsigned int us)
     us = swapw(us);
   if (fwrite(&us, 2, 1, ft->fp) != 1)
     {
-      printf("%s\r\n",writerr);
+      printf("%s\n",writerr);
       ft->ierr=1;
     }
 }
@@ -180,7 +180,7 @@ void wlong(ft_t ft, long unsigned int ul)
     ul = swapl(ul);
   if (fwrite(&ul,sizeof(long), 1, ft->fp) != 1)
     {
-      printf("%s\r\n",writerr);
+      printf("%s\n",writerr);
       ft->ierr=1;
     }
 }
@@ -202,7 +202,7 @@ void wfloat(ft_t ft, float f)
     t = swapf(t);
   if (fwrite(&t, sizeof(float), 1, ft->fp) != 1)
     {
-      printf("%s\r\n",writerr);
+      printf("%s\n",writerr);
       ft->ierr=1;
     }
 }
@@ -224,7 +224,7 @@ void wdouble(ft_t ft, double d)
     d = swapd(d);
   if (fwrite(&d, sizeof(double), 1, ft->fp) != 1)
     {
-      printf("%s\r\n",writerr);
+      printf("%s\n",writerr);
       ft->ierr=1;
     }
 }
