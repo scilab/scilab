@@ -28,7 +28,7 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 	
 	if newest(tstfile,diafile)==2 & force == %f  then return,end
 	
-	mydisp('------------------- File '+tstfile+'--------------------');
+	mydisp('------------------- File '+tstfile+' --------------------');
 	
 	//Reset standard globals
 	rand('seed',0);rand('uniform');
@@ -135,7 +135,7 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 		if MSDOS then
 		mydisp('Test Failed SEE : fc /L /N  '+diafile+' '+diafile+'.ref ');
 		else
-		mydisp('Test Failed SEE : diff -w  '+diafile+' '+diafile+'.ref ');
+		mydisp('Test Failed SEE : diff -wu  '+diafile+' '+diafile+'.ref ');
 		end
 		else
 		mydisp('Test passed');
