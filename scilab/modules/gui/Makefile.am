@@ -47,7 +47,8 @@ sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_hidetoolbar.c \
 sci_gateway/c/sci_toolbar.c 
 
-
+MODULE_CHECKS = unit_tests/addmenu.tst \
+	unit_tests/dialogs.tst
 
 
 #BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h

@@ -50,6 +50,8 @@ sci_gateway/c/sci_pvm_config.c \
 sci_gateway/c/sci_pvm_recv_var.c \
 sci_gateway/c/sci_pvm_exit.c
 
+MODULE_CHECKS = pvm.tst
+
 libscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
 
 pkglib_LTLIBRARIES = libscipvm.la

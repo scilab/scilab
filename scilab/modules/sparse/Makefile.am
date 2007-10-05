@@ -161,6 +161,11 @@ sci_gateway/fortran/sci_lusolve.f \
 sci_gateway/fortran/sci_fadj2sp.f \
 sci_gateway/fortran/sci_sfinit.f
 
+
+MODULE_CHECKS = unit_tests/lsparse.tst \
+unit_tests/sparse.tst
+
+
 libscisparse_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisparse.la

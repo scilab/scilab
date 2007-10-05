@@ -395,6 +395,9 @@ sci_gateway/c/sci_lsq.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
 sci_gateway/fortran/bschur.f
 
+MODULE_CHECKS = unit_tests/algebra.tst \
+unit_tests/norm.tst
+
 libscilinear_algebra_la_CFLAGS = -Iincludes/
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -1049,7 +1052,6 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
@@ -1179,6 +1181,19 @@ uninstall-am: uninstall-libscilinear_algebra_la_etcDATA \
 
 #.java .class .jar
 
+# This target enables tests for Scilab
+check-local: $(top_builddir)/scilab-bin
+	@for check in $(MODULE_CHECKS) ; do \
+		TESTS="$$TESTS'$$check';"; \
+	done; \
+	if test -f build.xml; then \
+		$(ANT) checkstyle; \
+	fi;\
+	if test ! -z "$(MODULE_CHECKS)"; then \
+		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
+		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+	fi
+
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -1197,11 +1212,6 @@ uninstall-am: uninstall-libscilinear_algebra_la_etcDATA \
 @GUI_TRUE@java-clean: 
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@	fi
-
-@GUI_TRUE@check-local:
-@GUI_TRUE@	@if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
 @GUI_TRUE@all-local:  java-build

@@ -45,6 +45,8 @@ sci_gateway/c/sci_set.c \
 sci_gateway/c/sci_TCL_ExistArray.c \
 sci_gateway/c/sci_TCL_UpVar.c
 
+MODULE_CHECKS = unit_tests/TCL_SetGet.tst
+
 pkglib_LTLIBRARIES = libscitclsci.la
 
 libscitclsci_la_CFLAGS=  -Iincludes/ -Isrc/c -Isci_gateway/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH) 

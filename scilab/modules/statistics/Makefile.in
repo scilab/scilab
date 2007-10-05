@@ -386,6 +386,7 @@ sci_gateway/c/sci_cdfbet.c \
 sci_gateway/c/sci_cdfnbn.c \
 sci_gateway/c/sci_cdfnor.c
 
+MODULE_CHECKS = unit_tests/dcd.tst
 libscistatistics_la_CFLAGS = -Iincludes/ -Isrc/c/
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscistatistics.la
@@ -1029,7 +1030,6 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
@@ -1159,6 +1159,19 @@ uninstall-am: uninstall-libscistatistics_la_etcDATA \
 
 #.java .class .jar
 
+# This target enables tests for Scilab
+check-local: $(top_builddir)/scilab-bin
+	@for check in $(MODULE_CHECKS) ; do \
+		TESTS="$$TESTS'$$check';"; \
+	done; \
+	if test -f build.xml; then \
+		$(ANT) checkstyle; \
+	fi;\
+	if test ! -z "$(MODULE_CHECKS)"; then \
+		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
+		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+	fi
+
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -1177,11 +1190,6 @@ uninstall-am: uninstall-libscistatistics_la_etcDATA \
 @GUI_TRUE@java-clean: 
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@	fi
-
-@GUI_TRUE@check-local:
-@GUI_TRUE@	@if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
 @GUI_TRUE@all-local:  java-build

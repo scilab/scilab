@@ -308,6 +308,30 @@ sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f
 
+MODULE_CHECKS = unit_tests/comment.tst \
+	unit_tests/errcatch.tst \
+	unit_tests/scilab.tst \
+	unit_tests/calpol.tst \
+	unit_tests/clause.tst \
+	unit_tests/auto.tst \
+	unit_tests/breakpoints.tst \
+	unit_tests/cmp.tst \
+	unit_tests/comand.tst \
+	unit_tests/display.tst \
+	unit_tests/elem.tst \
+	unit_tests/fptr.tst \
+	unit_tests/function.tst \
+	unit_tests/global.tst \
+	unit_tests/macro.tst \
+	unit_tests/matops.tst \
+	unit_tests/matsys.tst \
+	unit_tests/matelm.tst \
+	unit_tests/opcode.tst \
+	unit_tests/parse.tst \
+	unit_tests/pause.tst \
+	unit_tests/trycatch.tst \
+	unit_tests/resume.tst
+
 libscicore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS) \
 -I$(top_srcdir)/libs/doublylinkedlist/includes
 

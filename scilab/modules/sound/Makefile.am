@@ -13,6 +13,13 @@ sci_gateway/c/gw_sound.c \
 sci_gateway/c/sci_beep.c \
 sci_gateway/c/sci_PlaySound.c
 
+MODULE_CHECKS = unit_tests/analyse.tst \
+unit_tests/beep.tst \
+unit_tests/mapsound.tst \
+unit_tests/playsnd.tst \
+unit_tests/savewave.tst \
+unit_tests/sound.tst \
+unit_tests/wavread.tst
 
 libscisound_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 

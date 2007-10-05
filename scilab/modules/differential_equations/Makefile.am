@@ -127,6 +127,10 @@ sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f
 
+MODULE_CHECKS = unit_tests/feval.tst \
+	unit_tests/dassldasrt.tst \
+	unit_tests/matode.tst \
+	unit_tests/odedc.tst
 
 libscidifferential_equations_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/

@@ -89,6 +89,9 @@ sci_gateway/c/sci_lsq.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
 sci_gateway/fortran/bschur.f
 
+MODULE_CHECKS = unit_tests/algebra.tst \
+unit_tests/norm.tst
+
 libscilinear_algebra_la_CFLAGS=  -Iincludes/
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la

@@ -1431,6 +1431,10 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@sci_gateway/c/sci_addcb.c \
 @GUI_TRUE@sci_gateway/c/sci_fec.c
 
+@GUI_TRUE@MODULE_CHECKS = unit_tests/swap_handles.tst \
+@GUI_TRUE@	unit_tests/readgif.tst \
+@GUI_TRUE@	unit_tests/readxbm.tst
+
 @GUI_TRUE@libscigraphics_la_CXXFLAGS = -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 @GUI_TRUE@libscigraphics_la_LDFLAGS = $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 @GUI_FALSE@libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)
@@ -5043,7 +5047,6 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
@@ -5173,10 +5176,20 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	uninstall-nobase_libscigraphics_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
-
-@GUI_TRUE@tests:: $(JARFILE) $(JAVAFILES)
-@GUI_TRUE@	@(cd tests; make tests)
 #.java .class .jar
+
+# This target enables tests for Scilab
+check-local: $(top_builddir)/scilab-bin
+	@for check in $(MODULE_CHECKS) ; do \
+		TESTS="$$TESTS'$$check';"; \
+	done; \
+	if test -f build.xml; then \
+		$(ANT) checkstyle; \
+	fi;\
+	if test ! -z "$(MODULE_CHECKS)"; then \
+		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
+		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+	fi
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
@@ -5196,11 +5209,6 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 @GUI_TRUE@java-clean: 
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@	fi
-
-@GUI_TRUE@check-local:
-@GUI_TRUE@	@if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
 @GUI_TRUE@all-local:  java-build

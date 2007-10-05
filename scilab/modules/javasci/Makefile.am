@@ -5,31 +5,13 @@
 
 
 
+
 #### Target ######
 modulename=javasci
 
-#### Java sources ####
-#JAVAFILES = src/java/javasci/javasci/Scilab.java \
-#	src/java/javasci/javasci/BadDataArgumentException.java \
-#	src/java/javasci/javasci/SciAbstractArray.java \
-#	src/java/javasci/javasci/SciAbstractDataType.java \
-#	src/java/javasci/javasci/SciDoubleArray.java \
-#	src/java/javasci/javasci/SciBooleanArray.java \
-#	src/java/javasci/javasci/SciDouble.java \
-#	src/java/javasci/javasci/SciBoolean.java \
-#	src/java/javasci/javasci/SciComplexArray.java \
-#	src/java/javasci/javasci/SciStringArray.java \
-#	src/java/javasci/javasci/SciComplex.java \
-#	src/java/javasci/javasci/SciString.java \
-#	src/java/javasci/javasci/ClassPath.java
 
-#### Where are the sources (mandatory) ####
-#CLASSPATH = src/java/javasci/
-
-#### javasci : jar file #### 
-#JARFILE = javasci.jar
-
-#BUILT_SOURCES+=$(JARFILE)
+if JAVASCI
+### All the compilation process of java is deleguated to ant
 
 #### Javasci : sources ####
 JAVASCI_C_SOURCES = src/c/javasci_Scilab2.c \
@@ -74,7 +56,8 @@ includes/javasci_SciAbstractArray.h
 
 USEANT=1
 
-tests:: $(JARFILE) $(JAVAFILES)
-	@(cd tests; make tests)
+
 
 include $(top_srcdir)/Makefile.incl.am
+
+endif

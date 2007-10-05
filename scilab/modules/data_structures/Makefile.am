@@ -41,6 +41,12 @@ sci_gateway/fortran/sci_getfield.f \
 sci_gateway/fortran/sci_lstcat.f \
 sci_gateway/fortran/sci_list.f
 
+MODULE_CHECKS = unit_tests/hypermat.tst \
+	unit_tests/lstcat.tst \
+	unit_tests/lstops.tst \
+	unit_tests/listinsertion.tst \
+	unit_tests/listextraction.tst
+
 libscidata_structures_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 pkglib_LTLIBRARIES = libscidata_structures.la
 
@@ -51,13 +57,6 @@ libscidata_structures_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
-
-
-#SUFFIXES = .sci
-#.sci:
-#	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
-
 
 
 #### Target ######

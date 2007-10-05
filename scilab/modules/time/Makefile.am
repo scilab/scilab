@@ -21,6 +21,8 @@ libscitime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c
 
 pkglib_LTLIBRARIES = libscitime.la
 
+MODULE_CHECKS = unit_tests/date.tst
+
 libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscitime_la_LIBADD = \

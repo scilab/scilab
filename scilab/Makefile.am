@@ -58,8 +58,8 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 
 
 check-local:
-	$(top_builddir)/scilab-bin -nb -l fr -e check_help();exit;
-	$(top_builddir)/scilab-bin -nb -l en -e check_help();exit;
+	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'check_help();exit;'
+	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'check_help();exit;'
 
 distclean-local::
 clean-local:

@@ -6,7 +6,8 @@
 IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
-src/c/getenvc.c 
+src/c/getenvc.c \
+src/c/findprog.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
@@ -66,6 +67,11 @@ sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
+
+MODULE_CHECKS = unit_tests/sprintf.tst \
+	unit_tests/sscanf.tst \
+	unit_tests/saveload.tst
+
 
 # Disable optimisation of the file intmgetl.f
 noinst_LTLIBRARIES = libdummy-io.la

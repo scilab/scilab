@@ -397,6 +397,7 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@sci_gateway/c/sci_pvm_recv_var.c \
 @PVM_TRUE@sci_gateway/c/sci_pvm_exit.c
 
+@PVM_TRUE@MODULE_CHECKS = pvm.tst
 @PVM_TRUE@libscipvm_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
 @PVM_FALSE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@pkglib_LTLIBRARIES = libscipvm.la
@@ -1135,7 +1136,6 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
@@ -1267,6 +1267,19 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 #.java .class .jar
 
+# This target enables tests for Scilab
+@PVM_TRUE@check-local: $(top_builddir)/scilab-bin
+@PVM_TRUE@	@for check in $(MODULE_CHECKS) ; do \
+@PVM_TRUE@		TESTS="$$TESTS'$$check';"; \
+@PVM_TRUE@	done; \
+@PVM_TRUE@	if test -f build.xml; then \
+@PVM_TRUE@		$(ANT) checkstyle; \
+@PVM_TRUE@	fi;\
+@PVM_TRUE@	if test ! -z "$(MODULE_CHECKS)"; then \
+@PVM_TRUE@		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
+@PVM_TRUE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+@PVM_TRUE@	fi
+
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -1285,11 +1298,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_TRUE@java-clean: 
 @GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) clean; \
-@GUI_TRUE@@PVM_TRUE@	fi
-
-@GUI_TRUE@@PVM_TRUE@check-local:
-@GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
-@GUI_TRUE@@PVM_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@@PVM_TRUE@	fi
 
 @GUI_TRUE@@PVM_TRUE@all-local:  java-build
@@ -1441,6 +1449,19 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 #.java .class .jar
 
+# This target enables tests for Scilab
+@PVM_FALSE@check-local: $(top_builddir)/scilab-bin
+@PVM_FALSE@	@for check in $(MODULE_CHECKS) ; do \
+@PVM_FALSE@		TESTS="$$TESTS'$$check';"; \
+@PVM_FALSE@	done; \
+@PVM_FALSE@	if test -f build.xml; then \
+@PVM_FALSE@		$(ANT) checkstyle; \
+@PVM_FALSE@	fi;\
+@PVM_FALSE@	if test ! -z "$(MODULE_CHECKS)"; then \
+@PVM_FALSE@		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
+@PVM_FALSE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+@PVM_FALSE@	fi
+
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -1459,11 +1480,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_FALSE@java-clean: 
 @GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) clean; \
-@GUI_TRUE@@PVM_FALSE@	fi
-
-@GUI_TRUE@@PVM_FALSE@check-local:
-@GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
-@GUI_TRUE@@PVM_FALSE@		$(ANT) checkstyle; \
 @GUI_TRUE@@PVM_FALSE@	fi
 
 @GUI_TRUE@@PVM_FALSE@all-local:  java-build

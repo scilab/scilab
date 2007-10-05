@@ -77,6 +77,12 @@ sci_gateway/c/sci_isdir.c \
 sci_gateway/c/sci_removedir.c \
 sci_gateway/c/sci_createdir.c 
 
+MODULE_CHECKS = unit_tests/fscanfMat.tst \
+unit_tests/msscanf.tst \
+unit_tests/mfprintf.tst \
+unit_tests/mfscanf.tst \
+unit_tests/msprintf.tst
+
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 
 pkglib_LTLIBRARIES = libscifileio.la

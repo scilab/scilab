@@ -1,6 +1,5 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### TEMPLATE MAKEFILE 
 ### INRIA - Scilab 2007
 ##########
 

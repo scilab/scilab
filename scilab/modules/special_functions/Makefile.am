@@ -31,6 +31,8 @@ sci_gateway/fortran/sci_f_oldbesselj.f \
 sci_gateway/fortran/sci_f_oldbesselk.f \
 sci_gateway/fortran/sci_f_calerf.f
 
+MODULE_CHECKS = unit_tests/specfun.tst
+
 libscispecial_functions_la_includedir=$(pkgincludedir)/special_functions
 
 libscispecial_functions_la_include_HEADERS = includes/gw_special_functions1.h \

@@ -104,9 +104,11 @@ sci_gateway/fortran/sci_f_pclean.f \
 sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
-#libscipolynomials_la_FFLAGS= -Iincludes/ 
+MODULE_CHECKS = unit_tests/polelm.tst \
+unit_tests/polops.tst
+
 libscipolynomials_la_CFLAGS= -Iincludes/ 
-#-Isrc/c/
+
 pkglib_LTLIBRARIES = libscipolynomials.la
 
 libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)

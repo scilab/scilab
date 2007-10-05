@@ -396,6 +396,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistArray.c \
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_UpVar.c
 
+@TCLTK_TRUE@MODULE_CHECKS = unit_tests/TCL_SetGet.tst
 @TCLTK_FALSE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_TRUE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_FALSE@libscitclsci_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/
@@ -1356,7 +1357,6 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
@@ -1497,6 +1497,19 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 #.java .class .jar
 
+# This target enables tests for Scilab
+@TCLTK_TRUE@check-local: $(top_builddir)/scilab-bin
+@TCLTK_TRUE@	@for check in $(MODULE_CHECKS) ; do \
+@TCLTK_TRUE@		TESTS="$$TESTS'$$check';"; \
+@TCLTK_TRUE@	done; \
+@TCLTK_TRUE@	if test -f build.xml; then \
+@TCLTK_TRUE@		$(ANT) checkstyle; \
+@TCLTK_TRUE@	fi;\
+@TCLTK_TRUE@	if test ! -z "$(MODULE_CHECKS)"; then \
+@TCLTK_TRUE@		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
+@TCLTK_TRUE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+@TCLTK_TRUE@	fi
+
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -1515,11 +1528,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_TRUE@@TCLTK_TRUE@java-clean: 
 @GUI_TRUE@@TCLTK_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@TCLTK_TRUE@		$(ANT) clean; \
-@GUI_TRUE@@TCLTK_TRUE@	fi
-
-@GUI_TRUE@@TCLTK_TRUE@check-local:
-@GUI_TRUE@@TCLTK_TRUE@	@if test -f build.xml; then \
-@GUI_TRUE@@TCLTK_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@@TCLTK_TRUE@	fi
 
 @GUI_TRUE@@TCLTK_TRUE@all-local:  java-build
@@ -1671,6 +1679,19 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 #.java .class .jar
 
+# This target enables tests for Scilab
+@TCLTK_FALSE@check-local: $(top_builddir)/scilab-bin
+@TCLTK_FALSE@	@for check in $(MODULE_CHECKS) ; do \
+@TCLTK_FALSE@		TESTS="$$TESTS'$$check';"; \
+@TCLTK_FALSE@	done; \
+@TCLTK_FALSE@	if test -f build.xml; then \
+@TCLTK_FALSE@		$(ANT) checkstyle; \
+@TCLTK_FALSE@	fi;\
+@TCLTK_FALSE@	if test ! -z "$(MODULE_CHECKS)"; then \
+@TCLTK_FALSE@		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
+@TCLTK_FALSE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+@TCLTK_FALSE@	fi
+
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -1689,11 +1710,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_TRUE@@TCLTK_FALSE@java-clean: 
 @GUI_TRUE@@TCLTK_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@TCLTK_FALSE@		$(ANT) clean; \
-@GUI_TRUE@@TCLTK_FALSE@	fi
-
-@GUI_TRUE@@TCLTK_FALSE@check-local:
-@GUI_TRUE@@TCLTK_FALSE@	@if test -f build.xml; then \
-@GUI_TRUE@@TCLTK_FALSE@		$(ANT) checkstyle; \
 @GUI_TRUE@@TCLTK_FALSE@	fi
 
 @GUI_TRUE@@TCLTK_FALSE@all-local:  java-build

@@ -421,6 +421,7 @@ sci_gateway/fortran/sci_m6umtree1.f \
 sci_gateway/fortran/sci_m6umtree.f \
 sci_gateway/fortran/sci_m6visitor.f
 
+MODULE_CHECKS = unit_tests/metanet.tst
 libscimetanet_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 pkglib_LTLIBRARIES = libscimetanet.la
 libscimetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -1150,7 +1151,6 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
@@ -1283,6 +1283,19 @@ uninstall-am: uninstall-libscimetanet_la_demosDATA \
 
 #.java .class .jar
 
+# This target enables tests for Scilab
+check-local: $(top_builddir)/scilab-bin
+	@for check in $(MODULE_CHECKS) ; do \
+		TESTS="$$TESTS'$$check';"; \
+	done; \
+	if test -f build.xml; then \
+		$(ANT) checkstyle; \
+	fi;\
+	if test ! -z "$(MODULE_CHECKS)"; then \
+		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
+		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+	fi
+
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -1301,11 +1314,6 @@ uninstall-am: uninstall-libscimetanet_la_demosDATA \
 @GUI_TRUE@java-clean: 
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@	fi
-
-@GUI_TRUE@check-local:
-@GUI_TRUE@	@if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
 @GUI_TRUE@all-local:  java-build

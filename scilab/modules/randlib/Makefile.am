@@ -39,8 +39,11 @@ src/fortran/gennor.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
 sci_gateway/c/sci_grand.c
 
+MODULE_CHECKS = unit_tests/grand.tst \
+unit_tests/grandb.tst
+
 libscirandlib_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+
 pkglib_LTLIBRARIES = libscirandlib.la
 
 libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)

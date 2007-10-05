@@ -212,6 +212,10 @@ sci_gateway/fortran/sci_f_gspec.f \
 sci_gateway/fortran/sci_f_linmeq.f \
 sci_gateway/fortran/sci_f_rankqr.f
 
+MODULE_CHECKS = unit_tests/slicot.tst \
+	unit_tests/arma.tst \
+	unit_tests/odedi.tst
+
 libscicacsd_la_FFLAGS= -Iincludes/ 
 libscicacsd_la_CFLAGS= -Iincludes/ 
 
