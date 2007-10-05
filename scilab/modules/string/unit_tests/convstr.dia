@@ -1,0 +1,33 @@
+ 
+ 
+//convstr
+ 
+if convstr('ABC')<>'abc' then bugmes();quit;end
+ 
+if convstr('ABC','l')<>'abc' then bugmes();quit;end
+ 
+if convstr('ABC','u')<>'ABC' then bugmes();quit;end
+ 
+if convstr(['ABC';'x'])<>['abc';'x'] then bugmes();quit;end
+ 
+if convstr(['ABC';'x'],'l')<>['abc';'x'] then bugmes();quit;end
+ 
+if convstr(['ABC';'x'],'u')<>['ABC';'X'] then bugmes();quit;end
+ 
+if or(convstr(['';''],'u')<>['';'']) then bugmes();quit;end
+ 
+ 
+if convstr('ABC')<>'abc' then bugmes();quit;end
+ 
+if convstr('ABC','l')<>'abc' then bugmes();quit;end
+ 
+if convstr('ABC','u')<>'ABC' then bugmes();quit;end
+ 
+if convstr(['ABC','x'])<>['abc','x'] then bugmes();quit;end
+ 
+if convstr(['ABC','x'],'l')<>['abc','x'] then bugmes();quit;end
+ 
+if convstr(['ABC','x'],'u')<>['ABC','X'] then bugmes();quit;end
+ 
+if convstr(emptystr())<>emptystr() then bugmes();quit;end
+ 

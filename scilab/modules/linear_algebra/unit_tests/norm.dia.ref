@@ -1,0 +1,121 @@
+ 
+// Copyright INRIA
+ 
+eps=100*%eps;
+ 
+// inf
+ 
+if norm([1,2,3,-1,-2,-3],0)<>%inf then bugmes();quit;end
+ 
+if ~isnan(norm([1,2,3,-1,-2,-3],%nan)) then bugmes();quit;end
+ 
+if norm([])<>0 then bugmes();quit;end
+ 
+// vector
+ 
+x=[1,2,3,-4];
+ 
+if abs(norm(x,1) - sum(abs(x))) > eps then bugmes();quit;end
+ 
+if abs(norm(x,2) - sqrt(sum(abs(x).*abs(x)))) > eps then bugmes();quit;end
+ 
+if abs(norm(x,2) - norm(x)) > eps then bugmes();quit;end
+ 
+p=0.5;
+ 
+if abs(norm(x,p) - sum(abs(x)^p)^(1/p)) > eps then bugmes();quit;end
+ 
+p=2.5;
+ 
+if abs(norm(x,p) - sum(abs(x)^p)^(1/p)) > eps then bugmes();quit;end
+ 
+if abs(norm(x,'inf') -maxi(abs(x))) > eps then bugmes();quit;end
+ 
+if abs(norm(x,'inf') -norm(x,%inf)) > eps then bugmes();quit;end
+ 
+if abs(norm(x,'fro') -norm(x,2)) > eps then bugmes();quit;end
+ 
+ 
+// complex
+ 
+x=x+%i*x;
+ 
+if abs(norm(x,1) - sum(abs(x))) > eps then bugmes();quit;end
+ 
+if abs(norm(x,2) - sqrt(sum(abs(x).*abs(x)))) > eps then bugmes();quit;end
+ 
+if abs(norm(x,2) - norm(x)) > eps then bugmes();quit;end
+ 
+p=0.5;
+ 
+// 100*%eps is needed for linux
+ 
+if abs(norm(x,p) - maxi(abs(x))*sum((abs(x)/maxi(abs(x)))^p)^(1/p))> 100*%eps then bugmes();quit;end
+ 
+p=2.5;
+ 
+if abs(norm(x,p) - maxi(abs(x))*sum((abs(x)/maxi(abs(x)))^p)^(1/p))> 100*%eps then bugmes();quit;end
+ 
+if abs(norm(x,'inf') -maxi(abs(x)))> eps then bugmes();quit;end
+ 
+if abs(norm(x,'inf') -norm(x,%inf)) > eps then bugmes();quit;end
+ 
+if abs(norm(x,'fro') -norm(x,2))> eps then bugmes();quit;end
+ 
+ 
+// scalar
+ 
+ 
+x=[1.23];
+ 
+if abs(norm(x,1) - sum(abs(x))) > eps then bugmes();quit;end
+ 
+if abs(norm(x,2) - sqrt(sum(abs(x).*abs(x)))) > eps then bugmes();quit;end
+ 
+if abs(norm(x,2) - norm(x)) > eps then bugmes();quit;end
+ 
+p=0.5;
+ 
+if abs(norm(x,p) - sum(abs(x)^p)^(1/p)) > eps then bugmes();quit;end
+ 
+p=2.5;
+ 
+if abs(norm(x,p) - sum(abs(x)^p)^(1/p)) > eps then bugmes();quit;end
+ 
+if abs(norm(x,'inf') -maxi(abs(x))) > eps then bugmes();quit;end
+ 
+if abs(norm(x,'inf') -norm(x,%inf)) > eps then bugmes();quit;end
+ 
+if abs(norm(x,'fro') -norm(x,2)) > eps then bugmes();quit;end
+ 
+ 
+// Matrices
+ 
+a=rand(10,10,'g');
+ 
+if abs(norm(a,1) - maxi(sum(abs(a),'r'))) > eps then bugmes();quit;end
+ 
+if abs(norm(a,'inf') - maxi(sum(abs(a),'c'))) > eps then bugmes();quit;end
+ 
+if abs(norm(a,%inf) - maxi(sum(abs(a),'c'))) > eps then bugmes();quit;end
+ 
+if abs(norm(a,2) - maxi(svd(a))) > eps then bugmes();quit;end
+ 
+if abs(norm(a,'fro') - norm(matrix(a,1,size(a,'*')),2)) > eps then bugmes();quit;end
+ 
+ 
+a=a+%i*a;
+ 
+if abs(norm(a,1) - maxi(sum(abs(a),'r'))) > eps then bugmes();quit;end
+ 
+if abs(norm(a,'inf') - maxi(sum(abs(a),'c'))) > eps then bugmes();quit;end
+ 
+if abs(norm(a,%inf) - maxi(sum(abs(a),'c'))) > eps then bugmes();quit;end
+ 
+if abs(norm(a,2) - maxi(svd(a))) > eps then bugmes();quit;end
+ 
+if abs(norm(a,'fro') - norm(matrix(a,1,size(a,'*')),2)) > eps then bugmes();quit;end
+ 
+ 
+ 
+ 

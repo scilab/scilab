@@ -1,0 +1,13 @@
+ 
+ 
+ 
+//ascii
+ 
+if or(ascii('abcdefghijklmnopqrstuvwxyz')<>(97:122)) then bugmes();quit;end
+ 
+if or(ascii(97:122)<>'abcdefghijklmnopqrstuvwxyz') then bugmes();quit;end
+ 
+if ascii('')<>[] then bugmes();quit;end
+ 
+if ascii([])<>'' then bugmes();quit;end
+ 
