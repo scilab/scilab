@@ -134,7 +134,7 @@ if test -z "$F77"; then
 fi
 
 if test -z "$F77"; then
-  AC_MSG_ERROR([No fortran compiler. cannot compile scilab without a fortran compiler])
+  AC_MSG_ERROR([No fortran compiler found. Cannot compile scilab without a fortran compiler])
 else
 	case "$F77" in
 	 *90*|*95*|gfortran|fort|ifort|ifc|efc|ftn|pghpf)
@@ -172,7 +172,7 @@ fi
 
 ### C++ ###
 AC_PROG_CXX
-
+echo "CXX " $CXX
 if test -z "$CXX"; then
   AC_MSG_ERROR([No C++ Compiler found. Cannot compile Scilab without a C++ compiler])
 fi
@@ -233,7 +233,8 @@ FILES_TO_CLEAN='*.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS ma
 ## Find the X11 include and library directories.
 #############################################
 
-
+## 
+## @TODO : should be removed
 AC_PATH_XTRA
 
 if test "$no_x" = 'yes'; then
@@ -315,8 +316,6 @@ if test -n "$F77"; then
 	 ;;
 	  esac
 #	   FFLAGS_O0=`echo $FFLAGS | sed 's/-O[0-9]*//g'`
-else
-	AC_MSG_ERROR([No fortran compiler found])
 fi
 
 #########################
@@ -344,6 +343,11 @@ AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 ############
 ## C++
 ############
+
+
+if test -z "$CXX"; then
+  AC_MSG_ERROR([No C++ compiler found. Cannot compile scilab without a C++ compiler])
+fi
 
 if test "$CXX" = "g++"; then
    ## With GNU C++ Compiler
@@ -542,13 +546,15 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 		JAVA_CLASSPATH=$ac_java_classpath
 		AC_JAVA_TOOLS
 		AC_JAVA_ANT
-		AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
-		AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.GL],[Scilab 3D rendering])
-		AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
-		AC_JAVA_CHECK_PACKAGE([JRosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
-		AC_JAVA_CHECK_PACKAGE([JRosetta-1.0],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
-		AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
-		AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...])
+		if test "$with_gui" != no; then
+				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
+				AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.GL],[Scilab 3D rendering])
+				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
+				AC_JAVA_CHECK_PACKAGE([JRosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+				AC_JAVA_CHECK_PACKAGE([JRosetta-1.0],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
+				AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
+				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...])
+		fi
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
 		if test "$ac_java_jvm_name" != ""; then
