@@ -769,6 +769,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\..\..\..\bin\libf2c.lib"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
