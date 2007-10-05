@@ -21,6 +21,7 @@
       <param type="int" name="color" />
       <param type="int" name="fontStyle" />
       <param type="double" name="fontSize" />
+      <param type="double" name="rotationAngle" />
     </method>
     <method name="setTextContent" returnType="void">
       <param type="String" name="text" />
@@ -31,6 +32,13 @@
       <param type="double" name="centerX" />
       <param type="double" name="centerY" />
       <param type="double" name="centerZ" />
+    </method>
+    <method name="setCenterPosition" returnType="void">
+      <param type="double" name="centerX" />
+      <param type="double" name="centerY" />
+      <param type="double" name="centerZ" />
+    </method>
+    <method name="drawTextContent" returnType="void">
     </method>
     <method name="getBoundingRectangle" returnType="double[]">
     </method>

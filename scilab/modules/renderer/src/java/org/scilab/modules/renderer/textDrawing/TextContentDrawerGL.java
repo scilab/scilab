@@ -123,10 +123,12 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 * @param fontTypeIndex index of the font in the font array.
 	 * @param fontSize font size to use.
 	 */
-	public void setTextParameters(int textAlignement, int color, int fontTypeIndex, double fontSize) {
+	public void setTextParameters(int textAlignement, int color, int fontTypeIndex,
+                                      double fontSize, double rotationAngle) {
 		setTextAlignement(textAlignement);
 		setFontColor(color);
 		setFont(fontTypeIndex, fontSize);
+                setRotationAngle(rotationAngle);
 	}
 	
 	/**
@@ -135,7 +137,7 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 * @param centerY center Y coordinate
 	 * @param centerZ center Z  coordinate
 	 */
-	public void setTextCenter(double centerX, double centerY, double centerZ) {
+	public void setCenterPosition(double centerX, double centerY, double centerZ) {
 		textCenter = new Vector3D(centerX, centerY, centerZ);
 	}
 	
@@ -177,12 +179,11 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 * @param centerY Y coordinate of the center point of the text.
 	 * @param centerZ Z coordinate of the center point of the text.
 	 */
-	public void drawTextContent(double centerX, double centerY, double centerZ) {
+	public void drawTextContent() {
 		
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
-		setTextCenter(centerX, centerY, centerZ);
 		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		
 		// switch to pixel coordinates

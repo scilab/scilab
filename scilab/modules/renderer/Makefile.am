@@ -137,7 +137,8 @@ src/jni/DrawableTextGL.cpp \
 src/cpp/textDrawing/ConcreteDrawableText.cpp \
 src/cpp/textDrawing/StandardTextDrawerJavaMapper.cpp \
 src/cpp/textDrawing/StandardTextDrawerJoGL.cpp \
-src/jni/StandardTextDrawerGL.cpp
+src/jni/StandardTextDrawerGL.cpp \
+src/cpp/textDrawing/TextContentDrawerJoGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c

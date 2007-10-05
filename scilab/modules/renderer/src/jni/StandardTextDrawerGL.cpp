@@ -109,9 +109,11 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoubleID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
 voidsetTextContentjstringjintjintID=NULL; 
 voiddrawTextContentjdoublejdoublejdoubleID=NULL; 
+voidsetCenterPositionjdoublejdoublejdoubleID=NULL; 
+voiddrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
 
@@ -141,9 +143,11 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoubleID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
 voidsetTextContentjstringjintjintID=NULL; 
 voiddrawTextContentjdoublejdoublejdoubleID=NULL; 
+voidsetCenterPositionjdoublejdoublejdoubleID=NULL; 
+voiddrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
 
@@ -296,19 +300,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void StandardTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize){
+void StandardTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidsetTextParametersjintjintjintjdoubleID == NULL)
+if (this->voidsetTextParametersjintjintjintjdoublejdoubleID == NULL)
 {
-this->voidsetTextParametersjintjintjintjdoubleID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIID)V" ) ;
-if (this->voidsetTextParametersjintjintjintjdoubleID == NULL) {
+this->voidsetTextParametersjintjintjintjdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIIDD)V" ) ;
+if (this->voidsetTextParametersjintjintjintjdoublejdoubleID == NULL) {
 std::cerr << "Could not access to the method " << "setTextParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoubleID ,textAlignment, color, fontStyle, fontSize);
+  curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoubleID ,textAlignment, color, fontStyle, fontSize, rotationAngle);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -353,6 +357,48 @@ exit(EXIT_FAILURE);
 }
 }
   curEnv->CallVoidMethod( this->instance, voiddrawTextContentjdoublejdoublejdoubleID ,centerX, centerY, centerZ);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::setCenterPosition (double centerX, double centerY, double centerZ){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidsetCenterPositionjdoublejdoublejdoubleID == NULL)
+{
+this->voidsetCenterPositionjdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setCenterPosition", "(DDD)V" ) ;
+if (this->voidsetCenterPositionjdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "setCenterPosition" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidsetCenterPositionjdoublejdoublejdoubleID ,centerX, centerY, centerZ);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void StandardTextDrawerGL::drawTextContent (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voiddrawTextContentID == NULL)
+{
+this->voiddrawTextContentID = curEnv->GetMethodID(this->instanceClass, "drawTextContent", "()V" ) ;
+if (this->voiddrawTextContentID == NULL) {
+std::cerr << "Could not access to the method " << "drawTextContent" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voiddrawTextContentID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
