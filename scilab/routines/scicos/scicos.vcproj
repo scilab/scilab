@@ -1465,6 +1465,9 @@ cd .. &gt;nul
 				RelativePath=".\scicosclip.c">
 			</File>
 			<File
+				RelativePath=".\scicosexit.c">
+			</File>
+			<File
 				RelativePath=".\scoGetProperty.c">
 			</File>
 			<File

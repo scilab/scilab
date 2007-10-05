@@ -100,6 +100,7 @@ int get_phase_simulation();
 double get_scicos_time();
 int get_block_number();
 void set_block_error(int);
+void end_scicos_sim();
 void set_pointer_xproperty(int* pointer);
 void * scicos_malloc(size_t);
 void scicos_free(void *p);

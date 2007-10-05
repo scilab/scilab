@@ -97,7 +97,7 @@ function [routines,IntFunc]=create_palette(Path)
 	      'BACKLASH.sci';'DEADBAND.sci';'EXPRESSION.sci';
 	      'CONSTRAINT_f.sci';'HYSTHERESIS.sci';'DEBUG_SCICOS.sci';
 	      'LOGICAL_OP.sci';'RELATIONALOP.sci';'generic_block3.sci';
-	      'MBLOCK.sci';'PDE.sci']
+	      'MBLOCK.sci';'PDE.sci';'ENDBLK.sci']
 	
       elseif txt=='Linear' then
 	lisf=['DLR.sci';'TCLSS.sci';'DOLLAR_m.sci';

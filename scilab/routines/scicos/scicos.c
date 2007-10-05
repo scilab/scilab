@@ -4648,7 +4648,6 @@ int get_phase_simulation()
 }
 
 
-
 void do_cold_restart()
 
 {
@@ -4674,6 +4673,12 @@ void set_block_error(int err)
   return;
 }
 
+void end_scicos_sim()
+
+{
+   *t0=*tf;
+   return;
+}
 
 void set_pointer_xproperty(int* pointer)
 {

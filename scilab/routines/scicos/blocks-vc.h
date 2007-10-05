@@ -356,6 +356,7 @@ extern void tows_c __PARAMS((ARGS_scicos));
 extern void rndblkz_m __PARAMS((ARGS_scicos));
 extern void fromws_c __PARAMS((ARGS_scicos));
 extern void mathermit_m __PARAMS((ARGS_scicos));
+extern void scicosexit __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -642,6 +643,7 @@ OpTab tabsim[] ={
 {"satur",(ScicosF) satur},
 {"sawtth",(ScicosF) F2C(sawtth)},
 {"scalar2vector",(ScicosF) scalar2vector},
+{"scicosexit",(ScicosF) scicosexit},
 {"selblk",(ScicosF) F2C(selblk)},
 {"selector_m",(ScicosF) selector_m},
 {"selector",(ScicosF) selector},
@@ -714,6 +716,6 @@ OpTab tabsim[] ={
 {"zcross",(ScicosF) F2C(zcross)},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 354 ;
+int ntabsim= 355 ;
 #endif 
 /***********************************/
