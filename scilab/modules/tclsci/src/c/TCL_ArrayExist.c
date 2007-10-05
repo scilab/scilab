@@ -7,9 +7,9 @@
 /*-----------------------------------------------------------------------------------*/
 #define TCL_VAR_NAME_TMP "TclScilabTmpVar"
 /*-----------------------------------------------------------------------------------*/
-int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName)
+BOOL TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName)
 {
-	int bExist=FALSE;
+	BOOL bExist = FALSE;
 
 	if (strcmp(VarName,TCL_VAR_NAME_TMP))
 	{
@@ -21,14 +21,15 @@ int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName)
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
 			error_scilab(999,"Tcl Error : %s",TCLinterpreter->result);
-			return 0;
+			return FALSE;
 		}
 
 		StrArrayExist = (char *) Tcl_GetVar(TCLinterpreter, TCL_VAR_NAME_TMP,TCL_GLOBAL_ONLY);
 
 		if (StrArrayExist)
 		{
-			bExist=(int)atoi(StrArrayExist);
+			int r  = (int)atoi(StrArrayExist);
+			if (r) bExist = TRUE;
 			Tcl_UnsetVar(TCLinterpreter,TCL_VAR_NAME_TMP, TCL_GLOBAL_ONLY);
 		}
 	}

@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
+/* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #ifndef __SETVAR_H__
 #define __SETVAR_H__
@@ -8,48 +9,44 @@
 #include "TCL_Global.h"
 
 /**
-* @TODO: add comment
-*
-* @param TCLinterpreter    
-* @param VarName   
-* @param Str   
-* @param m 
-* @param n 
-* @return <ReturnValue>
+* Set variable "strings array" in TCL
+* @param TCLinterpreter TCL interpreter   
+* @param VarName   TCL Variable name
+* @param Str   values (string)
+* @param m  row
+* @param n  col
+* @return TRUE or FALSE
 */
-int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n);
+BOOL SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n);
 
 /**
-* @TODO: add comment
-*
-* @param TCLinterpreter    
-* @param VarName   
-* @param Str   
-* @return <ReturnValue>
+* Set a variable in TCL
+* @param TCLinterpreter TCL interpreter
+* @param VarName  TCL variable name
+* @param Str  value 
+* @return TRUE or FALSE
 */
-int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str);
+BOOL SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str);
 
 /**
-* @TODO: add comment
-*
-* @param TCLinterpreter    
-* @param VarName   
-* @param ptrValues 
-* @param m 
-* @param n 
-* @return <ReturnValue>
+* Set a "matrix" in TCL
+* @param TCLinterpreter  TCL interpreter  
+* @param VarName TCL variable name  
+* @param ptrValues Scilab ptr on stack stk(ptrValues)
+* @param m row
+* @param n col
+* @return TRUE or FALSE
 */
-int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n);
+BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n);
 
 /**
-* @TODO: add comment
-*
-* @param TCLinterpreter    
-* @param VarName   
-* @param VarValue  
-* @return <ReturnValue>
+* Set a scalar in TCL
+* @param TCLinterpreter   TCL interpreter    
+* @param VarName  TCL variable name 
+* @param VarValue value
+* @return TRUE or FALSE
 */
-int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue);
+BOOL SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue);
 
 #endif /* __SETVAR_H__ */
 /*-----------------------------------------------------------------------------------*/

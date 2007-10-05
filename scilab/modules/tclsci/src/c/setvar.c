@@ -6,9 +6,9 @@
 #include "error_scilab.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
-int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n)
+BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n)
 {
-	int bOK=TRUE;
+	BOOL bOK = TRUE;
 	int i=0,j=0;
 	int k=0;
 
@@ -39,18 +39,18 @@ int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,in
 			if ( (bOKsprintf1 == -1) || (bOKsprintf2 == -1) )
 			{
 				error_scilab(999,"Variable too long.");
-				return 0;
+				return FALSE;
 			}
 
 			if (TCLinterpreter == NULL)
 			{
 				error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
-				return 0;
+				return FALSE;
 			}
 
 			if (!Tcl_SetVar(TCLinterpreter,VarNameWithIndice,VarValueWithIndice,0))
 			{
-				bOK=(int)(FALSE);
+				bOK = FALSE ;
 			}
 		}
 	}
@@ -58,9 +58,9 @@ int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,in
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
-int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
+BOOL SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 {
-	int bOK=FALSE;
+	BOOL bOK = FALSE;
 
 	/* just a scalar */
 	char buffer[2048];
@@ -70,7 +70,7 @@ int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 	if (TCLinterpreter == NULL)
 	{
 		error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
-		return 0;
+		return FALSE;
 	}
 
 	/* Efface valeur precedente */
@@ -78,27 +78,27 @@ int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 
 	if (!Tcl_SetVar(TCLinterpreter,VarName,buffer,TCL_GLOBAL_ONLY))
 	{
-		bOK=(int)(FALSE);
+		bOK = FALSE ;
 	}
 	else
 	{
-		bOK=(int)(TRUE);
+		bOK = TRUE;
 	}
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
-int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n)
+BOOL SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n)
 {
-	int bOK=FALSE;
+	BOOL bOK = FALSE;
 
 	int i=0,j=0;
 	int l=0;
-	int TestOnAllTcl_SetVar=TRUE;
+	BOOL TestOnAllTcl_SetVar = TRUE;
 
 	if (TCLinterpreter == NULL)
 	{
 		error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
-		return 0;
+		return FALSE;
 	}
 
 	for (j=1;j<n+1;j++)
@@ -113,34 +113,33 @@ int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int 
 			}
 			else
 			{
-				TestOnAllTcl_SetVar=FALSE;
+				TestOnAllTcl_SetVar = FALSE;
 			}
 		}
 	}
-	bOK=(int)(TestOnAllTcl_SetVar);
+	bOK = TestOnAllTcl_SetVar;
 
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
-int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str)
+BOOL SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str)
 {
-	int bOK=FALSE;
+	BOOL bOK = FALSE;
 
 	if (TCLinterpreter == NULL)
 	{
 		error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
-		return 0;
+		return FALSE;
 	}
 
 	if ( !Tcl_SetVar(TCLinterpreter, VarName, Str[0], TCL_GLOBAL_ONLY) )
 	{
-		bOK=(int)(FALSE);
+		bOK = FALSE;
 	}
 	else
 	{
-		bOK=(int)(TRUE);
+		bOK = TRUE;
 	}
-
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/

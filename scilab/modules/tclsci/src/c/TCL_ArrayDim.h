@@ -13,9 +13,9 @@
 * @param[in] VarName : TCL variable name
 * @param[out] m size row 
 * @param[out] n size col
-* @return 0 or 1 (OK)
+* @return FALSE or TRUE (OK)
 */
-int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n);
+BOOL TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n);
 
 #endif /* __TCL_ARRAYDIM_H__ */
 /*-----------------------------------------------------------------------------------*/

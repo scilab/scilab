@@ -10,9 +10,9 @@
 #define CHAR_BLANK ' '
 #define CHAR_PERIOD ','
 /*-----------------------------------------------------------------------------------*/
-int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
+BOOL TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 {
-	int Bok=FALSE;
+	BOOL Bok = FALSE;
 	*m=0;
 	*n=0;
 	if (strcmp(VarName,TCL_SCILAB_VARIABLE_TMP))
@@ -32,7 +32,7 @@ int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 
 		if (StrArrayDims)
 		{
-			char *token=NULL;
+			char *token = NULL;
 			char StrDimensions[256];
 			int DimX;
 			int DimY;
@@ -57,7 +57,7 @@ int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 				*m=DimY;
 			}
 			Tcl_UnsetVar(TCLinterpreter, TCL_SCILAB_VARIABLE_TMP, TCL_GLOBAL_ONLY);
-			Bok=TRUE;
+			Bok = TRUE;
 		}
 	}
 	return Bok;
