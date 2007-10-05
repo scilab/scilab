@@ -655,7 +655,7 @@ void WriteFortranCall(FILE *f)
 	{
 	  AddDeclare(DEC_INT,"err=0");
 	  Fprintf(f,indent++,"if (err >  0) {\n");  
-	  Fprintf(f,indent,"Scierror(999,\"%%s: Internal Error \\r\\n\",fname);\n");
+	  Fprintf(f,indent,"Scierror(999,\"%%s: Internal Error \\n\",fname);\n");
 	  Fprintf(f,indent,"return 0;\n");
 	  Fprintf(f,--indent,"};\n");
 	  break;

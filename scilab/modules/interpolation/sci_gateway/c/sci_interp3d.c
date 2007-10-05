@@ -105,7 +105,7 @@ int intinterp3d(char *fname,unsigned long fname_len)
       outmode =  get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
       if ( outmode == UNDEFINED || outmode == LINEAR || outmode == NATURAL )
 	{
-	  Scierror(999,"%s: unsupported outmode type\n\r",fname);
+	  Scierror(999,"%s: unsupported outmode type\n",fname);
 	  return 0;
 	};
     }

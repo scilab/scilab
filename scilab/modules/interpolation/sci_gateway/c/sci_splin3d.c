@@ -53,7 +53,7 @@ int intsplin3d(char * fname,unsigned long fname_len)
     }
   if ( V.dims[0] != nx  ||  V.dims[1] != ny  ||  V.dims[2] != nz  )
     { 
-      Scierror(999,"%s: size incompatibility between grid points and grid values\n\r", fname);
+      Scierror(999,"%s: size incompatibility between grid points and grid values\n", fname);
       return 0;
     }
 
@@ -68,7 +68,7 @@ int intsplin3d(char * fname,unsigned long fname_len)
       kx = (int)*stk(lo); ky = (int)*stk(lo+1); kz = (int)*stk(lo+2);
       if ( kx < 2  ||  kx >= nx  ||  ky < 2  ||  ky >= ny  ||  kz < 2  ||  kz >= nz )
 	{ 
-	  Scierror(999,"%s: bad 5 th arg [kx ky kz]\n\r", fname);
+	  Scierror(999,"%s: bad 5 th arg [kx ky kz]\n", fname);
 	  return 0;
 	}
     }

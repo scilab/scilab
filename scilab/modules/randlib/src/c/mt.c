@@ -140,7 +140,7 @@ int set_state_mt_simple(double s)
     }
   else
     {
-      sciprint("\n\r bad seed for mt, must be an integer in [0, 2^32-1] \n\r");
+      sciprint("\n bad seed for mt, must be an integer in [0, 2^32-1] \n");
       return ( 0 );
     }
 }
@@ -167,7 +167,7 @@ int set_state_mt(double seed_array[])
     mti_try = (int) seed_array[0];
     if (mti_try < 1  ||  mti_try > 624)
       {
-	sciprint("\n\r the first component of the mt state mt, must be an integer in [1, 624] \n\r");
+	sciprint("\n the first component of the mt state mt, must be an integer in [1, 624] \n");
 	return ( 0 );
       }
     is_init = 1;

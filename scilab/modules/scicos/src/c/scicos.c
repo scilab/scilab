@@ -3514,7 +3514,7 @@ int C2F(Jacobian)(t,xc, xcdot,residual,cj,rpar1,ipar1)
   /*----------------------------------------------*/
   job=1;/* read jacobian through flag=10; */
   Jdoit(&Fx[-m], xc, xcdot,t,&job);/* Filling up the FX:Fu:Gx:Gu*/
-  if (*block_error!=0) sciprint("\n\r error in Jacobian");
+  if (*block_error!=0) sciprint("\n error in Jacobian");
   /*-------------------------------------------------*/
   Multp(Fu,Ku,RX,nx,ni,ni,no);Multp(RX,Gx,FuKuGx,nx,no,no,nx);
   for (i=0;i<nx;i++)
@@ -3551,7 +3551,7 @@ void Multp(A,B,R,ra ,ca, rb,cb)
      int ra,rb,ca,cb;
 {
   int i,j,k;
-  if (ca!=rb) sciprint("\n\r Error in matrix multiplication");
+  if (ca!=rb) sciprint("\n Error in matrix multiplication");
   for (i = 0; i<ra; i++)
     for (j = 0; j<cb; j++){
       R[i+ra*j]=0.0;
@@ -3566,7 +3566,7 @@ void Multp(A,B,R,ra ,ca, rb,cb)
      int ra,ca,*name;
 {
   int i,j;
-  sciprint("\n\r");
+  sciprint("\n");
   for (i=0;i<ca;i++)
     for (j=0;j<ra;j++){
       if (A[j+i*ra]!=0) 

@@ -2480,7 +2480,7 @@ int C2F(createptr)(char *type, int *m, int *n, int *it, int *lr, int *ptr, long 
   static int lc, lw;
   Nbvars++;
   lw = Nbvars;
-  /* sciprint("createptr XXXX  %d\n\r",lw); */
+  /* sciprint("createptr XXXX  %d\n",lw); */
   if (! C2F(createcvar)(&lw, type, it, m, n, lr, &lc, 1L)) {
     return 0;
   }
@@ -2670,7 +2670,7 @@ void  C2F(mexprintf)(char *error_msg, int len)
   }
   buf[len]='\0';
   strncpy(buf, error_msg, (size_t)len);
-  sciprint("%s\n\r",buf);
+  sciprint("%s\n",buf);
   FREE(buf);
 }
 

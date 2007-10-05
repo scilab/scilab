@@ -134,7 +134,7 @@ int ScilabPsToEps(char orientation,char *filein,char *fileout)
   
   if ( (fo = fopen(fileout,"w"))== 0 ) 
     {
-      sciprint(" Can't open file %s\r\n",fileout);
+      sciprint(" Can't open file %s\n",fileout);
       exit(1);
     }
   /* see if the postscript file was generated with non standard sizes */

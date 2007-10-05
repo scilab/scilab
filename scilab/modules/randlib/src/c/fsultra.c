@@ -162,7 +162,7 @@ int set_state_fsultra_simple(double s1, double s2)
     }
   else
     {
-      sciprint("\n\r bad seed for fsultra, must be integers in [0, 2^32-1] \n\r");
+      sciprint("\n bad seed for fsultra, must be integers in [0, 2^32-1] \n");
       return 0;
     }
 }
@@ -175,7 +175,7 @@ int set_state_fsultra(double *s)
   try = s[0];
   if ( floor(try) != try || try < 0.0  ||  try > (double) N)
     {
-      sciprint("\n\r the first component of the fsultra state, must be an integer in [0, %d] \n\r",N);
+      sciprint("\n the first component of the fsultra state, must be an integer in [0, %d] \n",N);
       return 0;
     }
   swb_index = (int) try;
@@ -183,7 +183,7 @@ int set_state_fsultra(double *s)
   try = s[1];
   if ( try != 0.0  &&  try != 1.0)
     {
-      sciprint("\n\r the second component of the fsultra state, must be 0 or 1 \n\r");
+      sciprint("\n the second component of the fsultra state, must be 0 or 1 \n");
       return 0;
     }
   swb_flag = (int) try;
@@ -191,7 +191,7 @@ int set_state_fsultra(double *s)
   try = s[2];
   if ( floor(try) != try  ||  try <= 0 ||  try > 4294967295.0 )
     {
-      sciprint("\n\r the third component of the fsultra state, must be an integer in [1, 2^32-1] \n\r");
+      sciprint("\n the third component of the fsultra state, must be an integer in [1, 2^32-1] \n");
       return 0;
     }
   cong_state = (unsigned long) try;

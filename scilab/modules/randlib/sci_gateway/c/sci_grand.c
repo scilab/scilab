@@ -132,7 +132,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{
 	  if ( Rhs != 1  ||  Lhs != 1) 
 	    {
-	      Scierror(999,"Lhs and Rhs should be 1 for 'getsd' option\n\r");
+	      Scierror(999,"Lhs and Rhs should be 1 for 'getsd' option\n");
 	      return 0;
 	    }
 	      switch(current_gen)
@@ -169,10 +169,10 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	  else if ( strcmp(cstk(ls),"setall")==0 ) 
 	    {
 	      if ( current_gen != CLCG4 )
-		sciprint("the setall option affect only the clcg4 generator !\n\r");
+		sciprint("the setall option affect only the clcg4 generator !\n");
 	      if ( Rhs != 5 ) 
 		{
-		  Scierror(999,"Rhs should be 5 for 'setall'  option\n\r");
+		  Scierror(999,"Rhs should be 5 for 'setall'  option\n");
 		  return 0;
 		}
 	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -203,7 +203,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    case(MT) :
 	      if ( Rhs != 2 ) 
 		{
-		  Scierror(999,"Rhs should be 2 for 'setsd' option with the mt generator\n\r");
+		  Scierror(999,"Rhs should be 2 for 'setsd' option with the mt generator\n");
 		  return 0;
 		}
 	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -213,7 +213,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		{ if (! set_state_mt(stk(l1))) {Error(999); return(0);}; }
 	      else
 		{
-		  Scierror(999,"for mt you must init the state with a vector of 1 or 625 values !\n\r");
+		  Scierror(999,"for mt you must init the state with a vector of 1 or 625 values !\n");
 		  return 0;
 		};
 	      break;
@@ -224,7 +224,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 		  if ( m1 != 40  ||  n1 != 1)
 		    {
-		      Scierror(999,"the state for fsultra must be a 40x1 vector !\n\r");
+		      Scierror(999,"the state for fsultra must be a 40x1 vector !\n");
 		      return 0;
 		    };
 		  if (! set_state_fsultra(stk(l1)) ) {Error(999); return(0);}; 
@@ -241,7 +241,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		}
 	      else
 		{
-		  Scierror(999,"Rhs should be 2 or 3 for 'setsd' option with the fsultra generator\n\r");
+		  Scierror(999,"Rhs should be 2 or 3 for 'setsd' option with the fsultra generator\n");
 		  return 0;
 		}
 	      break;
@@ -250,7 +250,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    case(CLCG4) :
 	      if ( Rhs != 5 ) 
 		{
-		  Scierror(999,"Rhs should be 5 for 'setsd' option with the kiss or clcg4 generator\n\r");
+		  Scierror(999,"Rhs should be 5 for 'setsd' option with the kiss or clcg4 generator\n");
 		  return 0;
 		}
 	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -275,7 +275,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    case(CLCG2) :
 	      if ( Rhs != 3 ) 
 		{
-		  Scierror(999,"Rhs should be 3 for 'setsd' option with the clcg2 generator\n\r");
+		  Scierror(999,"Rhs should be 3 for 'setsd' option with the clcg2 generator\n");
 		  return 0;
 		}
 	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -291,7 +291,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    case(URAND) :
 	      if ( Rhs != 2 ) 
 		{
-		  Scierror(999,"Rhs should be 2 for 'setsd' option with the urand generator\n\r");
+		  Scierror(999,"Rhs should be 2 for 'setsd' option with the urand generator\n");
 		  return 0;
 		}
 	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -309,7 +309,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{
 	  if ( Rhs != 2  ||  Lhs > 1 ) 
 	    {
-	      Scierror(999,"Rhs should be 2 for 'phr2sd' option and Lhs should be 1\n\r");
+	      Scierror(999,"Rhs should be 2 for 'phr2sd' option and Lhs should be 1\n");
 	      return 0;
 	    }
 	  GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
@@ -325,10 +325,10 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{
 	  SeedType Where;
 	  if ( current_gen != CLCG4 )
-	    sciprint("this option affect only the clcg4 generator\n\r");
+	    sciprint("this option affect only the clcg4 generator\n");
 	  if ( Rhs != 2) 
 	    {
-	      Scierror(999,"Rhs should be 2 for 'initgn' option\n\r");
+	      Scierror(999,"Rhs should be 2 for 'initgn' option\n");
 	      return 0;
 	    }
 	  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
@@ -346,16 +346,16 @@ int sci_Rand(char *fname,unsigned long fname_len)
       else if (strcmp("setcgn",cstk(ls))==0) 
 	{
 	  if ( current_gen != CLCG4 )
-	    sciprint("the setcgn option affect only the clcg4 generator\n\r");
+	    sciprint("the setcgn option affect only the clcg4 generator\n");
 	  if ( Rhs != 2) 
 	    {
-	      Scierror(999,"Rhs should be 2 for 'setcgn' option\n\r");
+	      Scierror(999,"Rhs should be 2 for 'setcgn' option\n");
 	      return 0;
 	    }
 	  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	  if ( *istk(l1) < 0 || *istk(l1) > Maxgen )
 	    {
-	      Scierror(999,"bad virtual number generator (must be in [0,%d])\n\r",Maxgen);
+	      Scierror(999,"bad virtual number generator (must be in [0,%d])\n",Maxgen);
 	      return 0;
 	    }
 	  current_clcg4 = *istk(l1);
@@ -367,17 +367,17 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{
 	  int k;
 	  if ( current_gen != CLCG4 )
-	    sciprint("the 'advnst' option affect only the clcg4 generator !\n\r");
+	    sciprint("the 'advnst' option affect only the clcg4 generator !\n");
 	  if ( Rhs != 2) 
 	    {
-	      Scierror(999,"Rhs should be 2 for 'advnst' option\n\r");
+	      Scierror(999,"Rhs should be 2 for 'advnst' option\n");
 	      return 0;
 	    }
 	  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	  k = *istk(l1);
 	  if ( k < 1 )
 	    {
-	      Scierror(999,"parameter K must be > 0 for 'advnst' option\n\r");
+	      Scierror(999,"parameter K must be > 0 for 'advnst' option\n");
 	      return 0;
 	    }
 	  advance_state_clcg4(current_clcg4, k);
@@ -389,11 +389,11 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{
 	  if ( Rhs != 1) 
 	    {
-	      Scierror(999,"Rhs should be 1 for 'getcgn' option\n\r");
+	      Scierror(999,"Rhs should be 1 for 'getcgn' option\n");
 	      return 0;
 	    }
 	  if ( current_gen != CLCG4 )
-	    sciprint("this information concerns only the clcg4 generator\n\r");
+	    sciprint("this information concerns only the clcg4 generator\n");
 	  CreateVar(2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l1);
 	  *istk(l1) = current_clcg4; 
 	  LhsVar(1) = 2;
@@ -405,7 +405,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	  int msb, nsb, lsb;
 	  if ( Rhs != 2) 
 	    {
-	      Scierror(999,"Rhs should be 2 for 'setgen' option\n\r");
+	      Scierror(999,"Rhs should be 2 for 'setgen' option\n");
 	      return 0;
 	    }
 	  GetRhsVar(2,STRING_DATATYPE,&msb,&nsb,&lsb);
@@ -423,7 +423,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    current_gen = FSULTRA;
 	  else
 	    {
-	      Scierror(999,"unknown generator (choose among : mt kiss clcg4 clcg2 urand fsultra) \n\r");
+	      Scierror(999,"unknown generator (choose among : mt kiss clcg4 clcg2 urand fsultra) \n");
 	      return 0;
 	    }
 	  LhsVar(1) = 2;
@@ -435,7 +435,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	  int l_un=1;
 	  if ( Rhs != 1) 
 	    {
-	      Scierror(999,"Rhs should be 1 for 'getgen' option\n\r");
+	      Scierror(999,"Rhs should be 1 for 'getgen' option\n");
 	      return 0;
 	    }
 	  CreateVarFromPtr( Rhs+2,MATRIX_OF_STRING_DATATYPE, &l_un, &l_un, &names_gen[current_gen]);
@@ -483,7 +483,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < minlog || *stk(lb) < minlog)
 	{
-	  Scierror(999,"Rand(...,'bet',..): A or B < %f \r\b",minlog);
+	  Scierror(999,"Rand(...,'bet',..): A or B < %f \n",minlog);
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 

@@ -79,8 +79,8 @@ int set_state_clcg2(double g1, double g2)
     }
   else
     {
-      sciprint("\n\r bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]");
-      sciprint("\n\r                                        and  s2 in [1, 2147483398]\n\r");
+      sciprint("\n bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]");
+      sciprint("\n                                        and  s2 in [1, 2147483398]\n");
       return ( 0 );
     }
 }

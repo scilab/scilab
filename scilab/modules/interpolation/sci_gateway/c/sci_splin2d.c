@@ -66,7 +66,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
       spline_type = get_type(SplineTable, NB_SPLINE_TYPE, str_spline_type, ns);
       if ( spline_type == UNDEFINED || spline_type == CLAMPED )
 	{
-	  Scierror(999,"%s: unsupported spline type\n\r",fname);
+	  Scierror(999,"%s: unsupported spline type\n",fname);
 	  return 0;
 	};
     }

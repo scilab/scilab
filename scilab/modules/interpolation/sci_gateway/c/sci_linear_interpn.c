@@ -94,7 +94,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       for ( i = 0 ; i < n ; i++ )
 	if ( U.dims[i] != dim[i] )
 	  { 
-	    Scierror(999,"%s: size incompatibility between grid points and grid values in dim %d \n\r", fname, i+1);
+	    Scierror(999,"%s: size incompatibility between grid points and grid values in dim %d \n", fname, i+1);
 	    return 0;
 	  }
       val = U.R;
@@ -104,12 +104,12 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       GetRhsVar(2*n+1,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
       if ( n == 1  &&  my*ny != dim[0] )
 	{ 
-	  Scierror(999,"%s: size incompatibility between grid points and values in dim 1 \n\r", fname);
+	  Scierror(999,"%s: size incompatibility between grid points and values in dim 1 \n", fname);
 	  return 0;
 	}
       if ( n == 2  &&  (my != dim[0]  || ny != dim[1]) )
 	{ 
-	  Scierror(999,"%s: size incompatibility between grid points and values in dim 1 or 2 \n\r", fname);
+	  Scierror(999,"%s: size incompatibility between grid points and values in dim 1 or 2 \n", fname);
 	  return 0;
 	}
       val = stk(ly);
@@ -122,7 +122,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       outmode =  get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
       if ( outmode == UNDEFINED || outmode == LINEAR )
 	{
-	  Scierror(999,"%s: unsupported outmode type\n\r",fname);
+	  Scierror(999,"%s: unsupported outmode type\n",fname);
 	  return 0;
 	};
     }

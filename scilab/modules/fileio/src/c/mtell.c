@@ -12,7 +12,7 @@ void C2F(mtell) (integer *fd, double *offset, integer *err)
 	FILE *fa= GetFileOpenedInScilab(*fd);
 	if ( fa == (FILE *) 0 ) 
 	{
-		sciprint("mtell: wrong file logical unit \r\b");
+		sciprint("mtell: wrong file logical unit \n");
 		*err=1;
 		return;
 	}

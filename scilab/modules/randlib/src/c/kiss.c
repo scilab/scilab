@@ -63,7 +63,7 @@ int set_state_kiss(double g1, double g2, double g3, double g4)
     }
   else
     {
-      sciprint("\n\r bad seeds for kiss, must be integers in [0,2^32-1]\n\r");
+      sciprint("\n bad seeds for kiss, must be integers in [0,2^32-1]\n");
       return ( 0 );
     }
 }
