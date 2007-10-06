@@ -6,8 +6,7 @@
 IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
-src/c/getenvc.c \
-src/c/findprog.c
+src/c/getenvc.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
@@ -47,7 +46,8 @@ sci_gateway/c/sci_oldsave.c \
 sci_gateway/c/sci_save.c \
 sci_gateway/c/sci_disp.c \
 sci_gateway/c/sci_newest.c \
-sci_gateway/c/sci_get_absolute_file_path.c
+sci_gateway/c/sci_get_absolute_file_path.c \
+sci_gateway/c/sci_which.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/oldloadsave.f \
 sci_gateway/fortran/intwrite4b.f \
