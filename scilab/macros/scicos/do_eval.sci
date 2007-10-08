@@ -18,7 +18,7 @@ deff('[ok,tt,dep_ut]=genfunc1(tt,ni,no,nci,nco,nx,nz,nrp,type_)',..
     'dep_ut=model.dep_ut;ok=%t')
 deff('result=dialog(labels,valueini)','result=valueini')
 %nx=lstsize(scs_m.objs)
-deff('[ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop,exprs.prev_exprs)',..
+deff('[ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop,prev_exprs)',..
    '[dirF,nameF,extF]=fileparts(funam);..
     tarpath=pathconvert(TMPDIR+''/Modelica/'',%f,%t);..
     if (extF=='''')  then,..
