@@ -109,9 +109,10 @@ function [scs_m, fct] = do_addnew(scs_m)
 
     end //** irr
 
-  // update blk !
-  else
+  end //** ierror
+
   //**------ Al@n's update 2 ---------/////////////
+  // update blk !
               o_new=scicos_block();
               T = getfield(1,blk);
 
@@ -171,7 +172,6 @@ function [scs_m, fct] = do_addnew(scs_m)
               end  //end of for k=
               blk = o_new;
   //**------------------------------------/////////
-  end //** ierror
 
   //**------ Al@n's update ---------/////////////
   if blk.model.sim(1)=='super'|...
