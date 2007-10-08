@@ -159,7 +159,7 @@ while %t do
       if %sz(1)>=0 then if %nv<>%sz(1) then %nok=%kk,break,end,end
     case 'lis'
       if %ierr<>0 then %nok=-%kk;break,end
-      if type(%vv)<>15& type(%vv)<>16 then %nok=-%kk,break,end
+      if type(%vv)<>15& type(%vv)<>16& type(%vv)<>17 then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       %ssz=string(%sz(1))
       %nv=size(%vv)
