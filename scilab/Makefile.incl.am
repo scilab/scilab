@@ -53,53 +53,49 @@ java-clean:
 
 endif
 
+
+TARGETS_ALL=
 if GUI
-all-local:  java-build
-else
-all-local: 
+TARGETS_ALL+=java-build 
 endif
+
+if SWIG
+TARGETS_ALL+=swig-build 
+endif
+
+if GIWS
+TARGETS_ALL+=giws-build 
+endif
+
+all-local: $(TARGETS_ALL)
 
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable BUILT_SOURCES 
-# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
-# the compilation of the C/C++ files...
-if SWIG
-$(BUILT_SOURCES): swig-build
-endif
+# We call the target swig-build on the variable SWIG_WRAPPERS
 
 ## build Swig Java => C wrappers
-swig-build: 
+swig-build: $(SWIG_WRAPPERS)
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-	if test ! -z "$(BUILT_SOURCES)"; then \
-		for file in $(BUILT_SOURCES) ; do \
+	if test ! -z "$(SWIG_WRAPPERS)"; then \
+		for file in $(SWIG_WRAPPERS) ; do \
 			echo "Swig process of $$file ..."; \
 			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 		done; \
 	fi
 
-# Replace all the .java by .class in JAVAFILES
-#CLASSFILES = $(JAVAFILES:.java=.class)
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
 
-#BUILT_SOURCES=$(CLASSFILES)
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
 
-# Compilation of Java
-#%.class:%.java
-#	@echo; \
-#	echo "Compiling Java source :" $<
-#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
-
-# creation of the jar
-#%.jar: $(CLASSFILES)
-#	@(echo; \
-#	echo "Creation of the jar archive :"; \
-#	cd $(CLASSPATH); \
-#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
-
-#CLEANFILES=$(CLASSFILES)
+## build Swig Java => C wrappers
+giws-build: $(GIWS_WRAPPERS)
+	@GIWS_OUTPUTDIR=src/jni/;\
+	if test ! -z "$(GIWS_WRAPPERS)"; then \
+		for file in $(GIWS_WRAPPERS) ; do \
+			echo "Giws process of $$file ..."; \
+			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+		done; \
+	fi
 
 ################ MACROS ######################"
 # Rule to build a macro
@@ -185,6 +181,8 @@ MACROBINMASK = *.bin
 FUNCTION_NAMES=macros/names
 # Localisation directory name
 LOCALISATIONDIRS=locales/fr_FR/ locales/en_US/
+# Chapter file 
+HELP_CHAPTER=help/en_US/addchapter.sce
 # Where to export JAVA files (.jar)
 JARDIR=jar/
 # JAR files
@@ -197,6 +195,10 @@ install-data-local:
 	@if test -f $(FUNCTION_NAMES); then \
 		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+	fi
+# Install the help chapter
+	@if test -f $(HELP_CHAPTER); then \
+		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
 	fi
 # Install the macros
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \

@@ -153,6 +153,29 @@ libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 ## Change to include other Scilab modules/lib
 #libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
 
+GIWS_WRAPPERS=src/jni/GraphicSynchronizer.giws.xml \
+src/jni/PolylineBarDrawerGL.giws.xml \
+src/jni/CameraGL.giws.xml \
+src/jni/DrawablePolylineGL.giws.xml \
+src/jni/PolylineArrrowDrawerGL.giws.xml \
+src/jni/ScilabGraphicWindow.giws.xml \
+src/jni/DrawableRectangleGL.giws.xml \
+src/jni/DrawableArcGL.giws.xml \
+src/jni/PolylineMarkdrawerGL.giws.xml \
+src/jni/RectangleFillDrawerGL.giws.xml \
+src/jni/ArcFillDrawerGL.giws.xml \
+src/jni/PolylineInterpColorDrawerGL.giws.xml \
+src/jni/PolylineLineDrawerGL.giws.xml \
+src/jni/DrawableSubwinGL.giws.xml \
+src/jni/RectangleLineDrawerGL.giws.xml \
+src/jni/ArcLineDrawerGL.giws.xml \
+src/jni/DrawableFigureGL.giws.xml \
+src/jni/PolylineFillDrawer.giws.xml \
+src/jni/RectangleMarkDrawerGL.giws.xml \
+src/jni/DrawableTextGL.giws.xml \
+src/jni/StandardTextDrawerGL.giws.xml
+
+
 else
 
 # All the sources needed by libscirenderer.la

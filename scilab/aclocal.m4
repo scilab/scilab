@@ -925,6 +925,7 @@ AC_SUBST([am__untar])
 
 m4_include([m4/fftw.m4])
 m4_include([m4/fortran.m4])
+m4_include([m4/giws.m4])
 m4_include([m4/intel_compiler.m4])
 m4_include([m4/java.m4])
 m4_include([m4/libs_by_debian.m4])

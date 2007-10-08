@@ -50,18 +50,22 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(libscishell_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+@GUI_TRUE@am__append_1 = java-build 
+@SWIG_TRUE@am__append_2 = swig-build 
+@GIWS_TRUE@am__append_3 = giws-build 
 subdir = modules/console
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/intel_compiler.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/libs_by_debian.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -88,11 +92,11 @@ am__libsciconsole_la_SOURCES_DIST =  \
 	src/noconsole/noconsole.c src/c/InitializeConsole.c \
 	src/c/InterpreterManagement.c src/c/GuiManagement.c \
 	src/c/dropFiles.c src/c/TerminateConsole.c \
-	src/jni/org_scilab_modules_gui_bridge_console.cpp \
-	src/cpp/ClearConsole.cpp src/cpp/ClearConsolePart.cpp \
-	src/cpp/ConsolePrintf.cpp src/cpp/ConsoleRead.cpp \
-	src/cpp/GetCharWithoutOutput.cpp src/cpp/PromptToHome.cpp \
-	src/cpp/ScilabLinesUpdate.cpp src/cpp/SetConsolePrompt.cpp \
+	src/jni/SwingScilabConsole.cpp src/cpp/ClearConsole.cpp \
+	src/cpp/ClearConsolePart.cpp src/cpp/ConsolePrintf.cpp \
+	src/cpp/ConsoleRead.cpp src/cpp/GetCharWithoutOutput.cpp \
+	src/cpp/PromptToHome.cpp src/cpp/ScilabLinesUpdate.cpp \
+	src/cpp/SetConsolePrompt.cpp \
 	src/cpp/GetScilabConsoleObject.cpp
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	libsciconsole_la-InterpreterManagement_wrap.lo \
@@ -104,7 +108,7 @@ am__libsciconsole_la_SOURCES_DIST =  \
 @GUI_TRUE@	libsciconsole_la-GuiManagement.lo \
 @GUI_TRUE@	libsciconsole_la-dropFiles.lo \
 @GUI_TRUE@	libsciconsole_la-TerminateConsole.lo
-@GUI_TRUE@am__objects_3 = libsciconsole_la-org_scilab_modules_gui_bridge_console.lo
+@GUI_TRUE@am__objects_3 = libsciconsole_la-SwingScilabConsole.lo
 @GUI_TRUE@am__objects_4 = libsciconsole_la-ClearConsole.lo \
 @GUI_TRUE@	libsciconsole_la-ClearConsolePart.lo \
 @GUI_TRUE@	libsciconsole_la-ConsolePrintf.lo \
@@ -178,6 +182,7 @@ F77 = @F77@
 FFLAGS = @FFLAGS@
 FFTW3_LIB = @FFTW3_LIB@
 FGREP = @FGREP@
+GIWS_BIN = @GIWS_BIN@
 GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -227,6 +232,7 @@ PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
+PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -306,7 +312,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the cpp files
-@GUI_TRUE@CONSOLE_CPP_JNI_SOURCES = src/jni/org_scilab_modules_gui_bridge_console.cpp
+@GUI_TRUE@CONSOLE_CPP_JNI_SOURCES = src/jni/SwingScilabConsole.cpp
 @GUI_TRUE@CONSOLE_CPP_SOURCES = src/cpp/ClearConsole.cpp \
 @GUI_TRUE@src/cpp/ClearConsolePart.cpp \
 @GUI_TRUE@src/cpp/ConsolePrintf.cpp \
@@ -332,6 +338,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/c/dropFiles.c \
 @GUI_TRUE@src/c/TerminateConsole.c
 
+@GUI_TRUE@GIWS_WRAPPERS = src/jni/SwingScilabConsole.giws.xml
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/
@@ -361,7 +368,7 @@ libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
 #### SWIG Declaration ####
-BUILT_SOURCES = src/jni/InterpreterManagement.i \
+SWIG_WRAPPERS = src/jni/InterpreterManagement.i \
 src/jni/GuiManagement.i
 
 
@@ -388,6 +395,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
+TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -420,14 +428,15 @@ MACROBINMASK = *.bin
 FUNCTION_NAMES = macros/names
 # Localisation directory name
 LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
+# Chapter file 
+HELP_CHAPTER = help/en_US/addchapter.sce
 # Where to export JAVA files (.jar)
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
-all: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) all-am
+all: all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .cpp .lo .o .obj
@@ -511,10 +520,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-PromptToHome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SwingScilabConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-TerminateConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-dropFiles.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-noconsole.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge_console.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -621,12 +630,12 @@ libsciconsole_la-TerminateConsole.lo: src/c/TerminateConsole.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciconsole_la-org_scilab_modules_gui_bridge_console.lo: src/jni/org_scilab_modules_gui_bridge_console.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-org_scilab_modules_gui_bridge_console.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge_console.Tpo -c -o libsciconsole_la-org_scilab_modules_gui_bridge_console.lo `test -f 'src/jni/org_scilab_modules_gui_bridge_console.cpp' || echo '$(srcdir)/'`src/jni/org_scilab_modules_gui_bridge_console.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge_console.Tpo $(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge_console.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/org_scilab_modules_gui_bridge_console.cpp' object='libsciconsole_la-org_scilab_modules_gui_bridge_console.lo' libtool=yes @AMDEPBACKSLASH@
+libsciconsole_la-SwingScilabConsole.lo: src/jni/SwingScilabConsole.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-SwingScilabConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-SwingScilabConsole.Tpo -c -o libsciconsole_la-SwingScilabConsole.lo `test -f 'src/jni/SwingScilabConsole.cpp' || echo '$(srcdir)/'`src/jni/SwingScilabConsole.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-SwingScilabConsole.Tpo $(DEPDIR)/libsciconsole_la-SwingScilabConsole.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SwingScilabConsole.cpp' object='libsciconsole_la-SwingScilabConsole.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-org_scilab_modules_gui_bridge_console.lo `test -f 'src/jni/org_scilab_modules_gui_bridge_console.cpp' || echo '$(srcdir)/'`src/jni/org_scilab_modules_gui_bridge_console.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-SwingScilabConsole.lo `test -f 'src/jni/SwingScilabConsole.cpp' || echo '$(srcdir)/'`src/jni/SwingScilabConsole.cpp
 
 libsciconsole_la-ClearConsole.lo: src/cpp/ClearConsole.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ClearConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/cpp/ClearConsole.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsole.cpp
@@ -824,15 +833,13 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) check-am
+check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_rootdir)" "$(DESTDIR)$(libscishell_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) install-am
+install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -856,7 +863,6 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -981,47 +987,32 @@ check-local: $(top_builddir)/scilab-bin
 @GUI_TRUE@		$(ANT) clean; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@all-local:  java-build
-@GUI_FALSE@all-local: 
+all-local: $(TARGETS_ALL)
 
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable BUILT_SOURCES 
-# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
-# the compilation of the C/C++ files...
-@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+# We call the target swig-build on the variable SWIG_WRAPPERS
 
-swig-build: 
+swig-build: $(SWIG_WRAPPERS)
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-	if test ! -z "$(BUILT_SOURCES)"; then \
-		for file in $(BUILT_SOURCES) ; do \
+	if test ! -z "$(SWIG_WRAPPERS)"; then \
+		for file in $(SWIG_WRAPPERS) ; do \
 			echo "Swig process of $$file ..."; \
 			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 		done; \
 	fi
 
-# Replace all the .java by .class in JAVAFILES
-#CLASSFILES = $(JAVAFILES:.java=.class)
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
 
-#BUILT_SOURCES=$(CLASSFILES)
-
-# Compilation of Java
-#%.class:%.java
-#	@echo; \
-#	echo "Compiling Java source :" $<
-#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
-
-# creation of the jar
-#%.jar: $(CLASSFILES)
-#	@(echo; \
-#	echo "Creation of the jar archive :"; \
-#	cd $(CLASSPATH); \
-#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
-
-#CLEANFILES=$(CLASSFILES)
+giws-build: $(GIWS_WRAPPERS)
+	@GIWS_OUTPUTDIR=src/jni/;\
+	if test ! -z "$(GIWS_WRAPPERS)"; then \
+		for file in $(GIWS_WRAPPERS) ; do \
+			echo "Giws process of $$file ..."; \
+			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+		done; \
+	fi
 
 ################ MACROS ######################"
 # Rule to build a macro
@@ -1077,6 +1068,10 @@ install-data-local:
 	@if test -f $(FUNCTION_NAMES); then \
 		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+	fi
+# Install the help chapter
+	@if test -f $(HELP_CHAPTER); then \
+		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
 	fi
 # Install the macros
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \

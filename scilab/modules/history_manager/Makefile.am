@@ -79,7 +79,7 @@ libscihistory_manager_la_include_HEADERS = includes/gw_history_manager.h \
 includes/HistoryManager.h
 
 #### SWIG Declaration ####
-BUILT_SOURCES = src/jni/HistoryManagement.i
+SWIG_WRAPPERS = src/jni/HistoryManagement.i
 
 if GUI
 

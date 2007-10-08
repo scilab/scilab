@@ -7,7 +7,7 @@
 if GUI
 
 # List of the cpp files
-CONSOLE_CPP_JNI_SOURCES = src/jni/org_scilab_modules_gui_bridge_console.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/SwingScilabConsole.cpp
 
 CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
 src/cpp/ClearConsolePart.cpp \
@@ -29,6 +29,8 @@ src/c/InterpreterManagement.c \
 src/c/GuiManagement.c \
 src/c/dropFiles.c \
 src/c/TerminateConsole.c
+
+GIWS_WRAPPERS = src/jni/SwingScilabConsole.giws.xml
 
 else
 
@@ -67,7 +69,7 @@ libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
 #### SWIG Declaration ####
-BUILT_SOURCES = src/jni/InterpreterManagement.i \
+SWIG_WRAPPERS = src/jni/InterpreterManagement.i \
 src/jni/GuiManagement.i
 
 #### console : include files ####

@@ -89,6 +89,9 @@ AC_ARG_WITH(gui,
 AC_ARG_WITH(swig-generation,
     [  --with-swig-generation  Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)])
 
+AC_ARG_WITH(giws-generation,
+    [  --with-giws-generation  Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)])
+
 
 ##############################
 ##########" compilator detection
@@ -565,17 +568,26 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
 
-	if test "$with_swig_generation" = yes; then	
+	if test "$with_swig_generation" != no; then	
 		SWIG_PROG()
 		SWIG_ENABLE_JAVA()
 		AC_SUBST(SWIG_BIN)
-		AC_SUBST(SWIG_JAVA)
+        AC_SUBST(SWIG_JAVA)
+
 	fi
+
+	# Giws is the equivalent of Swig developped by the Scilab team
+	# in order to provide a wrapper to Java from C/C++
+	if test "$with_giws_generation" != no; then	
+		AC_GIWS()
+	fi
+
 fi
 
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
-AM_CONDITIONAL(SWIG, test "$with_swig_generation" = yes)
+AM_CONDITIONAL(SWIG, test "$with_swig_generation" != no)
+AM_CONDITIONAL(GIWS, test "$with_giws_generation" != no)
 
 ##############################################################
 ## test for functions in standard C library and C math library
@@ -1269,11 +1281,19 @@ fi
 
 echo ""
 echo "SWIG Configuration:"
-if test ! -z "$SWIGBIN"; then
+if test ! -z "$SWIG_BIN"; then
 echo "  SWIG_BIN ............ = $SWIG_BIN"
 echo "  SWIG_JAVA ........... = $SWIG_JAVA"
 else
 echo "  SWIG generation disabled"
+fi
+
+echo ""
+echo "GIWS Configuration:"
+if test ! -z "$GIWS_BIN"; then
+echo "  GIWS_BIN ............ = $GIWS_BIN"
+else
+echo "  GIWS generation disabled"
 fi
 
 echo ""

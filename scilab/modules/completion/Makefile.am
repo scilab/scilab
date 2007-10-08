@@ -65,7 +65,7 @@ includes/completion.h
 
 
 #### SWIG Declaration ####
-BUILT_SOURCES = src/jni/Completion.i 
+SWIG_WRAPPERS = src/jni/Completion.i 
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

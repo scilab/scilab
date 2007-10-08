@@ -50,18 +50,22 @@ host_triplet = @host@
 DIST_COMMON = $(am__libjavasci_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
+@GUI_TRUE@@JAVASCI_TRUE@am__append_1 = java-build 
+@JAVASCI_TRUE@@SWIG_TRUE@am__append_2 = swig-build 
+@GIWS_TRUE@@JAVASCI_TRUE@am__append_3 = giws-build 
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/intel_compiler.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/libs_by_debian.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -161,6 +165,7 @@ F77 = @F77@
 FFLAGS = @FFLAGS@
 FFTW3_LIB = @FFTW3_LIB@
 FGREP = @FGREP@
+GIWS_BIN = @GIWS_BIN@
 GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -210,6 +215,7 @@ PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
+PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -338,6 +344,8 @@ modulename = javasci
 
 #SUFFIXES = .xml .sci .htm
 @JAVASCI_TRUE@SUFFIXES = .sci 
+@JAVASCI_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
+@JAVASCI_TRUE@	$(am__append_3)
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -370,6 +378,8 @@ modulename = javasci
 @JAVASCI_TRUE@FUNCTION_NAMES = macros/names
 # Localisation directory name
 @JAVASCI_TRUE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
+# Chapter file 
+@JAVASCI_TRUE@HELP_CHAPTER = help/en_US/addchapter.sce
 # Where to export JAVA files (.jar)
 @JAVASCI_TRUE@JARDIR = jar/
 # JAR files
@@ -829,47 +839,32 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @GUI_TRUE@@JAVASCI_TRUE@		$(ANT) clean; \
 @GUI_TRUE@@JAVASCI_TRUE@	fi
 
-@GUI_TRUE@@JAVASCI_TRUE@all-local:  java-build
-@GUI_FALSE@@JAVASCI_TRUE@all-local: 
+@JAVASCI_TRUE@all-local: $(TARGETS_ALL)
 
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable BUILT_SOURCES 
-# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
-# the compilation of the C/C++ files...
-@JAVASCI_TRUE@@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+# We call the target swig-build on the variable SWIG_WRAPPERS
 
-@JAVASCI_TRUE@swig-build: 
+@JAVASCI_TRUE@swig-build: $(SWIG_WRAPPERS)
 @JAVASCI_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @JAVASCI_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@JAVASCI_TRUE@	if test ! -z "$(BUILT_SOURCES)"; then \
-@JAVASCI_TRUE@		for file in $(BUILT_SOURCES) ; do \
+@JAVASCI_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@JAVASCI_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @JAVASCI_TRUE@			echo "Swig process of $$file ..."; \
 @JAVASCI_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @JAVASCI_TRUE@		done; \
 @JAVASCI_TRUE@	fi
 
-# Replace all the .java by .class in JAVAFILES
-#CLASSFILES = $(JAVAFILES:.java=.class)
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
 
-#BUILT_SOURCES=$(CLASSFILES)
-
-# Compilation of Java
-#%.class:%.java
-#	@echo; \
-#	echo "Compiling Java source :" $<
-#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
-
-# creation of the jar
-#%.jar: $(CLASSFILES)
-#	@(echo; \
-#	echo "Creation of the jar archive :"; \
-#	cd $(CLASSPATH); \
-#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
-
-#CLEANFILES=$(CLASSFILES)
+@JAVASCI_TRUE@giws-build: $(GIWS_WRAPPERS)
+@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@JAVASCI_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@JAVASCI_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
+@JAVASCI_TRUE@			echo "Giws process of $$file ..."; \
+@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@JAVASCI_TRUE@		done; \
+@JAVASCI_TRUE@	fi
 
 ################ MACROS ######################"
 # Rule to build a macro
@@ -925,6 +920,10 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	@if test -f $(FUNCTION_NAMES); then \
 @JAVASCI_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 @JAVASCI_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@JAVASCI_TRUE@	fi
+# Install the help chapter
+@JAVASCI_TRUE@	@if test -f $(HELP_CHAPTER); then \
+@JAVASCI_TRUE@		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
 @JAVASCI_TRUE@	fi
 # Install the macros
 @JAVASCI_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \

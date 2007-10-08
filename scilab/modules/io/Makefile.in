@@ -49,18 +49,22 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(libsciio_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+@GUI_TRUE@am__append_1 = java-build 
+@SWIG_TRUE@am__append_2 = swig-build 
+@GIWS_TRUE@am__append_3 = giws-build 
 subdir = modules/io
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/intel_compiler.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/libs_by_debian.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -178,6 +182,7 @@ F77 = @F77@
 FFLAGS = @FFLAGS@
 FFTW3_LIB = @FFTW3_LIB@
 FGREP = @FGREP@
+GIWS_BIN = @GIWS_BIN@
 GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -227,6 +232,7 @@ PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
+PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -412,6 +418,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
+TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -444,6 +451,8 @@ MACROBINMASK = *.bin
 FUNCTION_NAMES = macros/names
 # Localisation directory name
 LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
+# Chapter file 
+HELP_CHAPTER = help/en_US/addchapter.sce
 # Where to export JAVA files (.jar)
 JARDIR = jar/
 # JAR files
@@ -1242,47 +1251,32 @@ check-local: $(top_builddir)/scilab-bin
 @GUI_TRUE@		$(ANT) clean; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@all-local:  java-build
-@GUI_FALSE@all-local: 
+all-local: $(TARGETS_ALL)
 
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable BUILT_SOURCES 
-# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
-# the compilation of the C/C++ files...
-@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+# We call the target swig-build on the variable SWIG_WRAPPERS
 
-swig-build: 
+swig-build: $(SWIG_WRAPPERS)
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-	if test ! -z "$(BUILT_SOURCES)"; then \
-		for file in $(BUILT_SOURCES) ; do \
+	if test ! -z "$(SWIG_WRAPPERS)"; then \
+		for file in $(SWIG_WRAPPERS) ; do \
 			echo "Swig process of $$file ..."; \
 			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 		done; \
 	fi
 
-# Replace all the .java by .class in JAVAFILES
-#CLASSFILES = $(JAVAFILES:.java=.class)
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
 
-#BUILT_SOURCES=$(CLASSFILES)
-
-# Compilation of Java
-#%.class:%.java
-#	@echo; \
-#	echo "Compiling Java source :" $<
-#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
-
-# creation of the jar
-#%.jar: $(CLASSFILES)
-#	@(echo; \
-#	echo "Creation of the jar archive :"; \
-#	cd $(CLASSPATH); \
-#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
-
-#CLEANFILES=$(CLASSFILES)
+giws-build: $(GIWS_WRAPPERS)
+	@GIWS_OUTPUTDIR=src/jni/;\
+	if test ! -z "$(GIWS_WRAPPERS)"; then \
+		for file in $(GIWS_WRAPPERS) ; do \
+			echo "Giws process of $$file ..."; \
+			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+		done; \
+	fi
 
 ################ MACROS ######################"
 # Rule to build a macro
@@ -1338,6 +1332,10 @@ install-data-local:
 	@if test -f $(FUNCTION_NAMES); then \
 		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+	fi
+# Install the help chapter
+	@if test -f $(HELP_CHAPTER); then \
+		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
 	fi
 # Install the macros
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
