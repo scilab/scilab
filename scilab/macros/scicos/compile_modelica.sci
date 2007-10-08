@@ -31,7 +31,7 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
       modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)     
       if strindex(modelicac,' ')<>[] then modelicac='""'+modelicac+'""',end
       modelicac=modelicac+strcat(' -L ""'+mlibs+'""')
-      instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+'; > '+TMPDIR+'/Wmodelicac.err'         
+      instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Wmodelicac.err'         
       mputl(instr,path+'genc.bat')
       instr=path+'genc.bat'
       if execstr('unix_s(instr);','errcatch')<>0 then // If_modelicac_fails_then_use_Translator	
@@ -66,14 +66,15 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
 			 '-------Modelica translator error:-------';MSG2]);
 	      ok=%f,nx=0,nin=0,nout=0,ng=0;nz=0;return
 	    end
-	    instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+'; > '+TMPDIR+'/Wunix.err'         
+	    instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Wunix.err'         
 	    if execstr('unix_s(instr)','errcatch')<>0 then
 	      MSG3= mgetl(TMPDIR+'/Wunix.err');
 	      x_message(['-------Modelica compiler error without the translator:-------';MSG1; ...
 			 '-------Modelica compiler error with the translator:-------';MSG3]);
 	      ok=%f,nx=0,nin=0,nout=0,ng=0;nz=0;return
 	    else
-	      mprintf('  C code generated at '+path+name+'.c\n')
+	      mprintf('   Flat modelica code generated at '+FlatName+'\n')
+	      mprintf('   C code generated at '+path+name+'.c\n')
 	    end     	
 	  else // if_translator_exists
 	    x_message(['-------Modelica compiler error without the"+...
@@ -126,7 +127,8 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
 		       '-------Modelica compiler error with the translator:-------';MSG3]);
 	    ok=%f,nx=0,nin=0,nout=0,ng=0;nz=0;return
 	  else
-	    mprintf('  C code generated at '+path+name+'.c\n')
+	    mprintf('   Flat modelica code generated at '+FlatName+'\n')
+	    mprintf('   C code generated at '+path+name+'.c\n')
 	  end     
 	else // if_translator_exists
 	  x_message(['-------Modelica compiler error without the"+...
