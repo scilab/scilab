@@ -347,7 +347,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\jni\org_scilab_modules_gui_bridge_console.hxx"
+				RelativePath="..\jni\SwingScilabConsole.hxx"
 				>
 			</File>
 			<File

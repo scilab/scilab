@@ -9,7 +9,7 @@
 #include <jni.h>
 #include "machine.h"
 #include "GetScilabConsoleObject.hxx"
-#include "org_scilab_modules_gui_bridge_console.hxx"
+#include "SwingScilabConsole.hxx"
 
 extern "C" 
 {
