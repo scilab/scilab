@@ -109,8 +109,7 @@ am__objects_3 = libsciio_la-sci_execstr.lo libsciio_la-sci_read4b.lo \
 	libsciio_la-sci_getf.lo libsciio_la-sci_oldsave.lo \
 	libsciio_la-sci_save.lo libsciio_la-sci_disp.lo \
 	libsciio_la-sci_newest.lo \
-	libsciio_la-sci_get_absolute_file_path.lo \
-	libsciio_la-sci_which.lo
+	libsciio_la-sci_get_absolute_file_path.lo
 am__objects_4 = oldloadsave.lo intwrite4b.lo intexec.lo intgetf.lo \
 	intrat.lo intwritb.lo intgetenv.lo intwrite.lo intprint.lo \
 	intdisp.lo intread4b.lo intdeff.lo intlib.lo intdiary.lo \
@@ -348,8 +347,7 @@ sci_gateway/c/sci_oldsave.c \
 sci_gateway/c/sci_save.c \
 sci_gateway/c/sci_disp.c \
 sci_gateway/c/sci_newest.c \
-sci_gateway/c/sci_get_absolute_file_path.c \
-sci_gateway/c/sci_which.c
+sci_gateway/c/sci_get_absolute_file_path.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/oldloadsave.f \
 sci_gateway/fortran/intwrite4b.f \
@@ -565,7 +563,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_save.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_setenv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_unix.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_which.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_write.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_write4b.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_writeb.Plo@am__quote@
@@ -859,13 +856,6 @@ libsciio_la-sci_get_absolute_file_path.lo: sci_gateway/c/sci_get_absolute_file_p
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_get_absolute_file_path.lo `test -f 'sci_gateway/c/sci_get_absolute_file_path.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get_absolute_file_path.c
 
-libsciio_la-sci_which.lo: sci_gateway/c/sci_which.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_which.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_which.Tpo -c -o libsciio_la-sci_which.lo `test -f 'sci_gateway/c/sci_which.c' || echo '$(srcdir)/'`sci_gateway/c/sci_which.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciio_la-sci_which.Tpo $(DEPDIR)/libsciio_la-sci_which.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_which.c' object='libsciio_la-sci_which.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_which.lo `test -f 'sci_gateway/c/sci_which.c' || echo '$(srcdir)/'`sci_gateway/c/sci_which.c
-
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
 
@@ -1089,7 +1079,6 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
@@ -1220,6 +1209,19 @@ libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
 #.java .class .jar
 
+# This target enables tests for Scilab
+check-local: $(top_builddir)/scilab-bin
+	@for check in $(MODULE_CHECKS) ; do \
+		TESTS="$$TESTS'$$check';"; \
+	done; \
+	if test -f build.xml; then \
+		$(ANT) checkstyle; \
+	fi;\
+	if test ! -z "$(MODULE_CHECKS)"; then \
+		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
+		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+	fi
+
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -1238,11 +1240,6 @@ libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
 @GUI_TRUE@java-clean: 
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@	fi
-
-@GUI_TRUE@check-local:
-@GUI_TRUE@	@if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
 @GUI_TRUE@all-local:  java-build
