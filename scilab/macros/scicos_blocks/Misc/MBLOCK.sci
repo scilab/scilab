@@ -111,25 +111,14 @@ case 'set' then
    end
 
    //check for valid name variable
-   str_to_search=["*";"/";"+";"-";"^";"<";">";
-                  "(";")"]
    //in
    if ok then
      for i=1:size(in,'*')
-       if length(in(i))==0  then
+       r=%f;
+       ierr=execstr('r=validvar(in(i))','errcatch')
+       if ~r then
          ok=%f
          break
-       else
-         if strindex(in(i),str_to_search) <> [] then
-           ok=%f
-           break
-         else
-           ierr=execstr(in(i)+'=0','errcatch')
-           if ierr <> 0 then
-             ok=%f
-             break
-           end
-         end
        end
      end
      if ~ok then
@@ -141,20 +130,11 @@ case 'set' then
    //out
    if ok then
      for i=1:size(out,'*')
-       if length(out(i))==0  then
+       r=%f;
+       ierr=execstr('r=validvar(out(i))','errcatch')
+       if ~r then
          ok=%f
          break
-       else
-         if strindex(out(i),str_to_search) <> [] then
-           ok=%f
-           break
-         else
-           ierr=execstr(out(i)+'=0','errcatch')
-           if ierr <> 0 then
-             ok=%f
-             break
-           end
-         end
        end
      end
      if ~ok then
@@ -167,20 +147,11 @@ case 'set' then
    if ok then
      param=param(:)
      for i=1:size(param,'*')
-       if length(param(i))==0  then
+       r=%f;
+       ierr=execstr('r=validvar(param(i))','errcatch')
+       if ~r then
          ok=%f
          break
-       else
-         if strindex(param(i),str_to_search) <> [] then
-           ok=%f
-           break
-         else
-           ierr=execstr(param(i)+'=0','errcatch')
-           if ierr <> 0 then
-             ok=%f
-             break
-           end
-         end
        end
      end
      if ~ok then

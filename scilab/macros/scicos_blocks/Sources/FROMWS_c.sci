@@ -34,18 +34,13 @@ case 'set' then
       ok=%f;
     end
 
-    
-    if length(varnam)==0  then
+    //check for valid name variable
+    r=%f;
+    ierr=execstr('r=validvar(varnam)','errcatch')
+    if ~r then
       message(["Invalid variable name.";
-	       "Please choose another variable name."] );
+               "Please choose another variable name."]);
       ok=%f
-    else
-      ierr=execstr(varnam+'=0','errcatch')
-      if ierr <> 0 then
-	message(["Invalid variable name.";
-		 "Please choose another variable name."] );
-	ok=%f
-      end
     end
 
     if ok then
