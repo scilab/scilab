@@ -7,7 +7,17 @@ function params=FindSBParams(scs_m,params)
       if model.sim=='super'|model.sim=='csuper' then
 	Fun=[Fun;'['+FindSBParams(model.rpar,params)+']']
       else
-	Fun=[Fun;'['+o.graphics.exprs(:)+']']
+        if type(model.sim)==15 then
+          if model.sim(2)==30004 then //modelica block
+            for j=1:lstsize(o.graphics.exprs.paramv)
+              Fun=[Fun;'['+o.graphics.exprs.paramv(j)+']']
+            end
+          else
+  	    Fun=[Fun;'['+o.graphics.exprs(:)+']']
+          end
+        else
+	  Fun=[Fun;'['+o.graphics.exprs(:)+']']
+        end
       end
     end
   end
@@ -16,4 +26,3 @@ function params=FindSBParams(scs_m,params)
   params=xx(3)
 endfunction
 
-      
