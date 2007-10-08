@@ -11809,7 +11809,7 @@ echo "$as_me: WARNING: We do not support $ac_java_jvm_name yet" >&2;}
 
 
 
-	if test "$with_swig_generation" != no; then
+	if test "$with_swig_generation" != no -a "$with_swig_generation" != ""; ; then
 
 	# Extract the first word of "swig", so it can be a program name with args.
 set dummy swig; ac_word=$2
@@ -11895,7 +11895,7 @@ echo "$as_me: SWIG runtime library directory is '$SWIG_RUNTIME_LIBS_DIR'" >&6;}
 
 	# Giws is the equivalent of Swig developped by the Scilab team
 	# in order to provide a wrapper to Java from C/C++
-	if test "$with_giws_generation" != no; then
+	if test "$with_giws_generation" != no -a "$with_giws_generation" != ""; then
 
 # Checking Python in the current path... As Giws is not at all mandatory
 # Python is not mandatory and we don't want to provide an additionnal option

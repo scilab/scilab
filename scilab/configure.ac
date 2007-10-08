@@ -568,7 +568,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
 
-	if test "$with_swig_generation" != no; then	
+	if test "$with_swig_generation" != no -a "$with_swig_generation" != ""; ; then	
 		SWIG_PROG()
 		SWIG_ENABLE_JAVA()
 		AC_SUBST(SWIG_BIN)
@@ -578,7 +578,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 
 	# Giws is the equivalent of Swig developped by the Scilab team
 	# in order to provide a wrapper to Java from C/C++
-	if test "$with_giws_generation" != no; then	
+	if test "$with_giws_generation" != no -a "$with_giws_generation" != ""; then	
 		AC_GIWS()
 	fi
 
