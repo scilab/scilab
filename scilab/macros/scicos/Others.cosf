@@ -683,14 +683,10 @@ scs_m.objs(17)=scicos_block(..
                         sz=[60,40],..
                         flip=%t,..
                         theta=0,..
-                        exprs=list(..
-                        ["""u1""";
-                        """I""";
-                        "[""y1"";""y2""]";
-                        "[""I"";""E""]";
-                        "[""R"";""L""]";
-                        "[0.1;0.0001]";
-                        "generic"],[]),..
+                        exprs=tlist(..
+                        ["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt",..
+                        "prev_exprs"],"""u1""","""I""","[""y1"";""y2""]","[""I"";""E""]","[""R"";""L""]",..
+                        list("0.1","0.0001"),"[0;0]","generic",[],tlist("MBLOCK")),..
                         pin=0,..
                         pout=[0;0],..
                         pein=[],..
@@ -724,7 +720,7 @@ scs_m.objs(17)=scicos_block(..
                         nzcross=0,..
                         nmode=0,..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"generic","u1",..
-                        ["y1";"y2"],list(["R";"L"],[0.1;0.0001]),list([],list()))),..
+                        ["y1";"y2"],list(["R";"L"],list(0.1,0.0001)))),..
                doc=list())
 scs_m.objs(18)=scicos_block(..
                gui="PDE",..

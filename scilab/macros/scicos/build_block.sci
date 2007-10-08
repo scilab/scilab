@@ -24,7 +24,14 @@ function [model,ok]=build_block(o)
 	ok=scicos_block_link(funam,tt,'c')
       end
     elseif model.sim(2)==30004 then //modelica generic file type 30004
-      funam=model.sim(1);tt=graphics.exprs(2);
+      //funam=model.sim(1);tt=graphics.exprs(2);
+      if type(graphics.exprs)==15 then //compatibility
+        funam=model.sim(1);
+        tt=graphics.exprs(2);
+      else
+        funam=model.equations.model
+        tt=graphics.exprs.funtxt;
+      end
       [dirF,nameF,extF]=fileparts(funam);
       tarpath=pathconvert(TMPDIR+'/Modelica/',%f,%t);
       if (extF=='') then

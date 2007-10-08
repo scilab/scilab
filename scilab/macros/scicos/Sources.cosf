@@ -357,7 +357,7 @@ scs_m.objs(8)=scicos_block(..
                        label="",..
                        nzcross=0,..
                        nmode=0,..
-                       equations=tlist(["modelica","model","inputs","outputs","parameters"],"PORT",[],"n",[],..
+                       equations=tlist(["modelica","model","inputs","outputs","parameters"],"PORT",[],"n",..
                        list([],list()))),..
               doc=list())
 scs_m.objs(9)=scicos_block(..

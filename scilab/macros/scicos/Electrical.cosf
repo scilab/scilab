@@ -67,7 +67,7 @@ scs_m.objs(1)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Capacitor","p","n",..
-                       list(["C","v"],list(0.01,0),[0,1]),list([],list()))),..
+                       list(["C","v"],list(0.01,0),[0,1]))),..
               doc=list())
 scs_m.objs(2)=scicos_block(..
               gui="Ground",..
@@ -112,7 +112,7 @@ scs_m.objs(2)=scicos_block(..
                        label="",..
                        nzcross=0,..
                        nmode=0,..
-                       equations=tlist(["modelica","model","inputs","outputs","parameters"],"Ground","p",[],[],..
+                       equations=tlist(["modelica","model","inputs","outputs","parameters"],"Ground","p",[],..
                        list([],list()))),..
               doc=list())
 scs_m.objs(3)=scicos_block(..
@@ -160,7 +160,7 @@ scs_m.objs(3)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"VVsourceAC",..
-                       ["p","VA"],"n",list("f",list(50)),list([],list()))),..
+                       ["p","VA"],"n",list("f",list(50)))),..
               doc=list())
 scs_m.objs(4)=scicos_block(..
               gui="ConstantVoltage",..
@@ -208,7 +208,7 @@ scs_m.objs(4)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"ConstantVoltage","p",..
-                       "n",list("V",list(0.01)),list([],list()))),..
+                       "n",list("V",list(0.01)))),..
               doc=list())
 scs_m.objs(5)=scicos_block(..
               gui="Inductor",..
@@ -259,7 +259,7 @@ scs_m.objs(5)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Inductor","p","n",..
-                       list("L",list(0.00001)),list([],list()))),..
+                       list("L",list(0.00001)))),..
               doc=list())
 scs_m.objs(6)=scicos_block(..
               gui="PotentialSensor",..
@@ -313,7 +313,7 @@ scs_m.objs(6)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"PotentialSensor","p",..
-                       "v",[],list([],list()))),..
+                       "v",list([],list()))),..
               doc=list())
 scs_m.objs(7)=scicos_block(..
               gui="VariableResistor",..
@@ -357,7 +357,7 @@ scs_m.objs(7)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"VariableResistor",..
-                       ["p","R"],"n",[],list([],list()))),..
+                       ["p","R"],"n",list([],list()))),..
               doc=list())
 scs_m.objs(8)=scicos_block(..
               gui="CurrentSensor",..
@@ -413,7 +413,7 @@ scs_m.objs(8)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"CurrentSensor","p",..
-                       ["n";"i"],[],list([],list()))),..
+                       ["n";"i"],list([],list()))),..
               doc=list())
 scs_m.objs(9)=scicos_block(..
               gui="Resistor",..
@@ -459,7 +459,7 @@ scs_m.objs(9)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Resistor","p","n",..
-                       list("R",list(0.01)),list([],list()))),..
+                       list("R",list(0.01)))),..
               doc=list())
 scs_m.objs(10)=scicos_block(..
                gui="VoltageSensor",..
@@ -515,7 +515,7 @@ scs_m.objs(10)=scicos_block(..
                         nzcross=0,..
                         nmode=0,..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"VoltageSensor","p",..
-                        ["n";"v"],[],list([],list()))),..
+                        ["n";"v"],list([],list()))),..
                doc=list())
 scs_m.objs(11)=scicos_block(..
                gui="Diode",..
@@ -565,7 +565,7 @@ scs_m.objs(11)=scicos_block(..
                         nzcross=0,..
                         nmode=0,..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"Diode","p","n",..
-                        list(["Ids","Vt","Maxexp","R"],list(0.000001,0.04,15,1.000E+08)),list([],list()))),..
+                        list(["Ids","Vt","Maxexp","R"],list(0.000001,0.04,15,1.000E+08)))),..
                doc=list())
 scs_m.objs(12)=scicos_block(..
                gui="VsourceAC",..
@@ -612,7 +612,7 @@ scs_m.objs(12)=scicos_block(..
                         nzcross=0,..
                         nmode=0,..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"VsourceAC","p","n",..
-                        list(["VA";"f"],list(220,50)),list([],list()))),..
+                        list(["VA";"f"],list(220,50)))),..
                doc=list())
 scs_m.objs(13)=scicos_block(..
                gui="NPN",..
@@ -697,7 +697,7 @@ scs_m.objs(13)=scicos_block(..
                         "Vt";
                         "EMinMax"],..
                         [50;0.1;0;0.02;1.200E-10;5.000E-09;1.000E-12;4.000E-13;5.000E-13;0.8;0.4;0.8;
-                        0.333;1.000E-15;1.000E-15;0.02585;40]),list([],list()))),..
+                        0.333;1.000E-15;1.000E-15;0.02585;40]))),..
                doc=list())
 scs_m.objs(14)=scicos_block(..
                gui="PNP",..
@@ -782,7 +782,7 @@ scs_m.objs(14)=scicos_block(..
                         "Vt";
                         "EMinMax"],..
                         [50;0.1;0;0.02;1.200E-10;5.000E-09;1.000E-12;4.000E-13;5.000E-13;0.8;0.4;0.8;
-                        0.333;1.000E-15;1.000E-15;0.02585;40]),list([],list()))),..
+                        0.333;1.000E-15;1.000E-15;0.02585;40]))),..
                doc=list())
 scs_m.objs(15)=scicos_block(..
                gui="SineVoltage",..
@@ -829,6 +829,5 @@ scs_m.objs(15)=scicos_block(..
                         nzcross=0,..
                         nmode=0,..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"SineVoltage","p","n",..
-                        list(["V";"phase";"freqHz";"offset";"startTime"],list(1,0,1,0,0)),..
-                        list([],list()))),..
+                        list(["V";"phase";"freqHz";"offset";"startTime"],list(1,0,1,0,0)))),..
                doc=list())

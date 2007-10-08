@@ -56,7 +56,7 @@ scs_m.objs(1)=scicos_block(..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Bache",["Ce1","Ce2"],..
                        ["Cs1","Cs2","yNiveau"],..
                        list(["Patm";"A";"ze1";"ze2";"zs1";"zs2";"z0";"T0";"p_rho"],..
-                       [101300;1;40;0;40;0;30;290;0]),list([],list()))),..
+                       [101300;1;40;0;40;0;30;290;0]))),..
               doc=list())
 scs_m.objs(2)=scicos_block(..
               gui="VanneReglante",..
@@ -101,7 +101,7 @@ scs_m.objs(2)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"VanneReglante",..
-                       ["C1","Ouv"],"C2",list(["Cvmax";"p_rho"],[8005.42;0]),list([],list()))),..
+                       ["C1","Ouv"],"C2",list(["Cvmax";"p_rho"],[8005.42;0]))),..
               doc=list())
 scs_m.objs(3)=scicos_block(..
               gui="PerteDP",..
@@ -142,7 +142,7 @@ scs_m.objs(3)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"PerteDP","C1","C2",..
-                       list(["L";"D";"lambda";"z1";"z2";"p_rho"],[10;0.2;0.03;0;0;0]),list([],list()))),..
+                       list(["L";"D";"lambda";"z1";"z2";"p_rho"],[10;0.2;0.03;0;0;0]))),..
               doc=list())
 scs_m.objs(4)=scicos_block(..
               gui="PuitsP",..
@@ -186,8 +186,7 @@ scs_m.objs(4)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Puits","C",[],..
-                       list(["P0";"T0";"H0";"option_temperature"],[100000;290;100000;1]),..
-                       list([],list()))),..
+                       list(["P0";"T0";"H0";"option_temperature"],[100000;290;100000;1]))),..
               doc=list())
 scs_m.objs(5)=scicos_block(..
               gui="SourceP",..
@@ -231,6 +230,5 @@ scs_m.objs(5)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Source",[],"C",..
-                       list(["P0";"T0";"H0";"option_temperature"],[300000;290;100000;1]),..
-                       list([],list()))),..
+                       list(["P0";"T0";"H0";"option_temperature"],[300000;290;100000;1]))),..
               doc=list())
