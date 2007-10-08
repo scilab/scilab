@@ -7,7 +7,8 @@
 /* function declaration */
 int MlistGetFieldNumber __PARAMS((int *ptr, const char *string));
 int C2F(intcscicos)  _PARAMS((void));
-int inttimescicos  _PARAMS((char *fname, unsigned long fname_len));
+int intendscicosim _PARAMS((char *fname, unsigned long fname_len));
+int inttimescicos _PARAMS((char *fname, unsigned long fname_len));
 int intduplicate  _PARAMS((char *fname, unsigned long fname_len));
 int intdiffobjs  _PARAMS((char *fname, unsigned long fname_len));
 int intxproperty  _PARAMS((char *fname, unsigned long fname_len));

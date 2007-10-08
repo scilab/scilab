@@ -11,6 +11,7 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
 /*-----------------------------------------------------------------------------------*/ 
+extern int intendscicosim _PARAMS((char *fname, unsigned long l));
 extern int inttimescicos _PARAMS((char *fname,unsigned long l));
 extern int intduplicate _PARAMS((char *fname,unsigned long l));
 extern int intdiffobjs _PARAMS((char *fname,unsigned long l));
@@ -45,6 +46,7 @@ static intcscicosTable Tab[]={
   {intbuildouttb,"buildouttb"},
   {intpermutobj_c,"permutobj"},
   {intscixstringb,"xstringb2"},
+  {intendscicosim,"end_scicosim"},
 };
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(intcscicos)()

@@ -29,6 +29,7 @@ extern void updateScaleIfRequired(sciPointObj * pSubWin);
 
 /*
  * int MlistGetFieldNumber(int *ptr, const char *string)
+ * int intendscicosim(fname,fname_len)
  * int inttimescicos(fname,fname_len)
  * int intduplicate(fname,fname_len)
  * int intdiffobjs(fname,fname_len)
@@ -72,6 +73,23 @@ int MlistGetFieldNumber(int *ptr, const char *string)
       break;}
   }
   return retval;
+}
+
+int intendscicosim(fname,fname_len)
+     /* termine la simulation */
+     char *fname;
+     unsigned long fname_len;
+{
+  int curblock = C2F(curblk).kfun;
+
+  CheckRhs(-1,0);
+  if (curblock==0) {
+    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+  }
+  else {
+    end_scicos_sim();
+  }
+  return 0;
 }
 
 int inttimescicos(fname,fname_len)
@@ -261,24 +279,38 @@ int intxproperty(fname,fname_len)
   int un;
   extern int* pointer_xproperty;
   extern int n_pointer_xproperty;
-  CheckRhs(-1,0);
-  CheckLhs(1,1);
-  CreateVarFromPtr(1,"i",&n_pointer_xproperty,(un=1,&un),&pointer_xproperty);
-  LhsVar(1)=1;
+  int curblock = C2F(curblk).kfun;
+
+  if (curblock==0) {
+    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+  }
+  else {
+    CheckRhs(-1,0);
+    CheckLhs(1,1);
+    CreateVarFromPtr(1,"i",&n_pointer_xproperty,(un=1,&un),&pointer_xproperty);
+    LhsVar(1)=1;
+  }
   return 0;
 }
- 
+
 int intphasesim(fname,fname_len)
      /* renvoi la phase de simulation phase=get_phase_simulation() */
      char *fname;
      unsigned long fname_len;
 { 
   int un,l1;
-  CheckRhs(-1,0);
-  CheckLhs(1,1);
-  CreateVar(1,"i",(un=1,&un),(un=1,&un),&l1);
-  *istk(l1)=get_phase_simulation();
-  LhsVar(1)=1;
+  int curblock = C2F(curblk).kfun;
+
+  if (curblock==0) {
+    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+  }
+  else {
+    CheckRhs(-1,0);
+    CheckLhs(1,1);
+    CreateVar(1,"i",(un=1,&un),(un=1,&un),&l1);
+    *istk(l1)=get_phase_simulation();
+    LhsVar(1)=1;
+  }
   return 0;
 }
 
@@ -289,10 +321,17 @@ int intsetxproperty(fname,fname_len)
      unsigned long fname_len;
 {
   int un,l1,m1;
-  CheckRhs(1,1);
-  GetRhsVar(1,"i",&m1,(un=1,&un),&l1);
-  set_pointer_xproperty(istk(l1));
-  LhsVar(1)=0; 
+  int curblock = C2F(curblk).kfun;
+
+  if (curblock==0) {
+    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+  }
+  else {
+    CheckRhs(1,1);
+    GetRhsVar(1,"i",&m1,(un=1,&un),&l1);
+    set_pointer_xproperty(istk(l1));
+    LhsVar(1)=0;
+  }
   return 0;
 }
 
@@ -302,10 +341,18 @@ int intsetblockerror(fname,fname_len)
      unsigned long fname_len;
 {
   int un,l1;
+  int curblock = C2F(curblk).kfun;
+
   CheckRhs(1,1);
-  GetRhsVar(1,"i",(un=1,&un),(un=1,&un),&l1);
-  set_block_error(*istk(l1));
-  LhsVar(1)=0; 
+
+  if (curblock==0) {
+    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+  }
+  else {
+    GetRhsVar(1,"i",(un=1,&un),(un=1,&un),&l1);
+    set_block_error(*istk(l1));
+    LhsVar(1)=0;
+  }
   return 0;
 }
 

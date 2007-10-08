@@ -15,4 +15,4 @@
 {"buildouttb",			IN_intcscicos,	14,	3},
 {"permutobj",			IN_intcscicos,	15,	3},
 {"xstringb2",			IN_intcscicos,	16,	3},
-
+{"end_scicosim",		IN_intcscicos,	17,	3},
