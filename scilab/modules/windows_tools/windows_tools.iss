@@ -35,7 +35,9 @@ Source: modules\{#WINDOWS_TOOLS}\help\*.htm; DestDir: {app}\modules\{#WINDOWS_TO
 ;
 Source: modules\{#WINDOWS_TOOLS}\locales\*.xml; DestDir: {app}\modules\{#WINDOWS_TOOLS}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#WINDOWS_TOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#WINDOWS_TOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#WINDOWS_TOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#WINDOWS_TOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#WINDOWS_TOOLS}\macros\*.bin; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#WINDOWS_TOOLS}\macros\*.sci; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#WINDOWS_TOOLS}\macros\lib; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}

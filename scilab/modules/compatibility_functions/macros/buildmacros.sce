@@ -1,5 +1,9 @@
 //------------------------------------
 // Vincent COUVERT INRIA 2007
 //------------------------------------
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
 genlib('compatibility_functilib','SCI/modules/compatibility_functions/macros');
 //------------------------------------

@@ -35,6 +35,8 @@ Source: modules\{#SHELL}\help\*.htm; DestDir: {app}\modules\{#SHELL}\help; Flags
 Source: modules\{#SHELL}\locales\*.xml; DestDir: {app}\modules\{#SHELL}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SHELL}\macros\buildmacros.sce; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\macros\buildmacros.bat; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#SHELL}\macros\*.bin; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#SHELL}\macros\*.sci; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#SHELL}\macros\lib; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}

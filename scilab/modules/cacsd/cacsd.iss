@@ -36,6 +36,8 @@ Source: modules\{#CACSD}\macros\names; DestDir: {app}\modules\{#CACSD}\macros; C
 Source: modules\{#CACSD}\macros\*.bin; DestDir: {app}\modules\{#CACSD}\macros; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\macros\*.sci; DestDir: {app}\modules\{#CACSD}\macros; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\macros\buildmacros.sce; DestDir: {app}\modules\{#CACSD}\macros; Components: {#COMPN_CACSD}
+Source: modules\{#CACSD}\macros\buildmacros.bat; DestDir: {app}\modules\{#CACSD}\macros; Components: {#COMPN_CACSD}
+Source: modules\{#CACSD}\macros\cleanmacros.bat; DestDir: {app}\modules\{#CACSD}\macros; Components: {#COMPN_CACSD}
 ;
 Source: modules\{#CACSD}\demos\*.*; DestDir: {app}\modules\{#CACSD}\demos; Flags: recursesubdirs; Components: {#COMPN_CACSD}
 ;

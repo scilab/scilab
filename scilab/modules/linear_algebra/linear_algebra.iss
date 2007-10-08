@@ -33,6 +33,8 @@ Source: modules\{#LINALG}\locales\*.xml; DestDir: {app}\modules\{#LINALG}\locale
 Source: modules\{#LINALG}\includes\*.h; DestDir: {app}\modules\{#LINALG}\includes; Components: {#COMPN_LINALG}
 ;
 Source: modules\{#LINALG}\macros\buildmacros.sce; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
+Source: modules\{#LINALG}\macros\buildmacros.bat; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
+Source: modules\{#LINALG}\macros\cleanmacros.bat; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\macros\lib; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\macros\names; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\macros\*.bin; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}

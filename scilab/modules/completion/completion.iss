@@ -36,6 +36,8 @@ Source: modules\{#COMPLETION}\help\*.htm; DestDir: {app}\modules\{#COMPLETION}\h
 Source: modules\{#COMPLETION}\locales\*.xml; DestDir: {app}\modules\{#COMPLETION}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#COMPLETION}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\macros\buildmacros.bat; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\macros\cleanmacros.bat; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#COMPLETION}\macros\*.bin; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#COMPLETION}\macros\*.sci; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#COMPLETION}\macros\lib; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}

@@ -38,6 +38,9 @@ Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;
 ;Source: modules\{#SCICOS}\includes\*.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
 ;
+;Source: modules\{#SCICOS}\macros\buildmacros.sce; DestDir: {app}\modules\{#SCICOS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\macros\buildmacros.bat; DestDir: {app}\modules\{#SCICOS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SCICOS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\macros\lib; DestDir: {app}\modules\{#SCICOS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\macros\names; DestDir: {app}\modules\{#SCICOS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\macros\*.bin; DestDir: {app}\modules\{#SCICOS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}

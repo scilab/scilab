@@ -32,6 +32,8 @@ Source: modules\{#OTHERS}\macros\names; DestDir: {app}\modules\{#OTHERS}\macros;
 Source: modules\{#OTHERS}\macros\*.bin; DestDir: {app}\modules\{#OTHERS}\macros; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\macros\*.sci; DestDir: {app}\modules\{#OTHERS}\macros; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\macros\buildmacros.sce; DestDir: {app}\modules\{#OTHERS}\macros; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#OTHERS}\macros; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\macros\buildmacros.bat; DestDir: {app}\modules\{#OTHERS}\macros; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 ;
 Source: modules\{#OTHERS}\demos\*.*; DestDir: {app}\modules\{#OTHERS}\demos; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 ;

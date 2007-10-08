@@ -32,6 +32,8 @@ Source: modules\{#FILEIO}\includes\*.h; DestDir: {app}\modules\{#FILEIO}\include
 Source: bin\fileio.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FILEIO}\macros\buildmacros.sce; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\macros\buildmacros.bat; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\macros\cleanmacros.bat; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\macros\lib; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\macros\names; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\macros\*.bin; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}

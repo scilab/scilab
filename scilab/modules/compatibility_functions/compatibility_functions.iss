@@ -32,6 +32,8 @@ Source: modules\{#COMPATFUNCTIONS}\macros\names; DestDir: {app}\modules\{#COMPAT
 Source: modules\{#COMPATFUNCTIONS}\macros\*.bin; DestDir: {app}\modules\{#COMPATFUNCTIONS}\macros; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\macros\*.sci; DestDir: {app}\modules\{#COMPATFUNCTIONS}\macros; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMPATFUNCTIONS}\macros; Components: {#COMPN_COMPATFUNCTIONS}
+Source: modules\{#COMPATFUNCTIONS}\macros\buildmacros.bat; DestDir: {app}\modules\{#COMPATFUNCTIONS}\macros; Components: {#COMPN_COMPATFUNCTIONS}
+Source: modules\{#COMPATFUNCTIONS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#COMPATFUNCTIONS}\macros; Components: {#COMPN_COMPATFUNCTIONS}
 ;
 ;Source: modules\{#COMPATFUNCTIONS}\demos\*.*; DestDir: {app}\modules\{#COMPATFUNCTIONS}\demos; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS}
 ;

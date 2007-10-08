@@ -1,5 +1,9 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-//genlib('interpolationlib','SCI/modules/interpolation/macros');
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('interpolationlib','SCI/modules/interpolation/macros');
 //------------------------------------

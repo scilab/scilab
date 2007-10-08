@@ -33,6 +33,8 @@ Source: modules\{#TIME}\help\*.htm; DestDir: {app}\modules\{#TIME}\help; Flags: 
 Source: modules\{#TIME}\locales\*.xml; DestDir: {app}\modules\{#TIME}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TIME}\macros\buildmacros.sce; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\macros\buildmacros.bat; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\*.bin; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\*.sci; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\lib; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}

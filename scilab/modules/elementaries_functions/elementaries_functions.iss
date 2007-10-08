@@ -32,6 +32,8 @@ Source: modules\{#ELEMFUNCTIONS}\locales\*.xml; DestDir: {app}\modules\{#ELEMFUN
 Source: modules\{#ELEMFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#ELEMFUNCTIONS}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\macros\buildmacros.sce; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\macros\buildmacros.bat; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\macros\lib; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\macros\names; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\macros\*.bin; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}

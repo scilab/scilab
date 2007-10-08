@@ -42,6 +42,8 @@ Source: modules\{#CONSOLE}\help\*.htm; DestDir: {app}\modules\{#CONSOLE}\help; F
 Source: modules\{#CONSOLE}\locales\*.xml; DestDir: {app}\modules\{#CONSOLE}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CONSOLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#CONSOLE}\macros\buildmacros.bat; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#CONSOLE}\macros\cleanmacros.bat; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#CONSOLE}\macros\*.bin; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#CONSOLE}\macros\*.sci; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#CONSOLE}\macros\lib; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}

@@ -34,6 +34,8 @@ Source: modules\{#INCRLINK}\macros\names; DestDir: {app}\modules\{#INCRLINK}\mac
 Source: modules\{#INCRLINK}\macros\*.bin; DestDir: {app}\modules\{#INCRLINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\macros\*.sci; DestDir: {app}\modules\{#INCRLINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\macros\buildmacros.sce; DestDir: {app}\modules\{#INCRLINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\macros\buildmacros.bat; DestDir: {app}\modules\{#INCRLINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\macros\cleanmacros.bat; DestDir: {app}\modules\{#INCRLINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#INCRLINK}\demos\*.*; DestDir: {app}\modules\{#INCRLINK}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

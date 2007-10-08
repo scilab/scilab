@@ -30,6 +30,8 @@ Source: modules\{#SCI2FOR}\macros\names; DestDir: {app}\modules\{#SCI2FOR}\macro
 Source: modules\{#SCI2FOR}\macros\*.bin; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\macros\*.sci; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\macros\buildmacros.sce; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
+Source: modules\{#SCI2FOR}\macros\buildmacros.bat; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
+Source: modules\{#SCI2FOR}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
 ;
 Source: modules\{#SCI2FOR}\demos\*.*; DestDir: {app}\modules\{#SCI2FOR}\demos; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
 ;

@@ -37,6 +37,8 @@ Source: modules\{#SCIPAD}\macros\scipad_internals\*.bin; DestDir: {app}\modules\
 Source: modules\{#SCIPAD}\macros\scipad_internals\dynamickeywords.sce; DestDir: {app}\modules\{#SCIPAD}\macros\scipad_internals; Components: {#COMPN_SCIPAD}
 ;
 Source: modules\{#SCIPAD}\macros\buildmacros.sce; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\macros\buildmacros.bat; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
 ;
 Source: modules\{#SCIPAD}\tcl\*.*; DestDir: {app}\modules\{#SCIPAD}\tcl; Flags: recursesubdirs; Components: {#COMPN_SCIPAD}
 ;

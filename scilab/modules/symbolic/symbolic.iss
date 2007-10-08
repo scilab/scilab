@@ -37,6 +37,8 @@ Source: modules\{#SYMBOLIC}\includes\*.h; DestDir: {app}\modules\{#SYMBOLIC}\inc
 ;Source: modules\{#SYMBOLIC}\macros\*.bin; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
 ;Source: modules\{#SYMBOLIC}\macros\*.sci; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\macros\buildmacros.sce; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\macros\buildmacros.bat; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
 ;
 ;Source: modules\{#SYMBOLIC}\demos\*.*; DestDir: {app}\modules\{#SYMBOLIC}\demos; Flags: recursesubdirs; Components: {#COMPN_SYMB}
 ;

@@ -29,6 +29,8 @@ Source: modules\{#OVERLOADING}\locales\*.xml; DestDir: {app}\modules\{#OVERLOADI
 ;Source: modules\{#OVERLOADING}\includes\*.h; DestDir: {app}\modules\{#OVERLOADING}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#OVERLOADING}\macros\buildmacros.sce; DestDir: {app}\modules\{#OVERLOADING}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\macros\buildmacros.bat; DestDir: {app}\modules\{#OVERLOADING}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\macros\cleanmacros.bat; DestDir: {app}\modules\{#OVERLOADING}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\macros\lib; DestDir: {app}\modules\{#OVERLOADING}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\macros\names; DestDir: {app}\modules\{#OVERLOADING}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\macros\*.bin; DestDir: {app}\modules\{#OVERLOADING}\macros; Components: {#COMPN_SCILAB}

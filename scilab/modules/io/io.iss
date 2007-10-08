@@ -33,6 +33,8 @@ Source: modules\{#IO}\locales\*.xml; DestDir: {app}\modules\{#IO}\locales; Flags
 Source: modules\{#IO}\includes\*.h; DestDir: {app}\modules\{#IO}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#IO}\macros\buildmacros.sce; DestDir: {app}\modules\{#IO}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#IO}\macros\buildmacros.bat; DestDir: {app}\modules\{#IO}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#IO}\macros\cleanmacros.bat; DestDir: {app}\modules\{#IO}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\macros\lib; DestDir: {app}\modules\{#IO}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\macros\names; DestDir: {app}\modules\{#IO}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\macros\*.bin; DestDir: {app}\modules\{#IO}\macros; Components: {#COMPN_SCILAB}

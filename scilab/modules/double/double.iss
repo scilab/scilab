@@ -28,6 +28,8 @@ Source: modules\{#DOUBLE}\locales\*.xml; DestDir: {app}\modules\{#DOUBLE}\locale
 ;Source: modules\{#DOUBLE}\includes\*.h; DestDir: {app}\modules\{#DOUBLE}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DOUBLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#DOUBLE}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\macros\buildmacros.bat; DestDir: {app}\modules\{#DOUBLE}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\macros\cleanmacros.bat; DestDir: {app}\modules\{#DOUBLE}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#DOUBLE}\macros\lib; DestDir: {app}\modules\{#DOUBLE}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#DOUBLE}\macros\names; DestDir: {app}\modules\{#DOUBLE}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#DOUBLE}\macros\*.bin; DestDir: {app}\modules\{#DOUBLE}\macros; Components: {#COMPN_SCILAB}

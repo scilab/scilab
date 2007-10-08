@@ -32,6 +32,8 @@ Source: modules\{#STATS}\macros\names; DestDir: {app}\modules\{#STATS}\macros; C
 Source: modules\{#STATS}\macros\*.bin; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\macros\*.sci; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\macros\buildmacros.sce; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\macros\buildmacros.bat; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
 ;
 ;Source: modules\{#STATS}\demos\*.*; DestDir: {app}\modules\{#STATS}\demos; Flags: recursesubdirs; Components: {#COMPN_STATS}
 ;

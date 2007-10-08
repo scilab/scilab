@@ -29,11 +29,13 @@ Source: modules\{#INTERPOLATION}\locales\*.xml; DestDir: {app}\modules\{#INTERPO
 ;
 Source: modules\{#INTERPOLATION}\includes\*.h; DestDir: {app}\modules\{#INTERPOLATION}\includes; Components: {#COMPN_INTERP}
 ;
-;Source: modules\{#INTERPOLATION}\macros\lib; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
-;Source: modules\{#INTERPOLATION}\macros\names; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
-;Source: modules\{#INTERPOLATION}\macros\*.bin; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
-;Source: modules\{#INTERPOLATION}\macros\*.sci; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\macros\lib; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\macros\names; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\macros\*.bin; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\macros\*.sci; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\macros\buildmacros.sce; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\macros\buildmacros.bat; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\macros\cleanmacros.bat; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 ;
 Source: modules\{#INTERPOLATION}\demos\*.*; DestDir: {app}\modules\{#INTERPOLATION}\demos; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 ;

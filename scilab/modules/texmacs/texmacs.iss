@@ -24,6 +24,8 @@ Source: modules\{#TEXMACS}\macros\names; DestDir: {app}\modules\{#TEXMACS}\macro
 Source: modules\{#TEXMACS}\macros\*.bin; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\macros\*.sci; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\macros\buildmacros.sce; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\macros\buildmacros.bat; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
 ;
 ;Source: modules\{#TEXMACS}\demos\*.*; DestDir: {app}\modules\{#TEXMACS}\demos; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;

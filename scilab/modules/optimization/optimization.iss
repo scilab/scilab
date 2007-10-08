@@ -30,6 +30,8 @@ Source: modules\{#OPTIMIZATION}\locales\*.xml; DestDir: {app}\modules\{#OPTIMIZA
 Source: modules\{#OPTIMIZATION}\includes\*.h; DestDir: {app}\modules\{#OPTIMIZATION}\includes; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\macros\buildmacros.sce; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\macros\buildmacros.bat; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\macros\cleanmacros.bat; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\macros\lib; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\macros\names; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\macros\*.bin; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}

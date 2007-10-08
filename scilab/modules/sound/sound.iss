@@ -34,6 +34,8 @@ Source: modules\{#SOUND}\help\*.htm; DestDir: {app}\modules\{#SOUND}\help; Flags
 Source: modules\{#SOUND}\locales\*.xml; DestDir: {app}\modules\{#SOUND}\locales; Flags: recursesubdirs; Components: {#COMPN_SOUND}
 ;
 Source: modules\{#SOUND}\macros\buildmacros.sce; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\macros\buildmacros.bat; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\macros\*.bin; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\macros\*.sci; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\macros\lib; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}

@@ -38,6 +38,8 @@ Source: modules\{#METANET}\macros\names; DestDir: {app}\modules\{#METANET}\macro
 Source: modules\{#METANET}\macros\*.bin; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\macros\*.sci; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\macros\buildmacros.sce; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\buildmacros.bat; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\cleanmacros.bat; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
 ;
 Source: modules\{#METANET}\demos\*.*; DestDir: {app}\modules\{#METANET}\demos; Flags: recursesubdirs; Components: {#COMPN_METANET}
 ;

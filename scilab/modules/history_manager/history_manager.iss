@@ -36,6 +36,8 @@ Source: modules\{#HISTORY_MANAGER}\help\*.htm; DestDir: {app}\modules\{#HISTORY_
 Source: modules\{#HISTORY_MANAGER}\locales\*.xml; DestDir: {app}\modules\{#HISTORY_MANAGER}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HISTORY_MANAGER}\macros\buildmacros.sce; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#HISTORY_MANAGER}\macros\buildmacros.bat; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#HISTORY_MANAGER}\macros\cleanmacros.bat; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HISTORY_MANAGER}\macros\*.bin; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HISTORY_MANAGER}\macros\*.sci; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HISTORY_MANAGER}\macros\lib; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}

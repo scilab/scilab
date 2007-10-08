@@ -4,17 +4,9 @@
 // ------------------------------------
 //warning('off'); // disable warnings
 // ------------------------------------
-exec(SCI+'/modules/fileio/macros/fileparts.sci');
-exec(SCI+'/modules/core/macros/getshell.sci');
-exec(SCI+'/modules/fileio/macros/pathconvert.sci');
-exec(SCI+'/modules/string/macros/stripblanks.sci');
-exec(SCI+'/modules/fileio/macros/listfiles.sci');
-exec(SCI+'/modules/io/macros/unix_g.sci');
-exec(SCI+'/modules/core/macros/OS_Version.sci');
-exec(SCI+'/modules/overloading/macros/%c_a_c.sci');
-exec(SCI+'/modules/fileio/macros/basename.sci');
-exec(SCI+'/modules/fileio/macros/mputl.sci');
-exec(SCI+'/modules/functions/macros/genlib.sci');
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
 // ------------------------------------
 lines(0);
 Directories=[];

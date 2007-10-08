@@ -30,6 +30,8 @@ Source: modules\{#INTERSCI}\locales\*.xml; DestDir: {app}\modules\{#INTERSCI}\lo
 ;Source: modules\{#INTERSCI}\macros\*.bin; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
 ;Source: modules\{#INTERSCI}\macros\*.sci; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\macros\buildmacros.sce; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\macros\buildmacros.bat; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\macros\cleanmacros.bat; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
 ;
 ;Source: modules\{#INTERSCI}\demos\*.*; DestDir: {app}\modules\{#INTERSCI}\demos; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
 ;

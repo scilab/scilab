@@ -32,6 +32,8 @@ Source: modules\{#SPARSE}\locales\*.xml; DestDir: {app}\modules\{#SPARSE}\locale
 Source: modules\{#SPARSE}\includes\*.h; DestDir: {app}\modules\{#SPARSE}\includes; Components: {#COMPN_SPARSE}
 ;
 Source: modules\{#SPARSE}\macros\buildmacros.sce; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\macros\buildmacros.bat; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\macros\lib; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\macros\names; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\macros\*.bin; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}

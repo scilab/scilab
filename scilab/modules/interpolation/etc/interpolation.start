@@ -3,7 +3,7 @@
 // Copyright INRIA 2006
 // ====================================================================
 //Load  functions librarie
-//load('SCI/modules/interpolation/macros/lib');
+load('SCI/modules/interpolation/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('interpolation');

@@ -34,6 +34,8 @@ Source: modules\{#SCI2C}\includes\*.h; DestDir: {app}\modules\{#SCI2C}\includes;
 ;Source: modules\{#SCI2C}\macros\*.bin; DestDir: {app}\modules\{#SCI2C}\macros; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;Source: modules\{#SCI2C}\macros\*.sci; DestDir: {app}\modules\{#SCI2C}\macros; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 Source: modules\{#SCI2C}\macros\buildmacros.sce; DestDir: {app}\modules\{#SCI2C}\macros; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
+Source: modules\{#SCI2C}\macros\buildmacros.bat; DestDir: {app}\modules\{#SCI2C}\macros; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
+Source: modules\{#SCI2C}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SCI2C}\macros; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;
 Source: modules\{#SCI2C}\demos\*.*; DestDir: {app}\modules\{#SCI2C}\demos; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;

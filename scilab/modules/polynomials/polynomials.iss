@@ -30,6 +30,8 @@ Source: modules\{#POLYNOMIALS}\locales\*.xml; DestDir: {app}\modules\{#POLYNOMIA
 Source: modules\{#POLYNOMIALS}\includes\*.h; DestDir: {app}\modules\{#POLYNOMIALS}\includes; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\macros\buildmacros.sce; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
+Source: modules\{#POLYNOMIALS}\macros\buildmacros.bat; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
+Source: modules\{#POLYNOMIALS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\macros\lib; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\macros\names; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\macros\*.bin; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
