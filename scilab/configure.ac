@@ -568,7 +568,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
 
-	if test "$with_swig_generation" != no -a "$with_swig_generation" != ""; ; then	
+	if test "$with_swig_generation" != no -a "$with_swig_generation" != ""; then	
 		SWIG_PROG()
 		SWIG_ENABLE_JAVA()
 		AC_SUBST(SWIG_BIN)
