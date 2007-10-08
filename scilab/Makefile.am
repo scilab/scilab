@@ -57,7 +57,7 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	$(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e "xmltohtml();exit;")
 
 
-check-local:
+check-help:
 	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'check_help();exit;'
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'check_help();exit;'
 
