@@ -64,9 +64,8 @@ function [scs_m, fct] = do_addnew(scs_m)
 
     fct = emptystr()
 
-  end //** 
+  end //**
 
-  
   //define the block
   ierror = execstr('blk='+name+'(''define'')','errcatch')
   if ierror <>0 & ierror <>4 then
@@ -79,9 +78,9 @@ function [scs_m, fct] = do_addnew(scs_m)
     irr=message(['Error in GUI function--The error was:';
 		            lasterror();'It could be an old GUI';
 	              'Should I try to translate (no guarantee)?'],['yes','no'])
-    
+
     if irr==2 then
-      
+
       fct=[]
       return
 
@@ -103,13 +102,75 @@ function [scs_m, fct] = do_addnew(scs_m)
       ierror = execstr('blk=up_to_date(blk)','errcatch');
 
       if ierror <>0 then
-	          message("Translation did not work, sorry")
-	          fct=[]
-	          return
+        message("Translation did not work, sorry")
+        fct=[]
+        return
       end
 
     end //** irr
 
+  // update blk !
+  else
+  //**------ Al@n's update 2 ---------/////////////
+              o_new=scicos_block();
+              T = getfield(1,blk);
+
+              for k=2:size(T,2)
+                select T(k)
+                  //*********** graphics **********//
+                  case 'graphics' then
+                    ogra  = blk.graphics;
+                    G     = getfield(1,ogra);
+                    G_txt = [];
+                    for l=2:size(G,2)
+                      G_txt = G_txt + G(1,l) + ...
+                              "=" + "ogra." + G(1,l);
+                      if l<>size(G,2) then
+                        G_txt = G_txt + ',';
+                      end
+                    end
+                    G_txt = 'ogra=scicos_graphics(' + G_txt + ')';
+                    ierr  = execstr(G_txt,'errcatch')
+                    if ierr<>0 then
+                      error("Problem in convertion of graphics in block.")
+                    end
+                    o_new.graphics = ogra;
+                  //*******************************//
+
+                  //************* model ***********//
+                  case 'model' then
+                    omod  = blk.model;
+                    M     = getfield(1,blk.model);
+                    M_txt = [];
+                    for l=2:size(M,2)
+                      M_txt = M_txt + M(1,l) + ...
+                              "=" + "omod." + M(1,l);
+                      if l<>size(M,2) then
+                        M_txt = M_txt + ',';
+                      end
+                    end
+                    M_txt = 'omod=scicos_model(' + M_txt + ')';
+                    ierr  = execstr(M_txt,'errcatch')
+                    if ierr<>0 then
+                      error("Problem in convertion of model in block.")
+                    end
+                    o_new.model = omod;
+                  //*******************************//
+
+                  //************* other ***********//
+                  else
+                    T_txt = "blk."+T(k);
+                    T_txt = "o_new." + T(k) + "=" + T_txt;
+                    ierr  = execstr(T_txt,'errcatch')
+                    if ierr<>0 then
+                      error("Problem in convertion in objs.")
+                    end
+                  //*******************************//
+
+                end  //end of select T(k)
+              end  //end of for k=
+              blk = o_new;
+  //**------------------------------------/////////
   end //** ierror
 
   //**------ Al@n's update ---------/////////////
@@ -143,29 +204,11 @@ function [scs_m, fct] = do_addnew(scs_m)
       elseif blk.model.sim(1)=='csuper' then
         save_csuper(scs_m_super,TMPDIR,blk.graphics.gr_i,blk.graphics.sz)
       end
-      message(["Old block detected !";"New block "+name+".sci generated in "+TMPDIR+"."])
+      message(["Old csuper/super block have been detected !";
+               "A new block "+name+".sci have been generated in "+TMPDIR+".";
+               "Please save and edit the generated file at your convenience";
+               "to have an updated interfacing function of that block."])
 
-      //load new interfacing function
-      [u,err]=file('open',TMPDIR+'/'+name+'.sci','old','formatted')
-      if err<>0 then
-       message(TMPDIR+'/'+name+'.sci'+' file, Not found')
-       return
-      end
-      if execstr('getf(u)','errcatch')<>0 then
-       file('close',u)
-       message([name+' erroneous function:';lasterror()])
-       return
-      end
-      file('close',u)
-      fct=TMPDIR+'/'+name+'.sci'
-
-      //define the block
-      ierror = execstr('blk='+name+'(''define'')','errcatch')
-      if ierror <>0 & ierror <>4 then
-        message(['Error in GUI function';lasterror()] )
-        fct=[]
-        return
-      end
     end
   end
   //**------------------------------------/////////////
