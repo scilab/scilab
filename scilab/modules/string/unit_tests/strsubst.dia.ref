@@ -1,0 +1,12 @@
+ 
+ 
+//strsubst
+ 
+if strsubst('abc,abd,aa,bxe',',',';')<>'abc;abd;aa;bxe'  then bugmes();quit;end
+ 
+if strsubst('abc,abd,aa,bxe',',',emptystr())<>'abcabdaabxe'  then bugmes();quit;end
+ 
+if strsubst(',abc,abd,aa,bxe',',',emptystr())<>'abcabdaabxe'  then bugmes();quit;end
+ 
+if strsubst('abc',',',';')<>'abc'  then bugmes();quit;end
+ 

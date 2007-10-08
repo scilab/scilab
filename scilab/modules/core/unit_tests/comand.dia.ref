@@ -1,0 +1,94 @@
+ 
+clear //sdfdgd
+ 
+clear//sdfdgd
+ 
+a=1;
+ 
+clear a//sdfdgd
+ 
+deff('y=foo(a,b,c)','y=a+b+c','n')
+ 
+foo aaa bbb   cc
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+foo aaa bbb   cc;
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+foo 'aaa' bbb 'cc'
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+foo aaa 'bbb' cc
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+foo aaa bbb cc //qdsddfd
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+foo aaa bbb cc//qdsddfd
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+deff('y=foo(a,b,c)','y=a+b+c')
+Warning :redefining function: foo                     
+ 
+ 
+foo aaa bbb   cc
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+foo 'aaa' bbb 'cc'
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+foo aaa 'bbb' cc
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+foo aaa bbb cc //qdsddfd
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+foo aaa bbb cc//qdsddfd
+ ans  =
+ 
+ aaabbbcc   
+ 
+if ans<>'aaabbbcc' then bugmes();quit;end
+ 
+ 
+ascii foo;
+ 
+if ans<>[102,111,111] then bugmes();quit;end
+ 

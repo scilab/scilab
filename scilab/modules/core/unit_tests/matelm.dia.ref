@@ -1,0 +1,2120 @@
+ 
+// Copyright INRIA
+ 
+//test of matelm functions
+ 
+//size
+ 
+a=[1 2;3 4];
+ 
+if or(size(a)<>[2 2]) then bugmes();quit;end
+ 
+if or(size(a+0)<>[2 2]) then bugmes();quit;end
+ 
+if size(a,'*')<>4 then bugmes();quit;end
+ 
+if size(a+0,'*')<>4 then bugmes();quit;end
+ 
+[m,n]=size(a);if or([m,n]<>[2 2]) then bugmes();quit;end
+ 
+ 
+a=[1;2];
+ 
+if size(a,1)<>2 then bugmes();quit;end
+ 
+if size(a+0,1)<>2 then bugmes();quit;end
+ 
+if size(a,'r')<>2 then bugmes();quit;end
+ 
+if size(a+0,'r')<>2 then bugmes();quit;end
+ 
+if size(a,2)<>1 then bugmes();quit;end
+ 
+if size(a+0,2)<>1 then bugmes();quit;end
+ 
+if size(a,'c')<>1 then bugmes();quit;end
+ 
+if size(a+0,'c')<>1 then bugmes();quit;end
+ 
+[m,n]=size(a);if or([m,n]<>[2 1]) then bugmes();quit;end
+ 
+ 
+a=string([1 2;3 4]);
+ 
+if or(size(a)<>[2 2]) then bugmes();quit;end
+ 
+if or(size(a+a)<>[2 2]) then bugmes();quit;end
+ 
+if size(a,'*')<>4 then bugmes();quit;end
+ 
+if size(a+a,'*')<>4 then bugmes();quit;end
+ 
+[m,n]=size(a);if or([m,n]<>[2 2]) then bugmes();quit;end
+ 
+ 
+a=string([1;2]);
+ 
+if size(a,1)<>2 then bugmes();quit;end
+ 
+if size(a+a,1)<>2 then bugmes();quit;end
+ 
+if size(a,'r')<>2 then bugmes();quit;end
+ 
+if size(a+a,'r')<>2 then bugmes();quit;end
+ 
+if size(a,2)<>1 then bugmes();quit;end
+ 
+if size(a+a,2)<>1 then bugmes();quit;end
+ 
+if size(a,'c')<>1 then bugmes();quit;end
+ 
+if size(a+a,'c')<>1 then bugmes();quit;end
+ 
+[m,n]=size(a);if or([m,n]<>[2 1]) then bugmes();quit;end
+ 
+ 
+a=[1 2;3 4]+%s;
+ 
+if or(size(a)<>[2 2]) then bugmes();quit;end
+ 
+if or(size(a+0)<>[2 2]) then bugmes();quit;end
+ 
+if size(a,'*')<>4 then bugmes();quit;end
+ 
+if size(a+0,'*')<>4 then bugmes();quit;end
+ 
+[m,n]=size(a);if or([m,n]<>[2 2]) then bugmes();quit;end
+ 
+ 
+a=[1;2]+%s;
+ 
+if size(a,1)<>2 then bugmes();quit;end
+ 
+if size(a+0,1)<>2 then bugmes();quit;end
+ 
+if size(a,'r')<>2 then bugmes();quit;end
+ 
+if size(a+0,'r')<>2 then bugmes();quit;end
+ 
+if size(a,2)<>1 then bugmes();quit;end
+ 
+if size(a+0,2)<>1 then bugmes();quit;end
+ 
+if size(a,'c')<>1 then bugmes();quit;end
+ 
+if size(a+0,'c')<>1 then bugmes();quit;end
+ 
+[m,n]=size(a);if or([m,n]<>[2 1]) then bugmes();quit;end
+ 
+ 
+a=[1 2;3 4]==1;
+ 
+if or(size(a)<>[2 2]) then bugmes();quit;end
+ 
+if or(size(a&a)<>[2 2]) then bugmes();quit;end
+ 
+if size(a,'*')<>4 then bugmes();quit;end
+ 
+if size(a|a,'*')<>4 then bugmes();quit;end
+ 
+[m,n]=size(a);if or([m,n]<>[2 2]) then bugmes();quit;end
+ 
+ 
+a=[1;2]==1;
+ 
+if size(a,1)<>2 then bugmes();quit;end
+ 
+if size(a|a,1)<>2 then bugmes();quit;end
+ 
+if size(a,'r')<>2 then bugmes();quit;end
+ 
+if size(a|a,'r')<>2 then bugmes();quit;end
+ 
+if size(a,2)<>1 then bugmes();quit;end
+ 
+if size(a|a,2)<>1 then bugmes();quit;end
+ 
+if size(a,'c')<>1 then bugmes();quit;end
+ 
+if size(a|a,'c')<>1 then bugmes();quit;end
+ 
+[m,n]=size(a);if or([m,n]<>[2 1]) then bugmes();quit;end
+ 
+ 
+//eye
+ 
+if or(eye(2,2)<>[1 0;0 1]) then bugmes();quit;end
+ 
+if or(eye(2,1)<>[1;0]) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(eye(n,2)<>[1 0;0 1]) then bugmes();quit;end
+ 
+if or(eye(2,n)<>[1 0;0 1]) then bugmes();quit;end
+ 
+if or(eye(n,n)<>[1 0;0 1]) then bugmes();quit;end
+ 
+if or(size(eye())<>[-1 -1]) then bugmes();quit;end
+ 
+a=[1 2;3 4];
+ 
+if or(eye(a)<>[1 0;0 1]) then bugmes();quit;end
+ 
+if or(eye(a+0)<>[1 0;0 1]) then bugmes();quit;end
+ 
+a=[1 2;3 4]+%s;
+ 
+if or(eye(a)<>[1 0;0 1]) then bugmes();quit;end
+ 
+if or(eye(a+0)<>[1 0;0 1]) then bugmes();quit;end
+ 
+a=string([1 2;3 4]);
+ 
+if or(eye(a)<>[1 0;0 1]) then bugmes();quit;end
+ 
+if or(eye(a+a)<>[1 0;0 1]) then bugmes();quit;end
+ 
+a=[1 2;3 4]>1;
+ 
+if or(eye(a)<>[1 0;0 1]) then bugmes();quit;end
+ 
+if or(eye(a&a)<>[1 0;0 1]) then bugmes();quit;end
+ 
+ 
+if eye([])<>[] then bugmes();quit;end
+ 
+//ones
+ 
+if or(ones(2,2)<>[1 1;1 1]) then bugmes();quit;end
+ 
+if or(ones(2,1)<>[1;1]) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(ones(n,2)<>[1 1;1 1]) then bugmes();quit;end
+ 
+if or(ones(2,n)<>[1 1;1 1]) then bugmes();quit;end
+ 
+if or(ones(n,n)<>[1 1;1 1]) then bugmes();quit;end
+ 
+if ones(1)<>1 then bugmes();quit;end
+ 
+if ones([])<>[] then bugmes();quit;end
+ 
+a=[1 2;3 4];
+ 
+if or(ones(a)<>[1 1;1 1]) then bugmes();quit;end
+ 
+if or(ones(a+0)<>[1 1;1 1]) then bugmes();quit;end
+ 
+a=[1 2;3 4]+%s;
+ 
+if or(ones(a)<>[1 1;1 1]) then bugmes();quit;end
+ 
+if or(ones(a+0)<>[1 1;1 1]) then bugmes();quit;end
+ 
+a=string([1 2;3 4]);
+ 
+if or(ones(a)<>[1 1;1 1]) then bugmes();quit;end
+ 
+if or(ones(a+a)<>[1 1;1 1]) then bugmes();quit;end
+ 
+a=[1 2;3 4]>1;
+ 
+if or(ones(a)<>[1 1;1 1]) then bugmes();quit;end
+ 
+if or(ones(a&a)<>[1 1;1 1]) then bugmes();quit;end
+ 
+//rand
+ 
+if or(size(rand(2,2))<>[2 2]) then bugmes();quit;end
+ 
+if or(size(rand(2,1))<>[2 1]) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(size(rand(n,2))<>[n 2]) then bugmes();quit;end
+ 
+if or(size(rand(2,n))<>[2 n]) then bugmes();quit;end
+ 
+if or(size(rand(n,n))<>[n n]) then bugmes();quit;end
+ 
+//if or(size(rand())<>[1 1]) then bugmes();quit;end
+ 
+if rand([])<>[] then bugmes();quit;end
+ 
+a=[1 2;3 4];
+ 
+if or(size(rand(a))<>size(a)) then bugmes();quit;end
+ 
+if or(size(rand(a+0))<>size(a)) then bugmes();quit;end
+ 
+//a=[1 2;3 4]+%s;
+ 
+//if or(size(rand(a))<>size(a)) then bugmes();quit;end
+ 
+//if or(size(rand(a+0))<>size(a)) then bugmes();quit;end
+ 
+//a=string([1 2;3 4]);
+ 
+//if or(size(rand(a))<>size(a)) then bugmes();quit;end
+ 
+//if or(size(rand(a+a))<>size(a)) then bugmes();quit;end
+ 
+//a=[1 2;3 4]>1;
+ 
+//if or(size(rand(a))<>size(a)) then bugmes();quit;end
+ 
+//if or(size(rand(a+a))<>size(a)) then bugmes();quit;end
+ 
+rand('seed',1);if rand('seed')<>1 then bugmes();quit;end
+ 
+a=2;rand('seed',a);if rand('seed')<>a then bugmes();quit;end
+ 
+ 
+//diag
+ 
+if or(diag([1 2 3])<>[1 0 0;0 2 0;0 0 3]) then bugmes();quit;end
+ 
+a=[1 2 3];
+ 
+if or(diag(a)<>[1 0 0;0 2 0;0 0 3]) then bugmes();quit;end
+ 
+if or(diag([1 %i 2])<>[1 0 0;0 %i 0;0 0 2]) then bugmes();quit;end
+ 
+a=[1 %i 2 ];
+ 
+if or(diag(a)<>[1 0 0;0 %i 0;0 0 2]) then bugmes();quit;end
+ 
+a=[1 2 3 4;5 6 7 8];
+ 
+if or(diag(a)<>[1;6]) then bugmes();quit;end
+ 
+if or(diag(a+0)<>[1;6]) then bugmes();quit;end
+ 
+if or(diag(a,1)<>[2;7]) then bugmes();quit;end
+ 
+if or(diag(a+0,1)<>[2;7]) then bugmes();quit;end
+ 
+if or(diag(a,-1)<>[5]) then bugmes();quit;end
+ 
+if or(diag(a+0,-1)<>[5]) then bugmes();quit;end
+ 
+if diag(a,4)<>[] then bugmes();quit;end
+ 
+a(1,1)=%i
+ a  =
+ 
+    i      2.    3.    4.  
+    5.     6.    7.    8.  
+ 
+if or(diag(a)<>[%i;6]) then bugmes();quit;end
+ 
+if or(diag(a+0)<>[%i;6]) then bugmes();quit;end
+ 
+if or(diag(a,1)<>[2;7]) then bugmes();quit;end
+ 
+if or(diag(a+0,1)<>[2;7]) then bugmes();quit;end
+ 
+if or(diag(a,-1)<>[5]) then bugmes();quit;end
+ 
+if or(diag(a+0,-1)<>[5]) then bugmes();quit;end
+ 
+if diag(a,4)<>[] then bugmes();quit;end
+ 
+ 
+if diag([])<>[] then bugmes();quit;end
+ 
+if diag([],1)<>[] then bugmes();quit;end
+ 
+if diag([],-1)<>[] then bugmes();quit;end
+ 
+a=[];
+ 
+if diag(a)<>[] then bugmes();quit;end
+ 
+if diag(a,1)<>[] then bugmes();quit;end
+ 
+if diag(a,-1)<>[] then bugmes();quit;end
+ 
+ 
+// triu
+ 
+a=[1 2 3 4;5 6 7 8];
+ 
+if or(triu(a)<>[1 2 3 4;0 6 7 8]) then bugmes();quit;end
+ 
+if or(triu(a+0)<>[1 2 3 4;0 6 7 8]) then bugmes();quit;end
+ 
+if or(triu(a,1)<>[0 2 3 4;0 0 7 8]) then bugmes();quit;end
+ 
+if or(triu(a+0,1)<>[0 2 3 4;0 0 7 8]) then bugmes();quit;end
+ 
+if or(triu(a,-1)<>a) then bugmes();quit;end
+ 
+if or(triu(a+0,-1)<>a) then bugmes();quit;end
+ 
+if or(triu(a,4)<>0*a) then bugmes();quit;end
+ 
+a(1,1)=%i;
+ 
+if or(triu(a)<>[%i 2 3 4;0 6 7 8]) then bugmes();quit;end
+ 
+if or(triu(a+0)<>[%i 2 3 4;0 6 7 8]) then bugmes();quit;end
+ 
+if or(triu(a,1)<>[0 2 3 4;0 0 7 8]) then bugmes();quit;end
+ 
+if or(triu(a+0,1)<>[0 2 3 4;0 0 7 8]) then bugmes();quit;end
+ 
+if or(triu(a,-1)<>a) then bugmes();quit;end
+ 
+if or(triu(a+0,-1)<>a) then bugmes();quit;end
+ 
+if or(triu(a,4)<>0*a) then bugmes();quit;end
+ 
+ 
+if triu([])<>[] then bugmes();quit;end
+ 
+if triu([],1)<>[] then bugmes();quit;end
+ 
+if triu([],-1)<>[] then bugmes();quit;end
+ 
+a=[];
+ 
+if triu(a)<>[] then bugmes();quit;end
+ 
+if triu(a,1)<>[] then bugmes();quit;end
+ 
+if triu(a,-1)<>[] then bugmes();quit;end
+ 
+ 
+//tril
+ 
+a=[1 2 3 4;5 6 7 8];
+ 
+if or(tril(a)<>[1 0 0 0;5 6 0 0]) then bugmes();quit;end
+ 
+if or(tril(a+0)<>[1 0 0 0;5 6 0 0]) then bugmes();quit;end
+ 
+if or(tril(a,1)<>[1 2 0 0;5 6  7 0]) then bugmes();quit;end
+ 
+if or(tril(a+0,1)<>[1 2 0 0;5 6  7 0]) then bugmes();quit;end
+ 
+if or(tril(a,4)<>a) then bugmes();quit;end
+ 
+if or(tril(a+0,4)<>a) then bugmes();quit;end
+ 
+if or(tril(a,-3)<>0*a) then bugmes();quit;end
+ 
+a(1,1)=%i;
+ 
+if or(tril(a)<>[%i 0 0 0;5 6 0 0]) then bugmes();quit;end
+ 
+if or(tril(a+0)<>[%i 0 0 0;5 6 0 0]) then bugmes();quit;end
+ 
+if or(tril(a,1)<>[%i 2 0 0;5 6  7 0]) then bugmes();quit;end
+ 
+if or(tril(a+0,1)<>[%i 2 0 0;5 6  7 0]) then bugmes();quit;end
+ 
+if or(tril(a,4)<>a) then bugmes();quit;end
+ 
+if or(tril(a+0,4)<>a) then bugmes();quit;end
+ 
+if or(tril(a,-3)<>0*a) then bugmes();quit;end
+ 
+ 
+if tril([])<>[] then bugmes();quit;end
+ 
+if tril([],1)<>[] then bugmes();quit;end
+ 
+if tril([],-1)<>[] then bugmes();quit;end
+ 
+a=[];
+ 
+if tril(a)<>[] then bugmes();quit;end
+ 
+if tril(a,1)<>[] then bugmes();quit;end
+ 
+if tril(a,-1)<>[] then bugmes();quit;end
+ 
+ 
+ 
+//abs
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if or(abs(a)<>[1 2;3 4;5 6]) then bugmes();quit;end
+ 
+if or(abs(a+0)<>[1 2;3 4;5 6]) then bugmes();quit;end
+ 
+if abs([])<>[] then bugmes();quit;end
+ 
+a=[];if abs(a)<>[] then bugmes();quit;end
+ 
+a=[1+%i 2;-3 4;5 -6];
+ 
+if or(abs(a)<>[sqrt(2) 2;3 4;5 6]) then bugmes();quit;end
+ 
+if or(abs(a+0)<>[sqrt(2) 2;3 4;5 6]) then bugmes();quit;end
+ 
+ 
+a=[1 2;-3 4;5 -6]+%s;
+ 
+if or(abs(a)<>[1 2;3 4;5 6]+%s) then bugmes();quit;end
+ 
+if or(abs(a+0)<>[1 2;3 4;5 6]+%s) then bugmes();quit;end
+ 
+a=[1+%i 2;-3 4;5 -6]+%s;
+ 
+if or(abs(a)<>[sqrt(2) 2;3 4;5 6]+%s) then bugmes();quit;end
+ 
+if or(abs(a+0)<>[sqrt(2) 2;3 4;5 6]+%s) then bugmes();quit;end
+ 
+ 
+a=sparse([1 2;-3 4;5 -6]);
+ 
+if or(full(abs(a))<>[1 2;3 4;5 6]) then bugmes();quit;end
+ 
+if or(full(abs(a+a))<>2*[1 2;3 4;5 6]) then bugmes();quit;end
+ 
+a=sparse([1+%i 2;-3 4;5 -6]);
+ 
+if or(full(abs(a))<>[sqrt(2) 2;3 4;5 6]) then bugmes();quit;end
+ 
+if or(full(abs(a+a))<>2*[sqrt(2) 2;3 4;5 6]) then bugmes();quit;end
+ 
+ 
+//real
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if or(real(a)<>a) then bugmes();quit;end
+ 
+if or(real(a+0)<>a) then bugmes();quit;end
+ 
+if real([])<>[] then bugmes();quit;end
+ 
+a=[];if real(a)<>[] then bugmes();quit;end
+ 
+a=[1+%i 2;-3 4;5 -6];
+ 
+if or(real(a)<>[1 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+if or(real(a+0)<>[1 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+ 
+a=[1 2;-3 4;5 -6]+%s;
+ 
+if or(real(a)<>a) then bugmes();quit;end
+ 
+if or(real(a+0)<>a) then bugmes();quit;end
+ 
+a=[1+%i 2;-3 4;5 -6]+%s;
+ 
+if or(real(a)<>[1 2;-3 4;5 -6]+%s) then bugmes();quit;end
+ 
+if or(real(a+0)<>[1 2;-3 4;5 -6]+%s) then bugmes();quit;end
+ 
+ 
+//a=sparse([1 2;-3 4;5 -6]);
+ 
+//if or(real(a)<>a) then bugmes();quit;end
+ 
+//if or(real(a+a)<>2*a) then bugmes();quit;end
+ 
+//a=sparse([1+%i 2;-3 4;5 -6]);
+ 
+//if or(full(real(a))<>[1 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+//if or(full(real(a+a))<>2*[1 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+ 
+//imag
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if or(imag(a)<>0*a) then bugmes();quit;end
+ 
+if or(imag(a+0)<>0*a) then bugmes();quit;end
+ 
+if imag([])<>[] then bugmes();quit;end
+ 
+a=[];if imag(a)<>[] then bugmes();quit;end
+ 
+a=[1+%i 2;-3 4;5 -6];
+ 
+if or(imag(a)<>[1 0;0 0;0 0]) then bugmes();quit;end
+ 
+if or(imag(a+0)<>[1 0;0 0;0 0]) then bugmes();quit;end
+ 
+ 
+a=[1 2;-3 4;5 -6]+%s;
+ 
+if or(imag(a)<>0*a) then bugmes();quit;end
+ 
+if or(imag(a+0)<>0*a) then bugmes();quit;end
+ 
+a=[1+%i 2;-3 4;5 -6]+%s;
+ 
+if or(imag(a)<>[poly(1,'s','c') 0;0 0;0 0]) then bugmes();quit;end
+ 
+if or(imag(a+0)<>[poly(1,'s','c') 0;0 0;0 0]) then bugmes();quit;end
+ 
+ 
+//a=sparse([1 2;-3 4;5 -6]);
+ 
+//if or(imag(a)<>0*a) then bugmes();quit;end
+ 
+//if or(imag(a+a)<>0*a) then bugmes();quit;end
+ 
+//a=sparse([1+%i 2;-3 4;5 -6]);
+ 
+//if or(full(imag(a))<>[1 0;0 0;0 0]) then bugmes();quit;end
+ 
+//if or(full(imag(a+a))<>2*[1 0;0 0;0 0]) then bugmes();quit;end
+ 
+ 
+ 
+//conj
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if or(conj(a)<>a) then bugmes();quit;end
+ 
+if or(conj(a+0)<>a) then bugmes();quit;end
+ 
+if conj([])<>[] then bugmes();quit;end
+ 
+a=[];if conj(a)<>[] then bugmes();quit;end
+ 
+a=[1+%i 2;-3 4;5 -6];
+ 
+if or(conj(a)<>[1-%i 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+if or(conj(a+0)<>[1-%i 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+ 
+a=[1 2;-3 4;5 -6]+%s;
+ 
+if or(conj(a)<>a) then bugmes();quit;end
+ 
+if or(conj(a+0)<>a) then bugmes();quit;end
+ 
+a=[1+%i 2;-3 4;5 -6]+%s;
+ 
+if or(conj(a)<>[1-%i 2;-3 4;5 -6]+%s) then bugmes();quit;end
+ 
+if or(conj(a+0)<>[1-%i 2;-3 4;5 -6]+%s) then bugmes();quit;end
+ 
+ 
+//a=sparse([1 2;-3 4;5 -6]);
+ 
+//if or(conj(a)<>a) then bugmes();quit;end
+ 
+//if or(conj(a+a)<>2*a) then bugmes();quit;end
+ 
+//a=sparse([1+%i 2;-3 4;5 -6]);
+ 
+//if or(full(conj(a))<>[1-%i 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+//if or(full(conj(a+a))<>2*[1-%i 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+//int
+ 
+a=[1.2 2.5;-3.4 4.5;5.8 -6.2];
+ 
+if or(int(a)<>[1 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+if or(int(a+0)<>[1 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+a=[1.2+2.5*%i 2.5;-3.4 4.5;5.8 -6.2];
+ 
+if or(int(a)<>[1+2*%i 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+if or(int(a+0)<>[1+2*%i 2;-3 4;5 -6]) then bugmes();quit;end
+ 
+ 
+a=[1.2 2.5;-3.4 4.5;5.8 -6.2]+1.1*%s;
+ 
+if or(int(a)<>[1 2;-3 4;5 -6]+%s) then bugmes();quit;end
+ 
+if or(int(a+0)<>[1 2;-3 4;5 -6]+%s) then bugmes();quit;end
+ 
+a=[1.2+2.5*%i 2.5;-3.4 4.5;5.8 -6.2]+1.1*%s;
+ 
+if or(int(a)<>[1+2*%i 2;-3 4;5 -6]+%s) then bugmes();quit;end
+ 
+if or(int(a+0)<>[1+2*%i 2;-3 4;5 -6]+%s) then bugmes();quit;end
+ 
+ 
+if int([])<>[] then bugmes();quit;end
+ 
+a=[];if int(a)<>[] then bugmes();quit;end
+ 
+ 
+ 
+//round
+ 
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if or(round(a)<>[1 3;-3 5;6 -6]) then bugmes();quit;end
+ 
+if or(round(a+0)<>[1 3;-3 5;6 -6]) then bugmes();quit;end
+ 
+a=[1.2+2.51*%i 2.52;-3.4 4.52;5.8 -6.2];
+ 
+if or(round(a)<>[1+3*%i 3;-3 5;6 -6]) then bugmes();quit;end
+ 
+if or(round(a+0)<>[1+3*%i 3;-3 5;6 -6]) then bugmes();quit;end
+ 
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2]+1.1*%s;
+ 
+if or(round(a)<>[1 3;-3 5;6 -6]+%s) then bugmes();quit;end
+ 
+if or(round(a+0)<>[1 3;-3 5;6 -6]+%s) then bugmes();quit;end
+ 
+a=[1.2+2.51*%i 2.52;-3.4 4.52;5.8 -6.2]+1.1*%s;
+ 
+if or(round(a)<>[1+3*%i 3;-3 5;6 -6]+%s) then bugmes();quit;end
+ 
+if or(round(a+0)<>[1+3*%i 3;-3 5;6 -6]+%s) then bugmes();quit;end
+ 
+ 
+if round([])<>[] then bugmes();quit;end
+ 
+a=[];if round(a)<>[] then bugmes();quit;end
+ 
+ 
+//ceil
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if or(ceil(a)<>[2 3;-3 5;6 -6]) then bugmes();quit;end
+ 
+if or(ceil(a+0)<>[2 3;-3 5;6 -6]) then bugmes();quit;end
+ 
+a=[1.2+2.51*%i 2.52;-3.4 4.52;5.8 -6.2];
+ 
+if or(ceil(a)<>[2+3*%i 3;-3 5;6 -6]) then bugmes();quit;end
+ 
+if or(ceil(a+0)<>[2+3*%i 3;-3 5;6 -6]) then bugmes();quit;end
+ 
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2]+1.1*%s;
+ 
+if or(ceil(a)<>[2 3;-3 5;6 -6]+2*%s) then bugmes();quit;end
+ 
+if or(ceil(a+0)<>[2 3;-3 5;6 -6]+2*%s) then bugmes();quit;end
+ 
+a=[1.2+2.51*%i 2.52;-3.4 4.52;5.8 -6.2]+1.1*%s;
+ 
+if or(ceil(a)<>[2+3*%i 3;-3 5;6 -6]+2*%s) then bugmes();quit;end
+ 
+if or(ceil(a+0)<>[2+3*%i 3;-3 5;6 -6]+2*%s) then bugmes();quit;end
+ 
+ 
+if ceil([])<>[] then bugmes();quit;end
+ 
+a=[];if ceil(a)<>[] then bugmes();quit;end
+ 
+ 
+ 
+//floor
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if or(floor(a)<>[1 2;-4 4;5 -7]) then bugmes();quit;end
+ 
+if or(floor(a+0)<>[1 2;-4 4;5 -7]) then bugmes();quit;end
+ 
+a=[1.2+2.51*%i 2.52;-3.4 4.52;5.8 -6.2];
+ 
+if or(floor(a)<>[1+2*%i 2;-4 4;5 -7]) then bugmes();quit;end
+ 
+if or(floor(a+0)<>[1+2*%i 2;-4 4;5 -7]) then bugmes();quit;end
+ 
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2]+1.1*%s;
+ 
+if or(floor(a)<>[1 2;-4 4;5 -7]+%s) then bugmes();quit;end
+ 
+if or(floor(a+0)<>[1 2;-4 4;5 -7]+%s) then bugmes();quit;end
+ 
+a=[1.2+2.51*%i 2.52;-3.4 4.52;5.8 -6.2]+1.1*%s;
+ 
+if or(floor(a)<>[1+2*%i 2;-4 4;5 -7]+%s) then bugmes();quit;end
+ 
+if or(floor(a+0)<>[1+2*%i 2;-4 4;5 -7]+%s) then bugmes();quit;end
+ 
+ 
+if floor([])<>[] then bugmes();quit;end
+ 
+a=[];if floor(a)<>[] then bugmes();quit;end
+ 
+ 
+//sign
+ 
+//a=[1.2 2.51;-3.4 4.52;5.8 -6.2];
+ 
+//if or(sign(a)<>[1 1;-1 1;1 -1]) then bugmes();quit;end
+ 
+//a=[1+%i 2.51;-3.4 4.52;5.8 -6.2];
+ 
+//if norm(sign(a)-[sqrt(2)/2*(1+%i) 1;-1 1;1 -1])>10*%eps then bugmes();quit;end
+ 
+//if sign([])<>[] then bugmes();quit;end
+ 
+//a=[];if sign(a)<>[] then bugmes();quit;end
+ 
+ 
+ 
+//clean
+ 
+ 
+//log and exp
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if norm(exp(log(a))-a)>10*%eps then bugmes();quit;end
+ 
+if norm(exp(log(a+0))-a)>10*%eps then bugmes();quit;end
+ 
+b=log(a);if norm(exp(b)-a)>10*%eps then bugmes();quit;end
+ 
+a=[1+%i 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if norm(exp(log(a))-a)>10*%eps then bugmes();quit;end
+ 
+if norm(exp(log(a+0))-a)>10*%eps then bugmes();quit;end
+ 
+b=log(a);if norm(exp(b)-a)>10*%eps then bugmes();quit;end
+ 
+ 
+if exp([])<>[] then bugmes();quit;end
+ 
+a=[];if exp(a)<>[] then bugmes();quit;end
+ 
+if log([])<>[] then bugmes();quit;end
+ 
+a=[];if log(a)<>[] then bugmes();quit;end
+ 
+ 
+//sin and cos
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if norm(sin(a).^2+cos(a).^2-1)>10*%eps then bugmes();quit;end
+ 
+if norm(sin(a+0).^2+cos(a+0).^2-1)>10*%eps then bugmes();quit;end
+ 
+a=[1+%i 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if norm(sin(a).^2+cos(a).^2-1)>10*%eps then bugmes();quit;end
+ 
+if norm(sin(a+0).^2+cos(a+0).^2-1)>10*%eps then bugmes();quit;end
+ 
+ 
+if cos([])<>[] then bugmes();quit;end
+ 
+a=[];if cos(a)<>[] then bugmes();quit;end
+ 
+if sin([])<>[] then bugmes();quit;end
+ 
+a=[];if sin(a)<>[] then bugmes();quit;end
+ 
+ 
+ 
+//tan et atan
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if norm(tan(atan(a))-a)>100*%eps then bugmes();quit;end
+ 
+if norm(tan(atan(a+0))-a)>100*%eps then bugmes();quit;end
+ 
+b=log(a);if norm(exp(b)-a)>100*%eps then bugmes();quit;end
+ 
+a=[1+%i 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if norm(tan(atan(a))-a)>100*%eps then bugmes();quit;end
+ 
+if norm(tan(atan(a+0))-a)>100*%eps then bugmes();quit;end
+ 
+ 
+if atan([])<>[] then bugmes();quit;end
+ 
+a=[];if atan(a)<>[] then bugmes();quit;end
+ 
+ 
+if atan([],[])<>[] then bugmes();quit;end
+ 
+a=[];if atan(a,[])<>[] then bugmes();quit;end
+ 
+a=[];if atan(a,a)<>[] then bugmes();quit;end
+ 
+a=[];if atan([],a)<>[] then bugmes();quit;end
+ 
+ 
+//expm
+ 
+a=[0 2;0 0];
+ 
+if norm(expm(a)-[1 2;0 1])>10*%eps then bugmes();quit;end
+ 
+a=[0 2*%i;0 0];
+ 
+if norm(expm(a)-[1 2*%i;0 1])>10*%eps then bugmes();quit;end
+ 
+if expm([])<>[] then bugmes();quit;end
+ 
+a=[];if expm(a)<>[] then bugmes();quit;end
+ 
+ 
+//sqrt
+ 
+a=[1.2 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if norm(sqrt(a).^2-a)>100*%eps then bugmes();quit;end
+ 
+if norm(sqrt(a+0).^2-a)>100*%eps then bugmes();quit;end
+ 
+a=[1+%i 2.51;-3.4 4.52;5.8 -6.2];
+ 
+if norm(sqrt(a).^2-a)>100*%eps then bugmes();quit;end
+ 
+if norm(sqrt(a+0).^2-a)>100*%eps then bugmes();quit;end
+ 
+ 
+if sqrt([])<>[] then bugmes();quit;end
+ 
+a=[];if sqrt(a)<>[] then bugmes();quit;end
+ 
+ 
+//sum
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if sum(a)<>3 then bugmes();quit;end
+ 
+if sum(a+0)<>3 then bugmes();quit;end
+ 
+if or(sum(a,1)<>[3 0]) then bugmes();quit;end
+ 
+if or(sum(a+0,1)<>[3 0]) then bugmes();quit;end
+ 
+n=1;
+ 
+if or(sum(a,n)<>[3 0]) then bugmes();quit;end
+ 
+if or(sum(a+0,n)<>[3 0]) then bugmes();quit;end
+ 
+if or(sum(a,'r')<>[3 0]) then bugmes();quit;end
+ 
+if or(sum(a+0,'r')<>[3 0]) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(sum(a,n)<>[3 0]) then bugmes();quit;end
+ 
+if or(sum(a+0,n)<>[3 0]) then bugmes();quit;end
+ 
+ 
+if or(sum(a,2)<>[3;1;-1]) then bugmes();quit;end
+ 
+if or(sum(a+0,2)<>[3;1;-1]) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(sum(a,n)<>[3;1;-1]) then bugmes();quit;end
+ 
+if or(sum(a+0,n)<>[3;1;-1]) then bugmes();quit;end
+ 
+if or(sum(a,'c')<>[3;1;-1]) then bugmes();quit;end
+ 
+if or(sum(a+0,'c')<>[3;1;-1]) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(sum(a,n)<>[3;1;-1]) then bugmes();quit;end
+ 
+if or(sum(a+0,n)<>[3;1;-1]) then bugmes();quit;end
+ 
+ 
+a=[1 2;-3 4;5 -6]+0*%i;
+ 
+if or(sum(a)<>3+0*%i) then bugmes();quit;end
+ 
+if or(sum(a+0)<>3+0*%i) then bugmes();quit;end
+ 
+if or(sum(a,1)<>[3 0]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a+0,1)<>[3 0]+0*%i) then bugmes();quit;end
+ 
+n=1;
+ 
+if or(sum(a,n)<>[3 0]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a+0,n)<>[3 0]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a,'r')<>[3 0]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a+0,'r')<>[3 0]+0*%i) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(sum(a,n)<>[3 0]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a+0,n)<>[3 0]+0*%i) then bugmes();quit;end
+ 
+ 
+if or(sum(a,2)<>[3;1;-1]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a+0,2)<>[3;1;-1]+0*%i) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(sum(a,n)<>[3;1;-1]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a+0,n)<>[3;1;-1]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a,'c')<>[3;1;-1]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a+0,'c')<>[3;1;-1]+0*%i) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(sum(a,n)<>[3;1;-1]+0*%i) then bugmes();quit;end
+ 
+if or(sum(a+0,n)<>[3;1;-1]+0*%i) then bugmes();quit;end
+ 
+ 
+a=[]
+ a  =
+ 
+     []
+ 
+if sum(a)<>0 then bugmes();quit;end
+ 
+if sum([])<>0 then bugmes();quit;end
+ 
+if sum(a,1)<>[] then bugmes();quit;end
+ 
+if sum([],1)<>[] then bugmes();quit;end
+ 
+n=1;
+ 
+if sum(a,n)<>[] then bugmes();quit;end
+ 
+if sum([],n)<>[] then bugmes();quit;end
+ 
+if sum(a,'r')<>[] then bugmes();quit;end
+ 
+if sum([],'r')<>[] then bugmes();quit;end
+ 
+n='r';
+ 
+if sum(a,n)<>[] then bugmes();quit;end
+ 
+if sum([],n)<>[] then bugmes();quit;end
+ 
+ 
+if sum(a,2)<>[] then bugmes();quit;end
+ 
+if sum([],2)<>[] then bugmes();quit;end
+ 
+n=2;
+ 
+if sum(a,n)<>[] then bugmes();quit;end
+ 
+if sum([],n)<>[] then bugmes();quit;end
+ 
+if sum(a,'c')<>[] then bugmes();quit;end
+ 
+if sum([],'c')<>[] then bugmes();quit;end
+ 
+n='c';
+ 
+if sum(a,n)<>[] then bugmes();quit;end
+ 
+if sum([],n)<>[] then bugmes();quit;end
+ 
+ 
+ 
+a=sparse([1 2;-3 4;5 -6]);
+ 
+if sum(a)<>3 then bugmes();quit;end
+ 
+if sum(a+0*a)<>3 then bugmes();quit;end
+ 
+a=sparse([1 2;-3 4;5 -6]+0*%i);
+ 
+if sum(a)<>3+0*%i then bugmes();quit;end
+ 
+if sum(a+0*a)<>3+0*%i then bugmes();quit;end
+ 
+ 
+ 
+//prod
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if prod(a)<>720 then bugmes();quit;end
+ 
+if prod(a+0)<>720 then bugmes();quit;end
+ 
+if prod(a,1)<>[-15 -48] then bugmes();quit;end
+ 
+if or(prod(a+0,1)<>[-15 -48]) then bugmes();quit;end
+ 
+n=1;
+ 
+if or(prod(a,n)<>[-15 -48]) then bugmes();quit;end
+ 
+if or(prod(a+0,n)<>[-15 -48]) then bugmes();quit;end
+ 
+if or(prod(a,'r')<>[-15 -48]) then bugmes();quit;end
+ 
+if or(prod(a+0,'r')<>[-15 -48]) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(prod(a,n)<>[-15 -48]) then bugmes();quit;end
+ 
+if or(prod(a+0,n)<>[-15 -48]) then bugmes();quit;end
+ 
+ 
+if or(prod(a,2)<>[2;-12;-30]) then bugmes();quit;end
+ 
+if or(prod(a+0,2)<>[2;-12;-30]) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(prod(a,n)<>[2;-12;-30]) then bugmes();quit;end
+ 
+if or(prod(a+0,n)<>[2;-12;-30]) then bugmes();quit;end
+ 
+if or(prod(a,'c')<>[2;-12;-30]) then bugmes();quit;end
+ 
+if or(prod(a+0,'c')<>[2;-12;-30]) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(prod(a,n)<>[2;-12;-30]) then bugmes();quit;end
+ 
+if or(prod(a+0,n)<>[2;-12;-30]) then bugmes();quit;end
+ 
+ 
+a=[1 2;-3 4;5 -6]+0*%i;
+ 
+if prod(a)<>720+0*%i then bugmes();quit;end
+ 
+if prod(a+0)<>720+0*%i then bugmes();quit;end
+ 
+if or(prod(a,1)<>[-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a+0,1)<>[-15 -48]+0*%i) then bugmes();quit;end
+ 
+n=1;
+ 
+if or(prod(a,n)<>[-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a+0,n)<>[-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a,'r')<>[-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a+0,'r')<>[-15 -48]+0*%i) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(prod(a,n)<>[-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a+0,n)<>[-15 -48]+0*%i) then bugmes();quit;end
+ 
+ 
+if or(prod(a,2)<>[2;-12;-30]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a+0,2)<>[2;-12;-30]+0*%i) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(prod(a,n)<>[2;-12;-30]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a+0,n)<>[2;-12;-30]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a,'c')<>[2;-12;-30]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a+0,'c')<>[2;-12;-30]+0*%i) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(prod(a,n)<>[2;-12;-30]+0*%i) then bugmes();quit;end
+ 
+if or(prod(a+0,n)<>[2;-12;-30]+0*%i) then bugmes();quit;end
+ 
+ 
+a=[]
+ a  =
+ 
+     []
+ 
+if prod(a)<>1 then bugmes();quit;end
+ 
+if prod([])<>1 then bugmes();quit;end
+ 
+if prod(a,1)<>[] then bugmes();quit;end
+ 
+if prod([],1)<>[] then bugmes();quit;end
+ 
+n=1;
+ 
+if prod(a,n)<>[] then bugmes();quit;end
+ 
+if prod([],n)<>[] then bugmes();quit;end
+ 
+if prod(a,'r')<>[] then bugmes();quit;end
+ 
+if prod([],'r')<>[] then bugmes();quit;end
+ 
+n='r';
+ 
+if prod(a,n)<>[] then bugmes();quit;end
+ 
+if prod([],n)<>[] then bugmes();quit;end
+ 
+ 
+if prod(a,2)<>[] then bugmes();quit;end
+ 
+if prod([],2)<>[] then bugmes();quit;end
+ 
+n=2;
+ 
+if prod(a,n)<>[] then bugmes();quit;end
+ 
+if prod([],n)<>[] then bugmes();quit;end
+ 
+if prod(a,'c')<>[] then bugmes();quit;end
+ 
+if prod([],'c')<>[] then bugmes();quit;end
+ 
+n='c';
+ 
+if prod(a,n)<>[] then bugmes();quit;end
+ 
+if prod([],n)<>[] then bugmes();quit;end
+ 
+ 
+//cumsum
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if or(cumsum(a)<>[1,5;-2,9;3,3]) then bugmes();quit;end
+ 
+if or(cumsum(a+0)<> [1,5;-2,9;3,3]) then bugmes();quit;end
+ 
+if or(cumsum(a,1)<>[1,2;-2,6;3 0]) then bugmes();quit;end
+ 
+if or(cumsum(a+0,1)<>[1,2;-2,6;3 0]) then bugmes();quit;end
+ 
+n=1;
+ 
+if or(cumsum(a,n)<>[1,2;-2,6;3 0]) then bugmes();quit;end
+ 
+if or(cumsum(a+0,n)<>[1,2;-2,6;3 0]) then bugmes();quit;end
+ 
+if or(cumsum(a,'r')<>[1,2;-2,6;3 0]) then bugmes();quit;end
+ 
+if or(cumsum(a+0,'r')<>[1,2;-2,6;3 0]) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(cumsum(a,n)<>[1,2;-2,6;3 0]) then bugmes();quit;end
+ 
+if or(cumsum(a+0,n)<>[1,2;-2,6;3 0]) then bugmes();quit;end
+ 
+ 
+if or(cumsum(a,2)<>[1,3;-3,1;5,-1]) then bugmes();quit;end
+ 
+if or(cumsum(a+0,2)<>[1,3;-3,1;5,-1]) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(cumsum(a,n)<>[1,3;-3,1;5,-1]) then bugmes();quit;end
+ 
+if or(cumsum(a+0,n)<>[1,3;-3,1;5,-1]) then bugmes();quit;end
+ 
+if or(cumsum(a,'c')<>[1,3;-3,1;5,-1]) then bugmes();quit;end
+ 
+if or(cumsum(a+0,'c')<>[1,3;-3,1;5,-1]) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(cumsum(a,n)<>[1,3;-3,1;5,-1]) then bugmes();quit;end
+ 
+if or(cumsum(a+0,n)<>[1,3;-3,1;5,-1]) then bugmes();quit;end
+ 
+ 
+a=[1 2;-3 4;5 -6]+0*%i;
+ 
+if cumsum(a)<>3+0*%i then bugmes();quit;end
+ 
+if cumsum(a+0)<>3+0*%i then bugmes();quit;end
+ 
+if or(cumsum(a,1)<>[1,2;-2,6;3 0]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a+0,1)<>[1,2;-2,6;3 0]+0*%i) then bugmes();quit;end
+ 
+n=1;
+ 
+if or(cumsum(a,n)<>[1,2;-2,6;3 0]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a+0,n)<>[1,2;-2,6;3 0]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a,'r')<>[1,2;-2,6;3 0]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a+0,'r')<>[1,2;-2,6;3 0]+0*%i) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(cumsum(a,n)<>[1,2;-2,6;3 0]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a+0,n)<>[1,2;-2,6;3 0]+0*%i) then bugmes();quit;end
+ 
+ 
+if or(cumsum(a,2)<>[1,3;-3,1;5,-1]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a+0,2)<>[1,3;-3,1;5,-1]+0*%i) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(cumsum(a,n)<>[1,3;-3,1;5,-1]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a+0,n)<>[1,3;-3,1;5,-1]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a,'c')<>[1,3;-3,1;5,-1]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a+0,'c')<>[1,3;-3,1;5,-1]+0*%i) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(cumsum(a,n)<>[1,3;-3,1;5,-1]+0*%i) then bugmes();quit;end
+ 
+if or(cumsum(a+0,n)<>[1,3;-3,1;5,-1]+0*%i) then bugmes();quit;end
+ 
+ 
+a=[];
+ 
+if cumsum(a)<>[] then bugmes();quit;end
+ 
+if cumsum([])<>[] then bugmes();quit;end
+ 
+if cumsum(a,1)<>[] then bugmes();quit;end
+ 
+if cumsum([],1)<>[] then bugmes();quit;end
+ 
+n=1;
+ 
+if cumsum(a,n)<>[] then bugmes();quit;end
+ 
+if cumsum([],n)<>[] then bugmes();quit;end
+ 
+if cumsum(a,'r')<>[] then bugmes();quit;end
+ 
+if cumsum([],'r')<>[] then bugmes();quit;end
+ 
+n='r';
+ 
+if cumsum(a,n)<>[] then bugmes();quit;end
+ 
+if cumsum([],n)<>[] then bugmes();quit;end
+ 
+ 
+if cumsum(a,2)<>[] then bugmes();quit;end
+ 
+if cumsum([],2)<>[] then bugmes();quit;end
+ 
+n=2;
+ 
+if cumsum(a,n)<>[] then bugmes();quit;end
+ 
+if cumsum([],n)<>[] then bugmes();quit;end
+ 
+if cumsum(a,'c')<>[] then bugmes();quit;end
+ 
+if cumsum([],'c')<>[] then bugmes();quit;end
+ 
+n='c';
+ 
+if cumsum(a,n)<>[] then bugmes();quit;end
+ 
+if cumsum([],n)<>[] then bugmes();quit;end
+ 
+ 
+ 
+a=sparse([1 2;-3 4;5 -6]);
+ 
+//if cumsum(a)<> [1,5;-2,9;3,3] then bugmes();quit;end
+ 
+//if cumsum(a+0*a)<> [1,5;-2,9;3,3] then bugmes();quit;end
+ 
+a=sparse([1 2;-3 4;5 -6]+0*%i);
+ 
+//if cumsum(a)<>3+0*%i then bugmes();quit;end
+ 
+//if cumsum(a+0*a)<>3+0*%i then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+//cumprod
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if or(cumprod(a)<>[1 -30;-3 -120;-15 720]) then bugmes();quit;end
+ 
+if or(cumprod(a+0)<> [1 -30;-3 -120;-15 720]) then bugmes();quit;end
+ 
+if or(cumprod(a,1)<>[1 2;-3 8;-15 -48]) then bugmes();quit;end
+ 
+if or(cumprod(a+0,1)<>[1 2;-3 8;-15 -48]) then bugmes();quit;end
+ 
+n=1;
+ 
+if or(cumprod(a,n)<>[1 2;-3 8;-15 -48]) then bugmes();quit;end
+ 
+if or(cumprod(a+0,n)<>[1 2;-3 8;-15 -48]) then bugmes();quit;end
+ 
+if or(cumprod(a,'r')<>[1 2;-3 8;-15 -48]) then bugmes();quit;end
+ 
+if or(cumprod(a+0,'r')<>[1 2;-3 8;-15 -48]) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(cumprod(a,n)<>[1 2;-3 8;-15 -48]) then bugmes();quit;end
+ 
+if or(cumprod(a+0,n)<>[1 2;-3 8;-15 -48]) then bugmes();quit;end
+ 
+ 
+if or(cumprod(a,2)<>[1 2;-3 -12;5 -30]) then bugmes();quit;end
+ 
+if or(cumprod(a+0,2)<>[1 2;-3 -12;5 -30]) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(cumprod(a,n)<>[1 2;-3 -12;5 -30]) then bugmes();quit;end
+ 
+if or(cumprod(a+0,n)<>[1 2;-3 -12;5 -30]) then bugmes();quit;end
+ 
+if or(cumprod(a,'c')<>[1 2;-3 -12;5 -30]) then bugmes();quit;end
+ 
+if or(cumprod(a+0,'c')<>[1 2;-3 -12;5 -30]) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(cumprod(a,n)<>[1 2;-3 -12;5 -30]) then bugmes();quit;end
+ 
+if or(cumprod(a+0,n)<>[1 2;-3 -12;5 -30]) then bugmes();quit;end
+ 
+ 
+a=[1 2;-3 4;5 -6]+0*%i;
+ 
+if cumprod(a)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+if cumprod(a+0)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+if or(cumprod(a,1)<>[1 2;-3 8;-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a+0,1)<>[1 2;-3 8;-15 -48]+0*%i) then bugmes();quit;end
+ 
+n=1;
+ 
+if or(cumprod(a,n)<>[1 2;-3 8;-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a+0,n)<>[1 2;-3 8;-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a,'r')<>[1 2;-3 8;-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a+0,'r')<>[1 2;-3 8;-15 -48]+0*%i) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(cumprod(a,n)<>[1 2;-3 8;-15 -48]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a+0,n)<>[1 2;-3 8;-15 -48]+0*%i) then bugmes();quit;end
+ 
+ 
+if or(cumprod(a,2)<>[1 2;-3 -12;5 -30]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a+0,2)<>[1 2;-3 -12;5 -30]+0*%i) then bugmes();quit;end
+ 
+n=2;
+ 
+if or(cumprod(a,n)<>[1 2;-3 -12;5 -30]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a+0,n)<>[1 2;-3 -12;5 -30]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a,'c')<>[1 2;-3 -12;5 -30]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a+0,'c')<>[1 2;-3 -12;5 -30]+0*%i) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(cumprod(a,n)<>[1 2;-3 -12;5 -30]+0*%i) then bugmes();quit;end
+ 
+if or(cumprod(a+0,n)<>[1 2;-3 -12;5 -30]+0*%i) then bugmes();quit;end
+ 
+ 
+a=[];
+ 
+if cumprod(a)<>[] then bugmes();quit;end
+ 
+if cumprod([])<>[] then bugmes();quit;end
+ 
+if cumprod(a,1)<>[] then bugmes();quit;end
+ 
+if cumprod([],1)<>[] then bugmes();quit;end
+ 
+n=1;
+ 
+if cumprod(a,n)<>[] then bugmes();quit;end
+ 
+if cumprod([],n)<>[] then bugmes();quit;end
+ 
+if cumprod(a,'r')<>[] then bugmes();quit;end
+ 
+if cumprod([],'r')<>[] then bugmes();quit;end
+ 
+n='r';
+ 
+if cumprod(a,n)<>[] then bugmes();quit;end
+ 
+if cumprod([],n)<>[] then bugmes();quit;end
+ 
+ 
+if cumprod(a,2)<>[] then bugmes();quit;end
+ 
+if cumprod([],2)<>[] then bugmes();quit;end
+ 
+n=2;
+ 
+if cumprod(a,n)<>[] then bugmes();quit;end
+ 
+if cumprod([],n)<>[] then bugmes();quit;end
+ 
+if cumprod(a,'c')<>[] then bugmes();quit;end
+ 
+if cumprod([],'c')<>[] then bugmes();quit;end
+ 
+n='c';
+ 
+if cumprod(a,n)<>[] then bugmes();quit;end
+ 
+if cumprod([],n)<>[] then bugmes();quit;end
+ 
+ 
+ 
+a=sparse([1 2;-3 4;5 -6]);
+ 
+//if cumprod(a)<> [1 -30;-3 -120;-15 720] then bugmes();quit;end
+ 
+//if cumprod(a+0*a)<> [1 -30;-3 -120;-15 720] then bugmes();quit;end
+ 
+a=sparse([1 2;-3 4;5 -6]+0*%i);
+ 
+//if cumprod(a)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+//if cumprod(a+0*a)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+ 
+//maxi
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if or(maxi(a)<>5) then bugmes();quit;end
+ 
+if or(maxi(a+0)<>5) then bugmes();quit;end
+ 
+if or(maxi(a,'r')<>[5 4]) then bugmes();quit;end
+ 
+if or(maxi(a+0,'r')<>[5 4]) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(maxi(a,n)<>[5 4]) then bugmes();quit;end
+ 
+if or(maxi(a+0,n)<>[5 4]) then bugmes();quit;end
+ 
+ 
+if or(maxi(a,'c')<>[2;4;5]) then bugmes();quit;end
+ 
+if or(maxi(a+0,'c')<>[2;4;5]) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(maxi(a,n)<>[2;4;5]) then bugmes();quit;end
+ 
+if or(maxi(a+0,n)<>[2;4;5]) then bugmes();quit;end
+ 
+ 
+//a=[1 2;-3 4;5 -6]+0*%i;
+ 
+//if maxi(a)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+//if maxi(a+0)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+//if or(maxi(a,'r')<>[5 4]+0*%i) then bugmes();quit;end
+ 
+//if or(maxi(a+0,'r')<>[5 4]+0*%i) then bugmes();quit;end
+ 
+//n='r';
+ 
+//if or(maxi(a,n)<>[5 4]+0*%i) then bugmes();quit;end
+ 
+//if or(maxi(a+0,n)<>[5 4]+0*%i) then bugmes();quit;end
+ 
+ 
+//if or(maxi(a,'c')<>[2;4;5]+0*%i) then bugmes();quit;end
+ 
+//if or(maxi(a+0,'c')<>[2;4;5]+0*%i) then bugmes();quit;end
+ 
+//n='c';
+ 
+//if or(maxi(a,n)<>[2;4;5]+0*%i) then bugmes();quit;end
+ 
+//if or(maxi(a+0,n)<>[2;4;5]+0*%i) then bugmes();quit;end
+ 
+ 
+a=[];
+ 
+if maxi(a)<>[] then bugmes();quit;end
+ 
+if maxi([])<>[] then bugmes();quit;end
+ 
+ 
+if maxi(a,'r')<>[] then bugmes();quit;end
+ 
+if maxi([],'r')<>[] then bugmes();quit;end
+ 
+n='r';
+ 
+if maxi(a,n)<>[] then bugmes();quit;end
+ 
+if maxi([],n)<>[] then bugmes();quit;end
+ 
+ 
+if maxi(a,'c')<>[] then bugmes();quit;end
+ 
+if maxi([],'c')<>[] then bugmes();quit;end
+ 
+n='c';
+ 
+if maxi(a,n)<>[] then bugmes();quit;end
+ 
+if maxi([],n)<>[] then bugmes();quit;end
+ 
+ 
+ 
+a=sparse([1 2;-3 4;5 -6]);
+ 
+//if maxi(a)<>5 then bugmes();quit;end
+ 
+//if maxi(a+0*a)<>5 then bugmes();quit;end
+ 
+a=sparse([1 2;-3 4;5 -6]+0*%i);
+ 
+//if maxi(a)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+//if maxi(a+0*a)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+ 
+ 
+//mini
+ 
+a=[1 2;-3 4;5 -6];
+ 
+if or(mini(a)<>-6) then bugmes();quit;end
+ 
+if or(mini(a+0)<>-6) then bugmes();quit;end
+ 
+if or(mini(a,'r')<>[-3 -6]) then bugmes();quit;end
+ 
+if or(mini(a+0,'r')<>[-3 -6]) then bugmes();quit;end
+ 
+n='r';
+ 
+if or(mini(a,n)<>[-3 -6]) then bugmes();quit;end
+ 
+if or(mini(a+0,n)<>[-3 -6]) then bugmes();quit;end
+ 
+ 
+if or(mini(a,'c')<>[1;-3;-6]) then bugmes();quit;end
+ 
+if or(mini(a+0,'c')<>[1;-3;-6]) then bugmes();quit;end
+ 
+n='c';
+ 
+if or(mini(a,n)<>[1;-3;-6]) then bugmes();quit;end
+ 
+if or(mini(a+0,n)<>[1;-3;-6]) then bugmes();quit;end
+ 
+ 
+//a=[1 2;-3 4;5 -6]+0*%i;
+ 
+//if mini(a)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+//if mini(a+0)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+//if or(mini(a,'r')<>[-3 -6]+0*%i) then bugmes();quit;end
+ 
+//if or(mini(a+0,'r')<>[-3 -6]+0*%i) then bugmes();quit;end
+ 
+//n='r';
+ 
+//if or(mini(a,n)<>[-3 -6]+0*%i) then bugmes();quit;end
+ 
+//if or(mini(a+0,n)<>[-3 -6]+0*%i) then bugmes();quit;end
+ 
+ 
+//if or(mini(a,'c')<>[1;-3;-6]+0*%i) then bugmes();quit;end
+ 
+//if or(mini(a+0,'c')<>[1;-3;-6]+0*%i) then bugmes();quit;end
+ 
+//n='c';
+ 
+//if or(mini(a,n)<>[1;-3;-6]+0*%i) then bugmes();quit;end
+ 
+//if or(mini(a+0,n)<>[1;-3;-6]+0*%i) then bugmes();quit;end
+ 
+ 
+a=[];
+ 
+if mini(a)<>[] then bugmes();quit;end
+ 
+if mini([])<>[] then bugmes();quit;end
+ 
+ 
+if mini(a,'r')<>[] then bugmes();quit;end
+ 
+if mini([],'r')<>[] then bugmes();quit;end
+ 
+n='r';
+ 
+if mini(a,n)<>[] then bugmes();quit;end
+ 
+if mini([],n)<>[] then bugmes();quit;end
+ 
+ 
+if mini(a,'c')<>[] then bugmes();quit;end
+ 
+if mini([],'c')<>[] then bugmes();quit;end
+ 
+n='c';
+ 
+if mini(a,n)<>[] then bugmes();quit;end
+ 
+if mini([],n)<>[] then bugmes();quit;end
+ 
+ 
+ 
+a=sparse([1 2;-3 4;5 -6]);
+ 
+//if mini(a)<>-6 then bugmes();quit;end
+ 
+//if mini(a+0*a)<>-6 then bugmes();quit;end
+ 
+a=sparse([1 2;-3 4;5 -6]+0*%i);
+ 
+//if mini(a)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+//if mini(a+0*a)<>[1 -30;-3 -120;-15 720]+0*%i then bugmes();quit;end
+ 
+ 
+//sort
+ 
+a=[5 1 3 2 4]
+ a  =
+ 
+    5.    1.    3.    2.    4.  
+ 
+if or(sort(a)<>[5 4 3 2 1]) then bugmes();quit;end
+ 
+if or(sort(a+0)<>[5 4 3 2 1]) then bugmes();quit;end
+ 
+[s,k]=sort(a);
+ 
+if or(k<>[1 5 3 4 2]) then bugmes();quit;end
+ 
+if or(s<>[5 4 3 2 1]) then bugmes();quit;end
+ 
+[s,k]=sort(a+0);
+ 
+if or(k<>[1 5 3 4 2]) then bugmes();quit;end
+ 
+if or(s<>[5 4 3 2 1]) then bugmes();quit;end
+ 
+ 
+a=string([5 1 3 2 4])
+ a  =
+ 
+!5  1  3  2  4  !
+ 
+//if or(sort(a)<>string(1:5)) then bugmes();quit;end
+ 
+if or(sort(string([5 1 3 2 4]))<>string(1:5)) then bugmes();quit;end
+ 
+//[s,k]=sort(a);
+ 
+//if or(k<>[2 4 3 5 1]) then bugmes();quit;end
+ 
+//if or(s<>string(1:5)) then bugmes();quit;end
+ 
+[s,k]=sort(string([5 1 3 2 4]));
+ 
+if or(k<>[2 4 3 5 1]) then bugmes();quit;end
+ 
+if or(s<>string(1:5)) then bugmes();quit;end
+ 
+ 
+a=[]
+ a  =
+ 
+     []
+ 
+if sort(a)<>[] then bugmes();quit;end
+ 
+[s,k]=sort(a);if s<>[]|k<>[] then bugmes();quit;end
+ 
+ 
+if sort([])<>[] then bugmes();quit;end
+ 
+[s,k]=sort([]);if s<>[]|k<>[] then bugmes();quit;end
+ 
+ 
+//kron
+ 
+a=[1 2];b=[3;4];
+ 
+if or(kron(a,b)<>[3 6;4 8]) then bugmes();quit;end
+ 
+if or(kron(a+0,b)<>[3 6;4 8]) then bugmes();quit;end
+ 
+if or(kron(a,b+0)<>[3 6;4 8]) then bugmes();quit;end
+ 
+if or(kron(a+0,b+0)<>[3 6;4 8]) then bugmes();quit;end
+ 
+if kron([],b)<>[] then bugmes();quit;end
+ 
+if kron([],b+0)<>[] then bugmes();quit;end
+ 
+a=[];
+ 
+if kron(a,b)<>[] then bugmes();quit;end
+ 
+if kron(a,b+0)<>[] then bugmes();quit;end
+ 
+a=[1 2];b=[]
+ b  =
+ 
+     []
+ 
+if kron(a,b)<>[] then bugmes();quit;end
+ 
+if kron(a+0,b)<>[] then bugmes();quit;end
+ 
+if kron(a,[])<>[] then bugmes();quit;end
+ 
+if kron(a+0,[])<>[] then bugmes();quit;end
+ 
+a=[];b=[];
+ 
+if kron(a,b)<>[] then bugmes();quit;end
+ 
+if kron(a,[])<>[] then bugmes();quit;end
+ 
+if kron([],b)<>[] then bugmes();quit;end
+ 
+if kron([],[])<>[] then bugmes();quit;end
+ 
+ 
+//matrix
+ 
+a=[1 2 3 4 5 6];
+ 
+n=1;m=6;
+ 
+if or(matrix(a,1,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,1,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,1,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,1,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,m)<>a) then bugmes();quit;end
+ 
+ 
+n=3;m=2; b=[1 4;2 5;3 6];
+ 
+if or(matrix(a,3,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,3,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,3,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,3,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,m)<>b) then bugmes();quit;end
+ 
+ 
+a=[1+%i 2 3 4 5 6];
+ 
+n=1;m=6;
+ 
+if or(matrix(a,1,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,1,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,1,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,1,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,m)<>a) then bugmes();quit;end
+ 
+ 
+n=3;m=2; b=[1+%i 4;2 5;3 6];
+ 
+if or(matrix(a,3,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,3,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,3,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,3,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,m)<>b) then bugmes();quit;end
+ 
+ 
+a=string([1 2 3 4 5 6]);n=1;m=6;
+ 
+if or(matrix(a,1,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,1,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+a,1,6)<>a+a) then bugmes();quit;end
+ 
+if or(matrix(a+a,n,6)<>a+a) then bugmes();quit;end
+ 
+if or(matrix(a+a,1,m)<>a+a) then bugmes();quit;end
+ 
+if or(matrix(a+a,n,m)<>a+a) then bugmes();quit;end
+ 
+ 
+n=3;m=2; b=string([1 4;2 5;3 6]);
+ 
+if or(matrix(a,3,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,3,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+a,3,2)<>b+b) then bugmes();quit;end
+ 
+if or(matrix(a+a,n,2)<>b+b) then bugmes();quit;end
+ 
+if or(matrix(a+a,3,m)<>b+b) then bugmes();quit;end
+ 
+if or(matrix(a+a,n,m)<>b+b) then bugmes();quit;end
+ 
+ 
+a=[1 2 3 4 5 6]+%s;
+ 
+n=1;m=6;
+ 
+if or(matrix(a,1,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,1,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,1,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,1,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,m)<>a) then bugmes();quit;end
+ 
+ 
+n=3;m=2; b=[1 4;2 5;3 6]+%s;
+ 
+if or(matrix(a,3,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,3,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,3,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,3,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,m)<>b) then bugmes();quit;end
+ 
+ 
+a=[1+%i 2 3 4 5 6]+%s;
+ 
+n=1;m=6;
+ 
+if or(matrix(a,1,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,1,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,1,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,6)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,1,m)<>a) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,m)<>a) then bugmes();quit;end
+ 
+ 
+n=3;m=2; b=[1+%i 4;2 5;3 6]+%s;
+ 
+if or(matrix(a,3,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,3,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a,n,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,3,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,2)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,3,m)<>b) then bugmes();quit;end
+ 
+if or(matrix(a+0,n,m)<>b) then bugmes();quit;end
+ 
+ 
+//clean
+ 
+a=[1 1.d-12 1.d-5 2d8];
+ 
+b=[1 0 0 2d8];
+ 
+if or(clean(a)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0)<>b) then bugmes();quit;end
+ 
+epsa=1.d-10;
+ 
+if or(clean(a,epsa)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa)<>b) then bugmes();quit;end
+ 
+if or(clean(a,epsa+0)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa+0)<>b) then bugmes();quit;end
+ 
+epsr=1.d-5;b=[0 0 0 2d8];
+ 
+if or(clean(a,epsa,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a,epsa+0,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa,epsr+0)<>b) then bugmes();quit;end
+ 
+if or(clean(a,epsa+0,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa,epsr+0)<>b) then bugmes();quit;end
+ 
+if or(clean(a,epsa+0,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa+0,epsr+0)<>b) then bugmes();quit;end
+ 
+ 
+a=[1+%i 1.d-12 1.d-5 2d8];
+ 
+b=[1+%i 0 0 2d8];
+ 
+if or(clean(a)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0)<>b) then bugmes();quit;end
+ 
+epsa=1.d-10;
+ 
+if or(clean(a,epsa)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa)<>b) then bugmes();quit;end
+ 
+if or(clean(a,epsa+0)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa+0)<>b) then bugmes();quit;end
+ 
+epsr=1.d-5;b=[0+0*%i 0 0 2d8];
+ 
+if or(clean(a,epsa,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a,epsa+0,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa,epsr+0)<>b) then bugmes();quit;end
+ 
+if or(clean(a,epsa+0,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa,epsr+0)<>b) then bugmes();quit;end
+ 
+if or(clean(a,epsa+0,epsr)<>b) then bugmes();quit;end
+ 
+if or(clean(a+0,epsa+0,epsr+0)<>b) then bugmes();quit;end
+ 
