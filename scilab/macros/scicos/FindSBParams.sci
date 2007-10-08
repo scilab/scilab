@@ -13,10 +13,18 @@ function params=FindSBParams(scs_m,params)
               Fun=[Fun;'['+o.graphics.exprs.paramv(j)+']']
             end
           else
-  	    Fun=[Fun;'['+o.graphics.exprs(:)+']']
+            if type(o.graphics.exprs)==15 then
+  	      Fun=[Fun;'['+o.graphics.exprs(1)(:)+']']
+            else
+  	      Fun=[Fun;'['+o.graphics.exprs(:)+']']
+            end
           end
         else
-	  Fun=[Fun;'['+o.graphics.exprs(:)+']']
+          if type(o.graphics.exprs)==15 then
+  	    Fun=[Fun;'['+o.graphics.exprs(1)(:)+']']
+          else
+	    Fun=[Fun;'['+o.graphics.exprs(:)+']']
+          end
         end
       end
     end
