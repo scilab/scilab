@@ -337,6 +337,11 @@ case 'set' then
 
        //display the second dialog box
        execstr(getvalue_txt)
+
+       //restore original lab_2 if not ok
+       if ~ok then
+         lab_2 = exprs.paramv
+       end
      end
    end
 
