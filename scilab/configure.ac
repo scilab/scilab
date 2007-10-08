@@ -586,8 +586,8 @@ fi
 
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
-AM_CONDITIONAL(SWIG, test "$with_swig_generation" != no)
-AM_CONDITIONAL(GIWS, test "$with_giws_generation" != no)
+AM_CONDITIONAL(SWIG, test "$with_swig_generation" != no -a "$with_swig_generation" != "")
+AM_CONDITIONAL(GIWS, test "$with_giws_generation" != no  -a "$with_giws_generation" != "")
 
 ##############################################################
 ## test for functions in standard C library and C math library

@@ -12038,7 +12038,7 @@ else
   JAVASCI_FALSE=
 fi
 
- if test "$with_swig_generation" != no; then
+ if test "$with_swig_generation" != no -a "$with_swig_generation" != ""; then
   SWIG_TRUE=
   SWIG_FALSE='#'
 else
@@ -12046,7 +12046,7 @@ else
   SWIG_FALSE=
 fi
 
- if test "$with_giws_generation" != no; then
+ if test "$with_giws_generation" != no  -a "$with_giws_generation" != ""; then
   GIWS_TRUE=
   GIWS_FALSE='#'
 else
