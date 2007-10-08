@@ -61,11 +61,16 @@ BOOL LaunchFilebyExtension(char *File)
 	if ( (_stricmp(ExtensionFilename,".cos")==0) || (_stricmp(ExtensionFilename,".cosf")==0) )
 	{
 		bOK=TRUE;
-		CommandLine=(char*)MALLOC( (strlen(File)+strlen("scicos('%s');printf('\n%s');")+strlen(save_prompt))*sizeof(char) );
+
 		if (IsToThePrompt())
+		{
+			CommandLine=(char*)MALLOC( (strlen(File)+strlen("scicos('%s');printf('\n%s');")+strlen(save_prompt))*sizeof(char) );
 			wsprintf(CommandLine,"scicos('%s');printf('\n%s');",File,save_prompt);
+		}
+/*
 		else
 			wsprintf(CommandLine,"scicos('%s');printf('%s');",File);
+*/
 	}
 	else
 	if (_stricmp(ExtensionFilename,".sci")==0)
@@ -107,11 +112,20 @@ BOOL LaunchFilebyExtension(char *File)
 		
 		bOK=FALSE;
 	}
+	
+	if (CommandLine) 
+	{
+		StoreCommand(CommandLine);
+		FREE(CommandLine);
+		CommandLine=NULL;
+	}
 
-	StoreCommand(CommandLine);
-	if (CommandLine) {FREE(CommandLine);CommandLine=NULL;}
+	if (ExtensionFilename)
+	{
+		FREE(ExtensionFilename);
+		ExtensionFilename = NULL;
+	}
 			
-	FREE(ExtensionFilename);
 	return bOK;
 
 }
