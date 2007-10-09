@@ -42,7 +42,7 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 namespace org_scilab_modules_renderer_textDrawing {
 
-class StandardTextDrawerGL {
+class FilledTextDrawerGL {
 private:
 JavaVM * jvm;
 jobject instance;
@@ -54,7 +54,7 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID voidsetTextParametersjintjintjintjdoublejdoubleID; // cache method id
+jmethodID voidsetTextParametersjintjintjintjdoublejintjintID; // cache method id
 jmethodID voidsetTextContentjstringjintjintID; // cache method id
 jmethodID voidsetCenterPositionjdoublejdoublejdoubleID; // cache method id
 jmethodID voiddrawTextContentID; // cache method id
@@ -74,17 +74,17 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-StandardTextDrawerGL(JavaVM * jvm_);
+FilledTextDrawerGL(JavaVM * jvm_);
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-StandardTextDrawerGL(JavaVM * jvm_, jobject JObj);
+FilledTextDrawerGL(JavaVM * jvm_, jobject JObj);
 
 // Destructor
-~StandardTextDrawerGL();
+~FilledTextDrawerGL();
 
 // Generic method
 // Synchronization methods
@@ -113,7 +113,7 @@ void destroy(long parentFigureIndex);
 
 void setFigureIndex(long figureIndex);
 
-void setTextParameters(long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle);
+void setTextParameters(long textAlignment, long color, long fontStyle, double rotationAngle, long boxWidth, long boxHeight);
 
 void setTextContent(char * text, long nbRow, long nbCol);
 
