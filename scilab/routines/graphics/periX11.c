@@ -765,8 +765,8 @@ static void xget_popupdim(integer *verbose, integer *x, integer *narg, double *d
 static void xset_popupdim(integer *x, integer *y, integer *v3, integer *v4)
 {
   GPopupResize(ScilabXgc,x,y);
-  scig_resize(ScilabXgc->CurWindow);
-  ScilabXgc->Cdrawable_flag = 0;
+  /* scig_resize(ScilabXgc->CurWindow);
+     ScilabXgc->Cdrawable_flag = 0;*/
 }
 
 /** To get the viewport Upper/Left point Position **/
