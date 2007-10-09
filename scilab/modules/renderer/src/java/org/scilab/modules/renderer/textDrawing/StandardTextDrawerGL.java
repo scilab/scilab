@@ -1,9 +1,9 @@
 /*------------------------------------------------------------------------*/
-/* file: StandardTextDrawerGL.java                                       */
+/* file: StandardTextDrawerGL.java                                        */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw text     */
-/*        with JOGL.The text is left aligned                              */
+/*        with JOGL.                                                      */
 /*------------------------------------------------------------------------*/
 
 

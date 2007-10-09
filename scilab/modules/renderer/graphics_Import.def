@@ -64,3 +64,5 @@ sciGetFontContext
 sciGetAlignment
 sciGetFontStyle
 sciGetFontOrientation
+sciGetUserSize
+sciGetAutoSize

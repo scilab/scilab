@@ -122,13 +122,14 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 * @param color index of the color in the colormap.
 	 * @param fontTypeIndex index of the font in the font array.
 	 * @param fontSize font size to use.
+	 * @param rotationAngle text rotationAngle.
 	 */
 	public void setTextParameters(int textAlignement, int color, int fontTypeIndex,
-                                      double fontSize, double rotationAngle) {
+                                  double fontSize, double rotationAngle) {
 		setTextAlignement(textAlignement);
 		setFontColor(color);
 		setFont(fontTypeIndex, fontSize);
-                setRotationAngle(rotationAngle);
+        setRotationAngle(rotationAngle);
 	}
 	
 	/**
@@ -175,9 +176,6 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	
 	/**
 	 * Draw a text on the screen.
-	 * @param centerX X coordinate of the center point of the text.
-	 * @param centerY Y coordinate of the center point of the text.
-	 * @param centerZ Z coordinate of the center point of the text.
 	 */
 	public void drawTextContent() {
 		
@@ -296,6 +294,27 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	}
 	
 	/**
+	 * Compute the matrix containing the positions of all texts.
+	 * @param text matrix of string with their size to draw
+	 * @return matrix of positions
+	 */
+	@Override
+	public TextGrid getStringsPositions(StringMatrixGL text) {
+
+		double cellsHeights = text.getTallestString();
+		double[] heights = new double[text.getNbRow()];
+		for (int i = 0; i < text.getNbRow(); i++) {
+			heights[i] = cellsHeights;
+		}
+		
+		double[] widths = text.getLongestStrings();
+		
+		TextGrid res = new TextGrid(text.getNbRow(), text.getNbCol(), heights, widths);
+		return res;
+		
+	}
+	
+	/**
 	 * Draw the text using pixel coordinates.
 	 * @param textCenterPix center of text to draw in pixels
 	 */
@@ -307,13 +326,6 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 * @return array of size 4 with the four corners.
 	 */
 	public abstract Vector3D[] getBoundingRectanglePix(Vector3D textCenterPix);
-	
-	/**
-	 * Compute the matrix containing the positions of all texts.
-	 * @param text matrix of string with their size to draw
-	 * @return matrix of positions
-	 */
-	public abstract TextGrid getStringsPositions(StringMatrixGL text);
 	
 	/**
 	 * Get the bounding box of the text matrix centerd at the origin.

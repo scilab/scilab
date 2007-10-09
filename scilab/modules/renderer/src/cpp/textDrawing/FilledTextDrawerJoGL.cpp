@@ -1,0 +1,55 @@
+/*------------------------------------------------------------------------*/
+/* file: FilledTextDrawerJoGL.cpp                                         */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Class Drawing the text content of a text object which is filled */
+/*        inside a text box                                               */
+/*------------------------------------------------------------------------*/
+
+
+#include "FilledTextDrawerJoGL.hxx"
+#include "FilledTextDrawerJavaMapper.hxx"
+
+extern "C"
+{
+#include "GetProperty.h"
+}
+
+namespace sciGraphics
+{
+/*------------------------------------------------------------------------------------------*/
+FilledTextDrawerJoGL::FilledTextDrawerJoGL(DrawableText * text)
+  : TextContentDrawerJoGL(text)
+{
+  setJavaMapper(new FilledTextDrawerJavaMapper());
+}
+/*------------------------------------------------------------------------------------------*/
+FilledTextDrawerJoGL::~FilledTextDrawerJoGL(void)
+{
+
+}
+/*------------------------------------------------------------------------------------------*/
+void FilledTextDrawerJoGL::setDrawerParameters(void)
+{
+  sciPointObj * pObj = m_pDrawed->getDrawedObject();
+  double boxWidth;
+  double boxHeight;
+  sciGetUserSize(pObj, &boxWidth, &boxHeight);
+  getFilledTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
+                                                     sciGetFontStyle(pObj), sciGetFontOrientation(pObj),
+                                                     (int) boxWidth, (int) boxHeight);
+
+  getFilledTextDrawerJavaMapper()->setTextContent("toto est beau", 1, 1);
+
+  double textPos[3];
+  sciGetTextPos(pObj, textPos);
+  getFilledTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
+}
+/*------------------------------------------------------------------------------------------*/
+FilledTextDrawerJavaMapper * FilledTextDrawerJoGL::getFilledTextDrawerJavaMapper(void)
+{
+  return dynamic_cast<FilledTextDrawerJavaMapper *>(getJavaMapper());
+}
+/*------------------------------------------------------------------------------------------*/
+
+}

@@ -1608,12 +1608,7 @@ int sciSetFontSize(sciPointObj * pobj, double fontSize)
 
 int sciInitFontOrientation( sciPointObj * pobj, double textorientation )
 {
-  if (textorientation < 0.0)
-  {
-    sciprint ("The font angle must be greater than 0\n");
-    return -1;
-  }
-  else if (sciGetFontOrientation(pobj) != NULL)
+  if (sciGetFontContext(pobj) != NULL)
   {
     (sciGetFontContext(pobj))->textorientation = textorientation;
     return 0;

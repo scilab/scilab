@@ -762,6 +762,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\textDrawing\FilledTextDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\FilledTextDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\StandardTextDrawerGL.cpp"
 					>
 				</File>
@@ -1385,6 +1393,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\DrawTextContentStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\FilledTextDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\FilledTextDrawerJoGL.hxx"
 					>
 				</File>
 				<File

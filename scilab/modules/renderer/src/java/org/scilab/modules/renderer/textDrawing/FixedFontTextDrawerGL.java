@@ -24,27 +24,6 @@ public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 	}
 	
 	/**
-	 * Compute the matrix containing the positions of all texts.
-	 * @param text matrix of string with their size to draw
-	 * @return matrix of positions
-	 */
-	@Override
-	public TextGrid getStringsPositions(StringMatrixGL text) {
-
-		double cellsHeights = text.getTallestString();
-		double[] heights = new double[text.getNbRow()];
-		for (int i = 0; i < text.getNbRow(); i++) {
-			heights[i] = cellsHeights;
-		}
-		
-		double[] widths = text.getLongestStrings();
-		
-		TextGrid res = new TextGrid(text.getNbRow(), text.getNbCol(), heights, widths);
-		return res;
-		
-	}
-	
-	/**
 	 * Draw the text using pixel coordinates.
 	 * @param textCenterPix center of text to draw in pixels
 	 */

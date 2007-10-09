@@ -10,7 +10,13 @@
 #include "ConcreteDrawableText.hxx"
 #include "DrawableTextBridgeFactory.hxx"
 #include "StandardTextDrawerJoGL.hxx"
+#include "FilledTextDrawerJoGL.hxx"
 #include "getHandleDrawer.h"
+
+extern "C"
+{
+#include "GetProperty.h"
+}
 
 namespace sciGraphics
 {
@@ -37,8 +43,16 @@ void DrawableTextFactory::setStrategies(ConcreteDrawableText * text)
   text->removeTextDrawingStrategy();
   text->removeBoxDrawingStrategies();
 
+  sciPointObj * pText = text->getDrawedObject();
 
-  text->setTextDrawingStrategy(new StandardTextDrawerJoGL(text));
+  if ( sciGetAutoSize(pText) )
+  {
+    text->setTextDrawingStrategy(new StandardTextDrawerJoGL(text));
+  }
+  else
+  {
+    text->setTextDrawingStrategy(new FilledTextDrawerJoGL(text));
+  }
 
 
 }
