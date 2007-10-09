@@ -34,31 +34,30 @@ function [scs_m, fct] = do_addnew(scs_m)
   end
 
   if to_get then // try to get it
-    path = name+'.sci'
-    path = getfile("*.sci", path, title="File containing function: "+name)
 
-    if length(path)<=0 then return,end
-    [u,err]=file('open',path,'old','formatted')
+    message(['Problem loading block '+name+'.';
+             'Use Activate_Scilab_Window and redefine it in Scilab.'] ) ;
+    return;
 
-    if err<>0 then
-      message(path+' file, Not found')
-      return
-    end
-
-    if execstr('getf(u)','errcatch')<>0 then
-      file('close',u)
-      message([name + " erroneous function:"; lasterror()])
-      return
-    end
-
-    file('close',u)
-
-    if ~exists(name) then
-       message(name+" is not defined in this file")
-       return
-    end
-
-    fct = path
+    //path = name+'.sci'
+    //path = getfile("*.sci", path, title="File containing function: "+name)
+    //if length(path)<=0 then return,end
+    //[u,err]=file('open',path,'old','formatted')
+    //if err<>0 then
+    //  message(path+' file, Not found')
+    //  return
+    //end
+    //if execstr('getf(u)','errcatch')<>0 then
+    //  file('close',u)
+    //  message([name + " erroneous function:"; lasterror()])
+    //  return
+    //end
+    //file('close',u)
+    //if ~exists(name) then
+    //   message(name+" is not defined in this file")
+    //   return
+    //end
+    //fct = path
 
   else
 
@@ -113,64 +112,65 @@ function [scs_m, fct] = do_addnew(scs_m)
 
   //**------ Al@n's update 2 ---------/////////////
   // update blk !
-              o_new=scicos_block();
-              T = getfield(1,blk);
 
-              for k=2:size(T,2)
-                select T(k)
-                  //*********** graphics **********//
-                  case 'graphics' then
-                    ogra  = blk.graphics;
-                    G     = getfield(1,ogra);
-                    G_txt = [];
-                    for l=2:size(G,2)
-                      G_txt = G_txt + G(1,l) + ...
-                              "=" + "ogra." + G(1,l);
-                      if l<>size(G,2) then
-                        G_txt = G_txt + ',';
-                      end
-                    end
-                    G_txt = 'ogra=scicos_graphics(' + G_txt + ')';
-                    ierr  = execstr(G_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of graphics in block.")
-                    end
-                    o_new.graphics = ogra;
-                  //*******************************//
+  o_new=scicos_block();
+  T = getfield(1,blk);
 
-                  //************* model ***********//
-                  case 'model' then
-                    omod  = blk.model;
-                    M     = getfield(1,blk.model);
-                    M_txt = [];
-                    for l=2:size(M,2)
-                      M_txt = M_txt + M(1,l) + ...
-                              "=" + "omod." + M(1,l);
-                      if l<>size(M,2) then
-                        M_txt = M_txt + ',';
-                      end
-                    end
-                    M_txt = 'omod=scicos_model(' + M_txt + ')';
-                    ierr  = execstr(M_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of model in block.")
-                    end
-                    o_new.model = omod;
-                  //*******************************//
+  for k=2:size(T,2)
+     select T(k)
+     //*********** graphics **********//
+     case 'graphics' then
+        ogra  = blk.graphics;
+        G     = getfield(1,ogra);
+        G_txt = [];
+        for l=2:size(G,2)
+          G_txt = G_txt + G(1,l) + ...
+                    "=" + "ogra." + G(1,l);
+          if l<>size(G,2) then
+              G_txt = G_txt + ',';
+          end
+        end
+        G_txt = 'ogra=scicos_graphics(' + G_txt + ')';
+        ierr  = execstr(G_txt,'errcatch')
+        if ierr<>0 then
+          error("Problem in convertion of graphics in block.")
+        end
+        o_new.graphics = ogra;
+        //*******************************//
 
-                  //************* other ***********//
-                  else
-                    T_txt = "blk."+T(k);
-                    T_txt = "o_new." + T(k) + "=" + T_txt;
-                    ierr  = execstr(T_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion in objs.")
-                    end
-                  //*******************************//
+        //************* model ***********//
+        case 'model' then
+          omod  = blk.model;
+          M     = getfield(1,blk.model);
+          M_txt = [];
+          for l=2:size(M,2)
+             M_txt = M_txt + M(1,l) + ...
+                      "=" + "omod." + M(1,l);
+             if l<>size(M,2) then
+                 M_txt = M_txt + ',';
+             end
+          end
+          M_txt = 'omod=scicos_model(' + M_txt + ')';
+          ierr  = execstr(M_txt,'errcatch')
+          if ierr<>0 then
+            error("Problem in convertion of model in block.")
+          end
+          o_new.model = omod;
+          //*******************************//
 
-                end  //end of select T(k)
-              end  //end of for k=
-              blk = o_new;
+          //************* other ***********//
+          else
+            T_txt = "blk."+T(k);
+            T_txt = "o_new." + T(k) + "=" + T_txt;
+            ierr  = execstr(T_txt,'errcatch')
+            if ierr<>0 then
+               error("Problem in convertion in objs.")
+            end
+          //*******************************//
+
+     end  //end of select T(k)
+  end  //end of for k=
+  blk = o_new;
   //**------------------------------------/////////
 
   //**------ Al@n's update ---------/////////////
@@ -203,12 +203,79 @@ function [scs_m, fct] = do_addnew(scs_m)
         save_super(scs_m_super,TMPDIR,blk.graphics.gr_i,blk.graphics.sz)
       elseif blk.model.sim(1)=='csuper' then
         save_csuper(scs_m_super,TMPDIR,blk.graphics.gr_i,blk.graphics.sz)
+        tt=mgetl(TMPDIR+'/'+name+'.sci');
+        mputl(tt,TMPDIR+'/'+name+'_new.sci');
+        //**------ R@min's update ---------/////////////
+         [u,err]=file('open',TMPDIR+'/'+name+'.sci','unknown')
+         if err<>0 then
+           message('The file '+TMPDIR+'/'+name+'.sci'+' cannot be opened.')
+           return
+         end
+
+         Txte=['function [x,y,typ]='+name+'(job,arg1,arg2)';
+               'x=[];y=[],typ=[]';
+               'if job<>''define'' then ';
+               '  if argn(2)<2 then arg1=[],end'
+               '  [x,y,typ]=%fonct'+name+'(job,arg1)';
+               'else'
+               ];
+         ierr=execstr('write(u,Txte,''(a)'')','errcatch','n')
+         if ierr<>0 then 
+               message('Impossible to write in '+TMPDIR+'/'+name+'.sci'+'; possibly locked.')
+               file('close',u)
+               return
+         end
+         dimen=blk.graphics.sz// /20  // why RN
+         dimen=dimen(:)'
+         textdef=['  model=scicos_model()']
+         model=blk.model
+         cc=getfield(1,model)
+         cos2cosf(u,model.rpar,0)
+
+         for ch=cc(2:$)
+           if ch=='rpar' then
+             textdef=[textdef;
+                      '  model.rpar=scs_m_1'];
+           else
+             chval=sci2exp(evstr('model.'+ch))
+             textdef=[textdef;
+                      '  model.'+ch+'='+chval(1);
+                      chval(2:$)];
+           end
+         end
+
+         textdef=[textdef;
+                  '  exprs='+sci2exp(blk.graphics.exprs)
+                 ]
+
+         gr_i_tmp = sci2exp(blk.graphics.gr_i);
+         if size(gr_i_tmp,1)<>1 then
+           textdef=[textdef;
+                    '  gr_i='+gr_i_tmp(1)
+                    '       '+gr_i_tmp(2:$)];
+         else
+           textdef=[textdef;
+                    '  gr_i='+gr_i_tmp];
+         end
+
+         textdef=[textdef;
+                  '  x=standard_define('+sci2exp(dimen)+',model,exprs,gr_i)']
+         txt=[textdef
+              'end'
+              'endfunction'
+              ''
+              fun2string(evstr(name),'%fonct'+name);
+             ]
+         write(u,txt,'(a)')
+         file('close',u)
+        //**-------------------------------/////////////
       end
+      nam_file=strcat([name,name+'_new']+'.sci',' ')
       message(["Old csuper/super block have been detected !";
-               "A new block "+name+".sci have been generated in "+TMPDIR+".";
+               "New interfacing functions "+nam_file;
+               " have been re-generated in "+TMPDIR+".";
                "Please save and edit the generated file at your convenience";
                "to have an updated interfacing function of that block."])
-
     end
   end
   //**------------------------------------/////////////
