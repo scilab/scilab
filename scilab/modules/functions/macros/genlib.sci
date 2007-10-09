@@ -10,6 +10,10 @@ function genlib(nam,path,force,verbose,names)
   np=predef();
   predefined=or(W($-np+1:$)==nam);
   
+  if verbose then 
+    write(%io(2),'-- Creation of ['+nam+'] (Macros) --");
+  end
+  
   updatelib=%f //true if updating an already defined library
   //check if a library with the same name exists
   oldlib=[];old_path=[];old_names=[];
