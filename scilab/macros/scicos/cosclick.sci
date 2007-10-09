@@ -71,20 +71,35 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     global Scicos_commands
     pathh=inactive_windows(1)(find(win==inactive_windows(2)))
 
-    if (btn==3) then 
-      cmd='Cmenu=''SelectLink'''
-    elseif (btn==0) then 
+    if (btn==-2) then
+      cmd='Cmenu='+part(str,9:length(str)-1)+';execstr(''Cmenu=''+Cmenu)'
+    elseif (btn==0) then
       cmd='Cmenu = '"MoveLink'"'
-    elseif (btn==1000) then 
-      cmd='Cmenu = '"Smart Move'"'
+    elseif (btn==3) then
+       cmd='Cmenu=''SelectLink'''
     elseif (btn==10) then 
       cmd='Cmenu='"Open/Set'"'
-    elseif or( btn==[2 5 12] ) then  
+    elseif or(btn==[2 5 12]) then
       cmd='Cmenu = '"Popup'"';
-    end
-
-    if btn==-2 then
-         cmd='Cmenu='+part(str,9:length(str)-1)+';execstr(''Cmenu=''+Cmenu)'
+    elseif (btn>=32) & (btn<288)
+      //09/10/2007, Alan's patch search in %scicos_short
+      //the assiocated menu
+      if exists('%scicos_short') then
+        ind=find(ascii(btn)==%scicos_short(:,1))
+        if ind<>[] then
+          ind=ind($)
+          cmd='Cmenu='''+%scicos_short(ind,2)+''''
+        else
+          cmd='Cmenu=''SelectLink'''
+        end
+      else
+        cmd='Cmenu=''SelectLink'''
+      end
+    elseif (btn==1000) then //Alan : CESTPASUNPEUGROS1000
+                            //POURUNSMARTMOVE??
+      cmd='Cmenu = '"Smart Move'"'
+    else
+      cmd='Cmenu=''SelectLink'''
     end
 
     Scicos_commands=['%diagram_path_objective='+sci2exp(pathh)+';%scicos_navig=1';
