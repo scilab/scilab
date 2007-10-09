@@ -5,7 +5,7 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('scselectricallib','SCI/modules/scicos/macros/scicos_blocks/Electrical');
+genlib('scselectricallib','SCI/modules/scicos/macros/scicos_blocks/Electrical',%f,%t);
 //------------------------------------
 if MSDOS then
   unix("dir /B *.mo >models");

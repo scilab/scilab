@@ -5,5 +5,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('sparselib','SCI/modules/sparse/macros');
+genlib('sparselib','SCI/modules/sparse/macros',%f,%t);
 //------------------------------------

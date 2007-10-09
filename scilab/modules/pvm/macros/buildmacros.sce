@@ -6,6 +6,6 @@ if (isdef('genlib') == %f) then
 end
 //------------------------------------
 if %pvm then
-genlib('pvmlib','SCI/modules/pvm/macros');
+genlib('pvmlib','SCI/modules/pvm/macros',%f,%t);
 end
 //------------------------------------

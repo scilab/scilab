@@ -5,5 +5,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('linear_algebralib','SCI/modules/linear_algebra/macros');
+genlib('linear_algebralib','SCI/modules/linear_algebra/macros',%f,%t);
 //------------------------------------

@@ -5,5 +5,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('PDElib','SCI/modules/scicos/macros/scicos_blocks/PDE');
+genlib('PDElib','SCI/modules/scicos/macros/scicos_blocks/PDE',%f,%t);
 //------------------------------------

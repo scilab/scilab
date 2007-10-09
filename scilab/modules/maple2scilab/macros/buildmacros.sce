@@ -8,5 +8,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('maple2scilablib','SCI/modules/maple2scilab/macros');
+genlib('maple2scilablib','SCI/modules/maple2scilab/macros',%f,%t);
 //------------------------------------

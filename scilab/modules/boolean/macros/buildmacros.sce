@@ -5,5 +5,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-//genlib('booleanlib','SCI/modules/boolean/macros');
+//genlib('booleanlib','SCI/modules/boolean/macros',%f,%t);
 //------------------------------------

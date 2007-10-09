@@ -8,5 +8,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('timelib','SCI/modules/time/macros');
+genlib('timelib','SCI/modules/time/macros',%f,%t);
 //------------------------------------

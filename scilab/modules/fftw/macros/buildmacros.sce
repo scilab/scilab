@@ -5,5 +5,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-//genlib('fftwlib','SCI/modules/fftw/macros');
+//genlib('fftwlib','SCI/modules/fftw/macros',%f,%t);
 //------------------------------------

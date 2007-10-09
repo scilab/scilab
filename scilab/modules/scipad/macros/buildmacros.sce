@@ -9,5 +9,5 @@ if (isdef('genlib') == %f) then
 end
 //------------------------------------
 genlib('scipadlib','SCI/modules/scipad/macros');
-genlib('scipadinternalslib','SCI/modules/scipad/macros/scipad_internals');
+genlib('scipadinternalslib','SCI/modules/scipad/macros/scipad_internals',%f,%t);
 //------------------------------------

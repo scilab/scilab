@@ -5,5 +5,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('soundlib','SCI/modules/sound/macros');
+genlib('soundlib','SCI/modules/sound/macros',%f,%t);
 //------------------------------------

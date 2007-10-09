@@ -5,7 +5,7 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('scshydraulicslib','SCI/modules/scicos/macros/scicos_blocks/Hydraulics'); 
+genlib('scshydraulicslib','SCI/modules/scicos/macros/scicos_blocks/Hydraulics',%f,%t); 
 //------------------------------------
 if MSDOS then
   unix("dir /B *.mo >models");

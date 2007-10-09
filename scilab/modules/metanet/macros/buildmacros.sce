@@ -5,5 +5,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('metanetlib','SCI/modules/metanet/macros');
+genlib('metanetlib','SCI/modules/metanet/macros',%f,%t);
 //------------------------------------

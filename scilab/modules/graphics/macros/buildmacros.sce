@@ -5,5 +5,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('graphicslib','SCI/modules/graphics/macros');
+genlib('graphicslib','SCI/modules/graphics/macros',%f,%t);
 //------------------------------------
