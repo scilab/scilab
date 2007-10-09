@@ -9,7 +9,7 @@
 #define _FILLED_TEXT_DRAWER_JAVA_MAPPER_HXX_
 
 #include "TextContentDrawerJavaMapper.hxx"
-//#include "FilledTextDrawerGL.hxx"
+#include "FilledTextDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -55,7 +55,7 @@ private:
   /**
    * Giws generated wrapper.
    */
-  //org_scilab_modules_renderer_textDrawing::FilledTextDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_textDrawing::FilledTextDrawerGL * m_pJavaObject;
 
 
 };
