@@ -765,6 +765,8 @@ static void xget_popupdim(integer *verbose, integer *x, integer *narg, double *d
 static void xset_popupdim(integer *x, integer *y, integer *v3, integer *v4)
 {
   GPopupResize(ScilabXgc,x,y);
+  scig_resize(ScilabXgc->CurWindow);
+  ScilabXgc->Cdrawable_flag = 0;
 }
 
 /** To get the viewport Upper/Left point Position **/
@@ -3215,6 +3217,7 @@ static struct BCG *AddNewWindow(WindowList **listptr)
 	  (*listptr)->winxgc.CinfoW =  (Widget) NULL ;
 	  (*listptr)->winxgc.Viewport =  (Widget) NULL ;
 	  (*listptr)->winxgc.CurWindow = 0;
+	  (*listptr)->winxgc.CurResizeStatus = 1;
 	  (*listptr)->winxgc.Red = (float *) 0;
 	  (*listptr)->winxgc.Green = (float *) 0;
 	  (*listptr)->winxgc.Blue = (float *) 0;
