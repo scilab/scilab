@@ -18,6 +18,7 @@ function Zoomin_()
 
     //** geometrical correction: zoom in the center
     viewport = viewport * zoomfactor - 0.5 * gh_window.figure_size*(1-zoomfactor)  ;
+    viewport=max([0,0],min(viewport,-gh_window.figure_size+gh_window.axes_size)) 
     window_set_size(gh_window, viewport);
     if exists('%scicos_with_grid') then
       drawgrid(); //** draw the new grid and put in the bottom of stack
