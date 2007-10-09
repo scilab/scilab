@@ -31,7 +31,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop:
   end                                      //**    CLEAR ANY PREVIOUS EVENT in the queue
   //**--------------------------------------------------------------------------- //
-  
+
   %pt = [xc,yc] ; //** acquire the position  
   
   //**--------------------------------------------------------------------------
@@ -70,15 +70,26 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   if win<>[] & find(win==inactive_windows(2))<>[] then
     global Scicos_commands
     pathh=inactive_windows(1)(find(win==inactive_windows(2)))
-    cmd='Cmenu=''SelectLink'''
+
+    if (btn==3) then 
+      cmd='Cmenu=''SelectLink'''
+    elseif (btn==0) then 
+      cmd='Cmenu = '"MoveLink'"'
+    elseif (btn==1000) then 
+      cmd='Cmenu = '"Smart Move'"'
+    elseif (btn==10) then 
+      cmd='Cmenu='"Open/Set'"'
+    elseif or( btn==[2 5 12] ) then  
+      cmd='Cmenu = '"Popup'"';
+    end
+
     if btn==-2 then
          cmd='Cmenu='+part(str,9:length(str)-1)+';execstr(''Cmenu=''+Cmenu)'
     end
 
     Scicos_commands=['%diagram_path_objective='+sci2exp(pathh)+';%scicos_navig=1';
-		     cmd+';%pt='+sci2exp(%pt)+';xselect();%scicos_navig=[]';
+		     cmd+';%win=curwin;%pt='+sci2exp(%pt)+';xselect();%scicos_navig=[]';
 		    ]
-
     return
   
   //** -----------------------------------------------------------

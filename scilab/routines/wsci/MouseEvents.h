@@ -18,7 +18,7 @@ void ON_EVENT_GRAPH_WM_MBUTTONDOWN(HWND hwnd, BOOL fDoubleClick, int x, int y, U
 void ON_EVENT_GRAPH_WM_MBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags);
 void ON_EVENT_GRAPH_WM_MBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags);
 void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags);
-void InitializeButtons(void);
+//void InitializeButtons(void);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __MOUSEEVENTS__ */
 /*-----------------------------------------------------------------------------------*/ 

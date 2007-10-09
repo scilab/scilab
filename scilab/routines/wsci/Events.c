@@ -11,7 +11,7 @@ BOOL GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struc
 {
 	if (firstCall)
 	{
-		InitializeButtons();
+		//InitializeButtons();
 		firstCall = FALSE;
 	}
 	switch(message)
