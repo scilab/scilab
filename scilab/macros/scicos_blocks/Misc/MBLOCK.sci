@@ -1,5 +1,5 @@
 function [x,y,typ]=MBLOCK(job,arg1,arg2)
-// 
+//
 // Copyright INRIA Oct 2006
 x=[];y=[];typ=[];
 select job
@@ -29,7 +29,7 @@ case 'set' then
   end
 
   exprs = tlist(["MBLOCK","in","intype","out","outtype",...
-                 "param","paramv","pprop","nameF","funtxt","prev_exprs"],...
+                 "param","paramv","pprop","nameF","funtxt"],...
                  exprs(1)(1),..
                  exprs(1)(2),..
                  exprs(1)(3),..
@@ -37,7 +37,7 @@ case 'set' then
                  exprs(1)(5),..
                  paramv,...
                  sci2exp(pprop(:)),..
-                 exprs(1)(7),exprs(2),[])
+                 exprs(1)(7),exprs(2))
 
  end
 
@@ -54,7 +54,8 @@ case 'set' then
  lab_2 = exprs.paramv //already a list
 
  //store exprs before modif
- exprs.prev_exprs=exprs;
+ //exprs.prev_exprs=exprs;
+ //exprs.prev_exprs.prev_exprs=tlist("MBLOCK");
 
  while %t do
 //     [ok,Tin,Tintype,Tout,Touttype,Tparam,Tparamv,Tfunam,lab]=..
@@ -290,9 +291,9 @@ case 'set' then
          if pprop(i) == 0 then
            lab_txt=lab_txt+''''+Tparam_lab(i)+''';'
          elseif  pprop(i) == 1 then
-           lab_txt=lab_txt+''''+Tparam_lab(i)+' (continuous state) '';'
+           lab_txt=lab_txt+''''+Tparam_lab(i)+' (state) '';'
          elseif  pprop(i) == 2 then
-           lab_txt=lab_txt+''''+Tparam_lab(i)+' (fixed continuous state) '';'
+           lab_txt=lab_txt+''''+Tparam_lab(i)+' (fixed state) '';'
          end
          rhs_txt=rhs_txt+'''vec'',-1,'
        end
@@ -339,7 +340,7 @@ case 'set' then
        end
      end
    //============================
-     [ok,tt]=MODCOM(funam,tt,in,out,param,paramv,pprop,exprs.prev_exprs)
+     [ok,tt]=MODCOM(funam,tt,in,out,param,paramv,pprop)
      if ~ok then
        break
      end
@@ -362,7 +363,7 @@ case 'set' then
      model.rpar=[]
      for i=1:lstsize(paramv)
         model.rpar=[model.rpar;
-                    paramv(i)(:)]
+                    paramv(i)(:)]//value
      end
      model.sim(1)=funam
      //------------------
@@ -375,7 +376,7 @@ case 'set' then
      if Tparam_sz<>0 then //if param
        if type(lab_2)==15 then //for eval
          for i=1:lstsize(lab_2)
-           exprs.paramv(i)=lab_2(i);
+           exprs.paramv(i)=lab_2(i);//string
          end
        else
          for i=1:size(lab_2,'*')
@@ -415,7 +416,7 @@ case 'define' then
   //           sci2exp(outtype),sci2exp(param),sci2exp(paramv),nameF]',[])
 
   exprs = tlist(["MBLOCK","in","intype","out","outtype",...
-                 "param","paramv","pprop","nameF","funtxt","prev_exprs"],...
+                 "param","paramv","pprop","nameF","funtxt"],...
                  sci2exp(in(:)),..
                  sci2exp(intype(:)),..
                  sci2exp(out(:)),..
@@ -423,7 +424,7 @@ case 'define' then
                  sci2exp(param(:)),..
                  list(string(0.1),string(.0001)),...
                  sci2exp(pprop(:)),..
-                 nameF,[],tlist("MBLOCK"))
+                 nameF,[])
 
   model=scicos_model()
   model.blocktype='c'

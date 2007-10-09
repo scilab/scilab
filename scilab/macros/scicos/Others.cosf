@@ -684,9 +684,9 @@ scs_m.objs(17)=scicos_block(..
                         flip=%t,..
                         theta=0,..
                         exprs=tlist(..
-                        ["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt",..
-                        "prev_exprs"],"""u1""","""I""","[""y1"";""y2""]","[""I"";""E""]","[""R"";""L""]",..
-                        list("0.1","0.0001"),"[0;0]","generic",[],tlist("MBLOCK")),..
+                        ["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],..
+                        """u1""","""I""","[""y1"";""y2""]","[""I"";""E""]","[""R"";""L""]",..
+                        list("0.1","0.0001"),"[0;0]","generic",[]),..
                         pin=0,..
                         pout=[0;0],..
                         pein=[],..

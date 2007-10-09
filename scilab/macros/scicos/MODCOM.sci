@@ -1,31 +1,29 @@
-function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop,prev_exprs)
+function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
 //
  [dirF,nameF,extF]=fileparts(funam);
 
-  //the new head
+ //the new head
  class_txt_new=build_classhead(funam,vinp,vout,vparam,vparamv,vpprop)
- //the previous head
- class_txt_prev=build_prev_classhead(prev_exprs)
 
  if (tt==[]) then
+   tete4= ['';' //     Real x(start=1), y(start=2);']
    tete5='equation';
 
    tete6=['      // exemple'];
    tete7='      //der(x)=x-x*y;';
    tete8='      //der(y)+2*y=x*y;';
    tete9='end '+nameF+';';
-   textmp=[class_txt_new;tete5;tete6;tete7;tete8;tete9];
+   textmp=[class_txt_new;tete4;tete5;tete6;tete7;tete8;tete9];
  else
    modif=%f;
    for i=1:size(tt,'*')
-     if strindex(stripblanks(tt(i)),'equation')<>[] then
+     if strindex(stripblanks(tt(i)),...
+                 '////do not modif above this line ////')<>[] then
         //Alan, 07/10/07
         //tt(1:i-1) : the current head
-        if and(tt(1:i-1)==class_txt_prev) then
-           textmp=[class_txt_new;tt(i:$)]
-           modif=%t
-           break
-        end
+        textmp=[class_txt_new;tt(i+1:$)]
+        modif=%t
+        break
      end
    end
    if ~modif then textmp=tt, end;
@@ -89,31 +87,69 @@ function class_txt=build_classhead(funam,vinp,vout,vparam,vparamv,vpprop)
       //param
       if vpprop(i)==0 then
          head='      parameter Real '
-         cm=''
+         if size(vparamv(i),'*')==1 then
+           head=head+vparam(i)+'='+string(vparamv(i))+';'
+         else
+           head=head+vparam(i)+'['+string(size(vparamv(i),'*'))+']={';
+           for j=1:size(vparamv(i),'*')
+             head=head+string(vparamv(i)(j))
+             if j<>size(vparamv(i),'*') then
+               head=head+','
+             end
+           end
+           head=head+'};'
+         end
+         //cm=''
       //continuous state
       elseif vpprop(i)==1 then
          head='      Real           '
-         cm='continuous state, '
+         if size(vparamv(i),'*')==1 then
+           head=head+vparam(i)+'(start='+string(vparamv(i))+');'
+         else
+           head=head+vparam(i)+'['+string(size(vparamv(i),'*'))+'](start={';
+           for j=1:size(vparamv(i),'*')
+             head=head+string(vparamv(i)(j))
+             if j<>size(vparamv(i),'*') then
+               head=head+','
+             end
+           end
+           head=head+'});'
+         end
+         //cm='continuous state, '
       //fixed continuous state
       elseif vpprop(i)==2 then
          head='      Real           '
-         cm='fixed continuous state, '
+         if size(vparamv(i),'*')==1 then
+           head=head+vparam(i)+'(fixed=true,start='+string(vparamv(i))+');'
+         else
+           head=head+vparam(i)+'['+string(size(vparamv(i),'*'))+'](fixed=true,start={';
+           for j=1:size(vparamv(i),'*')
+             head=head+string(vparamv(i)(j))
+             if j<>size(vparamv(i),'*') then
+               head=head+','
+             end
+           end
+           head=head+'});'
+         end
+         //cm='fixed continuous state, '
       end
 
-      if size(vparamv(i),'*')==1 then
-        tete1b=[tete1b;
-                head+..
-                 vparam(i)+'; //'+..
-                  cm+'init value '+..
-                   string(vparamv(i))];
-      else
-        tete1b=[tete1b;
-                head+..
-                 vparam(i)+'['+...
-                 string(size(vparamv(i),'*'))+']; //'+..
-                  cm+'init values '+..
-                   sci2exp(vparamv(i))];
-      end
+//       if size(vparamv(i),'*')==1 then
+//         tete1b=[tete1b;
+//                 head+..
+//                  vparam(i)+'; //'+..
+//                   cm+'init value '+..
+//                    string(vparamv(i))];
+//       else
+//         tete1b=[tete1b;
+//                 head+..
+//                  vparam(i)+'['+...
+//                  string(size(vparamv(i),'*'))+']; //'+..
+//                   cm+'init values '+..
+//                    sci2exp(vparamv(i))];
+//       end
+      tete1b=[tete1b
+              head]
     end
   else
     tete1b=[];
@@ -145,24 +181,11 @@ function class_txt=build_classhead(funam,vinp,vout,vparam,vparamv,vpprop)
   else
    tete3=[];
   end
+
+  tete4='  ////do not modif above this line ////'
    //-----------------------------------------
 
-  tete4= ['';' //     Real x(start=1), y(start=2);']
-
-  class_txt=[tete1;tete1b;tete2;tete3;tete4]
-endfunction
-
-//build_prev_classhead : get the head of the previous modelica function
-function class_txt=build_prev_classhead(exprs)
-  class_txt=[]
-
-  funam=exprs.nameF
-  vinp=evstr(exprs.in)
-  vout=evstr(exprs.out)
-  vparam=evstr(exprs.param)
-  vparamv=exprs.paramv
-  vpprop=evstr(exprs.pprop)
-
-  class_txt=build_classhead(funam,vinp,vout,vparam,vparamv,vpprop)
-
+  class_txt=[tete1;
+             '  ////automatically generated ////';
+             tete1b;tete2;tete3;tete4]
 endfunction
