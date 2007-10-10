@@ -229,14 +229,16 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
   if size_pin >0 then 
    
     for i=1:size_pin //** for all the input "pin" of the old block 
-  //** if the port is linked AND the new block has enough ports AND the two ports are of the same E/I 
-    //**                                                    AND the same Standard/Modelica type  
-       if  pin(i)>0 & i<=size_pin_n & in_mod(i)==in_mod_n(i) & tsmin(i)==tsmin_n(i) then  
-         pin_n(i) = pin(i); //** assign the port to the old Link 
-	 InputLinkToCon = [InputLinkToCon pin(i)] ;   //** add the Link to the "to be reconnected links" vector
+  //** if the port is linked AND the new block has enough ports AND the two ports are of the same E/I
+    //**                                                    AND the same Standard/Modelica type
+       if  pin(i)>0 & i<=size_pin_n & in_mod(i)==in_mod_n(i) & tsmin(i)==tsmin_n(i) then
+         pin_n(i) = pin(i); //** assign the port to the old Link
+//         if find(InputLinkToCon==pin(i))==[] then
+           InputLinkToCon = [InputLinkToCon pin(i)] ;   //** add the Link to the "to be reconnected links" vector
            xInPortToCon = [xInPortToCon xsmin_n(i)] ; //** recover the coordinate of the new equivalent port 
-	   yInPortToCon = [yInPortToCon ysmin_n(i)] ; //** and pile up in the vector 
-	   TypeInPortToCon = [TypeInPortToCon in_mod_n(i)] ; //** pile up the input port type
+           yInPortToCon = [yInPortToCon ysmin_n(i)] ; //** and pile up in the vector 
+           TypeInPortToCon = [TypeInPortToCon in_mod_n(i)] ; //** pile up the input port type
+//         end
        else
        	 if pin(i)>0 //** if the old port was connected 
 	   LinkToDel = [LinkToDel pin(i)]; //** add the Link to the "to be deleted links" vector 
@@ -258,8 +260,8 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
        if  pein(i)>0 & i<=size_pein_n then  
          pein_n(i) = pein(i); //** assign the port to the old Link
          InputLinkToCon = [InputLinkToCon pein(i)] ; //** add the Link to the "to be reconnected links" vector
-	   xInPortToCon = [xInPortToCon xein_n(i)] ; //** recover the coordinate of the new equivalent port 
-	   yInPortToCon = [yInPortToCon yein_n(i)] ; //** and pile up in the vector 
+         xInPortToCon = [xInPortToCon xein_n(i)] ; //** recover the coordinate of the new equivalent port 
+         yInPortToCon = [yInPortToCon yein_n(i)] ; //** and pile up in the vector 
        else
        	 if pein(i)>0 //** if the old port was connected 
 	   LinkToDel = [LinkToDel pein(i)]; //** add the Link to the "to be deleted links" vector 
@@ -277,14 +279,16 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
   if size_pout >0 then 
     
     for i=1:size_pout //** for all the output "pout" of the old block 
-  //** if the port is linked AND the new block has enough ports AND the two ports are of the same E/I 
-    //**                                                        AND the same Standard/Modelica type    
-       if  pout(i)>0 & i<=size_pout_n & out_mod(i)==out_mod_n(i) & tsmout(i)==tsmout_n(i) then  
-         pout_n(i) = pout(i); //** assign the port to the old Link
-	 OutputLinkToCon = [OutputLinkToCon pout(i)] ; //** add the Link to the "to be reconnected links" vector
-           xOutPortToCon = [xOutPortToCon xsmout_n(i)] ; //** recover the coordinate of the new equivalent port 
-	   yOutPortToCon = [yOutPortToCon ysmout_n(i)] ; //** and pile up in the vector  
-	   TypeOutPortToCon = [TypeOutPortToCon out_mod_n(i)] ; //** pile up the output port type
+  //** if the port is linked AND the new block has enough ports AND the two ports are of the same E/I
+    //**                                                        AND the same Standard/Modelica type
+       if  pout(i)>0 & i<=size_pout_n & out_mod(i)==out_mod_n(i) & tsmout(i)==tsmout_n(i) then
+//         if find(OutputLinkToCon==pout(i))==[] then
+           pout_n(i) = pout(i); //** assign the port to the old Link
+           OutputLinkToCon = [OutputLinkToCon pout(i)] ; //** add the Link to the "to be reconnected links" vector
+           xOutPortToCon = [xOutPortToCon xsmout_n(i)] ; //** recover the coordinate of the new equivalent port
+           yOutPortToCon = [yOutPortToCon ysmout_n(i)] ; //** and pile up in the vector
+           TypeOutPortToCon = [TypeOutPortToCon out_mod_n(i)] ; //** pile up the output port type
+//        end
        else
        	 if pout(i)>0 //** if the old port was connected 
 	   LinkToDel = [LinkToDel pout(i)]; //** add the Link to the "to be deleted links" vector 
@@ -332,35 +336,38 @@ if  or(curwin==winsid()) then
   
   gh_link = [];
 end
-   
+
   //** ------------------------ ADJUST THE CONNECTED LINKS ----------------------------------------
-  
+
   //**-------------------------- Input Links ---------------------------------------
-  if size(InputLinkToCon,'*') > 0 then 
-  
-  //** disp("Adj links"); pause 
-  
+  if size(InputLinkToCon,'*') > 0 then
+
+  //** disp("Adj links"); pause
+
    for i=1:size(InputLinkToCon,'*')
-  
+
       Link_index = InputLinkToCon(i) ;
       oi = scs_m.objs(Link_index)
-      
+
       [xlink, ylink, ct ,from ,to ] = (oi.xx, oi.yy, oi.ct, oi.from, oi.to) ;
-      
+
       //** Use theta parameters to compute the physical position of the port on the screen
       xxx = rotate([xInPortToCon(i);yInPortToCon(i)],...
                    o_n.graphics.theta*%pi/180,...
                   [o_n.graphics.orig(1)+o_n.graphics.sz(1)/2;o_n.graphics.orig(2)+o_n.graphics.sz(2)/2]);
 
+      //** the link is connected to the same block
       if from(1)==to(1) then
-       if TypeInPortToCon(i)=="E" then
-         xlink($) = xxx(1,:); ylink($) = xxx(2,:); //** standard port
-       else
-         disp("unknow solution"); pause //** debug ONLY 
-       end
-      
+         //we check here inputs : we look for to(3)==1 or from(3)==1
+         //to(2) or from(2) are the input port number
+         if (to(2)==i & to(3)==1) then
+           xlink($) = xxx(1,:); ylink($) = xxx(2,:); //** standard port
+         elseif (from(2)==i & from(3)==1) then
+           xlink(1) = xxx(1,:); ylink(1) = xxx(2,:); //** standard port
+         end
+
+      //** the link is connected to different blocks
       else
-      
         if from(1)==path(2) then
           //** if the bloc is connected to a link with a 'from' tag
           //** force the position to the first point of the link
@@ -372,46 +379,49 @@ end
         end
       end
 
-      oi.xx = xlink ; oi.yy = ylink ;                           //** link 
-      scs_m.objs(Link_index) = oi; //** update the scs_m 
-      
+      oi.xx = xlink ; oi.yy = ylink ;                           //** link
+      scs_m.objs(Link_index) = oi; //** update the scs_m
+
       if  or(curwin==winsid()) then
         ghi = get_gri(Link_index, o_size(1) );       //** calc the index of the connected link
         gh_link = gh_curwin.children.children(ghi);  //** recover the handle 
         gh_link.children.data = [oi.xx , oi.yy];//** update the object  
-      end      
-   
-   end //** for loop 
-  
-  end   
-  
+      end
+
+   end //** for loop
+
+  end
+
   //**---------------------------------
 
   //**----------------------- Output Links -------------------------------------------
-  
-  if size(OutputLinkToCon,'*') > 0 then 
-  
+
+  if size(OutputLinkToCon,'*') > 0 then
+
    for i=1:size(OutputLinkToCon,'*')
-      
+
       Link_index = OutputLinkToCon(i) ;
       oi = scs_m.objs(Link_index)
-      
+
       [xlink, ylink, ct ,from ,to ] = (oi.xx, oi.yy, oi.ct, oi.from, oi.to) ;
-      
+
       //** Use theta parameters to compute the physical position of the port on the screen
       xxx = rotate([xOutPortToCon(i);yOutPortToCon(i)],...
                    o_n.graphics.theta*%pi/180,...
                   [o_n.graphics.orig(1)+o_n.graphics.sz(1)/2;o_n.graphics.orig(2)+o_n.graphics.sz(2)/2]);
 
+      //** the link is connected to the same block
       if from(1)==to(1) then
-        if TypeOutPortToCon(i)=="E" then
-           xlink(1) = xxx(1,:); ylink(1) = xxx(2,:); //** standard port 
-        else
-          disp("unknow solution"); pause //** debug ONLY 
-        end
+         //we check here inputs : we look for to(3)==1 or from(3)==1
+         //to(2) or from(2) are the input port number
+         if (to(2)==i & to(3)==0) then
+           xlink($) = xxx(1,:); ylink($) = xxx(2,:); //** standard port
+         elseif (from(2)==i & from(3)==0) then
+           xlink(1) = xxx(1,:); ylink(1) = xxx(2,:); //** standard port
+         end
 
+      //** the link is connected to different blocks
       else
-
         if from(1)==path(2) then
          //** if the bloc is connected to a link with a 'from' tag
          //** force the position to the first point of the link
@@ -423,19 +433,19 @@ end
         end
       end
 
-      oi.xx = xlink ; oi.yy = ylink ; 
-      
-      scs_m.objs(Link_index) = oi;    //** update the scs_m 
-      
-      if  or(curwin==winsid()) then      
-	ghi = get_gri(Link_index, o_size(1) );       //** calc the index of the connected link
-	gh_link = gh_curwin.children.children(ghi);  //** recover the handle 
-	gh_link.children.data = [oi.xx , oi.yy];//** update the object 
+      oi.xx = xlink ; oi.yy = ylink ;
+
+      scs_m.objs(Link_index) = oi;    //** update the scs_m
+
+      if  or(curwin==winsid()) then
+        ghi = get_gri(Link_index, o_size(1) );       //** calc the index of the connected link
+        gh_link = gh_curwin.children.children(ghi);  //** recover the handle
+        gh_link.children.data = [oi.xx , oi.yy];//** update the object
       end
-   
-  end //** for loop  
-   
-  end  
+
+  end //** for loop
+
+  end
   //** ------------------------ END OF : ADJUST THE CONNECTED LINKS -------------------------------  
 
 endfunction
