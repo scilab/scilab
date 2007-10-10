@@ -80,10 +80,10 @@ int intendscicosim(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  int curblock = C2F(curblk).kfun;
+  int isrun = C2F(cosim).isrun;
 
   CheckRhs(-1,0);
-  if (curblock==0) {
+  if (!isrun) {
     Scierror(999,"%s: scicosim is not running. \r\n",fname);
   }
   else {
@@ -279,9 +279,9 @@ int intxproperty(fname,fname_len)
   int un;
   extern int* pointer_xproperty;
   extern int n_pointer_xproperty;
-  int curblock = C2F(curblk).kfun;
+  int isrun = C2F(cosim).isrun;
 
-  if (curblock==0) {
+  if (!isrun) {
     Scierror(999,"%s: scicosim is not running. \r\n",fname);
   }
   else {
@@ -299,9 +299,9 @@ int intphasesim(fname,fname_len)
      unsigned long fname_len;
 { 
   int un,l1;
-  int curblock = C2F(curblk).kfun;
+  int isrun = C2F(cosim).isrun;
 
-  if (curblock==0) {
+  if (!isrun) {
     Scierror(999,"%s: scicosim is not running. \r\n",fname);
   }
   else {
@@ -321,9 +321,9 @@ int intsetxproperty(fname,fname_len)
      unsigned long fname_len;
 {
   int un,l1,m1;
-  int curblock = C2F(curblk).kfun;
+  int isrun = C2F(cosim).isrun;
 
-  if (curblock==0) {
+  if (!isrun) {
     Scierror(999,"%s: scicosim is not running. \r\n",fname);
   }
   else {
@@ -341,11 +341,11 @@ int intsetblockerror(fname,fname_len)
      unsigned long fname_len;
 {
   int un,l1;
-  int curblock = C2F(curblk).kfun;
+  int isrun = C2F(cosim).isrun;
 
   CheckRhs(1,1);
 
-  if (curblock==0) {
+  if (!isrun) {
     Scierror(999,"%s: scicosim is not running. \r\n",fname);
   }
   else {
@@ -2174,6 +2174,7 @@ int intscicosimc(fname,fname_len)
   * call scicos simulator
   ************************/
  if (C2F(iop).ddt!=0) C2F(dbcos).idb=1;   /*debug mode if ddt=0*/
+ C2F(cosim).isrun=1;  /*set isrun=1 to say that we enter in the simulator*/
 
  /* Calling sequence :
   * int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
@@ -2218,6 +2219,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
             simpar,&flag,&ierr);
 
  C2F(dbcos).idb=0;  /*return in normal mode*/
+ C2F(cosim).isrun=0;  /*return in normal mode*/
 
  /******************************
   * retrieve intersci common
@@ -2523,7 +2525,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
   if (! (C2F(errgst).err1>0||C2F(iop).err>0))
   {
    Scierror(888,"%s\n",C2F(cha1).buf);
-   C2F(curblk).kfun=0;
+   /*C2F(curblk).kfun=0;*/
    C2F(com).fun=0; /*set common fun=0 (this disable bug in debug mode)*/
    freeparam;
    return 0;
@@ -2536,7 +2538,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
   return 0;
  }
 
- C2F(curblk).kfun=0;
+ /*C2F(curblk).kfun=0;*/
  C2F(com).fun=0;
 
  /*********************
