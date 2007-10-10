@@ -51,7 +51,8 @@ static void KillTimerLeft(HWND hwnd);
 static void KillTimerMiddle(HWND hwnd);
 static void KillTimerRight(HWND hwnd);
 /*-----------------------------------------------------------------------------------*/
-BOOL focushaschanged = FALSE;
+BOOL focushaschangedBorder = FALSE;
+BOOL focushaschangedViewport = FALSE;
 /*-----------------------------------------------------------------------------------*/
 void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 {
@@ -83,6 +84,7 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 		{
 			PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos,CLCK_LEFT, 0, 0);
 		}
+		
 		return ;
 	}
 
@@ -108,6 +110,7 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 		{
 			PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos,CLCK_MIDDLE, 0, 0);
 		}
+		
 		return;
 	}
 
@@ -134,6 +137,7 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 		{
 			PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos,CLCK_RIGHT, 0, 0);
 		}
+		
 		return;
 	}
 
@@ -150,10 +154,10 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 			if (GetKeyState(VK_CONTROL)<0)
 			{
 				
-				if (focushaschanged)
+				if (focushaschangedViewport) 
 				{
-					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,FOCUS_CHANGED, 0, 0);
-					focushaschanged = FALSE;
+					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,20+PRESSED_LEFT, 0, 0);
+					focushaschangedViewport = FALSE;
 				}
 				else
 				{
@@ -165,27 +169,29 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 			if (GetKeyState(VK_SHIFT)<0)
 			{
 				
-				if (focushaschanged)
+				if (focushaschangedViewport)
 				{
-					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,FOCUS_CHANGED, 0, 0);
-					focushaschanged = FALSE;
+					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,PRESSED_LEFT+20, 0, 0);
+					focushaschangedViewport = FALSE;
 				}
 				else
 				{
 					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, SHIFT_KEY+PRESSED_LEFT, 0, 0);
 				}
+
 			}
 			else
 			{
-				if (focushaschanged)
+				if (focushaschangedViewport)
 				{
-					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,FOCUS_CHANGED, 0, 0);
-					focushaschanged = FALSE;
+					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,PRESSED_LEFT+20, 0, 0);
+					focushaschangedViewport = FALSE;
 				}
 				else
 				{
 					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,PRESSED_LEFT, 0, 0);
 				}
+
 			}
 			return ;
 		}
@@ -200,10 +206,10 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 
 			if (GetKeyState(VK_CONTROL)<0)
 			{
-				if (focushaschanged)
+				if (focushaschangedViewport)
 				{
-					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, FOCUS_CHANGED, 0, 0);
-					focushaschanged = FALSE;
+					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, PRESSED_MIDDLE+20, 0, 0);
+					focushaschangedViewport = FALSE;
 				}
 				else
 				{
@@ -213,10 +219,10 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 			else
 			if (GetKeyState(VK_SHIFT)<0)
 			{
-				if (focushaschanged)
+				if (focushaschangedViewport)
 				{
-					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,FOCUS_CHANGED, 0, 0);
-					focushaschanged = FALSE;
+					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,PRESSED_MIDDLE+20, 0, 0);
+					focushaschangedViewport = FALSE;
 				}
 				else
 				{
@@ -225,10 +231,10 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 			}
 			else
 			{
-				if (focushaschanged)
+				if (focushaschangedViewport)
 				{
-					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,FOCUS_CHANGED, 0, 0);
-					focushaschanged = FALSE;
+					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,PRESSED_MIDDLE+20, 0, 0);
+					focushaschangedViewport = FALSE;
 				}
 				else
 				{
@@ -248,10 +254,10 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 
 			if (GetKeyState(VK_CONTROL)<0)
 			{
-				if (focushaschanged)
+				if (focushaschangedViewport)
 				{
-					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,FOCUS_CHANGED, 0, 0);
-					focushaschanged = FALSE;
+					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,PRESSED_RIGHT+20, 0, 0);
+					focushaschangedViewport = FALSE;
 				}
 				else
 				{
@@ -262,10 +268,10 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 			else
 			if (GetKeyState(VK_SHIFT)<0)
 			{
-				if (focushaschanged)
+				if (focushaschangedViewport)
 				{
-					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,FOCUS_CHANGED, 0, 0);
-					focushaschanged = FALSE;
+					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,PRESSED_RIGHT+20, 0, 0);
+					focushaschangedViewport = FALSE;
 				}
 				else
 				{
@@ -275,10 +281,10 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 			}
 			else
 			{
-				if (focushaschanged)
+				if (focushaschangedViewport)
 				{
-					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,FOCUS_CHANGED, 0, 0);
-					focushaschanged = FALSE;
+					PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,PRESSED_RIGHT+20, 0, 0);
+					focushaschangedViewport = FALSE;
 				}
 				else
 				{
@@ -333,6 +339,7 @@ void ON_EVENT_GRAPH_WM_LBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 	MOUSEX= x;
 	MOUSEY= y;
 
+
 	if (wait_dclick_left)
 	{
 		lose_up_left=TRUE;
@@ -354,6 +361,7 @@ void ON_EVENT_GRAPH_WM_LBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 		{
 			PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos, RELEASED_LEFT, 0, -1);
 		}
+		
 	}
 	else
 	if (lose_up_left)
@@ -374,6 +382,7 @@ void ON_EVENT_GRAPH_WM_LBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y,
 	MOUSEX= x;
 	MOUSEY= y;
 
+
 	wait_dclick_left=FALSE;
 	dclick_left = TRUE;
 	KillTimer(hwnd,TimerIdLeft);
@@ -392,6 +401,7 @@ void ON_EVENT_GRAPH_WM_LBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y,
 	{
 		PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos, DBL_CLCK_LEFT, 0, 0);
 	}
+	
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -599,6 +609,7 @@ void CALLBACK reset_left_click_counter(HWND hwnd,UINT msg,UINT_PTR id,DWORD data
 	wait_dclick_left=FALSE;
 	KillTimer(hwnd,TimerIdLeft);
 
+
 	if (dclick_left)
 	{
 		if (GetKeyState(VK_CONTROL)<0)
@@ -614,6 +625,7 @@ void CALLBACK reset_left_click_counter(HWND hwnd,UINT msg,UINT_PTR id,DWORD data
 		{
 			PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos, DBL_CLCK_LEFT, 0, 0);
 		}
+		
 	}
 	else
 	{
@@ -633,6 +645,7 @@ void CALLBACK reset_left_click_counter(HWND hwnd,UINT msg,UINT_PTR id,DWORD data
 				PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos,CLCK_LEFT, 0, 0);
 			}
 			lose_up_left=FALSE;
+			
 		}
 		else
 		{
@@ -650,6 +663,7 @@ void CALLBACK reset_left_click_counter(HWND hwnd,UINT msg,UINT_PTR id,DWORD data
 				PushClickQueue (ScilabGC->CurWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos,PRESSED_LEFT, 0, 0);
 				
 			}
+			
 		}
 	}
 }

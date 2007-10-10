@@ -34,6 +34,8 @@ EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wPar
 		case WM_EXITSIZEMOVE  : ON_WND_PARENTGRAPH_WM_EXITSIZEMOVE(hwnd);  break;
 		case WM_SYSCOMMAND    : ON_WND_PARENTGRAPH_WM_SYSCOMMAND(hwnd,wParam,lParam); break;
 
+
+
 		HANDLE_MSG(hwnd,WM_SIZE,ON_WND_PARENTGRAPH_WM_SIZE);
 		HANDLE_MSG(hwnd,WM_COMMAND,ON_WND_PARENTGRAPH_WM_COMMAND);
 		HANDLE_MSG(hwnd,WM_DROPFILES,ON_WND_PARENTGRAPH_WM_DROPFILES);
@@ -194,6 +196,12 @@ void ON_WND_PARENTGRAPH_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT
 BOOL ON_WND_PARENTGRAPH_WM_SETFOCUS(HWND hwnd, HWND hwndOldFocus)
 {
 	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+	extern BOOL focushaschangedBorder;
+	extern BOOL focushaschangedViewport;
+
+	focushaschangedBorder = TRUE;
+	focushaschangedViewport = FALSE;
+
 	SetFocus (ScilabGC->CWindow);
 
 	return TRUE;

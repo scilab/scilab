@@ -412,8 +412,16 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_GRAPH_WM_SETFOCUS(HWND hwnd, HWND hwndOldFocus)
 {
-	//extern BOOL focus;
-	//if (!focus) focus = TRUE;
+	extern BOOL focushaschangedViewport;
+	extern BOOL focushaschangedBorder;
+
+	
+	if (focushaschangedBorder) 
+	{
+		focushaschangedViewport  = TRUE;
+		focushaschangedBorder = TRUE;
+	}
+	
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
