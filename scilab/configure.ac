@@ -505,7 +505,8 @@ if test "x$GUI" = "xX11"; then
 		X_EXTRA_LIBS="$X_EXTRA_LIBS -lXaw3d -lXmu"
         XAW=Xaw3d
 		X_LIB_PATH=/usr/X11R6/lib/
-        AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <X11/IntrinsicP.h> #include <X11/Xaw3d/ViewportP.h>]], [[]])],[],[AC_MSG_ERROR(Include file "ViewportP.h" for Xaw3d not found. 
+        AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <X11/IntrinsicP.h> 
+		#include <X11/Xaw3d/ViewportP.h>]], [[]])],[],[AC_MSG_ERROR(Include file "ViewportP.h" for Xaw3d not found. 
 			       Get and put it in <X11/Xaw3d/> .)])
       fi
     fi
