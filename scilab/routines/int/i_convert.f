@@ -3,10 +3,10 @@
 c
       logical checkrhs,checklhs
       integer iadr,sadr
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
+c
       if(.not.checkrhs('iconvert',2,2)) return
       if(.not.checklhs('iconvert',1,1)) return
 
@@ -21,7 +21,7 @@ c
       is=stk(sadr(il+4))
       top=top-1
       rhs=rhs-1
-      call convert(is)
+      call stack_convert(is)
       return
       end
 

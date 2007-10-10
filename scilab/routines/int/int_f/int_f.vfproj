@@ -179,7 +179,7 @@ cd .."/>
 		<File RelativePath="..\memused.f"/>
 		<File RelativePath="..\uppertype.f"/>
 		<File RelativePath="..\intinttype.f"/>
-		<File RelativePath="..\convert.f"/>
+		<File RelativePath="..\stack_convert.f"/>
 		<File RelativePath="..\bitops.f"/>
 		<File RelativePath="..\unarybit.f"/>
 		<File RelativePath="..\i_mget.f"/>

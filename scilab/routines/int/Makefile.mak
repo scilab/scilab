@@ -18,7 +18,7 @@ OBJSC = tpconv.obj \
 
 
 OBJSF = intelm.obj intops.obj  memused.obj uppertype.obj \
-	intinttype.obj convert.obj bitops.obj unarybit.obj i_mget.obj i_mput.obj\
+	intinttype.obj stack_convert.obj bitops.obj unarybit.obj i_mget.obj i_mput.obj\
 	i_a_i.obj i_s_i.obj i_p.obj i_e.obj i_i_i.obj \
 	i_c_i.obj i_f_i.obj i_m_i.obj i_r_i.obj i_l_i.obj i_x_i.obj i_d_i.obj i_q_i.obj \
 	i_t.obj i_logic.obj i_sum.obj i_cumsum.obj  i_prod.obj i_cumprod.obj \
@@ -35,7 +35,7 @@ FFLAGS = $(FC_OPTIONS)
 include ../Make.lib.mak
 
 bitops.obj: ../stack.h
-convert.obj: ../stack.h
+stack_convert.obj: ../stack.h
 creimat.obj: ../stack.h
 getimat.obj: ../stack.h
 i_a_i.obj: ../stack.h

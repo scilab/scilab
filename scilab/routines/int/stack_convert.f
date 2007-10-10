@@ -1,16 +1,19 @@
-      subroutine convert(it)
+      subroutine stack_convert(it)
 C     ---------------------------------------------
-C     converts the first argument 
+C     converts the first argument
 C     (on top of stack)
-C     it: is the new requested type 
-C     0,1,2,4,11,12,14 : 
+C     it: is the new requested type
+C     0,1,2,4,11,12,14 :
 C     (double,char, short,int,uchar, ushort,uint)
 C     ----------------------------------------------
+C     convert was shadowing HP-UX convert function
+C     renamed to stack_convert
+C
 
       include '../stack.h'
       logical checkrhs,checklhs
       integer iadr,sadr,memused
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 

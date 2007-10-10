@@ -8,29 +8,29 @@ c
          call basout(io,wte,' intelm '//buf(1:4))
       endif
 c
-      if(fin.eq.1) then 
+      if(fin.eq.1) then
 c     int32
-         call convert(4)
+         call stack_convert(4)
       elseif(fin.eq.2) then
 c     int16
-         call convert(2)
+         call stack_convert(2)
       elseif(fin.eq.3) then
 c     int8
-         call convert(1)
+         call stack_convert(1)
       elseif(fin.eq.4) then
          call intinttype
       elseif(fin.eq.5) then
 c     double
-         call convert(0)
-      elseif(fin.eq.6) then 
+         call stack_convert(0)
+      elseif(fin.eq.6) then
 c     uint32
-         call convert(14)
+         call stack_convert(14)
       elseif(fin.eq.7) then
 c     uint16
-         call convert(12)
+         call stack_convert(12)
       elseif(fin.eq.8) then
 c     uint8
-         call convert(11)
+         call stack_convert(11)
       elseif(fin.eq.9) then
          call i_mget('mget')
       elseif(fin.eq.10) then
