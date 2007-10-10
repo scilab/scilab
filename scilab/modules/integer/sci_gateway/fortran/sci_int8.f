@@ -3,7 +3,7 @@ c     INRIA
 c     ==================================================
       subroutine sciint8(fname)
       character*(*) fname
-      call convert(1)
+      call stack_convert(1)
       end
 c     ==================================================
-      
+

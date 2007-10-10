@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 INTEGER_C_SOURCES = src/c/genconcatcol.c \
@@ -83,7 +83,7 @@ src/fortran/i_t.f \
 src/fortran/i_sum.f \
 src/fortran/i_diag.f \
 src/fortran/i_abs.f \
-src/fortran/convert.f \
+src/fortran/stack_convert.f \
 src/fortran/i_cumprod.f \
 src/fortran/i_cumsum.f \
 src/fortran/i_kron.f
@@ -118,7 +118,7 @@ sci_gateway/fortran/sci_inttype.f
 
 MODULE_CHECKS = unit_tests/intops.tst
 
-libsciinteger_la_CFLAGS=  -Iincludes/ 
+libsciinteger_la_CFLAGS=  -Iincludes/
 
 pkglib_LTLIBRARIES = libsciinteger.la
 
@@ -127,7 +127,7 @@ libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GAT
 libsciinteger_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/fileio/libscifileio.la 
+	$(top_builddir)/modules/fileio/libscifileio.la
 
 
 
@@ -141,11 +141,11 @@ libsciinteger_la_rootdir = $(mydatadir)
 libsciinteger_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### integer : init scripts #### 
+#### integer : init scripts ####
 libsciinteger_la_etcdir = $(mydatadir)/etc
 libsciinteger_la_etc_DATA = etc/integer.quit etc/integer.start
 
-#### integer : gateway declaration #### 
+#### integer : gateway declaration ####
 libsciinteger_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciinteger_la_sci_gateway_DATA = sci_gateway/integer_gateway.xml
 

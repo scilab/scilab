@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 ##########
@@ -116,7 +116,7 @@ am__objects_2 = unarybit.lo i_mput.lo i_logic.lo i_a_i.lo i_b_i.lo \
 	i_matrix.lo i_i_i.lo i_l_i.lo i_m_i.lo intops.lo i_prod.lo \
 	i_convert.lo i_q_i.lo i_r_i.lo i_tril.lo i_s_i.lo i_x_i.lo \
 	uppertype.lo i_triu.lo i_e.lo memused.lo bitops.lo i_mget.lo \
-	i_p.lo i_t.lo i_sum.lo i_diag.lo i_abs.lo convert.lo \
+	i_p.lo i_t.lo i_sum.lo i_diag.lo i_abs.lo stack_convert.lo \
 	i_cumprod.lo i_cumsum.lo i_kron.lo
 am__objects_3 = libsciinteger_la-gw_integer.lo
 am__objects_4 = sci_i_matrix.lo sci_i_mput.lo sci_i_max.lo \
@@ -398,7 +398,7 @@ src/fortran/i_t.f \
 src/fortran/i_sum.f \
 src/fortran/i_diag.f \
 src/fortran/i_abs.f \
-src/fortran/convert.f \
+src/fortran/stack_convert.f \
 src/fortran/i_cumprod.f \
 src/fortran/i_cumsum.f \
 src/fortran/i_kron.f
@@ -431,13 +431,13 @@ sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
 MODULE_CHECKS = unit_tests/intops.tst
-libsciinteger_la_CFLAGS = -Iincludes/ 
+libsciinteger_la_CFLAGS = -Iincludes/
 pkglib_LTLIBRARIES = libsciinteger.la
 libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libsciinteger_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/fileio/libscifileio.la 
+	$(top_builddir)/modules/fileio/libscifileio.la
 
 
 #### Target ######
@@ -447,11 +447,11 @@ modulename = integer
 libsciinteger_la_rootdir = $(mydatadir)
 libsciinteger_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### integer : init scripts #### 
+#### integer : init scripts ####
 libsciinteger_la_etcdir = $(mydatadir)/etc
 libsciinteger_la_etc_DATA = etc/integer.quit etc/integer.start
 
-#### integer : gateway declaration #### 
+#### integer : gateway declaration ####
 libsciinteger_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciinteger_la_sci_gateway_DATA = sci_gateway/integer_gateway.xml
 
@@ -1077,8 +1077,8 @@ i_diag.lo: src/fortran/i_diag.f
 i_abs.lo: src/fortran/i_abs.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_abs.lo `test -f 'src/fortran/i_abs.f' || echo '$(srcdir)/'`src/fortran/i_abs.f
 
-convert.lo: src/fortran/convert.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o convert.lo `test -f 'src/fortran/convert.f' || echo '$(srcdir)/'`src/fortran/convert.f
+stack_convert.lo: src/fortran/stack_convert.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stack_convert.lo `test -f 'src/fortran/stack_convert.f' || echo '$(srcdir)/'`src/fortran/stack_convert.f
 
 i_cumprod.lo: src/fortran/i_cumprod.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_cumprod.lo `test -f 'src/fortran/i_cumprod.f' || echo '$(srcdir)/'`src/fortran/i_cumprod.f
