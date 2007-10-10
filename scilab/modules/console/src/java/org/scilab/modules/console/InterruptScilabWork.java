@@ -40,7 +40,7 @@ public class InterruptScilabWork extends AbstractConsoleAction {
 			configuration.getOutputView().append(StringConstants.NEW_LINE);
 			configuration.getOutputView().append(configuration.getPromptView().getDefaultPrompt());
 			configuration.getOutputView().append(StringConstants.NEW_LINE);
-			((SciInputCommandView) configuration.getInputCommandView()).setCmdBuffer("\n");
+			((SciInputCommandView) configuration.getInputCommandView()).setCmdBuffer("");
 		}
 	}
 
