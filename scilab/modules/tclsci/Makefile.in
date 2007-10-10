@@ -58,12 +58,12 @@ host_triplet = @host@
 DIST_COMMON = $(am__libscitclsci_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@@TCLTK_TRUE@am__append_1 = java-build 
-@SWIG_TRUE@@TCLTK_TRUE@am__append_2 = swig-build 
-@GIWS_TRUE@@TCLTK_TRUE@am__append_3 = giws-build 
-@GUI_TRUE@@TCLTK_FALSE@am__append_4 = java-build 
-@SWIG_TRUE@@TCLTK_FALSE@am__append_5 = swig-build 
-@GIWS_TRUE@@TCLTK_FALSE@am__append_6 = giws-build 
+@GUI_TRUE@@TCLTK_TRUE@am__append_1 = build-java
+@SWIG_TRUE@@TCLTK_TRUE@am__append_2 = build-swig
+@GIWS_TRUE@@TCLTK_TRUE@am__append_3 = build-giws
+@GUI_TRUE@@TCLTK_FALSE@am__append_4 = build-java
+@SWIG_TRUE@@TCLTK_FALSE@am__append_5 = build-swig
+@GIWS_TRUE@@TCLTK_FALSE@am__append_6 = build-giws
 subdir = modules/tclsci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -1538,12 +1538,12 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 # TODO : Renamed this variable
 
-@GUI_TRUE@@TCLTK_TRUE@java-build:
+@GUI_TRUE@@TCLTK_TRUE@build-java:
 @GUI_TRUE@@TCLTK_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@TCLTK_TRUE@		$(ANT) jar; \
 @GUI_TRUE@@TCLTK_TRUE@	fi
 
-@GUI_TRUE@@TCLTK_TRUE@java-clean: 
+@GUI_TRUE@@TCLTK_TRUE@clean-java: 
 @GUI_TRUE@@TCLTK_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@TCLTK_TRUE@		$(ANT) clean; \
 @GUI_TRUE@@TCLTK_TRUE@	fi
@@ -1553,7 +1553,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@TCLTK_TRUE@swig-build: $(SWIG_WRAPPERS)
+@TCLTK_TRUE@build-swig: $(SWIG_WRAPPERS)
 @TCLTK_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @TCLTK_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @TCLTK_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1566,7 +1566,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@TCLTK_TRUE@giws-build: $(GIWS_WRAPPERS)
+@TCLTK_TRUE@build-giws: $(GIWS_WRAPPERS)
 @TCLTK_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @TCLTK_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @TCLTK_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -1665,7 +1665,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@TCLTK_TRUE@clean-local: java-clean
+@GUI_TRUE@@TCLTK_TRUE@clean-local: clean-java
 @GUI_FALSE@@TCLTK_TRUE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @TCLTK_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1680,10 +1680,9 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		fi; \
 @TCLTK_TRUE@	done
 
-@TCLTK_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@TCLTK_TRUE@	-@( \
-@TCLTK_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@TCLTK_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+@TCLTK_TRUE@build-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@TCLTK_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@TCLTK_TRUE@	)
 #.java .class .jar
 
 # This target enables tests for Scilab
@@ -1709,12 +1708,12 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 # TODO : Renamed this variable
 
-@GUI_TRUE@@TCLTK_FALSE@java-build:
+@GUI_TRUE@@TCLTK_FALSE@build-java:
 @GUI_TRUE@@TCLTK_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@TCLTK_FALSE@		$(ANT) jar; \
 @GUI_TRUE@@TCLTK_FALSE@	fi
 
-@GUI_TRUE@@TCLTK_FALSE@java-clean: 
+@GUI_TRUE@@TCLTK_FALSE@clean-java: 
 @GUI_TRUE@@TCLTK_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@TCLTK_FALSE@		$(ANT) clean; \
 @GUI_TRUE@@TCLTK_FALSE@	fi
@@ -1724,7 +1723,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@TCLTK_FALSE@swig-build: $(SWIG_WRAPPERS)
+@TCLTK_FALSE@build-swig: $(SWIG_WRAPPERS)
 @TCLTK_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @TCLTK_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @TCLTK_FALSE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1737,7 +1736,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@TCLTK_FALSE@giws-build: $(GIWS_WRAPPERS)
+@TCLTK_FALSE@build-giws: $(GIWS_WRAPPERS)
 @TCLTK_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
 @TCLTK_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @TCLTK_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -1836,7 +1835,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@TCLTK_FALSE@clean-local: java-clean
+@GUI_TRUE@@TCLTK_FALSE@clean-local: clean-java
 @GUI_FALSE@@TCLTK_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @TCLTK_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1851,10 +1850,9 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@		fi; \
 @TCLTK_FALSE@	done
 
-@TCLTK_FALSE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@TCLTK_FALSE@	-@( \
-@TCLTK_FALSE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@TCLTK_FALSE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+@TCLTK_FALSE@build-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@TCLTK_FALSE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@TCLTK_FALSE@	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

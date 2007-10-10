@@ -50,9 +50,9 @@ host_triplet = @host@
 DIST_COMMON = $(libscirandlib_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java-build 
-@SWIG_TRUE@am__append_2 = swig-build 
-@GIWS_TRUE@am__append_3 = giws-build 
+@GUI_TRUE@am__append_1 = build-java
+@SWIG_TRUE@am__append_2 = build-swig
+@GIWS_TRUE@am__append_3 = build-giws
 subdir = modules/randlib
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -978,12 +978,12 @@ check-local: $(top_builddir)/scilab-bin
 
 # TODO : Renamed this variable
 
-@GUI_TRUE@java-build:
+@GUI_TRUE@build-java:
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) jar; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@java-clean: 
+@GUI_TRUE@clean-java: 
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) clean; \
 @GUI_TRUE@	fi
@@ -993,7 +993,7 @@ all-local: $(TARGETS_ALL)
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-swig-build: $(SWIG_WRAPPERS)
+build-swig: $(SWIG_WRAPPERS)
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1006,7 +1006,7 @@ swig-build: $(SWIG_WRAPPERS)
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-giws-build: $(GIWS_WRAPPERS)
+build-giws: $(GIWS_WRAPPERS)
 	@GIWS_OUTPUTDIR=src/jni/;\
 	if test ! -z "$(GIWS_WRAPPERS)"; then \
 		for file in $(GIWS_WRAPPERS) ; do \
@@ -1105,7 +1105,7 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@clean-local: java-clean
+@GUI_TRUE@clean-local: clean-java
 @GUI_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1120,10 +1120,9 @@ install-data-local:
 		fi; \
 	done
 
-macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-	-@( \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+build-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

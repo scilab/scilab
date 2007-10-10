@@ -58,12 +58,12 @@ host_triplet = @host@
 DIST_COMMON = $(am__libscipvm_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@@PVM_TRUE@am__append_1 = java-build 
-@PVM_TRUE@@SWIG_TRUE@am__append_2 = swig-build 
-@GIWS_TRUE@@PVM_TRUE@am__append_3 = giws-build 
-@GUI_TRUE@@PVM_FALSE@am__append_4 = java-build 
-@PVM_FALSE@@SWIG_TRUE@am__append_5 = swig-build 
-@GIWS_TRUE@@PVM_FALSE@am__append_6 = giws-build 
+@GUI_TRUE@@PVM_TRUE@am__append_1 = build-java
+@PVM_TRUE@@SWIG_TRUE@am__append_2 = build-swig
+@GIWS_TRUE@@PVM_TRUE@am__append_3 = build-giws
+@GUI_TRUE@@PVM_FALSE@am__append_4 = build-java
+@PVM_FALSE@@SWIG_TRUE@am__append_5 = build-swig
+@GIWS_TRUE@@PVM_FALSE@am__append_6 = build-giws
 subdir = modules/pvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -1308,12 +1308,12 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 # TODO : Renamed this variable
 
-@GUI_TRUE@@PVM_TRUE@java-build:
+@GUI_TRUE@@PVM_TRUE@build-java:
 @GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) jar; \
 @GUI_TRUE@@PVM_TRUE@	fi
 
-@GUI_TRUE@@PVM_TRUE@java-clean: 
+@GUI_TRUE@@PVM_TRUE@clean-java: 
 @GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) clean; \
 @GUI_TRUE@@PVM_TRUE@	fi
@@ -1323,7 +1323,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@PVM_TRUE@swig-build: $(SWIG_WRAPPERS)
+@PVM_TRUE@build-swig: $(SWIG_WRAPPERS)
 @PVM_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @PVM_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1336,7 +1336,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@PVM_TRUE@giws-build: $(GIWS_WRAPPERS)
+@PVM_TRUE@build-giws: $(GIWS_WRAPPERS)
 @PVM_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @PVM_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @PVM_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -1435,7 +1435,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@PVM_TRUE@clean-local: java-clean
+@GUI_TRUE@@PVM_TRUE@clean-local: clean-java
 @GUI_FALSE@@PVM_TRUE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1450,10 +1450,9 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		fi; \
 @PVM_TRUE@	done
 
-@PVM_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@PVM_TRUE@	-@( \
-@PVM_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@PVM_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+@PVM_TRUE@build-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@PVM_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@PVM_TRUE@	)
 #.java .class .jar
 
 # This target enables tests for Scilab
@@ -1479,12 +1478,12 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 # TODO : Renamed this variable
 
-@GUI_TRUE@@PVM_FALSE@java-build:
+@GUI_TRUE@@PVM_FALSE@build-java:
 @GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) jar; \
 @GUI_TRUE@@PVM_FALSE@	fi
 
-@GUI_TRUE@@PVM_FALSE@java-clean: 
+@GUI_TRUE@@PVM_FALSE@clean-java: 
 @GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) clean; \
 @GUI_TRUE@@PVM_FALSE@	fi
@@ -1494,7 +1493,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@PVM_FALSE@swig-build: $(SWIG_WRAPPERS)
+@PVM_FALSE@build-swig: $(SWIG_WRAPPERS)
 @PVM_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @PVM_FALSE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1507,7 +1506,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@PVM_FALSE@giws-build: $(GIWS_WRAPPERS)
+@PVM_FALSE@build-giws: $(GIWS_WRAPPERS)
 @PVM_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
 @PVM_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @PVM_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -1606,7 +1605,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@PVM_FALSE@clean-local: java-clean
+@GUI_TRUE@@PVM_FALSE@clean-local: clean-java
 @GUI_FALSE@@PVM_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1621,10 +1620,9 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@		fi; \
 @PVM_FALSE@	done
 
-@PVM_FALSE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@PVM_FALSE@	-@( \
-@PVM_FALSE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@PVM_FALSE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+@PVM_FALSE@build-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@PVM_FALSE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@PVM_FALSE@	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

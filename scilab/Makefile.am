@@ -43,17 +43,14 @@ all: macros
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@( cd $(top_builddir) ; \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$(LD_LIBRARY_PATH)"; 	export LD_LIBRARY_PATH; \
 	echo "$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
 doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@( cd $(top_builddir) ; \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$(LD_LIBRARY_PATH)"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -l en -nouserstartup -nwni -e "xmltohtml();exit;")
 
 	-@( cd $(top_builddir) ; \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$(LD_LIBRARY_PATH)"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e "xmltohtml();exit;")
 
 
@@ -63,12 +60,12 @@ check-help:
 
 distclean-local::
 clean-local:
-#	@..\..\..\bin\scilex -nb -l en -nouserstartup -nwni -e clean_help();exit;
-#	@..\..\..\bin\scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;
+	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'
+	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'
 
 
 # Pkgconfig directory
 pkgconfigdir = $(libdir)/pkgconfig
 
 # Files to install in Pkgconfig directory
-pkgconfig_DATA =  scilab.pc
+pkgconfig_DATA = scilab.pc
