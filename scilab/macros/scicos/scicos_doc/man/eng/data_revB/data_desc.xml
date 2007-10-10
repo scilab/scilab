@@ -1176,7 +1176,8 @@ blocks to gather events in a single link.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+    That block is used to get data defined in the Scilab workspace
+    and use them in Scicos. Data should have "time" and "values" fields.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -1188,7 +1189,7 @@ blocks to gather events in a single link.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+     This block is used in \htmladdnormallink{FROMWSB}{FROMWSB.htm} superblock.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

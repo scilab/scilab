@@ -1213,7 +1213,8 @@ pour regrouper/combiner les événements sur un seul lien.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Ajoutez ici un paragraphe pour la description de la fonction
+    That block is used to get data defined in the Scilab workspace
+    and use them in Scicos. Data should have "time" and "values" fields.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -1225,7 +1226,7 @@ pour regrouper/combiner les événements sur un seul lien.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Ajoutez ici un paragraphe pour la description de la fonction
+     This block is used in \htmladdnormallink{FROMWSB}{FROMWSB.htm} superblock.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
