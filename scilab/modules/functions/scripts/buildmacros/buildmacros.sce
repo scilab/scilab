@@ -25,7 +25,9 @@ Dim=size(Directories);
 
 for i=1:Dim(1) do 
   chdir(Directories(i));
-  exec('buildmacros.sce');
+  if (fileinfo('buildmacros.sce')<>[]) then
+    exec('buildmacros.sce');
+  end
   chdir(CurrentDirectory);
 end
 clear CurrentDirectory Dim Directories
