@@ -1470,11 +1470,6 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	  phase=2;
 	  flag = CVode(cvode_mem, t, y, told, CV_NORMAL_TSTOP);
 	  phase=1;
-	  if (((flag<0)&& flag != CV_TOO_MUCH_WORK)||(*ierr > 5) ) { /*     *ierr>5 => singularity in block */
-	    *ierr=300+(-flag);
-	    freeall;
-	    return;
-	  };
 	}else{
 	  flag = CV_ROOT_RETURN; /* in order to handle discrete jumps */
 	}
@@ -1488,16 +1483,18 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	  }
 	}
 
-	if ( flag==CV_TOO_MUCH_WORK ) {  /* -1 == CV_TOO_MUCH_WORK) */
-	  sciprint("**** SUNDIALS.Cvode: too much work at time=%g (may be it's a stiff region)\r\n",*told);	  
-	  hot = 0;
-	}else if  (flag>=0 ) {
+	if (flag>=0){
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	    sciprint("****SUNDIALS.Cvode reached: %f\r\n",*told);
 	  hot = 1;
-	}
-	
-
+	} else if ( flag==CV_TOO_MUCH_WORK ||  flag == CV_CONV_FAILURE || flag==CV_ERR_FAILURE) {  
+	  sciprint("**** SUNDIALS.Cvode: too much work at time=%g (it may run in a stiff region)\r\n",*told);	  
+	  hot = 0;
+	}else{
+	  if (flag<0) *ierr=200+(-flag);    /* raising errors due to internal errors, other wise erros due to flagr*/
+	  freeallx;
+	  return;
+	};
 
 	if (flag == CV_ZERO_DETACH_RETURN){hot=0;};  /* new feature of sundials, detects zero-detaching */
 
@@ -2047,6 +2044,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	  
 	    phase=2; /* IDACalcIC: PHI-> yy0: if (ok) yy0_cic-> PHI*/
 	    copy_IDA_mem->ida_kk=1;
+
 	    flagr=IDACalcIC(ida_mem, IDA_YA_YDP_INIT, (realtype)(t));
 	    phase=1;
 	    flag = IDAGetConsistentIC(ida_mem, yy, yp); /* PHI->YY */
@@ -2087,12 +2085,14 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 		}
 	    }
 	    if ( Mode_change==0){
-	      if (flagr>=0) break;
+	      break;
+	      /*	I saw some examples,  even with IDACalcIC failure, IDASolve can continue integrating; So I decided to ignore failure in IDACalcIC and try one more tie with IDASolve. /Masoud
+	      if (flagr>=0) break; 
 	      else{
-		*ierr=200+(-flagr); /* error messages are given in intcsccios.c*/
+		*ierr=200+(-flagr); 
 		freeallx;
 		return;
-	      }
+	      }*/
 
 	    }
 	  }/* mode-CIC  counter*/
@@ -2126,24 +2126,22 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	  phase=2;
 	  flagr = IDASolve(ida_mem, t, told, yy, yp, IDA_NORMAL_TSTOP);
 	  phase=1;
-	  if (((flagr<0)&& flagr != IDA_TOO_MUCH_WORK)||(*ierr > 5) ) { /*     *ierr>5 => singularity in block */
-	    hot=0;
-	    *ierr=200+(-flagr);    
-	    freeallx;
-	    return;
-	  };
 	}else{
 	  flagr = IDA_ROOT_RETURN; /* in order to handle discrete jumps */
 	}
-	if ( flagr==IDA_TOO_MUCH_WORK ) {  /* -1 == CV_TOO_MUCH_WORK) */
-	  sciprint("**** SUNDIALS.Ida: too much work at time=%g (may be it's a stiff region)\r\n",*told);	  
-	  hot = 0;
-	}else if  (flagr>=0 ) {
+	if (flagr>=0){
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	    sciprint("****SUNDIALS.Ida reached: %f\r\n",*told);
 	  hot = 1;
-	}
-
+	} else if ( flagr==IDA_TOO_MUCH_WORK ||  flagr == IDA_CONV_FAIL || flagr==IDA_ERR_FAIL) {  
+	  sciprint("**** SUNDIALS.Ida: too much work at time=%g (it may run in a stiff region)\r\n",*told);	  
+	  hot = 0;
+	}else{
+	  if (flagr<0) *ierr=200+(-flagr);    /* raising errors due to internal errors, other wise erros due to flagr*/
+	  freeallx;
+	  return;
+	};
+	
 	/*     update outputs of 'c' type  blocks if we are at the end*/
 	if (*told >= *tf) {
 	  cdoit(told);
