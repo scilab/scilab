@@ -216,8 +216,10 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
   
   end //**... of for loop
 
-  InputLinkToCon  = []; xInPortToCon  = [] ;  yInPortToCon  = [] ;
+  InputLinkToCon  = []; xInPortToCon  = [] ;  yInPortToCon  = [] ; 
   OutputLinkToCon = []; xOutPortToCon = [] ;  yOutPortToCon = [] ; 
+  TypeInPortToCon  = [] ;
+  TypeOutPortToCon  = [] ;
   
   LinkToDel = [];
   
@@ -234,6 +236,7 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
 	 InputLinkToCon = [InputLinkToCon pin(i)] ;   //** add the Link to the "to be reconnected links" vector
            xInPortToCon = [xInPortToCon xsmin_n(i)] ; //** recover the coordinate of the new equivalent port 
 	   yInPortToCon = [yInPortToCon ysmin_n(i)] ; //** and pile up in the vector 
+	   TypeInPortToCon = [TypeInPortToCon in_mod_n(i)] ; //** pile up the input port type
        else
        	 if pin(i)>0 //** if the old port was connected 
 	   LinkToDel = [LinkToDel pin(i)]; //** add the Link to the "to be deleted links" vector 
@@ -281,6 +284,7 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
 	 OutputLinkToCon = [OutputLinkToCon pout(i)] ; //** add the Link to the "to be reconnected links" vector
            xOutPortToCon = [xOutPortToCon xsmout_n(i)] ; //** recover the coordinate of the new equivalent port 
 	   yOutPortToCon = [yOutPortToCon ysmout_n(i)] ; //** and pile up in the vector  
+	   TypeOutPortToCon = [TypeOutPortToCon out_mod_n(i)] ; //** pile up the output port type
        else
        	 if pout(i)>0 //** if the old port was connected 
 	   LinkToDel = [LinkToDel pout(i)]; //** add the Link to the "to be deleted links" vector 
@@ -348,30 +352,41 @@ end
                    o_n.graphics.theta*%pi/180,...
                   [o_n.graphics.orig(1)+o_n.graphics.sz(1)/2;o_n.graphics.orig(2)+o_n.graphics.sz(2)/2]);
 
-      if from(1)==path(2) then
-        //** if the bloc is connected to a link with a 'from' tag
-        //** force the position to the first point of the link
-        xlink(1) = xxx(1,:); ylink(1) = xxx(2,:);
-      else
-        //** else if it is connected to a link with a 'to' tag
-        //** force the position to the last point of the link
-        xlink($) = xxx(1,:); ylink($) = xxx(2,:);
-      end
+      if from(1)==to(1) then
+       if TypeInPortToCon(i)=="E" then
+         xlink($) = xxx(1,:); ylink($) = xxx(2,:); //** standard port
+       else
+         disp("unknow solution"); pause //** debug ONLY 
+       end
       
+      else
+      
+        if from(1)==path(2) then
+          //** if the bloc is connected to a link with a 'from' tag
+          //** force the position to the first point of the link
+           xlink(1) = xxx(1,:); ylink(1) = xxx(2,:);
+        else
+          //** else if it is connected to a link with a 'to' tag
+          //** force the position to the last point of the link
+          xlink($) = xxx(1,:); ylink($) = xxx(2,:);
+        end
+      end
+
       oi.xx = xlink ; oi.yy = ylink ;                           //** link 
       scs_m.objs(Link_index) = oi; //** update the scs_m 
       
-if  or(curwin==winsid()) then
-      ghi = get_gri(Link_index, o_size(1) );       //** calc the index of the connected link
-      gh_link = gh_curwin.children.children(ghi);  //** recover the handle 
-      gh_link.children.data = [oi.xx , oi.yy];//** update the object  
-end      
+      if  or(curwin==winsid()) then
+        ghi = get_gri(Link_index, o_size(1) );       //** calc the index of the connected link
+        gh_link = gh_curwin.children.children(ghi);  //** recover the handle 
+        gh_link.children.data = [oi.xx , oi.yy];//** update the object  
+      end      
+   
    end //** for loop 
   
   end   
   
   //**---------------------------------
-  
+
   //**----------------------- Output Links -------------------------------------------
   
   if size(OutputLinkToCon,'*') > 0 then 
@@ -388,25 +403,37 @@ end
                    o_n.graphics.theta*%pi/180,...
                   [o_n.graphics.orig(1)+o_n.graphics.sz(1)/2;o_n.graphics.orig(2)+o_n.graphics.sz(2)/2]);
 
-      if from(1)==path(2) then
-        //** if the bloc is connected to a link with a 'from' tag
-        //** force the position to the first point of the link
-        xlink(1) = xxx(1,:); ylink(1) = xxx(2,:);
+      if from(1)==to(1) then
+        if TypeOutPortToCon(i)=="E" then
+           xlink(1) = xxx(1,:); ylink(1) = xxx(2,:); //** standard port 
+        else
+          disp("unknow solution"); pause //** debug ONLY 
+        end
+
       else
-        //** else if it is connected to a link with a 'to' tag
-        //** force the position to the last point of the link
-        xlink($) = xxx(1,:); ylink($) = xxx(2,:);
+
+        if from(1)==path(2) then
+         //** if the bloc is connected to a link with a 'from' tag
+         //** force the position to the first point of the link
+         xlink(1) = xxx(1,:); ylink(1) = xxx(2,:);
+        else
+         //** else if it is connected to a link with a 'to' tag
+         //** force the position to the last point of the link
+         xlink($) = xxx(1,:); ylink($) = xxx(2,:);
+        end
       end
-      
+
       oi.xx = xlink ; oi.yy = ylink ; 
       
       scs_m.objs(Link_index) = oi;    //** update the scs_m 
+      
       if  or(curwin==winsid()) then      
 	ghi = get_gri(Link_index, o_size(1) );       //** calc the index of the connected link
 	gh_link = gh_curwin.children.children(ghi);  //** recover the handle 
 	gh_link.children.data = [oi.xx , oi.yy];//** update the object 
       end
-   end //** for loop  
+   
+  end //** for loop  
    
   end  
   //** ------------------------ END OF : ADJUST THE CONNECTED LINKS -------------------------------  
