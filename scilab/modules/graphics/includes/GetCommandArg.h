@@ -13,18 +13,152 @@
 #include "machine.h"
 
 /*------------------------------------------------------------------------*/
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param n1    
+ * @param rhs_opts opts[]   
+ * @param style 
+ * @return <ReturnValue>
+ */
 int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style );
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param rect  
+ * @return <ReturnValue>
+ */
 int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect );
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param strf  
+ * @return <ReturnValue>
+ */
 int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf );
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param legend    
+ * @return <ReturnValue>
+ */
 int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend );
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param labels    
+ * @return <ReturnValue>
+ */
 int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels );
+
+/**
+ * @TODO add comment
+ *
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param nax   
+ * @param flagNax   
+ * @return <ReturnValue>
+ */
 int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax );
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param zminmax   
+ * @return <ReturnValue>
+ */
 int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax );
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param colminmax 
+ * @return <ReturnValue>
+ */
 int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax );
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param colout    
+ * @return <ReturnValue>
+ */
 int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout );
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param withMesh  
+ * @return <ReturnValue>
+ */
 int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh);
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param rhs_opts opts[]   
+ * @param logFlags  
+ * @return <ReturnValue>
+ */
 int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags );
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param name  
+ * @param value 
+ * @param sz    
+ * @param  rhs_opts opts[]  
+ * @return <ReturnValue>
+ */
 int get_optional_double_arg( char * fname, int pos, char * name, double ** value, int sz, rhs_opts opts[] ) ;
+
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param pos   
+ * @param name  
+ * @param value 
+ * @param sz    
+ * @param  rhs_opts opts[]  
+ * @return <ReturnValue>
+ */
 int get_optional_int_arg( char * fname, int pos, char * name, int ** value, int sz, rhs_opts opts[] ) ;
 /*------------------------------------------------------------------------*/
 #define sciGetStyle(fname,pos,n1,opts,style) { if ( get_style_arg(fname,pos,n1,opts,style) == 0) { return 0 ; } }
