@@ -3026,117 +3026,81 @@
   </PARAM>
 </FILE>
 
-<FILE name='FROMWSB' type='XML'>
-  <PARAM>
-    <PARAM_INDENT>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>Variable name</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      La description du paramètre 1.
-      </SP>
-      <SP>
-      Propriétés : Type 'str' de taille 1.
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+<FILE name=''FROMWSB' type='LATEX'>
+\begin{itemize}
 
-    <PARAM_ITEM>
-    <PARAM_NAME>Interpolation order</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      La description du paramètre 2.
-      </SP>
-      <SP>
-      Propriétés : Type 'vec' de taille 1.
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+\item {\bf Variable name:} This variable is defined in Scilab and
+should be a structure with two fields, i.e., a "time" field of size
+(Nx1) and a "values" filed of size (NxM). "time" is a column vector of
+size Nx1 and "values" is a matrix of size "N*M". "time" filed can only
+be of Real type, whereas the "values" field can be {\it Real},{\it
+Complex}, {\it int8},{\it int16},{\it int32},{\it uint8},{\it uint16},
+and {\it uint32}.
 
-    <PARAM_ITEM>
-    <PARAM_NAME>Enable zero crossing(0:No, 1:Yes)?</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      La description du paramètre 3.
-      </SP>
-      <SP>
-      Propriétés : Type 'vec' de taille 1.
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+\item {\bf Interpolation method:} Variables read by Scicos are data
+values read at discrete instants given by the time field.  This option
+causes the block to interpolate at time steps for which no
+corresponding workspace data exists. There are four interpolation
+methods available.
+ 
+\begin{itemize}
 
-    <PARAM_ITEM>
-    <PARAM_NAME>Output at end(0:Zero, 1:Hold, 2:Repeat)</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      La description du paramètre 4.
-      </SP>
-      <SP>
-      Propriétés : Type 'vec' de taille 1.
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+\item {\bf 0: "Zero order method"}. This method generates a piecewise
+    constant signal. i.e., for $t_{i} \leq t < t_{i+1}$, $y(t)=y_{i}$.
+    This method is available for all data types.
 
-  </PARAM_INDENT>
-  </PARAM>
+\item {\bf 1: "Linear method"}. This method generates a piecewise
+    linear signal, i.e., for $t_i \leq t < t_{i+1}$,
+    $y(t)=y_i+(t-t_i)\frac{y_{i+1}-y_i}{t_{i+1}-t_i}$.  For data types
+    other than double and complex, the linear interpolation can be
+    used, but the final output will be computed by casting
+    interpolation result into the original data type.
+
+\item {\bf 2:"NATURAL method"}. This cubic spline is computed by using
+    the following conditions (considering $n$ points $x_1,...,x_n$):
+    $$S^{(2)}(x_1) = 0$$ $$S^{(2)}(x_{n}) =0$$.  This method is only
+    available for Real and complex data types.
+
+\item {\bf 3:"NOT\_A\_KNOT method"}. The cubic spline is computed by
+    using the following conditions (considering $n$ points
+    $x_1,...,x_n$): $$S^{(3)}(x_2^-) = S^{(3)}(x_2^+)$$
+    $$S^{(3)}(x_{n-1}^-) = S^{(3)}(x_{n-1}^+)$$.  This method is only
+    available for Real and complex data types.
+
+\end{itemize}
+
+\item {\bf Enable zero crossing(0:No, 1:Yes)?:} Enables zero crossing
+ detection. When {\it linear} and {\it Zero order} interpolation
+ methods are chosen, the output signal will be discontinuous at data
+ time instants. These possible discontinuities may cause problem for
+ the numerical solver. In order to perform a reliable numerical
+ integration, the zero crossing option is used. If output of the {\it
+ FROMWSB} block affects data used by the numerical solver, at
+ discontinuous points, a discrete event is generated and the numerical
+ solver is cold restarted.  The discrete event is also generated at
+ the $t_1$ and $t_n$ for other interpolating methods.
+
+\item {\bf Output at end(0:Zero, 1:Hold, 2:Repeat):} This option is
+for selecting method for generating output after the last time point
+for which data is available from the workspace.
+
+\begin{itemize}
+
+\item {\bf 0 ("Zero"):} The output is set to zero.
+
+\item {\bf 1 ("Hold"):} The output is hold.
+
+\item {\bf 2 ("Repeat"):} The output is repeated from workspace.
+\end{itemize}
+
+\end{itemize}
 </FILE>
 
-<FILE name='FROMWS_c' type='XML'>
-  <PARAM>
-    <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Variable name</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      La description du paramètre 1.
-      </SP>
-      <SP>
-      Propriétés : Type 'str' de taille 1.
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Interpolation order</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      La description du paramètre 2.
-      </SP>
-      <SP>
-      Propriétés : Type 'vec' de taille 1.
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Enable zero crossing(0:No, 1:Yes)?</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      La description du paramètre 3.
-      </SP>
-      <SP>
-      Propriétés : Type 'vec' de taille 1.
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Output at end(0:Zero, 1:Hold, 2:Repeat)</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      La description du paramètre 4.
-      </SP>
-      <SP>
-      Propriétés : Type 'vec' de taille 1.
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-  </PARAM_INDENT>
-  </PARAM>
+<FILE name=''FROMWS_c type='LATEX'>
+The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 </FILE>
+
 
 <FILE name='FSV_f' type='XML'>
 <PARAM>
