@@ -1492,7 +1492,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	  hot = 0;
 	}else{
 	  if (flag<0) *ierr=200+(-flag);    /* raising errors due to internal errors, other wise erros due to flagr*/
-	  freeallx;
+	  freeall;
 	  return;
 	};
 
@@ -5071,7 +5071,7 @@ int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
   /*  chr='Z';   printf("\n\r t=%g",ttx); DISP(Z,n,n,chr);*/
   C2F(ierode).iero = *ierr;
  return 0;
-
+ 
 }
 /*----------------------------------------------------*/
 void Multp(A,B,R,ra ,ca, rb,cb)
