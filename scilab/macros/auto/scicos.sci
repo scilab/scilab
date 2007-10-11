@@ -583,7 +583,8 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
             //execstr('exec(OpenSet_,-1)')
 	    //**---------------------------------------------------
 	    if ierr<>0 then message(lasterror()),end
-	    if isequal(%diagram_path_objective,super_path) then
+
+	    if isequal(%diagram_path_objective,super_path) then // must add after testing &%scicos_navig<>[] 
 	      if ~or(curwin==winsid()) then 
 		gh_current_window = scf(curwin);
                 %zoom=restore(gh_current_window)
@@ -593,6 +594,9 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	      else
 		gh_current_window = scf(curwin);
 	      end  
+	    else
+	      %scicos_navig=1
+	      %diagram_path_objective=[]
 	    end
 	  elseif Cmenu=="Quit" then
 	    do_exit()
