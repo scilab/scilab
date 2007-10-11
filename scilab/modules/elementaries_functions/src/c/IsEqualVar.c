@@ -6,73 +6,14 @@
  *    This file contains the routines used by the isequalbitwise and isequal  builtin functions
  --------------------------------------------------------------------------*/
 
-#include <string.h>
-#include "stack-c.h"
 #include "IsEqualVar.h"
-#include "MALLOC.h"
-
-static int IsEqualDoubleMat(double *d1, double *d2);
-static int IsEqualPolyMat(double *d1, double *d2);
-static int IsEqualBoolMat(double *d1, double *d2);
-static int IsEqualDoubleSparseMat(double *d1, double *d2);
-static int IsEqualBoolSparseMat(double *d1, double *d2);
-static int IsEqualMatlabSparseMat(double *d1, double *d2);
-static int IsEqualIntegerMat(double *d1, double *d2);
-static int IsEqualStringMat(double *d1, double *d2);
-static int IsEqualLib(double *d1, double *d2);
-static int IsEqualList(double *d1, double *d2);
-static int IsEqualLUPtr(double *d1, double *d2);
-static int IsEqualOverloaded(double *d1, int n1, double *d2, int n2);
-static int IsEqualDoubleArray(int n, double *d1, double *d2);
-static int IsEqualDoubleArrayBinary(int n,  double  *d1, double *d2);
-static int IsEqualDoubleArrayIEEE(int n, double *d1, double *d2);
-static int IsEqualIntegerArray(int n, int *d1, int *d2);
-static int IsEqualShortIntegerArray(int typ, int n, int *d1, int *d2);
-static int IsEqualFunction(double *d1, double *d2);
-static int IsEqualVar(double *d1, int n1, double *d2, int n2);
-
-/* comparison mode for double precision numbers */
-void SetDoubleCompMode(int mode);
-int GetDoubleCompMode();
-int DoubleCompMode=1; /*IEEE mode */
-
-/* Structure for walking inside Scilab lists (used by IsEqualList)*/
-int AllocRecIfRequired(int krec);
-void FreeRec();
-typedef struct RecursionRecord
-{
-  double* d1 ;/* pointers on the first list header */  
-  double* d2 ;/* pointers on the second list header */  
-  int     k; /* index of current list element  */
-} RecursionRecord, *RecursionRecordPtr;
-
-RecursionRecordPtr Rrec;
-int MaxRec; /* allocated size for the array Rrec, 0 means not allocated */
-
-/* macros for debugging */ 
-/*#define DEBUG_BASE(fmt, ...)sciprint(fmt, __VA_ARGS__) */;
-/*#define DEBUG_LIST(fmt, ...) sciprint(fmt, __VA_ARGS__) */ ;
-/*#define DEBUG_OVERLOADING(fmt, ...) sciprint(fmt, __VA_ARGS__) */ ;
-
-
-
-
-/* Scilab parser recursion data and functions*/
-static int *Ids     = C2F(recu).ids-nsiz-1;
-static int *Rstk    = C2F(recu).rstk-1;
-static int *Pstk    = C2F(recu).pstk-1;
-#define Pt (C2F(recu).pt)
-
-int Ptover(int n);
-int C2F(overload)(int *lw,char *fname,unsigned long l);
-
 
 /**intisequalvar
- * Gateway for isequalbitwise and isequal builtins 
+ * Gateway for isequalbitwise and isequal builtins
  * @param char * fname: the Scilab code of the function name
  * @param int * job: if *job==0 the floating point numbers are compared bitwize ,
- *      if *job==1 the comparison is made numerically, 
- *      so NaN elements are not equal 
+ *      if *job==1 the comparison is made numerically,
+ *      so NaN elements are not equal
  *      elements of with differents data types are raised to the upper types before comparison (to be done)
  * @return 0 in any cases
  * @author Serge Steer
@@ -81,7 +22,8 @@ int C2F(overload)(int *lw,char *fname,unsigned long l);
 
 int C2F(intisequalvar)(char * fname, int *job, long int fl)
 {
-  int topk, top1, srhs, k,kmin, l, res;
+  int topk, top1, srhs, k,kmin, l;
+  int res = 42; /* Bruno : @TODO initialisation !!! */
   int one = 1;
   int l1,lk, il1,ilk;
   int n1,nk; //memory size used by the variable, only used for overloaded comparison
@@ -92,7 +34,7 @@ int C2F(intisequalvar)(char * fname, int *job, long int fl)
   SetDoubleCompMode(*job); /* floating point numbers are compared bitwize */
   if (Rstk[Pt]==914||Rstk[Pt]==915) { /* coming back after evaluation of overloading function */
     /*DEBUG_OVERLOADING("intisequal called back by the parser Top=%d, Rhs=%d, Pt=%d\n",Top,Rhs,Pt);*/
-    
+
     /* Restore context */
     kmin = Ids[1 + Pt * nsiz];
     srhs = Ids[2 + Pt * nsiz];
@@ -110,7 +52,7 @@ int C2F(intisequalvar)(char * fname, int *job, long int fl)
     Rrec = NULL;
   }
 
-   
+
   l1 = *Lstk(top1);il1 = iadr(l1);
   n1 = *Lstk(top1+1)-l1;
   if (*istk(il1) < 0) {
@@ -140,13 +82,21 @@ int C2F(intisequalvar)(char * fname, int *job, long int fl)
       return 0;
     }
     /*DEBUG_OVERLOADING("k=%d, res=%d\n", k,res);*/
-    
-    if (res == 0) goto END;
+
+    if (res == 0) {
+      /* goto END; */
+      Top = top1;
+      C2F(crebmat)(fname, &top1, &one, &one, &l, (unsigned long)strlen(fname));
+      *istk(l)=res;
+      FreeRec();
+
+      return 0;
+    }
     topk++;
   }
 
 
- END:
+  /* END:*/
   Top = top1;
   C2F(crebmat)(fname, &top1, &one, &one, &l, (unsigned long)strlen(fname));
   *istk(l)=res;
@@ -226,7 +176,7 @@ int IsEqualOverloaded(double *d1, int n1, double *d2, int n2)
  * @param int n1: memory size used by the first variable, only used for overloading
  * @param double *d2: pointer on the beginning of the first variable structure
  * @param int n2: memory size used by the second variable, only used for overloading
- * @return 0 is the variables differ and 1 if they are identical, -1 for recursion purpose, -2 for allocatopn problem 
+ * @return 0 is the variables differ and 1 if they are identical, -1 for recursion purpose, -2 for allocatopn problem
  * @author Serge Steer
  * @see intisequal
  */
@@ -239,65 +189,62 @@ int IsEqualVar(double *d1, int n1, double *d2, int n2)
   /*DEBUG_BASE("IsEqualVar %d %d \n",id1[0],id2[0]);*/
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   switch (id1[0]) {
   case 0: /* null */
     return 1;
   case 1: /* matrix of double precision floating point numbers */
-    if ( !IsEqualDoubleMat(d1, d2) )  goto DIFFER;
+    if ( !IsEqualDoubleMat(d1, d2) )  return 0;
     break;
   case 2:/* matrix of polynomials */
-    if ( !IsEqualPolyMat(d1, d2) )  goto DIFFER;
+    if ( !IsEqualPolyMat(d1, d2) )  return 0;
     break;
   case 4:/* matrix of booleans */
-    if ( !IsEqualBoolMat(d1, d2) )  goto DIFFER;
+    if ( !IsEqualBoolMat(d1, d2) )  return 0;
     break;
   case 5:/* sparse matrix of double */
-    if ( !IsEqualDoubleSparseMat(d1, d2) )  goto DIFFER;
+    if ( !IsEqualDoubleSparseMat(d1, d2) )  return 0;
     break;
   case 6:/* sparse matrix of booleans */
-    if ( !IsEqualBoolSparseMat(d1, d2) )  goto DIFFER;
+    if ( !IsEqualBoolSparseMat(d1, d2) )  return 0;
     break;
   case 7:/* matlab sparse matrix  */
-    if ( !IsEqualMatlabSparseMat(d1, d2) )  goto DIFFER;
+    if ( !IsEqualMatlabSparseMat(d1, d2) )  return 0;
     break;
   case 8 : /* matrix of short integers */
-    if ( !IsEqualIntegerMat(d1, d2) )  goto DIFFER;
+    if ( !IsEqualIntegerMat(d1, d2) )  return 0;
     break;
   case 9 : /* matrix of graphic handles */
-    if ( !IsEqualDoubleMat(d1, d2) )  goto DIFFER;
+    if ( !IsEqualDoubleMat(d1, d2) )  return 0;
     break;
   case 10:/* matrix of strings */
-    if ( !IsEqualStringMat(d1, d2) )  goto DIFFER;
+    if ( !IsEqualStringMat(d1, d2) )  return 0;
     break;
   case 11:/* Uncompiled function */
   case 13:/* compiled function */
-    if ( !IsEqualFunction(d1, d2) )  goto DIFFER;
+    if ( !IsEqualFunction(d1, d2) )  return 0;
     break;
   case 14:/* library */
-    if ( !IsEqualLib(d1, d2) )  goto DIFFER;
+    if ( !IsEqualLib(d1, d2) )  return 0;
     break;
   case 15: /* list */
   case 16: /* tlist */
   case 17: /* mlist */
     res = IsEqualList(d1, d2);
-    if ( !res )  goto DIFFER;
+    if ( !res )  return 0;
     if (res < 0) return res;
     break;
   case 128: /* lufact pointer */
-    if ( !IsEqualLUPtr(d1, d2) )  goto DIFFER;
+    if ( !IsEqualLUPtr(d1, d2) )  return 0;
     break;
   default :
     res = IsEqualOverloaded(d1, n1, d2, n2);
-    if ( !res )  goto DIFFER;
+    if ( !res )  return 0;
     if (res == -1) return -1;
   }
 
   return 1;
- DIFFER:
-  return 0;
-  
 }
 
 
@@ -305,7 +252,7 @@ int IsEqualVar(double *d1, int n1, double *d2, int n2)
  * Used to test a couple of Scilab variable of type list, tlist or mlist for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical, -1 for recursion purpose, -2 for allocatopn problem 
+ * @return 0 is the variables differ and 1 if they are identical, -1 for recursion purpose, -2 for allocatopn problem
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -313,7 +260,7 @@ int IsEqualList(double *d1, double *d2)
 {
   /* This code does not use simple recursion, because of possible need of
    * call to Scilab for evaluation of overloading function
-   * The redusion is emulated using the Rrec data structure to memorize the path 
+   * The redusion is emulated using the Rrec data structure to memorize the path
    * to the current element.
    */
   int l,k,res,nelt;
@@ -325,8 +272,8 @@ int IsEqualList(double *d1, double *d2)
   if (Rstk[Pt]==914||Rstk[Pt]==915) { /* coming back after evaluation of overloading function */
     /* Restore context */
     krec = Pstk[Pt];
-    MaxRec = Ids[4 + Pt * nsiz] ;   
-    memcpy(&Rrec,&(Ids[5 + Pt * nsiz]),sizeof(RecursionRecordPtr)); /* recover Rrec pointer */  
+    MaxRec = Ids[4 + Pt * nsiz] ;
+    memcpy(&Rrec,&(Ids[5 + Pt * nsiz]),sizeof(RecursionRecordPtr)); /* recover Rrec pointer */
     k = Rrec[krec].k;
     d1 = Rrec[krec].d1;     /* pointer on the sub-level list 1*/
     d2 = Rrec[krec].d2;     /* pointer on the sub-level list 2*/
@@ -345,23 +292,23 @@ int IsEqualList(double *d1, double *d2)
   /* set current level context */
   if (AllocRecIfRequired(krec)==-2) return -2;
 
-  Rrec[krec].d1 = d1; 
+  Rrec[krec].d1 = d1;
   Rrec[krec].d2 = d2;
   Rrec[krec].k  = 0;
 
   /* check the type */
   id1 = (int *) d1;
   id2 = (int *) d2;
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
   /* check the number of elements */
-  if (id1[1] != id2[1]) goto  DIFFER;
+  if (id1[1] != id2[1]) return 0;
   nelt = id1[1];
 
   /* check the array of "pointers" on list elements*/
-  if (!IsEqualIntegerArray(nelt+1, id1+2, id2+2)) goto DIFFER;
+  if (!IsEqualIntegerArray(nelt+1, id1+2, id2+2)) return 0;
 
   /*DEBUG_LIST("STARTLEVEL nelt=%d\n",nelt);*/
-  
+
   k = 0;
  SETLEVEL:
   /* check the list elements */
@@ -372,13 +319,13 @@ int IsEqualList(double *d1, double *d2)
   p1=d1+l;
   p2=d2+l;
 
- ELEMENT:  
+ ELEMENT:
   if (k >= nelt) { /* no more element to compare */
     if (krec > 0 ) { /* end of a sub-level */
       /* restore upper level context*/
       krec--;
       /*DEBUG_LIST("Sublist ELEMENT  index=%d finished, previous restored from krec=%d\n",k+1,krec);*/
-      
+
       d1 = Rrec[krec].d1;
       d2 = Rrec[krec].d2;
       k =  Rrec[krec].k+1;
@@ -388,7 +335,7 @@ int IsEqualList(double *d1, double *d2)
       nelt = id1[1];
       /*DEBUG_LIST("back to lower level nelt=%d  index=%d krec=%d\n",nelt,k+1,krec);*/
 
-      goto  SETLEVEL;  
+      goto  SETLEVEL;
     }
     else /* end of main level */
       return 1;
@@ -406,7 +353,7 @@ int IsEqualList(double *d1, double *d2)
   if (id1[0]!=15 && id1[0]!=16&& id1[0]!=17) { /* elements which are not lists */
     res = IsEqualVar(d1, ip1[k+1]-ip1[k], d2, ip2[k+1]-ip2[k]);
     /*DEBUG_LIST("Regular ELEMENT  index=%d res=%d\n",k+1,res);*/
-    if (!res) goto DIFFER;
+    if (!res) return 0;
     if (res == -1) { /*overloading function evaluation required */
       /* preserve context */
       Pstk[Pt] = krec;
@@ -424,12 +371,10 @@ int IsEqualList(double *d1, double *d2)
 
     Rrec[krec].k  = k;
     krec++;
-    
+
     goto STARTLEVEL;
   }
   return 1;
- DIFFER:
-  return 0;
 }
 
 
@@ -437,7 +382,7 @@ int IsEqualList(double *d1, double *d2)
  * Used to test a couple of Scilab variable of type library (14) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -449,37 +394,35 @@ int IsEqualLib(double *d1, double *d2)
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the path length */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the path" */
   n = id1[1];
-  if (!IsEqualIntegerArray(n, id1+2, id2+2)) goto DIFFER; 
+  if (!IsEqualIntegerArray(n, id1+2, id2+2)) return 0;
   l = n+2;
 
   /* Check the number of names */
-  if (id1[l] != id2[l]) goto DIFFER;
+  if (id1[l] != id2[l]) return 0;
   n = id1[l];l++;
 
   /* check the table */
-  if (!IsEqualIntegerArray(nclas, id1+l, id2+l)) goto DIFFER; 
+  if (!IsEqualIntegerArray(nclas, id1+l, id2+l)) return 0;
   l += nclas;
   /* Check the sequence of names */
-  if (!IsEqualIntegerArray(n*nsiz, id1+l, id2+l)) goto DIFFER; 
+  if (!IsEqualIntegerArray(n*nsiz, id1+l, id2+l)) return 0;
 
   return 1;
- DIFFER:
-  return 0;
 }
 
 /**IsEqualDoubleMat
- * Used to test a couple of Scilab variable of type 1 (matrix of floating point numbers) 
+ * Used to test a couple of Scilab variable of type 1 (matrix of floating point numbers)
  * or 9 (graphic handles) for equality*
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -490,31 +433,29 @@ int IsEqualDoubleMat(double *d1, double *d2)
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the number of rows */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the number of columns */
-  if (id1[2] != id2[2]) goto DIFFER;
+  if (id1[2] != id2[2]) return 0;
 
   /* Check the real/complex flag */
-  if (id1[3] != id2[3]) goto DIFFER;
+  if (id1[3] != id2[3]) return 0;
 
-  
+
   n = id1[1]*id1[2]*(id1[3]+1); /* number of double precision floating point numbers */
   /* check the array of numbers */
-  if (!IsEqualDoubleArray(n, d1+2, d2+2)) goto DIFFER;
+  if (!IsEqualDoubleArray(n, d1+2, d2+2)) return 0;
 
   return 1;
- DIFFER:
-  return 0;
 }
 /**IsEqualIntegerMat
  * Used to test a couple of Scilab variable of type 8 (integer) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -525,32 +466,30 @@ int IsEqualIntegerMat(double *d1, double *d2)
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the number of rows */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the number of columns */
-  if (id1[2] != id2[2]) goto DIFFER;
+  if (id1[2] != id2[2]) return 0;
 
   /* Check the subtype */
-  if (id1[3] != id2[3]) goto DIFFER;
+  if (id1[3] != id2[3]) return 0;
 
-  
+
   n = id1[1]*id1[2]; /* number of double precision floating point numbers */
   /* check the array of numbers */
-  if (!IsEqualShortIntegerArray(id1[3], n, id1+4, id2+4)) goto DIFFER;
+  if (!IsEqualShortIntegerArray(id1[3], n, id1+4, id2+4)) return 0;
 
   return 1;
- DIFFER:
-  return 0;
 }
 
 /**IsEqualBoolMat
  * Used to test a couple of Scilab variable of type 4 (boolean) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -561,27 +500,25 @@ int IsEqualBoolMat(double *d1, double *d2)
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the number of rows */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the number of columns */
-  if (id1[2] != id2[2]) goto DIFFER;
+  if (id1[2] != id2[2]) return 0;
 
   /* Check the data */
   n = id1[1]*id1[2]; /* number of double precision floating point numbers */
   /* check the array of numbers */
-  if (!IsEqualIntegerArray(n, id1+3, id2+3)) goto DIFFER;
+  if (!IsEqualIntegerArray(n, id1+3, id2+3)) return 0;
   return 1;
- DIFFER:
-  return 0;
 }
 /**IsEqualStringMat
  * Used to test a couple of Scilab variable of type 10 (string) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -592,23 +529,21 @@ int IsEqualStringMat(double *d1, double *d2)
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the number of rows */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the number of columns */
-  if (id1[2] != id2[2]) goto DIFFER;
+  if (id1[2] != id2[2]) return 0;
 
   /* Check the array of "pointers" */
   n = id1[1]*id1[2];
-  if ( !IsEqualIntegerArray(n+1, id1+4, id2+4) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(n+1, id1+4, id2+4) ) return 0;
 
   /* Check the array of character codes (integer) */
-  if (!IsEqualIntegerArray(id1[4+n]-1, id1+5+n, id2+5+n)) goto DIFFER;
+  if (!IsEqualIntegerArray(id1[4+n]-1, id1+5+n, id2+5+n)) return 0;
   return 1;
- DIFFER:
-  return 0;
 }
 
 
@@ -616,7 +551,7 @@ int IsEqualStringMat(double *d1, double *d2)
  * Used to test a couple of Scilab variable of type 2 (matrix of polynomials) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -627,40 +562,38 @@ int IsEqualPolyMat(double *d1, double *d2)
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the number of rows */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the number of columns */
-  if (id1[2] != id2[2]) goto DIFFER;
+  if (id1[2] != id2[2]) return 0;
 
   /* Check the real/complex flag */
-  if (id1[3] != id2[3]) goto DIFFER;
+  if (id1[3] != id2[3]) return 0;
   /* Check the formal variable name */
-  if ( !IsEqualIntegerArray(4, id1+4, id2+4) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(4, id1+4, id2+4) ) return 0;
 
 
   /* Check the array of "pointers" */
   n = id1[1]*id1[2];
-  if ( !IsEqualIntegerArray(n, id1+8, id2+8) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(n, id1+8, id2+8) ) return 0;
 
   /* Check the array of double precision numbers */
   l = (n + 10)/2;/* the beginning of first field in th double array */
 
   /* check the array of numbers */
-  if ( !IsEqualDoubleArray(id1[8+n]-1, d1+l, d2+l) ) goto DIFFER;
+  if ( !IsEqualDoubleArray(id1[8+n]-1, d1+l, d2+l) ) return 0;
 
   return 1;
- DIFFER:
-  return 0;
 }
 
 /**IsEqualDoubleSparseMat
  * Used to test a couple of Scilab variable of type 5 (sparse matrix) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -671,43 +604,41 @@ int IsEqualDoubleSparseMat(double *d1, double *d2) /* a faire */
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the number of rows */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the number of columns */
-  if (id1[2] != id2[2]) goto DIFFER;
+  if (id1[2] != id2[2]) return 0;
 
   /* Check the real/complex flag */
-  if (id1[3] != id2[3]) goto DIFFER;
+  if (id1[3] != id2[3]) return 0;
 
   /* Check the number of non zero elements */
-  if (id1[4] != id2[4]) goto DIFFER;
+  if (id1[4] != id2[4]) return 0;
   nel = id1[4];
   l = 5;
   /* Check the array of number of non zero element per row */
-  if ( !IsEqualIntegerArray(id1[1], id1+l, id2+l) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(id1[1], id1+l, id2+l) ) return 0;
   l += id1[1];
 
   /* Check the column index of non zero elements */
-  if ( !IsEqualIntegerArray(nel, id1+l, id2+l) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(nel, id1+l, id2+l) ) return 0;
   l += nel;
 
   /* Check the non zero elements */
   l = (l+1)/2;
-  if ( !IsEqualDoubleArray(nel*(id1[3]+1), d1+l, d2+l) ) goto DIFFER;
+  if ( !IsEqualDoubleArray(nel*(id1[3]+1), d1+l, d2+l) ) return 0;
 
   return 1;
- DIFFER:
-  return 0;
 }
 
 /**IsEqualMatlabSparseMat
  * Used to test a couple of Scilab variable of type 7 (Matlab sparse matrix) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -718,43 +649,41 @@ int IsEqualMatlabSparseMat(double *d1, double *d2) /* a faire */
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the number of rows */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the number of columns */
-  if (id1[2] != id2[2]) goto DIFFER;
+  if (id1[2] != id2[2]) return 0;
 
   /* Check the real/complex flag */
-  if (id1[3] != id2[3]) goto DIFFER;
+  if (id1[3] != id2[3]) return 0;
 
   /* Check the number of non zero elements */
-  if (id1[4] != id2[4]) goto DIFFER;
+  if (id1[4] != id2[4]) return 0;
   nel = id1[4];
   l = 5;
   /* Check the array of number of non zero element per column */
-  if ( !IsEqualIntegerArray(id1[2], id1+l, id2+l) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(id1[2], id1+l, id2+l) ) return 0;
   l += id1[2];
 
   /* Check the column index of non zero elements */
-  if ( !IsEqualIntegerArray(nel, id1+l, id2+l) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(nel, id1+l, id2+l) ) return 0;
   l += nel;
 
   /* Check the non zero elements */
   l = (l+1)/2;
-  if ( !IsEqualDoubleArray(nel*(id1[3]+1), d1+l, d2+l) ) goto DIFFER;
+  if ( !IsEqualDoubleArray(nel*(id1[3]+1), d1+l, d2+l) ) return 0;
 
   return 1;
- DIFFER:
-  return 0;
 }
 
 /**IsEqualBoolSparseMat
  * Used to test a couple of Scilab variable of type 6 (Boolean sparse matrix) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -765,36 +694,34 @@ int IsEqualBoolSparseMat(double *d1, double *d2) /* a faire */
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the number of rows */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the number of columns */
-  if (id1[2] != id2[2]) goto DIFFER;
+  if (id1[2] != id2[2]) return 0;
 
- 
+
   /* Check the number of non zero elements */
-  if (id1[4] != id2[4]) goto DIFFER;
+  if (id1[4] != id2[4]) return 0;
   nel = id1[4];
   l = 5;
   /* Check the array of number of non zero element per row */
-  if ( !IsEqualIntegerArray(id1[1], id1+l, id2+l) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(id1[1], id1+l, id2+l) ) return 0;
   l += id1[1];
 
   /* Check the column index of non zero elements */
-  if ( !IsEqualIntegerArray(nel, id1+l, id2+l) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(nel, id1+l, id2+l) ) return 0;
 
   return 1;
- DIFFER:
-  return 0;
 }
 
 /**IsEqualFunction
  * Used to test a couple of Scilab variable of type 11 or 13 (function) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -805,38 +732,36 @@ int IsEqualFunction(double *d1, double *d2)
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
   l=1;
   /* Check the number of output args */
-  if (id1[l] != id2[l]) goto DIFFER;
+  if (id1[l] != id2[l]) return 0;
   /* Check the output args names*/
   n = id1[l];   l++;
-  if ( !IsEqualIntegerArray(n*nsiz, id1+l, id2+l) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(n*nsiz, id1+l, id2+l) ) return 0;
   l += n*nsiz;
 
   /* Check the number of input args */
-  if (id1[l] != id2[l]) goto DIFFER;
+  if (id1[l] != id2[l]) return 0;
   /* Check the input args names*/
   n = id1[l];   l++;
-  if ( !IsEqualIntegerArray(n*nsiz, id1+l, id2+l) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(n*nsiz, id1+l, id2+l) ) return 0;
   l += n*nsiz;
 
   /* Check the number of integer in instructions */
-  if (id1[l] != id2[l]) goto DIFFER;
+  if (id1[l] != id2[l]) return 0;
   n = id1[l];   l++;
-  if ( !IsEqualIntegerArray(n, id1+l, id2+l) ) goto DIFFER; 
+  if ( !IsEqualIntegerArray(n, id1+l, id2+l) ) return 0;
 
 
   return 1;
- DIFFER:
-  return 0;
 }
 
 /**IsEqualLUPtr
  * Used to test a couple of Scilab variable of type 128  (pointer on LU factorization) for equality
  * @param double *d1: pointer on the beginning of the first variable structure
  * @param double *d2: pointer on the beginning of the first variable structure
- * @return 0 is the variables differ and 1 if they are identical 
+ * @return 0 is the variables differ and 1 if they are identical
  * @author Serge Steer
  * @see IsEqualVar
  */
@@ -846,55 +771,51 @@ int IsEqualLUPtr(double *d1, double *d2)
   int *id2 = (int *) d2;
 
   /* Check the type */
-  if ((id1[0] != id2[0])) goto DIFFER;
+  if ((id1[0] != id2[0])) return 0;
 
   /* Check the number of rows */
-  if (id1[1] != id2[1]) goto DIFFER;
+  if (id1[1] != id2[1]) return 0;
 
   /* Check the number of columns */
-  if (id1[2] != id2[2]) goto DIFFER;
+  if (id1[2] != id2[2]) return 0;
 
   /* Check the real/complex flag */
-  if (id1[3] != id2[3]) goto DIFFER;
+  if (id1[3] != id2[3]) return 0;
 
   /* Check the pointer value */
-  if (d1[2] != d2[2]) goto DIFFER;
+  if (d1[2] != d2[2]) return 0;
 
   return 1;
- DIFFER:
-  return 0;
 }
 
 /**IsEqualDoubleArrayIEEE
- * compare if two double precision arrays of size n, are identical. 
+ * compare if two double precision arrays of size n, are identical.
  * NaN entries are supposed to be different from all values included NaN
  * NaN != NaN
  * @param int n: array size
  * @param double *d1: pointer on the beginning of the first array
  * @param double *d2: pointer on the beginning of the second array
- * @return 0 is the arrays differ and 1 if they are identical 
+ * @return 0 is the arrays differ and 1 if they are identical
  * @author Serge Steer
  */
 int IsEqualDoubleArrayIEEE(int n, double *d1, double *d2)
 {
   int i;
   /*DEBUG_BASE("IEEE comparison of %d doubles\n",n);*/
- 
+
   if (n == 0) return 1;
   for (i = 0; i<n; i++){
-    if (d1[i] != d2[i]) goto DIFFER;
+    if (d1[i] != d2[i]) return 0;
   }
   return 1;
- DIFFER:
-  return 0;
 }
 
 /** IsEqualDoubleArrayBinary
- * compare if two  arrays of long long integers of size n, are identical. 
+ * compare if two  arrays of long long integers of size n, are identical.
  * @param int n: array size
  * @param long long *d1: pointer on the beginning of the first array
  * @param long long *d2: pointer on the beginning of the second array
- * @return 0 is the arrays differ and 1 if they are identical 
+ * @return 0 is the arrays differ and 1 if they are identical
  * @author Serge Steer
  */
 int IsEqualDoubleArrayBinary(int n, double *d1, double *d2)
@@ -904,26 +825,24 @@ int IsEqualDoubleArrayBinary(int n, double *d1, double *d2)
   long long *l2= (long long *)d2;
 
   /*DEBUG_BASE("binary comparison of %d doubles \n",n);*/
- 
+
   if (n == 0) return 1;
   for (i = 0; i<n; i++){
-    if (l1[i] != l2[i]) goto DIFFER;
+    if (l1[i] != l2[i]) return 0;
   }
   return 1;
- DIFFER:
-  return 0;
 }
 
 
 /**IsEqualDoubleArray
- * compare if two double precision arrays of size n, are identical. 
+ * compare if two double precision arrays of size n, are identical.
  * If the arrays conatins NaN the meaning depends on the value of the global flag IEEE_comp
  *  - if DoubleCompMode==1, double numbers are compared using "==", so Nan != NaN.
  *  - if DoubleCompMode==0, double numbers are compared bitwize.
  * @param int n: array size
  * @param double *d1: pointer on the beginning of the first array
  * @param double *d2: pointer on the beginning of the second array
- * @return 0 is the arrays differ and 1 if they are identical 
+ * @return 0 is the arrays differ and 1 if they are identical
  * @author Serge Steer
  */
 int IsEqualDoubleArray(int n, double *d1, double *d2)
@@ -943,7 +862,7 @@ int IsEqualDoubleArray(int n, double *d1, double *d2)
  * @param int n: array size
  * @param int *d1: pointer on the beginning of the first array
  * @param int *d2: pointer on the beginning of the second array
- * @return 0 is the arrays differ and 1 if they are identical 
+ * @return 0 is the arrays differ and 1 if they are identical
  * @author Serge Steer
  */
 int IsEqualIntegerArray(int n, int *d1, int *d2)
@@ -954,11 +873,9 @@ int IsEqualIntegerArray(int n, int *d1, int *d2)
 
   if (n == 0) return 1;
   for (i = 0; i<n; i++){
-    if (d1[i] != d2[i]) goto DIFFER;
+    if (d1[i] != d2[i]) return 0;
   }
   return 1;
- DIFFER:
-  return 0;
 }
 
 typedef signed char integer1;
@@ -971,7 +888,7 @@ Type *B;\
     A=(Type *)d1;\
     B=(Type *)d2;\
     for (i = 0; i <n; ++i) {\
-       if (A[i] != B[i]) goto DIFFER;\
+       if (A[i] != B[i]) return 0;\
     }\
 }
 
@@ -982,13 +899,13 @@ Type *B;\
  * @param int n: array size
  * @param int *d1: pointer on the beginning of the first array
  * @param int *d2: pointer on the beginning of the second array
- * @return 0 is the arrays differ and 1 if they are identical 
+ * @return 0 is the arrays differ and 1 if they are identical
  * @author Serge Steer
  */
 int IsEqualShortIntegerArray(int typ, int n, int *d1, int *d2)
 {
   int i;
-  
+
   /*DEBUG_BASE("comparison of %d int %d bytes\n",n,typ);*/
   if (n == 0) return 1;
   switch (typ) {
@@ -1016,15 +933,13 @@ int IsEqualShortIntegerArray(int typ, int n, int *d1, int *d2)
   }
 
   return 1;
- DIFFER:
-  return 0;
 }
 
 /**FreeRec
  * Utility function to free the list recursion table
  * @author Serge Steer
  */
-void FreeRec()
+void FreeRec(void)
 {
   if ( MaxRec > 0 ) {
     FREE(Rrec);
@@ -1064,7 +979,7 @@ void SetDoubleCompMode(int mode)
  * @author Serge Steer
  */
 
-int GetDoubleCompMode()
+int GetDoubleCompMode(void)
 {
   return DoubleCompMode;
 }
