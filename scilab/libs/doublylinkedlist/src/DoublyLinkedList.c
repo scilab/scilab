@@ -21,13 +21,13 @@
 /*****************************************************/
 /**
  * Rajoute en tete de la DoublyLinkedListe pDoublyLinkedList l'element data.
- * Renvoie le nouveau point d'entree de la DoublyLinkedListe.    
+ * Renvoie le nouveau point d'entree de la DoublyLinkedListe.
  * @param pDoublyLinkedList
  * @param data
  * @return DoublyLinkedList
  */
 DoublyLinkedList *List_prepend(DoublyLinkedList *pDoublyLinkedList, void * data)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedList;
 
 	/* on alloue la memoire pour le nouvel element */
@@ -54,13 +54,13 @@ DoublyLinkedList *List_prepend(DoublyLinkedList *pDoublyLinkedList, void * data)
 /******************************************************/
 /**
  * Rajoute en queue de la DoublyLinkedListe pDoublyLinkedList l'element data.
- * Renvoie le nouveau point d'entree de la DoublyLinkedListe.     
+ * Renvoie le nouveau point d'entree de la DoublyLinkedListe.
  * @param pDoublyLinkedList
  * @param data
  * @return DoublyLinkedList
  */
 DoublyLinkedList *List_append(DoublyLinkedList *pDoublyLinkedList, void *  data)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedList;
 
 	/* on alloue la memoire pour le nouvelle element */
@@ -87,11 +87,11 @@ DoublyLinkedList *List_append(DoublyLinkedList *pDoublyLinkedList, void *  data)
 
 /**************************************/
 /**
- * Libere la DoublyLinkedListe (pas les elements) 
+ * Libere la DoublyLinkedListe (pas les elements)
  * @param DoublyLinkedList
  */
 void List_free(DoublyLinkedList *pDoublyLinkedList)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove,*vDoublyLinkedListMoveNext;
 
 	vDoublyLinkedListMove = pDoublyLinkedList;
@@ -107,7 +107,7 @@ void List_free(DoublyLinkedList *pDoublyLinkedList)
 /*************************************************************************/
 /* Libere la DoublyLinkedListe et appele la procedure FREE_func pour chaque elements */
 void List_free_full(DoublyLinkedList *pDoublyLinkedList, void (* FREE_func)(void *  data))
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove,*vDoublyLinkedListMoveNext;
 
 	vDoublyLinkedListMove = pDoublyLinkedList;
@@ -124,7 +124,7 @@ void List_free_full(DoublyLinkedList *pDoublyLinkedList, void (* FREE_func)(void
 /***************************************************************************/
 /* Libere la DoublyLinkedListe et appele la procedure FREE (du C) pour chaque elements */
 void List_free_full_simple(DoublyLinkedList *pDoublyLinkedList)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove,*vDoublyLinkedListMoveNext;
 
 	vDoublyLinkedListMove = pDoublyLinkedList;
@@ -142,7 +142,7 @@ void List_free_full_simple(DoublyLinkedList *pDoublyLinkedList)
 /* Renvoi le nombre d'element contenue dans la DoublyLinkedListe */
 /* Cette operation est realisee par comptage.        */
 int List_nb_item(DoublyLinkedList *pDoublyLinkedList)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove;
 	int compteur = 0;
 
@@ -160,7 +160,7 @@ int List_nb_item(DoublyLinkedList *pDoublyLinkedList)
 /* Libere un element de la DoublyLinkedListe (pas ce que l'element pointe si c'est un pointeur) */
 /* Renvoie le nouveau point d'entree de la DoublyLinkedListe.                                   */
 DoublyLinkedList *List_free_item(DoublyLinkedList *pDoublyLinkedList, void *  data)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove,*vDoublyLinkedListMoveNext;
 
 	/* on parcourt la DoublyLinkedListe pDoublyLinkedList a la recherche de l'element a supprimer */
@@ -207,7 +207,7 @@ DoublyLinkedList *List_free_item(DoublyLinkedList *pDoublyLinkedList, void *  da
 /* Si l'element a ete libere alors done == TRUE sinon FALSE.                        */
 /* Renvoie le nouveau point d'entree de la DoublyLinkedListe.                                   */
 DoublyLinkedList *List_free_item_with_check(DoublyLinkedList *pDoublyLinkedList, void *  data, BOOL *done)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove,*vDoublyLinkedListMoveNext;
 
 	/* on parcourt la DoublyLinkedListe pDoublyLinkedList a la recherche de l'element a supprimer */
@@ -218,7 +218,7 @@ DoublyLinkedList *List_free_item_with_check(DoublyLinkedList *pDoublyLinkedList,
 	if(!List_is_end(pDoublyLinkedList,vDoublyLinkedListMove))
 		{
 			/* on signal que l'element a bien etait trouve */
-			*done = TRUE;  
+			*done = TRUE;
 			/* si il n'y a que notre element dans la DoublyLinkedListe */
 			if(vDoublyLinkedListMove->next == vDoublyLinkedListMove)
 				{ /* on libere l'element */
@@ -258,7 +258,7 @@ DoublyLinkedList *List_free_item_with_check(DoublyLinkedList *pDoublyLinkedList,
 /* Si l'element item_nb n'exite pas, la fonction renvoi NULL.  */
 /* item_nb commence a 1.                                       */
 void *  List_item(DoublyLinkedList *pDoublyLinkedList, int item_nb)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove;
 	int offset=0;
 
@@ -282,7 +282,7 @@ void *  List_item(DoublyLinkedList *pDoublyLinkedList, int item_nb)
 /* n'est pas trouve alors le nouvel element sera rajoute a la fin. */
 /* Renvoie ne nouveau point d'entree de la DoublyLinkedListe pDoublyLinkedList.            */
 DoublyLinkedList *List_insert_after_item(DoublyLinkedList *pDoublyLinkedList, void *  before, void *  data)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedList;
 	DoublyLinkedList *vDoublyLinkedListMove;
 
@@ -328,7 +328,7 @@ DoublyLinkedList *List_insert_after_item(DoublyLinkedList *pDoublyLinkedList, vo
 /* Concatene la DoublyLinkedListe p2 a la DoublyLinkedListe p1 (p1 devant, p2 derriere)             */
 /* Renvoie la nouvelle DoublyLinkedListe cree. p1 et p2 sont consideres comme detruites */
 DoublyLinkedList *List_concat(DoublyLinkedList *p1, DoublyLinkedList *p2)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListPrev;
 
 	if(p1 == NULL) return(p2);
@@ -349,7 +349,7 @@ DoublyLinkedList *List_concat(DoublyLinkedList *p1, DoublyLinkedList *p2)
 /* Le dernier est place dans data et est sorti de la DoublyLinkedListe       */
 /* List_pop renvoie le nouveau point d'entree de la DoublyLinkedListe pDoublyLinkedList. */
 DoublyLinkedList *List_pop(DoublyLinkedList *pDoublyLinkedList, void *  *data)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListPrev;
 
 	if(pDoublyLinkedList == NULL) { *data = NULL; return(NULL); }
@@ -378,7 +378,7 @@ DoublyLinkedList *List_pop(DoublyLinkedList *pDoublyLinkedList, void *  *data)
 /* pas le contenu pointe. Il s'agit d'une DoublyLinkedListe avec des "alias" sur   */
 /* les elements de la premiere DoublyLinkedListe.                                  */
 DoublyLinkedList *List_copy(DoublyLinkedList *pDoublyLinkedList)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove, *vCopy;
 
 	vCopy = DoublyLinkedList_new();
@@ -411,7 +411,7 @@ DoublyLinkedList *List_copy_full(DoublyLinkedList *pDoublyLinkedList, void *  (*
 /* Libere un element de la DoublyLinkedListe pDoublyLinkedList (pas la donnee pointe par data) */
 /* Renvoie le nouveau point d'entree de la DoublyLinkedListe.                      */
 DoublyLinkedList *List_free_chunk(DoublyLinkedList *pDoublyLinkedList, DoublyLinkedList *pToFREE)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListNext;
 
 	if(pDoublyLinkedList == NULL) return(NULL);
@@ -452,7 +452,7 @@ DoublyLinkedList *List_free_chunk(DoublyLinkedList *pDoublyLinkedList, DoublyLin
 /* si p2 est superieur a p1.                                   */
 /* Renvoie la DoublyLinkedListe triee.                                     */
 DoublyLinkedList *List_sort(DoublyLinkedList *pDoublyLinkedList,int (* cmp_func)(void *  p1, void *  p2))
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove;
 	DoublyLinkedList *vDoublyLinkedListSmallest;
 	DoublyLinkedList *vDoublyLinkedListRes;
@@ -486,13 +486,15 @@ DoublyLinkedList *List_sort(DoublyLinkedList *pDoublyLinkedList,int (* cmp_func)
 /* inferieur a p2, >0 si p2 est superieur a p1.              */
 /* Renvoie le nouveau point d'entree de la DoublyLinkedListe.            */
 DoublyLinkedList *List_insert_sorted(DoublyLinkedList *pDoublyLinkedList,int (* cmp_func)(void *  p1, void *  p2), void *  data)
-{ 
-	DoublyLinkedList *vDoublyLinkedListMove, *vDoublyLinkedList;
+{
+	DoublyLinkedList *vDoublyLinkedListMove, *vDoublyLinkedList, *tmp;
 
 	/* on recherche le premier element superieur ou egale au nouveau */
 	for(vDoublyLinkedListMove = pDoublyLinkedList; !List_is_end(pDoublyLinkedList,vDoublyLinkedListMove) &&
-			(cmp_func(List_data(vDoublyLinkedListMove),data) < 0);
-		vDoublyLinkedListMove = List_move_next(pDoublyLinkedList,vDoublyLinkedListMove));
+	      (cmp_func(List_data(vDoublyLinkedListMove),data) < 0); ) {
+	  tmp = List_move_next(pDoublyLinkedList,vDoublyLinkedListMove);
+	  vDoublyLinkedListMove = tmp;
+	}
 
 	/* on alloue la memoire pour le nouvelle element */
 	if((vDoublyLinkedList = (DoublyLinkedList *)MALLOC(sizeof(DoublyLinkedList))) == NULL)
@@ -525,7 +527,7 @@ DoublyLinkedList *List_insert_sorted(DoublyLinkedList *pDoublyLinkedList,int (* 
 /* (pas au sens multithreade du terme)                     */
 /* la DoublyLinkedListe mais bien evidemment, le sens s'inverse.       */
 DoublyLinkedList *List_invert(DoublyLinkedList *pDoublyLinkedList)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove, *vDoublyLinkedListMoveNext;
 
 	if(pDoublyLinkedList == NULL) return(NULL);
@@ -546,7 +548,7 @@ DoublyLinkedList *List_invert(DoublyLinkedList *pDoublyLinkedList)
 /* Recherche l'element de DoublyLinkedListe qui contient la premiere donnee data */
 /* Renvoie l'element de DoublyLinkedListe si trouve, NULL sinon.                 */
 DoublyLinkedList *List_find(DoublyLinkedList *pDoublyLinkedList, void *  data)
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove;
 
 	for(vDoublyLinkedListMove = pDoublyLinkedList; !List_is_end(pDoublyLinkedList,vDoublyLinkedListMove) && (List_data(vDoublyLinkedListMove) != data);
@@ -563,13 +565,13 @@ DoublyLinkedList *List_find(DoublyLinkedList *pDoublyLinkedList, void *  data)
 /* l'utilisateur (pour y stocker ce dont il a besoin pour la comparaison).       */
 /* Renvoie l'element de DoublyLinkedListe si trouve, NULL sinon.                             */
 DoublyLinkedList *List_find_full(DoublyLinkedList *pDoublyLinkedList, void *  your_data, BOOL (* find_func)(void *  data, void *  your_data))
-{ 
+{
 	DoublyLinkedList *vDoublyLinkedListMove;
-	
+
 	for(vDoublyLinkedListMove = pDoublyLinkedList;
 		!List_is_end(pDoublyLinkedList,vDoublyLinkedListMove) && !find_func(List_data(vDoublyLinkedListMove),your_data);
 		List_move_next(pDoublyLinkedList,vDoublyLinkedListMove));
-	
+
 	return(vDoublyLinkedListMove);
 }
 /*********************************************************************************/
