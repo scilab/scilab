@@ -1,14 +1,14 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
+#include "rea2db.h"
 /*-----------------------------------------------------------------------------------*/
-/* cette subroutine traduit un vecteur dx, de taille n, sur un 
-   vecteur double precision dy. 
+/* cette subroutine traduit un vecteur dx, de taille n, sur un
+   vecteur double precision dy.
    dans le cas de deux increments egaux a 1, cette fonction
    emploie des boucles "epanouies".
    dans le cas ou les increments sont negatifs cette
-   fonction prend les composantes en ordre inverse. 
+   fonction prend les composantes en ordre inverse.
 */
 /*-----------------------------------------------------------------------------------*/
 int C2F(rea2db)(int *n, float *dx, int *incx, double *dy, int *incy)
@@ -21,7 +21,7 @@ int C2F(rea2db)(int *n, float *dx, int *incx, double *dy, int *incy)
 
     if (*n <= 0) return 0;
 
-    if (*incx == 1 && *incy == 1) 
+    if (*incx == 1 && *incy == 1)
 	{
 		/* code for both increments equal to 1 */
 		i1 = *n;
@@ -37,7 +37,7 @@ int C2F(rea2db)(int *n, float *dx, int *incx, double *dy, int *incy)
     if (*incy < 0) iy = (-(*n) + 1) * *incy + 1;
 
     i1 = *n;
-    for (i = 1; i <= i1; ++i) 
+    for (i = 1; i <= i1; ++i)
 	{
 		dy[iy] = (double)dx[ix];
 		ix += *incx;
