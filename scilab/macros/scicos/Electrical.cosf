@@ -889,7 +889,7 @@ scs_m.objs(17)=scicos_block(..
                         sz=[40,40],..
                         flip=%t,..
                         theta=0,..
-                        exprs=["1000";"10";"-10"],..
+                        exprs=[],..
                         pin=[0;0],..
                         pout=0,..
                         pein=[],..
@@ -925,7 +925,7 @@ scs_m.objs(17)=scicos_block(..
                         state=[],..
                         dstate=[],..
                         odstate=list(),..
-                        rpar=[1000;10;-10],..
+                        rpar=[],..
                         ipar=[],..
                         opar=list(),..
                         blocktype="c",..
@@ -935,5 +935,5 @@ scs_m.objs(17)=scicos_block(..
                         nzcross=0,..
                         nmode=0,..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"OpAmp",..
-                        ["in_p";"in_n"],"out",list(["OLGain";"SatH";"SatL"],[1000;10;-10]))),..
+                        ["in_p";"in_n"],"out",list([],[]))),..
                doc=list())
