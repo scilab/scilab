@@ -1563,6 +1563,7 @@ Optional Features:
   --enable-debug-C         do not optimize and print warning messages (C code)
   --enable-debug-CXX       do not optimize and print warning messages (C++ code)
   --enable-debug-fortran   do not optimize and print warning messages (Fortran code)
+  --enable-stop-on-warning Stop the compilation on the first warning found in the C/C++ code
   --enable-shared[=PKGS]  build shared libraries [default=yes]
   --enable-static[=PKGS]  build static libraries [default=yes]
   --enable-fast-install[=PKGS]
@@ -4241,6 +4242,12 @@ fi
 # Check whether --enable-debugFortran was given.
 if test "${enable_debugFortran+set}" = set; then
   enableval=$enable_debugFortran;
+fi
+
+
+# Check whether --enable-stopOnWarning was given.
+if test "${enable_stopOnWarning+set}" = set; then
+  enableval=$enable_stopOnWarning;
 fi
 
 
@@ -7755,6 +7762,12 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
+# If this option is provided, enable the debug on C & C++
+if test "$enable_stop_on_warning" = yes; then
+   enable_debug_C=yes
+   enable_debug_CXX=yes
+fi
+
 if test "$enable_debug" = yes; then
    enable_debug_fortran=yes
    enable_debug_C=yes
@@ -10119,7 +10132,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 10122 "configure"
+// #line 10135 "configure"
 
 
 public class conftest {
@@ -10169,7 +10182,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 10172 "configure"
+// #line 10185 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -10217,7 +10230,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 10220 "configure"
+// #line 10233 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -10244,7 +10257,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 10247 "configure"
+// #line 10260 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11432,7 +11445,7 @@ echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11435 "configure"
+// #line 11448 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11495,7 +11508,7 @@ echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11498 "configure"
+// #line 11511 "configure"
 import javax.media.opengl.GL;
 
 public class conftest {
@@ -11558,7 +11571,7 @@ echo $ECHO_N "checking gluegen-rt... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11561 "configure"
+// #line 11574 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -11621,7 +11634,7 @@ echo $ECHO_N "checking JRosetta-API... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11624 "configure"
+// #line 11637 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -11684,7 +11697,7 @@ echo $ECHO_N "checking JRosetta-1.0... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11687 "configure"
+// #line 11700 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -11747,7 +11760,7 @@ echo $ECHO_N "checking commons-logging... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11750 "configure"
+// #line 11763 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -18674,7 +18687,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 18677 "configure"
+#line 18690 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -19035,7 +19048,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 19038 "configure"
+#line 19051 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -20623,13 +20636,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:20626: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:20639: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:20629: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:20642: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:20632: output\"" >&5)
+  (eval echo "\"\$as_me:20645: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -21715,7 +21728,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 21718 "configure"' > conftest.$ac_ext
+  echo '#line 21731 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -23309,11 +23322,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23312: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23325: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:23316: \$? = $ac_status" >&5
+   echo "$as_me:23329: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -23631,11 +23644,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23634: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23647: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:23638: \$? = $ac_status" >&5
+   echo "$as_me:23651: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -23736,11 +23749,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23739: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23752: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:23743: \$? = $ac_status" >&5
+   echo "$as_me:23756: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -23791,11 +23804,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23794: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23807: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:23798: \$? = $ac_status" >&5
+   echo "$as_me:23811: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -26540,7 +26553,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 26543 "configure"
+#line 26556 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -26640,7 +26653,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 26643 "configure"
+#line 26656 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -28662,11 +28675,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28665: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28678: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:28669: \$? = $ac_status" >&5
+   echo "$as_me:28682: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -28761,11 +28774,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28764: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28777: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:28768: \$? = $ac_status" >&5
+   echo "$as_me:28781: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -28813,11 +28826,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28816: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28829: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:28820: \$? = $ac_status" >&5
+   echo "$as_me:28833: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -30188,11 +30201,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30191: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30204: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:30195: \$? = $ac_status" >&5
+   echo "$as_me:30208: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -30287,11 +30300,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30290: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30303: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:30294: \$? = $ac_status" >&5
+   echo "$as_me:30307: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -30339,11 +30352,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30342: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30355: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:30346: \$? = $ac_status" >&5
+   echo "$as_me:30359: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -32574,7 +32587,19 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-## Faudriat mettre -I/home/sylvestre/dev/scilab5/libs/MALLOC/includes/ juste dans les modules ou c'est necessaire
+
+#################
+## stop on warning
+#################
+
+# Stop to compile scilab when a warning is found ...
+# This stuff is at the end of the configure.ac because it causes some
+# problem with AC_COMPILE (the -Werror is added to the test)
+if test "$enable_stop_on_warning" = yes; then
+   CFLAGS="$CFLAGS -Werror"
+   CXXFLAGS="$CXXFLAGS -Werror"
+fi
+
 
 ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/f2c/Makefile libs/libst/Makefile modules/helptools/Makefile modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementaries_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/renderer/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/fftw/Makefile modules/scicos/Makefile modules/scicos/src/ocaml/Makefile modules/functions/Makefile modules/incremental_link/Makefile modules/others/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/scipad/Makefile modules/scilab2fortran/Makefile modules/development_tools/Makefile modules/console/Makefile modules/Makefile libs/Makefile Makefile etc/modules.xml modules/helptools/macros/xmlfiletohtml.sci"
 #MAN_FR MAN_ENG
@@ -35499,13 +35524,15 @@ echo "Host system type : $host"
 echo ""
 echo "                  Option                        Value"
 echo "-------------------------------------------------------------------------"
-echo "Shared libraries.....      --enable-shared=$libtool_build_shared_libs	$libtool_build_shared_libs"
-echo "Static libraries.....      --enable-static=$libtool_build_static_libs	$libtool_build_static_libs"
-echo "GNU ld...............      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
-echo "Enable debug ........      --enable-debug=$enable_debug	$enable_debug"
-echo "Enable debug C.......      --enable-debug-C=$enable_debug_C	$enable_debug_C"
-echo "Enable debug C++.....      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
-echo "Enable debug Fortran.      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
+echo "Shared libraries.......      --enable-shared=$libtool_build_shared_libs	$libtool_build_shared_libs"
+echo "Static libraries.......      --enable-static=$libtool_build_static_libs	$libtool_build_static_libs"
+echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
+echo "Enable debug ..........      --enable-debug=$enable_debug	$enable_debug"
+echo "Enable debug C.........      --enable-debug-C=$enable_debug_C	$enable_debug_C"
+echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
+echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
+echo "Enable stop on warning.      --enable-debug-fortran=$enable_stop_on_warning	$enable_stop_on_warning"
+
 echo ""
 echo "Compiler Configuration:"
 echo "Intel (--with-intelcompilers) .... :		$with_intelcompilers"

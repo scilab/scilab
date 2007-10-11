@@ -62,6 +62,9 @@ AC_ARG_ENABLE(debugCXX,
 AC_ARG_ENABLE(debugFortran,
    [  --enable-debug-fortran   do not optimize and print warning messages (Fortran code)])
 
+AC_ARG_ENABLE(stopOnWarning,
+   [  --enable-stop-on-warning Stop the compilation on the first warning found in the C/C++ code])
+
 AC_ARG_WITH(gcc,
     [  --with-gcc              use gcc C compiler ])
     
@@ -185,6 +188,12 @@ fi
 
 AM_PROG_CC_C_O
 AC_PROG_F77_C_O
+
+# If this option is provided, enable the debug on C & C++
+if test "$enable_stop_on_warning" = yes; then
+   enable_debug_C=yes
+   enable_debug_CXX=yes
+fi
 
 if test "$enable_debug" = yes; then
    enable_debug_fortran=yes
@@ -1082,7 +1091,19 @@ AC_SUBST(tcldir)
 # Define the standard extension of a dynamic library 
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 
-## Faudriat mettre -I/home/sylvestre/dev/scilab5/libs/MALLOC/includes/ juste dans les modules ou c'est necessaire
+
+#################
+## stop on warning
+#################
+
+# Stop to compile scilab when a warning is found ... 
+# This stuff is at the end of the configure.ac because it causes some
+# problem with AC_COMPILE (the -Werror is added to the test)
+if test "$enable_stop_on_warning" = yes; then
+   CFLAGS="$CFLAGS -Werror"
+   CXXFLAGS="$CXXFLAGS -Werror"
+fi
+
 
 AC_CONFIG_FILES([ 
 libs/lapack/Makefile
@@ -1175,13 +1196,15 @@ echo "Host system type : $host"
 echo ""
 echo "                  Option                        Value"
 echo "-------------------------------------------------------------------------"
-echo "Shared libraries.....      --enable-shared=$libtool_build_shared_libs	$libtool_build_shared_libs"
-echo "Static libraries.....      --enable-static=$libtool_build_static_libs	$libtool_build_static_libs"
-echo "GNU ld...............      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
-echo "Enable debug ........      --enable-debug=$enable_debug	$enable_debug"
-echo "Enable debug C.......      --enable-debug-C=$enable_debug_C	$enable_debug_C"
-echo "Enable debug C++.....      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
-echo "Enable debug Fortran.      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
+echo "Shared libraries.......      --enable-shared=$libtool_build_shared_libs	$libtool_build_shared_libs"
+echo "Static libraries.......      --enable-static=$libtool_build_static_libs	$libtool_build_static_libs"
+echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
+echo "Enable debug ..........      --enable-debug=$enable_debug	$enable_debug"
+echo "Enable debug C.........      --enable-debug-C=$enable_debug_C	$enable_debug_C"
+echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
+echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
+echo "Enable stop on warning.      --enable-debug-fortran=$enable_stop_on_warning	$enable_stop_on_warning"
+
 echo ""
 echo "Compiler Configuration:"
 echo "Intel (--with-intelcompilers) .... :		$with_intelcompilers"
