@@ -131,9 +131,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         return
       end
       typpfrom='out'
-    elseif (typo==2 & k>size(op,'*')) then //implicit  input port
+    elseif (typo==2 & k>size(op,'*')+size(cop,'*')) then //implicit  input port
       typpfrom='in' 
-      k=k-size(op,'*')
+      k=k-size(op,'*')-size(cop,'*')
 //      port_number=k,//out port
       port_number=i_ImplIndx(k)
       if impi(port_number)<>0 then
@@ -146,7 +146,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       end
       typpfrom='in'
     else //event output port
-      port_number=k-prod(size(find(typout==1)))
+      port_number=k-  size(op,'*')        //prod(size(find(typout==1)))
       if cop(port_number)<>0 then
           hilite_obj(kfrom)
           message(['Selected port is already connected.';..
@@ -415,9 +415,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         end
 
       //TODO
-      elseif (typi==2 & k>size(ip,'*')) then //implicit "output" port
+      elseif (typi==2 & k>size(ip,'*')+size(cip,'*')) then //implicit "output" port
 
-        k=k-size(ip,'*')
+        k=k-size(ip,'*')-size(cip,'*')
         typpto='out'
         //port_number=k
         port_number=o_ImplIndx(k)  //RN: explicit outputs are excluded
@@ -450,7 +450,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       //** otherwise is an event input port
       else //event input port
 
-        port_number=k-prod(size(find(typin==1)))
+        port_number=k-size(ip,'*')  //prod(size(find(typin==1)))
 
         if cip(port_number)<>0 then
             hilite_obj(kto)
