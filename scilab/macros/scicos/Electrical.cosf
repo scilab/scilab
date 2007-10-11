@@ -3,7 +3,7 @@ scs_m=scicos_diagram(..
       props=scicos_params(..
             wpar=[600,450,0,0,600,450],..
             Title=["Electrical","SCI/macros/scicos/"],..
-            tol=[0.0001,0.000001,1.000E-10,100001,0,0],..
+            tol=[0.0001,0.000001,1.000D-10,100001,0,0],..
             tf=100000,..
             context=[],..
             void1=[],..
@@ -524,7 +524,7 @@ scs_m.objs(11)=scicos_block(..
                         sz=[40,20],..
                         flip=%t,..
                         theta=0,..
-                        exprs=["0.000001";"0.04";"15";"1.000E+08"],..
+                        exprs=["0.000001";"0.04";"15";"1.000D+08"],..
                         pin=0,..
                         pout=0,..
                         pein=[],..
@@ -555,7 +555,7 @@ scs_m.objs(11)=scicos_block(..
                         state=[],..
                         dstate=[],..
                         odstate=list(),..
-                        rpar=[0.000001;0.04;15;1.000E+08],..
+                        rpar=[0.000001;0.04;15;1.000D+08],..
                         ipar=[],..
                         opar=list(),..
                         blocktype="c",..
@@ -565,7 +565,7 @@ scs_m.objs(11)=scicos_block(..
                         nzcross=0,..
                         nmode=0,..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"Diode","p","n",..
-                        list(["Ids","Vt","Maxexp","R"],list(0.000001,0.04,15,1.000E+08)))),..
+                        list(["Ids","Vt","Maxexp","R"],list(0.000001,0.04,15,1.000D+08)))),..
                doc=list())
 scs_m.objs(12)=scicos_block(..
                gui="VsourceAC",..
@@ -623,19 +623,19 @@ scs_m.objs(13)=scicos_block(..
                         theta=0,..
                         exprs=["50";
                         "0.1";
-                        "1.000E-16";
+                        "1.000D-16";
                         "0.02";
-                        "1.200E-10";
-                        "5.000E-09";
-                        "1.000E-12";
-                        "4.000E-13";
-                        "5.000E-13";
+                        "1.200D-10";
+                        "5.000D-09";
+                        "1.000D-12";
+                        "4.000D-13";
+                        "5.000D-13";
                         "0.8";
                         "0.4";
                         "0.8";
                         "0.333";
-                        "1.000E-15";
-                        "1.000E-15";
+                        "1.000D-15";
+                        "1.000D-15";
                         "0.02585";
                         "40"],..
                         pin=0,..
@@ -696,8 +696,8 @@ scs_m.objs(13)=scicos_block(..
                         "Gbe";
                         "Vt";
                         "EMinMax"],..
-                        [50;0.1;0;0.02;1.200E-10;5.000E-09;1.000E-12;4.000E-13;5.000E-13;0.8;0.4;0.8;
-                        0.333;1.000E-15;1.000E-15;0.02585;40]))),..
+                        [50;0.1;0;0.02;1.200D-10;5.000D-09;1.000D-12;4.000D-13;5.000D-13;0.8;0.4;0.8;
+                        0.333;1.000D-15;1.000D-15;0.02585;40]))),..
                doc=list())
 scs_m.objs(14)=scicos_block(..
                gui="PNP",..
@@ -708,19 +708,19 @@ scs_m.objs(14)=scicos_block(..
                         theta=0,..
                         exprs=["50";
                         "0.1";
-                        "1.000E-16";
+                        "1.000D-16";
                         "0.02";
-                        "1.200E-10";
-                        "5.000E-09";
-                        "1.000E-12";
-                        "4.000E-13";
-                        "5.000E-13";
+                        "1.200D-10";
+                        "5.000D-09";
+                        "1.000D-12";
+                        "4.000D-13";
+                        "5.000D-13";
                         "0.8";
                         "0.4";
                         "0.8";
                         "0.333";
-                        "1.000E-15";
-                        "1.000E-15";
+                        "1.000D-15";
+                        "1.000D-15";
                         "0.02585";
                         "40"],..
                         pin=0,..
@@ -781,8 +781,8 @@ scs_m.objs(14)=scicos_block(..
                         "Gbe";
                         "Vt";
                         "EMinMax"],..
-                        [50;0.1;0;0.02;1.200E-10;5.000E-09;1.000E-12;4.000E-13;5.000E-13;0.8;0.4;0.8;
-                        0.333;1.000E-15;1.000E-15;0.02585;40]))),..
+                        [50;0.1;0;0.02;1.200D-10;5.000D-09;1.000D-12;4.000D-13;5.000D-13;0.8;0.4;0.8;
+                        0.333;1.000D-15;1.000D-15;0.02585;40]))),..
                doc=list())
 scs_m.objs(15)=scicos_block(..
                gui="SineVoltage",..
@@ -830,4 +830,55 @@ scs_m.objs(15)=scicos_block(..
                         nmode=0,..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"SineVoltage","p","n",..
                         list(["V";"phase";"freqHz";"offset";"startTime"],list(1,0,1,0,0)))),..
+               doc=list())
+scs_m.objs(16)=scicos_block(..
+               gui="Switch",..
+               graphics=scicos_graphics(..
+                        orig=[210,140],..
+                        sz=[40,3.6],..
+                        flip=%t,..
+                        theta=0,..
+                        exprs=["0.01";"100000"],..
+                        pin=[0;0],..
+                        pout=0,..
+                        pein=[],..
+                        peout=[],..
+                        gr_i=list(..
+                        [" Thick=xget(''thickness'');xset(''thickness'',2);";
+                        "x=orig(1)+[0,3,5.0]*sz(1)/8;";
+                        "y=orig(2)+[1,1,2.5]*sz(2)/2;";
+                        "xpoly(x,y,''lines'',0);";
+                        "xpoly(orig(1)+3*sz(1)/8,orig(2)+1*sz(2)/2,''marks'',1);";
+                        "x=orig(1)+[5,8]*sz(1)/8;";
+                        "y=orig(2)+[1,1]*sz(2)/2;";
+                        "xpoly(x,y,''lines'',0);";
+                        "xstring(orig(1)+3,orig(2)+1.8,''sw'');";
+                        "xset(''thickness'',Thick)"],[]),..
+                        id="",..
+                        in_implicit=["I";"E"],..
+                        out_implicit="I"),..
+               model=scicos_model(..
+                        sim="Switch",..
+                        in=[1;1],..
+                        in2=[],..
+                        intyp=1,..
+                        out=1,..
+                        out2=[],..
+                        outtyp=1,..
+                        evtin=[],..
+                        evtout=[],..
+                        state=[],..
+                        dstate=[],..
+                        odstate=list(),..
+                        rpar=[0.01;100000],..
+                        ipar=[],..
+                        opar=list(),..
+                        blocktype="c",..
+                        firing=[],..
+                        dep_ut=[%t,%f],..
+                        label="",..
+                        nzcross=0,..
+                        nmode=0,..
+                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Switch",["p";"inp"],..
+                        "n",list(["Ron";"Roff"],[0.01;100000]))),..
                doc=list())
