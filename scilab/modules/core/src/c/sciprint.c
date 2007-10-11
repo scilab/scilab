@@ -12,14 +12,12 @@
 #include "../../localization/includes/QueryStringMessage.h"
 #include "../../console/includes/ConsolePrintf.h"
 #include "../../shell/includes/scilines.h"
+#include "../../fileio/includes/diary.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
 #endif
-/*-----------------------------------------------------------------------------------*/ 
-extern int getdiary __PARAMS(());
-extern void diary_nnl __PARAMS((char *str,int *n));
 /*-----------------------------------------------------------------------------------*/ 
 void sciprint(char *fmt,...) 
 {
