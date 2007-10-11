@@ -464,6 +464,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\stack_convert.c"
+				>
+			</File>
+			<File
 				RelativePath=".\unarybit.c"
 				>
 			</File>
@@ -489,10 +493,6 @@
 			>
 			<File
 				RelativePath=".\bitops.f"
-				>
-			</File>
-			<File
-				RelativePath=".\convert.f"
 				>
 			</File>
 			<File
@@ -729,6 +729,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_uint8.f"
+				>
+			</File>
+			<File
+				RelativePath=".\stack_convert.f"
 				>
 			</File>
 			<File
