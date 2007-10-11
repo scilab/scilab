@@ -77,12 +77,15 @@ if typeof(o)=="Block" then
     end                       //** 
 
 
-    //** Check if this data structure is used in others parts of the code  
-    //    execstr('scs_m_'+string(slevel)+'=scs_m'); //** extract the 'scs_m' of the superblock
+
+    ierr=execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch') ;
+    // the errcatch here is introduced to get aournd the bug #2553
+    if ierr<>0 then 
+      disp('Error in GUI of block '+o.gui)
+      edited=%f
+      return
+    end
     
-    //** Inside the 'set' section of 'scicos_blocs/Misc/SUPER_f.sci' there is a recursive call
-    //** at 'scicos' with the sub->scs_m as parameter 
-    execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)') ; //** this is the key of 
     //** the recursive superblock opening 
     
 
@@ -108,7 +111,12 @@ if typeof(o)=="Block" then
 
   //**-------------------- Mask C superblock  -----------------------------  
   elseif o.model.sim=="csuper"& o.model.ipar==1 then
-    execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)')
+    ierr=execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch')
+    if ierr<>0 then 
+      disp('Error in GUI of block '+o.gui)
+      edited=%f
+      return
+    end
     modified = prod(size(newparameters))>0 // never used because if there is a change
                                            // needcompile>=2 and newparams not used 
     edited = ~isequalbitwise(o,o_n) 
@@ -118,7 +126,12 @@ if typeof(o)=="Block" then
 
   //**-------------------- C superblock ??? -----------------------------  
   elseif o.model.sim=="csuper" then
-    execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)')
+    ierr=execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch')
+    if ierr<>0 then 
+      disp('Error in GUI of block '+o.gui)
+      edited=%f
+      return
+    end
     modified = prod(size(newparameters))>0
     edited = modified  // Not sure it is correct. 
     if edited then
@@ -130,7 +143,12 @@ if typeof(o)=="Block" then
   //**--------------------- Standard block -------------------------------  
   else
 
-    execstr('o_n='+o.gui+'(''set'',o)') ;
+    ierr=execstr('o_n='+o.gui+'(''set'',o)','errcatch') ;
+    if ierr<>0 then 
+      disp('Error in GUI of block '+o.gui)
+      edited=%f
+      return
+    end
     //Alan - 09/02/07 : replace <> operator by ~isequal
     //because <> operator crash for sublist with int elements
     //edited = or(o<>o_n) ;
@@ -222,7 +240,12 @@ elseif typeof(o)=="Link" then
 //**---------------------- Text -------------------------------------------------  
 elseif typeof(o)=="Text" then
   
-  execstr('o_n='+o.gui+'(''set'',o)') ;
+  ierr=execstr('o_n='+o.gui+'(''set'',o)','errcatch') ;
+  if ierr<>0 then 
+    disp('Error in GUI of block '+o.gui)
+    edited=%f
+    return
+  end
   edited = or(o<>o_n) ; 
   o = o_n ; 
 
