@@ -14,8 +14,7 @@
 #include "sciprint.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern BOOL FileExist(char *filename);
+#include "../../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/ 
 static struct MODULESLIST *ScilabModules=NULL;
 /*-----------------------------------------------------------------------------------*/ 
