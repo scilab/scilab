@@ -63,27 +63,30 @@ for %kk=1:%nx
       end
     else
       model=o.model
-      execstr('o='+o.gui+'(''set'',o)')
-      needcompile1=max(needcompile1,needcompile) // for scifunc_block
-      model_n=o.model
-      if or(model.blocktype<>model_n.blocktype)|.. // type 'c','d','z','l'
+// should we generate a message here?
+      ier=execstr('o='+o.gui+'(''set'',o)','errcatch')
+      if ier==0 then
+        needcompile1=max(needcompile1,needcompile) // for scifunc_block
+        model_n=o.model
+        if or(model.blocktype<>model_n.blocktype)|.. // type 'c','d','z','l'
             or(model.dep_ut<>model_n.dep_ut)|..
               (model.nzcross<>model_n.nzcross)|..
               (model.nmode<>model_n.nmode) then
          needcompile1=4
-      end
-      if (size(model.in,'*')<>size(model_n.in,'*'))|..
+        end
+        if (size(model.in,'*')<>size(model_n.in,'*'))|..
            (size(model.out,'*')<>size(model_n.out,'*'))|..
             (size(model.evtin,'*')<>size(model_n.evtin,'*')) then
          // number of input (evt or regular ) or output  changed
          needcompile1=4
-      end
-      if model.sim=='input'|model.sim=='output' then
-        if model.ipar<>model_n.ipar then
-           needcompile1=4
         end
-      end
-      scs_m.objs(%kk)=o
+        if model.sim=='input'|model.sim=='output' then
+          if model.ipar<>model_n.ipar then
+             needcompile1=4
+          end
+        end
+        scs_m.objs(%kk)=o
+      end  // message for else here
     end
   end
 end

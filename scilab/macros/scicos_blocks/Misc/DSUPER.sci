@@ -34,13 +34,17 @@ case 'set' then
   for i=1:size(exprs0,1)
     context=[context;exprs0(i)+'='+strcat(sci2exp(evstr(exprs0(i))))];
   end
+  context=[context;x.model.rpar.props.context]
   [%scicos_context,ierr]=script2var(context,%scicos_context)
-  if ierr<>0 then pause,end
-  sblock=x.model.rpar
-  [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
-  y=max(2,needcompile,needcompile2)
-  x.graphics.exprs(1)=exprs
-  x.model.rpar=sblock
+  if ierr==0 then 
+    sblock=x.model.rpar
+    [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
+    y=max(2,needcompile,needcompile2)
+    x.graphics.exprs(1)=exprs
+    x.model.rpar=sblock
+  else
+    message(lasterror())
+  end
  else
   x=arg1
  end
