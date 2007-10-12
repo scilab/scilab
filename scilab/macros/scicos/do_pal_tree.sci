@@ -23,8 +23,8 @@ endfunction
 //**-----------------------------------------------------------------------
 
 function scs_m=charge(pal)
-ierr=execstr('exec(pal(2),-1)','errcatch','n')
-if ierr==0 then
+[ok,scs_m,cpr,edited]=do_load(pal(2),'palette')
+if ok & size(scs_m.objs)>0 then
   scs_m.props.title(1)=pal(1)
 else
   scs_m= scicos_diagram(version=get_scicos_version())
@@ -69,7 +69,9 @@ end
 Path = 'root'
 tt = crlist(scs_m, Path, tt);
 tt = [tt;' $wxx.t bindImage <B1-Motion> {pp}']; 
+tt = [tt;' $wxx.t bindText <B1-Motion> {pp}']; 
 tt = [tt;' $wxx.t bindImage <Double-1> {pp}'];
+tt = [tt;' $wxx.t bindText <Double-1> {pp}'];
 tt = [tt;' $wxx.t bindImage <3> {qq}'];
 endfunction
 //**-----------------------------------------------------------------------------
