@@ -507,6 +507,14 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       nc_save=gh_current_window.user_data(5)
       xselect()
      end
+  else
+//    pause
+    if or(curwin==winsid()) then
+      gh_current_window = scf(curwin)
+      if (gh_current_window.user_data~=[])&(isequalbitwise(gh_current_window.user_data(1),scs_m)) then
+	Select=gh_current_window.user_data(2)
+      end
+    end
   end 
   exec(restore_menu,-1)
   
@@ -572,7 +580,9 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	if ~isequal(%diagram_path_objective,super_path) then
 	  %diagram_open  = %f
           Select_back=Select
-	  [Cmenu,Select] = Find_Next_Step(%diagram_path_objective,super_path)
+	  [Cmenu,Select] = Find_Next_Step(%diagram_path_objective, ...
+					  super_path)
+	 
 	  if or(curwin==winsid()) & ~isequal(Select,Select_back) then
 	     selecthilite(Select_back, "off") ; // unHilite previous objects
 	     selecthilite(Select, "on") ;       // Hilite the actual selected object
@@ -583,7 +593,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
             //execstr('exec(OpenSet_,-1)')
 	    //**---------------------------------------------------
 	    if ierr<>0 then message(lasterror()),end
-
 	    if isequal(%diagram_path_objective,super_path) then // must add after testing &%scicos_navig<>[] 
 	      if ~or(curwin==winsid()) then 
 		gh_current_window = scf(curwin);
@@ -595,8 +604,10 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 		gh_current_window = scf(curwin);
 	      end  
 	    else
-	      %scicos_navig=1
-	      %diagram_path_objective=[]
+	      if ~or(curwin==winsid())&%scicos_navig==[] then
+		%scicos_navig=1
+		%diagram_path_objective=[]
+	      end
 	    end
 	  elseif Cmenu=="Quit" then
 	    do_exit()
