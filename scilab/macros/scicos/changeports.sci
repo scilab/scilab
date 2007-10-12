@@ -51,7 +51,10 @@ function scs_m = changeports(scs_m, path, o_n)
   if or(curwin==winsid()) then
     //** ------- Graphics ---------------
     drawlater() ;
-    gh_curwin = gh_current_window;
+    
+    // gh_curwin = gh_current_window;
+    
+    gh_curwin = scf(curwin) ;
     o_size = size(gh_curwin.children.children);
 
     //
@@ -324,8 +327,11 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
   if  or(curwin==winsid()) then
 
     //** New graphics section
-    drawlater() ;
-    gh_curwin = gh_current_window;
+    drawlater() ; //
+    
+    // gh_curwin = gh_current_window; // bugged ?
+    
+    gh_curwin = scf(curwin) ; 
     o_size = size(gh_curwin.children.children);
 
     k = path($) ; //** the scs_m index of the target
