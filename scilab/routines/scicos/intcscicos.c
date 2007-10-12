@@ -2315,22 +2315,22 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
    case 207  : strcpy(C2F(cha1).buf,"IDA_CONV_FAIL: IDACalcIC->Failed to get convergence of the Newton iterations. or IDA_solve->Convergence test failures occurred too many times (= MXNCF = 10) during one internal step. ");
                break;
  
-   case 208  : strcpy(C2F(cha1).buf,"IDA_LINIT_FAIL: The linear solver's initialization routine failed.");
+   case 208  : strcpy(C2F(cha1).buf,"IDA_LINIT_FAIL: The linear solver''s initialization routine failed.");
                break;
  
-   case 209  : strcpy(C2F(cha1).buf,"IDA_LSETUP_FAIL: The linear solver's setup routine had a non-recoverable error.");
+   case 209  : strcpy(C2F(cha1).buf,"IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable error.");
                break;
 
-   case 210  : strcpy(C2F(cha1).buf,"IDA_LSOLVE_FAIL: The linear solver's solve routine had a non-recoverable error.");
+   case 210  : strcpy(C2F(cha1).buf,"IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable error.");
                break;
   
-   case 211  : strcpy(C2F(cha1).buf,"IDA_RES_FAIL: The user's residual routine returned a non-recoverable error flag.");
+   case 211  : strcpy(C2F(cha1).buf,"IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error flag.");
                break;
  
    case 212  : strcpy(C2F(cha1).buf,"IDA_CONSTR_FAIL: IDACalcIC was unable to find a solution satisfying the inequality constraints.");
                break;
  
-   case 213  : strcpy(C2F(cha1).buf,"IDA_REP_RES_ERR: The user's residual function repeatedly returned a recoverable error flag, but the solver was unable to recover.");
+   case 213  : strcpy(C2F(cha1).buf,"IDA_REP_RES_ERR: The user''s residual function repeatedly returned a recoverable error flag, but the solver was unable to recover.");
                break;
 
    case 214  : strcpy(C2F(cha1).buf,"IDA_MEM_FAIL: A memory allocation failed.");
@@ -2342,21 +2342,21 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
    case 216  : strcpy(C2F(cha1).buf,"IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), either for the input value of y0 or a corrected value.");
                break;
 
-   case 217  : strcpy(C2F(cha1).buf,"IDA_FIRST_RES_FAIL: The user's residual routine returned  a recoverable error flag on the first call, but IDACalcIC was unable to recover. .");
+   case 217  : strcpy(C2F(cha1).buf,"IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable error flag on the first call, but IDACalcIC was unable to recover. .");
                break;
   
    case 218  : strcpy(C2F(cha1).buf,"IDA_LINESEARCH_FAIL: The Linesearch algorithm failed to find a solution with a step larger than steptol in weighted RMS norm.");
                break;
 
-   case 219  : strcpy(C2F(cha1).buf,"IDA_NO_RECOVERY: The user's residual routine, or the linear solver's setup or solve routine had a  recoverable error, but IDACalcIC was unable to recover.");
+   case 219  : strcpy(C2F(cha1).buf,"IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup or solve routine had a  recoverable error, but IDACalcIC was unable to recover.");
                break;
 
    case 220  : strcpy(C2F(cha1).buf,"IDA_RTFUNC_FAIL: The root founding function failed.");
                break;
 
-   case 228  : strcpy(C2F(cha1).buf,"IDA_YOUT_NULL: 'yout' = NULL illegal.");
+   case 228  : strcpy(C2F(cha1).buf,"IDA_YOUT_NULL: ''yout'' = NULL illegal.");
                break;
-   case 229  : strcpy(C2F(cha1).buf,"IDA_TRET_NULL: 'tret' = NULL illegal.");
+   case 229  : strcpy(C2F(cha1).buf,"IDA_TRET_NULL: ''tret'' = NULL illegal.");
                break;
    case 230  : strcpy(C2F(cha1).buf,"IDA_BAD_ITASK: Illegal value for itask.");
                break;
@@ -2374,7 +2374,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
                break;
    case 237  : strcpy(C2F(cha1).buf,"-----------------:)-----------"); 
                break;
-   case 238  : strcpy(C2F(cha1).buf,"IDA_LSOLVE_NULL: The linear solver's solve routine is NULL.");
+   case 238  : strcpy(C2F(cha1).buf,"IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL.");
                break;
    case 239  : strcpy(C2F(cha1).buf,"IDA_NULL_Y0: y0 = NULL illegal.");
                break;
@@ -2392,7 +2392,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
                break;
    case 246  : strcpy(C2F(cha1).buf,"IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal..");
                break;
-   case 247  : strcpy(C2F(cha1).buf,"IDA_BAD_TOUT: Trouble interpolating. 'tout' too far back in direction of integration");
+   case 247  : strcpy(C2F(cha1).buf,"IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of integration");
                break;
    case 248  : strcpy(C2F(cha1).buf,"IDA_YP0_NULL: the derivative yp0 = NULL is illegal.");
                break;
@@ -2404,17 +2404,17 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
                break;
    case 252  : strcpy(C2F(cha1).buf,"IDA_BAD_HINIT: yret = NULL illegal..");
                break;
-   case 253  : strcpy(C2F(cha1).buf,"IDA_MISSING_ID :id = NULL ('id' defines algebraic and differential states) but suppressalg option on.");
+   case 253  : strcpy(C2F(cha1).buf,"IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) but suppressalg option on.");
                break;
    case 254  : strcpy(C2F(cha1).buf,"IDA_Y0_FAIL_CONSTR: y0 fails to satisfy constraints.");
                break;
-   case 255  : strcpy(C2F(cha1).buf,"IDA_TOO_CLOSE: 'tout' too close to 't0' to start integration.");
+   case 255  : strcpy(C2F(cha1).buf,"IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration.");
                break;
    case 256  : strcpy(C2F(cha1).buf,"IDA_CLOSE_ROOTS: Root found at and very near starting time.");
                break;
 
 	      /* CVODE error messages*/
-   case 301  : strcpy(C2F(cha1).buf,"CV_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach 'tout'. The default value for mxstep is MXSTEP_DEFAULT = 500.");
+   case 301  : strcpy(C2F(cha1).buf,"CV_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach ''tout''. The default value for mxstep is MXSTEP_DEFAULT = 500.");
                break;
 
    case 302  : strcpy(C2F(cha1).buf,"CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the user for some internal step");
@@ -2426,13 +2426,13 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
    case 304  : strcpy(C2F(cha1).buf,"CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF = 10) during one internal time step or occurred with |h| = hmin.");
                break;
 
-   case 305  : strcpy(C2F(cha1).buf,"CV_LINIT_FAIL: The linear solver's initialization function failed.");
+   case 305  : strcpy(C2F(cha1).buf,"CV_LINIT_FAIL: The linear solver''s initialization function failed.");
                break;
   
-   case 306  : strcpy(C2F(cha1).buf,"CV_LSETUP_FAIL: The linear solver's setup routine failed in an unrecoverable manner.");
+   case 306  : strcpy(C2F(cha1).buf,"CV_LSETUP_FAIL: The linear solver''s setup routine failed in an unrecoverable manner.");
                break;
  
-   case 307  : strcpy(C2F(cha1).buf,"CV_LSOLVE_FAIL: The linear solver's solve routine failed in an unrecoverable manner.");
+   case 307  : strcpy(C2F(cha1).buf,"CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an unrecoverable manner.");
                break;
   
    case 308  : strcpy(C2F(cha1).buf,"CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in an unrecoverable manner");
@@ -2452,7 +2452,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
                break;
    case 321  : strcpy(C2F(cha1).buf,"CV_MEM_NULL: the cvode memory was NULL");
                break;
-   case 322  : strcpy(C2F(cha1).buf,"CV_ILL_INPUT: indicating an input argument was illegal. This include the situation where a component of the error weight vector becomes negative during internal time-stepping. This also includes if the linear solver function initialization (called by the user after calling CVodeCreat) failed to set the linear solver-specific 'lsolve' field in cvode_mem. This error happens if number of root functions is positive but the return surface value is NULL. ");
+   case 322  : strcpy(C2F(cha1).buf,"CV_ILL_INPUT: indicating an input argument was illegal. This include the situation where a component of the error weight vector becomes negative during internal time-stepping. This also includes if the linear solver function initialization (called by the user after calling CVodeCreat) failed to set the linear solver-specific ''lsolve'' field in cvode_mem. This error happens if number of root functions is positive but the return surface value is NULL. ");
                break;
    case 323  : strcpy(C2F(cha1).buf,"CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., CVodeMalloc has not been called).");
                break;
@@ -2462,11 +2462,11 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
                break;
    case 326  : strcpy(C2F(cha1).buf,"CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector [((d/dy)^k)y](t).");
                break;
-   case 327  : strcpy(C2F(cha1).buf,"CV_TOO_CLOSE: 'tout' too close to 't0' to start integration.");
+   case 327  : strcpy(C2F(cha1).buf,"CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration.");
                break;
-   case 328  : strcpy(C2F(cha1).buf,"CV_YOUT_NULL: 'yout' = NULL illegal.");
+   case 328  : strcpy(C2F(cha1).buf,"CV_YOUT_NULL: ''yout'' = NULL illegal.");
                break;
-   case 329  : strcpy(C2F(cha1).buf,"CV_TRET_NULL: 'tret' = NULL illegal.");
+   case 329  : strcpy(C2F(cha1).buf,"CV_TRET_NULL: ''tret'' = NULL illegal.");
                break;
    case 330  : strcpy(C2F(cha1).buf,"CV_BAD_ITASK: Illegal value for itask.");
                break;
@@ -2484,7 +2484,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
                break;
    case 337  : strcpy(C2F(cha1).buf,"CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal).");
                break;
-   case 338  : strcpy(C2F(cha1).buf,"CV_LSOLVE_NULL: The linear solver's solve routine is NULL.");
+   case 338  : strcpy(C2F(cha1).buf,"CV_LSOLVE_NULL: The linear solver''s solve routine is NULL.");
                break;
    case 339  : strcpy(C2F(cha1).buf,"CV_NULL_Y0: y0 = NULL illegal.");
                break;
@@ -2502,7 +2502,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
                break;
    case 346  : strcpy(C2F(cha1).buf,"CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal..");
                break;
-   case 347  : strcpy(C2F(cha1).buf,"CV_BAD_TOUT: Trouble interpolating. 'tout' too far back in direction of integration");
+   case 347  : strcpy(C2F(cha1).buf,"CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of integration");
                break;
    case 348  : strcpy(C2F(cha1).buf,"CV_CLOSE_ROOTS: Root found at and very near starting time.");
                break;
