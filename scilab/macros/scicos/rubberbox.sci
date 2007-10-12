@@ -44,8 +44,8 @@ function [rect,btn]=rubberbox(rect,edit_mode)
   draw(r);if pix=='on' then show_pixmap();end
   while rep(3)==-1 do
     //** Alan, Ramine patch to disable rubberbox 12/10/07
-    if 1 then rep=xgetmouse(0,opt);else rep=xgetmouse(0,opt),end
-    //xgetmouse(0,opt);
+    //if 1 then rep=xgetmouse(0,opt);else rep=xgetmouse(0,opt),end
+    rep=xgetmouse(0,opt);
     if rep(3)==-100 then  btn=rep(3);return;end//window has been closed
     draw(r);if pix=='on' then show_pixmap();end//erase;
     xc1=rep(1);yc1=rep(2)
