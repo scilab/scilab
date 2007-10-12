@@ -59,19 +59,19 @@ while %t do
   case 'Kalman filter' then  
     scicos('SCI/demos/scicos/Kalman_1.cosf');
   case 'Simple Thermostat' then  
-    scicos('SCI/demos/scicos/demo1.cosf');
+    scicos('SCI/demos/scicos/Simple_Thermostat.cosf');
   case 'Continuous Plant discrete controller' then  
-    scicos('SCI/demos/scicos/demo2.cosf');
+    scicos('SCI/demos/scicos/Continuous_Plant_Discreet_Controller.cosf');
   case 'Simple demo' then  
-    scicos('SCI/demos/scicos/demo3.cosf');
+    scicos('SCI/demos/scicos/Simple_Demo.cosf');
   case 'Bouncing ball' then  
-    scicos('SCI/demos/scicos/demo4.cosf');	
+    scicos('SCI/demos/scicos/Bouncing_ball.cosf');	
   case 'Table lookup example' then  
-    scicos('SCI/demos/scicos/demo5.cosf');	
+    scicos('SCI/demos/scicos/Table_Lookup.cosf.cosf');	
   case 'Threshold' then  
-    scicos('SCI/demos/scicos/demo6.cosf');	
+    scicos('SCI/demos/scicos/Threshold_ZeroCrossing.cosf');	
   case 'Scilab Block' then  
-    scicos('SCI/demos/scicos/demo7.cosf');	
+    scicos('SCI/demos/scicos/Scilab_Block.cosf');	
   case 'Thermostat' then  
     scicos('SCI/demos/scicos/Temp.cosf');	
   case 'Fibonacci' then  
