@@ -1,7 +1,7 @@
 function CodeGeneration_()
 //Input editor function of Scicos code generator
 //
-//@l@n, 25/09/07
+//@l@n, 13/10/07
 //
 //
 //** 10 Set 2007 : cleaner startup code by Simone Mannori  
@@ -3900,6 +3900,10 @@ function Code=make_standalone42()
     Code=[Code
           ''
           '    tout=t;'
+          ''
+          '   /* integrate until the cummulative add of the integration step'
+          '    * time doesn''t cross the sample time step'
+          '    */'
           '    while (tout+h<t+dt){'
           '      switch (solver) {'
           '      case 1:'
@@ -3918,6 +3922,7 @@ function Code=make_standalone42()
           '       tout=tout+h;'
           '    }'
           ''
+          '    /* integration for the remainder piece of time */'
           '    he=t+dt-tout;'
           '    switch (solver) {'
           '    case 1:'
@@ -3932,21 +3937,32 @@ function Code=make_standalone42()
           '    default :'
           '      ode4(C2F('+rdnom+'simblk),tout,he);'
           '      break;'
-          '    }'
-          '']
+          '    }']
   end
 
-  if nx <> 0 then
+  //** fix bug provided by Roberto Bucher
+  //** Alan, 13/10/07
+  if nX <> 0 then
     Code=[Code;
-          '  block_'+rdnom+'['+string(kf-1)+'].nx = '+...
-           string(nx)+';';
-          '  block_'+rdnom+'['+string(kf-1)+'].x  = '+...
-           '&(x['+string(xptr(kf)-1)+']);'
-          '  block_'+rdnom+'['+string(kf-1)+'].xd = '+...
-           '&(xd['+string(xptr(kf)-1)+']);']
+          ''
+          '    /* update ptrs of continuous array */']
+    for kf=1:nblk
+      nx=xptr(kf+1)-xptr(kf);  //** number of continuous state
+      if nx<>0 then
+        Code=[Code;
+              '    block_'+rdnom+'['+string(kf-1)+'].nx = '+...
+                string(nx)+';';
+              '    block_'+rdnom+'['+string(kf-1)+'].x  = '+...
+               '&(x['+string(xptr(kf)-1)+']);'
+              '    block_'+rdnom+'['+string(kf-1)+'].xd = '+...
+               '&(xd['+string(xptr(kf)-1)+']);']
+      end
+    end
   end
 
   Code=[Code
+        ''
+        '    /* update current time */'
         '    t=t+dt;'
         '  }']
 
