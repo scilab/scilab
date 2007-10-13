@@ -2854,7 +2854,7 @@
 </FILE>
 
 
-<FILE name=''FROMWSB' type='LATEX'>
+<FILE name='FROMWSB' type='LATEX'>
 \begin{itemize}
 
 \item {\bf Variable name:} This variable is defined in Scilab and
@@ -2924,7 +2924,7 @@ for which data is available from the workspace.
 \end{itemize}
 </FILE>
 
-<FILE name=''FROMWS_c type='LATEX'>
+<FILE name='FROMWS_c' type='LATEX'>
 The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 </FILE>
 
