@@ -7,14 +7,21 @@ function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select
 // do_delete - delete a scicos object
 // get first object to delete
 
+if %win<>curwin then disp('window mismatch in do_delete'),return,end
+
+  Select=Select(find(Select(:,2)==curwin),:)  //make sure only current window selects are considered
+
   win = %win;
   xc = %pt(1); yc = %pt(2)  ;
   K = getobj(scs_m,[xc;yc]) ;
 
   //** check the click over an empty object 
-  if K==[] then
-         return ; //** EXIT 
+  if K==[]|intersect(K,Select(:,1)')<>[] then
+        K=Select(:,1)'  // on empty space->delete selected blocks
+        if K==[] then return,end  //nothing to do
+  //otherwise consider only K
   end
+  
 
   needreplay = replayifnecessary() ;
   scs_m_save = scs_m               ;

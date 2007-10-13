@@ -148,6 +148,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scicos_lhb_list(1) = list('Open/Set',..
 			     'Cut',..
 			     'Copy',..
+                             'Delete',..
 			     'Smart Move',..
 			     'Move',..
 			     'Duplicate',..

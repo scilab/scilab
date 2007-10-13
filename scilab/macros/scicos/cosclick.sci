@@ -55,10 +55,10 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   end
 
   //**-----------------------------------------------------------
-  chngwin=%f
+  //chngwin=%f  //not needed anymore because of modification of rubberbox
   if or(btn==[20,21,22]) then 
     btn=btn-20
-    chngwin=%t
+    //chngwin=%t //not needed anymore because of modification of rubberbox
   end
   
   if (win==-1)& (btn==-2)&part(str,1:7)=='execstr' then
@@ -70,8 +70,9 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   if win<>[] & find(win==inactive_windows(2))<>[] then
     global Scicos_commands
     pathh=inactive_windows(1)(find(win==inactive_windows(2)))
-    
-    if chngwin & or(btn==[0,1]) then btn=3,end  // in case of window
+
+ //not needed anymore because of modification of rubberbox    
+//    if chngwin & or(btn==[0,1]) then btn=3,end  // in case of window
                                                 // switching to another
                                                 // superblock only
                                                 // consider click to
@@ -181,8 +182,8 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
 
     //** ------ Key combos ------------------------------------ 
         
-    // [CRTL]+[x] | [Delete]   | [Backspace]  --> Cut
-    if (btn==1120)|(btn==65288)|(btn==65535) then //** [CRTL]+[x] --> Cut
+    // [CRTL]+[x] --> Cut
+    if (btn==1120) then //** [CRTL]+[x] --> Cut
       Cmenu="Cut"; %pt=[];
     
     elseif (btn==1099) then            //** [CTRL]+[c] --> Copy
@@ -191,7 +192,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     elseif (btn==1118) then            //** [CTRL]+[v] --> Paste 
       Cmenu="Paste"; %pt = [xc,yc] ;   //** acquire the position for the "Paste"
     
-    elseif (btn==255) then             //** Backspace  --> Delete (erase) object          
+    elseif (btn==255)|(btn==65288)|(btn==65535)  then  // not sure what 255 is, | [Delete]   | [Backspace] 
       Cmenu="Delete"; %pt=[];
     
     //** ----- Mouse + Keyb. combos ---------------------------  

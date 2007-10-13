@@ -24,6 +24,8 @@ function OpenSet_()
       message(['This window is not active anymore or';
 	       'the browser is not up-to-date.'])
       %scicos_navig=[]  // stop navigation
+      Scicos_commands=[]
+      Cmenu=[];%pt=[]
       return
     end
     

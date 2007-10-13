@@ -1,10 +1,8 @@
 function [scs_m] = do_stupidMultimove(%pt, Select, scs_m)
 // Copyright INRIA
-//** 15 Jan 2007
-//** 23 Jan 2007
-//** 25 Jan 2007
-//** 19 Mar 2007 : open link bugfix  
 //** ---------------------------------   M U L T I     M O V E   -----------------------------------------
+
+have_moved=%f
 
 // Acquire the current window
 // NB : the MultiMove works ONLY in the current window    
@@ -25,25 +23,26 @@ function [scs_m] = do_stupidMultimove(%pt, Select, scs_m)
   //**------------------------------------------------------------------
   
   //** scs_m , Select, xc yc (mouse coordinate of the last valid event)
-  scs_m = stupid_MultiMoveObject(scs_m, Select, xc, yc)  ; //** see below in the code
+  [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)  ; //** see below in the code
 
   //**------------------------------------------------------------------
 
-  //** un useful check here ! 
+
   if Cmenu=='Quit' then
     //active window has been closed
     [%win,Cmenu] = resume(%win,Cmenu)
   end
 
-  [scs_m_save,enable_undo,edited,nc_save,needreplay] = resume(scs_m_save,%t,%t,needcompile,needreplay)
+  if have_moved then
+    [scs_m_save,enable_undo,edited,nc_save,needreplay] = resume(scs_m_save,%t,%t,needcompile,needreplay)
+  end
 endfunction
-//**------------------------------------------------------------------------------------------------------
-//**
-//********************************************************************************************************
-//
-//  ---------------------------- Move Blocks and connected Link(s) --------------------------------------- 
-//
-function scs_m = stupid_MultiMoveObject(scs_m, Select, xc, yc)
+
+
+//  ---------------------------- Move Blocks and connected Link(s) ----------------------------
+
+
+function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
   // Move Selected Blocks/Texts and Links and modify connected (external) links if any
   
   //** scs_m  : the local level diagram 
@@ -218,7 +217,7 @@ function scs_m = stupid_MultiMoveObject(scs_m, Select, xc, yc)
   xmt = xm ;
   ymt = ym ; //** init ...
 
-  //** --------------------------------- MOVE BLOCK WITH CONNECTED LINKS -------------------------------
+  //** --------------------------------- MOVE BLOCK WITH CONNECTED LINKS ------------
 
   xco = xc;
   yco = yc;
@@ -233,9 +232,10 @@ function scs_m = stupid_MultiMoveObject(scs_m, Select, xc, yc)
 
   drawlater();
 
-    //**----------------------------------------------------------------------------------------------------------
-    //** ------------------------------- INTERACTIVE MOVEMENT LOOP -----------------------------------------------
 
+    //** ------------------------------- INTERACTIVE MOVEMENT LOOP ------------------------------
+
+    moved_dist=0
     while 1 do //** interactive move loop
 
       rep = xgetmouse(0,[%t,%t]); //** the event queue is NOT cleared
@@ -251,6 +251,8 @@ function scs_m = stupid_MultiMoveObject(scs_m, Select, xc, yc)
       if gh_figure.figure_id<>curwin | rep(3)==-100 then
 	[%win,Cmenu] = resume(curwin,'Quit') ;
       end
+
+
 
       //**------------------------------------------------------------------
       //** Mouse movement limitation: to avoid go off the screen ;) 
@@ -272,6 +274,10 @@ function scs_m = stupid_MultiMoveObject(scs_m, Select, xc, yc)
       //** Integrate the movements
       move_x = move_x +  delta_x ;
       move_y = move_y +  delta_y ;
+
+      moved_dist=moved_dist+abs(delta_x)+abs(delta_y)
+      // under window clicking on a block in a different window causes a move
+      if moved_dist>.001 then have_moved=%t,end
 
       //** Move the SuperCompound
       for k = SuperCompound_id 
