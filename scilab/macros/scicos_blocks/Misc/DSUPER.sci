@@ -17,16 +17,18 @@ case 'set' then
  graphics=arg1.graphics;
  exprs=graphics.exprs(1)
  exprs0=graphics.exprs(2)(1)
- btitre=graphics.exprs(2)(2)
+ btitre=graphics.exprs(2)(2)(1)
+ bitems=graphics.exprs(2)(2)(2:$)
  if exprs0==[] then x=arg1,return,end
+
  tt=exprs0(1);
- ss=list('mat',[-1,-1])
  for i=2:size(exprs0,1)
    tt=tt+','+exprs0(i),
-   ss($+1)='mat';ss($+1)=[-1,-1];
  end
 
- execstr('[ok,'+tt+',exprs]=getvalue(btitre,exprs0,ss,exprs)')
+ ss=graphics.exprs(2)(3)
+
+ execstr('[ok,'+tt+',exprs]=getvalue(btitre,bitems,ss,exprs)')
  
  if ok then
   x=arg1

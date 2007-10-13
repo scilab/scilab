@@ -16,24 +16,32 @@ function fname=do_saveblockgui(o)
 
   graphics=o.graphics
   exprs0=graphics.exprs(2)(1)
-  btitre=graphics.exprs(2)(2)
+  btitre=graphics.exprs(2)(2)(1)
+  bitems=graphics.exprs(2)(2)(2:$)
   if exprs0==[] then 
      txtset='x=arg1,return'
   else
      tt='%scicos_context.'+exprs0(1);
-     ss=list('mat',[-1,-1])
      for i=2:size(exprs0,1)
        tt=tt+',%scicos_context.'+exprs0(i),
-       ss($+1)='mat';ss($+1)=[-1,-1];
      end
-     
+     ss=graphics.exprs(2)(3)
+
      txtset=[
           '  y=needcompile'
           '  typ=list()'
           '  graphics=arg1.graphics;'
           '  exprs=graphics.exprs'
+          '  Btitre=..'
+          '    '+sci2exp(btitre)
+          '  Exprs0=..'
+          '    '+sci2exp(exprs0)
+          '  Bitems=..'
+          '    '+sci2exp(bitems)
+          '  Ss=..'
+          '    '+sci2exp(ss)
           '  %scicos_context=struct()'
-          '  [ok,'+tt+',exprs]=getvalue('+sci2exp(btitre)+','+strcat(sci2exp(exprs0))+','+strcat(sci2exp(ss))+',exprs)'
+          '  [ok,'+tt+',exprs]=getvalue(Btitre,Exprs0,Ss,exprs)'
           '  if ok then'
           '     x=arg1'
           '     sblock=x.model.rpar'

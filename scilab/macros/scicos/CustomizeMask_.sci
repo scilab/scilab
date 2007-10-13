@@ -12,7 +12,7 @@ if typeof(o)=='Block' then
       ['Title of the GUI';items],[o.graphics.exprs(2)(2);items])
 
       if result<>[] & ~isequal(items,result) then
-         o.graphics.exprs(2)=list(result(2:$),result(1));
+         o.graphics.exprs(2)(2)=result;
          scs_m.objs(i)=o;
          edited=%t
       end

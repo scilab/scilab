@@ -9,11 +9,12 @@ if typeof(o)=='Block' then
    model=o.model
    graphics=o.graphics;
    if model.sim=='super' then  //
-      params=FindSBParams(model.rpar,[])
+      [params,param_types]=FindSBParams(model.rpar,[])
       bname=model.rpar.props.title(1)
       model.sim='csuper'
       model.ipar=1 ;  // specifies the type of csuper (mask)
-      graphics.exprs=list(params,list(params,"Set block parameters"));     
+      graphics.exprs=list(params,list(params,..
+                    ["Set block parameters";params],param_types));     
       graphics.gr_i=list('xstringb(orig(1),orig(2),'"'+..
         bname+''",sz(1),sz(2),''fill'');',8)
       o.model=model;

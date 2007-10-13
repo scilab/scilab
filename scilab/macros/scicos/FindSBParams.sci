@@ -1,10 +1,10 @@
-function params=FindSBParams(scs_m,params)
+function [params,param_types]=FindSBParams(scs_m,params)
   prot = funcprot();
   funcprot(0);
   deff('varargout=getvalue(a,b,c,d)',..
     ['global par_types'
      'par_types=c'
-     '1/0'])
+     'x=1;y=x(2)'])
   funcprot(prot); 
       
   global par_types
@@ -46,6 +46,29 @@ function params=FindSBParams(scs_m,params)
   deff('%Font3()',Fun)
   xx=macrovar(%Font3);
   params=xx(3)
+  param_types=list()
+  for X=params'
+    select evstr('type('+X+')')
+    case 1
+      param_types($+1)='pol'
+      param_types($+1)=-1
+    case 2
+      param_types($+1)='pol'
+      param_types($+1)=-1
+    case 8
+      param_types($+1)='mat'
+      param_types($+1)=[-1,-1]
+    case 15
+      param_types($+1)='lis'
+      param_types($+1)=-1
+    case 16
+      param_types($+1)='lis'
+      param_types($+1)=-1
+    case 17
+      param_types($+1)='lis'
+      param_types($+1)=-1
+    end
+  end
   clearglobal('par_types')
 endfunction
 
