@@ -1,7 +1,7 @@
 function CodeGeneration_()
 //Input editor function of Scicos code generator
 //
-//@l@n, 13/10/07
+//@l@n, 14/10/07
 //
 //
 //** 10 Set 2007 : cleaner startup code by Simone Mannori  
@@ -3768,18 +3768,16 @@ function Code=make_standalone42()
 
   //** init
   Code=[Code;
-        '   '+get_comment('ev',list(4))]
+        '  '+get_comment('flag',list(4))]
 
   for kf=1:nblk
     if or(kf==act) | or(kf==cap) then
-//       if stalone then
         txt = call_block42(kf,0,4);
         if txt <> [] then
           Code=[Code;
                 '';
                 '  '+txt];
         end
-//       end
     else
       txt = call_block42(kf,0,4);
       if txt <> [] then
@@ -3796,30 +3794,11 @@ function Code=make_standalone42()
   if txt<>[] then
     Code=[Code;
           ''
-          '    /* initial blocks must be called with flag 1 */'
+          '    /* Initial blocks must be called with flag 1 */'
           txt];
   end
 
-//   for kf=iord(:,1)'
-//     if or(kf==act) then
-// //       if stalone then
-//         txt = call_block42(kf,0,1);
-//         if txt <> [] then
-//           Code=[Code;
-//                 '';
-//                 '  '+txt];
-//         end
-// //       end
-//     else
-//       txt = call_block42(kf,0,1);
-//       if txt <> [] then
-//         Code=[Code;
-//               '';
-//               '  '+txt];
-//       end
-//     end
-//   end
-
+  //** begin input main loop on time
   Code=[Code;
         ''
         '  while (t<=tf) {';
@@ -3901,8 +3880,8 @@ function Code=make_standalone42()
           ''
           '    tout=t;'
           ''
-          '   /* integrate until the cummulative add of the integration step'
-          '    * time doesn''t cross the sample time step'
+          '   /* integrate until the cumulative add of the integration'
+          '    * time step doesn''t cross the sample time step'
           '    */'
           '    while (tout+h<t+dt){'
           '      switch (solver) {'
@@ -3969,18 +3948,16 @@ function Code=make_standalone42()
   //** flag 5
   Code=[Code;
         ''
-        '  '+get_comment('ev',list(5))]
+        '  '+get_comment('flag',list(5))]
 
   for kf=1:nblk
     if or(kf==act) | or(kf==cap) then
-//       if stalone then
         txt = call_block42(kf,0,5);
         if txt <> [] then
           Code=[Code;
                 '';
                 '  '+txt];
         end
-//       end
     else
       txt = call_block42(kf,0,5);
       if txt <> [] then
@@ -3992,6 +3969,7 @@ function Code=make_standalone42()
   end
 
   Code=[Code
+        ''
         '  return 0;'
         '}'
         ''
