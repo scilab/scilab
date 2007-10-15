@@ -512,7 +512,7 @@ msgstr	""
 #
 # File: src/c/addinter.c, line: 343
 #, possible-c-format
-msgid	"addinter failed for %s Not  found!"
+msgid	"addinter failed for %s not found!"
 msgstr	""
 #
 # File: src/c/LoadFunctionsTab.c, line: 96
