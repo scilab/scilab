@@ -88,7 +88,7 @@ BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 	extract_bit_u32_UH1.o extract_bit_u16_UH1.o extract_bit_u8_UH1.o extract_bit_u32_MSB1.o\
 	extract_bit_u16_MSB1.o extract_bit_u8_MSB1.o extract_bit_u32_RB1.o extract_bit_u16_RB1.o \
         extract_bit_u8_RB1.o rndblk_m.o relational_op.o curve_c.o counter.o m_frequ.o \
-        tows_c.o rndblkz_m.o fromws_c.o mathermit_m.o scicosexit.o
+        tows_c.o rndblkz_m.o fromws_c.o mathermit_m.o scicosexit.o automat.o
 
 OBJSF=intcos.o coselm.o sciblk.o  \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
