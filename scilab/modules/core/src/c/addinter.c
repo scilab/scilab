@@ -340,7 +340,7 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
       DynInterf[nums[j]].Nshared = ilib;
       if ( SearchInDynLinks(names[0],&DynInterf[nums[j]].func) < 0 ) 
 	{
-	  if (getWarningMode()) message_scilab("addinter failed for %s Not  found!",names[j]);
+	  if (getWarningMode()) message_scilab("addinter failed for %s not found!",names[j]);
 	  return -1;
 	}
       else
