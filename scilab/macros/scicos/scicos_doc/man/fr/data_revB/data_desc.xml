@@ -992,6 +992,30 @@ Ajoutez ici un paragraphe pour la description de la fonction
 </DESCRIPTION>
 </FILE>
 
+<FILE name='ENDBLK' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='ESELECT_f' type='LATEX'>
 Bloc spécial similaire au bloc If-Then-Else. Les entrées/sorties
 événementielles sont synchronisées. L'événement entrant est redirigé
@@ -1584,19 +1608,6 @@ Q(t-1)\\
 </DESCRIPTION>
 </FILE>
 
-<FILE name='Lorentz_diagr' type='LATEX'>
-Le système de Lorentz est défini par le système continu
-d'équations non-linéaires différentielles suivant :
-\begin{eqnarray}
-\frac{dx(t)}{dt}&=&a\left(-x(t)+y(t)\right)\\
-\frac{dy(t)}{dt}&=&bx(t)-y(t)-x(t)y(t)\\
-\frac{dz(t)}{dt}&=&-cx(t)+x(t)y(t)
-\end{eqnarray}
-Les variables d'états $x(t)$, $y(t)$ et $z(t)$ sont respectivement la température de
-l'air, la vitesse du vent et une troisième variable qui représente la variation de la
-température en fonction de l'altitude.
-</FILE>
-
 <FILE name='LOGBLK_f' type='LATEX'>
 Ce bloc calcule $y(i)=log(u(i))/log(a)$. 
 Les tailles des ports d'entrée/sortie sont déterminés par le contexte.
@@ -1652,6 +1663,19 @@ Ce bloc réalise une fonction non-linéaire qui est défini grâce à un
 <FILE name='Linear_pal' type='LATEX'>
 Cette palette contient des opérateurs basiques et des sous-systèmes
 linéaires.
+</FILE>
+
+<FILE name='Lorentz_diagr' type='LATEX'>
+Le système de Lorentz est défini par le système continu
+d'équations non-linéaires différentielles suivant :
+\begin{eqnarray}
+\frac{dx(t)}{dt}&=&a\left(-x(t)+y(t)\right)\\
+\frac{dy(t)}{dt}&=&bx(t)-y(t)-x(t)y(t)\\
+\frac{dz(t)}{dt}&=&-cx(t)+x(t)y(t)
+\end{eqnarray}
+Les variables d'états $x(t)$, $y(t)$ et $z(t)$ sont respectivement la température de
+l'air, la vitesse du vent et une troisième variable qui représente la variation de la
+température en fonction de l'altitude.
 </FILE>
 
 <FILE name='MATBKSL' type='XML'>
@@ -2277,6 +2301,18 @@ Un événement est généré lorsque l'unique entrée de ce bloc traverse
 la valeur zéro lors d'un front montant.
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='NPN' type='XML'>
 <DESCRIPTION>
 <DESCRIPTION_INDENT>
@@ -2319,6 +2355,18 @@ Elle est fournie pour pouvoir assurer la compatibilité
 avec des anciens diagrammes contenant ces anciens blocs.
 </FILE>
 
+<FILE name='OpAmp' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='Others_pal' type='XML'>
 <DESCRIPTION>
 
@@ -2336,6 +2384,18 @@ depending on the type of the PDE and runs the solvers.
 </FILE>
 
 <FILE name='PID' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
@@ -2990,6 +3050,18 @@ fichers, ainsi que des ports d'entrée utilisés dans les superblocs.\\
 Les blocs de cette palette ne possèdent pas de ports réguliers d'entrée.
 </FILE>
 
+<FILE name='Switch' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='TANBLK_f' type='LATEX'>
 $$y={\rm tan}(u)$$
 </FILE>
@@ -3531,6 +3603,18 @@ block is defined interactively using dialogue boxes and in Scilab
 language. During simulation, these instructions are interpreted by
 Scilab; the simulation of diagrams that include these types of blocks
 is slower. For more information see Scicos reference manual. 
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>

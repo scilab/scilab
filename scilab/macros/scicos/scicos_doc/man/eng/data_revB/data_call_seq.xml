@@ -235,6 +235,13 @@
   </CALLING_SEQUENCE>
 </FILE>
 
+<FILE name='set_blockerror' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
 <FILE name='set_xproperty' type='XML'>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>

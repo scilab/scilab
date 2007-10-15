@@ -962,6 +962,30 @@ Add here a paragraph of the function description
 </DESCRIPTION>
 </FILE>
 
+<FILE name='ENDBLK' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='ESELECT_f' type='LATEX'>
 Special block similar to If-Then-Else. Input and output are synchronized.
 The incoming event is directed to one of the output event ports depending
@@ -1545,16 +1569,6 @@ Q(t-1)\\
 </DESCRIPTION>
 </FILE>
 
-<FILE name='Lorentz_diagr' type='LATEX'>
-The Lorentz's system is defined by the following continuous system : 
-\begin{eqnarray}
-\frac{dx(t)}{dt}&=&a\left(-x(t)+y(t)\right)\\
-\frac{dy(t)}{dt}&=&bx(t)-y(t)-x(t)y(t)\\
-\frac{dz(t)}{dt}&=&-cx(t)+x(t)y(t)
-\end{eqnarray}
-The state variables $x(t)$, $y(t)$ and $z(t)$ are respectively temperature of the air, speed of wind and a third variable which represents the variation of temperature according to the altitude.
-</FILE>
-
 <FILE name='LOGBLK_f' type='LATEX'>
 This block realizes  $y(i)=log(u(i))/log(a)$ . The input and output port
 sizes are determined by the context.  
@@ -1608,6 +1622,16 @@ editor.
 
 <FILE name='Linear_pal' type='LATEX'>
 That palette contains basic linear operators and sub-systems.
+</FILE>
+
+<FILE name='Lorentz_diagr' type='LATEX'>
+The Lorentz's system is defined by the following continuous system : 
+\begin{eqnarray}
+\frac{dx(t)}{dt}&=&a\left(-x(t)+y(t)\right)\\
+\frac{dy(t)}{dt}&=&bx(t)-y(t)-x(t)y(t)\\
+\frac{dz(t)}{dt}&=&-cx(t)+x(t)y(t)
+\end{eqnarray}
+The state variables $x(t)$, $y(t)$ and $z(t)$ are respectively temperature of the air, speed of wind and a third variable which represents the variation of temperature according to the altitude.
 </FILE>
 
 <FILE name='MATBKSL' type='XML'>
@@ -2223,6 +2247,18 @@ An output event is generated when the unique input crosses zero with a
 positive slope.
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='NPN' type='XML'>
 <DESCRIPTION>
 <DESCRIPTION_INDENT>
@@ -2265,6 +2301,18 @@ It is provided to support compatibility with old diagrams
 that use old blocks.
 </FILE>
 
+<FILE name='OpAmp' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='Others_pal' type='XML'>
 <DESCRIPTION>
 
@@ -2282,6 +2330,18 @@ depending on the type of the PDE and runs the solvers.
 </FILE>
 
 <FILE name='PID' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
@@ -2908,6 +2968,18 @@ ports used in superblocks.\\
 The blocks of that palette doesn't have regular input ports.
 </FILE>
 
+<FILE name='Switch' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='TANBLK_f' type='LATEX'>
 $$y={\rm tan}(u)$$
 </FILE>
@@ -3450,6 +3522,18 @@ block is defined interactively using dialogue boxes and in Scilab
 language. During simulation, these instructions are interpreted by
 Scilab; the simulation of diagrams that include these types of blocks
 is slower. For more information see Scicos reference manual.
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>

@@ -494,6 +494,18 @@ B=[12;15;18]
 </EXAMPLE>
 </FILE>
 
+<FILE name='ENDBLK' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='ESELECT_f' type='XML'>
 <EXAMPLE>
 
@@ -819,6 +831,12 @@ The easiest example to consider is the OR example. In this case we have two inpu
 </EXAMPLE>
 </FILE>
 
+<FILE name='Lorentz_diagr' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='MATBKSL' type='XML'>
 <EXAMPLE>
 <P>
@@ -1061,7 +1079,7 @@ y=[1 2 3 4 5 6]
 <FILE name='M_freq' type='XML'>
 <EXAMPLE>
 <P>
-Let us take the exemple where the sample time is equal to [1 1 2] and the offset is equal to [0 .5 0]. Consider t=simulation time.
+Let us take the example where the sample time is equal to [1 1 2] and the offset is equal to [0 .5 0]. Consider t=simulation time.
 When t=0, the fifth output is activated (001 + 100).
 When t=0.5, the second output is activated (010).
 When t=1, the first output is activated (001).
@@ -1093,6 +1111,12 @@ When t=2 we loop back to 0.
 </EXAMPLE>
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='NPN' type='XML'>
 <EXAMPLE>
 
@@ -1114,6 +1138,12 @@ When t=2 we loop back to 0.
 </EXAMPLE>
 </FILE>
 
+<FILE name='OpAmp' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='PDE' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
@@ -1123,6 +1153,12 @@ When t=2 we loop back to 0.
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='PNP' type='XML'>
@@ -1423,6 +1459,12 @@ When t=2 we loop back to 0.
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='Switch' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='TANBLK_f' type='XML'>
@@ -1762,6 +1804,11 @@ When t=2 we loop back to 0.
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>

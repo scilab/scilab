@@ -190,6 +190,7 @@ function tt=generate_scs_outline()
                "        <SCI varpath=""autopath"" name=""pointer_xproperty""></SCI>"
                "       <SCI varpath=""autopath"" name=""scicos_time""></SCI>"
                "       <SCI varpath=""autopath"" name=""set_xproperty""></SCI>"
+               "       <SCI varpath=""autopath"" name=""set_blockerror""></SCI>"
                "     </SECTION>";
                "   </SUBCHAPTER>";
                "   <SUBCHAPTER eng=""Use of Modelica"" fr=""Utilisation de Modelica"">";
@@ -991,7 +992,8 @@ listf_of_interf=["","buildouttb","sci";
                  "","scicosim.sci","sci";
                  "","getscicosvars","sci";
                  "","var2vec","sci";
-                 "","vec2var","sci";];
+                 "","vec2var","sci";
+                 "","set_blockerror","sci";];
 
 //**--palettes--*/
 
@@ -1148,7 +1150,7 @@ list_of_about   = ["","About_scicos","sci"];
 
 
 //**-- Demos --*/
-list_of_demos=[SCI+'/demos/scicos/','Lorentz.cosf',"diagr"];
+lists_of_diagr_demos=[SCI+'/demos/scicos/','Lorentz.cosf',"diagr"];
 //**------------*/
 
 //**----------------------------------------------------------**//
@@ -1192,7 +1194,8 @@ my_list = [my_listf;
            listf_of_ABCD;
            list_of_scistruc
            list_of_prgblk
-           list_of_about];
+           list_of_about
+           lists_of_diagr_demos];
 
 //**------------------ABCDblocks.xml generation------------------**//
 list_of_ABCDblocks=[my_list(find(my_list(:,3)=='block'),:);

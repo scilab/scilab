@@ -623,6 +623,22 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='ENDBLK' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='ESELECT_f' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Ramine Nikoukhah'>
@@ -1048,18 +1064,18 @@ INRIA
 </AUTHORS>
 </FILE>
 
-<FILE name='Lorentz_diagr' type='XML'>
-<AUTHORS>
- <AUTHORS_ITEM label='Alan Layec'>
- INRIA
- </AUTHORS_ITEM>
-</AUTHORS>
-</FILE>
-
 <FILE name='Linear_pal' type='XML'>
 <AUTHORS>
 
 </AUTHORS>
+</FILE>
+
+<FILE name='Lorentz_diagr' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='MATBKSL' type='XML'>
@@ -1338,6 +1354,12 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
+</FILE>
+
 <FILE name='NPN' type='XML'>
 <AUTHORS>
 www.modelica.org
@@ -1380,6 +1402,12 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='OpAmp' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
+</FILE>
+
 <FILE name='Others_pal' type='XML'>
 <AUTHORS>
 
@@ -1398,6 +1426,12 @@ EADS 2005-01-16
 <AUTHORS>
 
 </AUTHORS>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
 </FILE>
 
 <FILE name='PNP' type='XML'>
@@ -1824,6 +1858,12 @@ Masoud Najafi, INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='Switch' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
+</FILE>
+
 <FILE name='TANBLK_f' type='XML'>
 <AUTHORS>
 
@@ -2218,6 +2258,12 @@ INRIA
 <AUTHORS>
 
 </AUTHORS>
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>

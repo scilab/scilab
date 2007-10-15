@@ -470,10 +470,20 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='ENDBLK' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='ESELECT_f' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -828,6 +838,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='Lorentz_diagr' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='MATBKSL' type='XML'>
 <EXAMPLE>
 
@@ -1059,6 +1075,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='NPN' type='XML'>
 <EXAMPLE>
 
@@ -1087,6 +1109,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='OpAmp' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='PDE' type='XML'>
 <EXAMPLE>
 
@@ -1097,6 +1125,12 @@
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='PNP' type='XML'>
@@ -1479,6 +1513,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='Switch' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='TANBLK_f' type='XML'>
 <EXAMPLE>
 
@@ -1823,6 +1863,11 @@
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>

@@ -2532,6 +2532,46 @@
   </PARAM>
 </FILE>
 
+<FILE name='ENDBLK' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Final simulation time</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Final simulation time</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='ESELECT_f' type='LATEX'>
 %automatically generated, please edit
 \begin{itemize}
@@ -2852,7 +2892,6 @@
     </PARAM_INDENT>
   </PARAM>
 </FILE>
-
 
 <FILE name='FROMWSB' type='LATEX'>
 \begin{itemize}
@@ -4420,6 +4459,122 @@ should be edited with another text editor.
 </PARAM>
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Width [m]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Length [m]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 2.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Transconductance parameter [A/(V*V)]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 3.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Zero bias threshold voltage [V]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 4.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Bulk threshold parameter</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 5.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Reduction of pinch-off region</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 6.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Narrowing of channel [m]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 7.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Shortening of channel [m]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 8.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Drain-Source-Resistance [Ohm]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 9.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='NPN' type='LATEX'>
 \begin{table}[h!b!p!]
 \begin{tabular}{lll}
@@ -4486,6 +4641,14 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='OpAmp' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+  </PARAM_INDENT>
   </PARAM>
 </FILE>
 
@@ -4574,6 +4737,122 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
       </PARAM_ITEM>
 
     </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Width [m]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Length [m]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 2.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Transconductance parameter [A/(V*V)]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 3.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Zero bias threshold voltage [V]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 4.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Bulk threshold parameter</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 5.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Reduction of pinch-off region</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 6.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Narrowing of channel [m]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 7.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Shortening of channel [m]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 8.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Drain-Source-Resistance [Ohm]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 9.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
   </PARAM>
 </FILE>
 
@@ -5964,6 +6243,38 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='Switch' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Resistance in On state (Ohm)</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Resistance in Off state (Ohm)</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 2.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
   </PARAM>
 </FILE>
 
@@ -7716,6 +8027,23 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	discrete state, output events date, block ending)\\
 	Properties : Type 'vec' of size 1
  \end{itemize}
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Name of param.</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      add here the parameter description
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='set_xproperty' type='LATEX'>

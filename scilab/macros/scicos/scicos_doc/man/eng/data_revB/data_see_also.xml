@@ -320,9 +320,7 @@
 
 <FILE name='C_macros' type='XML'>
   <SEE_ALSO>
-  <SEE_ALSO_ITEM>
-   <LINK>add a key here</LINK>
-  </SEE_ALSO_ITEM>
+
   </SEE_ALSO>
 </FILE>
 
@@ -502,6 +500,18 @@
 <SEE_ALSO>
 
 </SEE_ALSO>
+</FILE>
+
+<FILE name='ENDBLK' type='XML'>
+  <SEE_ALSO>
+  <SEE_ALSO_ITEM><LINK>END_c</LINK></SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <SEE_ALSO>
+  <SEE_ALSO_ITEM><LINK>ENDBLK</LINK></SEE_ALSO_ITEM>
+  </SEE_ALSO>
 </FILE>
 
 <FILE name='ESELECT_f' type='XML'>
@@ -882,6 +892,12 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='Lorentz_diagr' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='MATBKSL' type='XML'>
 <SEE_ALSO>
 <SEE_ALSO_ITEM><LINK>MATDIV</LINK></SEE_ALSO_ITEM>
@@ -1116,6 +1132,12 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='NPN' type='XML'>
 <SEE_ALSO>
 
@@ -1160,6 +1182,12 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='OpAmp' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='Others_pal' type='XML'>
 <SEE_ALSO>
 
@@ -1178,6 +1206,12 @@
 <SEE_ALSO>
 
 </SEE_ALSO>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
 </FILE>
 
 <FILE name='PNP' type='XML'>
@@ -1580,6 +1614,12 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='Switch' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='TANBLK_f' type='XML'>
 <SEE_ALSO>
 
@@ -1948,6 +1988,12 @@
 <SEE_ALSO>
 
 </SEE_ALSO>
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>

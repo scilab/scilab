@@ -653,6 +653,22 @@
   <SHORT_DESCRIPTION name="EDGE_TRIGGER">EDGE_TRIGGER</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='ENDBLK' type='XML'>
+  <SHORT_DESCRIPTION name="ENDBLK">Bloc fin de simulation</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='ENDBLK_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="ENDBLK">ENDBLK</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+<SHORT_DESCRIPTION name="END_c">Bloc fin de simulation (END_c)</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='END_c_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="END_c">END_c</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='ESELECT_f' type='XML'>
 <SHORT_DESCRIPTION name="ESELECT_f">Bloc synchrone Event-Select</SHORT_DESCRIPTION>
 </FILE>
@@ -1089,6 +1105,10 @@
 <SHORT_DESCRIPTION name="Linear">Palette Lineaire</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='Lorentz_diagr' type='XML'>
+  <SHORT_DESCRIPTION name="Lorentz">Equation de Lorentz</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='MATBKSL' type='XML'>
 <SHORT_DESCRIPTION name="MATBKSL">MATBKSL Division matricielle à gauche</SHORT_DESCRIPTION>
 </FILE>
@@ -1365,6 +1385,18 @@
   <SHORT_DESCRIPTION name="NEGTOPOS_f">NEGTOPOS_f</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <SHORT_DESCRIPTION name="NMOS">NMOS titre</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='NMOS_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="NMOS">NMOS</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='NMOS_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="NMOS">NMOS</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='NPN' type='XML'>
 <SHORT_DESCRIPTION name="NPN">Transitor NPN </SHORT_DESCRIPTION>
 </FILE>
@@ -1409,6 +1441,18 @@
 <SHORT_DESCRIPTION name="OldBlocks">Palette des anciens blocs</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='OpAmp' type='XML'>
+  <SHORT_DESCRIPTION name="OpAmp">OpAmp titre</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='OpAmp_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="OpAmp">OpAmp</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='OpAmp_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="OpAmp">OpAmp</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='Others_pal' type='XML'>
 <SHORT_DESCRIPTION name="Others">Palette Others</SHORT_DESCRIPTION>
 </FILE>
@@ -1427,6 +1471,18 @@
 
 <FILE name='PID_intfunc' type='XML'>
   <SHORT_DESCRIPTION name="PID">PID</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
+  <SHORT_DESCRIPTION name="PMOS">PMOS titre</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='PMOS_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="PMOS">PMOS</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='PMOS_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="PMOS">PMOS</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='PNP' type='XML'>
@@ -1887,6 +1943,18 @@
 
 <FILE name='Sources_pal' type='XML'>
 <SHORT_DESCRIPTION name="Sources">Palette Sources</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='Switch' type='XML'>
+  <SHORT_DESCRIPTION name="Switch">Switch titre</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='Switch_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="Switch">Switch</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='Switch_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="Switch">Switch</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='TANBLK_f' type='XML'>
@@ -2757,10 +2825,6 @@
   <SHORT_DESCRIPTION name="logicalop_ui8">logicalop_ui8</SHORT_DESCRIPTION>
 </FILE>
 
-<FILE name='Lorentz_diagr' type='XML'>
-  <SHORT_DESCRIPTION name="Lorentz">Attracteur de Lorentz</SHORT_DESCRIPTION>
-</FILE>
-
 <FILE name='lookup_routcos' type='XML'>
   <SHORT_DESCRIPTION name="lookup">lookup</SHORT_DESCRIPTION>
 </FILE>
@@ -3325,6 +3389,10 @@
 <SHORT_DESCRIPTION name="scicos_time">Retourne le temps courant pendant la simulation</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='scicosexit_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="scicosexit">scicosexit</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='scicosim' type='XML'>
 <SHORT_DESCRIPTION name="scicosim">Fonction de simulation scicos en ligne de commande</SHORT_DESCRIPTION>
 </FILE>
@@ -3355,6 +3423,10 @@
 
 <FILE name='selector_routcos' type='XML'>
   <SHORT_DESCRIPTION name="selector">selector</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <SHORT_DESCRIPTION name="set_blockerror">Définit le numéro d'erreur de bloc</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>

@@ -541,6 +541,18 @@
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='ENDBLK' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='ESELECT_f' type='XML'>
 <USED_FUNCTIONS>
 
@@ -1288,6 +1300,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='NPN' type='XML'>
 <USED_FUNCTIONS>
 
@@ -1312,6 +1330,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='OpAmp' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='PDE' type='XML'>
 <USED_FUNCTIONS>
 </USED_FUNCTIONS>
@@ -1321,6 +1345,12 @@ for this block we have four differents functions:
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='PNP' type='XML'>
@@ -1712,6 +1742,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='Switch' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='TANBLK_f' type='XML'>
 <USED_FUNCTIONS>
 
@@ -2045,6 +2081,12 @@ for this block we have four differents functions:
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>

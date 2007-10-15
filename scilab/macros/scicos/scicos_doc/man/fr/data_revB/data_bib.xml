@@ -506,6 +506,18 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='ENDBLK' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='END_c' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='ESELECT_f' type='XML'>
 <BIBLIO>
 
@@ -868,16 +880,16 @@
 </BIBLIO>
 </FILE>
 
-<FILE name='Lorentz_diagr' type='XML'>
+<FILE name='Linear_pal' type='XML'>
 <BIBLIO>
 
 </BIBLIO>
 </FILE>
 
-<FILE name='Linear_pal' type='XML'>
-<BIBLIO>
+<FILE name='Lorentz_diagr' type='XML'>
+  <BIBLIO>
 
-</BIBLIO>
+  </BIBLIO>
 </FILE>
 
 <FILE name='MATBKSL' type='XML'>
@@ -1104,6 +1116,12 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='NMOS' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='NPN' type='XML'>
 <BIBLIO>
 
@@ -1146,6 +1164,12 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='OpAmp' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='Others_pal' type='XML'>
 <BIBLIO>
 
@@ -1164,6 +1188,12 @@
 <BIBLIO>
 
 </BIBLIO>
+</FILE>
+
+<FILE name='PMOS' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
 </FILE>
 
 <FILE name='PNP' type='XML'>
@@ -1563,6 +1593,12 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='Switch' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='TANBLK_f' type='XML'>
 <BIBLIO>
 
@@ -1929,6 +1965,12 @@
 <BIBLIO>
 
 </BIBLIO>
+</FILE>
+
+<FILE name='set_blockerror' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>
