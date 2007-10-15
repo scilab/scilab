@@ -61,7 +61,7 @@ while %t do
   case 'Simple Thermostat' then  
     scicos('SCI/demos/scicos/Simple_Thermostat.cosf');
   case 'Continuous Plant discrete controller' then  
-    scicos('SCI/demos/scicos/Continuous_Plant_Discreet_Controller.cosf');
+    scicos('SCI/demos/scicos/Plant_DiscreteController.cosf');
   case 'Simple demo' then  
     scicos('SCI/demos/scicos/Simple_Demo.cosf');
   case 'Bouncing ball' then  

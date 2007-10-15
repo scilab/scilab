@@ -2,7 +2,7 @@ scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
             wpar=[8.6695833,644.89784,-3.0345331,430.1486,867,590,126,74,608,500,308,54,1.4],..
-            Title=["Continuous_Plant_Discreet_Controller",..
+            Title=["Plant_DiscreteController",..
             "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/"],..
             tol=[0.0001,0.000001,1.000D-10,86,0,0],..
             tf=85,..
