@@ -86,7 +86,7 @@ msgstr	""
 # File: src/c/link_std.c, line: 381
 #, possible-c-format
 msgid	"Cannot read %s\n"
-msgstr	""
+msgstr	"Impossible de lire %s\n"
 #
 # File: src/c/link_std.c, line: 416
 #, possible-c-format
@@ -96,7 +96,7 @@ msgstr	""
 # File: src/c/link_std.c, line: 453
 #, c-format
 msgid	"variable PATH not defined\n"
-msgstr	""
+msgstr	"variable PATH non définie\n"
 #
 # File: src/c/link_std.c, line: 565
 # File: src/c/link_SYSV.c, line: 627
@@ -111,7 +111,7 @@ msgstr	""
 # File: src/c/msgs.c, line: 761
 # File: src/c/msgs.c, line: 990
 msgid	" Warning : "
-msgstr	""
+msgstr	" Attention : "
 #
 # File: src/c/msgs.c, line: 484
 msgid	"  Non convergence in the QZ algorithm. "
@@ -278,11 +278,11 @@ msgstr	""
 #
 # File: src/c/msgs.c, line: 771
 msgid	"real part"
-msgstr	""
+msgstr	"Partie réelle"
 #
 # File: src/c/msgs.c, line: 777
 msgid	"imaginary part"
-msgstr	""
+msgstr	"Partie imaginaire"
 #
 # File: src/c/msgs.c, line: 783
 #, possible-c-format
@@ -310,11 +310,11 @@ msgstr	""
 #
 # File: src/c/msgs.c, line: 822
 msgid	"System functions : "
-msgstr	""
+msgstr	"Fonctions systèmes : "
 #
 # File: src/c/msgs.c, line: 828
 msgid	" Commands:"
-msgstr	""
+msgstr	" Commandes:"
 #
 # File: src/c/msgs.c, line: 840
 #, possible-c-format
@@ -367,7 +367,7 @@ msgstr	""
 #
 # File: src/c/msgs.c, line: 1003
 msgid	"Warning : division by zero..."
-msgstr	""
+msgstr	"Attention : division par zéro..."
 #
 # File: src/c/msgs.c, line: 1009
 msgid	"Warning : singularity of 'log' or 'tan' function."
@@ -512,7 +512,7 @@ msgstr	""
 #
 # File: src/c/addinter.c, line: 343
 #, possible-c-format
-msgid	"addinter failed for %s Not  found!"
+msgid	"addinter failed for %s not found!"
 msgstr	""
 #
 # File: src/c/LoadFunctionsTab.c, line: 96
@@ -520,7 +520,7 @@ msgstr	""
 # File: src/c/getmodules.c, line: 151
 #, c-format
 msgid	"Error: could not parse file %s\n"
-msgstr	""
+msgstr	"Erreur: Impossible d'analyser (parser) le fichie %s\n"
 #
 # File: src/c/LoadFunctionsTab.c, line: 152
 #, c-format
@@ -548,7 +548,7 @@ msgstr	""
 # File: src/c/stack3.c, line: 703
 #, possible-c-format
 msgid	"Undefined variable %s."
-msgstr	""
+msgstr	"Variable indéfinie %s."
 #
 # File: src/c/stack3.c, line: 273
 msgid	"creadchain: argument must be a string."
@@ -575,11 +575,11 @@ msgstr	""
 #
 # File: src/c/GetExceptionCode.c, line: 79
 msgid	"unknown exception"
-msgstr	""
+msgstr	"Exception inconnue"
 #
 # File: src/c/errmsg.c, line: 42
 msgid	"incorrect assignment"
-msgstr	""
+msgstr	"Assignation incorrecte"
 #
 # File: src/c/errmsg.c, line: 47
 msgid	"invalid factor"
@@ -592,7 +592,7 @@ msgstr	""
 # File: src/c/errmsg.c, line: 61
 #, possible-c-format
 msgid	"undefined variable : %s"
-msgstr	""
+msgstr	"Variable indéfinie : %s"
 #
 # File: src/c/errmsg.c, line: 79
 msgid	"dot cannot be used as modifier for this operator"
@@ -1158,36 +1158,36 @@ msgstr	""
 #
 # File: src/c/inisci-c.c, line: 110
 msgid	"SCI not defined."
-msgstr	""
+msgstr	"Variable SCI non définie"
 #
 # File: src/c/inisci-c.c, line: 110
 # File: src/c/inisci-c.c, line: 150
 # File: src/c/inisci-c.c, line: 177
 msgid	"Warning"
-msgstr	""
+msgstr	"Attention"
 #
 # File: src/c/inisci-c.c, line: 112
 #, c-format
 msgid	"SCI not defined.\n"
-msgstr	""
+msgstr	"Variable SCI non définie\n"
 #
 # File: src/c/inisci-c.c, line: 150
 msgid	"SCIHOME not defined."
-msgstr	""
+msgstr	"Variable SCIHOME non définie"
 #
 # File: src/c/inisci-c.c, line: 152
 #, c-format
 msgid	"SCIHOME not defined.\n"
-msgstr	""
+msgstr	"Variable SCIHOME non définie.\n"
 #
 # File: src/c/inisci-c.c, line: 177
 msgid	"TMPDIR not defined."
-msgstr	""
+msgstr	"Variable TMPDIR non définie."
 #
 # File: src/c/inisci-c.c, line: 179
 #, c-format
 msgid	"TMPDIR not defined.\n"
-msgstr	""
+msgstr	"Variable TMPDIR non définie.\n"
 #
 # File: src/c/link_W95.c, line: 44
 # File: src/c/link_SYSV.c, line: 125
@@ -1719,7 +1719,7 @@ msgstr	"!!! ATTENTION !!!\n"
 # File: src/c/banier.c, line: 33
 msgid	"This software is being provided \"as is\", without any express or "
 	"\n"
-msgstr	""
+msgstr	"Ce logiciel est distribué sans aucune garantie.\n"
 #
 # File: src/c/banier.c, line: 34
 msgid	"implied warranty.\n"
@@ -1728,12 +1728,13 @@ msgstr	""
 # File: src/c/banier.c, line: 35
 msgid	"This is a development and not at all a final or stable version of "
 	"Scilab 5.0\n"
-msgstr	""
+msgstr	"Ce programme est en version de développement et ne représente en "
+	"rien ce que sera Scilab 5.0\n"
 #
 # File: src/c/banier.c, line: 36
 msgid	"that will be released in the future. A lot of features are missing "
 	"and buggy.\n"
-msgstr	""
+msgstr	"Beaucoup de fonctionnalités sont défectueuses ou manquantes.\n"
 #
 # File: src/c/banier.c, line: 37
 msgid	"In no event will the authors be held liable for any damages arising "
@@ -1767,12 +1768,12 @@ msgstr	""
 #
 # File: src/c/InitializeCore.c, line: 29
 msgid	"Fatal Error : Can't create table for scilab functions."
-msgstr	""
+msgstr	"Erreur fatale : Impossible de créer la table des fonctions Scilab."
 #
 # File: src/c/scimem.c, line: 34
 # File: src/c/scimem.c, line: 61
 msgid	"No space to allocate Scilab stack."
-msgstr	""
+msgstr	"Pas assez de mémoire pour alouer le coeur de Scilab"
 #
 # File: src/c/callinterf.c, line: 37
 #, possible-c-format
@@ -1789,7 +1790,7 @@ msgstr	""
 #
 # File: src/c/callinterf.c, line: 85
 msgid	"Do you really want to abort computation (y or n ?) "
-msgstr	""
+msgstr	"Voulez-vous vraiment arrêter le calcul (y ou n ?) "
 #
 # File: src/c/stack2.c, line: 60
 #, possible-c-format
@@ -1988,26 +1989,26 @@ msgstr	""
 # File: src/c/stack2.c, line: 2913
 # File: src/c/stack2.c, line: 2986
 msgid	"first"
-msgstr	""
+msgstr	"premier"
 #
 # File: src/c/stack2.c, line: 2788
 # File: src/c/stack2.c, line: 2913
 # File: src/c/stack2.c, line: 2986
 msgid	"second"
-msgstr	""
+msgstr	"deuxième"
 #
 # File: src/c/stack2.c, line: 2788
 msgid	"third"
-msgstr	""
+msgstr	"troisième"
 #
 # File: src/c/stack2.c, line: 2788
 msgid	"fourth"
-msgstr	""
+msgstr	"quatrième"
 #
 # File: src/c/stack2.c, line: 2794
 #, c-format
 msgid	"%s argument"
-msgstr	""
+msgstr	"%s paramètre"
 #
 # File: src/c/stack2.c, line: 2796
 #, c-format
@@ -2103,10 +2104,6 @@ msgstr	""
 # File: src/c/stack2.c, line: 2986
 #, possible-c-format
 msgid	"%s : argument %d(%d) has wrong %s dimension (%d), expecting (%d)."
-msgstr	""
-#
-# File: src/c/stack2.c, line: 3003
-msgid	"createdata"
 msgstr	""
 #
 # File: src/c/stack2.c, line: 3009
@@ -2275,7 +2272,7 @@ msgstr	""
 # File: sci_gateway/c/sci_getmd5.c, line: 55
 #, possible-c-format
 msgid	"file %s doesn't exist."
-msgstr	""
+msgstr	"Fichier %s n'existe pas."
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 60
 msgid	"Invalid type parameter. it must be a string (a filename)."
@@ -2291,7 +2288,7 @@ msgstr	""
 #
 # File: sci_gateway/c/sci_chdir.c, line: 55
 msgid	"Invalid parameter.\n"
-msgstr	""
+msgstr	"Paramètre invalide.\n"
 #
 # File: sci_gateway/c/sci_clearfun.c, line: 57
 msgid	"must be a name of function in scilab."
@@ -2299,11 +2296,11 @@ msgstr	""
 #
 # File: sci_gateway/c/sci_what.c, line: 76
 msgid	"Internal Functions: "
-msgstr	""
+msgstr	"Fonctions internes:"
 #
 # File: sci_gateway/c/sci_what.c, line: 93
 msgid	"Commands: "
-msgstr	""
+msgstr	"Commandes : "
 #
 # File: sci_gateway/c/sci_getmodules.c, line: 22
 #, possible-c-format
