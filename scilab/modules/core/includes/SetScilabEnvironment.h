@@ -6,7 +6,7 @@
 
 #ifndef __SCIENV_H__
 #define __SCIENV_H__
-#include "version.h"
+
 #ifdef _MSC_VER
 #include <windows.h>
 #else

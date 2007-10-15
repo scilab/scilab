@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include "InitializeCore.h"
-#include "SciEnv.h"
+#include "SetScilabEnvironment.h"
 #include "getmodules.h"
 #include "hashtable_core.h"
 #include "sciprint.h"
