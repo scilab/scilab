@@ -30,12 +30,28 @@ if index<>[] then
 end
 freqdiv=unique(freq1);
 if size(unique(offset1),'*')==1 then
-    if size(freqdiv,'*')==1 then flg=0;end
-    [frequ,den]=fixedpointgcd(freq1);
-    offset=offset1(1);
+  if size(freqdiv,'*')==1 then flg=0;end
+  v=frequ1;
+  v=v(find(v<>0));
+  min_v=min(v);max_v=max(v);
+  if (max_v/min_v)>1e5 then message(['The difference between the frequencies is very large';..
+	  'the clocks could not be synchronized']);
+    ok=%f;Ts=[];bllst=[];corinv=list();ind=[];
+    return; 
+  end
+  [frequ,den]=fixedpointgcd(v);
+  offset=offset1(1);
 else
-   [frequ,den]=fixedpointgcd([freq1;offset1]);
-   offset=0;
+  v=[freq1;offset1]
+  v=v(find(v<>0));
+  min_v=min(v);max_v=max(v);
+  if (max_v/min_v)>1e5 then message(['The difference between the frequencies is very large';..
+	  'the clocks could not be synchronized']);
+    ok=%f;Ts=[];bllst=[];corinv=list();ind=[];
+    return; 
+  end
+  [frequ,den]=fixedpointgcd(v);
+  offset=0;
 end
 freqdiv=uint32(freqdiv*double(den));
 frequ=double(frequ)/double(den);
@@ -139,10 +155,16 @@ endfunction
 
 // This function computes the PGCD of a double vector.
 function [value,denom_com]=fixedpointgcd(v)
+x=log10(v);
+f=round((min(x)+max(x))/2);
+v=v./10^(f);
 [N,D]=rat(v,1d-5);
 denom_com=lcm(uint32(D));
 N=uint32(N)*denom_com./uint32(D);
 value=gcd(N);
+if f>0 then value=value*10^f;
+else denom_com=double(denom_com)*10^(-f);
+end
 endfunction
 
 function [Ts,bllst,corinv,ind,ok]=s_clk2(MAT,Ts,bllst,corinv,scs_m,ind)
@@ -152,53 +174,60 @@ function [Ts,bllst,corinv,ind,ok]=s_clk2(MAT,Ts,bllst,corinv,scs_m,ind)
   frequ=evstr(MAT1(:,3));
   offset=evstr(MAT1(:,4));
   offset=offset(:);frequ=frequ(:);
-  [pgcd,den]=fixedpointgcd([frequ;offset]);
+  v=[frequ;offset];
+  v=v(find(v<>0));
+  min_v=min(v);max_v=max(v);
+  if (max_v/min_v)>1e5 then message(['The difference between the frequencies is very large';..
+	  'the clocks could not be synchronized']);
+     ok=%f;Ts=[];bllst=[];corinv=list();ind=[];
+     return; 
+   end
+   [pgcd,den]=fixedpointgcd(v);
    off=0;
-    [m1,k]=uni(frequ,offset);
-    frd=uint32(m1.*double(den))
-    frequ=frequ(k);
-    frd1=uint32((frequ.*double(den)));
-    ppcm=lcm(frd1);
-    frd1=double(frd1);
-    frd=double(frd);
-    offset=offset(k);
-    if size(frd,'*')>1 then
-    mat=[];
-    for i=1:size(frd,'*')
-         mat1=[offset(i)*double(den):frd1(i):double(ppcm)]';
-         mat=[mat;[mat1 2^(i-1)*ones(size(mat1,'*'),1)]];
-    end
-    [n,k]=gsort(mat(:,1),'g','i');
-    mat=mat(k,:);
-    while (find(mat(1:$-1,1)==mat(2:$,1))<>[]) then
-           ind=find(mat(1:$-1,1)==mat(2:$,1));
-           ind=ind(1);
-	   mat(ind,2)=mat(ind,2)+mat(ind+1,2);
-           mat(ind+1,:)=[];
-    end
-    m=[mat(2,1);mat(2:$,1)-mat(1:$-1,1)];
-    m=[m,mat(:,2),mat(:,1)];
-    count=1;
-    if find(m(:,3)==0)<>[] then
+   [m1,k]=uni(frequ,offset);
+   frd=(m1.*(den))
+   frequ=frequ(k);
+   frd1=uint32(round((frequ.*double(den))));
+   ppcm=lcm(frd1);
+   frd1=double(frd1);
+   offset=offset(k);
+   if size(frd,'*')>1 then
+     mat=[];
+     for i=1:size(frd,'*')
+       mat1=[offset(i)*double(den):frd1(i):double(ppcm)]';
+       mat=[mat;[mat1 2^(i-1)*ones(size(mat1,'*'),1)]];
+     end
+     [n,k]=gsort(mat(:,1),'g','i');
+     mat=mat(k,:);
+     while (find(mat(1:$-1,1)==mat(2:$,1))<>[]) then
+       ind=find(mat(1:$-1,1)==mat(2:$,1));
+       ind=ind(1);
+       mat(ind,2)=mat(ind,2)+mat(ind+1,2);
+       mat(ind+1,:)=[];
+     end
+     m=[mat(2,1);mat(2:$,1)-mat(1:$-1,1)];
+     m=[m,mat(:,2),mat(:,1)];
+     count=1;
+     if find(m(:,3)==0)<>[] then
        m(find(m(:,3)==0),:)=[];
        count=0;
-    end
-    mn=(2**size(m1,'*'))-1;
-    fir=-ones(1,mn);
-    fir(mat(1,2))=mat(1,1)/double(den);
-    else
-    m=[frd1 1 frd1];
-    mat=m;
-    count=0;
-    off=offset;
-    fir=off;
-    end
-    mn=(2**size(m1,'*'))-1;
-    n=lstsize(scs_m.objs);
-    bllst($+1)=scicos_model(sim=list("m_frequ",4),in=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,..
-                       evtin=1,evtout=ones(mn,1),state=[],dstate=[],odstate=list(),rpar=[],ipar=[],..
-                       opar=list(m,double(den),off,count),blocktype="d",firing=fir,dep_ut=[%f,%f],..
-                       label="",nzcross=0,nmode=0,equations=list());
+     end
+     mn=(2**size(m1,'*'))-1;
+     fir=-ones(1,mn);
+     fir(mat(1,2))=mat(1,1)/double(den);
+   else
+     m=[frd1 1 frd1];
+     mat=m;
+     count=0;
+     off=offset;
+     fir=off;
+   end
+   mn=(2**size(m1,'*'))-1;
+   n=lstsize(scs_m.objs);
+   bllst($+1)=scicos_model(sim=list("m_frequ",4),in=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,..
+       evtin=1,evtout=ones(mn,1),state=[],dstate=[],odstate=list(),rpar=[],ipar=[],..
+       opar=list(m,double(den),off,count),blocktype="d",firing=fir,dep_ut=[%f,%f],..
+       label="",nzcross=0,nmode=0,equations=list());
    corinv($+1)=n+1;
    nb=size(corinv);
    nc=size(bllst);

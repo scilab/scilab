@@ -3,20 +3,41 @@ function [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcom
 //parameter changes
 //!
 // Copyright INRIA
-
 ok=%t
 select needcompile
  case 0 then  // only parameter changes 
   if size(newparameters)<>0 then
     cor=%cpr.cor
-    [%state0,state,sim]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
+    [%state0,state,sim,ok]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
+    if ~ok then
+      alreadyran=do_terminate();
+      disp("Partial compilation failed. Attempting a full compilation.");
+      needcompile=2
+      [%cpr,ok]=do_compile(scs_m)
+      if ok then
+	%state0=%cpr.state
+	needcompile=0
+	return;
+      end
+    end
     %cpr.state=state,%cpr.sim=sim
   end
  case 1 then // parameter changes and/or port sizes change
   if size(newparameters)<>0 then
     // update parameters or states
     cor=%cpr.cor
-    [%state0,state,sim]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
+    [%state0,state,sim,ok]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
+    if ~ok then
+      alreadyran=do_terminate()
+      disp("Partial compilation failed. Attempting a full compilation.");
+      needcompile=2
+      [%cpr,ok]=do_compile(scs_m)
+      if ok then
+	%state0=%cpr.state
+	needcompile=0
+	return;
+      end
+    end
     %cpr.state=state,%cpr.sim=sim
   end
   //update port sizes.

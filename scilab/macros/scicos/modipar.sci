@@ -1,4 +1,4 @@
-function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
+function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 //store modified parameters in compiled structure state,sim
 //newparameters gives modified blocks numbers in original structure scs_m
 //cor is the correspondance table from original structure to compiled one
@@ -45,6 +45,8 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
       ipark=ipar(ipptr(kc):ipptr(kc+1)-1)
       corinvm=%cpr.corinv(kc);
       J=[];
+      if findinlistcmd(%cpr.corinv,size(cor),'>')<>list() then ok=%f;return; end
+      //if %cpr.corinv(kc-1)>size(cor) then ok=%f;return;end
       for jj=1:size(corinvm)
 	if and(corinvm(jj)==k)  then J=jj;break,end
       end
