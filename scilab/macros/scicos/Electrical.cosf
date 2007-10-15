@@ -937,3 +937,255 @@ scs_m.objs(17)=scicos_block(..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"OpAmp",..
                         ["in_p";"in_n"],"out",list([],[]))),..
                doc=list())
+scs_m.objs(18)=scicos_block(..
+               gui="PMOS",..
+               graphics=scicos_graphics(..
+                        orig=[350,140],..
+                        sz=[40,40],..
+                        flip=%t,..
+                        theta=0,..
+                        exprs=["0.00005";
+                        "0.000006";
+                        "0.0000105";
+                        "-1";
+                        "0.41";
+                        "0.839";
+                        "-0.0000025";
+                        "-0.0000021";
+                        "10000000"],..
+                        pin=0,..
+                        pout=[0;0;0],..
+                        pein=[],..
+                        peout=[],..
+                        gr_i=list(..
+                        [" Thick=xget(''thickness'');xset(''thickness'',2);";
+                        "if orient then,";
+                        "x1=orig(1)+  [0, 15,15,15]*(sz(1)/32);";
+                        "x2=orig(1)+[17,17,19,19,32,19,19,17]*(sz(1)/32);";
+                        "x3=orig(1)+  [17,17,19,19,22, 22,27,32,27,22,22,19,19,17]*(sz(1)/32);";
+                        "x4=orig(1)+[17,17,19,19,32,19,19,17]*(sz(1)/32);";
+                        "else,";
+                        "x1=orig(1)+  [32, 17,17,17]*(sz(1)/32);";
+                        "x2=orig(1)+[15,15,13,13,0,13,13,15]*(sz(1)/32);";
+                        "x3=orig(1)+  [15,15,13,13,10, 10, 5, 0,05,10,10,13,13,15]*(sz(1)/32);";
+                        "x4=orig(1)+[15,15,13,13,0,13,13,15]*(sz(1)/32);";
+                        "end,";
+                        "y1=orig(2)+5+[27,27,48,27]*(sz(2)/70);";
+                        "y2=orig(2)+5+[48,40,40,44,44,44,48,48]*(sz(2)/70);";
+                        "y3=orig(2)+5+[30,23,23,27,27, 31,27,27,27,23,27,27,30,30]*(sz(2)/70);";
+                        "y4=orig(2)+5+[16,7,7, 11,11, 11, 16,16]*(sz(2)/70);";
+                        "xpoly(x1,y1);";
+                        "xpoly(x2,y2);";
+                        "xpoly(x3,y3);";
+                        "xpoly(x4,y4);";
+                        "xset(''thickness'',Thick);"],8),..
+                        id="",..
+                        in_implicit="I",..
+                        out_implicit=["I";"I";"I"]),..
+               model=scicos_model(..
+                        sim="PMOS",..
+                        in=1,..
+                        in2=[],..
+                        intyp=1,..
+                        out=[1;1;1],..
+                        out2=[],..
+                        outtyp=1,..
+                        evtin=[],..
+                        evtout=[],..
+                        state=[],..
+                        dstate=[],..
+                        odstate=list(),..
+                        rpar=[],..
+                        ipar=[],..
+                        opar=list(),..
+                        blocktype="c",..
+                        firing=[],..
+                        dep_ut=[%t,%f],..
+                        label="",..
+                        nzcross=0,..
+                        nmode=0,..
+                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"PMOS","G",..
+                        ["D";"B";"S"],..
+                        list(["W";"L";"Beta";"Vt";"K2";"K5";"dW";"dL";"RDS"],..
+                        [0.00005;0.000006;0.0000105;-1;0.41;0.839;-0.0000025;-0.0000021;10000000]))),..
+               doc=list())
+scs_m.objs(19)=scicos_block(..
+               gui="NMOS",..
+               graphics=scicos_graphics(..
+                        orig=[0,230],..
+                        sz=[40,40],..
+                        flip=%t,..
+                        theta=0,..
+                        exprs=["0.00002";
+                        "0.000006";
+                        "0.000041";
+                        "0.8";
+                        "1.144";
+                        "0.7311";
+                        "-0.0000025";
+                        "-0.0000015";
+                        "10000000"],..
+                        pin=0,..
+                        pout=[0;0;0],..
+                        pein=[],..
+                        peout=[],..
+                        gr_i=list(..
+                        [" Thick=xget(''thickness'');xset(''thickness'',2);";
+                        "if orient then,";
+                        "x1=orig(1)+  [0, 15,15,15]*(sz(1)/32);";
+                        "x2=orig(1)+[17,17,19,19,32,19,19,17]*(sz(1)/32);";
+                        "x3=orig(1)+  [17,17,19,19,21,26,26,32,26,26,21,19,19,17]*(sz(1)/32);";
+                        "x4=orig(1)+[17,17,19,19,32,19,19,17]*(sz(1)/32);";
+                        "else,";
+                        "x1=orig(1)+  [32, 17,17,17]*(sz(1)/32);";
+                        "x2=orig(1)+[15,15,13,13,0,13,13,15]*(sz(1)/32);";
+                        "x3=orig(1)+  [15,15,13,13,11, 6, 6, 0, 6, 6,11,13,13,15]*(sz(1)/32);";
+                        "x4=orig(1)+[15,15,13,13,0,13,13,15]*(sz(1)/32);";
+                        "end;";
+                        "y1=orig(2)+5+[27,27,48,27]*(sz(2)/70);";
+                        "y2=orig(2)+5+[48,40,40,44,44,44,48,48]*(sz(2)/70);";
+                        "y3=orig(2)+5+[30,23,23,27,27, 31,27,27,27,23,27,27,30,30]*(sz(2)/70);";
+                        "y4=orig(2)+5+[16,7,7, 11,11, 11, 16,16]*(sz(2)/70);";
+                        "xpoly(x1,y1);";
+                        "xpoly(x2,y2);";
+                        "xpoly(x3,y3);";
+                        "xpoly(x4,y4);";
+                        "xset(''thickness'',Thick);"],8),..
+                        id="",..
+                        in_implicit="I",..
+                        out_implicit=["I";"I";"I"]),..
+               model=scicos_model(..
+                        sim="NMOS",..
+                        in=1,..
+                        in2=[],..
+                        intyp=1,..
+                        out=[1;1;1],..
+                        out2=[],..
+                        outtyp=1,..
+                        evtin=[],..
+                        evtout=[],..
+                        state=[],..
+                        dstate=[],..
+                        odstate=list(),..
+                        rpar=[],..
+                        ipar=[],..
+                        opar=list(),..
+                        blocktype="c",..
+                        firing=[],..
+                        dep_ut=[%t,%f],..
+                        label="",..
+                        nzcross=0,..
+                        nmode=0,..
+                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"NMOS","G",..
+                        ["D";"B";"S"],..
+                        list(["W";"L";"Beta";"Vt";"K2";"K5";"dW";"dL";"RDS"],..
+                        [0.00002;0.000006;0.000041;0.8;1.144;0.7311;-0.0000025;-0.0000015;10000000]))),..
+               doc=list())
+scs_m.objs(20)=scicos_block(..
+               gui="CCS",..
+               graphics=scicos_graphics(..
+                        orig=[70,230],..
+                        sz=[42,60],..
+                        flip=%t,..
+                        theta=0,..
+                        exprs=[],..
+                        pin=[0;0],..
+                        pout=0,..
+                        pein=[],..
+                        peout=[],..
+                        gr_i=list(..
+                        ["";
+                        "if orient then";
+                        "  xpolys(orig(1)+[0.7142857,0.7142857,0.3714286,0.0571429,0.3714286;0.7142857,0.7142857,0.4285714,0.4142857,0.4285714]*sz(1),orig(2)+[0.7,0,0.53,0.49,0.45;0.98,0.3,0.49,0.49,0.49]*sz(2),[2,2,6,6,6])";
+                        "  xstring(orig(1)+0.7714286*sz(1),orig(2)+0.75*sz(2),""CCS"")";
+                        "  xpolys(orig(1)+[0.7142857,0.7142857,0.7142857;0.7142857,0.6,0.8285714]*sz(1),orig(2)+[0.35,0.63,0.63;0.63,0.55,0.55]*sz(2),[5,5,5])";
+                        "  xrects([orig(1)+0.4285714*sz(1); orig(2)+0.7*sz(2);0.5714286*sz(1);0.4*sz(2)],0)";
+                        "else";
+                        "  xpolys(orig(1)+[0.2857143,0.2857143,0.6285714,0.9428571,0.6285714;0.2857143,0.2857143,0.5714286,0.5857143,0.5714286]*sz(1),orig(2)+[0.7,0,0.53,0.49,0.45;0.98,0.3,0.49,0.49,0.49]*sz(2),[2,2,6,6,6])";
+                        "  xstring(orig(1)+sz(1)-(0.7714286*sz(1)),orig(2)+0.75*sz(2),""CCS"")";
+                        "  xpolys(orig(1)+[0.2857143,0.2857143,0.2857143;0.2857143,0.4,0.1714286]*sz(1),orig(2)+[0.35,0.63,0.63;0.63,0.55,0.55]*sz(2),[5,5,5])";
+                        "  xrects([orig(1)+0*sz(1); orig(2)+0.7*sz(2);0.5714286*sz(1);0.4*sz(2)],0)";
+                        "end"],[]),..
+                        id="",..
+                        in_implicit=["E";"I"],..
+                        out_implicit="I"),..
+               model=scicos_model(..
+                        sim="CCS",..
+                        in=[1;1],..
+                        in2=[],..
+                        intyp=1,..
+                        out=1,..
+                        out2=[],..
+                        outtyp=1,..
+                        evtin=[],..
+                        evtout=[],..
+                        state=[],..
+                        dstate=[],..
+                        odstate=list(),..
+                        rpar=[],..
+                        ipar=[],..
+                        opar=list(),..
+                        blocktype="c",..
+                        firing=[],..
+                        dep_ut=[%f,%t],..
+                        label="",..
+                        nzcross=0,..
+                        nmode=0,..
+                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"CCS",["Iin";"p"],"n",..
+                        list([],[],[]))),..
+               doc=list())
+scs_m.objs(21)=scicos_block(..
+               gui="CVS",..
+               graphics=scicos_graphics(..
+                        orig=[142,230],..
+                        sz=[42,60],..
+                        flip=%t,..
+                        theta=0,..
+                        exprs=[],..
+                        pin=[0;0],..
+                        pout=0,..
+                        pein=[],..
+                        peout=[],..
+                        gr_i=list(..
+                        ["";
+                        "if orient then";
+                        "  xpolys(orig(1)+[0.7142857,0.7142857,0.3714286,0.0571429,0.3714286;0.7142857,0.7142857,0.4285714,0.4142857,0.4285714]*sz(1),orig(2)+[0.7,0,0.54,0.5,0.46;0.98,0.3,0.5,0.5,0.5]*sz(2),[2,2,6,6,6])";
+                        "  xstring(orig(1)+0.1428571*sz(1),orig(2)+0.75*sz(2),""CVS"")";
+                        "  xrects([orig(1)+0.4285714*sz(1); orig(2)+0.7*sz(2);0.5714286*sz(1);0.4*sz(2)],0)";
+                        "  xstring(orig(1)+0.7*sz(1),orig(2)+0.55*sz(2),""+"")";
+                        "  xstring(orig(1)+0.7*sz(1),orig(2)+0.35*sz(2),""-"")";
+                        "else";
+                        "  xpolys(orig(1)+[0.2857143,0.2857143,0.6285714,0.9428571,0.6285714;0.2857143,0.2857143,0.5714286,0.5857143,0.5714286]*sz(1),orig(2)+[0.7,0,0.54,0.5,0.46;0.98,0.3,0.5,0.5,0.5]*sz(2),[2,2,6,6,6])";
+                        "  xstring(orig(1)+0.6*sz(1),orig(2)+0.75*sz(2),""CVS"")";
+                        "  xrects([orig(1)+0*sz(1); orig(2)+0.7*sz(2);0.5714286*sz(1);0.4*sz(2)],0)";
+                        "  xstring(orig(1)+sz(1)-(0.7*sz(1)),orig(2)+0.55*sz(2),""+"")";
+                        "  xstring(orig(1)+sz(1)-(0.7*sz(1)),orig(2)+0.35*sz(2),""-"")";
+                        "end"],[]),..
+                        id="",..
+                        in_implicit=["E";"I"],..
+                        out_implicit="I"),..
+               model=scicos_model(..
+                        sim="CVS",..
+                        in=[1;1],..
+                        in2=[],..
+                        intyp=1,..
+                        out=1,..
+                        out2=[],..
+                        outtyp=1,..
+                        evtin=[],..
+                        evtout=[],..
+                        state=[],..
+                        dstate=[],..
+                        odstate=list(),..
+                        rpar=[],..
+                        ipar=[],..
+                        opar=list(),..
+                        blocktype="c",..
+                        firing=[],..
+                        dep_ut=[%f,%t],..
+                        label="",..
+                        nzcross=0,..
+                        nmode=0,..
+                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"CVS",["vin";"p"],"n",..
+                        list([],[],[]))),..
+               doc=list())
