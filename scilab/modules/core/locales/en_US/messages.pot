@@ -2104,10 +2104,6 @@ msgstr	""
 msgid	"%s : argument %d(%d) has wrong %s dimension (%d), expecting (%d)."
 msgstr	""
 #
-# File: src/c/stack2.c, line: 3003
-msgid	"createdata"
-msgstr	""
-#
 # File: src/c/stack2.c, line: 3009
 #, possible-c-format
 msgid	"%s : bad call to createdata! (1rst argument)."
