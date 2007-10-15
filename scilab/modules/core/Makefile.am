@@ -54,7 +54,7 @@ src/c/sciprint.c \
 src/c/sciprint_nd.c \
 src/c/link.c \
 src/c/xscion.c \
-src/c/SciEnv.c \
+src/c/SetScilabEnvironment.c \
 src/c/hashtable_core.c \
 src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
@@ -394,7 +394,7 @@ includes/stack-c.h \
 includes/version.h \
 includes/Os_specific.h \
 includes/stack1.h \
-includes/SciEnv.h \
+includes/SetScilabEnvironment.h \
 includes/returnanan.h \
 includes/stack2.h \
 includes/Scierror.h \

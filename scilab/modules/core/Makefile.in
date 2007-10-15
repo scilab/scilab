@@ -120,15 +120,16 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-stack2.lo libscicore_la-Scierror.lo \
 	libscicore_la-sciprint.lo libscicore_la-sciprint_nd.lo \
 	libscicore_la-link.lo libscicore_la-xscion.lo \
-	libscicore_la-SciEnv.lo libscicore_la-hashtable_core.lo \
-	libscicore_la-returnanan.lo libscicore_la-LoadFunctionsTab.lo \
-	libscicore_la-with_module.lo libscicore_la-loadversion.lo \
-	libscicore_la-version.lo libscicore_la-stackinfo.lo \
-	libscicore_la-scirun.lo libscicore_la-SCIHOME.lo \
-	libscicore_la-warningmode.lo libscicore_la-InitializeCore.lo \
-	libscicore_la-TerminateCore.lo libscicore_la-coretable.lo \
-	libscicore_la-error_scilab.lo libscicore_la-message_scilab.lo \
-	libscicore_la-force_link.lo libscicore_la-returnProperty.lo \
+	libscicore_la-SetScilabEnvironment.lo \
+	libscicore_la-hashtable_core.lo libscicore_la-returnanan.lo \
+	libscicore_la-LoadFunctionsTab.lo libscicore_la-with_module.lo \
+	libscicore_la-loadversion.lo libscicore_la-version.lo \
+	libscicore_la-stackinfo.lo libscicore_la-scirun.lo \
+	libscicore_la-SCIHOME.lo libscicore_la-warningmode.lo \
+	libscicore_la-InitializeCore.lo libscicore_la-TerminateCore.lo \
+	libscicore_la-coretable.lo libscicore_la-error_scilab.lo \
+	libscicore_la-message_scilab.lo libscicore_la-force_link.lo \
+	libscicore_la-returnProperty.lo \
 	libscicore_la-returnPropertyList.lo \
 	libscicore_la-scilabmode.lo \
 	libscicore_la-GetXmlFileEncoding.lo libscicore_la-msgs.lo \
@@ -457,7 +458,7 @@ src/c/sciprint.c \
 src/c/sciprint_nd.c \
 src/c/link.c \
 src/c/xscion.c \
-src/c/SciEnv.c \
+src/c/SetScilabEnvironment.c \
 src/c/hashtable_core.c \
 src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
@@ -793,7 +794,7 @@ includes/stack-c.h \
 includes/version.h \
 includes/Os_specific.h \
 includes/stack1.h \
-includes/SciEnv.h \
+includes/SetScilabEnvironment.h \
 includes/returnanan.h \
 includes/stack2.h \
 includes/Scierror.h \
@@ -964,10 +965,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-IsAScalar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-LoadFunctionsTab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SCIHOME.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SciEnv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-Scierror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-ScilabEventsLoop.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SendScilabJobs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SetScilabEnvironment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-TerminateCore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-addinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-banier.Plo@am__quote@
@@ -1480,12 +1481,12 @@ libscicore_la-xscion.lo: src/c/xscion.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-xscion.lo `test -f 'src/c/xscion.c' || echo '$(srcdir)/'`src/c/xscion.c
 
-libscicore_la-SciEnv.lo: src/c/SciEnv.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-SciEnv.lo -MD -MP -MF $(DEPDIR)/libscicore_la-SciEnv.Tpo -c -o libscicore_la-SciEnv.lo `test -f 'src/c/SciEnv.c' || echo '$(srcdir)/'`src/c/SciEnv.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-SciEnv.Tpo $(DEPDIR)/libscicore_la-SciEnv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SciEnv.c' object='libscicore_la-SciEnv.lo' libtool=yes @AMDEPBACKSLASH@
+libscicore_la-SetScilabEnvironment.lo: src/c/SetScilabEnvironment.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-SetScilabEnvironment.lo -MD -MP -MF $(DEPDIR)/libscicore_la-SetScilabEnvironment.Tpo -c -o libscicore_la-SetScilabEnvironment.lo `test -f 'src/c/SetScilabEnvironment.c' || echo '$(srcdir)/'`src/c/SetScilabEnvironment.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-SetScilabEnvironment.Tpo $(DEPDIR)/libscicore_la-SetScilabEnvironment.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SetScilabEnvironment.c' object='libscicore_la-SetScilabEnvironment.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-SciEnv.lo `test -f 'src/c/SciEnv.c' || echo '$(srcdir)/'`src/c/SciEnv.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-SetScilabEnvironment.lo `test -f 'src/c/SetScilabEnvironment.c' || echo '$(srcdir)/'`src/c/SetScilabEnvironment.c
 
 libscicore_la-hashtable_core.lo: src/c/hashtable_core.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-hashtable_core.lo -MD -MP -MF $(DEPDIR)/libscicore_la-hashtable_core.Tpo -c -o libscicore_la-hashtable_core.lo `test -f 'src/c/hashtable_core.c' || echo '$(srcdir)/'`src/c/hashtable_core.c
