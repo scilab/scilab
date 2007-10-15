@@ -1,5 +1,5 @@
 function Identification_()
-//** INRIA
+// Copyright INRIA
 
   scs_m = do_ident(scs_m)
   Cmenu = [] ; %pt = [];

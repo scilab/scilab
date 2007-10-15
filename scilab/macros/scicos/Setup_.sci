@@ -1,4 +1,5 @@
 function Setup_()
+// Copyright INRIA
     Cmenu=[]
     %wpar=do_setup(scs_m.props)
     %scicos_solver=%wpar.tol(6)

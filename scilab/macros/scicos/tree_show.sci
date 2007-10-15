@@ -1,6 +1,5 @@
 function tree_show(x,titletop)
-//** INRIA
-//** Comments by Simone Mannori
+// Copyright INRIA
 
  if type(x)<>16&type(x)<>17&type(x)<>15 then
     error("Wrong type; input must be a list.")

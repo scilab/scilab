@@ -1,4 +1,5 @@
 function %diagram_p(scs_m)
+// Copyright INRIA
    %params_p(scs_m.props)
    nams=[]
    for o=scs_m.objs

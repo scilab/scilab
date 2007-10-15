@@ -1,4 +1,5 @@
 function %graphics_p(graphics)
+// Copyright INRIA
   fn=getfield(1,graphics)
   txt=[]
   for k=2:size(fn,'*')

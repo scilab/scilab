@@ -1,5 +1,6 @@
 function [rect,btn]=rubberbox(rect,edit_mode)
-// Copyright INRIA, S. Steer
+// Copyright INRIA
+// S. Steer
   rhs=argn(2)
   select rhs
   case 0 then

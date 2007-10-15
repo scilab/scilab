@@ -1,4 +1,5 @@
 function menu_stuff()
+// Copyright INRIA
 
 if ~MSDOS then
   delmenu(curwin,'3D Rot.')

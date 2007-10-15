@@ -1,6 +1,6 @@
 function [reg,rect] = get_region(xc,yc,win)
 // Copyright INRIA
-//** 19 July 2006 
+
 
 //** alu = xget('alufunction')
 wins = curwin ;

@@ -1,5 +1,5 @@
-///withoutPrompt 
 function block=tkscaleblk(block,flag)
+// Copyright INRIA
   blknb=string(curblock())
   if flag==4 then
     cur=%cpr.corinv(curblock())

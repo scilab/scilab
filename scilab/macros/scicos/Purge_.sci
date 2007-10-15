@@ -1,5 +1,6 @@
 function Purge_()
-//** INRIA
+// Copyright INRIA
+
     Cmenu = [] ;
     %pt = []   ;
     Select = [] ;

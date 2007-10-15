@@ -1,4 +1,5 @@
 function Cmenu=tk_mpopupX(ll)
+// Copyright INRIA
 // To make it work like in windows case
   
   Cmenu = []

@@ -1,8 +1,6 @@
 function [scs_m,needcompile] = do_replace(scs_m, needcompile, Clipboard, Select)
 // Copyright INRIA
-//**
-//** 27 July 2007
-//**
+
 //**         BEWARE : This is an ---> EXPERIMENTAL VERSION <--- ! 
 //**
 //** This function is able to replace any block with any other block. 

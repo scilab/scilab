@@ -1,6 +1,6 @@
 function Undo_()
-//** INRIA 
-//**     
+// Copyright INRIA
+
     Cmenu = [] ;
     %pt = [];
 

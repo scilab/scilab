@@ -1,4 +1,5 @@
 function [params,param_types]=FindSBParams(scs_m,params)
+// Copyright INRIA
   prot = funcprot();
   funcprot(0);
   deff('varargout=getvalue(a,b,c,d)',..

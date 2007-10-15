@@ -2,6 +2,7 @@ function [%ok,%1,%2,%3,%4,%5,...
           %6,%7,%8,%9,%10,...
           %11,%12,%13,%14,%15,...
           %16,%17,%18,%19,%20]=tk_getvalue(%desc,%labels,%typ,%ini)
+// Copyright INRIA
 //  getvalues - %window dialog for data acquisition 
 //%Synta%
 //  [%ok,%1,..,%11]=getvalue(desc,labels,typ,ini)
@@ -49,7 +50,7 @@ function [%ok,%1,%2,%3,%4,%5,...
 //
 // 05/02/07 -Alan- : update to %20 rhs parameters
 //
-// Copyright INRIA
+
 [%lhs,%rhs]=argn(0)
 
 %nn=prod(size(%labels))

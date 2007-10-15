@@ -1,5 +1,6 @@
 function drawgrid(gh_window)
-   //** get the number of right side arguments
+// Copyright INRIA
+//** get the number of right side arguments
    rhs = argn(2) ;
 
    if rhs==0 then //** without arguments (default) assume ...

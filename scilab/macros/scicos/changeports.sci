@@ -1,5 +1,5 @@
 function scs_m = changeports(scs_m, path, o_n)
-//** INRIA
+// Copyright INRIA
 //**
 //** 27 July 2007
 //**

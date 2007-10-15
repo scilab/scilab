@@ -1,10 +1,11 @@
 function CodeGeneration_()
+// Copyright INRIA
 //Input editor function of Scicos code generator
 //
 //@l@n, 14/10/07
 //
 //
-//** 10 Set 2007 : cleaner startup code by Simone Mannori  
+//** 10 Set 2007 : cleaner startup code by    
 
     k = [] ; //** index of the CodeGen source superbloc candidate
 
@@ -1258,7 +1259,6 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof]=do_compile_superblock42(
   //** retrieve all open Scilab windows with winsid
   //** and close the additional windows open since first
   //** 
-  //** Alan Layec and Simone Mannori
  
   //** This code does not cover 100% of the possible situations because the user can 
   //** destroy one or more Scicos wins manually during this intermediate phase

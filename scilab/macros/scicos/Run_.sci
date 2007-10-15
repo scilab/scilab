@@ -1,4 +1,5 @@
 function Run_()
+// Copyright INRIA
     nc_save=4
     Cmenu=[]
     ok=%t

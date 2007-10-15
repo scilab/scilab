@@ -1,7 +1,7 @@
 function o = standard_define_old(sz, model, label, gr_i)
 // Copyright INRIA
 //initialize graphic part of the block data structure
-//** Comments by Simone Mannori 
+//**    
 [lhs,rhs]=argn(0)
 if rhs<4 then gr_i=[],end
 [nin,nout,ncin,ncout]=model(2:5)

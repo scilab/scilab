@@ -1,6 +1,5 @@
 function do_browser(scs_m)
-//** INRIA
-//** Comments by Simone Mannori
+// Copyright INRIA
 
   tt = scs_TreeView(scs_m);
   cur_wd = getcwd();

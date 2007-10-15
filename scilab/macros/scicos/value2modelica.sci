@@ -1,4 +1,5 @@
 function txt=value2modelica(v)
+// Copyright INRIA
   [m,n]=size(v)
   if m==1&n==1 then
     txt=stripblanks(sci2exp(v))

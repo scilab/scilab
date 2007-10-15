@@ -1,4 +1,5 @@
 function window_read_size(gh_window)
+// Copyright INRIA
    rhs = argn(2) ; //** get the number of right side arguments  
   
   if rhs==0 then 

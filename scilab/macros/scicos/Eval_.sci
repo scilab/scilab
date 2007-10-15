@@ -1,4 +1,5 @@
 function Eval_()
+// Copyright INRIA
     Cmenu='Replot'
 
     %now_win=xget('window')

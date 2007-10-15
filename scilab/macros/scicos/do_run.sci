@@ -1,4 +1,5 @@
 function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
+// Copyright INRIA
 // realize action associated to the run button
 // performs necessary diagram (re-)compilation
 // performs simulation initialisation
@@ -8,12 +9,6 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 // %state0 : is initial state value
 //
 // define user possible choices
-
-// Copyright INRIA
-
-//  if needcompile==4 then
-//    do_terminate(),alreadyran=%f
-//  end
 
   //** extract tolerances from scs_m.props.tol
   tolerances=scs_m.props.tol

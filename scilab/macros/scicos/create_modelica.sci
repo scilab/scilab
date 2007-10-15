@@ -1,4 +1,5 @@
 function txt=create_modelica( blklst,cmat,name)
+// Copyright INRIA
   txt=[];tab=ascii(9)
   models=[]
   eqns=[]

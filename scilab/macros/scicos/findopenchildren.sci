@@ -1,4 +1,5 @@
 function supers=findopenchildren(scs_m,super_path,supers)
+// Copyright INRIA
 //find paths to all open (inactive) sub-diagrams
 
   if argn(2)<3 then supers=list(),end

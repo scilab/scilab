@@ -1,6 +1,6 @@
 function GetInfo_()
-//** INRIA
-//** 3 April 2007 
+// Copyright INRIA
+
     do_block_info(%pt,scs_m) ;
     Cmenu = [] ;
     %pt   = [] ;

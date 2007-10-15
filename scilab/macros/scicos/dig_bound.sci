@@ -1,7 +1,5 @@
-// Copyright INRIA
-//** Commented by Simone Mannori 
-
 function [rect] = dig_bound(scs_m)
+// Copyright INRIA
 
   n = lstsize(scs_m.objs);
   

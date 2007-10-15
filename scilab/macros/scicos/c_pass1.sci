@@ -1,5 +1,6 @@
 function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,flgcdgen)
-  //derived from c_pass1 for implicit diagrams
+// Copyright INRIA 
+//derived from c_pass1 for implicit diagrams
 //%Purpose
 // Determine one level blocks and connections matrix
 //%Parameters

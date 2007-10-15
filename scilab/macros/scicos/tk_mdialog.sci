@@ -1,4 +1,5 @@
 function result=tk_mdialog(titlex,items,init)
+// Copyright INRIA
 if argn(2)<1 then
   titlex=['this is a demo';'this is a demo']
   items=['item 1';'item 2']

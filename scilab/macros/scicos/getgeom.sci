@@ -1,4 +1,5 @@
 function g=getgeom()
+// Copyright INRIA
 // call within a simulation function of a scicos block this function 
 //returns a vector g containing [win x,y,w,h] of the block. win is either 
 //the number of main scicos window or -1 if the block is not in the main

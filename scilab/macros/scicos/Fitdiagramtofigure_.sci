@@ -1,5 +1,5 @@
 function Fitdiagramtofigure_()
-//** INRIA
+// Copyright INRIA
 //** Alan-21/12/06 : Fit diagram to figure (Based on new graphics)
    Cmenu=[];
    xinfo('Fit diagram to figure');

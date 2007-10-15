@@ -1,6 +1,7 @@
 function SaveasPalette_()
-//** INRIA
-//**
+// Copyright INRIA
+
+
     Cmenu = [] ;
     spmode = pal_mode
     pal_mode = %t

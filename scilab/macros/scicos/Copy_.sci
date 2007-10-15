@@ -1,6 +1,5 @@
 function Copy_()
-//** INRIA
-//**  
+// Copyright INRIA
   
   if size(Select,1)>1 then
     //** ... more than a single object 

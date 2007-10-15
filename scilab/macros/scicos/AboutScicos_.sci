@@ -1,7 +1,6 @@
 function AboutScicos_()
-//   INRIA
-//** 21 Nov 2006
-//** Comments by Simone Mannori
+// Copyright INRIA
+
 
     Cmenu=[] ; %pt=[];
 

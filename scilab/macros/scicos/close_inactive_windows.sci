@@ -1,4 +1,5 @@
 function inactive_windows=close_inactive_windows(inactive_windows,path)
+// Copyright INRIA
 //close all inactive windows assciated with children of Super Block path
   DELL=[]  // inactive windows to kill
   if size(inactive_windows(2),'*')>0 then

@@ -1,4 +1,5 @@
 function scs_m = do_scsm_tree(scs_m)
+// Copyright INRIA
   tt=scs_m_TreeView(scs_m);
   cur_wd = getcwd();
   chdir(TMPDIR);

@@ -1,11 +1,6 @@
 function [palettes,windows] = do_palettes(palettes,windows)
-//** 19 Jan 2006 
-//** 26 Jun 2006
-//** 22 Aug 2006  
-//** Comments and mods by Simone Mannori 
-//**
-//      Copyright INRIA
-//** 
+// Copyright INRIA
+
 
   global ClipboardPal
   

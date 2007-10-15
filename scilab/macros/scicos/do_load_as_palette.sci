@@ -1,7 +1,7 @@
 function [palettes,windows] = do_load_as_palette(palettes,windows)
 // Copyright INRIA
 //** 
-//** Comments and mods by Simone Mannori 
+//**    
 //**   
   [ok,scs_m,cpr,edited] = do_load() ;
   

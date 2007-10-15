@@ -1,9 +1,5 @@
 function Move_()
-//** INRIA
-//**
-//** Comment by Simone Mannori 
-//**
-//**
+// Copyright INRIA
 
   Cmenu = []; //** NB : preserve %pt information 
 

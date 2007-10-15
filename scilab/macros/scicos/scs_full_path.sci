@@ -1,5 +1,6 @@
 function path=scs_full_path(P)
-// Author S. Steer. Copyright INRIA
+// Copyright INRIA
+// Author S. Steer. 
 // Given a path in the superclock hierachy, this function returns a path
 // in the scs_m data structure
 // P is a vector of numbers. All but the last entries are Superblocks index 

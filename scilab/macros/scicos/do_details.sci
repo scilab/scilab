@@ -1,8 +1,5 @@
 function do_details(x)
-//** INRIA
-//** Comments by Simone Mannori
-
-//** ... The Devil is in the Details ;) ...
+// Copyright INRIA
 
   if type(x)==1 then
     Select=x

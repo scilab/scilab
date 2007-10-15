@@ -1,6 +1,7 @@
 function model=scicos_model(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v16,...
                             v17,v18,v19,v20,v21,v22,v23,v24,v25,v26)
-  //disp('scicos_model');
+// Copyright INRIA
+
   //initialisation de model mlist
   if exists('sim','local')==0 then sim='',end
   if exists('in','local')==0 then in=[],end

@@ -5,9 +5,6 @@ function [scs_m] = do_stupidmove(%pt,Select,scs_m)
 //** The code do some partially redundant function call becase is
 //** derived from the old version.
 //** 
-//**
-//** 28 Jun 2006 : restart :(
-//** 21 Aou 2006 : move W , W/O link equalization  
 //** 23 Nov 2006 : introduce some mechanism to limit the "off window" object move
 
 // Acquire the current window

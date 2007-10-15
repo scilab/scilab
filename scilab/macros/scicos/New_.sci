@@ -1,6 +1,6 @@
 function New_()
-//** INRIA 
-//**     
+// Copyright INRIA
+
     Cmenu = [] ; //** clear previous command 
     
     %r = 2     ; //** preload the default answer

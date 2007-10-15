@@ -1,4 +1,5 @@
 function Window_()
+// Copyright INRIA
     Cmenu=[]
     disablemenus()
 

@@ -1,4 +1,5 @@
 function [model,ok]=build_block(o)
+// Copyright INRIA
 // build the simulation function associated with the block if necessary
   model=o.model;
   graphics=o.graphics;

@@ -1,5 +1,5 @@
 function [%scs_wgrid]=do_grid(%scs_wgrid)
-//** INRIA
+// Copyright INRIA
  exprs = [string(%scs_wgrid(1)),string(%scs_wgrid(2)),string(%scs_wgrid(3))]
  while %t do
     [ok,b1,b2,colorr,exprs]=getvalue(['Set Grid'],..

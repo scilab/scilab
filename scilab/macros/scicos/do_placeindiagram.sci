@@ -1,4 +1,5 @@
 function scs_m=do_placeindiagram(scs_m,blk)
+// Copyright INRIA
 //  blk.graphics.sz = 20*blk.graphics.sz;
   %xc = 100; %yc = 100; //** default start position
    xy =[%xc,%yc] ;

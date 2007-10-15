@@ -1,4 +1,5 @@
 function lst=lstfiles(path,opt)
+// Copyright INRIA
 // lstfiles - retourne les noms des fichiers correspondants a un filtre
 //%Syntaxe
 //  lst=lstfiles(path [,opt])
@@ -10,8 +11,7 @@ function lst=lstfiles(path,opt)
 // opt    : chaine de caracteres pouvant valoir 'file' (defaut),'dir','all'
 //          permettant de selectionner uniquement les fichiers de type
 //          correspondant.
-//!
-// Copyright INRIA
+
 [lhs,rhs]=argn(0)
 if rhs<1 then path=' ',end
 if rhs<=1 then opt='file',end

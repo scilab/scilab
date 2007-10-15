@@ -1,4 +1,5 @@
 function params=scicos_params(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
+// Copyright INRIA
   if exists('wpar','local')==0 then wpar=[600,450,0,0,600,450],end
   if exists('title','local')==0 & exists('Title','local')==0 then
     titlex='Untitled'

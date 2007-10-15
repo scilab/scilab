@@ -1,7 +1,6 @@
 function hilite_obj(k,win)
 // Copyright INRIA
 //
-//** 21 Set 2006:
 //** WARNING: I changed mechanism AND input values:
 //**          from:
 //**                hilite_obj(o,win)

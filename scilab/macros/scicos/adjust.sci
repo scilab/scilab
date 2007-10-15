@@ -1,3 +1,6 @@
+function [ok,bllst]=adjust(bllst,inpptr,outptr,inplnk,outlnk)
+// Copyright INRIA
+//
 //adjust : a piece of the adjust_inout function.
 //         Only one pass -see c_pass2.sci-
 //
@@ -28,9 +31,8 @@
 //
 //10/05/07, Alan : - if-then-else event-select case
 
-// Copyright INRIA
-//
-function [ok,bllst]=adjust(bllst,inpptr,outptr,inplnk,outlnk)
+
+
   //Adjust in2/out2, inttyp/outtyp
   //in accordance to in/out in bllst
   [ko,bllst]=adjust_in2out2(bllst);

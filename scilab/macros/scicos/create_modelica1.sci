@@ -1,4 +1,5 @@
 function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
+// Copyright INRIA
   txt=[];tab=ascii(9)
   rpar=[];//will contain all parameters associated with the all modelica blocs
   ipar=[];//will contain the "adress" of each block in rpar

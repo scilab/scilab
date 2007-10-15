@@ -1,6 +1,5 @@
 function Delete_()
-//** 21 Jun 2006
-//** --------------------
+// Copyright INRIA
   
   [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select)
   

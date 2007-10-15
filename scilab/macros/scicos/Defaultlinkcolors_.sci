@@ -1,5 +1,4 @@
 function Defaultlinkcolors_()
-//
 // Copyright INRIA
 //
     Cmenu=[]

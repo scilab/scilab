@@ -3,14 +3,6 @@ function [scs_m] = do_color(%win, %pt, scs_m)
 //
 // do_block - edit a block icon
 //
-//** 28 Sept 2007 : Bugfix for multi win Scicos Editor
-//**                Forgive the men that don't know what are doing.
-//**
-//**
-//
-//** disp("------------");
-//** disp(%win) ; 
-//
   
   if %win<>curwin then
      return ; //** Exit point  

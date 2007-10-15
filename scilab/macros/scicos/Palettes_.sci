@@ -1,8 +1,6 @@
 function Palettes_()
-//**INRIA
-//**
-//** Comments by Simone Mannori 
-//**     
+// Copyright INRIA
+
  Cmenu = []
  %pt=[]
  if super_block then

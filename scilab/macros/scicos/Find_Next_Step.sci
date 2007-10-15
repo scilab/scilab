@@ -1,4 +1,5 @@
 function [Cmenu,Select]=Find_Next_Step(path_objective,path)
+// Copyright INRIA
 i=length(path_objective)
 j=length(path)
 m=min(i,j)

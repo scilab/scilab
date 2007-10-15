@@ -1,7 +1,5 @@
 function SmartMove_()
-//** INRIA
-//** 18 Jul 2006: go Smartmove !
-//** 06 Set 2006: start final revision .... (I hope)
+// Copyright INRIA
   
   Cmenu = []; // Cmenu Quit can come out
   

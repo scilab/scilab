@@ -1,11 +1,6 @@
 function [scs_m, fct] = do_addnew(scs_m)
-//** Copyright INRIA
-//** Comments by Simone Mannori
-//**
-//** Add a new block (defined by its GUI function to a palette
-//** 22 May 2006: Looking for a bug inside the new graphics handling 
-//**
-//** "scs_m" is the diagram datastructure
+// Copyright INRIA
+//**   
 //**
 //** "fct" is a flag control variable used by the calling function Addnewblock
 //**       it is used to signal modification of the datastructure

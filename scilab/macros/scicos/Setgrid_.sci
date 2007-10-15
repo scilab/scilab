@@ -1,5 +1,6 @@
 function Setgrid_()
-//** INRIA
+// Copyright INRIA
+
   xinfo('Set grid')
   if exists('%scicos_with_grid') then
     [%scs_wgrid] = do_grid(%scs_wgrid)

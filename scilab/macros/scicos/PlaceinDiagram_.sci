@@ -1,5 +1,5 @@
 function PlaceinDiagram_()
-  
+// Copyright INRIA  
   Cmenu=[]
   global scs_m_palettes
   %pa_=TCL_GetVar('blko');%pa_=part(%pa_,6:length(%pa_)); ...

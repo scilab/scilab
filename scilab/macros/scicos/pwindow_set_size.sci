@@ -1,8 +1,7 @@
 function pwindow_set_size(gh_window)
-//** Modified by Simone Mannori
+// Copyright INRIA
 //** Physical window set size 
-//** 10 Jul 2006 
-//  
+
   rhs = argn(2) ; //** get the number of right side arguments  
   
   if rhs==0 then //** without arguments (default) assume ... 

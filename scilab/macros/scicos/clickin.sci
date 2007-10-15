@@ -1,6 +1,6 @@
 function [o, modified, newparameters, needcompile, edited] = clickin(o)
-//** Copyright INRIA
-//** Comments by Simone Mannori
+// Copyright INRIA
+//**   
 //**
 //
 //  o             : structure of clicked object, may be modified

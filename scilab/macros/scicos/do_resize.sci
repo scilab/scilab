@@ -2,7 +2,6 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
 //
 // Copyright INRIA
 //**
-//** 6 Sett 2006: Simone Mannori
 //** Change the size (w,h) of a Block
 //** 02/12/06-@l@n- : use of objects permutation in
 //**                  gh_curwin.children.children()

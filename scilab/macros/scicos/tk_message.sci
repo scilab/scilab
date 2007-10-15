@@ -1,9 +1,10 @@
 function num=tk_message(strings,buttons)
+// Copyright INRIA
 //** tk_scs_message : overlad function for x_message
 //**                  inside scicos
 //**
 //** Alan, 12/10/07 : initial rev
-//** Copyright INRIA
+
 
   //** check lhs/rhs arg
   [lhs,rhs]=argn(0)

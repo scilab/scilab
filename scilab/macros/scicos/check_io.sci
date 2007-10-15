@@ -1,4 +1,5 @@
 function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_implicit,out_implicit)
+// Copyright INRIA
 // check_io first check if given number of ports agree with block connection
 // and then changes block structure
 //%parameters

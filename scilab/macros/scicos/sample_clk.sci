@@ -1,4 +1,5 @@
 function [Ts,bllst,corinv,ind,ok,scs_m,flgcdgen,freof]=sample_clk(MAT,Ts,bllst,corinv,scs_m,ind,flgcdgen)
+// Copyright INRIA
 //   [num]=x_choose(['event select';'multiple frequency'],..
 //                    ["You have to choose a method for the sample time computation:";..
 //                     "The first method is a periodic synchronize system";..

@@ -1,7 +1,5 @@
 function [ox,oy,w,h,ok] = get_rectangle(xc,yc)
 // Copyright INRIA
-//! 
-// 29 Jun 2006
 //
 //** using the new "rubberbox" function //** the rubberduck solution 
 

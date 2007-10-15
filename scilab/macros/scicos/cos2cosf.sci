@@ -1,4 +1,5 @@
 function ierr=cos2cosf(u,scs_m,count)
+// Copyright INRIA
 //write scilab instructions whose evaluation 
 //returns the  value of scicos data structure scs_m.
 //in the opened file associated with logical unit u

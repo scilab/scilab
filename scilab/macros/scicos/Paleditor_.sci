@@ -1,6 +1,6 @@
 function Paleditor_()
-//** INRIA
-//**
+// Copyright INRIA
+
     Cmenu = [] ;
     
     scicos_palnew = do_edit_pal(scicos_pal);

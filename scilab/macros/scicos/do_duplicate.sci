@@ -1,6 +1,6 @@
 function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
 // Copyright INRIA
-//** Comments by Simone Mannori
+//**   
 //** If you double click an object in a palettes windows, a call at "Duplicate_" is generated ->
 //** then the "do_duplicate":  - this very function - is is executed : Welcome to the Real Mess :)
 //**

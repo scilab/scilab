@@ -1,10 +1,5 @@
 function OpenSet_()
-//** INRIA 
-//** 24 May 2006:
-//** 10 Jul 2006:
-//** 12 Jul 2006:
-//** 25 Jully 2007 : 
-//** Comments by Simone Mannori
+// Copyright INRIA
 
   global inactive_windows
 

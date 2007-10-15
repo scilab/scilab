@@ -1,5 +1,5 @@
-function selecthilite(Select, flag)  // update the image
-
+function selecthilite(Select, flag) 
+// Copyright INRIA
 if Select==[] then return,end
   
 gh_winback = gcf() ; //** save the active window

@@ -6,6 +6,7 @@ function sim=scicos_sim(v1,v2,v3,v4,v5,..
                         v26,v27,v28,v29,v30,..
                         v31,v32,v33,v34,v35,..
                         v36,v37,v38,v39,v40)
+// Copyright INRIA
   if exists('funs','local')==0 then funs=[],end
   if exists('xptr','local')==0 then xptr=[],end
   if exists('zptr','local')==0 then zptr=[],end

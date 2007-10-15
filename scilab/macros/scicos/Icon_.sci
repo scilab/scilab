@@ -1,8 +1,5 @@
 function Icon_()
 // Copyright INRIA
-// 
-//** 18 Sept 2006
-//** 21 Nov  2006 
 //
 // Icon :  edit a block icon
 // 

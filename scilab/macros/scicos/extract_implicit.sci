@@ -1,4 +1,6 @@
 function [blklstr,cmatr,ccmat,cor,corinv,ok]=extract_implicit(blklst,cmat,ccmat)
+// Copyright INRIA
+
   imp=[];blklstr=[];cmatr=[];ok=%t
 
   nb=size(blklst);

@@ -1,4 +1,6 @@
 function Color=tk_getcolor(title1,Color)
+// Copyright INRIA
+
   title1=sci2tcl(title1)
   Color=Color-1;
   

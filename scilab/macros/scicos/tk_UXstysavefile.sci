@@ -1,4 +1,5 @@
 function p=tk_UXstysavefile(file_mask,path,Title,foo)
+// Copyright INRIA
   if ~with_tk() then error('Tcl/Tk interface not defined'),end
   arg=''
   if exists('file_mask','local')==1 then 

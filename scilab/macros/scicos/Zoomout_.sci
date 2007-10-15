@@ -1,5 +1,5 @@
 function Zoomout_()
-//** INRIA
+// Copyright INRIA
 //** 12 Feb. 2006:  new graphic (Simone), grid insertion (Alan)
 //**                geometrical correction (Ramine)
 

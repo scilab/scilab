@@ -1,8 +1,5 @@
 function Duplicate_()
-//** INRIA
-//**
-//** Comments by Simone Mannori 
-//**
+// Copyright INRIA
 
   Cmenu=[]; // Cmenu Quit can come out
 

@@ -1,4 +1,5 @@
 function BrowseTo_()
+// Copyright INRIA
 global %scicos_navig
 global %diagram_path_objective
 Cmenu=[]

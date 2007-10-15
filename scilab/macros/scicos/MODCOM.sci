@@ -1,4 +1,5 @@
 function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
+// Copyright INRIA
 //
  [dirF,nameF,extF]=fileparts(funam);
 

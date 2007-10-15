@@ -1,4 +1,5 @@
 function o=disconnect_ports(o)
+// Copyright INRIA
   graphics=o.graphics
   graphics.pin=0*graphics.pin
   graphics.pout=0*graphics.pout

@@ -1,7 +1,7 @@
 function Open_()
 // Copyright INRIA
 //
-//** Comments and mods by Simone Mannori
+//**   
 //** 05 Set 2006 : code from the old "Load_.sci"
 // 
 //** Open a saved diagram 

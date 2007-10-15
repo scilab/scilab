@@ -1,6 +1,5 @@
 function RotateLeft_()
-//   INRIA
-//** 19 Jul 2007
+// Copyright INRIA
 //** Al@n
 
     scs_m_save = scs_m ;

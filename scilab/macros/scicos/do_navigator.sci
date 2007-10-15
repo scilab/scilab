@@ -1,5 +1,5 @@
 function [Tree,windows] = do_navigator(scs_m,windows)
-//** INRIA 
+// Copyright INRIA
 
 // build the tree representation
 y0 = 0    ;

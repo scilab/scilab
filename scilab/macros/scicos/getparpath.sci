@@ -1,4 +1,5 @@
 function ppath=getparpath(scs_m,bpath,ppath)
+// Copyright INRIA
 // getparpath - computes path to block parameter data structure in scicos structure
 //%Syntax
 //  ppath=getparpath(scs_m)  standard call
@@ -8,8 +9,7 @@ function ppath=getparpath(scs_m,bpath,ppath)
 //   bpath : current path to scs_m
 //   ppath : list, each element is a vector giving the path to a block
 //           with non empty rpar or ipar or states
-//!
-// Copyright INRIA
+
   excluded=['IN_f','OUT_f','CLKIN_f','CLKOUT_f','CLKINV_f','CLKOUTV_f']
   [lhs,rhs]=argn(0)
   if rhs<2 then bpath=[],end

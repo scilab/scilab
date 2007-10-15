@@ -1,6 +1,5 @@
 function Cut_()
-//** INRIA
-//**  
+// Copyright INRIA
   if Select==[] then //** if no object has been selected 
       Cmenu = []; //** clear all the state variable 
       %pt   = [];

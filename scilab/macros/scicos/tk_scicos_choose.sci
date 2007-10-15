@@ -1,5 +1,5 @@
 function result = tk_scicos_choose(mat,lab,but);
-//** INRIA
+// Copyright INRIA
 //** 17 April 2007: name changed from "tk_choose" to "tk_scicos_choose"
   result = 0
   

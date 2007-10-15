@@ -1,4 +1,5 @@
 function DisableAllMenus()
+// Copyright INRIA
   %ws=intersect(winsid(),[inactive_windows(2);curwin]')
   %men=menus(1)
   for %w=%ws

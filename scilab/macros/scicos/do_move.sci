@@ -1,15 +1,5 @@
 function [scs_m] = do_move(%pt, scs_m)
 // Copyright INRIA
-//**
-//** 11 Set 2006: restart a new revision
-//** 12 Set 2006:
-//** 13         : begin the link move
-//** 14
-//**
-//**  ---> There are many things to fix in the move link section
-//**
-//** Super Intelligent "SmartMove" operation
-//**
 //
 // get a scicos object to move, and move it with connected objects
 //

@@ -1,5 +1,5 @@
 function ExportAll_()
-
+// Copyright INRIA
 Cmenu=[]
 %exp_dir=tk_getdirectory()
 if %exp_dir<>[] then 

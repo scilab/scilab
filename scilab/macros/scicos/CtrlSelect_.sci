@@ -1,4 +1,5 @@
 function CtrlSelect_()
+// Copyright INRIA
   Cmenu=[];
   if windows(find(%win==windows(:,2)),1)==100000 then
     %pt=[]

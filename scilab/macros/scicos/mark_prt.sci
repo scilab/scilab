@@ -1,4 +1,5 @@
 function o=mark_prt(o,prt_number,inout,typ,v)
+// Copyright INRIA
 //mark a port of a block free or used
 // o           : block data structure
 // prt_number  : port number
@@ -9,8 +10,6 @@ function o=mark_prt(o,prt_number,inout,typ,v)
 // v           : value to assign
 //               k>0 : port is connected to link #k
 //               0 : port is free
-
-// Copyright INRIA
 
   if inout=='out' then //set an output port
     if typ==1 | typ==2 then  //standard (regular or implicit) port

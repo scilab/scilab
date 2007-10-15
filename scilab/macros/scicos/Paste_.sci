@@ -1,5 +1,6 @@
 function Paste_()
-//** INRIA 
+// Copyright INRIA
+
 //** 02 May 2007: Update the paste operation with "Replace" (paste over) operation 
 
 //** 10 Aug. 2007 : updated function 

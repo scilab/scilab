@@ -1,4 +1,5 @@
 function SelectAll_()
+// Copyright INRIA
 Cmenu=[];%pt=[];
 
 Select=[];

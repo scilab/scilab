@@ -1,5 +1,6 @@
 function Backgroundcolor_()
-//** INRIA
+// Copyright INRIA
+//
     Cmenu=[]
 
     if curwin==%win then

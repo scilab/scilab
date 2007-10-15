@@ -1,6 +1,6 @@
 function SaveasInterfFunc_()
-//** INRIA
-//**     
+// Copyright INRIA
+
     Cmenu = []
     ok = %f
     

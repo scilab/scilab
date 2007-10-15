@@ -1,5 +1,5 @@
-
 function varargout=%graphics_e(i,o)
+// Copyright INRIA
 //function used only for backward compatibility of scicos blocks gui
   warning('Obsolete use of graphics(i) in this scicos block')
   varargout=list()

@@ -1,4 +1,6 @@
 function ActivateScilabWindow_()
+// Copyright INRIA
+
   Cmenu = [] ;
   %pt = []   ;
 

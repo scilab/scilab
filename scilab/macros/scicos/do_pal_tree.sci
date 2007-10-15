@@ -1,6 +1,6 @@
 function scs_m = do_pal_tree(scicos_pal)
-//** INRIA
-//** Comments by Simone Mannori
+// Copyright INRIA
+
   scs_m = scicos_diagram(version=get_scicos_version());
   scs_m.props.title(1) = 'Palettes';
   sup = SUPER_f('define');

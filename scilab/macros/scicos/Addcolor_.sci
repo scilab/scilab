@@ -1,5 +1,4 @@
 function Addcolor_()
-//
 // Copyright INRIA
 //
     [edited,options] = do_options(scs_m.props.options,'Cmap')

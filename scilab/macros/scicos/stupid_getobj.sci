@@ -1,5 +1,6 @@
 function [k,wh,scs_m] = stupid_getobj(scs_m,Select,pt)
-//** INRIA
+// Copyright INRIA
+
 //** Now works only for a selected link
   
   n = lstsize(scs_m.objs)

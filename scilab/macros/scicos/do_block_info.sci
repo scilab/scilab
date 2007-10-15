@@ -1,6 +1,6 @@
 function %pt=do_block_info(%pt,scs_m)
-//** Copyright INRIA
-//** 3 April 2007 
+// Copyright INRIA
+
   if Select==[] then
   //** if NO object is selected   
     win = %win;

@@ -1,5 +1,6 @@
 function PlaceinBrowser_()
-Cmenu=[]
+// Copyright INRIA
+  Cmenu=[]
   %superpath='root,'+strcat(string(super_path),',')
   %superpath1='root,'+strcat(string(super_path(1)),',')
   TCL_EvalStr('.scsTree.t selection clear')  

@@ -1,10 +1,9 @@
 function txt=do_newblk(o,nam)
+// Copyright INRIA
 //create text of GUI function associated with a a block
 // o     : block data structure
 // nam   : name of the created GUI function
-//!
 
-// Copyright INRIA
 //for  k=5:8,o(2)(k)=0*o(2)(k),end // disconnect links
 o.graphics.pin=0*o.graphics.pin;o.graphics.pout=0*o.graphics.pout;
 o.graphics.pein=0*o.graphics.pein;;o.graphics.peout=0*o.graphics.peout;

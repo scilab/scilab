@@ -1,4 +1,5 @@
 function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok]=scicos_flat(scs_m,ksup,sco_mat)
+// Copyright INRIA
 //This function takes a hierarchical Scicos diagram and computes the
 //"flat" equivalent, removing "non computational" blocs like splits.
 //S. Steer, R. Nikoukhah 2003. Copyright INRIA

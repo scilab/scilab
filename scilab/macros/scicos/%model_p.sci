@@ -1,4 +1,6 @@
 function %model_p(model)
+// Copyright INRIA
+
   sim=model.sim
   if type(sim)==15 then
     if type(sim(1))==13 then

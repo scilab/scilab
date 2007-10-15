@@ -1,5 +1,6 @@
 function %zoom=restore(gh_curwin)
-//gh_curwin = scf(curwin);
+// Copyright INRIA
+
   gh_current_window = gh_curwin ; 
   
   clf(gh_curwin) ;

@@ -1,4 +1,5 @@
 function [d,pt,ind] = stupid_dist2polyline(xp,yp,pt,pereps)
+// Copyright INRIA
 // computes minimum distance from a point to a polyline
 // d    minimum distance to polyline
 // pt   coordinate of the polyline closest point

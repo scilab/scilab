@@ -1,4 +1,5 @@
 function fname=choosefile(path,comm,errmess)
+// Copyright INRIA
 // choosefile - select a file through a filter
 //%Syntax
 //  fname=choosefile(path)

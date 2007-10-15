@@ -1,4 +1,5 @@
 function [p] = tk_UXstygetfile(file_mask,path,Title,multip)
+// Copyright INRIA
 if ~with_tk() then
   error("Tcl/Tk interface not defined"),
 end;

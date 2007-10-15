@@ -1,4 +1,5 @@
 function [xx,yy,lp,larg]=build_scs_tree(scs_m,flag)
+// Copyright INRIA
   [lhs,rhs]=argn(0) 
   if rhs<2 then
     flag='super'

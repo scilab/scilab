@@ -1,4 +1,5 @@
 function [ok,tt]=CFORTR(funam,tt,inp,out)
+// Copyright INRIA
 //
 ni=size(inp,'*')
 no=size(out,'*')

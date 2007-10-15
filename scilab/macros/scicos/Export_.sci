@@ -1,6 +1,5 @@
 function Export_()
-//** INRIA     
-//**    
+// Copyright INRIA
 
   do_export(scs_m) ;
   scf(gh_current_window); 

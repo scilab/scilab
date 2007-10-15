@@ -1,4 +1,5 @@
 function hilite_path(path,mess,with_intermediates)
+// Copyright INRIA
 //hilite a block included in a superblock hierarchy and displays a
 //message.   If required all the intermediate superblocs are displayed
 //first entry of the path must be a bloc of currently opened diagram  

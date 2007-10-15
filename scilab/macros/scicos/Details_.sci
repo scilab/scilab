@@ -1,6 +1,5 @@
 function Details_()
-//** INRIA
-//** Comments by Simone Mannori
+// Copyright INRIA
 
   Cmenu = [] ; 
   do_details(Select);

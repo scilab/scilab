@@ -1,4 +1,5 @@
 function [ok,tt]=CFORTR2(funam,tt)
+// Copyright INRIA
 //
 if tt==[] then
   

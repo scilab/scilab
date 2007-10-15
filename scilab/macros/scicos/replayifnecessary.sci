@@ -1,7 +1,5 @@
 function needreplay = replayifnecessary()
-//** INRIA 
-//** Comments by Simone Mannori
-//** 
+// Copyright INRIA
 
 ///** This is basically a dummy function (will be eliminated very soon)
 

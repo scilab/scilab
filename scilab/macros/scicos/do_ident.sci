@@ -1,6 +1,6 @@
 function scs_m = do_ident(scs_m)
 // Copyright INRIA
-//** 06 Set 2006
+
 //** Alan 21/12/06 : use of objects swap in gh_curwin.children.children()
 
   if Select==[] then //** if no object are selected,

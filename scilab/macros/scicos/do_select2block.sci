@@ -1,4 +1,5 @@
 function [%pt,scs_m] = do_select2block(%pt,scs_m)
+// Copyright INRIA
 //** This function is called if some object are already selected before
 //** 'Region to SuperBlock' call 
 //** Alan, 15/10/7 : patch for rotated blocks

@@ -1,5 +1,5 @@
 function Help_()
-//** INRIA
+// Copyright INRIA
 //**
 //** 03 May 2007: BEWARE : this code handle the "help" only for Scicos block (no link, no menu)  
 //**  

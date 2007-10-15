@@ -1,12 +1,10 @@
 function [btn, %pt, win, Cmenu ] = cosclick(flag)
-//** INRIA
-//** Comments by Simone Mannori 
+// Copyright INRIA
+//**    
 //** btn : button / event id (numeric code)
 //** %pt : mouse position[x,y] of the event
 //** win : Scilab/Scicos windows where the event occour
 //** 
-//** 12 July 2006 : Revision
-//**
 
   [lhs,rhs] = argn(0) ;
   

@@ -24,7 +24,7 @@ function standard_etiquette(bloc, legende, job)
 // E. Demay E.D.F 97
 //
 
-// Copyright INRIA
+
 //= Initialisations ==
 //GRAPHIQUE = 2;ORIGINE = 1;TAILLE = 2
 macro = bloc.gui

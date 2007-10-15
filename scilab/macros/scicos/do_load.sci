@@ -1,5 +1,5 @@
 function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
-//** Copyright INRIA
+// Copyright INRIA
 //**
 //** Load a Scicos diagram 
 //**

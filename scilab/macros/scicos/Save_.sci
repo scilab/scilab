@@ -1,6 +1,6 @@
 function Save_()
-//** INRIA
-//** 
+// Copyright INRIA
+
   Cmenu = [] ;
   %pt = []   ;
 

@@ -1,4 +1,5 @@
 function gr_k=get_gri(k,l)
+// Copyright INRIA
   //** 03/01/07 : Alan
   //** semi empirical equation :)
   //

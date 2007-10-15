@@ -1,8 +1,6 @@
 function set_background(gh_window)
 // Copyright INRIA
-//** Modified by Simone Mannori (10 Jan 2006 )
-//** 10 Jul 2006 
-//** 
+
   
   rhs = argn(2) ; //** get the number of right side arguments  
   

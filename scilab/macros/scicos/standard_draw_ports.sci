@@ -1,7 +1,5 @@
-//** 19 Jan 2006
-//** Comments by Simone Mannori
-
 function standard_draw_ports(o)
+// Copyright INRIA
 
   nin = size(o.model.in,1);
   nout= size(o.model.out,1);

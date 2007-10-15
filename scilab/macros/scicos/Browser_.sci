@@ -1,6 +1,6 @@
 function Browser_()
-//** INRIA
-//** Comments by Simone Mannori
+// Copyright INRIA
+//
 
 Cmenu = [] ; 
 

@@ -1,4 +1,5 @@
 function fname=do_saveblockgui(o)
+// Copyright INRIA
   tit = ["Use .sci extension because GUI is a Scilab function"];
   fname = savefile('*.sci',emptystr(),tit)
 

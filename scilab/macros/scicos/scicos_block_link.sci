@@ -1,4 +1,5 @@
 function ok=scicos_block_link(funam,txt,flag)
+// Copyright INRIA
   if flag=='c' then mflag='C', else mflag='fortran',end
   if stripblanks(funam)==emptystr() then 
     ok=%f;

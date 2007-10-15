@@ -1,4 +1,5 @@
 function %Block_p(block)
+// Copyright INRIA
   txt=['GUI     : '+block.gui 
        'Graphics: '
        '          '+graphics2txt(block.graphics)

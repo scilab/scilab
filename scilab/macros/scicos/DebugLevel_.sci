@@ -1,4 +1,5 @@
 function DebugLevel_()
+// Copyright INRIA
   Cmenu=[]
   n=dialog(['Set debugging level (0,1,2,3)';
 	    'It performs scicos_debug(n)'],string(scicos_debug()))

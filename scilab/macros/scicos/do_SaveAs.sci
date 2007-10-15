@@ -1,9 +1,7 @@
 function [scs_m, edited] = do_SaveAs()
 //
 // Copyright INRIA
-//**
-//** 2 August 2007 : comments from Simone Mannori 
-//**
+
 
   tit = ["Use .cos extension for binary and .cosf for ascii file"];
   fname = savefile('*.cos*',emptystr(),tit)

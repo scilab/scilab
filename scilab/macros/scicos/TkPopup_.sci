@@ -1,4 +1,5 @@
 function TkPopup_()
+// Copyright INRIA
   Select=[]
 
   Cmenu = mpopup(list('Place in Diagram','Help','Details')) 

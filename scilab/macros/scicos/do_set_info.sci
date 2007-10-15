@@ -1,7 +1,8 @@
 function [ok,new_info]=do_set_info(info)
+// Copyright INRIA
 // This function may be redefined by the user to handle definition 
 // of the informations associated with the current diagram
-// Copyright INRIA
+
 if prod(size(info))==0 then
   info = list(' ')
 end

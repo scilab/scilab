@@ -1,4 +1,5 @@
 function txt=gen_modelica(scs_m,name)
+// Copyright INRIA
   txt=[];tab=ascii(9)
   models=[]
   eqns=[]

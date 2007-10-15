@@ -1,6 +1,6 @@
 function [%pt,scs_m] = do_region2block(%pt,scs_m)
 // Copyright INRIA
-//** 29 June 2006
+
 //** Very complex and critical functions inside : handle with care ;) 
 //**
 //** 11 Jan 2007 : 'Block' / 'Text' bug validation: this function is OK.

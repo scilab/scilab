@@ -1,7 +1,6 @@
 function Context_()
-//** INRIA 
-//**
-//** 10 Jan 2006      
+// Copyright INRIA
+
     Cmenu = 'Replot' ; //** is it really necessary ? 
     
     while %t do

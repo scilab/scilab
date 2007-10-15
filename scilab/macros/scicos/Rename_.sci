@@ -1,6 +1,6 @@
 function Rename_()
-//** INRIA
-//**    
+// Copyright INRIA
+
     Cmenu = [] ;
     [scs_m,edited] = do_rename(scs_m) ;
 endfunction

@@ -1,5 +1,6 @@
 function RegiontoSuperBlock_()
-//** 29 June 2006
+// Copyright INRIA
+
 //** Very complex and critical functions inside : handle with care ;)     
 
 //** BEWARE: both functions ('do_region2block' and 'do_select2block' contains some 

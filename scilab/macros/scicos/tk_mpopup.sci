@@ -1,10 +1,5 @@
 function Cmenu=tk_mpopup(ll)
-//** INRIA
-//**
-//** 2 April 2007: right mouse button operation 
-//**
-//**     WindowZ version 
-//**
+// Copyright INRIA
   
   Cmenu = []
   if length(ll)==0 then

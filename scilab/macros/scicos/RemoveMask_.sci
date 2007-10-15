@@ -1,4 +1,5 @@
 function RemoveMask_()
+// Copyright INRIA
 Cmenu=[];%pt=[];
 if size(Select,1)<>1 | curwin<>Select(1,2) then
    return

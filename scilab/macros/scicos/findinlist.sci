@@ -1,4 +1,5 @@
 function [path]=findinlist(L,v,path)
+// Copyright INRIA
 //recherche si un element de valeur v existe dans la liste L
   global paths
   if and(type(L)<>(15:17)) then error('First argument should be a list'),end

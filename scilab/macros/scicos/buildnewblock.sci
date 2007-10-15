@@ -1,3 +1,6 @@
+function [ok]=buildnewblock(blknam,files,filestan,libs,rpat,ldflags,cflags)
+//Copyright INRIA
+
 //** buildnewblock : generates Makefiles for
 //                   the generated C code of a scicos block,
 //                   compile and link it in Scilab
@@ -20,8 +23,7 @@
 //                                      Simone's comments)
 //                 add lhs parameters, rewritte
 //
-//Copyright INRIA
-function [ok]=buildnewblock(blknam,files,filestan,libs,rpat,ldflags,cflags)
+
 
   //** check rhs paramaters
   [lhs,rhs]=argn(0);

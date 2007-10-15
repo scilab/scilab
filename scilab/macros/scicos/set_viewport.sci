@@ -1,5 +1,5 @@
 function set_viewport(viewport)
-//** 12 Jan 2007
+// Copyright INRIA
 
     //** Beware ! : I'm forced to use old graphics instructions because there are not
     //**            direct equivalent inside the new graphics (24 may 2006)

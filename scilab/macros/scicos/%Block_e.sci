@@ -1,5 +1,6 @@
 function varargout=%Block_e(i,o)
-  //function used only for backward compatibility of scicos blocks gui
+// Copyright INRIA
+//function used only for backward compatibility of scicos blocks gui
   warning('Obsolete use of o(i) in this scicos block')
   varargout=list()
   for k=1:size(i,'*')

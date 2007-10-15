@@ -1,4 +1,6 @@
 function Shortcuts_()
+// Copyright INRIA
+
 %rr=lines()
 %scicos_short
 lines(0)

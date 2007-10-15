@@ -1,5 +1,5 @@
 function Flip_()
-// 29 Jun 2006 :)
+// Copyright INRIA
 //** Alan/Simone 13/12/06 : Replot no more needed
    scs_m_save = scs_m    ; //** save the old diagram for "undo" operation 
    nc_save = needcompile ; //** save the old diagram state

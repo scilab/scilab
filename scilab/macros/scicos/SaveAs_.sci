@@ -1,4 +1,5 @@
 function SaveAs_()
+// Copyright INRIA
   Cmenu=[]
 
   if super_block then

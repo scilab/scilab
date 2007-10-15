@@ -1,4 +1,5 @@
 function Modelica_()
+// Copyright INRIA
   Cmenu=[]
   xinfo('Click on a Implcit Superblock '+..
 	' to obtain a modelica block ! ')

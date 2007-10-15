@@ -1,4 +1,5 @@
 function [links_table,sco_mat,ok]=global_case(links_table,sco_mat)
+// Copyright INRIA
   [s,k]=gsort(sco_mat(:,2))
   sco_mat=sco_mat(k,:);
   index=find((sco_mat(:,2)=='1')&(sco_mat(:,4)=='3'))

@@ -2,8 +2,6 @@ function standard_draw (o, frame, draw_ports, up)
 //
 // Copyright INRIA
 //
-//** Comments and mods by Simone Mannori
-//** 19 Jan 2006
 //** This function is used to draw the object from the most of (but NOT all) the interface functions
 //**
 //** 21 Nov 2006 : some save/restore patch moved to upper level "drawobj.sci"

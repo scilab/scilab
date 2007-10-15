@@ -2,7 +2,7 @@ function gh_blk = drawobj(o, gh_window)
 //
 // Copyright INRIA
 //!
-//** Comments by Simone Mannori 
+//**    
 //
 //** 22 May 2006 : this function IS substantially different from the standard
 //**               SCICOS because came back with the graphic handler of 

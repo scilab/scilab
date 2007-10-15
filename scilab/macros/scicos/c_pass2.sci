@@ -1,4 +1,5 @@
 function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
+// Copyright INRIA
 // cor    ; correspondance table with initial block ordering
 //
 // bllst: list with nblk elts where nblk denotes number of blocks.

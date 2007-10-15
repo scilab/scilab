@@ -1,8 +1,6 @@
 function [scs_m_i, cpr_i, sflag] = get2index(object, k)
-//** Copyright INRIA
+// Copyright INRIA
 // 
-//** 3 April 2007: get2index: recover the 
-//**
 //**               scs_m_i : Object numeber (index) in the diagram (scs_m)
 //**
 //**               cpr_i   : Compiled structure index 

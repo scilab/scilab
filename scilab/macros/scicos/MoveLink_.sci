@@ -1,7 +1,5 @@
 function MoveLink_()
-//** 20 Jan 2006
-//** 10 Jan 2007 
-//** Comments and mods by Simone Mannori 
+// Copyright INRIA
 
 //** This function is activated by PRESSING the LEFT mouse buttom 
  

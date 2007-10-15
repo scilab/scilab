@@ -1,5 +1,5 @@
 function [wa,ha] = do_export(scs_m, fname, titleflag) 
-//** 
+// Copyright INRIA
 //** default call inside Export_.sci
 //** 
 //**  do_export(scs_m) ;

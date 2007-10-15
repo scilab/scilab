@@ -1,4 +1,5 @@
 function tt=sci2tcl(ttx)
+// Copyright INRIA
   for t=['\',''"','[',']','{','}']
     ttx=strsubst(ttx,t,'\'+t)
   end 

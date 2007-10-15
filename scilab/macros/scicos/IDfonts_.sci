@@ -1,5 +1,6 @@
 function IDfonts_()
-//**
+// Copyright INRIA
+
     Cmenu = [] ;
 
     [edited, options] = do_options(scs_m.props.options,'ID') ;

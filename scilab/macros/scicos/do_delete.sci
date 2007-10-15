@@ -1,9 +1,6 @@
 function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select)
 //!
 // Copyright INRIA
-//**
-//** 21 June 2006
-//** 29 June 2006
 // do_delete - delete a scicos object
 // get first object to delete
 

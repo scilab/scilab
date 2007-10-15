@@ -1,7 +1,6 @@
 function Popup_()
-//** INRIA
-//**
-//** 
+// Copyright INRIA
+
 //** This function uses the "%scicos_lhb_list(state_var) data strucuture
 //** defined inside [auto/scicos.sci]
 //** 

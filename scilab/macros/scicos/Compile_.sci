@@ -1,4 +1,5 @@
 function Compile_()
+// Copyright INRIA
     nc_save=4
     Cmenu=[]
     needcompile=4,

@@ -1,4 +1,5 @@
 function state=scicos_state(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11)
+// Copyright INRIA
 //initialisation de state mlist
   if exists('x','local')==0 then x=[],end
   if exists('z','local')==0 then z=[],end

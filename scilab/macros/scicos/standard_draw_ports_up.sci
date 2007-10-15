@@ -1,11 +1,12 @@
 function standard_draw_ports_up(o)
+// Copyright INRIA
 
   nin=size(o.model.in,1);
 
   inporttype=o.graphics.in_implicit
   nout=size(o.model.out,1);
   outporttype=o.graphics.out_implicit
-[orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
+  [orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
     xset('pattern',default_color(0));
 
     // set port shape

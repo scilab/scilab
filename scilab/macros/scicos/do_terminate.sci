@@ -1,7 +1,8 @@
+function [alreadyran,%cpr] = do_terminate(scs_m,%cpr)
 // Terminate the current simulation
 // Ne rend pas la main à l'utilisateur en cas d'erreur
 // Copyright INRIA
-function [alreadyran,%cpr] = do_terminate(scs_m,%cpr)
+
 
   //** if sim or and state is not in %cpr
   if prod(size(%cpr))<2 then

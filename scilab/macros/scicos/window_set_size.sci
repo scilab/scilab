@@ -1,9 +1,7 @@
 function window_set_size(gh_window, viewport)
-//** 24 May 2006
-//** Modified by Simone Mannori 09 Jan 2006
-//*  10 Jul 2006
+// Copyright INRIA
 //** Set the size of the internal "virtual window workspace" of the physical graphic window
-//** Alan,21/12/06 : axes take all the virtual window workspace
+
 
   // rhs = argn(2) ; //** get the number of right side arguments
 

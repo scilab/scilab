@@ -2,7 +2,7 @@ function disablemenus(xinfo_flag)
 //DisableAllMenus()
 return
 // Copyright INRIA
-//** Comments by Simone Mannori
+//**   
 
 //** Disable the dynamic menu to avoid unintentional command generation during
 //** interactive operations (Move, OpenSet, Link creation, etc.)

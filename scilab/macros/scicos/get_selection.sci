@@ -1,5 +1,6 @@
 function [%pt,%win,o] = get_selection(Select,%pt,%win)
-//**   
+// Copyright INRIA
+
   num = Select(1); win=Select(2)
   
   kc = find(win==windows(:,2))

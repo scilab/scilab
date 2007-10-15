@@ -1,4 +1,5 @@
 function [ok,bllst]=adjust_in2out2(bllst)
+// Copyright INRIA
  //adjust_in2out2
  //Alan
  //adjust in2,intyp,out2, outtyp in accordance to

@@ -1,4 +1,5 @@
 function SaveBlockGUI_()
+// Copyright INRIA
   if size(find(Select(:,2)==curwin),2)<>1 then
      message('Select one and only one block in the current window.')
      Cmenu=[]

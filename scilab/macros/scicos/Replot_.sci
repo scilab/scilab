@@ -1,6 +1,6 @@
 function Replot_()
-//   INRIA
-//** 24 may 2006, Comments by Simone Mannori
+// Copyright INRIA
+
     Cmenu = [] ;
     %pt   = [] ;
     Select= [] ;

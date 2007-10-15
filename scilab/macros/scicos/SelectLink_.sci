@@ -1,9 +1,5 @@
 function SelectLink_()
 // Copyright INRIA
-//** 12 Jan 2006: Code modified/commented by Simone Mannori
-//**
-//**  9 Jan 2007: Region selection/unselecton "dead" bug fixed 
-  
   //** This function is called after a single left click 
 
   Select=[]; SelectRegion=list() ; //** init internal variable

@@ -1,5 +1,5 @@
 function [reg, rect, prt] = get_region2(xc, yc, win)
-//** INRIA
+// Copyright INRIA
 //
 //Creates in reg the superblock formed with the objects selected 
 //

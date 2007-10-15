@@ -1,4 +1,5 @@
 function [x,y,typ]=getinputports(o)
+// Copyright INRIA
   [x,y,typ]=getinputs(o)
   [x2,y2,typ2]=getoutputs(o)
   k=find(typ2==2)

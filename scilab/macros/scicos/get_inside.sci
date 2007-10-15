@@ -1,4 +1,5 @@
 function reg=get_inside(SelectRegion)
+// Copyright INRIA
   [ox,oy,w,h,win]=SelectRegion(:)
   kc=find(win==windows(:,2))
   if kc==[] then

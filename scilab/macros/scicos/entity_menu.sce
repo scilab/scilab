@@ -1,4 +1,5 @@
 function add_entity_menu(win)
+// Copyright INRIA
   if argn(2)<1 then 
     win=get(gcf(),'figure_id')
     scf(win)

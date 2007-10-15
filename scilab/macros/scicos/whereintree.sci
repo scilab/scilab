@@ -1,4 +1,5 @@
 function [Path,path,ok]=whereintree(Tree,xc,yc)
+// Copyright INRIA
 [m,k]=mini((Tree('x')-xc).^2+(Tree('y')-yc).^2)
 ok=%t;path=[];Path=list()
 if k==1 then return,end
