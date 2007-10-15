@@ -31,7 +31,7 @@ end
 freqdiv=unique(freq1);
 if size(unique(offset1),'*')==1 then
   if size(freqdiv,'*')==1 then flg=0;end
-  v=frequ1;
+  v=freq1;
   v=v(find(v<>0));
   min_v=min(v);max_v=max(v);
   if (max_v/min_v)>1e5 then message(['The difference between the frequencies is very large';..

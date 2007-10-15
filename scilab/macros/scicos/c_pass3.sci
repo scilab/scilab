@@ -17,6 +17,8 @@ for k=1:size(corinv)
 
     //-Alan/Masoud 19/12/06-
     //We force here update of parameters for THE modelica block
+    pause
+    if corinv(k)>size(%cpr.cor) then ok=%f;cpr=list();return;end
     [%state0,state,sim]=modipar(corinv(k),%state0,cpr.state,sim,scs_m,cpr.cor);
     cpr.state=state;
 
