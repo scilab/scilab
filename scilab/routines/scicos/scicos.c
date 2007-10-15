@@ -4310,25 +4310,33 @@ void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
   }
   else {
     Blocks[kf-1].x=&xt[xptr[kf]-1];
-    if(*flag==0 && solver==100) {
-      Blocks[kf-1].res=&residual[xptr[kf]-1];
-      Blocks[kf-1].xd=&residual[xptr[kf]-1];
-      (*loc4)(&Blocks[kf-1],*flag);
+    /* special case for type 10004 */
+    if(Blocks[kf-1].type==10004) {
       Blocks[kf-1].xd=&xtd[xptr[kf]-1];
-      if(flagi!=7) {
-	for (k=0;k<Blocks[kf-1].nx;k++) {
-	  Blocks[kf-1].res[k]=Blocks[kf-1].res[k]-Blocks[kf-1].xd[k];
-	}
-      }
-      else {
-	for (k=0;k<Blocks[kf-1].nx;k++) {
-	  Blocks[kf-1].xd[k]=Blocks[kf-1].res[k];
-	}
-      }
+      Blocks[kf-1].res=&residual[xptr[kf]-1];
+      (*loc4)(&Blocks[kf-1],*flag);
     }
     else {
-      Blocks[kf-1].xd=&xtd[xptr[kf]-1];
-      (*loc4)(&Blocks[kf-1],*flag);
+      if(*flag==0 && solver==100) {
+        Blocks[kf-1].res=&residual[xptr[kf]-1];
+        Blocks[kf-1].xd=&residual[xptr[kf]-1];
+        (*loc4)(&Blocks[kf-1],*flag);
+        Blocks[kf-1].xd=&xtd[xptr[kf]-1];
+        if(flagi!=7) {
+          for (k=0;k<Blocks[kf-1].nx;k++) {
+            Blocks[kf-1].res[k]=Blocks[kf-1].res[k]-Blocks[kf-1].xd[k];
+          }
+        }
+        else {
+          for (k=0;k<Blocks[kf-1].nx;k++) {
+            Blocks[kf-1].xd[k]=Blocks[kf-1].res[k];
+          }
+        }
+      }
+      else {
+        Blocks[kf-1].xd=&xtd[xptr[kf]-1];
+        (*loc4)(&Blocks[kf-1],*flag);
+      }
     }
   }
   if (*flag<0) sciprint("Error in the Debug block \r\n");
