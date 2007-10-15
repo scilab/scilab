@@ -85,6 +85,11 @@ if typeof(o)=="Block" then
       edited=%f
       return
     end
+
+    //** Added to unset the last upper left point
+    //** of the dialog box
+    TCL_UnsetVar('numx')
+    TCL_UnsetVar('numy')
     
     //** the recursive superblock opening 
     
@@ -112,6 +117,12 @@ if typeof(o)=="Block" then
   //**-------------------- Mask C superblock  -----------------------------  
   elseif o.model.sim=="csuper"& o.model.ipar==1 then
     ierr=execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch')
+
+    //** Added to unset the last upper left point
+    //** of the dialog box
+    TCL_UnsetVar('numx')
+    TCL_UnsetVar('numy')
+
     if ierr<>0 then 
       disp('Error in GUI of block '+o.gui)
       edited=%f
@@ -127,6 +138,12 @@ if typeof(o)=="Block" then
   //**-------------------- C superblock ??? -----------------------------  
   elseif o.model.sim=="csuper" then
     ierr=execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch')
+
+    //** Added to unset the last upper left point
+    //** of the dialog box
+    TCL_UnsetVar('numx')
+    TCL_UnsetVar('numy')
+
     if ierr<>0 then 
       disp('Error in GUI of block '+o.gui)
       edited=%f
@@ -144,6 +161,12 @@ if typeof(o)=="Block" then
   else
 
     ierr=execstr('o_n='+o.gui+'(''set'',o)','errcatch') ;
+
+    //** Added to unset the last upper left point
+    //** of the dialog box
+    TCL_UnsetVar('numx')
+    TCL_UnsetVar('numy')
+
     if ierr<>0 then 
       disp('Error in GUI of block '+o.gui)
       edited=%f
@@ -241,6 +264,12 @@ elseif typeof(o)=="Link" then
 elseif typeof(o)=="Text" then
   
   ierr=execstr('o_n='+o.gui+'(''set'',o)','errcatch') ;
+
+  //** Added to unset the last upper left point
+  //** of the dialog box
+  TCL_UnsetVar('numx')
+  TCL_UnsetVar('numy')
+
   if ierr<>0 then 
     disp('Error in GUI of block '+o.gui)
     edited=%f

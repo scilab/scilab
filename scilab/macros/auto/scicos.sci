@@ -383,26 +383,28 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       funcprot(0);
       
       getcolor = tk_getcolor; //** Tk    "        "
-      
+
       //** --------- Popup OS dependent definition -----------------
       if MSDOS then  
 	//** ... for Windows machines 
+	getvalue  = tk_getvalue ;
+	mpopup    = tk_mpopup   ;     //** the pop up Windowz
+	choose    = tk_scicos_choose   ;
+        getfile   = tk_UXstygetfile;  // use unix style to avoid scilab crash
+        savefile  = tk_UXstysavefile; // use unix style to avoid scilab crash
+        x_message   = tk_message;   //** use Tk scicos style message
+      else
+        getfile  = tk_getfile;     //** Tk function definition
+        savefile = tk_savefile;    //** Tk    "        "
 	getvalue = tk_getvalue ;
-	mpopup   = tk_mpopup   ; //** the pop up Windowz
-	choose   = tk_scicos_choose   ;
-        getfile  = tk_UXstygetfile;  // use unix style to avoid scilab crash
-        savefile = tk_UXstysavefile; //  use unix style to avoid scilab crash
-      else      
-        getfile  = tk_getfile;  //** Tk function definition 
-        savefile = tk_savefile; //** Tk    "        "
-	getvalue = tk_getvalue ;
-	mpopup = tk_mpopupX    ; //** for the Penguin 
+	mpopup   = tk_mpopupX    ; //** for the Penguin
+        x_message  = tk_message; //** use Tk scicos style message
 	deff('x=choose(varargin)', 'x=x_choose(varargin(1:$))');
       end
-      
+
       funcprot(prot);
       //** -------- ... end of popup --------------------------------
-      
+
     else
       //** Scicos works in "text mode"  
       deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');

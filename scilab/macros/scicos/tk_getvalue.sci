@@ -228,16 +228,34 @@ if done==string(1) then
    execstr('result(i)=TCL_GetVar(''x'+string(i)+''')')
  end
 end
-TCL_EvalStr('destroy $w')
+TCL_EvalStr('set numx [winfo x $w];set numy [winfo y $w];destroy $w')
 endfunction
 
 
 function txt=create_txt(titlex,items,init)
+
+
+    if TCL_ExistVar('numx') then
+      numx=TCL_GetVar('numx')
+      numx_tt='set numx '+numx
+    else
+      numx_tt='set numx [winfo pointerx .]'
+    end
+
+    if TCL_ExistVar('numy') then
+      numy=TCL_GetVar('numy')
+      numy_tt='set numy '+numy
+    else
+      numy_tt='set numy [winfo pointery .]'
+    end
+
 txt=['set w .form'
      'catch {destroy $w}'
      'toplevel $w'
-     'set numx [winfo pointerx .]'
-     'set numy [winfo pointery .]'
+       numx_tt
+       numy_tt
+//      'set numx [winfo pointerx .]'
+//      'set numy [winfo pointery .]'
      'wm geometry $w +$numx+$numy'
      'wm title $w '"Set Block properties'"'
      'wm iconname $w '"form'"'
