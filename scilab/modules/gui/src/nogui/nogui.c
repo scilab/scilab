@@ -4,11 +4,13 @@
 /* @author Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
 #include <errno.h>
+#include <unistd.h> /* fdset */
 #include "machine.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "nogui.h"
 #include "xscimore.h"
+
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_gui)()
 {
@@ -58,8 +60,11 @@ with some stuff removed (TCL/TK and a few other things)
 */
 int Xorgetchar(int interrupt){
 	int i;
-int inter_max_plus1 = 0;
-	static fd_set Select_mask_ref,select_mask,Write_mask_ref,write_mask;
+	int inter_max_plus1 = 0;
+	static fd_set Select_mask_ref;
+	static fd_set select_mask;
+	static fd_set Write_mask_ref;
+	static fd_set write_mask;
 	static struct timeval select_timeout;
 	static int fd_in=0,fd_out=0,fd_err=0 ;
   static int state = 0;
