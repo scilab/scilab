@@ -1,19 +1,6 @@
 function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
-//** INRIA
-//**
-//** 20 dec 2005: Code modified by Simone Mannori
-//** 06 Feb 2006 : restart of the mods job :
-//**
-//** 22 May 2006 : New restart
-//**
-//** 19 Jun 2006 : Last restart
-//**
-//** 10 Jul 2006 : looking for a residual oldgraphics instruction
-//**
-//**  1 Set 2006 : SCICOS menu sub-system
-//** Comments & mods by Simone Mannori
-//**
-//**----------------------------------------------------------------------------------------
+//Copyright INRIA
+
 // scicos - block diagram graphic editor 
 // %SYNTAX
 // scs_m=scicos(scs_m,job)
@@ -750,6 +737,15 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       if ~exists('%scicos_solver') then %scicos_solver=0;end
       save(TMPDIR+'/BackupInfo', edited,needcompile,alreadyran, %cpr,%state0,%tcur,..
                                             %scicos_solver,inactive_windows)
+
+      OpenPals=windows(find(windows(:,1)<0),2 )  //close palettes 
+      for winu=OpenPals'
+        if or(winu==winsid()) then
+          gh_del = scf(winu) ; //** select the 'winu'window and get the
+                               //handle
+          delete (gh_del)   ; //** delete the window   
+        end
+      end
     end
     if ~ok then
       message(['Problem saving a backup; I cannot activate Scilab.';
