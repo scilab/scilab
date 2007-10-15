@@ -6,11 +6,10 @@
 #include "machine.h"
 #include "SciEnv.h"
 #include "SCIHOME.h"
+#include "inisci-c.h" /* SetSci */
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	extern void SciEnvForWindows(void);
-#else
-	extern int SetSci();
 #endif
 /*-----------------------------------------------------------------------------------*/
 /**
