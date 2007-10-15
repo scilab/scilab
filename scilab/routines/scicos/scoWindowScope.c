@@ -50,7 +50,8 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
       user_data = scoGetUserData(pTemp);
 	}
     }
-  if ((user_data == -1 ) || (user_data == win_id))
+  /*if ((user_data == -1 ) || (user_data == win_id))*/
+  if ((user_data == -1 ) || (user_data == block_number))
     {
       scoSetWindowID(pScopeMemory,win_id);
       DeleteObjs(win_id);

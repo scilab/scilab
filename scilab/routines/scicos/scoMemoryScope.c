@@ -140,21 +140,23 @@ void scoInitScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory, int num
 void scoFreeScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory)
 {
   int i;
-  scicos_free((*pScopeMemory)->new_draw);
-  scicos_free((*pScopeMemory)->number_of_curves_by_subwin);
-  scicos_free((*pScopeMemory)->period_counter);
-  scicos_free((*pScopeMemory)->period);
-  scicos_free((*pScopeMemory)->longdraw_size);
-  scicos_free((*pScopeMemory)->shortdraw_size);
-  for(i = 0; i < (*pScopeMemory)->number_of_subwin ; i++)
-    {
+
+  if (*pScopeMemory!=NULL) {
+    scicos_free((*pScopeMemory)->new_draw);
+    scicos_free((*pScopeMemory)->number_of_curves_by_subwin);
+    scicos_free((*pScopeMemory)->period_counter);
+    scicos_free((*pScopeMemory)->period);
+    scicos_free((*pScopeMemory)->longdraw_size);
+    scicos_free((*pScopeMemory)->shortdraw_size);
+    for(i = 0; i < (*pScopeMemory)->number_of_subwin ; i++) {
       scicos_free((*pScopeMemory)->hShortDraw[i]);
       scicos_free((*pScopeMemory)->hLongDraw[i]);
     }
-  scicos_free((*pScopeMemory)->hShortDraw);
-  scicos_free((*pScopeMemory)->hLongDraw);
-  scicos_free((*pScopeMemory)->hAxes);
-  scicos_free(*block_work);
+    scicos_free((*pScopeMemory)->hShortDraw);
+    scicos_free((*pScopeMemory)->hLongDraw);
+    scicos_free((*pScopeMemory)->hAxes);
+    scicos_free(*block_work);
+  }
 
 }
 

@@ -90,5 +90,10 @@ scoDouble scoGetPeriod(ScopeMemory * pScopeMemory, int i)
 
 scoInteger scoGetScopeActivation(ScopeMemory * pScopeMemory)
 {
-  return pScopeMemory->activated;
+  if (pScopeMemory==NULL) {
+    return 0;
+  }
+  else {
+    return pScopeMemory->activated;
+  }
 }
