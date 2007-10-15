@@ -118,11 +118,13 @@ int C2F(run)()
   static int nentry, lastindpos;
   static int lcc, kid, nlr;
   int i2;
-
+  
+  /* @TODO Why 80 ? */
   static char tmp[80];
 
   tref = 0;
 
+  /* @TODO What is 4 ? */
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," run pt:%d rstk(pt):%d",Pt,Rstk[Pt]);
     C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
