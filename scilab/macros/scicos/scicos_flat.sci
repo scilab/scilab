@@ -158,19 +158,59 @@ loc_mat=[];from_mat=[];tag_exprs=[];sco_mat=[];
 	Pinds=[];if exists('Pind') then Pinds=Pind,end
 	Pind=[] //base of ports numbering
 	//mprintf("entering superblock at level '+string(size(path,'*'))+"\r\n")
+        nb_pin=size(scs_m.objs(k).graphics('pin'),1);
+        nb_pout=size(scs_m.objs(k).graphics('pout'),1);
+        nb_pein=size(scs_m.objs(k).graphics('pein'),1);
 	for port_type=['pin','pout','pein','peout']
 	  Pind=[Pind cur_fictitious]
-	  ip=scs_m.objs(k).graphics(port_type);ki=find(ip>0)
+	  ip=scs_m.objs(k).graphics(port_type);
+          ki=find(ip>0)
 	  for kk=ki
 	    kc=ip(kk)
-	    if scs_m.objs(kc).to(1)==k then  // a link going to the superblock
-	      scs_m.objs(kc).to(1)=-(cur_fictitious+scs_m.objs(kc).to(2));
-	      scs_m.objs(kc).to(2)=1
-	    end
-	    if scs_m.objs(kc).from(1)==k then  // a link coming from the superblock
-	      scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2));
-	      scs_m.objs(kc).from(2)=1
-	    end
+            //**  a link is connected to the same sblock on both ends
+            if scs_m.objs(kc).to(1)==scs_m.objs(kc).from(1) then
+              //** regular input port
+              if port_type=='pin' then
+                scs_m.objs(kc).to(1)=-(cur_fictitious+scs_m.objs(kc).to(2));
+	        scs_m.objs(kc).to(2)=1
+
+                if scs_m.objs(kc).from(3)==0 then //** in connected to out
+	          scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2)+nb_pin);
+	          scs_m.objs(kc).from(2)=1
+                else //in connected to in
+	          scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2));
+	          scs_m.objs(kc).from(2)=1
+                end
+
+              //** regular output port
+              elseif port_type=='pout' then
+	        scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2));
+	        scs_m.objs(kc).from(2)=1
+
+                if scs_m.objs(kc).to(3)==0 then //** out connected to out
+	          scs_m.objs(kc).to(1)=-(cur_fictitious+scs_m.objs(kc).to(2));
+	          scs_m.objs(kc).to(2)=1
+                end
+
+              //** event input port
+              elseif port_type=='pein' then
+                scs_m.objs(kc).to(1)=-(cur_fictitious+scs_m.objs(kc).to(2));
+	        scs_m.objs(kc).to(2)=1
+
+                scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2)+nb_pein);
+	        scs_m.objs(kc).from(2)=1
+
+              //** peout and pein are never connected to thenselves
+              end
+
+	    elseif scs_m.objs(kc).to(1)==k then  // a link going to the superblock
+	        scs_m.objs(kc).to(1)=-(cur_fictitious+scs_m.objs(kc).to(2));
+	        scs_m.objs(kc).to(2)=1
+
+	    elseif scs_m.objs(kc).from(1)==k then  // a link coming from the superblock
+	        scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2));
+	        scs_m.objs(kc).from(2)=1
+            end
 	  end
 	  cur_fictitious=cur_fictitious+size(ip,'*')
 	end
@@ -213,7 +253,6 @@ loc_mat=[];from_mat=[];tag_exprs=[];sco_mat=[];
     ok=%f
     return
   end
-
   //-------------- Analyse  links -------------- 
   for k=Links
     o=scs_m.objs(k);
