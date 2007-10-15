@@ -808,6 +808,9 @@ cd .. &gt;nul
 				RelativePath=".\curve_c.c">
 			</File>
 			<File
+				RelativePath=".\automat.c">
+			</File>
+			<File
 				RelativePath=".\sundials\cvode.c">
 			</File>
 			<File

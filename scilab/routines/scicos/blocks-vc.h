@@ -357,6 +357,7 @@ extern void rndblkz_m __PARAMS((ARGS_scicos));
 extern void fromws_c __PARAMS((ARGS_scicos));
 extern void mathermit_m __PARAMS((ARGS_scicos));
 extern void scicosexit __PARAMS((ARGS_scicos));
+extern void automat __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -370,6 +371,7 @@ OpTab tabsim[] ={
 {"asinh_blk",(ScicosF) asinh_blk},
 {"atan_blk",(ScicosF) atan_blk},
 {"atanh_blk",(ScicosF) atanh_blk},
+{"automat",(ScicosF) automat},
 {"backlash",(ScicosF) backlash},
 {"bidon",(ScicosF) F2C(bidon)},
 {"bit_clear_16",(ScicosF) bit_clear_16},
@@ -716,6 +718,6 @@ OpTab tabsim[] ={
 {"zcross",(ScicosF) F2C(zcross)},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 355 ;
+int ntabsim= 356 ;
 #endif 
 /***********************************/
