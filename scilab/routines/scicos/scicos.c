@@ -37,10 +37,13 @@
 #include "sundials/ida_impl.h"
 
 typedef struct {
- void *ida_mem;
- N_Vector ewt;
- double *rwork;
- int *iwork;
+  void *ida_mem;
+  N_Vector ewt;
+  double *rwork;
+  int *iwork;
+  double *gwork; /* just added for a very special use: a
+		    space passing to grblkdakr for zero crossing surfaces
+		    when updating mode variables during initialization */
 } *UserData;
 
 
@@ -64,6 +67,7 @@ typedef struct {
 
 #define freeallx \
               if (*neq>0 && (Jacobian_Flag>0))  FREE(data->rwork)\
+	      if ( ng>0 ) FREE(data->gwork);\
               if (*neq>0) N_VDestroy_Serial(data->ewt);\
               if (*neq>0) FREE(data);\
               if (*neq>0) IDAFree(&ida_mem);\
@@ -1797,10 +1801,24 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     data->ewt   = NULL;
     data->iwork = NULL;
     data->rwork = NULL;
+    data->gwork = NULL;
 
     data->ewt   = N_VNew_Serial(*neq);
     if (check_flag((void *)data->ewt, "N_VNew_Serial", 0)) {
       *ierr=200+(-flag);  
+      FREE(data);
+      IDAFree(&ida_mem);
+      N_VDestroy_Serial(IDx);
+      N_VDestroy_Serial(yp);
+      N_VDestroy_Serial(yy);
+      FREE(jroot);
+      FREE(zcros);
+      FREE(Mode_save);
+      return;
+    };
+
+    if ((data->gwork = (double *) MALLOC(ng * sizeof(double)))==NULL){
+      N_VDestroy_Serial(data->ewt);
       FREE(data);
       IDAFree(&ida_mem);
       N_VDestroy_Serial(IDx);
@@ -1821,6 +1839,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
       Jactaille= 2*Jn+(Jn+Jni)*(Jn+Jno)+Jnx*(Jni+2*Jn+Jno)+(Jn-Jnx)*(2*(Jn-Jnx)+Jno+Jni)+2*Jni*Jno;    
   
       if ((data->rwork = (double *) MALLOC(Jactaille * sizeof(double)))==NULL){
+	FREE(data->gwork);
 	N_VDestroy_Serial(data->ewt);
 	FREE(data);
 	IDAFree(&ida_mem);
@@ -2086,7 +2105,11 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	    }
 	    if ( Mode_change==0){
 	      break;
-	      /*	I saw some examples,  even with IDACalcIC failure, IDASolve can continue integrating; So I decided to ignore failure in IDACalcIC and try one more tie with IDASolve. /Masoud
+	      /* I saw some examples,  even with IDACalcIC failure,
+		 IDASolve can continue integrating; So I decided to
+		 ignore failure in IDACalcIC and try one more tie
+		 with IDASolve. /Masoud
+
 	      if (flagr>=0) break; 
 	      else{
 		*ierr=200+(-flagr); 
@@ -2097,9 +2120,18 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	    }
 	  }/* mode-CIC  counter*/
 	  if(Mode_change==1){ 
-	    *ierr = 23;
-	    freeallx;
-	    return;
+	    /* In tghis case, we try again by relaxing all modes and calling IDA_calc again 
+	       /Masoud */
+	    phase=1;
+	    copy_IDA_mem->ida_kk=1;
+	    flagr=IDACalcIC(ida_mem, IDA_YA_YDP_INIT, (realtype)(t));
+	    phase=1;
+	    flag = IDAGetConsistentIC(ida_mem, yy, yp); /* PHI->YY */
+	    if ((flagr<0)||(*ierr>5)) {  /* *ierr>5 => singularity in block */
+	      *ierr = 23;
+	      freeallx;
+	      return;
+	    }
 	  }
 	} /* CIC calculation when hot==0 */
 
@@ -4408,6 +4440,13 @@ int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *
   int jj,flag;
 
   data = (UserData) rdata; 
+
+  if(get_phase_simulation()==1) {
+    /* Just to update mode in a very special case, i.e., when initialization using modes fails.
+       in this case, we relax all modes and try again one more time.     
+    */
+    zdoit((double *)data->gwork, NV_DATA_S(yp), NV_DATA_S(yy),&tx);
+  }
 
   hh=ZERO;
   flag=IDAGetCurrentStep(data->ida_mem, &hh);
