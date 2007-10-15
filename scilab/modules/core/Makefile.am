@@ -388,7 +388,6 @@ includes/stack.h \
 includes/setgetSCIpath.h \
 includes/getmodules.h \
 includes/callinter.h \
-includes/InitScilab.h \
 includes/sciquit.h \
 includes/gw_core.h \
 includes/stack-c.h \
