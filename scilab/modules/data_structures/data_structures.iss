@@ -39,4 +39,7 @@ Source: modules\{#DATASTRUCT}\macros\cleanmacros.bat; DestDir: {app}\modules\{#D
 ;
 ;Source: modules\{#DATASTRUCT}\demos\*.*; DestDir: {app}\modules\{#DATASTRUCT}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#DATASTRUCT}\unit_tests\*.ref; DestDir: {app}\modules\{#DATASTRUCT}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_DEVTOOLS}
+Source: modules\{#DATASTRUCT}\unit_tests\*.tst; DestDir: {app}\modules\{#DATASTRUCT}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_DEVTOOLS}
+;
 ;--------------------------------------------------------------------------------------------------------------

@@ -50,4 +50,7 @@ Source: bin\tcl84.lib; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
 Source: bin\tk84.dll; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
 Source: bin\tk84.lib; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
 ;
+Source: modules\{#TCLSCI}\unit_tests\*.ref; DestDir: {app}\modules\{#TCLSCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TCLSCI} and {#COMPN_DEVTOOLS}
+Source: modules\{#TCLSCI}\unit_tests\*.tst; DestDir: {app}\modules\{#TCLSCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TCLSCI} and {#COMPN_DEVTOOLS}
+;
 ;--------------------------------------------------------------------------------------------------------------

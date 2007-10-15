@@ -39,4 +39,8 @@ Source: modules\{#OPTIMIZATION}\macros\*.sci; DestDir: {app}\modules\{#OPTIMIZAT
 ;
 Source: modules\{#OPTIMIZATION}\demos\*.*; DestDir: {app}\modules\{#OPTIMIZATION}\demos; Flags: recursesubdirs; Components: {#COMPN_OPTIM}
 ;
+Source: modules\{#OPTIMIZATION}\unit_tests\*.ref; DestDir: {app}\modules\{#OPTIMIZATION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_OPTIM} and {#COMPN_DEVTOOLS}
+Source: modules\{#OPTIMIZATION}\unit_tests\*.tst; DestDir: {app}\modules\{#OPTIMIZATION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_OPTIM} and {#COMPN_DEVTOOLS}
+;
+;
 ;--------------------------------------------------------------------------------------------------------------

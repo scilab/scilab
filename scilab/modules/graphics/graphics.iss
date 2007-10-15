@@ -48,4 +48,8 @@ Source: modules\{#GRAPHICS}\fonts\*.bdf; DestDir: {app}\modules\{#GRAPHICS}\font
 ;
 Source: modules\{#GRAPHICS}\demos\*.*; DestDir: {app}\modules\{#GRAPHICS}\demos; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
+Source: modules\{#GRAPHICS}\unit_tests\*.ref; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_DEVTOOLS}
+Source: modules\{#GRAPHICS}\unit_tests\*.tst; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_DEVTOOLS}
+
+;
 ;--------------------------------------------------------------------------------------------------------------

@@ -40,5 +40,7 @@ Source: modules\{#SPARSE}\macros\*.bin; DestDir: {app}\modules\{#SPARSE}\macros;
 Source: modules\{#SPARSE}\macros\*.sci; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
 ;
 ;Source: modules\{#SPARSE}\demos\*.*; DestDir: {app}\modules\{#SPARSE}\demos; Flags: recursesubdirs;  Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\unit_tests\*.ref; DestDir: {app}\modules\{#SPARSE}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SPARSE} and {#COMPN_DEVTOOLS}
+Source: modules\{#SPARSE}\unit_tests\*.tst; DestDir: {app}\modules\{#SPARSE}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SPARSE} and {#COMPN_DEVTOOLS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

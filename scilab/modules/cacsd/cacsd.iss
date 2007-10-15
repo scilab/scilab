@@ -41,4 +41,7 @@ Source: modules\{#CACSD}\macros\cleanmacros.bat; DestDir: {app}\modules\{#CACSD}
 ;
 Source: modules\{#CACSD}\demos\*.*; DestDir: {app}\modules\{#CACSD}\demos; Flags: recursesubdirs; Components: {#COMPN_CACSD}
 ;
+Source: modules\{#CACSD}\unit_tests\*.ref; DestDir: {app}\modules\{#CACSD}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_CACSD} and {#COMPN_DEVTOOLS}
+Source: modules\{#CACSD}\unit_tests\*.tst; DestDir: {app}\modules\{#CACSD}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_CACSD} and {#COMPN_DEVTOOLS}
+;
 ;--------------------------------------------------------------------------------------------------------------

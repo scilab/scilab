@@ -41,5 +41,7 @@ Source: modules\{#STRING}\macros\*.bin; DestDir: {app}\modules\{#STRING}\macros;
 Source: modules\{#STRING}\macros\*.sci; DestDir: {app}\modules\{#STRING}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#STRING}\demos\*.*; DestDir: {app}\modules\{#STRING}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
+Source: modules\{#STRING}\unit_tests\*.ref; DestDir: {app}\modules\{#STRING}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_DEVTOOLS}
+Source: modules\{#STRING}\unit_tests\*.tst; DestDir: {app}\modules\{#STRING}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_DEVTOOLS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

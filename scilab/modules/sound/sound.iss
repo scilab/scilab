@@ -43,4 +43,8 @@ Source: modules\{#SOUND}\macros\names; DestDir: {app}\modules\{#SOUND}\macros; C
 ;
 Source: modules\{#SOUND}\demos\*.*; DestDir: {app}\modules\{#SOUND}\demos; Flags: recursesubdirs; Components: {#COMPN_SOUND}
 ;
+Source: modules\{#SOUND}\unit_tests\*.ref; DestDir: {app}\modules\{#SOUND}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SOUND} and {#COMPN_DEVTOOLS}
+Source: modules\{#SOUND}\unit_tests\*.tst; DestDir: {app}\modules\{#SOUND}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SOUND} and {#COMPN_DEVTOOLS}
+
+;
 ;--------------------------------------------------------------------------------------------------------------

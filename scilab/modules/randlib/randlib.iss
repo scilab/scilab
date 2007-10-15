@@ -44,4 +44,8 @@ Source: modules\{#RANDLIB}\macros\cleanmacros.bat; DestDir: {app}\modules\{#RAND
 ;
 Source: modules\{#RANDLIB}\demos\*.*; DestDir: {app}\modules\{#RANDLIB}\demos; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
 ;
+;
+Source: modules\{#RANDLIB}\unit_tests\*.ref; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_DEVTOOLS}
+Source: modules\{#RANDLIB}\unit_tests\*.tst; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_DEVTOOLS}
+;
 ;--------------------------------------------------------------------------------------------------------------

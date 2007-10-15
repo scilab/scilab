@@ -37,4 +37,7 @@ Source: modules\{#OTHERS}\macros\buildmacros.bat; DestDir: {app}\modules\{#OTHER
 ;
 Source: modules\{#OTHERS}\demos\*.*; DestDir: {app}\modules\{#OTHERS}\demos; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 ;
+Source: modules\{#OTHERS}\unit_tests\*.ref; DestDir: {app}\modules\{#OTHERS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_OTHERS} and {#COMPN_DEVTOOLS}
+Source: modules\{#OTHERS}\unit_tests\*.tst; DestDir: {app}\modules\{#OTHERS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_OTHERS} and {#COMPN_DEVTOOLS}
+;
 ;--------------------------------------------------------------------------------------------------------------

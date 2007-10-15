@@ -40,4 +40,7 @@ Source: modules\{#INCRLINK}\macros\cleanmacros.bat; DestDir: {app}\modules\{#INC
 ;Source: modules\{#INCRLINK}\demos\*.*; DestDir: {app}\modules\{#INCRLINK}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INCRLINK}\examples\*.*; DestDir: {app}\modules\{#INCRLINK}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#INCRLINK}\unit_tests\*.ref; DestDir: {app}\modules\{#INCRLINK}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_DEVTOOLS}
+Source: modules\{#INCRLINK}\unit_tests\*.tst; DestDir: {app}\modules\{#INCRLINK}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_DEVTOOLS}
 ;--------------------------------------------------------------------------------------------------------------

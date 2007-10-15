@@ -43,4 +43,7 @@ Source: modules\{#METANET}\macros\cleanmacros.bat; DestDir: {app}\modules\{#META
 ;
 Source: modules\{#METANET}\demos\*.*; DestDir: {app}\modules\{#METANET}\demos; Flags: recursesubdirs; Components: {#COMPN_METANET}
 ;
+Source: modules\{#METANET}\unit_tests\*.ref; DestDir: {app}\modules\{#METANET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_METANET} and {#COMPN_DEVTOOLS}
+Source: modules\{#METANET}\unit_tests\*.tst; DestDir: {app}\modules\{#METANET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_METANET} and {#COMPN_DEVTOOLS}
+;
 ;--------------------------------------------------------------------------------------------------------------

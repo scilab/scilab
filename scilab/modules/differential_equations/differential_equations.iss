@@ -39,4 +39,7 @@ Source: modules\{#DIFFEQU}\macros\cleanmacros.bat; DestDir: {app}\modules\{#DIFF
 ;
 ;Source: modules\{#DIFFEQU}\demos\*.*; DestDir: {app}\modules\{#DIFFEQU}\demos; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 ;
+Source: modules\{#DIFFEQU}\unit_tests\*.ref; DestDir: {app}\modules\{#DIFFEQU}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_EQUDIF} and {#COMPN_DEVTOOLS}
+Source: modules\{#DIFFEQU}\unit_tests\*.tst; DestDir: {app}\modules\{#DIFFEQU}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_EQUDIF} and {#COMPN_DEVTOOLS}
+;
 ;--------------------------------------------------------------------------------------------------------------
