@@ -4,8 +4,9 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
 //** Very complex and critical functions inside : handle with care ;) 
 //**
 //** 11 Jan 2007 : 'Block' / 'Text' bug validation: this function is OK.
+//** Alan, 15/10/7 : patch for rotated blocks
 //**  
-  
+
   win = %win;
   xc = %pt(1); yc = %pt(2);
   %pt=[] ;
@@ -97,6 +98,15 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
 	else //explicit regular link
 	  [x,y,vtyp] = getoutputs(o1)
 	end
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
 	
 	if tpsup==1 then //link connected to an input port of the superblock 
 	  
@@ -137,6 +147,15 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
 	else
 	  [x,y,vtyp]=getinputs(o1)
 	end
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
 	
 	if tpsup==1 then //link connected to an input port of the superblock 
 	  if typ>1 then //implicit regular link
@@ -168,6 +187,16 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
     else //event link
       if tpsup==1 then //link connected to an event input port of the superblock 
 	[x,y,vtyp]=getoutputs(o1)
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
+
 	[xn,yn,vtypn]=getinputs(sup),
 	p=prt(k,7)+size(find(vtyp==1),'*')+size(find(vtyp==2),'*')
 	pn=prt(k,2)+size(find(vtypn==1),'*')+size(find(vtypn==2),'*')
@@ -179,6 +208,16 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
 	scs_m.objs(nn).graphics.pein(prt(k,2))=nnk+1
       else //link connected to an event output port of the superblock 
 	[x,y,vtyp]=getinputs(o1)
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
+
 	[xn,yn,vtypn]=getoutputs(sup),
 	p=prt(k,7)+size(find(vtyp==1),'*')+size(find(vtyp==2),'*')
 	pn=prt(k,2)+size(find(vtypn==1),'*')+size(find(vtypn==2),'*')

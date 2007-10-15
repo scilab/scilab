@@ -1,6 +1,8 @@
 function [%pt,scs_m] = do_select2block(%pt,scs_m)
 //** This function is called if some object are already selected before
 //** 'Region to SuperBlock' call 
+//** Alan, 15/10/7 : patch for rotated blocks
+//**  
 
   scs_m_save = scs_m
   nc_save    = needcompile ; 
@@ -67,6 +69,15 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
 	from=[nreg+1,1,0] //added port
 	to=prt(k,1:3)
       end
+      
+      if x<>[] & y<>[] then
+        xxx=rotate([x;y],...
+                   o1.graphics.theta*%pi/180,...
+                   [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                    o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+        x=xxx(1,:);
+        y=xxx(2,:);
+      end
 
       if typ>0 then //input regular port
 	x=x(prt(k,2))
@@ -119,6 +130,16 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
 	to=[nreg+1,1,1]
 	from=prt(k,1:3)
       end
+
+      if x<>[] & y<>[] then
+        xxx=rotate([x;y],...
+                   o1.graphics.theta*%pi/180,...
+                   [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                    o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+        x=xxx(1,:);
+        y=xxx(2,:);
+      end
+
       if typ>0 then //output regular port
 	x=x(prt(k,2))
 	y=y(prt(k,2))
@@ -205,6 +226,16 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
 	else //explicit regular link
 	  [x,y,vtyp]=getoutputs(o1)
 	end
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
+
 	if tpsup==1 then //link connected to an input port of the superblock 
 	  if typ>1 then //implicit regular link
 	    [xn,yn,vtypn]=getinputports(sup)
@@ -235,6 +266,16 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
 	else
 	  [x,y,vtyp]=getinputs(o1)
 	end
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
+
 	if tpsup==1 then //link connected to an input port of the superblock 
 	  if typ>1 then //implicit regular link
 	    [xn,yn,vtypn]=getinputports(sup)
@@ -263,6 +304,16 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
     else //event link
       if tpsup==1 then //link connected to an event input port of the superblock 
 	[x,y,vtyp]=getoutputs(o1)
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
+
 	[xn,yn,vtypn]=getinputs(sup),
 	p=prt(k,7)+size(find(vtyp==1),'*')+size(find(vtyp==2),'*')
 	pn=prt(k,2)+size(find(vtypn==1),'*')+size(find(vtypn==2),'*')
@@ -274,6 +325,16 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
 	scs_m.objs(nn).graphics.pein(prt(k,2))=nnk+1
       else //link connected to an event output port of the superblock 
 	[x,y,vtyp]=getinputs(o1)
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
+
 	[xn,yn,vtypn]=getoutputs(sup),
 	p=prt(k,7)+size(find(vtyp==1),'*')+size(find(vtyp==2),'*')
 	pn=prt(k,2)+size(find(vtypn==1),'*')+size(find(vtypn==2),'*')

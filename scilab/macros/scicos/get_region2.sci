@@ -115,6 +115,15 @@ function [reg, rect, prt] = get_region2(xc, yc, win)
 	to=prt(k,1:3)
       end
 
+      if x<>[] & y<>[] then
+        xxx=rotate([x;y],...
+                   o1.graphics.theta*%pi/180,...
+                   [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                    o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+        x=xxx(1,:);
+        y=xxx(2,:);
+      end
+
       if typ>0 then //input regular port
 	x=x(prt(k,2))
 	y=y(prt(k,2))
@@ -165,6 +174,14 @@ function [reg, rect, prt] = get_region2(xc, yc, win)
 	[x,y,vtyp]=getoutputs(o1)
 	to=[nreg+1,1,1]
 	from=prt(k,1:3)
+      end
+      if x<>[] & y<>[] then
+        xxx=rotate([x;y],...
+                   o1.graphics.theta*%pi/180,...
+                   [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                    o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+        x=xxx(1,:);
+        y=xxx(2,:);
       end
       if typ>0 then //output regular port
 	x=x(prt(k,2))
