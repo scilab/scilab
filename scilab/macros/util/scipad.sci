@@ -105,7 +105,12 @@ function scipad(varargin)
                     // Tcl handles the filenames correctly with any path separator but on Windows the separator
                     // is \ and in Tcl this is an escape. Therefore filepaths are always converted to the unix
                     // form to avoid this problem
-                    filetoopen=pathconvert(filetoopen,%f,%t,"u")
+                    
+                    filetoopen=pathconvert(filetoopen,%f,%t);
+  									if MSDOS then         
+    									filetoopen=strsubst(filetoopen,"\","/");
+  									end
+  									
                     // The complication below is needed to comply with ScilabEval sync limitations: what
                     // is executed during a sync is not available in the interpreter after the sync has
                     // ended (because sync launches a new interpreter - same thing as running in a function),
