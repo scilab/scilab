@@ -1,8 +1,10 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
+/* Update Sylvestre LEDRU 2007 */
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
+#include <stdlib.h>
 #include "machine.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
@@ -19,7 +21,7 @@ char *getSCIpath(void)
 {
 	char *pathtoreturn=NULL;
 	pathtoreturn=(char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+1));
-	sprintf(pathtoreturn,"%s",SCIPATH);
+	strcpy(pathtoreturn,SCIPATH);
 	return pathtoreturn;
 }
 /*-----------------------------------------------------------------------------------*/ 
