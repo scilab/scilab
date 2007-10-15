@@ -1492,7 +1492,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	    sciprint("****SUNDIALS.Cvode reached: %f\r\n",*told);
 	  hot = 1;
 	} else if ( flag==CV_TOO_MUCH_WORK ||  flag == CV_CONV_FAILURE || flag==CV_ERR_FAILURE) {  
-	  sciprint("**** SUNDIALS.Cvode: too much work at time=%g (it may run in a stiff region)\r\n",*told);	  
+	  sciprint("**** SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);	  
 	  hot = 0;
 	}else{
 	  if (flag<0) *ierr=200+(-flag);    /* raising errors due to internal errors, other wise erros due to flagr*/
@@ -2166,7 +2166,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	    sciprint("****SUNDIALS.Ida reached: %f\r\n",*told);
 	  hot = 1;
 	} else if ( flagr==IDA_TOO_MUCH_WORK ||  flagr == IDA_CONV_FAIL || flagr==IDA_ERR_FAIL) {  
-	  sciprint("**** SUNDIALS.Ida: too much work at time=%g (it may run in a stiff region)\r\n",*told);	  
+	  sciprint("**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);	  
 	  hot = 0;
 	}else{
 	  if (flagr<0) *ierr=200+(-flagr);    /* raising errors due to internal errors, other wise erros due to flagr*/
