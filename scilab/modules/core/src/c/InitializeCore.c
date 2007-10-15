@@ -20,7 +20,7 @@ BOOL InitializeCore(void)
 
 	InitializeScilabFilesList();
 
-	SciEnv();
+	SetScilabEnvironment();
 
 	getmodules();
 

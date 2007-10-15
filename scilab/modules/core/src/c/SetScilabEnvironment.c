@@ -4,7 +4,7 @@
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/
 #include "machine.h"
-#include "SciEnv.h"
+#include "SetScilabEnvironment.h"
 #include "SCIHOME.h"
 #include "inisci-c.h" /* SetSci */
 /*-----------------------------------------------------------------------------------*/
@@ -15,7 +15,7 @@
 /**
 * Define SCI and some others Environments variables 
 */
-void SciEnv(void) 
+void SetScilabEnvironment(void) 
 {
 #ifdef _MSC_VER
 	SciEnvForWindows(); 
