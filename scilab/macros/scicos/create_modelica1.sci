@@ -16,25 +16,88 @@ function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
     mo=o.equations;
     np=size(mo.parameters(1),'*');
     P=[];
-    
+    //** mo.parameters have size=2
+    //** it only contains parameters
     if size(mo.parameters)==2 then
       for l=1:np
-	Pars=[Pars;'P'+string(size(Pars,1)+1)]
+        for i=1:size(mo.parameters(2)(l),'*')
+          Pars=[Pars;
+                'P'+string(size(Pars,1)+1)]
+        end
 	rpar=[rpar;matrix(mo.parameters(2)(l),-1,1)]
 	ipar(k)=ipar(k)+size(mo.parameters(2)(l),'*')
-	P=[P;mo.parameters(1)(l)+'='+Pars($)];
+        if size(mo.parameters(2)(l),'*')==1 then
+	  P=[P;mo.parameters(1)(l)+'='+Pars($)];
+        else
+          P=[P;mo.parameters(1)(l)+'={']
+          for i=size(mo.parameters(2)(l),'*'):-1:1
+            P($)=P($)+Pars($-i+1)
+            if i<>1 then
+              P($)=P($)+','
+            end
+          end
+          P($)=P($)+'}'
+        end
       end
+    //** mo.parameters have size>2
+    //** it can contains parameters, initial values of states
+    //** and initial values of initial fixed states
     else
       for l=1:np
-	Pars=[Pars;'P'+string(size(Pars,1)+1)]
+        for i=1:size(mo.parameters(2)(l),'*')
+          Pars=[Pars;
+                'P'+string(size(Pars,1)+1)]
+        end
 	rpar=[rpar;matrix(mo.parameters(2)(l),-1,1)]
 	ipar(k)=ipar(k)+size(mo.parameters(2)(l),'*')
+        //** mo.parameters(3)(l) = 0 :that's a parameters
 	if mo.parameters(3)(l)==0 then
-	  P=[P;mo.parameters(1)(l)+'='+Pars($)];
+	  //P=[P;mo.parameters(1)(l)+'='+Pars($)];
+          if size(mo.parameters(2)(l),'*')==1 then
+	    P=[P;mo.parameters(1)(l)+'='+Pars($)];
+          else
+            P=[P;mo.parameters(1)(l)+'={']
+            for i=size(mo.parameters(2)(l),'*'):-1:1
+              P($)=P($)+Pars($-i+1)
+              if i<>1 then
+                P($)=P($)+','
+              end
+            end
+            P($)=P($)+'}'
+          end
+        //** mo.parameters(3)(l) = 1 :that's an initial condition
+        //** of a state
 	elseif mo.parameters(3)(l)==1 then
-	  P=[P;mo.parameters(1)(l)+'(start='+Pars($)+')'];
+          if size(mo.parameters(2)(l),'*')==1 then
+            P=[P;mo.parameters(1)(l)+'(start='+Pars($)+')'];
+          else
+            P=[P;mo.parameters(1)(l)+'(start={'];
+            for i=size(mo.parameters(2)(l),'*'):-1:1
+              P($)=P($)+Pars($-i+1)
+              if i<>1 then
+                P($)=P($)+','
+              end
+            end
+            P($)=P($)+'})'
+          end
+        //** mo.parameters(3)(l) = 2 :that's an initial condition
+        //** of an initially fixed state
 	elseif mo.parameters(3)(l)==2 then
-	  P=[P;mo.parameters(1)(l)+'(start='+Pars($)+',fixed=true)'];  
+          if size(mo.parameters(2)(l),'*')==1 then
+            P=[P;mo.parameters(1)(l)+'(start='+Pars($)+',fixed=true)'];
+          else
+            P=[P;mo.parameters(1)(l)+'(start={'];
+            P_fix='fixed={'
+            for i=size(mo.parameters(2)(l),'*'):-1:1
+              P($)=P($)+Pars($-i+1)
+              P_fix=P_fix+'true'
+              if i<>1 then
+                P($)=P($)+','
+                P_fix=P_fix+','
+              end
+            end
+            P($)=P($)+'},'+P_fix+'})'
+          end
 	end
       end
     end
