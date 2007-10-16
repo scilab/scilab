@@ -90,12 +90,15 @@ function str_out=create_message_box(str_in,but_lab)
     numy_tt='set numy [winfo pointery .]'
   end
 
+  //** substitute special characters
+  str_in=sci2tcl(str_in)
+
   //**generate widgets for buttons
   but_txt=[];
   but_tt='';
   for i=1:size(but_lab,1)
      but_txt=[but_txt;
-              'button $w.bot.but'++string(i)+' -text ""'+but_lab(i)+...
+              'button $w.bot.but'++string(i)+' -text ""'+sci2tcl(but_lab(i))+...
                  '"" -command {set done '+string(i)+'}']
      but_tt=but_tt+'$w.bot.but'+string(i)+' ';
   end
@@ -109,16 +112,6 @@ function str_out=create_message_box(str_in,but_lab)
     bind_tt=""
   end
 
-  //** substitute special characters
-  str_in=strsubst(str_in,"\","\\");
-  str_in=strsubst(str_in,"""","\""");
-  str_in=strsubst(str_in,"[","\[");
-  str_in=strsubst(str_in,"]","\]");
-  str_in=strsubst(str_in,"{","\{");
-  str_in=strsubst(str_in,"}","\}");
-  str_in=strsubst(str_in,"$","\$");
-
-  str_in=strcat(str_in,"\n");
 
   str_out=['set w .form'
            'catch {destroy $w}'
