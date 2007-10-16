@@ -1,6 +1,5 @@
 function ged(k,win)
   //xset, xget used because ged should handle both old and new style
-
   global ged_current_figure
   global ged_cur_fig_handle
   
@@ -37,7 +36,6 @@ function ged(k,win)
       xbasc()
          
     case 4 then //edit current figure properties
-      
       // hierarchical viewer
     TK_send_handles_list(ged_cur_fig_handle)
     TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(ged_cur_fig_handle)))
@@ -59,7 +57,6 @@ function ged(k,win)
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
     
     ged_figure(ged_cur_fig_handle)
-    
     case 5 then //edit current axes
       // hierarchical viewer
     TK_send_handles_list(ged_cur_fig_handle)
@@ -1168,12 +1165,13 @@ function h=ged_loop(a,pt)
       
       case "Segs"
 	xy=ck.data;
-	xv=matrix(xy(:,1),2,-1)
-	yv=matrix(xy(:,2),2,-1)
-	dx=(xv(1,:)-xv(2,:))
-	dy=(yv(1,:)-yv(2,:))
-	d_d=dx.^2+dy.^2
-	
+	xv=(matrix(xy(:,1),2,-1)-Xmin)/Dx
+	yv=(matrix(xy(:,2),2,-1)-Ymin)/Dy
+	for ks=1:size(xv,2)
+	  d=Dist2polyline(xv(:,ks),yv(:,ks),pts)
+	  if d < minDist then h=ck,return,end
+	end
+
       case "Compound"
 	h=ged_loop(ck.children,pt)
 	if h<>[] then return,end
@@ -1205,9 +1203,13 @@ function h=ged_loop(a,pt)
 endfunction
   
 function r=is_in_text(h,xy)
-  r = stringbox(h);
-  r=[r r(:,1)];
-  r=and([xy(2) -xy(1)]*diff(r,1,2)+(r(1,1:$-1).*r(2,2:$)-r(1,2:$).*r(2,1:$-1))<0)
+  if h.text_box_mode=='filled' then 
+    r=(xy(1)>h.data(1)&xy(1)<h.data(1)+h.text_box(1))&(xy(2)>h.data(2)&xy(2)<h.data(2)+h.text_box(2))
+  else
+    r = stringbox(h);
+    r=[r r(:,1)];
+    r=and([xy(2) -xy(1)]*diff(r,1,2)+(r(1,1:$-1).*r(2,2:$)-r(1,2:$).*r(2,1:$-1))<0)
+  end
 endfunction
 
 // compute the square of distance between a point and the ellipse 
@@ -1369,38 +1371,21 @@ endfunction
 function ged_eventhandler(win,x,y,ibut)
 //Copyright INRIA
 //Author : Serge Steer 2002
-
-  if or(win==winsid()) then //does the windows still exists
-
-//    seteventhandler("")  
-  else //window has been deleted by an asynchronous xdel()
+  if ibut==-1 then return,end //ignore move
+  if and(win<>winsid())| ibut==-1000 then 
+    //window has been deleted by the user
     return
   end
+  cur=gcf();scf(win) //make the window associated to the event active
+  //disable the event handler not to execute new event before finishing this one
+  seteventhandler("")  ; 
 
-  if ibut<0 then 
-    if ibut==-1000 then //the window has been closed by the window manager
-      return
-    end
- //   seteventhandler("ged_eventhandler"),
-    return,
-  end
-//  seteventhandler("")  
-  if ibut==10 then
-      ax=ged_select_axes(x,y)
-      if ax<>[] then sca(ax),twinkle(ax,1),end
-      return
-  end 
   global ged_handle;ged_handle=[]
-  cur=gcf();scf(win)
-  ged_handle=ged_getobject([x,y])
-    
-  scf(cur)
-
-  if ged_handle~=[] then
-    if ibut==0 | ibut==3  then
-      //Set(h)
+  ged_handle=ged_getobject([x,y]);
+  if ged_handle~=[] then //an object has been selected
+    if or(ibut==[0 3 10]) then //left button --> edit properties
       tkged()
-    elseif ibut==2 | ibut==5 then
+    elseif or(ibut==[2 5 12]) then //right button -->move
       [x,y]=xchange(x,y,'i2f')
       pos=[x,y]
       while %t then
@@ -1411,11 +1396,11 @@ function ged_eventhandler(win,x,y,ibut)
 	show_pixmap()
 	pos=rep(1:2)
       end
-//    elseif ibut==3 then
-//      delete(ged_handle)
+
     end
   end
-//  seteventhandler("ged_eventhandler")  
+  seteventhandler("ged_eventhandler") //enable the handler
+  scf(cur) //reset current window
 endfunction
 
  
