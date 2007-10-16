@@ -700,6 +700,9 @@ cd .. &gt;nul
 				RelativePath=".\atanh_blk.c">
 			</File>
 			<File
+				RelativePath=".\automat.c">
+			</File>
+			<File
 				RelativePath=".\backlash.c">
 			</File>
 			<File
@@ -713,9 +716,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\bit_clear_8.c">
-			</File>
-			<File
-				RelativePath=".\bit_set.c">
 			</File>
 			<File
 				RelativePath=".\bit_set_16.c">
@@ -806,9 +806,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\curve_c.c">
-			</File>
-			<File
-				RelativePath=".\automat.c">
 			</File>
 			<File
 				RelativePath=".\sundials\cvode.c">
