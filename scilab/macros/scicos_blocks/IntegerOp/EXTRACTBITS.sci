@@ -57,7 +57,7 @@ case 'set' then
 		case 1 then 
 			select Datatype
 				case 3 then model.sim=list('extract_bit_32_UH1',4)
-				case 7 then model.sim=list('extract_bit_u32_UH1',4)
+				case 6 then model.sim=list('extract_bit_u32_UH1',4)
 			end
 		end
 	     case 2 then
@@ -68,7 +68,7 @@ case 'set' then
 		case 1 then 
 			select Datatype
 				case 3 then model.sim=list('extract_bit_32_MSB1',4)
-				case 7 then model.sim=list('extract_bit_u32_MSB1',4)
+				case 6 then model.sim=list('extract_bit_u32_MSB1',4)
 			end
 		end
 	     case 4 then
@@ -79,7 +79,7 @@ case 'set' then
 		case 1 then
 			 select Datatype
 				case 3 then model.sim=list('extract_bit_32_RB1',4)
-				case 7 then model.sim=list('extract_bit_u32_RB1',4)
+				case 6 then model.sim=list('extract_bit_u32_RB1',4)
 			end
 		end
 	end
