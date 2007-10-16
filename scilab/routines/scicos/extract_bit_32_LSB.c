@@ -12,7 +12,7 @@ void extract_bit_32_LSB(scicos_block *block,int flag)
    maxim=32;
    ref=0;
    for(i=0;i<*ipar;i++)
-       {n=pow(2,i);
+       {n=(long)pow(2,i);
         ref=ref+n;}
    *y=(*u)&(ref);
 }

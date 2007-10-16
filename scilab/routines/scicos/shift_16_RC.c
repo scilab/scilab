@@ -13,7 +13,7 @@ void shift_16_RC(scicos_block *block,int flag)
   u=Getint16InPortPtrs(block,1);
   y=Getint16OutPortPtrs(block,1);
   ipar=GetIparPtrs(block);
-  k=pow(2,16-1);
+  k=(unsigned short)pow(2,16-1);
   for (i=0;i<mu*nu;i++)
       { v=u[i];
 	for(j=0;j<-ipar[0];j++)
