@@ -12,36 +12,37 @@ function [params,param_types]=FindSBParams(scs_m,params)
 
   Fun=scs_m.props.context;
   for i=1:size(scs_m.objs)
-    o=scs_m.objs(i)
+    o=scs_m.objs(i);
     if typeof(o)=='Block' then
-      model=o.model
+      model=o.model;
       if model.sim=='super'|model.sim=='csuper' then
         Funi='['+FindSBParams(model.rpar,params)+']'
       else
         if typeof(o.graphics.exprs)=="MBLOCK" then //modelica block
-          Funi=[]
+          Funi=[];
           for j=1:lstsize(o.graphics.exprs.paramv)
              Funi=[Funi;
-                   '['+o.graphics.exprs.paramv(j)+']']
+                   '['+o.graphics.exprs.paramv(j)+']'];
           end
         else
           if type(o.graphics.exprs)==15 then
-            Funi='['+o.graphics.exprs(1)(:)+']'
+            Funi='['+o.graphics.exprs(1)(:)+']';
           else
-            Funi='['+o.graphics.exprs(:)+']'
+            Funi='['+o.graphics.exprs(:)+']';
           end
-          par_types=[]
+          par_types=[];
           execstr('blk='+o.gui+'(''define'')')
           execstr(o.gui+'(''set'',blk)','errcatch')
-          Del=[];kk=1
+
+          Del=[];kk=1;
           for jj=1:2:length(par_types)
             if par_types(jj)=='str' then Del=[Del,kk],end
             kk=kk+1
           end
           Funi(Del)=[]
         end
-        Fun=[Fun;Funi]
       end
+      Fun=[Fun;Funi]
     end
   end
   deff('%Font3()',Fun)
@@ -70,6 +71,6 @@ function [params,param_types]=FindSBParams(scs_m,params)
       param_types($+1)=-1
     end
   end
-  clearglobal('par_types')
+//  clearglobal('par_types')  //recursive call, so it cannot be cleared here
 endfunction
 
