@@ -34,9 +34,9 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
 		         w=v-(double)((int)(v/k))*k;
-		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+		         if (fabs(w)>k/2-1)
+			     {if (w>=0) w=(-k/2+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(long)w;}
 		   break;}
@@ -49,9 +49,9 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
 		         w=v-(double)((int)(v/k))*k;
-		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+		         if (fabs(w)>k/2-1)
+			     {if (w>=0) w=(-k/2+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(short)w;}
 		   break;}
@@ -64,9 +64,9 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
 		         w=v-(double)((int)(v/k))*k;
-		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+		         if (fabs(w)>k/2-1)
+			     {if (w>=0) w=(-k/2+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}
@@ -119,9 +119,9 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
 		         w=v-(double)((int)(v/k))*k;
-		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+		         if (fabs(w)>k/2-1)
+			     {if (w>=0) w=(-k/2+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(short)w;}
 		   break;}
@@ -134,9 +134,9 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
 		         w=v-(double)((int)(v/k))*k;
-		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+		         if (fabs(w)>k/2-1)
+			     {if (w>=0) w=(-k/2+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}
@@ -186,9 +186,9 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
 		         w=v-(double)((int)(v/k))*k;
-		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+		         if (fabs(w)>k/2-1)
+			     {if (w>=0) w=(-k/2+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}
@@ -267,7 +267,7 @@ void convert(scicos_block *block,int flag)
 		        {v=(double)u[i];
 		         w=v-(double)((int)(v/k))*k;
 		         if ((w)>k/2-1)
-			     { w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     { w=(-k/2+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(short)w;}
 		   break;}
@@ -281,7 +281,7 @@ void convert(scicos_block *block,int flag)
 		        {v=(double)u[i];
 		         w=v-(double)((int)(v/k))*k;
 		         if ((w)>k/2-1)
-			     {w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     {w=(-k/2+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}
@@ -332,7 +332,7 @@ void convert(scicos_block *block,int flag)
 		        {v=(double)u[i];
 		         w=v-(double)((int)(v/k))*k;
 		         if (w>k/2-1)
-			     {w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     {w=(-k/2+fabs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}

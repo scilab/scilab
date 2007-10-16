@@ -28,10 +28,10 @@ void matmul_i16n(scicos_block *block,int flag)
 		    il=i+l*nu1;
 		    C=(double)(u1[ji])*(double)(u2[il]);
 		    D=D + C;}
-		    t=D-(int)(D/(k))*((k));
+		    t=D-(double)((int)(D/(k)))*((k));
 		    if ((t>=k/2)|(-(t)>=k/2))
-		       {if (t>=0) (t)=(-((k/2))+abs(t-((double)((int)((t)/((k/2)))))*((k/2))));
-			else (t)=-(-((k/2))+abs(t-((double)((int)((t)/((k/2)))))*((k/2))));}
+		       {if (t>=0) (t)=(-((k/2))+fabs(t-((double)((int)((t)/((k/2)))))*((k/2))));
+			else (t)=-(-((k/2))+fabs(t-((double)((int)((t)/((k/2)))))*((k/2))));}
 		    y[jl]=(short)t;
 		  }
 	     }

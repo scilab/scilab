@@ -23,10 +23,10 @@ void gainblk_i16n(scicos_block *block,int flag)
   if (mo*no==1){
     for (i=0;i<ny*mu;++i){
      D=(double)(opar[0])*(double)(u[i]);
-     t=D-(int)(D/(k))*((k));
+     t=D-(double)((int)(D/(k)))*((k));
      if ((t>=k/2)|(-(t)>=k/2))
-	 {if (t>=0) (t)=(-((k/2))+abs(t-(double)((int)((t)/((k/2))))*((k/2))));
-	  else (t)=-(-((k/2))+abs(t-(double)((int)((t)/((k/2))))*((k/2))));}
+	 {if (t>=0) (t)=(-((k/2))+fabs(t-(double)((int)((t)/((k/2))))*((k/2))));
+	  else (t)=-(-((k/2))+fabs(t-(double)((int)((t)/((k/2))))*((k/2))));}
      y[i]=(short)t;
     }
   }else{
@@ -39,10 +39,10 @@ void gainblk_i16n(scicos_block *block,int flag)
 		    il=i+l*mu;
 		    C=(double)(opar[ji])*(double)(u[il]);
 		    D=D + C;}
-		    t=D-(int)(D/(k))*((k));
+		    t=D-(double)((int)(D/(k)))*((k));
 		    if ((t>=k/2)|(-(t)>=k/2))
-		       {if (t>=0) (t)=(-((k/2))+abs(t-(double)((int)((t)/((k/2))))*((k/2))));
-			else (t)=-(-((k/2))+abs(t-(double)((int)((t)/((k/2))))*((k/2))));}
+		       {if (t>=0) (t)=(-((k/2))+fabs(t-(double)((int)((t)/((k/2))))*((k/2))));
+			else (t)=-(-((k/2))+fabs(t-(double)((int)((t)/((k/2))))*((k/2))));}
 		    y[jl]=(short)t;
 		  }
 	     }
