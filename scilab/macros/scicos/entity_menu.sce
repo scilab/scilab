@@ -278,7 +278,8 @@ function txt=graphical_object_code(rk)
   case 'Text' then  
     dx='orig(1)+sz(1)*'+num2string(rk.data(1))
     dy='orig(2)+sz(2)*'+num2string(rk.data(2))
-    t=sci2exp(rk.text)
+    t=sci2exp(rk.text,0)
+    t='['+strsubst(t,char(10),'"";""')+']'
     if rk.text_box_mode <> "filled" then
       txt=[txt;
 	   'xstring('+dx+','+dy+','+t+');'
