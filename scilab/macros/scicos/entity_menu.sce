@@ -1,13 +1,15 @@
-function add_entity_menu(win)
+function add_entity_menu(win,emen)
 // Copyright INRIA
   if argn(2)<1 then 
     win=get(gcf(),'figure_id')
     scf(win)
   end
+  if argn(2)<2 then emen='Edit',end
   old=gcf()
   EntityMenus=["Browser","Copy","Paste",'Move","Delete","Insert","Ok","Cancel"];
   //delmenu(win,'Entities')
-  addmenu(win,'Edit',EntityMenus,list(2,'entity_menu'));
+ 
+  addmenu(win,emen,EntityMenus,list(2,'entity_menu'));
   //seteventhandler('entity_handler')
   scf(old)
 endfunction

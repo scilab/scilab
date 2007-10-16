@@ -45,21 +45,33 @@ function scs_m=do_icon_edit(%pt,scs_m)
 	     'Use icon menu to check the content'])
   end
   clearfun('xstringb3')
-  //create and start the menus
-  delmenu(win,'Edit');delmenu(win,'3D Rot.'); //remove unused default menus
+  ///remove unused default menus
+  if ~MSDOS then
+    emen='Edit'
+  else
+    global LANGUAGE
+    if LANGUAGE=="eng" then
+       emen='Edit';
+    else
+       emen='&Editer';
+    end
+  end	
+  delmenu(win,emen);delmenu(win,'3D Rot.')
+					      
   exec('SCI/macros/scicos/entity_menu.sce',-1);
-  add_entity_menu() //add the edition menu
+  add_entity_menu(win,emen) //add the edition menu
   ged(6,win)//start entity picker
   
   //Infinite loop waiting for edition to finish
   realtimeinit(0.2);count=0
   while or(win==winsid())&fig.user_data==[] 
-    count=count+1
+    count=count+1;
     realtime(count)
   end
   if and(win<>winsid()) then scf(gh_curwin),return,end //window destroyed 
   //Edition finish, disable handler and menus
-  delmenu(win,'Edit');
+  delmenu(win,emen)
+
   seteventhandler('') //remove the ged event handler
   
   //Restore current window
