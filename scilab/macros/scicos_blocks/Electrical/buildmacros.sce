@@ -18,7 +18,7 @@ if with_ocaml() then
           'Ground.mo'; 'OutPutPort.mo';   'VVsourceAC.mo'; 'CurrentSensor.mo';
           'Inductor.mo'; 'Pin.mo'; 'VariableResistor.mo'; 'Diode.mo'; 'InPutPort.mo';
 	  'PotentialSensor.mo';'VoltageSensor.mo';'SineVoltage.mo';
-	  'Switch.mo';'OpAmp.mo';'NMOS.mo';'PMOS.mo'];
+	  'Switch.mo';'OpAmp.mo';'NMOS.mo';'PMOS.mo';'CVS.mo';'CCS.mo';'IdealTransformer.mo';'Gyrator.mo'];
   exec("../../../util/genmoc.sce");
 end;
 //------------------------------------

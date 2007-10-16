@@ -125,7 +125,7 @@ function [routines,IntFunc]=create_palette(Path)
               'Resistor.sci';'VoltageSensor.sci';'Diode.sci';'VsourceAC.sci';
               'NPN.sci';'PNP.sci';'SineVoltage.sci';'Switch.sci'; ...
 	      'OpAmp.sci';'PMOS.sci';
-	      'NMOS.sci';'CCS.sci';'CVS.sci']
+	      'NMOS.sci';'CCS.sci';'CVS.sci';'IdealTransformer.sci';'Gyrator.sci']
 	
       elseif txt=='ThermoHydraulics' then
 	lisf=['Bache.sci';'VanneReglante.sci';'PerteDP.sci';'PuitsP.sci';'SourceP.sci';]
