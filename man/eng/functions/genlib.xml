@@ -30,14 +30,14 @@
         <PARAM_NAME>Force</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: boolean value (default value is <VERB>%f</VERB>). Set it to
-	    <VERB>%f</VERB> to force the sci-files recompilation.</SP>
+	    <VERB>%t</VERB> to force the sci-files recompilation.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>verb</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: boolean values (default value is <VERB>%f</VERB>). Set it to
-	    <VERB>%f</VERB> to get information.</SP>
+	    <VERB>%t</VERB> to get information.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
