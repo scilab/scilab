@@ -11,6 +11,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
 import com.artenum.rosetta.ui.ConsoleTextPane;
 import com.artenum.rosetta.util.StringConstants;
@@ -28,8 +30,14 @@ public class SciOutputView extends ConsoleTextPane {
 	private static final int BOTTOM_BORDER = 0;
 	private static final int LEFT_BORDER = 0;
 	private static final int RIGHT_BORDER = 0;
+	private static final int MAX_NUMBER_OF_LINES = 5000;
 
 	private SciConsole console;
+	
+	private String dispBuffer;
+	private int nbEntries;
+	
+	private int totalNumberOfEntries;
 	
 	/**
 	 * Constructor
@@ -37,6 +45,8 @@ public class SciOutputView extends ConsoleTextPane {
 	public SciOutputView() {
 		super();
 		setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, LEFT_BORDER, BOTTOM_BORDER, RIGHT_BORDER));
+		dispBuffer = "";
+		nbEntries = 0;
 	}
 	
 	/**
@@ -45,12 +55,21 @@ public class SciOutputView extends ConsoleTextPane {
 	 */
 	public void append(String entry) {
 
-		/* Add the data to the output view */
-		super.append(entry);
-
+		/* Add the data to the buffer */
+		dispBuffer += entry;
+		nbEntries++;
+			
+		/* Buffer is not big enough to be displayed */
+		if ((console == null) || (nbEntries < console.getNumberOfLines())) {
+			return;
+		}
+		
 		/* Find the number of lines added */
-		String[] lines = entry.split(StringConstants.NEW_LINE);
+		String[] lines = dispBuffer.split(StringConstants.NEW_LINE);
 
+		/* Buffer is big enough to be displayed */
+		flushBuffer();
+		
 		/* Change the size of the input command view if necessary */
 		/* - if the console size has been forced to a value */
 		/* - if a carriage return has been appended */
@@ -93,12 +112,35 @@ public class SciOutputView extends ConsoleTextPane {
 	    	((JTextPane) console.getConfiguration().getInputCommandView()).doLayout();
 			
 		}			
-		
-		if (console != null) {
-			console.updateScrollPosition();
+	}
+	
+	/**
+	 * Display current buffer and reset it
+	 */
+	public void flushBuffer() {
+		/* Size limit for output view */
+		while ((totalNumberOfEntries + nbEntries) >= MAX_NUMBER_OF_LINES) {
+			try {
+				StyledDocument sDoc = this.getStyledDocument();
+				int eolPos = sDoc.getText(0, sDoc.getLength()).indexOf(StringConstants.NEW_LINE);
+				console.getConfiguration().getOutputViewStyledDocument().remove(0, eolPos);
+				totalNumberOfEntries--;
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}	
 		}
 		
+		/* Display buffer */
+		setCaretPositionToEnd();
+		super.append(dispBuffer);
+
+		totalNumberOfEntries += console.getNumberOfLines();
+		
+		dispBuffer = "";
+		nbEntries = 1;
+
 	}
+
 	/**
 	 * Gets the minimum size of this component
 	 * @return the minimum size

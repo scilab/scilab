@@ -15,6 +15,7 @@ import javax.swing.text.StyledDocument;
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciInputCommandView;
+import org.scilab.modules.console.SciOutputView;
 import org.scilab.modules.console.SciPromptView;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.utils.Position;
@@ -45,9 +46,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 * @see fr.scilab.console.Console#display(java.lang.String)
 	 */
 	public void display(String dataToDisplay) {
-		this.getConfiguration().getOutputView().setCaretPositionToEnd();
 		this.getConfiguration().getOutputView().append(dataToDisplay);
-		updateScrollPosition();
 	}
 
 	/**
@@ -60,16 +59,17 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 
+		((SciOutputView) this.getConfiguration().getOutputView()).flushBuffer();
+		
 		// Show the prompt
 		this.getConfiguration().getPromptView().setVisible(true);
 
 		// Show the input command view and its hidden components
 		inputCmdView.setEditable(true);
-		//if (!((SciCompletionWindow) this.getConfiguration().getCompletionWindow()).isVisible()) {
-			((JTextPane) inputCmdView).grabFocus();
-		//}
+
+		((JTextPane) inputCmdView).grabFocus();
+
 		((JTextPane) inputCmdView).setCaretColor(Color.black);
-		updateScrollPosition();
 		
 		// Modify the size of the input command view (the prompt was not visible when last size modification done
 		if (this.getInputCommandViewSizeForced()) {
@@ -117,9 +117,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		}
 		
 		// Gets the focus to have the caret visible
-		//if (!((SciCompletionWindow) this.getConfiguration().getCompletionWindow()).isVisible()) {
-			((JTextPane) inputCmdView).grabFocus();
-		//}
+		((JTextPane) inputCmdView).grabFocus();
+
+		updateScrollPosition();
 
 		// Avoids reading of an empty buffer
 		((SciInputCommandView) inputCmdView).setBufferProtected();
@@ -132,9 +132,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
 		// Show the input command view and its hidden components
 		inputCmdView.setEditable(false);
-		//if (!((SciCompletionWindow) this.getConfiguration().getCompletionWindow()).isVisible()) {
-			((JTextPane) inputCmdView).grabFocus(); /* To manage CTRL+Y: stop execution */
-		//}
+		((JTextPane) inputCmdView).grabFocus(); /* To manage CTRL+Y: stop execution */
 		((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getBackground());
 		
 		return cmd;
@@ -148,10 +146,12 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	public int getCharWithoutOutput() {
 		int retChar;
 
-		updateScrollPosition();
+		((SciOutputView) this.getConfiguration().getOutputView()).flushBuffer();
 		
 		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
 		this.requestFocus();
+		
+		updateScrollPosition();
 		
 		// Avoids reading of an empty buffer
 		try {
@@ -171,7 +171,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
 		// Remove the "more" message and replace it by an empty line
 		this.clear(-1);
-		this.display("\n");
+		this.display(StringConstants.NEW_LINE);
 
 		this.removeKeyListener(keyListener);
 

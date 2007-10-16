@@ -143,8 +143,36 @@ public class SciConsole extends JPanel {
 	 */
 	public void scilabLinesUpdate() {
 		// Size of the console
-		int outputViewHeight = jSP.getHeight();
 		int outputViewWidth = jSP.getWidth();
+		
+		// Size of a char
+		OutputView outputView = this.getConfiguration().getOutputView();
+		int[] charsWidth = ((JTextPane) outputView).getFontMetrics(((JTextPane) outputView).getFont()).getWidths();
+		
+		// This loop is not needed for monospaced fonts !
+		int maxCharWidth = charsWidth[0];
+		for (int i = 1; i < charsWidth.length; i++) {
+		    if (charsWidth[i] > maxCharWidth) {
+		    	maxCharWidth = charsWidth[i];
+		    }
+		}
+		
+		int numberOfLines = getNumberOfLines();
+		int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getPreferredSize().width;
+		
+		int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1; 
+		/* -1 because of the margin between text prompt and command line text */
+
+		GuiManagement.setScilabLines(numberOfLines, numberOfColumns);
+	}
+	
+	/**
+	 * Get the number of lines that can be displayed in the visible part of the console
+	 * @return the number of lines
+	 */
+	public int getNumberOfLines() {
+		// Size of the console
+		int outputViewHeight = jSP.getHeight();
 		
 		// Size of a char
 		OutputView outputView = this.getConfiguration().getOutputView();
@@ -159,21 +187,15 @@ public class SciConsole extends JPanel {
 		    }
 		}
 		
-		int numberOfLines = outputViewHeight / charHeight - 1; /* -1 because of the size of the InputCommandLine */
-		int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getPreferredSize().width;
-		
-		int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1; 
-		/* -1 because of the margin between text prompt and command line text */
-
-		GuiManagement.setScilabLines(numberOfLines, numberOfColumns);
+		return outputViewHeight / charHeight - 1; /* -1 because of the size of the InputCommandLine */
 	}
 	
     /**
      * Updates the scroll bars according to the contents
      */
     public void updateScrollPosition() {
-   		jSP.getViewport().setViewPosition(new Point(0, sciConsole.getHeight() - jSP.getViewport().getExtentSize().height));
-		jSP.repaint();
+        jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
+        jSP.revalidate();
     }
 
     /**
