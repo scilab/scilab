@@ -105,6 +105,7 @@ void sciblk4(Blocks,flag)
   int *il_xd, *il_res, *il_out, *il_outptr;
   int *il_z, *il_oz, *il_ozptr, *il_x;
   int *il_mode, *il_evout, *il_g;
+  double *l_mode;
 
   /* variable for output typed port */
   int nout;
@@ -229,7 +230,7 @@ void sciblk4(Blocks,flag)
       {
        il_ozptr = (int *) listentry(il_oz,j+1);
        if (Blocks[0].oztyp[j]==SCSUNKNOW_N)
-       {
+       { 
         ne1=Blocks[0].ozsz[j];
         C2F(unsfdcopy)(&ne1,(double *)il_ozptr,\
                        (i=1,&i),(double *)Blocks[0].ozptr[j],(k=1,&k));
@@ -252,8 +253,8 @@ void sciblk4(Blocks,flag)
 
     if (Blocks[0].nx != 0)
     {
-     /* 12 - x */
-     il_x = (int *) listentry(header,12);
+     /* 13 - x */
+     il_x = (int *) listentry(header,13);
      ierr=sci2var(il_x,Blocks[0].x,SCSREAL_N); /* double */
      if (ierr!=0) goto err;
 
@@ -510,8 +511,13 @@ void sciblk4(Blocks,flag)
      {
       /* 39 - mode */
       il_mode = (int *) listentry(header,39);
-      ierr=sci2var(il_mode,Blocks[0].mode,SCSREAL_N); /* int */
-      if (ierr!=0) goto err;
+      // Alan, 16/10/07 : fix : mode is an integer array
+      l_mode = (double *)(il_mode + 4);
+      for (nv=0;nv<(il_mode[1]*il_mode[2]);nv++) {
+         Blocks[0].mode[nv]=(int) l_mode[nv];
+      }
+      //ierr=sci2var(il_mode,Blocks[0].mode,SCSINT_N); /* int */
+      //if (ierr!=0) goto err;
      }
    }
    break;
