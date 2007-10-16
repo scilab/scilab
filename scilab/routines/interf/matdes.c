@@ -2648,7 +2648,11 @@ int scixinfo(char *fname,unsigned long fname_len)
   GetRhsVar(1,"c",&m1,&n1,&l1);
   SciWin();
   C2F(dr)("xinfo",cstk(l1),PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,6L,m1);
-  sciSetInfoMessage(sciGetCurrentFigure(),cstk(l1));
+  if (version_flag() == 0)
+  {
+    sciSetInfoMessage(sciGetCurrentFigure(),cstk(l1));
+    
+  }
   LhsVar(1) =0;
   return 0;
 }
