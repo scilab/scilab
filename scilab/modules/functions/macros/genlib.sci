@@ -39,7 +39,7 @@ function genlib(nam,path,force,verbose,names)
     files=listfiles(path+'*.sci',%f)
     
     if files==[] | files== "" then 
-      error('I cannot find any sci files in '+path);
+      warning('I cannot find any sci files in '+path);
       return ;
     end
     names = basename(files,%f);
