@@ -19,7 +19,7 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  */
 public class FilledTextDrawerGL extends TextContentDrawerGL {
 
-	private static final double DEFAULT_FONT_SIZE = 1.0;
+	private static final double DEFAULT_FONT_SIZE = 10.0;
 	
 	private double filledBoxWidth;
 	private double filledBoxHeight;
@@ -80,8 +80,10 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		double xFactor = filledBoxWidth / curWidth;
 		double yFactor = filledBoxHeight / curHeight;
 		
+		// apply scale factor
 		double factor = Math.min(xFactor, yFactor);
-		float newFontSize = (float) (DEFAULT_FONT_SIZE * factor);
+		float newFontSize = (float) (getFont().getSize2D() * factor);
+		stringPos.scale(factor);
 		
 		// create a new renderer with a new font.
 		renderer.dispose();
