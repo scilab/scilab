@@ -62,8 +62,8 @@ typedef struct {
 #define freeall \
               if (*neq>0) CVodeFree(&cvode_mem);\
               if (*neq>0) N_VDestroy_Serial(y);\
-	      FREE(jroot);\
-	      FREE(zcros);
+	      if ( ng>0 ) FREE(jroot);\
+	      if ( ng>0 ) FREE(zcros);
 
 #define freeallx \
               if (*neq>0 && (Jacobian_Flag>0))  FREE(data->rwork)\
@@ -74,8 +74,8 @@ typedef struct {
               if (*neq>0) N_VDestroy_Serial(IDx);\
               if (*neq>0) N_VDestroy_Serial(yp);\
               if (*neq>0) N_VDestroy_Serial(yy);\
-              FREE(jroot);\
-              FREE(zcros);\
+              if ( ng>0 ) FREE(jroot);\
+              if ( ng>0 ) FREE(zcros);\
               if (nmod>0) FREE(Mode_save);
 
 #define freeouttbptr \
@@ -1249,7 +1249,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
   if (ng!=0) {
     if((zcros=MALLOC(sizeof(int)*ng))== NULL ){
       *ierr =10000;
-      FREE(jroot);
+      if ( ng>0 )FREE(jroot);
       return;
     }
   }
@@ -1259,7 +1259,8 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     y = N_VNewEmpty_Serial(*neq); 
     if (check_flag((void *)y, "N_VNewEmpty_Serial", 0)) {
       *ierr=10000;
-      FREE(jroot); FREE(zcros);
+      if ( ng>0 ) FREE(jroot); 
+      if ( ng>0 )FREE(zcros);
       return;
     };
 
@@ -1678,7 +1679,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
   if (ng!=0) {
     if((zcros=MALLOC(sizeof(int)*ng))== NULL ){
       *ierr =10000;
-      FREE(jroot);
+       if (ng!=0) FREE(jroot);
       return;
     }
   }
@@ -1687,8 +1688,8 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
   if (nmod!=0) {
     if((Mode_save=MALLOC(sizeof(integer)*nmod))== NULL ){
       *ierr =10000;
-      FREE(jroot);
-      FREE(zcros);
+      if (ng!=0) FREE(jroot);
+      if (ng!=0) FREE(zcros);
       return;
     }
   }
@@ -1697,19 +1698,19 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     yy=NULL;
     yy = N_VNewEmpty_Serial(*neq);
     if(check_flag((void *)yy, "N_VNew_Serial", 0)){
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
+      if (ng!=0) FREE(jroot);
+      if (ng!=0) FREE(zcros);
+      if (nmod!=0) FREE(Mode_save);
     };
     NV_DATA_S(yy)=x;
 
     yp=NULL;
     yp = N_VNewEmpty_Serial(*neq);
     if(check_flag((void *)yp, "N_VNew_Serial", 0)){
-      N_VDestroy_Serial(yy);
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
+      if (*neq>0) N_VDestroy_Serial(yy);
+      if (ng!=0)  FREE(jroot);
+      if (ng!=0) FREE(zcros);
+      if (nmod!=0) FREE(Mode_save);
       return;
     }
     NV_DATA_S(yp)=xd;
@@ -1721,11 +1722,11 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     IDx = N_VNew_Serial(*neq); 
     if (check_flag((void *)IDx, "N_VNew_Serial", 0)) {
       *ierr=10000;
-      N_VDestroy_Serial(yp);
-      N_VDestroy_Serial(yy);
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
+      if (*neq>0) N_VDestroy_Serial(yp);
+      if (*neq>0) N_VDestroy_Serial(yy);
+      if (ng!=0)  FREE(jroot);
+      if (ng!=0) FREE(zcros);
+      if (nmod!=0) FREE(Mode_save);
       return;
     };
 
@@ -1733,12 +1734,12 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     ida_mem = NULL;
     ida_mem = IDACreate();
     if(check_flag((void *)ida_mem, "IDACreate", 0)) {      
-      N_VDestroy_Serial(IDx);
-      N_VDestroy_Serial(yp);
-      N_VDestroy_Serial(yy);
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
+      if (*neq>0) N_VDestroy_Serial(IDx);
+     if (*neq>0) N_VDestroy_Serial(yp);
+     if (*neq>0) N_VDestroy_Serial(yy);
+      if (ng!=0) FREE(jroot);
+      if (ng!=0) FREE(zcros);
+      if (nmod!=0)  FREE(Mode_save);
       return;
     }
     copy_IDA_mem= (IDAMem) ida_mem;
@@ -1746,13 +1747,13 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     flag = IDAMalloc(ida_mem, simblkdaskr, T0, yy, yp, IDA_SS, reltol, &abstol);
     if(check_flag(&flag, "IDAMalloc", 1)){
       *ierr=200+(-flag);  
-      IDAFree(&ida_mem);
-      N_VDestroy_Serial(IDx);
-      N_VDestroy_Serial(yp);
-      N_VDestroy_Serial(yy);
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
+      if (*neq>0)IDAFree(&ida_mem);
+      if (*neq>0)N_VDestroy_Serial(IDx);
+     if (*neq>0) N_VDestroy_Serial(yp);
+      if (*neq>0)N_VDestroy_Serial(yy);
+      if (ng!=0) FREE(jroot);
+      if (ng!=0) FREE(zcros);
+      if (nmod!=0) FREE(Mode_save);
       return;
     }
 
@@ -1760,13 +1761,13 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     flag = IDARootInit(ida_mem, ng, grblkdaskr, NULL);
     if (check_flag(&flag, "IDARootInit", 1)) {
       *ierr=200+(-flag);  
-      IDAFree(&ida_mem);
-      N_VDestroy_Serial(IDx);
-      N_VDestroy_Serial(yp);
-      N_VDestroy_Serial(yy);
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
+      if (*neq>0)IDAFree(&ida_mem);
+      if (*neq>0)N_VDestroy_Serial(IDx);
+      if (*neq>0)N_VDestroy_Serial(yp);
+      if (*neq>0)N_VDestroy_Serial(yy);
+      if (ng!=0) FREE(jroot);
+      if (ng!=0) FREE(zcros);
+      if (nmod!=0) FREE(Mode_save);
       return;
     };
 
@@ -1774,13 +1775,13 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     flag = IDADense(ida_mem, *neq);
     if (check_flag(&flag, "IDADense", 1)) {
       *ierr=200+(-flag);  
-      IDAFree(&ida_mem);
-      N_VDestroy_Serial(IDx);
-      N_VDestroy_Serial(yp);
-      N_VDestroy_Serial(yy);
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
+      if (*neq>0)IDAFree(&ida_mem);
+      if (*neq>0)N_VDestroy_Serial(IDx);
+      if (*neq>0)N_VDestroy_Serial(yp);
+      if (*neq>0)N_VDestroy_Serial(yy);
+      if (ng!=0) FREE(jroot);
+      if (ng!=0) FREE(zcros);
+      if (nmod!=0) FREE(Mode_save);
       return;
     };
 
@@ -1788,13 +1789,13 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     data=NULL;
     if ((data = (UserData) MALLOC(sizeof(*data)))==NULL){
       *ierr=10000;
-      IDAFree(&ida_mem);
-      N_VDestroy_Serial(IDx);
-      N_VDestroy_Serial(yp);
-      N_VDestroy_Serial(yy);
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
+      if (*neq>0)IDAFree(&ida_mem);
+      if (*neq>0)N_VDestroy_Serial(IDx);
+      if (*neq>0)N_VDestroy_Serial(yp);
+      if (*neq>0)N_VDestroy_Serial(yy);
+      if (ng!=0) FREE(jroot);
+      if (ng!=0) FREE(zcros);
+      if (nmod!=0) FREE(Mode_save);
       return;
     };
     data->ida_mem = ida_mem;
@@ -1806,30 +1807,30 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     data->ewt   = N_VNew_Serial(*neq);
     if (check_flag((void *)data->ewt, "N_VNew_Serial", 0)) {
       *ierr=200+(-flag);  
-      FREE(data);
-      IDAFree(&ida_mem);
-      N_VDestroy_Serial(IDx);
-      N_VDestroy_Serial(yp);
-      N_VDestroy_Serial(yy);
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
+      if (*neq>0)FREE(data);
+      if (*neq>0)IDAFree(&ida_mem);
+     if (*neq>0) N_VDestroy_Serial(IDx);
+     if (*neq>0) N_VDestroy_Serial(yp);
+      if (*neq>0) N_VDestroy_Serial(yy);
+      if (ng!=0) FREE(jroot);
+      if (ng!=0) FREE(zcros);
+      if (nmod!=0) FREE(Mode_save);
       return;
     };
-
-    if ((data->gwork = (double *) MALLOC(ng * sizeof(double)))==NULL){
-      N_VDestroy_Serial(data->ewt);
-      FREE(data);
-      IDAFree(&ida_mem);
-      N_VDestroy_Serial(IDx);
-      N_VDestroy_Serial(yp);
-      N_VDestroy_Serial(yy);
-      FREE(jroot);
-      FREE(zcros);
-      FREE(Mode_save);
-      return;
-    };
-
+    if ( ng>0 ){
+      if ((data->gwork = (double *) MALLOC(ng * sizeof(double)))==NULL){
+	if (*neq>0) N_VDestroy_Serial(data->ewt);
+	if (*neq>0)FREE(data);
+	if (*neq>0)IDAFree(&ida_mem);
+	if (*neq>0)N_VDestroy_Serial(IDx);
+	if (*neq>0)N_VDestroy_Serial(yp);
+	if (*neq>0)N_VDestroy_Serial(yy);
+	if (ng!=0) FREE(jroot);
+	if (ng!=0) FREE(zcros);
+	if (nmod!=0) FREE(Mode_save);
+	return;
+      };
+    }
     /*Jacobian_Flag=0; */
     if (Jacobian_Flag==1){/* set by the block with A-Jac in flag-4 using Set_Jacobian_flag(1); */
       Jn=*neq;
@@ -1839,16 +1840,16 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
       Jactaille= 2*Jn+(Jn+Jni)*(Jn+Jno)+Jnx*(Jni+2*Jn+Jno)+(Jn-Jnx)*(2*(Jn-Jnx)+Jno+Jni)+2*Jni*Jno;    
   
       if ((data->rwork = (double *) MALLOC(Jactaille * sizeof(double)))==NULL){
-	FREE(data->gwork);
-	N_VDestroy_Serial(data->ewt);
-	FREE(data);
-	IDAFree(&ida_mem);
-	N_VDestroy_Serial(IDx);
-	N_VDestroy_Serial(yp);
-	N_VDestroy_Serial(yy);
-	FREE(jroot);
-	FREE(zcros);
-	FREE(Mode_save);
+	if ( ng>0 ) FREE(data->gwork);
+	if (*neq>0)N_VDestroy_Serial(data->ewt);
+	if (*neq>0)FREE(data);
+	if (*neq>0)IDAFree(&ida_mem);
+	if (*neq>0)N_VDestroy_Serial(IDx);
+	if (*neq>0)N_VDestroy_Serial(yp);
+	if (*neq>0)N_VDestroy_Serial(yy);
+	if (ng!=0) FREE(jroot);
+	if (ng!=0) FREE(zcros);
+	if (nmod!=0) FREE(Mode_save);
 	*ierr =10000;
 	return;
       }
