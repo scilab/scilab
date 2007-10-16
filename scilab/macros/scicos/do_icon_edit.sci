@@ -15,24 +15,24 @@ function scs_m=do_icon_edit(%pt,scs_m)
   end    
   
   gr_i=scs_m.objs(K).graphics.gr_i
-
+  sz=scs_m.objs(K).graphics.sz
   if type(gr_i)<>15 then  gr_i=list(gr_i,[]);end
 
   gh_curwin=gcf();//Preserve current Window
 
   coli=gr_i(2);
-  
+
   //Create the edition window  
   win=max(winsid())+1;
   fig=scf(win);xselect();
-  fig.figure_size(1)=fig.figure_size(2)
-  
-  //set axes properties
+  fig.axes_size=fig.axes_size*sz(1)/sz(2)
+  fig.auto_resize='off'
   ax=gca();
   if coli<>[] then ax.background=coli;end//background
-  ax.isoview='on';
+  //ax.isoview='on';
   ax.margins=zeros(4,1)
-  
+  ax.data_bounds=[0 0;1 1];
+  ax.tight_limits = "on"
   // draw the current icon (creates the graphical objects)
   sz=[1 1];orig=[0 0];
   deff('c=scs_color(c)',' ')
