@@ -9,7 +9,7 @@ if (flag==1){
   ipar=GetIparPtrs(block);
   k=*(ipar+1);
   m=*(ipar+2);
-  n=(pow(2,m)-1)-pow(2,*ipar);
+  n = (int)( (pow(2,m)-1)-pow(2,*ipar));
   switch(k)
 	{case 0:
 		{long *u,*y;

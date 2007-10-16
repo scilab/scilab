@@ -8,7 +8,7 @@ if (flag==1){
   int *ipar;
   ipar=GetIparPtrs(block);
   k=*(ipar+1);
-  n=pow(2,*ipar);
+  n = (int)pow(2,*ipar);
   switch(k)
 	{case 0:
 		{long *u,*y;

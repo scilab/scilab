@@ -631,7 +631,7 @@ void convert(scicos_block *block,int flag)
 	           y=Getint32OutPortPtrs(block,1);
 		   k=pow(2,32);
 		   for (i=0;i<m*n;i++) 
-		   	{if (u[i]>(long)(k/2-1))
+		   	{if (u[i]>(unsigned long)(k/2-1))
 			     {y[i]=(long)(k/2-1);}
 		   	else {y[i]=(long)(u[i]);}
 		   	}
