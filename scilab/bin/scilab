@@ -138,9 +138,9 @@ fi
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
 if test -z "$JAVA_HOME"; then
-	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/kaffe/pthreads"
+	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/kaffe/pthreads"
     for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
-		echo -n "Trying to find Java in $JAVA_HOME "
+		echo "Trying to find Java in $JAVA_HOME "
 		if [ -x "${JAVA_HOME}/bin/java" ]; then
             export JAVA_HOME
             echo "found"
@@ -237,7 +237,18 @@ case $OS in
 		proc="lib32"
 		;;
     "SunOS")
-		proc="sparc"
+    		case $MODEL in
+			"i86pc") # solaris x86
+				proc="i386"
+				;;
+				# check for the 64 bits syntax
+			"sparc")
+				proc="sparc"
+				;;
+			*)
+				echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
+				;;
+			esac
 		;;
 	*win32* | *WIN32* | *CYGWIN_NT*)
 		proc="win32"
@@ -254,10 +265,10 @@ esac
 	if test ! -f $LIBJAVA; then
 		echo "Cannot find $LIBJAVA"
 	else
-		export CLASSPATH="$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar"
+		CLASSPATH="$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar"
 		# @TODO This is the default path of the official sun JVM. 
 		# It is different for other implementation of the JVM....
-		export LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH"
+		LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH"
 	fi
 else
 	echo "Have not been able to find any Java VM on this computer. Scilab maybe not be working"
