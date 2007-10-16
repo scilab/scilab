@@ -1203,6 +1203,7 @@ function h=ged_loop(a,pt)
 endfunction
   
 function r=is_in_text(h,xy)
+  if h.type<>"Text" then r=%f,return,end
   if h.text_box_mode=='filled' then 
     r=(xy(1)>h.data(1)&xy(1)<h.data(1)+h.text_box(1))&(xy(2)>h.data(2)&xy(2)<h.data(2)+h.text_box(2))
   else
