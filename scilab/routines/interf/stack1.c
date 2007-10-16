@@ -2020,6 +2020,7 @@ int C2F(lmatj)(fname, lw, j, fname_len)
      integer *lw, *j;
      unsigned long fname_len;
 {
+  extern int C2F(scidcopy) _PARAMS((int *n, double *dx, int *incx, double *dy, int *incy));
   integer ix1, ix2;
   integer n;
   integer il, ilj, slj;
