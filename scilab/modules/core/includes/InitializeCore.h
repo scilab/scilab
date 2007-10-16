@@ -1,16 +1,17 @@
-/**
- * @author Vincent COUVERT - INRIA 2007 
- */
-#ifndef __INTIALIZECONSOLE_H__
-#define __INTIALIZECONSOLE_H__
-#include "machine.h"
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2007 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/ 
+#ifndef __INITIALIZECORE_H__
+#define __INITIALIZECORE_H__
+
+#include "machine.h" /* BOOL */
 
 /**
- * Initialize the console 
- *
- * @return result of the initialization
- */
-BOOL InitializeConsole(void);
+* Initialize core module
+* @return result of the initialization
+*/
+BOOL InitializeCore(void);
 
-#endif /* __INTIALIZECONSOLE_H__ */
+#endif /* __INITIALIZECORE_H__ */
 /*-----------------------------------------------------------------------------------*/ 
