@@ -13,7 +13,7 @@ void extract_bit_8_RB0(scicos_block *block,int flag)
    ref=0;
    numb=*(ipar+1)-*ipar+1;
    for(i=0;i<numb;i++)
-       {n=pow(2,*ipar+i);
+       {n=(char)pow(2,*ipar+i);
         ref=ref+n;}
    *y=(*u)&(ref);
 }

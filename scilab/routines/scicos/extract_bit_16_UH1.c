@@ -10,7 +10,7 @@ void extract_bit_16_UH1(scicos_block *block,int flag)
    maxim=16;
    ref=0;
    for(i=0;i<maxim/2;i++)
-       {n=pow(2,maxim/2+i);
+       {n=(short)pow(2,maxim/2+i);
         ref=ref+n;}
    *y=(*u)&(ref);
    *y=*y>>maxim/2;

@@ -28,7 +28,7 @@ void gainblk_ui16e(scicos_block *block,int flag)
 	{sciprint("overflow error");
 	 set_block_error(-4);
 	 return;}
-     else y[jl]=(unsigned short)D;
+     else y[i]=(unsigned short)D;
     }
   }else{
      for (l=0;l<ny;l++)

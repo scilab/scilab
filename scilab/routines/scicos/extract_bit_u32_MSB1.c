@@ -12,7 +12,7 @@ void extract_bit_u32_MSB1(scicos_block *block,int flag)
    maxim=32;
    ref=0;
    for(i=0;i<*ipar;i++)
-       {n=pow(2,maxim-1-i);
+       {n=(unsigned long)pow(2,maxim-1-i);
         ref=ref+n;}
    *y=(*u)&(ref);
    *y=*y>>(maxim-*ipar);

@@ -13,7 +13,7 @@ void shift_8_LC(scicos_block *block,int flag)
   u=Getint8InPortPtrs(block,1);
   y=Getint8OutPortPtrs(block,1);
   ipar=GetIparPtrs(block);
-  k=pow(2,8-1);
+  k=(unsigned char)pow(2,8-1);
   for (i=0;i<mu*nu;i++)
       { v=u[i];
 	for(j=0;j<ipar[0];j++)

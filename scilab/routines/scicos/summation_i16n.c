@@ -20,7 +20,7 @@ void summation_i16n(scicos_block *block,int flag)
     nin=GetNin(block);
 
     if (nin==1){
-      y[0]=0.0;
+      y[0]=0;
       u=Getint16InPortPtrs(block,1);
       for (j=0;j<nu*mu;j++) {
 	y[0]=y[0]+u[j];
@@ -28,7 +28,7 @@ void summation_i16n(scicos_block *block,int flag)
     }
     else {
       for (j=0;j<nu*mu;j++) {
-        y[j]=0.0;
+        y[j]=0;
 	for (k=0;k<nin;k++) {
 	  u=Getint16InPortPtrs(block,k+1);
           if(ipar[k]>0){

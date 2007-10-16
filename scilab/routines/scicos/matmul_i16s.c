@@ -29,9 +29,9 @@ void matmul_i16s(scicos_block *block,int flag)
 		    C=(double)(u1[ji])*(double)(u2[il]);
 		    D=D + C;}
 		    if ((D)>((k/2)-1))
-		        {y[jl]=((k/2)-1);}
+		        {y[jl]=(short)((k/2)-1);}
 		    else if ((D)<-((k/2)))
-			{y[jl]=-((k/2));}
+			{y[jl]=-(short)((k/2));}
 		    else {y[jl]=(short)(D);}
 		    }
 		 }

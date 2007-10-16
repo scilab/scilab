@@ -13,7 +13,7 @@ void shift_32_RC(scicos_block *block,int flag)
   u=Getint32InPortPtrs(block,1);
   y=Getint32OutPortPtrs(block,1);
   ipar=GetIparPtrs(block);
-  k=pow(2,32-1);
+  k=(unsigned long)pow(2,32-1);
   for (i=0;i<mu*nu;i++)
       { v=u[i];
 	for(j=0;j<-ipar[0];j++)

@@ -29,7 +29,7 @@ void matmul_ui8s(scicos_block *block,int flag)
 		    C=(double)(u1[ji])*(double)(u2[il]);
 		    D=D + C;}
 		    if (D>(k-1))
-		        {y[jl]=(k-1);}
+		        {y[jl]=(unsigned char)(k-1);}
 		    else if (D<0)
 			{y[jl]=0;}
 		    else {y[jl]=(unsigned char)(D);}

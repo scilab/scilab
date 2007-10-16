@@ -33,10 +33,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,32);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-((int)(w/(k/2)))*(k/2)));
+			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(long)w;}
 		   break;}
@@ -48,10 +48,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-((int)(w/(k/2)))*(k/2)));
+			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(short)w;}
 		   break;}
@@ -63,10 +63,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-((int)(w/(k/2)))*(k/2)));
+			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}
@@ -78,7 +78,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,32);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         y[i]=(unsigned long)w;}
 		   break;}
 	    case 6:{
@@ -89,7 +89,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         y[i]=(unsigned short)w;}
 		   break;}
 	    case 7:{
@@ -100,7 +100,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         y[i]=(unsigned char)w;}
 		   break;}
 	    case 8:{
@@ -118,10 +118,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-((int)(w/(k/2)))*(k/2)));
+			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(short)w;}
 		   break;}
@@ -133,10 +133,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-((int)(w/(k/2)))*(k/2)));
+			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}
@@ -148,7 +148,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         y[i]=(unsigned short)w;}
 		   break;}
 	    case 12:{
@@ -159,7 +159,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         y[i]=(unsigned char)w;}
 		   break;}
 	    case 13:{
@@ -185,10 +185,10 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         if (abs(w)>k/2-1)
-			     {if (w>=0) w=(-k/2+abs(w-((int)(w/(k/2)))*(k/2)));
-			     else w=-(-(k/2)+abs(w-((int)(w/(k/2)))*(k/2)));
+			     {if (w>=0) w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
+			     else w=-(-(k/2)+abs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}
@@ -208,7 +208,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         y[i]=(unsigned char)w;}
 		   break;}
 	    case 18:{
@@ -265,9 +265,9 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         if ((w)>k/2-1)
-			     { w=(-k/2+abs(w-((int)(w/(k/2)))*(k/2)));
+			     { w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(short)w;}
 		   break;}
@@ -279,9 +279,9 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         if ((w)>k/2-1)
-			     {w=(-k/2+abs(w-((int)(w/(k/2)))*(k/2)));
+			     {w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}
@@ -293,7 +293,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         y[i]=(unsigned short)w;}
 		   break;}
 	    case 27:{
@@ -304,7 +304,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         y[i]=(unsigned char)w;}
 		   break;}
 	    case 28:{
@@ -330,9 +330,9 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         if (w>k/2-1)
-			     {w=(-k/2+abs(w-((int)(w/(k/2)))*(k/2)));
+			     {w=(-k/2+abs(w-(double)((int)(w/(k/2)))*(k/2)));
 			     }
 		         y[i]=(char)w;}
 		   break;}
@@ -352,7 +352,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {v=(double)u[i];
-		         w=v-(int)(v/k)*k;
+		         w=v-(double)((int)(v/k))*k;
 		         y[i]=(unsigned char)w;}
 		   break;}
 	    case 33:{
@@ -402,9 +402,9 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,32);
 		   for (i=0;i<m*n;i++)
 		       {if (u[i]>k/2-1)
-		           {y[i]=k/2-1;}
+		           {y[i]=(long)(k/2-1);}
 		        else if (u[i]<-(k/2))
-			   {y[i]=-(k/2);}
+			   {y[i]=-(long)(k/2);}
 		        else {y[i]=(long)(u[i]);}
 		       }
 		   break;}
@@ -416,9 +416,9 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>k/2-1)
-		           {y[i]=k/2-1;}
+		           {y[i]=(short)(k/2-1);}
 		        else if (u[i]<-(k/2))
-			   {y[i]=-(k/2);}
+			   {y[i]=-(short)(k/2);}
 		        else {y[i]=(short)(u[i]);}
 		       }
 		   break;}
@@ -430,9 +430,9 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>k/2-1)
-		           {y[i]=k/2-1;}
+		           {y[i]=(char)(k/2-1);}
 		        else if (u[i]<-(k/2))
-			   {y[i]=-(k/2);}
+			   {y[i]=-(char)(k/2);}
 		        else {y[i]=(char)(u[i]);}
 		       }
 		   break;}
@@ -444,7 +444,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,32);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>=k)
-		       	     {y[i]=k-1;}
+		       	     {y[i]=(unsigned long)(k-1);}
 		   	else if (u[i]<0)
 			     {y[i]=0;}
 		   	else {y[i]=(unsigned long)(u[i]);}
@@ -458,7 +458,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>=k)
-		       	     {y[i]=k-1;}
+		       	     {y[i]=(unsigned short)(k-1);}
 		   	else if (u[i]<0)
 			     {y[i]=0;}
 		   	else {y[i]=(unsigned short)(u[i]);}
@@ -472,7 +472,7 @@ void convert(scicos_block *block,int flag)
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>=k)
-		       	     {y[i]=k-1;}
+		       	     {y[i]=(unsigned char)(k-1);}
 		   	else if (u[i]<0)
 			     {y[i]=0;}
 		   	else {y[i]=(unsigned char)(u[i]);}
@@ -485,10 +485,10 @@ void convert(scicos_block *block,int flag)
 	           y=Getint16OutPortPtrs(block,1);
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>k/2-1)
-		           {y[i]=k/2-1;}
-		        else if (u[i]<-(k/2))
-			   {y[i]=-(k/2);}
+		        {if (u[i]>(long)(k/2-1))
+		           {y[i]=(short)(k/2-1);}
+		        else if (u[i]<-(long)(k/2))
+			   {y[i]=-(short)(k/2);}
 		        else {y[i]=(short)(u[i]);}
 		       }
 		   break;}
@@ -499,10 +499,10 @@ void convert(scicos_block *block,int flag)
 	           y=Getint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>k/2-1)
-		           {y[i]=k/2-1;}
-		        else if (u[i]<-(k/2))
-			   {y[i]=-(k/2);}
+		        {if (u[i]>(long)(k/2-1))
+		           {y[i]=(char)(k/2-1);}
+		        else if (u[i]<-(long)(k/2))
+			   {y[i]=-(char)(k/2);}
 		        else {y[i]=(char)(u[i]);}
 		       }
 		   break;}
@@ -524,8 +524,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint16OutPortPtrs(block,1);
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>=k)
-		       	     {y[i]=k-1;}
+		        {if (u[i]>=(long)(k))
+		       	     {y[i]=(unsigned short)(k-1);}
 		   	else if (u[i]<0)
 			     {y[i]=0;}
 		   	else {y[i]=(unsigned short)(u[i]);}
@@ -538,8 +538,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>=k)
-		       	     {y[i]=k-1;}
+		        {if (u[i]>=(long)k)
+		       	     {y[i]=(unsigned char)(k-1);}
 		   	else if (u[i]<0)
 			     {y[i]=0;}
 		   	else {y[i]=(unsigned char)(u[i]);}
@@ -552,10 +552,10 @@ void convert(scicos_block *block,int flag)
 	           y=Getint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>k/2-1)
-		           {y[i]=k/2-1;}
-		        else if (u[i]<-(k/2))
-			   {y[i]=-(k/2);}
+		        {if (u[i]>(short)(k/2-1))
+		           {y[i]=(char)(k/2-1);}
+		        else if (u[i]<-(short)(k/2))
+			   {y[i]=-(char)(k/2);}
 		        else {y[i]=(char)(u[i]);}
 		       }
 		   break;}
@@ -586,8 +586,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>=k)
-		       	     {y[i]=k-1;}
+		        {if (u[i]>=(short)k)
+		       	     {y[i]=(unsigned char)(k-1);}
 		   	else if (u[i]<0)
 			     {y[i]=0;}
 		   	else {y[i]=(unsigned char)(u[i]);}
@@ -631,8 +631,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getint32OutPortPtrs(block,1);
 		   k=pow(2,32);
 		   for (i=0;i<m*n;i++) 
-		   	{if (u[i]>(k/2-1))
-			     {y[i]=k/2-1;}
+		   	{if (u[i]>(long)(k/2-1))
+			     {y[i]=(long)(k/2-1);}
 		   	else {y[i]=(long)(u[i]);}
 		   	}
 		   break;}
@@ -643,8 +643,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getint16OutPortPtrs(block,1);
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>(k/2-1))
-			     {y[i]=k/2-1;}
+		        {if (u[i]>(unsigned long)(k/2-1))
+			     {y[i]=(short)(k/2-1);}
 		   	else {y[i]=(short)(u[i]);}
 		   	}
 		   break;}
@@ -655,8 +655,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>(k/2-1))
-			     {y[i]=k/2-1;}
+		        {if (u[i]>(unsigned long)(k/2-1))
+			     {y[i]=(char)(k/2-1);}
 		   	else {y[i]=(char)(u[i]);}
 		   	}
 		   break;}
@@ -667,8 +667,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint16OutPortPtrs(block,1);
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>(k/2-1))
-			     {y[i]=k/2-1;}
+		        {if (u[i]>(unsigned long)(k/2-1))
+			     {y[i]=(unsigned short)(k/2-1);}
 		   	else {y[i]=(unsigned short)(u[i]);}
 		   	}
 		   break;}
@@ -679,8 +679,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>(k/2-1))
-			     {y[i]=k/2-1;}
+		        {if (u[i]>(unsigned long)(k/2-1))
+			     {y[i]=(unsigned char)(k/2-1);}
 		   	else {y[i]=(unsigned char)(u[i]);}
 		   	}
 		   break;}
@@ -691,8 +691,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getint16OutPortPtrs(block,1);
 		   k=pow(2,16);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>(k/2-1))
-			     {y[i]=k/2-1;}
+		        {if (u[i]>(unsigned short)(k/2-1))
+			     {y[i]=(short)(k/2-1);}
 		   	else {y[i]=(short)(u[i]);}
 		   	}
 		   break;}
@@ -703,8 +703,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>(k/2-1))
-			     {y[i]=k/2-1;}
+		        {if (u[i]>(unsigned short)(k/2-1))
+			     {y[i]=(char)(k/2-1);}
 		   	else {y[i]=(char)(u[i]);}
 		   	}
 		   break;}
@@ -715,8 +715,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getuint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>(k/2-1))
-			     {y[i]=k/2-1;}
+		        {if (u[i]>(unsigned short)(k/2-1))
+			     {y[i]=(unsigned char)k/2-1;}
 		   	else {y[i]=(unsigned char)(u[i]);}
 		   	}
 		   break;}
@@ -727,8 +727,8 @@ void convert(scicos_block *block,int flag)
 	           y=Getint8OutPortPtrs(block,1);
 		   k=pow(2,8);
 		   for (i=0;i<m*n;i++) 
-		        {if (u[i]>(k/2-1))
-			     {y[i]=k/2-1;}
+		        {if (u[i]>(unsigned char)(k/2-1))
+			     {y[i]=(char)(k/2-1);}
 		   	else {y[i]=(char)(u[i]);}
 		   	}
 		   break;}

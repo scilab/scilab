@@ -29,9 +29,9 @@ void matmul_i8s(scicos_block *block,int flag)
 		    C=(double)(u1[ji])*(double)(u2[il]);
 		    D=D + C;}
 		    if ((D)>((k/2)-1))
-		        {y[jl]=((k/2)-1);}
+		        {y[jl]=(char)((k/2)-1);}
 		    else if ((D)<-((k/2)))
-			{y[jl]=-((k/2));}
+			{y[jl]=-(char)((k/2));}
 		    else {y[jl]=(char)(D);}
 		    }
 		 }

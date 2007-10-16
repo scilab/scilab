@@ -12,7 +12,7 @@ void extract_bit_8_MSB0(scicos_block *block,int flag)
    maxim=8;
    ref=0;
    for(i=0;i<*ipar;i++)
-       {n=pow(2,maxim-1-i);
+       {n=(char)pow(2,maxim-1-i);
         ref=ref+n;}
    *y=(*u)&(ref);
 }
