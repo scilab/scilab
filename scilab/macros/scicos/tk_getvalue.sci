@@ -232,23 +232,25 @@ end
 TCL_EvalStr('set numx [winfo x $w];set numy [winfo y $w];destroy $w')
 endfunction
 
-
 function txt=create_txt(titlex,items,init)
+ //** Alan, 13/10/07 : patch to retrieve last of position
+ //**                  of the window
 
+ //** retrieve current postion of the last dialog box
+ //** potential TCL global variables numx/numy
+ if TCL_ExistVar('numx') then
+   numx=TCL_GetVar('numx')
+   numx_tt='set numx '+numx
+ else
+   numx_tt='set numx [winfo pointerx .]'
+ end
 
-    if TCL_ExistVar('numx') then
-      numx=TCL_GetVar('numx')
-      numx_tt='set numx '+numx
-    else
-      numx_tt='set numx [winfo pointerx .]'
-    end
-
-    if TCL_ExistVar('numy') then
-      numy=TCL_GetVar('numy')
-      numy_tt='set numy '+numy
-    else
-      numy_tt='set numy [winfo pointery .]'
-    end
+ if TCL_ExistVar('numy') then
+   numy=TCL_GetVar('numy')
+   numy_tt='set numy '+numy
+ else
+   numy_tt='set numy [winfo pointery .]'
+ end
 
 txt=['set w .form'
      'catch {destroy $w}'

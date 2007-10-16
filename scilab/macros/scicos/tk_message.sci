@@ -5,13 +5,11 @@ function num=tk_message(strings,buttons)
 //**
 //** Alan, 12/10/07 : initial rev
 
-
   //** check lhs/rhs arg
   [lhs,rhs]=argn(0)
 
   if rhs==0 then
-     strings
-     error(4)
+    error(77)
   end
 
   if type(strings)<>10 then
@@ -29,7 +27,7 @@ function num=tk_message(strings,buttons)
   end
 
   if rhs>2 then
-    error(58)
+    error(77)
   end
 
   //** format param
@@ -104,7 +102,7 @@ function str_out=create_message_box(str_in,but_lab)
 
   but_tt = 'grid '+but_tt+'-sticky nw'
 
-  //* if only one button then press return is allowed
+  //** if only one button then press return is allowed
   if size(but_lab,1)==1 then
     bind_tt='bind $w <Return> {set numx [winfo x $w];set numy [winfo y $w];set done 1}'
   else
@@ -144,7 +142,7 @@ function str_out=create_message_box(str_in,but_lab)
            'grid columnconfigure $w.bot 1 -weight 1"
            'grid columnconfigure $w.top 0 -weight 1"
            'grid configure $w.top -sticky nsew"
-           'grid configure $w.bot -sticky sew -ipadx 60'
+           'grid configure $w.bot -sticky sew -ipadx 70'
            'grid configure $w.top.msg -sticky nw'
            '##### place buttons in .bot ####'
             but_tt
