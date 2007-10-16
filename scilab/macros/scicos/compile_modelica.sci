@@ -24,7 +24,6 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
   else
     JAC=' ';
   end
-  
   if updateC then
     if MSDOS then      //Win/Unix/Linux/Mac 
       FlatName=fil;
@@ -34,7 +33,14 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
       instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Wmodelicac.err'         
       mputl(instr,path+'genc.bat')
       instr=path+'genc.bat'
-      if execstr('unix_s(instr);','errcatch')<>0 then // If_modelicac_fails_then_use_Translator	
+
+      if  fileinfo(SCI+'/bin/translator')<>[] then 
+	OUTM=unix(instr)<>0;// in order to mask the message in the Scilab windows       
+      else
+	OUTM=execstr('unix_s(instr);','errcatch')<>0 
+      end
+      
+      if OUTM then // If_modelicac_fails_then_use_Translator	
 	  MSG1=mgetl(TMPDIR+'/Wmodelicac.err');
 	  if fileinfo(SCI+'/bin/translator.exe')<>[] then  // if_translator_exists	 
 	    translator=pathconvert(SCI+'/bin/translator.exe',%f,%t)
@@ -74,21 +80,29 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
 	      ok=%f,nx=0,nin=0,nout=0,ng=0;nz=0;return
 	    else
 	      mprintf('   Flat modelica code generated at '+FlatName+'\n')
-	      mprintf('   C code generated at '+path+name+'.c\n')
 	    end     	
 	  else // if_translator_exists
 	    x_message(['-------Modelica compiler error without the"+...
 		       " translator:-------';MSG1;' ';'Please install the"+...
-		       " translator in ""SCI\bin"" to try again']);
+		       " Modelica translator (available at www.scicos.org) in"+...
+		       " ""SCI\bin""  and try again']);
 	    ok=%f,nx=0,nin=0,nout=0,ng=0;nz=0;return	    
 	  end // if_translator_exists
       end // end of  If_modelicac_fails_then_use_Translator
+      mprintf('   C code generated at '+path+name+'.c\n')
     else //==================Win/Unix/Linux/Mac....
+
       FlatName=fil;
       modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)
       modelicac=modelicac+strcat(' -L '+mlibs)
-      instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Lmodelicac.err;';    
-      if execstr('unix_s(instr);','errcatch')<>0 then // If_modelicac_fails_then_use_Translator
+      instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Lmodelicac.err;';          
+      if  fileinfo(SCI+'/bin/translator')<>[] then 
+	OUTM=unix(instr)<>0;// in order to mask the message in the Scilab windows       
+      else
+	OUTM=execstr('unix_s(instr);','errcatch')<>0 
+      end
+            
+      if OUTM then // If_modelicac_fails_then_use_Translator
 	MSG1=mgetl(TMPDIR+'/Lmodelicac.err');
 	if  fileinfo(SCI+'/bin/translator')<>[] then 
 	  translator=pathconvert(SCI+'/bin/translator',%f,%t)
@@ -128,15 +142,15 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
 	    ok=%f,nx=0,nin=0,nout=0,ng=0;nz=0;return
 	  else
 	    mprintf('   Flat modelica code generated at '+FlatName+'\n')
-	    mprintf('   C code generated at '+path+name+'.c\n')
 	  end     
 	else // if_translator_exists
 	  x_message(['-------Modelica compiler error without the"+...
 		     " translator:-------';MSG1;' ';'Please install the"+...
-		     " translator in ""SCI/bin"" to try again']);
+		     " Modelica translator (available at www.scicos.org)  in ""SCI/bin"" and try again']);
 	  ok=%f,nx=0,nin=0,nout=0,ng=0;nz=0;return	    
 	end // if_translator_exists
       end // end of  If_modelicac_fails_then_use_Translator
+      mprintf('   C code generated at '+path+name+'.c\n')
     end //===========================end of win/Unix/Linux/Mac
   end
   
