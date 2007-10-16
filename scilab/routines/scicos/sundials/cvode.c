@@ -3963,7 +3963,6 @@ static int CVRootfind_orig(CVodeMem cv_mem)
 static int CVRcheck1(CVodeMem cv_mem)
 {
   int i, retval;
-  realtype smallh, hratio;
   booleantype zroot;
 
   for (i = 0; i < nrtfn; i++) iroots[i] = 0;
@@ -4011,8 +4010,6 @@ static int CVRcheck1(CVodeMem cv_mem)
 static int CVRcheck2(CVodeMem cv_mem)
 {
   int i, retval;
-  realtype smallh, hratio;
-  booleantype zroot;
 
   if (irfnd == 0) return(CV_SUCCESS);
 

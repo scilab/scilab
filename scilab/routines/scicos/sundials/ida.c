@@ -2567,7 +2567,7 @@ static int IDAHandleNFlag(IDAMem IDA_mem, int nflag, realtype err_k, realtype er
 
     (*ncfPtr)++;      /* local counter for convergence failures */
     (*ncfnPtr)++;     /* global counter for convergence failures */
-    
+
     if (nflag < 0) {  /* nonrecoverable failure */
 
       return(nflag);
@@ -2859,7 +2859,6 @@ static int IDARcheck1_orig(IDAMem IDA_mem)
 static int IDARcheck1(IDAMem IDA_mem)
 {
   int i, retval;
-  realtype smallh, hratio;
   booleantype zroot;
 
   for (i = 0; i < nrtfn; i++) iroots[i] = 0;
@@ -2956,8 +2955,6 @@ static int IDARcheck2_orig(IDAMem IDA_mem)
 static int IDARcheck2(IDAMem IDA_mem)
 {
   int i, retval;
-  realtype smallh, hratio;
-  booleantype zroot;
 
   if (irfnd == 0) return(IDA_SUCCESS);
 

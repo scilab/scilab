@@ -381,7 +381,8 @@ static int IDADenseSetup(IDAMem IDA_mem, N_Vector yyp, N_Vector ypp,
                          N_Vector rrp, N_Vector tmp1, N_Vector tmp2,
                          N_Vector tmp3)
 {
-  int retval,i,j;  long int retfac;
+  int retval;  
+  long int retfac;
   IDADenseMem idadense_mem;
   
   idadense_mem = (IDADenseMem) lmem;
@@ -391,7 +392,7 @@ static int IDADenseSetup(IDAMem IDA_mem, N_Vector yyp, N_Vector ypp,
 
   /* Zero out JJ; call Jacobian routine jac; return if it failed. */
   DenseZero(JJ);
-  //printf(" \n\r XXIDADenseSetup-JAC in ida-dense  ");
+  /*printf(" \n\r XXIDADenseSetup-JAC in ida-dense  ");*/
   retval = jac(neq, tn, yyp, ypp, rrp, cj, jacdata, JJ, tmp1, tmp2, tmp3);
 
   if (retval < 0) {
@@ -483,7 +484,7 @@ static int IDADenseDQJac(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
   realtype inc, inc_inv, yj, ypj, srur, conj;
   realtype *tmp2_data, *y_data, *yp_data, *ewt_data, *cns_data = NULL;
   N_Vector rtemp, jthCol;
-  long int j,i;
+  long int j;
   int retval = 0;
 
   IDAMem IDA_mem;

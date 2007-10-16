@@ -6,13 +6,11 @@
 
 void automat(scicos_block *block,int flag)
 {
-  double** y=block->outptr;
-  double** u=block->inptr;
- 
+  double * y0, *y1, *ui;
   double* g=block->g;
   double* x=block->x;
   double* xd=block->xd;
-  double* res=block->res;
+  double* res=block->res; 
   void**   work=block->work;
   double* rpar=block->rpar;
   double* evout=block->evout;
@@ -50,19 +48,23 @@ void automat(scicos_block *block,int flag)
   }else if (flag ==5){/**----------------------------------------------------------*/
     scicos_free(*work);
   }else if  (flag ==1 || flag ==6){/*----------------------------------------------------------*/
+    y0=GetRealOutPortPtrs(block,1);
+    y1=GetRealOutPortPtrs(block,2);
+
     Mode=*work;
     Mi=Mode[0];
-    y[0][0]=Mi;/*current Mode*/
-    y[0][1]=Mode[1];/*prevous Mode*/
+    y0[0]=Mi;/*current Mode*/
+    y0[1]=Mode[1];/*prevous Mode*/
     for (i=0;i<NX;i++){
-      y[1][i]=x[i];
-      y[1][i+NX]=xd[i];
+      y1[i]=x[i];
+      y1[i+NX]=xd[i];
     }
   }else if (flag==0){ /*----------------------------------------------------------*/
     Mode=*work;
     Mi=Mode[0];
+    ui=GetRealInPortPtrs(block,Mi);
     for (i=0;i<NX;i++)
-      res[i]= u[Mi-1][i];
+      res[i]= ui[i];
 
   }else if (flag==7){/*----------------------------------------------------------*/
     Mode=*work;
@@ -75,10 +77,11 @@ void automat(scicos_block *block,int flag)
   }else if (flag==9){/*----------------------------------------------------------*/
     Mode=*work;
     Mi=Mode[0];
+    ui=GetRealInPortPtrs(block,Mi);
 
     for (j=0;j<ng;j++) g[j]=0;
     for (j=0;j<insz[Mi-1]-2*NX;j++) {
-      g[j]=u[Mi-1][j+2*NX];
+      g[j]=ui[j+2*NX];
       }
 
   }else if ((flag==3)&&(nevprt<0)){
@@ -113,8 +116,9 @@ void automat(scicos_block *block,int flag)
       for (k=0;k<insz[Mi-1]-2*NX;k++) if(jroot[k]==-1) break;
       /*      sciprint("\n\r Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction",Mi,k+1); */
     }
+    ui=GetRealInPortPtrs(block,Mf);
     for (i=0;i<NX;i++)
-      x[i]=u[Mf-1][i+NX]; /*reinitialize the states*/    
+      x[i]=ui[i+NX]; /*reinitialize the states*/    
   }
 }
 
