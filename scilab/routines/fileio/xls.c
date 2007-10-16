@@ -499,7 +499,6 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
   int sz; /* for extended string data */
   short rt;/* for rich string data */
   int i=*err;/*for debug*/
-  double pos;/*for debug*/
   int UTFEncoding,extendedString,richString;
   int j,l1;
 
