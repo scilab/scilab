@@ -105,15 +105,17 @@ function fname=do_saveblockgui(o)
   end
 
   for i=1:size(exprs0,1)
+    ierr=execstr('strtmp=sci2exp(evstr(exprs0(i)),0)','errcatch')
+    if ierr<>0 then strtmp='[]',disp('Cannot evaluate '+exprs0(i)),end
     textdef=[textdef;
-             '  '+exprs0(i)+'='+strcat(sci2exp(evstr(exprs0(i))))
+             '  '+exprs0(i)+'='+strtmp
             ];
   end
 
 
   textdef=[textdef;
            '  exprs=[..';
-           '       strcat(sci2exp('+exprs0+'))'
+           '       sci2exp('+exprs0+')'
            '        ]'
           ]
 

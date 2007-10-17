@@ -21,22 +21,18 @@ case 'set' then
  bitems=graphics.exprs(2)(2)(2:$)
  if exprs0==[] then x=arg1,return,end
 
- tt=exprs0(1);
+ tt='%scicos_context.'+exprs0(1);
  for i=2:size(exprs0,1)
-   tt=tt+','+exprs0(i),
+   tt=tt+',%scicos_context.'+exprs0(i),
  end
 
  ss=graphics.exprs(2)(3)
-
+ %scicos_context=struct()
  execstr('[ok,'+tt+',exprs]=getvalue(btitre,bitems,ss,exprs)')
  
  if ok then
   x=arg1
-  context=[]
-  for i=1:size(exprs0,1)
-    context=[context;exprs0(i)+'='+strcat(sci2exp(evstr(exprs0(i))))];
-  end
-  context=[context;x.model.rpar.props.context]
+  context=[x.model.rpar.props.context]
   [%scicos_context,ierr]=script2var(context,%scicos_context)
   if ierr==0 then 
     sblock=x.model.rpar
