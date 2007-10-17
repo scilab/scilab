@@ -245,7 +245,7 @@ msgstr	""
 # File: src/c/mput.c, line: 125
 # File: src/c/mput.c, line: 176
 #, possible-c-format
-msgid	"mput : %s format not recognized \n"
+msgid	"mput : %s format not recognized\n"
 msgstr	""
 #
 # File: src/c/mput.c, line: 59
@@ -334,7 +334,7 @@ msgid	"ripOLE: decoding of %s resulted in error %d\n"
 msgstr	""
 #
 # File: src/c/mseek.c, line: 31
-msgid	"mseek: wrong file logical unit \n"
+msgid	"mseek: wrong file logical unit\n"
 msgstr	""
 #
 # File: src/c/mseek.c, line: 35
@@ -353,7 +353,7 @@ msgstr	""
 #
 # File: src/c/mseek.c, line: 43
 #, possible-c-format
-msgid	"mseek : flag = %s not recognized \n"
+msgid	"mseek : flag = %s not recognized\n"
 msgstr	""
 #
 # File: src/c/mseek.c, line: 59
@@ -367,11 +367,11 @@ msgstr	""
 # File: src/c/mputstr.c, line: 16
 # File: src/c/mgetstr.c, line: 34
 # File: src/c/mgetstr.c, line: 54
-msgid	"No input file \n"
+msgid	"No input file\n"
 msgstr	""
 #
 # File: src/c/mgetstr.c, line: 22
-msgid	"No more memory \n"
+msgid	"No more memory\n"
 msgstr	""
 #
 # File: src/c/olestream-unwrap.c, line: 156
@@ -598,11 +598,11 @@ msgstr	""
 #
 # File: src/c/mclose.c, line: 45
 #, possible-c-format
-msgid	"File %d not active \n"
+msgid	"File %d not active\n"
 msgstr	""
 #
 # File: src/c/mclose.c, line: 51
-msgid	"No file to close \n"
+msgid	"No file to close\n"
 msgstr	""
 #
 # File: src/c/fileio.c, line: 75
@@ -629,7 +629,7 @@ msgstr	""
 # File: src/c/mget.c, line: 41
 # File: src/c/mget.c, line: 166
 #, possible-c-format
-msgid	"mget : %s format not recognized \n"
+msgid	"mget : %s format not recognized\n"
 msgstr	""
 #
 # File: src/c/mget.c, line: 157
@@ -676,7 +676,7 @@ msgstr	""
 #
 # File: src/c/do_xxscanf.c, line: 304
 #, possible-c-format
-msgid	"Error:\tscanf, format is too long (> %d) \n"
+msgid	"Error:\tscanf, format is too long (> %d)\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_fileext.c, line: 45
@@ -725,7 +725,7 @@ msgid	"sprintf: Invalid format.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_msprintf.c, line: 138
-msgid	"sprintf: cannot allocate cannot allocate more memory \n"
+msgid	"sprintf: cannot allocate cannot allocate more memory\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_findfiles.c, line: 40
@@ -751,7 +751,7 @@ msgid	"Error: in scanf: incorrect first argument\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_mscanf.c, line: 56
-msgid	"Error: in scanf: format cannot include \\n \n"
+msgid	"Error: in scanf: format cannot include \\n\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_mscanf.c, line: 73
@@ -764,14 +764,14 @@ msgid	"Error: in fscanf: data mismatch\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_mscanf.c, line: 105
-msgid	"Error: in scanf: cannot allocate more memory \n"
+msgid	"Error: in scanf: cannot allocate more memory\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_mscanf.c, line: 117
 # File: sci_gateway/c/sci_mfscanf.c, line: 101
 # File: sci_gateway/c/sci_msscanf.c, line: 98
 # File: sci_gateway/c/sci_msscanf.c, line: 110
-msgid	"Error: in sscanf: cannot allocate more memory \n"
+msgid	"Error: in sscanf: cannot allocate more memory\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_maxfiles.c, line: 47
@@ -834,7 +834,7 @@ msgid	"fprintf:\t wrong file descriptor %d\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_mfscanf.c, line: 90
-msgid	"Error: in fscanf: cannot allocate more memory \n"
+msgid	"Error: in fscanf: cannot allocate more memory\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_fullpath.c, line: 49
@@ -843,22 +843,22 @@ msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 48
 #, possible-c-format
-msgid	"%s :Not enough memory to allocate results \n"
+msgid	"%s :Not enough memory to allocate results\n"
 msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 53
 #, possible-c-format
-msgid	"%s :Failed to read expected data, may be invalid xls file \n"
+msgid	"%s :Failed to read expected data, may be invalid xls file\n"
 msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 58
 #, possible-c-format
-msgid	"%s :End of File \n"
+msgid	"%s :End of File\n"
 msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 137
 #, possible-c-format
-msgid	"%s :There is no  file %s \n"
+msgid	"%s :There is no  file %s\n"
 msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 143
@@ -873,32 +873,32 @@ msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 154
 #, possible-c-format
-msgid	"%s :There is no xls stream in the ole2 file %s \n"
+msgid	"%s :There is no xls stream in the ole2 file %s\n"
 msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 171
 #, possible-c-format
-msgid	"%s :Not an ole2 file \n"
+msgid	"%s :Not an ole2 file\n"
 msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 176
 #, possible-c-format
-msgid	"%s : the file has no Workbook directory \n"
+msgid	"%s : the file has no Workbook directory\n"
 msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 181
 #, possible-c-format
-msgid	"%s : impossible to alloc enough memory \n"
+msgid	"%s : impossible to alloc enough memory\n"
 msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 186
 #, possible-c-format
-msgid	"%s : incorrect or corrupted file \n"
+msgid	"%s : incorrect or corrupted file\n"
 msgstr	""
 #
 # File: sci_gateway/c/intreadxls.c, line: 191
 #, possible-c-format
-msgid	"%s : Only BIFF8 file format is handled \n"
+msgid	"%s : Only BIFF8 file format is handled\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_mprintf.c, line: 44

@@ -11,30 +11,28 @@
 /*-----------------------------------------------------------------------------------*/ 
 BOOL FileExist(char *filename)
 {
-	BOOL retour=FALSE;	
 
-	#ifdef _MSC_VER
-		WIN32_FIND_DATA FindFileData;
-		HANDLE handle = FindFirstFile (filename, &FindFileData);
-		if (handle != INVALID_HANDLE_VALUE)
+#ifdef _MSC_VER
+	WIN32_FIND_DATA FindFileData;
+	HANDLE handle = FindFirstFile (filename, &FindFileData);
+	if (handle != INVALID_HANDLE_VALUE)
 		{
 			FindClose (handle);
-			retour=TRUE;
+			return TRUE;
 		}
-		else retour=FALSE;
-	#else
-	FILE* tmpFile; 
-	if( (tmpFile=fopen(filename,"r")) == FALSE ) 
-	{ 
-		retour=FALSE;
-	} 
+	else return FALSE;
+#else
+	FILE* tmpFile=fopen(filename,"r");
+	if(tmpFile) 
+		{ 
+			fclose(tmpFile); 
+			return TRUE;
+		} 
 	else 
-	{ 
-		fclose(tmpFile); 
-		retour=TRUE;
-	} 
-	#endif
+		{ 
+			return FALSE;
+		} 
+#endif
 
-	return retour;
 }
 /*-----------------------------------------------------------------------------------*/ 

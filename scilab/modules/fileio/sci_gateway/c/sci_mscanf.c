@@ -53,7 +53,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 
 	if (n_count>1) 
 	{
-		Scierror(999,"Error: in scanf: format cannot include \\n \n");
+		Scierror(999,"Error: in scanf: format cannot include \\n\n");
 		return 0;
 	}
 
@@ -102,7 +102,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 
 			case MEM_LACK:
 				Free_Scan(rowcount,ncol,type_s,&data);
-				Scierror(999,"Error: in scanf: cannot allocate more memory \n");
+				Scierror(999,"Error: in scanf: cannot allocate more memory\n");
 				return 0;
 				break;
 			}
@@ -114,7 +114,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 	/* create Scilab variables with each column of data */
 	err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
 	Free_Scan(rowcount,ncol,type_s,&data);
-	if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \n");}
+	if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory\n");}
 	return 0;
 } 
 /*-----------------------------------------------------------------------------------*/ 

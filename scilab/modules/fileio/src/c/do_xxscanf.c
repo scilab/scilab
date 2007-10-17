@@ -301,7 +301,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 			if ( f2 == slast )
 			{
-				Scierror(998,"Error:\tscanf, format is too long (> %d) \n",MAX_STR-1);
+				Scierror(998,"Error:\tscanf, format is too long (> %d)\n",MAX_STR-1);
 				return RET_BUG;
 			}
 		}

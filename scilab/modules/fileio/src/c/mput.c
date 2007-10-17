@@ -44,7 +44,7 @@ extern int swap; /* defined in mget.c */
 		swap = (islittleendian()==1) ? 0 : 1; \
 		MPUT_NC(Type,Fswap); break; \
 		default: \
-		sciprint("mput : %s format not recognized \n",type); \
+		sciprint("mput : %s format not recognized\n",type); \
 		*ierr=1;return; \
 	}
 /*-----------------------------------------------------------------------------------*/
@@ -122,7 +122,7 @@ data **/
 		swap = (islittleendian()==1) ? 0 : 1; \
 		MPUT(Type,Fswap); break; \
 		default: \
-		sciprint("mput : %s format not recognized \n",type); \
+		sciprint("mput : %s format not recognized\n",type); \
 		*ierr=1;return; \
 }
 /*-----------------------------------------------------------------------------------*/
@@ -173,7 +173,7 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	{
 		swap2 = GetSwapStatus(*fd);
 		mput2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) sciprint("mput : %s format not recognized \n",type);
+		if (*ierr > 0) sciprint("mput : %s format not recognized\n",type);
 	}
 	else 
 	{

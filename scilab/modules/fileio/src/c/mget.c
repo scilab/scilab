@@ -38,7 +38,7 @@ int swap = 0;
 		  MGET_NC(NumType,Fswap); break; \
 	  case 'l': swap = (islittleendian()==1) ? 0:1; \
 	  MGET_NC(NumType,Fswap);  break; \
-	  default: sciprint("mget : %s format not recognized \n",type); \
+	  default: sciprint("mget : %s format not recognized\n",type); \
 	  *ierr=1; return; \
 				} \
 }
@@ -85,7 +85,7 @@ void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr
 	if ( items != n ) 
 	{
 		*ierr = -(items) -1 ;
-		/** sciprint("Read %d out of \n",items,n); **/
+		/** sciprint("Read %d out of\n",items,n); **/
 	}
 	return;
 }
@@ -141,7 +141,7 @@ void mget2(FILE *fa, integer swap2, double *res, integer n, char *type, integer 
 	if ( items != n ) 
 	{
 		*ierr = -(items) -1 ;
-		/** sciprint("Read %d out of \n",items,n); **/
+		/** sciprint("Read %d out of\n",items,n); **/
 	}
 	return;
 }
@@ -163,7 +163,7 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	{
 		swap2 = GetSwapStatus(*fd);
 		mget2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) sciprint("mget : %s format not recognized \n",type);
+		if (*ierr > 0) sciprint("mget : %s format not recognized\n",type);
 	}
 	else 
 	{

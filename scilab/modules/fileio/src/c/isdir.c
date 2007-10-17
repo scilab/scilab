@@ -11,6 +11,7 @@
 	#include <unistd.h>
 	#include <dirent.h>
 #endif
+#include <string.h>
 #include "isDrive.h"
 #include "isdir.h"
 #include "MALLOC.h"

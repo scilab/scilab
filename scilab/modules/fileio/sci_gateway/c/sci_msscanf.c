@@ -95,7 +95,7 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 
 			case MEM_LACK:
 				Free_Scan(rowcount,ncol,type_s,&data);
-				Scierror(999,"Error: in sscanf: cannot allocate more memory \n");
+				Scierror(999,"Error: in sscanf: cannot allocate more memory\n");
 				return 0;
 				break;
 			}
@@ -107,7 +107,7 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 	/* create Scilab variables with each column of data */
 	err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
 	Free_Scan(rowcount,ncol,type_s,&data);
-	if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \n");}
+	if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory\n");}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

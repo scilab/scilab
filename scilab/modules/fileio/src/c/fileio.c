@@ -24,7 +24,7 @@ int NumTokens __PARAMS((char *string))
 		{ 
 			int nchar1=0,nchar2=0;
 			ntok++;
-			n= sscanf(&(string[lnchar]),"%[^ \n\t]%n%*[ \t\n]%n",buf,&nchar1,&nchar2);
+			n= sscanf(&(string[lnchar]),"%[^\n\t]%n%*[ \t\n]%n",buf,&nchar1,&nchar2);
 			lnchar += (nchar2 <= nchar1) ? nchar1 : nchar2 ;
 		}
 

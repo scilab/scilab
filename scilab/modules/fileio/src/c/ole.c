@@ -910,7 +910,7 @@ int OLE_load_FAT( struct OLE_object *ole )
   unsigned int FAT_size;
 
   FAT_size = ole->header.fat_sector_count << ole->header.sector_shift;
-  DOLE LOGGER_log("%s:%d:OLE_load_FAT:DEBUG:Allocating for %d sectors (%d bytes) \n"
+  DOLE LOGGER_log("%s:%d:OLE_load_FAT:DEBUG:Allocating for %d sectors (%d bytes)\n"
 		  ,FL,ole->header.fat_sector_count, FAT_size);
 
   ole->FAT = MALLOC( FAT_size *sizeof(unsigned char));

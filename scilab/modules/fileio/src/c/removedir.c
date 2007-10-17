@@ -11,7 +11,9 @@
 #include <unistd.h>
 #include <dirent.h>
 #endif
+#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "removedir.h"
 #include "isdir.h"
 #include "MALLOC.h"

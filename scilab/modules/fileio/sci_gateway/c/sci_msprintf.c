@@ -135,7 +135,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	PutLhsVar();    
 	return 0;
 mem:
-	Scierror(999,"sprintf: cannot allocate cannot allocate more memory \n");
+	Scierror(999,"sprintf: cannot allocate cannot allocate more memory\n");
 	return 0;
 }  
 /*-----------------------------------------------------------------------------------*/ 
