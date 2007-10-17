@@ -14,20 +14,21 @@ int intspvm_start _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,mn1,un=1,res;
   char *host; 
-  static char hdefault[]="null";
+  static char hostdefault[]="null";
   CheckRhs(0,1);
   CheckLhs(1,1);
   if (Rhs ==1 ) {
-    GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);mn1=m1*n1;
+    GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+	mn1=m1*n1;
     host = cstk(l1);
   } else {
-    host = hdefault;
-    mn1= strlen(hdefault);
+	  /* Don't have any argument, then load the default host */
+    host = hostdefault;
+    mn1= strlen(hostdefault);
   }
   CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&res);
   C2F(scipvmstart)(istk(res),host,&mn1);
   LhsVar(1)=Rhs+1;
-  C2F(putlhsvar)();
   pvm_error_check(fname,*istk(res),fname_len);
   C2F(putlhsvar)();
   return 0;
