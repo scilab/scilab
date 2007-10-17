@@ -43,6 +43,12 @@
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='About_scicos' type='XML'>
   <USED_FUNCTIONS>
 
@@ -121,6 +127,12 @@
 
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -348,6 +360,12 @@
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -818,6 +836,12 @@ For this block we have two differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='HALT_f' type='XML'>
 <USED_FUNCTIONS>
 
@@ -927,23 +951,17 @@ For this block we have two differents functions:
 <FILE name='INVBLK_f' type='XML'>
 <USED_FUNCTIONS>
 
-
-
 </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='IN_f' type='XML'>
 <USED_FUNCTIONS>
 
-
-
 </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='ISELECT_f' type='XML'>
 <USED_FUNCTIONS>
-
-
 
 </USED_FUNCTIONS>
 </FILE>
@@ -954,10 +972,14 @@ For this block we have two differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='IdealTransformer' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='Inductor' type='XML'>
 <USED_FUNCTIONS>
-
-
 
 </USED_FUNCTIONS>
 </FILE>
@@ -1978,12 +2000,6 @@ for this block we have four differents functions:
 </FILE>
 
 <FILE name='pointer_xproperty' type='XML'>
-  <USED_FUNCTIONS>
-
-  </USED_FUNCTIONS>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
   <USED_FUNCTIONS>
 
   </USED_FUNCTIONS>

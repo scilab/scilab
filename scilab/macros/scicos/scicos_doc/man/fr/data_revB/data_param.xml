@@ -126,6 +126,98 @@
 </PARAM>
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Number (finite-state) Modes</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 1.
+      </SP>
+      <SP>
+      Propriétés : Type 'vec' de taille 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial Mode</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 2.
+      </SP>
+      <SP>
+      Propriétés : Type 'vec' de taille 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Number of continuous-time states</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 3.
+      </SP>
+      <SP>
+      Propriétés : Type 'vec' de taille 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Continuous-time states intial values</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 4.
+      </SP>
+      <SP>
+      Propriétés : Type 'mat' de taille [-1,-1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Xproperties of continuous-time states in each Mode</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 5.
+      </SP>
+      <SP>
+      Propriétés : Type 'mat' de taille [-1,-1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Jump from Mode 1:[..;M_final(Guard=In(1).i);..]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 6.
+      </SP>
+      <SP>
+      Propriétés : Type 'mat' de taille [-1,1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Jump from Mode 2:[..;M_final(Guard=In(2).i);..]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 7.
+      </SP>
+      <SP>
+      Propriétés : Type 'mat' de taille [-1,1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='About_scicos' type='XML'>
   <PARAM>
 
@@ -799,6 +891,14 @@
 	marqué comme temps dépendant.\\
 	Propriétés : Type 'str' de taille 1
 \end{itemize}
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='LATEX'>
@@ -1927,6 +2027,14 @@
 
 </PARAM_INDENT>
 </PARAM>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -3396,6 +3504,38 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 </PARAM>
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>G1</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 1.
+      </SP>
+      <SP>
+      Propriétés : Type 'vec' de taille 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>G2</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 2.
+      </SP>
+      <SP>
+      Propriétés : Type 'vec' de taille 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='HALT_f' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -3768,6 +3908,26 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
         entre 1 et le nombre d'entrée.\\
 	Propriétés : Type 'vec' de taille 1
 \end{itemize}
+</FILE>
+
+<FILE name='IdealTransformer' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>N</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      La description du paramètre 1.
+      </SP>
+      <SP>
+      Propriétés : Type 'vec' de taille 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='Inductor' type='XML'>
@@ -7969,12 +8129,6 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
       \item 1  : un état différentiel.
     \end{itemize}
 \end{itemize}
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
-  <PARAM>
-
-  </PARAM>
 </FILE>
 
 <FILE name='scicos' type='LATEX'>

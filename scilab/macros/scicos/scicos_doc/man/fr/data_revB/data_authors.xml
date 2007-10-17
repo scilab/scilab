@@ -50,6 +50,14 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Masoud Najafi'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='About_scicos' type='XML'>
   <AUTHORS>
 
@@ -140,6 +148,12 @@ INRIA
 INRIA
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -413,6 +427,12 @@ Masoud Najafi, INRIA
 INRIA
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -877,6 +897,12 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
+</FILE>
+
 <FILE name='HALT_f' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Ramine Nikoukhah'>
@@ -1001,6 +1027,12 @@ INRIA
 <AUTHORS>
 
 </AUTHORS>
+</FILE>
+
+<FILE name='IdealTransformer' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
 </FILE>
 
 <FILE name='Inductor' type='XML'>
@@ -2141,14 +2173,6 @@ INRIA
 <FILE name='pointer_xproperty' type='XML'>
   <AUTHORS>
 
-  </AUTHORS>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
-  <AUTHORS>
-    <AUTHORS_ITEM label='Alan Layec'>
-    INRIA
-    </AUTHORS_ITEM>
   </AUTHORS>
 </FILE>
 

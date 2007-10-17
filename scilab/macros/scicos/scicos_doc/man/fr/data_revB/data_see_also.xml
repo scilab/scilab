@@ -42,6 +42,12 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='About_scicos' type='XML'>
   <SEE_ALSO>
 
@@ -112,6 +118,12 @@
 <SEE_ALSO>
 
 </SEE_ALSO>
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -316,6 +328,12 @@
 <SEE_ALSO>
   <SEE_ALSO_ITEM><LINK>Sigbuilder </LINK></SEE_ALSO_ITEM>
 </SEE_ALSO>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -723,6 +741,12 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='HALT_f' type='XML'>
 <SEE_ALSO>
 
@@ -800,23 +824,17 @@
 <FILE name='INVBLK_f' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='IN_f' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='ISELECT_f' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -827,10 +845,14 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='IdealTransformer' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='Inductor' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -1880,12 +1902,6 @@
 <FILE name='pointer_xproperty' type='XML'>
   <SEE_ALSO>
   <SEE_ALSO_ITEM> <LINK>set_xproperty</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
-  <SEE_ALSO>
-
   </SEE_ALSO>
 </FILE>
 

@@ -48,6 +48,18 @@ This block, with two event inputs and a regular output, outputs +1 or
  \end{enumerate}
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='About_scicos' type='LATEX'>
  \subsection{About scicos...}
 
@@ -191,6 +203,18 @@ for the management of the data driven by the regular links.
 <FILE name='CBLOCK' type='LATEX'>
 This block creates skeleton of the C-computing function. It also
 creates library file and object files.  
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -527,6 +551,18 @@ This block defines a tabulated function of time. Between mesh points
 block performs a linear interpolation. Outside tabulation block
 outputs last tabulated value.  User may define the tabulation of the
 function using a curve editor.  
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -1381,6 +1417,18 @@ zero. Every electrical circuit has to contain at least one ground
 element.
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='HALT_f' type='LATEX'>
 This block has a unique input event port. Upon the arrival of an
 event, the simulation is stopped and the main Scicos window is
@@ -1495,6 +1543,18 @@ input port.
 <FILE name='ISELECT_m' type='LATEX'>
 Select signals from an incoming events. This block has one regular
 input port. 
+</FILE>
+
+<FILE name='IdealTransformer' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='Inductor' type='LATEX'>
@@ -3320,18 +3380,6 @@ linked before simulation.
     <P>
     This function returns a vector that informs the type (algebraic or differential)
     of the continuous state variables of a block.
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

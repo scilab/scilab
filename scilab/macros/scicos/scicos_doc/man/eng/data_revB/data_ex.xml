@@ -42,6 +42,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='About_scicos' type='XML'>
   <EXAMPLE><![CDATA[
   ]]></EXAMPLE>
@@ -105,6 +111,12 @@
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -319,6 +331,12 @@ B=[12;15;18]
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -694,6 +712,12 @@ B=[1 0 0;4 5 0;7 8 9;10 11 12]
 </EXAMPLE>
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='HALT_f' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
@@ -778,6 +802,12 @@ B=[1 0 0;4 5 0;7 8 9;10 11 12]
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='IdealTransformer' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='Inductor' type='XML'>
@@ -1693,11 +1723,6 @@ When t=2 we loop back to 0.
 </FILE>
 
 <FILE name='pointer_xproperty' type='XML'>
-  <EXAMPLE><![CDATA[
-  ]]></EXAMPLE>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
   <EXAMPLE><![CDATA[
   ]]></EXAMPLE>
 </FILE>

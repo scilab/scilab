@@ -172,9 +172,7 @@ function tt=generate_scs_outline()
                "   </SECTION>";
                "  </CHAPTER>"
                ""
-               "  <CHAPTER eng=""Programming Scicos blocks (under construction)"" fr=""Programmation des blocs Scicos (en construction)"">"
-               "   <SUBCHAPTER eng=""Interfacing functions"" fr=""Fonctions d''interfaçage"">";
-               "   </SUBCHAPTER>";
+               "  <CHAPTER eng=""Programming Scicos blocks"" fr=""Programmation des blocs Scicos"">"
                "   <SUBCHAPTER eng=""C computational functions (Type 4)"" fr=""Fonctions de calcul en C (Type 4)"">";
                "     <SCI varpath="""" name=""C_struct""></SCI>"
                "     <SCI varpath="""" name=""C_macros""></SCI>"
@@ -192,8 +190,6 @@ function tt=generate_scs_outline()
                "       <SCI varpath=""autopath"" name=""set_xproperty""></SCI>"
                "       <SCI varpath=""autopath"" name=""set_blockerror""></SCI>"
                "     </SECTION>";
-               "   </SUBCHAPTER>";
-               "   <SUBCHAPTER eng=""Use of Modelica"" fr=""Utilisation de Modelica"">";
                "   </SUBCHAPTER>";
                "  </CHAPTER>"
                ""
@@ -1141,8 +1137,8 @@ list_of_scistruc = [opath2(1),"scicos_diagram.sci","sci";
 //**--program blocs --*/
 list_of_prgblk   = ["","C_struct","sci";
                     "","C_macros","sci";
-                    "","C_utils","sci";
-                    "","sci_struct","sci";];
+                    "","C_utils","sci";];
+//                    "","sci_struct","sci";];
 //**------------*/
 
 //**-- About_scicos --*/

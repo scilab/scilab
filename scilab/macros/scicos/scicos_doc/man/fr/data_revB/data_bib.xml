@@ -42,6 +42,12 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='About_scicos' type='XML'>
   <BIBLIO>
 
@@ -112,6 +118,12 @@
 <BIBLIO>
 
 </BIBLIO>
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -322,6 +334,12 @@
 <BIBLIO>
 
 </BIBLIO>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -716,6 +734,12 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='HALT_f' type='XML'>
 <BIBLIO>
 
@@ -809,15 +833,11 @@
 <FILE name='IN_f' type='XML'>
 <BIBLIO>
 
-
-
 </BIBLIO>
 </FILE>
 
 <FILE name='ISELECT_f' type='XML'>
 <BIBLIO>
-
-
 
 </BIBLIO>
 </FILE>
@@ -828,10 +848,14 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='IdealTransformer' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='Inductor' type='XML'>
 <BIBLIO>
-
-
 
 </BIBLIO>
 </FILE>
@@ -1860,12 +1884,6 @@
 </FILE>
 
 <FILE name='pointer_xproperty' type='XML'>
-  <BIBLIO>
-
-  </BIBLIO>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
   <BIBLIO>
 
   </BIBLIO>

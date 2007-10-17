@@ -124,6 +124,98 @@
 </PARAM>
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Number (finite-state) Modes</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial Mode</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 2.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Number of continuous-time states</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 3.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Continuous-time states intial values</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 4.
+      </SP>
+      <SP>
+      Properties : Type 'mat' of size [-1,-1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Xproperties of continuous-time states in each Mode</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 5.
+      </SP>
+      <SP>
+      Properties : Type 'mat' of size [-1,-1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Jump from Mode 1:[..;M_final(Guard=In(1).i);..]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 6.
+      </SP>
+      <SP>
+      Properties : Type 'mat' of size [-1,1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Jump from Mode 2:[..;M_final(Guard=In(2).i);..]</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 7.
+      </SP>
+      <SP>
+      Properties : Type 'mat' of size [-1,1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='About_scicos' type='XML'>
   <PARAM>
 
@@ -774,6 +866,14 @@
         Create a signal that specifies the time dependence.\\
 	Properties : Type 'str' of size 1
 \end{itemize}
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='LATEX'>
@@ -1898,6 +1998,14 @@
 
 </PARAM_INDENT>
 </PARAM>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -3219,6 +3327,38 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 </PARAM>
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>G1</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>G2</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 2.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='HALT_f' type='LATEX'>
 %automatically generated, please edit
 \begin{itemize}
@@ -3525,6 +3665,26 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 	the number of inputs.   \\
 	Properties : Type 'vec' of size 1
 \end{itemize}
+</FILE>
+
+<FILE name='IdealTransformer' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>N</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='Inductor' type='XML'>
@@ -7610,12 +7770,6 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
       \item 1  : a differential state.
     \end{itemize}
 \end{itemize}
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
-  <PARAM>
-
-  </PARAM>
 </FILE>
 
 <FILE name='scicos' type='LATEX'>

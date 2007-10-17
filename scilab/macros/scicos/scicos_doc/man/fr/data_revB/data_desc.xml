@@ -46,6 +46,18 @@ délivre +1 ou -1 sur sa sortie régulière suivant ses entrées événementielles.
  \end{enumerate}
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='About_scicos' type='LATEX'>
  \subsection{Au sujet de Scicos...}
 
@@ -190,6 +202,18 @@ pour la gestion des données véhiculées par les liens réguliers.
 <FILE name='CBLOCK' type='LATEX'>
 Ce bloc crée une fonction de calcul squelette en C.
 Il crée aussi une librairie et un fichier objet à la compilation.
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -544,6 +568,18 @@ Entre chaque point des mailles, ce bloc réalise une interpolation
 linéaire. En dehors des points tabulés, il fournit les derniers
 points rencontrés. L'utilisateur peut définir les différents points
 en utilisant un éditeur graphique de courbes.
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -1416,6 +1452,18 @@ Terre est zéro. Chaque circuit électrique doit contenir au moins un
 élément Terre.
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='HALT_f' type='LATEX'>
 Ce bloc a un unique port d'entrée événementiel.
 Lorsqu'un événement se présente sur ce port, alors la simulation
@@ -1533,6 +1581,18 @@ Ce bloc a un seul port régulier d'entrée.
 <FILE name='ISELECT_m' type='LATEX'>
 Sélectionne des signaux suivant les événements d'entrée.
 Ce bloc a un seul port régulier d'entrée.
+</FILE>
+
+<FILE name='IdealTransformer' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='Inductor' type='LATEX'>
@@ -3402,18 +3462,6 @@ linked before simulation.
     <P>
     Cette fonction retourne un vecteur indiquant le type (algébrique ou différentiel)
     des variables d'états continues utilisées dans un bloc.
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Ajoutez ici un paragraphe pour la description de la fonction
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

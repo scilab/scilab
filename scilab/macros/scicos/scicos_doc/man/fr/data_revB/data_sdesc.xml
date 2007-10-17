@@ -53,6 +53,14 @@
   <SHORT_DESCRIPTION name="ANDLOG_f">ANDLOG_f</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <SHORT_DESCRIPTION name="AUTOMAT">AUTOMAT titre</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='AUTOMAT_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="AUTOMAT">AUTOMAT</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='About_scicos' type='XML'>
   <SHORT_DESCRIPTION name="About_scicos">Au sujet de scicos...</SHORT_DESCRIPTION>
 </FILE>
@@ -143,6 +151,18 @@
 
 <FILE name='CBLOCK_intfunc' type='XML'>
   <SHORT_DESCRIPTION name="CBLOCK">CBLOCK</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <SHORT_DESCRIPTION name="CCS">CCS titre</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='CCS_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="CCS">CCS</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='CCS_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="CCS">CCS</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -415,6 +435,18 @@
 
 <FILE name='CURV_f_intfunc' type='XML'>
   <SHORT_DESCRIPTION name="CURV_f">CURV_f</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <SHORT_DESCRIPTION name="CVS">CVS titre</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='CVS_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="CVS">CVS</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='CVS_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="CVS">CVS</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -913,6 +945,18 @@
   <SHORT_DESCRIPTION name="Ground">Ground</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <SHORT_DESCRIPTION name="Gyrator">Gyrator titre</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='Gyrator_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="Gyrator">Gyrator</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='Gyrator_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="Gyrator">Gyrator</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='HALT_f' type='XML'>
 <SHORT_DESCRIPTION name="HALT_f">Halt</SHORT_DESCRIPTION>
 </FILE>
@@ -1039,6 +1083,18 @@
 
 <FILE name='ISELECT_m_intfunc' type='XML'>
   <SHORT_DESCRIPTION name="ISELECT_m">ISELECT_m</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='IdealTransformer' type='XML'>
+  <SHORT_DESCRIPTION name="IdealTransformer">IdealTransformer titre</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='IdealTransformer_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="IdealTransformer">IdealTransformer</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='IdealTransformer_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="IdealTransformer">IdealTransformer</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Inductor' type='XML'>
@@ -2165,6 +2221,10 @@
   <SHORT_DESCRIPTION name="affich">affich</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='automat_routcos' type='XML'>
+  <SHORT_DESCRIPTION name="automat">automat</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='backlash_routcos' type='XML'>
   <SHORT_DESCRIPTION name="backlash">backlash</SHORT_DESCRIPTION>
 </FILE>
@@ -3287,10 +3347,6 @@
 
 <FILE name='scalar2vector_routcos' type='XML'>
   <SHORT_DESCRIPTION name="scalar2vector">scalar2vector</SHORT_DESCRIPTION>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
-  <SHORT_DESCRIPTION name="sci_struct">Structure de bloc</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='scicos' type='XML'>

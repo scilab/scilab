@@ -39,6 +39,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='AUTOMAT' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='About_scicos' type='XML'>
   <EXAMPLE><![CDATA[
   ]]></EXAMPLE>
@@ -99,6 +105,12 @@
 <FILE name='CBLOCK' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
+</FILE>
+
+<FILE name='CCS' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -291,6 +303,12 @@
 <FILE name='CURV_f' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
+</FILE>
+
+<FILE name='CVS' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -676,6 +694,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='Gyrator' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='HALT_f' type='XML'>
 <EXAMPLE>
 
@@ -743,15 +767,11 @@
 <FILE name='INTRP2BLK_f' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
 </FILE>
 
 <FILE name='INTRPLBLK_f' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -765,23 +785,17 @@
 <FILE name='INVBLK_f' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
 </FILE>
 
 <FILE name='IN_f' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
 </FILE>
 
 <FILE name='ISELECT_f' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -790,6 +804,12 @@
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='IdealTransformer' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='Inductor' type='XML'>
@@ -1758,11 +1778,6 @@
   <EXAMPLE>
 
   </EXAMPLE>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
-  <EXAMPLE><![CDATA[
-  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='scicos' type='XML'>
