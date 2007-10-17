@@ -17,7 +17,7 @@ int intspvm_spawn _PARAMS((char *fname,unsigned long fname_len))
   static char def_nw[]=""; 
   static char def_where[]="null"; 
   int m1,n1,l1,mn1,m2,n2,l2,un=1,lwhere,lnw; 
-  int m3,n3,l3,m4,n4,l4,tids,res;
+  int m3,n3,l3,m4,n4,l4,StackTaskId,StackRes;
   CheckRhs(2,4);
   CheckLhs(1,2);
   /*  checking variable task */
@@ -40,13 +40,14 @@ int intspvm_spawn _PARAMS((char *fname,unsigned long fname_len))
       where = cstk(l4); 
   }
   lwhere=strlen(where);
-  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,istk(l2),&tids);/* named: tids */
-  CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&res);/* named: res */
-  C2F(scipvmspawn)(cstk(l1),&mn1,nw,&lnw,where,&lwhere,istk(l2),istk(tids),istk(res));
+  CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&un,istk(l2),&StackTaskId);/* named: StackTaskId */
+  CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&StackRes);/* named: Stackres */
+  C2F(scipvmspawn)(cstk(l1),&mn1,nw,&lnw,where,&lwhere,istk(l2),istk(StackTaskId),istk(StackRes));
+
   LhsVar(1)= Rhs+1;
   LhsVar(2)= Rhs+2;
 
-  pvm_error_check(fname,*istk(res),fname_len);
+  pvm_error_check(fname,*istk(StackRes),fname_len);
   C2F(putlhsvar)();
   return 0;
 }
