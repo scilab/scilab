@@ -24,7 +24,7 @@
 #include "sci_pvm.h"
 
 
-void C2F(scipvmsend)(int *tids, int *p, 
+void C2F(scipvmsend)(int *taskId, int *p, 
 		     int *pack, int *n, 
 		     double *buff,
 		     int *msgtag, int *res)
@@ -36,7 +36,7 @@ void C2F(scipvmsend)(int *tids, int *p,
 
 #ifdef DEBUG
   (void) fprintf(stdout, "SEND: %d:%d:%d:%d:%d:%d:%p:%f:%f:%f:%f:%f:%f:%f\n", 
-                 *tids, *p, *n, *msgtag, pack[0], pack[1], buff, 
+                 *taskId, *p, *n, *msgtag, pack[0], pack[1], buff, 
                  buff[0], buff[1], buff[2], buff[3], buff[4], buff[5], buff[6]);
   
   (void) fprintf(stderr, "SEND:");
@@ -123,15 +123,15 @@ void C2F(scipvmsend)(int *tids, int *p,
 #endif /* DEBUG */
 
   if (*p == 1) {
-    *res = pvm_send(tids[0], *msgtag);
+    *res = pvm_send(taskId[0], *msgtag);
   }
   else
-    *res = pvm_mcast(tids, *p, *msgtag);
+    *res = pvm_mcast(taskId, *p, *msgtag);
 } /* scipvmsend */
 
 
 
-void C2F(scipvmsendvar)(int *tids, int *p, char *buff, int *msgtag, int *res)
+void C2F(scipvmsendvar)(int *taskId, int *p, char *buff, int *msgtag, int *res)
 {
   int info, bufid, type;
   int mx, nx, type_x, ptr_x;
@@ -195,7 +195,7 @@ void C2F(scipvmsendvar)(int *tids, int *p, char *buff, int *msgtag, int *res)
   }
   
   if (*p == 1)
-    *res = pvm_send(tids[0], *msgtag);
+    *res = pvm_send(taskId[0], *msgtag);
   else
-    *res = pvm_mcast(tids, *p, *msgtag);
+    *res = pvm_mcast(taskId, *p, *msgtag);
 } /* scipvmsendvar */
