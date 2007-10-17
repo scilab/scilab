@@ -4,10 +4,9 @@
 ##########
 
 LOCALIZATION_C_SOURCES = \
-src/c/InitializeLocalization.c 
-
-#src/c/setgetlanguage.c \
-#src/c/loadsavelanguage.c \
+src/c/InitializeLocalization.c \
+src/c/setgetlanguage.c \
+src/c/loadsavelanguage.c
 #src/c/TerminateLocalization.c
 
 if GUI
@@ -15,11 +14,10 @@ if GUI
 endif
 
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c
-#sci_gateway/c/sci_setlanguage.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
+sci_gateway/c/sci_setlanguage.c \
+sci_gateway/c/sci_getlanguage.c
 
-#sci_gateway/c/sci_setlanguage.c \
-#sci_gateway/c/sci_getlanguage.c \
 #sci_gateway/c/sci_getlanguagealias.c \
 #sci_gateway/c/sci_getlanguagestable.c \
 #sci_gateway/c/sci_addtext.c \

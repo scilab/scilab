@@ -8,7 +8,6 @@
 #include "MALLOC.h"
 #include "tableslanguages.h"
 #include "loadsavelanguage.h"
-#include "loadhashtableslocalization.h"
 #include "syncexec.h"
 /*-----------------------------------------------------------------------------------*/ 
 static char CURRENTLANGUAGESTRING[LengthAlphacode]=SCILABDEFAULTLANGUAGE;
@@ -46,9 +45,6 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 
 				/* save language pref. */
 				savelanguagepref();
-
-				/* update hash tables messages , errors , menus */
-				LoadHashTablesLocalization(lang);
 
 				if (updateMenus)
 				{
