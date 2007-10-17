@@ -18,10 +18,6 @@
 /*-----------------------------------------------------------------------------------*/
 static int c_n1 = -1;     
 /*-----------------------------------------------------------------------------------*/
-extern void SetCommandflag(int flag) ;
-extern int GetCommand(char *str);
-extern int StoreCommand ( char *command); 
-/*-----------------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {
   int ns,ierr,seq;
