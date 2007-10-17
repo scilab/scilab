@@ -2,7 +2,9 @@
  *
  * @author INRIA 2007
  */
-#include "machine.h"
+#ifndef __DYNAMIC_MENUS_H__
+#define __DYNAMIC_MENUS_H__
+
 #include "machine.h"
 
 /*
@@ -35,3 +37,13 @@ int StoreCommand (char *command);
  * @return <ReturnValue>
  */
 int StoreCommand1 (char *command, int flag);
+
+/**
+ * @TODO add comment
+ *
+ * @param str   
+ * @return <ReturnValue>
+ */
+int GetCommand (char *str);
+
+#endif /* __DYNAMIC_MENUS_H__ */
