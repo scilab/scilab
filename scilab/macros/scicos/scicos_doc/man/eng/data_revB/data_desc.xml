@@ -577,16 +577,1065 @@ function using a curve editor.
   </DESCRIPTION>
 </FILE>
 
-<FILE name='C_struct' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='C_struct' type='LATEX'>
+The C structure of a scicos block defines all the fields to handle data provided by the simulator
+such inputs/outputs, parameters, states, ...
+
+That structure of type {\tt scicos\_block} is defined in the file \htmladdnormallink{scicos\_block4.h}
+{scicos_block4_h.htm}, and user must include that header in each computational functions in the form :
+
+\begin{verbatim}
+#include "scicos_block4.h"
+
+void mycomputfunc(scicos_block *block,int flag)
+{
+ ...
+}
+\end{verbatim}
+
+The fields, that can be either C pointers or directly data, are then accessible via the {\tt *block}
+structure :
+
+\begin{verbatim}
+block->my_field
+\end{verbatim}
+
+This acces is a \textbf{direct} approach and most of users should prefer the \textbf{\htmladdnormallink{C\_macros}
+{C_macros.htm}} approach for facilities purpose.
+
+In the current version of scicos, the {\tt scicos->block} structure is defined :
+
+\begin{verbatim}
+/* scicos_block structure definition */
+typedef struct {
+  int nevprt;
+  voidg funpt ;
+  int type;
+  int scsptr;
+  int nz;
+  double *z;
+  int noz;
+  int *ozsz;
+  int *oztyp;
+  void **ozptr;
+  int nx;
+  double *x;
+  double *xd;
+  double *res;
+  int nin;
+  int *insz;
+  void **inptr;
+  int nout;
+  int *outsz;
+  void **outptr;
+  int nevout;
+  double *evout;
+  int nrpar;
+  double *rpar;
+  int nipar;
+  int *ipar;
+  int nopar;
+  int *oparsz;
+  int *opartyp;
+  void **oparptr;
+  int ng;
+  double *g;
+  int ztyp;
+  int *jroot;
+  char *label;
+  void **work;
+  int nmode;
+  int *mode;
+} scicos_block;
+\end{verbatim}
+
+\begin{itemize}
+ \item {\bf nevprt :} Integer that gives the event input port number by which the block has been activated.
+                      This number is a binary coding. For i.e, if block have two event inputs ports,
+                      {\tt block->nevptr} can take the value 1 if the block has been called by its first
+                      event input port, the value 2 if it has called by the second event input port and 3
+                      if it is called by the same event on input port 1 and 2.\\
+                      Note that {\tt block->nevptr} can be -1 if the block is internally called. \\
+                      One can also retrieve this number by using the C macros {\tt GetNevIn(block)}.
+
+ %\item {\bf funpt :}
+ \item {\bf type :} Integer that gives the type of the computation function. For C blocks, this number
+                    is equal to 4.
+
+ %\item {\bf scsptr :}
+ \item {\bf nz :} Integer that gives the length of the discrete state register.\\
+                  One can't override the index {\tt block->nz-1} when reading data in the array {\tt z}
+                  with a C computational function.\\
+                  This value is also accessible via the C macros {\tt GetNdstate(block)}.
+
+ \item {\bf z :} Array of double of size nz,1 corresponding to the discrete state register.\\
+                 A value of a discrete state is directly readable (for i.e the second state) with
+                 the C instructions :
+
+                 {\tt
+                  double z\_2;\\
+                  ...\\
+                  z\_2=block->z[1];
+                 }
+
+                 Note that the state register should be only written for {\tt flag}=4 and {\tt flag}=2.\\
+                 The pointer of that array can also be retrieve via the C macros {\tt GetDstate(block)}.
+
+ \item {\bf noz :} Integer that gives the number of the discrete object states.\\
+                   One can't override the index {\tt block->noz-1} when accessing data in the arrays
+                   {\tt ozsz}, {\tt oztyp} and {\tt ozptr} in a C computational function.\\
+                   This value is also accessible via the C macro {\tt GetNoz(block)}.
+
+ \item {\bf ozsz :} An array of integer of size noz,2 that contains the dimensions of matrices of
+                    discrete object states.\\
+                    The first column is for the first dimension and the second for the second dimension.
+                    For i.e. if we want the dimensions of the last object state, we'll use the instructions :
+
+                    {\tt
+                     int noz;\\
+                     int n,m;\\
+                     ...\\
+                     /*get the number of object state*/\\
+                     noz=block\->noz;\\
+                     ...\\
+                     /*get number of row of the last object state*/\\
+                     n=block\->ozsz[noz-1];\\
+                     /*get number of column of the last object state*/\\
+                     m=block\->ozsz[2*noz-1];\\
+                    }
+
+                    The dimensions of object discrete states can be get with the following C macro :
+
+                    {\tt
+                     GetOzSize(block,x,1); /*get first dimension of oz*/ \\
+                     GetOzSize(block,x,2); /*get second dimension of oz*/ \\
+                    }
+
+                    with {\tt x} an integer that gives the index of the discrete object state, {\bf numbered
+                    from 1 to noz}.
+
+ \item {\bf oztyp :} An array of integer of size noz,1 that contains the type of matrices of
+                     discrete object states.\\
+                     The following table gives the correspondence table for scicos type expressed in Scilab number,
+                     in C number and also corresponding C pointers and C macros used for {\tt ozptr} :
+
+                     \begin{tabular}{|c|c|c|c|c|}
+                      \hline
+                      {\bf Scilab}&
+                      &
+                      {\bf C}&
+                      &
+                      \\
+                      \hline
+                      \hline
+                      Type&
+                      &
+                      Number&
+                      Type&
+                      Macros\\
+                      \hline
+                      real matrix&
+                      &
+                      10&
+                      double&
+                      SCSREAL\_COP\\
+                      \hline
+                      complex matrix&
+                      &
+                      11&
+                      double&
+                      SCSCOMPLEX\_COP\\
+                      \hline
+                      int32 matrix&
+                      &
+                      84&
+                      long int&
+                      SCSINT32\_COP\\
+                      \hline
+                      int16 matrix&
+                      &
+                      82&
+                      short&
+                      SCSINT16\_COP\\
+                      \hline
+                      int8 matrix&
+                      &
+                      81&
+                      char&
+                      SCSINT8\_COP\\
+                      \hline
+                      uint32 matrix&
+                      &
+                      814&
+                      unsigned long int&
+                      SCSUINT32\_COP\\
+                      \hline
+                      uint16 matrix&
+                      &
+                      812&
+                      unsigned short&
+                      SCSUNINT16\_COP\\
+                      \hline
+                      uint8 matrix&
+                      &
+                      811&
+                      unsigned char&
+                      SCSUINT8\_COP\\
+                      \hline
+                      all others data&
+                      &
+                      -1&
+                      double&
+                      SCSUNKNOWN\_COP\\
+                      \hline
+                     \end{tabular}
+
+                     The type of discrete object state can also be got by the use of the C macro
+                     {\tt GetOzType(block,x)}. For i.e, if we want the C number type of the first
+                     discrete object state, we'll use the following C instructions:
+
+                     {\tt
+                      int oztyp\_1;\\
+                     ...\\
+                      /*get the number type of the first object state*/\\
+                      oztyp\_1 = GetOzType(block,1);
+                     }
+
+ \item {\bf ozptr :} An array of pointers of size noz,1 that allow to directly acces to the
+                     data contained in the discrete object state.\\
+                     Suppose that you have defined in the editor a block with the following 
+                     \textbf{odstate} field in \htmladdnormallink{scicos\_model}{scicos_model.htm} :
+
+                     \begin{eqnarray}
+                       {\tt model.odstate}={\tt list}\left({\tt int32}\left(\left[\begin{array}{cc}
+                       1 & 2\\
+                       3 & 4\end{array}\right]\right),\left[\begin{array}{ccc}
+                       1+{\tt \% i} & {\tt \% i} & 0.5\end{array}\right]\right)
+                     \end{eqnarray}
+
+                     Then we have two discrete object states, one is an 32-bit integer matrix with two rows and two
+                     columns and the second is a vector of complex numbers that can be understand as a matrix
+                     of size 1,3.\\
+                     At the C computational function level, the instructions {\tt block->ozsz[0]},
+                     {\tt block->ozsz[1]}, {\tt block->ozsz[2]}, {\tt block->ozsz[3]} will respectively return the
+                     values 2,1,2,3 and the instructions {\tt block->oztyp[0]}, {\tt block->oztyp[1]} the values 11 and
+                     84.\\
+                     {\tt block->ozptr} will contain then two pointers, and should be viewed as arrays contained data of
+                     discrete object state as shown in the following figure :
+
+                     \begin{figure}[!h]
+                      \begin{center}
+                       \scalebox{0.7}{\input{oz.pstex_t}}
+                      \end{center}
+                     \end{figure}
+
+                    For i.e., to directly access to the data, the user can use theses instructions :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSINT32\_COP cumsum\_i;\\
+                     SCSCOMPLEX\_COP *ptr\_d;\\
+                     SCSREAL\_COP cumsum\_r;
+                     ...\
+                     \null\\
+                     /*get the ptrs of an int32 discrete object state*/\\
+                     ptr\_i = (SCSINT32\_COP *) block->ozptr[0];\\
+                     /*get the ptrs of a double discrete object state*/\\
+                     ptr\_d = (SCSCOMPLEX\_COP *) block->ozptr[1];\\
+                     ...\\
+                     /*compute the cumsum of the int32 matrix*/\\
+                     cumsum\_i = ptr\_i[0]+ptr\_i[1]+ptr\_i[2]+ptr\_i[3];
+                     ...\\
+                     /*compute the cumsum of the real part of the complex matrix*/\\
+                     cumsum\_d = ptr\_d[0]+ptr\_d[1]+ptr\_d[2];\\
+                     ...\\
+                    }
+
+                    One can also use the set of C macros :\\
+                    {\tt GetRealOzPtrs(block,x)},  {\tt GetImagOzPtrs(block,x)},\\
+                    {\tt Getint8OzPtrs(block,x)},  {\tt Getint16OzPtrs(block,x)},\\
+                    {\tt Getint32OzPtrs(block,x)}, {\tt Getuint8OzPtrs(block,x)},\\
+                    {\tt Getuint16OzPtrs(block,x)}, {\tt Getuint32OzPtrs(block,x)} \\
+                    to have the appropiate pointer of the data to handle ({\bf x is numbered from 1 to noz}).\\
+                    For the previous example that gives :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSREAL\_COP *ptr\_dr;\\
+                     SCSREAL\_COP *ptr\_di;\\
+                     ...\
+                     \null\\
+                     /*get the ptrs of an int32 discrete object state*/\\
+                     ptr\_i = Getint32OzPtrs(block,1);\\
+                     /*get the ptrs of a double discrete object state*/\\
+                     ptr\_dr = GetRealOzPtrs(block,2);\\
+                     ptr\_di = GetImagOzPtrs(block,2);\\
+                     ...\\
+                    }
+
+                    Finally note that the discrete objects state should be only written for {\tt flag}=4 and {\tt flag}=2.
+
+
+ \item {\bf nx :} Integer that gives the length of the continus state register.\\
+                  One can't override the index {\tt block->nx-1} when reading or writing data in 
+                  the array {\tt x}, {\tt xd} or {\tt res} with a C computational function.
+
+ \item {\bf x :} Array of double of size nx,1 corresponding to the continuous state register.\\
+                 That gives the result of the computation of the state derivative.\\
+                 A value of a continuous state is readable (for i.e the first state) with
+                 the C instructions :
+
+                 {\tt
+                  double x\_1;\\
+                    ...\\
+                  x\_1=block->x[0];
+                 }
+
+                 Note that on {\it flag}=4, user can write some initial conditions in that register.\\
+
+ \item {\bf xd :} Array of double of size nx,1 corresponding to the derivative of the continuous state register.\\
+                  When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be
+                  explicitly expressed or implicitly used in the residual vector {\tt res} when systems are expressed
+                  in terms of Differantial Algebraic Equations (DAE). \\
+                  Both systems must be programmed with {\tt flag= 0}.\\
+                  For i.e the Lorentz attractor written as an ODE system with three state variables, of the form :
+
+                   \begin{eqnarray}
+                        \dot{x} &=& f(x,t)
+                   \end{eqnarray}
+                  will be defined :
+
+                  {\tt
+                   ...\\
+                   double *x = block->x;\\
+                   double *xd = block->xd;\\
+                   ...\\
+                   /* define parameters */\\
+                   double a = 10;\\
+                   double b = 28;\\
+                   double c = 8/3;\\
+                   ...\\
+                   if (flag == 0) \{\\
+                      xd[0] = a*(x[1]-x[0]); \\
+                      xd[1] = x[1]*(b-x[2])-x[1]; \\
+                      xd[2] = x[0]*x[1]-c*x[2]; \\
+                   \}
+                  }
+
+ \item {\bf res :} Array of double of size nx,1 corresponding to Differential Algebraic Equation (DAE) residual.\\
+                   It is used to write the vector of systems that have the following form :
+                   \begin{eqnarray}
+                        f(\dot{x},x,t) &=& 0
+                   \end{eqnarray}
+                   For i.e the Lorentz attractor written as a DAE system with three state variables, will be defined :
+
+                   {\tt
+                    ...\\
+                    double *x = block->x;\\
+                    double *xd = block->xd;\\
+                    double *res = block->res;\\
+                    ...\\
+                    /* define parameters */\\
+                    double a = 10;\\
+                    double b = 28;\\
+                    double c = 8/3;\\
+                    ...\\
+                    if (flag == 0) \{\\
+                      res[0] =  - xd[0] + (a*(x[1]-x[0])); \\
+                      res[1] =  - xd[1] + (x[0]*(b-x[2])-x[1]); \\
+                      res[2] =  - xd[2] + (x[0]*x[1]-c*x[2]); \\
+                    \}
+                   }
+
+ \item {\bf nin :} Integer that gives the number of regular input ports of the block.\\
+                   One can't override the index {\tt (3*block->nin)-1} when reading sizes of
+                   input ports in the array {\tt insz} and the index {\tt block->nin-1} when reading
+                   data in the array {\tt inptr} with a C computational function.\\
+                   The number of regular input ports can also be got by the use of the C macros
+                   {\tt GetNin(block)}.
+
+ \item {\bf insz :} An array of integers of size {\tt 3*nin,1} that respectively gives the first dimensions,
+                    the second dimensions and the type of data driven by regular input ports.\\
+                    Note that this array of size differs from the array {\tt ozsz} and {\tt oparsz} to
+                    provide full compatibilty with blocks that only use a single dimension.\\
+                    Suppose that you have a block with three inputs : the first is an int32 matrix of
+                    size 3,2, the second a single complex number (matrix of size 1,1) and the last a real
+                    matrix of size 4,1.\\
+                    In the  \htmladdnormallink{scicos\_model}{scicos_model.htm} of such a block, the inputs
+                    will be defined :
+
+                    {\tt
+                     model.in    = [3;1;4] \\
+                     model.in2   = [2;1;1] \\
+                     model.intyp = [2;1;3] \\
+                    }
+
+                    and the corresponding {\tt block->insz} field at C computational function level will be
+                    coded as :
+
+                     \begin{figure}[!h]
+                      \begin{center}
+                       \scalebox{0.7}{\input{insz.pstex_t}}
+                      \end{center}
+                     \end{figure}
+
+                     Do the distinction here in the type numbers defined at the {\bf Scilab level} (2,1,3)
+                     and the type numbers defined at the {\bf C level} (84,11,10). The following table gives
+                     the correspondance for all Scicos type:
+
+                     \begin{center}
+                      \begin{tabular}{|c|c||c|c|}
+                       \hline
+                       {\bf Scilab Type}&
+                       {\bf Scilab Number}&
+                       {\bf C Type}&
+                       {\bf C Number}\\
+                       \hline
+                       \hline
+                       real&
+                       1&
+                       double&
+                       10\\
+                       \hline
+                       complex&
+                       2&
+                       double&
+                       11\\
+                       \hline
+                       int32&
+                       3&
+                       long&
+                       84\\
+                       \hline
+                       int16&
+                       4&
+                       short&
+                       82\\
+                       \hline
+                       int8&
+                       5&
+                       char&
+                       81\\
+                       \hline
+                       uint32&
+                       6&
+                       unsigned long&
+                       814\\
+                       \hline
+                       uint16&
+                       7&
+                       unsigned short&
+                       812\\
+                       \hline
+                       uint8&
+                       8&
+                       unsigned char&
+                       811\\
+                       \hline
+                      \end{tabular}
+                     \end{center}
+
+ \item {\bf inptr :} An array of pointers of size nin,1 that allow to directly acces to the
+                     data contained in the regular input matrices.\\
+                     Suppose the previous example (block with three inputs : an int32 matrix of size [3,2],
+                     a complex scalar and a real matrix of size [4,1]).\\
+                     {\tt block->inptr} contains three pointers, and should be viewed as arrays contained
+                     the data for the int32, the real and the complex matrices :
+
+                     \begin{figure}[!h]
+                      \begin{center}
+                       \scalebox{0.7}{\input{inptr.pstex_t}}
+                      \end{center}
+                     \end{figure}
+
+                    For i.e., to directly access to the data, the user can use theses instructions :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSCOMPLEX\_COP *ptr\_dc;\\
+                     SCSREAL\_COP *ptr\_d;\\
+                     int n3,m3;\\
+                     SCSINT32\_COP cumsum\_i=0;\\
+                     int i;\\
+                     ...\\
+                     \null\\
+                     /*get the ptrs of the first int32 regular input port*/\\
+                     ptr\_i = (SCSINT32\_COP *) block->inptr[0];\\
+                     /*get the ptrs of the second complex regular input port*/\\
+                     ptr\_dc = (SCSCOMPLEX\_COP *) block->inptr[1];\\
+                     /*get the ptrs of the third real regular input port*/\\
+                     ptr\_d = (SCSREAL\_COP *) block->inptr[2];\\
+                     ...\\
+                     /*get the dimension of the first int32 regular input port*/\\
+                     n1=block->insz[0];\\
+                     m1=block->insz[3];\\
+                     ...\\
+                     /*compute the cumsum of the input int32 matrix*/\\
+                     for(i=0;i<n1*m1;i++) \{\\
+                     \ \ cumsum\_i += ptr\_i[i]; \\
+                     \}\\
+                     ...\\
+                    }
+
+                    One can also use the set of C macros :\\
+                    {\tt GetInPortPtrs(blk,x)}, {\tt GetRealInPortPtrs(blk,x)}, \\
+                    {\tt GetImagInPortPtrs(blk,x)}, {\tt Getint8InPortPtrs(blk,x)}, \\
+                    {\tt Getint16InPortPtrs(blk,x)}, {\tt Getint32InPortPtrs(blk,x)}, \\
+                    {\tt Getuint8InPortPtrs(blk,x)}, {\tt Getuint16InPortPtrs(blk,x)}, \\
+                    {\tt Getuint32InPortPtrs(blk,x)} \\
+                    to have the appropiate pointer of the data to handle and \\
+                    {\tt GetNin(blk)}, {\tt GetInPortRows(blk,x)}, \\
+                    {\tt GetInPortCols(blk,x)}, {\tt GetInPortSize(blk,x,y)}, \\
+                    {\tt GetInType(blk,x)}, {\tt GetSizeOfIn(blk,x)} \\
+                    to handle number, dimensions and type of regular input ports.
+                    ({\bf x is numbered from 1 to nin and \bf y numbered  from 1 to 2}).\\
+
+                    For the previous example that gives :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSCOMPLEX\_COP *ptr\_dc;\\
+                     SCSREAL\_COP *ptr\_d;\\
+                     int n3,m3;\\
+                     SCSINT32\_COP cumsum\_i=0;\\
+                     int i;\\
+                     ...\\
+                     \null\\
+                     /*get the ptrs of the first int32 regular input port*/\\
+                     ptr\_i = Getint32InPortPtrs(block,1);\\
+                     /*get the ptrs of the second complex regular input port*/\\
+                     ptr\_dc = GetRealInPortPtrs(block,2);\\
+                     /*get the ptrs of the third real regular input port*/\\
+                     ptr\_d = GetRealInPortPtrs(block,3);\\
+                     ...\\
+                     /*get the dimension of the first int32 regular input port*/\\
+                     n1=GetInPortRows(block,1);\\
+                     m1=GetInPortCols(block,1);\\
+                     ...\\
+                    }
+
+                    Finally note that the regular input port registers are only accessible for reading.
+
+ \item {\bf nout :} Integer that gives the number of regular output ports of the block.\\
+                    One can't override the index {\tt (3*block->nout)-1} when reading sizes of
+                    output ports in the array {\tt outsz} and the index {\tt block->nout-1} when reading
+                    data in the array {\tt outptr} with a C computational function.\\
+                    The number of regular output ports can also be got by the use of the C macros
+                    {\tt GetNout(block)}.
+
+ \item {\bf outsz :} An array of integers of size {\tt 3*nout,1} that respectively gives the first dimensions,
+                     the second dimensions and the type of data driven by regular output ports.\\
+                     Note that this array of size differs from the array {\tt ozsz} and {\tt oparsz} to
+                     provide full compatibilty with blocks that only use a single dimension.\\
+                     Suppose that you have a block with two outputs : the first is an int32 matrix of
+                     size 3,2, the second a single complex number (matrix of size 1,1) and the last a real
+                     matrix of size 4,1.\\
+                     In the  \htmladdnormallink{scicos\_model}{scicos_model.htm} of such a block, the outputs
+                     will be defined :
+
+                     {\tt
+                      model.out   = [3;1;4] \\
+                      model.out2   = [2;1;1] \\
+                      model.outtyp = [2;1;3] \\
+                     }
+
+                     and the corresponding {\tt block->outsz} field at C computational function level will be
+                     coded as :
+
+                     \begin{figure}[!h]
+                      \begin{center}
+                       \scalebox{0.7}{\input{outsz.pstex_t}}
+                      \end{center}
+                     \end{figure}
+
+                     Do the distinction here in the type numbers defined at the {\bf Scilab level} (2,1,3)
+                     and the type numbers defined at the {\bf C level} (84,11,10) and please report to the 
+                     previous table to have the correspondence for all Scicos type.
+
+ \item {\bf outptr :} An array of pointers of size nout,1 that allow to directly acces to the
+                     data contained in the regular output matrices.\\
+                     Suppose the previous example (block with three outputs : an int32 matrix of size [3,2],
+                     a complex scalar and a real matrix of size [4,1]).\\
+                     {\tt block->outptr} contains three pointers, and should be viewed as arrays contained
+                     the data for the int32, the real and the complex matrices :
+
+                     \begin{figure}[!h]
+                      \begin{center}
+                       \scalebox{0.7}{\input{outptr.pstex_t}}
+                      \end{center}
+                     \end{figure}
+
+                    For i.e., to directly access to the data, the user can use theses instructions :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSCOMPLEX\_COP *ptr\_dc;\\
+                     SCSREAL\_COP *ptr\_d;\\
+                     int n3,m3;\\
+                     SCSINT32\_COP cumsum\_i=0;\\
+                     int i;\\
+                     ...\\
+                     \null\\
+                     /*get the ptrs of the first int32 regular output port*/\\
+                     ptr\_i = (SCSINT32\_COP *) block->outptr[0];\\
+                     /*get the ptrs of the second complex regular output port*/\\
+                     ptr\_dc = (SCSCOMPLEX\_COP *) block->outptr[1];\\
+                     /*get the ptrs of the third real regular output port*/\\
+                     ptr\_d = (SCSREAL\_COP *) block->outptr[2];\\
+                     ...\\
+                     /*get the dimension of the first int32 regular output port*/\\
+                     n1=block->outsz[0];\\
+                     m1=block->outsz[3];\\
+                     ...\\
+                     /*compute the cumsum of the output int32 matrix*/\\
+                     for(i=0;i<n1*m1;i++) \{\\
+                     \ \ cumsum\_i += ptr\_i[i]; \\
+                     \}\\
+                     ...\\
+                    }
+
+                    One can also use the set of C macros :\\
+                    {\tt GetOutPortPtrs(blk,x)}, {\tt GetRealOutPortPtrs(blk,x)}, \\
+                    {\tt GetImagOutPortPtrs(blk,x)}, {\tt Getint8OutPortPtrs(blk,x)}, \\
+                    {\tt Getint16OutPortPtrs(blk,x)}, {\tt Getint32OutPortPtrs(blk,x)}, \\
+                    {\tt Getuint8OutPortPtrs(blk,x)}, {\tt Getuint16OutPortPtrs(blk,x)}, \\
+                    {\tt Getuint32OutPortPtrs(blk,x)} \\
+                    to have the appropiate pointer of the data to handle and \\
+                    {\tt GetNout(blk)}, {\tt GetOutPortRows(blk,x)}, \\
+                    {\tt GetOutPortCols(blk,x)}, {\tt GetOutPortSize(blk,x,y)}, \\
+                    {\tt GetOutType(blk,x)}, {\tt GetSizeOfOut(blk,x)} \\
+                    to handle number, dimensions and type of regular output ports.
+                    ({\bf x is numbered from 1 to nout and \bf y is numbered  from 1 to 2}).
+
+                    For the previous example that gives :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSCOMPLEX\_COP *ptr\_dc;\\
+                     SCSREAL\_COP *ptr\_d;\\
+                     int n3,m3;\\
+                     SCSINT32\_COP cumsum\_i=0;\\
+                     int i;\\
+                     ...\\
+                     \null\\
+                     /*get the ptrs of the first int32 regular output port*/\\
+                     ptr\_i = GetOutPortPtrs(block,1);\\
+                     /*get the ptrs of the second complex regular output port*/\\
+                     ptr\_dc = GetRealOutPortPtrs(block,2);\\
+                     /*get the ptrs of the third real regular output port*/\\
+                     ptr\_d = GetRealOutPortPtrs(block,3);\\
+                     ...\\
+                     /*get the dimension of the first int32 regular output port*/\\
+                     n1=GetOutPortRows(block,1);\\
+                     m1=GetOutPortCols(block,1);\\
+                     ...\\
+                    }
+
+                    Finally note that the regular output port registers must be only written for {\tt flag}=1.
+
+ \item {\bf nevout :} Integer that gives the number of event output ports of the block (also called
+                      the length of the output event register).\\
+                      One can't override the index {\tt (block->nevout)-1} when setting value of events
+                      in the output event register {\tt evout}.\\
+                      The number of event output ports can also be got by the use of the C macro
+                      {\tt GetNevOut(block)}.
+
+ \item {\bf evout :} Array of double of size nevout,1 corresponding to the output event register. That register
+                     is used to program date of events during the simulation.\\
+                     When setting values in that array, you must understand that you give a delay relative
+                     to the current time of simulator :
+                     \begin{eqnarray}
+                         t_{\rm event} = t_{\rm cur} + T_{\rm delay}
+                     \end{eqnarray}
+                     where $t_{\rm event}$ is the date of the programmed event, $t_{\rm cur}$ is the current time
+                     in the simulator and $T_{\rm delay}$ the value that must be informed in the output event register.
+
+                     For i.e, suppose that you want generate an event with the first event output port, 1ms after
+                     each calls of the block, then you'll use :
+
+                     {\tt
+                      ...\\
+                      \null\\
+                      if (flag==3) \{ \\
+                       block->evout[0]=0.001;\\
+                      \}\\
+                      ...\\
+                     }\\
+
+                     Note that every events generated from output event register will be asynchronous with event
+                     coming from event input port (even if you set {\tt block->evout[x]=0}). \\
+                     The event output register must be only written for {\tt flag}=3.
+
+ \item {\bf nrpar :} Integer that gives the length of the real parameter register.\\
+                     One can't override the index {\tt (block->nrpar)-1} when reading value of real
+                     parameters in the register {\tt rpar}.\\
+                     The total number of real parameters can also be got by the use of the C macro
+                     {\tt GetNrpar(block)}.
+
+ \item {\bf rpar :} Array of double of size nrpar,1 corresponding to the real parameter register. That register
+                    is used to pass real parameters coming from the scilab/scicos environment to your block
+                    model.\\
+                    The C type of that array is {\tt double *} (or C scicos type {\tt SCSREAL\_COP *}).\\
+                    Suppose that you have defined the following real parameters in the
+                    \htmladdnormallink{scicos\_model}{scicos_model.htm} of a block :
+
+                    {\tt
+                     model.rpar   = [%pi;%pi/2;%pi/4] \\
+                    }
+
+                    you can retrieve the previous data in the C computational function with :
+
+                    {\tt
+                     ...\\
+                     double PI;\\
+                     double PI\_2;\\
+                     double PI\_4;\\
+                     ...\\
+                     \null\\
+                     /*get the first value of the real param register*/\\
+                     PI = block->rpar[0]; \\
+                     /*get the second value of the real param register*/\\
+                     PI\_2 = block->rpar[1]; \\
+                     /*get the third value of the real param register*/\\
+                     PI\_4 = block->rpar[2]; \\
+                     ...\\
+                    }
+
+                    You can also use the C macro {\tt GetRparPtrs(block)} to get the pointer of the
+                    real parameter register. For i.e., if we define the following
+                    \htmladdnormallink{scicos\_model}{scicos_model.htm} in an interfacing function of a
+                    scicos block :
+
+                    {\tt
+                     A = [1.3 ; 4.5 ; 7.9 ; 9.8];\\
+                     B = [0.1 ; 0.98];
+                     model.rpar   = [A;B] \\
+                    }
+
+                    in the corresponding C computational function of that block, we'll use :
+
+                    {\tt
+                     ...\\
+                     double *rpar; \\
+                     double *A; \\
+                     double *B; \\
+                     ...\\
+                     \null\\
+                     /*get ptrs of the real param register*/\\
+                     rpar = GetRparPtrs(block); \\
+                     /*get the A ptrs array*/\\
+                     A = rpar; \\
+                     /*get the B ptrs array*/\\
+                     B = \&rpar[4]; \\
+                     /*or B = rpar + 4;*/
+                     ...\\
+                    }
+
+                    Note that real parameters register is only accessible for reading.
+
+ \item {\bf nipar :} Integer that gives the length of the integer parameter register.\\
+                     One can't override the index {\tt (block->nipar)-1} when reading value of integer
+                     parameters in the register {\tt ipar}.\\
+                     The total number of integer parameters can also be got by the use of the C macro
+                     {\tt GetNipar(block)}.
+
+ \item {\bf ipar :} Array of int of size nipar,1 corresponding to the integer parameter register. That register
+                    is used to pass integer parameters coming from the scilab/scicos environment to your block
+                    model.\\
+                    The C type of that array is {\tt int *} (or C scicos type {\tt SCSINT\_COP *}).\\
+                    Suppose that you have defined the following integer parameters in the
+                    \htmladdnormallink{scicos\_model}{scicos_model.htm} of a block :
+
+                    {\tt
+                     model.ipar   = [(1:3)';5] \\
+                    }
+
+                    you can retrieve the previous data in the C computational function with :
+
+                    {\tt
+                     ...\\
+                     int one;\\
+                     int two;\\
+                     int three;\\
+                     int five;\
+                     ...\\
+                     \null\\
+                     /*get the first value of the integer param register*/\\
+                     one = block->ipar[0]; \\
+                     /*get the second value of the integer param register*/\\
+                     two = block->ipar[1]; \\
+                     /*get the third value of the integer param register*/\\
+                     three = block->ipar[2]; \\
+                     /*get the fourth value of the integer param register*/\\
+                     five = block->ipar[3]; \\
+                     ...\\
+                    }
+
+                    You can also use the C macro {\tt GetIparPtrs(block)} to get the pointer of the
+                    real parameter register.\\
+                    Most of time in the scicos C block libraries, the integer register is used to
+                    parametrize the length of real parameters. For i.e. if you define the following
+                    \htmladdnormallink{scicos\_model}{scicos_model.htm} in a block :
+
+                    {\tt
+                     // set a random size for the first real parameters \\
+                     A\_sz = int(rand(10)*10); \\
+                     // set a random size for the second real parameters \\
+                     B\_sz = int(rand(10)*10); \\
+                     // set the first real parameters \\
+                     A = rand(A\_sz,1,``uniform''); \\
+                     // set the second real parameters \\
+                     B = rand(B\_sz,1,``normal''); \\
+                     // set ipar \\
+                     model.ipar = [A\_sz;B\_sz] \\
+                     // set rpar (length of A\_sz+B\_sz) \\
+                     model.rpar = [A;B] \\
+                    }
+
+                    the array of real parameters (parametrized by ipar) can be retrieved in the
+                    correspondig C computational function with :
+
+                    {\tt
+                     ...\\
+                     int A\_sz; \\
+                     int B\_sz; \\
+                     double *rpar; \\
+                     double *A; \\
+                     double *B; \\
+                     double cumsum;\\
+                     int i; \\
+                     ...\\
+                     \null\\
+                     /*get ptrs of the real param register*/\\
+                     rpar = GetRparPtrs(block); \\
+                     /*get size of the first real param register*/\\
+                     A\_sz = block->ipar[0]; \\
+                     /*get size of the second real param register*/\\
+                     B\_sz = block->ipar[1]; \\
+                     /*get the A ptrs array*/\\
+                     A = rpar; \\
+                     /*get the B ptrs array*/\\
+                     B = \&rpar[A\_sz]; \\
+                     ...\\
+                     /*compute the cumsum of the first real parameter array*/\\
+                     cumsum = 0;\\
+                     for(i=0;i<A\_sz;i++) \{\\
+                     \ \ cumsum += A[i]; \\
+                     \}\\
+                     ...\\
+                     /*compute the cumsum of the second real parameter array*/\\
+                     cumsum = 0;\\
+                     for(i=0;i<B\_sz;i++) \{\\
+                     \ \ cumsum += B[i]; \\
+                     \}\\
+                    }
+
+                    Note that integer parameters register is only accessible for reading.
+
+ \item {\bf nopar :} Integer that gives the number of the object parameters.\\
+                     One can't override the index {\tt block->nopar-1} when accessing data in the arrays
+                     {\tt oparsz}, {\tt opartyp} and {\tt oparptr} in a C computational function.\\
+                     This value is also accessible via the C macro {\tt GetNopar(block)}.
+
+ \item {\bf oparsz :} An array of integer of size nopar,2 that contains the dimensions of matrices of
+                     object parameters.\\
+                     The first column is for the first dimension and the second for the second dimension.
+                     For i.e. if we want the dimensions of the last object parameters, we'll use the instructions :
+
+                    {\tt
+                     int nopar;\\
+                     int n,m;\\
+                     ...\\
+                     /*get the number of object parameter*/\\
+                     nopar=block\->nopar;\\
+                     ...\\
+                     /*get number of row of the last object parameter*/\\
+                     n=block\->oparsz[nopar-1];\\
+                     /*get number of column of the last object parameter*/\\
+                     m=block\->oparsz[2*nopar-1];\\
+                    }
+
+                    The dimensions of object parameters can be get with the following C macro :
+
+                    {\tt
+                     GetOparSize(block,x,1); /*get first dimension of opar*/ \\
+                     GetOparSize(block,x,2); /*get second dimension of opar*/ \\
+                    }
+
+                    with {\tt x} an integer that gives the index of the object parameter, {\bf numbered
+                    from 1 to nopar}.
+
+ \item {\bf opartyp :} An array of integer of size nopar,1 that contains the type of matrices of
+                     object parameters.\\
+                     The following table gives the correspondence table for scicos type expressed in Scilab number,
+                     in C number and also corresponding C pointers and C macros used for {\tt oparptr} :
+
+                     \begin{tabular}{|c|c|c|c|c|}
+                      \hline
+                      {\bf Scilab}&
+                      &
+                      {\bf C}&
+                      &
+                      \\
+                      \hline
+                      \hline
+                      Type&
+                      &
+                      Number&
+                      Type&
+                      Macros\\
+                      \hline
+                      real matrix&
+                      &
+                      10&
+                      double&
+                      SCSREAL\_COP\\
+                      \hline
+                      complex matrix&
+                      &
+                      11&
+                      double&
+                      SCSCOMPLEX\_COP\\
+                      \hline
+                      int32 matrix&
+                      &
+                      84&
+                      long int&
+                      SCSINT32\_COP\\
+                      \hline
+                      int16 matrix&
+                      &
+                      82&
+                      short&
+                      SCSINT16\_COP\\
+                      \hline
+                      int8 matrix&
+                      &
+                      81&
+                      char&
+                      SCSINT8\_COP\\
+                      \hline
+                      uint32 matrix&
+                      &
+                      814&
+                      unsigned long int&
+                      SCSUINT32\_COP\\
+                      \hline
+                      uint16 matrix&
+                      &
+                      812&
+                      unsigned short&
+                      SCSUNINT16\_COP\\
+                      \hline
+                      uint8 matrix&
+                      &
+                      811&
+                      unsigned char&
+                      SCSUINT8\_COP\\
+                      \hline
+                      all others data&
+                      &
+                      -1&
+                      double&
+                      SCSUNKNOWN\_COP\\
+                      \hline
+                     \end{tabular}
+
+                     The type of object parameter can also be got by the use of the C macro
+                     {\tt GetOparType(block,x)}. For i.e, if we want the C number type of the first
+                     object parameter, we'll use the following C instructions:
+
+                     {\tt
+                      int opartyp\_1;\\
+                     ...\\
+                      /*get the number type of the first object parameter*/\\
+                      opartyp\_1 = GetOparType(block,1);
+                     }
+
+ \item {\bf oparptr :} An array of pointers of size nopar,1 that allow to directly acces to the
+                     data contained in the object parameter.\\
+                     Suppose that you have defined in the editor a block with the following 
+                     \textbf{opar} field in \htmladdnormallink{scicos\_model}{scicos_model.htm} :
+
+                     \begin{eqnarray}
+                       {\tt model.opar}={\tt list}\left({\tt int32}\left(\left[\begin{array}{cc}
+                       1 & 2\\
+                       3 & 4\end{array}\right]\right),\left[\begin{array}{ccc}
+                       1+{\tt \% i} & {\tt \% i} & 0.5\end{array}\right]\right)
+                     \end{eqnarray}
+
+                     Then we have two object parameters, one is an 32-bit integer matrix with two rows and two
+                     columns and the second is a vector of complex numbers that can be understand as a matrix
+                     of size 1,3.\\
+                     At the C computational function level, the instructions {\tt block->oparsz[0]},
+                     {\tt block->oparsz[1]}, {\tt block->oparsz[2]}, {\tt block->oparsz[3]} will respectively return the
+                     values 2,1,2,3 and the instructions {\tt block->opartyp[0]}, {\tt block->opartyp[1]} the values 11 and
+                     84.\\
+                     {\tt block->oparptr} will contain then two pointers, and should be viewed as arrays contained data of
+                     object parameter as shown in the following figure :
+
+                     \begin{figure}[!h]
+                      \begin{center}
+                       \scalebox{0.7}{\input{opar.pstex_t}}
+                      \end{center}
+                     \end{figure}
+
+                    For i.e., to directly access to the data, the user can use theses instructions :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSINT32\_COP cumsum\_i;\\
+                     SCSCOMPLEX\_COP *ptr\_d;\\
+                     SCSREAL\_COP cumsum\_r;
+                     ...\
+                     \null\\
+                     /*get the ptrs of an int32 object parameter*/\\
+                     ptr\_i = (SCSINT32\_COP *) block->oparptr[0];\\
+                     /*get the ptrs of a double object parameter*/\\
+                     ptr\_d = (SCSCOMPLEX\_COP *) block->oparptr[1];\\
+                     ...\\
+                     /*compute the cumsum of the int32 matrix*/\\
+                     cumsum\_i = ptr\_i[0]+ptr\_i[1]+ptr\_i[2]+ptr\_i[3];
+                     ...\\
+                     /*compute the cumsum of the real part of the complex matrix*/\\
+                     cumsum\_d = ptr\_d[0]+ptr\_d[1]+ptr\_d[2];\\
+                     ...\\
+                    }
+
+                    One can also use the set of C macros :\\
+                    {\tt GetRealOparPtrs(block,x)},  {\tt GetImagOparPtrs(block,x)},\\
+                    {\tt Getint8OparPtrs(block,x)},  {\tt Getint16OparPtrs(block,x)},\\
+                    {\tt Getint32OparPtrs(block,x)}, {\tt Getuint8OparPtrs(block,x)},\\
+                    {\tt Getuint16OparPtrs(block,x)}, {\tt Getuint32OparPtrs(block,x)} \\
+                    to have the appropiate pointer of the data to handle ({\bf x is numbered from 1 to nopar}).\\
+                    For the previous example that gives :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSREAL\_COP *ptr\_dr;\\
+                     SCSREAL\_COP *ptr\_di;\\
+                     ...\
+                     \null\\
+                     /*get the ptrs of an int32 object parameter*/\\
+                     ptr\_i = Getint32OparPtrs(block,1);\\
+                     /*get the ptrs of a double object parameter*/\\
+                     ptr\_dr = GetRealOparPtrs(block,2);\\
+                     ptr\_di = GetImagOparPtrs(block,2);\\
+                     ...\\
+                    }
+
+                    Note that object parameters register is only accessible for reading.
+
+ \item {\bf ng :}
+ \item {\bf g :}
+ \item {\bf ztyp :}
+ \item {\bf jroot :}
+ \item {\bf label :}
+ \item {\bf work :}
+ \item {\bf nmode :}
+ \item {\bf mode :}
+\end{itemize}
+
 </FILE>
 
 <FILE name='C_utils' type='XML'>
@@ -2395,8 +3444,8 @@ depending on the type of the PDE and runs the solvers.
     <DESCRIPTION_ITEM>
     <P>
     This block implements a PID controller. The PID controller calculation
-(algorithm) involves three separate parameters; 
-the Proportional, the Integral  and Derivative values. 
+(algorithm) involves three separate parameters;
+the Proportional, the Integral  and Derivative values.
 The Proportional value determines the reaction to the current error, the
 Integral determines the reaction based on the sum of recent errors and the
 Derivative determines the reaction to the rate at which the error has been
