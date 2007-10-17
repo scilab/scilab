@@ -15,7 +15,7 @@ lib /DEF:&quot;$(InputDir)metanet_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n metanet_f.dll %%f &gt;nul
 copy *.def metanet_f.def &gt;nul
 copy metanet_f.def ..\metanet_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy metanet_f_header.def+metanet_f.vcdef metanet_f.def &gt;nul" Description="Build metanet.def"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
@@ -31,7 +31,7 @@ lib /DEF:&quot;$(InputDir)metanet_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n metanet_f.dll %%f &gt;nul
 copy *.def metanet_f.def &gt;nul
 copy metanet_f.def ..\metanet_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy metanet_f_header.def+metanet_f.vcdef metanet_f.def &gt;nul" Description="Build metanet.def"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>

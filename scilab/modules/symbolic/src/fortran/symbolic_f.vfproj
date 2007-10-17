@@ -15,7 +15,7 @@
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n symbolic_f.dll %%f &gt;nul
 copy *.def symbolic_f.def &gt;nul
 copy symbolic_f.def ..\symbolic_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy symbolic_f_header.def+symbolic_f.vcdef symbolic_f.def &gt;nul" Description="Build symbolic.def"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
@@ -30,7 +30,7 @@ copy symbolic_f_header.def+symbolic_f.vcdef symbolic_f.def &gt;nul" Description=
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n symbolic_f.dll %%f &gt;nul
 copy *.def symbolic_f.def &gt;nul
 copy symbolic_f.def ..\symbolic_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy symbolic_f_header.def+symbolic_f.vcdef symbolic_f.def &gt;nul" Description="Build symbolic.def"/></Configuration></Configurations>
 	<Files>

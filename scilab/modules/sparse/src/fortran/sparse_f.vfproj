@@ -14,7 +14,7 @@
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
 copy *.def sparse_f.def &gt;nul
 copy sparse_f.def ..\sparse_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul" Description="Build sparse.def"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
@@ -29,7 +29,7 @@ copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul" Description="Build
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
 copy *.def sparse_f.def &gt;nul
 copy sparse_f.def ..\sparse_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul" Description="Build sparse.def"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>

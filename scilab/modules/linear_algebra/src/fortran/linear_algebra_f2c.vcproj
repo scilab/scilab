@@ -74,7 +74,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Build linear_algebra_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def linear_algebra_f.def &gt;nul&#x0D;&#x0A;copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul&#x0D;&#x0A;rem del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def linear_algebra_f.def &gt;nul&#x0D;&#x0A;copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul&#x0D;&#x0A;"
 				ExecutionBucket="9"
 			/>
 			<Tool
@@ -170,7 +170,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Build linear_algebra_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def linear_algebra_f.def &gt;nul&#x0D;&#x0A;copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul&#x0D;&#x0A;rem del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def linear_algebra_f.def &gt;nul&#x0D;&#x0A;copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"

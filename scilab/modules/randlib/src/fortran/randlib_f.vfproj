@@ -16,7 +16,7 @@ lib /DEF:&quot;$(InputDir)randlib_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n randlib_f.dll %%f &gt;nul
 copy *.def randlib_f.def &gt;nul
 copy randlib_f.def ..\randlib_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy randlib_f_header.def+randlib_f.vcdef randlib_f.def &gt;nul" Description="Build randlib.def"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
@@ -32,7 +32,7 @@ lib /DEF:&quot;$(InputDir)randlib_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n randlib_f.dll %%f &gt;nul
 copy *.def randlib_f.def &gt;nul
 copy randlib_f.def ..\randlib_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy randlib_f_header.def+randlib_f.vcdef randlib_f.def &gt;nul" Description="Build randlib.def"/></Configuration></Configurations>
 	<Files>

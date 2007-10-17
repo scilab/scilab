@@ -75,7 +75,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Build io_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n io_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def io_f.def &gt;nul&#x0D;&#x0A;copy io_f.def ..\io_f.vcdef &gt;nul&#x0D;&#x0A;rem del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy io_f_header.def+io_f.vcdef io_f.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n io_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def io_f.def &gt;nul&#x0D;&#x0A;copy io_f.def ..\io_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy io_f_header.def+io_f.vcdef io_f.def &gt;nul&#x0D;&#x0A;"
 				ExecutionBucket="9"
 			/>
 			<Tool
@@ -171,7 +171,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Build io_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n io_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def io_f.def &gt;nul&#x0D;&#x0A;copy io_f.def ..\io_f.vcdef &gt;nul&#x0D;&#x0A;rem del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy io_f_header.def+io_f.vcdef io_f.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n io_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def io_f.def &gt;nul&#x0D;&#x0A;copy io_f.def ..\io_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy io_f_header.def+io_f.vcdef io_f.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"

@@ -15,7 +15,7 @@
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer_f.dll %%f &gt;nul
 copy *.def integer_f.def &gt;nul
 copy integer_f.def ..\integer_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy integer_f_header.def+integer_f.vcdef integer_f.def &gt;nul" Description="Build integer.def"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
@@ -30,7 +30,7 @@ copy integer_f_header.def+integer_f.vcdef integer_f.def &gt;nul" Description="Bu
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer_f.dll %%f &gt;nul
 copy *.def integer_f.def &gt;nul
 copy integer_f.def ..\integer_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy integer_f_header.def+integer_f.vcdef integer_f.def &gt;nul" Description="Build integer.def"/></Configuration></Configurations>
 	<Files>

@@ -74,7 +74,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Build slicot_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def slicot_f.def &gt;nul&#x0D;&#x0A;copy slicot_f.def ..\slicot_f.vcdef &gt;nul&#x0D;&#x0A;rem del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def slicot_f.def &gt;nul&#x0D;&#x0A;copy slicot_f.def ..\slicot_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul&#x0D;&#x0A;"
 				ExecutionBucket="9"
 			/>
 			<Tool
@@ -170,7 +170,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Build slicot_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def slicot_f.def &gt;nul&#x0D;&#x0A;copy slicot_f.def ..\slicot_f.vcdef &gt;nul&#x0D;&#x0A;rem del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def slicot_f.def &gt;nul&#x0D;&#x0A;copy slicot_f.def ..\slicot_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"

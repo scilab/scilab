@@ -75,7 +75,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Build scicos_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicos_f.def &gt;nul&#x0D;&#x0A;copy scicos_f.def ..\scicos_f.vcdef &gt;nul&#x0D;&#x0A;rem del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicos_f.def &gt;nul&#x0D;&#x0A;copy scicos_f.def ..\scicos_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul&#x0D;&#x0A;"
 				ExecutionBucket="9"
 			/>
 			<Tool
@@ -170,7 +170,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Build scicos_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicos_f.def &gt;nul&#x0D;&#x0A;copy scicos_f.def ..\scicos_f.vcdef &gt;nul&#x0D;&#x0A;rem del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicos_f.def &gt;nul&#x0D;&#x0A;copy scicos_f.def ..\scicos_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"

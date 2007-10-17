@@ -15,7 +15,7 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul
 copy *.def linear_algebra_f.def &gt;nul
 copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul" Description="Build linear_algebra.def"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
@@ -31,7 +31,7 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul
 copy *.def linear_algebra_f.def &gt;nul
 copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul" Description="Build linear_algebra.def"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>

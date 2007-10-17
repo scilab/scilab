@@ -15,7 +15,7 @@ lib /DEF:&quot;$(InputDir)scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_f.dll %%f &gt;nul
 copy *.def scicos_f.def &gt;nul
 copy scicos_f.def ..\scicos_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul" Description="Build scicos.def"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
@@ -31,7 +31,7 @@ lib /DEF:&quot;$(InputDir)scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_f.dll %%f &gt;nul
 copy *.def scicos_f.def &gt;nul
 copy scicos_f.def ..\scicos_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul" Description="Build scicos.def"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>

@@ -16,7 +16,7 @@ lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n string_f.dll %%f &gt;nul
 copy *.def string_f.def &gt;nul
 copy string_f.def ..\string_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy string_f_header.def+string_f.vcdef string_f.def &gt;nul" Description="Build string.def"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
@@ -32,7 +32,7 @@ lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n string_f.dll %%f &gt;nul
 copy *.def string_f.def &gt;nul
 copy string_f.def ..\string_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy string_f_header.def+string_f.vcdef string_f.def &gt;nul" Description="Build string.def"/></Configuration></Configurations>
 	<Files>
