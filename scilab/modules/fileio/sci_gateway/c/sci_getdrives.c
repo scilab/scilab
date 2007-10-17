@@ -5,14 +5,13 @@
 #include <string.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
-#include "MALLOC.h" 
+#include "MALLOC.h"
 #include "getdrives.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getdrives) _PARAMS((char *fname,unsigned long l))
-{	
+{
 	static int l1=0,n1=0,m1=0;
 	char **Drives=NULL;
-	char DrvLetter[4] = "A:\\";
 	int nbDrives=0;
 	int i=0;
 
@@ -30,13 +29,13 @@ int C2F(sci_getdrives) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		m1=0; n1=0; l1=0; 
+		m1=0; n1=0; l1=0;
 		/* returns a [] */
 		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 	}
-		
+
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();	
+	C2F(putlhsvar)();
 
 	if (Drives)
 	{
