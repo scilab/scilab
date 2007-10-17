@@ -38,7 +38,6 @@ typedef struct commandRec
 /*-----------------------------------------------------------------------------------*/
 int  scig_command_handler_none (char *command);
 extern Scig_command_handler set_scig_command_handler __PARAMS((Scig_command_handler f));
-extern int GetCommand  __PARAMS((char *str));  
 extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));  
 extern void  reset_scig_command_handler __PARAMS((void));
 extern void write_scilab  __PARAMS((char *s));
@@ -106,7 +105,7 @@ int StoreCommand1 (char *command,int flag)
 			  p = (CommandRec *) MALLOC (sizeof (CommandRec));
 			  if (p == (CommandRec *) 0)
 				{
-					message_scilab("send_command : No more memory");
+					message_scilab(_("send_command : No more memory"));
 					return (1);
 				}
 			  p->flag = 0;
@@ -114,7 +113,7 @@ int StoreCommand1 (char *command,int flag)
 			  if (p->command == (char *) 0)
 				{
 				  FREE(p);
-				  message_scilab("send_command : No more memory");
+				  message_scilab(_("send_command : No more memory"));
 				  return (1);
 				}
 			  strcpy (p->command, command);
@@ -168,8 +167,8 @@ int GetCommand ( char *str)
       FREE (p->command);
       FREE (p);
       if (C2F(iop).ddt==-1) {
-        if (flag==0) { sciprint_full("   Unqueuing %s - No option\n",str); }
-        else         { sciprint_full("   Unqueuing %s - seq\n",str); }
+        if (flag==0) { sciprint_full(_("   Unqueuing %s - No option\n"),str); }
+        else         { sciprint_full(_("   Unqueuing %s - seq\n"),str); }
       }
     }
   return flag;
