@@ -49,7 +49,7 @@ int C2F(intqld)(fname)
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m, &nbis, &C);
   if (( nbis != n ) && (m > 0)) 
     {
-      Scierror(205,"qld: Argument 3: wrong number of columns %d expected \n", n);
+      Scierror(205,"qld: Argument 3: wrong number of columns %d expected\n", n);
       return 0;
     }
   mmax = m+1;
@@ -144,7 +144,7 @@ int C2F(intqld)(fname)
     C2F(putlhsvar)();
   }
   else if (ifail==1)
-    Scierror(24,"qld: Too many iterations (more than %d) \n", 40*(n+m));
+    Scierror(24,"qld: Too many iterations (more than %d)\n", 40*(n+m));
   else if (ifail==2)
     Scierror(24,"qld: Accuracy insufficient to statify convergence criterion.\n");
   else if (ifail==5)

@@ -52,7 +52,7 @@ int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"Invalid parameter.\n");
+		Scierror(999,_("Invalid parameter.\n"));
 	}
 	return 0;
 }

@@ -91,7 +91,7 @@ ConstructStatusBar (sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE \n");
+      sciprint ("The parent has to be a FIGURE\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -520,7 +520,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE \n");
+      sciprint ("The parent has to be a FIGURE\n");
       return (sciPointObj *) NULL;
     }
   
@@ -557,7 +557,7 @@ ConstructScrollV (sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE \n");
+      sciprint ("The parent has to be a FIGURE\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -592,7 +592,7 @@ ConstructScrollH (sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE \n");
+      sciprint ("The parent has to be a FIGURE\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -765,7 +765,7 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 
   }
   
-  sciprint ("The parent has to be a SUBWIN \n");
+  sciprint ("The parent has to be a SUBWIN\n");
   return NULL;
 }
 
@@ -841,7 +841,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -988,7 +988,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -1161,7 +1161,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -1247,7 +1247,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -1334,7 +1334,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -1620,7 +1620,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -1722,7 +1722,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -1884,7 +1884,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -2043,7 +2043,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -2224,7 +2224,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -2476,7 +2476,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
   }
   else
   {
-    sciprint ("The parent has to be a SUBWIN \n");
+    sciprint ("The parent has to be a SUBWIN\n");
     return (sciPointObj *) NULL;
   }
 }
@@ -2530,7 +2530,7 @@ ConstructMenu (sciPointObj * pparentfigure, char plabel[], int n)
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }
@@ -2575,7 +2575,7 @@ ConstructMenuContext (sciPointObj * pparentfigure)
       /* windows dependant*/
       /*     if ((pMENUCONTEXT_FEATURE(pobj)->hPopMenu = CreatePopupMenu ()) == NULL) 
 	     {
-	     sciprint ("Scilab can't have more menu \n");
+	     sciprint ("Scilab can't have more menu\n");
 	     FREE ((sciGetFontContext(pobj))->pfontname);
 	     sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	     sciDelHandle (pobj);
@@ -2590,7 +2590,7 @@ ConstructMenuContext (sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN \n");
+      sciprint ("The parent has to be a SUBWIN\n");
       return (sciPointObj *) NULL;
     }
 }

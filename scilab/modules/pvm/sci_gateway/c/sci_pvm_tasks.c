@@ -28,7 +28,7 @@ int intspvm_tasks _PARAMS((char *fname,unsigned long fname_len))
   C2F(scipvmtasks)(&where,&ntask,&ptid,&pptid,&pdtid,&pflag,&pname,&ne3,&info); 
   if (info != 0 ) 
     {
-      Scierror(999,"%s: Error \n",fname);
+      Scierror(999,"%s: Error\n",fname);
       return 0;
     }
   /* Creation of output list of length 7*/

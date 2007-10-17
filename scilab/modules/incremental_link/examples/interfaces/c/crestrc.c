@@ -75,7 +75,7 @@ int crestrc( a, m, ierr)
   else
     {
       *ierr=1;
-      sciprint("malloc : No more space \n");
+      sciprint("malloc : No more space\n");
     }
   return(0);
 }

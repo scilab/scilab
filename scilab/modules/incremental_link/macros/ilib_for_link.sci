@@ -17,14 +17,14 @@ function libn=ilib_for_link(names,files,libs,flag,makename,loadername,libname,ld
   if rhs <= 9 then fflags  = ""; end 
   if rhs <= 10 then cc  = ""; end 
   // generate a loader file
-  if info==1 then write(%io(2),'   generate a loader file');end
+  if info==1 then write(%io(2),'   Generate a loader file');end
   ilib_link_gen_loader(names,flag,loadername,libs,libname);
   // generate a Makefile
-  if info==1 then write(%io(2),'   generate a Makefile');end
+  if info==1 then write(%io(2),'   Generate a Makefile');end
   ilib_link_gen_Make(names,files,libs,makename,libname,...
 		     ldflags,cflags,fflags,cc,flag);
   // we call make
-  if info==1 then write(%io(2),'   running the makefile');end
+  if info==1 then write(%io(2),'   Running the Makefile');end
   if libname=="" then libname = names(1);end
   libn=ilib_compile('lib'+libname,makename,files);
 endfunction
@@ -130,7 +130,7 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
 
 	// Copy files => linkpath
 	
-	printf("Copy compilation files to "+linkpath+"\n");
+	printf("Copy compilation files (Makefile*, libtool...) to "+linkpath+"\n");
 	copyfile(commandpath+"/Makefile.orig",linkpath);
 	copyfile(commandpath+"/configure.ac",linkpath);
 	copyfile(commandpath+"/configure",linkpath);
@@ -148,8 +148,8 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
 	filelist=""
 	for x=files(:)' ; filelist = filelist +" " +x;end
 
-    printf(""+commandpath+"/scicompile.sh "+libname+ " " +filelist);
-	printf("Modification of the makefile in " + linkpath+"\n");
+//    printf(""+commandpath+"/scicompile.sh "+libname+ " " +filelist);
+	printf("Modification of the Makefile in " + linkpath+"\n");
 	unix_w(""+commandpath+"/scicompile.sh "+libname+ " " +filelist);
 // on devrait catcher le code de retour du script et gere/afficher l'erreur
 // TODO : voir quoi faire du CFLAGS

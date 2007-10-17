@@ -297,6 +297,8 @@ ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES
 bin_SCRIPTS = bin/scilab
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/c/main_linux.c
+LANGS = fr_FR en_US
+LANG_DOMAIN = scilab
 @GUI_FALSE@scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 @GUI_FALSE@	$(X_EXTRA_LIBS)
 
@@ -842,7 +844,8 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-pkgconfigDATA install-rootDATA
+install-data-am: install-data-local install-pkgconfigDATA \
+	install-rootDATA
 
 install-dvi: install-dvi-recursive
 
@@ -895,12 +898,12 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	distclean-local distclean-tags distcleancheck distdir \
 	distuninstallcheck dvi dvi-am html html-am info info-am \
 	install install-am install-binPROGRAMS install-binSCRIPTS \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-pkgconfigDATA install-ps install-ps-am \
-	install-rootDATA install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-pkgconfigDATA install-ps \
+	install-ps-am install-rootDATA install-strip installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-recursive uninstall uninstall-am \
@@ -931,6 +934,16 @@ distclean-local::
 clean-local:
 	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'
+
+install-data-local:
+	$(mkinstalldirs) $(DESTDIR)$(localedir); \
+	for lang in $(LANGS); do \
+		LANG_PATH_DIST=$(DESTDIR)$(localedir)/$$lang/LC_MESSAGES/; \
+		echo $(mkinstalldirs) $$LANG_PATH_DIST; \
+		$(mkinstalldirs) $$LANG_PATH_DIST; \
+		echo $(INSTALL_DATA) locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
+		$(INSTALL_DATA) locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

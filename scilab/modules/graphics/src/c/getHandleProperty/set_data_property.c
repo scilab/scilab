@@ -176,7 +176,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   {
     if ( !(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3) )
     {
-      sciprint("Inside the Tlist (third argument): The three first arguments have incompatible length \n") ;
+      sciprint("Inside the Tlist (third argument): The three first arguments have incompatible length\n") ;
       return SET_PROPERTY_ERROR ;
     }
   }

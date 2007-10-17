@@ -6,7 +6,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "../../../localization/includes/QueryStringError.h"
+#include "../../../localization/includes/localization.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #define vsnprintf _vsnprintf
@@ -15,7 +15,7 @@
 int error_scilab(int iv,char *Tag,...)
 {
 	int ret=0;
-	char *LocalizedString=QueryStringError(Tag);
+	char *LocalizedString=_(Tag);
 
 	if (LocalizedString)
 	{
@@ -41,7 +41,7 @@ int error_scilab(int iv,char *Tag,...)
 	}
 	else
 	{
-		Scierror(999,"ERROR : localized message not found : %s",Tag);
+		Scierror(999,_("ERROR : localized message not found : %s"),Tag);
 		return 0;
 	}
 

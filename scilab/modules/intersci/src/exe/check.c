@@ -283,7 +283,7 @@ void CheckPOINTER(f,var,flag)
     }
   else
     {
-      fprintf(stderr,"Wrong type opointer inside a list \n");
+      fprintf(stderr,"Wrong type opointer inside a list\n");
       exit(1);
     }
   AddDeclare1(DEC_INT,"lr%s",str1);
@@ -291,42 +291,42 @@ void CheckPOINTER(f,var,flag)
 
 
 void CheckANY(f,var,flag) FILE *f;   VARPTR var ;int flag;{
-  fprintf(stderr,"Wrong type in Check function \n");
+  fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 
 void CheckLIST(f,var,flag) FILE *f;   VARPTR var ;int flag;{
-  fprintf(stderr,"Wrong type in Check function \n");
+  fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 
 void CheckTLIST(f,var,flag) FILE *f;   VARPTR var ;int flag;{
-  fprintf(stderr,"Wrong type in Check function \n");
+  fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 
 void CheckSEQUENCE(f,var,flag) FILE *f;   VARPTR var ;int flag;
 {  
-  fprintf(stderr,"Wrong type in Check function \n");
+  fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 
 void CheckEMPTY(f,var,flag)  FILE *f;   VARPTR var ;int flag;
 {  
-  fprintf(stderr,"Wrong type in Check function \n");
+  fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 
 void CheckWORK(f,var,flag)  FILE *f;   VARPTR var ;int flag;
 {  
-  fprintf(stderr,"Wrong type in Check function \n");
+  fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 
 
 void CheckDIMFOREXT(f,var,flag)  FILE *f;   VARPTR var ;int flag;
 {  
-  fprintf(stderr,"Wrong type in Check function \n");
+  fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 

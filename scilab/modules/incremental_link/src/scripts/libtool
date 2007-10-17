@@ -53,7 +53,7 @@ SHELL="/bin/sh"
 build_libtool_libs=yes
 
 # Whether or not to build static libraries.
-build_old_libs=yes
+build_old_libs=no
 
 # Whether or not to add -lc for building shared libraries.
 build_libtool_need_lc=no
@@ -325,10 +325,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/4.1.2/ /usr/lib/gcc/i486-linux-gnu/4.1.2/ /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../../i486-linux-gnu/lib/i486-linux-gnu/4.1.2/ /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../i486-linux-gnu/4.1.2/ /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../ /lib/i486-linux-gnu/4.1.2/ /lib/ /usr/lib/i486-linux-gnu/4.1.2/ /usr/lib/"
+sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib/ /lib/i486-linux-gnu/4.2.1/ /lib/../lib/ /usr/lib/i486-linux-gnu/4.2.1/ /usr/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../ /lib/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /usr/lib/atlas/sse2 /usr/lib/sse2 /usr/lib/atlas "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7232,7 +7232,7 @@ SHELL="/bin/sh"
 build_libtool_libs=yes
 
 # Whether or not to build static libraries.
-build_old_libs=yes
+build_old_libs=no
 
 # Whether or not to add -lc for building shared libraries.
 build_libtool_need_lc=no
@@ -7405,11 +7405,11 @@ striplib="strip --strip-unneeded"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
-predep_objects="/usr/lib/gcc/i486-linux-gnu/4.1.2/../../../../lib/crti.o /usr/lib/gcc/i486-linux-gnu/4.1.2/crtbeginS.o"
+predep_objects="/usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib/crti.o /usr/lib/gcc/i486-linux-gnu/4.2.1/crtbeginS.o"
 
 # Dependencies to place after the objects being linked to create a
 # shared library.
-postdep_objects="/usr/lib/gcc/i486-linux-gnu/4.1.2/crtendS.o /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../../lib/crtn.o"
+postdep_objects="/usr/lib/gcc/i486-linux-gnu/4.2.1/crtendS.o /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib/crtn.o"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
@@ -7421,7 +7421,7 @@ postdeps="-lstdc++ -lm -lgcc_s -lc -lgcc_s"
 
 # The library search path used internally by the compiler when linking
 # a shared library.
-compiler_lib_search_path="-L/usr/lib/gcc/i486-linux-gnu/4.1.2 -L/usr/lib/gcc/i486-linux-gnu/4.1.2 -L/usr/lib/gcc/i486-linux-gnu/4.1.2/../../../../lib -L/lib/../lib -L/usr/lib/../lib"
+compiler_lib_search_path="-L/usr/lib/gcc/i486-linux-gnu/4.2.1 -L/usr/lib/gcc/i486-linux-gnu/4.2.1 -L/usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/i486-linux-gnu/4.2.1/../../.."
 
 # Method to check whether dependent libraries are shared objects.
 deplibs_check_method="pass_all"
@@ -7501,10 +7501,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/4.1.2/ /usr/lib/gcc/i486-linux-gnu/4.1.2/ /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../../i486-linux-gnu/lib/i486-linux-gnu/4.1.2/ /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../i486-linux-gnu/4.1.2/ /usr/lib/gcc/i486-linux-gnu/4.1.2/../../../ /lib/i486-linux-gnu/4.1.2/ /lib/ /usr/lib/i486-linux-gnu/4.1.2/ /usr/lib/"
+sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib/ /lib/i486-linux-gnu/4.2.1/ /lib/../lib/ /usr/lib/i486-linux-gnu/4.2.1/ /usr/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../ /lib/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /usr/lib/atlas/sse2 /usr/lib/sse2 /usr/lib/atlas "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7537,7 +7537,7 @@ SHELL="/bin/sh"
 build_libtool_libs=yes
 
 # Whether or not to build static libraries.
-build_old_libs=yes
+build_old_libs=no
 
 # Whether or not to add -lc for building shared libraries.
 build_libtool_need_lc=no
@@ -7812,7 +7812,7 @@ link_all_deplibs=no
 sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../../i486-linux-gnu/lib/i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../ /lib/i486-linux-gnu/3.4.6/ /lib/ /usr/lib/i486-linux-gnu/3.4.6/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /usr/lib/atlas/sse2 /usr/lib/sse2 /usr/lib/atlas "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""

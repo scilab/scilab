@@ -63,10 +63,10 @@ static void cdfnorErr(int status,double bound)
 	{
 	case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\n",bound);break;
 	case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\n",bound);break;
-	case 3 : Scierror(999," P + Q .ne. 1 \n");break ;
-	case 4 : Scierror(999," Std must not be zero \n");break ;
+	case 3 : Scierror(999," P + Q .ne. 1\n");break ;
+	case 4 : Scierror(999," Std must not be zero\n");break ;
 	default : 
-		Scierror(999,"input parameter %c is out of range \n\tbound exceeded: %f\n",
+		Scierror(999,"input parameter %c is out of range\n\tbound exceeded: %f\n",
 			param[-status-1],bound);
 	}
 }

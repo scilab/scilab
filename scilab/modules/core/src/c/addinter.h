@@ -28,4 +28,11 @@ int SciLibLoad(int num_names, char **names, char **files, int *nums, int *err);
 void CallDynInterf(int *pos, int num_names, int namepos, char **names,
 				   int *nums, char **files);
 
+/**
+ * <long-description>
+ *
+ * @param int   
+ */
+void RemoveInterf (int);
+
 #endif /*  __ADDINTER_H__ */

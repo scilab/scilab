@@ -103,7 +103,7 @@ void WriteMain(f,file)
      char* file;
 {
   int i;
-  FCprintf(f,"\nc  interface function \n");
+  FCprintf(f,"\nc  interface function\n");
   FCprintf(f,"c   ********************\n");
   WriteMainHeader(f,file);
   Fprintf(f,indent,"goto (");
@@ -132,14 +132,14 @@ void WriteAddInter(file)
  fprintf(fout,"// Addinter for file %s\n",file);
  fprintf(fout,"// for hppa/sun-solaris/linux/dec\n");
  fprintf(fout,"//--------------------------------\n");
- fprintf(fout,"//Scilab functions \n");
+ fprintf(fout,"//Scilab functions\n");
  fprintf(fout,"%s_funs=[...\n",file);
  for (i = 0; i < nFun -1; i++) 
       fprintf(fout,"  '%s';\n",funNames[i]);
       fprintf(fout,"  '%s']\n",funNames[nFun-1]);
- fprintf(fout,"// interface file to link: ifile='%s.o' \n",file);
- fprintf(fout,"// user's files to link: ufiles=['file1.o','file2.o',....] \n");
- fprintf(fout,"// files = [ifile,ufiles] \n");
+ fprintf(fout,"// interface file to link: ifile='%s.o'\n",file);
+ fprintf(fout,"// user's files to link: ufiles=['file1.o','file2.o',....]\n");
+ fprintf(fout,"// files = [ifile,ufiles]\n");
  fprintf(fout,"addinter(files,'%s',%s_funs);\n",file,file);
  fclose(fout);
     }
@@ -282,7 +282,7 @@ int ReadFunction(f)
 		case VECTOR:
 		  if (nwords != 3) 
 		    {
-		      printf("bad type specification for variable \"%s\" \n", words[0]);
+		      printf("bad type specification for variable \"%s\"\n", words[0]);
 		      printf("only %d argument given and %d are expected\n", nwords,3);
 		      exit(1);
 		    }
@@ -431,7 +431,7 @@ int ReadFunction(f)
 		    default:
 		      printf("FORTRAN argument \"%s\" with external type \"%s\"\n",
 			     variables[ivar-1]->name,words[1]);
-		      printf("  cannot have a variable type of \"%s\" \n",SGetSciType(variables[ivar-1]->type));
+		      printf("  cannot have a variable type of \"%s\"\n",SGetSciType(variables[ivar-1]->type));
 		      exit(1);
 		      break;
 		    }
@@ -494,7 +494,7 @@ int ReadFunction(f)
 /* 
   put the words of SCILAB function description line "s" in "words" and 
   return the number of words with checking syntax of optional variables:
-  "{g  the_g }" => 1 word "{g  the_g \n"
+  "{g  the_g }" => 1 word "{g  the_g\n"
   "[f v]" => 1 word "[f v\n" 
   */
 
@@ -1243,8 +1243,8 @@ void WriteFunctionCode(FILE *f)
   
   AddDeclare(DEC_INT,"topk");
   AddDeclare(DEC_INT,"rhsk");
-  Fprintf(f,indent,"topk = top \n");
-  Fprintf(f,indent,"rhsk = rhs \n");
+  Fprintf(f,indent,"topk = top\n");
+  Fprintf(f,indent,"rhsk = rhs\n");
   
   /* rhs argument number checking */
   AddDeclare(DEC_LOGICAL,"checkrhs");
@@ -1368,7 +1368,7 @@ void WriteArgCheck(f,i)
   i1 = i + 1;
   
   FCprintf(f,"c       checking variable %s (number %d)\n",var->name,i1);
-  FCprintf(f,"c       \n");
+  FCprintf(f,"c      \n");
 
   /* Optional Argument consideration */
   if (var->opt_type != 0) 
@@ -1611,9 +1611,9 @@ void WriteCrossCheck(f)
   int i, j;
   char *n1, *n2;
   VARPTR var;
-  FCprintf(f,"c     \n");        
+  FCprintf(f,"c    \n");        
   FCprintf(f,"c       cross variable size checking\n"); 
-  FCprintf(f,"c     \n");               
+  FCprintf(f,"c    \n");               
   for (i = 0; i < nVariable; i++) {
     var = variables[i];
     /* does not check list elements */
@@ -1632,7 +1632,7 @@ void WriteCrossCheck(f)
       }
     }
   }
-  /*  FCprintf(f,"c     \n");        
+  /*  FCprintf(f,"c    \n");        
   FCprintf(f,"c       cross formal parameter checking\n");
   FCprintf(f,"c       not implemented yet\n");  */
 }
@@ -1640,7 +1640,7 @@ void WriteCrossCheck(f)
 void WriteEqualCheck(f)
      FILE *f;
 {
-  /* FCprintf(f,"c     \n");        
+  /* FCprintf(f,"c    \n");        
   FCprintf(f,"c       cross equal output variable checking\n");
   FCprintf(f,"c       not implemented yet\n"); */
 }
@@ -1709,13 +1709,13 @@ void WriteFortranCall(f)
   Fprintf(f,indent,call);
   Fprintf(f,indent,"\n");
   /*    
-      Fprintf(f,indent++,"if(err .gt. 0) then \n");  
-      Fprintf(f,indent,"buf = fname // ' Internal Error' \n");  
+      Fprintf(f,indent++,"if(err .gt. 0) then\n");  
+      Fprintf(f,indent,"buf = fname // ' Internal Error'\n");  
       Fprintf(f,indent,"call error(999)\n");
       Fprintf(f,indent,"return\n");
       Fprintf(f,--indent,"endif\n");
   */
-  Fprintf(f,indent,"if(err .gt. 0 .or. err1 .gt. 0) return \n");  
+  Fprintf(f,indent,"if(err .gt. 0 .or. err1 .gt. 0) return\n");  
 
   FCprintf(f,"c\n");
 }
@@ -1767,7 +1767,7 @@ void WriteCallConvertion(f,ivar,farg,barg,call)
 	  Fprintf(f,indent,"call entier(%s,stk(lr%s),istk(iadr(lr%s)))\n",str1,barg,barg);
 	  if (var->type == IMATRIX || var->type == SPARSE) 
 	    {
-	      Fprintf(f,indent++,"if (it%s.eq.1) then \n",barg);
+	      Fprintf(f,indent++,"if (it%s.eq.1) then\n",barg);
 	      Fprintf(f,indent,"call entier(%s,stk(lc%s),istk(iadr(lc%s)))\n",str1,barg,barg);
 	      Fprintf(f,--indent,"endif\n");
 	      if ( var->type == SPARSE) 
@@ -1791,7 +1791,7 @@ void WriteCallConvertion(f,ivar,farg,barg,call)
 	  Fprintf(f,indent,"call simple(%s,stk(lr%s),stk(lr%s))\n",str1,barg,barg,barg);
 	  if (var->type == IMATRIX || var->type == SPARSE)
 	    {
-	      Fprintf(f,indent++,"if (it%s.eq.1) then \n",barg);
+	      Fprintf(f,indent++,"if (it%s.eq.1) then\n",barg);
 	      Fprintf(f,indent,"call simple(%s,stk(lc%s),stk(lc%s))\n",str1,barg,barg);
 	      Fprintf(f,--indent,"endif\n");
 	      if ( var->type == SPARSE) 
@@ -2131,8 +2131,8 @@ void WriteCallRest(f,ivar,farg,call)
       else 
 	{
 	  /** XXXX dimensions should be specifief **/
-	  fprintf(stderr,"WARNING : your code contains a specification \n");
-	  fprintf(stderr," not fully implemented in intersci \n");
+	  fprintf(stderr,"WARNING : your code contains a specification\n");
+	  fprintf(stderr," not fully implemented in intersci\n");
 	  WriteCallRestCheck(f,var,farg,"mm",0,0) ;
 	  WriteCallRestCheck(f,var,farg,"nn",1,0) ;
 	  AddDeclare(DEC_LOGICAL,"cresmatafaire");
@@ -2256,11 +2256,11 @@ void WriteOutput(f)
       {
 	ivar = vout->el[i];
 	var = variables[ivar-1];
-	FCprintf(f,"c     \n");        
+	FCprintf(f,"c    \n");        
 	FCprintf(f,"c       Element %d: %s\n",i+1,var->name);
 	WriteVariable(f,var,ivar,1,i+1);
       }
-    FCprintf(f,"c     \n");        
+    FCprintf(f,"c    \n");        
     FCprintf(f,"c     Putting in order the stack\n");
     Fprintf(f,indent,"call copyobj(fname,topl+1,topk+1)\n");
     Fprintf(f,indent,"top=topk+1\n");
@@ -2272,7 +2272,7 @@ void WriteOutput(f)
       {
 	ivar = vout->el[i];
 	var = variables[ivar-1];
-	FCprintf(f,"c     \n");        
+	FCprintf(f,"c    \n");        
 	Fprintf(f,indent++,"if(lhs .ge. %d) then\n",i+1);
 	FCprintf(f,"c       --------------output variable: %s\n",var->name);
 	Fprintf(f,indent,"top=topl+%d\n",i+1);
@@ -2703,7 +2703,7 @@ void WriteExternalVariableOutput(f,var,farg,insidelist,nel)
     sprintf(str,"lw%d",farg);
     Fprintf(f,indent,"call %s(%s*%s,stk(%s),stk(lrs))\n",  var->fexternal,str1,str2,str);
     sprintf(str,"lwc%d",farg);
-    Fprintf(f,indent++,"if  (%s.eq.1) then \n",str3);
+    Fprintf(f,indent++,"if  (%s.eq.1) then\n",str3);
     Fprintf(f,indent,"call %s(%s*%s,stk(%s),stk(lcs))\n",  var->fexternal,str1,str2,str);
     Fprintf(f,--indent,"endif\n");
     break;
@@ -2817,7 +2817,7 @@ void WriteListAnalysis(f,i)
 	  var->present)
 	{
 	  iel=var->list_el;
-	  FCprintf(f,"c      \n");
+	  FCprintf(f,"c     \n");
 	  FCprintf(f,"c       --   list element number %d %s --\n",iel,var->name);
 	  sprintf(str1,"%de%d",i1,iel);
 	  AddDeclare(DEC_LOGICAL,"getilist");
@@ -2980,7 +2980,7 @@ void WriteVariable(f,var,ivar,insidelist,nel)
       /* external type */
       if (barg != 0) 
 	{
-	  printf("output variable with external type \"%s\" \n",var->name);
+	  printf("output variable with external type \"%s\"\n",var->name);
 	  printf("  cannot be an input argument of SCILAB function\n");
 	  exit(1);
 	}
@@ -3100,7 +3100,7 @@ char *Forname2Int(str)
   char *p;
   if (str == (char *) 0) 
     {
-      printf("Error in Forname2Int  \n");
+      printf("Error in Forname2Int \n");
       printf("Maybe an internal variable has a dimension\n");
       printf("which can't be evaluated\n");
       abort();

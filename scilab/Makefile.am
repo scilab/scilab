@@ -20,6 +20,9 @@ bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
 
+LANGS = fr_FR en_US
+
+LANG_DOMAIN = scilab
 
 if GUI
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
@@ -64,8 +67,20 @@ clean-local:
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'
 
 
+install-data-local:
+	$(mkinstalldirs) $(DESTDIR)$(localedir); \
+	for lang in $(LANGS); do \
+		LANG_PATH_DIST=$(DESTDIR)$(localedir)/$$lang/LC_MESSAGES/; \
+		echo $(mkinstalldirs) $$LANG_PATH_DIST; \
+		$(mkinstalldirs) $$LANG_PATH_DIST; \
+		echo $(INSTALL_DATA) locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
+		$(INSTALL_DATA) locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
+	done
+
 # Pkgconfig directory
 pkgconfigdir = $(libdir)/pkgconfig
 
 # Files to install in Pkgconfig directory
 pkgconfig_DATA = scilab.pc
+
+

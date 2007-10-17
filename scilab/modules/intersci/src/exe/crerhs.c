@@ -443,8 +443,8 @@ void CreSTRINGMAT(f,var)
   else 
     {
       /** XXXX dimensions should be specified **/
-      fprintf(stderr,"WARNING : your code contains a specification \n");
-      fprintf(stderr," not fully implemented in intersci \n");
+      fprintf(stderr,"WARNING : your code contains a specification\n");
+      fprintf(stderr," not fully implemented in intersci\n");
       WriteCallRestCheck(f,var,"mm",0,0) ;
       WriteCallRestCheck(f,var,"nn",1,0) ;
       AddDeclare(DEC_LOGICAL,"cresmatafaire");

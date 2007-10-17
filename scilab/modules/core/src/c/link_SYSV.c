@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------
  * Link version for SYSV machine 
- * Copyright (C) Inria/Enpc 
+ * Copyright (C) INRIA/Enpc 
  *--------------------------------------------------------------*/
 
 #include <stdio.h>
@@ -71,6 +71,7 @@
 #include "setgetSCIpath.h"
 #include "sciprint_nd.h"
 
+#include "addinter.h"
 #include "warningmode.h"
 
 #ifdef round
@@ -93,8 +94,6 @@ static int SetArgv  __PARAMS((char *argv[], char *files[],int first,int max,int 
 static int SetArgv1  __PARAMS((char *argv[], char *files,int first,int max,int *err));
 static int CreateCppShared(char **loaded_files, char *tmp_file);
 static int CreateShared(char **loaded_files, char *tmp_file);
-
-void C2F(isciulink)(integer *i);
 
 int Call_shl_load = 0;
 
@@ -122,7 +121,7 @@ void SciLink(int iflag, int *rhs, int *ilib, char **files, char **en_names, char
 	*ilib  = Sci_dlopen(files,0);
     }
   if ( *ilib  == -1 ) return;
-  if ( iflag == 0) if (getWarningMode()) sciprint("shared archive loaded\n");
+  if ( iflag == 0) if (getWarningMode()) sciprint(_("shared archive loaded\n"));
   if ( *rhs >= 2) 
     {
       i=0 ;
@@ -178,7 +177,7 @@ void call_ctor_dtor(handle,loading)
       if (shl_findsym(&handle,"_GLOBAL__DI",TYPE_PROCEDURE,
 		      (void *) &call_sym))
 	{
-	  if (getWarningMode()) sciprint("No global constructor(s) call\n");
+	  if (getWarningMode()) sciprint(_("No global constructor(s) call\n"));
 	  return;
 	}
     }
@@ -187,7 +186,7 @@ void call_ctor_dtor(handle,loading)
       if (shl_findsym(&handle,"_GLOBAL__DD",TYPE_PROCEDURE,
 		      (void *) &call_sym))
 	{
-	  if (getWarningMode()) sciprint("No global destructor(s) call\n");
+	  if (getWarningMode()) sciprint(_("No global destructor(s) call\n"));
 	  return;
 	}
     }
@@ -229,7 +228,7 @@ static int Sci_dlopen(char **loaded_files,int global)
   shl_t hd1;
   void (*init_ctor)() = 0;
 #endif
-  char tmp_file[TMPL],*getenv(const char *);
+  char tmp_file[PATH_MAX],*getenv(const char *);
   /** XXXXX **/
   if ( strncmp(loaded_files[0],"scilab",6) !=0)
     {
@@ -237,7 +236,7 @@ static int Sci_dlopen(char **loaded_files,int global)
 	   && strstr(loaded_files[0],SHARED_SUF)!= NULL)
 	{
 	  strcpy(tmp_file,loaded_files[0]);
-	  if (debug) sciprint_nd("Loading shared executable %s\n",loaded_files[0]);
+	  if (debug) sciprint_nd(_("Loading shared executable %s\n"),loaded_files[0]);
 	}
       else 
 	{
@@ -274,7 +273,7 @@ static int Sci_dlopen(char **loaded_files,int global)
 #ifdef hppa
       hd1 = PROG_HANDLE;
 #else
-      if (getWarningMode()) sciprint("Link : scilab is not a valid first argument on your machine\n");
+      if (getWarningMode()) sciprint(_("Link : scilab is not a valid first argument on your machine\n"));
       return(-1);
 #endif
 #endif
@@ -285,7 +284,7 @@ static int Sci_dlopen(char **loaded_files,int global)
     if (getWarningMode()) sciprint("%s\n",dlerror());
 #else
   if (  hd1 == NULL) {
-    if (getWarningMode()) sciprint("link error\n");
+    if (getWarningMode()) sciprint(_("Link error\n"));
 #endif
     return(-1);
   }
@@ -302,7 +301,7 @@ static int Sci_dlopen(char **loaded_files,int global)
   
   if ( Nshared == ENTRYMAX ) 
     {
-      if (getWarningMode()) sciprint("You can't open shared files maxentry %d reached\n",ENTRYMAX);
+      if (getWarningMode()) sciprint(_("You can't open shared files maxentry %d reached\n"),ENTRYMAX);
       return(FAIL);
     }
 
@@ -323,14 +322,14 @@ static int CreateShared(char **loaded_files, char *tmp_file)
   char *libs,*tmpdir;
   libs=getenv("SYSLIBS");
    /** XXXXX **/
-  if (debug) sciprint_nd("Linking files ");
+  if (debug) sciprint_nd(_("Linking files "));
   while ( loaded_files[i] != NULL) 
     {
       if (debug) sciprint_nd("%s ",loaded_files[i]);
       i++;
     }
 
-  if (debug) sciprint_nd(" to create a shared executable\n");
+  if (debug) sciprint_nd(_(" to create a shared executable\n"));
   count++;
   /* be sure that tmpdir exists */
   tmpdir = get_sci_tmp_dir();
@@ -386,16 +385,16 @@ static int CreateShared(char **loaded_files, char *tmp_file)
        _exit(1);
      }
      if (pid < 0) {
-       if (getWarningMode()) sciprint("can't create new process: \n");
+       if (getWarningMode()) sciprint(_("can't create new process:\n"));
        return(-1);
      }
      while ((wpid = wait(&status)) != pid)
        if (wpid < 0) {
-	 if (getWarningMode()) sciprint("no child !\n");
+	 if (getWarningMode()) sciprint(_("no child !\n"));
 	 return(-1);
        }
      if (status != 0) {
-       if (getWarningMode()) sciprint("ld returned bad status: %x\n", status);
+       if (getWarningMode()) sciprint(_("ld returned bad status: %x\n"), status);
        return(-1);
      }
    }
@@ -413,14 +412,14 @@ static int CreateCppShared(char **loaded_files, char *tmp_file)
   char *libs, *exec_cpp, *tmpdir;
   libs=getenv("SYSLIBS");
    /** XXXXX **/
-  if (debug) sciprint_nd("Linking files ");
+  if (debug) sciprint_nd(_("Linking files "));
   while ( loaded_files[i] != NULL) 
     {
       if (debug) sciprint_nd("%s ",loaded_files[i]);
       i++;
     }
 
-  if (debug) sciprint_nd(" to create a shared executable\n");
+  if (debug) sciprint_nd(_(" to create a shared executable\n"));
   count++;
   tmpdir = get_sci_tmp_dir();
   sprintf(tmp_file, "%s/SL_%d_XXXXXX",tmpdir,(int) getpid()); /*,count);*/
@@ -457,16 +456,16 @@ static int CreateCppShared(char **loaded_files, char *tmp_file)
        _exit(1);
      }
      if (pid < 0) {
-       if (getWarningMode()) sciprint("can't create new process: \n");
+       if (getWarningMode()) sciprint(_("can't create new process:\n"));
        return(-1);
      }
      while ((wpid = wait(&status)) != pid)
        if (wpid < 0) {
-	 if (getWarningMode()) sciprint("no child !\n");
+	 if (getWarningMode()) sciprint(_("no child !\n"));
 	 return(-1);
        }
      if (status != 0) {
-       sciprint("collect2 returned bad status: %x\n", status);
+       sciprint(_("collect2 returned bad status: %x\n"), status);
        return(-1);
      }
   }
@@ -497,18 +496,18 @@ static int Sci_dlsym(char *ename, int ishared, char *strf)
   /* lookup the address of the function to be called */
   if ( NEpoints == ENTRYMAX ) 
     {
-      if (getWarningMode()) sciprint("You can't link more functions maxentry %d reached\n",ENTRYMAX);
+      if (getWarningMode()) sciprint(_("You can't link more functions maxentry %d reached\n"),ENTRYMAX);
       return(FAIL);
     }
   if ( hd[ish].ok == FAIL ) 
     {
-      if (getWarningMode()) sciprint("Shared lib %d does not exists\n",ish);
+      if (getWarningMode()) sciprint(_("Shared lib %d does not exists\n"),ish);
       return(FAIL);
     }
   /** entry was previously loaded **/
   if ( SearchFandS(ename,ish) >= 0 ) 
     {
-      if (getWarningMode()) sciprint("Entry name %s is already loaded from lib %d\n",ename,ish);
+      if (getWarningMode()) sciprint(_("Entry name %s is already loaded from lib %d\n"),ename,ish);
       return(OK);
     }
 #ifndef hppa
@@ -526,19 +525,19 @@ static int Sci_dlsym(char *ename, int ishared, char *strf)
 #else
       char *loc;
 #endif
-      if (getWarningMode()) sciprint("%s is not an entry point \n",enamebuf);
+      if (getWarningMode()) sciprint(_("%s is not an entry point\n"),enamebuf);
 #ifndef hppa
       loc = dlerror();
-      if ( loc != NULL) sciprint("%s \n",loc);
+      if ( loc != NULL) sciprint("%s\n",loc);
 #else
-      if (getWarningMode()) sciprint("link error\n");
+      if (getWarningMode()) sciprint(_("Link error\n"));
 #endif
       return(FAIL);
     }
   else 
     {
       /* we don't add the _ in the table */
-      if (debug) sciprint("Linking %s \n",ename);
+      if (debug) sciprint(_("Linking %s\n"),ename);
       strncpy(EP[NEpoints].name,ename,MAXNAME);
       EP[NEpoints].Nshared = ish;
       NEpoints++;
@@ -624,7 +623,7 @@ static int SetArgv1(char **argv, char *files, int first, int max, int *err)
       argv[j] = loc; j++;
       if ( j == max ) 
 	{
-	  if (getWarningMode()) sciprint("Link too many files \n");
+	  if (getWarningMode()) sciprint(_("Link too many files\n"));
 	  *err=1;
 	  break;
 	}

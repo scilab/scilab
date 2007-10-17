@@ -97,8 +97,6 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
  */
 int SetSci()
 {
-
-
 	int ierr,iflag=0;
 	int lbuf=PATH_MAX;
 	char *buf=MALLOC(PATH_MAX*sizeof(char));
@@ -107,9 +105,9 @@ int SetSci()
 	if ( ierr== 1) 
 	{
 		#ifdef  _MSC_VER
-		MessageBox(NULL,"SCI not defined.","Warning",MB_ICONWARNING);
+		MessageBox(NULL,_("SCI not defined."),"Warning",MB_ICONWARNING);
 		#else
-		printf("SCI not defined.\n");
+		printf(_("SCI not defined.\n"));
 		#endif
 		exit(1);
 	}
@@ -147,9 +145,9 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 		if (!setSCIHOME())
 		{
 			#ifdef  _MSC_VER
-				MessageBox(NULL,"SCIHOME not defined.","Warning",MB_ICONWARNING);
+				MessageBox(NULL,_("SCIHOME not defined."),_("Warning"),MB_ICONWARNING);
 			#else
-				printf("SCIHOME not defined.\n");
+				printf(_("SCIHOME not defined.\n"));
 			#endif
 			exit(1);
 		}
@@ -174,9 +172,9 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 	if ( ierr== 1) 
 	{
 #ifdef  _MSC_VER
-		MessageBox(NULL,"TMPDIR not defined.","Warning",MB_ICONWARNING);
+		MessageBox(NULL,_("TMPDIR not defined."),_("Warning"),MB_ICONWARNING);
 #else
-		printf("TMPDIR not defined.\n");
+		printf(_("TMPDIR not defined.\n"));
 #endif
 		exit(1);
 	}

@@ -49,7 +49,7 @@ int intinterp3d(char *fname,unsigned long fname_len)
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mzp, &nzp, &lzp); zp = stk(lzp);
   if ( mxp != myp  ||  nxp != nyp || mxp != mzp  ||  nxp != nzp) 
     { 
-      Scierror(999,"%s: xp, yp and zp must have the same dimensions \n", fname);
+      Scierror(999,"%s: xp, yp and zp must have the same dimensions\n", fname);
       return 0;
     }
   np = mxp * nxp;
@@ -71,7 +71,7 @@ int intinterp3d(char *fname,unsigned long fname_len)
 			Str=NULL;
 		}
 
-      Scierror(999,"%s: 4 th argument is not an tensbs3d tlist \n", fname);
+      Scierror(999,"%s: 4 th argument is not an tensbs3d tlist\n", fname);
       return 0;
     }
   /* Free Str */

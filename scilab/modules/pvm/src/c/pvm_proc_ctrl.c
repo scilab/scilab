@@ -313,7 +313,7 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 				if (stat(path, &buf) == 0){
 					sciprint_nd("The standard configuration file $SCI%s will be used.\n",PVM_CONFIG_FILE);
 					sciprint_nd("\tWith SCI=%s\n",rd);
-					sciprint_nd("\tSCI will have to be set on remote hosts \n");
+					sciprint_nd("\tSCI will have to be set on remote hosts\n");
 					sciprint_nd("\tin order to spawn scilab\n",rd);
 					argc = 1;
 					argv[0] = path;

@@ -41,7 +41,7 @@ int intbsplin3val(char *fname,unsigned long fname_len)
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mzp, &nzp, &lzp); zp = stk(lzp);
   if ( mxp != myp  ||  nxp != nyp || mxp != mzp  ||  nxp != nzp) 
     { 
-      Scierror(999,"%s: xp, yp and zp must have the same dimensions \n", fname);
+      Scierror(999,"%s: xp, yp and zp must have the same dimensions\n", fname);
       return 0;
     }
   np = mxp * nxp;
@@ -64,7 +64,7 @@ int intbsplin3val(char *fname,unsigned long fname_len)
 		  Str=NULL;
 	  }
 
-      Scierror(999,"%s: 4 th argument is not an tensbs3d tlist \n", fname);
+      Scierror(999,"%s: 4 th argument is not an tensbs3d tlist\n", fname);
       return 0;
   }
   /* Free Str */
@@ -97,7 +97,7 @@ int intbsplin3val(char *fname,unsigned long fname_len)
       || der[1] != floor(der[1]) || der[1] < 0.0 
       || der[2] != floor(der[2]) || der[2] < 0.0 )
     {
-      Scierror(999,"%s: bad 5 th argument \n", fname);
+      Scierror(999,"%s: bad 5 th argument\n", fname);
       return 0;
     }
   ox = (int) der[0];  oy = (int) der[1];  oz = (int) der[2];

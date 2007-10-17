@@ -145,7 +145,7 @@ void WriteMain(FILE *f,char *file)
 {
   int i;
   FCprintf(f,"\n/**********************\n");
-  FCprintf(f," *  interface function \n");
+  FCprintf(f," *  interface function\n");
   FCprintf(f," ********************/\n");
   Fprintf(f,indent++,"static TabF Tab[]={\n");
   for (i = 0; i < nFun; i++) {
@@ -178,13 +178,13 @@ void WriteAddInter(char *file)
       fprintf(fout,"// Addinter for file %s\n",file);
       fprintf(fout,"// for hppa/sun-solaris/linux/dec\n");
       fprintf(fout,"//--------------------------------\n");
-      fprintf(fout,"//Scilab functions \n");
+      fprintf(fout,"//Scilab functions\n");
       fprintf(fout,"%s_funs=[...\n",file);
       for (i = 0; i < nFun -1; i++) 
 	fprintf(fout,"  '%s';\n",funNames[i]);
       fprintf(fout,"  '%s']\n",funNames[nFun-1]);
-      fprintf(fout,"// interface file to link: ifile='%s.o' \n",file);
-      fprintf(fout,"// user's files to link: ufiles=['file1.o','file2.o',....] \n");
+      fprintf(fout,"// interface file to link: ifile='%s.o'\n",file);
+      fprintf(fout,"// user's files to link: ufiles=['file1.o','file2.o',....]\n");
       fprintf(fout,"addinter([files],'%s',%s_funs);\n",file,file);
       fclose(fout);
     }
@@ -529,7 +529,7 @@ void CheckCreateOrder()
 	  if ( min != 10000 && variables[ivar-1]->stack_position !=0 
 	       && variables[ivar-1]->stack_position < min) 
 	    {
-	      fprintf(stderr,"Error: declaration for local variables \n");
+	      fprintf(stderr,"Error: declaration for local variables\n");
 	      fprintf(stderr,"\t must respect the order given in the calling sequence\n");
 	      fprintf(stderr,"\t declaration for %s must be moved downward\n",
 		      variables[ivar-1]->name);
@@ -750,7 +750,7 @@ void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
       /* external type */
       if (barg != 0) 
 	{
-	  printf("output variable with external type \"%s\" \n",var->name);
+	  printf("output variable with external type \"%s\"\n",var->name);
 	  printf("  cannot be an input argument of SCILAB function\n");
 	  exit(1);
 	}
@@ -901,7 +901,7 @@ char *Forname2Int(VARPTR var,int i)
   char *p;
   if ( var->for_name[i] == (char *) 0) 
     {
-      printf("Error in Forname2Int for variable %s \n",var->name);
+      printf("Error in Forname2Int for variable %s\n",var->name);
       printf("Maybe an internal variable has a dimension\n");
       printf("which can't be evaluated\n");
       abort();
@@ -947,7 +947,7 @@ static void GenBuilder(char *file,char *files,char *libs)
   strcpy(filout,file);
   strcat(filout,"_builder.sce");
   fout = fopen(filout,"w");
-  fprintf(fout,"// generated with intersci \n");
+  fprintf(fout,"// generated with intersci\n");
   fprintf(fout,"ilib_name = 'lib%s'\t\t// interface library name\n",file);
 
   /* files = 'file1.o file2.o ....' delimiter = ' ' */

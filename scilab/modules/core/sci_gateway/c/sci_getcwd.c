@@ -24,7 +24,7 @@ int C2F(sci_getcwd) _PARAMS((char *fname,unsigned long fname_len))
 	
 	if (ierr)
 	{
-		error_scilab(998,"Internal Error.");
+		error_scilab(998,_("Internal Error."));
 		return 0;
 	}
 	else

@@ -295,7 +295,7 @@ void C2F (oldgraphics) (int *flag)
 	//  setVersionFlag(*flag) ; //** force the old graphics
   
   // debug only :)
-  // printf("\n versionflag = %d \n  ", versionflag);
+  // printf("\n versionflag = %d\n  ", versionflag);
 
 }
 

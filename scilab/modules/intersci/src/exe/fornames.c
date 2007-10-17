@@ -145,18 +145,18 @@ void ForTLIST(VARPTR var){}
 
 void ForSEQUENCE(VARPTR var)
 {  
-  fprintf(stderr,"Wrong type in For function \n");
+  fprintf(stderr,"Wrong type in For function\n");
 }
 
 void ForEMPTY(VARPTR var)
 {  
-  fprintf(stderr,"Wrong type in For function \n");
+  fprintf(stderr,"Wrong type in For function\n");
 }
 
 
 void ForWORK(VARPTR var)
 {  
-  fprintf(stderr,"Wrong type in For function \n");
+  fprintf(stderr,"Wrong type in For function\n");
 }
 
 void ForDIMFOREXT(VARPTR var)

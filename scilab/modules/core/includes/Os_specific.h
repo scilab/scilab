@@ -12,7 +12,6 @@ void C2F(addinter)(int *iflag,int *descla, int *ptrdescla, int *nvla, char *inam
 		   int *desc, int *ptrdesc, int *nv, char *c_cpp, 
 		   int *lib_cpp, int *err);
 
-extern void RemoveInterf  __PARAMS((int Nshared));  
 extern void C2F(userlk) __PARAMS((integer *k));  
 
 /*  "basin-n.c.X1" */
@@ -70,7 +69,6 @@ extern void C2F(tmpdirc) __PARAMS((void));
 
 /* link.c */
 extern int LinkStatus  __PARAMS((void));
-extern void C2F(isciulink)(integer *i) ;
 
 
 #endif /* SUNSCI_PROTO */

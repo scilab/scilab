@@ -121,7 +121,7 @@ static int example3(void)
 int main(void)
 /* int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow) */
 {
-	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
+	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab\n");
 
 	printf("\nexample 1\n");
 	example1();
@@ -133,7 +133,7 @@ int main(void)
 	example3();
 	system("pause");
 	
-	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
+	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -219,7 +219,7 @@ static void ShowInterf(void)
   for ( i = 0 ; i < LastInterf ; i++ ) 
     {
       if ( DynInterf[i].ok == 1 ) 
-	if (debug) message_scilab("Interface %d.",i,DynInterf[i].name);
+	if (debug) message_scilab(_("Interface %d."),i,DynInterf[i].name);
     }
 }
 
@@ -261,7 +261,7 @@ void C2F(userlk)(integer *k)
   int imes = 9999;
   if ( k1 >= LastInterf || k1 < 0 ) 
     {
-      if (getWarningMode()) message_scilab(" results may be inaccurate. rcond = %s",k1);
+      if (getWarningMode()) message_scilab(_(" results may be inaccurate. rcond = %s"),k1);
       C2F(error)(&imes);
       return;
     }
@@ -286,7 +286,7 @@ void C2F(userlk)(integer *k)
   }
   else 
     {
-      if (getWarningMode()) message_scilab("Interface %s not linked.",DynInterf[k1].name);
+      if (getWarningMode()) message_scilab(_("Interface %s not linked."),DynInterf[k1].name);
       C2F(error)(&imes);
       return;
     }
@@ -319,8 +319,8 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
       /** Linking Files and add entry point name iname */
       if ( inum >=  MAXINTERF ) 
 	{
-	  if (getWarningMode()) message_scilab("Maximum number of dynamic interfaces %d",MAXINTERF);
-	  if (getWarningMode()) message_scilab("has been reached");
+	  if (getWarningMode())
+		  message_scilab(_("Maximum number of dynamic interfaces %d has been reached"),MAXINTERF);
 	  *err=1;
 	  return -1 ;
 	}
@@ -368,7 +368,7 @@ void CallDynInterf(int *pos, int num_names, int namepos, char **names,
     (*DynInterf[*pos].func)();
   else 
     {
-      if (getWarningMode()) message_scilab("Interface %s not linked.",DynInterf[*pos].name);
+      if (getWarningMode()) message_scilab(_("Interface %s not linked."),DynInterf[*pos].name);
       C2F(error)(&imes);
     }
 }  

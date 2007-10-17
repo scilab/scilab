@@ -43,9 +43,7 @@ extern char *index();
 
 static int lastlink={0};
 
-void SciLink(iflag,rhs,ilib,files,en_names,strf)
-     int iflag,*ilib,*rhs;
-     char *files[],*en_names[],*strf;
+void SciLink(int iflag,int *rhs,int *ilib,char *files[],char *en_names[],char *strf)
 {
   char enamebuf[MAXNAME];
   int i,ii,err=0;
@@ -113,18 +111,14 @@ int LinkStatus()
  * Unlink a shared lib 
  *************************************/
 
-void C2F(isciulink)(i) 
-     integer *i;
+void C2F(isciulink)(integer *i) 
 {
-  sciprint("Std link : No unlink up to now \n");
+  sciprint(_("Std link : No unlink up to now\n"));
 }
 
 
 
-int C2F(dynload)(ii,ename1,loaded_files,err)
-     char ename1[], *loaded_files[];
-     int *ii;
-     int *err;
+int C2F(dynload)(int *ii,char ename1[],char *loaded_files[],int *err)
 {
    unsigned long epoint;
    char str[1000] , tmp_file[128], prog[200],*libs,*getenv();
@@ -157,16 +151,16 @@ int C2F(dynload)(ii,ename1,loaded_files,err)
    libs=getenv("SYSLIBS");
 
    strcpy(prog,"");
-   getpath(prog);/* prog est le pathname du fichier executable*/
+   getpath(prog);/* prog is the pathname of the executable file */
    
-   sciprint("\nlinking %s defined in %s with %s \n",ename1,*loaded_files,prog);
+   sciprint(_("\nlinking %s defined in %s with %s\n"),ename1,*loaded_files,prog);
    
 
    sprintf(tmp_file, "/tmp/SL_%d_XXXXXX",(int) getpid());
    mktemp(tmp_file);
 
    if ((*ii != lastlink) && (*ii != lastlink-1)) {
-     sciprint("cannot (re)define this link \n");
+     sciprint(_("Cannot (re)define this link\n"));
      
      return;
    }
@@ -179,7 +173,7 @@ int C2F(dynload)(ii,ename1,loaded_files,err)
       if (diff != 0) {
          end = sbrk(diff);
          if ((int)end <= 0) {
-              sciprint("sbrk failed\n");
+              sciprint(_("sbrk failed\n"));
 	      
               *err=4;
             return;
@@ -291,17 +285,17 @@ int C2F(dynload)(ii,ename1,loaded_files,err)
                 _exit(1);
         }
         if (pid < 0) {
-                sciprint("can't create new process: %s\n", sys_errlist[errno]);
+                sciprint(_("can't create new process: %s\n"), sys_errlist[errno]);
                 goto bad;
         }
         while ((wpid = wait(&status)) != pid)
                 if (wpid < 0) {
-                        sciprint("no child !\n");
+                        sciprint(_("no child !\n"));
                         goto bad;
                 }
         if (status != 0) {
 
-                sciprint("ld returned bad status: %x\n", status);
+                sciprint(_("ld returned bad status: %x\n"), status);
 		
 bad:
 
@@ -313,7 +307,7 @@ bad:
 
 #ifndef _IBMR2
    if ((p = open(tmp_file, O_RDONLY)) < 0) {
-        sciprint("Cannot open %s\n", tmp_file);
+        sciprint(_("Cannot open %s\n"), tmp_file);
         *err=2;
         goto badclose;
       }
@@ -322,7 +316,7 @@ bad:
 
 #ifdef COFF
    if (read(p, &filehdr, sizeof filehdr) != sizeof filehdr) {
-           sciprint("Cannot read filehdr from %s\n", tmp_file);
+           sciprint(_("Cannot read filehdr from %s\n"), tmp_file);
            *err=3;
            goto badclose;
    }
@@ -343,7 +337,7 @@ bad:
 #endif
 #endif /* hppa */
    if (read(p, &aouthdr, sizeof aouthdr) != sizeof aouthdr) {
-           sciprint(str,"Cannot read auxhdr from %s\n", tmp_file);
+           sciprint(str,_("Cannot read auxhdr from %s\n"), tmp_file);
 	   
            *err=3;
            goto badclose;
@@ -354,7 +348,7 @@ bad:
    i = lseek(p, TEXTBEGIN, 0);
 #else /* ! COFF */
    if (sizeof(header) != read(p, (char *)&header,sizeof(header))) {
-        sciprint("Cannot read header from %s\n", tmp_file);
+        sciprint(_("Cannot read header from %s\n"), tmp_file);
         *err=3;
       goto badclose;
       }
@@ -369,7 +363,7 @@ bad:
    /* allocate more memory, using sbrk */
    wh = sbrk(totalsize-nalloc);
    if ( (int)wh <= 0 ) {
-     sciprint("sbrk failed to allocate\n");
+     sciprint(_("sbrk failed to allocate\n"));
      *err=4;
      goto badclose;
    }
@@ -378,7 +372,7 @@ bad:
    /* now read in the function */
    i=read(p, (char *)end, readsize);
    if (readsize != i) {
-      sciprint ("Cannot read %s\n", tmp_file);
+      sciprint (_("Cannot read %s\n"), tmp_file);
       *err=5;
       goto badclose;
       }
@@ -413,7 +407,7 @@ badclose:
 #else /* _IBMR2 */
    EP[*ii].epoint =(function) load(tmp_file,1, "");
    if ( EP[*ii].epoint == (function) 0) {
-	   sciprint("ibm load routine failed: %s\n", sys_errlist[errno]);
+	   sciprint(_("IBM load routine failed: %s\n"), sys_errlist[errno]);
 	   *err = 6;
    }
 #endif /* _IBMR2 */
@@ -431,9 +425,7 @@ que name est un pathname (et non un nom) et retourne tel que
 origine S Steer INRIA 1988
 
 */
-getpath(name)
-
-char name[];
+getpath(char name[])
 {
 struct stat stbuf;
 short unsigned mode;
@@ -450,7 +442,7 @@ if ( (index(name,'/')) != 0)
 /* on recupere la regle de recherche */
 if ( (searchpath=getenv("PATH")) == NULL)
   {
-    printf("variable PATH not defined\n");
+    printf(_("Variable PATH not defined\n"));
     return;
   }
 
@@ -514,9 +506,7 @@ return;
 
 #ifdef hppa
 int
-C2F(getpro)(s, l)
-char *s;
-int l;
+C2F(getpro)(char *s, int l)
 {
   extern char *__data_start[];
   strncpy (s,__data_start[0], l);
@@ -533,10 +523,7 @@ int l;
  * first 
  *******************************************************/
 
-int SetArgv(argv,files,first,max,err)
-     char *argv[];
-     char *files[];
-     int first,max,*err;
+int SetArgv(char *argv[],char *files[],int first,int max,int err)
 {
   int i=0,j=first;
   *err=0;
@@ -549,10 +536,7 @@ int SetArgv(argv,files,first,max,err)
   return(j);
 }
 
-int SetArgv1(argv,files,first,max,err)
-     char *argv[];
-     char *files;
-     int first,max,*err;
+int SetArgv1(char *argv[],char *files,int first,int max,int err)
 {
   int j=first;
   char *loc = files;
@@ -562,7 +546,7 @@ int SetArgv1(argv,files,first,max,err)
       argv[j] = loc; j++;
       if ( j == max ) 
 	{
-	  sciprint("Link too many files \n");
+	  sciprint(_("Link too many files\n"));
 	  *err=1;
 	  break;
 	}

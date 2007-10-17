@@ -52,7 +52,7 @@ int intzgeesx(fname)
   /*--------------------WORK---------------------------*/
     LWORKMIN = MAX(1, 2*N);
     LWORK=Maxvol(WORK,"z");  /* max memory currently available */
-    if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize) \n",fname); 
+    if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize)\n",fname); 
     CreateVar(WORK,MATRIX_OF_COMPLEX_DATATYPE, &LWORK, &un, &lWORK);
 
     C2F(zgeesx)(JOBVS, "N", select, "N", &N, zstk(lA), &LDA, &SDIM, zstk(lW), 
@@ -69,7 +69,7 @@ int intzgeesx(fname)
     RWORK=4;  CreateVar(RWORK,MATRIX_OF_DOUBLE_DATATYPE, &N, &un, &lRWORK);
     WORK=5;   LWORKMIN = MAX(1, 2*N);
     LWORK=Maxvol(WORK, "z"); /* max memory currently available */
-    if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize) \n",fname); 
+    if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize)\n",fname); 
     CreateVar(WORK,MATRIX_OF_COMPLEX_DATATYPE, &LWORK, &un, &lWORK);
 
     C2F(zgeesx)(JOBVS, "N", select, "N", &N, zstk(lA), &LDA, &SDIM, zstk(lW), 
@@ -85,7 +85,7 @@ int intzgeesx(fname)
     RWORK=3;  CreateVar(RWORK,MATRIX_OF_DOUBLE_DATATYPE, &N, &un, &lRWORK);
     WORK=4;   LWORKMIN = MAX(1, 2*N);
     LWORK=Maxvol(WORK, "z"); /* max memory currently available */
-    if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize) \n",fname); 
+    if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize)\n",fname); 
     CreateVar(WORK,MATRIX_OF_COMPLEX_DATATYPE, &LWORK, &un, &lWORK);
 
     C2F(zgeesx)(JOBVS, "N", select, "N", &N, zstk(lA), &LDA, &SDIM, zstk(lW), 

@@ -28,7 +28,7 @@ int intex15c(fname)
 
   ReadString("Mystr", &strl, str);
 
-  sciprint("Mystr= \"%s\", length %d \n", str, strl);
+  sciprint("Mystr= \"%s\", length %d\n", str, strl);
 
   /*    LhsVar(1) = 0; means "no output"   */
   LhsVar(1) = 0;

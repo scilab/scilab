@@ -89,7 +89,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 							if (ptr) C2F(adjustgstacksize)(&MEMGSTACKSIZE,&ptr,&l);
 							else
 							{
-								error_scilab(999,"%s : can't alloc more memory.",fname);
+								error_scilab(999,_("%s : can't alloc more memory."),fname);
 								return 0;
 							}
 						}
@@ -104,14 +104,14 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					else
 					{
-						error_scilab(1504,"%s : Out of bounds value not in [%lu,%lu].",fname,MIN_GSTACKSIZE,get_max_memory_for_scilab_stack()-1);
+						error_scilab(1504,_("%s : Out of bounds value not in [%lu,%lu]."),fname,MIN_GSTACKSIZE,get_max_memory_for_scilab_stack()-1);
 						return 0;
 					}
 				}
 			}
 			else
 			{
-				error_scilab(204,"%s : Argument 1: wrong type argument expecting a scalar or 'min' or 'max'.",fname);
+				error_scilab(204,_("%s : Argument 1: wrong type argument expecting a scalar or 'min' or 'max'."),fname);
 				return 0;
 			}
 		}
@@ -198,14 +198,14 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				else
 				{
-					error_scilab(204,"%s : Argument 1: wrong type argument expecting a scalar or 'min' or 'max'.",fname);
+					error_scilab(204,_("%s : Argument 1: wrong type argument expecting a scalar or 'min' or 'max'."),fname);
 					return 0;
 				}
 
 			}
 			else
 			{
-				error_scilab(204,"%s : Argument 1: wrong type argument expecting a scalar or 'min' or 'max'.",fname);
+				error_scilab(204,_("%s : Argument 1: wrong type argument expecting a scalar or 'min' or 'max'."),fname);
 				return 0;
 			}
 		}

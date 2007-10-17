@@ -151,7 +151,7 @@ int ReadFunction(FILE *f)
 		case VECTOR:
 		  if (nwords != 3) 
 		    {
-		      printf("bad type specification for variable \"%s\" \n", words[0]);
+		      printf("bad type specification for variable \"%s\"\n", words[0]);
 		      printf("only %d argument given and %d are expected\n", nwords,3);
 		      exit(1);
 		    }
@@ -282,7 +282,7 @@ int ReadFunction(FILE *f)
 		    case SCIOPOINTER :
 		      printf("FORTRAN argument \"%s\" with external type \"%s\"\n",
 			     variables[ivar-1]->name,words[1]);
-		      printf("  cannot have a variable type of \"%s\" \n",SGetSciType(variables[ivar-1]->type));
+		      printf("  cannot have a variable type of \"%s\"\n",SGetSciType(variables[ivar-1]->type));
 		      exit(1);
 		      break;
 		    }
@@ -349,7 +349,7 @@ int ReadFunction(FILE *f)
 /***********************************************************************
  *  put the words of SCILAB function description line "s" in "words" and 
  * return the number of words with checking syntax of optional variables:
- * "{g  the_g }" => 1 word "{g  the_g \n"
+ * "{g  the_g }" => 1 word "{g  the_g\n"
  * "[f v]" => 1 word "[f v\n" 
  **************************************************************************/
 

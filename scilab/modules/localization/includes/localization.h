@@ -1,26 +1,16 @@
-/*-----------------------------------------------------------------------------------*/ 
-/* INRIA 2006 */
-/* HUANG Xu */
-/* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/**
+ * INRIA 2007 
+ * @author Sylvestre Ledru <sylvestre.ledru@inria.fr> - Rewrote using gettext
+ * Declaration of the basic localization methods
+ */
 #ifndef __LOCALIZATION_H__
 #define __LOCALIZATION_H__
 /*-----------------------------------------------------------------------------------*/ 
-#include "hashtable_localization.h"
-/*-----------------------------------------------------------------------------------*/ 
-struct hashtable *GetHashTableScilabErrors(void);
-struct hashtable *GetHashTableScilabMessages(void);
-struct hashtable *GetHashTableScilabMenus(void);
-/*-----------------------------------------------------------------------------------*/ 
-BOOL InitializeHashTableScilabErrors(void);
-BOOL InitializeHashTableScilabMessages(void);
-BOOL InitializeHashTableScilabMenus(void);
-/*-----------------------------------------------------------------------------------*/ 
-int DisposeHashTableScilabErrors(void);
-int DisposeHashTableScilabMessages(void);
-int DisposeHashTableScilabMenus(void);
-/*-----------------------------------------------------------------------------------*/ 
-BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr,char* Path);
-/*-----------------------------------------------------------------------------------*/ 
+#include <libintl.h>
+#include <locale.h>
+
+#define _(String) gettext (String)
+#define _t(String1,String2,n) ngettext (String1,String2,n)
+
 #endif /* __LOCALIZATION_H__ */
 /*-----------------------------------------------------------------------------------*/ 

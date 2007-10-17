@@ -215,7 +215,7 @@ int *ma;
     if (node_type[i] == 0)
       fprintf(f,"%s\n",(*node_name)[i]);
     else fprintf(f,"%s %d\n",(*node_name)[i],node_type[i]);
-    fprintf(f,"%d %d %d %d %d %d \n",
+    fprintf(f,"%d %d %d %d %d %d\n",
 	    node_x[i],node_y[i],node_color[i],node_diam[i],
 	    node_border[i],node_font_size[i]);
     fprintf(f,"%e\n",node_demand[i]);

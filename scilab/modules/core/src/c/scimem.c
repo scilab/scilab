@@ -31,7 +31,7 @@ integer C2F(scimem)(integer *n, integer *ptr)
     {
 		if (the_p == NULL) 
 		{
-			message_scilab("No space to allocate Scilab stack.");
+			message_scilab(_("No space to allocate Scilab stack."));
 			exit(1); 
 		}
 		*ptr=0;
@@ -58,7 +58,7 @@ integer C2F(scigmem)(integer *n, integer *ptr)
     {
 		if (the_gp == NULL) 
 		{
-			message_scilab("No space to allocate Scilab stack.");
+			message_scilab(_("No space to allocate Scilab stack."));
 			exit(1); 
 		}
 		*ptr=0;

@@ -105,7 +105,7 @@ int StoreCommand1 (char *command,int flag)
 			  p = (CommandRec *) MALLOC (sizeof (CommandRec));
 			  if (p == (CommandRec *) 0)
 				{
-					message_scilab("send_command : No more memory");
+					message_scilab(_("send_command : No more memory"));
 					return (1);
 				}
 			  p->flag = 0;
@@ -113,7 +113,7 @@ int StoreCommand1 (char *command,int flag)
 			  if (p->command == (char *) 0)
 				{
 				  FREE(p);
-				  message_scilab("send_command : No more memory");
+				  message_scilab(_("send_command : No more memory"));
 				  return (1);
 				}
 			  strcpy (p->command, command);
@@ -167,8 +167,8 @@ int GetCommand ( char *str)
       FREE (p->command);
       FREE (p);
       if (C2F(iop).ddt==-1) {
-        if (flag==0) { sciprint_full("   Unqueuing %s - No option\n",str); }
-        else         { sciprint_full("   Unqueuing %s - seq\n",str); }
+        if (flag==0) { sciprint_full(_("   Unqueuing %s - No option\n"),str); }
+        else         { sciprint_full(_("   Unqueuing %s - seq\n"),str); }
       }
     }
   return flag;

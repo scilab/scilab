@@ -46,7 +46,7 @@ int sci_matplot(char *fname,unsigned long fname_len)
   if ( get_optionals(fname,opts) == 0 ) { return 0 ; }
   if ( FirstOpt() < 2)
   {
-    sciprint("%s: misplaced optional argument, first must be at position %d \n",
+    sciprint("%s: misplaced optional argument, first must be at position %d\n",
       fname,2);
     Error(999); 
     return(0);

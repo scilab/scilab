@@ -389,7 +389,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
   {
     if ( sciGetLogExponent( *xmin, *xmax, xmin, xmax ) != 0 )
     {
-      sciprint("Warning: Can't use Log on X-axis xmin is negative. \n");
+      sciprint("Warning: Can't use Log on X-axis xmin is negative.\n");
     }
   }
 
@@ -400,7 +400,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
   {
     if ( sciGetLogExponent( *ymin, *ymax, ymin, ymax ) != 0 )
     {
-      sciprint("Warning: Can't use Log on Y-axis ymin is negative. \n");
+      sciprint("Warning: Can't use Log on Y-axis ymin is negative.\n");
     }
   }
 
@@ -411,7 +411,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
   {
     if ( sciGetLogExponent( *zmin, *zmax, zmin, zmax ) != 0 )
     {
-      sciprint("Warning: Can't use Log on Z-axis zmin is negative. \n");
+      sciprint("Warning: Can't use Log on Z-axis zmin is negative.\n");
     }
   }
 

@@ -48,7 +48,7 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   n = mx*nx;
   if ( n < 2  ||  (mx != 1  &&  nx != 1) )
     { 
-      Scierror(999,"%s: bad input for x \n", fname);
+      Scierror(999,"%s: bad input for x\n", fname);
       return 0;
     }
   
@@ -73,7 +73,7 @@ int intlsq_splin(char *fname,unsigned long fname_len)
 
   if (ierr == -1)
     {
-      Scierror(999,"%s: not enought points for the fit \n", fname);
+      Scierror(999,"%s: not enought points for the fit\n", fname);
       return 0;
     }
   else if (ierr == 1)

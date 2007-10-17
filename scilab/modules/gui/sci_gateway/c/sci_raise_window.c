@@ -11,7 +11,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len ))
 {
-	  Scierror(999,"\nNot yet implemented. \n");	
+	  Scierror(999,"\nNot yet implemented.\n");	
 	  return 0;
 //#ifdef _MSC_VER
 //  static int l1, m1, n1;	
@@ -72,7 +72,7 @@ int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len ))
 //  C2F(putlhsvar)();
 //  return 0;
 //#else
-//  Scierror(999,"\nNot yet implemented. \n");	
+//  Scierror(999,"\nNot yet implemented.\n");	
 //  return 0;
 //
 //

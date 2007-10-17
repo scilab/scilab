@@ -137,7 +137,7 @@ void ScilabMStr2C(int *desc, int *nd, int *ptrdesc, char **strh, int *ierr)
 
 
 /********************************************************
- * Converts a C string containing \n or \n 
+ * Converts a C string containing\n or \n 
  * into a Scilab matrix of String 
  ********************************************************/
 
@@ -209,7 +209,7 @@ void ScilabCM2MStr(char **str, int nv, int *res, int *ptrres, int maxchars, int 
   for (i= 0 ; i < nv ;i++) 
     {
 #ifdef _MSC_VER 
-      /** cvstr changes \n to ! : we suppress \r in str **/
+      /** cvstr changes\n to ! : we suppress \r in str **/
       squash_r(str[i]);
 #endif 
       ni=(int)strlen(str[i]);

@@ -56,7 +56,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
   if ( get_optionals(fname,opts) == 0) return 0;
   if ( FirstOpt() < 4) {
-    sciprint("%s: misplaced optional argument, first must be at position %d \n",
+    sciprint("%s: misplaced optional argument, first must be at position %d\n",
       fname,4);
     Error(999); 
     return(0);
@@ -89,7 +89,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
       zcol  = stk(l3n);
       if (m3n * n3n != n3 &&  m3n*n3n != m3*n3)
       {
-        Scierror(999,"%s: third argument: color specification has wrong size, expecting %d or %d \n",fname,n3,m3*n3);
+        Scierror(999,"%s: third argument: color specification has wrong size, expecting %d or %d\n",fname,n3,m3*n3);
         return 0;
       }
       /* 
@@ -116,7 +116,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
   if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) {
     if (! (m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3)) {
-      Scierror(999,"%s: The three first arguments have incompatible length \n",fname);
+      Scierror(999,"%s: The three first arguments have incompatible length\n",fname);
       return 0;
     }
   } else {

@@ -105,14 +105,14 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
       if (VarType(pos)) {
 	GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 	if (m * n != 4) { 
-	  Scierror(999,"%s: rect has wrong size (%d), 4 expected \n",fname,m*n); 
+	  Scierror(999,"%s: rect has wrong size (%d), 4 expected\n",fname,m*n); 
 	  return 0;
 	}
 	*rect = stk(l);
 	
 	for(i=0;i<4;i++)
 	  if(finite((*rect)[i]) == 0){
-	    Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected \n",fname,m*n); 
+	    Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected\n",fname,m*n); 
 	    return 0;
 	  }
       }
@@ -127,14 +127,14 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
   else if ((kopt=FindOpt("rect",opts))) {/* named argument: rect=value */
     GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
     if (m * n != 4) { 
-      Scierror(999,"%s: rect has wrong size (%d), 4 expected \n",fname,m*n); 
+      Scierror(999,"%s: rect has wrong size (%d), 4 expected\n",fname,m*n); 
       return 0;
     }
     *rect = stk(l);
     
     for(i=0;i<4;i++)
       if(finite((*rect)[i]) == 0){
-	Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected \n",fname,m*n); 
+	Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected\n",fname,m*n); 
 	return 0;
       }
   }
@@ -160,7 +160,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
 	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	    if ( m * n != 3 )
       { 
-	      Scierror(999,"%s: strf has wrong size (%d), 3 expected \n",fname,m*n); 
+	      Scierror(999,"%s: strf has wrong size (%d), 3 expected\n",fname,m*n); 
 	      return 0;
 	    }
 	  *strf = cstk(l); 
@@ -177,7 +177,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
     GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     if (m * n != 3)
     { 
-      Scierror(999,"%s: strf has wrong size (%d), 3 expected \n",fname,m*n); 
+      Scierror(999,"%s: strf has wrong size (%d), 3 expected\n",fname,m*n); 
       return 0;
     }
     *strf = cstk(l); 
@@ -326,7 +326,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
       if (VarType(pos)) {
         GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 	if (m * n != 2) { 
-	  Scierror(999,"%s: zminmax has wrong size (%d), 2 expected \n",fname,m*n); 
+	  Scierror(999,"%s: zminmax has wrong size (%d), 2 expected\n",fname,m*n); 
 	  return 0;
 	}
 	*zminmax = stk(l); 
@@ -342,7 +342,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
   else if ((kopt=FindOpt("zminmax",opts))) {/* named argument: rect=value */
     GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
     if (m * n != 2) { 
-      Scierror(999,"%s: zminmax has wrong size (%d), 2 expected \n",fname,m*n); 
+      Scierror(999,"%s: zminmax has wrong size (%d), 2 expected\n",fname,m*n); 
       return 0;
     }
     *zminmax = stk(l); 

@@ -34,7 +34,7 @@ static int c_local_interf = 9999;
 
 int C2F(Nogw_slicot)(void)
 {
-	message_scilab("%s interface not loaded.","slicot");
+	message_scilab(_("%s interface not loaded."),"slicot");
 	C2F(error)(&c_local_interf);
 	return 0;
 }
@@ -59,7 +59,7 @@ int C2F(callinterf) (int *k)
       if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
 	{
 	  if (sig_ok) signal(SIGINT, controlC_handler);
-	  error_scilab(999,"SIGSTP: aborting current computation");
+	  error_scilab(999,_("SIGSTP: aborting current computation"));
 	  count = 0;
 	  return 0;
 	}
@@ -81,17 +81,12 @@ int C2F(callinterf) (int *k)
 static void sci_sigint_addinter(int n)
 {
   int c;
-  message_scilab("Trying to stop scilab in the middle of an interface.");
-  message_scilab("Do you really want to abort computation (y or n ?) ");
+  message_scilab(_("Trying to stop scilab in the middle of an interface."));
+  message_scilab(_("Do you really want to abort computation (y or n ?) "));
   c = getchar();
   if ( c == 'y' ) errjump(n);
 }
 
-
-
-/*-------------------------------------
- * long jump to stop interface computation 
- *-------------------------------------*/
 
 void errjump(int n)
 {

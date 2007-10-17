@@ -1,36 +1,71 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2007 */
-/* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/** 
+* INRIA 2007 
+* Rewrite using gettext by Sylvestre Ledru <sylvestre.ledru@inria.fr>
+*/
+#include <string.h>
+#include <stdlib.h>
+#include "MALLOC.h"
 #include "InitializeLocalization.h"
 #include "localization.h"
-#include "loadsavelanguage.h"
-#include "loadhashtableslocalization.h"
-#include "tableslanguages.h"
 #include "setgetSCIpath.h"
-#include "MALLOC.h"
+#include "inisci-c.h"
+#include "machine.h"
+#include "scilabDefaults.h"
 /*-----------------------------------------------------------------------------------*/ 
+
+/**
+ * Export the variable LC_ALL to the system
+ *
+ * @param locale the locale (ex : fr_FR or en_US)
+ */
+static void putEnvLC_ALL(char *locale){
+
+	char *localeDeclared=NULL;	
+
+	localeDeclared=(char*)MALLOC(sizeof(char)*strlen(EXPORTENVLOCALE)+ strlen("=")+ strlen(locale)+1);
+	strcat(localeDeclared,EXPORTENVLOCALE);
+	strcat(localeDeclared,"=");
+	strcat(localeDeclared,locale);
+	/* It will put in the env something like LC_ALL=fr_FR */
+
+	if (putenv (localeDeclared)){
+		fprintf(stderr,"Failed to declare the system variable LC_ALL\n");
+	}
+	FREE(localeDeclared);
+}
+
+
 BOOL InitializeLocalization(void)
 {
-	BOOL bOK=FALSE;
+#ifdef HAVE_LIBINTL_H
 
-	if ( InitializeHashTableScilabErrors() && InitializeHashTableScilabMessages() && InitializeHashTableScilabMenus() )
-	{
-		LoadHashTablesLocalization(SCILABDEFAULTLANGUAGE);
-		loadlanguagepref();
+	char *pathLocales=getSCIpath();
+
+	char *ret=NULL;
+	ret=setlocale(LC_ALL,"");
+    if (ret==NULL){
+   		fprintf(stderr, "I18N: Doesn't support your locale.\n" );
+		return FALSE;
 	}
-	else
-	{
-		#ifdef _MSC_VER
-		MessageBox(NULL,"Problem(s) in Localization module.\nScilab doesn't work.","Error", MB_ICONSTOP | MB_OK); 
-		#else
-		printf("\nError : Problem(s) in Localization module.\nScilab doesn't work.\n");
-		#endif
-		exit(1);
+	putEnvLC_ALL(ret);
+
+	strcat(pathLocales, PATHLOCALIZATIONFILE);
+
+	if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL){
+		fprintf(stderr, "Error while binding the domain\n");
+		return FALSE;
 	}
 
-	bOK=TRUE;
-	return bOK;
+	if (textdomain(NAMELOCALIZATIONDOMAIN)==NULL){
+		fprintf(stderr, "Error while declaring the text domain\n");
+		return FALSE;
+	}
+
+	return TRUE;
+#else
+	fprintf(stderr, "setlocale didn't exist on the computer used to compile Scilab ! This is abnormal ! No localization will be working for this distribution of Scilab.\n");
+	return FALSE;
+#endif
 }
 /*-----------------------------------------------------------------------------------*/ 
 

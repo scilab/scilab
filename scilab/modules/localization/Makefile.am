@@ -1,38 +1,38 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006/2007
 ##########
 
-LOCALIZATION_C_SOURCES = src/c/hashtable_localization.c \
-src/c/localization.c \
-src/c/setgetlanguage.c \
-src/c/InitializeLocalization.c \
-src/c/loadsavelanguage.c \
-src/c/getentrieshashtable.c \
-src/c/loadhashtableslocalization.c \
-src/c/TerminateLocalization.c
+LOCALIZATION_C_SOURCES = \
+src/c/InitializeLocalization.c 
+
+#src/c/setgetlanguage.c \
+#src/c/loadsavelanguage.c \
+#src/c/TerminateLocalization.c
 
 if GUI
-LOCALIZATION_C_SOURCES += src/c/org_scilab_modules_localization_QueryString.c
+#LOCALIZATION_C_SOURCES += src/c/org_scilab_modules_localization_QueryString.c
 endif
 
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
-sci_gateway/c/sci_setlanguage.c \
-sci_gateway/c/sci_getlanguage.c \
-sci_gateway/c/sci_getlanguagealias.c \
-sci_gateway/c/sci_getlanguagestable.c \
-sci_gateway/c/sci_addtext.c \
-sci_gateway/c/sci_removetext.c \
-sci_gateway/c/sci_gettext.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c
+#sci_gateway/c/sci_setlanguage.c
 
-libscilocalization_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
+#sci_gateway/c/sci_setlanguage.c \
+#sci_gateway/c/sci_getlanguage.c \
+#sci_gateway/c/sci_getlanguagealias.c \
+#sci_gateway/c/sci_getlanguagestable.c \
+#sci_gateway/c/sci_addtext.c \
+#sci_gateway/c/sci_removetext.c \
+#sci_gateway/c/sci_gettext.c
 
-libscilocalization_la_LDFLAGS = $(JAVA_JNI_LIBS) $(XML_LIBS)
+libscilocalization_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
+
+libscilocalization_la_LDFLAGS = $(JAVA_JNI_LIBS) 
 
 pkglib_LTLIBRARIES = libscilocalization.la
 
-libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
 
 libscilocalization_la_LIBADD = 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la

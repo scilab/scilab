@@ -20,7 +20,7 @@ int F2C(ext14ca)(it,m,n,nel,mnel,icol,ar,ai)
 	      sciprint("(%d,%d) -> %f +i%f\n",i+1,icol[iof+j],
 		       ar[iof+j],ai[iof+j]);
 	  else 
-	      sciprint("(%d,%d) -> %f \n",i+1,icol[iof+j],
+	      sciprint("(%d,%d) -> %f\n",i+1,icol[iof+j],
 		       ar[iof+j]);
 	}
       iof += mnel[i];
@@ -78,7 +78,7 @@ int F2C(ext14cc)(it,m,n,nel,mnel,icol,ar,ai)
 	      sciprint("(%d,%d) -> %d +i%d\n",i+1,icol[iof+j],
 		       ar[iof+j],ai[iof+j]);
 	  else 
-	      sciprint("(%d,%d) -> %d \n",i+1,icol[iof+j],
+	      sciprint("(%d,%d) -> %d\n",i+1,icol[iof+j],
 		       ar[iof+j]);
 	}
       iof += mnel[i];

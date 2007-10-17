@@ -13,13 +13,13 @@ int C2F(sci_where) _PARAMS((char *fname,unsigned long fname_len))
 {
 	if (Rhs > 0)
 	{
-		error_scilab(39,"incorrect number of arguments.");
+		error_scilab(39,_("incorrect number of arguments."));
 		return 0;
 	}
 
 	if (Lhs != 2)
 	{
-		error_scilab(41,"incompatible LHS.");
+		error_scilab(41,_("incompatible LHS."));
 		return 0;
 	}
 

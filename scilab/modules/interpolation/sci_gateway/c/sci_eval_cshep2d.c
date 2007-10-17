@@ -35,7 +35,7 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
   if ( mx != my  ||  nx != ny ) 
     { 
-      Scierror(999,"%s: xp and yp must have the same dimension \n", fname);
+      Scierror(999,"%s: xp and yp must have the same dimension\n", fname);
       return 0;
     }
 

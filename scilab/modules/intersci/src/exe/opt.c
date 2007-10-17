@@ -17,7 +17,7 @@ void WriteOptArg(FILE *f,VARPTR var)
   char lsize[MAXNAM];
   char ldata[MAXNAM];
 
-  Fprintf(f,indent++,"if( Rhs <= %d) \n", 
+  Fprintf(f,indent++,"if( Rhs <= %d)\n", 
 	  var->stack_position-1 );
   Fprintf(f,indent,"{\n");
 
@@ -178,12 +178,12 @@ void OptMATRIX(FILE *f,VARPTR var)
     }
   ChangeForName2(var,"%s(opts[%d].l)",SGetForTypeStack(var), opt_posi);
   Fprintf(f,--indent,"}\n");
-  Fprintf(f,indent," else { \n"); 
+  Fprintf(f,indent," else {\n"); 
   /* should be optimized to exploit dimension infos stored in opts */
   Fprintf(f,indent++,"GetRhsVar(%d,\"%s\",&m%d,&n%d,&l%d);\n",var->stack_position,
   	  SGetForTypeAbrev(var),var->stack_position,var->stack_position,var->stack_position);
   (*(CHECKTAB[var->type].fonc))(f,var,0);
-  Fprintf(f,--indent,"} \n");
+  Fprintf(f,--indent,"}\n");
 }
 
 void OptOpointer(FILE *f,VARPTR var)

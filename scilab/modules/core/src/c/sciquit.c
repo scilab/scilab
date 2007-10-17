@@ -13,7 +13,6 @@
 #include "../../../graphics/includes/TerminateGraphics.h"
 #include "../../../tclsci/includes/TerminateTclTk.h"
 #include "../../../gui/includes/TerminateGui.h"
-#include "../../../localization/includes/TerminateLocalization.h"
 #include "../../../jvm/includes/TerminateJVM.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/includes/TerminateWindows_tools.h"
@@ -28,8 +27,6 @@ int ExitScilab(void)
 	TerminateGUI();
   
 	TerminateTclTk();
-
-	TerminateLocalization();
 
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
@@ -49,16 +46,15 @@ int ExitScilab(void)
 /*-----------------------------------------------------------------------------------*/ 
 void C2F(sciquit)(void)
 {
-	int status = 0;
 	ExitScilab();
-  #ifdef sun 
-		#ifndef SYSV
+#ifdef sun 
+#ifndef SYSV
   	
-    	char *mode, **out, *in;
-    	ieee_flags("clearall","exeption","all", &out);
+	char **out;
+	ieee_flags("clearall","exeption","all", &out);
   	
-		#endif 
-  #endif 
-	exit(0);
+#endif 
+#endif 
+		exit(0);
 }
 /*-----------------------------------------------------------------------------------*/

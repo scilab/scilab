@@ -93,7 +93,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				 error_scilab(999,"first parameter must be 'local' , 'get' , 'global' or 'sorted'.");
+				 error_scilab(999,_("first parameter must be 'local' , 'get' , 'global' or 'sorted'."));
 				 return 0;
 			 }
 		 }
@@ -102,7 +102,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 error_scilab(999,"first parameter must be 'local' , 'get' , 'global' or 'sorted'.");
+			 error_scilab(999,_("first parameter must be 'local' , 'get' , 'global' or 'sorted'."));
 			 return 0;
 		 }
 	 }
@@ -125,7 +125,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				  FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				  FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				  error_scilab(999,"second parameter must be 'sorted'.");
+				  error_scilab(999,_("second parameter must be 'sorted'."));
 				  return 0;
 			  }
 			  else
@@ -162,7 +162,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 					FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 					FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-					error_scilab(999,"first parameter must be 'local' , 'get' or 'global'.");
+					error_scilab(999,_("first parameter must be 'local' , 'get' or 'global'."));
 					return 0;
 				 }
 			  }
@@ -172,7 +172,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 error_scilab(999,"first parameter must be 'local' , 'get' , 'global' and second parameter must be 'sorted'.");
+			 error_scilab(999,_("first parameter must be 'local' , 'get' , 'global' and second parameter must be 'sorted'."));
 			 return 0;
 		 }
 	 }
@@ -223,8 +223,8 @@ static void DispVariables(struct VariableStruct* Vstruct,char *Message,int lenSt
 	 }
 
 	 sciprint("\n\n");
-	 message_scilab(" using %10d elements out of  %10d.",memused,memtotal);
-	 message_scilab(" and   %10d variables out of %10d.",varused,vartotal);
+	 message_scilab(_(" using %10d elements out of  %10d."),memused,memtotal);
+	 message_scilab(_(" and   %10d variables out of %10d."),varused,vartotal);
 
 }
 /*-----------------------------------------------------------------------------------*/
@@ -300,14 +300,14 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 
 	 if (Sorted) SortVarsStructByStrings(LVstruct,LlenStructArray);
 
-	 DispVariables(LVstruct,"your variables are :",LlenStructArray,memused,memtotal,varused,vartotal);
+	 DispVariables(LVstruct,_("your variables are :"),LlenStructArray,memused,memtotal,varused,vartotal);
 
 	 C2F(getgstackinfo)(&gmemtotal,&gmemused);
 	 C2F(getgvariablesinfo)(&gvartotal,&gvarused);
 
 	 if (Sorted) SortVarsStructByStrings(GVstruct,GlenStructArray);
 
-	 DispVariables(GVstruct,"your global variables are :",GlenStructArray,gmemused,gmemtotal,gvarused,gvartotal);
+	 DispVariables(GVstruct,_("your global variables are :"),GlenStructArray,gmemused,gmemtotal,gvarused,gvartotal);
 
 	 LhsVar(1) = 0;
 	 C2F(putlhsvar)();

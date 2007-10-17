@@ -78,14 +78,14 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,W
   wavstartread(&informat,Wi,flag);
   if ( ft->ierr > 0 ) 
     {
-      sciprint("Error while reading \n");
+      sciprint("Error while reading\n");
       *ierr=1;
       return 0;
     }
   checkformat(&informat);
   if ( ft->ierr > 0 ) 
     {
-      sciprint("Error while reading \n");
+      sciprint("Error while reading\n");
       *ierr=1;
       return 0;
     }
@@ -108,17 +108,17 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,W
       olen = wavread(&informat,buf, (long) BUFSIZ);
       if ( ft->ierr > 0 ) 
 	{
-	  sciprint("Error while reading \n");
+	  sciprint("Error while reading\n");
 	  *ierr=1;
 	  return 0;
 	}
       *size_res += olen ;
       if (flag == 1 &&  *size_res > size_max ) 
 	{
-	  sciprint(" Sorry wav file too big \n");
+	  sciprint(" Sorry wav file too big\n");
 	  return 0;
 	}
-      /** sciprint("2 premier nombres du bloc \n"); **/
+      /** sciprint("2 premier nombres du bloc\n"); **/
       if (flag == 1) 
 	for ( i = 0 ; i < olen ; i++ ) 
 	  {

@@ -112,7 +112,7 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	      /* scale signed up to long's range */
 	      *buf++ = datum =  LEFT(datum, 16);
 	      /** if ( count < 5 ) {
-		sciprint("datum %d %d %d \n",*(buf-1),sizeof(long),sizeof(int));
+		sciprint("datum %d %d %d\n",*(buf-1),sizeof(long),sizeof(int));
 		count++;
 		}
 	      **/

@@ -444,7 +444,7 @@ void GetPOINTER(FILE *f,VARPTR var,int flag)
     }
   else
     {
-      fprintf(stderr,"Wrong type opointer inside a list \n");
+      fprintf(stderr,"Wrong type opointer inside a list\n");
       exit(1);
     }
   AddDeclare1(DEC_INT,"lr%s",str1);
@@ -454,44 +454,44 @@ void GetPOINTER(FILE *f,VARPTR var,int flag)
 
 void GetANY(FILE *f,VARPTR var,int flag)
 {
-  fprintf(stderr,"Wrong type in Get function \n");
+  fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 void GetLIST(FILE *f,VARPTR var,int flag)
 {
-  fprintf(stderr,"Wrong type in Get function \n");
+  fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 void GetTLIST(FILE *f,VARPTR var,int flag)
 {
-  fprintf(stderr,"Wrong type in Get function \n");
+  fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 void GetSEQUENCE(FILE *f,VARPTR var,int flag)
 {  
-  fprintf(stderr,"Wrong type in Get function \n");
+  fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 void GetEMPTY(FILE *f,VARPTR var,int flag)
 {  
-  fprintf(stderr,"Wrong type in Get function \n");
+  fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 void GetWORK(FILE *f,VARPTR var,int flag)
 {  
-  fprintf(stderr,"Wrong type in Get function \n");
+  fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 
 void GetDIMFOREXT(FILE *f,VARPTR var,int flag)
 {  
-  fprintf(stderr,"Wrong type in Get function \n");
+  fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 

@@ -6,10 +6,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "localization.h"
-#include "hashtable_localization.h"
-#include "QueryStringError.h"
-#include "QueryStringMessage.h"
-#include "QueryStringMenu.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/ 
 static struct hashtable *Table_Scilab_Errors=NULL;

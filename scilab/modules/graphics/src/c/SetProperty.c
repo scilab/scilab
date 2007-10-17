@@ -797,7 +797,7 @@ sciInitLineWidth (sciPointObj * pobj, int linewidth)
 	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object has no  line width \n");
+	  sciprint ("This object has no  line width\n");
 	  return -1;
 	  break;
 	}
@@ -891,7 +891,7 @@ sciInitLineStyle (sciPointObj * pobj, int linestyle)
 	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object has no  line width \n");
+	  sciprint ("This object has no  line width\n");
 	  return -1;
 	  break;
 	}
@@ -956,7 +956,7 @@ int sciInitIsMark( sciPointObj * pobj, BOOL ismark )
     case SCI_UIMENU:
     default:
       /* pas de context graphics */
-      sciprint ("This object has no  ismark \n");
+      sciprint ("This object has no  ismark\n");
       return -1;
       break;
     }
@@ -1208,7 +1208,7 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object has no mark \n");
+	  sciprint ("This object has no mark\n");
 	  return -1;
 	  break;
 	}
@@ -1299,7 +1299,7 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
 	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object has no mark \n");
+	  sciprint ("This object has no mark\n");
 	  return -1;
 	  break;
 	}
@@ -1385,7 +1385,7 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
 	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object has no mark \n");
+	  sciprint ("This object has no mark\n");
 	  return -1;
 	  break;
 	}
@@ -1468,7 +1468,7 @@ int sciInitIsLine( sciPointObj * pobj, BOOL isline )
     case SCI_UIMENU:
     default:
       /* pas de context graphics */
-      sciprint ("This object has no isline \n");
+      sciprint ("This object has no isline\n");
       return -1;
       break;
     }
@@ -1547,7 +1547,7 @@ int sciInitFillStyle( sciPointObj * pobj, int fillstyle )
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	case SCI_UIMENU:
 	default:
-	  sciprint ("This object has no  line style \n");
+	  sciprint ("This object has no  line style\n");
 	  return -1;
 	  break;
 	}
@@ -1585,7 +1585,7 @@ int sciInitFontSize( sciPointObj * pobj, double fontSize )
     }
     else
     {
-      sciprint ("This object has no  Font size \n");
+      sciprint ("This object has no  Font size\n");
       return -1;
     }
   }
@@ -3297,7 +3297,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       n1=pPOLYLINE_FEATURE (pthis)->n1;
       if ( (*numcol != 3) && (*numcol != 2) && (*numcol != 0) )
 	{
-	  sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
+	  sciprint("The number of columns must be 2 (3 if three-dimensional axes)\n");
 	  return -1;
 	}
       if (*numrow != n1) /* SS 30/1/02 */
@@ -3443,7 +3443,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_SEGS:
       if (pSEGS_FEATURE (pthis)->ptype <= 0) {
 	if ((*numcol != 3)&&(*numcol != 2)) {
-	  sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
+	  sciprint("The number of columns must be 2 (3 if three-dimensional axes)\n");
 	  return -1;
 	}
 	n1=pSEGS_FEATURE (pthis)->Nbr1;
@@ -3837,7 +3837,7 @@ int sciInitIsFilled( sciPointObj * pobj, BOOL isfilled )
   case SCI_TITLE:
   case SCI_UIMENU:
   default:
-    sciprint ("This object has no isfilled \n");
+    sciprint ("This object has no isfilled\n");
     return -1;
     break;
   }
@@ -3885,7 +3885,7 @@ int sciInitBoxType( sciPointObj * pobj, EAxesBoxType type )
       return 0;
       break;
     default:
-      sciprint ("This object has no box type \n") ;
+      sciprint ("This object has no box type\n") ;
       return -1 ;
       break;
   }
@@ -3947,7 +3947,7 @@ int sciInitIsBoxed( sciPointObj * pobj, BOOL isboxed )
     case SCI_TITLE:
     case SCI_UIMENU:
     default:
-      sciprint ("This object has no isboxed \n");
+      sciprint ("This object has no isboxed\n");
       return -1;
       break;
     }

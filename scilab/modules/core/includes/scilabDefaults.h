@@ -69,5 +69,13 @@
 //#define DefaultScilabQuit "SCI/etc/scilab.quit"
 //static char DefaultSCIenv[]="../..";
 
+/* What is the variable to export for the language */
+#define EXPORTENVLOCALE "LC_ALL"
+
+/* Name of the main localization domain */
+#define NAMELOCALIZATIONDOMAIN "scilab"
+
+/* Path the locale files */
+#define PATHLOCALIZATIONFILE "/locale/"
 
 #endif /*__SCILABDEFAULT_H__ */

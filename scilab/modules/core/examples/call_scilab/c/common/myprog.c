@@ -134,9 +134,9 @@ int main(void)
 #endif 
 {
 #ifdef WIN32
-	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
+	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab\n");
 #else
-    if ( StartScilab(SCI,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
+    if ( StartScilab(SCI,NULL,NULL) == FALSE ) printf("Error : StartScilab\n");
  #endif
 
 	printf("\nexample 1\n");  
@@ -148,7 +148,7 @@ int main(void)
 	troisieme_exemple() ;
 	printf("\n\n");  
   
-	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
+	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab\n");
 	return 0;
 }
 /*------------------------------------------------------------*/

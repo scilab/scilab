@@ -24,7 +24,7 @@ int sci_move( char * fname, unsigned long fname_len )
     GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
     if (strcmp(cstk(l3),"alone") == 0) { opt = TRUE; }
     else {
-      Scierror(999,"%s: invalid option \n",fname); 
+      Scierror(999,"%s: invalid option\n",fname); 
       return 0;
     }
   }
@@ -35,7 +35,7 @@ int sci_move( char * fname, unsigned long fname_len )
   n=m2*n2;
   if (n != 2&&n !=3)
   { 
-    Scierror(999,"%s: third argument is a vector,[x y] or [x,y,z] \n",fname);
+    Scierror(999,"%s: third argument is a vector,[x y] or [x,y,z]\n",fname);
     return 0;
   }
   Objmove(&hdl,stk(l2),n,opt);

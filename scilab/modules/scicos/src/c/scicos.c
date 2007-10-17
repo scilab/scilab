@@ -1130,7 +1130,7 @@ int C2F(scicos)(
 	}
         if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
         {
-	  sciprint("****lsodar from: %f to %f hot= %d  \n", *told,t,hot);
+	  sciprint("****lsodar from: %f to %f hot= %d \n", *told,t,hot);
 	}
 
 	if(hmax==0){
@@ -1619,7 +1619,7 @@ int C2F(scicos)(
 	phase=2;
 	if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
         {
-	  sciprint("****daskr from: %f to %f hot= %d  \n", *told,t,hot);
+	  sciprint("****daskr from: %f to %f hot= %d \n", *told,t,hot);
 	}
 
 	/*--discrete zero crossings----dzero--------------------*/
@@ -2570,11 +2570,11 @@ callf(t,xtd,xt,residual,g,flag)
     {
      sciprint("block %d is called ",kf);
      sciprint("with flag %d ",*flag);
-     sciprint("at time %f \n",*t);
+     sciprint("at time %f\n",*t);
     }
     if(debug_block>-1)
     {
-      if (cosd != 3) sciprint("Entering the block \n");
+      if (cosd != 3) sciprint("Entering the block\n");
       call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
       if (*flag<0) return;  /* error in debug block */
     }
@@ -2628,7 +2628,7 @@ callf(t,xtd,xt,residual,g,flag)
     if ( cosd > 1){
       if(debug_block>-1){
 	if (*flag<0) return;  /* error in block */
-	if (cosd != 3) sciprint("Leaving block %d \n",kf);
+	if (cosd != 3) sciprint("Leaving block %d\n",kf);
 	call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
       }
     }
@@ -2925,7 +2925,7 @@ callf(t,xtd,xt,residual,g,flag)
   if ( cosd > 1){
     if(debug_block>-1){
       if (*flag<0) return;  /* error in block */
-      if (cosd != 3) sciprint("Leaving block %d \n",kf);
+      if (cosd != 3) sciprint("Leaving block %d\n",kf);
       call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
     }
   }
@@ -2975,7 +2975,7 @@ void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
       (*loc4)(&Blocks[kf-1],*flag);
     }
   }
-  if (*flag<0) sciprint("Error in the Debug block \n");
+  if (*flag<0) sciprint("Error in the Debug block\n");
 }
 
 

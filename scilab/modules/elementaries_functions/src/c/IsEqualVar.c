@@ -186,7 +186,7 @@ int IsEqualVar(double *d1, int n1, double *d2, int n2)
   int *id2 = (int *) d2;
   int res;
 
-  /*DEBUG_BASE("IsEqualVar %d %d \n",id1[0],id2[0]);*/
+  /*DEBUG_BASE("IsEqualVar %d %d\n",id1[0],id2[0]);*/
 
   /* Check the type */
   if ((id1[0] != id2[0])) return 0;
@@ -824,7 +824,7 @@ int IsEqualDoubleArrayBinary(int n, double *d1, double *d2)
   long long *l1= (long long *)d1;
   long long *l2= (long long *)d2;
 
-  /*DEBUG_BASE("binary comparison of %d doubles \n",n);*/
+  /*DEBUG_BASE("binary comparison of %d doubles\n",n);*/
 
   if (n == 0) return 1;
   for (i = 0; i<n; i++){

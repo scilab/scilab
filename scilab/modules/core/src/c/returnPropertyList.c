@@ -19,7 +19,7 @@ returnedList * createReturnedList( int nbElements, char * elementName[] )
   newList = MALLOC( sizeof(returnedList) ) ;
   if ( newList == NULL )
   {
-    sciprint("Error returning tlist, memory full.\n") ;
+    sciprint(_("Error returning tlist, memory full.\n")) ;
     return NULL ;
   }
 
@@ -41,7 +41,7 @@ int destroyReturnedList( returnedList * list )
   /* safe test to know if the list has been correctly filled */
   if ( list->curElement != list->nbElements )
   {
-    sciprint( "tList not completely filled.\n" ) ;
+    sciprint( _("tlist not completely filled.\n") ) ;
     FREE( list ) ;
     return 1 ;
   }
@@ -56,7 +56,7 @@ int addRowVectorToReturnedList( returnedList * list, const double vector[], int 
   /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
-    sciprint("list full.\n") ;
+    sciprint(_("list full.\n")) ;
     return 1 ;
   }
 
@@ -73,7 +73,7 @@ int addColVectorToReturnedList( returnedList * list, const double vector[], int 
   /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
-    sciprint("list full.\n") ;
+    sciprint(_("list full.\n")) ;
     return 1 ;
   }
 
@@ -89,7 +89,7 @@ int addMatrixToReturnedList( returnedList * list, const double matrix[], int nbR
   /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
-    sciprint("list full.\n") ;
+    sciprint(_("list full.\n")) ;
     return 1 ;
   }
 
@@ -106,7 +106,7 @@ int addStringColVectorToReturnedList( returnedList * list, char * vector[], int 
   /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
-    sciprint("list full.\n") ;
+    sciprint(_("list full.\n")) ;
     return 1 ;
   }
 

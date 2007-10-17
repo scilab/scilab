@@ -196,7 +196,7 @@ void OutLISTarg(FILE *f,VARPTR var,VARPTR var1,int insidelist,int nel)
 	      str1,var1->stack_position,var1->list_el);
       break;
     default:
-      printf("OutLIST : List output : unfinished \n");
+      printf("OutLIST : List output : unfinished\n");
       break;
     }
 }

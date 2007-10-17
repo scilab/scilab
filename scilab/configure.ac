@@ -1070,6 +1070,23 @@ typedef int BOOL ;
 # endif
 #endif
 
+#ifdef HAVE_LIBINTL_H
+/* Have been able to find the libintl.h file on the system */
+#include <libintl.h>
+
+#define _(String) gettext (String)
+#define _t(String1,String2,n) ngettext (String1,String2,n)
+
+#else
+/* Restore the normal behaviour ... all the string will be in english */
+
+#define _(String) ((const char *) (String))
+#define gettext(String) ((const char *) (String))
+#define _t(String1,String2,n) ngettext (String1,String2,n)
+#define ngettext(String1, String2, n) ((n) == 1 ? (const char *) (String1) : (const char *) (String2))
+
+#endif
+
 
 #include "PARAMS.h"
 
@@ -1331,7 +1348,8 @@ echo ""
 
 echo ""
 echo "Options used to compile and link:"
-echo "  PREFIX           = $prefix"
+echo "  prefix           = $prefix"
+echo "  localedir        = $localedir"
 echo "  VERSION          = $PACKAGE_VERSION"
 echo "  CC               = $CC"
 echo "  CFLAGS           = $CFLAGS"

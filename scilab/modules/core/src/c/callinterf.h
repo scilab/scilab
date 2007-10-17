@@ -73,9 +73,16 @@
 /* 51 */						#include "../../../fftw/includes/gw_fftw.h"
 /* 52 */						#include "../../../jvm/includes/gw_jvm.h"
 /* 53 */						#include "../../../shell/includes/gw_shell.h"
+
 /* 54 */						#include "../../../completion/includes/gw_completion.h"
 /* 55 */						#include "../../../history_manager/includes/gw_history_manager.h"
+/* 55 *///                        #include "../../../mpi/includes/gw_mpi.h"
 
+
+/*-------------------------------------
+ * long jump to stop interface computation 
+ * @param n
+ *-------------------------------------*/
 
 void errjump (int n);
 
@@ -143,12 +150,12 @@ static OpTab Interfaces[] = {
 	/* 53  */ {C2F(gw_shell)},
 	/* 54  */ {C2F(gw_completion)},
 	/* 55  */ {C2F(gw_history_manager)},
+	//	/* 55  */ {C2F(gw_mpi)}
 };
 
 
 /**
  * call the apropriate interface according to the value of k 
- * iflagint is no more used here ....
  * @param k the number of the interface
  * @return 
  */

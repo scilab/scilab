@@ -15,16 +15,22 @@
 #endif
 #include "../../../gui/includes/InitializeGUI.h"
 #include "scilabmode.h"
+#include "SetScilabEnvironment.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(initscilab)(void)
 {
+
+	SetScilabEnvironment();
+
+	InitializeLocalization();
+
 	#ifdef _MSC_VER
 	InitializeWindows_tools();
 	#endif
 
 	InitializeCore();
 
-        InitializeShell();
+	InitializeShell();
 
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
@@ -32,21 +38,19 @@ int C2F(initscilab)(void)
 		InitializeJVM();
 		InitializeGUI();
 		
-                /* create needed data structure if not already created */
+		/* create needed data structure if not already created */
 		loadGraphicModule() ;
                 
-                /* Standard mode -> init Java Console */
-                if ( getScilabMode() == SCILAB_STD ) 
-                  {
-                    /* Initialize console: lines... */
-                   InitializeConsole();
-                  }
+		/* Standard mode -> init Java Console */
+		if ( getScilabMode() == SCILAB_STD ) 
+			{
+				/* Initialize console: lines... */
+				InitializeConsole();
+			}
 	}
 
 	InitializeTclTk();
 
-	InitializeLocalization();
-	
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

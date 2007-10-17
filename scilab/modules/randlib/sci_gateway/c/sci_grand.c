@@ -423,7 +423,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    current_gen = FSULTRA;
 	  else
 	    {
-	      Scierror(999,"unknown generator (choose among : mt kiss clcg4 clcg2 urand fsultra) \n");
+	      Scierror(999,"unknown generator (choose among : mt kiss clcg4 clcg2 urand fsultra)\n");
 	      return 0;
 	    }
 	  LhsVar(1) = 2;
@@ -483,7 +483,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < minlog || *stk(lb) < minlog)
 	{
-	  Scierror(999,"Rand(...,'bet',..): A or B < %f \n",minlog);
+	  Scierror(999,"Rand(...,'bet',..): A or B < %f\n",minlog);
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -505,7 +505,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) <= 0.0 || *stk(lb) <= 0.0)
 	{
-	  Scierror(999,"Degrees of freedom nonpositive \n");
+	  Scierror(999,"Degrees of freedom nonpositive\n");
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -521,7 +521,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       int l_i,nn,ncat;
       double ptot;
       if ( suite != 3 || ResL*ResC != 1)
-	{ Scierror(999,"First argument for 'mul' option must be the number of random deviate \n");
+	{ Scierror(999,"First argument for 'mul' option must be the number of random deviate\n");
 	return 0;
 	}
       nn= *istk(l1);
@@ -539,12 +539,12 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+2,MATRIX_OF_INTEGER_DATATYPE,&ncat,&nn,&lr);
       if ( *istk(la) < 0 ) 
 	{
-	  Scierror(999,"N < 0 \n");
+	  Scierror(999,"N < 0\n");
 	  return 0;
 	}
       if ( ncat <= 1) 
 	{
-	  Scierror(999,"Ncat <= 1 \n");
+	  Scierror(999,"Ncat <= 1\n");
 	  return 0;
 	}
       ptot = 0.0;
@@ -552,19 +552,19 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{
 	  if ( *stk(lb+l_i) < 0 ) 
 	    {
-	      Scierror(999,"P(%d) < 0 \n",l_i+1);
+	      Scierror(999,"P(%d) < 0\n",l_i+1);
 	      return 0;
 	    }
 	  if ( *stk(lb+l_i) > 1 ) 
 	    {
-	      Scierror(999,"P(%d) > 1 \n",l_i+1);
+	      Scierror(999,"P(%d) > 1\n",l_i+1);
 	      return 0;
 	    }
 	  ptot += *stk(lb+l_i);
 	}
       if ( ptot > 0.99999) 
 	{
-	  Scierror(999,"Sum of P(i) > 1 \n");
+	  Scierror(999,"Sum of P(i) > 1\n");
 	  return 0;
 	}
       for ( l_i=0 ; l_i < nn ; l_i++) 
@@ -590,7 +590,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( (*stk(la)) <= 0.0 ||  (*stk(lb)) <= 0.0 )
 	{
-	  Scierror(999,"grand(..'gam',A,R) : A <= 0.0 or R <= 0.0 \n"); return 0;
+	  Scierror(999,"grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"); return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -615,7 +615,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(lb) < 0 ) 
 	{
-	  Scierror(999,"SD < 0.0 \n");return 0;}
+	  Scierror(999,"SD < 0.0\n");return 0;}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
 	  *stk(lr+i)= C2F(gennor)(stk(la),stk(lb));
@@ -637,7 +637,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       low = *stk(la) ; high =  *stk(lb);
       if ( low > high ) 
 	{
-	  Scierror(999,"Low > High \n");
+	  Scierror(999,"Low > High\n");
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -687,7 +687,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       int nn;
       if ( suite != 3 || ResL*ResC != 1)
 	{ 
-	  Scierror(999,"First argument for 'prm' option must be the number of random simulation \n");
+	  Scierror(999,"First argument for 'prm' option must be the number of random simulation\n");
 	  return 0;
 	}
       nn= *istk(l1);
@@ -720,12 +720,12 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(lb) < 0.0 || *stk(lb) > 1.0 ) 
 	{
-	  Scierror(999,"P is not in [0,1] \n");
+	  Scierror(999,"P is not in [0,1]\n");
 	  return 0;
 	}
       if ( *istk(la) < 0 ) 
 	{
-	  Scierror(999,"N < 0 \n");
+	  Scierror(999,"N < 0\n");
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -747,12 +747,12 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(lb) < 0.0 || *stk(lb) > 1.0 ) 
 	{
-	  Scierror(999,"P is not in [0,1] \n");
+	  Scierror(999,"P is not in [0,1]\n");
 	  return 0;
 	}
       if ( *istk(la) < 0 ) 
 	{
-	  Scierror(999,"N < 0 \n");
+	  Scierror(999,"N < 0\n");
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -768,7 +768,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
       int nn,un=1,work,mp,parm,ierr;
       if ( suite != 3 || ResL*ResC != 1)
-	{ Scierror(999,"First argument for 'mn' option must be the number of random simulation \n");return 0;
+	{ Scierror(999,"First argument for 'mn' option must be the number of random simulation\n");return 0;
 	}
       nn= *istk(l1);
       if ( Rhs != suite + 1) 
@@ -805,7 +805,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
       int nn,n1p1,lr1,j,icur,mm,jj;
       if ( suite != 3 || ResL*ResC != 1)
-	{ Scierror(999,"First argument for 'markov' option must be the number of random simulation \n");return 0;
+	{ Scierror(999,"First argument for 'markov' option must be the number of random simulation\n");return 0;
 	}
       nn= *istk(l1);
       if ( Rhs != suite +1 )
@@ -837,19 +837,19 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	    {
 	      if ( *stk(la+i+m1*j) < 0 ) 
 		{
-		  Scierror(999,"P(%d,%d) < 0 \n",i+1,j+1);
+		  Scierror(999,"P(%d,%d) < 0\n",i+1,j+1);
 		  return 0;
 		}
 	      if ( *stk(la+i+m1*j) > 1 ) 
 		{
-		  Scierror(999,"P(%d,%d) > 1 \n",i+1,j+1);
+		  Scierror(999,"P(%d,%d) > 1\n",i+1,j+1);
 		  return 0;
 		}
 	      ptot += *stk(la+i+m1*j) ;
 	    }
 	  if ( fabs(ptot-1.0) > 1e-8 ) 
 	    {
-	      Scierror(999,"Sum of P(%d,1:%d)=%f ~= 1 \n",i+1,n1,ptot);
+	      Scierror(999,"Sum of P(%d,1:%d)=%f ~= 1\n",i+1,n1,ptot);
 	      return 0;
 	    }
 	}
@@ -911,7 +911,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < 1.0 || *stk(lb) < 0.0 )
 	{
-	  Scierror(999,"DF < 1 or XNONC < 0 \n");
+	  Scierror(999,"DF < 1 or XNONC < 0\n");
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -937,7 +937,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+3,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < 1.0 || *stk(lb) < 0.0 || *stk(lc) < 0.0 ) 
 	{
-	  Scierror(999,"DF < 1.0 or DF <= 0.0 or Xnonc < 0.0 \n");
+	  Scierror(999,"DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n");
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -960,7 +960,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if  ( *stk(la) <= 0.0)
 	{
-	  Scierror(999,"Rand: DF <= 0 \n");return 0;
+	  Scierror(999,"Rand: DF <= 0\n");return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -980,7 +980,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < 0.0 )
 	{
-	  Scierror(999,"Av < 0 \n");
+	  Scierror(999,"Av < 0\n");
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -1022,7 +1022,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       CreateVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
       if ( *stk(la) < 0.0 ) 
 	{
-	  Scierror(999,"Av < 0.0 \n");
+	  Scierror(999,"Av < 0.0\n");
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 

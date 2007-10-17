@@ -18,8 +18,6 @@ extern void sci_usr1_signal(int n);
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
-static void strip_blank(char *source);
-/*-----------------------------------------------------------------------------------*/
 static int no_startup_flag=0;
 /*-----------------------------------------------------------------------------------*/
 #define BSIZE 128
@@ -35,7 +33,8 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
 	C2F(settmpdir)();
 
 	/* signals */
-
+#ifdef _MSC_VER
+  /* Don't want catch signal under Linux ... */
 #ifdef ENABLESIG
 #ifndef DEBUG
 	signal(SIGINT,sci_clear_and_exit);
@@ -60,6 +59,7 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
 	signal(SIGTERM,sci_clear_and_exit);
 	signal(SIGBREAK,sci_clear_and_exit);
 	signal(SIGABRT,sci_clear_and_exit);
+#endif
 #endif
 #endif
 
@@ -154,20 +154,6 @@ void Set_no_startup_flag(int start)
 int Get_no_startup_flag(void)
 {
 	return no_startup_flag;
-}
-/*-----------------------------------------------------------------------------------*/
-static void strip_blank(char *source)
-{
-  char *p;
-  p = source;
-  /* look for end of string */
-  while(*p != '\0') p++;
-  while(p != source)
-  {
-    p--;
-    if(*p != ' ') break;
-    *p = '\0';
-  }
 }
 /*-----------------------------------------------------------------------------------*/
 

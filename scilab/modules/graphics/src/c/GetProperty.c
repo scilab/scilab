@@ -2606,7 +2606,7 @@ sciGetZooming (sciPointObj * pobj)
 	case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\nThis object cannot be zoomed. \n");
+      sciprint ("\nThis object cannot be zoomed.\n");
       return FALSE;
       break;
     }
@@ -4168,7 +4168,7 @@ EAxesBoxType sciGetBoxType( sciPointObj * pobj )
     case SCI_SUBWIN:
       return pSUBWIN_FEATURE(pobj)->axes.rect ;
     default:
-      sciprint ("This object has no box type \n") ;
+      sciprint ("This object has no box type\n") ;
       return (EAxesBoxType)0 ;
   }
   return (EAxesBoxType)0;
@@ -4210,7 +4210,7 @@ sciGetIsBoxed (sciPointObj * pobj)
     case SCI_TITLE:
 	case SCI_UIMENU:
     default:
-      sciprint ("This object has no isboxed \n");
+      sciprint ("This object has no isboxed\n");
       return 0;
       break;
     }

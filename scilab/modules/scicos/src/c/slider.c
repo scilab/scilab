@@ -132,7 +132,7 @@ void slider(integer *flag, integer *nevprt, double *t, double *xd,
   static double t3d = 4.0 ; /* 3d look thickness */
   int curcolor;
   if ( idb == 1 ) 
-    sciprint("Slider t=%10.3f, flag=%d \n",*t,*flag);
+    sciprint("Slider t=%10.3f, flag=%d\n",*t,*flag);
 
   switch ( *flag ) {
   case 2 : 

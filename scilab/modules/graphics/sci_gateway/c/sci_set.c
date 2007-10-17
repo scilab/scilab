@@ -203,14 +203,14 @@ int sci_set(char *fname, unsigned long fname_len)
 			t2=sciType(cstk(l2),pobj);
 			if (t2<0) 
 			{
-				Scierror(999,"%s: unknown property name '%s' \n",fname,cstk(l2));
+				Scierror(999,"%s: unknown property name '%s'\n",fname,cstk(l2));
 				return 0;
 			} 
 			if ( valueType != t2 ) if(strcmp(cstk(l2),"current_figure") != 0 && VarType(2) !=1 )
 			{  
 				/* F.Leray : special unique case here set("current_figure", HANDLE);*/
 				/* HANDLE type is 9 */
-				Scierror(999,"%s: uncompatible values for property type  '%s' \n",fname,cstk(l2));
+				Scierror(999,"%s: uncompatible values for property type  '%s'\n",fname,cstk(l2));
 				return 0;
 			}
 

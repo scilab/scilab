@@ -174,7 +174,7 @@ static int getversion_one_rhs(void)
 {
 	if (Lhs == 2)
 	{
-		error_scilab(78,"%s : wrong number of lhs arguments","getversion");
+		error_scilab(78,_("%s : wrong number of lhs arguments"),"getversion");
 		return 0;
 	}
 
@@ -214,13 +214,13 @@ static int getversion_one_rhs(void)
 			}
 			else
 			{
-				error_scilab(999,"Error : file VERSION in %s.",Param);
+				error_scilab(999,_("Error : file VERSION in %s."),Param);
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,"Error : incorrect module name %s.",Param);
+			error_scilab(999,_("Error : incorrect module name %s."),Param);
 			return 0;
 		}
 		m1=1;
@@ -232,7 +232,7 @@ static int getversion_one_rhs(void)
 	}
 	else
 	{
-		error_scilab(999,"invalid argument.");
+		error_scilab(999,_("Invalid argument."));
 		return 0;
 	}
 	return 0;
@@ -242,7 +242,7 @@ static int getversion_two_rhs(void)
 {
 	if (Lhs == 2)
 	{
-		error_scilab(78,"%s : wrong number of lhs arguments","getversion");
+		error_scilab(78,_("%s : wrong number of lhs arguments"),"getversion");
 		return 0;
 	}
 
@@ -302,25 +302,25 @@ static int getversion_two_rhs(void)
 				}
 				else
 				{
-					error_scilab(999,"Error : file VERSION in %s.",ParamRhs1);
+					error_scilab(999,_("Error : file VERSION in %s."),ParamRhs1);
 					return 0;
 				}
 			}
 			else
 			{
-				error_scilab(999,"Error : incorrect module name %s.",ParamRhs1);
+				error_scilab(999,_("Error : incorrect module name %s."),ParamRhs1);
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,"incorrect second parameter.");
+			error_scilab(999,_("Incorrect second parameter."));
 			return 0;
 		}
 	}
 	else
 	{
-		error_scilab(999,"invalid argument(s).");
+		error_scilab(999,_("Invalid argument(s)."));
 		return 0;
 	}
 }

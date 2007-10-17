@@ -25,11 +25,11 @@
 
 static void Underscores __PARAMS((int isfor,char *ename,char *ename1));
 static int SearchFandS  __PARAMS( ( char *,int ));
+static void ShowDynLinks(void);
 int LinkStatus __PARAMS((void)) ;
 int C2F(scilinknorhs)(void);
-void C2F(iislink)(char *buf, integer *irep);
-void ulinkall(void);
-void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrdesc, int *nv, char *strf, int *ilib, int *iflag, int *rhs);
+
+
 /*********************************************
  * Structure to keep the entry points 
  *********************************************/
@@ -51,11 +51,9 @@ typedef struct {
   int      Nshared;           /* number of the shared file */
 } Epoints;
 
-#define TMPL 256
-
 typedef struct {
   int ok;
-  char tmp_file[TMPL];
+  char tmp_file[PATH_MAX];
   unsigned long  shl;
 } Hd;
 
@@ -83,7 +81,7 @@ int C2F(scilinknorhs)()
 			char *EntryName=(char *)MALLOC(strlen(EP[i].name)*sizeof(char));
 			if ( hd[i].ok == OK) 
 			{
-				sprintf(EntryName,"%s",EP[i].name);
+				strcpy(EntryName,EP[i].name);
 				ReturnArrayString[j]=EntryName;
 				j++;
 			}
@@ -179,7 +177,7 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
     }
   if (*ilib >= 0) 
   {
-	  if (getWarningMode()) message_scilab("Link done.");
+	  if (getWarningMode()) message_scilab(_("Link done."));
   }
 }
 
@@ -218,14 +216,14 @@ void SciLink(iflag,rhs,ilib,files,en_names,strf)
      int iflag,*ilib,*rhs;
      char *files[],*en_names[],*strf;
 {
-  if (getWarningMode()) message_scilab("Sorry : Dynamic linking is not implemented.");
+  if (getWarningMode()) message_scilab(_("Sorry : Dynamic linking is not implemented."));
 }
 
 
 void C2F(isciulink)(i) 
      integer *i;
 {
-  if (getWarningMode()) message_scilab("Sorry : Unlinking is not implemented.");
+  if (getWarningMode()) message_scilab(_("Sorry : Unlinking is not implemented."));
 }
 
 #endif
@@ -360,17 +358,17 @@ static int SearchFandS(char *op, int ilib)
  * Show the linked files 
  *************************************/
 
-void  ShowDynLinks(void)
+static void ShowDynLinks(void)
 {
   int i=0,count=0;
-  if (getWarningMode()) message_scilab("Number of entry points %d.",NEpoints);
-  if (getWarningMode()) message_scilab("Shared libs : [");
+  if (getWarningMode()) message_scilab(_("Number of entry points %d."),NEpoints);
+  if (getWarningMode()) message_scilab(_("Shared libs : ["));
   for ( i = 0 ; i < Nshared ; i++) 
-    if ( hd[i].ok == OK) { if (getWarningMode())sciprint("%d ",i);count++;}
-  if (getWarningMode()) message_scilab("] : %d libs.",count);
+    if ( hd[i].ok == OK) { if (getWarningMode())sciprint(_("%d "),i);count++;}
+  if (getWarningMode()) message_scilab(_("] : %d libs."),count);
   for ( i = NEpoints-1 ; i >=0 ; i--) 
     {
-      if (getWarningMode()) message_scilab("Entry point %s in shared lib %d.",EP[i].name,EP[i].Nshared);
+      if (getWarningMode()) message_scilab(_("Entry point %s in shared lib %d."),EP[i].name,EP[i].Nshared);
     }
 }
 

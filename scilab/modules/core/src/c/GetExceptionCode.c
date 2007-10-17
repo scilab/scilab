@@ -76,7 +76,7 @@ char *GetExceptionString(DWORD ExceptionCode)
 			wsprintf(StringOuput,"%s","EXCEPTION_FLT_UNDERFLOW");
   		break;
   		default:
-  		wsprintf(StringOuput,"%s","unknown exception");
+  		wsprintf(StringOuput,"%s",_("Unknown exception"));
   		break;				
   }
 

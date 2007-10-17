@@ -398,7 +398,7 @@ static void show_scales(listptr)
   if (listptr != (ScaleList  *) NULL)
     { 
       WCScaleList *loc = listptr->scales;
-      sciprint("Window %d \n",listptr->Win);
+      sciprint("Window %d\n",listptr->Win);
       while ( loc != NULL) 
 	{
 	  sciprint("\tsubwin=[%5.2f,%5.2f,%5.2f,%5.2f], flag=%d\n",
@@ -547,7 +547,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	{
 	  if ( FRect[0] <= 0 || FRect[2] <= 0 ) 
 	    {
-	      sciprint("Warning: negative boundaries on x scale with a log scale \n");
+	      sciprint("Warning: negative boundaries on x scale with a log scale\n");
 	      FRect[0]=1.e-8;FRect[2]=1.e+8;
 	    } 
 	  FRect[0]=log10(FRect[0]);
@@ -557,7 +557,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	{
 	  if ( FRect[1] <= 0 || FRect[3] <= 0 ) 
 	    {
-	      sciprint("Warning: negative boundaries on y scale with a log scale \n");
+	      sciprint("Warning: negative boundaries on y scale with a log scale\n");
 	      FRect[1]=1.e-8;FRect[3]=1.e+8;
 	    } 
 	  FRect[1]=log10(FRect[1]);

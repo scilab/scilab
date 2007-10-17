@@ -23,7 +23,7 @@ int intmatmul(fname)
   CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n2, &l3);   /* m1 and n2 are input parameters */
 
   /* Check dimensions    */
-  if (!(n1==m2)) { sciprint("%s: Incompatible inputs \n", "matmul");
+  if (!(n1==m2)) { sciprint("%s: Incompatible inputs\n", "matmul");
     Error(999);
     return 0;}
 

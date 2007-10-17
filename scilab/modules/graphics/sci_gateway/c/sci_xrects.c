@@ -29,7 +29,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 
   if (m1 != 4) {
-    Scierror(999,"%s: rects has a wrong size (4,n) expected \n",fname);
+    Scierror(999,"%s: rects has a wrong size (4,n) expected\n",fname);
     return 0;
   }
 

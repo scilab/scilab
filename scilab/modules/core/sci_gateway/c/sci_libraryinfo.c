@@ -77,12 +77,12 @@ int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"Invalid library.\n");
+			Scierror(999,_("Invalid library.\n"));
 		}
 	}
 	else
 	{
-		Scierror(999,"Invalid parameter(s).\n");
+		Scierror(999,_("Invalid parameter(s).\n"));
 	}
 	return 0;
 }

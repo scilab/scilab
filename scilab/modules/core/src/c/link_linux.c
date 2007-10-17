@@ -101,7 +101,7 @@ int LinkStatus()
 void C2F(isciulink)(i) 
      integer *i;
 {
-  sciprint("aout link : No unlink up to now \n");
+  sciprint(_("aout link : No unlink up to now\n"));
 }
 
 
@@ -122,7 +122,7 @@ int dyninit_()
       if(!err) 
 	initialised=1;
       else {
-	sciprint("dld_init error %s\n",dld_strerror(err));
+	sciprint(_("dld_init error %s\n"),dld_strerror(err));
 	  
       }
     };
@@ -137,14 +137,14 @@ void list_undefined ()
   if (list) 
     {
       register int i;
-      sciprint("There are a total of %d undefined symbols:\n",
+      sciprint(_("There are a total of %d undefined symbols:\n"),
 	       dld_undefined_sym_count);
       
       for (i = 0; i < dld_undefined_sym_count; i++)
 	sciprint("%d: %s\n", i+1, list[i]);
     } 
   else
-    sciprint("No undefined symbols\n");
+    sciprint(_("No undefined symbols\n"));
 }
 
 
@@ -167,7 +167,7 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
   sciprint("lastlink %d, entry=%d\n",lastlink,*ii);
 #endif
 
-  sciprint("linking  \"%s\" defined in \"%s\"\n", ename1,loaded_files);
+  sciprint(_("linking  \"%s\" defined in \"%s\"\n"), ename1,loaded_files);
   
   *err = 0;
   if ( (*err = dyninit_())) return; /* Error on init */
@@ -185,7 +185,7 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
 	    {
 	      dld_unlink_by_file (current_object_file,1);
 #ifdef DEBUG
-	      sciprint("unloading : \"%s\"\n",current_object_file);
+	      sciprint(_("unloading : \"%s\"\n"),current_object_file);
 #endif
 	    };
 	};
@@ -200,7 +200,7 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
     if ( j > MAXCHAR ) 
       {
 	*err=1 ;
-	sciprint("filename too long");
+	sciprint(_("filename too long"));
       };
   };
 
@@ -213,12 +213,12 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
 	current_object_file[j] = '\0';
 	if(strlen(current_object_file)>0){
 #ifdef DEBUG
-	  sciprint("loading : \"%s\"\n",current_object_file);
+	  sciprint(_("loading : \"%s\"\n"),current_object_file);
 #endif
 	  *err = dld_link (current_object_file);
 	  if(*err){
-	    sciprint("problem when loading : \"%s\"\n",current_object_file);
-	    sciprint("dld_link error %s \n",dld_strerror (*err));
+	    sciprint(_("problem when loading : \"%s\"\n"),current_object_file);
+	    sciprint(_("dld_link error %s\n"),dld_strerror (*err));
 	    *err=99;
 	    return;
 	  };
@@ -234,7 +234,7 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
     if ( j > MAXCHAR ) 
       {
 	*err=1 ;
-	sciprint("filename too long");
+	sciprint(_("filename too long"));
 	  
       };
   };
@@ -245,22 +245,22 @@ int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
       func = (function) dld_get_func (ename1);
       if ( func  == (function) 0)
 	{
-	  sciprint("error when finding \"%s\" in \"%s\"\n",ename1,loaded_files);
+	  sciprint(_("error when finding \"%s\" in \"%s\"\n"),ename1,loaded_files);
 	    
-	  sciprint("dld_get_func error %s\n",dld_strerror (*err));
+	  sciprint(_("dld_get_func error %s\n"),dld_strerror (*err));
 	    
 	  *err=1;
 	  return;
 	};
 #ifdef DEBUG
-      sciprint("procedure numero %d \"%s\" located in \"%s\"\n",*ii,ename1,loaded_files);
+      sciprint(_("procedure numero %d \"%s\" located in \"%s\"\n"),*ii,ename1,loaded_files);
 #endif
       EP[*ii].epoint = func;
       lastlink=lastlink+1;
     }
   else 
     {
-      sciprint("error [%s] not executable \n",ename1);
+      sciprint(_("error [%s] not executable\n"),ename1);
       list_undefined ();
       *err=1;
     };
@@ -281,7 +281,7 @@ int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
   sciprint("ename1 [%s]\n",ename1);
   sciprint("lastlink %d, entry=%d\n",lastlink,*ii);
 #endif
-  sciprint("linking  \"%s\" defined in ",ename1);
+  sciprint(_("linking  \"%s\" defined in "),ename1);
   i=0;
   while ( loaded_files[i] != NULL) 
     {
@@ -302,7 +302,7 @@ int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
 	    {
 	      dld_unlink_by_file (loaded_files[i],1);
 #ifdef DEBUG
-	      sciprint("unloading : \"%s\"\n",loaded_files[i]);
+	      sciprint(_("unloading : \"%s\"\n"),loaded_files[i]);
 #endif
 	    }
 	}
@@ -314,12 +314,12 @@ int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
     {
       if(strlen(loaded_files[i])>0){
 #ifdef DEBUG
-	  sciprint("loading : \"%s\"\n",loaded_files[i]);
+	  sciprint(_("loading : \"%s\"\n"),loaded_files[i]);
 #endif
 	  *err = dld_link (loaded_files[i]);
 	  if(*err){
-	    sciprint("problem when loading : \"%s\"\n",loaded_files[i]);
-	    sciprint("dld_link error %s \n",dld_strerror (*err));
+	    sciprint(_("problem when loading : \"%s\"\n"),loaded_files[i]);
+	    sciprint(_("dld_link error %s\n"),dld_strerror (*err));
 	    *err=99;
 	    return;
 	  }
@@ -333,20 +333,20 @@ int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
       func = (function) dld_get_func (ename1);
       if ( func  == (function) 0)
 	{
-	  sciprint("error when finding \"%s\" in \"%s\",... \n",ename1,loaded_files[0]);
-	  sciprint("dld_get_func error %s\n",dld_strerror (*err));
+	  sciprint(_("error when finding \"%s\" in \"%s\",...\n"),ename1,loaded_files[0]);
+	  sciprint(_("dld_get_func error %s\n"),dld_strerror (*err));
 	  *err=1;
 	  return;
 	};
 #ifdef DEBUG
-      sciprint("procedure numero %d \"%s\" located in \"%s\" .... \n",*ii,ename1,loaded_files[0]);
+      sciprint(_("procedure numero %d \"%s\" located in \"%s\" ....\n"),*ii,ename1,loaded_files[0]);
 #endif
       EP[*ii].epoint = func;
       lastlink=lastlink+1;
     }
   else 
     {
-      sciprint("error [%s] not executable \n",ename1);
+      sciprint(_("error [%s] not executable\n"),ename1);
       list_undefined ();
       *err=1;
     };

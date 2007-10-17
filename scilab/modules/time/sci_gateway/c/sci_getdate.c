@@ -70,7 +70,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,"Parameter must be a ''s'' or a integer.");
+				error_scilab(999,"Parameter must be a 's' or a integer.");
 				return 0;
 			}
 		}

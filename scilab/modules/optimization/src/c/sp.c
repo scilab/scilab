@@ -265,12 +265,12 @@ int sp(m,L,F,blck_szs,c,x,Z,ul,nu,abstol,reltol,tv,iters,work,
  double dbl_epsilon;
 
  if (m < 1){
-    sciprint("m must be at least one. \n");
+    sciprint("m must be at least one.\n");
     *info = -1;
     return 1;
  }
  if (L < 1){
-    sciprint("L must be at least one. \n");
+    sciprint("L must be at least one.\n");
     *info = -2;
     return 1;
  }
@@ -280,7 +280,7 @@ int sp(m,L,F,blck_szs,c,x,Z,ul,nu,abstol,reltol,tv,iters,work,
     return 1;
  }
  if (nu < 1.0){
-    sciprint("nu must be at least 1.0. \n");
+    sciprint("nu must be at least 1.0.\n");
     *info = -9;
     return 1;
  }
@@ -447,10 +447,10 @@ int sp(m,L,F,blck_szs,c,x,Z,ul,nu,abstol,reltol,tv,iters,work,
     ul[1] = -inprd(F,Z,L,blck_szs);         /* -Tr F_0 Z */
     ul[0] = F2C(ddot)(&m, c, &int1, x, &int1);  /* c^T x */
     if (*iters == 0){
-	sciprint("\n    primal obj.  dual obj.  dual. gap  \n");
+	sciprint("\n    primal obj.  dual obj.  dual. gap \n");
 	
     }
-    sciprint("% 13.2e % 12.2e %10.2e \n", ul[0], ul[1], gap);
+    sciprint("% 13.2e % 12.2e %10.2e\n", ul[0], ul[1], gap);
     if (gap <= MAX(abstol, MINABSTOL))  *info = 2;
     else if ( (ul[1] > 0.0 && gap <= reltol*ul[1]) ||
               (ul[0] < 0.0 && gap <= reltol*(-ul[0])) ) *info = 3;
@@ -658,7 +658,7 @@ int sp(m,L,F,blck_szs,c,x,Z,ul,nu,abstol,reltol,tv,iters,work,
        F2C(daxpy)(&m, &alphax, dx, &int1, x, &int1);
        F2C(daxpy)(&sz, &alphaz, dZ, &int1, Z, &int1);
        gap = newgap;  ul[0] = newu;   ul[1] = newl;
-       sciprint("% 13.2e % 12.2e %10.2e \n", ul[0], ul[1], gap);
+       sciprint("% 13.2e % 12.2e %10.2e\n", ul[0], ul[1], gap);
        (*iters)++;
        return 0;
     }

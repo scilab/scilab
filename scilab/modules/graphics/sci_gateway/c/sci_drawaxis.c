@@ -150,7 +150,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
       return 0;
     break;
   default :
-    Scierror(999,"%s: tics has a wrong value \"%c\" should be one of \"r\",\"v\" and \"i\" \n", 
+    Scierror(999,"%s: tics has a wrong value \"%c\" should be one of \"r\",\"v\" and \"i\"\n", 
       fname,dir);
     return 0;
   }

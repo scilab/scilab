@@ -7,19 +7,17 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "error_scilab.h"
+#include "link.h"
 /*-----------------------------------------------------------------------------------*/
-extern void ulinkall(void);
-extern void C2F(isciulink)(integer *i) ;
-/*-----------------------------------------------------------------------------------*/
-int C2F(intulink) __PARAMS((char *fname,unsigned long fname_len));
+static int intulink (char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_ulink) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intulink)(fname,fname_len);
+	intulink(fname,fname_len);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intulink) __PARAMS((char *fname,unsigned long fname_len))
+static int intulink (char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 
@@ -47,7 +45,7 @@ int C2F(intulink) __PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			error_scilab(999,"Parameter must be a integer.");
+			error_scilab(999,_("Parameter must be a integer."));
 			return 0;
 		}
 	}

@@ -5,6 +5,7 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "link.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(sciislink) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/

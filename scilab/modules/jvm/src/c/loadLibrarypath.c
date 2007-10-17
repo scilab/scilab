@@ -91,7 +91,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
 			}
 			else
 				{
-			printf("Wrong format for %s. \n", xmlfilename);
+			printf("Wrong format for %s.\n", xmlfilename);
 			}
 		}
 		else

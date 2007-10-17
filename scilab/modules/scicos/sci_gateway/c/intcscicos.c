@@ -104,7 +104,7 @@ int intduplicate(fname,fname_len)
   }
   if (n!=m2*n2) 
     {
-      Scierror(999,"%s: 1st and 2nd argument must have equal size \n",fname);
+      Scierror(999,"%s: 1st and 2nd argument must have equal size\n",fname);
       return 0;
     }
   comp_size(stk(l2),&n3,n);

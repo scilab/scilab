@@ -379,7 +379,6 @@ libscicore_la_include_HEADERS = includes/GetExceptionCode.h \
 includes/CallScilab.h \
 includes/IsAScalar.h \
 includes/sciprint.h \
-includes/link.h \
 includes/intmacr2tree.h \
 includes/core_math.h \
 includes/stack-def.h \

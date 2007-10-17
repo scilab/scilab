@@ -1,9 +1,14 @@
 // Copyright INRIA
+mes=x_message(['plop ?'],['Ok','Cancel'])
+if mes==2 then
+  return, 
+end
+
 parent=pvm_parent(),if parent<0 then return,end
 
 while %t  //Infinite loop
   [buf,info] = pvm_recv(parent, -1)//get new variable or instruction
-
+	disp(info)
   if info<0 then break,end
   
   if type(buf)==10 then //an instruction

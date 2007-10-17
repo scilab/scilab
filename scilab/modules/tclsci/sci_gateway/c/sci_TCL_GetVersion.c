@@ -5,7 +5,7 @@
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "error_scilab.h"
-#include "../../localization/includes/QueryStringMessage.h"
+#include "../../localization/includes/localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 {
@@ -29,35 +29,35 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 		{
 		case TCL_ALPHA_RELEASE:
 			{
-				char *msg=QueryStringMessage("Alpha Release");
+				char *msg=_("Alpha Release");
 				sprintf(ReleaseType,msg);
 				if (msg) {FREE(msg);msg=NULL;}
 			}
 			break;
 		case TCL_BETA_RELEASE:
 			{
-				char *msg=QueryStringMessage("Beta Release");
+				char *msg=_("Beta Release");
 				sprintf(ReleaseType,msg);
 				if (msg) {FREE(msg);msg=NULL;}
 			}
 			break;
 		case TCL_FINAL_RELEASE:
 			{
-				char *msg=QueryStringMessage("Final Release");
+				char *msg=_("Final Release");
 				sprintf(ReleaseType,msg);
 				if (msg) {FREE(msg);msg=NULL;}
 			}
 			break;
 		default:
 			{
-				char *msg=QueryStringMessage("Unknown Release");
+				char *msg=_("Unknown Release");
 				sprintf(ReleaseType,msg);
 				if (msg) {FREE(msg);msg=NULL;}
 			}
 			break;
 		}
 
-		msg_=QueryStringMessage("TCL/TK %d.%d.%d %s");
+		msg_=_("TCL/TK %d.%d.%d %s");
 		sprintf(VersionString,msg_,major,minor,patchLevel,ReleaseType);
 		if (msg_) {FREE(msg_);msg_=NULL;}
 

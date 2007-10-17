@@ -12,7 +12,7 @@
  ******************************************/
 int intspvm_recv _PARAMS((char *fname,unsigned long fname_len))
 {
-  int m1,n1,l1,m2,n2,l2,un=1,l3,used,size,l5,count=5,l,tid,tag;
+  int m1,n1,l1,m2,n2,l2,un=1,l3,sizeUsed,size,l5,count=5,l,tid,tag;
   CheckRhs(2,2);
   CheckLhs(1,4);
   /*  checking variable tid */
@@ -31,13 +31,12 @@ int intspvm_recv _PARAMS((char *fname,unsigned long fname_len))
    * but we transmit stk(l5-2) to scipvmrecv which 
    * then can change the header of object at position 4 
    */ 
-  C2F(scipvmrecv)(stk(l5-2),&size,&used,&tid,&tag,istk(l3));
+  double mavartmp;
+
+  C2F(scipvmrecv)(&mavartmp,&size,&sizeUsed,&tid,&tag,istk(l3));
+  *stk(l5-2)=mavartmp;
   /* now we know the exact size used */
-  SetWorkSize(4,&used);
-  LhsVar(1)=4;
-  LhsVar(2)=3;
-  LhsVar(3)=1;
-  LhsVar(4)=2;
+  SetWorkSize(4,&sizeUsed);
   /* since 1 and 2 could be ref */ 
   if ( IsRef(1) ) { 
     CreateVar(count,MATRIX_OF_INTEGER_DATATYPE,&un,&un,&l);
@@ -50,6 +49,10 @@ int intspvm_recv _PARAMS((char *fname,unsigned long fname_len))
     *istk(l)=tag;
     LhsVar(4)=count;
   }
+  LhsVar(1)=4;
+  LhsVar(2)=3;
+  LhsVar(3)=1;
+  LhsVar(4)=2;
 
   pvm_error_check(fname,*istk(l3),fname_len);
   C2F(putlhsvar)();

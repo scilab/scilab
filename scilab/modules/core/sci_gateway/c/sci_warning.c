@@ -10,7 +10,7 @@
 #include "warningmode.h"
 #include "MALLOC.h"
 #include "error_scilab.h"
-#include "../../localization/includes/QueryStringMessage.h"
+#include "../../localization/includes/localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -63,7 +63,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else if ( getWarningMode() )
 			{
-				char *MSG=QueryStringMessage("WARNING : %s");
+				char *MSG=_("WARNING : %s");
 				if (MSG)
 				{
 					sciprint(MSG,Param);
@@ -75,7 +75,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		error_scilab(999,"Parameter must be a string.");
+		error_scilab(999,_("Parameter must be a string."));
 		return 0;
 	}
 	LhsVar(1)=0;

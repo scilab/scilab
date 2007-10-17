@@ -13,7 +13,6 @@
 /*-----------------------------------------------------------------------------------*/
 #define MSGOUT(msg) C2F(msgout)(&io, &lunit, msg, strlen(msg));
 /*-----------------------------------------------------------------------------------*/
-
 extern int C2F(showstack)();
 extern int C2F(cvname)();
 extern int C2F(prntid)();
@@ -38,18 +37,18 @@ int C2F(errmsg)(integer *n,integer *errtyp)
     {
 			case 1:
 			{
-				MSGOUT("incorrect assignment");
+				MSGOUT(_("Incorrect assignment"));
 			}
 			break;
 			case 2:
 			{
-				MSGOUT("invalid factor");
+				MSGOUT(("Invalid factor"));
     			*errtyp = 1;
 			}
 			break;
 			case 3:
 			{
-				MSGOUT("waiting for right parenthesis");
+				MSGOUT(_("Waiting for right parenthesis"));
     			*errtyp = 1;
 			}
 			break;
@@ -57,7 +56,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			{
 				char *Str=NULL;
 				C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf, &i, 4096L);
-				Str=(char*)MALLOC( sizeof(char)*( strlen("undefined variable : %s")+1+strlen(C2F(cha1).buf) ) );
+				Str=(char*)MALLOC( sizeof(char)*( strlen(_("Undefined variable : %s"))+1+strlen(C2F(cha1).buf) ) );
 				sprintf(Str,SCI_ERRMSG4,C2F(cha1).buf);
 				MSGOUT(Str);
 				FREE(Str);
@@ -75,52 +74,52 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 7:
 			{
-				MSGOUT("dot cannot be used as modifier for this operator");
+				MSGOUT(_("Dot cannot be used as modifier for this operator"));
 			}
 			break;
 			case 8:
 			{
-				MSGOUT("inconsistent addition");
+				MSGOUT(_("Inconsistent addition"));
 			}
 			break;
 			case 9:
 			{
-				MSGOUT("inconsistent subtraction");
+				MSGOUT(_("Inconsistent subtraction"));
 			}
 			break;
 			case 10:
 			{
-				MSGOUT("inconsistent multiplication");
+				MSGOUT(_("Inconsistent multiplication"));
 			}
 			break;
 			case 11:
 			{
-				MSGOUT("inconsistent right division ");
+				MSGOUT(_("Inconsistent right division "));
 			}
 			break;
 			case 12:
 			{
-				MSGOUT("inconsistent left division");
+				MSGOUT(_("Inconsistent left division"));
 			}
 			break;
 			case 13:
 			{
-				MSGOUT("redefining permanent variable");
+				MSGOUT(_("Redefining permanent variable"));
 			}
 			break;
 			case 14:
 			{
-				MSGOUT("eye variable undefined in this context");
+				MSGOUT(_("Eye variable undefined in this context"));
 			}
 			break;
 			case 15:
 			{
-				MSGOUT("submatrix incorrectly defined");
+				MSGOUT(_("Submatrix incorrectly defined"));
 			}
 			break;
 			case 16:
 			{
-				MSGOUT("incorrect command!");
+				MSGOUT(_("Incorrect command!"));
 				*errtyp = 1;
 			}
 			break;
@@ -130,12 +129,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 18:
 			{
-				MSGOUT("too many variables!");
+				MSGOUT(_("Too many variables!"));
 			}
 			break;
 			case 19:
 			{
-				MSGOUT("Problem is singular");
+				MSGOUT(_("Problem is singular"));
 			}
 			break;
 			case 20:
@@ -144,22 +143,22 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 21:
 			{
-				MSGOUT("invalid index");
+				MSGOUT(_("Invalid index"));
 			}
 			break;
 			case 22:
 			{
-				MSGOUT(" recursion problems. Sorry....");
+				MSGOUT(_("Recursion problems. Sorry...."));
 			}
 			break;
 			case 23:
 			{
-				MSGOUT(" Matrix norms available are 1, 2, inf, and fro");
+				MSGOUT(_("Matrix norms available are 1, 2, inf, and fro"));
 			}
 			break;
 			case 24:
 			{
-				MSGOUT("convergence problem...");
+				MSGOUT(_("Convergence problem..."));
 			}
 			break;
 			case 25:
@@ -172,22 +171,22 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 27:
 			{
-				MSGOUT("division by zero...");
+				MSGOUT(_("Division by zero..."));
 			}
 			break;
 			case 28:
 			{
-				MSGOUT("empty function...");
+				MSGOUT(_("Empty function..."));
 			}
 			break;
 			case 29:
 			{
-				MSGOUT("matrix is not positive definite");
+				MSGOUT(_("Matrix is not positive definite"));
 			}
 			break;
 			case 30:
 			{
-				MSGOUT("invalid exponent");
+				MSGOUT(_("Invalid exponent"));
 			}
 			break;
 			case 31:
@@ -196,12 +195,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 32:
 			{
-				MSGOUT("singularity of log or tan function");
+				MSGOUT(_("Singularity of log or tan function"));
 			}
 			break;
 			case 33:
 			{
-				MSGOUT("too many :");
+				MSGOUT(_("Too many :"));
 			}
 			break;
 			case 34:
@@ -223,12 +222,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 38:
 			{
-				MSGOUT("file name incorrect");
+				MSGOUT(_("File name incorrect"));
 			}
 			break;
 			case 39:
 			{
-				MSGOUT("incorrect number of arguments");
+				MSGOUT(_("Incorrect number of arguments"));
 			}
 			break;
 			case 40:
@@ -237,17 +236,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 41:
 			{
-				MSGOUT("incompatible LHS");
+				MSGOUT(_("Incompatible LHS"));
 			}
 			break;
 			case 42:
 			{
-				MSGOUT("incompatible RHS");
+				MSGOUT(_("Incompatible RHS"));
 			}
 			break;
 			case 43:
 			{
-				MSGOUT("not implemented in scilab....");
+				MSGOUT(_("Not implemented in scilab...."));
 			}
 			break;
 			case 44:
@@ -272,7 +271,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 49:
 			{
-				MSGOUT("incorrect file or format");
+				MSGOUT(_("Incorrect file or format"));
 			}
 			break;
 			case 50:
@@ -306,7 +305,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 57:
 			{
-				MSGOUT("problem with comparison symbol...");
+				MSGOUT(_("Problem with comparison symbol..."));
 			}
 			break;
 			case 58:
@@ -319,12 +318,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 60:
 			{
-				MSGOUT("argument with incompatible dimensions");
+				MSGOUT(_("Argument with incompatible dimensions"));
 			}
 			break;
 			case 61:
 			{
-				MSGOUT("direct acces : give format");
+				MSGOUT(_("Direct acces : give format"));
 			}
 			break;
 			case 62:
@@ -337,7 +336,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 64:
 			{
-				MSGOUT("integration fails");
+				MSGOUT(_("Integration fails"));
 			}
 			break;
 			case 65:
@@ -346,12 +345,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 66:
 			{
-				MSGOUT("no more logical units available!");
+				MSGOUT(_("No more logical units available!"));
 			}
 			break;
 			case 67:
 			{
-				MSGOUT("unknown file format ");
+				MSGOUT(_("Unknown file format "));
 			}
 			break;
 			case 68:
@@ -360,17 +359,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 69:
 			{
-				MSGOUT("floating point exception");
+				MSGOUT(_("Floating point exception"));
 			}
 			break;
 			case 70:
 			{
-				MSGOUT("too many arguments in fort (max 30)");
+				MSGOUT(_("Too many arguments in fort (max 30)"));
 			}
 			break;
 			case 71:
 			{
-				MSGOUT("this variable is not valid in fort");
+				MSGOUT(_("This variable is not valid in fort"));
 			}
 			break;
 			case 72:
@@ -379,17 +378,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 73:
 			{
-				MSGOUT("error while linking");
+				MSGOUT(_("Error while linking"));
 			}
 			break;
 			case 74:
 			{
-				MSGOUT("Leading coefficient is zero");
+				MSGOUT(_("Leading coefficient is zero"));
 			}
 			break;
 			case 75:
 			{
-				MSGOUT("Too high degree (max 100)");
+				MSGOUT(_("Too high degree (max 100)"));
 			}
 			break;
 			case 76:
@@ -431,22 +430,22 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 85:
 			{
-				MSGOUT("host does not answer...");
+				MSGOUT(_("Host does not answer..."));
 			}
 			break;
 			case 86:
 			{
-				MSGOUT("uncontrollable system");
+				MSGOUT(_("Uncontrollable system"));
 			}
 			break;
 			case 87:
 			{
-				MSGOUT("unobservable system");
+				MSGOUT(_("Unobservable system"));
 			}
 			break;
 			case 88:
 			{
-				MSGOUT("sfact : singular or assymetric problem");
+				MSGOUT(_("sfact : singular or assymetric problem"));
 			}
 			break;
 			case 89:
@@ -515,12 +514,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 105:
 			{
-				MSGOUT("undefined fonction");
+				MSGOUT(_("Undefined fonction"));
 			}
 			break;
 			case 106:
 			{
-				MSGOUT(" fonction name already used");
+				MSGOUT(_("Function name already used"));
 			}
 			break;
 			case 107:
@@ -533,7 +532,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 109:
 			{
-				MSGOUT("too large, cant be displayed");
+				MSGOUT(_("Too large, cant be displayed"));
 			}
 			break;
 			case 110:
@@ -546,17 +545,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 112:
 			{
-				MSGOUT("Cannot allocate more memory");
+				MSGOUT(_("Cannot allocate more memory"));
 			}
 			break;
 			case 113:
 			{
-				MSGOUT("too large string");
+				MSGOUT(_("Too large string"));
 			}
 			break;
 			case 114:
 			{
-				MSGOUT("too many linked routines");
+				MSGOUT(_("Too many linked routines"));
 			}
 			break;
 			case 115:
@@ -594,7 +593,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 123:
 			{
-				MSGOUT(" function not bounded from below");
+				MSGOUT(_("Function not bounded from below"));
 			}
 			break;
 			case 124:
@@ -608,72 +607,72 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 126:
 			{
-				MSGOUT("Inconsistent constraints");
+				MSGOUT(_("Inconsistent constraints"));
 			}
 			break;
 			case 127:
 			{
-				MSGOUT("no feasible solution");
+				MSGOUT(_("No feasible solution"));
 			}
 			break;
 			case 128:
 			{
-				MSGOUT("degenerate starting point");
+				MSGOUT(_("Degenerate starting point"));
 			}
 			break;
 			case 129:
 			{
-				MSGOUT("no feasible point has been found");
+				MSGOUT(_("No feasible point has been found"));
 			}
 			break;
 			case 130:
 			{
-				MSGOUT(" optimization fails: back to initial point");
+				MSGOUT(_("Optimization fails: back to initial point"));
 			}
 			break;
 			case 131:
 			{
-				MSGOUT(" optim: stop requested by simulator (ind=0)");
+				MSGOUT(_("Optim: stop requested by simulator (ind=0)"));
 			}
 			break;
 			case 132:
 			{
-				MSGOUT(" optim: incorrect input parameters");
+				MSGOUT(_("Optim: incorrect input parameters"));
 			}
 			break;
 			case 133:
 			{
-				MSGOUT(" too small memory");
+				MSGOUT(_("Too small memory"));
 			}
 			break;
 			case 134:
 			{
-				MSGOUT("optim: problem with initial constants in simul ");
+				MSGOUT(_("Optim: problem with initial constants in simul "));
 			}
 			break;
 			case 135:
 			{
-				MSGOUT("optim : bounds and initial guess are incompatible");
+				MSGOUT(_("Optim : bounds and initial guess are incompatible"));
 			}
 			break;
 			case 136:
 			{
-				MSGOUT("optim : this method is NOT implemented ");
+				MSGOUT(_("Optim : this method is NOT implemented "));
 			}
 			break;
 			case 137:
 			{
-				MSGOUT("NO hot restart available in this method");
+				MSGOUT(_("NO hot restart available in this method"));
 			}
 			break;
 			case 138:
 			{
-				MSGOUT("optim : incorrect stopping parameters");
+				MSGOUT(_("Optim : incorrect stopping parameters"));
 			}
 			break;
 			case 139:
 			{
-				MSGOUT("optim : incorrect bounds");
+				MSGOUT(_("Optim : incorrect bounds"));
 			}
 			break;
 			case 140:
@@ -690,7 +689,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 143:
 			{
-				MSGOUT("optim : df0 must be positive !");
+				MSGOUT(_("Optim : df0 must be positive !"));
 			}
 			break;
 			case 144:
@@ -784,7 +783,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 220:
 			{
-				MSGOUT("null variable cannot be used here");
+				MSGOUT(_("Null variable cannot be used here"));
 			}
 			break;
 			case 221:
@@ -793,7 +792,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 222:
 			{
-				MSGOUT("lusolve not yet implemented for full RHS");
+				MSGOUT(_("lusolve not yet implemented for full RHS"));
 			}
 			break;
 			case 223:
@@ -802,22 +801,22 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 224:
 			{
-				MSGOUT("Type data base is full");
+				MSGOUT(_("Type data base is full"));
 			}
 			break;
 			case 225:
 			{
-				MSGOUT("This data type is already defined");
+				MSGOUT(_("This data type is already defined"));
 			}
 			break;
 			case 226:
 			{
-				MSGOUT("Inequality comparison with empty matrix");
+				MSGOUT(_("Inequality comparison with empty matrix"));
 			}
 			break;
 			case 227:
 			{
-				MSGOUT("Missing index");
+				MSGOUT(_("Missing index"));
 			}
 			break;
 			case 228:
@@ -831,17 +830,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 230:
 			{
-				MSGOUT("semidef fails");
+				MSGOUT(_("semidef fails"));
 			}
 			break;
 			case 231:
 			{
-				MSGOUT("First argument must be a single string");
+				MSGOUT(_("First argument must be a single string"));
 			}
 			break;
 			case 232:
 			{
-				MSGOUT("Entry name not found");
+				MSGOUT(_("Entry name not found"));
 			}
 			break;
 			case 233:
@@ -850,17 +849,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 234:
 			{
-				MSGOUT("link: expecting more than one argument");
+				MSGOUT(_("Link: expecting more than one argument"));
 			}
 			break;
 			case 235:
 			{
-				MSGOUT("link: problem with one of the entry point");
+				MSGOUT(_("Link: problem with one of the entry point"));
 			}
 			break;
 			case 236:
 			{
-				MSGOUT("link: the shared archive was not loaded");
+				MSGOUT(_("Link: the shared archive was not loaded"));
 			}
 			break;
 			case 237:
@@ -869,7 +868,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 238:
 			{
-				MSGOUT("link: First argument cannot be a number");
+				MSGOUT(_("Link: First argument cannot be a number"));
 			}
 			break;
 			case 239:
@@ -890,12 +889,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 243:
 			{
-				MSGOUT("C file logical unit not allowed here");
+				MSGOUT(_("C file logical unit not allowed here"));
 			}
 			break;
 			case 244:
 			{
-				MSGOUT("Fortran file logical unit not allowed here");
+				MSGOUT(_("Fortran file logical unit not allowed here"));
 			}
 			break;
 			case 245:
@@ -925,57 +924,57 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 251:
 			{
-				MSGOUT("bvode: ipar dimensioned at least 11");
+				MSGOUT(_("bvode: ipar dimensioned at least 11"));
 			}
 			break;
 			case 252:
 			{
-				MSGOUT("bvode: ltol must be of size ipar(4)");
+				MSGOUT(_("bvode: ltol must be of size ipar(4)"));
 			}
 			break;
 			case 253:
 			{
-				MSGOUT("bvode: fixpnt must be of size ipar(11)");
+				MSGOUT(_("bvode: fixpnt must be of size ipar(11)"));
 			}
 			break;
 			case 254:
 			{
-				MSGOUT("bvode: ncomp < 20 requested ");
+				MSGOUT(_("bvode: ncomp < 20 requested "));
 			}
 			break;
 			case 255:
 			{
-				MSGOUT("bvode: m must be of size ncomp");
+				MSGOUT(_("bvode: m must be of size ncomp"));
 			}
 			break;
 			case 256:
 			{
-				MSGOUT("bvode: sum(m) must be less than 40");
+				MSGOUT(_("bvode: sum(m) must be less than 40"));
 			}
 			break;
 			case 257:
 			{
-				MSGOUT("bvode: sum(m) must be less than 40");
+				MSGOUT(_("bvode: sum(m) must be less than 40"));
 			}
 			break;
 			case 258:
 			{
-				MSGOUT("bvode: input data error");
+				MSGOUT(_("bvode: input data error"));
 			}
 			break;
 			case 259:
 			{
-				MSGOUT("bvode: no. of subintervals exceeds storage");
+				MSGOUT(_("bvode: no. of subintervals exceeds storage"));
 			}
 			break;
 			case 260:
 			{
-				MSGOUT("bvode: Th colocation matrix is singular");
+				MSGOUT(_("bvode: Th colocation matrix is singular"));
 			}
 			break;
 			case 261:
 			{
-				MSGOUT("Interface property table is full");
+				MSGOUT(_("Interface property table is full"));
 			}
 			break;
 			case 262:
@@ -992,17 +991,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 265:
 			{
-				MSGOUT("A and B must have equal number of rows");
+				MSGOUT(_("A and B must have equal number of rows"));
 			}
 			break;
 			case 266:
 			{
-				MSGOUT("A and B must have equal number of columns");
+				MSGOUT(_("A and B must have equal number of columns"));
 			}
 			break;
 			case 267:
 			{
-				MSGOUT("A and B must have equal dimensions");
+				MSGOUT(_("A and B must have equal dimensions"));
 			}
 			break;
 			case 268:
@@ -1023,7 +1022,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 272:
 			{
-				MSGOUT("endfunction is missing");
+				MSGOUT(_("endfunction is missing"));
 			}
 			break;
 			case 273:
@@ -1036,17 +1035,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 275:
 			{
-				MSGOUT("varargout keyword cannot be used here");
+				MSGOUT(_("varargout keyword cannot be used here"));
 			}
 			break;
 			case 276:
 			{
-				MSGOUT("Missing operator, comma, or semicolon");
+				MSGOUT(_("Missing operator, comma, or semicolon"));
 			}
 			break;
 			case 277:
 			{
-				MSGOUT("Too many commands defined");
+				MSGOUT(_("Too many commands defined"));
 			}
 			break;
 			case 278:

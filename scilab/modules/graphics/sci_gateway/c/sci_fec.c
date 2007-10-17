@@ -56,7 +56,7 @@ int sci_fec(char *fname,unsigned long fname_len)
 
   if ( get_optionals(fname,opts) == 0) return 0;
   if ( FirstOpt() < 5) {
-    sciprint("%s: misplaced optional argument, first must be at position %d \n",
+    sciprint("%s: misplaced optional argument, first must be at position %d\n",
       fname,5);
     Error(999); 
     return(0);

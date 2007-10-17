@@ -59,7 +59,7 @@ int intdgeesx(fname)
 			/*--------------------WORK---------------------------*/
 			WORK=4; LWORKMIN = MAX(1, 3*N);
 			LWORK=Maxvol(WORK,"d");  /* max memory currently available */
-			if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize) \n",fname);
+			if (LWORK < LWORKMIN) Scierror(999,"%s:  not enough memory (use stacksize)\n",fname);
 			
 			LIWORK = 1;
 			
@@ -77,7 +77,7 @@ int intdgeesx(fname)
 			/*--------------------WORK---------------------------*/
 			WORK=3; LWORKMIN = MAX(1, 3*N);
 			LWORK=Maxvol(WORK, "d"); /* max memory currently available */
-			if (LWORK < LWORKMIN)  Scierror(999,"%s:  not enough memory (use stacksize) \n",fname); 
+			if (LWORK < LWORKMIN)  Scierror(999,"%s:  not enough memory (use stacksize)\n",fname); 
 			CreateVar(WORK,MATRIX_OF_DOUBLE_DATATYPE, &LWORK, &un, &lWORK);
 			
 			C2F(dgeesx)(JOBVS, SORT, select, SENSE, &N, stk(lA), &LDA, &SDIM, 

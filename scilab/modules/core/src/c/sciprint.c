@@ -9,7 +9,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "message_scilab.h"
-#include "../../localization/includes/QueryStringMessage.h"
+#include "../../localization/includes/localization.h"
 #include "../../console/includes/ConsolePrintf.h"
 #include "../../shell/includes/scilines.h"
 #include "../../fileio/includes/diary.h"
@@ -92,7 +92,7 @@ void sciprint_full(char *fmt,...)
   s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
   if (s_buf == (char *) 0)
   {
-     message_scilab("sciprint_full : No more memory.");
+     message_scilab(_("sciprint_full : No more memory."));
      return;
   }
 
@@ -110,7 +110,7 @@ void sciprint_full(char *fmt,...)
   split_s_buf=MALLOC(sizeof(char)*(colwidth+1));
   if (split_s_buf == (char *) 0)
   {
-     message_scilab("sciprint_full : No more memory.");
+     message_scilab(_("sciprint_full : No more memory."));
      return;
   }
 
@@ -146,7 +146,7 @@ void sciprint_full(char *fmt,...)
         strncpy(split_s_buf,s_buf+p_s,colwidth-1);
         split_s_buf[colwidth]='\0';
         p_s=p_s+colwidth-1;
-        MSG=QueryStringMessage("  (cont'd) %s");
+        MSG=_("  (cont'd) %s");
         if (MSG)
         {
             sciprint(MSG,split_s_buf);
@@ -156,7 +156,7 @@ void sciprint_full(char *fmt,...)
      }
      strncpy(split_s_buf,s_buf+p_s,lstr-p_s);
      split_s_buf[lstr-p_s]='\0';
-     MSG=QueryStringMessage("     (end) %s");
+     MSG=_("     (end) %s");
      if (MSG)
      {
          sciprint(MSG,split_s_buf);
