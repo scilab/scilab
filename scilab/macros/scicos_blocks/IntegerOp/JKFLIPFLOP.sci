@@ -11,7 +11,39 @@ function [x,y,typ]=JKFLIPFLOP(job,arg1,arg2)
    case 'getorigin' then
     [x,y]=standard_origin(arg1)
    case 'set' then
+   // if exprs==[] then exprs=sci2exp(int8(0));end
+    newpar=list()
+    xx=arg1.model.rpar.objs(1)// get the 1/z  block
+    exprs=xx.graphics.exprs(1)
+    model=xx.model;
+    init_old= model.odstate(1)
+    while %t do
+      [ok,init,exprs0]=getvalue(['Set parameters';'The Initial Value must be 0 or 1 of type int8';..
+	                       'Negatif values are considered as int8(0)';..
+			       'Positif values are considered as int8(1)'] ,..
+			   ['Initial Value'],..
+			   list('vec',1),exprs)
+      if ~ok then break,end
+      if init<=0 then init=int8(0);
+      elseif init >0 then init=int8(1);
+      end
+      if ok then 
+	xx.graphics.exprs(1)=exprs0
+	model.odstate(1)=init
+	xx.model=model
+	arg1.model.rpar.objs(1)=xx// Update
+	break
+      end
+    end
+    needcompile=0
+    if init_old<>init then 
+      // parameter  changed
+      newpar(size(newpar)+1)=1// Notify modification
+      needcompile=2      
+    end
     x=arg1
+    y=needcompile
+    typ=newpar
    case 'define' then
 	scs_m=scicos_diagram(..
 	version="scicos4.2",..

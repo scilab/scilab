@@ -3949,9 +3949,21 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 </FILE>
 
 <FILE name='JKFLIPFLOP' type='XML'>
-<PARAM>
-
-</PARAM>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>Initial Value</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    La valeur initial de l'état Q.
+	  </SP>
+	  <SP>
+	    Propriétés : Type 'vec' de taille 1.
+	  </SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='Keyboard_shortcuts' type='XML'>
@@ -6304,9 +6316,21 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 </FILE>
 
 <FILE name='SRFLIPFLOP' type='XML'>
-<PARAM>
-
-</PARAM>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>Initial Value</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    La valeur initial de l'état Q.
+	  </SP>
+	  <SP>
+	    Propriétés : Type 'vec' de taille 1.
+	  </SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='STEP' type='LATEX'>

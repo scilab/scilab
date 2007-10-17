@@ -49,7 +49,6 @@ function [x,y,typ]=PID(job,arg1,arg2)
 	x=arg1
 	y=max(y,needcompile)
 	typ=newpar
-       disp(typ,'typ=')
    case 'define' then
 	scs_m=scicos_diagram(..
 	version="scicos4.2",..
