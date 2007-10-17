@@ -22,7 +22,11 @@ for LOCALE in $LANGUAGES;do
 	for f in $FILES; do
 		echo $f
 	done
-	POFILE=$SCI/locale/$LOCALE/$LC/scilab.po
+	PATHTO=$SCI/locale/$LOCALE/$LC/
+	if test ! -d $PATHTO; then
+		mkdir -p $PATHTO
+	fi
+	POFILE=$PATHTO/scilab.po
 	msgcat -o $POFILE $FILES
-	msgfmt -o $SCI/locale/$LOCALE/$LC/scilab.mo $POFILE
+	msgfmt -o $PATHTO/scilab.mo $POFILE
 done
