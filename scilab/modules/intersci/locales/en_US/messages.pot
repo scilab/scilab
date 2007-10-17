@@ -178,7 +178,7 @@ msgstr	""
 # File: src/exe/fornames.c, line: 153
 # File: src/exe/fornames.c, line: 159
 #, c-format
-msgid	"Wrong type in For function \n"
+msgid	"Wrong type in For function\n"
 msgstr	""
 #
 # File: src/exe/intersci-n.c, line: 58
@@ -217,7 +217,7 @@ msgstr	""
 msgid	"C file \"%s.c\" has been created\n"
 msgstr	""
 # File: src/exe/intersci-n.c, line: 148
-msgid	" *  interface function \n"
+msgid	" *  interface function\n"
 msgstr	""
 #
 # File: src/exe/intersci-n.c, line: 149
@@ -255,7 +255,7 @@ msgstr	""
 #
 # File: src/exe/intersci-n.c, line: 532
 #, c-format
-msgid	"Error: declaration for local variables \n"
+msgid	"Error: declaration for local variables\n"
 msgstr	""
 #
 # File: src/exe/intersci-n.c, line: 533
@@ -287,20 +287,16 @@ msgstr	""
 #
 # File: src/exe/intersci-n.c, line: 753
 # File: src/exe/intersci.c, line: 2983
+# File: src/exe/intersci-n.c, line: 759
+# File: src/exe/intersci.c, line: 2989
 #, c-format
-msgid	"output variable with external type \"%s\" \n"
+msgid	"output variable with external type \"%s\"\n"
 msgstr	""
 #
 # File: src/exe/intersci-n.c, line: 754
 # File: src/exe/intersci.c, line: 2984
 #, c-format
 msgid	"  cannot be an input argument of SCILAB function\n"
-msgstr	""
-#
-# File: src/exe/intersci-n.c, line: 759
-# File: src/exe/intersci.c, line: 2989
-#, c-format
-msgid	"output variable with external type \"%s\"\n"
 msgstr	""
 #
 # File: src/exe/intersci-n.c, line: 760
@@ -369,7 +365,7 @@ msgstr	""
 #
 # File: src/exe/intersci-n.c, line: 904
 #, c-format
-msgid	"Error in Forname2Int for variable %s \n"
+msgid	"Error in Forname2Int for variable %s\n"
 msgstr	""
 #
 # File: src/exe/intersci-n.c, line: 905
@@ -428,18 +424,6 @@ msgstr	""
 #
 # File: src/exe/read.c, line: 154
 # File: src/exe/intersci.c, line: 285
-#, c-format
-msgid	"bad type specification for variable \"%s\" \n"
-msgstr	""
-#
-# File: src/exe/read.c, line: 155
-# File: src/exe/read.c, line: 166
-# File: src/exe/intersci.c, line: 286
-# File: src/exe/intersci.c, line: 296
-#, c-format
-msgid	"only %d argument given and %d are expected\n"
-msgstr	""
-#
 # File: src/exe/read.c, line: 165
 # File: src/exe/read.c, line: 178
 # File: src/exe/read.c, line: 189
@@ -450,6 +434,14 @@ msgstr	""
 # File: src/exe/intersci.c, line: 328
 #, c-format
 msgid	"bad type specification for variable \"%s\"\n"
+msgstr	""
+#
+# File: src/exe/read.c, line: 155
+# File: src/exe/read.c, line: 166
+# File: src/exe/intersci.c, line: 286
+# File: src/exe/intersci.c, line: 296
+#, c-format
+msgid	"only %d argument given and %d are expected\n"
 msgstr	""
 #
 # File: src/exe/read.c, line: 179
@@ -501,7 +493,7 @@ msgstr	""
 # File: src/exe/read.c, line: 285
 # File: src/exe/intersci.c, line: 434
 #, c-format
-msgid	"  cannot have a variable type of \"%s\" \n"
+msgid	"  cannot have a variable type of \"%s\"\n"
 msgstr	""
 #
 # File: src/exe/read.c, line: 298
@@ -617,7 +609,7 @@ msgstr	""
 # File: src/exe/check.c, line: 286
 # File: src/exe/getrhs.c, line: 447
 #, c-format
-msgid	"Wrong type opointer inside a list \n"
+msgid	"Wrong type opointer inside a list\n"
 msgstr	""
 #
 # File: src/exe/check.c, line: 294
@@ -628,7 +620,7 @@ msgstr	""
 # File: src/exe/check.c, line: 322
 # File: src/exe/check.c, line: 329
 #, c-format
-msgid	"Wrong type in Check function \n"
+msgid	"Wrong type in Check function\n"
 msgstr	""
 #
 # File: src/exe/check.c, line: 343
@@ -699,13 +691,13 @@ msgstr	""
 # File: src/exe/intersci.c, line: 2134
 # File: src/exe/crerhs.c, line: 446
 #, c-format
-msgid	"WARNING : your code contains a specification \n"
+msgid	"WARNING : your code contains a specification\n"
 msgstr	""
 #
 # File: src/exe/intersci.c, line: 2135
 # File: src/exe/crerhs.c, line: 447
 #, c-format
-msgid	" not fully implemented in intersci \n"
+msgid	" not fully implemented in intersci\n"
 msgstr	""
 #
 # File: src/exe/intersci.c, line: 2174
@@ -758,7 +750,7 @@ msgstr	""
 #
 # File: src/exe/out-e.c, line: 199
 #, c-format
-msgid	"OutLIST : List output : unfinished \n"
+msgid	"OutLIST : List output : unfinished\n"
 msgstr	""
 #
 # File: src/exe/getrhs.c, line: 457
@@ -769,7 +761,7 @@ msgstr	""
 # File: src/exe/getrhs.c, line: 487
 # File: src/exe/getrhs.c, line: 494
 #, c-format
-msgid	"Wrong type in Get function \n"
+msgid	"Wrong type in Get function\n"
 msgstr	""
 #
 # File: examples/ex14c.c, line: 16

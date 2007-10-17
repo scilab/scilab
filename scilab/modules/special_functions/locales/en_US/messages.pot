@@ -18,13 +18,13 @@ msgstr	"Project-Id-Version: Scilab - special_functions\n"
 #
 # File: sci_gateway/c/sci_beta.c, line: 38
 #, possible-c-format
-msgid	"%s don't work for complex arguments \n"
+msgid	"%s don't work for complex arguments\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_beta.c, line: 48
 # File: sci_gateway/c/gw_special_functions2.c, line: 27
 #, possible-c-format
-msgid	"%s: arguments must be positive \n"
+msgid	"%s: arguments must be positive\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_legendre.c, line: 48

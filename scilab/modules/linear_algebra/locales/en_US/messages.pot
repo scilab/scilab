@@ -64,7 +64,7 @@ msgstr	""
 # File: sci_gateway/c/sci_lsq.c, line: 58
 # File: sci_gateway/c/sci_lsq.c, line: 64
 #, possible-c-format
-msgid	"%s: Invalid input! \n"
+msgid	"%s: Invalid input!\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_bdiag.c, line: 86
@@ -77,7 +77,7 @@ msgstr	""
 # File: sci_gateway/c/sci_schur.c, line: 186
 # File: sci_gateway/c/sci_svd.c, line: 87
 #, possible-c-format
-msgid	"%s: Invalid call! \n"
+msgid	"%s: Invalid call!\n"
 msgstr	""
 #
 # File: examples/intdlassq.c, line: 40
@@ -88,7 +88,7 @@ msgstr	""
 # File: examples/intdgemm.c, line: 32
 # File: examples/intzgemm.c, line: 29
 #, possible-c-format
-msgid	"%f: invalid matrix dims \n"
+msgid	"%f: invalid matrix dims\n"
 msgstr	""
 #
 # File: examples/intdsyev.c, line: 34
@@ -112,5 +112,5 @@ msgstr	""
 # File: examples/intdgeesx.c, line: 62
 # File: examples/intdgeesx.c, line: 80
 #, possible-c-format
-msgid	"%s:  not enough memory (use stacksize) \n"
+msgid	"%s:  not enough memory (use stacksize)\n"
 msgstr	""

@@ -3,18 +3,6 @@
 # Copyright (C) 2007 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
 # Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
-#
-# File: macros/WritemiMatrix.sci, line: 97
-# File: macros/WritemiMatrix.sci, line: 115
-# File: macros/WritemiMatrix.sci, line: 120
-# File: macros/loadmatfile.sci, line: 61
-# File: macros/ReadmiMatrix.sci, line: 9
-# File: macros/ReadmiMatrix.sci, line: 344
-# File: macros/mtlb_fopen.sci, line: 13
-# File: macros/mtlb_dec2hex.sci, line: 11
-# File: macros/mtlb_dec2hex.sci, line: 16
-# File: macros/savematfile.sci, line: 52
-# File: macros/mtlb_setstr.sci, line: 18
 
 msgid	""
 msgstr	"Project-Id-Version: Scilab - compatibility_functions\n"
@@ -1173,7 +1161,7 @@ msgstr	""
 #
 # File: macros/mtlb_fprintf.sci, line: 13
 #, possible-c-format
-msgid	"%s \n"
+msgid	"%s\n"
 msgstr	""
 #
 # File: macros/mtlb_fprintf.sci, line: 17

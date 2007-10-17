@@ -137,7 +137,7 @@ msgid	"incompatible LHS.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_contr.c, line: 35
-msgid	"Invalid A,B matrices \n"
+msgid	"Invalid A,B matrices\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_contr.c, line: 40

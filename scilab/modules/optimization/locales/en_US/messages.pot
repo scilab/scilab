@@ -17,11 +17,11 @@ msgstr	"Project-Id-Version: Scilab - optimization\n"
 	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: src/c/sp.c, line: 268
-msgid	"m must be at least one. \n"
+msgid	"m must be at least one.\n"
 msgstr	""
 #
 # File: src/c/sp.c, line: 273
-msgid	"L must be at least one. \n"
+msgid	"L must be at least one.\n"
 msgstr	""
 #
 # File: src/c/sp.c, line: 278
@@ -30,7 +30,7 @@ msgid	"blck_szs[%d] must be at least one.\n"
 msgstr	""
 #
 # File: src/c/sp.c, line: 283
-msgid	"nu must be at least 1.0. \n"
+msgid	"nu must be at least 1.0.\n"
 msgstr	""
 #
 # File: src/c/sp.c, line: 304
@@ -66,7 +66,7 @@ msgstr	""
 #
 # File: src/c/sp.c, line: 450
 msgid	"\n"
-	"    primal obj.  dual obj.  dual. gap  \n"
+	"    primal obj.  dual obj.  dual. gap \n"
 msgstr	""
 #
 # File: src/c/sp.c, line: 507
@@ -96,12 +96,12 @@ msgstr	""
 #
 # File: src/c/intqld.c, line: 52
 #, possible-c-format
-msgid	"qld: Argument 3: wrong number of columns %d expected \n"
+msgid	"qld: Argument 3: wrong number of columns %d expected\n"
 msgstr	""
 #
 # File: src/c/intqld.c, line: 147
 #, possible-c-format
-msgid	"qld: Too many iterations (more than %d) \n"
+msgid	"qld: Too many iterations (more than %d)\n"
 msgstr	""
 #
 # File: src/c/intqld.c, line: 149

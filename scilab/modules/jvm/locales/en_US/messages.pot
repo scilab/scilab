@@ -102,7 +102,7 @@ msgstr	""
 # File: src/c/loadLibrarypath.c, line: 94
 # File: src/c/loadClasspath.c, line: 94
 #, c-format
-msgid	"Wrong format for %s. \n"
+msgid	"Wrong format for %s.\n"
 msgstr	""
 #
 # File: src/c/loadLibrarypath.c, line: 99

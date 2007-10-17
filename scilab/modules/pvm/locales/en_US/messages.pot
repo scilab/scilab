@@ -189,7 +189,7 @@ msgid	"\tWith SCI=%s\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 320
-msgid	"\tSCI will have to be set on remote hosts \n"
+msgid	"\tSCI will have to be set on remote hosts\n"
 msgstr	""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 321
@@ -257,7 +257,7 @@ msgstr	""
 # File: sci_gateway/c/sci_pvm_tasks.c, line: 31
 # File: sci_gateway/c/sci_pvm_config.c, line: 25
 #, possible-c-format
-msgid	"%s: Error \n"
+msgid	"%s: Error\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_pvm_error_mode.c, line: 30

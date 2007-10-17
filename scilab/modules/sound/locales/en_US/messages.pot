@@ -58,7 +58,7 @@ msgstr	""
 # File: src/c/sox.c, line: 81
 # File: src/c/sox.c, line: 88
 # File: src/c/sox.c, line: 111
-msgid	"Error while reading \n"
+msgid	"Error while reading\n"
 msgstr	""
 #
 # File: src/c/sox.c, line: 94
@@ -72,7 +72,7 @@ msgid	"\tsize %s, style %s, %d %s\n"
 msgstr	""
 #
 # File: src/c/sox.c, line: 118
-msgid	" Sorry wav file too big \n"
+msgid	" Sorry wav file too big\n"
 msgstr	""
 #
 # File: src/c/sox.c, line: 162

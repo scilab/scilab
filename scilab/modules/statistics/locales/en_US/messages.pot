@@ -127,7 +127,7 @@ msgstr	""
 # File: sci_gateway/c/sci_cdfnbn.c, line: 71
 # File: sci_gateway/c/sci_cdfnor.c, line: 69
 #, possible-c-format
-msgid	"input parameter %c is out of range \n"
+msgid	"input parameter %c is out of range\n"
 	"\tbound exceeded: %f\n"
 msgstr	""
 #
@@ -156,7 +156,7 @@ msgid	"P,Q,X and Shape"
 msgstr	""
 #
 # File: sci_gateway/c/sci_cdfgam.c, line: 67
-msgid	" cannot compute the answer \n"
+msgid	" cannot compute the answer\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_cdff.c, line: 31
@@ -231,7 +231,7 @@ msgstr	""
 #
 # File: sci_gateway/c/sci_cdfbin.c, line: 69
 # File: sci_gateway/c/sci_cdfnbn.c, line: 69
-msgid	" Pr + Ompr .ne. 1 \n"
+msgid	" Pr + Ompr .ne. 1\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_cdfchn.c, line: 41
@@ -267,7 +267,7 @@ msgid	"P,Q,X,Y and A"
 msgstr	""
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 70
-msgid	" X + Y .ne. 1 \n"
+msgid	" X + Y .ne. 1\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_cdfnbn.c, line: 32
@@ -303,5 +303,5 @@ msgid	"P,Q,X and Mean"
 msgstr	""
 #
 # File: sci_gateway/c/sci_cdfnor.c, line: 67
-msgid	" Std must not be zero \n"
+msgid	" Std must not be zero\n"
 msgstr	""
