@@ -14,7 +14,7 @@ void selector_m(scicos_block *block,int flag)
   ic=(int)z[0];
   if (flag<3)
      {ic=0;
-      nev=GetNev(block);
+      nev=GetNevIn(block);
       while (nev>=1) 
            {
      	    ic=ic+1;

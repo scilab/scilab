@@ -184,7 +184,8 @@ extern int s_cmp();
   * 35 - GetNdstate(blk)
   * 36 - GetDstate(blk)
   *
-  * 37 - GetNev(blk)
+  * 37 - GetNevIn(blk)
+  * 37bis - GetNevOut(blk)
 
   * 38 - GetNopar(blk)
   * 39 - GetOparType(blk,x)
@@ -411,7 +412,12 @@ extern int s_cmp();
 /**
    \brief Get Nevprt of the block
 */
-#define GetNev(blk) (blk->nevprt)
+#define GetNevIn(blk) (blk->nevprt)
+
+/**
+   \brief Get nevout of the block
+*/
+#define GetNevOut(blk) (blk->nevout)
 
 /**
    \brief Get Number of Object Parameters

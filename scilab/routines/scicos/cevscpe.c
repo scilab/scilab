@@ -122,7 +122,7 @@ void cevscpe(scicos_block * block, int flag)
 
 	    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
 	      {
-		if((GetNev(block)&(1<<i))==(1<<i))
+		if((GetNevIn(block)&(1<<i))==(1<<i))
 		  {
 		    tab[nbseg]=i;
 		    nbseg++;
