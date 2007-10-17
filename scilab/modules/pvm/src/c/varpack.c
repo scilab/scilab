@@ -144,7 +144,7 @@ static void C2F(spak)(int *il, int *pack, int *n, int *nMax)
   pack[1] = *istk(*il +1) * *istk(*il + 1 +1) * (*istk(*il + 2 +1) + 1);
 } 
 
-/*     matrix of interger */
+/*     matrix of integer */
 
 static void C2F(ipak)(int *il, int *pack, int *n, int *nMax)
 {
@@ -154,6 +154,8 @@ static void C2F(ipak)(int *il, int *pack, int *n, int *nMax)
 
   pack[0] = 4;
   pack[1] = 0;
+
+  /* il + 2 +1  : type of integer */
   /*     char */
   if (*istk(*il + 2 +1) == 1) {
     ix2 = *istk(*il +1) * *istk(*il + 1 +1);
@@ -203,9 +205,9 @@ static void C2F(ppak)(int *il, int *pack, int *np, int *npMax)
   if (*np > *npMax) {
     return ;
   }
-  id = *il + 8;
+  id = *il + 8; /* WTF is 8 ? */
   mn = *istk(*il +1) * *istk(*il + 1 +1);
-  ix1 = mn + 9;
+  ix1 = mn + 9; /* WTF is 9 ? */
   pack[0] = ODD(ix1);
   pack[1] = (*istk(id + mn ) - 1) * (*istk(*il + 2 +1) + 1);
   return ;
@@ -242,9 +244,9 @@ static void C2F(sppak)(int *il, int *pack, int *np, int *npMax)
     return ;
   }
   nel = *istk(*il + 3 +1);
-  m = *istk(*il +1);
-  n = *istk(*il + 1 +1);
-  it = *istk(*il + 2 +1);
+  m = *istk(*il +1); /* number of lines */
+  n = *istk(*il + 1 +1); /* number of columns */
+  it = *istk(*il + 2 +1); /*  */
   ix1 = m + 5 + nel;
   pack[0] = ODD(ix1);
   pack[1] = nel * (it + 1);
