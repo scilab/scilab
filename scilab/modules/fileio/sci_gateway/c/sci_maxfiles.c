@@ -15,7 +15,7 @@ static int DoOneLhs(void);
 /*-----------------------------------------------------------------------------------*/
 /**
 * maxfiles sets the soft limit for the number of scilab's files allowed to open simultaneously.
-* Minimum 20 
+* Minimum 20
 * Maximum 100
 * Default 20
 */
@@ -83,7 +83,7 @@ int C2F(sci_maxfiles) _PARAMS((char *fname,unsigned long fname_len))
 /*-----------------------------------------------------------------------------------*/
 int DoOneLhs(void)
 {
-	static int l1,n1,m1;
+	static int n1,m1;
 	int *paramoutINT=NULL;
 	paramoutINT=(int*)MALLOC(sizeof(int));
 
@@ -93,7 +93,7 @@ int DoOneLhs(void)
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();	
+	C2F(putlhsvar)();
 
 	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	return 0;
