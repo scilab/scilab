@@ -87,7 +87,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
     impi  = graphics1.pin
     cop   = graphics1.peout
     [xout,yout,typout]=getoutputports(o1)
-    
+
     i_ImplIndx=find(graphics1.in_implicit=='I')
 
     if xout==[] then
@@ -114,8 +114,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       if op(port_number)<>0 then
           hilite_obj(kfrom)
           message(['Selected port is already connected.';..
-		   'To start a link off another link, place the cursor';..
-		   'on the split point and double click, or type l.'])
+                   'To start a link off another link, place the cursor';..
+                   'on the split point and double click, or type l.'])
           unhilite_obj(kfrom)
         return
       end
@@ -125,8 +125,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       if op(port_number)<>0 then
           hilite_obj(kfrom)
           message(['Selected port is already connected.';..
-		   'To start a link off another link, place the cursor';..
-		   'on the split point and double click, or type l.'])
+                   'To start a link off another link, place the cursor';..
+                   'on the split point and double click, or type l.'])
           unhilite_obj(kfrom)
         return
       end
@@ -139,8 +139,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       if impi(port_number)<>0 then
           hilite_obj(kfrom)
           message(['Selected port is already connected.';..
-		   'To start a link off another link, place the cursor';..
-		   'on the split point and double click, or type l.'])
+                   'To start a link off another link, place the cursor';..
+                   'on the split point and double click, or type l.'])
           unhilite_obj(kfrom)
         return
       end
@@ -150,8 +150,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       if cop(port_number)<>0 then
           hilite_obj(kfrom)
           message(['Selected port is already connected.';..
-		   'To start a link off another link, place the cursor';..
-		   'on the split point and double click, or type l.'])
+                   'To start a link off another link, place the cursor';..
+                   'on the split point and double click, or type l.'])
           unhilite_obj(kfrom)
         return
       end
@@ -198,14 +198,14 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       if or(rep(3)==[0,2,3,5,-5,-100]) then break,end
 
       //** otherwise ... get a new point
-      
+
       //** This mode is prone to some errors
       //** mouse event queque is not cleared
       //** rep = xgetmouse(0,[%t,%t])
 
       //** mouse event queque is cleared (15 Mar 2007 bugfix)
       rep = xgetmouse([%t,%t]) ; //** looks better :)
-      
+
       gh_figure = gcf();
       if gh_figure.figure_id<>curwin | rep(3)==-100 then
         //active window has been closed
@@ -213,7 +213,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       end
 
       //** any rigth mouse event OR [Esc] OR [d] key : I want to disengage the current Link action
-      if or(rep(3)==[2 5 12 65307 100]) then 
+      if or(rep(3)==[2 5 12 65307 100]) then
           p_size = size(gh_curwin.children.children)
           d_size = p_size(1)-o_size(1);
           if d_size > 0 then
@@ -227,7 +227,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
             disp("d1"); //** Debug
           end
           return; //** -----> Exit from the function
-      end //**  
+      end //**
 
       //plot new position of last link segment
       xe = rep(1); ye = rep(2) ;
@@ -236,7 +236,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       draw(gh_curwin.children);
       show_pixmap(); //** display the buffer
 
-    end 
+    end
     //** ----------------- end of last segment while loop ------------------------------
 
     if %scicos_debug_gr then
@@ -259,7 +259,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       impo  = graphics2.pout
       cip   = graphics2.pein
       [xin,yin,typin] = getinputports(o2)
-      
+
       o_ImplIndx=find(graphics2.out_implicit=='I')
 
       //check connection
@@ -309,15 +309,15 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
           return; //** EXIT point from the function
       end
 
-     //**------------------------------------------------------------------------
-     //** check if is a normal regular input port (not an event input port)
-     if typi==1  then // regular input port
+      //**------------------------------------------------------------------------
+      //** check if is a normal regular input port (not an event input port)
+      if typi==1  then // regular input port
         port_number = k ;
         if ip(port_number)<>0 then
              hilite_obj(kto)
              message(['Selected port is already connected.';..
-		   'To start a link off another link, place the cursor';..
-		   'on the split point and double click, or type l.']),
+                      'To start a link off another link, place the cursor';..
+                      'on the split point and double click, or type l.']),
              p_size = size(gh_curwin.children.children)
              d_size = p_size(1)-o_size(1);
              if d_size > 0 then
@@ -390,8 +390,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         port_number = k
         if ip(port_number)<>0 then
            message(['Selected port is already connected.';..
-		   'To start a link off another link, place the cursor';..
-		   'on the split point and double click, or type l.']),
+                    'To start a link off another link, place the cursor';..
+                    'on the split point and double click, or type l.']),
            p_size = size(gh_curwin.children.children)
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
@@ -424,8 +424,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
                                    //in the computation of k
         if impo(port_number)<>0 then
            message(['Selected port is already connected.';..
-		   'To start a link off another link, place the cursor';..
-		   'on the split point and double click, or type l.']),
+                    'To start a link off another link, place the cursor';..
+                    'on the split point and double click, or type l.']),
            p_size = size(gh_curwin.children.children)
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
@@ -455,8 +455,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         if cip(port_number)<>0 then
             hilite_obj(kto)
             message(['Selected port is already connected.';..
-		   'To start a link off another link, place the cursor';..
-		   'on the split point and double click, or type l.']),
+                     'To start a link off another link, place the cursor';..
+                     'on the split point and double click, or type l.']),
             p_size = size(gh_curwin.children.children)
             d_size = p_size(1)-o_size(1);
             if d_size > 0 then
@@ -493,11 +493,13 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
 
       drawlater ;
 
-      if kto==kfrom&size(xl,'*')==1 then
-        //direct link between two port of the same block (add a point)
-        xl=[xl;(xl+xc2)/2]
-        yl=[yl;(yl+yc2)/2]
-      end
+      //** Alan's fix : 17/10/07 : remove that pieces of code.
+      //** Directly treated below in the case nx=1
+//       if kto==kfrom&size(xl,'*')==1 then
+//         //direct link between two port of the same block (add a point)
+//         xl=[xl;(xl+xc2)/2]
+//         yl=[yl;(yl+yc2)/2]
+//       end
 
       break;
 
@@ -532,7 +534,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
     end
 
   end //loop on link segments
-  
+
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-100 then
       //active window has been closed
@@ -546,8 +548,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
 
   if from==to then
       message(['Selected port is already connected.';..
-		   'To start a link off another link, place the cursor';..
-		   'on the split point and double click, or type l.']),
+               'To start a link off another link, place the cursor';..
+               'on the split point and double click, or type l.']),
       p_size = size(gh_curwin.children.children)
       d_size = p_size(1)-o_size(1);
       if d_size > 0 then
@@ -559,7 +561,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       if %scicos_debug_gr then
         disp("d9");//** Debug
       end
-      //** ... to be removed  
+      //** ... to be removed
       //** Replot_(); //** force a replot (obsolete)
       return //** exit point
   end
@@ -574,32 +576,39 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
 
       if xx(wh)==xx(wh+1) then //split is on a vertical link
 
-	if (yy(wh)-yc2)*(yy(wh+1)-yc2)<0 then
-	  //erase last segment
-	  //**xpoly([xl;xc2],[yl;yc2],'lines')
-	  yl = yc2 ;
-	  //draw last segment
-	  //**xpoly([xl;xc2],[yl;yc2],'lines')
-          gh_link.data =  [xl yl ; xc2 yc2 ] ; //** put the coordinate here
+        if (yy(wh)-yc2)*(yy(wh+1)-yc2)<0 then
+          //erase last segment
+          //**xpoly([xl;xc2],[yl;yc2],'lines')
+          yl = yc2 ;
+          //draw last segment
+          //**xpoly([xl;xc2],[yl;yc2],'lines')
+          gh_link.data =  [xl yl ; xc2 yc2] ; //** put the coordinate here
           draw(gh_link.parent);
           show_pixmap(); //** display the buffer
-	end
+        end
 
       elseif yy(wh)==yy(wh+1) then //split is on a horizontal link
 
-	if (xx(wh)-xc2)*(xx(wh+1)-xc2)<0 then
-	  //erase last segment
-	  //xpoly([xl;xc2],[yl;yc2],'lines')
-	  xl = xc2,
-	  //draw last segment
-	  // xpoly([xl;xc2],[yl;yc2],'lines')
+        if (xx(wh)-xc2)*(xx(wh+1)-xc2)<0 then
+          //erase last segment
+          //xpoly([xl;xc2],[yl;yc2],'lines')
+          xl = xc2,
+          //draw last segment
+          // xpoly([xl;xc2],[yl;yc2],'lines')
           gh_link.data = [xl yl ; xc2 yc2 ] ; //** put the coordinate here
           draw(gh_link.parent);
            show_pixmap(); //** display the buffer
-	end
+        end
 
       end
       d=[xl,yl]
+    //** Alan's fix, 17/10/07
+    //** create a point in the middle of the link
+    //** in the case of a direct link between two port
+    //** of the same block
+    elseif kto==kfrom then
+      xl=[xl;(xl+xc2)/2]
+      yl=[yl;(yl+yc2)/2]
     end
     //form link datas
     xl=[xl;xc2];yl=[yl;yc2]
@@ -615,11 +624,11 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         nx = prod(size(xl)) ;
         gh_link_del = gh_curwin.children.children(1) ;
         delete( gh_link_del );
-	gh_link_del = gh_curwin.children.children(1) ;
+        gh_link_del = gh_curwin.children.children(1) ;
         delete( gh_link_del );
-	xpoly([xl(nx-1) ; xl(nx) ; xc2] , [yl(nx-1) ; yc2 ; yc2] ,'lines');
-	gh_link = gh_curwin.children.children(1) ;
-	gh_link.foreground = clr
+        xpoly([xl(nx-1) ; xl(nx) ; xc2] , [yl(nx-1) ; yc2 ; yc2] ,'lines');
+        gh_link = gh_curwin.children.children(1) ;
+        gh_link.foreground = clr
         draw(gh_link.parent) ;
         show_pixmap(); //** display the buffer
       //form link datas
