@@ -8,7 +8,7 @@
 #include "message_scilab.h"
 #include "tksynchro.h"
 #include "error_scilab.h"
-#include "../../localization/includes/QueryStringMessage.h"
+#include "../../localization/includes/localization.h"
 #include "syncexec.h"
 #include "dynamic_menus.h"
 /*-----------------------------------------------------------------------------------*/
@@ -36,7 +36,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	/* trace for debugging */
     int argc=1;
 	char *AsciiFromUTF8=NULL;
-	char *msg=QueryStringMessage("TCL_EvalScilabCmd %s");
+	char *msg=_("TCL_EvalScilabCmd %s");
 
 	AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 
@@ -92,7 +92,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       ns=(int)strlen(command); 
       if (C2F(iop).ddt==-1)
 	  {
-		  char *msg=QueryStringMessage(" Execution starts for %s");
+		  char *msg=_(" Execution starts for %s");
 		  sciprint_full(msg,command);
 		  if (msg){FREE(msg);msg=NULL;}
           sciprint("\n");
@@ -100,7 +100,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       C2F(syncexec)(command,&ns,&ierr,&seq,ns);
       if (C2F(iop).ddt==-1)
 	  {
-		  char *msg=QueryStringMessage(" Execution ends for %s");
+		  char *msg=_(" Execution ends for %s");
 		  sciprint_full(msg,command);
 		  if (msg){FREE(msg);msg=NULL;}
           sciprint("\n");
@@ -131,14 +131,14 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         {
 	      if (seqf[nc]==0)
 		  {
-			  char *msg=QueryStringMessage(" Flushed execution starts for %s - No option");
+			  char *msg=_(" Flushed execution starts for %s - No option");
 			  sciprint_full(msg,comm[nc]);
 			  if (msg){FREE(msg);msg=NULL;}
               sciprint("\n");
 		  }
 	      else
 		  {
-			  char *msg=QueryStringMessage(" Flushed execution starts for %s - seq");
+			  char *msg=_(" Flushed execution starts for %s - seq");
 			  sciprint_full(msg,comm[nc]);
 			  if (msg){FREE(msg);msg=NULL;}
               sciprint("\n");
@@ -148,7 +148,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
         if (C2F(iop).ddt==-1)
         {
-			char *msg=QueryStringMessage(" Flushed execution ends for %s");
+			char *msg=_(" Flushed execution ends for %s");
 			sciprint_full(msg,comm[nc]);
 			if (msg){FREE(msg);msg=NULL;}
             sciprint("\n");

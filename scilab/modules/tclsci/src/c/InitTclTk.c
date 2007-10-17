@@ -12,12 +12,11 @@
 #include "setgetSCIpath.h"
 #include "message_scilab.h"
 #include "scilabmode.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
+#include "ScilabEval.h"
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
 /*-----------------------------------------------------------------------------------*/ 
-char *GetSciPath(void);
+static char *GetSciPath(void);
 /*-----------------------------------------------------------------------------------*/
 void initTCLTK(void)
 {
@@ -43,7 +42,7 @@ int OpenTCLsci(void)
 /* initialise it. It must find the tcl script */
 {
   char *SciPath=NULL;
-  char TkScriptpath[2048];
+  char TkScriptpath[PATH_MAX];
   char MyCommand[2048];
 
 #ifndef _MSC_VER
@@ -169,7 +168,7 @@ int CloseTCLsci(void)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
-char *GetSciPath(void)
+static char *GetSciPath(void)
 /* force SciPath to Unix format for compatibility (Windows) */
 {
 	char *PathUnix=NULL;
