@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>CMSCOPE</TITLE>
+<META NAME="description" CONTENT="CMSCOPE">
+<META NAME="keywords" CONTENT="CMSCOPE">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="CMSCOPE.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./CMSCOPE.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/CMSCOPE.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="CMSCOPE"></A>
+<BR>
+Scope à affichage multiple
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=CMSCOPE.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CMSCOPE_blk.gif"
+ ALT="\epsfig{file=CMSCOPE.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="CMSCOPE.htm#SECTION00010000000000000000">Scope à affichage multiple</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="CMSCOPE.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="CMSCOPE.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="CMSCOPE.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html10"
+  HREF="CMSCOPE.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html11"
+  HREF="CMSCOPE.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html12"
+  HREF="CMSCOPE.htm#SECTION00026000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html13"
+  HREF="CMSCOPE.htm#SECTION00027000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Sinks_pal.htm">Sinks - Palette Affichage</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Au début de la simulation, ce bloc ouvre une fenêtre  pour afficher
+l'évolution temporelle des données qui seront lues sur les ports
+d'entrées réguliers.
+Ce bloc est donc similaire à un oscilloscope.
+Il permet l'affichage de multiple abscisses (une par entrée).
+Ces abscisses peuvent avoir des échelles temporelles différentes
+qui seront définies par le paramètre <B>Refresh period</B>.
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="304" BORDER="0"
+ SRC="../../images/scicos/CMSCOPE_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=CMSCOPE_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><B>Input ports sizes</B>
+<BR>
+It allows multiple  input ports. 
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
+</LI>
+<LI><B>Drawing colors </B>
+<BR>
+a vector of integers. The i-th element is the color
+	number (<SPAN CLASS="MATH"><IMG
+ WIDTH="32" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/CMSCOPE_img3_fr.gif"
+ ALT="$ &gt;0$"></SPAN>) or dash type (<SPAN CLASS="MATH"><IMG
+ WIDTH="32" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/CMSCOPE_img4_fr.gif"
+ ALT="$ &lt;0$"></SPAN>) used to draw the evolution
+	of the i-th input port signal. See <B>plot2d</B> for color
+	(dash type) definitions. 
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
+</LI>
+<LI><B>Output window number</B>
+<BR>
+The number of graphic window used for the display.
+	It is often good to use high values to avoid conflict 
+	with palettes and Super Block windows. If default value
+	is used <B>(1)</B>, Scicos define the output window number. 
+<BR>
+Propriétés : Type 'vec' de taille 1
+
+<P>
+</LI>
+<LI><B>Output window position</B>
+<BR>
+a 2 vector specifying the coordinates
+	of the upper left corner of the graphic window. Answer [] for 
+	default window position.    
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
+</LI>
+<LI><B>Output window sizes</B>
+<BR>
+a 2 vector specifying the coordinates of
+	the upper left corner of the graphic window. Answer []
+	for default window position.   
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
+</LI>
+<LI><B>Ymin vector</B>
+<BR>
+Minimum  values of the input; used to set up the Y-axis
+	of the plot in the graphics window. 
+<BR>
+Propriétés : Type 'vec' de taille size(%1,'*')
+
+<P>
+</LI>
+<LI><B>Ymax vector</B>
+<BR>
+Maximum values of the input; used to set up the Y-axis
+	of the plot in the graphics window.  
+<BR>
+Propriétés : Type 'vec' de taille size(%1,'*')
+
+<P>
+</LI>
+<LI><B>Refresh period</B>
+<BR>
+Maximum value on the X-axis (time). The plot
+        is redrawn when time reaches a multiple of this value.
+<BR>
+Propriétés : Type 'vec' de taille size(%1,'*')
+
+<P>
+</LI>
+<LI><B>Buffer size</B>
+<BR>
+To improve efficiency it is possible to buffer the
+	input data. The drawing is only done after each
+	<B>Buffer size</B> call to the block. 
+<BR>
+Propriétés : Type 'vec' de taille 1
+
+<P>
+</LI>
+<LI><B>Accept herited events 0/1</B>
+<BR>
+if 0  <B>CSCOPE_f</B>  draws a new point
+	only when an event occurs on its event input port. if 1
+	<B>CSCOPE_f</B>	draws a new point when an event occurs
+	on its event input port and when it's regular input changes
+	due to an event on an other upstrem block (herited events). 
+<BR>
+Propriétés : Type 'vec' de taille 1
+
+<P>
+</LI>
+<LI><B>Name of Scope </B>
+<BR>
+Name/label of the block. 
+<BR>
+Propriétés : Type 'str' de taille 1
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR>   <b>   - port 2 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 1
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>cmscope</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Sinks/CMSCOPE.sci <A NAME="tex2html4"
+  HREF="CMSCOPE_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/cmscope.c (Type 4) <A NAME="tex2html5"
+  HREF="cmscope_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Auteurs</A>
+</font></H3>
+
+<UL>
+<LI><b>Ramine Nikoukhah</b> INRIA
+</LI>
+<LI><b>Benoit Bayol</b> 
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

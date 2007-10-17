@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>LOGIC</TITLE>
+<META NAME="description" CONTENT="LOGIC">
+<META NAME="keywords" CONTENT="LOGIC">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="LOGIC.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./LOGIC.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/LOGIC.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="LOGIC"></A>
+<BR>
+Logique combinatoire
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=LOGIC.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/LOGIC_blk.gif"
+ ALT="\epsfig{file=LOGIC.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html8"
+  HREF="LOGIC.htm#SECTION00010000000000000000">Logique combinatoire</A>
+<UL>
+<LI><A NAME="tex2html9"
+  HREF="LOGIC.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html10"
+  HREF="LOGIC.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html11"
+  HREF="LOGIC.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html12"
+  HREF="LOGIC.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html13"
+  HREF="LOGIC.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html14"
+  HREF="LOGIC.htm#SECTION00026000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html15"
+  HREF="LOGIC.htm#SECTION00027000000000000000">Voir aussi</A>
+<LI><A NAME="tex2html16"
+  HREF="LOGIC.htm#SECTION00028000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Integer_pal.htm">Integer - Palette Integer</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+This block implements a standard truth table for modeling programming array, digital circuit and any other boolean expressions. The user can specify a matrix that defines all the possible block output in the Truth table field. Each row of the matrix contains the output of different combination of input elements. The number of rows must be a power of two, it defines the number of inputs using the equation:  
+<BR>
+number of row = 2 (number of input) 
+<BR>
+The number of outputs is equal to the number of columns of the matrix.  
+<BR>
+This block support only the int8 data type. When the input is positif, the input is considered as logical 1, When it is negatif or zero it is considered as logical 0.  
+<BR>
+This block can be activated by an implicit input event or it can herit the clock from the regular input.  
+<BR>
+This block is used to implement SR and JK flip-flops.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="133" BORDER="0"
+ SRC="../../images/scicos/LOGIC_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=LOGIC_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Truth table</b>
+<BR>
+The matrix of outputs. For more information see the description part.
+<BR>
+Propriétés : Type 'mat' de taille [-1,-2].
+
+<P>
+</LI>
+<LI><b>Inherit(0=no 1=yes)</b>
+<BR>
+Specifies if the clock is inherit or not.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 5</b>
+<BR>   <b>   - port 2 : taille [1,1] / type 5</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 5</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 1
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>logic</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/IntegerOp/LOGIC.sci <A NAME="tex2html4"
+  HREF="LOGIC_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/logic.c <A NAME="tex2html5"
+  HREF="logic_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Voir aussi</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="SRFLIPFLOP.htm">SRFLIPFLOP - SRFLIPFLOP Bascule RS (Bloc Scicos)</A>
+</LI>
+<LI><A NAME="tex2html7"
+  HREF="JKFLIPFLOP.htm">JKFLIPFLOP - JKFLIPFLOP Bascule JK (Bloc Scicos)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Fady NASSIF</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

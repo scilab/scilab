@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>MATCATV</TITLE>
+<META NAME="description" CONTENT="MATCATV">
+<META NAME="keywords" CONTENT="MATCATV">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="MATCATV.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./MATCATV.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/MATCATV.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="MATCATV"></A>
+<BR>
+MATCATV Concaténation verticale
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=MATCATV.eps,height=112.5pt}$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="179" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/MATCATV_blk.gif"
+ ALT="\epsfig{file=MATCATV.eps,height=112.5pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html8"
+  HREF="MATCATV.htm#SECTION00010000000000000000">MATCATV Concaténation verticale</A>
+<UL>
+<LI><A NAME="tex2html9"
+  HREF="MATCATV.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html10"
+  HREF="MATCATV.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html11"
+  HREF="MATCATV.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html12"
+  HREF="MATCATV.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html13"
+  HREF="MATCATV.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html14"
+  HREF="MATCATV.htm#SECTION00026000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html15"
+  HREF="MATCATV.htm#SECTION00027000000000000000">Voir aussi</A>
+<LI><A NAME="tex2html16"
+  HREF="MATCATV.htm#SECTION00028000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Matrix_pal.htm">Matrix - Palette d'opérations matricielles</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The MATCATV Block outputs the vertical concatenation of multiple matrices. It is also called concatenation according to the rows. The inputs U1,U2,...,Un must have the same number of columns. The output is a (M1+M2+...+Mn)-by-N matrix, where M1,M2,...,Mn are the numbers of rows of the inputs matrices, and N is the number of columns.  
+<BR>
+The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="108" BORDER="0"
+ SRC="../../images/scicos/MATCATV_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=MATCATV_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Datatype(1=real double  2=Complex)</b>
+<BR>
+Ce paramètre indique le type de donnée de la sortie. Ce bloc fonctionne uniquement avec des types de donnée réels(1) et complexes(2). Si un autre type que 1 et 2 est indiqué, alors Scicos retourne le message d'erreur "Datatype is not supported".
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>number of line of each matrix</b>
+<BR>
+It indicates the number of rows of the inputs matrices.
+<BR>
+Propriétés : Type 'mat' de taille [-1,1].
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [-1,-2] / type 1</b>
+<BR>   <b>   - port 2 : taille [-1,-3] / type 1</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>mat_catv</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/MatrixOp/MATCATV.sci <A NAME="tex2html4"
+  HREF="MATCATV_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/mat_catv.c <A NAME="tex2html5"
+  HREF="mat_catv_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/matz_catv.c <A NAME="tex2html6"
+  HREF="matz_catv_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Voir aussi</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="MATCATH.htm">MATCATH - MATCATH Concaténation horizontale (Bloc Scicos)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Fady NASSIF</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

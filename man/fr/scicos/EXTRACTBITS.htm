@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>EXTRACTBITS</TITLE>
+<META NAME="description" CONTENT="EXTRACTBITS">
+<META NAME="keywords" CONTENT="EXTRACTBITS">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="EXTRACTBITS.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./EXTRACTBITS.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/EXTRACTBITS.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="EXTRACTBITS"></A>
+<BR>
+EXTRACTBITS Extraction de bits
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=EXTRACTBITS.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/EXTRACTBITS_blk.gif"
+ ALT="\epsfig{file=EXTRACTBITS.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html40"
+  HREF="EXTRACTBITS.htm#SECTION00010000000000000000">EXTRACTBITS Extraction de bits</A>
+<UL>
+<LI><A NAME="tex2html41"
+  HREF="EXTRACTBITS.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html42"
+  HREF="EXTRACTBITS.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html43"
+  HREF="EXTRACTBITS.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html44"
+  HREF="EXTRACTBITS.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html45"
+  HREF="EXTRACTBITS.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html46"
+  HREF="EXTRACTBITS.htm#SECTION00026000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html47"
+  HREF="EXTRACTBITS.htm#SECTION00027000000000000000">Voir aussi</A>
+<LI><A NAME="tex2html48"
+  HREF="EXTRACTBITS.htm#SECTION00028000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Integer_pal.htm">Integer - Palette Integer</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+This block outputs a contiguous selection of bits from the input integer number.The Bits to extract defines the method by which the user select the output bits.  
+<BR>
+1- When "Upper Half" is selected the block outputs the half of the input that contain the most significant bit. In this case the third parameter "number of bits or index of bit" is ignored.  
+<BR>
+2- When "Lower Half" is selected the block outputs the half of the input that contain the least significant bit. In this case the third parameter "number of bits or index of bit" is ignored.  
+<BR>
+3- When "Range starting with most significant bit" is selected the block outputs certain number of bits of the input that contain the most significant bit. In this case the third parameter "number of bits or index of bit" defines the number of bits to extract.  
+<BR>
+4- When "Range ending with least significant bit" is selected the block outputs certain number of bits of the input that contain the least significant bit. In this case the third parameter "number of bits or index of bit" defines the number of bits to extract.  
+<BR>
+5- When "Range of bits" is selected the block outputs a range of bits of the input. In this case the third parameter "number of bits or index of bit" defines the range of bits to extract, it must be a vector with the format [start,end].  
+<BR>
+The extracted value depends on the forth parameter "Treat bit field as an integer". When it is set to 0 the input scaling is used to determine the output scaling. When it is set to 1, only the extracted bits forms the output number.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="445" HEIGHT="330" BORDER="0"
+ SRC="../../images/scicos/EXTRACTBITS_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=EXTRACTBITS_gui.eps,width=280pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Datatype(3=int32 4=int16 5=int8 ...)</b>
+<BR>
+It indicates the type of the input/output data. It support all the integer datatype, number must be between 3 and 8.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>Bits to extract(1=Upper Half 2=Lower Half 3=Range starting with most significant bit 4=Range ending with least significant bit 5=Range of bits)</b>
+<BR>
+It indicates the mode used to extract bits from the input data.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>number of bits or index of bit (case range of bits:[start,end],0 is leat significant bit)</b>
+<BR>
+When the "Bits to extract" field is set to 3 or 4, this parameter is used to determine the number of bits to extract and it must be a number. When the "Bits to extract" field is set to 5 ,this parameter is used to determine range of bits to extract and it must have the [start,end] form vector. When the "Bits to extract" field is set to 1 or 2, this parameter is ignored.
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
+</LI>
+<LI><b>Treat bit field as an integer(0=no 1=yes)</b>
+<BR>
+It indicates the scaling mode to use on the output bits selection.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 3</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 3</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>extract_bit_32_UH0</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/IntegerOp/EXTRACTBITS.sci <A NAME="tex2html4"
+  HREF="EXTRACTBITS_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/extract_bit_32_UH0.c <A NAME="tex2html5"
+  HREF="extract_bit_32_UH0_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_32_UH1.c <A NAME="tex2html6"
+  HREF="extract_bit_32_UH1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_u32_UH1.c <A NAME="tex2html7"
+  HREF="extract_bit_u32_UH1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_32_LH.c <A NAME="tex2html8"
+  HREF="extract_bit_32_LH_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_32_MSB0.c <A NAME="tex2html9"
+  HREF="extract_bit_32_MSB0_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_32_MSB1.c <A NAME="tex2html10"
+  HREF="extract_bit_32_MSB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_u32_MSB1.c <A NAME="tex2html11"
+  HREF="extract_bit_u32_MSB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_32_LSB.c <A NAME="tex2html12"
+  HREF="extract_bit_32_LSB_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_32_RB0.c <A NAME="tex2html13"
+  HREF="extract_bit_32_RB0_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_32_RB1.c <A NAME="tex2html14"
+  HREF="extract_bit_32_RB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_u32_RB1.c <A NAME="tex2html15"
+  HREF="extract_bit_u32_RB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_16_UH0.c <A NAME="tex2html16"
+  HREF="extract_bit_16_UH0_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_16_UH1.c <A NAME="tex2html17"
+  HREF="extract_bit_16_UH1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_u16_UH1.c <A NAME="tex2html18"
+  HREF="extract_bit_u16_UH1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_16_LH.c <A NAME="tex2html19"
+  HREF="extract_bit_16_LH_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_16_MSB0.c <A NAME="tex2html20"
+  HREF="extract_bit_16_MSB0_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_16_MSB1.c <A NAME="tex2html21"
+  HREF="extract_bit_16_MSB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_u16_MSB1.c <A NAME="tex2html22"
+  HREF="extract_bit_u16_MSB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_16_LSB.c <A NAME="tex2html23"
+  HREF="extract_bit_16_LSB_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_16_RB0.c <A NAME="tex2html24"
+  HREF="extract_bit_16_RB0_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_16_RB1.c <A NAME="tex2html25"
+  HREF="extract_bit_16_RB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_u16_RB1.c <A NAME="tex2html26"
+  HREF="extract_bit_u16_RB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_8_UH0.c <A NAME="tex2html27"
+  HREF="extract_bit_8_UH0_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_8_UH1.c <A NAME="tex2html28"
+  HREF="extract_bit_8_UH1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_u8_UH1.c <A NAME="tex2html29"
+  HREF="extract_bit_u8_UH1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_8_LH.c <A NAME="tex2html30"
+  HREF="extract_bit_8_LH_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_8_MSB0.c <A NAME="tex2html31"
+  HREF="extract_bit_8_MSB0_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_8_MSB1.c <A NAME="tex2html32"
+  HREF="extract_bit_8_MSB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_u8_MSB1.c <A NAME="tex2html33"
+  HREF="extract_bit_u8_MSB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_8_LSB.c <A NAME="tex2html34"
+  HREF="extract_bit_8_LSB_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_8_RB0.c <A NAME="tex2html35"
+  HREF="extract_bit_8_RB0_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_8_RB1.c <A NAME="tex2html36"
+  HREF="extract_bit_8_RB1_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/extract_bit_u8_RB1.c <A NAME="tex2html37"
+  HREF="extract_bit_u8_RB1_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Voir aussi</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html38"
+  HREF="BITSET.htm">BITSET - BITSET Positionne un bit (Bloc Scicos)</A>
+</LI>
+<LI><A NAME="tex2html39"
+  HREF="BITCLEAR.htm">BITCLEAR - BITCLEAR Raz un bit (Bloc Scicos)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Fady NASSIF</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

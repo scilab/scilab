@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>CSCOPXY3D</TITLE>
+<META NAME="description" CONTENT="CSCOPXY3D">
+<META NAME="keywords" CONTENT="CSCOPXY3D">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="CSCOPXY3D.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/CSCOPXY3D.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./CSCOPXY3D.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="CSCOPXY3D"></A>
+<BR>
+z=f(x,y) permanent viewer
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=CSCOPXY3D.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CSCOPXY3D_blk.gif"
+ ALT="\epsfig{file=CSCOPXY3D.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html7"
+  HREF="CSCOPXY3D.htm#SECTION00010000000000000000">z=f(x,y) permanent viewer</A>
+<UL>
+<LI><A NAME="tex2html8"
+  HREF="CSCOPXY3D.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html9"
+  HREF="CSCOPXY3D.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html10"
+  HREF="CSCOPXY3D.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html11"
+  HREF="CSCOPXY3D.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html12"
+  HREF="CSCOPXY3D.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html13"
+  HREF="CSCOPXY3D.htm#SECTION00026000000000000000">Computational function</A>
+<LI><A NAME="tex2html14"
+  HREF="CSCOPXY3D.htm#SECTION00027000000000000000">See also</A>
+<LI><A NAME="tex2html15"
+  HREF="CSCOPXY3D.htm#SECTION00028000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Sinks_pal.htm">Sinks - Sinks palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+This block realizes the visualization of the evolution of the three regular inputs signals by drawing the third input as a function of the two others at instants of events on the event input port. When a point is drawn on screen it stays until the simulation is finished.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="304" BORDER="0"
+ SRC="../../images/scicos/CSCOPXY3D_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=CSCOPXY3D_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><B>Number of Curves</B>
+<BR>
+Set the number of curves.
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>color </B>
+<BR>
+an integer. It is the color number (<SPAN CLASS="MATH"><IMG
+ WIDTH="45" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/CSCOPXY3D_img3_eng.gif"
+ ALT="$ &gt;=0$"></SPAN>) or marker
+	type (<SPAN CLASS="MATH"><IMG
+ WIDTH="32" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/CSCOPXY3D_img4_eng.gif"
+ ALT="$ &lt;0$"></SPAN>) used to draw the evolution of the input port signal.
+        See <B>xset()</B>  for color (dash type) definitions.   
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>line or mark size</B>
+<BR>
+an integer. 
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>Output window number</B>
+<BR>
+The number of graphic window used for
+	the display. It is often good to use high values to avoid conflict
+	with palettes and Super Block windows. If you have more than one
+	scope, make sure they don't have the same window numbers (unless
+	superposition of the curves is desired).  
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>Output window position</B>
+<BR>
+a 2 vector specifying the coordinates
+        of the upper left corner of the graphic window. Answer [] for
+        default window position.  
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>Output window sizes</B>
+<BR>
+a 2 vector specifying the width and height
+       of the graphic window. Answer [] for default window dimensions.  
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>Xmin and Xmax</B>
+<BR>
+Minimum and Maximum values of the first input; used to set up the
+	X-axis of the plot in the graphics window.  
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>Ymin and Ymax</B>
+<BR>
+Minimum and Maximum values of the second input; used to set up the
+	Y-axis of the plot in the graphics window.  
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>Zmin and Zmax</B>
+<BR>
+Minimum and Maximum values of the third input; used to set up the
+	Z-axis of the plot in the graphics window.  
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>Alpha and Theta</B>
+<BR>
+Set Alpha and Theta for the 3D view.
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>Buffer size</B>
+<BR>
+An integer value. In order to minimize the number
+         of graphics outputs, data may buffered.   
+<BR>
+Properties : Type 'vec' of size 1
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> no
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [1,1] / type 1</b>
+<BR>   <b>   - port 2 : size [1,1] / type 1</b>
+<BR>   <b>   - port 3 : size [1,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 1
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 0
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>object discrete-time state:</b> no
+</LI>
+<LI><b>name of computational function:</b> <EM>cscopxy3d</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Sinks/CSCOPXY3D.sci <A NAME="tex2html4"
+  HREF="CSCOPXY3D_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Computational function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/cscopxy3d.c (Type 4) <A NAME="tex2html5"
+  HREF="cscopxy3d_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+See also</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="CSCOPXY.htm">CSCOPXY - y=f(x) permanent viewer (Scicos Block)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Authors</A>
+</font></H3>
+
+<UL>
+<LI><b>Ramine Nikoukhah</b> INRIA
+</LI>
+<LI><b>Benoit Bayol</b> 
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

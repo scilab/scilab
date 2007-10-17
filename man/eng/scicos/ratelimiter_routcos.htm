@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>ratelimiter_routcos</TITLE>
+<META NAME="description" CONTENT="ratelimiter_routcos">
+<META NAME="keywords" CONTENT="ratelimiter_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ratelimiter_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Computational routine
+<BR><A NAME="tex2html1"
+  HREF="./ratelimiter_routcos.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="ratelimiter_routcos"></A>
+<BR>
+ratelimiter
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+File content</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">#include "scicos_block.h"
+#include &lt;math.h&gt;
+
+#if WIN32
+#define NULL    0
+#endif
+
+void ratelimiter(scicos_block *block,int flag)
+{/*  rpar[0]=rising rate limit, rpar[1]=falling rate limit */
+  double* pw,rate,t;
+  if (flag == 4){/* the workspace is used to store previous values */
+    if ((*block-&gt;work=
+	 scicos_malloc(sizeof(double)*4))== NULL ) {
+      set_block_error(-16);
+      return;
+    }
+    pw=*block-&gt;work; 
+    pw[0]=0.0;
+    pw[1]=0.0;
+    pw[2]=0.0;
+    pw[3]=0.0;
+  }else  if (flag == 5){
+    scicos_free(*block-&gt;work);
+  } else if (flag==1) {
+    if (get_phase_simulation()==1) do_cold_restart();
+    pw=*block-&gt;work; 
+    t=get_scicos_time();
+    if(t&gt;pw[2]){
+      pw[0]=pw[2];
+      pw[1]=pw[3];
+      rate=(block-&gt;inptr[0][0]-pw[1])/(t-pw[0]);
+    }
+    else if(t&lt;=pw[2]){
+      if(t&gt;pw[0]){
+	rate=(block-&gt;inptr[0][0]-pw[1])/(t-pw[0]);
+      }else{
+	rate=0.0;
+      }
+    }
+    if(rate&gt;block-&gt;rpar[0]){
+      block-&gt;outptr[0][0]=(t-pw[0])*block-&gt;rpar[0]+pw[1];
+    } else if(rate&lt;block-&gt;rpar[1]){
+      block-&gt;outptr[0][0]=(t-pw[0])*block-&gt;rpar[1]+pw[1];
+    }else{
+      block-&gt;outptr[0][0]=block-&gt;inptr[0][0];
+    }
+    pw[2]=t;
+    pw[3]=block-&gt;outptr[0][0];
+  }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

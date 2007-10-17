@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>logicalop_i8_routcos</TITLE>
+<META NAME="description" CONTENT="logicalop_i8_routcos">
+<META NAME="keywords" CONTENT="logicalop_i8_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="logicalop_i8_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction de calcul
+<BR><A NAME="tex2html1"
+  HREF="./logicalop_i8_routcos.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="logicalop_i8_routcos"></A>
+<BR>
+logicalop_i8
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">#include "scicos_block4.h"
+#include &lt;math.h&gt;
+
+void logicalop_i8(scicos_block *block,int flag)
+{
+  int i,m,n,nin,k,j,l;
+  int *ipar;
+  char *y,*u;
+  m=GetInPortRows(block,1);
+  n=GetInPortCols(block,1);
+  y=Getint8OutPortPtrs(block,1);
+  ipar=GetIparPtrs(block);
+  nin=GetNin(block);
+  k=ipar[0];
+  switch (k)
+	{
+	case 0:
+	     if (nin==1)
+  		 {u=Getint8InPortPtrs(block,1);
+		  if (ipar[1]==0)
+		      {*y=1;
+                       for(i=0;i&lt;m*n;i++)
+     		       	  {if (u[i]&lt;=0)
+		       	       {*y=0;
+			        break;}
+     		      	  }
+		      }
+		  else
+		      {*y=u[0];
+		       for (i=1;i&lt;m*n;i++)
+			    {*y=(*y)&amp;(u[i]);}
+		      }
+		 }
+	     else
+		 {if (ipar[1]==0)
+		     {for (i=0;i&lt;m*n;i++)
+			   {y[i]=1;
+			    for (j=1;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  if (u[i]&lt;=0) 
+				      {y[i]=0;
+				       break;}
+				 } 
+			   }
+		     }
+		 else
+		     {for (i=0;i&lt;m*n;i++)
+			   {u=Getint8InPortPtrs(block,1);
+			    y[i]=u[i];
+			    for (j=2;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  y[i]=(y[i])&amp;(u[i]);
+				 }
+			   }
+		     }
+		 }
+	break;
+	case 1:
+	     if (nin==1)
+  		 {u=Getint8InPortPtrs(block,1);
+		  *y=0;
+		  if (ipar[1]==0)
+		      {for(i=0;i&lt;m*n;i++)
+     		       	  {if (u[i]&gt;0)
+		       	       {*y=1;
+			        break;}
+     		      	  }
+		      }
+		  else
+		      {for (i=0;i&lt;m*n;i++)
+			    {*y=(*y)|(u[i]);}
+		      }
+		 }
+	     else
+		 {if (ipar[1]==0)
+		     {for (i=0;i&lt;m*n;i++)
+			   {y[i]=0;
+			    for (j=1;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  if (u[i]&gt;0) 
+				      {y[i]=1;
+				       break;}
+				 }
+			   }
+		     }
+		 else
+		     {for (i=0;i&lt;m*n;i++)
+			   {y[i]=0;
+			    for (j=1;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  y[i]=(y[i])|(u[i]);
+				 }
+			   }
+		     }
+		 }
+	break;
+	case 2:
+	     if (nin==1)
+  		 {u=Getint8InPortPtrs(block,1);
+		  if (ipar[1]==0)
+		      {*y=0;
+		       for(i=0;i&lt;m*n;i++)
+     		       	  {if (u[i]&lt;=0)
+		       	       {*y=1;
+			        break;}
+     		      	  }
+		      }
+		  else
+		      {*y=u[0];
+		       for (i=1;i&lt;m*n;i++)
+			    {*y=((*y)&amp;(u[i]));}
+		       *y=~*y;
+		      }
+		 }
+	     else
+		 {if (ipar[1]==0)
+		     {for (i=0;i&lt;m*n;i++)
+			   {y[i]=0;
+			    for (j=1;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  if (u[i]&lt;=0) 
+				      {y[i]=1;
+				       break;}
+				 } 
+			   }
+		     }
+		 else
+		     {for (i=0;i&lt;m*n;i++)
+			   {u=Getint8InPortPtrs(block,1);
+			    y[i]=u[i];
+			    for (j=2;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  y[i]=((y[i])&amp;(u[i]));
+				 }
+			    y[i]=~y[i];
+			   }
+		     }
+		 }
+	break;
+	case 3:
+	     if (nin==1)
+  		 {u=Getint8InPortPtrs(block,1);
+		  if (ipar[1]==0)
+		      {*y=1;
+		       for(i=0;i&lt;m*n;i++)
+     		       	  {if (u[i]&gt;0)
+		       	       {*y=0;
+			        break;}
+     		      	  }
+		      }
+		  else
+		      {*y=0;
+		       for (i=0;i&lt;m*n;i++)
+			    {*y=((*y)|(u[i]));}
+		       *y=~*y;
+		      }
+		 }
+	     else
+		 {if (ipar[1]==0)
+		     {for (i=0;i&lt;m*n;i++)
+			   {y[i]=1;
+			    for (j=1;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  if (u[i]&gt;0) 
+				      {y[i]=0;
+				       break;}
+				 }
+			   }
+		     }
+		 else
+		     {for (i=0;i&lt;m*n;i++)
+			   {u=Getint8InPortPtrs(block,1);
+			    y[i]=u[i];
+			    for (j=2;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  y[i]=((y[i])|(u[i]));
+				 }
+			    y[i]=~y[i];
+			   }
+		     }
+		 }
+	break;
+	case 4:
+	     if (nin==1)
+  		 {u=Getint8InPortPtrs(block,1);
+		  if (ipar[1]==0)
+		      {l=0;
+		       for(i=0;i&lt;m*n;i++)
+     		       	  {if (u[i]&gt;0)
+		       	       {l=(l+1)%2;
+			       }
+     		      	  }
+		       *y=(char)l;
+		      }
+		  else
+		      {*y=u[0];
+		       for (i=1;i&lt;m*n;i++)
+			    {*y=((*y)^(u[i]));}
+		      }
+		 }
+	     else
+		 {if (ipar[1]==0)
+		     {for (i=0;i&lt;m*n;i++)
+			   {l=0;
+			    for (j=1;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  if (u[i]&gt;0) 
+				      {l=(l+1)%2;}
+				 }
+			    y[i]=(char)l;
+			   }
+		     }
+		 else
+		     {for (i=0;i&lt;m*n;i++)
+		           {u=Getint8InPortPtrs(block,1);
+		           y[i]=u[i];
+			   for (j=2;j&lt;nin+1;j++)
+				 {u=Getint8InPortPtrs(block,j);
+				  y[i]=((y[i])^(u[i]));
+				 }
+			   }
+		     }
+		 }
+	     break;
+	case 5:
+	     u=Getint8InPortPtrs(block,1);
+	     if (ipar[1]==0)
+		 {for (i=0;i&lt;m*n;i++)
+		       {if (u[i]&gt;0) y[i]=0;
+			else y[i]=1;}
+		 }
+	     else
+		 {for (i=0;i&lt;m*n;i++)
+		       {y[i]=~(u[i]);}
+		 }
+	     break;
+	}
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

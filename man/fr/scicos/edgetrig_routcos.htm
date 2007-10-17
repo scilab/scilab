@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>edgetrig_routcos</TITLE>
+<META NAME="description" CONTENT="edgetrig_routcos">
+<META NAME="keywords" CONTENT="edgetrig_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="edgetrig_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction de calcul
+<BR><A NAME="tex2html1"
+  HREF="./edgetrig_routcos.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="edgetrig_routcos"></A>
+<BR>
+edgetrig
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">#include "scicos_block.h"
+#include &lt;math.h&gt;
+
+extern void sciprint();
+
+void edgetrig(scicos_block *block,int flag)
+{
+  double z= block-&gt;z[0],u=block-&gt;inptr[0][0];
+  if(flag==2||flag==6){
+    block-&gt;z[0]=u;
+  }else if(flag==1){
+    if(block-&gt;ipar[0]!=0){
+      z=z*block-&gt;ipar[0];
+      u=u*block-&gt;ipar[0];
+      if(((z&lt;=0)&amp;(u&gt;0))||((z&lt;0)&amp;(u&gt;=0))) {
+	block-&gt;outptr[0][0]=1.;
+      }else{
+	block-&gt;outptr[0][0]=0.;
+      }
+    } else{ /* rising and falling edge */
+      if(((z&lt;=0)&amp;(u&gt;0))||((z&lt;0)&amp;(u&gt;=0))||((z&gt;0)&amp;(u&lt;=0))||((z&gt;=0)&amp;(u&lt;0))){
+	block-&gt;outptr[0][0]=1.;
+      }else{
+	block-&gt;outptr[0][0]=0.;
+      }
+    }
+  }else if (flag==4) {
+    if (block-&gt;ng&gt;0){
+      set_block_error(-1);
+      sciprint("Trigger block must have discrete time input.");
+      return;
+    }
+  }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

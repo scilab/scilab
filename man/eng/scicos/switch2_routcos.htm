@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>switch2_routcos</TITLE>
+<META NAME="description" CONTENT="switch2_routcos">
+<META NAME="keywords" CONTENT="switch2_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="switch2_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Computational routine
+<BR><A NAME="tex2html1"
+  HREF="./switch2_routcos.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="switch2_routcos"></A>
+<BR>
+switch2
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+File content</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">#include "scicos_block.h"
+#include &lt;math.h&gt;
+
+void  switch2(scicos_block *block,int flag)
+{
+  int i,j,phase;
+  if (flag == 1) {
+    phase=get_phase_simulation();
+    if (phase==1||block-&gt;ng==0){
+      i=2;
+      if (*block-&gt;ipar==0){
+	if (*block-&gt;inptr[1]&gt;=*block-&gt;rpar) i=0;
+      }else if (*block-&gt;ipar==1){
+	if (*block-&gt;inptr[1]&gt;*block-&gt;rpar) i=0;
+      }else {
+	if (*block-&gt;inptr[1]!=*block-&gt;rpar) i=0;			     
+      }
+    }else{
+      if(block-&gt;mode[0]==1){
+	i=0;
+      }else if(block-&gt;mode[0]==2){
+	i=2;
+      }
+    }
+    for (j=0;j&lt;block-&gt;insz[0];j++) {
+      block-&gt;outptr[0][j]=block-&gt;inptr[i][j];
+    }
+  }else if(flag == 9){
+    phase=get_phase_simulation();
+    block-&gt;g[0]=*block-&gt;inptr[1]-(*block-&gt;rpar);
+    if (phase==1){
+      i=2;
+      if (*block-&gt;ipar==0){
+	if (block-&gt;g[0]&gt;=0.0) i=0;
+      }else if (*block-&gt;ipar==1){
+	if (block-&gt;g[0]&gt;0.0) i=0;
+      }else {
+	if (block-&gt;g[0]!=0.0) i=0;			     
+      }
+      if(i==0) {
+	block-&gt;mode[0]=1;
+      }else{
+	block-&gt;mode[0]=2;
+      }
+    }
+  }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

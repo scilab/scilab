@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>IFTHEL_f</TITLE>
+<META NAME="description" CONTENT="IFTHEL_f">
+<META NAME="keywords" CONTENT="IFTHEL_f">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IFTHEL_f.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./IFTHEL_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/IFTHEL_f.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="IFTHEL_f"></A>
+<BR>
+Bloc synchrone If-Then-Else
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=IFTHEL_f.eps,height=112.5pt}$
+ -->
+<IMG
+ WIDTH="169" HEIGHT="179" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/IFTHEL_f_blk.gif"
+ ALT="\epsfig{file=IFTHEL_f.eps,height=112.5pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html5"
+  HREF="IFTHEL_f.htm#SECTION00010000000000000000">Bloc synchrone If-Then-Else</A>
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="IFTHEL_f.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html7"
+  HREF="IFTHEL_f.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html8"
+  HREF="IFTHEL_f.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html9"
+  HREF="IFTHEL_f.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html10"
+  HREF="IFTHEL_f.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html11"
+  HREF="IFTHEL_f.htm#SECTION00026000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Branching_pal.htm">Branching - Palette Branching</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Ce bloc génére un événement sur l'une ses deux sorties événementielles
+lorsqu'un événement en entrée active celui-ci.
+Suivant le signe de la valeur lue sur le port d'entrée régulier,
+l'événement est généré soit sur la branche 'then' ou bien sur la branche
+'else'.
+Ce bloc est un bloc synchrone, ce qui signifie que les événements en entrée
+et en sortie sont générés exactement à la même date et simultanément.
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="118" BORDER="0"
+ SRC="../../images/scicos/IFTHEL_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=IFTHEL_f_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Inherit (1: no, 0: yes)</b>
+<BR>
+Si 'no' est sélectionné, alors le bloc est activé par son port événementiel d'entrée, sinon il est activé par les événements hérités via son port régulier d'entrée.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>zero-crossing (0: no, 1: yes)</b>
+<BR>
+A sélectionner pour permettre la détection de zéro.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> oui
+</LI>
+<LI><b>mode:</b> oui
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type -1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 1
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 2
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>ifthel</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Events/IFTHEL_f.sci <A NAME="tex2html4"
+  HREF="IFTHEL_f_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>AUTOMAT_intfunc</TITLE>
+<META NAME="description" CONTENT="AUTOMAT_intfunc">
+<META NAME="keywords" CONTENT="AUTOMAT_intfunc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="AUTOMAT_intfunc.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction d'interfaçage
+<BR><A NAME="tex2html1"
+  HREF="./AUTOMAT_intfunc.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="AUTOMAT_intfunc"></A>
+<BR>
+AUTOMAT
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">function [x,y,typ]=AUTOMAT(job,arg1,arg2)
+  x=[];y=[];typ=[]
+  select job
+   case 'plot' then
+    standard_draw(arg1)
+   case 'getinputs' then
+    [x,y,typ]=standard_inputs(arg1)
+   case 'getoutputs' then
+    [x,y,typ]=standard_outputs(arg1)
+   case 'getorigin' then
+    [x,y]=standard_origin(arg1)
+   case 'set' then
+    x=arg1;
+    graphics=arg1.graphics;exprs=graphics.exprs
+    model=arg1.model;ipar=model.ipar;
+    NMode=ipar(1)
+    NX=ipar(3)
+    while %t do
+     CX='C1';
+     MSG0='''Jump from Mode '; MSG2=':[..;M_final(Guard=In(';MSG3=').i);..]'''
+     MSG=MSG0+'1'+MSG2+'1'+MSG3;
+     VEC='''mat'',[-1,1]';
+     for i=2:NMode
+       CX=CX+','+'C'+string(i);
+       MSG=MSG+';'+MSG0+string(i)+MSG2+string(i)+MSG3;
+       VEC=VEC+','+'''mat'',[-1,1]';
+     end
+     //===========================================
+     GTV='[ok,NMode,Minitial,NX,X0,XP,'+CX+',exprs]=getvalue(''Set Finite state machine model'',..
+	 [''Number (finite-state) Modes'';''Initial Mode'';''Number of continuous-time states'';''Continuous-time states intial values'';''Xproperties of continuous-time states in each Mode'';'+MSG+'],..
+	 list(''vec'',1,''vec'',1,''vec'',1,''mat'',[-1,-1],''mat'',[-1,-1],'+VEC+'),exprs)'
+     execstr(GTV); if ~ok then break,end
+     NMode_old=size(exprs,'*')-5;//-number of fileds before CX
+     ModifEncore=%f;
+     
+     if (NMode_old&gt;NMode) then
+       exprs(NMode+6:NMode_old+5)=[];// number of fileds
+       ModifEncore=%t;
+     end
+     if (NMode_old&lt;NMode) then
+       exprs(NMode_old+6:NMode+5)=exprs(NMode_old+4);// number of fileds
+       ModifEncore=%t;
+     end
+     if (NX&lt;&gt;size(X0,'*')) then
+       x_message('the size of intial continuous-time states should be NX='+string(NX));
+       ModifEncore=%t;
+     end
+     
+     [rXP,cXP]=size(XP)
+     if cXP&lt;&gt;NX then 
+       x_message('Xproperty matrix is not valid: it should have NX='+string(NX)+' columns');
+       ModifEncore=%t;
+     elseif ((rXP&lt;&gt;NMode) &amp; (rXP&gt;1))
+       x_message('Xproperty matrix is not valid: it should have NMode='+string(NMode)+' or 1 row(s)');
+       ModifEncore=%t;
+     elseif (rXP==1)
+       for i=1:NMode-1
+	 XP=[XP;XP(1,:)];// xproprties are identical in modes.
+       end
+     end
+     
+     if (NMode_old==NMode)&amp;(~ModifEncore) then 
+       XP=matrix(XP',NMode*NX,1);// put XP in column vector to be stocked in ipar
+       ipar=[NMode;Minitial;NX;XP];
+       rpar=matrix(X0,NX,1);// put X0 in a column vector;
+       INP=ones(NMode,1);
+       if NX&gt;0 then OUT=[2;2*NX];else OUT=[2];end
+       MaxModes=1;
+       nzcross=0;
+       for i=1:NMode
+	 Ci=evstr(exprs(5+i));// number of fileds
+	 ipar=[ipar;Ci];
+	 INP(i,1)=2*NX+length(Ci);
+	 if (nzcross&lt;length(Ci)) then 
+	   nzcross=length(Ci);
+	 end	 
+	 if (MaxModes&lt;max(Ci)) then 
+	   MaxModes=max(Ci);
+	   imax=i;
+	 end
+       end 
+       
+       if MaxModes&gt;NMode then 
+	 x_message(['Attention!: Numbeor of Modes should be '+string(MaxModes);..
+		 'A destination Mode in Mode#'+string(imax)+'''s targets is invalid!']);
+	 ModifEncore=%t;
+       end
+       if MaxModes&lt;NMode then 
+	 x_message(['Attention!: There is an unused Mode or the Number of Modes should be '+string(MaxModes)]);
+	 ModifEncore=%t;
+       end
+     end
+     if ~ModifEncore then 
+       [model,graphics,ok]=check_io(model,graphics,INP,OUT,[],[1])
+       if ~ok then break,end
+       model.nzcross=nzcross;
+       model.state=ones(2*NX,1);
+       graphics.gr_i(1)(1)='txt=[''Automaton'';''nM='+string(NMode)+',nX='+string(NX)+'''];'
+       graphics.exprs=exprs;
+       x.graphics=graphics;
+       model.ipar=ipar;
+       model.rpar=rpar;
+       x.model=model;
+       break
+     end
+   end;//while
+   //-----------------------------------------------
+ case 'define' then
+     NMode=2; //number of Modes
+     Minitial=1; //initial Mode
+     NX=1; //number of states (NX is identical for all Modes)
+     X0=[0.0]
+     XP=[1;1]//xproperties for each Mode
+     C1=[2];//final_Mode after Jump du to in(2*Nx+i)
+     C2=[1];
+     exprs=[string(NMode);string(Minitial);string(NX);sci2exp(X0);sci2exp(XP);sci2exp(C1);sci2exp(C2)]; 
+     ipar=[NMode;Minitial;NX;XP;C1;C2];
+     rpar=[X0];
+
+     model=scicos_model()    
+     model.sim=list('automat',10004)
+     model.in=[2*NX+1;2*NX+1];//number of Modes
+     model.out=[2;2*NX];// [Mode;(x,xd)]
+     model.state=ones(2*NX,1);// [x;xd]
+     model.nzcross=1;// max(taille_zc(Mode_i))
+     model.blocktype='c';
+     model.evtout=1
+     model.firing=-1;
+     model.dep_ut=[%f %t];
+     model.ipar=ipar;
+     model.rpar=rpar;
+
+     gr_i=['txt=[''Automaton'';''nM='+string(NMode)+',nX='+string(NX)+'''];'..
+	     ;'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']    
+
+     x=standard_define([2.5 2],model,exprs,gr_i);
+  end
+endfunction
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

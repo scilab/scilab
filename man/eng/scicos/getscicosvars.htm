@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>getscicosvars</TITLE>
+<META NAME="description" CONTENT="getscicosvars">
+<META NAME="keywords" CONTENT="getscicosvars">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="getscicosvars.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scilab Function
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/getscicosvars.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./getscicosvars.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="getscicosvars"></A>
+<BR>
+<b>getscicosvars</b> - Supervisor utility function
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+That utility function is used to retrieve working arrays of Scicos simulator and compiler during simulation.  
+<BR>
+It can be used inside a Scilab block to get information of all type of blocks. That function is very useful to debug diagrams and to do prototypes of simulations.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Calling Sequence</A>
+</font></H3>
+<PRE>
+[myvar]=getscicosvars(str)
+[myvar]=getscicosvars([str1;str2;...])
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00014000000000000000">
+Parameters</A>
+</font></H3>
+
+<UL>
+<LI><b>str,str1,str2,... :</b>
+   That parameter can be a string or a matrix of string. The following entries are allowed :
+<BR>   "x" : get the continuous state register.
+<BR>   "nx" : get the length of the continuous state register.
+<BR>   "xptr" : get the pointers register of the continuous state register.
+<BR>   "zcptr" : get the pointers register of the zero-crossing surfaces register.
+<BR>   "z" : get the discrete state register.
+<BR>   "nz" : get the length of the continuous state register.
+<BR>   "zptr" : get the pointers register of the discrete state register.
+<BR>   "noz" : get the number of elements of the discrete object state list.
+<BR>   "oz" : get the discrete object state list.
+<BR>   "ozsz" : get the size of the elements of the discrete object state list.
+<BR>   "oztyp" : get the type of the elements of the discrete object state list.
+<BR>   "ozptr" : get the pointers register of the discrete object state list.
+<BR>   "rpar" : get the real parameter register.
+<BR>   "rpptr" : get the pointers register of the real parameter register.
+<BR>   "ipar" : get the integer parameter register.
+<BR>   "ipptr" : get the pointers register of the integer parameter register.
+<BR>   "opar" : get the object parameter list.
+<BR>   "oparsz" : get the size of the elements of the object parameter list.
+<BR>   "opartyp" : get the type of the elements of the object parameter list.
+<BR>   "opptr" : get the pointers register of the object parameter list.
+<BR>   "outtb" : get the output register.
+<BR>   "inpptr" : get the pointers register of the number of regular input ports.
+<BR>   "outptr" :  get the pointers register of the number of regular output ports.
+<BR>   "inplnk" : get the pointers register of the links connected to regular input ports.
+<BR>   "outlnk" : get the pointers register of the links connected to regular output ports.
+<BR>   "subs" : not used
+<BR>   "tevts" : get the current date register of the agenda.
+<BR>   "evtspt" : get the current event register of the agenda.
+<BR>   "pointi" : get the next event to be activated.
+<BR>   "iord" : get the vector of blocks activated at the start of the simulation.
+<BR>   "oord" : get the vector of blocks whose outputs affects computation of continuous state derivatives.
+<BR>   "zord" : get the vector of blocks whose outputs affects computation of zero-crossing surfaces.
+<BR>   "funtyp" : get the vector of type of computational functions.
+<BR>   "ztyp" : get the pointers vector for blocks which use zero-crossing surfaces.
+<BR>   "cord" : get the vector of blocks whose outputs evolve continuously.
+<BR>   "ordclk" : get the matrix associated to blocks activated by output activation ports.
+<BR>   "clkptr" : get the pointers vector for output activation ports.
+<BR>   "ordptr" : get the pointers vector to ordclk designating the part of ordclk corresponding to a given activation.
+<BR>   "critev" : get the vector of the critical events.
+<BR>   "mod" : get the vector pointers of block modes.
+<BR>   "nmod" : get the length of the vector pointers of block modes.
+<BR>   "iz" : get the register that store pointers of block-<SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/getscicosvars_img1_eng.gif"
+ ALT="$ &gt;$"></SPAN>work.
+<BR>   "izptr" : get the pointers vector of the register that store C pointers of block-<SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/getscicosvars_img1_eng.gif"
+ ALT="$ &gt;$"></SPAN>work.
+<BR>   "nblk" : get the number of block.
+<BR>   "outtbptr" : get the register that store C pointers of outtb.
+<BR>   "outtbpsz" : get the register that store the size of the elements of outtb.
+<BR>   "outtbtyp" : get the register that store the type of the elements of outtb.
+<BR>   "nlnk" : get the number of output.
+<BR>   "ncord" : get the number of blocks whose outputs evolve continuously.
+<BR>   "nordptr" : get the number of blocks whose outputs evolve by activation.
+<BR>   "iwa" : n.d.
+<BR>   "blocks" : get a scilab list that contains all block structures contains in the diagram.
+<BR>   "ng" : get length of the zero-crossing surfaces register.
+<BR>   "g" : get the zero-crossing surfaces register.
+<BR>   "t0" : get the current time of the simulation.
+<BR>   "tf" : get the final time of the simulation.
+<BR>   "Atol" : get the integrator absolute tolerance for the numerical solver.
+<BR>   "rtol" :  get the integrator relative tolerance for the numerical solver.
+<BR>   "ttol" : get the tolerance on time of the simulator.
+<BR>   "deltat" : get the maximum integration time interval.
+<BR>   "hmax" : get the maximum step size for the numerical solver.
+<BR>   "nelem" : get the number of elements in outtb.
+<BR>   "outtb_elem" : get the vector of the number of elements in outtb.
+</LI>
+<LI><b>myvar :</b>
+   That output parameter can be an int32 matrix, a double matrix or a Tlist. This is given by the input parameter.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00015000000000000000">
+See Also</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html4"
+  HREF="DEBUG_SCICOS.htm">DEBUG_SCICOS - Debug block (Scicos Block)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00016000000000000000">
+Authors</A>
+</font></H3>
+
+<UL>
+<LI><b>Alan Layec</b> INRIA
+</LI>
+<LI><b>Ramine Nikoukhah</b> INRIA
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

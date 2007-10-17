@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>CUMSUM</TITLE>
+<META NAME="description" CONTENT="CUMSUM">
+<META NAME="keywords" CONTENT="CUMSUM">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="CUMSUM.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./CUMSUM.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/CUMSUM.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="CUMSUM"></A>
+<BR>
+CUMSUM Somme cumulative
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=CUMSUM.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CUMSUM_blk.gif"
+ ALT="\epsfig{file=CUMSUM.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html12"
+  HREF="CUMSUM.htm#SECTION00010000000000000000">CUMSUM Somme cumulative</A>
+<UL>
+<LI><A NAME="tex2html13"
+  HREF="CUMSUM.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html14"
+  HREF="CUMSUM.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html15"
+  HREF="CUMSUM.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html16"
+  HREF="CUMSUM.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html17"
+  HREF="CUMSUM.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html18"
+  HREF="CUMSUM.htm#SECTION00026000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html19"
+  HREF="CUMSUM.htm#SECTION00027000000000000000">Voir aussi</A>
+<LI><A NAME="tex2html20"
+  HREF="CUMSUM.htm#SECTION00028000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Matrix_pal.htm">Matrix - Palette d'opérations matricielles</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The CUMSUM block sums the element of an input m*n matrix u along either the rows, the columns or the first non singleton dimension. When the "Sum along" parameter is set to "1", the block sums across the elements of each row. The result will be displayed as a m*1 matrix.  
+<BR>
+When the "Sum along" parameter is set to "2", the block sums across the elements of each column. The result will be display as a 1*n matrix.  
+<BR>
+When the "Sum along" parameter is set to "0", the block sums across the first non singleton dimension. The result will be displayed as one element. This block is equivalent to cumsum in scilab.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="573" HEIGHT="93" BORDER="0"
+ SRC="../../images/scicos/CUMSUM_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=CUMSUM_gui.eps,width=360pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Datatype(1=real double  2=Complex)</b>
+<BR>
+It indicates the type of the output. It support only the two types double (1) and complex (2). If we input another entry in this label scicos will print the message "Datatype is not supported".
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>Sum along (0=the first non singleton dimension  1=Rows  2=Columns)</b>
+<BR>
+Indicate whether to sum across the rows, the columns or the first non singleton dimension.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [-1,-2] / type 1</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [-1,-2] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>cumsum_m</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/MatrixOp/CUMSUM.sci <A NAME="tex2html4"
+  HREF="CUMSUM_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/cumsum_m.c <A NAME="tex2html5"
+  HREF="cumsum_m_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/cumsum_r.c <A NAME="tex2html6"
+  HREF="cumsum_r_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/cumsum_c.c <A NAME="tex2html7"
+  HREF="cumsum_c_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/cumsumz_m.c <A NAME="tex2html8"
+  HREF="cumsumz_m_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/cumsumz_r.c <A NAME="tex2html9"
+  HREF="cumsumz_r_routcos.htm">[voir code]</A>
+</LI>
+<LI>SCI/routines/scicos/cumsumz_c.c <A NAME="tex2html10"
+  HREF="cumsumz_c_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Voir aussi</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html11"
+  HREF="MATSUM.htm">MATSUM - Somme matricielle (Bloc Scicos)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Fady NASSIF</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

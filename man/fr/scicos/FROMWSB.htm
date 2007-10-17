@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>FROMWSB</TITLE>
+<META NAME="description" CONTENT="FROMWSB">
+<META NAME="keywords" CONTENT="FROMWSB">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="FROMWSB.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./FROMWSB.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/FROMWSB.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="FROMWSB"></A>
+<BR>
+Données de l'environnement Scilab vers Scicos
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=FROMWSB.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="236" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_blk.gif"
+ ALT="\epsfig{file=FROMWSB.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html7"
+  HREF="FROMWSB.htm#SECTION00010000000000000000">Données de l'environnement Scilab vers Scicos</A>
+<UL>
+<LI><A NAME="tex2html8"
+  HREF="FROMWSB.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html9"
+  HREF="FROMWSB.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html10"
+  HREF="FROMWSB.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html11"
+  HREF="FROMWSB.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html12"
+  HREF="FROMWSB.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html13"
+  HREF="FROMWSB.htm#SECTION00026000000000000000">Contenu du super-bloc compilé</A>
+<LI><A NAME="tex2html14"
+  HREF="FROMWSB.htm#SECTION00027000000000000000">Voir aussi</A>
+<LI><A NAME="tex2html15"
+  HREF="FROMWSB.htm#SECTION00028000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Sources_pal.htm">Sources - Palette Sources</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+That block is used to get data defined in the Scilab workspace and use them in Scicos. Data should have "time" and "values" fields.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="150" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=FROMWSB_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><B>Variable name:</B> This variable is defined in Scilab and
+should be a structure with two fields, i.e., a "time" field of size
+(Nx1) and a "values" filed of size (NxM). "time" is a column vector of
+size Nx1 and "values" is a matrix of size "N*M". "time" filed can only
+be of Real type, whereas the "values" field can be <I>Real</I>,<I>Complex</I>, <I>int8</I>,<I>int16</I>,<I>int32</I>,<I>uint8</I>,<I>uint16</I>,
+and <I>uint32</I>.
+
+<P>
+</LI>
+<LI><B>Interpolation method:</B> Variables read by Scicos are data
+values read at discrete instants given by the time field.  This option
+causes the block to interpolate at time steps for which no
+corresponding workspace data exists. There are four interpolation
+methods available.
+
+<P>
+
+<UL>
+<LI><B>0: "Zero order method"</B>. This method generates a piecewise
+    constant signal. i.e., for <!-- MATH
+ $t_{i} \leq t < t_{i+1}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="98" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img3_fr.gif"
+ ALT="$ t_{i} \leq t &lt; t_{i+1}$"></SPAN>, <!-- MATH
+ $y(t)=y_{i}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="71" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img4_fr.gif"
+ ALT="$ y(t)=y_{i}$"></SPAN>.
+    This method is available for all data types.
+
+<P>
+</LI>
+<LI><B>1: "Linear method"</B>. This method generates a piecewise
+    linear signal, i.e., for <!-- MATH
+ $t_i \leq t < t_{i+1}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="98" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img5_fr.gif"
+ ALT="$ t_i \leq t &lt; t_{i+1}$"></SPAN>,
+    <!-- MATH
+ $y(t)=y_i+(t-t_i)\frac{y_{i+1}-y_i}{t_{i+1}-t_i}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="197" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img6_fr.gif"
+ ALT="$ y(t)=y_i+(t-t_i)\frac{y_{i+1}-y_i}{t_{i+1}-t_i}$"></SPAN>.  For data types
+    other than double and complex, the linear interpolation can be
+    used, but the final output will be computed by casting
+    interpolation result into the original data type.
+
+<P>
+</LI>
+<LI><B>2:"NATURAL method"</B>. This cubic spline is computed by using
+    the following conditions (considering <SPAN CLASS="MATH"><IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img7_fr.gif"
+ ALT="$ n$"></SPAN> points <!-- MATH
+ $x_1,...,x_n$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="71" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img8_fr.gif"
+ ALT="$ x_1,...,x_n$"></SPAN>):
+    <P><!-- MATH
+ \begin{displaymath}
+S^{(2)}(x_1) = 0
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="97" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img9_fr.gif"
+ ALT="$\displaystyle S^{(2)}(x_1) = 0$">
+</DIV><P></P> <P><!-- MATH
+ \begin{displaymath}
+S^{(2)}(x_{n}) =0
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="99" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img10_fr.gif"
+ ALT="$\displaystyle S^{(2)}(x_{n}) =0$">
+</DIV><P></P>.  This method is only
+    available for Real and complex data types.
+
+<P>
+</LI>
+<LI><B>3:"NOT_A_KNOT method"</B>. The cubic spline is computed by
+    using the following conditions (considering <SPAN CLASS="MATH"><IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img7_fr.gif"
+ ALT="$ n$"></SPAN> points
+    <!-- MATH
+ $x_1,...,x_n$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="71" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img8_fr.gif"
+ ALT="$ x_1,...,x_n$"></SPAN>): <P><!-- MATH
+ \begin{displaymath}
+S^{(3)}(x_2^-) = S^{(3)}(x_2^+)
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="157" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img11_fr.gif"
+ ALT="$\displaystyle S^{(3)}(x_2^-) = S^{(3)}(x_2^+)$">
+</DIV><P></P>
+    <P><!-- MATH
+ \begin{displaymath}
+S^{(3)}(x_{n-1}^-) = S^{(3)}(x_{n-1}^+)
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="187" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img12_fr.gif"
+ ALT="$\displaystyle S^{(3)}(x_{n-1}^-) = S^{(3)}(x_{n-1}^+)$">
+</DIV><P></P>.  This method is only
+    available for Real and complex data types.
+
+<P>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><B>Enable zero crossing(0:No, 1:Yes)?:</B> Enables zero crossing
+ detection. When <I>linear</I> and <I>Zero order</I> interpolation
+ methods are chosen, the output signal will be discontinuous at data
+ time instants. These possible discontinuities may cause problem for
+ the numerical solver. In order to perform a reliable numerical
+ integration, the zero crossing option is used. If output of the <I> FROMWSB</I> block affects data used by the numerical solver, at
+ discontinuous points, a discrete event is generated and the numerical
+ solver is cold restarted.  The discrete event is also generated at
+ the <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img13_fr.gif"
+ ALT="$ t_1$"></SPAN> and <SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img14_fr.gif"
+ ALT="$ t_n$"></SPAN> for other interpolating methods.
+
+<P>
+</LI>
+<LI><B>Output at end(0:Zero, 1:Hold, 2:Repeat):</B> This option is
+for selecting method for generating output after the last time point
+for which data is available from the workspace.
+
+<P>
+
+<UL>
+<LI><B>0 ("Zero"):</B> The output is set to zero.
+
+<P>
+</LI>
+<LI><B>1 ("Hold"):</B> The output is hold.
+
+<P>
+</LI>
+<LI><B>2 ("Repeat"):</B> The output is repeated from workspace.
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> non
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>csuper</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Sources/FROMWSB.sci <A NAME="tex2html4"
+  HREF="FROMWSB_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Contenu du super-bloc compilé</A>
+</font></H3>
+ <!-- MATH
+ $\epsfig{file=FROMWSB_super.eps,width=150.00pt}$
+ -->
+<IMG
+ WIDTH="239" HEIGHT="187" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/FROMWSB_img15_fr.gif"
+ ALT="\epsfig{file=FROMWSB_super.eps,width=150.00pt}">
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Voir aussi</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html5"
+  HREF="TOWS_c.htm">TOWS_c - Données vers l'environnement Scilab (Bloc Scicos)</A>
+</LI>
+<LI><A NAME="tex2html6"
+  HREF="FROMWS_c.htm">FROMWS_c - Données de l'environnement Scilab vers Scicos (Bloc Scicos)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Masoud Najafi</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>matz_div_routcos</TITLE>
+<META NAME="description" CONTENT="matz_div_routcos">
+<META NAME="keywords" CONTENT="matz_div_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="matz_div_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction de calcul
+<BR><A NAME="tex2html1"
+  HREF="./matz_div_routcos.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="matz_div_routcos"></A>
+<BR>
+matz_div
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim"># include "scicos_block4.h"
+# include "../machine.h"
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+extern int C2F(zlacpy)();
+extern int C2F(zgetrf)();
+extern int C2F(mtran)();
+extern double C2F(dlamch)();
+extern double C2F(zlange)();
+extern int C2F(zgecon)();
+extern int C2F(zgetrs)();
+extern int C2F(zgelsy1)();
+
+#if WIN32
+#define NULL    0
+#endif
+
+#ifndef min
+#define min(a,b) ((a) &lt;= (b) ? (a) : (b))
+#endif
+
+#ifndef max
+#define max(a,b) ((a) &gt;= (b) ? (a) : (b))
+#endif
+
+typedef struct
+{         int *ipiv;
+          int *rank;
+          int *jpvt;
+          double *iwork;
+          double *dwork;
+	  double *IN1F;
+	  double *IN1;
+	  double *urT1,*uiT1;
+	  double *IN2X;
+	  double *IN2;
+	  double *urT2,*uiT2;
+	  double *yrT,*yiT;
+} mat_bksl_struct ;
+void matz_div(scicos_block *block,int flag)
+{
+ double *u1r,*u1i;
+ double *u2r,*u2i;
+ double *yr,*yi;
+ int mu1;
+ int nu;
+ int mu2;
+ int info;
+ int i,l,lw,lu,rw;
+ mat_bksl_struct *ptr;
+ double rcond, ANORM, EPS;
+
+ mu1 =GetInPortRows(block,2);
+ nu =GetInPortCols(block,1);
+ mu2 =GetInPortRows(block,1);
+ u1r=GetRealInPortPtrs(block,2);
+ u1i=GetImagInPortPtrs(block,2);
+ u2r=GetRealInPortPtrs(block,1);
+ u2i=GetImagInPortPtrs(block,1);
+ yr=GetRealOutPortPtrs(block,1);
+ yi=GetImagOutPortPtrs(block,1);
+ l=max(mu1,nu);
+ lw=max(2*min(mu1,nu),mu1+1);
+ lu=max(lw,min(mu1,nu)+mu2);
+ lw=max(2*nu,min(mu1,nu)+lu);
+ rw=2*nu;
+             /*init : initialization*/
+if (flag==4)
+   {if((*(block-&gt;work)=(mat_bksl_struct*) scicos_malloc(sizeof(mat_bksl_struct)))==NULL)
+	{set_block_error(-16);
+	 return;}
+    ptr=*(block-&gt;work);
+    if((ptr-&gt;ipiv=(int*) scicos_malloc(sizeof(int)*nu))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;rank=(int*) scicos_malloc(sizeof(int)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;jpvt=(int*) scicos_malloc(sizeof(int)*mu1))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;iwork=(double*) scicos_malloc(sizeof(double)*2*mu1))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;dwork=(double*) scicos_malloc(sizeof(double)*2*lw))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;IN1F=(double*) scicos_malloc(sizeof(double)*(2*mu1*nu)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;IN1=(double*) scicos_malloc(sizeof(double)*(2*mu1*nu)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;IN1F);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;urT1=(double*) scicos_malloc(sizeof(double)*(mu1*nu)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;IN1);
+	 scicos_free(ptr-&gt;IN1F);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;uiT1=(double*) scicos_malloc(sizeof(double)*(mu1*nu)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;urT1);
+	 scicos_free(ptr-&gt;IN1);
+	 scicos_free(ptr-&gt;IN1F);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;IN2X=(double*) scicos_malloc(sizeof(double)*(2*l*mu2)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;uiT1);
+	 scicos_free(ptr-&gt;urT1);
+	 scicos_free(ptr-&gt;IN1);
+	 scicos_free(ptr-&gt;IN1F);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;IN2=(double*) scicos_malloc(sizeof(double)*(2*mu2*nu)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;IN2X);
+	 scicos_free(ptr-&gt;uiT1);
+	 scicos_free(ptr-&gt;urT1);
+	 scicos_free(ptr-&gt;IN1);
+	 scicos_free(ptr-&gt;IN1F);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;urT2=(double*) scicos_malloc(sizeof(double)*(mu2*nu)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;IN2);
+	 scicos_free(ptr-&gt;IN2X);
+	 scicos_free(ptr-&gt;uiT1);
+	 scicos_free(ptr-&gt;urT1);
+	 scicos_free(ptr-&gt;IN1);
+	 scicos_free(ptr-&gt;IN1F);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;uiT2=(double*) scicos_malloc(sizeof(double)*(mu2*nu)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;urT2);
+	 scicos_free(ptr-&gt;IN2);
+	 scicos_free(ptr-&gt;IN2X);
+	 scicos_free(ptr-&gt;uiT1);
+	 scicos_free(ptr-&gt;urT1);
+	 scicos_free(ptr-&gt;IN1);
+	 scicos_free(ptr-&gt;IN1F);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;yiT=(double*) scicos_malloc(sizeof(double)*(mu2*l)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;uiT2);
+	 scicos_free(ptr-&gt;urT2);
+	 scicos_free(ptr-&gt;IN2);
+	 scicos_free(ptr-&gt;IN2X);
+	 scicos_free(ptr-&gt;uiT1);
+	 scicos_free(ptr-&gt;urT1);
+	 scicos_free(ptr-&gt;IN1);
+	 scicos_free(ptr-&gt;IN1F);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;yrT=(double*) scicos_malloc(sizeof(double)*(mu2*l)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;yiT);
+	 scicos_free(ptr-&gt;uiT2);
+	 scicos_free(ptr-&gt;urT2);
+	 scicos_free(ptr-&gt;IN2);
+	 scicos_free(ptr-&gt;IN2X);
+	 scicos_free(ptr-&gt;uiT1);
+	 scicos_free(ptr-&gt;urT1);
+	 scicos_free(ptr-&gt;IN1);
+	 scicos_free(ptr-&gt;IN1F);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;iwork);
+	 scicos_free(ptr-&gt;jpvt);
+	 scicos_free(ptr-&gt;rank);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+   }
+
+       /* Terminaison */
+else if (flag==5)
+   {ptr=*(block-&gt;work);
+    if((ptr-&gt;yrT)!=NULL) {
+    	scicos_free(ptr-&gt;ipiv);
+    	scicos_free(ptr-&gt;rank);
+    	scicos_free(ptr-&gt;jpvt);
+    	scicos_free(ptr-&gt;iwork);
+    	scicos_free(ptr-&gt;IN1F);
+    	scicos_free(ptr-&gt;IN1);
+    	scicos_free(ptr-&gt;urT1);
+    	scicos_free(ptr-&gt;uiT1);
+    	scicos_free(ptr-&gt;urT2);
+    	scicos_free(ptr-&gt;uiT2);
+    	scicos_free(ptr-&gt;yrT);
+    	scicos_free(ptr-&gt;yiT);
+    	scicos_free(ptr-&gt;IN2X);
+    	scicos_free(ptr-&gt;IN2);
+    	scicos_free(ptr-&gt;dwork);
+    	scicos_free(ptr);
+    	return;}
+   }
+
+else
+   {
+    ptr=*(block-&gt;work);
+    C2F(mtran)(u1r,&amp;mu1,ptr-&gt;urT1,&amp;nu,&amp;mu1,&amp;nu);
+    C2F(mtran)(u1i,&amp;mu1,ptr-&gt;uiT1,&amp;nu,&amp;mu1,&amp;nu);
+    C2F(mtran)(u2r,&amp;mu2,ptr-&gt;urT2,&amp;nu,&amp;mu2,&amp;nu);
+    C2F(mtran)(u2i,&amp;mu2,ptr-&gt;uiT2,&amp;nu,&amp;mu2,&amp;nu);
+    for (i=0;i&lt;(mu1*nu);i++)   
+	{ptr-&gt;IN1[2*i]=ptr-&gt;urT1[i];
+	 ptr-&gt;IN1[2*i+1]=-ptr-&gt;uiT1[i];}
+
+    for (i=0;i&lt;(mu2*nu);i++)   
+	{ptr-&gt;IN2[2*i]=ptr-&gt;urT2[i];
+	 ptr-&gt;IN2[2*i+1]=-ptr-&gt;uiT2[i];}
+    EPS=C2F(dlamch)("e",1L);
+    ANORM=C2F(zlange)("1",&amp;nu,&amp;mu1,ptr-&gt;IN1,&amp;nu,ptr-&gt;dwork);
+    if (mu1==nu)
+	{C2F(zlacpy)("F",&amp;nu,&amp;nu,ptr-&gt;IN1,&amp;nu,ptr-&gt;IN1F,&amp;nu);
+	 C2F(zgetrf)(&amp;nu,&amp;nu,ptr-&gt;IN1F,&amp;nu,ptr-&gt;ipiv,&amp;info);
+	 rcond=0;
+ 	 if (info==0)
+	    {C2F(zgecon)("1",&amp;nu,ptr-&gt;IN1F,&amp;nu,&amp;ANORM,&amp;rcond,ptr-&gt;dwork,ptr-&gt;iwork,&amp;info);
+	     if (rcond&gt;pow(EPS,0.5))
+		{
+		 C2F(zgetrs)("N",&amp;nu,&amp;mu2,ptr-&gt;IN1F,&amp;nu,ptr-&gt;ipiv,ptr-&gt;IN2,&amp;nu,&amp;info);
+		 for (i=0;i&lt;(mu2*nu);i++)
+	   	 {*(ptr-&gt;yrT+i)=*(ptr-&gt;IN2+2*i);
+	    	  *(ptr-&gt;yiT+i)=-(*(ptr-&gt;IN2+(2*i)+1));}
+		  C2F(mtran)(ptr-&gt;yrT,&amp;mu1,yr,&amp;mu2,&amp;mu1,&amp;mu2);
+		  C2F(mtran)(ptr-&gt;yiT,&amp;mu1,yi,&amp;mu2,&amp;mu1,&amp;mu2);
+		 return;
+		}
+	    }
+	}
+    rcond=pow(EPS,0.5);
+    for (i=0;i&lt;mu1;i++)    *(ptr-&gt;jpvt+i)=0;
+    C2F(zlacpy)("F",&amp;nu,&amp;mu2,ptr-&gt;IN2,&amp;nu,ptr-&gt;IN2X,&amp;l);
+    C2F(zgelsy1)(&amp;nu,&amp;mu1,&amp;mu2,ptr-&gt;IN1,&amp;nu,ptr-&gt;IN2X,&amp;l,ptr-&gt;jpvt,&amp;rcond,ptr-&gt;rank,ptr-&gt;dwork,&amp;lw,ptr-&gt;iwork,&amp;info);
+    if (info!=0)
+	{if (flag!=6)
+	    {set_block_error(-7);
+             return;
+	    }
+	}
+	for (i=0;i&lt;(l*mu2);i++)
+	   {*(ptr-&gt;yrT+i)=*(ptr-&gt;IN2X+2*i);
+	    *(ptr-&gt;yiT+i)=-(*(ptr-&gt;IN2X+(2*i)+1));}
+	    C2F(mtran)(ptr-&gt;yrT,&amp;l,yr,&amp;mu2,&amp;mu1,&amp;mu2);
+	    C2F(mtran)(ptr-&gt;yiT,&amp;l,yi,&amp;mu2,&amp;mu1,&amp;mu2);
+    }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

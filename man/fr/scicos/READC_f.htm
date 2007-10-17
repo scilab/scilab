@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>READC_f</TITLE>
+<META NAME="description" CONTENT="READC_f">
+<META NAME="keywords" CONTENT="READC_f">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="READC_f.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./READC_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/READC_f.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="READC_f"></A>
+<BR>
+Lecture de donée binaire
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=READC_f.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/READC_f_blk.gif"
+ ALT="\epsfig{file=READC_f.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="READC_f.htm#SECTION00010000000000000000">Lecture de donée binaire</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="READC_f.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="READC_f.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="READC_f.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html10"
+  HREF="READC_f.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html11"
+  HREF="READC_f.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html12"
+  HREF="READC_f.htm#SECTION00026000000000000000">Fonction de calcul</A>
+<LI><A NAME="tex2html13"
+  HREF="READC_f.htm#SECTION00027000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Sources_pal.htm">Sources - Palette Sources</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Ce bloc permet de lire des données dans un fichier C.
+Les paramètres <B>Output record selection] et <B>Time record Selection</B>
+permettent de sélectionner des données dans les enregistrements du fichier.
+Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
+</B>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3><B>
+</B>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="413" HEIGHT="266" BORDER="0"
+ SRC="../../images/scicos/READC_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=READC_f_gui.eps,width=260pt}
+\end{center}\end{figure}">
+</DIV><B>
+</B>
+<P>
+<B></B>
+<UL>
+<LI><B>Time record selection</B> 
+<BR>
+une matrice vide ou un entier positif.
+<BR>
+Si un entier i est donné, le <!-- MATH
+ $i^{\rm\grave{e}me}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="35" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/READC_f_img3_fr.gif"
+ ALT="$ i^{\rm\grave{e}me}$"></SPAN> élément
+        de l'enregistrement lu est supposé être la date de la sortie
+        d'événement.
+<BR>
+Si ce paramètre est vide alors le bloc n'a pas de 
+        sortie événementielle. 
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
+</LI>
+<LI><B>Outputs record selection</B> 
+<BR>
+un vecteur ou un entier positif.
+<BR>        <!-- MATH
+ $[k_1,\cdots,k_n]$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="90" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/READC_f_img4_fr.gif"
+ ALT="$ [k_1,\cdots,k_n]$"></SPAN> ,le  <!-- MATH
+ $k_i^{\rm\grave{e}me}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="38" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/READC_f_img5_fr.gif"
+ ALT="$ k_i^{\rm\grave{e}me}$"></SPAN> élément
+        de l'enregistrement lu donne la valeur de la <!-- MATH
+ $i^{\rm\grave{e}me}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="35" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/READC_f_img3_fr.gif"
+ ALT="$ i^{\rm\grave{e}me}$"></SPAN>
+        sortie.
+<BR>
+Propriétés : Type 'vec' de taille -1
+
+<P>
+</LI>
+<LI><B>Input file name</B> 
+<BR>
+une chaîne de caractères définissant le chemin du fichier.
+<BR>
+Propriétés : Type 'str' de taille 1
+
+<P>
+</LI>
+<LI><B>Input Format</B> 
+<BR>
+une chaîne de caractères définissant le format
+        à utiliser.
+<BR>
+Propriétés : Type 'str' de taille 1
+
+<P>
+</LI>
+<LI><B>Record size</B> 
+<BR>
+Le fichier est supposé être formé par des séquence de données
+        au même format.
+<BR>
+Ces données sont organisées en séquence d'enregistrement dont
+        la taille est déterminée par ce paramètre.
+<BR>
+Propriétés : Type 'vec' de taille 1
+
+<P>
+</LI>
+<LI><B>Buffer size</B> 
+<BR>
+Pour améliorer l'efficacité du bloc, il est possible de
+        mettre les données dans un buffer.
+        La lecture dans le fichier est alors fait après chaque
+        appel au bloc lorsque le buffer est rempli.
+<BR>
+Propriétés : Type 'vec' de taille 1
+
+<P>
+</LI>
+<LI><B>Initial record index</B> 
+<BR>
+Un scalaire. Cela définit le premier enregistrement à lire dans le
+        fichier.
+<BR>
+Propriétés : Type 'vec' de taille 1
+
+<P>
+</LI>
+<LI><B>Swap mode 0/1</B> 
+<BR>
+Avec le paramètre <B>Swap mode=1</B> le fichier est supposé être
+        au format IEEE "little endian" et les données sont 
+        entrelacées si nécessaire pour répondre au format IEEE du processeur.
+        Si <B>Swap mode=0</B> alors l'entrelacement est désactivé. 
+<BR>
+Propriétés : Type 'vec' de taille 1
+</LI>
+</UL><B>
+</B>
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3><B>
+</B>
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> non
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 1
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> oui
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>readc</EM>
+</LI>
+</UL><B>
+</B>
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3><B>
+</B>
+<UL>
+<LI>SCI/macros/scicos_blocks/Sources/READC_f.sci <A NAME="tex2html4"
+  HREF="READC_f_intfunc.htm">[voir code]</A>
+</LI>
+</UL><B>
+</B>
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3><B>
+</B>
+<UL>
+<LI>SCI/routines/scicos/readc.c (Type 2) <A NAME="tex2html5"
+  HREF="readc_routcos.htm">[voir code]</A>
+</LI>
+</UL><B>
+</B>
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Auteurs</A>
+</font></H3><B>
+<b>Ramine Nikoukhah</b> INRIA
+</B>
+</B>
+<BR>
+
+
+
+
+</BODY>
+</HTML>

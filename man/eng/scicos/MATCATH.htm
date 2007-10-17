@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>MATCATH</TITLE>
+<META NAME="description" CONTENT="MATCATH">
+<META NAME="keywords" CONTENT="MATCATH">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="MATCATH.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/MATCATH.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./MATCATH.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="MATCATH"></A>
+<BR>
+MATCATH: Horizontal Concatenation
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=MATCATH.eps,height=112.5pt}$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="179" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/MATCATH_blk.gif"
+ ALT="\epsfig{file=MATCATH.eps,height=112.5pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html8"
+  HREF="MATCATH.htm#SECTION00010000000000000000">MATCATH: Horizontal Concatenation</A>
+<UL>
+<LI><A NAME="tex2html9"
+  HREF="MATCATH.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html10"
+  HREF="MATCATH.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html11"
+  HREF="MATCATH.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html12"
+  HREF="MATCATH.htm#SECTION00024000000000000000">Example</A>
+<LI><A NAME="tex2html13"
+  HREF="MATCATH.htm#SECTION00025000000000000000">Default properties</A>
+<LI><A NAME="tex2html14"
+  HREF="MATCATH.htm#SECTION00026000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html15"
+  HREF="MATCATH.htm#SECTION00027000000000000000">Computational function</A>
+<LI><A NAME="tex2html16"
+  HREF="MATCATH.htm#SECTION00028000000000000000">See also</A>
+<LI><A NAME="tex2html17"
+  HREF="MATCATH.htm#SECTION00029000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Matrix_pal.htm">Matrix - Matrix operation palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The MATCATH Block outputs the horizontal concatenation of multiple matrices. It is also called concatenation according to the columns. The inputs U1,U2,...,Un must have the same number of rows. The output is a M-by-(N1+N2+...+Nn) matrix, where N1,N2,...,Nn are the numbers of columns of the inputs matrices, and M is the number of rows.  
+<BR>
+The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="108" BORDER="0"
+ SRC="../../images/scicos/MATCATH_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=MATCATH_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Datatype(1=real double  2=Complex)</b>
+<BR>
+It indicates the type of the output. It support only the two types double (1) and complex (2). If we input another entry in this label Scicos will print the message "Datatype is not supported".
+<BR>
+Properties : Type 'vec' of size 1.
+
+<P>
+</LI>
+<LI><b>number of columns of each matrix</b>
+<BR>
+It indicates the number of columns of the inputs matrices.
+<BR>
+Properties : Type 'mat' of size [-1,1].
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Example</A>
+</font></H3>
+<PRE>
+A=[1 2 3;4 5 6]
+B=[7 8;9 10]
+The result of the horizental concatenation is:
+C=[1 2 3 7 8;4 5 6 9 10]
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> yes
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [-1,-2] / type 1</b>
+<BR>   <b>   - port 2 : size [-1,-3] / type 1</b>
+<BR></LI>
+<LI><b>regular outputs:</b>
+<BR>   <b>   - port 1 : size [1,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 0
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 0
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>object discrete-time state:</b> no
+</LI>
+<LI><b>name of computational function:</b> <EM>mat_cath</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/MatrixOp/MATCATH.sci <A NAME="tex2html4"
+  HREF="MATCATH_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Computational function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/mat_cath.c <A NAME="tex2html5"
+  HREF="mat_cath_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matz_cath.c <A NAME="tex2html6"
+  HREF="matz_cath_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+See also</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="MATCATV.htm">MATCATV - MATCATV Vertical Concatenation (Scicos Block)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00029000000000000000">
+Authors</A>
+</font></H3>
+<b>Fady NASSIF</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

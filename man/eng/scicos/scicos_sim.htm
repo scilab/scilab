@@ -1,0 +1,547 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>scicos_sim</TITLE>
+<META NAME="description" CONTENT="scicos_sim">
+<META NAME="keywords" CONTENT="scicos_sim">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="scicos_sim.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos list
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/scicos_sim.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./scicos_sim.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="scicos_sim"></A>
+<BR>
+<b>scicos_sim</b> - Define a sim structure
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+sim</A>
+</font></H3>
+ Scilab typed list of type scs. It contains 
+ static arrays coming from the result of the
+ compilation. That arrays does not evolve
+ during the simulation.
+<BR>
+<BR>
+<P>
+Size : 33.
+<BR>
+Type : scilab tlist.
+<BR>
+<P>
+
+<UL>
+<LI><B>funs</B>
+<BR>
+A list containing names of the computational
+          functions or scilab functions.
+<BR>
+<BR>
+<P>
+Size : number of blocks.
+<BR>
+Type : list of strings and/or scilab function.
+<BR>
+<P>
+</LI>
+<LI><B>xptr</B>
+<BR>
+A vector pointer to the continuous time state 
+          register x. The continuous-time state of 
+          block i is 
+          state.x(sim.xptr(i):sim.xptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>zptr</B>
+<BR>
+A vector pointer to the discrete time state 
+          register z. The discrete-time state of 
+          block i is 
+          state.z(sim.zptr(i):sim.zptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>ozptr</B>
+<BR>
+A vector pointer to the object discrete state 
+          register oz. The object discrete state of 
+          block i is 
+          state.oz(sim.ozptr(i):sim.ozptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>zcptr</B>
+<BR>
+A vector pointer to the zero-crossing surfaces.
+<BR>
+register. That vector gives by block the used
+          number of the zero-crossing.
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>inpptr</B>
+<BR>          (sim.inpptr(i+1)-sim.inpptr(i)) gives the number of
+          regular input ports of the i block.
+<BR>
+inpptr(i) points to the beginning of ith block
+          inputs within the indirection table inplnk.
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>outptr</B>
+<BR>          (sim.outptr(i+1)-sim.outptr(i)) gives the number of
+          regular ouyput ports of the i block.
+<BR>
+outptr(i) points to the beginning of ith block
+          outputs within the indirection table outlnk.
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>inplnk</B>
+<BR>          (cpr.sim.inplnk(cpr.sim.inpptr(i)-1+j))
+          is the index of the link connected to 
+          the jth input port of the ith block where 
+          j goes from 1 to 
+          (cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i)).
+<BR>
+<BR>
+<P>
+Size : total number of regular input port.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>outlnk</B>
+<BR>          (cpr.sim.outlnk(cpr.sim.outptr(i)-1+j))
+          is the index of the link connected to 
+          the jth output port of the ith block where 
+          j goes from 1 to 
+          (cpr.sim.outptr(i+1)-cpr.sim.outptr(i)).
+<BR>
+<BR>
+<P>
+Size : total number of regular output port.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>rpar</B>
+<BR>
+Vector of real parameters that is 
+          obtained by concatenating the real
+          parameters registers of all the blocks.
+<BR>
+<BR>
+<P>
+Size : total number of real parameters.
+<BR>
+Type : column vector of real numbers.
+<BR>
+<P>
+</LI>
+<LI><B>rpptr</B>
+<BR>
+A vector pointer to the real parameters
+          register rpar. The real parameters of
+          block i are 
+          sim.rpar(sim.rpptr(i):sim.rpptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integer.
+<BR>
+<P>
+</LI>
+<LI><B>ipar</B>
+<BR>
+Vector of integer parameters that is 
+          obtained by concatenating the integer
+          parameters registers of all the blocks.
+<BR>
+<BR>
+<P>
+Size : total number of integer parameters.
+<BR>
+Type : column vector of integer.
+<BR>
+<P>
+</LI>
+<LI><B>ipptr</B>
+<BR>
+A vector pointer to the integer parameters
+          register ipar. The integer parameters of
+          block i are 
+          sim.ipar(sim.ipptr(i):sim.ipptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of real numbers.
+<BR>
+<P>
+</LI>
+<LI><B>opar</B>
+<BR>
+List of object parameters that is 
+          obtained by concatenating the list
+          of object parameters of all the blocks.
+<BR>
+<BR>
+<P>
+Size : total number of object parameters.
+<BR>
+Type : list of scilab objects.
+<BR>
+<P>
+</LI>
+<LI><B>opptr</B>
+<BR>
+A vector pointer to the object parameters
+          list opar. The object parameters of
+          block i are 
+          sim.opar(sim.opptr(i):sim.opptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>clkptr</B>
+<BR>
+A vector pointer to output activation ports.
+<BR>          (cpr.sim.clkptr(i):cpr.sim.clkptr(i+1)-1) 
+          gives the number of output event ports
+          of the block i.
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>ordptr</B>
+<BR>
+A vector pointer to ordclk designating the
+          part of ordclk corresponding to a given
+          activation.
+<BR>         (cpr.sim.ordptr(i):cpr.sim.ordptr(i+1)-1)
+          points to the region within ordclk indicates 
+          the number of blocks activated by the output
+          event ports numbered i.
+<BR>
+<BR>
+<P>
+Size : number of sources of activation + 1.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>execlk</B>
+<BR>
+Unused.
+<BR>
+<BR>
+<P>
+Size : -
+          Type : matrix of real.
+<BR>
+<P>
+</LI>
+<LI><B>ordclk</B>
+<BR>
+A matrix associated to blocks activated by
+          output activation ports. The first column
+          contains the block number, and  the second,
+          the event code by which the block should be
+          called.
+<BR>
+<BR>
+<P>
+Size : total number of blocks summed by source of activations.
+<BR>
+Type : matrix of integers.
+<BR>
+<P>
+</LI>
+<LI><B>cord</B>
+<BR>
+A matrix associated to always active blocks.
+<BR>
+The first column contains the block number, 
+          and the second, the event code by which the 
+          block should be called.
+<BR>
+<BR>
+<P>
+Size : ncord.
+<BR>
+Type : matrix of integers.
+<BR>
+<P>
+</LI>
+<LI><B>oord</B>
+<BR>
+Subset of cord. Blocks of that matrix 
+          have outputs which affect computation of
+          continuous state derivatives.
+<BR>
+<BR>
+<P>
+Size : noord.
+<BR>
+Type : matrix of integers.
+<BR>
+<P>
+</LI>
+<LI><B>zord</B>
+<BR>
+Subset of zord. Blocks of that matrix 
+          have outputs which affect computation of
+          zero-crossing surfaces.
+<BR>
+<BR>
+<P>
+Size : nzord.
+<BR>
+Type : matrix of integers.
+<BR>
+<P>
+</LI>
+<LI><B>critev</B>
+<BR>
+A vector of size equal to the number of 
+          activations and containing zeros and 
+          ones. The value one indicates that the 
+          activation is critical in the sense that
+          the continuous-time solver must be cold 
+          restarted.
+<BR>
+<BR>
+<P>
+Size : number of source of activation.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>nb</B>
+<BR>
+Number of blocks. Note that the number of
+          blocks may differ from the original number
+          of blocks in the diagram because c_pass2
+          may duplicate some conditional blocks.
+<BR>
+<BR>
+<P>
+Size : 1.
+<BR>
+Type : integer.
+<BR>
+<P>
+</LI>
+<LI><B>ztyp</B>
+<BR>
+A vector of size equal to the number of blocks.
+<BR>
+A 1 entry indicates that the block may have 
+          zero-crossings, even if it doesn't in the 
+          context of the diagram.  Usually not used by 
+          the simulator.
+<BR>
+<BR>
+<P>
+Size : number of blocks.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>nblk</B>
+<BR>
+Not used. Set to nb.
+<BR>
+<BR>
+<P>
+Size : 1
+          Type : integer.
+<BR>
+<P>
+</LI>
+<LI><B>ndcblk</B>
+<BR>
+Not used.
+<BR>
+<BR>
+<P>
+Size : -
+          Type : integer.
+<BR>
+<P>
+</LI>
+<LI><B>subscr</B>
+<BR>
+Not used.
+<BR>
+<BR>
+<P>
+Size : 0
+          Type : empty real.
+<BR>
+<P>
+</LI>
+<LI><B>funtyp</B>
+<BR>
+A vector of size equal to the number of blocks
+          indicating the type of the computational function
+          of the block. Block type can be 0 through 5.
+<BR>
+Currently only type 4 (C language) and type 5
+          (Scilab language) computational functions should
+          be used. But older blocks can also be used.
+<BR>
+<BR>
+<P>
+Size : number of blocks.
+<BR>
+Type : column vector of integer.
+<BR>
+<P>
+</LI>
+<LI><B>iord</B>
+<BR>
+A matrix associated to blocks that
+          must be activated at the start of 
+          the simulation. This includes blocks 
+          inheriting from constant blocks and 
+          always active blocks.
+<BR>
+<BR>
+<P>
+Size : niord.
+<BR>
+Type : matrix of integers.
+<BR>
+<P>
+</LI>
+<LI><B>labels</B>
+<BR>
+A string vector of size equal
+          to the number of blocks 
+          containing block labels.
+<BR>
+<BR>
+<P>
+Size : numbers of blocks.
+<BR>
+Type : column vector of strings.
+<BR>
+<P>
+</LI>
+<LI><B>modptr</B>
+<BR>
+A vector pointer to the block modes.
+<BR>
+<BR>
+<P>
+Size : number of blocks + 1.
+<BR>
+Type : column vector of integer.
+<BR>
+<P>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+File content</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos/scicos_sim.sci <A NAME="tex2html4"
+  HREF="scicos_sim_scifunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

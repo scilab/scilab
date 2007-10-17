@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>scicos_graphics</TITLE>
+<META NAME="description" CONTENT="scicos_graphics">
+<META NAME="keywords" CONTENT="scicos_graphics">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="scicos_graphics.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos list
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/scicos_graphics.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./scicos_graphics.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="scicos_graphics"></A>
+<BR>
+<b>scicos_graphics</b> - Define a graphics structure
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+graphics</A>
+</font></H3>
+ Scilab object including
+ graphical information concerning
+ the features of the block.
+<BR>
+<BR>
+<P>
+Size : 14.
+<BR>
+Type : scilab list.
+<BR>
+<P>
+
+<UL>
+<LI><B>orig</B>
+<BR>
+Vector [xo,yo], where xo is the x coordinate
+          of the  block origin and yo is the y coordinate
+          of the  block origin.
+<BR>
+<P>
+[xo,yo] is the coordinate of down-left point of
+          the block shape.
+<BR>
+<BR>
+<P>
+Size : 2.
+<BR>
+Type : row vector of real.
+<BR>
+<P>
+</LI>
+<LI><B>sz</B>
+<BR>
+Vector [w,h], where w is the block width and
+          h the block height.
+<BR>
+<BR>
+<P>
+Size : 2.
+<BR>
+Type : row vector of real.
+<BR>
+<P>
+</LI>
+<LI><B>flip</B>
+<BR>
+Set the block orientation. If true the input ports
+          are on the left of the box and output ports are on the right.
+<BR>
+If false the input ports are on the right of the box and 
+          output ports are on the left.
+<BR>
+<BR>
+<P>
+Size : 1.
+<BR>
+Type : boolean.
+<BR>
+<P>
+</LI>
+<LI><B>theta</B>
+<BR>
+Set the angle of the Scicos object.
+<BR>
+This value is in degree and is 
+          included in [-360,360].
+<BR>
+<BR>
+<P>
+Size : 1.
+<BR>
+Type : real.
+<BR>
+<P>
+</LI>
+<LI><B>exprs</B>
+<BR>
+Strings including formal expressions
+          used in the dialog box of the block.
+<BR>
+<BR>
+<P>
+Size : number of formal expressions.
+<BR>
+Type : column vector of strings.
+<BR>
+<P>
+</LI>
+<LI><B>pin</B>
+<BR>
+Vector. pin(i) is the number  of the link
+          connected to the ith regular input port 
+          (counting from one), or 0 if this port is
+          not connected.
+<BR>
+<BR>
+<P>
+Size : number of regular input ports.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>pout</B>
+<BR>
+Vector. pout(i) is the number of the link
+          connected to the ith regular output port 
+          (counting from one), or 0 if this port is
+          not connected.
+<BR>
+<BR>
+<P>
+Size : number of regular output ports.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>pein</B>
+<BR>
+Vector. pein(i) is the number of the link
+          connected to the ith event input port 
+          (counting from one), or 0 if this port is
+          not connected.
+<BR>
+<BR>
+<P>
+Size : number of events input ports.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>peout</B>
+<BR>
+Vector. peout(i) is the number of the link
+          connected to the ith event output port 
+          (counting from one), or 0 if this port is
+          not connected.
+<BR>
+<BR>
+<P>
+Size : number of events output ports.
+<BR>
+Type : column vector of integers.
+<BR>
+<P>
+</LI>
+<LI><B>gr_i</B>
+<BR>
+Strings including Scilab graphics
+          expressions for customizing the block graphical
+          aspect. This field may be set with Icon sub_menu.
+<BR>
+<BR>
+<P>
+Size : -.
+<BR>
+Type : column vector of strings.
+<BR>
+<P>
+</LI>
+<LI><B>id</B>
+<BR>
+A string including an identification for the
+          block. The string is displayed under the
+          block in the diagram.
+<BR>
+<BR>
+<P>
+Size : 1.
+<BR>
+Type : string.
+<BR>
+<P>
+</LI>
+<LI><B>in_implicit</B>
+<BR>
+A vector of strings including 'E' or 'I'.
+<BR>          'E' and 'I' stand respectively for explicit and
+          implicit port, and this vector indicates the nature
+          of each input port. For regular blocks (not implicit),
+          this vector is empty or contains only "E".
+<BR>
+<BR>
+<P>
+Size : nul or number of regular input ports.
+<BR>
+Type : column vector of strings.
+<BR>
+<P>
+</LI>
+<LI><B>out_implicit</B>
+<BR>
+A vector of strings including 'E' or 'I'.
+<BR>          'E' and 'I' stand respectively for explicit and
+          implicit port, and this vector indicates the nature
+          of each output port. For regular blocks (not implicit),
+          this vector is empty or contains only "E".
+<BR>
+<BR>
+<P>
+Size : nul or number of regular output ports.
+<BR>
+Type : column vector of strings.
+<BR>
+<P>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+File content</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos/scicos_graphics.sci <A NAME="tex2html4"
+  HREF="scicos_graphics_scifunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

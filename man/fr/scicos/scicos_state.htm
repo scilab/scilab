@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>scicos_state</TITLE>
+<META NAME="description" CONTENT="scicos_state">
+<META NAME="keywords" CONTENT="scicos_state">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="scicos_state.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Liste Scicos
+<BR><A NAME="tex2html1"
+  HREF="./scicos_state.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/scicos_state.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="scicos_state"></A>
+<BR>
+<b>scicos_state</b> - Définit une structure state
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+state</A>
+</font></H3>
+ Une liste typée scilab de type xcs. Cette
+ liste contient tous les états du diagramme qui
+ vont évoluer pendant la simulation.
+<BR>
+state contient x, z, oz, iz, 
+ tevts, evtspt, pointi et outtb.
+<BR>
+<BR>
+<P>
+Taille : 9.
+<BR>
+Type : tlist scilab.
+<BR>
+<P>
+
+<UL>
+<LI><B>x</B>
+<BR>
+Le registre des états continus qui est obtenu
+          en concatenant tous les états continus de tous
+          les blocs.
+<BR>
+<BR>
+<P>
+Taille : total des tailles de tous les registres des états continus.
+<BR>
+Type : vecteur colonne de nombres réels.
+<BR>
+<P>
+</LI>
+<LI><B>z</B>
+<BR>
+Le registre des états discrets qui est obtenu
+          en concatenant tous les états discrets de tous
+          les blocs.
+<BR>
+<BR>
+<P>
+Taille : total des tailles de tous les registres des états discrets.
+<BR>
+Type : vecteur colonne de nombres réels.
+<BR>
+<P>
+</LI>
+<LI><B>oz</B>
+<BR>
+La liste des états objets discrets obtenue
+          par la concaténation de tous les états objets
+          de tous les blocs.
+<BR>
+<BR>
+<P>
+Taille : total des tailles de toutes les listes des états objet.
+<BR>
+Type : liste scilab.
+<BR>
+<P>
+</LI>
+<LI><B>iz</B>
+<BR>
+Vecteur de taille égale au nombre de blocs.
+<BR>
+Ce vecteur est utilisé pour enregistrer les
+          pointeurs des registres de travail (work)
+          Si un bloc fait une allocation du registre work
+          à l'initialisation (flag=4) alors le pointeur
+          associé est enregistré ici.
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs.
+<BR>
+Type : vecteur colonne de nombres réels.
+<BR>
+<P>
+</LI>
+<LI><B>tevts</B>
+<BR>
+Un vecteur de taille égale au nombre
+          de sources d'activation. C'est une table
+          contenant les dates des événements
+          programmés dans evtspt.
+<BR>
+<BR>
+<P>
+Taille : nombre de sources d'activation.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>evtspt</B>
+<BR>
+Un vecteur de taille égale au nombre
+          de sources d'activation. C'est une table
+          d'événements.
+<BR>
+<BR>
+<P>
+Taille : nombre de sources d'activation.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>pointi</B>
+<BR>
+Le numéro du prochain événement.
+<BR>
+<BR>
+<P>
+Taille : 1.
+<BR>
+Type : entier.
+<BR>
+<P>
+</LI>
+<LI><B>outtb</B>
+<BR>
+Liste scilab contenant tous les registres
+          de sortie des blocs. Chaque éléments de cette
+          liste contient des données typées matricielles.
+<BR>
+<BR>
+<P>
+Taille : nombre de ports réguliers de sortie.
+<BR>
+Type : liste scilab contenant des matrices.
+<BR>
+<P>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Contenu du ficher</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos/scicos_state.sci <A NAME="tex2html4"
+  HREF="scicos_state_scifunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

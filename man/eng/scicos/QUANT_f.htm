@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>QUANT_f</TITLE>
+<META NAME="description" CONTENT="QUANT_f">
+<META NAME="keywords" CONTENT="QUANT_f">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="QUANT_f.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/QUANT_f.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./QUANT_f.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="QUANT_f"></A>
+<BR>
+Quantization
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=QUANT_f.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/QUANT_f_blk.gif"
+ ALT="\epsfig{file=QUANT_f.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html9"
+  HREF="QUANT_f.htm#SECTION00010000000000000000">Quantization</A>
+<UL>
+<LI><A NAME="tex2html10"
+  HREF="QUANT_f.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html11"
+  HREF="QUANT_f.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html12"
+  HREF="QUANT_f.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html13"
+  HREF="QUANT_f.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html14"
+  HREF="QUANT_f.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html15"
+  HREF="QUANT_f.htm#SECTION00026000000000000000">Computational function</A>
+<LI><A NAME="tex2html16"
+  HREF="QUANT_f.htm#SECTION00027000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Non_linear_pal.htm">Non_linear - Non-Linear palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+This block outputs the quantization of the input according to a choice
+of methods:
+
+<OL>
+<LI>Round  method:
+<BR>
+<DIV ALIGN="RIGHT" CLASS="mathdisplay">
+<P ALIGN="LEFT"><!-- MATH
+ \begin{eqnarray}
+\htmlimage{align=left}
+ y(i)&={\rm Step}*({\rm int}(u(i)/{\rm Step}+0.5)-0.5) &\texttt{if} \; u(i)<0 .\\
+ y(i)&={\rm Step}*({\rm int}(u(i)/{\rm Step}-0.5)+0.5) &\texttt{if} \; u(i)>=0 .
+\end{eqnarray}
+ -->
+<IMG
+ WIDTH="556" HEIGHT="58" ALIGN="LEFT"
+ SRC="../../images/scicos/QUANT_f_img2_eng.gif"
+ ALT="\begin{eqnarray}
+y(i)&amp;={\rm Step}*({\rm int}(u(i)/{\rm Step}+0.5)-0.5) &amp;\texttt...
+...}*({\rm int}(u(i)/{\rm Step}-0.5)+0.5) &amp;\texttt{if} \; u(i)&gt;=0 .
+\end{eqnarray}">
+<BR CLEAR="ALL">
+<P>
+<BR CLEAR="ALL"></DIV><P></P>
+</LI>
+<LI>Truncation method:
+<BR>
+<DIV ALIGN="RIGHT" CLASS="mathdisplay">
+<P ALIGN="LEFT"><!-- MATH
+ \begin{eqnarray}
+\htmlimage{align=left}
+ y(i)&={\rm Step}*({\rm int}(u(i)/{\rm Step}+0.5)) &\texttt{if} \; u(i)<0 .  \\
+ y(i)&={\rm Step}*({\rm int}(u(i)/{\rm Step}-0.5)) &\texttt{if} \; u(i)>=0 .
+\end{eqnarray}
+ -->
+<IMG
+ WIDTH="556" HEIGHT="58" ALIGN="LEFT"
+ SRC="../../images/scicos/QUANT_f_img3_eng.gif"
+ ALT="\begin{eqnarray}
+y(i)&amp;={\rm Step}*({\rm int}(u(i)/{\rm Step}+0.5)) &amp;\texttt{if}...
+... Step}*({\rm int}(u(i)/{\rm Step}-0.5)) &amp;\texttt{if} \; u(i)&gt;=0 .
+\end{eqnarray}">
+<BR CLEAR="ALL">
+<P>
+<BR CLEAR="ALL"></DIV><P></P>
+</LI>
+<LI>Floor method:
+<BR>
+<DIV ALIGN="RIGHT" CLASS="mathdisplay">
+<P ALIGN="LEFT"><!-- MATH
+ \begin{eqnarray}
+\htmlimage{align=left}
+ y(i)&={\rm Step}*({\rm int}(u(i)/{\rm Step}+0.5))  .
+\end{eqnarray}
+ -->
+<IMG
+ WIDTH="556" HEIGHT="31" ALIGN="LEFT"
+ SRC="../../images/scicos/QUANT_f_img4_eng.gif"
+ ALT="\begin{eqnarray}
+y(i)&amp;={\rm Step}*({\rm int}(u(i)/{\rm Step}+0.5)) .
+\end{eqnarray}">
+<BR CLEAR="ALL">
+<P>
+<BR CLEAR="ALL"></DIV><P></P>
+</LI>
+<LI>Ceil method:
+<BR>
+<DIV ALIGN="RIGHT" CLASS="mathdisplay">
+<P ALIGN="LEFT"><!-- MATH
+ \begin{eqnarray}
+\htmlimage{align=left}
+ y(i)&={\rm Step}*({\rm int}(u(i)/{\rm Step}-0.5))
+\end{eqnarray}
+ -->
+<IMG
+ WIDTH="556" HEIGHT="31" ALIGN="LEFT"
+ SRC="../../images/scicos/QUANT_f_img5_eng.gif"
+ ALT="\begin{eqnarray}
+y(i)&amp;={\rm Step}*({\rm int}(u(i)/{\rm Step}-0.5))
+\end{eqnarray}">
+<BR CLEAR="ALL">
+<P>
+<BR CLEAR="ALL"></DIV><P></P>
+</LI>
+</OL>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="413" HEIGHT="109" BORDER="0"
+ SRC="../../images/scicos/QUANT_f_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=QUANT_f_gui.eps,width=260pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><B>Step</B>
+<BR>
+scalar, Quantization step 
+<BR>
+Properties : Type 'vec' of size 1.
+
+<P>
+</LI>
+<LI><B>Quantization Type</B>
+<BR>
+scalar with possible values 1,2,3 or 4 
+        <DL>
+<DT><STRONG>1</STRONG></DT>
+<DD>Round method 
+           
+</DD>
+<DT><STRONG>2</STRONG></DT>
+<DD>Truncation method 
+           
+</DD>
+<DT><STRONG>3</STRONG></DT>
+<DD>Floor method 
+           
+</DD>
+<DT><STRONG>4</STRONG></DT>
+<DD>Ceil method 
+        
+</DD>
+</DL>
+        Properties : Type 'vec' of size 1.
+
+<P>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> yes
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>regular outputs:</b>
+<BR>   <b>   - port 1 : size [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 0
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 0
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>object discrete-time state:</b> no
+</LI>
+<LI><b>name of computational function:</b> <EM>qzrnd</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/NonLinear/QUANT_f.sci <A NAME="tex2html4"
+  HREF="QUANT_f_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Computational function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/qzrnd.f <A NAME="tex2html5"
+  HREF="qzrnd_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/qztrn.f <A NAME="tex2html6"
+  HREF="qztrn_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/qzflr.f <A NAME="tex2html7"
+  HREF="qzflr_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/qzcel.f <A NAME="tex2html8"
+  HREF="qzcel_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Authors</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>
