@@ -962,6 +962,7 @@ c     on complete la liste "courante"
 c   
  80   continue
       fptr=op+istk(lc+3)
+c     SCI_HFUNCTIONS_BACKSEARCH = 2  
       call funtab(id,fptr,2,'NULL_NAME',0)
 
       il=iadr(lr)

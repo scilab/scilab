@@ -114,6 +114,10 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 						*data = htable[idx].entry.data;
 						return OK;
 						break;
+
+					case SCI_HFUNCTIONS_BACKSEARCH :
+						return FAILED;
+						break;
 					}
 				}
 			}
@@ -143,6 +147,9 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 						case SCI_HFUNCTIONS_FIND :
 							*data = htable[idx].entry.data; 
 							return OK;
+						case SCI_HFUNCTIONS_BACKSEARCH :
+							return FAILED;
+							break;
 						}
 					}
 				}

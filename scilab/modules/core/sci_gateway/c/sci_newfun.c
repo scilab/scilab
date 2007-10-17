@@ -8,6 +8,7 @@
 #include "error_scilab.h"
 #include "Funtab.h"
 #include "IsAScalar.h"
+#include "hashtable_core.h"
 /*-----------------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname);
 /*-----------------------------------------------------------------------------------*/
@@ -36,7 +37,7 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 				int id[nsiz];
 				int zero=0;
 				int fptr=nameptr;
-				int job=3;
+				int job = SCI_HFUNCTIONS_ENTER;
 
 				C2F(cvname)(id,VarName,&zero,(unsigned long)strlen(VarName));
 				C2F(funtab)(id,&fptr,&job,VarName,(unsigned long)strlen(VarName));

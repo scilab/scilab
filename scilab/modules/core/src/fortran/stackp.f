@@ -67,6 +67,7 @@ c
       if (k .eq. bot-1) then
 c     .  the variable does not exist, check for function redefinition
          if(macprt.ne.0) then  
+c     SCI_HFUNCTIONS_FIND = 1
             call funtab(id,ifun,1,'NULL_NAME',0)
             if(ifun.gt.0) then
                if(macprt.eq.2) then  
