@@ -224,10 +224,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\convert.c"
-				>
-			</File>
-			<File
 				RelativePath=".\i_a_i.c"
 				>
 			</File>
