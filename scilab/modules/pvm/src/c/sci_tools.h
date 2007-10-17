@@ -59,11 +59,50 @@
 #define SET_NB_COL(ptr,m) (((int*) (ptr))[-2] = (m))
 #define SET_NB_ROW(ptr,n) (((int*) (ptr))[-3] = (n))
 
-typedef struct {double re, im;} complex16;
+typedef struct {
+	double re;
+	double im;
+} complex16;
 
-extern int  F2C(mycmatptr) __PARAMS((char *name,int *m, int *n, int *type, int *lp));
-extern void C2F(ccomplexf) __PARAMS((int *n, double **ip, double *op));
-extern void (SciToF77)  __PARAMS((double *ptr, int size, int lda));
-extern void (F77ToSci)  __PARAMS((double *ptr, int size, int lda));
+/**
+ * <long-description>
+ *
+ * @param name
+ * @param m
+ * @param n
+ * @param type
+//@}
+
+ * @param lp
+ * @return <ReturnValue>
+ */
+int F2C(mycmatptr) __PARAMS((char *name,int *m, int *n, int *type, int *lp));
+
+/**
+ * <long-description>
+ *
+ * @param n
+ * @param ip
+ * @param op
+ */
+void C2F(ccomplexf) __PARAMS((int *n, double **ip, double *op));
+
+/**
+ * Convert an Scilab array of double to a fortran format
+ *
+ * @param ptr the array of double
+ * @param size size of the array
+ * @param lda   
+ */
+void SciToF77  __PARAMS((double *ptr, int size, int lda));
+
+/**
+ * Convert an Fortran array of double to a Scilab format
+ *
+ * @param ptr the array of double
+ * @param size size of the array
+ * @param lda   
+ */
+void F77ToSci  __PARAMS((double *ptr, int size, int lda));
 
 #endif /* __SCI_TOOLS */
