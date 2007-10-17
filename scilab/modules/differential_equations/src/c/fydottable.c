@@ -2,27 +2,30 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include "FTables.h"
-
+#include "arnol.h"
 	/***********************************
-	* ode   (fydot and fjac ) 
+	* ode   (fydot and fjac )
 	***********************************/
 
-#define ARGS_fydot integer*,double *,double *,double *
-	typedef void (*fydotf)(ARGS_fydot);
+/**
+ ** @TODO : Wow !! Lot of things to kick out..
+ **/
+
+
+typedef void (*fydotf)(integer*,double *,double *,double *);
 
 #define ARGS_fjac integer*,double *,double *,integer*,integer*,double*,integer*
-	typedef void (*fjacf)(ARGS_fjac);
+typedef void (*fjacf)(ARGS_fjac);
 
 /**************** fydot ***************/
-extern void C2F(fex)(ARGS_fydot);
-extern void C2F(fex2)(ARGS_fydot);
-extern void C2F(fex3)(ARGS_fydot);
-extern void C2F(fexab)(ARGS_fydot);
-extern void C2F(loren)(ARGS_fydot);
-extern void C2F(arnol)(ARGS_fydot);
-extern void C2F(bcomp)(ARGS_fydot);
-extern void C2F(lcomp)(ARGS_fydot);
-void C2F(fydot)(ARGS_fydot);
+extern void C2F(fex)(integer*,double *,double *,double *);
+extern void C2F(fex2)(integer*,double *,double *,double *);
+extern void C2F(fex3)(integer*,double *,double *,double *);
+extern void C2F(fexab)(integer*,double *,double *,double *);
+extern void C2F(loren)(integer*,double *,double *,double *);
+extern void C2F(bcomp)(integer*,double *,double *,double *);
+extern void C2F(lcomp)(integer*,double *,double *,double *);
+void C2F(fydot)(integer*,double *,double *,double *);
 void C2F(setfydot)(char *name, int *rep);
 
 FTAB FTab_fydot[] ={
@@ -47,7 +50,7 @@ FTAB FTab_fjac[] =
 };
 
 /***********************************
-* Search Table for fydot 
+* Search Table for fydot
 ***********************************/
 
 /** the current function fixed by setfydot **/
