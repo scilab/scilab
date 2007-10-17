@@ -2394,7 +2394,14 @@ depending on the type of the PDE and runs the solvers.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+    This block implements a PID controller. The PID controller calculation
+(algorithm) involves three separate parameters; 
+the Proportional, the Integral  and Derivative values. 
+The Proportional value determines the reaction to the current error, the
+Integral determines the reaction based on the sum of recent errors and the
+Derivative determines the reaction to the rate at which the error has been
+changing. The weighted sum of these three actions is used to adjust the process
+via a control element such as the position of a control valve or the power supply of a heating element.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

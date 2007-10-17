@@ -4876,7 +4876,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	<PARAM_NAME>Proportional</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    The parameter description 1.
+	    The Value of the gain that multiply the error.
 	  </SP>
 	  <SP>
 	    Properties : Type 'vec' of size -1.
@@ -4888,7 +4888,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	<PARAM_NAME>Integral</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    The parameter description 2.
+	    The value of the integral time of the error.(1/Integral)
 	  </SP>
 	  <SP>
 	    Properties : Type 'vec' of size -1.
@@ -4900,7 +4900,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	<PARAM_NAME>Derivation</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    The parameter description 3.
+	    The value of the derivative time of the error.
 	  </SP>
 	  <SP>
 	    Properties : Type 'vec' of size -1.
