@@ -1,12 +1,12 @@
 mode(-1)
 // Copyright INRIA
-mes=x_message(['Start pvm daemon if not already active'
+mes=x_message(['Start PVM daemon if not already active'
            'ok=pvm_start()'
-	   'if ok<>0 then disp(''pvm daemon already active''),end'],..
+	   'if ok<>0 then disp(''PVM daemon already active''),end'],..
            ['Ok','Cancel'])
 if mes==2 then return, end
 ok=pvm_start()       
-if ok<>0 then disp('pvm daemon already active'),end;
+if ok<>0 then disp('PVM daemon already active'),end;
 
 mes=x_message(['Start another Scilab process under PVM with the following instruction:';
            ' '
@@ -32,7 +32,7 @@ if mes==2 then
   pvm_kill(task_id);
   return, 
 end
-       
+
 pvm_send(task_id,'disp(''Hello, please help me to do my work'')',0)
 mes=x_message(['Create a matrix A and send it to the second Scilab process:';
 	   ' '
