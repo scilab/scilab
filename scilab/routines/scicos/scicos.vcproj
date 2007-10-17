@@ -706,9 +706,6 @@ cd .. &gt;nul
 				RelativePath=".\backlash.c">
 			</File>
 			<File
-				RelativePath=".\bit_clear.c">
-			</File>
-			<File
 				RelativePath=".\bit_clear_16.c">
 			</File>
 			<File
@@ -955,15 +952,6 @@ cd .. &gt;nul
 				RelativePath=".\extract_bit_8_UH1.c">
 			</File>
 			<File
-				RelativePath=".\extract_bit_i16.c">
-			</File>
-			<File
-				RelativePath=".\extract_bit_i32.c">
-			</File>
-			<File
-				RelativePath=".\extract_bit_i8.c">
-			</File>
-			<File
 				RelativePath=".\extract_bit_u16_MSB1.c">
 			</File>
 			<File
@@ -989,15 +977,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\extract_bit_u8_UH1.c">
-			</File>
-			<File
-				RelativePath=".\extract_bit_ui16.c">
-			</File>
-			<File
-				RelativePath=".\extract_bit_ui32.c">
-			</File>
-			<File
-				RelativePath=".\extract_bit_ui8.c">
 			</File>
 			<File
 				RelativePath=".\extractor.c">
