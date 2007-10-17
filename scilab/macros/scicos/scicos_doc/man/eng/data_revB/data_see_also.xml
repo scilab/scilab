@@ -1,9 +1,9 @@
 <DATA flag="salso">
 
 <FILE name='ABCD_Blocks' type='XML'>
-  <SEE_ALSO>
+<SEE_ALSO>
 
-  </SEE_ALSO>
+</SEE_ALSO>
 </FILE>
 
 <FILE name='ABSBLK_f' type='XML'>
@@ -43,9 +43,9 @@
 </FILE>
 
 <FILE name='AUTOMAT' type='XML'>
-  <SEE_ALSO>
+<SEE_ALSO>
 
-  </SEE_ALSO>
+</SEE_ALSO>
 </FILE>
 
 <FILE name='About_scicos' type='XML'>
@@ -121,9 +121,9 @@
 </FILE>
 
 <FILE name='CCS' type='XML'>
-  <SEE_ALSO>
+<SEE_ALSO>
 
-  </SEE_ALSO>
+</SEE_ALSO>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -331,9 +331,9 @@
 </FILE>
 
 <FILE name='CVS' type='XML'>
-  <SEE_ALSO>
+<SEE_ALSO>
 
-  </SEE_ALSO>
+</SEE_ALSO>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -846,9 +846,9 @@
 </FILE>
 
 <FILE name='IdealTransformer' type='XML'>
-  <SEE_ALSO>
+<SEE_ALSO>
 
-  </SEE_ALSO>
+</SEE_ALSO>
 </FILE>
 
 <FILE name='Inductor' type='XML'>

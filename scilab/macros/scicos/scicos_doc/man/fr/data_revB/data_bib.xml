@@ -43,9 +43,9 @@
 </FILE>
 
 <FILE name='AUTOMAT' type='XML'>
-  <BIBLIO>
+<BIBLIO>
 
-  </BIBLIO>
+</BIBLIO>
 </FILE>
 
 <FILE name='About_scicos' type='XML'>
@@ -121,9 +121,9 @@
 </FILE>
 
 <FILE name='CCS' type='XML'>
-  <BIBLIO>
+<BIBLIO>
 
-  </BIBLIO>
+</BIBLIO>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -337,9 +337,9 @@
 </FILE>
 
 <FILE name='CVS' type='XML'>
-  <BIBLIO>
+<BIBLIO>
 
-  </BIBLIO>
+</BIBLIO>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -825,8 +825,6 @@
 <FILE name='INVBLK_f' type='XML'>
 <BIBLIO>
 
-
-
 </BIBLIO>
 </FILE>
 
@@ -849,9 +847,9 @@
 </FILE>
 
 <FILE name='IdealTransformer' type='XML'>
-  <BIBLIO>
+<BIBLIO>
 
-  </BIBLIO>
+</BIBLIO>
 </FILE>
 
 <FILE name='Inductor' type='XML'>

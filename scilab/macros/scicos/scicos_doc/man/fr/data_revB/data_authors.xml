@@ -151,9 +151,9 @@ INRIA
 </FILE>
 
 <FILE name='CCS' type='XML'>
-  <AUTHORS>
+<AUTHORS>
 
-  </AUTHORS>
+</AUTHORS>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -430,9 +430,9 @@ INRIA
 </FILE>
 
 <FILE name='CVS' type='XML'>
-  <AUTHORS>
+<AUTHORS>
 
-  </AUTHORS>
+</AUTHORS>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -1030,9 +1030,9 @@ INRIA
 </FILE>
 
 <FILE name='IdealTransformer' type='XML'>
-  <AUTHORS>
+<AUTHORS>
 
-  </AUTHORS>
+</AUTHORS>
 </FILE>
 
 <FILE name='Inductor' type='XML'>

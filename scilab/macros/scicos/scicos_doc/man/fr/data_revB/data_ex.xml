@@ -40,9 +40,9 @@
 </FILE>
 
 <FILE name='AUTOMAT' type='XML'>
-  <EXAMPLE>
+<EXAMPLE>
 
-  </EXAMPLE>
+</EXAMPLE>
 </FILE>
 
 <FILE name='About_scicos' type='XML'>
@@ -108,9 +108,9 @@
 </FILE>
 
 <FILE name='CCS' type='XML'>
-  <EXAMPLE>
+<EXAMPLE>
 
-  </EXAMPLE>
+</EXAMPLE>
 </FILE>
 
 <FILE name='CEVENTSCOPE' type='XML'>
@@ -306,9 +306,9 @@
 </FILE>
 
 <FILE name='CVS' type='XML'>
-  <EXAMPLE>
+<EXAMPLE>
 
-  </EXAMPLE>
+</EXAMPLE>
 </FILE>
 
 <FILE name='C_macros' type='XML'>
@@ -695,15 +695,13 @@
 </FILE>
 
 <FILE name='Gyrator' type='XML'>
-  <EXAMPLE>
+<EXAMPLE>
 
-  </EXAMPLE>
+</EXAMPLE>
 </FILE>
 
 <FILE name='HALT_f' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -711,15 +709,11 @@
 <FILE name='HYSTHERESIS' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
 </FILE>
 
 <FILE name='IFTHEL_f' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -807,9 +801,9 @@
 </FILE>
 
 <FILE name='IdealTransformer' type='XML'>
-  <EXAMPLE>
+<EXAMPLE>
 
-  </EXAMPLE>
+</EXAMPLE>
 </FILE>
 
 <FILE name='Inductor' type='XML'>
@@ -859,9 +853,9 @@
 </FILE>
 
 <FILE name='Lorentz_diagr' type='XML'>
-  <EXAMPLE>
+<EXAMPLE>
 
-  </EXAMPLE>
+</EXAMPLE>
 </FILE>
 
 <FILE name='MATBKSL' type='XML'>
