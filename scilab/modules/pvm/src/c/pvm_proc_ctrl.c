@@ -161,10 +161,6 @@
 #define stat _stat 
 #endif 
 
-#ifndef _MSC_VER
-#include "../../gui/src/c/xsci/x_charproc.h"
-#endif 
-
 #include "machine.h"
 #include "sci_pvm.h"
 #include "setgetSCIpath.h"
