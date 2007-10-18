@@ -278,6 +278,17 @@ scope_caption=['(a) Time domain waveforms of state variables (x,y,z)';
 	dial_width_html=220pt
 </FILE>
 
+<FILE name='MBLOCK' type='SPECIALDESC'>
+	dial_width_html=280pt
+>><<
+num_param=1
+val_param="""u1"""
+exp_param='';
+txt_param=[''
+           '']
+<<>>
+</FILE>
+
 <FILE name='MUX' type='SPECIALDESC'>
 	lr_margin_html=.9
 </FILE>

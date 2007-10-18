@@ -135,7 +135,7 @@
 <FILE name='scicos' type='XML'>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>
-      scs_m = scicos([toto])
+      scs_m = scicos([input])
     </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>

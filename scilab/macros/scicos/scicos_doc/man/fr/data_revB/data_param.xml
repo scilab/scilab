@@ -4524,154 +4524,99 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 </PARAM>
 </FILE>
 
-<FILE name='MBLOCK' type='XML'>
-  <PARAM>
-    <PARAM_INDENT>
+<FILE name='MBLOCK' type='LATEX'>
+\begin{itemize}
+  \item {\bf Input variables}\\
+        In this filed, the ports connected to the left hand side of the block are
+        defined. If the port is an explicit port, it will be an input port. In
+        this case, the variable should be declared in the Modelica program as
+        Real. If the port is an implicit port, the variable desinating this
+        port should be a "connector". Remind that for implicit port, the
+        notion of input and output does not exist and specifying an implicit
+        variable in this filed is just placing the port at the left hend side
+        of the block.
 
-      <PARAM_ITEM>
-	<PARAM_NAME>Input variables</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    In this filed, the ports connected to the left hand
-	    side of the block are defined. If the port is an explicit
-	    port, it will be an input port. In this case, the variable
-	    should be declared in the Modelica program as Real.
-	    If the port is an implicit port, the variable desinating
-	    this port should be a "connector". Remind that for implicit
-	    port, the notion of input and output does not exist and
-	    specifying an implicit variable in this filed is just placing
-	    the port at the left hend side of the block.
-	  </SP>
-	  <SP>
-	    Propriétés : Type 'str' de taille -1.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+  \item {\bf Input variables types}\\
+        In this filed, the type of ports are specified, i.e., 'I' for implicit
+        ports and 'E' for explicit ports. The size of the vector of "input
+        variables" and the vector of "input\_vector\_type" should be equal.
 
-      <PARAM_ITEM>
-	<PARAM_NAME>Input variables types</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    In this filed, the type of ports are specified, i.e.,
-	    'I' for implicit ports and 'E' for explicit ports.
-	    The size of the vector of "input variables" and the
-	    vector of "input_vector_type" should be equal.
-	  </SP>
-	  <SP>
-	    Propriétés : Type 'str' de taille -1.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+  \item {\bf Output variables}\\
+        Similar to the input variables vector, the explicit
+        output variables and implicit variables which are displayed at the right
+        hand side of the block are specified in this filed.
 
-      <PARAM_ITEM>
-	<PARAM_NAME>Output variables</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    Similar to the input variables vector, the explicit
-	    output variables and implicit variables which are
-	    displayed at the right hand side of the block are
-	    specified in this filed.
-	  </SP>
-	  <SP>
-	    Propriétés : Type 'str' de taille -1.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+   \item {\bf Output variables types}\\
+         The type of variables given in the Output
+         variable vector are specified, i.e., 'I' for implicit ports and 'E'
+         for explicit ports.
 
-      <PARAM_ITEM>
-	<PARAM_NAME>Output variables types</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    The type of variables given in the Output
-	    variable vector are specified, i.e., 'I' for implicit
-	    ports and 'E' for explicit ports.
-	  </SP>
-	  <SP>
-	    Propriétés : Type 'str' de taille -1.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+   \item {\bf Parameters in Modelica}\\
+         The values of parameters declared in the Modelica program can be
+         overloaded. To overload a parameter value, the name of parameters are given in
+         this field and their corresponding values are given in the "parameter
+         values" fields that are displayed in the second dialog box.
 
-      <PARAM_ITEM>
-	<PARAM_NAME>Parameters in Modelica</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    The values of parameters declared in the Modelica
-	    program can be overloaded. To overload a parameter
-	    value, the name of parameters are given in this field
-	    and their corresponding values are given in the
-	    "parameter values" field.
-	  </SP>
-	  <SP>
-	    Propriétés : Type 'str' de taille -1.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+   \item {\bf Parameters properties}\\
+         The type of the Modelica parameters. For that time being, one can parametrize
+         three types of Modelica variable :
+         \begin{itemize}
+             \item {\bf 0 :} the parameter is set to be a {\bf Modelica parameter} variable (scalar or vector).
 
-      <PARAM_ITEM>
-	<PARAM_NAME>Parameter values</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    The value of parameters given in the "Parameters
-	    in Modelica" field, are specified in this filed.
-	    These values can also be defined in the Scicos context.
-	    In order to access the Scicos context, click on the
-	    "Diagram" menu then click on the "Context" submenu.
-	    For instance, here is an example of overloading of
-	    parameters in a Modelica program.
-	    </SP>      <SP>
-	    Class Example
-	    </SP>      <SP>
-	    parameter Real Speed=12.0;
-	    </SP>      <SP>
-	    parameter Real Position=0.0;
-	    </SP>      <SP>
-	    parameter Real Length=13.0;
-	    </SP>      <SP>
-	    ...
-	    </SP>      <SP>
-	    equation
-	    </SP>     <SP>
-	    ...
-	    </SP>      <SP>
-	    end Example;
-	    </SP>      <SP>
-	    Parameters vector  = ['Speed';'Position']
-	    </SP>      <SP>
-	    Parameter value   =  [23.0;POS]
-	  </SP>
+             \item {\bf 1 :} the parameter is set to be an {\bf initial condition of Modelica state} variable
+                             (scalar or vector).
 
-	  <SP>
-	    Propriétés : Type 'vec' de taille -1.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+             \item {\bf 2 :} the parameter is set to be an {\bf initial condition of Modelica state} variable
+                             with the property {\bf fixed=true} (scalar or vector).
+         \end{itemize}
 
-      <PARAM_ITEM>
-	<PARAM_NAME>Function name</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    The Modelica class name is specified in this filed.
-	    If the Modelica class name is specified without any
-	    path or extension, an interactive window is opened
-	    and the user can write or edit the Modelica program.
-	    This window is opened each time the user clicks on the
-	    block. If the Modelica class name is specified with path
-	    and '.mo' extension, the compiler looks for the file and
-	    if it is found, the file will be compiled, otherwise a
-	    window is opened and the user can write the Modelica program.
-	    This Modelica file will be saved with the given filename
-	    in the specified path. The next time, only input/output
-	    characteristics of the block can be changed, and the Modelica
-	    file should be edited with another text editor.
-	  </SP>
-	  <SP>
-	    Propriétés : Type 'str' de taille -1.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+    \item {\bf Function name}\\
+          The Modelica class name is specified in this filed.  If the Modelica
+          class name is specified without any path or extension, an interactive
+          window is opened and the user can write or edit the Modelica
+          program. This window is opened each time the user clicks on the
+          block. If the Modelica class name is specified with path and '.mo'
+          extension, the compiler looks for the file and if it is found, the
+          file will be compiled, otherwise a window is opened and the user can
+          write the Modelica program. This Modelica file will be saved with the
+          given filename in the specified path. The next time, only input/output
+          characteristics of the block can be changed, and the Modelica file
+          should be edited with another text editor.
+
+    \item {\bf Parameter values}\\
+          The value of Modelica parameters are given in the "Set parameters values"
+          dialog box.
+
+          \begin{figure}
+            \begin{center}
+              \epsfig{file=MBLOCK_1_1_gui.eps,width=200pt}
+            \end{center}
+          \end{figure}
+
+          These values that can be scalar or vector, can also be defined in the
+          Scicos context. In order to access the Scicos context, click on the
+          "Diagram" menu then click on the "Context" submenu.
+          For instance, here is an example of overloading of parameters in a Modelica program.
+
+          \begin{verbatim}
+Class Example
+parameter Real Speed=12.0;
+          Real Position[3](start={0.0,0.1,0.5},fixed={true,true,true});
+          Real Length[2](start={13.0,12.1});
+ ...
+equation
+  ...
+end Example;
+          \end{verbatim}
+
+          Parameters vector  = ['Speed';'Position';"Length"]\\
+          Parameters properties vector  = [0;2;1]
+
+          Speed value        =  [12.0]\\
+          Position value     =  [0.0 ; 0.1 ; POS]\\
+          Length value       =  [13.0 ; 12.1]\\
+
+\end{itemize}
 </FILE>
 
 <FILE name='MCLOCK_f' type='XML'>
@@ -8119,8 +8064,8 @@ de normalisation.
 
 <FILE name='scicos' type='LATEX'>
 \begin{itemize}
-  \item {\bf toto : } ce paramètre peut aussi bien être une structure de diagramme Scicos
-    (scs\_m)) qu'une chaîne de caractères indiquant le chemin du fichier
+  \item {\bf input : } ce paramètre peut aussi bien être une structure de diagramme Scicos
+    (scs\_m) qu'une chaîne de caractères indiquant le chemin du fichier
     du diagramme à charger dans l'éditeur (extension .cos ou .cosf). Si 
     aucun argument d'entrée est utilisé, un diagramme vide est ouvert 
     (avec un nom par défaut 'Untitled').
