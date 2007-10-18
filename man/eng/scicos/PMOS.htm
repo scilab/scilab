@@ -32,7 +32,7 @@ Scicos Block
 </DIV>
 <H2><A NAME="SECTION00010000000000000000"></A><A NAME="PMOS"></A>
 <BR>
-PMOS title
+Simple PMOS Transistor
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
@@ -52,7 +52,7 @@ Contents</A>
 
 <UL CLASS="TofC">
 <LI><A NAME="tex2html6"
-  HREF="PMOS.htm#SECTION00010000000000000000">PMOS title</A>
+  HREF="PMOS.htm#SECTION00010000000000000000">Simple PMOS Transistor</A>
 <UL>
 <LI><A NAME="tex2html7"
   HREF="PMOS.htm#SECTION00021000000000000000">Palette</A>
@@ -66,6 +66,8 @@ Contents</A>
   HREF="PMOS.htm#SECTION00025000000000000000">Interfacing function</A>
 <LI><A NAME="tex2html12"
   HREF="PMOS.htm#SECTION00026000000000000000">Modelica model</A>
+<LI><A NAME="tex2html13"
+  HREF="PMOS.htm#SECTION00027000000000000000">Authors</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
@@ -82,8 +84,93 @@ Description</A>
 </font></H3>
 
 <P>
-Add here a paragraph of the function description  
-<BR>
+The PMOS model is a simple model of a p-channel metal-oxide
+semiconductor FET. It differs slightly from the device used in the
+SPICE simulator. For more details please care for H. Spiro.
+
+<P>
+The model does not consider capacitances. A small fixed drain-source
+resistance is included (to avoid numerical difficulties).
+
+<P>
+Some typical parameter sets are:
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">W [m]</TD>
+<TD ALIGN="CENTER">L[m]</TD>
+<TD ALIGN="CENTER">Beta [1/V²]</TD>
+<TD ALIGN="CENTER">Vt [V]</TD>
+<TD ALIGN="CENTER">K2</TD>
+<TD ALIGN="CENTER">K5</TD>
+<TD ALIGN="CENTER">DW [m]</TD>
+<TD ALIGN="CENTER">DL [m]</TD>
+</TR>
+<TR><TD ALIGN="CENTER">50.e-6</TD>
+<TD ALIGN="CENTER">8.e-6</TD>
+<TD ALIGN="CENTER">.0085</TD>
+<TD ALIGN="CENTER">-.15</TD>
+<TD ALIGN="CENTER">.41</TD>
+<TD ALIGN="CENTER">.839</TD>
+<TD ALIGN="CENTER">-3.8e-6</TD>
+<TD ALIGN="CENTER">-4.0e-6</TD>
+</TR>
+<TR><TD ALIGN="CENTER">20.e-6</TD>
+<TD ALIGN="CENTER">6.e-6</TD>
+<TD ALIGN="CENTER">.0105</TD>
+<TD ALIGN="CENTER">-1.0</TD>
+<TD ALIGN="CENTER">.41</TD>
+<TD ALIGN="CENTER">.839</TD>
+<TD ALIGN="CENTER">-2.5e-6</TD>
+<TD ALIGN="CENTER">-2.1e-6</TD>
+</TR>
+<TR><TD ALIGN="CENTER">30.e-6</TD>
+<TD ALIGN="CENTER">5.e-6</TD>
+<TD ALIGN="CENTER">.0059</TD>
+<TD ALIGN="CENTER">-.3</TD>
+<TD ALIGN="CENTER">.98</TD>
+<TD ALIGN="CENTER">1.01</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">-3.9e-6</TD>
+</TR>
+<TR><TD ALIGN="CENTER">30.e-6</TD>
+<TD ALIGN="CENTER">5.e-6</TD>
+<TD ALIGN="CENTER">.0152</TD>
+<TD ALIGN="CENTER">-.69</TD>
+<TD ALIGN="CENTER">.104</TD>
+<TD ALIGN="CENTER">1.1</TD>
+<TD ALIGN="CENTER">-.8e-6</TD>
+<TD ALIGN="CENTER">-.4e-6</TD>
+</TR>
+<TR><TD ALIGN="CENTER">30.e-6</TD>
+<TD ALIGN="CENTER">5.e-6</TD>
+<TD ALIGN="CENTER">.0163</TD>
+<TD ALIGN="CENTER">-.69</TD>
+<TD ALIGN="CENTER">.104</TD>
+<TD ALIGN="CENTER">1.1</TD>
+<TD ALIGN="CENTER">-.8e-6</TD>
+<TD ALIGN="CENTER">-.4e-6</TD>
+</TR>
+<TR><TD ALIGN="CENTER">30.e-6</TD>
+<TD ALIGN="CENTER">5.e-6</TD>
+<TD ALIGN="CENTER">.0182</TD>
+<TD ALIGN="CENTER">-.69</TD>
+<TD ALIGN="CENTER">.086</TD>
+<TD ALIGN="CENTER">1.06</TD>
+<TD ALIGN="CENTER">-.1e-6</TD>
+<TD ALIGN="CENTER">-.6e-6</TD>
+</TR>
+<TR><TD ALIGN="CENTER">20.e-6</TD>
+<TD ALIGN="CENTER">6.e-6</TD>
+<TD ALIGN="CENTER">.0074</TD>
+<TD ALIGN="CENTER">-1.</TD>
+<TD ALIGN="CENTER">.4</TD>
+<TD ALIGN="CENTER">.59</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+</TR>
+</TABLE>
+
 <H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Dialog box</A>
 </font></H3>
@@ -102,73 +189,73 @@ Dialog box</A>
 <UL>
 <LI><b>Width [m]</b>
 <BR>
-The parameter description 1.
+W
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Length [m]</b>
 <BR>
-The parameter description 2.
+L
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Transconductance parameter [A/(V*V)]</b>
 <BR>
-The parameter description 3.
+Beta
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Zero bias threshold voltage [V]</b>
 <BR>
-The parameter description 4.
+Vt
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Bulk threshold parameter</b>
 <BR>
-The parameter description 5.
+K2
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Reduction of pinch-off region</b>
 <BR>
-The parameter description 6.
+K5
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Narrowing of channel [m]</b>
 <BR>
-The parameter description 7.
+dW
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Shortening of channel [m]</b>
 <BR>
-The parameter description 8.
+dL
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Drain-Source-Resistance [Ohm]</b>
 <BR>
-The parameter description 9.
+RDS
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 </LI>
 </UL>
 
@@ -293,6 +380,11 @@ Modelica model</A>
   HREF="PMOS_routcos.htm">[view code]</A>
 </LI>
 </UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Authors</A>
+</font></H3>
+www.modelica.org
 
 <BR>
 

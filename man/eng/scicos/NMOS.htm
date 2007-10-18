@@ -32,7 +32,7 @@ Scicos Block
 </DIV>
 <H2><A NAME="SECTION00010000000000000000"></A><A NAME="NMOS"></A>
 <BR>
-NMOS title
+Simple NMOS Transistor
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
@@ -52,7 +52,7 @@ Contents</A>
 
 <UL CLASS="TofC">
 <LI><A NAME="tex2html6"
-  HREF="NMOS.htm#SECTION00010000000000000000">NMOS title</A>
+  HREF="NMOS.htm#SECTION00010000000000000000">Simple NMOS Transistor</A>
 <UL>
 <LI><A NAME="tex2html7"
   HREF="NMOS.htm#SECTION00021000000000000000">Palette</A>
@@ -66,6 +66,8 @@ Contents</A>
   HREF="NMOS.htm#SECTION00025000000000000000">Interfacing function</A>
 <LI><A NAME="tex2html12"
   HREF="NMOS.htm#SECTION00026000000000000000">Modelica model</A>
+<LI><A NAME="tex2html13"
+  HREF="NMOS.htm#SECTION00027000000000000000">Authors</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
@@ -82,8 +84,210 @@ Description</A>
 </font></H3>
 
 <P>
-Add here a paragraph of the function description  
-<BR>
+
+<P>
+The NMos model is a simple model of a n-channel metal-oxide
+semiconductor FET. It differs slightly from the device used in the
+SPICE simulator. For more details please care for H. Spiro.
+
+<P>
+The model does not consider capacitances. A small fixed drain-source
+resistance is included (to avoid numerical difficulties).
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">W [m]</TD>
+<TD ALIGN="CENTER">L [m]</TD>
+<TD ALIGN="CENTER">Beta [1/V²]</TD>
+<TD ALIGN="CENTER">Vt [V]</TD>
+<TD ALIGN="CENTER">K2</TD>
+<TD ALIGN="CENTER">K5</TD>
+<TD ALIGN="CENTER">DW [m]</TD>
+<TD ALIGN="CENTER">DL[m]</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">12.e-6</TD>
+<TD ALIGN="CENTER">4.e-6</TD>
+<TD ALIGN="CENTER">.062</TD>
+<TD ALIGN="CENTER">-4.5</TD>
+<TD ALIGN="CENTER">.24</TD>
+<TD ALIGN="CENTER">.61</TD>
+<TD ALIGN="CENTER">-1.2e-6</TD>
+<TD ALIGN="CENTER">-.9e-6</TD>
+<TD ALIGN="CENTER">depletion</TD>
+</TR>
+<TR><TD ALIGN="CENTER">60.e-6</TD>
+<TD ALIGN="CENTER">3.e-6</TD>
+<TD ALIGN="CENTER">.048</TD>
+<TD ALIGN="CENTER">.1</TD>
+<TD ALIGN="CENTER">.08</TD>
+<TD ALIGN="CENTER">.68</TD>
+<TD ALIGN="CENTER">-1.2e-6</TD>
+<TD ALIGN="CENTER">-.9e-6</TD>
+<TD ALIGN="CENTER">enhancement</TD>
+</TR>
+<TR><TD ALIGN="CENTER">12.e-6</TD>
+<TD ALIGN="CENTER">4.e-6</TD>
+<TD ALIGN="CENTER">.0625</TD>
+<TD ALIGN="CENTER">-.8</TD>
+<TD ALIGN="CENTER">.21</TD>
+<TD ALIGN="CENTER">.78</TD>
+<TD ALIGN="CENTER">-1.2e-6</TD>
+<TD ALIGN="CENTER">-.9e-6</TD>
+<TD ALIGN="CENTER">zero</TD>
+</TR>
+<TR><TD ALIGN="CENTER">50.e-6</TD>
+<TD ALIGN="CENTER">8.e-6</TD>
+<TD ALIGN="CENTER">.0299</TD>
+<TD ALIGN="CENTER">.24</TD>
+<TD ALIGN="CENTER">1.144</TD>
+<TD ALIGN="CENTER">.7311</TD>
+<TD ALIGN="CENTER">-5.4e-6</TD>
+<TD ALIGN="CENTER">-4.e-6</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">20.e-6</TD>
+<TD ALIGN="CENTER">6.e-6</TD>
+<TD ALIGN="CENTER">.041</TD>
+<TD ALIGN="CENTER">.8</TD>
+<TD ALIGN="CENTER">1.144</TD>
+<TD ALIGN="CENTER">.7311</TD>
+<TD ALIGN="CENTER">-2.5e-6</TD>
+<TD ALIGN="CENTER">-1.5e-6</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">30.e-6</TD>
+<TD ALIGN="CENTER">9.e-6</TD>
+<TD ALIGN="CENTER">.025</TD>
+<TD ALIGN="CENTER">-4.</TD>
+<TD ALIGN="CENTER">.861</TD>
+<TD ALIGN="CENTER">.878</TD>
+<TD ALIGN="CENTER">-3.4e-6</TD>
+<TD ALIGN="CENTER">-1.74e-6</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">30.e-6</TD>
+<TD ALIGN="CENTER">5.e-6</TD>
+<TD ALIGN="CENTER">.031</TD>
+<TD ALIGN="CENTER">.6</TD>
+<TD ALIGN="CENTER">1.5</TD>
+<TD ALIGN="CENTER">.72</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">-3.9e-6</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">50.e-6</TD>
+<TD ALIGN="CENTER">6.e-6</TD>
+<TD ALIGN="CENTER">.0414</TD>
+<TD ALIGN="CENTER">-3.8</TD>
+<TD ALIGN="CENTER">.34</TD>
+<TD ALIGN="CENTER">.8</TD>
+<TD ALIGN="CENTER">-1.6e-6</TD>
+<TD ALIGN="CENTER">-2.e-6</TD>
+<TD ALIGN="CENTER">depletion</TD>
+</TR>
+<TR><TD ALIGN="CENTER">50.e-6</TD>
+<TD ALIGN="CENTER">5.e-6</TD>
+<TD ALIGN="CENTER">.03</TD>
+<TD ALIGN="CENTER">.37</TD>
+<TD ALIGN="CENTER">.23</TD>
+<TD ALIGN="CENTER">.86</TD>
+<TD ALIGN="CENTER">-1.6e-6</TD>
+<TD ALIGN="CENTER">-2.e-6</TD>
+<TD ALIGN="CENTER">enhancement</TD>
+</TR>
+<TR><TD ALIGN="CENTER">50.e-6</TD>
+<TD ALIGN="CENTER">6.e-6</TD>
+<TD ALIGN="CENTER">.038</TD>
+<TD ALIGN="CENTER">-.9</TD>
+<TD ALIGN="CENTER">.23</TD>
+<TD ALIGN="CENTER">.707</TD>
+<TD ALIGN="CENTER">-1.6e-6</TD>
+<TD ALIGN="CENTER">-2.e-6</TD>
+<TD ALIGN="CENTER">zero</TD>
+</TR>
+<TR><TD ALIGN="CENTER">20.e-6</TD>
+<TD ALIGN="CENTER">4.e-6</TD>
+<TD ALIGN="CENTER">.06776</TD>
+<TD ALIGN="CENTER">.5409</TD>
+<TD ALIGN="CENTER">.065</TD>
+<TD ALIGN="CENTER">.71</TD>
+<TD ALIGN="CENTER">-.8e-6</TD>
+<TD ALIGN="CENTER">-.2e-6</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">20.e-6</TD>
+<TD ALIGN="CENTER">4.e-6</TD>
+<TD ALIGN="CENTER">.06505</TD>
+<TD ALIGN="CENTER">.6209</TD>
+<TD ALIGN="CENTER">.065</TD>
+<TD ALIGN="CENTER">.71</TD>
+<TD ALIGN="CENTER">-.8e-6</TD>
+<TD ALIGN="CENTER">-.2e-6</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">20.e-6</TD>
+<TD ALIGN="CENTER">4.e-6</TD>
+<TD ALIGN="CENTER">.05365</TD>
+<TD ALIGN="CENTER">.6909</TD>
+<TD ALIGN="CENTER">.03</TD>
+<TD ALIGN="CENTER">.8</TD>
+<TD ALIGN="CENTER">-.3e-6</TD>
+<TD ALIGN="CENTER">-.2e-6</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">20.e-6</TD>
+<TD ALIGN="CENTER">4.e-6</TD>
+<TD ALIGN="CENTER">.05365</TD>
+<TD ALIGN="CENTER">.4909</TD>
+<TD ALIGN="CENTER">.03</TD>
+<TD ALIGN="CENTER">.8</TD>
+<TD ALIGN="CENTER">-.3e-6</TD>
+<TD ALIGN="CENTER">-.2e-6</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">12.e-6</TD>
+<TD ALIGN="CENTER">4.e-6</TD>
+<TD ALIGN="CENTER">.023</TD>
+<TD ALIGN="CENTER">-4.5</TD>
+<TD ALIGN="CENTER">.29</TD>
+<TD ALIGN="CENTER">.6</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">depletion</TD>
+</TR>
+<TR><TD ALIGN="CENTER">60.e-6</TD>
+<TD ALIGN="CENTER">3.e-6</TD>
+<TD ALIGN="CENTER">.022</TD>
+<TD ALIGN="CENTER">.1</TD>
+<TD ALIGN="CENTER">.11</TD>
+<TD ALIGN="CENTER">.65</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">enhancement</TD>
+</TR>
+<TR><TD ALIGN="CENTER">12.e-6</TD>
+<TD ALIGN="CENTER">4.e-6</TD>
+<TD ALIGN="CENTER">.038</TD>
+<TD ALIGN="CENTER">-.8</TD>
+<TD ALIGN="CENTER">.33</TD>
+<TD ALIGN="CENTER">.6</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">zero</TD>
+</TR>
+<TR><TD ALIGN="CENTER">20.e-6</TD>
+<TD ALIGN="CENTER">6.e-6</TD>
+<TD ALIGN="CENTER">.022</TD>
+<TD ALIGN="CENTER">.8</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">.66</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+</TABLE>
+
 <H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Dialog box</A>
 </font></H3>
@@ -102,73 +306,73 @@ Dialog box</A>
 <UL>
 <LI><b>Width [m]</b>
 <BR>
-The parameter description 1.
+W
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Length [m]</b>
 <BR>
-The parameter description 2.
+L
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Transconductance parameter [A/(V*V)]</b>
 <BR>
-The parameter description 3.
+Beta
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Zero bias threshold voltage [V]</b>
 <BR>
-The parameter description 4.
+Vt
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Bulk threshold parameter</b>
 <BR>
-The parameter description 5.
+K2
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Reduction of pinch-off region</b>
 <BR>
-The parameter description 6.
+K5
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Narrowing of channel [m]</b>
 <BR>
-The parameter description 7.
+dW
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Shortening of channel [m]</b>
 <BR>
-The parameter description 8.
+dL
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 
 <P>
 </LI>
 <LI><b>Drain-Source-Resistance [Ohm]</b>
 <BR>
-The parameter description 9.
+RDS
 <BR>
-Properties : Type 'vec' of size -1.
+Properties : Type 'vec' of size 1.
 </LI>
 </UL>
 
@@ -293,6 +497,11 @@ Modelica model</A>
   HREF="NMOS_routcos.htm">[view code]</A>
 </LI>
 </UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Authors</A>
+</font></H3>
+www.modelica.org
 
 <BR>
 

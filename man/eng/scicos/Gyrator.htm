@@ -32,7 +32,7 @@ Scicos Block
 </DIV>
 <H2><A NAME="SECTION00010000000000000000"></A><A NAME="Gyrator"></A>
 <BR>
-Gyrator title
+Modelica Gyrator
 </H2>
 <DIV ALIGN="CENTER">
 <!-- MATH
@@ -52,7 +52,7 @@ Contents</A>
 
 <UL CLASS="TofC">
 <LI><A NAME="tex2html6"
-  HREF="Gyrator.htm#SECTION00010000000000000000">Gyrator title</A>
+  HREF="Gyrator.htm#SECTION00010000000000000000">Modelica Gyrator</A>
 <UL>
 <LI><A NAME="tex2html7"
   HREF="Gyrator.htm#SECTION00021000000000000000">Palette</A>
@@ -66,6 +66,8 @@ Contents</A>
   HREF="Gyrator.htm#SECTION00025000000000000000">Interfacing function</A>
 <LI><A NAME="tex2html12"
   HREF="Gyrator.htm#SECTION00026000000000000000">Modelica model</A>
+<LI><A NAME="tex2html13"
+  HREF="Gyrator.htm#SECTION00027000000000000000">Authors</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
@@ -82,7 +84,7 @@ Description</A>
 </font></H3>
 
 <P>
-Add here a paragraph of the function description  
+A gyrator is a two-port element defined by the following equations:  i1 =  G2 * v2   i2 = -G1 * v1  where the constants G1, G2 are called the gyration conductance.  
 <BR>
 <H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Dialog box</A>
@@ -90,10 +92,10 @@ Dialog box</A>
 
 <DIV ALIGN="CENTER">
 <IMG
- WIDTH="477" HEIGHT="239" BORDER="0"
+ WIDTH="318" HEIGHT="160" BORDER="0"
  SRC="../../images/scicos/Gyrator_gui.gif"
  ALT="\begin{figure}\begin{center}
-\epsfig{file=Gyrator_gui.eps,width=300pt}
+\epsfig{file=Gyrator_gui.eps,width=200pt}
 \end{center}\end{figure}">
 </DIV>
 
@@ -102,7 +104,7 @@ Dialog box</A>
 <UL>
 <LI><b>G1</b>
 <BR>
-The parameter description 1.
+Gyration conductance (-i2/v1) .
 <BR>
 Properties : Type 'vec' of size 1.
 
@@ -110,7 +112,7 @@ Properties : Type 'vec' of size 1.
 </LI>
 <LI><b>G2</b>
 <BR>
-The parameter description 2.
+Gyration conductance (i1/v2).
 <BR>
 Properties : Type 'vec' of size 1.
 </LI>
@@ -190,6 +192,11 @@ Modelica model</A>
   HREF="Gyrator_routcos.htm">[view code]</A>
 </LI>
 </UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Authors</A>
+</font></H3>
+<b>Masoud Najafi</b> INRIA
 
 <BR>
 
