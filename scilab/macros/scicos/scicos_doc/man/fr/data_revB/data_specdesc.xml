@@ -1,5 +1,9 @@
 <DATA flag="spdesc">
 
+<FILE name='AUTOMAT' type='SPECIALDESC'>
+	dial_width_html=340pt
+</FILE>
+
 <FILE name='Bache' type='SPECIALDESC'>
 	dial_width_html=340pt
 </FILE>
@@ -197,6 +201,10 @@
 	ud_margin_html=0.63
 </FILE>
 
+<FILE name='Gyrator' type='SPECIALDESC'>
+	dial_width_html=200pt
+</FILE>
+
 <FILE name='HALT_f' type='SPECIALDESC'>
 	dial_width_html=220pt
 </FILE>
@@ -226,6 +234,10 @@
 	dial_width_html=240pt
 </FILE>
 
+<FILE name='IdealTransformer' type='SPECIALDESC'>
+	dial_width_html=200pt
+</FILE>
+
 <FILE name='Inductor' type='SPECIALDESC'>
 	ud_margin_html=0.6
 	scale_blk_html=0.5
@@ -246,8 +258,8 @@
 
 <FILE name='Lorentz_diagr' type='SPECIALDESC'>
 scope_order=[2;1]
-scope_caption=['(a) Time domain waveforms of state variables';
-               '(b) Trajectories']
+scope_caption=['(a) Time domain waveforms of state variables (x,y,z)';
+               '(b) Trajectories in the phase plan (x,y,z)']
 </FILE>
 
 <FILE name='MATSUM' type='SPECIALDESC'>
@@ -400,6 +412,10 @@ scope_caption=['(a) Time domain waveforms of state variables';
 	dial_width_html=240pt
 </FILE>
 
+<FILE name='Switch' type='SPECIALDESC'>
+	ud_margin_html=3
+	scale_blk_html=0.4
+</FILE>
 <FILE name='SampleCLK' type='SPECIALDESC'>
 	dial_width_html=220pt
 </FILE>
