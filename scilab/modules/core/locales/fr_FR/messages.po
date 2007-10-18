@@ -214,7 +214,7 @@ msgstr	""
 #
 # File: src/c/msgs.c, line: 634
 msgid	"End of optimization."
-msgstr	""
+msgstr	"Fin de l'optimisation"
 #
 # File: src/c/msgs.c, line: 640
 msgid	"End of optimization (linear search fails)."
@@ -295,10 +295,6 @@ msgstr	""
 msgid	"Rank deficient : rank = %s  - tol = %s ."
 msgstr	""
 #
-# File: src/c/msgs.c, line: 800
-msgid	"Your variables are..."
-msgstr	"Vos variables sont..."
-#
 # File: src/c/msgs.c, line: 812
 #, possible-c-format
 msgid	"Using %s elements  out of %s."
@@ -330,10 +326,6 @@ msgstr	"       dans la fonction: %s."
 # File: src/c/msgs.c, line: 879
 msgid	"Not enough memory to perform simplification."
 msgstr	"Mémoire insuffisante pour effectuer la simplification."
-#
-# File: src/c/msgs.c, line: 885
-msgid	"Your global variables are..."
-msgstr	"Vos variables globales sont..."
 #
 # File: src/c/msgs.c, line: 921
 msgid	"arl2: Loop on two orders detected."
@@ -2216,13 +2208,15 @@ msgstr	""
 msgid	" and   %10d variables out of %10d."
 msgstr	""
 #
+# File: src/c/msgs.c, line: 800
 # File: sci_gateway/c/sci_who.c, line: 303
-msgid	"your variables are :"
-msgstr	""
+msgid	"Your variables are :"
+msgstr	"Vos variables sont : "
 #
+# File: src/c/msgs.c, line: 885
 # File: sci_gateway/c/sci_who.c, line: 310
-msgid	"your global variables are :"
-msgstr	""
+msgid	"Your global variables are :"
+msgstr	"Vos variables globales sont :"
 #
 # File: sci_gateway/c/sci_newfun.c, line: 49
 msgid	"function-name is incorrect."
@@ -2234,12 +2228,12 @@ msgstr	""
 #
 # File: sci_gateway/c/sci_newfun.c, line: 61
 msgid	"See help newfun."
-msgstr	""
+msgstr	"cf l'aide de newfun"
 #
 # File: sci_gateway/c/sci_warning.c, line: 66
 #, possible-c-format
 msgid	"WARNING : %s"
-msgstr	""
+msgstr	"ATTENTION : %s"
 #
 # File: sci_gateway/c/sci_gstacksize.c, line: 92
 #, possible-c-format
@@ -2269,7 +2263,7 @@ msgstr	"Paramètre invalide.\n"
 #
 # File: sci_gateway/c/sci_clearfun.c, line: 57
 msgid	"Must be the name of a scilab function."
-msgstr	""
+msgstr	"Doit être une fonction Scilab."
 #
 # File: sci_gateway/c/sci_what.c, line: 76
 msgid	"Internal Functions: "
@@ -2302,15 +2296,15 @@ msgstr	"Erreur : nom de module (%s) incorrect."
 #
 # File: sci_gateway/c/sci_getversion.c, line: 235
 msgid	"Invalid argument."
-msgstr	""
+msgstr	"Argument invalide."
 #
 # File: sci_gateway/c/sci_getversion.c, line: 317
 msgid	"Incorrect second parameter."
-msgstr	""
+msgstr	"Second argument invalide"
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
 msgid	"Invalid argument(s)."
-msgstr	""
+msgstr	"Argument(s) invalide(s)."
 #
 # File: includes/stack-c.h, line: 303
 #, possible-c-format

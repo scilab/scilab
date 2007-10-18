@@ -294,10 +294,7 @@ msgstr	""
 #, possible-c-format
 msgid	"Rank deficient : rank = %s  - tol = %s ."
 msgstr	""
-#
-# File: src/c/msgs.c, line: 800
-msgid	"Your variables are..."
-msgstr	""
+
 #
 # File: src/c/msgs.c, line: 812
 #, possible-c-format
@@ -329,10 +326,6 @@ msgstr	""
 #
 # File: src/c/msgs.c, line: 879
 msgid	"Not enough memory to perform simplification."
-msgstr	""
-#
-# File: src/c/msgs.c, line: 885
-msgid	"Your global variables are..."
 msgstr	""
 #
 # File: src/c/msgs.c, line: 921
@@ -2209,12 +2202,14 @@ msgstr	""
 msgid	" and   %10d variables out of %10d."
 msgstr	""
 #
+# File: src/c/msgs.c, line: 800
 # File: sci_gateway/c/sci_who.c, line: 303
-msgid	"your variables are :"
+msgid	"Your variables are :"
 msgstr	""
 #
+# File: src/c/msgs.c, line: 885
 # File: sci_gateway/c/sci_who.c, line: 310
-msgid	"your global variables are :"
+msgid	"Your global variables are :"
 msgstr	""
 #
 # File: sci_gateway/c/sci_newfun.c, line: 49
