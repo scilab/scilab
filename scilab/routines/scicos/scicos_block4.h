@@ -173,7 +173,6 @@ extern int s_cmp();
   * 26 - Getuint8OutPortPtrs(blk,x)
   * 27 - Getuint16OutPortPtrs(blk,x)
   * 28 - Getuint32OutPortPtrs(blk,x)
-  * 29 - free
   *
   * 30 - GetNipar(blk)
   * 31 - GetIparPtrs(blk)
@@ -181,75 +180,78 @@ extern int s_cmp();
   * 33 - GetRparPtrs(blk)
   *
   * 34 - GetWorkPtrs(blk)
-  * 35 - GetNdstate(blk)
-  * 36 - GetDstate(blk)
+  * 35 - GetNstate(blk)
+  * 36 - GetState(blk)
+  * 37 - GetNdstate(blk)
+  * 38 - GetDstate(blk)
   *
-  * 37 - GetNevIn(blk)
-  * 37bis - GetNevOut(blk)
-
-  * 38 - GetNopar(blk)
-  * 39 - GetOparType(blk,x)
-  * 40 - GetOparSize(blk,x,y)
-  * 41 - GetOparPtrs(blk,x)
-  * 42 - GetRealOparPtrs(blk,x)
-  * 43 - GetImagOparPtrs(blk,x)
-  * 44 - Getint8OparPtrs(blk,x)
-  * 45 - Getint16OparPtrs(blk,x)
-  * 46 - Getint32OparPtrs(blk,x)
-  * 47 - Getuint8OparPtrs(blk,x)
-  * 48 - Getuint16OparPtrs(blk,x)
-  * 49 - Getuint32OparPtrs(blk,x)
-  * 50 - GetNoz(blk)
-  * 51 - GetOzType(blk,x)
-  * 52 - GetOzSize(blk,x,y)
-  * 53 - GetOzPtrs(blk,x)
-  * 54 - GetRealOzPtrs(blk,x)
-  * 55 - GetImagOzPtrs(blk,x)
-  * 56 - Getint8OzPtrs(blk,x)
-  * 57 - Getint16OzPtrs(blk,x)
-  * 58 - Getint32OzPtrs(blk,x)
-  * 59 - Getuint8OzPtrs(blk,x)
-  * 60 - Getuint16OzPtrs(blk,x)
-  * 61 - Getuint32OzPtrs(blk,x)
-  * 62 - GetSizeOfOz(blk,x)
-  * 63 - GetSizeOfOpar(blk,x)
-  * 64 - GetSizeOfOut(blk,x)
-  * 65 - GetSizeOfIn(blk,x)
+  * 39 - GetNevIn(blk)
+  * 40 - GetNevOut(blk)
+  * 40 - GetNevOutPtrs(blk)
+  *
+  * 41 - GetNopar(blk)
+  * 42 - GetOparType(blk,x)
+  * 43 - GetOparSize(blk,x,y)
+  * 44 - GetOparPtrs(blk,x)
+  * 45 - GetRealOparPtrs(blk,x)
+  * 46 - GetImagOparPtrs(blk,x)
+  * 47 - Getint8OparPtrs(blk,x)
+  * 48 - Getint16OparPtrs(blk,x)
+  * 49 - Getint32OparPtrs(blk,x)
+  * 50 - Getuint8OparPtrs(blk,x)
+  * 51 - Getuint16OparPtrs(blk,x)
+  * 52 - Getuint32OparPtrs(blk,x)
+  * 53 - GetNoz(blk)
+  * 54 - GetOzType(blk,x)
+  * 55 - GetOzSize(blk,x,y)
+  * 56 - GetOzPtrs(blk,x)
+  * 57 - GetRealOzPtrs(blk,x)
+  * 58 - GetImagOzPtrs(blk,x)
+  * 59 - Getint8OzPtrs(blk,x)
+  * 60 - Getint16OzPtrs(blk,x)
+  * 61 - Getint32OzPtrs(blk,x)
+  * 62 - Getuint8OzPtrs(blk,x)
+  * 63 - Getuint16OzPtrs(blk,x)
+  * 64 - Getuint32OzPtrs(blk,x)
+  * 65 - GetSizeOfOz(blk,x)
+  * 66 - GetSizeOfOpar(blk,x)
+  * 67 - GetSizeOfOut(blk,x)
+  * 68 - GetSizeOfIn(blk,x)
 
   */
 
 /**
-   \brief Get Number of Regular Input Port
+   \brief Get number of regular input port.
 */
 #define GetNin(blk) (blk->nin)
 
 /**
-   \brief Get Regular Input Port Pointer of port number x
+   \brief Get regular input port pointer of port number x.
 */
 #define GetInPortPtrs(blk,x) ((((x)>0)&((x)<=(blk->nin))) ? (blk->inptr[x-1]) : NULL)
 
 /**
-   \brief Get Number of Regular Output Port
+   \brief Get number of regular output port.
 */
 #define GetNout(blk) (blk->nout)
 
 /**
-   \brief Get Regular Output Port Pointer of port number x
+   \brief Get regular output port pointer of port number x.
 */
 #define GetOutPortPtrs(blk,x) ((((x)>0)&((x)<=(blk->nout))) ? (blk->outptr[x-1]) : NULL)
 
 /**
-   \brief Get number of Rows (first dimension) of Regular Input Port number x
+   \brief Get number of rows (first dimension) of regular input port number x.
 */
 #define GetInPortRows(blk,x) ((((x)>0)&((x)<=(blk->nin))) ? (blk->insz[x-1]) : 0)
 
 /**
-   \brief Get number of Columns (second dimension) of  Regular Input Port number x
+   \brief Get number of columns (second dimension) of  regular input port number x.
 */
 #define GetInPortCols(blk,x) ((((x)>0)&((x)<=(blk->nin))) ? (blk->insz[blk->nin+(x-1)]) : 0)
 
 /**
-   \brief Get Regular Input Port Size
+   \brief Get regular input port size.
 */
 /*  usage :
  *   GetInPortSize(blk,x,1) : get first dimension of input port number x
@@ -259,23 +261,23 @@ extern int s_cmp();
               ((((y)>0)&((y)<=2)) ? (blk->insz[(y-1)*blk->nin+(x-1)]) : 0) : 0)
 
 /**
-   \brief Get Type of Input Port
+   \brief Get type of input port.
 */
 #define GetInType(blk,x) ((((x)>0)&((x)<=(blk->nin))) ? \
               (blk->insz[2*(blk->nin)+(x-1)]) : 0)
 
 /**
-   \brief Get number of Rows (first dimension) of Regular Output Port number x
+   \brief Get number of rows (first dimension) of regular output port number x.
 */
 #define GetOutPortRows(blk,x) ((((x)>0)&((x)<=(blk->nout))) ? (blk->outsz[x-1]) : 0)
 
 /**
-   \brief Get number of Columns (second dimension) of Regular Output Port number x
+   \brief Get number of columns (second dimension) of regular output port number x.
 */
 #define GetOutPortCols(blk,x) ((((x)>0)&((x)<=(blk->nout))) ? (blk->outsz[blk->nout+(x-1)]) : 0)
 
 /**
-   \brief Get Regular Output Port Size
+   \brief Get regular output port size.
 */
 /*  usage :
  *   GetOutPortSize(blk,x,1) : get first dimension of output port number x
@@ -285,152 +287,167 @@ extern int s_cmp();
               ((((y)>0)&((y)<=2)) ? (blk->outsz[(y-1)*blk->nout+(x-1)]) : 0) : 0)
 
 /**
-   \brief Get Type of Output Port
+   \brief Get type of output port.
 */
 #define GetOutType(blk,x) ((((x)>0)&((x)<=(blk->nout))) ? \
               (blk->outsz[2*(blk->nout)+(x-1)]) : 0)
 
 /**
-   \brief Get Pointer of Real Part of Regular Input Port
+   \brief Get pointer of real part of regular input port.
 */
 #define GetRealInPortPtrs(blk,x) (SCSREAL_COP *) GetInPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of Imaginary Part of Regular Input Port
+   \brief Get pointer of imaginary part of regular input port.
 */
 #define GetImagInPortPtrs(blk,x) (((x)>0)&((x)<=(blk->nin)) ? \
               (SCSREAL_COP *) ((SCSREAL_COP *)blk->inptr[x-1]+ \
                ((blk->insz[(x-1)])*(blk->insz[blk->nin+(x-1)]))) : NULL)
 
 /**
-   \brief Get Pointer of Real Part of Regular Output Port
+   \brief Get pointer of real part of regular output port.
 */
 #define GetRealOutPortPtrs(blk,x) (SCSREAL_COP *) GetOutPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of Imaginary Part of Regular Output Port
+   \brief Get pointer of imaginary part of regular output port.
 */
 #define GetImagOutPortPtrs(blk,x) (((x)>0)&((x)<=(blk->nout)) ? \
               (SCSREAL_COP *) ((SCSREAL_COP *)blk->outptr[x-1]+ \
                ((blk->outsz[(x-1)])*(blk->outsz[blk->nout+(x-1)]))) : NULL)
 
 /**
-   \brief Get Pointer of int8 typed Regular Input Port
+   \brief Get pointer of int8 typed regular input port.
 */
 #define Getint8InPortPtrs(blk,x) (SCSINT8_COP *) GetInPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of int16 typed Regular Input Port
+   \brief Get pointer of int16 typed regular input port.
 */
 #define Getint16InPortPtrs(blk,x) (SCSINT16_COP *) GetInPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of int32 typed Regular Input Port
+   \brief Get pointer of int32 typed regular input port.
 */
 #define Getint32InPortPtrs(blk,x) (SCSINT32_COP *) GetInPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint8 typed Regular Input Port
+   \brief Get pointer of uint8 typed regular input port.
 */
 #define Getuint8InPortPtrs(blk,x) (SCSUINT8_COP *) GetInPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint16 typed Regular Input Port
+   \brief Get pointer of uint16 typed regular input port.
 */
 #define Getuint16InPortPtrs(blk,x) (SCSUINT16_COP *) GetInPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint32 typed Regular Input Port
+   \brief Get pointer of uint32 typed regular input port.
 */
 #define Getuint32InPortPtrs(blk,x) (SCSUINT32_COP *) GetInPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of int8 typed Regular Output Port
+   \brief Get pointer of int8 typed regular output port.
 */
 #define Getint8OutPortPtrs(blk,x) (SCSINT8_COP *) GetOutPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of int16 typed Regular Output Port
+   \brief Get pointer of int16 typed regular output port.
 */
 #define Getint16OutPortPtrs(blk,x) (SCSINT16_COP *) GetOutPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of int32 typed Regular Output Port
+   \brief Get pointer of int32 typed regular output port.
 */
 #define Getint32OutPortPtrs(blk,x) (SCSINT32_COP *) GetOutPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint8 typed Regular Output Port
+   \brief Get pointer of uint8 typed regular output port.
 */
 #define Getuint8OutPortPtrs(blk,x) (SCSUINT8_COP *) GetOutPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint16 typed Regular Output Port
+   \brief Get pointer of uint16 typed regular output port.
 */
 #define Getuint16OutPortPtrs(blk,x) (SCSUINT16_COP *) GetOutPortPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint32 typed Regular Output Port
+   \brief Get pointer of uint32 typed regular output port.
 */
 #define Getuint32OutPortPtrs(blk,x) (SCSUINT32_COP *) GetOutPortPtrs(blk,x)
 
 /**
-   \brief Get Number of Integer Parameters
+   \brief Get number of integer parameters.
 */
 #define GetNipar(blk) (blk->nipar)
 
 /**
-   \brief Get Pointer of Integer Parameters
+   \brief Get pointer of integer parameters.
 */
 #define GetIparPtrs(blk) (blk->ipar)
 
 /**
-   \brief Get Number Real Parameters
+   \brief Get number of real parameters.
 */
 #define GetNrpar(blk) (blk->nrpar)
 
 /**
-   \brief Get Pointer of Real Parameters
+   \brief Get pointer of real parameters.
 */
 #define GetRparPtrs(blk) (blk->rpar)
 
 /**
-   \brief Get Pointer of Work
+   \brief Get the pointer of the Work array.
 */
 #define GetWorkPtrs(blk) (*(blk->work))
 
 /**
-   \brief Get Number of Discrete state
+   \brief Get number of continuous state.
+*/
+#define GetNstate(blk) (blk->nx)
+
+/**
+   \brief Get pointer of continuous state register.
+*/
+#define GetState(blk) (blk->x)
+
+/**
+   \brief Get number of discrete state.
 */
 #define GetNdstate(blk) (blk->nz)
 
 /**
-   \brief Get Pointer of Discrete state
+   \brief Get pointer of discrete state register.
 */
 #define GetDstate(blk) (blk->z)
 
 /**
-   \brief Get Nevprt of the block
+   \brief Get the input event number.
 */
 #define GetNevIn(blk) (blk->nevprt)
 
 /**
-   \brief Get nevout of the block
+   \brief Get number of event output port.
 */
 #define GetNevOut(blk) (blk->nevout)
 
 /**
-   \brief Get Number of Object Parameters
+   \brief Get pointer of event output register.
+*/
+#define GetNevOutPtrs(blk) (blk->evout)
+
+/**
+   \brief Get number of object parameters.
 */
 #define GetNopar(blk) (blk->nopar)
 
 /**
-   \brief Get Type of Object Parameters
+   \brief Get type of object parameters.
 */
 #define GetOparType(blk,x) (((x>0)&(x<=blk->nopar)) ? (blk->opartyp[x-1]) : 0)
 
 /**
-   \brief Get Size of Object Parameters
+   \brief Get size of object parameters.
 
 */
 /*  usage :
@@ -441,64 +458,64 @@ extern int s_cmp();
                               ((((y)>0)&((y)<=2)) ? (blk->oparsz[(y-1)*blk->nopar+(x-1)]) : 0) : 0)
 
 /**
-   \brief Get Pointer of Object Parameters
+   \brief Get pointer of object parameters.
 */
 #define GetOparPtrs(blk,x) (((x>0)&(x<=blk->nopar)) ? (blk->oparptr[x-1]) : 0)
 
 /**
-   \brief Get Pointer of Real Object Parameters
+   \brief Get pointer of real object parameters.
 */
 #define GetRealOparPtrs(blk,x) (SCSREAL_COP *) GetOparPtrs(blk,x)
 
 /**
-   \brief Get Pointer of Imaginary Part of Object Parameters
+   \brief Get pointer of imaginary part of object parameters.
 */
 #define GetImagOparPtrs(blk,x) (((x)>0)&((x)<=(blk->nopar)) ? \
                                (SCSREAL_COP *) ((SCSREAL_COP *)blk->oparptr[x-1]+ \
                                ((blk->oparsz[x-1])*(blk->oparsz[blk->nopar+(x-1)]))) : NULL)
 
 /**
-   \brief Get Pointer of int8 typed Object Parameters
+   \brief Get pointer of int8 typed object parameters.
 */
 #define Getint8OparPtrs(blk,x) (SCSINT8_COP *) GetOparPtrs(blk,x)
 
 /**
-   \brief Get Pointer of int16 typed Object Parameters
+   \brief Get pointer of int16 typed object parameters.
 */
 #define Getint16OparPtrs(blk,x) (SCSINT16_COP *) GetOparPtrs(blk,x)
 
 /**
-   \brief Get Pointer of int32 typed Object Parameters
+   \brief Get pointer of int32 typed object parameters.
 */
 #define Getint32OparPtrs(blk,x) (SCSINT32_COP *) GetOparPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint8 typed Object Parameters
+   \brief Get pointer of uint8 typed object parameters.
 */
 #define Getuint8OparPtrs(blk,x) (SCSUINT8_COP *) GetOparPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint16 typed Object Parameters
+   \brief Get pointer of uint16 typed object parameters.
 */
 #define Getuint16OparPtrs(blk,x) (SCSUINT16_COP *) GetOparPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint32 typed Object Parameters
+   \brief Get pointer of uint32 typed object parameters.
 */
 #define Getuint32OparPtrs(blk,x) (SCSUINT32_COP *) GetOparPtrs(blk,x)
 
 /**
-   \brief Get Number of Object State
+   \brief Get number of object state.
 */
 #define GetNoz(blk) (blk->noz)
 
 /**
-   \brief Get Type of Object State
+   \brief Get type of object state.
 */
 #define GetOzType(blk,x) (((x>0)&(x<=blk->noz)) ? (blk->oztyp[x-1]) : 0)
 
 /**
-   \brief Get Size of Object State
+   \brief Get size of object state.
 
 */
 /*  usage :
@@ -509,54 +526,54 @@ extern int s_cmp();
                               ((((y)>0)&((y)<=2)) ? (blk->ozsz[(y-1)*blk->noz+(x-1)]) : 0) : 0)
 
 /**
-   \brief Get Pointer of Object State
+   \brief Get pointer of object state.
 */
 #define GetOzPtrs(blk,x) (((x>0)&(x<=blk->noz)) ? (blk->ozptr[x-1]) : 0)
 
 /**
-   \brief Get Pointer of Real Object State
+   \brief Get pointer of real object state.
 */
 #define GetRealOzPtrs(blk,x) (SCSREAL_COP *) GetOzPtrs(blk,x)
 
 /**
-   \brief Get Pointer of Imaginary Part of Object State
+   \brief Get pointer of imaginary part of object state.
 */
 #define GetImagOzPtrs(blk,x) (((x)>0)&((x)<=(blk->noz)) ? \
                                (SCSREAL_COP *) ((SCSREAL_COP *)blk->ozptr[x-1]+ \
                                ((blk->ozsz[x-1])*(blk->ozsz[blk->noz+(x-1)]))) : NULL)
 
 /**
-   \brief Get Pointer of int8 typed Object State
+   \brief Get pointer of int8 typed object state.
 */
 #define Getint8OzPtrs(blk,x) (SCSINT8_COP *) GetOzPtrs(blk,x)
 
 /**
-   \brief Get Pointer of int16 typed Object State
+   \brief Get pointer of int16 typed object state.
 */
 #define Getint16OzPtrs(blk,x) (SCSINT16_COP *) GetOzPtrs(blk,x)
 
 /**
-   \brief Get Pointer of int32 typed Object State
+   \brief Get pointer of int32 typed object state.
 */
 #define Getint32OzPtrs(blk,x) (SCSINT32_COP *) GetOzPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint8 typed Object State
+   \brief Get pointer of uint8 typed object state.
 */
 #define Getuint8OzPtrs(blk,x) (SCSUINT8_COP *) GetOzPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint16 typed Object State
+   \brief Get pointer of uint16 typed object state.
 */
 #define Getuint16OzPtrs(blk,x) (SCSUINT16_COP *) GetOzPtrs(blk,x)
 
 /**
-   \brief Get Pointer of uint32 typed Object State
+   \brief Get pointer of uint32 typed object state.
 */
 #define Getuint32OzPtrs(blk,x) (SCSUINT32_COP *) GetOzPtrs(blk,x)
 
 /**
-   \brief Get The sizeof of the Object State
+   \brief Get the sizeof of the object state.
 */
 #define GetSizeOfOz(blk,x)    ((GetOzType(blk,x)==SCSREAL_N) ? (sizeof(SCSREAL_COP)) : \
                                (GetOzType(blk,x)==SCSCOMPLEX_N) ? (2*sizeof(SCSCOMPLEX_COP)) : \
@@ -565,7 +582,7 @@ extern int s_cmp();
                                ((GetOzType(blk,x)==SCSINT32_N)|(GetOzType(blk,x)==SCSUINT32_N)) ? (sizeof(SCSINT32_COP)) : 0)
 
 /**
-   \brief Get The sizeof of the Object Parameters
+   \brief Get the sizeof of the object parameters.
 */
 #define GetSizeOfOpar(blk,x)  ((GetOparType(blk,x)==SCSREAL_N) ? (sizeof(SCSREAL_COP)) : \
                                (GetOparType(blk,x)==SCSCOMPLEX_N) ? (2*sizeof(SCSCOMPLEX_COP)) : \
@@ -574,7 +591,7 @@ extern int s_cmp();
                                ((GetOparType(blk,x)==SCSINT32_N)|(GetOparType(blk,x)==SCSUINT32_N)) ? (sizeof(SCSINT32_COP)) : 0)
 
 /**
-   \brief Get The sizeof of the Output 
+   \brief Get the sizeof of the output.
 */
 #define GetSizeOfOut(blk,x)  ((GetOutType(blk,x)==SCSREAL_N) ? (sizeof(SCSREAL_COP)) : \
                               (GetOutType(blk,x)==SCSCOMPLEX_N) ? (2*sizeof(SCSCOMPLEX_COP)) : \
@@ -582,7 +599,7 @@ extern int s_cmp();
                               ((GetOutType(blk,x)==SCSINT16_N)|(GetOutType(blk,x)==SCSUINT16_N)) ? (sizeof(SCSINT16_COP)) : \
                               ((GetOutType(blk,x)==SCSINT32_N)|(GetOutType(blk,x)==SCSUINT32_N)) ? (sizeof(SCSINT32_COP)) : 0)
 /**
-   \brief Get The sizeof of the Input 
+   \brief Get the sizeof of the input.
 */
 #define GetSizeOfIn(blk,x)  ((GetInType(blk,x)==SCSREAL_N) ? (sizeof(SCSREAL_COP)) : \
                              (GetInType(blk,x)==SCSCOMPLEX_N) ? (2*sizeof(SCSCOMPLEX_COP)) : \
