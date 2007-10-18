@@ -66,6 +66,8 @@ Contenu</A>
   HREF="PID.htm#SECTION00025000000000000000">Fonction d'interface</A>
 <LI><A NAME="tex2html11"
   HREF="PID.htm#SECTION00026000000000000000">Contenu du super-bloc compilé</A>
+<LI><A NAME="tex2html12"
+  HREF="PID.htm#SECTION00027000000000000000">Auteurs</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
@@ -82,7 +84,7 @@ Description</A>
 </font></H3>
 
 <P>
-Ajoutez ici un paragraphe pour la description de la fonction  
+Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dérivé (PID) est un organe de contrôle permettant d'effectuer une régulation en boucle fermée d'un système industriel. C'est le régulateur le plus utilisé dans l'industrie et permet de contrôler la grande majorité des procédés.  
 <BR>
 <H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Boîte de dialogue</A>
@@ -102,7 +104,7 @@ Boîte de dialogue</A>
 <UL>
 <LI><b>Proportional</b>
 <BR>
-La description du paramètre 1.
+La valeur du gain qui multiplie l'erreur.
 <BR>
 Propriétés : Type 'vec' de taille -1.
 
@@ -110,7 +112,7 @@ Propriétés : Type 'vec' de taille -1.
 </LI>
 <LI><b>Integral</b>
 <BR>
-La description du paramètre 2.
+La valeur de l'intervalle de temps sur lequel l'erreur est intégrée.(1/Integral)
 <BR>
 Propriétés : Type 'vec' de taille -1.
 
@@ -118,7 +120,7 @@ Propriétés : Type 'vec' de taille -1.
 </LI>
 <LI><b>Derivation</b>
 <BR>
-La description du paramètre 3.
+La valeur de temps suivant laquelle l'erreur est dérivée.
 <BR>
 Propriétés : Type 'vec' de taille -1.
 </LI>
@@ -177,6 +179,11 @@ Contenu du super-bloc compilé</A>
  WIDTH="351" HEIGHT="178" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/PID_img3_fr.gif"
  ALT="\epsfig{file=PID_super.eps,width=220pt}">
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Fady NASSIF</b> INRIA
 
 <BR>
 

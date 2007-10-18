@@ -752,7 +752,18 @@ Contenu du fichier</A>
   if Cmenu=='Quit' then
 
     do_exit() ; //** this function is executed in case of 'Quit'
-    if ~super_block then
+    if ~super_block then // even after quiting, workspace variables
+                         // must be saved and be usable in Scilab
+      if find(%mac=='scilab2scicos') ==[] then
+	[txt,files]=returntoscilab()
+	n=size(files,1)
+	for i=1:n
+	  load(TMPDIR+'/Workspace/'+files(i))
+	  execstr(files(i)+'=struct('"values'",x,'"time'",t)')
+	end
+	execstr(txt)
+      end
+      
       mdelete(TMPDIR+'/BackupSave.cos') // no backup needed
       mdelete(TMPDIR+'/BackupInfo')
       //close TCL windows

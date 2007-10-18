@@ -66,6 +66,8 @@ Contents</A>
   HREF="PID.htm#SECTION00025000000000000000">Interfacing function</A>
 <LI><A NAME="tex2html11"
   HREF="PID.htm#SECTION00026000000000000000">Compiled Super Block content</A>
+<LI><A NAME="tex2html12"
+  HREF="PID.htm#SECTION00027000000000000000">Authors</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
@@ -82,7 +84,7 @@ Description</A>
 </font></H3>
 
 <P>
-Add here a paragraph of the function description  
+This block implements a PID controller. The PID controller calculation (algorithm) involves three separate parameters; the Proportional, the Integral  and Derivative values. The Proportional value determines the reaction to the current error, the Integral determines the reaction based on the sum of recent errors and the Derivative determines the reaction to the rate at which the error has been changing. The weighted sum of these three actions is used to adjust the process via a control element such as the position of a control valve or the power supply of a heating element.  
 <BR>
 <H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Dialog box</A>
@@ -102,7 +104,7 @@ Dialog box</A>
 <UL>
 <LI><b>Proportional</b>
 <BR>
-The parameter description 1.
+The Value of the gain that multiply the error.
 <BR>
 Properties : Type 'vec' of size -1.
 
@@ -110,7 +112,7 @@ Properties : Type 'vec' of size -1.
 </LI>
 <LI><b>Integral</b>
 <BR>
-The parameter description 2.
+The value of the integral time of the error.(1/Integral)
 <BR>
 Properties : Type 'vec' of size -1.
 
@@ -118,7 +120,7 @@ Properties : Type 'vec' of size -1.
 </LI>
 <LI><b>Derivation</b>
 <BR>
-The parameter description 3.
+The value of the derivative time of the error.
 <BR>
 Properties : Type 'vec' of size -1.
 </LI>
@@ -177,6 +179,11 @@ Compiled Super Block content</A>
  WIDTH="351" HEIGHT="178" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/PID_img3_eng.gif"
  ALT="\epsfig{file=PID_super.eps,width=220pt}">
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Authors</A>
+</font></H3>
+<b>Fady NASSIF</b> INRIA
 
 <BR>
 
