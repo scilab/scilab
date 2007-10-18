@@ -75,4 +75,13 @@ void CameraJavaMapper::rotateAxesBox(double centerX, double centerY, double cent
                                alpha  , theta, reductionRatio);
 }
 /*-----------------------------------------------------------------------------------*/
+int * CameraJavaMapper::getScreenCoordinates(double userCoordX, double userCoordY, double userCoordZ)
+{
+  int * res = new int[2];
+  res[0] = 0;
+  res[1] = 0;
+
+  return res;
+}
+/*-----------------------------------------------------------------------------------*/
 }

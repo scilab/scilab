@@ -102,5 +102,15 @@ DrawableText * getTextDrawer( sciPointObj * pText )
   return dynamic_cast<DrawableText *>(getHandleDrawer(pText));
 }
 /*------------------------------------------------------------------------------------------*/
+DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin )
+{
+  if ( sciGetEntityType(pSubwin) != SCI_SUBWIN )
+  {
+    return NULL;
+  }
+
+  return dynamic_cast<DrawableSubwin *>(getHandleDrawer(pSubwin));
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

@@ -34,6 +34,11 @@ public:
    */
   virtual void renderPosition( void ) ;
 
+  /**
+   * Convert user coordinates to pixel coordinates.
+   */
+  virtual void getPixelCoordinates(const double userCoord[3], double pixCoord[2]);
+
 protected:
 
   /**

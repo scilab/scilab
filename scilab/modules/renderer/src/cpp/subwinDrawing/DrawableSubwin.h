@@ -35,6 +35,11 @@ public:
    */
   void setCamera( Camera * cam ) { m_pCamera = cam ; }
 
+  /**
+   * Convert user coordinates to pixel coordinates.
+   */
+  void getPixelCoordinates(const double userCoord[3], double pixCoord[2]);
+
 protected:
 
   /**

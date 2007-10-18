@@ -10,6 +10,9 @@
 package org.scilab.modules.renderer.subwinDrawing;
 
 import org.scilab.modules.renderer.ObjectGL;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+
 import javax.media.opengl.GL;
 
 /**
@@ -99,6 +102,21 @@ public class CameraGL extends ObjectGL {
 		gl.glRotated(DEFAULT_ALPHA - alpha, 1.0 , 0.0, 0.0); /* Seems we need to rotate counterclok-wise */
 		gl.glRotated(DEFAULT_THETA - theta, 0.0 , 0.0, 1.0);
 		gl.glTranslated(-centerX, -centerY, -centerZ); // translate origin back
+	}
+	
+	/**
+	 * Convert scene coordinates to pixel coordinates.
+	 * @param userCoordX X coordinate of the scene coordinate.
+	 * @param userCoordY Y coordinate of the scene coordinate.
+	 * @param userCoordZ Z coordinate of the scene coordinate.
+	 * @return array aof size 2 containing the 2 coordinates.
+	 */
+	public int[] getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ) {
+		GL gl = getGL();
+		Vector3D userPos = new Vector3D(userCoordX, userCoordY, userCoordZ);
+		Vector3D screenCoordinate = CoordinateTransformation.getTransformation(gl).getCanvasCoordinates(gl, userPos);
+		int[] res = {(int) screenCoordinate.getX(), (int) screenCoordinate.getY()};
+		return res;
 	}
 	
 	

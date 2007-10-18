@@ -89,7 +89,11 @@ void Camera::renderPosition( void )
   m_pImp->renderPosition();
 }
 /*-----------------------------------------------------------------------------------*/
-
+void Camera::getPixelCoordinates(const double userCoord[3], double pixCoord[2])
+{
+  m_pImp->getPixelCoordinates(userCoord, pixCoord);
+}
+/*-----------------------------------------------------------------------------------*/
 }
 
 #undef FIT_WINDOW_RATIO

@@ -36,5 +36,12 @@ CameraJavaMapper * CameraJoGL::getCameraJavaMapper(void)
   return dynamic_cast<CameraJavaMapper *>(getJavaMapper());
 }
 /*-----------------------------------------------------------------------------------*/
-
+void CameraJoGL::getPixelCoordinates(const double userCoord[3], double pixCoord[2])
+{
+  int * pixCoords = getCameraJavaMapper()->getScreenCoordinates(userCoord[0], userCoord[1], userCoord[2]);
+  pixCoord[0] = pixCoord[0];
+  pixCoord[1] = pixCoord[1];
+  delete[] pixCoords;
+}
+/*-----------------------------------------------------------------------------------*/
 }

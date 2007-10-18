@@ -57,6 +57,11 @@ public:
    */
   void setBridge( CameraBridge * bridge ) { m_pImp = bridge; }
 
+  /**
+   * Convert user coordinates to pixel coordinates.
+   */
+  void getPixelCoordinates(const double userCoord[3], double pixCoord[2]);
+
 protected:
 
   /*-----------------------------------------------------*/

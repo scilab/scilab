@@ -44,6 +44,11 @@ void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] ) ;
  */
 BOOL sciGetJavaPixmapMode(sciPointObj * pFigure);
 
+/**
+ * Convert user Coordinate to pixel coordinates.
+ */
+void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2]);
+
 #ifdef __cplusplus
 }
 #endif

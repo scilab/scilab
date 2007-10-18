@@ -43,6 +43,8 @@ public:
 
   virtual void rotateAxesBox(double centerX, double centerY, double centerZ,
                              double alpha, double theta, double reductionRatio) ;
+
+  virtual int * getScreenCoordinates(double userCoordX, double userCoordY, double userCoordZ);
   /*----------------------------------------------------------------------*/
 
 private:
