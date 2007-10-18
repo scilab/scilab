@@ -84,22 +84,29 @@ Description</A>
 </font></H3>
 
 <P>
+This block gives the possibility to construct hybrid automata, i.e., a
+hybrid system whose discrete part is defined via modes and transitions
+between modes, and the continuous part is defined via DAE
+(differential algebraic equations). 
+
+<P>
 The automaton block provides a switching mechanism between subsystems
 corresponding to control modes of an automaton.  Subsystems are
-constructed in such a way that they receive the state vector as input
-from the automaton block and compute the flow and jump functions. The
-state variables are defined only in the automaton block and not in the
-subsystems.
+constructed in such a way that they have the state vector as input (
+coming from the automaton block) and compute the flow and jump
+functions (zero-crossing) and pass them back to the automaton
+block. The state variables are defined in the automaton block and the
+subsystems are static functions.
 
 <P>
 Suppose that a hybrid automaton consists of <B><SPAN CLASS="MATH"><IMG
  WIDTH="23" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img2_fr.gif"
  ALT="$ M$"></SPAN></B> control
- modes. The continuous-time dynamics in mode '<SPAN CLASS="MATH"><IMG
+ modes. The continuous-time dynamics in mode <SPAN CLASS="MATH"><IMG
  WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img3_fr.gif"
- ALT="$ i$"></SPAN>' is defined with DAE
+ ALT="$ i$"></SPAN> is defined with DAE
  (<!-- MATH
  $0=F_i(\dot x, x, u)$
  -->
@@ -128,83 +135,96 @@ Suppose that a hybrid automaton consists of <B><SPAN CLASS="MATH"><IMG
 <SPAN CLASS="MATH"><IMG
  WIDTH="103" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img5_fr.gif"
- ALT="$ i\in \{1 \dots M\}$"></SPAN>. Suppose that in control mode '<SPAN CLASS="MATH"><IMG
+ ALT="$ i\in \{1 \dots M\}$"></SPAN>. Suppose that in
+ control mode <SPAN CLASS="MATH"><IMG
  WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img3_fr.gif"
- ALT="$ i$"></SPAN>', there are
- <SPAN CLASS="MATH"><IMG
+ ALT="$ i$"></SPAN>, there are <SPAN CLASS="MATH"><IMG
  WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img9_fr.gif"
- ALT="$ Z_i$"></SPAN> jump conditions indicating jumps toward other modes. The jump
- conditions are defined by <!-- MATH
+ ALT="$ Z_i$"></SPAN> jump conditions indicating jumps
+ toward other modes. The jump conditions are defined by
+ <!-- MATH
  $Jump_{ij}(\dot x,x,u)$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="120" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img10_fr.gif"
- ALT="$ Jump_{ij}(\dot x,x,u)$"></SPAN> functions where
- <!-- MATH
+ ALT="$ Jump_{ij}(\dot x,x,u)$"></SPAN> functions where <!-- MATH
  $j\in \{1 \dots Z_i\}$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="104" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img11_fr.gif"
- ALT="$ j\in \{1 \dots Z_i\}$"></SPAN>. When a jump function becomes positive, a mode
- transition will happen. When a transition to mode '<SPAN CLASS="MATH"><IMG
- WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ ALT="$ j\in \{1 \dots Z_i\}$"></SPAN>.
+
+<P>
+When a jump function changes sign and becomes positive, a mode
+ transition will happen. When <SPAN CLASS="MATH"><IMG
+ WIDTH="28" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img12_fr.gif"
- ALT="$ k$"></SPAN>' happens state
- vector <SPAN CLASS="MATH"><IMG
+ ALT="$ k^{th}$"></SPAN> transition function becomes
+ positive, a transition to mode <SPAN CLASS="MATH"><IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/AUTOMAT_img13_fr.gif"
+ ALT="$ k$"></SPAN> happens and  state vector <SPAN CLASS="MATH"><IMG
  WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img6_fr.gif"
- ALT="$ x$"></SPAN> is reset to <!-- MATH
+ ALT="$ x$"></SPAN> is reset
+ to <!-- MATH
  $Reset_k(\dot x,x,u)$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="116" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img13_fr.gif"
- ALT="$ Reset_k(\dot x,x,u)$"></SPAN>, <I>i.e.,</I>
- <!-- MATH
+ SRC="../../images/scicos/AUTOMAT_img14_fr.gif"
+ ALT="$ Reset_k(\dot x,x,u)$"></SPAN>, <I>i.e.,</I> <!-- MATH
  $x_l=Reset_{kl}(\dot x,x,u)$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="158" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img14_fr.gif"
- ALT="$ x_l=Reset_{kl}(\dot x,x,u)$"></SPAN> for <!-- MATH
+ SRC="../../images/scicos/AUTOMAT_img15_fr.gif"
+ ALT="$ x_l=Reset_{kl}(\dot x,x,u)$"></SPAN>
+ for <!-- MATH
  $l\in \{1 \dots N\}$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="99" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img15_fr.gif"
- ALT="$ l\in \{1 \dots N\}$"></SPAN>. In
- order to develop an automaton containing a mode with multiple reset
- functions, the value of the current and previous active modes should
- be used. These values are available at the first output port of the
- block.
+ SRC="../../images/scicos/AUTOMAT_img16_fr.gif"
+ ALT="$ l\in \{1 \dots N\}$"></SPAN>.
 
 <P>
-For such a hybrid automaton, we can use the automaton block of
- Scicos. This block has the following input/output ports, see
- Fig.&nbsp;<A HREF="#bclk0"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
- SRC="../../images/scicos//usr/share/latex2html/icons/crossref.gif"></A>.
+In order to develop an automaton containing a mode with multiple
+ reset functions, the value of the current and previous active modes
+ should be used. These values are available at the first output port
+ of the block.
+
+<P>
+The automaton block has the following input/output ports.
 
 <P>
 
 <UL>
 <LI><B>Output 1:</B> The first output port is a vector of size two
- consisting of the current and the previous active control modes.
+ consisting of the current and the previous active control modes,
+ i.e., <!-- MATH
+ $OUT_1=[current-mode,~previous-mode]^t$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="351" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/AUTOMAT_img17_fr.gif"
+ ALT="$ OUT_1=[current-mode,~previous-mode]^t$"></SPAN>.
 
 <P>
 </LI>
 <LI><B>Output 2:</B> The second output port is a vector of size <B>  <SPAN CLASS="MATH"><IMG
  WIDTH="29" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img16_fr.gif"
+ SRC="../../images/scicos/AUTOMAT_img18_fr.gif"
  ALT="$ 2N$"></SPAN></B> providing the state vector and its first time derivative, <I>  i.e.,</I> <!-- MATH
  $[ x,\dot x]^t$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="48" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img17_fr.gif"
+ SRC="../../images/scicos/AUTOMAT_img19_fr.gif"
  ALT="$ [ x,\dot x]^t$"></SPAN>.  
 
 <P>
@@ -216,33 +236,31 @@ For such a hybrid automaton, we can use the automaton block of
   corresponding to <SPAN CLASS="MATH"><IMG
  WIDTH="23" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img2_fr.gif"
- ALT="$ M$"></SPAN> modes or subsystems of the automaton. The input
-  port '<SPAN CLASS="MATH"><IMG
+ ALT="$ M$"></SPAN> modes or subsystems of the automaton.  Each
+  input defines the dynamic behavior in the control each mode as well
+  as the reset functions and the transition functions.  The input port
+  <SPAN CLASS="MATH"><IMG
  WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img3_fr.gif"
- ALT="$ i$"></SPAN>' which is the output of the <SPAN CLASS="MATH"><IMG
+ ALT="$ i$"></SPAN> which is the output of the <SPAN CLASS="MATH"><IMG
  WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img18_fr.gif"
- ALT="$ i^{th}$"></SPAN> subsystem of the
-  automaton defines the dynamic behavior in the control mode '<SPAN CLASS="MATH"><IMG
- WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img3_fr.gif"
- ALT="$ i$"></SPAN>'.
-  This input port is a vector of size <SPAN CLASS="MATH"><IMG
+ SRC="../../images/scicos/AUTOMAT_img20_fr.gif"
+ ALT="$ i^{th}$"></SPAN> subsystem is a vector of
+  size <SPAN CLASS="MATH"><IMG
  WIDTH="68" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img19_fr.gif"
- ALT="$ 2N+Z_i$"></SPAN>, as indicated in
-  (<A HREF="#xisish"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
- SRC="../../images/scicos//usr/share/latex2html/icons/crossref.gif"></A>). The diagram in Fig.<A HREF="#bclk0"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
- SRC="/usr/share/latex2html/icons/crossref.gif"></A> shows the way
-  subsystems are connected to the automaton block.
+ SRC="../../images/scicos/AUTOMAT_img21_fr.gif"
+ ALT="$ 2N+Z_i$"></SPAN>. Each input is composed of  the following vector.
+
+<P>
 <!-- MATH
- $Input_i=\left[F_i(\dot x,x,u), Reset_i(\dot x,x,u), Jump_i(\dot x,x,u) \right]^t$
+ $Input_i=\left[F_i(\dot x,x,u),~ Reset_i(\dot x,x,u),~ Jump_i(\dot
+x,x,u) \right]^t$
  -->
 <SPAN CLASS="MATH"><IMG
- WIDTH="402" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img20_fr.gif"
- ALT="$ Input_i=\left[F_i(\dot x,x,u), Reset_i(\dot x,x,u), Jump_i(\dot x,x,u) \right]^t$"></SPAN>
+ WIDTH="411" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/AUTOMAT_img22_fr.gif"
+ ALT="$ Input_i=\left[F_i(\dot x,x,u),~ Reset_i(\dot x,x,u),~ Jump_i(\dot
+x,x,u) \right]^t$"></SPAN>
 
 <P>
 
@@ -252,18 +270,18 @@ For such a hybrid automaton, we can use the automaton block of
  SRC="../../images/scicos/AUTOMAT_img7_fr.gif"
  ALT="$ N$"></SPAN> elements of the <SPAN CLASS="MATH"><IMG
  WIDTH="54" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img21_fr.gif"
+ SRC="../../images/scicos/AUTOMAT_img23_fr.gif"
  ALT="$ Input_i$"></SPAN> are the continuous-time
-dynamics.  The dynamics of the system in the control mode '<SPAN CLASS="MATH"><IMG
+dynamics.  The dynamics of the system in the control mode <SPAN CLASS="MATH"><IMG
  WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img3_fr.gif"
- ALT="$ i$"></SPAN>' is
+ ALT="$ i$"></SPAN> is
 described by a smooth index-1 DAE (<I>i.e.,</I> <!-- MATH
  $0=F_i(\dot x,x,u,t)$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="126" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img22_fr.gif"
+ SRC="../../images/scicos/AUTOMAT_img24_fr.gif"
  ALT="$ 0=F_i(\dot x,x,u,t)$"></SPAN>).
 
 <P>
@@ -273,13 +291,13 @@ described by a smooth index-1 DAE (<I>i.e.,</I> <!-- MATH
  SRC="../../images/scicos/AUTOMAT_img7_fr.gif"
  ALT="$ N$"></SPAN> elements of <SPAN CLASS="MATH"><IMG
  WIDTH="54" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img21_fr.gif"
+ SRC="../../images/scicos/AUTOMAT_img23_fr.gif"
  ALT="$ Input_i$"></SPAN> are the values used to
- reset the continuous-time states when a transition <SPAN ID="txt53">to</SPAN> 
- control mode '<SPAN CLASS="MATH"><IMG
+ reset the continuous-time states when a transition <SPAN ID="txt51">to</SPAN> 
+ control mode <SPAN CLASS="MATH"><IMG
  WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img3_fr.gif"
- ALT="$ i$"></SPAN>' is activated.
+ ALT="$ i$"></SPAN> is activated.
 
 <P>
 </LI>
@@ -288,20 +306,20 @@ described by a smooth index-1 DAE (<I>i.e.,</I> <!-- MATH
  SRC="../../images/scicos/AUTOMAT_img9_fr.gif"
  ALT="$ Z_i$"></SPAN> elements of <SPAN CLASS="MATH"><IMG
  WIDTH="54" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img21_fr.gif"
+ SRC="../../images/scicos/AUTOMAT_img23_fr.gif"
  ALT="$ Input_i$"></SPAN> are the jump or
 zero-crossing functions. If the <SPAN CLASS="MATH"><IMG
  WIDTH="26" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img23_fr.gif"
+ SRC="../../images/scicos/AUTOMAT_img25_fr.gif"
  ALT="$ j^{th}$"></SPAN> zero-crossing function of
-mode '<SPAN CLASS="MATH"><IMG
+mode <SPAN CLASS="MATH"><IMG
  WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/AUTOMAT_img3_fr.gif"
- ALT="$ i$"></SPAN>' crosses zero with negative to positive direction, a
-transition to '<SPAN CLASS="MATH"><IMG
+ ALT="$ i$"></SPAN> crosses zero with negative to positive direction, a
+transition to <SPAN CLASS="MATH"><IMG
  WIDTH="26" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/AUTOMAT_img23_fr.gif"
- ALT="$ j^{th}$"></SPAN>' destination mode happens.
+ SRC="../../images/scicos/AUTOMAT_img25_fr.gif"
+ ALT="$ j^{th}$"></SPAN> destination mode happens.
 </LI>
 </UL>
 
@@ -314,17 +332,15 @@ subsystem not included in the internal dynamics of the automaton
 block.
 </LI>
 </UL>
-
-<P>
-In the interface window, the number of control modes, the initial
+ In the interface window, the number of control modes, the initial
 control mode and the initial value of continuous-time states at the
 beginning of the simulation should be given.
 
 <P>
-For more documentation on the Automaton block, the user is refered to
-www.scicos.org and the paper "Modeling Hybrid Automata in Scicos",
-Masoud Najafi, Ramine Nikoukhah, 2007 IEEE Multi-conference on Systems
-and Control, Singapore.
+Find more documentation and demos about the Automaton block oat
+www.scicos.org. Interested users are referred to the paper "Modeling
+Hybrid Automata in Scicos", Masoud Najafi, Ramine Nikoukhah, 2007 IEEE
+Multi-conference on Systems and Control, Singapore. 
 
 <H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Boîte de dialogue</A>
@@ -366,9 +382,9 @@ Properties : Type 'vec' of size [-1,1].
 
 <P>
 </LI>
-<LI><B>Continuous-time states intial values</B>
+<LI><B>Continuous-time states initial values</B>
 <BR>
-Initial value of continuous-time states at the begining of the
+Initial value of continuous-time states at the beginning of the
           simulation.
 <BR>
 Properties : Type 'vec' of size [-1,1].
@@ -379,10 +395,16 @@ Properties : Type 'vec' of size [-1,1].
 <BR>
 In this field the state types in mode are given.  A state in an index 1
           DAE can be either differential state or algebraic state. <I>          Xproperties</I> vector is coded in an M*N matrix, where M is the
-          number of modes and N is the number of states. This matrice
+          number of modes and N is the number of states. This matrices
           indicates whether a continuous-time state is algebraic or
-          differential in each control mode. If in the i-th mode, j-th state
-          is differential, the (i,j)-th element of the Xproperty matrice
+          differential in each control mode. If in the <SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/AUTOMAT_img20_fr.gif"
+ ALT="$ i^{th}$"></SPAN> mode, <SPAN CLASS="MATH"><IMG
+ WIDTH="26" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/AUTOMAT_img25_fr.gif"
+ ALT="$ j^{th}$"></SPAN> state
+          is differential, the (i,j)-th element of the Xproperty matrix
           should set to "+1", otherwise it should set to "-1". Xproperty can
           be given as a 1*N vector if type of states remain the
           same in  all modes.
@@ -395,7 +417,7 @@ Properties : Type 'mat' of size [-1,-1].
 <BR>
 The <I>Jump</I> fields express the mode transition information. Suppose
           that all control modes are labeled from 1 to M. Then, in the field
-          corresponding to control mode <B>'i'</B>, destination modes of mode <B>'i'</B>
+          corresponding to control mode <B>i</B>, destination modes of mode <B>i</B>
           are defined in a vector. <B>j-th</B> element of this vector gives the
           destination mode when <B>j-th</B> jump function :
           <BR>
@@ -408,19 +430,19 @@ The <I>Jump</I> fields express the mode transition information. Suppose
  -->
 <IMG
  WIDTH="556" HEIGHT="33" ALIGN="LEFT"
- SRC="../../images/scicos/AUTOMAT_img25_fr.gif"
+ SRC="../../images/scicos/AUTOMAT_img27_fr.gif"
  ALT="\begin{eqnarray}
 {\rm Jump}_{ij}(\dot x,x,u)
 \end{eqnarray}">
 <BR CLEAR="ALL">
 <P>
 <BR CLEAR="ALL"></DIV><P></P>
-becomes positive. For example, if in the field of the mode <B>'2'</B>, the
-          user defines [1;3;4], it means that in mode <B>'2'</B>, there are three
+becomes positive. For example, if in the field of the mode <B>2</B>, the
+          user defines [1;3;4], it means that in mode <B>2</B>, there are three
           active jump functions. When, for example, the third jump function
-          becomes positive, a mode transition to mode <B>'4'</B> will be activated.
+          becomes positive, a mode transition to mode <B>4</B> will be activated.
 <BR>
-Properties : Type 'vec of size [-1,1].
+Properties : Type 'vec' of size [-1,1].
 </LI>
 </UL>
 

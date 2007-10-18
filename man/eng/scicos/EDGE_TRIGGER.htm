@@ -57,13 +57,15 @@ Contents</A>
 <LI><A NAME="tex2html6"
   HREF="EDGE_TRIGGER.htm#SECTION00021000000000000000">Palette</A>
 <LI><A NAME="tex2html7"
-  HREF="EDGE_TRIGGER.htm#SECTION00022000000000000000">Dialog box</A>
+  HREF="EDGE_TRIGGER.htm#SECTION00022000000000000000">Description</A>
 <LI><A NAME="tex2html8"
-  HREF="EDGE_TRIGGER.htm#SECTION00023000000000000000">Default properties</A>
+  HREF="EDGE_TRIGGER.htm#SECTION00023000000000000000">Dialog box</A>
 <LI><A NAME="tex2html9"
-  HREF="EDGE_TRIGGER.htm#SECTION00024000000000000000">Interfacing function</A>
+  HREF="EDGE_TRIGGER.htm#SECTION00024000000000000000">Default properties</A>
 <LI><A NAME="tex2html10"
-  HREF="EDGE_TRIGGER.htm#SECTION00025000000000000000">Compiled Super Block content</A>
+  HREF="EDGE_TRIGGER.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html11"
+  HREF="EDGE_TRIGGER.htm#SECTION00026000000000000000">Compiled Super Block content</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
@@ -76,6 +78,13 @@ Palette</A>
 </LI>
 </UL>
 <H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+This block generates an event on rising, falling or both edges of the input signal (depending on block parameter). A rising edge is a change in value from strictly negative to positive or zero, or a change in value from zero to strictly positive. A falling edge is the opposite. Note that this block only generates an event if the input jumps due to an event. The generated event is synchronous with the event causing the jump. This block does not detect continuous-time zero-crossings.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Dialog box</A>
 </font></H3>
 
@@ -97,7 +106,7 @@ Properties : Type 'vec' of size 1.
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
 Default properties</A>
 </font></H3>
 
@@ -127,7 +136,7 @@ Default properties</A>
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
 Interfacing function</A>
 </font></H3>
 
@@ -137,7 +146,7 @@ Interfacing function</A>
 </LI>
 </UL>
 
-<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
 Compiled Super Block content</A>
 </font></H3>
  <!-- MATH
