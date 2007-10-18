@@ -13,12 +13,12 @@ int C2F(sci_tzer) _PARAMS((char *fname,unsigned long fname_len))
 {
 	if (Rhs != 4)
 	{
-		Scierror(42,"incompatible RHS.\n");
+		Scierror(42,_("incompatible RHS.\n"));
 		return 0;
 	}
 	if ( (Lhs != 2) && (Lhs !=3) )
 	{
-		Scierror(41,"incompatible LHS.\n");
+		Scierror(41,_("incompatible LHS.\n"));
 		return 0;
 	}
 
