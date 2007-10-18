@@ -2574,6 +2574,9 @@
       <PARAM_ITEM>
 	<PARAM_NAME>rising (1), falling (-1), both (0)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
+          <SP>
+	    Specifies the type of edge to which the block should react.
+	  </SP>
 	  <SP>
 	    Properties : Type 'vec' of size 1.
 	  </SP>
@@ -6554,7 +6557,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
     <PARAM_NAME>Min value</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 1.
+      An integer spcifying the min value in the range of the scale.
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
@@ -6566,7 +6569,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
     <PARAM_NAME>Max value</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 2.
+      An integer spcifying the max value in the range of the scale.
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
@@ -6578,7 +6581,8 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
     <PARAM_NAME>Normalization</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 3.
+      The output of the block is the integer value specified by the slider (an
+integer between Min value and the Max value) divided by this Normalization factor.
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.

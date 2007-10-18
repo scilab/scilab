@@ -2659,6 +2659,9 @@
       <PARAM_ITEM>
 	<PARAM_NAME>rising (1), falling (-1), both (0)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
+          <SP>
+	    Indique le type du front auquel le bloc doit réagir.
+	  </SP>
 	  <SP>
 	    Propriétés : Type 'vec' de taille 1.
 	  </SP>
@@ -6873,7 +6876,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
     <PARAM_NAME>Min value</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      La description du paramètre 1.
+      Un entier indiquant la borne inf de l'échelle.
       </SP>
       <SP>
       Propriétés : Type 'vec' de taille 1.
@@ -6885,7 +6888,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
     <PARAM_NAME>Max value</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      La description du paramètre 2.
+      Un entier indiquant la borne sup de l'échelle.
       </SP>
       <SP>
       Propriétés : Type 'vec' de taille 1.
@@ -6897,7 +6900,8 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
     <PARAM_NAME>Normalization</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      La description du paramètre 3.
+      La sortie du bloc est la valeur de l'échelle divisée par ce facteur
+de normalisation. 
       </SP>
       <SP>
       Propriétés : Type 'vec' de taille 1.

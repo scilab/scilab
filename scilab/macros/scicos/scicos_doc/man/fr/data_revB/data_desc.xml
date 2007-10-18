@@ -17,18 +17,12 @@ Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
 
 <FILE name='AFFICH_f' type='LATEX'>
 Pendant la simulation, ce bloc affiche sur le diagramme 
-la valeur lue sur son unique port d'entrée événementiel.\\
-{\bf Attention :} à chaque fois que le bloc est déplacé, l'utilisateur
-doit cliquer sur celui-ci pour éditer ses paramètres. La position
-d'affichage est alors automatiquement ajustée.
+la valeur lue sur son unique port d'entrée.
 </FILE>
 
 <FILE name='AFFICH_m' type='LATEX'>
 Pendant la simulation, ce bloc affiche sur le diagramme 
-la valeur lue sur son unique port d'entrée événementiel.\\
-{\bf Attention :} à chaque fois que le bloc est déplacé, l'utilisateur
-doit cliquer sur celui-ci pour éditer ses paramètres. La position
-d'affichage est alors automatiquement ajustée.
+la valeur lue sur son unique port d'entrée.
 </FILE>
 
 <FILE name='ANDBLK' type='LATEX'>
@@ -2137,7 +2131,7 @@ la diode devient linéaire pour éviter un dépassement numérique.
 <DESCRIPTION_INDENT>
 <DESCRIPTION_ITEM>
 <P>
-Ajoutez ici un paragraphe pour la description de la fonction
+Ce bloc est utilisé seulement dans le super bloc EDGE_TRIGGER.
 </P>
 </DESCRIPTION_ITEM>
 </DESCRIPTION_INDENT>
@@ -2146,7 +2140,20 @@ Ajoutez ici un paragraphe pour la description de la fonction
 
 <FILE name='EDGE_TRIGGER' type='XML'>
 <DESCRIPTION>
-
+<DESCRIPTION_INDENT>
+<DESCRIPTION_ITEM>
+<P>
+Ce bloc génère un événement sur le front montant, descendant ou
+les deux (en fonction du paramètre du bloc). Un front montant correspond 
+à un changement de valeur négative vers positive ou nulle, ou zéro
+vers positive. Le front descendant est l'inverse. A noter que ce bloc
+génère un événement si l'entrée saute à cause d'une
+activation par événement. L'événement généré est synchrone
+avec l'événement d'origine. Ce bloc ne détecte pas les traversés de
+zéro des signaux continus.
+</P>
+</DESCRIPTION_ITEM>
+</DESCRIPTION_INDENT>
 </DESCRIPTION>
 </FILE>
 
@@ -4364,7 +4371,12 @@ simulation.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Ajoutez ici un paragraphe pour la description de la fonction
+    Ce bloc génère une sortie constante par morceaux dont la valeur est
+définie interactivement par un widget TK au cours de la simulation. La
+valeur de sortie est égale à la valeure entière affichée sur le
+widget divisée par le paramètre de normalisation. On peut augmenter la
+précisition de la sortie en augmentant proportionnellement tous les
+parmètres du bloc.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
