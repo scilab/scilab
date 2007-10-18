@@ -48,16 +48,83 @@ This block, with two event inputs and a regular output, outputs +1 or
  \end{enumerate}
 </FILE>
 
-<FILE name='AUTOMAT' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='AUTOMAT' type=''LATEX'>
+
+The automaton block provides a switching mechanism between subsystems
+corresponding to control modes of an automaton.  Subsystems are
+constructed in such a way that they receive the state vector as input
+from the automaton block and compute the flow and jump functions. The
+state variables are defined only in the automaton block and not in the
+subsystems.
+
+Suppose that a hybrid automaton consists of {\bf $M$} control
+ modes. The continuous-time dynamics in mode '$i$' is defined with DAE
+ ($0=F_i(\dot x, x, u)$) where $i\in \{1 \dots M\}$ and the dimension
+ of $x$ is $N$ ($N\ge0$) for any $i\in \{1 \dots M\}$. Suppose that in control mode '$i$', there are
+ $Z_i$ jump conditions indicating jumps toward other modes. The jump
+ conditions are defined by $Jump_{ij}(\dot x,x,u)$ functions where
+ $j\in \{1 \dots Z_i\}$. When a jump function becomes positive, a mode
+ transition will happen. When a transition to mode '$k$' happens state
+ vector $x$ is reset to $Reset_k(\dot x,x,u)$, {\it i.e.,}
+ $x_l=Reset_{kl}(\dot x,x,u)$ for $l\in \{1 \dots N\}$. In
+ order to develop an automaton containing a mode with multiple reset
+ functions, the value of the current and previous active modes should
+ be used. These values are available at the first output port of the
+ block.
+
+
+ For such a hybrid automaton, we can use the automaton block of
+ Scicos. This block has the following input/output ports, see
+ Fig.~\ref{bclk0}.
+
+\begin{itemize}
+\item {\bf Output 1:} The first output port is a vector of size two
+ consisting of the current and the previous active control modes.
+
+\item {\bf Output 2:} The second output port is a vector of size {\bf
+  $2N$} providing the state vector and its first time derivative, {\it
+  i.e.,} $[ x,\dot x]^t$.  
+
+\item {\bf Inputs:} The automaton block has $M$ vector input ports
+  corresponding to $M$ modes or subsystems of the automaton. The input
+  port '$i$' which is the output of the $i^{th}$ subsystem of the
+  automaton defines the dynamic behavior in the control mode '$i$'.
+  This input port is a vector of size $2N+Z_i$, as indicated in
+  (\ref{xisish}). The diagram in Fig.\ref{bclk0} shows the way
+  subsystems are connected to the automaton block.
+$Input_i=\left[F_i(\dot x,x,u), Reset_i(\dot x,x,u), Jump_i(\dot x,x,u) \right]^t$
+
+\begin{itemize}
+\item The first $N$ elements of the $Input_i$ are the continuous-time
+dynamics.  The dynamics of the system in the control mode '$i$' is
+described by a smooth index-1 DAE ({\it i.e.,} $0=F_i(\dot x,x,u,t)$).
+
+\item The next $N$ elements of $Input_i$ are the values used to
+ reset the continuous-time states when a transition \underline{to} 
+ control mode '$i$' is activated.
+
+\item The next $Z_i$ elements of $Input_i$ are the jump or
+zero-crossing functions. If the $j^{th}$ zero-crossing function of
+mode '$i$' crosses zero with negative to positive direction, a
+transition to '$j^{th}$' destination mode happens.
+\end{itemize}
+
+\item {\bf Event Output:} This is an event output port, which is
+activated whenever a mode transition happens. This event is useful
+when an event is needed to activate or initialize a part of the
+subsystem not included in the internal dynamics of the automaton
+block.
+\end{itemize}
+ In the interface window, the number of control modes, the initial
+control mode and the initial value of continuous-time states at the
+beginning of the simulation should be given.
+
+For more documentation on the Automaton block, the user is refered to
+www.scicos.org and the paper "Modeling Hybrid Automata in Scicos",
+Masoud Najafi, Ramine Nikoukhah, 2007 IEEE Multi-conference on Systems
+and Control, Singapore.
+
+
 </FILE>
 
 <FILE name='About_scicos' type='LATEX'>
@@ -210,7 +277,10 @@ creates library file and object files.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+    This block is an ideal current source. The current value is
+    controlled through the explicit input of the block (connected to
+    standard Scicos blocks). The voltage across the block is
+    independent of the current value.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -558,7 +628,10 @@ function using a curve editor.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+    This block is an ideal voltage source. The voltage value is
+    controlled through the explicit input of the block (connected to
+    standard Scicos blocks). The current passing through  the block is
+    independent of the voltage across the block terminals.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -2286,7 +2359,9 @@ blocks to gather events in a single link.
     <DESCRIPTION_ITEM>
     <P>
     That block is used to get data defined in the Scilab workspace
-    and use them in Scicos. Data should have "time" and "values" fields.
+    and use them in Scicos. Data should have "time" and "values"
+    fields.
+
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -2313,7 +2388,7 @@ blocks to gather events in a single link.
 Add here a paragraph of the function description
 </P>
 </DESCRIPTION_ITEM>
-</DESCRIPTION_INDENT>
+</DESCRIPTION_INDENT> 
 </DESCRIPTION>
 </FILE>
 
@@ -2471,7 +2546,14 @@ element.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+ A gyrator is a two-port element defined by the following equations:
+    <SP>
+    i1 =  G2 * v2
+    </SP>
+    <SP>
+    i2 = -G1 * v1
+    </SP>
+where the constants G1, G2 are called the gyration conductance. 
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -2599,7 +2681,15 @@ input port.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+The ideal transformer is an ideal two-port resistive circuit element
+which is characterized by the following two equations:
+    <SP>
+    v1 =  n * v2
+    </SP>
+    <SP>
+    i2 = -n * i1
+    </SP>
+where n is a real number called the turns ratio.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -3356,16 +3446,42 @@ An output event is generated when the unique input crosses zero with a
 positive slope.
 </FILE>
 
-<FILE name='NMOS' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='NMOS' type='LATEX'>
+
+The NMos model is a simple model of a n-channel metal-oxide
+semiconductor FET. It differs slightly from the device used in the
+SPICE simulator. For more details please care for H. Spiro.
+
+The model does not consider capacitances. A small fixed drain-source
+resistance is included (to avoid numerical difficulties).
+
+\begin{table}[h!b!p!]
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+ W [m] & L [m] &  Beta [1/V^2]& Vt [V] &  K2 & K5 & DW [m]& DL[m] & \\
+\hline
+  12.e-6&  4.e-6&  .062  &   -4.5   &   .24 &     .61  &   -1.2e-6 &    -.9e-6 &        depletion\\
+  60.e-6&  3.e-6&  .048  &     .1   &  .08  &    .68   &  -1.2e-6  &   -.9e-6  &       enhancement\\
+  12.e-6&  4.e-6&  .0625 &    -.8   &   .21 &     .78  &   -1.2e-6 &    -.9e-6 &        zero\\
+  50.e-6&  8.e-6&  .0299 &     .24  &  1.144&     .7311&   -5.4e-6 &   -4.e-6  &        \\
+  20.e-6&  6.e-6&  .041  &     .8   &  1.144&     .7311&   -2.5e-6 &   -1.5e-6 &        \\
+  30.e-6&  9.e-6&  .025  &   -4.    &   .861&     .878 &   -3.4e-6 &   -1.74e-6&        \\
+  30.e-6&  5.e-6&  .031  &     .6   &  1.5  &     .72  &    0      &   -3.9e-6 &        \\
+  50.e-6&  6.e-6&  .0414 &   -3.8   &   .34 &     .8  &    -1.6e-6 &   -2.e-6  &        depletion\\
+  50.e-6&  5.e-6&  .03   &     .37  &   .23 &     .86 &    -1.6e-6 &   -2.e-6  &        enhancement\\
+  50.e-6&  6.e-6&  .038  &    -.9   &   .23 &     .707&    -1.6e-6 &   -2.e-6  &        zero\\
+  20.e-6&  4.e-6&  .06776&     .5409&   .065&     .71 &     -.8e-6 &    -.2e-6 &        \\
+  20.e-6&  4.e-6&  .06505&     .6209&   .065&     .71 &     -.8e-6 &    -.2e-6 &        \\
+  20.e-6&  4.e-6&  .05365&     .6909&   .03 &     .8  &     -.3e-6 &    -.2e-6 &       \\
+  20.e-6&  4.e-6&  .05365&     .4909&   .03 &     .8  &     -.3e-6 &    -.2e-6 &       \\
+  12.e-6&  4.e-6&  .023  &   -4.5   &   .29 &     .6  &     0      &    0      &        depletion\
+  60.e-6&  3.e-6&  .022  &     .1   &   .11 &     .65 &     0      &    0      &        enhancement\\
+  12.e-6&  4.e-6&  .038  &    -.8   &   .33 &     .6  &     0      &    0     &         zero\\
+  20.e-6&  6.e-6&  .022  &     .8   &  1    &     .66 &     0      &    0     &       \\
+\hline
+\end{tabular}
+\end{table}
+
 </FILE>
 
 <FILE name='NPN' type='XML'>
@@ -3415,7 +3531,9 @@ that use old blocks.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+The ideal OpAmp is a two-port. The left port is fixed to v1=0 and i1=0
+(nullator). At the right port both any voltage v2 and any current i2
+are possible (norator).
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -3457,16 +3575,31 @@ via a control element such as the position of a control valve or the power suppl
   </DESCRIPTION>
 </FILE>
 
-<FILE name='PMOS' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='PMOS' type='LATEX'>
+The PMOS model is a simple model of a p-channel metal-oxide
+semiconductor FET. It differs slightly from the device used in the
+SPICE simulator. For more details please care for H. Spiro.
+
+The model does not consider capacitances. A small fixed drain-source
+resistance is included (to avoid numerical difficulties).
+
+Some typical parameter sets are:
+
+\begin{table}[h!b!p!]
+\begin{tabular}{ |c|c|c|c|c|c|c|c|}
+\hline
+ W [m]&L[m]&Beta [1/V^2]&Vt [V]& K2 & K5&  DW [m]& DL [m]
+\hline
+  50.e-6 &8.e-6 &.0085    &-.15 &   .41  &   .839  & -3.8e-6  & -4.0e-6  
+  20.e-6 &6.e-6 &.0105    &-1.0 &    .41 &    .839 &  -2.5e-6 &  -2.1e-6 
+  30.e-6 &5.e-6 &.0059    &-.3  &   .98  &  1.01   &  0       & -3.9e-6   
+  30.e-6 &5.e-6 &.0152    &-.69 &   .104 &  1.1    &  -.8e-6  &  -.4e-6         
+  30.e-6 &5.e-6 &.0163    &-.69 &   .104 &  1.1    &  -.8e-6  &  -.4e-6         
+  30.e-6 &5.e-6 &.0182    &-.69 &   .086 &  1.06   &  -.1e-6  &  -.6e-6         
+  20.e-6 &6.e-6 &.0074    &-1.  &    .4  &    .59  &   0      &   0           
+\hline
+\end{tabular}
+\end{table}
 </FILE>
 
 <FILE name='PNP' type='XML'>
@@ -4089,7 +4222,11 @@ The blocks of that palette doesn't have regular input ports.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+This is a non-ideal two-pole switch. If the explicit input become
+positive, two pins are connected via a resistor of resistance
+RON). Otherwise, two pins are connected via ROFF resistance.  Note
+that using this block may result in a stiff model, so try to choose
+proper error tolerances.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

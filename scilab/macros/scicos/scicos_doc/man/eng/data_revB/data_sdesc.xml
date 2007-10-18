@@ -25,7 +25,7 @@
 </FILE>
 
 <FILE name='AFFICH_f_intfunc' type='XML'>
-  <SHORT_DESCRIPTION name="AFFICH_f">AFFICH_f</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="AFFICH_f">AFFICH_f</SHORT_DESCRIPTION> 
 </FILE>
 
 <FILE name='AFFICH_m' type='XML'>
@@ -53,7 +53,8 @@
 </FILE>
 
 <FILE name='AUTOMAT' type='XML'>
-  <SHORT_DESCRIPTION name="AUTOMAT">AUTOMAT title</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="AUTOMAT"> A block for building hybrid
+  automata (finite state machine)</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='AUTOMAT_intfunc' type='XML'>
@@ -153,7 +154,7 @@
 </FILE>
 
 <FILE name='CCS' type='XML'>
-  <SHORT_DESCRIPTION name="CCS">CCS title</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="CCS">Controllable Modelica current source</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='CCS_intfunc' type='XML'>
@@ -437,7 +438,7 @@
 </FILE>
 
 <FILE name='CVS' type='XML'>
-  <SHORT_DESCRIPTION name="CVS">CVS title</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="CVS">Controllable Modelica voltage source</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='CVS_intfunc' type='XML'>
@@ -945,7 +946,7 @@
 </FILE>
 
 <FILE name='Gyrator' type='XML'>
-  <SHORT_DESCRIPTION name="Gyrator">Gyrator title</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="Gyrator">Modelica Gyrator</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Gyrator_intfunc' type='XML'>
@@ -1085,7 +1086,7 @@
 </FILE>
 
 <FILE name='IdealTransformer' type='XML'>
-  <SHORT_DESCRIPTION name="IdealTransformer">IdealTransformer title</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="IdealTransformer">Ideal Transformer</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='IdealTransformer_intfunc' type='XML'>
@@ -1441,7 +1442,7 @@
 </FILE>
 
 <FILE name='NMOS' type='XML'>
-  <SHORT_DESCRIPTION name="NMOS">NMOS title</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="NMOS">Simple NMOS Transistor</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='NMOS_intfunc' type='XML'>
@@ -1497,7 +1498,7 @@
 </FILE>
 
 <FILE name='OpAmp' type='XML'>
-  <SHORT_DESCRIPTION name="OpAmp">OpAmp title</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="OpAmp">Ideal opamp (norator-nullator pair)</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='OpAmp_intfunc' type='XML'>
@@ -1529,7 +1530,7 @@
 </FILE>
 
 <FILE name='PMOS' type='XML'>
-  <SHORT_DESCRIPTION name="PMOS">PMOS title</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="PMOS">Simple PMOS Transistor</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='PMOS_intfunc' type='XML'>
@@ -2001,7 +2002,7 @@
 </FILE>
 
 <FILE name='Switch' type='XML'>
-  <SHORT_DESCRIPTION name="Switch">Switch title</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="Switch">Non-ideal electrical switch</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Switch_intfunc' type='XML'>

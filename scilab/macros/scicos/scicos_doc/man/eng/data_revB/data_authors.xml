@@ -152,7 +152,7 @@ INRIA
 
 <FILE name='CCS' type='XML'>
 <AUTHORS>
-
+    <AUTHORS_ITEM label='Masoud Najafi'>
 </AUTHORS>
 </FILE>
 
@@ -431,7 +431,7 @@ INRIA
 
 <FILE name='CVS' type='XML'>
 <AUTHORS>
-
+    <AUTHORS_ITEM label='Masoud Najafi'>
 </AUTHORS>
 </FILE>
 
@@ -899,7 +899,7 @@ INRIA
 
 <FILE name='Gyrator' type='XML'>
   <AUTHORS>
-
+    <AUTHORS_ITEM label='Masoud Najafi'>
   </AUTHORS>
 </FILE>
 
@@ -1031,7 +1031,7 @@ INRIA
 
 <FILE name='IdealTransformer' type='XML'>
 <AUTHORS>
-
+    <AUTHORS_ITEM label='Masoud Najafi'>
 </AUTHORS>
 </FILE>
 
@@ -1388,7 +1388,7 @@ INRIA
 
 <FILE name='NMOS' type='XML'>
   <AUTHORS>
-
+<AUTHORS_ITEM label='www.modelica.org>
   </AUTHORS>
 </FILE>
 
@@ -1436,7 +1436,7 @@ INRIA
 
 <FILE name='OpAmp' type='XML'>
   <AUTHORS>
-
+<AUTHORS_ITEM label='www.modelica.org'>
   </AUTHORS>
 </FILE>
 
@@ -1464,7 +1464,7 @@ INRIA
 
 <FILE name='PMOS' type='XML'>
   <AUTHORS>
-
+<AUTHORS_ITEM label='www.modelica.org'>
   </AUTHORS>
 </FILE>
 
@@ -1894,7 +1894,9 @@ Masoud Najafi, INRIA
 
 <FILE name='Switch' type='XML'>
   <AUTHORS>
-
+    <AUTHORS_ITEM label='Masoud Najafi'>
+    INRIA
+    </AUTHORS_ITEM>
   </AUTHORS>
 </FILE>
 

@@ -129,13 +129,13 @@
     <PARAM_INDENT>
 
     <PARAM_ITEM>
-    <PARAM_NAME>Number (finite-state) Modes</PARAM_NAME>
+    <PARAM_NAME>Number of (finite-state) Modes</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 1.
+      Number of modes in the automation. 
       </SP>
       <SP>
-      Properties : Type 'vec' of size 1.
+      Properties : Type 'vec' of size [1,1].
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -144,10 +144,10 @@
     <PARAM_NAME>Initial Mode</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 2.
+      Initial active mode at the beginning of the simulation. 
       </SP>
       <SP>
-      Properties : Type 'vec' of size 1.
+      Properties : Type 'vec' of size [1,1].
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -156,10 +156,11 @@
     <PARAM_NAME>Number of continuous-time states</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 3.
+      Number of continuous-time states at modes. Note that the number of
+    continuous-time states is the same in all modes.
       </SP>
       <SP>
-      Properties : Type 'vec' of size 1.
+      Properties : Type 'vec' of size [-1,1].
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -168,10 +169,11 @@
     <PARAM_NAME>Continuous-time states intial values</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 4.
+      Initial value of continuous-time states at the begining of the
+    simulation.
       </SP>
       <SP>
-      Properties : Type 'mat' of size [-1,-1].
+      Properties : Type 'vec' of size [-1,1].
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -179,10 +181,19 @@
     <PARAM_ITEM>
     <PARAM_NAME>Xproperties of continuous-time states in each Mode</PARAM_NAME>
     <PARAM_DESCRIPTION>
-      <SP>
-      The parameter description 5.
-      </SP>
-      <SP>
+     <SP>      
+In this field the state types in mode are given.  A state in an idex 1
+    DAE can be either differential state or algenraic state. {\it
+    Xproperties} vector is coded in an M*N matrix, where M is the
+    number of modes and N is the number of states. This matrice
+    indicates whether a continuous-time state is algebraic or
+    differential in each control mode. If in the i-th mode, j-th state
+    is differential, the (i,j)-the lement of the Xproperty matrice
+    should set to "+1", otherwise it should set to "-1". Xproperty can
+    be given as a $1 \times N$ vector if type of states remain the
+    same in  all modes.
+      </SP>    
+      <SP>      
       Properties : Type 'mat' of size [-1,-1].
       </SP>
     </PARAM_DESCRIPTION>
@@ -192,25 +203,23 @@
     <PARAM_NAME>Jump from Mode 1:[..;M_final(Guard=In(1).i);..]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 6.
+The {\it Jump} fields express the mode transition information. Suppose
+that all control modes are labeled from $1$ to $M$. Then, in the field
+corresponding to control mode '$i$', destination modes of mode '$i$'
+are defined in a vector. $j^{th}$ element of this vector gives the
+destination mode when $j^{th}$ jump function ($Jump_{ij}(\dot x,x,u)$)
+becomes positive. For example, if in the field of the mode '$2$', the
+user defines $[1;3;4]$, it means that in mode '$2$', there are three
+active jump functions. When, for example, the third jump function
+becomes positive, a mode transition to mode '$4$' will be activated.
       </SP>
       <SP>
-      Properties : Type 'mat' of size [-1,1].
+      Properties : Type 'vec of size [-1,1].
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
 
     <PARAM_ITEM>
-    <PARAM_NAME>Jump from Mode 2:[..;M_final(Guard=In(2).i);..]</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      The parameter description 7.
-      </SP>
-      <SP>
-      Properties : Type 'mat' of size [-1,1].
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
 
   </PARAM_INDENT>
   </PARAM>
@@ -3335,7 +3344,7 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
     <PARAM_NAME>G1</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 1.
+      Gyration conductance (-i2/v1) .
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
@@ -3347,7 +3356,8 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
     <PARAM_NAME>G2</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 2.
+      Gyration conductance (i1/v2).
+
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
@@ -3675,7 +3685,7 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
     <PARAM_NAME>N</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 1.
+        Turns ratio (N1/N2)
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
@@ -4639,10 +4649,10 @@ should be edited with another text editor.
     <PARAM_NAME>Width [m]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 1.
+      W
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4651,10 +4661,10 @@ should be edited with another text editor.
     <PARAM_NAME>Length [m]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 2.
+      L     
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4663,10 +4673,10 @@ should be edited with another text editor.
     <PARAM_NAME>Transconductance parameter [A/(V*V)]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 3.
+      Beta
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4675,10 +4685,10 @@ should be edited with another text editor.
     <PARAM_NAME>Zero bias threshold voltage [V]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 4.
+      Vt
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4687,10 +4697,10 @@ should be edited with another text editor.
     <PARAM_NAME>Bulk threshold parameter</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 5.
+      K2
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4699,10 +4709,10 @@ should be edited with another text editor.
     <PARAM_NAME>Reduction of pinch-off region</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 6.
+      K5
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4711,10 +4721,10 @@ should be edited with another text editor.
     <PARAM_NAME>Narrowing of channel [m]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 7.
+      dW
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4723,10 +4733,10 @@ should be edited with another text editor.
     <PARAM_NAME>Shortening of channel [m]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 8.
+      dL    
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4735,10 +4745,10 @@ should be edited with another text editor.
     <PARAM_NAME>Drain-Source-Resistance [Ohm]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 9.
+      RDS
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4920,10 +4930,10 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
     <PARAM_NAME>Width [m]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 1.
+      W
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4932,10 +4942,10 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
     <PARAM_NAME>Length [m]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 2.
+      L
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4944,10 +4954,10 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
     <PARAM_NAME>Transconductance parameter [A/(V*V)]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 3.
+      Beta
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4956,10 +4966,10 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
     <PARAM_NAME>Zero bias threshold voltage [V]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 4.
+      Vt
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4968,10 +4978,10 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
     <PARAM_NAME>Bulk threshold parameter</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 5.
+      K2
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4980,10 +4990,10 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
     <PARAM_NAME>Reduction of pinch-off region</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 6.
+      K5
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -4992,10 +5002,10 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
     <PARAM_NAME>Narrowing of channel [m]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 7.
+      dW
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -5004,10 +5014,10 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
     <PARAM_NAME>Shortening of channel [m]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 8.
+      dL
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -5016,10 +5026,10 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
     <PARAM_NAME>Drain-Source-Resistance [Ohm]</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 9.
+      RDS
       </SP>
       <SP>
-      Properties : Type 'vec' of size -1.
+      Properties : Type 'vec' of size 1.
       </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -6438,7 +6448,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
     <PARAM_NAME>Resistance in On state (Ohm)</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 1.
+      Switch resistance when the Switch is closed
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
@@ -6450,7 +6460,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
     <PARAM_NAME>Resistance in Off state (Ohm)</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 2.
+     Switch  resistance when the switch is open
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
