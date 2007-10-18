@@ -35,7 +35,7 @@
 #define FORMAT_SCI_EXTENSION_FILES "exec('%s');" /* "getf('%s');" */
 #define FORMAT_SCE_TST_EXTENSION_FILES "exec('%s');"
 #define FORMAT_SCG_EXTENSION_FILES "xload('%s');"
-#define FORMAT_UNKNOW_EXTENSION_FILES "disp('unknown file type : %s\n');"
+#define FORMAT_UNKNOW_EXTENSION_FILES "disp(gettext('unknown file type : %s\n'));"
 /*-----------------------------------------------------------------------------------*/
 static char *getCommandByFileExtension(char *File,char *FileExtension);
 static char *buildCommand(char *format,char *filename);
