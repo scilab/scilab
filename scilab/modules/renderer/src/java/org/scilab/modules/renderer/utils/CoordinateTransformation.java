@@ -23,12 +23,14 @@ public class CoordinateTransformation {
 
 	/** transformation matrices sizes */
 	private static final int MATRIX_4X4_SIZE = 16;
+	private static final int VIEW_PORT_SIZE = 4;
 	
 	/** Singleton */
 	private static CoordinateTransformation transform;
 	
 	private Matrix4D projectMatrix;
 	private Matrix4D unprojectMatrix;
+	private double[] viewPort;
 	
 	
 	/**
@@ -37,6 +39,7 @@ public class CoordinateTransformation {
 	protected CoordinateTransformation() {
 		projectMatrix = null;
 		unprojectMatrix = null;
+		viewPort = new double[VIEW_PORT_SIZE];
 	}
 	
 	/**
@@ -64,6 +67,7 @@ public class CoordinateTransformation {
 		double[] oglProjectionMatrix = new double[MATRIX_4X4_SIZE];
 		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, oglModelViewMatrix, 0);
 		gl.glGetDoublev(GL.GL_PROJECTION_MATRIX, oglProjectionMatrix, 0);
+		gl.glGetDoublev(GL.GL_VIEWPORT, viewPort, 0);
 		
 		// projection (without viewport is done by v' = P.M.v
 		// where v' is the canvas coordinates and v scene coordinates
@@ -83,6 +87,20 @@ public class CoordinateTransformation {
 	public Vector3D getCanvasCoordinates(GL gl, Vector3D pos) {
 		// I first used gluProject, but it is slower since it will always perform matrices multiplications and inverse.
 		return projectMatrix.mult(pos);
+	}
+	
+	/**
+	 * Perform the same opération as gluProject.
+	 * @param gl unused
+	 * @param pos scene position
+	 * @return Pixel coordinate of the point.
+	 */
+	public Vector3D project(GL gl, Vector3D pos) {
+		Vector3D canvasCoord = getCanvasCoordinates(gl, pos);
+		canvasCoord.setX(viewPort[0] + viewPort[2] * (canvasCoord.getX() + 1.0) / 2.0);
+		canvasCoord.setY(viewPort[1] + viewPort[VIEW_PORT_SIZE - 1] * (canvasCoord.getY() + 1.0) / 2.0);
+		canvasCoord.setZ((canvasCoord.getZ() + 1.0) / 2.0);
+		return canvasCoord;
 	}
 	
 	/**

@@ -12,6 +12,7 @@ package org.scilab.modules.renderer.subwinDrawing;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 import javax.media.opengl.GL;
 
@@ -117,9 +118,11 @@ public class CameraGL extends ObjectGL {
 	public int[] getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ) {
 		GL gl = getGL();
 		Vector3D userPos = new Vector3D(userCoordX, userCoordY, userCoordZ);
-		Vector3D screenCoordinate = CoordinateTransformation.getTransformation(gl).getCanvasCoordinates(gl, userPos);
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		Vector3D screenCoordinate = transform.project(gl, userPos);
+		
+		// get only the pixel coordinates
 		int[] res = {(int) screenCoordinate.getX(), (int) screenCoordinate.getY()};
-                System.err.println("Resultat = [" + res[0] + "," + res[1] + "]");
 		return res;
 	}
 	
