@@ -1988,7 +1988,7 @@
 
 <FILE name='SourceP' type='XML'>
 <SHORT_DESCRIPTION name="SourceP">Source thermohydraulique de pression constante</SHORT_DESCRIPTION>
-</FILE>
+</FILE> 
 
 <FILE name='SourceP_intfunc' type='XML'>
   <SHORT_DESCRIPTION name="SourceP">SourceP</SHORT_DESCRIPTION>

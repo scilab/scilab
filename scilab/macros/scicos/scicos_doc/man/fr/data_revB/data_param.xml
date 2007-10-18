@@ -141,8 +141,8 @@
           continuous-time states is the same in all modes. \\
           Properties : Type 'vec' of size [-1,1].
 
-    \item {\bf Continuous-time states intial values}\\
-          Initial value of continuous-time states at the begining of the
+    \item {\bf Continuous-time states initial values}\\
+          Initial value of continuous-time states at the beginning of the
           simulation.\\
           Properties : Type 'vec' of size [-1,1].
 
@@ -150,10 +150,10 @@
           In this field the state types in mode are given.  A state in an index 1
           DAE can be either differential state or algebraic state. {\it
           Xproperties} vector is coded in an M*N matrix, where M is the
-          number of modes and N is the number of states. This matrice
+          number of modes and N is the number of states. This matrices
           indicates whether a continuous-time state is algebraic or
-          differential in each control mode. If in the i-th mode, j-th state
-          is differential, the (i,j)-th element of the Xproperty matrice
+          differential in each control mode. If in the $i^{th}$ mode, $j^{th}$ state
+          is differential, the (i,j)-th element of the Xproperty matrix
           should set to "+1", otherwise it should set to "-1". Xproperty can
           be given as a 1*N vector if type of states remain the
           same in  all modes.\\
@@ -162,17 +162,17 @@
     \item {\bf Jump from Mode 1:[..;M\_final(Guard=In(1).i);..]}\\
           The {\it Jump} fields express the mode transition information. Suppose
           that all control modes are labeled from 1 to M. Then, in the field
-          corresponding to control mode {\bf 'i'}, destination modes of mode {\bf 'i'}
+          corresponding to control mode {\bf i}, destination modes of mode {\bf i}
           are defined in a vector. {\bf j-th} element of this vector gives the
           destination mode when {\bf j-th} jump function :
           \begin{eqnarray}
            {\rm Jump}_{ij}(\dot x,x,u)
           \end{eqnarray}
-          becomes positive. For example, if in the field of the mode {\bf '2'}, the
-          user defines [1;3;4], it means that in mode {\bf '2'}, there are three
+          becomes positive. For example, if in the field of the mode {\bf 2}, the
+          user defines [1;3;4], it means that in mode {\bf 2}, there are three
           active jump functions. When, for example, the third jump function
-          becomes positive, a mode transition to mode {\bf '4'} will be activated.\\
-          Properties : Type 'vec of size [-1,1].
+          becomes positive, a mode transition to mode {\bf 4} will be activated.\\
+          Properties : Type 'vec' of size [-1,1].
 \end{itemize}
 </FILE>
 
