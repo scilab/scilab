@@ -57,6 +57,7 @@ jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidmoveViewingAreajdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
+jmethodID jintArraygetPixelCoordinatesjdoublejdoublejdoubleID; // cache method id
 
 
 /**
@@ -115,6 +116,8 @@ void moveViewingArea(double transX, double transY, double scaleX, double scaleY)
 void moveAxesBox(double scaleX, double scaleY, double scaleZ, double transX, double transY, double transZ);
 
 void rotateAxesBox(double centerX, double centerY, double centerZ, double alpha, double theta, double reductionRatio);
+
+long * getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ);
 
 
 };

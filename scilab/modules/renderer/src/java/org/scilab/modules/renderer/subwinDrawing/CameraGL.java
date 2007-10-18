@@ -119,6 +119,7 @@ public class CameraGL extends ObjectGL {
 		Vector3D userPos = new Vector3D(userCoordX, userCoordY, userCoordZ);
 		Vector3D screenCoordinate = CoordinateTransformation.getTransformation(gl).getCanvasCoordinates(gl, userPos);
 		int[] res = {(int) screenCoordinate.getX(), (int) screenCoordinate.getY()};
+                System.err.println("Resultat = [" + res[0] + "," + res[1] + "]");
 		return res;
 	}
 	

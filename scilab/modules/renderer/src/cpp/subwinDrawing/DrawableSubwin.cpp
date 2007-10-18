@@ -31,7 +31,7 @@ DrawableSubwin::~DrawableSubwin( void )
   }
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableSubwin::getPixelCoordinates(const double userCoord[3], double pixCoord[2])
+void DrawableSubwin::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
   m_pCamera->getPixelCoordinates(userCoord, pixCoord);
 }

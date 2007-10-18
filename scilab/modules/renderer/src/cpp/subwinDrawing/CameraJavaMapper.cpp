@@ -75,13 +75,14 @@ void CameraJavaMapper::rotateAxesBox(double centerX, double centerY, double cent
                                alpha  , theta, reductionRatio);
 }
 /*-----------------------------------------------------------------------------------*/
-int * CameraJavaMapper::getScreenCoordinates(double userCoordX, double userCoordY, double userCoordZ)
+void CameraJavaMapper::getScreenCoordinates(double userCoordX, double userCoordY, double userCoordZ,
+                                            int pixCoord[2])
 {
-  int * res = new int[2];
-  res[0] = 0;
-  res[1] = 0;
+  long * javaCoords = m_pJavaObject->getPixelCoordinates(userCoordX, userCoordY, userCoordZ);
+  pixCoord[0] = javaCoords[0];
+  pixCoord[1] = javaCoords[1];
 
-  return res;
+  delete[] javaCoords;
 }
 /*-----------------------------------------------------------------------------------*/
 }

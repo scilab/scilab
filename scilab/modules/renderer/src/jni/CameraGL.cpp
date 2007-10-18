@@ -112,6 +112,7 @@ voidsetFigureIndexjintID=NULL;
 voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
 voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 
 
 }
@@ -142,6 +143,7 @@ voidsetFigureIndexjintID=NULL;
 voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
 voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 
 
 }
@@ -352,6 +354,41 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
+
+}
+
+long * CameraGL::getPixelCoordinates (double userCoordX, double userCoordY, double userCoordZ){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->jintArraygetPixelCoordinatesjdoublejdoublejdoubleID == NULL)
+{
+this->jintArraygetPixelCoordinatesjdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "getPixelCoordinates", "(DDD)[I" ) ;
+if (this->jintArraygetPixelCoordinatesjdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "getPixelCoordinates" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+ jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArraygetPixelCoordinatesjdoublejdoublejdoubleID ,userCoordX, userCoordY, userCoordZ);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
 
 }
 

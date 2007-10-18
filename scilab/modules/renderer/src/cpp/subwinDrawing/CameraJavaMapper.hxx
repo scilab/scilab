@@ -44,7 +44,7 @@ public:
   virtual void rotateAxesBox(double centerX, double centerY, double centerZ,
                              double alpha, double theta, double reductionRatio) ;
 
-  virtual int * getScreenCoordinates(double userCoordX, double userCoordY, double userCoordZ);
+  virtual void getScreenCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]);
   /*----------------------------------------------------------------------*/
 
 private:

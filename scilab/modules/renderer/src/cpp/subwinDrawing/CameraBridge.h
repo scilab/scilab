@@ -65,7 +65,7 @@ public:
   /**
    * Convert user coordinates to pixel coordinates.
    */
-  virtual void getPixelCoordinates(const double userCoord[3], double pixCoord[2]) = 0;
+  virtual void getPixelCoordinates(const double userCoord[3], int pixCoord[2]) = 0;
 
   /**
    * Position the view and view area accordingly to previous calls.

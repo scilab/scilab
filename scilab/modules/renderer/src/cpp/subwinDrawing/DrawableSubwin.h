@@ -38,7 +38,7 @@ public:
   /**
    * Convert user coordinates to pixel coordinates.
    */
-  void getPixelCoordinates(const double userCoord[3], double pixCoord[2]);
+  void getPixelCoordinates(const double userCoord[3], int pixCoord[2]);
 
 protected:
 
