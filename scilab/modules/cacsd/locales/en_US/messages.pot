@@ -96,20 +96,13 @@ msgid	"armac: d(:,1) must be of dimension "
 msgstr	""
 #
 # File: macros/augment.sci, line: 37
-# File: macros/augment.sci, line: 109
 # File: macros/augment.sci, line: 170
-# File: macros/augment.sci, line: 238
-msgid	"option ''"
-msgstr	""
-#
-# File: macros/augment.sci, line: 37
-# File: macros/augment.sci, line: 170
-msgid	"'' not allowed, use ''SRT'' "
+msgid	"option ''%s'' not allowed, use ''SRT''"
 msgstr	""
 #
 # File: macros/augment.sci, line: 109
 # File: macros/augment.sci, line: 238
-msgid	"'' not allowed use ''SR'', ''ST'' or ''RT'' "
+msgid	"option ''%s'' not allowed use ''SR'', ''ST'' or ''RT''"
 msgstr	""
 #
 # File: macros/h_norm.sci, line: 73
