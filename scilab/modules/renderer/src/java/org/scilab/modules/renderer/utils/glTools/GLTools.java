@@ -91,10 +91,11 @@ public final class GLTools {
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glPushMatrix();
 		gl.glLoadIdentity();
-		ClipPlane3DManager.changeAllPlanesFrame(gl);
 		
 		// Coordinates have changed, we need to update the transformation matrix.
 		CoordinateTransformation.getTransformation(gl).update(gl);
+		
+		ClipPlane3DManager.changeAllPlanesFrame(gl);
 	}
 	
 	/**
@@ -107,10 +108,12 @@ public final class GLTools {
 		gl.glPopMatrix();
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glPopMatrix();
-		ClipPlane3DManager.popAllPlanes(gl);
 		
 		// Coordinates have changed, we need to update the transformation matrix.
 		CoordinateTransformation.getTransformation(gl).update(gl);
+		
+		ClipPlane3DManager.popAllPlanes(gl);
+		
 	}
 	
 }
