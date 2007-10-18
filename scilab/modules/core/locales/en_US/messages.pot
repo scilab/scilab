@@ -2309,4 +2309,12 @@ msgstr	""
 #, possible-c-format
 msgid	" results may be inaccurate. rcond = %s1"
 msgstr	""
+#
+# File: SCI/etc/scilab.start, line: 34
+msgid	"Startup execution:"
+msgstr	""
+#
+# File: SCI/etc/scilab.start, line: 40
+msgid	"  loading initial environment"
+msgstr	""
 
