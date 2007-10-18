@@ -38,7 +38,7 @@ int sci_loadfftwlibrary __PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		 Scierror(999,"Invalid parameter type.\n");
+		 Scierror(999,_("Invalid parameter type.\n"));
 		 return 0;
 	}
 	return(0);

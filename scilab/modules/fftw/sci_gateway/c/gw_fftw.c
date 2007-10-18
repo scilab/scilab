@@ -32,11 +32,11 @@ int C2F(gw_fftw)()
 
 			if (fftwlibNAME)
 			{
-				Scierror(999,"FFTW Library %s not found.\n",fftwlibNAME);
+				Scierror(999,_("FFTW Library %s not found.\n"),fftwlibNAME);
 			}
 			else
 			{
-				Scierror(999,"FFTW Library not found.\n");
+				Scierror(999,_("FFTW Library not found.\n"));
 			}
 			
 			if (fftwlibNAME) {FREE(fftwlibNAME); fftwlibNAME=NULL;}
