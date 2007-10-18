@@ -45,19 +45,24 @@ BOOL InitializeLocalization(void)
 	char *SCIpath=getSCIpath();
 	char *pathLocales=NULL;
 	char *ret=NULL;
-	pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen(PATHLOCALIZATIONFILE)+1));
 	ret=setlocale(LC_ALL,"");
 	if (ret==NULL){
    		fprintf(stderr, "I18N: Doesn't support your locale.\n" );
 		return FALSE;
 	}
+
 	putEnvLC_ALL(ret);
-	
+	setlanguage(ret);
+
+	pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen(PATHLOCALIZATIONFILE)+1));
+	strcat(pathLocales, SCIpath);
 	strcat(pathLocales, PATHLOCALIZATIONFILE);
 
 	if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL){
 		fprintf(stderr, "Error while binding the domain\n");
 		return FALSE;
+	}else{
+		fprintf(stderr, "Domainfile : %s",pathLocales);
 	}
 
 	if (textdomain(NAMELOCALIZATIONDOMAIN)==NULL){

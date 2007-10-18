@@ -15,14 +15,14 @@ endif
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
+sci_gateway/c/sci_gettext.c \
 sci_gateway/c/sci_setlanguage.c \
 sci_gateway/c/sci_getlanguage.c
 
 #sci_gateway/c/sci_getlanguagealias.c \
 #sci_gateway/c/sci_getlanguagestable.c \
 #sci_gateway/c/sci_addtext.c \
-#sci_gateway/c/sci_removetext.c \
-#sci_gateway/c/sci_gettext.c
+#sci_gateway/c/sci_removetext.c
 
 libscilocalization_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 

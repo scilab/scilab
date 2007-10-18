@@ -9,14 +9,13 @@
 /*-----------------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[]=
 {
-NULL
-};
-
-/* 		{C2F(sci_setlanguage),"setlanguage"},
+ 		{C2F(sci_setlanguage),"setlanguage"},
 		{C2F(sci_getlanguage),"getlanguage"},
-	{C2F(sci_getlanguagealias),"getlanguagealias"},
+		{C2F(sci_gettext),"gettext"}
+};
+			/*	{C2F(sci_getlanguagealias),"getlanguagealias"},
 	{C2F(sci_getlanguagestable),"getlanguagestable"},
-	{C2F(sci_gettext),"gettext"},
+
 	{C2F(sci_addtext),"addtext"},
 	{C2F(sci_removetext),"removetext"}
 */
