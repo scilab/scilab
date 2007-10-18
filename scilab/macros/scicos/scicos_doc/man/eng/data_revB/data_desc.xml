@@ -639,16 +639,258 @@ function using a curve editor.
   </DESCRIPTION>
 </FILE>
 
-<FILE name='C_macros' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='C_macros' type='LATEX'>
+The following C macros are avialable by including the file \htmladdnormallink{scicos\_block4.h}
+{scicos_block4_h.htm} in a C computational function.
+
+\subsection{Inputs/outputs}
+\begin{tabular}{|p{8cm}||p{20cm}|}
+\hline 
+{\bf Macro}&
+{\bf Description}\vspace{0.2cm}\\
+\hline
+\hline 
+GetNin(blk)&
+Get number of regular input port.\vspace{0.2cm}\\
+\hline 
+GetInPortRows(blk,x)&
+Get number of rows (first dimension) of regular input port number
+x.\vspace{0.2cm}\\
+\hline 
+GetInPortCols(blk,x)&
+Get number of columns (second dimension) of regular input port number
+x.\vspace{0.2cm}\\
+\hline 
+GetInPortSize(blk,x,y)&
+Get regular input port size number x. (y=1 for the first dimension,
+y=2 for the second dimension)\vspace{0.2cm}\\
+\hline 
+GetInType(blk,x)&
+Get type of regular input port number x.\vspace{0.2cm}\\
+\hline 
+GetInPortPtrs(blk,x)&
+Get regular input port pointer of port number x.\vspace{0.2cm}\\
+\hline 
+GetRealInPortPtrs(blk,x)&
+Get pointer of real part of regular input port number x.\vspace{0.2cm}\\
+\hline 
+GetImagInPortPtrs(blk,x)&
+Get pointer of imaginary part of regular input port number x.\vspace{0.2cm}\\
+\hline 
+Getint8InPortPtrs(blk,x)&
+Get pointer of int8 typed regular input port number x.\vspace{0.2cm}\\
+\hline 
+Getint16InPortPtrs(blk,x)&
+Get pointer of int16 typed regular input port number x.\vspace{0.2cm}\\
+\hline 
+Getint32InPortPtrs(blk,x)&
+Get pointer of int32 typed regular input port number x.\vspace{0.2cm}\\
+\hline 
+Getuint8InPortPtrs(blk,x)&
+Get pointer of uint8 typed regular input port number x.\vspace{0.2cm}\\
+\hline 
+Getuint16InPortPtrs(blk,x)&
+Get pointer of uint16 typed regular input port number x.\vspace{0.2cm}\\
+\hline 
+Getuint32InPortPtrs(blk,x)&
+Get pointer of uint32 typed regular input port number x.\vspace{0.2cm}\\
+\hline 
+GetSizeOfIn(blk,x)&
+Get the sizeof of the regular input port number x.\vspace{0.2cm}\\
+\hline 
+GetNout(blk)&
+Get number of regular output port.\vspace{0.2cm}\\
+\hline 
+GetOutPortRows(blk,x)&
+Get number of rows (first dimension) of regular output port number
+x.\vspace{0.2cm}\\
+\hline 
+GetOutPortCols(blk,x)&
+Get number of columns (second dimension) of regular output port number
+x.\vspace{0.2cm}\\
+\hline 
+GetOutPortSize(blk,x,y)&
+Get regular output port size number x. (y=1 for the first dimension,
+y=2 for the second dimension)\vspace{0.2cm}\\
+\hline 
+GetOutType(blk,x)&
+Get type of regular output port number x.\vspace{0.2cm}\\
+\hline 
+GetOutPortPtrs(blk,x)&
+Get regular output port pointer of port number x.\vspace{0.2cm}\\
+\hline 
+GetRealOutPortPtrs(blk,x)&
+Get pointer of real part of regular output port number x.\vspace{0.2cm}\\
+\hline 
+GetImagOutPortPtrs(blk,x)&
+Get pointer of imaginary part of regular output port number x.\vspace{0.2cm}\\
+\hline 
+Getint8OutPortPtrs(blk,x)&
+Get pointer of int8 typed regular output port number x.\vspace{0.2cm}\\
+\hline 
+Getint16OutPortPtrs(blk,x)&
+Get pointer of int16 typed regular output port number x.\vspace{0.2cm}\\
+\hline 
+Getint32OutPortPtrs(blk,x)&
+Get pointer of int32 typed regular output port number x.\vspace{0.2cm}\\
+\hline 
+Getuint8OutPortPtrs(blk,x)&
+Get pointer of uint8 typed regular output port number x.\vspace{0.2cm}\\
+\hline 
+Getuint16OutPortPtrs(blk,x)&
+Get pointer of uint16 typed regular output port number x.\vspace{0.2cm}\\
+\hline 
+Getuint32OutPortPtrs(blk,x)&
+Get pointer of uint32 typed regular output port number x.\vspace{0.2cm}\\
+\hline 
+GetSizeOfOut(blk,x)&
+Get the sizeof of the regular output port number x.\vspace{0.2cm}\\
+\hline
+\end{tabular}
+
+\subsection{Events}
+
+\begin{tabular}{|p{8cm}||p{20cm}|}
+\hline 
+{\bf Macro}&
+{\bf Description}\vspace{0.2cm}\\
+\hline
+\hline 
+GetNevIn(blk)&
+Get the input event number.\vspace{0.2cm}\\
+\hline 
+GetNevOut(blk)&
+Get number of event output port.\vspace{0.2cm}\\
+\hline 
+GetNevOutPtrs(blk)&
+Get pointer of event output register.\vspace{0.2cm}\\
+\hline
+\end{tabular}
+
+\subsection{Parameters}
+
+\begin{tabular}{|p{8cm}||p{20cm}|}
+\hline 
+{\bf Macro}&
+{\bf Description}\vspace{0.2cm}\\
+\hline
+\hline 
+GetNipar(blk)&
+Get number of integer parameters.\vspace{0.2cm}\\
+\hline 
+GetIparPtrs(blk)&
+Get pointer of the integer parameters register\vspace{0.2cm}\\
+\hline 
+GetNrpar(blk)&
+Get number of real parameters.\vspace{0.2cm}\\
+\hline 
+GetRparPtrs(blk)&
+Get pointer of the real parameters register.\vspace{0.2cm}\\
+\hline 
+GetNopar(blk)&
+Get number of object parameters.\vspace{0.2cm}\\
+\hline 
+GetOparType(blk,x)&
+Get type of object parameters number x.\vspace{0.2cm}\\
+\hline 
+GetOparSize(blk,x,y)&
+Get size of object parameters number x. (y=1 for the first dimension,
+y=2 for the second dimension)\vspace{0.2cm}\\
+\hline 
+GetOparPtrs(blk,x)&
+Get pointer of object parameters number x.\vspace{0.2cm}\\
+\hline 
+GetRealOparPtrs(blk,x)&
+Get pointer of real object parameters number x.\vspace{0.2cm}\\
+\hline 
+GetImagOparPtrs(blk,x)&
+Get pointer of imaginary part of object parameters number x.\vspace{0.2cm}\\
+\hline 
+Getint8OparPtrs(blk,x)&
+Get pointer of int8 typed object parameters number x.\vspace{0.2cm}\\
+\hline 
+Getint16OparPtrs(blk,x)&
+Get pointer of int16 typed object parameters number x.\vspace{0.2cm}\\
+\hline 
+Getint32OparPtrs(blk,x)&
+Get pointer of int32 typed object parameters number x.\vspace{0.2cm}\\
+\hline 
+Getuint8OparPtrs(blk,x)&
+Get pointer of uint8 typed object parameters number x.\vspace{0.2cm}\\
+\hline 
+Getuint16OparPtrs(blk,x)&
+Get pointer of uint16 typed object parameters number x.\vspace{0.2cm}\\
+\hline 
+Getuint32OparPtrs(blk,x)&
+Get pointer of uint32 typed object parameters number x.\vspace{0.2cm}\\
+\hline 
+GetSizeOfOpar(blk,x)&
+Get the sizeof of the object parameters number x.\vspace{0.2cm}\\
+\hline
+\end{tabular}
+
+\subsection{States}
+
+\begin{tabular}{|p{8cm}||p{20cm}|}
+\hline 
+{\bf Macro}&
+{\bf Description}\vspace{0.2cm}\\
+\hline
+\hline 
+GetNstate(blk)&
+Get number of continuous state.\vspace{0.2cm}\\
+\hline 
+GetState(blk)&
+Get pointer of the continuous state register.\vspace{0.2cm}\\
+\hline 
+GetDstate(blk)&
+Get number of discrete state.\vspace{0.2cm}\\
+\hline 
+GetNdstate(blk)&
+Get pointer of the discrete state register.\vspace{0.2cm}\\
+\hline 
+GetNoz(blk)&
+Get number of object state.\vspace{0.2cm}\\
+\hline 
+GetOzType(blk,x)&
+Get type of object state number x.\vspace{0.2cm}\\
+\hline 
+GetOzSize(blk,x,y)&
+Get size of object state number x. (y=1 for the first dimension, y=2
+for the second dimension)\vspace{0.2cm}\\
+\hline 
+GetOzPtrs(blk,x)&
+Get pointer of object state number x.\vspace{0.2cm}\\
+\hline 
+GetRealOzPtrs(blk,x)&
+Get pointer of real object state number x.\vspace{0.2cm}\\
+\hline 
+GetImagOzPtrs(blk,x)&
+Get pointer of imaginary part of object state number x.\vspace{0.2cm}\\
+\hline 
+Getint8OzPtrs(blk,x)&
+Get pointer of int8 typed object state number x.\vspace{0.2cm}\\
+\hline 
+Getint16OzPtrs(blk,x)&
+Get pointer of int16 typed object state number x.\vspace{0.2cm}\\
+\hline 
+Getint32OzPtrs(blk,x)&
+Get pointer of int32 typed object state number x.\vspace{0.2cm}\\
+\hline 
+Getuint8OzPtrs(blk,x)&
+Get pointer of uint8 typed object state number x.\vspace{0.2cm}\\
+\hline 
+Getuint16OzPtrs(blk,x)&
+Get pointer of uint16 typed object state number x.\vspace{0.2cm}\\
+\hline 
+Getuint32OzPtrs(blk,x)&
+Get pointer of uint32 typed object state number x.\vspace{0.2cm}\\
+\hline 
+GetSizeOfOz(blk,x)&
+Get the sizeof of the object state number x.\vspace{0.2cm}\\
+\hline
+\end{tabular}
+
 </FILE>
 
 <FILE name='C_struct' type='LATEX'>
