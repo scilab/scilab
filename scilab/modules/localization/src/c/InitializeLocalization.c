@@ -42,16 +42,17 @@ BOOL InitializeLocalization(void)
 {
 #ifdef HAVE_LIBINTL_H
 
-	char *pathLocales=getSCIpath();
-
+	char *SCIpath=getSCIpath();
+	char *pathLocales=NULL;
 	char *ret=NULL;
+	pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen(PATHLOCALIZATIONFILE)+1));
 	ret=setlocale(LC_ALL,"");
-    if (ret==NULL){
+	if (ret==NULL){
    		fprintf(stderr, "I18N: Doesn't support your locale.\n" );
 		return FALSE;
 	}
 	putEnvLC_ALL(ret);
-
+	
 	strcat(pathLocales, PATHLOCALIZATIONFILE);
 
 	if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL){
