@@ -63,13 +63,8 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else if ( getWarningMode() )
 			{
-				char *MSG=_("WARNING : %s");
-				if (MSG)
-				{
-					sciprint(MSG,Param);
-					sciprint("\n");
-				}
-				if (MSG) {FREE(MSG);MSG=NULL;}
+				sciprint(_("WARNING : %s"),Param);
+				sciprint("\n");
 			}
 		}
 	}
