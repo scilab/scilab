@@ -16,17 +16,17 @@ void callFunctionFromGateway(gw_generic_table *Tab)
 #ifndef _DEBUG
 	_try
 	{
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+		if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 	}
 	_except (EXCEPTION_EXECUTE_HANDLER)
 	{	
 		ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
 	}
 #else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+	if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 #endif
 #else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+	if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 #endif
 }
 /*-----------------------------------------------------------------------------------*/

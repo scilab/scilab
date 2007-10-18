@@ -11,6 +11,9 @@
 #include "inisci-c.h"
 #include "machine.h"
 #include "scilabDefaults.h"
+#ifdef _MSC_VER
+#define _putenv putenv
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 
 /**
