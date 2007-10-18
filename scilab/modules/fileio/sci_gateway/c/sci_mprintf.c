@@ -19,7 +19,7 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
   CheckLhs(0,1);
   if ( Rhs < 1 ) 
   { 
-     Scierror(999,"Error:\tRhs must be > 0\n");
+     Scierror(999,_("Error:\tRhs must be > 0\n"));
      return 0;
   }
 
@@ -41,7 +41,7 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
 
   if (NumberPercent<Rhs-1)
   {
-	Scierror(999,"mfprintf: Invalid format.\n");
+	Scierror(999,_("mfprintf: Invalid format.\n"));
 	return 0;
   }
 

@@ -10,6 +10,7 @@
 #include "pldstr.h"
 #include "ole.h"
 #include "ripole.h"
+#include "machine.h"
 
 #undef WITHMAIN
 
@@ -126,7 +127,7 @@ int ROLE_parse_parameters( struct ripOLE_object *role, int argc, char **argv )
 						exit(1);
 
 					} else {
-						fprintf(stdout,"Cannot interpret option \"%s\"\n%s\n", argv[i], help);
+						fprintf(stdout,_("Cannot interpret option \"%s\"\n%s\n"), argv[i], help);
 						exit (1);
 						break;
 					}
@@ -135,7 +136,7 @@ int ROLE_parse_parameters( struct ripOLE_object *role, int argc, char **argv )
 					/* else, just dump out the help message*/
 
 				default:
-					fprintf(stdout,"Cannot interpret option \"%s\"\n%s\n", argv[i], help);
+					fprintf(stdout,_("Cannot interpret option \"%s\"\n%s\n"), argv[i], help);
 					exit (1);
 					break;
 
@@ -202,7 +203,7 @@ Changes:
 \------------------------------------------------------------------*/
 int ROLE_report_filename_decoded(char *filename)
 {
-	LOGGER_log("Decoding filename=%s", filename);
+	LOGGER_log(_("Decoding filename=%s"), filename);
 
 	return 0;
 }
@@ -281,7 +282,7 @@ int ROLE_validate(struct ripOLE_object *role )
 	int result = 0;
 
 	if (role->inputfile == NULL) {
-		fprintf(stderr,"ripOLE requires an input file to decode\n");
+		fprintf(stderr,_("ripOLE requires an input file to decode\n"));
 		return -1;
 	}
 
@@ -315,7 +316,7 @@ int main( int argc, char **argv )
 	ole = MALLOC(sizeof(struct OLE_object));
 	if (ole == NULL)
 	{
-		LOGGER_log("ripOLE: Cannot allocate memory for OLE object");
+		LOGGER_log(_("ripOLE: Cannot allocate memory for OLE object"));
 		return 1;
 	}
 
@@ -342,16 +343,16 @@ int main( int argc, char **argv )
 			switch (result) {
 				case OLEER_NO_INPUT_FILE:
 				case OLEER_BAD_INPUT_FILE:
-					LOGGER_log("Cannot locate input file '%s'",role.inputfile);
+					LOGGER_log(_("Cannot locate input file '%s'"),role.inputfile);
 					break;
 				case OLEER_NOT_OLE_FILE:
-					LOGGER_log("File '%s' is not OLE2 format",role.inputfile);
+					LOGGER_log(_("File '%s' is not OLE2 format"),role.inputfile);
 					break;
 				case OLEER_INSANE_OLE_FILE:
-					LOGGER_log("OLE input file '%s' is insane", role.inputfile);
+					LOGGER_log(_("OLE input file '%s' is insane"), role.inputfile);
 					break;
 				default:
-					LOGGER_log("ripOLE: decoding of %s resulted in error %d\n", role.inputfile, result );
+					LOGGER_log(_("ripOLE: decoding of %s resulted in error %d\n"), role.inputfile, result );
 			}
 		}
 		return result;
@@ -375,7 +376,7 @@ int ripole(char *inputfile, char *outputdir, int debug, int verbose)
        /*ole = MALLOC(sizeof(struct OLE_object));
        if (ole == NULL)
        {
-               LOGGER_log("ripOLE: Cannot allocate memory for OLE object");
+               LOGGER_log(_("ripOLE: Cannot allocate memory for OLE object"));
                return 1;
        }*/
 
@@ -395,7 +396,7 @@ int ripole(char *inputfile, char *outputdir, int debug, int verbose)
 
 
        if ((result != 0)&&(verbose==1))
-         LOGGER_log("ripOLE: decoding of %s resulted in error %d\n", inputfile, result );
+         LOGGER_log(_("ripOLE: decoding of %s resulted in error %d\n"), inputfile, result );
 
        /*if (ole != NULL) FREE(ole);*/
        return result;

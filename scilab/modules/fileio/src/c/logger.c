@@ -114,9 +114,9 @@ int LOGGER_set_logfile( char *lfname )
 	if (!_LOGGER_outf)
 	{
 #ifndef _MSC_VER
-		syslog(1,"LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)",lfname,strerror(errno));
+		syslog(1,_("LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"),lfname,strerror(errno));
 #else
-		fprintf(stderr, "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n", lfname, strerror(errno));
+		fprintf(stderr, _("LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"), lfname, strerror(errno));
 #endif
 		result = -1;
 	}
@@ -339,7 +339,7 @@ int LOGGER_log( char *format, ...)
 			fflush(_LOGGER_outf);
 			break;
 		default:
-			fprintf(stdout,"LOGGER-Default: %s%s",output,lineend);
+			fprintf(stdout,_("LOGGER-Default: %s%s"),output,lineend);
 	}
 
 

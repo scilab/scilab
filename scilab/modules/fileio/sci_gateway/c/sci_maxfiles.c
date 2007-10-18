@@ -44,7 +44,7 @@ int C2F(sci_maxfiles) _PARAMS((char *fname,unsigned long fname_len))
 				{
 					if (NewMaxFiles > MAX_FILES)
 					{
-						sciprint("Warning : %d > Maximum of files (%d).\n",NewMaxFiles,MAX_FILES);
+						sciprint(_("Warning : %d > Maximum of files (%d).\n"),NewMaxFiles,MAX_FILES);
 						DoOneLhs();
 					}
 					else
@@ -55,26 +55,26 @@ int C2F(sci_maxfiles) _PARAMS((char *fname,unsigned long fname_len))
 						}
 						else
 						{
-							Scierror(999,"Problem to extend the limit of scilab's files opened.\n",NewMaxFiles);
+							Scierror(999,_("Problem to extend the limit of scilab's files opened.\n"),NewMaxFiles);
 							return 0;
 						}
 					}
 				}
 				else
 				{
-					sciprint("Warning : only extend the limit for the number of scilab's files opened simultaneously.\n");
+					sciprint(_("Warning : only extend the limit for the number of scilab's files opened simultaneously.\n"));
 					DoOneLhs();
 				}
 			}
 			else
 			{
-				Scierror(999,"invalid numbers of parameters.\n");
+				Scierror(999,_("invalid numbers of parameters.\n"));
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"invalid parameter type.\n");
+			Scierror(999,_("invalid parameter type.\n"));
 			return 0;
 		}
 	}

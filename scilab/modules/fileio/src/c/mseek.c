@@ -28,7 +28,7 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 	*err=0;
 	if ( fa == (FILE *) 0 ) 
 	{
-		sciprint("mseek: wrong file logical unit\n");
+		sciprint(_("mseek: wrong file logical unit\n"));
 		*err=1;
 		return;
 	}
@@ -40,7 +40,7 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 		iflag = SEEK_END;
 	else 
 	{
-		sciprint("mseek : flag = %s not recognized\n");
+		sciprint(_("mseek : flag = %s not recognized\n"));
 		*err=1;
 		return;
 	}
@@ -56,7 +56,7 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 #else
 	if (fseek(fa,(long) *offset,iflag) == -1 ) 
 	{
-		sciprint("mseek: error\n");
+		sciprint(_("mseek: error\n"));
 		*err=1;
 	}
 	else 

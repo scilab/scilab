@@ -45,17 +45,17 @@ int C2F(intreadxls)(char *fname, long lfn)
   xls_read(&fd,&pos,&data, &ind, &N, &M,  &ierr);
   if (ierr == 1)
     {
-      Scierror(999,"%s :Not enough memory to allocate results\n",fname);
+      Scierror(999,_("%s :Not enough memory to allocate results\n"),fname);
       return 0;
     }
   else if(ierr == 2)
     {
-      Scierror(999,"%s :Failed to read expected data, may be invalid xls file\n",fname);
+      Scierror(999,_("%s :Failed to read expected data, may be invalid xls file\n"),fname);
       return 0;
     }
   else if(ierr == 3)
     {
-      Scierror(999,"%s :End of File\n",fname);
+      Scierror(999,_("%s :End of File\n"),fname);
       return 0;
     }
 
@@ -134,15 +134,15 @@ int C2F(intopenxls)(char *fname, long lfn)
   result=ripole(IN, TMP, 0, 0);
   if (result != OLE_OK) {
     if (result == OLEER_NO_INPUT_FILE)
-      Scierror(999,"%s :There is no  file %s\n",fname,IN);
+      Scierror(999,_("%s :There is no  file %s\n"),fname,IN);
     else if(result == OLEER_NOT_OLE_FILE || 
 	    result == OLEER_INSANE_OLE_FILE || 
 	    result == OLEER_LOADFAT_BAD_BOUNDARY || 
 	    result == OLEER_MINIFAT_READ_FAIL || 
 	    result == OLEER_PROPERTIES_READ_FAIL)
-      Scierror(999,"%s :file %s is not an ole2 file\n",fname,IN);
+      Scierror(999,_("%s :file %s is not an ole2 file\n"),fname,IN);
     else if(result == -1)
-      Scierror(999,"%s :file %s  cannot be opened\n",fname,IN);
+      Scierror(999,_("%s :file %s  cannot be opened\n"),fname,IN);
 
     return 0;
   }
@@ -151,7 +151,7 @@ int C2F(intopenxls)(char *fname, long lfn)
   C2F(mopen)(&fd, TMP,"rb", &f_swap, &res, &ierr);
   if (ierr != 0)
     {
-      Scierror(999,"%s :There is no xls stream in the ole2 file %s\n",fname,IN);
+      Scierror(999,_("%s :There is no xls stream in the ole2 file %s\n"),fname,IN);
       return 0;
     }
   CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&one,&one,&l2);
@@ -168,27 +168,27 @@ int C2F(intopenxls)(char *fname, long lfn)
    */
   if (ierr == 1)
     {
-      Scierror(999,"%s :Not an ole2 file\n",fname);
+      Scierror(999,_("%s :Not an ole2 file\n"),fname);
       return 0;
     }
   else  if (ierr == 2)
     {
-      Scierror(999,"%s : the file has no Workbook directory\n",fname);
+      Scierror(999,_("%s : the file has no Workbook directory\n"),fname);
       return 0;
     }
  else  if (ierr == 3)
     {
-      Scierror(999,"%s : impossible to alloc enough memory\n",fname);
+      Scierror(999,_("%s : impossible to alloc enough memory\n"),fname);
       return 0;
     }
   else  if (ierr == 4)
     {
-      Scierror(990,"%s : incorrect or corrupted file\n",fname);
+      Scierror(990,_("%s : incorrect or corrupted file\n"),fname);
       return 0;
     }
   else  if (ierr == 3)
     {
-      Scierror(999,"%s : Only BIFF8 file format is handled\n",fname);
+      Scierror(999,_("%s : Only BIFF8 file format is handled\n"),fname);
       return 0;
     }
 

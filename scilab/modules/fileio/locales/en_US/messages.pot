@@ -20,125 +20,6 @@ msgstr	"Project-Id-Version: Scilab - fileio\n"
 msgid	"Wrong number of inputs!"
 msgstr	""
 #
-# File: macros/fullfile.sci, line: 22
-# File: macros/mdelete.sci, line: 26
-# File: macros/mdelete.sci, line: 30
-# File: macros/mdelete.sci, line: 40
-# File: src/c/getdrives.c, line: 46
-msgid	"/"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 6
-# File: src/c/ole.c, line: 1443
-# File: sci_gateway/c/sci_fileio.c, line: 52
-# File: sci_gateway/c/intreadxls.c, line: 151
-msgid	"rb"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 8
-msgid	"constant"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 9
-msgid	"polynomial"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 10
-msgid	"???boolean"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 12
-msgid	"sparse"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 13
-msgid	"boolean sparse"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 14
-msgid	"Matlab sparse"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 15
-msgid	"integergraphic handle"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 17
-msgid	"string"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 18
-msgid	"function"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 19
-msgid	"???function"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 21
-msgid	"library"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 22
-msgid	"listtlistmlist"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 33
-msgid	"Name"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 33
-msgid	"Type"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 33
-msgid	"Size"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 34
-msgid	"Bytes"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 35
-msgid	"---------------------------------------------------------------"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 39
-# File: macros/listvarinfile.sci, line: 81
-# File: macros/listvarinfile.sci, line: 85
-# File: macros/listvarinfile.sci, line: 92
-# File: macros/listvarinfile.sci, line: 95
-# File: macros/listvarinfile.sci, line: 102
-# File: macros/listvarinfile.sci, line: 109
-# File: macros/listvarinfile.sci, line: 117
-# File: macros/listvarinfile.sci, line: 123
-# File: macros/listvarinfile.sci, line: 154
-# File: macros/listvarinfile.sci, line: 156
-# File: macros/listvarinfile.sci, line: 162
-# File: macros/listvarinfile.sci, line: 164
-# File: macros/listvarinfile.sci, line: 166
-# File: macros/listvarinfile.sci, line: 171
-# File: macros/listvarinfile.sci, line: 173
-# File: macros/listvarinfile.sci, line: 175
-# File: macros/listvarinfile.sci, line: 179
-# File: macros/listvarinfile.sci, line: 182
-# File: macros/listvarinfile.sci, line: 188
-# File: macros/listvarinfile.sci, line: 196
-# File: macros/listvarinfile.sci, line: 204
-# File: macros/listvarinfile.sci, line: 214
-# File: macros/listvarinfile.sci, line: 217
-msgid	"il"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 40
-# File: macros/mdelete.sci, line: 20
-msgid	"*"
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 47
-msgid	"pointer"
-msgstr	""
-#
 # File: macros/listvarinfile.sci, line: 49
 msgid	"size implicit"
 msgstr	""
@@ -148,69 +29,19 @@ msgid	"primitive"
 msgstr	""
 #
 # File: macros/listvarinfile.sci, line: 53
-msgid	"Unknown variable type ("
-msgstr	""
-#
-# File: macros/listvarinfile.sci, line: 53
-msgid	"?), maybe wrong or corrupted file"
+msgid	"Unknown variable type (%s?), maybe wrong or corrupted file"
 msgstr	""
 #
 # File: macros/listvarinfile.sci, line: 59
 msgid	" by "
 msgstr	""
 #
-# File: macros/listvarinfile.sci, line: 61
-msgid	"unknown         unknown"
-msgstr	""
-#
 # File: macros/listvarinfile.sci, line: 62
 msgid	".... unknown structure, I''m forced to stop here (bug 2387)"
 msgstr	""
 #
-# File: macros/listvarinfile.sci, line: 88
-# File: macros/listvarinfile.sci, line: 94
-# File: macros/listvarinfile.sci, line: 98
-# File: macros/listvarinfile.sci, line: 105
-# File: macros/listvarinfile.sci, line: 111
-# File: macros/listvarinfile.sci, line: 112
-# File: macros/listvarinfile.sci, line: 119
-# File: macros/listvarinfile.sci, line: 127
-# File: macros/listvarinfile.sci, line: 131
-# File: macros/listvarinfile.sci, line: 135
-# File: macros/listvarinfile.sci, line: 139
-# File: macros/listvarinfile.sci, line: 143
-# File: macros/listvarinfile.sci, line: 147
-# File: macros/listvarinfile.sci, line: 158
-# File: macros/listvarinfile.sci, line: 163
-# File: macros/listvarinfile.sci, line: 165
-# File: macros/listvarinfile.sci, line: 167
-# File: macros/listvarinfile.sci, line: 172
-# File: macros/listvarinfile.sci, line: 174
-# File: macros/listvarinfile.sci, line: 176
-# File: macros/listvarinfile.sci, line: 180
-# File: macros/listvarinfile.sci, line: 184
-# File: macros/listvarinfile.sci, line: 185
-# File: macros/listvarinfile.sci, line: 189
-# File: macros/listvarinfile.sci, line: 197
-# File: macros/listvarinfile.sci, line: 205
-# File: macros/listvarinfile.sci, line: 216
-# File: macros/listvarinfile.sci, line: 220
-# File: src/c/mseek.c, line: 37
-# File: src/c/xls.c, line: 613
-# File: src/c/xls.c, line: 614
-msgid	"cur"
-msgstr	""
-#
 # File: macros/mdelete.sci, line: 21
 msgid	"Wrong type argument, expecting a character string"
-msgstr	""
-#
-# File: macros/mdelete.sci, line: 33
-msgid	"./"
-msgstr	""
-#
-# File: macros/mdelete.sci, line: 40
-msgid	"\");"
 msgstr	""
 #
 # File: src/c/do_xxprintf.c, line: 40
@@ -260,37 +91,6 @@ msgstr	""
 msgid	"mput : format is of length 0\n"
 msgstr	""
 #
-# File: src/c/ripole.c, line: 25
-msgid	"0.2.0 - 12-December-2005 (C) PLDaniels http:/*www.pldaniels.com/"
-	"ripole"
-msgstr	""
-#
-# File: src/c/ripole.c, line: 26
-msgid	"ripOLE -i <OLE2 file> [ -d <directory> ] [--save-unknown-streams] [--"
-	"version|-V] [--verbose|-v] [--debug] [--help|-h]"
-msgstr	""
-
-#
-# File: src/c/ripole.c, line: 110
-msgid	"verbose"
-msgstr	""
-#
-# File: src/c/ripole.c, line: 114
-msgid	"save-unknown-streams"
-msgstr	""
-#
-# File: src/c/ripole.c, line: 117
-msgid	"debug"
-msgstr	""
-#
-# File: src/c/ripole.c, line: 120
-msgid	"version"
-msgstr	""
-#
-# File: src/c/ripole.c, line: 124
-msgid	"help"
-msgstr	""
-#
 # File: src/c/ripole.c, line: 129
 # File: src/c/ripole.c, line: 138
 #, c-format
@@ -337,20 +137,6 @@ msgstr	""
 msgid	"mseek: wrong file logical unit\n"
 msgstr	""
 #
-# File: src/c/mseek.c, line: 35
-# File: src/c/xls.c, line: 75
-# File: src/c/xls.c, line: 97
-# File: src/c/xls.c, line: 289
-# File: src/c/xls.c, line: 659
-# File: src/c/xls.c, line: 690
-# File: sci_gateway/c/sci_fileio.c, line: 329
-msgid	"set"
-msgstr	""
-#
-# File: src/c/mseek.c, line: 39
-msgid	"end"
-msgstr	""
-#
 # File: src/c/mseek.c, line: 43
 #, possible-c-format
 msgid	"mseek : flag = %s not recognized\n"
@@ -392,11 +178,6 @@ msgid	"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%"
 	"s)\n"
 msgstr	""
 #
-# File: src/c/olestream-unwrap.c, line: 248
-#, possible-c-format
-msgid	"unknown-%ld"
-msgstr	""
-#
 # File: src/c/olestream-unwrap.c, line: 281
 #, possible-c-format
 msgid	"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %"
@@ -412,10 +193,6 @@ msgstr	""
 # File: src/c/olestream-unwrap.c, line: 334
 #, possible-c-format
 msgid	"Unable to decode stream with element string '%s'\n"
-msgstr	""
-#
-# File: src/c/olestream-unwrap.h, line: 3
-msgid	"Ole10Native"
 msgstr	""
 #
 # File: src/c/ole.c, line: 100
@@ -451,53 +228,6 @@ msgstr	""
 # File: src/c/ole.c, line: 387
 #, possible-c-format
 msgid	"%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
-msgstr	""
-#
-# File: src/c/ole.c, line: 517
-#, c-format
-msgid	"%02X "
-msgstr	""
-#
-# File: src/c/ole.c, line: 713
-#, c-format
-msgid	"Minor version = %d\n"
-	"DLL version = %d\n"
-	"Byte order = %d\n"
-	"\n"
-	"Sector shift = %d\n"
-	"Sector size  = %d\n"
-	"Mini Sector shift = %d\n"
-	"Mini sector size  = %d\n"
-	"\n"
-	"FAT sector count = %d\n"
-	"First FAT sector = %d\n"
-	"\n"
-	"Maximum ministream size = %d\n"
-	"\n"
-	"First MiniFAT sector = %d\n"
-	"MiniFAT sector count = %d\n"
-	"\n"
-	"First DIF sector = %d\n"
-	"DIF sector count = %d\n"
-	"--------------------------------\n"
-msgstr	""
-#
-# File: src/c/ole.c, line: 753
-#, c-format
-msgid	"FAT[%d] = %d\n"
-msgstr	""
-#
-# File: src/c/ole.c, line: 869
-#, c-format
-msgid	"Element Name = %s\n"
-	"Element type = %d\n"
-	"Element colour = %d\n"
-	"Left Child = %d\n"
-	"Right Child = %d\n"
-	"Root = %d\n"
-	"User flags = %d\n"
-	"Start sector = %d\n"
-	"Stream Size = %d\n"
 msgstr	""
 #
 # File: src/c/ole.c, line: 977
@@ -564,23 +294,6 @@ msgstr	""
 msgid	"%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
 msgstr	""
 #
-# File: src/c/ole.c, line: 1731
-# File: src/c/ole.c, line: 1733
-# File: src/c/ole.c, line: 1888
-# File: sci_gateway/c/intreadxls.c, line: 150
-msgid	"Workbook"
-msgstr	""
-#
-# File: src/c/ole.c, line: 1731
-# File: src/c/ole.c, line: 1888
-msgid	"Book"
-msgstr	""
-#
-# File: src/c/ole.c, line: 1742
-#, possible-c-format
-msgid	"ole-stream.%d"
-msgstr	""
-#
 # File: src/c/logger.c, line: 117
 #, possible-c-format
 msgid	"LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -635,7 +348,6 @@ msgstr	""
 # File: src/c/mget.c, line: 157
 msgid	"mget : format is of length 0\n"
 msgstr	""
-#
 #
 # File: src/c/do_xxscanf.c, line: 123
 msgid	"Error:\tscanf, unclosed [ directive\n"

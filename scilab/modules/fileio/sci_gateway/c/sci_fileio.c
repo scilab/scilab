@@ -72,7 +72,7 @@ int intsmopen(char *fname,unsigned long fname_len)
 			}
 			else if ( err == 2)
 			{
-				Scierror(999,"%s:  Could not open the file!\n",fname);
+				Scierror(999,_("%s:  Could not open the file!\n"),fname);
 				return 0;
 			}
 			else 

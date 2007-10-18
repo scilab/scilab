@@ -120,7 +120,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 			if ( *currentchar1 == '\0') 
 			{
-				Scierror(998,"Error:\tscanf, unclosed [ directive\n");
+				Scierror(998,_("Error:\tscanf, unclosed [ directive\n"));
 				return RET_BUG;
 			}
 
@@ -131,7 +131,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 				if ( *currentchar1 == '\0') 
 				{
-					Scierror(998,"Error:\tscanf unclosed [ directive\n");
+					Scierror(998,_("Error:\tscanf unclosed [ directive\n"));
 					return RET_BUG;
 				}
 			}
@@ -148,7 +148,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 			if ( num_conversion >= MAXSCAN ) 
 			{
-				Scierror(998,"Error:\tscanf too many (> %d) conversion required\n",num_conversion,MAXSCAN);
+				Scierror(998,_("Error:\tscanf too many (> %d) conversion required\n"),num_conversion,MAXSCAN);
 				return RET_BUG;
 			}
 
@@ -159,7 +159,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 				if (width_flag == 1 && width_val > MAX_STR-1 )
 				{
-					Scierror(998,"Error:\tscanf, width field %d is too long (> %d) for %%[ directive\n",width_val,MAX_STR-1);
+					Scierror(998,_("Error:\tscanf, width field %d is too long (> %d) for %%[ directive\n"),width_val,MAX_STR-1);
 					return RET_BUG;
 				}
 
@@ -171,14 +171,14 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 			case 's':
 				if (l_flag + h_flag)
 				{
-					Scierror(998,"Error:\tscanf: bad conversion\n");
+					Scierror(998,_("Error:\tscanf: bad conversion\n"));
 					return RET_BUG;
 				}
 
 				if (width_flag == 0 ) str_width_flag = 1;
 				if (width_flag == 1 && width_val > MAX_STR-1 )
 				{
-					Scierror(998,"Error:\tscanf, width field %d is too long (< %d) for %%s directive\n",width_val,MAX_STR-1);
+					Scierror(998,_("Error:\tscanf, width field %d is too long (< %d) for %%s directive\n"),width_val,MAX_STR-1);
 					return RET_BUG;
 				}
 
@@ -191,7 +191,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 			case 'c':
 				if (l_flag + h_flag)
 				{
-					Scierror(998,"Error:\tscanf: bad conversion\n");
+					Scierror(998,_("Error:\tscanf: bad conversion\n"));
 					return RET_BUG;
 				}
 
@@ -200,7 +200,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 				if (width_flag == 1 && width_val > MAX_STR-1 )
 				{
-					Scierror(998,"Error:\tscanf width field %d is too long (< %d) for %%c directive\n",width_val,MAX_STR-1);
+					Scierror(998,_("Error:\tscanf width field %d is too long (< %d) for %%c directive\n"),width_val,MAX_STR-1);
 					return RET_BUG;
 				}
 
@@ -257,7 +257,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 			case 'e': case 'f': case 'g': case 'E': case 'G':
 				if (h_flag)
 				{
-					Scierror(998,"Error:\tscanf: bad conversion\n");
+					Scierror(998,_("Error:\tscanf: bad conversion\n"));
 					return RET_BUG;
 				}
 				else if (l_flag) 
@@ -273,7 +273,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				break;
 
 			default:
-				Scierror(998,"Error:\tscanf: bad conversion\n");
+				Scierror(998,_("Error:\tscanf: bad conversion\n"));
 				return RET_BUG;
 				break;
 			}
@@ -301,7 +301,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 			if ( f2 == slast )
 			{
-				Scierror(998,"Error:\tscanf, format is too long (> %d)\n",MAX_STR-1);
+				Scierror(998,_("Error:\tscanf, format is too long (> %d)\n"),MAX_STR-1);
 				return RET_BUG;
 			}
 		}

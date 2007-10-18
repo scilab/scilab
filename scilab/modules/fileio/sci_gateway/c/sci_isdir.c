@@ -19,7 +19,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 	
 	if (! (GetType(1) == sci_strings))
 	{
-		Scierror(999,"parameter incorrect must be a string (a file pathname).\n");
+		Scierror(999,_("parameter incorrect must be a string (a file pathname).\n"));
 		return 0;
 	}
 	else
@@ -37,7 +37,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"First parameter incorrect, must be a string (a file pathname).\n");
+			Scierror(999,_("First parameter incorrect, must be a string (a file pathname).\n"));
 			return 0;
 		}
 
@@ -45,7 +45,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		
 		if( strlen(path) > PATH_MAX )
 		{
-			Scierror(999,"The parameter is too long : must be less than %d caracters.\n",PATH_MAX);
+			Scierror(999,_("The parameter is too long : must be less than %d caracters.\n"),PATH_MAX);
 		}
 		
 		/* Crappy workaround because a / was added after SCI & ~ into 

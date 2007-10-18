@@ -46,7 +46,7 @@ int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l))
 	}
 	else 
 	{
-		Scierror(999,"Not a path string");
+		Scierror(999,_("Not a path string"));
 	}
 	return 0;
 }

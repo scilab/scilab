@@ -37,7 +37,7 @@ static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target)
 {
 	(*xxprintf) ((VPTR) target, "\n");
 	(*flush) ((FILE *) target);
-	Scierror(998,"Error:\tprintf: not enough arguments\n");
+	Scierror(998,_("Error:\tprintf: not enough arguments\n"));
 }
 /*-----------------------------------------------------------------------------------*/
 static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *asterisk,int asterisk_count,int conversion_type,double dval )
@@ -246,7 +246,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				{
 					if (target > sprintf_limit)	/* over sprintf_limit */
 					{
-						Scierror(998,"Error:\tsprintf problem, buffer too small\n");
+						Scierror(998,_("Error:\tsprintf problem, buffer too small\n"));
 						return RET_BUG;
 					}
 					else
@@ -350,11 +350,11 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				{
 					if (*tmpcurrentchar == 's')
 					{
-						Scierror(998,"Warning:\tprintf: bad conversion l or h flag mixed with s directive\n");
+						Scierror(998,_("Warning:\tprintf: bad conversion l or h flag mixed with s directive\n"));
 					}
 					else /* 'c' */
 					{
-						Scierror(998,"Warning:\tprintf: bad conversion l or h flag mixed with c directive\n");
+						Scierror(998,_("Warning:\tprintf: bad conversion l or h flag mixed with c directive\n"));
 					}
 				}
 
@@ -412,7 +412,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 		case 'e': case 'g': case 'f': case 'E': case 'G':
 			if (high_flag + low_flag)
 			{
-				Scierror(998,"Error:\tprintf: bad conversion\n");
+				Scierror(998,_("Error:\tprintf: bad conversion\n"));
 				return RET_BUG;
 			}
 			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
@@ -429,12 +429,12 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			break;
 
 		case 'o':
-			Scierror(998,"Error:\tprintf: \"o\" format not allowed\n");
+			Scierror(998,_("Error:\tprintf: \"o\" format not allowed\n"));
 			return RET_BUG;
 			break;
 
 		default:
-			Scierror(998,"Error:\tprintf: bad conversion\n");
+			Scierror(998,_("Error:\tprintf: bad conversion\n"));
 			return RET_BUG;
 		}
 

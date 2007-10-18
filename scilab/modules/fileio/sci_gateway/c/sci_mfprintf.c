@@ -22,7 +22,7 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 	CheckLhs(0,1);
 	if ( Rhs < 2 ) 
 	{ 
-		Scierror(999,"Error:\tRhs must be >= 2\n");
+		Scierror(999,_("Error:\tRhs must be >= 2\n"));
 		return 0;
 	}
 	for (k=3;k<=Rhs;k++) 
@@ -37,7 +37,7 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 
 	if ((f= GetFileOpenedInScilab(param1)) == (FILE *)0)
 	{
-		Scierror(999,"mfprintf:\t wrong file descriptor %d\n",*istk(l1));
+		Scierror(999,_("mfprintf:\t wrong file descriptor %d\n"),*istk(l1));
 		return 0;
 	}
 
@@ -52,7 +52,7 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 
 	if (NumberPercent<Rhs-2)
 	{
-		Scierror(999,"mfprintf: Invalid format.\n");
+		Scierror(999,_("mfprintf: Invalid format.\n"));
 		return 0;
 	}
 

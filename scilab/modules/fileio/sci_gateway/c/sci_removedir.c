@@ -43,7 +43,7 @@ int C2F(sci_removedir) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		Scierror(999,"Invalid parameter , it must be a directory (string).\n");
+		Scierror(999,_("Invalid parameter , it must be a directory (string).\n"));
 	}
 	return 0;
 }

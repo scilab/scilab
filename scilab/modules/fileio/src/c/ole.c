@@ -97,7 +97,7 @@ unsigned char OLE_id_v1[]={ 0x0e, 0x11, 0xfc, 0x0d, 0xd0, 0xcf, 0x11, 0xe0 };
   \------------------------------------------------------------------*/
 int OLE_version( void )
 {
-  fprintf(stderr,"ripOLE: %s\n", LIBOLE_VERSION);
+  fprintf(stderr,_("ripOLE: %s\n"), LIBOLE_VERSION);
 
   return 0;
 }
@@ -247,7 +247,7 @@ int OLE_set_quiet( struct OLE_object *ole, int level )
 int OLE_set_debug( struct OLE_object *ole, int level )
 {
   ole->debug = level;
-  if (ole->debug > 0) LOGGER_log("%s:%d:OLE_set_debug: Debug level set to %d",FL, ole->debug);
+  if (ole->debug > 0) LOGGER_log(_("%s:%d:OLE_set_debug: Debug level set to %d"),FL, ole->debug);
 
   return OLE_OK;
 }
@@ -329,7 +329,7 @@ int OLE_get_block( struct OLE_object *ole, int block_index, unsigned char *block
 {
   if (block_buffer == NULL)
     {
-      LOGGER_log("%s:%d:OLE_get_block:ERROR: Block buffer is NULL",FL);
+      LOGGER_log(_("%s:%d:OLE_get_block:ERROR: Block buffer is NULL"),FL);
       return -1;
     }
 
@@ -343,7 +343,7 @@ int OLE_get_block( struct OLE_object *ole, int block_index, unsigned char *block
       bb = MALLOC(sizeof(unsigned char) *ole->header.sector_size);
       if (bb == NULL)
 	{
-	  LOGGER_log("%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block",FL, ole->header.sector_size);
+	  LOGGER_log(_("%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"),FL, ole->header.sector_size);
 	  return -1;
 	}
 
@@ -358,7 +358,7 @@ int OLE_get_block( struct OLE_object *ole, int block_index, unsigned char *block
       if (fseek_result != 0)
 	{
 	  if (bb != NULL) { FREE(bb); bb = NULL; }
-	  LOGGER_log("%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)",FL, block_index,offset, strerror(errno));
+	  LOGGER_log(_("%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"),FL, block_index,offset, strerror(errno));
 	  return OLEER_GET_BLOCK_SEEK;
 	}
 
@@ -368,7 +368,7 @@ int OLE_get_block( struct OLE_object *ole, int block_index, unsigned char *block
       if (read_count != (int)ole->header.sector_size)
 	{
 	  if (bb != NULL){ FREE(bb); bb = NULL; }
-	  VOLE LOGGER_log("%s:%d:Mismatch in bytes read. Requested %d, got %d\n", FL, ole->header.sector_size, read_count);
+	  VOLE LOGGER_log(_("%s:%d:Mismatch in bytes read. Requested %d, got %d\n"), FL, ole->header.sector_size, read_count);
 	  return OLEER_GET_BLOCK_READ;
 	}
 
@@ -384,7 +384,7 @@ int OLE_get_block( struct OLE_object *ole, int block_index, unsigned char *block
       DOLE LOGGER_log("%s:%d:OLE_get_block:DEBUG: Disposed of temporary bb block",FL);
 
     } else {
-      LOGGER_log("%s:%d:OLE_get_block:ERROR: OLE file is closed\n",FL);
+      LOGGER_log(_("%s:%d:OLE_get_block:ERROR: OLE file is closed\n"),FL);
       return -1;
     }
 
@@ -974,7 +974,7 @@ int OLE_load_FAT( struct OLE_object *ole )
 
 	  if (fat_block == NULL) 
 	    {
-	      LOGGER_log("%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n", FL, ole->header.sector_size);
+	      LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"), FL, ole->header.sector_size);
 	      return -1;
 	      /*			exit(1);*/
 	    }
@@ -1028,7 +1028,7 @@ int OLE_load_FAT( struct OLE_object *ole )
 			getblock_result = OLE_get_block(ole, import_sector, fat_position);
 			if (getblock_result != OLE_OK)
 			  {
-			    LOGGER_log("%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat position = 0x%x",FL, import_sector, fat_position);
+			    LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat position = 0x%x"),FL, import_sector, fat_position);
 			    if (fat_block) FREE(fat_block);
 			    return getblock_result;
 			  }
@@ -1044,19 +1044,19 @@ int OLE_load_FAT( struct OLE_object *ole )
 			/*if (fat_position +ole->header.sector_size > ole->FAT_limit)*/
 			if (fat_position > ole->FAT_limit)
 			  { 
-			    DOLE LOGGER_log("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p",FL,fat_position,ole->FAT_limit); 
+			    DOLE LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"),FL,fat_position,ole->FAT_limit); 
 			    if (fat_block) FREE(fat_block);
 			    return OLEER_MEMORY_OVERFLOW;
 			  }
 			tick++;
 			DIF += LEN_ULONG;
 		      }  else {
-			LOGGER_log("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p",FL,fat_position,ole->FAT_limit); 
+			LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"),FL,fat_position,ole->FAT_limit); 
 			if (fat_block) FREE(fat_block);
 			return OLEER_MEMORY_OVERFLOW;
 		      }
 		  } else {
-		    VOLE LOGGER_log("%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)",FL, import_sector);
+		    VOLE LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"),FL, import_sector);
 		  }
 
 		DOLE LOGGER_log("%s:%d:OLE_load_FAT:DEBUG: DIF = 0x%x",FL,DIF);
@@ -1310,7 +1310,7 @@ unsigned char *OLE_load_minichain( struct OLE_object *ole, int miniFAT_sector_st
       } while ((break_out==0));
 
     } else {
-      LOGGER_log("%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain",FL);
+      LOGGER_log(_("%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"),FL);
     }
 
   DOLE LOGGER_log("%s:%d:OLE_load_minichain:DEBUG: Done. buffer=%p",FL, buffer);
@@ -1388,7 +1388,7 @@ unsigned char *OLE_load_chain( struct OLE_object *ole, int FAT_sector_start )
 	    bp += ole->header.sector_size;
 	    if (bp > bp_limit) {  
 	      if (buffer != NULL) { FREE(buffer); bp = buffer = NULL; }
-	      VOLE LOGGER_log("%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary",FL); 
+	      VOLE LOGGER_log(_("%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"),FL); 
 	      return NULL;
 	    };
 
@@ -1431,7 +1431,7 @@ int OLE_open_file( struct OLE_object *ole, char *fullpath )
 
   stat_result = stat(fullpath, &st);
   if (stat_result != 0) {
-    DOLE LOGGER_log("%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)",FL, fullpath, strerror(errno));
+    DOLE LOGGER_log(_("%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"),FL, fullpath, strerror(errno));
     return OLEER_BAD_INPUT_FILE;
   }
 
@@ -1446,7 +1446,7 @@ int OLE_open_file( struct OLE_object *ole, char *fullpath )
       ole->f = NULL;
       if (ole->quiet == 0)
 	{
-	  LOGGER_log("%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n",FL,fullpath, strerror(errno));
+	  LOGGER_log(_("%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"),FL,fullpath, strerror(errno));
 	}
       return -1;
     } else {
@@ -1488,7 +1488,7 @@ int OLE_open_directory( struct OLE_object *ole, char *directory )
 #endif
 		    if ((result != 0)&&(errno != EEXIST))
 		      {
-			LOGGER_log("%s:%d:OLE_open_directory:ERROR: %s",FL,strerror(errno));
+			LOGGER_log(_("%s:%d:OLE_open_directory:ERROR: %s"),FL,strerror(errno));
 		      } else result = OLE_OK;
 
 		    return result;
@@ -1545,7 +1545,7 @@ int OLE_store_stream( struct OLE_object *ole, char *stream_name, char *directory
   full_path = PLD_dprintf("%s/%s", directory, stream_name);
   if (full_path == NULL)
     {
-      LOGGER_log("%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' and '%s'", FL, directory, stream_name);
+      LOGGER_log(_("%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' and '%s'"), FL, directory, stream_name);
       return -1;
     } else {
       FILE *f;
@@ -1553,7 +1553,7 @@ int OLE_store_stream( struct OLE_object *ole, char *stream_name, char *directory
       f = fopen(full_path,"wb");
       if (f == NULL)
 	{
-	  LOGGER_log("%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)",FL, full_path, strerror(errno));
+	  LOGGER_log(_("%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"),FL, full_path, strerror(errno));
 	  if (full_path) FREE(full_path);
 	  return -1;
 	} else {
@@ -1562,7 +1562,7 @@ int OLE_store_stream( struct OLE_object *ole, char *stream_name, char *directory
 	  written_bytes = fwrite( stream, 1, stream_size, f );
 	  if (written_bytes != stream_size)
 	    {
-	      LOGGER_log("%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s",FL,written_bytes,stream_size,full_path);
+	      LOGGER_log(_("%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"),FL,written_bytes,stream_size,full_path);
 	    }
 	  fclose(f);
 

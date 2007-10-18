@@ -26,7 +26,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	{
 		if (( Info =MALLOC(INFOSIZE*sizeof(char)))==NULL)
 		{
-			Scierror(999,"Error: in function %s, cannot allocate enough memory\n",fname);
+			Scierror(999,_("Error: in function %s, cannot allocate enough memory\n"),fname);
 			return 0;
 		}
 		Info_size = INFOSIZE;
@@ -50,7 +50,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 
 	if (( f = fopen(cstk(l1),"r")) == (FILE *)0) 
 	{
-		Scierror(999,"Error: in function %s, cannot open file %s\n",fname,cstk(l1));
+		Scierror(999,_("Error: in function %s, cannot open file %s\n"),fname,cstk(l1));
 		return 0;
 	}
 	/*** first pass to get colums and rows ***/
@@ -63,7 +63,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		{
 			FREE(Info);Info=NULL;
 			fclose(f);
-			Scierror(999,"Error: in function %s, cannot allocate enough memory\n",fname);
+			Scierror(999,_("Error: in function %s, cannot allocate enough memory\n"),fname);
 			return 0;
 		}
 		vl++;
@@ -73,7 +73,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	{
 		FREE(Info);Info=NULL;
 		fclose(f);
-		Scierror(999,"Error: in function %s, cannot read data in file %s\n",fname,cstk(l1));
+		Scierror(999,_("Error: in function %s, cannot read data in file %s\n"),fname,cstk(l1));
 		return 0;
 	}
 	cols = NumTokens(Info);
@@ -86,7 +86,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		{
 			FREE(Info);Info=NULL;
 			fclose(f);
-			Scierror(999,"Error: in function %s, cannot allocate enough memory\n",fname);
+			Scierror(999,_("Error: in function %s, cannot allocate enough memory\n"),fname);
 			return 0;
 		}
 
@@ -109,7 +109,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		{
 			FREE(Info);Info=NULL;
 			fclose(f);
-			Scierror(999,"Error: in function %s, cannot allocate enough memory\n", fname);
+			Scierror(999,_("Error: in function %s, cannot allocate enough memory\n"), fname);
 			return 0;
 		}
 
@@ -125,7 +125,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 			fclose(f);
 			for (j=0;j<i;j++) FREE(Str[j]);
 			FREE(Str);
-			Scierror(999,"Error: in function %s, cannot allocate enough memory\n",fname);
+			Scierror(999,_("Error: in function %s, cannot allocate enough memory\n"),fname);
 			return 0;
 		}
 
@@ -137,7 +137,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 				fclose(f);
 				for (j=0;j<i;j++) FREE(Str[j]);
 				FREE(Str);
-				Scierror(999,"Error: in function %s, cannot allocate enough memory\n", fname);
+				Scierror(999,_("Error: in function %s, cannot allocate enough memory\n"), fname);
 				return 0;
 			}
 			strcpy(Str[i],Info);

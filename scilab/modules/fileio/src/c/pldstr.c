@@ -496,7 +496,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 	new_buffer = MALLOC( sizeof(char) *size_required);
 	if (new_buffer == NULL)
 	{
-		LOGGER_log("%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform replacement operation", FL, size_required);
+		LOGGER_log(_("%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform replacement operation"), FL, size_required);
 		return replace_details->source;
 	} 
 
@@ -578,7 +578,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 
 		if (size_required < 1 )
 		{
-			LOGGER_log("%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' with '%s'",FL, replace_details->searchfor, replace_details->replacewith);
+			LOGGER_log(_("%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' with '%s'"),FL, replace_details->searchfor, replace_details->replacewith);
 			*new_p='\0';
 			break;
 		}

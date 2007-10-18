@@ -38,7 +38,7 @@ int swap = 0;
 		  MGET_NC(NumType,Fswap); break; \
 	  case 'l': swap = (islittleendian()==1) ? 0:1; \
 	  MGET_NC(NumType,Fswap);  break; \
-	  default: sciprint("mget : %s format not recognized\n",type); \
+	  default: sciprint(_("mget : %s format not recognized\n"),type); \
 	  *ierr=1; return; \
 				} \
 }
@@ -52,7 +52,7 @@ void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr
 
 	*ierr=0;
 	if ((fa = GetFileOpenedInScilab(*fd)) ==NULL) {
-		sciprint("No input file associated to logical unit %d\n",*fd);
+		sciprint(_("No input file associated to logical unit %d\n"),*fd);
 		*ierr=3;
 		return;
 	}
@@ -154,7 +154,7 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	*ierr=0;
 	if ( nc == 0) 
 	{
-		sciprint("mget : format is of length 0\n",type);
+		sciprint(_("mget : format is of length 0\n"),type);
 		*ierr=2;
 		return;
 	}
@@ -163,11 +163,11 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	{
 		swap2 = GetSwapStatus(*fd);
 		mget2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) sciprint("mget : %s format not recognized\n",type);
+		if (*ierr > 0) sciprint(_("mget : %s format not recognized\n"),type);
 	}
 	else 
 	{
-		sciprint("No input file associated to logical unit %d\n",*fd);
+		sciprint(_("No input file associated to logical unit %d\n"),*fd);
 		*ierr=3;
 	}
 }

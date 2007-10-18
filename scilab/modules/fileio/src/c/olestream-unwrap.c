@@ -153,7 +153,7 @@ int OLEUNWRAP_save_stream( struct OLEUNWRAP_object *oleuw, char *fname, char *de
 	full_name = PLD_dprintf("%s/%s", decode_path, fname );
 	if (full_name == NULL)
 	{
-		LOGGER_log("%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from '%s' and '%s'",FL,fname,decode_path);
+		LOGGER_log(_("%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from '%s' and '%s'"),FL,fname,decode_path);
 		return -1;
 	}
 
@@ -165,14 +165,14 @@ int OLEUNWRAP_save_stream( struct OLEUNWRAP_object *oleuw, char *fname, char *de
 		write_count = fwrite( stream, 1, bytes, f );
 		if (write_count != bytes)
 		{
-			LOGGER_log("%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n",FL, write_count, bytes, full_name );
+			LOGGER_log(_("%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"),FL, write_count, bytes, full_name );
 		}
 
 		fclose(f);
 
 
 	} else {
-		LOGGER_log("%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n",FL,full_name, strerror(errno));
+		LOGGER_log(_("%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"),FL,full_name, strerror(errno));
 		result = -1;
 	}
 
@@ -278,7 +278,7 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 		data_start_point = sp;
 	} 
 
-	DUW LOGGER_log("%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n",FL, oh.attach_name, oh.fname_1, oh.fname_2, oh.attach_size );
+	DUW LOGGER_log(_("%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"),FL, oh.attach_name, oh.fname_1, oh.fname_2, oh.attach_size );
 
 
 	/** 20050119:2053:PLD - Added to sanitize 8-bit filenames **/
@@ -290,7 +290,7 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 	result = OLEUNWRAP_save_stream( oleuw, oh.attach_name, decode_path, data_start_point, oh.attach_size );
 	if (result == OLEUW_OK)
 	{
-		if (oleuw->debug > 0) LOGGER_log("%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename",FL);
+		if (oleuw->debug > 0) LOGGER_log(_("%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"),FL);
 		if ((oleuw->verbose > 0)&&(oleuw->filename_report_fn != NULL))
 		{
 			oleuw->filename_report_fn(oh.attach_name);
@@ -331,7 +331,7 @@ int OLEUNWRAP_decodestream( struct OLEUNWRAP_object *oleuw, char *element_string
 		OLEUNWRAP_decode_attachment( oleuw, stream, stream_size, decode_path );
 
 	} else {
-		if (oleuw->debug) LOGGER_log("Unable to decode stream with element string '%s'\n", element_string);
+		if (oleuw->debug) LOGGER_log(_("Unable to decode stream with element string '%s'\n"), element_string);
 		result = OLEUW_STREAM_NOT_DECODED;
 	}
 
