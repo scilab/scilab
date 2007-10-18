@@ -31,7 +31,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	 */
 	public MarkDrawerGL() {
 		super();
-		drawer = null;
+		drawer = new MarkDrawer();
 	}
 	
 	
@@ -50,7 +50,6 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	@Override
 	public void initializeDrawing(int parentFigureIndex) {
 		super.initializeDrawing(parentFigureIndex);
-		drawer = new MarkDrawer();
 		drawer.initializeDrawing(parentFigureIndex);
 	}
 	
@@ -156,7 +155,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	 */
 	@Override
 	public void destroy(int parentFigureIndex) {
-		super.destroy(parentFigureIndex);
 		drawer.destroy(parentFigureIndex);
+		super.destroy(parentFigureIndex);
 	}
 }
