@@ -6557,7 +6557,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
     <PARAM_NAME>Min value</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      An integer spcifying the min value in the range of the scale.
+      An integer specifying the min value in the range of the scale.
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
@@ -6569,7 +6569,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
     <PARAM_NAME>Max value</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      An integer spcifying the max value in the range of the scale.
+      An integer specifying the max value in the range of the scale.
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.

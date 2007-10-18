@@ -1953,9 +1953,9 @@ INRIA
 </FILE>
 
 <FILE name='TKSCALE' type='XML'>
-  <AUTHORS>
-
-  </AUTHORS>
+<AUTHORS_ITEM label='Ramine Nikoukhah'>
+INRIA
+</AUTHORS_ITEM>
 </FILE>
 
 <FILE name='TOWS_c' type='XML'>
