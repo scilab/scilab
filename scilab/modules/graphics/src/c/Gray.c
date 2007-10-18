@@ -305,4 +305,3 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
  
   return (0);
 }
- 
