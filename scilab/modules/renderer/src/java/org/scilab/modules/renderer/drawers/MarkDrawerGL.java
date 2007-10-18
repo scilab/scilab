@@ -140,7 +140,6 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
-		transform.update(gl);
 		
 		for (int i = 0; i < marksPosition.length; i++) {
 			// switch back to the new frame

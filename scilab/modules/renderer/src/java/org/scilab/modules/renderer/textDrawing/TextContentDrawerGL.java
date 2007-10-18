@@ -262,7 +262,6 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		
 		GLTools.usePixelCoordinates(gl);
-		transform.update(gl);
 		
 		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
 		

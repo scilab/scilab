@@ -102,6 +102,9 @@ public class CameraGL extends ObjectGL {
 		gl.glRotated(DEFAULT_ALPHA - alpha, 1.0 , 0.0, 0.0); /* Seems we need to rotate counterclok-wise */
 		gl.glRotated(DEFAULT_THETA - theta, 0.0 , 0.0, 1.0);
 		gl.glTranslated(-centerX, -centerY, -centerZ); // translate origin back
+		
+		// compute the matrix for project and unproject.
+		CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
 	/**

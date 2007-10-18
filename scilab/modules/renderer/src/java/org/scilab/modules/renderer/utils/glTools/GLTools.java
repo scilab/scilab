@@ -9,6 +9,8 @@
 package org.scilab.modules.renderer.utils.glTools;
 
 import javax.media.opengl.GL;
+
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 /**
  * Class containing functions to ease Gl calls
  * @author Jean-Baptiste Silvy Silvy
@@ -90,6 +92,9 @@ public final class GLTools {
 		gl.glPushMatrix();
 		gl.glLoadIdentity();
 		ClipPlane3DManager.changeAllPlanesFrame(gl);
+		
+		// Coordinates have changed, we need to update the transformation matrix.
+		CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
 	/**
@@ -103,6 +108,9 @@ public final class GLTools {
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glPopMatrix();
 		ClipPlane3DManager.popAllPlanes(gl);
+		
+		// Coordinates have changed, we need to update the transformation matrix.
+		CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
 }
