@@ -21,7 +21,7 @@ int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 		sec = (integer) *stk(l1);
 		if (sec <=0)
 		{
-			error_scilab(999,"%s : error time must be &gt;0.",fname);
+			error_scilab(999,"%s : error time must be > 0.",fname);
 			return 0;
 		}
 	

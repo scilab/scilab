@@ -40,7 +40,7 @@ msgstr	""
 # File: sci_gateway/c/sci_xpause.c, line: 24
 # File: sci_gateway/c/sci_sleep.c, line: 21
 #, possible-c-format
-msgid	"%s : error time must be &gt;0."
+msgid	"%s : error time must be > 0."
 msgstr	""
 #
 # File: sci_gateway/c/sci_calendar.c, line: 46
@@ -60,9 +60,7 @@ msgid	"Impossible to get the date..."
 msgstr	""
 #
 # File: sci_gateway/c/sci_getdate.c, line: 73
+# File: sci_gateway/c/sci_getdate.c, line: 129
 msgid	"Parameter must be a ''s'' or a integer."
 msgstr	""
-#
-# File: sci_gateway/c/sci_getdate.c, line: 129
-msgid	"Parameter must be a 's' or a integer."
-msgstr	""
+
