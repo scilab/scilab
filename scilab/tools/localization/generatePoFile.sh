@@ -28,5 +28,5 @@ for LOCALE in $LANGUAGES;do
 	fi
 	POFILE=$PATHTO/scilab.po
 	msgcat -o $POFILE $FILES
-	msgfmt -o $PATHTO/scilab.mo $POFILE
+	msgfmt --statistics -o $PATHTO/scilab.mo $POFILE
 done
