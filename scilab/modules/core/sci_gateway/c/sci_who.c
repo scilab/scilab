@@ -300,14 +300,14 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 
 	 if (Sorted) SortVarsStructByStrings(LVstruct,LlenStructArray);
 
-	 DispVariables(LVstruct,_("your variables are :"),LlenStructArray,memused,memtotal,varused,vartotal);
+	 DispVariables(LVstruct,_("Your variables are :"),LlenStructArray,memused,memtotal,varused,vartotal);
 
 	 C2F(getgstackinfo)(&gmemtotal,&gmemused);
 	 C2F(getgvariablesinfo)(&gvartotal,&gvarused);
 
 	 if (Sorted) SortVarsStructByStrings(GVstruct,GlenStructArray);
 
-	 DispVariables(GVstruct,_("your global variables are :"),GlenStructArray,gmemused,gmemtotal,gvarused,gvartotal);
+	 DispVariables(GVstruct,_("Your global variables are :"),GlenStructArray,gmemused,gmemtotal,gvarused,gvartotal);
 
 	 LhsVar(1) = 0;
 	 C2F(putlhsvar)();

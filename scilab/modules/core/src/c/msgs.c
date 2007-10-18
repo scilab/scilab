@@ -797,7 +797,7 @@ static int msg_37(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_38(integer *n, integer *ierr)
 {
-	message_scilab(_("Your variables are..."));
+	message_scilab(_("Your variables are :"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
