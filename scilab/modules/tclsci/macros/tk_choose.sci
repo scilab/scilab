@@ -9,7 +9,7 @@ if argn(2)<=1
     _title="";
 end
 if argn(2)<=2
-  _button=gettext('menus','Cancel');
+  _button=gettext('Cancel');
 end
 
 

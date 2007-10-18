@@ -37,7 +37,7 @@ function scipad(varargin)
     noguimode=find(sciargs()=="-nogui");
     if (nwnimode <>[] | noguimode <>[]) then
         clear nwnimode noguimode
-        warning(gettext('messages',' Scilab in no window no interactive mode : Scipad unavailable.'));
+        warning(gettext(' Scilab in no window no interactive mode : Scipad unavailable.'));
         abort;
     end;
     clear nwnimode noguimode
@@ -94,12 +94,12 @@ function scipad(varargin)
 //                          //the correspondance between function and file name it is tacitly assumed
 //                          filetoopen=pathconvert(libpath+funname+".sci",%f)
 //                      else
-//                          warning(gettext('messages','Function ')+funname+gettext('messages','is not contained in a loaded library, ') ..
-//                                  +gettext('messages','Scipad doesn't know where to find its source'))
+//                          warning(gettext('Function ')+funname+gettext('is not contained in a loaded library, ') ..
+//                                  +gettext('Scipad doesn't know where to find its source'))
 //                      end
 //                  end
                 else
-                    warning(gettext('messages','Scipad cannot open a ')+typeof(f)+gettext('messages',' object!'))
+                    warning(gettext('Scipad cannot open a ')+typeof(f)+gettext(' object!'))
                 end
                 if validfile then
                     // Tcl handles the filenames correctly with any path separator but on Windows the separator
@@ -120,7 +120,7 @@ function scipad(varargin)
     else 
         // with_tk() is %f
         clearglobal SCIPADISSTARTING
-        error(gettext('errors','Scilab has not been built with Tcl/Tk: Scipad unavailable.'))
+        error(gettext('Scilab has not been built with Tcl/Tk: Scipad unavailable.'))
     end
     clearglobal SCIPADISSTARTING
 endfunction

@@ -7,10 +7,10 @@ function [tree]=sci_clf(tree)
 // V.C.
 
 if rhs<1 then
-  set_infos(gettext("messages","All children will be deleted, no HandleVisibility property in Scilab graphics."),2);
+  set_infos(gettext("All children will be deleted, no HandleVisibility property in Scilab graphics."),2);
 end
 if rhs==1 then
-  set_infos(gettext("messages","All properties will be reset."),2);
+  set_infos(gettext("All properties will be reset."),2);
 end
 
 // f=gcf() inserted if output value stored in a variable

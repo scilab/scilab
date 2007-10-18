@@ -21,7 +21,7 @@ elseif varargin(1)=='position'
 elseif type(varargin(1))==1 then
   xsetech(AXES_T(k)(varargin(1),:))
 else
-  error(gettext("errors","Not yet implemented."))
+  error(gettext("Not yet implemented."))
 end
   
   

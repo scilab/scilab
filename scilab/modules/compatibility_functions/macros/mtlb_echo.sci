@@ -13,9 +13,9 @@ elseif rhs==1 then
   elseif arg1=="off" then
     mode(0);
   else
-    error(gettext("errors","Not yet implemented."));
+    error(gettext("Not yet implemented."));
   end
 else
-    error(gettext("errors","Not yet implemented."));
+    error(gettext("Not yet implemented."));
 end
 endfunction

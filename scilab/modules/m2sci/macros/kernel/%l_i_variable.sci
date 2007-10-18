@@ -7,6 +7,6 @@ elseif field=="type" then
 elseif field=="contents" then
   var.infer.contents=inslist
 else
-  error(gettext("errors","Not yet implemented."))
+  error(gettext("Not yet implemented."))
 end
 endfunction

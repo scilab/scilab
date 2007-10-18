@@ -154,7 +154,7 @@ else
       tree.lhs(1).dims=list(dims(1:2))
       tree.lhs(1).type=var.type
     else
-      error(gettext("errors","Extraction from strings with more than two indexes not implemented."))
+      error(gettext("Extraction from strings with more than two indexes not implemented."))
     end
   else
     tree.out(1).dims=dims

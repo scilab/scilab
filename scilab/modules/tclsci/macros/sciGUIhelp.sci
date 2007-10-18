@@ -44,7 +44,7 @@ function rescan_helps()
   %HELPS=[%helps_modules;%helps];
   nfil=size(%HELPS,1);
   fid=mopen(TMPDIR+'/browsehelp.txt','w');
-  cwindow=progressionbar(gettext('messages','Parsing help files ...'));
+  cwindow=progressionbar(gettext('Parsing help files ...'));
   cdir=pwd();
   for j=1:nfil,
     procFile=pathconvert(%HELPS(j,1),%f);

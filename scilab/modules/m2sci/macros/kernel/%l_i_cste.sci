@@ -6,6 +6,6 @@ if field=="dims" then
 elseif field=="type" then
   cste.infer.type=inslist
 else
-  error(gettext("errors","Not yet implemented."))
+  error(gettext("Not yet implemented."))
 end
 endfunction

@@ -8,7 +8,7 @@ vars=who('get');
 // Verify that all inputs are character strings
 for k=1:size(varargin)
   if type(varargin(k))<>10 then
-    error(gettext("errors","All inputs must be character strings."));
+    error(gettext("All inputs must be character strings."));
   end
 end
 
@@ -35,7 +35,7 @@ while k<=lstsize(varargin)
   
   select varargin(k)
   case "-append"
-    warning(msprintf(gettext("messages","Option %s not implemented: IGNORED."),"-append"));
+    warning(msprintf(gettext("Option %s not implemented: IGNORED."),"-append"));
     k=k+1
   case "-mat"
     bin=%T
@@ -81,7 +81,7 @@ while k<=lstsize(varargin)
     mtlb_opts=[mtlb_opts varargin(k)];
     k=k+1
   case "-regexp"
-    warning(msprintf(gettext("messages","Option %s not implemented: IGNORED."),"-regexp"));
+    warning(msprintf(gettext("Option %s not implemented: IGNORED."),"-regexp"));
     while k<=lstsize(varargin) & and(varargin(k)<>["-mat","-ascii"])
       k=k+1
     end
@@ -101,7 +101,7 @@ end
 // Default version 6 for binary files
 if isempty(version) & bin then
   version=6;
-  warning(gettext("messages","Option -v6 added."));
+  warning(gettext("Option -v6 added."));
 end
 
 // If no name given then all workspace saved
@@ -130,7 +130,7 @@ if bin then
     for k=size(mtlb_names,"*"):-1:1
       execstr("x="+mtlb_names(k))
       if and(type(x)<>[1 4 5 6 10]) then
-	warning(msprintf(gettext("messages","Variable %s can not be saved in level 4 MAT-file: IGNORED."),mtlb_names(k)));
+	warning(msprintf(gettext("Variable %s can not be saved in level 4 MAT-file: IGNORED."),mtlb_names(k)));
 	mtlb_names(k)=[]
       end
     end
@@ -141,7 +141,7 @@ if bin then
     // Clear variable wich are no more used to avoid name conflicts
     for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
       if or(mtlb_names==k) then
-	error(msprintf(gettext("errors","Name conflict: it is not possible to save variable with name %s."),k));
+	error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
       end
     end
     clear("x","k","rhs","lhs","kk","err","bin","version","mtlb_thefile","mtlb_opts");
@@ -196,7 +196,7 @@ if bin then
 	P=5
 	T=1
       else
-	error(gettext("errors","Attempt to write an unsupported data type to an ASCII file."));
+	error(gettext("Attempt to write an unsupported data type to an ASCII file."));
       end
       [m,n]=size(x)
       
@@ -257,7 +257,7 @@ if bin then
     // Clear variable wich are no more used to avoid name conflicts
     for k=["endian","varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
       if or(mtlb_names==k) then
-	error(msprintf(gettext("messages","Name conflict: it is not possible to save variable with name %s."),k))
+	error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k))
       end
     end
     clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
@@ -273,7 +273,7 @@ if bin then
     mclose(mtlb_fd);
   else
     // This part should contain miCOMPRESSED data type handling
-    error(msprintf(gettext("errors","Version %d MAT-file not implemented."),version));
+    error(msprintf(gettext("Version %d MAT-file not implemented."),version));
   end
   
 // ASCII save
@@ -284,7 +284,7 @@ else
   for k=size(mtlb_names,"*"):-1:1
     execstr("x="+mtlb_names(k))
     if and(type(x)<>[1 4 5 6 10]) then
-      warning(msprintf(gettext("messages","Variable %s can not be saved in ASCII file: IGNORED."),mtlb_names(k)));
+      warning(msprintf(gettext("Variable %s can not be saved in ASCII file: IGNORED."),mtlb_names(k)));
       mtlb_names(k)=[]
     end
   end
@@ -304,7 +304,7 @@ else
   // Clear variable wich are no more used to avoid name conflicts
   for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
     if or(mtlb_names==k) then
-      error(msprintf(gettext("errors","Name conflict: it is not possible to save variable with name %s."),k));
+      error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
     end
   end
   clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");

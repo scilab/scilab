@@ -18,7 +18,7 @@ function hout=progressionbar(h,mes)
   if (rhs==0) then
     // Create a new Progression bar with default values
     allok=%t;
-    m1=gettext('messages','Progression bar');
+    m1=gettext('Progression bar');
   end
   
   if ((rhs==1)&(type(h)==1)) then 

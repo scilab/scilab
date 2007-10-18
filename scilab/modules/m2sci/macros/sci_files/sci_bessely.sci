@@ -7,7 +7,7 @@ function  [tree]=sci_bessely(tree)
 // F.B
 
 if size(tree.lhs)==2 then // [y,ierr]=bessely(alpha,x)
-  error(gettext("errors","Bessel function is not implemented for 2 outputs arguments."))
+  error(gettext("Bessel function is not implemented for 2 outputs arguments."))
 end
 
 if rhs==2 then

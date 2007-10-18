@@ -4,20 +4,20 @@
 function [resultat,status] = powershell(varargin)
   Chainecmd = '';
   Chainecmdbegin = 'powershell.exe -nologo -inputformat text -outputformat text -Noninteractive ';
-	resultat = [gettext('messages','error(s) : see help powershell'';''verify your script without scilab.')];
+	resultat = [gettext('error(s) : see help powershell'';''verify your script without scilab.')];
 	status = %f;
 
 	[lhs,rhs]=argn(0);
 	
 	if (~MSDOS) then
-	  resultat = [gettext('messages','only for Windows.')];
+	  resultat = [gettext('only for Windows.')];
 	  return;
 	end
 	
 	try
 	  winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\Microsoft\PowerShell\1','Install');
 	catch
-	  resultat = [gettext('messages','Powershell not found.')];
+	  resultat = [gettext('Powershell not found.')];
 	  return;
 	end
  
@@ -32,10 +32,10 @@ function [resultat,status] = powershell(varargin)
       end
       [resultat,status]=dos(Chainecmd);
     else
-      error(gettext('errors','Argument must be a string.'));
+      error(gettext('Argument must be a string.'));
     end
   else
-    error(gettext('errors','Argument must be a string.'));
+    error(gettext('Argument must be a string.'));
   end
   
 endfunction

@@ -24,7 +24,7 @@ if rhs>0 then
   for krhs=1:rhs
     if type(listvar(krhs))==1 then
         if size(listvar(krhs),1)>1 & size(listvar(krhs),2)>1 then
-	  error(gettext("errors","a.data_bounds must be a vector."));
+	  error(gettext("a.data_bounds must be a vector."));
 	end
         listvar(krhs) = matrix(listvar(krhs),1,-1);
 	
@@ -39,10 +39,10 @@ if rhs>0 then
 	set(gca(),"axes_visible",'on')
       // axis([xmin xmax ymin ymax zmin zmax cmin cmax]) 
       elseif size(listvar(krhs),2)==8 then
-	error(gettext("errors","a.data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax] not implemented."));
+	error(gettext("a.data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax] not implemented."));
       // Unknown column number for listvar(krhs)
       else
-	error(gettext("errors","Bad affectation for a.data_bounds."));
+	error(gettext("Bad affectation for a.data_bounds."));
       end
       
     elseif type(listvar(krhs))==10 then
@@ -61,7 +61,7 @@ if rhs>0 then
 	
 	// axis fill
       elseif listvar(krhs)=="fill" then
-	error(gettext("errors","axis fill not implemented."));
+	error(gettext("axis fill not implemented."));
 
 	// axis ij
       elseif listvar(krhs)=="ij" then
@@ -77,12 +77,12 @@ if rhs>0 then
 	
 	// axis image
       elseif listvar(krhs)=="image" then
-	error(gettext("errors","axis image not implemented."));
+	error(gettext("axis image not implemented."));
 
 	// axis square
       elseif listvar(krhs)=="square" then
 	if a.view=="2d" then
-	  warning(gettext("messages","cube_scaling only used in 3d mode."));
+	  warning(gettext("cube_scaling only used in 3d mode."));
 	end
 	a.cube_scaling="on"
 	
@@ -92,7 +92,7 @@ if rhs>0 then
 	
 	// axis normal
       elseif listvar(krhs)=="normal" then
-	error(gettext("errors","axis normal not implemented."));
+	error(gettext("axis normal not implemented."));
 	
 	// axis on
       elseif listvar(krhs)=="on" then
@@ -117,7 +117,7 @@ if rhs>0 then
 	end
 	// Unknown character string
       else
-	error(msprintf(gettext("errors","axis %s not implemented."),listvar(krhs)));
+	error(msprintf(gettext("axis %s not implemented."),listvar(krhs)));
       end
       
     // axis(axes_handles,...)
@@ -133,7 +133,7 @@ if rhs>0 then
       end
     // Wrong type for listvar(krhs)
     else
-	error(msprintf(gettext("errors","Argument of type %d not implemented."),type(listvar(krhs))));
+	error(msprintf(gettext("Argument of type %d not implemented."),type(listvar(krhs))));
     end
     varargout(1)=matrix(a.data_bounds,1,-1);
   end

@@ -14,6 +14,6 @@ elseif field=="vtype" then
 elseif field=="property" then
   val=m2scitlist.infer.type.property
 else
-  error(msprintf(gettext("errors","Extraction of %s from ''%s'' tlist is not yet implemented."),string(field),typeof(m2scitlist)))
+  error(msprintf(gettext("Extraction of %s from ''%s'' tlist is not yet implemented."),string(field),typeof(m2scitlist)))
 end
 endfunction

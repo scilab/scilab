@@ -74,7 +74,7 @@ elseif typeof(instr) == "funcall" then
       for i=2:size(findvect,2)  
         st = st+ " <-> " + fnamvect(findvect(i)) 
       end
-        st = st + gettext("messages",": The 24 first characters of the files names are equal: ");
+        st = st + gettext(": The 24 first characters of the files names are equal: ");
         warning(st)
     end  
   end

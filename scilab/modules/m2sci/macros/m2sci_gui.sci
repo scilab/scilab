@@ -4,17 +4,17 @@ function res=m2sci_gui()
 // Call m2sci.tcl to get file or path to convert using M2SCI and user defined options
 
 if ~with_tk() then
-  error(gettext("errors","Tcl/Tk interface not defined."));
+  error(gettext("Tcl/Tk interface not defined."));
 end
 
 // Default Options and Values
 TCL_SetVar("ePathToConvert",getcwd());
-TCL_SetVar("eFileToConvert",gettext("menus","&lt;enter a file name&gt;"));
+TCL_SetVar("eFileToConvert",gettext("&lt;enter a file name&gt;"));
 TCL_SetVar("eResDirName",getcwd());
-TCL_SetVar("rRecMode",gettext("messages","NO"));
-TCL_SetVar("rOnlyDouble",gettext("messages","NO"));
+TCL_SetVar("rRecMode",gettext("NO"));
+TCL_SetVar("rOnlyDouble",gettext("NO"));
 TCL_SetVar("rVerbMode","3");
-TCL_SetVar("rPrettyPrint",gettext("messages","NO"));
+TCL_SetVar("rPrettyPrint",gettext("NO"));
 TCL_SetVar("rFlagWhatToConvert","0");
 TCL_SetVar("rToDo","0");
 TCL_SetVar("rWindowKilled","0");
@@ -40,17 +40,17 @@ if rToDo=="1" then
   FlagWhatToConvert=TCL_GetVar("rFlagWhatToConvert");
   
   // Modify Tcl/Tk values
-  if RecMode==gettext("messages","YES") then
+  if RecMode==gettext("YES") then
     RecMode=%T
   else  
     RecMode=%F
   end    
-  if OnlyDouble==gettext("messages","YES") then
+  if OnlyDouble==gettext("YES") then
     OnlyDouble=%T
   else
     OnlyDouble=%F
   end    
-  if PrettyPrint==gettext("messages","YES") then
+  if PrettyPrint==gettext("YES") then
     PrettyPrint=%T
   else
     PrettyPrint=%F

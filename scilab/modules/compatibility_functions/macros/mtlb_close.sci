@@ -5,7 +5,7 @@ function [status]=mtlb_close(h)
 
 rhs=argn(2)
 
-warning(gettext("messages","mtlb_close: status ignored."));
+warning(gettext("mtlb_close: status ignored."));
 status=1
 
 // close
@@ -38,10 +38,10 @@ elseif rhs==1 then
       scf(cf_save)
     end
   else // Unknown type for h
-    error(gettext("errors","Not implemented."))
+    error(gettext("Not implemented."))
   end
 else // close('all','hidden')
-  warning(gettext("messages","mtlb_close: all windows deleted."));
+  warning(gettext("mtlb_close: all windows deleted."));
   xdel(winsid())
 end
 endfunction

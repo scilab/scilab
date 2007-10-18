@@ -7,6 +7,6 @@ elseif field=="property" then
 elseif field=="contents" then
   var.infer.contents=cste
 else
-  error(gettext("errors","Not yet implemented."))
+  error(gettext("Not yet implemented."))
 end
 endfunction

@@ -14,7 +14,7 @@ tree.lhs(1).dims=A.dims
 tree.lhs(1).type=Type(Double,Unknown)
 if size(tree.lhs)==2
   tree.lhs(2)=null()
-  set_infos(gettext("messages","second output argument will be ignored."),2);
+  set_infos(gettext("second output argument will be ignored."),2);
 end
 endfunction
 

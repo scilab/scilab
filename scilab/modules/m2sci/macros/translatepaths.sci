@@ -44,17 +44,17 @@ end
 
 // Create a logfile and a whatis file
 Paths=stripblanks(Paths)
-[tempfd,ierr]=file('open',pathconvert(TMPDIR)+gettext("messages","unitfile.dat"),"old");
+[tempfd,ierr]=file('open',pathconvert(TMPDIR)+gettext("unitfile.dat"),"old");
 
 if ierr==0 then
-  load(pathconvert(TMPDIR)+gettext("messages","unitfile.dat"))
+  load(pathconvert(TMPDIR)+gettext("unitfile.dat"))
   file('close',whsfil_unit);
   file('close',tempfd);
-  mdelete(pathconvert(TMPDIR)+gettext("messages","unitfile.dat"))
+  mdelete(pathconvert(TMPDIR)+gettext("unitfile.dat"))
 end
 
 whsfil_unit=file('open',res_path+'whatis','unknown')
-save(pathconvert(TMPDIR)+gettext("messages","unitfile.dat"),whsfil_unit)
+save(pathconvert(TMPDIR)+gettext("unitfile.dat"),whsfil_unit)
 // Close paths with a / or a \
 for k=1:size(Paths,'*')
   if part(Paths(k),length(Paths(k)))<>sep then 
@@ -85,7 +85,7 @@ end
 
 for k1=1:size(mfiles,1)
     mpath=mfiles(k1)
-    disp(gettext("messages","********************lst_funcall**********************"))
+    disp(gettext("********************lst_funcall**********************"))
    disp(mpath)
  filefuncallname($+1)=lst_funcall(mpath,fnamvect)
 end
@@ -177,7 +177,7 @@ end
 
 // File closing
 file('close',whsfil_unit);
-mdelete(pathconvert(TMPDIR)+gettext("messages","unitfile.dat"))
+mdelete(pathconvert(TMPDIR)+gettext("unitfile.dat"))
 
 // create builder.sce and loader.sce files
 // get the directory name where the Scilab functions are written 

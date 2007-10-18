@@ -30,7 +30,7 @@ end
 elseif A.vtype==Unknown then
   tree.lhs(1).dims=list(-1,-1);
 else
-  error(msprintf(gettext("errors","%s is not implemented."),string(A.vtype)))
+  error(msprintf(gettext("%s is not implemented."),string(A.vtype)))
 end
 elseif rhs>1 //char(t1,t2,t3,...)
   lhs_dims1=0;

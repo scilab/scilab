@@ -369,7 +369,7 @@ end
 // Create Scilab while
 sci_clause=tlist(["for","expression","statements"],sci_expr,sci_instr)
 else
-  error(msprintf(gettext("errors","unknown clause type: %s."),typeof(mtlb_clause)))
+  error(msprintf(gettext("unknown clause type: %s."),typeof(mtlb_clause)))
 end
 m2sci_to_insert_b=to_insert
 if m2sci_to_insert_b<>list() then

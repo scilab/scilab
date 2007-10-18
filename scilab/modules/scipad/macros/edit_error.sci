@@ -3,20 +3,20 @@ function answ=edit_error(clearerror)
   [str,n,line,func]=lasterror(clearerror)
   if n>0 then
     if func=="" then
-      answ=gettext('messages','the last error did not occur inside a library function.');
+      answ=gettext('the last error did not occur inside a library function.');
     else
       p=get_function_path(func);
       if p<>[] then
         scipad(p);
         TCL_EvalStr("blinkline "+string(line)+" "+func,"scipad");
-        answ=gettext('messages','opening file ')+p+gettext('messages',' on line ')+string(line)+gettext('messages','the source file of the function ')+func;
+        answ=gettext('opening file ')+p+gettext(' on line ')+string(line)+gettext('the source file of the function ')+func;
       else
-        answ=gettext('messages','the source file of the function ')+func+ ..
-              gettext('messages',' was not found in any library path');
+        answ=gettext('the source file of the function ')+func+ ..
+              gettext(' was not found in any library path');
       end
     end
   else
-    answ=gettext('messages',' was not found in any library path');
+    answ=gettext(' was not found in any library path');
   end
 endfunction
 

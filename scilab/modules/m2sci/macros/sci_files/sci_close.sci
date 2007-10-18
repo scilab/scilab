@@ -10,7 +10,7 @@ function [tree]=sci_close(tree)
 global %graphicswindow
 
 if tree.lhs(1).name<>"ans" then
-  no_equiv(msprintf(gettext("messages","%s will be ignored at run time."),tree.lhs(1).name))
+  no_equiv(msprintf(gettext("%s will be ignored at run time."),tree.lhs(1).name))
 end
 
 // close
@@ -43,7 +43,7 @@ elseif rhs==1 then
     tree.name="mtlb_close"
   end
 else // close('all','hidden')
-  set_infos(gettext("messages","All windows will be deleted."),2);
+  set_infos(gettext("All windows will be deleted."),2);
   tree.name="xdel"
   tree.rhs(1)=Funcall("winsid",1,list(),list())
   tree.rhs(2)=null()

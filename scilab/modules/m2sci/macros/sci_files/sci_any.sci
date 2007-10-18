@@ -21,7 +21,7 @@ if rhs==1 then
     A = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
   elseif ~is_real(A) then
     newA = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
-    repl_poss(newA,A,A,gettext("messages","is Real."))
+    repl_poss(newA,A,A,gettext("is Real."))
     A=newA
   end
   tree.rhs=Rhs(A)
@@ -63,7 +63,7 @@ else
     A = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
   elseif ~is_real(A) then
     newA = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
-    repl_poss(newA,A,A,gettext("messages","is Real."))
+    repl_poss(newA,A,A,gettext("is Real."))
     A=newA
   end
   tree.rhs=Rhs(A,dim)

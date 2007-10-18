@@ -1,7 +1,7 @@
 function mtlb_load(thefile,opt)
 //loads matlab 4.x  binary (.mat) or ascii files
 //
-warning(msprintf(gettext("messages","This function is obsolete, use %s instead."),"loadmatfile"));
+warning(msprintf(gettext("This function is obsolete, use %s instead."),"loadmatfile"));
 
 l_flags=['dl','fl','ll','sl','uls','uc']
 b_flags=['db','fb','lb','sb','ubs','uc']
@@ -12,7 +12,7 @@ if rhs==2 then
   if convstr(opt)=='-ascii' then
     bin=%f
   else
-    error(msprintf(gettext("errors","%s: Unknown option."),opt));
+    error(msprintf(gettext("%s: Unknown option."),opt));
   end
 else
   k=strindex(thefile,'.')
@@ -30,7 +30,7 @@ end
 
 if bin then
   [fd,err]=mopen(thefile,'rb',0)
-  if err<>0 then error(msprintf(gettext("errors","File %s cannot be opened for reading."),thefile)),end
+  if err<>0 then error(msprintf(gettext("File %s cannot be opened for reading."),thefile)),end
 
   vars=list() //list to store loaded variables
   names=[]  // vector of variables names
@@ -45,7 +45,7 @@ if bin then
       mopt=mget(1,'uib',fd)
 
       if mopt>5000 then
-	Error(gettext("errors","Incorrect file."))
+	Error(gettext("Incorrect file."))
       end
     end
     MOPT=[]
@@ -62,26 +62,26 @@ if bin then
       fl='uib'
       flag=b_flags(MOPT(3)+1)
     case 2
-      Error(gettext("errors","VAX D-float not handled."))
+      Error(gettext("VAX D-float not handled."))
     case 3
-      Error(gettext("errors","VAX G-float not handled."))
+      Error(gettext("VAX G-float not handled."))
     case 4
-      Error(gettext("errors","Cray encoding not handled."))
+      Error(gettext("Cray encoding not handled."))
     else
-      Error(gettext("errors","Unknown binary number format."))
+      Error(gettext("Unknown binary number format."))
     end
     t=mget(4,fl,fd);
-    if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
+    if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
     m=t(1);n=t(2);it=t(3),namelen=t(4)
     name=mget(namelen,"c",fd);
-    if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
+    if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
     name=ascii(name(1:namelen-1))
     names=[names name]
     
     
     if MOPT(4)==0 then  // regular matrix
       v=mget((it+1)*m*n,flag,fd);
-      if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
+      if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
       if it==0 then
 	mat=matrix(v,m,n);
       elseif it==1
@@ -89,7 +89,7 @@ if bin then
       end
     elseif MOPT(4)==1 // vector of strings
       v=mget(m*n,flag,fd);
-      if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
+      if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
       mat=matrix(v(1:m*n),m,n);
       w=mat;
       mat=[];
@@ -99,11 +99,11 @@ if bin then
     elseif MOPT(4)==2 //sparse matrix
       //sparse
       Nnz=m-1;
-      it=n-3;if it<>0&it<>1 then Error(gettext("errors","Unknown sparse type.")),end
+      it=n-3;if it<>0&it<>1 then Error(gettext("Unknown sparse type.")),end
       ir=mget(Nnz,flag,fd);m=mget(1,"d",fd);
       jc=mget(Nnz,flag,fd);n=mget(1,"d",fd);
       v=mget(Nnz,flag,fd);junk=mget(1,"d",fd);
-      if meof(fd)<>0 then Error(gettext("errors","Incorrect file.")),end
+      if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
       if it==1 then
 	//complex
 	v=v+%i*mget(Nnz,flag,fd);

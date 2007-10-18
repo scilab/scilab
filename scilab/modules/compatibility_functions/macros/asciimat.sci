@@ -16,7 +16,7 @@ if size(size(x),"*")<=2 then
       end
       nbcol= size(ytemp,'*')*size(x,2)/size(x,'*') 
       if nbcol-floor(nbcol)<>0 then
-        error(gettext("errors","Input argument: inconsistent size."));
+        error(gettext("Input argument: inconsistent size."));
       end
       y=[]
       for i=1:size(x,1)
@@ -29,7 +29,7 @@ if size(size(x),"*")<=2 then
       y(k)=ascii(x(k,:))
     end
   else
-    error(gettext("errors","Not yet implemented."));
+    error(gettext("Not yet implemented."));
   end
 elseif size(size(x),"*")>2 then
   if typeof(x)=="hypermat" then
@@ -49,6 +49,6 @@ elseif size(size(x),"*")>2 then
     end
   end
 else
-  error(gettext("errors","Not yet implemented."));
+  error(gettext("Not yet implemented."));
 end
 endfunction

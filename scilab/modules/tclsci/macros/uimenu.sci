@@ -15,7 +15,7 @@ function h=uimenu(varargin)
       else
         [bOK,k]=TestParamUiMenu(varargin,2);
         if ( bOK == %F) then
-          error(gettext('errors','Incorrect property ')+string(varargin(k)),999);
+          error(gettext('Incorrect property ')+string(varargin(k)),999);
         else
             hPar=varargin(1);
             h=CreateUiMenu(hPar);

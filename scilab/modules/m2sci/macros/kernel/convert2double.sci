@@ -27,7 +27,7 @@ else
     lhslist($+1)=Variable("ans",Infer(A.dims,Type(Double,Unknown)))
     dble=Funcall("mtlb_double",1,Rhs(A),lhslist)
   else
-    error(msprintf(gettext("errors","%s is not yet implemented."),string(A.vtype)))
+    error(msprintf(gettext("%s is not yet implemented."),string(A.vtype)))
   end
 end
 endfunction

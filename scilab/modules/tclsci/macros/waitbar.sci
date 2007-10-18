@@ -19,7 +19,7 @@ function hout=waitbar(x,mes,h)
   doerror=%t;
 
   if (rhs==0) then
-    m1=gettext('errors','This is an example');
+    m1=gettext('This is an example');
     doerror=%f;
   end
 

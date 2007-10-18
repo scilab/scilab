@@ -4,7 +4,7 @@ function [varargout] = getoperands(op_tree)
 varargout=list()
 
 if typeof(op_tree)<>"operation" then
-  error(gettext("errors","input argument must be an ''operation'' tlist."))
+  error(gettext("input argument must be an ''operation'' tlist."))
 end
 
 opnb=size(op_tree.operands)

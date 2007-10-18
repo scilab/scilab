@@ -16,7 +16,7 @@ function answer=buttondialog(mes,bt,icon)
   doerror=%t;
   answer=0;
   if (rhs==0) then
-    mes=gettext('messages','This is an example'),
+    mes=gettext('This is an example'),
     bt="quit"
     rhs=2;
   end

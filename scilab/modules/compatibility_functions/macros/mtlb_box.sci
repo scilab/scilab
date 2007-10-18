@@ -26,7 +26,7 @@ elseif rhs==1 then
 elseif rhs==2 then // box(axes_handle,...)
   axes_handle.box=convstr(val,"l")
 else
-  error(gettext("errors","Not yet implemented."));
+  error(gettext("Not yet implemented."));
 end
 
 endfunction

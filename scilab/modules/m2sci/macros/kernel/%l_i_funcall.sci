@@ -7,6 +7,6 @@ if field=="dims" then
 elseif field=="type" then
   funcall.lhs(1).type=inslist
 else
-  error(gettext("errors","Not yet implemented."))
+  error(gettext("Not yet implemented."))
 end
 endfunction

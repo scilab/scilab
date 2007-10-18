@@ -33,6 +33,6 @@ case "sparse"
 case "lti"
    r=typeof(OBJ)=="state-space"
 else
-  error(msprintf(gettext("errors","Unhandled class: %s."),class));
+  error(msprintf(gettext("Unhandled class: %s."),class));
 end
 endfunction

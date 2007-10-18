@@ -18,31 +18,31 @@ function listcal = calendar(varargin)
       M=varargin(2);
       if (size(Y) == [1,1]) & (size(M) == [1,1]) then
       else
-        error(gettext('errors','Y and M must be scalars.'));
+        error(gettext('Y and M must be scalars.'));
       end
-      if (M < 1) | (M > 12) then error(gettext('errors','M must contain values between 1 and 12.'));,end
+      if (M < 1) | (M > 12) then error(gettext('M must contain values between 1 and 12.'));,end
       c=[Y,M,1];
     break
   else
-     error(gettext('errors','Number of parameters incorrect.'));
+     error(gettext('Number of parameters incorrect.'));
   end
 
   
-  mths = [gettext('messages','time_message_17'); ..
-	gettext('messages','time_message_18'); ..
-	gettext('messages','time_message_19'); ..
-	gettext('messages','time_message_20'); ..
-	gettext('messages','time_message_21'); ..
-	gettext('messages','time_message_22'); ..
-	gettext('messages','time_message_23'); ..
-	gettext('messages','time_message_24'); ..
-	gettext('messages','time_message_25'); ..
-	gettext('messages','time_message_26'); ..
-	gettext('messages','time_message_27'); ..
-	gettext('messages','time_message_28')];
+  mths = [gettext('time_message_17'); ..
+	gettext('time_message_18'); ..
+	gettext('time_message_19'); ..
+	gettext('time_message_20'); ..
+	gettext('time_message_21'); ..
+	gettext('time_message_22'); ..
+	gettext('time_message_23'); ..
+	gettext('time_message_24'); ..
+	gettext('time_message_25'); ..
+	gettext('time_message_26'); ..
+	gettext('time_message_27'); ..
+	gettext('time_message_28')];
           
   mth = mths(c(:,2),:);
   cal=Calendar(c(2),c(1));
-  listcal=list(sprintf('%s %d',mth,c(1)),gettext('messages','time_message_29'),cal);
+  listcal=list(sprintf('%s %d',mth,c(1)),gettext('time_message_29'),cal);
 endfunction
 //------------------------------------------------------------------------

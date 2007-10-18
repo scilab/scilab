@@ -4,7 +4,7 @@ function c=mtlb_cond(A,flag)
 // F.B.
 
 if A == [] then c = 0, return, end
-if size(A,1) <> size(A,2) &  flag <> 2 then error(gettext("errors","Matrix must be square.")),end
+if size(A,1) <> size(A,2) &  flag <> 2 then error(gettext("Matrix must be square.")),end
 
 if flag == 1
   c = norm(A,1)*norm(inv(A),1);
@@ -24,6 +24,6 @@ elseif flag == "fro"
 elseif flag == "inf"
   c = norm(A,'inf')*norm(inv(A),'inf');
 else
-  error(gettext("errors","The second input argument must be 1, 2,''fro'' or ''inf''."));  
+  error(gettext("The second input argument must be 1, 2,''fro'' or ''inf''."));  
 end
 endfunction

@@ -6,8 +6,8 @@ function y=mstr2sci(x)
 // This function solves this problem by converting a string into a character matrix
 // Ex : 'string' is converted into ['s' 't' 'r' 'i' 'n' 'g']
 
-if type(x)==17 then error(gettext("errors","Not written for hypermatrices.")),return,end
-if type(x)<>10 then error(gettext("errors","Input argument must be a caracter string matrix.")),return,end
+if type(x)==17 then error(gettext("Not written for hypermatrices.")),return,end
+if type(x)<>10 then error(gettext("Input argument must be a caracter string matrix.")),return,end
 nr=size(x,1);
 nc=max(length(x));
 y=[]

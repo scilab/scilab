@@ -6,7 +6,7 @@ function [tree]=sci_display(tree)
 // Ouput: tree = Scilab equivalent for tree
 // V.C.
 
-set_infos(gettext("messages","Verify that overloading functions have been written for inputs in display()."),2);
+set_infos(gettext("Verify that overloading functions have been written for inputs in display()."),2);
 tree.name="disp"
 
 endfunction

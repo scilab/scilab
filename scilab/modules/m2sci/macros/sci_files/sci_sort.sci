@@ -52,7 +52,7 @@ elseif rhs==2
   tree.lhs(1).type=A.type
   
   if size(A.dims)>2 then
-    set_infos(gettext("messages","Scilab sort() and gsort() do not work with multidimensional arrays"))
+    set_infos(gettext("Scilab sort() and gsort() do not work with multidimensional arrays"))
   else
   name="gsort"
     if typeof(dim)=="cste" then
@@ -91,7 +91,7 @@ elseif rhs==3
   tree.lhs(1).type=A.type
 
   if size(A.dims)>2 then
-    set_infos(gettext("messages","Scilab sort() and gsort() do not work with multidimensional arrays"))
+    set_infos(gettext("Scilab sort() and gsort() do not work with multidimensional arrays"))
   else
     name="gsort"
     if typeof(dim)=="cste" then

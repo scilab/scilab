@@ -16,6 +16,6 @@ case 0 then
 case 1 then
   flag="end" 
 else
-  error(gettext("errors","mseek: Unknown reference flag."));
+  error(gettext("mseek: Unknown reference flag."));
 end
 endfunction

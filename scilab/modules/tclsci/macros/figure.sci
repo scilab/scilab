@@ -12,13 +12,13 @@ function h=figure(varargin)
  		  if (IsAScalar(varargin(1))==%T) then
     		h=TCL_scf(varargin(1));
  		  else
- 		    error(gettext('errors','figure : invalid value type.'),999);
+ 		    error(gettext('figure : invalid value type.'),999);
  		  end
  		else
  		  if (modulo(Rhs,2)==0) then
  		    // nbr params paire
  		    if (IsAScalar(varargin(1))==%T) then
- 		      error(gettext('errors','figure : invalid value type.'),999) 
+ 		      error(gettext('figure : invalid value type.'),999) 
  		    else
  		      h=TCL_scf(0);
 					for i=1:2:Rhs
@@ -26,7 +26,7 @@ function h=figure(varargin)
 					    if ( GetUiControlValueType(GetUiControlPropertyName(varargin(i))) == 10) then
 					      error(string(varargin(i+1))+' Value must be a string.',999);
 					    else
-					      error(string(varargin(i+1))+gettext('errors',' Value must be numeric.'),999);
+					      error(string(varargin(i+1))+gettext(' Value must be numeric.'),999);
 					    end
 					  else
 					    set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
@@ -40,16 +40,16 @@ function h=figure(varargin)
     		  for i=2:2:Rhs
 					   if ( type(varargin(i+1)) <> GetUiControlValueType(GetUiControlPropertyName(varargin(i))) ) then
 					     if ( GetUiControlValueType(GetUiControlPropertyName(varargin(i))) == 10) then
-					       error(string(varargin(i+1))+gettext('errors',' Value must be a string.'),999);
+					       error(string(varargin(i+1))+gettext(' Value must be a string.'),999);
 					     else
-					       error(string(varargin(i+1))+gettext('errors',' Value must be numeric.'),999);
+					       error(string(varargin(i+1))+gettext(' Value must be numeric.'),999);
 					     end
 					   else
 					     set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
 					   end
 					end
  		    else
- 		      error(gettext('errors','figure : invalid value type.'),999) ;
+ 		      error(gettext('figure : invalid value type.'),999) ;
  		    end
  		  end
  		end

@@ -35,18 +35,18 @@ for k=1:n
   if ( (x == []) & (ierr== -1) ) then [x,ierr]=fileinfo(files(k)),end
   if x<>[] then
     w=getdate(x(6))
-    month=[gettext("messages","Jan"),..
-	    gettext("messages","Feb"),..
-	    gettext("messages","Mar"),..
-	    gettext("messages","Apr"),..
-	    gettext("messages","May"),..
-	    gettext("messages","Jun"),..
-	    gettext("messages","Jul"),..
-	    gettext("messages","Aug"),..
-	    gettext("messages","Sep"),..
-	    gettext("messages","Oct"),..
-	    gettext("messages","Nov"),..
-	    gettext("messages","Dec")];
+    month=[gettext("Jan"),..
+	    gettext("Feb"),..
+	    gettext("Mar"),..
+	    gettext("Apr"),..
+	    gettext("May"),..
+	    gettext("Jun"),..
+	    gettext("Jul"),..
+	    gettext("Aug"),..
+	    gettext("Sep"),..
+	    gettext("Oct"),..
+	    gettext("Nov"),..
+	    gettext("Dec")];
 
     ldate(k)=string(w(6))+"-"+month(w(2))+"-"+string(w(1))+" "+string(w(7))+":"+string(w(8))+":"+string(w(9))
     lbytes(k)=x(1);

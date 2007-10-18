@@ -55,7 +55,7 @@ if size(tree.operands)==2 then
     end
   // If at least one operand is [] then Matlab result is [] but not Scilab one 
   elseif is_empty(A) | is_empty(B) then
-    set_infos(msprintf(gettext("messages","At least one operand of %s is an empty matrix, Scilab equivalent is []."),expression2code(tree)),0)
+    set_infos(msprintf(gettext("At least one operand of %s is an empty matrix, Scilab equivalent is []."),expression2code(tree)),0)
     tree=Cste([])
   else
     tree.out(1).dims=allunknown(A.dims);

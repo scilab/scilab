@@ -135,7 +135,7 @@ if rhs==1 then
       tree=%i_st2sci(tree)
       return
     end
-    error(msprintf(gettext("errors","recursive insertion in a variable which is not a Cell nor a Struct: %s."),to.name))
+    error(msprintf(gettext("recursive insertion in a variable which is not a Cell nor a Struct: %s."),to.name))
   end
 // Two indexes: to(ind1,ind2,...)=from or more
 else

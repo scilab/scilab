@@ -5,7 +5,7 @@ if typeof(inslist)=="ce" then
   if field=="type" then
     var.infer=inslist
   else
-    error(gettext("errors","Not yet implemented."))
+    error(gettext("Not yet implemented."))
   end
 elseif typeof(inslist)=="st" then
   pause
@@ -19,13 +19,13 @@ else
       var.infer=Infer(dims,Type())
       var.infer.type=inslist
     else
-    error(gettext("errors","Not yet implemented."))
+    error(gettext("Not yet implemented."))
     end
   else 
     if field=="type" then
       var.infer.type=inslist
     else
-    error(gettext("errors","Not yet implemented."))
+    error(gettext("Not yet implemented."))
     end
   end
 end

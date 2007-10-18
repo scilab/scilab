@@ -17,7 +17,7 @@ for k=1:rhs
     elseif tree.rhs(k).vtype==Unknown then
       scitree=tree
       scitree.rhs(k)=Funcall("mtlb_double",1,list(tree.rhs(k)),list(Variable("",tree.rhs(k).infer)))
-      repl_poss(scitree,tree,tree.rhs(k),gettext("messages","is not a character string matrix."))
+      repl_poss(scitree,tree,tree.rhs(k),gettext("is not a character string matrix."))
       tree=scitree
     end
   end
@@ -36,7 +36,7 @@ for k=1:rhs
   end
 end
 
-set_infos(gettext("messages","WARNING: Matlab reshape() suppresses singleton higher dimension, it is not the case for matrix."),2)
+set_infos(gettext("WARNING: Matlab reshape() suppresses singleton higher dimension, it is not the case for matrix."),2)
 tree.name="matrix"
 tree.lhs(1).type=tree.rhs(1).type
 if knowndims==%t

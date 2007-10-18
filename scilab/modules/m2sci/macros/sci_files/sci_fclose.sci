@@ -11,7 +11,7 @@ fid=getrhs(tree)
 tree.name="mclose"
 
 if fid.vtype==Unknown then
-  set_infos(gettext("messages","Unknown type for input parameter: consider fclose(fid)."),2)
+  set_infos(gettext("Unknown type for input parameter: consider fclose(fid)."),2)
 end
 
 tree.lhs(1).dims=list(1,1)

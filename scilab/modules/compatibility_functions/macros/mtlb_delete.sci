@@ -8,7 +8,7 @@ if type(y)==10 then
 elseif type(y)==9 then 
   delete(y);
 else
-  error(gettext("errors","Not yet implemented."));
+  error(gettext("Not yet implemented."));
 end
 
 endfunction

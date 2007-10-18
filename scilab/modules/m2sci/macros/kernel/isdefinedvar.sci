@@ -22,7 +22,7 @@ index=[]
 // If input is a string
 if type(var)==10 then
   if and(var<>["i","j","pi","eps","%nargin","%nargout"]) then
-    warning(msprintf(gettext("messages","Bad use of isdefinedvar() with input: %s."),var))
+    warning(msprintf(gettext("Bad use of isdefinedvar() with input: %s."),var))
     return
   end
   varname=var

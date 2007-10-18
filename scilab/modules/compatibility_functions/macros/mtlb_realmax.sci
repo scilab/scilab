@@ -11,9 +11,9 @@ elseif rhs==1 then
   if prec=="double" then
     val=number_properties("huge");
   else
-    error(gettext("errors","Not yet implemented."));
+    error(gettext("Not yet implemented."));
   end
 else
-  error(gettext("errors","Wrong number of inputs."));
+  error(gettext("Wrong number of inputs."));
 end
 endfunction

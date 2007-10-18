@@ -17,11 +17,11 @@ function [Y,M,D,h,m,s] = datevec(N)
 	bissextile_year = [0,31,60,91,121,152,182,213,244,274,305,335,366];
 	
 	if rhs<>1 then
-		error(gettext('errors','parameter incorrect.'));
+		error(gettext('parameter incorrect.'));
 	end
 	
 	if type(N) <> 1 then
-		error(gettext('errors','The argument must a real constant matrix.'));
+		error(gettext('The argument must a real constant matrix.'));
 	end
 	
 	[nr,nc] = size(N);

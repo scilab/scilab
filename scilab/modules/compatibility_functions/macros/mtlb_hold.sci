@@ -17,7 +17,7 @@ else
   elseif flag=="off" then
     a=gca();a.auto_clear="on"
   else
-    error(gettext("errors","Not implemented."))
+    error(gettext("Not implemented."))
   end
 end
 endfunction

@@ -14,37 +14,37 @@ function [N,S] = weekday(D,form)
 	rhs=argn(2);
 	
 	if rhs < 1 | rhs > 2 then
-		error(gettext("errors","Number of parameters incorrect."));
+		error(gettext("Number of parameters incorrect."));
 	end
 	
 	if type(D) <> 1 then
-		error(gettext("errors","The first argument must a real constant matrix."));
+		error(gettext("The first argument must a real constant matrix."));
 	end
 	
 	if (rhs==2) & (form <> 'long') & (form <> 'short') then
-		error(gettext("errors","The second parameter must be the string ''long'' or ''short''."));
+		error(gettext("The second parameter must be the string ''long'' or ''short''."));
 	end
 	
 	normal_year = [0,31,59,90,120,151,181,212,243,273,304,334,365];
 	bissextile_year = [0,31,60,91,121,152,182,213,244,274,305,335,366];
 	week_numbers = [7,1,2,3,4,5,6];
 	
-	week_strings_short = [gettext('messages','time_message_3'), ..
-	gettext('messages','time_message_4'), ..
-	gettext('messages','time_message_5'), ..
-	gettext('messages','time_message_6'), ..
-	gettext('messages','time_message_7'), ..
-	gettext('messages','time_message_8'), ..
-	gettext('messages','time_message_9')];
+	week_strings_short = [gettext('time_message_3'), ..
+	gettext('time_message_4'), ..
+	gettext('time_message_5'), ..
+	gettext('time_message_6'), ..
+	gettext('time_message_7'), ..
+	gettext('time_message_8'), ..
+	gettext('time_message_9')];
 	
-	week_strings_long = [gettext('messages','time_message_10'), ..
-	gettext('messages','time_message_11'), ..
-	gettext('messages','time_message_12'), ..
-	gettext('messages','time_message_13'), ..
-	gettext('messages','time_message_14'), ..
-	gettext('messages','time_message_15'), ..
-	gettext('messages','time_message_16'), ..
-	gettext('messages','time_message_17')];
+	week_strings_long = [gettext('time_message_10'), ..
+	gettext('time_message_11'), ..
+	gettext('time_message_12'), ..
+	gettext('time_message_13'), ..
+	gettext('time_message_14'), ..
+	gettext('time_message_15'), ..
+	gettext('time_message_16'), ..
+	gettext('time_message_17')];
 		
 	if rhs==2 then
 		if form == 'long' then

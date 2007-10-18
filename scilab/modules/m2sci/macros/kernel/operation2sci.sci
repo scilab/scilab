@@ -52,7 +52,7 @@ for kop=1:size(ops,1)
   end
 end
 if ind==-1 then
-  error(msprintf(gettext("errors","operator %s not found."),mtlb_expr.operator))
+  error(msprintf(gettext("operator %s not found."),mtlb_expr.operator))
 end
 rhs=size(mtlb_expr.operands)
 execstr("[sci_equiv]=%"+ops(ind,2)+"2sci(mtlb_expr)");

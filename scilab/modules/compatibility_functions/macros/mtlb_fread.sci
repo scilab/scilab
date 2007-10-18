@@ -34,11 +34,11 @@ case 2 then
 end
 [l,k]=find(prec==prectbl)
 if l==[] then
-  error(msprintf(gettext("errors","The format: %s is unknown."),prec))
+  error(msprintf(gettext("The format: %s is unknown."),prec))
 end
 Prec=prectbl(l,1)
 if Prec=="?" then 
-  error(msprintf(gettext("errors","The format: %s is not yet handled."),prec))
+  error(msprintf(gettext("The format: %s is not yet handled."),prec))
 end
 if isinf(sz) then
   a=[]
@@ -56,7 +56,7 @@ else
 
   if meof(fid)<>0 then
     mclearerr(fid)
-    error(gettext("errors","Cell elements must be arrays chars.8"))
+    error(gettext("Cell elements must be arrays chars.8"))
   end
   if size(sz,"*")==1 then
     a=a(:)

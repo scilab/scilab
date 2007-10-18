@@ -10,7 +10,7 @@ if lhs==5 then
   for k=1:n
     K=kernel(A*LB(k)-B*LA(k))
     if size(K,2)<>1 then
-      error(gettext("errors","qz: pencil is not diagonalizable."))
+      error(gettext("qz: pencil is not diagonalizable."))
     end
     V(:,k)=K
   end

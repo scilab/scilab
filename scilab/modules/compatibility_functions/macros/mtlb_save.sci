@@ -2,12 +2,12 @@ function mtlb_save(mtlb_thefile,varargin)
 //save variable under  matlab 4.x .mat binary format files
 //see: www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
 
-warning(msprintf(gettext("messages","This function is obsolete, use %s instead."),"savematfile"));
+warning(msprintf(gettext("This function is obsolete, use %s instead."),"savematfile"));
 
 // Verify that all inputs are character strings
 for k=1:size(varargin)
   if type(varargin(k))<>10 then
-    error(gettext("messages","mtlb_close: status ignored.9"));
+    error(gettext("mtlb_close: status ignored.9"));
   end
 end
 
@@ -60,7 +60,7 @@ if mtlb_opts==[] then //binary save
   // check name conflicts
   for k=['mtlb_thefile','varargin','mtlb_names','mtlb_opts','mtlb_fd']
     if or(mtlb_names==k) then
-      error(msprintf(gettext("errors","Name conflict: it is not possible to save variable with name %s."),k));
+      error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
     end
   end
   // clear variable wich are no more used to avoid name conflicts
@@ -115,7 +115,7 @@ if mtlb_opts==[] then //binary save
       P=5
       T=1
     else
-      error(gettext("errors","Attempt to write an unsupported data type to an ASCII file."))
+      error(gettext("Attempt to write an unsupported data type to an ASCII file."))
     end
     [m,n]=size(x)
   
@@ -160,7 +160,7 @@ if mtlb_opts==[] then //binary save
 else //ascii save
 
   if convstr(mtlb_opts(1))<>'-ascii' then 
-    error(msprintf(gettext("errors","Unknown or misplaced option %s."),mtlb_opts(1)));
+    error(msprintf(gettext("Unknown or misplaced option %s."),mtlb_opts(1)));
   end
     if size(mtlb_opts,'*')==3 then
     sep=str2code(-40)
@@ -177,7 +177,7 @@ else //ascii save
   // clear variable wich are no more used to avoid name conflicts
   for k=['mtlb_thefile','varargin','mtlb_names','mtlb_fmt','mtlb_fd']
     if or(mtlb_names==k) then
-      error(msprintf(gettext("errors","Name conflict: it is not possible to save variable with name %s."),k));
+      error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
     end
   end
   clear('rhs','lhs','kk','err','sep');

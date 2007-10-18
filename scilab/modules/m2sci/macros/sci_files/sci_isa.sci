@@ -53,7 +53,7 @@ if typeof(class)=="cste" then
   case "lti"
     tree=Operation("==",list(typeoftree,Cste("state-space")),tree.lhs)
   else
-    set_infos(msprintf(gettext("messages","Unhandled class: %s."),class.value),2)
+    set_infos(msprintf(gettext("Unhandled class: %s."),class.value),2)
     tree.lhs(1).dims=list(1,1)
     tree.lhs(1).type=Type(Boolean,Real)
     return

@@ -32,7 +32,7 @@ for k=1:size(mtlb_instr.lhs)
     lhslist($+1)=Variable(mtlb_instr.lhs(k).name,INFER)
   elseif typeof(mtlb_instr.lhs(k))=="operation" then
     if mtlb_instr.lhs(k).operator<>"ins" then
-      error(msprintf(gettext("errors","lhs cannot be a %s operation."),mtlb_instr.lhs(k).operator))
+      error(msprintf(gettext("lhs cannot be a %s operation."),mtlb_instr.lhs(k).operator))
     end
     
     [bval,index]=isdefinedvar(mtlb_instr.lhs(k).operands(1))
@@ -46,7 +46,7 @@ for k=1:size(mtlb_instr.lhs)
 	mtlb_instr.lhs(k).operands,..
 	list(Variable(mtlb_instr.lhs(k).operands(1).name,INFER)))
   else
-    error(msprintf(gettext("errors","lhs cannot be a %s."),typeof(mtlb_instr.lhs(k))))
+    error(msprintf(gettext("lhs cannot be a %s."),typeof(mtlb_instr.lhs(k))))
   end
 end
 
@@ -78,7 +78,7 @@ else
     sci_instr.lhs(1).dims=sci_expr.dims;
     sci_instr.lhs(1).type=sci_expr.type;
   else
-    error(msprintf(gettext("errors","%s is not yet implemented."),typeof(sci_instr.expression)));
+    error(msprintf(gettext("%s is not yet implemented."),typeof(sci_instr.expression)));
   end
  
   // If lhs are insertion operation, they also have to be converted
