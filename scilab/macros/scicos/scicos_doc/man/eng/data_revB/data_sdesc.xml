@@ -29,7 +29,7 @@
 </FILE>
 
 <FILE name='AFFICH_m' type='XML'>
-<SHORT_DESCRIPTION name="AFFICH_m">Display (old block)</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="AFFICH_m">Display</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='AFFICH_m_intfunc' type='XML'>
