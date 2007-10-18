@@ -2298,7 +2298,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   " associée au bloc.";
                   " ";
                   " Taille : 1.";
-                  " Type : chaîne de caratéres."])
+                  " Type : chaîne de caractères."])
 
   %scs_help_block=scicos_help(%scs_help_block,...
                  'doc',...
@@ -2373,7 +2373,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 
   %scs_help_params=scicos_help(%scs_help_params,...
                  'title',...
-                 [" Vecteur de chaîne de caractères, où la premiére contient";
+                 [" Vecteur de chaîne de caractères, où la première contient";
                   " le titre du diagramme (le nom par défaut du ficher de";
                   " sauvegarde) et la deuxième est le chemim du répertoire.";
                   " ";
@@ -2394,7 +2394,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   " ";
                   "  -- {deltat} : Interval temporel maximal entre deux points d''intégration."
                   "               Si une période d''intégration est plus grande que {deltat}, ";
-                  "               le solveur est appelé plus d''une fois de maniére à maintenir"
+                  "               le solveur est appelé plus d''une fois de manière à maintenir"
                   "               le pas au niveau de {deltat}";
                   " ";
                   "  -- {scale}  : Facteur d''échelle temps-réel (Real-time scaling);"
@@ -2416,7 +2416,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scs_help_params=scicos_help(%scs_help_params,...
                  'tf',...
                 [" Le temps final de simulation."
-                 " La simulation s''arréte a ce temps."
+                 " La simulation s''arrête a ce temps."
                  " La valeur par défaut est 100000.";
                  " ";
                  " Taille : 1.";
@@ -2449,7 +2449,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   " ";
                   " Les champs sont les suivant:";
                   " ";
-                  "  -- {3D}         : Une liste à deux entrées. La premiére est un booléen"
+                  "  -- {3D}         : Une liste à deux entrées. La première est un booléen"
                   "                   indiquant si les blocs doivent avoir un aspect 3D.";
                   "                   La seconde entrée indique la couleur dans la palette de"
                   "                   couleur courante (colormap) qui doit être utilisée pour"
@@ -2458,13 +2458,13 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   "                   standard qui contients 32 couleurs."
                   " ";
                   "                   La valeur par défault de cette list est donc list(%t,33)."
-                  "  -- {Background} : Un vecteur avec deux entrées: la couleur d''arriére plan et"
+                  "  -- {Background} : Un vecteur avec deux entrées: la couleur d''arrière plan et"
                   "                   la couleur d''avant plan. La valeur par défaut est [8,1].";
                   " ";
                   "  -- {link}       : Les couleurs par défauts pour les liens réguleurs et les"
                   "                   liens d''activations. Ces couleurs sont utilisées uniquement";
                   "                   pour de nouvelles constructions. Ces choix n''affectent pas";
-                  "                   les liens déjé présent sur le diagramme.";
+                  "                   les liens déjà présent sur le diagramme.";
                   " ";
                   "                   Les valeurs par défaut sont [1,5] ce qui correspond à noir";
                   "                   et rouge pour la palette de couleurs standard de Scilab.";
@@ -2498,7 +2498,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                  [" Structure utilisateur pour la documentation des diagrammes.";
                   " ";
                   " Taille : 1.";
-                  " Type : chaînes de caractères."])
+                  " Type : Chaînes de caractères."])
 
   //****** scicos_model ******/
   //**************************/
@@ -2526,7 +2526,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 
   %scs_help_model=scicos_help(%scs_help_model,...
                  'in',...
-                 [" Un vecteur spécifiant le nombre et la premiére";
+                 [" Un vecteur spécifiant le nombre et la première";
                   " dimension des ports d''entrée réguliers du bloc";
                   " indéxés du haut vers le bas.";
                   " Si il n''existe pas de port d''entrées, alors";
@@ -2598,7 +2598,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 
   %scs_help_model=scicos_help(%scs_help_model,...
                  'out',...
-                 [" Un vecteur spécifiant le nombre et la premiére";
+                 [" Un vecteur spécifiant le nombre et la première";
                   " dimension des ports de sortie réguliers du bloc";
                   " indéxés du haut vers le bas.";
                   " Si il n''existe pas de port de sorties, alors";
@@ -2806,7 +2806,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 
   %scs_help_model=scicos_help(%scs_help_model,...
                  'label',...
-                 [" chaîne de caractères qui définit un label.";
+                 [" Chaîne de caractères qui définit un label.";
                   " Le label peut être utilisé pour identifier";
                   " un bloc pour avoir accés ou modifier ses "
                   " paramètres pendant la simulation."
@@ -2828,7 +2828,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   " modes utilisés par le bloc.";
                   " En supposant qu''un bloc a 3 modes et que chaque";
                   " mode peut prendre deux valeurs, alors le bloc";
-                  " peut avoir jusqu''é 2^3=8 modes.";
+                  " peut avoir jusqu''à 2^3=8 modes.";
                   " ";
                   " Taille : longueur du registre des modes.";
                   " Type : vecteur colonne de nombre entiers."])
@@ -2849,16 +2849,16 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   "  -- outputs : un vecteur colonne de chaînes de caractères donnant";
                   "              les noms des variables utilisées comme sorties.";
                   " ";
-                  "  -- parameters : une liste à deux entrées. La premiére est un vecteur";
+                  "  -- parameters : une liste à deux entrées. La première est un vecteur";
                   "                 de chaînes de caractères contenant les noms des variables";
                   "                 modelica utilisées en tant que paramètres et la deuxième";
                   "                 une liste contenant les valeurs de ces paramètres.";
                   "                 Les noms des états modelica peuvent aussi être informés";
-                  "                 via {parameters}. Dans ce cas une troisiéme entrée est";
+                  "                 via {parameters}. Dans ce cas une troisième entrée est";
                   "                 utilisée pour différencier les paramètres des états.";
                   "                 Par exemple :";
                   "                    mo.parameters=list([''C'',''v''],list(C,v),[0,1])"
-                  "                 signifie que ''C'' est un paramêtre(0) de valeur C, et";
+                  "                 signifie que ''C'' est un paramètre(0) de valeur C, et";
                   "                 que ''v'' est une variable d''état(1) avec une valeur";
                   "                 initiale v.";
                   " ";
@@ -2918,7 +2918,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scs_help_graphics=scicos_help(%scs_help_graphics,...
                  'exprs',...
                  [" Des chaînes de caractères incluant des expressions";
-                  " formelles utilisées dans la boéte de dialogue.";
+                  " formelles utilisées dans la boîte de dialogue.";
                   " ";
                   " Taille : Nombre d''expressions formelles.";
                   " Type : Vecteur colonne de chaînes de caractères."])
@@ -2965,7 +2965,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 
   %scs_help_graphics=scicos_help(%scs_help_graphics,...
                  'gr_i',...
-                 [" chaînes de caractère qui contiennent les expression";
+                 [" Chaînes de caractère qui contiennent les expression";
                   " graphiques pour personnaliser l''aspect graphique des";
                   " blocs. Ce champ peut être renseigné par le sous-menu";
                   " {Icon}.";
@@ -3048,9 +3048,9 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 
   %scs_help_link=scicos_help(%scs_help_link,...
                  'ct',...
-                 [" La premiére entrée de ce vecteur désigne la couleur";
+                 [" La première entrée de ce vecteur désigne la couleur";
                   " et la deuxième la nature du lien. La valeur de cette";
-                  " derniére entrée est 1 pour un lien régulier, -1 pour";
+                  " dernière entrée est 1 pour un lien régulier, -1 pour";
                   " un lien d''activation et 2 pour un lien implicite.";
                   " ";
                   " Taille : 2.";
@@ -3061,7 +3061,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                  [" Un vecteur de taille 3 qui designe un numéro de";
                   " bloc, un numéro de port et un type de port (0 pour";
                   " une sortie et 1 pour une entrée) concernant l''origine";
-                  " du lien. Notez que la troisiéme entrée peut être 1 si";
+                  " du lien. Notez que la troisième entrée peut être 1 si";
                   " le lien est implicite. Sinon il est zéro.";
                   " ";
                   " Taille : 3.";
@@ -3072,7 +3072,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                  [" Un vecteur de taille 3 qui designe un numéro de";
                   " bloc, un numéro de port et un type de port (0 pour";
                   " une sortie et 1 pour une entrée) concernant la destination";
-                  " du lien. Notez que la troisiéme entrée peut être 1 si";
+                  " du lien. Notez que la troisième entrée peut être 1 si";
                   " le lien est implicite. Sinon il est zéro.";
                   " ";
                   " Taille : 3.";
@@ -3356,7 +3356,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scs_help_sim=scicos_help(%scs_help_sim,...
                  'ordclk',...
                  [" Une matrice associé aux blocs activés par";
-                  " événements. La premiére colonne contient";
+                  " événements. La première colonne contient";
                   " les numéros des blocs et la deuxième le"
                   " code de l''événement par lequel le bloc"
                   " sera appelé pendant la simulation."
@@ -3367,7 +3367,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scs_help_sim=scicos_help(%scs_help_sim,...
                  'cord',...
                  [" Une matrice associé aux blocs activés en";
-                  " permanence. La premiére colonne contient";
+                  " permanence. La première colonne contient";
                   " les numéros des blocs et la deuxième le"
                   " code de l''événement par lequel le bloc"
                   " sera appelé pendant la simulation."
@@ -3460,7 +3460,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scs_help_sim=scicos_help(%scs_help_sim,...
                  'iord',...
                  [" Une matrice qui associe les blocs à activer ";
-                  " au début de la simulation. Celé inclue les";
+                  " au début de la simulation. Celà inclue les";
                   " blocs {Constante} et les blocs activés en";
                   " permanence.";
                   " ";
