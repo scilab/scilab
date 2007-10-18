@@ -48,8 +48,7 @@ This block, with two event inputs and a regular output, outputs +1 or
  \end{enumerate}
 </FILE>
 
-<FILE name='AUTOMAT' type=''LATEX'>
-
+<FILE name='AUTOMAT' type='LATEX'>
 The automaton block provides a switching mechanism between subsystems
 corresponding to control modes of an automaton.  Subsystems are
 constructed in such a way that they receive the state vector as input
@@ -123,8 +122,6 @@ For more documentation on the Automaton block, the user is refered to
 www.scicos.org and the paper "Modeling Hybrid Automata in Scicos",
 Masoud Najafi, Ramine Nikoukhah, 2007 IEEE Multi-conference on Systems
 and Control, Singapore.
-
-
 </FILE>
 
 <FILE name='About_scicos' type='LATEX'>

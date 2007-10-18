@@ -47,7 +47,6 @@ délivre +1 ou -1 sur sa sortie régulière suivant ses entrées événementielles.
 </FILE>
 
 <FILE name='AUTOMAT' type='LATEX'>
-
 The automaton block provides a switching mechanism between subsystems
 corresponding to control modes of an automaton.  Subsystems are
 constructed in such a way that they receive the state vector as input
@@ -122,7 +121,6 @@ For more documentation on the Automaton block, the user is refered to
 www.scicos.org and the paper "Modeling Hybrid Automata in Scicos",
 Masoud Najafi, Ramine Nikoukhah, 2007 IEEE Multi-conference on Systems
 and Control, Singapore.
-
 </FILE>
 
 <FILE name='About_scicos' type='LATEX'>
@@ -3615,8 +3613,8 @@ depending on the type of the PDE and runs the solvers.
     <DESCRIPTION_ITEM>
     <P>
     Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral
-Dérivé (PID) est un organe de contrôle permettant dâ€™effectuer une régulation en
-boucle fermée dâ€™un système industriel. Câ€™est le régulateur le plus utilisé dans lâ€™industrie et permet de contrôler la grande majorité des
+Dérivé (PID) est un organe de contrôle permettant d'effectuer une régulation en
+boucle fermée d'un système industriel. C'est le régulateur le plus utilisé dans l'industrie et permet de contrôler la grande majorité des
 procédés.
     </P>
     </DESCRIPTION_ITEM>
