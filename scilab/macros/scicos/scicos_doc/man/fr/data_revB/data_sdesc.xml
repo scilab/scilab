@@ -54,7 +54,8 @@
 </FILE>
 
 <FILE name='AUTOMAT' type='XML'>
-  <SHORT_DESCRIPTION name="AUTOMAT">AUTOMAT titre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="AUTOMAT">Bloc pour construire les automates
+  hybrides (les machines à état fini)</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='AUTOMAT_intfunc' type='XML'>
@@ -154,7 +155,7 @@
 </FILE>
 
 <FILE name='CCS' type='XML'>
-  <SHORT_DESCRIPTION name="CCS">CCS titre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="CCS">Controllable Modelica  current source </SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='CCS_intfunc' type='XML'>
@@ -438,7 +439,7 @@
 </FILE>
 
 <FILE name='CVS' type='XML'>
-  <SHORT_DESCRIPTION name="CVS">CVS titre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="CVS">Controllable Modelica voltage source</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='CVS_intfunc' type='XML'>
@@ -946,7 +947,7 @@
 </FILE>
 
 <FILE name='Gyrator' type='XML'>
-  <SHORT_DESCRIPTION name="Gyrator">Gyrator titre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="Gyrator">Modelica Gyrator</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Gyrator_intfunc' type='XML'>
@@ -1086,7 +1087,7 @@
 </FILE>
 
 <FILE name='IdealTransformer' type='XML'>
-  <SHORT_DESCRIPTION name="IdealTransformer">IdealTransformer titre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="IdealTransformer">Transformateur ideal </SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='IdealTransformer_intfunc' type='XML'>
@@ -1442,7 +1443,7 @@
 </FILE>
 
 <FILE name='NMOS' type='XML'>
-  <SHORT_DESCRIPTION name="NMOS">NMOS titre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="NMOS">Simple NMOS Transistor</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='NMOS_intfunc' type='XML'>
@@ -1498,7 +1499,7 @@
 </FILE>
 
 <FILE name='OpAmp' type='XML'>
-  <SHORT_DESCRIPTION name="OpAmp">OpAmp titre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="OpAmp">Ideal opamp (norator-nullator pair)</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='OpAmp_intfunc' type='XML'>
@@ -1530,7 +1531,7 @@
 </FILE>
 
 <FILE name='PMOS' type='XML'>
-  <SHORT_DESCRIPTION name="PMOS">PMOS titre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="PMOS">Simple PMOS Transistor</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='PMOS_intfunc' type='XML'>
@@ -2002,7 +2003,7 @@
 </FILE>
 
 <FILE name='Switch' type='XML'>
-  <SHORT_DESCRIPTION name="Switch">Switch titre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="Switch">Non-ideal electrical switch</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Switch_intfunc' type='XML'>
