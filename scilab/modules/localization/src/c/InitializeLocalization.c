@@ -11,6 +11,7 @@
 #include "inisci-c.h"
 #include "machine.h"
 #include "scilabDefaults.h"
+#include "setgetlanguage.h"
 #ifdef _MSC_VER
 #define _putenv putenv
 #endif
@@ -25,7 +26,7 @@ static void putEnvLC_ALL(char *locale){
 
 	char *localeDeclared=NULL;	
 
-	localeDeclared=(char*)MALLOC(sizeof(char)*strlen(EXPORTENVLOCALE)+ strlen("=")+ strlen(locale)+1);
+	localeDeclared=(char*)MALLOC(sizeof(char)*(strlen(EXPORTENVLOCALE)+ strlen("=")+ strlen(locale)+1));
 	strcat(localeDeclared,EXPORTENVLOCALE);
 	strcat(localeDeclared,"=");
 	strcat(localeDeclared,locale);
@@ -45,6 +46,7 @@ BOOL InitializeLocalization(void)
 	char *SCIpath=getSCIpath();
 	char *pathLocales=NULL;
 	char *ret=NULL;
+
 	ret=setlocale(LC_ALL,"");
 	if (ret==NULL){
    		fprintf(stderr, "I18N: Doesn't support your locale.\n" );
@@ -52,21 +54,22 @@ BOOL InitializeLocalization(void)
 	}
 
 	putEnvLC_ALL(ret);
-	setlanguage(ret);
+	setlanguage(ret, FALSE, FALSE);
 
 	pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen(PATHLOCALIZATIONFILE)+1));
-	strcat(pathLocales, SCIpath);
+
+	strcpy(pathLocales, SCIpath);
 	strcat(pathLocales, PATHLOCALIZATIONFILE);
 
 	if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL){
-		fprintf(stderr, "Error while binding the domain\n");
+		fprintf(stderr, "Error while binding the domain from %s\n", pathLocales);
+		FREE(pathLocales);
 		return FALSE;
-	}else{
-		fprintf(stderr, "Domainfile : %s",pathLocales);
 	}
+	FREE(pathLocales);
 
 	if (textdomain(NAMELOCALIZATIONDOMAIN)==NULL){
-		fprintf(stderr, "Error while declaring the text domain\n");
+		fprintf(stderr, "Error while declaring the text domain %s\n", NAMELOCALIZATIONDOMAIN);
 		return FALSE;
 	}
 

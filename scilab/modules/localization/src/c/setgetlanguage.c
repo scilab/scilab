@@ -21,6 +21,7 @@ static char *GetLanguageFromAlias(char *langAlias);
 BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {
 	BOOL bOK=FALSE;
+
 	if (lang)
 	{
 		if ( LanguageIsOK(lang) )

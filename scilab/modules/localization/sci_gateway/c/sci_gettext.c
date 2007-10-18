@@ -2,8 +2,7 @@
  * INRIA 2007 
  * @author Allan CORNET - initial
  * @author Sylvestre Ledru <sylvestre.ledru@inria.fr> - Rewrite using gettext
-
-/*-----------------------------------------------------------------------------------*/
+ */
 #include "MALLOC.h"
 #include "machine.h"
 #include "stack-c.h"
