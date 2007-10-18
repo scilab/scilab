@@ -31,13 +31,13 @@ verbose=sciargs()<>"-nb"
 if verbose then
   if ~fromjava() & ~fromc() then
     banner();
-    write(%io(2),[' ';' ';'Startup execution:'])
+    write(%io(2),[' ';' ';gettext('Startup execution:')])
   end
 end
 // Load scilab functions libraries  ===================================
 if verbose then
   if ~fromjava() & ~fromc() then
-    write(%io(2),'  loading initial environment')
+    write(%io(2),gettext('  loading initial environment'))
   end
 end
 clear verbose
