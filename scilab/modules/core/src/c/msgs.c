@@ -837,17 +837,12 @@ static int msg_42(integer *n, integer *ierr)
 	integer km=0;
 	integer c__1=1;
 	char line[140];
-	char *lMSG=_("Warning : redefining function : %s");
 
 	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], line, &c__1, (long int)24);
 	line[24]='\0';
 	
-	if (lMSG)
-	{
-		sciprint(lMSG,line);
-		sciprint("\n");
-	}
-	if (lMSG) {FREE(lMSG);lMSG=NULL;}
+	sciprint(_("Warning : redefining function : %s"),line);
+	sciprint("\n");
 
 	p = C2F(recu).pt + 1;
 
