@@ -15,37 +15,27 @@
 int error_scilab(int iv,char *Tag,...)
 {
 	int ret=0;
-	char *LocalizedString=_(Tag);
 
-	if (LocalizedString)
+	va_list ap;
+	char s_buf[MAXCHARSSCIPRINT_FULL];
+	int count=0;
+
+	va_start(ap,Tag);
+#if defined(linux) || defined(_MSC_VER)
 	{
-		va_list ap;
-		char s_buf[MAXCHARSSCIPRINT_FULL];
-		int count=0;
-
-		va_start(ap,Tag);
-		#if defined(linux) || defined(_MSC_VER)
-		{
-			count= vsnprintf(s_buf,MAXCHARSSCIPRINT_FULL-1, LocalizedString, ap );
-			if (count == -1)
+		count= vsnprintf(s_buf,MAXCHARSSCIPRINT_FULL-1, Tag, ap );
+		if (count == -1)
 			{
 				s_buf[MAXCHARSSCIPRINT_FULL-1]='\0';
 			}
-		}
-		#else
-		(void )vsprintf(s_buf, LocalizedString, ap );
-		#endif
-		va_end(ap);
-		ret=Scierror(iv,s_buf);
-		sciprint("\n");
 	}
-	else
-	{
-		Scierror(999,_("ERROR : localized message not found : %s"),Tag);
-		return 0;
-	}
+#else
+	(void )vsprintf(s_buf, Tag, ap );
+#endif
+	va_end(ap);
+	ret=Scierror(iv,s_buf);
+	sciprint("\n");
 
-	if (LocalizedString) {FREE(LocalizedString);LocalizedString=NULL;}
 	return ret;
 }
 /*-----------------------------------------------------------------------------------*/
