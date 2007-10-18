@@ -114,7 +114,7 @@
 </FILE>
 
 <FILE name='Bache' type='XML'>
-<SHORT_DESCRIPTION name="Bache"> Thermohydraulic tank (reservoir)</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="Bache"> Thermal-hydraulic tank (reservoir)</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Bache_intfunc' type='XML'>
@@ -1586,7 +1586,7 @@
 </FILE>
 
 <FILE name='PerteDP' type='XML'>
-<SHORT_DESCRIPTION name="PerteDP">Thermohydraulic pipe</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="PerteDP">Thermal-hydraulic pipe</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='PerteDP_intfunc' type='XML'>
@@ -1610,7 +1610,7 @@
 </FILE>
 
 <FILE name='PuitsP' type='XML'>
-<SHORT_DESCRIPTION name="PuitsP">Thermohydraulic drain (well)</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="PuitsP">Thermal-hydraulic drain (well)</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='PuitsP_intfunc' type='XML'>
@@ -1986,7 +1986,7 @@
 </FILE>
 
 <FILE name='SourceP' type='XML'>
-<SHORT_DESCRIPTION name="SourceP">Thermohydraulic constant pressure source</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="SourceP">Thermal-hydraulic constant pressure source</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='SourceP_intfunc' type='XML'>
@@ -2086,7 +2086,7 @@
 </FILE>
 
 <FILE name='ThermoHydraulics_pal' type='XML'>
-<SHORT_DESCRIPTION name="ThermoHydraulics">ThermoHydraulics toolbox</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="ThermoHydraulics">Thermal-Hydraulics toolbox</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Threshold_pal' type='XML'>
@@ -2122,7 +2122,7 @@
 </FILE>
 
 <FILE name='VanneReglante' type='XML'>
-<SHORT_DESCRIPTION name="VanneReglante">Thermohydraulic control valve</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="VanneReglante">Thermal-hydraulic control valve</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='VanneReglante_intfunc' type='XML'>

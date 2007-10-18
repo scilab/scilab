@@ -43,63 +43,73 @@ This block, with two event inputs and a regular output, outputs +1 or
 </FILE>
 
 <FILE name='AUTOMAT' type='LATEX'>
+This block gives the possibility to construct hybrid automata, i.e., a
+hybrid system whose discrete part is defined via modes and transitions
+between modes, and the continuous part is defined via DAE
+(differential algebraic equations). 
+
 The automaton block provides a switching mechanism between subsystems
 corresponding to control modes of an automaton.  Subsystems are
-constructed in such a way that they receive the state vector as input
-from the automaton block and compute the flow and jump functions. The
-state variables are defined only in the automaton block and not in the
-subsystems.
+constructed in such a way that they have the state vector as input (
+coming from the automaton block) and compute the flow and jump
+functions (zero-crossing) and pass them back to the automaton
+block. The state variables are defined in the automaton block and the
+subsystems are static functions.
 
 Suppose that a hybrid automaton consists of {\bf $M$} control
- modes. The continuous-time dynamics in mode '$i$' is defined with DAE
+ modes. The continuous-time dynamics in mode $i$ is defined with DAE
  ($0=F_i(\dot x, x, u)$) where $i\in \{1 \dots M\}$ and the dimension
- of $x$ is $N$ ($N\ge0$) for any $i\in \{1 \dots M\}$. Suppose that in control mode '$i$', there are
- $Z_i$ jump conditions indicating jumps toward other modes. The jump
- conditions are defined by $Jump_{ij}(\dot x,x,u)$ functions where
- $j\in \{1 \dots Z_i\}$. When a jump function becomes positive, a mode
- transition will happen. When a transition to mode '$k$' happens state
- vector $x$ is reset to $Reset_k(\dot x,x,u)$, {\it i.e.,}
- $x_l=Reset_{kl}(\dot x,x,u)$ for $l\in \{1 \dots N\}$. In
- order to develop an automaton containing a mode with multiple reset
- functions, the value of the current and previous active modes should
- be used. These values are available at the first output port of the
- block.
+ of $x$ is $N$ ($N\ge0$) for any $i\in \{1 \dots M\}$. Suppose that in
+ control mode $i$, there are $Z_i$ jump conditions indicating jumps
+ toward other modes. The jump conditions are defined by
+ $Jump_{ij}(\dot x,x,u)$ functions where $j\in \{1 \dots Z_i\}$.
+
+ When a jump function changes sign and becomes positive, a mode
+ transition will happen. When $k^{th}$ transition function becomes
+ positive, a transition to mode $k$ happens and  state vector $x$ is reset
+ to $Reset_k(\dot x,x,u)$, {\it i.e.,} $x_l=Reset_{kl}(\dot x,x,u)$
+ for $l\in \{1 \dots N\}$.
+
+ In order to develop an automaton containing a mode with multiple
+ reset functions, the value of the current and previous active modes
+ should be used. These values are available at the first output port
+ of the block.
 
 
- For such a hybrid automaton, we can use the automaton block of
- Scicos. This block has the following input/output ports, see
- Fig.~\ref{bclk0}.
+The automaton block has the following input/output ports.
 
 \begin{itemize}
 \item {\bf Output 1:} The first output port is a vector of size two
- consisting of the current and the previous active control modes.
+ consisting of the current and the previous active control modes,
+ i.e., $OUT_1=[current-mode,~previous-mode]^t$.
 
 \item {\bf Output 2:} The second output port is a vector of size {\bf
   $2N$} providing the state vector and its first time derivative, {\it
   i.e.,} $[ x,\dot x]^t$.  
 
 \item {\bf Inputs:} The automaton block has $M$ vector input ports
-  corresponding to $M$ modes or subsystems of the automaton. The input
-  port '$i$' which is the output of the $i^{th}$ subsystem of the
-  automaton defines the dynamic behavior in the control mode '$i$'.
-  This input port is a vector of size $2N+Z_i$, as indicated in
-  (\ref{xisish}). The diagram in Fig.\ref{bclk0} shows the way
-  subsystems are connected to the automaton block.
-$Input_i=\left[F_i(\dot x,x,u), Reset_i(\dot x,x,u), Jump_i(\dot x,x,u) \right]^t$
+  corresponding to $M$ modes or subsystems of the automaton.  Each
+  input defines the dynamic behavior in the control each mode as well
+  as the reset functions and the transition functions.  The input port
+  $i$ which is the output of the $i^{th}$ subsystem is a vector of
+  size $2N+Z_i$. Each input is composed of  the following vector.
+
+  $Input_i=\left[F_i(\dot x,x,u),~ Reset_i(\dot x,x,u),~ Jump_i(\dot
+  x,x,u) \right]^t$
 
 \begin{itemize}
 \item The first $N$ elements of the $Input_i$ are the continuous-time
-dynamics.  The dynamics of the system in the control mode '$i$' is
+dynamics.  The dynamics of the system in the control mode $i$ is
 described by a smooth index-1 DAE ({\it i.e.,} $0=F_i(\dot x,x,u,t)$).
 
 \item The next $N$ elements of $Input_i$ are the values used to
  reset the continuous-time states when a transition \underline{to} 
- control mode '$i$' is activated.
+ control mode $i$ is activated.
 
 \item The next $Z_i$ elements of $Input_i$ are the jump or
 zero-crossing functions. If the $j^{th}$ zero-crossing function of
-mode '$i$' crosses zero with negative to positive direction, a
-transition to '$j^{th}$' destination mode happens.
+mode $i$ crosses zero with negative to positive direction, a
+transition to $j^{th}$ destination mode happens.
 \end{itemize}
 
 \item {\bf Event Output:} This is an event output port, which is
@@ -112,19 +122,19 @@ block.
 control mode and the initial value of continuous-time states at the
 beginning of the simulation should be given.
 
-For more documentation on the Automaton block, the user is refered to
-www.scicos.org and the paper "Modeling Hybrid Automata in Scicos",
-Masoud Najafi, Ramine Nikoukhah, 2007 IEEE Multi-conference on Systems
-and Control, Singapore.
-</FILE>
+Find more documentation and demos about the Automaton block oat
+www.scicos.org. Interested users are referred to the paper "Modeling
+Hybrid Automata in Scicos", Masoud Najafi, Ramine Nikoukhah, 2007 IEEE
+Multi-conference on Systems and Control, Singapore. 
+ </FILE>
 
 <FILE name='About_scicos' type='LATEX'>
- \subsection{About scicos...}
+ \subsection{About Scicos...}
 
   Scicos 4.2 have been developed in the Metalau Project-Team very close
   to the Scilab consortium at INRIA unit of Rocquencourt.
 
-  The main contributers of that version are :
+  The main contributes of that version are :
 
   {\bf Designers :} \\
   \begin{itemize}
@@ -642,7 +652,7 @@ function using a curve editor.
 </FILE>
 
 <FILE name='C_struct' type='LATEX'>
-The C structure of a scicos block defines all the fields to handle data provided by the simulator
+The C structure of a Scicos block defines all the fields to handle data provided by the simulator
 such inputs/outputs, parameters, states, ...
 
 That structure of type {\tt scicos\_block} is defined in the file \htmladdnormallink{scicos\_block4.h}
@@ -664,10 +674,10 @@ structure :
 block->my_field
 \end{verbatim}
 
-This acces is a \textbf{direct} approach and most of users should prefer the \textbf{\htmladdnormallink{C\_macros}
+This access is a \textbf{direct} approach and most of users should prefer the \textbf{\htmladdnormallink{C\_macros}
 {C_macros.htm}} approach for facilities purpose.
 
-In the current version of scicos, the {\tt scicos->block} structure is defined :
+In the current version of Scicos, the {\tt scicos->block} structure is defined :
 
 \begin{verbatim}
 /* scicos_block structure definition */
