@@ -36,6 +36,7 @@
 
 #include <stdio.h>
 #include "spmalloc.h"
+#include "machine.h"
 
 /*
  *  IMPORTS
@@ -59,7 +60,7 @@
 
 
 #if DOCUMENTATION
-
+
 /*
  *  PRINT MATRIX
  *
