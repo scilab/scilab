@@ -1,4 +1,4 @@
-function [blocks] = bplatform(blocks,flag)
+function [blocks] = bplatform2(blocks,flag)
   win=20000+curblock()
   if flag<>4 then H=scf(win), end
   xold=blocks.z

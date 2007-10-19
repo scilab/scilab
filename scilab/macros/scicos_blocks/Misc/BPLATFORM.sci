@@ -48,7 +48,7 @@ function [x,y,typ]=BPLATFORM(job,arg1,arg2)
     xmin=-5;xmax=5;ymin=0;ymax=15
 
     model=scicos_model()
-    model.sim=list('bplatform',5)
+    model.sim=list('bplatform2',5)
     model.in=[1;1]
     model.evtin=1
     model.dstate=0
