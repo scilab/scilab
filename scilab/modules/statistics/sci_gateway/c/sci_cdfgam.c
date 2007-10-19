@@ -28,30 +28,30 @@ int cdfgamI(char* fname,unsigned long l)
 	if ( strcmp(cstk(l1),"PQ")==0) 
 	{
 		static int callpos[5] = {3,4,0,1,2};
-		CdfBase(fname,3,2,callpos,"PQ","X,Shape and Scale",1,C2F(cdfgam),
+		CdfBase(fname,3,2,callpos,"PQ",_("X,Shape and Scale"),1,C2F(cdfgam),
 			cdfgamErr);
 	}
 	else if ( strcmp(cstk(l1),"X")==0) 
 	{
 		static int callpos[5] = {2,3,4,0,1};
-		CdfBase(fname,4,1,callpos,"X","Shape,Scale,P and Q",2,C2F(cdfgam),
+		CdfBase(fname,4,1,callpos,"X",_("Shape,Scale,P and Q"),2,C2F(cdfgam),
 			cdfgamErr);
 	}
 	else if ( strcmp(cstk(l1),"Shape")==0) 
 	{
 		static int callpos[5] = {1,2,3,4,0};
-		CdfBase(fname,4,1,callpos,"Shape","Scale,P,Q and X",3,C2F(cdfgam),
+		CdfBase(fname,4,1,callpos,"Shape",_("Scale,P,Q and X"),3,C2F(cdfgam),
 			cdfgamErr);
 	}
 	else if ( strcmp(cstk(l1),"Scale")==0) 
 	{
 		static int callpos[5] = {0,1,2,3,4};
-		CdfBase(fname,4,1,callpos,"Scale","P,Q,X and Shape",4,C2F(cdfgam),
+		CdfBase(fname,4,1,callpos,"Scale",_("P,Q,X and Shape"),4,C2F(cdfgam),
 			cdfgamErr);
 	}
 	else 
 	{
-		Scierror(999,"%s: Wrong first argument %s\n",fname,cstk(l1));
+		Scierror(999,_("%s: Wrong first argument %s\n"),fname,cstk(l1));
 	}      
 	return 0;
 }
@@ -61,8 +61,8 @@ static void cdfgamErr(int status,double bound)
 	static char *param[7]={"X", "P","Q","X","Shape","Scale"};
 	switch ( status ) 
 	{
-	case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\n",bound);break;
-	case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\n",bound);break;
+	case 1 : Scierror(999,_("answer appears to be lower than lowest search bound %f\n"),bound);break;
+	case 2 : Scierror(999,_("answer appears to be higher than greatest search bound %f\n"),bound);break;
 	case 3 : Scierror(999," P + Q .ne. 1 \n");break ;
 	case 10 : Scierror(999," cannot compute the answer \n");break ;
 	default : 

@@ -27,24 +27,24 @@ int cdfpoiI(char* fname,unsigned long l)
 	if ( strcmp(cstk(l1),"PQ")==0) 
 	{
 		static int callpos[4] = {2,3,0,1};
-		CdfBase(fname,2,2,callpos,"PQ","S and Xlam",1,C2F(cdfpoi),
+		CdfBase(fname,2,2,callpos,"PQ",_("S and Xlam"),1,C2F(cdfpoi),
 			cdfpoiErr);
 	}
 	else if ( strcmp(cstk(l1),"S")==0) 
 	{
 		static int callpos[4] = {1,2,3,0};
-		CdfBase(fname,3,1,callpos,"S","Xlam,P and Q",2,C2F(cdfpoi),
+		CdfBase(fname,3,1,callpos,"S",_("Xlam,P and Q"),2,C2F(cdfpoi),
 			cdfpoiErr);
 	}
 	else if ( strcmp(cstk(l1),"Xlam")==0) 
 	{
 		static int callpos[4] = {0,1,2,3};
-		CdfBase(fname,3,1,callpos,"Xlam","P,Q and S",3,C2F(cdfpoi),
+		CdfBase(fname,3,1,callpos,"Xlam",_("P,Q and S"),3,C2F(cdfpoi),
 			cdfpoiErr);
 	}
 	else 
 	{
-		Scierror(999,"%s: Wrong first argument %s\n",fname,cstk(l1));
+		Scierror(999,_("%s: Wrong first argument %s\n"),fname,cstk(l1));
 	}      
 	return 0;
 }
@@ -54,8 +54,8 @@ static void cdfpoiErr(int status,double bound)
 	static char *param[7]={"X", "P","Q","S","Xlam"};
 	switch ( status ) 
 	{
-	case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\n",bound);break;
-	case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\n",bound);break;
+	case 1 : Scierror(999,_("answer appears to be lower than lowest search bound %f\n"),bound);break;
+	case 2 : Scierror(999,_("answer appears to be higher than greatest search bound %f\n"),bound);break;
 	case 3 : Scierror(999," P + Q .ne. 1 \n");break ;
 	default : 
 		Scierror(999,"input parameter %c is out of range \n\tbound exceeded: %f\n",

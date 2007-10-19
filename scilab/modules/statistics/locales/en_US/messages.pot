@@ -203,12 +203,6 @@ msgstr	""
 msgid	"Xlam,P and Q"
 msgstr	""
 #
-# File: sci_gateway/c/sci_cdfpoi.c, line: 39
-# File: sci_gateway/c/sci_cdfpoi.c, line: 42
-# File: sci_gateway/c/sci_cdfpoi.c, line: 54
-msgid	"Xlam"
-msgstr	""
-#
 # File: sci_gateway/c/sci_cdfpoi.c, line: 42
 msgid	"P,Q and S"
 msgstr	""
