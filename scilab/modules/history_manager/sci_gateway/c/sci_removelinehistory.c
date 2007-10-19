@@ -23,7 +23,7 @@ int C2F(sci_removelinehistory) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (N < 0) || (N > getSizeScilabHistory()) )
 		{
-			Scierror(999,"Invalid parameter.\n");
+			Scierror(999,_("Invalid parameter.\n"));
 			return 0;
 		}
 		else
@@ -33,7 +33,7 @@ int C2F(sci_removelinehistory) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"Invalid parameter.\n");
+		Scierror(999,_("Invalid parameter.\n"));
 		return 0;
 	}
 

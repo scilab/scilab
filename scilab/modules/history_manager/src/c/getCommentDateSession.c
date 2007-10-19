@@ -8,8 +8,8 @@
 #include "getCommentDateSession.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-#define string_begin_session "// Begin Session : "
-#define string_end_session   "// End Session   : "
+#define string_begin_session _("// Begin Session : ")
+#define string_end_session   _("// End Session   : ")
 /*------------------------------------------------------------------------*/
 static char *ASCIItime(const struct tm *timeptr);
 /*------------------------------------------------------------------------*/
@@ -37,12 +37,18 @@ char *getCommentDateSession(BOOL BeginSession)
 /*------------------------------------------------------------------------*/
 char *ASCIItime(const struct tm *timeptr)
 {
-	static char wday_name[7][4] = {
-		"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
+	char *wday_name[7] = {
+		_("Sun"), 
+		_("Mon"), 
+		_("Tue"), 
+		_("Wed"), 
+		_("Thu"), 
+		_("Fri"), 
+		_("Sat")
 	};
-	static char mon_name[12][4] = {
-		"Jan", "Feb", "Mar", "Apr", "May", "Jun",
-		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+	char *mon_name[12] = {
+		_("Jan"), _("Feb"), _("Mar"), _("Apr"), _("May"), _("Jun"),
+		_("Jul"), _("Aug"), _("Sep"), _("Oct"), _("Nov"), _("Dec")
 	};
 
 	static char result[27];

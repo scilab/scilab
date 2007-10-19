@@ -44,7 +44,7 @@ int C2F(sci_saveconsecutivecommands) _PARAMS((char *fname,unsigned long fname_le
 		}
 		else
 		{
-			Scierror(999,"parameter must be a boolean.\n");
+			Scierror(999,_("parameter must be a boolean.\n"));
 			return 0;
 		}
 	}

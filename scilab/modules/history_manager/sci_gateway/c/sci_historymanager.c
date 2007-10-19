@@ -64,7 +64,7 @@ int C2F(sci_historymanager) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"Invalid parameter : '%s' or '%s'","on","off");
+				Scierror(999,_("Invalid parameter : '%s' or '%s'"),"on","off");
 				return 0;
 			}
 		}

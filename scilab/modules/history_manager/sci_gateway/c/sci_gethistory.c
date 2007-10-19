@@ -46,7 +46,7 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"parameter must be a integer.\n");
+			Scierror(999,_("parameter must be a integer.\n"));
 			return 0;
 		}
 	}

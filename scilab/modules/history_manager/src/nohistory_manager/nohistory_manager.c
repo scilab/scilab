@@ -11,7 +11,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_history_manager)()
 {
-	Scierror(999,"history_manager interface not installed.\n");
+	Scierror(999,_("history_manager interface not installed.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
