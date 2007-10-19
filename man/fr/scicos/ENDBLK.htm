@@ -86,18 +86,24 @@ Description</A>
 </font></H3>
 
 <P>
-Ajoutez ici un paragraphe pour la description de la fonction  
-<BR>
+Ce bloc peut être utiliser pour paramètrer le temps final de la simulation.
+Lorsque ce bloc est correctement paramétré alors le simulateur fera avancer le
+temps au temps final définit par le paramètre 'final integration time' de l'entrée
+Setup du menu Simulate à la date définie par le paramètre de la boîte de dialogue
+'Final simulation time'.
+L'unique entrée de la boîte de dialogue peut être une valeur numérique
+ou bien une variable symbolique définit dans le contexte.
+
 <H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Boîte de dialogue</A>
 </font></H3>
 
 <DIV ALIGN="CENTER">
 <IMG
- WIDTH="477" HEIGHT="103" BORDER="0"
+ WIDTH="413" HEIGHT="89" BORDER="0"
  SRC="../../images/scicos/ENDBLK_gui.gif"
  ALT="\begin{figure}\begin{center}
-\epsfig{file=ENDBLK_gui.eps,width=300pt}
+\epsfig{file=ENDBLK_gui.eps,width=260pt}
 \end{center}\end{figure}">
 </DIV>
 
@@ -106,7 +112,9 @@ Boîte de dialogue</A>
 <UL>
 <LI><b>Final simulation time</b>
 <BR>
-La description du paramètre 1.
+Définit le temps final de la simulation.
+<BR>
+Lorsque le simulateur passera par cette date, alors le temps courant sera avancé au temps final d'intégration.
 <BR>
 Propriétés : Type 'vec' de taille 1.
 </LI>
@@ -153,12 +161,12 @@ Fonction d'interface</A>
 Contenu du super-bloc compilé</A>
 </font></H3>
  <!-- MATH
- $\epsfig{file=ENDBLK_super.eps,width=150.00pt}$
+ $\epsfig{file=ENDBLK_super.eps,width=60pt}$
  -->
 <IMG
- WIDTH="239" HEIGHT="339" ALIGN="BOTTOM" BORDER="0"
+ WIDTH="96" HEIGHT="135" ALIGN="BOTTOM" BORDER="0"
  SRC="../../images/scicos/ENDBLK_img3_fr.gif"
- ALT="\epsfig{file=ENDBLK_super.eps,width=150.00pt}">
+ ALT="\epsfig{file=ENDBLK_super.eps,width=60pt}">
 
 <H3><font color="blue"><A NAME="SECTION00027000000000000000">
 Voir aussi</A>
@@ -182,3 +190,4 @@ Auteurs</A>
 
 </BODY>
 </HTML>
+ 

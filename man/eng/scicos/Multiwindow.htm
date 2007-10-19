@@ -134,13 +134,28 @@ are independent from one window to another, but there is an
 exception. If a low-level diagram of a diagram is edited, the undo
 operation in this latter diagram can undo all the editing done in the
 low-level diagram since it has been opened. To avoid loss of work by an
-inadvertent undo, a war
+inadvertent undo operation, a warning message is displayed in such situations. 
 
 <P>
 
 <H3><font color="blue"><A NAME="SECTION00016000000000000000">
 Scilab window activation</A>
 </font></H3>
+One of the most important features of the new editor is that it allows the user
+to activate the Scilab shell without really leaving Scicos. Such a
+functionality did exist previously through the Calc command. But Calc activated
+the Scilab shell under the pause environment. Even though user could have used this
+environment to perform calculations, the result was lost upon leaving the shell
+back to Scicos. This was particularly annoying for loaded functions which were
+not usable in Scicos.
+
+<P>
+The Activate Scilab Window operation in Tools menu activates the Scilab prompt
+at normal level. This operation is particularly useful for From/To workspace
+blocks. For most usages, except perhaps very advanced debugging, this operation
+replaces the Calc operation.
+
+<P>
 
 <H3><font color="blue"><A NAME="SECTION00017000000000000000">
 Authors</A>

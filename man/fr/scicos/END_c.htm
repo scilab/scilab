@@ -75,18 +75,38 @@ Description</A>
 </font></H3>
 
 <P>
-Ajoutez ici un paragraphe pour la description de la fonction  
+Ce bloc fait avancer le temps courant au temps final d'intégration lorsque celui-ci
+est activé la première fois :
 <BR>
+<DIV ALIGN="RIGHT" CLASS="mathdisplay">
+<P ALIGN="LEFT"><!-- MATH
+ \begin{eqnarray}
+\htmlimage{align=left}
+  {\rm T_{f}} & = & {\rm T_{cur}}
+\end{eqnarray}
+ -->
+<IMG
+ WIDTH="556" HEIGHT="30" ALIGN="LEFT"
+ SRC="../../images/scicos/END_c_img2_fr.gif"
+ ALT="\begin{eqnarray}
+{\rm T_{f}} &amp; = &amp; {\rm T_{cur}}
+\end{eqnarray}">
+<BR CLEAR="ALL">
+<P>
+<BR CLEAR="ALL"></DIV><P></P>
+avec <B>Tcur</B> la date d'activation de ce bloc et <B>Tf</B> le temps final d'intégration
+définit via l'entrée Setup du menu Simulate (scs_m.props.tf).
+
 <H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Boîte de dialogue</A>
 </font></H3>
 
 <DIV ALIGN="CENTER">
 <IMG
- WIDTH="477" HEIGHT="103" BORDER="0"
+ WIDTH="413" HEIGHT="89" BORDER="0"
  SRC="../../images/scicos/END_c_gui.gif"
  ALT="\begin{figure}\begin{center}
-\epsfig{file=END_c_gui.eps,width=300pt}
+\epsfig{file=END_c_gui.eps,width=260pt}
 \end{center}\end{figure}">
 </DIV>
 
@@ -95,7 +115,7 @@ Boîte de dialogue</A>
 <UL>
 <LI><b>Final simulation time</b>
 <BR>
-La description du paramètre 1.
+Ce paramètre est une date pour un événement inital de sortie. En rebouclant la sortie événementielle sur l'entrée événementielle, alors ce bloc terminera de lui même la simulation à la date définit par ce paramètre.
 <BR>
 Propriétés : Type 'vec' de taille 1.
 </LI>

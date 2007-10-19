@@ -50,17 +50,48 @@ Description</A>
 </font></H3>
 
 <P>
-Ajoutez ici un paragraphe pour la description de la fonction  
+Cette fonction permet de définir une erreur spécifique en cours de simulation pour le bloc courant. Si c'est fonction est utilisée, alors à l'issue de l'éxecution de la fonction de calcul du bloc, le simulateur s'arrêtera et retournera un message d'erreur associé au numéro donné en argument.  
 <BR>
 <H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Séquence d'appel</A>
+</font></H3>
+<PRE>
+set_blockerror(n)
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00014000000000000000">
 Paramètres</A>
 </font></H3>
-
+ 
 <UL>
-<LI><b>Nom du paramètre :</b>
-   ajoutez ici la description du paramètre
+<LI><B>n</B> : un numéro d'erreur. Les appels suivant sont autorisés :
+          
+<UL>
+<LI><B>set_blockerror(-1)</B>
+<BR>
+le bloc a été appelé avec une valeur d'entrée en dehors du domaine autorisé
+</LI>
+<LI><B>set_blockerror(-2)</B>
+<BR>
+une singularité a été rencontrée dans le bloc
+</LI>
+<LI><B>set_blockerror(-3)</B>
+<BR>
+le bloc a produit une erreur interne
+</LI>
+<LI><B>set_blockerror(-16)</B> 
+<BR>
+le bloc ne peut pas allouer de mémoire
+          
 </LI>
 </UL>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00015000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Alan Layec</b> INRIA
 
 <BR>
 

@@ -50,17 +50,48 @@ Description</A>
 </font></H3>
 
 <P>
-Add here a paragraph of the function description  
+Function to set a specific error during the simulation for the current block. If it is used, then after the execution of the computational function of the block, the simulator will end and will return an error message associated to the number given in argument.  
 <BR>
 <H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Calling Sequence</A>
+</font></H3>
+<PRE>
+set_blockerror(n)
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00014000000000000000">
 Parameters</A>
 </font></H3>
-
+ 
 <UL>
-<LI><b>Name of param. :</b>
-   add here the parameter description
+<LI><B>n</B> : an error number. The following calls are allowed :
+          
+<UL>
+<LI><B>set_blockerror(-1)</B>
+<BR>
+the block has been called with input out of its domain
+</LI>
+<LI><B>set_blockerror(-2)</B>
+<BR>
+singularity in a block
+</LI>
+<LI><B>set_blockerror(-3)</B>
+<BR>
+block produces an internal error
+</LI>
+<LI><B>set_blockerror(-16)</B>
+<BR>
+cannot allocate memory in block
+          
 </LI>
 </UL>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00015000000000000000">
+Authors</A>
+</font></H3>
+<b>Alan Layec</b> INRIA
 
 <BR>
 
