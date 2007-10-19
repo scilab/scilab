@@ -52,7 +52,6 @@ int C2F(intisequalvar)(char * fname, int *job, long int fl)
     Rrec = NULL;
   }
 
-
   l1 = *Lstk(top1);il1 = iadr(l1);
   n1 = *Lstk(top1+1)-l1;
   if (*istk(il1) < 0) {
@@ -374,7 +373,6 @@ int IsEqualList(double *d1, double *d2)
 
     goto STARTLEVEL;
   }
-  return 1;
 }
 
 
