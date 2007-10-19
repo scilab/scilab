@@ -135,7 +135,7 @@
 <FILE name='scicos' type='XML'>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>
-      scs_m = scicos([input])
+      scs_m = scicos([toto])
     </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>
@@ -230,8 +230,7 @@
 
 <FILE name='set_blockerror' type='XML'>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>
-   </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>set_blockerror(n)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>
 

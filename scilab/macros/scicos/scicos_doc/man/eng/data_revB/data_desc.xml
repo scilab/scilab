@@ -2375,28 +2375,24 @@ not detect continuous-time zero-crossings.
 </DESCRIPTION>
 </FILE>
 
-<FILE name='ENDBLK' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='ENDBLK' type='LATEX'>
+That block can be used to set the final time of the simulation.
+When that block is truely parametrized then the simulator will jump
+to the 'final integration time' defined in the Setup item of the simulate Menu 
+from the time defined by the parameter 'Final simulation time' of the dialog box.
+That parameter can be a numerical value or a symbolic variable defined
+in the scicos context.
 </FILE>
 
-<FILE name='END_c' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='END_c' type='LATEX'>
+That block increases the current time to the final integration time of the simulation
+when it is activated :
+\begin{eqnarray}
+{\rm T_{f}} & = & {\rm T_{cur}}
+\end{eqnarray}
+with {\bf Tcur} the activation date of the block and {\bf Tf} the final integration
+time defined in the in the Setup item of the simulate Menu (scs\_m.props.tf).
+
 </FILE>
 
 <FILE name='ESELECT_f' type='LATEX'>
@@ -5041,7 +5037,10 @@ is slower. For more information see Scicos reference manual.
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+    Function to set a specific error during the simulation for the current block.
+    If it is used, then after the execution of the computational function of the block,
+    the simulator will end and will return an error message associated to the number given
+    in argument.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

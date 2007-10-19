@@ -2679,7 +2679,11 @@
     <PARAM_NAME>Final simulation time</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      La description du paramètre 1.
+      Définit le temps final de la simulation.
+      </SP>
+      <SP>
+      Lorsque le simulateur passera par cette date, alors le temps 
+      courant sera avancé au temps final d'intégration.
       </SP>
       <SP>
       Propriétés : Type 'vec' de taille 1.
@@ -2699,7 +2703,9 @@
     <PARAM_NAME>Final simulation time</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      La description du paramètre 1.
+      Ce paramètre est une date pour un événement inital de sortie. En rebouclant
+      la sortie événementielle sur l'entrée événementielle, alors ce bloc terminera
+      de lui même la simulation à la date définit par ce paramètre.
       </SP>
       <SP>
       Propriétés : Type 'vec' de taille 1.
@@ -8495,21 +8501,20 @@ de normalisation.
  \end{itemize}
 </FILE>
 
-<FILE name='set_blockerror' type='XML'>
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Nom du paramètre</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      ajoutez ici la description du paramètre
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-  </PARAM_INDENT>
-  </PARAM>
+<FILE name='set_blockerror' type='LATEX'>
+ \begin{itemize}
+   \item {\bf n} : un numéro d'erreur. Les appels suivant sont autorisés :
+          \begin{itemize}
+             \item {\bf set\_blockerror(-1)}\\ 
+                   le bloc a été appelé avec une valeur d'entrée en dehors du domaine autorisé
+             \item {\bf set\_blockerror(-2)}\\
+                   une singularité a été rencontrée dans le bloc
+             \item {\bf set\_blockerror(-3)}\\
+                   le bloc a produit une erreur interne
+             \item {\bf set\_blockerror(-16)} \\
+                   le bloc ne peut pas allouer de mémoire
+          \end{itemize}
+ \end{itemize}
 </FILE>
 
 <FILE name='set_xproperty' type='LATEX'>

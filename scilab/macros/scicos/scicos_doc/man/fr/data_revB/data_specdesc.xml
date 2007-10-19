@@ -135,6 +135,15 @@
 	scs_diagr_height_pal_html=50pt
 </FILE>
 
+<FILE name='ENDBLK' type='SPECIALDESC'>
+	dial_width_html=260pt
+	super_width_html=60pt
+</FILE>
+
+<FILE name='END_c' type='SPECIALDESC'>
+	dial_width_html=260pt
+</FILE>
+
 <FILE name='EVTGEN_f' type='SPECIALDESC'>
 	dial_width_html=220pt
 </FILE>

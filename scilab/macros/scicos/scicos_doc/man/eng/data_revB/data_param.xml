@@ -2609,7 +2609,11 @@
     <PARAM_NAME>Final simulation time</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 1.
+      Set the final time of the simulation.
+      </SP>
+      <SP>
+      When simulator reaches that value then the current time will jump to
+      the final integration time.
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
@@ -2629,7 +2633,9 @@
     <PARAM_NAME>Final simulation time</PARAM_NAME>
     <PARAM_DESCRIPTION>
       <SP>
-      The parameter description 1.
+      That parameter is a date for an initial output event. By using a feed back
+      from the event output port to the event input port, then that block can himself
+      end the simulation at the time defined by this parameter.
       </SP>
       <SP>
       Properties : Type 'vec' of size 1.
@@ -8151,21 +8157,20 @@ integer between Min value and the Max value) divided by this Normalization facto
  \end{itemize}
 </FILE>
 
-<FILE name='set_blockerror' type='XML'>
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Name of param.</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP>
-      add here the parameter description
-      </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-  </PARAM_INDENT>
-  </PARAM>
+<FILE name='set_blockerror' type='LATEX'>
+ \begin{itemize}
+   \item {\bf n} : an error number. The following calls are allowed :
+          \begin{itemize}
+             \item {\bf set\_blockerror(-1)}\\
+	           the block has been called with input out of its domain
+             \item {\bf set\_blockerror(-2)}\\
+	           singularity in a block
+             \item {\bf set\_blockerror(-3)}\\
+	           block produces an internal error
+             \item {\bf set\_blockerror(-16)}\\
+	           cannot allocate memory in block
+          \end{itemize}
+ \end{itemize}
 </FILE>
 
 <FILE name='set_xproperty' type='LATEX'>

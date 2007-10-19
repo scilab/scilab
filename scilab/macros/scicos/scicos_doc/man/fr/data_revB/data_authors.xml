@@ -2298,7 +2298,9 @@ INRIA
 
 <FILE name='set_blockerror' type='XML'>
   <AUTHORS>
-
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
   </AUTHORS>
 </FILE>
 
