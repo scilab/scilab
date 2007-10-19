@@ -34,9 +34,9 @@ function [x,y,typ]=GAINBLK(job,arg1,arg2)
       coli=gr_i(2);
       if coli<>[] then
 	xfpolys(xx',yy',coli);
-	pcoli=xget('pattern');xset('pattern',coli)
-	xstringb(orig(1)+x1*sz(1),orig(2),gain,(1-x1)*sz(1),sz(2));
-	xset('pattern',pcoli)
+//	pcoli=xget('pattern');xset('pattern',coli)
+//	xstringb(orig(1)+x1*sz(1),orig(2),gain,(1-x1)*sz(1),sz(2));
+//	xset('pattern',pcoli)
 	xstringb(orig(1)+x1*sz(1),orig(2),gain,(1-x1)*sz(1),sz(2));
       else
 	xpoly(xx,yy,'lines');
