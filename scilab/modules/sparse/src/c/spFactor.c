@@ -208,7 +208,7 @@ RealNumber LargestInCol;
  */
 
 #if ANNOTATE >= ON_STRANGE_BEHAVIOR
-            printf("Reordering,  Step = %1d\n", Step);
+            printf(_("Reordering,  Step = %1d\n"), Step);
 #endif
         }
     } /* End of if(NOT Matrix->NeedsOrdering) */
@@ -260,9 +260,9 @@ RealNumber LargestInCol;
 	    Matrix->NumRank=Step-1;
 #if ANNOTATE == FULL
 	    if (pPivot==NULL) 
-	      fprintf(stderr,"//Matrix is Singular Returning LU ");
+	      fprintf(stderr,_("//Matrix is Singular Returning LU "));
 	    else 
-	      fprintf(stderr,"//Matrix is Singular at level prec [%f] I return LU\n",ELEMENT_MAG(pPivot));
+	      fprintf(stderr,_("//Matrix is Singular at level prec [%f] I return LU\n"),ELEMENT_MAG(pPivot));
 #endif
 	     break;
 
@@ -689,7 +689,7 @@ SPBOOLEAN *DoRealDirect, *DoCmplxDirect;
     {   int Ops = 0;
         for (Step = 1; Step <= Size; Step++)
             Ops += No[Step];
-        printf("Operation count for inner loop of factorization = %d.\n", Ops);
+        printf(_("Operation count for inner loop of factorization = %d.\n"), Ops);
     }
 #endif
     return;
@@ -2989,7 +2989,7 @@ int  I;
 /* Begin `WriteStatus'. */
 
     printf("Step = %1d   ", Step);
-    printf("Pivot found at %1d,%1d using ", Matrix->PivotsOriginalRow,
+    printf(_("Pivot found at %1d,%1d using "), Matrix->PivotsOriginalRow,
                                             Matrix->PivotsOriginalCol);
     switch(Matrix->PivotSelectionMethod)
     {   case 's': printf("SearchForSingleton\n");  break;

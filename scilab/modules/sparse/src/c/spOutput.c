@@ -176,16 +176,16 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
 
 /* Print header. */
     if (Header)
-    {   printf("MATRIX SUMMARY\n\n");
-        printf("Size of matrix = %1u x %1u.\n", Size, Size);
+    {   printf(_("MATRIX SUMMARY\n\n"));
+        printf(_("Size of matrix = %1u x %1u.\n"), Size, Size);
         if ( Matrix->Reordered AND PrintReordered )
-            printf("Matrix has been reordered.\n");
+            printf(_("Matrix has been reordered.\n"));
         putchar('\n');
 
         if ( Matrix->Factored )
-            printf("Matrix after factorization:\n");
+            printf(_("Matrix after factorization:\n"));
         else
-            printf("Matrix before factorization:\n");
+            printf(_("Matrix before factorization:\n"));
 
         SmallestElement = LARGEST_REAL;
         SmallestDiag = SmallestElement;
@@ -223,9 +223,9 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
             }
             else
             {   if (PrintReordered)
-                    printf("Columns %1d to %1d.\n",StartCol,StopCol);
+                    printf(_("Columns %1d to %1d.\n"),StartCol,StopCol);
                 else
-                {   printf("Columns %1d to %1d.\n",
+                {   printf(_("Columns %1d to %1d.\n"),
                         Matrix->IntToExtColMap[ PrintOrdToIntColMap[StartCol] ],
                         Matrix->IntToExtColMap[ PrintOrdToIntColMap[StopCol] ]);
                 }
@@ -308,8 +308,8 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
         putchar('\n');
     }
     if (Header)
-    {   printf("\nLargest element in matrix = %-1.4lg.\n", LargestElement);
-        printf("Smallest element in matrix = %-1.4lg.\n", SmallestElement);
+    {   printf(_("\nLargest element in matrix = %-1.4lg.\n"), LargestElement);
+        printf(_("Smallest element in matrix = %-1.4lg.\n"), SmallestElement);
 
 /* Search for largest and smallest diagonal values */
         for (I = 1; I <= Size; I++)
@@ -322,19 +322,19 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
 
     /* Print the largest and smallest diagonal values */
         if ( Matrix->Factored )
-        {   printf("\nLargest diagonal element = %-1.4lg.\n", LargestDiag);
-            printf("Smallest diagonal element = %-1.4lg.\n", SmallestDiag);
+        {   printf(_("\nLargest diagonal element = %-1.4lg.\n"), LargestDiag);
+            printf(_("Smallest diagonal element = %-1.4lg.\n"), SmallestDiag);
         }
         else
-        {   printf("\nLargest pivot element = %-1.4lg.\n", LargestDiag);
-            printf("Smallest pivot element = %-1.4lg.\n", SmallestDiag);
+        {   printf(_("\nLargest pivot element = %-1.4lg.\n"), LargestDiag);
+            printf(_("Smallest pivot element = %-1.4lg.\n"), SmallestDiag);
         }
 
     /* Calculate and print sparsity and number of fill-ins created. */
-        printf("\nDensity = %2.2lf%%.\n", ((double)(ElementCount * 100)) /
+        printf(_("\nDensity = %2.2lf%%.\n"), ((double)(ElementCount * 100)) /
                                                        ((double)(Size * Size)));
         if (NOT Matrix->NeedsOrdering)
-            printf("Number of fill-ins = %1d.\n", Matrix->Fillins);
+            printf(_("Number of fill-ins = %1d.\n"), Matrix->Fillins);
     }
     putchar('\n');
     (void)fflush(stdout);
@@ -421,7 +421,7 @@ FILE  *pMatrixFile, *fopen();
     {   if (Matrix->Factored AND Data)
         {   Err = fprintf
             (   pMatrixFile,
-                "Warning : The following matrix is factored in to LU form.\n"
+                _("Warning : The following matrix is factored in to LU form.\n")
             );
         }
         if (Err < 0) return 0;
@@ -694,13 +694,13 @@ FILE  *pStatsFile, *fopen();
 /* Output statistics. */
     Size = Matrix->Size;
     if (NOT Matrix->Factored)
-        fprintf(pStatsFile, "Matrix has not been factored.\n");
-    fprintf(pStatsFile, "|||  Starting new matrix  |||\n");
+        fprintf(pStatsFile, _("Matrix has not been factored.\n"));
+    fprintf(pStatsFile, _("|||  Starting new matrix  |||\n"));
     fprintf(pStatsFile, "%s\n", Label);
     if (Matrix->Complex)
-        fprintf(pStatsFile, "Matrix is complex.\n");
+        fprintf(pStatsFile, _("Matrix is complex.\n"));
     else
-        fprintf(pStatsFile, "Matrix is real.\n");
+        fprintf(pStatsFile, _("Matrix is real.\n"));
     fprintf(pStatsFile,"     Size = %d\n",Size);
 
 /* Search matrix. */
@@ -724,24 +724,24 @@ FILE  *pStatsFile, *fopen();
     SmallestElement = MIN( SmallestElement, LargestElement );
 
 /* Output remaining statistics. */
-    fprintf(pStatsFile, "     Initial number of elements = %d\n",
+    fprintf(pStatsFile, _("     Initial number of elements = %d\n"),
             NumberOfElements - Matrix->Fillins);
     fprintf(pStatsFile,
-            "     Initial average number of elements per row = %lf\n",
+            _("     Initial average number of elements per row = %lf\n"),
             (double)(NumberOfElements - Matrix->Fillins) / (double)Size);
-    fprintf(pStatsFile, "     Fill-ins = %d\n",Matrix->Fillins);
-    fprintf(pStatsFile, "     Average number of fill-ins per row = %lf%%\n",
+    fprintf(pStatsFile, _("     Fill-ins = %d\n"),Matrix->Fillins);
+    fprintf(pStatsFile, _("     Average number of fill-ins per row = %lf%%\n"),
             (double)Matrix->Fillins / (double)Size);
-    fprintf(pStatsFile, "     Total number of elements = %d\n",
+    fprintf(pStatsFile, _("     Total number of elements = %d\n"),
             NumberOfElements);
-    fprintf(pStatsFile, "     Average number of elements per row = %lf\n",
+    fprintf(pStatsFile, _("     Average number of elements per row = %lf\n"),
             (double)NumberOfElements / (double)Size);
-    fprintf(pStatsFile,"     Density = %lf%%\n",
+    fprintf(pStatsFile,_("     Density = %lf%%\n"),
             (double)(100.0*NumberOfElements)/(double)(Size*Size));
-    fprintf(pStatsFile,"     Relative Threshold = %e\n", Matrix->RelThreshold);
-    fprintf(pStatsFile,"     Absolute Threshold = %e\n", Matrix->AbsThreshold);
-    fprintf(pStatsFile,"     Largest Element = %e\n", LargestElement);
-    fprintf(pStatsFile,"     Smallest Element = %e\n\n\n", SmallestElement);
+    fprintf(pStatsFile,_("     Relative Threshold = %e\n"), Matrix->RelThreshold);
+    fprintf(pStatsFile,_("     Absolute Threshold = %e\n"), Matrix->AbsThreshold);
+    fprintf(pStatsFile,_("     Largest Element = %e\n"), LargestElement);
+    fprintf(pStatsFile,_("     Smallest Element = %e\n\n\n"), SmallestElement);
 
 /* Close file. */
     (void)fclose(pStatsFile);

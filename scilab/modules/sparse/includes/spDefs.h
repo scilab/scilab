@@ -383,7 +383,7 @@
 #if DEBUG
 #define  ABORT()                                                        \
 {   (void)fflush(stdout);                                               \
-    (void)fprintf(stderr, "sparse: panic in file `%s' at line %d.\n",   \
+    (void)fprintf(stderr, _("sparse: panic in file `%s' at line %d.\n"),   \
             __FILE__, __LINE__);                                        \
     (void)fflush(stderr);                                               \
     abort();                                                            \

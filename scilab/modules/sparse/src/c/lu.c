@@ -116,7 +116,7 @@ int *n,*nel,*nrank,*lln,*col,*ierr;
   spGetNumRank((char *) *fmat,nrank);
   switch (error) {
   case spZERO_DIAG:
-    cerro("zero_diag: A zero was encountered on the diagonal the matrix ");
+    cerro(_("zero_diag: A zero was encountered on the diagonal the matrix "));
     break;
   case spNO_MEMORY:
     *ierr=3;
