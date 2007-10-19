@@ -221,7 +221,7 @@ extern int s_cmp();
   * 71 - GetNg(blk)
   * 72 - GetGPtrs(blk)
   * 73 - GetNmode(blk)
-  * 74 - GetModePtrs(blk,x)
+  * 74 - GetModePtrs(blk)
   */
 
 /**
