@@ -172,35 +172,35 @@ extern int pvmendtask(void);
 typedef char *strings;
 
 static strings Scipvm_error[]= { 
-	"OK", /* 0 */
-	"Bad parameter", /* 1 */
-	"Barrier count mismatch", /* 2 */
-	"Read past end of buffer", /* 3 */
-	"No such host", /* 4 */
-	"No such executable", /* 5 */
-	"Can not get memory", /* 6 */
-	"Can not decode received msg", /* 7 */
-	"Daemon pvmd is not responding", /* 8 */
-	"No current buffer", /* 9 */
-	"Bad message id", /* 10 */
-	"Null group name is illegal", /* 11 */
-	"Already in group", /* 12 */
-	"No group with that name", /* 13 */
-	"Not in group", /* 14 */
-	"No such instance in group", /* 15 */
-	"Host failed", /* 16 */
-	"No parent task", /* 17 */
-	"Function not implemented", /* 18 */
-	"Pvmd system error", /* 19 */
-	"Pvmd-pvmd protocol mismatch", /* 20 */
-	"Out of ressources", /* 21 */
-	"Host already configured (Duplicate host)", /* 22 */
-	"Failed to exec new slave pvmd", /* 23 */
-	"Already oing operation", /* 24 */
-	"No such task", /* 25 */
-	"No such (group,instance)", /* 26 */
-	"(group,instance) already exists", /* 27 */
-	"Unknown Error", /* 28 */
+	_("OK"), /* 0 */
+	_("Bad parameter"), /* 1 */
+	_("Barrier count mismatch"), /* 2 */
+	_("Read past end of buffer"), /* 3 */
+	_("No such host"), /* 4 */
+	_("No such executable"), /* 5 */
+	_("Can not get memory"), /* 6 */
+	_("Can not decode received msg"), /* 7 */
+	_("Daemon pvmd is not responding"), /* 8 */
+	_("No current buffer"), /* 9 */
+	_("Bad message id"), /* 10 */
+	_("Null group name is illegal"), /* 11 */
+	_("Already in group"), /* 12 */
+	_("No group with that name"), /* 13 */
+	_("Not in group"), /* 14 */
+	_("No such instance in group"), /* 15 */
+	_("Host failed"), /* 16 */
+	_("No parent task"), /* 17 */
+	_("Function not implemented"), /* 18 */
+	_("Pvmd system error"), /* 19 */
+	_("Pvmd-pvmd protocol mismatch"), /* 20 */
+	_("Out of ressources"), /* 21 */
+	_("Host already configured (Duplicate host)"), /* 22 */
+	_("Failed to exec new slave pvmd"), /* 23 */
+	_("Already oing operation"), /* 24 */
+	_("No such task"), /* 25 */
+	_("No such (group,instance)"), /* 26 */
+	_("(group,instance) already exists"), /* 27 */
+	_("Unknown Error"), /* 28 */
 };
 
 /*--------------------------------------------------
@@ -214,7 +214,7 @@ extern int pvm_nerr;
 char *
 pvm_geterror(int n)
 {
-  return (n <= 0 && n > -pvm_nerr ? pvm_errlist[-n] : "Unknown Error");
+  return (n <= 0 && n > -pvm_nerr ? pvm_errlist[-n] : _("Unknown Error"));
 }
 
 char *scipvm_error_msg(int err)
@@ -285,7 +285,7 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 			 */ 
 			if (!argc && (ro = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
 				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
-					(void) fprintf(stderr, "Error MALLOC in pvm_error\n");
+					(void) fprintf(stderr, _("Error MALLOC in pvm_error\n"));
 					*res = PvmNoMem;
 					return;
 				}
@@ -294,39 +294,34 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 				if (stat(path, &buf) == 0){
 					argc = 1;
 					argv[0] = path;
-					sciprint_nd("The configuration file\n %s\nis used.\n", path);
+					sciprint_nd(_("The configuration file\n %s\nis used.\n"), path);
 				} else {
-					sciprint_nd("Warning: PVM_ROOT is set to %s\n",ro);
-					sciprint_nd("\tbut there exists no configuration file:\n");
+					sciprint_nd(_("Warning: PVM_ROOT is set to %s\n"),ro);
+					sciprint_nd(_("\tbut there exists no configuration file:\n"));
 					sciprint_nd("\t%s\n", path);
 					FREE(path);
 				}
 			} /* PVM_ROOT + HOME */
 			if (!argc && (rd = getSCIpath())){
 				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
-					(void) fprintf(stderr, "Error malloc in pvm_error\n");
+					(void) fprintf(stderr, _("Error malloc in pvm_error\n"));
 					*res = PvmNoMem;
 					return;
 				}
 				strcpy(path, rd);
 				strcat(path, PVM_CONFIG_FILE); 
 				if (stat(path, &buf) == 0){
-					sciprint_nd("The standard configuration file $SCI%s will be used.\n",PVM_CONFIG_FILE);
-					sciprint_nd("\tWith SCI=%s\n",rd);
-					sciprint_nd("\tSCI will have to be set on remote hosts\n");
-					sciprint_nd("\tin order to spawn scilab\n",rd);
+					sciprint_nd(_("The standard configuration file $SCI%s will be used.\n\tWith SCI=%s\n\tSCI will have to be set on remote hosts\n\tin order to spawn scilab\n"),PVM_CONFIG_FILE,rd,rd);
 					argc = 1;
 					argv[0] = path;
 				} else {
 					FREE(path);
-					sciprint_nd("Warning: The standard configuration file $SCI%s was not found.\n",PVM_CONFIG_FILE);
-					sciprint_nd("\tWe supposed that PVM and scilab are in standard place on your net\n");
-					sciprint_nd("\t (Cf. man pvmd3)\n");
+					sciprint_nd(_("Warning: The standard configuration file $SCI%s was not found.\n\tWe supposed that PVM and scilab are in standard place on your net\n\t (Cf. man pvmd3)\n"),PVM_CONFIG_FILE);
 				}
 			} /* SCI */
 		} else {
 			if (stat(hostfile, &buf) == -1){
-				sciprint("%s: No such file or directory\n", hostfile);
+				sciprint(_("%s: No such file or directory\n"), hostfile);
 			} else {
 				argv[0] = hostfile;
 				argc = 1;
@@ -345,7 +340,7 @@ void C2F(scipvmhalt)(int *res)
 {
   /* Catch the SIGTERM */
   if (SIG_ERR == signal(SIGTERM,SIG_IGN)){
-    (void) fprintf(stderr, "Error pvm_halt - signal\n");
+    (void) fprintf(stderr, _("Error pvm_halt - signal\n"));
     *res = -1;
     return;
   }
@@ -356,13 +351,13 @@ void C2F(scipvmhalt)(int *res)
   /* Catch the SIGPIPE and deflect SIGTERM */
 #ifdef SIGPIPE
   if (SIG_ERR == signal(SIGPIPE,SIG_IGN)){
-    (void) fprintf(stderr, "Error pvm_halt - signal\n");
+    (void) fprintf(stderr, _("Error pvm_halt - signal\n"));
     *res = -1;
     return;
   }
 #endif 
   if (SIG_ERR == signal(SIGTERM,SIG_DFL)){
-    (void) fprintf(stderr, "Error pvm_halt - signal\n");
+    (void) fprintf(stderr, _("Error pvm_halt - signal\n"));
     *res = -1;
     return;
   }         
@@ -419,7 +414,7 @@ void C2F(scipvmspawn)(char *task,  int *l1, char *win,   int *l2, char *where, i
 #ifdef _MSC_VER
   strcpy(cmd, "scilex.exe");
 #else
-  strcpy(cmd, "/home/sylvestre/dev/scilab5/bin/scilab");
+  strcpy(cmd, "scilab");
 #endif 
 #ifdef _MSC_VER
   if ( _stricmp(task,"null") != 0) 

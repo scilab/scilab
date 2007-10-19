@@ -36,7 +36,7 @@ void C2F(scipvmconfig)(int *nhost, int *narch, int **dtid,
   *n = *nhost;
   
   if (*info) {
-    Scierror(999,"pvm_config: Error  %d\n", *info);
+    Scierror(999,_("pvm_config: Error  %d\n"), *info);
     *n = 0;
     *name = NULL;
     *arch = NULL;
@@ -99,7 +99,7 @@ void C2F(scipvmtasks)(int *where, int *ntask,
   *n = *ntask;
 
   if (*info) {
-    Scierror(999,"pvm_tasks: Error in C routine pvm_tasks  %d\n", *info);
+    Scierror(999,_("pvm_tasks: Error in C routine pvm_tasks  %d\n"), *info);
     *n = 0;
     *ntask = 0;
     *name = NULL;

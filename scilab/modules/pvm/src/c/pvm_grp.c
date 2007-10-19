@@ -107,7 +107,7 @@ void C2F(scipvmreduce)(char *func, int *l1,
       SciToF77(buff, size, size);
       break;
     default :
-      (void) fprintf(stderr, "Error pvm_reduce: Not scalar type\n");
+      (void) fprintf(stderr, _("Error pvm_reduce: Not scalar type\n"));
       *res = PvmBadMsg;
       return;
     }
@@ -125,7 +125,7 @@ void C2F(scipvmreduce)(char *func, int *l1,
     op = PvmProduct;
   } 
   else {
-    (void) fprintf(stderr, "Error pvm_reduce: Unknow reduction operation %s\n", func);
+    (void) fprintf(stderr, _("Error pvm_reduce: Unknow reduction operation %s\n"), func);
     *res = PvmBadMsg;
     return;
   }

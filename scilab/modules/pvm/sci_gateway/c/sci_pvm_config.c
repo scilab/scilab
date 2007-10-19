@@ -22,7 +22,7 @@ int intspvm_config _PARAMS((char *fname,unsigned long fname_len))
   /* Creation of output list of length 7*/
   if (info != 0 ) 
     {
-      Scierror(999,"%s: Error\n",fname);
+      Scierror(999,_("%s: Error\n"),fname);
       return 0;
     }
   Createlist(1,7);
