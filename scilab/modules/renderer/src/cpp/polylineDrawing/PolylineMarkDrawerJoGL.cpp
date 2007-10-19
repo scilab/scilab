@@ -67,7 +67,7 @@ void PolylineMarkDrawerJoGL::drawPolyline( void )
 
   if (xCoords == NULL || yCoords == NULL || zCoords == NULL)
   {
-    sciprint("Unable to render polyline, memory full.\n");
+    sciprint(_("Unable to render polyline, memory full.\n"));
     if(xCoords != NULL) { delete[] xCoords; }
     if(yCoords != NULL) { delete[] yCoords; }
     if(zCoords != NULL) { delete[] zCoords; }

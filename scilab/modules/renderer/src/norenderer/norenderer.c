@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_renderer)()
 {
-	Scierror(999,"Module Renderer interface not installed.\n");
+	Scierror(999,_("Module Renderer interface not installed.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
