@@ -49,36 +49,57 @@
  *
  * @param lpAddress Address 
  * @param dwSize Size
- * @param file Where the function is called (used debug) 
- * @param line  
+ * @param file Which file is calling the function (used debug)
+ * @param line Which line is calling the function (used debug)
  * @return <ReturnValue>
  */
  void * MyReAlloc(void * lpAddress,int dwSize,char *file,int line);
+ 
+ /**
+ * Allocate the memory
+ * Unix/Linux only
+ *
+ * @param dwSize Size 
+ * @param file Which file is calling the function (used debug) 
+ * @param line Which line is calling the function (used debug) 
+ * @return <ReturnValue>
+ */
  void * MyAlloc(unsigned int dwSize,char *file,int line);
+ 
+   /**
+ * 
+ * Unix/Linux only
+ *
+ * @param x
+ * @param y
+ * @param file Which file is calling the function (used debug) 
+ * @param line Which line is calling the function (used debug) 
+ * @return <ReturnValue>
+ */
  void * MyCalloc(unsigned  int x, unsigned int y, char *file,int line);
+ 
+  /**
+ * Free the memory
+ * Unix/Linux only
+ *
+ * @param lpAddress Address 
+ * @param file Which file is calling the function (used debug) 
+ * @param line Which line is calling the function (used debug) 
+ * @return <ReturnValue>
+ */
  void MyFree(void *lpAddress,char *file,int line);
 
- #ifdef lint5
-   #include <sys/stdtypes.h>
-   #define MALLOC(x) MyAlloc((size_t)x,__FILE__,__LINE__)
-   #define FREE(x) if (x  != NULL) free((void *) x);
-   #define REALLOC(x,y) MyReAlloc((void *)x, y,__FILE__,__LINE__)
-   #define CALLOC(x,y) MyCalloc((size_t) x, (size_t) y,__FILE__,__LINE__)
+#define MALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
+#define FREE(x) if (x  != NULL) free((char *) x);
+#define REALLOC(x,y) MyReAlloc((char *)x, y,__FILE__,__LINE__)
+#define CALLOC(x,y) MyCalloc((unsigned) x, (unsigned) y,__FILE__,__LINE__)
 
-   /* Only for Scilab Stacksize use VirtualAlloc on Window */
-   #define SCISTACKMALLOC(x) MyAlloc((size_t)x,__FILE__,__LINE__)
-   #define SCISTACKFREE(x,y) if (x  != NULL) MyFree((void *) x,__FILE__,__LINE__);
- #else
-   #define MALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
-   #define FREE(x) if (x  != NULL) free((char *) x);
-   #define REALLOC(x,y) MyReAlloc((char *)x, y,__FILE__,__LINE__)
-   #define CALLOC(x,y) MyCalloc((unsigned) x, (unsigned) y,__FILE__,__LINE__)
+/* Only for Scilab Stacksize use VirtualAlloc on Window */
+#define SCISTACKMALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
+#define SCISTACKFREE(x) if (x  != NULL) MyFree((char *) x,__FILE__,__LINE__);
 
-    /* Only for Scilab Stacksize use VirtualAlloc on Window */
-   #define SCISTACKMALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
-   #define SCISTACKFREE(x) if (x  != NULL) MyFree((char *) x,__FILE__,__LINE__);
- #endif
 #else
+/* Windows */
 	#define MALLOC(x) malloc(((unsigned) x))
 	#define FREE(x) if (x  != NULL) free((char *) x);
 	#define REALLOC(x,y) realloc((char *) x,(unsigned) y)

@@ -1,7 +1,8 @@
-#include "sci_mem_alloc.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "sci_mem_alloc.h"
+
 /* Allan CORNET */
 /* INRIA 2005 */
 /*-----------------------------------------------------------------------------------*/
