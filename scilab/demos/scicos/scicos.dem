@@ -95,19 +95,19 @@ while %t do
     if ~(haveacompiler()) then
       x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
     else
-      scicos('SCI/demos/scicos/Colpitts.cosf');
+      scicos('SCI/demos/scicos/Electrical/Colpitts_Oscillator.cosf');
     end
   case 'Electrical circuit: RLC' then  
     if ~(haveacompiler()) then
       x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
     else
-      scicos('SCI/demos/scicos/rlc1.cosf');
+      scicos('SCI/demos/scicos/Electrical/RLC_circuit.cosf');
     end
   case 'Electrical circuit: Rectifier' then  
     if ~(haveacompiler()) then
       x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
     else
-     scicos('SCI/demos/scicos/Rectifier.cosf');
+     scicos('SCI/demos/scicos/Electrical/Bridge_Rectifier.cosf');
     end
   case 'Regulated Thermo Hydraulic plant' then  
     if ~(haveacompiler()) then
