@@ -48,7 +48,7 @@ int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
   {
     if ( rep == -1 ) 
 		{
-			Scierror(999,"Error in PlaySound\n");
+			Scierror(999,_("Error in PlaySound\n"));
 		}
     LhsVar(1)=0;
   }

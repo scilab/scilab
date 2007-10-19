@@ -61,7 +61,7 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,W
   /* Get input file */
   if ((ft->fp = fopen(filename, READBINARY)) == NULL)
     {
-      sciprint("Can't open input file '%s': %s\n", 
+      sciprint(_("Can't open input file '%s': %s\n"), 
 	       filename, strerror(errno));
       *ierr=1;
       return 0;
@@ -78,22 +78,22 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,W
   wavstartread(&informat,Wi,flag);
   if ( ft->ierr > 0 ) 
     {
-      sciprint("Error while reading\n");
+      sciprint(_("Error while reading\n"));
       *ierr=1;
       return 0;
     }
   checkformat(&informat);
   if ( ft->ierr > 0 ) 
     {
-      sciprint("Error while reading\n");
+      sciprint(_("Error while reading\n"));
       *ierr=1;
       return 0;
     }
   if ( flag == 1) 
     {
-      sciprint("Input file: using sample rate %lu\n", 
+      sciprint(_("Input file: using sample rate %lu\n"), 
 	       informat.info.rate);
-      sciprint("\tsize %s, style %s, %d %s\n",
+      sciprint(_("\tsize %s, style %s, %d %s\n"),
 	       sizes[informat.info.size], 
 	       styles[informat.info.style], informat.info.channels, 
 	       (informat.info.channels > 1) ? "channels" : "channel");
@@ -108,14 +108,14 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,W
       olen = wavread(&informat,buf, (long) BUFSIZ);
       if ( ft->ierr > 0 ) 
 	{
-	  sciprint("Error while reading\n");
+	  sciprint(_("Error while reading\n"));
 	  *ierr=1;
 	  return 0;
 	}
       *size_res += olen ;
       if (flag == 1 &&  *size_res > size_max ) 
 	{
-	  sciprint(" Sorry wav file too big\n");
+	  sciprint(_(" Sorry wav file too big\n"));
 	  return 0;
 	}
       /** sciprint("2 premier nombres du bloc\n"); **/
@@ -159,7 +159,7 @@ int C2F(savewave)(char * filename,double *res,integer * rate,integer *size_res,i
   /* Get input file */
   if ((ft->fp = fopen(filename, WRITEBINARY)) == NULL)
     {
-      sciprint("Can't open output file '%s': %s\n", 
+      sciprint(_("Can't open output file '%s': %s\n"), 
 	   filename, strerror(errno));
       *ierr=1;
       return 0;
@@ -270,13 +270,13 @@ static void checkformat(ft_t lft)
 {
   if (lft->info.rate == 0)
     {
-      sciprint("Sampling rate for %s file was not given\n", lft->filename);
+      sciprint(_("Sampling rate for %s file was not given\n"), lft->filename);
       lft->ierr=1;
       return;
     }
   if ((lft->info.rate < 100) || (lft->info.rate > 50000))
     {
-      sciprint("Sampling rate %lu for %s file is bogus\n", 
+      sciprint(_("Sampling rate %lu for %s file is bogus\n"), 
 	   lft->info.rate, lft->filename);
       lft->ierr=1;
       return;
@@ -284,13 +284,13 @@ static void checkformat(ft_t lft)
 
   if (lft->info.size == -1)
     {
-      sciprint("Data size was not given for %s file\n", lft->filename);
+      sciprint(_("Data size was not given for %s file\n"), lft->filename);
       lft->ierr=1;
       return;
     }
   if (lft->info.style == -1 && lft->info.size != FLOATSCI)
     {
-      sciprint("Data style was not given for %s file\n", lft->filename);
+      sciprint(_("Data style was not given for %s file\n"), lft->filename);
       lft->ierr=1;
       return;
     }

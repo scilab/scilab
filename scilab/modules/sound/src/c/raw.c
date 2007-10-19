@@ -133,11 +133,11 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	    }
 	  return done;
 	case ULAW:
-	  sciprint("No U-Law support for shorts\n");
+	  sciprint(_("No U-Law support for shorts\n"));
 	  ft->ierr=1;
 	  return done;
 	case ALAW:
-	  sciprint("No A-Law support for shorts\n");
+	  sciprint(_("No A-Law support for shorts\n"));
 	  ft->ierr=1;
 	  return done;
 	}
@@ -152,10 +152,10 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	}
       return done;
     default:
-      sciprint("Drop through in rawread!\n");
+      sciprint(_("Drop through in rawread!\n"));
       ft->ierr=1;
     }
-  sciprint("Sorry, don't have code to read %s, %s\n",
+  sciprint(_("Sorry, don't have code to read %s, %s\n"),
 	   styles[ft->info.style], sizes[ft->info.size]);
   ft->ierr=1;
   return done;
@@ -238,11 +238,11 @@ void rawwrite(ft_t ft, long int *buf, long int nsamp)
       }
       return;
     case ULAW:
-      sciprint("No U-Law support for shorts (try -b option ?)\n");
+      sciprint(_("No U-Law support for shorts (try -b option ?)\n"));
       ft->ierr=1;
       return;
     case ALAW:
-      sciprint("No A-Law support for shorts (try -b option ?)\n");
+      sciprint(_("No A-Law support for shorts (try -b option ?)\n"));
       ft->ierr=1;
       return;
     }
@@ -256,12 +256,12 @@ void rawwrite(ft_t ft, long int *buf, long int nsamp)
       return;
     default: 
       {
-	sciprint("Drop through in rawwrite!\n");
+	sciprint(_("Drop through in rawwrite!\n"));
 	ft->ierr=1;
       }
       
     }
-  sciprint("Sorry, don't have code to write %s, %s\n",styles[ft->info.style], sizes[ft->info.size]);
+  sciprint(_("Sorry, don't have code to write %s, %s\n"),styles[ft->info.style], sizes[ft->info.size]);
 	ft->ierr=1;
 }
 /*-----------------------------------------------------------------------------------*/ 

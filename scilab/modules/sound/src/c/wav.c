@@ -65,14 +65,14 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
   /* If you need to seek around the input file. */
   if (0 && ! ft->seekable)
     {
-      sciprint("Sorry, .wav input file must be a file, not a pipe\n");
+      sciprint(_("Sorry, .wav input file must be a file, not a pipe\n"));
       ft->ierr=1;return;
     }
   
   if (   fread(magic, 1, 4, ft->fp) != 4
       || strncmp("RIFF", magic, 4))
     {
-      sciprint("Sorry, not a RIFF file\n");
+      sciprint(_("Sorry, not a RIFF file\n"));
       ft->ierr=1;return;
     }
   
@@ -81,7 +81,7 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
   if (   fread(magic, 1, 4, ft->fp) != 4
       || strncmp("WAVE", magic, 4))
     {
-      sciprint("Sorry, not a WAVE file\n");
+      sciprint(_("Sorry, not a WAVE file\n"));
       ft->ierr=1;return;
     }
   
@@ -90,7 +90,7 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
     {
       if ( fread(magic, 1, 4, ft->fp) != 4 )
 	{
-	  sciprint("Sorry, missing fmt spec\n");
+	  sciprint(_("Sorry, missing fmt spec\n"));
 	  ft->ierr=1;return;
 	}
       len = rllong(ft);
@@ -105,7 +105,7 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
   
   if ( len < 16 )
     {
-      sciprint("Sorry, fmt chunk is too short\n");
+      sciprint(_("Sorry, fmt chunk is too short\n"));
       ft->ierr=1;return;
     }
   
@@ -114,16 +114,16 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
     {
     case WAVE_FORMAT_UNKNOWN:
       {
-	sciprint("Sorry, this WAV file is in Microsoft Official Unknown format.\n");
+	sciprint(_("Sorry, this WAV file is in Microsoft Official Unknown format.\n"));
 	ft->ierr=1;return;
       }
     case WAVE_FORMAT_PCM_SCI: 	/* this one, at least, I can handle */
       if (ft->info.style != -1 && ft->info.style != UNSIGNED && ft->info.style != SIGN2)
-	sciprint("User options overiding style read in .wav header\n");
+	sciprint(_("User options overiding style read in .wav header\n"));
       break;
     case WAVE_FORMAT_ADPCM:
       {
-	sciprint("Sorry, this WAV file is in Microsoft ADPCM format.\n");
+	sciprint(_("Sorry, this WAV file is in Microsoft ADPCM format.\n"));
 	ft->ierr=1;return;
       }
 
@@ -131,48 +131,48 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
       if (ft->info.style == -1 || ft->info.style == ALAW)
 	ft->info.style = ALAW;
       else
-	sciprint("User options overiding style read in .wav header\n");
+	sciprint(_("User options overiding style read in .wav header\n"));
       break;
     case WAVE_FORMAT_MULAW:	/* Think I can handle this */
       if (ft->info.style == -1 || ft->info.style == ULAW)
 	ft->info.style = ULAW;
       else
-	sciprint("User options overiding style read in .wav header\n");
+	sciprint(_("User options overiding style read in .wav header\n"));
       break;
     case WAVE_FORMAT_OKI_ADPCM:
       {
-	sciprint("Sorry, this WAV file is in OKI ADPCM format.\n");
+	sciprint(_("Sorry, this WAV file is in OKI ADPCM format.\n"));
 	ft->ierr=1;return;
       }
 
     case WAVE_FORMAT_DIGISTD:
       {
-	sciprint("Sorry, this WAV file is in Digistd format.\n");
+	sciprint(_("Sorry, this WAV file is in Digistd format.\n"));
 	ft->ierr=1;return;
       }
     case WAVE_FORMAT_DIGIFIX:
       {
-	sciprint("Sorry, this WAV file is in Digifix format.\n");
+	sciprint(_("Sorry, this WAV file is in Digifix format.\n"));
 	ft->ierr=1;return;
       }
     case IBM_FORMAT_MULAW:
       {
-	sciprint("Sorry, this WAV file is in IBM U-law format.\n");
+	sciprint(_("Sorry, this WAV file is in IBM U-law format.\n"));
 	ft->ierr=1;return;
       }
     case IBM_FORMAT_ALAW:
       {
-	sciprint("Sorry, this WAV file is in IBM A-law format.\n");
+	sciprint(_("Sorry, this WAV file is in IBM A-law format.\n"));
 	ft->ierr=1;return;
       }
     case IBM_FORMAT_ADPCM:
       {
-	sciprint("Sorry, this WAV file is in IBM ADPCM format.\n");
+	sciprint(_("Sorry, this WAV file is in IBM ADPCM format.\n"));
 	ft->ierr=1;return;
       }
     default:	
       {
-	sciprint("Sorry, don't understand format\n");
+	sciprint(_("Sorry, don't understand format\n"));
 	ft->ierr=1;return;
       }
     }
@@ -181,12 +181,12 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
   if (ft->info.channels == -1 || ft->info.channels == Wi->wChannels)
     ft->info.channels = Wi->wChannels;
   else
-    sciprint("User options overiding channels read in .wav header\n");
+    sciprint(_("User options overiding channels read in .wav header\n"));
   Wi->wSamplesPerSecond = rllong(ft);
   if (ft->info.rate == (unsigned int)0 || ft->info.rate == Wi->wSamplesPerSecond)
     ft->info.rate = Wi->wSamplesPerSecond;
   else
-    sciprint("User options overiding rate read in .wav header\n");
+    sciprint(_("User options overiding rate read in .wav header\n"));
   Wi->wAvgBytesPerSec = rllong(ft);	/* Average bytes/second */
   Wi->wBlockAlign = rlshort(ft);	/* Block align */
   Wi->wBitsPerSample =  rlshort(ft); /* bits per sample per channel */
@@ -198,35 +198,35 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
       if (ft->info.size == -1 || ft->info.size == BYTESCI)
 	ft->info.size = BYTESCI;
       else
-	sciprint("User options overiding size read in .wav header\n");
+	sciprint(_("User options overiding size read in .wav header\n"));
       if (ft->info.style == -1 || ft->info.style == UNSIGNED)
 	ft->info.style = UNSIGNED;
       else if (ft->info.style != ALAW && ft->info.style != ULAW) 
-	sciprint("User options overiding style read in .wav header\n");
+	sciprint(_("User options overiding style read in .wav header\n"));
       break;
     case 2:
       if (ft->info.size == -1 || ft->info.size == WORDSCI)
 	ft->info.size = WORDSCI;
       else
-	sciprint("User options overiding size read in .wav header\n");
+	sciprint(_("User options overiding size read in .wav header\n"));
       if (ft->info.style == -1 || ft->info.style == SIGN2)
 	ft->info.style = SIGN2;
       else
-	sciprint("User options overiding style read in .wav header\n");
+	sciprint(_("User options overiding style read in .wav header\n"));
       break;
     case 4:
       if (ft->info.size == -1 || ft->info.size == LONGSCI)
 	ft->info.size = LONGSCI;
       else
-	sciprint("User options overiding size read in .wav header\n");
+	sciprint(_("User options overiding size read in .wav header\n"));
       if (ft->info.style == -1 || ft->info.style == SIGN2)
 	ft->info.style = SIGN2;
       else
-	sciprint("User options overiding style read in .wav header\n");
+	sciprint(_("User options overiding style read in .wav header\n"));
       break;
     default:
       {
-	sciprint("Sorry, don't understand .wav size\n");
+	sciprint(_("Sorry, don't understand .wav size\n"));
 	ft->ierr=1;return;
       }
     }
@@ -242,7 +242,7 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
     {
       if ( fread(magic, 1, 4, ft->fp) != 4 )
 	{
-	  sciprint("Sorry, missing data chunk\n");
+	  sciprint(_("Sorry, missing data chunk\n"));
 	  ft->ierr=1;return;
 	}
       len = rllong(ft);
@@ -259,10 +259,10 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
   
   if ( flag == 1 ) 
     {
-      sciprint("Reading Wave file: %s format, %d channel%s, %d samp/sec\n",
+      sciprint(_("Reading Wave file: %s format, %d channel%s, %d samp/sec\n"),
 	       wav_format_str(Wi->wFormatTag), Wi->wChannels,
 	       Wi->wChannels == 1 ? "" : "s", Wi->wSamplesPerSecond);
-      sciprint("        %d byte/sec, %d block align, %d bits/samp, %u data bytes\n",
+      sciprint(_("        %d byte/sec, %d block align, %d bits/samp, %u data bytes\n"),
 	       Wi->wAvgBytesPerSec, Wi->wBlockAlign,Wi->wBitsPerSample, Wi->data_length);
     }
   Wi->wav_format = wav_format_str(Wi->wFormatTag);
@@ -288,7 +288,7 @@ int wavread(ft_t ft, long int *buf, long int len)
     return 0;
   done = rawread(ft, buf, len);
   if (done == 0)
-    sciprint("Premature EOF on .wav input file\n");
+    sciprint(_("Premature EOF on .wav input file\n"));
   wav->samples -= done;
   return done;
 }
@@ -315,7 +315,7 @@ void wavstartwrite(ft_t ft)
   wav->samples = 0;
   wav->second_header = 0;
   if (! ft->seekable)
-    sciprint("Length in output .wav header will wrong since can't seek to fix it\n");
+    sciprint(_("Length in output .wav header will wrong since can't seek to fix it\n"));
   wavwritehdr(ft);
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -339,28 +339,28 @@ void wavwritehdr(ft_t ft)
       if (ft->info.style == -1 || ft->info.style == UNSIGNED)
 	ft->info.style = UNSIGNED;
       else if (!wav->second_header && ft->info.style != ALAW && ft->info.style != ULAW) 
-	sciprint("User options overiding style written to .wav header\n");
+	sciprint(_("User options overiding style written to .wav header\n"));
       break;
     case WORDSCI:
       wBitsPerSample = 16;
       if (ft->info.style == -1 || ft->info.style == SIGN2)
 	ft->info.style = SIGN2;
       else if (!wav->second_header)
-	sciprint("User options overiding style written to .wav header\n");
+	sciprint(_("User options overiding style written to .wav header\n"));
       break;
     case LONGSCI:
       wBitsPerSample = 32;
       if (ft->info.style == -1 || ft->info.style == SIGN2)
 	ft->info.style = SIGN2; 
       else if (!wav->second_header)
-	sciprint("User options overiding style written to .wav header\n");
+	sciprint(_("User options overiding style written to .wav header\n"));
       break;
     default:
       wBitsPerSample = 32;
       if (ft->info.style == -1)
 	ft->info.style = SIGN2; 
       if (!wav->second_header)
-	sciprint("Sciprinting - writing bad .wav file using %s\n",sizes[ft->info.size]);
+	sciprint(_("Sciprinting - writing bad .wav file using %s\n"),sizes[ft->info.size]);
       break;
     }
   
@@ -369,22 +369,22 @@ void wavwritehdr(ft_t ft)
     case UNSIGNED:
       wFormatTag = WAVE_FORMAT_PCM_SCI;
       if (wBitsPerSample != 8 && !wav->second_header)
-	sciprint("Sciprinting - writing bad .wav file using unsigned data and %d bits/sample\n",wBitsPerSample);
+	sciprint(_("Sciprinting - writing bad .wav file using unsigned data and %d bits/sample\n"),wBitsPerSample);
       break;
     case SIGN2:
       wFormatTag = WAVE_FORMAT_PCM_SCI;
       if (wBitsPerSample == 8 && !wav->second_header)
-	sciprint("Sciprinting - writing bad .wav file using signed data and %d bits/sample\n",wBitsPerSample);
+	sciprint(_("Sciprinting - writing bad .wav file using signed data and %d bits/sample\n"),wBitsPerSample);
       break;
     case ALAW:
       wFormatTag = WAVE_FORMAT_ALAW;
       if (wBitsPerSample != 8 && !wav->second_header)
-	sciprint("Sciprinting - writing bad .wav file using A-law data and %d bits/sample\n",wBitsPerSample);
+	sciprint(_("Sciprinting - writing bad .wav file using A-law data and %d bits/sample\n"),wBitsPerSample);
       break;
     case ULAW:
       wFormatTag = WAVE_FORMAT_MULAW;
       if (wBitsPerSample != 8 && !wav->second_header)
-	sciprint("Sciprinting - writing bad .wav file using U-law data and %d bits/sample\n",wBitsPerSample);
+	sciprint(_("Sciprinting - writing bad .wav file using U-law data and %d bits/sample\n"),wBitsPerSample);
       break;
     }
   
@@ -417,14 +417,14 @@ void wavwritehdr(ft_t ft)
   
   if (!wav->second_header) 
     {
-      sciprint("Writing Wave file: %s format, %d channel%s, %d samp/sec\n",
+      sciprint(_("Writing Wave file: %s format, %d channel%s, %d samp/sec\n"),
 	       wav_format_str(wFormatTag), wChannels,
 	       wChannels == 1 ? "" : "s", wSamplesPerSecond);
-      sciprint("        %d byte/sec, %d block align, %d bits/samp\n",
+      sciprint(_("        %d byte/sec, %d block align, %d bits/samp\n"),
 	       wAvgBytesPerSec, wBlockAlign, wBitsPerSample);
     } 
   else
-    sciprint("Finished writing Wave file, %u data bytes\n",data_length);
+    sciprint(_("Finished writing Wave file, %u data bytes\n"),data_length);
 }
 /*-----------------------------------------------------------------------------------*/ 
 void wavwrite(ft_t ft, long int *buf, long int len)
@@ -443,7 +443,7 @@ void wavstopwrite(ft_t ft)
     return;
   if (fseek(ft->fp, 0L, 0) != 0)
     {
-      sciprint("Sorry, can't rewind output file to rewrite .wav header.\n");
+      sciprint(_("Sorry, can't rewind output file to rewrite .wav header.\n"));
       ft->ierr=1;return;
     }
   ((wav_t) ft->priv)->second_header = 1;
@@ -459,29 +459,29 @@ wav_format_str(unsigned int wFormatTag)
   switch (wFormatTag)
     {
     case WAVE_FORMAT_UNKNOWN:
-      return "Microsoft Official Unknown";
+      return _("Microsoft Official Unknown");
     case WAVE_FORMAT_PCM_SCI:
-      return "Microsoft PCM";
+      return _("Microsoft PCM");
     case WAVE_FORMAT_ADPCM:
-      return "Microsoft ADPCM";
+      return _("Microsoft ADPCM");
     case WAVE_FORMAT_ALAW:
-      return "Microsoft A-law";
+      return _("Microsoft A-law");
     case WAVE_FORMAT_MULAW:
-      return "Microsoft U-law";
+      return _("Microsoft U-law");
     case WAVE_FORMAT_OKI_ADPCM:
-      return "OKI ADPCM format.";
+      return _("OKI ADPCM format.");
     case WAVE_FORMAT_DIGISTD:
-      return "Digistd format.";
+      return _("Digistd format.");
     case WAVE_FORMAT_DIGIFIX:
-      return "Digifix format.";
+      return _("Digifix format.");
     case IBM_FORMAT_MULAW:
-      return "IBM U-law format.";
+      return _("IBM U-law format.");
     case IBM_FORMAT_ALAW:
-      return "IBM A-law";
+      return _("IBM A-law");
     case IBM_FORMAT_ADPCM:
-      return "IBM ADPCM";
+      return _("IBM ADPCM");
     default:
-      return "Unknown";
+      return _("Unknown");
     }
 }
 /*-----------------------------------------------------------------------------------*/ 
