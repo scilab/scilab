@@ -20,7 +20,7 @@ int C2F(gw_symbolic)()
 {  
 	if (Rhs != 2)
 	{
-		Scierror(39,"incorrect number of arguments.\n");
+		Scierror(39,_("incorrect number of arguments.\n"));
 		return 0;
 	}
 	callFunctionFromGateway(Tab);
