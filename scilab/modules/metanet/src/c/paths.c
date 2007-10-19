@@ -35,17 +35,17 @@ void C2F(prevn2p)(int *i,int *j,int *m,int *n,int *la,int *lp,int *ls,int *direc
   int *nodes;
   int k,nn;
   if (*i < 0 || *i > *n) {
-    sprintf(str,"Bad internal node number %d",*i);
+    sprintf(str,_("Bad internal node number %d"),*i);
     cerro(str);
     return;
   }
   if (*j < 0 || *j > *n) {
-    sprintf(str,"Bad internal node number %d",*j);
+    sprintf(str,_("Bad internal node number %d"),*j);
     cerro(str);
     return;
   }
   if ((nodes = (int *)MALLOC((*m + 1) * sizeof(int))) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   nn = 0;
@@ -65,7 +65,7 @@ void C2F(prevn2p)(int *i,int *j,int *m,int *n,int *la,int *lp,int *ls,int *direc
   }
   *psize = nn - 1;
   if ((*p = (int *)MALLOC(*psize * sizeof(int))) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   NodesToPath(nodes,p,psize,la,lp,ls);
@@ -77,19 +77,19 @@ void C2F(ns2p)(int *nodes,int *nsize,int **p,int *psize,int *la,int *lp,int *ls,
   int a,i,j,n1,n2;
   *psize = *nsize - 1;
   if ((*p = (int *)MALLOC(*psize * sizeof(int))) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   for (i = 1; i <= *psize; i++) {
     n1 = nodes[i-1];
     if ((i == 1) && (n1 < 0 || n1 > *n)) {
-      sprintf(str,"Bad internal node number %d",n1);
+      sprintf(str,_("Bad internal node number %d"),n1);
       cerro(str);
       return;
     }
     n2 = nodes[i];
     if (n2 < 0 || n2 > *n) {
-      sprintf(str,"Bad internal node number %d",n2);
+      sprintf(str,_("Bad internal node number %d"),n2);
       cerro(str);
       return;
     }
@@ -113,14 +113,14 @@ void C2F(p2ns)(int *p,int *psize,int **nodes,int *nsize,int *la,int *lp,int *ls,
   int ma,a,i,j,k,n1,n2;
   *nsize = *psize + 1;
   if ((*nodes = (int *)MALLOC(*nsize * sizeof(int))) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if (*direct == 1) ma = *m; else ma = *m / 2;
   for (i = 1; i <= *psize; i++) {
     a = p[i-1];
     if (a < 0 || a > ma) {
-      sprintf(str,"Bad internal arc number %d",a);
+      sprintf(str,_("Bad internal arc number %d"),a);
       cerro(str);
       return;
     }
@@ -191,7 +191,7 @@ void C2F(edge2st)(int *n,int *alpha,int **tree,int *treesize)
   int i;
   *treesize = *n - 1;
   if ((*tree = (int *)MALLOC(*treesize * sizeof(int))) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   for (i = 1; i <= *n - 1; i++) {
@@ -208,7 +208,7 @@ void C2F(prevn2st)(int *n,int *nodes,int **tree,int *treesize,int *la,int *lp,in
   int i,in,j,nt,indic;
   *treesize = *n - 1;
   if ((*tree = (int *)MALLOC(*treesize * sizeof(int))) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   nt = 0;

@@ -22,64 +22,64 @@ void C2F(transc)(int *lp1,int **lpft,int *ls1,int **lsft,int *m,int *lsftdim,int
   mftdim = (*n * (*n - 1)) + 1;
 
   if ((*lpft = (int *)MALLOC(n1 * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*lsft = (int *)MALLOC(mftdim * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
 
   if ((cfcl = (int *)MALLOC(*n * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((cfcp = (int *)MALLOC(n1 * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((cw = (int *)MALLOC(*n * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((inf = (int *)MALLOC(*n * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((nfcomp = (int *)MALLOC(*n * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((nn = (int *)MALLOC(*n * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((num = (int *)MALLOC(*n * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((p = (int *)MALLOC(*n * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((p1 = (int *)MALLOC(n1 * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((pile = (int *)MALLOC(*n * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((s = (int *)MALLOC(sdim * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((som = (int *)MALLOC(n1 * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((suc = (int *)MALLOC(*m * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   

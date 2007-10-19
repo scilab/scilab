@@ -20,35 +20,35 @@ void C2F(dmtree)(int *i0, int *la1, int *lp1, int *ls1, int *m, int *n, int *pre
 
   nndim = 2 * *n;
   if ((alphi = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((beta = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((f = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((g = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((ind = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((pred1 = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((z = (double *)MALLOC(nndim * dsize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((zsom = (double *)MALLOC(nndim * dsize)) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
 

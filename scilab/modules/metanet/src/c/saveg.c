@@ -79,7 +79,7 @@ int *ma;
   /* check uniqueness of node names */
   if (*node_number != 1) {
     if ((lar = (char **)MALLOC(sizeof(char *) * *node_number)) == NULL) {
-      cerro("Running out of memory");
+      cerro(_("Running out of memory"));
       return;
     }
     for (i = 0; i < *node_number; i++) lar[i] = (*node_name)[i];
@@ -87,7 +87,7 @@ int *ma;
     for (i = 0; i < *node_number - 1; i++) {
       if (!strcmp(lar[i],lar[i+1])) {
 	sprintf(description,
-		"Bad graph file. Node \"%s\" is duplicated",lar[i]);
+		_("Bad graph file. Node \"%s\" is duplicated"),lar[i]);
 	cerro(description);
 	FREE(lar);
 	return;
@@ -95,7 +95,7 @@ int *ma;
     }
     if (!strcmp(lar[*node_number - 2],lar[*node_number - 1])) {
       sprintf(description,
-	      "Bad graph file. Node \"%s\" is duplicated",lar[*node_number - 2]);
+	      _("Bad graph file. Node \"%s\" is duplicated"),lar[*node_number - 2]);
       cerro(description);
       FREE(lar);
       return;
@@ -137,7 +137,7 @@ int *ma;
   }
 #if !(defined _MSC_VER)
   if ((dirp=opendir(dir)) == NULL) {
-    sprintf(description,"Directory \"%s\" does not exist",dir);
+    sprintf(description,_("Directory \"%s\" does not exist"),dir);
     cerro(description);
     return;
   }
@@ -158,39 +158,39 @@ int *ma;
   f = fopen(fname,"w");
   if (f == NULL) {
     sprintf(description,
-	    "Unable to write file in directory %s, check access",dir);
+	    _("Unable to write file in directory %s, check access"),dir);
     cerro(description);
     return;
   }
   /* Write graph to file */
   
-  fprintf(f,"GRAPH TYPE (0 = UNDIRECTED, 1 = DIRECTED), DEFAULTS (NODE DIAMETER, NODE BORDER, ARC WIDTH, HILITED ARC WIDTH, FONTSIZE):\n");
+  fprintf(f,_("GRAPH TYPE (0 = UNDIRECTED, 1 = DIRECTED), DEFAULTS (NODE DIAMETER, NODE BORDER, ARC WIDTH, HILITED ARC WIDTH, FONTSIZE):\n"));
   fprintf(f,"%d %d %d %d %d %d\n",*directed,*default_node_diam,
 	  *default_node_border,*default_edge_width,*default_edge_hi_width,
 	  *default_font_size);
   if (*directed) {
-    fprintf(f,"NUMBER OF ARCS:\n");
+    fprintf(f,_("NUMBER OF ARCS:\n"));
   }
   else {
-    fprintf(f,"NUMBER OF EDGES:\n");
+    fprintf(f,_("NUMBER OF EDGES:\n"));
   }
   fprintf(f,"%d\n",*ma);
-  fprintf(f,"NUMBER OF NODES:\n");
+  fprintf(f,_("NUMBER OF NODES:\n"));
   fprintf(f,"%d\n",*node_number);
   fprintf(f,"****************************************\n");
 
   /* Write arcs to files */
 
   if (*directed) {
-    fprintf(f,"DESCRIPTION OF ARCS:\n");
-    fprintf(f,"ARC NAME, TAIL NODE NAME, HEAD NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n");
+    fprintf(f,_("DESCRIPTION OF ARCS:\n"));
+    fprintf(f,_("ARC NAME, TAIL NODE NAME, HEAD NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"));
   }
   else {
-    fprintf(f,"DESCRIPTION OF EDGES:\n");
-    fprintf(f,"EDGE NAME, NODE NAME, NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n");
+    fprintf(f,_("DESCRIPTION OF EDGES:\n"));
+    fprintf(f,_("EDGE NAME, NODE NAME, NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"));
   }
   fprintf
-    (f,"COST, MIN CAP, MAX CAP, LENGTH, Q WEIGHT, Q ORIGIN, WEIGHT\n");
+    (f,_("COST, MIN CAP, MAX CAP, LENGTH, Q WEIGHT, Q ORIGIN, WEIGHT\n"));
   fprintf(f,"\n");
 
   for (i = 0; i < *ma; i++) {
@@ -205,10 +205,10 @@ int *ma;
   /* Write nodes to files */
 
   fprintf(f,"****************************************\n");
-  fprintf(f,"DESCRIPTION OF NODES:\n");
-  fprintf(f,"NODE NAME, POSSIBLE TYPE (1 = SINK, 2 = SOURCE)\n");
-  fprintf(f,"X, Y, COLOR, DIAMETER, BORDER, FONTSIZE\n");
-  fprintf(f,"DEMAND\n");
+  fprintf(f,_("DESCRIPTION OF NODES:\n"));
+  fprintf(f,_("NODE NAME, POSSIBLE TYPE (1 = SINK, 2 = SOURCE)\n"));
+  fprintf(f,_("X, Y, COLOR, DIAMETER, BORDER, FONTSIZE\n"));
+  fprintf(f,_("DEMAND\n"));
   fprintf(f,"\n");
 
   for (i = 0; i < *node_number; i++) {

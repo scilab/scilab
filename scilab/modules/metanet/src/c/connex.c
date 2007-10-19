@@ -14,7 +14,7 @@ int **ns;
   int i;
   *nsize = 0;
   if ((*ns = (int *)MALLOC(*n * sizeof(int))) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   for (i = 0; i < *n; i++){
@@ -32,7 +32,7 @@ int **ns;
   int i;
   *nsize = 0;
   if ((*ns = (int *)MALLOC(*n * sizeof(int))) == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   for (i = 0; i < *n; i++){

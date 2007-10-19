@@ -86,7 +86,7 @@ int *ndim,*ma;
 #ifndef _MSC_VER
   if ((dirp=opendir(path)) != NULL) 
   {
-    sprintf(description,"\"%s\" is a directory",path);
+    sprintf(description,_("\"%s\" is a directory"),path);
     cerro(description);
     closedir(dirp);
     return;
@@ -97,7 +97,7 @@ int *ndim,*ma;
 #ifndef _MSC_VER
   if ((dirp=opendir(dir)) == NULL) 
   {
-    sprintf(description,"Directory \"%s\" does not exist",dir);
+    sprintf(description,_("Directory \"%s\" does not exist"),dir);
     cerro(description);
     return;
   }
@@ -110,7 +110,7 @@ int *ndim,*ma;
 
   if ((*name = (char *)MALLOC((unsigned)sizeof(char)*(*lname + 1))) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   strcpy(*name,pname);
@@ -120,7 +120,7 @@ int *ndim,*ma;
 #ifndef _MSC_VER
   if(!CheckGraphName(*name,dir)) 
   {
-    sprintf(description,"Graph file \"%s/%s.graph\" does not exist",dir,*name);
+    sprintf(description,_("Graph file \"%s/%s.graph\" does not exist"),dir,*name);
     cerro(description);
     return;
   }
@@ -135,7 +135,7 @@ int *ndim,*ma;
   fg = fopen(fname,"r");
   if (fg == 0) 
   {
-    sprintf(description,"Unable to open file \"%s/%s.graph\"",dir,*name);
+    sprintf(description,_("Unable to open file \"%s/%s.graph\""),dir,*name);
     cerro(description);
     return;
   }
@@ -173,49 +173,49 @@ int *ndim,*ma;
   s = sizeof(char *) * *ndim;
   if ((*node_name = (char **)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   s = isize * *ndim;
   if ((*node_type = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*node_x = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*node_y = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*node_color = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*node_diam = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*node_border = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*node_font_size = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   s = dsize * *ndim;
   if ((*node_demand = (double *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
 
@@ -223,74 +223,74 @@ int *ndim,*ma;
   s = sizeof(char *) * *ma;
   if ((*edge_name = (char **)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   s = isize * *ma;
   if ((*head = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*tail = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   } 
   if ((*edge_color = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*edge_width = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*edge_hi_width = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*edge_font_size = (int *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   s = dsize * *ma;
   if ((*edge_length = (double *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*edge_cost = (double *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*edge_min_cap = (double *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*edge_max_cap = (double *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*edge_q_weight = (double *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*edge_q_orig = (double *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   if ((*edge_weight = (double *)MALLOC(s)) == NULL) 
   {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
 
@@ -312,7 +312,7 @@ int *ndim,*ma;
     sscanf(line,"%s %d",strname,&((*node_type)[i]));
     if (((*node_name)[i] = (char *)MALLOC(strlen(strname)+1)) == NULL) 
 	{
-      cerro("Running out of memory");
+      cerro(_("Running out of memory"));
       return;
     }
     strcpy((*node_name)[i],strname);
@@ -331,7 +331,7 @@ int *ndim,*ma;
 
     if ((node.key = (char *)MALLOC(strlen(strname)+1)) == NULL) 
 	{
-      cerro("Running out of memory");
+      cerro(_("Running out of memory"));
       return;
     }
 
@@ -340,7 +340,7 @@ int *ndim,*ma;
 
     if ((node.data = (char *)MALLOC(strlen(strname)+1)) == NULL) 
 	{
-      cerro("Running out of memory");
+      cerro(_("Running out of memory"));
       return;
     }   
     strcpy(node.data,strname);
@@ -355,7 +355,7 @@ int *ndim,*ma;
   {
     if ((lar = (char **)MALLOC(sizeof(char *) * *ndim)) == NULL) 
 	{
-      cerro("Running out of memory");
+      cerro(_("Running out of memory"));
       return;
     }
 
@@ -367,7 +367,7 @@ int *ndim,*ma;
 	{
       if (!strcmp(lar[i],lar[i+1])) 
 	  {
-		sprintf(description,"Bad graph file. Node \"%s\" is duplicated",lar[i]);
+		sprintf(description,_("Bad graph file. Node \"%s\" is duplicated"),lar[i]);
 		cerro(description);
 		FREE(lar);
 		lar=NULL;
@@ -377,7 +377,7 @@ int *ndim,*ma;
 
     if (!strcmp(lar[*ndim - 2],lar[*ndim - 1])) 
 	{
-      sprintf(description,"Bad graph file. Node \"%s\" is duplicated",lar[*ndim - 2]);
+      sprintf(description,_("Bad graph file. Node \"%s\" is duplicated"),lar[*ndim - 2]);
       cerro(description);
 	  if (lar) {FREE(lar);lar=NULL;}
       return;
@@ -403,14 +403,14 @@ int *ndim,*ma;
 
 	if (((*edge_name)[i] = (char *)MALLOC(strlen(strname)+1)) == NULL) 
 	{
-		cerro("Running out of memory");
+		cerro(_("Running out of memory"));
 		return;
     }
 	strcpy((*edge_name)[i],strname);
 
 	if ((node.key = (char *)MALLOC(strlen(head_name)+1)) == NULL) 
 	{
-		cerro("Running out of memory");
+		cerro(_("Running out of memory"));
 		return;
 	}
 
@@ -418,7 +418,7 @@ int *ndim,*ma;
 	found = myhsearch(node,SCIFIND);
 	if (found == NULL) 
 	{
-		sprintf(description,"Bad graph file. Node \"%s\" referenced by arc \"%s\" not found",head_name,(*edge_name)[i]);
+		sprintf(description,_("Bad graph file. Node \"%s\" referenced by arc \"%s\" not found"),head_name,(*edge_name)[i]);
 		cerro(description);
 		return;
 	}
@@ -434,7 +434,7 @@ int *ndim,*ma;
 
 	if ((node.key = (char *)MALLOC(strlen(tail_name)+1)) == NULL) 
 	{
-		cerro("Running out of memory");
+		cerro(_("Running out of memory"));
 		return;
 	}
 
@@ -443,7 +443,7 @@ int *ndim,*ma;
 	if (found == NULL) 
 	{
 		sprintf(description,
-	    "Bad graph file. Node \"%s\" referenced by arc \"%s\" not found",
+	    _("Bad graph file. Node \"%s\" referenced by arc \"%s\" not found"),
 	    tail_name,(*edge_name)[i]);
 		cerro(description);
 		return;
