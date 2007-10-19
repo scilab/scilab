@@ -641,7 +641,7 @@ function using a curve editor.
 
 <FILE name='C_macros' type='LATEX'>
 The following C macros are avialable by including the file \htmladdnormallink{scicos\_block4.h}
-{scicos_block4_h.htm} in a C computational function.
+{scicos_block4_rout.htm} in a C computational function.
 
 \subsection{Inputs/outputs}
 \begin{tabular}{|p{8cm}||p{20cm}|}
@@ -898,7 +898,7 @@ The C structure of a Scicos block defines all the fields to handle data provided
 such inputs/outputs, parameters, states, ...
 
 That structure of type {\tt scicos\_block} is defined in the file \htmladdnormallink{scicos\_block4.h}
-{scicos_block4_h.htm}, and user must include that header in each computational functions in the form :
+{scicos_block4_rout.htm}, and user must include that header in each computational functions in the form :
 
 \begin{verbatim}
 #include "scicos_block4.h"
@@ -1005,7 +1005,7 @@ typedef struct {
                      the correspondance for all Scicos type:
 
                      \begin{center}
-                      \begin{tabular}{|c|c||c|c|}
+                      \begin{tabular}{|p{4cm}|p{4cm}||p{4cm}|p{4cm}|}
                        \hline
                        {\bf Scilab Type}&
                        {\bf Scilab Number}&
@@ -1261,8 +1261,8 @@ typedef struct {
  \item {\bf block->nevprt :} Integer that gives the event input port number by which the block has been activated.
                       This number is a binary coding. For i.e, if block have two event inputs ports,
                       {\tt block->nevptr} can take the value 1 if the block has been called by its first
-                      event input port, the value 2 if it has called by the second event input port and 3
-                      if it is called by the same event on input port 1 and 2.\\
+                      event input port, the value 2 if it has been called by the second event input port and 3
+                      if it is called by the same event on both input port 1 and 2.\\
                       Note that {\tt block->nevptr} can be -1 if the block is internally called. \\
                       One can also retrieve this number by using the C macros {\tt GetNevIn(block)}.
 
@@ -1347,7 +1347,7 @@ typedef struct {
 
                     {\tt
                      A = [1.3 ; 4.5 ; 7.9 ; 9.8];\\
-                     B = [0.1 ; 0.98];
+                     B = [0.1 ; 0.98]; \\
                      model.rpar   = [A;B] \\
                     }
 
@@ -1509,7 +1509,7 @@ typedef struct {
                      The following table gives the correspondence for scicos type expressed in Scilab number,
                      in C number and also corresponding C pointers and C macros used for {\tt oparptr} :
 
-                     \begin{tabular}{|c|c|c|c|c|}
+                     \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{4cm}|p{5cm}|}
                       \hline
                       {\bf Scilab}&
                       &
@@ -1685,7 +1685,8 @@ typedef struct {
                   x\_1=block->x[0];
                  }
 
-                 Note that on {\it flag}=4, user can write some initial conditions in that register.\\
+                 Note that on {\tt flag}=4, user can write some initial conditions in that register.\\
+                 The pointer of that array can also be retrieve via the C macro {\tt GetState(block)}.
 
  \item {\bf block->xd :} Array of double of size nx,1 corresponding to the derivative of the continuous state register.\\
                   When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be
@@ -1758,7 +1759,7 @@ typedef struct {
                  }
 
                  Note that the state register should be only written for {\tt flag}=4 and {\tt flag}=2.\\
-                 The pointer of that array can also be retrieve via the C macros {\tt GetDstate(block)}.
+                 The pointer of that array can also be retrieve via the C macro {\tt GetDstate(block)}.
 
  \item {\bf block->noz :} Integer that gives the number of the discrete object states.\\
                    One can't override the index {\tt block->noz-1} when accessing data in the arrays
@@ -1798,7 +1799,7 @@ typedef struct {
                      The following table gives the correspondence table for scicos type expressed in Scilab number,
                      in C number and also corresponding C pointers and C macros used for {\tt ozptr} :
 
-                     \begin{tabular}{|c|c|c|c|c|}
+                     \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{4cm}|p{5cm}|}
                       \hline
                       {\bf Scilab}&
                       &
@@ -1955,19 +1956,67 @@ typedef struct {
 
                     Finally note that the discrete objects state should be only written for {\tt flag}=4 and {\tt flag}=2.
 
- \item {\bf block->work :}
+ \item {\bf block->work :} A free pointer to set a working array for the block.\\
+                           The work pointer must be firstly allocated when {\tt flag} = 4 and finally be free in the
+                           {\tt flag} = 5.\\
+                           Then a basic life cyle of that pointer in a C computational function should be :
+
+                           {\tt
+                            ...\\
+                            void** work=block->work;\\
+                            ...\\
+                            /*initialization*/
+                            if (flag==4) {\\
+                              /*allocation of work*/
+                              if (*work=scicos\_malloc(sizeof(double))==NULL) {\\
+                               set\_block\_error(-16);\\
+                               return;\\
+                              }\\
+                            ...\\
+                            }\\
+                            ...\\
+                            /*other flag treatment*/\\
+                            ...\\
+                            /*finish*/\\
+                            else if (flag==5) {\\
+                               scicos\_free(*work);\\
+                            }\\
+                           }
+
+                           Note that if a block use a {\tt work} pointer, it will be called with {\tt flag}=2 even if
+                           the block don't use discrete states.\\
+                           The pointer of that array can also be retrieve via the C macro {\tt GetWorkPtrs(block)}.
 \end{itemize}
 
-\subsection{Zero crossing and modes}
+\subsection{Zero crossing surfaces and modes}
 
 \begin{itemize}
- \item {\bf block->ng :}
- \item {\bf block->g :}
+ \item {\bf block->ng :} Integer that gives the number of zero crossing surface of the block.\\
+                         One can't override the index {\tt (block->ng)-1} when reading/writing data
+                         in the array {\tt g} with a C computational function.\\
+                         The number of zero crossing surface can also be got by the use of the C macro
+                         {\tt GetNg(block)}.
 
- \item {\bf block->nmode :}
- \item {\bf block->mode :}
-\end{itemize}
+ \item {\bf block->g :} Array of double of size ng,1 corresponding to the zero crossing surface register.\\
+                        That register is used to detect zero crossing of state variable during time domain
+                        integration.\\
+                        Note that it is accessible for writting for {\tt flag} = 9.\\
+                        The pointer of that array can also be retrieve via the C macro {\tt GetGPtrs(block)}.
+
+ \item {\bf block->nmode :} Integer that gives the number of mode of the block.\\
+                            One can't override the index {\tt (block->mode)-1} when reading/writing data
+                            in the array {\tt mode} with a C computational function.\\
+                            The number of mode can also be got by the use of the C macro
+                            {\tt GetNmode(block)}.
+
+ \item {\bf block->mode :} Array of integer of size nmode,1 corresponding to the mode register.\\
+                           That register is used to set the mode of state variable during time domain
+                           integration.\\
+                           It is typically accessible for writting for {\tt flag} = 9.\\
+                           The pointer of that array can also be retrieve via the C macro {\tt GetModePtrs(block)}.
+
  %\item {\bf jroot :}
+\end{itemize}
 
 \subsection{Miscallaneous}
 

@@ -577,9 +577,39 @@ function gen_scs_editor_help(typdoc,%gd)
          head_tex=strsubst(head_tex,'Scilab Function','Scicos Editor')
       end
 
+      //** add permanent shorcuts
+      if %gd.lang(i)=='fr' then
+         tt_cust = 'Raccourcis clavier modifiables par l''utilisateur :'
+         tt_perm = ['Raccourcis clavier permanents :'
+                    ''
+                    '\begin{itemize}'
+                    '   \item {\bf ''Ctrl + c'' :} Copie les objets sélectionnés dans le clipboard scicos'
+                    '   \item {\bf ''Ctrl + v'' :} Colle les objets du clipboard scicos'
+                    '   \item {\bf ''Ctrl + a'' :} Sélectionne tous les objets de la fenêtre courante'
+                    '   \item {\bf ''Ctrl + s'' :} Sauvegarde le diagramme courant'
+                    '   \item {\bf ''Ctrl + clic gauche'' :} Ajoute des objets à la selection courante'
+                    '\end{itemize}']
+      elseif %gd.lang(i)=='eng' then
+         tt_cust = 'Customizable keyboard shortcuts :'
+         tt_perm = ['Permanent keyboard shortcuts :'
+                    ''
+                    '\begin{itemize}'
+                    '   \item {\bf ''Ctrl + c'' :} Copy the selected items in the scicos clipboard'
+                    '   \item {\bf ''Ctrl + v'' :} Paste items from the scicos clipboard'
+                    '   \item {\bf ''Ctrl + a'' :} Select all items of the current window'
+                    '   \item {\bf ''Ctrl + s'' :} Save the current diagram'
+                    '   \item {\bf ''Ctrl + left click'' :} Add items to the current selection'
+                    '\end{itemize}']
+      end
+
       //** generate txt of tex file
       txt_shortcuts=[head_tex;
+                     ''
+                     tt_cust
+                     ''
                      tt
+                     ''
+                     tt_perm
                      '\htmlinfo*'
                      '\end{document}']
       //**---------------------**//
@@ -659,7 +689,7 @@ function gen_scs_editor_help(typdoc,%gd)
                   '/'+name+...
                   '/'+name+'_mod.tex')<>[] then
 
-        tt=['\subsection{Modules}'
+        tt=['\subsection{Module}'
             mgetl(%gd.lang(i)+...
                   '/'+name+...
                   '/'+name+'_mod.tex')];
@@ -780,7 +810,7 @@ function gen_scs_about_help(typdoc,%gd)
                   '/'+name+...
                   '/'+name+'_mod.tex')<>[] then
 
-        tt=['\subsection{Modules}'
+        tt=['\subsection{Module}'
             mgetl(%gd.lang(i)+...
                   '/'+name+...
                   '/'+name+'_mod.tex')];
@@ -822,6 +852,122 @@ function gen_scs_about_help(typdoc,%gd)
    end
 endfunction
 
+//gen_scs_prgblk : main generator for scitexgendoc of tex files
+//for the list_of_prgblk
+function gen_scs_prgblk(typdoc,%gd)
+
+   for i=1:size(%gd.lang,1)
+
+      tt=[];
+
+      for j=1:size(list_of_prgblk,1)
+
+         //** generate tex head
+         head_tex=get_head_tex(list_of_prgblk(j,:),typdoc,i,%gd)
+
+         //**special patch for scicos_block4.h
+         //**---------------------**//
+         if list_of_prgblk(j,2)=='scicos_block4.h' then
+           //** change title of html head
+           if %gd.lang(i)=='fr' then
+              head_tex=strsubst(head_tex,'Routine bas-niveau','En-tête bloc scicos C')
+              tt=['\subsection{Contenu du fichier}'
+                  '{\tiny'
+                  '\verbatiminput{'+list_of_prgblk(j,1)+'scicos_block4.h}'
+                  '}']
+           elseif %gd.lang(i)=='eng' then
+              head_tex=strsubst(head_tex,'Low level routine','C scicos block header')
+              tt=['\subsection{File content}'
+                  '{\tiny'
+                  '\verbatiminput{'+list_of_prgblk(j,1)+'scicos_block4.h}'
+                  '}']
+           end
+           //** generate txt of tex file
+           txt=[head_tex;
+                tt
+               '\htmlinfo*'
+               '\end{document}']
+           name=get_extname(list_of_prgblk(j,:),%gd)
+           mputl(txt,%gd.lang(i)+...
+                 '/'+name+...
+                 '/'+name+'.tex');
+           break
+         end
+         //**---------------------**//
+
+         //** change title of html head
+         if %gd.lang(i)=='fr' then
+            head_tex=strsubst(head_tex,'Fonction Scilab','Programmation des blocs scicos')
+         elseif %gd.lang(i)=='eng' then
+            head_tex=strsubst(head_tex,'Scilab Function','Programming scicos blocks')
+         end
+
+         name=get_extname(list_of_prgblk(j,:),%gd)
+
+         if fileinfo(%gd.lang(i)+...
+                     '/'+name+...
+                     '/'+name+'_mod.tex')<>[] then
+
+           tt=['\subsection{Module}'
+               mgetl(%gd.lang(i)+...
+                     '/'+name+...
+                     '/'+name+'_mod.tex')];
+         else
+           tt=[];
+         end
+
+         if fileinfo(%gd.lang(i)+...
+                     '/'+name+...
+                     '/'+name+'_long.tex')<>[] then
+           tt=[tt;
+               '\subsection{Description}'
+               mgetl(%gd.lang(i)+...
+                     '/'+name+...
+                     '/'+name+'_long.tex')];
+         end
+
+         if fileinfo(%gd.lang(i)+...
+                     '/'+name+...
+                     '/'+name+'_authors.tex')<>[] then
+           if %gd.lang(i)=='fr' then
+             tt_sub = '\subsection{Auteurs}'
+           else
+             tt_sub = '\subsection{Authors}'
+           end
+           tt=[tt;
+              tt_sub;
+              mgetl(%gd.lang(i)+...
+                    '/'+name+...
+                    '/'+name+'_authors.tex')];
+         end
+
+         //** generate txt of tex file
+         txt=[head_tex;
+              '\tableofcontents'
+              tt
+              '\htmlinfo*'
+              '\end{document}']
+         //**---------------------**//
+
+         //create lang directory
+         if fileinfo(%gd.lang(i)+'/')==[] then
+           mkdir(%gd.lang(i))
+         end
+         //create object directory for
+         //tex compilation
+         if fileinfo(%gd.lang(i)+'/'+...
+                      name)==[] then
+           mkdir(%gd.lang(i)+'/'+name)
+         end
+
+         mputl(txt,%gd.lang(i)+...
+               '/'+name+...
+               '/'+name+'.tex');
+
+      end
+   end
+endfunction
+
 //gen_scicos_whatis : generate the whatis fileS
 function gen_scicos_whatis(%gd)
   gen_whatis(%gd.mpath.data(1)+'/ABCD_Blocks.xml',%gd);
@@ -855,6 +1001,7 @@ function gen_scicos_doc(my_list,typdoc,%gd)
   import_data_to_file('all',%gd);
   generate_aux_tex_file(my_list,typdoc,%gd);
   gen_scs_editor_help(typdoc,%gd);
+  gen_scs_prgblk(typdoc,%gd)
   gen_scs_scilst_help(typdoc,%gd);
   gen_scs_about_help(typdoc,%gd)
   generate_html_file(my_list,%gd);
@@ -1137,7 +1284,8 @@ list_of_scistruc = [opath2(1),"scicos_diagram.sci","sci";
 //**--program blocs --*/
 list_of_prgblk   = ["","C_struct","sci";
                     "","C_macros","sci";
-                    "","C_utils","sci";];
+                    "","C_utils","sci";
+                    SCI+'/routines/scicos/',"scicos_block4.h","rout"];
 //                    "","sci_struct","sci";];
 //**------------*/
 

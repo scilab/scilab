@@ -4825,7 +4825,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	<PARAM_NAME>Proportional</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    The Value of the gain that multiply the error.
+	    The value of the gain that multiply the error.
 	  </SP>
 	  <SP>
 	    Properties : Type 'vec' of size -1.

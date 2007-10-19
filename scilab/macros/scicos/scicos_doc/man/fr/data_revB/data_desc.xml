@@ -661,7 +661,7 @@ en utilisant un éditeur graphique de courbes.
 <FILE name='C_macros' type='LATEX'>
 
 The following C macros are avialable by including the file \htmladdnormallink{scicos\_block4.h}
-{scicos_block4_h.htm} in a C computational function.
+{scicos_block4_rout.htm} in a C computational function.
 
 \subsection{Inputs/outputs}
 \begin{tabular}{|p{8cm}||p{20cm}|}
@@ -918,7 +918,7 @@ The C structure of a scicos block defines all the fields to handle data provided
 such inputs/outputs, parameters, states, ...
 
 That structure of type {\tt scicos\_block} is defined in the file \htmladdnormallink{scicos\_block4.h}
-{scicos_block4_h.htm}, and user must include that header in each computational functions in the form :
+{scicos_block4_rout.htm}, and user must include that header in each computational functions in the form :
 
 \begin{verbatim}
 #include "scicos_block4.h"
