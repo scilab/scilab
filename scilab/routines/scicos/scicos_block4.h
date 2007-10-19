@@ -186,38 +186,42 @@ extern int s_cmp();
   * 38 - GetDstate(blk)
   *
   * 39 - GetNevIn(blk)
-  * 40 - GetNevOut(blk)
-  * 40 - GetNevOutPtrs(blk)
+  * 41 - GetNevOut(blk)
+  * 42 - GetNevOutPtrs(blk)
   *
-  * 41 - GetNopar(blk)
-  * 42 - GetOparType(blk,x)
-  * 43 - GetOparSize(blk,x,y)
-  * 44 - GetOparPtrs(blk,x)
-  * 45 - GetRealOparPtrs(blk,x)
-  * 46 - GetImagOparPtrs(blk,x)
-  * 47 - Getint8OparPtrs(blk,x)
-  * 48 - Getint16OparPtrs(blk,x)
-  * 49 - Getint32OparPtrs(blk,x)
-  * 50 - Getuint8OparPtrs(blk,x)
-  * 51 - Getuint16OparPtrs(blk,x)
-  * 52 - Getuint32OparPtrs(blk,x)
-  * 53 - GetNoz(blk)
-  * 54 - GetOzType(blk,x)
-  * 55 - GetOzSize(blk,x,y)
-  * 56 - GetOzPtrs(blk,x)
-  * 57 - GetRealOzPtrs(blk,x)
-  * 58 - GetImagOzPtrs(blk,x)
-  * 59 - Getint8OzPtrs(blk,x)
-  * 60 - Getint16OzPtrs(blk,x)
-  * 61 - Getint32OzPtrs(blk,x)
-  * 62 - Getuint8OzPtrs(blk,x)
-  * 63 - Getuint16OzPtrs(blk,x)
-  * 64 - Getuint32OzPtrs(blk,x)
-  * 65 - GetSizeOfOz(blk,x)
-  * 66 - GetSizeOfOpar(blk,x)
-  * 67 - GetSizeOfOut(blk,x)
-  * 68 - GetSizeOfIn(blk,x)
-
+  * 43 - GetNopar(blk)
+  * 44 - GetOparType(blk,x)
+  * 45 - GetOparSize(blk,x,y)
+  * 46 - GetOparPtrs(blk,x)
+  * 47 - GetRealOparPtrs(blk,x)
+  * 48 - GetImagOparPtrs(blk,x)
+  * 49 - Getint8OparPtrs(blk,x)
+  * 50 - Getint16OparPtrs(blk,x)
+  * 51 - Getint32OparPtrs(blk,x)
+  * 52 - Getuint8OparPtrs(blk,x)
+  * 53 - Getuint16OparPtrs(blk,x)
+  * 54 - Getuint32OparPtrs(blk,x)
+  * 55 - GetNoz(blk)
+  * 56 - GetOzType(blk,x)
+  * 57 - GetOzSize(blk,x,y)
+  * 58 - GetOzPtrs(blk,x)
+  * 59 - GetRealOzPtrs(blk,x)
+  * 60 - GetImagOzPtrs(blk,x)
+  * 61 - Getint8OzPtrs(blk,x)
+  * 62 - Getint16OzPtrs(blk,x)
+  * 63 - Getint32OzPtrs(blk,x)
+  * 64 - Getuint8OzPtrs(blk,x)
+  * 65 - Getuint16OzPtrs(blk,x)
+  * 66 - Getuint32OzPtrs(blk,x)
+  * 67 - GetSizeOfOz(blk,x)
+  * 68 - GetSizeOfOpar(blk,x)
+  * 69 - GetSizeOfOut(blk,x)
+  * 70 - GetSizeOfIn(blk,x)
+  *
+  * 71 - GetNg(blk)
+  * 72 - GetGPtrs(blk)
+  * 73 - GetNmode(blk)
+  * 74 - GetModePtrs(blk,x)
   */
 
 /**
@@ -607,5 +611,24 @@ extern int s_cmp();
                              ((GetInType(blk,x)==SCSINT16_N)|(GetInType(blk,x)==SCSUINT16_N)) ? (sizeof(SCSINT16_COP)) : \
                              ((GetInType(blk,x)==SCSINT32_N)|(GetInType(blk,x)==SCSUINT32_N)) ? (sizeof(SCSINT32_COP)) : 0)
 
+/**
+   \brief Get number of zero crossing surface.
+*/
+#define GetNg(blk) (blk->ng)
+
+/**
+   \brief Get pointer of the zero crossing register.
+*/
+#define GetGPtrs(blk) (blk->g)
+
+/**
+   \brief Get number of modes.
+*/
+#define GetNmode(blk) (blk->nmode)
+
+/**
+   \brief Get pointer of the mode register.
+*/
+#define GetModePtrs(blk) (blk->mode)
 
 #endif /* __SCICOS_BLOCK_H__ */
