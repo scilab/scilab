@@ -12,7 +12,6 @@ package org.scilab.modules.renderer.subwinDrawing;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
-import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 import javax.media.opengl.GL;
 
@@ -28,6 +27,11 @@ public class CameraGL extends ObjectGL {
 	/** Default rotation angles, 2D view */
 	private static final double DEFAULT_ALPHA = 0.0;
 	private static final double DEFAULT_THETA = 270.0;
+	
+	/** Keep back camera position in oder to switch back to 2D mode if needed */
+	private double alpha;
+	private double theta;
+	private Vector3D center = new Vector3D();
 	
 	/**
 	 * Default constructor
@@ -97,6 +101,7 @@ public class CameraGL extends ObjectGL {
 	public void rotateAxesBox(double centerX, double centerY, double centerZ,
 						      double alpha, double theta, double reductionRatio) {
 		GL gl = getGL();
+		
 		// rotate around the center of the box axes
 		gl.glTranslated(centerX, centerY, centerZ);
 		gl.glScaled(reductionRatio, reductionRatio, reductionRatio); // reduction need to be performed on the center of the screen
@@ -106,14 +111,20 @@ public class CameraGL extends ObjectGL {
 		
 		// compute the matrix for project and unproject.
 		CoordinateTransformation.getTransformation(gl).update(gl);
+		
+		// save camera positioning.
+		center.setValues(centerX, centerY, centerZ);
+		this.alpha = alpha;
+		this.theta = theta;
+		
 	}
 	
 	/**
 	 * Convert scene coordinates to pixel coordinates.
 	 * @param userCoordX X coordinate of the scene coordinate.
-	 * @param userCoordY Y coordinate of the scene coordinate.
+	 * @param userCoordY X coordinate of the scene coordinate.
 	 * @param userCoordZ Z coordinate of the scene coordinate.
-	 * @return array aof size 2 containing the 2 coordinates.
+	 * @return array of size 2 containing the 2 coordinates.
 	 */
 	public int[] getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ) {
 		GL gl = getGL();
@@ -125,6 +136,43 @@ public class CameraGL extends ObjectGL {
 		int[] res = {(int) screenCoordinate.getX(), (int) screenCoordinate.getY()};
 		return res;
 	}
+	
+	/**
+	 * Convert scene coordinates to pixel coordinates using the 2D view.
+	 * @param userCoordX X coordinate of the scene coordinate.
+	 * @param userCoordY Y coordinate of the scene coordinate.
+	 * @param userCoordZ Z coordinate of the scene coordinate.
+	 * @return array of size 2 containing the 2 coordinates.
+	 */
+	public int[] get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ) {
+		switchTo2DCoordinates();
+		int[] res = getPixelCoordinates(userCoordX, userCoordY, userCoordZ);
+		backTo3DCoordinates();
+		return res;
+	}
+	
+	/**
+	 * Move the camera to the default 2D coordinates.
+	 * Try to avoid to use this method, but it some times needed
+	 * for backward compatibility with old renderer.
+	 */
+	protected void switchTo2DCoordinates() {
+		GL gl = getGL();
+		gl.glPushMatrix();
+		gl.glTranslated(center.getX(), center.getY(), center.getZ());
+		gl.glRotated(theta, 0.0 , 0.0, 1.0);
+		gl.glRotated(alpha, 1.0 , 0.0, 0.0);
+		gl.glTranslated(-center.getX(), -center.getY(), -center.getZ());
+	}
+	
+	/**
+	 * Return to the normal view after a call to switchTo2DCoordinates.
+	 */
+	protected void backTo3DCoordinates() {
+		getGL().glPopMatrix();
+	}
+	
+	
 	
 	
 }
