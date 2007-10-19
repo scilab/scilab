@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* @author Allan CORNET - INRIA 2005 */
 /* @author Sylvestre LEDRU - INRIA 2007 (update) */
+/* @TODO this file should be moved somewhere more appropriated */
 /*-----------------------------------------------------------------------------------*/
 #include "InversionMatrixInt.h"
 #include "MALLOC.h"
