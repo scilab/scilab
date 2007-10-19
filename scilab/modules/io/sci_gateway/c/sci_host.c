@@ -20,7 +20,7 @@ int C2F(sci_host) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (m1 != 1) && (n1 != 1) )
 		{
-			Scierror(89,"argument has incorrect dimensions.\n");
+			Scierror(89,_("argument has incorrect dimensions.\n"));
 			return 0;
 		}
 		else
@@ -39,7 +39,7 @@ int C2F(sci_host) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(55,"argument type must be a character string.\n");
+		Scierror(55,_("argument type must be a character string.\n"));
 	}
 
 	return 0;

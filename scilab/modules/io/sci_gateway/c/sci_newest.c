@@ -59,7 +59,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					else
 					{
-						Scierror(999,"%s: incorrect %dst parameter.\n",fname,j);
+						Scierror(999,_("%s: incorrect %dst parameter.\n"),fname,j);
 						return 0;
 
 					}
@@ -68,7 +68,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 
 			if (GetType(j) != sci_strings)
 			{
-				Scierror(999,"%s: incorrect %dth parameter(s).\n",fname,j);
+				Scierror(999,_("%s: incorrect %dth parameter(s).\n"),fname,j);
 				return 0;
 			}
 		}
@@ -81,7 +81,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 
 			if ( (m1 != 1) && (n1 != 1) )
 			{
-				Scierror(999,"not a vector of filenames.\n");
+				Scierror(999,_("not a vector of filenames.\n"));
 				return 0;
 			}
 			RetIndex=GetIndexLastModifiedFileInList(Str,m1*n1);
