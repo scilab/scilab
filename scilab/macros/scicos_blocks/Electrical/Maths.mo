@@ -18,12 +18,29 @@ package Math
   external "builtin";
   end tan;
 
+  function tanh
+    input Real u;
+    output Real y;
+  external "builtin";
+  end tanh;
+
   function exp
     input Real u;
     output Real y;
   external "builtin";
   end exp;
 
+  function sqrt
+    input Real u;
+    output Real y;
+  external "builtin";
+  end sqrt;
+
+  function log
+    input Real u;
+    output Real y;
+  external "builtin";
+  end log;
 
 end Math;
 end Modelica;
