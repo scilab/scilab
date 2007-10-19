@@ -67,10 +67,10 @@ function draw_chain_from_angles(a,r,job)
   // build the links positions
   x=[0*ones(1,n2);cumsum(2*diag(r)*cos(a),1)];
   y=[0*ones(1,n2);cumsum(2*diag(r)*sin(a),1)];
-  draw_chain_from_coordinates(x,y,job)
+  draw_chain_from_coord(x,y,job)
 endfunction
 
-function draw_chain_from_coordinates(x,y,job)
+function draw_chain_from_coord(x,y,job)
 // x,y the coordinates , 
 //     x(i,j), y(i,j) is the coordinate of node i a time t(j)
 // r the segments half length
