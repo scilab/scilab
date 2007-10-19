@@ -54,7 +54,7 @@ sciPointObj * sciGetCurrentFigure( void )
   {
     /* it would mean that we have change the driver to GIF,Pos or PPM and perform a xinit F.Leray 22.07.04 */
     /* for now, no higher entities than figure */
-    if ( (pfigure = ConstructFigure(NULL)) != NULL )
+    if ( (pfigure = ConstructFigure(NULL, NULL)) != NULL )
     {
       sciSetCurrentObj(pfigure);
       sciInitCurrentFigure(pfigure);

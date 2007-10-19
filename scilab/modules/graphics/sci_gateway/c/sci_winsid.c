@@ -14,20 +14,29 @@
 /*-----------------------------------------------------------------------------------*/
 int sci_winsid(char *fname,unsigned long fname_len)
 {
-  int one = 1;
-  int * ids = NULL;
+  int status = 0;
   int nbFigure = sciGetNbFigure();
   CheckRhs(-1,0);
 
-  ids = MALLOC(nbFigure * sizeof(int));
-  if (ids == NULL)
+  if (nbFigure <= 0)
   {
-    sciprint("Error in function winsid, unable to perform operations, memory full.\n");
-    return 0;
+    /* There is no figure */
+    status = sciReturnEmptyMatrix();
   }
+  else
+  {
+    int * ids = MALLOC(nbFigure * sizeof(int));
+    if (ids == NULL)
+    {
+      sciprint("Error in function winsid, unable to perform operations, memory full.\n");
+      return 0;
+    }
+    sciGetFiguresId(ids);
 
-  sciGetFiguresId(ids);
-
-  return sciReturnRowVectorFromInt(ids, nbFigure);
+    status = sciReturnRowIntVector(ids, nbFigure);
+    FREE(ids);
+  }
+  LhsVar(1) = Rhs+1;
+  return status;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -99,9 +99,10 @@ ConstructStatusBar (sciPointObj * pparentfigure)
 
 /**ConstructFigure
  * This function creates the parents window (manager) and the elementaries structures
+ * @param figureIndex if NULL then a default value is chosen, otherwise use the pointed integer.
  */
 /************ 18/01/2002 ***********/
-sciPointObj * ConstructFigure(sciPointObj * pparent) 
+sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex) 
 {
  
   sciPointObj *pobj = (sciPointObj *) NULL;
@@ -156,7 +157,15 @@ sciPointObj * ConstructFigure(sciPointObj * pparent)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
-  sciInitNum(pobj, getUnusedFigureIndex());
+  if (figureIndex != NULL)
+  {
+    sciInitNum(pobj, *figureIndex);
+  }
+  else
+  {
+    /* Set default figure index */
+    sciInitNum(pobj, getUnusedFigureIndex());
+  }
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciInitResize((sciPointObj *) pobj,sciGetResize(pobj));
 

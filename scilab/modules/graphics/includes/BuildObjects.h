@@ -21,7 +21,7 @@
 
 extern sciPointObj *ConstructStatusBar (sciPointObj * pparentfigure); /* BUILD */
 
-sciPointObj * ConstructFigure (sciPointObj * pparent) ;/* BUILD */
+sciPointObj * ConstructFigure (sciPointObj * pparent, int * figureIndex) ;/* BUILD */
 extern sciPointObj *ConstructSubWin (sciPointObj * pparentfigure); /* BUILD */
 extern sciPointObj *ConstructScrollV (sciPointObj * pparentfigure); /* BUILD */
 extern sciPointObj *ConstructScrollH (sciPointObj * pparentfigure); /* BUILD */
