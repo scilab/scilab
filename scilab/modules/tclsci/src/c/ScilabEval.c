@@ -61,19 +61,19 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       command = (char *) MALLOC (bsiz * sizeof (char));
       if (command == (char *) 0)
       {
-		message_scilab("TCL_EvalScilabCmd: No more memory.");
+		message_scilab(_("TCL_EvalScilabCmd: No more memory."));
         return TCL_ERROR;
       }
       memset(command,'\0',bsiz);
       strncpy(command,AsciiFromUTF8,bsiz-1);
-	  message_scilab("Warning: ScilabEval command is too long and has been truncated to %d characters!",bsiz-1);
+	  message_scilab(_("Warning: ScilabEval command is too long and has been truncated to %d characters!"),bsiz-1);
     }
 	else
 	{
       command = (char *) MALLOC ((strlen (AsciiFromUTF8) + 1) * sizeof (char));
       if (command == (char *) 0)
       {
-		  message_scilab("TCL_EvalScilabCmd: No more memory.");
+		  message_scilab(_("TCL_EvalScilabCmd: No more memory."));
           return TCL_ERROR;
       }
       strcpy(command,AsciiFromUTF8);
@@ -107,19 +107,19 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     else if (strncmp(command,"flush",5)==0)
 	{
       /* flush */
-      if (C2F(iop).ddt==-1) message_scilab(" Flushing starts for queued commands.");
+      if (C2F(iop).ddt==-1) message_scilab(_(" Flushing starts for queued commands."));
       while (ismenu() && ncomm<arbitrary_max_queued_callbacks-1)
 	  {
         ncomm++;
         comm[ncomm] = (char *) MALLOC (bsiz+1);
         if (comm[ncomm] == (char *) 0)
         {
-			message_scilab("TCL_EvalScilabCmd: No more memory.");
+			message_scilab(_("TCL_EvalScilabCmd: No more memory."));
 			return TCL_ERROR;
         }
         seqf[ncomm]=GetCommand (comm[ncomm]);
       }
-      if (ismenu()) message_scilab("Warning: Too many callbacks in queue!");
+      if (ismenu()) message_scilab(_("Warning: Too many callbacks in queue!"));
       for (nc = 0 ; nc <= ncomm ; nc++ )
 	  {
         C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
@@ -153,7 +153,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         C2F(tksynchro)(&C2F(recu).paus);
         if (ierr != 0) return TCL_ERROR;
       }
-      if (C2F(iop).ddt==-1) message_scilab(" Flushing ends");
+      if (C2F(iop).ddt==-1) message_scilab(_(" Flushing ends"));
     }
     else
 	{
@@ -176,7 +176,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
   else
   {
 	/* ScilabEval called without argument */
-	error_scilab(999,"ScilabEval: at least one argument is required.");
+	error_scilab(999,_("ScilabEval: at least one argument is required."));
   }
 
   return TCL_OK;

@@ -100,12 +100,12 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				error_scilab(999,"%s: invalid rhs parameter : help TCL_GetVersion.",fname);
+				error_scilab(999,_("%s: invalid rhs parameter : help TCL_GetVersion."),fname);
 			}
 		}
 		else
 		{
-			error_scilab(999,"%s: invalid rhs parameter : help TCL_GetVersion.",fname);
+			error_scilab(999,_("%s: invalid rhs parameter : help TCL_GetVersion."),fname);
 		}
 		
 	}

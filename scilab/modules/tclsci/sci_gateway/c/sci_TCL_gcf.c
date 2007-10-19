@@ -41,7 +41,7 @@ int GetTclCurrentFigure(void)
 
 	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
     {
-		error_scilab(999,"Tcl Error : %s",TCLinterp->result);
+		error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
 		return 0;
 	}
 
@@ -80,7 +80,7 @@ int C2F(sci_TCL_scf) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		error_scilab(999,"Invalid parameter(s) type.");
+		error_scilab(999,_("Invalid parameter(s) type."));
 		return 0;
 	}
 	
@@ -104,7 +104,7 @@ int SetTclCurrentFigure(int num)
 
 	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
     {
-		error_scilab(999,"Tcl Error : %s",TCLinterp->result);
+		error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
 		return 0;
 	}
 

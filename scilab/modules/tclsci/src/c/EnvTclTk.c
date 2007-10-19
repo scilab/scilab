@@ -37,9 +37,9 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-5.0\modules\tclsci\tcl\tcl8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,PATH_MAX)==0)
 	{
-		//char *msg1=QueryStringError("Incorrect TCL_LIBRARY environment variable");
-		//char *msg2=QueryStringError("TCL_LIBRARY has been redefined to ");
-		fprintf(stderr,"\n%s\n%s%s.\n","Incorrect TCL_LIBRARY environment variable","TCL_LIBRARY has been redefined to ",DefaultPath);
+		//char *msg1=QueryStringError(_("Incorrect TCL_LIBRARY environment variable"));
+		//char *msg2=QueryStringError(_("TCL_LIBRARY has been redefined to "));
+		fprintf(stderr,"\n%s\n%s%s.\n",_("Incorrect TCL_LIBRARY environment variable"),_("TCL_LIBRARY has been redefined to "),DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 //		if (msg1) {FREE(msg1);msg1=NULL;}
 //		if (msg2) {FREE(msg2);msg2=NULL;}
@@ -89,9 +89,9 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-3.1\modules\tclsci\tcl\tk8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,PATH_MAX)==0)
 	{
-		//char *msg1=QueryStringError("Incorrect TK_LIBRARY environment variable");
-		//char *msg2=QueryStringError("TK_LIBRARY has been redefined to ");
-		fprintf(stderr,"\n%s\n%s%s.\n","Incorrect TK_LIBRARY environment variable","TK_LIBRARY has been redefined to ",DefaultPath);
+		//char *msg1=QueryStringError(_("Incorrect TK_LIBRARY environment variable"));
+		//char *msg2=QueryStringError(_("TK_LIBRARY has been redefined to "));
+		fprintf(stderr,"\n%s\n%s%s.\n",_("Incorrect TK_LIBRARY environment variable"),_("TK_LIBRARY has been redefined to "),DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		//if (msg1){FREE(msg1);msg1=NULL;}
 		//if (msg2){FREE(msg2);msg2=NULL;}

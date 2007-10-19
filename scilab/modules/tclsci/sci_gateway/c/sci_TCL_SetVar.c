@@ -19,7 +19,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 
 	if (TCLinterp == NULL)
 	{
-		error_scilab(999,"%s : Error main TCL interpreter not initialized.",fname);
+		error_scilab(999,_("%s : Error main TCL interpreter not initialized."),fname);
 		return 0;
 	}
 
@@ -32,13 +32,13 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 			TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 			if (TCLinterpreter==NULL)
 			{
-				error_scilab(999,"%s: No such slave interpreter.",fname);
+				error_scilab(999,_("%s: No such slave interpreter."),fname);
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,"%s : Argument type must be character string.",fname);
+			error_scilab(999,_("%s : Argument type must be character string."),fname);
 			return 0;
 		}
 	}
@@ -91,7 +91,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 		header = (int *) GetData(2);   Cmplx=header[3];
 		if (Cmplx==COMPLEX)
 		{
-			error_scilab(999,"doesn't work with Complex");
+			error_scilab(999,_("doesn't work with Complex"));
 			return 0;
 		}
 		
@@ -102,7 +102,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 
 		if ( (m1==0) && (n1==0) )
 		{
-			error_scilab(999,"[] doesn't work with Tcl/Tk.");
+			error_scilab(999,_("[] doesn't work with Tcl/Tk."));
 			return 0;
 		}
 
@@ -118,7 +118,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 	else
 	{
 		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-		error_scilab(999,"%s: Invalid argument type.",fname);
+		error_scilab(999,_("%s: Invalid argument type."),fname);
 		return 0;
 	}
 	

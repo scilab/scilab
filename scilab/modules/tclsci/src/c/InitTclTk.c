@@ -66,18 +66,18 @@ int OpenTCLsci(void)
   /* test SCI validity */
   if (SciPath==NULL)
   {
-	message_scilab("The SCI environment variable is not set.");
+	message_scilab(_("The SCI environment variable is not set."));
     return(1);
   }
 
 #ifdef _MSC_VER
   strcpy(TkScriptpath, SciPath);
-  strcat(TkScriptpath, "/modules/tclsci/tcl/TK_Scilab.tcl");
+  strcat(TkScriptpath, _("/modules/tclsci/tcl/TK_Scilab.tcl"));
 
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL) 
   {
-	message_scilab("Unable to find TCL initialisation scripts.");
+	message_scilab(_("Unable to find TCL initialisation scripts."));
     return(1);
   }
   else fclose(tmpfile2);
@@ -85,16 +85,16 @@ int OpenTCLsci(void)
   tmpdir=opendir(SciPath);
   if (tmpdir==NULL) 
     {
-      message_scilab("The SCI environment variable is not set.");
+      message_scilab(_("The SCI environment variable is not set."));
       return(1);
     }
   else closedir(tmpdir);
   strcpy(TkScriptpath,SciPath);
-  strcat(TkScriptpath, "/modules/tclsci/tcl/TK_Scilab.tcl");
+  strcat(TkScriptpath, _("/modules/tclsci/tcl/TK_Scilab.tcl"));
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL) 
     {
-      message_scilab("Unable to find TCL initialisation scripts.");
+      message_scilab(_("Unable to find TCL initialisation scripts."));
       return(1);
     }
   else fclose(tmpfile2);
@@ -105,19 +105,19 @@ int OpenTCLsci(void)
       TCLinterp = Tcl_CreateInterp();
 	  if ( TCLinterp == NULL )
 	  {
-		error_scilab(999,"Tcl Error  : Tcl_CreateInterp.");
+		error_scilab(999,_("Tcl Error  : Tcl_CreateInterp."));
 		return (1);
 	  }
 
       if ( Tcl_Init(TCLinterp) == TCL_ERROR)
 	  {
-		error_scilab(999,"Tcl Error  : Tcl_Init.");
+		error_scilab(999,_("Tcl Error  : Tcl_Init."));
 		return (1);
 	  }
 
       if ( Tk_Init(TCLinterp) == TCL_ERROR)
 	  {
-		error_scilab(999,"Tcl Error  : Tk_Init.");
+		error_scilab(999,_("Tcl Error  : Tk_Init."));
 		return (1);
 	  }
 
@@ -125,7 +125,7 @@ int OpenTCLsci(void)
       
 	  if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
 	  {
-		error_scilab(999,"Tcl Error : %s",TCLinterp->result);
+		error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
 		return (1);
 	  }
       
@@ -139,7 +139,7 @@ int OpenTCLsci(void)
 
   	  if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
 	  {
-		error_scilab(999,"Tcl Error : %s",TCLinterp->result);
+		error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
 		return (1);
 	  }
 

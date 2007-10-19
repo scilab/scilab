@@ -27,7 +27,7 @@ int C2F(sci_TCL_ExistInterp) _PARAMS((char *fname,unsigned long l))
 
 		if (TCLinterp == NULL)
 		{
-			error_scilab(999,"%s : Error main TCL interpreter not initialized.",fname);
+			error_scilab(999,_("%s : Error main TCL interpreter not initialized."),fname);
 			return 0;
 		}
 
@@ -50,7 +50,7 @@ int C2F(sci_TCL_ExistInterp) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		error_scilab(999,"%s : Argument type must be character string.",fname);
+		error_scilab(999,_("%s : Argument type must be character string."),fname);
 		return 0;
 	}
 	

@@ -28,7 +28,7 @@ int C2F(sci_TCL_ExistArray) _PARAMS((char *fname,unsigned long l))
 
 		if (TCLinterp == NULL)
 		{
-			error_scilab(999,"%s : Error main TCL interpreter not initialized.",fname);
+			error_scilab(999,_("%s : Error main TCL interpreter not initialized."),fname);
 			return 0;
 		}
 		
@@ -41,13 +41,13 @@ int C2F(sci_TCL_ExistArray) _PARAMS((char *fname,unsigned long l))
 				TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 				if (TCLinterpreter==NULL)
 				{
-					error_scilab(999,"%s: No such slave interpreter.",fname);
+					error_scilab(999,_("%s: No such slave interpreter."),fname);
 					return 0;
 				}
 			}
 			else
 			{
-				error_scilab(999,"%s : Argument type must be character string.");
+				error_scilab(999,_("%s : Argument type must be character string."));
 				return 0;
 			}
 		}
@@ -76,7 +76,7 @@ int C2F(sci_TCL_ExistArray) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		error_scilab(999,"%s : Argument type must be character string.",fname);
+		error_scilab(999,_("%s : Argument type must be character string."),fname);
 		return 0;
 	}
 	

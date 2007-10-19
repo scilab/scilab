@@ -24,7 +24,7 @@ BOOL TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			error_scilab(999,"Tcl Error : %s",TCLinterpreter->result);
+			error_scilab(999,_("Tcl Error : %s"),TCLinterpreter->result);
 			return 0;
 		}
 

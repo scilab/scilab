@@ -37,7 +37,7 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 		sprintf(MyTclCommand, "set TclScilabTmpVar [FindObj \"%s\" \"%s\"];", field, value);
 		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 		{
-			error_scilab(999,"Tcl Error : %s",TCLinterp->result);
+			error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
 			return 0;
 		}
 		StrHandle = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
@@ -64,7 +64,7 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		error_scilab(999,"Invalid parameter(s) type.");
+		error_scilab(999,_("Invalid parameter(s) type."));
 		return 0;
 	}
 	

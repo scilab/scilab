@@ -38,13 +38,13 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,i
 
 			if ( (bOKsprintf1 == -1) || (bOKsprintf2 == -1) )
 			{
-				error_scilab(999,"Variable too long.");
+				error_scilab(999,_("Variable too long."));
 				return FALSE;
 			}
 
 			if (TCLinterpreter == NULL)
 			{
-				error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
+				error_scilab(999,_("TCL_SetVar: Error TCL interpreter not initialized."));
 				return FALSE;
 			}
 
@@ -69,7 +69,7 @@ BOOL SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 
 	if (TCLinterpreter == NULL)
 	{
-		error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
+		error_scilab(999,_("TCL_SetVar: Error TCL interpreter not initialized."));
 		return FALSE;
 	}
 
@@ -97,7 +97,7 @@ BOOL SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int
 
 	if (TCLinterpreter == NULL)
 	{
-		error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
+		error_scilab(999,_("TCL_SetVar: Error TCL interpreter not initialized."));
 		return FALSE;
 	}
 
@@ -128,7 +128,7 @@ BOOL SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str)
 
 	if (TCLinterpreter == NULL)
 	{
-		error_scilab(999,"TCL_SetVar: Error TCL interpreter not initialized.");
+		error_scilab(999,_("TCL_SetVar: Error TCL interpreter not initialized."));
 		return FALSE;
 	}
 

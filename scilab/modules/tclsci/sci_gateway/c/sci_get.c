@@ -25,7 +25,7 @@ int C2F(sci_TCL_get) _PARAMS((char *fname,unsigned long l))
 		sprintf(VarName,"Win(%d)",Handle);
 		if ( ! Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY) )
 		{
-			error_scilab(999,"uicontrol %d doesn't exist.",Handle);
+			error_scilab(999,_("uicontrol %d doesn't exist."),Handle);
 			return 0;
 		}
 
@@ -34,7 +34,7 @@ int C2F(sci_TCL_get) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		error_scilab(999,"Invalid parameter(s) type.");
+		error_scilab(999,_("Invalid parameter(s) type."));
 		return 0;
 	}
 
