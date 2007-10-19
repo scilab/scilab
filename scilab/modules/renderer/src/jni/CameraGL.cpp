@@ -113,6 +113,7 @@ voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL;
 voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
+jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 
 
 }
@@ -144,6 +145,7 @@ voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL;
 voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
+jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 
 
 }
@@ -370,6 +372,41 @@ exit(EXIT_FAILURE);
 }
 }
  jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArraygetPixelCoordinatesjdoublejdoublejdoubleID ,userCoordX, userCoordY, userCoordZ);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
+
+}
+
+long * CameraGL::get2dViewPixelCoordinates (double userCoordX, double userCoordY, double userCoordZ){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID == NULL)
+{
+this->jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "get2dViewPixelCoordinates", "(DDD)[I" ) ;
+if (this->jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "get2dViewPixelCoordinates" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+ jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID ,userCoordX, userCoordY, userCoordZ);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

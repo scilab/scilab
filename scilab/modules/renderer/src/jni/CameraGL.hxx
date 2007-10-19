@@ -58,6 +58,7 @@ jmethodID voidmoveViewingAreajdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID jintArraygetPixelCoordinatesjdoublejdoublejdoubleID; // cache method id
+jmethodID jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID; // cache method id
 
 
 /**
@@ -118,6 +119,8 @@ void moveAxesBox(double scaleX, double scaleY, double scaleZ, double transX, dou
 void rotateAxesBox(double centerX, double centerY, double centerZ, double alpha, double theta, double reductionRatio);
 
 long * getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ);
+
+long * get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ);
 
 
 };

@@ -43,5 +43,10 @@
       <param type="double" name="userCoordY" />
       <param type="double" name="userCoordZ" />
     </method>
+    <method name="get2dViewPixelCoordinates" returnType="int[]">
+      <param type="double" name="userCoordX" />
+      <param type="double" name="userCoordY" />
+      <param type="double" name="userCoordZ" />
+    </method>
   </object>
 </package>
