@@ -30,7 +30,7 @@ function []=xclip(x,y,w,h)
 		elseif rhs==1 then
 			if typeof(x) <> "string" then 
 				ax.clip_state = "on"
-				ax.clip_rect  = x;
+				ax.clip_box  = x;
 			elseif x == "clipon" then
 				ax.clip_state = "on"
 			elseif x == "clipoff" then
@@ -41,8 +41,9 @@ function []=xclip(x,y,w,h)
 				error("Invalid argument")
 			end
 		else
-			ax.clip_state = "on"
-			ax.clip_rect  = [x,y,w,h];
+			ax.clip_state = "on";
+                        disp(ax);
+			ax.clip_box  = [x,y,w,h];
 		end
 	end
 	

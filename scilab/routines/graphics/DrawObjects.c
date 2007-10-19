@@ -3925,27 +3925,9 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
   /* TEST F.Leray 20.04.04: I fix HERE temporarily BOOL cube_scaling = FALSE; */
   BOOL cube_scaling;
   /* Test to enable reverse axis in 3D */ /* F.Leray 14.10.04 */
-  /*   int u; */
+  
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(pobj);
-  /*  double xmin = Mini(x,n); */
-  /*   double xmax = Maxi(x,n); */
-
-  /*   double xmoy = (xmax+xmin)/2; */
-  
-  /*   double xmoy = (ppsubwin->FRect[0] + ppsubwin->FRect[2])/2; */
-  
-  double *xtmp = NULL;
-  double *ytmp = NULL;
-  
-  xtmp = MALLOC(n*sizeof(double));
-  ytmp = MALLOC(n*sizeof(double));
-
-
-  /*   for(u=0;u<n;u++) */
-  /*     { */
-  /*       xtmp[u] = x[u]-2*(x[u]-xmoy); */
-  /*     } */
-  
+    
   if (sciGetEntityType(pobj) == SCI_SUBWIN){
 
     cube_scaling = pSUBWIN_FEATURE(pobj)->cube_scaling;
@@ -3975,7 +3957,6 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	      if(ppsubwin->logflags[2] == 'l'){
 		sciprint("Warning: Value on z data is negative or zero while logarithmic scale enabled\n");
 		sciprint("Object not drawn\n");
-		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return 0;
 	      }
 
@@ -3986,8 +3967,7 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 		Store3DPixelValues(pobj,xm[i],ym[i],tmpx,tmpy,0.); /* stockage des xm, ym pour le zoom */
 	
 	      if ( finite(xz1)==0||finite(yz1)==0 ){
-		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
-		return(0);
+                return(0);
 	      }
 	    }
 	else /* z != NULL */
@@ -4019,12 +3999,9 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 		Store3DPixelValues(pobj,xm[i],ym[i],tmpx,tmpy,tmpz); /* stockage des xm, ym pour le zoom */
 	      
 	      if ( finite(xz1)==0||finite(yz1)==0 ){
-		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
-		return(0);
+                return(0);
 	      }
-	      /* 	} */
 	    }
-	FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
       }
     else   /* cube_scaling == TRUE now */
       {
@@ -4048,7 +4025,6 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	      if(ppsubwin->logflags[2] == 'l'){
 		sciprint("Warning: Value on z data is negative or zero while logarithmic scale enabled\n");
 		sciprint("Object not drawn\n");
-		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return 0;
 	      }
  	     
@@ -4067,7 +4043,6 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 		Store3DPixelValues(pobj,xm[i],ym[i],tmpx1,tmpy1,tmpz1); /* stockage des xm, ym pour le zoom */
 	     
 	      if ( finite(xz1)==0||finite(yz1)==0 ){
-		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return(0);
 	      }
 	    }
@@ -4107,17 +4082,14 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	      if(GlobalFlag_Zoom3dOn==1)
 		Store3DPixelValues(pobj,xm[i],ym[i],tmpx1,tmpy1,tmpz1); /* stockage des xm, ym pour le zoom */
 	   
-	      /*    xm[i]= TX3D(tmpx,tmpy,tmpz); */
-	      /* 	      ym[i]= TY3D(tmpx,tmpy,tmpz); */
-	      if ( finite(xz1)==0||finite(yz1)==0 ){
-		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
+              if ( finite(xz1)==0||finite(yz1)==0 ){
 		return(0);
 	      }
 	    }
       }
-    FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
+    
   }
-  FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
+  
   return(1);
 }
 
@@ -6426,7 +6398,7 @@ void retrieveFacetVertices( sciPointObj *  pobj       ,
     verticesZ[i] = pSURFACE_FEATURE(pobj)->pvecz[facetIndex * nbFacets + i] ;
   }
   
-  ReverseDataFor3D( pobj, verticesX, verticesY, verticesZ, nbFacets ) ;
+  ReverseDataFor3D( sciGetParentSubwin(pobj), verticesX, verticesY, verticesZ, nbFacets ) ;
 
   *zOriginal = &(pSURFACE_FEATURE(pobj)->pvecz[facetIndex * nbFacets]) ;
 }
