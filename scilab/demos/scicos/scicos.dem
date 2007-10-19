@@ -67,7 +67,7 @@ while %t do
   case 'Bouncing ball' then  
     scicos('SCI/demos/scicos/Bouncing_ball.cosf');	
   case 'Table lookup example' then  
-    scicos('SCI/demos/scicos/Table_Lookup.cosf.cosf');	
+    scicos('SCI/demos/scicos/Table_Lookup.cosf');	
   case 'Threshold' then  
     scicos('SCI/demos/scicos/Threshold_ZeroCrossing.cosf');	
   case 'Scilab Block' then  
