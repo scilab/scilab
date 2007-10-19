@@ -419,20 +419,12 @@ msgstr	""
 msgid	"Low > High\n"
 msgstr	""
 #
-# File: sci_gateway/c/sci_grand.c, line: 649
-msgid	"uin"
-msgstr	""
-#
 # File: sci_gateway/c/sci_grand.c, line: 653
 msgid	"Missing Low and High for Uniform integer law\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 661
 msgid	" a and b must integers with (b-a+1) <= 2147483561"
-msgstr	""
-#
-# File: sci_gateway/c/sci_grand.c, line: 671
-msgid	"lgi"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 675
@@ -451,10 +443,6 @@ msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 699
 msgid	"vect must be column vector\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_grand.c, line: 712
-msgid	"nbn"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 715
