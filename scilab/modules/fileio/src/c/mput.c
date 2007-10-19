@@ -8,6 +8,7 @@
 #include "sciprint.h"
 #include "islittleendian.h"
 #include "../../../libs/libst/misc.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 extern struct soundstream ftf; /* defined in mget.c */
 extern int swap; /* defined in mget.c */

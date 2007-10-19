@@ -7,6 +7,7 @@
 #include "filesmanagement.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 { 
@@ -19,7 +20,7 @@ void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 		*start= (char *) MALLOC((*n+1)*sizeof(char));
 		if ( *start == (char *) 0)
 		{       
-			sciprint("No more memory \n");
+			sciprint(_("No more memory \n"));
 			*ierr=1;
 			return;
 		}
@@ -31,7 +32,7 @@ void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 		}
 		return;
 	}
-	sciprint("No input file \n");
+	sciprint(_("No input file \n"));
 	*ierr=1;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -51,7 +52,7 @@ void C2F(mgetstr1) (integer *fd, char *start, integer *n, integer *ierr)
 		}
 		return;
 	}
-	sciprint("No input file \n");
+	sciprint(_("No input file \n"));
 	*ierr=1;
 }
 /*-----------------------------------------------------------------------------------*/

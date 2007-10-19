@@ -9,6 +9,7 @@
 
 #include "bytedecoders.h"
 #include "olestream-unwrap.h"
+#include "machine.h"
 
 #define DUW if (oleuw->debug)
 

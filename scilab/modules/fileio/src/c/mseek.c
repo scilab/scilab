@@ -7,6 +7,7 @@
 #include "mseek.h"
 #include "filesmanagement.h"
 #include "sciprint.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 #if (defined(sun) && !defined(SYSV)) 
 char *strerror __PARAMS((int errcode));

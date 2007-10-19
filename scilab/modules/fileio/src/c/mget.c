@@ -8,6 +8,7 @@
 #include "../../../libs/libst/misc.h"
 #include "sciprint.h"
 #include "islittleendian.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 struct soundstream ftf;
 int swap = 0;

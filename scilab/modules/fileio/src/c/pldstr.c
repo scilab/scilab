@@ -9,6 +9,7 @@
 
 #include "logger.h"
 #include "pldstr.h"
+#include "machine.h"
 
 #include "MALLOC.h"
 

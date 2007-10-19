@@ -13,7 +13,7 @@
 #include <ctype.h>
 
 #include "logger.h"
-
+#include "machine.h"
 #include "MALLOC.h"
 
 #ifndef _MSC_VER

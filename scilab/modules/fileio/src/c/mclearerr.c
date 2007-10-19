@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "mclearerr.h"
+#include "machine.h"
 #include "filesmanagement.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(mclearerr) (integer *fd)

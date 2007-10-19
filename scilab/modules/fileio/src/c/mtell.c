@@ -6,13 +6,14 @@
 #include "mtell.h"
 #include "filesmanagement.h"
 #include "sciprint.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(mtell) (integer *fd, double *offset, integer *err)
 {     
 	FILE *fa= GetFileOpenedInScilab(*fd);
 	if ( fa == (FILE *) 0 ) 
 	{
-		sciprint("mtell: wrong file logical unit \n");
+		sciprint(_("mtell: wrong file logical unit \n"));
 		*err=1;
 		return;
 	}

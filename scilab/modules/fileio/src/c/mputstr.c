@@ -6,6 +6,7 @@
 #include "mputstr.h"
 #include "filesmanagement.h"
 #include "sciprint.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(mputstr) (int *fd, char *str, double *res, int *ierr)
 {   
@@ -13,7 +14,7 @@ void C2F(mputstr) (int *fd, char *str, double *res, int *ierr)
 	fa = GetFileOpenedInScilab(*fd);
 	if (!fa) 
 	{
-		sciprint("No input file \n");
+		sciprint(_("No input file \n"));
 		*ierr=1;
 	}
 	else 

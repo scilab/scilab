@@ -2,6 +2,7 @@
 /* Scilab */
 /* INRIA 2007 */
 /*-----------------------------------------------------------------------------------*/
+#include "machine.h"
 #include "mclose.h"
 #include "filesmanagement.h"
 #include "delfile.h"

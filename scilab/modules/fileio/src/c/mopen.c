@@ -9,6 +9,7 @@
 #include "getfiledesc.h"
 #include "addfile.h"
 #include "sciprint.h"
+#include "machine.h"
 #include "warningmode.h"
 /*-----------------------------------------------------------------------------------*/
 extern int swap;

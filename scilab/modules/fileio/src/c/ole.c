@@ -15,6 +15,7 @@
 #include "bytedecoders.h"
 #include "olestream-unwrap.h"
 #include "ole.h"
+#include "machine.h"
 
 /** Sector ID values (predefined) **/
 #define OLE_SECTORID_FREE	-1 /** Unallocated sector **/
