@@ -965,312 +965,17 @@ typedef struct {
 } scicos_block;
 \end{verbatim}
 
+\subsection{Inputs/outputs}
+
 \begin{itemize}
- \item {\bf nevprt :} Integer that gives the event input port number by which the block has been activated.
-                      This number is a binary coding. For i.e, if block have two event inputs ports,
-                      {\tt block->nevptr} can take the value 1 if the block has been called by its first
-                      event input port, the value 2 if it has called by the second event input port and 3
-                      if it is called by the same event on input port 1 and 2.\\
-                      Note that {\tt block->nevptr} can be -1 if the block is internally called. \\
-                      One can also retrieve this number by using the C macros {\tt GetNevIn(block)}.
-
- %\item {\bf funpt :}
- \item {\bf type :} Integer that gives the type of the computation function. For C blocks, this number
-                    is equal to 4.
-
- %\item {\bf scsptr :}
- \item {\bf nz :} Integer that gives the length of the discrete state register.\\
-                  One can't override the index {\tt block->nz-1} when reading data in the array {\tt z}
-                  with a C computational function.\\
-                  This value is also accessible via the C macros {\tt GetNdstate(block)}.
-
- \item {\bf z :} Array of double of size nz,1 corresponding to the discrete state register.\\
-                 A value of a discrete state is directly readable (for i.e the second state) with
-                 the C instructions :
-
-                 {\tt
-                  double z\_2;\\
-                  ...\\
-                  z\_2=block->z[1];
-                 }
-
-                 Note that the state register should be only written for {\tt flag}=4 and {\tt flag}=2.\\
-                 The pointer of that array can also be retrieve via the C macros {\tt GetDstate(block)}.
-
- \item {\bf noz :} Integer that gives the number of the discrete object states.\\
-                   One can't override the index {\tt block->noz-1} when accessing data in the arrays
-                   {\tt ozsz}, {\tt oztyp} and {\tt ozptr} in a C computational function.\\
-                   This value is also accessible via the C macro {\tt GetNoz(block)}.
-
- \item {\bf ozsz :} An array of integer of size noz,2 that contains the dimensions of matrices of
-                    discrete object states.\\
-                    The first column is for the first dimension and the second for the second dimension.
-                    For i.e. if we want the dimensions of the last object state, we'll use the instructions :
-
-                    {\tt
-                     int noz;\\
-                     int n,m;\\
-                     ...\\
-                     /*get the number of object state*/\\
-                     noz=block\->noz;\\
-                     ...\\
-                     /*get number of row of the last object state*/\\
-                     n=block\->ozsz[noz-1];\\
-                     /*get number of column of the last object state*/\\
-                     m=block\->ozsz[2*noz-1];\\
-                    }
-
-                    The dimensions of object discrete states can be get with the following C macro :
-
-                    {\tt
-                     GetOzSize(block,x,1); /*get first dimension of oz*/ \\
-                     GetOzSize(block,x,2); /*get second dimension of oz*/ \\
-                    }
-
-                    with {\tt x} an integer that gives the index of the discrete object state, {\bf numbered
-                    from 1 to noz}.
-
- \item {\bf oztyp :} An array of integer of size noz,1 that contains the type of matrices of
-                     discrete object states.\\
-                     The following table gives the correspondence table for scicos type expressed in Scilab number,
-                     in C number and also corresponding C pointers and C macros used for {\tt ozptr} :
-
-                     \begin{tabular}{|c|c|c|c|c|}
-                      \hline
-                      {\bf Scilab}&
-                      &
-                      {\bf C}&
-                      &
-                      \\
-                      \hline
-                      \hline
-                      Type&
-                      &
-                      Number&
-                      Type&
-                      Macros\\
-                      \hline
-                      real matrix&
-                      &
-                      10&
-                      double&
-                      SCSREAL\_COP\\
-                      \hline
-                      complex matrix&
-                      &
-                      11&
-                      double&
-                      SCSCOMPLEX\_COP\\
-                      \hline
-                      int32 matrix&
-                      &
-                      84&
-                      long int&
-                      SCSINT32\_COP\\
-                      \hline
-                      int16 matrix&
-                      &
-                      82&
-                      short&
-                      SCSINT16\_COP\\
-                      \hline
-                      int8 matrix&
-                      &
-                      81&
-                      char&
-                      SCSINT8\_COP\\
-                      \hline
-                      uint32 matrix&
-                      &
-                      814&
-                      unsigned long int&
-                      SCSUINT32\_COP\\
-                      \hline
-                      uint16 matrix&
-                      &
-                      812&
-                      unsigned short&
-                      SCSUNINT16\_COP\\
-                      \hline
-                      uint8 matrix&
-                      &
-                      811&
-                      unsigned char&
-                      SCSUINT8\_COP\\
-                      \hline
-                      all others data&
-                      &
-                      -1&
-                      double&
-                      SCSUNKNOWN\_COP\\
-                      \hline
-                     \end{tabular}
-
-                     The type of discrete object state can also be got by the use of the C macro
-                     {\tt GetOzType(block,x)}. For i.e, if we want the C number type of the first
-                     discrete object state, we'll use the following C instructions:
-
-                     {\tt
-                      int oztyp\_1;\\
-                     ...\\
-                      /*get the number type of the first object state*/\\
-                      oztyp\_1 = GetOzType(block,1);
-                     }
-
- \item {\bf ozptr :} An array of pointers of size noz,1 that allow to directly acces to the
-                     data contained in the discrete object state.\\
-                     Suppose that you have defined in the editor a block with the following 
-                     \textbf{odstate} field in \htmladdnormallink{scicos\_model}{scicos_model.htm} :
-
-                     \begin{eqnarray}
-                       {\tt model.odstate}={\tt list}\left({\tt int32}\left(\left[\begin{array}{cc}
-                       1 & 2\\
-                       3 & 4\end{array}\right]\right),\left[\begin{array}{ccc}
-                       1+{\tt \% i} & {\tt \% i} & 0.5\end{array}\right]\right)
-                     \end{eqnarray}
-
-                     Then we have two discrete object states, one is an 32-bit integer matrix with two rows and two
-                     columns and the second is a vector of complex numbers that can be understand as a matrix
-                     of size 1,3.\\
-                     At the C computational function level, the instructions {\tt block->ozsz[0]},
-                     {\tt block->ozsz[1]}, {\tt block->ozsz[2]}, {\tt block->ozsz[3]} will respectively return the
-                     values 2,1,2,3 and the instructions {\tt block->oztyp[0]}, {\tt block->oztyp[1]} the values 11 and
-                     84.\\
-                     {\tt block->ozptr} will contain then two pointers, and should be viewed as arrays contained data of
-                     discrete object state as shown in the following figure :
-
-                     \begin{figure}[!h]
-                      \begin{center}
-                       \scalebox{0.7}{\input{oz.pstex_t}}
-                      \end{center}
-                     \end{figure}
-
-                    For i.e., to directly access to the data, the user can use theses instructions :
-
-                    {\tt
-                     SCSINT32\_COP *ptr\_i;\\
-                     SCSINT32\_COP cumsum\_i;\\
-                     SCSCOMPLEX\_COP *ptr\_d;\\
-                     SCSREAL\_COP cumsum\_r;
-                     ...\
-                     \null\\
-                     /*get the ptrs of an int32 discrete object state*/\\
-                     ptr\_i = (SCSINT32\_COP *) block->ozptr[0];\\
-                     /*get the ptrs of a double discrete object state*/\\
-                     ptr\_d = (SCSCOMPLEX\_COP *) block->ozptr[1];\\
-                     ...\\
-                     /*compute the cumsum of the int32 matrix*/\\
-                     cumsum\_i = ptr\_i[0]+ptr\_i[1]+ptr\_i[2]+ptr\_i[3];
-                     ...\\
-                     /*compute the cumsum of the real part of the complex matrix*/\\
-                     cumsum\_d = ptr\_d[0]+ptr\_d[1]+ptr\_d[2];\\
-                     ...\\
-                    }
-
-                    One can also use the set of C macros :\\
-                    {\tt GetRealOzPtrs(block,x)},  {\tt GetImagOzPtrs(block,x)},\\
-                    {\tt Getint8OzPtrs(block,x)},  {\tt Getint16OzPtrs(block,x)},\\
-                    {\tt Getint32OzPtrs(block,x)}, {\tt Getuint8OzPtrs(block,x)},\\
-                    {\tt Getuint16OzPtrs(block,x)}, {\tt Getuint32OzPtrs(block,x)} \\
-                    to have the appropiate pointer of the data to handle ({\bf x is numbered from 1 to noz}).\\
-                    For the previous example that gives :
-
-                    {\tt
-                     SCSINT32\_COP *ptr\_i;\\
-                     SCSREAL\_COP *ptr\_dr;\\
-                     SCSREAL\_COP *ptr\_di;\\
-                     ...\
-                     \null\\
-                     /*get the ptrs of an int32 discrete object state*/\\
-                     ptr\_i = Getint32OzPtrs(block,1);\\
-                     /*get the ptrs of a double discrete object state*/\\
-                     ptr\_dr = GetRealOzPtrs(block,2);\\
-                     ptr\_di = GetImagOzPtrs(block,2);\\
-                     ...\\
-                    }
-
-                    Finally note that the discrete objects state should be only written for {\tt flag}=4 and {\tt flag}=2.
-
-
- \item {\bf nx :} Integer that gives the length of the continus state register.\\
-                  One can't override the index {\tt block->nx-1} when reading or writing data in 
-                  the array {\tt x}, {\tt xd} or {\tt res} with a C computational function.
-
- \item {\bf x :} Array of double of size nx,1 corresponding to the continuous state register.\\
-                 That gives the result of the computation of the state derivative.\\
-                 A value of a continuous state is readable (for i.e the first state) with
-                 the C instructions :
-
-                 {\tt
-                  double x\_1;\\
-                    ...\\
-                  x\_1=block->x[0];
-                 }
-
-                 Note that on {\it flag}=4, user can write some initial conditions in that register.\\
-
- \item {\bf xd :} Array of double of size nx,1 corresponding to the derivative of the continuous state register.\\
-                  When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be
-                  explicitly expressed or implicitly used in the residual vector {\tt res} when systems are expressed
-                  in terms of Differantial Algebraic Equations (DAE). \\
-                  Both systems must be programmed with {\tt flag= 0}.\\
-                  For i.e the Lorentz attractor written as an ODE system with three state variables, of the form :
-
-                   \begin{eqnarray}
-                        \dot{x} &=& f(x,t)
-                   \end{eqnarray}
-                  will be defined :
-
-                  {\tt
-                   ...\\
-                   double *x = block->x;\\
-                   double *xd = block->xd;\\
-                   ...\\
-                   /* define parameters */\\
-                   double a = 10;\\
-                   double b = 28;\\
-                   double c = 8/3;\\
-                   ...\\
-                   if (flag == 0) \{\\
-                      xd[0] = a*(x[1]-x[0]); \\
-                      xd[1] = x[1]*(b-x[2])-x[1]; \\
-                      xd[2] = x[0]*x[1]-c*x[2]; \\
-                   \}
-                  }
-
- \item {\bf res :} Array of double of size nx,1 corresponding to Differential Algebraic Equation (DAE) residual.\\
-                   It is used to write the vector of systems that have the following form :
-                   \begin{eqnarray}
-                        f(\dot{x},x,t) &=& 0
-                   \end{eqnarray}
-                   For i.e the Lorentz attractor written as a DAE system with three state variables, will be defined :
-
-                   {\tt
-                    ...\\
-                    double *x = block->x;\\
-                    double *xd = block->xd;\\
-                    double *res = block->res;\\
-                    ...\\
-                    /* define parameters */\\
-                    double a = 10;\\
-                    double b = 28;\\
-                    double c = 8/3;\\
-                    ...\\
-                    if (flag == 0) \{\\
-                      res[0] =  - xd[0] + (a*(x[1]-x[0])); \\
-                      res[1] =  - xd[1] + (x[0]*(b-x[2])-x[1]); \\
-                      res[2] =  - xd[2] + (x[0]*x[1]-c*x[2]); \\
-                    \}
-                   }
-
- \item {\bf nin :} Integer that gives the number of regular input ports of the block.\\
+ \item {\bf block->nin :} Integer that gives the number of regular input ports of the block.\\
                    One can't override the index {\tt (3*block->nin)-1} when reading sizes of
                    input ports in the array {\tt insz} and the index {\tt block->nin-1} when reading
                    data in the array {\tt inptr} with a C computational function.\\
                    The number of regular input ports can also be got by the use of the C macros
                    {\tt GetNin(block)}.
 
- \item {\bf insz :} An array of integers of size {\tt 3*nin,1} that respectively gives the first dimensions,
+ \item {\bf block->insz :} An array of integers of size {\tt 3*nin,1} that respectively gives the first dimensions,
                     the second dimensions and the type of data driven by regular input ports.\\
                     Note that this array of size differs from the array {\tt ozsz} and {\tt oparsz} to
                     provide full compatibilty with blocks that only use a single dimension.\\
@@ -1295,7 +1000,7 @@ typedef struct {
                       \end{center}
                      \end{figure}
 
-                     Do the distinction here in the type numbers defined at the {\bf Scilab level} (2,1,3)
+                     Do the difference here in the type numbers defined at the {\bf Scilab level} (2,1,3)
                      and the type numbers defined at the {\bf C level} (84,11,10). The following table gives
                      the correspondance for all Scicos type:
 
@@ -1351,7 +1056,7 @@ typedef struct {
                       \end{tabular}
                      \end{center}
 
- \item {\bf inptr :} An array of pointers of size nin,1 that allow to directly acces to the
+ \item {\bf block->inptr :} An array of pointers of size nin,1 that allow to directly acces to the
                      data contained in the regular input matrices.\\
                      Suppose the previous example (block with three inputs : an int32 matrix of size [3,2],
                      a complex scalar and a real matrix of size [4,1]).\\
@@ -1432,14 +1137,14 @@ typedef struct {
 
                     Finally note that the regular input port registers are only accessible for reading.
 
- \item {\bf nout :} Integer that gives the number of regular output ports of the block.\\
+ \item {\bf block->nout :} Integer that gives the number of regular output ports of the block.\\
                     One can't override the index {\tt (3*block->nout)-1} when reading sizes of
                     output ports in the array {\tt outsz} and the index {\tt block->nout-1} when reading
                     data in the array {\tt outptr} with a C computational function.\\
                     The number of regular output ports can also be got by the use of the C macros
                     {\tt GetNout(block)}.
 
- \item {\bf outsz :} An array of integers of size {\tt 3*nout,1} that respectively gives the first dimensions,
+ \item {\bf block->outsz :} An array of integers of size {\tt 3*nout,1} that respectively gives the first dimensions,
                      the second dimensions and the type of data driven by regular output ports.\\
                      Note that this array of size differs from the array {\tt ozsz} and {\tt oparsz} to
                      provide full compatibilty with blocks that only use a single dimension.\\
@@ -1464,11 +1169,11 @@ typedef struct {
                       \end{center}
                      \end{figure}
 
-                     Do the distinction here in the type numbers defined at the {\bf Scilab level} (2,1,3)
+                     Do the difference here in the type numbers defined at the {\bf Scilab level} (2,1,3)
                      and the type numbers defined at the {\bf C level} (84,11,10) and please report to the 
                      previous table to have the correspondence for all Scicos type.
 
- \item {\bf outptr :} An array of pointers of size nout,1 that allow to directly acces to the
+ \item {\bf block->outptr :} An array of pointers of size nout,1 that allow to directly acces to the
                      data contained in the regular output matrices.\\
                      Suppose the previous example (block with three outputs : an int32 matrix of size [3,2],
                      a complex scalar and a real matrix of size [4,1]).\\
@@ -1548,15 +1253,28 @@ typedef struct {
                     }
 
                     Finally note that the regular output port registers must be only written for {\tt flag}=1.
+\end{itemize}
 
- \item {\bf nevout :} Integer that gives the number of event output ports of the block (also called
+\subsection{Events}
+
+\begin{itemize}
+ \item {\bf block->nevprt :} Integer that gives the event input port number by which the block has been activated.
+                      This number is a binary coding. For i.e, if block have two event inputs ports,
+                      {\tt block->nevptr} can take the value 1 if the block has been called by its first
+                      event input port, the value 2 if it has called by the second event input port and 3
+                      if it is called by the same event on input port 1 and 2.\\
+                      Note that {\tt block->nevptr} can be -1 if the block is internally called. \\
+                      One can also retrieve this number by using the C macros {\tt GetNevIn(block)}.
+
+
+ \item {\bf block->nevout :} Integer that gives the number of event output ports of the block (also called
                       the length of the output event register).\\
                       One can't override the index {\tt (block->nevout)-1} when setting value of events
                       in the output event register {\tt evout}.\\
                       The number of event output ports can also be got by the use of the C macro
                       {\tt GetNevOut(block)}.
 
- \item {\bf evout :} Array of double of size nevout,1 corresponding to the output event register. That register
+ \item {\bf block->evout :} Array of double of size nevout,1 corresponding to the output event register. That register
                      is used to program date of events during the simulation.\\
                      When setting values in that array, you must understand that you give a delay relative
                      to the current time of simulator :
@@ -1581,14 +1299,19 @@ typedef struct {
                      Note that every events generated from output event register will be asynchronous with event
                      coming from event input port (even if you set {\tt block->evout[x]=0}). \\
                      The event output register must be only written for {\tt flag}=3.
+\end{itemize}
 
- \item {\bf nrpar :} Integer that gives the length of the real parameter register.\\
+\subsection{Parameters}
+
+\begin{itemize}
+
+ \item {\bf block->nrpar :} Integer that gives the length of the real parameter register.\\
                      One can't override the index {\tt (block->nrpar)-1} when reading value of real
                      parameters in the register {\tt rpar}.\\
                      The total number of real parameters can also be got by the use of the C macro
                      {\tt GetNrpar(block)}.
 
- \item {\bf rpar :} Array of double of size nrpar,1 corresponding to the real parameter register. That register
+ \item {\bf block->rpar :} Array of double of size nrpar,1 corresponding to the real parameter register. That register
                     is used to pass real parameters coming from the scilab/scicos environment to your block
                     model.\\
                     The C type of that array is {\tt double *} (or C scicos type {\tt SCSREAL\_COP *}).\\
@@ -1649,13 +1372,13 @@ typedef struct {
 
                     Note that real parameters register is only accessible for reading.
 
- \item {\bf nipar :} Integer that gives the length of the integer parameter register.\\
+ \item {\bf block->nipar :} Integer that gives the length of the integer parameter register.\\
                      One can't override the index {\tt (block->nipar)-1} when reading value of integer
                      parameters in the register {\tt ipar}.\\
                      The total number of integer parameters can also be got by the use of the C macro
                      {\tt GetNipar(block)}.
 
- \item {\bf ipar :} Array of int of size nipar,1 corresponding to the integer parameter register. That register
+ \item {\bf block->ipar :} Array of int of size nipar,1 corresponding to the integer parameter register. That register
                     is used to pass integer parameters coming from the scilab/scicos environment to your block
                     model.\\
                     The C type of that array is {\tt int *} (or C scicos type {\tt SCSINT\_COP *}).\\
@@ -1748,12 +1471,12 @@ typedef struct {
 
                     Note that integer parameters register is only accessible for reading.
 
- \item {\bf nopar :} Integer that gives the number of the object parameters.\\
+ \item {\bf block->nopar :} Integer that gives the number of the object parameters.\\
                      One can't override the index {\tt block->nopar-1} when accessing data in the arrays
                      {\tt oparsz}, {\tt opartyp} and {\tt oparptr} in a C computational function.\\
                      This value is also accessible via the C macro {\tt GetNopar(block)}.
 
- \item {\bf oparsz :} An array of integer of size nopar,2 that contains the dimensions of matrices of
+ \item {\bf block->oparsz :} An array of integer of size nopar,2 that contains the dimensions of matrices of
                      object parameters.\\
                      The first column is for the first dimension and the second for the second dimension.
                      For i.e. if we want the dimensions of the last object parameters, we'll use the instructions :
@@ -1781,9 +1504,9 @@ typedef struct {
                     with {\tt x} an integer that gives the index of the object parameter, {\bf numbered
                     from 1 to nopar}.
 
- \item {\bf opartyp :} An array of integer of size nopar,1 that contains the type of matrices of
+ \item {\bf block->opartyp :} An array of integer of size nopar,1 that contains the type of matrices of
                      object parameters.\\
-                     The following table gives the correspondence table for scicos type expressed in Scilab number,
+                     The following table gives the correspondence for scicos type expressed in Scilab number,
                      in C number and also corresponding C pointers and C macros used for {\tt oparptr} :
 
                      \begin{tabular}{|c|c|c|c|c|}
@@ -1796,55 +1519,55 @@ typedef struct {
                       \hline
                       \hline
                       Type&
-                      &
+                      Number&
                       Number&
                       Type&
                       Macros\\
                       \hline
                       real matrix&
-                      &
+                      1&
                       10&
                       double&
                       SCSREAL\_COP\\
                       \hline
                       complex matrix&
-                      &
+                      2&
                       11&
                       double&
                       SCSCOMPLEX\_COP\\
                       \hline
                       int32 matrix&
-                      &
+                      3&
                       84&
                       long int&
                       SCSINT32\_COP\\
                       \hline
                       int16 matrix&
-                      &
+                      4&
                       82&
                       short&
                       SCSINT16\_COP\\
                       \hline
                       int8 matrix&
-                      &
+                      5&
                       81&
                       char&
                       SCSINT8\_COP\\
                       \hline
                       uint32 matrix&
-                      &
+                      6&
                       814&
                       unsigned long int&
                       SCSUINT32\_COP\\
                       \hline
                       uint16 matrix&
-                      &
+                      7&
                       812&
                       unsigned short&
                       SCSUNINT16\_COP\\
                       \hline
                       uint8 matrix&
-                      &
+                      8&
                       811&
                       unsigned char&
                       SCSUINT8\_COP\\
@@ -1868,17 +1591,18 @@ typedef struct {
                       opartyp\_1 = GetOparType(block,1);
                      }
 
- \item {\bf oparptr :} An array of pointers of size nopar,1 that allow to directly acces to the
+ \item {\bf block->oparptr :} An array of pointers of size nopar,1 that allow to directly acces to the
                      data contained in the object parameter.\\
                      Suppose that you have defined in the editor a block with the following 
                      \textbf{opar} field in \htmladdnormallink{scicos\_model}{scicos_model.htm} :
 
-                     \begin{eqnarray}
-                       {\tt model.opar}={\tt list}\left({\tt int32}\left(\left[\begin{array}{cc}
-                       1 & 2\\
-                       3 & 4\end{array}\right]\right),\left[\begin{array}{ccc}
-                       1+{\tt \% i} & {\tt \% i} & 0.5\end{array}\right]\right)
-                     \end{eqnarray}
+                     {\tt model.opar=list(int32([1,2;3,4]),[1+\%i \%i 0.5]);}
+%                      \begin{eqnarray}
+%                        {\tt model.opar}={\tt list}\left({\tt int32}\left(\left[\begin{array}{cc}
+%                        1 & 2\\
+%                        3 & 4\end{array}\right]\right),\left[\begin{array}{ccc}
+%                        1+{\tt \% i} & {\tt \% i} & 0.5\end{array}\right]\right)
+%                      \end{eqnarray}
 
                      Then we have two object parameters, one is an 32-bit integer matrix with two rows and two
                      columns and the second is a vector of complex numbers that can be understand as a matrix
@@ -1941,15 +1665,321 @@ typedef struct {
                     }
 
                     Note that object parameters register is only accessible for reading.
+\end{itemize}
 
- \item {\bf ng :}
- \item {\bf g :}
- \item {\bf ztyp :}
- \item {\bf jroot :}
- \item {\bf label :}
- \item {\bf work :}
- \item {\bf nmode :}
- \item {\bf mode :}
+\subsection{Sates and work}
+
+\begin{itemize}
+ \item {\bf block->nx :} Integer that gives the length of the continus state register.\\
+                  One can't override the index {\tt block->nx-1} when reading or writing data in 
+                  the array {\tt x}, {\tt xd} or {\tt res} with a C computational function.
+
+ \item {\bf block->x :} Array of double of size nx,1 corresponding to the continuous state register.\\
+                 That gives the result of the computation of the state derivative.\\
+                 A value of a continuous state is readable (for i.e the first state) with
+                 the C instructions :
+
+                 {\tt
+                  double x\_1;\\
+                    ...\\
+                  x\_1=block->x[0];
+                 }
+
+                 Note that on {\it flag}=4, user can write some initial conditions in that register.\\
+
+ \item {\bf block->xd :} Array of double of size nx,1 corresponding to the derivative of the continuous state register.\\
+                  When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be
+                  explicitly expressed or implicitly used in the residual vector {\tt res} when systems are expressed
+                  in terms of Differantial Algebraic Equations (DAE). \\
+                  Both systems must be programmed with {\tt flag= 0}.\\
+                  For i.e the Lorentz attractor written as an ODE system with three state variables, of the form :
+
+                   \begin{eqnarray}
+                        \dot{x} &=& f(x,t)
+                   \end{eqnarray}
+                  will be defined :
+
+                  {\tt
+                   ...\\
+                   double *x = block->x;\\
+                   double *xd = block->xd;\\
+                   ...\\
+                   /* define parameters */\\
+                   double a = 10;\\
+                   double b = 28;\\
+                   double c = 8/3;\\
+                   ...\\
+                   if (flag == 0) \{\\
+                      xd[0] = a*(x[1]-x[0]); \\
+                      xd[1] = x[1]*(b-x[2])-x[1]; \\
+                      xd[2] = x[0]*x[1]-c*x[2]; \\
+                   \}
+                  }
+
+ \item {\bf block->res :} Array of double of size nx,1 corresponding to Differential Algebraic Equation (DAE) residual.\\
+                   It is used to write the vector of systems that have the following form :
+                   \begin{eqnarray}
+                        f(\dot{x},x,t) &=& 0
+                   \end{eqnarray}
+                   For i.e the Lorentz attractor written as a DAE system with three state variables, will be defined :
+
+                   {\tt
+                    ...\\
+                    double *x = block->x;\\
+                    double *xd = block->xd;\\
+                    double *res = block->res;\\
+                    ...\\
+                    /* define parameters */\\
+                    double a = 10;\\
+                    double b = 28;\\
+                    double c = 8/3;\\
+                    ...\\
+                    if (flag == 0) \{\\
+                      res[0] =  - xd[0] + (a*(x[1]-x[0])); \\
+                      res[1] =  - xd[1] + (x[0]*(b-x[2])-x[1]); \\
+                      res[2] =  - xd[2] + (x[0]*x[1]-c*x[2]); \\
+                    \}
+                   }
+
+
+ \item {\bf block->nz :} Integer that gives the length of the discrete state register.\\
+                  One can't override the index {\tt block->nz-1} when reading data in the array {\tt z}
+                  with a C computational function.\\
+                  This value is also accessible via the C macros {\tt GetNdstate(block)}.
+
+ \item {\bf block->z :} Array of double of size nz,1 corresponding to the discrete state register.\\
+                 A value of a discrete state is directly readable (for i.e the second state) with
+                 the C instructions :
+
+                 {\tt
+                  double z\_2;\\
+                  ...\\
+                  z\_2=block->z[1];
+                 }
+
+                 Note that the state register should be only written for {\tt flag}=4 and {\tt flag}=2.\\
+                 The pointer of that array can also be retrieve via the C macros {\tt GetDstate(block)}.
+
+ \item {\bf block->noz :} Integer that gives the number of the discrete object states.\\
+                   One can't override the index {\tt block->noz-1} when accessing data in the arrays
+                   {\tt ozsz}, {\tt oztyp} and {\tt ozptr} in a C computational function.\\
+                   This value is also accessible via the C macro {\tt GetNoz(block)}.
+
+ \item {\bf block->ozsz :} An array of integer of size noz,2 that contains the dimensions of matrices of
+                    discrete object states.\\
+                    The first column is for the first dimension and the second for the second dimension.
+                    For i.e. if we want the dimensions of the last object state, we'll use the instructions :
+
+                    {\tt
+                     int noz;\\
+                     int n,m;\\
+                     ...\\
+                     /*get the number of object state*/\\
+                     noz=block\->noz;\\
+                     ...\\
+                     /*get number of row of the last object state*/\\
+                     n=block\->ozsz[noz-1];\\
+                     /*get number of column of the last object state*/\\
+                     m=block\->ozsz[2*noz-1];\\
+                    }
+
+                    The dimensions of object discrete states can be get with the following C macro :
+
+                    {\tt
+                     GetOzSize(block,x,1); /*get first dimension of oz*/ \\
+                     GetOzSize(block,x,2); /*get second dimension of oz*/ \\
+                    }
+
+                    with {\tt x} an integer that gives the index of the discrete object state, {\bf numbered
+                    from 1 to noz}.
+
+ \item {\bf block->oztyp :} An array of integer of size noz,1 that contains the type of matrices of
+                     discrete object states.\\
+                     The following table gives the correspondence table for scicos type expressed in Scilab number,
+                     in C number and also corresponding C pointers and C macros used for {\tt ozptr} :
+
+                     \begin{tabular}{|c|c|c|c|c|}
+                      \hline
+                      {\bf Scilab}&
+                      &
+                      {\bf C}&
+                      &
+                      \\
+                      \hline
+                      \hline
+                      Type&
+                      Number&
+                      Number&
+                      Type&
+                      Macros\\
+                      \hline
+                      real matrix&
+                      1&
+                      10&
+                      double&
+                      SCSREAL\_COP\\
+                      \hline
+                      complex matrix&
+                      2&
+                      11&
+                      double&
+                      SCSCOMPLEX\_COP\\
+                      \hline
+                      int32 matrix&
+                      3&
+                      84&
+                      long int&
+                      SCSINT32\_COP\\
+                      \hline
+                      int16 matrix&
+                      4&
+                      82&
+                      short&
+                      SCSINT16\_COP\\
+                      \hline
+                      int8 matrix&
+                      5&
+                      81&
+                      char&
+                      SCSINT8\_COP\\
+                      \hline
+                      uint32 matrix&
+                      6&
+                      814&
+                      unsigned long int&
+                      SCSUINT32\_COP\\
+                      \hline
+                      uint16 matrix&
+                      7&
+                      812&
+                      unsigned short&
+                      SCSUNINT16\_COP\\
+                      \hline
+                      uint8 matrix&
+                      8&
+                      811&
+                      unsigned char&
+                      SCSUINT8\_COP\\
+                      \hline
+                      all others data&
+                      &
+                      -1&
+                      double&
+                      SCSUNKNOWN\_COP\\
+                      \hline
+                     \end{tabular}
+
+                     The type of discrete object state can also be got by the use of the C macro
+                     {\tt GetOzType(block,x)}. For i.e, if we want the C number type of the first
+                     discrete object state, we'll use the following C instructions:
+
+                     {\tt
+                      int oztyp\_1;\\
+                     ...\\
+                      /*get the number type of the first object state*/\\
+                      oztyp\_1 = GetOzType(block,1);
+                     }
+
+ \item {\bf block->ozptr :} An array of pointers of size noz,1 that allow to directly acces to the
+                     data contained in the discrete object state.\\
+                     Suppose that you have defined in the editor a block with the following 
+                     \textbf{odstate} field in \htmladdnormallink{scicos\_model}{scicos_model.htm} :
+
+                     {\tt model.odstate=list(int32([1,2;3,4]),[1+\%i \%i 0.5]);}
+%                      \begin{eqnarray}
+%                        {\tt model.odstate}={\tt list}\left({\tt int32}\left(\left[\begin{array}{cc}
+%                        1 & 2\\
+%                        3 & 4\end{array}\right]\right),\left[\begin{array}{ccc}
+%                        1+{\tt \% i} & {\tt \% i} & 0.5\end{array}\right]\right)
+%                      \end{eqnarray}
+
+                     Then we have two discrete object states, one is an 32-bit integer matrix with two rows and two
+                     columns and the second is a vector of complex numbers that can be understand as a matrix
+                     of size 1,3.\\
+                     At the C computational function level, the instructions {\tt block->ozsz[0]},
+                     {\tt block->ozsz[1]}, {\tt block->ozsz[2]}, {\tt block->ozsz[3]} will respectively return the
+                     values 2,1,2,3 and the instructions {\tt block->oztyp[0]}, {\tt block->oztyp[1]} the values 11 and
+                     84.\\
+                     {\tt block->ozptr} will contain then two pointers, and should be viewed as arrays contained data of
+                     discrete object state as shown in the following figure :
+
+                     \begin{figure}[!h]
+                      \begin{center}
+                       \scalebox{0.7}{\input{oz.pstex_t}}
+                      \end{center}
+                     \end{figure}
+
+                    For i.e., to directly access to the data, the user can use theses instructions :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSINT32\_COP cumsum\_i;\\
+                     SCSCOMPLEX\_COP *ptr\_d;\\
+                     SCSREAL\_COP cumsum\_r;
+                     ...\
+                     \null\\
+                     /*get the ptrs of an int32 discrete object state*/\\
+                     ptr\_i = (SCSINT32\_COP *) block->ozptr[0];\\
+                     /*get the ptrs of a double discrete object state*/\\
+                     ptr\_d = (SCSCOMPLEX\_COP *) block->ozptr[1];\\
+                     ...\\
+                     /*compute the cumsum of the int32 matrix*/\\
+                     cumsum\_i = ptr\_i[0]+ptr\_i[1]+ptr\_i[2]+ptr\_i[3];
+                     ...\\
+                     /*compute the cumsum of the real part of the complex matrix*/\\
+                     cumsum\_d = ptr\_d[0]+ptr\_d[1]+ptr\_d[2];\\
+                     ...\\
+                    }
+
+                    One can also use the set of C macros :\\
+                    {\tt GetRealOzPtrs(block,x)},  {\tt GetImagOzPtrs(block,x)},\\
+                    {\tt Getint8OzPtrs(block,x)},  {\tt Getint16OzPtrs(block,x)},\\
+                    {\tt Getint32OzPtrs(block,x)}, {\tt Getuint8OzPtrs(block,x)},\\
+                    {\tt Getuint16OzPtrs(block,x)}, {\tt Getuint32OzPtrs(block,x)} \\
+                    to have the appropiate pointer of the data to handle ({\bf x is numbered from 1 to noz}).\\
+                    For the previous example that gives :
+
+                    {\tt
+                     SCSINT32\_COP *ptr\_i;\\
+                     SCSREAL\_COP *ptr\_dr;\\
+                     SCSREAL\_COP *ptr\_di;\\
+                     ...\
+                     \null\\
+                     /*get the ptrs of an int32 discrete object state*/\\
+                     ptr\_i = Getint32OzPtrs(block,1);\\
+                     /*get the ptrs of a double discrete object state*/\\
+                     ptr\_dr = GetRealOzPtrs(block,2);\\
+                     ptr\_di = GetImagOzPtrs(block,2);\\
+                     ...\\
+                    }
+
+                    Finally note that the discrete objects state should be only written for {\tt flag}=4 and {\tt flag}=2.
+
+ \item {\bf block->work :}
+\end{itemize}
+
+\subsection{Zero crossing and modes}
+
+\begin{itemize}
+ \item {\bf block->ng :}
+ \item {\bf block->g :}
+
+ \item {\bf block->nmode :}
+ \item {\bf block->mode :}
+\end{itemize}
+ %\item {\bf jroot :}
+
+\subsection{Miscallaneous}
+
+\begin{itemize}
+ %\item {\bf funpt :}
+ %\item {\bf scsptr :}
+ %\item {\bf ztyp :}
+
+ \item {\bf block->type :} Integer that gives the type of the computation function. For C blocks, this number
+                    is equal to 4.
+
+ \item {\bf block->label :}
 \end{itemize}
 
 </FILE>
