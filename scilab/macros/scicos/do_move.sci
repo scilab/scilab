@@ -1,13 +1,16 @@
 function [scs_m] = do_move(%pt, scs_m)
-// Copyright INRIA
-//
-// get a scicos object to move, and move it with connected objects
-//
+//** Copyright INRIA
+//**
+//** get a scicos object to move, and move it with connected objects
+//**
 
-// Acquire the current window and put to "on" the pixmap mode
+//** 19 October 2007: I have prayed for all my sins : TXH to Alan Layec that
+//**                  has show me the way to redemption.
+
+//** Acquire the current window
   gh_curwin = gh_current_window ;
 
-// get block to move
+//** get block to move
   win = %win  ; //** recover 'clicked' window
   xc  = %pt(1);
   yc  = %pt(2); //** recover mouse position at the last event
@@ -46,6 +49,7 @@ function [scs_m] = do_move(%pt, scs_m)
       if %scicos_debug_gr
         disp ("SmartMove:Link:-->Segment... wh= "); disp(wh) ;
       end
+      
       scs_m = movelink(scs_m, k, xc, yc, wh); //** tmp disbled for debug
 
     else
@@ -72,9 +76,8 @@ function [scs_m] = do_move(%pt, scs_m)
 
 endfunction
 //**---------------------------------------------------------------------------------------------------------
-//**
-//**********************************************************************************************************
-//**
+
+
 function scs_m = moveblock(scs_m,k,xc,yc)
 // Move  block 'k' and modify connected links if any
 //
@@ -500,39 +503,39 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 //**---  
   else // move an unconnected block
 //**------------------- UnConnected Block : move Block only ... -------------------------
+    
     if %scicos_debug_gr then
-      disp("SmartMove : Move block without links");
-    end
-    [xy,sz] = (o.graphics.orig,o.graphics.sz)
+      disp("SmartMove : Move block without links"); //** debug only 
+    end 
+
+    [xy, sz] = (o.graphics.orig, o.graphics.sz)
 
     //**----------------------------------------------------
     //** Interactive Bloc move
+
+    delta_move_x = 0 ; delta_move_y = 0 ; //** init 
+
+    drawlater(); 
     rep(3) = -1 ;
+    while rep(3)==-1 , // move loop
 
-    drawlater();
-    while rep(3)==-1 , //move loop
+      rep = xgetmouse(0,[%t,%t]); //** get new position
 
-      // get new position
-
-      rep = xgetmouse(0,[%t,%t]);
-
-      if rep(3)==-100 then //active window has been closed
-	[%win,Cmenu] = resume(curwin,'Quit')
+      if rep(3)==-100 then //** active window has been closed
+	[%win,Cmenu] = resume(curwin,"Quit")
       end
 
-      delta_x = rep(1) - xc ; delta_y = rep(2) - yc ; //** calc the differential position ...
+      delta_x = rep(1) - xc ; delta_y = rep(2) - yc ; //** calc the differential position because
+      move (gh_blk , [delta_x , delta_y]);            //** "move()" works only in differential
+      draw(gh_blk.parent); //** draw the block 
+      show_pixmap();       //** show it 
 
-      move (gh_blk , [delta_x , delta_y]);  //** ..because "move()" works only in differential
-      draw(gh_blk.parent);
-      show_pixmap();
+      delta_move_x = delta_move_x + delta_x ; //** accumulate the delta to compute the
+      delta_move_y = delta_move_y + delta_y ; //** physical displacement of the block 
 
-      // clear block shape
-      //** xrect(xc,yc+sz(2),sz(1),sz(2))
-
-      xc = rep(1) ;
+      xc = rep(1) ; //** store actual position for the next iteration 
       yc = rep(2) ;
-      xy = [xc,yc];
-
+      
     end // of while()
     //**----------------------------------------------------
 
@@ -543,10 +546,16 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
     // update and draw block
     if and(rep(3)<>[2 5]) then
+        // xy = [xc,yc]; //** format of block's origin 
+        xc = xy(1) ; yc = xy(2) ;
+        xc = xc + delta_move_x  ; 
+        yc = yc + delta_move_y  ;
+        xy = [xc,yc]            ;
         o.graphics.orig = xy ;
         scs_m.objs(k) = o    ;
     end
   end //** of the main connected/UnConnected Block
+
 endfunction
 
 //**------------------------------------------------------------------------------------------
