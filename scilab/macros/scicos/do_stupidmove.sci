@@ -139,7 +139,17 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
   rep(3) = -1;
   drawlater();
   while 1 do
-    if or(rep(3)==[0,2,3,5,-5,-100]) then break,end ; //** exit point
+    if with_gtk() then
+      if or(rep(3)==[0,2,3,5,-5,10,-100]) then
+	if rep(3)==10 then
+	  global scicos_dblclk
+	  scicos_dblclk=[rep(1),rep(2),curwin]
+	end
+	break
+      end
+    else
+      if or(rep(3)==[0,2,3,5,-5,-100]) then break,end ; //** exit point
+    end 
 
     gh_blk.children.data = [X_start,Y_start ; x1, y1 ; X_end, Y_end ];
     draw(gh_curwin.children);

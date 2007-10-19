@@ -72,7 +72,11 @@ function MoveLink_()
       
     else //** if the press is in the void of the current window 
        Cmenu = "SelectRegion" ; //** "SelectRegion" will be called later 
-       %ppt = []; Select = [] ; //** NB: the %pt information is preserved for "SelectRegion" operation 
+       %ppt = []; Select = [] ; //** NB: the %pt information is
+                                //preserved for "SelectRegion"
+                                //operation 
+       if with_gtk()|MSDOS then %ppt=%pt; end	// first click under windows treated as
+						// press move (always the case under gtk)		
     end
   
   end

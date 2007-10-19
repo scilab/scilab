@@ -22,12 +22,27 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   end   
   //**----------------------------------------------------------------------------//
   
-  //** ------------> This check will disappear ? -------------------------------- // 
-  if rhs==1 then
-    [btn, xc, yc, win, str] = xclick(flag) //** not used now (was used in the past) 
+  //** ------------> This check will disappear ?
+
+  
+  if with_gtk() then
+    global scicos_dblclk
+    if  scicos_dblclk==[] then  // dble click has been detected in
+                                // moving operations by xgetmouse
+      [btn, xc ,yc ,win ,str ] = xclick()  
+    else
+      btn=10;xc=scicos_dblclk(1);yc=scicos_dblclk(2);win=scicos_dblclk(3);str=''
+      scicos_dblclk=[]
+    end
   else
-    [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop:
-  end                                      //**    CLEAR ANY PREVIOUS EVENT in the queue
+  
+    if rhs==1 then
+      [btn, xc, yc, win, str] = xclick(flag) //** not used now (was used in the past) 
+    else
+      [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop:
+    end                                      //**    CLEAR ANY PREVIOUS
+                                             //EVENT in the queue
+  end					     
   //**--------------------------------------------------------------------------- //
 
   %pt = [xc,yc] ; //** acquire the position  
