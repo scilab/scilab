@@ -39,19 +39,19 @@ int intsplin(char *fname,unsigned long fname_len)
 
   if ( mx != my  ||  nx != ny  ||  (mx != 1  &&  nx != 1) ) 
     { 
-      Scierror(999,"%s: arg1 and arg2 must be 2 vectors with same size\n", fname);
+      Scierror(999,_("%s: arg1 and arg2 must be 2 vectors with same size\n"), fname);
       return 0;
     }
   n = mx*nx;    /* number of interpolation points */
   if ( n < 2 ) 
     { 
-      Scierror(999,"%s: the number of interpolation points must be >= 2\n", fname);
+      Scierror(999,_("%s: the number of interpolation points must be >= 2\n"), fname);
       return 0;
     }
   x = stk(lx); y = stk(ly);
   if (! good_order(x, n))  /* verify strict increasing abscissae */
     {
-      Scierror(999,"%s: elts of arg 1 not (strictly) increasing or +-inf detected\n", fname);
+      Scierror(999,_("%s: elts of arg 1 not (strictly) increasing or +-inf detected\n"), fname);
       return 0;
     }
 
@@ -61,7 +61,7 @@ int intsplin(char *fname,unsigned long fname_len)
       spline_type =  get_type(SplineTable, NB_SPLINE_TYPE, str_spline_type, ns);
       if ( spline_type == UNDEFINED )
 	{
-	  Scierror(999,"%s: unknown spline_type\n",fname);
+	  Scierror(999,_("%s: unknown spline_type\n"),fname);
 	  return 0;
 	};
     }
@@ -72,27 +72,27 @@ int intsplin(char *fname,unsigned long fname_len)
     {
       if ( Rhs != 4 )
 	{
-	  Scierror(999,"%s: for a clamped spline you must give the endpoint slopes\n",fname);
+	  Scierror(999,_("%s: for a clamped spline you must give the endpoint slopes\n"),fname);
 	  return 0;
 	}
       GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &mc, &nc, &lc);
       if ( mc*nc != 2 )
 	{
-	  Scierror(999,"%s: bad dimension for the 4 arg (endpoint slopes)\n",fname);
+	  Scierror(999,_("%s: bad dimension for the 4 arg (endpoint slopes)\n"),fname);
 	  return 0;
 	}
       c = stk(lc);
     }
   else if ( Rhs == 4 )
     {
-      Scierror(999,"%s: 4 args are required only for a clamped spline\n",fname);
+      Scierror(999,_("%s: 4 args are required only for a clamped spline\n"),fname);
       return 0;
     }
     
   /*  verify y(1) = y(n) for periodic splines */
   if ( (spline_type == PERIODIC || spline_type == FAST_PERIODIC)  &&  y[0] != y[n-1] )
     {
-      Scierror(999,"%s: for a periodic spline y(1) must be equal to y(n)\n",fname);
+      Scierror(999,_("%s: for a periodic spline y(1) must be equal to y(n)\n"),fname);
       return(0);
     };
 

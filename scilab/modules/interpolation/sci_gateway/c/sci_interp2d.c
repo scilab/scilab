@@ -45,7 +45,7 @@ int intinterp2d(char *fname,unsigned long fname_len)
   if ( mxp != myp || nxp != nyp || mx != 1 || my != 1 || nc != 1 || nx < 2 || ny < 2
        || mc != 16*(nx-1)*(ny-1) )
     { 
-      Scierror(999,"%s: bad inputs\n", fname);
+      Scierror(999,_("%s: bad inputs\n"), fname);
       return 0;
     }
 

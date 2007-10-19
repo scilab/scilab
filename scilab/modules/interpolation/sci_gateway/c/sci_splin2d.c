@@ -47,7 +47,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
 
   if ( mx != 1 || my != 1 || mz != nx || nz != ny || nx < 2 || ny < 2)
     { 
-      Scierror(999,"%s: bad inputs\n", fname);
+      Scierror(999,_("%s: bad inputs\n"), fname);
       return 0;
     }
 
@@ -55,7 +55,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
   x = stk(lx);  y = stk(ly);
   if ( !good_order(x, nx) || !good_order(y, ny))
     {
-      Scierror(999,"%s: x and/or y are not in strict increasing order (or +-inf detected)\n", fname);
+      Scierror(999,_("%s: x and/or y are not in strict increasing order (or +-inf detected)\n"), fname);
       return 0;
     }
 

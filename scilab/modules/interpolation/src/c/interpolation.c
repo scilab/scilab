@@ -94,7 +94,7 @@ int get_rhs_real_hmat(int num, RealHyperMat *H)
   return 1;
 
  err:
-  Scierror(999,"Argument %d is not a real hypermatrix\n", num);
+  Scierror(999,_("Argument %d is not a real hypermatrix\n"), num);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -110,7 +110,7 @@ int get_rhs_scalar_string(int num, int *length, int **tabchar)
   if ( ! ( *istk(il) == 10  &&  (*istk(il+1))*(*istk(il+2)) == 1 ) ) 
     {
       /* we look for a scalar string */
-      Scierror(999,"Argument %d is not a scalar string\n", num);
+      Scierror(999,_("Argument %d is not a scalar string\n"), num);
       return 0;
     }
   *length = *istk(il+5)-1;

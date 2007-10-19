@@ -32,7 +32,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
   n = (Rhs+1)/2 - 1;
   if ( n < 1 )
     { 
-      Scierror(999,"%s: too few arg\n", fname);
+      Scierror(999,_("%s: too few arg\n"), fname);
       return 0;
     }
 
@@ -50,7 +50,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       GetRhsVar(i,MATRIX_OF_DOUBLE_DATATYPE, &mxpn, &nxpn, &lxpn);
       if ( mxp != mxpn || nxp != nxpn )
 	{ 
-	  Scierror(999,"%s: bad inputs for xp1, xp2, ....,\n", fname);
+	  Scierror(999,_("%s: bad inputs for xp1, xp2, ....,\n"), fname);
 	  return 0;
 	}
       xp[i-1] = stk(lxpn);
@@ -69,7 +69,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       GetRhsVar(n+i,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
       if ( (mx != 1 && nx != 1) && mx*nx < 2)
 	{ 
-	  Scierror(999,"%s: bad arg number %d\n", fname, n+i);
+	  Scierror(999,_("%s: bad arg number %d\n"), fname, n+i);
 	  return 0;
 	}
       x[i-1] = stk(lx);
@@ -77,7 +77,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       /* verify strict increasing order  */
       if ( !good_order(x[i-1], mx*nx) )
 	{
-	  Scierror(999,"%s: grid abscissae of dim %d not in strict increasing order\n", fname, n+i);
+	  Scierror(999,_("%s: grid abscissae of dim %d not in strict increasing order\n"), fname, n+i);
 	  return 0;
 	}
     }
@@ -88,7 +88,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       GetRhsRealHMat(2*n+1,&U);
       if ( U.dimsize != n )
 	{ 
-	  Scierror(999,"%s: U must be a real %d-dim hypermatrix \n", fname, n);
+	  Scierror(999,_("%s: U must be a real %d-dim hypermatrix \n"), fname, n);
 	  return 0;
 	}
       for ( i = 0 ; i < n ; i++ )

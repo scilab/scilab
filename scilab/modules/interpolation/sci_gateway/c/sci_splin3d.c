@@ -41,14 +41,14 @@ int intsplin3d(char * fname,unsigned long fname_len)
 
   if ( nx < 3  ||  ny < 3  ||  nz < 3 ) 
     { 
-      Scierror(999,"%s: the x, y and z grids must have at least 3 points\n", fname);
+      Scierror(999,_("%s: the x, y and z grids must have at least 3 points\n"), fname);
       return 0;
     }
 
   GetRhsRealHMat(4, &V);
   if ( V.dimsize != 3 )
     { 
-      Scierror(999,"%s: 4 th argument must be a real 3-dim hypermatrix \n", fname);
+      Scierror(999,_("%s: 4 th argument must be a real 3-dim hypermatrix \n"), fname);
       return 0;
     }
   if ( V.dims[0] != nx  ||  V.dims[1] != ny  ||  V.dims[2] != nz  )
@@ -62,7 +62,7 @@ int intsplin3d(char * fname,unsigned long fname_len)
       GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE, &mo, &no, &lo);
       if ( (mo != 1 && no != 1)  ||  mo*no != 3 )
 	{ 
-	  Scierror(999,"%s: the 4 th arg must be a vector with 3 components\n", fname);
+	  Scierror(999,_("%s: the 4 th arg must be a vector with 3 components\n"), fname);
 	  return 0;
 	}
       kx = (int)*stk(lo); ky = (int)*stk(lo+1); kz = (int)*stk(lo+2);
@@ -108,7 +108,7 @@ int intsplin3d(char * fname,unsigned long fname_len)
 
   if ( flag != 1 )
     {
-      Scierror(999,"%s: problem : flag = %d\n", fname, flag);
+      Scierror(999,_("%s: problem : flag = %d\n"), fname, flag);
       return 0;
     }
 
