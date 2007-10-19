@@ -60,7 +60,7 @@ int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 				bOK=addToLibrarypath(LIBRARYPATHS[i]);
 				if (!bOK)
 				{
-					Scierror(999,"could not add path to java.library.path : %s.\n",LIBRARYPATHS[i]);
+					Scierror(999,_("could not add path to java.library.path : %s.\n"),LIBRARYPATHS[i]);
 					return 0;
 				}
 			}
@@ -69,7 +69,7 @@ int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"invalid parameter(s).\n");
+			Scierror(999,_("invalid parameter(s).\n"));
 		}
 	}
 	return 0;

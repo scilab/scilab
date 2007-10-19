@@ -73,25 +73,25 @@ BOOL LoadFuntionsJVM(char *filedynlib)
 char *getJniErrorFromStatusCode(long status){
 	switch (status){
 		case JNI_ERR:
-			return "Unknown JNI error";
+			return _("Unknown JNI error");
 			break;
 		case JNI_EDETACHED:
-			return "Thread detached from the VM";
+			return _("Thread detached from the VM");
 			break;
 		case JNI_EVERSION:
-			return "JNI version error";
+			return _("JNI version error");
 			break;
 		case JNI_ENOMEM:
-			return "JNI: not enough memory";
+			return _("JNI: not enough memory");
 			break;
 		case JNI_EEXIST:
-			return "VM already created";
+			return _("VM already created");
 			break;
 		case JNI_EINVAL:
-			return "JNI: invalid arguments";
+			return _("JNI: invalid arguments");
 			break;
 		default:
-			return "Undefined error code in the JNI. Weird problem";
+			return _("Undefined error code in the JNI. Weird problem");
 			break;
 	}
 }

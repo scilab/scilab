@@ -29,7 +29,7 @@ int C2F(gw_jvm)(void)
 	}
 	else
 	{
-		Scierror(999,"JVM interface disabled in -nogui or -nwni modes.\n");
+		Scierror(999,_("JVM interface disabled in -nogui or -nwni modes.\n"));
 	}
 
 	return 0;

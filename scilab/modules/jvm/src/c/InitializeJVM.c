@@ -29,9 +29,9 @@ BOOL InitializeJVM(void)
 	if (!bOK)
 	{
 #ifdef _MSC_VER
-		MessageBox(NULL,"Scilab cannot open JVM library.","Error",MB_ICONEXCLAMATION|MB_OK);
+		MessageBox(NULL,_("Scilab cannot open JVM library."),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-		printf("\nError : Scilab cannot open JVM library.\n");
+		printf(_("\nError : Scilab cannot open JVM library.\n"));
 #endif
 	}
 	else
@@ -44,9 +44,9 @@ BOOL InitializeJVM(void)
 		if (!bOK)
 		{
 #ifdef _MSC_VER
-			MessageBox(NULL,"Scilab cannot create Scilab Java Main-Class. (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).","Error",MB_ICONEXCLAMATION|MB_OK);
+			MessageBox(NULL,_("Scilab cannot create Scilab Java Main-Class. (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available)."),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-			printf("\nError : Scilab cannot create Scilab Java Main-Class. (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n");
+			printf(_("\nError : Scilab cannot create Scilab Java Main-Class. (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
 #endif
 		}
 	}
