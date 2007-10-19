@@ -1,7 +1,7 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[-110.59088,801.08062,11.838943,628.4746,1163,787,170,74,807,670,1364,125,..
+            wpar=[-110.59088,801.08062,11.838943,628.4746,1163,787,170,74,807,670,432,22,..
             1.3107581],..
             Title=["Difference_amplifier",..
             "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/Electrical/"],..
@@ -17,41 +17,42 @@ scs_m=scicos_diagram(..
 scs_m.objs(1)=scicos_block(..
               gui="NPN",..
               graphics=scicos_graphics(..
-                       orig=[248.63733,268.91733],..
-                       sz=[40,60],..
+                       orig=[247.06954,287.72197],..
+                       sz=[40,24],..
                        flip=%t,..
                        theta=0,..
                        exprs=["50";
                        "0.1";
-                       "1.000D-16";
+                       "1.e-16";
                        "0.02";
-                       "1.200D-10";
-                       "5.000D-09";
-                       "1.000D-12";
-                       "4.000D-13";
-                       "5.000D-13";
+                       "0.12e-9";
+                       "5e-9";
+                       "1e-12";
+                       "0.4e-12";
+                       "0.5e-12";
                        "0.8";
                        "0.4";
                        "0.8";
                        "0.333";
-                       "1.000D-15";
-                       "1.000D-15";
+                       "1e-15";
+                       "1e-15";
                        "0.02585";
                        "40"],..
                        pin=5,..
-                       pout=[13;48],..
+                       pout=[13;62],..
                        pein=[],..
                        peout=[],..
                        gr_i=list(..
-                       ["if orient then";
-                       "  xx=orig(1)+[0,8,8,10,10,21,20,24,32,24,22,21,10,20,32,20,10,10,8,8]*(sz(1)/32);";
-                       "  yy=orig(2)+5+[30,30,15,15,30,17,15,15,15,15,20,17,30,43,43,43,30,43,43,30]*(sz(2)/70);";
+                       ["";
+                       "if orient then";
+                       "  xpolys(orig(1)+[0.45,0.45,0.65,0.45,0.65,1;0.45,0,0.45,0.65,1,0.65]*sz(1),orig(2)+[0.8333333,0.5,0.9166667,0.4166667,0.0833333,0.9166667;0.1666667,0.5,0.5833333,0.0833333,0.0833333,0.9166667]*sz(2),[1,1,1,1,1,1])";
+                       "  xset(''color'',0)";
+                       "  xfpolys(orig(1)+[0.65;0.62;0.58;0.65]*sz(1),orig(2)+[0.0833333;0.2;0.1333333;0.0833333]*sz(2),2)";
                        "else";
-                       "  xx=orig(1)+[32,24,24,22,22,11,12,8,0,8,10,11,22,12,0,12,22,22,24,24]*(sz(1)/32);";
-                       "  yy=orig(2)+5+[30,30,15,15,30,17,15,15,15,15,20,17,30,43,43,43,30,43,43,30]*(sz(2)/70);";
-                       "end";
-                       "xpoly(xx,yy);";
-                       "xfpoly(xx,yy)"],8),..
+                       "  xpolys(orig(1)+[0.55,0.55,0.35,0.55,0.35,0;0.55,1,0.55,0.35,0,0.35]*sz(1),orig(2)+[0.8333333,0.5,0.9166667,0.4166667,0.0833333,0.9166667;0.1666667,0.5,0.5833333,0.0833333,0.0833333,0.9166667]*sz(2),[1,1,1,1,1,1])";
+                       "  xset(''color'',0)";
+                       "  xfpolys(orig(1)+[0.35;0.38;0.42;0.35]*sz(1),orig(2)+[0.0833333;0.2;0.1333333;0.0833333]*sz(2),2)";
+                       "end"],[]),..
                        id="",..
                        in_implicit="I",..
                        out_implicit=["I";"I"]),..
@@ -68,12 +69,13 @@ scs_m.objs(1)=scicos_block(..
                        state=[],..
                        dstate=[],..
                        odstate=list(),..
-                       rpar=[],..
+                       rpar=[50;0.1;0;0.02;1.200D-10;5.000D-09;1.000D-12;4.000D-13;5.000D-13;0.8;0.4;0.8;
+                       0.333;1.000D-15;1.000D-15;0.02585;40],..
                        ipar=[],..
                        opar=list(),..
                        blocktype="c",..
                        firing=[],..
-                       dep_ut=[%t,%f],..
+                       dep_ut=[%f,%t],..
                        label="",..
                        nzcross=0,..
                        nmode=0,..
@@ -97,46 +99,48 @@ scs_m.objs(1)=scicos_block(..
                        "Vt";
                        "EMinMax"],..
                        list(50,0.1,1.000D-16,0.02,1.200D-10,5.000D-09,1.000D-12,4.000D-13,5.000D-13,0.8,..
-                       0.4,0.8,0.333,1.000D-15,1.000D-15,0.02585,40)))),..
+                       0.4,0.8,0.333,1.000D-15,1.000D-15,0.02585,40),..
+                       [0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0]))),..
               doc=list())
 scs_m.objs(2)=scicos_block(..
               gui="NPN",..
               graphics=scicos_graphics(..
-                       orig=[357.904,268.91733],..
-                       sz=[40,60],..
+                       orig=[358.6879,287.72198],..
+                       sz=[40,24],..
                        flip=%f,..
                        theta=0,..
                        exprs=["50";
                        "0.1";
-                       "1.000D-16";
+                       "1.e-16";
                        "0.02";
-                       "1.200D-10";
-                       "5.000D-09";
-                       "1.000D-12";
-                       "4.000D-13";
-                       "5.000D-13";
+                       "0.12e-9";
+                       "5e-9";
+                       "1e-12";
+                       "0.4e-12";
+                       "0.5e-12";
                        "0.8";
                        "0.4";
                        "0.8";
                        "0.333";
-                       "1.000D-15";
-                       "1.000D-15";
+                       "1e-15";
+                       "1e-15";
                        "0.02585";
                        "40"],..
                        pin=6,..
-                       pout=[41;50],..
+                       pout=[58;64],..
                        pein=[],..
                        peout=[],..
                        gr_i=list(..
-                       ["if orient then";
-                       "  xx=orig(1)+[0,8,8,10,10,21,20,24,32,24,22,21,10,20,32,20,10,10,8,8]*(sz(1)/32);";
-                       "  yy=orig(2)+5+[30,30,15,15,30,17,15,15,15,15,20,17,30,43,43,43,30,43,43,30]*(sz(2)/70);";
+                       ["";
+                       "if orient then";
+                       "  xpolys(orig(1)+[0.45,0.45,0.65,0.45,0.65,1;0.45,0,0.45,0.65,1,0.65]*sz(1),orig(2)+[0.8333333,0.5,0.9166667,0.4166667,0.0833333,0.9166667;0.1666667,0.5,0.5833333,0.0833333,0.0833333,0.9166667]*sz(2),[1,1,1,1,1,1])";
+                       "  xset(''color'',0)";
+                       "  xfpolys(orig(1)+[0.65;0.62;0.58;0.65]*sz(1),orig(2)+[0.0833333;0.2;0.1333333;0.0833333]*sz(2),2)";
                        "else";
-                       "  xx=orig(1)+[32,24,24,22,22,11,12,8,0,8,10,11,22,12,0,12,22,22,24,24]*(sz(1)/32);";
-                       "  yy=orig(2)+5+[30,30,15,15,30,17,15,15,15,15,20,17,30,43,43,43,30,43,43,30]*(sz(2)/70);";
-                       "end";
-                       "xpoly(xx,yy);";
-                       "xfpoly(xx,yy)"],8),..
+                       "  xpolys(orig(1)+[0.55,0.55,0.35,0.55,0.35,0;0.55,1,0.55,0.35,0,0.35]*sz(1),orig(2)+[0.8333333,0.5,0.9166667,0.4166667,0.0833333,0.9166667;0.1666667,0.5,0.5833333,0.0833333,0.0833333,0.9166667]*sz(2),[1,1,1,1,1,1])";
+                       "  xset(''color'',0)";
+                       "  xfpolys(orig(1)+[0.35;0.38;0.42;0.35]*sz(1),orig(2)+[0.0833333;0.2;0.1333333;0.0833333]*sz(2),2)";
+                       "end"],[]),..
                        id="",..
                        in_implicit="I",..
                        out_implicit=["I";"I"]),..
@@ -153,12 +157,13 @@ scs_m.objs(2)=scicos_block(..
                        state=[],..
                        dstate=[],..
                        odstate=list(),..
-                       rpar=[],..
+                       rpar=[50;0.1;0;0.02;1.200D-10;5.000D-09;1.000D-12;4.000D-13;5.000D-13;0.8;0.4;0.8;
+                       0.333;1.000D-15;1.000D-15;0.02585;40],..
                        ipar=[],..
                        opar=list(),..
                        blocktype="c",..
                        firing=[],..
-                       dep_ut=[%t,%f],..
+                       dep_ut=[%f,%t],..
                        label="",..
                        nzcross=0,..
                        nmode=0,..
@@ -182,7 +187,8 @@ scs_m.objs(2)=scicos_block(..
                        "Vt";
                        "EMinMax"],..
                        list(50,0.1,1.000D-16,0.02,1.200D-10,5.000D-09,1.000D-12,4.000D-13,5.000D-13,0.8,..
-                       0.4,0.8,0.333,1.000D-15,1.000D-15,0.02585,40)))),..
+                       0.4,0.8,0.333,1.000D-15,1.000D-15,0.02585,40),..
+                       [0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0]))),..
               doc=list())
 scs_m.objs(3)=scicos_block(..
               gui="Resistor",..
@@ -277,16 +283,16 @@ scs_m.objs(4)=scicos_block(..
                        list("R",list(2000)))),..
               doc=list())
 scs_m.objs(5)=scicos_link(..
-                xx=[231.9421;240.0659],..
-                yy=[299.31733;298.91733],..
+                xx=[231.9421;247.06954],..
+                yy=[299.31733;299.72197],..
                 id="drawlink",..
                 thick=[0,0],..
                 ct=[1,2],..
                 from=[3,1,0],..
                 to=[1,1,1])
 scs_m.objs(6)=scicos_link(..
-                xx=[403.61829;414.59924],..
-                yy=[298.91733;299.31733],..
+                xx=[398.6879;414.59924],..
+                yy=[299.72198;299.31733],..
                 id="drawlink",..
                 thick=[0,0],..
                 ct=[1,2],..
@@ -295,13 +301,13 @@ scs_m.objs(6)=scicos_link(..
 scs_m.objs(7)=scicos_block(..
               gui="Resistor",..
               graphics=scicos_graphics(..
-                       orig=[299.97335,225.63172],..
+                       orig=[302.32504,225.63172],..
                        sz=[40,3.6],..
                        flip=%t,..
                        theta=90,..
                        exprs="7e3",..
                        pin=20,..
-                       pout=51,..
+                       pout=65,..
                        pein=[],..
                        peout=[],..
                        gr_i=list(..
@@ -494,7 +500,7 @@ scs_m.objs(12)=scicos_block(..
                         flip=%t,..
                         theta=90,..
                         exprs="1e4",..
-                        pin=53,..
+                        pin=60,..
                         pout=16,..
                         pein=[],..
                         peout=[],..
@@ -533,8 +539,8 @@ scs_m.objs(12)=scicos_block(..
                         list("R",list(10000)))),..
                doc=list())
 scs_m.objs(13)=scicos_link(..
-                 xx=[297.20876;297.2839],..
-                 yy=[308.91733;324.02206],..
+                 xx=[287.06954;297.2839;297.2839],..
+                 yy=[309.32197;309.32197;324.02206],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,2],..
@@ -608,7 +614,7 @@ scs_m.objs(17)=scicos_link(..
 scs_m.objs(18)=scicos_block(..
                gui="ConstantVoltage",..
                graphics=scicos_graphics(..
-                        orig=[305.3259,162.43431],..
+                        orig=[307.67759,162.43431],..
                         sz=[30,22],..
                         flip=%t,..
                         theta=90,..
@@ -656,7 +662,7 @@ scs_m.objs(18)=scicos_block(..
 scs_m.objs(19)=scicos_block(..
                gui="Ground",..
                graphics=scicos_graphics(..
-                        orig=[310.81933,112.95651],..
+                        orig=[313.17102,112.95651],..
                         sz=[20,20],..
                         flip=%t,..
                         theta=0,..
@@ -700,7 +706,7 @@ scs_m.objs(19)=scicos_block(..
                         list([],list()))),..
                doc=list())
 scs_m.objs(20)=scicos_link(..
-                 xx=[319.97335;320.3259],..
+                 xx=[322.32504;322.67759],..
                  yy=[198.86029;197.00573],..
                  id="drawlink",..
                  thick=[0,0],..
@@ -708,7 +714,7 @@ scs_m.objs(20)=scicos_link(..
                  from=[7,1,1],..
                  to=[18,1,0])
 scs_m.objs(21)=scicos_link(..
-                 xx=[320.3259;320.81933],..
+                 xx=[322.67759;323.17102],..
                  yy=[149.86288;138.6708],..
                  id="drawlink",..
                  thick=[0,0],..
@@ -944,8 +950,8 @@ scs_m.objs(31)=scicos_block(..
                         flip=%f,..
                         theta=90,..
                         exprs=[],..
-                        pin=57,..
-                        pout=[33;60],..
+                        pin=49,..
+                        pout=[33;52],..
                         pein=[],..
                         peout=[],..
                         gr_i=list(..
@@ -1055,7 +1061,7 @@ scs_m.objs(34)=scicos_block(..
                         theta=270,..
                         exprs=[],..
                         pin=39,..
-                        pout=[36;59],..
+                        pout=[36;51],..
                         pein=[],..
                         peout=[],..
                         gr_i=list(..
@@ -1221,8 +1227,8 @@ scs_m.objs(40)=scicos_block(..
                         flip=%t,..
                         theta=0,..
                         exprs=["1e-9";"0"],..
-                        pin=54,..
-                        pout=58,..
+                        pin=61,..
+                        pout=50,..
                         pein=[],..
                         peout=[],..
                         gr_i=list(..
@@ -1270,15 +1276,7 @@ scs_m.objs(40)=scicos_block(..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"Capacitor","p","n",..
                         list(["C","v"],list(1.000D-09,0),[0,1]))),..
                doc=list())
-scs_m.objs(41)=scicos_link(..
-                 xx=[349.33257;349.54744],..
-                 yy=[308.91733;315.01285],..
-                 id="drawlink",..
-                 thick=[0,0],..
-                 ct=[1,2],..
-                 from=[2,1,0],..
-                 to=[52,1,1])
-scs_m.objs(42)=scicos_block(..
+scs_m.objs(41)=scicos_block(..
                gui="Resistor",..
                graphics=scicos_graphics(..
                         orig=[485.99257,223.56011],..
@@ -1286,8 +1284,8 @@ scs_m.objs(42)=scicos_block(..
                         flip=%t,..
                         theta=90,..
                         exprs="1e5",..
-                        pin=44,..
-                        pout=55,..
+                        pin=43,..
+                        pout=47,..
                         pein=[],..
                         peout=[],..
                         gr_i=list(..
@@ -1324,7 +1322,7 @@ scs_m.objs(42)=scicos_block(..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"Resistor","p","n",..
                         list("R",list(100000)))),..
                doc=list())
-scs_m.objs(43)=scicos_block(..
+scs_m.objs(42)=scicos_block(..
                gui="Ground",..
                graphics=scicos_graphics(..
                         orig=[496.49554,161.30993],..
@@ -1332,7 +1330,7 @@ scs_m.objs(43)=scicos_block(..
                         flip=%t,..
                         theta=0,..
                         exprs="",..
-                        pin=44,..
+                        pin=43,..
                         pout=[],..
                         pein=[],..
                         peout=[],..
@@ -1370,14 +1368,14 @@ scs_m.objs(43)=scicos_block(..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"Ground","p",[],..
                         list([],list()))),..
                doc=list())
-scs_m.objs(44)=scicos_link(..
+scs_m.objs(43)=scicos_link(..
                  xx=[505.99257;506.49554],..
                  yy=[196.78868;187.02422],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,2],..
-                 from=[42,1,1],..
-                 to=[43,1,1])
+                 from=[41,1,1],..
+                 to=[42,1,1])
 scs_m_1=scicos_diagram(..
         version="scicos4.2",..
         props=scicos_params(..
@@ -1539,7 +1537,7 @@ scs_m_1.objs(6)=scicos_link(..
                   ct=[5,-1],..
                   from=[4,2],..
                   to=[2,1])
-scs_m.objs(45)=scicos_block(..
+scs_m.objs(44)=scicos_block(..
                gui="CLOCK_c",..
                graphics=scicos_graphics(..
                         orig=[590.09402,473.36928],..
@@ -1550,7 +1548,7 @@ scs_m.objs(45)=scicos_block(..
                         pin=[],..
                         pout=[],..
                         pein=[],..
-                        peout=47,..
+                        peout=46,..
                         gr_i=list(..
                         ["wd=xget(''wdim'').*[1.016,1.12];";
                         "thick=xget(''thickness'');xset(''thickness'',2);";
@@ -1596,7 +1594,7 @@ scs_m.objs(45)=scicos_block(..
                         nmode=0,..
                         equations=list()),..
                doc=list())
-scs_m.objs(46)=scicos_block(..
+scs_m.objs(45)=scicos_block(..
                gui="CMSCOPE",..
                graphics=scicos_graphics(..
                         orig=[590.90194,409.50221],..
@@ -1614,9 +1612,9 @@ scs_m.objs(46)=scicos_block(..
                         "20";
                         "0";
                         ""],..
-                        pin=[59;60],..
+                        pin=[51;52],..
                         pout=[],..
-                        pein=47,..
+                        pein=46,..
                         peout=[],..
                         gr_i=list("xstringb(orig(1),orig(2),''MScope'',sz(1),sz(2),''fill'')",8),..
                         id="",..
@@ -1646,145 +1644,23 @@ scs_m.objs(46)=scicos_block(..
                         nmode=0,..
                         equations=list()),..
                doc=list())
-scs_m.objs(47)=scicos_link(..
+scs_m.objs(46)=scicos_link(..
                  xx=[610.09402;610.09402;610.90194],..
                  yy=[467.65499;455.2165;455.2165],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[5,-1],..
-                 from=[45,1,0],..
-                 to=[46,1,1])
-scs_m.objs(48)=scicos_link(..
-                 xx=[297.20876;314.82078;317.54888;317.76484;319.03733;319.23686],..
-                 yy=[288.91733;288.91733;288.91733;288.91733;288.91733;288.91733],..
-                 id="drawlink",..
-                 thick=[0,0],..
-                 ct=[1,2],..
-                 from=[1,2,0],..
-                 to=[49,1,1])
-scs_m.objs(49)=scicos_block(..
-               gui="IMPSPLIT_f",..
-               graphics=scicos_graphics(..
-                        orig=[319.23686,288.91733],..
-                        sz=[0.3333333,0.3333333],..
-                        flip=%t,..
-                        theta=0,..
-                        exprs=[],..
-                        pin=48,..
-                        pout=[50;51],..
-                        pein=[],..
-                        peout=[],..
-                        gr_i=list([],8),..
-                        id="",..
-                        in_implicit="I",..
-                        out_implicit=["I","I"]),..
-               model=scicos_model(..
-                        sim="limpsplit",..
-                        in=1,..
-                        in2=[],..
-                        intyp=1,..
-                        out=[1;1],..
-                        out2=[],..
-                        outtyp=1,..
-                        evtin=[],..
-                        evtout=[],..
-                        state=[],..
-                        dstate=[],..
-                        odstate=list(),..
-                        rpar=[],..
-                        ipar=[],..
-                        opar=list(),..
-                        blocktype="c",..
-                        firing=[],..
-                        dep_ut=[%f,%f],..
-                        label="",..
-                        nzcross=0,..
-                        nmode=0,..
-                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"limpsplit","n",..
-                        ["n";"n"],list([],list()))),..
-               doc=list())
-scs_m.objs(50)=scicos_link(..
-                 xx=[319.23686;320.70889;331.74911;349.33257],..
-                 yy=[288.91733;288.91733;288.91733;288.91733],..
-                 id="drawlink",..
-                 thick=[0,0],..
-                 ct=[1,2],..
-                 from=[49,1,0],..
-                 to=[2,2,0])
-scs_m.objs(51)=scicos_link(..
-                 xx=[319.23686;319.97335],..
-                 yy=[288.91733;256.00315],..
-                 id="drawlink",..
-                 thick=[0,0],..
-                 ct=[1,2],..
-                 from=[49,2,0],..
-                 to=[7,1,0])
-scs_m.objs(52)=scicos_block(..
-               gui="IMPSPLIT_f",..
-               graphics=scicos_graphics(..
-                        orig=[349.54744,315.01285],..
-                        sz=[0.3333333,0.3333333],..
-                        flip=%t,..
-                        theta=0,..
-                        exprs=[],..
-                        pin=41,..
-                        pout=[53;54],..
-                        pein=[],..
-                        peout=[],..
-                        gr_i=list([],8),..
-                        id="",..
-                        in_implicit="I",..
-                        out_implicit=["I","I"]),..
-               model=scicos_model(..
-                        sim="limpsplit",..
-                        in=1,..
-                        in2=[],..
-                        intyp=1,..
-                        out=[1;1],..
-                        out2=[],..
-                        outtyp=1,..
-                        evtin=[],..
-                        evtout=[],..
-                        state=[],..
-                        dstate=[],..
-                        odstate=list(),..
-                        rpar=[],..
-                        ipar=[],..
-                        opar=list(),..
-                        blocktype="c",..
-                        firing=[],..
-                        dep_ut=[%f,%f],..
-                        label="",..
-                        nzcross=0,..
-                        nmode=0,..
-                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"limpsplit","n",..
-                        ["n";"n"],list([],list()))),..
-               doc=list())
-scs_m.objs(53)=scicos_link(..
-                 xx=[349.54744;349.68516;349.71563;349.86502],..
-                 yy=[315.01285;318.91986;319.78419;324.02206],..
-                 id="drawlink",..
-                 thick=[0,0],..
-                 ct=[1,2],..
-                 from=[52,1,0],..
-                 to=[12,1,1])
-scs_m.objs(54)=scicos_link(..
-                 xx=[349.54744;474.32061],..
-                 yy=[315.01285;315.24194],..
-                 id="drawlink",..
-                 thick=[0,0],..
-                 ct=[1,2],..
-                 from=[52,2,0],..
-                 to=[40,1,1])
-scs_m.objs(55)=scicos_link(..
+                 from=[44,1,0],..
+                 to=[45,1,1])
+scs_m.objs(47)=scicos_link(..
                  xx=[505.99257;505.99257;529.99103;538.81906],..
                  yy=[253.93154;263.90858;264.0085;264.04526],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,2],..
-                 from=[42,1,0],..
-                 to=[56,1,1])
-scs_m.objs(56)=scicos_block(..
+                 from=[41,1,0],..
+                 to=[48,1,1])
+scs_m.objs(48)=scicos_block(..
                gui="IMPSPLIT_f",..
                graphics=scicos_graphics(..
                         orig=[538.81906;264.04526],..
@@ -1792,8 +1668,8 @@ scs_m.objs(56)=scicos_block(..
                         flip=%t,..
                         theta=0,..
                         exprs=[],..
-                        pin=55,..
-                        pout=[57;58],..
+                        pin=47,..
+                        pout=[49;50],..
                         pein=[],..
                         peout=[],..
                         gr_i=list([],8),..
@@ -1825,39 +1701,39 @@ scs_m.objs(56)=scicos_block(..
                         equations=tlist(["modelica","model","inputs","outputs","parameters"],"limpsplit","n",..
                         ["n";"n"],list([],list()))),..
                doc=list())
-scs_m.objs(57)=scicos_link(..
+scs_m.objs(49)=scicos_link(..
                  xx=[538.81906;538.69243],..
                  yy=[264.04526;261.74443],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,2],..
-                 from=[56,1,0],..
+                 from=[48,1,0],..
                  to=[31,1,1])
-scs_m.objs(58)=scicos_link(..
+scs_m.objs(50)=scicos_link(..
                  xx=[538.81906;538.81906;531.46346],..
                  yy=[264.04526;315.24194;315.24194],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,2],..
-                 from=[56,2,0],..
+                 from=[48,2,0],..
                  to=[40,1,0])
-scs_m.objs(59)=scicos_link(..
+scs_m.objs(51)=scicos_link(..
                  xx=[38.907462;38.907462;483.6391;483.6391;582.33051],..
                  yy=[271.0472;498.23056;498.23056;436.16888;436.16888],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,1],..
                  from=[34,2,0],..
-                 to=[46,1,1])
-scs_m.objs(60)=scicos_link(..
+                 to=[45,1,1])
+scs_m.objs(52)=scicos_link(..
                  xx=[568.69243;568.69243;582.33051],..
                  yy=[236.03014;422.83554;422.83554],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,1],..
                  from=[31,2,0],..
-                 to=[46,2,1])
-scs_m.objs(61)=mlist(["Text","graphics","model","void","gui"],..
+                 to=[45,2,1])
+scs_m.objs(53)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
@@ -1871,7 +1747,7 @@ scs_m.objs(61)=mlist(["Text","graphics","model","void","gui"],..
                "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
                "Common emiter difference amplifier",[2;3],list(),"c",[],[%f,%f],..
                "",0,0,list())," ","TEXT_f")
-scs_m.objs(62)=mlist(["Text","graphics","model","void","gui"],..
+scs_m.objs(54)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
@@ -1884,7 +1760,7 @@ scs_m.objs(62)=mlist(["Text","graphics","model","void","gui"],..
                "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
                "Common signal rejection",[2;3],list(),"c",[],[%f,%f],"",0,0,..
                list())," ","TEXT_f")
-scs_m.objs(63)=mlist(["Text","graphics","model","void","gui"],..
+scs_m.objs(55)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
@@ -1896,19 +1772,19 @@ scs_m.objs(63)=mlist(["Text","graphics","model","void","gui"],..
                "blocktype","firing","dep_ut","label","nzcross","nmode",..
                "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),"Vin_1",..
                [2;3],list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
-scs_m.objs(64)=mlist(["Text","graphics","model","void","gui"],..
+scs_m.objs(56)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
-               [435.60721,270.2698],[26.975915,10.631649],%t,0,["Vin_2";"2";"3"],..
-               [],[],[],[],[],"",[],[]),..
+               [435.60721,271.05333],[26.975915,10.631649],%t,0,..
+               ["Vin_2";"2";"3"],[],[],[],[],[],"",[],[]),..
                mlist(..
                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
                "evtout","state","dstate","odstate","rpar","ipar","opar",..
                "blocktype","firing","dep_ut","label","nzcross","nmode",..
                "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),"Vin_2",..
                [2;3],list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
-scs_m.objs(65)=mlist(["Text","graphics","model","void","gui"],..
+scs_m.objs(57)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
@@ -1920,3 +1796,133 @@ scs_m.objs(65)=mlist(["Text","graphics","model","void","gui"],..
                "blocktype","firing","dep_ut","label","nzcross","nmode",..
                "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),"V_out",..
                [2;3],list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
+scs_m.objs(58)=scicos_link(..
+                 xx=[358.6879;349.86502;349.86502],..
+                 yy=[309.32198;308.53845;317.41443],..
+                 id="drawlink",..
+                 thick=[0,0],..
+                 ct=[1,2],..
+                 from=[2,1,0],..
+                 to=[59,1,1])
+scs_m.objs(59)=scicos_block(..
+               gui="IMPSPLIT_f",..
+               graphics=scicos_graphics(..
+                        orig=[349.86502;317.41443],..
+                        sz=[0.3333333,0.3333333],..
+                        flip=%t,..
+                        theta=0,..
+                        exprs=[],..
+                        pin=58,..
+                        pout=[60;61],..
+                        pein=[],..
+                        peout=[],..
+                        gr_i=list([],8),..
+                        id="",..
+                        in_implicit="I",..
+                        out_implicit=["I","I"]),..
+               model=scicos_model(..
+                        sim="limpsplit",..
+                        in=1,..
+                        in2=[],..
+                        intyp=1,..
+                        out=[1;1],..
+                        out2=[],..
+                        outtyp=1,..
+                        evtin=[],..
+                        evtout=[],..
+                        state=[],..
+                        dstate=[],..
+                        odstate=list(),..
+                        rpar=[],..
+                        ipar=[],..
+                        opar=list(),..
+                        blocktype="c",..
+                        firing=[],..
+                        dep_ut=[%f,%f],..
+                        label="",..
+                        nzcross=0,..
+                        nmode=0,..
+                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"limpsplit","n",..
+                        ["n";"n"],list([],list()))),..
+               doc=list())
+scs_m.objs(60)=scicos_link(..
+                 xx=[349.86502;349.86502],..
+                 yy=[317.41443;324.02206],..
+                 id="drawlink",..
+                 thick=[0,0],..
+                 ct=[1,2],..
+                 from=[59,1,0],..
+                 to=[12,1,1])
+scs_m.objs(61)=scicos_link(..
+                 xx=[349.86502;474.32061;474.32061],..
+                 yy=[317.41443;317.41443;315.24194],..
+                 id="drawlink",..
+                 thick=[0,0],..
+                 ct=[1,2],..
+                 from=[59,2,0],..
+                 to=[40,1,1])
+scs_m.objs(62)=scicos_link(..
+                 xx=[287.06954;322.11993],..
+                 yy=[290.12197;290.12198],..
+                 id="drawlink",..
+                 thick=[0,0],..
+                 ct=[1,2],..
+                 from=[1,2,0],..
+                 to=[63,1,1])
+scs_m.objs(63)=scicos_block(..
+               gui="IMPSPLIT_f",..
+               graphics=scicos_graphics(..
+                        orig=[322.11993,290.12198],..
+                        sz=[0.3333333,0.3333333],..
+                        flip=%t,..
+                        theta=0,..
+                        exprs=[],..
+                        pin=62,..
+                        pout=[64;65],..
+                        pein=[],..
+                        peout=[],..
+                        gr_i=list([],8),..
+                        id="",..
+                        in_implicit="I",..
+                        out_implicit=["I","I"]),..
+               model=scicos_model(..
+                        sim="limpsplit",..
+                        in=1,..
+                        in2=[],..
+                        intyp=1,..
+                        out=[1;1],..
+                        out2=[],..
+                        outtyp=1,..
+                        evtin=[],..
+                        evtout=[],..
+                        state=[],..
+                        dstate=[],..
+                        odstate=list(),..
+                        rpar=[],..
+                        ipar=[],..
+                        opar=list(),..
+                        blocktype="c",..
+                        firing=[],..
+                        dep_ut=[%f,%f],..
+                        label="",..
+                        nzcross=0,..
+                        nmode=0,..
+                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"limpsplit","n",..
+                        ["n";"n"],list([],list()))),..
+               doc=list())
+scs_m.objs(64)=scicos_link(..
+                 xx=[322.11993;358.6879],..
+                 yy=[290.12198;290.12198],..
+                 id="drawlink",..
+                 thick=[0,0],..
+                 ct=[1,2],..
+                 from=[63,1,0],..
+                 to=[2,2,0])
+scs_m.objs(65)=scicos_link(..
+                 xx=[322.11993;322.32504],..
+                 yy=[290.12198;256.00315],..
+                 id="drawlink",..
+                 thick=[0,0],..
+                 ct=[1,2],..
+                 from=[63,2,0],..
+                 to=[7,1,0])
