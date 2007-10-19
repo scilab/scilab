@@ -1,8 +1,8 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[600,450,0,0,600,450],..
-            Title=["Colpitts","/usr/share/scilab_BUILD_4_scicos/demos/scicos/"],..
+            wpar=[16.586126,662.49502,-5.7369478,430.43787,880,594,112,77,617,500,1280,7,1.4],..
+            Title=["Colpitts_Oscillator","/home/alan/scilab_BUILD_412/demos/scicos/Electrical/"],..
             tol=[0.0001;0.000001;1.000E-15;1.000E-12;0;100;0],..
             tf=0.0000009,..
             context=" ",..
