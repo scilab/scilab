@@ -3,10 +3,13 @@ function [rect,btn]=rubberbox(rect)
 
 first=%t
 rhs=argn(2)
+if ( rhs == 0 ) then 
+  rect = [];
+end
 if rhs<1|type(rect)==4 then
   initial_rect=%f
   Windows_mode=rhs==1&rect(1)
-  rect=[]
+  rect=[];
 else
   initial_rect=%t
   Windows_mode=%f
