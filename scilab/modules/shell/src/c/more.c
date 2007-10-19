@@ -14,7 +14,7 @@
 #include "others/GetCharWithEventsLoop.h"
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#define MSG_MORE "[More (y or n ) ?] "
+#define MSG_MORE _("[More (y or n ) ?] ")
 /*-----------------------------------------------------------------------------------*/ 
 int linesmore(void)
 {

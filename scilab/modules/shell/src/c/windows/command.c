@@ -64,7 +64,7 @@ int read_line (char *prompt, int interrupt)
 
 		last = (int)strlen (input_line) - 1;
 		if (last < 0) last = 0;	
-		if (last + 1 >= MAX_LINE_LEN) int_error ("Input line too long", NO_CARET);
+		if (last + 1 >= MAX_LINE_LEN) int_error (_("Input line too long"), NO_CARET);
 	}
 	return (0);
 }

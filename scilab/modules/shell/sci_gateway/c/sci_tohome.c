@@ -20,7 +20,7 @@ int C2F(sci_tohome) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (!bOK)
 	{
-		sciprint("not implemented in this mode.\n");
+		sciprint(_("not implemented in this mode.\n"));
 	}
 
 	LhsVar(1) = 0;

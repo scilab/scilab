@@ -46,7 +46,7 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"Invalid parameter(s).\n");
+				Scierror(999,_("Invalid parameter(s).\n"));
 				return 0;
 			}
 		}
@@ -62,7 +62,7 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"Invalid parameter(s).\n");
+			Scierror(999,_("Invalid parameter(s).\n"));
 			return 0;
 		}
 

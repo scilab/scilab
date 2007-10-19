@@ -28,13 +28,13 @@ int C2F(sci_clc) _PARAMS((char *fname,unsigned long fname_len))
 
 			if (nblines < 0)
 			{
-				Scierror(999,"Invalid parameter.\n");
+				Scierror(999,_("Invalid parameter.\n"));
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"Invalid parameter.\n");
+			Scierror(999,_("Invalid parameter.\n"));
 			return 0;
 		}
 	}
@@ -47,7 +47,7 @@ int C2F(sci_clc) _PARAMS((char *fname,unsigned long fname_len))
 	res = clc(nblines);
 	if (!res)
 	{
-		sciprint("not implemented in this mode.\n");
+		sciprint(_("not implemented in this mode.\n"));
 	}
 
 	LhsVar(1) = 0;

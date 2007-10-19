@@ -51,7 +51,7 @@ int GetCharWithEventsLoop(int interrupt)
 		{
 			if (errno != EINTR) /* EINTR  A signal was caught. */
 			{ 
-				sciprint("Error.\n");
+				sciprint(_("Error.\n"));
 				exit(0);
 				continue;
 			}
