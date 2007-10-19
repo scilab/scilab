@@ -10,11 +10,13 @@
 #include <string.h>
 #include <math.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 #include "Math.h"
 #include "bcg.h"
 #include "../version.h"
 #include "color.h"
 #include "Events.h"
+
 
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
 extern integer C2F(ismenu)();
@@ -365,6 +367,16 @@ static gboolean locator_button_press(GtkWidget *widget,
       id= event->button-1; /* press code */
       break;
     }
+  
+  if ( event->state & GDK_SHIFT_MASK )
+    {
+      if ( event->state & GDK_CONTROL_MASK )
+	id +=3000;
+      else 
+	id +=2000;
+    }
+  else if ( event->state & GDK_CONTROL_MASK ) id +=1000;
+
   if ( info.sci_click_activated == 0) 
     {
       PushClickQueue( gc->CurWindow,event->x, event->y,id,0,0);
@@ -496,6 +508,14 @@ static gint key_press_release_event (GtkWidget *widget, GdkEventKey *event, BCG 
 	      info.button = ( event->state & GDK_MOD1_MASK ) ? 3000: 0;
 	    }
 	}
+      else if ( event->keyval == GDK_Control_L 
+		| event->keyval == GDK_Control_R
+		| event->keyval == GDK_Shift_L 
+		| event->keyval == GDK_Shift_R
+		) 
+	{
+	  return FALSE;
+	}
       else
 	{
 	  /* do not modify code above 0xFF00 */
@@ -569,7 +589,7 @@ static gint timeout_test (BCG *gc)
       /*sciprint("je suis ds le timeout un menu est active");*/
       C2F(getmen)(info.str,&info.lstr,&entry);
       info.ok = 1 ; info.x = 0 ; info.y =0 ; info.button =  -2;
-      info.win = gc->CurWindow; /* XXXX à revoir */
+      info.win = -1; /* gc->CurWindow;*/ /* XXXX à revoir */
       gtk_main_quit();
     }
   return TRUE;
@@ -2897,14 +2917,16 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
 { 
   struct BCG *NewXgc ;
 #ifdef WITH_TK
-  integer ne=11, menutyp=2, ierr;
+  integer ne=11-4, menutyp=2, ierr;
   char *EditMenus[]={"_Select figure as current",
 		     "_Redraw figure",
                      "_Erase figure",
-		     "_Copy object",
-		     "_Paste object",
-                     "_Move object",
-		     "_Delete object",
+		     /* 
+			"_Copy object",
+			"_Paste object",
+			"_Move object",
+			"_Delete object",
+		     */
 		     "_Figure properties",
                      "_Current axes properties",
 		     "Start _entity picker",

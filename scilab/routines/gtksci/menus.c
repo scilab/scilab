@@ -1256,4 +1256,71 @@ static int call_predefined_callbacks(char *name, int winid)
 }
 
 
+static int getNbSubMenus(int winid, char *menu_name )
+{
+  int count=0;
+  menu_entry *loc, *entries;
+  GtkItemFactory  *item_factory;
+  if ( winid == -1 ) 
+    {
+      item_factory = main_item_factory; 
+      entries =main_menu_entries;
+    }
+  else 
+    {
+      BCG *dd = GetWindowXgcNumber(winid);
+      if ( dd == NULL || dd->item_factory == NULL) return ;
+      item_factory = dd->item_factory;
+      entries = dd->menu_entries;
+    }
+  loc = entries ;
+  while ( loc != NULL) 
+    {
+      if ( is_menu_name(loc->name,menu_name)==0) 
+	{
+	  int count;
+	  /* walk to count */
+	  loc = loc->subs; 
+	  while (loc != NULL) {count++; loc=loc->next;}
+	}
+      loc = loc->next ;
+    }
+  return count;
+}
+
+/*
+ * put some menus in gray under old graphic style  
+ * or put them back under new graphic style        
+ */
+
+
+void refreshMenus( struct BCG * ScilabGC )
+{
+  /* put some menu in grey in old graphic style */
+  if ( version_flag() == 0 )
+    {
+      /* new graphic style */
+      int        subMenuNumber = 0 ;
+      int        nbChildren        ;
+      /*SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, True ) ; */
+      /* get the number of children of the Edit menu */
+      nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
+      for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
+	{
+	  SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, True ) ;
+	}
+    }
+  else
+    {
+      /* old graphic style */
+      int        subMenuNumber = 0 ;
+      int        nbChildren        ;
+      /*SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, False ) ; */
+      nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
+      for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
+	{
+	  SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, False ) ;
+	}
+    }
+}
 
