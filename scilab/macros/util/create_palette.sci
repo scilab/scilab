@@ -117,7 +117,7 @@ function [routines,IntFunc]=create_palette(Path)
 	      'DOLLAR_f.sci']
 
       elseif txt=='DemoBlocks' then
-	lisf=['BOUNCE.sci';'BOUNCEXY.sci']
+	lisf=['BOUNCE.sci';'BOUNCEXY.sci';'BPLATFORM.sci']
 	
       elseif txt=='Electrical' then
         lisf=['Capacitor.sci';'Ground.sci';'VVsourceAC.sci';'ConstantVoltage.sci';
