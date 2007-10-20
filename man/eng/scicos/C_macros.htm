@@ -56,9 +56,11 @@ Contents</A>
 <LI><A NAME="tex2html10"
   HREF="C_macros.htm#SECTION00025000000000000000">Parameters</A>
 <LI><A NAME="tex2html11"
-  HREF="C_macros.htm#SECTION00026000000000000000">States</A>
+  HREF="C_macros.htm#SECTION00026000000000000000">States and work</A>
 <LI><A NAME="tex2html12"
-  HREF="C_macros.htm#SECTION00027000000000000000">Authors</A>
+  HREF="C_macros.htm#SECTION00027000000000000000">Zero crossing surfaces and modes</A>
+<LI><A NAME="tex2html13"
+  HREF="C_macros.htm#SECTION00028000000000000000">Authors</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
@@ -73,6 +75,8 @@ Module</A>
 <H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
+
+<P>
 The following C macros are avialable by including the file <A NAME="tex2html4"
   HREF="scicos_block4_rout.htm">scicos_block4.h</A>
 in a C computational function.
@@ -327,7 +331,7 @@ y=2 for the second dimension)
 <P>
 
 <H3><font color="blue"><A NAME="SECTION00026000000000000000">
-States</A>
+States and work</A>
 </font></H3>
 
 <P>
@@ -405,11 +409,42 @@ for the second dimension)
 <TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get the sizeof of the object state number x.
 <BR></TD>
 </TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetWorkPtrs(blk)(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get the pointer of the Work array.
+<BR></TD>
+</TR>
 </TABLE>
 
 <P>
 
 <H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Zero crossing surfaces and modes</A>
+</font></H3>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>Macro</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567><B>Description</B>
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNg(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of zero crossing surface.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetGPtrs(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of the zero crossing register.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNmode(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of modes.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetModePtrs(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of the mode register.
+<BR></TD>
+</TR>
+</TABLE>
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
 Authors</A>
 </font></H3>
 <b>Alan Layec</b> INRIA

@@ -77,6 +77,8 @@ Module</A>
 <H3><font color="blue"><A NAME="SECTION00022000000000000000">
 Description</A>
 </font></H3>
+
+<P>
 The C structure of a Scicos block defines all the fields to handle data provided by the simulator
 such inputs/outputs, parameters, states, ...
 
@@ -100,7 +102,7 @@ structure :
 
 <P>
 <PRE>
-block-&gt;my_field
+block-&gt;field
 </PRE>
 
 <P>
@@ -296,19 +298,25 @@ Suppose the previous example (block with three inputs : an int32 matrix of size 
 For i.e., to directly access to the data, the user can use theses instructions :
 
 <P>
-<TT>                     SCSINT32_COP *ptr_i;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+SCSINT32_COP *ptr_i;
 <BR>
 SCSCOMPLEX_COP *ptr_dc;
 <BR>
 SCSREAL_COP *ptr_d;
 <BR>
-int n3,m3;
+int n1,m1;
 <BR>
 SCSINT32_COP cumsum_i=0;
 <BR>
 int i;
 <BR>                     ...
-<BR>                     
+<BR>
+void mycomputfunc(scicos_block *block,int flag) 
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get the ptrs of the first int32 regular input port*/
 <BR>
 ptr_i = (SCSINT32_COP *) block-&gt;inptr[0];
@@ -329,23 +337,24 @@ m1=block-&gt;insz[3];
 <BR>
 for(i=0;i&lt;n1*m1;i++) {
 <BR>
-cumsum_i += ptr_i[i]; 
+cumsum_i += ptr_i[i];
 <BR>                     }
 <BR>                     ...
-<BR>                    </TT>
+<BR>                     }
+                    </TT>
 
 <P>
 One can also use the set of C macros :
-<BR>                    <TT>GetInPortPtrs(blk,x)</TT>, <TT>GetRealInPortPtrs(blk,x)</TT>, 
-<BR>                    <TT>GetImagInPortPtrs(blk,x)</TT>, <TT>Getint8InPortPtrs(blk,x)</TT>, 
-<BR>                    <TT>Getint16InPortPtrs(blk,x)</TT>, <TT>Getint32InPortPtrs(blk,x)</TT>, 
-<BR>                    <TT>Getuint8InPortPtrs(blk,x)</TT>, <TT>Getuint16InPortPtrs(blk,x)</TT>, 
-<BR>                    <TT>Getuint32InPortPtrs(blk,x)</TT> 
+<BR>                    <TT>GetInPortPtrs(blk,x)</TT>, <TT>GetRealInPortPtrs(block,x)</TT>, 
+<BR>                    <TT>GetImagInPortPtrs(block,x)</TT>, <TT>Getint8InPortPtrs(block,x)</TT>, 
+<BR>                    <TT>Getint16InPortPtrs(block,x)</TT>, <TT>Getint32InPortPtrs(block,x)</TT>, 
+<BR>                    <TT>Getuint8InPortPtrs(block,x)</TT>, <TT>Getuint16InPortPtrs(block,x)</TT>, 
+<BR>                    <TT>Getuint32InPortPtrs(block,x)</TT> 
 <BR>
 to have the appropiate pointer of the data to handle and 
-<BR>                    <TT>GetNin(blk)</TT>, <TT>GetInPortRows(blk,x)</TT>, 
-<BR>                    <TT>GetInPortCols(blk,x)</TT>, <TT>GetInPortSize(blk,x,y)</TT>, 
-<BR>                    <TT>GetInType(blk,x)</TT>, <TT>GetSizeOfIn(blk,x)</TT> 
+<BR>                    <TT>GetNin(block)</TT>, <TT>GetInPortRows(block,x)</TT>, 
+<BR>                    <TT>GetInPortCols(block,x)</TT>, <TT>GetInPortSize(block,x,y)</TT>, 
+<BR>                    <TT>GetInType(block,x)</TT>, <TT>GetSizeOfIn(block,x)</TT> 
 <BR>
 to handle number, dimensions and type of regular input ports.
                     (<B>x is numbered from 1 to nin and <B>y numbered  from 1 to 2</B></B>).
@@ -354,19 +363,25 @@ to handle number, dimensions and type of regular input ports.
 For the previous example that gives :
 
 <P>
-<TT>                     SCSINT32_COP *ptr_i;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+SCSINT32_COP *ptr_i;
 <BR>
 SCSCOMPLEX_COP *ptr_dc;
 <BR>
 SCSREAL_COP *ptr_d;
 <BR>
-int n3,m3;
+int n1,m1;
 <BR>
 SCSINT32_COP cumsum_i=0;
 <BR>
 int i;
 <BR>                     ...
-<BR>                     
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get the ptrs of the first int32 regular input port*/
 <BR>
 ptr_i = Getint32InPortPtrs(block,1);
@@ -383,7 +398,8 @@ n1=GetInPortRows(block,1);
 <BR>
 m1=GetInPortCols(block,1);
 <BR>                     ...
-<BR>                    </TT>
+<BR>                     }
+                    </TT>
 
 <P>
 Finally note that the regular input port registers are only accessible for reading.
@@ -471,19 +487,24 @@ Suppose the previous example (block with three outputs : an int32 matrix of size
 For i.e., to directly access to the data, the user can use theses instructions :
 
 <P>
-<TT>                     SCSINT32_COP *ptr_i;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+SCSINT32_COP *ptr_i;
 <BR>
 SCSCOMPLEX_COP *ptr_dc;
 <BR>
 SCSREAL_COP *ptr_d;
 <BR>
-int n3,m3;
+int n1,m1;
 <BR>
 SCSINT32_COP cumsum_i=0;
 <BR>
 int i;
 <BR>                     ...
-<BR>                     
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
 <BR>                     /*get the ptrs of the first int32 regular output port*/
 <BR>
 ptr_i = (SCSINT32_COP *) block-&gt;outptr[0];
@@ -504,23 +525,24 @@ m1=block-&gt;outsz[3];
 <BR>
 for(i=0;i&lt;n1*m1;i++) {
 <BR>
-cumsum_i += ptr_i[i]; 
+cumsum_i += ptr_i[i];
 <BR>                     }
 <BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
 One can also use the set of C macros :
-<BR>                    <TT>GetOutPortPtrs(blk,x)</TT>, <TT>GetRealOutPortPtrs(blk,x)</TT>, 
-<BR>                    <TT>GetImagOutPortPtrs(blk,x)</TT>, <TT>Getint8OutPortPtrs(blk,x)</TT>, 
-<BR>                    <TT>Getint16OutPortPtrs(blk,x)</TT>, <TT>Getint32OutPortPtrs(blk,x)</TT>, 
-<BR>                    <TT>Getuint8OutPortPtrs(blk,x)</TT>, <TT>Getuint16OutPortPtrs(blk,x)</TT>, 
-<BR>                    <TT>Getuint32OutPortPtrs(blk,x)</TT> 
+<BR>                    <TT>GetOutPortPtrs(block,x)</TT>, <TT>GetRealOutPortPtrs(block,x)</TT>, 
+<BR>                    <TT>GetImagOutPortPtrs(block,x)</TT>, <TT>Getint8OutPortPtrs(block,x)</TT>, 
+<BR>                    <TT>Getint16OutPortPtrs(block,x)</TT>, <TT>Getint32OutPortPtrs(block,x)</TT>, 
+<BR>                    <TT>Getuint8OutPortPtrs(block,x)</TT>, <TT>Getuint16OutPortPtrs(block,x)</TT>, 
+<BR>                    <TT>Getuint32OutPortPtrs(block,x)</TT> 
 <BR>
 to have the appropiate pointer of the data to handle and 
-<BR>                    <TT>GetNout(blk)</TT>, <TT>GetOutPortRows(blk,x)</TT>, 
-<BR>                    <TT>GetOutPortCols(blk,x)</TT>, <TT>GetOutPortSize(blk,x,y)</TT>, 
-<BR>                    <TT>GetOutType(blk,x)</TT>, <TT>GetSizeOfOut(blk,x)</TT> 
+<BR>                    <TT>GetNout(block)</TT>, <TT>GetOutPortRows(block,x)</TT>, 
+<BR>                    <TT>GetOutPortCols(block,x)</TT>, <TT>GetOutPortSize(block,x,y)</TT>, 
+<BR>                    <TT>GetOutType(block,x)</TT>, <TT>GetSizeOfOut(block,x)</TT> 
 <BR>
 to handle number, dimensions and type of regular output ports.
                     (<B>x is numbered from 1 to nout and <B>y is numbered  from 1 to 2</B></B>).
@@ -529,19 +551,25 @@ to handle number, dimensions and type of regular output ports.
 For the previous example that gives :
 
 <P>
-<TT>                     SCSINT32_COP *ptr_i;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+SCSINT32_COP *ptr_i;
 <BR>
 SCSCOMPLEX_COP *ptr_dc;
 <BR>
 SCSREAL_COP *ptr_d;
 <BR>
-int n3,m3;
+int n1,m1;
 <BR>
 SCSINT32_COP cumsum_i=0;
 <BR>
 int i;
 <BR>                     ...
-<BR>                     
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get the ptrs of the first int32 regular output port*/
 <BR>
 ptr_i = GetOutPortPtrs(block,1);
@@ -558,6 +586,7 @@ n1=GetOutPortRows(block,1);
 <BR>
 m1=GetOutPortCols(block,1);
 <BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -645,14 +674,19 @@ For i.e, suppose that you want generate an event with the first event output por
                      each calls of the block, then you'll use :
 
 <P>
-<TT>                      ...
-<BR>                      
+<TT>                      #include "scicos_block4.h"
+<BR>                      ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                      {
+<BR>                      ...
 <BR>
 if (flag==3) { 
 <BR>
 block-&gt;evout[0]=0.001;
 <BR>                      }
 <BR>                      ...
+<BR>                     }
 <BR>                     </TT>
 <BR>
 <P>
@@ -694,13 +728,15 @@ Suppose that you have defined the following real parameters in the
 of a block :
 
 <P>
-<TT>                     model.rpar   = [</TT>
+<TT>                     model.rpar   = [%pi;%pi/2;%pi/4]
+<BR>                    </TT>
 
 <P>
 you can retrieve the previous data in the C computational function with :
 
 <P>
-<TT>                     ...
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
 <BR>
 double PI;
 <BR>
@@ -708,17 +744,21 @@ double PI_2;
 <BR>
 double PI_4;
 <BR>                     ...
-<BR>                     
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get the first value of the real param register*/
 <BR>
-PI = block-&gt;rpar[0]; 
+PI = block-&gt;rpar[0];
 <BR>                     /*get the second value of the real param register*/
 <BR>
-PI_2 = block-&gt;rpar[1]; 
+PI_2 = block-&gt;rpar[1];
 <BR>                     /*get the third value of the real param register*/
 <BR>
-PI_4 = block-&gt;rpar[2]; 
+PI_4 = block-&gt;rpar[2];
 <BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -741,26 +781,31 @@ model.rpar   = [A;B]
 in the corresponding C computational function of that block, we'll use :
 
 <P>
-<TT>                     ...
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
 <BR>
-double *rpar; 
+double *rpar;
 <BR>
 double *A; 
 <BR>
 double *B; 
 <BR>                     ...
-<BR>                     
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get ptrs of the real param register*/
 <BR>
 rpar = GetRparPtrs(block); 
 <BR>                     /*get the A ptrs array*/
 <BR>
-A = rpar; 
+A = rpar;
 <BR>                     /*get the B ptrs array*/
 <BR>
-B = &amp;rpar[4]; 
+B = &amp;rpar[4];
 <BR>                     /*or B = rpar + 4;*/
-                     ...
+<BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -797,7 +842,8 @@ of a block :
 you can retrieve the previous data in the C computational function with :
 
 <P>
-<TT>                     ...
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
 <BR>
 int one;
 <BR>
@@ -805,8 +851,12 @@ int two;
 <BR>
 int three;
 <BR>
-int five;                      ...
-<BR>                     
+int five;
+<BR>                     ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get the first value of the integer param register*/
 <BR>
 one = block-&gt;ipar[0]; 
@@ -820,6 +870,7 @@ three = block-&gt;ipar[2];
 <BR>
 five = block-&gt;ipar[3]; 
 <BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -858,7 +909,8 @@ the array of real parameters (parametrized by ipar) can be retrieved in the
                     correspondig C computational function with :
 
 <P>
-<TT>                     ...
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
 <BR>
 int A_sz; 
 <BR>
@@ -874,7 +926,10 @@ double cumsum;
 <BR>
 int i; 
 <BR>                     ...
-<BR>                     
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get ptrs of the real param register*/
 <BR>
 rpar = GetRparPtrs(block); 
@@ -897,7 +952,7 @@ cumsum = 0;
 <BR>
 for(i=0;i&lt;A_sz;i++) {
 <BR>
-cumsum += A[i]; 
+cumsum += A[i];
 <BR>                     }
 <BR>                     ...
 <BR>                     /*compute the cumsum of the second real parameter array*/
@@ -931,9 +986,16 @@ The first column is for the first dimension and the second for the second dimens
                      For i.e. if we want the dimensions of the last object parameters, we'll use the instructions :
 
 <P>
-<TT>                     int nopar;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+int nopar;
 <BR>
 int n,m;
+<BR>                     ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
 <BR>                     ...
 <BR>                     /*get the number of object parameter*/
 <BR>
@@ -945,6 +1007,8 @@ n=block&gt;oparsz[nopar-1];
 <BR>                     /*get number of column of the last object parameter*/
 <BR>
 m=block&gt;oparsz[2*nopar-1];
+<BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -1044,12 +1108,21 @@ The type of object parameter can also be got by the use of the C macro
                      object parameter, we'll use the following C instructions:
 
 <P>
-<TT>                      int opartyp_1;
+<TT>                      #include "scicos_block4.h"
 <BR>                     ...
+<BR>
+int opartyp_1;
+<BR>                     ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                      {
+<BR>                      ...
 <BR>                      /*get the number type of the first object parameter*/
 <BR>
 opartyp_1 = GetOparType(block,1);
-                     </TT>
+<BR>                      ...
+<BR>                     }
+<BR>                     </TT>
 
 <P>
 </LI>
@@ -1092,14 +1165,21 @@ At the C computational function level, the instructions <TT>block-&gt;oparsz[0]<
 For i.e., to directly access to the data, the user can use theses instructions :
 
 <P>
-<TT>                     SCSINT32_COP *ptr_i;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+SCSINT32_COP *ptr_i;
 <BR>
 SCSINT32_COP cumsum_i;
 <BR>
 SCSCOMPLEX_COP *ptr_d;
 <BR>
-SCSREAL_COP cumsum_r;
-                     ...                      
+SCSREAL_COP cumsum_d;
+<BR>                     ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get the ptrs of an int32 object parameter*/
 <BR>
 ptr_i = (SCSINT32_COP *) block-&gt;oparptr[0];
@@ -1115,6 +1195,7 @@ cumsum_i = ptr_i[0]+ptr_i[1]+ptr_i[2]+ptr_i[3];
 <BR>
 cumsum_d = ptr_d[0]+ptr_d[1]+ptr_d[2];
 <BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -1122,19 +1203,26 @@ One can also use the set of C macros :
 <BR>                    <TT>GetRealOparPtrs(block,x)</TT>,  <TT>GetImagOparPtrs(block,x)</TT>,
 <BR>                    <TT>Getint8OparPtrs(block,x)</TT>,  <TT>Getint16OparPtrs(block,x)</TT>,
 <BR>                    <TT>Getint32OparPtrs(block,x)</TT>, <TT>Getuint8OparPtrs(block,x)</TT>,
-<BR>                    <TT>Getuint16OparPtrs(block,x)</TT>, <TT>Getuint32OparPtrs(block,x)</TT> 
+<BR>                    <TT>Getuint16OparPtrs(block,x)</TT>, <TT>Getuint32OparPtrs(block,x)</TT>
 <BR>
 to have the appropiate pointer of the data to handle (<B>x is numbered from 1 to nopar</B>).
 <BR>
 For the previous example that gives :
 
 <P>
-<TT>                     SCSINT32_COP *ptr_i;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+SCSINT32_COP *ptr_i;
 <BR>
 SCSREAL_COP *ptr_dr;
 <BR>
 SCSREAL_COP *ptr_di;
-<BR>                     ...                      
+<BR>                     ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get the ptrs of an int32 object parameter*/
 <BR>
 ptr_i = Getint32OparPtrs(block,1);
@@ -1144,6 +1232,7 @@ ptr_dr = GetRealOparPtrs(block,2);
 <BR>
 ptr_di = GetImagOparPtrs(block,2);
 <BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -1175,11 +1264,20 @@ A value of a continuous state is readable (for i.e the first state) with
                  the C instructions :
 
 <P>
-<TT>                  double x_1;
-<BR>                    ...
+<TT>                  #include "scicos_block4.h"
+<BR>                  ...
+<BR>
+double x_1;
+<BR>                  ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                  {
+<BR>                  ...
 <BR>
 x_1=block-&gt;x[0];
-                 </TT>
+<BR>                  ...
+<BR>                  }
+<BR>                 </TT>
 
 <P>
 Note that on <TT>flag</TT>=4, user can write some initial conditions in that register.
@@ -1219,7 +1317,8 @@ For i.e the Lorentz attractor written as an ODE system with three state variable
 will be defined :
 
 <P>
-<TT>                   ...
+<TT>                   #include "scicos_block4.h"
+<BR>                   ...
 <BR>
 double *x = block-&gt;x;
 <BR>
@@ -1234,15 +1333,21 @@ double b = 28;
 double c = 8/3;
 <BR>                   ...
 <BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                   {
+<BR>                   ...
+<BR>
 if (flag == 0) {
 <BR>
-xd[0] = a*(x[1]-x[0]); 
+xd[0] = a*(x[1]-x[0]);
 <BR>
-xd[1] = x[1]*(b-x[2])-x[1]; 
+xd[1] = x[1]*(b-x[2])-x[1];
 <BR>
-xd[2] = x[0]*x[1]-c*x[2]; 
+xd[2] = x[0]*x[1]-c*x[2];
 <BR>                   }
-                  </TT>
+<BR>                   ...
+<BR>                   }
+<BR>                  </TT>
 
 <P>
 </LI>
@@ -1269,7 +1374,8 @@ f(\dot{x},x,t) &amp;=&amp; 0
 For i.e the Lorentz attractor written as a DAE system with three state variables, will be defined :
 
 <P>
-<TT>                    ...
+<TT>                    #include "scicos_block4.h"
+<BR>                    ...
 <BR>
 double *x = block-&gt;x;
 <BR>
@@ -1286,15 +1392,21 @@ double b = 28;
 double c = 8/3;
 <BR>                    ...
 <BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                    {
+<BR>                    ...
+<BR>
 if (flag == 0) {
 <BR>
-res[0] =  - xd[0] + (a*(x[1]-x[0])); 
+res[0] =  - xd[0] + (a*(x[1]-x[0]));
 <BR>
-res[1] =  - xd[1] + (x[0]*(b-x[2])-x[1]); 
+res[1] =  - xd[1] + (x[0]*(b-x[2])-x[1]);
 <BR>
-res[2] =  - xd[2] + (x[0]*x[1]-c*x[2]); 
+res[2] =  - xd[2] + (x[0]*x[1]-c*x[2]);
 <BR>                    }
-                   </TT>
+<BR>                    ...
+<BR>                    }
+<BR>                   </TT>
 
 <P>
 </LI>
@@ -1313,11 +1425,20 @@ A value of a discrete state is directly readable (for i.e the second state) with
                  the C instructions :
 
 <P>
-<TT>                  double z_2;
+<TT>                  #include "scicos_block4.h"
+<BR>                  ...
+<BR>
+double z_2;
+<BR>                  ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                  {
 <BR>                  ...
 <BR>
 z_2=block-&gt;z[1];
-                 </TT>
+<BR>                  ...
+<BR>                  }
+<BR>                 </TT>
 
 <P>
 Note that the state register should be only written for <TT>flag</TT>=4 and <TT>flag</TT>=2.
@@ -1342,7 +1463,10 @@ The first column is for the first dimension and the second for the second dimens
                     For i.e. if we want the dimensions of the last object state, we'll use the instructions :
 
 <P>
-<TT>                     int noz;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+int noz;
 <BR>
 int n,m;
 <BR>                     ...
@@ -1350,12 +1474,18 @@ int n,m;
 <BR>
 noz=block&gt;noz;
 <BR>                     ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get number of row of the last object state*/
 <BR>
 n=block&gt;ozsz[noz-1];
 <BR>                     /*get number of column of the last object state*/
 <BR>
 m=block&gt;ozsz[2*noz-1];
+<BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -1455,12 +1585,21 @@ The type of discrete object state can also be got by the use of the C macro
                      discrete object state, we'll use the following C instructions:
 
 <P>
-<TT>                      int oztyp_1;
-<BR>                     ...
+<TT>                      #include "scicos_block4.h"
+<BR>                      ...
+<BR>
+int oztyp_1;
+<BR>                      ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                      {
+<BR>                      ...
 <BR>                      /*get the number type of the first object state*/
 <BR>
 oztyp_1 = GetOzType(block,1);
-                     </TT>
+<BR>                     ...
+<BR>                     }
+<BR>                     </TT>
 
 <P>
 </LI>
@@ -1503,14 +1642,21 @@ At the C computational function level, the instructions <TT>block-&gt;ozsz[0]</T
 For i.e., to directly access to the data, the user can use theses instructions :
 
 <P>
-<TT>                     SCSINT32_COP *ptr_i;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+SCSINT32_COP *ptr_i;
 <BR>
 SCSINT32_COP cumsum_i;
 <BR>
 SCSCOMPLEX_COP *ptr_d;
 <BR>
-SCSREAL_COP cumsum_r;
-                     ...                      
+SCSREAL_COP cumsum_d;
+                     ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get the ptrs of an int32 discrete object state*/
 <BR>
 ptr_i = (SCSINT32_COP *) block-&gt;ozptr[0];
@@ -1521,11 +1667,12 @@ ptr_d = (SCSCOMPLEX_COP *) block-&gt;ozptr[1];
 <BR>                     /*compute the cumsum of the int32 matrix*/
 <BR>
 cumsum_i = ptr_i[0]+ptr_i[1]+ptr_i[2]+ptr_i[3];
-                     ...
+<BR>                     ...
 <BR>                     /*compute the cumsum of the real part of the complex matrix*/
 <BR>
 cumsum_d = ptr_d[0]+ptr_d[1]+ptr_d[2];
 <BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -1540,12 +1687,19 @@ to have the appropiate pointer of the data to handle (<B>x is numbered from 1 to
 For the previous example that gives :
 
 <P>
-<TT>                     SCSINT32_COP *ptr_i;
+<TT>                     #include "scicos_block4.h"
+<BR>                     ...
+<BR>
+SCSINT32_COP *ptr_i;
 <BR>
 SCSREAL_COP *ptr_dr;
 <BR>
 SCSREAL_COP *ptr_di;
-<BR>                     ...                      
+<BR>                     ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                     {
+<BR>                     ...
 <BR>                     /*get the ptrs of an int32 discrete object state*/
 <BR>
 ptr_i = Getint32OzPtrs(block,1);
@@ -1555,6 +1709,7 @@ ptr_dr = GetRealOzPtrs(block,2);
 <BR>
 ptr_di = GetImagOzPtrs(block,2);
 <BR>                     ...
+<BR>                     }
 <BR>                    </TT>
 
 <P>
@@ -1570,30 +1725,39 @@ The work pointer must be firstly allocated when <TT>flag</TT> = 4 and finally be
 Then a basic life cyle of that pointer in a C computational function should be :
 
 <P>
-<TT>                            ...
+<TT>                            #include "scicos_block4.h"
+<BR>                            ...
 <BR>
 void** work=block-&gt;work;
 <BR>                            ...
+<BR>
+void mycomputfunc(scicos_block *block,int flag)
+<BR>                            {
+<BR>                           ...
 <BR>                            /*initialization*/
-                            if (flag==4) 
+<BR>
+if (flag==4) {
 <BR>                              /*allocation of work*/
-                              if (*work=scicos_malloc(sizeof(double))==NULL) 
+<BR>
+if (*work=scicos_malloc(sizeof(double))==NULL) {
 <BR>
 set_block_error(-16);
 <BR>
 return;
-<BR>                              
+<BR>                              }
 <BR>                            ...
-<BR>                            
+<BR>                            }
 <BR>                            ...
 <BR>                            /*other flag treatment*/
 <BR>                            ...
 <BR>                            /*finish*/
 <BR>
-else if (flag==5) 
+else if (flag==5) {
 <BR>
 scicos_free(*work);
-<BR>                            
+<BR>                            }
+<BR>                            ...
+<BR>                            }
 <BR>                           </TT>
 
 <P>
@@ -1667,17 +1831,14 @@ Miscallaneous</A>
 
  
 <UL>
-<LI><B>block-&gt;type :</B> Integer that gives the type of the computation function. For C blocks, this number
+<LI><B>block-&gt;type :</B> Integer that gives the type of the computational function. For C blocks, this number
                     is equal to 4.
 
 <P>
 </LI>
-<LI><B>block-&gt;label :</B>
+<LI><B>block-&gt;label :</B> Strings array that allows to retrieve the label of the block.
 </LI>
 </UL>
-
-<P>
-
 <H3><font color="blue"><A NAME="SECTION00029000000000000000">
 Authors</A>
 </font></H3>
