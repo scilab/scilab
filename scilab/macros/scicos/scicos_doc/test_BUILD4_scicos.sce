@@ -1006,9 +1006,9 @@ function gen_scicos_doc(my_list,typdoc,%gd)
   import_data_to_file('all',%gd);
   generate_aux_tex_file(my_list,typdoc,%gd);
   gen_scs_editor_help(typdoc,%gd);
-  gen_scs_prgblk(typdoc,%gd)
+  gen_scs_prgblk(typdoc,%gd);
   gen_scs_scilst_help(typdoc,%gd);
-  gen_scs_about_help(typdoc,%gd)
+  gen_scs_about_help(typdoc,%gd);
   generate_html_file(my_list,%gd);
   gen_scicos_whatis(%gd)
 endfunction

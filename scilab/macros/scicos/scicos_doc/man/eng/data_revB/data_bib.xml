@@ -90,6 +90,12 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='BPLATFORM' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='Bache' type='XML'>
 <BIBLIO>
 
@@ -1784,6 +1790,12 @@
 </BIBLIO>
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='buildouttb' type='XML'>
 <BIBLIO>
 
@@ -1808,6 +1820,12 @@
 <BIBLIO>
 
 </BIBLIO>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
 </FILE>
 
 <FILE name='fortran_block' type='XML'>
@@ -1887,6 +1905,12 @@
   </BIBLIO>
 </FILE>
 
+<FILE name='sci_struct' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
 <FILE name='scicos' type='XML'>
 <BIBLIO>
 
@@ -1894,6 +1918,12 @@
 </FILE>
 
 <FILE name='scicos_block' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
   <BIBLIO>
 
   </BIBLIO>
@@ -1999,6 +2029,12 @@
 <BIBLIO>
 
 </BIBLIO>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <BIBLIO>
+
+  </BIBLIO>
 </FILE>
 
 <FILE name='var2vec' type='XML'>
