@@ -90,6 +90,12 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='BPLATFORM' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='Bache' type='XML'>
 <SEE_ALSO>
 
@@ -1804,6 +1810,12 @@
 </SEE_ALSO>
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='buildouttb' type='XML'>
 <SEE_ALSO>
 
@@ -1828,6 +1840,12 @@
 <SEE_ALSO>
 
 </SEE_ALSO>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
 </FILE>
 
 <FILE name='fortran_block' type='XML'>
@@ -1905,6 +1923,12 @@
   </SEE_ALSO>
 </FILE>
 
+<FILE name='sci_struct' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
 <FILE name='scicos' type='XML'>
 <SEE_ALSO>
 <SEE_ALSO_ITEM><A href="scicosim.htm">scicosim</A></SEE_ALSO_ITEM>
@@ -1913,6 +1937,12 @@
 </FILE>
 
 <FILE name='scicos_block' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
   <SEE_ALSO>
 
   </SEE_ALSO>
@@ -2024,6 +2054,12 @@
 <SEE_ALSO_ITEM><A href="scicos_simulate.htm">scicos_simulate</A></SEE_ALSO_ITEM>
 <SEE_ALSO_ITEM><A href="scicos.htm">scicos</A></SEE_ALSO_ITEM>
 </SEE_ALSO>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <SEE_ALSO>
+
+  </SEE_ALSO>
 </FILE>
 
 <FILE name='var2vec' type='XML'>

@@ -516,6 +516,12 @@
   </PARAM>
 </FILE>
 
+<FILE name='BPLATFORM' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
 <FILE name='Bache' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -2682,7 +2688,7 @@
       Définit le temps final de la simulation.
       </SP>
       <SP>
-      Lorsque le simulateur passera par cette date, alors le temps 
+      Lorsque le simulateur passera par cette date, alors le temps
       courant sera avancé au temps final d'intégration.
       </SP>
       <SP>
@@ -6852,7 +6858,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc \htmladdnormall
     <PARAM_DESCRIPTION>
       <SP>
       La sortie du bloc est la valeur de l'échelle divisée par ce facteur
-de normalisation. 
+de normalisation.
       </SP>
       <SP>
       Propriétés : Type 'vec' de taille 1.
@@ -7191,6 +7197,12 @@ de normalisation.
 \end{itemize}
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
 <FILE name='buildouttb' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -7330,6 +7342,12 @@ de normalisation.
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <PARAM>
+
   </PARAM>
 </FILE>
 
@@ -8068,6 +8086,12 @@ de normalisation.
 \end{itemize}
 </FILE>
 
+<FILE name='sci_struct' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
 <FILE name='scicos' type='LATEX'>
 \begin{itemize}
   \item {\bf input : } ce paramètre peut aussi bien être une structure de diagramme Scicos
@@ -8081,6 +8105,12 @@ de normalisation.
 </FILE>
 
 <FILE name='scicos_block' type='XML'>
+  <PARAM>
+
+  </PARAM>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
   <PARAM>
 
   </PARAM>
@@ -8657,6 +8687,12 @@ de normalisation.
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <PARAM>
+
   </PARAM>
 </FILE>
 

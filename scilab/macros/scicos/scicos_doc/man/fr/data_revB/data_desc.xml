@@ -216,6 +216,12 @@ Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
 </DESCRIPTION>
 </FILE>
 
+<FILE name='BPLATFORM' type='XML'>
+  <DESCRIPTION>
+
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='Bache' type='LATEX'>
 Ce composant représente une bache thermo-hydraulique qui consiste en
 deux ports d'entrée et deux ports de sortie.  Conventionnellement, la
@@ -2653,7 +2659,7 @@ Ce bloc est utilisé seulement dans le super bloc EDGE_TRIGGER.
 <DESCRIPTION_ITEM>
 <P>
 Ce bloc génère un événement sur le front montant, descendant ou
-les deux (en fonction du paramètre du bloc). Un front montant correspond 
+les deux (en fonction du paramètre du bloc). Un front montant correspond
 à un changement de valeur négative vers positive ou nulle, ou zéro
 vers positive. Le front descendant est l'inverse. A noter que ce bloc
 génère un événement si l'entrée saute à cause d'une
@@ -2927,7 +2933,7 @@ pour regrouper/combiner les événements sur un seul lien.
   </DESCRIPTION>
 </FILE>
 
-<FILE name='FSV_f' type='XML'> 
+<FILE name='FSV_f' type='XML'>
 <DESCRIPTION>
 <DESCRIPTION_INDENT>
 <DESCRIPTION_ITEM>
@@ -3098,7 +3104,7 @@ Terre est zéro. Chaque circuit électrique doit contenir au moins un
     <SP>
     i2 = -G1 * v1
     </SP>
-where the constants G1, G2 are called the gyration conductance. 
+where the constants G1, G2 are called the gyration conductance.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -3237,7 +3243,7 @@ which is characterized by the following two equations:
     <SP>
     i2 = -n * i1
     </SP>
-where n is a real number called the turns ratio. 
+where n is a real number called the turns ratio.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -4769,112 +4775,6 @@ Les entrées non sélectionnées ne sont donc pas propagées.
   </DESCRIPTION>
 </FILE>
 
-<FILE name='sci_struct' type='LATEX'>
-
-A Scicos computational function of type 5 can be realized by the use of a Scilab function.
-That function doesn't really differs from all other scilab function : one can use all functions and
-instructions of the scilab language inside that function to do the computation.
-
-Such a function must be written in a file with extension .sci, must be loaded inside scilab by the
-common loading scilab function ({\tt exec}, {\tt getf}, {\tt getd}, {\tt genlib},...) and must have
-two right hand side arguments and one left hand side argument, as the following calling sequence :
-
-{\tt
-function block=myblock(block,flag)\\
-...\\
-//your computational instructions \\
-...\\
-endfunction\\
-}
-
-When the simulator is calling such a computational function, it build a scilab structure (in the previous exemple this is the named {\tt block} rhs/lhs arguments) from his own internal C reprensation of a block structure (see \htmladdnormallink{C\_struct} {C_struct.htm} for more details about the C structure of scicos
-blocks).
-
-That scilab structure is a scilab typed list variable that have the following fields :
-
-{\tt
-!scicos\_block  nevprt  funpt  type  scsptr  nz  z  noz  ozsz  oztyp  !\\
-!oz  nx  x  xd  res  nin  insz  inptr  nout  outsz  outptr  nevout  !\\
-!evout  nrpar  rpar  nipar  ipar  nopar  oparsz  opartyp  opar  ng  g  !\\
-!ztyp  jroot  label  work  nmode  mode  !
-}
-
-Each fields are then accessible inside the scilab computational function by the use of :
-
-{\tt
- block.field
-}
-
-\subsection{Inputs/outputs}
-
-\begin{itemize}
- \item {\bf block.nin :} a scalar
- \item {\bf block.insz :} a vector
- \item {\bf block.inptr :} a list
- \item {\bf block.nout :} a scalar
- \item {\bf block.outsz :} a vector
- \item {\bf block.outptr :} a list
-\end{itemize}
-
-\subsection{Events}
-
-\begin{itemize}
- \item {\bf block.nevprt :} a scalar
- \item {\bf block.nevout :} a scalar
- \item {\bf block.evout :} a vector
-\end{itemize}
-
-\subsection{Parameters}
-
-\begin{itemize}
- \item {\bf block.nrpar :} a scalar
- \item {\bf block.rpar :} a vector
- \item {\bf block.nipar :} a scalar
- \item {\bf block.ipar :} a vector
- \item {\bf block.nopar :} a scalar
- \item {\bf block.oparsz :} a matrix
- \item {\bf block.opartyp :} a vector
- \item {\bf block.opar :} a list
-\end{itemize}
-
-\subsection{States}
-
-\begin{itemize}
- \item {\bf block.nz :} a scalar
- \item {\bf block.z :} a vector
- \item {\bf block.noz :} a scalar
- \item {\bf block.ozsz :} a matrix
- \item {\bf block.oztyp :} a vector
- \item {\bf block.oz :} a list
- \item {\bf block.nx :} a scalar
- \item {\bf block.x :} a vector
- \item {\bf block.xd :} a vector
- \item {\bf block.res :} a vector
- %\item {\bf block.work:}
-\end{itemize}
-
-\subsection{Zero crossing surfaces and modes}
-
-\begin{itemize}
- \item {\bf block.ng :} a scalar
- \item {\bf block.g :} a vector
-% \item {\bf block.jroot :}
- \item {\bf block.nmode :} a scalar
- \item {\bf block.mode :} a vector
-\end{itemize}
-
-\subsection{Miscallaneous}
-
-\begin{itemize}
-% \item {\bf : funpt}
- \item {\bf block.type :} a scalar
-% \item {\bf block.ztyp :}
- \item {\bf block.label :} a string
- %\item {\bf scsptr :}
-\end{itemize}
-
-</FILE>
-
 <FILE name='Sigbuilder' type='LATEX'>
 The Signal Builder block is a superblock containing a
 \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block whose output event
@@ -5017,7 +4917,7 @@ de l'entrée sont enregistrées.
 
 <FILE name='TRASH_f' type='XML'>
 <DESCRIPTION>
- <DESCRIPTION_INDENT> 
+ <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM>
   <P>
   Ce bloc est un bloc de terminaison.
@@ -5133,6 +5033,18 @@ Un événement est généré lorsque toutes les entrées traverse la valeur
 zéro simultanément.
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='buildouttb' type='LATEX'>
 Construit une liste "outtb" initialisée.
 </FILE>
@@ -5163,6 +5075,18 @@ Il crée aussi une librairie et un fichier objet à la compilation.
 <FILE name='curblock' type='XML'>
   <DESCRIPTION>
 
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
   </DESCRIPTION>
 </FILE>
 
@@ -5291,6 +5215,112 @@ linked before simulation.
   </DESCRIPTION>
 </FILE>
 
+<FILE name='sci_struct' type='LATEX'>
+
+A Scicos computational function of type 5 can be realized by the use of a Scilab function.
+That function doesn't really differs from all other scilab function : one can use all functions and
+instructions of the scilab language inside that function to do the computation.
+
+Such a function must be written in a file with extension .sci, must be loaded inside scilab by the
+common loading scilab function ({\tt exec}, {\tt getf}, {\tt getd}, {\tt genlib},...) and must have
+two right hand side arguments and one left hand side argument, as the following calling sequence :
+
+{\tt
+function block=myblock(block,flag)\\
+...\\
+//your computational instructions \\
+...\\
+endfunction\\
+}
+
+When the simulator is calling such a computational function, it build a scilab structure (in the previous exemple this is the named {\tt block} rhs/lhs arguments) from his own internal C reprensation of a block structure (see \htmladdnormallink{C\_struct} {C_struct.htm} for more details about the C structure of scicos
+blocks).
+
+That scilab structure is a scilab typed list variable that have the following fields :
+
+{\tt
+!scicos\_block  nevprt  funpt  type  scsptr  nz  z  noz  ozsz  oztyp  !\\
+!oz  nx  x  xd  res  nin  insz  inptr  nout  outsz  outptr  nevout  !\\
+!evout  nrpar  rpar  nipar  ipar  nopar  oparsz  opartyp  opar  ng  g  !\\
+!ztyp  jroot  label  work  nmode  mode  !
+}
+
+Each fields are then accessible inside the scilab computational function by the use of :
+
+{\tt
+ block.field
+}
+
+\subsection{Inputs/outputs}
+
+\begin{itemize}
+ \item {\bf block.nin :} a scalar
+ \item {\bf block.insz :} a vector
+ \item {\bf block.inptr :} a list
+ \item {\bf block.nout :} a scalar
+ \item {\bf block.outsz :} a vector
+ \item {\bf block.outptr :} a list
+\end{itemize}
+
+\subsection{Events}
+
+\begin{itemize}
+ \item {\bf block.nevprt :} a scalar
+ \item {\bf block.nevout :} a scalar
+ \item {\bf block.evout :} a vector
+\end{itemize}
+
+\subsection{Parameters}
+
+\begin{itemize}
+ \item {\bf block.nrpar :} a scalar
+ \item {\bf block.rpar :} a vector
+ \item {\bf block.nipar :} a scalar
+ \item {\bf block.ipar :} a vector
+ \item {\bf block.nopar :} a scalar
+ \item {\bf block.oparsz :} a matrix
+ \item {\bf block.opartyp :} a vector
+ \item {\bf block.opar :} a list
+\end{itemize}
+
+\subsection{States}
+
+\begin{itemize}
+ \item {\bf block.nz :} a scalar
+ \item {\bf block.z :} a vector
+ \item {\bf block.noz :} a scalar
+ \item {\bf block.ozsz :} a matrix
+ \item {\bf block.oztyp :} a vector
+ \item {\bf block.oz :} a list
+ \item {\bf block.nx :} a scalar
+ \item {\bf block.x :} a vector
+ \item {\bf block.xd :} a vector
+ \item {\bf block.res :} a vector
+ %\item {\bf block.work:}
+\end{itemize}
+
+\subsection{Zero crossing surfaces and modes}
+
+\begin{itemize}
+ \item {\bf block.ng :} a scalar
+ \item {\bf block.g :} a vector
+% \item {\bf block.jroot :}
+ \item {\bf block.nmode :} a scalar
+ \item {\bf block.mode :} a vector
+\end{itemize}
+
+\subsection{Miscallaneous}
+
+\begin{itemize}
+% \item {\bf : funpt}
+ \item {\bf block.type :} a scalar
+% \item {\bf block.ztyp :}
+ \item {\bf block.label :} a string
+ %\item {\bf scsptr :}
+\end{itemize}
+
+</FILE>
+
 <FILE name='scicos' type='LATEX'>
 Scicos est un éditeur graphique pour construire des modèles
 de systèmes dynamiques hybrides.\\
@@ -5305,6 +5335,12 @@ aussi être utilisées pour réaliser des opérations de débogage.
 </FILE>
 
 <FILE name='scicos_block' type='XML'>
+  <DESCRIPTION>
+
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
   <DESCRIPTION>
 
   </DESCRIPTION>
@@ -5515,6 +5551,18 @@ is slower. For more information see Scicos reference manual.
 	  concerns only the continuous-time dynamics.
 	</P>
       </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Ajoutez ici un paragraphe pour la description de la fonction
+    </P>
+    </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
 </FILE>

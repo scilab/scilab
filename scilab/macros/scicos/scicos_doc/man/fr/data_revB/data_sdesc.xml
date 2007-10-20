@@ -114,6 +114,14 @@
   <SHORT_DESCRIPTION name="BOUNCE">BOUNCE</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='BPLATFORM' type='XML'>
+  <SHORT_DESCRIPTION name="BPLATFORM">Afficheur d'une baballe sur un plateau</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='BPLATFORM_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="BPLATFORM">BPLATFORM</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='Bache' type='XML'>
 <SHORT_DESCRIPTION name="Bache">Bache thermohydraulique</SHORT_DESCRIPTION>
 </FILE>
@@ -1988,7 +1996,7 @@
 
 <FILE name='SourceP' type='XML'>
 <SHORT_DESCRIPTION name="SourceP">Source thermohydraulique de pression constante</SHORT_DESCRIPTION>
-</FILE> 
+</FILE>
 
 <FILE name='SourceP_intfunc' type='XML'>
   <SHORT_DESCRIPTION name="SourceP">SourceP</SHORT_DESCRIPTION>
@@ -2254,6 +2262,10 @@
   <SHORT_DESCRIPTION name="bit_set_8">bit_set_8</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <SHORT_DESCRIPTION name="block_type">Type des blocs Scicos</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='bounce_ball_routcos' type='XML'>
   <SHORT_DESCRIPTION name="bounce_ball">bounce_ball</SHORT_DESCRIPTION>
 </FILE>
@@ -2380,6 +2392,10 @@
 
 <FILE name='curve_c_routcos' type='XML'>
   <SHORT_DESCRIPTION name="curve_c">curve_c</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <SHORT_DESCRIPTION name="data_type">Types de données Scicos</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='deadband_routcos' type='XML'>
@@ -3350,12 +3366,20 @@
   <SHORT_DESCRIPTION name="scalar2vector">scalar2vector</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='sci_struct' type='XML'>
+  <SHORT_DESCRIPTION name="sci_struct">Structure Scilab d'une fonction de calcul Scicos</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='scicos' type='XML'>
 <SHORT_DESCRIPTION name="scicos">Editeur de schéma bloc et interface graphique pour le simulateur hybride</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='scicos_block' type='XML'>
 <SHORT_DESCRIPTION name="scicos_block">Définit une structure bloc</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
+  <SHORT_DESCRIPTION name="scicos_block4">En-tête pour fonction C de calcul Scicos</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='scicos_block_scifunc' type='XML'>
@@ -3712,6 +3736,10 @@
 
 <FILE name='trash_routcos' type='XML'>
   <SHORT_DESCRIPTION name="trash">trash</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <SHORT_DESCRIPTION name="use_flag">Utilisation des flags dans les fonctions de calcul Scicos</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='var2vec' type='XML'>

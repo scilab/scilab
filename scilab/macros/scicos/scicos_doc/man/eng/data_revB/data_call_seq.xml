@@ -63,6 +63,13 @@
   </CALLING_SEQUENCE>
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
 <FILE name='buildouttb' type='XML'>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>
@@ -82,6 +89,13 @@
     <CALLING_SEQUENCE_ITEM>
       blk=curblock()
     </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>
 
@@ -132,6 +146,13 @@
   </CALLING_SEQUENCE>
 </FILE>
 
+<FILE name='sci_struct' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
 <FILE name='scicos' type='XML'>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>
@@ -143,6 +164,13 @@
 <FILE name='scicos_block' type='XML'>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>blk = scicos_block(v1,v2,v3,v4,v5)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>
 
@@ -247,6 +275,13 @@
     <CALLING_SEQUENCE_ITEM>
       [X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
     </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>
 

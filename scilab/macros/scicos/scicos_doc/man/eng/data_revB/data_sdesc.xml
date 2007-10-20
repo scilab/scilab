@@ -25,7 +25,7 @@
 </FILE>
 
 <FILE name='AFFICH_f_intfunc' type='XML'>
-  <SHORT_DESCRIPTION name="AFFICH_f">AFFICH_f</SHORT_DESCRIPTION> 
+  <SHORT_DESCRIPTION name="AFFICH_f">AFFICH_f</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='AFFICH_m' type='XML'>
@@ -111,6 +111,14 @@
 
 <FILE name='BOUNCE_intfunc' type='XML'>
   <SHORT_DESCRIPTION name="BOUNCE">BOUNCE</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='BPLATFORM' type='XML'>
+  <SHORT_DESCRIPTION name="BPLATFORM">Balls under a platform viewer</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='BPLATFORM_intfunc' type='XML'>
+  <SHORT_DESCRIPTION name="BPLATFORM">BPLATFORM</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Bache' type='XML'>
@@ -454,7 +462,7 @@
 </FILE>
 
 <FILE name='C_struct' type='XML'>
-  <SHORT_DESCRIPTION name="C_struct">Block structure</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="C_struct">C Block structure of a computational function</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='C_utils' type='XML'>
@@ -2253,6 +2261,10 @@
   <SHORT_DESCRIPTION name="bit_set_8">bit_set_8</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <SHORT_DESCRIPTION name="block_type">Scicos block type</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='bounce_ball_routcos' type='XML'>
   <SHORT_DESCRIPTION name="bounce_ball">bounce_ball</SHORT_DESCRIPTION>
 </FILE>
@@ -2379,6 +2391,10 @@
 
 <FILE name='curve_c_routcos' type='XML'>
   <SHORT_DESCRIPTION name="curve_c">curve_c</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <SHORT_DESCRIPTION name="data_type">Scicos data type</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='deadband_routcos' type='XML'>
@@ -3349,12 +3365,20 @@
   <SHORT_DESCRIPTION name="scalar2vector">scalar2vector</SHORT_DESCRIPTION>
 </FILE>
 
+<FILE name='sci_struct' type='XML'>
+  <SHORT_DESCRIPTION name="sci_struct">Scicos block structure of a scilab computational function</SHORT_DESCRIPTION>
+</FILE>
+
 <FILE name='scicos' type='XML'>
 <SHORT_DESCRIPTION name="scicos">Block diagram editor and GUI for the hybrid simulator</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='scicos_block' type='XML'>
 <SHORT_DESCRIPTION name="scicos_block">Define a block structure</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
+  <SHORT_DESCRIPTION name="scicos_block4">C header for Scicos C computational function</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='scicos_block_scifunc' type='XML'>
@@ -3711,6 +3735,10 @@
 
 <FILE name='trash_routcos' type='XML'>
   <SHORT_DESCRIPTION name="trash">trash</SHORT_DESCRIPTION>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <SHORT_DESCRIPTION name="use_flag">Use of flag in Scicos computational functions</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='var2vec' type='XML'>

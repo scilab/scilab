@@ -101,10 +101,14 @@
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='BPLATFORM' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='Bache' type='XML'>
 <USED_FUNCTIONS>
-
-
 
 </USED_FUNCTIONS>
 </FILE>
@@ -1890,6 +1894,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='buildouttb' type='XML'>
 <USED_FUNCTIONS>
 
@@ -1898,8 +1908,6 @@ for this block we have four differents functions:
 
 <FILE name='c_block' type='XML'>
 <USED_FUNCTIONS>
-
-
 
 </USED_FUNCTIONS>
 </FILE>
@@ -1914,6 +1922,12 @@ for this block we have four differents functions:
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='fortran_block' type='XML'>
@@ -1993,6 +2007,12 @@ for this block we have four differents functions:
   </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='sci_struct' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='scicos' type='XML'>
 <USED_FUNCTIONS>
 </USED_FUNCTIONS>
@@ -2002,6 +2022,12 @@ for this block we have four differents functions:
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='scicos_cpr' type='XML'>
@@ -2105,6 +2131,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='use_flag' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='var2vec' type='XML'>
 <USED_FUNCTIONS>
 
@@ -2116,6 +2148,5 @@ for this block we have four differents functions:
 
 </USED_FUNCTIONS>
 </FILE>
-
 
 </DATA>

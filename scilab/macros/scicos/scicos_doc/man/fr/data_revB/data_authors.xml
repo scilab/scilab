@@ -110,6 +110,14 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='BPLATFORM' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='M. Najafi'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='Bache' type='XML'>
 <AUTHORS>
 
@@ -1952,12 +1960,6 @@ INRIA
 </AUTHORS>
 </FILE>
 
-<FILE name='TKSCALE' type='XML'>
-<AUTHORS_ITEM label='Ramine Nikoukhah'>
-INRIA
-</AUTHORS_ITEM>
-</FILE>
-
 <FILE name='TOWS_c' type='XML'>
   <AUTHORS>
     <AUTHORS_ITEM label='Alan Layec'>
@@ -2066,6 +2068,14 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='buildouttb' type='XML'>
   <AUTHORS>
     <AUTHORS_ITEM label='Alan Layec'>
@@ -2094,6 +2104,14 @@ INRIA
 INRIA
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='fortran_block' type='XML'>
@@ -2188,6 +2206,14 @@ INRIA
   </AUTHORS>
 </FILE>
 
+<FILE name='sci_struct' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='scicos' type='XML'>
 <AUTHORS>
 
@@ -2197,6 +2223,14 @@ INRIA
 <FILE name='scicos_block' type='XML'>
   <AUTHORS>
 
+  </AUTHORS>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
   </AUTHORS>
 </FILE>
 
@@ -2316,6 +2350,14 @@ INRIA
 INRIA
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='var2vec' type='XML'>

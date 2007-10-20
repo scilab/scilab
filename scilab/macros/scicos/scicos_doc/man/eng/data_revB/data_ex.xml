@@ -89,6 +89,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='BPLATFORM' type='XML'>
+<EXAMPLE>
+
+</EXAMPLE>
+</FILE>
+
 <FILE name='Bache' type='XML'>
 <EXAMPLE>
 
@@ -1634,6 +1640,11 @@ When t=2 we loop back to 0.
 </EXAMPLE>
 </FILE>
 
+<FILE name='block_type' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
 <FILE name='buildouttb' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
@@ -1654,6 +1665,11 @@ When t=2 we loop back to 0.
 <FILE name='curblock' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
+</FILE>
+
+<FILE name='data_type' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='fortran_block' type='XML'>
@@ -1727,6 +1743,11 @@ When t=2 we loop back to 0.
   ]]></EXAMPLE>
 </FILE>
 
+<FILE name='sci_struct' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
 <FILE name='scicos' type='XML'>
 <EXAMPLE>
     <P>// Open a new diagram </P>
@@ -1748,6 +1769,11 @@ When t=2 we loop back to 0.
 <FILE name='scicos_block' type='XML'>
   <EXAMPLE>
   </EXAMPLE>
+</FILE>
+
+<FILE name='scicos_block4_rout' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='scicos_cpr' type='XML'>
@@ -1844,6 +1870,11 @@ When t=2 we loop back to 0.
 <FILE name='steadycos' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
+</FILE>
+
+<FILE name='use_flag' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='var2vec' type='XML'>
