@@ -4,6 +4,10 @@
 	dial_width_html=340pt
 </FILE>
 
+<FILE name='BPLATFORM' type='SPECIALDESC'>
+	dial_width_html=240pt
+</FILE>
+
 <FILE name='Bache' type='SPECIALDESC'>
 	dial_width_html=340pt
 </FILE>
