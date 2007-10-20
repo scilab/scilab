@@ -173,11 +173,11 @@ function tt=generate_scs_outline()
                "  </CHAPTER>"
                ""
                "  <CHAPTER eng=""Programming Scicos blocks"" fr=""Programmation des blocs Scicos"">"
-               "   <SUBCHAPTER eng=""Basics"" fr=""ElÈments de base"">";
-               "        <SCI varpath="""" name=""block_type""></SCI>"
-               "        <SCI varpath="""" name=""data_type""></SCI>"
-               "        <SCI varpath="""" name=""use_flag""></SCI>"
-               "   </SUBCHAPTER>";
+//               "   <SUBCHAPTER eng=""Basics"" fr=""ElÈments de base"">";
+//               "        <SCI varpath="""" name=""block_type""></SCI>"
+//               "        <SCI varpath="""" name=""data_type""></SCI>"
+//               "        <SCI varpath="""" name=""use_flag""></SCI>"
+//               "   </SUBCHAPTER>";
                "   <SUBCHAPTER eng=""C computational functions (Type 4)"" fr=""Fonctions de calcul en C (Type 4)"">";
                "     <SCI varpath="""" name=""C_struct""></SCI>"
                "     <SCI varpath="""" name=""C_macros""></SCI>"
@@ -1253,7 +1253,8 @@ clear i;clear listf;
 listf_of_misc=[palpath,"Others.cosf","pal"];
 listf = basename(listfiles(opath2(7)+"*.sci"))+".sci";
 for i = 1:size(listf,1)
-  if listf(i)<>'m_sin.sci' & listf(i)<>'DSUPER.sci' then //!!!!!!! YAUNBÈGICI
+  if listf(i)<>'m_sin.sci' & listf(i)<>'DSUPER.sci' & ...
+        listf(i)<>'bplatform2.sci' then //!!!!!!! YAUNBÈGICI
     listf_of_misc=[listf_of_misc;
                    opath2(7),listf(i),"block"];
   end
