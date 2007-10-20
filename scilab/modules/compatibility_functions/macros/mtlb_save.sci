@@ -7,7 +7,7 @@ warning(msprintf(gettext("This function is obsolete, use %s instead."),"savematf
 // Verify that all inputs are character strings
 for k=1:size(varargin)
   if type(varargin(k))<>10 then
-    error(gettext("mtlb_close: status ignored.9"));
+    error(gettext("All inputs must be character strings."));
   end
 end
 
