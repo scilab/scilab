@@ -90,12 +90,6 @@
 </BIBLIO>
 </FILE>
 
-<FILE name='BPLATFORM' type='XML'>
-  <BIBLIO>
-
-  </BIBLIO>
-</FILE>
-
 <FILE name='Bache' type='XML'>
 <BIBLIO>
 
@@ -1790,12 +1784,6 @@
 </BIBLIO>
 </FILE>
 
-<FILE name='block_type' type='XML'>
-  <BIBLIO>
-
-  </BIBLIO>
-</FILE>
-
 <FILE name='buildouttb' type='XML'>
 <BIBLIO>
 
@@ -1822,20 +1810,18 @@
 </BIBLIO>
 </FILE>
 
-<FILE name='data_type' type='XML'>
-<BIBLIO>
-
-</BIBLIO>
-</FILE>
-
 <FILE name='fortran_block' type='XML'>
 <BIBLIO>
+
+
 
 </BIBLIO>
 </FILE>
 
 <FILE name='freq_div' type='XML'>
 <BIBLIO>
+
+
 
 </BIBLIO>
 </FILE>
@@ -1890,21 +1876,15 @@
 </FILE>
 
 <FILE name='phase_simulation' type='XML'>
-<BIBLIO>
+  <BIBLIO>
 
-</BIBLIO>
+  </BIBLIO>
 </FILE>
 
 <FILE name='pointer_xproperty' type='XML'>
   <BIBLIO>
 
   </BIBLIO>
-</FILE>
-
-<FILE name='sci_struct' type='XML'>
-<BIBLIO>
-
-</BIBLIO>
 </FILE>
 
 <FILE name='scicos' type='XML'>
@@ -1914,21 +1894,15 @@
 </FILE>
 
 <FILE name='scicos_block' type='XML'>
-<BIBLIO>
+  <BIBLIO>
 
   </BIBLIO>
-<FILE>
-
-<FILE name='scicos_block4_rout' type='XML'>
-<BIBLIO>
-
-</BIBLIO>
 </FILE>
 
 <FILE name='scicos_cpr' type='XML'>
-<BIBLIO>
+  <BIBLIO>
 
-</BIBLIO>
+  </BIBLIO>
 </FILE>
 
 <FILE name='scicos_debug' type='XML'>
@@ -2022,12 +1996,6 @@
 </FILE>
 
 <FILE name='steadycos' type='XML'>
-<BIBLIO>
-
-</BIBLIO>
-</FILE>
-
-<FILE name='use_flag' type='XML'>
 <BIBLIO>
 
 </BIBLIO>
