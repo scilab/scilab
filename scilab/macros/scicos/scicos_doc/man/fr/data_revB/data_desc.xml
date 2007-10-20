@@ -2416,7 +2416,11 @@ values, thus making it a powerful debugging tool.
 
 For example if a simple pause is placed in the DEBUG block, then the simulation runs in
 single step mode. But the pause statement can also be made conditional. For example:
-if curblock()==3 & scicos\_time()>2 & flag==2 then pause, end
+
+{\tt
+if curblock()==3 \& scicos\_time()>2 \& flag==2 then pause, end
+}
+
 The test can also be made dependent on the values of the block, for example:
 if block.outptr(1)(1)>9 then disp(scicos\_time()),end
 
