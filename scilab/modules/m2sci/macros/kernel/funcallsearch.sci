@@ -70,7 +70,7 @@ elseif typeof(instr) == "funcall" then
     else
       findvect=find(instr.name==stripblanks(part(fnamvect,1:24)))
       funcallname=[funcallname;fnamvect(findvect(2))]
-      st = " " + mtlbtree.name + " : " + fnamvect(findvect(1))
+      st = " " + mtlbtree.name + ": " + fnamvect(findvect(1))
       for i=2:size(findvect,2)  
         st = st+ " <-> " + fnamvect(findvect(i)) 
       end

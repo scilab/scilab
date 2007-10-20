@@ -21,7 +21,7 @@ if size(funtxt,"*")>1 then
       continue
     // the called function is already passed in argument of "translateorder" function (a loop)
     elseif find(funtxt(i)==overfunname)<>[] then
-     disp([overfunname;funtxt(i)],"loop : ")
+     disp([overfunname;funtxt(i)],"loop: ")
      //return
       continue
     // order the under level, also we call translateorder (recursive)

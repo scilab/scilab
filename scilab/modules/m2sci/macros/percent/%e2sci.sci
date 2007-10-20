@@ -66,7 +66,7 @@ if rhs==1 then
 	end
       end
     end
-    error(msprintf(gettext("erros","recursive extraction from a variable %s of type %s."),var.name,string(var.vtype)))
+    error(msprintf(gettext("recursive extraction from a variable %s of type %s."),var.name,string(var.vtype)))
   elseif var.vtype==String then // Character string extraction
     tree=Funcall("part",1,Rhs(var,ind),tree.out)
     if is_a_scalar(ind) then

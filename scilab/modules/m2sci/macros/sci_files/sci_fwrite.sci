@@ -7,7 +7,7 @@ function [tree]=sci_fwrite(tree)
 // Emulation function: mtlb_fwrite()
 // V.C.
 
-set_infos(msprintf(gettext("OFF"),"mtlb_fwrite"),0);
+set_infos(msprintf(gettext("No simple equivalent, so %s() is called."),"mtlb_fwrite"),0);
 
 if rhs==4 then
   no_equiv(msprintf(gettext("%s() called with skip parameter."),"fwrite"));

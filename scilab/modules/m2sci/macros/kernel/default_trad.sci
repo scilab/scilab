@@ -42,7 +42,7 @@ if or(name==not_yet_converted()) then
   end   
   //Matlab toolboxes functions 
 elseif ismtlbtoolfun then
-  set_infos(msprintf(gettext("OFF6"),name),2)
+  set_infos(msprintf(gettext("Matlab toolbox(es) function %s not converted, original calling sequence used"),name),2)
   if ~or(name==mtlbtool_fun(:,1)) then
     mtlbtool_fun($+1,1)=name
     if ispriminame then

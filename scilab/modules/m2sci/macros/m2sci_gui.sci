@@ -9,7 +9,7 @@ end
 
 // Default Options and Values
 TCL_SetVar("ePathToConvert",getcwd());
-TCL_SetVar("eFileToConvert",gettext("&lt;enter a file name&gt;"));
+TCL_SetVar("eFileToConvert",gettext("<enter a file name>"));
 TCL_SetVar("eResDirName",getcwd());
 TCL_SetVar("rRecMode",gettext("NO"));
 TCL_SetVar("rOnlyDouble",gettext("NO"));

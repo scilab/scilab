@@ -100,15 +100,15 @@ fnam=part(base_name,k($)+1:ke) // File name without extension
 
 // logfile initialisation
 if exists("logfile")==0 then
-  [tempfd1,ierr1]=file('open',pathconvert(TMPDIR)+gettext("m2sci_message_5"),"old")
+  [tempfd1,ierr1]=file('open',pathconvert(TMPDIR)+"logfile.dat","old")
   if ierr1==0 then
-    load(pathconvert(TMPDIR)+gettext("m2sci_message_5"))
+    load(pathconvert(TMPDIR)+"logfile.dat")
     file('close',tempfd1)
     file('close',logfile)
-    mdelete(pathconvert(TMPDIR)+gettext("m2sci_message_5"))
+    mdelete(pathconvert(TMPDIR)+"logfile.dat")
   end
   logfile=file('open',res_path+"m2sci_"+fnam+".log","unknown")
-  save(pathconvert(TMPDIR)+gettext("m2sci_message_5"),logfile)
+  save(pathconvert(TMPDIR)+"logfile.dat",logfile)
 end
 
 // Output beginning message
@@ -307,7 +307,7 @@ if txt~=[] then
   // Output summary information
   infos=[]
   if m2sci_infos(1) then
-    infos=gettext("Translation may be improved: see the //! comments and for all mtlb_&lt;funname&gt; function call");
+    infos=gettext("Translation may be improved: see the //! comments and for all mtlb_<funname> function call");
   end
   if m2sci_infos(2) then
     infos=[infos;gettext("Translation may be wrong (see the //!! comments).")]
@@ -336,6 +336,6 @@ clearglobal not_mtlb_fun
 // For execution called by translatepaths()
 //nametbl=resume(nametbl)
 mdelete(pathconvert(TMPDIR)+fnam+ ".tree")
-mdelete(pathconvert(TMPDIR)+gettext("m2sci_message_5"))
+mdelete(pathconvert(TMPDIR)+"logfile.dat")
 
 endfunction

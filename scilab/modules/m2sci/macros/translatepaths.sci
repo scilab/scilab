@@ -85,8 +85,8 @@ end
 
 for k1=1:size(mfiles,1)
     mpath=mfiles(k1)
-    disp(gettext("********************lst_funcall**********************"))
-   disp(mpath)
+//    disp(gettext("********************lst_funcall**********************"))
+//   disp(mpath)
  filefuncallname($+1)=lst_funcall(mpath,fnamvect)
 end
 
