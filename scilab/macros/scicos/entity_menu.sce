@@ -18,6 +18,7 @@ endfunction
 
 function entity_menu(k,win)
   old=gcf();fig=scf(win)
+  seteventhandler("")
   select k
   case 1 then //browser
     ged(5,win)
@@ -38,6 +39,7 @@ function entity_menu(k,win)
     //txt=gen_code()
     //mputl(txt,TMPDIR+'/foo.txt')
   end
+   seteventhandler("ged_eventhandler")
   scf(old)
 endfunction
 
