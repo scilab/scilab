@@ -62,6 +62,8 @@ Contenu</A>
   HREF="DEBUG_SCICOS.htm#SECTION00023000000000000000">Propriétés par défaut</A>
 <LI><A NAME="tex2html9"
   HREF="DEBUG_SCICOS.htm#SECTION00024000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html10"
+  HREF="DEBUG_SCICOS.htm#SECTION00025000000000000000">Auteurs</A>
 </UL></UL>
 <!--End of Table of Contents-->
 <H3><font color="blue"><A NAME="SECTION00021000000000000000">
@@ -80,6 +82,43 @@ Description</A>
 <P>
 
 <P>
+The DEBUG block is a powerful debugging tool in Scicos. When placed in a Scicos diagram,
+during simulation, it impersonates every block, once before its activation, once after.
+By opening the DEBUG block, user can write the scilab script that will be executed when
+it is activated. The DEBUG block is very similar to a standard type 5 Scilab block. It is
+called with two arguments (block and flag), it has access to functions such as
+curblock(), scicos_time(), etc., and its output is block.
+
+<P>
+For every block, during simulation, the DEBUG block is called first (as if it were the
+block itself). Then the simulation routine of the block is called, and finally the DEBUG
+is called a second time the same way. This way, the DEBUG block can be used to monitor
+the block values before and after executation. The DEBUG block can also modify these
+values, thus making it a powerful debugging tool.
+
+<P>
+For example if a simple pause is placed in the DEBUG block, then the simulation runs in
+single step mode. But the pause statement can also be made conditional. For example:
+
+<P>
+<TT>if curblock()==3 &amp; scicos_time()&gt;2 &amp; flag==2 then pause, end
+</TT>
+
+<P>
+The test can also be made dependent on the values of the block, for example:
+if block.outptr(1)(1)&gt;9 then disp(scicos_time()),end
+
+<P>
+This block can also be used to create log files by printing information about the block
+values during simulation.
+
+<P>
+Note that for the DEBUG block to function, the debugging level must be set to 2 or
+higher. The debugging level is changed automatically when the DEBUG block is placed
+inside the diagram. It is possible to disable a DEBUG block by changing back the
+debugging level to 0, without having to remove it from the diagram. This can be done by
+using the menu Debug Level, or at the Scilab prompt (often under pause), using the
+scicos_debug() function.
 
 <H3><font color="blue"><A NAME="SECTION00023000000000000000">
 Propriétés par défaut</A>
@@ -117,6 +156,11 @@ Fonction d'interface</A>
   HREF="DEBUG_SCICOS_intfunc.htm">[voir code]</A>
 </LI>
 </UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
 
 <BR>
 
