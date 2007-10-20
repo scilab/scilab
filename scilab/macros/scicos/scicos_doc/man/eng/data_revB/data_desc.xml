@@ -640,6 +640,7 @@ function using a curve editor.
 </FILE>
 
 <FILE name='C_macros' type='LATEX'>
+
 The following C macros are avialable by including the file \htmladdnormallink{scicos\_block4.h}
 {scicos_block4_rout.htm} in a C computational function.
 
@@ -829,7 +830,7 @@ Get the sizeof of the object parameters number x.\vspace{0.2cm}\\
 \hline
 \end{tabular}
 
-\subsection{States}
+\subsection{States and work}
 
 \begin{tabular}{|p{8cm}||p{20cm}|}
 \hline 
@@ -889,11 +890,36 @@ Get pointer of uint32 typed object state number x.\vspace{0.2cm}\\
 GetSizeOfOz(blk,x)&
 Get the sizeof of the object state number x.\vspace{0.2cm}\\
 \hline
+GetWorkPtrs(blk)(blk)&
+Get the pointer of the Work array.\vspace{0.2cm}\\
+\hline
 \end{tabular}
 
+\subsection{Zero crossing surfaces and modes}
+
+\begin{tabular}{|p{8cm}||p{20cm}|}
+\hline 
+{\bf Macro}&
+{\bf Description}\vspace{0.2cm}\\
+\hline
+\hline 
+GetNg(blk)&
+Get number of zero crossing surface.\vspace{0.2cm}\\
+\hline 
+GetGPtrs(blk)&
+Get pointer of the zero crossing register.\vspace{0.2cm}\\
+\hline 
+GetNmode(blk)&
+Get number of modes.\vspace{0.2cm}\\
+\hline 
+GetModePtrs(blk)&
+Get pointer of the mode register.\vspace{0.2cm}\\
+\hline
+\end{tabular}
 </FILE>
 
 <FILE name='C_struct' type='LATEX'>
+
 The C structure of a Scicos block defines all the fields to handle data provided by the simulator
 such inputs/outputs, parameters, states, ...
 
@@ -913,7 +939,7 @@ The fields, that can be either C pointers or directly data, are then accessible 
 structure :
 
 \begin{verbatim}
-block->my_field
+block->field
 \end{verbatim}
 
 This access is a \textbf{direct} approach and most of users should prefer the \textbf{\htmladdnormallink{C\_macros}
@@ -1072,14 +1098,18 @@ typedef struct {
                     For i.e., to directly access to the data, the user can use theses instructions :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      SCSINT32\_COP *ptr\_i;\\
                      SCSCOMPLEX\_COP *ptr\_dc;\\
                      SCSREAL\_COP *ptr\_d;\\
-                     int n3,m3;\\
+                     int n1,m1;\\
                      SCSINT32\_COP cumsum\_i=0;\\
                      int i;\\
                      ...\\
-                     \null\\
+                     void mycomputfunc(scicos\_block *block,int flag) \\
+                     \{\\
+                     ...\\
                      /*get the ptrs of the first int32 regular input port*/\\
                      ptr\_i = (SCSINT32\_COP *) block->inptr[0];\\
                      /*get the ptrs of the second complex regular input port*/\\
@@ -1093,35 +1123,40 @@ typedef struct {
                      ...\\
                      /*compute the cumsum of the input int32 matrix*/\\
                      for(i=0;i<n1*m1;i++) \{\\
-                     \ \ cumsum\_i += ptr\_i[i]; \\
+                     cumsum\_i += ptr\_i[i];\\
                      \}\\
                      ...\\
+                     \}
                     }
 
                     One can also use the set of C macros :\\
-                    {\tt GetInPortPtrs(blk,x)}, {\tt GetRealInPortPtrs(blk,x)}, \\
-                    {\tt GetImagInPortPtrs(blk,x)}, {\tt Getint8InPortPtrs(blk,x)}, \\
-                    {\tt Getint16InPortPtrs(blk,x)}, {\tt Getint32InPortPtrs(blk,x)}, \\
-                    {\tt Getuint8InPortPtrs(blk,x)}, {\tt Getuint16InPortPtrs(blk,x)}, \\
-                    {\tt Getuint32InPortPtrs(blk,x)} \\
+                    {\tt GetInPortPtrs(blk,x)}, {\tt GetRealInPortPtrs(block,x)}, \\
+                    {\tt GetImagInPortPtrs(block,x)}, {\tt Getint8InPortPtrs(block,x)}, \\
+                    {\tt Getint16InPortPtrs(block,x)}, {\tt Getint32InPortPtrs(block,x)}, \\
+                    {\tt Getuint8InPortPtrs(block,x)}, {\tt Getuint16InPortPtrs(block,x)}, \\
+                    {\tt Getuint32InPortPtrs(block,x)} \\
                     to have the appropiate pointer of the data to handle and \\
-                    {\tt GetNin(blk)}, {\tt GetInPortRows(blk,x)}, \\
-                    {\tt GetInPortCols(blk,x)}, {\tt GetInPortSize(blk,x,y)}, \\
-                    {\tt GetInType(blk,x)}, {\tt GetSizeOfIn(blk,x)} \\
+                    {\tt GetNin(block)}, {\tt GetInPortRows(block,x)}, \\
+                    {\tt GetInPortCols(block,x)}, {\tt GetInPortSize(block,x,y)}, \\
+                    {\tt GetInType(block,x)}, {\tt GetSizeOfIn(block,x)} \\
                     to handle number, dimensions and type of regular input ports.
                     ({\bf x is numbered from 1 to nin and \bf y numbered  from 1 to 2}).\\
 
                     For the previous example that gives :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      SCSINT32\_COP *ptr\_i;\\
                      SCSCOMPLEX\_COP *ptr\_dc;\\
                      SCSREAL\_COP *ptr\_d;\\
-                     int n3,m3;\\
+                     int n1,m1;\\
                      SCSINT32\_COP cumsum\_i=0;\\
                      int i;\\
                      ...\\
-                     \null\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get the ptrs of the first int32 regular input port*/\\
                      ptr\_i = Getint32InPortPtrs(block,1);\\
                      /*get the ptrs of the second complex regular input port*/\\
@@ -1133,6 +1168,7 @@ typedef struct {
                      n1=GetInPortRows(block,1);\\
                      m1=GetInPortCols(block,1);\\
                      ...\\
+                     \}
                     }
 
                     Finally note that the regular input port registers are only accessible for reading.
@@ -1189,14 +1225,17 @@ typedef struct {
                     For i.e., to directly access to the data, the user can use theses instructions :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      SCSINT32\_COP *ptr\_i;\\
                      SCSCOMPLEX\_COP *ptr\_dc;\\
                      SCSREAL\_COP *ptr\_d;\\
-                     int n3,m3;\\
+                     int n1,m1;\\
                      SCSINT32\_COP cumsum\_i=0;\\
                      int i;\\
                      ...\\
-                     \null\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
                      /*get the ptrs of the first int32 regular output port*/\\
                      ptr\_i = (SCSINT32\_COP *) block->outptr[0];\\
                      /*get the ptrs of the second complex regular output port*/\\
@@ -1210,35 +1249,40 @@ typedef struct {
                      ...\\
                      /*compute the cumsum of the output int32 matrix*/\\
                      for(i=0;i<n1*m1;i++) \{\\
-                     \ \ cumsum\_i += ptr\_i[i]; \\
+                     cumsum\_i += ptr\_i[i];\\
                      \}\\
                      ...\\
+                     \}\\
                     }
 
                     One can also use the set of C macros :\\
-                    {\tt GetOutPortPtrs(blk,x)}, {\tt GetRealOutPortPtrs(blk,x)}, \\
-                    {\tt GetImagOutPortPtrs(blk,x)}, {\tt Getint8OutPortPtrs(blk,x)}, \\
-                    {\tt Getint16OutPortPtrs(blk,x)}, {\tt Getint32OutPortPtrs(blk,x)}, \\
-                    {\tt Getuint8OutPortPtrs(blk,x)}, {\tt Getuint16OutPortPtrs(blk,x)}, \\
-                    {\tt Getuint32OutPortPtrs(blk,x)} \\
+                    {\tt GetOutPortPtrs(block,x)}, {\tt GetRealOutPortPtrs(block,x)}, \\
+                    {\tt GetImagOutPortPtrs(block,x)}, {\tt Getint8OutPortPtrs(block,x)}, \\
+                    {\tt Getint16OutPortPtrs(block,x)}, {\tt Getint32OutPortPtrs(block,x)}, \\
+                    {\tt Getuint8OutPortPtrs(block,x)}, {\tt Getuint16OutPortPtrs(block,x)}, \\
+                    {\tt Getuint32OutPortPtrs(block,x)} \\
                     to have the appropiate pointer of the data to handle and \\
-                    {\tt GetNout(blk)}, {\tt GetOutPortRows(blk,x)}, \\
-                    {\tt GetOutPortCols(blk,x)}, {\tt GetOutPortSize(blk,x,y)}, \\
-                    {\tt GetOutType(blk,x)}, {\tt GetSizeOfOut(blk,x)} \\
+                    {\tt GetNout(block)}, {\tt GetOutPortRows(block,x)}, \\
+                    {\tt GetOutPortCols(block,x)}, {\tt GetOutPortSize(block,x,y)}, \\
+                    {\tt GetOutType(block,x)}, {\tt GetSizeOfOut(block,x)} \\
                     to handle number, dimensions and type of regular output ports.
                     ({\bf x is numbered from 1 to nout and \bf y is numbered  from 1 to 2}).
 
                     For the previous example that gives :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      SCSINT32\_COP *ptr\_i;\\
                      SCSCOMPLEX\_COP *ptr\_dc;\\
                      SCSREAL\_COP *ptr\_d;\\
-                     int n3,m3;\\
+                     int n1,m1;\\
                      SCSINT32\_COP cumsum\_i=0;\\
                      int i;\\
                      ...\\
-                     \null\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get the ptrs of the first int32 regular output port*/\\
                      ptr\_i = GetOutPortPtrs(block,1);\\
                      /*get the ptrs of the second complex regular output port*/\\
@@ -1250,6 +1294,7 @@ typedef struct {
                      n1=GetOutPortRows(block,1);\\
                      m1=GetOutPortCols(block,1);\\
                      ...\\
+                     \}\\
                     }
 
                     Finally note that the regular output port registers must be only written for {\tt flag}=1.
@@ -1288,12 +1333,16 @@ typedef struct {
                      each calls of the block, then you'll use :
 
                      {\tt
+                      \#include "scicos\_block4.h"\\
                       ...\\
-                      \null\\
+                      void mycomputfunc(scicos\_block *block,int flag)\\
+                      \{\\
+                      ...\\
                       if (flag==3) \{ \\
                        block->evout[0]=0.001;\\
                       \}\\
                       ...\\
+                     \}\\
                      }\\
 
                      Note that every events generated from output event register will be asynchronous with event
@@ -1319,25 +1368,29 @@ typedef struct {
                     \htmladdnormallink{scicos\_model}{scicos_model.htm} of a block :
 
                     {\tt
-                     model.rpar   = [%pi;%pi/2;%pi/4] \\
+                     model.rpar   = [\%pi;\%pi/2;\%pi/4]\\
                     }
 
                     you can retrieve the previous data in the C computational function with :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
                      ...\\
                      double PI;\\
                      double PI\_2;\\
                      double PI\_4;\\
                      ...\\
-                     \null\\
-                     /*get the first value of the real param register*/\\
-                     PI = block->rpar[0]; \\
-                     /*get the second value of the real param register*/\\
-                     PI\_2 = block->rpar[1]; \\
-                     /*get the third value of the real param register*/\\
-                     PI\_4 = block->rpar[2]; \\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
                      ...\\
+                     /*get the first value of the real param register*/\\
+                     PI = block->rpar[0];\\
+                     /*get the second value of the real param register*/\\
+                     PI\_2 = block->rpar[1];\\
+                     /*get the third value of the real param register*/\\
+                     PI\_4 = block->rpar[2];\\
+                     ...\\
+                     \}\\
                     }
 
                     You can also use the C macro {\tt GetRparPtrs(block)} to get the pointer of the
@@ -1354,20 +1407,24 @@ typedef struct {
                     in the corresponding C computational function of that block, we'll use :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
                      ...\\
-                     double *rpar; \\
+                     double *rpar;\\
                      double *A; \\
                      double *B; \\
                      ...\\
-                     \null\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get ptrs of the real param register*/\\
                      rpar = GetRparPtrs(block); \\
                      /*get the A ptrs array*/\\
-                     A = rpar; \\
+                     A = rpar;\\
                      /*get the B ptrs array*/\\
-                     B = \&rpar[4]; \\
-                     /*or B = rpar + 4;*/
+                     B = \&rpar[4];\\
+                     /*or B = rpar + 4;*/\\
                      ...\\
+                     \}\\
                     }
 
                     Note that real parameters register is only accessible for reading.
@@ -1392,13 +1449,16 @@ typedef struct {
                     you can retrieve the previous data in the C computational function with :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
                      ...\\
                      int one;\\
                      int two;\\
                      int three;\\
-                     int five;\
+                     int five;\\
                      ...\\
-                     \null\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get the first value of the integer param register*/\\
                      one = block->ipar[0]; \\
                      /*get the second value of the integer param register*/\\
@@ -1408,6 +1468,7 @@ typedef struct {
                      /*get the fourth value of the integer param register*/\\
                      five = block->ipar[3]; \\
                      ...\\
+                     \}\\
                     }
 
                     You can also use the C macro {\tt GetIparPtrs(block)} to get the pointer of the
@@ -1435,6 +1496,7 @@ typedef struct {
                     correspondig C computational function with :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
                      ...\\
                      int A\_sz; \\
                      int B\_sz; \\
@@ -1444,7 +1506,9 @@ typedef struct {
                      double cumsum;\\
                      int i; \\
                      ...\\
-                     \null\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get ptrs of the real param register*/\\
                      rpar = GetRparPtrs(block); \\
                      /*get size of the first real param register*/\\
@@ -1459,13 +1523,13 @@ typedef struct {
                      /*compute the cumsum of the first real parameter array*/\\
                      cumsum = 0;\\
                      for(i=0;i<A\_sz;i++) \{\\
-                     \ \ cumsum += A[i]; \\
+                     cumsum += A[i];\\
                      \}\\
                      ...\\
                      /*compute the cumsum of the second real parameter array*/\\
                      cumsum = 0;\\
                      for(i=0;i<B\_sz;i++) \{\\
-                     \ \ cumsum += B[i]; \\
+                     cumsum += B[i]; \\
                      \}\\
                     }
 
@@ -1482,8 +1546,13 @@ typedef struct {
                      For i.e. if we want the dimensions of the last object parameters, we'll use the instructions :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      int nopar;\\
                      int n,m;\\
+                     ...\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
                      ...\\
                      /*get the number of object parameter*/\\
                      nopar=block\->nopar;\\
@@ -1492,6 +1561,8 @@ typedef struct {
                      n=block\->oparsz[nopar-1];\\
                      /*get number of column of the last object parameter*/\\
                      m=block\->oparsz[2*nopar-1];\\
+                     ...\\
+                     \}\\
                     }
 
                     The dimensions of object parameters can be get with the following C macro :
@@ -1585,10 +1656,17 @@ typedef struct {
                      object parameter, we'll use the following C instructions:
 
                      {\tt
+                      \#include "scicos\_block4.h"\\
+                     ...\\
                       int opartyp\_1;\\
                      ...\\
+                      void mycomputfunc(scicos\_block *block,int flag)\\
+                      \{\\
+                      ...\\
                       /*get the number type of the first object parameter*/\\
-                      opartyp\_1 = GetOparType(block,1);
+                      opartyp\_1 = GetOparType(block,1);\\
+                      ...\\
+                     \}\\
                      }
 
  \item {\bf block->oparptr :} An array of pointers of size nopar,1 that allow to directly acces to the
@@ -1597,12 +1675,6 @@ typedef struct {
                      \textbf{opar} field in \htmladdnormallink{scicos\_model}{scicos_model.htm} :
 
                      {\tt model.opar=list(int32([1,2;3,4]),[1+\%i \%i 0.5]);}
-%                      \begin{eqnarray}
-%                        {\tt model.opar}={\tt list}\left({\tt int32}\left(\left[\begin{array}{cc}
-%                        1 & 2\\
-%                        3 & 4\end{array}\right]\right),\left[\begin{array}{ccc}
-%                        1+{\tt \% i} & {\tt \% i} & 0.5\end{array}\right]\right)
-%                      \end{eqnarray}
 
                      Then we have two object parameters, one is an 32-bit integer matrix with two rows and two
                      columns and the second is a vector of complex numbers that can be understand as a matrix
@@ -1623,12 +1695,16 @@ typedef struct {
                     For i.e., to directly access to the data, the user can use theses instructions :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      SCSINT32\_COP *ptr\_i;\\
                      SCSINT32\_COP cumsum\_i;\\
                      SCSCOMPLEX\_COP *ptr\_d;\\
-                     SCSREAL\_COP cumsum\_r;
-                     ...\
-                     \null\\
+                     SCSREAL\_COP cumsum\_d;\\
+                     ...\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get the ptrs of an int32 object parameter*/\\
                      ptr\_i = (SCSINT32\_COP *) block->oparptr[0];\\
                      /*get the ptrs of a double object parameter*/\\
@@ -1640,28 +1716,34 @@ typedef struct {
                      /*compute the cumsum of the real part of the complex matrix*/\\
                      cumsum\_d = ptr\_d[0]+ptr\_d[1]+ptr\_d[2];\\
                      ...\\
+                     \}\\
                     }
 
                     One can also use the set of C macros :\\
                     {\tt GetRealOparPtrs(block,x)},  {\tt GetImagOparPtrs(block,x)},\\
                     {\tt Getint8OparPtrs(block,x)},  {\tt Getint16OparPtrs(block,x)},\\
                     {\tt Getint32OparPtrs(block,x)}, {\tt Getuint8OparPtrs(block,x)},\\
-                    {\tt Getuint16OparPtrs(block,x)}, {\tt Getuint32OparPtrs(block,x)} \\
+                    {\tt Getuint16OparPtrs(block,x)}, {\tt Getuint32OparPtrs(block,x)}\\
                     to have the appropiate pointer of the data to handle ({\bf x is numbered from 1 to nopar}).\\
                     For the previous example that gives :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      SCSINT32\_COP *ptr\_i;\\
                      SCSREAL\_COP *ptr\_dr;\\
                      SCSREAL\_COP *ptr\_di;\\
-                     ...\
-                     \null\\
+                     ...\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get the ptrs of an int32 object parameter*/\\
                      ptr\_i = Getint32OparPtrs(block,1);\\
                      /*get the ptrs of a double object parameter*/\\
                      ptr\_dr = GetRealOparPtrs(block,2);\\
                      ptr\_di = GetImagOparPtrs(block,2);\\
                      ...\\
+                     \}\\
                     }
 
                     Note that object parameters register is only accessible for reading.
@@ -1680,9 +1762,16 @@ typedef struct {
                  the C instructions :
 
                  {\tt
+                  \#include "scicos\_block4.h"\\
+                  ...\\
                   double x\_1;\\
-                    ...\\
-                  x\_1=block->x[0];
+                  ...\\
+                  void mycomputfunc(scicos\_block *block,int flag)\\
+                  \{\\
+                  ...\\
+                  x\_1=block->x[0];\\
+                  ...\\
+                  \}\\
                  }
 
                  Note that on {\tt flag}=4, user can write some initial conditions in that register.\\
@@ -1701,6 +1790,7 @@ typedef struct {
                   will be defined :
 
                   {\tt
+                   \#include "scicos\_block4.h"\\
                    ...\\
                    double *x = block->x;\\
                    double *xd = block->xd;\\
@@ -1710,11 +1800,16 @@ typedef struct {
                    double b = 28;\\
                    double c = 8/3;\\
                    ...\\
+                   void mycomputfunc(scicos\_block *block,int flag)\\
+                   \{\\
+                   ...\\
                    if (flag == 0) \{\\
-                      xd[0] = a*(x[1]-x[0]); \\
-                      xd[1] = x[1]*(b-x[2])-x[1]; \\
-                      xd[2] = x[0]*x[1]-c*x[2]; \\
-                   \}
+                      xd[0] = a*(x[1]-x[0]);\\
+                      xd[1] = x[1]*(b-x[2])-x[1];\\
+                      xd[2] = x[0]*x[1]-c*x[2];\\
+                   \}\\
+                   ...\\
+                   \}\\
                   }
 
  \item {\bf block->res :} Array of double of size nx,1 corresponding to Differential Algebraic Equation (DAE) residual.\\
@@ -1725,6 +1820,7 @@ typedef struct {
                    For i.e the Lorentz attractor written as a DAE system with three state variables, will be defined :
 
                    {\tt
+                    \#include "scicos\_block4.h"\\
                     ...\\
                     double *x = block->x;\\
                     double *xd = block->xd;\\
@@ -1735,11 +1831,16 @@ typedef struct {
                     double b = 28;\\
                     double c = 8/3;\\
                     ...\\
+                    void mycomputfunc(scicos\_block *block,int flag)\\
+                    \{\\
+                    ...\\
                     if (flag == 0) \{\\
-                      res[0] =  - xd[0] + (a*(x[1]-x[0])); \\
-                      res[1] =  - xd[1] + (x[0]*(b-x[2])-x[1]); \\
-                      res[2] =  - xd[2] + (x[0]*x[1]-c*x[2]); \\
-                    \}
+                      res[0] =  - xd[0] + (a*(x[1]-x[0]));\\
+                      res[1] =  - xd[1] + (x[0]*(b-x[2])-x[1]);\\
+                      res[2] =  - xd[2] + (x[0]*x[1]-c*x[2]);\\
+                    \}\\
+                    ...\\
+                    \}\\
                    }
 
 
@@ -1753,9 +1854,16 @@ typedef struct {
                  the C instructions :
 
                  {\tt
+                  \#include "scicos\_block4.h"\\
+                  ...\\
                   double z\_2;\\
                   ...\\
-                  z\_2=block->z[1];
+                  void mycomputfunc(scicos\_block *block,int flag)\\
+                  \{\\
+                  ...\\
+                  z\_2=block->z[1];\\
+                  ...\\
+                  \}\\
                  }
 
                  Note that the state register should be only written for {\tt flag}=4 and {\tt flag}=2.\\
@@ -1772,16 +1880,23 @@ typedef struct {
                     For i.e. if we want the dimensions of the last object state, we'll use the instructions :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      int noz;\\
                      int n,m;\\
                      ...\\
                      /*get the number of object state*/\\
                      noz=block\->noz;\\
                      ...\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get number of row of the last object state*/\\
                      n=block\->ozsz[noz-1];\\
                      /*get number of column of the last object state*/\\
                      m=block\->ozsz[2*noz-1];\\
+                     ...\\
+                     \}\\
                     }
 
                     The dimensions of object discrete states can be get with the following C macro :
@@ -1875,10 +1990,17 @@ typedef struct {
                      discrete object state, we'll use the following C instructions:
 
                      {\tt
+                      \#include "scicos\_block4.h"\\
+                      ...\\
                       int oztyp\_1;\\
-                     ...\\
+                      ...\\
+                      void mycomputfunc(scicos\_block *block,int flag)\\
+                      \{\\
+                      ...\\
                       /*get the number type of the first object state*/\\
-                      oztyp\_1 = GetOzType(block,1);
+                      oztyp\_1 = GetOzType(block,1);\\
+                     ...\\
+                     \}\\
                      }
 
  \item {\bf block->ozptr :} An array of pointers of size noz,1 that allow to directly acces to the
@@ -1887,12 +2009,6 @@ typedef struct {
                      \textbf{odstate} field in \htmladdnormallink{scicos\_model}{scicos_model.htm} :
 
                      {\tt model.odstate=list(int32([1,2;3,4]),[1+\%i \%i 0.5]);}
-%                      \begin{eqnarray}
-%                        {\tt model.odstate}={\tt list}\left({\tt int32}\left(\left[\begin{array}{cc}
-%                        1 & 2\\
-%                        3 & 4\end{array}\right]\right),\left[\begin{array}{ccc}
-%                        1+{\tt \% i} & {\tt \% i} & 0.5\end{array}\right]\right)
-%                      \end{eqnarray}
 
                      Then we have two discrete object states, one is an 32-bit integer matrix with two rows and two
                      columns and the second is a vector of complex numbers that can be understand as a matrix
@@ -1913,23 +2029,28 @@ typedef struct {
                     For i.e., to directly access to the data, the user can use theses instructions :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      SCSINT32\_COP *ptr\_i;\\
                      SCSINT32\_COP cumsum\_i;\\
                      SCSCOMPLEX\_COP *ptr\_d;\\
-                     SCSREAL\_COP cumsum\_r;
-                     ...\
-                     \null\\
+                     SCSREAL\_COP cumsum\_d;
+                     ...\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get the ptrs of an int32 discrete object state*/\\
                      ptr\_i = (SCSINT32\_COP *) block->ozptr[0];\\
                      /*get the ptrs of a double discrete object state*/\\
                      ptr\_d = (SCSCOMPLEX\_COP *) block->ozptr[1];\\
                      ...\\
                      /*compute the cumsum of the int32 matrix*/\\
-                     cumsum\_i = ptr\_i[0]+ptr\_i[1]+ptr\_i[2]+ptr\_i[3];
+                     cumsum\_i = ptr\_i[0]+ptr\_i[1]+ptr\_i[2]+ptr\_i[3];\\
                      ...\\
                      /*compute the cumsum of the real part of the complex matrix*/\\
                      cumsum\_d = ptr\_d[0]+ptr\_d[1]+ptr\_d[2];\\
                      ...\\
+                     \}\\
                     }
 
                     One can also use the set of C macros :\\
@@ -1941,17 +2062,22 @@ typedef struct {
                     For the previous example that gives :
 
                     {\tt
+                     \#include "scicos\_block4.h"\\
+                     ...\\
                      SCSINT32\_COP *ptr\_i;\\
                      SCSREAL\_COP *ptr\_dr;\\
                      SCSREAL\_COP *ptr\_di;\\
-                     ...\
-                     \null\\
+                     ...\\
+                     void mycomputfunc(scicos\_block *block,int flag)\\
+                     \{\\
+                     ...\\
                      /*get the ptrs of an int32 discrete object state*/\\
                      ptr\_i = Getint32OzPtrs(block,1);\\
                      /*get the ptrs of a double discrete object state*/\\
                      ptr\_dr = GetRealOzPtrs(block,2);\\
                      ptr\_di = GetImagOzPtrs(block,2);\\
                      ...\\
+                     \}\\
                     }
 
                     Finally note that the discrete objects state should be only written for {\tt flag}=4 and {\tt flag}=2.
@@ -1962,25 +2088,31 @@ typedef struct {
                            Then a basic life cyle of that pointer in a C computational function should be :
 
                            {\tt
+                            \#include "scicos\_block4.h"\\
                             ...\\
                             void** work=block->work;\\
                             ...\\
-                            /*initialization*/
-                            if (flag==4) {\\
-                              /*allocation of work*/
-                              if (*work=scicos\_malloc(sizeof(double))==NULL) {\\
+                            void mycomputfunc(scicos\_block *block,int flag)\\
+                            \{\\
+                           ...\\
+                            /*initialization*/\\
+                            if (flag==4) \{\\
+                              /*allocation of work*/\\
+                              if (*work=scicos\_malloc(sizeof(double))==NULL) \{\\
                                set\_block\_error(-16);\\
                                return;\\
-                              }\\
+                              \}\\
                             ...\\
-                            }\\
+                            \}\\
                             ...\\
                             /*other flag treatment*/\\
                             ...\\
                             /*finish*/\\
-                            else if (flag==5) {\\
+                            else if (flag==5) \{\\
                                scicos\_free(*work);\\
-                            }\\
+                            \}\\
+                            ...\\
+                            \}\\
                            }
 
                            Note that if a block use a {\tt work} pointer, it will be called with {\tt flag}=2 even if
@@ -2025,12 +2157,11 @@ typedef struct {
  %\item {\bf scsptr :}
  %\item {\bf ztyp :}
 
- \item {\bf block->type :} Integer that gives the type of the computation function. For C blocks, this number
+ \item {\bf block->type :} Integer that gives the type of the computational function. For C blocks, this number
                     is equal to 4.
 
- \item {\bf block->label :}
+ \item {\bf block->label :} Strings array that allows to retrieve the label of the block.
 \end{itemize}
-
 </FILE>
 
 <FILE name='C_utils' type='XML'>
