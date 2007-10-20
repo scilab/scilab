@@ -2183,16 +2183,64 @@ typedef struct {
 \end{itemize}
 </FILE>
 
-<FILE name='C_utils' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Ajoutez ici un paragraphe pour la description de la fonction
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='C_utils' type='LATEX'>
+
+The \htmladdnormallink{scicos\_block4.h}{scicos_block4_rout.htm} header provides some utilities
+functions to interact with the simulator in the C computational functions.
+
+\begin{itemize}
+
+\item {\bf void do\_cold\_restart();}\\
+      That function do a cold restart for the solver.
+
+\item {\bf int get\_phase\_simulation();} \\
+      That function returns an integer which says if the simulator is realizing time domain
+      integration. It can returns :
+      \begin{itemize}
+        \item {\bf 1 :} The simulator is on a discrete activation time.
+        \item {\bf 2 :} The simulator is realizing a continuous time domain integration.
+      \end{itemize}
+
+\item {\bf double get\_scicos\_time();} \\
+      That function returns the current time of simulator.
+
+\item {\bf int get\_block\_number();}\\
+      That function returns an integer : the block index in the compiled structure. Each
+      block in the simulated diagram have a single index, and blocks are numbered from
+      1 to nblk (the total number of blocks in the compiled structure).
+
+\item {\bf void set\_block\_error(int);}\\
+       Function to set a specific error during the simulation for the current block. If it is used, then
+       after the execution of the computational function of the block, the simulator will end and will
+       return an error message associated to the number given in the integer argument.\\
+       The following calls are allowed :
+       \begin{itemize}
+          \item{\bf set\_block\_error(-1); :} the block has been called with input out of its domain,
+          \item{\bf set\_block\_error(-2); :} singularity in a block,
+          \item{\bf set\_block\_error(-3); :} block produces an internal error,
+          \item{\bf set\_block\_error(-16); :} cannot allocate memory in block.
+       \end{itemize}
+
+\item {\bf void end\_scicos\_sim();}\\
+      A very specific function to set the current time of the simulator to the final time integration.\\
+      Only expert user should use this function.
+
+\item {\bf void set\_pointer\_xproperty(int* pointer);}\\
+       This function set a vector of integer to inform the type (algebraic or differential) of the 
+       continuous state variables of the block.
+
+\item {\bf void * scicos\_malloc(size\_t);}\\
+      That function must be used to do allocation of scicos pointers inside a C computational function and
+      in particular for {\tt flag}=4 for the work pointer {\tt *block->work}.
+
+\item {\bf void scicos\_free(void *p);}\\
+      That function must be used to free scicos pointers inside a C computational function and
+      in particular for {\tt flag}=5 for the work pointer {\tt *block->work}.
+
+%double Get_Jacobian_parameter(void);
+%double Get_Scicos_SQUR(void);
+%void Set_Jacobian_flag(int flag);
+\end{itemize}
 </FILE>
 
 <FILE name='Capacitor' type='LATEX'>
@@ -4719,6 +4767,112 @@ Les entrées non sélectionnées ne sont donc pas propagées.
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
+</FILE>
+
+<FILE name='sci_struct' type='LATEX'>
+
+A Scicos computational function of type 5 can be realized by the use of a Scilab function.
+That function doesn't really differs from all other scilab function : one can use all functions and
+instructions of the scilab language inside that function to do the computation.
+
+Such a function must be written in a file with extension .sci, must be loaded inside scilab by the
+common loading scilab function ({\tt exec}, {\tt getf}, {\tt getd}, {\tt genlib},...) and must have
+two right hand side arguments and one left hand side argument, as the following calling sequence :
+
+{\tt
+function block=myblock(block,flag)\\
+...\\
+//your computational instructions \\
+...\\
+endfunction\\
+}
+
+When the simulator is calling such a computational function, it build a scilab structure (in the previous exemple this is the named {\tt block} rhs/lhs arguments) from his own internal C reprensation of a block structure (see \htmladdnormallink{C\_struct} {C_struct.htm} for more details about the C structure of scicos
+blocks).
+
+That scilab structure is a scilab typed list variable that have the following fields :
+
+{\tt
+!scicos\_block  nevprt  funpt  type  scsptr  nz  z  noz  ozsz  oztyp  !\\
+!oz  nx  x  xd  res  nin  insz  inptr  nout  outsz  outptr  nevout  !\\
+!evout  nrpar  rpar  nipar  ipar  nopar  oparsz  opartyp  opar  ng  g  !\\
+!ztyp  jroot  label  work  nmode  mode  !
+}
+
+Each fields are then accessible inside the scilab computational function by the use of :
+
+{\tt
+ block.field
+}
+
+\subsection{Inputs/outputs}
+
+\begin{itemize}
+ \item {\bf block.nin :} a scalar
+ \item {\bf block.insz :} a vector
+ \item {\bf block.inptr :} a list
+ \item {\bf block.nout :} a scalar
+ \item {\bf block.outsz :} a vector
+ \item {\bf block.outptr :} a list
+\end{itemize}
+
+\subsection{Events}
+
+\begin{itemize}
+ \item {\bf block.nevprt :} a scalar
+ \item {\bf block.nevout :} a scalar
+ \item {\bf block.evout :} a vector
+\end{itemize}
+
+\subsection{Parameters}
+
+\begin{itemize}
+ \item {\bf block.nrpar :} a scalar
+ \item {\bf block.rpar :} a vector
+ \item {\bf block.nipar :} a scalar
+ \item {\bf block.ipar :} a vector
+ \item {\bf block.nopar :} a scalar
+ \item {\bf block.oparsz :} a matrix
+ \item {\bf block.opartyp :} a vector
+ \item {\bf block.opar :} a list
+\end{itemize}
+
+\subsection{States}
+
+\begin{itemize}
+ \item {\bf block.nz :} a scalar
+ \item {\bf block.z :} a vector
+ \item {\bf block.noz :} a scalar
+ \item {\bf block.ozsz :} a matrix
+ \item {\bf block.oztyp :} a vector
+ \item {\bf block.oz :} a list
+ \item {\bf block.nx :} a scalar
+ \item {\bf block.x :} a vector
+ \item {\bf block.xd :} a vector
+ \item {\bf block.res :} a vector
+ %\item {\bf block.work:}
+\end{itemize}
+
+\subsection{Zero crossing surfaces and modes}
+
+\begin{itemize}
+ \item {\bf block.ng :} a scalar
+ \item {\bf block.g :} a vector
+% \item {\bf block.jroot :}
+ \item {\bf block.nmode :} a scalar
+ \item {\bf block.mode :} a vector
+\end{itemize}
+
+\subsection{Miscallaneous}
+
+\begin{itemize}
+% \item {\bf : funpt}
+ \item {\bf block.type :} a scalar
+% \item {\bf block.ztyp :}
+ \item {\bf block.label :} a string
+ %\item {\bf scsptr :}
+\end{itemize}
+
 </FILE>
 
 <FILE name='Sigbuilder' type='LATEX'>

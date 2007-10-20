@@ -4691,7 +4691,6 @@ while the unselected inputs are discarded.
   </DESCRIPTION>
 </FILE>
 
-
 <FILE name='sci_struct' type='LATEX'>
 
 A Scicos computational function of type 5 can be realized by the use of a Scilab function.
@@ -4797,7 +4796,6 @@ Each fields are then accessible inside the scilab computational function by the 
 \end{itemize}
 
 </FILE>
-
 
 <FILE name='Sigbuilder' type='LATEX'>
 The Signal Builder block is a superblock containing a
