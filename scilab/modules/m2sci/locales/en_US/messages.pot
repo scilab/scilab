@@ -65,6 +65,7 @@ msgid	"endsymbol should be a character string and not a: %s."
 msgstr	""
 #
 # File: macros/kernel/funcallsearch.sci, line: 73
+# File: macros/kernel/set_infos.sci, line: 7
 msgid	": "
 msgstr	""
 #
@@ -370,10 +371,6 @@ msgstr	""
 #
 # File: macros/kernel/set_infos.sci, line: 7
 msgid	"L."
-msgstr	""
-#
-# File: macros/kernel/set_infos.sci, line: 7
-msgid	": "
 msgstr	""
 #
 # File: macros/kernel/set_infos.sci, line: 13
