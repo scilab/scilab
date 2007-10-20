@@ -1768,7 +1768,7 @@ typedef struct {
                     Note that object parameters register is only accessible for reading.
 \end{itemize}
 
-\subsection{Sates and work}
+\subsection{States and work}
 
 \begin{itemize}
  \item {\bf block->nx :} Integer that gives the length of the continus state register.\\
@@ -5357,7 +5357,7 @@ is slower. For more information see Scicos reference manual.
 	<P>
 	  This function finds the steady state for a given system described
 	  by a Scicos diagram. The diagram consists in general of a Super
-	  block with input and output port blocks. The steady states
+	  block with input and output port blocks. The steady state
 	  concerns only the continuous-time dynamics.
 	</P>
       </DESCRIPTION_ITEM>
