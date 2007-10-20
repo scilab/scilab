@@ -515,7 +515,9 @@ INRIA
 
 <FILE name='DEBUG_SCICOS' type='XML'>
 <AUTHORS>
-
+<AUTHORS_ITEM label='Ramine Nikoukhah'>
+INRIA
+</AUTHORS_ITEM>
 </AUTHORS>
 </FILE>
 

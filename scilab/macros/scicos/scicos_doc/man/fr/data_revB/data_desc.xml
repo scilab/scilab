@@ -2401,6 +2401,34 @@ Fournit une zone où la sortie est égale à zéro.
 
 <FILE name='DEBUG_SCICOS' type='LATEX'>
 
+The DEBUG block is a powerful debugging tool in Scicos. When placed in a Scicos diagram,
+during simulation, it impersonates every block, once before its activation, once after.
+By opening the DEBUG block, user can write the scilab script that will be executed when
+it is activated. The DEBUG block is very similar to a standard type 5 Scilab block. It is
+called with two arguments (block and flag), it has access to functions such as
+curblock(), scicos\_time(), etc., and its output is block.
+
+For every block, during simulation, the DEBUG block is called first (as if it were the
+block itself). Then the simulation routine of the block is called, and finally the DEBUG
+is called a second time the same way. This way, the DEBUG block can be used to monitor
+the block values before and after executation. The DEBUG block can also modify these
+values, thus making it a powerful debugging tool.
+
+For example if a simple pause is placed in the DEBUG block, then the simulation runs in
+single step mode. But the pause statement can also be made conditional. For example:
+if curblock()==3 & scicos\_time()>2 & flag==2 then pause, end
+The test can also be made dependent on the values of the block, for example:
+if block.outptr(1)(1)>9 then disp(scicos\_time()),end
+
+This block can also be used to create log files by printing information about the block
+values during simulation.
+
+Note that for the DEBUG block to function, the debugging level must be set to 2 or
+higher. The debugging level is changed automatically when the DEBUG block is placed
+inside the diagram. It is possible to disable a DEBUG block by changing back the
+debugging level to 0, without having to remove it from the diagram. This can be done by
+using the menu Debug Level, or at the Scilab prompt (often under pause), using the
+scicos\_debug() function.
 </FILE>
 
 <FILE name='DELAYV_f' type='XML'>
