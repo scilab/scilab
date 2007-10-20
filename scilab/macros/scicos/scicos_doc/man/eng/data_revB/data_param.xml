@@ -7713,7 +7713,7 @@ integer between Min value and the Max value) divided by this Normalization facto
 	    <PARAM_NAME>1</PARAM_NAME>
 	    <PARAM_DESCRIPTION>
 	      <SP>
-		The simulator is on a discrete activation.
+		The simulator is on a discrete activation time.
 	      </SP>
 	    </PARAM_DESCRIPTION>
 	  </PARAM_ITEM>

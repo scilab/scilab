@@ -173,6 +173,11 @@ function tt=generate_scs_outline()
                "  </CHAPTER>"
                ""
                "  <CHAPTER eng=""Programming Scicos blocks"" fr=""Programmation des blocs Scicos"">"
+               "   <SUBCHAPTER eng=""Basics"" fr=""Eléments de base"">";
+               "        <SCI varpath="""" name=""block_type""></SCI>"
+               "        <SCI varpath="""" name=""data_type""></SCI>"
+               "        <SCI varpath="""" name=""use_flag""></SCI>"
+               "   </SUBCHAPTER>";
                "   <SUBCHAPTER eng=""C computational functions (Type 4)"" fr=""Fonctions de calcul en C (Type 4)"">";
                "     <SCI varpath="""" name=""C_struct""></SCI>"
                "     <SCI varpath="""" name=""C_macros""></SCI>"
@@ -891,79 +896,79 @@ function gen_scs_prgblk(typdoc,%gd)
            mputl(txt,%gd.lang(i)+...
                  '/'+name+...
                  '/'+name+'.tex');
-           break
-         end
-         //**---------------------**//
-
-         //** change title of html head
-         if %gd.lang(i)=='fr' then
-            head_tex=strsubst(head_tex,'Fonction Scilab','Programmation des blocs scicos')
-         elseif %gd.lang(i)=='eng' then
-            head_tex=strsubst(head_tex,'Scilab Function','Programming scicos blocks')
-         end
-
-         name=get_extname(list_of_prgblk(j,:),%gd)
-
-         if fileinfo(%gd.lang(i)+...
-                     '/'+name+...
-                     '/'+name+'_mod.tex')<>[] then
-
-           tt=['\subsection{Module}'
-               mgetl(%gd.lang(i)+...
-                     '/'+name+...
-                     '/'+name+'_mod.tex')];
          else
-           tt=[];
-         end
-
-         if fileinfo(%gd.lang(i)+...
-                     '/'+name+...
-                     '/'+name+'_long.tex')<>[] then
-           tt=[tt;
-               '\subsection{Description}'
-               mgetl(%gd.lang(i)+...
-                     '/'+name+...
-                     '/'+name+'_long.tex')];
-         end
-
-         if fileinfo(%gd.lang(i)+...
-                     '/'+name+...
-                     '/'+name+'_authors.tex')<>[] then
-           if %gd.lang(i)=='fr' then
-             tt_sub = '\subsection{Auteurs}'
-           else
-             tt_sub = '\subsection{Authors}'
-           end
-           tt=[tt;
-              tt_sub;
-              mgetl(%gd.lang(i)+...
-                    '/'+name+...
-                    '/'+name+'_authors.tex')];
-         end
-
-         //** generate txt of tex file
-         txt=[head_tex;
-              '\tableofcontents'
-              tt
-              '\htmlinfo*'
-              '\end{document}']
          //**---------------------**//
 
-         //create lang directory
-         if fileinfo(%gd.lang(i)+'/')==[] then
-           mkdir(%gd.lang(i))
-         end
-         //create object directory for
-         //tex compilation
-         if fileinfo(%gd.lang(i)+'/'+...
-                      name)==[] then
-           mkdir(%gd.lang(i)+'/'+name)
-         end
+           //** change title of html head
+           if %gd.lang(i)=='fr' then
+              head_tex=strsubst(head_tex,'Fonction Scilab','Programmation des blocs scicos')
+           elseif %gd.lang(i)=='eng' then
+              head_tex=strsubst(head_tex,'Scilab Function','Programming scicos blocks')
+           end
 
-         mputl(txt,%gd.lang(i)+...
-               '/'+name+...
-               '/'+name+'.tex');
+           name=get_extname(list_of_prgblk(j,:),%gd)
 
+           if fileinfo(%gd.lang(i)+...
+                       '/'+name+...
+                       '/'+name+'_mod.tex')<>[] then
+
+             tt=['\subsection{Module}'
+                 mgetl(%gd.lang(i)+...
+                       '/'+name+...
+                       '/'+name+'_mod.tex')];
+           else
+             tt=[];
+           end
+
+           if fileinfo(%gd.lang(i)+...
+                       '/'+name+...
+                       '/'+name+'_long.tex')<>[] then
+             tt=[tt;
+                 '\subsection{Description}'
+                 mgetl(%gd.lang(i)+...
+                       '/'+name+...
+                       '/'+name+'_long.tex')];
+           end
+
+           if fileinfo(%gd.lang(i)+...
+                       '/'+name+...
+                       '/'+name+'_authors.tex')<>[] then
+             if %gd.lang(i)=='fr' then
+               tt_sub = '\subsection{Auteurs}'
+             else
+               tt_sub = '\subsection{Authors}'
+             end
+             tt=[tt;
+                tt_sub;
+                mgetl(%gd.lang(i)+...
+                      '/'+name+...
+                      '/'+name+'_authors.tex')];
+           end
+
+           //** generate txt of tex file
+           txt=[head_tex;
+                '\tableofcontents'
+                tt
+                '\htmlinfo*'
+                '\end{document}']
+           //**---------------------**//
+
+           //create lang directory
+           if fileinfo(%gd.lang(i)+'/')==[] then
+             mkdir(%gd.lang(i))
+           end
+           //create object directory for
+           //tex compilation
+           if fileinfo(%gd.lang(i)+'/'+...
+                        name)==[] then
+             mkdir(%gd.lang(i)+'/'+name)
+           end
+
+           mputl(txt,%gd.lang(i)+...
+                 '/'+name+...
+                 '/'+name+'.tex');
+
+         end
       end
    end
 endfunction
@@ -1285,8 +1290,11 @@ list_of_scistruc = [opath2(1),"scicos_diagram.sci","sci";
 list_of_prgblk   = ["","C_struct","sci";
                     "","C_macros","sci";
                     "","C_utils","sci";
-                    SCI+'/routines/scicos/',"scicos_block4.h","rout"];
-//                    "","sci_struct","sci";];
+                    SCI+'/routines/scicos/',"scicos_block4.h","rout";
+                    "","sci_struct","sci";
+                    "","data_type","sci";
+                    "","block_type","sci";
+                    "","use_flag","sci";];
 //**------------*/
 
 //**-- About_scicos --*/
