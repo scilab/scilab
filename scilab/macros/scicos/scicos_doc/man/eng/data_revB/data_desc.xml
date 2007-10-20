@@ -103,7 +103,7 @@ dynamics.  The dynamics of the system in the control mode $i$ is
 described by a smooth index-1 DAE ({\it i.e.,} $0=F_i(\dot x,x,u,t)$).
 
 \item The next $N$ elements of $Input_i$ are the values used to
- reset the continuous-time states when a transition \underline{to} 
+ reset the continuous-time state when a transition \underline{to} 
  control mode $i$ is activated.
 
 \item The next $Z_i$ elements of $Input_i$ are the jump or
@@ -119,7 +119,7 @@ subsystem not included in the internal dynamics of the automaton
 block.
 \end{itemize}
  In the interface window, the number of control modes, the initial
-control mode and the initial value of continuous-time states at the
+control mode and the initial value of continuous-time state at the
 beginning of the simulation should be given.
 
 Find more documentation and demos about the Automaton block oat
@@ -1749,7 +1749,7 @@ typedef struct {
                     Note that object parameters register is only accessible for reading.
 \end{itemize}
 
-\subsection{Sates and work}
+\subsection{States and work}
 
 \begin{itemize}
  \item {\bf block->nx :} Integer that gives the length of the continus state register.\\
@@ -5278,7 +5278,7 @@ is slower. For more information see Scicos reference manual.
 	  This function finds the steady state for a given system
           described by a Scicos diagram. The diagram consists in
           general of a Super block with input and output port blocks.
-          The steady states concerns only the continuous-time dynamics.
+          The steady state concern only the continuous-time dynamics.
 	</P>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -5308,7 +5308,7 @@ is slower. For more information see Scicos reference manual.
 	  var2vec / vec2var functions are used inside the interfacing
           functions of Scilab blocks to give the possibility to the
           user to handle Scilab objects with the register of real
-          parameters (rpar) and with the discrete states register (z).
+          parameters (rpar) and with the discrete state register (z).
 	</P>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
