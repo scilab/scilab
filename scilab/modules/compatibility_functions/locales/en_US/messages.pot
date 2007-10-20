@@ -38,17 +38,14 @@ msgid	"Scilab string matrix saved as Matlab Cell."
 msgstr	""
 #
 # File: macros/WritemiMatrix.sci, line: 88
-#, possible-c-format
 msgid	"Unknown integer type: %s."
 msgstr	""
 #
 # File: macros/WritemiMatrix.sci, line: 125
-#, possible-c-format
 msgid	"%s mlist type not yet implemented."
 msgstr	""
 #
 # File: macros/WritemiMatrix.sci, line: 160
-#, possible-c-format
 msgid	"%s not yet implemented."
 msgstr	""
 #
@@ -61,117 +58,24 @@ msgstr	""
 msgid	"Error while writing MI."
 msgstr	""
 #
-# File: macros/mtlb_sort.sci, line: 143
-# File: macros/loadmatfile.sci, line: 192
-# File: macros/loadmatfile.sci, line: 193
-# File: macros/loadmatfile.sci, line: 194
-# File: macros/mtlb_load.sci, line: 103
-# File: macros/mtlb_load.sci, line: 104
-# File: macros/mtlb_load.sci, line: 105
-# File: macros/mtlb_plot.sci, line: 20
-msgid	"d"
-msgstr	""
-#
-# File: macros/mtlb_format.sci, line: 25
-msgid	"''short''"
-msgstr	""
-#
-# File: macros/mtlb_format.sci, line: 27
-msgid	"''long''"
-msgstr	""
-#
-# File: macros/mtlb_format.sci, line: 29
-msgid	"''hex''"
-msgstr	""
-#
-# File: macros/mtlb_format.sci, line: 31
-msgid	"''+''"
-msgstr	""
-#
-# File: macros/mtlb_format.sci, line: 33
-msgid	"''bank''"
-msgstr	""
-#
-# File: macros/mtlb_format.sci, line: 35
-msgid	"''compact''"
-msgstr	""
-#
-# File: macros/mtlb_format.sci, line: 37
-msgid	"''loose''"
-msgstr	""
-#
-# File: macros/mtlb_format.sci, line: 39
-msgid	"''rat''"
-msgstr	""
-#
 # File: macros/mtlb_format.sci, line: 50
 msgid	"Unknown type in mtlb_format()."
 msgstr	""
 #
 # File: macros/mtlb_format.sci, line: 52
-#, possible-c-format
 msgid	"Unknown type %s in mtlb_format(): INGNORED."
 msgstr	""
 #
-# File: macros/mtlb_format.sci, line: 59
-# File: macros/mtlb_plot.sci, line: 20
-msgid	"v"
-msgstr	""
-#
 # File: macros/loadmatfile.sci, line: 11
+# File: macros/mtlb_save.sci, line: 10
 # File: macros/savematfile.sci, line: 11
 msgid	"All inputs must be character strings."
-msgstr	""
-#
-# File: macros/loadmatfile.sci, line: 31
-# File: macros/loadmatfile.sci, line: 39
-# File: macros/savematfile.sci, line: 40
-# File: macros/savematfile.sci, line: 85
-msgid	"-mat"
-msgstr	""
-#
-# File: macros/loadmatfile.sci, line: 34
-# File: macros/loadmatfile.sci, line: 39
-# File: macros/savematfile.sci, line: 43
-# File: macros/savematfile.sci, line: 85
-msgid	"-ascii"
-msgstr	""
-#
-# File: macros/loadmatfile.sci, line: 37
-# File: macros/loadmatfile.sci, line: 38
-# File: macros/savematfile.sci, line: 83
-# File: macros/savematfile.sci, line: 84
-msgid	"-regexp"
 msgstr	""
 #
 # File: macros/loadmatfile.sci, line: 38
 # File: macros/savematfile.sci, line: 38
 # File: macros/savematfile.sci, line: 84
-#, possible-c-format
 msgid	"Option %s not implemented: IGNORED."
-msgstr	""
-#
-# File: macros/loadmatfile.sci, line: 45
-# File: macros/loadmatfile.sci, line: 61
-# File: macros/savematfile.sci, line: 91
-msgid	"extension"
-msgstr	""
-#
-# File: macros/loadmatfile.sci, line: 45
-# File: macros/loadmatfile.sci, line: 62
-# File: macros/savematfile.sci, line: 91
-# File: macros/savematfile.sci, line: 119
-msgid	".mat"
-msgstr	""
-#
-# File: macros/loadmatfile.sci, line: 73
-msgid	"[head,version,endian]=matfile_header(fd)"
-msgstr	""
-#
-# File: macros/loadmatfile.sci, line: 73
-# File: macros/mtlb_eval.sci, line: 52
-# File: macros/mtlb_eval.sci, line: 66
-msgid	"errcatch"
 msgstr	""
 #
 # File: macros/loadmatfile.sci, line: 78
@@ -181,7 +85,6 @@ msgstr	""
 #
 # File: macros/loadmatfile.sci, line: 120
 # File: macros/mtlb_load.sci, line: 33
-#, possible-c-format
 msgid	"File %s cannot be opened for reading."
 msgstr	""
 #
@@ -233,14 +136,6 @@ msgstr	""
 msgid	"mtlb_close: status ignored."
 msgstr	""
 #
-# File: macros/mtlb_close.sci, line: 25
-msgid	"all"
-msgstr	""
-#
-# File: macros/mtlb_close.sci, line: 32
-msgid	"figure_name"
-msgstr	""
-#
 # File: macros/mtlb_close.sci, line: 41
 # File: macros/mtlb_hold.sci, line: 20
 # File: macros/char.sci, line: 94
@@ -253,7 +148,6 @@ msgid	"mtlb_close: all windows deleted."
 msgstr	""
 #
 # File: macros/ReadmiMatrix.sci, line: 11
-#, possible-c-format
 msgid	"Found Datatype=%d, expecting %d."
 msgstr	""
 #
@@ -262,45 +156,28 @@ msgid	"Unknown Class."
 msgstr	""
 #
 # File: macros/ReadmiMatrix.sci, line: 236
-#, possible-c-format
 msgid	"Not implemented DataType: %d."
 msgstr	""
 #
 # File: macros/mtlb_load.sci, line: 4
 # File: macros/mtlb_save.sci, line: 5
-#, possible-c-format
 msgid	"This function is obsolete, use %s instead."
 msgstr	""
 #
-# File: macros/mtlb_load.sci, line: 4
-msgid	"loadmatfile"
-msgstr	""
-#
 # File: macros/mtlb_load.sci, line: 15
-#, possible-c-format
 msgid	"%s: Unknown option."
 msgstr	""
 #
 # File: macros/mtlb_qr.sci, line: 9
-#, possible-c-format
 msgid	"Not yet implemented for %d lhs argument(s)."
 msgstr	""
 #
 # File: macros/mtlb_qr.sci, line: 12
-#, possible-c-format
 msgid	"Not yet implemented for %d rhs argument(s)."
 msgstr	""
 #
 # File: macros/mtlb_qz.sci, line: 13
 msgid	"qz: pencil is not diagonalizable."
-msgstr	""
-#
-# File: macros/mtlb_more.sci, line: 5
-msgid	"''off''"
-msgstr	""
-#
-# File: macros/mtlb_more.sci, line: 7
-msgid	"''on''"
 msgstr	""
 #
 # File: macros/mtlb_fopen.sci, line: 11
@@ -355,370 +232,16 @@ msgstr	""
 msgid	"Dec"
 msgstr	""
 #
-# File: macros/mtlb_dir.sci, line: 51
-# File: macros/mtlb_plot.sci, line: 23
-# File: macros/savematfile.sci, line: 32
-# File: macros/savematfile.sci, line: 52
-# File: macros/savematfile.sci, line: 53
-msgid	"-"
-msgstr	""
-#
-# File: macros/mtlb_dir.sci, line: 51
-# File: macros/mtlb_plot.sci, line: 23
-msgid	":"
-msgstr	""
-#
-# File: macros/mtlb_dir.sci, line: 62
-msgid	"name"
-msgstr	""
-#
-# File: macros/mtlb_dir.sci, line: 62
-msgid	"date"
-msgstr	""
-#
-# File: macros/mtlb_dir.sci, line: 62
-msgid	"bytes"
-msgstr	""
-#
-# File: macros/mtlb_dir.sci, line: 62
-msgid	"isdir"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 17
-msgid	"b"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 17
-msgid	"m"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 17
-msgid	"y"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 17
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"k"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 17
-msgid	"w"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 18
-msgid	"red"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 18
-msgid	"green"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 18
-msgid	"blue"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 18
-msgid	"cyan"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 18
-msgid	"magenta"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 18
-msgid	"yellow"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 18
-# File: macros/mtlb_plot.sci, line: 209
-# File: macros/mtlb_plot.sci, line: 210
-# File: macros/mtlb_colordef.sci, line: 13
-# File: macros/mtlb_colordef.sci, line: 29
-msgid	"black"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 18
-msgid	"white"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-msgid	"+"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-msgid	"o"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-# File: macros/savematfile.sci, line: 118
-# File: macros/mtlb_type.sci, line: 11
-msgid	"."
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"x"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-msgid	"s"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-msgid	"^"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-# File: macros/mtlb_logic.sci, line: 15
-# File: macros/mtlb_logic.sci, line: 31
-msgid	">"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-# File: macros/mtlb_logic.sci, line: 15
-# File: macros/mtlb_logic.sci, line: 29
-msgid	"<"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-msgid	"p"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 20
-msgid	"h"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 23
-msgid	"--"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 23
-msgid	"-."
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 28
-msgid	"current_axes"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 94
-msgid	"auto_clear"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 108
-# File: macros/mtlb_lower.sci, line: 6
-# File: macros/mtlb_box.sci, line: 18
-# File: macros/mtlb_box.sci, line: 27
-msgid	"l"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 109
-msgid	"linestyle"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 113
-msgid	"linewidth"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 116
-msgid	"marker"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 120
-msgid	"markeredgecolor"
-msgstr	""
-#
 # File: macros/mtlb_plot.sci, line: 121
 msgid	"MarkerEdgeColor option ignored."
 msgstr	""
 #
-# File: macros/mtlb_plot.sci, line: 123
-msgid	"markerfacecolor"
-msgstr	""
-#
-# File: macros/mtlb_plot.sci, line: 127
-msgid	"markersize"
-msgstr	""
-#
 # File: macros/mtlb_plot.sci, line: 190
-#, possible-c-format
 msgid	"Unknown line style found in ''%s'' -> set to 6."
 msgstr	""
 #
 # File: macros/mtlb_plot.sci, line: 208
-#, possible-c-format
 msgid	"Unknown color found in ''%s'' -> set to black."
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 13
-msgid	"r=isanmfile(s)"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 13
-#, possible-c-format
-msgid	"r=%f"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 17
-#, possible-c-format
-msgid	"%fun"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 18
-msgid	"''"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 34
-# File: macros/mtlb_eval.sci, line: 88
-# File: macros/mtlb_eval.sci, line: 89
-msgid	"Complex"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 35
-# File: macros/mtlb_eval.sci, line: 90
-# File: macros/mtlb_eval.sci, line: 91
-# File: macros/mtlb_eval.sci, line: 92
-# File: macros/mtlb_eval.sci, line: 93
-# File: macros/mtlb_eval.sci, line: 94
-# File: macros/mtlb_eval.sci, line: 95
-# File: macros/mtlb_eval.sci, line: 96
-msgid	"Real"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 41
-# File: macros/mtlb_eval.sci, line: 55
-#, possible-c-format
-msgid	"%fun()"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 46
-# File: macros/mtlb_eval.sci, line: 60
-msgid	"//"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 51
-# File: macros/mtlb_eval.sci, line: 65
-# File: macros/mtlb_eval.sci, line: 70
-msgid	"get"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 78
-msgid	"ans"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 82
-msgid	"["
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 82
-msgid	","
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 82
-msgid	"]"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 82
-msgid	"=resume"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 82
-# File: macros/savematfile.sci, line: 317
-# File: macros/savematfile.sci, line: 319
-# File: macros/savematfile.sci, line: 332
-msgid	"("
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 82
-# File: macros/savematfile.sci, line: 297
-# File: macros/savematfile.sci, line: 299
-# File: macros/savematfile.sci, line: 317
-# File: macros/savematfile.sci, line: 319
-# File: macros/savematfile.sci, line: 322
-# File: macros/savematfile.sci, line: 325
-# File: macros/savematfile.sci, line: 332
-msgid	")"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 88
-# File: macros/mtlb_eval.sci, line: 89
-#, possible-c-format
-msgid	"%i"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 89
-msgid	"j"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 90
-# File: macros/mtlb_eval.sci, line: 91
-#, possible-c-format
-msgid	"%nan"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 90
-msgid	"NaN"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 91
-msgid	"nan"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 92
-# File: macros/mtlb_eval.sci, line: 93
-#, possible-c-format
-msgid	"%inf"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 92
-msgid	"Inf"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 93
-# File: macros/mtlb_cond.sci, line: 24
-msgid	"inf"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 94
-msgid	"$"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 94
-# File: macros/fseek_origin.sci, line: 11
-# File: macros/fseek_origin.sci, line: 17
-msgid	"end"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 95
-#, possible-c-format
-msgid	"%pi"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 95
-msgid	"pi"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 96
-#, possible-c-format
-msgid	"%eps"
-msgstr	""
-#
-# File: macros/mtlb_eval.sci, line: 96
-msgid	"eps"
-msgstr	""
-#
-# File: macros/mtlb_realmin.sci, line: 9
-# File: macros/mtlb_realmin.sci, line: 12
-msgid	"tiny"
-msgstr	""
-#
-# File: macros/mtlb_realmin.sci, line: 11
-# File: macros/mtlb_realmax.sci, line: 11
-# File: macros/mtlb_isa.sci, line: 23
-msgid	"double"
 msgstr	""
 #
 # File: macros/mtlb_realmin.sci, line: 14
@@ -738,69 +261,16 @@ msgstr	""
 msgid	"Wrong number of inputs."
 msgstr	""
 #
-# File: macros/mtlb_realmax.sci, line: 9
-# File: macros/mtlb_realmax.sci, line: 12
-msgid	"huge"
-msgstr	""
-#
 # File: macros/mtlb_cond.sci, line: 7
 msgid	"Matrix must be square."
-msgstr	""
-#
-# File: macros/mtlb_cond.sci, line: 22
-msgid	"fro"
 msgstr	""
 #
 # File: macros/mtlb_cond.sci, line: 27
 msgid	"The second input argument must be 1, 2,''fro'' or ''inf''."
 msgstr	""
 #
-# File: macros/fseek_origin.sci, line: 6
-msgid	"bof"
-msgstr	""
-#
-# File: macros/fseek_origin.sci, line: 7
-# File: macros/fseek_origin.sci, line: 13
-msgid	"set"
-msgstr	""
-#
-# File: macros/fseek_origin.sci, line: 8
-msgid	"cof"
-msgstr	""
-#
-# File: macros/fseek_origin.sci, line: 9
-# File: macros/fseek_origin.sci, line: 15
-msgid	"cur"
-msgstr	""
-#
-# File: macros/fseek_origin.sci, line: 10
-msgid	"eof"
-msgstr	""
-#
 # File: macros/fseek_origin.sci, line: 19
 msgid	"mseek: Unknown reference flag."
-msgstr	""
-#
-# File: macros/mtlb_logic.sci, line: 15
-# File: macros/mtlb_logic.sci, line: 33
-msgid	"<="
-msgstr	""
-#
-# File: macros/mtlb_logic.sci, line: 15
-# File: macros/mtlb_logic.sci, line: 35
-msgid	">="
-msgstr	""
-#
-# File: macros/mtlb_logic.sci, line: 27
-msgid	"=="
-msgstr	""
-#
-# File: macros/mtlb_save.sci, line: 5
-msgid	"savematfile"
-msgstr	""
-#
-# File: macros/mtlb_save.sci, line: 10
-msgid	"mtlb_close: status ignored.9"
 msgstr	""
 #
 # File: macros/mtlb_save.sci, line: 63
@@ -808,7 +278,6 @@ msgstr	""
 # File: macros/savematfile.sci, line: 144
 # File: macros/savematfile.sci, line: 260
 # File: macros/savematfile.sci, line: 307
-#, possible-c-format
 msgid	"Name conflict: it is not possible to save variable with name %s."
 msgstr	""
 #
@@ -818,7 +287,6 @@ msgid	"Attempt to write an unsupported data type to an ASCII file."
 msgstr	""
 #
 # File: macros/mtlb_save.sci, line: 163
-#, possible-c-format
 msgid	"Unknown or misplaced option %s."
 msgstr	""
 #
@@ -826,35 +294,13 @@ msgstr	""
 msgid	"Dimensions and entries do not match."
 msgstr	""
 #
-# File: macros/mtlb_fwrite.sci, line: 6
-# File: macros/mtlb_fread.sci, line: 6
-msgid	"ccharchar?scharsigned "
-	"charsshortshortlintintllonglongffloatfloatddoubledoubleucucharunsigned "
-	"charusushortunsigned shortuluintunsigned intululongunsigned "
-	"longccharchar*1ffloat32real*4dfloat64real*8cint8integer*1sint16integer*2lint32integer*4?"
-	"integer*8?intN?uintN"
-msgstr	""
-#
-# File: macros/mtlb_fwrite.sci, line: 28
-# File: macros/mtlb_fread.sci, line: 31
-# File: macros/mtlb_fread.sci, line: 33
-msgid	"uchar"
-msgstr	""
-#
 # File: macros/mtlb_fwrite.sci, line: 32
 # File: macros/mtlb_fread.sci, line: 37
-#, possible-c-format
 msgid	"The format: %s is unknown."
-msgstr	""
-#
-# File: macros/mtlb_fwrite.sci, line: 35
-# File: macros/mtlb_fread.sci, line: 40
-msgid	"?"
 msgstr	""
 #
 # File: macros/mtlb_fwrite.sci, line: 36
 # File: macros/mtlb_fread.sci, line: 41
-#, possible-c-format
 msgid	"The format: %s is not yet handled."
 msgstr	""
 #
@@ -862,204 +308,20 @@ msgstr	""
 msgid	"mtlb_eig() used with 2 rhs: not yet implemented."
 msgstr	""
 #
-# File: macros/mtlb_dec2hex.sci, line: 17
-msgid	"0"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 37
-# File: macros/savematfile.sci, line: 38
-msgid	"-append"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 47
-msgid	"-struct"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 56
-# File: macros/savematfile.sci, line: 64
-msgid	"="
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 56
-# File: macros/savematfile.sci, line: 64
-msgid	"(mtlb_names($))"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 67
-msgid	"-v4"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 71
-msgid	"-v6"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 75
-# File: macros/savematfile.sci, line: 291
-msgid	"-tabs"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 79
-msgid	"-double"
-msgstr	""
-#
 # File: macros/savematfile.sci, line: 104
 msgid	"Option -v6 added."
 msgstr	""
 #
-# File: macros/savematfile.sci, line: 131
-# File: macros/savematfile.sci, line: 152
-# File: macros/savematfile.sci, line: 285
-# File: macros/savematfile.sci, line: 314
-msgid	"x="
-msgstr	""
-#
 # File: macros/savematfile.sci, line: 133
-#, possible-c-format
 msgid	"Variable %s can not be saved in level 4 MAT-file: IGNORED."
 msgstr	""
 #
-# File: macros/savematfile.sci, line: 139
-msgid	"wb"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 142
-# File: macros/savematfile.sci, line: 258
-# File: macros/savematfile.sci, line: 305
-msgid	"varargin"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 142
-# File: macros/savematfile.sci, line: 258
-# File: macros/savematfile.sci, line: 305
-msgid	"mtlb_names"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 142
-# File: macros/savematfile.sci, line: 258
-# File: macros/savematfile.sci, line: 305
-msgid	"mtlb_fmt"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 142
-# File: macros/savematfile.sci, line: 258
-# File: macros/savematfile.sci, line: 305
-msgid	"mtlb_fd"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"rhs"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"lhs"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"kk"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"err"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"bin"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"version"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"mtlb_thefile"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 147
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"mtlb_opts"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 211
-msgid	"uil"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 215
-msgid	"dl"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 217
-msgid	"fl"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 219
-msgid	"il"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 221
-msgid	"sl"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 223
-msgid	"usl"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 258
-msgid	"endian"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 263
-# File: macros/savematfile.sci, line: 310
-msgid	"sep"
-msgstr	""
-#
 # File: macros/savematfile.sci, line: 276
-#, possible-c-format
 msgid	"Version %d MAT-file not implemented."
 msgstr	""
 #
 # File: macros/savematfile.sci, line: 287
-#, possible-c-format
 msgid	"Variable %s can not be saved in ASCII file: IGNORED."
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 297
-msgid	"(2x,1pe14.7"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 299
-msgid	"(2x,1pe23.15"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 302
-msgid	"open"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 302
-msgid	"unknown"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 322
-# File: macros/savematfile.sci, line: 325
-msgid	"(2f8.0,1x"
-msgstr	""
-#
-# File: macros/savematfile.sci, line: 335
-msgid	"close"
 msgstr	""
 #
 # File: macros/mstr2sci.sci, line: 9
@@ -1068,17 +330,6 @@ msgstr	""
 #
 # File: macros/mstr2sci.sci, line: 10
 msgid	"Input argument must be a caracter string matrix."
-msgstr	""
-#
-# File: macros/firstnonsingleton.sci, line: 7
-msgid	"str"
-msgstr	""
-#
-# File: macros/firstnonsingleton.sci, line: 10
-# File: macros/firstnonsingleton.sci, line: 18
-# File: macros/firstnonsingleton.sci, line: 26
-# File: macros/firstnonsingleton.sci, line: 32
-msgid	"num"
 msgstr	""
 #
 # File: macros/mtlb_is.sci, line: 8
@@ -1094,46 +345,8 @@ msgstr	""
 msgid	"End of string reached before a datun has been read."
 msgstr	""
 #
-# File: macros/mtlb_type.sci, line: 12
-msgid	".m"
-msgstr	""
-#
-# File: macros/mtlb_type.sci, line: 17
-msgid	".sci"
-msgstr	""
-#
 # File: macros/mtlb_type.sci, line: 22
-#, possible-c-format
 msgid	"Could not open neither %s nor %s nor %s."
-msgstr	""
-#
-# File: macros/mtlb_exist.sci, line: 26
-msgid	"var"
-msgstr	""
-#
-# File: macros/mtlb_exist.sci, line: 28
-msgid	"builtin"
-msgstr	""
-#
-# File: macros/mtlb_exist.sci, line: 37
-msgid	"file"
-msgstr	""
-#
-# File: macros/mtlb_exist.sci, line: 38
-msgid	"dir"
-msgstr	""
-#
-# File: macros/mtlb_colordef.sci, line: 13
-# File: macros/mtlb_colordef.sci, line: 29
-msgid	"none"
-msgstr	""
-#
-# File: macros/char.sci, line: 28
-# File: macros/char.sci, line: 50
-# File: macros/char.sci, line: 88
-# File: macros/char.sci, line: 102
-# File: macros/asciimat.sci, line: 35
-msgid	"hypermat"
 msgstr	""
 #
 # File: macros/char.sci, line: 37
@@ -1159,31 +372,13 @@ msgstr	""
 msgid	"Second input argument must be a column vector."
 msgstr	""
 #
-# File: macros/mtlb_fprintf.sci, line: 13
-#, possible-c-format
-msgid	"%s\n"
-msgstr	""
-#
-# File: macros/mtlb_fprintf.sci, line: 17
-# File: macros/mtlb_fprintf.sci, line: 58
-# File: macros/mtlb_fscanf.sci, line: 17
-msgid	"%"
-msgstr	""
-#
 # File: macros/mtlb_fprintf.sci, line: 35
-#, possible-c-format
 msgid	"In mtlb_fprintf: mprintf(%s) is not implemented."
 msgstr	""
 #
 # File: macros/mtlb_fprintf.sci, line: 49
 # File: macros/mtlb_fprintf.sci, line: 106
-msgid	"In mtlb_fprintf: mprintf Scilab function does not work with more "
-	"than one row variables."
-msgstr	""
-#
-# File: macros/mtlb_fprintf.sci, line: 80
-#, possible-c-format
-msgid	"%s"
+msgid	"In mtlb_fprintf: mprintf Scilab function does not work with more than one row variables."
 msgstr	""
 #
 # File: macros/mtlb_fprintf.sci, line: 84
@@ -1194,174 +389,46 @@ msgstr	""
 msgid	"In mtlb_fprintf: mfprintf(fid,format) is not implemented."
 msgstr	""
 #
-# File: macros/mtlb_isa.sci, line: 3
-msgid	"logical"
-msgstr	""
-#
-# File: macros/mtlb_isa.sci, line: 5
-msgid	"char"
-msgstr	""
-#
-# File: macros/mtlb_isa.sci, line: 7
-msgid	"numeric"
-msgstr	""
-#
-# File: macros/mtlb_isa.sci, line: 21
-msgid	"single"
-msgstr	""
-#
-# File: macros/mtlb_isa.sci, line: 25
-msgid	"cell"
-msgstr	""
-#
-# File: macros/mtlb_isa.sci, line: 27
-msgid	"struct"
-msgstr	""
-#
-# File: macros/mtlb_isa.sci, line: 29
-msgid	"function_handle"
-msgstr	""
-#
-# File: macros/mtlb_isa.sci, line: 31
-msgid	"sparse"
-msgstr	""
-#
-# File: macros/mtlb_isa.sci, line: 33
-msgid	"lti"
-msgstr	""
-#
-# File: macros/mtlb_isa.sci, line: 34
-msgid	"state-space"
-msgstr	""
-#
 # File: macros/mtlb_isa.sci, line: 36
-#, possible-c-format
 msgid	"Unhandled class: %s."
-msgstr	""
-#
-# File: macros/mtlb_choices.sci, line: 4
-msgid	"menus"
 msgstr	""
 #
 # File: macros/mtlb_choices.sci, line: 4
 msgid	"Close"
 msgstr	""
 #
-# File: macros/mtlb_randn.sci, line: 9
-# File: macros/mtlb_randn.sci, line: 15
-# File: macros/mtlb_randn.sci, line: 26
-# File: macros/mtlb_axis.sci, line: 94
-msgid	"normal"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 10
-# File: macros/mtlb_axis.sci, line: 35
-# File: macros/mtlb_axis.sci, line: 39
-msgid	"axes_visible"
-msgstr	""
-#
 # File: macros/mtlb_axis.sci, line: 27
 msgid	"a.data_bounds must be a vector."
 msgstr	""
 #
-# File: macros/mtlb_axis.sci, line: 33
-# File: macros/mtlb_axis.sci, line: 37
-msgid	"data_bounds"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 34
-# File: macros/mtlb_axis.sci, line: 38
-msgid	"view"
-msgstr	""
-#
 # File: macros/mtlb_axis.sci, line: 42
-msgid	"a.data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax] not "
-	"implemented."
+msgid	"a.data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax] not implemented."
 msgstr	""
 #
 # File: macros/mtlb_axis.sci, line: 45
 msgid	"Bad affectation for a.data_bounds."
 msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 51
-# File: macros/mtlb_axis.sci, line: 108
-msgid	"auto"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 55
-# File: macros/mtlb_axis.sci, line: 110
-msgid	"manual"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 59
-msgid	"tight"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 63
-msgid	"fill"
-msgstr	""
-#
 # File: macros/mtlb_axis.sci, line: 64
 msgid	"axis fill not implemented."
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 67
-# File: macros/mtlb_axis.sci, line: 116
-msgid	"ij"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 71
-# File: macros/mtlb_axis.sci, line: 114
-msgid	"xy"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 75
-msgid	"equal"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 79
-msgid	"image"
 msgstr	""
 #
 # File: macros/mtlb_axis.sci, line: 80
 msgid	"axis image not implemented."
 msgstr	""
 #
-# File: macros/mtlb_axis.sci, line: 83
-msgid	"square"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 84
-msgid	"2d"
-msgstr	""
-#
 # File: macros/mtlb_axis.sci, line: 85
 msgid	"cube_scaling only used in 3d mode."
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 90
-msgid	"vis3d"
-msgstr	""
-#
-# File: macros/mtlb_axis.sci, line: 91
-msgid	"3d"
 msgstr	""
 #
 # File: macros/mtlb_axis.sci, line: 95
 msgid	"axis normal not implemented."
 msgstr	""
 #
-# File: macros/mtlb_axis.sci, line: 106
-msgid	"state"
-msgstr	""
-#
 # File: macros/mtlb_axis.sci, line: 120
-#, possible-c-format
 msgid	"axis %s not implemented."
 msgstr	""
 #
 # File: macros/mtlb_axis.sci, line: 136
-#, possible-c-format
 msgid	"Argument of type %d not implemented."
 msgstr	""
 #
