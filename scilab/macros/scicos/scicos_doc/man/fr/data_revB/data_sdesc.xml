@@ -463,7 +463,7 @@
 </FILE>
 
 <FILE name='C_struct' type='XML'>
-  <SHORT_DESCRIPTION name="C_struct">Structure de bloc</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="C_struct">Structure de bloc d'une fonction de calcul C</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='C_utils' type='XML'>
