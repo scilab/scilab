@@ -2178,7 +2178,10 @@ functions to interact with the simulator in the C computational functions.
 \begin{itemize}
 
 \item {\bf void do\_cold\_restart();}\\
-      That function do a cold restart for the solver.
+This function forces the solver to do a cold restart. It should be used in situations
+where the block creates a non smooth signal. Note that in most situations, non smooth
+situations are detected by zero-crossings and this function is not needed. This block is
+used in very exceptional situations.
 
 \item {\bf int get\_phase\_simulation();} \\
       That function returns an integer which says if the simulator is realizing time domain
