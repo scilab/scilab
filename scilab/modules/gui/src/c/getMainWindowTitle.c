@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <jni.h>
+#include <string.h>
 #include "getMainWindowTitle.h"
 #include "getScilabJNIEnv.h"
 #include "getScilabObject.h"
