@@ -163,7 +163,7 @@
 </FILE>
 
 <FILE name='CCS' type='XML'>
-  <SHORT_DESCRIPTION name="CCS">Controllable Modelica  current source </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="CCS">Source de courant contrôlée</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='CCS_intfunc' type='XML'>
@@ -447,7 +447,7 @@
 </FILE>
 
 <FILE name='CVS' type='XML'>
-  <SHORT_DESCRIPTION name="CVS">Controllable Modelica voltage source</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="CVS">Source de tension contrôlée</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='CVS_intfunc' type='XML'>
@@ -955,7 +955,7 @@
 </FILE>
 
 <FILE name='Gyrator' type='XML'>
-  <SHORT_DESCRIPTION name="Gyrator">Modelica Gyrator</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="Gyrator">Gyrateur</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Gyrator_intfunc' type='XML'>
@@ -1451,7 +1451,7 @@
 </FILE>
 
 <FILE name='NMOS' type='XML'>
-  <SHORT_DESCRIPTION name="NMOS">Simple NMOS Transistor</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="NMOS">Transistor NMOS</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='NMOS_intfunc' type='XML'>
@@ -1463,7 +1463,7 @@
 </FILE>
 
 <FILE name='NPN' type='XML'>
-<SHORT_DESCRIPTION name="NPN">Transitor NPN </SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="NPN">Transistor NPN</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='NPN_intfunc' type='XML'>
@@ -1507,7 +1507,7 @@
 </FILE>
 
 <FILE name='OpAmp' type='XML'>
-  <SHORT_DESCRIPTION name="OpAmp">Ideal opamp (norator-nullator pair)</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="OpAmp">Amplificateur opérationnel idéal</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='OpAmp_intfunc' type='XML'>
@@ -1531,7 +1531,7 @@
 </FILE>
 
 <FILE name='PID' type='XML'>
-<SHORT_DESCRIPTION name="PID">PID regulator</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="PID">Regulateur PID</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='PID_intfunc' type='XML'>
@@ -1539,7 +1539,7 @@
 </FILE>
 
 <FILE name='PMOS' type='XML'>
-  <SHORT_DESCRIPTION name="PMOS">Simple PMOS Transistor</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="PMOS">Transistor PMOS</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='PMOS_intfunc' type='XML'>
@@ -1551,7 +1551,7 @@
 </FILE>
 
 <FILE name='PNP' type='XML'>
-<SHORT_DESCRIPTION name="PNP">Transitor PNP</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="PNP">Transistor PNP</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='PNP_intfunc' type='XML'>
@@ -2011,7 +2011,7 @@
 </FILE>
 
 <FILE name='Switch' type='XML'>
-  <SHORT_DESCRIPTION name="Switch">Non-ideal electrical switch</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="Switch">Interrupteur électrique non-idéal</SHORT_DESCRIPTION>
 </FILE>
 
 <FILE name='Switch_intfunc' type='XML'>

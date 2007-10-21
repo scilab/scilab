@@ -4074,7 +4074,7 @@ SPICE simulator. For more details please care for H. Spiro.
 The model does not consider capacitances. A small fixed drain-source
 resistance is included (to avoid numerical difficulties).
 
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{3.5cm}|}
 \hline
 W [m] & L [m] &  Beta [1/V²]& Vt [V] &  K2 & K5 & DW [m]& DL[m] & \\
 \hline

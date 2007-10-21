@@ -128,7 +128,7 @@
 
 <FILE name='CCS' type='XML'>
 <SEE_ALSO>
-
+<SEE_ALSO_ITEM> <LINK>CVS</LINK></SEE_ALSO_ITEM>
 </SEE_ALSO>
 </FILE>
 
@@ -338,7 +338,7 @@
 
 <FILE name='CVS' type='XML'>
 <SEE_ALSO>
-
+<SEE_ALSO_ITEM> <LINK>CCS</LINK></SEE_ALSO_ITEM>
 </SEE_ALSO>
 </FILE>
 
@@ -1161,21 +1161,19 @@
 </FILE>
 
 <FILE name='NMOS' type='XML'>
-  <SEE_ALSO>
-
-  </SEE_ALSO>
+<SEE_ALSO>
+<SEE_ALSO_ITEM> <LINK>PMOS</LINK> </SEE_ALSO_ITEM>
+</SEE_ALSO>
 </FILE>
 
 <FILE name='NPN' type='XML'>
 <SEE_ALSO>
-
+<SEE_ALSO_ITEM> <LINK>PNP</LINK> </SEE_ALSO_ITEM>
 </SEE_ALSO>
 </FILE>
 
 <FILE name='NRMSOM_f' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -1183,23 +1181,17 @@
 <FILE name='Non_linear_pal' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='OUTIMPL_f' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='OUT_f' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -1219,8 +1211,6 @@
 <FILE name='Others_pal' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
@@ -1237,21 +1227,19 @@
 </FILE>
 
 <FILE name='PMOS' type='XML'>
-  <SEE_ALSO>
-
-  </SEE_ALSO>
+<SEE_ALSO>
+<SEE_ALSO_ITEM> <LINK>NMOS</LINK></SEE_ALSO_ITEM>
+</SEE_ALSO>
 </FILE>
 
 <FILE name='PNP' type='XML'>
 <SEE_ALSO>
-
+<SEE_ALSO_ITEM> <LINK>NPN</LINK> </SEE_ALSO_ITEM>
 </SEE_ALSO>
 </FILE>
 
 <FILE name='POSTONEG_f' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -1259,15 +1247,11 @@
 <FILE name='POWBLK_f' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='PRODUCT' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>
@@ -1275,15 +1259,11 @@
 <FILE name='PROD_f' type='XML'>
 <SEE_ALSO>
 
-
-
 </SEE_ALSO>
 </FILE>
 
 <FILE name='PerteDP' type='XML'>
 <SEE_ALSO>
-
-
 
 </SEE_ALSO>
 </FILE>

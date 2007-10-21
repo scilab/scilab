@@ -88,6 +88,10 @@
 	dial_width_html=360pt
 </FILE>
 
+<FILE name='CONVERT' type='SPECIALDESC'>
+	dial_width_html=350pt
+</FILE>
+
 <FILE name='Capacitor' type='SPECIALDESC'>
 	ud_margin_html=0.5
 	dial_width_html=240pt
@@ -259,6 +263,7 @@
 
 <FILE name='JKFLIPFLOP' type='SPECIALDESC'>
 	lr_margin_html=.5
+	dial_width_html=250pt
 </FILE>
 
 <FILE name='LOGBLK_f' type='SPECIALDESC'>
@@ -405,6 +410,7 @@ txt_param=[''
 
 <FILE name='SRFLIPFLOP' type='SPECIALDESC'>
 	lr_margin_html=0.5
+	dial_width_html=260pt
 </FILE>
 
 <FILE name='STEP' type='SPECIALDESC'>
