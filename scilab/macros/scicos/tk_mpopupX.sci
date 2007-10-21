@@ -11,7 +11,7 @@ function Cmenu=tk_mpopupX(ll)
   txt = create_popup(ll)
   ierr = execstr('TCL_EvalStr(txt)','continue')
   while (Cmenu==[]&Done==[])
-     xpause(1000)
+     xpause(10000)
   end
 
 endfunction
@@ -25,7 +25,7 @@ txt='catch {destroy .scicoslhb};toplevel .scicoslhb;wm state .scicoslhb withdraw
 txte=createmenu(ll,'','.scicoslhb.edit',j)
 txt=txt+txte
 
-txt=txt+'bind .scicoslhb.edit <Unmap> {ScilabEval '"Done=''1'''"};'
+txt=txt+'bind .scicoslhb.edit <Unmap> {ScilabEval '"Done=''1'''" sync};'
 
 txt=txt+' proc showpopup {} {set numx [winfo pointerx .];set numy [winfo pointery .];set z {expr {$numy+2}};set numz [eval $z];tk_popup .scicoslhb.edit $numx $numz;.scicoslhb.edit activate 0};showpopup'
 endfunction
@@ -42,7 +42,7 @@ function [txt,j]=createmenu(ll,txt,path,j)
       i=i+1
       txt1=txt1+path+' add command -label '"'+l+''"  -command scicosl'+string(j)+';'
       txt2=txt2+'proc scicosl'+string(j)+' {} {ScilabEval '"Cmenu='''+ ...
-	   l+''''"};'
+	   l+''''" sync};'
       j=j+1
     else
       i=i+1
