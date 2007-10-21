@@ -124,7 +124,11 @@ void fromws_c(scicos_block *block,int flag)
    C2F(cluni0)(env, filename, &out_n,1,lout);
    C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
 
-   if (ierr!=0) {sciprint("The'%s' variable does not exst",str); set_block_error(-16);return;};
+   if (ierr!=0) {
+     sciprint("The '%s' variable does not exist.\n",str);
+     set_block_error(-3);
+     return;
+   }
 
    /* read x */
    C2F(mgetnc) (&fd, &Ydim[0], (j=nsiz,&j), fmti, &ierr);  /* read sci id */
@@ -137,25 +141,87 @@ void fromws_c(scicos_block *block,int flag)
    YsubType=Ydim[9];
    ytype=GetOutType(block,1);     /* output type */
 
-   if (mY!=my) {sciprint("Data dimentions are incoherent:\n\r Variable size=%d \n\r Block output size=%d",mY,my); set_block_error(-16);return;};
+   if (mY!=my) {
+     sciprint("Data dimensions are inconsistent:\n\r Variable size=%d \n\r Block output size=%d.\n",mY,my);
+     set_block_error(-3);
+     return;
+   }
 
    if (Ytype==1) { /*real/complex cases*/
-     switch (YsubType) {
-     case 0: if (ytype!=10) {sciprint("Output should be of Real type"); set_block_error(-16);return;};break;
-     case 1: if (ytype!=11) {sciprint("Output should be of complex type"); set_block_error(-16);return;};break;
+     switch (YsubType)
+     {
+     case 0: if (ytype!=10) {
+               sciprint("Output should be of Real type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&fd,&res);
+               return;
+             }
+             break;
+
+     case 1: if (ytype!=11) {
+               sciprint("Output should be of complex type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&fd,&res);
+               return;
+             }
+             break;
      }
-   }else if(Ytype==8) { /*integer cases*/
-     switch (YsubType) {
-     case 1: if (ytype!=81) {sciprint("Output should be of int8 type"); set_block_error(-16);return;};break;
-     case 2: if (ytype!=82) {sciprint("Output should be of int16 type"); set_block_error(-16);return;};break;
-     case 4: if (ytype!=84) {sciprint("Output should be of int32 type"); set_block_error(-16);return;};break;
-     case 11:if (ytype!=811) {sciprint("Output should be of uint8 type"); set_block_error(-16);return;};break;
-     case 12:if (ytype!=812) {sciprint("Output should be of uint16 type"); set_block_error(-16);return;};break;
-     case 14:if (ytype!=814) {sciprint("Output should be of uint32 type"); set_block_error(-16);return;};break;
+   }
+   else if(Ytype==8) { /*integer cases*/
+     switch (YsubType)
+     {
+     case 1: if (ytype!=81) {
+               sciprint("Output should be of int8 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&fd,&res);
+               return;
+             }
+             break;
+
+     case 2: if (ytype!=82) {
+               sciprint("Output should be of int16 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&fd,&res);
+               return;
+             }
+             break;
+
+     case 4: if (ytype!=84) {
+               sciprint("Output should be of int32 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&fd,&res);
+               return;
+             }
+             break;
+
+     case 11:if (ytype!=811) {
+               sciprint("Output should be of uint8 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&fd,&res);
+               return;
+             }
+             break;
+
+     case 12:if (ytype!=812) {
+               sciprint("Output should be of uint16 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&fd,&res);
+               return;
+             }
+             break;
+
+     case 14:if (ytype!=814) {
+               sciprint("Output should be of uint32 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&fd,&res);
+               return;
+             }
+             break;
      }
    }
    if((*(block->work)=(fromwork_struct*) scicos_malloc(sizeof(fromwork_struct)))==NULL) {
      set_block_error(-16);
+     C2F(mclose)(&fd,&res);
      return;
    }
    ptr = *(block->work);  
@@ -166,95 +232,156 @@ void fromws_c(scicos_block *block,int flag)
    if (Ytype==1) { /*real/complex case*/
      switch (YsubType) {
      case 0 : // Real
-       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(double)))==NULL) {set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return; }
+       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(double)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block->work)=NULL;
+         C2F(mclose)(&fd,&res);
+         return;
+       }
        ptr_d = (SCSREAL_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_d, (j=nPoints*mY,&j), fmtd, &ierr);  /* read double data */
-       break;       
+       break;
      case 1:  // complex
-       if((ptr->work=(void *) scicos_malloc(2*nPoints*mY*sizeof(double)))==NULL) {set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return;  }
+       if((ptr->work=(void *) scicos_malloc(2*nPoints*mY*sizeof(double)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block->work)=NULL;
+         C2F(mclose)(&fd,&res);
+         return;
+       }
        ptr_d = (SCSREAL_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_d, (j=2*nPoints*mY,&j), fmtd, &ierr);  /* read double data */
        break;
-     }       
+     }
    }else if(Ytype==8) { /*integer case*/
      switch (YsubType) {
      case 1 ://int8
-       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(char)))==NULL) {set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return; }
+       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(char)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block->work)=NULL;
+         C2F(mclose)(&fd,&res);
+         return;
+       }
        ptr_c = (SCSINT8_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_c, (j=nPoints*mY,&j), fmtc, &ierr);  /* read char data */
        break;
      case 2 :  // int16
-       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(short)))==NULL) { set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return; }
+       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(short)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block->work)=NULL;
+         C2F(mclose)(&fd,&res);
+         return;
+       }
        ptr_s = (SCSINT16_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_s, (j=nPoints*mY,&j), fmts, &ierr);  /* read short data */
        break;
      case 4 :   // int32
-       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(long)))==NULL) {set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return; }
+       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(long)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block->work)=NULL;
+         C2F(mclose)(&fd,&res);
+         return;
+       }
        ptr_l = (SCSINT32_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_l, (j=nPoints*mY,&j), fmtl, &ierr);  /* read short data */
        break;
      case 11 :   // uint8
-       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned char)))==NULL) { set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return;   }
+       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned char)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block->work)=NULL;
+         C2F(mclose)(&fd,&res);
+         return;
+       }
        ptr_uc = (SCSUINT8_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_uc, (j=nPoints*mY,&j), fmtuc, &ierr);  /* read short data */
        break;
      case 12 : // uint16
-       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned short)))==NULL) {set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return;  }
+       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned short)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block->work)=NULL;
+         C2F(mclose)(&fd,&res);
+         return;
+       }
        ptr_us = (SCSUINT16_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_us, (j=nPoints*mY,&j), fmtus, &ierr);  /* read short data */
        break;
      case 14 :  // uint32
-       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned long)))==NULL) { set_block_error(-16);scicos_free(ptr);*(block->work)=NULL;return;    }
+       if((ptr->work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned long)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block->work)=NULL;
+         C2F(mclose)(&fd,&res);
+         return;
+       }
        ptr_ul = (SCSUINT32_COP *) ptr->work;
        C2F(mgetnc) (&fd, ptr_ul, (j=nPoints*mY,&j), fmtul, &ierr);  /* read short data */
        break;
      }
    }
-   
+
    /* read t */
    C2F(mgetnc) (&fd, &Ydim[0], (j=nsiz,&j), fmti, &ierr);  /* read sci id */
    C2F(mgetnc) (&fd, &Ydim[6], (j=1,&j), fmti, &ierr);  /* read sci type */
    C2F(mgetnc) (&fd, &Ydim[7], (j=3,&j), fmti, &ierr);  /* read sci header */
-   
+
    if (nPoints!=Ydim[7]) {
-     sciprint("The size of the Time(%d) and Data(%d) vectors are incoherent",Ydim[7],nPoints);
-     set_block_error(-16);*(block->work)=NULL;
+     sciprint("The size of the Time(%d) and Data(%d) vectors are inconsistent.\n",Ydim[7],nPoints);
+     set_block_error(-3);
+     *(block->work)=NULL;
      scicos_free(ptr->work);
      scicos_free(ptr);
+     C2F(mclose)(&fd,&res);
      return;
-   };
-   if ((Ydim[6]!=1)| (Ydim[9]|=0)) {
-     sciprint("The Time vector type is not ""double"""); 
-     set_block_error(-16);*(block->work)=NULL;
+   }
+
+   if ((Ydim[6]!=1) | (Ydim[9]!=0)) {
+     sciprint("The Time vector type is not ""double"".\n"); 
+     set_block_error(-3);
+     *(block->work)=NULL;
      scicos_free(ptr->work);
      scicos_free(ptr);
+     C2F(mclose)(&fd,&res);
      return;
-   };
-   
+   }
+
    if((ptr->workt=(double *) scicos_malloc(nPoints*sizeof(double)))==NULL) {
-     set_block_error(-16);*(block->work)=NULL;
+     set_block_error(-16);
+     *(block->work)=NULL;
      scicos_free(ptr->work);
      scicos_free(ptr);
+     C2F(mclose)(&fd,&res);
      return;
    }
    ptr_T = (SCSREAL_COP *) ptr->workt;
    C2F(mgetnc) (&fd, ptr_T, (j=nPoints,&j), fmtd, &ierr);  /* read data of t */
+   /* close the file*/
+   C2F(mclose)(&fd,&res);
+
    //================================
    // check for an increasing time data
-   for(j = 0; j < nPoints-1; j++)
+   for(j = 0; j < nPoints-1; j++) {
      if(ptr_T[j] > ptr_T[j+1]) {
-       sciprint("The Time vector should be an increasing vector"); 
-       set_block_error(-16);*(block->work)=NULL;
+       sciprint("The time vector should be an increasing vector.\n");
+       set_block_error(-3);
+       *(block->work)=NULL;
        scicos_free(ptr->workt);
        scicos_free(ptr->work);
        scicos_free(ptr);
        return;
-     };
+     }
+   }
    //=================================
    if ((Method>1)&&((Ytype==1)&&( YsubType==0))) {/* double */
 
      if((ptr->D=(double *) scicos_malloc(nPoints*mY*sizeof(double)))==NULL) {
-       set_block_error(-16);*(block->work)=NULL;
+       set_block_error(-16);
+       *(block->work)=NULL;
        scicos_free(ptr->workt);
        scicos_free(ptr->work);
        scicos_free(ptr);
@@ -262,8 +389,9 @@ void fromws_c(scicos_block *block,int flag)
      }
 
      if((spline=(double *) scicos_malloc((3*nPoints-2)*sizeof(double)))==NULL){
-       sciprint("Allocation problem in spline"); 
-       set_block_error(-16);*(block->work)=NULL;
+       sciprint("Allocation problem in spline.\n");
+       set_block_error(-16);
+       *(block->work)=NULL;
        scicos_free(ptr->D);
        scicos_free(ptr->workt);
        scicos_free(ptr->work);
@@ -278,9 +406,9 @@ void fromws_c(scicos_block *block,int flag)
 
        for (i=0;i<=nPoints-2;i++){
 	 A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
-	 qdy[i] = (ptr_d[i+1+j*nPoints] - ptr_d[i+j*nPoints]) * A_sd[i]*A_sd[i];         
+	 qdy[i] = (ptr_d[i+1+j*nPoints] - ptr_d[i+j*nPoints]) * A_sd[i]*A_sd[i];
        }
-       
+
        for (i=1;i<=nPoints-2;i++){
 	 A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
 	 ptr->D[i+j*nPoints] = 3.0*(qdy[i-1]+qdy[i]);
@@ -311,7 +439,8 @@ void fromws_c(scicos_block *block,int flag)
    }else if ((Method>1)&&((Ytype==1)&&( YsubType==1))) {/* Complex */
 
     if((ptr->D=(double *) scicos_malloc(2*nPoints*mY*sizeof(double)))==NULL) {
-       set_block_error(-16);*(block->work)=NULL;
+       set_block_error(-16);
+       *(block->work)=NULL;
        scicos_free(ptr->workt);
        scicos_free(ptr->work);
        scicos_free(ptr);
@@ -320,7 +449,8 @@ void fromws_c(scicos_block *block,int flag)
 
      if((spline=(double *) scicos_malloc((3*nPoints-2)*sizeof(double)))==NULL){
        sciprint("Allocation problem in spline"); 
-       set_block_error(-16);*(block->work)=NULL;
+       set_block_error(-16);
+       *(block->work)=NULL;
        scicos_free(ptr->D);
        scicos_free(ptr->workt);
        scicos_free(ptr->work);
@@ -333,14 +463,14 @@ void fromws_c(scicos_block *block,int flag)
      for (j=0;j<mY;j++){
        for (i=0;i<=nPoints-2;i++){
 	 A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
-	 qdy[i] = (ptr_d[i+1+j*nPoints] - ptr_d[i+j*nPoints]) * A_sd[i]*A_sd[i];         
+	 qdy[i] = (ptr_d[i+1+j*nPoints] - ptr_d[i+j*nPoints]) * A_sd[i]*A_sd[i];
        }
-       
+
        for (i=1;i<=nPoints-2;i++){
 	 A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
 	 ptr->D[i+j*nPoints] = 3.0*(qdy[i-1]+qdy[i]);
        }
-       
+
        if (Method==2){
 	 A_d[0] =  2.0*A_sd[0];
 	 ptr->D[0+j*nPoints] = 3.0 * qdy[0];
@@ -363,9 +493,9 @@ void fromws_c(scicos_block *block,int flag)
        /* ********* */
        for (i=0;i<=nPoints-2;i++){
 	 A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
-	 qdy[i] = (ptr_d[nPoints+i+1+j*nPoints] - ptr_d[nPoints+i+j*nPoints]) * A_sd[i]*A_sd[i];         
+	 qdy[i] = (ptr_d[nPoints+i+1+j*nPoints] - ptr_d[nPoints+i+j*nPoints]) * A_sd[i]*A_sd[i];
        }
-       
+
        for (i=1;i<=nPoints-2;i++){
 	 A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
 	 ptr->D[i+j*nPoints+nPoints] = 3.0*(qdy[i-1]+qdy[i]);
@@ -467,7 +597,7 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_d[j]=ptr_d[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Method==0){	 	       
+	 }else if (Method==0){
 	   if (inow<0){
 	     y_d[j]=0.0;
 	   }else{
@@ -479,7 +609,7 @@ void fromws_c(scicos_block *block,int flag)
 	   t2=ptr->workt[inow+1];
 	   y1=ptr_d[inow+j*nPoints];
 	   y2=ptr_d[inow+1+j*nPoints];
-	   y_d[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;	  
+	   y_d[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;
 	 }else if (Method>=2){
 	   t1=ptr->workt[inow]; 
 	   t2=ptr->workt[inow+1];
@@ -499,19 +629,19 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_cd[j]=ptr_d[nPoints*my+nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Method==0){	 	       
+	 }else if (Method==0){
 	   if (inow<0){
 	     y_cd[j]=0.0;// outputs set to zero
 	   }else{
 	     y_cd[j]=ptr_d[nPoints*my+inow+(j)*nPoints];
 	   }
-	 }else if (Method==1){	     
+	 }else if (Method==1){
 	   if (inow<0){inow=0;} // extrapolation for 0<t<X(0)
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=ptr_d[nPoints*my+inow+j*nPoints];
 	   y2=ptr_d[nPoints*my+inow+1+j*nPoints];
-	   y_cd[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;	   
+	   y_cd[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;
 	 }else if (Method>=2){
 	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
@@ -535,7 +665,7 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_c[j]=ptr_c[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Method==0){	 	       
+	 }else if (Method==0){
 	   if (inow<0){
 	     y_c[j]=0;
 	   }else{
@@ -560,7 +690,7 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_s[j]=ptr_s[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Method==0){	 	       
+	 }else if (Method==0){
 	   if (inow<0){
 	     y_s[j]=0;
 	   }else{
@@ -585,7 +715,7 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_l[j]=ptr_l[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Method==0){	 	       
+	 }else if (Method==0){
 	   if (inow<0){
 	     y_l[j]=0;
 	   }else{
@@ -610,13 +740,13 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_uc[j]=ptr_uc[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Method==0){	 	       
+	 }else if (Method==0){
 	   if (inow<0){
 	     y_uc[j]=0;
 	   }else{
 	     y_uc[j]=ptr_uc[inow+(j)*nPoints];
 	   }
-	 }else if (Method>=1){	 
+	 }else if (Method>=1){
   	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=(double)ptr_uc[inow+j*nPoints];
@@ -634,13 +764,13 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_us[j]=ptr_us[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Method==0){	 	       
+	 }else if (Method==0){
 	   if (inow<0){
 	     y_us[j]=0;
 	   }else{
 	     y_us[j]=ptr_us[inow+(j)*nPoints];
 	   }
-	 }else if (Method>=1){	
+	 }else if (Method>=1){
        	   t1=ptr->workt[inow];
 	   t2=ptr->workt[inow+1];
 	   y1=(double)ptr_us[inow+j*nPoints];
@@ -658,7 +788,7 @@ void fromws_c(scicos_block *block,int flag)
 	   }else if (OutEnd==1){
 	     y_ul[j]=ptr_ul[nPoints-1+(j)*nPoints]; // hold outputs at the end
 	   }
-	 }else if (Method==0){	 	       
+	 }else if (Method==0){
 	   if (inow<0){
 	     y_ul[j]=0;
 	   }else{
@@ -689,7 +819,7 @@ void fromws_c(scicos_block *block,int flag)
        //-------------------------
        if (ptr->firstevent==1){
 	 jfirst=nPoints-1; // finding first positive time instant
-	 for (j=0;j<nPoints;j++){		
+	 for (j=0;j<nPoints;j++){
 	   if (ptr->workt[j]>0) {
 	     jfirst=j;
 	     break;
@@ -715,7 +845,7 @@ void fromws_c(scicos_block *block,int flag)
 	   cnt2=0;	
 	   PerEVcnt++;/* When OutEnd==2 (perodic output)*/
 	   jfirst=nPoints-1; // finding first positive time instant
-	   for (j=0;j<nPoints;j++){		
+	   for (j=0;j<nPoints;j++){
 	     if (ptr->workt[j]>0) {
 	       jfirst=j;
 	       break;
