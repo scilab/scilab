@@ -143,6 +143,18 @@
 	dial_width_html=220pt
 </FILE>
 
+<FILE name='DOLLAR' type='SPECIALDESC'>
+	dial_width_html=260pt
+</FILE>
+
+<FILE name='DOLLAR_f' type='SPECIALDESC'>
+	dial_width_html=260pt
+</FILE>
+
+<FILE name='DOLLAR_m' type='SPECIALDESC'>
+	dial_width_html=260pt
+</FILE>
+
 <FILE name='DemoBlocks_pal' type='SPECIALDESC'>
 	scs_diagr_height_pal_html=50pt
 </FILE>
