@@ -14,11 +14,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 //--------------------------------------------------------------------------------------------
 // Copyright INRIA
 
-//**-------------------------------------------------------------------------------------------
-//** Check for Scilab "command line mode" that does not support SCICOS
-//** This check verify if "scicos()" is started form a command line Scilab with no graphics 
-//** support (almost obsolete function) 
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //** Magic Global Variable for Diagram Browser and more
   global %scicos_navig
@@ -27,6 +22,11 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
   global Scicos_commands   // programmed commands
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//**-------------------------------------------------------------------------------------------
+//** Check for Scilab "command line mode" that does not support SCICOS
+//** This check verify if "scicos()" is started form a command line Scilab with no graphics 
+//** support (almost obsolete function) 
 
   noguimode = find(sciargs()=="-nogui");
   if (noguimode <>[]) then
@@ -37,7 +37,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
   clear noguimode
 
-  //** ----------------------------- Check the recurring calling level of scicos_new -------------------------------
+  //** -------------------- Check the recurring calling level of scicos ----------------------
 
   //check if superblock editing mode
   [%ljunk, %mac] = where() ; //** where I am ?
@@ -707,11 +707,11 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       
     end // test %diagram
     
-  end //**--->  end of the while loop: the only way to exit is with the 'Quit' command 
+  end //**--->  end of the while loop: exit with the 'Quit' OR 'Leave' commands 
 
   if Cmenu=='Quit' then
-
-    do_exit() ; //** this function is executed in case of 'Quit'
+    //**  -------------- 'Quit' ------------------------------------
+    do_exit() ; 
     if ~super_block then // even after quiting, workspace variables
                          // must be saved and be usable in Scilab
       if find(%mac=='scilab2scicos') ==[] then
@@ -741,6 +741,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     end
 
   elseif Cmenu=="Leave" then
+   //**  -------------- 'Leave' ------------------------------------
     ok=do_save(scs_m,TMPDIR+'/BackupSave.cos') 
     if ok then  //need to save %cpr because the one in .cos cannot be
                 //used to continue simulation
@@ -795,8 +796,8 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
   end
 
 
-endfunction //** scicos() end here :) : had a good day
-
+endfunction //** scicos(); end here :) : you had a good day (simone.mannori@inria.fr)
+//**------------------------------------------------------------------------------------
   
 
 function [itype, mess] = CmType(Cmenu)
