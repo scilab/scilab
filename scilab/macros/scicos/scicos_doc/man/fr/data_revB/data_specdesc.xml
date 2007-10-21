@@ -1,5 +1,9 @@
 <DATA flag="spdesc">
 
+<FILE name='ANDBLK' type='SPECIALDESC'>
+	super_width_html=220pt
+</FILE>
+
 <FILE name='AUTOMAT' type='SPECIALDESC'>
 	dial_width_html=340pt
 </FILE>

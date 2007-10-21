@@ -26,7 +26,11 @@ la valeur lue sur son unique port d'entrée.
 </FILE>
 
 <FILE name='ANDBLK' type='LATEX'>
-TODO
+The Bus Creator block combines a set of signals, i.e., a
+group of signals represented by a single line in a block diagram. It
+allows you to reduce the number of lines required to route signals
+from one part of a diagram to another. This makes your easier to
+understand.
 </FILE>
 
 <FILE name='ANDLOG_f' type='LATEX'>
