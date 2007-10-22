@@ -4,13 +4,11 @@
 package org.scilab.modules.console;
 
 import java.awt.Component;
-import java.awt.Event;
 import java.awt.EventQueue;
 import java.awt.FontMetrics;
 import java.awt.Point;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
-import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
