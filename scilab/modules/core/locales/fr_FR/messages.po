@@ -1721,7 +1721,7 @@ msgid	"In no event will the authors be held liable for any damages "
 	"the use or other dealings\nin the software.\n"
 msgstr	"En aucun cas, les auteurs ne pourront être tenu responsable des "
 	"erreurs techniques ou matérielles, de perte de donnée résultant "
-	"de l'utilisation du logiciel. "
+	"de l'utilisation du logiciel.\n"
 #
 # File: src/c/banier.c, line: 43
 # File: src/c/banier.c, line: 49
