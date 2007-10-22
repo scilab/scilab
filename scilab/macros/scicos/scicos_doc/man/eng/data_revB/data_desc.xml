@@ -5208,68 +5208,182 @@ Each fields are then accessible inside the scilab computational function by the 
 \subsection{Inputs/outputs}
 
 \begin{itemize}
- \item {\bf block.nin :} a scalar
- \item {\bf block.insz :} a vector
- \item {\bf block.inptr :} a list
- \item {\bf block.nout :} a scalar
- \item {\bf block.outsz :} a vector
- \item {\bf block.outptr :} a list
+ \item {\bf block.nin :} a scalar that gives the number of regular input ports.
+                         This is a read only data.
+
+ \item {\bf block.insz :} a vector of size {\tt 3*nin}, that gives the dimensions and types of the regular input ports.
+                          \begin{itemize}
+                              \item{\bf {\tt block.insz(1:nin)} :} are the first dimensions.
+                              \item{\bf {\tt block.insz(nin+1:2*nin)} :} are the second dimensions.
+                              \item{\bf {\tt block.insz(2*nin+1:3*nin)} :} are the type of data (C coding).
+                          \end{itemize}
+                          This is a read only data.
+
+ \item {\bf block.inptr :} a list of size {\tt nin} that enclosed typed matrices for regular input ports.
+                           Each element correspond to only one regular input port. Then {i-th} matrix
+                           of the block.inptr list will have the dimensions [{\tt block.insz(i)}, {\tt block.insz(nin+i)}] and
+                           the type {\tt block.insz(2*nin+i)}.\\
+                           The data type that can be provided by regular input ports are :
+                           \begin{itemize}
+                             \item {\bf 1 :} matrix of real numbers,
+                             \item {\bf 2 :} matrix of complex numbers,
+                             \item {\bf 3 :} matrix of int32 numbers,
+                             \item {\bf 4 :} matrix of int16 numbers,
+                             \item {\bf 5 :} matrix of int8 numbers,
+                             \item {\bf 6 :} matrix of uint32 numbers,
+                             \item {\bf 7 :} matrix of uint16 numbers,
+                             \item {\bf 8 :} matrix of uint8 numbers.
+                           \end{itemize}
+                          This is a read only data.
+
+ \item {\bf block.nout :} a scalar that gives the number of regular output ports.
+                          This is a read only data.
+
+ \item {\bf block.outsz :} a vector of size {\tt 3*nout}, that gives the dimensions and types of the regular output ports.
+                          \begin{itemize}
+                              \item{\bf {\tt block.outsz(1:nout)} :} are the first dimensions.
+                              \item{\bf {\tt block.outsz(nout+1:2*nout)} :} are the second dimensions.
+                              \item{\bf {\tt block.outsz(2*nout+1:3*nout)} :} are the type of data (C coding).
+                          \end{itemize}
+                          This is a read only data.
+
+ \item {\bf block.outptr :} a list of size {\tt nout} that enclosed typed matrices for regular output ports.
+                            Each element correspond to only one regular output port. Then {i-th} matrix
+                            of the block.outptr list will have the dimensions [{\tt block.outsz(i)}, {\tt block.outsz(nin+i)}] and
+                            the type {\tt block.outsz(2*nin+i)}.\\
+                            The data type that can be provided by regular output ports are :
+                            \begin{itemize}
+                              \item {\bf 1 :} matrix of real numbers,
+                              \item {\bf 2 :} matrix of complex numbers,
+                              \item {\bf 3 :} matrix of int32 numbers,
+                              \item {\bf 4 :} matrix of int16 numbers,
+                              \item {\bf 5 :} matrix of int8 numbers,
+                              \item {\bf 6 :} matrix of uint32 numbers,
+                              \item {\bf 7 :} matrix of uint16 numbers,
+                              \item {\bf 8 :} matrix of uint8 numbers.
+                            \end{itemize}
+                            Values of regular output ports will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
+                            the block only for {\tt flag}=6 and {\tt flag}=1.
 \end{itemize}
 
 \subsection{Events}
 
 \begin{itemize}
- \item {\bf block.nevprt :} a scalar
- \item {\bf block.nevout :} a scalar
- \item {\bf block.evout :} a vector
+ \item {\bf block.nevprt :} a scalar given the event input port number (binary coding)
+                            which have activated the block. This is a read only data.
+
+ \item {\bf block.nevout :} a scalar given the number of output event port of the block.
+                            This is a read only data.
+
+ \item {\bf block.evout :} a vector of size {\tt nevout} corresponding to the register
+                           of output event.
+                           Values of  output event register will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
+                           the block only for {\tt flag}=3.
 \end{itemize}
 
 \subsection{Parameters}
 
 \begin{itemize}
- \item {\bf block.nrpar :} a scalar
- \item {\bf block.rpar :} a vector
- \item {\bf block.nipar :} a scalar
- \item {\bf block.ipar :} a vector
- \item {\bf block.nopar :} a scalar
- \item {\bf block.oparsz :} a matrix
- \item {\bf block.opartyp :} a vector
- \item {\bf block.opar :} a list
+ \item {\bf block.nrpar :} a scalar given the number of real parameters.
+                           This is a read only data.
+
+ \item {\bf block.rpar :} a vector of size {\tt nrpar} corresponding to the real parameter register.
+                          This is a read only data.
+
+ \item {\bf block.nipar :} a scalar given the number of integer parameters.
+                           This is a read only data.
+
+ \item {\bf block.ipar :} a vector of size {\tt nipar} correspondig to the integer parameter register.
+                          This is a read only data.
+
+ \item {\bf block.nopar :} a scalar given the number of object parameters.
+                           This is a read only data.
+
+ \item {\bf block.oparsz :} a matrix of size {\tt nopar,2}, that respectively gives the first and the second
+                            dimension of object parameters. This is a read only data.
+
+ \item {\bf block.opartyp :} a vector of size {\tt nopar} given the C coding type of data.
+                            This is a read only data.
+
+ \item {\bf block.opar :} a list of size {\tt nopar} given the values of object parameters.
+                          Each element of {\tt opar} can be either a typed matrix or a list.
+                          Only matrix that encloses numbers of type real, complex, int32, int16, int8,
+                          uint32, uint16 and uint8 are allowed, all other types of scilab data will
+                          be enclosed in a sub-list. This is a read only data.
 \end{itemize}
 
 \subsection{States}
 
 \begin{itemize}
- \item {\bf block.nz :} a scalar
- \item {\bf block.z :} a vector
- \item {\bf block.noz :} a scalar
- \item {\bf block.ozsz :} a matrix
- \item {\bf block.oztyp :} a vector
- \item {\bf block.oz :} a list
- \item {\bf block.nx :} a scalar
- \item {\bf block.x :} a vector
- \item {\bf block.xd :} a vector
- \item {\bf block.res :} a vector
+ \item {\bf block.nz :} a scalar given the number of discrete state for the block.
+                        This is a read only data.
+
+ \item {\bf block.z :} a vector of size {\tt nz} corresponding to the discrete state register.
+                       Values of discrete state register will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
+                       the block only for {\tt flag}=4, {\tt flag}=6, {\tt flag}=2 and {\tt flag}=5.
+
+ \item {\bf block.noz :} a scalar thaht gives the number of discrete object state.
+                         This is a read only data.
+
+ \item {\bf block.ozsz :} a matrix of size {\tt noz,2}, that respectively gives the first and the second
+                          dimension of discrete object state. This is a read only data.
+
+ \item {\bf block.oztyp :} a vector of size {\tt noz} given the C coding type of data.
+
+ \item {\bf block.oz :} a list of size {\tt noz} given the values of discrete object states.
+                          Each element of {\tt oz} can be either a typed matrix or a list.
+                          Only matrix that encloses numbers of type real, complex, int32, int16, int8,
+                          uint32, uint16 and uint8 are allowed, all other types of scilab data will
+                          be enclosed in a sub-list.
+                          Values of discrete object state will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
+                          the block only for {\tt flag}=4, {\tt flag}=6, {\tt flag}=2 and {\tt flag}=5.
+
+ \item {\bf block.nx :} a scalar given the number of continuous state for the block.
+                        This is a read only data.
+
+ \item {\bf block.x :} a vector of size {\tt nx} given the value of the continuous state register.
+                       Values of the continuous state register will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
+                       the block only for {\tt flag}=4, {\tt flag}=6 and {\tt flag}=2.
+
+ \item {\bf block.xd :} a vector of size {\tt nx} given the value of the derivative continuous state register.
+                       Values of the derivative continuous state register will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
+                       the block only for {\tt flag}=4, {\tt flag}=6, {\tt flag}=0 and {\tt flag}=2.
+
+ \item {\bf block.res :} a vector of size {\tt nx} corresponding to the Differential Algebraic Equation (DAE) residual.
+                       Values of that register will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
+                       the block only for {\tt flag}=0, and {\tt flag}=10.
  %\item {\bf block.work:}
 \end{itemize}
 
 \subsection{Zero crossing surfaces and modes}
 
 \begin{itemize}
- \item {\bf block.ng :} a scalar
- \item {\bf block.g :} a vector
+ \item {\bf block.ng :} a scalar given the number of zero crossing surfaces for the block.
+                        This is a read only data.
+
+ \item {\bf block.g :} a vector of size {\tt ng} corresponding to the zero crossing register.
+                       Values of that register will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
+                       the block only for {\tt flag}=9.
+
 % \item {\bf block.jroot :}
- \item {\bf block.nmode :} a scalar
- \item {\bf block.mode :} a vector
+ \item {\bf block.nmode :} a scalar given the number of mode for the block.
+                           This is a read only data.
+
+ \item {\bf block.mode :} a vector of size {\tt mode} that corresponds to the mode register.
+                       Values of that register will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
+                       the block only for {\tt flag}=9, with {\tt \htmladdnormallink{phase\_simulation}{phase_simulation.htm}}=1.
+
 \end{itemize}
 
 \subsection{Miscallaneous}
 
 \begin{itemize}
 % \item {\bf : funpt}
- \item {\bf block.type :} a scalar
+ \item {\bf block.type :} a scalar given the type of the block.
+                          This is a read only data.
 % \item {\bf block.ztyp :}
- \item {\bf block.label :} a string
+ \item {\bf block.label :} a string given the label of the block.
+                          This is a read only data.
  %\item {\bf scsptr :}
 \end{itemize}
 
