@@ -5322,7 +5322,7 @@ Each fields are then accessible inside the scilab computational function by the 
                        Values of discrete state register will be saved in the \htmladdnormallink{C structure}{C_struct.htm} of
                        the block only for {\tt flag}=4, {\tt flag}=6, {\tt flag}=2 and {\tt flag}=5.
 
- \item {\bf block.noz :} a scalar thaht gives the number of discrete object state.
+ \item {\bf block.noz :} a scalar that gives the number of discrete object state.
                          This is a read only data.
 
  \item {\bf block.ozsz :} a matrix of size {\tt noz,2}, that respectively gives the first and the second
