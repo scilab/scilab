@@ -62,21 +62,21 @@ public class ValidationAction extends AbstractConsoleAction {
 				return;
 			}
 			
-			// Print the command in the output view
-			boolean firstPrompt = true;
-			outputView.setCaretPositionToEnd();
-			for (String line : cmdToExecute.split(StringConstants.NEW_LINE)) {
-				if (firstPrompt) {
-					firstPrompt = false;
-					outputView.append(StringConstants.NEW_LINE);
-					outputView.append(promptView.getDefaultPrompt());
-				}
-				outputView.append(line);
-				outputView.append(StringConstants.NEW_LINE);
-			}
+			// Print the command in the output view (done in sendCommandsToScilab since bug 2510 fix)
+//			boolean firstPrompt = true;
+//			outputView.setCaretPositionToEnd();
+//			for (String line : cmdToExecute.split(StringConstants.NEW_LINE)) {
+//				if (firstPrompt) {
+//					firstPrompt = false;
+//					outputView.append(StringConstants.NEW_LINE);
+//					outputView.append(promptView.getDefaultPrompt());
+//				}
+//				outputView.append(line);
+//				outputView.append(StringConstants.NEW_LINE);
+//			}
 			
-			// Send data to Scilab
-			((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab(cmdToExecute, false);
+			// Send data to Scilab (Commands print in output view is done in sendCommandsToScilab since bug 2510 fix)
+			((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab(cmdToExecute, true);
 					
 		}
 

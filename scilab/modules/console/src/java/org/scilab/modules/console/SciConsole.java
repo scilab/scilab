@@ -330,7 +330,7 @@ public class SciConsole extends JPanel {
 		while (nbStatements < linesToExec.length) {
 		
 			// Send data to the console only if the prompt is visible 
-			boolean bufferAvailable = ((SciInputCommandView) config.getInputCommandView()).isEditable();
+			boolean bufferAvailable = ((SciPromptView) config.getPromptView()).isVisible();
 
 			if (bufferAvailable) {
 				// This loop contains code very similar to the code of ValidationAction.java
@@ -338,7 +338,7 @@ public class SciConsole extends JPanel {
 				OutputView outputView = config.getOutputView();
 				PromptView promptView = config.getPromptView();
 
-				config.getInputCommandView().append(StringConstants.NEW_LINE);
+				//config.getInputCommandView().append(StringConstants.NEW_LINE);
 				
 				// Reset command line
 				inputParsingManager.reset();
@@ -384,7 +384,6 @@ public class SciConsole extends JPanel {
 				
 				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
 				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
-
 				nbStatements++;
 			}
 		}

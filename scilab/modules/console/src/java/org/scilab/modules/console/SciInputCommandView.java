@@ -4,19 +4,25 @@
 package org.scilab.modules.console;
 
 import java.awt.Component;
+import java.awt.Event;
+import java.awt.EventQueue;
 import java.awt.FontMetrics;
 import java.awt.Point;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.ui.ConsoleTextPane;
+import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Scilab UI that contains the line edited by th euser
@@ -144,5 +150,29 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		
 		// Drag n' Drop handling
 		this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(console)));
+		
+		// BUG 2510 fix: automatic validation of pasted lines
+		this.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				// Nothing to do in Scilab
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				// Validates commands if followed by a carriage return
+				String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+				if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+							console.sendCommandsToScilab(wholeTxt, true);
+						};
+					});
+				}
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				// Nothing to do in Scilab
+			}
+		});
 	}
 }
