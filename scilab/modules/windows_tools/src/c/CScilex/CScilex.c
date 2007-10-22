@@ -2,7 +2,8 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include <Windows.h>
+#include <windows.h>
+#include <strsafe.h>
 #include <string.h>
 #include <stdio.h>
 #include "../../../../../libs/DetectFramework2/DetectFramework.h"
@@ -12,12 +13,13 @@
 #define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
 #define MSG_DETECT_FRAMEWORK "The .NET Framework 2.0 is not installed"
 #define MSG_WARNING "Warning"
-#define MSG_LOAD_LIBRARIES "scilex.exe : Impossible to load Scilab libraries."
+#define MSG_LOAD_LIBRARIES "scilex.exe failed with error %d: %s"
 #define MAIN_FUNCTION "Console_Main"
 #define LIBRARY_TO_LOAD "scilab_windows"
 #define ARG_NW "-nw"
 #define ARG_NWNI "-nwni"
 #define ARG_NOGUI "-nogui"
+#define LENGTH_BUFFER_SECURITY 64
 /*-----------------------------------------------------------------------------------*/
 typedef int (*MYPROC) (int , char **);
 /*-----------------------------------------------------------------------------------*/
@@ -91,7 +93,28 @@ int main (int argc, char **argv)
 
 	if (! fRunTimeLinkSuccess) 
 	{
-		MessageBox(NULL,TEXT(MSG_LOAD_LIBRARIES),TEXT(MSG_WARNING),MB_ICONERROR); 
+		LPVOID lpMsgBuf;
+		LPVOID lpDisplayBuf;
+
+		DWORD dw = GetLastError(); 
+
+		FormatMessage(
+			FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+			FORMAT_MESSAGE_FROM_SYSTEM |
+			FORMAT_MESSAGE_IGNORE_INSERTS,
+			NULL,
+			dw,
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			(LPTSTR) &lpMsgBuf,
+			0, NULL );
+
+		lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT,(lstrlen((LPCTSTR)lpMsgBuf)+LENGTH_BUFFER_SECURITY)*sizeof(TCHAR)); 
+		StringCchPrintf((LPTSTR)lpDisplayBuf,LocalSize(lpDisplayBuf) / sizeof(TCHAR),TEXT(MSG_LOAD_LIBRARIES), dw, lpMsgBuf); 
+
+		MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT(MSG_WARNING), MB_ICONERROR); 
+
+		LocalFree(lpMsgBuf);
+		LocalFree(lpDisplayBuf);
 		exit(1);
 	}
 	else exit(0);
