@@ -12,6 +12,10 @@
 #include "util.h" 
 #define Min(x,y)  (((x)<(y))?(x):(y))
 
+#ifdef _MSC_VER
+#pragma comment(lib,"../../../bin/intl.lib")
+#endif
+
 static int Sed (int,char *,FILE *,char *,char *,char *,char *,char *,char *);
 int ScilabPsToEps (char orientation,char *filein,char *fileout);
 static  void dos2win32 (char *filename,char *filename1);

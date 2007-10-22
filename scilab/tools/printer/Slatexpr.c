@@ -6,15 +6,13 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
-
-#include "../../modules/core/includes/machine.h"
 #include "util.h" 
 
-static int Sed __PARAMS((int,char *,FILE *,char *,char *,char *,char *,char *,char *));
+static int Sed(int,char *,FILE *,char *,char *,char *,char *,char *,char *);
 
-static void FileNameChange __PARAMS((char *filein,char *fileout,char *,char *));
-static  void dos2win32 __PARAMS((char *filename,char *filename1));
-int ScilabPsToTeX __PARAMS((char orientation,char *filenamein,char *filenameout,double xs,double ys));
+static void FileNameChange(char *filein,char *fileout,char *,char *);
+static  void dos2win32(char *filename,char *filename1);
+int ScilabPsToTeX (char orientation,char *filenamein,char *filenameout,double xs,double ys);
 
 /**************************************************
  * S;latexpr  Usage :  [-orientation] xs ys filename.ps 
