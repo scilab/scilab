@@ -1,4 +1,4 @@
-Scilab 4.1.1 Release Notes
+Scilab 4.1.2 Release Notes
 **************************
 
 - Next to the on line help of the software, we advise you, to make

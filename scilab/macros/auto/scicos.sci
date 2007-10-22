@@ -796,7 +796,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
   end
 
 
-endfunction //** scicos(); end here :) : you had a good day (simone.mannori@inria.fr)
+endfunction //** scicos(); end here :) : you had a good day
 //**------------------------------------------------------------------------------------
   
 
