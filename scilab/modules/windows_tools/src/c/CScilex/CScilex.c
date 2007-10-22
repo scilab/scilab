@@ -37,13 +37,13 @@ int main (int argc, char **argv)
 
 	if (!DetectFrameWorkNET2())
 	{
-		MessageBox(NULL,MSG_DETECT_FRAMEWORK,MSG_WARNING,MB_ICONWARNING);
+		MessageBox(NULL,TEXT(MSG_DETECT_FRAMEWORK),TEXT(MSG_WARNING),MB_ICONWARNING);
 		return -1;
 	}
 
 	if (GetWindowsVersion()<OS_WIN32_WINDOWS_2000)
 	{
-		MessageBox(NULL,MSG_DETECT_2K_OR_MORE,MSG_WARNING,MB_ICONWARNING);
+		MessageBox(NULL,TEXT(MSG_DETECT_2K_OR_MORE),TEXT(MSG_WARNING),MB_ICONWARNING);
 		return -1;
 	}
 
@@ -79,7 +79,7 @@ int main (int argc, char **argv)
     
 	if (hinstLib != NULL) 
 	{ 
-		Console_Main = (MYPROC) GetProcAddress(hinstLib, TEXT(MAIN_FUNCTION)); 
+		Console_Main = (MYPROC) GetProcAddress(hinstLib,MAIN_FUNCTION); 
 
 		if (NULL != Console_Main) 
 		{
@@ -91,7 +91,7 @@ int main (int argc, char **argv)
 
 	if (! fRunTimeLinkSuccess) 
 	{
-		MessageBox(NULL,MSG_LOAD_LIBRARIES,MSG_WARNING,MB_ICONERROR); 
+		MessageBox(NULL,TEXT(MSG_LOAD_LIBRARIES),TEXT(MSG_WARNING),MB_ICONERROR); 
 		exit(1);
 	}
 	else exit(0);
