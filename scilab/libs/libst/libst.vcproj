@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="../intl"
 				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -132,7 +132,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="../intl"
 				PreprocessorDefinitions="_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -202,6 +202,10 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
+			<File
+				RelativePath=".\DllmainSt.c"
+				>
+			</File>
 			<File
 				RelativePath=".\libst.c"
 				>
