@@ -1089,7 +1089,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\SciEnv.h"
+				RelativePath="..\..\includes\SetScilabEnvironment.h"
 				>
 			</File>
 			<File
