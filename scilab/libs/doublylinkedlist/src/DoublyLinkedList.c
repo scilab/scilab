@@ -16,7 +16,6 @@
 
 #include "DoublyLinkedList.h"
 #include "MALLOC.h"
-#include "sciprint.h"
 
 /*****************************************************/
 /**

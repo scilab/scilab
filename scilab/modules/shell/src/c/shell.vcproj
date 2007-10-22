@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../console/includes/;../../../core/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../console/includes/;../../../core/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +127,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../console/includes/;../../../core/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../console/includes/;../../../core/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -210,6 +210,10 @@
 			</File>
 			<File
 				RelativePath=".\windows\command.c"
+				>
+			</File>
+			<File
+				RelativePath=".\windows\DllmainShell.c"
 				>
 			</File>
 			<File

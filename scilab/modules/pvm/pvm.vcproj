@@ -176,6 +176,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\src\c\DllmainPVM.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\gw_pvm.c"
 				>
 			</File>

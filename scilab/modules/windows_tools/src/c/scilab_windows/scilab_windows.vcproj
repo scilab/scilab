@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../../../../libs/MALLOC/includes;../../../../core/includes"
+				AdditionalIncludeDirectories=".;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../core/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +126,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../../../../libs/MALLOC/includes;../../../../core/includes"
+				AdditionalIncludeDirectories=".;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../core/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -204,6 +204,10 @@
 			</File>
 			<File
 				RelativePath=".\console_main.c"
+				>
+			</File>
+			<File
+				RelativePath=".\DllmainScilab_Windows.c"
 				>
 			</File>
 			<File

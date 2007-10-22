@@ -7,7 +7,23 @@
 
 #include <Windows.h>
 
-#include "machine.h" /* BOOL */
+
+/* define boolean type */
+#ifdef BOOL
+#undef BOOL
+#endif
+
+typedef int BOOL ;
+
+#ifdef TRUE
+#undef TRUE
+#endif
+#define TRUE 1
+
+#ifdef FALSE
+#undef FALSE
+#endif
+#define FALSE 0
 
 #ifdef EXPORT_DYNAMICLIBRARY_DLL
 	#define IMPORT_EXPORT_DYNAMICLIBRARY_DLL __declspec(dllexport)
