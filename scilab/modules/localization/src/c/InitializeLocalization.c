@@ -12,9 +12,7 @@
 #include "machine.h"
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
-#ifdef _MSC_VER
-#define _putenv putenv
-#endif
+#include "../../../io/includes/setenvc.h"
 /*-----------------------------------------------------------------------------------*/ 
 
 /**
@@ -24,18 +22,11 @@
  */
 static void putEnvLC_ALL(char *locale){
 
-	char *localeDeclared=NULL;	
-
-	localeDeclared=(char*)MALLOC(sizeof(char)*(strlen(EXPORTENVLOCALE)+ strlen("=")+ strlen(locale)+1));
-	strcat(localeDeclared,EXPORTENVLOCALE);
-	strcat(localeDeclared,"=");
-	strcat(localeDeclared,locale);
 	/* It will put in the env something like LC_ALL=fr_FR */
-
-	if (putenv (localeDeclared)){
+	if ( !setenvc(EXPORTENVLOCALE,locale))
+	{
 		fprintf(stderr,"Failed to declare the system variable LC_ALL\n");
 	}
-	FREE(localeDeclared);
 }
 
 

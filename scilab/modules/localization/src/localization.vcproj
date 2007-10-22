@@ -67,12 +67,12 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localizationtmp.def &gt;nul&#x0D;&#x0A;copy ..\localization_header.def+localizationtmp.def  ..\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localizationtmp.def &gt;nul&#x0D;&#x0A;copy ..\localization_header.def+localizationtmp.def  ..\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="Libscilab.lib io.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="localization.def"
@@ -160,11 +160,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localizationtmp.def &gt;nul&#x0D;&#x0A;copy ..\localization_header.def+localizationtmp.def  ..\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localizationtmp.def &gt;nul&#x0D;&#x0A;copy ..\localization_header.def+localizationtmp.def  ..\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="Libscilab.lib io.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				ModuleDefinitionFile="localization.def"
 				OptimizeForWindows98="1"

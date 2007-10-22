@@ -31,6 +31,7 @@
 #pragma comment(lib,"../../bin/lapack.lib")
 #pragma comment(lib,"../../bin/linear_algebra_f.lib")
 #pragma comment(lib,"../../bin/libxml2.lib")
+#pragma comment(lib,"../../bin/intl.lib")
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
 #pragma comment(lib,"../../bin/sparse_f.lib")
