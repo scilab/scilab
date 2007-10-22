@@ -1719,7 +1719,9 @@ msgstr	"Ce programme est en version de développement et ne représente en "
 msgid	"In no event will the authors be held liable for any damages "
 	"arising from,\nout of or in connection with the software or "
 	"the use or other dealings\nin the software.\n"
-msgstr	""
+msgstr	"En aucun cas, les auteurs ne pourront être tenu responsable des "
+	"erreurs techniques ou matérielles, de perte de donnée résultant "
+	"de l'utilisation du logiciel. "
 #
 # File: src/c/banier.c, line: 43
 # File: src/c/banier.c, line: 49
