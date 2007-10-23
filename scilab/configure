@@ -37304,6 +37304,7 @@ if test $with_localization != no; then
    echo "pofiles ................ = $POFILES"
    echo "msgfmt  ................ = $MSGFMT"
    echo "msgfmt_opts ............ = $MSGFMT_OPTS"
+   echo "msgcat  ................ = $MSGCAT"
    echo "intllibs  .............. = $INTLLIBS"
 else
    echo "Won't generate localization files"
