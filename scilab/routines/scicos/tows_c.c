@@ -336,7 +336,8 @@ void tows_c(scicos_block *block,int flag)
      strcat(env,str);
 
      /* open tmp file */
-     status = "w";
+     status = "wb"; //** "w" : write
+	                //** "b" : binary (required for Windows) 
      lout=FILENAME_MAX;
      C2F(cluni0)(env, filename, &out_n,1,lout);
      C2F(mopen)(&fd,env,status,&swap,&res,&ierr);

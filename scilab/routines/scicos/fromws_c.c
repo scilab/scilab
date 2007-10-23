@@ -119,7 +119,9 @@ void fromws_c(scicos_block *block,int flag)
    strcat(env,str);
 
    /* open tmp file */
-   status = "r";
+   status = "rb"; //** "r" : read 
+                  //** "b" : binary format (required for Windows) 
+    
    lout=FILENAME_MAX;
    C2F(cluni0)(env, filename, &out_n,1,lout);
    C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
