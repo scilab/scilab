@@ -1026,26 +1026,6 @@ AH_BOTTOM([
        size of C int = 4 bytes
 */
 
-typedef int integer;
-
-/* define boolean type */
-#ifdef BOOL
-	#undef BOOL
-#endif
-
-typedef int BOOL ;
-
-#ifdef TRUE
-	#undef TRUE
-#endif
-#define TRUE 1
-
-#ifdef FALSE
-	#undef FALSE
-#endif
-#define FALSE 0
-
-
 #ifdef DIR_SEPARATOR
 	   #undef DIR_SEPARATOR
 #endif
@@ -1087,12 +1067,14 @@ typedef int BOOL ;
 
 #endif
 
+/* Defines BOOL type */
+#include "BOOL.h"
 
+/* Defines PARAMS type */
 #include "PARAMS.h"
 
 #endif /* MACHINE_H  */
 ])
-
 
 AM_CONDITIONAL(GUI_X11, test "$GUI" = "X11")
 AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")

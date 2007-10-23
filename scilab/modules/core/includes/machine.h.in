@@ -423,9 +423,6 @@
        size of C int = 4 bytes
 */
 
-/* Defines BOOL type */
-#include "BOOL.h"
-
 #ifdef DIR_SEPARATOR
 	   #undef DIR_SEPARATOR
 #endif
@@ -467,7 +464,10 @@
 
 #endif
 
+/* Defines BOOL type */
+#include "BOOL.h"
 
+/* Defines PARAMS type */
 #include "PARAMS.h"
 
 #endif /* MACHINE_H  */

@@ -32550,7 +32550,6 @@ _ACEOF
 
 
 
-
  if test "$GUI" = "X11"; then
   GUI_X11_TRUE=
   GUI_X11_FALSE='#'
