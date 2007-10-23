@@ -6,7 +6,7 @@ proc setScipadVersionString {} {
     # or for filling in manually when backporting Scipad from
     # the trunk to the BUILD4 environment (BUILD4 does not
     # understand instruction getversion)
-    set ScipadVersion "6.129BP1"
+    set ScipadVersion "6.129.BP2"
     # try/end so that this code portion can be kept with no change
     # even in a backported version
     set comm1 "try;"

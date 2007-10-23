@@ -3179,5 +3179,10 @@ Francois VOGEL, 29/08/07
  * version --> 6.129
 
 ES, 03/09/07 
-* Backport to BUILD_4
-* Version -->  6.129BP1
+ * Backport to BUILD_4
+ * Version -->  6.129BP1
+
+Francois VOGEL, 21/10/07
+ * de, it, no translations updated, and zh_cn added (committed by ES)
+ * version --> 6.129.BP2
+
