@@ -107,7 +107,10 @@ function scipad(varargin)
                     // use the scilab macro pathconvert(,"u") alone to solve the problem, as
                     // by construction it creates cygwin paths. Therefore, we replace ad hoc
                     // slashes.
-                    filetoopen=pathconvert(filetoopen,%f,%t,"u")
+                    filetoopen=pathconvert(filetoopen,%f,%t);
+                    if MSDOS then
+                        filetoopen=strsubst(filetoopen,"\","/");
+                    end
                     // The complication below is needed to comply with ScilabEval sync limitations: what
                     // is executed during a sync is not available in the interpreter after the sync has
                     // ended (because sync launches a new interpreter - same thing as running in a function),

@@ -3177,3 +3177,22 @@ Francois VOGEL, 29/08/07
  * Fixed: Opening a textbox (e.g. "Changelog") and hitting the Return key
    when the text widget has focus produced a Tcl Error
  * version --> 6.129
+ 
+Francois VOGEL, 23/10/07
+ * Pushed version number to identify the following changes:
+   - added zh_cn and updated zh_tw ,de, it and no translations [from ES]
+   - bugs about \"' solved in msgdiff.sci [from ES]
+   - restored correct resolution of windows pathnames (was mistakenly
+     broken in 6.122, and affected for instance opening a file in Scipad
+     by double-clicking on it) [from ES]
+   - renamed languages to locales directories [from Sylvestre Ledru]
+   - localization of the .sci part of Scipad [from Sylvestre Ledru]:
+       . modified all tags <module>_<type>_number by a string
+       . added messages.pot
+       . removed old localization scheme, new gettext enabled:
+         gettext("xxxx" becomes gettext(
+       . errors.xml, menus.xml and messages.xml --> plonk!
+   - added a feature to rebuild only a scilab macros library in macros
+     directory - cleanmacros.bat, buildmacros.bat, buildmacros.sce
+     [from Allan Cornet]
+ * version --> 6.130
