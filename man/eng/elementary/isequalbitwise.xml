@@ -33,7 +33,7 @@
     <P> When comparing list's, structures,... the comparison is made
     recursively, the order of the fields matters. </P>
     <P>floating point data are compared bitwise, i.e.
-    NaN values are not equal, double(1) and int32(1) are not equal. See <LINK>isequal</LINK> for IEEE
+    NaN values are equal, double(1) and int32(1) are not equal. See <LINK>isequal</LINK> for IEEE
     comparisons. </P>
   </DESCRIPTION>
   <EXAMPLE>
