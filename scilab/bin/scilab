@@ -308,6 +308,7 @@ export LD_LIBRARY_PATH
 # --suppressions=$SCI/tools/valgrind.supp
 # --gen-suppressions=all
 VALGRIND_OPTIONS=" --num-callers=6 --trace-children=yes --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
+VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --dump-instr=yes --trace-jump=yes "
 
 do_scilex()
 {
@@ -344,6 +345,7 @@ echo     "      -display Display: for use under Xwindow systems to set a specifi
 echo     "      -d Display      : equivalent to display Display."
 echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
 echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
 echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
 echo     "                        -e and -f options are mutually exclusive."
 echo     "      -f File         : execute the scilab script given in File argument."
@@ -546,6 +548,7 @@ if test "$rest" = "yes"; then
 
   debug=
   profiling=
+  profiling_visu=
   now=
   display=
   start_file=
@@ -578,6 +581,9 @@ if test "$rest" = "yes"; then
           ;;
       -profiling)
           PROFILING="-profiling"
+          ;;
+      -profiling-visu)
+          PROFILING_VISU="-profiling-visu"
           ;;
       -nw)
           now="-nw"
@@ -651,10 +657,19 @@ if test "$rest" = "yes"; then
 	if test -n "$PROFILING"; then
 	  if test -n "$DEVENV"; then
 		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
-		  $SCI/libtool --mode=execute valgrind $SCILABBIN $sci_args
+		  $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
 	  else
 		  echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
 		  valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
+	  fi
+	else
+	if test -n "$PROFILING_VISU"; then
+	  if test -n "$DEVENV"; then
+		  echo "Running profiling visualization of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
+		  $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
+	  else
+		  echo "Running profiling visualization of Scilab  : " valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
+		  valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
 	  fi
 	else
     if test -n "$now"; then
@@ -665,6 +680,7 @@ if test "$rest" = "yes"; then
         $sci_exe $sci_args
 		fi
     fi
+   fi
   fi
 fi
 
