@@ -246,10 +246,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\jni\GuiManagement_wrap.c"
-				>
-			</File>
-			<File
 				RelativePath=".\InitializeConsole.c"
 				>
 			</File>
@@ -411,7 +407,6 @@
 				>
 				<FileConfiguration
 					Name="Release|Win32"
-					ExcludedFromBuild="true"
 					>
 					<Tool
 						Name="swig rule"
