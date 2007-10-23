@@ -73,9 +73,6 @@ New/improved functionalities of Scipad (6.129.BP2):
   - Tcl/Tk 8.5 is used by Scipad if available, providing peer text widgets,
     hence the capability to display different parts of the same file at 
     one time
-  - Correct resolution of windows pathnames restored (was mistakenly
-    broken in 6.122, and affected for instance opening a file in scipad
-    by double-clicking on it)
     
     
 

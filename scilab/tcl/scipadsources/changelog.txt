@@ -3182,7 +3182,16 @@ ES, 03/09/07
  * Backport to BUILD_4
  * Version -->  6.129BP1
 
-Francois VOGEL, 21/10/07
- * de, it, no translations updated, and zh_cn added (committed by ES)
- * version --> 6.129.BP2
+ES, 2-17/9/07
+ * de, it, no translations updated, and zh_cn added
+ * bugs about \"' solved in msgdiff.sci 
 
+Allan Cornet, 15/10/07
+ * restored correct resolution of windows pathnames (was mistakenly
+   broken in 6.122, and affected for instance opening a file in scipad
+   by double-clicking on it) [from ES]
+
+Pierre Marechal [from FV], 23/10/07 
+ * push version to BP2 in helps.tcl
+ * update comments in scipad.sci
+ * version --> 6.129.BP2
