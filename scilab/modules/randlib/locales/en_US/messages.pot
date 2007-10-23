@@ -17,9 +17,7 @@ msgstr	"Project-Id-Version: Scilab - randlib\n"
 	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: src/c/fsultra.c, line: 165
-msgid	"\n"
-	"\r bad seed for fsultra, must be integers in [0, 2^32-1]\n"
-	"\r"
+msgid	"\nbad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr	""
 #
 # File: src/c/fsultra.c, line: 178
@@ -31,89 +29,47 @@ msgid	"\n"
 msgstr	""
 #
 # File: src/c/fsultra.c, line: 186
-msgid	"\n"
-	"\r the second component of the fsultra state, must be 0 or 1\n"
-	"\r"
+msgid	"The second component of the fsultra state, must be 0 or 1\n"
 msgstr	""
 #
 # File: src/c/fsultra.c, line: 194
-msgid	"\n"
-	"\r the third component of the fsultra state, must be an integer in "
+msgid	"\nThe third component of the fsultra state, must be an integer in "
 	"[1, 2^32-1]\n"
-	"\r"
 msgstr	""
 #
 # File: src/c/mt.c, line: 143
-msgid	"\n"
-	"\r bad seed for mt, must be an integer in [0, 2^32-1]\n"
-	"\r"
+msgid	"\nBad seed for mt, must be an integer in [0, 2^32-1]\n"
 msgstr	""
 #
 # File: src/c/mt.c, line: 170
-msgid	"\n"
-	"\r the first component of the mt state mt, must be an integer in [1, "
+msgid	"The first component of the mt state mt, must be an integer in [1, "
 	"624]\n"
-	"\r"
 msgstr	""
 #
 # File: src/c/kiss.c, line: 66
-msgid	"\n"
-	"\r bad seeds for kiss, must be integers in [0,2^32-1]\n"
-	"\r"
+msgid	"\nBad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr	""
 #
 # File: src/c/urand.c, line: 47
-msgid	"\n"
-	"\r bad seed for urand, must be an integer in [0,  2147483647]\n"
-	"\r"
+msgid	"\nBad seed for urand, must be an integer in [0,  2147483647]\n"
 msgstr	""
 #
 # File: src/c/clcg2.c, line: 82
-msgid	"\n"
-	"\r bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]"
-msgstr	""
-#
-# File: src/c/clcg2.c, line: 83
-msgid	"\n"
-	"\r                                        and  s2 in [1, "
-	"2147483398]\n"
-	"\r"
+msgid	"\nBad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n"
+	"                                        and  s2 in [1, 2147483398]\n"
 msgstr	""
 #
 # File: src/c/clcg4.c, line: 161
-msgid	"\n"
-	"\r bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]"
-msgstr	""
-#
-# File: src/c/clcg4.c, line: 162
-msgid	"\n"
-	"\r                                             s2 in [1, 2147483542]"
-msgstr	""
-#
-# File: src/c/clcg4.c, line: 163
-msgid	"\n"
-	"\r                                             s3 in [1, 2147483422]"
-msgstr	""
-#
-# File: src/c/clcg4.c, line: 164
-msgid	"\n"
-	"\r                                             s4 in [1, 2147483322]"
+msgid	"\n bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n"
+	"                                             s2 in [1, 2147483542]\n"
+	"                                             s3 in [1, 2147483422]\n"
+	"                                             s4 in [1, 2147483322]"
 msgstr	""
 #
 # File: src/c/clcg4.c, line: 182
-msgid	"\n"
-	"\r => be aware that you have may lost synchronization"
-msgstr	""
-#
-# File: src/c/clcg4.c, line: 183
-#, possible-c-format
-msgid	"\n"
-	"\r    between the virtual gen %d and the others !"
-msgstr	""
-#
-# File: src/c/clcg4.c, line: 184
-msgid	"\n"
-	"\r    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+msgid	"\n=> be aware that you have may lost synchronization"
+	"\n    between the virtual gen %d and the others !"
+	"\nuse grand(\"setall\", s1, s2, s3, s4) if you want recover it."
 msgstr	""
 #
 # File: src/norandlib/norandlib.c, line: 11
@@ -122,21 +78,14 @@ msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 135
 msgid	"Lhs and Rhs should be 1 for 'getsd' option\n"
-	"\r"
-msgstr	""
-#
-# File: sci_gateway/c/sci_grand.c, line: 169
-msgid	"setall"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 172
-msgid	"the setall option affect only the clcg4 generator !\n"
-	"\r"
+msgid	"The setall option affect only the clcg4 generator !\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 175
-msgid	"Rhs should be 5 for 'setall'  option\n"
-	"\r"
+msgid	"Rhs should be 5 for 'setall' option\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 179
@@ -144,149 +93,122 @@ msgstr	""
 # File: sci_gateway/c/sci_grand.c, line: 258
 # File: sci_gateway/c/sci_grand.c, line: 283
 # File: sci_gateway/c/sci_grand.c, line: 299
-msgid	"second argument must be scalar\n"
+msgid	"Second argument must be scalar\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 182
 # File: sci_gateway/c/sci_grand.c, line: 239
 # File: sci_gateway/c/sci_grand.c, line: 261
 # File: sci_gateway/c/sci_grand.c, line: 286
-msgid	"third argument must be scalar\n"
+msgid	"Third argument must be scalar\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 185
 # File: sci_gateway/c/sci_grand.c, line: 264
-msgid	"fourth argument must be scalar\n"
+msgid	"Fourth argument must be scalar\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 188
 # File: sci_gateway/c/sci_grand.c, line: 267
-msgid	"fifth argument must be scalar\n"
+msgid	"Fifth argument must be scalar\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 206
 msgid	"Rhs should be 2 for 'setsd' option with the mt generator\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 216
-msgid	"for mt you must init the state with a vector of 1 or 625 values !\n"
-	"\r"
+msgid	"For mt you must init the state with a vector of 1 or 625 values !\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 227
-msgid	"the state for fsultra must be a 40x1 vector !\n"
-	"\r"
+msgid	"The state for fsultra must be a 40x1 vector !\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 244
 msgid	"Rhs should be 2 or 3 for 'setsd' option with the fsultra generator\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 253
 msgid	"Rhs should be 5 for 'setsd' option with the kiss or clcg4 generator\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 278
 msgid	"Rhs should be 3 for 'setsd' option with the clcg2 generator\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 294
 msgid	"Rhs should be 2 for 'setsd' option with the urand generator\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 312
 msgid	"Rhs should be 2 for 'phr2sd' option and Lhs should be 1\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 328
-msgid	"this option affect only the clcg4 generator\n"
-	"\r"
+msgid	"This option affect only the clcg4 generator\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 331
 msgid	"Rhs should be 2 for 'initgn' option\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 337
-msgid	"for initgn option argument must be -1,0 or 1\n"
+msgid	"For initgn option argument must be -1,0 or 1\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 349
-msgid	"the setcgn option affect only the clcg4 generator\n"
-	"\r"
+msgid	"The setcgn option affect only the clcg4 generator\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 352
 msgid	"Rhs should be 2 for 'setcgn' option\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 358
-#, possible-c-format
-msgid	"bad virtual number generator (must be in [0,%d])\n"
-	"\r"
+msgid	"Bad virtual number generator (must be in [0,%d])\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 370
-msgid	"the 'advnst' option affect only the clcg4 generator !\n"
-	"\r"
+msgid	"The 'advnst' option affect only the clcg4 generator !\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 373
 msgid	"Rhs should be 2 for 'advnst' option\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 380
-msgid	"parameter K must be > 0 for 'advnst' option\n"
-	"\r"
+msgid	"Parameter K must be > 0 for 'advnst' option\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 392
 msgid	"Rhs should be 1 for 'getcgn' option\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 396
-msgid	"this information concerns only the clcg4 generator\n"
-	"\r"
+msgid	"This information concerns only the clcg4 generator\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 408
 msgid	"Rhs should be 2 for 'setgen' option\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 426
-msgid	"unknown generator (choose among : mt kiss clcg4 clcg2 urand "
+msgid	"Unknown generator (choose among : mt kiss clcg4 clcg2 urand "
 	"fsultra)\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 438
 msgid	"Rhs should be 1 for 'getgen' option\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 448
-#, possible-c-format
 msgid	"%s Wrong first argument %s\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 459
 # File: sci_gateway/c/sci_grand.c, line: 463
 msgid	"First argument must be scalar\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_grand.c, line: 474
-msgid	"bet"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 478
@@ -303,7 +225,7 @@ msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 486
 #, possible-c-format
-msgid	"Rand(...,'bet',..): A or B < %f \r\b"
+msgid	"Rand(...,'bet',..): A or B < %f\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 500

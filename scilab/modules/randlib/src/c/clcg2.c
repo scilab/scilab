@@ -70,7 +70,7 @@ int set_state_clcg2(double g1, double g2)
 {
   
   if ( g1 == floor(g1) && g2 == floor(g2)  && 
-       1 <= g1 && g1 <= 2147483562    &&
+       1 <= g1 && g1 <= 2147483562    && 
        1 <= g2 && g2 <= 2147483398 )
     {
       s1 = (long) g1;
@@ -79,8 +79,7 @@ int set_state_clcg2(double g1, double g2)
     }
   else
     {
-      sciprint("\n bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]");
-      sciprint("\n                                        and  s2 in [1, 2147483398]\n");
+      sciprint(_("\nBad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n                                        and  s2 in [1, 2147483398]\n"));
       return ( 0 );
     }
 }
