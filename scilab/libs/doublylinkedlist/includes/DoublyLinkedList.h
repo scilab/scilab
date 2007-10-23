@@ -13,25 +13,10 @@
 #ifndef _DOUBLY_LINKED_LIST_
 #define _DOUBLY_LINKED_LIST_
 
+#include "machine.h"
+
 /* pour les DoublyLinkedListes chainees */
 typedef struct _DlDoublyLinkedList DoublyLinkedList;
-
-/* define boolean type */
-#ifdef BOOL
-#undef BOOL
-#endif
-
-typedef int BOOL ;
-
-#ifdef TRUE
-#undef TRUE
-#endif
-#define TRUE 1
-
-#ifdef FALSE
-#undef FALSE
-#endif
-#define FALSE 0
 
 struct _DlDoublyLinkedList {
   void * data;
