@@ -826,9 +826,12 @@ if test $with_localization != no; then
    AC_PATH_PROG(MSGCAT, msgcat, no)
 
    if test x$MSGFMT = xno -o x$GMSGFMT = x; then
-	  AC_ERROR([As you used to the option --with-localization-generation, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.
-	  ])
+	  AC_ERROR([As you used to the option --with-localization-generation, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
 	  fi
+	if test x$MSGCAT = xno; then
+	  AC_ERROR([As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
+	fi
+
 fi
 AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$with_localization" != no)
 
