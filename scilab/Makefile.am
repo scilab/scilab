@@ -20,10 +20,6 @@ bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
 
-LANGS = fr_FR en_US
-
-LANG_DOMAIN = scilab
-
 if GUI
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
@@ -32,6 +28,14 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 	$(X_EXTRA_LIBS)
 endif
 
+TARGETS_ALL=macros
+
+#  The user wants to compile the localization files
+if GENERATE_LOCALIZATION_FILES
+TARGETS_ALL+=build-localization
+endif
+
+all-local: $(TARGETS_ALL)
 
 rootdir=$(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
@@ -41,8 +45,6 @@ $(top_srcdir)/etc/classpath.xml \
 $(top_srcdir)/etc/librarypath.xml \
 $(top_srcdir)/etc/toolboxes.xml
 
-all: macros
- ### Crappy code ... Need some clean up
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@( cd $(top_builddir) ; \
@@ -66,6 +68,22 @@ clean-local:
 	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'
 
+build-localization:
+	@MASK="modules/*/locales/"; \
+	LC=LC_MESSAGES; \
+	FILENAME="messages.po*"; \
+	LANG_DOMAIN=scilab; \
+	for LOCALE in $(ALL_LINGUAS); do \
+		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
+		PATHTO=$(top_srcdir)/locale/$$LOCALE/$$LC/; \
+		if test ! -d $$PATHTO; then \
+			echo "$$PATHTO is not existing"; \
+			mkdir -p $$PATHTO; \
+		fi; \
+		POFILE=$$PATHTO/$$LANG_DOMAIN.po; \
+		$(MSGCAT) -o $$POFILE $$FILES; \
+		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$$LANG_DOMAIN.mo $$POFILE; \
+	done
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(localedir); \

@@ -807,6 +807,30 @@ AC_ARG_WITH(libxml2,
 
 AC_LIBXML2()
 
+#######################
+## Test for gettext
+#######################
+
+AC_ARG_WITH(localization-generation,
+		[  --with-localization-generation    enable the localization generation],
+		[with_localization=yes], 
+		[with_localization='no']
+		)
+
+if test $with_localization != no; then
+
+   ALL_LINGUAS="en_US fr_FR"
+   AC_SUBST(ALL_LINGUAS)
+   AM_GLIB_GNU_GETTEXT
+
+   AC_PATH_PROG(MSGCAT, msgcat, no)
+
+   if test x$MSGFMT = xno -o x$GMSGFMT = x; then
+	  AC_ERROR([As you used to the option --with-localization-generation, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.
+	  ])
+	  fi
+fi
+AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$with_localization" != no)
 
 #######################
 ## Test for PCRE
@@ -890,26 +914,26 @@ AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
 #################
 ## atlas 
 #################
-
+# TODO : make it work
 # check user arguments
-USER_ATLAS_LIB_PATH=""
-
-AC_ARG_WITH(atlas-library,
-    [  --with-atlas-library=DIR  Atlas library files are in DIR and we use Atlas ],
-    [  USER_ATLAS_LIB_PATH=$withval
-    CC_OPTIONS="$CC_OPTIONS -DWITH_ATLAS"],
-    )
-
-if test "$USER_ATLAS_LIB_PATH" = ""; then
-	WHICH_BLAS="STD_BLAS"
-	IN_ATLAS=LOCAL
-else 
-	echo "Using Atlas library"
-	WHICH_BLAS="ATLAS_LAPACKBLAS"
-	ATLAS_DIR=$USER_ATLAS_LIB_PATH
-	IN_ATLAS=ATLAS
-	AC_DEFINE([WITH_ATLAS],[],[With the Atlas Lib])
-fi
+#USER_ATLAS_LIB_PATH=""
+#
+#AC_ARG_WITH(atlas-library,
+#    [  --with-atlas-library=DIR  Atlas library files are in DIR and we use Atlas ],
+#    [  USER_ATLAS_LIB_PATH=$withval
+#    CC_OPTIONS="$CC_OPTIONS -DWITH_ATLAS"],
+#    )
+#
+#if test "$USER_ATLAS_LIB_PATH" = ""; then
+#	WHICH_BLAS="STD_BLAS"
+#	IN_ATLAS=LOCAL
+#else 
+#	echo "Using Atlas library"
+#	WHICH_BLAS="ATLAS_LAPACKBLAS"
+#	ATLAS_DIR=$USER_ATLAS_LIB_PATH
+#	IN_ATLAS=ATLAS
+#	AC_DEFINE([WITH_ATLAS],[],[With the Atlas Lib])
+#fi
 
 
 #################
@@ -1273,6 +1297,18 @@ if test "$with_openmpi" != "no"; then
    echo "OpenMPI F77 Compiler ... = $MPIF77"
 else
    echo "Not using MPI"
+fi
+
+echo ""
+if test $with_localization != no; then
+   echo "Gettext/localization configuration:"
+   echo "xgettext ............... = $XGETTEXT"
+   echo "pofiles ................ = $POFILES"
+   echo "msgfmt  ................ = $MSGFMT"
+   echo "msgfmt_opts ............ = $MSGFMT_OPTS"
+   echo "intllibs  .............. = $INTLLIBS"
+else
+   echo "Won't generate localization files"
 fi
 
 echo ""
