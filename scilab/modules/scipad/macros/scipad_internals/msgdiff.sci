@@ -54,18 +54,8 @@ function report=msgdiff(msgfile1,msgfile2)
       scilab5=%f;
     end 
     if ~scilab5 then
-      function s=gettext(scope,sss)
-        labels=["scipad_message_"+string(14:21)]
-        results=["Finding missing entries in "
-        " and writing the result..."
-        "Translations missing in file "
-        "Finding unused entries in "
-        "Unused strings in file "
-        "Parsing file "
-        ", be patient..."
-        "WARNING: THE FOLLOWING LINE SEEMS WRONG HERE AND WILL BE IGNORED"
-        ]
-        s=results(labels==sss)
+      // fake gettext function - no localization of Scilab in Scilab 4.x
+      function sss=gettext(sss)
       endfunction
     end
 

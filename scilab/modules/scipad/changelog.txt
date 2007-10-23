@@ -3177,7 +3177,7 @@ Francois VOGEL, 29/08/07
  * Fixed: Opening a textbox (e.g. "Changelog") and hitting the Return key
    when the text widget has focus produced a Tcl Error
  * version --> 6.129
- 
+
 Francois VOGEL, 23/10/07
  * Pushed version number to identify the following changes:
    - added zh_cn and updated zh_tw ,de, it and no translations [from ES]
@@ -3196,3 +3196,8 @@ Francois VOGEL, 23/10/07
      directory - cleanmacros.bat, buildmacros.bat, buildmacros.sce
      [from Allan Cornet]
  * version --> 6.130
+
+Francois VOGEL, 23/10/07
+ * Fixed fake gettext function used in BUILD4 environment - was broken
+   by commit r19744
+ * version --> 6.131

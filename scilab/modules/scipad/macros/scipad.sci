@@ -9,16 +9,8 @@ function scipad(varargin)
       scilab5=%f;
     end 
     if ~scilab5 then
-      function s=gettext(scope,sss)
-        labels=["scipad_message_"+string(1:6), "Scilab has not been built with Tcl/Tk: Scipad unavailable."]
-        results=[" Scilab in no window no interactive mode : Scipad unavailable"
-                 "Function ";
-                 "is not contained in a loaded library, ";
-                 "Scipad doesn''t know where to find its source";
-                 "Scipad cannot open a ";" object!";
-                 " Scilab has not been built with tk: Scipad unavailable"
-        ]
-        s=results(labels==sss)
+      // fake gettext function - no localization of Scilab in Scilab 4.x
+      function sss=gettext(sss)
       endfunction
     end
   
