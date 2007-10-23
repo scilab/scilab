@@ -85,10 +85,10 @@ unsigned char OLE_id_v1[]={ 0x0e, 0x11, 0xfc, 0x0d, 0xd0, 0xcf, 0x11, 0xe0 };
   Function Name	: OLE_version
   Returns Type	: int
   ----Parameter List
-  1. void , 
+  1. void ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -108,10 +108,10 @@ int OLE_version( void )
   Function Name	: OLE_init
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole , 
+  1. struct OLE_object *ole ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -147,10 +147,10 @@ int OLE_init( struct OLE_object *ole )
   Function Name	: OLE_dir_init
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_directory_entry *dir , 
+  1. struct OLE_directory_entry *dir ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -183,11 +183,11 @@ int OLE_dir_init(struct OLE_directory_entry *dir )
   Function Name	: OLE_set_verbose
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  int level , 
+  1. struct OLE_object *ole,
+  2.  int level ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -207,11 +207,11 @@ int OLE_set_verbose( struct OLE_object *ole, int level )
   Function Name	: OLE_set_quiet
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  int level , 
+  1. struct OLE_object *ole,
+  2.  int level ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -233,11 +233,11 @@ int OLE_set_quiet( struct OLE_object *ole, int level )
   Function Name	: OLE_set_debug
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  int level , 
+  1. struct OLE_object *ole,
+  2.  int level ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -258,11 +258,11 @@ int OLE_set_debug( struct OLE_object *ole, int level )
   Function Name	: OLE_set_save_unknown_streams
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object  *ole, 
-  2.  int level , 
+  1. struct OLE_object  *ole,
+  2.  int level ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -282,11 +282,11 @@ int OLE_set_save_unknown_streams( struct OLE_object  *ole, int level )
   Function Name	: OLE_sectorpos
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  int SID , 
+  1. struct OLE_object *ole,
+  2.  int SID ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
   Given a sector ID, this function will return the file position
@@ -313,12 +313,12 @@ int OLE_sectorpos( struct OLE_object *ole, int SID )
   Function Name	: OLE_get_block
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
+  1. struct OLE_object *ole,
   2.  int block_index,  Block indexes / Sector ID's are signed ints.
-  3.  unsigned char *block_buffer , 
+  3.  unsigned char *block_buffer ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -399,12 +399,12 @@ int OLE_get_block( struct OLE_object *ole, int block_index, unsigned char *block
   Function Name	: OLE_get_miniblock
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  unsigned int block_index, 
-  3.  unsigned char *block_buffer , 
+  1. struct OLE_object *ole,
+  2.  unsigned int block_index,
+  3.  unsigned char *block_buffer ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -430,12 +430,12 @@ int OLE_get_miniblock( struct OLE_object *ole, int block_index, unsigned char *b
   Function Name	: OLE_dbstosbs
   Returns Type	: int
   ----Parameter List
-  1. char *raw_string, 
-  2.  size_t char_count, 
-  3.  char *clean_string , 
+  1. char *raw_string,
+  2.  size_t char_count,
+  3.  char *clean_string ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -470,11 +470,11 @@ int OLE_dbstosbs( char *raw_string, size_t byte_count, char *clean_string, int c
   Function Name	: OLE_print_string
   Returns Type	: int
   ----Parameter List
-  1. char *string, 
-  2.  size_t length , 
+  1. char *string,
+  2.  size_t length ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -495,11 +495,11 @@ int OLE_print_string( char *string, size_t char_count)
   Function Name	: OLE_print_sector
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  unsigned char *sector , 
+  1. struct OLE_object *ole,
+  2.  unsigned char *sector ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -507,7 +507,7 @@ int OLE_print_string( char *string, size_t char_count)
   Changes:
 
   \------------------------------------------------------------------*/
-int OLE_print_sector( struct OLE_object *ole, char *sector, unsigned int bytes)
+static int OLE_print_sector( struct OLE_object *ole, char *sector, unsigned int bytes)
 {
   int current_byte;
   int ubytes = bytes;
@@ -535,10 +535,10 @@ int OLE_print_sector( struct OLE_object *ole, char *sector, unsigned int bytes)
   Function Name	: OLE_is_OLE_file
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole , 
+  1. struct OLE_object *ole ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -560,10 +560,10 @@ int OLE_is_file_OLE( struct OLE_object *ole )
   Function Name	: OLE_get_header
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole , 
+  1. struct OLE_object *ole ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -589,10 +589,10 @@ int OLE_get_header( struct OLE_object *ole )
   Function Name	: OLE_convert_header
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole , 
+  1. struct OLE_object *ole ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -627,15 +627,15 @@ int OLE_convert_header( struct OLE_object *ole )
 
   h->fat_sector_count = get_4byte_value(header_fat_sector_count(hb)); /** Total number of sectors use for the SAT **/
   h->directory_stream_start_sector = get_4byte_value(header_directory_stream_start_sector(hb)); /** Start sector-ID for the DIRECTORY STREAM **/
-  h->mini_cutoff_size = get_4byte_value(header_mini_cutoff_size(hb)); 
+  h->mini_cutoff_size = get_4byte_value(header_mini_cutoff_size(hb));
   h->mini_fat_start = get_4byte_value(header_mini_fat_start(hb));
   h->mini_fat_sector_count = get_4byte_value(header_mini_fat_sector_count(hb));
   h->dif_start_sector = get_4byte_value(header_dif_start_sector(hb));
   h->dif_sector_count = get_4byte_value(header_dif_sector_count(hb));
 
   /** Compute the maximum possible sector number by taking our OLE filesize
-   ** and dividing it by the size of our sector size.  While this isn't 
-   ** absolutely accurate it is at least useful in providing us with an 
+   ** and dividing it by the size of our sector size.  While this isn't
+   ** absolutely accurate it is at least useful in providing us with an
    ** upper-bound of what is an acceptable sector ID **/
   ole->last_sector = (int)(ole->file_size  >> h->sector_shift);
 
@@ -655,10 +655,10 @@ int OLE_convert_header( struct OLE_object *ole )
   Function Name	: OLE_header_sanity_check
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole , 
+  1. struct OLE_object *ole ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
   Determines the degree of insanity in the header, returning it
@@ -669,7 +669,7 @@ int OLE_convert_header( struct OLE_object *ole )
   20041127-2027:PLD: Initial version
 
   \------------------------------------------------------------------*/
-int OLE_header_sanity_check( struct OLE_object *ole )
+static int OLE_header_sanity_check( struct OLE_object *ole )
 {
   int insanity=0;
   int max_sectors;
@@ -693,10 +693,10 @@ int OLE_header_sanity_check( struct OLE_object *ole )
   Function Name	: OLE_print_header
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole , 
+  1. struct OLE_object *ole ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -762,11 +762,11 @@ int OLE_print_header( struct OLE_object *ole )
   Function Name	: OLE_convert_directory
   Returns Type	: int
   ----Parameter List
-  1. unsigned char *buf, 
-  2.  struct OLE_directory_entry *dir , 
+  1. unsigned char *buf,
+  2.  struct OLE_directory_entry *dir ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -776,16 +776,16 @@ int OLE_print_header( struct OLE_object *ole )
   \------------------------------------------------------------------*/
 int OLE_convert_directory( struct OLE_object *ole, unsigned char *buf, struct OLE_directory_entry *dir )
 {
-  /** Converts a  raw block of 128 bytes from the file to a 
+  /** Converts a  raw block of 128 bytes from the file to a
    ** struct OLE_directory_entry data structure
    **/
 
   /** Flush the element name **/
   memset( dir->element_name, '\0', OLE_DIRECTORY_ELEMENT_NAME_SIZE);
 
-  /** The first 64 bytes of the structure are the element's name 
+  /** The first 64 bytes of the structure are the element's name
    ** in 16-bite UNICODE, meaning a maximum of 31 characters when
-   ** we account for the trailing zero byte 
+   ** we account for the trailing zero byte
    **/
 
   /** Copy the first 64 bytes of our *buf parameter into the element name **/
@@ -797,9 +797,9 @@ int OLE_convert_directory( struct OLE_object *ole, unsigned char *buf, struct OL
    **/
   dir->element_name_byte_count = get_2byte_value( buf + 0x40 );
 
-  /** Element type is of the following: 
-   ** 0x00 - empty 
-   ** 0x01 - user storage  
+  /** Element type is of the following:
+   ** 0x00 - empty
+   ** 0x01 - user storage
    ** 0x02 - user stream
    ** 0x03 - lock bytes (we don't know what this is for)
    ** 0x04 - property (again, we don't know)
@@ -821,7 +821,7 @@ int OLE_convert_directory( struct OLE_object *ole, unsigned char *buf, struct OL
 
 
   /** Directory ID (DID) of the root node entry of the RB tree of all
-   ** storage members (if this entry is a storage), else -1. 
+   ** storage members (if this entry is a storage), else -1.
    **/
   dir->root = get_4byte_value( buf +0x4c );
 
@@ -849,11 +849,11 @@ int OLE_convert_directory( struct OLE_object *ole, unsigned char *buf, struct OL
   Function Name	: OLE_print_directory
   Returns Type	: int
   ----Parameter List
-  1. struct OLE *ole, 
-  2.  struct OLE_directory_entry *dir , 
+  1. struct OLE *ole,
+  2.  struct OLE_directory_entry *dir ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -895,10 +895,10 @@ int OLE_print_directory( struct OLE_object *ole, struct OLE_directory_entry *dir
   Function Name	: OLE_load_FAT
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole , 
+  1. struct OLE_object *ole ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -951,8 +951,8 @@ int OLE_load_FAT( struct OLE_object *ole )
 
 	  fat_position += ole->header.sector_size;
 	  if (fat_position > ole->FAT_limit)
-	    { 
-	      LOGGER_log("%s:%d:OLE_load_FAT:DEBUG: FAT boundary limit exceeded %p > %p", FL, fat_position, ole->FAT_limit); 
+	    {
+	      LOGGER_log("%s:%d:OLE_load_FAT:DEBUG: FAT boundary limit exceeded %p > %p", FL, fat_position, ole->FAT_limit);
 	      return -1;
 	    }
 	}
@@ -973,7 +973,7 @@ int OLE_load_FAT( struct OLE_object *ole )
 
 	  fat_block = MALLOC( ole->header.sector_size );
 
-	  if (fat_block == NULL) 
+	  if (fat_block == NULL)
 	    {
 	      LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"), FL, ole->header.sector_size);
 	      return -1;
@@ -1044,15 +1044,15 @@ int OLE_load_FAT( struct OLE_object *ole )
 
 			/*if (fat_position +ole->header.sector_size > ole->FAT_limit)*/
 			if (fat_position > ole->FAT_limit)
-			  { 
-			    DOLE LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"),FL,fat_position,ole->FAT_limit); 
+			  {
+			    DOLE LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"),FL,fat_position,ole->FAT_limit);
 			    if (fat_block) FREE(fat_block);
 			    return OLEER_MEMORY_OVERFLOW;
 			  }
 			tick++;
 			DIF += LEN_ULONG;
 		      }  else {
-			LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"),FL,fat_position,ole->FAT_limit); 
+			LOGGER_log(_("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"),FL,fat_position,ole->FAT_limit);
 			if (fat_block) FREE(fat_block);
 			return OLEER_MEMORY_OVERFLOW;
 		      }
@@ -1092,11 +1092,11 @@ int OLE_load_FAT( struct OLE_object *ole )
   Function Name	: OLE_follow_chain
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  int FAT_sector_start , 
+  1. struct OLE_object *ole,
+  2.  int FAT_sector_start ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -1160,7 +1160,7 @@ int OLE_follow_chain( struct OLE_object *ole, int FAT_sector_start )
     default:
       break_out=0;
     };
-		 
+
     if (current_sector < 0) break_out = 1;
 
   } while ((break_out==0)&&(current_sector < last_sector_of_file));
@@ -1174,11 +1174,11 @@ int OLE_follow_chain( struct OLE_object *ole, int FAT_sector_start )
   Function Name	: OLE_follow_minichain
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  int FAT_sector_start , 
+  1. struct OLE_object *ole,
+  2.  int FAT_sector_start ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -1246,18 +1246,18 @@ int OLE_follow_minichain( struct OLE_object *ole, int miniFAT_sector_start )
   Function Name	: char
   Returns Type	: unsigned
   ----Parameter List
-  1. *OLE_load_minichain( struct OLE_object *ole, 
-  2.  int FAT_sector_start , 
+  1. *OLE_load_minichain( struct OLE_object *ole,
+  2.  int FAT_sector_start ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
   --------------------------------------------------------------------
   Changes:
-  PLD:2003-Aug-28: Added sanity checking on the miniFAT_sector_start 
-  value so that we didn't try to load up a miniFAT starting on a 
+  PLD:2003-Aug-28: Added sanity checking on the miniFAT_sector_start
+  value so that we didn't try to load up a miniFAT starting on a
   negative value
 
   \------------------------------------------------------------------*/
@@ -1324,11 +1324,11 @@ unsigned char *OLE_load_minichain( struct OLE_object *ole, int miniFAT_sector_st
   Function Name	: char
   Returns Type	: unsigned
   ----Parameter List
-  1. *OLE_load_chain( struct OLE_object *ole, 
-  2.  int FAT_sector_start , 
+  1. *OLE_load_chain( struct OLE_object *ole,
+  2.  int FAT_sector_start ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -1387,9 +1387,9 @@ unsigned char *OLE_load_chain( struct OLE_object *ole, int FAT_sector_start )
 	      }
 
 	    bp += ole->header.sector_size;
-	    if (bp > bp_limit) {  
+	    if (bp > bp_limit) {
 	      if (buffer != NULL) { FREE(buffer); bp = buffer = NULL; }
-	      VOLE LOGGER_log(_("%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"),FL); 
+	      VOLE LOGGER_log(_("%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"),FL);
 	      return NULL;
 	    };
 
@@ -1408,18 +1408,18 @@ unsigned char *OLE_load_chain( struct OLE_object *ole, int FAT_sector_start )
   Function Name	: OLE_open_file
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  char *fullpath , 
+  1. struct OLE_object *ole,
+  2.  char *fullpath ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
   --------------------------------------------------------------------
   Changes:
-  20041127-2033:PLD: Added ole->file_size setting so that we 
-  can use this in the sanity checking to see if the 
+  20041127-2033:PLD: Added ole->file_size setting so that we
+  can use this in the sanity checking to see if the
   requested sectors are outside of the possible valid
   filesize range.
 
@@ -1463,11 +1463,11 @@ int OLE_open_file( struct OLE_object *ole, char *fullpath )
   Function Name	: OLE_open_directory
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  char *directory , 
+  1. struct OLE_object *ole,
+  2.  char *directory ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -1500,10 +1500,10 @@ int OLE_open_directory( struct OLE_object *ole, char *directory )
   Function Name	: OLE_set_filename_report_fn
   Returns Type	: int
   ----Parameter List
-  1. int (*ptr_to_fn)(char *) , 
+  1. int (*ptr_to_fn)(char *) ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
   This is merely a passthrough function to the OLEUW one, we do
@@ -1525,13 +1525,13 @@ int OLE_set_filename_report_fn( struct OLE_object *ole, int (*ptr_to_fn)(char *)
   Function Name	: OLE_store_stream
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  char *stream_name, 
-  3.  char *directory, 
-  4.  unsigned char *stream , 
+  1. struct OLE_object *ole,
+  2.  char *stream_name,
+  3.  char *directory,
+  4.  unsigned char *stream ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -1584,10 +1584,10 @@ int OLE_store_stream( struct OLE_object *ole, char *stream_name, char *directory
   Function Name	: OLE_decode_file_done
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole , 
+  1. struct OLE_object *ole ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -1612,11 +1612,11 @@ int OLE_decode_file_done( struct OLE_object *ole )
   Function Name	: OLE_terminate_and_return
   Returns Type	: int
   ----Parameter List
-  1. struct OLE_object *ole, 
-  2.  int result , 
+  1. struct OLE_object *ole,
+  2.  int result ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -1632,7 +1632,7 @@ int OLE_terminate_and_return( struct OLE_object *ole, int result )
 
 
 #ifdef RIPOLE_WALK_TREE
-int OLE_walk_tree( struct OLE_object *ole, char *fname, char *decode_path, int depth ) 
+int OLE_walk_tree( struct OLE_object *ole, char *fname, char *decode_path, int depth )
 {
 
   /** Sanity check **/
@@ -1746,7 +1746,7 @@ int OLE_decode_stream( struct OLE_object *ole,  struct OLE_directory_entry *adir
 	  DOLE LOGGER_log("%s:%d:OLE_decode_stream:DEBUG: Saving stream to %s",FL,lfname);
 	  OLE_store_stream( ole, lfname, decode_path, stream_data, adir->stream_size );
 	  FREE(lfname);
-	} 
+	}
     } /* If we needed to save an unknown stream*/
 
   /* Clean up an stream_data which we may have */
@@ -1760,11 +1760,11 @@ int OLE_decode_stream( struct OLE_object *ole,  struct OLE_directory_entry *adir
   Function Name	: OLE_decode_file
   Returns Type	: int
   ----Parameter List
-  1. char *fname, 
-  2.  char *decode_path , 
+  1. char *fname,
+  2.  char *decode_path ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
   Comments:
 
@@ -1885,7 +1885,7 @@ int OLE_decode_file( struct OLE_object *ole, char *fname, char *decode_path )
 	  char element_name[64];
 	  memset(element_name, '\0', 64);
 	  OLE_dbstosbs( adir->element_name, adir->element_name_byte_count, element_name, 64 );
-	  
+
 	  if ((strcmp(element_name,"Workbook")==0)||(strcmp(element_name,"Book")==0)) {
 	    OLE_decode_stream( ole, adir, decode_path );
 	  }
@@ -1893,7 +1893,7 @@ int OLE_decode_file( struct OLE_object *ole, char *fname, char *decode_path )
           /* Original code */
 	  /*  OLE_decode_stream( ole, adir, decode_path );*/
 	} else {
-	  /** If the element isn't of the above types then it's possibly 
+	  /** If the element isn't of the above types then it's possibly
 	   ** an empty element or just one used for the MSAT/SAT
 	   ** either way we just step over it and carry on **/
 	  DOLE LOGGER_log("%s:%d:OLE_decode_file:DEBUG: Element type %d does not need to be handled",FL,adir->element_type);

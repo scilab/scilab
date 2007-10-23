@@ -83,7 +83,7 @@ struct OLE_directory_entry {
 };
 
 
-	
+
 #define OLE_HEADER_BLOCK_SIZE 512
 struct OLE_object {
 
@@ -102,13 +102,13 @@ struct OLE_object {
 	unsigned char *properties;
 
 	struct OLE_header header;
-	
+
   /* End user configurable parameters:*/
 	int debug;
 	int verbose;
 	int quiet;
 	int save_unknown_streams;
-	
+
 	int save_streams;
 	int save_mini_streams;
 	int save_normal_streams;
@@ -137,7 +137,10 @@ int OLE_get_block( struct OLE_object *ole, int block_index, unsigned char *block
 int OLE_get_miniblock( struct OLE_object *ole, int block_index, unsigned char *block_buffer );
 int OLE_dbstosbs( char *raw_string, size_t char_count, char *clean_string, int clean_string_len );
 int OLE_print_string( char *string, size_t char_count);
-int OLE_print_sector( struct OLE_object *ole, char *sector, unsigned int bytes);
+/**
+ ** Bruno : Removed, is now static in ole.c !!
+ ** int OLE_print_sector( struct OLE_object *ole, char *sector, unsigned int bytes);
+ **/
 int OLE_get_header( struct OLE_object *ole );
 int OLE_convert_header( struct OLE_object *ole );
 int OLE_print_header( struct OLE_object *ole );
