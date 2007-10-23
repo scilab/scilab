@@ -13,7 +13,7 @@
 #ifndef _DOUBLY_LINKED_LIST_
 #define _DOUBLY_LINKED_LIST_
 
-#include "machine.h"
+#include "BOOL.h"
 
 /* pour les DoublyLinkedListes chainees */
 typedef struct _DlDoublyLinkedList DoublyLinkedList;
