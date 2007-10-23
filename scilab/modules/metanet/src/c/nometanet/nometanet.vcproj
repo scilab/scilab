@@ -148,7 +148,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib ../../../../bin/intl.lib"
+				AdditionalDependencies="LibScilab.lib ../../../../../bin/intl.lib"
 				OutputFile="../../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="nometanet.def"
