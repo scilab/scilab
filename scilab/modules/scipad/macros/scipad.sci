@@ -102,9 +102,11 @@ function scipad(varargin)
                     warning(gettext('Scipad cannot open a ')+typeof(f)+gettext(' object!'))
                 end
                 if validfile then
-                    // Tcl handles the filenames correctly with any path separator but on Windows the separator
-                    // is \ and in Tcl this is an escape. Therefore filepaths are always converted to the unix
-                    // form to avoid this problem
+                    // Tcl handles the filenames correctly with any path separator but on
+                    // Windows the separator is \ and in Tcl this is an escape. We cannot
+                    // use the scilab macro pathconvert(,"u") alone to solve the problem, as
+                    // by construction it creates cygwin paths. Therefore, we replace ad hoc
+                    // slashes.
                     filetoopen=pathconvert(filetoopen,%f,%t,"u")
                     // The complication below is needed to comply with ScilabEval sync limitations: what
                     // is executed during a sync is not available in the interpreter after the sync has
