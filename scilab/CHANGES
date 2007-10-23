@@ -1,3 +1,81 @@
+                              Scilab 4.1.2
+                              ============
+
+Please note that the Scilab 4.1.2 is mainly released to update Scicos and Scipad
+
+New/improved functionalities of Scicos:
+---------------------------------------
+
+ Editor :
+
+  - Windows style editing: basic operations implemented but some
+    limitations due to Scilab GUI limitations.
+  - Multi-diagram editing: for example copy and paste from any window to any
+    other.
+  - Documentation: fairly complete on-line help and supporting documentation.
+  - Active Scilab prompt: menu activated.
+  - Undo operation: one step per window.
+  - Diagram browser: a much nicer replacement for the old navigator.
+  - From/To workspace blocks: support vector Scilab variables of various
+    types but not matrices.
+  - Palette operations: New Palette browser.
+  - Palettes: enriched Palettes of elementary blocks (Modelica blocks,
+    Matrix operation blocks, Integer operation blocks).
+  - Modelica blocks: on-line Modelica code editing and more.
+  - Inspection of available parameters: available in every window.
+  - Block Masking: create, delete, customize, and save Block GUI.
+  - From/Goto blocks: available in every sub-system.
+  - Block/Diagram data inspection: Details menu.
+  - General data types: vector and matrix of double (real and complex),
+    int8, int16, int32, signed and unsigned, for block input/outputs,
+    discrete states and parameters.
+
+ Compiler :
+
+  - New compiler algorithm: fixing some errors.
+  - Support for extended data types.
+  - Improved error message handling.
+  - Implicitly defined multi-frequency event clocks.
+
+ Simulator :
+
+  - Use of the numerical solvers of SUNDIALS.
+  - Support for extended data types.
+  - Improved error message handling.
+  - Scope graphics based on Scilab's new graphics library: possible to
+    edit simulation results a posteriori.
+
+ Code generator :
+
+  - New algorithm adapted to the new compiler: avoids recursive calls.
+  - Support for extended data types.
+  
+  
+New/improved functionalities of Scipad:
+---------------------------------------
+
+  - A lot (really a lot!) of bugs were corrected (see
+    SCI/tcl/scipadsources/changelog.txt for full details)
+  - Step-by-step debugging available, with step into, step over, and step out
+  - Debugging of .sce scripts
+  - Scilab errors trapping during the debug
+  - Automatic watch of variables and evaluation of arbitrary expressions during
+    debug
+  - Column mode block selection, cut/copy/paste/drag\'n\'drop
+  - Performance improvements in many areas, especially in colorizing files
+  - Robustness of the Scilab/Scipad interface increased
+  - Many small improvements in Find/Replace
+  - Overall look and feel and ergonomics improved (bindings, shortcuts, 
+    localization dependent widgets sizes, better information displayed
+    in the watch window, underlined numbers in the Windows menu, watch
+    window docking, sorting in the Windows menu, smart indentation, more
+    tooltips, horizontal scrollbars hide automatically, optional line numbers
+    sidebar...)
+  - Tcl/Tk 8.5 is used by Scipad if available, providing peer text widgets,
+    hence the capability to display different parts of the same file at 
+    one time
+    
+  
                               Scilab 4.1.1
                               ============
 
@@ -16,6 +94,7 @@ the major bug of gfortran compiler is improved in the 4.1.1 release
 
 For more details see our wiki page (http://wiki.scilab.org/Scilab_under_Linux_and_Unix?highlight=%28gfortran%29 )
 and the GCC bugzilla page ( http://gcc.gnu.org/bugzilla/show_bug.cgi?id=28354 )
+
 
                      Main Changes Scilab 3.0 -> 4.x
                      ==============================

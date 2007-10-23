@@ -21,7 +21,7 @@ I - TO RUN SCILAB (BINARY VERSION)
         so you can run Scilab by executing directly "wscilex.exe".
 
     3 - Scilab has been compiled with Visual C++ .NET 2003
-        (Intel C 9.0 & Fortran 9.0, see III below).
+        (Intel C 9.1 & Fortran 9.1, see III below).
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
 
@@ -52,8 +52,8 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 III - TO COMPILE SCILAB FROM A SOURCE VERSION
 ******************************************************************************
 
-    We have compiled this distribution with Visual Studio 2003 (Intel C 9.0 &
-    Fortran 9.0).
+    We have compiled this distribution with Visual Studio 2003 (Intel C 9.1 &
+    Fortran 9.1).
 
     1 - To compile with Visual C++ .NET 2003 & Intel Fortran 9.0,
         see Readme_visual.txt 
