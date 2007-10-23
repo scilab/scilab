@@ -79,38 +79,4 @@ msgstr	""
 #, possible-c-format
 msgid	"%s: Invalid call!\n"
 msgstr	""
-#
-# File: examples/intdlassq.c, line: 40
-#, possible-c-format
-msgid	"%s: bad call to dassq"
-msgstr	""
-#
-# File: examples/intdgemm.c, line: 32
-# File: examples/intzgemm.c, line: 29
-#, possible-c-format
-msgid	"%f: invalid matrix dims\n"
-msgstr	""
-#
-# File: examples/intdsyev.c, line: 34
-# File: examples/intdsyev.c, line: 50
-# File: examples/intdgesvd.c, line: 47
-msgid	"not enough memory (use stacksize)"
-msgstr	""
-#
-# File: examples/intcdgemm.c, line: 27
-msgid	"Bad call to dgemm\n"
-msgstr	""
-#
-# File: examples/intcdgemm.c, line: 32
-#, possible-c-format
-msgid	"%s: invalid matrix dims in "
-msgstr	""
-#
-# File: examples/intzgeesx.c, line: 55
-# File: examples/intzgeesx.c, line: 72
-# File: examples/intzgeesx.c, line: 88
-# File: examples/intdgeesx.c, line: 62
-# File: examples/intdgeesx.c, line: 80
-#, possible-c-format
-msgid	"%s:  not enough memory (use stacksize)\n"
-msgstr	""
+

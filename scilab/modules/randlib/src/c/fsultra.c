@@ -183,7 +183,7 @@ int set_state_fsultra(double *s)
   try = s[1];
   if ( try != 0.0  &&  try != 1.0)
     {
-      sciprint("\n the second component of the fsultra state, must be 0 or 1\n");
+      sciprint("\nThe second component of the fsultra state, must be 0 or 1\n");
       return 0;
     }
   swb_flag = (int) try;

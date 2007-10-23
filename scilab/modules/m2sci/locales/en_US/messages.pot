@@ -394,15 +394,7 @@ msgid	"Conversion of M-tree..."
 msgstr	""
 #
 # File: macros/kernel/mtlbtree2sci.sci, line: 95
-msgid	"Line "
-msgstr	""
-#
-# File: macros/kernel/mtlbtree2sci.sci, line: 95
-msgid	" out of "
-msgstr	""
-#
-# File: macros/kernel/mtlbtree2sci.sci, line: 95
-msgid	"...\r"
+msgid	"%s line %s out of %s..."
 msgstr	""
 #
 # File: macros/kernel/mtlbtree2sci.sci, line: 111

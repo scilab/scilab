@@ -147,7 +147,7 @@ msgid	"mseek: error\n"
 msgstr	""
 #
 # File: src/c/mtell.c, line: 15
-msgid	"mtell: wrong file logical unit \r\b"
+msgid	"mtell: wrong file logical unit\n"
 msgstr	""
 #
 # File: src/c/mputstr.c, line: 16

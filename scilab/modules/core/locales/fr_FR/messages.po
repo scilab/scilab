@@ -518,7 +518,7 @@ msgstr	"Erreur : Fichier de déclaration du module %s au mauvais format (devrait 
 msgid	"Error : Not a valid gateway file %s (encoding not 'utf-8') Encoding "
 	"'%s' found\n"
 msgstr	"Erreur : Fichier de déclaration du module %s non validé (codage de "
-	"caractère non UTF-8) Codage '%s%' trouvé\n"
+	"caractère non UTF-8) Codage '%s' trouvé\n"
 #
 # File: src/c/stack3.c, line: 74
 # File: src/c/stack3.c, line: 123

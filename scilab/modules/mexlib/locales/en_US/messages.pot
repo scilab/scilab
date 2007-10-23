@@ -112,43 +112,4 @@ msgstr	""
 # File: includes/mex.h, line: 70
 msgid	"mexPutFull failed\n"
 msgstr	""
-#
-# File: examples/interface/fmex1.c, line: 12
-# File: examples/interface/fmex2.c, line: 12
-msgid	"This function requires 1 input!"
-msgstr	""
-#
-# File: examples/interface/fmex1.c, line: 13
-# File: examples/interface/fmex2.c, line: 13
-msgid	"This function requires at most 1 output !"
-msgstr	""
-#
-# File: examples/interface/fmex1.c, line: 15
-# File: examples/interface/fmex2.c, line: 15
-# File: examples/mexglx/foo.c, line: 16
-msgid	"First argument must be numeric matrix."
-msgstr	""
-#
-# File: examples/mexglx/foo.c, line: 4
-msgid	"hello world"
-msgstr	""
-#
-# File: examples/mexglx/foo.c, line: 14
-msgid	"This function requires 2 inputs!"
-msgstr	""
-#
-# File: examples/mexglx/foo.c, line: 15
-msgid	"This function requires at most 3 outputs!"
-msgstr	""
-#
-# File: examples/mexglx/foo.c, line: 17
-msgid	"Second argument must be a string."
-msgstr	""
-#
-# File: examples/cppmex/temptst.cpp, line: 9
-msgid	"Need at least one argument"
-msgstr	""
-#
-# File: examples/cppmex/temptst.cpp, line: 11
-msgid	"First argument must have at least one entry"
-msgstr	""
+

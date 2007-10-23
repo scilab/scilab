@@ -178,8 +178,7 @@ DoublyLinkedList *List_find(DoublyLinkedList *pDoublyLinkedList, void * data);
 /* pointeur contenu dans la DoublyLinkedListe et le pointeur your_data qui est donne par     */
 /* l'utilisateur (pour y stocker ce dont il a besoin pour la comparaison).       */
 /* Renvoie l'element de DoublyLinkedListe si trouve, NULL sinon.                             */
-DoublyLinkedList *List_find_full(DoublyLinkedList *pDoublyLinkedList, void * your_data,
-                     BOOL (* find_func)(void * data, void * your_data));
+DoublyLinkedList *List_find_full(DoublyLinkedList *pDoublyLinkedList, void * your_data,  BOOL (* find_func)(void * data, void * your_data));
 
 #endif /* _DOUBLY_LINKED_LIST_ */
 

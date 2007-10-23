@@ -410,7 +410,7 @@ mxArray *mxCreateData(int m)
   lw = Nbvars + 1;
   size=m-2;
   if (! C2F(createvar)(&lw, "d", &size, (n=1,&n), &lr, 1L)) {
-    mexErrMsgTxt("No more memory available: increase stacksize");
+    mexErrMsgTxt(_("No more memory available: increase stacksize"));
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
   return (mxArray *) C2F(intersci).iwhere[lw-1];
@@ -804,7 +804,7 @@ bool mxIsDouble(const mxArray *ptr)
 
 bool mxIsSingle(const mxArray *ptr)
 {
-  mexPrintf("Routine mxIsSingle not implemented\n");
+  mexPrintf(_("Routine mxIsSingle not implemented\n"));
   exit(1);  /* TO BE DONE */
   return 0;
 }
@@ -854,7 +854,7 @@ void mxClearLogical(mxArray *ptr)
 {
   int *header = Header(ptr);
   if (header[0] != LOGICAL)
-    mexErrMsgTxt("Variable is not logical");
+    mexErrMsgTxt(_("Variable is not logical"));
   header[0] = DOUBLEMATRIX;
 }
 
@@ -917,7 +917,7 @@ mxArray *mxCreateDoubleMatrix __PARAMS((int m, int n, mxComplexity it))
   int k;
   lw = Nbvars + 1;
   if (! C2F(createcvar)(&lw, "d", (int *) &it, &m, &n, &lr, &lc, 1L)) {
-    mexErrMsgTxt("No more memory available: increase stacksize");
+    mexErrMsgTxt(_("No more memory available: increase stacksize"));
   }
   for ( k=0; k<m*n*(it+1); k++ ) {
    *stk(lr+k)=0;
@@ -1954,10 +1954,10 @@ void mexPrintf __PARAMS((char *fmt,...))
 
 void mexWarnMsgTxt(char *error_msg)
 {
-  mexPrintf("Warning: ");
+  mexPrintf(_("Warning: "));
   mexPrintf(error_msg);
   mexPrintf("\n\n");
-  /*  mexPrintf(strcat("Warning: ",error_msg)); */
+  /*  mexPrintf(strcat(_("Warning: "),error_msg)); */
 }
 
 /* 1 is returned in case of failure */
@@ -1973,7 +1973,7 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
 	if ((int) prhs[k-1] == C2F(vstk).lstk[kk + Top - Rhs - 1]) break;
       if (kk == nv + 1) 
 	{
-	  mexErrMsgTxt("mexCallSCILAB: invalid pointer passed to called function");
+	  mexErrMsgTxt(_("mexCallSCILAB: invalid pointer passed to called function"));
 	  return 1;
 	} 
       else 
@@ -1988,7 +1988,7 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
   if (! C2F(scistring)(&i1, name, &nlhs, &nrhs,(unsigned long) strlen(name) )) { 
     if ( jumpflag == 1) 
       {
-	mexErrMsgTxt("mexCallSCILAB: evaluation failed ");
+	mexErrMsgTxt(_("mexCallSCILAB: evaluation failed "));
       }
     return 1; 
     /*	return 0;  */
@@ -2082,7 +2082,7 @@ int mxGetElementSize(const mxArray *ptr)
    it=header[3];
    return( it%10 );
  default:
-   mexErrMsgTxt("GetElementSize error");
+   mexErrMsgTxt(_("GetElementSize error"));
    return 0;
  }
  return 0;
@@ -2202,7 +2202,7 @@ mxArray *mexGetVariable(const char *workspace, const char *name)
 int mexPutArray(mxArray *array_ptr, char *workspace)
 {
   /* TO BE DONE obsolete ?  */
-  mexPrintf( "Function mexPutArray is obsolete, use mexPutVariable!\n");
+  mexPrintf( _("Function mexPutArray is obsolete, use mexPutVariable!\n"));
   return 1;
 }
 
@@ -2215,13 +2215,13 @@ int mexPutVariable(const char *workspace, char *var_name, mxArray *array_ptr)
 
 void mxSetName(mxArray *array_ptr, const char *name)
 {
-  mexErrMsgTxt("Routine mxSetName not implemented !\n");
+  mexErrMsgTxt(_("Routine mxSetName not implemented !\n"));
   exit(1);  /* TO BE DONE */
 }
 
 void mxSetData(mxArray *array_ptr, void *data_ptr)
 {
-  mexErrMsgTxt("Routine mxSetData  not implemented\n");
+  mexErrMsgTxt(_("Routine mxSetData  not implemented\n"));
   exit(1);  /* TO BE DONE */
 }
 
@@ -2242,7 +2242,7 @@ void mxSetPr(mxArray *array_ptr, double *pr_data)
     else{ /* Can't hold more than M*N elements so truncate and warn. */
       mem_size = mn * sizeof(double);
       if(warn_cnt2){
-	char *prefix = --warn_cnt2 == 0 ? "Last warning" : "Warning";
+	char *prefix = --warn_cnt2 == 0 ? _("Last warning") : _("Warning");
 	fprintf(stderr, "%s: mxSetPr (NZMAX=%i) > (M*N=%i).\n", prefix, (int)NZMAX, (int)mn);
       }
     }
@@ -2253,8 +2253,8 @@ void mxSetPr(mxArray *array_ptr, double *pr_data)
   if(warn_cnt){
     int overwrite = mem_size - sizeof(double)*(pr_data - start_of_pr);
     if(overwrite > 0){
-      char *prefix = --warn_cnt == 0 ? "Last warning" : "Warning";
-      fprintf(stderr, "%s: mxSetPr overwriting destination by %i bytes.\n", prefix, overwrite);      
+      char *prefix = --warn_cnt == 0 ? _("Last warning") : _("Warning");
+      fprintf(stderr, _("%s: mxSetPr overwriting destination by %i bytes.\n"), prefix, overwrite);      
     }
   }
   memcpy(start_of_pr, pr_data, mem_size);
@@ -2277,7 +2277,7 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
     else{ /* Can't hold more than M*N elements so truncate and warn. */
       mem_size = mn * sizeof(double);
       if(warn_cnt2){
-	char *prefix = --warn_cnt2 == 0 ? "Last warning" : "Warning";
+	char *prefix = --warn_cnt2 == 0 ? _("Last warning") : _("Warning");
 	fprintf(stderr, "%s: mxSetPi (NZMAX=%i) > (M*N=%i).\n", prefix, (int)NZMAX, (int)mn);
       }
     }
@@ -2288,8 +2288,8 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
   if(warn_cnt){
     int overwrite = mem_size - sizeof(double)*(pi_data - start_of_pi);
     if(overwrite > 0){
-      char *prefix = --warn_cnt == 0 ? "Last warning" : "Warning";
-      fprintf(stderr, "%s: mxSetPi overwriting destination by %i bytes.\n", prefix, overwrite);      
+      char *prefix = --warn_cnt == 0 ? _("Last warning") : _("Warning");
+      fprintf(stderr, _("%s: mxSetPi overwriting destination by %i bytes.\n"), prefix, overwrite);      
     }
   }
   memcpy(start_of_pi, pi_data, mem_size);
@@ -2297,14 +2297,14 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
 
 const char *mxGetName(const mxArray *array_ptr)
 {
-    mexPrintf("Routine mxGetName  not implemented\n");
+    mexPrintf(_("Routine mxGetName  not implemented\n"));
     exit(1); 
 	return 0;
 }
 
 int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 {
-  mexPrintf("Routine mxSetDimensions  not implemented\n");
+  mexPrintf(_("Routine mxSetDimensions  not implemented\n"));
   exit(1);  /* TO BE DONE */
   return 0;
 }
@@ -2422,19 +2422,19 @@ int C2F(initmex)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs)
       case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
 	break;
       case STRINGMATRIX:
-	if (header[2] !=1) mexErrMsgTxt("Invalid string matrix (at most one column!)");
+	if (header[2] !=1) mexErrMsgTxt(_("Invalid string matrix (at most one column!)"));
 	m=header[1];
 	commonlength=header[5]-header[4];
 	if (m > 1) {
  	  for (line = 1; line < m; line++)
 	    {
 	      if (header[5+line] - header[4+line] != commonlength)
-		mexErrMsgTxt("Column length of string matrix must agree!");
+		mexErrMsgTxt(_("Column length of string matrix must agree!"));
 	    }
 	}
 	break;
       case 5:
-	mexErrMsgTxt("Use mtlb_sparse(sparse( ))!");
+	mexErrMsgTxt(_("Use mtlb_sparse(sparse( ))!"));
 	/*   scilab sparse  should be matlabified  */
 	return 0;
       case MLIST:
@@ -2445,7 +2445,7 @@ int C2F(initmex)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs)
       case LOGICAL :
 	break;
       default:
-	mexErrMsgTxt("Invalid input");
+	mexErrMsgTxt(_("Invalid input"));
 	return 0;
       }
     }
@@ -2665,7 +2665,7 @@ void  C2F(mexprintf)(char *error_msg, int len)
   char * buf;
   if ((buf = (char *)MALLOC((unsigned)sizeof(char)*(len+1)))
       == NULL) {
-    cerro("Running out of memory");
+    cerro(_("Running out of memory"));
     return;
   }
   buf[len]='\0';

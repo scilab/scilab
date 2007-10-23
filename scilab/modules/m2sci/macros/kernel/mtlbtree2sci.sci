@@ -92,7 +92,7 @@ while ninstr<=size(mtlbtree.statements)-3
   scitree.statements=list(scitree.statements($))
   
   // Disp percentage of conversion done
-  mprintf(margin+"Line "+string(nblines)+" out of "+string(mtlbtree.nblines)+"...\r")
+  msprintf(gettext("%s line %s out of %s..."),margin, string(nblines), string(mtlbtree.nblines))
   ninstr=ninstr+1
   tmpvarnb=0
 end

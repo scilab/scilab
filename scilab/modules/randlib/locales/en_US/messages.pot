@@ -21,15 +21,12 @@ msgid	"\nbad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr	""
 #
 # File: src/c/fsultra.c, line: 178
-#, possible-c-format
-msgid	"\n"
-	"\r the first component of the fsultra state, must be an integer in "
+msgid	"\nThe first component of the fsultra state, must be an integer in "
 	"[0, %d]\n"
-	"\r"
 msgstr	""
 #
 # File: src/c/fsultra.c, line: 186
-msgid	"The second component of the fsultra state, must be 0 or 1\n"
+msgid	"\nThe second component of the fsultra state, must be 0 or 1\n"
 msgstr	""
 #
 # File: src/c/fsultra.c, line: 194
@@ -224,7 +221,6 @@ msgid	"B must be scalar\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 486
-#, possible-c-format
 msgid	"Rand(...,'bet',..): A or B < %f\n"
 msgstr	""
 #
@@ -276,12 +272,10 @@ msgid	"Ncat <= 1\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 555
-#, possible-c-format
 msgid	"P(%d) < 0\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 560
-#, possible-c-format
 msgid	"P(%d) > 1\n"
 msgstr	""
 #
@@ -350,7 +344,6 @@ msgid	" a and b must integers with (b-a+1) <= 2147483561"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 675
-#, possible-c-format
 msgid	"Only %d arguments required for 'lgi' option"
 msgstr	""
 #
@@ -428,22 +421,18 @@ msgid	"X0 is empty\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 825
-#, possible-c-format
 msgid	"X0(%d) must be in the range [1,%d]\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 840
-#, possible-c-format
 msgid	"P(%d,%d) < 0\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 845
-#, possible-c-format
 msgid	"P(%d,%d) > 1\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 852
-#, possible-c-format
 msgid	"Sum of P(%d,1:%d)=%f ~= 1\n"
 msgstr	""
 #
@@ -514,7 +503,6 @@ msgid	"Av < 0.0\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_grand.c, line: 1039
-#, possible-c-format
 msgid	"%s Wrong argument %s\n"
 msgstr	""
 

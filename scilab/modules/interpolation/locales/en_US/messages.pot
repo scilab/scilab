@@ -17,235 +17,180 @@ msgstr	"Project-Id-Version: Scilab - interpolation\n"
 	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: src/c/interpolation.c, line: 97
-#, possible-c-format
 msgid	"Argument %d is not a real hypermatrix\n"
 msgstr	""
 #
 # File: src/c/interpolation.c, line: 113
-#, possible-c-format
 msgid	"Argument %d is not a scalar string\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_interp.c, line: 39
 # File: sci_gateway/c/sci_interp2d.c, line: 48
 # File: sci_gateway/c/sci_splin2d.c, line: 50
-#, possible-c-format
 msgid	"%s: bad inputs\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_interp.c, line: 51
-#, possible-c-format
 msgid	"%s: unknown outmode type\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_lsq_splin.c, line: 33
-#, possible-c-format
 msgid	"%s: arg 1 and 2 must be vectors of same size with at least %d "
 	"elements\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_lsq_splin.c, line: 43
-#, possible-c-format
 msgid	"%s: bad input for arg 3\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_lsq_splin.c, line: 51
-#, possible-c-format
 msgid	"%s: bad input for x\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_lsq_splin.c, line: 57
-#, possible-c-format
 msgid	"%s: elts of arg %d not (strictly) increasing or +-inf detected\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_lsq_splin.c, line: 76
-#, possible-c-format
 msgid	"%s: not enought points for the fit\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_lsq_splin.c, line: 80
-#, possible-c-format
 msgid	"%s warning: rank deficiency of the least square matrix\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin.c, line: 42
-#, possible-c-format
 msgid	"%s: arg1 and arg2 must be 2 vectors with same size\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin.c, line: 48
-#, possible-c-format
 msgid	"%s: the number of interpolation points must be >= 2\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin.c, line: 54
-#, possible-c-format
 msgid	"%s: elts of arg 1 not (strictly) increasing or +-inf detected\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin.c, line: 64
-#, possible-c-format
 msgid	"%s: unknown spline_type\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin.c, line: 75
-#, possible-c-format
 msgid	"%s: for a clamped spline you must give the endpoint slopes\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin.c, line: 81
-#, possible-c-format
 msgid	"%s: bad dimension for the 4 arg (endpoint slopes)\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin.c, line: 88
-#, possible-c-format
 msgid	"%s: 4 args are required only for a clamped spline\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin.c, line: 95
-#, possible-c-format
 msgid	"%s: for a periodic spline y(1) must be equal to y(n)\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_interp2d.c, line: 59
 # File: sci_gateway/c/sci_interp3d.c, line: 108
 # File: sci_gateway/c/sci_linear_interpn.c, line: 125
-#, possible-c-format
 msgid	"%s: unsupported outmode type\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_cshep2d.c, line: 32
-#, possible-c-format
 msgid	"%s: xyz must be a (n,3) real matrix with n >= 10\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_cshep2d.c, line: 73
-#, possible-c-format
 msgid	"%s: duplicate nodes or all nodes colinears (ier = %d)\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_interp3d.c, line: 52
 # File: sci_gateway/c/sci_bsplin3val.c, line: 44
-#, possible-c-format
 msgid	"%s: xp, yp and zp must have the same dimensions\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_interp3d.c, line: 74
 # File: sci_gateway/c/sci_bsplin3val.c, line: 67
-#, possible-c-format
 msgid	"%s: 4 th argument is not an tensbs3d tlist\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 35
-#, possible-c-format
 msgid	"%s: too few arg\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 53
-#, possible-c-format
 msgid	"%s: bad inputs for xp1, xp2, ....,\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 72
-#, possible-c-format
 msgid	"%s: bad arg number %d\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 80
-#, possible-c-format
 msgid	"%s: grid abscissae of dim %d not in strict increasing order\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 91
-#, possible-c-format
 msgid	"%s: U must be a real %d-dim hypermatrix \n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 97
-#, possible-c-format
 msgid	"%s: size incompatibility between grid points and grid values in dim %"
 	"d\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 107
-#, possible-c-format
 msgid	"%s: size incompatibility between grid points and values in dim 1\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 112
-#, possible-c-format
 msgid	"%s: size incompatibility between grid points and values in dim 1 or "
 	"2\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin2d.c, line: 58
-#, possible-c-format
 msgid	"%s: x and/or y are not in strict increasing order (or +-inf "
 	"detected)\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin2d.c, line: 69
-#, possible-c-format
 msgid	"%s: unsupported spline type\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 44
-#, possible-c-format
 msgid	"%s: the x, y and z grids must have at least 3 points\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 51
-#, possible-c-format
 msgid	"%s: 4 th argument must be a real 3-dim hypermatrix \n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 56
-#, possible-c-format
 msgid	"%s: size incompatibility between grid points and grid values\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 65
-#, possible-c-format
 msgid	"%s: the 4 th arg must be a vector with 3 components\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 71
-#, possible-c-format
 msgid	"%s: bad 5 th arg [kx ky kz]\n"
-	"\r"
 msgstr	""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 111
-#, possible-c-format
 msgid	"%s: problem : flag = %d\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_bsplin3val.c, line: 100
-#, possible-c-format
 msgid	"%s: bad 5 th argument\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_eval_cshep2d.c, line: 38
-#, possible-c-format
 msgid	"%s: xp and yp must have the same dimension\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_eval_cshep2d.c, line: 59
-#, possible-c-format
 msgid	"%s: Argument 2 is not an cshep2d tlist\n"
 msgstr	""
 #
