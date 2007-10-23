@@ -8,8 +8,7 @@ New/improved functionalities of Scicos:
 
  Editor :
 
-  - Windows style editing: basic operations implemented but some
-    limitations due to Scilab GUI limitations.
+  - Windows style editing: basic operations implemented.
   - Multi-diagram editing: for example copy and paste from any window to any
     other.
   - Documentation: fairly complete on-line help and supporting documentation.
@@ -51,8 +50,8 @@ New/improved functionalities of Scicos:
   - Support for extended data types.
   
   
-New/improved functionalities of Scipad:
----------------------------------------
+New/improved functionalities of Scipad (6.129.BP2):
+---------------------------------------------------
 
   - A lot (really a lot!) of bugs were corrected (see
     SCI/tcl/scipadsources/changelog.txt for full details)
@@ -74,8 +73,12 @@ New/improved functionalities of Scipad:
   - Tcl/Tk 8.5 is used by Scipad if available, providing peer text widgets,
     hence the capability to display different parts of the same file at 
     one time
+  - Correct resolution of windows pathnames restored (was mistakenly
+    broken in 6.122, and affected for instance opening a file in scipad
+    by double-clicking on it)
     
-  
+    
+
                               Scilab 4.1.1
                               ============
 
