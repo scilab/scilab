@@ -66,6 +66,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="../../../../bin/intl.lib"
 				OutputFile="../../../../bin/libmat.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="libmat.def"
@@ -148,6 +149,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../../bin/intl.lib"
 				OutputFile="../../../../bin/libmat.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="libmat.def"

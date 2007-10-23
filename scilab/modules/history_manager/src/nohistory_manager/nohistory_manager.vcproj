@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;NOHISTORY_MANAGER_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -64,7 +64,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib ../../../../bin/intl.lib"
 				OutputFile="../../../../bin/nosci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="nohistory_manager.def"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;NOHISTORY_MANAGER_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -148,7 +148,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib ../../../../bin/intl.lib"
 				OutputFile="../../../../bin/nosci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="nohistory_manager.def"

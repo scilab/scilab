@@ -64,7 +64,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib ../../../../bin/intl.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="norandlib.def"
@@ -148,7 +148,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib ../../../../bin/intl.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="norandlib.def"

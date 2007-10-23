@@ -67,6 +67,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="../../../../bin/intl.lib"
 				OutputFile="../../../../bin/libmex.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="libmex.def"
@@ -147,6 +148,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../../bin/intl.lib"
 				OutputFile="../../../../bin/libmex.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="libmex.def"
