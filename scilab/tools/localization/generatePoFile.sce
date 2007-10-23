@@ -15,9 +15,6 @@ if MSDOS then
 PATH_GETTEXT_TOOLS = SCI + filesep() + 'tools/gettext';
 end
 
-modules = getmodules();
-modules_size = size(modules,'*');
-
 // make destination directories 
 
 if (fileinfo(SCI+filesep()+'locale') == []) then
@@ -34,8 +31,8 @@ end
 
 List_files = [];
 j = 1;
-for i=1:modules_size
-  PATH_PO = SCI + filesep() + 'modules' + filesep() + modules(i) + filesep() + 'locales' + filesep() + LANGUAGE;
+for MODULE = getmodules()'
+  PATH_PO = SCI + filesep() + 'modules' + filesep() + MODULE + filesep() + 'locales' + filesep() + LANGUAGE;
   FULLFILENAMEPO = PATH_PO + filesep() + FILENAME_PO;
   FINDFULLFILENAMEPO = ls(FULLFILENAMEPO);
   if FINDFULLFILENAMEPO <> [] then
@@ -56,7 +53,6 @@ endfunction
 
 // ======================================
 // Main
-// ======================================
 LANGUAGES = ['fr_FR','en_US'];
 for L = LANGUAGES
   generatePoFile(L);
