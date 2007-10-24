@@ -11,16 +11,17 @@
 /*-----------------------------------------------------------------------------------*/
 char **getdrives(int *nbDrives)
 {
-	char **DrivesList=NULL;
-	char DrvLetter[4] = "A:\\";
-	*nbDrives=0;
+	char **DrivesList = NULL;
+	*nbDrives = 0;
 #ifdef _MSC_VER
 	{
+		#define DriveMask 0x00000001L
+		char DrvLetter[4] = "A:\\";
 		DWORD uDriveMask = GetLogicalDrives();
 
 		while (DrvLetter[0]<='Z')
 		{
-			if(uDriveMask & 0x00000001L)
+			if(uDriveMask & DriveMask)
 			{
 				(*nbDrives)++;
 				if (DrivesList) 
@@ -42,7 +43,7 @@ char **getdrives(int *nbDrives)
 #else
 	(*nbDrives)++;
 	DrivesList=(char**)MALLOC(sizeof(char*)*(*nbDrives));
-	DrivesList[*nbDrives-1]=(char*)MALLOC(sizeof(char)*(strlen(DrvLetter)+1));
+	DrivesList[*nbDrives-1]=(char*)MALLOC(sizeof(char)*(strlen("/")+1));
 	strcpy(DrivesList[*nbDrives-1],"/");
 #endif
 

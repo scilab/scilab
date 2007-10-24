@@ -9,7 +9,8 @@ libscimalloc_la_includedir=$(pkgincludedir)/malloc
 
 libscimalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
 includes/MALLOC.h \
-includes/getmaxMALLOC.h
+includes/getmaxMALLOC.h \
+includes/ExportImport.h
 
 libscimalloc_la_CFLAGS= 
 

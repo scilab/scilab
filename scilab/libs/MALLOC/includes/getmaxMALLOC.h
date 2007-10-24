@@ -5,15 +5,7 @@
 #ifndef __GETMAXMALLOC_H__
 #define __GETMAXMALLOC_H__
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
-	#ifdef EXPORT_MALLOC_DLL
-		#define IMPORT_EXPORT_MALLOC_DLL __declspec(dllexport)
-	#else
-		#define IMPORT_EXPORT_MALLOC_DLL __declspec(dllimport)
-	#endif
-#else
-	#define IMPORT_EXPORT_MALLOC_DLL extern
-#endif
+#include "ExportImport.h" /* IMPORT_EXPORT_MALLOC_DLL */
 
 IMPORT_EXPORT_MALLOC_DLL unsigned long GetLargestFreeMemoryRegion(void);
 

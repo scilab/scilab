@@ -30,15 +30,7 @@
 #endif
 #define NULL 0
 
-#ifdef _MSC_VER
-#ifdef EXPORT_MALLOC_DLL
-#define IMPORT_EXPORT_MALLOC_DLL __declspec(dllexport)
-#else
-#define IMPORT_EXPORT_MALLOC_DLL __declspec(dllimport)
-#endif
-#else
-#define IMPORT_EXPORT_MALLOC_DLL 
-#endif
+#include "ExportImport.h" /* IMPORT_EXPORT_MALLOC_DLL */
 
 
 #ifndef _MSC_VER
