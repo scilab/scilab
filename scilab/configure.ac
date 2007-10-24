@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006/2007
 ##########
 dnl Process this file with autoconf to produce a configure script.
 
@@ -24,9 +24,18 @@ AC_REVISION($Revision: 1.132.2.6 $)dnl
 AC_INIT([scilab],[0],[http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi])
 AC_PREREQ(2.60)
 
+SCI_BUILDDIR="`pwd`"
+SCI_SRCDIR="$srcdir"
+SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCIDIR=$srcdir
-SCIDIRFULL=`cd $SCIDIR && pwd`
+SPACE_IN_PATH=`echo "$SCI_SRCDIR_FULL"|grep " " > /dev/null; echo $?`
+if test "$SPACE_IN_PATH" = "0"; then
+   AC_MSG_WARN([=====================================])
+   AC_MSG_WARN([Configure thinks that there is a space in the path to the source. This may cause problem with libtool and some other things...])
+   AC_MSG_WARN([=====================================])
+   sleep 180
+fi
+
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_HEADERS([modules/core/includes/machine.h])
 
@@ -231,7 +240,7 @@ fi
 ## get the version 
 ###############################
 
-SCIVERSION=`cat $SCIDIR/Version.incl | sed -e "s/SCIVERSION=//" `
+SCIVERSION=`cat $SCI_SRCDIR/Version.incl | sed -e "s/SCIVERSION=//" `
 
 ########################
 ## removing and cleaning
@@ -478,9 +487,9 @@ fi
 
 
 # flag for possible compilations in configure
-CFLAGS="$CFLAGS -I${SCIDIRFULL}/libs/MALLOC/includes/"
-CXXFLAGS="$CXXFLAGS -I${SCIDIRFULL}/libs/MALLOC/includes/"
-FFLAGS="$FFLAGS -I${SCIDIRFULL}/modules/core/includes"
+CFLAGS="$CFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/'
+CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/'
+FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 ##########################################
 ## test for X11 and Xaw3d  Athena widgets
@@ -493,10 +502,10 @@ if test "x$GUI" = "xX11"; then
   fi
 ##test Xaw3d (can be build locally)
   if test "$with_local_xaw" = yes; then
-    XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
-    XMULIB='$(SCIDIR)/libs/libXmu.a'
-    XAW_LOCAL_LIB='$(SCIDIR)/libs/libXaw3d.a $(SCIDIR)/libs/libXmu.a'
-    XAW_LOCAL_INCLUDES='-I$(SCIDIR)/routines'
+    XAWLIB='$(SCI_SRCDIR)/libs/libXaw3d.a'
+    XMULIB='$(SCI_SRCDIR)/libs/libXmu.a'
+    XAW_LOCAL_LIB='$(SCI_SRCDIR)/libs/libXaw3d.a $(SCI_SRCDIR)/libs/libXmu.a'
+    XAW_LOCAL_INCLUDES='-I$(SCI_SRCDIR)/routines'
     XAW_LOCAL_SUBDIR=X11
     XAW=Xaw3d
 	X_EXTRA_LIBS="$X_EXTRA_LIBS -lXaw3d -lXmu"
@@ -891,8 +900,8 @@ if test "$with_tk" != no; then
 	# set variables
 	if test $WITH_TKSCI = 1; then
 		AC_DEFINE([WITH_TK], [], [With TK])
-		TCLSCILIB="\$(SCIDIR)/libs/tclsci.a"
-		TCLSCIDIR=tclsci
+		TCLSCILIB="\$(SCI_SRCDIR)/libs/tclsci.a"
+		TCLSCI_SRCDIR=tclsci
 		tcldir="$PREFIX_DIR/tcl/"
 	else
 		AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
@@ -1016,10 +1025,10 @@ fi
  case ${host} in
    *-pc-linux-gnu)
      AC_MSG_RESULT([Fixing libtool for -rpath problems.])
-     sed < $SCIDIR/libtool > $SCIDIR/libtool-2 \
+     sed < $SCI_SRCDIR/libtool > $SCI_SRCDIR/libtool-2 \
     's/^hardcode_libdir_flag_spec.*$/hardcode_libdir_flag_spec=" -D__LIBTOOL_IS_A_FOOL__ "/'
-     mv $SCIDIR/libtool-2 $SCIDIR/libtool
-     chmod 755 $SCIDIR/libtool
+     mv $SCI_SRCDIR/libtool-2 $SCI_SRCDIR/libtool
+     chmod 755 $SCI_SRCDIR/libtool
    ;;
  esac
 ####### End of the workaround
@@ -1107,7 +1116,7 @@ AM_CONDITIONAL(GUI_X11, test "$GUI" = "X11")
 AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
 AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 
-AC_CONFIG_COMMANDS_POST([chmod +x $SCIDIR/modules/scicos/src/c/GenBlocks.sh])
+AC_CONFIG_COMMANDS_POST([chmod +x $top_srcdir/modules/scicos/src/c/GenBlocks.sh])
 
 dnl #########################
 dnl ## substituting variables
@@ -1367,6 +1376,15 @@ echo "  shrext_cmds ......... = $shrext_cmds"
 echo "  exeext .............. = $exeext"
 
 echo ""
+
+echo "Compilation paths: "
+echo "  srcdir .............. = $SCI_SRCDIR"
+echo "  srcdir_full ......... = $SCI_SRCDIR_FULL"
+echo "  builddir ............ = $SCI_BUILDDIR"
+if test "$SCI_SRCDIR_FULL" != "$SCI_BUILDDIR"; then
+echo "  VPATH build ......... = Activated"
+fi
+
 
 echo ""
 echo "Options used to compile and link:"
