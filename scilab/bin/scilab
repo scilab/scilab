@@ -40,7 +40,7 @@
 ###
 
 if test -n "$SCI"; then
-	if test ! -d $SCI/modules; then
+	if test ! -d "$SCI/modules"; then
 		echo "Cannot find directory $SCI/modules/ !"
 		echo "SCI should point to the root data directory of Scilab"
 		exit -1
@@ -96,11 +96,11 @@ else
 fi
 
 
-if test -x $SCI/bin/scilab-bin; then
+if test -x "$SCI/bin/scilab-bin"; then
 	SCILABBIN=$SCI/bin/scilab-bin
 	SCI=$SCI/share/scilab/
 else
-	if test -x $SCI/scilab-bin; then
+	if test -x "$SCI/scilab-bin"; then
 		# dev env
 		SCILABBIN=$SCI/scilab-bin
 		DEVENV=1
@@ -281,7 +281,7 @@ echo "SCI : $SCI"
 echo "SCIBIN : $SCIBIN"
 
 # Returns to the original path
-cd $OLDPWD
+cd "$OLDPWD"
 if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"
 fi
@@ -319,7 +319,7 @@ do_scilex()
     export XAPPLRESDIR
 
 #    tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
-    $SCILABBIN $*
+    "$SCILABBIN" $*
 }
 
 do_scilex_now()
@@ -330,7 +330,7 @@ do_scilex_now()
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
 
-    $SCILABBIN $*
+    "$SCILABBIN" $*
 }
 
 do_help()
@@ -648,28 +648,28 @@ if test "$rest" = "yes"; then
   if test -n "$DEBUG"; then
 	  if test -n "$DEVENV"; then
 		  echo "Running debug of Scilab  : " $SCI/libtool --mode=execute gdb $SCILABBIN $sci_args
-		  $SCI/libtool --mode=execute gdb $SCILABBIN $sci_args
+		  "$SCI"/libtool --mode=execute gdb "$SCILABBIN" $sci_args
 	  else
-		  echo "Running debug of Scilab  : " gdb $SCILABBIN $sci_args
+		  echo "Running debug of Scilab  : " gdb "$SCILABBIN" $sci_args
 		  gdb $SCILABBIN $sci_args
 	  fi
   else
 	if test -n "$PROFILING"; then
 	  if test -n "$DEVENV"; then
-		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
-		  $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
+		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
+		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
 	  else
-		  echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
+		  echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
 		  valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
 	  fi
 	else
 	if test -n "$PROFILING_VISU"; then
 	  if test -n "$DEVENV"; then
-		  echo "Running profiling visualization of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
-		  $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
+		  echo "Running profiling visualization of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
+		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
 	  else
 		  echo "Running profiling visualization of Scilab  : " valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
-		  valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
+		  valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
 	  fi
 	else
     if test -n "$now"; then
