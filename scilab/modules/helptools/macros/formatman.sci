@@ -72,7 +72,7 @@ for k1=1:size(man,'*')  // loop on .man files
   cat=find(strsubst(lst(k),'.man',ext)==lst)
   if cat==[]| cat>k then
     modified=%t
-    write(%io(2),msprintf(_("Processing %s to %s"),fl,to)
+    write(%io(2),msprintf(_("Processing %s to %s"),fl,to))
     mputl(convert(getman(fl,to)),strsubst(fl,'.man',ext))
   end
 end
