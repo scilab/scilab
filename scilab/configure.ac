@@ -1117,7 +1117,7 @@ AM_CONDITIONAL(GUI_X11, test "$GUI" = "X11")
 AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
 AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 
-AC_CONFIG_COMMANDS_POST([chmod +x $top_srcdir/modules/scicos/src/c/GenBlocks.sh])
+AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos/src/c/GenBlocks.sh])
 
 dnl #########################
 dnl ## substituting variables
