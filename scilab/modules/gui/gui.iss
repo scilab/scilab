@@ -31,7 +31,6 @@ Source: modules\{#GUI}\help\removechapter.sce; DestDir: {app}\modules\{#GUI}\hel
 ;
 Source: modules\{#GUI}\help\*.htm; DestDir: {app}\modules\{#GUI}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#GUI}\locales\*.xml; DestDir: {app}\modules\{#GUI}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#GUI}\includes\*.h; DestDir: {app}\modules\{#GUI}\includes; Components: {#COMPN_SCILAB}
 ;

@@ -29,7 +29,6 @@ Source: modules\{#METANET}\help\removechapter.sce; DestDir: {app}\modules\{#META
 ;
 Source: modules\{#METANET}\help\*.htm; DestDir: {app}\modules\{#METANET}\help; Flags: recursesubdirs; Components: {#COMPN_METANET}
 ;
-Source: modules\{#METANET}\locales\*.xml; DestDir: {app}\modules\{#METANET}\locales; Flags: recursesubdirs; Components: {#COMPN_METANET}
 ;
 Source: modules\{#METANET}\includes\*.h; DestDir: {app}\modules\{#METANET}\includes; Components: {#COMPN_METANET}
 ;

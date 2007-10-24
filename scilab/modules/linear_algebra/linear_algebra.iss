@@ -28,7 +28,6 @@ Source: modules\{#LINALG}\help\removechapter.sce; DestDir: {app}\modules\{#LINAL
 ;
 Source: modules\{#LINALG}\help\*.htm; DestDir: {app}\modules\{#LINALG}\help; Flags: recursesubdirs; Components: {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\locales\*.xml; DestDir: {app}\modules\{#LINALG}\locales; Flags: recursesubdirs; Components: {#COMPN_LINALG}
 ;
 Source: modules\{#LINALG}\includes\*.h; DestDir: {app}\modules\{#LINALG}\includes; Components: {#COMPN_LINALG}
 ;

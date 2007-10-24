@@ -25,7 +25,6 @@ Source: modules\{#INTERPOLATION}\help\removechapter.sce; DestDir: {app}\modules\
 ;
 Source: modules\{#INTERPOLATION}\help\*.htm; DestDir: {app}\modules\{#INTERPOLATION}\help; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 ;
-Source: modules\{#INTERPOLATION}\locales\*.xml; DestDir: {app}\modules\{#INTERPOLATION}\locales; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 ;
 Source: modules\{#INTERPOLATION}\includes\*.h; DestDir: {app}\modules\{#INTERPOLATION}\includes; Components: {#COMPN_INTERP}
 ;

@@ -28,7 +28,6 @@ Source: modules\{#LOCALIZATION}\help\removechapter.sce; DestDir: {app}\modules\{
 ;
 Source: modules\{#LOCALIZATION}\help\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LOCALIZATION}\locales\*.xml; DestDir: {app}\modules\{#LOCALIZATION}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\includes\*.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 ;

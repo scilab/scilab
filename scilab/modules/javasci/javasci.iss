@@ -19,7 +19,6 @@ Source: modules\{#JAVASCI}\help\removechapter.sce; DestDir: {app}\modules\{#JAVA
 Source: modules\{#JAVASCI}\help\*.htm; DestDir: {app}\modules\{#JAVASCI}\help; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\help\images\*.gif; DestDir: {app}\modules\{#JAVASCI}\help\images; Components: {#COMPN_JAVASCI}
 ;
-Source: modules\{#JAVASCI}\locales\*.xml; DestDir: {app}\modules\{#JAVASCI}\locales; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 ;
 Source: modules\{#JAVASCI}\etc\{#JAVASCI}.quit; DestDir: {app}\modules\{#JAVASCI}\etc; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\etc\{#JAVASCI}.start; DestDir: {app}\modules\{#JAVASCI}\etc; Components: {#COMPN_JAVASCI}

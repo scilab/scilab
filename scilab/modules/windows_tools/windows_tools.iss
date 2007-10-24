@@ -33,7 +33,6 @@ Source: modules\{#WINDOWS_TOOLS}\etc\{#WINDOWS_TOOLS}.start; DestDir: {app}\modu
 ;
 Source: modules\{#WINDOWS_TOOLS}\help\*.htm; DestDir: {app}\modules\{#WINDOWS_TOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#WINDOWS_TOOLS}\locales\*.xml; DestDir: {app}\modules\{#WINDOWS_TOOLS}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#WINDOWS_TOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#WINDOWS_TOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}

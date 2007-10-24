@@ -33,7 +33,6 @@ Source: modules\{#HISTORY_MANAGER}\etc\{#HISTORY_MANAGER}.start; DestDir: {app}\
 ;
 Source: modules\{#HISTORY_MANAGER}\help\*.htm; DestDir: {app}\modules\{#HISTORY_MANAGER}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HISTORY_MANAGER}\locales\*.xml; DestDir: {app}\modules\{#HISTORY_MANAGER}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HISTORY_MANAGER}\macros\buildmacros.sce; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\macros\buildmacros.bat; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}

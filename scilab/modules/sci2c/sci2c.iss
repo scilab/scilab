@@ -25,7 +25,6 @@ Source: modules\{#SCI2C}\help\removechapter.sce; DestDir: {app}\modules\{#SCI2C}
 ;
 Source: modules\{#SCI2C}\help\*.htm; DestDir: {app}\modules\{#SCI2C}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;
-Source: modules\{#SCI2C}\locales\*.xml; DestDir: {app}\modules\{#SCI2C}\locales; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;
 Source: modules\{#SCI2C}\includes\*.h; DestDir: {app}\modules\{#SCI2C}\includes; Components: {#COMPN_SCI2C}
 ;

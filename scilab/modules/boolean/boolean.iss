@@ -25,7 +25,6 @@ Source: modules\{#BOOLEAN}\help\removechapter.sce; DestDir: {app}\modules\{#BOOL
 ;
 Source: modules\{#BOOLEAN}\help\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#BOOLEAN}\locales\*.xml; DestDir: {app}\modules\{#BOOLEAN}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#BOOLEAN}\includes\*.h; DestDir: {app}\modules\{#BOOLEAN}\includes; Components: {#COMPN_SCILAB}
 ;

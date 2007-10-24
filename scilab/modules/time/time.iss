@@ -30,7 +30,6 @@ Source: modules\{#TIME}\help\removechapter.sce; DestDir: {app}\modules\{#TIME}\h
 ;
 Source: modules\{#TIME}\help\*.htm; DestDir: {app}\modules\{#TIME}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\locales\*.xml; DestDir: {app}\modules\{#TIME}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TIME}\macros\buildmacros.sce; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\buildmacros.bat; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}

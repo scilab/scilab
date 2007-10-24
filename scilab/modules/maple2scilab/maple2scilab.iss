@@ -23,7 +23,6 @@ Source: modules\{#MAP2SCI}\help\removechapter.sce; DestDir: {app}\modules\{#MAP2
 ;
 Source: modules\{#MAP2SCI}\help\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help; Flags: recursesubdirs; Components: {#COMPN_MAP2SCI}
 ;
-Source: modules\{#MAP2SCI}\locales\*.xml; DestDir: {app}\modules\{#MAP2SCI}\locales; Flags: recursesubdirs; Components: {#COMPN_MAP2SCI}
 ;
 Source: modules\{#MAP2SCI}\src\maple\*.mpl; DestDir: {app}\modules\{#MAP2SCI}\src\maple; Components: {#COMPN_MAP2SCI}
 ;

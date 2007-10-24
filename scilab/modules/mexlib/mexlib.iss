@@ -27,7 +27,6 @@ Source: modules\{#MEXLIB}\help\removechapter.sce; DestDir: {app}\modules\{#MEXLI
 ;
 ;Source: modules\{#MEXLIB}\help\*.htm; DestDir: {app}\modules\{#MEXLIB}\help; Flags: recursesubdirs; Components: {#COMPN_MEXLIB}
 ;
-Source: modules\{#MEXLIB}\locales\*.xml; DestDir: {app}\modules\{#MEXLIB}\locales; Flags: recursesubdirs; Components: {#COMPN_MEXLIB}
 ;
 Source: modules\{#MEXLIB}\includes\*.h; DestDir: {app}\modules\{#MEXLIB}\includes; Components: {#COMPN_MEXLIB}
 ;

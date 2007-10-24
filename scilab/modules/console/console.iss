@@ -39,7 +39,6 @@ Source: modules\{#CONSOLE}\etc\configuration.xml; DestDir: {app}\modules\{#CONSO
 ;
 Source: modules\{#CONSOLE}\help\*.htm; DestDir: {app}\modules\{#CONSOLE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\locales\*.xml; DestDir: {app}\modules\{#CONSOLE}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CONSOLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#CONSOLE}\macros\buildmacros.bat; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}

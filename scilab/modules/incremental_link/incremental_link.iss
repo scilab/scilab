@@ -23,7 +23,6 @@ Source: modules\{#INCRLINK}\help\removechapter.sce; DestDir: {app}\modules\{#INC
 ;
 Source: modules\{#INCRLINK}\help\*.htm; DestDir: {app}\modules\{#INCRLINK}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INCRLINK}\locales\*.xml; DestDir: {app}\modules\{#INCRLINK}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INCRLINK}\src\scripts\Makedll.incl; DestDir: {app}\modules\{#INCRLINK}\src\scripts; Components: {#COMPN_SCILAB}
 ;

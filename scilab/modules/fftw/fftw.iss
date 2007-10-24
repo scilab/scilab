@@ -28,7 +28,6 @@ Source: modules\{#FFTW}\help\removechapter.sce; DestDir: {app}\modules\{#FFTW}\h
 ;
 ;Source: modules\{#FFTW}\help\*.htm; DestDir: {app}\modules\{#FFTW}\help; Flags: recursesubdirs; Components: {#COMPN_FFTW}
 ;
-Source: modules\{#FFTW}\locales\*.xml; DestDir: {app}\modules\{#FFTW}\locales; Flags: recursesubdirs; Components: {#COMPN_FFTW}
 ;
 Source: modules\{#FFTW}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#FFTW}\includes; Components: {#COMPN_FFTW}
 ;

@@ -28,7 +28,6 @@ Source: modules\{#STRING}\help\removechapter.sce; DestDir: {app}\modules\{#STRIN
 ;
 Source: modules\{#STRING}\help\*.htm; DestDir: {app}\modules\{#STRING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#STRING}\locales\*.xml; DestDir: {app}\modules\{#STRING}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\includes\*.h; DestDir: {app}\modules\{#STRING}\includes; Components: {#COMPN_SCILAB}
 ;

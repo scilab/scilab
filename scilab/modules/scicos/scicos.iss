@@ -34,7 +34,6 @@ Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;Source: modules\{#SCICOS}\help\*.htm; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs ;Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\help\images\*.gif; DestDir: {app}\modules\{#SCICOS}\help\images; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS}\locales\*.xml; DestDir: {app}\modules\{#SCICOS}\locales; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 ;
 ;Source: modules\{#SCICOS}\includes\*.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
 ;

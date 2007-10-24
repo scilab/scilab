@@ -30,7 +30,6 @@ Source: modules\{#GRAPHICS}\help\removechapter.sce; DestDir: {app}\modules\{#GRA
 Source: modules\{#GRAPHICS}\help\*.htm; DestDir: {app}\modules\{#GRAPHICS}\help; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\help\images\*.gif; DestDir: {app}\modules\{#GRAPHICS}\images; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\locales\*.xml; DestDir: {app}\modules\{#GRAPHICS}\locales; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\includes\*.h; DestDir: {app}\modules\{#GRAPHICS}\includes; Components: {#COMPN_GRAPHICS}
 ;

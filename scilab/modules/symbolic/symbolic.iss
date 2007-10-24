@@ -28,7 +28,6 @@ Source: modules\{#SYMBOLIC}\help\removechapter.sce; DestDir: {app}\modules\{#SYM
 ;
 Source: modules\{#SYMBOLIC}\help\*.htm; DestDir: {app}\modules\{#SYMBOLIC}\help; Flags: recursesubdirs; Components: {#COMPN_SYMB}
 ;
-Source: modules\{#SYMBOLIC}\locales\*.xml; DestDir: {app}\modules\{#SYMBOLIC}\locales; Flags: recursesubdirs; Components: {#COMPN_SYMB}
 ;
 Source: modules\{#SYMBOLIC}\includes\*.h; DestDir: {app}\modules\{#SYMBOLIC}\includes; Components: {#COMPN_SYMB}
 ;

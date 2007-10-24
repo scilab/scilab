@@ -23,7 +23,6 @@ Source: modules\{#SCIPAD}\help\removechapter.sce; DestDir: {app}\modules\{#SCIPA
 ;
 Source: modules\{#SCIPAD}\help\*.htm; DestDir: {app}\modules\{#SCIPAD}\help; Flags: recursesubdirs; Components: {#COMPN_SCIPAD}
 ;
-Source: modules\{#SCIPAD}\locales\*.xml; DestDir: {app}\modules\{#SCIPAD}\locales; Flags: recursesubdirs; Components: {#COMPN_SCIPAD}
 ;
 Source: modules\{#SCIPAD}\macros\lib; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\macros\names; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}

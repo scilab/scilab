@@ -29,7 +29,6 @@ Source: bin\pvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#PVM}\help\*.htm; DestDir: {app}\modules\{#PVM}\help; Flags: recursesubdirs; Components: {#COMPN_PVM}
 ;
-;Source: modules\{#PVM}\locales\*.xml; DestDir: {app}\modules\{#PVM}\locales; Flags: recursesubdirs; Components: {#COMPN_PVM}
 ;
 ;Source: modules\{#PVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\macros\buildmacros.bat; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}

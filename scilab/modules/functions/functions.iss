@@ -20,7 +20,6 @@ Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.start; DestDir: {app}\modules\{#FU
 ;
 Source: modules\{#FUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FUNCTIONS}\locales\*.xml; DestDir: {app}\modules\{#FUNCTIONS}\locales; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\help\removechapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
