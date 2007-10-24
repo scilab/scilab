@@ -208,10 +208,11 @@ public class SciConsole extends JPanel {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-
+        
+        ((SciOutputView) config.getOutputView()).flushBuffer();
+        
         try {
             config.getOutputViewStyledDocument().remove(0, config.getOutputViewStyledDocument().getLength());
-            config.getOutputViewStyledDocument().insertString(0, "", config.getOutputViewStyledDocument().getStyle(StyleContext.DEFAULT_STYLE));
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
