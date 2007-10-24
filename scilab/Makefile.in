@@ -956,7 +956,8 @@ clean-local:
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'
 
 build-localization:
-	@MASK="modules/*/locales/"; \
+	@echo "-- Build localization (.mo from .po) --"; \
+	MASK="modules/*/locales/"; \
 	LC=LC_MESSAGES; \
 	FILENAME="messages.po*"; \
 	LANG_DOMAIN=scilab; \
