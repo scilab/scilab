@@ -31,7 +31,11 @@
 #ifdef _ALPHA_
 #define e_magic_number IMAGE_FILE_MACHINE_ALPHA
 #else
-#define e_magic_number IMAGE_FILE_MACHINE_I386
+	#ifdef _WIN64
+		#define e_magic_number	IMAGE_FILE_MACHINE_AMD64
+	#else
+		#define e_magic_number IMAGE_FILE_MACHINE_I386
+	#endif
 #endif
 
 #define stricmp _stricmp
