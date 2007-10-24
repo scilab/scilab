@@ -256,15 +256,7 @@
 			Name="localization"
 			>
 			<File
-				RelativePath="..\..\locales\en_US\errors.xml"
-				>
-			</File>
-			<File
-				RelativePath="..\..\locales\en_US\menus.xml"
-				>
-			</File>
-			<File
-				RelativePath="..\..\locales\en_US\messages.xml"
+				RelativePath="..\..\locales\en_US\messages.pot"
 				>
 			</File>
 		</Filter>

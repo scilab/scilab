@@ -387,15 +387,7 @@
 			Name="localization"
 			>
 			<File
-				RelativePath="..\..\locales\en_US\errors.xml"
-				>
-			</File>
-			<File
-				RelativePath="..\..\locales\en_US\menus.xml"
-				>
-			</File>
-			<File
-				RelativePath="..\..\locales\en_US\messages.xml"
+				RelativePath="..\..\locales\en_US\messages.pot"
 				>
 			</File>
 		</Filter>
@@ -409,13 +401,6 @@
 			<File
 				RelativePath="..\jni\GuiManagement.i"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="swig rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\jni\InterpreterManagement.i"
