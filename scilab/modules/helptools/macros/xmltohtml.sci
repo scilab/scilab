@@ -255,7 +255,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	end
 	
 	if ~or(need_to_be_build_tab) then
-		mprintf("   HTML files are up-to-date\n");
+		mprintf(_("   HTML files are up-to-date\n"));
 		return;
 	end
 	
@@ -278,12 +278,12 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				default_language_path = pathconvert(dirs(k)+"/../"+default_language(k),%f,%f);
 				if nb_dir > 1 then
 					if displaydone == 0 then
-						mprintf("\nCopying missing files copied from\n");
+						mprintf(_("\nCopying missing files copied from\n"));
 						displaydone = 1;
 					end
-					mprintf("\t%s\n",default_language_path);
+					mprintf(_("\t%s\n"),default_language_path);
 				else
-					mprintf("\nCopying missing from %s\n",default_language_path);
+					mprintf(_("\nCopying missing from %s\n"),default_language_path);
 				end
 				complete_with_df_lang(dirs(k),directory_language(k),default_language(k));
 			end
@@ -300,12 +300,12 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			if need_to_be_build_tab(k) then
 				if nb_dir > 1 then
 					if displaydone == 0 then
-						mprintf("\nCreating whatis.htm\n");
+						mprintf(_("\nCreating whatis.htm\n"));
 						displaydone = 1;
 					end
-					mprintf("\t%s\n",dirs(k));
+					mprintf(_("\t%s\n"),dirs(k));
 				else
-					mprintf("\nCreating whatis.htm in %s\n",dirs(k));
+					mprintf(_("\nCreating whatis.htm in %s\n"),dirs(k));
 				end
 				dirs(k)=pathconvert(dirs(k),%f,%f);
 				chdir(dirs(k));
@@ -325,7 +325,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		for k=1:size(dirs,'*');
 			if need_to_be_build_tab(k) then
 				
-				mprintf("\nProcessing chapter %s\n",dirs(k));
+				mprintf(_("\nProcessing chapter %s\n"),dirs(k));
 				
 				chdir(dirs(k));
 				
@@ -368,7 +368,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
 	if step=='all' | step == 'index' then 
 		index_file = pathconvert(SCI+"/modules/helptools/index_"+getlanguage()+".htm",%f,%t);
-		mprintf("\nCreating %s\n",index_file);
+		mprintf(_("\nCreating %s\n"),index_file);
 		gener_index(dirs,titles);
 	end
 	
@@ -378,7 +378,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
 	if step=='all' | step == 'contents' then 
 		contents_file = pathconvert(SCI+"/modules/helptools/contents_"+getlanguage()+".htm",%f,%t);
-		mprintf("\nCreating %s\n",contents_file);
+		mprintf(_("\nCreating %s\n"),contents_file);
 		if rhs <= 0 then
 			gener_contents()
 		else
@@ -394,7 +394,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	if MSDOS then
 		if step=='all' | step == 'hw' then
 			if (strindex(dirs(1),filesep()+getlanguage()+filesep()) <> []) then
-				mprintf("\nCreating sciman.hh* \n");
+				mprintf(_("\nCreating sciman.hh*\n"));
 				gener_hh(dirs,titles)
 			end
 		end
@@ -413,12 +413,12 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				
 				if nb_dir > 1 then
 					if displaydone == 0 then
-						mprintf("\nDeleting files copied from\n");
+						mprintf(_("\nDeleting files copied from\n"));
 						displaydone = 1;
 					end
-					mprintf("\t%s\n",default_language_path);
+					mprintf(_("\t%s\n"),default_language_path);
 				else
-					mprintf("\nDeleting files copied from %s\n",default_language_path);
+					mprintf(_("\nDeleting files copied from %s\n"),default_language_path);
 				end
 				del_df_lang_xml_files(dirs(k),directory_language(k));
 			end

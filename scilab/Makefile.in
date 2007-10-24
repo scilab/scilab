@@ -47,6 +47,7 @@ subdir = .
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/configure \
 	$(top_srcdir)/etc/modules.xml.in \
+	$(top_srcdir)/libs/f2c/Makefile.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
 	$(top_srcdir)/modules/scicos/src/ocaml/Makefile.in ABOUT-NLS \
@@ -56,6 +57,7 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/glib-gettext.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/libs_by_debian.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
@@ -71,7 +73,8 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
-CONFIG_CLEAN_FILES = modules/scicos/src/ocaml/Makefile etc/modules.xml \
+CONFIG_CLEAN_FILES = libs/f2c/Makefile \
+	modules/scicos/src/ocaml/Makefile etc/modules.xml \
 	modules/helptools/macros/xmlfiletohtml.sci
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)"
@@ -393,6 +396,8 @@ $(top_srcdir)/modules/core/includes/machine.h.in: @MAINTAINER_MODE_TRUE@ $(am__c
 
 distclean-hdr:
 	-rm -f modules/core/includes/machine.h modules/core/includes/stamp-h1
+libs/f2c/Makefile: $(top_builddir)/config.status $(top_srcdir)/libs/f2c/Makefile.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 modules/scicos/src/ocaml/Makefile: $(top_builddir)/config.status $(top_srcdir)/modules/scicos/src/ocaml/Makefile.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 etc/modules.xml: $(top_builddir)/config.status $(top_srcdir)/etc/modules.xml.in

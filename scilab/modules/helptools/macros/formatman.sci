@@ -26,7 +26,7 @@ case 'xml'
   convert=man2xml
   getwhatis="xmlwhatis"
 else
-   error('Only ascii, tex, html or xml output format supported')
+   error(_('Only ascii, tex, html or xml output format supported'))
 end
 
 path=stripblanks(path)
@@ -72,7 +72,7 @@ for k1=1:size(man,'*')  // loop on .man files
   cat=find(strsubst(lst(k),'.man',ext)==lst)
   if cat==[]| cat>k then
     modified=%t
-    write(%io(2),'Processing '+fl+' to '+to)
+    write(%io(2),msprintf(_("Processing %s to %s"),fl,to)
     mputl(convert(getman(fl,to)),strsubst(fl,'.man',ext))
   end
 end

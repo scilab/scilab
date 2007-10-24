@@ -18,7 +18,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	if MSDOS then
 	  generate_cmd='sabcmd';
 	else
-	  generate_cmd='xsltproc';
+	  generate_cmd='sabcmd';
 	end
 	
 	[lhs,rhs] = argn(0);
