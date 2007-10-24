@@ -28,6 +28,7 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
+# Check if we have a space in the path to the source tree
 SPACE_IN_PATH=`echo "$SCI_SRCDIR_FULL"|grep " " > /dev/null; echo $?`
 if test "$SPACE_IN_PATH" = "0"; then
    AC_MSG_WARN([=====================================])
