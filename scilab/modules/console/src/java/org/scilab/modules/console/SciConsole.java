@@ -208,7 +208,7 @@ public class SciConsole extends JPanel {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        
+        /* Flush buffer so that clc is displayed */
         ((SciOutputView) config.getOutputView()).flushBuffer();
         
         try {
@@ -262,6 +262,9 @@ public class SciConsole extends JPanel {
      * Puts the prompt in the top left corner of the console
      */
     public void toHome() {
+    	/* Flush buffer so that toHome is displayed */
+        ((SciOutputView) config.getOutputView()).flushBuffer();
+        
     	Dimension jSPExtSize = jSP.getViewport().getExtentSize();
     	Dimension newDim = new Dimension(jSPExtSize.width - jSP.getVerticalScrollBar().getPreferredSize().width, jSPExtSize.height);
     	((JTextPane) config.getInputCommandView()).setPreferredSize(newDim);

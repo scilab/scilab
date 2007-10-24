@@ -64,54 +64,9 @@ public class SciOutputView extends ConsoleTextPane {
 			return;
 		}
 		
-		/* Find the number of lines added */
-		String[] lines = dispBuffer.split(StringConstants.NEW_LINE);
-
 		/* Buffer is big enough to be displayed */
 		flushBuffer();
 		
-		/* Change the size of the input command view if necessary */
-		/* - if the console size has been forced to a value */
-		/* - if a carriage return has been appended */
-		if (console != null && console.getInputCommandViewSizeForced() && lines.length > 0) {
-
-			JTextPane outputView = ((JTextPane) console.getConfiguration().getOutputView());
-			
-			// Get JScrollPane viewport size to adapt input command view size
-			JScrollPane jSP = console.getJScrollPane();
-			Dimension jSPExtSize = jSP.getViewport().getExtentSize();
-
-			/* Height of a text line in the ouput view */
-			int charHeight = outputView.getFontMetrics(outputView.getFont()).getHeight();
-
-			JPanel promptView = ((JPanel) console.getConfiguration().getPromptView());
-			
-			/* Input command view dimensions */
-			int height = ((JTextPane) console.getConfiguration().getInputCommandView()).getPreferredSize().height;
-			int width = ((JTextPane) console.getConfiguration().getInputCommandView()).getPreferredSize().width - jSPExtSize.width;
-
-			int promptViewHeight = promptView.getPreferredSize().height;
-
-			/* New dimension for the input command view */
-			int newHeight = height - lines.length * (charHeight + 1); 
-			Dimension newDim = null;
-			
-			if (newHeight > promptViewHeight) {
-				/* If the input command view is bigger than the promptUI */
-				/* It's height is descreased according to line number of lines added to output view */
-				newDim = new Dimension(width, newHeight);
-			} else {
-				/* If the input command view is smaller than the promptUI */
-				/* It's height adapted to the promptUI height */
-				newDim = new Dimension(width, promptViewHeight);
-				console.setInputCommandViewSizeForced(false);
-			}
-			/* Change the input command view size */
-	       	((JTextPane) console.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
-        	((JTextPane) console.getConfiguration().getInputCommandView()).invalidate();
-	    	((JTextPane) console.getConfiguration().getInputCommandView()).doLayout();
-			
-		}			
 	}
 	
 	/**
@@ -136,6 +91,52 @@ public class SciOutputView extends ConsoleTextPane {
 
 		totalNumberOfEntries += console.getNumberOfLines();
 		
+		/* Find the number of lines added */
+		String[] lines = dispBuffer.split(StringConstants.NEW_LINE);
+
+		/* Change the size of the input command view if necessary */
+		/* - if the console size has been forced to a value */
+		/* - if a carriage return has been appended */
+		if (console != null && console.getInputCommandViewSizeForced() && lines.length > 0) {
+
+			JTextPane outputView = ((JTextPane) console.getConfiguration().getOutputView());
+			
+			// Get JScrollPane viewport size to adapt input command view size
+			JScrollPane jSP = console.getJScrollPane();
+			Dimension jSPExtSize = jSP.getViewport().getExtentSize();
+
+			/* Height of a text line in the ouput view */
+			int charHeight = outputView.getFontMetrics(outputView.getFont()).getHeight();
+
+			JPanel promptView = ((JPanel) console.getConfiguration().getPromptView());
+			
+			/* Input command view dimensions */
+			int height = ((JTextPane) console.getConfiguration().getInputCommandView()).getPreferredSize().height;
+			int width = ((JTextPane) console.getConfiguration().getInputCommandView()).getPreferredSize().width - jSPExtSize.width;
+
+			int promptViewHeight = promptView.getPreferredSize().height;
+
+			/* New dimension for the input command view */
+			int newHeight = height - (lines.length - 1) * charHeight; /* -1 because last EOL removed in SwingScilabConsole.readline */
+			Dimension newDim = null;
+			
+			if (newHeight > promptViewHeight) {
+				/* If the input command view is bigger than the promptUI */
+				/* It's height is descreased according to line number of lines added to output view */
+				newDim = new Dimension(width, newHeight);
+			} else {
+				/* If the input command view is smaller than the promptUI */
+				/* It's height adapted to the promptUI height */
+				newDim = new Dimension(width, promptViewHeight);
+				console.setInputCommandViewSizeForced(false);
+			}
+			/* Change the input command view size */
+	       	((JTextPane) console.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
+        	((JTextPane) console.getConfiguration().getInputCommandView()).invalidate();
+	    	((JTextPane) console.getConfiguration().getInputCommandView()).doLayout();
+			
+		}			
+
 		dispBuffer = "";
 		nbEntries = 1;
 
