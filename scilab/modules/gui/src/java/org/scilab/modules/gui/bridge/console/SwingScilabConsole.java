@@ -6,8 +6,6 @@ package org.scilab.modules.gui.bridge.console;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
@@ -16,7 +14,6 @@ import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciInputCommandView;
 import org.scilab.modules.console.SciOutputView;
-import org.scilab.modules.console.SciPromptView;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -58,7 +55,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		String cmd;
 		
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
-
+		
 		((SciOutputView) this.getConfiguration().getOutputView()).flushBuffer();
 		
 		// Show the prompt
@@ -71,39 +68,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
 		((JTextPane) inputCmdView).setCaretColor(Color.black);
 		
-		// Modify the size of the input command view (the prompt was not visible when last size modification done
-		if (this.getInputCommandViewSizeForced()) {
-
-			JPanel promptView = ((JPanel) this.getConfiguration().getPromptView());
-			
-			// Get JScrollPane viewport size to adapt input command view size
-			JScrollPane jSP = ((SciConsole) this).getJScrollPane();
-			Dimension jSPExtSize = jSP.getViewport().getExtentSize();
-			
-			int height = ((JTextPane) inputCmdView).getPreferredSize().height;
-			int width = ((JTextPane) inputCmdView).getPreferredSize().width - jSPExtSize.width;
-			int promptViewHeight = ((SciPromptView) promptView).getPromptUI().getPreferredSize().height;
-			
-			/* New dimension for the input command view */
-			int newHeight = height + promptViewHeight;
-			Dimension newDim = null;
-			
-			if (newHeight > promptViewHeight) {
-				/* If the input command view is bigger than the promptUI */
-				/* It's height is descreased */
-				newDim = new Dimension(width, newHeight);
-			} else {
-				/* If the input command view is smaller than the promptUI */
-				/* It's height adapted to the promptUI height */
-				newDim = new Dimension(width, promptViewHeight);
-				this.setInputCommandViewSizeForced(false);
-			}
-        	((JTextPane) inputCmdView).setPreferredSize(newDim);
-        	((JTextPane) inputCmdView).invalidate();
-	    	((JTextPane) inputCmdView).doLayout();
-
-		}
-
 		// Remove last line returned given by Scilab (carriage return)
 		try {
 			StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();			
