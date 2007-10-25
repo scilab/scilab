@@ -1,68 +1,23 @@
-#include <stdio.h>
-#if !(defined _MSC_VER)
-#if defined(netbsd) || defined(freebsd) 
-#include <sys/types.h>
-#endif
-#include <dirent.h>
-#endif
-#include <string.h>
-#include <stdlib.h>
-
-#include <math.h>
-
-#ifdef _MSC_VER
-#include <direct.h> /*_getcwd _chdir*/
-#endif
-#if (defined _MSC_VER)
-/** only used for x=dir[1024] **/
-#include <io.h>
-#define  getwd(x) _getcwd(x,1024) 
-#define chdir(x) _chdir(x)
-#endif
-
-#if defined(netbsd) || defined(freebsd)|| defined(linux)
-#include <unistd.h>
-#endif
-
-#include "machine.h"
-#include "MALLOC.h"
-
-#define MAXNAM 80
-
-extern char* my_basename();
-extern void cerro();
-extern char* dirname();
-extern int CheckGraphName();
-extern char *StripGraph();
-
-typedef int (*PF)(const void *,const void *);
+#include "saveg.h"
 
 static int CompString(char **s1, char **s2)
 {
   return strcmp((char*)*s1,(char*)*s2);
 }
 
-void C2F(saveg)(path,lpath,name,lname,directed,node_number,tail,head,
-  node_name,node_type,node_x,node_y,node_color,node_diam,node_border,
-  node_font_size,node_demand,
-  edge_name,edge_color,edge_width,edge_hi_width,edge_font_size,
-  edge_length,edge_cost,edge_min_cap,edge_max_cap,edge_q_weight,edge_q_orig,
-  edge_weight,
-  default_node_diam,default_node_border,default_edge_width,
-  default_edge_hi_width,default_font_size,ma)
-char *path; int *lpath;
-char *name; int *lname,*directed,*node_number,*tail,*head;
-char ***node_name; 
-int *node_type,*node_x,*node_y,*node_color,*node_diam,*node_border;
-int *node_font_size;
-double *node_demand;
-char ***edge_name;
-int *edge_color,*edge_width,*edge_hi_width,*edge_font_size;
-double *edge_length,*edge_cost,*edge_min_cap,*edge_max_cap;
-double *edge_q_weight,*edge_q_orig,*edge_weight;
-int *default_node_diam,*default_node_border,*default_edge_width;
-int *default_edge_hi_width,*default_font_size;
-int *ma;
+void C2F(saveg) (char *path, int *lpath,
+		 char *name, int *lname,int *directed,int *node_number,int *tail,int *head,
+		 char ***node_name,
+		 int *node_type,int *node_x,int *node_y,int *node_color,int *node_diam,int *node_border,
+		 int *node_font_size,
+		 double *node_demand,
+		 char ***edge_name,
+		 int *edge_color,int *edge_width,int *edge_hi_width,int *edge_font_size,
+		 double *edge_length,double *edge_cost,double *edge_min_cap,double *edge_max_cap,
+		 double *edge_q_weight,double *edge_q_orig,double *edge_weight,
+		 int *default_node_diam,int *default_node_border,int *default_edge_width,
+		 int *default_edge_hi_width,int *default_font_size,
+		 int *ma)
 {
   FILE *f;
 #if !(defined _MSC_VER)
@@ -102,17 +57,17 @@ int *ma;
     }
     FREE(lar);
   }
- 
+
   path[*lpath] = '\0';
   name[*lname] = '\0';
-  
+
   if (!strcmp(path," ")) {
-    getwd(dir);
+    getcwd(dir,strlen(dir));
     strcpy(nname,name);
   }
   else {
 #if (defined _MSC_VER)
-    getwd(dir);
+    getcwd(dir,strlen(dir));
 #if (defined _MSC_VER)
     it= chdir(path);
     chdir(dir);
@@ -128,11 +83,11 @@ int *ma;
       strcpy(dir,path);
       closedir(dirp);
     }
-#endif 
+#endif
     else {
       strcpy(nname,StripGraph(my_basename(path)));
-      if (dirname(path) == NULL) getwd(dir);
-      else strcpy(dir,dirname(path));     
+      if (dirname(path) == NULL) getcwd(dir,strlen(dir));
+      else strcpy(dir,dirname(path));
     }
   }
 #if !(defined _MSC_VER)
@@ -163,7 +118,7 @@ int *ma;
     return;
   }
   /* Write graph to file */
-  
+
   fprintf(f,_("GRAPH TYPE (0 = UNDIRECTED, 1 = DIRECTED), DEFAULTS (NODE DIAMETER, NODE BORDER, ARC WIDTH, HILITED ARC WIDTH, FONTSIZE):\n"));
   fprintf(f,"%d %d %d %d %d %d\n",*directed,*default_node_diam,
 	  *default_node_border,*default_edge_width,*default_edge_hi_width,
@@ -201,7 +156,7 @@ int *ma;
 	    edge_cost[i],edge_min_cap[i],edge_max_cap[i],edge_length[i],
 	    edge_q_weight[i],edge_q_orig[i],edge_weight[i]);
   }
-  
+
   /* Write nodes to files */
 
   fprintf(f,"****************************************\n");
