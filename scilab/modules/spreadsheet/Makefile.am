@@ -59,12 +59,12 @@ libscispreadsheet_la_include_HEADERS = includes/gw_spreadsheet.h
 
 #### spreadsheet : demos files ####
 libscispreadsheet_la_demosdir=$(mydatadir)/demos/
-libscispreadsheet_la_demos_DATA = demos/spreadsheet/Testo1.xls \
-demos/spreadsheet/o1.xls \
-demos/spreadsheet/Test1.xls \
-demos/spreadsheet/Testobig.xls \
-demos/spreadsheet/Testbig.xls \
-demos/spreadsheet/t1.xls \
-demos/spreadsheet/README
+libscispreadsheet_la_demos_DATA = demos/xls/Testo1.xls \
+demos/xls/o1.xls \
+demos/xls/Test1.xls \
+demos/xls/Testobig.xls \
+demos/xls/Testbig.xls \
+demos/xls/t1.xls \
+demos/xls/README
 
 include $(top_srcdir)/Makefile.incl.am

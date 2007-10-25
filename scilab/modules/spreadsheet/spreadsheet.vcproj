@@ -293,6 +293,10 @@
 				RelativePath=".\src\c\ripole.h"
 				>
 			</File>
+			<File
+				RelativePath=".\src\c\xls.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -313,19 +317,19 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\spreadsheet.iss"
-			>
-		</File>
-		<File
-			RelativePath=".\sci_gateway\spreadsheet_gateway.xml"
-			>
-		</File>
-		<File
 			RelativePath=".\LibScilab_Import.def"
 			>
 		</File>
 		<File
 			RelativePath=".\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath=".\spreadsheet.iss"
+			>
+		</File>
+		<File
+			RelativePath=".\sci_gateway\spreadsheet_gateway.xml"
 			>
 		</File>
 		<File

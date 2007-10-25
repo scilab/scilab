@@ -8,6 +8,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "returnanan.h"
+#include "xls.h"
 #include "../../../fileio/includes/mseek.h"
 #include "../../../fileio/includes/mtell.h"
 #include "../../../fileio/includes/mget.h"
@@ -23,8 +24,6 @@
 extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
 /*------------------------------------------------------------------*/
 /*Prototype*/
-void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err);
-void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int** Abspos,int *nsheets);
 static double NumFromRk2(long rk);
 static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nsheets,int *cur_pos,int *err);
 static void getSST(int *fd,short Len,int BIFF,int *ns,char ***sst,int *err);

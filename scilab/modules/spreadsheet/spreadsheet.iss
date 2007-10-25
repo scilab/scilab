@@ -42,8 +42,7 @@ Source: modules\{#SPREADSHEET}\macros\names; DestDir: {app}\modules\{#SPREADSHEE
 ;
 Source: modules\{#SPREADSHEET}\demos\*.*; DestDir: {app}\modules\{#SPREADSHEET}\demos; Flags: recursesubdirs; Components: {#COMPN_SPREADSHEET}
 ;
-Source: modules\{#SPREADSHEET}\unit_tests\*.ref; DestDir: {app}\modules\{#SPREADSHEET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SPREADSHEET} and {#COMPN_DEVTOOLS}
-Source: modules\{#SPREADSHEET}\unit_tests\*.tst; DestDir: {app}\modules\{#SPREADSHEET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SPREADSHEET} and {#COMPN_DEVTOOLS}
-
+;Source: modules\{#SPREADSHEET}\unit_tests\*.ref; DestDir: {app}\modules\{#SPREADSHEET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SPREADSHEET} and {#COMPN_DEVTOOLS}
+;Source: modules\{#SPREADSHEET}\unit_tests\*.tst; DestDir: {app}\modules\{#SPREADSHEET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SPREADSHEET} and {#COMPN_DEVTOOLS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

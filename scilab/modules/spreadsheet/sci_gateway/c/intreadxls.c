@@ -1,3 +1,6 @@
+/*-----------------------------------------------------------------------------------*/
+/* Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA */
+/*-----------------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -11,20 +14,10 @@
 #include "tmpdir.h"
 #include "cluni0.h"
 #include "GetenvB.h"
+#include "xls.h"
+#include "Scierror.h"
 #include "../../../fileio/includes/mopen.h"
-/*---------------------------------------------------------------
-  Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
-  --------------------------------------------------------------*/
-
-
-/*Prototype*/
-void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err);
-void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int** Abspos,int *nsheets);
-/*------------------------------------------------------------------*/
-/*------------------------------------------------------------------*/
-
-
-
+/*-----------------------------------------------------------------------------------*/
 int C2F(intreadxls)(char *fname, long lfn)
 {
   int m1,n1,l1,zero=0,ierr;
@@ -83,10 +76,8 @@ int C2F(intreadxls)(char *fname, long lfn)
 
   return 0;
 }
-
-
-static char *xls_basename (name)
-char *name;
+/*-----------------------------------------------------------------------------------*/
+static char *xls_basename (char *name)
 {
   char *base=NULL;
 #ifdef _MSC_VER
@@ -97,7 +88,7 @@ char *name;
 
   return base ? base + 1 : name;
 }
-
+/*-----------------------------------------------------------------------------------*/
 int C2F(intopenxls)(char *fname, long lfn)
 {
 #undef IN
@@ -254,4 +245,4 @@ int C2F(intopenxls)(char *fname, long lfn)
   C2F(putlhsvar)();
   return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/

@@ -102,8 +102,8 @@
 
   <USED_FUNCTIONS>
      <SP>
-     This unction uses the xls.c file which can be found in a Scilab source
-      version in the directory SCIDIR/routines/sound 
+     This function uses the xls.c file which can be found in a Scilab source
+      version in the directory SCIDIR/modules/spreadsheet/src/c
      </SP>
   </USED_FUNCTIONS>
 </MAN>

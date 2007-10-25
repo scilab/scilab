@@ -1,0 +1,9 @@
+// Allan CORNET
+// Copyright INRIA
+mode(1)
+//Decode ole file, extract and open Excel stream
+[fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
+//Read first data sheet
+[Value,TextInd] = xls_read(fd,Sheetpos(1))
+//close the spreadsheet stream
+mclose(fd)

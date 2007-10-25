@@ -1,19 +1,16 @@
+/*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
-
-
+/*-----------------------------------------------------------------------------------*/
 #include "MALLOC.h"
-
 #include "bt-int.h"
-
-
+/*-----------------------------------------------------------------------------------*/
 int BTI_init( struct bti_node **n )
 {
 	*n = NULL;
-
 	return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/
 int BTI_add( struct bti_node **n, int value )
 {
 	int collision = 0;
@@ -34,7 +31,7 @@ int BTI_add( struct bti_node **n, int value )
 
 	if (collision == 0)
 	{
-		struct bti_node *leaf;
+		struct bti_node *leaf = NULL;
 
 		leaf = MALLOC(sizeof(struct bti_node));
 		if (leaf == NULL)
@@ -47,7 +44,8 @@ int BTI_add( struct bti_node **n, int value )
 
 		if (p != NULL)
 		{
-			switch (dir) {
+			switch (dir) 
+			{
 				case 1: 
 					p->r = leaf;
 					break;
@@ -55,20 +53,19 @@ int BTI_add( struct bti_node **n, int value )
 					p->l = leaf;
 					break;
 			}
-		} else {
+		} 
+		else
+		{
 			*n = leaf;
 		}
-
-
 	}
 
 	return collision;
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 int BTI_dump( struct bti_node **n )
 {
-		struct bti_node *node;
+	struct bti_node *node = NULL;
 
 	node = *n;
 	
@@ -79,10 +76,10 @@ int BTI_dump( struct bti_node **n )
 	return 0;
 
 }
-
+/*-----------------------------------------------------------------------------------*/
 int BTI_done( struct bti_node **n )
 {
-	struct bti_node *node;
+	struct bti_node *node = NULL ;
 
 	if (n == NULL) return 0;
 	if (*n == NULL) return 0;
@@ -95,4 +92,4 @@ int BTI_done( struct bti_node **n )
 
 	return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/
