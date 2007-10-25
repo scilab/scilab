@@ -831,11 +831,12 @@ if test $with_localization != no; then
 
    ALL_LINGUAS="en_US fr_FR"
    AC_SUBST(ALL_LINGUAS)
-   AM_GLIB_GNU_GETTEXT
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
+   AC_PATH_PROG(MSGFMT, msgfmt, no)
+   AC_PATH_PROG(XGETTEXT, xgettext, no)
 
-   if test x$MSGFMT = xno -o x$GMSGFMT = x; then
+   if test x$MSGFMT = xno; then
 	  AC_ERROR([As you used to the option --with-localization-generation, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
 	  fi
 	if test x$MSGCAT = xno; then
@@ -1316,11 +1317,9 @@ echo ""
 if test $with_localization != no; then
    echo "Gettext/localization configuration:"
    echo "xgettext ............... = $XGETTEXT"
-   echo "pofiles ................ = $POFILES"
    echo "msgfmt  ................ = $MSGFMT"
    echo "msgfmt_opts ............ = $MSGFMT_OPTS"
    echo "msgcat  ................ = $MSGCAT"
-   echo "intllibs  .............. = $INTLLIBS"
 else
    echo "Won't generate localization files"
 fi
