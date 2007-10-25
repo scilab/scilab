@@ -350,7 +350,7 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/excel/libsciexcel.la \
+	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/string/libscistring.la
 
 
