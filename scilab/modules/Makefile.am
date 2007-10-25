@@ -93,7 +93,6 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/double/libscidouble.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/fileio/libsciexcel.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/gui/libscigui.la \
@@ -121,7 +120,8 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/excel/libsciexcel.la 
 
 
 #if MPI

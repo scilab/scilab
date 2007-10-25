@@ -123,7 +123,8 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(top_builddir)/modules/string/libscistring.la $(am__append_2) \
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/excel/libsciexcel.la $(am__append_2) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
@@ -159,7 +160,7 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	arnoldi boolean linear_algebra differential_equations string \
-	signal_processing fileio core metanet optimization \
+	signal_processing fileio excel core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
@@ -339,7 +340,7 @@ top_srcdir = @top_srcdir@
 #endif
 SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	boolean linear_algebra differential_equations string \
-	signal_processing fileio core metanet optimization \
+	signal_processing fileio excel core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
@@ -395,7 +396,8 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(top_builddir)/modules/string/libscistring.la $(am__append_2) \
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/excel/libsciexcel.la $(am__append_2) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \

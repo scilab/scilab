@@ -10,12 +10,12 @@ src/c/ole.c \
 src/c/bytedecoders.c \
 src/c/logger.c \
 src/c/ripole.c \
-src/c/bt-int.c \
+src/c/bt-int.c 
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_xls_read.c \
 sci_gateway/c/sci_xls_open.c \
-sci_gateway/c/intreadxls.c \
+sci_gateway/c/intreadxls.c 
 
 
 MODULE_CHECKS = 
@@ -28,8 +28,8 @@ libsciexcel_la_SOURCES = $(EXCEL_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libsciexcel_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/libs/libst/libscilibst.la \
-	$(top_builddir)/modules/core/libscicore.la
+    $(top_builddir)/libs/libst/libscilibst.la 
+
 
 
 

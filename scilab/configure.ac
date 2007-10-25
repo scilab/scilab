@@ -1180,6 +1180,7 @@ modules/boolean/Makefile
 modules/integer/Makefile
 modules/double/Makefile
 modules/fileio/Makefile
+modules/excel/Makefile
 modules/string/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
