@@ -124,8 +124,8 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/excel/libsciexcel.la $(am__append_2) \
-	$(top_builddir)/modules/jvm/libscijvm.la \
+	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
+	$(am__append_2) $(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
@@ -397,8 +397,8 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/excel/libsciexcel.la $(am__append_2) \
-	$(top_builddir)/modules/jvm/libscijvm.la \
+	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
+	$(am__append_2) $(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
