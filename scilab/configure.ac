@@ -1180,6 +1180,7 @@ modules/boolean/Makefile
 modules/integer/Makefile
 modules/double/Makefile
 modules/fileio/Makefile
+modules/spreadsheet/Makefile
 modules/string/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
@@ -1206,7 +1207,6 @@ modules/scipad/Makefile
 modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
 modules/console/Makefile
-modules/excel/Makefile
 modules/Makefile
 libs/Makefile 
 Makefile

@@ -57,7 +57,7 @@ helptools \
 scicos \
 fftw \
 pvm \
-excel \
+spreadsheet \
 jvm 
 
 #if MPI

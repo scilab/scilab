@@ -77,7 +77,7 @@
 /* 54 */						#include "../../../completion/includes/gw_completion.h"
 /* 55 */						#include "../../../history_manager/includes/gw_history_manager.h"
 
-/* 56 */						#include "../../../excel/includes/gw_excel.h"
+/* 56 */						#include "../../../spreadsheet/includes/gw_spreadsheet.h"
 
 /* 55 *///                        #include "../../../mpi/includes/gw_mpi.h"
 

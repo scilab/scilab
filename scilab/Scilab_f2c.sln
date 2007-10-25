@@ -838,13 +838,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "generatePoFile", "tools\loc
 		{66F2FB48-5D68-4445-A856-119F685A371B} = {66F2FB48-5D68-4445-A856-119F685A371B}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "excel", "modules\excel\excel.vcproj", "{CE521770-0466-4743-B9F6-38F8AEB93888}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "spreadsheet", "modules\spreadsheet\spreadsheet.vcproj", "{CE521770-0466-4743-B9F6-38F8AEB93888}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E} = {6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621} = {4FC72D4A-80EE-4B1A-8724-0201C1A35621}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noexcel", "modules\excel\src\noexcel\noexcel.vcproj", "{AC43B2A6-601A-4E15-97DF-2B296FFAD4F9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nospreadsheet", "modules\spreadsheet\src\nospreadsheet\nospreadsheet.vcproj", "{AC43B2A6-601A-4E15-97DF-2B296FFAD4F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

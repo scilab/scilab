@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/version.dtd">
-<MODULE_VERSION name="excel">
+<MODULE_VERSION name="spreadsheet">
 <!-- =================== -->
 <!--
  Scilab

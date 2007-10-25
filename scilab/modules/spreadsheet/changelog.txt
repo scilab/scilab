@@ -1,1 +1,1 @@
-changelog excel module
+changelog spreadsheet module

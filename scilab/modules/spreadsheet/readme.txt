@@ -1,1 +1,1 @@
-readme.txt about excel module
+readme.txt about spreadsheet module

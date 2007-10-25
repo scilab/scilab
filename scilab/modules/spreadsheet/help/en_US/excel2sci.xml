@@ -2,12 +2,12 @@
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>excel2sci</TITLE>
+  <TITLE>spreadsheet2sci</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="excel2sci"> reads ascii Excel files</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="spreadsheet2sci"> reads ascii Excel files</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>M=excel2sci(fname [,sep])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>M=spreadsheet2sci(fname [,sep])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>

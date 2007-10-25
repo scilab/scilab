@@ -65,13 +65,13 @@ BEGIN
         BLOCK "040c04b0"
         BEGIN
             VALUE "CompanyName", "Scilab"
-            VALUE "FileDescription", "excel module"
+            VALUE "FileDescription", "spreadsheet module"
             VALUE "FileVersion", "5, 0, 0, 0"
-            VALUE "InternalName", "excel"
+            VALUE "InternalName", "spreadsheet"
             VALUE "LegalCopyright", "Copyright (C) 2007"
             VALUE "LegalTrademarks", "INRIA"
-            VALUE "OriginalFilename", "excel.rc"
-            VALUE "ProductName", " excel"
+            VALUE "OriginalFilename", "spreadsheet.rc"
+            VALUE "ProductName", " spreadsheet"
             VALUE "ProductVersion", "5, 0, 0, 0"
         END
     END

@@ -385,9 +385,9 @@ int ripole(char *inputfile, char *outputdir, int debug, int verbose)
        OLE_init(&ole);
        if (debug ==1 ) OLE_set_debug(&ole, OLE_DEBUG_NORMAL);
        if (verbose == 1) OLE_set_verbose(&ole, OLE_VERBOSE_NORMAL);
-       /*ole->save_unknown_streams==2 added for Scilab to extract onlyexcel streams
+       /*ole->save_unknown_streams==2 added for Scilab to extract onlyspreadsheet streams
 	 see  OLE_decode_stream in ole.c file */
-       OLE_set_save_unknown_streams(&ole, 2); /* get only excel streams */
+       OLE_set_save_unknown_streams(&ole, 2); /* get only spreadsheet streams */
 
        OLE_set_filename_report_fn(&ole, ROLE_report_filename_decoded );
 

@@ -1,17 +1,17 @@
 // ====================================================================
-// excel module initialisation file 
+// spreadsheet module initialisation file 
 // Copyright INRIA 2007
 // ====================================================================
 //Load  functions librarie
-load('SCI/modules/excel/macros/lib');
+load('SCI/modules/spreadsheet/macros/lib');
 // ====================================================================
 //add help chapter
-add_module_help_chapter('excel');
+add_module_help_chapter('spreadsheet');
 // ====================================================================
 //add demos
-//path = get_absolute_file_path('excel.start');
+//path = get_absolute_file_path('spreadsheet.start');
 //path = getshortpathname(path);
-//pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/excel.dem',%f,%f);
+//pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/spreadsheet.dem',%f,%f);
 //add_demo('Excel',pathdemos);
 //clear path pathdemos;
 // ====================================================================

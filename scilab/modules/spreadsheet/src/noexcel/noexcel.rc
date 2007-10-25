@@ -65,12 +65,12 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "noexcel module"
+            VALUE "FileDescription", "nospreadsheet module"
             VALUE "FileVersion", "5, 0, 0, 0"
-            VALUE "InternalName", "noexcel module"
+            VALUE "InternalName", "nospreadsheet module"
             VALUE "LegalCopyright", "Copyright (C) 2007"
-            VALUE "OriginalFilename", "noexcel.dll"
-            VALUE "ProductName", " noexcel"
+            VALUE "OriginalFilename", "nospreadsheet.dll"
+            VALUE "ProductName", " nospreadsheet"
             VALUE "ProductVersion", "5, 0, 0, 0"
         END
     END

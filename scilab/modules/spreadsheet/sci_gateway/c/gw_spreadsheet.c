@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "gw_excel.h"
+#include "gw_spreadsheet.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -12,7 +12,7 @@ static gw_generic_table Tab[]={
 	{C2F(sci_xls_read),"xls_read"}
 };
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_excel)()
+int C2F(gw_spreadsheet)()
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

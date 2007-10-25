@@ -82,10 +82,10 @@
 
   <EXAMPLE><![CDATA[
    //Decode ole file, extract and open Excel stream
-    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/demos/excel/Test1.xls')
+    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/demos/spreadsheet/Test1.xls')
     //Read first data sheet
     [Value,TextInd] = xls_read(fd,Sheetpos(1))
-    //close the excel stream
+    //close the spreadsheet stream
     mclose(fd)
   ]]></EXAMPLE>
 
@@ -106,11 +106,11 @@
   <BIBLIO>
     <SP>This function is based on the Microsoft ole2 file documentation
       (http://chicago.sourceforge.net/devel/docs/ole/) and on Excel
-      stream description from OpenOffice (http://sc.openoffice.org/excelfileformat.pdf).</SP>
+      stream description from OpenOffice (http://sc.openoffice.org/spreadsheetfileformat.pdf).</SP>
   </BIBLIO>
 
   <USED_FUNCTIONS>
      <SP>The ripole-0.1.4 procedure (http://www.pldaniels.com/ripole)  is used
-      to extract the excel stream out of the ole file. </SP>
+      to extract the spreadsheet stream out of the ole file. </SP>
   </USED_FUNCTIONS>
 </MAN>

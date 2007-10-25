@@ -6,7 +6,7 @@
 #include "stack-c.h"
 #include "ole.h"
 #include "ripole.h"
-#include "gw_excel.h"
+#include "gw_spreadsheet.h"
 #include "intreadxls.h"
 #include "tmpdir.h"
 #include "cluni0.h"

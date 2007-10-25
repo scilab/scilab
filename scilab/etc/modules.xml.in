@@ -63,7 +63,7 @@
 <module name="others" activate="1"/>
 <module name="scilab2fortran" activate="1"/>
 <module name="development_tools" activate="1"/>
-<module name="excel" activate="1"/>
+<module name="spreadsheet" activate="1"/>
 <module name="scicos" activate="0"/>
 <!-- comments -->
 <module name="pvm" activate="0"/>

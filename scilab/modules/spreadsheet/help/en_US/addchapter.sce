@@ -1,5 +1,5 @@
 // ====================================================================
-// help excel module
+// help spreadsheet module
 // Add chapter
 // Copyright INRIA 2007
 // Allan CORNET

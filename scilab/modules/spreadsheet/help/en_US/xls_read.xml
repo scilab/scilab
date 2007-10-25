@@ -71,10 +71,10 @@
 
   <EXAMPLE><![CDATA[
    //Decode ole file, extract and open Excel stream
-    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/demos/excel/Test1.xls')
+    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/demos/spreadsheet/Test1.xls')
     //Read first data sheet
     [Value,TextInd] = xls_read(fd,Sheetpos(1))
-    //close the excel stream
+    //close the spreadsheet stream
     mclose(fd)
   ]]></EXAMPLE>
 
@@ -95,7 +95,7 @@
 
   <BIBLIO>
     <SP>This function is based on Excel
-      stream description from OpenOffice (http://sc.openoffice.org/excelfileformat.pdf).</SP>
+      stream description from OpenOffice (http://sc.openoffice.org/spreadsheetfileformat.pdf).</SP>
   </BIBLIO>
 
 

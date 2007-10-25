@@ -1,11 +1,11 @@
-function sci2excel(var,fname,sep,dec)
+function sci2spreadsheet(var,fname,sep,dec)
 // var : a matrix of numbers or a matrix of strings
 // fname : a character string, the path of the file to create
 // sep   : the column separator mark, a tab by default
 // dec   : the decimal mark . or ,
 // Example
 // a=rand(3,5);
-// sci2excel(a,'/tmp/foo.txt',sep=',')
+// sci2spreadsheet(a,'/tmp/foo.txt',sep=',')
 if exists('sep','local')==0 then sep=code2str(-40),end
 if exists('dec','local')==0 then dec=',',end
 if dec<>['.',','] then error('decimal mark must be ''.'' or '','''),end

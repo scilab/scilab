@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "stack-c.h"
-#include "gw_excel.h"
+#include "gw_spreadsheet.h"
 #include "intreadxls.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len))

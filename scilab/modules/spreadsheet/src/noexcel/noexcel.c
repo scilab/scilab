@@ -5,7 +5,7 @@
 #include "machine.h" 
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_excel)()
+int C2F(gw_spreadsheet)()
 {
 	Scierror(999,_("sound interface not installed.\n"));
 	return 0;
