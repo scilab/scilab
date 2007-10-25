@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 #include "MALLOC.h"
+#include "files.h"
 
 #define MAXNAM 80
 
@@ -17,7 +18,7 @@ int CheckGraphName(char *name,char *dir)
 {
 #if (defined _MSC_VER)
   return(0);
-#else 
+#else
   DIR *dirp;
   struct dirent *dp;
   char *s;
@@ -44,8 +45,7 @@ int CheckGraphName(char *name,char *dir)
 #endif /**  _MSC_VER **/
 }
 
-char *StripGraph(name)
-char *name;
+char *StripGraph(char *name)
 {
   char *s;
   int i;
@@ -57,7 +57,7 @@ char *name;
   while ( (t[i++] = *s++) ) {
     if (*s == '.') {
       if (strcmp(++s,"graph") == 0) {
-	t[i] = '\0'; 
+	t[i] = '\0';
 	return t;
       }
       t[i++] = '.';
@@ -66,8 +66,7 @@ char *name;
   return name;
 }
 
-char *my_basename (name)
-char *name;
+char *my_basename (char *name)
 {
   char *base;
 
@@ -75,8 +74,7 @@ char *name;
   return base ? base + 1 : name;
 }
 
-char* dirname (path)
-char *path;
+char* dirname (char *path)
 {
   char *newpath;
   char *slash;
