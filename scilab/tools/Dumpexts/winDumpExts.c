@@ -283,8 +283,8 @@ DumpObjFile(PIMAGE_FILE_HEADER pImageFileHeader, FILE *fout, int full)
     PIMAGE_SYMBOL PCOFFSymbolTable;
     DWORD COFFSymbolCount;
     
-    PCOFFSymbolTable = (PIMAGE_SYMBOL)
-	((DWORD)pImageFileHeader + pImageFileHeader->PointerToSymbolTable);
+    PCOFFSymbolTable = (PIMAGE_SYMBOL)LongToPtr(
+	((DWORD)PtrToLong( pImageFileHeader ) + pImageFileHeader->PointerToSymbolTable) );
     COFFSymbolCount = pImageFileHeader->NumberOfSymbols;
 
     if (full) {
