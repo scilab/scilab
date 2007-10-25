@@ -47,8 +47,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscispreadsheet_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(libscispreadsheet_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @GUI_TRUE@am__append_1 = build-java
 @SWIG_TRUE@am__append_2 = build-swig
 @GIWS_TRUE@am__append_3 = build-giws
@@ -88,17 +89,21 @@ libscispreadsheet_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/libs/libst/libscilibst.la
 am__objects_1 = libscispreadsheet_la-xls.lo \
-	libscispreadsheet_la-olestream-unwrap.lo libscispreadsheet_la-pldstr.lo \
-	libscispreadsheet_la-ole.lo libscispreadsheet_la-bytedecoders.lo \
+	libscispreadsheet_la-olestream-unwrap.lo \
+	libscispreadsheet_la-pldstr.lo libscispreadsheet_la-ole.lo \
+	libscispreadsheet_la-bytedecoders.lo \
 	libscispreadsheet_la-logger.lo libscispreadsheet_la-ripole.lo \
 	libscispreadsheet_la-bt-int.lo
-am__objects_2 = libscispreadsheet_la-sci_xls_read.lo \
-	libscispreadsheet_la-sci_xls_open.lo libscispreadsheet_la-intreadxls.lo
+am__objects_2 = libscispreadsheet_la-gw_spreadsheet.lo \
+	libscispreadsheet_la-sci_xls_read.lo \
+	libscispreadsheet_la-sci_xls_open.lo \
+	libscispreadsheet_la-intreadxls.lo
 am_libscispreadsheet_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscispreadsheet_la_OBJECTS = $(am_libscispreadsheet_la_OBJECTS)
 libscispreadsheet_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscispreadsheet_la_CFLAGS) \
-	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libscispreadsheet_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -117,8 +122,10 @@ libscispreadsheet_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libscispreadsheet_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscispreadsheet_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscispreadsheet_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscispreadsheet_la_demos_DATA) $(libscispreadsheet_la_etc_DATA) \
-	$(libscispreadsheet_la_root_DATA) $(libscispreadsheet_la_sci_gateway_DATA)
+DATA = $(libscispreadsheet_la_demos_DATA) \
+	$(libscispreadsheet_la_etc_DATA) \
+	$(libscispreadsheet_la_root_DATA) \
+	$(libscispreadsheet_la_sci_gateway_DATA)
 libscispreadsheet_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscispreadsheet_la_include_HEADERS)
 ETAGS = etags
@@ -295,7 +302,8 @@ src/c/logger.c \
 src/c/ripole.c \
 src/c/bt-int.c 
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_xls_read.c \
+GATEWAY_C_SOURCES = sci_gateway/c/gw_spreadsheet.c \
+sci_gateway/c/sci_xls_read.c \
 sci_gateway/c/sci_xls_open.c \
 sci_gateway/c/intreadxls.c 
 
@@ -455,6 +463,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-bt-int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-bytedecoders.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-intreadxls.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-logger.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-ole.Plo@am__quote@
@@ -541,6 +550,13 @@ libscispreadsheet_la-bt-int.lo: src/c/bt-int.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/bt-int.c' object='libscispreadsheet_la-bt-int.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_la-bt-int.lo `test -f 'src/c/bt-int.c' || echo '$(srcdir)/'`src/c/bt-int.c
+
+libscispreadsheet_la-gw_spreadsheet.lo: sci_gateway/c/gw_spreadsheet.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_la-gw_spreadsheet.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Tpo -c -o libscispreadsheet_la-gw_spreadsheet.lo `test -f 'sci_gateway/c/gw_spreadsheet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_spreadsheet.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Tpo $(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_spreadsheet.c' object='libscispreadsheet_la-gw_spreadsheet.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_la-gw_spreadsheet.lo `test -f 'sci_gateway/c/gw_spreadsheet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_spreadsheet.c
 
 libscispreadsheet_la-sci_xls_read.lo: sci_gateway/c/sci_xls_read.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_la-sci_xls_read.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-sci_xls_read.Tpo -c -o libscispreadsheet_la-sci_xls_read.lo `test -f 'sci_gateway/c/sci_xls_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xls_read.c
@@ -781,7 +797,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscispreadsheet_la_demosDATA \
+install-data-am: install-data-local \
+	install-libscispreadsheet_la_demosDATA \
 	install-libscispreadsheet_la_etcDATA \
 	install-libscispreadsheet_la_includeHEADERS \
 	install-libscispreadsheet_la_rootDATA \
@@ -844,13 +861,14 @@ uninstall-am: uninstall-libscispreadsheet_la_demosDATA \
 	install-libscispreadsheet_la_etcDATA \
 	install-libscispreadsheet_la_includeHEADERS \
 	install-libscispreadsheet_la_rootDATA \
-	install-libscispreadsheet_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-pkglibLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscispreadsheet_la_demosDATA \
+	install-libscispreadsheet_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am \
+	uninstall-libscispreadsheet_la_demosDATA \
 	uninstall-libscispreadsheet_la_etcDATA \
 	uninstall-libscispreadsheet_la_includeHEADERS \
 	uninstall-libscispreadsheet_la_rootDATA \
