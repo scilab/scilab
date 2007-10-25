@@ -29,9 +29,9 @@
 #include <direct.h> /*_getcwd _chdir*/
 #endif
 #if (defined _MSC_VER)
-/** only used for x=dir[1024] **/
+
 #include <io.h>
-#define  getwd(x) _getcwd(x,1024)
+#define  getcwd(x,y) _getcwd(x,y)
 #define chdir(x) _chdir(x)
 #endif
 

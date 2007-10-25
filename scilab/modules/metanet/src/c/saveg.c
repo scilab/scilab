@@ -62,12 +62,12 @@ void C2F(saveg) (char *path, int *lpath,
   name[*lname] = '\0';
 
   if (!strcmp(path," ")) {
-    getcwd(dir,strlen(dir));
+    getcwd(dir,(int)strlen(dir));
     strcpy(nname,name);
   }
   else {
 #if (defined _MSC_VER)
-    getcwd(dir,strlen(dir));
+    getcwd(dir,(int)strlen(dir));
 #if (defined _MSC_VER)
     it= chdir(path);
     chdir(dir);
@@ -86,7 +86,7 @@ void C2F(saveg) (char *path, int *lpath,
 #endif
     else {
       strcpy(nname,StripGraph(my_basename(path)));
-      if (dirname(path) == NULL) getcwd(dir,strlen(dir));
+      if (dirname(path) == NULL) getcwd(dir,(int)strlen(dir));
       else strcpy(dir,dirname(path));
     }
   }
