@@ -8,21 +8,21 @@
 #include "machine.h"
 
 /**
-* TODO 
-* @return 
+* TODO
+* @return
 */
 int getdiary(void);
 
 /**
-* TODO 
+* TODO
 * @param str
 * @param n
 */
-void C2F(diary)(char *str,int *n);
+void diary(char *str,long int *n);
 
 
 /**
-* TODO 
+* TODO
 * @param str
 * @param n
 */

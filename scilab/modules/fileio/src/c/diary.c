@@ -8,9 +8,9 @@
 int getdiary(void)
 {
 	return C2F(iop).wio;
-} 
+}
 /*-----------------------------------------------------------------------------------*/
-void C2F(diary)(char *str,int *n)
+void diary(char *str,long int *n)
 {
 #if defined(_MSC_VER)
 	/* On Windows, We must have CRLF here */
@@ -23,7 +23,7 @@ void C2F(diary)(char *str,int *n)
 	int u;
 
 	u=getdiary();
-	if ( u != 0 ) 
+	if ( u != 0 )
 	{
 		FILE *fd= GetFileOpenedInScilab(u);
 		fwrite(str,sizeof(unsigned char),*n,fd);
@@ -37,7 +37,7 @@ void diary_nnl(char *str,int *n)
 
 	u=getdiary();
 
-	if (u) 
+	if (u)
 	{
 		FILE *fd= GetFileOpenedInScilab(u);
 		fwrite(str,sizeof(unsigned char),*n,fd);

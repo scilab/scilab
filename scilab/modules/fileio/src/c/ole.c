@@ -507,7 +507,7 @@ int OLE_print_string( char *string, size_t char_count)
   Changes:
 
   \------------------------------------------------------------------*/
-static int OLE_print_sector( struct OLE_object *ole, char *sector, unsigned int bytes)
+static int OLE_print_sector( struct OLE_object *ole, unsigned char *sector, unsigned int bytes)
 {
   int current_byte;
   int ubytes = bytes;
@@ -1695,7 +1695,7 @@ int OLE_decode_stream( struct OLE_object *ole,  struct OLE_directory_entry *adir
       /** Standard size sector stored stream **/
       /** Standard size sector stored stream **/
       DOLE LOGGER_log("%s:%d:OLE_decode_stream:DEBUG:  Loading normal sized chain starting at sector %d",FL, adir->start_sector);
-      stream_data = OLE_load_chain( ole, adir->start_sector );
+      stream_data = (char *) OLE_load_chain( ole, adir->start_sector );
       if (stream_data == NULL)
 	{
 	  DOLE LOGGER_log("%s:%d:OLE_decode_stream:DEBUG: Terminating from stream data being NULL  ",FL);
@@ -1715,7 +1715,7 @@ int OLE_decode_stream( struct OLE_object *ole,  struct OLE_directory_entry *adir
 		      ,FL
 		      ,adir->start_sector
 		      );
-      stream_data = OLE_load_minichain( ole, adir->start_sector );
+      stream_data = (char *) OLE_load_minichain( ole, adir->start_sector );
       if (stream_data == NULL)
 	{
 	  DOLE LOGGER_log("%s:%d:OLE_decode_stream:DEBUG: Ministream was non-existant, terminating",FL);

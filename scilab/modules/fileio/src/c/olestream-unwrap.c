@@ -34,16 +34,16 @@ struct OLE10_header{
  Function Name	: OLEUNWRAP_init
  Returns Type	: int
  	----Parameter List
-	1. struct OLEUNWRAP_object *oleuw , 
+	1. struct OLEUNWRAP_object *oleuw ,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 int OLEUNWRAP_init( struct OLEUNWRAP_object *oleuw )
 {
@@ -58,17 +58,17 @@ int OLEUNWRAP_init( struct OLEUNWRAP_object *oleuw )
  Function Name	: OLEUNWRAP_set_debug
  Returns Type	: int
  	----Parameter List
-	1. struct OLEUNWRAP_object *oleuw, 
-	2.  int level , 
+	1. struct OLEUNWRAP_object *oleuw,
+	2.  int level ,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 int OLEUNWRAP_set_debug( struct OLEUNWRAP_object *oleuw, int level )
 {
@@ -80,17 +80,17 @@ int OLEUNWRAP_set_debug( struct OLEUNWRAP_object *oleuw, int level )
  Function Name	: OLEUNWRAP_set_verbose
  Returns Type	: int
  	----Parameter List
-	1. struct OLEUNWRAP_object *oleuw, 
-	2.  int level , 
+	1. struct OLEUNWRAP_object *oleuw,
+	2.  int level ,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 int OLEUNWRAP_set_verbose( struct OLEUNWRAP_object *oleuw, int level )
 {
@@ -102,17 +102,17 @@ int OLEUNWRAP_set_verbose( struct OLEUNWRAP_object *oleuw, int level )
  Function Name	: OLEUNWRAP_set_save_unknown_streams
  Returns Type	: int
  	----Parameter List
-	1. struct OLEUNWRAP_object *oleuw, 
-	2.  int level , 
+	1. struct OLEUNWRAP_object *oleuw,
+	2.  int level ,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 int OLEUNWRAP_set_save_unknown_streams( struct OLEUNWRAP_object *oleuw, int level )
 {
@@ -125,18 +125,18 @@ int OLEUNWRAP_set_save_unknown_streams( struct OLEUNWRAP_object *oleuw, int leve
  Function Name	: OLEUNWRAP_save_stream
  Returns Type	: int
  	----Parameter List
-	1. char *fname, 
-	2.  char *stream, 
-	3.  size_t bytes , 
+	1. char *fname,
+	2.  char *stream,
+	3.  size_t bytes ,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 int OLEUNWRAP_save_stream( struct OLEUNWRAP_object *oleuw, char *fname, char *decode_path, char *stream, size_t bytes )
 {
@@ -188,16 +188,16 @@ int OLEUNWRAP_save_stream( struct OLEUNWRAP_object *oleuw, char *fname, char *de
  Function Name	: OLEUNWRAP_sanitize_filename
  Returns Type	: int
  	----Parameter List
-	1. char *fname , 
+	1. char *fname ,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 int OLEUNWRAP_sanitize_filename( char *fname )
 {
@@ -214,16 +214,16 @@ int OLEUNWRAP_sanitize_filename( char *fname )
  Function Name	: OLEUNWRAP_decode_attachment
  Returns Type	: int
  	----Parameter List
-	1. char *stream , 
+	1. char *stream ,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, size_t stream_size, char *decode_path )
 {
@@ -233,7 +233,7 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 	int result = OLEUW_OK;
 
 	/* Get the data size*/
-	oh.attach_size_1 = (size_t)get_4byte_value( sp );
+	oh.attach_size_1 = (size_t)get_4byte_value( (unsigned char *) sp );
 	sp += 4;
 
 	DUW LOGGER_log("%s:%d:OLEUNWRAP_decode_attachment:DEBUG: attachsize = %d, stream length = %d\n", FL, oh.attach_size_1, stream_size );
@@ -254,7 +254,7 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 		/* Unknown memory segment*/
 		memcpy( oh.data, sp, 2 );
 		sp += 2;
-		
+
 		/* Full attachment string*/
 		oh.attach_name = strdup( sp );
 		sp = sp + strlen(oh.attach_name) +1;
@@ -271,13 +271,13 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 		oh.fname_2 = strdup( sp );
 		sp += strlen(oh.fname_2) +1;
 
-		oh.attach_size = (size_t)get_4byte_value( sp );
+		oh.attach_size = (size_t)get_4byte_value( (unsigned char*) sp );
 		sp += 4;
 
 		if (oh.attach_size > stream_size) oh.attach_size = stream_size;
-		
+
 		data_start_point = sp;
-	} 
+	}
 
 	DUW LOGGER_log(_("%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"),FL, oh.attach_name, oh.fname_1, oh.fname_2, oh.attach_size );
 
@@ -303,7 +303,7 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 	if (oh.fname_1 != NULL) FREE(oh.fname_1);
 	if (oh.attach_name != NULL) FREE(oh.attach_name);
 	if (oh.fname_2 != NULL) FREE(oh.fname_2);
-	
+
 	return OLEUW_OK;
 }
 
@@ -311,23 +311,23 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
  Function Name	: OLEUNWRAP_decodestream
  Returns Type	: int
  	----Parameter List
-	1. char *element_string, 
-	2.  char *stream , 
+	1. char *element_string,
+	2.  char *stream ,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 int OLEUNWRAP_decodestream( struct OLEUNWRAP_object *oleuw, char *element_string, char *stream, size_t stream_size, char *decode_path )
 {
 	int result = OLEUW_OK;
 
-	if (strstr(element_string, OLEUW_ELEMENT_10NATIVE_STRING) != NULL) 
+	if (strstr(element_string, OLEUW_ELEMENT_10NATIVE_STRING) != NULL)
 	{
 		OLEUNWRAP_decode_attachment( oleuw, stream, stream_size, decode_path );
 
@@ -344,17 +344,17 @@ int OLEUNWRAP_decodestream( struct OLEUNWRAP_object *oleuw, char *element_string
  Function Name	: OLEUNWRAP_set_filename_report_fn
  Returns Type	: int
  	----Parameter List
-	1. struct OLEUNWRAP_object *oleuw, 
-	2.  int (*ptr_to_fn)(char *) , 
+	1. struct OLEUNWRAP_object *oleuw,
+	2.  int (*ptr_to_fn)(char *) ,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 int OLEUNWRAP_set_filename_report_fn( struct OLEUNWRAP_object *oleuw, int (*ptr_to_fn)(char *) )
 {

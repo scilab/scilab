@@ -30,7 +30,11 @@ static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nshee
 static void getSST(int *fd,short Len,int BIFF,int *ns,char ***sst,int *err);
 static void getBOF(int *fd ,int* Data, int *err);
 static void getString(int *fd,short *count, short *Len, int flag,char **str,int *err);
-static int get_oleheader(int *fd);
+
+/**
+ ** Bruno : Defined but not used ... so what !!!!!!!!
+ static int get_oleheader(int *fd);
+**/
 /*------------------------------------------------------------------*/
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err)
 {
@@ -137,7 +141,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        C2F(mgetnc) (fd,  (void*)&colFirst, &one, typ_short, err);
        if (*err > 0) goto ErrL;
        /*List of nc=lc-fc+1  XF/RK structures*/
-       ncol=(Len-6)/6;	
+       ncol=(Len-6)/6;
        for (i=0;i<ncol;i++) {
 	 C2F(mgetnc) (fd, (void*) &ixfe, &one, typ_short, err);
 	 if (*err > 0) goto ErrL;
@@ -170,12 +174,12 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        if (*err > 0) goto ErrL;
        C2F(mgetnc) (fd, (void*) &notused, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-	
+
        /*Calcul de longueur, hauteur et capacite dela feuille*/
        hauteur=l_row;/*-f_row;*/
        longueur=l_col;/*-f_col;*/
        capacite=hauteur*longueur;
-	
+
        /*Déclaration des tableaux de synthèse*/
        if ((valeur=(void*) MALLOC((capacite+1)*sizeof(double)))==NULL)  goto ErrL;
        if ((*chainesind=(int *) MALLOC((capacite+1)*sizeof(int)))==NULL)  goto ErrL;
@@ -191,7 +195,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        if (*err > 0) goto ErrL;
        C2F(mgetnc) (fd, (void*) &xf, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-	
+
        C2F(mgetnc) (fd, (void*) &resultat, &one, typ_double, err);
        if (*err > 0) goto ErrL;
 
@@ -199,17 +203,17 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
 
        C2F(mgetnc) (fd, (void*)&optionflag, &one, typ_short, err);
        if (*err > 0) goto ErrL;
-	
+
        C2F(mgetnc) (fd, (void*) &formula_notused, &one, typ_int, err);
        if (*err > 0) goto ErrL;
-	
+
        /*Formuled data*/
        taille=Len-2-2-2-8-2-4;
        /*char formuladata[taille];
 	 C2F(mgetnc) (fd, (void*) formuladata, &taille, typ_char, err);
 	 if (*err > 0) goto ErrL;*/
 
-       break;		
+       break;
      }
      *cur_pos=*cur_pos+4+Len;
     }
@@ -234,9 +238,9 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
    * if opt==0 it is supposed that the current file position is at the  beginning of workbook stream
    */
 
-  /* we suppose that the ole file as a simple structure: 
-   * Workbook stream should follows immediately the header 
-   * and is strored in sequential sections 
+  /* we suppose that the ole file as a simple structure:
+   * Workbook stream should follows immediately the header
+   * and is strored in sequential sections
    */
 
   /*return *err:
@@ -248,10 +252,10 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     5 = not a BIFF8 xls file
    */
   /*---------------Déclaration Des Variables*--------------------*/
-  int k,one=1; 
+  int k,one=1;
   int cur_pos, init_pos;
   double pos;
-  unsigned short Opcode, Len; 
+  unsigned short Opcode, Len;
   /*BOF data*/
   int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
   *nsheets=0;
@@ -529,7 +533,7 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
   if ((*str= (char*) MALLOC((BytesToBeRead+1)*sizeof(char)))==NULL)  goto ErrL;
   /* read the bytes */
 
-  if (!flag||(*PosInRecord+BytesToBeRead<=*RecordLen)) {	
+  if (!flag||(*PosInRecord+BytesToBeRead<=*RecordLen)) {
     /* all bytes are in the same record */
     C2F(mgetnc) (fd, (void*)*str, &BytesToBeRead, typ_char, err);
     if (*err > 0) goto ErrL;
@@ -634,7 +638,7 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
   }
   else
     *err=4; /* read problem */
-}	
+}
 
 static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nsheets,int *cur_pos,int *err)
 {/* the global workbook contains a sequence of boudsheets this procedure reads all
@@ -701,7 +705,7 @@ static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nshee
 	 short count=0;
 	 i++;
 	 (*Abspos)[i]=abspos;
-	 getString(fd,&count,&Len, 0,&((*Sheetnames)[i]),err);
+	 getString(fd,&count,(short *) &Len, 0,&((*Sheetnames)[i]),err);
 	 if (*err > 0) goto ErrL;
        }
        *cur_pos=*cur_pos+4+Len;
@@ -723,14 +727,19 @@ static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nshee
    else
      *err=4; /* read problem */
 }
-static int get_oleheader(int *fd)
-{
-  unsigned char MAGIC[8] = { 0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1 };
-  unsigned char header[512];
-  int c,ierr;
 
-  C2F(mgetnc) (fd, (void *)header,(c=512,&c), typ_uchar, &ierr);
-  if (ierr !=0)  return 1;
-  if (memcmp (header, MAGIC, sizeof (MAGIC)) != 0) return 1;
-  return 0;
-}
+/**
+ ** Bruno : Defined but not used... so what !!!!!!!!!
+ **
+ static int get_oleheader(int *fd)
+ {
+ unsigned char MAGIC[8] = { 0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1 };
+ unsigned char header[512];
+ int c,ierr;
+
+ C2F(mgetnc) (fd, (void *)header,(c=512,&c), typ_uchar, &ierr);
+ if (ierr !=0)  return 1;
+ if (memcmp (header, MAGIC, sizeof (MAGIC)) != 0) return 1;
+ return 0;
+ }
+**/

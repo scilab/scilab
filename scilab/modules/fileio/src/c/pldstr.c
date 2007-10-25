@@ -22,22 +22,23 @@
  Function Name	: *PLD_strstr
  Returns Type	: char
  	----Parameter List
-	1. char *haystack, 
-	2.  char *needle, 
-	3.  int insensitive, 
+	1. char *haystack,
+	2.  char *needle,
+	3.  int insensitive,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
- 
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
 char *PLD_strstr(char *haystack, char *needle, int insensitive)
 {
-	char *hs, *ne;
+	char *hs;
+	char *ne;
 	char *result;
 
 	/*	LOGGER_log("%s:%d:\nHS=%s\nNE=%s\nIS=%d\n",FL, haystack, needle, insensitive );*/
@@ -45,9 +46,9 @@ char *PLD_strstr(char *haystack, char *needle, int insensitive)
 	if (insensitive > 0)
 	{
 		hs = strdup(haystack);
-		PLD_strlower(hs);
+		PLD_strlower((unsigned char*) hs);
 		ne = strdup(needle);
-		PLD_strlower(ne);
+		PLD_strlower((unsigned char*) ne);
 	} else {
 		hs = haystack;
 		ne = needle;
@@ -371,7 +372,7 @@ int PLD_strlower( unsigned char *convertme )
   /*	09-11-2002 - changed from 'char *' to 'unsigned char *' to deal with*/
   /*		non-ASCII characters ( ie, french ).  Pointed out by Emmanuel Collignon*/
 
-	char *c = convertme;
+	unsigned char *c = convertme;
 
 	while ( *c != '\0') {*c = tolower((int)*c); c++;}
 
@@ -388,11 +389,11 @@ int PLD_strlower( unsigned char *convertme )
   3.  char *replacewith, String sequence to replace 'searchfor' with
   4.  int replacenumber , How many times to replace 'searchfor', 0 == unlimited
   ------------------
-  Exit Codes	: Returns a pointer to the new buffer space.  The original 
+  Exit Codes	: Returns a pointer to the new buffer space.  The original
   buffer will still remain intact - ensure that the calling
   program FREE()'s the original buffer if it's no longer
   needed
-  Side Effects	: 
+  Side Effects	:
   --------------------------------------------------------------------
 Comments:
 Start out with static text matching - upgrade to regex later.
@@ -441,7 +442,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 		{
 			return replace_details->source;
 		}
-	} 
+	}
 
 	/* Determine if initial POSTexist tests will pass, if we don't pick up*/
 	/*		anything here, then there's no point in continuing either*/
@@ -455,14 +456,14 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 			{
 				postexist_location = p;
 				p = p +strlen(replace_details->postexist);
-			} 
+			}
 		} while (p != NULL);
 
 		if (postexist_location == NULL)
 		{
 			return replace_details->source;
 		}
-	} 
+	}
 
 
 	/* Step 1 - determine the MAXIMUM number of times we might have to replace this string ( or the limit*/
@@ -491,7 +492,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 		size_required = source_length +(size_difference *replace_count) +1;
 	} else size_required = source_length +1;
 
-	
+
 	/* Allocate the memory required to hold the new string [at least], check to see that*/
 	/*		all went well, if not, then return an error*/
 	new_buffer = MALLOC( sizeof(char) *size_required);
@@ -499,7 +500,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 	{
 		LOGGER_log(_("%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform replacement operation"), FL, size_required);
 		return replace_details->source;
-	} 
+	}
 
 	/* Our segment must always start at the beginning of the source, */
 	/*		on the other hand, the segment_end can be anything from the*/
@@ -540,12 +541,12 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 
 		if ((pre_ok == 0)||(post_ok == 0)) { segment_end = PLD_strstr(segment_end +searchfor_length, replace_details->searchfor, replace_details->insensitive); }
 		else segment_ok = 1;
-	} 
+	}
 
 	segment_p = segment_start;
 	new_p = new_buffer;
 	while (segment_start != NULL)
-	{	
+	{
 		int replacewith_count;
 		char *replacewith_p;
 
@@ -611,7 +612,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 		  /*		be on the 'other side' of the 'searchfor' string*/
 		  /*		which we found in the last search.*/
 		  /**/
-			if (segment_start > source_end) 
+			if (segment_start > source_end)
 			{
 				segment_start = NULL;
 			} else {
@@ -650,7 +651,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 
 					if ((pre_ok == 0)||(post_ok == 0)) { segment_end = PLD_strstr(segment_end +searchfor_length, replace_details->searchfor, replace_details->insensitive); }
 					else segment_ok = 1;
-				} 
+				}
 
 			} /* If-else segment_start > source_end*/
 
@@ -669,13 +670,13 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
   Function Name	: *PLD_strreplace
   Returns Type	: char
   ----Parameter List
-  1. char **source, 
-  2.  char *searchfor, 
-  3.  char *replacewith, 
-  4.  int replacenumber , 
+  1. char **source,
+  2.  char *searchfor,
+  3.  char *replacewith,
+  4.  int replacenumber ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
 Comments:
 
@@ -708,22 +709,22 @@ char *PLD_strreplace( char **source, char *searchfor, char *replacewith, int rep
  Function Name	: *PLD_dprintf
  Returns Type	: char
  	----Parameter List
-	1. const char *format, 
-	2.  ..., 
+	1. const char *format,
+	2.  ...,
  	------------------
- Exit Codes	: 
- Side Effects	: 
+ Exit Codes	:
+ Side Effects	:
 --------------------------------------------------------------------
  Comments:
 	This is a dynamic string allocation function, not as fast as some
-	other methods, but it works across the board with both glibc 2.0 
-	and 2.1 series.  
- 
+	other methods, but it works across the board with both glibc 2.0
+	and 2.1 series.
+
 --------------------------------------------------------------------
  Changes:
- 
+
 \------------------------------------------------------------------*/
-char *PLD_dprintf(const char *format, ...) 
+char *PLD_dprintf(const char *format, ...)
 {
   int n, size = 1024; /* Assume we don't need more than 1K to start with*/
 	char *p;
@@ -733,7 +734,7 @@ char *PLD_dprintf(const char *format, ...)
 	p = MALLOC(size *sizeof(char));
 	if (p == NULL) return NULL;
 
-	while (1) 
+	while (1)
 	{
 	  /* Attempt to print out string out into the allocated space*/
 		va_start(ap, format);
