@@ -57,7 +57,7 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 		{
 			C2F(writelunitstring)(lunit, string,nbcharacters);
 			/* write to diary file if required */
-			C2F(diary)(string, &nbcharacters);
+			diary(string, &nbcharacters);
 		} 
 		else 
 		{
@@ -81,7 +81,7 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 		/* Output to a file */
 		if (*lunit == C2F(iop).wio) 
 		{
-			C2F(diary)(string, &nbcharacters);
+			diary(string, &nbcharacters);
 		}
 		else 
 		{
