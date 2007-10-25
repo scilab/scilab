@@ -196,6 +196,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\src\c\bt-int.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\bytedecoders.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\DllmainExcel.c"
 				>
 			</File>
@@ -204,31 +212,39 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\raw.c"
+				RelativePath=".\sci_gateway\c\intreadxls.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_beep.c"
+				RelativePath=".\src\c\logger.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_loadwave.c"
+				RelativePath=".\src\c\ole.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_PlaySound.c"
+				RelativePath=".\src\c\olestream-unwrap.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_savewave.c"
+				RelativePath=".\src\c\pldstr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\sox.c"
+				RelativePath=".\src\c\ripole.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\wav.c"
+				RelativePath=".\sci_gateway\c\sci_xls_open.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_xls_read.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\xls.c"
 				>
 			</File>
 		</Filter>
@@ -238,7 +254,35 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\src\c\bt-int.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\bytedecoders.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\gw_excel.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\intreadxls.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\logger.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\ole.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\olestream-unwrap.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\pldstr.h"
 				>
 			</File>
 			<File
@@ -246,15 +290,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\sox.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\st.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\wav.h"
+				RelativePath=".\src\c\ripole.h"
 				>
 			</File>
 		</Filter>
@@ -277,19 +313,19 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\LibScilab_Import.def"
-			>
-		</File>
-		<File
-			RelativePath=".\Makefile.am"
-			>
-		</File>
-		<File
 			RelativePath=".\excel.iss"
 			>
 		</File>
 		<File
 			RelativePath=".\sci_gateway\excel_gateway.xml"
+			>
+		</File>
+		<File
+			RelativePath=".\LibScilab_Import.def"
+			>
+		</File>
+		<File
+			RelativePath=".\Makefile.am"
 			>
 		</File>
 		<File

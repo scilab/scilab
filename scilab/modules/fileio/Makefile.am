@@ -4,15 +4,7 @@
 ##########
 
 FILEIO_SOURCES = src/c/FileExist.c \
-src/c/xls.c \
 src/c/fileio.c \
-src/c/olestream-unwrap.c \
-src/c/pldstr.c \
-src/c/ole.c \
-src/c/bytedecoders.c \
-src/c/logger.c \
-src/c/ripole.c \
-src/c/bt-int.c \
 src/c/do_xxprintf.c \
 src/c/do_xxscanf.c \
 src/c/findfiles.c \
@@ -49,11 +41,8 @@ src/c/removedir.c
 
 
 GATEWAY_SOURCES = \
-sci_gateway/c/sci_xls_read.c \
 sci_gateway/c/gw_fileio.c \
 sci_gateway/c/sci_fileio.c \
-sci_gateway/c/sci_xls_open.c \
-sci_gateway/c/intreadxls.c \
 sci_gateway/c/sci_mfprintf.c \
 sci_gateway/c/sci_mprintf.c \
 sci_gateway/c/sci_msprintf.c \
@@ -122,16 +111,12 @@ includes/URIFileToFilename.h \
 includes/ConvertPathUnixToWindows.h \
 includes/createdirectory.h \
 includes/isdir.h \
-includes/removedir.h
+includes/removedir.h \
+includes/mopen.h \
+includes/mtell.h 
 
 #### fileio : demos files ####
 libscifileio_la_demosdir=$(mydatadir)
-nobase_libscifileio_la_demos_DATA = demos/excel/Testo1.xls \
-demos/excel/o1.xls \
-demos/excel/Test1.xls \
-demos/excel/Testobig.xls \
-demos/excel/Testbig.xls \
-demos/excel/t1.xls \
-demos/excel/README
+nobase_libscifileio_la_demos_DATA = 
 
 include $(top_srcdir)/Makefile.incl.am

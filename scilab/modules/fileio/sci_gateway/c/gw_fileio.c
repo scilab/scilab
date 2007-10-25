@@ -29,8 +29,6 @@ static gw_generic_table Tab[]={
 	{int_objfprintfMat,"fprintfMat"},
 	{int_objnumTokens,"NumTokens"},
 	{intsmerror, "merror"},
-	{C2F(sci_xls_open),"xls_open"},
-	{C2F(sci_xls_read),"xls_read"},
 	{C2F(sci_findfiles),"findfiles"},
 	{C2F(sci_maxfiles),"maxfiles"},
 	{C2F(sci_getdrives),"getdrives"},

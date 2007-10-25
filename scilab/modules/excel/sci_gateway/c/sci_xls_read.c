@@ -4,12 +4,12 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "stack-c.h"
-#include "gw_fileio.h"
+#include "gw_excel.h"
 #include "intreadxls.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intopenxls)(fname,fname_len);
+	C2F(intreadxls)(fname,fname_len);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

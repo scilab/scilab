@@ -199,14 +199,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\bt-int.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\bytedecoders.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\ConvertPathUnixToWindows.c"
 				>
 			</File>
@@ -283,19 +275,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\intreadxls.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\isdir.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\isDrive.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\logger.c"
 				>
 			</File>
 			<File
@@ -343,27 +327,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\ole.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\olestream-unwrap.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\pldstr.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\readline.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\removedir.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\ripole.c"
 				>
 			</File>
 			<File
@@ -459,23 +427,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_xls_open.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xls_read.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\Status2Mode.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\URIFileToFilename.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\xls.c"
 				>
 			</File>
 		</Filter>
@@ -486,14 +442,6 @@
 			>
 			<File
 				RelativePath=".\includes\addfile.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\bt-int.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\bytedecoders.h"
 				>
 			</File>
 			<File
@@ -581,10 +529,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\logger.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\mclearerr.h"
 				>
 			</File>
@@ -609,7 +553,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mopen.h"
+				RelativePath=".\includes\mopen.h"
 				>
 			</File>
 			<File
@@ -625,19 +569,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mtell.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\ole.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\olestream-unwrap.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\pldstr.h"
+				RelativePath=".\includes\mtell.h"
 				>
 			</File>
 			<File
@@ -646,10 +578,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\ripole.h"
 				>
 			</File>
 			<File

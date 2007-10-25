@@ -6,12 +6,12 @@
 #include "stack-c.h"
 #include "ole.h"
 #include "ripole.h"
-#include "gw_fileio.h"
+#include "gw_excel.h"
 #include "intreadxls.h"
 #include "tmpdir.h"
 #include "cluni0.h"
 #include "GetenvB.h"
-#include "mopen.h"
+#include "../../../fileio/includes/mopen.h"
 /*---------------------------------------------------------------
   Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
   --------------------------------------------------------------*/

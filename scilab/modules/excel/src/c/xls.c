@@ -8,9 +8,9 @@
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "returnanan.h"
-#include "mseek.h"
-#include "mtell.h"
-#include "mget.h"
+#include "../../../fileio/includes/mseek.h"
+#include "../../../fileio/includes/mtell.h"
+#include "../../../fileio/includes/mget.h"
 /*------------------------------------------------------------------*/
 #define  typ_short "s"
 #define  typ_ushort "us"

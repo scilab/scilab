@@ -3,9 +3,20 @@
 ### INRIA - Scilab 2006 
 ##########
 
-EXCEL_C_SOURCES = 
+EXCEL_C_SOURCES = src/c/xls.c \
+src/c/olestream-unwrap.c \
+src/c/pldstr.c \
+src/c/ole.c \
+src/c/bytedecoders.c \
+src/c/logger.c \
+src/c/ripole.c \
+src/c/bt-int.c \
 
-GATEWAY_C_SOURCES = 
+
+GATEWAY_C_SOURCES = sci_gateway/c/sci_xls_read.c \
+sci_gateway/c/sci_xls_open.c \
+sci_gateway/c/intreadxls.c \
+
 
 MODULE_CHECKS = 
 
@@ -47,6 +58,12 @@ libsciexcel_la_include_HEADERS = includes/gw_excel.h
 
 #### excel : demos files ####
 libsciexcel_la_demosdir=$(mydatadir)/demos/
-libsciexcel_la_demos_DATA = 
+libsciexcel_la_demos_DATA = demos/excel/Testo1.xls \
+demos/excel/o1.xls \
+demos/excel/Test1.xls \
+demos/excel/Testobig.xls \
+demos/excel/Testbig.xls \
+demos/excel/t1.xls \
+demos/excel/README
 
 include $(top_srcdir)/Makefile.incl.am

@@ -44,19 +44,17 @@
 <PRIMITIVE gatewayId="34" primitiveId="18" primitiveName="fprintfMat" />
 <PRIMITIVE gatewayId="34" primitiveId="19" primitiveName="NumTokens" />
 <PRIMITIVE gatewayId="34" primitiveId="20" primitiveName="merror" />
-<PRIMITIVE gatewayId="34" primitiveId="21" primitiveName="xls_open" />
-<PRIMITIVE gatewayId="34" primitiveId="22" primitiveName="xls_read" />
-<PRIMITIVE gatewayId="34" primitiveId="23" primitiveName="findfiles" />
-<PRIMITIVE gatewayId="34" primitiveId="24" primitiveName="maxfiles" />
-<PRIMITIVE gatewayId="34" primitiveId="25" primitiveName="getdrives" />
-<PRIMITIVE gatewayId="34" primitiveId="26" primitiveName="fullpath" />
-<PRIMITIVE gatewayId="34" primitiveId="27" primitiveName="deletefile" />
-<PRIMITIVE gatewayId="34" primitiveId="28" primitiveName="pathsep"/>
-<PRIMITIVE gatewayId="34" primitiveId="29" primitiveName="filesep"/>
-<PRIMITIVE gatewayId="34" primitiveId="30" primitiveName="getlongpathname"/>
-<PRIMITIVE gatewayId="34" primitiveId="31" primitiveName="getshortpathname"/>
-<PRIMITIVE gatewayId="34" primitiveId="32" primitiveName="fileext"/>
-<PRIMITIVE gatewayId="34" primitiveId="33" primitiveName="isdir"/>
-<PRIMITIVE gatewayId="34" primitiveId="34" primitiveName="removedir"/>
-<PRIMITIVE gatewayId="34" primitiveId="35" primitiveName="createdir"/>
+<PRIMITIVE gatewayId="34" primitiveId="21" primitiveName="findfiles" />
+<PRIMITIVE gatewayId="34" primitiveId="22" primitiveName="maxfiles" />
+<PRIMITIVE gatewayId="34" primitiveId="23" primitiveName="getdrives" />
+<PRIMITIVE gatewayId="34" primitiveId="24" primitiveName="fullpath" />
+<PRIMITIVE gatewayId="34" primitiveId="25" primitiveName="deletefile" />
+<PRIMITIVE gatewayId="34" primitiveId="26" primitiveName="pathsep"/>
+<PRIMITIVE gatewayId="34" primitiveId="27" primitiveName="filesep"/>
+<PRIMITIVE gatewayId="34" primitiveId="28" primitiveName="getlongpathname"/>
+<PRIMITIVE gatewayId="34" primitiveId="29" primitiveName="getshortpathname"/>
+<PRIMITIVE gatewayId="34" primitiveId="30" primitiveName="fileext"/>
+<PRIMITIVE gatewayId="34" primitiveId="31" primitiveName="isdir"/>
+<PRIMITIVE gatewayId="34" primitiveId="32" primitiveName="removedir"/>
+<PRIMITIVE gatewayId="34" primitiveId="33" primitiveName="createdir"/>
 </GATEWAY>

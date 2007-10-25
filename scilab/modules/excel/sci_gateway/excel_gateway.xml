@@ -23,8 +23,7 @@
 -->
 <!-- =================== -->
 
-<!--
 <PRIMITIVE gatewayId="56" primitiveId="1" primitiveName="xls_open" />
 <PRIMITIVE gatewayId="56" primitiveId="2" primitiveName="xls_read" />
--->
+
 </GATEWAY>

@@ -30,7 +30,6 @@ EXPORTS
  cvstr_
  GetFileModeOpenedInScilab
  GetSwapStatus
- getTMPDIR
  cluni0_
  GetCurrentFileId
  islittleendian
@@ -42,7 +41,6 @@ EXPORTS
  overload_
  vartype_
  xscion_
- returnanan_
  SetFileModeOpenedInScilab
  GetFileTypeOpenedInScilab
  GetFileNameOpenedInScilab
