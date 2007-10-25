@@ -1,0 +1,18 @@
+The files t1.xls Test1.xls and Testbig.xls have been built by Microsoft Excel 2000
+
+The files o1.xls Testo1.xls and Testobig.xls have been built by OpenOffice 1.0.2
+Currently the OpenOffice can be read but the results are not ok. It seems that 
+OpenOffice does not set the formula value
+
+- t1.xls and o1.xls 
+   contain 3 Excel sheets the first 2 sheets contain 2x2 arrays the last one is empty
+
+- Test1.xls and Testo1.xls 
+   contain 1  Excel sheet (20x4). First 2 rows contain text, 
+   for the other rows, Columns 2:4 datas are defined by formulas.
+
+- Testbig.xls and Testobig.xls 
+   contain 1  Excel sheet (1000x4). First 2 rows contain text, 
+   for the other rows, Columns 2:4 datas are defined by formulas.
+
+
