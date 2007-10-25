@@ -160,14 +160,14 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	arnoldi boolean linear_algebra differential_equations string \
-	signal_processing fileio excel core metanet optimization \
+	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
 	console renderer gui graphics windows_tools functions \
 	incremental_link others overloading maple2scilab m2sci texmacs \
 	scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos fftw pvm jvm . \
+	compatibility_functions helptools scicos fftw pvm excel jvm . \
 	javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -340,14 +340,14 @@ top_srcdir = @top_srcdir@
 #endif
 SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	boolean linear_algebra differential_equations string \
-	signal_processing fileio excel core metanet optimization \
+	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
 	console renderer gui graphics windows_tools functions \
 	incremental_link others overloading maple2scilab m2sci texmacs \
 	scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos fftw pvm jvm . \
+	compatibility_functions helptools scicos fftw pvm excel jvm . \
 	$(am__append_1)
 modulename = 
 

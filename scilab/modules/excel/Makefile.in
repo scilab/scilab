@@ -92,8 +92,9 @@ am__objects_1 = libsciexcel_la-xls.lo \
 	libsciexcel_la-ole.lo libsciexcel_la-bytedecoders.lo \
 	libsciexcel_la-logger.lo libsciexcel_la-ripole.lo \
 	libsciexcel_la-bt-int.lo
-am__objects_2 = libsciexcel_la-sci_xls_read.lo \
-	libsciexcel_la-sci_xls_open.lo libsciexcel_la-intreadxls.lo
+am__objects_2 = libsciexcel_la-gw_excel.lo \
+	libsciexcel_la-sci_xls_read.lo libsciexcel_la-sci_xls_open.lo \
+	libsciexcel_la-intreadxls.lo
 am_libsciexcel_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciexcel_la_OBJECTS = $(am_libsciexcel_la_OBJECTS)
 libsciexcel_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -295,7 +296,8 @@ src/c/logger.c \
 src/c/ripole.c \
 src/c/bt-int.c 
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_xls_read.c \
+GATEWAY_C_SOURCES = sci_gateway/c/gw_excel.c \
+sci_gateway/c/sci_xls_read.c \
 sci_gateway/c/sci_xls_open.c \
 sci_gateway/c/intreadxls.c 
 
@@ -455,6 +457,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexcel_la-bt-int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexcel_la-bytedecoders.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexcel_la-gw_excel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexcel_la-intreadxls.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexcel_la-logger.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexcel_la-ole.Plo@am__quote@
@@ -541,6 +544,13 @@ libsciexcel_la-bt-int.lo: src/c/bt-int.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/bt-int.c' object='libsciexcel_la-bt-int.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciexcel_la_CFLAGS) $(CFLAGS) -c -o libsciexcel_la-bt-int.lo `test -f 'src/c/bt-int.c' || echo '$(srcdir)/'`src/c/bt-int.c
+
+libsciexcel_la-gw_excel.lo: sci_gateway/c/gw_excel.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciexcel_la_CFLAGS) $(CFLAGS) -MT libsciexcel_la-gw_excel.lo -MD -MP -MF $(DEPDIR)/libsciexcel_la-gw_excel.Tpo -c -o libsciexcel_la-gw_excel.lo `test -f 'sci_gateway/c/gw_excel.c' || echo '$(srcdir)/'`sci_gateway/c/gw_excel.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciexcel_la-gw_excel.Tpo $(DEPDIR)/libsciexcel_la-gw_excel.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_excel.c' object='libsciexcel_la-gw_excel.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciexcel_la_CFLAGS) $(CFLAGS) -c -o libsciexcel_la-gw_excel.lo `test -f 'sci_gateway/c/gw_excel.c' || echo '$(srcdir)/'`sci_gateway/c/gw_excel.c
 
 libsciexcel_la-sci_xls_read.lo: sci_gateway/c/sci_xls_read.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciexcel_la_CFLAGS) $(CFLAGS) -MT libsciexcel_la-sci_xls_read.lo -MD -MP -MF $(DEPDIR)/libsciexcel_la-sci_xls_read.Tpo -c -o libsciexcel_la-sci_xls_read.lo `test -f 'sci_gateway/c/sci_xls_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xls_read.c

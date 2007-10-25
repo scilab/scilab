@@ -16,7 +16,6 @@ differential_equations \
 string \
 signal_processing \
 fileio \
-excel \
 core \
 metanet \
 optimization \
@@ -58,6 +57,7 @@ helptools \
 scicos \
 fftw \
 pvm \
+excel \
 jvm 
 
 #if MPI
