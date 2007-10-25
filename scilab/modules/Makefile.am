@@ -121,7 +121,7 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/excel/libsciexcel.la 
+	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la
 
 
 #if MPI
