@@ -48,7 +48,7 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-    Sheets = readxls('SCI/demos/excel/t1.xls')
+    Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
     // some basic operations on Sheets
     typeof(Sheets)
     s1=Sheets(1) //get the first sheet
