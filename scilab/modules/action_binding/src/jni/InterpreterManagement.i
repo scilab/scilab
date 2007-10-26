@@ -65,7 +65,7 @@ public class";
    * @param command the command to execute
    * @return execution status
    */
-";
+public ";
 int putCommandInScilabQueue(char *command);
 
 /* JavaDoc */
@@ -74,7 +74,7 @@ int putCommandInScilabQueue(char *command);
   * Executes Scilab event loop so that queued callbacks can be executed
   * @return execution status
   */
-";
+public ";
 int execScilabEventLoop(void);
 
 /* JavaDoc */
@@ -83,5 +83,14 @@ int execScilabEventLoop(void);
   * Stop Scilab current work
   * @return execution status
   */
-";
+public ";
 int interruptScilab(void);
+
+/* JavaDoc */
+%javamethodmodifiers haveCommandsInTheQueue(void) "
+ /**
+  * Are there some commands in the queue to be executed
+  * @return true if there are commands in the queue
+  */
+public ";
+int haveCommandsInTheQueue(void);

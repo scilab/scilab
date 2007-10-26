@@ -179,7 +179,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_console_InterpreterManagementJNI_putCommandInScilabQueue(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_putCommandInScilabQueue(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
   int result;
@@ -198,7 +198,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_console_InterpreterManagementJNI
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_console_InterpreterManagementJNI_execScilabEventLoop(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_execScilabEventLoop(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   int result;
   
@@ -210,13 +210,25 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_console_InterpreterManagementJNI
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_console_InterpreterManagementJNI_interruptScilab(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_interruptScilab(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   int result;
   
   (void)jenv;
   (void)jcls;
   result = (int)interruptScilab();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_haveCommandsInTheQueue(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)haveCommandsInTheQueue();
   jresult = (jint)result; 
   return jresult;
 }
