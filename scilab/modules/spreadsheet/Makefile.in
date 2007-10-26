@@ -96,8 +96,7 @@ am__objects_1 = libscispreadsheet_la-xls.lo \
 	libscispreadsheet_la-bt-int.lo
 am__objects_2 = libscispreadsheet_la-gw_spreadsheet.lo \
 	libscispreadsheet_la-sci_xls_read.lo \
-	libscispreadsheet_la-sci_xls_open.lo \
-	libscispreadsheet_la-intreadxls.lo
+	libscispreadsheet_la-sci_xls_open.lo
 am_libscispreadsheet_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscispreadsheet_la_OBJECTS = $(am_libscispreadsheet_la_OBJECTS)
 libscispreadsheet_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -304,8 +303,7 @@ src/c/bt-int.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_spreadsheet.c \
 sci_gateway/c/sci_xls_read.c \
-sci_gateway/c/sci_xls_open.c \
-sci_gateway/c/intreadxls.c 
+sci_gateway/c/sci_xls_open.c
 
 MODULE_CHECKS = 
 libscispreadsheet_la_CFLAGS = -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
@@ -464,7 +462,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-bt-int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-bytedecoders.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-intreadxls.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-logger.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-ole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-olestream-unwrap.Plo@am__quote@
@@ -571,13 +568,6 @@ libscispreadsheet_la-sci_xls_open.lo: sci_gateway/c/sci_xls_open.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xls_open.c' object='libscispreadsheet_la-sci_xls_open.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_la-sci_xls_open.lo `test -f 'sci_gateway/c/sci_xls_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xls_open.c
-
-libscispreadsheet_la-intreadxls.lo: sci_gateway/c/intreadxls.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_la-intreadxls.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-intreadxls.Tpo -c -o libscispreadsheet_la-intreadxls.lo `test -f 'sci_gateway/c/intreadxls.c' || echo '$(srcdir)/'`sci_gateway/c/intreadxls.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscispreadsheet_la-intreadxls.Tpo $(DEPDIR)/libscispreadsheet_la-intreadxls.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/intreadxls.c' object='libscispreadsheet_la-intreadxls.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_la-intreadxls.lo `test -f 'sci_gateway/c/intreadxls.c' || echo '$(srcdir)/'`sci_gateway/c/intreadxls.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
