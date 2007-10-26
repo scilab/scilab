@@ -4,11 +4,19 @@
 ### INRIA - Scilab 2007
 ##########
 
+if GUI
 # List of the c files
 CONNECTORS_C_SOURCES = src/c/InterpreterManagement.c
 
 # List of the gateway c files
 CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/InterpreterManagement.i
+else
+# List of the c files
+CONNECTORS_C_SOURCES = src/noaction_bindings/noaction_binding.c
+endif
 
 # Includes need for the compilation
 libsciaction_binding_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/jni/ -I$(top_srcdir)/libs/MALLOC/includes/
@@ -36,9 +44,6 @@ libsciaction_binding_la_root_DATA = changelog.txt licence.txt readme.txt version
 #### action_binding : init scripts #### 
 libsciaction_binding_la_etcdir = $(mydatadir)/etc
 libsciaction_binding_la_etc_DATA = etc/action_binding.quit etc/action_binding.start
-
-#### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/InterpreterManagement.i
 
 #### action_binding : gateway declaration #### 
 libsciaction_binding_la_sci_gatewaydir = $(mydatadir)/sci_gateway

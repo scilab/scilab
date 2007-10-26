@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="nomodule_skeleton"
+	Name="noaction_binding"
 	ProjectGUID="{6880943E-80BA-480B-A595-89B2C3BE14A8}"
-	RootNamespace="nomodule_skeleton"
+	RootNamespace="noaction_binding"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -59,7 +59,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="if NOT EXIST LibScilab.lib lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nomodule_skeleton.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nomodule_skeletontmp.def &gt;nul&#x0D;&#x0A;copy ..\nomodule_skeleton_header.def+nomodule_skeletontmp.def  ..\nomodule_skeleton.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="if NOT EXIST LibScilab.lib lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n noaction_binding.dll %%f &gt;nul&#x0D;&#x0A;copy *.def noaction_bindingtmp.def &gt;nul&#x0D;&#x0A;copy ..\noaction_binding_header.def+noaction_bindingtmp.def  ..\noaction_binding.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -67,7 +67,7 @@
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="nomodule_skeleton.def"
+				ModuleDefinitionFile="noaction_binding.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -144,14 +144,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="if NOT EXIST LibScilab.lib lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nomodule_skeleton.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nomodule_skeletontmp.def &gt;nul&#x0D;&#x0A;copy ..\nomodule_skeleton_header.def+nomodule_skeletontmp.def  ..\nomodule_skeleton.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="if NOT EXIST LibScilab.lib lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n noaction_binding.dll %%f &gt;nul&#x0D;&#x0A;copy *.def noaction_bindingtmp.def &gt;nul&#x0D;&#x0A;copy ..\noaction_binding_header.def+noaction_bindingtmp.def  ..\noaction_binding.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="nomodule_skeleton.def"
+				ModuleDefinitionFile="noaction_binding.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -195,7 +195,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\nomodule_skeleton.c"
+				RelativePath=".\noaction_binding.c"
 				>
 			</File>
 		</Filter>
@@ -211,7 +211,7 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\nomodule_skeleton.rc"
+				RelativePath=".\noaction_binding.rc"
 				>
 			</File>
 		</Filter>

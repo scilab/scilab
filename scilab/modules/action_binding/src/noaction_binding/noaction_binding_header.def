@@ -1,4 +1,4 @@
-LIBRARY    module_skeleton.dll
+LIBRARY    action_binding.dll
 
 
 EXPORTS

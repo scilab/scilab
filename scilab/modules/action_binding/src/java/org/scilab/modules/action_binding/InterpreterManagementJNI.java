@@ -30,7 +30,7 @@ class InterpreterManagementJNI {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);
 	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library sciconsole does not exist or cannot be found.");
+		System.err.println("The native library sciaction_binding does not exist or cannot be found.");
 		e.printStackTrace(System.err);
     }
   }
