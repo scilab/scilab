@@ -5,7 +5,7 @@
 ** Made by  Bruno JOFRET <bruno.jofret@inria.fr>
 **
 ** Started on  Wed Oct 24 18:43:11 2007 bruno
-** Last update Thu Oct 25 15:12:51 2007 bruno
+** Last update Fri Oct 26 14:55:34 2007 bruno
 **
 ** Copyright INRIA 2007
 */
@@ -46,8 +46,7 @@
 
 #define MAXNAM 80
 
-/** @TODO : crappy !!! Change it with a perfect IOSTREAM module */
-#include "../../../intersci/src/lib/cerro.h"
+#include "cerro.h"
 
 typedef int (*PF)(const void *,const void *);
 

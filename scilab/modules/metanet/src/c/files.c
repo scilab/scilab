@@ -1,18 +1,4 @@
-#include <stdio.h>
-#ifndef _MSC_VER
-	#if defined(netbsd) || defined(freebsd)
-		#include <sys/types.h>
-	#endif
-	#include <dirent.h>
-#endif
-
-#include <string.h>
-#include <stdlib.h>
-
-#include "MALLOC.h"
 #include "files.h"
-
-#define MAXNAM 80
 
 int CheckGraphName(char *name,char *dir)
 {

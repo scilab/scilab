@@ -1,14 +1,4 @@
-#include <string.h>
-#include <stdlib.h>
-
-#include "machine.h"
-#include "MALLOC.h"
-
-extern void cerro __PARAMS((char *str));
-
-#ifdef _MSC_VER
-extern int F2C(frmtrs) ();
-#endif
+#include "transc.h"
 
 void C2F(transc)(int *lp1,int **lpft,int *ls1,int **lsft,int *m,int *lsftdim,int *lpftdim,int *n)
 {
@@ -82,13 +72,13 @@ void C2F(transc)(int *lp1,int **lpft,int *ls1,int **lsft,int *m,int *lsftdim,int
     cerro(_("Running out of memory"));
     return;
   }
-  
+
   F2C(frmtrs)(cfcl,cfcp,cw,inf,lp1,*lpft,ls1,*lsft,m,
 	  &mftdim,n,&nc,nfcomp,nn,num,p,p1,pile,s,
 	  &sdim,som,suc);
 
-  FREE(inf); FREE(cw); FREE(nfcomp);FREE(cfcp); 
-  FREE(cfcl); FREE(nn); FREE(num); FREE(p); FREE(p1); 
+  FREE(inf); FREE(cw); FREE(nfcomp);FREE(cfcp);
+  FREE(cfcl); FREE(nn); FREE(num); FREE(p); FREE(p1);
   FREE(pile); FREE(s); FREE(som); FREE(suc);
 
   *lpftdim = n1;
