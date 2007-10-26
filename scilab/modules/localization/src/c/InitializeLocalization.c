@@ -38,7 +38,7 @@ BOOL InitializeLocalization(void)
 	char *pathLocales=NULL;
 	char *ret=NULL;
 
-	ret=setlocale(LC_ALL,"");
+	ret=setlocale(LC_MESSAGES,"");
 	if (ret==NULL){
    		fprintf(stderr, "I18N: Doesn't support your locale.\n" );
 		return FALSE;
