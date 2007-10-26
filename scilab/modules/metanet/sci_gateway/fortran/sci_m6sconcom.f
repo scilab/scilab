@@ -11,28 +11,28 @@ c
        sadr(l)=(l/2)+1
        rhs = max(0,rhs)
 c
-       topk = top 
-       rhsk = rhs 
+       topk = top
+       rhsk = rhs
        if(.not.checkrhs(fname,2,2)) return
        if(.not.checklhs(fname,1,1)) return
 c       checking variable icomp (number 1)
-c       
+c
        if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
 c       checking variable nfcomp (number 2)
-c       
+c
        if(.not.getvectrow(fname,top,top-rhs+2,it2,m2,n2,lr2,lc2)) return
-c     
+c
 c       cross variable size checking
-c     
+c
        call entier(1,stk(lr1),istk(iadr(lr1)))
        call entier(n2,stk(lr2),istk(iadr(lr2)))
        if(.not.cremat(fname,top+1,0,1,1,lw4,loc4)) return
-       call sconcom(istk(iadr(lr1)),n2,istk(iadr(lr2)),stk(lw4),ne4)
-       if(err .gt. 0 .or. err1 .gt. 0) return 
+       call concom(istk(iadr(lr1)),n2,istk(iadr(lr2)),stk(lw4),ne4)
+       if(err .gt. 0 .or. err1 .gt. 0) return
 c
        topk=top-rhs
        topl=top+1
-c     
+c
        if(lhs .ge. 1) then
 c       --------------output variable: ns
         top=topl+1
