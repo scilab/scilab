@@ -1,3 +1,4 @@
+/*-----------------------------------------------------------------------------------*/
 /* 
  * winDumpExts.c --
  * Author:   Gordon Chaffee, Scott Stanton
@@ -17,21 +18,22 @@
  *           full dump of an object file, use the -f option.  This can
  *           help determine the something that may be different with a
  *           compiler other than Visual C++.
- *----------------------------------------------------------------------
- *
- * SCCS: @(#) winDumpExts.c 1.11 96/09/18 15:25:11
  */
-
+/*-----------------------------------------------------------------------------------*/
+/* Updated 2007 Win64 support (A.C) */
+/* it will be interesting to use PEDUMP http://www.wheaty.net */
+/* this tools is used to extract symbols from .obj */
+/* used to build Scilab on Windows and dynamic link */
+/*-----------------------------------------------------------------------------------*/
 #include <windows.h>
 #include <stdio.h>
 #include <string.h>
 #include <process.h>
-/* #include <ctype.h> */
-
+/*-----------------------------------------------------------------------------------*/
 #ifdef _ALPHA_
-#define e_magic_number IMAGE_FILE_MACHINE_ALPHA
+	#define e_magic_number IMAGE_FILE_MACHINE_ALPHA
 #else
-	#ifdef _WIN64
+	#ifdef _WIN64 
 		#define e_magic_number	IMAGE_FILE_MACHINE_AMD64
 	#else
 		#define e_magic_number IMAGE_FILE_MACHINE_I386
@@ -39,96 +41,100 @@
 #endif
 
 #define stricmp _stricmp
-
+/*-----------------------------------------------------------------------------------*/
 /*
- *----------------------------------------------------------------------
+*  The names of the first group of possible symbol table storage classes
+*/
+/*-----------------------------------------------------------------------------------*/
+char * SzStorageClass1[] = {
+	"NULL","AUTOMATIC","EXTERNAL","STATIC","REGISTER","EXTERNAL_DEF","LABEL",
+	"UNDEFINED_LABEL","MEMBER_OF_STRUCT","ARGUMENT","STRUCT_TAG",
+	"MEMBER_OF_UNION","UNION_TAG","TYPE_DEFINITION","UNDEFINED_STATIC",
+	"ENUM_TAG","MEMBER_OF_ENUM","REGISTER_PARAM","BIT_FIELD"
+};
+/*-----------------------------------------------------------------------------------*/
+/*
+* The names of the second group of possible symbol table storage classes
+*/
+/*-----------------------------------------------------------------------------------*/
+char * SzStorageClass2[] = {
+	"BLOCK","FUNCTION","END_OF_STRUCT","FILE","SECTION","WEAK_EXTERNAL"
+};
+/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
  * GetArgcArgv --
  * 
  *	Break up a line into argc argv
  *----------------------------------------------------------------------
- */
-int
-GetArgcArgv(char *s, char **argv)
+*/
+int GetArgcArgv(char *s, char **argv)
 {
     int quote = 0;
     int argc = 0;
-    char *bp;
+    char *bp = NULL;
 
     bp = s;
-    while (1) {
-	while (isspace(*bp)) {
-	    bp++;
-	}
-	if (*bp == '\n' || *bp == '\0') {
-	    *bp = '\0';
-	    return argc;
-	}
-	if (*bp == '\"') {
-	    quote = 1;
-	    bp++;
-	}
-	argv[argc++] = bp;
-
-	while (*bp != '\0') {
-	    if (quote) {
-		if (*bp == '\"') {
-		    quote = 0;
-		    *bp = '\0';
-		    bp++;
-		    break;
+    while (1) 
+	{
+		while (isspace(*bp)) 
+		{
+			bp++;
 		}
-		bp++;
-		continue;
-	    }
-	    if (isspace(*bp)) {
-		*bp = '\0';
-		bp++;
-		break;
-	    }
-	    bp++;
-	}
+		if (*bp == '\n' || *bp == '\0') 
+		{
+			*bp = '\0';
+			return argc;
+		}
+		if (*bp == '\"') 
+		{
+			quote = 1;
+			bp++;
+		}
+		argv[argc++] = bp;
+
+		while (*bp != '\0') 
+		{
+			if (quote) 
+			{
+				if (*bp == '\"') 
+				{
+					quote = 0;
+					*bp = '\0';
+					bp++;
+					break;
+				}
+				bp++;
+				continue;
+			}
+			if (isspace(*bp)) 
+			{
+				*bp = '\0';
+				bp++;
+				break;
+			}
+			bp++;
+		}
     }
 }
-
-/*
- *  The names of the first group of possible symbol table storage classes
- */
-char * SzStorageClass1[] = {
-    "NULL","AUTOMATIC","EXTERNAL","STATIC","REGISTER","EXTERNAL_DEF","LABEL",
-    "UNDEFINED_LABEL","MEMBER_OF_STRUCT","ARGUMENT","STRUCT_TAG",
-    "MEMBER_OF_UNION","UNION_TAG","TYPE_DEFINITION","UNDEFINED_STATIC",
-    "ENUM_TAG","MEMBER_OF_ENUM","REGISTER_PARAM","BIT_FIELD"
-};
-
-/*
- * The names of the second group of possible symbol table storage classes
- */
-char * SzStorageClass2[] = {
-    "BLOCK","FUNCTION","END_OF_STRUCT","FILE","SECTION","WEAK_EXTERNAL"
-};
-
-/*
- *----------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
  * GetSZStorageClass --
  *
  *	Given a symbol storage class value, return a descriptive
  *	ASCII string
  *----------------------------------------------------------------------
- */
-PSTR
-GetSZStorageClass(BYTE storageClass)
+*/
+PSTR GetSZStorageClass(BYTE storageClass)
 {
-	if ( storageClass <= IMAGE_SYM_CLASS_BIT_FIELD )
-		return SzStorageClass1[storageClass];
+	if ( storageClass <= IMAGE_SYM_CLASS_BIT_FIELD ) return SzStorageClass1[storageClass];
 	else if ( (storageClass >= IMAGE_SYM_CLASS_BLOCK)
 		      && (storageClass <= IMAGE_SYM_CLASS_WEAK_EXTERNAL) )
 		return SzStorageClass2[storageClass-IMAGE_SYM_CLASS_BLOCK];
 	else
 		return "???";
 }
-
-/*
- *----------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
  * GetSectionName --
  *
  *	Used by DumpSymbolTable, it gives meaningful names to
@@ -137,9 +143,8 @@ GetSZStorageClass(BYTE storageClass)
  * Results:
  *	A name is returned in buffer
  *----------------------------------------------------------------------
- */
-void
-GetSectionName(WORD section, PSTR buffer, unsigned cbBuffer)
+*/
+void GetSectionName(WORD section, PSTR buffer, unsigned cbBuffer)
 {
     char tempbuffer[10];
 	
@@ -153,24 +158,21 @@ GetSectionName(WORD section, PSTR buffer, unsigned cbBuffer)
 	
     strncpy(buffer, tempbuffer, cbBuffer-1);
 }
-
-/*
- *----------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
  * DumpSymbolTable --
  *
  *	Dumps a COFF symbol table from an EXE or OBJ.  We only use
  *	it to dump tables from OBJs.
  *----------------------------------------------------------------------
- */
-void
-DumpSymbolTable(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
+*/
+void DumpSymbolTable(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
 {
-    unsigned i;
-    PSTR stringTable;
+    unsigned i = 0;
+    PSTR stringTable = NULL;
     char sectionName[10];
 	
-    fprintf(fout, "Symbol Table - %X entries  (* = auxillary symbol)\n",
-	    cSymbols);
+    fprintf(fout, "Symbol Table - %X entries  (* = auxillary symbol)\n",cSymbols);
 
     fprintf(fout, 
      "Indx Name                 Value    Section    cAux  Type    Storage\n"
@@ -181,50 +183,40 @@ DumpSymbolTable(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
      */
     stringTable = (PSTR)&pSymbolTable[cSymbols]; 
 		
-    for ( i=0; i < cSymbols; i++ ) {
-	fprintf(fout, "%04X ", i);
-	if ( pSymbolTable->N.Name.Short != 0 )
-	    fprintf(fout, "%-20.8s", pSymbolTable->N.ShortName);
-	else
-	    fprintf(fout, "%-20s", stringTable + pSymbolTable->N.Name.Long);
+    for ( i=0; i < cSymbols; i++ ) 
+	{
+		fprintf(fout, "%04X ", i);
+		if ( pSymbolTable->N.Name.Short != 0 ) fprintf(fout, "%-20.8s", pSymbolTable->N.ShortName);
+		else fprintf(fout, "%-20s", stringTable + pSymbolTable->N.Name.Long);
+		fprintf(fout, " %08X", (unsigned int)pSymbolTable->Value);
 
-	fprintf(fout, " %08X", (unsigned int)pSymbolTable->Value);
-
-	GetSectionName(pSymbolTable->SectionNumber, sectionName,
-		       sizeof(sectionName));
-	fprintf(fout, " sect:%s aux:%X type:%02X st:%s\n",
+		GetSectionName(pSymbolTable->SectionNumber, sectionName,sizeof(sectionName));
+		fprintf(fout, " sect:%s aux:%X type:%02X st:%s\n",
 	       sectionName,
 	       pSymbolTable->NumberOfAuxSymbols,
 	       pSymbolTable->Type,
 	       GetSZStorageClass(pSymbolTable->StorageClass) );
-#if 0
-	if ( pSymbolTable->NumberOfAuxSymbols )
-	    DumpAuxSymbols(pSymbolTable);
-#endif
-
-	/*
-	 * Take into account any aux symbols
-	 */
-	i += pSymbolTable->NumberOfAuxSymbols;
-	pSymbolTable += pSymbolTable->NumberOfAuxSymbols;
-	pSymbolTable++;
+		/*
+		* Take into account any aux symbols
+		*/
+		i += pSymbolTable->NumberOfAuxSymbols;
+		pSymbolTable += pSymbolTable->NumberOfAuxSymbols;
+		pSymbolTable++;
     }
 }
-
-/*
- *----------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
  * DumpExternals --
  *
  *	Dumps a COFF symbol table from an EXE or OBJ.  We only use
  *	it to dump tables from OBJs.
  *----------------------------------------------------------------------
- */
-void
-DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
+*/
+void DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
 {
-    unsigned i;
-    PSTR stringTable;
-    char *s, *f;
+    unsigned i = 0;
+    PSTR stringTable = NULL;
+    char *s = NULL, *f = NULL;
     char symbol[1024];
 	
     /*
@@ -232,53 +224,58 @@ DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
      */
     stringTable = (PSTR)&pSymbolTable[cSymbols]; 
 		
-    for ( i=0; i < cSymbols; i++ ) {
-	if (pSymbolTable->SectionNumber > 0 && pSymbolTable->Type == 0x20) {
-	    if (pSymbolTable->StorageClass == IMAGE_SYM_CLASS_EXTERNAL) {
-		if (pSymbolTable->N.Name.Short != 0) {
-		    strncpy(symbol, pSymbolTable->N.ShortName, 8);
-		    symbol[8] = 0;
-		} else {
-		    s = stringTable + pSymbolTable->N.Name.Long;
-		    strcpy(symbol, s);
-		}
-		s = symbol;
-		f = strchr(s, '@');
-		if (f) {
-		    *f = 0;
-		}
-#if defined(_MSC_VER) && defined(_X86_)
-		if (symbol[0] == '_') {
-		    s = &symbol[1];
-		}
+    for ( i=0; i < cSymbols; i++ ) 
+	{
+		if (pSymbolTable->SectionNumber > 0 && pSymbolTable->Type == 0x20) 
+		{
+			if (pSymbolTable->StorageClass == IMAGE_SYM_CLASS_EXTERNAL) 
+			{
+				if (pSymbolTable->N.Name.Short != 0) 
+				{
+					strncpy(symbol, pSymbolTable->N.ShortName, 8);
+					symbol[8] = 0;
+				}
+				else 
+				{
+					s = stringTable + pSymbolTable->N.Name.Long;
+					strcpy(symbol, s);
+				}
+				s = symbol;
+				f = strchr(s, '@');
+				if (f) 
+				{
+					*f = 0;
+				}
+#if defined(_MSC_VER) && ( defined(_X86_) || defined(_WIN64) )
+				if (symbol[0] == '_') 
+				{
+					s = &symbol[1];
+				}
 #endif
-		if (( stricmp(s, "DllEntryPoint") != 0) 
-		    && (stricmp(s, "DllMain") != 0)) {
-		  if ( s[0] != '?' )
-		    fprintf(fout, "\t%s\n", s);
+				if (( stricmp(s, "DllEntryPoint") != 0) 
+					&& (stricmp(s, "DllMain") != 0)) 
+				{
+					if ( s[0] != '?' ) fprintf(fout, "\t%s\n", s);
+				}
+			}
 		}
-	    }
-	}
-
-	/*
-	 * Take into account any aux symbols
-	 */
-	i += pSymbolTable->NumberOfAuxSymbols;
-	pSymbolTable += pSymbolTable->NumberOfAuxSymbols;
-	pSymbolTable++;
+		/*
+		* Take into account any aux symbols
+		*/
+		i += pSymbolTable->NumberOfAuxSymbols;
+		pSymbolTable += pSymbolTable->NumberOfAuxSymbols;
+		pSymbolTable++;
     }
 }
-
-/*
- *----------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
  * DumpObjFile --
  *
  *	Dump an object file--either a full listing or just the exported
  *	symbols.
  *----------------------------------------------------------------------
- */
-void
-DumpObjFile(PIMAGE_FILE_HEADER pImageFileHeader, FILE *fout, int full)
+*/
+void DumpObjFile(PIMAGE_FILE_HEADER pImageFileHeader, FILE *fout, int full)
 {
     PIMAGE_SYMBOL PCOFFSymbolTable;
     DWORD COFFSymbolCount;
@@ -287,81 +284,87 @@ DumpObjFile(PIMAGE_FILE_HEADER pImageFileHeader, FILE *fout, int full)
 	((DWORD)PtrToLong( pImageFileHeader ) + pImageFileHeader->PointerToSymbolTable) );
     COFFSymbolCount = pImageFileHeader->NumberOfSymbols;
 
-    if (full) {
-	DumpSymbolTable(PCOFFSymbolTable, fout, COFFSymbolCount);
-    } else {
-	DumpExternals(PCOFFSymbolTable, fout, COFFSymbolCount);
+    if (full) 
+	{
+		DumpSymbolTable(PCOFFSymbolTable, fout, COFFSymbolCount);
+    } 
+	else 
+	{
+		DumpExternals(PCOFFSymbolTable, fout, COFFSymbolCount);
     }
 }
-
-/*
- *----------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
  * SkipToNextRecord --
  *
  *	Skip over the current ROMF record and return the type of the
  *	next record.
  *----------------------------------------------------------------------
- */
-
-BYTE
-SkipToNextRecord(BYTE **ppBuffer)
+*/
+BYTE SkipToNextRecord(BYTE **ppBuffer)
 {
-    int length;
+    int length = 0;
     (*ppBuffer)++;		/* Skip over the type.*/
     length = *((WORD*)(*ppBuffer))++; /* Retrieve the length. */
     *ppBuffer += length;	/* Skip over the rest. */
     return **ppBuffer;		/* Return the type. */
 }
-
-/*
- *----------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
  * DumpROMFObjFile --
  *
  *	Dump a Relocatable Object Module Format file, displaying only
  *	the exported symbols.
  *----------------------------------------------------------------------
- */
-void
-DumpROMFObjFile(LPVOID pBuffer, FILE *fout)
+*/
+void DumpROMFObjFile(LPVOID pBuffer, FILE *fout)
 {
-    BYTE type, length;
-    char symbol[1024], *s;
+    BYTE type = 0, length = 0 ;
+    char symbol[1024], *s = NULL;
 
-    while (1) {
-      BYTE *loc = (BYTE*)pBuffer;
-      type = SkipToNextRecord(&loc);
-	if (type == 0x90) {	/* PUBDEF */
-	    if (((BYTE*)pBuffer)[4] != 0) {
-		length = ((BYTE*)pBuffer)[5];
-		strncpy(symbol, ((char*)pBuffer) + 6, length);
-		symbol[length] = '\0';
-		s = symbol;
-		if ((stricmp(s, "DllEntryPoint") != 0) 
-			&& (stricmp(s, "DllMain") != 0)) {
-		    if (s[0] == '_') {
-			s++;
-			fprintf(fout, "\t_%s\n\t%s=_%s\n", s, s, s);
-		    } else if (s[0] != '?' ) {
-			fprintf(fout, "\t%s\n", s);
-		    }
+    while (1) 
+	{
+		BYTE *loc = (BYTE*)pBuffer;
+		type = SkipToNextRecord(&loc);
+		if (type == 0x90) 
+		{	
+			/* PUBDEF */
+			if (((BYTE*)pBuffer)[4] != 0) 
+			{
+				length = ((BYTE*)pBuffer)[5];
+				strncpy(symbol, ((char*)pBuffer) + 6, length);
+				symbol[length] = '\0';
+				s = symbol;
+				if ((stricmp(s, "DllEntryPoint") != 0) 
+					&& (stricmp(s, "DllMain") != 0)) 
+				{
+					if (s[0] == '_') 
+					{
+						s++;
+						fprintf(fout, "\t_%s\n\t%s=_%s\n", s, s, s);
+					} 
+					else if (s[0] != '?' ) 
+					{
+						fprintf(fout, "\t%s\n", s);
+					}
+				}
+			}
+		} else if (type == 0x8B || type == 0x8A) 
+		{ 
+			/* MODEND */
+			break;
 		}
-	    }
-	} else if (type == 0x8B || type == 0x8A) { /* MODEND */
-	    break;
-	}
     }
 }
-
-/*
- *----------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
  * DumpFile --
  *
  *	Open up a file, memory map it, and call the appropriate
  *	dumping routine
  *----------------------------------------------------------------------
- */
-void
-DumpFile(LPSTR filename, FILE *fout, int full)
+*/
+void DumpFile(LPSTR filename, FILE *fout, int full)
 {
     HANDLE hFile;
     HANDLE hFileMapping;
@@ -371,149 +374,172 @@ DumpFile(LPSTR filename, FILE *fout, int full)
     hFile = CreateFile(filename, GENERIC_READ, FILE_SHARE_READ, NULL,
 		       OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 					
-    if (hFile == INVALID_HANDLE_VALUE) {
-	fprintf(stderr, "Couldn't open file with CreateFile()\n");
-	return;
+    if (hFile == INVALID_HANDLE_VALUE) 
+	{
+		fprintf(stderr, "Couldn't open file with CreateFile()\n");
+		return;
     }
 
     hFileMapping = CreateFileMapping(hFile, NULL, PAGE_READONLY, 0, 0, NULL);
-    if (hFileMapping == 0) {
-	CloseHandle(hFile);
-	fprintf(stderr, "Couldn't open file mapping with CreateFileMapping()\n");
-	return;
+    if (hFileMapping == 0) 
+	{
+		CloseHandle(hFile);
+		fprintf(stderr, "Couldn't open file mapping with CreateFileMapping()\n");
+		return;
     }
 
     lpFileBase = MapViewOfFile(hFileMapping, FILE_MAP_READ, 0, 0, 0);
-    if (lpFileBase == 0) {
-	CloseHandle(hFileMapping);
-	CloseHandle(hFile);
-	fprintf(stderr, "Couldn't map view of file with MapViewOfFile()\n");
-	return;
+    if (lpFileBase == 0) 
+	{
+		CloseHandle(hFileMapping);
+		CloseHandle(hFile);
+		fprintf(stderr, "Couldn't map view of file with MapViewOfFile()\n");
+		return;
     }
 
     dosHeader = (PIMAGE_DOS_HEADER)lpFileBase;
-    if (dosHeader->e_magic == IMAGE_DOS_SIGNATURE) {
-#if 0
-	DumpExeFile( dosHeader );
-#else
-	fprintf(stderr, "File is an executable.  I don't dump those.\n");
-	return;
-#endif
+    if (dosHeader->e_magic == IMAGE_DOS_SIGNATURE) 
+	{
+		fprintf(stderr, "File is an executable.  I don't dump those.\n");
+		return;
     }
     /* Does it look like a i386 COFF OBJ file??? */
     else if ((dosHeader->e_magic == e_magic_number)
-	    && (dosHeader->e_sp == 0)) {
-	/*
-	 * The two tests above aren't what they look like.  They're
-	 * really checking for IMAGE_FILE_HEADER.Machine == i386 (0x14C)
-	 * and IMAGE_FILE_HEADER.SizeOfOptionalHeader == 0;
-	 */
-	DumpObjFile((PIMAGE_FILE_HEADER) lpFileBase, fout, full);
-    } else if (*((BYTE *)lpFileBase) == 0x80) {
-	/*
-	 * This file looks like it might be a ROMF file.
-	 */
-	DumpROMFObjFile(lpFileBase, fout);
-    } else {
-	printf("unrecognized file format\n");
+	    && (dosHeader->e_sp == 0)) 
+	{
+		/*
+		* The two tests above aren't what they look like.  They're
+		* really checking for IMAGE_FILE_HEADER.Machine == i386 (0x14C)
+		* and IMAGE_FILE_HEADER.SizeOfOptionalHeader == 0;
+		*/
+		DumpObjFile((PIMAGE_FILE_HEADER) lpFileBase, fout, full);
+    }
+	else if (*((BYTE *)lpFileBase) == 0x80) 
+	{
+		/*
+		* This file looks like it might be a ROMF file.
+		*/
+		DumpROMFObjFile(lpFileBase, fout);
+    } 
+	else 
+	{
+		printf("unrecognized file format\n");
     }
     UnmapViewOfFile(lpFileBase);
     CloseHandle(hFileMapping);
     CloseHandle(hFile);
 }
-
+/*-----------------------------------------------------------------------------------*/
 int main(int argc, char **argv)
 {
-  int noheader = 0;
+	int noheader = 0;
     char *fargv[1000];
     char cmdline[10000];
-    int i, arg;
-    FILE *fout;
-    int pos;
+    int i = 0, arg = 0;
+    FILE *fout = NULL;
+    int pos = 0;
     int full = 0;
     char *outfile = NULL;
 
-    if (argc < 3) {
-      Usage:
-	fprintf(stderr, "Usage: %s ?-o outfile? ?-n? ?-f(ull)? <dllname> <object filenames> ..\n", argv[0]);
-	exit(1);
+    if (argc < 3) 
+	{
+		Usage:
+			fprintf(stderr, "Usage: %s ?-o outfile? ?-n? ?-f(ull)? <dllname> <object filenames> ..\n", argv[0]);
+		exit(1);
     }
 
     arg = 1;
-    while (argv[arg][0] == '-') {
-	if (strcmp(argv[arg], "--") == 0) {
-	    arg++;
-	    break;
-	} else if (strcmp(argv[arg], "-f") == 0) {
-	    full = 1;
-	} else if (strcmp(argv[arg], "-n") == 0) {
-	    noheader = 1;
-	} else if (strcmp(argv[arg], "-o") == 0) {
-	    arg++;
-	    if (arg == argc) {
-		goto Usage;
-	    }
-	    outfile = argv[arg];
-	}
-	arg++;
+    while (argv[arg][0] == '-') 
+	{
+		if (strcmp(argv[arg], "--") == 0) 
+		{
+			arg++;
+			break;
+		} 
+		else if (strcmp(argv[arg], "-f") == 0) 
+		{
+			full = 1;
+		} 
+		else if (strcmp(argv[arg], "-n") == 0) 
+		{
+			noheader = 1;
+		}
+		else if (strcmp(argv[arg], "-o") == 0)
+		{
+			arg++;
+			if (arg == argc) 
+			{
+				goto Usage;
+			}
+			outfile = argv[arg];
+		}
+		arg++;
     }
-    if (arg == argc) {
-	goto Usage;
+    if (arg == argc) 
+	{
+		goto Usage;
     }
 
-    if (outfile) {
-	fout = fopen(outfile, "w+");
-	if (fout == NULL) {
-	    fprintf(stderr, "Unable to open \'%s\' for writing:\n",
-		    argv[arg]);
-	    perror("");
-	    exit(1);
-	}
-    } else {
-	fout = stdout;
+    if (outfile) 
+	{
+		fout = fopen(outfile, "w+");
+		if (fout == NULL) 
+		{
+			fprintf(stderr, "Unable to open \'%s\' for writing:\n", argv[arg]);
+			perror("");
+			exit(1);
+		}
+	} 
+	else 
+	{
+		fout = stdout;
     }
     
-    if (! full) {
-	char *dllname = argv[arg];
-	arg++;
-	if (arg == argc) {
-	    goto Usage;
-	}
-	if (noheader != 1) 
-	  {
-	    fprintf(fout, "LIBRARY    %s\n", dllname);
-	    /* fprintf(fout, "EXETYPE WINDOWS\n"); 
-	       fprintf(fout, "CODE PRELOAD MOVEABLE DISCARDABLE\n");
-	       fprintf(fout, "DATA PRELOAD MOVEABLE MULTIPLE\n\n");
-	    */
-	    fprintf(fout, "EXPORTS\n");
-	  }
+    if (! full) 
+	{
+		char *dllname = argv[arg];
+		arg++;
+		if (arg == argc) 
+		{
+			goto Usage;
+		}
+
+		if (noheader != 1) 
+		{
+			fprintf(fout, "LIBRARY    %s\n", dllname);
+			fprintf(fout, "EXPORTS\n");
+		}
     }
 
-    for (; arg < argc; arg++) {
-	if (argv[arg][0] == '@') {
-	    FILE *fargs = fopen(&argv[arg][1], "r");
-	    if (fargs == NULL) {
-		fprintf(stderr, "Unable to open \'%s\' for reading:\n",
-			argv[arg]);
-		perror("");
-		exit(1);
-	    }
-	    pos = 0;
-	    for (i = 0; i < arg; i++) {
-		strcpy(&cmdline[pos], argv[i]);
-		pos += (int)strlen(&cmdline[pos]) + 1;
-		fargv[i] = argv[i];
-	    }
-	    fgets(&cmdline[pos], sizeof(cmdline), fargs);
-	    fprintf(stderr, "%s\n", &cmdline[pos]);
-	    fclose(fargs);
-	    i += GetArgcArgv(&cmdline[pos], &fargv[i]);
-	    argc = i;
-	    argv = fargv;
-	}
-	DumpFile(argv[arg], fout, full);
+    for (; arg < argc; arg++) 
+	{
+		if (argv[arg][0] == '@') 
+		{
+			FILE *fargs = fopen(&argv[arg][1], "r");
+			if (fargs == NULL) 
+			{
+				fprintf(stderr, "Unable to open \'%s\' for reading:\n",
+				argv[arg]);
+				perror("");
+				exit(1);
+			}
+			pos = 0;
+			for (i = 0; i < arg; i++) 
+			{
+				strcpy(&cmdline[pos], argv[i]);
+				pos += (int)strlen(&cmdline[pos]) + 1;
+				fargv[i] = argv[i];
+			}
+			fgets(&cmdline[pos], sizeof(cmdline), fargs);
+			fprintf(stderr, "%s\n", &cmdline[pos]);
+			fclose(fargs);
+			i += GetArgcArgv(&cmdline[pos], &fargv[i]);
+			argc = i;
+			argv = fargv;
+		}
+		DumpFile(argv[arg], fout, full);
     }
     exit(0);
     return 0;
 }
+/*-----------------------------------------------------------------------------------*/
