@@ -49,7 +49,9 @@ MODULE_CHECKS = unit_tests/TCL_SetGet.tst
 
 pkglib_LTLIBRARIES = libscitclsci.la
 
-libscitclsci_la_CFLAGS=  -Iincludes/ -Isrc/c -Isci_gateway/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH) 
+libscitclsci_la_CFLAGS=  -Iincludes/ -Isrc/c -Isci_gateway/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH) \
+-I$(top_srcdir)/modules/action_binding/includes
+
 libscitclsci_la_LDFLAGS= $(TCLTK_LIBS)
 
 libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)

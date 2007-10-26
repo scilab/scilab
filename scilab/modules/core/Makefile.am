@@ -11,7 +11,6 @@ src/c/intmacr2tree.c \
 src/c/fromjava.c \
 src/c/cvstr.c \
 src/c/run.c \
-src/c/dynamic_menus.c \
 src/c/FTables.c \
 src/c/InitScilab.c \
 src/c/getval.c \
@@ -333,7 +332,7 @@ MODULE_CHECKS = unit_tests/comment.tst \
 	unit_tests/resume.tst
 
 libscicore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS) \
--I$(top_srcdir)/libs/doublylinkedlist/includes
+-I$(top_srcdir)/libs/doublylinkedlist/includes -I$(top_srcdir)/modules/action_binding/includes
 
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
@@ -416,7 +415,6 @@ includes/error_scilab.h \
 includes/GetXmlFileEncoding.h \
 includes/syncexec.h \
 includes/getfastcode.h \
-includes/dynamic_menus.h \
 includes/callFunctionFromGateway.h \
 includes/librarieslist.h \
 includes/libraryinfo.h \

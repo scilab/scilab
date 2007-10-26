@@ -90,12 +90,13 @@ libsciaction_binding_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__libsciaction_binding_la_SOURCES_DIST =  \
 	src/noaction_binding/noaction_binding.c \
-	src/c/InterpreterManagement.c \
+	src/c/InterpreterManagement.c src/c/dynamic_menus.c \
 	src/jni/InterpreterManagement_wrap.c
 @GUI_FALSE@am__objects_1 =  \
 @GUI_FALSE@	libsciaction_binding_la-noaction_binding.lo
 @GUI_TRUE@am__objects_1 =  \
-@GUI_TRUE@	libsciaction_binding_la-InterpreterManagement.lo
+@GUI_TRUE@	libsciaction_binding_la-InterpreterManagement.lo \
+@GUI_TRUE@	libsciaction_binding_la-dynamic_menus.lo
 @GUI_TRUE@am__objects_2 = libsciaction_binding_la-InterpreterManagement_wrap.lo
 am_libsciaction_binding_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciaction_binding_la_OBJECTS =  \
@@ -295,7 +296,9 @@ top_srcdir = @top_srcdir@
 @GUI_FALSE@CONNECTORS_C_SOURCES = src/noaction_binding/noaction_binding.c
 
 # List of the c files
-@GUI_TRUE@CONNECTORS_C_SOURCES = src/c/InterpreterManagement.c
+@GUI_TRUE@CONNECTORS_C_SOURCES = src/c/InterpreterManagement.c \
+@GUI_TRUE@src/c/dynamic_menus.c
+
 
 # List of the gateway c files
 @GUI_TRUE@CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
@@ -334,7 +337,7 @@ libsciaction_binding_la_sci_gateway_DATA =
 
 #### action_binding : include files ####
 libsciaction_binding_la_includedir = $(pkgincludedir)/action_binding
-libsciaction_binding_la_include_HEADERS = 
+libsciaction_binding_la_include_HEADERS = includes/dynamic_menus.h
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -452,6 +455,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-InterpreterManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-InterpreterManagement_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-dynamic_menus.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-noaction_binding.Plo@am__quote@
 
 .c.o:
@@ -488,6 +492,13 @@ libsciaction_binding_la-InterpreterManagement.lo: src/c/InterpreterManagement.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InterpreterManagement.c' object='libsciaction_binding_la-InterpreterManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciaction_binding_la_CFLAGS) $(CFLAGS) -c -o libsciaction_binding_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
+
+libsciaction_binding_la-dynamic_menus.lo: src/c/dynamic_menus.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciaction_binding_la_CFLAGS) $(CFLAGS) -MT libsciaction_binding_la-dynamic_menus.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_la-dynamic_menus.Tpo -c -o libsciaction_binding_la-dynamic_menus.lo `test -f 'src/c/dynamic_menus.c' || echo '$(srcdir)/'`src/c/dynamic_menus.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciaction_binding_la-dynamic_menus.Tpo $(DEPDIR)/libsciaction_binding_la-dynamic_menus.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamic_menus.c' object='libsciaction_binding_la-dynamic_menus.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciaction_binding_la_CFLAGS) $(CFLAGS) -c -o libsciaction_binding_la-dynamic_menus.lo `test -f 'src/c/dynamic_menus.c' || echo '$(srcdir)/'`src/c/dynamic_menus.c
 
 libsciaction_binding_la-InterpreterManagement_wrap.lo: src/jni/InterpreterManagement_wrap.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciaction_binding_la_CFLAGS) $(CFLAGS) -MT libsciaction_binding_la-InterpreterManagement_wrap.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_la-InterpreterManagement_wrap.Tpo -c -o libsciaction_binding_la-InterpreterManagement_wrap.lo `test -f 'src/jni/InterpreterManagement_wrap.c' || echo '$(srcdir)/'`src/jni/InterpreterManagement_wrap.c

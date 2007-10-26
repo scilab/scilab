@@ -6,7 +6,8 @@
 
 if GUI
 # List of the c files
-CONNECTORS_C_SOURCES = src/c/InterpreterManagement.c
+CONNECTORS_C_SOURCES = src/c/InterpreterManagement.c \
+src/c/dynamic_menus.c
 
 # List of the gateway c files
 CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
@@ -51,7 +52,7 @@ libsciaction_binding_la_sci_gateway_DATA =
 
 #### action_binding : include files ####
 libsciaction_binding_la_includedir=$(pkgincludedir)/action_binding
-libsciaction_binding_la_include_HEADERS = 
+libsciaction_binding_la_include_HEADERS = includes/dynamic_menus.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
