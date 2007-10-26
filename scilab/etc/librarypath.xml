@@ -13,6 +13,7 @@
 
 <librarypaths>
 <librarypath path="$SCILAB/bin"/>
+<librarypath path="$SCILAB/modules/action_binding/.libs"/>
 <librarypath path="$SCILAB/modules/console/.libs"/>
 <librarypath path="$SCILAB/modules/history_manager/.libs"/>
 <librarypath path="$SCILAB/modules/completion/.libs"/>

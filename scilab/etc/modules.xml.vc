@@ -25,6 +25,7 @@
 <module name="cacsd" activate="1"/>
 <module name="data_structures" activate="1"/>
 <module name="shell" activate="1"/>
+<module name="action_binding" activate="1"/>
 <module name="console" activate="1"/>
 <module name="completion" activate="1"/>
 <module name="history_manager" activate="1"/>

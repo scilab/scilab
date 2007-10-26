@@ -5,6 +5,8 @@
 #include "../c/InterpreterManagement.h"
 %}
 
+%include "../../../jvm/src/jni/scilab_typemaps.i"
+
 /* JavaDoc for InterpreterManagementJNI class */
 %pragma(java) jniclassclassmodifiers=%{
  /** 
@@ -93,4 +95,4 @@ int interruptScilab(void);
   * @return true if there are commands in the queue
   */
 public ";
-int haveCommandsInTheQueue(void);
+BOOL haveCommandsInTheQueue(void);

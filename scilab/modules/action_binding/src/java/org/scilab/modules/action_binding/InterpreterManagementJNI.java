@@ -6,7 +6,7 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package org.scilab.modules.console;
+package org.scilab.modules.action_binding;
 
 
  /** 
@@ -38,4 +38,5 @@ class InterpreterManagementJNI {
   public final static native int putCommandInScilabQueue(String jarg1);
   public final static native int execScilabEventLoop();
   public final static native int interruptScilab();
+  public final static native boolean haveCommandsInTheQueue();
 }

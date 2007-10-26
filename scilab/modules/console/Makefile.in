@@ -86,11 +86,9 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciconsole_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__libsciconsole_la_SOURCES_DIST =  \
-	src/jni/InterpreterManagement_wrap.c \
-	src/jni/GuiManagement_wrap.c src/jni/DropFiles_wrap.c \
-	src/noconsole/noconsole.c src/c/InitializeConsole.c \
-	src/c/InterpreterManagement.c src/c/GuiManagement.c \
+am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
+	src/jni/DropFiles_wrap.c src/noconsole/noconsole.c \
+	src/c/InitializeConsole.c src/c/GuiManagement.c \
 	src/c/dropFiles.c src/c/TerminateConsole.c \
 	src/jni/SwingScilabConsole.cpp src/cpp/ClearConsole.cpp \
 	src/cpp/ClearConsolePart.cpp src/cpp/ConsolePrintf.cpp \
@@ -98,13 +96,10 @@ am__libsciconsole_la_SOURCES_DIST =  \
 	src/cpp/PromptToHome.cpp src/cpp/ScilabLinesUpdate.cpp \
 	src/cpp/SetConsolePrompt.cpp \
 	src/cpp/GetScilabConsoleObject.cpp
-@GUI_TRUE@am__objects_1 =  \
-@GUI_TRUE@	libsciconsole_la-InterpreterManagement_wrap.lo \
-@GUI_TRUE@	libsciconsole_la-GuiManagement_wrap.lo \
+@GUI_TRUE@am__objects_1 = libsciconsole_la-GuiManagement_wrap.lo \
 @GUI_TRUE@	libsciconsole_la-DropFiles_wrap.lo
 @GUI_FALSE@am__objects_2 = libsciconsole_la-noconsole.lo
 @GUI_TRUE@am__objects_2 = libsciconsole_la-InitializeConsole.lo \
-@GUI_TRUE@	libsciconsole_la-InterpreterManagement.lo \
 @GUI_TRUE@	libsciconsole_la-GuiManagement.lo \
 @GUI_TRUE@	libsciconsole_la-dropFiles.lo \
 @GUI_TRUE@	libsciconsole_la-TerminateConsole.lo
@@ -329,15 +324,13 @@ top_srcdir = @top_srcdir@
 
 
 # List of the c files
-@GUI_TRUE@CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
-@GUI_TRUE@src/jni/GuiManagement_wrap.c \
+@GUI_TRUE@CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
 @GUI_TRUE@src/jni/DropFiles_wrap.c
 
 
 # List of the c files
 @GUI_FALSE@CONSOLE_C_SOURCES = src/noconsole/noconsole.c
 @GUI_TRUE@CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
-@GUI_TRUE@src/c/InterpreterManagement.c \
 @GUI_TRUE@src/c/GuiManagement.c \
 @GUI_TRUE@src/c/dropFiles.c \
 @GUI_TRUE@src/c/TerminateConsole.c
@@ -372,9 +365,7 @@ libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/InterpreterManagement.i \
-src/jni/GuiManagement.i
-
+SWIG_WRAPPERS = src/jni/GuiManagement.i
 
 #### console : include files ####
 libscishell_la_includedir = $(pkgincludedir)/console
@@ -519,8 +510,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InitializeConsole.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InterpreterManagement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InterpreterManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-PromptToHome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
@@ -550,13 +539,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libsciconsole_la-InterpreterManagement_wrap.lo: src/jni/InterpreterManagement_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-InterpreterManagement_wrap.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-InterpreterManagement_wrap.Tpo -c -o libsciconsole_la-InterpreterManagement_wrap.lo `test -f 'src/jni/InterpreterManagement_wrap.c' || echo '$(srcdir)/'`src/jni/InterpreterManagement_wrap.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-InterpreterManagement_wrap.Tpo $(DEPDIR)/libsciconsole_la-InterpreterManagement_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/InterpreterManagement_wrap.c' object='libsciconsole_la-InterpreterManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-InterpreterManagement_wrap.lo `test -f 'src/jni/InterpreterManagement_wrap.c' || echo '$(srcdir)/'`src/jni/InterpreterManagement_wrap.c
-
 libsciconsole_la-GuiManagement_wrap.lo: src/jni/GuiManagement_wrap.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-GuiManagement_wrap.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo -c -o libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo
@@ -584,13 +566,6 @@ libsciconsole_la-InitializeConsole.lo: src/c/InitializeConsole.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeConsole.c' object='libsciconsole_la-InitializeConsole.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-InitializeConsole.lo `test -f 'src/c/InitializeConsole.c' || echo '$(srcdir)/'`src/c/InitializeConsole.c
-
-libsciconsole_la-InterpreterManagement.lo: src/c/InterpreterManagement.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-InterpreterManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-InterpreterManagement.Tpo -c -o libsciconsole_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-InterpreterManagement.Tpo $(DEPDIR)/libsciconsole_la-InterpreterManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InterpreterManagement.c' object='libsciconsole_la-InterpreterManagement.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
 
 libsciconsole_la-GuiManagement.lo: src/c/GuiManagement.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-GuiManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GuiManagement.Tpo -c -o libsciconsole_la-GuiManagement.lo `test -f 'src/c/GuiManagement.c' || echo '$(srcdir)/'`src/c/GuiManagement.c

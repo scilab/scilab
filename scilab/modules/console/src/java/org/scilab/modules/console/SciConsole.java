@@ -14,10 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.xml.sax.SAXException;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;

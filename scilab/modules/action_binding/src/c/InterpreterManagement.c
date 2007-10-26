@@ -7,6 +7,7 @@
 #include <signal.h> /* for SIGINT */
 #include "InterpreterManagement.h"
 #include "dynamic_menus.h"
+#include "machine.h"
 #include "ScilabEventsLoop.h"
 #include "sigbas.h"
 /*-----------------------------------------------------------------------------------*/
@@ -26,5 +27,10 @@ int interruptScilab(void)
   int signal = SIGINT;
   C2F(sigbas)(&signal);
   return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL haveCommandsInTheQueue(void)
+{
+  return ismenu();
 }
 /*-----------------------------------------------------------------------------------*/

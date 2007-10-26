@@ -7,6 +7,8 @@
 #ifndef __INTERPRETERMANAGEMENT_H__
 #define __INTERPRETERMANAGEMENT_H__
 
+#include "machine.h"
+
 /**
  * Put a command in Scilab command queue so that Scilab executes it
  * The command is displayed in Scilab Window

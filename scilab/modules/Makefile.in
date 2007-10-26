@@ -125,6 +125,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(am__append_2) $(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
@@ -164,9 +165,9 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
-	console renderer gui graphics windows_tools functions \
-	incremental_link others overloading maple2scilab m2sci texmacs \
-	scipad scilab2fortran development_tools \
+	action_binding console renderer gui graphics windows_tools \
+	functions incremental_link others overloading maple2scilab \
+	m2sci texmacs scipad scilab2fortran development_tools \
 	compatibility_functions helptools scicos fftw pvm spreadsheet \
 	jvm . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -344,9 +345,9 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
-	console renderer gui graphics windows_tools functions \
-	incremental_link others overloading maple2scilab m2sci texmacs \
-	scipad scilab2fortran development_tools \
+	action_binding console renderer gui graphics windows_tools \
+	functions incremental_link others overloading maple2scilab \
+	m2sci texmacs scipad scilab2fortran development_tools \
 	compatibility_functions helptools scicos fftw pvm spreadsheet \
 	jvm . $(am__append_1)
 modulename = 
@@ -398,6 +399,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(am__append_2) $(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \

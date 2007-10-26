@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
+
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 import com.artenum.rosetta.util.StringConstants;
 

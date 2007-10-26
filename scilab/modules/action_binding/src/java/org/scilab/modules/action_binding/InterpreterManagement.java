@@ -6,7 +6,7 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package org.scilab.modules.console;
+package org.scilab.modules.action_binding;
 
 
  /** 
@@ -30,7 +30,7 @@ public class InterpreterManagement {
    * @param command the command to execute
    * @return execution status
    */
- static int putCommandInScilabQueue(String command) {
+public  static int putCommandInScilabQueue(String command) {
     return InterpreterManagementJNI.putCommandInScilabQueue(command);
   }
 
@@ -39,7 +39,7 @@ public class InterpreterManagement {
   * Executes Scilab event loop so that queued callbacks can be executed
   * @return execution status
   */
- static int execScilabEventLoop() {
+public  static int execScilabEventLoop() {
     return InterpreterManagementJNI.execScilabEventLoop();
   }
 
@@ -48,8 +48,17 @@ public class InterpreterManagement {
   * Stop Scilab current work
   * @return execution status
   */
- static int interruptScilab() {
+public  static int interruptScilab() {
     return InterpreterManagementJNI.interruptScilab();
+  }
+
+  
+ /**
+  * Are there some commands in the queue to be executed
+  * @return true if there are commands in the queue
+  */
+public  static boolean haveCommandsInTheQueue() {
+    return InterpreterManagementJNI.haveCommandsInTheQueue();
   }
 
 }

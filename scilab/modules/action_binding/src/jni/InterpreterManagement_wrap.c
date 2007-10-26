@@ -222,14 +222,17 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManag
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_haveCommandsInTheQueue(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
-  int result;
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_haveCommandsInTheQueue(JNIEnv *jenv, jclass jcls) {
+  jboolean jresult = 0 ;
+  BOOL result;
   
   (void)jenv;
   (void)jcls;
-  result = (int)haveCommandsInTheQueue();
-  jresult = (jint)result; 
+  result = haveCommandsInTheQueue();
+  {
+    if (result) jresult = JNI_TRUE   ;
+    else  jresult = JNI_FALSE   ;
+  }
   return jresult;
 }
 

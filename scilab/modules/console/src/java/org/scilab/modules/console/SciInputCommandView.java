@@ -18,6 +18,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
+
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.ui.ConsoleTextPane;
 import com.artenum.rosetta.util.StringConstants;
@@ -97,10 +99,16 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		this.grabFocus();
 		// Have to be allowed to write...
 		try {
-			//canReadBuffer.acquire();
 			// Try to acquire semaphore, if not, executes Scilab event loop for callbacks
 			while (!canReadBuffer.tryAcquire(1, TimeUnit.MILLISECONDS)) {
+				// TCl/TK event loop
 				InterpreterManagement.execScilabEventLoop();
+				// Callback events handling
+				if (InterpreterManagement.haveCommandsInTheQueue()) {
+					// Leave the buffer allowed
+					canReadBuffer.release();
+					return "";
+				}
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

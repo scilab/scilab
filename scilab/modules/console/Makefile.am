@@ -20,12 +20,10 @@ src/cpp/SetConsolePrompt.cpp \
 src/cpp/GetScilabConsoleObject.cpp
 
 # List of the c files
-CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
-src/jni/GuiManagement_wrap.c \
+CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
 src/jni/DropFiles_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
-src/c/InterpreterManagement.c \
 src/c/GuiManagement.c \
 src/c/dropFiles.c \
 src/c/TerminateConsole.c
@@ -69,8 +67,7 @@ libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/InterpreterManagement.i \
-src/jni/GuiManagement.i
+SWIG_WRAPPERS = src/jni/GuiManagement.i
 
 #### console : include files ####
 libscishell_la_includedir=$(pkgincludedir)/console

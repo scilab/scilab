@@ -8,6 +8,8 @@ import java.io.Writer;
 
 import javax.script.ScriptException;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
+
 import com.artenum.rosetta.interfaces.core.GenericInterpreter;
 
 /**
