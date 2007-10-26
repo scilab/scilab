@@ -1,0 +1,1 @@
+changelog elementary_functions module

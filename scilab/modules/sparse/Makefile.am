@@ -173,7 +173,7 @@ pkglib_LTLIBRARIES = libscisparse.la
 libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscisparse_la_LIBADD = \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la  \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la
 

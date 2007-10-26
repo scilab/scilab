@@ -6,7 +6,7 @@ mode(-1)
 if ~exists('corelib') then load('SCI/modules/core/macros/lib'),end
 if ~exists('percentlib') then load('SCI/modules/overloading/macros/lib'),end
 if ~exists('intlib') then load('SCI/modules/integer/macros/lib'),end
-if ~exists('elemlib') then load('SCI/modules/elementaries_functions/macros/lib'),end
+if ~exists('elemlib') then load('SCI/modules/elementary_functions/macros/lib'),end
 if ~exists('polylib') then load('SCI/modules/polynomials/macros/lib'),end
 
 if ~isdef('genmoc_verbose') then 

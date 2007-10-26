@@ -7,7 +7,7 @@
 #include "gw_special_functions2.h"
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
-#include "../../../elementaries_functions/includes/xerhlt.h"
+#include "../../../elementary_functions/includes/xerhlt.h"
 /*-----------------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={ 
   {sci_legendre, "legendre"},

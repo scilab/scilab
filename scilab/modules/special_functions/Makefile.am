@@ -44,7 +44,7 @@ pkglib_LTLIBRARIES = libscispecial_functions.la
 
 libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscispecial_functions_la_LIBADD = \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la
 
 #\

@@ -99,7 +99,7 @@ pkglib_LTLIBRARIES = libscisignal_processing.la
 libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscisignal_processing_la_LIBADD = \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la 
 # Cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la
 

@@ -11,7 +11,7 @@
 #include "gw_graphics.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
-#include "../../elementaries_functions/includes/elementaries_functions.h"
+#include "../../elementary_functions/includes/elementary_functions.h"
 #include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/

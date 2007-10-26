@@ -87,7 +87,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@SCICOS_TRUE@libsciscicos_la_DEPENDENCIES = $(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
+@SCICOS_TRUE@libsciscicos_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \
@@ -742,7 +742,7 @@ JARMASK = *.jar
 #libsciscicos_la_LDFLAGS = -lf2c
 @SCICOS_TRUE@libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
 @SCICOS_TRUE@libsciscicos_la_LIBADD = \
-@SCICOS_TRUE@	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \

@@ -87,7 +87,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciboolean_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 am__objects_1 = libsciboolean_la-matboolean.lo \
 	libsciboolean_la-vect_or.lo libsciboolean_la-vect_and.lo
 am__objects_2 = logic.lo find.lo
@@ -313,7 +313,7 @@ libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GAT
 libsciboolean_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la 
 
 #$(top_builddir)/libs/blas/libsciblas.la:
 #	(cd $(top_builddir)/libs/blas/; make libsciblas.la)

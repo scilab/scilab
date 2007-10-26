@@ -100,7 +100,7 @@ libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALG
 
 libscilinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/blas/libsciblas.la \
-$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
+$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 #### Target ######
 modulename=linear_algebra

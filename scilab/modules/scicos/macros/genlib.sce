@@ -5,7 +5,7 @@ mode(-1)
 load SCI/macros/util/lib
 
 
-load('SCI/modules/elementaries_functions/macros/lib')
+load('SCI/modules/elementary_functions/macros/lib')
 load('SCI/modules/differential_equations/macros/lib')
 load('SCI/modules/polynomials/macros/lib')
 load('SCI/modules/overloading/macros/lib')

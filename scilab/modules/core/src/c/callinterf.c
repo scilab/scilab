@@ -37,7 +37,7 @@ static OpTab Interfaces[] = {
 	/* 03  */ {C2F(gw_user)}, /* free position may be used */
 	/* 04  */ {C2F(gw_user)}, /* free position may be used */
 	/* 05  */ {C2F(gw_io)},
-	/* 06  */ {C2F(gw_elementaries_functions)},
+	/* 06  */ {C2F(gw_elementary_functions)},
 	/* 07  */ {C2F(gw_graphics)},
 	/* 08  */ {C2F(gw_cacsd0)},
 	/* 09  */ {C2F(gw_cacsd1)},

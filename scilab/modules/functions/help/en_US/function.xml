@@ -78,7 +78,7 @@ foo(%pi/3)
 
 
 // definition in an script file (see exec)
-exec SCI/modules/elementaries_functions/macros/asinh.sci;
+exec SCI/modules/elementary_functions/macros/asinh.sci;
 
 
  ]]>

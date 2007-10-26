@@ -91,7 +91,7 @@ libscimetanet_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 am__objects_1 = libscimetanet_la-paths.lo libscimetanet_la-dmtree.lo \
 	libscimetanet_la-files.lo \
 	libscimetanet_la-hashtable_metanet.lo \
@@ -441,7 +441,7 @@ libscimetanet_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 
 #### Target ######

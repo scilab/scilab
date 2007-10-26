@@ -50,7 +50,7 @@
 #pragma comment(lib,"../../libs/differential_equations_f.lib")
 #pragma comment(lib,"../../libs/special_functions_f.lib")
 
-#pragma comment(lib,"../../libs/elementaries_functions_f.lib")
+#pragma comment(lib,"../../libs/elementary_functions_f.lib")
 //#pragma comment(lib,"../../libs/gui_f.lib")
 #pragma comment(lib,"../../libs/dcd_f.lib")
 #pragma comment(lib,"../../libs/core_f.lib")

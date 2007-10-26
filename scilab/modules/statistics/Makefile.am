@@ -102,7 +102,7 @@ libscistatistics_la_LIBADD = \
 	$(top_builddir)/libs/lapack/libscilapack.la
 
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-#	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
+#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la 
 
 
 

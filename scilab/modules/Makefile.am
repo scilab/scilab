@@ -8,7 +8,7 @@ SUBDIRS = \
 intersci \
 polynomials \
 cacsd \
-elementaries_functions \
+elementary_functions \
 arnoldi \
 boolean \
 linear_algebra \
@@ -92,7 +92,7 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \

@@ -1,6 +1,6 @@
 #include "stack-c.h"
-#include "../../elementaries_functions/includes/elementaries_functions.h"
-#include "../../elementaries_functions/includes/int2db.h"
+#include "../../elementary_functions/includes/elementary_functions.h"
+#include "../../elementary_functions/includes/int2db.h"
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))
 #define DOUBLE(x)	( stk(x))

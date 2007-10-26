@@ -1,1 +1,0 @@
-readme.txt about elementaries_functions module

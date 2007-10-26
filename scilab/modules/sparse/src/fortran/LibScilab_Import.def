@@ -41,7 +41,7 @@ checkrhs_
 checklhs_
 formatnumber_
 ;
-; elementaries_functions
+; elementary_functions
 icopy_
 unsfdcopy_
 wdpow_

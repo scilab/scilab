@@ -32,7 +32,7 @@ setfunnam_
 ref2val_
 genmax2_
 ;
-;elementaries_functions
+;elementary_functions
 icopy_
 unsfdcopy_
 mtlbsel_

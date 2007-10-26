@@ -16,7 +16,7 @@
 /* 03  C2F(gw_user)(); FREE */
 /* 04  C2F(gw_user)(); FREE */
 /* 05 */						#include "../../../io/includes/gw_io.h"
-/* 06 */						#include "../../../elementaries_functions/includes/gw_elementaries_functions.h"
+/* 06 */						#include "../../../elementary_functions/includes/gw_elementary_functions.h"
 /* 07 */						#include "../../../graphics/includes/gw_graphics.h"
 /* 08 */						#include "../../../cacsd/includes/gw_cacsd0.h"
 /* 09 */						#include "../../../cacsd/includes/gw_cacsd1.h"

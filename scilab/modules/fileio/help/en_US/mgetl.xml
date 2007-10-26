@@ -49,7 +49,7 @@
 <![CDATA[
 mgetl('SCI/etc/scilab.start',5)
 
-mgetl SCI/modules/elementaries_functions/macros/erf.sci
+mgetl SCI/modules/elementary_functions/macros/erf.sci
 
 fd=mopen('SCI/etc/scilab.start','r')
 mgetl(fd,10)
