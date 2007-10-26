@@ -6,7 +6,7 @@
 
 if GUI
 # List of the c files
-CONNECTORS_C_SOURCES = src/c/InterpreterManagement.c \
+ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c \
 src/c/dynamic_menus.c
 
 # List of the gateway c files
@@ -16,7 +16,8 @@ CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
 SWIG_WRAPPERS = src/jni/InterpreterManagement.i
 else
 # List of the c files
-CONNECTORS_C_SOURCES = src/noaction_binding/noaction_binding.c
+ACTION_BINDING_C_SOURCES = src/noaction_binding/noaction_binding.c \
+src/c/dynamic_menus.c
 endif
 
 # Includes need for the compilation
@@ -27,7 +28,7 @@ libsciaction_binding_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/j
 pkglib_LTLIBRARIES = libsciaction_binding.la
 
 # All the sources needed by libsciaction_binding.la
-libsciaction_binding_la_SOURCES = $(CONNECTORS_C_SOURCES) $(CONSOLE_C_JNI_SOURCES) 
+libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(CONSOLE_C_JNI_SOURCES) 
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
