@@ -212,10 +212,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\intreadxls.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\logger.c"
 				>
 			</File>
@@ -263,10 +259,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\gw_spreadsheet.h"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\intreadxls.h"
 				>
 			</File>
 			<File

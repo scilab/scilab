@@ -15,8 +15,7 @@ src/c/bt-int.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_spreadsheet.c \
 sci_gateway/c/sci_xls_read.c \
-sci_gateway/c/sci_xls_open.c \
-sci_gateway/c/intreadxls.c 
+sci_gateway/c/sci_xls_open.c
 
 
 MODULE_CHECKS = 
