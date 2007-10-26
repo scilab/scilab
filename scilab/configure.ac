@@ -1155,7 +1155,7 @@ modules/helptools/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
 modules/optimization/Makefile
-modules/elementaries_functions/Makefile
+modules/elementary_functions/Makefile
 modules/special_functions/Makefile
 modules/io/Makefile
 modules/shell/Makefile

@@ -16,7 +16,7 @@
 <module name="helptools" activate="1"/>
 <module name="differential_equations" activate="1"/>
 <module name="double" activate="1"/>
-<module name="elementaries_functions" activate="1"/>
+<module name="elementary_functions" activate="1"/>
 <module name="functions" activate="1"/>
 <module name="fileio" activate="1"/>
 <module name="graphics" activate="1"/>
