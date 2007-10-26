@@ -6,19 +6,18 @@
 #include "../../../string/includes/men_Sutils.h"
 
 #include "libinter.h"
-#include "cerro.h"
 #include "cvstr.h"
 
 
 
 /*--------------------------------------------------------------
- * A set of functions used with intersci 
+ * A set of functions used with intersci
  *--------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
- * cchar : copy char ** to Scilab string code 
- *         converts ip      -> op    
- *                 char ** -> int * 
+ * cchar : copy char ** to Scilab string code
+ *         converts ip      -> op
+ *                 char ** -> int *
  *--------------------------------------------------------------*/
 
 void C2F(cchar)(int *n, char **ip,int *op)
@@ -29,8 +28,8 @@ void C2F(cchar)(int *n, char **ip,int *op)
 
 /*--------------------------------------------------------------
  * ccharf : copy char ** to Scilab string code and ip is freed
- *         converts ip      -> op    
- *                 char ** -> int * 
+ *         converts ip      -> op
+ *                 char ** -> int *
  *--------------------------------------------------------------*/
 
 void C2F(ccharf)(n,ip,op)
@@ -46,9 +45,9 @@ void C2F(ccharf)(n,ip,op)
 }
 
 /*--------------------------------------------------------------
- * cdouble  : copy double ** to double * 
+ * cdouble  : copy double ** to double *
  *--------------------------------------------------------------*/
-   
+
 void C2F(cdouble)(n,ip,op)
      int *n;
      double *ip[];
@@ -75,7 +74,7 @@ void C2F(cdoublef)(n,ip,op)
 }
 
 /*--------------------------------------------------------------
- * cint  : copy int ** to double * 
+ * cint  : copy int ** to double *
  *--------------------------------------------------------------*/
 
 void C2F(cint)(n,ip,op)
@@ -88,7 +87,7 @@ void C2F(cint)(n,ip,op)
 }
 
 /*--------------------------------------------------------------
- * cintf  : copy int ** to double * + pointer is freed 
+ * cintf  : copy int ** to double * + pointer is freed
  *--------------------------------------------------------------*/
 
 void C2F(cintf)(n,ip,op)
@@ -105,7 +104,7 @@ void C2F(cintf)(n,ip,op)
 }
 
 /*--------------------------------------------------------------
- * cfloat  : copy float ** to double * 
+ * cfloat  : copy float ** to double *
  *--------------------------------------------------------------*/
 
 void C2F(cfloat)(n,ip,op)
@@ -118,7 +117,7 @@ void C2F(cfloat)(n,ip,op)
 }
 
 /*--------------------------------------------------------------
- * cfloatf  : copy float ** to double * + pointer is freed 
+ * cfloatf  : copy float ** to double * + pointer is freed
  *--------------------------------------------------------------*/
 
 void C2F(cfloatf)(n,ip,op)
@@ -135,7 +134,7 @@ void C2F(cfloatf)(n,ip,op)
 }
 
 /*--------------------------------------------------------------
- * cbool  : copy int ** to int * 
+ * cbool  : copy int ** to int *
  *--------------------------------------------------------------*/
 
 void C2F(cbool)(n,ip,op)
@@ -148,7 +147,7 @@ void C2F(cbool)(n,ip,op)
 }
 
 /*--------------------------------------------------------------
- * cboolf : copy int ** to int * + pointer is freed 
+ * cboolf : copy int ** to int * + pointer is freed
  *--------------------------------------------------------------*/
 
 void C2F(cboolf)(n,ip,op)
@@ -164,18 +163,8 @@ void C2F(cboolf)(n,ip,op)
   }
 }
 
-
 /*--------------------------------------------------------------
- * cerro : just call erro 
- *--------------------------------------------------------------*/
-
-void cerro(char *str)
-{
-  C2F(erro)(str, (unsigned int)(strlen(str) + 1));
-}
-
-/*--------------------------------------------------------------
- * Cout : call to out 
+ * Cout : call to out
  *--------------------------------------------------------------*/
 
 void Cout(char *str)
@@ -184,16 +173,13 @@ void Cout(char *str)
 }
 
 /*--------------------------------------------------------------
- * cstringf : copy char *** to int *  + pointer is freed 
- *         converts ip      -> op    
- *                 char **  -> int * 
- *     string array pointer -> Scilab code of string matrix in an int array       
+ * cstringf : copy char *** to int *  + pointer is freed
+ *         converts ip      -> op
+ *                 char **  -> int *
+ *     string array pointer -> Scilab code of string matrix in an int array
  *--------------------------------------------------------------*/
 
-void C2F(cstringf)(ip,sciptr,m,n,max,ierr)
-     char ***ip;
-     int *sciptr;
-     int *m, *n, *max,*ierr;
+void C2F(cstringf) (char ***ip, int *sciptr, int *m, int *n, int *max, int *ierr)
 {
   int i,j,l,ie;
   int job=0;
@@ -228,9 +214,9 @@ void C2F(cstringf)(ip,sciptr,m,n,max,ierr)
 
 
 /*--------------------------------------------
- * stringc : fill *cptr with 
- *      a converted Scilab string matrix 
- *      *cptr is allocated 
+ * stringc : fill *cptr with
+ *      a converted Scilab string matrix
+ *      *cptr is allocated
  *--------------------------------------------*/
 
 int C2F(stringc)(sciptr,cptr,ierr)
@@ -240,7 +226,7 @@ int C2F(stringc)(sciptr,cptr,ierr)
 {
   char **strings,*p;
   int li,ni,*SciS,i,nstring,*ptrstrings;
-  
+
   *ierr=0;
   nstring=sciptr[1]*sciptr[2];
   strings=(char **) MALLOC((unsigned) (nstring * sizeof(char *)));
@@ -250,7 +236,7 @@ int C2F(stringc)(sciptr,cptr,ierr)
   li=1;
   ptrstrings=&(sciptr[4]);
   SciS=&(sciptr[5+nstring]);
-  for ( i=1 ; i<nstring+1 ; i++) 
+  for ( i=1 ; i<nstring+1 ; i++)
     {
       ni=ptrstrings[i]-li;
       li=ptrstrings[i];
@@ -264,7 +250,7 @@ int C2F(stringc)(sciptr,cptr,ierr)
 }
 
 /*--------------------------------------------------------------
- * dbl2cdbl  : fill *ip with contents of double array op 
+ * dbl2cdbl  : fill *ip with contents of double array op
  *--------------------------------------------------------------*/
 
 void C2F(dbl2cdbl)(n,ip,op)
@@ -277,17 +263,17 @@ void C2F(dbl2cdbl)(n,ip,op)
 }
 
 /*--------------------------------------------------------------
- * freeptr : free ip pointer 
+ * freeptr : free ip pointer
  *--------------------------------------------------------------*/
 
 void C2F(freeptr)(ip)
      double *ip[];
-{ 
+{
   if (ip) FREE((char *)(*ip));
 }
 
 /*--------------------------------------------------------------
- * int2cint  : fill *ip with contents of int array op 
+ * int2cint  : fill *ip with contents of int array op
  *--------------------------------------------------------------*/
 
 void C2F(int2cint)(n,ip,op)
@@ -300,12 +286,12 @@ void C2F(int2cint)(n,ip,op)
 }
 
 /**
- * New Sparse matrix 
+ * New Sparse matrix
  * @param it
  * @param m
  * @param n
  * @param nel
- * @return 
+ * @return
  */
 SciSparse *NewSparse(int *it,int *m,int *n,int *nel)
 {
@@ -341,7 +327,7 @@ SciSparse *NewSparse(int *it,int *m,int *n,int *nel)
       return((SciSparse *) 0);
     }
 
-  if ( *it == 1) 
+  if ( *it == 1)
     {
       loc->I =  (double*) MALLOC((unsigned) (*nel)*sizeof(double));
       if ( loc->I == (double *) 0)
@@ -357,7 +343,7 @@ SciSparse *NewSparse(int *it,int *m,int *n,int *nel)
 }
 
 /**
- * FreeSparse : free memory  associated to a sparse 
+ * FreeSparse : free memory  associated to a sparse
  * @param x
  */
 void FreeSparse(SciSparse *x)
@@ -370,15 +356,15 @@ void FreeSparse(SciSparse *x)
 }
 
 /*--------------------------------------------
- * intersci external function for sparse 
+ * intersci external function for sparse
  *--------------------------------------------*/
 
 int C2F(csparsef)(SciSparse **x,int *mnel,int *icol,double *R,double *I)
 {
   int i;
-  for ( i=0 ; i < (*x)->m ; i++) 
+  for ( i=0 ; i < (*x)->m ; i++)
     mnel[i] = (*x)->mnel[i];
-  for ( i=0 ; i < (*x)->nel ; i++) 
+  for ( i=0 ; i < (*x)->nel ; i++)
     {
       icol[i] = (*x)->icol[i];
       R[i] = (*x)->R[i];
@@ -394,8 +380,8 @@ void FreeRhsSVar(char **ptrStr)
 
 	if (ptrStr)
 	{
-		while ( ptrStr[i] != NULL) 
-		{ 
+		while ( ptrStr[i] != NULL)
+		{
 			FREE(ptrStr[i]);
 			i++;
 		};

@@ -4,7 +4,6 @@
 #include "machine.h"
 #include "stack-c.h"
 
-int C2F(erro)  __PARAMS ((char *str, unsigned int));
 void C2F(out) __PARAMS ((char *str,unsigned int));
 void C2F(cchar) __PARAMS (( int *n, char **ip, int *op));
 void C2F(ccharf) __PARAMS (( int *n, char **ip, int *op));
@@ -16,7 +15,6 @@ void C2F(cfloat) __PARAMS (( int *n, float *ip[], double *op));
 void C2F(cfloatf) __PARAMS (( int *n, float *ip[], double *op));
 void C2F(cbool) __PARAMS (( int *n, int *ip[], int *op));
 void C2F(cboolf) __PARAMS (( int *n, int *ip[], int *op));
-void cerro __PARAMS ((char *str));
 void Cout __PARAMS ((char *str));
 void C2F(cstringf) __PARAMS (( char ***ip,int *sciptr,int *m, int*n,int *max,int *ierr));
 int C2F(stringc) __PARAMS ((int *sciptr, char ***cptr, int *ierr));
@@ -28,4 +26,4 @@ SciSparse *NewSparse __PARAMS((int *,int *,int *,int *));
 void FreeSparse(SciSparse *x);
 void FreeRhsSVar(char **ptrStr);
 
-#endif 
+#endif

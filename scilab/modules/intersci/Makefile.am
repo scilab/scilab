@@ -1,12 +1,11 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 
 INTERSCI_LIB_C_SOURCES = \
 src/lib/libinter.c \
-src/lib/erro.c \
 src/lib/out.c
 
 INTERSCI_EXE_C_SOURCES = \
@@ -36,6 +35,7 @@ libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
 
 libsciintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename=intersci
@@ -46,7 +46,7 @@ libsciintersci_la_rootdir = $(mydatadir)
 libsciintersci_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### intersci : init scripts #### 
+#### intersci : init scripts ####
 libsciintersci_la_etcdir = $(mydatadir)/etc
 libsciintersci_la_etc_DATA = etc/intersci.quit etc/intersci.start
 
