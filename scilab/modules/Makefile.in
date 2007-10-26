@@ -159,8 +159,8 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = intersci polynomials cacsd elementary_functions \
-	arnoldi boolean linear_algebra differential_equations string \
+DIST_SUBDIRS = intersci polynomials cacsd elementary_functions arnoldi \
+	boolean linear_algebra differential_equations string \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
