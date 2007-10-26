@@ -46,8 +46,8 @@ AC_PROG_LN_S
 AC_SYS_LARGEFILE
 #AC_PACKAGE_VERSION([4.0])
 
-# If configure detect that timestamp changed, 
-# it tries to rebuild configure & makefile which can be a painmaker 
+# If configure detect that timestamp changed,
+# it tries to rebuild configure & makefile which can be a painmaker
 # if the version is different
 AM_MAINTAINER_MODE
 
@@ -77,7 +77,7 @@ AC_ARG_ENABLE(stopOnWarning,
 
 AC_ARG_WITH(gcc,
     [  --with-gcc              use gcc C compiler ])
-    
+
 AC_ARG_WITH(g77,
     [  --with-g77              use g77, GNU Fortran 77 compiler ])
 
@@ -238,7 +238,7 @@ if test "x${prefix}" = "xNONE"; then
 fi
 
 ###############################
-## get the version 
+## get the version
 ###############################
 
 SCIVERSION=`cat $SCI_SRCDIR/Version.incl | sed -e "s/SCIVERSION=//" `
@@ -248,14 +248,14 @@ SCIVERSION=`cat $SCI_SRCDIR/Version.incl | sed -e "s/SCIVERSION=//" `
 ########################
 
 RM='rm -f'
-FILES_TO_CLEAN='*.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS make.log MakeOut .*~ *.trace so_locations *.orig *.cos *.obj' 
+FILES_TO_CLEAN='*.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS make.log MakeOut .*~ *.trace so_locations *.orig *.cos *.obj'
 
 
 #############################################
 ## Find the X11 include and library directories.
 #############################################
 
-## 
+##
 ## @TODO : should be removed
 AC_PATH_XTRA
 
@@ -329,7 +329,7 @@ if test -n "$F77"; then
 		      FFLAGS="+O2 +Z +DAportable -Dhpux"
 		   fi
 			  FLIBS="-ldld -lnsl -lU77 -lm"
-    #do not call AC_F77_LIBRARY_LDFLAGS because if assumes PA2.0 while Scilab is built with 
+    #do not call AC_F77_LIBRARY_LDFLAGS because if assumes PA2.0 while Scilab is built with
     #DAportable=PA1.1
     #AC_F77_LIBRARY_LDFLAGS
 	# TODO : check why and if it is still the case
@@ -376,11 +376,11 @@ if test "$CXX" = "g++"; then
    if test "$enable_debug_CXX" = yes; then
 	  CXXFLAGS="$CXXFLAGS -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wstrict-aliasing -Wextra -Wall "
    else
-	  CXXFLAGS="$CXXFLAGS -DNDEBUG" 
+	  CXXFLAGS="$CXXFLAGS -DNDEBUG"
    fi
 fi
 
-##########" 
+##########"
 # not useful under Linux (and was only defined here with scilab 4)
 #AC_CHECK_LIB(ieee,main,[LIEEE="-lieee"])
 
@@ -394,7 +394,7 @@ if test "$CC" = "gcc"; then
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
    else
-	  CFLAGS="$CFLAGS  -DNDEBUG" 
+	  CFLAGS="$CFLAGS  -DNDEBUG"
    fi
 
    case "$host" in
@@ -443,7 +443,7 @@ esac
 else
 
 		## CC compiler (not GCC)
-        if test "$enable_debug_C" = yes; then 
+        if test "$enable_debug_C" = yes; then
 		     CFLAGS="$CFLAGS -g"
 		else
 		     CFLAGS="$CFLAGS -DNDEBUG"
@@ -456,7 +456,7 @@ case "$host" in
       LDFLAGS="$LDFLAGS -ieee_with_inexact"
 	  ;;
   alpha*-dec-osf*)
-      CFLAGS="$CFLAGS -ieee_with_inexact" 
+      CFLAGS="$CFLAGS -ieee_with_inexact"
       LDFLAGS="$LDFLAGS -ieee_with_inexact"
       ;;
   rs6000-*-*) # IBM AIX RS 6000 (NO LONGER SUPPORTED)
@@ -469,7 +469,7 @@ case "$host" in
 	CFLAGS="$CFLAGS -DSYSV -Dhpux"
   ;;
   *-*-hpux10.*) # HP 10
-    if test "$enable_debug_C" = yes; then 
+    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -DSYSV -Dhpux"
     else
 	  CFLAGS="$CFLAGS -DSYSV -Dhpux +Z +DAportable"
@@ -496,7 +496,7 @@ FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 ## test for X11 and Xaw3d  Athena widgets
 ##########################################
 
-if test "x$GUI" = "xX11"; then 
+if test "x$GUI" = "xX11"; then
   ac_save_LDFLAGS="$LDFLAGS"
   if test -n "$x_libraries"; then
     LDFLAGS="$LDFLAGS -L$x_libraries"
@@ -514,33 +514,33 @@ if test "x$GUI" = "xX11"; then
 ##test Xmu (Required)
     AC_CHECK_LIB(Xmu,main,[XMu=yes],[XMu=no],-lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
     if test "$XMu" = no; then
-		AC_MSG_ERROR([Cannot find the dev library Xmu])	
+		AC_MSG_ERROR([Cannot find the dev library Xmu])
     else
       XMULIB=-lXmu
       AC_CHECK_LIB(Xaw3d,main,[XAthena3d=yes],[XAthena3d=no],-lXmu -lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
       if test "$XAthena3d" = no; then
-		AC_MSG_ERROR([Cannot find the dev library Xaw3d (Xathena3d)])	
+		AC_MSG_ERROR([Cannot find the dev library Xaw3d (Xathena3d)])
       else
 		X_EXTRA_LIBS="$X_EXTRA_LIBS -lXaw3d -lXmu"
         XAW=Xaw3d
 		X_LIB_PATH=/usr/X11R6/lib/
-        AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <X11/IntrinsicP.h> 
-		#include <X11/Xaw3d/ViewportP.h>]], [[]])],[],[AC_MSG_ERROR(Include file "ViewportP.h" for Xaw3d not found. 
+        AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <X11/IntrinsicP.h>
+		#include <X11/Xaw3d/ViewportP.h>]], [[]])],[],[AC_MSG_ERROR(Include file "ViewportP.h" for Xaw3d not found.
 			       Get and put it in <X11/Xaw3d/> .)])
       fi
     fi
-  fi 
+  fi
   AC_CHECK_HEADERS([X11/Xaw3d/ViewportP.h],[],[AC_MSG_ERROR([Cannot find headers of the library Xaw3d. Please install the dev package (Debian : xaw3dg-dev)])],[[#include <X11/IntrinsicP.h>]])
   AC_SUBST(X_LIBS)
 fi
 
 #######################
-## Xt 
+## Xt
 #######################
 
 # Pb of automatic insertion of -lXt -lXext -lX11 in Makefile.incl.in
-# which does not work with mingwin. Thus I add this two vars to 
-# configure.in 
+# which does not work with mingwin. Thus I add this two vars to
+# configure.in
 
 #XXTXEXT="-lXt -lXext"
 #XX11="-lX11"
@@ -562,7 +562,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 		AC_JAVA_JNI_INCLUDE
 		JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
 
-		AC_JAVA_JNI_LIBS		
+		AC_JAVA_JNI_LIBS
 		JAVA_JNI_LIBS=$ac_java_jvm_jni_lib_flags
 		JAVA_JNI_LIBS_PRELOAD=$ac_java_jvm_ld_preload
 		AC_JAVA_CLASSPATH
@@ -588,7 +588,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
 
-	if test "$with_swig_generation" != no -a "$with_swig_generation" != ""; then	
+	if test "$with_swig_generation" != no -a "$with_swig_generation" != ""; then
 		SWIG_PROG()
 		SWIG_ENABLE_JAVA()
 		AC_SUBST(SWIG_BIN)
@@ -598,7 +598,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 
 	# Giws is the equivalent of Swig developped by the Scilab team
 	# in order to provide a wrapper to Java from C/C++
-	if test "$with_giws_generation" != no -a "$with_giws_generation" != ""; then	
+	if test "$with_giws_generation" != no -a "$with_giws_generation" != ""; then
 		AC_GIWS()
 	fi
 
@@ -620,7 +620,7 @@ AC_CHECK_FUNCS([rmdir])
 AC_CHECK_FUNC([getwd],AC_DEFINE([HAVE_GETWD],[1],[Define to 1 if you have the `getwd' function. ]),[AC_DEFINE([getwd(x)],[getcwd(x,1024)],[Don't use getwd but getcwd])])
 
 # Provided by <regex.h>
-AC_CHECK_FUNCS([regcomp]) 
+AC_CHECK_FUNCS([regcomp])
 
 # Provided by stdlib.h
 AC_CHECK_FUNCS([atexit] [putenv] [setenv])
@@ -685,7 +685,7 @@ AC_FUNC_STRTOD
 ## test for header files
 ########################
 
-AC_CHECK_HEADERS([limits.h values.h]) 
+AC_CHECK_HEADERS([limits.h values.h])
 
 AC_CHECK_HEADERS([fcntl.h float.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h syslog.h termio.h termios.h wchar.h wctype.h libintl.h])
 
@@ -712,7 +712,7 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 
 
 #######################
-## MISC Test 
+## MISC Test
 #######################
 
 # function closedir used in modules/metanet/src/c/files.c
@@ -811,7 +811,7 @@ AM_CONDITIONAL(PVM, test "$PVM_OK" = "1")
 
 AC_ARG_WITH(libxml2,
 		[  --with-libxml2=PREFIX    set the path to your libxml2 installation],
-		[with_libxml2=$withval], 
+		[with_libxml2=$withval],
 		[with_libxml2='yes']
 		)
 
@@ -823,7 +823,7 @@ AC_LIBXML2()
 
 AC_ARG_WITH(localization-generation,
 		[  --with-localization-generation    enable the localization generation],
-		[with_localization=yes], 
+		[with_localization=yes],
 		[with_localization='no']
 		)
 
@@ -852,7 +852,7 @@ AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$with_localization" != no)
 
 AC_ARG_WITH(pcre,
 		[  --with-pcre=PREFIX    set the path to your pcre (Perl 5 Compatible Regular Expression Library) installation],
-		[with_pcre=$withval], 
+		[with_pcre=$withval],
 		[with_pcre='yes']
 		)
 
@@ -878,27 +878,27 @@ if test "$with_tk" != no; then
 		[  --with-tcl-include=DIR  Tcl include files are in DIR ],
 		[  USER_TCL_INC_PATH=$withval
 	])
-	
+
 	USER_TK_LIB_PATH=$USER_TCL_LIB_PATH
 	USER_TK_INC_PATH=$USER_TCL_INC_PATH
-	
+
 	AC_ARG_WITH(tk-library,
 		[  --with-tk-library=DIR   Tk library files are in DIR ],
 		[  USER_TK_LIB_PATH=$withval
 	])
-	
+
 	AC_ARG_WITH(tk-include,
 		[  --with-tk-include=DIR   Tk include files are in DIR ],
 		[  USER_TK_INC_PATH=$withval
 	])
-	
+
 	saved_cflags="$CFLAGS"
 	saved_ldflags="$LDFLAGS"
 	saved_cppflags="$CPPFLAGS"
-	
+
 	AC_CHECK_LIB([dl], [main], [TCLTK_LIBS=" -ldl"])
 	AC_CHECK_TCLTK
-	
+
 	# set variables
 	if test $WITH_TKSCI = 1; then
 		AC_DEFINE([WITH_TK], [], [With TK])
@@ -908,7 +908,7 @@ if test "$with_tk" != no; then
 	else
 		AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
 	fi
-	
+
 	TKBASE=
 	## voir quoi faire maintenant avec le SONAME qui se barre
 	GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.so
@@ -917,7 +917,7 @@ if test "$with_tk" != no; then
 		*-*-darwin*)
 		GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
 		;;
-	esac 
+	esac
 	AC_SUBST(TCLTK_LIBS)
 	AC_SUBST(TCL_INC_PATH)
 	AC_SUBST(TK_INC_PATH)
@@ -926,7 +926,7 @@ fi
 AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
 
 #################
-## atlas 
+## atlas
 #################
 # TODO : make it work
 # check user arguments
@@ -941,7 +941,7 @@ AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
 #if test "$USER_ATLAS_LIB_PATH" = ""; then
 #	WHICH_BLAS="STD_BLAS"
 #	IN_ATLAS=LOCAL
-#else 
+#else
 #	echo "Using Atlas library"
 #	WHICH_BLAS="ATLAS_LAPACKBLAS"
 #	ATLAS_DIR=$USER_ATLAS_LIB_PATH
@@ -951,14 +951,14 @@ AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
 
 
 #################
-## ocaml 
+## ocaml
 #################
 
 if test "$with_ocaml" != no; then
    AC_CHECK_PROG_OCAML()
 fi
 
-		
+
 #################
 ## Man management
 #################
@@ -966,13 +966,13 @@ fi
 dnl check for xsltproc
 AC_ARG_WITH(sablotron,
 		[  --with-sablotron compile man pages with sablotron],
-		[with_sablotron=$withval], 
+		[with_sablotron=$withval],
 		[with_sablotron='']
 	)
 
 AC_ARG_WITH(xsltproc,
 		[  --with-xsltproc  compile man pages with xsltproc],
-		[with_xsltproc=$withval], 
+		[with_xsltproc=$withval],
 		[with_xsltproc='']
 		)
 
@@ -988,7 +988,7 @@ AC_SUBST(MANGENERATOR)
 
 AC_ARG_WITH(install-help-xml,
 		[  --with-install-help-xml  make install will install XML files ],
-		[with_install_help_xml=$withval], 
+		[with_install_help_xml=$withval],
 		[with_install_help_xml='']
 		)
 
@@ -1000,7 +1000,7 @@ AM_CONDITIONAL(INSTALL_HELP_XML, test "$with_install_help_xml" = "yes")
 AC_CHECK_UNDERSCORE_FORTRAN()
 
 #########################
-## libtool 
+## libtool
 #########################
 
 AC_PROG_LIBTOOL
@@ -1009,7 +1009,7 @@ LT_INIT([shared static dlopen])
 
 # Check to see if building shared libraries
 libtool_build_shared_libs='no'
-if test "$enable_shared" = 'yes'; then 
+if test "$enable_shared" = 'yes'; then
   libtool_build_shared_libs='yes'
 fi
 
@@ -1047,15 +1047,15 @@ AC_C_INLINE()
 AC_DEFINE_UNQUOTED([PATH_SEPARATOR], "$PATH_SEPARATOR",
 [The default path separator character.])
 
-AH_TOP([#ifndef MACHINE_H 
-#define MACHINE_H 
+AH_TOP([#ifndef MACHINE_H
+#define MACHINE_H
 
 ])
 
 AH_BOTTOM([
-/* 
+/*
    Define integer C type which must fit Fortran integer
-   For Scilab to work, the rule is: 
+   For Scilab to work, the rule is:
           size of Fortran double precision = 2 * size of Fortran integer
 
    At the present time, we suppose:
@@ -1125,7 +1125,7 @@ dnl ## substituting variables
 dnl #########################
 AC_SUBST(tcldir)
 
-# Define the standard extension of a dynamic library 
+# Define the standard extension of a dynamic library
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 
 
@@ -1133,16 +1133,16 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 ## stop on warning
 #################
 
-# Stop to compile scilab when a warning is found ... 
+# Stop to compile scilab when a warning is found ...
 # This stuff is at the end of the configure.ac because it causes some
 # problem with AC_COMPILE (the -Werror is added to the test)
 if test "$enable_stop_on_warning" = yes; then
-   CFLAGS="$CFLAGS -Werror"
-   CXXFLAGS="$CXXFLAGS -Werror"
+   CFLAGS="$CFLAGS -Werror -O0"
+   CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
 
-AC_CONFIG_FILES([ 
+AC_CONFIG_FILES([
 libs/lapack/Makefile
 libs/blas/Makefile
 libs/MALLOC/Makefile
@@ -1208,8 +1208,9 @@ modules/scipad/Makefile
 modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
 modules/console/Makefile
+modules/output_stream/Makefile
 modules/Makefile
-libs/Makefile 
+libs/Makefile
 Makefile
 etc/modules.xml
 modules/helptools/macros/xmlfiletohtml.sci
@@ -1302,7 +1303,7 @@ echo ""
 #   echo "MPI C Compiler ..... = $MPICC"
 #   echo "MPI C++ Compiler ... = $MPICXX"
 #   echo "MPI F77 Compiler ... = $MPIF77"
-#else 
+#else
 #   echo "Not using MPI"
 #fi
 
@@ -1415,4 +1416,4 @@ echo "  TERMCAP_LIB      = $TERMCAP_LIB"
 echo "  TK_INC_PATH      = $TK_INC_PATH"
 echo "  TCL_INC_PATH     = $TCL_INC_PATH"
 echo "  TCLTK_LIBS       = $TCLTK_LIBS"
-echo "" 
+echo ""

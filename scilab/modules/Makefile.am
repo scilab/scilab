@@ -16,6 +16,7 @@ differential_equations \
 string \
 signal_processing \
 fileio \
+output_stream \
 core \
 metanet \
 optimization \
@@ -59,7 +60,7 @@ scicos \
 fftw \
 pvm \
 spreadsheet \
-jvm 
+jvm
 
 #if MPI
 #SUBDIRS += mpi
@@ -78,9 +79,9 @@ modulename=
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
 
-# 
+#
 pkglib_LTLIBRARIES = libscilab.la
-libscilab_la_SOURCES = 
+libscilab_la_SOURCES =
 
 # Core modules
 libscilab_la_LIBADD = \
@@ -123,7 +124,9 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
-	$(top_builddir)/modules/action_binding/libsciaction_binding.la
+	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+
 
 
 #if MPI
@@ -138,7 +141,7 @@ libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
 
 libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
 
-## Libs 
+## Libs
 libscilab_la_LIBADD += \
 $(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la \
