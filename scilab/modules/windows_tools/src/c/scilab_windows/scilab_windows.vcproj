@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../core/includes"
+				AdditionalIncludeDirectories=".;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../action_binding/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
