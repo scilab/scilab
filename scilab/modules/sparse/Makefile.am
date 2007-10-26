@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 SPARSE_C_SOURCES = \
@@ -166,7 +166,8 @@ MODULE_CHECKS = unit_tests/lsparse.tst \
 unit_tests/sparse.tst
 
 
-libscisparse_la_CFLAGS=  -Iincludes/ 
+libscisparse_la_CFLAGS=  	-Iincludes/ \
+				-I$(top_builddir)/modules/output_stream/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisparse.la
 
@@ -175,7 +176,8 @@ libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWA
 libscisparse_la_LIBADD = \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la  \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/intersci/libsciintersci.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+#	$(top_builddir)/modules/intersci/libsciintersci.la
 
 
 
@@ -189,11 +191,11 @@ libscisparse_la_rootdir = $(mydatadir)
 libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### sparse : init scripts #### 
+#### sparse : init scripts ####
 libscisparse_la_etcdir = $(mydatadir)/etc
 libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
 
-#### sparse : gateway declaration #### 
+#### sparse : gateway declaration ####
 libscisparse_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisparse_la_sci_gateway_DATA = sci_gateway/sparse_gateway.xml
 

@@ -1,17 +1,17 @@
 
-/* README : 
- * The routines in this file use a pointer to a Matrix 
- * at the Fortran Level this pointer is stored as an integer 
- * so we cast  pointer to long int 
- * f_(fmat) 
- *  long *fmat 
+/* README :
+ * The routines in this file use a pointer to a Matrix
+ * at the Fortran Level this pointer is stored as an integer
+ * so we cast  pointer to long int
+ * f_(fmat)
+ *  long *fmat
  *  *fmat = (long)spCreate(*n,0,&error);
- * 
- * At fortran level the integer must be an integer *4 
- * in order to store a C long 
- * since we  are in scilab 
- * the pointer transmitted to f_ is an istk(il1) it can in fact contain 
- * something as long as a double 
+ *
+ * At fortran level the integer must be an integer *4
+ * in order to store a C long
+ * since we  are in scilab
+ * the pointer transmitted to f_ is an istk(il1) it can in fact contain
+ * something as long as a double
  * Copyright ENPC (Chancelier)
  */
 
@@ -33,26 +33,26 @@
 #include "spmatrix.h"
 #include "spDefs.h"
 
-
+#include "cerro.h"
 #include "machine.h"
 
 /*
  *
- * lufact1  >>> Creation and LU factorisation of a sparse matrix 
- * Entry << 
- *   val,rc 
+ * lufact1  >>> Creation and LU factorisation of a sparse matrix
+ * Entry <<
+ *   val,rc
  *       arrays of size k and kx2 a(rc(i),rc(*k+i))=val(i)
  *       for i=0,(*k-1)
- *   *n : size of the created square matrix 
- *   *k : number of given values 
- *   *eps : The machine precision number 
- *  Return >> 
+ *   *n : size of the created square matrix
+ *   *k : number of given values
+ *   *eps : The machine precision number
+ *  Return >>
  *   fmat : pointer to a long int which is a cast of an adress
- *   *nrank : The numerical rank 
+ *   *nrank : The numerical rank
  */
 
 
-static void 
+static void
 spFixThresold(eMatrix,eps,releps)
 char *eMatrix;
 double eps,releps;
@@ -63,7 +63,7 @@ double eps,releps;
 }
 
 
-static void 
+static void
 spGetNumRank(eMatrix,n)
 char *eMatrix;
 int *n;
@@ -72,9 +72,7 @@ int *n;
   *n = Matrix->NumRank;
 }
 
-extern void cerro();
-
-void 
+void
 C2F(lufact1)(val,lln,col,n,nel,fmat,eps,releps,nrank,ierr)
 double *val,*eps,*releps;
 long *fmat;
@@ -131,10 +129,10 @@ int *n,*nel,*nrank,*lln,*col,*ierr;
 }
 
 /*
- * lusolve1  >>> Solves fmat*x=b 
- *   *fmat : a pointer to the sparse matrix factored by lufact 
- *   b,v 
- *      two arrays of size n the matrix size 
+ * lusolve1  >>> Solves fmat*x=b
+ *   *fmat : a pointer to the sparse matrix factored by lufact
+ *   b,v
+ *      two arrays of size n the matrix size
  */
 extern void Cout(char *str);
 
@@ -146,8 +144,8 @@ long *fmat;
 }
 
 /*
- * ludel1  >>> delete sparse matrix 
- *   *fmat : a pointer to the sparse matrix factored by lufact 
+ * ludel1  >>> delete sparse matrix
+ *   *fmat : a pointer to the sparse matrix factored by lufact
  */
 
 void C2F(ludel1)(fmat)
@@ -157,11 +155,11 @@ long *fmat;
 }
 
 /*
- * lusize  >>> returns in n the size of the sparse matrix 
- *   *fmat : a pointer to the sparse matrix factored by lufact 
+ * lusize  >>> returns in n the size of the sparse matrix
+ *   *fmat : a pointer to the sparse matrix factored by lufact
  */
 
-static void 
+static void
 spSize(eMatrix,n)
 char *eMatrix;
 int *n;
@@ -178,11 +176,11 @@ int *n;
 }
 
 /*
- * luget1   >>> extract the LU coded matrix into a full array 
+ * luget1   >>> extract the LU coded matrix into a full array
  *   sigg,sigd :
- *     two arrays of size n which code permutations 
- *   lu :  
- *     an array coded matrix of size nxn where lu will be stored 
+ *     two arrays of size n which code permutations
+ *   lu :
+ *     an array coded matrix of size nxn where lu will be stored
  */
 
 
@@ -198,7 +196,7 @@ for (I = 1; I <= Size; I++)
     sigd[I-1]=1.0;
   }
 /* counting missing colums */
-for (I = 1; I <= Size; I++) 
+for (I = 1; I <= Size; I++)
   if (Matrix->ExtToIntColMap[I]== -1) mc++;
 /* filling missing colums */
 if (mc != 0)
@@ -207,8 +205,8 @@ if (mc != 0)
       {
 	for ( J=last+1; J <=Size; J++)
 	  {
-	    if (Matrix->ExtToIntColMap[J]==-1) 
-	      { 
+	    if (Matrix->ExtToIntColMap[J]==-1)
+	      {
 		last=J;break;
 	      }
 	  }
@@ -226,7 +224,7 @@ void GetSigG(MatrixPtr Matrix,int indsigg[],double sigg[])
   int Size=Matrix->Size;
   int I,J,mc=0,last=0;
   /* counting missing Rows*/
-  for (I = 1; I <= Size; I++) 
+  for (I = 1; I <= Size; I++)
     if (Matrix->ExtToIntRowMap[I]== -1) mc++;
 
   for (I = 1; I <= Size-mc ; I++)
@@ -242,8 +240,8 @@ if (mc != 0)
       {
 	for ( J=last+1; J <=Size; J++)
 	  {
-	    if (Matrix->ExtToIntRowMap[J]==-1) 
-	      { 
+	    if (Matrix->ExtToIntRowMap[J]==-1)
+	      {
 
 		last=J;break;
 	      }
@@ -256,7 +254,7 @@ if (mc != 0)
 }
 
 
-static void 
+static void
 spLuget(eMatrix,indP,P,indl,l,indu,u,indQ,Q)
 char *eMatrix;
 int *indP,*indl,*indu,*indQ;
@@ -327,7 +325,7 @@ int *indP,*indl,*indu,*indQ;
  */
 
 
-static void 
+static void
 spLusiz(eMatrix,lsize,usize)
 char *eMatrix;
 int *lsize,*usize;
@@ -344,14 +342,14 @@ for (J = 1; J <= Size ; J++)
     pElement = Matrix->FirstInCol[J];
     while ( pElement != NULL )
       {
-	if (pElement->Row >= J) 
+	if (pElement->Row >= J)
 	    *lsize=*lsize+1;
 	else
 	    *usize=*usize+1;
 	pElement = pElement->NextInCol;
     };
   };
-}  
+}
 void C2F(lusiz1)(fmat,lsize,usize)
 long *fmat;
 int *lsize,*usize;
