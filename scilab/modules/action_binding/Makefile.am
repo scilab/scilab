@@ -15,7 +15,7 @@ CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
 SWIG_WRAPPERS = src/jni/InterpreterManagement.i
 else
 # List of the c files
-CONNECTORS_C_SOURCES = src/noaction_bindings/noaction_binding.c
+CONNECTORS_C_SOURCES = src/noaction_binding/noaction_binding.c
 endif
 
 # Includes need for the compilation
