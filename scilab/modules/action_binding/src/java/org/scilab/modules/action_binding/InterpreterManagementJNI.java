@@ -25,7 +25,7 @@ class InterpreterManagementJNI {
 
   static {
     try {
-        System.loadLibrary("sciconsole");
+        System.loadLibrary("sciaction_binding");
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);
