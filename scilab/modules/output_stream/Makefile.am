@@ -5,12 +5,12 @@
 ## Made by  Bruno JOFRET <bruno.jofret@inria.fr>
 ##
 ## Started on  Fri Oct 26 13:48:04 2007 bruno
-## Last update Fri Oct 26 13:51:28 2007 bruno
+## Last update Fri Oct 26 14:30:51 2007 bruno
 ##
 ## Copyright INRIA 2007
 ##
 
-OUTPUT_STREAM_C_SOURCES =
+OUTPUT_STREAM_C_SOURCES = src/c/cerro.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES =
 
@@ -21,7 +21,6 @@ GATEWAY_FORTRAN_SOURCES =
 MODULE_CHECKS =
 
 libscioutput_stream_la_CFLAGS=  -Iincludes/ -Isrc/c/
--I$(top_srcdir)/libs/doublylinkedlist/includes
 
 libscioutput_stream_la_LDFLAGS =
 pkglib_LTLIBRARIES = libscioutput_stream.la
@@ -46,13 +45,9 @@ libscioutput_stream_la_etc_DATA = etc/output_stream.quit etc/output_stream.start
 libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 
-#### output_stream :  dtd files ####
-libscioutput_stream_la_xmldir = $(mydatadir)/xml
-libscioutput_stream_la_xml_DATA = xml/modules.dtd xml/version.dtd
-
 #### output_stream : include files ####
 libscioutput_stream_la_includedir=$(pkgincludedir)/output_stream
-libscioutput_stream_la_include_HEADERS =
+libscioutput_stream_la_include_HEADERS = includes/cerro.h
 
 
 
