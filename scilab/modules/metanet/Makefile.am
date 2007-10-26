@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 METANET_C_SOURCES = src/c/paths.c \
@@ -60,9 +60,9 @@ src/fortran/clique.f \
 src/fortran/hullcvex.f \
 src/fortran/knapsk.f \
 src/fortran/dijkst.f \
-src/fortran/ford.f 
+src/fortran/ford.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_metanet.c 
+GATEWAY_C_SOURCES = sci_gateway/c/gw_metanet.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_m6bandred.f \
 sci_gateway/fortran/sci_m6bmatch.f \
@@ -117,7 +117,10 @@ sci_gateway/fortran/sci_m6visitor.f
 
 MODULE_CHECKS = unit_tests/metanet.tst
 
-libscimetanet_la_CFLAGS=  -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+libscimetanet_la_CFLAGS=  	-Iincludes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/libs/hashtable/
 
 pkglib_LTLIBRARIES = libscimetanet.la
 
@@ -129,7 +132,8 @@ libscimetanet_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 
@@ -143,11 +147,11 @@ libscimetanet_la_rootdir = $(mydatadir)
 libscimetanet_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### metanet : init scripts #### 
+#### metanet : init scripts ####
 libscimetanet_la_etcdir = $(mydatadir)/etc
 libscimetanet_la_etc_DATA = etc/metanet.quit etc/metanet.start
 
-#### metanet : gateway declaration #### 
+#### metanet : gateway declaration ####
 libscimetanet_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet_gateway.xml
 
