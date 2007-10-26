@@ -1,14 +1,15 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 MEXLIB_C_SOURCES = src/c/mexlib.c
 
-MEXLIB_FLAGS = -Iincludes/ 
+MEXLIB_FLAGS = -Iincludes/ -I$(top_builddir)/modules/output_stream/includes/
 
 MEXLIB_DEP = $(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/data_structures/libscidata_structures.la 
+	$(top_builddir)/modules/data_structures/libscidata_structures.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 #	$(top_builddir)/libs/blas/libsciblas.la \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
@@ -42,7 +43,7 @@ modulename=mexlib
 libmex_la_rootdir = $(mydatadir)
 libmex_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### mexlib : init scripts #### 
+#### mexlib : init scripts ####
 libmex_la_etcdir = $(mydatadir)/etc
 libmex_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
 
