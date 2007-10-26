@@ -351,7 +351,7 @@ modulename = javasci
 @JAVASCI_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @JAVASCI_TRUE@	$(am__append_3)
 
-########### INSTALL DOCUMENTATION ###################
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -366,7 +366,7 @@ modulename = javasci
 # What is the mask of the help source
 @JAVASCI_TRUE@DOCMASKXML = *.xml
 
-########### INSTALL DATA ###################
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 @JAVASCI_TRUE@pkgmacrosdir = $(mydatadir)
@@ -382,14 +382,13 @@ modulename = javasci
 @JAVASCI_TRUE@FUNCTION_NAMES = macros/names
 # Localisation directory name
 @JAVASCI_TRUE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
-# Chapter file 
-@JAVASCI_TRUE@HELP_CHAPTER = help/en_US/addchapter.sce
+# Chapter file 
+@JAVASCI_TRUE@HELP_CHAPTERDIR = help/en_US/
+@JAVASCI_TRUE@HELP_CHAPTERFILE = addchapter.sce
 # Where to export JAVA files (.jar)
 @JAVASCI_TRUE@JARDIR = jar/
 # JAR files
 @JAVASCI_TRUE@JARMASK = *.jar
-# List of the localisation (languages) files
-@JAVASCI_TRUE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: all-am
 
 .SUFFIXES:
@@ -823,10 +822,10 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
 @JAVASCI_TRUE@	fi
 
-########################### JAVA ######################################
+########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
+#### libsciboolean_la_SOURCES = plop.c plip.f 
 ####
 #### It is why those rules exist.
 #######################################################################
@@ -870,7 +869,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		done; \
 @JAVASCI_TRUE@	fi
 
-################ MACROS ######################"
+################ MACROS ######################"
 # Rule to build a macro
 @JAVASCI_TRUE@.sci.bin:
 @JAVASCI_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -919,15 +918,21 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	done
 @JAVASCI_TRUE@install-data-local:
-@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 @JAVASCI_TRUE@	@if test -f $(FUNCTION_NAMES); then \
+@JAVASCI_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@JAVASCI_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@JAVASCI_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@JAVASCI_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @JAVASCI_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 @JAVASCI_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @JAVASCI_TRUE@	fi
 # Install the help chapter
-@JAVASCI_TRUE@	@if test -f $(HELP_CHAPTER); then \
-@JAVASCI_TRUE@		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
+@JAVASCI_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
+@JAVASCI_TRUE@	if test -f $$HELPFILE; then \
+@JAVASCI_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@JAVASCI_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@JAVASCI_TRUE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@JAVASCI_TRUE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @JAVASCI_TRUE@	fi
 # Install the macros
 @JAVASCI_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -939,26 +944,16 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		  done; \
 @JAVASCI_TRUE@		fi; \
 @JAVASCI_TRUE@	done
-# Install the localisation files
-@JAVASCI_TRUE@	@for dir in $(LOCALISATIONDIRS) ; do \
-@JAVASCI_TRUE@	 if test -d $$dir; then \
-@JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@JAVASCI_TRUE@		  for file in $(LOCALISATIONFILES) ; do \
-@JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@JAVASCI_TRUE@		  done ; \
-@JAVASCI_TRUE@	 fi; \
-@JAVASCI_TRUE@	done
 # Install java files (.jar)
-@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
-@JAVASCI_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
-@JAVASCI_TRUE@	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+@JAVASCI_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@JAVASCI_TRUE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
+@JAVASCI_TRUE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
 @JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
 @JAVASCI_TRUE@	  done ; \
 @JAVASCI_TRUE@	fi
 
-########### CLEAN ###################
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 @GUI_TRUE@@JAVASCI_TRUE@clean-local: clean-java
 @GUI_FALSE@@JAVASCI_TRUE@clean-local:

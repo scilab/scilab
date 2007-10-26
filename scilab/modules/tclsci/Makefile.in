@@ -704,7 +704,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
 @TCLTK_TRUE@	$(am__append_6)
 
-########### INSTALL DOCUMENTATION ###################
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -713,7 +713,7 @@ top_srcdir = @top_srcdir@
 # Where it should be installed
 @TCLTK_FALSE@pkgdocdir = $(mydatadir)
 
-########### INSTALL DOCUMENTATION ###################
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -734,12 +734,12 @@ top_srcdir = @top_srcdir@
 # What is the mask of the help source
 @TCLTK_TRUE@DOCMASKXML = *.xml
 
-########### INSTALL DATA ###################
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 @TCLTK_FALSE@pkgmacrosdir = $(mydatadir)
 
-########### INSTALL DATA ###################
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 @TCLTK_TRUE@pkgmacrosdir = $(mydatadir)
@@ -767,10 +767,12 @@ top_srcdir = @top_srcdir@
 @TCLTK_FALSE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
 # Localisation directory name
 @TCLTK_TRUE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
-# Chapter file 
-@TCLTK_FALSE@HELP_CHAPTER = help/en_US/addchapter.sce
-# Chapter file 
-@TCLTK_TRUE@HELP_CHAPTER = help/en_US/addchapter.sce
+# Chapter file 
+@TCLTK_FALSE@HELP_CHAPTERDIR = help/en_US/
+# Chapter file 
+@TCLTK_TRUE@HELP_CHAPTERDIR = help/en_US/
+@TCLTK_FALSE@HELP_CHAPTERFILE = addchapter.sce
+@TCLTK_TRUE@HELP_CHAPTERFILE = addchapter.sce
 # Where to export JAVA files (.jar)
 @TCLTK_FALSE@JARDIR = jar/
 # Where to export JAVA files (.jar)
@@ -779,10 +781,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_FALSE@JARMASK = *.jar
 # JAR files
 @TCLTK_TRUE@JARMASK = *.jar
-# List of the localisation (languages) files
-@TCLTK_FALSE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
-# List of the localisation (languages) files
-@TCLTK_TRUE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: all-am
 
 .SUFFIXES:
@@ -1532,10 +1530,10 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
 @TCLTK_TRUE@	fi
 
-########################### JAVA ######################################
+########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
+#### libsciboolean_la_SOURCES = plop.c plip.f 
 ####
 #### It is why those rules exist.
 #######################################################################
@@ -1579,7 +1577,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		done; \
 @TCLTK_TRUE@	fi
 
-################ MACROS ######################"
+################ MACROS ######################"
 # Rule to build a macro
 @TCLTK_TRUE@.sci.bin:
 @TCLTK_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -1628,15 +1626,21 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	done
 @TCLTK_TRUE@install-data-local:
-@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 @TCLTK_TRUE@	@if test -f $(FUNCTION_NAMES); then \
+@TCLTK_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@TCLTK_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@TCLTK_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@TCLTK_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @TCLTK_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 @TCLTK_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @TCLTK_TRUE@	fi
 # Install the help chapter
-@TCLTK_TRUE@	@if test -f $(HELP_CHAPTER); then \
-@TCLTK_TRUE@		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
+@TCLTK_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
+@TCLTK_TRUE@	if test -f $$HELPFILE; then \
+@TCLTK_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_TRUE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_TRUE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @TCLTK_TRUE@	fi
 # Install the macros
 @TCLTK_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1648,26 +1652,16 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		  done; \
 @TCLTK_TRUE@		fi; \
 @TCLTK_TRUE@	done
-# Install the localisation files
-@TCLTK_TRUE@	@for dir in $(LOCALISATIONDIRS) ; do \
-@TCLTK_TRUE@	 if test -d $$dir; then \
-@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@TCLTK_TRUE@		  for file in $(LOCALISATIONFILES) ; do \
-@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@TCLTK_TRUE@		  done ; \
-@TCLTK_TRUE@	 fi; \
-@TCLTK_TRUE@	done
 # Install java files (.jar)
-@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
-@TCLTK_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
-@TCLTK_TRUE@	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+@TCLTK_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@TCLTK_TRUE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
+@TCLTK_TRUE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
 @TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
 @TCLTK_TRUE@	  done ; \
 @TCLTK_TRUE@	fi
 
-########### CLEAN ###################
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 @GUI_TRUE@@TCLTK_TRUE@clean-local: clean-java
 @GUI_FALSE@@TCLTK_TRUE@clean-local:
@@ -1702,10 +1696,10 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
 @TCLTK_FALSE@	fi
 
-########################### JAVA ######################################
+########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
+#### libsciboolean_la_SOURCES = plop.c plip.f 
 ####
 #### It is why those rules exist.
 #######################################################################
@@ -1749,7 +1743,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@		done; \
 @TCLTK_FALSE@	fi
 
-################ MACROS ######################"
+################ MACROS ######################"
 # Rule to build a macro
 @TCLTK_FALSE@.sci.bin:
 @TCLTK_FALSE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -1798,15 +1792,21 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	done
 @TCLTK_FALSE@install-data-local:
-@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 @TCLTK_FALSE@	@if test -f $(FUNCTION_NAMES); then \
+@TCLTK_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@TCLTK_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@TCLTK_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@TCLTK_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @TCLTK_FALSE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 @TCLTK_FALSE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @TCLTK_FALSE@	fi
 # Install the help chapter
-@TCLTK_FALSE@	@if test -f $(HELP_CHAPTER); then \
-@TCLTK_FALSE@		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
+@TCLTK_FALSE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
+@TCLTK_FALSE@	if test -f $$HELPFILE; then \
+@TCLTK_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_FALSE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_FALSE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @TCLTK_FALSE@	fi
 # Install the macros
 @TCLTK_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1818,26 +1818,16 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@		  done; \
 @TCLTK_FALSE@		fi; \
 @TCLTK_FALSE@	done
-# Install the localisation files
-@TCLTK_FALSE@	@for dir in $(LOCALISATIONDIRS) ; do \
-@TCLTK_FALSE@	 if test -d $$dir; then \
-@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@TCLTK_FALSE@		  for file in $(LOCALISATIONFILES) ; do \
-@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@TCLTK_FALSE@		  done ; \
-@TCLTK_FALSE@	 fi; \
-@TCLTK_FALSE@	done
 # Install java files (.jar)
-@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
-@TCLTK_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
-@TCLTK_FALSE@	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+@TCLTK_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@TCLTK_FALSE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
+@TCLTK_FALSE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
 @TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
 @TCLTK_FALSE@	  done ; \
 @TCLTK_FALSE@	fi
 
-########### CLEAN ###################
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 @GUI_TRUE@@TCLTK_FALSE@clean-local: clean-java
 @GUI_FALSE@@TCLTK_FALSE@clean-local:

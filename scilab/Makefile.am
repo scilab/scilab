@@ -30,6 +30,8 @@ endif
 
 TARGETS_ALL=macros
 
+LANG_DOMAIN=scilab
+
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
 TARGETS_ALL+=build-localization
@@ -73,7 +75,6 @@ build-localization:
 	MASK="modules/*/locales/"; \
 	LC=LC_MESSAGES; \
 	FILENAME="messages.po*"; \
-	LANG_DOMAIN=scilab; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
 		PATHTO=$(top_srcdir)/locale/$$LOCALE/$$LC/; \
@@ -87,8 +88,9 @@ build-localization:
 	done
 
 install-data-local:
-	$(mkinstalldirs) $(DESTDIR)$(localedir); \
-	for lang in $(LANGS); do \
+	@$(mkinstalldirs) $(DESTDIR)$(localedir); \
+	echo $(mkinstalldirs) $(DESTDIR)$(localedir); \
+	for lang in $(ALL_LINGUAS); do \
 		LANG_PATH_DIST=$(DESTDIR)$(localedir)/$$lang/LC_MESSAGES/; \
 		echo $(mkinstalldirs) $$LANG_PATH_DIST; \
 		$(mkinstalldirs) $$LANG_PATH_DIST; \

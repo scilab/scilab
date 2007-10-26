@@ -625,7 +625,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 SUFFIXES = .sci 
 TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 
-########### INSTALL DOCUMENTATION ###################
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -640,7 +640,7 @@ DOCMASK = *.htm
 # What is the mask of the help source
 DOCMASKXML = *.xml
 
-########### INSTALL DATA ###################
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
@@ -656,14 +656,13 @@ MACROBINMASK = *.bin
 FUNCTION_NAMES = macros/names
 # Localisation directory name
 LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
-# Chapter file 
-HELP_CHAPTER = help/en_US/addchapter.sce
+# Chapter file 
+HELP_CHAPTERDIR = help/en_US/
+HELP_CHAPTERFILE = addchapter.sce
 # Where to export JAVA files (.jar)
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
-# List of the localisation (languages) files
-LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: all-am
 
 .SUFFIXES:
@@ -963,10 +962,10 @@ check-local: $(top_builddir)/scilab-bin
 		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
 	fi
 
-########################### JAVA ######################################
+########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
+#### libsciboolean_la_SOURCES = plop.c plip.f 
 ####
 #### It is why those rules exist.
 #######################################################################
@@ -1010,7 +1009,7 @@ build-giws: $(GIWS_WRAPPERS)
 		done; \
 	fi
 
-################ MACROS ######################"
+################ MACROS ######################"
 # Rule to build a macro
 .sci.bin:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -1059,15 +1058,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@	done
 install-data-local:
-	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 	@if test -f $(FUNCTION_NAMES); then \
+		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 	fi
 # Install the help chapter
-	@if test -f $(HELP_CHAPTER); then \
-		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
+	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
+	if test -f $$HELPFILE; then \
+		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 	fi
 # Install the macros
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1079,26 +1084,16 @@ install-data-local:
 		  done; \
 		fi; \
 	done
-# Install the localisation files
-	@for dir in $(LOCALISATIONDIRS) ; do \
-	 if test -d $$dir; then \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		  for file in $(LOCALISATIONFILES) ; do \
-		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-		  done ; \
-	 fi; \
-	done
 # Install java files (.jar)
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
-	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
-	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
+	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
 	  done ; \
 	fi
 
-########### CLEAN ###################
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 @GUI_TRUE@clean-local: clean-java
 @GUI_FALSE@clean-local:

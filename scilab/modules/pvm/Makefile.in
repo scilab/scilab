@@ -471,7 +471,7 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
 @PVM_TRUE@	$(am__append_6)
 
-########### INSTALL DOCUMENTATION ###################
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -480,7 +480,7 @@ top_srcdir = @top_srcdir@
 # Where it should be installed
 @PVM_FALSE@pkgdocdir = $(mydatadir)
 
-########### INSTALL DOCUMENTATION ###################
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -501,12 +501,12 @@ top_srcdir = @top_srcdir@
 # What is the mask of the help source
 @PVM_TRUE@DOCMASKXML = *.xml
 
-########### INSTALL DATA ###################
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 @PVM_FALSE@pkgmacrosdir = $(mydatadir)
 
-########### INSTALL DATA ###################
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 @PVM_TRUE@pkgmacrosdir = $(mydatadir)
@@ -534,10 +534,12 @@ top_srcdir = @top_srcdir@
 @PVM_FALSE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
 # Localisation directory name
 @PVM_TRUE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
-# Chapter file 
-@PVM_FALSE@HELP_CHAPTER = help/en_US/addchapter.sce
-# Chapter file 
-@PVM_TRUE@HELP_CHAPTER = help/en_US/addchapter.sce
+# Chapter file 
+@PVM_FALSE@HELP_CHAPTERDIR = help/en_US/
+# Chapter file 
+@PVM_TRUE@HELP_CHAPTERDIR = help/en_US/
+@PVM_FALSE@HELP_CHAPTERFILE = addchapter.sce
+@PVM_TRUE@HELP_CHAPTERFILE = addchapter.sce
 # Where to export JAVA files (.jar)
 @PVM_FALSE@JARDIR = jar/
 # Where to export JAVA files (.jar)
@@ -546,10 +548,6 @@ top_srcdir = @top_srcdir@
 @PVM_FALSE@JARMASK = *.jar
 # JAR files
 @PVM_TRUE@JARMASK = *.jar
-# List of the localisation (languages) files
-@PVM_FALSE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
-# List of the localisation (languages) files
-@PVM_TRUE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: all-am
 
 .SUFFIXES:
@@ -1302,10 +1300,10 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
 @PVM_TRUE@	fi
 
-########################### JAVA ######################################
+########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
+#### libsciboolean_la_SOURCES = plop.c plip.f 
 ####
 #### It is why those rules exist.
 #######################################################################
@@ -1349,7 +1347,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		done; \
 @PVM_TRUE@	fi
 
-################ MACROS ######################"
+################ MACROS ######################"
 # Rule to build a macro
 @PVM_TRUE@.sci.bin:
 @PVM_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -1398,15 +1396,21 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
 @PVM_TRUE@install-data-local:
-@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 @PVM_TRUE@	@if test -f $(FUNCTION_NAMES); then \
+@PVM_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@PVM_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@PVM_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@PVM_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @PVM_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 @PVM_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @PVM_TRUE@	fi
 # Install the help chapter
-@PVM_TRUE@	@if test -f $(HELP_CHAPTER); then \
-@PVM_TRUE@		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
+@PVM_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
+@PVM_TRUE@	if test -f $$HELPFILE; then \
+@PVM_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_TRUE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@PVM_TRUE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_TRUE@	fi
 # Install the macros
 @PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1418,26 +1422,16 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		  done; \
 @PVM_TRUE@		fi; \
 @PVM_TRUE@	done
-# Install the localisation files
-@PVM_TRUE@	@for dir in $(LOCALISATIONDIRS) ; do \
-@PVM_TRUE@	 if test -d $$dir; then \
-@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_TRUE@		  for file in $(LOCALISATIONFILES) ; do \
-@PVM_TRUE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_TRUE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_TRUE@		  done ; \
-@PVM_TRUE@	 fi; \
-@PVM_TRUE@	done
 # Install java files (.jar)
-@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
-@PVM_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
-@PVM_TRUE@	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+@PVM_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@PVM_TRUE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
+@PVM_TRUE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
 @PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
 @PVM_TRUE@	  done ; \
 @PVM_TRUE@	fi
 
-########### CLEAN ###################
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 @GUI_TRUE@@PVM_TRUE@clean-local: clean-java
 @GUI_FALSE@@PVM_TRUE@clean-local:
@@ -1472,10 +1466,10 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
 @PVM_FALSE@	fi
 
-########################### JAVA ######################################
+########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
+#### libsciboolean_la_SOURCES = plop.c plip.f 
 ####
 #### It is why those rules exist.
 #######################################################################
@@ -1519,7 +1513,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@		done; \
 @PVM_FALSE@	fi
 
-################ MACROS ######################"
+################ MACROS ######################"
 # Rule to build a macro
 @PVM_FALSE@.sci.bin:
 @PVM_FALSE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -1568,15 +1562,21 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done
 @PVM_FALSE@install-data-local:
-@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 @PVM_FALSE@	@if test -f $(FUNCTION_NAMES); then \
+@PVM_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@PVM_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@PVM_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@PVM_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @PVM_FALSE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 @PVM_FALSE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @PVM_FALSE@	fi
 # Install the help chapter
-@PVM_FALSE@	@if test -f $(HELP_CHAPTER); then \
-@PVM_FALSE@		$(INSTALL_DATA) $(HELP_CHAPTER) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTER); \
+@PVM_FALSE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
+@PVM_FALSE@	if test -f $$HELPFILE; then \
+@PVM_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@PVM_FALSE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@PVM_FALSE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_FALSE@	fi
 # Install the macros
 @PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
@@ -1588,26 +1588,16 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@		  done; \
 @PVM_FALSE@		fi; \
 @PVM_FALSE@	done
-# Install the localisation files
-@PVM_FALSE@	@for dir in $(LOCALISATIONDIRS) ; do \
-@PVM_FALSE@	 if test -d $$dir; then \
-@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_FALSE@		  for file in $(LOCALISATIONFILES) ; do \
-@PVM_FALSE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_FALSE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_FALSE@		  done ; \
-@PVM_FALSE@	 fi; \
-@PVM_FALSE@	done
 # Install java files (.jar)
-@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
-@PVM_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
-@PVM_FALSE@	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+@PVM_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@PVM_FALSE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
+@PVM_FALSE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
 @PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
 @PVM_FALSE@	  done ; \
 @PVM_FALSE@	fi
 
-########### CLEAN ###################
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 @GUI_TRUE@@PVM_FALSE@clean-local: clean-java
 @GUI_FALSE@@PVM_FALSE@clean-local:
