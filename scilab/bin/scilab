@@ -76,6 +76,7 @@ else
 		while test -h "$progname"; do
 			bn=`basename "$progname"`
 			cd `dirname "$progname"`
+			# Browse the symlink to the real one
 			progname=`/bin/ls -l "$bn" | sed -e 's/^.* -> //' `
 			if test ! -x "$progname"; then
 				break
@@ -89,6 +90,16 @@ else
 				found=1
 				break
 			fi
+			# The current file ($0), probably scilab is a symlink to the real one and here, it is the dev env
+			run_sci="$curdir/../scilab-bin"
+			echo $run_sci
+			if test -x "$run_sci"; then
+				cd "$curdir/../"
+				SCI=`pwd`
+				SCIBIN=$run_sci
+				found=1
+				break
+			fi
 		done
 		cd "$here"
 	fi
@@ -97,6 +108,7 @@ fi
 
 
 if test -x "$SCI/bin/scilab-bin"; then
+# real env
 	SCILABBIN=$SCI/bin/scilab-bin
 	SCI=$SCI/share/scilab/
 else
