@@ -246,11 +246,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\sizes.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\sox.h"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\st.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\styles.h"
 				>
 			</File>
 			<File

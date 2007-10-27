@@ -32,6 +32,7 @@
 #include "st.h"
 #include "wav.h"
 #include "sciprint.h"
+#include "sizes.h"
 /*-----------------------------------------------------------------------------------*/ 
 /* Private data for .wav file */
 typedef struct wavstuff 
