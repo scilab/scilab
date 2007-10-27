@@ -1,0 +1,11 @@
+// ====================================================================
+// action_binding module initialisation file 
+// Copyright INRIA 2007
+// ====================================================================
+//Load  functions librarie
+//load("SCI/modules/action_binding/macros/lib");
+// ====================================================================
+//add help chapter
+//add_module_help_chapter("action_binding");
+//clear add_module_help_chapter;
+// ====================================================================

@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8,00"
 	Name="action_binding"
-	ProjectGUID="{A85DE33C-F594-47A1-88F3-6FC4E75A1F1E}"
+	ProjectGUID="{8A654CC5-22C1-4972-A8CF-1B89F78B5383}"
 	RootNamespace="action_binding"
 	Keyword="Win32Proj"
 	>
@@ -40,8 +40,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes;../../libs/intl"
+				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -59,18 +59,17 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n action_binding.dll %%f &gt;nul&#x0D;&#x0A;copy *.def action_bindingtmp.def &gt;nul&#x0D;&#x0A;copy ..\action_binding_header.def+action_bindingtmp.def  ..\action_binding.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n action_binding.dll %%f &gt;nul&#x0D;&#x0A;copy *.def action_bindingtmp.def &gt;nul&#x0D;&#x0A;copy ..\action_binding_header.def+action_bindingtmp.def  ..\action_binding.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="../../bin/sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="action_binding.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -126,15 +125,16 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes;../../libs/intl"
+				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
+				DebugInformationFormat="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -145,12 +145,12 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n action_binding.dll %%f &gt;nul&#x0D;&#x0A;copy *.def action_bindingtmp.def &gt;nul&#x0D;&#x0A;copy ..\action_binding_header.def+action_bindingtmp.def  ..\action_binding.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n action_binding.dll %%f &gt;nul&#x0D;&#x0A;copy *.def action_bindingtmp.def &gt;nul&#x0D;&#x0A;copy ..\action_binding_header.def+action_bindingtmp.def  ..\action_binding.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="../../bin/sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="action_binding.def"
 				GenerateDebugInformation="false"
@@ -158,7 +158,7 @@
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				LinkTimeCodeGeneration="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="../../bin/$(ProjectName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -192,48 +192,72 @@
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\c\gw_action_binding.c"
+				RelativePath=".\src\c\DllmainAction_Binding.c"
 				>
 			</File>
 			<File
-				RelativePath=".\action_binding.rc"
+				RelativePath=".\src\c\dynamic_menus.c"
 				>
 			</File>
 			<File
-				RelativePath=".\InterpreterManagement.c"
+				RelativePath=".\src\c\InterpreterManagement.c"
 				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\resource.h"
+				RelativePath=".\includes\dynamic_menus.h"
 				>
 			</File>
 			<File
-				RelativePath=".\InterpreterManagement.h"
+				RelativePath=".\src\c\InterpreterManagement.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\resource.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File
+				RelativePath=".\src\c\action_binding.rc"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="localization"
+			>
+			<File
+				RelativePath=".\locales\en_US\messages.pot"
 				>
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\Makefile.am"
+			RelativePath=".\action_binding.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\action_binding_gateway.xml"
+			RelativePath=".\LibScilab_Import.def"
 			>
 		</File>
 		<File
-			RelativePath="..\..\action_binding.iss"
+			RelativePath=".\Makefile.am"
 			>
 		</File>
 		<File
-			RelativePath="..\..\version.xml"
+			RelativePath=".\version.xml"
 			>
 		</File>
 	</Files>
