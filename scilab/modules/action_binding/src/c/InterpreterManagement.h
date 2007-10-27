@@ -7,6 +7,8 @@
 #ifndef __INTERPRETERMANAGEMENT_H__
 #define __INTERPRETERMANAGEMENT_H__
 
+#include "BOOL.h" /* BOOL */
+
 /**
  * Put a command in Scilab command queue so that Scilab executes it
  * The command is displayed in Scilab Window
@@ -27,6 +29,12 @@ int execScilabEventLoop(void);
 * @return execution status
 */
 int interruptScilab(void);
+
+/*
+* Check Queue 
+* return TRUE if it is not empty
+*/
+BOOL haveCommandsInTheQueue(void);
 /*-----------------------------------------------------------------------------------*/
 
 #endif /* __INTERPRETERMANAGEMENT_H__ */

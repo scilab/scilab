@@ -14,7 +14,6 @@
 #include "setgetlanguage.h"
 #include "../../../io/includes/setenvc.h"
 /*-----------------------------------------------------------------------------------*/ 
-
 /**
  * Export the variable LC_ALL to the system
  *
@@ -38,7 +37,13 @@ BOOL InitializeLocalization(void)
 	char *pathLocales=NULL;
 	char *ret=NULL;
 
+#ifndef _MSC_VER
 	ret=setlocale(LC_MESSAGES,"");
+#else
+	/* MS VS (setlocale) doesn't know LC_MESSAGES */
+	/* http://msdn2.microsoft.com/en-us/library/x99tb11d(vs.71).aspx */
+	ret = setlocale(LC_CTYPE,"");
+#endif
 	if (ret==NULL){
    		fprintf(stderr, "I18N: Doesn't support your locale.\n" );
 		return FALSE;

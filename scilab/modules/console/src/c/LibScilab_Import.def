@@ -4,8 +4,6 @@
 EXPORTS
 ; core 
 ;
-StoreCommand1
-StoreCommand
 getScilabMode
 scilab_timer_check
 ScilabEventsLoop

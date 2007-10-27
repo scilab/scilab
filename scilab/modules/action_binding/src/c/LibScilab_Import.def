@@ -1,17 +1,26 @@
-	LIBRARY    Libscilab.dll
+LIBRARY    LibScilab.dll
 
 
 EXPORTS
-;core
-com_
-stack_
-sciprint
-ExceptionMessage
-createvarfromptr_
-putlhsvar_
-check_scalar
-getrhsvar_
-checkrhs_
-checklhs_
-intersci_
-;
+ sciprint
+ putlhsvar_
+ error_
+ cluni0_
+ createvar_
+ stack_
+ com_
+ getrhsvar_
+ checklhs_
+ checkrhs_
+ intersci_
+ createvarfromptr_
+ Scierror
+ callFunctionFromGateway
+ iop_
+ message_scilab
+ sciprint_full
+ ScilabEventsLoop
+ ;
+ ;core_f
+ sigbas_
+

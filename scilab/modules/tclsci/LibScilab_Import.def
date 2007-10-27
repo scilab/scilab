@@ -9,10 +9,6 @@ EXPORTS
  iop_
  cf_type
  GetData
- SetCommandflag
- StoreCommand
- GetCommand
- ismenu
  recu_
  syncexec_
  GetScreenProperty

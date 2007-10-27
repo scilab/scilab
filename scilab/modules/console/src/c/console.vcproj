@@ -254,14 +254,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\InterpreterManagement.c"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\InterpreterManagement_wrap.c"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\PromptToHome.cpp"
 				>
 			</File>
@@ -400,10 +392,6 @@
 			</File>
 			<File
 				RelativePath="..\jni\GuiManagement.i"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\InterpreterManagement.i"
 				>
 			</File>
 		</Filter>

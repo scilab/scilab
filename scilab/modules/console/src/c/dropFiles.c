@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "dropFiles.h"
 #include "MALLOC.h"
-#include "dynamic_menus.h" /* storecommand */
+#include "../../../action_binding/includes/dynamic_menus.h" /* storecommand */
 #include "../../../fileio/includes/FindFileExtension.h"
 #include "../../../fileio/includes/URIFileToFilename.h"
 /*-----------------------------------------------------------------------------------*/
