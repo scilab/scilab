@@ -23,8 +23,6 @@ EXPORTS
 syncexec_
 cha1_
 deletewin_
-StoreCommand1
-StoreCommand
 sciReturnString
 sciReturnDouble
 sciReturnRowVector
@@ -60,15 +58,12 @@ ReadbdfFont
 getSCIpath
 TryToGetDC
 RefreshGraphToolBar
-getmen_
 CtrlCHit
 GPopupResize
 MenuFixCurrentWin
 CloseGraphMacros
 CreateGraphToolBar
 CreateGedMenus
-InitStatusBar
-ReadRegistryGraph
 dsort_
 check_dim_prop
 check_same_dims

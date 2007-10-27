@@ -14,7 +14,6 @@
 #define __ERRO_H__
 
 #include "machine.h"
-#include "Scierror.h"
 
 int C2F(erro)(char *str,unsigned int str_len);
 

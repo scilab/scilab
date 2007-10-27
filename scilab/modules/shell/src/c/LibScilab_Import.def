@@ -33,7 +33,6 @@ scilab_timer_check
 set_is_reading
 GetCurrentPrompt
 get_is_reading
-ismenu
 sigbas_
 IsFromC
 ;

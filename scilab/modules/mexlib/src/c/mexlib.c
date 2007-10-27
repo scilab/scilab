@@ -52,13 +52,13 @@
 #include "cvstr.h"
 #include "sciprint.h"
 #include "cerro.h"
+#include "erro.h"
 
 static char *the_current_mex_name;
 
 extern int C2F(dcopy) __PARAMS((int*, double *, int *, double *, int *));
 extern int  C2F(mxgetm) __PARAMS((    mxArray *ptr));
 extern int  C2F(mxgetn) __PARAMS((    mxArray *ptr));
-extern int  C2F(erro)  __PARAMS((char *str,unsigned int dummy));
 extern int  C2F(hmcreate)  __PARAMS((int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval));
 extern int  C2F(stcreate)  __PARAMS((int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval));
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
