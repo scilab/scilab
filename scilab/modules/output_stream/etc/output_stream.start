@@ -1,0 +1,11 @@
+// ====================================================================
+// output_stream module initialisation file 
+// Copyright INRIA 2007
+// ====================================================================
+//Load  functions librarie
+//load("SCI/modules/output_stream/macros/lib");
+// ====================================================================
+//add help chapter
+//add_module_help_chapter("output_stream");
+//clear add_module_help_chapter;
+// ====================================================================

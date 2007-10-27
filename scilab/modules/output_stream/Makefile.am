@@ -44,7 +44,7 @@ libscioutput_stream_la_etc_DATA = etc/output_stream.quit etc/output_stream.start
 
 #### output_stream : gateway declaration ####
 libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
+libscioutput_stream_la_sci_gateway_DATA =
 
 #### output_stream : include files ####
 libscioutput_stream_la_includedir=$(pkgincludedir)/output_stream

@@ -34,6 +34,7 @@
 <module name="integer" activate="1"/>
 <module name="interpolation" activate="1"/>
 <module name="io" activate="1"/>
+<module name="output_stream" activate="1"/>
 <module name="intersci" activate="1"/>
 <module name="jvm" activate="1"/>
 <module name="linear_algebra" activate="1"/>
