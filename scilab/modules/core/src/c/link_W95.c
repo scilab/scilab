@@ -106,7 +106,7 @@ int Sci_dlopen( char *loaded_files[], int global)
 	{
 		if ( hd[i].ok == FAIL) 
 		{
-			hd[i].shl =  (unsigned long)hd1;
+			hd[i].shl =  PtrToLong(hd1);
 			//  strcpy(hd[i].tmp_file,loaded_files[i]);
 			hd[i].ok = OK;
 			return(i);
@@ -120,7 +120,7 @@ int Sci_dlopen( char *loaded_files[], int global)
 	}
 
 	//strcpy(hd[Nshared].tmp_file,loaded_files[i]);
-	hd[Nshared].shl = (unsigned long)hd1;
+	hd[Nshared].shl = PtrToLong(hd1);
 	hd[Nshared].ok = OK;
 	Nshared ++;
 	return(Nshared-1);
@@ -160,7 +160,7 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 		if (getWarningMode()) sciprint(_("Entry name %s is already loaded from lib %d\n"),ename,ish);
 		return(OK);
 	}
-	hd1 = (DynLibHandle)  hd[ish].shl;
+	hd1 = (DynLibHandle) LongToPtr(hd[ish].shl);
 	EP[NEpoints].epoint = (function) GetDynLibFuncPtr (hd1,enamebuf);
 	if ( EP[NEpoints].epoint == NULL )
 	{
@@ -203,7 +203,7 @@ void Sci_Delsym(int ishared)
 	}
 	if ( hd[ish].ok != FAIL)
 	{
-		FreeDynLibrary ((DynLibHandle) hd[ish].shl);
+		FreeDynLibrary ((DynLibHandle)  LongToPtr(hd[ish].shl));
 		hd[ish].ok = FAIL;
 	}
 }
