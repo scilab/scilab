@@ -1,7 +1,7 @@
 /* modules/core/includes/machine.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef MACHINE_H 
-#define MACHINE_H 
+#ifndef MACHINE_H
+#define MACHINE_H
 
 
 
@@ -409,9 +409,9 @@
 #undef log_10_
 
 
-/* 
+/*
    Define integer C type which must fit Fortran integer
-   For Scilab to work, the rule is: 
+   For Scilab to work, the rule is:
           size of Fortran double precision = 2 * size of Fortran integer
 
    At the present time, we suppose:

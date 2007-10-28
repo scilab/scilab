@@ -1149,7 +1149,6 @@ libs/MALLOC/Makefile
 libs/dynamiclibrary/Makefile
 libs/doublylinkedlist/Makefile
 libs/hashtable/Makefile
-libs/f2c/Makefile
 libs/libst/Makefile
 modules/helptools/Makefile
 modules/data_structures/Makefile
