@@ -5,24 +5,35 @@ EXPORTS
 ;--------------------------
 ; core
 ;--------------------------
- sciprint
- putlhsvar_
- error_
- cluni0_
- createvar_
- stack_
- com_
- getrhsvar_
- checklhs_
- checkrhs_
- intersci_
- createvarfromptr_
- Scierror
- callFunctionFromGateway
-;
-syncexec_
+vstk_
+overload_
+recu_
+gettype_
+vartype_
+elementtype_
 cha1_
-deletewin_
+checklhs_
+checkrhs_
+msgs_
+error_
+firstopt_
+findopt_
+intersci_
+com_
+iop_
+getrhsvar_
+getlistrhsvar_
+createvar_
+createvarfromptr_
+stack_
+syncexec_
+putlhsvar_
+scistring_
+convert2sci_
+numopt_
+dsort_
+callscifun_
+callFunctionFromGateway
 sciReturnString
 sciReturnDouble
 sciReturnRowVector
@@ -42,59 +53,16 @@ sciReturnStringMatrix
 addStringColVectorToReturnedList
 sciReturnChar
 sciReturnUserData
-findopt_
-vartype_
-firstopt_
+Scierror
+sciprint
 check_length
-iop_
-SciViewportGet
-elementtype_
-getlistrhsvar_
-readxbmimg_
-getScilabMode
-scistring_
-convert2sci_
-ReadbdfFont
-getSCIpath
-TryToGetDC
-RefreshGraphToolBar
-CtrlCHit
-GPopupResize
-MenuFixCurrentWin
-CloseGraphMacros
-CreateGraphToolBar
-CreateGedMenus
-dsort_
 check_dim_prop
 check_same_dims
+getScilabMode
 get_optionals
-check_vector
-overload_
-vstk_
-recu_
 check_scalar
-numopt_
 check_dims
-gettype_
-msgs_
-callscifun_
+check_vector
 IsAScalar
 GetData
 GetDataSize
-SciViewportMove
-GetScreenDPI
-CreateGraphClass
-CtrlCwasTyped
-;
-getgraphwin
-setgraphwinresized
-getgraphwinButtonHeight
-getgraphwinOriginx
-getgraphwinOriginy
-getgraphwinSizex
-getgraphwinSizey
-getgraphwinhInstance
-setgraphwinymax
-setgraphwinxmax
-;
-
