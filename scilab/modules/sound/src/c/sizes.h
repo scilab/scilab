@@ -5,7 +5,7 @@
 #ifndef __SIZES_H__
 #define __SIZES_H__
 
-static char *sizes[] = {
+char *sizes[] = {
 	"NONSENSE!",
 	"bytes",
 	"shorts",

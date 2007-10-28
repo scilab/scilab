@@ -5,7 +5,7 @@
 #ifndef __STYLES_H__
 #define __STYLES_H__
 
-static char *styles[] = {
+char *styles[] = {
 	"NONSENSE!",
 	"unsigned",
 	"signed (2's complement)",
