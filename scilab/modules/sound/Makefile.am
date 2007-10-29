@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 SOUND_C_SOURCES = src/c/raw.c \
@@ -21,7 +21,10 @@ unit_tests/savewave.tst \
 unit_tests/sound.tst \
 unit_tests/wavread.tst
 
-libscisound_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscisound_la_CFLAGS=  -Iincludes/ \
+			-Isrc/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modlues/output_stream/includes
 
 pkglib_LTLIBRARIES = libscisound.la
 
@@ -44,11 +47,11 @@ libscisound_la_rootdir = $(mydatadir)
 libscisound_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### sound : init scripts #### 
+#### sound : init scripts ####
 libscisound_la_etcdir = $(mydatadir)/etc
 libscisound_la_etc_DATA = etc/sound.quit etc/sound.start
 
-#### sound : gateway declaration #### 
+#### sound : gateway declaration ####
 libscisound_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisound_la_sci_gateway_DATA = sci_gateway/sound_gateway.xml
 
