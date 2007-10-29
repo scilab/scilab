@@ -24,9 +24,13 @@ sci_gateway/c/sci_getlanguage.c
 #sci_gateway/c/sci_addtext.c \
 #sci_gateway/c/sci_removetext.c
 
-libscilocalization_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
+libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
+				-Iincludes/ \
+				-Isrc/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
-libscilocalization_la_LDFLAGS = $(JAVA_JNI_LIBS) 
+libscilocalization_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
 pkglib_LTLIBRARIES = libscilocalization.la
 
@@ -43,11 +47,11 @@ libscilocalization_la_rootdir = $(mydatadir)
 libscilocalization_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-####localization : init scripts #### 
+####localization : init scripts ####
 libscilocalization_la_etcdir = $(mydatadir)/etc
 libscilocalization_la_etc_DATA = etc/localization.quit etc/localization.start
 
-#### localization : gateway declaration #### 
+#### localization : gateway declaration ####
 libscilocalization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscilocalization_la_sci_gateway_DATA = sci_gateway/localization_gateway.xml
 
