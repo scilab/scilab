@@ -1720,12 +1720,12 @@ msgstr	""
 #
 # File: src/c/banier.c, line: 43
 # File: src/c/banier.c, line: 49
-msgid	"Warning: the operational team of the Scilab Consortium\n   "
+msgid	"Warning: the operational team of the Scilab Consortium\n"
 	"doesn't provide and doesn't support the port of Scilab to MacOS.\n"
 msgstr	""
 #
 # File: src/c/banier.c, line: 50
-msgid	"Warning: the operational team of the Scilab Consortium\n   "
+msgid	"Warning: the operational team of the Scilab Consortium\n"
 	"doesn't provide and doesn't support this version of Scilab built with\n"
 msgstr	""
 #

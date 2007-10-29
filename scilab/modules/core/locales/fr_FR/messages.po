@@ -1711,7 +1711,7 @@ msgstr	"Ce logiciel est distribué sans aucune garantie.\n"
 msgid	"This is a development and not at all a final or stable version of "
 	"Scilab 5.0\nthat will be released in the future. A lot of features "
 	"are missing and buggy.\n"
-msgstr	"Ce programme est en version de développement et ne représente en "
+msgstr	"Ce programme est en version de développement et ne représente en\n"
 	"rien ce que sera Scilab 5.0.\n"
  	"Beaucoup de fonctionnalités sont défectueuses ou manquantes.\n"
 #
@@ -1719,21 +1719,21 @@ msgstr	"Ce programme est en version de développement et ne représente en "
 msgid	"In no event will the authors be held liable for any damages "
 	"arising from,\nout of or in connection with the software or "
 	"the use or other dealings\nin the software.\n"
-msgstr	"En aucun cas, les auteurs ne pourront être tenu responsable des "
-	"erreurs techniques ou matérielles, de perte de donnée résultant "
+msgstr	"En aucun cas, les auteurs ne pourront être tenu responsable des\n"
+	"erreurs techniques ou matérielles, de perte de donnée résultant\n"
 	"de l'utilisation du logiciel.\n"
 #
 # File: src/c/banier.c, line: 43
 # File: src/c/banier.c, line: 49
-msgid	"Warning: the operational team of the Scilab Consortium\n   "
+msgid	"Warning: the operational team of the Scilab Consortium\n"
 	"doesn't provide and doesn't support the port of Scilab to MacOS.\n"
 msgstr	"Attention : l'équipe opérationnelle du Consortium Scilab\n   "
 	"ne fournit et ne supporte pas la version MacOS de Scilab.\n"
 #
 # File: src/c/banier.c, line: 50
-msgid	"Warning: the operational team of the Scilab Consortium\n   "
+msgid	"Warning: the operational team of the Scilab Consortium\n"
 	"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr	"Attention : l'équipe opérationnelle du Consortium Scilab\n   "
+msgstr	"Attention : l'équipe opérationnelle du Consortium Scilab\n"
 	"ne fournit et ne supporte pas la version Scilab compilé avec des\n"
 	"anciennes versions des compilateurs Microsoft.\n"
 #

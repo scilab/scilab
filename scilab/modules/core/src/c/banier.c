@@ -36,12 +36,12 @@ void banner(void)
 
 	#if defined(__APPLE__)
 		sciprint("\n\n");
-		sciprint(_("Warning: the operational team of the Scilab Consortium\n   doesn't provide and doesn't support the port of Scilab to MacOS.\n"));
+		sciprint(_("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support the port of Scilab to MacOS.\n"));
 	#endif /* __APPLE__ */
 
 	#if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
 		sciprint("\n\n");
-		sciprint(_("Warning: the operational team of the Scilab Consortium\n   doesn't provide and doesn't support this version of Scilab built with\n"));
+		sciprint(_("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
 		sciprint("   ");
   #endif
 }
