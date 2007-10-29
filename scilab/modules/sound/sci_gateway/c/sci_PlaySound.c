@@ -1,4 +1,4 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#include <Windows.h>
 	#pragma comment(lib, "winmm.lib")
@@ -6,21 +6,15 @@
 #include "gw_sound.h"
 #include "stack-c.h"
 #include "cluni0.h"
-/*-----------------------------------------------------------------------------------*/ 
-/* FILENAME_MAX is set to 14 on hp */
-#ifdef hppa 
-#undef FILENAME_MAX
-#define FILENAME_MAX 4096 
-#endif 
-/*-----------------------------------------------------------------------------------*/ 
-static char filename[FILENAME_MAX];
+/*-----------------------------------------------------------------------------------*/
+static char filename[PATH_MAX];
 static int out_n;
 static long int lout;
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int C2F(playsound)(char *fname,char *command,unsigned long fname_len);
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 /* SCILAB function : PlaySound */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
 {
   char *command=NULL;
@@ -29,16 +23,16 @@ int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
   CheckLhs(0,1);
   /*  checking variable file */
   GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-  if ( Rhs == 2 ) 
+  if ( Rhs == 2 )
   {
       GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
       command = cstk(l2);
   }
   /*** first call to get the size **/
-  lout=FILENAME_MAX;
+  lout=PATH_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
   rep = C2F(playsound)(filename,command,(int)strlen(filename));
-  if ( Lhs == 1 ) 
+  if ( Lhs == 1 )
   {
       CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&l2);
       *stk(l2)= rep;
@@ -46,7 +40,7 @@ int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
   }
   else
   {
-    if ( rep == -1 ) 
+    if ( rep == -1 )
 		{
 			Scierror(999,_("Error in PlaySound\n"));
 		}
@@ -55,26 +49,26 @@ int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int C2F(playsound)(char *fname,char *command,unsigned long fname_len)
 {
 
 #ifdef _MSC_VER
   /* Stop Playing*/
-  PlaySound(NULL,NULL,SND_PURGE);	
+  PlaySound(NULL,NULL,SND_PURGE);
   /* Play Wav file	*/
   PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
   return 0;
-#else 
+#else
   /* linux : a player should be detected by configure ?
    */
-  /* !!!! This code MUST be rewrited !!! It is not at all the way of playing 
+  /* !!!! This code MUST be rewrited !!! It is not at all the way of playing
 	 sound with Linux */
-  char system_cmd[FILENAME_MAX+10];
+  char system_cmd[PATH_MAX+10];
   int rep ;
-  sprintf(system_cmd,"%s  %s > /dev/null 2>&1",(command == NULL) ? "play": command, filename);  
+  sprintf(system_cmd,"%s  %s > /dev/null 2>&1",(command == NULL) ? "play": command, filename);
   rep = system(system_cmd);
   return rep;
-#endif 
+#endif
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

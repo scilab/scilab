@@ -1,20 +1,15 @@
 #include "gw_sound.h"
 #include "stack-c.h"
-#include "sox.h" 
+#include "sox.h"
 #include "cluni0.h"
-/*-----------------------------------------------------------------------------------*/ 
-/* FILENAME_MAX is set to 14 on hp */
-#ifdef hppa 
-#undef FILENAME_MAX
-#define FILENAME_MAX 4096 
-#endif 
-/*-----------------------------------------------------------------------------------*/ 
-static char filename[FILENAME_MAX];
+#include "machine.h"
+/*-----------------------------------------------------------------------------------*/
+static char filename[PATH_MAX];
 static int out_n;
 static long int lout;
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 /* SCILAB function : loadwave */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int sci_loadwave(char *fname,unsigned long fname_len)
 {
   WavInfo Wi;
@@ -25,7 +20,7 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   /*  checking variable file */
   GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
   /*** first call to get the size **/
-  lout=FILENAME_MAX;
+  lout=PATH_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
   C2F(loadwave)(filename,(double *) 0,&n2,0,&Wi,&err);
   if (err >  0)
@@ -39,7 +34,7 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   nn2 = n2/m2;
   CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&nn2,&l2);
   CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&un,&eight,&l3);
-  
+
   *stk(l3)   = Wi.wFormatTag;	/* data format */
   *stk(l3+1) = Wi.wChannels;	/* number of channels */
   *stk(l3+2) = Wi.wSamplesPerSecond; /* samples per second per channel */
@@ -65,4 +60,4 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

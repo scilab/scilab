@@ -2,19 +2,15 @@
 #include "stack-c.h"
 #include "sox.h"
 #include "cluni0.h"
-/*-----------------------------------------------------------------------------------*/ 
-/* FILENAME_MAX is set to 14 on hp */
-#ifdef hppa 
-#undef FILENAME_MAX
-#define FILENAME_MAX 4096 
-#endif 
-/*-----------------------------------------------------------------------------------*/ 
-static char filename[FILENAME_MAX];
+#include "machine.h"
+
+/*-----------------------------------------------------------------------------------*/
+static char filename[PATH_MAX];
 static int out_n;
 static long int lout;
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 /* SCILAB function : savewave */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int sci_savewave __PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,m2,n2,mn2,l2,m3,n3,l3,l4,err,rate=22050,channels;
@@ -34,7 +30,7 @@ int sci_savewave __PARAMS((char *fname,unsigned long fname_len))
      rate =(int)(*stk(l3));
   }
   CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &un,&un, &l4);
-  lout=FILENAME_MAX;
+  lout=PATH_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
   channels = m2;
   C2F(savewave)(filename,stk(l2),&rate,&mn2,&channels,&err);
@@ -49,4 +45,4 @@ int sci_savewave __PARAMS((char *fname,unsigned long fname_len))
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
