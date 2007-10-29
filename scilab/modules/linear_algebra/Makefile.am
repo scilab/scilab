@@ -92,7 +92,8 @@ sci_gateway/fortran/bschur.f
 MODULE_CHECKS = unit_tests/algebra.tst \
 unit_tests/norm.tst
 
-libscilinear_algebra_la_CFLAGS=  -Iincludes/
+libscilinear_algebra_la_CFLAGS=  	-Iincludes/ \
+					-I$(top_builddir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 
@@ -100,7 +101,9 @@ libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALG
 
 libscilinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/blas/libsciblas.la \
-$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la
+
 
 #### Target ######
 modulename=linear_algebra
