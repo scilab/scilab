@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 SPREADSHEET_C_SOURCES = src/c/xls.c \
@@ -10,7 +10,7 @@ src/c/ole.c \
 src/c/bytedecoders.c \
 src/c/logger.c \
 src/c/ripole.c \
-src/c/bt-int.c 
+src/c/bt-int.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_spreadsheet.c \
@@ -18,9 +18,12 @@ sci_gateway/c/sci_xls_read.c \
 sci_gateway/c/sci_xls_open.c
 
 
-MODULE_CHECKS = 
+MODULE_CHECKS =
 
-libscispreadsheet_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscispreadsheet_la_CFLAGS=  	-Iincludes/ \
+				-Isrc/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
 
@@ -28,7 +31,7 @@ libscispreadsheet_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscispreadsheet_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/libs/libst/libscilibst.la 
+    $(top_builddir)/libs/libst/libscilibst.la
 
 
 
@@ -43,11 +46,11 @@ libscispreadsheet_la_rootdir = $(mydatadir)
 libscispreadsheet_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### spreadsheet : init scripts #### 
+#### spreadsheet : init scripts ####
 libscispreadsheet_la_etcdir = $(mydatadir)/etc
 libscispreadsheet_la_etc_DATA = etc/spreadsheet.quit etc/spreadsheet.start
 
-#### spreadsheet : gateway declaration #### 
+#### spreadsheet : gateway declaration ####
 libscispreadsheet_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscispreadsheet_la_sci_gateway_DATA = sci_gateway/spreadsheet_gateway.xml
 
