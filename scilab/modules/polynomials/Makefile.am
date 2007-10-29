@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 POLYNOMIALS_FORTRAN_SOURCES = src/fortran/residu.f \
@@ -107,16 +107,17 @@ sci_gateway/fortran/sci_f_simpmd.f
 MODULE_CHECKS = unit_tests/polelm.tst \
 unit_tests/polops.tst
 
-libscipolynomials_la_CFLAGS= -Iincludes/ 
+libscipolynomials_la_CFLAGS= 	-Iincludes/ \
+				-I$(top_builddir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscipolynomials.la
 
 libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscipolynomials_la_LIBADD =
-# Cyclic dependencies : 
-#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la  
-#	$(top_builddir)/modules/core/libscicore.la 
+# Cyclic dependencies :
+#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+#	$(top_builddir)/modules/core/libscicore.la
 
 
 
@@ -130,11 +131,11 @@ libscipolynomials_la_rootdir = $(mydatadir)
 libscipolynomials_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### polynomials : init scripts #### 
+#### polynomials : init scripts ####
 libscipolynomials_la_etcdir = $(mydatadir)/etc
 libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 
-#### polynomials : gateway declaration #### 
+#### polynomials : gateway declaration ####
 libscipolynomials_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 
