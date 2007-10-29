@@ -11,12 +11,12 @@ cacsd \
 elementary_functions \
 arnoldi \
 boolean \
+output_stream \
 linear_algebra \
 differential_equations \
 string \
 signal_processing \
 fileio \
-output_stream \
 core \
 metanet \
 optimization \
