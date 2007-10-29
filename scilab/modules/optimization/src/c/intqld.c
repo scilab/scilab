@@ -1,17 +1,15 @@
-#include <string.h>
-#include "stack-c.h"
-#include "Scierror.h"
+#include "intqld.h"
+
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 
-int ql0001_(int *m,int *me,int *mmax,int *n,int *nmax,int *mnn,
+extern int C2F(ql0001)(int *m,int *me,int *mmax,int *n,int *nmax,int *mnn,
             double *c,double *d,double *a,double *b,double *xl,
             double *xu,double *x,double *u,int *iout,int *ifail,
             int *iprint,double *war,int *lwar,int *iwar,int *liwar,
             double *eps1);
 
-int C2F(intqld)(fname) 
-     char *fname;
-{ 
+int C2F(intqld)(char *fname)
+{
   static int un=1,zero=0;
 
   static int Q, n, nbis;
@@ -29,7 +27,7 @@ int C2F(intqld)(fname)
   /*    Define minls=1, maxlhs, minrhs, maxrhs   */
   static int minlhs=1, minrhs=7, maxlhs=3, maxrhs=8;
 
-  /*   Check rhs and lhs   */  
+  /*   Check rhs and lhs   */
   CheckRhs(minrhs,maxrhs) ;
   CheckLhs(minlhs,maxlhs) ;
 
@@ -44,10 +42,10 @@ int C2F(intqld)(fname)
   /*   Variable 2 (p)   */
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &nbis, &unbis, &p);
   CheckLength(2,nbis*unbis,n);
-  
+
   /*   Variable 3 (C)   */
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m, &nbis, &C);
-  if (( nbis != n ) && (m > 0)) 
+  if (( nbis != n ) && (m > 0))
     {
       Scierror(205,_("qld: Argument 3: wrong number of columns %d expected\n"), n);
       return 0;
@@ -55,7 +53,7 @@ int C2F(intqld)(fname)
   mmax = m+1;
   mnn = m+n+n;
 
-  /*   Variable 4 (b)   */  
+  /*   Variable 4 (b)   */
   GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &mbis, &unbis, &b);
   CheckLength(4,mbis*unbis,m);
 
@@ -81,8 +79,8 @@ int C2F(intqld)(fname)
   }
   else
     CheckLength(6,nbis*unbis,n);
- 
-  /*   Variable 7 (me)   */  
+
+  /*   Variable 7 (me)   */
   GetRhsVar(7,MATRIX_OF_INTEGER_DATATYPE, &pipo, &unbis, &me);
   CheckScalar(7,pipo,unbis);
   if ((*istk(me)<0) || (*istk(me)>n))
@@ -93,7 +91,7 @@ int C2F(intqld)(fname)
     }
 
   if(Rhs==8) {
-    /*   Variable 8 (eps1)   */  
+    /*   Variable 8 (eps1)   */
     GetRhsVar(8,MATRIX_OF_DOUBLE_DATATYPE, &pipo, &unbis, &leps);
     CheckScalar(8,pipo,unbis);
     eps1= Max(eps1,*stk(leps));
@@ -104,15 +102,15 @@ int C2F(intqld)(fname)
   CreateVar(next+1,MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &x);
 
   CreateVar(next+2,MATRIX_OF_DOUBLE_DATATYPE, &mnn, &un, &lambda);
- 
+
   CreateVar(next+3,MATRIX_OF_INTEGER_DATATYPE, &un, &un, &inform);
-  
+
 
   lwar = 3*n*n/2+10*n+2*mmax+2;
   CreateVar(next+4,MATRIX_OF_DOUBLE_DATATYPE, &lwar, &un, &war);
   CreateVar(next+5,MATRIX_OF_INTEGER_DATATYPE, &n, &un, &iwar);
   istk(iwar)[0]=0;
- 
+
   /* extend C and B to add a row and change the sign of C*/
   CreateVar(next+6,MATRIX_OF_DOUBLE_DATATYPE, &mmax, &n, &C_mmax);
   for(k=0; k<n; k++) {
