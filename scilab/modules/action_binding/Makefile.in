@@ -310,14 +310,20 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@SWIG_WRAPPERS = src/jni/InterpreterManagement.i
 
 # Includes need for the compilation
-libsciaction_binding_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/jni/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciaction_binding_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
+					-Iincludes/ \
+					-Isrc/c/ \
+					-Isrc/jni/ \
+					-I$(top_srcdir)/libs/MALLOC/includes/ \
+					-I$(top_srcdir)/modules/output_stream/includes
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding 
+
+# Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libsciaction_binding.la
 
 # All the sources needed by libsciaction_binding.la
-libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(CONSOLE_C_JNI_SOURCES) 
+libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(CONSOLE_C_JNI_SOURCES)
 libsciaction_binding_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
@@ -330,11 +336,11 @@ modulename = action_binding
 libsciaction_binding_la_rootdir = $(mydatadir)
 libsciaction_binding_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### action_binding : init scripts #### 
+#### action_binding : init scripts ####
 libsciaction_binding_la_etcdir = $(mydatadir)/etc
 libsciaction_binding_la_etc_DATA = etc/action_binding.quit etc/action_binding.start
 
-#### action_binding : gateway declaration #### 
+#### action_binding : gateway declaration ####
 libsciaction_binding_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciaction_binding_la_sci_gateway_DATA = 
 
