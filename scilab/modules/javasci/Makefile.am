@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 
@@ -28,7 +28,10 @@ pkglib_LTLIBRARIES = libjavasci.la
 
 libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
 
-libjavasci_la_CFLAGS = -Iincludes/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/doublylinkedlist/includes
+libjavasci_la_CFLAGS = 	-Iincludes/ \
+			$(JAVA_JNI_INCLUDE) \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes \
+			-I$(top_srcdir)/modules/output_stream/includes
 
 libjavasci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -38,7 +41,7 @@ libjavasci_la_LIBADD = \
 libjavasci_la_rootdir = $(mydatadir)
 libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### javasci : init scripts #### 
+#### javasci : init scripts ####
 libjavasci_la_etcdir = $(mydatadir)/etc
 libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
