@@ -1,10 +1,16 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 
-libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/dynamiclibrary/includes/ -Iincludes/ -Isrc/c $(XML_FLAGS)
+libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+			-Iincludes/ \
+			-Isrc/c \
+			$(XML_FLAGS) \
+			-I$(top_srcdir)/modules/output_stream/includes/
 
 libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
 
@@ -19,11 +25,11 @@ modulename=jvm
 libscijvm_la_rootdir = $(mydatadir)
 libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### jvm : init scripts #### 
+#### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
 libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
-#### jvm : gateway declaration #### 
+#### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
 
