@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### TEMPLATE MAKEFILE 
+### TEMPLATE MAKEFILE
 ### INRIA - Scilab 2007
 ##########
 
@@ -147,10 +147,18 @@ src/jni/FilledTextDrawerGL.cpp
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
-libscirenderer_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/jni/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
+libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
+				-Iincludes/ \
+				-Isrc/cpp/ \
+				-Isrc/jni/ \
+				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/graphics/includes/ \
+				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \
+				-I$(top_srcdir)/libs/doublylinkedlist/includes \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 # All the sources needed by libscirenderer.la
-libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
+libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
@@ -184,9 +192,10 @@ else
 # All the sources needed by libscirenderer.la
 libscirenderer_la_SOURCES = src/norenderer/norenderer.c
 
+libscirenderer_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 endif
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscirenderer.la
 
@@ -198,11 +207,11 @@ modulename=renderer
 libscirenderer_la_rootdir = $(mydatadir)
 libscirenderer_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### renderer : init scripts #### 
+#### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc
 libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
-#### renderer : gateway declaration #### 
+#### renderer : gateway declaration ####
 #libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 #libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
 
