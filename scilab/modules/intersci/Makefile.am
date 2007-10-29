@@ -31,7 +31,8 @@ intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 
-libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
+libsciintersci_la_CFLAGS = 	-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 libsciintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
