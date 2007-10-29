@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 ##########
@@ -413,8 +413,14 @@ top_srcdir = @top_srcdir@
 @TCLTK_FALSE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_TRUE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_FALSE@libscitclsci_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/
-@TCLTK_TRUE@libscitclsci_la_CFLAGS = -Iincludes/ -Isrc/c -Isci_gateway/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH) \
-@TCLTK_TRUE@-I$(top_srcdir)/modules/action_binding/includes
+@TCLTK_TRUE@libscitclsci_la_CFLAGS = -Iincludes/ \
+@TCLTK_TRUE@			-Isrc/c \
+@TCLTK_TRUE@			-Isci_gateway/c/ \
+@TCLTK_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
+@TCLTK_TRUE@			$(TCL_INC_PATH) \
+@TCLTK_TRUE@			$(TK_INC_PATH) \
+@TCLTK_TRUE@			-I$(top_srcdir)/modules/action_binding/includes \
+@TCLTK_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
 
 @TCLTK_TRUE@libscitclsci_la_LDFLAGS = $(TCLTK_LIBS)
 @TCLTK_FALSE@libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES)
@@ -634,15 +640,15 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/set.tcl
 
 
-#### tclsci : init scripts #### 
+#### tclsci : init scripts ####
 @TCLTK_FALSE@libscitclsci_la_etcdir = $(mydatadir)/etc
 
-#### tclsci : init scripts #### 
+#### tclsci : init scripts ####
 @TCLTK_TRUE@libscitclsci_la_etcdir = $(mydatadir)/etc
 @TCLTK_FALSE@libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 @TCLTK_TRUE@libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
-#### tclsci : gateway declaration #### 
+#### tclsci : gateway declaration ####
 @TCLTK_TRUE@libscitclsci_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @TCLTK_TRUE@libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 

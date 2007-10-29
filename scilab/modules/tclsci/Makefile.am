@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 if TCLTK
@@ -49,8 +49,14 @@ MODULE_CHECKS = unit_tests/TCL_SetGet.tst
 
 pkglib_LTLIBRARIES = libscitclsci.la
 
-libscitclsci_la_CFLAGS=  -Iincludes/ -Isrc/c -Isci_gateway/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH) \
--I$(top_srcdir)/modules/action_binding/includes
+libscitclsci_la_CFLAGS= -Iincludes/ \
+			-Isrc/c \
+			-Isci_gateway/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			$(TCL_INC_PATH) \
+			$(TK_INC_PATH) \
+			-I$(top_srcdir)/modules/action_binding/includes \
+			-I$(top_srcdir)/modules/output_stream/includes
 
 libscitclsci_la_LDFLAGS= $(TCLTK_LIBS)
 
@@ -260,11 +266,11 @@ tcl/TK_Scilab.tcl \
 tcl/misc.tcl \
 tcl/set.tcl
 
-#### tclsci : init scripts #### 
+#### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
 libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
-#### tclsci : gateway declaration #### 
+#### tclsci : gateway declaration ####
 libscitclsci_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 
@@ -332,7 +338,7 @@ modulename=tclsci
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
 
-#### tclsci : init scripts #### 
+#### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
 libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
