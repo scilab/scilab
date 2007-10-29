@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 IO_C_SOURCES = src/c/getpidc.c \
@@ -77,7 +77,11 @@ noinst_LTLIBRARIES = libdummy-io.la
 libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
 libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
 
-libsciio_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/fileio/includes/
+libsciio_la_CFLAGS=  	-Iincludes/ \
+			-Isrc/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libsciio.la
 
@@ -104,11 +108,11 @@ libsciio_la_rootdir = $(mydatadir)
 libsciio_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### io : init scripts #### 
+#### io : init scripts ####
 libsciio_la_etcdir = $(mydatadir)/etc
 libsciio_la_etc_DATA = etc/io.quit etc/io.start
 
-#### io : gateway declaration #### 
+#### io : gateway declaration ####
 libsciio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
 
