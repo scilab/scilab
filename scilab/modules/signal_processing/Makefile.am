@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.f \r>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
@@ -92,14 +92,15 @@ sci_gateway/fortran/bgetx.f \
 sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
-libscisignal_processing_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+libscisignal_processing_la_CFLAGS=  	-Iincludes/ \
+					-I$(top_builddir)/modules/output_stream/includes
+
 pkglib_LTLIBRARIES = libscisignal_processing.la
 
 libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscisignal_processing_la_LIBADD = \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la 
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 # Cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la
 
@@ -115,11 +116,11 @@ libscisignal_processing_la_rootdir = $(mydatadir)
 libscisignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### signal_processing : init scripts #### 
+#### signal_processing : init scripts ####
 libscisignal_processing_la_etcdir = $(mydatadir)/etc
 libscisignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_processing.start
 
-#### signal_processing : gateway declaration #### 
+#### signal_processing : gateway declaration ####
 libscisignal_processing_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing_gateway.xml
 
