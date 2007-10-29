@@ -39,7 +39,6 @@ jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
 /*-----------------------------------------------------------------------------------*/ 
 BOOL FreeDynLibJVM(void)
 {
-	BOOL bOK=FALSE;
 	if (hLibJVM)
 		{
 			if (FreeDynLibrary(hLibJVM))
@@ -47,16 +46,15 @@ BOOL FreeDynLibJVM(void)
 					ptr_JNI_GetDefaultJavaVMInitArgs = NULL; 
 					ptr_JNI_CreateJavaVM = NULL; 
 					ptr_JNI_GetCreatedJavaVMs = NULL; 
-					bOK=TRUE;
+					return TRUE;
 				}
 		}
-	return bOK;
+	return FALSE;
 }
 /*-----------------------------------------------------------------------------------*/ 
 BOOL LoadFuntionsJVM(char *filedynlib)
 {
-	BOOL bOK=FALSE;
-	
+
 	hLibJVM = LoadDynLibrary(filedynlib); 
 	
 	if (hLibJVM)
@@ -65,9 +63,9 @@ BOOL LoadFuntionsJVM(char *filedynlib)
 		ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetDynLibFuncPtr(hLibJVM, "JNI_CreateJavaVM" ); 
 		ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
 
-		if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) bOK=TRUE;
+		if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) return TRUE;
 	}
-	return bOK;
+	return FALSE;
 }
 /*-----------------------------------------------------------------------------------*/ 
 char *getJniErrorFromStatusCode(long status){
