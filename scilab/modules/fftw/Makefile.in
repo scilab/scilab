@@ -316,14 +316,14 @@ pkglib_LTLIBRARIES = libscifftw.la
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
 
-#### fftw : init scripts #### 
+#### fftw : init scripts ####
 libscifftw_la_etcdir = $(mydatadir)/etc
 libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_FALSE@FFTW_C_SOURCES = src/nofftw/nofftw.c
 @FFTW_TRUE@FFTW_C_SOURCES = src/c/callfftw.c \
 @FFTW_TRUE@src/c/fftwlibname.c \
 @FFTW_TRUE@src/c/fftw_utilities.c \
-@FFTW_TRUE@src/c/with_fftw.c 
+@FFTW_TRUE@src/c/with_fftw.c
 
 @FFTW_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 @FFTW_TRUE@	sci_gateway/c/sci_fftwlibraryisloaded.c \
@@ -339,13 +339,18 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 #### fftw : Conf files ####
 @FFTW_TRUE@libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### fftw : gateway declaration #### 
+#### fftw : gateway declaration ####
 @FFTW_TRUE@libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @FFTW_TRUE@libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 @FFTW_FALSE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
 @FFTW_TRUE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 @FFTW_TRUE@libscifftw_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
-@FFTW_TRUE@libscifftw_la_CFLAGS = -Iincludes/  -Isrc/c/ -I$(top_srcdir)/libs/dynamiclibrary/includes/
+@FFTW_FALSE@libscifftw_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
+@FFTW_TRUE@libscifftw_la_CFLAGS = -Iincludes/ \
+@FFTW_TRUE@			-Isrc/c/ \
+@FFTW_TRUE@			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+@FFTW_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
+
 @FFTW_TRUE@libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
 #### fftw : include files ####

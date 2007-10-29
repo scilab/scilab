@@ -11,7 +11,7 @@ pkglib_LTLIBRARIES = libscifftw.la
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
 
-#### fftw : init scripts #### 
+#### fftw : init scripts ####
 libscifftw_la_etcdir = $(mydatadir)/etc
 libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
@@ -20,7 +20,7 @@ if FFTW
 FFTW_C_SOURCES = src/c/callfftw.c \
 src/c/fftwlibname.c \
 src/c/fftw_utilities.c \
-src/c/with_fftw.c 
+src/c/with_fftw.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 	sci_gateway/c/sci_fftwlibraryisloaded.c \
@@ -36,7 +36,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 #### fftw : Conf files ####
 libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### fftw : gateway declaration #### 
+#### fftw : gateway declaration ####
 libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 
@@ -44,7 +44,10 @@ libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscifftw_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
 
-libscifftw_la_CFLAGS=  -Iincludes/  -Isrc/c/ -I$(top_srcdir)/libs/dynamiclibrary/includes/
+libscifftw_la_CFLAGS=  	-Iincludes/ \
+			-Isrc/c/ \
+			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes
 
 libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
@@ -66,6 +69,7 @@ FFTW_C_SOURCES = src/nofftw/nofftw.c
 
 libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
 
+libscifftw_la_CFLAGS= -I$(top_srcdir)/modules/output_stream/includes
 endif
 
 include $(top_srcdir)/Makefile.incl.am
