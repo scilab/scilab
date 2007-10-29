@@ -6,6 +6,7 @@
 #include "stack-c.h"
 #include "issymmetric.h"
 #include "gw_linear_algebra.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
 

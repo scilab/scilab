@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intdgees0) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzgees0) __PARAMS((char *fname, unsigned long fname_len));
@@ -29,7 +30,7 @@ extern int C2F(complexify)  __PARAMS((int *num));
 /*-----------------------------------------------------------------------------------*/
 int C2F(intschur)(char *fname,unsigned long fname_len)
 {
-	int *header1;int *header2;int *header3; 
+	int *header1;int *header2;int *header3;
 	int Cmplx, CmplxA, CmplxB;
 	int ret, something, X;
 	int which = 1; int longueur;
@@ -111,7 +112,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 		  return 0;
 	  }
 	  CmplxB=header2[3];
-	  if ((CmplxA == 0) && (CmplxB ==0))  Cmplx =0; 
+	  if ((CmplxA == 0) && (CmplxB ==0))  Cmplx =0;
 	  else if ((CmplxA == 1) && (CmplxB ==0)) {
 		  C2F(complexify)((X=2,&X));
 		  Cmplx=1;}
@@ -141,7 +142,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  }
 	  header2 = (int *) GetData(2); something=header2[0];
 	  CmplxB=header2[3];
-	  if ((CmplxA == 0) && (CmplxB ==0))  Cmplx =0; 
+	  if ((CmplxA == 0) && (CmplxB ==0))  Cmplx =0;
 	  else if ((CmplxA == 1) && (CmplxB ==0)) {
 		  C2F(complexify)((X=2,&X));
 		  Cmplx=1;}
@@ -182,7 +183,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  break;
 	  }
 	  break; /* end of case 3 */
-  default : 
+  default :
 	  Scierror(999,"%s: Invalid call! \n",fname);
 	  break;
 	} /*end of switch(Rhs) */

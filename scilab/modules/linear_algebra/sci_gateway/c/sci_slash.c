@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
 
@@ -26,7 +27,7 @@ int C2F(intslash)(char *fname,unsigned long fname_len)
 		return 0;
 	}
 	switch (CmplxA) {
-  case REAL:   
+  case REAL:
 	  switch (CmplxB) {
   case REAL :
 	  /* A real, Breal */

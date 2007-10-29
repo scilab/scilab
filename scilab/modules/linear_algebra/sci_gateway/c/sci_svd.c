@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intdgesvd1) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzgesvd1) __PARAMS((char *fname, unsigned long fname_len));
@@ -35,15 +36,15 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 		  return 0; }
 	  if (Cmplx==1) {
 		  ret = C2F(intzgesvd1)("svd",3L);
-		  return 0; } 
+		  return 0; }
 	  break;
   case 4:
 	  if (Cmplx==0) {
-		  ret = C2F(intdoldsvd)((tol=0,&tol),"svd",3L);  
+		  ret = C2F(intdoldsvd)((tol=0,&tol),"svd",3L);
 		  return 0;}
 	  if (Cmplx==1) {
-		  ret = C2F(intzoldsvd)((tol=0,&tol),"svd",3L);  
-		  return 0;} 
+		  ret = C2F(intzoldsvd)((tol=0,&tol),"svd",3L);
+		  return 0;}
 	  break;
 	  }
   case 2 :   /* svd(A, something)   */
@@ -55,31 +56,31 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 		  /*   ret = C2F(intsvdold)("svd",2L);  */
 		  if (Cmplx==0) {
 			  tol = ((double *) header2)[2];
-			  ret = C2F(intdoldsvd)(&tol,"svd",3L);  
+			  ret = C2F(intdoldsvd)(&tol,"svd",3L);
 			  return 0;}
 		  if (Cmplx==1) {
 			  tol = ((double *) header2)[2];
-			  ret = C2F(intzoldsvd)(&tol,"svd",3L);  
-			  return 0;} 
+			  ret = C2F(intzoldsvd)(&tol,"svd",3L);
+			  return 0;}
 	  }
 	  else {
 		  /* old Economy size:  [U,S,V]=svd(A,0)  */
 		  if (Cmplx==0) {
-			  ret = C2F(intdgesvd2)("svd",3L);  
+			  ret = C2F(intdgesvd2)("svd",3L);
 			  return 0;}
 		  if (Cmplx==1) {
-			  ret = C2F(intzgesvd2)("svd",3L);  
-			  return 0;} 
+			  ret = C2F(intzgesvd2)("svd",3L);
+			  return 0;}
 	  }
 	  break;
   case STRING  :
 	  /* Economy size:  [U,S,V]=svd(A,"e")  */
 	  if (Cmplx==0) {
-		  ret = C2F(intdgesvd2)("svd",3L);  
+		  ret = C2F(intdgesvd2)("svd",3L);
 		  return 0;}
 	  if (Cmplx==1) {
-		  ret = C2F(intzgesvd2)("svd",3L);  
-		  return 0;} 
+		  ret = C2F(intzgesvd2)("svd",3L);
+		  return 0;}
 	  break;
 	  }
 	  break;

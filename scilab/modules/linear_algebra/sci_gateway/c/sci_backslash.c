@@ -6,6 +6,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
 extern int C2F(intdgesv3) __PARAMS((char *fname, unsigned long fname_len));
@@ -18,7 +19,7 @@ int C2F(intbackslash)(char *fname,unsigned long fname_len)
 	int CmplxA;int CmplxB;int ret;int X;
 
 	/*   backslash(A,B)  */
-	header1 = (int *) GetData(1);    
+	header1 = (int *) GetData(1);
 	header2 = (int *) GetData(2);
 	CmplxA=header1[3];   CmplxB=header2[3];
 	if ((header1[1]!=header2[1])&(header2[1]*header2[2]==1)) {
@@ -27,7 +28,7 @@ int C2F(intbackslash)(char *fname,unsigned long fname_len)
 		return 0;
 	}
 	switch (CmplxA) {
-  case REAL:   
+  case REAL:
 	  switch (CmplxB) {
   case REAL :
 	  /* A real, B real */

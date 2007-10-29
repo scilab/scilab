@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intdgeqpf3) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzgeqpf3) __PARAMS((char *fname, unsigned long fname_len));
@@ -41,7 +42,7 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 		ret = C2F(doldqr)(&tol,"qr",2L);
 		break;
 	case COMPLEX :
-		ret = C2F(zoldqr)(&tol,"qr",2L); 
+		ret = C2F(zoldqr)(&tol,"qr",2L);
 		break;
 	default :
 		Scierror(999,"%s: Invalid input! \n",fname);
@@ -73,7 +74,7 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 	  ret = C2F(intdgeqpf4)("qr",2L);
 	  break;
   case COMPLEX :
-	  ret = C2F(intzgeqpf4)("qr",2L);  
+	  ret = C2F(intzgeqpf4)("qr",2L);
 	  break;
   default :
 	  Scierror(999,"%s: Invalid input! \n",fname);

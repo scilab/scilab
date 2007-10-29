@@ -1,20 +1,21 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
+#include "Scierror.h"
 
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static integer cx1 = 1;
 static integer cx0 = 0;
 static double c_b40 = 0.;
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(vfinite)(int *n, double *v);
 extern int C2F(wbdiag)();
 extern int C2F(bdiag)();
-/*-----------------------------------------------------------------------------------*/ 
-/* [Ab [,X [,bs]]]=bdiag(A [,rMax]) */ 
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
+/* [Ab [,X [,bs]]]=bdiag(A [,rMax]) */
+/*-----------------------------------------------------------------------------------*/
 int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 {
     integer ix1, ix2;
@@ -29,7 +30,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
     integer lai, lib, lbs, lxi, lxr;
 
     CheckRhs(1,2);
-    CheckLhs(1,3); 
+    CheckLhs(1,3);
 
     GetRhsCVar(1,MATRIX_OF_DOUBLE_DATATYPE, &it, &m, &n, &la, &lai);
     CheckSquare(1,m,n);
@@ -50,7 +51,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
     }
     if (Rhs == 2) {
 	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &n1, &m1, &lrMax);
-	CheckScalar(2,n1,m1); 
+	CheckScalar(2,n1,m1);
 	rMax = *stk(lrMax );
     } else {
 	rMax = 1.;
@@ -78,17 +79,17 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
       C2F(bdiag)(&n, &n, stk(la ), &c_b40, &rMax, stk(le ), stk(le + n ),
 		 istk(lib ), stk(lxr ), stk(lxi ), stk(lw ), &cx0, &fail);
     } else {
-	C2F(wbdiag)(&n, &n, stk(la ), stk(la + n * n ), &rMax, stk(le ), 
+	C2F(wbdiag)(&n, &n, stk(la ), stk(la + n * n ), &rMax, stk(le ),
 		    stk(le + n ), istk(lib ), stk(lxr ), stk(lxi ), &t, &t, stk(lw ), &cx0, &fail);
     }
-    
+
     if (fail) {
       Scierror(24,_("%s:  Non convergence in QR steps.\n"),fname);
       return 0;
     }
     if (Lhs == 3) {
       nbloc = 0;
-      for (k = 1; k <= n; ++k) 
+      for (k = 1; k <= n; ++k)
 	if (*istk(lib + k - 2 +1) >= 0)  ++nbloc;
       CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE, &nbloc, &cx1, &lbs);
       ix = 0;
@@ -105,4 +106,4 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
     return 0;
 } /* intbdiagr_ */
 
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
