@@ -42,7 +42,13 @@ endif
 libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
-libscihistory_manager_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ -I$(top_srcdir)/modules/history_manager/includes/
+libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
+					-Iincludes/ \
+					-Isrc/c/ \
+					-I$(top_srcdir)/libs/MALLOC/includes/ \
+					-I$(top_srcdir)/modules/console/includes/ \
+					-I$(top_srcdir)/modules/history_manager/includes/ \
+					-I$(top_srcdir)/modules/output_stream/includes/
 
 libscihistory_manager_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
