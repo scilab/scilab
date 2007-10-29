@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 
@@ -216,8 +216,9 @@ MODULE_CHECKS = unit_tests/slicot.tst \
 	unit_tests/arma.tst \
 	unit_tests/odedi.tst
 
-libscicacsd_la_FFLAGS= -Iincludes/ 
-libscicacsd_la_CFLAGS= -Iincludes/ 
+libscicacsd_la_FFLAGS= -Iincludes/
+libscicacsd_la_CFLAGS= 	-Iincludes/ \
+			-I$(top_builddir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libscicacsd.la
 
@@ -231,7 +232,7 @@ libscicacsd_la_LIBADD = \
 
 
 # Cyclic deps
-#	$(top_builddir)/modules/core/libscicore.la 
+#	$(top_builddir)/modules/core/libscicore.la
 
 
 
@@ -245,7 +246,7 @@ modulename=cacsd
 libscicacsd_la_rootdir = $(mydatadir)
 libscicacsd_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### cacsd : init scripts #### 
+#### cacsd : init scripts ####
 libscicacsd_la_etcdir = $(mydatadir)/etc
 libscicacsd_la_etc_DATA = etc/cacsd.quit etc/cacsd.start
 
