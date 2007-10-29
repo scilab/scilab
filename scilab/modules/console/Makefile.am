@@ -41,7 +41,11 @@ endif
 libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
 
 # Includes need for the compilation
-libsciconsole_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
+libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
+				-Iincludes/ \
+				-Isrc/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the library
 pkglib_LTLIBRARIES = libsciconsole.la
@@ -62,7 +66,7 @@ modulename=console
 libsciconsole_la_rootdir = $(mydatadir)
 libsciconsole_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### console : init scripts #### 
+#### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
