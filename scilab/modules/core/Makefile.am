@@ -333,7 +333,9 @@ libscicore_la_CFLAGS=  	-Iincludes/ \
 			$(XML_FLAGS) \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/string/includes \
+			-I$(top_srcdir)/modules/elementary_functions/includes
 
 
 libscicore_la_LDFLAGS = $(XML_LIBS)
