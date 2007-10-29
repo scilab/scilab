@@ -1,17 +1,18 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "MALLOC.h"
 #include "fileio.h"
 #include "gw_fileio.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 #define INFOSIZE 1024
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static int  Info_size = 0;
 static char *Info= NULL;
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static int ReadLine(FILE *fd,int *mem);
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int int_objfscanfMat(char *fname,unsigned long fname_len)
 {
 	char **Str=NULL;
@@ -37,28 +38,28 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	CheckLhs(1,2);
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
 
-	if ( Rhs == 2) 
+	if ( Rhs == 2)
 	{
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);/* format */
 		StringConvert(cstk(l2));  /* conversion */
 		Format = cstk(l2);
 	}
-	else 
+	else
 	{
 		Format = 0;
 	}
 
-	if (( f = fopen(cstk(l1),"r")) == (FILE *)0) 
+	if (( f = fopen(cstk(l1),"r")) == (FILE *)0)
 	{
 		Scierror(999,_("Error: in function %s, cannot open file %s\n"),fname,cstk(l1));
 		return 0;
 	}
 	/*** first pass to get colums and rows ***/
 	strcpy(Info,"--------");
-	n =0; 
-	while ( sscanf(Info,"%lf",&x) <= 0 && n != EOF ) 
-	{ 
-		n=ReadLine(f,&mem); 
+	n =0;
+	while ( sscanf(Info,"%lf",&x) <= 0 && n != EOF )
+	{
+		n=ReadLine(f,&mem);
 		if ( mem == 1)
 		{
 			FREE(Info);Info=NULL;
@@ -79,8 +80,8 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	cols = NumTokens(Info);
 	rows = 1;
 
-	while (1) 
-	{ 
+	while (1)
+	{
 		n=ReadLine(f,&mem);
 		if ( mem == 1)
 		{
@@ -116,7 +117,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		Str[vl]=NULL;
 	}
 
-	for ( i = 0 ; i < vl ; i++) 
+	for ( i = 0 ; i < vl ; i++)
 	{
 		ReadLine(f,&mem);
 		if ( mem == 1)
@@ -132,7 +133,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		if ( Lhs >= 2)
 		{
 			if ((Str[i]=MALLOC((strlen(Info)+1)*sizeof(char)))==NULL)
-			{ 
+			{
 				FREE(Info);Info=NULL;
 				fclose(f);
 				for (j=0;j<i;j++) FREE(Str[j]);
@@ -148,7 +149,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	{
 		int un=1,zero=0,l;
 
-		if ( vl > 0 ) 
+		if ( vl > 0 )
 		{
 			int i2=0;
 			CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE,&vl,&un,Str);
@@ -166,7 +167,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 				Str=NULL;
 			}
 		}
-		else 
+		else
 		{
 			CreateVar(Rhs+2,STRING_DATATYPE,&zero,&zero,&l);
 		}
@@ -175,7 +176,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	}
 
 	for (i=0; i < rows ;i++)for (j=0;j < cols;j++)
-	{ 
+	{
 		double xloc;
 		fscanf(f,"%lf",&xloc);
 		*stk(lres+i+rows*j)=xloc;
@@ -184,15 +185,15 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	fclose(f);
 	LhsVar(1)=Rhs+1;
 	PutLhsVar();
-	/* just in case Info is too Big */ 
-	if ( Info_size > INFOSIZE ) 
+	/* just in case Info is too Big */
+	if ( Info_size > INFOSIZE )
 	{
 		Info_size = INFOSIZE;
 		Info = REALLOC(Info,Info_size*sizeof(char));
 	}
 	return 0;
-}  
-/*-----------------------------------------------------------------------------------*/ 
+}
+/*-----------------------------------------------------------------------------------*/
 static int ReadLine(FILE *fd,int *mem)
 {
 	int n=0;
@@ -201,7 +202,7 @@ static int ReadLine(FILE *fd,int *mem)
 	{
 		char c = (char) fgetc(fd);
 
-		if ( n == Info_size ) 
+		if ( n == Info_size )
 		{
 			char * Info1=NULL;
 			int New_Size = Info_size + INFOSIZE;
@@ -222,9 +223,9 @@ static int ReadLine(FILE *fd,int *mem)
 			}
 		}
 
-		Info[n]= c ; 
+		Info[n]= c ;
 		if ( c == '\n') { Info[n] = '\0' ; return 1;}
-		else if ( c == (char)EOF ) return EOF;  
+		else if ( c == (char)EOF ) return EOF;
 		n++;
 	}
 }

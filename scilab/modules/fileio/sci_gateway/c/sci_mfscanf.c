@@ -1,6 +1,6 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "machine.h"
 #include "stack-c.h"
@@ -9,7 +9,8 @@
 #include "fileio.h"
 #include "gw_fileio.h"
 #include "filesmanagement.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 int int_objfscanf(char *fname,unsigned long fname_len)
 {
 	static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
@@ -26,10 +27,10 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 	Nbvars = 0;
 	CheckRhs(2,3);
 
-	if (Rhs==3) 
+	if (Rhs==3)
 	{
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-		if (m1*n1 != 1 ) 
+		if (m1*n1 != 1 )
 		{
 			Scierror(999,_("Error: in fscanf: incorrect first argument\n"));
 			return 0;
@@ -54,29 +55,29 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	nrow=maxrow; 
+	nrow=maxrow;
 	rowcount = -1;
 
-	while (1) 
+	while (1)
 	{
 		rowcount++;
 		if ((maxrow >= 0) && (rowcount >= maxrow)) break;
 		args = Rhs; /* args set to Rhs on entry */
 		pos=ftell(f);
 		if ( do_xxscanf("fscanf",f,cstk(l2),&args,(char *)0,&retval,buf,type) < 0 )  return 0;
-		if ( retval == EOF) 
+		if ( retval == EOF)
 		{
-			/* 
+			/*
 			Scierror(999,"Error: in %s: end of file reached\n",fname);
 			*/
 			break;
 		}
 		if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,buf,&data,rowcount,args)) <0 )
 		{
-			switch (err) 
+			switch (err)
 			{
 			case MISMATCH:
-				if (maxrow>=0) 
+				if (maxrow>=0)
 				{
 					Free_Scan(rowcount,ncol,type_s,&data);
 					Scierror(999,_("Error: in fscanf: data mismatch\n"));
@@ -100,5 +101,5 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 	Free_Scan(rowcount,ncol,type_s,&data);
 	if (err==MEM_LACK) { Scierror(999,_("Error: in sscanf: cannot allocate more memory\n"));}
 	return 0;
-}  
-/*-----------------------------------------------------------------------------------*/ 
+}
+/*-----------------------------------------------------------------------------------*/

@@ -5,15 +5,16 @@
 #include <string.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
-#include "MALLOC.h" 
+#include "MALLOC.h"
 #include "createdirectory.h"
 #include "isdir.h"
 #include "cluni0.h"
 #include "warningmode.h"
 #include "sciprint.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_createdir) _PARAMS((char *fname,unsigned long l))
-{	
+{
 	CheckRhs(1,1);
 	CheckLhs(0,1);
 
@@ -45,7 +46,7 @@ int C2F(sci_createdir) _PARAMS((char *fname,unsigned long l))
 		*istk(l1) = bOK;
 
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();	
+		C2F(putlhsvar)();
 	}
 	else
 	{

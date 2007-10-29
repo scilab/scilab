@@ -1,6 +1,6 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "machine.h"
 #include "MALLOC.h"
@@ -9,8 +9,9 @@
 #include "do_xxscanf.h"
 #include "fileio.h"
 #include "gw_fileio.h"
+#include "Scierror.h"
 
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
@@ -55,9 +56,9 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 	}
 
 	k=0;
-	nrow=maxrow; 
+	nrow=maxrow;
 	rowcount = -1; /* number-1 of result lines already got */
-	while (1) 
+	while (1)
 	{
 		rowcount++;
 		if ((maxrow >= 0) && (rowcount >= maxrow)) break;
@@ -71,10 +72,10 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 		FREE(str);
 		if ( err < 0 )  return 0;
 
-		if ( retval == EOF) 
+		if ( retval == EOF)
 		{
-			/* 
-			first returned argument wil be set to -1 
+			/*
+			first returned argument wil be set to -1
 			Scierror(999,"Error: in %s: end of string reached\n",fname);
 			return 0;
 			*/
@@ -82,10 +83,10 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 
 		if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,buf,&data,rowcount,args)) <0 )
 		{
-			switch (err) 
+			switch (err)
 			{
 			case MISMATCH:
-				if (maxrow>=0) 
+				if (maxrow>=0)
 				{
 					Free_Scan(rowcount,ncol,type_s,&data);
 					Scierror(999,_("Error: in sscanf: data mismatch\n"));
@@ -110,4 +111,4 @@ int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
 	if (err==MEM_LACK) { Scierror(999,_("Error: in sscanf: cannot allocate more memory\n"));}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

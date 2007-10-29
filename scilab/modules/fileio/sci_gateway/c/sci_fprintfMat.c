@@ -1,13 +1,14 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "machine.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "gw_fileio.h"
 #include "fileio.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 int int_objfprintfMat(char *fname,unsigned long fname_len)
 {
 	int l1, m1, n1,l2,m2,n2,m3,n3,l3,i,j,mS,nS;
@@ -15,7 +16,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 	char **Str2;
 	char *Format;
 	Nbvars = 0;
-	CheckRhs(1,4); 
+	CheckRhs(1,4);
 	CheckLhs(1,1);
 
 	if (GetType(1) == sci_strings)
@@ -53,13 +54,13 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	if ( Rhs >= 3) 
+	if ( Rhs >= 3)
 	{
 		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);/* format */
 		StringConvert(cstk(l3));  /* conversion */
 		Format = cstk(l3);
 	}
-	else 
+	else
 	{
 		Format = "%f";
 	}
@@ -69,7 +70,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 		GetRhsVar(4,MATRIX_OF_STRING_DATATYPE,&mS,&nS,&Str2);
 	}
 
-	if (( f = fopen(cstk(l1),"w")) == (FILE *)0) 
+	if (( f = fopen(cstk(l1),"w")) == (FILE *)0)
 	{
 		Scierror(999,_("Error: in function %s, cannot open file %s\n"),fname,cstk(l1));
 		return 0;
@@ -80,9 +81,9 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 		for ( i=0 ; i < mS*nS ; i++) fprintf(f,"%s\n",Str2[i]);
 	}
 
-	for (i = 0 ; i < m2 ; i++ ) 
+	for (i = 0 ; i < m2 ; i++ )
 	{
-		for ( j = 0 ; j < n2 ; j++) 
+		for ( j = 0 ; j < n2 ; j++)
 		{
 			fprintf(f,Format,*stk(l2+i + m2*j));
 			fprintf(f," ");
@@ -92,11 +93,11 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 	}
 	fclose(f);
 	LhsVar(1)=0 ; /** no return value **/
-	if ( Rhs >= 4) 
+	if ( Rhs >= 4)
 	{
 		if (Str2)
 		{
-			for ( i=0 ; i < mS*nS ; i++) 
+			for ( i=0 ; i < mS*nS ; i++)
 			{
 				if (Str2[i])
 				{
@@ -110,5 +111,5 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 	}
 	PutLhsVar();
 	return 0;
-}  
-/*-----------------------------------------------------------------------------------*/ 
+}
+/*-----------------------------------------------------------------------------------*/

@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "getlongpathname.h"
 #include "MALLOC.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l))
 {
@@ -44,7 +45,7 @@ int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l))
 		}
 		C2F(putlhsvar)();
 	}
-	else 
+	else
 	{
 		Scierror(999,_("Not a path string"));
 	}
