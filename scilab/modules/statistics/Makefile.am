@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 STATISTICS_C_SOURCES = src/c/CdfBase.c \
@@ -92,7 +92,9 @@ sci_gateway/c/sci_cdfnor.c
 
 MODULE_CHECKS = unit_tests/dcd.tst
 
-libscistatistics_la_CFLAGS=  -Iincludes/ -Isrc/c/
+libscistatistics_la_CFLAGS=  	-Iincludes/ \
+				-Isrc/c/ \
+				-I$(top_builddir)/modules/output_stream/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscistatistics.la
 
@@ -102,7 +104,7 @@ libscistatistics_la_LIBADD = \
 	$(top_builddir)/libs/lapack/libscilapack.la
 
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la 
+#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 
 
@@ -116,11 +118,11 @@ libscistatistics_la_rootdir = $(mydatadir)
 libscistatistics_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### statistics : init scripts #### 
+#### statistics : init scripts ####
 libscistatistics_la_etcdir = $(mydatadir)/etc
 libscistatistics_la_etc_DATA = etc/statistics.quit etc/statistics.start
 
-#### statistics : gateway declaration #### 
+#### statistics : gateway declaration ####
 libscistatistics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistatistics_la_sci_gateway_DATA = sci_gateway/statistics_gateway.xml
 
