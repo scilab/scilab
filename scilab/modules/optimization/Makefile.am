@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 OPTIMIZATION_C_SOURCES = src/c/intqld.c \
@@ -139,7 +139,8 @@ MODULE_CHECKS = unit_tests/bvode.tst \
 	unit_tests/colnew.tst \
 	unit_tests/matopt.tst
 
-libscioptimization_la_CFLAGS=  -Iincludes/ 
+libscioptimization_la_CFLAGS=  	-Iincludes/ \
+				-I$(top_builddir)/modules/output_stream/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscioptimization.la
 
@@ -163,11 +164,11 @@ libscioptimization_la_rootdir = $(mydatadir)
 libscioptimization_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### optimization : init scripts #### 
+#### optimization : init scripts ####
 libscioptimization_la_etcdir = $(mydatadir)/etc
 libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 
-#### optimization : gateway declaration #### 
+#### optimization : gateway declaration ####
 libscioptimization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
 #### optimization : include files ####
@@ -224,5 +225,5 @@ demos/datafit/demo_datafit.sci \
 demos/optimization.dem
 
 #demos/datafit/demo_datafit_fr.htm \
-#demos/multiflow/demo_multiflow_fr.htm 
+#demos/multiflow/demo_multiflow_fr.htm
 include $(top_srcdir)/Makefile.incl.am
