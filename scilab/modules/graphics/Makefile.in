@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 ##########
@@ -47,13 +47,24 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE) -Isrc/cpp $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/renderer/includes/ -I$(top_srcdir)/modules/action_binding/includes
+@GUI_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE) \
+@GUI_TRUE@				-Isrc/cpp \
+@GUI_TRUE@				$(TCL_INC_PATH) \
+@GUI_TRUE@				$(TK_INC_PATH) \
+@GUI_TRUE@				-I$(top_srcdir)/libs/MALLOC/includes/ \
+@GUI_TRUE@				-I$(top_srcdir)/libs/hashtable/ \
+@GUI_TRUE@				-I$(top_srcdir)/modules/jvm/includes \
+@GUI_TRUE@				-I$(top_srcdir)/modules/renderer/includes/ \
+@GUI_TRUE@				-I$(top_srcdir)/modules/action_binding/includes \
+@GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes
+
+@GUI_FALSE@am__append_2 = -I$(top_srcdir)/modules/output_stream/includes
 DIST_COMMON = $(am__libscigraphics_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_2 = build-java
-@SWIG_TRUE@am__append_3 = build-swig
-@GIWS_TRUE@am__append_4 = build-giws
+@GUI_TRUE@am__append_3 = build-java
+@SWIG_TRUE@am__append_4 = build-swig
+@GIWS_TRUE@am__append_5 = build-giws
 subdir = modules/graphics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -1051,7 +1062,7 @@ top_srcdir = @top_srcdir@
 # used in the mode without gui but It causes some silly problems with includes
 libscigraphics_la_CFLAGS =  \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes -Iincludes/ \
-	-Isrc/c/ $(am__append_1)
+	-Isrc/c/ $(am__append_1) $(am__append_2)
 @GUI_FALSE@GRAPHICS_C_SOURCES = src/nographics/nographics.c
 @GUI_TRUE@GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 @GUI_TRUE@src/c/WindowList.c \
@@ -1464,7 +1475,7 @@ libscigraphics_la_CFLAGS =  \
 # #### Where are the sources (mandatory) ####
 # CLASSPATH = src/java/
 
-# #### graphics : jar file #### 
+# #### graphics : jar file ####
 # JARFILE = graphics.jar
 
 # BUILT_SOURCES+=$(JARFILE)
@@ -1473,11 +1484,11 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@libscigraphics_la_rootdir = $(mydatadir)
 @GUI_TRUE@libscigraphics_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### graphics : init scripts #### 
+#### graphics : init scripts ####
 @GUI_TRUE@libscigraphics_la_etcdir = $(mydatadir)/etc
 @GUI_TRUE@libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
-#### graphics : gateway declaration #### 
+#### graphics : gateway declaration ####
 @GUI_TRUE@libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @GUI_TRUE@libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
@@ -1665,7 +1676,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
-TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
+TARGETS_ALL = $(am__append_3) $(am__append_4) $(am__append_5)
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target

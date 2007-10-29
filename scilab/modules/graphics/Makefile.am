@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 # the module Doublylinkedlist  is included here... of course, it is not
@@ -401,7 +401,16 @@ MODULE_CHECKS = unit_tests/swap_handles.tst \
 	unit_tests/readgif.tst \
 	unit_tests/readxbm.tst
 
-libscigraphics_la_CFLAGS +=  $(JAVA_JNI_INCLUDE) -Isrc/cpp $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/renderer/includes/ -I$(top_srcdir)/modules/action_binding/includes
+libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
+				-Isrc/cpp \
+				$(TCL_INC_PATH) \
+				$(TK_INC_PATH) \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/libs/hashtable/ \
+				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/renderer/includes/ \
+				-I$(top_srcdir)/modules/action_binding/includes \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 libscigraphics_la_CXXFLAGS =  -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 
@@ -423,7 +432,7 @@ libscigraphics_la_LIBADD = \
 # #### Where are the sources (mandatory) ####
 # CLASSPATH = src/java/
 
-# #### graphics : jar file #### 
+# #### graphics : jar file ####
 # JARFILE = graphics.jar
 
 # BUILT_SOURCES+=$(JARFILE)
@@ -433,11 +442,11 @@ libscigraphics_la_rootdir = $(mydatadir)
 libscigraphics_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### graphics : init scripts #### 
+#### graphics : init scripts ####
 libscigraphics_la_etcdir = $(mydatadir)/etc
 libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
-#### graphics : gateway declaration #### 
+#### graphics : gateway declaration ####
 libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
@@ -624,6 +633,7 @@ GRAPHICS_C_SOURCES = src/nographics/nographics.c
 
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)
 
+libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes
 endif
 
 pkglib_LTLIBRARIES = libscigraphics.la
