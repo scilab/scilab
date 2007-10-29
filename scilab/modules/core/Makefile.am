@@ -16,7 +16,6 @@ src/c/InitScilab.c \
 src/c/getval.c \
 src/c/md5.c \
 src/c/addinter.c \
-src/c/basout.c \
 src/c/inisci-c.c \
 src/c/IsAScalar.c \
 src/c/texmacs.c \
@@ -29,13 +28,11 @@ src/c/realmain.c \
 src/c/stack3.c \
 src/c/str2sci.c \
 src/c/cluni0.c \
-src/c/msgstore.c \
 src/c/flags.c \
 src/c/getmodules.c \
 src/c/fromc.c \
 src/c/setgetSCIpath.c \
 src/c/getmemory.c \
-src/c/msgout.c \
 src/c/Funtab.c \
 src/c/csignal.c \
 src/c/prompt.c \
@@ -48,7 +45,6 @@ src/c/isanan.c \
 src/c/parse.c \
 src/c/timer.c \
 src/c/stack2.c \
-src/c/Scierror.c \
 src/c/sciprint.c \
 src/c/sciprint_nd.c \
 src/c/link.c \
@@ -401,7 +397,6 @@ includes/stack1.h \
 includes/SetScilabEnvironment.h \
 includes/returnanan.h \
 includes/stack2.h \
-includes/Scierror.h \
 includes/realmain.h \
 includes/stack3.h \
 includes/machine.h \
