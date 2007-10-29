@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/sci_tools.c \
@@ -23,7 +23,7 @@ src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
 src/c/qsort-string.c \
-src/c/IsEqualVar.c 
+src/c/IsEqualVar.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp
@@ -251,7 +251,7 @@ src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
 src/fortran/rjbesl.f \
-src/fortran/rat.f 
+src/fortran/rat.f
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
@@ -358,7 +358,7 @@ MODULE_CHECKS = unit_tests/gsort.tst \
 	unit_tests/binary_representation.tst \
 	unit_tests/maxi.tst
 
-# Disable optimisation of the file hqror2.f comqr3.f pade.f 
+# Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
 
 libdummy_elementary_functions_la_SOURCES = src/fortran/hqror2.f \
@@ -371,16 +371,23 @@ libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
 
 
 
-libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modules/core/includes/ -Iincludes/ 
+libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modules/core/includes/ -Iincludes/
 
 # Includes need for the compilation
-libscielementary_functions_la_FFLAGS= -Iincludes/ 
+libscielementary_functions_la_FFLAGS= -Iincludes/
 
 # Includes need for the compilation
-libscielementary_functions_la_CPPFLAGS = -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscielementary_functions_la_CPPFLAGS = 	-Iincludes/ \
+						-Isrc/cpp/ \
+						-Isrc/c/ \
+						-I$(top_srcdir)/libs/MALLOC/includes/ \
+						-I$(top_srcdir)/modules/output_stream/includes
 
 # Includes need for the compilation
-libscielementary_functions_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
+libscielementary_functions_la_CFLAGS= 	-Iincludes/ \
+					-I$(top_srcdir)/libs/MALLOC/includes/ \
+					-Isrc/c/ \
+					-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
 
@@ -426,11 +433,11 @@ libscielementary_functions_la_root_DATA = changelog.txt licence.txt readme.txt v
 
 
 
-#### elementary_functions : init scripts #### 
+#### elementary_functions : init scripts ####
 libscielementary_functions_la_etcdir = $(mydatadir)/etc
 libscielementary_functions_la_etc_DATA = etc/elementary_functions.quit etc/elementary_functions.start
 
-#### elementary_functions : gateway declaration #### 
+#### elementary_functions : gateway declaration ####
 libscielementary_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscielementary_functions_la_sci_gateway_DATA = sci_gateway/elementary_functions_gateway.xml
 
