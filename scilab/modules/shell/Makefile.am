@@ -30,13 +30,18 @@ libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ \
 -Isrc/c/others/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
-libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/c/others/ \
--I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ \
--I$(top_srcdir)/modules/history_manager/includes/
+libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
+			-Iincludes/ \
+			-Isrc/c/ \
+			-Isrc/c/others/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/console/includes/ \
+			-I$(top_srcdir)/modules/history_manager/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes
 
 libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscishell.la
 
@@ -53,11 +58,11 @@ modulename=shell
 libscishell_la_rootdir = $(mydatadir)
 libscishell_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### shell : init scripts #### 
+#### shell : init scripts ####
 libscishell_la_etcdir = $(mydatadir)/etc
 libscishell_la_etc_DATA = etc/shell.quit etc/shell.start
 
-#### shell : gateway declaration #### 
+#### shell : gateway declaration ####
 libscishell_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
