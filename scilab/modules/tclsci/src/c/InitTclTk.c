@@ -105,19 +105,19 @@ int OpenTCLsci(void)
       TCLinterp = Tcl_CreateInterp();
 	  if ( TCLinterp == NULL )
 	  {
-		error_scilab(999,_("Tcl Error  : Tcl_CreateInterp."));
+		Scierror(999,_("Tcl Error  : Tcl_CreateInterp.\n"));
 		return (1);
 	  }
 
       if ( Tcl_Init(TCLinterp) == TCL_ERROR)
 	  {
-		error_scilab(999,_("Tcl Error  : Tcl_Init."));
+		Scierror(999,_("Tcl Error  : Tcl_Init.\n"));
 		return (1);
 	  }
 
       if ( Tk_Init(TCLinterp) == TCL_ERROR)
 	  {
-		error_scilab(999,_("Tcl Error  : Tk_Init."));
+		Scierror(999,_("Tcl Error  : Tk_Init.\n"));
 		return (1);
 	  }
 
@@ -125,7 +125,7 @@ int OpenTCLsci(void)
       
 	  if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
 	  {
-		error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
+		Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
 		return (1);
 	  }
       
@@ -139,7 +139,7 @@ int OpenTCLsci(void)
 
   	  if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
 	  {
-		error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
+		Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
 		return (1);
 	  }
 

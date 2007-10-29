@@ -85,7 +85,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 
 					if ( (m1==0) && (n1==0) )
 					{
-						error_scilab(999,_("[] doesn't work with Tcl/Tk."));
+						Scierror(999,_("[] doesn't work with Tcl/Tk.\n"));
 						return 0;
 					}
 
@@ -100,7 +100,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 				}
 				else
 				{
-					error_scilab(999,_("Invalid parameter(s) type."));
+					Scierror(999,_("Invalid parameter(s) type.\n"));
 					return 0;
 				}
 			}
@@ -135,7 +135,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 
 								if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 								{
-									error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
+									Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
 									return 0;
 								}
 							}
@@ -153,7 +153,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 
 								if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 								{
-									error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
+									Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
 									return 0;
 								}
 							}
@@ -172,7 +172,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					else
 					{
 						/* doit une chaine ou matrice de chaine */
-						error_scilab(999,_("Argument type incorrect: Must be a string."));
+						Scierror(999,_("Argument type incorrect: Must be a string.\n"));
 						return 0;
 					}
 
@@ -203,7 +203,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					}
 					else
 					{
-						error_scilab(999,_("Invalid parameter(s) type."));
+						Scierror(999,_("Invalid parameter(s) type.\n"));
 						return 0;
 					}
 					bOK=TCL_UiSet(Handle,PropertieField,PropertieValue);
@@ -216,14 +216,14 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 		else
 		{
 			/* champ propertie doit etre une chaine */
-			error_scilab(999,_("Field parameter must be a string."));
+			Scierror(999,_("Field parameter must be a string.\n"));
 			return 0;
 		}
 	}
 	else
 	{
 		/* Handle numero incorrect */
-		error_scilab(999,_("Invalid Handle. it must be &gt;0."));
+		Scierror(999,_("Invalid Handle. it must be &gt;0.\n"));
 		return 0;
 	}
 	return bOK;
@@ -241,7 +241,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 
 	if (LenStr >= CommandLenMax)
 	{
-		error_scilab(999,_("Tcl Command > %d characters."),CommandLenMax);
+		Scierror(999,_("Tcl Command > %d characters.\n"),CommandLenMax);
 		return 0;
 	}
 	nocase(PropertieField);
@@ -259,7 +259,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 			}
 			else
 			{
-				error_scilab(999,_("Invalid parameter(s) type (Style)."));
+				Scierror(999,_("Invalid parameter(s) type (Style).\n"));
 				return 0;
 			}
 		}
@@ -270,14 +270,14 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 
 		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 		{
-			error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
+			Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
 			return 0;
 		}
 		bOK=1;
 	}
 	else
 	{
-		error_scilab(999,_("Unknown property %s."),PropertieField);
+		Scierror(999,_("Unknown property %s.\n"),PropertieField);
 		return 0;
 	}
 	

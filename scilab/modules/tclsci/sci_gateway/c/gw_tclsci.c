@@ -53,7 +53,7 @@ int C2F(gw_tclsci)()
 	}
 	else
 	{
-		error_scilab(999,_("Tcl/TK interface disabled in -nogui mode."));
+		Scierror(999,_("Tcl/TK interface disabled in -nogui mode.\n"));
 		return 0;
 	}
 	

@@ -42,7 +42,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 			else
 			{
 				if (StrValue) {FREE(StrValue); StrValue=NULL;}
-				error_scilab(999,_("Unknown property %s."),StrField);
+				Scierror(999,_("Unknown property %s.\n"),StrField);
 				return 0;
 			}
 			if (StrValue) {FREE(StrValue); StrValue=NULL;}
@@ -50,7 +50,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 		}
 		else
 		{
-			error_scilab(999,_("Invalid parameter(s) type."));
+			Scierror(999,_("Invalid parameter(s) type.\n"));
 			return 0;
 		}
 	}
@@ -123,7 +123,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 						}
 						else
 						{
-							error_scilab(999,_("TCL_GetVar: Could not read Tcl Var."));
+							Scierror(999,_("TCL_GetVar: Could not read Tcl Var.\n"));
 							return 0;
 						}
 					}
@@ -185,7 +185,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 							}
 							else
 							{
-								error_scilab(999,_("TCL_GetVar: Could not read Tcl Var."));
+								Scierror(999,_("TCL_GetVar: Could not read Tcl Var.\n"));
 								return 0;
 							}
 						}
@@ -197,7 +197,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 							if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 							{
-								error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
+								Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
 								return 0;
 							}
 
@@ -216,7 +216,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 							}
 							else
 							{
-								error_scilab(999,_("Error property not found."));
+								Scierror(999,_("Error property not found.\n"));
 								return 0;
 							}
 						}
@@ -228,7 +228,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 						if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 						{
-							error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
+							Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
 							return 0;
 						}
 						StrValue = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
@@ -261,7 +261,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 						}
 						else
 						{
-							error_scilab(999,_("Unknown property %s."),StrField);
+							Scierror(999,_("Unknown property %s.\n"),StrField);
 							return 0;
 						}
 						if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
@@ -270,7 +270,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 					}
 						else
 						{
-							error_scilab(999,_("Error property not found."));
+							Scierror(999,_("Error property not found.\n"));
 							return 0;
 						}
 					}
@@ -278,13 +278,13 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 		}
 			else
 			{
-				error_scilab(999,_("Invalid parameter(s) type."));
+				Scierror(999,_("Invalid parameter(s) type.\n"));
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,_("Invalid Handle. it must be &gt;0."));
+			Scierror(999,_("Invalid Handle. it must be &gt;0.\n"));
 			return 0;
 		}
 	}

@@ -25,7 +25,7 @@ int C2F(sci_TCL_set) _PARAMS((char *fname,unsigned long l))
 		sprintf(VarName,"Win(%d)",Handle);
 		if ( ! Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY) )
 		{
-			error_scilab(999,_("uicontrol %d doesn't exist."),Handle);
+			Scierror(999,_("uicontrol %d doesn't exist.\n"),Handle);
 			return 0;
 		}
 		
@@ -36,12 +36,12 @@ int C2F(sci_TCL_set) _PARAMS((char *fname,unsigned long l))
 	{
 		if (GetType(Rhs-1)==sci_strings)
 		{
-			error_scilab(999,_("Handle must be an integer."));
+			Scierror(999,_("Handle must be an integer.\n"));
 			return 0;
 		}
 		if ( IsAScalar(Rhs-2) )
 		{
-			error_scilab(999,_("Field parameter must be a string."));
+			Scierror(999,_("Field parameter must be a string.\n"));
 			return 0;
 		}
     }

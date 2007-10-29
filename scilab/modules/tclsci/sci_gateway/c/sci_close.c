@@ -44,7 +44,7 @@ int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 					}
 					else
 					{
-						error_scilab(999,_("parameter must be &gt;= 0"));
+						Scierror(999,_("parameter must be &gt;= 0\n"));
 						return 0;
 					}
 				}
@@ -56,20 +56,20 @@ int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				error_scilab(999,_("Invalid parameter type: must be an integer."));
+				Scierror(999,_("Invalid parameter type: must be an integer.\n"));
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,_("Invalid parameter type: must be an integer."));
+			Scierror(999,_("Invalid parameter type: must be an integer.\n"));
 			return 0;
 		}
 	}
 	
     if ( DoCloseFigure && ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  ) )
     {
-		error_scilab(999,_("Tcl Error : %s"),TCLinterp->result);
+		Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
 		return 0;
 	}
 	else

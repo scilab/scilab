@@ -176,7 +176,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
   else
   {
 	/* ScilabEval called without argument */
-	error_scilab(999,_("ScilabEval: at least one argument is required."));
+	Scierror(999,_("ScilabEval: at least one argument is required.\n"));
   }
 
   return TCL_OK;
