@@ -10,7 +10,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 int int_objsprintf(char *fname,unsigned long fname_len)
 {
-	unsigned long lstr;
+	char **lstr = NULL;
 	static int l1, m1, n1,n2,lcount,rval,blk=200;
 	static int k;
 	char ** strs;
@@ -56,11 +56,10 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 
 	while (1) 
 	{
-		if ((rval=do_xxprintf("sprintf",(FILE *) 0,cstk(l1),Rhs,1,lcount,
-			(char **) &lstr)) < 0) break; 
+		if ((rval=do_xxprintf("sprintf",(FILE *) 0,cstk(l1),Rhs,1,lcount,(char **) &lstr)) < 0) break; 
 		lcount++;
-		str=(char *) lstr;
-		str1=str;
+		str =(char *) lstr;
+		str1 = str;
 		while (*str != '\0') {
 			if (strncmp(str,"\\n",2) ==0) {
 				k=(int)(str-str1);
