@@ -25,6 +25,8 @@ sci_gateway/fortran/matadd.f
 
 pkglib_LTLIBRARIES = libscidouble.la
 
+libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
+
 libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscidouble_la_LIBADD = \
@@ -46,7 +48,7 @@ libscidouble_la_rootdir = $(mydatadir)
 libscidouble_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### double : init scripts #### 
+#### double : init scripts ####
 libscidouble_la_etcdir = $(mydatadir)/etc
 libscidouble_la_etc_DATA = etc/double.quit etc/double.start
 
