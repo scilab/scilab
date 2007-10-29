@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_symbolic.c \
@@ -14,7 +14,8 @@ sci_gateway/fortran/sci_mulf.f \
 sci_gateway/fortran/sci_ldivf.f \
 sci_gateway/fortran/sci_rdivf.f
 
-libscisymbolic_la_CFLAGS=  -Iincludes/ 
+libscisymbolic_la_CFLAGS=  	-Iincludes/ \
+				-I$(top_builddir)/modules/output_stream/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisymbolic.la
 
@@ -35,13 +36,13 @@ libscisymbolic_la_rootdir = $(mydatadir)
 libscisymbolic_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### symbolic : init scripts #### 
+#### symbolic : init scripts ####
 libscisymbolic_la_etcdir = $(mydatadir)/etc
 libscisymbolic_la_etc_DATA = etc/symbolic.quit etc/symbolic.start
 
-#### symbolic : gateway declaration #### 
+#### symbolic : gateway declaration ####
 libscisymbolic_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscisymbolic_la_sci_gateway_DATA = sci_gateway/symbolic_gateway.xml 
+libscisymbolic_la_sci_gateway_DATA = sci_gateway/symbolic_gateway.xml
 
 
 #### symbolic : include files ####
