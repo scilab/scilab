@@ -384,7 +384,7 @@ int C2F(isref)(integer *number)
   integer il,lw;
   lw = *number + Top - Rhs;
   if ( *number > Rhs) {
-    error_scilab(999,_("isref: bad call to isref! (1rst argument)."));
+    Scierror(999,_("isref: bad call to isref! (1rst argument).\n"));
     return FALSE_;
   }
   il = iadr(*Lstk(lw));
@@ -1244,7 +1244,7 @@ int C2F(getrhsvar)(integer *number,char *typex,integer *m,integer *n,integer *lr
       ix2 = *m * *n;
       if ((it != 1) && (ix2 !=0))
 	  {
-		error_scilab(999,_("Waiting for a complex argument(z)."));
+		Scierror(999,_("Waiting for a complex argument(z).\n"));
 		return FALSE_;
       };
       if (!(*lr % 2) ) {  /* bad adress (lr is even) shift up the stack */
@@ -1845,7 +1845,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
 
   if ( intersci_push() == 0 )
     {
-      error_scilab(999,_("scifunction: Running out of memory."));
+      Scierror(999,_("scifunction: Running out of memory.\n"));
       goto L9999;
     }
 
@@ -2081,7 +2081,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
 
   if ( intersci_push() == 0 )
     {
-      error_scilab(999,_("scifunction: Running out of memory."));
+      Scierror(999,_("scifunction: Running out of memory.\n"));
       goto L9999;
     }
 
@@ -2298,7 +2298,7 @@ int C2F(getrhssys)(integer *lw,integer *n,integer *m,integer *p,integer *ptra,in
       case 12 :  *hx = 0.; break;
       case 13 :  *hx = 1.; break;
       default :
-	error_scilab(999,_("invalid time domain."));
+	Scierror(999,_("Invalid time domain.\n"));
 	return FALSE_;
       }
     break;
@@ -2308,13 +2308,13 @@ int C2F(getrhssys)(integer *lw,integer *n,integer *m,integer *p,integer *ptra,in
     *hx = *stk(sadr(ix1));
     break;
   default :
-    error_scilab(999,_("invalid time domain."));
+    Scierror(999,_("Invalid time domain.\n"));
     return FALSE_;
   }
   for (ix = 0; ix < 23; ++ix)
     {
       if (iwork[ix] != *istk(junk + ix)) {
-	error_scilab(999,_("invalid system."));
+	Scierror(999,_("Invalid system.\n"));
 	return FALSE_;
       }
     }
@@ -2324,7 +2324,7 @@ int C2F(getrhssys)(integer *lw,integer *n,integer *m,integer *p,integer *ptra,in
   if (! C2F(getlistrhsvar)(lw, &cx5, "d", &md, &nd, ptrd, 1L)) return FALSE_;
   if (! C2F(getlistrhsvar)(lw, &cx6, "d", &mx0, &nx0, ptrx0, 1L))  return FALSE_;
   if (ma != na) {
-    error_scilab(999,_("A matrix non square!"));
+    Scierror(999,_("A matrix non square!\n"));
     return FALSE_;
   }
   if (ma != mb && mb != 0) {
@@ -2508,7 +2508,7 @@ int C2F(putlhsvar)()
        */
       if (nbvars1 + ivar > intersiz)
 	  {
-		error_scilab(999,_("putlhsvar: intersiz is too small."));
+		Scierror(999,_("putlhsvar: intersiz is too small.\n"));
 		return FALSE_;
       }
       C2F(intersci).ntypes[nbvars1 + ivar - 1] = '$';
@@ -2708,7 +2708,7 @@ int Ref2val(int from , int to )
   lw = from + Top - Rhs;
   if ( from  > Rhs)
   {
-    error_scilab(999,_("copyref: bad call to isref! (1rst argument)."));
+    Scierror(999,_("copyref: bad call to isref! (1rst argument).\n"));
     return FALSE_;
   }
   il = iadr(*Lstk(lw));

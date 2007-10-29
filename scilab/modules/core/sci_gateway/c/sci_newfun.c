@@ -47,19 +47,19 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,_("function-name is incorrect."));
+				Scierror(999,_("function-name is incorrect.\n"));
 				return 0;
 			}
 		}
 		else
 		{
-			error_scilab(999,_("nameptr argument must be < 0."));
+			Scierror(999,_("nameptr argument must be < 0.\n"));
 			return 0;
 		}
 	}
 	else
 	{
-		error_scilab(999,_("See help newfun."));
+		Scierror(999,_("See help newfun.\n"));
 		return 0;
 	}
 	return 0;

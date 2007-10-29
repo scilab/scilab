@@ -93,7 +93,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				 error_scilab(999,_("first parameter must be 'local' , 'get' , 'global' or 'sorted'."));
+				 Scierror(999,_("first parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"));
 				 return 0;
 			 }
 		 }
@@ -102,7 +102,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 error_scilab(999,_("first parameter must be 'local' , 'get' , 'global' or 'sorted'."));
+			 Scierror(999,_("first parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"));
 			 return 0;
 		 }
 	 }
@@ -125,7 +125,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				  FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				  FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				  error_scilab(999,_("second parameter must be 'sorted'."));
+				  Scierror(999,_("second parameter must be 'sorted'.\n"));
 				  return 0;
 			  }
 			  else
@@ -162,7 +162,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 					FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 					FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-					error_scilab(999,_("first parameter must be 'local' , 'get' or 'global'."));
+					Scierror(999,_("first parameter must be 'local' , 'get' or 'global'.\n"));
 					return 0;
 				 }
 			  }
@@ -172,7 +172,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 error_scilab(999,_("first parameter must be 'local' , 'get' , 'global' and second parameter must be 'sorted'."));
+			 Scierror(999,_("first parameter must be 'local' , 'get' , 'global' and second parameter must be 'sorted'.\n"));
 			 return 0;
 		 }
 	 }

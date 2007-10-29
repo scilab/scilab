@@ -134,7 +134,7 @@ int C2F(callinterf) (int *k)
       if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
 	{
 	  if (sig_ok) signal(SIGINT, controlC_handler);
-	  error_scilab(999,_("SIGSTP: aborting current computation"));
+	  Scierror(999,_("SIGSTP: aborting current computation\n"));
 	  count = 0;
 	  return 0;
 	}

@@ -36,7 +36,7 @@ int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		error_scilab(999,_("Parameter must be a string."));
+		Scierror(999,_("Parameter must be a string.\n"));
 		return 0;
 	}
 

@@ -45,7 +45,7 @@ static int intulink (char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			error_scilab(999,_("Parameter must be a integer."));
+			Scierror(999,_("Parameter must be a integer.\n"));
 			return 0;
 		}
 	}

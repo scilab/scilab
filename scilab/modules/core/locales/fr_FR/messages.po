@@ -1924,11 +1924,11 @@ msgstr	""
 #
 # File: src/c/stack2.c, line: 2298
 # File: src/c/stack2.c, line: 2308
-msgid	"invalid time domain."
+msgid	"Invalid time domain.\n"
 msgstr	""
 #
 # File: src/c/stack2.c, line: 2314
-msgid	"invalid system."
+msgid	"Invalid system.\n"
 msgstr	""
 #
 # File: src/c/stack2.c, line: 2324

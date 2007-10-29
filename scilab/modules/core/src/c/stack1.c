@@ -2203,7 +2203,7 @@ int C2F(crestringv)(char *fname,integer *spos,integer *ilorig,integer *lw,unsign
   C2F(stringc)(istk(*ilorig ), (char ***)stk(*lw ), &ierr);
 
   if (ierr != 0) {
-    error_scilab(999,_("Not enough memory"));
+    Scierror(999,_("Not enough memory\n"));
     return FALSE_;
   }
   return TRUE_;
@@ -2285,7 +2285,7 @@ int C2F(lcrestringmatfromc)(char *fname,integer *spos,integer *numi,integer *stl
   ix1 = *Lstk(Bot ) - *stlw;
   C2F(cstringf)((char ***)stk(*lorig ), istk(ilw ), m, n, &ix1, &ierr);
   if (ierr > 0) {
-    error_scilab(999,_("Not enough memory"));
+    Scierror(999,_("Not enough memory\n"));
     return FALSE_;
   }
   ix1 = ilw + 5 + *m * *n + *istk(ilw + 4 + *m * *n ) - 1;
@@ -2316,7 +2316,7 @@ int C2F(crestringmatfromc)(char *fname,integer *spos,integer *lorig,integer *m,i
   ix1 = *Lstk(Bot ) - *Lstk(*spos );
   C2F(cstringf)((char ***)stk(*lorig ), istk(ilw ), m, n, &ix1, &ierr);
   if (ierr > 0) {
-    error_scilab(999,_("Not enough memory"));
+    Scierror(999,_("Not enough memory\n"));
     return FALSE_;
   }
   ix1 = ilw + 5 + *m * *n + *istk(ilw + 4 + *m * *n ) - 1;
