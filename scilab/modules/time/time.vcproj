@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="time"
 	ProjectGUID="{05D8F60B-332A-4161-B946-B8AB30ED439C}"
 	RootNamespace="time"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +126,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="action_binding"
 	ProjectGUID="{8A654CC5-22C1-4972-A8CF-1B89F78B5383}"
 	RootNamespace="action_binding"
@@ -46,7 +46,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -136,7 +136,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

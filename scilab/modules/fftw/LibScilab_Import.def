@@ -10,7 +10,6 @@ EXPORTS
  getrhsvar_
  checklhs_
  checkrhs_
- Scierror
  createcvar_
  vartype_
  check_dims

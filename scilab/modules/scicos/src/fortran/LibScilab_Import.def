@@ -9,7 +9,6 @@ createvar_
 checkrhs_
 checklhs_
 getrhsvar_
-basout_
 clunit_
 cvstr_
 cha1_

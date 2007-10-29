@@ -6,7 +6,6 @@ EXPORTS
 ;core
 iop_
 returnanan_
-basout_
 ;
 ;elementary_functions_f
 d1mach_

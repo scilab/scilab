@@ -23,7 +23,6 @@ EXPORTS
  FreeFileNameOpenedInScilab
  GetMaximumFileOpenedInScilab
  GetFileOpenedInScilab
- Scierror
  sciprint2
  getwsmat_
  mkmlistfromvars_

@@ -3,7 +3,5 @@ LIBRARY    LibScilab.dll
 
 EXPORTS
 ; core
-  Scierror
   iop_
-	basout_
 	cvstr_

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="spreadsheet"
 	ProjectGUID="{CE521770-0466-4743-B9F6-38F8AEB93888}"
 	RootNamespace="spreadsheet"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"

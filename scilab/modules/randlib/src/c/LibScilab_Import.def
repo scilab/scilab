@@ -13,7 +13,6 @@ overload_
 vstk_
 createvarfromptr_
 createvar_
-Scierror
 stack_
 getrhsvar_
 vartype_

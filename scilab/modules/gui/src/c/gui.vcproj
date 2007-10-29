@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="gui"
 	ProjectGUID="{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	RootNamespace="gui"
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../core/includes;../../../jvm/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../src/c;../../../../java/jdk/include;../../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories=".;../../includes;../../../core/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../src/c;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -118,7 +118,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../core/includes;../../../jvm/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../src/c;../../../../java/jdk/include;../../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories=".;../../includes;../../../core/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../src/c;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"

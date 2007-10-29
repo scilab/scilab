@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="graphics"
 	ProjectGUID="{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}"
 	RootNamespace="graphics"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../core/includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../../libs/intl;../../libs/hashtable;src/c;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes"
+				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../core/includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../../libs/intl;../../libs/hashtable;src/c;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -124,7 +124,7 @@
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../core/includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../../libs/intl;../../libs/hashtable;src/c;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes"
+				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../core/includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../../libs/intl;../../libs/hashtable;src/c;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"

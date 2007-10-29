@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="pvm"
 	ProjectGUID="{63352867-3983-48E3-94FE-DD8F0D6E921F}"
 	RootNamespace="pvm"
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/pvm3/include,src/pvm3/src;../../libs/MALLOC/includes;../core/includes"
+				AdditionalIncludeDirectories="includes;src/pvm3/include;src/pvm3/src;../../libs/MALLOC/includes;../core/includes;../output_stream/includes"
 				PreprocessorDefinitions="_LIB;STRICT;__STDC__;_DEBUG;_CRT_SECURE_NO_DEPRECATE;WIN32"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -118,7 +118,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="includes;src/pvm3/include,src/pvm3/src;../../libs/MALLOC/includes;../core/includes"
+				AdditionalIncludeDirectories="includes;src/pvm3/include;src/pvm3/src;../../libs/MALLOC/includes;../core/includes;../output_stream/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;__MSC__;STRICT;_CRT_SECURE_NO_DEPRECATE;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="0"

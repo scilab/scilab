@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="nopvm"
 	ProjectGUID="{DF1A523C-1607-486D-8A5F-533B74EBC1A8}"
 	RootNamespace="nopvm"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;NOPVM_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -59,12 +59,11 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="if NOT EXIST LibScilab.lib lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nopvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nopvmtmp.def &gt;nul&#x0D;&#x0A;copy ..\nopvm_header.def+nopvmtmp.def  ..\nopvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nopvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nopvmtmp.def &gt;nul&#x0D;&#x0A;copy ..\nopvm_header.def+nopvmtmp.def  ..\nopvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../../../bin/pvm.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="nopvm.def"
@@ -125,7 +124,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../core/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;NOPVM_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -144,11 +143,10 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="if NOT EXIST LibScilab.lib lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nopvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nopvmtmp.def &gt;nul&#x0D;&#x0A;copy ..\nopvm_header.def+nopvmtmp.def  ..\nopvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nopvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nopvmtmp.def &gt;nul&#x0D;&#x0A;copy ..\nopvm_header.def+nopvmtmp.def  ..\nopvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../../../bin/pvm.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="nopvm.def"

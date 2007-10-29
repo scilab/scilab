@@ -13,7 +13,6 @@ EXPORTS
  checkrhs_
  intersci_
  createvarfromptr_
- Scierror
  callFunctionFromGateway
  iop_
  message_scilab

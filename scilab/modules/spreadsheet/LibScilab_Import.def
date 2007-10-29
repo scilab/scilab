@@ -14,7 +14,6 @@ EXPORTS
  checkrhs_
  intersci_
  createvarfromptr_
- Scierror
  callFunctionFromGateway
  returnanan_
  getTMPDIR

@@ -4,6 +4,10 @@
 EXPORTS
 ;core
 com_
+iop_
+errgst_
+errmgr_
+errloc_
 stack_
 sciprint
 ExceptionMessage
@@ -14,5 +18,9 @@ getrhsvar_
 checkrhs_
 checklhs_
 intersci_
-Scierror
+errmds_
+createvar_
+getScilabMode
+writelunitstring_
+
 ;

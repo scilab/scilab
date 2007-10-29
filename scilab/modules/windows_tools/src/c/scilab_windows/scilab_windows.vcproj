@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="scilab_windows"
 	ProjectGUID="{8028F371-6A94-4A26-8804-6E7F05F1D1AA}"
 	RootNamespace="scilab_windows"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../action_binding/includes"
+				AdditionalIncludeDirectories=".;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +126,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../action_binding/includes"
+				AdditionalIncludeDirectories=".;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

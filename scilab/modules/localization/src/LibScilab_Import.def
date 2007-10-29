@@ -5,7 +5,6 @@ EXPORTS
  sciprint
  putlhsvar_
  intersci_
- Scierror
  stack_
  check_scalar
  getrhsvar_

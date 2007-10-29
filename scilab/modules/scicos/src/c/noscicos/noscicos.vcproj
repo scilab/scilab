@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="noscicos"
 	ProjectGUID="{0A0B68FA-98F5-4FC2-A9E9-4AC9CEE6A6B4}"
 	RootNamespace="noscicos"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -59,12 +59,11 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="if NOT EXIST LibScilab.lib lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n noscicos.dll %%f &gt;nul&#x0D;&#x0A;copy *.def noscicostmp.def &gt;nul&#x0D;&#x0A;copy ..\noscicos_header.def+noscicostmp.def  ..\noscicos.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n noscicos.dll %%f &gt;nul&#x0D;&#x0A;copy *.def noscicostmp.def &gt;nul&#x0D;&#x0A;copy ..\noscicos_header.def+noscicostmp.def  ..\noscicos.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../../../../bin/scicos.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="noscicos.def"
@@ -126,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -145,11 +144,10 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="if NOT EXIST LibScilab.lib lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n noscicos.dll %%f &gt;nul&#x0D;&#x0A;copy *.def noscicostmp.def &gt;nul&#x0D;&#x0A;copy ..\noscicos_header.def+noscicostmp.def  ..\noscicos.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n noscicos.dll %%f &gt;nul&#x0D;&#x0A;copy *.def noscicostmp.def &gt;nul&#x0D;&#x0A;copy ..\noscicos_header.def+noscicostmp.def  ..\noscicos.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../../../../bin/scicos.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="noscicos.def"

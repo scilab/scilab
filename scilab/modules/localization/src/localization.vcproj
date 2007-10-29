@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="localization"
 	ProjectGUID="{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}"
 	RootNamespace="localization"
@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
 				PreprocessorDefinitions="FORDLL;_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -134,7 +134,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"

@@ -14,7 +14,6 @@ EXPORTS
  checkrhs_
  gettype_
  getScilabMode
- Scierror
  createvar_
  IsFromJava
  createvarfromptr_

@@ -15,7 +15,6 @@ getrhsvar_
 checkrhs_
 checklhs_
 intersci_
-Scierror
 gettype_
 GetFunctionsList
 getcommandkeywords

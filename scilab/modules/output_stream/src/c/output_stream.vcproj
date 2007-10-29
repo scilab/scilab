@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="output_stream"
 	ProjectGUID="{A5911CD7-F8E8-440C-A23E-4843A0636F3A}"
 	RootNamespace="output_stream"
@@ -65,12 +65,12 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scioutput_stream.dll %%f &gt;nul&#x0D;&#x0A;copy *.def output_streamtmp.def &gt;nul&#x0D;&#x0A;copy ..\output_stream_header.def+output_streamtmp.def  ..\output_stream.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Shell_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)libshell.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scioutput_stream.dll %%f &gt;nul&#x0D;&#x0A;copy *.def output_streamtmp.def &gt;nul&#x0D;&#x0A;copy ..\output_stream_header.def+output_streamtmp.def  ..\output_stream.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib "
+				AdditionalDependencies="LibScilab.lib libshell.lib fileio.lib"
 				OutputFile="../../../../bin/scioutput_stream.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="output_stream.def"
@@ -155,11 +155,11 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scioutput_stream.dll %%f &gt;nul&#x0D;&#x0A;copy *.def output_streamtmp.def &gt;nul&#x0D;&#x0A;copy ..\output_stream_header.def+output_streamtmp.def  ..\output_stream.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Shell_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)libshell.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scioutput_stream.dll %%f &gt;nul&#x0D;&#x0A;copy *.def output_streamtmp.def &gt;nul&#x0D;&#x0A;copy ..\output_stream_header.def+output_streamtmp.def  ..\output_stream.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib "
+				AdditionalDependencies="LibScilab.lib libshell.lib fileio.lib"
 				OutputFile="../../../../bin/scioutput_stream.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="output_stream.def"
@@ -206,6 +206,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\basout.c"
+				>
+			</File>
+			<File
 				RelativePath=".\cerro.c"
 				>
 			</File>
@@ -217,17 +221,45 @@
 				RelativePath=".\erro.c"
 				>
 			</File>
+			<File
+				RelativePath=".\msgout.c"
+				>
+			</File>
+			<File
+				RelativePath=".\msgstore.c"
+				>
+			</File>
+			<File
+				RelativePath=".\Scierror.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\basout.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\cerro.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\erro.h"
+				>
+			</File>
+			<File
+				RelativePath=".\msgout.h"
+				>
+			</File>
+			<File
+				RelativePath=".\msgstore.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Scierror.h"
 				>
 			</File>
 		</Filter>
@@ -256,11 +288,11 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\output_stream.xml"
+			RelativePath="..\..\output_stream.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\output_stream.iss"
+			RelativePath="..\..\output_stream.xml"
 			>
 		</File>
 		<File

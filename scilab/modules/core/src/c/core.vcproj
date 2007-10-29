@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="core"
 	ProjectGUID="{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	RootNamespace="core"
@@ -181,10 +181,6 @@
 			</File>
 			<File
 				RelativePath=".\banier.c"
-				>
-			</File>
-			<File
-				RelativePath=".\basout.c"
 				>
 			</File>
 			<File
@@ -392,15 +388,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\msgout.c"
-				>
-			</File>
-			<File
 				RelativePath=".\msgs.c"
-				>
-			</File>
-			<File
-				RelativePath=".\msgstore.c"
 				>
 			</File>
 			<File
@@ -696,10 +684,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Scierror.c"
-				>
-			</File>
-			<File
 				RelativePath=".\SCIHOME.c"
 				>
 			</File>
@@ -821,10 +805,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\basout.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\callFunctionFromGateway.h"
 				>
 			</File>
@@ -897,11 +877,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -1022,14 +1002,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\message_scilab.h"
-				>
-			</File>
-			<File
-				RelativePath=".\msgout.h"
-				>
-			</File>
-			<File
-				RelativePath=".\msgstore.h"
 				>
 			</File>
 			<File

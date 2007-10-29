@@ -17,7 +17,6 @@ EXPORTS
  getrhsvar_
  checklhs_
  checkrhs_
- Scierror
  gettype_
  vstk_
  createvarfromptr_

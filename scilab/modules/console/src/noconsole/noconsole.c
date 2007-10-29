@@ -13,7 +13,6 @@
 #include "TerminateConsole.h"
 #include "PromptToHome.h"
 #include "MALLOC.h"
-#include "Scierror.h"
 #include "GetCharWithoutOutput.h"
 /*-----------------------------------------------------------------------------------*/
 /*

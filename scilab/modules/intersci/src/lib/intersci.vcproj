@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="intersci"
 	ProjectGUID="{DFA0D75B-F7EF-4D02-B33F-486829405315}"
 	RootNamespace="intersci"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
