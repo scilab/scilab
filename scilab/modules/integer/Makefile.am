@@ -118,7 +118,8 @@ sci_gateway/fortran/sci_inttype.f
 
 MODULE_CHECKS = unit_tests/intops.tst
 
-libsciinteger_la_CFLAGS=  -Iincludes/
+libsciinteger_la_CFLAGS=  	-Iincludes/ \
+				-I$(top_builddir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libsciinteger.la
 

@@ -435,7 +435,9 @@ sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
 MODULE_CHECKS = unit_tests/intops.tst
-libsciinteger_la_CFLAGS = -Iincludes/
+libsciinteger_la_CFLAGS = -Iincludes/ \
+				-I$(top_builddir)/modules/output_stream/includes/
+
 pkglib_LTLIBRARIES = libsciinteger.la
 libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libsciinteger_la_LIBADD = \
