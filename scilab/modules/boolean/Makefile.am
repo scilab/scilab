@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 BOOLEAN_C_SOURCES = src/c/matboolean.c \
@@ -19,7 +19,8 @@ sci_gateway/c/gw_boolean.c
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_bool2s.f \
 sci_gateway/fortran/sci_find.f
 
-libsciboolean_la_CFLAGS=  -Iincludes/ 
+libsciboolean_la_CFLAGS=  	-Iincludes/ \
+				-I$(top_builddir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libsciboolean.la
 
@@ -28,7 +29,7 @@ libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GAT
 libsciboolean_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la 
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 #$(top_builddir)/libs/blas/libsciblas.la:
 #	(cd $(top_builddir)/libs/blas/; make libsciblas.la)
 #SUFFIXES = .la
@@ -43,11 +44,11 @@ libsciboolean_la_rootdir = $(mydatadir)
 libsciboolean_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### boolean : init scripts #### 
+#### boolean : init scripts ####
 libsciboolean_la_etcdir = $(mydatadir)/etc
 libsciboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
 
-#### boolean : gateway declaration #### 
+#### boolean : gateway declaration ####
 libsciboolean_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean_gateway.xml
 
