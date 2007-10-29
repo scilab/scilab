@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 INTERPOLATION_FORTRAN_SOURCES = src/fortran/somespline.f \
@@ -26,15 +26,18 @@ sci_gateway/c/sci_bsplin3val.c \
 sci_gateway/c/sci_eval_cshep2d.c
 
 libsciinterpolation_la_FFLAGS=  -Iincludes/
-libsciinterpolation_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciinterpolation_la_CFLAGS= 	-Iincludes/ \
+				-Isrc/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 
-libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
+libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 libsciinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la 
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 
 
@@ -48,11 +51,11 @@ libsciinterpolation_la_rootdir = $(mydatadir)
 libsciinterpolation_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### interpolation : init scripts #### 
+#### interpolation : init scripts ####
 libsciinterpolation_la_etcdir = $(mydatadir)/etc
 libsciinterpolation_la_etc_DATA = etc/interpolation.quit etc/interpolation.start
 
-#### interpolation : gateway declaration #### 
+#### interpolation : gateway declaration ####
 libsciinterpolation_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation_gateway.xml
 
