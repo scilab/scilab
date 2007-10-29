@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 RANDLIB_C_SOURCES = src/c/fsultra.c \
@@ -42,7 +42,8 @@ sci_gateway/c/sci_grand.c
 MODULE_CHECKS = unit_tests/grand.tst \
 unit_tests/grandb.tst
 
-libscirandlib_la_CFLAGS=  -Iincludes/ 
+libscirandlib_la_CFLAGS=  	-Iincludes/ \
+				-I$(top_builddir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscirandlib.la
 
@@ -53,7 +54,7 @@ libscirandlib_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la
 
 #	$(top_builddir)/libs/blas/libsciblas.la \
-#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la 
+#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 
 
@@ -68,11 +69,11 @@ libscirandlib_la_rootdir = $(mydatadir)
 libscirandlib_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### randlib : init scripts #### 
+#### randlib : init scripts ####
 libscirandlib_la_etcdir = $(mydatadir)/etc
 libscirandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
 
-#### randlib : gateway declaration #### 
+#### randlib : gateway declaration ####
 libscirandlib_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib_gateway.xml
 
