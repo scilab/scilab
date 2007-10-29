@@ -1,10 +1,10 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 STRING_C_SOURCES = src/c/strcat-c.c \
-src/c/men_Sutils.c 
+src/c/men_Sutils.c
 
 STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
 
@@ -60,7 +60,10 @@ unit_tests/mulf.tst \
 unit_tests/addf.tst
 
 
-libscistring_la_CFLAGS=  -Isrc/c -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscistring_la_CFLAGS=  	-Isrc/c \
+				-Iincludes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscistring.la
 
@@ -85,11 +88,11 @@ modulename=string
 libscistring_la_rootdir = $(mydatadir)
 libscistring_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### string : init scripts #### 
+#### string : init scripts ####
 libscistring_la_etcdir = $(mydatadir)/etc
 libscistring_la_etc_DATA = etc/string.quit etc/string.start
 
-#### string : gateway declaration #### 
+#### string : gateway declaration ####
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 
