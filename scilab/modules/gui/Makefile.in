@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 ##########
@@ -394,8 +394,8 @@ libscigui_la_CFLAGS = -Isrc/c/ -Isrc/c/xsci/ -Iincludes/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/shell/includes/ $(TCL_INC_PATH) \
 	$(Tk_INC_PATH) -I$(top_srcdir)/libs/doublylinkedlist/includes \
-	$(am__append_4)
-@GUI_FALSE@GUI_C_SOURCES = src/nogui/nogui.c 
+	-I$(top_srcdir)/modules/output_stream/includes $(am__append_4)
+@GUI_FALSE@GUI_C_SOURCES = src/nogui/nogui.c
 @GUI_TRUE@GUI_C_SOURCES = \
 @GUI_TRUE@src/c/getlookandfeel.c \
 @GUI_TRUE@src/c/setlookandfeel.c \
@@ -428,7 +428,7 @@ libscigui_la_CFLAGS = -Isrc/c/ -Isrc/c/xsci/ -Iincludes/ \
 @GUI_TRUE@sci_gateway/c/sci_about.c \
 @GUI_TRUE@sci_gateway/c/sci_ClipBoard.c \
 @GUI_TRUE@sci_gateway/c/sci_hidetoolbar.c \
-@GUI_TRUE@sci_gateway/c/sci_toolbar.c 
+@GUI_TRUE@sci_gateway/c/sci_toolbar.c
 
 @GUI_TRUE@MODULE_CHECKS = unit_tests/addmenu.tst \
 @GUI_TRUE@	unit_tests/dialogs.tst
@@ -452,11 +452,11 @@ modulename = gui
 libscigui_la_rootdir = $(mydatadir)
 libscigui_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-####�gui : init scripts #### 
+####�gui : init scripts ####
 libscigui_la_etcdir = $(mydatadir)/etc
 libscigui_la_etc_DATA = etc/gui.quit etc/gui.start
 
-####�gui : gateway declaration #### 
+####�gui : gateway declaration ####
 libscigui_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
