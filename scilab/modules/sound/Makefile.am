@@ -24,7 +24,7 @@ unit_tests/wavread.tst
 libscisound_la_CFLAGS=  -Iincludes/ \
 			-Isrc/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modlues/output_stream/includes
+			-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscisound.la
 
