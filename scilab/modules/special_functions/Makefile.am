@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 
@@ -38,7 +38,8 @@ libscispecial_functions_la_includedir=$(pkgincludedir)/special_functions
 libscispecial_functions_la_include_HEADERS = includes/gw_special_functions1.h \
 includes/gw_special_functions2.h
 
-libscispecial_functions_la_CFLAGS=  -Iincludes/ 
+libscispecial_functions_la_CFLAGS=  	-Iincludes/ \
+					-I$(top_builddir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libscispecial_functions.la
 
@@ -62,11 +63,11 @@ modulename=special_functions
 libscispecial_functions_la_rootdir = $(mydatadir)
 libscispecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### special_functions : init scripts #### 
+#### special_functions : init scripts ####
 libscispecial_functions_la_etcdir = $(mydatadir)/etc
 libscispecial_functions_la_etc_DATA = etc/special_functions.quit etc/special_functions.start
 
-#### special_functions : gateway declaration #### 
+#### special_functions : gateway declaration ####
 libscispecial_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscispecial_functions_la_sci_gateway_DATA = sci_gateway/special_functions_gateway.xml
 
