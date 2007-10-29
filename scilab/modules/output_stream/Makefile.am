@@ -5,13 +5,17 @@
 ## Made by  Bruno JOFRET <bruno.jofret@inria.fr>
 ##
 ## Started on  Fri Oct 26 13:48:04 2007 bruno
-## Last update Fri Oct 26 15:36:00 2007 bruno
+## Last update Fri Oct 26 17:24:00 2007 bruno
 ##
 ## Copyright INRIA 2007
 ##
 
 OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
-				src/c/cerro.c
+				src/c/cerro.c \
+				src/c/Scierror.c \
+				src/c/msgstore.c \
+				src/c/msgout.c \
+				src/c/basout.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES =
 
@@ -49,7 +53,8 @@ libscioutput_stream_la_sci_gateway_DATA =
 #### output_stream : include files ####
 libscioutput_stream_la_includedir=$(pkgincludedir)/output_stream
 libscioutput_stream_la_include_HEADERS = includes/cerro.h \
-		includes/erro.h
+		includes/erro.h \
+		includes/Scierror.h
 
 
 

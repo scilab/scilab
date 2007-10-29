@@ -82,7 +82,11 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscioutput_stream_la_DEPENDENCIES =
 am__objects_1 = libscioutput_stream_la-erro.lo \
-	libscioutput_stream_la-cerro.lo
+	libscioutput_stream_la-cerro.lo \
+	libscioutput_stream_la-Scierror.lo \
+	libscioutput_stream_la-msgstore.lo \
+	libscioutput_stream_la-msgout.lo \
+	libscioutput_stream_la-basout.lo
 am__objects_2 =
 am_libscioutput_stream_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_2) $(am__objects_2)
@@ -281,7 +285,11 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
-				src/c/cerro.c
+				src/c/cerro.c \
+				src/c/Scierror.c \
+				src/c/msgstore.c \
+				src/c/msgout.c \
+				src/c/basout.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = 
 GATEWAY_C_SOURCES = 
@@ -311,7 +319,8 @@ libscioutput_stream_la_sci_gateway_DATA =
 #### output_stream : include files ####
 libscioutput_stream_la_includedir = $(pkgincludedir)/output_stream
 libscioutput_stream_la_include_HEADERS = includes/cerro.h \
-		includes/erro.h
+		includes/erro.h \
+		includes/Scierror.h
 
 
 #### output_stream : demos files ####
@@ -432,8 +441,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-Scierror.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-basout.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-cerro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-erro.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgout.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgstore.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -469,6 +482,34 @@ libscioutput_stream_la-cerro.lo: src/c/cerro.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cerro.c' object='libscioutput_stream_la-cerro.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-cerro.lo `test -f 'src/c/cerro.c' || echo '$(srcdir)/'`src/c/cerro.c
+
+libscioutput_stream_la-Scierror.lo: src/c/Scierror.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-Scierror.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-Scierror.Tpo -c -o libscioutput_stream_la-Scierror.lo `test -f 'src/c/Scierror.c' || echo '$(srcdir)/'`src/c/Scierror.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioutput_stream_la-Scierror.Tpo $(DEPDIR)/libscioutput_stream_la-Scierror.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Scierror.c' object='libscioutput_stream_la-Scierror.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-Scierror.lo `test -f 'src/c/Scierror.c' || echo '$(srcdir)/'`src/c/Scierror.c
+
+libscioutput_stream_la-msgstore.lo: src/c/msgstore.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgstore.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgstore.Tpo -c -o libscioutput_stream_la-msgstore.lo `test -f 'src/c/msgstore.c' || echo '$(srcdir)/'`src/c/msgstore.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioutput_stream_la-msgstore.Tpo $(DEPDIR)/libscioutput_stream_la-msgstore.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgstore.c' object='libscioutput_stream_la-msgstore.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgstore.lo `test -f 'src/c/msgstore.c' || echo '$(srcdir)/'`src/c/msgstore.c
+
+libscioutput_stream_la-msgout.lo: src/c/msgout.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgout.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgout.Tpo -c -o libscioutput_stream_la-msgout.lo `test -f 'src/c/msgout.c' || echo '$(srcdir)/'`src/c/msgout.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioutput_stream_la-msgout.Tpo $(DEPDIR)/libscioutput_stream_la-msgout.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgout.c' object='libscioutput_stream_la-msgout.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgout.lo `test -f 'src/c/msgout.c' || echo '$(srcdir)/'`src/c/msgout.c
+
+libscioutput_stream_la-basout.lo: src/c/basout.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-basout.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-basout.Tpo -c -o libscioutput_stream_la-basout.lo `test -f 'src/c/basout.c' || echo '$(srcdir)/'`src/c/basout.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioutput_stream_la-basout.Tpo $(DEPDIR)/libscioutput_stream_la-basout.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/basout.c' object='libscioutput_stream_la-basout.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-basout.lo `test -f 'src/c/basout.c' || echo '$(srcdir)/'`src/c/basout.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
