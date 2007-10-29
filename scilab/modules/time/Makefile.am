@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 ###  SOURCES ###
@@ -17,7 +17,10 @@ sci_gateway/c/sci_sleep.c \
 sci_gateway/c/sci_getdate.c \
 sci_gateway/c/gw_time.c
 
-libscitime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
+libscitime_la_CFLAGS=  	-Iincludes/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-Isrc/c/ \
+			-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscitime.la
 
@@ -43,11 +46,11 @@ libscitime_la_rootdir = $(mydatadir)
 libscitime_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### time : init scripts #### 
+#### time : init scripts ####
 libscitime_la_etcdir = $(mydatadir)/etc
 libscitime_la_etc_DATA = etc/time.quit etc/time.start
 
-#### time : gateway declaration #### 
+#### time : gateway declaration ####
 libscitime_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitime_la_sci_gateway_DATA = sci_gateway/time_gateway.xml
 
