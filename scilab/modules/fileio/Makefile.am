@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 FILEIO_SOURCES = src/c/FileExist.c \
@@ -64,7 +64,7 @@ sci_gateway/c/sci_getlongpathname.c \
 sci_gateway/c/sci_fileext.c \
 sci_gateway/c/sci_isdir.c \
 sci_gateway/c/sci_removedir.c \
-sci_gateway/c/sci_createdir.c 
+sci_gateway/c/sci_createdir.c
 
 MODULE_CHECKS = unit_tests/fscanfMat.tst \
 unit_tests/msscanf.tst \
@@ -72,7 +72,10 @@ unit_tests/mfprintf.tst \
 unit_tests/mfscanf.tst \
 unit_tests/msprintf.tst
 
-libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
+libscifileio_la_CFLAGS=		-Iincludes/ \
+				-Isrc/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscifileio.la
 
@@ -92,11 +95,11 @@ libscifileio_la_rootdir = $(mydatadir)
 libscifileio_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### fileio : init scripts #### 
+#### fileio : init scripts ####
 libscifileio_la_etcdir = $(mydatadir)/etc
 libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 
-#### fileio : gateway declaration #### 
+#### fileio : gateway declaration ####
 libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 
@@ -113,10 +116,10 @@ includes/createdirectory.h \
 includes/isdir.h \
 includes/removedir.h \
 includes/mopen.h \
-includes/mtell.h 
+includes/mtell.h
 
 #### fileio : demos files ####
 libscifileio_la_demosdir=$(mydatadir)
-nobase_libscifileio_la_demos_DATA = 
+nobase_libscifileio_la_demos_DATA =
 
 include $(top_srcdir)/Makefile.incl.am
