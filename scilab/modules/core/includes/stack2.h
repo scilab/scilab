@@ -1,5 +1,5 @@
-#ifndef STACK2_H 
-#define  STACK2_H 
+#ifndef STACK2_H
+#define  STACK2_H
 
 /* from sci_tools */
 
@@ -35,25 +35,24 @@ extern void C2F(cbool) __PARAMS ((     int *n,     int *ip[],     int *op));
 
 /* from somewhere (maybe stack1.h) */
 
-extern void C2F(setfeval) __PARAMS((char *,int *)); 
+extern void C2F(setfeval) __PARAMS((char *,int *));
 extern int C2F(fakecresmat2) __PARAMS((integer *lw, integer *nchar, integer *lr));
 /* from stack2.h */
 int C2F(isoptlw)(integer *topk,integer  *lw, char *namex, unsigned long name_len);
 integer C2F(numopt)(void);
 integer C2F(overload) __PARAMS(( integer *lw, char *fname, unsigned long l));
-integer C2F(overloadtype) __PARAMS(( integer *lw, char *fname,char *typ));
 
 int C2F(convert2sci) __PARAMS((int *));
 
 
 /**
  * int C2F(putlhsvar)()
- *     This function put on the Scilab stack the lhs 
- *     variables which are at the position lhsvar(i) 
- *     on the calling stack 
- *     Warning : this function supposes that the last 
+ *     This function put on the Scilab stack the lhs
+ *     variables which are at the position lhsvar(i)
+ *     on the calling stack
+ *     Warning : this function supposes that the last
  *     variable on the stack is at position top-rhs+nbvars
- * @return  
+ * @return
  */
 int C2F(putlhsvar) __PARAMS((void));
 
@@ -84,7 +83,7 @@ int C2F(setworksize)  __PARAMS((integer *number,integer *size));
  * You will probably need to do after a istk(xxxx) = yourvalue;
  * TODO : add a @see to the type of data
  * @example
- * Add the content of comm_size into the stack of Scilab 
+ * Add the content of comm_size into the stack of Scilab
  * @code
  	int n1=1,m1=1,l1=0;
 	int comm_size=42;
@@ -114,18 +113,18 @@ int C2F(getmatdims)  __PARAMS((integer *number, integer *m, integer *n));
 
 /**
  * getrhsvar :
- *     get the argument number <<number>> 
- *     the argument must be of type type ('c','d','r','i','f','l','b') 
- *     return values m,n,lr 
- *     c : string  (m-> number of characters and n->1) 
- *     d,r,i : matrix of double,float or integer 
- *     f : external (function) 
- *     b : boolean matrix 
- *     l : a list  (m-> number of elements and n->1) 
- *         for each element of the list an other function 
- *         must be used to <<get>> them 
- *     side effects : arguments in the common intersci are modified 
- *     see examples in addinter-examples 
+ *     get the argument number <<number>>
+ *     the argument must be of type type ('c','d','r','i','f','l','b')
+ *     return values m,n,lr
+ *     c : string  (m-> number of characters and n->1)
+ *     d,r,i : matrix of double,float or integer
+ *     f : external (function)
+ *     b : boolean matrix
+ *     l : a list  (m-> number of elements and n->1)
+ *         for each element of the list an other function
+ *         must be used to <<get>> them
+ *     side effects : arguments in the common intersci are modified
+ *     see examples in addinter-examples
  * @param number the number of the argument in the function
  * @param type__ the type of the variable
  * @param m number of line of the matrix
@@ -140,11 +139,11 @@ int C2F(getrhsvar) __PARAMS((integer *number, char *type__, integer *m, integer 
 /**
  * getrhsvar :
  *     get the argument number <<number>>  which is a complex matrices
- *     the argument must be of type type ('d','r','i') 
- *     return values m,n,lr 
- *     d,r,i : matrix of double,float or integer 
- *     side effects : arguments in the common intersci are modified 
- *     see examples in addinter-examples 
+ *     the argument must be of type type ('d','r','i')
+ *     return values m,n,lr
+ *     d,r,i : matrix of double,float or integer
+ *     side effects : arguments in the common intersci are modified
+ *     see examples in addinter-examples
  * @param number the number of the argument in the function
  * @param type__ the type of the variable
  * @param m number of line of the matrix
@@ -171,7 +170,7 @@ int C2F(getlistrhscvar) __PARAMS((integer *lnumber, integer *number, char *type_
  * @param iptr the data we want to add into the stack
  * @param type_len length of the char *type__
  */
-int C2F(createvarfromptr) __PARAMS((integer *number, char *type__, integer *m, integer *n,void *iptr, unsigned long type_len)); 
+int C2F(createvarfromptr) __PARAMS((integer *number, char *type__, integer *m, integer *n,void *iptr, unsigned long type_len));
 
 
 /**
@@ -211,13 +210,12 @@ char * ArgPosition __PARAMS((int i));
 char * ArgsPosition __PARAMS((int i,int j));
 
 int IsRef __PARAMS((int lw));
-int Ref2val __PARAMS((int from , int to )) ; 
+int Ref2val __PARAMS((int from , int to )) ;
 
 void *GetData __PARAMS((int lw));
 void *GetRawData __PARAMS((int lw));
 int GetDataSize __PARAMS((int lw));
 void *GetDataFromName __PARAMS(( char *name ));
-void ConvertData __PARAMS(( char *type, int size,int l));
 int C2F(createreffromname) __PARAMS((int number, char *name ));
 int C2F(createreference) __PARAMS(( int number, int pointed ));
 int C2F(changetoref) __PARAMS(( int number, int pointed ));
@@ -240,4 +238,4 @@ int check_list_col __PARAMS((int lpos,int pos,int m,int n));
 int check_list_scalar __PARAMS((int lpos,int pos,int m,int n));
 int check_list_one_dim __PARAMS((int lpos,int pos,int dim,int val,int valref));
 
-#endif 
+#endif
