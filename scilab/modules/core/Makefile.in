@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 ##########
@@ -737,8 +737,13 @@ MODULE_CHECKS = unit_tests/comment.tst \
 	unit_tests/trycatch.tst \
 	unit_tests/resume.tst
 
-libscicore_la_CFLAGS = -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS) \
--I$(top_srcdir)/libs/doublylinkedlist/includes -I$(top_srcdir)/modules/action_binding/includes
+libscicore_la_CFLAGS = -Iincludes/ \
+			-Isrc/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			$(XML_FLAGS) \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes \
+			-I$(top_srcdir)/modules/action_binding/includes \
+			-I$(top_srcdir)/modules/output_stream/includes
 
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
@@ -763,15 +768,15 @@ modulename = core
 libscicore_la_rootdir = $(mydatadir)
 libscicore_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### core : init scripts #### 
+#### core : init scripts ####
 libscicore_la_etcdir = $(mydatadir)/etc
 libscicore_la_etc_DATA = etc/core.quit etc/core.start
 
-#### core : gateway declaration #### 
+#### core : gateway declaration ####
 libscicore_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicore_la_sci_gateway_DATA = sci_gateway/core_gateway.xml
 
-#### core :  dtd files #### 
+#### core :  dtd files ####
 libscicore_la_xmldir = $(mydatadir)/xml
 libscicore_la_xml_DATA = xml/modules.dtd xml/version.dtd
 
