@@ -19,7 +19,7 @@ LINKER_FLAGS=/NOLOGO /machine:ix86 /RELEASE
 #LINKER_FLAGS=/NOLOGO /machine:ix86 /DEBUG
 
 # include options 
-INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" -I"$(SCIDIR)\modules\core\includes" -I"$(SCIDIR)/libs/f2c" -I"$(SCIDIR)/modules/mexlib/includes" 
+INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" -I"$(SCIDIR)\modules\core\includes" -I"$(SCIDIR)\modules\output_stream\includes" -I"$(SCIDIR)/libs/f2c" -I"$(SCIDIR)/modules/mexlib/includes" 
 
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(USE_MT)
 
