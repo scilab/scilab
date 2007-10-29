@@ -7,9 +7,12 @@
 WINDOWS_TOOLS_C_SOURCES = src/nowindows_tools/nowindows_tools.c
 
 # Includes need for the compilation
-libsciwindows_tools_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciwindows_tools_la_CFLAGS=  -Iincludes/ \
+				-Isrc/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libsciwindows_tools.la
 
@@ -29,11 +32,11 @@ modulename=windows_tools
 libsciwindows_tools_la_rootdir = $(mydatadir)
 libsciwindows_tools_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### windows_tools : init scripts #### 
+#### windows_tools : init scripts ####
 libsciwindows_tools_la_etcdir = $(mydatadir)/etc
 libsciwindows_tools_la_etc_DATA = etc/windows_tools.quit etc/windows_tools.start
 
-#### windows_tools : gateway declaration #### 
+#### windows_tools : gateway declaration ####
 libsciwindows_tools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciwindows_tools_la_sci_gateway_DATA = sci_gateway/windows_tools_gateway.xml
 
