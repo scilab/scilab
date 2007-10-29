@@ -5,7 +5,6 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "error_scilab.h"
 #include "MALLOC.h"
 #include "md5.h"
 /*-----------------------------------------------------------------------------------*/
@@ -52,12 +51,12 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,_("file %s doesn't exist."),Param1);
+				Scierror(999,_("File %s doesn't exist.\n"),Param1);
 			}
 		}
 		else
 		{
-			error_scilab(999,_("Invalid type parameter. it must be a string (a filename)."));
+			Scierror(999,_("Invalid type of input parameter(s): String expected.\n"));
 		}
 	}
 	else /* Rhs == 2 */
@@ -92,15 +91,15 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 
 				LhsVar(1) = Rhs+1;
 				C2F(putlhsvar)();
-			}
+ }
 			else
 			{
-				error_scilab(999,_("Invalid second parameter. It must be a string."));
+				Scierror(999,_("Invalid second parameter. It must be a string.\n"));
 			}
 		}
 		else
 		{
-			error_scilab(999,_("Invalid type parameter. parameters must be strings."));
+			Scierror(999,_("Invalid type parameter. parameters must be strings.\n"));
 		}
 	}
 	return 0;

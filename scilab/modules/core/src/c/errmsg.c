@@ -236,12 +236,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 41:
 			{
-				MSGOUT(_("Incompatible LHS"));
+				MSGOUT(_("Incompatible output parameter (LHS)"));
 			}
 			break;
 			case 42:
 			{
-				MSGOUT(_("Incompatible RHS"));
+				MSGOUT(_("Incompatible input parameter (RHS)"));
 			}
 			break;
 			case 43:
@@ -792,7 +792,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 222:
 			{
-				MSGOUT(_("lusolve not yet implemented for full RHS"));
+				MSGOUT(_("lusolve not yet implemented for full input parameter (RHS)"));
 			}
 			break;
 			case 223:

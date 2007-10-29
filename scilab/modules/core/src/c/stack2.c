@@ -60,7 +60,7 @@ int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 
   if ( Rhs < *iMin || Rhs > *iMax)
     {
-		error_scilab(77,_("%s : wrong number of rhs arguments"),get_fname(fname,fname_len));
+		Scierror(77,_("%s : wrong number of rhs arguments\n"),get_fname(fname,fname_len));
       return FALSE_;
     }
   return TRUE_;
@@ -74,7 +74,7 @@ int C2F(checklhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 {
   if ( Lhs < *iMin || Lhs > *iMax)
     {
-		error_scilab(78,_("%s : wrong number of lhs arguments"),get_fname(fname,fname_len));
+		Scierror(78,_("%s : wrong number of lhs arguments\n"),get_fname(fname,fname_len));
       return FALSE_;
     }
   return TRUE_;
@@ -299,7 +299,7 @@ int get_optionals(char *fname ,rhs_opts opts[])
     {
       if ( IsOpt(k,name) == 0  )
 	{
-	  error_scilab(999,_("%s : optional arguments name=val must be at the end."),fname);
+	  Scierror(999,_("%s : optional arguments name=val must be at the end.\n"),fname);
 	  return 0;
 	}
       else
@@ -415,13 +415,13 @@ int C2F(createvar)(integer *lw,char *typex,integer *m,integer *n,integer  *lr,un
   unsigned char Type = *typex;
   char *fname = Get_Iname();
   if (*lw > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createvar");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createvar");
     return FALSE_ ;
   }
   Nbvars = Max(*lw,Nbvars);
   lw1 = *lw + Top - Rhs;
   if (*lw < 0) {
-    error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"createvar");
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"createvar");
     return FALSE_ ;
   }
   switch (Type )
@@ -531,13 +531,13 @@ int C2F(createcvar)(integer *lw, char *typex,integer *it,integer *m,integer *n,i
   integer lw1;
   char *fname = Get_Iname();
   if (*lw > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createcvar");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createcvar");
     return FALSE_;
   }
   Nbvars = Max(*lw,Nbvars);
   lw1 = *lw + Top - Rhs;
   if (*lw < 0) {
-  error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"createcvar");
+  Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"createcvar");
     return FALSE_;
   }
   switch ( Type )  {
@@ -577,13 +577,13 @@ int C2F(createlist)(integer *lw,integer *nel)
   char *fname = Get_Iname();
   integer lr, lw1;
   if (*lw > intersiz) {
-	error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createlist");
+	Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createlist");
     return FALSE_;
   }
   Nbvars = Max(*lw,Nbvars);
   lw1 = *lw + Top - Rhs;
   if (*lw < 0) {
-	error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"createlist");
+	Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"createlist");
     return FALSE_;
   }
   C2F(crelist)(&lw1, nel, &lr);
@@ -610,13 +610,13 @@ int C2F(createvarfrom)(integer *lw,char *typex,integer *m,integer *n,integer *lr
   integer it=0, lw1, lcs;
   char *fname = Get_Iname();
   if (*lw > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createvarfrom");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createvarfrom");
     return FALSE_;
   }
   Nbvars = Max(*lw,Nbvars);
   lw1 = *lw + Top - Rhs;
   if (*lw < 0) {
-  	error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"createvarfrom");
+  	Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"createvarfrom");
     return FALSE_;
   }
   switch ( Type ) {
@@ -693,14 +693,14 @@ int C2F(createcvarfrom)(integer *lw,char *typex,integer *it,integer *m,integer *
   integer lw1, lcs;
   char *fname =     Get_Iname();
   if (*lw > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createcvarfrom");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createcvarfrom");
     return FALSE_;
   }
   Nbvars = Max(*lw,Nbvars);
   lw1 = *lw + Top - Rhs;
   MN = (*m)*(*n);
   if (*lw < 0) {
-    error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"createcvarfrom");
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"createcvarfrom");
     return FALSE_;
   }
   switch ( Type ) {
@@ -759,7 +759,7 @@ int C2F(createlistvarfrom)(integer *lnumber,integer *number,char * typex,integer
   integer lc, ix1, it = 0, mn = (*m)*(*n),inc=1;
   char *fname = Get_Iname();
   if (*lnumber > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createlistvar");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createlistvar");
     return FALSE_;
   }
   switch ( Type ) {
@@ -842,7 +842,7 @@ int C2F(createlistvarfrom)(integer *lnumber,integer *number,char * typex,integer
     *lar = *lr;
     break;
   default :
-    error_scilab(999,_("%s : (createlistvar) bad third argument!"),fname);
+    Scierror(999,_("%s : (createlistvar) bad third argument!\n"),fname);
     return FALSE_;
     break;
   }
@@ -863,7 +863,7 @@ int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, inte
   char *fname = Get_Iname();
 
   if (*lnumber > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createlistcvar");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createlistcvar");
     return FALSE_;
   }
 
@@ -902,7 +902,7 @@ int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, inte
     *lc = *lr + *m * *n;
     break;
   default :
-    error_scilab(999,_("%s : (createlistcvar) bad third argument!"),fname);
+    Scierror(999,_("%s : (createlistcvar) bad third argument!\n"),fname);
     return FALSE_;
   }
   return TRUE_;
@@ -933,7 +933,7 @@ int C2F(createlistvarfromptr)(integer *lnumber,integer * number,char *typex,inte
   integer lc, ix1, it = 0, lr,inc=1;
   char *fname = Get_Iname();
   if (*lnumber > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createlistvarfromptr");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createlistvarfromptr");
     return FALSE_;
   }
 
@@ -1007,7 +1007,7 @@ int C2F(createlistvarfromptr)(integer *lnumber,integer * number,char *typex,inte
     *stk(lr) = (double) ((unsigned long int) iptr);
     break;
   default :
-    error_scilab(999,_("%s : (createlistcvar) bad third argument!"),fname);
+    Scierror(999,_("%s : (createlistcvar) bad third argument!\n"),fname);
     return FALSE_;
     break;
   }
@@ -1038,7 +1038,7 @@ int C2F(createlistcvarfromptr)(integer *lnumber,integer *number,char *typex,inte
   integer lr,lc, ix1;
   char *fname = Get_Iname();
   if (*lnumber > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createlistvarfromptr");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createlistvarfromptr");
     return FALSE_;
   }
   switch ( Type ) {
@@ -1073,7 +1073,7 @@ int C2F(createlistcvarfromptr)(integer *lnumber,integer *number,char *typex,inte
     if ( *it == 1)     C2F(cint)(&ix1,(int **) iptc, stk(lc));
     break;
   default :
-    error_scilab(999,_("%s : (createlistcvarfromptr) bad third argument!"),fname);
+    Scierror(999,_("%s : (createlistcvarfromptr) bad third argument!\n"),fname);
     return FALSE_;
     break;
   }
@@ -1092,13 +1092,13 @@ int C2F(creatework)(integer *number,integer *m,integer *lr)
   char *fname = Get_Iname();
   if (*number > intersiz) {
 
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"creatework");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"creatework");
     return FALSE_ ;
   }
   Nbvars = Max(*number,Nbvars);
   lw1 = *number + Top - Rhs;
   if (lw1 < 0) {
-	error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"creatework");
+	Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"creatework");
     return FALSE_ ;
   }
   il = iadr(*Lstk(lw1));
@@ -1121,13 +1121,13 @@ int C2F(setworksize)(integer *number,integer *size)
   int lw1;
   char *fname = Get_Iname();
   if (*number > intersiz) {
-	error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"creatework");
+	Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"creatework");
     return FALSE_ ;
   }
   Nbvars = Max(*number,Nbvars);
   lw1 = *number + Top - Rhs;
   if (lw1 < 0) {
-    error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"setworksize");
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"setworksize");
     return FALSE_ ;
   }
   *istk(iadr(*Lstk(lw1)))=0;
@@ -1152,7 +1152,7 @@ int C2F(getmatdims)(integer *number,integer *m,integer *n)
 
   lw = *number + Top - Rhs;
   if ( *number > Rhs) {
-    error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"getmatdims");
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"getmatdims");
     return FALSE_;
   }
 
@@ -1160,7 +1160,7 @@ int C2F(getmatdims)(integer *number,integer *m,integer *n)
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   typ = *istk(il );
   if (typ > 10) {
-    error_scilab(199,_("%s : argument %d should be a matrix."), fname,*number);
+    Scierror(199,_("%s : argument %d should be a matrix.\n"), fname,*number);
     return  FALSE_;
   }
   *m = *istk(il + 1);
@@ -1197,7 +1197,7 @@ int C2F(getrhsvar)(integer *number,char *typex,integer *m,integer *n,integer *lr
   SciIntMat *Im;
   /* we accept a call to getrhsvar after a createvarfromptr call */
   if ( *number > Rhs && *number > Nbvars ) {
-    error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"getrhsvar");
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"getrhsvar");
     return FALSE_;
   }
 
@@ -1205,7 +1205,7 @@ int C2F(getrhsvar)(integer *number,char *typex,integer *m,integer *n,integer *lr
   lw = *number + Top - Rhs;
 
   if (*number > intersiz) {
-	error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"getrhsvar");
+	Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"getrhsvar");
     return FALSE_;
   }
 
@@ -1397,11 +1397,11 @@ int C2F(getrhscvar)(integer *number,char *typex,integer *it,integer *m,integer *
   Nbvars = Max(Nbvars,*number);
   lw = *number + Top - Rhs;
   if (*number > Rhs) {
-    error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"getrhscvar");
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"getrhscvar");
     return FALSE_;
   }
   if (*number > intersiz) {
-  	error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"getrhscvar");
+  	Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"getrhscvar");
     return FALSE_;
   }
   topk = Top;
@@ -1442,7 +1442,7 @@ int C2F(elementtype)(integer *lnumber, integer *number)
   char *fname = Get_Iname();
 
   if (*lnumber > Rhs) {
-    error_scilab(999,_("%s : bad call to elementtype!"),fname);
+    Scierror(999,_("%s : bad call to elementtype!\n"),fname);
     return FALSE_;
   }
 
@@ -1451,7 +1451,7 @@ int C2F(elementtype)(integer *lnumber, integer *number)
   if (*istk(il) < 0) il = iadr(*istk(il + 1));
   itype = *istk(il ); /* type of the variable numbered *lnumber */
   if (itype < 15 || itype > 17) { /* check if it is really a list */
-    error_scilab(210,_("%s : Argument %d: wrong type argument, expecting a list."),fname,*lnumber);
+    Scierror(210,_("%s : Argument %d: wrong type argument, expecting a list.\n"),fname,*lnumber);
     return FALSE_;
   }
   n = *istk(il + 1);/* number of elements in the list */
@@ -1494,11 +1494,11 @@ int C2F(getlistrhsvar)(integer *lnumber,integer *number,char *typex,integer *m,i
   Nbvars = Max(Nbvars,*lnumber);
   lw = *lnumber + Top - Rhs;
   if (*lnumber > Rhs) {
-    error_scilab(999,_("%s : bad call to %s! (1rst argument)."),fname,"getlistrhsvar");
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"getlistrhsvar");
     return FALSE_;
   }
   if (*lnumber > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"getlistrhsvar");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"getlistrhsvar");
     return FALSE_;
   }
 
@@ -1538,7 +1538,7 @@ int C2F(getlistrhsvar)(integer *lnumber,integer *number,char *typex,integer *m,i
     if (! C2F(getlistmat)(fname, &topk, &lw,number, &it, m, n, lr, &lc, nlgh)) return FALSE_;
     ix2 = *m * *n;
     if ((it != 1) && (ix2 !=0)){
-      error_scilab(999,_("%s : argument %d < (%d) should be a complex matrix."),fname, Rhs + (lw -topk) , *number);
+      Scierror(999,_("%s : argument %d < (%d) should be a complex matrix.\n"),fname, Rhs + (lw -topk) , *number);
       return FALSE_;
     };
       if (!(*lr % 2) ) {  /* bad adress (lr is even) shift up the stack */
@@ -1594,7 +1594,7 @@ int C2F(getlistrhsvar)(integer *lnumber,integer *number,char *typex,integer *m,i
       return FALSE_;
     break;
   default :
-    error_scilab(999,_("%s : getlistrhsvar was called with bad third argument (%c)."),fname,Type);
+    Scierror(999,_("%s : getlistrhsvar was called with bad third argument (%c).\n"),fname,Type);
     return FALSE_;
   }
   /* can't perform back data conversion with lists */
@@ -1615,11 +1615,11 @@ int C2F(getlistrhscvar)(integer *lnumber,integer *number,char *typex,integer *it
   Nbvars = Max(Nbvars,*lnumber);
   lw = *lnumber + Top - Rhs;
   if (*lnumber > Rhs) {
-    error_scilab(999,_("%s : bad call to getlistrhscvar! (1rst argument)."),fname);
+    Scierror(999,_("%s : bad call to getlistrhscvar! (1rst argument).\n"),fname);
     return FALSE_;
   }
   if (*lnumber > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"getlistrhscvar");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"getlistrhscvar");
     return FALSE_;
   }
   switch ( Type ) {
@@ -1643,7 +1643,7 @@ int C2F(getlistrhscvar)(integer *lnumber,integer *number,char *typex,integer *it
     *lc = *lr + *m * *n;
     break;
   default :
-    error_scilab(999,_("%s : getlistrhscvar was called with bad third argument!"),fname);
+    Scierror(999,_("%s : getlistrhscvar was called with bad third argument!\n"),fname);
     return FALSE_;
   }
   /* can't perform back data conversion with lists */
@@ -1710,7 +1710,7 @@ int C2F(createvarfromptr)(integer *number,char *typex,integer *m,integer *n,void
 				C2F(intersci).ntypes[*number - 1] = '$';
 				break;
 			default :
-				error_scilab(999,_("%s : createvarfromptr was called with bad second argument!"),fname);
+				Scierror(999,_("%s : createvarfromptr was called with bad second argument!\n"),fname);
 				return FALSE_;
 		}
 	/*     this object will be copied with a vcopyobj in putlhsvar */
@@ -1731,7 +1731,7 @@ int C2F(createcvarfromptr)(integer *number,char *typex,integer *it,integer *m,in
 
   Nbvars = Max(Nbvars,*number);
   if (*number > intersiz) {
-    error_scilab(999,_("%s : createcvarfromptr: too many arguments on the stack, enlarge intersiz."),fname);
+    Scierror(999,_("%s : createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"),fname);
     return FALSE_;
   }
   lw1 = *number + Top - Rhs;
@@ -1757,7 +1757,7 @@ int C2F(createcvarfromptr)(integer *number,char *typex,integer *it,integer *m,in
     }
     break;
   default :
-    error_scilab(999,_("%s : createcvarfromptr was called with bad second argument!"),fname);
+    Scierror(999,_("%s : createcvarfromptr was called with bad second argument!\n"),fname);
     return FALSE_;
   }
   /*     this object will be copied with a vcopyobj in putlhsvar */
@@ -1902,11 +1902,11 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
 
  L89:
   if (Top < Rhs) {
-	  error_scilab(22,_("%s : recursion problems. Sorry ..."),"scifunction");
+	  Scierror(22,_("%s : recursion problems. Sorry ...\n"),"scifunction");
     goto L9999;
   }
   if (Top - Rhs + Lhs + 1 >= Bot) {
-    error_scilab(18,_("%s : too many names."),"scifunction");
+    Scierror(18,_("%s : too many names.\n"),"scifunction");
     goto L9999;
   }
   goto L91;
@@ -1921,7 +1921,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
   k = C2F(com).fun;
   C2F(com).fun = 0;
   if (k == krec) {
-    error_scilab(22,_("%s : recursion problems. Sorry ..."),"scifunction");
+    Scierror(22,_("%s : recursion problems. Sorry ...\n"),"scifunction");
     goto L9999;
   }
   if (k == 0) {
@@ -2018,7 +2018,7 @@ int C2F(scistring)(integer *ifirst,char *thestring,integer *mlhs,integer *mrhs,u
     Top = tops;
     if (C2F(com).fin == 0)
 	{
-      error_scilab(999,_("scistring: %s is not a Scilab function."),get_fname(thestring,thestring_len));
+      Scierror(999,_("scistring: %s is not a Scilab function.\n"),get_fname(thestring,thestring_len));
       return ret;
     }
     if (C2F(com).fun <= 0) {
@@ -2128,11 +2128,11 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   }
  L89:
   if (Top < Rhs) {
-    error_scilab(22,_("%s : recursion problems. Sorry ..."),_("built in"));
+    Scierror(22,_("%s : recursion problems. Sorry ...\n"),_("built in"));
     goto L9999;
   }
   if (Top - Rhs + Lhs + 1 >= Bot) {
-    error_scilab(18,_("%s : too many names."),"");
+    Scierror(18,_("%s : too many names.\n"),"");
     goto L9999;
   }
   goto L91;
@@ -2147,7 +2147,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   k = C2F(com).fun;
   C2F(com).fun = 0;
   if (k == krec) {
-    error_scilab(22,_("%s : recursion problems. Sorry ..."),_("built in"));
+    Scierror(22,_("%s : recursion problems. Sorry ...\n"),_("built in"));
     goto L9999;
   }
   if (k == 0) {
@@ -2328,19 +2328,19 @@ int C2F(getrhssys)(integer *lw,integer *n,integer *m,integer *p,integer *ptra,in
     return FALSE_;
   }
   if (ma != mb && mb != 0) {
-    error_scilab(999,_("Invalid %c,%c matrices."),'A','B');
+    Scierror(999,_("Invalid %c,%c matrices.\n"),'A','B');
     return FALSE_;
   }
   if (ma != nc && nc != 0) {
-    error_scilab(999,_("Invalid %c,%c matrices."),'A','C');
+    Scierror(999,_("Invalid %c,%c matrices.\n"),'A','C');
     return FALSE_;
   }
   if (mc != md && md != 0) {
-    error_scilab(999,_("Invalid %c,%c matrices."),'C','D');
+    Scierror(999,_("Invalid %c,%c matrices.\n"),'C','D');
     return FALSE_;
   }
   if (nb != nd && nd != 0) {
-    error_scilab(999,_("Invalid %c,%c matrices."),'B','D');
+    Scierror(999,_("Invalid %c,%c matrices.\n"),'B','D');
     return FALSE_;
   }
   *n = ma;
@@ -2356,7 +2356,7 @@ int C2F(getrhssys)(integer *lw,integer *n,integer *m,integer *p,integer *ptra,in
 
 int C2F(errorinfo)(char *fname,integer *info,unsigned long fname_len)
 {
-  error_scilab(998,_("%s : internal error, info=%d."),get_fname(fname,fname_len),*info);
+  Scierror(998,_("%s : internal error, info=%d.\n"),get_fname(fname,fname_len),*info);
   return 0;
 }
 
@@ -2903,7 +2903,7 @@ int check_dims(int posi,int m,int n,int m1,int n1)
 {
   if ( m != m1 ||  n != n1 )
     {
-      error_scilab(999,_("%s : %s has wrong dimensions (%d,%d), expecting (%d,%d)."),Get_Iname(),ArgPosition(posi),m,n,m1,n1);
+      Scierror(999,_("%s : %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"),Get_Iname(),ArgPosition(posi),m,n,m1,n1);
       return FALSE_;
     }
   return TRUE_;
@@ -2913,7 +2913,7 @@ int check_one_dim(int posi,int dim,int val,int valref)
 {
   if ( val != valref)
     {
-      error_scilab(999,_("%s : %s has wrong %s dimension (%d), expecting (%d)."), Get_Iname(), ArgPosition(posi),  ( dim == 1 ) ? _("first") : _("second") , val,valref);
+      Scierror(999,_("%s : %s has wrong %s dimension (%d), expecting (%d).\n"), Get_Iname(), ArgPosition(posi),  ( dim == 1 ) ? _("first") : _("second") , val,valref);
       return FALSE_;
     }
   return TRUE_;
@@ -2923,7 +2923,7 @@ int check_length(int posi,int m,int m1)
 {
   if ( m != m1 )
     {
-      error_scilab(999,_("%s : %s has wrong length %d, expecting (%d)."), Get_Iname(), ArgPosition(posi), m, m1);
+      Scierror(999,_("%s : %s has wrong length %d, expecting (%d).\n"), Get_Iname(), ArgPosition(posi), m, m1);
       return FALSE_;
     }
   return TRUE_;
@@ -2932,7 +2932,7 @@ int check_length(int posi,int m,int m1)
 int check_same_dims(int i,int j,int m1,int n1,int m2,int n2)
 {
   if ( m1 == m2 && n1 == n2 ) return TRUE_ ;
-  error_scilab(999,_("%s : %s have incompatible dimensions (%dx%d) # (%dx%d)"),Get_Iname(), ArgsPosition(i,j),  m1,n1,m2,n2);
+  Scierror(999,_("%s : %s have incompatible dimensions (%dx%d) # (%dx%d)\n"),Get_Iname(), ArgsPosition(i,j),  m1,n1,m2,n2);
   return FALSE_;
 }
 
@@ -2940,7 +2940,7 @@ int check_dim_prop(int i,int j,int flag)
 {
   if ( flag )
     {
-      error_scilab(999,_("%s : %s have incompatible dimensions."), Get_Iname(), ArgsPosition(i,j));
+      Scierror(999,_("%s : %s have incompatible dimensions.\n"), Get_Iname(), ArgsPosition(i,j));
       return FALSE_;
     }
   return TRUE_;
@@ -2951,7 +2951,7 @@ static int check_list_prop(char *mes, int lpos,int posi, int m)
 {
   if ( m )
     {
-      error_scilab(999,_("%s : %s should be a list with %d-element being %s."), Get_Iname(), ArgPosition(posi),posi,mes);
+      Scierror(999,_("%s : %s should be a list with %d-element being %s.\n"), Get_Iname(), ArgPosition(posi),posi,mes);
       return FALSE_;
     }
   return TRUE_;
@@ -2986,7 +2986,7 @@ int check_list_one_dim(int lpos,int posi,int dim,int val,int valref)
 {
   if ( val != valref)
     {
-      error_scilab(999,_("%s : argument %d(%d) has wrong %s dimension (%d), expecting (%d)."),Get_Iname(),lpos,posi,( dim == 1 ) ? _("first") : _("second") , val,valref);
+      Scierror(999,_("%s : argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"),Get_Iname(),lpos,posi,( dim == 1 ) ? _("first") : _("second") , val,valref);
       return FALSE_;
     }
   return TRUE_;
@@ -3003,13 +3003,13 @@ int C2F(createdata)(integer *lw, integer n)
   integer lw1;
   char *fname = Get_Iname();
   if (*lw > intersiz) {
-    error_scilab(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz."),fname,"createdata");
+    Scierror(999,_("%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"),fname,"createdata");
     return FALSE_ ;
   }
   Nbvars = Max(*lw,Nbvars);
   lw1 = *lw + Top - Rhs;
   if (*lw < 0) {
-    error_scilab(999,_("%s : bad call to createdata! (1rst argument)."),fname);
+    Scierror(999,_("%s : bad call to createdata! (1rst argument).\n"),fname);
     return FALSE_ ;
   }
   if (! C2F(credata)(fname, &lw1, n, nlgh))    return FALSE_;
@@ -3089,7 +3089,7 @@ void *GetDataFromName( char *name )
   }
  else
     {
-      error_scilab(999,_("GetDataFromName: variable %s not found."),name);
+      Scierror(999,_("GetDataFromName: variable %s not found.\n"),name);
       return (void *) 0;
     }
 }
@@ -3141,7 +3141,7 @@ int C2F(createreffromname)(int number, char *name)
   }
   else
     {
-      error_scilab(999,_("CreateRefFromName: variable %s not found."),name);
+      Scierror(999,_("CreateRefFromName: variable %s not found.\n"),name);
       return 0;
     }
 }

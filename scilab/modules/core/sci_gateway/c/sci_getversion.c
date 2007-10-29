@@ -174,7 +174,7 @@ static int getversion_one_rhs(void)
 {
 	if (Lhs == 2)
 	{
-		error_scilab(78,_("%s : wrong number of lhs arguments"),"getversion");
+		error_scilab(78,_("%s : wrong number of output arguments (LHS)"),"getversion");
 		return 0;
 	}
 
@@ -242,7 +242,7 @@ static int getversion_two_rhs(void)
 {
 	if (Lhs == 2)
 	{
-		error_scilab(78,_("%s : wrong number of lhs arguments"),"getversion");
+		error_scilab(78,_("%s : wrong number of output arguments (LHS)"),"getversion");
 		return 0;
 	}
 

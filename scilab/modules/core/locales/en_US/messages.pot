@@ -675,11 +675,11 @@ msgid	"Incorrect number of arguments"
 msgstr	""
 #
 # File: src/c/errmsg.c, line: 241
-msgid	"Incompatible LHS"
+msgid	"Incompatible output parameter (LHS)"
 msgstr	""
 #
 # File: src/c/errmsg.c, line: 246
-msgid	"Incompatible RHS"
+msgid	"Incompatible input parameter (RHS)"
 msgstr	""
 #
 # File: src/c/errmsg.c, line: 251
@@ -847,7 +847,7 @@ msgid	"Null variable cannot be used here"
 msgstr	""
 #
 # File: src/c/errmsg.c, line: 797
-msgid	"lusolve not yet implemented for full RHS"
+msgid	"lusolve not yet implemented for full input parameter (RHS)"
 msgstr	""
 #
 # File: src/c/errmsg.c, line: 806
@@ -1461,7 +1461,7 @@ msgstr	""
 # File: src/c/stack2.c, line: 1906
 # File: src/c/stack2.c, line: 2132
 #, possible-c-format
-msgid	"%s : too many names."
+msgid	"%s : too many names.\n"
 msgstr	""
 #
 # File: src/c/stack1.c, line: 441
@@ -1757,14 +1757,14 @@ msgstr	""
 #
 # File: src/c/stack2.c, line: 60
 #, possible-c-format
-msgid	"%s : wrong number of rhs arguments"
+msgid	"%s : wrong number of input arguments (RHS)"
 msgstr	""
 #
 # File: src/c/stack2.c, line: 74
 # File: sci_gateway/c/sci_getversion.c, line: 177
 # File: sci_gateway/c/sci_getversion.c, line: 245
 #, possible-c-format
-msgid	"%s : wrong number of lhs arguments"
+msgid	"%s : wrong number of output arguments (LHS)"
 msgstr	""
 #
 # File: src/c/stack2.c, line: 299
@@ -2148,11 +2148,11 @@ msgid	"%s : Out of bounds value not in [%lu,%lu]."
 msgstr	""
 #
 # File: sci_gateway/c/sci_where.c, line: 16
-msgid	"incorrect number of arguments."
+msgid	"Incorrect number of input arguments.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_where.c, line: 22
-msgid	"incompatible LHS."
+msgid	"Incompatible number of output parameter (LHS).\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_libraryinfo.c, line: 80
@@ -2236,7 +2236,7 @@ msgstr	""
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 55
 #, possible-c-format
-msgid	"file %s doesn't exist."
+msgid	"File %s doesn't exist.\n"
 msgstr	""
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 60
