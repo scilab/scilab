@@ -1,13 +1,13 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### TEMPLATE MAKEFILE 
+### TEMPLATE MAKEFILE
 ### INRIA - Scilab 2007
 ##########
 
 if GUI
 
 #List of the c files
-COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c 
+COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
 
 # List of the c files
 COMPLETION_C_SOURCES = src/c/completion.c \
@@ -27,15 +27,20 @@ COMPLETION_C_SOURCES =src/nocompletion/nocompletion.c
 endif
 
 # Includes need for the compilation
-libscicompletion_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/fileio/includes/
+libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
+				-Iincludes/ \
+				-Isrc/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/graphics/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscicompletion.la
 
 # All the sources needed by libscicompletion.la
-libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES) 
+libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
@@ -50,11 +55,11 @@ modulename=completion
 libscicompletion_la_rootdir = $(mydatadir)
 libscicompletion_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### completion : init scripts #### 
+#### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc
 libscicompletion_la_etc_DATA = etc/completion.quit etc/completion.start
 
-#### completion : gateway declaration #### 
+#### completion : gateway declaration ####
 libscicompletion_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicompletion_la_sci_gateway_DATA = sci_gateway/completion_gateway.xml
 
@@ -65,7 +70,7 @@ includes/completion.h
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Completion.i 
+SWIG_WRAPPERS = src/jni/Completion.i
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
