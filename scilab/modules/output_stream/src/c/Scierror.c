@@ -55,7 +55,8 @@ va_end(ap);
 Scierror_internal(&iv,s_buf);
 return retval;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
+/* @TODO : rewrite this function */
 static int Scierror_internal(integer *n,char *buffer)
 {
 	integer imode;
