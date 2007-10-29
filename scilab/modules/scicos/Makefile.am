@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 # SUBDIRS = src/ocaml/
@@ -213,14 +213,16 @@ BUILT_SOURCES = includes/blocks.h
 includes/blocks.h:
 	if test ! -d build; then mkdir build; fi
 # Get the filename, strip the extension and put into a file
-	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames 
+	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
 	for file in $(SCICOS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
 	$(top_srcdir)/modules/scicos/src/c/GenBlocks.sh build/Fblocknames build/Cblocknames includes/blocks.h
 
 
-CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames 
+CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
-libsciscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciscicos_la_CFLAGS= -Iincludes/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes
 #libsciscicos_la_LDFLAGS = -lf2c
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
@@ -241,11 +243,11 @@ libsciscicos_la_rootdir = $(mydatadir)
 libsciscicos_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### scicos : init scripts #### 
+#### scicos : init scripts ####
 libsciscicos_la_etcdir = $(mydatadir)/etc
 libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
-#### scicos : gateway declaration #### 
+#### scicos : gateway declaration ####
 libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 
@@ -327,10 +329,12 @@ NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 
+libsciscicos_la_CFLAGS= -I$(top_srcdir)/modules/output_stream/includes
+
 libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = src/c/noscicos/resource.h
 
-#### scicos : init scripts #### 
+#### scicos : init scripts ####
 libsciscicos_la_etcdir = $(mydatadir)/etc
 libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
@@ -344,4 +348,4 @@ endif
 #	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 #		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
 #        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-#    done; 
+#    done;

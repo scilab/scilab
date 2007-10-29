@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 # SUBDIRS = src/ocaml/
@@ -736,8 +736,12 @@ JARMASK = *.jar
 @SCICOS_TRUE@unit_tests/scicos.tst
 
 @SCICOS_TRUE@BUILT_SOURCES = includes/blocks.h
-@SCICOS_TRUE@CLEANFILES = includes/blocks.h build/Cblocknames build/Fblocknames 
-@SCICOS_TRUE@libsciscicos_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+@SCICOS_TRUE@CLEANFILES = includes/blocks.h build/Cblocknames build/Fblocknames
+@SCICOS_FALSE@libsciscicos_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
+@SCICOS_TRUE@libsciscicos_la_CFLAGS = -Iincludes/ \
+@SCICOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
+
 @SCICOS_FALSE@libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 #libsciscicos_la_LDFLAGS = -lf2c
 @SCICOS_TRUE@libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
@@ -756,15 +760,15 @@ JARMASK = *.jar
 @SCICOS_TRUE@libsciscicos_la_rootdir = $(mydatadir)
 @SCICOS_TRUE@libsciscicos_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### scicos : init scripts #### 
+#### scicos : init scripts ####
 @SCICOS_FALSE@libsciscicos_la_etcdir = $(mydatadir)/etc
 
-#### scicos : init scripts #### 
+#### scicos : init scripts ####
 @SCICOS_TRUE@libsciscicos_la_etcdir = $(mydatadir)/etc
 @SCICOS_FALSE@libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 @SCICOS_TRUE@libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
-#### scicos : gateway declaration #### 
+#### scicos : gateway declaration ####
 @SCICOS_TRUE@libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @SCICOS_TRUE@libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 @SCICOS_FALSE@libsciscicos_la_includedir = $(pkgincludedir)/scicos
@@ -2440,7 +2444,7 @@ build-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(
 @SCICOS_TRUE@includes/blocks.h:
 @SCICOS_TRUE@	if test ! -d build; then mkdir build; fi
 # Get the filename, strip the extension and put into a file
-@SCICOS_TRUE@	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames 
+@SCICOS_TRUE@	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
 @SCICOS_TRUE@	for file in $(SCICOS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
 @SCICOS_TRUE@	$(top_srcdir)/modules/scicos/src/c/GenBlocks.sh build/Fblocknames build/Cblocknames includes/blocks.h
 
@@ -2451,7 +2455,7 @@ build-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(
 #	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 #		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
 #        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-#    done; 
+#    done;
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
