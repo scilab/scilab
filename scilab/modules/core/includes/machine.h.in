@@ -1,7 +1,7 @@
 /* modules/core/includes/machine.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef MACHINE_H
-#define MACHINE_H
+#ifndef MACHINE_H 
+#define MACHINE_H 
 
 
 
@@ -301,12 +301,6 @@
 /* Define to 1 if you have the <wctype.h> header file. */
 #undef HAVE_WCTYPE_H
 
-/* Define to 1 if you have the <X11/IntrinsicP.h> header file. */
-#undef HAVE_X11_INTRINSICP_H
-
-/* Define to 1 if you have the <X11/Xaw3d/ViewportP.h> header file. */
-#undef HAVE_X11_XAW3D_VIEWPORTP_H
-
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
 #undef LSTAT_FOLLOWS_SLASHED_SYMLINK
@@ -381,9 +375,6 @@
 /* If trailing underscores */
 #undef WTU
 
-/* Define to 1 if the X Window System is missing or not being used. */
-#undef X_DISPLAY_MISSING
-
 /* Number of bits in a file offset, on hosts where this is settable. */
 #undef _FILE_OFFSET_BITS
 
@@ -409,9 +400,9 @@
 #undef log_10_
 
 
-/*
+/* 
    Define integer C type which must fit Fortran integer
-   For Scilab to work, the rule is:
+   For Scilab to work, the rule is: 
           size of Fortran double precision = 2 * size of Fortran integer
 
    At the present time, we suppose:

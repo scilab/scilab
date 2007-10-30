@@ -10,7 +10,6 @@
 #include "stack1.h"
 #include "stack2.h"
 #include "sciprint.h"
-#include "Scierror.h"
 #include "cvstr.h"
 
 /* Table of constant values */

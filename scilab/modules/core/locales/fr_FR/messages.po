@@ -2245,7 +2245,7 @@ msgstr	""
 # File: sci_gateway/c/sci_getmd5.c, line: 55
 #, possible-c-format
 msgid	"File %s doesn't exist.\n"
-msgstr	"Fichier %s n'existe pas."
+msgstr	"Fichier %s n'existe pas.\n"
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 60
 msgid	"Invalid type parameter. it must be a string (a filename)."

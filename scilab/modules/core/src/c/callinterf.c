@@ -6,15 +6,10 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <signal.h>
-
-
 #include "csignal.h"
-
 #include "addinter.h" /* for DynInterfStart */
 #include "Os_specific.h" /* for DynInterfStart */
-
 #include "callinterf.h"
-
 #include "machine.h"
 #include "sciprint.h"
 #include "Scierror.h"

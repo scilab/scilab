@@ -12,7 +12,6 @@
 #endif 
 #include "sciprint.h"
 #include "scicurdir.h"
-#include "sciprint.h"
 #include "MALLOC.h"
 #include "warningmode.h"
 static char cur_dir[PATH_MAX];

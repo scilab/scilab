@@ -5,7 +5,6 @@
 #include <string.h>
 #include "warningmode.h"
 #include "sciprint.h"
-#include "sciprint.h"
 #include "stack-def.h" /* C2F(cha1) */
 #include "stack-c.h" /* Fin */
 #include "MALLOC.h"
@@ -553,7 +552,7 @@ static int msg_7(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_8(integer *n, integer *ierr)
 {
-	sciprint(_("Warning : \n"));
+	sciprint(_("Warning: obsolete use of eye rand or ones.\n"));
 	C2F(showstack)();
 	return 0;
 }
@@ -825,7 +824,7 @@ static int msg_40(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_41(integer *n, integer *ierr)
 {
-	sciprint(_("Commands: \n"));
+	sciprint(_("Commands:\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -977,7 +976,7 @@ static int msg_59(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_60(integer *n, integer *ierr)
 {
-	sciprint(_("Warning : loaded file has been created with a previous version of scilab.\n"));
+	sciprint(_("Warning : loaded file has been created with a previous version of scilab\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -987,13 +986,13 @@ static int msg_61(integer *n, integer *ierr)
 	integer c__1=1;
 	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], line, &c__1,24);
 	sciprint(_("Warning : \n"));
-	sciprint("Impossible to load variable %s.\n",line);
+	sciprint(_("Impossible to load variable %s.\n"),line);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_62(integer *n, integer *ierr)
 {
-	sciprint(_("Warning : use of standard list to define typed structures.\n"));
+	sciprint(_("Warning : use of standard list to define typed structures\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

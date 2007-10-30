@@ -49,10 +49,10 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	$(top_srcdir)/modules/scicos/src/ocaml/Makefile.in \
-	config/compile config/config.guess config/config.sub \
-	config/depcomp config/install-sh config/ltmain.sh \
-	config/missing
+	$(top_srcdir)/modules/scicos/src/ocaml/Makefile.in ABOUT-NLS \
+	config/compile config/config.guess config/config.rpath \
+	config/config.sub config/depcomp config/install-sh \
+	config/ltmain.sh config/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
@@ -79,13 +79,10 @@ binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_scilab_bin_OBJECTS = main_linux.$(OBJEXT)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
-am__DEPENDENCIES_1 =
 @GUI_FALSE@scilab_bin_DEPENDENCIES =  \
-@GUI_FALSE@	$(top_builddir)/modules/libscilab.la \
-@GUI_FALSE@	$(am__DEPENDENCIES_1)
+@GUI_FALSE@	$(top_builddir)/modules/libscilab.la
 @GUI_TRUE@scilab_bin_DEPENDENCIES =  \
-@GUI_TRUE@	$(top_builddir)/modules/libscilab.la \
-@GUI_TRUE@	$(am__DEPENDENCIES_1)
+@GUI_TRUE@	$(top_builddir)/modules/libscilab.la
 binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 SCRIPTS = $(bin_SCRIPTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
@@ -234,14 +231,9 @@ VERSION = @VERSION@
 WITH = @WITH@
 WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
-XMKMF = @XMKMF@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
-X_CFLAGS = @X_CFLAGS@
-X_EXTRA_LIBS = @X_EXTRA_LIBS@
-X_LIBS = @X_LIBS@
-X_PRE_LIBS = @X_PRE_LIBS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@

@@ -38,7 +38,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 		C2F(scigetdate)(&dt,&ierr);
 		if (ierr)
 		{
-			Scierror(999,_(_("Impossible to get the date...\n")));
+			Scierror(999,_("Impossible to get the date...\n"));
 			return 0;
 		}
 		else

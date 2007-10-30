@@ -363,7 +363,7 @@ void rhs_opt_print_names(rhs_opts opts[])
       sciprint("%s, ",opts[i].name);
       i++;
     }
-  sciprint("and %s.\n",opts[i].name);
+  sciprint(_("and %s.\n"),opts[i].name);
   return ;
 }
 

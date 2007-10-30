@@ -186,7 +186,8 @@ AC_DEFUN([AC_JAVA_DETECT_JVM], [
     	    ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
 			JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
 		else
-		    AC_MSG_RESULT([JAVA_HOME variable found, but unable to find javac (JRE ?)])
+		    AC_MSG_RESULT([JAVA_HOME variable found, but unable to find javac
+Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK (Java Developement Kit) ? )])
 		fi
 	fi
 

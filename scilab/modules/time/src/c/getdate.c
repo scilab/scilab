@@ -70,9 +70,9 @@ void C2F(convertdate)(time_t *dt,int w[10])
 		w[7] = 0;
 		w[8] = 0;
 		w[9] = 0;
-		if (*dt<0)	sciprint(_(_("dt=getdate(x) x must be > 0.\n")));
+		if (*dt<0)	sciprint(_("dt=getdate(x) x must be > 0.\n"));
 		#ifdef _MSC_VER
-		else sciprint(_(_("dt=getdate(x) x must be < %d.\n")),_MAX__TIME64_T);
+		else sciprint(_("dt=getdate(x) x must be < %d.\n"),_MAX__TIME64_T);
 		#endif
 	}
 	else

@@ -44,34 +44,34 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (year<1800) || (year>3000) )
 		{
-			Scierror(999,_(_("Error : year (1800 - 3000).\n")));
+			Scierror(999,_("Error : year (1800 - 3000).\n"));
 			return 0;
 		}
 				
 		if ( (month<1) || (month>12) )
 		{
-			Scierror(999,_(_("Error : month (1 - 12).\n")));
+			Scierror(999,_("Error : month (1 - 12).\n"));
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_(_("Invalid argument(s) type.\n")));
+		Scierror(999,_("Invalid argument(s) type.\n"));
 		return 0;
 	}
 	CALMONTH=(int *)MALLOC( (NBRDAY*NBRWEEK)*sizeof(int) );
 	for (i=0;i<NBRDAY*NBRWEEK;i++) CALMONTH[i]=0;
 
-	/* verification si le mois de fevrier est a 28 jours ou 29 jours */
+	/* check if the month of feb is 28 or 29 days */
     numdays = days[month - 1];
     if (2 == month && isBissextile(year)) ++numdays;
 
-	/* Cela sert a faire demarrer le calendrier par le Lundi */
+	/* Starts the calendar on monday */
     day_1 = (int)((ymd_to_scalar(year, month, 1) - (long)1) % 7L);
 
 	for (day = 0; day < day_1; ++day) a++;
 
-    /* ici on remplit les jours tous simplement */
+    /* Browse all the days */
     for (day = 1; day <= numdays; ++day, ++day_1, day_1 %= 7)
     {
         CALMONTH[a]= day;
