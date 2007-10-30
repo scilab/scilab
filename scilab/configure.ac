@@ -502,7 +502,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
 				AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.GL],[Scilab 3D rendering])
 				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
-				AC_JAVA_CHECK_PACKAGE([JRosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+				AC_JAVA_CHECK_PACKAGE([JRosetta-API-1.0],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
 				AC_JAVA_CHECK_PACKAGE([JRosetta-1.0],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
 				AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...])
@@ -784,7 +784,8 @@ AC_ARG_WITH(pcre,
 		)
 
 AC_PCRE()
-
+	  	 
+ #############################################
 #################
 ## Tcl/Tk library
 #################
@@ -818,6 +819,16 @@ if test "$with_tk" != no; then
 		[  --with-tk-include=DIR   Tk include files are in DIR ],
 		[  USER_TK_INC_PATH=$withval
 	])
+
+
+###########################
+########## X11 checks
+########################### 	 
+	  	 
+		##			
+		## Those check are mandatory since tk needs Xlib headers
+		AC_CHECK_HEADERS([X11/Xlib.h],,[AC_MSG_ERROR([X11/Xlib.h not found... Mandatory for tk])])
+
 
 	saved_cflags="$CFLAGS"
 	saved_ldflags="$LDFLAGS"
@@ -1069,7 +1080,6 @@ if test "$enable_stop_on_warning" = yes; then
    CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
-
 AC_CONFIG_FILES([
 libs/lapack/Makefile
 libs/blas/Makefile
@@ -1134,6 +1144,7 @@ modules/texmacs/Makefile
 modules/scipad/Makefile
 modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
+modules/output_stream/Makefile
 modules/console/Makefile
 modules/Makefile
 libs/Makefile
