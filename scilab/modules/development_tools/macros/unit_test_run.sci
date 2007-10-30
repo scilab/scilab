@@ -14,8 +14,11 @@ function unit_test_run(varargin)
 	
 	global test_list;
 	global test_count;
-
-	test_count = 0;
+	
+	test_count         = 0;
+	test_passed_count  = 0;
+	test_failed_count  = 0;
+	test_skipped_count = 0;
 	
 	select rhs
 		case 0
@@ -87,17 +90,41 @@ function unit_test_run(varargin)
 		else
 			error(gettext('Number of parameters incorrect.'));
 	end
+
+	// Test launch
+	
+	printf("\n");
 	
 	for i=1:test_count
 		
 		printf("\t %02d/%02d - ",i,test_count);
-		printf("%s [%s]",test_list(i,2),test_list(i,1));
+		printf("[%s] %s",test_list(i,1),test_list(i,2));
 		for j = length(test_list(i,2) + test_list(i,1)):50
 			printf(".");
 		end
-		status = unit_test_run_onetest(test_list(i,1),test_list(i,2));
-		printf("%d\n",status);
+		
+		[status_id,status_msg] = unit_test_run_onetest(test_list(i,1),test_list(i,2));
+		printf("%s\n",status_msg);
+		
+		if status_id == 0 then
+			test_passed_count = test_passed_count + 1;
+		elseif status_id > 0 then
+			test_failed_count = test_failed_count + 1;
+		end
 	end
+	
+	// Summary
+	
+	test_passed_percent = test_passed_count / test_count * 100;
+	test_failed_percent = test_failed_count / test_count * 100;
+
+	printf("\n");
+	printf("\t---------------------------------------------------------------------------------------\n");
+	printf("\tSummary\n\n");
+	printf("\ttests                     %4d - 100 %% \n",test_count);
+	printf("\tpassed                    %4d - %3d %% \n",test_passed_count,test_passed_percent);
+	printf("\tfailed                    %4d - %3d %% \n",test_failed_count,test_failed_percent);
+	printf("\t---------------------------------------------------------------------------------------\n");
 	
 endfunction
 
@@ -143,21 +170,6 @@ function unit_test_add_onetest(module,test)
 	
 endfunction
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
 // Scilab team
@@ -167,9 +179,10 @@ endfunction
 // => Run one test
 //-----------------------------------------------------------------------------
 
-function status = unit_test_run_onetest(module,test)
+function [status_id,status_msg] = unit_test_run_onetest(module,test)
 	
-	status = 0 ;
+	status_id  = 0 ;
+	status_msg = "passed" ;
 	
 	// Some definitions
 	
@@ -181,8 +194,6 @@ function status = unit_test_run_onetest(module,test)
 	tmp_diafile = pathconvert(TMPDIR+"/"+test+".dia",%f,%f);
 	tmp_resfile = pathconvert(TMPDIR+"/"+test+".res",%f,%f);
 	tmp_errfile = pathconvert(TMPDIR+"/"+test+".err",%f,%f);
-
-	debug_diafile = pathconvert("/tmp/"+test+".dia",%f,%f);
 	
 	// DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG
 	// printf("tstfile = %s\n",tstfile);
@@ -252,7 +263,8 @@ function status = unit_test_run_onetest(module,test)
 	// First Check
 	tmp_errfile_info = fileinfo(tmp_errfile);
 	if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
-		status = 5;
+		status_msg = "failed : error_output not empty"
+		status_id  = 5;
 		return;
 	end
 	
@@ -262,7 +274,6 @@ function status = unit_test_run_onetest(module,test)
 	// To get TMPDIR line
 	tmpdir1_line = grep(dia,"TMPDIR1");
 	execstr(dia(tmpdir1_line));
-	// printf("-- %s -- ",TMPDIR1);
 	
 	// Remove Header and Footer
 	
@@ -279,22 +290,23 @@ function status = unit_test_run_onetest(module,test)
 		dia(body_end(1):dia_nl) = [];
 	end
 	
-	mputl(dia,debug_diafile);
-	
 	//Check for execution errors
 	
 	if grep(dia,"!--error")<>[] then
-		status = 1;
+		status_msg = "failed : the string (!--error) has been detected";
+		status_id  = 1;
 		return;
 	end
 	
 	if grep(dia,"error on test")<>[] then
-		status = 2;
+		status_msg = "failed : one or several unit tests failed";
+		status_id  = 2;
 		return;
 	end
 	
 	if grep(dia,"Error on the test script file")<>[] then
-		status = 3;
+		status_msg = "failed : premature end of the test script";
+		status_id = 3;
 		return;
 	end
 	
@@ -337,11 +349,15 @@ function status = unit_test_run_onetest(module,test)
 		
 		if or(ref<>dia) then
 			if MSDOS then
-				status = 4;
+				status_msg = "failed : dia and ref are not equal";
+				status_id = 4;
 			else
-				status = 4;
+				status_msg = "failed : dia and ref are not equal";
+				status_id = 4;
 			end
 		end
+	else
+		error(sprintf(gettext("The ref file (%s) doesn''t exist"),reffile));
 	end
 	
 	return;
