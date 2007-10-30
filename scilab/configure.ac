@@ -185,11 +185,10 @@ fi
 
 ### C++ ###
 AC_PROG_CXX
-echo "CXX " $CXX
-if test -z "$CXX"; then
-  AC_MSG_ERROR([No C++ Compiler found. Cannot compile Scilab without a C++ compiler])
+AC_CHECK_PROG(cxx_present, $CXX, "yes", "no")
+if test "x$cxx_present" != "xyes"; then
+    AC_MSG_ERROR([No C++ compiler found. Cannot compile scilab without a C++ compiler])
 fi
-
 
 # for "subdir-objects"
 
