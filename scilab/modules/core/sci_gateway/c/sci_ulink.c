@@ -6,7 +6,6 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "error_scilab.h"
 #include "link.h"
 
 #include "Scierror.h"
