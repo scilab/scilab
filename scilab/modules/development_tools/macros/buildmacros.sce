@@ -6,5 +6,4 @@ if (isdef('genlib') == %f) then
 end
 //------------------------------------
 genlib('development_toolslib','SCI/modules/development_tools/macros',%f,%t);
-exit;
 //------------------------------------
