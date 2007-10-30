@@ -124,8 +124,7 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-stackinfo.lo libscicore_la-scirun.lo \
 	libscicore_la-SCIHOME.lo libscicore_la-warningmode.lo \
 	libscicore_la-InitializeCore.lo libscicore_la-TerminateCore.lo \
-	libscicore_la-coretable.lo libscicore_la-error_scilab.lo \
-	libscicore_la-message_scilab.lo libscicore_la-force_link.lo \
+	libscicore_la-coretable.lo libscicore_la-force_link.lo \
 	libscicore_la-returnProperty.lo \
 	libscicore_la-returnPropertyList.lo \
 	libscicore_la-scilabmode.lo \
@@ -468,8 +467,6 @@ src/c/warningmode.c \
 src/c/InitializeCore.c \
 src/c/TerminateCore.c \
 src/c/coretable.c \
-src/c/error_scilab.c \
-src/c/message_scilab.c \
 src/c/force_link.c \
 src/c/returnProperty.c \
 src/c/returnPropertyList.c \
@@ -816,7 +813,6 @@ includes/scirun.h \
 includes/fromjava.h \
 includes/inisci-c.h \
 includes/cvstr.h \
-includes/error_scilab.h \
 includes/GetXmlFileEncoding.h \
 includes/syncexec.h \
 includes/getfastcode.h \
@@ -980,7 +976,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cs2st.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cvstr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-error_scilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-expr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-filesmanagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-flags.Plo@am__quote@
@@ -1008,7 +1003,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-loadversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-md5.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-message_scilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-msgs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-msgstxt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-parse.Plo@am__quote@
@@ -1539,20 +1533,6 @@ libscicore_la-coretable.lo: src/c/coretable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/coretable.c' object='libscicore_la-coretable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-coretable.lo `test -f 'src/c/coretable.c' || echo '$(srcdir)/'`src/c/coretable.c
-
-libscicore_la-error_scilab.lo: src/c/error_scilab.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-error_scilab.lo -MD -MP -MF $(DEPDIR)/libscicore_la-error_scilab.Tpo -c -o libscicore_la-error_scilab.lo `test -f 'src/c/error_scilab.c' || echo '$(srcdir)/'`src/c/error_scilab.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-error_scilab.Tpo $(DEPDIR)/libscicore_la-error_scilab.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/error_scilab.c' object='libscicore_la-error_scilab.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-error_scilab.lo `test -f 'src/c/error_scilab.c' || echo '$(srcdir)/'`src/c/error_scilab.c
-
-libscicore_la-message_scilab.lo: src/c/message_scilab.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-message_scilab.lo -MD -MP -MF $(DEPDIR)/libscicore_la-message_scilab.Tpo -c -o libscicore_la-message_scilab.lo `test -f 'src/c/message_scilab.c' || echo '$(srcdir)/'`src/c/message_scilab.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-message_scilab.Tpo $(DEPDIR)/libscicore_la-message_scilab.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/message_scilab.c' object='libscicore_la-message_scilab.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-message_scilab.lo `test -f 'src/c/message_scilab.c' || echo '$(srcdir)/'`src/c/message_scilab.c
 
 libscicore_la-force_link.lo: src/c/force_link.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-force_link.lo -MD -MP -MF $(DEPDIR)/libscicore_la-force_link.Tpo -c -o libscicore_la-force_link.lo `test -f 'src/c/force_link.c' || echo '$(srcdir)/'`src/c/force_link.c
