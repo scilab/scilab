@@ -1,11 +1,11 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 #include <Windows.h>
 #include "version.h"
-#endif 
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,10 +13,10 @@
 #include "setgetlanguage.h"
 #include "SCIHOME.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #define LINELENGTHMAX 1024
 #define TAGLANGUAGE "LANGUAGE"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #define SCILABREGISTRYKEY "SOFTWARE\\Scilab\\%s\\Settings"
 static BOOL loadlanguagepref_windows(void);
@@ -26,7 +26,7 @@ static BOOL loadlanguagepref_linux(void);
 static BOOL savelanguagepref_linux(void);
 static char *getfilenamelanguagepref(void);
 #endif
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 BOOL loadlanguagepref(void)
 {
 #ifdef _MSC_VER
@@ -35,7 +35,7 @@ BOOL loadlanguagepref(void)
 	return loadlanguagepref_linux();
 #endif
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 BOOL savelanguagepref(void)
 {
 #ifdef _MSC_VER
@@ -44,7 +44,7 @@ BOOL savelanguagepref(void)
 	return savelanguagepref_linux();
 #endif
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static BOOL loadlanguagepref_linux(void)
 {
@@ -63,7 +63,7 @@ static BOOL loadlanguagepref_linux(void)
 			char LINE[LINELENGTHMAX];
 
 			LANGUAGE=(char*)MALLOC(sizeof(char)*LINELENGTHMAX);
-			fscanf(fileR, "%[^\n]", LINE); 
+			fscanf(fileR, "%[^\n]", LINE);
 			sscanf(&LINE[strlen(TAGLANGUAGE)+1],"%s",LANGUAGE);
 			setlanguage(LANGUAGE,FALSE,TRUE);
 
@@ -77,11 +77,10 @@ static BOOL loadlanguagepref_linux(void)
 	return bOK;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static BOOL savelanguagepref_linux(void)
 {
-	BOOL bOK=FALSE;
 	char *filepref=NULL;
 	FILE *fileW;
 
@@ -100,14 +99,14 @@ static BOOL savelanguagepref_linux(void)
 			fputs("\n",fileW);
 			fclose(fileW);
 
-			if (LANGUAGE){FREE(LANGUAGE);LANGUAGE=NULL;}
-			bOK=TRUE;
+			//			if (LANGUAGE){FREE(LANGUAGE);LANGUAGE=NULL;}
+			return TRUE;
 		}
 	}
-	return bOK;
+	return FALSE;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static char *getfilenamelanguagepref(void)
 {
@@ -138,12 +137,12 @@ static char *getfilenamelanguagepref(void)
 	return retFilename;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 static BOOL loadlanguagepref_windows(void)
 {
 	BOOL bOK=FALSE;
-	/* Modification Restauration depuis la base de registre dans 
+	/* Modification Restauration depuis la base de registre dans
 	HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Settings\\LANGUAGE
 	"Version" correspondant à la version de Scilab
 	*/
@@ -175,12 +174,12 @@ static BOOL loadlanguagepref_windows(void)
 	return bOK;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 static BOOL savelanguagepref_windows(void)
 {
 	BOOL bOK=FALSE;
-	/* Modification Sauvegarde dans la base de registre dans 
+	/* Modification Sauvegarde dans la base de registre dans
 	HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Settings\\LANGUAGE
 	"Version" correspondant à la version de Scilab
 	Sauvegarde dans HKEY_CURRENT_USER car données dépendant de l'utilisateur
@@ -208,5 +207,5 @@ static BOOL savelanguagepref_windows(void)
 	return bOK;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 

@@ -11,8 +11,6 @@
 #include "loadsavelanguage.h"
 #include "syncexec.h"
 /*-----------------------------------------------------------------------------------*/
-//static LanguagesTable LANGUAGE_COUNTRY_TAB[NumberLanguages];
-//static LanguagesTableAlias LANGUAGE_LOCALE_ALIAS[NumberLanguagesAlias];
 static char CURRENTLANGUAGESTRING[LengthAlphacode]=SCILABDEFAULTLANGUAGE;
 static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
 /*-----------------------------------------------------------------------------------*/
@@ -63,12 +61,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 /*-----------------------------------------------------------------------------------*/
 char *getlanguage(void)
 {
-	char *RetLanguage=NULL;
-
-	RetLanguage=(char*)MALLOC(sizeof(char)*(strlen(CURRENTLANGUAGESTRING)+1));
-	strcpy(RetLanguage,CURRENTLANGUAGESTRING);
-
-	return RetLanguage;
+	return CURRENTLANGUAGESTRING;
 }
 /*-----------------------------------------------------------------------------------*/
 int getcurrentlanguagecode(void)
@@ -78,19 +71,16 @@ int getcurrentlanguagecode(void)
 /*-----------------------------------------------------------------------------------*/
 char *getlanguagefromcode(int code)
 {
-	char *RetLanguage=NULL;
 	int i=0;
 
 	for (i=0;i<NumberLanguages;i++)
 	{
 		if (LANGUAGE_COUNTRY_TAB[i].code == code)
 		{
-			RetLanguage=(char*)MALLOC(sizeof(char)*(strlen(LANGUAGE_COUNTRY_TAB[i].alphacode)+1));
-			strcpy(RetLanguage,LANGUAGE_COUNTRY_TAB[i].alphacode);
-			return RetLanguage;
+			return LANGUAGE_COUNTRY_TAB[i].alphacode;
 		}
 	}
-	return RetLanguage;
+	return NULL;
 }
 /*-----------------------------------------------------------------------------------*/
 int getcodefromlanguage(char *language)
@@ -176,15 +166,9 @@ int comparelanguages(char *language1,char *language2)
 /*-----------------------------------------------------------------------------------*/
 BOOL needtochangelanguage(char *language)
 {
-  char *currentlanguage=NULL;
-
-  currentlanguage=getlanguage();
+  char *currentlanguage=getlanguage();
 
   if (comparelanguages(language,currentlanguage)) {
-    if (currentlanguage) {
-      FREE(currentlanguage);
-      currentlanguage=NULL;
-    }
     return TRUE;
   }
 

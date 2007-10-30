@@ -27,8 +27,7 @@ int C2F(sci_getlanguage) _PARAMS((char *fname,unsigned long fname_len))
 
 			if (strcmp(param,"LANGUAGE_DEFAULT")==0)
 			{
-				Output=(char*)MALLOC(sizeof(char)*(strlen(SCILABDEFAULTLANGUAGE)+1));
-				strcpy(Output,SCILABDEFAULTLANGUAGE);
+			  Output=SCILABDEFAULTLANGUAGE;
 			}
 			else
 			{
@@ -51,7 +50,6 @@ int C2F(sci_getlanguage) _PARAMS((char *fname,unsigned long fname_len))
 	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();
-	if (Output) {FREE(Output);Output=NULL;}
 
 	return 0;
 }

@@ -30,8 +30,7 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( LanguageIsOK(param) && (newlanguage == NULL) )
 		{
-			newlanguage=(char*)MALLOC(sizeof(char)*strlen(param)+1);
-			strcpy(newlanguage,param);
+		  newlanguage=param;
 		}
 
 		if (newlanguage)
@@ -69,7 +68,6 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
-		if (newlanguage) {FREE(newlanguage);newlanguage=NULL;}
 	}
 	else
 	{
