@@ -6,6 +6,7 @@
 #include "gw_sound.h"
 #include "stack-c.h"
 #include "cluni0.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 static char filename[PATH_MAX];
 static int out_n;
