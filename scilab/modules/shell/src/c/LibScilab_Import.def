@@ -19,7 +19,6 @@ getScilabMode
 vstk_
 createvar_
 iop_
-error_scilab
 cvstr_
 get_sci_data_strings
 cluni0_

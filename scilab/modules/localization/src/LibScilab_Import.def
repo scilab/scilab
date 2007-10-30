@@ -22,7 +22,6 @@ EXPORTS
  syncexec_
  getmodules
  GetXmlFileEncoding
- error_scilab
  callFunctionFromGateway
  
  

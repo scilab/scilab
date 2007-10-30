@@ -24,7 +24,5 @@ EXPORTS
  intersci_
  createvarfromptr_
  getSCIpath
- error_scilab
- message_scilab
  callFunctionFromGateway
  scilab_timer_check

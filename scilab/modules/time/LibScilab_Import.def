@@ -16,7 +16,5 @@ EXPORTS
  gettype_
  vstk_
  createvar_
- error_scilab
- message_scilab
  callFunctionFromGateway
  
