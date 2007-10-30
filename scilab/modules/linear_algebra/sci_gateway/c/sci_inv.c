@@ -17,7 +17,7 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	int CmplxA;int ret;
 
 	/*   inv(A)  */
-	if (GetType(1)!=1) {
+	if (GetType(1)!=sci_matrix) {
 		OverLoad(1);
 		return 0;
 	}

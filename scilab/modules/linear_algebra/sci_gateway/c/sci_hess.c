@@ -16,7 +16,7 @@ int C2F(inthess)(char *fname,unsigned long fname_len)
 	int CmplxA;int ret;
 
 	/*   hess(A)  */
-	if (GetType(1)!=1) {
+	if (GetType(1)!=sci_matrix) {
 		OverLoad(1);
 		return 0;
 	}

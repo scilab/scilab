@@ -32,7 +32,7 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 
   switch (Rhs) {
   case 1:   /* spec(A)   */
-    if (GetType(1)!=1) {
+    if (GetType(1)!=sci_matrix) {
       OverLoad(1);
       return 0;
     }
@@ -66,11 +66,11 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
     } /* end switch  (CmplxA) */
     break; /* end case 1 */
   case 2: /* gspec(A,B) */
-    if (GetType(1)!=1) {
+    if (GetType(1)!=sci_matrix) {
       OverLoad(1);
       return 0;
     }
-    if (GetType(2)!=1) {
+    if (GetType(2)!=sci_matrix) {
       OverLoad(2);
       return 0;
     }

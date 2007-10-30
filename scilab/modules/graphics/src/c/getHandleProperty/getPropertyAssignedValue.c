@@ -16,22 +16,22 @@
 /*-----------------------------------------------------------------------------------*/
 BOOL isParameterHandle( int type )
 {
-  return ( type == 9 ) ;
+  return ( type == sci_handles ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL isParameterDoubleMatrix( int type )
 {
-  return ( type == 1 ) ;
+  return ( type == sci_matrix ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL isParameterTlist( int type )
 {
-  return ( type == 16 ) ;
+  return ( type == sci_tlist ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL isParameterStringMatrix( int type )
 {
-  return ( type == 10 ) ;
+  return ( type == sci_strings ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 double getDoubleFromStack( int stackPointer )

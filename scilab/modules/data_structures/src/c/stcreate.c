@@ -126,7 +126,7 @@ int sttyp(int *ivt, char *job, int *nf, char *fnames[])
       /* if (ivt[0] % 2) ivt[0]++;  */
     } else {
 /*      header = row vector made of 2 + *nf strings */
-	ivt[0] = 10;
+	ivt[0] = sci_strings;
 	ivt[1] = 1;
 	ivt[2] = 2 + *nf;
 	ivt[3] = 0;

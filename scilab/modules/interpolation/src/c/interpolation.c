@@ -67,7 +67,7 @@ int get_rhs_real_hmat(int num, RealHyperMat *H)
   /*  test if the first field is a matrix string with 3 components
    *  and that the first is "hm" (ie 17 22  in scilab char code)
    */
-  if ( (*istk(il1) != 10)  |  ((*istk(il1+1))*(*istk(il1+2)) != 3)  )
+  if ( (*istk(il1) != sci_strings)  |  ((*istk(il1+1))*(*istk(il1+2)) != 3)  )
     goto err;
   else if ( *istk(il1+5)-1 != 2 )  /* 1 str must have 2 chars */
     goto err;
@@ -108,7 +108,7 @@ int get_rhs_scalar_string(int num, int *length, int **tabchar)
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 
-  if ( ! ( *istk(il) == 10  &&  (*istk(il+1))*(*istk(il+2)) == 1 ) )
+  if ( ! ( *istk(il) == sci_strings  &&  (*istk(il+1))*(*istk(il+2)) == 1 ) )
     {
       /* we look for a scalar string */
       Scierror(999,_("Argument %d is not a scalar string\n"), num);

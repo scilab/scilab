@@ -124,7 +124,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
   Nbvars = 0;
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
-  if ( GetType(1) != 1) 
+  if ( GetType(1) != sci_matrix) 
     {
      int un=1,deux=2, dim_state_mt=625, dim_state_fsultra = 40, dim_state_4=4;
       GetRhsVar(1,STRING_DATATYPE,&ms,&ns,&ls);
@@ -452,7 +452,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
     }
   minrhs = 2;
   CheckRhs(minrhs,maxrhs);
-  if ( GetType(2) == 1 ) /** m,n,'string' */
+  if ( GetType(2) == sci_matrix ) /** m,n,'string' */
     {
 		GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
 	if ( m1*n1 != 1) 

@@ -1375,7 +1375,7 @@ int C2F(cresmat4)(char *fname,integer *lw,integer *m,integer *nchar,integer *lr,
     Scierror(17,_("%s : stack size exceeded (Use stacksize function to increase it).\n"),get_fname(fname,fname_len));
     return FALSE_;
   } 
-  *istk(il ) = 10;
+  *istk(il ) = sci_strings;
   *istk(il + 1) = *m;
   *istk(il + 2) = 1;
   *istk(il + 3) = 0;
@@ -1421,7 +1421,7 @@ int C2F(cresmati)(char *fname,integer *stlw,integer *m,integer *n,integer *nchar
     return FALSE_;
   };
   
-  *istk(il ) = 10;
+  *istk(il ) = sci_strings;
   *istk(il + 1) = *m;
   *istk(il + 2) = *n;
   *istk(il + 3) = 0;
@@ -1477,7 +1477,7 @@ int cre_smat_from_str_i(char *fname, integer *lw, integer *m, integer *n, char *
     Scierror(17,_("%s : stack size exceeded (Use stacksize function to increase it).\n"),get_fname(fname,fname_len));
     return  FALSE_;
   } ;
-  *istk(il ) = 10;
+  *istk(il ) = sci_strings;
   *istk(il + 1) = *m;
   *istk(il + 2) = *n;
   *istk(il + 3) = 0;
@@ -1682,7 +1682,7 @@ int C2F(crestringi)(char *fname,integer *stlw,integer *nchar,integer *ilrs,unsig
     Scierror(17,_("%s : stack size exceeded (Use stacksize function to increase it).\n"),get_fname(fname,fname_len));
     return FALSE_;
   } ;
-  *istk(il ) = 10;
+  *istk(il ) = sci_strings;
   *istk(il +1) = 1;
   *istk(il + 1 +1) = 1;
   *istk(il + 2 +1) = 0;
@@ -1758,7 +1758,7 @@ int C2F(smatj)(char *fname,integer *lw,integer *j,unsigned long fname_len)
     Scierror(17,_("%s : stack size exceeded (Use stacksize function to increase it).\n"),get_fname(fname,fname_len));
     return FALSE_;
   }
-  *istk(il2 ) = 10;
+  *istk(il2 ) = sci_strings;
   *istk(il2 +1) = m;
   *istk(il2 + 1 +1) = 1;
   *istk(il2 + 2 +1) = 0;
@@ -2818,7 +2818,7 @@ int C2F(allmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,unsi
   il = iadr(*Lstk(*lw ));
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   itype = *istk(il );
-  if (itype != 1 && itype != 2 && itype != 10) {
+  if (itype != sci_matrix && itype != sci_poly && itype != sci_strings) {
     Scierror(209,_("%s : Argument %d wrong type argument, expecting a matrix\n"),get_fname(fname,fname_len) ,  Rhs + (*lw - *topk));
     return FALSE_;
   }
@@ -2888,11 +2888,11 @@ int C2F(getexternal)(char *fname,integer *topk,integer *lw,char *namex,int *type
   int i;
   il = C2F(gettype)(lw);
   switch ( il) {
-  case 11 : case 13 : case 15 :
+  case sci_u_function : case sci_c_function : case sci_list :
     ret_value = TRUE_;
     *typex = FALSE_;
     break;
-  case 10 :
+  case sci_strings :
     ret_value = C2F(getsmat)(fname, topk, lw, &m, &n, &cx1, &cx1, &lr, &nlr, fname_len);
     *typex = TRUE_;
     for (i=0; i < (int)name_len ; i++ ) namex[i] = ' ';

@@ -20,7 +20,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 	int *header1;int *header2;
 	int Cmplx;int ret;double tol;
 
-	if (GetType(1)!=1) {
+	if (GetType(1)!=sci_matrix) {
 		OverLoad(1);
 		return 0;
 	}

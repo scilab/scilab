@@ -35,7 +35,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	int ret, something, X;
 	int which = 1; int longueur;
 
-	if (GetType(1)!=1) {
+	if (GetType(1)!=sci_matrix) {
 		OverLoad(1);
 		return 0;
 	}
@@ -107,7 +107,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  }
 	  break;
   case SCI_DOUBLE: /*schur(A,B)*/
-	  if (GetType(2)!=1) {
+	  if (GetType(2)!=sci_matrix) {
 		  OverLoad(2);
 		  return 0;
 	  }
@@ -136,7 +136,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	  } /* end of switch (something) */
 	  break;
   case 3: /* schur(A,B,something) */
-	  if (GetType(2)!=1) {
+	  if (GetType(2)!=sci_matrix) {
 		  OverLoad(2);
 		  return 0;
 	  }

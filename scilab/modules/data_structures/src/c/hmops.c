@@ -35,8 +35,8 @@
 #define SCI_BOOLEAN 4
 #define SCI_SP_BOOLEAN 6
 #define SCI_INTEGER 8
-#define SCI_STRING 10
-#define SCI_MLIST 17
+#define SCI_STRING sci_strings
+#define SCI_MLIST sci_mlist
 #define SCI_INT8 1
 #define SCI_UINT8 11
 #define SCI_INT16 2

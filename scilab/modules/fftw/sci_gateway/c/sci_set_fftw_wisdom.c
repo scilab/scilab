@@ -28,7 +28,7 @@ int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
 
  CheckRhs(1,1);
 
- if (VarType(1)==10) {
+ if (VarType(1)==sci_strings) {
 
   GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str1);
 

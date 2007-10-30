@@ -67,7 +67,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   iskip=0;
   if ( get_optionals(fname,opts) == 0) { return 0 ; }
 
-  if (GetType(1)==10)
+  if (GetType(1)==sci_strings)
   {
     /* logflags */
     GetLogflags( fname, 1, opts, &logFlags ) ;

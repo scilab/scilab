@@ -125,7 +125,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
    CheckDims(2,m2,n2,1,1);
 
    /* look at for type of Rhs(2) */
-   if (VarType(2)==8) { /* int */
+   if (VarType(2)==sci_ints) { /* int */
     /* */
     switch (it2)
     {
@@ -149,7 +149,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
                      break;
     }
    }
-   else if (VarType(2)==1) { /* double */
+   else if (VarType(2)==sci_matrix) { /* double */
     ptr_d=(double *)(&header[4]);
     isn=(int)ptr_d[0];
    }
@@ -178,7 +178,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
     it3 = header[3];
 
     /* look at for type of Rhs(3) */
-    if ((VarType(3)!=8)&&(VarType(3)!=1)) {
+    if ((VarType(3)!=sci_ints)&&(VarType(3)!=sci_matrix)) {
      Scierror(53,"%s: "
                  "Bad type for Rhs(3) parameter\n",
                  fname);
@@ -203,7 +203,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
     it4 = header[3];
 
     /* look at for type of Rhs(4) */
-    if ((VarType(4)!=8)&&(VarType(4)!=1)) { /* int */
+    if ((VarType(4)!=sci_ints)&&(VarType(4)!=sci_matrix)) { /* int */
      Scierror(53,"%s: "
                  "Bad type for Rhs(4) parameter\n",
                  fname);

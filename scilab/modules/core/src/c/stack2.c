@@ -203,37 +203,37 @@ static integer overloadtype(integer *lw,char *fname,unsigned char *typ)
   switch (*typ) {
   case 'c' : /* string */
   case 'S' : /* string Matrix */
-    ityp=10;
+    ityp=sci_strings;
     break;
   case 'd' :  case 'i' :  case 'r' :  case 'z' :   /* numeric */
-    ityp=1;
+    ityp=sci_matrix;
     break ;
   case 'b' : /* boolean */
-    ityp=4;
+    ityp=sci_boolean;
     break;
   case 'h' : /* handle */
-    ityp=9;
+    ityp=sci_handles;
     break;
   case 'l' : /* list */
-    ityp=15;
+    ityp=sci_list;
     break;
   case 't' : /* tlist */
-    ityp=16;
+    ityp=sci_tlist;
     break;
   case 'm' : /* mlist */
-    ityp=17;
+    ityp=sci_mlist;
     break;
   case 'f' : /* external */
-    ityp=13;
+    ityp=sci_c_function;
     break;
   case 'p' : /* pointer */
-    ityp=128;
+    ityp=sci_lufact_pointer;
     break;
   case 's' : /* sparse */
-    ityp= 5;
+    ityp= sci_sparse;
     break;
   case 'I' : /* int matrix */
-    ityp=8;
+    ityp=sci_ints;
     break;
 
   }
@@ -1157,7 +1157,7 @@ int C2F(getmatdims)(integer *number,integer *m,integer *n)
   il = iadr(*Lstk(lw));
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   typ = *istk(il );
-  if (typ > 10) {
+  if (typ > sci_strings) {
     Scierror(199,_("%s : argument %d should be a matrix.\n"), fname,*number);
     return  FALSE_;
   }
@@ -2288,7 +2288,7 @@ int C2F(getrhssys)(integer *lw,integer *n,integer *m,integer *p,integer *ptra,in
   if ( *istk(il + msys + iadr(*istk(il + 5))) != 1) return FALSE_;
   itimedomain = *istk(il + msys + iadr(*istk(il + 6)));
   switch ( itimedomain ) {
-  case 10 :
+  case sci_strings :
     /* Sys(7)='c' or 'd' */
     icord = *istk(il + msys + iadr(*istk(il + 6))+ 6);
     switch ( icord )
@@ -2300,7 +2300,7 @@ int C2F(getrhssys)(integer *lw,integer *n,integer *m,integer *p,integer *ptra,in
 	return FALSE_;
       }
     break;
-  case 1 :
+  case sci_matrix :
     /*     Sys(7)=h */
     ix1 = il + msys + iadr(*istk(il + 6)) + 4;
     *hx = *stk(sadr(ix1));

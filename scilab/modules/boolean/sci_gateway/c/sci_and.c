@@ -17,14 +17,14 @@ int C2F(intand)(char *fname,unsigned long l)
 
  CheckRhs(1,2);
  CheckLhs(1,1);
- if (VarType(1)!=4) {
+ if (VarType(1)!=sci_boolean) {
    lw = 1 + Top - Rhs;
    C2F(overload)(&lw,"and",3L);
    return 0;}
 
  if (Rhs==2) {
    nopt=1;
-   if (VarType(2)==10) {
+   if (VarType(2)==sci_strings) {
      GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&lo);
      if (*cstk(lo)=='r')
        opt=1;

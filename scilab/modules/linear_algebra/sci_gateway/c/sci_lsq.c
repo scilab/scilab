@@ -18,11 +18,11 @@ int C2F(intlsq)(char *fname,unsigned long fname_len)
 	int CmplxA;int Cmplxb;int ret;int I2;
 
 	/*   lsq(A,b)  */
-	if (GetType(1)!=1) {
+	if (GetType(1)!=sci_matrix) {
 		OverLoad(1);
 		return 0;
 	}
-	if (GetType(2)!=1) {
+	if (GetType(2)!=sci_matrix) {
 		OverLoad(2);
 		return 0;
 	}

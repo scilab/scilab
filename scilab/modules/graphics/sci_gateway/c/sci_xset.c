@@ -68,7 +68,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     LhsVar(1)=0; return 0;
   }
 
-  if (Rhs == 2 && VarType(2) != 1) 
+  if (Rhs == 2 && VarType(2) != sci_matrix) 
   {
     /* second argument is not a scalar it must be a string */ 
     GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);

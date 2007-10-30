@@ -24,7 +24,7 @@ void str2sci(char** x,int n,int m)
     C2F(error)(&i);
     return;
   }
-  *istk(il) = 10;
+  *istk(il) = sci_strings;
   *istk(il+1) = n;
   *istk(il+2) = m;
   *istk(il+3) = 0;

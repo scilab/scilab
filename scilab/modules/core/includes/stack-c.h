@@ -20,20 +20,22 @@
  * -------------------------------------------------*/
 
 typedef enum {
-  sci_matrix= 1 ,
-  sci_poly= 2 ,
-  sci_boolean= 4 ,
-  sci_sparse= 5  ,
-  sci_boolean_sparse= 6,
-  sci_ints= 8,
-  sci_handles=9,
-  sci_strings= 10,
-  sci_u_function= 11,
-  sci_c_function= 13 ,
-  sci_lib=  14,
-  sci_list= 15,
-  sci_tlist= 16,
-  sci_mlist= 17
+  sci_matrix = 1 ,
+  sci_poly = 2 ,
+  sci_boolean = 4 ,
+  sci_sparse = 5  ,
+  sci_boolean_sparse = 6,
+  sci_matlab_sparse = 7, /* matlab sparse matrix  */
+  sci_ints = 8,
+  sci_handles =9,
+  sci_strings = 10,
+  sci_u_function = 11,
+  sci_c_function = 13 ,
+  sci_lib =  14,
+  sci_list = 15,
+  sci_tlist = 16,
+  sci_mlist = 17,
+  sci_lufact_pointer = 128 /* lufact pointer */
 } sci_types;
 
 

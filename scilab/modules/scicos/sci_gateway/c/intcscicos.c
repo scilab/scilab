@@ -3305,11 +3305,11 @@ int intbuildouttb(fname)
  CheckRhs(minrhs,maxrhs);
 
  /*check type of Rhs 1*/
- if (VarType(1)==1)
+ if (VarType(1)==sci_matrix)
  {
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
  }
- else if (VarType(1)==8)
+ else if (VarType(1)==sci_ints)
  {
   GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m1, &n1, &M1);
  }
@@ -3334,11 +3334,11 @@ int intbuildouttb(fname)
  }
 
  /*check type of Rhs 2*/
- if (VarType(2)==1)
+ if (VarType(2)==sci_matrix)
  {
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
  }
- else if (VarType(2)==8)
+ else if (VarType(2)==sci_ints)
  {
   GetRhsVar(2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m2, &n2, &M2);
  }
@@ -3377,7 +3377,7 @@ int intbuildouttb(fname)
 
  /*store rhs 1 in lnksz */
  if ((m1==n1)&&(m2==m1)) m1=-1; /* this is done for matrix 2,2 */
- if (VarType(1)==8)
+ if (VarType(1)==sci_ints)
  {
   switch (M1.it)
   {
@@ -3490,7 +3490,7 @@ int intbuildouttb(fname)
  }
 
  /*store rhs 2 in lnktyp */
- if (VarType(2)==8)
+ if (VarType(2)==sci_ints)
  {
   switch (M2.it)
   {

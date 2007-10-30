@@ -189,7 +189,7 @@ void C2F(cstringf) (char ***ip, int *sciptr, int *m, int *n, int *max, int *ierr
     *ierr = 1;
     return;
   }
-  sciptr[0]=10;
+  sciptr[0]=sci_strings;
   sciptr[1]=*m;
   sciptr[2]=*n;
   sciptr[3]=0;

@@ -1247,12 +1247,12 @@ int C2F(run)()
  L260:
   if (Istk[1 + lc] == 1) {
     /* | case */
-    if (C2F(gettype)(&Top) != 8 && Istrue(0)) {
+    if (C2F(gettype)(&Top) != sci_ints && Istrue(0)) {
       lc += Istk[2 + lc];
     }
   } else {
     /* & case */
-    if (C2F(gettype)(&Top) != 8 && ! Istrue(0)) {
+    if (C2F(gettype)(&Top) != sci_ints && ! Istrue(0)) {
       lc += Istk[2 + lc];
     }
   }

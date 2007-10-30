@@ -30,7 +30,7 @@ int sci_delete(char *fname,unsigned long fname_len)
 
   switch(VarType(1))
   {
-  case 9: /* delete Entity given by a handle */
+  case sci_handles: /* delete Entity given by a handle */
     GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */
     if (m1!=1||n1!=1) {
       lw = 1 + Top - Rhs;
@@ -39,7 +39,7 @@ int sci_delete(char *fname,unsigned long fname_len)
       GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */
     hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
     break;
-  case 10: /* delete("all") */
+  case sci_strings: /* delete("all") */
     CheckRhs(1,1);
     GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
     if (strcmp(cstk(l2),"all") == 0)

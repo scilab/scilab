@@ -29,7 +29,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 		return 0;
 	}
 	for (k=2;k<=Rhs;k++) {
-		if (VarType(k) !=1 && VarType(k) !=10) {OverLoad(k);return 0;}
+		if (VarType(k) !=sci_matrix && VarType(k) !=sci_strings) {OverLoad(k);return 0;}
 	}
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	ptrFormat=cstk(l1);

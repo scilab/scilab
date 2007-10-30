@@ -69,12 +69,12 @@ extern int C2F(changetoref) __PARAMS((int number, int pointed));
 
 extern int IsReference  __PARAMS((mxArray *array_ptr));
 
-#define DOUBLEMATRIX 1
-#define INTMATRIX 8
-#define STRINGMATRIX  10
-#define SPARSEMATRIX  7
-#define LOGICAL 4
-#define MLIST 17
+#define DOUBLEMATRIX sci_matrix
+#define INTMATRIX sci_ints
+#define STRINGMATRIX  sci_strings
+#define SPARSEMATRIX  sci_matlab_sparse
+#define LOGICAL sci_boolean
+#define MLIST sci_mlist
 #define AsIs  '$'
 #define NDARRAY 1
 #define CELL 2

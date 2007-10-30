@@ -206,7 +206,7 @@ int sci_set(char *fname, unsigned long fname_len)
 				Scierror(999,"%s: unknown property name '%s'\n",fname,cstk(l2));
 				return 0;
 			} 
-			if ( valueType != t2 ) if(strcmp(cstk(l2),"current_figure") != 0 && VarType(2) !=1 )
+			if ( valueType != t2 ) if(strcmp(cstk(l2),"current_figure") != 0 && VarType(2) !=sci_matrix )
 			{  
 				/* F.Leray : special unique case here set("current_figure", HANDLE);*/
 				/* HANDLE type is 9 */

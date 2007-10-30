@@ -28,7 +28,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     iflag=0;sel[0]=1;sel[1]=0;
   }
   else {
-    if (GetType(1)==4) {
+    if (GetType(1)==sci_boolean) {
       iflag=0;
       GetRhsVar(1,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l1);
       CheckDims(1,m*n,1,2,1);

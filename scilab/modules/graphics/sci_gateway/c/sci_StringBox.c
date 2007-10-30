@@ -28,7 +28,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
   CheckRhs( 1, 1 ) ;
   CheckLhs( 0, 1 ) ;
 
-  if ( VarType(1) != 9 )
+  if ( VarType(1) != sci_handles )
   {
     Scierror(999,"Function StringBox works with only one text handle.\n") ;
     return 0 ;

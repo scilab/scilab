@@ -193,48 +193,48 @@ int IsEqualVar(double *d1, int n1, double *d2, int n2)
   switch (id1[0]) {
   case 0: /* null */
     return 1;
-  case 1: /* matrix of double precision floating point numbers */
+  case sci_matrix: /* matrix of double precision floating point numbers */
     if ( !IsEqualDoubleMat(d1, d2) )  return 0;
     break;
-  case 2:/* matrix of polynomials */
+  case sci_poly:/* matrix of polynomials */
     if ( !IsEqualPolyMat(d1, d2) )  return 0;
     break;
-  case 4:/* matrix of booleans */
+  case sci_boolean:/* matrix of booleans */
     if ( !IsEqualBoolMat(d1, d2) )  return 0;
     break;
-  case 5:/* sparse matrix of double */
+  case sci_sparse:/* sparse matrix of double */
     if ( !IsEqualDoubleSparseMat(d1, d2) )  return 0;
     break;
-  case 6:/* sparse matrix of booleans */
+  case sci_boolean_sparse:/* sparse matrix of booleans */
     if ( !IsEqualBoolSparseMat(d1, d2) )  return 0;
     break;
-  case 7:/* matlab sparse matrix  */
+  case sci_matlab_sparse:/* matlab sparse matrix  */
     if ( !IsEqualMatlabSparseMat(d1, d2) )  return 0;
     break;
-  case 8 : /* matrix of short integers */
+  case sci_ints : /* matrix of short integers */
     if ( !IsEqualIntegerMat(d1, d2) )  return 0;
     break;
-  case 9 : /* matrix of graphic handles */
+  case sci_handles : /* matrix of graphic handles */
     if ( !IsEqualDoubleMat(d1, d2) )  return 0;
     break;
-  case 10:/* matrix of strings */
+  case sci_strings:/* matrix of strings */
     if ( !IsEqualStringMat(d1, d2) )  return 0;
     break;
-  case 11:/* Uncompiled function */
-  case 13:/* compiled function */
+  case sci_u_function:/* Uncompiled function */
+  case sci_c_function:/* compiled function */
     if ( !IsEqualFunction(d1, d2) )  return 0;
     break;
-  case 14:/* library */
+  case sci_lib:/* library */
     if ( !IsEqualLib(d1, d2) )  return 0;
     break;
-  case 15: /* list */
-  case 16: /* tlist */
-  case 17: /* mlist */
+  case sci_list: /* list */
+  case sci_tlist: /* tlist */
+  case sci_mlist: /* mlist */
     res = IsEqualList(d1, d2);
     if ( !res )  return 0;
     if (res < 0) return res;
     break;
-  case 128: /* lufact pointer */
+  case sci_lufact_pointer: /* lufact pointer */
     if ( !IsEqualLUPtr(d1, d2) )  return 0;
     break;
   default :
