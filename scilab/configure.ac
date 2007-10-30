@@ -268,7 +268,7 @@ fi
 ######################
 
 if test -n "$F77"; then
-# TODO : il faut peut etre verifier que c'est bien gfortran
+dnl @TODO : il faut peut etre verifier que c'est bien gfortran
    if test "$enable_debug_fortran" = yes; then
 	  FFLAGS="$FFLAGS -g -Wall "
 	  # -D_FORTIFY_SOURCE=2
@@ -314,7 +314,7 @@ if test -n "$F77"; then
     #do not call AC_F77_LIBRARY_LDFLAGS because if assumes PA2.0 while Scilab is built with
     #DAportable=PA1.1
     #AC_F77_LIBRARY_LDFLAGS
-	# TODO : check why and if it is still the case
+	# @TODO : check why and if it is still the case
 
 #    F77_LDFLAGS="-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
 	 ;;
@@ -855,7 +855,7 @@ AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
 #################
 ## atlas
 #################
-# TODO : make it work
+# @TODO : make it work
 # check user arguments
 #USER_ATLAS_LIB_PATH=""
 #
@@ -1063,7 +1063,7 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 # This stuff is at the end of the configure.ac because it causes some
 # problem with AC_COMPILE (the -Werror is added to the test)
 #
-# @TODO : -O0 is only to bypass Stack shit... Must be removed.
+dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
    CFLAGS="$CFLAGS -Werror -O0"
    CXXFLAGS="$CXXFLAGS -Werror -O0"
