@@ -1,11 +1,11 @@
 /*------------------------------------------------------------------------
  *    Graphic library
- *    Copyright (C) 1998-2000 Enpc/Inria 
+ *    Copyright (C) 1998-2000 Enpc/Inria
  *    2003 JPC Enpc
  *	  2007 Allan CORNET INRIA
  --------------------------------------------------------------------------*/
 /*------------------------------------------------------
- * Read and Write inside the Scilab stack 
+ * Read and Write inside the Scilab stack
  *------------------------------------------------------*/
 
 #include <string.h>
@@ -13,6 +13,7 @@
 #include "stack-c.h"
 #include "error_scilab.h"
 #include "cvstr.h"
+#include "Scierror.h"
 
 extern int C2F(dmcopy)  __PARAMS((double *a, integer *na, double *b, integer *nb, integer *m, integer *n));
 extern int C2F(stackg)  __PARAMS((integer *id));
@@ -28,36 +29,35 @@ static integer cx0 = 0;
 static integer cx1 = 1;
 
 /*------------------------------------------------------
- * read a matrix 
+ * read a matrix
  *------------------------------------------------------*/
 
 int C2F(readmat)(char *namex,integer *m, integer *n, double *scimat, unsigned long name_len)
 {
-    int j;
-    j = C2F(creadmat)(namex, m, n, scimat, name_len);
-    return 0;
+  C2F(creadmat)(namex, m, n, scimat, name_len);
+  return 0;
 }
 
 /*----------------------------------------------------------------
- * readmat reads vector/matrix in scilab's internal stack 
- * calling sequence 
- *     logic=creadmat('matrixname',m,n,scimat) 
- *  matrixname: character string; name of the scilab variable. 
- *  m: number of rows (output of readmat) 
- *  n: number of columns (output of readmat) 
- *  scimat: matrix entries stored columnwise (output of readmat) 
- *    Example of use: 
- *    Amat is a real 2 x 3 scilab matrix 
- *    your subroutine should be as follows: 
- *    subroutine mysubr(...) 
- *    ... 
- *    call readmat('Amat',m,n,scimat) 
- *    => m=3 , n=2, and scimat(1)=Amat(1,1) 
- *                      scimat(2)=Amat(2,1) 
- *                      scimat(3)=Amat(3,1) 
- *                      scimat(4)=Amat(1,2) ... 
- *                      scimat(5)=Amat(3,2) 
- *                      scimat(6)=Amat(3,2) 
+ * readmat reads vector/matrix in scilab's internal stack
+ * calling sequence
+ *     logic=creadmat('matrixname',m,n,scimat)
+ *  matrixname: character string; name of the scilab variable.
+ *  m: number of rows (output of readmat)
+ *  n: number of columns (output of readmat)
+ *  scimat: matrix entries stored columnwise (output of readmat)
+ *    Example of use:
+ *    Amat is a real 2 x 3 scilab matrix
+ *    your subroutine should be as follows:
+ *    subroutine mysubr(...)
+ *    ...
+ *    call readmat('Amat',m,n,scimat)
+ *    => m=3 , n=2, and scimat(1)=Amat(1,1)
+ *                      scimat(2)=Amat(2,1)
+ *                      scimat(3)=Amat(3,1)
+ *                      scimat(4)=Amat(1,2) ...
+ *                      scimat(5)=Amat(3,2)
+ *                      scimat(6)=Amat(3,2)
  *----------------------------------------------------------------*/
 
 int C2F(creadmat)(char *namex, integer *m, integer *n, double *scimat, unsigned long name_len)
@@ -69,7 +69,7 @@ int C2F(creadmat)(char *namex, integer *m, integer *n, double *scimat, unsigned 
     /* read   : from scilab stack -> fortran variable */
     Fin = -1;
     C2F(stackg)(id);
-    if (Err > 0) return FALSE_ ; 
+    if (Err > 0) return FALSE_ ;
     if (Fin == 0) {
 		Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
       return FALSE_;
@@ -83,24 +83,24 @@ int C2F(creadmat)(char *namex, integer *m, integer *n, double *scimat, unsigned 
     return TRUE_;
 }
 /*----------------------------------------------------------------
- * creadcmat reads vector/matrix in scilab's internal stack 
- * calling sequence 
- *     logic=creadcmat('matrixname',m,n,scimat) 
- *  matrixname: character string; name of the scilab variable. 
- *  m: number of rows (output of readmat) 
- *  n: number of columns (output of readmat) 
- *  scimat: matrix entries stored columnwise (output of readmat) 
- *    Example of use: 
- *    Amat is a real 2 x 3 scilab matrix 
- *    your subroutine should be as follows: 
- *    subroutine mysubr(...) 
- *    ... 
- *    call readmat('Amat',m,n,scimat) 
- *    => m=3 , n=2, and scimat(1)=Amat(1,1) 
- *                      scimat(2)=Amat(2,1) 
- *                      scimat(3)=Amat(3,1) 
- *                      scimat(4)=Amat(1,2) ... 
- *                      scimat(5)=Amat(3,2) 
+ * creadcmat reads vector/matrix in scilab's internal stack
+ * calling sequence
+ *     logic=creadcmat('matrixname',m,n,scimat)
+ *  matrixname: character string; name of the scilab variable.
+ *  m: number of rows (output of readmat)
+ *  n: number of columns (output of readmat)
+ *  scimat: matrix entries stored columnwise (output of readmat)
+ *    Example of use:
+ *    Amat is a real 2 x 3 scilab matrix
+ *    your subroutine should be as follows:
+ *    subroutine mysubr(...)
+ *    ...
+ *    call readmat('Amat',m,n,scimat)
+ *    => m=3 , n=2, and scimat(1)=Amat(1,1)
+ *                      scimat(2)=Amat(2,1)
+ *                      scimat(3)=Amat(3,1)
+ *                      scimat(4)=Amat(1,2) ...
+ *                      scimat(5)=Amat(3,2)
  *
  * Note d'Albert Y
  * 20/12/2003
@@ -118,7 +118,7 @@ int C2F(creadcmat)(char *namex, integer *m, integer *n, double *scimat, unsigned
     /* read   : from scilab stack -> fortran variable */
     Fin = -1;
     C2F(stackg)(id);
-    if (Err > 0) return FALSE_ ; 
+    if (Err > 0) return FALSE_ ;
     if (Fin == 0) {
       Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
       return FALSE_;
@@ -136,9 +136,9 @@ int C2F(creadcmat)(char *namex, integer *m, integer *n, double *scimat, unsigned
 /*----------------------------------------------------------------
  * cwritemat writes vector/matrix in scilab's internal stack
  * logic=cwritemat('matrixname'//char(0),m,n,mat)
- * name: character string; name of the scilab variable ( null terMinated) 
- * m: number of rows 
- * n: number of columns 
+ * name: character string; name of the scilab variable ( null terMinated)
+ * m: number of rows
+ * n: number of columns
  * mat: matrix entries stored columnwise in Scilab object
 ----------------------------------------------------------------*/
 
@@ -147,10 +147,10 @@ int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned l
   integer   ix1 = *m * *n;
   integer Rhs_k = Rhs , Top_k = Top ;
   integer l4, id[nsiz], lc, lr;
-  
+
   C2F(str2name)(namex, id, name_len);
 
-  Top = Top + Nbvars + 1; 
+  Top = Top + Nbvars + 1;
   if (! C2F(cremat)("cwritemat", &Top, &cx0, m, n, &lr, &lc, 9L)) return  FALSE_;
   C2F(dcopy)(&ix1, mat, &cx1, stk(lr ), &cx1);
   Rhs = 0;
@@ -162,16 +162,16 @@ int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned l
   Rhs = Rhs_k;
   if (Err > 0)  return FALSE_;
   return TRUE_;
-} 
+}
 
 
 /*-----------------------------------------------------------------------------------*/
 /**
 * cwritecmat writes vector/matrix in scilab's internal stack
-* name: character string; name of the scilab variable ( null terMinated) 
-* m: number of rows 
-* n: number of columns 
-* mat: matrix entries stored columnwise in Scilab object 
+* name: character string; name of the scilab variable ( null terMinated)
+* m: number of rows
+* n: number of columns
+* mat: matrix entries stored columnwise in Scilab object
 * for complex number
 */
 /*-----------------------------------------------------------------------------------*/
@@ -183,8 +183,8 @@ int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long 
 	int IT=1; /* Type Complex */
 
 	C2F(str2name)(namex, id, name_len);
-	
-	Top = Top + Nbvars + 1; 
+
+	Top = Top + Nbvars + 1;
 	if (! C2F(cremat)("cwritecmat", &Top, &IT, m, n, &lr, &lc, 10L)) return  FALSE_;
 	C2F(dcopy)(&ix1, mat, &cx1, stk(lr ), &cx1);
 	Rhs = 0;
@@ -196,14 +196,14 @@ int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long 
 	Rhs = Rhs_k;
 	if (Err > 0)  return FALSE_;
 	return TRUE_;
-} 
+}
 /*-----------------------------------------------------------------------------------*/
  /* Put variable number into Scilab internal stack with name "namex" */
 int C2F(putvar)(int  *number,char *namex,  unsigned long name_len)
 {
   integer Rhs_k = Rhs , Top_k = Top ;
   integer l4, id[nsiz],/* lc, lr,*/ cx0_2=1;
-  
+
   C2F(str2name)(namex, id, name_len);
   Top = *number + Top -Rhs;
   Rhs = 0;
@@ -215,35 +215,34 @@ int C2F(putvar)(int  *number,char *namex,  unsigned long name_len)
   Rhs = Rhs_k;
   if (Err > 0)  return FALSE_;
   return TRUE_;
-} 
+}
 
 /*------------------------------------------------------
- *     see creadchain 
+ *     see creadchain
  *------------------------------------------------------*/
 
 int C2F(readchain)(char *namex,  integer *itslen, char *chai,  unsigned long name_len, unsigned long chai_len)
 {
-    int j;
-    j = C2F(creadchain)(namex, itslen, chai, name_len, chai_len);
+    C2F(creadchain)(namex, itslen, chai, name_len, chai_len);
     return 0;
-} 
+}
 
 /*------------------------------------------------------
- *     this routine reads a string in scilab's  memory 
- *     and store it into chai 
- * !calling sequence 
- *     integer       itslen 
- *     character*(*) chai,name 
- *     name    : character string = name of scilab variable (input) 
- *     chai    : chain to be read (output) 
- *               null terMinated 
- *     itslen  : (input) Maximum number of character that can ne stored 
- *               in chain 
- *               (output) number of copied characters into chai 
- *     if Scilab variable x='qwert' exists 
- *     character ch*(10) 
- *     l=10 
- *     logic= creadchain('x',l,ch) returns l=5 and ch='qwert' 
+ *     this routine reads a string in scilab's  memory
+ *     and store it into chai
+ * !calling sequence
+ *     integer       itslen
+ *     character*(*) chai,name
+ *     name    : character string = name of scilab variable (input)
+ *     chai    : chain to be read (output)
+ *               null terMinated
+ *     itslen  : (input) Maximum number of character that can ne stored
+ *               in chain
+ *               (output) number of copied characters into chai
+ *     if Scilab variable x='qwert' exists
+ *     character ch*(10)
+ *     l=10
+ *     logic= creadchain('x',l,ch) returns l=5 and ch='qwert'
  *------------------------------------------------------*/
 
 int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long name_len,  unsigned long chai_len)
@@ -282,23 +281,23 @@ int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long n
 }
 
 /*----------------------------------------------------------------------
- *     this routine reads name(ir,ic) in scilab's  memory 
- *     and store it into chai 
- *     if ir=ic=-1 on entry then the routines returns in ir,ic 
- *     the size of the matrix 
- * !calling sequence 
- *     integer       itslen 
- *     character*(*) chai,name 
- *     name    : character string = name of scilab variable (input) 
- *     chai    : chain to be read (output) 
- *               null terMinated 
- *     itslen  : (input) Maximum number of character that can be stored 
- *               in chain 
- *               (output) number of copied characters into chai 
- *     if Scilab variable x='qwert' exists 
- *     character ch*(10) 
- *     l=10 
- *     logic= creadchain('x',l,ch) returns l=5 and ch='qwert' 
+ *     this routine reads name(ir,ic) in scilab's  memory
+ *     and store it into chai
+ *     if ir=ic=-1 on entry then the routines returns in ir,ic
+ *     the size of the matrix
+ * !calling sequence
+ *     integer       itslen
+ *     character*(*) chai,name
+ *     name    : character string = name of scilab variable (input)
+ *     chai    : chain to be read (output)
+ *               null terMinated
+ *     itslen  : (input) Maximum number of character that can be stored
+ *               in chain
+ *               (output) number of copied characters into chai
+ *     if Scilab variable x='qwert' exists
+ *     character ch*(10)
+ *     l=10
+ *     logic= creadchain('x',l,ch) returns l=5 and ch='qwert'
  *----------------------------------------------------------------------*/
 
 
@@ -325,10 +324,10 @@ int C2F(creadchains)(char *namex, integer *ir, integer *ic, integer *itslen, cha
 	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (*ir == -1 && *ic == -1) {
-	if (! C2F(getsmat)("creadchain", &Fin, &Fin, ir, ic, &cx1, &cx1, &lr1, &nlr1, 10L)) 
+	if (! C2F(getsmat)("creadchain", &Fin, &Fin, ir, ic, &cx1, &cx1, &lr1, &nlr1, 10L))
 	  return FALSE_;
-	else 
-	  return TRUE_ ; 
+	else
+	  return TRUE_ ;
     } else {
 	if (! C2F(getsmat)("creadchain", &Fin, &Fin, &m1, &n1, ir, ic, &lr1, &nlr1, 10L)) {
 	  return FALSE_;
@@ -342,12 +341,12 @@ int C2F(creadchains)(char *namex, integer *ir, integer *ic, integer *itslen, cha
 }
 
 /*----------------------------------------------------------------
- *     cwritemat writes vector/matrix in scilab's internal stack 
- *     logic=cwritemat('matrixname'//char(0),m,n,mat) 
- *  name: character string; name of the scilab variable ( null terMinated) 
- *  m: number of rows 
- *  n: number of columns 
- *  mat: matrix entries stored columnwise in Scilab object 
+ *     cwritemat writes vector/matrix in scilab's internal stack
+ *     logic=cwritemat('matrixname'//char(0),m,n,mat)
+ *  name: character string; name of the scilab variable ( null terMinated)
+ *  m: number of rows
+ *  n: number of columns
+ *  mat: matrix entries stored columnwise in Scilab object
  *----------------------------------------------------------------*/
 
 int C2F(cwritechain)(char *namex, integer *m, char *chai, unsigned long name_len, unsigned long chai_len)
@@ -358,7 +357,7 @@ int C2F(cwritechain)(char *namex, integer *m, char *chai, unsigned long name_len
     C2F(str2name)(namex, id, name_len);
     Top_k = Top;
 
-    Top = Top + Nbvars + 1; 
+    Top = Top + Nbvars + 1;
     if (! C2F(cresmat2)("cwritechain", &Top, m, &lr, 11L)) {
 	return FALSE_;
     }
@@ -376,37 +375,36 @@ int C2F(cwritechain)(char *namex, integer *m, char *chai, unsigned long name_len
 }
 
 /*----------------------------------------------------------------
- *     see cmatptr 
+ *     see cmatptr
  *----------------------------------------------------------------*/
 
 int C2F(matptr)(char *namex, integer *m, integer *n, integer *lp, unsigned long name_len)
 {
-    int ix;
-    ix = C2F(cmatptr)(namex, m, n, lp, name_len);
-    return 0;
-} 
+  C2F(cmatptr)(namex, m, n, lp, name_len);
+  return 0;
+}
 
 /*----------------------------------------------------------------
- * !purpose 
- *     matptr returns the adress of real matrix "name" 
- *     in scilab's internal stack 
- *     m=number of rows 
- *     n=number of columns 
- *     stk(lp),stk(lp+1),...,stk(lp+m*n-1)= entries (columnwise) 
- *     If matrix "name" not in Scilab stack, returns m=n=-1. 
- *    Example of use: 
- *    Amat is a real 2 x 3 scilab matrix 
- *    your subroutine should be as follows: 
- *    subroutine mysubr(...) 
- *    ... 
- *    logic= cmatptr('Amat',m,n,lp) 
- *    => m=3 , n=2, and stk(lp)=Amat(1,1) 
- *                      stk(lp+1)=Amat(2,1) 
- *                      stk(lp+2)=Amat(3,1) 
- *                      stk(lp+3)=Amat(1,2) ... 
- *                      stk(lp+5)=Amat(3,2) 
- *   see example in fydot.f file 
- *   see also  readmat.f, matz.f 
+ * !purpose
+ *     matptr returns the adress of real matrix "name"
+ *     in scilab's internal stack
+ *     m=number of rows
+ *     n=number of columns
+ *     stk(lp),stk(lp+1),...,stk(lp+m*n-1)= entries (columnwise)
+ *     If matrix "name" not in Scilab stack, returns m=n=-1.
+ *    Example of use:
+ *    Amat is a real 2 x 3 scilab matrix
+ *    your subroutine should be as follows:
+ *    subroutine mysubr(...)
+ *    ...
+ *    logic= cmatptr('Amat',m,n,lp)
+ *    => m=3 , n=2, and stk(lp)=Amat(1,1)
+ *                      stk(lp+1)=Amat(2,1)
+ *                      stk(lp+2)=Amat(3,1)
+ *                      stk(lp+3)=Amat(1,2) ...
+ *                      stk(lp+5)=Amat(3,2)
+ *   see example in fydot.f file
+ *   see also  readmat.f, matz.f
  *----------------------------------------------------------------*/
 
 int C2F(cmatptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long name_len)
@@ -433,27 +431,27 @@ int C2F(cmatptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long n
 }
 
 /*----------------------------------------------------------------
- * !purpose 
- *     cmatcptr returns the adress of complex matrix "name" 
- *     in scilab's internal stack 
- *     m=number of rows 
- *     n=number of columns 
- *     stk(lp),stk(lp+1),...,stk(lp+m*n-1)= entries (columnwise) 
- *     If matrix "name" not in Scilab stack, returns m=n=-1. 
- *    Example of use: 
- *    Amat is a real 2 x 3 scilab matrix 
- *    your subroutine should be as follows: 
- *    subroutine mysubr(...) 
- *    ... 
- *    logic= cmatptr('Amat',m,n,lp) 
- *    => m=3 , n=2, and stk(lp)=Amat(1,1) 
- *                      stk(lp+1)=Amat(2,1) 
- *                      stk(lp+2)=Amat(3,1) 
- *                      stk(lp+3)=Amat(1,2) ... 
- *                      stk(lp+5)=Amat(3,2) 
- *   see example in fydot.f file 
+ * !purpose
+ *     cmatcptr returns the adress of complex matrix "name"
+ *     in scilab's internal stack
+ *     m=number of rows
+ *     n=number of columns
+ *     stk(lp),stk(lp+1),...,stk(lp+m*n-1)= entries (columnwise)
+ *     If matrix "name" not in Scilab stack, returns m=n=-1.
+ *    Example of use:
+ *    Amat is a real 2 x 3 scilab matrix
+ *    your subroutine should be as follows:
+ *    subroutine mysubr(...)
+ *    ...
+ *    logic= cmatptr('Amat',m,n,lp)
+ *    => m=3 , n=2, and stk(lp)=Amat(1,1)
+ *                      stk(lp+1)=Amat(2,1)
+ *                      stk(lp+2)=Amat(3,1)
+ *                      stk(lp+3)=Amat(1,2) ...
+ *                      stk(lp+5)=Amat(3,2)
+ *   see example in fydot.f file
  *   see also  readmat.f, matz.f
- * 
+ *
  * Note d'Albert Y
  * 20/12/2003
  *    Cette routine est une simple copie de creadmat et légèrement
@@ -485,26 +483,26 @@ int C2F(cmatcptr)(char *namex, integer *m, integer *n, integer *lp, unsigned lon
 }
 
 /*----------------------------------------------------------------
- * !purpose 
- *     matptr returns the adress of real matrix "name" 
- *     in scilab's internal stack 
- *     m=number of rows 
- *     n=number of columns 
- *     stk(lp),stk(lp+1),...,stk(lp+m*n-1)= entries (columnwise) 
- *     If matrix "name" not in Scilab stack, returns m=n=-1. 
- *    Example of use: 
- *    Amat is a real 2 x 3 scilab matrix 
- *    your subroutine should be as follows: 
- *    subroutine mysubr(...) 
- *    ... 
- *    logic= cmatptr('Amat',m,n,lp) 
- *    => m=3 , n=2, and stk(lp)=Amat(1,1) 
- *                      stk(lp+1)=Amat(2,1) 
- *                      stk(lp+2)=Amat(3,1) 
- *                      stk(lp+3)=Amat(1,2) ... 
- *                      stk(lp+5)=Amat(3,2) 
- *   see example in fydot.f file 
- *   see also  readmat.f, matz.f 
+ * !purpose
+ *     matptr returns the adress of real matrix "name"
+ *     in scilab's internal stack
+ *     m=number of rows
+ *     n=number of columns
+ *     stk(lp),stk(lp+1),...,stk(lp+m*n-1)= entries (columnwise)
+ *     If matrix "name" not in Scilab stack, returns m=n=-1.
+ *    Example of use:
+ *    Amat is a real 2 x 3 scilab matrix
+ *    your subroutine should be as follows:
+ *    subroutine mysubr(...)
+ *    ...
+ *    logic= cmatptr('Amat',m,n,lp)
+ *    => m=3 , n=2, and stk(lp)=Amat(1,1)
+ *                      stk(lp+1)=Amat(2,1)
+ *                      stk(lp+2)=Amat(3,1)
+ *                      stk(lp+3)=Amat(1,2) ...
+ *                      stk(lp+5)=Amat(3,2)
+ *   see example in fydot.f file
+ *   see also  readmat.f, matz.f
  *----------------------------------------------------------------*/
 
 int C2F(cmatsptr)(char *namex, integer *m, integer *n,integer *ix,integer *j,integer *lp,integer *nlr, unsigned long name_len)
@@ -533,8 +531,8 @@ int C2F(cmatsptr)(char *namex, integer *m, integer *n,integer *ix,integer *j,int
 /*  Returns a pointer to the Scilab variable with name namex
 	Usage:   int *header;
 	header = (int *) Name2ptr("pipo");
-	header[0], header[1], etc contains header info 
-	about Scilab variable "pipo"   
+	header[0], header[1], etc contains header info
+	about Scilab variable "pipo"
 */
 void *Name2ptr(char *namex)
 {
@@ -553,7 +551,7 @@ void *Name2ptr(char *namex)
     Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
   }
   loci = (int *) stk(*Lstk(Fin));
-  if (loci[0] < 0) 
+  if (loci[0] < 0)
     {
       l1 = loci[1];
       loci = (int *) stk(l1);
@@ -563,38 +561,36 @@ void *Name2ptr(char *namex)
 
 
 /* returns the position in the internal stack of the variable with name
-   namex 
+   namex
    Usage:
    int l=Name2where("pipo");
    stk(l) points to Scilab variable named "pipo"
    e.g. if pipo is a standard real matrix
    stk(l)[2]=first entry of the matrix pipo(1,1)
    stk(l)[3]=pipo(2,1)  etc
-   (The header of pipo is given by istk(iadr(h))[0], 
+   (The header of pipo is given by istk(iadr(h))[0],
    istk(iadr(h))[1], etc )
 */
 int Name2where(char *namex)
 {
-  int loci;
   integer id[nsiz];
   C2F(str2name)(namex, id, (unsigned long)strlen(namex));
   /* get the position in fin */
   Fin = -1;
   C2F(stackg)(id);
-  if (Fin == 0) 
+  if (Fin == 0)
   {
 	Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,strlen(namex)));
     return 0;
   }
-  loci = *Lstk(Fin);
-  return loci;
+  return *Lstk(Fin);
 }
 
 /*----------------------------------------------------------------
- *     string conversion to Scilab ID 
- *     Warning : the character name is null terMinated 
- *             and len(name) is not used 
- *             since it can be wrong (ex when name is transmited 
+ *     string conversion to Scilab ID
+ *     Warning : the character name is null terMinated
+ *             and len(name) is not used
+ *             since it can be wrong (ex when name is transmited
  *             by fort (intfort : function )
  *----------------------------------------------------------------*/
 
@@ -609,11 +605,11 @@ int C2F(str2name)(char *namex, integer *id, unsigned long name_len)
     }
     C2F(cvname)(id, namex, &cx0, lon);
     return 0;
-} 
+}
 
 /*----------------------------------------------------------------
- *     objptr returns the adress of "name" 
- *     in scilab's internal stack 
+ *     objptr returns the adress of "name"
+ *     in scilab's internal stack
  *----------------------------------------------------------------*/
 
 int C2F(objptr)(char *namex, integer *lp, integer *fin, unsigned long name_len)
@@ -652,7 +648,7 @@ int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned lo
 	/* read   : from scilab stack -> fortran variable */
 	Fin = -1;
 	C2F(stackg)(id);
-	if (Err > 0) return FALSE_ ; 
+	if (Err > 0) return FALSE_ ;
 	if (Fin == 0) {
 		Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
 		return FALSE_;
@@ -675,7 +671,7 @@ int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned lon
 	integer l4, id[nsiz], lr;
 
 	C2F(str2name)(namex, id, name_len);
-	Top = Top + Nbvars + 1; 
+	Top = Top + Nbvars + 1;
 	if (! C2F(crebmat)("cwritebmat", &Top, m, n, &lr, 10L)) return  FALSE_;
 
 	C2F(icopy)(&ix1, mat, &cx1, istk(lr ), &cx1);
@@ -698,7 +694,7 @@ int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long 
 	/* get the position in fin */
 	Fin = -1;
 	C2F(stackg)(id);
-	if (Fin == 0) 
+	if (Fin == 0)
 	{
 		Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
 		*m = -1;
@@ -706,13 +702,13 @@ int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long 
 		return FALSE_;
 	}
 	/* get data */
-	if (*Infstk(Fin ) == 2) 
+	if (*Infstk(Fin ) == 2)
 	{
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
 	}
 
 	if (! C2F(getbmat)("creadbmat", &Fin, &Fin, m, n, lp , 9L))	return FALSE_;
-	
+
 	return TRUE_ ;
 }
 
@@ -722,12 +718,10 @@ int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long 
 	example :
 	in scilab --> str = "abcdefghijklmnopqrstuvwxyz";
 	in C getlengthchain("str") returns 26
-	error returns -1 
-*/ 
+	error returns -1
+*/
 int getlengthchain(char *namex)
 {
-	int retLength = -1;
-
 	integer m1, n1;
 	integer id[nsiz];
 	integer lr1;
@@ -742,7 +736,7 @@ int getlengthchain(char *namex)
 	if (Fin == 0) return -1;
 
 
-	if (*Infstk(Fin ) == 2) 
+	if (*Infstk(Fin ) == 2)
 	{
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
 	}
@@ -750,9 +744,6 @@ int getlengthchain(char *namex)
 	if (! C2F(getsmat)("getlengthchain", &Fin, &Fin, &m1, &n1, &cx1, &cx1, &lr1, &nlr1, 14L)) return -1;
 
 	if (m1 * n1 != 1)  return -1;
-	retLength = nlr1;
-
-	return retLength;
-
+	return nlr1;
 }
 /*-----------------------------------------------------------------------------------*/
