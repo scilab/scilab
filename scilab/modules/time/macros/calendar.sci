@@ -28,21 +28,21 @@ function listcal = calendar(varargin)
   end
 
   
-  mths = [gettext('time_message_17'); ..
-	gettext('time_message_18'); ..
-	gettext('time_message_19'); ..
-	gettext('time_message_20'); ..
-	gettext('time_message_21'); ..
-	gettext('time_message_22'); ..
-	gettext('time_message_23'); ..
-	gettext('time_message_24'); ..
-	gettext('time_message_25'); ..
-	gettext('time_message_26'); ..
-	gettext('time_message_27'); ..
-	gettext('time_message_28')];
+  mths = [gettext('Jan'); ..
+	gettext('Feb'); ..
+	gettext('Mar'); ..
+	gettext('Apr'); ..
+	gettext('May'); ..
+	gettext('Jun'); ..
+	gettext('Jul'); ..
+	gettext('Aug'); ..
+	gettext('Sep'); ..
+	gettext('Oct'); ..
+	gettext('Nov'); ..
+	gettext('Dec')];
           
   mth = mths(c(:,2),:);
   cal=Calendar(c(2),c(1));
-  listcal=list(sprintf('%s %d',mth,c(1)),gettext('time_message_29'),cal);
+  listcal=list(sprintf('%s %d',mth,c(1)),gettext('   M      Tu     W      Th     F     Sat     Sun'),cal);
 endfunction
 //------------------------------------------------------------------------

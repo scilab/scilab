@@ -29,22 +29,22 @@ function [N,S] = weekday(D,form)
 	bissextile_year = [0,31,60,91,121,152,182,213,244,274,305,335,366];
 	week_numbers = [7,1,2,3,4,5,6];
 	
-	week_strings_short = [gettext('time_message_3'), ..
-	gettext('time_message_4'), ..
-	gettext('time_message_5'), ..
-	gettext('time_message_6'), ..
-	gettext('time_message_7'), ..
-	gettext('time_message_8'), ..
-	gettext('time_message_9')];
+	week_strings_short = [gettext('Sat'), ..
+	gettext('Sun'), ..
+	gettext('Mon'), ..
+	gettext('Tue'), ..
+	gettext('Wed'), ..
+	gettext('Thu'), ..
+	gettext('Fri')];
 	
-	week_strings_long = [gettext('time_message_10'), ..
-	gettext('time_message_11'), ..
-	gettext('time_message_12'), ..
-	gettext('time_message_13'), ..
-	gettext('time_message_14'), ..
-	gettext('time_message_15'), ..
-	gettext('time_message_16'), ..
-	gettext('time_message_17')];
+	week_strings_long = [gettext('Saturday'), ..
+	gettext('Sunday'), ..
+	gettext('Monday'), ..
+	gettext('Tuesday'), ..
+	gettext('Wednesday'), ..
+	gettext('Thursday'), ..
+	gettext('Friday'), ..
+	gettext('Jan')];
 		
 	if rhs==2 then
 		if form == 'long' then
