@@ -3,12 +3,12 @@
 /*-----------------------------------------------------------------------------------*/
 #include "machine.h"
 /*-----------------------------------------------------------------------------------*/
-enum {NOT_A_KNOT, NATURAL, CLAMPED, PERIODIC, FAST, FAST_PERIODIC, 
+enum {NOT_A_KNOT, NATURAL, CLAMPED, PERIODIC, FAST, FAST_PERIODIC,
 MONOTONE, BY_ZERO, C0, LINEAR, BY_NAN, UNDEFINED};
 /*-----------------------------------------------------------------------------------*/
 typedef struct { char *str_type; int type; } TableType;
 /*-----------------------------------------------------------------------------------*/
-typedef struct realhypermat 
+typedef struct realhypermat
 {
 	int dimsize;        /* number of dimensions of the hyper matrix */
 	int size;           /* total number of elements : size = dims[0]x... x dims[dimsize-1] */
@@ -27,7 +27,7 @@ extern int get_rhs_real_hmat(int num, RealHyperMat *H);
  * TODO : comment
  * @param x
  * @param n
- * @return 
+ * @return
  */
 int good_order(double x[], int n);
 
@@ -37,16 +37,8 @@ int good_order(double x[], int n);
  * @param dim_table
  * @param scistr
  * @param strlength
- * @return 
+ * @return
  */
 int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 
 
-/**
- * TODO : comment
- * @param length
- * @param scistr
- * @param str
- * @return 
- */
-int equal_scistring_and_string(int length, int *scistr,  char *str);

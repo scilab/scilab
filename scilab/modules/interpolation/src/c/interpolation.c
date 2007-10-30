@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------------*/
-/*  
+/*
  *  PURPOSE
  *     interface code for some interpolation / approximation
  *     routines
@@ -13,6 +13,7 @@
 #include "interpolation.h"
 #include "stack-c.h"
 #include "getfastcode.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int good_order(double x[], int n)
 {
@@ -26,15 +27,15 @@ int good_order(double x[], int n)
   if (fabs(x[0]) == inf  ||  x[n-1] == inf)
     return ( 0 );
 
-  for ( i = 1 ; i < n ; i++ ) 
-    if ( ! (x[i-1] < x[i]) )   /* form of this test for detecting nan ... */ 
+  for ( i = 1 ; i < n ; i++ )
+    if ( ! (x[i-1] < x[i]) )   /* form of this test for detecting nan ... */
       return ( 0 );
 
   return ( 1 );
 }
 /*-----------------------------------------------------------------------------------*/
 /*
- *  Routines spéciales : 
+ *  Routines spéciales :
  *      récupérer une hypermatrice réelle
  *      récupérer une string scilab sans convertion
  *      comparer une string scilab et une C string classique
@@ -48,10 +49,10 @@ int get_rhs_real_hmat(int num, RealHyperMat *H)
   int il, il1, il2, il3,/* it, */lw;
 
   lw = num + Top - Rhs;
-  il = iadr(*Lstk( lw )); 
+  il = iadr(*Lstk( lw ));
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
-	  
+
   if ( *istk(il) != 17 )
     goto err;
   else if ( *istk(il+1) != 3 )  /* a hm mlist must have 3 fields */
@@ -103,11 +104,11 @@ int get_rhs_scalar_string(int num, int *length, int **tabchar)
   int il, lw;
 
   lw = num + Top - Rhs;
-  il = iadr(*Lstk( lw )); 
+  il = iadr(*Lstk( lw ));
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
-	  
-  if ( ! ( *istk(il) == 10  &&  (*istk(il+1))*(*istk(il+2)) == 1 ) ) 
+
+  if ( ! ( *istk(il) == 10  &&  (*istk(il+1))*(*istk(il+2)) == 1 ) )
     {
       /* we look for a scalar string */
       Scierror(999,_("Argument %d is not a scalar string\n"), num);
@@ -123,18 +124,18 @@ int get_rhs_scalar_string(int num, int *length, int **tabchar)
   return 1;
 }
 /*-----------------------------------------------------------------------------------*/
-int equal_scistring_and_string(int length, int *scistr,  char *str)
+static int equal_scistring_and_string(int length, int *scistr,  char *str)
 {
   /* compare a scistring with a classic C string */
   int i, res;
-  
+
   if ( strlen(str) != length )
     return 0;
 
   res = 1; i = 0;
   while (res && i < length)
     {
-      res = (scistr[i] == (int)C2F(getfastcode)(str+i,1L));
+      res = (scistr[i] == (int)C2F(getfastcode)((unsigned char*)str+i,1L));
       i++;
     }
   return (res);
@@ -147,12 +148,12 @@ int get_type(TableType *Tab, int dim_table, int *scistr, int strlength)
     {
       found =  equal_scistring_and_string(strlength, scistr, Tab[i].str_type);
       i++;
-    } 
+    }
   if ( found )
     return ( Tab[i-1].type );
   else
     return ( UNDEFINED );
-} 
+}
 /*-----------------------------------------------------------------------------------*/
 
 
