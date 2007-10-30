@@ -9,6 +9,18 @@
 #include "do_xxprintf.h"
 #include "Scierror.h"
 #include "sciprint.h"
+
+#ifdef _MSC_VER
+/* BUG 2582 */
+/* workaround windows */
+#undef fprintf
+#undef vfprintf
+#undef printf
+#undef vprintf
+#undef sprintf
+#undef vsprintf
+#include <stdio.h>
+#endif
 /*-----------------------------------------------------------------------------------*/
 typedef int (*XXPRINTF) __PARAMS((FILE *, char *,...));
 typedef int (*FLUSH) __PARAMS((FILE *));
