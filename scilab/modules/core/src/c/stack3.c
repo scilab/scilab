@@ -11,7 +11,6 @@
 #include <string.h>
 #include "stack3.h"
 #include "stack-c.h"
-#include "error_scilab.h"
 #include "cvstr.h"
 #include "Scierror.h"
 

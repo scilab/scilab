@@ -6,7 +6,7 @@
 #include "gw_tclsci.h"
 #include "TclEvents.h"
 #include "TclUiGet.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_get) _PARAMS((char *fname,unsigned long l))
 {

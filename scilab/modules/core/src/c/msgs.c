@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "warningmode.h"
-#include "message_scilab.h"
+#include "sciprint.h"
 #include "sciprint.h"
 #include "stack-def.h" /* C2F(cha1) */
 #include "stack-c.h" /* Fin */
@@ -480,41 +480,41 @@ int C2F(msgs)(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_1(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : "));
-	message_scilab(_("Non convergence in the QZ algorithm. "));
+	sciprint(_("Warning : \n"));
+	sciprint(_("Non convergence in the QZ algorithm. \n"));
 	if (*ierr > 0)
 	{
-		message_scilab(_("The top %d  x %d blocks may not be in generalized Schur form."),*ierr);
+		sciprint(_("The top %d  x %d blocks may not be in generalized Schur form.\n"),*ierr);
 	}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_2(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : "));
-	message_scilab(_("Non convergence in QR steps."));
+	sciprint(_("Warning : \n"));
+	sciprint(_("Non convergence in QR steps.\n"));
 
 	if (*ierr > 0)
 	{
-		message_scilab(_("The top %d x %d block may not be in Schur form."),*ierr);
+		sciprint(_("The top %d x %d block may not be in Schur form.\n"),*ierr);
 	}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_3(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : "));
-	message_scilab(_("Non convergence in QR steps."));
+	sciprint(_("Warning : \n"));
+	sciprint(_("Non convergence in QR steps.\n"));
 	if (*ierr > 0)
 	{
-		message_scilab(_("The first %d singular values may be incorrect."),*ierr);
+		sciprint(_("The first %d singular values may be incorrect.\n"),*ierr);
 	}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_4(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning:  Result may be inaccurate."));
+	sciprint(_("Warning:  Result may be inaccurate.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -523,12 +523,12 @@ static int msg_5(integer *n, integer *ierr)
 	char localbuf[14];
 	strncpy(localbuf,BUF,13);
 	localbuf[13]='\0';
-	message_scilab(_("Warning : "));
-	message_scilab(_("matrix is close to singular or badly scaled. rcond = %s"),localbuf);
+	sciprint(_("Warning : \n"));
+	sciprint(_("matrix is close to singular or badly scaled. rcond = %s\n"),localbuf);
 
 	if (*ierr > 0)
 	{
-		message_scilab(_("computing least squares solution. (see lsq)."));
+		sciprint(_("computing least squares solution. (see lsq).\n"));
 	}
 	return 0;
 }
@@ -538,29 +538,29 @@ static int msg_6(integer *n, integer *ierr)
 	char localbuf[14];
 	strncpy(localbuf,BUF,13);
 	localbuf[13]='\0';
-	message_scilab(_("Warning : "));
-	message_scilab(_("eigenvectors are badly conditioned."));
-	message_scilab(_("results may be inaccurate. rcond = %s"),localbuf);
+	sciprint(_("Warning : \n"));
+	sciprint(_("eigenvectors are badly conditioned.\n"));
+	sciprint(_("results may be inaccurate. rcond = %s\n"),localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_7(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning: obsolete use of '=' instead of '==' ."));
+	sciprint(_("Warning: obsolete use of '=' instead of '==' .\n"));
 	C2F(showstack)();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_8(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : 3"));
+	sciprint(_("Warning : \n"));
 	C2F(showstack)();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_9(integer *n, integer *ierr)
 {
-	message_scilab(_("Rank defficient. rank = %d"),ierr);
+	sciprint(_("Rank defficient. rank = %d\n"),ierr);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -572,7 +572,7 @@ static int msg_10(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_11(integer *n, integer *ierr)
 {
-	message_scilab(_("Quapro encounters cycles on degenerate point."));
+	sciprint(_("Quapro encounters cycles on degenerate point.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -580,7 +580,7 @@ static int msg_12(integer *n, integer *ierr)
 {
 	char localbuf[16];
 	strncpy(localbuf,BUF,15);
-	message_scilab(_("Norm of projected gradient lower than %s."),localbuf);
+	sciprint(_("Norm of projected gradient lower than %s.\n"),localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -589,55 +589,55 @@ static int msg_13(integer *n, integer *ierr)
 	char localbuf[16];
 	strncpy(localbuf,BUF,15);
 
-	message_scilab(_("at last iteration f decreases by less than %s."),localbuf);
+	sciprint(_("at last iteration f decreases by less than %s.\n"),localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_14(integer *n, integer *ierr)
 {
-	message_scilab(_("Optimization stops because too small variations for x."));
+	sciprint(_("Optimization stops because too small variations for x.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_15(integer *n, integer *ierr)
 {
-	message_scilab(_("Optim stops:  maximum number of calls to f is reached."));
+	sciprint(_("Optim stops:  maximum number of calls to f is reached.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_16(integer *n, integer *ierr)
 {
-	message_scilab(_("Optim stops: maximum number of iterations is reached."));
+	sciprint(_("Optim stops: maximum number of iterations is reached.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_17(integer *n, integer *ierr)
 {
-	message_scilab(_("Optim stops: too small variations in gradient direction."));
+	sciprint(_("Optim stops: too small variations in gradient direction.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_18(integer *n, integer *ierr)
 {
-	message_scilab(_("Stop during calculation of descent direction."));
+	sciprint(_("Stop during calculation of descent direction.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_19(integer *n, integer *ierr)
 {
-	message_scilab(_("Stop during calculation of estimated hessian."));
+	sciprint(_("Stop during calculation of estimated hessian.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_20(integer *n, integer *ierr)
 {
-	message_scilab(_("End of optimization."));
+	sciprint(_("End of optimization.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_21(integer *n, integer *ierr)
 {
-	message_scilab(_("End of optimization (linear search fails)."));
+	sciprint(_("End of optimization (linear search fails).\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -645,13 +645,13 @@ static int msg_22(integer *n, integer *ierr)
 {
 	char localbuf[5];
 	strncpy(localbuf,BUF,4);
-	message_scilab(_("sfact : uncomplete convergence relative precision reached : 10**(%s)."),localbuf);
+	sciprint(_("sfact : uncomplete convergence relative precision reached : 10**(%s).\n"),localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_23(integer *n, integer *ierr)
 {
-	message_scilab(_("help file inconsistent..."));
+	sciprint(_("help file inconsistent...\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -662,7 +662,7 @@ static int msg_24(integer *n, integer *ierr)
 	{
 		localbuf=(char*)MALLOC(sizeof(char)*(*ierr +1));
 		strncpy(localbuf,BUF,*ierr);
-		message_scilab(_("Functions files location : %s."),localbuf);
+		sciprint(_("Functions files location : %s.\n"),localbuf);
 		if (localbuf) {FREE(localbuf);localbuf=NULL;}
 	}
 	return 0;
@@ -675,7 +675,7 @@ static int msg_25(integer *n, integer *ierr)
 	{
 		localbuf=(char*)MALLOC(sizeof(char)*(*ierr +1));
 		strncpy(localbuf,BUF,*ierr);
-		message_scilab("    : %s.",localbuf);
+		sciprint("    : %s.\n",localbuf);
 		if (localbuf) {FREE(localbuf);localbuf=NULL;}
 	}
 	return 0;
@@ -683,7 +683,7 @@ static int msg_25(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_26(integer *n, integer *ierr)
 {
-	message_scilab(_("Pause mode: enter empty lines to continue."));
+	sciprint(_("Pause mode: enter empty lines to continue.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -692,7 +692,7 @@ static int msg_27(integer *n, integer *ierr)
 	char localbuf[nlgh+1];
 	strncpy(localbuf,BUF,nlgh-1);
 	localbuf[nlgh-1]='\0';
-	message_scilab(_("Breakpoints of function : %s"),localbuf);
+	sciprint(_("Breakpoints of function : %s\n"),localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -703,7 +703,7 @@ static int msg_28(integer *n, integer *ierr)
 	localbuf[1]=BUF[11];
 	localbuf[2]=BUF[12];
 	localbuf[3]='\0';
-	message_scilab(_("The top %d  x %d blocks may not be in generalized Schur form.2"),localbuf);
+	sciprint(_("The top %d  x %d blocks may not be in generalized Schur form.\n"),localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -711,20 +711,20 @@ static int msg_29(integer *n, integer *ierr)
 {
 	char localbuf[nlgh+1];
 	strncpy(localbuf,BUF,nlgh);
-	message_scilab(_("The top %d  x %d blocks may not be in generalized Schur form.3"),localbuf);
+	sciprint(_("The top %d  x %d blocks may not be in generalized Schur form.\n"),localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_30(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning: recursion problem..., cleared."));
+	sciprint(_("Warning: recursion problem..., cleared.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_31(integer *n, integer *ierr)
 {
 	int cerr=-1;
-	message_scilab(_("Warning: stack problem..., cleared"));
+	sciprint(_("Warning: stack problem..., cleared\n"));
 	C2F(error)(&cerr);
 	return 0;
 }
@@ -744,7 +744,7 @@ static int msg_32(integer *n, integer *ierr)
 	
 	strncpy(localbuf2,BUF,l);
 	localbuf2[l]='\0';
-	message_scilab(_("Stop after row %s in function %s."),localbuf1,localbuf2);
+	sciprint(_("Stop after row %s in function %s.\n"),localbuf1,localbuf2);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -758,29 +758,29 @@ static int msg_33(integer *n, integer *ierr)
 
 	localbuf=(char*)MALLOC(sizeof(char)*(nreal +1));
 	strncpy(localbuf,BUF,nreal);
-	message_scilab(_("Warning : "));
-	message_scilab(_("The identifier : %s"),localbuf);
+	sciprint(_("Warning : \n"));
+	sciprint(_("The identifier : %s\n"),localbuf);
 	localbuf[nlgh]='\0';
-	message_scilab(_(" has been truncated to: %s."),localbuf);
+	sciprint(_(" has been truncated to: %s.\n"),localbuf);
 	if (localbuf) {FREE(localbuf);localbuf=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_34(integer *n, integer *ierr)
 {
-	message_scilab(_("real part"));
+	sciprint(_("real part\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_35(integer *n, integer *ierr)
 {
-	message_scilab(_("imaginary part"));
+	sciprint(_("imaginary part\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_36(integer *n, integer *ierr)
 {
-	message_scilab(_("maximum size of buffer : %d characters."),*ierr);
+	sciprint(_("maximum size of buffer : %d characters.\n"),*ierr);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -791,13 +791,13 @@ static int msg_37(integer *n, integer *ierr)
 
 	strncpy(localbuf1,BUF,3);
 	strncpy(localbuf2,&BUF[4],13);
-	message_scilab(_("Rank deficient : rank = %s  - tol = %s ."),localbuf1,localbuf2);
+	sciprint(_("Rank deficient : rank = %s  - tol = %s .\n"),localbuf1,localbuf2);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_38(integer *n, integer *ierr)
 {
-	message_scilab(_("Your variables are :"));
+	sciprint(_("Your variables are :\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -809,23 +809,23 @@ static int msg_39(integer *n, integer *ierr)
 	strncpy(localbuf1,BUF,9);
 	strncpy(localbuf2,&BUF[10],9);
 
-	message_scilab(_("Using %s elements  out of %s."),localbuf1,localbuf2);
+	sciprint(_("Using %s elements  out of %s.\n"),localbuf1,localbuf2);
 
 	strncpy(localbuf1,&BUF[20],9);
 	strncpy(localbuf2,&BUF[30],9);
-	message_scilab(_(" and %s variables out of %s."),localbuf1,localbuf2);
+	sciprint(_(" and %s variables out of %s.\n"),localbuf1,localbuf2);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_40(integer *n, integer *ierr)
 {
-	message_scilab(_("System functions : "));
+	sciprint(_("System functions : \n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_41(integer *n, integer *ierr)
 {
-	message_scilab(_("Commands:"));
+	sciprint(_("Commands: \n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -868,20 +868,20 @@ L42_2:
 	/* @TODO what is this ugly line ??? */
 	C2F(cvname)(&C2F(vstk).idstk[km * 6 - 6], line, &c__1, (long int)24);
 
-	message_scilab(_("       inside function: %s."),line);
+	sciprint(_("       inside function: %s.\n"),line);
 end_msg_42:
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_43(integer *n, integer *ierr)
 {
-	message_scilab(_("Not enough memory to perform simplification."));
+	sciprint(_("Not enough memory to perform simplification.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_44(integer *n, integer *ierr)
 {
-	message_scilab(_("Your global variables are..."));
+	sciprint(_("Your global variables are...\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -917,25 +917,25 @@ static int msg_49(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_50(integer *n, integer *ierr)
 {
-	message_scilab(_("arl2: Loop on two orders detected."));
+	sciprint(_("arl2: Loop on two orders detected.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_51(integer *n, integer *ierr)
 {
-	message_scilab(_("arl2: Impossible to reach required order."));
+	sciprint(_("arl2: Impossible to reach required order.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_52(integer *n, integer *ierr)
 {
-	message_scilab(_("arl2: Failure when looking for the intersection with domains boundaries."));
+	sciprint(_("arl2: Failure when looking for the intersection with domains boundaries.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_53(integer *n, integer *ierr)
 {
-	message_scilab(_("arl2: Too many solutions found."));
+	sciprint(_("arl2: Too many solutions found.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -977,7 +977,7 @@ static int msg_59(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_60(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : loaded file has been created with a previous version of scilab"));
+	sciprint(_("Warning : loaded file has been created with a previous version of scilab.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -986,26 +986,26 @@ static int msg_61(integer *n, integer *ierr)
 	char line[140];
 	integer c__1=1;
 	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], line, &c__1,24);
-	message_scilab(_("Warning : "));
-	message_scilab("Impossible to load variable %s.",line);
+	sciprint(_("Warning : \n"));
+	sciprint("Impossible to load variable %s.\n",line);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_62(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : use of standard list to define typed structures"));
+	sciprint(_("Warning : use of standard list to define typed structures.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_63(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : division by zero..."));
+	sciprint(_("Warning : division by zero...\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_64(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : singularity of 'log' or 'tan' function."));
+	sciprint(_("Warning : singularity of 'log' or 'tan' function.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1043,55 +1043,55 @@ static int msg_70(integer *n, integer *ierr)
 {
 	char localbuf[10];
 	strncpy(localbuf,BUF,10);
-	message_scilab(_("at time : %s ,Too many iteration to achieve required precision."),localbuf);
+	sciprint(_("at time : %s ,Too many iteration to achieve required precision.\n"),localbuf);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_71(integer *n, integer *ierr)
 {
-	message_scilab(_("stepsize not significant in rkqc."));
+	sciprint(_("stepsize not significant in rkqc.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_72(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : variable %%ODEOPTIONS not found."));
+	sciprint(_("Warning : variable %%ODEOPTIONS not found.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_73(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : integration up to tcrit."));
+	sciprint(_("Warning : integration up to tcrit.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_74(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning : integration not completed! check tolerance parameters or step size."));
+	sciprint(_("Warning : integration not completed! check tolerance parameters or step size.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_75(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning: Jacobian external is given, but"));
+	sciprint(_("Warning: Jacobian external is given, but\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_76(integer *n, integer *ierr)
 {
-	message_scilab(_("The first %d singular values may be incorrect."));
+	sciprint(_("The first %d singular values may be incorrect.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_77(integer *n, integer *ierr)
 {
-	message_scilab(_("itask=2,3 or 5: At most one value of t"));
+	sciprint(_("itask=2,3 or 5: At most one value of t.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_78(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning: odedc forces itask=4 and handles"));
+	sciprint(_("Warning: odedc forces itask=4 and handles.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1103,37 +1103,37 @@ static int msg_79(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_80(integer *n, integer *ierr)
 {
-	message_scilab(_("Warning: function is already compiled."));
+	sciprint(_("Warning: function is already compiled.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_81(integer *n, integer *ierr)
 {
-	message_scilab(_("int2d: termination for lack of space to divide triangle."));
+	sciprint(_("int2d: termination for lack of space to divide triangle.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_82(integer *n, integer *ierr)
 {
-	message_scilab(_("int2d: termination because of roundoff noise."));
+	sciprint(_("int2d: termination because of roundoff noise.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_83(integer *n, integer *ierr)
 {
-	message_scilab(_("int2d: termination for relative error &lt; (5.0*%eps)."));
+	sciprint(_("int2d: termination for relative error < (5.0*%eps).\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_84(integer *n, integer *ierr)
 {
-	message_scilab(_("int2d: termination: function evaluations > MEVALS."));
+	sciprint(_("int2d: termination: function evaluations > MEVALS.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_85(integer *n, integer *ierr)
 {
-	message_scilab(_("int3d:maxpts was too small to obtain the required accuracy."));
+	sciprint(_("int3d:maxpts was too small to obtain the required accuracy.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1163,13 +1163,13 @@ static int msg_89(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_90(integer *n, integer *ierr)
 {
-	message_scilab(_("Too many input/output ports for hilited block."));
+	sciprint(_("Too many input/output ports for hilited block.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_91(integer *n, integer *ierr)
 {
-	message_scilab(_("Too many input/output entries for hilited block."));
+	sciprint(_("Too many input/output entries for hilited block.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1223,7 +1223,7 @@ static int msg_99(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_100(integer *n, integer *ierr)
 {
-	message_scilab(_("Undefined display for this data type."));
+	sciprint(_("Undefined display for this data type.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1241,8 +1241,8 @@ static int msg_101(integer *n, integer *ierr)
 		break;
 	}
 
-	message_scilab(_("Warning : primitive function %s has moved."),line);
-	message_scilab(_("Rebuild your function libraries."));
+	sciprint(_("Warning : primitive function %s has moved.\n"),line);
+	sciprint(_("Rebuild your function libraries.\n"));
 	C2F(showstack)();
 	return 0;
 }
@@ -1261,8 +1261,8 @@ static int msg_102(integer *n, integer *ierr)
 		break;
 	}
 
-	message_scilab(_("Warning : primitive function %s is now a Scilab function."),line);
-	message_scilab(_("rebuild your function libraries."));
+	sciprint(_("Warning : primitive function %s is now a Scilab function.\n"),line);
+	sciprint(_("rebuild your function libraries.\n"));
 
 	C2F(showstack)();
 	return 0;
@@ -1270,13 +1270,13 @@ static int msg_102(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_103(integer *n, integer *ierr)
 {
-	message_scilab(_("Roundoff errors make leading eigenvalues"));
+	sciprint(_("Roundoff errors make leading eigenvalues.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_104(integer *n, integer *ierr)
 {
-	message_scilab(_("Formal variable name has been truncated."));
+	sciprint(_("Formal variable name has been truncated.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1285,20 +1285,20 @@ static int msg_105(integer *n, integer *ierr)
 	char *localbuf=NULL;
 	localbuf=(char*)MALLOC(sizeof(char)*(*ierr +1));
 	strncpy(localbuf,BUF,*ierr);
-	message_scilab(_("Unknown key <%s> ignored."),localbuf);
+	sciprint(_("Unknown key <%s> ignored.\n"),localbuf);
 	if (localbuf) {FREE(localbuf);localbuf=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_106(integer *n, integer *ierr)
 {
-	message_scilab(_("xset: window dimensions have been set less than 2^16."));
+	sciprint(_("xset: window dimensions have been set less than 2^16.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_107(integer *n, integer *ierr)
 {
-	message_scilab(_("Some data have not been computed they are replaced by NaN."));
+	sciprint(_("Some data have not been computed they are replaced by NaN.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

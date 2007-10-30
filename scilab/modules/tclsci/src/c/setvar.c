@@ -3,8 +3,8 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include "setvar.h"
-#include "error_scilab.h"
 #include "MALLOC.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n)
 {

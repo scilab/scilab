@@ -5,7 +5,7 @@
 #include <string.h>
 #include "machine.h"
 #include "prompt.h"
-#include "message_scilab.h"
+#include "sciprint.h"
 #include "sciprint.h"
 #include "warningmode.h"
 /*------------------------------------------------------------------------*/
@@ -23,7 +23,7 @@ void C2F(setprlev)( int *pause)
 		{
 			if (getWarningMode())
 			{
-				message_scilab(_("Type 'resume' or 'abort' to return to standard level prompt."));
+				sciprint(_("Type 'resume' or 'abort' to return to standard level prompt.\n"));
 				sciprint("\n");
 				dispWarningLevelPrompt=FALSE;
 			}

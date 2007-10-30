@@ -2,7 +2,6 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "error_scilab.h"
 #include "InitTclTk.h"
 #include "TclEvents.h"
 #ifndef _MSC_VER
@@ -10,7 +9,8 @@
  #include <ctype.h>
 #endif
 #include "setgetSCIpath.h"
-#include "message_scilab.h"
+#include "sciprint.h"
+#include "Scierror.h"
 #include "scilabmode.h"
 #include "ScilabEval.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -66,7 +66,7 @@ int OpenTCLsci(void)
   /* test SCI validity */
   if (SciPath==NULL)
   {
-	message_scilab(_("The SCI environment variable is not set."));
+	sciprint(_("The SCI environment variable is not set.\n"));
     return(1);
   }
 
@@ -77,7 +77,7 @@ int OpenTCLsci(void)
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL) 
   {
-	message_scilab(_("Unable to find TCL initialisation scripts."));
+	sciprint(_("Unable to find TCL initialisation scripts.\n"));
     return(1);
   }
   else fclose(tmpfile2);
@@ -85,7 +85,7 @@ int OpenTCLsci(void)
   tmpdir=opendir(SciPath);
   if (tmpdir==NULL) 
     {
-      message_scilab(_("The SCI environment variable is not set."));
+      sciprint(_("The SCI environment variable is not set.\n"));
       return(1);
     }
   else closedir(tmpdir);
@@ -94,7 +94,7 @@ int OpenTCLsci(void)
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL) 
     {
-      message_scilab(_("Unable to find TCL initialisation scripts."));
+      sciprint(_("Unable to find TCL initialisation scripts.\n"));
       return(1);
     }
   else fclose(tmpfile2);

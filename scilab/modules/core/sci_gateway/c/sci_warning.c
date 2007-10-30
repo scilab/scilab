@@ -7,11 +7,10 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "sciprint.h"
+#include "Scierror.h"
 #include "warningmode.h"
 #include "MALLOC.h"
-#include "error_scilab.h"
 #include "Scierror.h"
-#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 {

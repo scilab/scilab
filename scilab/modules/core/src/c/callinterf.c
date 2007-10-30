@@ -8,17 +8,17 @@
 #include <signal.h>
 
 
-#include "sciprint.h"
 #include "csignal.h"
 
 #include "addinter.h" /* for DynInterfStart */
 #include "Os_specific.h" /* for DynInterfStart */
 
-#include "error_scilab.h"
-#include "message_scilab.h"
 #include "callinterf.h"
 
 #include "machine.h"
+#include "sciprint.h"
+#include "Scierror.h"
+
 
 static  jmp_buf jmp_env;
 
@@ -107,7 +107,7 @@ static OpTab Interfaces[] = {
 
 /* int C2F(Nogw_slicot)(void) */
 /* { */
-/* 	message_scilab("%s interface not loaded.","slicot"); */
+/* 	sciprint("%s interface not loaded.\n","slicot"); */
 /* 	C2F(error)(&c_local_interf); */
 /* 	return 0; */
 /* } */
@@ -156,8 +156,8 @@ int C2F(callinterf) (int *k)
 static void sci_sigint_addinter(int n)
 {
   int c;
-  message_scilab(_("Trying to stop scilab in the middle of an interface."));
-  message_scilab(_("Do you really want to abort computation (y or n ?) "));
+  sciprint(_("Trying to stop scilab in the middle of an interface.\n"));
+  sciprint(_("Do you really want to abort computation (y or n ?) \n"));
   c = getchar();
   if ( c == 'y' ) errjump(n);
 }

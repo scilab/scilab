@@ -8,8 +8,6 @@
 
 #include "intmacr2tree.h"
 #include "sciprint.h"
-#include "error_scilab.h"
-#include "message_scilab.h"
 #include "cvstr.h"
 #include "machine.h"
 
@@ -1987,7 +1985,7 @@ int complexity(int *data,int *index2,int *lgth)
 	    }
 	  else
 	    {
-	      message_scilab(_("complexity: wrong code %d."),data[cur_ind]);
+	      sciprint(_("complexity: wrong code %d.\n"),data[cur_ind]);
 	      return -1;
 	    }
 	  break;

@@ -300,7 +300,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define PExecSciFunction(n,mx,nx,lx,name,fsqpenv) \
   if(! C2F(scifunction)((c_local=n,&c_local),mx,nx,lx))\
-{ message_scilab(_(" results may be inaccurate. rcond = %s1"),name);  longjmp(fsqpenv,-1); }
+{ sciprint(_(" results may be inaccurate. rcond = %s1\n"),name);  longjmp(fsqpenv,-1); }
 
 #define Nbvars C2F(intersci).nbvars
 

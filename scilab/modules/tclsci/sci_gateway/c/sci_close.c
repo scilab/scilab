@@ -4,8 +4,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "message_scilab.h"
-#include "error_scilab.h"
+#include "sciprint.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 {
@@ -51,7 +51,7 @@ int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 				else
 				{
 					DoCloseFigure=FALSE;
-					message_scilab(_("Warning : Figure %d does not exist."),Handle);
+					sciprint(_("Warning : Figure %d does not exist.\n"),Handle);
 				}
 			}
 			else

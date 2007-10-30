@@ -10,7 +10,7 @@
 #include "sciprint.h"
 #include "LoadFunctionsTab.h"
 #include "prompt.h"
-#include "message_scilab.h"
+#include "sciprint.h"
 #include "filesmanagement.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeCore(void)
@@ -24,7 +24,7 @@ BOOL InitializeCore(void)
 
 	if ( create_hashtable_scilab_functions(MAXELEMENTFUNCTIONLIST) == 0 ) 
 	{
-		message_scilab(_("Fatal Error : Can't create table for scilab functions."));
+		sciprint(_("Fatal Error : Can't create table for scilab functions.\n"));
 		exit(1);
 	}
 

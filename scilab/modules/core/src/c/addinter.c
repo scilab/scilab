@@ -15,7 +15,7 @@
 #include "sciprint.h"
 #include "Funtab.h"
 #include "warningmode.h"
-#include "message_scilab.h"
+#include "sciprint.h"
 #include "GetenvB.h"
 
 #ifdef _MSC_VER
@@ -219,7 +219,7 @@ static void ShowInterf(void)
   for ( i = 0 ; i < LastInterf ; i++ ) 
     {
       if ( DynInterf[i].ok == 1 ) 
-	if (debug) message_scilab(_("Interface %d."),i,DynInterf[i].name);
+	if (debug) sciprint(_("Interface %d.\n"),i,DynInterf[i].name);
     }
 }
 
@@ -261,7 +261,7 @@ void C2F(userlk)(integer *k)
   int imes = 9999;
   if ( k1 >= LastInterf || k1 < 0 ) 
     {
-      if (getWarningMode()) message_scilab(_(" results may be inaccurate. rcond = %s"),k1);
+      if (getWarningMode()) sciprint(_(" results may be inaccurate. rcond = %s\n"),k1);
       C2F(error)(&imes);
       return;
     }
@@ -286,7 +286,7 @@ void C2F(userlk)(integer *k)
   }
   else 
     {
-      if (getWarningMode()) message_scilab(_("Interface %s not linked."),DynInterf[k1].name);
+      if (getWarningMode()) sciprint(_("Interface %s not linked.\n"),DynInterf[k1].name);
       C2F(error)(&imes);
       return;
     }
@@ -320,7 +320,7 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
       if ( inum >=  MAXINTERF ) 
 	{
 	  if (getWarningMode())
-		  message_scilab(_("Maximum number of dynamic interfaces %d has been reached"),MAXINTERF);
+		  sciprint(_("Maximum number of dynamic interfaces %d has been reached.\n"),MAXINTERF);
 	  *err=1;
 	  return -1 ;
 	}
@@ -340,7 +340,7 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
       DynInterf[nums[j]].Nshared = ilib;
       if ( SearchInDynLinks(names[0],&DynInterf[nums[j]].func) < 0 ) 
 	{
-	  if (getWarningMode()) message_scilab("addinter failed for %s not found!",names[j]);
+	  if (getWarningMode()) sciprint("addinter failed for %s not found!\n",names[j]);
 	  return -1;
 	}
       else
@@ -368,7 +368,7 @@ void CallDynInterf(int *pos, int num_names, int namepos, char **names,
     (*DynInterf[*pos].func)();
   else 
     {
-      if (getWarningMode()) message_scilab(_("Interface %s not linked."),DynInterf[*pos].name);
+      if (getWarningMode()) sciprint(_("Interface %s not linked.\n"),DynInterf[*pos].name);
       C2F(error)(&imes);
     }
 }  

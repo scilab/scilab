@@ -5,7 +5,7 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(where)();

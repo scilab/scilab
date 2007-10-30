@@ -5,7 +5,6 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "error_scilab.h"
 #include "Funtab.h"
 #include "IsAScalar.h"
 #include "hashtable_core.h"

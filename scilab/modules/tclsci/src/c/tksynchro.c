@@ -6,7 +6,7 @@
 #include "machine.h"
 #include "TCL_Global.h"
 #include "tksynchro.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(tksynchro)( int *l)
 {

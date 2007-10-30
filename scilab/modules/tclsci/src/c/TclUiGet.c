@@ -6,7 +6,7 @@
 #include "TCL_ArrayExist.h"
 #include "TCL_ArrayGetVar.h"
 #include "TCL_ArrayDim.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 #include "../../gui/includes/GetScreenProperty.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/

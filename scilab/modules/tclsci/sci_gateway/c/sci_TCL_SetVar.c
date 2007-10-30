@@ -4,8 +4,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "error_scilab.h"
 #include "setvar.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 {

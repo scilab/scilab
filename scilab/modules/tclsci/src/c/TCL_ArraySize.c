@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "TCL_ArraySize.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName)

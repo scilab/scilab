@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 { 
@@ -67,11 +67,11 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
                 const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
 				if(C2F(iop).err>0)
 				{
-					error_scilab(999,"%s, ScilabEval error at line %i\n	%s.",fname,i+1,(char *)trace);
+					Scierror(999,"%s, ScilabEval error at line %i\n	%s.\n",fname,i+1,(char *)trace);
 				}
 				else
 				{
-					error_scilab(999,"%s, %s at line %i\n	%s",fname,TCLinterpreter->result,i+1,(char *)trace);
+					Scierror(999,"%s, %s at line %i\n	%s\n",fname,TCLinterpreter->result,i+1,(char *)trace);
 				}
 				if (Str) for (i = 0; i<m1*n1 ;i++)
 				{

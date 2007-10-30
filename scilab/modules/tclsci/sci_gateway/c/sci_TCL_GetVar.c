@@ -6,10 +6,10 @@
 #include <string.h>
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
+#include "Scierror.h"
 #include "TCL_ArrayExist.h"
 #include "TCL_ArrayDim.h"
 #include "TCL_ArrayGetVar.h"
-#include "error_scilab.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))

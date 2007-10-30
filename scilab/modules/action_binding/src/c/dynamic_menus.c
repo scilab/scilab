@@ -10,7 +10,6 @@
 #include "MALLOC.h"
 #include "dynamic_menus.h"
 #include "sciprint.h"
-#include "message_scilab.h"
 
 /*-----------------------------------------------------------------------------------*/
 /*
@@ -105,7 +104,7 @@ int StoreCommand1 (char *command,int flag)
 			  p = (CommandRec *) MALLOC (sizeof (CommandRec));
 			  if (p == (CommandRec *) 0)
 				{
-					message_scilab(_("send_command : No more memory"));
+					sciprint(_("send_command : No more memory.\n"));
 					return (1);
 				}
 			  p->flag = 0;
@@ -113,7 +112,7 @@ int StoreCommand1 (char *command,int flag)
 			  if (p->command == (char *) 0)
 				{
 				  FREE(p);
-				  message_scilab(_("send_command : No more memory"));
+				  sciprint(_("send_command : No more memory.\n"));
 				  return (1);
 				}
 			  strcpy (p->command, command);

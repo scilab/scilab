@@ -8,7 +8,7 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "gw_localization.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_gettext) _PARAMS((char *fname,unsigned long fname_len))
 {

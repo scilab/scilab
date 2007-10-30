@@ -18,8 +18,6 @@
 #include "cvstr.h"
 #include "parse.h"
 #include "men_Sutils.h"
-#include "error_scilab.h"
-#include "message_scilab.h"
 #include "int2db.h"
 #include "rea2b.h"
 #include "Scierror.h"
@@ -314,7 +312,7 @@ int get_optionals(char *fname ,rhs_opts opts[])
 	    }
 	  else
 	    {
-	      message_scilab(_("%s : unrecognized optional arguments %s."),fname,name);
+	      sciprint(_("%s : unrecognized optional arguments %s.\n"),fname,name);
 	      rhs_opt_print_names(opts) ;
 	      Error(999);
 	      return(0);
@@ -356,16 +354,16 @@ void rhs_opt_print_names(rhs_opts opts[])
   int i=0;
   if ( opts[i].name == NULL )
     {
-      message_scilab(_("optional argument list is empty."));
+      sciprint(_("optional argument list is empty.\n"));
       return;
     }
-  message_scilab(_("optional arguments list: "));
+  sciprint(_("optional arguments list: \n"));
   while ( opts[i+1].name != NULL )
     {
       sciprint("%s, ",opts[i].name);
       i++;
     }
-  message_scilab("and %s.",opts[i].name);
+  sciprint("and %s.\n",opts[i].name);
   return ;
 }
 

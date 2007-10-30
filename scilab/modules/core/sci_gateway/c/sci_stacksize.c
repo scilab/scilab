@@ -10,7 +10,6 @@
 #include "scimem.h"
 #include "stackinfo.h"
 #include "Scierror.h"
-#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 extern integer C2F(adjuststacksize)();
 /*-----------------------------------------------------------------------------------*/

@@ -10,8 +10,7 @@
 #include "stack1.h"
 #include "stack2.h"
 #include "sciprint.h"
-#include "error_scilab.h"
-#include "message_scilab.h"
+#include "Scierror.h"
 #include "cvstr.h"
 
 /* Table of constant values */
@@ -2502,7 +2501,7 @@ int C2F(getpointeri)(char *fname,integer *topk,integer *spos,integer *lw,integer
   il = iadr(*lw);
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   if (*istk(il ) != 128) {
-    message_scilab("----%d",*istk(il));
+    sciprint("----%d\n",*istk(il));
     if (*inlistx) 
       Scierror(197,_("%s : argument %d <(%d) should be a boxed pointer.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
@@ -2781,9 +2780,9 @@ int C2F(stackinfo)(integer *lw,integer *typ)
   m = *istk(il +1);
   n = *istk(il + 1 +1);
 
-  message_scilab(_("-----------------stack-info-----------------"));
-  message_scilab("lw=%d -[istk]-> il lw+1 -[istk]-> %d",*lw,iadr(*Lstk(*lw+1)));
-  message_scilab("istk(%d:..) ->[%d %d %d %d ....]",il, istk(il),istk(il+1),istk(il+2),istk(il+3) );
+  sciprint(_("-----------------stack-info-----------------\n"));
+  sciprint("lw=%d -[istk]-> il lw+1 -[istk]-> %d\n",*lw,iadr(*Lstk(*lw+1)));
+  sciprint("istk(%d:..) ->[%d %d %d %d ....]\n",il, istk(il),istk(il+1),istk(il+2),istk(il+3) );
   if (*typ == 1) {
     l = sadr(il+4);
     nn = Min(m*n,3);
@@ -2798,7 +2797,7 @@ int C2F(stackinfo)(integer *lw,integer *typ)
     }
   }
   sciprint("\n");
-  message_scilab(_("-----------------stack-info-----------------"));
+  sciprint(_("-----------------stack-info-----------------\n"));
   return 0;
 }
 

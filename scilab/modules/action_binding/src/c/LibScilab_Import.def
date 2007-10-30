@@ -15,7 +15,6 @@ EXPORTS
  createvarfromptr_
  callFunctionFromGateway
  iop_
- message_scilab
  sciprint_full
  ScilabEventsLoop
  ;

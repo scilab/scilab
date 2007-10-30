@@ -8,7 +8,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "message_scilab.h"
+#include "sciprint.h"
 #include "../../localization/includes/localization.h"
 #include "../../console/includes/ConsolePrintf.h"
 #include "../../shell/includes/scilines.h"
@@ -92,7 +92,7 @@ void sciprint_full(char *fmt,...)
   s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
   if (s_buf == (char *) 0)
   {
-     message_scilab(_("sciprint_full : No more memory."));
+     sciprint(_("sciprint_full : No more memory.\n"));
      return;
   }
 
@@ -110,7 +110,7 @@ void sciprint_full(char *fmt,...)
   split_s_buf=MALLOC(sizeof(char)*(colwidth+1));
   if (split_s_buf == (char *) 0)
   {
-     message_scilab(_("sciprint_full : No more memory."));
+     sciprint(_("sciprint_full : No more memory.\n"));
      return;
   }
 

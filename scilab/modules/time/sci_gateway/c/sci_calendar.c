@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "MALLOC.h"
 #include "sci_calendar.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 #include "IsAScalar.h"
 #include "InversionMatrixInt.h"
 /*-----------------------------------------------------------------------------------*/
@@ -44,19 +44,19 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (year<1800) || (year>3000) )
 		{
-			error_scilab(999,_(_("Error : year (1800 - 3000).")));
+			Scierror(999,_(_("Error : year (1800 - 3000).\n")));
 			return 0;
 		}
 				
 		if ( (month<1) || (month>12) )
 		{
-			error_scilab(999,_(_("Error : month (1 - 12).")));
+			Scierror(999,_(_("Error : month (1 - 12).\n")));
 			return 0;
 		}
 	}
 	else
 	{
-		error_scilab(999,_(_("Invalid argument(s) type.")));
+		Scierror(999,_(_("Invalid argument(s) type.\n")));
 		return 0;
 	}
 	CALMONTH=(int *)MALLOC( (NBRDAY*NBRWEEK)*sizeof(int) );

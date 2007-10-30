@@ -8,7 +8,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-#include "message_scilab.h"
+#include "Scierror.h"
 #include "commandwords.h"
 /*-----------------------------------------------------------------------------------*/
 static char **LocalFunctionsTab=NULL;
@@ -73,7 +73,7 @@ static void DispInternalFunctions(void)
 	int i=0;
 
 	sciprint("\n");
-	message_scilab(_("Internal Functions: "));
+	sciprint(_("Internal Functions: \n"));
 	sciprint("\n");
 	for (i=1;i<SizeLocalFunctionsTab-1;i++)
 	{
@@ -90,7 +90,7 @@ static void DispCommands(void)
 	char **commandwords = getcommandkeywords(&sizecommandwords);
 
 	sciprint("\n");
-	message_scilab(_("Commands: "));
+	sciprint(_("Commands: \n"));
 	sciprint("\n");
 	for (i=1;i <sizecommandwords+1;i++)
 	{

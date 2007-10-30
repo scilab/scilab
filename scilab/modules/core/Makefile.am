@@ -63,8 +63,6 @@ src/c/warningmode.c \
 src/c/InitializeCore.c \
 src/c/TerminateCore.c \
 src/c/coretable.c \
-src/c/error_scilab.c \
-src/c/message_scilab.c \
 src/c/force_link.c \
 src/c/returnProperty.c \
 src/c/returnPropertyList.c \
@@ -416,7 +414,6 @@ includes/scirun.h \
 includes/fromjava.h \
 includes/inisci-c.h \
 includes/cvstr.h \
-includes/error_scilab.h \
 includes/GetXmlFileEncoding.h \
 includes/syncexec.h \
 includes/getfastcode.h \

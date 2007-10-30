@@ -7,8 +7,6 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "stackinfo.h"
-#include "error_scilab.h"
-#include "message_scilab.h"
 #include "sciprint.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
@@ -224,8 +222,8 @@ static void DispVariables(struct VariableStruct* Vstruct,char *Message,int lenSt
 	 }
 
 	 sciprint("\n\n");
-	 message_scilab(_(" using %10d elements out of  %10d."),memused,memtotal);
-	 message_scilab(_(" and   %10d variables out of %10d."),varused,vartotal);
+	 sciprint(_(" using %10d elements out of  %10d.\n"),memused,memtotal);
+	 sciprint(_(" and   %10d variables out of %10d.\n"),varused,vartotal);
 
 }
 /*-----------------------------------------------------------------------------------*/

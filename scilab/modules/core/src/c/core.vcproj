@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../../libs/intl;../../../action_binding/includes;../../../output_stream/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../../libs/intl;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes"
 				PreprocessorDefinitions="_DEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -118,7 +118,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../../libs/intl;../../../action_binding/includes;../../../output_stream/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../../libs/intl;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -217,10 +217,6 @@
 			</File>
 			<File
 				RelativePath=".\cvstr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\error_scilab.c"
 				>
 			</File>
 			<File
@@ -377,10 +373,6 @@
 			</File>
 			<File
 				RelativePath=".\md5.c"
-				>
-			</File>
-			<File
-				RelativePath=".\message_scilab.c"
 				>
 			</File>
 			<File
@@ -849,10 +841,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\error_scilab.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\ExceptionMessage.h"
 				>
 			</File>
@@ -877,11 +865,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -998,10 +986,6 @@
 			</File>
 			<File
 				RelativePath=".\md5.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\message_scilab.h"
 				>
 			</File>
 			<File

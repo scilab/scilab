@@ -14,10 +14,10 @@
 #else
 #include <sys/time.h> 
 #endif
-#include "error_scilab.h"
 #include "MALLOC.h"
 #include "getdate.h"
 #include "InversionMatrixInt.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -38,7 +38,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 		C2F(scigetdate)(&dt,&ierr);
 		if (ierr)
 		{
-			error_scilab(999,_(_("Impossible to get the date...")));
+			Scierror(999,_(_("Impossible to get the date...\n")));
 			return 0;
 		}
 		else
@@ -70,7 +70,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,"Parameter must be a 's' or a integer.");
+				Scierror(999,"Parameter must be a 's' or a integer.\n");
 				return 0;
 			}
 		}
@@ -126,7 +126,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				error_scilab(999,"Parameter must be a 's' or a integer.");
+				Scierror(999,"Parameter must be a 's' or a integer.\n");
 				return 0;
 			}
 		}

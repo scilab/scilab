@@ -3,8 +3,8 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "message_scilab.h"
-#include "error_scilab.h"
+#include "sciprint.h"
+#include "Scierror.h"
 #include "gw_tclsci.h"
 #include "stack-c.h"
 #include "inisci-c.h"
@@ -48,7 +48,7 @@ int C2F(gw_tclsci)()
 		}
 		else
 		{
-			message_scilab(_("Warning: Problem(s) with TCL/TK interface. Interface not enabled."));
+			sciprint(_("Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"));
 		}
 	}
 	else

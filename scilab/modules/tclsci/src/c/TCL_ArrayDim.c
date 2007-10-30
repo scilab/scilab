@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "TCL_ArrayDim.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 #define TCL_SCILAB_VARIABLE_TMP "TclScilabTmpVar"
 #define CHAR_BLANK ' '

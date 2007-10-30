@@ -7,7 +7,7 @@
 #include "version.h"
 #include "sciprint.h"
 #include "banier.h"
-#include "message_scilab.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 void banner(void)
 {
@@ -24,8 +24,8 @@ void banner(void)
 	}
 	
 	sciprint("%s\n\n",SCI_VERSION_STRING);
-	message_scilab(_("                 Copyright (c) 1989-2007                   "));
-	message_scilab(_("              Consortium Scilab (INRIA, ENPC)              "));
+	sciprint(_("                 Copyright (c) 1989-2007                   \n"));
+	sciprint(_("              Consortium Scilab (INRIA, ENPC)              \n"));
 	sciprint("%s\n",line);
 
 	sciprint("\n\n");

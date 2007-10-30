@@ -21,7 +21,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "warningmode.h"
-#include "message_scilab.h"
+#include "sciprint.h"
 
 static void Underscores __PARAMS((int isfor,char *ename,char *ename1));
 static int SearchFandS  __PARAMS( ( char *,int ));
@@ -177,7 +177,7 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
     }
   if (*ilib >= 0) 
   {
-	  if (getWarningMode()) message_scilab(_("Link done."));
+	  if (getWarningMode()) sciprint(_("Link done.\n"));
   }
 }
 
@@ -216,14 +216,14 @@ void SciLink(iflag,rhs,ilib,files,en_names,strf)
      int iflag,*ilib,*rhs;
      char *files[],*en_names[],*strf;
 {
-  if (getWarningMode()) message_scilab(_("Sorry : Dynamic linking is not implemented."));
+  if (getWarningMode()) sciprint(_("Sorry : Dynamic linking is not implemented.\n"));
 }
 
 
 void C2F(isciulink)(i) 
      integer *i;
 {
-  if (getWarningMode()) message_scilab(_("Sorry : Unlinking is not implemented."));
+  if (getWarningMode()) sciprint(_("Sorry : Unlinking is not implemented.\n"));
 }
 
 #endif
@@ -361,14 +361,14 @@ static int SearchFandS(char *op, int ilib)
 static void ShowDynLinks(void)
 {
   int i=0,count=0;
-  if (getWarningMode()) message_scilab(_("Number of entry points %d."),NEpoints);
-  if (getWarningMode()) message_scilab(_("Shared libs : ["));
+  if (getWarningMode()) sciprint(_("Number of entry points %d.\n"),NEpoints);
+  if (getWarningMode()) sciprint(_("Shared libs : [\n"));
   for ( i = 0 ; i < Nshared ; i++) 
     if ( hd[i].ok == OK) { if (getWarningMode())sciprint(_("%d "),i);count++;}
-  if (getWarningMode()) message_scilab(_("] : %d libs."),count);
+  if (getWarningMode()) sciprint(_("] : %d libs.\n"),count);
   for ( i = NEpoints-1 ; i >=0 ; i--) 
     {
-      if (getWarningMode()) message_scilab(_("Entry point %s in shared lib %d."),EP[i].name,EP[i].Nshared);
+      if (getWarningMode()) sciprint(_("Entry point %s in shared lib %d.\n"),EP[i].name,EP[i].Nshared);
     }
 }
 

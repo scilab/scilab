@@ -5,7 +5,7 @@
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "InitTclTk.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_DeleteInterp) _PARAMS((char *fname,unsigned long l))
 {

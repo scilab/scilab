@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_sleep.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -18,7 +18,7 @@ int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len))
 		sec = (integer) *stk(l1);
 		if (sec <=0)
 		{
-			error_scilab(999,_(_("%s : error time must be > 0.")),fname);
+			Scierror(999,_(_("%s : error time must be > 0.\n")),fname);
 			return 0;
 		}
 	

@@ -4,8 +4,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "message_scilab.h"
-#include "error_scilab.h"
+#include "sciprint.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern BOOL FileExist(char *filename); /* From module fileio */
 /*-----------------------------------------------------------------------------------*/
@@ -68,7 +68,7 @@ int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 		const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
 		if (C2F(iop).err>0) 
 		{
-			message_scilab(_("%s, at line %i of file %s."),fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
+			sciprint(_("%s, at line %i of file %s.\n"),fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
 		}
         else
 		{

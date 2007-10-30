@@ -6,7 +6,7 @@
 #include "gw_tclsci.h"
 #include "TclUiSet.h" /* InterfaceScilabToUiSet */
 #include "TclEvents.h" /* flushTKEvents */
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_set) _PARAMS((char *fname,unsigned long l))
 {

@@ -12,7 +12,7 @@
 #endif 
 #include "sciprint.h"
 #include "scicurdir.h"
-#include "message_scilab.h"
+#include "sciprint.h"
 #include "MALLOC.h"
 #include "warningmode.h"
 static char cur_dir[PATH_MAX];
@@ -31,7 +31,7 @@ int C2F(scichdir)(char *path,int *err)
 	if (SetCurrentDirectory(path) == 0)
 #endif
 	{
-		if ( getWarningMode() ) message_scilab(_("Can't go to directory %s ."), path); 
+		if ( getWarningMode() ) sciprint(_("Can't go to directory %s .\n"), path); 
 	    *err=1;
 	} 
 	return 0;
@@ -46,7 +46,7 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
 #endif
 	{
 		/* get current working dir */
-		if ( getWarningMode() ) message_scilab(_("Can't get current directory."));
+		if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
 		*cur_dir = '\0';
 		*lpath=0;
 		*err=1;

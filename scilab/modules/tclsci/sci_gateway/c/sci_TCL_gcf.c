@@ -5,7 +5,7 @@
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "TclEvents.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int GetTclCurrentFigure(void);
 int SetTclCurrentFigure(int num);
@@ -49,7 +49,7 @@ int GetTclCurrentFigure(void)
 
 	if ( StrHandle == NULL  )
     {
-		error_scilab(999,"Tcl Error: GetTclCurrentFigure.");
+		Scierror(999,"Tcl Error: GetTclCurrentFigure.\n");
 		return 0;
 	}
 
@@ -112,7 +112,7 @@ int SetTclCurrentFigure(int num)
 
 	if ( StrHandle == NULL  )
     {
-		error_scilab(999,"Tcl Error: SetTclCurrentFigure.");
+		Scierror(999,"Tcl Error: SetTclCurrentFigure.\n");
 		return 0;
 	}
 	
