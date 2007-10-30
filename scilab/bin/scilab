@@ -39,6 +39,8 @@
 #
 ###
 
+SCIVERBOSE=0
+
 if test -n "$SCI"; then
 	if test ! -d "$SCI/modules"; then
 		echo "Cannot find directory $SCI/modules/ !"
@@ -92,7 +94,6 @@ else
 			fi
 			# The current file ($0), probably scilab is a symlink to the real one and here, it is the dev env
 			run_sci="$curdir/../scilab-bin"
-			echo $run_sci
 			if test -x "$run_sci"; then
 				cd "$curdir/../"
 				SCI=`pwd`
@@ -103,7 +104,9 @@ else
 		done
 		cd "$here"
 	fi
-	echo "I think I found Scilab here : $SCI"
+	if test $SCIVERBOSE -ne 0; then
+		echo "I think I found Scilab here : $SCI"
+	fi
 fi
 
 
@@ -140,7 +143,9 @@ export SCI
 
 # If the user has the variable JAVA_HOME in the ENV
 if test -n "$JAVA_HOME" ; then
-    echo "Using specified vm: $JAVA_HOME"
+	if test $SCIVERBOSE -ne 0; then
+		echo "Using specified vm: $JAVA_HOME"
+	fi
     if [ ! -x "$JAVA_HOME/bin/java" ]; then
 		echo "Cannot find $JAVA_HOME/bin/java"
         exit 1
@@ -152,13 +157,15 @@ fi
 if test -z "$JAVA_HOME"; then
 	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/kaffe/pthreads"
     for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
-		echo "Trying to find Java in $JAVA_HOME "
+		if test $SCIVERBOSE -ne 0; then
+			echo "Trying to find Java in $JAVA_HOME "
+		fi
 		if [ -x "${JAVA_HOME}/bin/java" ]; then
             export JAVA_HOME
-            echo "found"
+			if test $SCIVERBOSE -ne 0; then
+				echo "found"
+			fi
             break
-        else
-            echo "not found"
         fi
 	done
 fi
@@ -168,7 +175,9 @@ fi
 if test -z "$JAVA_HOME"; then
     PATH_SEPARATOR=:
 	as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-	echo "Look the binary java in the PATH. If it is a symlink, try to resolve it"
+	if test $SCIVERBOSE -ne 0; then
+		echo "Look the binary java in the PATH. If it is a symlink, try to resolve it"
+	fi
 	for DIR in $PATH; do
 		if test -f $DIR/java; then
 
@@ -190,7 +199,9 @@ if test -z "$JAVA_HOME"; then
 	IFS=$as_save_IFS
 fi
 if test ! -z "$JAVA_HOME"; then
-	echo "JAVA_HOME : $JAVA_HOME"
+	if test $SCIVERBOSE -ne 0; then
+		echo "JAVA_HOME : $JAVA_HOME"
+	fi
 
 # Manage JRE & JDK because libjava.so and others are stored in the JRE
 	if test -d $JAVA_HOME/jre; then
@@ -275,7 +286,9 @@ esac
 # ext for library
 	LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
 	if test ! -f $LIBJAVA; then
-		echo "Cannot find $LIBJAVA"
+		if test $SCIVERBOSE -ne 0; then
+			echo "Cannot find $LIBJAVA"
+		fi
 	else
 		CLASSPATH="$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar"
 		# @TODO This is the default path of the official sun JVM. 
@@ -283,14 +296,17 @@ esac
 		LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH"
 	fi
 else
-	echo "Have not been able to find any Java VM on this computer. Scilab maybe not be working"
+	if test $SCIVERBOSE -ne 0; then
+		echo "Have not been able to find any Java VM on this computer. Scilab maybe not be working"
+	fi
 fi
 
 ####### END OF JAVA ENV DETECTION/SETTING ######
 
-
-echo "SCI : $SCI"
-echo "SCIBIN : $SCIBIN"
+if test $SCIVERBOSE -ne 0; then
+	echo "SCI : $SCI"
+	echo "SCIBIN : $SCIBIN"
+fi
 
 # Returns to the original path
 cd "$OLDPWD"
@@ -314,7 +330,9 @@ if test "$LD_LIBRARY_PATH" = ""; then
 else
 	LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/:$LD_LIBRARY_PATH
 fi
-echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
+if test $SCIVERBOSE -ne 0; then
+	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
+fi
 export LD_LIBRARY_PATH
 
 # --suppressions=$SCI/tools/valgrind.supp
