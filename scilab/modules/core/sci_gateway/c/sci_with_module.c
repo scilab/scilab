@@ -6,7 +6,7 @@
 #include "stack-c.h"
 #include "with_module.h"
 #include "MALLOC.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -19,7 +19,7 @@ int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len))
 	if (GetType(1) == sci_strings)
 	{
 		char *VarName=NULL;
-		
+
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName=cstk(l1);
 

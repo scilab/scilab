@@ -1,13 +1,14 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "scilabmode.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_getscilabmode) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int n1,m1;
@@ -22,16 +23,16 @@ int C2F(sci_getscilabmode) _PARAMS((char *fname,unsigned long fname_len))
 	switch (getScilabMode())
 	{
 		case SCILAB_API: default :
-			sprintf(output,"API");
+			strcpy(output,"API");
 		break;
 		case SCILAB_STD:
-			sprintf(output,"STD");
+			strcpy(output,"STD");
 		break;
 		case SCILAB_NW:
-			sprintf(output,"NW");
+			strcpy(output,"NW");
 		break;
 		case SCILAB_NWNI:
-			sprintf(output,"NWNI");
+			strcpy(output,"NWNI");
 		break;
 	}
 
@@ -42,7 +43,7 @@ int C2F(sci_getscilabmode) _PARAMS((char *fname,unsigned long fname_len))
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();
 
-	if (output) {FREE(output);output=NULL;}
+	//	if (output) {FREE(output);output=NULL;}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

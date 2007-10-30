@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -17,23 +17,23 @@ extern integer C2F(adjuststacksize)();
 #define MIN_STACKSIZE 180000
 /*-----------------------------------------------------------------------------------*/
 /**
-* stacksize - set scilab stack size 
-* Calling Sequence 
-* stacksize(n)   
-* stacksize('max')   
-* stacksize('min')   
-* sz=stacksize()   
-* Parameters 
-* n : integer, the required stack size given in number of double precision words 
+* stacksize - set scilab stack size
+* Calling Sequence
+* stacksize(n)
+* stacksize('max')
+* stacksize('min')
+* sz=stacksize()
+* Parameters
+* n : integer, the required stack size given in number of double precision words
 * 'max' : try to allocate the maximum of memory
 * 'max' : allocate the minimum of memory
-* sz : 2-vector [total used] 
+* sz : 2-vector [total used]
 */
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
-	
+
 	Rhs=Max(0,Rhs);
 	CheckRhs(0,1);
 	CheckLhs(0,1);
@@ -53,7 +53,7 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
 		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();	
+		C2F(putlhsvar)();
 
 		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	}
@@ -80,7 +80,7 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 						if (MEMSTACKSIZE != currentstacksize)
 						{
 							integer ptr;
-							C2F(scimem)(&MEMSTACKSIZE,&ptr);
+							C2F(scimem)( (int *)&MEMSTACKSIZE,&ptr);
 							if (ptr) C2F(adjuststacksize)(&MEMSTACKSIZE,&ptr);
 							else
 							{
@@ -151,9 +151,9 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 					{
 						newmaxstack = MIN_STACKSIZE;
 					}
-					
+
 					C2F(scimem)(&newmaxstack,&ptr);
-					if (ptr) 
+					if (ptr)
 					{
 						C2F(adjuststacksize)(&newmaxstack,&ptr);
 					}
@@ -168,7 +168,7 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 					integer memstacktotal=0;
 					integer memstackused=0;
 					integer newminstack=0;
-					
+
 					C2F(getstackinfo)(&memstacktotal,&memstackused);
 
 					if (memstackused<MIN_STACKSIZE)
@@ -180,9 +180,9 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 						/* Add 3000 security for the stack */
 						newminstack = memstackused+3000;
 					}
-				
+
 					C2F(scimem)(&newminstack,&ptr);
-					if (ptr) 
+					if (ptr)
 					{
 						C2F(adjuststacksize)(&newminstack,&ptr);
 					}

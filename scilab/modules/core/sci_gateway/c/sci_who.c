@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -10,6 +10,7 @@
 #include "error_scilab.h"
 #include "message_scilab.h"
 #include "sciprint.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 struct VariableStruct
 {
@@ -49,7 +50,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 	 else
 	 if (Rhs == 1) /* who('get') or who('global') or who('sorted')*/
 	 {
-		 if (GetType(1) == sci_strings) 
+		 if (GetType(1) == sci_strings)
 		 {
 			 char *Param1String=NULL;
 			 GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
@@ -345,7 +346,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 
 	 C2F(putlhsvar)();
 
-	 if (Tab) 
+	 if (Tab)
 	 {
 		 for (i=0;i<lenStructArray;i++)
 		 {
@@ -390,16 +391,16 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 
 	 if (LocalTab)
 	 {
-		 for (i=0;i<lenStructArray;i++) 
-		 { 
+		 for (i=0;i<lenStructArray;i++)
+		 {
 			 if (LocalTab[i])
 			 {
 				 FREE(LocalTab[i]);
-				 LocalTab[i]=NULL; 
+				 LocalTab[i]=NULL;
 			 }
 		 }
 		 FREE(LocalTab);
-		 LocalTab=NULL; 
+		 LocalTab=NULL;
 	 }
 	 C2F(putlhsvar)();
 	 return 0;

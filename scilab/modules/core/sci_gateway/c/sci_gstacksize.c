@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -9,27 +9,27 @@
 #include "stackinfo.h"
 #include "getmaxMALLOC.h"
 #include "scimem.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern integer C2F(adjustgstacksize)();
 /*-----------------------------------------------------------------------------------*/
 #define MIN_GSTACKSIZE 11000
 /*-----------------------------------------------------------------------------------*/
-/* gstacksize - set scilab global stack size 
+/* gstacksize - set scilab global stack size
 
-* Calling Sequence 
+* Calling Sequence
 
-* gstacksize(n)   
-* gstacksize('max')   
-* gstacksize('min')   
-* sz=gstacksize()   
+* gstacksize(n)
+* gstacksize('max')
+* gstacksize('min')
+* sz=gstacksize()
 
-* Parameters 
+* Parameters
 
-* n : integer, the required stack size given in number of double precision words 
+* n : integer, the required stack size given in number of double precision words
 * 'max' : try to allocate the maximum of memory
 * 'max' : allocate the minimum of memory
-* sz : 2-vector [total used] 
+* sz : 2-vector [total used]
 */
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
@@ -55,7 +55,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
 		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();	
+		C2F(putlhsvar)();
 
 		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	}
@@ -83,7 +83,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 							integer ptr=0;
 							integer l=0;
 
-							C2F(scigmem)(&MEMGSTACKSIZE,&ptr);
+							C2F(scigmem)((int *)&MEMGSTACKSIZE,&ptr);
 							l = C2F(vstk).lstk[C2F(vstk).gtop] - C2F(vstk).lstk[C2F(vstk).isiz + 1];
 
 							if (ptr) C2F(adjustgstacksize)(&MEMGSTACKSIZE,&ptr,&l);
@@ -115,7 +115,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 				return 0;
 			}
 		}
-		else 
+		else
 		{
 			if ( GetType(1) == sci_strings )
 			{
@@ -156,7 +156,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 					l = C2F(vstk).lstk[C2F(vstk).gtop] - C2F(vstk).lstk[C2F(vstk).isiz + 1];
 
 					C2F(scigmem)(&newmaxgstack,&ptr);
-					if (ptr) 
+					if (ptr)
 					{
 						C2F(adjustgstacksize)(&newmaxgstack,&ptr,&l);
 					}
@@ -188,7 +188,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 					l = C2F(vstk).lstk[C2F(vstk).gtop] - C2F(vstk).lstk[C2F(vstk).isiz + 1];
 
 					C2F(scigmem)(&newmingstack,&ptr);
-					if (ptr) 
+					if (ptr)
 					{
 						C2F(adjustgstacksize)(&newmingstack,&ptr,&l);
 					}

@@ -1,25 +1,25 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "version.h" 
+#include "version.h"
 #include "MALLOC.h"
 #include "with_module.h"
 #include "loadversion.h"
 #include "inisci-c.h"
-#include "error_scilab.h"
-#include "../../../tclsci/includes/withtk.h"
+#include "Scierror.h"
+#include "withtk.h"
 /*-----------------------------------------------------------------------------------*/
 static int getversion_no_rhs(void);
 static int getversion_one_rhs(void);
 static int getversion_two_rhs(void);
 /*-----------------------------------------------------------------------------------*/
-#define VERSION_STRING "string_info" 
+#define VERSION_STRING "string_info"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getversion) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -45,14 +45,14 @@ int C2F(sci_getversion) _PARAMS((char *fname,unsigned long fname_len))
 /*-----------------------------------------------------------------------------------*/
 static int getversion_no_rhs(void)
 {
-	static char Version[]=SCI_VERSION; 
+	static char Version[]=SCI_VERSION;
 	static int n1,m1;
 	char *v = Version ;
 
 	n1=1;
 	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Version), &m1),&n1,&v);
 	LhsVar(1) = Rhs+1;
-	if (Lhs==2) 
+	if (Lhs==2)
 	{
 		static char *Str[12];
 		static int irep,nbuf;
@@ -69,7 +69,7 @@ static int getversion_no_rhs(void)
 		char releasemode[]="release";
 		#else
 		char debugmode[]="debug";
-		#endif 
+		#endif
 
 		#ifdef __TIME__
 			char TimeBuild[]=__TIME__;
@@ -79,7 +79,7 @@ static int getversion_no_rhs(void)
 			char DateBuild[]=__DATE__;
 		#endif
 
-		
+
 		n1=0;
 
 		C2F(getcomp)( C2F(cha1).buf,&nbuf,128);
@@ -87,28 +87,28 @@ static int getversion_no_rhs(void)
 		n1++;
 
 		C2F(withpvm)(&irep);
-		if (irep) 
+		if (irep)
 		{
 			Str[n1]=pvm;
 			n1++;
 		}
 
 		C2F(withtk)(&irep);
-		if (irep) 
+		if (irep)
 		{
 			Str[n1]=tk;
 			n1++;
 		}
 
 		C2F(withmodelicac)(&irep);
-		if (irep) 
+		if (irep)
 		{
 			Str[n1]=modelicac;
 			n1++;
 		}
 
 		C2F(withjavasci)(&irep);
-		if (irep) 
+		if (irep)
 		{
 			Str[n1]=javasci;
 			n1++;
@@ -194,7 +194,7 @@ static int getversion_one_rhs(void)
 			VERSIONMATRIX[0]=(int)SCI_VERSION_MAJOR;
 			VERSIONMATRIX[1]=(int)SCI_VERSION_MINOR;
 			VERSIONMATRIX[2]=(int)SCI_VERSION_MAINTENANCE;
-			VERSIONMATRIX[3]=(int)SCI_VERSION_REVISION; 
+			VERSIONMATRIX[3]=(int)SCI_VERSION_REVISION;
 		}
 		else if (with_module(Param))
 		{
@@ -210,7 +210,7 @@ static int getversion_one_rhs(void)
 				VERSIONMATRIX[0]=version_module_major;
 				VERSIONMATRIX[1]=version_module_minor;
 				VERSIONMATRIX[2]=version_module_maintenance;
-				VERSIONMATRIX[3]=version_module_revision; 
+				VERSIONMATRIX[3]=version_module_revision;
 			}
 			else
 			{

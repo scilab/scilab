@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -9,6 +9,7 @@
 #include "Funtab.h"
 #include "IsAScalar.h"
 #include "hashtable_core.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname);
 /*-----------------------------------------------------------------------------------*/
@@ -23,7 +24,7 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		char *VarName=NULL;
 		int nameptr=0;
-		
+
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName=cstk(l1);
 

@@ -1,17 +1,17 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
 #include "stack-def.h"
 #include "MALLOC.h"
 #include "hashtable_core.h"
-#include "error_scilab.h"
+#include "Scierror.h"
 #include "Funtab.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
+extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 {

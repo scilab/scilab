@@ -1,12 +1,13 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "machine.h"
 #include "stack-c.h"
 #include "gw_core.h"
 #include "getvariablesname.h"
 #include "MALLOC.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getvariablesonstack) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -65,7 +66,7 @@ int C2F(sci_getvariablesonstack) _PARAMS((char *fname,unsigned long fname_len))
 		int i = 0;
 		for( i = 0; i < sizeVariables; i++)
 		{
-			if (Variables[i]) 
+			if (Variables[i])
 			{
 				FREE(Variables[i]);
 				Variables[i] = NULL;

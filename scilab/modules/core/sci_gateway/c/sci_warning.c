@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_core.h"
 #include "machine.h"
@@ -10,7 +10,8 @@
 #include "warningmode.h"
 #include "MALLOC.h"
 #include "error_scilab.h"
-#include "../../localization/includes/localization.h"
+#include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -22,7 +23,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 	if ( GetType(1) == sci_strings )
 	{
 		char *Param=NULL;
-		
+
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		Param=cstk(l1);
 
@@ -57,7 +58,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 				n1=1;
 				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 				LhsVar(1) = Rhs+1;
-				C2F(putlhsvar)();	
+				C2F(putlhsvar)();
 				if (Output) {FREE(Output);Output=NULL;}
 				return 0;
 			}
@@ -78,4 +79,4 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
