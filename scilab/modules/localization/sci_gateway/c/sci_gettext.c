@@ -1,5 +1,5 @@
 /**
- * INRIA 2007 
+ * INRIA 2007
  * @author Allan CORNET - initial
  * @author Sylvestre Ledru <sylvestre.ledru@inria.fr> - Rewrite using gettext
  */
@@ -27,12 +27,12 @@ int C2F(sci_gettext) _PARAMS((char *fname,unsigned long fname_len))
 
 			/* We always have something from this functions because gettext
 			 * is returning the same string if it cannot find it */
-			TranslatedString=gettext(param1); 
+			TranslatedString=gettext(param1);
 
 			n1=1;
 			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(TranslatedString), &m1),&n1,&TranslatedString);
 			LhsVar(1)=Rhs+1;
-			C2F(putlhsvar)();	
+			C2F(putlhsvar)();
 			return 0;
 		}
 	else

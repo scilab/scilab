@@ -1,16 +1,16 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "sci_setlanguage.h"
 #include "setgetlanguage.h"
-#include "tableslanguages.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "warningmode.h"
+#include "defaultlanguage.h"
 #include "MALLOC.h"
 #include "loadhashtableslocalization.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
@@ -79,4 +79,4 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

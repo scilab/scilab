@@ -1,36 +1,34 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifndef __TABLESLANGUAGES_H__
 #define __TABLESLANGUAGES_H__
-/*-----------------------------------------------------------------------------------*/ 
-/* See : 
+/*-----------------------------------------------------------------------------------*/
+/* See :
 	http://www.unicode.org/cldr
 	http://unicode.org/cldr/data/diff/main/index.html
 	http://inter-locale.com/ID/draft-ietf-ltru-registry-14.html
 */
-#define SCILABDEFAULTLANGUAGE "en_US"
-#define SCILABDEFAULTLANGUAGECODE 83
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #define LengthAlphacode 16
 #define LengthAlpha2code 3
 #define LengthLanguage 64
-typedef struct languages_struct 
+typedef struct languages_struct
 {
 	int code;
 	char alphacode[LengthAlphacode];
 	char languagedescription[LengthLanguage];
 
 } LanguagesTable;
-/*-----------------------------------------------------------------------------------*/ 
-typedef struct languagesalias_struct 
+/*-----------------------------------------------------------------------------------*/
+typedef struct languagesalias_struct
 {
 	char alias[LengthAlphacode];
 	char alphacode[LengthAlphacode];
 
 } LanguagesTableAlias;
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #define NumberLanguagesAlias 41
 static LanguagesTableAlias LANGUAGE_LOCALE_ALIAS[NumberLanguagesAlias]=
 {
@@ -76,7 +74,7 @@ static LanguagesTableAlias LANGUAGE_LOCALE_ALIAS[NumberLanguagesAlias]=
 	{"tw","zh_TW"},
 	{"uk","uk_UA"}
 };
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #define NumberLanguages 219
 static LanguagesTable LANGUAGE_COUNTRY_TAB[NumberLanguages]=
 {
@@ -300,6 +298,6 @@ static LanguagesTable LANGUAGE_COUNTRY_TAB[NumberLanguages]=
 	{ 218,"wal_ET","Walamo (Ethiopia)"},
 	{ 219,"cy_GB","Welsh (United Kingdom)"}
 };
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #endif /* __TABLESLANGUAGES_H__ */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

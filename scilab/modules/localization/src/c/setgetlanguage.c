@@ -1,23 +1,26 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
 #include "setgetlanguage.h"
 #include "MALLOC.h"
 #include "tableslanguages.h"
+#include "defaultlanguage.h"
 #include "loadsavelanguage.h"
 #include "syncexec.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
+//static LanguagesTable LANGUAGE_COUNTRY_TAB[NumberLanguages];
+//static LanguagesTableAlias LANGUAGE_LOCALE_ALIAS[NumberLanguagesAlias];
 static char CURRENTLANGUAGESTRING[LengthAlphacode]=SCILABDEFAULTLANGUAGE;
 static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static int FindLanguageCode(char *lang);
 static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
 static char *GetLanguageFromAlias(char *langAlias);
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {
 	BOOL bOK=FALSE;
@@ -34,7 +37,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 
 				if (updateHelpIndex)
 				{
-					#define UPDATESCILABHELPMACRO "try update_scilab_help();catch end;clear update_scilab_help;" 
+					#define UPDATESCILABHELPMACRO "try update_scilab_help();catch end;clear update_scilab_help;"
 					integer ierr ;
 					integer seq = 1 ;
 					int macroCallLength=0;
@@ -57,7 +60,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 char *getlanguage(void)
 {
 	char *RetLanguage=NULL;
@@ -67,12 +70,12 @@ char *getlanguage(void)
 
 	return RetLanguage;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int getcurrentlanguagecode(void)
 {
 	return CURRENTLANGUAGECODE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 char *getlanguagefromcode(int code)
 {
 	char *RetLanguage=NULL;
@@ -89,113 +92,105 @@ char *getlanguagefromcode(int code)
 	}
 	return RetLanguage;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int getcodefromlanguage(char *language)
 {
 	return FindLanguageCode(language);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 BOOL LanguageIsOK(char *lang)
 {
-	BOOL bOK=FALSE;
 	int i=0;
 
 	for (i=0;i<NumberLanguages;i++)
 	{
 		if (strcmp(lang,LANGUAGE_COUNTRY_TAB[i].alphacode)==0)
 		{
-			bOK=TRUE;
-			return bOK;
+		  return TRUE;
 		}
 	}
-	return bOK;
+	return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static int FindLanguageCode(char *lang)
 {
-	int Code=-1;
 	int i=0;
 
 	for (i=0;i<NumberLanguages;i++)
 	{
 		if (strcmp(lang,LANGUAGE_COUNTRY_TAB[i].alphacode)==0)
 		{
-			Code=LANGUAGE_COUNTRY_TAB[i].code;
-			return Code;
+			return LANGUAGE_COUNTRY_TAB[i].code;
 		}
 	}
-	return Code;
+	return -1;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static BOOL setlanguagecode(char *lang)
 {
-	BOOL bOK=FALSE;
 	int tmpCode=FindLanguageCode(lang);
-	
-	if (tmpCode>0) 
+
+	if (tmpCode>0)
 	{
 		CURRENTLANGUAGECODE=tmpCode;
-		bOK=TRUE;
+		return TRUE;
 	}
-	return bOK;
+	return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static char *FindAlias(char *lang)
 {
-	char *RetAlias=NULL;
 	int i=0;
 	for(i=0;i<NumberLanguagesAlias;i++)
 	{
 		if (strcmp(LANGUAGE_LOCALE_ALIAS[i].alphacode,lang)==0)
 		{
-			RetAlias=(char*)MALLOC(sizeof(char)*(strlen(LANGUAGE_LOCALE_ALIAS[i].alias)+1));
-			strcpy(RetAlias,LANGUAGE_LOCALE_ALIAS[i].alias);
-			return RetAlias;
+		  return LANGUAGE_LOCALE_ALIAS[i].alias;
 		}
 	}
-	return RetAlias;
+	return NULL;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static char *GetLanguageFromAlias(char *langAlias)
 {
-	char *RetLanguage=NULL;
 	int i=0;
 	for(i=0;i<NumberLanguagesAlias;i++)
 	{
 		if (strcmp(LANGUAGE_LOCALE_ALIAS[i].alias,langAlias)==0)
 		{
-			RetLanguage=(char*)MALLOC(sizeof(char)*(strlen(LANGUAGE_LOCALE_ALIAS[i].alphacode)+1));
-			strcpy(RetLanguage,LANGUAGE_LOCALE_ALIAS[i].alphacode);
-			return RetLanguage;
+			return LANGUAGE_LOCALE_ALIAS[i].alphacode;
 		}
 	}
-	return RetLanguage;
+	return NULL;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 char *getlanguagealias(void)
 {
 	return FindAlias(CURRENTLANGUAGESTRING);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int comparelanguages(char *language1,char *language2)
 {
 	return strcmp(language1,language2);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 BOOL needtochangelanguage(char *language)
 {
-	BOOL bOK=FALSE;
-	char *currentlanguage=NULL;
+  char *currentlanguage=NULL;
 
-	currentlanguage=getlanguage();
+  currentlanguage=getlanguage();
 
-	if (comparelanguages(language,currentlanguage)) bOK=TRUE;
+  if (comparelanguages(language,currentlanguage)) {
+    if (currentlanguage) {
+      FREE(currentlanguage);
+      currentlanguage=NULL;
+    }
+    return TRUE;
+  }
 
-	if (currentlanguage) {FREE(currentlanguage);currentlanguage=NULL;}
-
-	return bOK;
+  return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 char *convertlanguagealias(char *strlanguage)
 {
 	char *correctlanguage=NULL;
@@ -210,4 +205,4 @@ char *convertlanguagealias(char *strlanguage)
 	}
 	return correctlanguage;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
