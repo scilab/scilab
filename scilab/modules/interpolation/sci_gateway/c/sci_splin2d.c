@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
@@ -9,12 +9,13 @@
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(bicubicsubspline)(double *x, double *y, double *z, int *nx, int *ny,double *C, double *p, double *q, double *r, int *spline_type);
 extern int C2F(bicubicspline)(double *x, double *y, double *u, int *nx, int *ny,double *C, double *p, double *q, double *r, double *A_d, double *A_sd, double *d, double *ll,double *qdu, double *u_temp, int *spline_type);
 /*-----------------------------------------------------------------------------------*/
 #define NB_SPLINE_TYPE 7
-static TableType SplineTable[NB_SPLINE_TYPE] = { 
+static TableType SplineTable[NB_SPLINE_TYPE] = {
 	{ "not_a_knot"   , NOT_A_KNOT    },
 	{ "natural"      , NATURAL       },
 	{ "clamped"      , CLAMPED       },
@@ -22,7 +23,7 @@ static TableType SplineTable[NB_SPLINE_TYPE] = {
 	{ "monotone"     , MONOTONE      },
 	{ "fast"         , FAST          },
 	{ "fast_periodic", FAST_PERIODIC }};
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int intsplin2d(char *fname,unsigned long fname_len)
 {
   /*    interface pour splin2d :
@@ -30,7 +31,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
    *    C = splin2d(x, y, z [, type])
    *
    */
- 
+
   int minrhs=3, maxrhs=4, minlhs=1, maxlhs=1;
 
   int mx, nx, lx, my, ny, ly, mz, nz, lz, ns, mc, nc, lc, lp, lq, lr;
@@ -46,7 +47,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mz, &nz, &lz);
 
   if ( mx != 1 || my != 1 || mz != nx || nz != ny || nx < 2 || ny < 2)
-    { 
+    {
       Scierror(999,_("%s: bad inputs\n"), fname);
       return 0;
     }
@@ -60,7 +61,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
     }
 
   /* get the spline type */
-  if ( Rhs == 4 ) 
+  if ( Rhs == 4 )
     {
       GetRhsScalarString(4, &ns, &str_spline_type);
       spline_type = get_type(SplineTable, NB_SPLINE_TYPE, str_spline_type, ns);
@@ -83,8 +84,8 @@ int intsplin2d(char *fname,unsigned long fname_len)
   CreateVar( Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &nx, &ny, &lr);
 
   if (spline_type == MONOTONE || spline_type == FAST || spline_type == FAST_PERIODIC)
-    {   
-      C2F(bicubicsubspline)(x, y, stk(lz), &nx, &ny, stk(lc), 
+    {
+      C2F(bicubicsubspline)(x, y, stk(lz), &nx, &ny, stk(lc),
 			    stk(lp), stk(lq), stk(lr), &spline_type);
     }
 
@@ -92,7 +93,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
     {
       int lA_d, lA_sd, ld, lqdu, lutemp, nxy, nxym1, nxym2, lll;
 
-      nxy = Max(nx,ny); nxym1 = nxy-1; nxym2 = nxy-2; 
+      nxy = Max(nx,ny); nxym1 = nxy-1; nxym2 = nxy-2;
 
       CreateVar( Rhs+5,MATRIX_OF_DOUBLE_DATATYPE, &nxy,   &one, &lA_d);
       CreateVar( Rhs+6,MATRIX_OF_DOUBLE_DATATYPE, &nxym1, &one, &lA_sd);
@@ -106,8 +107,8 @@ int intsplin2d(char *fname,unsigned long fname_len)
 	}
       else
 	lll = lA_sd ;   /* bidon ... */
-      C2F(bicubicspline)(x, y, stk(lz), &nx, &ny, stk(lc), stk(lp), stk(lq), stk(lr), 
-                         stk(lA_d), stk(lA_sd), stk(ld), stk(lll), stk(lqdu), 
+      C2F(bicubicspline)(x, y, stk(lz), &nx, &ny, stk(lc), stk(lp), stk(lq), stk(lr),
+                         stk(lA_d), stk(lA_sd), stk(ld), stk(lll), stk(lqdu),
 			 stk(lutemp), &spline_type);
     }
 

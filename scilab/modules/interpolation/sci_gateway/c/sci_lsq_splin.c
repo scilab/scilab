@@ -1,17 +1,18 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
 #include "sciprint.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(dset)();
 /* from dspfit.f */
 extern int C2F(spfit)(double *xp, double *yp, double *wp, int *m, double *x, int *l,double *y, double *d, double *wk, int *ierr);
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int intlsq_splin(char *fname,unsigned long fname_len)
 {
   /*   interface code for [y, d] = lsq_splin(xd, yd [, wd], x)  */
@@ -28,18 +29,18 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mxd, &nxd, &lxd);
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &myd, &nyd, &lyd);
   ndata = mxd*nxd;  /* number of data points */
-  if ( ndata < 4  ||  mxd != myd  || nxd != nyd  ||  (mxd != 1  &&  nxd != 1) ) 
-    { 
+  if ( ndata < 4  ||  mxd != myd  || nxd != nyd  ||  (mxd != 1  &&  nxd != 1) )
+    {
       Scierror(999,_("%s: arg 1 and 2 must be vectors of same size with at least %d elements\n"),
 	       fname, 4);
       return 0;
     }
 
-  if ( Rhs == 4 ) 
+  if ( Rhs == 4 )
     {
       GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mwd, &nwd, &lwd);
       if ( mxd != mwd  ||  nxd != nwd )
-	{ 
+	{
 	  Scierror(999,_("%s: bad input for arg 3\n"), fname);
 	  return 0;
 	}
@@ -47,11 +48,11 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   GetRhsVar(Rhs,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
   n = mx*nx;
   if ( n < 2  ||  (mx != 1  &&  nx != 1) )
-    { 
+    {
       Scierror(999,_("%s: bad input for x\n"), fname);
       return 0;
     }
-  
+
   if (! good_order(stk(lx), n))   /* verify strict increasing abscissae */
     {
       Scierror(999,_("%s: elts of arg %d not (strictly) increasing or +-inf detected\n"), fname, Rhs);
@@ -61,11 +62,11 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &mx,  &nx,   &ly);
   CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &mx,  &nx,   &ld);
   mwork = 7*n+18;
-  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mwork, &one, &lwork); 
+  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mwork, &one, &lwork);
   if ( Rhs == 3 )
     {
       CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &mxd, &nxd, &lwd);
-      C2F(dset)( &ndata, &un, stk(lwd), &one);  /* set all the weight = 1  */ 
+      C2F(dset)( &ndata, &un, stk(lwd), &one);  /* set all the weight = 1  */
     }
 
   C2F(spfit)(stk(lxd), stk(lyd), stk(lwd), &ndata, stk(lx), &n, stk(ly),
@@ -84,4 +85,4 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

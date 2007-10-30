@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
@@ -10,7 +10,8 @@
 #include "stack-c.h"
 #include "interpolation.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(driverdb3valwithgrad)();
 extern int C2F(driverdb3val)();
 /*-----------------------------------------------------------------------------------*/
@@ -22,11 +23,11 @@ static TableType OutModeTable[NB_OUTMODE] = {
 	{ "periodic"  , PERIODIC   },
 	{ "by_nan"    , BY_NAN     },
 	{ "linear"    , LINEAR     }};
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int intinterp3d(char *fname,unsigned long fname_len)
 {
   /*
-   *   [f [, dfdx, dfdy, dfdz]] = interp3d(xp, yp, zp, tlcoef [,outmode])  
+   *   [f [, dfdx, dfdy, dfdz]] = interp3d(xp, yp, zp, tlcoef [,outmode])
    */
 
   int minrhs=4, maxrhs=5, minlhs=1, maxlhs=4;
@@ -47,8 +48,8 @@ int intinterp3d(char *fname,unsigned long fname_len)
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &lxp); xp = stk(lxp);
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &myp, &nyp, &lyp); yp = stk(lyp);
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mzp, &nzp, &lzp); zp = stk(lzp);
-  if ( mxp != myp  ||  nxp != nyp || mxp != mzp  ||  nxp != nzp) 
-    { 
+  if ( mxp != myp  ||  nxp != nyp || mxp != mzp  ||  nxp != nzp)
+    {
       Scierror(999,_("%s: xp, yp and zp must have the same dimensions\n"), fname);
       return 0;
     }
@@ -56,14 +57,14 @@ int intinterp3d(char *fname,unsigned long fname_len)
 
   GetRhsVar(4,TYPED_LIST_DATATYPE,&mt, &nt, &lt);
   GetListRhsVar(4, 1,MATRIX_OF_STRING_DATATYPE, &m1,  &n1, &Str);
-  if ( strcmp(Str[0],"tensbs3d") != 0) 
+  if ( strcmp(Str[0],"tensbs3d") != 0)
     {
 		/* Free Str */
 		if (Str)
 		{
 			int i=0;
-			while ( Str[i] != NULL) 
-			{ 
+			while ( Str[i] != NULL)
+			{
 				FREE(Str[i]);
 				i++;
 			};
@@ -78,8 +79,8 @@ int intinterp3d(char *fname,unsigned long fname_len)
   if (Str)
   {
 	  int i=0;
-	  while ( Str[i] != NULL) 
-	  { 
+	  while ( Str[i] != NULL)
+	  {
 		  FREE(Str[i]);
 		  i++;
 	  };
@@ -93,13 +94,13 @@ int intinterp3d(char *fname,unsigned long fname_len)
   GetListRhsVar(4, 6,MATRIX_OF_DOUBLE_DATATYPE, &nxyz,&n,  &lbcoef);
   GetListRhsVar(4, 7,MATRIX_OF_DOUBLE_DATATYPE, &nsix,&n,  &lxyzminmax);
   xyzminmax = stk(lxyzminmax);
-  xmin = xyzminmax[0];  xmax = xyzminmax[1]; 
-  ymin = xyzminmax[2];  ymax = xyzminmax[3]; 
-  zmin = xyzminmax[4];  zmax = xyzminmax[5]; 
+  xmin = xyzminmax[0];  xmax = xyzminmax[1];
+  ymin = xyzminmax[2];  ymax = xyzminmax[3];
+  zmin = xyzminmax[4];  zmax = xyzminmax[5];
 
 
   /* get the outmode */
-  if ( Rhs == 5 ) 
+  if ( Rhs == 5 )
     {
       GetRhsScalarString(5, &ns, &str_outmode);
       outmode =  get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
@@ -116,7 +117,7 @@ int intinterp3d(char *fname,unsigned long fname_len)
 
   order = (int *)Order.D;
   kx = order[0]; ky = order[1]; kz = order[2];
-  nx = mtx - kx; ny = mty - ky; nz = mtz - kz; 
+  nx = mtx - kx; ny = mty - ky; nz = mtz - kz;
 
   mwork = ky*kz + 3*Max(kx,Max(ky,kz)) + kz;
   CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &mwork, &one, &lwork);
@@ -146,4 +147,4 @@ int intinterp3d(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

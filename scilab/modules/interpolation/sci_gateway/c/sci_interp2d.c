@@ -1,12 +1,13 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(bicubicinterp)(double *x, double *y, double *C, int *nx, int *ny,double *x_eval, double *y_eval, double *z_eval, int *m,int *outmode);
 extern int C2F(bicubicinterpwithgradandhes)();
 extern int C2F(bicubicinterpwithgrad)();
@@ -19,14 +20,14 @@ static TableType OutModeTable[NB_OUTMODE] = {
 	{ "periodic"  , PERIODIC   },
 	{ "by_nan"    , BY_NAN     },
 	{ "linear"    , LINEAR     }};
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int intinterp2d(char *fname,unsigned long fname_len)
 {
   /*    interface pour interp2d :
    *
    *    [zp [, dzdxp, dzdyp [, d2zdx2, d2zdxy, d2zdy2]]] = interp2d(xp, yp, x, y, C[, outmode])
    */
- 
+
   int minrhs=5, maxrhs=6, minlhs=1, maxlhs=6;
 
   int mxp, nxp, lxp, myp, nyp, lyp, mx, nx, lx, my, ny, ly;
@@ -44,13 +45,13 @@ int intinterp2d(char *fname,unsigned long fname_len)
 
   if ( mxp != myp || nxp != nyp || mx != 1 || my != 1 || nc != 1 || nx < 2 || ny < 2
        || mc != 16*(nx-1)*(ny-1) )
-    { 
+    {
       Scierror(999,_("%s: bad inputs\n"), fname);
       return 0;
     }
 
   /* get the outmode */
-  if ( Rhs == 6 ) 
+  if ( Rhs == 6 )
     {
       GetRhsScalarString(6, &ns, &str_outmode);
       outmode =  get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
@@ -73,7 +74,7 @@ int intinterp2d(char *fname,unsigned long fname_len)
        *     integer nx, ny, m, outmode
        *     double precision x(nx), y(ny), C(4,4,nx-1,ny-1), x_eval(m), y_eval(m), z_eval(m)
        */
-      C2F(bicubicinterp)(stk(lx), stk(ly), stk(lc), &nx, &ny, stk(lxp), stk(lyp), stk(lzp), 
+      C2F(bicubicinterp)(stk(lx), stk(ly), stk(lc), &nx, &ny, stk(lxp), stk(lyp), stk(lzp),
 			 &m, &outmode);
       LhsVar(1) = Rhs+1;
     }
@@ -85,8 +86,8 @@ int intinterp2d(char *fname,unsigned long fname_len)
 
       if ( Lhs <= 3 )
 	{
-	  C2F(bicubicinterpwithgrad)(stk(lx), stk(ly), stk(lc), &nx, &ny, stk(lxp), 
-				     stk(lyp), stk(lzp), stk(ldzdxp), stk(ldzdyp), 
+	  C2F(bicubicinterpwithgrad)(stk(lx), stk(ly), stk(lc), &nx, &ny, stk(lxp),
+				     stk(lyp), stk(lzp), stk(ldzdxp), stk(ldzdyp),
 				     &m, &outmode);
 	  LhsVar(1) = Rhs+1;
 	  LhsVar(2) = Rhs+2;
@@ -97,9 +98,9 @@ int intinterp2d(char *fname,unsigned long fname_len)
 	  CreateVar( Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &mxp,  &nxp, &ld2zdx2p);
 	  CreateVar( Rhs+5,MATRIX_OF_DOUBLE_DATATYPE, &mxp,  &nxp, &ld2zdxyp);
 	  CreateVar( Rhs+6,MATRIX_OF_DOUBLE_DATATYPE, &mxp,  &nxp, &ld2zdy2p);
-	  C2F(bicubicinterpwithgradandhes)(stk(lx), stk(ly), stk(lc), &nx, &ny, stk(lxp), 
-					   stk(lyp), stk(lzp), stk(ldzdxp), stk(ldzdyp), 
-					   stk(ld2zdx2p), stk(ld2zdxyp), stk(ld2zdy2p), 
+	  C2F(bicubicinterpwithgradandhes)(stk(lx), stk(ly), stk(lc), &nx, &ny, stk(lxp),
+					   stk(lyp), stk(lzp), stk(ldzdxp), stk(ldzdyp),
+					   stk(ld2zdx2p), stk(ld2zdxyp), stk(ld2zdy2p),
 					   &m, &outmode);
 	  LhsVar(1) = Rhs+1;
 	  LhsVar(2) = Rhs+2;
@@ -112,5 +113,5 @@ int intinterp2d(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 

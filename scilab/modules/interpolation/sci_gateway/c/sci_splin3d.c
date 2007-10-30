@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
@@ -9,9 +9,10 @@
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(db3ink)();
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int intsplin3d(char * fname,unsigned long fname_len)
 {
   /*
@@ -39,20 +40,20 @@ int intsplin3d(char * fname,unsigned long fname_len)
 
   nx = mx*nx; ny = my*ny; nz = mz*nz;
 
-  if ( nx < 3  ||  ny < 3  ||  nz < 3 ) 
-    { 
+  if ( nx < 3  ||  ny < 3  ||  nz < 3 )
+    {
       Scierror(999,_("%s: the x, y and z grids must have at least 3 points\n"), fname);
       return 0;
     }
 
   GetRhsRealHMat(4, &V);
   if ( V.dimsize != 3 )
-    { 
+    {
       Scierror(999,_("%s: 4 th argument must be a real 3-dim hypermatrix \n"), fname);
       return 0;
     }
   if ( V.dims[0] != nx  ||  V.dims[1] != ny  ||  V.dims[2] != nz  )
-    { 
+    {
       Scierror(999,"%s: size incompatibility between grid points and grid values\n", fname);
       return 0;
     }
@@ -61,13 +62,13 @@ int intsplin3d(char * fname,unsigned long fname_len)
     {
       GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE, &mo, &no, &lo);
       if ( (mo != 1 && no != 1)  ||  mo*no != 3 )
-	{ 
+	{
 	  Scierror(999,_("%s: the 4 th arg must be a vector with 3 components\n"), fname);
 	  return 0;
 	}
       kx = (int)*stk(lo); ky = (int)*stk(lo+1); kz = (int)*stk(lo+2);
       if ( kx < 2  ||  kx >= nx  ||  ky < 2  ||  ky >= ny  ||  kz < 2  ||  kz >= nz )
-	{ 
+	{
 	  Scierror(999,"%s: bad 5 th arg [kx ky kz]\n", fname);
 	  return 0;
 	}
@@ -80,7 +81,7 @@ int intsplin3d(char * fname,unsigned long fname_len)
   ntx = nx + kx;
   nty = ny + ky;
   ntz = nz + kz;
-  mwkx = kx*(nx+1); mwky = ky*(ny+1); mwkz = kz*(nz+1); 
+  mwkx = kx*(nx+1); mwky = ky*(ny+1); mwkz = kz*(nz+1);
   mwkx = Max(mwkx, mwky);
   mwk = nx*ny*nz + 2*(Max(mwkx, mwkz));
   nxyz = nx*ny*nz;
@@ -90,20 +91,20 @@ int intsplin3d(char * fname,unsigned long fname_len)
   lar = -1; CreateListVarFrom(Rhs+1, 2,MATRIX_OF_DOUBLE_DATATYPE, &ntx, &one, &ltx, &lar);
   lar = -1; CreateListVarFrom(Rhs+1, 3,MATRIX_OF_DOUBLE_DATATYPE, &nty, &one, &lty, &lar);
   lar = -1; CreateListVarFrom(Rhs+1, 4,MATRIX_OF_DOUBLE_DATATYPE, &ntz, &one, &ltz, &lar);
-  lorder = 4; 
+  lorder = 4;
   lar = -1; CreateListVarFrom(Rhs+1, 5,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &three, &one, &lorder, &lar);
   order = istk(lorder); order[0] = kx; order[1] = ky; order[2] = kz;
   lar = -1; CreateListVarFrom(Rhs+1, 6,MATRIX_OF_DOUBLE_DATATYPE, &nxyz,  &one, &lbcoef, &lar);
-  lar = -1; CreateListVarFrom(Rhs+1, 7,MATRIX_OF_DOUBLE_DATATYPE, &six,  &one, &lxyzminmax, &lar); 
-  xyzminmax = stk(lxyzminmax); 
-  xyzminmax[0] = x[0]; xyzminmax[1] = x[nx-1];  
-  xyzminmax[2] = y[0]; xyzminmax[3] = y[ny-1];  
-  xyzminmax[4] = z[0]; xyzminmax[5] = z[nz-1];  
+  lar = -1; CreateListVarFrom(Rhs+1, 7,MATRIX_OF_DOUBLE_DATATYPE, &six,  &one, &lxyzminmax, &lar);
+  xyzminmax = stk(lxyzminmax);
+  xyzminmax[0] = x[0]; xyzminmax[1] = x[nx-1];
+  xyzminmax[2] = y[0]; xyzminmax[3] = y[ny-1];
+  xyzminmax[4] = z[0]; xyzminmax[5] = z[nz-1];
   CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &mwk, &one, &lwork);    /* work */
 
   flag = 0;
   C2F(db3ink) ( stk(lx), &nx, stk(ly), &ny, stk(lz), &nz, V.R,
-		&nx, &ny, &kx, &ky, &kz, stk(ltx), stk(lty), stk(ltz), 
+		&nx, &ny, &kx, &ky, &kz, stk(ltx), stk(lty), stk(ltz),
 		stk(lbcoef), stk(lwork), &flag);
 
   if ( flag != 1 )

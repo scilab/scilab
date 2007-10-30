@@ -1,12 +1,13 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
 #include "someinterp.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 #define NB_OUTMODE 6
 static TableType OutModeTable[NB_OUTMODE] = {
@@ -31,7 +32,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
 
   n = (Rhs+1)/2 - 1;
   if ( n < 1 )
-    { 
+    {
       Scierror(999,_("%s: too few arg\n"), fname);
       return 0;
     }
@@ -49,13 +50,13 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
     {
       GetRhsVar(i,MATRIX_OF_DOUBLE_DATATYPE, &mxpn, &nxpn, &lxpn);
       if ( mxp != mxpn || nxp != nxpn )
-	{ 
+	{
 	  Scierror(999,_("%s: bad inputs for xp1, xp2, ....,\n"), fname);
 	  return 0;
 	}
       xp[i-1] = stk(lxpn);
     }
- 
+
   /* coordonnées de la grille */
   l = I_INT32; CreateVar(Rhs+2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &n, &one, &l);
   dim = istk(l);
@@ -68,7 +69,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
     {
       GetRhsVar(n+i,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
       if ( (mx != 1 && nx != 1) && mx*nx < 2)
-	{ 
+	{
 	  Scierror(999,_("%s: bad arg number %d\n"), fname, n+i);
 	  return 0;
 	}
@@ -87,13 +88,13 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
     {
       GetRhsRealHMat(2*n+1,&U);
       if ( U.dimsize != n )
-	{ 
+	{
 	  Scierror(999,_("%s: U must be a real %d-dim hypermatrix \n"), fname, n);
 	  return 0;
 	}
       for ( i = 0 ; i < n ; i++ )
 	if ( U.dims[i] != dim[i] )
-	  { 
+	  {
 	    Scierror(999,"%s: size incompatibility between grid points and grid values in dim %d\n", fname, i+1);
 	    return 0;
 	  }
@@ -103,12 +104,12 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
     {
       GetRhsVar(2*n+1,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
       if ( n == 1  &&  my*ny != dim[0] )
-	{ 
+	{
 	  Scierror(999,"%s: size incompatibility between grid points and values in dim 1\n", fname);
 	  return 0;
 	}
       if ( n == 2  &&  (my != dim[0]  || ny != dim[1]) )
-	{ 
+	{
 	  Scierror(999,"%s: size incompatibility between grid points and values in dim 1 or 2\n", fname);
 	  return 0;
 	}

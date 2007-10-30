@@ -1,12 +1,13 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(evalpwhermite) (double *t, double *st, double *dst, double *ddst, double *dddst,int *m, double *x, double *y, double *d, int *n, int *outmode);
 /*-----------------------------------------------------------------------------------*/
 #define NB_OUTMODE 6
@@ -17,7 +18,7 @@ static TableType OutModeTable[NB_OUTMODE] = {
 	{ "periodic"  , PERIODIC   },
 	{ "by_nan"    , BY_NAN     },
 	{ "linear"    , LINEAR     }};
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int intinterp1(char *fname,unsigned long fname_len)
 {
   int minrhs=4, maxrhs=5, minlhs=1, maxlhs=4;
@@ -34,8 +35,8 @@ int intinterp1(char *fname,unsigned long fname_len)
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
   GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &md, &nd, &ld);
 
-  if ( mx != my  ||  nx != ny  ||  md != mx || nd != nx || (mx != 1  &&  nx != 1) || mx*nx < 2) 
-    { 
+  if ( mx != my  ||  nx != ny  ||  md != mx || nd != nx || (mx != 1  &&  nx != 1) || mx*nx < 2)
+    {
       Scierror(999,_("%s: bad inputs\n"), fname);
       return 0;
     }

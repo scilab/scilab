@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
@@ -9,11 +9,12 @@
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern int C2F(cshep2) (int *n, double *x, double *y, double *z, int *nc, int *nw, 
-		 int *nr, int *lcell, int *lnext, double *xmin, double *xmax, 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
+extern int C2F(cshep2) (int *n, double *x, double *y, double *z, int *nc, int *nw,
+		 int *nr, int *lcell, int *lnext, double *xmin, double *xmax,
 		 double *dx, double *dy, double *rmax, double *rw, double *a, int *ier);
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int intcshep2d(char *fname,unsigned long fname_len)
 {
   static char *Str[]={"cshep2d", "xyz", "lcell", "lnext", "grdim", "rmax", "rw", "a"};
@@ -27,8 +28,8 @@ int intcshep2d(char *fname,unsigned long fname_len)
   CheckLhs(minlhs,maxlhs);
 
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &n, &dim, &lxyz);
-  if ( dim != 3  ||  n < 10 ) 
-    { 
+  if ( dim != 3  ||  n < 10 )
+    {
       Scierror(999,_("%s: xyz must be a (n,3) real matrix with n >= 10\n"), fname);
       return 0;
     }
@@ -41,7 +42,7 @@ int intcshep2d(char *fname,unsigned long fname_len)
   nr = (int) sqrt( n/3.0 ); /* comme n >= 10 nr >= 1 */
 
   /* all the information for the "interpolant" will be stored
-   * in a tlist (which also contains the entry xyz)  
+   * in a tlist (which also contains the entry xyz)
    */
   CreateVar(2,TYPED_LIST_DATATYPE, &eight, &one, &ltlist);
   CreateListVarFromPtr(2, 1,MATRIX_OF_STRING_DATATYPE, &one,  &eight, Str);
@@ -60,7 +61,7 @@ int intcshep2d(char *fname,unsigned long fname_len)
   CreateListVarFrom(2, 8,MATRIX_OF_DOUBLE_DATATYPE, &nine, &n,    &la,    &lar); /* a */
   grid = stk(lgrid);
   xyz = stk(lxyz);
-  
+
   /*      SUBROUTINE CSHEP2 (N,X,Y,F,NC,NW,NR, LCELL,LNEXT,XMIN,
    *                         YMIN,DX,DY,RMAX,RW,A,IER)
    */
@@ -78,4 +79,4 @@ int intcshep2d(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

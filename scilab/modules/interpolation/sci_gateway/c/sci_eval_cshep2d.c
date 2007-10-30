@@ -1,21 +1,22 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "stack-c.h"
 #include "gw_interpolation.h"
 #include "interpolation.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 extern double C2F(cs2val)(double *px, double *py, int *n, double *x, double *y,double *f, int *nr, int *lcell, int *lnext, double *xmin, double *ymin,double *dx, double *dy, double *rmax, double *rw, double *a);
 extern int C2F(cs2grd) (double *px, double *py, int *n, double *x, double *y, double *f, int *nr, int *lcell, int *lnext,  double *xmin, double *ymin,double *dx, double *dy, double *rmax, double *rw, double *a,double *c, double *cx, double *cy, int *ier);
 extern int C2F(cs2hes)  (double *px, double *py, int *n, double *x, double *y, double *f, int *nr, int *lcell, int *lnext,  double *xmin, double *ymin, double *dx, double *dy, double *rmax, double *rw, double *a, double *c, double *cx, double *cy,  double *cxx, double *cxy, double *cyy, int *ier);
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int inteval_cshep2d(char *fname,unsigned long fname_len)
 {
   /*
-   *   [f [,dfdx, dfdy [, dffdxx, dffdxy, dffdyy]]] = eval_cshep2d(xp, yp, tlcoef)  
+   *   [f [,dfdx, dfdy [, dffdxx, dffdxy, dffdyy]]] = eval_cshep2d(xp, yp, tlcoef)
    */
 
   int minrhs=3, maxrhs=3, minlhs=1, maxlhs=6;
@@ -33,22 +34,22 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
 
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
-  if ( mx != my  ||  nx != ny ) 
-    { 
+  if ( mx != my  ||  nx != ny )
+    {
       Scierror(999,_("%s: xp and yp must have the same dimension\n"), fname);
       return 0;
     }
 
   GetRhsVar(3,TYPED_LIST_DATATYPE,&mt, &nt, &lt);
   GetListRhsVar(3, 1,MATRIX_OF_STRING_DATATYPE, &m1,  &n1, &Str);    /* m1 = 1, n1 = 8 ? a verifier */
-  if ( strcmp(Str[0],"cshep2d") != 0) 
+  if ( strcmp(Str[0],"cshep2d") != 0)
     {
 		/* Free Str */
 		if (Str)
 		{
 			int li=0;
-			while ( Str[li] != NULL) 
-			{ 
+			while ( Str[li] != NULL)
+			{
 				FREE(Str[li]);
 				li++;
 			};
@@ -63,8 +64,8 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   if (Str)
   {
 	  int li=0;
-	  while ( Str[li] != NULL) 
-	  { 
+	  while ( Str[li] != NULL)
+	  {
 		  FREE(Str[li]);
 		  li++;
 	  };
@@ -79,18 +80,18 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   GetListRhsVar(3, 7,MATRIX_OF_DOUBLE_DATATYPE, &m7, &n7,  &lrw);    /* m7 = 1 , n7 = n  */
   GetListRhsVar(3, 8,MATRIX_OF_DOUBLE_DATATYPE, &m8, &n8,  &la);     /* m8 = 9 , n8 = n  */
 
-  cell = (int *)Cell.D; next = (int *)Next.D; 
-  xp = stk(lx); yp = stk(ly); np = mx*nx; 
+  cell = (int *)Cell.D; next = (int *)Next.D;
+  xp = stk(lx); yp = stk(ly); np = mx*nx;
   n = m2; nr = m3;
   xyz = stk(lxyz); grid = stk(lgrid);
 
   CreateVar(4,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lf); f = stk(lf);
-  if ( Lhs > 1 ) 
-    { 
+  if ( Lhs > 1 )
+    {
       CreateVar(5,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &ldfdx); dfdx = stk(ldfdx);
       CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &ldfdy); dfdy = stk(ldfdy);
     }
-  if ( Lhs > 3 ) 
+  if ( Lhs > 3 )
     {
       CreateVar(7,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &ldffdxx); dffdxx = stk(ldffdxx);
       CreateVar(8,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &ldffdxy); dffdyy = stk(ldffdxy);
@@ -134,7 +135,7 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
          */
 	C2F(cs2hes) (&xp[i], &yp[i], &n, xyz, &xyz[n], &xyz[2*n], &nr,
 		     cell, next, grid, &grid[1], &grid[2], &grid[3],
-		     stk(lrmax), stk(lrw), stk(la), &f[i], &dfdx[i], &dfdy[i], 
+		     stk(lrmax), stk(lrw), stk(la), &f[i], &dfdx[i], &dfdy[i],
 		     &dffdxx[i], &dffdxy[i], &dffdyy[i], &ier);
 	}
       LhsVar(1) = 4;
@@ -144,8 +145,8 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
       LhsVar(5) = 8;
       LhsVar(6) = 9;
       break;
-    } 
+    }
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/

@@ -1,18 +1,19 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(derivd) (double *x, double *y, double *d, int *n, int *inc, int *type);
 extern int C2F(dpchim) (int *n, double *x, double *y, double *d, int *inc);
 extern int C2F(splinecub) (double *x, double *y, double *d, int *n, int *type,double *wk1, double *wk2, double *wk3, double *wk4);
 /*-----------------------------------------------------------------------------------*/
 #define NB_SPLINE_TYPE 7
-static TableType SplineTable[NB_SPLINE_TYPE] = { 
+static TableType SplineTable[NB_SPLINE_TYPE] = {
 	{ "not_a_knot"   , NOT_A_KNOT    },
 	{ "natural"      , NATURAL       },
 	{ "clamped"      , CLAMPED       },
@@ -20,7 +21,7 @@ static TableType SplineTable[NB_SPLINE_TYPE] = {
 	{ "monotone"     , MONOTONE      },
 	{ "fast"         , FAST          },
 	{ "fast_periodic", FAST_PERIODIC }};
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int intsplin(char *fname,unsigned long fname_len)
 {
   int minrhs=2, maxrhs=4, minlhs=1, maxlhs=1;
@@ -37,14 +38,14 @@ int intsplin(char *fname,unsigned long fname_len)
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
 
-  if ( mx != my  ||  nx != ny  ||  (mx != 1  &&  nx != 1) ) 
-    { 
+  if ( mx != my  ||  nx != ny  ||  (mx != 1  &&  nx != 1) )
+    {
       Scierror(999,_("%s: arg1 and arg2 must be 2 vectors with same size\n"), fname);
       return 0;
     }
   n = mx*nx;    /* number of interpolation points */
-  if ( n < 2 ) 
-    { 
+  if ( n < 2 )
+    {
       Scierror(999,_("%s: the number of interpolation points must be >= 2\n"), fname);
       return 0;
     }
@@ -88,7 +89,7 @@ int intsplin(char *fname,unsigned long fname_len)
       Scierror(999,_("%s: 4 args are required only for a clamped spline\n"),fname);
       return 0;
     }
-    
+
   /*  verify y(1) = y(n) for periodic splines */
   if ( (spline_type == PERIODIC || spline_type == FAST_PERIODIC)  &&  y[0] != y[n-1] )
     {
@@ -96,7 +97,7 @@ int intsplin(char *fname,unsigned long fname_len)
       return(0);
     };
 
-  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &mx,  &nx,   &ld); /* memory for d (only argument returned) */   
+  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &mx,  &nx,   &ld); /* memory for d (only argument returned) */
   d = stk(ld);
 
   switch(spline_type)
@@ -118,7 +119,7 @@ int intsplin(char *fname,unsigned long fname_len)
       CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mwk2,  &nwk2,   &lwk2);
       CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &mwk3,  &nwk3,   &lwk3);
       lwk4 = lwk1;
-      if (spline_type == CLAMPED) 
+      if (spline_type == CLAMPED)
 	{ d[0] = c[0]; d[n-1] = c[1]; };
       if (spline_type == PERIODIC)
 	CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE, &mwk4,  &nwk4,   &lwk4);
