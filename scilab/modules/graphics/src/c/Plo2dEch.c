@@ -2,7 +2,7 @@
  *    Graphic library
  *    Copyright (C) 1998-2000 Enpc
  *    Copyright INRIA 2006
- *    Authors Jean-Philippe Chancelier 1998-2000 jpc@cereve.enpc.fr 
+ *    Authors Jean-Philippe Chancelier 1998-2000 jpc@cermics.enpc.fr 
  *            Jean-Baptiste Silvy      2005-xxxx
  --------------------------------------------------------------------------*/
 
