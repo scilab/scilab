@@ -6,6 +6,7 @@
 #include "gw_symbolic.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
@@ -17,7 +18,7 @@ static gw_generic_table Tab[]=
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_symbolic)()
-{  
+{
 	if (Rhs != 2)
 	{
 		Scierror(39,_("incorrect number of arguments.\n"));
