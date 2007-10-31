@@ -314,7 +314,7 @@ append sasrRE $sblRE $scontRE $sblRE {(?:} $spalnRE {)} {?} $scontRE $sblRE {(?:
 
 # Scilab function definition regexp (left part, i.e. up to but not including function name)
 set sfdlRE {}
-append sfdlRE {\mfunction\M[[:blank:]]+} $scontRE $saslRE
+append sfdlRE {\mfunction\M[[:blank:]]*} $scontRE $saslRE
 
 # Scilab function definition regexp (right part, i.e. from but not including function name)
 set sfdrRE {}

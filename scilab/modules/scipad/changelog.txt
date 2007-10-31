@@ -3201,3 +3201,10 @@ Francois VOGEL, 23/10/07
  * Fixed fake gettext function used in BUILD4 environment - was broken
    by commit r19744
  * version --> 6.131
+
+Francois VOGEL, 31/10/07
+ * Fixed bug 2580 so that the syntax function[]=foobar(), without space
+   between function and [], be recognized for colorization of userfuns
+   and for displaying information about cursor location in function
+ * version --> 6.132
+
