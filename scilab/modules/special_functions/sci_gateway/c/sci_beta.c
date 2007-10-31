@@ -1,9 +1,10 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_special_functions2.h"
 #include <string.h>
 #include "stack-c.h"
+#include "gw_special_functions2.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern double F2C(dgammacody)(double *);
 extern double F2C(betaln)(double *, double *);
@@ -21,7 +22,7 @@ int sci_beta(char *fname,unsigned long fname_len)
    *
    *   The switch limit have been set by using the gp-pari software.
    *
-   *    AUTHOR 
+   *    AUTHOR
    *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
    *
    */

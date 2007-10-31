@@ -7,6 +7,7 @@
 	#include <Windows.h>
 #endif
 #include "stack-c.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2, double *x,int *id, double *pqa, int *ipqa, int *ierror);
 /*-----------------------------------------------------------------------------------*/
@@ -16,7 +17,7 @@ static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax);
 int sci_legendre(char *fname,unsigned long fname_len)
 {
   /*
-   *   Interface onto the (Slatec) dxleg.f code. 
+   *   Interface onto the (Slatec) dxleg.f code.
    *   Scilab calling sequence :
    *
    *   p = legendre(n, m, x [, norm_flag] )
@@ -32,7 +33,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
    *
    *      norm_flag : optionnal. When it is present and equal to "norm"
    *                  it is a normalised version which is computed
-   *    AUTHOR 
+   *    AUTHOR
    *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
    */
   int it, lc, mM, nM, lM, m1, m2, mN, nN, lN, n1, n2, mx, nx, lx, mnx, ms, ns, ls;
@@ -63,7 +64,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
       Scierror(999,_("%s: only one of arg1 and arg2 may be a vector\n"), fname);
       return 0;
     };
-       
+
   GetRhsCVar(3,MATRIX_OF_DOUBLE_DATATYPE, &it, &mx, &nx, &lx, &lc);
   if ( it != 0 )
     {
@@ -74,12 +75,12 @@ int sci_legendre(char *fname,unsigned long fname_len)
   mnx = mx*nx;
   x = stk(lx);
   for ( i = 0 ; i < mnx ; i++ )
-    if ( ! (fabs(x[i]) < 1.0) ) 
+    if ( ! (fabs(x[i]) < 1.0) )
       {
 	Scierror(999,_("%s: 3th argument must be a matrix with elements in (-1,1)\n"), fname);
 	return 0;
       };
-  
+
   if ( Rhs == 4 )
     {
       GetRhsVar(4,STRING_DATATYPE, &ms, &ns, &ls);
@@ -90,7 +91,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
     }
   else
     normalised = 0;
-  
+
   MNp1 = Max (n2 - n1, m2 - m1) + 1;
 
   CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &MNp1, &mnx, &lpqa); pqa = stk(lpqa);
@@ -101,13 +102,13 @@ int sci_legendre(char *fname,unsigned long fname_len)
   else
     id = 3;
 
-  nudiff = n2-n1;  
+  nudiff = n2-n1;
   dnu1 = (double) n1;
 
   for ( i = 0 ; i < mnx ; i++ )
     {
       xx = fabs(x[i]); /* dxleg computes only for x in [0,1) */
-      F2C(dxlegf) (&dnu1, &nudiff, &m1, &m2, &xx, &id, 
+      F2C(dxlegf) (&dnu1, &nudiff, &m1, &m2, &xx, &id,
 		   stk(lpqa+i*MNp1), istk(lipqa+i*MNp1), &ierror);
       if ( ierror != 0 )
 	{
@@ -119,14 +120,14 @@ int sci_legendre(char *fname,unsigned long fname_len)
 	};
     }
 
-  /*  dxlegf returns the result under a form (pqa,ipqa) (to 
+  /*  dxlegf returns the result under a form (pqa,ipqa) (to
    *  compute internaly with an extended exponent range)
    *  When the "exponent" part (ipqa) is 0 then the number is exactly
    *  given by pqa else it leads to an overflow or an underflow.
    */
   for ( i = 0 ; i < mnx*MNp1 ; i++ )
     {
-      if ( ipqa[i] < 0 ) 
+      if ( ipqa[i] < 0 )
 	pqa[i] = 0.0;
       if ( ipqa[i] > 0 )
 	pqa[i] = pqa[i] * return_an_inf(); /* pqa[i] * Inf  to have the sign */
@@ -151,7 +152,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 static double return_an_inf()
 {
-	/*    AUTHOR 
+	/*    AUTHOR
 	*       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
 	*/
 	static int first = 1;
@@ -172,7 +173,7 @@ static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax)
 	*       if not return 0)
 	*    2/ computes the min and the max
 	*
-	*    AUTHOR 
+	*    AUTHOR
 	*       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
 	*/
 	int i;
@@ -185,5 +186,5 @@ static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax)
 	*xmin = (int) x[0];
 	*xmax = (int) x[nb_elt-1];
 	return 1;
-} 
+}
 /*-----------------------------------------------------------------------------------*/

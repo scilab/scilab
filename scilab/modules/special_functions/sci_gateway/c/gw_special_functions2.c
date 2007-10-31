@@ -7,9 +7,10 @@
 #include "gw_special_functions2.h"
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
-#include "../../../elementary_functions/includes/xerhlt.h"
+#include "xerhlt.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={ 
+static gw_generic_table Tab[]={
   {sci_legendre, "legendre"},
   {sci_beta, "beta"},
   {sci_besseli,"besseli"},
@@ -22,8 +23,8 @@ static gw_generic_table Tab[]={
 int C2F(gw_special_functions2)(void)
 {
 	Rhs = Max(0, Rhs);
-	if (setjmp_slatec_jmp_env()) 
-	{ 
+	if (setjmp_slatec_jmp_env())
+	{
 		Scierror(999,"%s: arguments must be positive \n", Tab[Fin-1].name);
 		return 0;
 	}
