@@ -370,7 +370,9 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	 */
 	public void mouseDragged(MouseEvent e) {
 		Point origine = window.getLocationOnScreen();
-		Point destination = e.getPoint(); /* Change by Sylvestre Ledru from e.getLocationOnScreen() because it is not java 1.6 */
+		Point destination = ((Component) e.getSource()).getLocationOnScreen();
+		destination.x += e.getX();
+		destination.y += e.getY();
 		destination.translate(-origine.x, -origine.y);
 		window.setSize(destination.x, destination.y);
 	}
