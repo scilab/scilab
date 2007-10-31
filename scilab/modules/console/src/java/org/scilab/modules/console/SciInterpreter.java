@@ -6,7 +6,7 @@ package org.scilab.modules.console;
 import java.io.Reader;
 import java.io.Writer;
 
-import javax.script.ScriptException;
+import com.artenum.rosetta.exception.ScriptException;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 

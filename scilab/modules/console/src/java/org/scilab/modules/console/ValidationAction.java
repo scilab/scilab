@@ -50,7 +50,7 @@ public class ValidationAction extends AbstractConsoleAction {
 			cmdToExecute = inputParsingManager.getCommandLine();
 			
 			// Special case: line begins with a !
-			if (!cmdToExecute.isEmpty() && cmdToExecute.charAt(0) == '!') {
+			if (cmdToExecute.length()>0 && cmdToExecute.charAt(0) == '!') {
 				// Cast HistoryManager to SciHistoryManager 
 				// because searchBackward will not to be implemented in all not-generic console
 				((SciHistoryManager) configuration.getHistoryManager()).setTmpEntry(cmdToExecute.substring(1));
