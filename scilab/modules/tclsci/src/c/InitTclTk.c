@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "InitTclTk.h"
 #include "TclEvents.h"
 #ifndef _MSC_VER
@@ -13,16 +13,16 @@
 #include "Scierror.h"
 #include "scilabmode.h"
 #include "ScilabEval.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int TK_Started=0;
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static char *GetSciPath(void);
 /*-----------------------------------------------------------------------------------*/
 void initTCLTK(void)
 {
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
-		if ( OpenTCLsci()==0 ) 
+		if ( OpenTCLsci()==0 )
 		{
 			TK_Started=1;
 		}
@@ -47,7 +47,7 @@ int OpenTCLsci(void)
 
 #ifndef _MSC_VER
   DIR *tmpdir=NULL;
-  Display *XTKdisplay;
+  //  Display *XTKdisplay;
 #endif
 
   FILE *tmpfile2=NULL;
@@ -62,7 +62,7 @@ int OpenTCLsci(void)
   #endif
 #endif
   SciPath=GetSciPath();
-  
+
   /* test SCI validity */
   if (SciPath==NULL)
   {
@@ -75,7 +75,7 @@ int OpenTCLsci(void)
   strcat(TkScriptpath, _("/modules/tclsci/tcl/TK_Scilab.tcl"));
 
   tmpfile2 = fopen(TkScriptpath,"r");
-  if (tmpfile2==NULL) 
+  if (tmpfile2==NULL)
   {
 	sciprint(_("Unable to find TCL initialisation scripts.\n"));
     return(1);
@@ -83,7 +83,7 @@ int OpenTCLsci(void)
   else fclose(tmpfile2);
 #else
   tmpdir=opendir(SciPath);
-  if (tmpdir==NULL) 
+  if (tmpdir==NULL)
     {
       sciprint(_("The SCI environment variable is not set.\n"));
       return(1);
@@ -92,15 +92,15 @@ int OpenTCLsci(void)
   strcpy(TkScriptpath,SciPath);
   strcat(TkScriptpath, _("/modules/tclsci/tcl/TK_Scilab.tcl"));
   tmpfile2 = fopen(TkScriptpath,"r");
-  if (tmpfile2==NULL) 
+  if (tmpfile2==NULL)
     {
       sciprint(_("Unable to find TCL initialisation scripts.\n"));
       return(1);
     }
   else fclose(tmpfile2);
-#endif /* _MSC_VER */ 
-  
-  if (TCLinterp == NULL) 
+#endif /* _MSC_VER */
+
+  if (TCLinterp == NULL)
     {
       TCLinterp = Tcl_CreateInterp();
 	  if ( TCLinterp == NULL )
@@ -121,17 +121,17 @@ int OpenTCLsci(void)
 		return (1);
 	  }
 
-      sprintf(MyCommand, "set SciPath \"%s\";",SciPath); 
-      
+      sprintf(MyCommand, "set SciPath \"%s\";",SciPath);
+
 	  if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
 	  {
 		Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
 		return (1);
 	  }
-      
+
 	  Tcl_CreateCommand(TCLinterp,"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
     }
-   
+
   if (TKmainWindow == NULL)
     {
       TKmainWindow = Tk_MainWindow(TCLinterp);
