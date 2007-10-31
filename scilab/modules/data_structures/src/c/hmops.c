@@ -20,6 +20,7 @@
 #include "stack-c.h"
 #include "stack2.h"
 #include "hmops.h"
+#include "Scierror.h"
 
 #ifdef _MSC_VER
 #undef min
@@ -90,16 +91,16 @@ static void get_length_and_pointer(int num, int *n, int **t)
 }
 
 #define GetHMat(pos,H) if (! get_hmat(pos,H)) { return 0;}
- 
+
 static int get_hmat(int num, HyperMat *H)
 {
   int il, il1, il2, il3,/* it,*/ lw;
 
   lw = num + Top - Rhs;
-  il = iadr(*Lstk( lw )); 
+  il = iadr(*Lstk( lw ));
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
-	  
+
   if ( *istk(il) != SCI_MLIST )
     return 0;
   else if ( *istk(il+1) != 3 )  /* a hm mlist must have 3 fields */
@@ -124,7 +125,7 @@ static int get_hmat(int num, HyperMat *H)
 
   /*  get the 2d field */
   if ( *istk(il2) == SCI_REAL_OR_CMPLX  &&  *istk(il2+3) == 0 )
-    { 
+    {
       /* this is an old hypermat (the dim field is an array of doubles) */
       H->type = OLD_HYPERMAT;
       H->it = -1; H->size = -1;
@@ -177,16 +178,16 @@ static int get_hmat(int num, HyperMat *H)
       H->P = (void *) istk(il3);
       return 2;
     }
-}      
- 
+}
+
 int C2F(ishm)()
 {
   /* teste si l'argument en Top est une hypermatrice */
   int il, il1, il2;
-  il = iadr(*Lstk( Top )); 
+  il = iadr(*Lstk( Top ));
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
-	  
+
   if ( *istk(il) != SCI_MLIST )
     return 0;
   else if ( *istk(il+1) != 3 )  /* a hm mlist must have 3 fields */
@@ -208,7 +209,7 @@ int C2F(ishm)()
     return 0;
 
   return 1;
-}      
+}
 
 static int get_mat_as_hmat(int num, HyperMat *H)
 {
@@ -216,10 +217,10 @@ static int get_mat_as_hmat(int num, HyperMat *H)
   static int dims[2];
 
   lw = num + Top - Rhs;
-  il = iadr(*Lstk( lw )); 
+  il = iadr(*Lstk( lw ));
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
-	
+
   type = *istk(il);
 
   if (type == SCI_REAL_OR_CMPLX || type == SCI_BOOLEAN || type == SCI_INTEGER)
@@ -233,7 +234,7 @@ static int get_mat_as_hmat(int num, HyperMat *H)
 
       H->type = type;
       H->dimsize = 2;
-      dims[0] = *istk(il+1); 
+      dims[0] = *istk(il+1);
       dims[1] = *istk(il+2);
       H->size = dims[0]*dims[1];
       H->dims = dims;
@@ -286,7 +287,7 @@ static int cre_hmat(int pos, HyperMat *H)
       if ( H->it == 1)
 	H->I = stk(lc);
       return 1;
-      
+
     case (SCI_BOOLEAN):
       CreateListVarFrom(pos, 3,MATRIX_OF_BOOLEAN_DATATYPE, &H->size, &one, &lr, &lar);
       H->P = (void *) istk(lr);
@@ -302,7 +303,7 @@ static int cre_hmat(int pos, HyperMat *H)
 	/* Ajout Allan CORNET Correction Warning */
 	/* warning C4715: 'cre_hmat' : not all control paths return a value */
 	return 1;
-	
+
 
 }
 
@@ -340,7 +341,7 @@ static int get_sci_bool_sparse(int num, SciBoolSparse *M)
 
 static int reshape_hmat(int pos, HyperMat *H, int new_dimsize)
 {
-  /* 
+  /*
    *   This utility routine is used when an hypermatrix H
    *   is indexed with fewer indices vectors than its dimsize
    *   (for instance the profil of H is n1 x n2 x n3 but
@@ -369,13 +370,13 @@ static int reshape_hmat(int pos, HyperMat *H, int new_dimsize)
 static int cmpint(const void *pn1, const void *pn2)
 {
   int *n1 = (int *)pn1, *n2 = (int *)pn2;
-  return (*n1 - *n2); 
+  return (*n1 - *n2);
 }
 
 static int index_convert(double *td, int * ti, int mn, int *ind_max)
 {
   /*  convert a scilab vector of indices (which are integers but
-   *  stored as double) in an int vector together with 
+   *  stored as double) in an int vector together with
    *  detecting the max index
    */
   int k, val;
@@ -392,10 +393,10 @@ static int index_convert(double *td, int * ti, int mn, int *ind_max)
   return 1;
 }
 
-static int create_index_vector(int pos, int pos_ind, int *mn, 
+static int create_index_vector(int pos, int pos_ind, int *mn,
 			       int nmax, int *ind_max)
 {
-  /*  
+  /*
    *   converti une "structure" scilab d'indicage en un vecteur d'indices
    *
    *      pos     : position de la variable initiale
@@ -421,7 +422,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       if ( m == -1 )      /* implicit index : */
 	{
 	  *mn = nmax; *ind_max = nmax;
-	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
+	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
 	  for ( k = 0 ; k < *mn ; k++ )
 	    ti[k] = k;
 	  return 1;
@@ -434,7 +435,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       else                /* "normal" index */
 	{
 	  td = stk(l); *mn = m*n; *ind_max = 0;
-	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
+	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
 	  return ( index_convert(td, ti, *mn, ind_max) );
 	}
 
@@ -469,7 +470,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       *mn = m*n;
       l = sadr(il+9+*mn);
       CreateVar( pos_ind,MATRIX_OF_DOUBLE_DATATYPE, mn, &one, &li); td = stk(li);
-      x = (double) nmax; 
+      x = (double) nmax;
       C2F(ddmpev)( stk(l), istk(il+8), &one, &x, td, &one, &one, mn);
       ti = (int *)td;
       return ( index_convert(td, ti, *mn, ind_max) );
@@ -479,7 +480,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       il = iadr( *Lstk( pos + Top - Rhs ) );
       if ( *istk(il) < 0 ) il = iadr( *istk(il+1) );
       l = sadr( il+12 );
-      x = (double) nmax; 
+      x = (double) nmax;
       C2F(ddmpev)( stk(l), istk(il+8), &one, &x, px, &one, &one, &trois);
       ideb = (int) px[0]; ipas = (int) px[1]; ifin = (int) px[2];
 
@@ -515,7 +516,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	{
 	  *ind_max = 0; return 1;
 	}
-      li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
+      li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
       i = 0;
       for ( k = 0 ; k < nmax ; k++ )
 	if ( *istk(l+k) != 0 )
@@ -524,7 +525,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	  }
       *ind_max = ti[*mn-1] + 1;
       return 1;
-      
+
     case (SCI_MLIST) :         /* Try if it is an hypermat of BOOLEANS */
 
       GetHMat(pos, &H);
@@ -540,7 +541,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	{
 	  *ind_max = 0; return 1;
 	}
-      li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
+      li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
       i = 0;
       for ( k = 0 ; k < nmax ; k++ )
 	if ( P[k] != 0 )
@@ -549,7 +550,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	  }
       *ind_max = ti[*mn-1] + 1;
       return 1;
-      
+
 
     case (SCI_SP_BOOLEAN) :
 
@@ -564,7 +565,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	}
 
       *mn = B.nel;
-      li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
+      li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
       if ( B.m == 1 )
 	{
 	  for ( k = 0 ; k < B.nel ; k++ )
@@ -585,7 +586,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	  for ( i = 0 ; i < B.m ; i++ )
 	    for ( l = 0 ; l < B.mnel[i] ; l++ )
 	      {
-		j = B.jcol[k] - 1; 
+		j = B.jcol[k] - 1;
 		ti[k] = j*B.m + i;
 		k++;
 	      }
@@ -602,9 +603,9 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 
 static void compute_indices(int dec, int dimsize, int dims[], int j[])
 {
-  /* 
+  /*
    *   from an indexing (i0,i1,i2,...) of an hypermatrix of size
-   *   dims[0] x dims[1] x dims[2] x....  computes the "real" one 
+   *   dims[0] x dims[1] x dims[2] x....  computes the "real" one
    *   dimensionnal indices (hypermatrices have the fortran order).
    */
 
@@ -612,7 +613,7 @@ static void compute_indices(int dec, int dimsize, int dims[], int j[])
   int *id;
 
   get_length_and_pointer(dec+dimsize, &nd, &id);
-  K = nd; 
+  K = nd;
   for ( k = 0 ; k < K ; k++ )
     j[k] = id[k];
 
@@ -637,11 +638,11 @@ static void compute_indices(int dec, int dimsize, int dims[], int j[])
 
 int C2F(intehm)()
 {
-  /* 
+  /*
    *  Extraction routine for an hypermatrix of type REAL_OR_COMPLEX, BOOLEAN
-   *  and INTEGER (the 6 types of scilab ints) 
+   *  and INTEGER (the 6 types of scilab ints)
    *
-   *    He = ehm ( v_1, v_2, ..., v_nb_iv, H ) 
+   *    He = ehm ( v_1, v_2, ..., v_nb_iv, H )
    *
    */
   HyperMat H, He;
@@ -653,7 +654,7 @@ int C2F(intehm)()
 
 /*   CheckLhs(minlhs,maxlhs); */
 
-  if ( Rhs < 2 ) 
+  if ( Rhs < 2 )
     {
       Scierror(999," an hypermat extraction must have at least 2 args ");
       return(0);
@@ -692,11 +693,11 @@ int C2F(intehm)()
       PutLhsVar();
       return 0;
     }
- 
+
 
   ntot = 1;   /* will be the nb of elts of the extracted hmat or mat */
   for ( i = 1 ; i <= nb_index_vectors ; i++ )
-    {  
+    {
       ier = create_index_vector(i, dec+i, &mn, H.dims[i-1], &ind_max);
       if ( ier == 0  ||  ind_max > H.dims[i-1] )
 	{
@@ -709,11 +710,11 @@ int C2F(intehm)()
 	  PutLhsVar();
 	  return 0;
 	}
-      ntot *= mn; 
+      ntot *= mn;
     }
 
-  /*  For the Matlab compatibility : an hypermatrix of profil n1 x ... x nj x ... x nk 
-   *  with  nj > 1 and nj+1 = ... = nk = 1 becomes an hypermatrix of profil n1 x ... x nj 
+  /*  For the Matlab compatibility : an hypermatrix of profil n1 x ... x nj x ... x nk
+   *  with  nj > 1 and nj+1 = ... = nk = 1 becomes an hypermatrix of profil n1 x ... x nj
    *  Moreover, in scilab, if nj <= 2, we get in fact a matrix.
    */
   final_dimsize = nb_index_vectors;
@@ -731,7 +732,7 @@ int C2F(intehm)()
     }
   else                /* we create a matrix  for the extraction result */
     {
-      m = get_length(dec+1); 
+      m = get_length(dec+1);
       if (final_dimsize > 1)
 	n = get_length(dec+2);
       else
@@ -739,12 +740,12 @@ int C2F(intehm)()
       switch (H.type)
 	{
 	case (SCI_REAL_OR_CMPLX):
-	  CreateCVar(dec+Rhs,MATRIX_OF_DOUBLE_DATATYPE, &(H.it), &m, &n, &lr, &lc); 
-	  He.R = stk(lr); 
+	  CreateCVar(dec+Rhs,MATRIX_OF_DOUBLE_DATATYPE, &(H.it), &m, &n, &lr, &lc);
+	  He.R = stk(lr);
 	  if ( H.it == 1 ) He.I = stk(lc);
 	  break;
 	case (SCI_BOOLEAN):
-	  CreateVar(dec+Rhs,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &lr); 
+	  CreateVar(dec+Rhs,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &lr);
 	  He.P = (void *) istk(lr);
 	  break;
 	case (SCI_INTEGER):
@@ -769,7 +770,7 @@ int C2F(intehm)()
 	for ( k = 0 ; k < ntot ; k++ )
 	  He.I[k] = H.I[j[k]];
       break;
-      
+
     case (SCI_BOOLEAN) :     /* (sci_boolean stored with 4 bytes) */
       Pe = (int *) He.P ; P = (int *) H.P;
       for ( k = 0 ; k < ntot ; k++ )
@@ -797,7 +798,7 @@ int C2F(intehm)()
 	}
       break;
     }
-  
+
   LhsVar(1) = dec+Rhs;
   PutLhsVar();
   return 0;
@@ -806,11 +807,11 @@ int C2F(intehm)()
 
 int C2F(intihm)()
 {
-  /* 
+  /*
       une routine d'insertion pour hypermatrice : cas le plus
       simple :   A( vi1, ..., vik ) = B
 
-        ihm ( vi1, vi2, ..., vik, B, A ) 
+        ihm ( vi1, vi2, ..., vik, B, A )
 
       avec des vecteurs d'indices classiques vi1, vi2, ....
       et B une hypermatrice ou bien une matrice
@@ -827,7 +828,7 @@ int C2F(intihm)()
 
 /*   CheckLhs(minlhs,maxlhs); */
 
-  if ( Rhs < 3 ) 
+  if ( Rhs < 3 )
     {
       Scierror(999," an hypermat insertion must have at least 3 args ");
       return 0;
@@ -850,14 +851,14 @@ int C2F(intihm)()
     if ( ! get_mat_as_hmat(Rhs-1, &B) )  /* it is not a matrix of type 1, 4 or 8 */
       {
 	/* it stays some authorized possibilities like A(....) = B with B a polynomial
-         * matrix and A a real hypermatrix => try the %x_i_hm macro family 
+         * matrix and A a real hypermatrix => try the %x_i_hm macro family
          */
 	Fin = -Fin;
 	return 0;
       }
 
 
-  if ( A.type !=  B.type || A.it != B.it || B.size == 0  || A.dimsize <  nb_index_vectors ) 
+  if ( A.type !=  B.type || A.it != B.it || B.size == 0  || A.dimsize <  nb_index_vectors )
     {
       /*  do the job by the %x_i_hm macro family */
       Fin = -Fin;
@@ -883,7 +884,7 @@ int C2F(intihm)()
   ntot = 1;
   iconf = 0;
   for ( i = 1 ; i <= nb_index_vectors ; i++ )
-    {  
+    {
       if (! create_index_vector(i, dec+i, &mn, A.dims[i-1], &ind_max)) return 0;
       if ( mn == 0 )   /* the i th index vector is [] */
 	{
@@ -912,7 +913,7 @@ int C2F(intihm)()
 	    }
 	  iconf++;
 	}
-      ntot *= mn; 
+      ntot *= mn;
     }
   /* to finish the conformity test */
   if ( !B_is_scalar &&  ntot != B.size )
@@ -925,7 +926,7 @@ int C2F(intihm)()
   ltot = 4; CreateVar(dec+Rhs-1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &ntot, &one, &ltot); j = istk(ltot);
   compute_indices(dec, nb_index_vectors, A.dims, j);
 
-  
+
   /*   modify in place the hypermatrix A  */
   switch ( A.type )
     {
@@ -943,7 +944,7 @@ int C2F(intihm)()
 	    for ( k = 0 ; k < ntot ; k++ ) A.I[j[k]] = B.I[k];
 	}
       break;
-      
+
     case (SCI_BOOLEAN) :
       PA = (int *) A.P ; PB = (int *) B.P;
       if ( B_is_scalar )

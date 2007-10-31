@@ -1,9 +1,11 @@
 #include <string.h>
 #include "stack-c.h"
-#define memused(it,mn) ((((mn)*( it % 10))/sizeof(int))+1)
 #include "stack-c.h"
 #include "stcreate.h"
 #include "cvstr.h"
+#include "Scierror.h"
+
+#define memused(it,mn) ((((mn)*( it % 10))/sizeof(int))+1)
 
 /* Table of constant values */
 static integer c17 = 17;
@@ -29,7 +31,7 @@ int C2F(stcreate)(integer *lw, integer *nz, integer *sz, integer *nf, char *fnam
 	return 1;
     }
     sttyp(&n1, "size", nf, fnames);
-    
+
     *retval = 1;
 /*     create the mlist header */
     il = iadr(l0);
@@ -53,7 +55,7 @@ int C2F(stcreate)(integer *lw, integer *nz, integer *sz, integer *nf, char *fnam
     n1 = sadr(iadr(l)+4) + memused(c4,*nz) - l;
     *istk(il + 4) = *istk(il + 3) + n1;
     l += n1;
-    
+
 /*     set struct fields */
     nels=1;
     for (k=0; k< *nz;k++) nels=nels*sz[k];
@@ -76,8 +78,8 @@ int C2F(stcreate)(integer *lw, integer *nz, integer *sz, integer *nf, char *fnam
       }
     }
     *Lstk(*lw+1)=l;
-    return 1; 
-} 
+    return 1;
+}
 
 int creonevoid(integer *slw,integer *lw)
 {
