@@ -1448,7 +1448,7 @@ int C2F(elementtype)(integer *lnumber, integer *number)
   il = iadr(*Lstk(lw));
   if (*istk(il) < 0) il = iadr(*istk(il + 1));
   itype = *istk(il ); /* type of the variable numbered *lnumber */
-  if (itype < 15 || itype > 17) { /* check if it is really a list */
+  if (itype <  sci_list || itype > sci_mlist) { /* check if it is really a list */
     Scierror(210,_("%s : Argument %d: wrong type argument, expecting a list.\n"),fname,*lnumber);
     return FALSE_;
   }
@@ -1804,7 +1804,7 @@ int C2F(mktlistfromvars)(integer *pos,integer *n)
 
 int C2F(mkmlistfromvars)(integer *pos,integer *n)
 {
-  integer type=17;
+  integer type=sci_mlist;
   integer tops =  Top;
   int k;
   for ( k= *pos; k < *pos+*n; k++) C2F(convert2sci)(&k);

@@ -797,7 +797,7 @@ int C2F(getsparsei)(char *fname,integer *topk,integer *spos,integer *lw,integer 
   il = iadr(*lw);
   if (*istk(il ) < 0)   il = iadr(*istk(il +1));
 
-  if (*istk(il ) != 5) {
+  if (*istk(il ) != sci_sparse) {
     if (*inlistx) 
       Scierror(999,_("%s : argument %d <(%d) should be a sparse matrix.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nellist);
     else 
@@ -889,7 +889,7 @@ int C2F(cresparsei)(char *fname,integer *stlw,integer *it,integer *m,integer *n,
     Scierror(17,_("%s : stack size exceeded (Use stacksize function to increase it).\n"),get_fname(fname,fname_len));
     return FALSE_;
   };
-  *istk(il ) = 5;
+  *istk(il ) = sci_sparse;
   /*   if m*n=0 the 2 dims are set to zero */
   if ( *m == 0  ||  *n == 0 )  /* use this new test in place of the product m * n (bruno) */
     {
@@ -1169,7 +1169,7 @@ static int C2F(getwsmati)(char *fname,integer *topk,integer *spos,integer *lw,in
     integer il;
     il = iadr(*lw);
     if (*istk(il ) < 0) il = iadr(*istk(il +1));
-    if (*istk(il ) != 10) {
+    if (*istk(il ) != sci_strings) {
       if (*inlistx)
 	Scierror(999,_("%s : argument %d <(%d) should be a matrix of strings.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
       else 
@@ -1191,7 +1191,7 @@ int C2F(getsmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m
 {
   integer il = iadr(*lw);
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
-  if (*istk(il ) != 10 ) {
+  if (*istk(il ) != sci_strings ) {
     if (*inlistx) 
       Scierror(999,_("%s : argument %d <(%d) should be a row vector.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
@@ -1557,7 +1557,7 @@ int cre_sparse_from_ptr_i(char *fname, integer *lw, integer *m, integer *n, SciS
     Scierror(17,_("%s : stack size exceeded (Use stacksize function to increase it).\n"),get_fname(fname,fname_len));
     return  FALSE_;
   } ;
-  *istk(il ) = 5;
+  *istk(il ) = sci_sparse;
   /* note: code sligtly modified (remark of C. Deroulers in the newsgroup) */
   if ( (*m == 0)  |  (*n == 0) ) {
       *istk(il + 1) = 0; 
@@ -1930,7 +1930,7 @@ int C2F(getilist)(char *fname,integer *topk,integer *lw,integer *n,integer *ix,i
   }
 
   itype = *istk(il );
-  if (itype < 15 || itype > 17) {
+  if (itype < sci_list || itype > sci_mlist) {
     Scierror(210,_("%s : Argument %d: wrong type argument, expecting a list.\n"),get_fname(fname,fname_len) , Rhs + (*lw - *topk));
     return FALSE_;
   }
@@ -2172,7 +2172,7 @@ int C2F(getwimat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,in
   if (*istk(il ) < 0) {
     il = iadr(*istk(il +1));
   }
-  if (*istk(il ) != 4) {
+  if (*istk(il ) != sci_boolean) {
     Scierror(213,_("%s : Argument %d: wrong type argument, expecting a working\n"),get_fname(fname,fname_len),Rhs + (*lw - *topk));
     return FALSE_;
   };
@@ -2256,7 +2256,7 @@ int C2F(crepointeri)(char *fname,integer *stlw,integer *lr,int *flagx,unsigned l
     return FALSE_;
   };
   if (*flagx) {
-    *istk(il ) = 128;
+    *istk(il ) = sci_lufact_pointer;
     /* if m*n=0 then both dimensions are to be set to zero */
     *istk(il + 1) = 1;
     *istk(il + 2) = 1;
@@ -2499,7 +2499,7 @@ int C2F(getpointeri)(char *fname,integer *topk,integer *spos,integer *lw,integer
   integer il;
   il = iadr(*lw);
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
-  if (*istk(il ) != 128) {
+  if (*istk(il ) != sci_lufact_pointer) {
     sciprint("----%d\n",*istk(il));
     if (*inlistx) 
       Scierror(197,_("%s : argument %d <(%d) should be a boxed pointer.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
@@ -2537,7 +2537,7 @@ int C2F(mspcreate)(integer *lw,integer *m,integer *n,integer *nzMax,integer *it)
     Scierror(17,_("%s : stack size exceeded (Use stacksize function to increase it).\n"),"");
     return FALSE_;
   };
-  *istk(il ) = 7;
+  *istk(il ) = sci_matlab_sparse;
   /*        si m*n=0 les deux dimensions sont mises a zero. 
   *istk(il +1) = Min(*m , *m * *n);
   *istk(il + 1 +1) = Min(*n, *m * *n);     */
@@ -3025,7 +3025,7 @@ int C2F(crehmati)(char *fname,integer *stlw,integer *m,integer *n,integer *lr,in
     return FALSE_;
   };
   if (*flagx) {
-    *istk(il ) = 9;
+    *istk(il ) = sci_handles;
     /* if m*n=0 then both dimensions are to be set to zero */
     *istk(il + 1) = Min(*m , *m * *n);
     *istk(il + 2) = Min(*n ,*m * *n);
@@ -3141,7 +3141,7 @@ int C2F(gethmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m
   integer il;
   il = iadr(*lw);
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
-  if (*istk(il ) != 9) {
+  if (*istk(il ) != sci_handles) {
     if (*inlistx) 
       Scierror(999,_("%s : argument %d < (%d) should be a matrix of handle.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
