@@ -2,13 +2,13 @@
 // core module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
-// load temporary functions need by all others
+// load temporary functions needed by all others
 load('SCI/modules/fileio/macros/pathconvert.bin');
 load('SCI/modules/string/macros/stripblanks.bin');
 load('SCI/modules/helptools/macros/add_module_help_chapter.bin');
 load('SCI/modules/helptools/macros/add_help_chapter.bin');
 // ====================================================================
-//Load  functions librarie
+//Load functions libraries
 load('SCI/modules/core/macros/lib');
 // ====================================================================
 
