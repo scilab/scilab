@@ -823,11 +823,9 @@ if test "$with_tk" != no; then
 ###########################
 ########## X11 checks
 ########################### 	 
-	  	 
-		##			
-		## Those check are mandatory since tk needs Xlib headers
-		AC_CHECK_HEADERS([X11/Xlib.h],,[AC_MSG_ERROR([X11/Xlib.h not found... Mandatory for tk])])
-
+		## This check is mandatory since tk needs Xlib headers and libs
+		AC_PATH_XTRA
+		##
 
 	saved_cflags="$CFLAGS"
 	saved_ldflags="$LDFLAGS"
