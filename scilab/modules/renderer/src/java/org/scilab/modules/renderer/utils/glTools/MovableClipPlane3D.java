@@ -119,7 +119,7 @@ public class MovableClipPlane3D extends ClipPlane3D {
 	public void pushPlane(GL gl) {
 
 		Plane3D copyPlane = new Plane3D(this);
-		pushedPlanes.push(copyPlane);
+		pushedPlanes.addFirst(copyPlane);
 		
 		
 		getThreePointsOnPlane(point1, point2, point3);
@@ -152,7 +152,7 @@ public class MovableClipPlane3D extends ClipPlane3D {
 	 * @param gl current OpenGL pipeline
 	 */
 	public void popPlane(GL gl) {
-		Plane3D restoredPlane = pushedPlanes.pop();
+		Plane3D restoredPlane = pushedPlanes.removeFirst();
 		this.setEquation(restoredPlane.getEquation());
 		super.clip(gl); // not just clip, otherwise the plane will be added to the list of clipped planes
 	}

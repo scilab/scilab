@@ -90,7 +90,7 @@ public class CoordinateTransformation {
 	}
 	
 	/**
-	 * Perform the same opération as gluProject.
+	 * Perform the same operation as gluProject.
 	 * @param gl unused
 	 * @param pos scene position
 	 * @return Pixel coordinate of the point.
