@@ -6,6 +6,7 @@
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "getlongpathname.h"
+#include "localization.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/

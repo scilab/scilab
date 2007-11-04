@@ -7,6 +7,7 @@
 #include "MALLOC.h"
 #include "do_xxscanf.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "do_xxprintf.h"
 /*-----------------------------------------------------------------------------------*/ 
 typedef int (*XXSCANF) __PARAMS((FILE *, char *,...));

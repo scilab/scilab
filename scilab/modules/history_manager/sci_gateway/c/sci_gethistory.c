@@ -5,6 +5,7 @@
 #include "gw_history_manager.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "localization.h"
 #include "MALLOC.h"
 #include "HistoryManager.h"
 /*-----------------------------------------------------------------------------------*/

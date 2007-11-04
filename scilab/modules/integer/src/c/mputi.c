@@ -1,14 +1,14 @@
 /* Copyright INRIA */
 #include <stdio.h>
 #include <string.h>
-
 #include <stdlib.h>
+
 #include "machine.h"
 #include "mputi.h"
-
 #include "../../../../libs/libst/misc.h"
 #include "sciprint.h"
 #include "filesmanagement.h"
+#include "localization.h"
 
 struct soundstream ftf;
 

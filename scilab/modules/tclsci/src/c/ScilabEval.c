@@ -6,6 +6,7 @@
 #include "ScilabEval.h"
 #include "sciprint.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "tksynchro.h"
 #include "../../localization/includes/localization.h"
 #include "syncexec.h"

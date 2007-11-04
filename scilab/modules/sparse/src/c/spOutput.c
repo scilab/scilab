@@ -37,7 +37,7 @@
 #include <stdio.h>
 #include "spmalloc.h"
 #include "machine.h"
-
+#include "localization.h"
 /*
  *  IMPORTS
  *
@@ -722,7 +722,7 @@ FILE  *pStatsFile, *fopen();
         }
     }
 
-    SmallestElement = MIN( SmallestElement, LargestElement );
+    SmallestElement = Min( SmallestElement, LargestElement );
 
 /* Output remaining statistics. */
     fprintf(pStatsFile, _("     Initial number of elements = %d\n"),

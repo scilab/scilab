@@ -6,6 +6,7 @@
 #include "gw_tclsci.h"
 #include "setvar.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 {

@@ -8,6 +8,7 @@
 #include "interpolation.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern double C2F(cs2val)(double *px, double *py, int *n, double *x, double *y,double *f, int *nr, int *lcell, int *lnext, double *xmin, double *ymin,double *dx, double *dy, double *rmax, double *rw, double *a);
 extern int C2F(cs2grd) (double *px, double *py, int *n, double *x, double *y, double *f, int *nr, int *lcell, int *lnext,  double *xmin, double *ymin,double *dx, double *dy, double *rmax, double *rw, double *a,double *c, double *cx, double *cy, int *ier);

@@ -7,6 +7,7 @@
 #include "with_module.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len))
 {

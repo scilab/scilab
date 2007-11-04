@@ -1,6 +1,6 @@
 #ifndef __SPDEFS_H__
 #define __SPDEFS_H__
-
+#include "core_math.h"
 /*
  *  DATA STRUCTURE AND MACRO DEFINITIONS for Sparse.
  *
@@ -123,13 +123,6 @@
 #define  IS_FACTORED(matrix)    ((matrix)->Factored && !(matrix)->NeedsOrdering)
 
 /* Macro commands */
-/* Macro functions that return the maximum or minimum independent of type. */
-#define  MAX(a,b)           ((a) > (b) ? (a) : (b))
-#define  MIN(a,b)           ((a) < (b) ? (a) : (b))
-
-/* Macro function that returns the absolute value of a floating point number. */
-#define  ABS(a)             ((a) < 0.0 ? -(a) : (a))
-
 /* Macro function that returns the square of a number. */
 #define  SQR(a)             ((a)*(a))
 
@@ -138,7 +131,7 @@
 
 /* Macro function that returns the approx absolute value of a complex number. */
 #if spCOMPLEX
-#define  ELEMENT_MAG(ptr)   (ABS((ptr)->Real) + ABS((ptr)->Imag))
+#define  ELEMENT_MAG(ptr)   (Abs((ptr)->Real) + Abs((ptr)->Imag))
 #else
 #define  ELEMENT_MAG(ptr)   ((ptr)->Real < 0.0 ? -(ptr)->Real : (ptr)->Real)
 #endif
@@ -167,10 +160,10 @@
 }
 
 /* Macro that returns the approx magnitude (L-1 norm) of a complex number. */
-#define  CMPLX_1_NORM(a)        (ABS((a).Real) + ABS((a).Imag))
+#define  CMPLX_1_NORM(a)        (Abs((a).Real) + Abs((a).Imag))
 
 /* Macro that returns the approx magnitude (L-infinity norm) of a complex. */
-#define  CMPLX_INF_NORM(a)      (MAX (ABS((a).Real),ABS((a).Imag)))
+#define  CMPLX_INF_NORM(a)      (Max (Abs((a).Real),Abs((a).Imag)))
 
 /* Macro function that returns the magnitude (L-2 norm) of a complex number. */
 #define  CMPLX_2_NORM(a)        (sqrt((a).Real*(a).Real + (a).Imag*(a).Imag))

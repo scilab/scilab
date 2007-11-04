@@ -6,6 +6,7 @@
 #include "findfiles.h"
 #include "stack-c.h"
 #include "MALLOC.h"
+#include "localization.h"
 #include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
@@ -63,7 +64,7 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Invalid parameter , it must be a path (string).\n"));
+				Scierror(999,_("Invalid parameter, it must be a path (string).\n"));
 				return 0;
 			}
 
@@ -84,7 +85,7 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Invalid parameter(s) , it must be a path and a filespec (string).\n"));
+				Scierror(999,_("Invalid parameter(s), it must be a path and a filespec (string).\n"));
 				return 0;
 			}
 		}

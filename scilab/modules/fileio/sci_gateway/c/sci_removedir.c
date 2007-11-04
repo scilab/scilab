@@ -10,6 +10,7 @@
 #include "isdir.h"
 #include "Scierror.h"
 #include "cluni0.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_removedir) _PARAMS((char *fname,unsigned long l))
 {	

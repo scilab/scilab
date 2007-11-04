@@ -1,6 +1,7 @@
 #include "defs.h"
 #include "hashtable_metanet.h"
 #include "loadg.h"
+#include "localization.h"
 
 static int CompString(char **s1,char **s2)
 {

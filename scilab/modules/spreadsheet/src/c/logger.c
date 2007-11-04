@@ -12,6 +12,7 @@
 #include <stdarg.h>
 #include <ctype.h>
 
+#include "localization.h"
 #include "logger.h"
 #include "machine.h"
 #include "MALLOC.h"

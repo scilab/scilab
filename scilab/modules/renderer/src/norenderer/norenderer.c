@@ -5,6 +5,7 @@
 #include "machine.h" 
 #include "norenderer.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_renderer)()
 {

@@ -10,6 +10,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "commandwords.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;

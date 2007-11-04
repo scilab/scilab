@@ -1,13 +1,13 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #include "machine.h"
 #include "stack-c.h"
-#include <string.h>
 #include "sci_contr.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
-#define MAX(x,y)	(((x)>(y))?(x):(y))
+#include "core_math.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 extern int C2F(ab01od)();
@@ -43,8 +43,8 @@ int intab01od(char* fname)
 	}
 
 	/*     dimensions...    */
-	LDA=MAX(1,N);  LDB=LDA;  LDU=LDA; LDV=MAX(1,M);
-	LDWORK = MAX(1, N*M + MAX(N,M) + MAX(N,3*M));
+	LDA=Max(1,N);  LDB=LDA;  LDU=LDA; LDV=Max(1,M);
+	LDWORK = Max(1, N*M + Max(N,M) + Max(N,3*M));
 
 	/*     other parameters of AB01OD   */
 	JOBU= "N"; if (Lhs >= 2)  JOBU="I";

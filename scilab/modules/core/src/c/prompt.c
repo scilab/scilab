@@ -8,6 +8,7 @@
 #include "sciprint.h"
 #include "sciprint.h"
 #include "warningmode.h"
+#include "localization.h"
 /*------------------------------------------------------------------------*/
 static char Sci_Prompt[10];
 static BOOL dispWarningLevelPrompt=TRUE;
@@ -23,8 +24,7 @@ void C2F(setprlev)( int *pause)
 		{
 			if (getWarningMode())
 			{
-				sciprint(_("Type 'resume' or 'abort' to return to standard level prompt.\n"));
-				sciprint("\n");
+				sciprint(_("Type 'resume' or 'abort' to return to standard level prompt.\n\n"));
 				dispWarningLevelPrompt=FALSE;
 			}
 		}

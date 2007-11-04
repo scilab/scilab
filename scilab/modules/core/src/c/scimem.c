@@ -5,6 +5,7 @@
 #include "stack-c.h"
 #include "scimem.h"
 #include "sciprint.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static char *the_p=NULL;
 static char *the_ps=NULL;

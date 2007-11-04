@@ -21,13 +21,8 @@
 #include "stack2.h"
 #include "hmops.h"
 #include "Scierror.h"
+#include "core_math.h"
 
-#ifdef _MSC_VER
-#undef min
-#undef max
-#endif
-#define min(a,b) ((a) < (b) ? (a) : (b))
-#define max(a,b) ((a) < (b) ? (b) : (a))
 #define sign(a) ((a) < 0 ? -1 : 1)
 
 #define SCI_REAL_OR_CMPLX 1
@@ -496,7 +491,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       else
 	{
 	  *mn = (abs(ifin-ideb)+1)/abs(ipas);
-	  *ind_max = max(ideb, ifin);
+	  *ind_max = Max(ideb, ifin);
 	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
 	  ti[0] = ideb-1;  /* -1 to get 0-based indices */
 	  for ( k = 1 ; k < *mn ; k++ ) ti[k] = ti[k-1] + ipas;

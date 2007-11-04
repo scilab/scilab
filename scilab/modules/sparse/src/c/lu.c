@@ -35,6 +35,7 @@
 
 #include "cerro.h"
 #include "machine.h"
+#include "localization.h"
 
 /*
  *

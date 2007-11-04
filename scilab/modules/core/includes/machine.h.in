@@ -419,41 +419,8 @@
 #endif
 #define DIR_SEPARATOR "/"
 
-/* make sure we have PATH_MAX */
-#if HAVE_LIMITS_H
-# include <limits.h>
-#endif
-#if HAVE_SYS_PARAM
-# include <sys/param.h>
-#endif
-#ifndef PATH_MAX
-# ifndef _POSIX_PATH_MAX
-#  ifndef MAXPATHLEN
-#   define PATH_MAX 1024
-#  else
-#   define PATH_MAX MAXPATHLEN
-#  endif
-# else
-#  define PATH_MAX _POSIX_PATH_MAX
-# endif
-#endif
-
-#ifdef HAVE_LIBINTL_H
-/* Have been able to find the libintl.h file on the system */
-#include <libintl.h>
-
-#define _(String) gettext (String)
-#define _t(String1,String2,n) ngettext (String1,String2,n)
-
-#else
-/* Restore the normal behaviour ... all the string will be in english */
-
-#define _(String) ((const char *) (String))
-#define gettext(String) ((const char *) (String))
-#define _t(String1,String2,n) ngettext (String1,String2,n)
-#define ngettext(String1, String2, n) ((n) == 1 ? (const char *) (String1) : (const char *) (String2))
-
-#endif
+/* Defines PATH_MAX */
+#include "PATH_MAX.h"
 
 /* Defines BOOL type */
 #include "BOOL.h"

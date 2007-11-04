@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_sleep.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len))
 {

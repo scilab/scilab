@@ -5,6 +5,7 @@
 #include "CallScilab.h"
 #include "MALLOC.h"
 #include "scirun.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line,char CharToRemove);
 static BOOL RemoveComments(char *line);

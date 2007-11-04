@@ -7,6 +7,7 @@
 #include "TCL_ArrayGetVar.h"
 #include "TCL_ArrayDim.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "../../gui/includes/GetScreenProperty.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/

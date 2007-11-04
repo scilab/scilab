@@ -16,7 +16,7 @@
 #include <string.h>
 #include "spd.h"
 #include "sciprint.h"
-
+#include "localization.h"
 
 /*
  * if itype = 1, computes C = B*A*B', otherwise, computes C = B'*A*B
@@ -291,7 +291,7 @@ int sp(
     n     += blck_szs[i];
     sz    += blck_szs[i]*(blck_szs[i]+1)/2;
     up_sz += blck_szs[i]*blck_szs[i];
-    max_n  = MAX(max_n, blck_szs[i]);
+    max_n  = Max(max_n, blck_szs[i]);
  }
  if (m > sz){
      sciprint(_("The matrices Fi, i=1,...,m are linearly dependent.\n"));
@@ -342,7 +342,7 @@ int sp(
 
  /* check lwork */
  minlwork = (m+2)*sz + up_sz + 2*n +
-            MAX( MAX( m+sz, 3*max_n + max_n*(max_n+1) ), 3*m );
+            Max( Max( m+sz, 3*max_n + max_n*(max_n+1) ), 3*m );
  if (lwork < minlwork){
     sciprint("Work space is too small.  Need at least\
  %d*sizeof(double).\n", minlwork);
@@ -444,7 +444,7 @@ int sp(
 
     }
     sciprint("% 13.2e % 12.2e %10.2e\n", ul[0], ul[1], gap);
-    if (gap <= MAX(abstol, MINABSTOL))  *info = 2;
+    if (gap <= Max(abstol, MINABSTOL))  *info = 2;
     else if ( (ul[1] > 0.0 && gap <= reltol*ul[1]) ||
               (ul[0] < 0.0 && gap <= reltol*(-ul[0])) ) *info = 3;
     else if ( reltol < 0.0 && ul[0] <= tv ) *info = 4;
@@ -610,7 +610,7 @@ int sp(
     }
     nrmx = F2C(dnrm2)(&n, sigx, &int1);        /* norm of scaled dx */
     nrmz = F2C(dnrm2)(&n, sigz, &int1);        /* norm of scaled dZ */
-    nrmmax = MAX( nrmx, nrmz);
+    nrmmax = Max( nrmx, nrmz);
 
     XdZ = inprd(F,dZ,L,blck_szs);          /* Tr F0*dZ */
     ZdX = F2C(ddot)(&m, c, &int1, dx, &int1);  /* c^T*dx */
@@ -639,7 +639,7 @@ int sp(
     newu = ul[0] + alphax*ZdX;
     newl = ul[1] - alphaz*XdZ;
 
-    if (newgap <= MAX(abstol, MINABSTOL))  *info = 2;
+    if (newgap <= Max(abstol, MINABSTOL))  *info = 2;
     else if ( (newl > 0.0 && newgap <= reltol*newl) ||
               (newu < 0.0 && newgap <= -reltol*newu) ) *info = 3;
     else if ( reltol < 0.0 && newu <= tv ) *info = 4;

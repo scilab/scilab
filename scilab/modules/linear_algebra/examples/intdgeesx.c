@@ -1,14 +1,11 @@
 #include "stack-c.h"
-
+#include "core_math.h"
 /* [W,VS,A]=dgeesx(A)
 /* [W,VS]=dgeesx(A)
 /* [W]=dgeesx(A)
 /* SUBROUTINE DGEESX( JOBVS, SORT, SELECT, SENSE, N, A, LDA, SDIM,
 	WR, WI, VS, LDVS, RCONDE, RCONDV, WORK, LWORK,
 	IWORK, LIWORK, BWORK, INFO ) */
-
-#define MAX(x,y)	(((x)>(y))?(x):(y))
-#define MIN(x,y)	(((x)<(y))?(x):(y))
 
 #ifdef WIN32
 int select()

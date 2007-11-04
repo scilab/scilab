@@ -7,11 +7,12 @@
  *
  --------------------------------------------------------------------------*/
 #include <string.h>
+#include <math.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "MALLOC.h"
 #endif
-
+#include "localization.h"
 #include "stack-c.h"
 
 /** external functions to be called through this interface **/
@@ -19,7 +20,6 @@
 #include "grand.h"
 #include "clcg4.h"
 #include "others_generators.h"
-#include <math.h>
 #include "sciprint.h"
 #include "Scierror.h"
 #include "gw_randlib.h"

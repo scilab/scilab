@@ -5,6 +5,7 @@
 #include "stack-c.h"
 #include "gw_special_functions2.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern double F2C(dgammacody)(double *);
 extern double F2C(betaln)(double *, double *);

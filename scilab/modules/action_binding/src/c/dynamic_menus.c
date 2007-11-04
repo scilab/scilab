@@ -10,7 +10,7 @@
 #include "MALLOC.h"
 #include "dynamic_menus.h"
 #include "sciprint.h"
-
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 /*
  *  Command queue functions

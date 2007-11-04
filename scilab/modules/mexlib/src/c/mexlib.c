@@ -53,6 +53,7 @@
 #include "sciprint.h"
 #include "cerro.h"
 #include "erro.h"
+#include "localization.h"
 
 static char *the_current_mex_name;
 

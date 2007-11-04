@@ -2,11 +2,12 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "gw_special_functions2.h"
 #ifdef _MSC_VER
 	#include <Windows.h>
 #endif
+#include "gw_special_functions2.h"
 #include "stack-c.h"
+#include "localization.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2, double *x,int *id, double *pqa, int *ipqa, int *ierror);

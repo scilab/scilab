@@ -52,7 +52,7 @@ sci_gateway/c/sci_pvm_exit.c
 
 MODULE_CHECKS = pvm.tst
 
-libscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
+libscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/ 
 
 pkglib_LTLIBRARIES = libscipvm.la
 
@@ -99,6 +99,8 @@ libscipvm_la_SOURCES = $(PVM_C_SOURCES)
 
 libscipvm_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la
+
+libscipvm_la_CFLAGS=-I$(top_srcdir)/modules/output_stream/includes/
 
 modulename=pvm
 

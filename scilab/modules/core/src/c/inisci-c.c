@@ -11,6 +11,7 @@
 #include <string.h>
 #include <stdlib.h> /* getenv ! */
 #include "../../fileio/includes/FileExist.h"
+#include "localization.h"
 #include "machine.h" 
 #include "Os_specific.h"
 #include "core_math.h" 

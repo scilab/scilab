@@ -6,6 +6,7 @@
 #include "gw_tclsci.h"
 #include "sciprint.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 {

@@ -12,6 +12,7 @@
 #include "sciprint.h"
 #include "stack-c.h"
 #include "cluni0.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts);
 /*-----------------------------------------------------------------------------------*/

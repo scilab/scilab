@@ -8,6 +8,7 @@
 #include "libraryinfo.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
 {

@@ -8,6 +8,7 @@
 #include "delfile.h"
 #include "core_math.h" /* Min Max */
 #include "sciprint.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(mclose) (integer *fd, double *res)
 {     

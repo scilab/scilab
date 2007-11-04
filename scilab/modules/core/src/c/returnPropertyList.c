@@ -9,7 +9,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-
+#include "localization.h"
 /*------------------------------------------------------------------------*/
 returnedList * createReturnedList( int nbElements, char * elementName[] )
 {

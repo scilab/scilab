@@ -11,6 +11,7 @@
 #include "MALLOC.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
+#include "localization.h"
 #include "../../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL getversionmodule(char *modulename,

@@ -200,7 +200,7 @@ ElementPtr spcFindElementInCol();
 #if EXPANDABLE
 /* Re-size Matrix if necessary. */
     if ((Row > Matrix->Size) OR (Col > Matrix->Size))
-        EnlargeMatrix( Matrix, MAX(Row, Col) );
+        EnlargeMatrix( Matrix, Max(Row, Col) );
     if (Matrix->Error == spNO_MEMORY) return NULL;
 #endif
 #endif
@@ -345,13 +345,13 @@ register int IntRow, IntCol, ExtRow, ExtCol;
     if ((ExtRow > Matrix->AllocatedExtSize) OR
         (ExtCol > Matrix->AllocatedExtSize))
     {
-        ExpandTranslationArrays( Matrix, MAX(ExtRow, ExtCol) );
+        ExpandTranslationArrays( Matrix, Max(ExtRow, ExtCol) );
         if (Matrix->Error == spNO_MEMORY) return;
     }
 
 /* Set ExtSize if necessary. */
     if ((ExtRow > Matrix->ExtSize) OR (ExtCol > Matrix->ExtSize))
-        Matrix->ExtSize = MAX(ExtRow, ExtCol);
+        Matrix->ExtSize = Max(ExtRow, ExtCol);
 
 /* Translate external row or node number to internal row or node number. */
     if ((IntRow = Matrix->ExtToIntRowMap[ExtRow]) == -1)
@@ -840,7 +840,7 @@ register int I, OldAllocatedSize = Matrix->AllocatedSize;
         return 0;
 
 /* Expand the matrix frame. */
-    NewSize = (int) MAX( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
+    NewSize = (int) Max( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
     Matrix->AllocatedSize = NewSize;
 
     if (( SPREALLOC(Matrix->IntToExtColMap, int, NewSize+1)) == NULL)
@@ -926,7 +926,7 @@ register int I, OldAllocatedSize = Matrix->AllocatedExtSize;
         return 0;
 
 /* Expand the translation arrays ExtToIntRowMap and ExtToIntColMap. */
-    NewSize = (int) MAX( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
+    NewSize = (int) Max( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
     Matrix->AllocatedExtSize = NewSize;
 
     if (( SPREALLOC(Matrix->ExtToIntRowMap, int, NewSize+1)) == NULL)

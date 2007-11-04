@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "scilines.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))

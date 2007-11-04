@@ -11,15 +11,12 @@
 #include "parse.h"
 #include "basout.h"
 #include "ScilabEventsLoop.h"
+#include "core_math.h"
 #include "../../tclsci/includes/tksynchro.h"
 #include "cvstr.h"
 /*-----------------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
-/*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(parse)() line 1393 */
-#endif
 /*-----------------------------------------------------------------------------------*/
 IMPORT struct {
   int iflag, interruptible;
@@ -49,9 +46,6 @@ static int c_n1 = -1;
 
 #define equal  50
 #define eol  99
-#ifndef max 
-#define max(x,y)	(((x)>(y))?(x):(y))
-#endif 
 
 #define Pt (C2F(recu).pt)
 /*-----------------------------------------------------------------------------------*/
@@ -806,7 +800,7 @@ int C2F(parse)()
   /*     store results */
   /* ------------------- */
  L70:
-  Lhs = max(Lhs,1);
+  Lhs = Max(Lhs,1);
   if (Compil(29, &(Lhs), C2F(com).sym, 0, 0)) {
     if (C2F(iop).err > 0) {
       return 0;

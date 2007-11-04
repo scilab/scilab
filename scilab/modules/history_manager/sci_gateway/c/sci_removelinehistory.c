@@ -6,6 +6,7 @@
 #include "gw_history_manager.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "HistoryManager.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_removelinehistory) _PARAMS((char *fname,unsigned long fname_len))

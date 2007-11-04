@@ -17,6 +17,7 @@
 #include "merror.h"
 #include "mtell.h"
 #include "mclearerr.h"
+#include "localization.h"
 #include "mget.h"
 #include "mgetstr.h"
 #include "Scierror.h"

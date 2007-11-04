@@ -138,27 +138,27 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-librarieslist.lo libscicore_la-libraryinfo.lo \
 	libscicore_la-getvariablesname.lo \
 	libscicore_la-commandwords.lo \
-	libscicore_la-ScilabEventsLoop.lo
+	libscicore_la-ScilabEventsLoop.lo libscicore_la-errmsg.lo
 am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	dldsp.lo bcol.lo getlin.lo isany.lo hmcreate.lo nextj.lo \
-	functionsforbasout.lo setgetmode.lo errmsgf.lo showstack.lo \
-	misops.lo iseye.lo chkvar.lo setippty.lo compil.lo funnam.lo \
-	isnum.lo cmdstr.lo logops.lo atome.lo hndlops.lo cmplxt.lo \
-	skpins.lo folhp.lo cvname.lo funs.lo fact.lo inibrk.lo \
-	typ2cod.lo prompt.lo intstr.lo createref.lo btof.lo matzs.lo \
-	getnum.lo btofm.lo getsym.lo findequal.lo stackg.lo find.lo \
-	israt.lo setlnb.lo mrknmd.lo stackgl.lo allops.lo print.lo \
-	mname.lo prntid.lo command.lo ref2val.lo namstr.lo stack.lo \
-	isbrk.lo majmin.lo dmdspf.lo xerbla.lo dtosci.lo bexec.lo \
-	varfunptr.lo getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo \
-	mkindx.lo whatln.lo errmgr.lo defmat.lo mklist.lo dmdsp.lo \
-	sigbas.lo indxg.lo matz.lo istrue.lo inisci.lo ptover.lo \
-	getfunction.lo stackp.lo dbasin.lo macro.lo lspdsp.lo \
-	extlarg.lo getstr.lo cvwm.lo storeglobal.lo lst2vars.lo \
-	fmttyp.lo basnms.lo matc.lo ptrback.lo getch.lo ftob.lo \
-	seteol.lo basin.lo clause.lo compcl.lo termf.lo expsum.lo \
-	eqid.lo copyvar.lo putid.lo itosci.lo formatnumber.lo wmdsp.lo \
-	stackr2d.lo stacki2d.lo stackc2i.lo
+	functionsforbasout.lo setgetmode.lo showstack.lo misops.lo \
+	iseye.lo chkvar.lo setippty.lo compil.lo funnam.lo isnum.lo \
+	cmdstr.lo logops.lo atome.lo hndlops.lo cmplxt.lo skpins.lo \
+	folhp.lo cvname.lo funs.lo fact.lo inibrk.lo typ2cod.lo \
+	prompt.lo intstr.lo createref.lo btof.lo matzs.lo getnum.lo \
+	btofm.lo getsym.lo findequal.lo stackg.lo find.lo israt.lo \
+	setlnb.lo mrknmd.lo stackgl.lo allops.lo print.lo mname.lo \
+	prntid.lo command.lo ref2val.lo namstr.lo stack.lo isbrk.lo \
+	majmin.lo dmdspf.lo xerbla.lo dtosci.lo bexec.lo varfunptr.lo \
+	getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo \
+	whatln.lo errmgr.lo defmat.lo mklist.lo dmdsp.lo sigbas.lo \
+	indxg.lo matz.lo istrue.lo inisci.lo ptover.lo getfunction.lo \
+	stackp.lo dbasin.lo macro.lo lspdsp.lo extlarg.lo getstr.lo \
+	cvwm.lo storeglobal.lo lst2vars.lo fmttyp.lo basnms.lo matc.lo \
+	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
+	compcl.lo termf.lo expsum.lo eqid.lo copyvar.lo putid.lo \
+	itosci.lo formatnumber.lo wmdsp.lo stackr2d.lo stacki2d.lo \
+	stackc2i.lo
 am__objects_3 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
@@ -488,7 +488,8 @@ src/c/librarieslist.c \
 src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
-src/c/ScilabEventsLoop.c
+src/c/ScilabEventsLoop.c \
+src/c/errmsg.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -502,7 +503,6 @@ src/fortran/hmcreate.f \
 src/fortran/nextj.f \
 src/fortran/functionsforbasout.f \
 src/fortran/setgetmode.f \
-src/fortran/errmsgf.f \
 src/fortran/showstack.f \
 src/fortran/misops.f \
 src/fortran/iseye.f \
@@ -977,6 +977,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cs2st.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cvstr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-errmsg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-expr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-filesmanagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-flags.Plo@am__quote@
@@ -1682,6 +1683,13 @@ libscicore_la-ScilabEventsLoop.lo: src/c/ScilabEventsLoop.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-ScilabEventsLoop.lo `test -f 'src/c/ScilabEventsLoop.c' || echo '$(srcdir)/'`src/c/ScilabEventsLoop.c
 
+libscicore_la-errmsg.lo: src/c/errmsg.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-errmsg.lo -MD -MP -MF $(DEPDIR)/libscicore_la-errmsg.Tpo -c -o libscicore_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-errmsg.Tpo $(DEPDIR)/libscicore_la-errmsg.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errmsg.c' object='libscicore_la-errmsg.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
+
 libscicore_la-sci_stacksize.lo: sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_stacksize.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_stacksize.Tpo -c -o libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/c/sci_stacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_stacksize.Tpo $(DEPDIR)/libscicore_la-sci_stacksize.Plo
@@ -2195,9 +2203,6 @@ functionsforbasout.lo: src/fortran/functionsforbasout.f
 
 setgetmode.lo: src/fortran/setgetmode.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o setgetmode.lo `test -f 'src/fortran/setgetmode.f' || echo '$(srcdir)/'`src/fortran/setgetmode.f
-
-errmsgf.lo: src/fortran/errmsgf.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o errmsgf.lo `test -f 'src/fortran/errmsgf.f' || echo '$(srcdir)/'`src/fortran/errmsgf.f
 
 showstack.lo: src/fortran/showstack.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o showstack.lo `test -f 'src/fortran/showstack.f' || echo '$(srcdir)/'`src/fortran/showstack.f

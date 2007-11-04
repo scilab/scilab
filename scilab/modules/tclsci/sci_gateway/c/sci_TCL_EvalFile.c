@@ -6,6 +6,7 @@
 #include "gw_tclsci.h"
 #include "sciprint.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern BOOL FileExist(char *filename); /* From module fileio */
 /*-----------------------------------------------------------------------------------*/

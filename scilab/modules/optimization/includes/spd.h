@@ -3,10 +3,9 @@
 #define __SPD_H__
 
 #include "machine.h"
+#include "core_math.h"
 
 #define SQR(x) ((x)*(x))
-#define MAX(x,y)  ((x) > (y) ? (x) : (y))
-#define MIN(x,y)  ((x) < (y) ? (x) : (y))
 
 #define NB 32            /* block size for dgels */
 #define MINABSTOL 1e-8

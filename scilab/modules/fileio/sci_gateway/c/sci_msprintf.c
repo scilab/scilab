@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "gw_fileio.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 int int_objsprintf(char *fname,unsigned long fname_len)
 {
@@ -25,7 +26,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	CheckLhs(0,1);
 	if ( Rhs < 1 ) 
 	{ 
-		Scierror(999,_("Error:\tRhs must be > 0\n"));
+		Scierror(999,_("Error:\tInput parameters (RHS) must be > 0\n"));
 		return 0;
 	}
 	for (k=2;k<=Rhs;k++) {

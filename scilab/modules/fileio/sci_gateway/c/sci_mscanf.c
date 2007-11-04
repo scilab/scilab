@@ -8,6 +8,7 @@
 #include "do_xxscanf.h"
 #include "do_xxprintf.h"
 #include "gw_fileio.h"
+#include "localization.h"
 #include "../../../shell/includes/zzledt.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define MAXSTR 512

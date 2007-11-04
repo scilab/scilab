@@ -23,12 +23,12 @@
 #include "machine.h"
 #include "sox.h" 
 #include "sciprint.h"
+#include "localization.h"
+#include "core_math.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern char *sizes[];
 extern char *styles[];
 /*-----------------------------------------------------------------------------------*/ 
-#define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
-#define Min(x,y) ( ( (x) < (y))  ? (x) : (y) )
 struct soundstream informat;
 ft_t ft;
 /*-----------------------------------------------------------------------------------*/ 

@@ -20,8 +20,8 @@ dnl Process this file with autoconf to produce a configure script.
 #                |           set to zero if current is incremented
 #                +- increment if interfaces have been added, removed or changed
 
-AC_REVISION($Revision: 1.132.2.6 $)dnl
-AC_INIT([scilab],[0],[http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi])
+AC_REVISION($Revision$)dnl
+AC_INIT([Scilab],[0],[http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi])
 AC_PREREQ(2.60)
 
 SCI_BUILDDIR="`pwd`"
@@ -469,8 +469,8 @@ fi
 
 
 # flag for possible compilations in configure
-CFLAGS="$CFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/'
-CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/'
+CFLAGS="$CFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
+CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 ###########################
@@ -1004,41 +1004,8 @@ AH_BOTTOM([
 #endif
 #define DIR_SEPARATOR "/"
 
-/* make sure we have PATH_MAX */
-#if HAVE_LIMITS_H
-# include <limits.h>
-#endif
-#if HAVE_SYS_PARAM
-# include <sys/param.h>
-#endif
-#ifndef PATH_MAX
-# ifndef _POSIX_PATH_MAX
-#  ifndef MAXPATHLEN
-#   define PATH_MAX 1024
-#  else
-#   define PATH_MAX MAXPATHLEN
-#  endif
-# else
-#  define PATH_MAX _POSIX_PATH_MAX
-# endif
-#endif
-
-#ifdef HAVE_LIBINTL_H
-/* Have been able to find the libintl.h file on the system */
-#include <libintl.h>
-
-#define _(String) gettext (String)
-#define _t(String1,String2,n) ngettext (String1,String2,n)
-
-#else
-/* Restore the normal behaviour ... all the string will be in english */
-
-#define _(String) ((const char *) (String))
-#define gettext(String) ((const char *) (String))
-#define _t(String1,String2,n) ngettext (String1,String2,n)
-#define ngettext(String1, String2, n) ((n) == 1 ? (const char *) (String1) : (const char *) (String2))
-
-#endif
+/* Defines PATH_MAX */
+#include "PATH_MAX.h"
 
 /* Defines BOOL type */
 #include "BOOL.h"
@@ -1177,7 +1144,7 @@ echo "Enable debug ..........      --enable-debug=$enable_debug	$enable_debug"
 echo "Enable debug C.........      --enable-debug-C=$enable_debug_C	$enable_debug_C"
 echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
 echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
-echo "Enable stop on warning.      --enable-debug-fortran=$enable_stop_on_warning	$enable_stop_on_warning"
+echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning	$enable_stop_on_warning"
 
 echo ""
 echo "Compiler Configuration:"

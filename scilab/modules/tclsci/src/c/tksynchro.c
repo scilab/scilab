@@ -7,6 +7,7 @@
 #include "TCL_Global.h"
 #include "tksynchro.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(tksynchro)( int *l)
 {

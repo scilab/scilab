@@ -11,6 +11,7 @@
 #include "interpolation.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern double C2F(db3val)(double *xval, double *yval, double *zval, int *idx, int *idy, int *idz,
 		   double *tx, double *ty, double *tz, int *nx, int *ny, int *nz,

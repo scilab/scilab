@@ -6,6 +6,7 @@
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
+#include "localization.h"
 #include "someinterp.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/

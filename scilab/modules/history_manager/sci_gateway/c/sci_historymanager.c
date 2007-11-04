@@ -9,6 +9,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "HistoryManager.h"
+#include "localization.h"
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"
 #include "getCommentDateSession.h"

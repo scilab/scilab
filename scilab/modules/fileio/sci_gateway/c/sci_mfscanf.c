@@ -10,6 +10,7 @@
 #include "gw_fileio.h"
 #include "filesmanagement.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int int_objfscanf(char *fname,unsigned long fname_len)
 {

@@ -7,14 +7,13 @@
 #include "warningmode.h"
 #include "dynamiclibrary.h"
 #include "addinter.h"
+#include "core_math.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef round
 #undef round
 #endif 
 
 #define round(x,s) (((x) + ((s)-1)) & ~((s)-1))
-#define Min(x,y)	(((x)<(y))?(x):(y))
-#define Max(x,y)	(((x)>(y))?(x):(y))
 #define debug C2F(iop).ddt==1
 /*-----------------------------------------------------------------------------------*/
 static void Sci_Delsym __PARAMS((int ));

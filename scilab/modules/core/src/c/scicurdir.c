@@ -13,6 +13,7 @@
 #include "sciprint.h"
 #include "scicurdir.h"
 #include "MALLOC.h"
+#include "localization.h"
 #include "warningmode.h"
 static char cur_dir[PATH_MAX];
 /*-----------------------------------------------------------------------------------*/

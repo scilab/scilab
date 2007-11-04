@@ -11,6 +11,7 @@
 #include "ole.h"
 #include "ripole.h"
 #include "machine.h"
+#include "localization.h"
 
 #undef WITHMAIN
 

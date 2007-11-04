@@ -9,6 +9,7 @@
 #include "intmacr2tree.h"
 #include "sciprint.h"
 #include "cvstr.h"
+#include "localization.h"
 #include "machine.h"
 
 /* Table to store variable names */

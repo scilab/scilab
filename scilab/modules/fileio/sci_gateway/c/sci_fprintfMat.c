@@ -8,6 +8,7 @@
 #include "gw_fileio.h"
 #include "fileio.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int int_objfprintfMat(char *fname,unsigned long fname_len)
 {

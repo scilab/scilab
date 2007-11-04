@@ -34,6 +34,7 @@
 #include "sciprint.h"
 #include "sizes.h"
 #include "styles.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 /* Private data for .wav file */
 typedef struct wavstuff 

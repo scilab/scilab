@@ -5,6 +5,7 @@
 #include <string.h>
 #include "sciprint.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "gw_tclsci.h"
 #include "stack-c.h"
 #include "inisci-c.h"

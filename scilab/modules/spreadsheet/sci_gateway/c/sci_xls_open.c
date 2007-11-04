@@ -15,9 +15,11 @@
 #include "MALLOC.h"
 #include "../../../fileio/includes/mopen.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "GetenvB.h"
 #include "tmpdir.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static char *xls_basename (char *name);
 /*-----------------------------------------------------------------------------------*/

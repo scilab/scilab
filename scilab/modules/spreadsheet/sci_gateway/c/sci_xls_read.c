@@ -10,6 +10,7 @@
 #include "gw_spreadsheet.h"
 #include "xls.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len))

@@ -12,6 +12,7 @@
 #include "stack3.h"
 #include "stack-c.h"
 #include "cvstr.h"
+#include "localization.h"
 #include "Scierror.h"
 
 extern int C2F(dmcopy)  __PARAMS((double *a, integer *na, double *b, integer *nb, integer *m, integer *n));

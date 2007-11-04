@@ -1,9 +1,8 @@
 #include "stack-c.h"
+#include "core_math.h"
 /*      SUBROUTINE DSYEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK, INFO ) */
 /*     [w,U]=dsyev(A)      */
 /*     w=dsyev(A)      */
-#define MAX(x,y)	(((x)>(y))?(x):(y))
-#define MIN(x,y)	(((x)<(y))?(x):(y))
 
 int intdsyev(fname)
      char* fname;

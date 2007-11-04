@@ -8,8 +8,7 @@
 #include "MALLOC.h"
 #include "sci_getrelativefilename.h"
 #include "machine.h"
- /*-----------------------------------------------------------------------------------*/
-#define MAX_FILENAME_LEN 512
+#include "localization.h"
  /*-----------------------------------------------------------------------------------*/
 /* ================================================================================== */
 // sci_getrelativefilename
@@ -53,14 +52,14 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 		
 		// make sure the names are not too long
 		
-		if( strlen(param1) > MAX_FILENAME_LEN )
+		if( strlen(param1) > PATH_MAX )
 		{
-			Scierror(999,_("The first parameter is too long : must be less than %d caracters"),MAX_FILENAME_LEN);
+			Scierror(999,_("The first parameter is too long : must be less than %d caracters"),PATH_MAX);
 		}
 		
-		if( strlen(param2) > MAX_FILENAME_LEN )
+		if( strlen(param2) > PATH_MAX )
 		{
-			Scierror(999,_("The second parameter is too long : must be less than %d caracters"),MAX_FILENAME_LEN);
+			Scierror(999,_("The second parameter is too long : must be less than %d caracters"),PATH_MAX);
 		}
 		
 		result = getrelativefilename(param1,param2);
@@ -89,7 +88,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	int cdLen = 0, afLen = 0;
 	int i = 0;
 	int levels = 0;
-	char *relativeFilename= (char*)MALLOC(MAX_FILENAME_LEN*sizeof(char));
+	char *relativeFilename= (char*)MALLOC(PATH_MAX*sizeof(char));
 	
 	cdLen = (int)strlen(currentDirectory);
 	afLen = (int)strlen(absoluteFilename);
@@ -173,7 +172,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	}
 	
 	// check that the result will not be too long
-	if(levels * 3 + afLen - afMarker > MAX_FILENAME_LEN)
+	if(levels * 3 + afLen - afMarker > PATH_MAX)
 	{
 		return NULL;
 	}

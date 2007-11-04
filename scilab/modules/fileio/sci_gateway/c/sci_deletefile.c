@@ -7,6 +7,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "deleteafile.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_deletefile) _PARAMS((char *fname,unsigned long fname_len))
 {

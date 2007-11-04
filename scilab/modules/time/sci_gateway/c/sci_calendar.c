@@ -7,11 +7,12 @@
 #include "Scierror.h"
 #include "IsAScalar.h"
 #include "InversionMatrixInt.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
-static int isBissextile (unsigned annee);
-static unsigned months_to_days (unsigned mois);
-static long years_to_days (unsigned annee);
-static long ymd_to_scalar (unsigned annee, unsigned mois, unsigned jour);
+static int isBissextile (unsigned year);
+static unsigned months_to_days (unsigned month);
+static long years_to_days (unsigned year);
+static long ymd_to_scalar (unsigned year, unsigned month, unsigned day);
 /*-----------------------------------------------------------------------------------*/
 #define NBRDAY 7
 #define NBRWEEK 6
@@ -93,29 +94,29 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static int isBissextile (unsigned annee)
+static int isBissextile (unsigned year)
 {
-    return annee % 400 == 0 || (annee % 4 == 0 && annee % 100 != 0);
+    return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
 }
 /*-----------------------------------------------------------------------------------*/
-static unsigned months_to_days (unsigned mois)
+static unsigned months_to_days (unsigned month)
 {
-    return (mois * 3057 - 3007) / 100;
+    return (month * 3057 - 3007) / 100;
 }
 /*-----------------------------------------------------------------------------------*/
-static long years_to_days (unsigned annee)
+static long years_to_days (unsigned year)
 {
-    return annee * 365L + annee / 4 - annee / 100 + annee / 400;
+    return year * 365L + year / 4 - year / 100 + year / 400;
 }
 /*-----------------------------------------------------------------------------------*/
-static long ymd_to_scalar (unsigned annee, unsigned mois, unsigned jour)
+static long ymd_to_scalar (unsigned year, unsigned month, unsigned day)
 {
     long scalaire;
-    scalaire = jour + months_to_days(mois);
-    if ( mois > 2 )                      
-    scalaire -= isBissextile(annee) ? 1 : 2;
-    annee--;
-    scalaire += years_to_days(annee);
+    scalaire = day + months_to_days(month);
+    if ( month > 2 )                      
+    scalaire -= isBissextile(year) ? 1 : 2;
+    year--;
+    scalaire += years_to_days(year);
     return scalaire;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -8,11 +8,8 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "scicurdir.h"
+#include "localization.h"
 #include "cluni0.h"
-/*-----------------------------------------------------------------------------------*/
-#ifndef MAX_PATH_STR
-#define MAX_PATH_STR 1024
-#endif
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -24,8 +21,8 @@ int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		int ierr = 0;
 		static int l1,n1,m1;
-		char shortpath[MAX_PATH_STR];
-		char path[MAX_PATH_STR];
+		char shortpath[PATH_MAX];
+		char path[PATH_MAX];
 		int out_n = 0;
 
 		if (Rhs == 0)
@@ -38,7 +35,7 @@ int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len))
 			strcpy(shortpath,cstk(l1));
 		}
 
-		C2F(cluni0)(shortpath,path,&out_n,(long)strlen(shortpath),MAX_PATH_STR);
+		C2F(cluni0)(shortpath,path,&out_n,(long)strlen(shortpath),PATH_MAX);
 		C2F(scichdir)(path,&ierr);
 
 		n1=1;
@@ -52,7 +49,7 @@ int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("Invalid parameter.\n"));
+		Scierror(999,_("Invalid input parameter.\n"));
 	}
 	return 0;
 }

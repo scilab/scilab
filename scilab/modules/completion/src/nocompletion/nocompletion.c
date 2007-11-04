@@ -5,6 +5,7 @@
 #include "machine.h"
 #include "completion.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "gw_completion.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_completion)()

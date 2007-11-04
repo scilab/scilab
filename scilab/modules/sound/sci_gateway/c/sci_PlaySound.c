@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "cluni0.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static char filename[PATH_MAX];
 static int out_n;

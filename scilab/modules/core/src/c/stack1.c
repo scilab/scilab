@@ -11,6 +11,7 @@
 #include "stack2.h"
 #include "sciprint.h"
 #include "cvstr.h"
+#include "localization.h"
 
 /* Table of constant values */
 

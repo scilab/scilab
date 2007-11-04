@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "version.h"
 #include "scilabmode.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 void disp_scilab_version(void)
 {

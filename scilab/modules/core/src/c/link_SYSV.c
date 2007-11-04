@@ -70,9 +70,9 @@
 #include "tmpdir.h"
 #include "setgetSCIpath.h"
 #include "sciprint_nd.h"
-
 #include "addinter.h"
 #include "warningmode.h"
+#include "localization.h"
 
 #ifdef round
 	#undef round

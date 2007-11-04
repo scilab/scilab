@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "CdfBase.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(cdfchi) __PARAMS((int *,double *,double *,double *,double *, int *,double *));
 /*-----------------------------------------------------------------------------------*/

@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include "localization.h"
 #include "MALLOC.h"
 #include "machine.h"
 #include "paths.h"
-
-extern void cerro __PARAMS((char *str));
+#include "cerro.h"
 
 static char str[80];
 

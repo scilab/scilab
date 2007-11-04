@@ -14,6 +14,7 @@
 #include "inisci-c.h"
 #include "Scierror.h"
 #include "withtk.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static int getversion_no_rhs(void);
 static int getversion_one_rhs(void);

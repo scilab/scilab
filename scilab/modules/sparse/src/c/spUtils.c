@@ -229,12 +229,12 @@ ElementPtr pTwin1, pTwin2;
 
     pTwin1 = Matrix->FirstInCol[Col];
     while (pTwin1 != NULL)
-    {   if (ABS(pTwin1->Real) == 1.0)
+    {   if (Abs(pTwin1->Real) == 1.0)
         {   Row = pTwin1->Row;
             pTwin2 = Matrix->FirstInCol[Row];
             while ((pTwin2 != NULL) AND (pTwin2->Row != Col))
                 pTwin2 = pTwin2->NextInCol;
-            if ((pTwin2 != NULL) AND (ABS(pTwin2->Real) == 1.0))
+            if ((pTwin2 != NULL) AND (Abs(pTwin2->Real) == 1.0))
             {   /* Found symmetric twins. */
                 if (++Twins >= 2) return Twins;
                 (*ppTwin1 = pTwin1)->Col = Col;
@@ -908,7 +908,7 @@ register int I, Size;
 RealNumber Norm, nr, ni;
 ComplexNumber Pivot, cDeterminant;
 
-#define  NORM(a)     (nr = ABS((a).Real), ni = ABS((a).Imag), MAX (nr,ni))
+#define  NORM(a)     (nr = Abs((a).Real), ni = Abs((a).Imag), Max(nr,ni))
 
 /* Begin `spDeterminant'. */
     ASSERT( IS_SPARSE( Matrix ) AND IS_FACTORED(Matrix) );
@@ -987,11 +987,11 @@ ComplexNumber Pivot, cDeterminant;
 
 /* Scale Determinant. */
             if (*pDeterminant != 0.0)
-            {   while (ABS(*pDeterminant) >= 1.0e12)
+            {   while (Abs(*pDeterminant) >= 1.0e12)
                 {   *pDeterminant *= 1.0e-12;
                     *pExponent += 12;
                 }
-                while (ABS(*pDeterminant) < 1.0e-12)
+                while (Abs(*pDeterminant) < 1.0e-12)
                 {   *pDeterminant *= 1.0e12;
                     *pExponent -= 12;
                 }
@@ -1000,11 +1000,11 @@ ComplexNumber Pivot, cDeterminant;
 
 /* Scale Determinant again, this time to be between 1.0 <= x < 10.0. */
         if (*pDeterminant != 0.0)
-        {   while (ABS(*pDeterminant) >= 10.0)
+        {   while (Abs(*pDeterminant) >= 10.0)
             {   *pDeterminant *= 0.1;
                 (*pExponent)++;
             }
-            while (ABS(*pDeterminant) < 1.0)
+            while (Abs(*pDeterminant) < 1.0)
             {   *pDeterminant *= 10.0;
                 (*pExponent)--;
             }
@@ -1391,16 +1391,16 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
     {   pPivot = Matrix->Diag[I];
         if (T[I] < 0.0) Em = -E; else Em = E;
         Wm = (Em + T[I]) * pPivot->Real;
-        if (ABS(Wm) > SLACK)
-        {   ScaleFactor = 1.0 / MAX( SQR( SLACK ), ABS(Wm) );
+        if (Abs(Wm) > SLACK)
+        {   ScaleFactor = 1.0 / Max( SQR( SLACK ), Abs(Wm) );
             for (K = Size; K > 0; K--) T[K] *= ScaleFactor;
             E *= ScaleFactor;
             Em *= ScaleFactor;
             Wm = (Em + T[I]) * pPivot->Real;
         }
         Wp = (T[I] - Em) * pPivot->Real;
-        ASp = ABS(T[I] - Em);
-        ASm = ABS(Em + T[I]);
+        ASp = Abs(T[I] - Em);
+        ASm = Abs(Em + T[I]);
 
 /* Update T for both values of W, minus value is placed in Tm. */
         pElement = pPivot->NextInCol;
@@ -1408,8 +1408,8 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
         {   Row = pElement->Row;
             Tm[Row] = T[Row] - (Wm * pElement->Real);
             T[Row] -= (Wp * pElement->Real);
-            ASp += ABS(T[Row]);
-            ASm += ABS(Tm[Row]);
+            ASp += Abs(T[Row]);
+            ASm += Abs(Tm[Row]);
             pElement = pElement->NextInCol;
         }
 
@@ -1426,7 +1426,7 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
     }
 
 /* Compute 1-norm of T, which now contains w, and scale ||T|| to 1/SLACK. */
-    for (ASw = 0.0, I = Size; I > 0; I--) ASw += ABS(T[I]);
+    for (ASw = 0.0, I = Size; I > 0; I--) ASw += Abs(T[I]);
     ScaleFactor = 1.0 / (SLACK * ASw);
     if (ScaleFactor < 0.5)
     {   for (I = Size; I > 0; I--) T[I] *= ScaleFactor;
@@ -1440,15 +1440,15 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
         {   T[I] -= pElement->Real * T[pElement->Col];
             pElement = pElement->NextInRow;
         }
-        if (ABS(T[I]) > SLACK)
-        {   ScaleFactor = 1.0 / MAX( SQR( SLACK ), ABS(T[I]) );
+        if (Abs(T[I]) > SLACK)
+        {   ScaleFactor = 1.0 / Max( SQR( SLACK ), Abs(T[I]) );
             for (K = Size; K > 0; K--) T[K] *= ScaleFactor;
             E *= ScaleFactor;
         }
     }
 
 /* Compute 1-norm of T, which now contains y, and scale ||T|| to 1/SLACK. */
-    for (ASy = 0.0, I = Size; I > 0; I--) ASy += ABS(T[I]);
+    for (ASy = 0.0, I = Size; I > 0; I--) ASy += Abs(T[I]);
     ScaleFactor = 1.0 / (SLACK * ASy);
     if (ScaleFactor < 0.5)
     {   for (I = Size; I > 0; I--) T[I] *= ScaleFactor;
@@ -1458,7 +1458,7 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
 
 /* Compute infinity-norm of T for O'Leary's estimate. */
     for (MaxY = 0.0, I = Size; I > 0; I--)
-        if (MaxY < ABS(T[I])) MaxY = ABS(T[I]);
+        if (MaxY < Abs(T[I])) MaxY = Abs(T[I]);
 
 /*
  * Part 2.  A* z = y where the * represents the transpose.
@@ -1472,15 +1472,15 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
         {   T[pElement->Col] -= T[I] * pElement->Real;
             pElement = pElement->NextInRow;
         }
-        if (ABS(T[I]) > SLACK)
-        {   ScaleFactor = 1.0 / MAX( SQR( SLACK ), ABS(T[I]) );
+        if (Abs(T[I]) > SLACK)
+        {   ScaleFactor = 1.0 / Max( SQR( SLACK ), Abs(T[I]) );
             for (K = Size; K > 0; K--) T[K] *= ScaleFactor;
             ASy *= ScaleFactor;
         }
     }
 
 /* Compute 1-norm of T, which now contains v, and scale ||T|| to 1/SLACK. */
-    for (ASv = 0.0, I = Size; I > 0; I--) ASv += ABS(T[I]);
+    for (ASv = 0.0, I = Size; I > 0; I--) ASv += Abs(T[I]);
     ScaleFactor = 1.0 / (SLACK * ASv);
     if (ScaleFactor < 0.5)
     {   for (I = Size; I > 0; I--) T[I] *= ScaleFactor;
@@ -1496,15 +1496,15 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
             pElement = pElement->NextInCol;
         }
         T[I] *= pPivot->Real;
-        if (ABS(T[I]) > SLACK)
-        {   ScaleFactor = 1.0 / MAX( SQR( SLACK ), ABS(T[I]) );
+        if (Abs(T[I]) > SLACK)
+        {   ScaleFactor = 1.0 / Max( SQR( SLACK ), Abs(T[I]) );
             for (K = Size; K > 0; K--) T[K] *= ScaleFactor;
             ASy *= ScaleFactor;
         }
     }
 
 /* Compute 1-norm of T, which now contains z. */
-    for (ASz = 0.0, I = Size; I > 0; I--) ASz += ABS(T[I]);
+    for (ASz = 0.0, I = Size; I > 0; I--) ASz += Abs(T[I]);
 
 #if NOT spCOMPLEX
     SPFREE( Tm );
@@ -1512,7 +1512,7 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
 
     Linpack = ASy / ASz;
     OLeary = E / MaxY;
-    InvNormOfInverse = MIN( Linpack, OLeary );
+    InvNormOfInverse = Min( Linpack, OLeary );
     return InvNormOfInverse / NormOfMatrix;
 #endif /* REAL */
 }
@@ -1579,7 +1579,7 @@ ComplexNumber Wp, Wm;
         ASm = CMPLX_1_NORM( Wm );
         CMPLX_MULT_ASSIGN( Wm, *pPivot );
         if (CMPLX_1_NORM(Wm) > SLACK)
-        {   ScaleFactor = 1.0 / MAX( SQR( SLACK ), CMPLX_1_NORM(Wm) );
+        {   ScaleFactor = 1.0 / Max( SQR( SLACK ), CMPLX_1_NORM(Wm) );
             for (K = Size; K > 0; K--) SCLR_MULT_ASSIGN( T[K], ScaleFactor );
             E *= ScaleFactor;
             Em *= ScaleFactor;
@@ -1633,7 +1633,7 @@ ComplexNumber Wp, Wm;
             pElement = pElement->NextInRow;
         }
         if (CMPLX_1_NORM(T[I]) > SLACK)
-        {   ScaleFactor = 1.0 / MAX( SQR( SLACK ), CMPLX_1_NORM(T[I]) );
+        {   ScaleFactor = 1.0 / Max( SQR( SLACK ), CMPLX_1_NORM(T[I]) );
             for (K = Size; K > 0; K--) SCLR_MULT_ASSIGN( T[K], ScaleFactor );
             E *= ScaleFactor;
         }
@@ -1666,7 +1666,7 @@ ComplexNumber Wp, Wm;
             pElement = pElement->NextInRow;
         }
         if (CMPLX_1_NORM(T[I]) > SLACK)
-        {   ScaleFactor = 1.0 / MAX( SQR( SLACK ), CMPLX_1_NORM(T[I]) );
+        {   ScaleFactor = 1.0 / Max( SQR( SLACK ), CMPLX_1_NORM(T[I]) );
             for (K = Size; K > 0; K--) SCLR_MULT_ASSIGN( T[K], ScaleFactor );
             ASy *= ScaleFactor;
         }
@@ -1691,7 +1691,7 @@ ComplexNumber Wp, Wm;
         }
         CMPLX_MULT_ASSIGN( T[I], *pPivot );
         if (CMPLX_1_NORM(T[I]) > SLACK)
-        {   ScaleFactor = 1.0 / MAX( SQR( SLACK ), CMPLX_1_NORM(T[I]) );
+        {   ScaleFactor = 1.0 / Max( SQR( SLACK ), CMPLX_1_NORM(T[I]) );
             for (K = Size; K > 0; K--) SCLR_MULT_ASSIGN( T[K], ScaleFactor );
             ASy *= ScaleFactor;
         }
@@ -1704,7 +1704,7 @@ ComplexNumber Wp, Wm;
 
     Linpack = ASy / ASz;
     OLeary = E / MaxY;
-    InvNormOfInverse = MIN( Linpack, OLeary );
+    InvNormOfInverse = Min( Linpack, OLeary );
     return InvNormOfInverse / NormOfMatrix;
 }
 #endif /* spCOMPLEX */
@@ -1746,7 +1746,7 @@ RealNumber Max = 0.0, AbsRowSum;
         {   pElement = Matrix->FirstInRow[I];
             AbsRowSum = 0.0;
             while (pElement != NULL)
-            {   AbsRowSum += ABS( pElement->Real );
+            {   AbsRowSum += Abs( pElement->Real );
                 pElement = pElement->NextInRow;
             }
             if (Max < AbsRowSum) Max = AbsRowSum;
@@ -1862,11 +1862,11 @@ register ElementPtr pElement, pDiag;
 
 /* Lower triangular matrix. */
             Pivot = 1.0 / pDiag->Real;
-            Mag = ABS( Pivot );
+            Mag = Abs( Pivot );
             if (Mag > MaxRow) MaxRow = Mag;
             pElement = Matrix->FirstInRow[I];
             while (pElement != pDiag)
-            {   Mag = ABS( pElement->Real );
+            {   Mag = Abs( pElement->Real );
                 if (Mag > MaxRow) MaxRow = Mag;
                 pElement = pElement->NextInRow;
             }
@@ -1875,7 +1875,7 @@ register ElementPtr pElement, pDiag;
             pElement = Matrix->FirstInCol[I];
             AbsColSum = 1.0;  /* Diagonal of U is unity. */
             while (pElement != pDiag)
-            {   AbsColSum += ABS( pElement->Real );
+            {   AbsColSum += Abs( pElement->Real );
                 pElement = pElement->NextInCol;
             }
             if (AbsColSum > MaxCol) MaxCol = AbsColSum;
@@ -1885,7 +1885,7 @@ register ElementPtr pElement, pDiag;
     {   for (I = 1; I <= Matrix->Size; I++)
         {   pElement = Matrix->FirstInCol[I];
             while (pElement != NULL)
-            {   Mag = ABS( pElement->Real );
+            {   Mag = Abs( pElement->Real );
                 if (Mag > Max) Max = Mag;
                 pElement = pElement->NextInCol;
             }

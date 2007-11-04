@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "machine.h"
+#include "localization.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "msgstore.h"
@@ -29,7 +30,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
     *errtyp = 0;
 
     C2F(linestore)(&i);
-    C2F(funnamestore)(" ", &i,strlen(" "));
+    C2F(funnamestore)(" ", &i);//strlen(" "));
     C2F(freemsgtable)();
     C2F(errstore)(n);
     
@@ -56,20 +57,22 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			{
 				char *Str=NULL;
 				C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf, &i, 4096L);
-				Str=(char*)MALLOC( sizeof(char)*( strlen(_("Undefined variable : %s"))+1+strlen(C2F(cha1).buf) ) );
-				sprintf(Str,SCI_ERRMSG4,C2F(cha1).buf);
+				#define ERROR_MSG _("Undefined variable : %s")
+				Str=(char*)MALLOC( sizeof(char)*( strlen(ERROR_MSG)+1+strlen(C2F(cha1).buf) ) );
+				sprintf(Str,ERROR_MSG,C2F(cha1).buf);
 				MSGOUT(Str);
 				FREE(Str);
+				#undef ERROR_MSG
 			}
 			break;
 			case 5:
 			{
-				MSGOUT(SCI_ERRMSG5);
+				MSGOUT(_("Inconsistent column/row dimensions"));
 			}
 			break;
 			case 6:
 			{
-				MSGOUT(SCI_ERRMSG6);
+				MSGOUT(_("Inconsistent row/column dimensions"));
 			}
 			break;
 			case 7:

@@ -9,6 +9,7 @@
 #include "MALLOC.h"
 #include "cluni0.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -19,7 +20,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 	
 	if (! (GetType(1) == sci_strings))
 	{
-		Scierror(999,_("parameter incorrect must be a string (a file pathname).\n"));
+		Scierror(999,_("Parameter incorrect must be a string (a file pathname).\n"));
 		return 0;
 	}
 	else

@@ -8,6 +8,7 @@
 #include "interpolation.h"
 #include "sciprint.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(dset)();
 /* from dspfit.f */

@@ -1,4 +1,5 @@
 #include "transc.h"
+#include "localization.h"
 
 void C2F(transc)(int *lp1,int **lpft,int *ls1,int **lsft,int *m,int *lsftdim,int *lpftdim,int *n)
 {

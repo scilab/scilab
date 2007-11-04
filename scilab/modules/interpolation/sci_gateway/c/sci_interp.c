@@ -6,6 +6,7 @@
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
+#include "localization.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(evalpwhermite) (double *t, double *st, double *dst, double *ddst, double *dddst,int *m, double *x, double *y, double *d, int *n, int *outmode);

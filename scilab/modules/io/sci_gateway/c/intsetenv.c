@@ -10,7 +10,7 @@
 #include "setenvc.h"
 #include "intsetenv.h"
 #include "gw_io.h"
-
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static int ReturnValueSetenv(int value);
 /*-----------------------------------------------------------------------------------*/

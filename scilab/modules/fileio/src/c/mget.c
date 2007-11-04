@@ -9,6 +9,7 @@
 #include "sciprint.h"
 #include "islittleendian.h"
 #include "machine.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 struct soundstream ftf;
 int swap = 0;

@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <ctype.h>
 #include "GetCharWithEventsLoop.h"
+#include "localization.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "core_math.h" /* Max */

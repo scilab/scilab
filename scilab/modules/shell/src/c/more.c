@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "more.h"
 #include "scilabmode.h"
+#include "localization.h"
 #include "sciprint.h"
 #include "../../../console/includes/GetCharWithoutOutput.h"
 #include "../../../console/includes/ConsolePrintf.h"

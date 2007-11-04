@@ -2,11 +2,12 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_xpause.h"
 #ifdef HAVE_USLEEP
 #include <unistd.h>
 #endif
+#include "sci_xpause.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 {

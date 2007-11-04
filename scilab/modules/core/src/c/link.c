@@ -9,19 +9,17 @@
 
 #include <string.h> 
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "core_math.h"
 #include "MALLOC.h" /* MALLOC */
 #include "../../../string/includes/men_Sutils.h"
 #include "link.h"
 #include "sciprint.h"
-
-#include <stdlib.h>
-
 #include "machine.h"
 #include "stack-c.h"
 #include "warningmode.h"
 #include "sciprint.h"
+#include "localization.h"
 
 static void Underscores __PARAMS((int isfor,char *ename,char *ename1));
 static int SearchFandS  __PARAMS( ( char *,int ));

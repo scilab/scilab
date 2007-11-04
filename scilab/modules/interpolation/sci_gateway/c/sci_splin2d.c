@@ -9,6 +9,7 @@
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
+#include "localization.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(bicubicsubspline)(double *x, double *y, double *z, int *nx, int *ny,double *C, double *p, double *q, double *r, int *spline_type);

@@ -12,6 +12,7 @@
 #include "prompt.h"
 #include "sciprint.h"
 #include "filesmanagement.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeCore(void)
 {

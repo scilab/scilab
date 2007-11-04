@@ -8,6 +8,7 @@
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "machine.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 { 

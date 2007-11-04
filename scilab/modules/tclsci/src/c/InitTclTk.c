@@ -11,6 +11,7 @@
 #include "setgetSCIpath.h"
 #include "sciprint.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "scilabmode.h"
 #include "ScilabEval.h"
 /*-----------------------------------------------------------------------------------*/

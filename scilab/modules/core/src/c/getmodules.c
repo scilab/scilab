@@ -10,6 +10,7 @@
 #include "machine.h"
 #include "MALLOC.h"
 #include "setgetSCIpath.h"
+#include "localization.h"
 #include "string.h"
 #include "sciprint.h"
 #include "GetXmlFileEncoding.h"

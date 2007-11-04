@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "getfastcode.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int good_order(double x[], int n)
 {

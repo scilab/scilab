@@ -9,6 +9,7 @@
 #include "link.h"
 #include "addinter.h" 
 #include "Os_specific.h"
+#include "localization.h"
 
 #include "stack-def.h"
 #include "MALLOC.h" /* MALLOC */

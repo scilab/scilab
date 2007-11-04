@@ -1382,7 +1382,7 @@ RealNumber  FindBiggestInColExclude();
  * off diagonals are placed symmetricly. */
             if (pOtherInRow != NULL  AND  pOtherInCol != NULL)
             {   if (pOtherInRow->Col == pOtherInCol->Row)
-                {   LargestOffDiagonal = MAX(ELEMENT_MAG(pOtherInRow),
+                {   LargestOffDiagonal = Max(ELEMENT_MAG(pOtherInRow),
                                                       ELEMENT_MAG(pOtherInCol));
                     if (Magnitude >= LargestOffDiagonal)
                     {
@@ -1572,7 +1572,7 @@ RealNumber  FindBiggestInColExclude();
  * off-diagonals are placed symmetricly. */
             if (pOtherInRow != NULL  AND  pOtherInCol != NULL)
             {   if (pOtherInRow->Col == pOtherInCol->Row)
-                {   LargestOffDiagonal = MAX(ELEMENT_MAG(pOtherInRow),
+                {   LargestOffDiagonal = Max(ELEMENT_MAG(pOtherInRow),
                                                       ELEMENT_MAG(pOtherInCol));
                     if (Magnitude >= LargestOffDiagonal)
                     {
@@ -2646,7 +2646,7 @@ register  ElementPtr  pLower, pUpper;
 /* Begin `RealRowColElimination'. */
 
 /* Test for zero pivot. */
-    if (ABS(pPivot->Real) == 0.0)
+    if (Abs(pPivot->Real) == 0.0)
     {   (void)MatrixIsSingular( Matrix, pPivot->Row );
         return 0; 
     }

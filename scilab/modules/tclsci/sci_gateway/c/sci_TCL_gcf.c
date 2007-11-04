@@ -6,6 +6,7 @@
 #include "gw_tclsci.h"
 #include "TclEvents.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int GetTclCurrentFigure(void);
 int SetTclCurrentFigure(int num);

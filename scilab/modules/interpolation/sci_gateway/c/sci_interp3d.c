@@ -9,6 +9,7 @@
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
+#include "localization.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/

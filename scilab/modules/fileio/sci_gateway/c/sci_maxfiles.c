@@ -7,6 +7,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "filesmanagement.h"
+#include "localization.h"
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 #define MAX_FILES 100

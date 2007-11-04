@@ -7,6 +7,7 @@
 #include <string.h> /* strlen */
 #include "getCommentDateSession.h"
 #include "MALLOC.h"
+#include "localization.h"
 /*------------------------------------------------------------------------*/
 #define string_begin_session _("// Begin Session : ")
 #define string_end_session   _("// End Session   : ")

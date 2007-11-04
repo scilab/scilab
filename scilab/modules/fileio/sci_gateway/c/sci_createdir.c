@@ -12,6 +12,7 @@
 #include "warningmode.h"
 #include "sciprint.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_createdir) _PARAMS((char *fname,unsigned long l))
 {

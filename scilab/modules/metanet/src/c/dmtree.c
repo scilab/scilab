@@ -5,6 +5,7 @@ extern void cerro();
 
 #include "machine.h"
 #include "MALLOC.h"
+#include "localization.h"
 
 #ifdef _MSC_VER
 extern int F2C(arbor)();

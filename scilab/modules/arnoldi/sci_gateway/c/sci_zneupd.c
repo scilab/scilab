@@ -1,8 +1,8 @@
 #include <math.h>
 #include <string.h>
 #include "stack-c.h"
+#include "core_math.h"
 /*-----------------------------------------------------------------------------------*/
-#define MAX(x,y)	(((x)>(y))?(x):(y))
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))
 #define DOUBLE(x)	( stk(x))
@@ -63,7 +63,7 @@ int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len))
   GetRhsVar(20,MATRIX_OF_DOUBLE_DATATYPE, &mRWORK,  &nRWORK,  &pRWORK);       RWORK  = 20;
   GetRhsVar(21,MATRIX_OF_INTEGER_DATATYPE, &mINFO,   &nINFO,   &pINFO);          INFO = 21;
 
-  LWORKL = mWORKL*nWORKL;   LDV=MAX(1,*istk(pN)); LDZ=LDV;
+  LWORKL = mWORKL*nWORKL;   LDV=Max(1,*istk(pN)); LDZ=LDV;
 
   C2F(zneupd)(istk(pRVEC), cstk(pHOWMANY), istk(pSELECT), zstk(pD), 
               zstk(pZ), &LDZ, zstk(pSIGMA), zstk(pWORKev),

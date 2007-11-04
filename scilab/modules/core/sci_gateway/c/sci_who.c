@@ -8,6 +8,7 @@
 #include "MALLOC.h"
 #include "stackinfo.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 struct VariableStruct

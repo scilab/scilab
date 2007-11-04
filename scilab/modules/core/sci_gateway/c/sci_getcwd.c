@@ -8,6 +8,7 @@
 #include "scicurdir.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getcwd) _PARAMS((char *fname,unsigned long fname_len))
 {

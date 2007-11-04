@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
+#include "localization.h"
 #include "scilabmode.h"
 #include "machine.h" 
 #include "sciprint.h"

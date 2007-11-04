@@ -20,6 +20,7 @@
 #include "st.h"
 #include "../../../libs/libst/libst.h"
 #include "sciprint.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern char *sizes[];
 extern char *styles[];

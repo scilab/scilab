@@ -11,6 +11,7 @@
 #include "MALLOC.h"
 #include "machine.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 #define _fullpath(a,r,l)        realpath(r,a)

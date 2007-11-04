@@ -183,6 +183,7 @@ if test -z "$JAVA_HOME"; then
 
 			_cur=$DIR/java
 			# resolve symlink
+			# Will probably bug if a file contains -> in the name
 			while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
 				_cur=`ls -ld "$_cur" | sed 's/.* -> //'`
 			done

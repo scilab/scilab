@@ -10,6 +10,7 @@
 #include "getmaxMALLOC.h"
 #include "scimem.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern integer C2F(adjustgstacksize)();
 /*-----------------------------------------------------------------------------------*/

@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "md5.h"
+#include "localization.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -92,7 +93,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 
 				LhsVar(1) = Rhs+1;
 				C2F(putlhsvar)();
- }
+			}
 			else
 			{
 				Scierror(999,_("Invalid second parameter. It must be a string.\n"));

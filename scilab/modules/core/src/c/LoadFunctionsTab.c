@@ -15,6 +15,7 @@
 #include "LoadFunctionsTab.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
+#include "localization.h"
 #include "../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/  
 static int firstentry = 0;

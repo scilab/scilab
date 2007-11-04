@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "clc.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_clc) _PARAMS((char *fname,unsigned long fname_len))

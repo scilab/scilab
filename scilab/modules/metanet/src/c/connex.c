@@ -1,4 +1,5 @@
 #include "connex.h"
+#include "localization.h"
 
 void C2F(concom)(int *icomp, int *n, int *ncomp, int *nsize, int **ns)
 {

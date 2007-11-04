@@ -139,7 +139,7 @@ int  AllocatedSize;
 #endif
 
 /* Create Matrix. */
-    AllocatedSize = MAX( Size, MINIMUM_ALLOCATED_SIZE );
+    AllocatedSize = Max( Size, MINIMUM_ALLOCATED_SIZE );
     SizePlusOne = (unsigned)(AllocatedSize + 1);
 
     if ((Matrix = SPALLOC(struct MatrixFrame, 1)) == NULL)

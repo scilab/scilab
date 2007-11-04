@@ -10,6 +10,7 @@
 #include "fileio.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
+#include "localization.h"
 
 /*-----------------------------------------------------------------------------------*/
 int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))

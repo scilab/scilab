@@ -2,8 +2,6 @@
 #define __SP_H__
 
 #define SQR(x) ((x)*(x))
-#define MAX(x,y)  ((x) > (y) ? (x) : (y))
-#define MIN(x,y)  ((x) < (y) ? (x) : (y))
 
 #define NB 32            /* block size for dgels */
 #define MINABSTOL 1e-8 

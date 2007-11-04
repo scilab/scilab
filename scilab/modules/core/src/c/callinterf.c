@@ -13,6 +13,7 @@
 #include "machine.h"
 #include "sciprint.h"
 #include "Scierror.h"
+#include "localization.h"
 
 
 static  jmp_buf jmp_env;

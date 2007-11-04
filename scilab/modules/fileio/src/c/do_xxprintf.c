@@ -9,6 +9,7 @@
 #include "do_xxprintf.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "localization.h"
 
 #ifdef _MSC_VER
 /* BUG 2582 */

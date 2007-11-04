@@ -83,7 +83,8 @@ src/c/librarieslist.c \
 src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
-src/c/ScilabEventsLoop.c
+src/c/ScilabEventsLoop.c \
+src/c/errmsg.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -97,7 +98,6 @@ src/fortran/hmcreate.f \
 src/fortran/nextj.f \
 src/fortran/functionsforbasout.f \
 src/fortran/setgetmode.f \
-src/fortran/errmsgf.f \
 src/fortran/showstack.f \
 src/fortran/misops.f \
 src/fortran/iseye.f \

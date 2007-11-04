@@ -8,6 +8,7 @@
 #include "do_xxscanf.h"
 #include "fileio.h"
 #include "cvstr.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int NumTokens __PARAMS((char *string))
 {

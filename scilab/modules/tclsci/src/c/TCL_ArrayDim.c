@@ -5,6 +5,7 @@
 #include <string.h>
 #include "TCL_ArrayDim.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 #define TCL_SCILAB_VARIABLE_TMP "TclScilabTmpVar"
 #define CHAR_BLANK ' '

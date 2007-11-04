@@ -7,6 +7,7 @@
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "TCL_ArrayExist.h"
 #include "TCL_ArrayDim.h"
 #include "TCL_ArrayGetVar.h"

@@ -9,6 +9,7 @@
 #include "IsAScalar.h"
 #include "hashtable_core.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname);
 /*-----------------------------------------------------------------------------------*/

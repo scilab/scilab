@@ -8,6 +8,7 @@
 #include "MALLOC.h"
 #include "getmaxMALLOC.h"
 #include "scimem.h"
+#include "localization.h"
 #include "stackinfo.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/

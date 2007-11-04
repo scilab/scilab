@@ -6,14 +6,13 @@
 
 #include "logger.h"
 #include "pldstr.h"
-
 #include "bytedecoders.h"
 #include "olestream-unwrap.h"
 #include "machine.h"
+#include "localization.h"
+#include "MALLOC.h"
 
 #define DUW if (oleuw->debug)
-
-#include "MALLOC.h"
 
 struct OLE10_header{
 	unsigned char data[6];

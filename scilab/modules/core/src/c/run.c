@@ -20,6 +20,8 @@
 #include "ScilabEventsLoop.h"
 #include "dynamic_menus.h"
 #include "parse.h"
+#include "localization.h"
+#include "core_math.h"
 
 #undef Lstk
 #undef Infstk
@@ -38,9 +40,6 @@ static int c__0 = 0;
 #define extrac  3
 #define semi  43
 #define equal  50
-#ifndef max 
-#define max(x,y)	(((x)>(y))?(x):(y))
-#endif 
 
 #define Pt (C2F(recu).pt)
 
@@ -622,7 +621,7 @@ int C2F(run)()
   /*     macro */
  L65:
   i2 = Istk[2 + lc] - 1;
-  Rhs = max(i2,0);
+  Rhs = Max(i2,0);
   C2F(adjustrhs)();
   Lhs = Istk[3 + lc];
 
@@ -1291,7 +1290,7 @@ int C2F(run)()
   /* try op-codes finished*/
   l0 = Ids[1 + Pt * nsiz];
   /*check if an error occured*/
-  ok = max(C2F(errgst).err2,C2F(errgst).err1)<=0;
+  ok = Max(C2F(errgst).err2,C2F(errgst).err1)<=0;
   /* restore preserved error modes */
   C2F(errgst).errct = Ids[2 + Pt * nsiz];
   C2F(errgst).err2  = Ids[3 + Pt * nsiz];

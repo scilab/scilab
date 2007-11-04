@@ -7,6 +7,7 @@
 #include "with_java.h"
 #include "InitializeJVM.h"
 #include "TerminateJVM.h"
+#include "localization.h"
 
 /*-----------------------------------------------------------------------------------*/ 
 /* not using gw_jvm.h */

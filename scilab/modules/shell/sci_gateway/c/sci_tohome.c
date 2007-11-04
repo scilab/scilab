@@ -6,6 +6,7 @@
 #include "gw_shell.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "localization.h"
 #include "tohome.h"
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
@@ -20,7 +21,7 @@ int C2F(sci_tohome) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (!bOK)
 	{
-		sciprint(_("not implemented in this mode.\n"));
+		sciprint(_("Not implemented in this mode.\n"));
 	}
 
 	LhsVar(1) = 0;

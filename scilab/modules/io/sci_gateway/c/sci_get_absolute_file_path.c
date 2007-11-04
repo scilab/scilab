@@ -20,6 +20,7 @@
 #include "Scierror.h"
 #include "getfiledesc.h"
 #include "getfileinfo.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len))
 {

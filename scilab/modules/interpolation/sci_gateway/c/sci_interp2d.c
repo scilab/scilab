@@ -6,6 +6,7 @@
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
+#include "localization.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(bicubicinterp)(double *x, double *y, double *C, int *nx, int *ny,double *x_eval, double *y_eval, double *z_eval, int *m,int *outmode);

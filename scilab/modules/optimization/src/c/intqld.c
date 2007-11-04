@@ -1,4 +1,5 @@
 #include "intqld.h"
+#include "localization.h"
 
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 

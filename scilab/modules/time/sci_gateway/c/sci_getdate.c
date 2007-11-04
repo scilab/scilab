@@ -18,6 +18,7 @@
 #include "getdate.h"
 #include "InversionMatrixInt.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 {

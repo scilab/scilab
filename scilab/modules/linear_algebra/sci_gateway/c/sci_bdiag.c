@@ -4,7 +4,7 @@
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
-
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static integer cx1 = 1;
 static integer cx0 = 0;

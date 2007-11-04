@@ -6,6 +6,7 @@
 #include "gw_completion.h"
 #include "MALLOC.h"
 #include "stack-c.h"
+#include "localization.h"
 #include "completion.h" 
 #include "Scierror.h"
 #include "toolsdictionary.h"

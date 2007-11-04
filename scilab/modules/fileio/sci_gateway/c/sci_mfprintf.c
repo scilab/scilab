@@ -7,6 +7,7 @@
 #include "do_xxprintf.h"
 #include "gw_fileio.h"
 #include "filesmanagement.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 {
@@ -22,7 +23,7 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 	CheckLhs(0,1);
 	if ( Rhs < 2 ) 
 	{ 
-		Scierror(999,_("Error:\tRhs must be >= 2\n"));
+		Scierror(999,_("Error:\tInput parameters (RHS) must be >= 2\n"));
 		return 0;
 	}
 	for (k=3;k<=Rhs;k++) 

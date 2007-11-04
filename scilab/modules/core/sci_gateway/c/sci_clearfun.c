@@ -10,6 +10,7 @@
 #include "hashtable_core.h"
 #include "Scierror.h"
 #include "Funtab.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len);
 /*-----------------------------------------------------------------------------------*/

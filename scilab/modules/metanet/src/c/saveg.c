@@ -1,4 +1,5 @@
 #include "saveg.h"
+#include "localization.h"
 
 static int CompString(char **s1, char **s2)
 {

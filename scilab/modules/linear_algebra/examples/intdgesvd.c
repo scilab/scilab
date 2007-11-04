@@ -1,13 +1,11 @@
 #include "stack-c.h"
+#include "core_math.h"
 /*      SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT, LDVT,
        $                   WORK, LWORK, INFO)   */
  
 /*     [U,s,VT]=svd(A)      */
 /*     [U,s]=svd(A)         */
 /*       s = svd(A)         */
-
-#define MAX(x,y)	(((x)>(y))?(x):(y))
-#define MIN(x,y)	(((x)<(y))?(x):(y))
 
 int intdgesvd(fname)
      char* fname;

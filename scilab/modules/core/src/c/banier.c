@@ -8,6 +8,7 @@
 #include "sciprint.h"
 #include "banier.h"
 #include "sciprint.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 void banner(void)
 {

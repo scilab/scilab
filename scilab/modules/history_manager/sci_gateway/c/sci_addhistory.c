@@ -9,6 +9,7 @@
 #include "stack-c.h"
 #include "HistoryManager.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_addhistory) _PARAMS((char *fname,unsigned long fname_len))
 {
