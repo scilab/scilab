@@ -7,6 +7,7 @@
 #include "MALLOC.h" 
 #include "Scierror.h"
 #include "FindFileAssociation.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l))
 {	

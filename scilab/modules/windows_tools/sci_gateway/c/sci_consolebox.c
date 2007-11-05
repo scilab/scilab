@@ -6,6 +6,7 @@
 #include "gw_windows_tools.h"
 #include "scilabmode.h"
 #include "MALLOC.h" /* MALLOC */
+#include "stack-c.h"
 #include "sciprint.h"
 #include "WinConsole.h"
 #include "Scierror.h"

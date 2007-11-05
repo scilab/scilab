@@ -2,6 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <stdio.h>
 #include "gw_windows_tools.h"
 #include "machine.h"
 #include "stack-c.h"

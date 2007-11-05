@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "gw_gui.h"
 #include "stack-c.h"
 #include "Scierror.h"
