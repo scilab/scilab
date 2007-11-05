@@ -11,6 +11,7 @@
 #include "sciprint.h"
 #include "inffic.h"
 #include "stackinfo.h"
+#include "core_math.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(showstack)();
 extern int C2F(cvname)();
@@ -186,6 +187,10 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 26:
 			{
+				sciprint(_("too complex recursion! (recursion tables are full))"));
+				/* break recursion */
+				C2F(recu).pt = Min(C2F(recu).pt,4096);
+				*errtyp = 1;
 			}
 			break;
 			case 27:
