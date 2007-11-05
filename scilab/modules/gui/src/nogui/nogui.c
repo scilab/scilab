@@ -4,13 +4,14 @@
 /* @author Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
 #include <errno.h>
-#include <unistd.h> /* fdset */
+#include <stdio.h> /* fileno */
+#include <sys/select.h> /* fd_set */
 #include "machine.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "nogui.h"
 #include "xscimore.h"
-
+#include "core_math.h" /* Max */
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_gui)()
 {
