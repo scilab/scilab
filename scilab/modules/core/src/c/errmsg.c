@@ -215,6 +215,8 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 31:
 			{
+				sciprint(_( "incorrect string\n"));
+				*errtyp = 1;
 			}
 			break;
 			case 32:
@@ -229,7 +231,8 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 34:
 			{
-
+				sciprint(_("incorrect control intruction syntax.\n"));
+				*errtyp = 1;
 			}
 			break;
 			case 35:
