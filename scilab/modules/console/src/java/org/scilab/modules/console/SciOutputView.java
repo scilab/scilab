@@ -116,7 +116,6 @@ public class SciOutputView extends JTextPane implements OutputView, Runnable {
 			       	((JTextPane) console.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
 		        	((JTextPane) console.getConfiguration().getInputCommandView()).invalidate();
 			    	((JTextPane) console.getConfiguration().getInputCommandView()).doLayout();
-					System.out.println("remove line");
 				}	
 				/* Update scroll only if console has been set */
 				if (console != null) {
