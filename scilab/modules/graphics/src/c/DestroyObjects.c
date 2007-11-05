@@ -265,17 +265,16 @@ int DestroyFigure (sciPointObj * pthis)
   }
   sciSetIsEventHandlerEnable(pthis, FALSE ) ;
   
-  if(pFIGURE_FEATURE(pthis)->eventHandler != NULL) // Added to avoid Scilab crash at exit
-    FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
-  
-  if((sciGetFontContext(pthis))->pfontname != NULL) // Added to avoid Scilab crash at exit
-    FREE ((sciGetFontContext(pthis))->pfontname);
+  FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
+  FREE ((sciGetFontContext(pthis))->pfontname);
 
-  if(pFIGURE_FEATURE(pthis)->pcolormap != NULL) // Added to avoid Scilab crash at exit
-    FREE(pFIGURE_FEATURE(pthis)->pcolormap);
+  if (pthis == getFigureModel())
+  {
+    /* colormap is stored by Java classes for displayed objects */
+    FREE(pFIGURE_FEATURE(pthis)->pModelData->colorMap);
+  }
 
-  if(pFIGURE_FEATURE(pthis)->infoMessage != NULL) // Added to avoid Scilab crash at exit
-    FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
+  FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   sciStandardDestroyOperations(pthis) ;

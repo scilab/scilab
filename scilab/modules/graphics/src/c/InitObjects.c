@@ -746,26 +746,20 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
 
   /** Initialize the colormap */
   /* try to install the colormap in the graphic context */
-
-  pFIGURE_FEATURE (pobj)->pcolormap = NULL ;
-  sciInitNumColors(pobj, 0) ;
-
-  sciSetColormap( pobj, pFIGURE_FEATURE(pfiguremdl)->pcolormap, sciGetNumColors(pfiguremdl), 3 ) ;
+  sciSetColormap( pobj, pFIGURE_FEATURE(pfiguremdl)->pModelData->colorMap, sciGetNumColors(pfiguremdl), 3 ) ;
 
    
   /* initialisation de context et mode graphique par defaut (figure model)*/
   if (sciInitGraphicContext (pobj) == -1)
     {
       sciDelHandle (pobj);
-      FREE(pFIGURE_FEATURE(pobj)->pcolormap);
       FREE(pobj->pfeatures);
       FREE(pobj);
       return -1;
     }
   if (sciInitGraphicMode (pobj) == -1)
     {
-      sciDelHandle (pobj);    
-      FREE(pFIGURE_FEATURE(pobj)->pcolormap);
+      sciDelHandle (pobj);
       FREE(pobj->pfeatures);
       FREE(pobj);
       return -1;

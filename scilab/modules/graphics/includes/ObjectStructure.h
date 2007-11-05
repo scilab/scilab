@@ -453,8 +453,6 @@ typedef struct
   /** specifies the number of this window            */
   int number;
 
-  /** specifies the colr map                         */
-  double *pcolormap;
   /** specifies if this window is iconified*/
   int numcolors;
   BOOL isiconified;		     

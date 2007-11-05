@@ -183,12 +183,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciInitIsEventHandlerEnable( pobj, sciGetIsEventHandlerEnable( pfiguremdl ) ) ;
   sciInitEventHandler( pobj, sciGetEventHandler( pfiguremdl ) ) ;
 
-  /** Initialize the colormap */
-  /* try to install the colormap in the graphic context */
-
-  ppFigure->pcolormap = NULL ;
-  sciInitNumColors(pobj, 0) ;
-
   sciInitDimension(pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl)) ;
   sciInitWindowDim(pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
