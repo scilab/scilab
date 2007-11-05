@@ -354,22 +354,62 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 52:
 			{
+				if (C2F(iop).err != 1)
+				{
+					sciprint(_("%dth argument must be a real matrix.\n"),C2F(iop).err);
+				}
+				else
+				{
+					sciprint(_("argument must be a real matrix.\n"));
+				}
 			}
 			break;
 			case 53:
 			{
+				if (C2F(iop).err != 1)
+				{
+					sciprint(_("%dth input is invalid (waiting for real or complex matrix.\n"),C2F(iop).err);
+				}
+				else
+				{
+					sciprint(_("invalid input (waiting for real or complex matrix.\n"));
+				}
 			}
 			break;
 			case 54:
 			{
+				if (C2F(iop).err != 1)
+				{
+					sciprint(_("%dth argument type must be polynomial.\n"),C2F(iop).err);
+				}
+				else
+				{
+					sciprint(_("argument type must be polynomial.\n"));
+				}
 			}
 			break;
 			case 55:
 			{
+				if (C2F(iop).err != 1)
+				{
+					sciprint(_("%dth argument type must be character string.\n"),C2F(iop).err);
+				}
+				else
+				{
+					sciprint(_("argument type must be  character string.\n"));
+				}
 			}
 			break;
 			case 56:
 			{
+				if (C2F(iop).err != 1)
+				{
+					sciprint(_("%dth argument must be a list.\n"),C2F(iop).err);
+				}
+				else
+				{
+					sciprint(_("argument must be a list.\n"));
+				}
 			}
 			break;
 			case 57:
