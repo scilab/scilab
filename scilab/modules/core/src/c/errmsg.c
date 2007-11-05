@@ -419,10 +419,33 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 58:
 			{
+				if (Rhs == 0)
+				{
+					sciprint(_("function has no input argument...\n"));
+				}
+				else
+				{
+					sciprint(_("incorrect number of arguments in function call...\n"));
+					sciprint(_("arguments are :\n"));
+					/* print variables name on stack :( */
+					C2F(prntid)(&((integer *)&C2F(stack))[C2F(recu).pstk[C2F(recu).pt - 1] - 1], &Rhs, &C2F(iop).wte);
+				}
+				
 			}
 			break;
 			case 59:
 			{
+				if (Lhs == 0)
+				{
+					sciprint(_("function has no output\n"));
+				}
+				else
+				{
+					sciprint(_("incorrect # of outputs in the function\n"));
+					sciprint(_("arguments are :\n"));
+					/* print variables name on stack :( */
+					C2F(prntid)(&((integer *)&C2F(stack))[C2F(recu).pstk[C2F(recu).pt - 1] - 1], &Lhs, &C2F(iop).wte);
+				}
 			}
 			break;
 			case 60:
