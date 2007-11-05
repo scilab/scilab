@@ -234,5 +234,13 @@ public class SciOutputView extends JTextPane implements OutputView, Runnable {
 	public SciConsole getConsole() {
 		return console;
 	}
+	
+	/**
+	 * Gets the console object containing this output view
+	 * @return the console associated 
+	 */
+	public boolean isReady() {
+		return bufferQueue.isEmpty();
+	}
 
 }
