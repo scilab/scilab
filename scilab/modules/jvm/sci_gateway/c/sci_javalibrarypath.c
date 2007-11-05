@@ -10,6 +10,7 @@
 #include "Scierror.h"
 #include "addToLibrarypath.h"
 #include "getLibrarypath.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 {

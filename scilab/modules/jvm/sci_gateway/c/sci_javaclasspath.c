@@ -10,6 +10,7 @@
 #include "Scierror.h"
 #include "addToClasspath.h"
 #include "getClasspath.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 {

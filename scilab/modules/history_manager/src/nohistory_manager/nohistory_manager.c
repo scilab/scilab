@@ -8,6 +8,7 @@
 #include "TerminateHistoryManager.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_history_manager)()
 {

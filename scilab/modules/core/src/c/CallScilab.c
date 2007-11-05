@@ -22,6 +22,7 @@
 #include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
 #include "../../../windows_tools/src/c/scilab_windows/getScilabDirectory.h"
 #endif
+#include "localization.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv

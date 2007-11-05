@@ -10,6 +10,7 @@
 #include "addToClasspath.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL LoadClasspath(char *xmlfilename)
 {

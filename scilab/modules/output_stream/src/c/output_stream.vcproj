@@ -46,7 +46,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -136,7 +136,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

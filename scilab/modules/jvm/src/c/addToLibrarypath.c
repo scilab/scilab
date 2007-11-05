@@ -7,6 +7,7 @@
 #include "getScilabJNIEnv.h"
 #include "../../fileio/includes/isdir.h"
 #include "fromjava.h"
+#
 /*-----------------------------------------------------------------------------------*/ 
 BOOL addToLibrarypath(char *librarypathstring)
 {
@@ -35,7 +36,7 @@ BOOL addToLibrarypath(char *librarypathstring)
 				if (cls)
 				{
 					jmethodID mid=NULL;
-					mid = (*currentENV)->GetStaticMethodID(currentENV, cls, _("addPath"),"(Ljava/lang/String;)V");
+					mid = (*currentENV)->GetStaticMethodID(currentENV, cls,"addPath","(Ljava/lang/String;)V");
 					if (mid)
 					{
 						jstring jstr;

@@ -12,6 +12,7 @@ extern "C"
 {
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "localization.h"
 };
 
 namespace sciGraphics

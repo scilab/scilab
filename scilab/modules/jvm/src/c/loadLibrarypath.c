@@ -10,6 +10,7 @@
 #include "addToLibrarypath.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL LoadLibrarypath(char *xmlfilename)
 {

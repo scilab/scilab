@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;NOHISTORY_MANAGER_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;NOHISTORY_MANAGER_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

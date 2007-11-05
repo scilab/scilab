@@ -7,7 +7,6 @@
 #define __SCIPRINT_H__
 
 #include <stdarg.h>
-#include "localization.h"
 
 /* any string of length greater than MAXPRINTF gets truncated in sciprint */
 #define MAXPRINTF 512

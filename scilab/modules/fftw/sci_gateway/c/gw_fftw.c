@@ -8,6 +8,7 @@
 #include "fftwlibname.h"
 #include "gw_fftw.h"
 #include "callFunctionFromGateway.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[]={
 { sci_loadfftwlibrary,"loadfftwlibrary"},

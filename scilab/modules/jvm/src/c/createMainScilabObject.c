@@ -8,6 +8,7 @@
 #include "getScilabJavaVM.h"
 #include "catchIfJavaException.h"
 #include "scilabmode.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 static jobject ScilabObject;
 /*-----------------------------------------------------------------------------------*/ 

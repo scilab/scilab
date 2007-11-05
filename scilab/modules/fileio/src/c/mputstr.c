@@ -20,7 +20,7 @@ void C2F(mputstr) (int *fd, char *str, double *res, int *ierr)
 	}
 	else 
 	{
-		sprintf(fa,"%s",str);
+		fprintf(fa,"%s",str);
 		(*res) = (*ierr) =ferror(fa);
 	}
 }

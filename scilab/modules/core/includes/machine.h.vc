@@ -89,21 +89,4 @@
 
 #define HAVE_LIBINTL_H
 
-#ifdef HAVE_LIBINTL_H
-/* Have been able to find the libintl.h file on the system */
-#include <libintl.h>
-
-#define _(String) gettext (String)
-#define _t(String1,String2,n) ngettext (String1,String2,n)
-
-#else
-/* Restore the normal behaviour ... all the string will be in english */
-
-#define _(String) ((const char *) (String))
-#define gettext(String) ((const char *) (String))
-#define _t(String1,String2,n) ngettext (String1,String2,n)
-#define ngettext(String1, String2, n) ((n) == 1 ? (const char *) (String1) : (const char *) (String2))
-
-#endif
-
 #endif /* MACHINE_H  */

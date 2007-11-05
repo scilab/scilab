@@ -10,6 +10,7 @@
 #include "stack-c.h"
 #include "system_setproperty.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_system_setproperty) _PARAMS((char *fname,unsigned long fname_len))
 {

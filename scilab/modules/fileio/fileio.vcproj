@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/intl;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;includes\tcltk\include;includes\tcltk\include\X11"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../localization/includes;../../libs/intl;includes\tcltk\include;includes\tcltk\include\X11"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/intl;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;includes\tcltk\include;includes\tcltk\include\X11"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../localization/includes;../../libs/intl;includes\tcltk\include;includes\tcltk\include\X11"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

@@ -10,6 +10,7 @@
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
 #include "fromjava.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 /* #define _JNI_DEBUG_TRACE */
 /*-----------------------------------------------------------------------------------*/ 

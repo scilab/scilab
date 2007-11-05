@@ -7,6 +7,7 @@
 #include "Scierror.h"
 #include "fftwlibname.h"
 #include "gw_fftw.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 int sci_loadfftwlibrary __PARAMS((char *fname,unsigned long fname_len))
 {

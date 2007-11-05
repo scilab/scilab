@@ -13,6 +13,7 @@
 #include "JVM.h"
 #include "createMainScilabObject.h"
 #include "scilabDefaults.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 static void DoLoadClasspathInEtc(char *SCIPATH);
 static void DoLoadLibrarypathInEtc(char *SCIPATH);

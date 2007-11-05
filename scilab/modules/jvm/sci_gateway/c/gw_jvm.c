@@ -9,6 +9,7 @@
 #include "scilabmode.h"
 #include "Scierror.h"
 #include "callFunctionFromGateway.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static gw_generic_table  Tab[]=
 {

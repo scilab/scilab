@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "JVM_commons.h"
 #include "dynamiclibrary.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 static DynLibHandle hLibJVM = NULL;
 /*-----------------------------------------------------------------------------------*/ 

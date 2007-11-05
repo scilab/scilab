@@ -11,7 +11,7 @@
 #include "tcl.h"
 #include "tk.h"
 #include "MALLOC.h"
-//#include "../../localization/includes/QueryStringError.h"
+#include "../../localization/includes/localization.h"
 #include "../../fileio/includes/ConvertPathUnixToWindows.h"
 /*-----------------------------------------------------------------------------------*/
 BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
@@ -37,12 +37,8 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-5.0\modules\tclsci\tcl\tcl8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,PATH_MAX)==0)
 	{
-		//char *msg1=QueryStringError(_("Incorrect TCL_LIBRARY environment variable"));
-		//char *msg2=QueryStringError(_("TCL_LIBRARY has been redefined to "));
 		fprintf(stderr,"\n%s\n%s%s.\n",_("Incorrect TCL_LIBRARY environment variable"),_("TCL_LIBRARY has been redefined to "),DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-//		if (msg1) {FREE(msg1);msg1=NULL;}
-//		if (msg2) {FREE(msg2);msg2=NULL;}
 
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
 		wsprintf (env, "TCL_LIBRARY=%s\\modules\\tclsci\\tcl\\tcl%d.%d",CopyOfDefaultPath,major,minor);
@@ -89,12 +85,8 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-3.1\modules\tclsci\tcl\tk8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,PATH_MAX)==0)
 	{
-		//char *msg1=QueryStringError(_("Incorrect TK_LIBRARY environment variable"));
-		//char *msg2=QueryStringError(_("TK_LIBRARY has been redefined to "));
 		fprintf(stderr,"\n%s\n%s%s.\n",_("Incorrect TK_LIBRARY environment variable"),_("TK_LIBRARY has been redefined to "),DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-		//if (msg1){FREE(msg1);msg1=NULL;}
-		//if (msg2){FREE(msg2);msg2=NULL;}
 
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
 		wsprintf (env, "TK_LIBRARY=%s\\modules\\tclsci\\tcl\\tk%d.%d",CopyOfDefaultPath,major,minor);

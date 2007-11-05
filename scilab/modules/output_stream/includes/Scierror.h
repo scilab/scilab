@@ -11,7 +11,6 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "version.h"
-#include "localization.h"
 
 #if defined (__STDC__) || defined (_MSC_VER)
 	int  Scierror __PARAMS((int iv,char *fmt,...));

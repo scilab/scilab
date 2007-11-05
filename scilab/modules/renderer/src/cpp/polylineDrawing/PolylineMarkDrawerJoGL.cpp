@@ -10,6 +10,7 @@
 extern "C"
 {
 #include "GetProperty.h"
+#include "localization.h"
 #include "sciprint.h"
 };
 
