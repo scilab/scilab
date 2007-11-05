@@ -37,7 +37,8 @@ src/c/ConvertPathUnixToWindows.c \
 src/c/createdirectory.c \
 src/c/isdir.c \
 src/c/isDrive.c \
-src/c/removedir.c
+src/c/removedir.c \
+src/c/set_xxprintf.c 
 
 
 GATEWAY_SOURCES = \

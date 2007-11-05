@@ -427,6 +427,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\set_xxprintf.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Status2Mode.c"
 				>
 			</File>
@@ -582,6 +586,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_fileio.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\set_xxprintf.h"
 				>
 			</File>
 			<File

@@ -10,39 +10,23 @@
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-
-#ifdef _MSC_VER
-/* BUG 2582 */
-/* workaround windows */
-#undef fprintf
-#undef vfprintf
-#undef printf
-#undef vprintf
-#undef sprintf
-#undef vsprintf
-#include <stdio.h>
-#endif
-/*-----------------------------------------------------------------------------------*/
-typedef int (*XXPRINTF) __PARAMS((FILE *, char *,...));
-typedef int (*FLUSH) __PARAMS((FILE *));
+#include "set_xxprintf.h"
 /*-----------------------------------------------------------------------------------*/
 #define  PF_C		0
 #define  PF_S		1
 #define  PF_D		2
 #define  PF_LD		3
 #define  PF_F		4
-#define  MAX_SPRINTF_SIZE  bsiz
 /*-----------------------------------------------------------------------------------*/
-static char sprintf_buffer[MAX_SPRINTF_SIZE];
+#define  MAX_SPRINTF_SIZE  bsiz
+char sprintf_buffer[MAX_SPRINTF_SIZE];
 static char *sprintf_limit = sprintf_buffer + MAX_SPRINTF_SIZE;
 /*-----------------------------------------------------------------------------------*/
-static int voidflush(FILE *fp);
 static int GetScalarInt(char *fname,int *first,int *arg,int narg, int *ir,int ic,int *ival);
 static int GetString (char *fname,int *first,int *arg,int narg, int *ir,int ic,char **sval);
 static int GetScalarDouble(char *fname,int *first,int *arg,int narg, int *ir,int ic,double *dval);
 static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target);
 static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *asterisk,int asterisk_count,int conversion_type,double dval );
-static void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target);
 /*-----------------------------------------------------------------------------------*/
 extern int SciStrtoStr(int *Scistring, int *nstring, int *ptrstrings, char **strh);
 /*-----------------------------------------------------------------------------------*/
@@ -129,31 +113,6 @@ static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *as
 		break;
 	}
 	return retval;
-}
-/*-----------------------------------------------------------------------------------*/
-static void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target)
-{
-	if (fp == (FILE *) 0)		
-	{
-		/* sprintf */
-		*target = sprintf_buffer;
-		*flush = voidflush;
-		*xxprintf = (XXPRINTF) sprintf;
-	}
-	else if ( fp == stdout ) 
-	{
-		/* sciprint2 */
-		*target =  (char *) 0; 
-		*flush = fflush;
-		*xxprintf = (XXPRINTF) sciprint2;
-	}
-	else 
-	{
-		/* fprintf */
-		*target = (char *) fp;
-		*flush = fflush;
-		*xxprintf = (XXPRINTF) fprintf;
-	}
 }
 /*-----------------------------------------------------------------------------------*/
 int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, int lcount, char **strv)
@@ -464,12 +423,6 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 		}
     }
 	return (retval);
-}
-
-/*-----------------------------------------------------------------------------------*/
-static int voidflush(FILE *fp)
-{
-	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int GetScalarInt(char *fname, int *prev, int *arg, int narg, int *ic, int ir, int *ival)
