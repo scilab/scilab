@@ -334,6 +334,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 48:
 			{
+				sciprint(_(" input line longer than buffer size: %d\n"),bsiz);
 			}
 			break;
 			case 49:
@@ -343,6 +344,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 50:
 			{
+				msgout_string(_("subroutine not found : %s"));
 			}
 			break;
 			case 51:
