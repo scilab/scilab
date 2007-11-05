@@ -60,6 +60,11 @@ integer C2F(getgvariablesinfo)(integer *total,integer *used)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+integer getIntermediateMemoryNeeded(void)
+{
+	return C2F(iop).err + C2F(vstk).lstk[C2F(vstk).bot - 1] - C2F(vstk).lstk[0];
+}
+/*-----------------------------------------------------------------------------------*/
 BOOL is_a_valid_size_for_scilab_stack(int sizestack)
 {
 	BOOL bOK=TRUE;

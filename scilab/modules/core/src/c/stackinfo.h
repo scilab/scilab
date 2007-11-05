@@ -42,6 +42,12 @@ integer C2F(getvariablesinfo)(integer *total,integer *used);
 integer C2F(getgvariablesinfo)(integer *total,integer *used);
 
 /**
+* returns Intermediate Memory size needed (stack) used by "error(17)"
+* @return Intermediate Memory size needed
+*/
+integer getIntermediateMemoryNeeded(void);
+
+/**
 * check if sizestack is a valid size for scilab's stack
 * @param sizestack
 * @return TRUE or FALSE

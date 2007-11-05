@@ -10,8 +10,7 @@
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "inffic.h"
-/*-----------------------------------------------------------------------------------*/
-//#define MSGOUT(msg) C2F(msgout)(&io, &lunit, msg, strlen(msg));
+#include "stackinfo.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(showstack)();
 extern int C2F(cvname)();
@@ -21,13 +20,15 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 {
 	int i=0;
 
+	*errtyp = 0;
+
 	/*    static integer lunit=0;
 	static integer ll=0;
     static integer io=0;
     
     ll = C2F(iop).lct[4];
     lunit = C2F(iop).wte;
-    *errtyp = 0;
+    
 
     C2F(linestore)(&i);
     C2F(funnamestore)(" ", &i);//strlen(" "));
@@ -128,6 +129,18 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 17:
 			{
+				int Memory_used_for_variables = 0;
+				int Intermediate_Memory = 0;
+				int Total_Memory_available = 0;
+				
+				Intermediate_Memory = getIntermediateMemoryNeeded();
+				C2F(getstackinfo)(&Total_Memory_available,&Memory_used_for_variables);
+		
+				sciprint(_("stack size exceeded!\n"));
+				sciprint(_("Use stacksize function to increase it)\n"));
+				sciprint(_("Memory used for variables : %d\n"),Memory_used_for_variables);
+				sciprint(_("Intermediate memory needed: %d\n"),Intermediate_Memory);
+				sciprint(_("Total  memory available   : %d\n"),Total_Memory_available);
 			}
 			break;
 			case 18:
