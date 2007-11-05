@@ -1,7 +1,10 @@
 /*-----------------------------------------------------------------------------------*/ 
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include <stdarg.h>
+#include <string.h>
+#include <stdio.h>
+#include "machine.h"
+#include "stack-c.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "sciprint.h"

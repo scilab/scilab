@@ -5,12 +5,8 @@
 #ifndef __SCIERROR__
 #define __SCIERROR__
 
-#include <string.h>
-#include <stdio.h>
-
-#include "machine.h"
-#include "stack-c.h"
-#include "version.h"
+#include <stdarg.h>
+#include "PARAMS.h"
 
 #if defined (__STDC__) || defined (_MSC_VER)
 	int  Scierror __PARAMS((int iv,char *fmt,...));
