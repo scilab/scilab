@@ -317,7 +317,8 @@ libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-Iincludes/ \
 			-Isrc/c \
 			$(XML_FLAGS) \
-			-I$(top_srcdir)/modules/output_stream/includes/
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/
 
 libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
 pkglib_LTLIBRARIES = libscijvm.la
