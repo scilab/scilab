@@ -56,8 +56,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 		
-		((SciOutputView) this.getConfiguration().getOutputView()).flushBuffer();
-		
 		// Show the prompt
 		this.getConfiguration().getPromptView().setVisible(true);
 
@@ -109,8 +107,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 */
 	public int getCharWithoutOutput() {
 		int retChar;
-
-		((SciOutputView) this.getConfiguration().getOutputView()).flushBuffer();
 		
 		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
 		this.requestFocus();
