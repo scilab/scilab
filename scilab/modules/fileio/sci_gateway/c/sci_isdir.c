@@ -3,6 +3,7 @@
  * @author Sylvestre LEDRU - INRIA 2007
  */
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdio.h>
 #include "gw_fileio.h"
 #include "isdir.h"
 #include "stack-c.h"
