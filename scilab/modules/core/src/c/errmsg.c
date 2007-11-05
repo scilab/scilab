@@ -237,6 +237,21 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 35:
 			{
+				switch (C2F(recu).ids[C2F(recu).pt * 6 - 6]) /* find instruction type */
+				{
+					case 1: /* if */
+						sciprint(_("Syntax error in an if instruction.\n"));
+					break;
+
+					case 2: /* while */
+						sciprint(_("Syntax error in a while instruction.\n"));
+					break;
+
+					default: /* select/case */
+						sciprint(_("Syntax error in a select/case instruction.\n"));
+					break;
+				}
+				*errtyp = 1;
 			}
 			break;
 			case 36:
