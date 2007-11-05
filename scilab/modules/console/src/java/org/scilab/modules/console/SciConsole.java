@@ -208,8 +208,8 @@ public class SciConsole extends JPanel {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        /* Flush buffer so that clc is displayed */
-        ((SciOutputView) config.getOutputView()).flushBuffer();
+        /* Wait for buffer so that clc is displayed */
+        while (!((SciOutputView) config.getOutputView()).isReady());
         
         try {
             config.getOutputViewStyledDocument().remove(0, config.getOutputViewStyledDocument().getLength());
@@ -262,8 +262,8 @@ public class SciConsole extends JPanel {
      * Puts the prompt in the top left corner of the console
      */
     public void toHome() {
-    	/* Flush buffer so that toHome is displayed */
-        ((SciOutputView) config.getOutputView()).flushBuffer();
+        /* Wait for buffer so that tohome is displayed */
+    	while (!((SciOutputView) config.getOutputView()).isReady());
         
     	Dimension jSPExtSize = jSP.getViewport().getExtentSize();
     	Dimension newDim = new Dimension(jSPExtSize.width - jSP.getVerticalScrollBar().getPreferredSize().width, jSPExtSize.height);
