@@ -15,10 +15,11 @@
 extern int C2F(showstack)();
 extern int C2F(cvname)();
 extern int C2F(prntid)();
+static void strip_blank(char *source);
+static void msgout_string(const char *msg);
 /*-----------------------------------------------------------------------------------*/
 int C2F(errmsg)(integer *n,integer *errtyp)
 {
-	int i=0;
 /*
 	static integer lunit=0;
 	static integer ll=0;
@@ -56,14 +57,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 4:
 			{
-				char *Str=NULL;
-				C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf, &i, 4096L);
-				#define ERROR_MSG _("Undefined variable : %s")
-				Str=(char*)MALLOC( sizeof(char)*( strlen(ERROR_MSG)+1+strlen(C2F(cha1).buf) ) );
-				sprintf(Str,ERROR_MSG,C2F(cha1).buf);
-				sciprint(Str);
-				FREE(Str);
-				#undef ERROR_MSG
+				msgout_string(_("Undefined variable : %s"));
 			}
 			break;
 			case 5:
@@ -187,6 +181,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 25:
 			{
+				msgout_string(_("bad call to primitive : %s"));
 			}
 			break;
 			case 26:
@@ -1097,6 +1092,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			default:
 			{
 				integer bufl;
+				char *buffer = NULL;
 				/* message d'erreur soft */
 				/* Bug 1422 corrected - Francois VOGEL June 2006 */
 				bufl = 1;
@@ -1105,10 +1101,48 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 					++bufl;
 				}
 				--bufl;
-				sciprint(C2F(cha1).buf);
+				/* remove blank */
+				buffer = (char*)MALLOC((strlen(C2F(cha1).buf)+1)*sizeof(char));
+				if (buffer)
+				{
+					strcpy(buffer,C2F(cha1).buf);
+					strip_blank(buffer);
+					sciprint(buffer);
+					FREE(buffer);
+				}
+				
 			}
 			break;
     }
 		return 0; 
+}
+/*-----------------------------------------------------------------------------------*/    
+static void strip_blank(char *source)
+{
+	char *p;
+	p = source;
+	/* look for end of string */
+	while(*p != '\0') p++;
+	while(p != source)
+	{
+		p--;
+		if(*p != ' ') break;
+		*p = '\0';
+	}
+}
+/*-----------------------------------------------------------------------------------*/    
+static void msgout_string(const char *msg)
+{
+	int i = 0;
+	char *buffer = NULL;
+	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf, &i, nlgh);
+	buffer = (char*)MALLOC( sizeof(char)*( strlen(msg)+1+strlen(C2F(cha1).buf) ) );
+	if (buffer)
+	{
+		sprintf(buffer,msg,C2F(cha1).buf);
+		strip_blank(buffer);
+		sciprint(buffer);
+		FREE(buffer);
+	}
 }
 /*-----------------------------------------------------------------------------------*/    
