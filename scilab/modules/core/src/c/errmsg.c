@@ -19,13 +19,13 @@ extern int C2F(prntid)();
 int C2F(errmsg)(integer *n,integer *errtyp)
 {
 	int i=0;
-
-	*errtyp = 0;
-
-	/*    static integer lunit=0;
+/*
+	static integer lunit=0;
 	static integer ll=0;
     static integer io=0;
-    
+*/    
+	*errtyp = 0;
+/*
     ll = C2F(iop).lct[4];
     lunit = C2F(iop).wte;
     
@@ -34,7 +34,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
     C2F(funnamestore)(" ", &i);//strlen(" "));
     C2F(freemsgtable)();
     C2F(errstore)(n);
-    */
+*/    
     switch ((int)*n) 
     {
 			case 1:
@@ -155,6 +155,14 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 20:
 			{
+				if (C2F(iop).err == 1)
+				{
+					sciprint(_("first argument must be square matrix.\n"));
+				}
+				else
+				{
+					sciprint(_("%dth argument must be square matrix.\n"),C2F(iop).err);
+				}
 			}
 			break;
 			case 21:
