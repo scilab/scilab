@@ -460,10 +460,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 62:
 			{
+				sciprint(_("end of file at line %d\n"),C2F(iop).err);
 			}
 			break;
 			case 63:
 			{
+				sciprint(_("%d graphic terminal?\n"),C2F(iop).err);
 			}
 			break;
 			case 64:
