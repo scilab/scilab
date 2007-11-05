@@ -9,9 +9,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-//#include "msgstore.h"
 #include "inffic.h"
-//#include "msgout.h"
 /*-----------------------------------------------------------------------------------*/
 //#define MSGOUT(msg) C2F(msgout)(&io, &lunit, msg, strlen(msg));
 /*-----------------------------------------------------------------------------------*/
@@ -533,6 +531,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 108:
 			{
+				sciprint(_("too complex for scilab, may be a too long control instruction"));
 			}
 			break;
 			case 109:
@@ -586,10 +585,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 120:
 			{
+				sciprint(_("Indices for non-zero elements must be given by a 2 column matrix"));
 			}
 			break;
 			case 121:
 			{
+				sciprint(_("Incompatible indices for non-zero elements\n"));
 			}
 			break;
 			case 122:
@@ -608,6 +609,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 125:
 			{
+				sciprint(_("Problem may be unbounded : too high distance between two consecutive iterations"));
 			}
 			break;
 			case 126:
@@ -869,6 +871,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 237:
 			{
+				sciprint(_("link: Only one entry point allowed on this operating system"));
 			}
 			break;
 			case 238:
@@ -878,6 +881,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 239:
 			{
+				sciprint(_("You cannot link more functions, maxentry reached"));
 			}
 			break;
 			case 240:
