@@ -317,14 +317,19 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 45:
 			{
+				sciprint(_("null matrix (argument # %d).\n"),C2F(iop).err);
 			}
 			break;
 			case 46:
 			{
+				sciprint(_("incorrect syntax.\n"));
+				*errtyp = 1;
 			}
 			break;
 			case 47:
 			{
+				sciprint(_(" end or else is missing...\n"));
+				*errtyp = 1;
 			}
 			break;
 			case 48:
