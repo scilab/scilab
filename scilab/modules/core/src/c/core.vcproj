@@ -220,6 +220,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\errmsg.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ExceptionMessage.c"
 				>
 			</File>
@@ -865,11 +869,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
