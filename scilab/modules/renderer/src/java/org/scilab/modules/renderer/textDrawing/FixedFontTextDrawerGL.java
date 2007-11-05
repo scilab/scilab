@@ -8,6 +8,7 @@
 
 package org.scilab.modules.renderer.textDrawing;
 
+
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**

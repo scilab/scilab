@@ -49,6 +49,14 @@ protected:
   virtual void setDrawerParameters(void) = 0;
 
   /**
+   * Convert distance in user mode to pixel.
+   * Since it can be used with logarithmic mode, one edge of the segment must be specified.
+   */
+  void getPixelLength(sciPointObj * parentSubwin, const double startingPoint[3],
+                      double userWidth, double userHeight,
+                      int * pixelWidth, int * pixelHeight );
+
+  /**
    * Get the object performing mapping with Java class.
    */
   TextContentDrawerJavaMapper * getTextContentDrawerJavaMapper(void);

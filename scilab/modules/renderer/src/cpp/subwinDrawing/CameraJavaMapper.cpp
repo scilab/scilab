@@ -75,7 +75,7 @@ void CameraJavaMapper::rotateAxesBox(double centerX, double centerY, double cent
                                alpha  , theta, reductionRatio);
 }
 /*-----------------------------------------------------------------------------------*/
-void CameraJavaMapper::getScreenCoordinates(double userCoordX, double userCoordY, double userCoordZ,
+void CameraJavaMapper::getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ,
                                             int pixCoord[2])
 {
   long * javaCoords = m_pJavaObject->getPixelCoordinates(userCoordX, userCoordY, userCoordZ);
@@ -85,4 +85,15 @@ void CameraJavaMapper::getScreenCoordinates(double userCoordX, double userCoordY
   delete[] javaCoords;
 }
 /*-----------------------------------------------------------------------------------*/
+void CameraJavaMapper::get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ,
+                                           int pixCoord[2])
+{
+  long * javaCoords = m_pJavaObject->get2dViewPixelCoordinates(userCoordX, userCoordY, userCoordZ);
+  pixCoord[0] = javaCoords[0];
+  pixCoord[1] = javaCoords[1];
+
+  delete[] javaCoords;
+}
+/*-----------------------------------------------------------------------------------*/
+
 }

@@ -14,6 +14,7 @@ import javax.media.opengl.GL;
 import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
+
 /**
  * Class containing functions to switch between user and window coordinates.
  * This is a singleton class.
@@ -31,7 +32,6 @@ public class CoordinateTransformation {
 	private Matrix4D projectMatrix;
 	private Matrix4D unprojectMatrix;
 	private double[] viewPort;
-	
 	
 	/**
 	 * default constructor
@@ -61,7 +61,6 @@ public class CoordinateTransformation {
 	 * @param gl current Gl pipeline
 	 */
 	public void update(GL gl) {
-		
 		// get OpenGL transformation matrices
 		double[] oglModelViewMatrix = new double[MATRIX_4X4_SIZE];
 		double[] oglProjectionMatrix = new double[MATRIX_4X4_SIZE];
@@ -131,6 +130,14 @@ public class CoordinateTransformation {
 		// I first used gluUnproject, but it is slower since it will always perform matrices multiplications and inverse.
 		
 		return unprojectMatrix.mult(canvasPos);
+	}
+	
+	/**
+	 * @return String representation of the transformationException.
+	 */
+	@Override
+	public String toString() {
+		return projectMatrix.toString();
 	}
 	
 }

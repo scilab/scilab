@@ -297,7 +297,6 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 * @param text matrix of string with their size to draw
 	 * @return matrix of positions
 	 */
-	/*	@Override : commented by sylvestre ... doesn't work with java 1.5 */
 	public TextGrid getStringsPositions(StringMatrixGL text) {
 
 		double cellsHeights = text.getTallestString();

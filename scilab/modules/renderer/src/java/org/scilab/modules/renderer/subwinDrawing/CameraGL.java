@@ -105,6 +105,7 @@ public class CameraGL extends ObjectGL {
 		// rotate around the center of the box axes
 		gl.glTranslated(centerX, centerY, centerZ);
 		gl.glScaled(reductionRatio, reductionRatio, reductionRatio); // reduction need to be performed on the center of the screen
+		gl.glPushMatrix();
 		gl.glRotated(DEFAULT_ALPHA - alpha, 1.0 , 0.0, 0.0); /* Seems we need to rotate counterclok-wise */
 		gl.glRotated(DEFAULT_THETA - theta, 0.0 , 0.0, 1.0);
 		gl.glTranslated(-centerX, -centerY, -centerZ); // translate origin back
@@ -113,7 +114,7 @@ public class CameraGL extends ObjectGL {
 		CoordinateTransformation.getTransformation(gl).update(gl);
 		
 		// save camera positioning.
-		center.setValues(centerX, centerY, centerZ);
+		this.center.setValues(centerX, centerY, centerZ);
 		this.alpha = alpha;
 		this.theta = theta;
 		
@@ -153,23 +154,37 @@ public class CameraGL extends ObjectGL {
 	
 	/**
 	 * Move the camera to the default 2D coordinates.
-	 * Try to avoid to use this method, but it some times needed
+	 * Try to avoid to use this method, but it sometime needed
 	 * for backward compatibility with old renderer.
 	 */
 	protected void switchTo2DCoordinates() {
 		GL gl = getGL();
+		gl.glPopMatrix();
 		gl.glPushMatrix();
-		gl.glTranslated(center.getX(), center.getY(), center.getZ());
-		gl.glRotated(theta, 0.0 , 0.0, 1.0);
-		gl.glRotated(alpha, 1.0 , 0.0, 0.0);
-		gl.glTranslated(-center.getX(), -center.getY(), -center.getZ());
+		gl.glTranslated(-center.getX(), -center.getY(), -center.getZ()); // translate origin back
+		//gl.glTranslated(center.getX(), center.getY(), center.getZ());
+		//gl.glRotated(theta - DEFAULT_THETA, 0.0 , 0.0, 1.0);
+		//gl.glRotated(alpha, 1.0 , 0.0, 0.0);
+		//gl.glRotated(DEFAULT_THETA, 0.0, 0.0, 1.0);
+		//gl.glTranslated(-center.getX(), -center.getY(), -center.getZ());
+		
+		// update transformation
+		CoordinateTransformation.getTransformation(gl).update(gl);
+		
 	}
 	
 	/**
 	 * Return to the normal view after a call to switchTo2DCoordinates.
 	 */
 	protected void backTo3DCoordinates() {
-		getGL().glPopMatrix();
+		GL gl = getGL();
+		gl.glPopMatrix();
+		gl.glPushMatrix();
+		gl.glRotated(DEFAULT_ALPHA - alpha, 1.0 , 0.0, 0.0); /* Seems we need to rotate counterclok-wise */
+		gl.glRotated(DEFAULT_THETA - theta, 0.0 , 0.0, 1.0);
+		gl.glTranslated(-center.getX(), -center.getY(), -center.getZ()); // translate origin back
+		// update transformation
+		CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
 	

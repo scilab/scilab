@@ -6,9 +6,11 @@
 /*        inside a text box                                               */
 /*------------------------------------------------------------------------*/
 
+#include <iostream>
 
 #include "FilledTextDrawerJoGL.hxx"
 #include "FilledTextDrawerJavaMapper.hxx"
+#include "GetJavaProperty.h"
 
 extern "C"
 {
@@ -35,14 +37,24 @@ void FilledTextDrawerJoGL::setDrawerParameters(void)
   double boxWidth;
   double boxHeight;
   sciGetUserSize(pObj, &boxWidth, &boxHeight);
-  getFilledTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
-                                                     sciGetFontStyle(pObj), sciGetFontOrientation(pObj),
-                                                     (int) boxWidth, (int) boxHeight);
+
+  
 
   getFilledTextDrawerJavaMapper()->setTextContent("toto est beau", 1, 1);
 
+  // get the center Position
   double textPos[3];
   sciGetTextPos(pObj, textPos);
+
+  // convert the user lengths to pixel ones.
+  int pixWidth;
+  int pixHeight;
+  getPixelLength(sciGetParentSubwin(pObj), textPos, boxWidth, boxHeight, &pixWidth, &pixHeight);
+
+  getFilledTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
+                                                     sciGetFontStyle(pObj), sciGetFontOrientation(pObj),
+                                                     pixWidth, pixHeight);
+
   getFilledTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 }
 /*------------------------------------------------------------------------------------------*/

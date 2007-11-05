@@ -47,6 +47,11 @@ BOOL sciGetJavaPixmapMode(sciPointObj * pFigure)
 /*------------------------------------------------------------------------------------------*/
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
 {
-  getSubwinDrawer(pSubwin)->getPixelCoordinates(userCoord, pixCoord);
+  getSubwinDrawer(pSubwin)->getCamera()->getPixelCoordinates(userCoord, pixCoord);
+}
+/*------------------------------------------------------------------------------------------*/
+void sciGetJava2dViewPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
+{
+   getSubwinDrawer(pSubwin)->getCamera()->get2dViewPixelCoordinates(userCoord, pixCoord);
 }
 /*------------------------------------------------------------------------------------------*/

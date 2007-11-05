@@ -94,6 +94,12 @@ void Camera::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
   m_pImp->getPixelCoordinates(userCoord, pixCoord);
 }
 /*-----------------------------------------------------------------------------------*/
+void Camera::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2])
+{
+  m_pImp->get2dViewPixelCoordinates(userCoord, pixCoord);
+}
+/*-----------------------------------------------------------------------------------*/
+
 }
 
 #undef FIT_WINDOW_RATIO

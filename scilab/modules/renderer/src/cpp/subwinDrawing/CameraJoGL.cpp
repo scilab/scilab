@@ -38,7 +38,12 @@ CameraJavaMapper * CameraJoGL::getCameraJavaMapper(void)
 /*-----------------------------------------------------------------------------------*/
 void CameraJoGL::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
-  getCameraJavaMapper()->getScreenCoordinates(userCoord[0], userCoord[1], userCoord[2], pixCoord);
+  getCameraJavaMapper()->getPixelCoordinates(userCoord[0], userCoord[1], userCoord[2], pixCoord);
+}
+/*-----------------------------------------------------------------------------------*/
+void CameraJoGL::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2])
+{
+  getCameraJavaMapper()->get2dViewPixelCoordinates(userCoord[0], userCoord[1], userCoord[2], pixCoord);
 }
 /*-----------------------------------------------------------------------------------*/
 }

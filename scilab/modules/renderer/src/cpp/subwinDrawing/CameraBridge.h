@@ -68,6 +68,11 @@ public:
   virtual void getPixelCoordinates(const double userCoord[3], int pixCoord[2]) = 0;
 
   /**
+   * Convert user coordinates to pixel coordinated using the 2d view.
+   */
+  virtual void get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2]) = 0;
+
+  /**
    * Position the view and view area accordingly to previous calls.
    */
   virtual void renderPosition( void ) = 0 ;

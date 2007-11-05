@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "TextContentDrawerJoGL.hxx"
+#include "GetJavaProperty.h"
 
 namespace sciGraphics
 {
@@ -67,11 +68,43 @@ void TextContentDrawerJoGL::drawTextContent(void)
   setDrawerParameters();
 
   getTextContentDrawerJavaMapper()->drawTextContent();
+  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::showTextContent(void)
 {
   show();
+}
+/*------------------------------------------------------------------------------------------*/
+void TextContentDrawerJoGL::getPixelLength(sciPointObj * parentSubwin, const double startingPoint[3],
+                                           double userWidth, double userHeight,
+                                           int * pixelWidth, int * pixelHeight )
+{
+  // get the extreme bound along X axis
+  double extremeX[3];
+  extremeX[0] = startingPoint[0] + userWidth;
+  extremeX[1] = startingPoint[1];
+  extremeX[2] = startingPoint[2];
+
+  // get the extreme bound along Y axis
+  double extremeY[3];
+  extremeY[0] = startingPoint[0];
+  extremeY[1] = startingPoint[1] + userHeight;
+  extremeY[2] = startingPoint[2];
+
+  // convert every one in pixel coordinates
+  int textPosPix[2];
+  sciGetJava2dViewPixelCoordinates(parentSubwin, startingPoint, textPosPix);
+
+  int extremeXPix[2];
+  sciGetJava2dViewPixelCoordinates(parentSubwin, extremeX, extremeXPix);
+
+  int extremeYPix[2];
+  sciGetJava2dViewPixelCoordinates(parentSubwin, extremeY, extremeYPix);
+
+  // compute lengths accordingly
+  *pixelWidth = extremeXPix[0] - textPosPix[0];
+  *pixelHeight = extremeYPix[1] - textPosPix[1];
 }
 /*------------------------------------------------------------------------------------------*/
 TextContentDrawerJavaMapper * TextContentDrawerJoGL::getTextContentDrawerJavaMapper(void)

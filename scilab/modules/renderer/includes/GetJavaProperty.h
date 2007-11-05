@@ -49,6 +49,11 @@ BOOL sciGetJavaPixmapMode(sciPointObj * pFigure);
  */
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2]);
 
+/**
+* Convert user Coordinate to pixel coordinates using 2d view.
+*/
+void sciGetJava2dViewPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2]);
+
 #ifdef __cplusplus
 }
 #endif
