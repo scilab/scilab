@@ -256,10 +256,19 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 36:
 			{
+				if (C2F(iop).err == 1)
+				{
+					sciprint(_("first argument is incorrect.\n"));
+				}
+				else
+				{
+					sciprint(_("%dth argument is incorrect here.\n"),C2F(iop).err);
+				}
 			}
 			break;
 			case 37:
 			{
+				sciprint(_("incorrect function at line %d.\n"),C2F(iop).err);
 			}
 			break;
 			case 38:
@@ -274,6 +283,8 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 40:
 			{
+				sciprint(_("waiting for end of command.\n"));
+				*errtyp = 1;
 			}
 			break;
 			case 41:
@@ -293,6 +304,15 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 44:
 			{
+				if (C2F(iop).err == 1)
+				{
+					sciprint(_("first argument is incorrect.\n"));
+				}
+				else
+				{
+					sciprint(_("%dth argument is incorrect.\n"),C2F(iop).err);
+				}
+
 			}
 			break;
 			case 45:
