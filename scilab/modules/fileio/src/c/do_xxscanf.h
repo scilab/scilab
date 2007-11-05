@@ -4,6 +4,8 @@
 #ifndef __DO_XXSCANF_H__
 #define __DO_XXSCANF_H__
 
+#include <stdio.h>
+
 /*if maxscan is increased don't forget to change the (*xxscanf)(......) 
 in do_xxscanf procedure */
 #define MAXSCAN 100

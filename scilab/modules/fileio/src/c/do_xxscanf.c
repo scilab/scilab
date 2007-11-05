@@ -9,6 +9,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "do_xxprintf.h"
+#include "core_math.h"
 /*-----------------------------------------------------------------------------------*/ 
 typedef int (*XXSCANF) __PARAMS((FILE *, char *,...));
 typedef int (*FLUSH) __PARAMS((FILE *));
