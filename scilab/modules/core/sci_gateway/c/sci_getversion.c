@@ -315,13 +315,13 @@ static int getversion_two_rhs(void)
 		}
 		else
 		{
-			Scierror(999,_("Incorrect second parameter.\n"));
+			Scierror(999,_("Incorrect second input argument.\n"));
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("Invalid argument(s).\n"));
+		Scierror(999,_("Invalid input argument(s).\n"));
 		return 0;
 	}
 }
