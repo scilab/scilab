@@ -4,6 +4,7 @@
 */
 #include <string.h>
 #include <stdlib.h>
+#include "machine.h"
 
 #ifndef _MSC_VER
  #ifdef HAVE_LIBINTL_H
@@ -21,7 +22,6 @@
 #include "localization.h"
 #include "setgetSCIpath.h"
 #include "inisci-c.h"
-#include "machine.h"
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
 #include "../../../io/includes/setenvc.h"
