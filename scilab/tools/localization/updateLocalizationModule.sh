@@ -6,7 +6,6 @@
 
 # TODO : 
 # * Write Small documentation
-# * Provide a recursive option for parsing all Scilab
 # 
 
 if test $# -ne 1; then
@@ -14,6 +13,8 @@ if test $# -ne 1; then
 	echo "by checking the _(xxx) and gettext(xxx) calls in the code"
 	echo
 	echo "Syntax : $0 <module>"
+	echo "If <module> is equal to 'parse_all', it will parse all Scilab module"
+	echo "per module"
 	exit
 fi
 
@@ -22,11 +23,13 @@ if test -z "$SCI"; then
 	exit
 fi
 
-MODULE=$1
-PATHTOPROCESS=$SCI/modules/$MODULE/
-if test ! -d $PATHTOPROCESS; then
-	echo "Cannot find module $PATHTOPROCESS"
-	exit
+MODULES=$1
+
+if test "$MODULES" == "process_all"; then
+	echo ".. Process all the modules one by one"
+	PROCESS_ALL=1
+else
+	PROCESS_ALL=0
 fi
 
 
@@ -34,34 +37,86 @@ XGETTEXT=/usr/bin/xgettext
 MSGMERGE=/usr/bin/msgmerge
 FROM_CODE=ISO-8859-1
 EXTENSIONS=( c h cpp hxx java sci )
-TARGETDIR=locales/en_US
-TARGETFILETMP=messages.po.temp
+TARGETDIR=locales/
+LANGS=( fr_FR )
+TARGETFILETEMPLATE=messages.pot
+TIMEZONE="+0100"
 #
 # Retrieve all the sources files
-FILES='find . -type f '
-
+FILESCMD='find . -type f '
+# Gettext arg
+XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header "
 ####### GENERATES THE FIND COMMAND
 i=0
 NB_ELEMENT=${#EXTENSIONS[@]}
 while [ "$i" -lt "$NB_ELEMENT" ]; do
 	ext=${EXTENSIONS[$i]}
-	FILES="$FILES -name '*.$ext'"
+	FILESCMD="$FILESCMD -name '*.$ext'"
 	if test "$NB_ELEMENT" -ne `expr $i + 1`; then # because we don't want a trailing -o
-		FILES="$FILES -o "
+		FILESCMD="$FILESCMD -o "
 	fi
 	i=$((i + 1))
 done
 
-cd $PATHTOPROCESS
-FILES=`eval $FILES`
+# Process all the modules ... then, build the list
+if test $PROCESS_ALL -eq 1; then
+	cd $SCI/modules/
+	MODULES=`find . -maxdepth 1 -type d  ! -name ".*"`
+fi
 
-echo "Parsing all sources in $PATHTOPROCESS"
+
+for MODULE in $MODULES; do
+
+	PATHTOPROCESS=$SCI/modules/$MODULE/
+	if test ! -d $PATHTOPROCESS; then
+		echo "... Cannot find module $PATHTOPROCESS"
+		exit
+	fi
+	echo "... Processing module $MODULE"
+
+	cd $PATHTOPROCESS
+	FILES=`eval $FILESCMD|tr "\n" " "`
+
+	echo "..... Parsing all sources in $PATHTOPROCESS"
 # Parse all the sources and get the string which should be localized
-$XGETTEXT --add-location --strict --keyword="_" --from-code $FROM_CODE -p $TARGETDIR -o $TARGETFILETMP $FILES
-
-# Defines the CHARSET
-sed -i -e 's|^"Content-Type: text/plain; charset=CHARSET\\n"$|"Content-Type: text/plain; charset=ISO-8859-1\\n"|' $TARGETDIR/$TARGETFILETMP
-
-# Merge the new locale file and the template
-$MSGMERGE $TARGETDIR/messages.pot $TARGETDIR/$TARGETFILETMP  --output-file $TARGETDIR/messages.pot
-cd -
+	LOCALIZATION_FILE=$TARGETDIR/en_US/$TARGETFILETEMPLATE
+	if test -f $LOCALIZATION_FILE; then
+		echo "........ Localization already existing ... we merge"
+		$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $TARGETFILETEMPLATE.tmp $FILES > /dev/null
+		$MSGMERGE $LOCALIZATION_FILE $LOCALIZATION_FILE.tmp --output-file $LOCALIZATION_FILE > /dev/null
+		rm $LOCALIZATION_FILE.tmp
+	else
+		echo "........ No localization ... we create a new one with header"
+		$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $TARGETFILETEMPLATE.tmp $FILES > /dev/null
+		if test -s $LOCALIZATION_FILE.tmp; then
+			sed -e "s/MODULE/$MODULE/" -e "s/DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $SCI/modules/localization/locales/en_US/header.pot > $LOCALIZATION_FILE
+			cat $LOCALIZATION_FILE.tmp >> $LOCALIZATION_FILE
+			rm $LOCALIZATION_FILE.tmp
+		else
+			echo "........ No string found in this module"
+			NOSTRING=1
+		fi
+	fi
+	if test -z "$NOSTRING"; then
+# merge/create the other locales
+		for l in $LANGS; do
+			DIR_LANG=$TARGETDIR/$l/
+			LOCALIZATION_FILE_LANG=$DIR_LANG/messages.po
+			if test -f $LOCALIZATION_FILE_LANG; then
+				echo "........ Merging new locales for $l"
+				$MSGMERGE $LOCALIZATION_FILE_LANG $LOCALIZATION_FILE --output-file $LOCALIZATION_FILE_LANG > /dev/null
+			else
+				echo "........ Localization file for $l in this module not existing"
+				echo "........ Creating it ..."
+				if test ! -d $DIR_LANG; then
+					# Locale dir doesn't exist
+					mkdir $DIR_LANG
+				fi
+				# Copy the current english localization as default
+				cp $LOCALIZATION_FILE $LOCALIZATION_FILE_LANG
+			fi
+		done #Browse langs
+	fi
+	
+	cd -
+done # Browse modules
