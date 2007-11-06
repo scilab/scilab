@@ -87,8 +87,13 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		
 		// create a new renderer with a new font.
 		renderer.dispose();
-		renderer = SciTextRenderer.create(getFont().deriveFont(newFontSize), getFontColor());		
+		renderer = SciTextRenderer.create(getFont().deriveFont(newFontSize), getFontColor());
+		
+		// update StringSizes with the new renderer
+		textMatrix.update(renderer);
 		stringPos = placeTextGrid(stringPos, textCenterPix, getRotationAngle());
+		
+		
 		drawText(renderer, textMatrix, stringPos);
 		
 		renderer.dispose();

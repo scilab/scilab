@@ -189,11 +189,6 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 		transform.update(gl);
 		
 		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
-//		gl.glPointSize(5.0f);
-//		gl.glColor3d(1.0, 0.0, 0.0);
-//		gl.glBegin(GL.GL_POINTS);
-//		gl.glVertex3d(textCenter.getX(), textCenter.getY(), textCenter.getZ());
-//		gl.glEnd();
 		
 		// draw the text using the new coordinates
 		drawTextContentPix(textCenterPix);
