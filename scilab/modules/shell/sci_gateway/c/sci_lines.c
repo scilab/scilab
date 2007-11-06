@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -9,6 +9,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
+#include "gw_shell.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -20,15 +21,15 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 		int n1 = 0,m1 = 0;
 		int *paramoutINT = NULL;
 		paramoutINT=(int*)MALLOC(sizeof(int)*2);
-		
+
 		paramoutINT[0] = getColumnsSize();
 		paramoutINT[1] = getLinesSize();
-		
+
 		n1=1; m1=2;
 		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
 		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();	
+		C2F(putlhsvar)();
 
 		if (paramoutINT) { FREE(paramoutINT); paramoutINT = NULL;}
 	}

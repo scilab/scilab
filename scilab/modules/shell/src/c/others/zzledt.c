@@ -12,7 +12,7 @@
 
 #include "localization.h"
 #include "scilabmode.h"
-#include "machine.h" 
+#include "machine.h"
 #include "sciprint.h"
 #include "sciprint_nd.h"
 #include "HistoryManager.h"
@@ -25,6 +25,7 @@
 #include "Scierror.h"
 #include "prompt.h"
 #include "x_VTPrsTbl.h"
+#include "ScilabEventsLoop.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef aix
 	#define ATTUNIX
@@ -80,7 +81,7 @@
 #endif
 
 #ifdef B42UNIX
-	#define KEYPAD 
+	#define KEYPAD
 	#include <sys/file.h>
 	#include <sgtty.h>
 	static short save_sg_flags;
@@ -89,7 +90,7 @@
 #endif
 
 #ifdef ATTUNIX
-	#define KEYPAD 
+	#define KEYPAD
 	#include <termio.h>
 	static struct termio save_term;
 	static struct termio arg;
@@ -243,15 +244,15 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
   GetCurrentPrompt(Sci_Prompt);
 
-  if(getScilabMode() != SCILAB_STD) 
+  if(getScilabMode() != SCILAB_STD)
   {
-    if(init_flag) 
+    if(init_flag)
     {
       init_io();
       init_flag = FALSE;
     }
-    
-    if(!tty) 
+
+    if(!tty)
     { /* if not an interactive terminal */
       /* read a line into the buffer, but not too
        * big */
@@ -264,7 +265,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
   }
 
-  if (interrupted) 
+  if (interrupted)
   {
     /* restore the state */
     interrupted=0;
@@ -274,37 +275,37 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   }
   else wk_buf[0] = NUL; /* initialize empty  buffer */
 
-  if(getScilabMode() != SCILAB_STD) 
+  if(getScilabMode() != SCILAB_STD)
   {
-#ifdef KEYPAD 
+#ifdef KEYPAD
     set_cbreak();
     enable_keypad_mode();
 #endif
     if(sendprompt) printf(Sci_Prompt);/* write prompt */
   }
-  else 
+  else
   {
     /* Send new prompt to Java Console, do not display it */
     SetConsolePrompt(Sci_Prompt);
   }
-  
+
   sendprompt=1;
   set_is_reading(TRUE); /* did not exist in old gtk version */
-        
+
   setSearchedTokenInScilabHistory(NULL);
 
 
   if (getScilabMode()!=SCILAB_STD)
   {
-    while(1) 
-    {  
+    while(1)
+    {
       /* main loop to read keyboard input */
       /* get next keystroke (no echo) returns -1 if interrupted */
       ScilabEventsLoop();
       keystroke = gchar_no_echo(*menusflag);
       ScilabEventsLoop();
 
-      if (keystroke==-1) 
+      if (keystroke==-1)
       {
         /* preserve the state */
         interrupted=1;
@@ -327,7 +328,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
       if( ( iscntrl(keystroke) && groundtable[keystroke] != CASE_PRINT) || keystroke > 0x0100 )
       {
 	/* stroke is line editing command */
-	switch(keystroke) 
+	switch(keystroke)
         {
 	  case CTRL_P: case UP_ARROW: /* move one line up if any in history */
 	  {
@@ -352,20 +353,20 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	  break;
 
 	  case CTRL_B: case LEFT_ARROW:/* move left*/
-	    if(cursor > 0) 
+	    if(cursor > 0)
             {
               /* is there room to move left */
 	      cursor--;
 	      backspace(1);
 	    }
-	    else 
+	    else
             {
-	      putchar(BEL); 
+	      putchar(BEL);
 	    }
 	  break;
 
 	  case CTRL_F: case RIGHT_ARROW: /* move right*/
-	
+
 	  if(cursor < cursor_max) {/* is there room to move right */
 	    putchar(wk_buf[cursor++]);
 	  }
@@ -380,7 +381,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	  break;
 
 	  case ENDS:  /* move to end of line */
-	    while(cursor < cursor_max) 
+	    while(cursor < cursor_max)
             {
 	      putchar(wk_buf[cursor++]);
 	    }
@@ -389,16 +390,16 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	  case INS: /* toggle insert/overwrite flag */
 	    insert_flag = !insert_flag;
 	  break;
-		    
+
 	  case CTRL_X: case CTRL_C: /** we never get there CTRL_C is explored above **/
 	  {
 	    int j = SIGINT;
 	    C2F(sigbas)(&j);
 	  };
 	  break;
-	   
+
 	  case CTRL_D: /* delete next character*/
-	    if(cursor == cursor_max) 
+	    if(cursor == cursor_max)
             {
 	      /* reminder that backing up over edge */
 	      putchar(BEL);
@@ -416,7 +417,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	  break;
 
 	  case BS: case DEL: /* backspace with delete */
-	    if(cursor == 0) 
+	    if(cursor == 0)
             {
 	      /* reminder that backing up over edge */
 	      putchar(BEL);
@@ -436,8 +437,8 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
             //updateToken(wk_buf);
 	  break;
 
-	  case CTRL_K: /* delete to end of line */ 
-	    if(cursor == cursor_max) 
+	  case CTRL_K: /* delete to end of line */
+	    if(cursor == cursor_max)
             {
 	      /* reminder that backing up over edge */
 	      putchar(BEL);
@@ -457,14 +458,14 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	    yank_len=strlen(yank_buf);
 	    if(yank_len!=0 )
             {
-	      if (cursor==cursor_max) 
+	      if (cursor==cursor_max)
               {
 	        strcpy(&wk_buf[cursor],yank_buf);
 	        display_string(&wk_buf[cursor]);
 	        cursor = cursor_max + yank_len;
 	        cursor_max = cursor;
 	      }
-	      else 
+	      else
               {
 	        for(i = 0; i <= cursor_max-cursor; i++) wk_buf[cursor_max+yank_len-i]=wk_buf[cursor_max-i];
 	        wk_buf[cursor_max+yank_len]=NUL;
@@ -501,7 +502,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
 	  case LF: case CR: /* carrage return indicates line is ok;*/
 	    strip_blank(wk_buf);/* first strip any trailing blanks */
-	    if (wk_buf[0]==EXCL) 
+	    if (wk_buf[0]==EXCL)
 	    {
 	      char *token = NULL;
 	      token = (char*)MALLOC(sizeof(char)*strlen(&wk_buf[1]));
@@ -524,7 +525,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	    }
 	    else
 	    {
-	      if (strlen(wk_buf)>=0) 
+	      if (strlen(wk_buf)>=0)
 	      {
 		appendLineToScilabHistory(wk_buf);
 		setSearchedTokenInScilabHistory(NULL);
@@ -543,46 +544,46 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	    putchar(BEL);
 	  break;
 	}
-      } 
-      else 
+      }
+      else
       {
         /* alpha/numeric keystroke.
-         * substitute blank fill for tab char 
+         * substitute blank fill for tab char
          */
-        if(keystroke == '\t') 
+        if(keystroke == '\t')
 	{
 	  keystroke = ' ';
 	  character_count = TAB_SKIP - (cursor%TAB_SKIP);
 	  if(character_count == 0) character_count = TAB_SKIP;
 	}
-        else 
+        else
 	{
 	  if(keystroke == EOF) character_count = 0;
 	  else character_count = 1;
 	}
 
-        while(character_count--) 
+        while(character_count--)
 	{
-	  if(get_echo_mode()==0) 
+	  if(get_echo_mode()==0)
 	  {
 	    wk_buf[cursor] = keystroke;
 	    cursor++;
 	  }
-	  else 
+	  else
 	  {
-	    if(insert_flag) 
+	    if(insert_flag)
             {
               /* insert mode, move rest of line right and
-	       * add character at cursor 
+	       * add character at cursor
                */
 	       move_right(&wk_buf[cursor], WK_BUF_SIZE - cursor);
 	       /* bump max cursor but not over buffer
-	        * size 
+	        * size
                 */
 	       cursor_max = (++cursor_max > WK_BUF_SIZE) ? WK_BUF_SIZE : cursor_max;
 	       /* if cursor at end of line, backspace so
 	        * that new character overwrites last one */
-	       if(cursor == WK_BUF_SIZE) 
+	       if(cursor == WK_BUF_SIZE)
                {
 		 cursor--;
 		 backspace(1);
@@ -591,23 +592,23 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	       display_string(&wk_buf[cursor]);
 	       cursor++;
 	       backspace(cursor_max - cursor);
-	    } 
-            else 
+	    }
+            else
             {
 		/* overstrike mode */
-		if(cursor == WK_BUF_SIZE) 
+		if(cursor == WK_BUF_SIZE)
                 {
 		  cursor--;
 		  backspace(1);
 		}
 		wk_buf[cursor] = keystroke;
 		putchar(keystroke);
-		if(cursor < WK_BUF_SIZE - 1) 
+		if(cursor < WK_BUF_SIZE - 1)
                 {
 		  cursor++;
 		  cursor_max = Max(cursor_max, cursor);
 		}
-		else 
+		else
                 {
 		  backspace(1);
 		}
@@ -624,9 +625,9 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
      char *line = NULL;
      *len_line = 0;
      cursor = 0;
-     
+
      line = ConsoleRead();
-     if (line) 
+     if (line)
      {
      	strcpy(wk_buf,line);
      	FREE(line);
@@ -638,7 +639,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
  exit:
   /* copy to return buffer */
-  if(get_echo_mode()==0)  
+  if(get_echo_mode()==0)
   {
     *len_line=cursor;
     strncpy(buffer,wk_buf,*buf_size);
@@ -649,13 +650,13 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   {
     *len_line = strlen(wk_buf);
     strncpy(buffer, wk_buf,*buf_size);
-    if(getScilabMode() != SCILAB_STD) 
+    if(getScilabMode() != SCILAB_STD)
     {
       putchar('\r');  putchar('\n');
     }
   }
 #ifdef KEYPAD
-  if(getScilabMode() != SCILAB_STD) 
+  if(getScilabMode() != SCILAB_STD)
   {
     set_crmod();
     disable_keypad_mode();
@@ -663,7 +664,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 #endif
   *eof = FALSE;
   set_is_reading(FALSE);
-  
+
   return;
 }
 
@@ -825,7 +826,7 @@ static int translate(int ichar)
  * Copy a line to the screen
  **********************************************************************/
 
-static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max) 
+static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max)
 {
   int ok = 0;
   if(line)
@@ -851,7 +852,7 @@ static void set_cbreak()
    * line buffer */
 #ifdef B42UNIX
   arg.sg_flags |= CBREAK;
-  arg.sg_flags &= ~ECHO; 
+  arg.sg_flags &= ~ECHO;
   /* arg.sg_flags &= ~CRMOD; */
   ioctl(fd, TIOCSETN, &arg);
 #endif
@@ -870,7 +871,7 @@ static void set_cbreak()
 }
 
 /************************************************************************
- * reset to original mode 
+ * reset to original mode
  ***********************************************************************/
 
 static void set_crmod()
@@ -964,7 +965,7 @@ static void disable_keypad_mode()
   /* disable keypad transmit mode */
   if(KE && *KE) fputs(KE, stdout);
 }
-#else 
+#else
 /************************************************************************
  *we need references to thoses function if using KEYPAD but not Having TERMCAP
  ***********************************************************************/
