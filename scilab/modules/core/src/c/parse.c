@@ -166,7 +166,7 @@ int C2F(parse)()
   }
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," TOP    pt:%d rstk(pt):%d icall: %d niv: %d err:%d",
-	    Pt,Rstk[Pt], C2F(recu).icall, C2F(recu).niv,C2F(iop).err);
+	    Pt,Rstk[Pt], C2F(recu).icall, C2F(recu).niv,Err);
     C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
   }
 
@@ -176,7 +176,7 @@ int C2F(parse)()
   if (Pt > 0) {
     goto L86;
   }
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   /*     initialization */
@@ -188,7 +188,7 @@ int C2F(parse)()
     job = -1;
   }
   Top = 0;
-  C2F(com).fin = 0;
+  Fin = 0;
   C2F(recu).macr = 0;
   C2F(recu).paus = 0;
   C2F(recu).icall = 0;
@@ -249,24 +249,24 @@ int C2F(parse)()
   C2F(tksynchro)(&c_n1);
 
 
-  if (C2F(com).fin == -3) {
+  if (Fin == -3) {
     /*     interrupted line acquisition */
     iret = 2;
     goto L96;
-  } else if (C2F(com).fin == -1) {
+  } else if (Fin == -1) {
     /*     Continuation line handling when scilab is called as a routine */
     C2F(com).fun = 99;
     return 0;
   }
   job = 0;
-  C2F(iop).err = 0;
+  Err = 0;
 
   if (Pt != 0) {
     goto L15;
   }
  L14:
   handle_onprompt(&where_);
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   switch ((int)where_) {
@@ -288,7 +288,7 @@ int C2F(parse)()
   }
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," parse  pt:%d rstk(pt):%d top: %d niv: %d err:%d",
-	    Pt,r,Top, C2F(recu).niv,C2F(iop).err);
+	    Pt,r,Top, C2F(recu).niv,Err);
     C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
   }
 
@@ -306,9 +306,9 @@ int C2F(parse)()
   C2F(iop).rio = C2F(iop).rte;
   Rstk[Pt] = 701;
   C2F(basbrk).iflag = FALSE_;
-  C2F(com).fin = 2;
+  Fin = 2;
   if (Lct[4] <= -10) {
-    C2F(com).fin = -1;
+    Fin = -1;
     Lct[4] = -Lct[4] - 11;
   }
   /*     *call* macro */
@@ -364,7 +364,7 @@ int C2F(parse)()
     Lpt[3] = lpts;
     C2F(com).char1 = blank;
     C2F(findequal)(&found);
-    if (C2F(iop).err > 0) {
+    if (Err > 0) {
       goto L98;
     }
     if (found) {
@@ -392,10 +392,10 @@ int C2F(parse)()
   /*     check if it is a simple command like clear,... */
  L20:
   C2F(command)(C2F(com).syn, &c__0);
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
-  if (C2F(com).fin == 0) {
+  if (Fin == 0) {
     goto L21;
   }
   if (C2F(com).fun == 99) {
@@ -404,32 +404,32 @@ int C2F(parse)()
   if (C2F(com).fun != 0) {
     goto L93;
   }
-  if (C2F(com).fin < 0) {
+  if (Fin < 0) {
     goto L80;
   }
-  if (C2F(com).fin == 2) {
+  if (Fin == 2) {
     goto L88;
   }
-  if (C2F(com).fin == 3) {
+  if (Fin == 3) {
     goto L16;
   }
-  if (C2F(com).fin == 4) {
+  if (Fin == 4) {
     goto L5;
   }
-  if (C2F(com).fin > 0) {
+  if (Fin > 0) {
     goto L77;
   }
   /*     name is not a command */
  L21:
   Rhs = 0;
-  C2F(com).fin = -5;
+  Fin = -5;
   /* IL y a p avec fin=-5 (on ne trouve pas les macros parce que l'on ne */
   /* veut pas que les macros sans arg soient vues comme des commandes */
   /* mais pourquoi pas il suffirait de dire que pour visualiser une macro */
   /* il faut faire disp() */
   C2F(com).fun = 0;
   C2F(funs)(C2F(com).syn);
-  if (C2F(com).fin > 0) {
+  if (Fin > 0) {
     /*        name is a builtin name */
     if (C2F(com).char1 == equal) {
       /*           fun=expr is not allowed */
@@ -498,7 +498,7 @@ int C2F(parse)()
 
   /*     looking for equal to check if it is really an lhs */
   C2F(findequal)(&found);
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   if (! found) {
@@ -512,7 +512,7 @@ int C2F(parse)()
   /* 35     call parseindexlist(excnt) */
   /*     if(err.gt.0) goto 98 */
   if (Compil(21, &c__0, 0, 0, 0)) {
-    if (C2F(iop).err > 0) {
+    if (Err > 0) {
       return 0;
     }
   }
@@ -530,14 +530,14 @@ int C2F(parse)()
     /* --> new index list is .name */
     if (C2F(com).sym != name) {
       SciError(21);
-      if (C2F(iop).err > 0) {
+      if (Err > 0) {
 	return 0;
       }
     }
 
     if (C2F(com).comp[0] != 0) {
       if (Compil(23, C2F(com).syn, 0, 0, 0)) {
-	if (C2F(iop).err > 0) {
+	if (Err > 0) {
 	  return 0;
 	}
       }
@@ -582,7 +582,7 @@ int C2F(parse)()
     C2F(getsym)();
   } else {
     SciError(3);
-    if (C2F(iop).err > 0) {
+    if (Err > 0) {
       goto L98;
     }
   }
@@ -596,12 +596,12 @@ int C2F(parse)()
       if (C2F(com).comp[0] == 0) {
 	/* form  list with individual indexes i,j,.. */
 	C2F(mkindx)(&c__0, &excnt);
-	if (C2F(iop).err > 0) {
+	if (Err > 0) {
 	  return 0;
 	}
       } else {
 	if (Compil(19, &c__0, excnt, 0, 0)) {
-	  if (C2F(iop).err > 0) {
+	  if (Err > 0) {
 	    return 0;
 	  }
 	}
@@ -618,12 +618,12 @@ int C2F(parse)()
     /* form  list with individual indexes */
     if (C2F(com).comp[0] == 0) {
       C2F(mkindx)(&icount, &excnt);
-      if (C2F(iop).err > 0) {
+      if (Err > 0) {
 	return 0;
       }
     } else {
       if (Compil(19, &icount, excnt, 0, 0)) {
-	if (C2F(iop).err > 0) {
+	if (Err > 0) {
 	  return 0;
 	}
       }
@@ -766,7 +766,7 @@ int C2F(parse)()
     /*     store  new variable as "named" at the top of the stack */
     if (C2F(com).sym == rparen || C2F(com).sym == comma) {
       C2F(mrknmd)();
-      if (C2F(iop).err > 0) {
+      if (Err > 0) {
 	goto L98;
       }
       goto L83;
@@ -802,7 +802,7 @@ int C2F(parse)()
  L70:
   Lhs = Max(Lhs,1);
   if (Compil(29, &(Lhs), C2F(com).sym, 0, 0)) {
-    if (C2F(iop).err > 0) {
+    if (Err > 0) {
       return 0;
     }
     Pt -= Lhs;
@@ -819,7 +819,7 @@ int C2F(parse)()
   if (Rhs == 0) {
     /* goto simple affectation */
     C2F(stackp)(&Ids[1 + Pt * nsiz], &c__0);
-    if (C2F(iop).err > 0) {
+    if (Err > 0) {
       goto L98;
     }
     if (C2F(errgst).err1 > 0) {
@@ -828,7 +828,7 @@ int C2F(parse)()
       goto L98;
     }
     /* topk points on the newly saved variable */
-    topk = C2F(com).fin;
+    topk = Fin;
     /* go to print */
     goto L73;
   }
@@ -850,9 +850,9 @@ int C2F(parse)()
   }
   lastindpos -= Rhs;
   /*     put a reference to the lhs variable */
-  C2F(com).fin = -3;
+  Fin = -3;
   C2F(stackg)(&Ids[1 + Pt * nsiz]);
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   /*     perform insertion operation */
@@ -867,7 +867,7 @@ int C2F(parse)()
   Rstk[Pt] = 704;
   Rhs += 2;
   Lhs = 1;
-  C2F(com).fin = insert;
+  Fin = insert;
   /*     *call* allops(insert) */
   goto L91;
  L72:
@@ -878,7 +878,7 @@ int C2F(parse)()
   --Pt;
   /*     store the updated value */
   C2F(stackp)(&Ids[1 + Pt * nsiz], &c__0);
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   if (C2F(errgst).err1 > 0) {
@@ -887,7 +887,7 @@ int C2F(parse)()
     goto L98;
   }
   /*     topk points on the newly saved variable */
-  topk = C2F(com).fin;
+  topk = Fin;
   /*     remove variable containing the value if required */
   if (lastindpos != Top) {
     --Top;
@@ -895,7 +895,7 @@ int C2F(parse)()
  L73:
   /*     print if required */
   /* ---------------------- */
-  if (Lct[4] < 0 || C2F(com).fin == 0) {
+  if (Lct[4] < 0 || Fin == 0) {
     goto L76;
   }
   if (! ((C2F(com).sym != semi && Lct[3] == 0) || (C2F(com).sym == semi && 
@@ -904,7 +904,7 @@ int C2F(parse)()
   }
  L74:
   C2F(print)(&Ids[1 + Pt * nsiz], &topk, &C2F(iop).wte);
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   if (topk == 0) {
@@ -941,7 +941,7 @@ int C2F(parse)()
   /*     finish statement */
   /* --------------------- */
  L77:
-  C2F(com).fin = 0;
+  Fin = 0;
   p = 0;
   r = 0;
   if (Pt > 0) p = Pstk[Pt];
@@ -1050,7 +1050,7 @@ int C2F(parse)()
  L80:
   C2F(recu).icall = 0;
   C2F(clause)();
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   switch ((int)C2F(recu).icall) {
@@ -1084,7 +1084,7 @@ int C2F(parse)()
  L81:
   C2F(recu).icall = 0;
   C2F(expr)();
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   switch ((int)C2F(recu).icall) {
@@ -1115,7 +1115,7 @@ int C2F(parse)()
  L82:
   C2F(recu).icall = 0;
   C2F(terme)();
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   switch ((int)C2F(recu).icall) {
@@ -1146,7 +1146,7 @@ int C2F(parse)()
  L83:
   C2F(recu).icall = 0;
   C2F(fact)();
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   switch ((int)C2F(recu).icall) {
@@ -1196,8 +1196,8 @@ int C2F(parse)()
     }
   }
   /*     compilation matfns: <100*fun rhs lhs fin> */
-  if (Compil( C2F(com).fun * 100, &(Rhs), Lhs, C2F(com).fin, 0)) {
-    if (C2F(iop).err > 0) {
+  if (Compil( C2F(com).fun * 100, &(Rhs), Lhs, Fin, 0)) {
+    if (Err > 0) {
       goto L98;
     }
     goto L86;
@@ -1206,7 +1206,7 @@ int C2F(parse)()
     return 0;
   }
  L86:
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   switch ((int)C2F(recu).icall) {
@@ -1237,7 +1237,7 @@ int C2F(parse)()
  L88:
   C2F(recu).icall = 0;
   C2F(macro)();
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   switch ((int)C2F(recu).icall) {
@@ -1272,7 +1272,7 @@ int C2F(parse)()
  L90:
   C2F(recu).icall = 0;
   C2F(run)();
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   if (C2F(com).fun == 99) {
@@ -1309,7 +1309,7 @@ int C2F(parse)()
  L91:
   C2F(recu).icall = 0;
   C2F(allops)();
-  if (C2F(iop).err > 0) {
+  if (Err > 0) {
     goto L98;
   }
   switch ((int)C2F(recu).icall) {
@@ -1368,11 +1368,11 @@ int C2F(parse)()
   } else {
     if (C2F(com).comp[0] != 0) {
       ++Rhs;
-      C2F(com).fin = extrac;
+      Fin = extrac;
       /*           *call* allops(extrac) */
       goto L91;
     } else {
-      C2F(com).fin = Lstk[C2F(com).fin];
+      Fin = Lstk[C2F(com).fin];
       /*           *call* macro */
       goto L88;
     }
@@ -1492,7 +1492,7 @@ void handle_onprompt(int *where_)
     --Pt;
     C2F(errgst).err2 = 0;
     Top = 0;
-    C2F(com).fin = 0;
+    Fin = 0;
     C2F(com).fun = 0;
   } 
   else 
@@ -1500,8 +1500,8 @@ void handle_onprompt(int *where_)
     /* on prompt implicit execution */
     C2F(com).fun = 0;
     C2F(funs)(onprompt);
-    if (C2F(iop).err > 0) return;
-    if (C2F(com).fun <= 0 && C2F(com).fin == 0) return; 
+    if (Err > 0) return;
+    if (C2F(com).fun <= 0 && Fin == 0) return; 
     /* %onprompt function exists */
     Rhs = 0;
     Lhs = 1;
@@ -1519,7 +1519,7 @@ void handle_onprompt(int *where_)
 	else 
 	{
       /* %onprompt is a Scilab function *call*  macro */
-      C2F(com).fin = Lstk[C2F(com).fin];
+      C2F(com).fin = Lstk[Fin];
       *where_ = 2;
     }
   }
@@ -1551,8 +1551,8 @@ void C2F(parsecomment)()
   {
     /* compilation [30 number-of-char chars-vector] */
     lkp = C2F(com).comp[0];
-    C2F(iop).err = (lkp + 2 + ll) / 2 + 1 - Lstk[C2F(vstk).bot];
-    if (C2F(iop).err > 0) 
+    Err = (lkp + 2 + ll) / 2 + 1 - Lstk[Bot];
+    if (Err > 0) 
 	{
       SciError(17);
       return ;

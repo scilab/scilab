@@ -47,7 +47,7 @@ int C2F(matops)()
 {
     static integer op;
 
-    op = C2F(com).fin;
+    op = Fin;
 
 	/* operations binaires et ternaires */
 
@@ -65,24 +65,24 @@ int C2F(matops)()
 		case 2:
 			{
 				/* insertion */
-				if (C2F(com).rhs == 3) {
+				if (Rhs == 3) {
 					C2F(matins1)();
-				} else if (C2F(com).rhs == 4) {
+				} else if (Rhs == 4) {
 					C2F(matins2)();
 				} else {
-					C2F(com).fin = -C2F(com).fin;
+					Fin = -Fin;
 				}
 				return 0;
 			}
 		case 3:
 			{
 				/* extraction a(i) and a(i,j) */
-				if (C2F(com).rhs == 2) {
+				if (Rhs == 2) {
 					C2F(matext1)();
-				} else if (C2F(com).rhs == 3) {
+				} else if (Rhs == 3) {
 					C2F(matext2)();
 				} else {
-					C2F(com).fin = -C2F(com).fin;
+					Fin = -Fin;
 				}
 				return 0;
 			}
@@ -112,7 +112,7 @@ int C2F(matops)()
 	case 3: 
 		{
 			/* substraction */
-			if (C2F(com).rhs == 1) 
+			if (Rhs == 1) 
 			{
 				/* .  unary minus */
 				C2F(matchsgn)();
@@ -190,15 +190,15 @@ int ChooseOtherOperation(int op)
 	{
 		/* .*. ./. .\. */
 		/* kronecker */
-		C2F(com).fin = op - dot * 3 - star + 19;
+		Fin = op - dot * 3 - star + 19;
 		C2F(com).fun = 6;
-		C2F(com).rhs = 2;
+		Rhs = 2;
 		return 0;
 	}
 	if (op >= (dot << 1) + star) 
 	{
 		/* *. /. \. */
-		C2F(com).fin = -C2F(com).fin;
+		Fin = -Fin;
 		return 0;
 
 	}
@@ -237,7 +237,7 @@ int ChooseOtherOperation(int op)
 		C2F(matcmp)();
 		return 0;
 	}
-	C2F(com).fin = -C2F(com).fin;
+	Fin = -Fin;
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -1863,7 +1863,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
   Rhs = *mrhs;
   ++C2F(recu).niv;
   C2F(com).fun = 0;
-  C2F(com).fin = *ptr;
+  Fin = *ptr;
   C2F(recu).icall = 5;
   krec = -1;
 
@@ -1949,7 +1949,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
   if (C2F(com).fun > 0) {
     goto L91;
   }
-  if (C2F(com).fin == 0) {
+  if (Fin == 0) {
     integer cx4 = 4;
     C2F(error)(&cx4);
     if (Err > 0) {
@@ -1958,7 +1958,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
     goto L90;
   }
   ++C2F(recu).pt;
-  C2F(com).fin = *Lstk(C2F(com).fin);
+  Fin = *Lstk(C2F(com).fin);
   C2F(recu).rstk[C2F(recu).pt - 1] = 910;
   C2F(recu).icall = 5;
   C2F(com).fun = 0;
@@ -2010,18 +2010,18 @@ int C2F(scistring)(integer *ifirst,char *thestring,integer *mlhs,integer *mrhs,u
   }
   if (op == 0) {
     C2F(cvname)(id, thestring, &cx0, nnn);
-    C2F(com).fin = 0;
+    Fin = 0;
     tops = Top;
     Top = Top - Rhs + *ifirst + *mrhs - 1;
     C2F(funs)(id);
     Top = tops;
-    if (C2F(com).fin == 0)
+    if (Fin == 0)
 	{
       Scierror(999,_("scistring: %s is not a Scilab function.\n"),get_fname(thestring,thestring_len));
       return ret;
     }
     if (C2F(com).fun <= 0) {
-      lf = *Lstk(C2F(com).fin);
+      lf = *Lstk(Fin);
       ils = iadr(lf) + 1;
       moutputs = *istk(ils);
       ile = ils + moutputs * nsiz + 1;
@@ -2032,7 +2032,7 @@ int C2F(scistring)(integer *ifirst,char *thestring,integer *mlhs,integer *mrhs,u
        */
       ret = C2F(scifunction)(ifirst, &lf, mlhs, mrhs);
     } else {
-      ifin = C2F(com).fin;
+      ifin = Fin;
       ifun = C2F(com).fun;
       ret = C2F(scibuiltin)(ifirst, &ifun, &ifin, mlhs, mrhs);
     }
@@ -2180,7 +2180,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   if (C2F(com).fun > 0) {
     goto L91;
   }
-  if (C2F(com).fin == 0) {
+  if (Fin == 0) {
     integer cx4 = 4;
     C2F(error)(&cx4);
     if (Err > 0) {
@@ -2188,7 +2188,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
     }
   }
   ++C2F(recu).pt;
-  C2F(com).fin = *Lstk(C2F(com).fin);
+  Fin = *Lstk(C2F(com).fin);
   C2F(recu).rstk[C2F(recu).pt - 1] = 910;
   C2F(recu).icall = 5;
   C2F(com).fun = 0;
@@ -2235,7 +2235,7 @@ int C2F(sciops)(integer *number,integer *op,integer *mlhs,integer *mrhs)
       if (C2F(com).fun == 0) break;
       Top = intop;
       ifun = C2F(com).fun;
-      ifin = C2F(com).fin;
+      ifin = Fin;
       if (! C2F(scibuiltin)(number, &ifun, &ifin, mlhs, mrhs))
 	{return FALSE_;} ;
       if (Err > 0) {return FALSE_;} ;
@@ -2249,7 +2249,7 @@ int C2F(sciops)(integer *number,integer *op,integer *mlhs,integer *mrhs)
     C2F(intersci).ntypes[lw - 1] = '$';
   }
   C2F(com).fun = 0;
-  C2F(com).fin = *op;
+  Fin = *op;
   C2F(recu).icall = 0;
   return TRUE_;
 }
@@ -2469,7 +2469,7 @@ int C2F(putlhsvar)()
       }
     }
 
-  if (C2F(iop).err > 0||C2F(errgst).err1> 0)  return TRUE_ ;
+  if (Err > 0||C2F(errgst).err1> 0)  return TRUE_ ;
   if (C2F(com).fun== -1 ) return TRUE_ ; /* execution continue with an
 					    overloaded function */
   if (LhsVar(1) == 0)

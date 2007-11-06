@@ -857,7 +857,7 @@ L42_1:
 	/* recherche du nom de la macro correspondant a ce niveau */
 	/* @TODO what is 5 or 2 + 1 */
 	lk = C2F(iop).lin[k + 5] / 2 + 1;
-	if (lk <= C2F(vstk).lstk[C2F(vstk).top]) goto end_msg_42;
+	if (lk <= C2F(vstk).lstk[Top]) goto end_msg_42;
 	/* @TODO what is 4 */
 	km = C2F(iop).lin[k + 4] - 1; 
 L42_2:

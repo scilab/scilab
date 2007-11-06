@@ -23,7 +23,7 @@ int C2F(intslash)(char *fname,unsigned long fname_len)
 	CmplxA=header1[3];   CmplxB=header2[3];
 	if ((header1[2]!=header2[2])&(header1[1]*header1[2]==1)) {
 		C2F(com).fun=0;
-		C2F(com).fin=-C2F(com).fin;
+		Fin=-Fin;
 		return 0;
 	}
 	switch (CmplxA) {

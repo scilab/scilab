@@ -168,7 +168,7 @@ int C2F(getval)(double *s, int *dotdet)
   static double d1;
   int i1;
 
-  C2F(com).fin = 0;
+  Fin = 0;
   /*     beginning of the code */
   detdot = *dotdet;
   ndg = 0;

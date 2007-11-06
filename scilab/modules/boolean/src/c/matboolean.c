@@ -22,13 +22,13 @@ int C2F(matlog)(void)
     extern  int C2F(error)();
     static integer i1, i2, l1, l2, m2, n2, m1, n1, op, lw, il1, il2, mn2, it1, it2, mn1, top0;
 
-    top0 = C2F(vstk).top;
-    op = C2F(com).fin;
-    lw = C2F(vstk).lstk[C2F(vstk).top] + 1;
+    top0 = Top;
+    op = Fin;
+    lw = C2F(vstk).lstk[Top] + 1;
 
-    if (C2F(com).rhs == 2)
+    if (Rhs == 2)
     {
-		il2 = C2F(vstk).lstk[C2F(vstk).top - 1] + C2F(vstk).lstk[C2F(vstk).top - 1] - 1;
+		il2 = C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1;
 		if (ISTK[il2 - 1] < 0) 
 		{
 	    	il2 = ISTK[il2] + ISTK[il2] - 1;
@@ -38,10 +38,10 @@ int C2F(matlog)(void)
 		it2 = ISTK[il2 + 2];
 		l2 = (il2 + 4) / 2 + 1;
 		mn2 = m2 * n2;
-		--C2F(vstk).top;
+		--Top;
     }
 
-    il1 = C2F(vstk).lstk[C2F(vstk).top - 1] + C2F(vstk).lstk[C2F(vstk).top - 1] - 1;
+    il1 = C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1;
     if (ISTK[il1 - 1] < 0) 
    	{
 		il1 = ISTK[il1] + ISTK[il1] - 1;
@@ -52,7 +52,7 @@ int C2F(matlog)(void)
 
     l1 = (il1 + 4) / 2 + 1;
     mn1 = m1 * n1;
-    if (C2F(com).fin == non) 
+    if (Fin == non) 
    	{
 		if (mn1 == 0) 
 		{
@@ -61,7 +61,7 @@ int C2F(matlog)(void)
 			ISTK[il1 + 1] = 0;
 			ISTK[il1 + 2] = 0;
 
-			C2F(vstk).lstk[C2F(vstk).top] = (il1 + 4) / 2 + 1;
+			C2F(vstk).lstk[Top] = (il1 + 4) / 2 + 1;
 			return 0;
 		}
 		else
@@ -79,7 +79,7 @@ int C2F(matlog)(void)
 		    		ISTK[il1 + 3 + j - 1] = 0;
 				}
 			}
-			C2F(vstk).lstk[C2F(vstk).top] = (il1 + 3 + mn1) / 2 + 1;
+			C2F(vstk).lstk[Top] = (il1 + 3 + mn1) / 2 + 1;
 		}
 	}
 	else
@@ -91,7 +91,7 @@ int C2F(matlog)(void)
 			ISTK[il1 + 1] = 0;
 			ISTK[il1 + 2] = 0;
 
-			C2F(vstk).lstk[C2F(vstk).top] = (il1 + 4) / 2 + 1;
+			C2F(vstk).lstk[Top] = (il1 + 4) / 2 + 1;
 			return 0;
 		}
 		if (mn1 == 1) 
@@ -118,7 +118,7 @@ int C2F(matlog)(void)
 			C2F(error)(&code_error);
 			return 0;
 		}
-		if (C2F(com).fin == ou) 
+		if (Fin == ou) 
 		{
 	        for (j = 0; j <= mn1 - 1; ++j) 
 			{
@@ -154,7 +154,7 @@ int C2F(matlog)(void)
 		ISTK[il1] = Max(m1,m2);
 		ISTK[il1 + 1] = Max(n1,n2);
 
-		C2F(vstk).lstk[C2F(vstk).top] = (il1 + 3 + mn1) / 2 + 1;
+		C2F(vstk).lstk[Top] = (il1 + 3 + mn1) / 2 + 1;
 		return 0;
 	}
 return 0;

@@ -56,7 +56,7 @@ int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
 L60:
 
 	C2F(parse)();
-	if (C2F(iop).err > 0) {
+	if (Err > 0) {
 		goto L9999;
 	}
 
@@ -94,7 +94,7 @@ L89:
 		C2F(error)(&lierr);
 		goto L9999;
 	}
-	if (Top - Rhs + Lhs + 1 >= C2F(vstk).bot) {
+	if (Top - Rhs + Lhs + 1 >= Bot) {
 		int lierr = 18;
 		C2F(error)(&lierr);
 		goto L9999;
@@ -102,7 +102,7 @@ L89:
 	goto L91;
 
 L90:
-	if (C2F(iop).err > 0) {
+	if (Err > 0) {
 		goto L9999;
 	}
 L91:
@@ -137,22 +137,22 @@ L95:
 	C2F(ref2val)();
 	C2F(com).fun = 0;
 	C2F(funs)(&Ids[1 + (Pt + 1) * nsiz]);
-	if (C2F(iop).err > 0) {
+	if (Err > 0) {
 		goto L9999;
 	}
 	if (C2F(com).fun > 0) {
 		goto L91;
 	}
-	if (C2F(com).fin == 0) {
+	if (Fin == 0) {
 		int lierr = 246;
 		C2F(error)(&lierr);
-		if (C2F(iop).err > 0) {
+		if (Err > 0) {
 			goto L9999;
 		}
 		goto L90;
 	}
 	++Pt;
-	C2F(com).fin = Lstk[C2F(com).fin];
+	Fin = Lstk[C2F(com).fin];
 	Rstk[Pt] = 910;
 	C2F(recu).icall = 5;
 	C2F(com).fun = 0;
@@ -174,7 +174,7 @@ L200:
 	--C2F(recu).niv;
 	*ierr = 0;
 	C2F(recu).icall = 0;
-	C2F(com).fin = 3;
+	Fin = 3;
 	return 0;
 L9998:
 	*ierr = 1;

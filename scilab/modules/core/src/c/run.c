@@ -254,7 +254,7 @@ int C2F(run)()
     } else if (Rstk[p] != 501) {
       goto L12;
     }
-    C2F(com).fin = 2;
+    Fin = 2;
     goto L998;
   }
 
@@ -272,13 +272,13 @@ int C2F(run)()
   C2F(stackp)(&Istk[1 + lc], &c__0);
   /*     store info if printing is required see code 22 */
   C2F(putid)(id, &Istk[1 + lc]);
-  kid = C2F(com).fin;
+  kid = Fin;
   lc += 7;
   goto L10;
 
  L25: /* stackg */
-  C2F(com).fin = Istk[7 + lc];
-  ifin = C2F(com).fin;
+  Fin = Istk[7 + lc];
+  ifin = Fin;
   Rhs = Istk[8 + lc];
   lname = lc + 1;
  L26: 
@@ -287,7 +287,7 @@ int C2F(run)()
     lc += 9;
     goto L10;
   }
-  if (C2F(com).fin != 0) {/* variable exists */
+  if (Fin != 0) {/* variable exists */
     goto L28;
   }
   C2F(funs)(&Istk[1 + lc]); /* check if it is a function */
@@ -318,14 +318,14 @@ int C2F(run)()
 	Istk[lc] = op;
 	Istk[1 + lc] = Istk[2 + lc] - 1;
 	Istk[2 + lc] = Istk[3 + lc];
-	Istk[3 + lc] = C2F(com).fin;
+	Istk[3 + lc] = Fin;
 	goto L80;
       } else {
 	/* only reference to a function */
 	/* stackg opcode replaced by varfun opcode */
 	Istk[lc] = 27;
 	Istk[1 + lc] = C2F(com).fun;
-	Istk[2 + lc] = C2F(com).fin;
+	Istk[2 + lc] = Fin;
 	C2F(putid)(&Istk[3 + lc], &Ids[1 + (Pt + 1) * nsiz]);
 	goto L10;
       }
@@ -333,10 +333,10 @@ int C2F(run)()
     lc += 9;
     goto L10;
   }
-  C2F(com).fin = Istk[7 + lc];
+  Fin = Istk[7 + lc];
   goto L26;
  L28:
-  if (Rhs == 0 && ((Istk[7 + lc] == -2)||(Istk[7 + lc] == -1)) && C2F(com).fin == -1) {
+  if (Rhs == 0 && ((Istk[7 + lc] == -2)||(Istk[7 + lc] == -1)) && Fin == -1) {
     lc += 9;
 
     if (Istk[7 + lc-9] == -2) {
@@ -368,29 +368,29 @@ int C2F(run)()
     goto L10;
   }
   lc += 9;
-  if (C2F(com).fin > 0) {
+  if (Fin > 0) {
     goto L65;
   }
   goto L10;
 
   /*     allops */
  L30:
-  C2F(com).fin = Istk[1 + lc];
+  Fin = Istk[1 + lc];
   Rhs = Istk[2 + lc];
   Lhs = Istk[3 + lc];
   lc += 4;
-  if (C2F(com).fin == extrac) {
+  if (Fin == extrac) {
     C2F(isafunptr)(&Top, id, &ifun, &ifin);
     if (ifun != 0) {
       --Top;
       --Rhs;
       C2F(com).fun = ifun;
-      C2F(com).fin = ifin;
+      Fin = ifin;
       C2F(adjustrhs)();
       goto L81;
     }
   }
-  if (C2F(com).fin == extrac || C2F(com).fin == insert) {
+  if (Fin == extrac || Fin == insert) {
     C2F(adjustrhs)();
   }
   ++Pt;
@@ -563,7 +563,7 @@ int C2F(run)()
     goto L59;
   }
   ++Pt;
-  C2F(com).fin = equal;
+  Fin = equal;
   Rhs = 2;
   Lhs = 1;
   Rstk[Pt] = 605;
@@ -708,7 +708,7 @@ int C2F(run)()
   Rhs = Istk[1 + lc];
   C2F(adjustrhs)();
   Lhs = Istk[2 + lc];
-  C2F(com).fin = Istk[3 + lc];
+  Fin = Istk[3 + lc];
   lc += 4;
 
  L81:
@@ -740,9 +740,9 @@ int C2F(run)()
   }
   Pstk[Pt] = C2F(iop).rio;
   C2F(iop).rio = C2F(iop).rte;
-  C2F(com).fin = 2;
+  Fin = 2;
   if (Lct[4] <= -10) {
-    C2F(com).fin = -1;
+    Fin = -1;
     Lct[4] = -Lct[4] - 11;
   }
   Ids[1 + Pt * nsiz] = lc;
@@ -842,16 +842,16 @@ int C2F(run)()
     if (Rstk[Pt] <= 502) {
       if (Pt>1) {
 	if (Rstk[Pt-1] != 903 && Rstk[Pt-1] != 909 && Rstk[Pt-1] != 706)
-	  C2F(vstk).bot = Lin[5 + k];}
+	  Bot = Lin[5 + k];}
       else
-	C2F(vstk).bot = Lin[5 + k];
+	Bot = Lin[5 + k];
     }
     else if (Rstk[Pt] == 503) {
       if (C2F(iop).rio == C2F(iop).rte) {
 	    /* abort in a pause mode */
 	C2F(iop).rio = Pstk[Pt-1];
 	C2F(recu).paus--;
-	C2F(vstk).bot = Lin[5 + k];}
+	Bot = Lin[5 + k];}
       else {
 	int mode[3];
 	/*  abort in an exec*/
@@ -1107,8 +1107,8 @@ int C2F(run)()
       goto L253;
     }
     /* fin points on the newly saved variable */
-    if (!(Lct[4] >= 0 && ip != semi && C2F(com).fin != 0)) goto L253;
-    ifin=C2F(com).fin;
+    if (!(Lct[4] >= 0 && ip != semi && Fin != 0)) goto L253;
+    ifin=Fin;
   L232:
     C2F(print)(&Istk[li], &ifin, &C2F(iop).wte);
     if (Rstk[Pt]!=1101) goto L253;
@@ -1156,7 +1156,7 @@ int C2F(run)()
   }
   lastindpos -= Rhs;
   /*     put a reference to the lhs variable */
-  C2F(com).fin = -3;
+  Fin = -3;
   C2F(stackg)(&Istk[li]);
   if (Err > 0 || C2F(errgst).err1 > 0) {
     goto L10;
@@ -1178,7 +1178,7 @@ int C2F(run)()
   Rhs += 2;
   Lhs = 1;
   C2F(recu).icall = 4;
-  C2F(com).fin = insert;
+  Fin = insert;
   /*     *call* allops(insert) */
   return 0;
  L250:
@@ -1201,8 +1201,8 @@ int C2F(run)()
     goto L253;
   }
   /*     fin points on the newly saved variable */
-  if (!(Lct[4] >= 0 && ip != semi && C2F(com).fin != 0)) goto L252;
-  ifin=C2F(com).fin;
+  if (!(Lct[4] >= 0 && ip != semi && Fin != 0)) goto L252;
+  ifin=Fin;
  L251:
   C2F(print)(&Istk[li], &ifin, &C2F(iop).wte);
   if (Rstk[Pt]!=1101) goto L252;

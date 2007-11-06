@@ -66,7 +66,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 			if (RET==TCL_ERROR)
 			{
                 const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
-				if(C2F(iop).err>0)
+				if(Err>0)
 				{
 					Scierror(999,"%s, ScilabEval error at line %i\n	%s.\n",fname,i+1,(char *)trace);
 				}

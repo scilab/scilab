@@ -34,7 +34,7 @@ static void cleanFortranString(char *fortanbuffer);
 /*-----------------------------------------------------------------------------------*/
 integer C2F(getstackinfo)(integer *total,integer *used)
 {
-	*used = C2F(vstk).lstk[C2F(vstk).isiz - 1] - C2F(vstk).lstk[C2F(vstk).bot - 1] + 1;
+	*used = C2F(vstk).lstk[C2F(vstk).isiz - 1] - C2F(vstk).lstk[Bot - 1] + 1;
 	*total = C2F(vstk).lstk[C2F(vstk).isiz - 1] - C2F(vstk).lstk[0];
 	return(0);
 }
@@ -48,7 +48,7 @@ integer C2F(getgstackinfo)(integer *total,integer *used)
 /*-----------------------------------------------------------------------------------*/
 integer C2F(getvariablesinfo)(integer *total,integer *used)
 {
-	*used = C2F(vstk).isiz - C2F(vstk).bot ;
+	*used = C2F(vstk).isiz - Bot ;
 	*total = C2F(vstk).isiz - 1;
 	return 0;
 }
@@ -62,7 +62,7 @@ integer C2F(getgvariablesinfo)(integer *total,integer *used)
 /*-----------------------------------------------------------------------------------*/
 integer getIntermediateMemoryNeeded(void)
 {
-	return C2F(iop).err + C2F(vstk).lstk[C2F(vstk).bot - 1] - C2F(vstk).lstk[0];
+	return (Err + C2F(vstk).lstk[Bot - 1] - C2F(vstk).lstk[0]);
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL is_a_valid_size_for_scilab_stack(int sizestack)
@@ -89,7 +89,7 @@ char *getLocalNamefromId(int n)
 	char *Name=NULL;
 	char fortranName[LengthNameVariableScilabMax+1];
 
-	id=&C2F(vstk).idstk[C2F(vstk).bot * 6 - 6];
+	id=&C2F(vstk).idstk[Bot * 6 - 6];
 	id -= 7;
 
 	C2F(cvname)(&id[n * 6 + 1], fortranName, &one,LengthNameVariableScilabMax);
@@ -136,7 +136,7 @@ int getLocalSizefromId(int n)
 
 	if ( (n >= 0) && ( n < Lused ) )
 	{
-		LocalSize=(int)(C2F(vstk).lstk[C2F(vstk).bot + n] - C2F(vstk).lstk[C2F(vstk).bot + n - 1]);
+		LocalSize=(int)(C2F(vstk).lstk[Bot + n] - C2F(vstk).lstk[Bot + n - 1]);
 	}
 	else
 	{

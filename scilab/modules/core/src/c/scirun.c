@@ -166,7 +166,7 @@ L95:
 	*/
     C2F(com).fun = 0;
     C2F(funs)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6]);
-    if (C2F(iop).err > 0) 
+    if (Err > 0) 
 	{
 		if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;
 		goto L60;

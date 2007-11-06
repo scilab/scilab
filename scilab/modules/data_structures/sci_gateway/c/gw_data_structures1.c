@@ -25,7 +25,7 @@ static gw_generic_table Tab[]=
 int C2F(gwdatastructures1)()
 { 
 	Rhs=Max(Rhs,0);
-	if (C2F(vstk).top - C2F(com).rhs + C2F(com).lhs + 1 >= C2F(vstk).bot) 
+	if (Top - Rhs + Lhs + 1 >= Bot) 
 	{
 		static integer codeerror = 18;
 		C2F(error)(&codeerror);

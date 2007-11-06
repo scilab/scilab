@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "terme.h"
 #include "stack-def.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(getsym)();
 extern int C2F(error)(int *);
@@ -84,10 +85,10 @@ int C2F(terme)(void)
 		}
 		case 2:
 		{
-			C2F(com).fin = C2F(recu).pstk[C2F(recu).pt - 1];
+			Fin = C2F(recu).pstk[C2F(recu).pt - 1];
 			/* evaluation */
 			C2F(recu).rstk[C2F(recu).pt - 1] = 203;
-			C2F(com).rhs = 2;
+			Rhs = 2;
 			C2F(recu).icall = 4;
 			return 0;
 		}
@@ -131,10 +132,10 @@ int C2F(terme)(void)
 		}
 		case 4: 
 		{
-			C2F(com).fin = C2F(recu).pstk[C2F(recu).pt - 1];
+			Fin = C2F(recu).pstk[C2F(recu).pt - 1];
 			/* evaluation */
 			C2F(recu).rstk[C2F(recu).pt - 1] = 203;
-			C2F(com).rhs = 2;
+			Rhs = 2;
 			C2F(recu).icall = 4;
 			return 0;
 		}

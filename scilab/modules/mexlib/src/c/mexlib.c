@@ -1588,7 +1588,7 @@ void  numberandsize(const mxArray  *ptr, int *number, int *size)
 {
   int kk,lst_k;
   lst_k=(int) ptr;
-  if (lst_k < *Lstk(C2F(vstk).bot)) {
+  if (lst_k < *Lstk(Bot)) {
     *number=0;*size=0;
   for (kk = 1; kk <= Nbvars; kk++)
     {
@@ -1599,7 +1599,7 @@ void  numberandsize(const mxArray  *ptr, int *number, int *size)
   } else
     {
     *number=0;
-  for (kk = C2F(vstk).bot; kk <  C2F(vstk).isiz; kk++)
+  for (kk = Bot; kk <  C2F(vstk).isiz; kk++)
     {
       *number=kk;
       if (lst_k == C2F(vstk).lstk[kk-1]) break;
@@ -1613,7 +1613,7 @@ int arr2num( mxArray  *ptr )
 {
   int kk,lst_k,number;
   lst_k=(int) ptr;
-  if (lst_k < *Lstk(C2F(vstk).bot)) {
+  if (lst_k < *Lstk(Bot)) {
     number=0;
   for (kk = 1; kk <= Nbvars; kk++)
     {
@@ -1624,7 +1624,7 @@ int arr2num( mxArray  *ptr )
   } else
     {
     number=0;
-  for (kk = C2F(vstk).bot; kk <  C2F(vstk).isiz; kk++)
+  for (kk = Bot; kk <  C2F(vstk).isiz; kk++)
     {
       number=kk;
       if (lst_k == C2F(vstk).lstk[kk-1]) break;
@@ -1637,7 +1637,7 @@ int arr2numcst(const mxArray  *ptr )
 {
   int kk,lst_k,number;
   lst_k=(int) ptr;
-  if (lst_k < *Lstk(C2F(vstk).bot)) {
+  if (lst_k < *Lstk(Bot)) {
     number=0;
   for (kk = 1; kk <= Nbvars; kk++)
     {
@@ -1648,7 +1648,7 @@ int arr2numcst(const mxArray  *ptr )
   } else
     {
     number=0;
-  for (kk = C2F(vstk).bot; kk <  C2F(vstk).isiz; kk++)
+  for (kk = Bot; kk <  C2F(vstk).isiz; kk++)
     {
       number=kk;
       if (lst_k == C2F(vstk).lstk[kk-1]) break;

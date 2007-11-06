@@ -150,13 +150,13 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 20:
 			{
-				if (C2F(iop).err == 1)
+				if (Err == 1)
 				{
 					sciprint(_("first argument must be square matrix.\n"));
 				}
 				else
 				{
-					sciprint(_("%dth argument must be square matrix.\n"),C2F(iop).err);
+					sciprint(_("%dth argument must be square matrix.\n"),Err);
 				}
 			}
 			break;
@@ -256,19 +256,19 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 36:
 			{
-				if (C2F(iop).err == 1)
+				if (Err == 1)
 				{
 					sciprint(_("first argument is incorrect.\n"));
 				}
 				else
 				{
-					sciprint(_("%dth argument is incorrect here.\n"),C2F(iop).err);
+					sciprint(_("%dth argument is incorrect here.\n"),Err);
 				}
 			}
 			break;
 			case 37:
 			{
-				sciprint(_("incorrect function at line %d.\n"),C2F(iop).err);
+				sciprint(_("incorrect function at line %d.\n"),Err);
 			}
 			break;
 			case 38:
@@ -304,20 +304,20 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 44:
 			{
-				if (C2F(iop).err == 1)
+				if (Err == 1)
 				{
 					sciprint(_("first argument is incorrect.\n"));
 				}
 				else
 				{
-					sciprint(_("%dth argument is incorrect.\n"),C2F(iop).err);
+					sciprint(_("%dth argument is incorrect.\n"),Err);
 				}
 
 			}
 			break;
 			case 45:
 			{
-				sciprint(_("null matrix (argument # %d).\n"),C2F(iop).err);
+				sciprint(_("null matrix (argument # %d).\n"),Err);
 			}
 			break;
 			case 46:
@@ -354,9 +354,9 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 52:
 			{
-				if (C2F(iop).err != 1)
+				if (Err != 1)
 				{
-					sciprint(_("%dth argument must be a real matrix.\n"),C2F(iop).err);
+					sciprint(_("%dth argument must be a real matrix.\n"),Err);
 				}
 				else
 				{
@@ -366,9 +366,9 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 53:
 			{
-				if (C2F(iop).err != 1)
+				if (Err != 1)
 				{
-					sciprint(_("%dth input is invalid (waiting for real or complex matrix.\n"),C2F(iop).err);
+					sciprint(_("%dth input is invalid (waiting for real or complex matrix.\n"),Err);
 				}
 				else
 				{
@@ -378,9 +378,9 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 54:
 			{
-				if (C2F(iop).err != 1)
+				if (Err != 1)
 				{
-					sciprint(_("%dth argument type must be polynomial.\n"),C2F(iop).err);
+					sciprint(_("%dth argument type must be polynomial.\n"),Err);
 				}
 				else
 				{
@@ -390,9 +390,9 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 55:
 			{
-				if (C2F(iop).err != 1)
+				if (Err != 1)
 				{
-					sciprint(_("%dth argument type must be character string.\n"),C2F(iop).err);
+					sciprint(_("%dth argument type must be character string.\n"),Err);
 				}
 				else
 				{
@@ -402,9 +402,9 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 56:
 			{
-				if (C2F(iop).err != 1)
+				if (Err != 1)
 				{
-					sciprint(_("%dth argument must be a list.\n"),C2F(iop).err);
+					sciprint(_("%dth argument must be a list.\n"),Err);
 				}
 				else
 				{
@@ -460,12 +460,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 62:
 			{
-				sciprint(_("end of file at line %d\n"),C2F(iop).err);
+				sciprint(_("end of file at line %d\n"),Err);
 			}
 			break;
 			case 63:
 			{
-				sciprint(_("%d graphic terminal?\n"),C2F(iop).err);
+				sciprint(_("%d graphic terminal?\n"),Err);
 			}
 			break;
 			case 64:
@@ -475,6 +475,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 65:
 			{
+				sciprint(_("%d : logical unit already used\n"),Err);
 			}
 			break;
 			case 66:
@@ -814,7 +815,8 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			break;
 			case 140:
-			{/* no message  */
+			{
+				/* no message  */
 			}
 			break;
 			case 141:
@@ -845,58 +847,27 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 201:
 			{
+				/* not used  */
 			}
 			break;
 			case 202:
 			{
+				/* not used  */
 			}
 			break;
 			case 203:
 			{
+				/* not used  */
 			}
 			break;
 			case 204:
 			{
 			}
 			break;
-			case 205:
+			case 205: case 206: case 207: case 208: case 209:
+			case 210: case 211: case 212: case 213: case 214:
 			{
-			}
-			break;
-			case 206:
-			{
-			}
-			break;
-			case 207:
-			{
-			}
-			break;
-			case 208:
-			{
-			}
-			break;
-			case 209:
-			{
-			}
-			break;
-			case 210:
-			{
-			}
-			break;
-			case 211:
-			{
-			}
-			break;
-			case 212:
-			{
-			}
-			break;
-			case 213:
-			{
-			}
-			break;
-			case 214:
-			{
+				/* not used  */
 			}
 			break;
 			case 215:
@@ -1167,10 +1138,12 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 273:
 			{
+				sciprint(_("Instruction left hand side: waiting for a dot or a left parenthesis"));
 			}
 			break;
 			case 274:
 			{
+				sciprint(_("Instruction left hand side: waiting for a name"));
 			}
 			break;
 			case 275:
@@ -1181,6 +1154,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			case 276:
 			{
 				sciprint(_("Missing operator, comma, or semicolon\n"));
+				*errtyp = 1;
 			}
 			break;
 			case 277:
@@ -1188,17 +1162,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 				sciprint(_("Too many commands defined\n"));
 			}
 			break;
-			case 278:
-			{
-				/* no message  */
-			}
-			break;
-			case 279:
-			{
-				/* no message  */
-			}
-			break;
-			case 280:
+			case 278: case 279: case 280:
 			{
 				/* no message  */
 			}

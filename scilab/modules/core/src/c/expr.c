@@ -107,10 +107,10 @@ L5:
 	--C2F(recu).pt;
 	if (sign != minus) goto L10;
 	
-	C2F(com).rhs = 1;
+	Rhs = 1;
 	++C2F(recu).pt;
 	C2F(recu).pstk[C2F(recu).pt - 1] = kount;
-	C2F(com).fin = minus;
+	Fin = minus;
 	C2F(recu).rstk[C2F(recu).pt - 1] = 102;
 	C2F(recu).icall = 4;
 	/* *call* allops(minus) */
@@ -172,10 +172,10 @@ L24:
 L25:
 	op = C2F(recu).pstk[C2F(recu).pt - 1] % 256;
 	kount = C2F(recu).pstk[C2F(recu).pt - 1] / 256;
-	C2F(com).rhs = 2;
+	Rhs = 2;
 	C2F(recu).pstk[C2F(recu).pt - 1] = kount;
 	C2F(recu).rstk[C2F(recu).pt - 1] = 104;
-	C2F(com).fin = op;
+	Fin = op;
 	C2F(recu).icall = 4;
 	/* *call* allops(op) */
 	return 0;
@@ -194,13 +194,13 @@ L60:
 	{
 		int code_error = 33;
 		C2F(error)(&code_error);
-		if (C2F(iop).err > 0) return 0;
+		if (Err > 0) return 0;
 	}
-	C2F(com).rhs = kount;
+	Rhs = kount;
 	if (kount <= 1) return 0;
 	++C2F(recu).pt;
 	C2F(recu).rstk[C2F(recu).pt - 1] = 105;
-	C2F(com).fin = colon;
+	Fin = colon;
 	C2F(recu).icall = 4;
 	/* *call* allops(colon) */
 	return 0;
@@ -247,13 +247,13 @@ L72:
 			{
 				if (C2F(compil)(&code, &inc, &val, &val, &val)) 
 				{
-					if (C2F(iop).err > 0) return 0;
+					if (Err > 0) return 0;
 					C2F(recu).ids[C2F(recu).pt * 6 - 6] = C2F(com).comp[0];
 				}
 			} 
 			else 
 			{
-				temp = (i = ((int *)&C2F(stack))[C2F(vstk).lstk[C2F(vstk).top - 1] + C2F(vstk).lstk[C2F(vstk).top - 1] - 1 - 1], abs(i));
+				temp = (i = ((int *)&C2F(stack))[C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1 - 1], abs(i));
 				if ( (temp != 8) && (C2F(istrue)(&val)) )
 				{
 					/* first term is true there is no use to evaluate the other */
@@ -296,8 +296,8 @@ L73:
 		goto L75;
 	}
 	C2F(recu).icall = 4;
-	C2F(com).fin = ou;
-	C2F(com).rhs = 2;
+	Fin = ou;
+	Rhs = 2;
 	++C2F(recu).pt;
 	C2F(recu).rstk[C2F(recu).pt - 1] = 107;
 	C2F(recu).pstk[C2F(recu).pt - 1] = kount;
@@ -308,7 +308,7 @@ L74:
 	if (C2F(com).comp[0] != 0 && C2F(recu).ids[C2F(recu).pt * 6 - 6] != 0) 
 	{
 		i = C2F(recu).ids[C2F(recu).pt * 6 - 6] - 1;
-		if ( (C2F(compil)(&code, &val, &i, &val, &val)) && (C2F(iop).err > 0) ) return 0;
+		if ( (C2F(compil)(&code, &val, &i, &val, &val)) && (Err > 0) ) return 0;
 	}
 	--C2F(recu).pt;
 L75:
@@ -334,13 +334,13 @@ L81:
 			{
 				if (C2F(compil)(&code, &val, &val, &val, &val)) 
 				{
-					if (C2F(iop).err > 0) return 0;
+					if (Err > 0) return 0;
 					C2F(recu).ids[C2F(recu).pt * 6 - 6] = C2F(com).comp[0];
 				}
 			} 
 			else 
 			{
-				temp = (i = ((int *)&C2F(stack))[C2F(vstk).lstk[C2F(vstk).top - 1] + C2F(vstk).lstk[C2F(vstk).top - 1] - 1 - 1], abs(i));
+				temp = (i = ((int *)&C2F(stack))[C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1 - 1], abs(i));
 				if ( (temp != 8) && (! C2F(istrue)(&val)) )
 				{
 					/* first term is false there is no use to evaluate the other */
@@ -385,8 +385,8 @@ L82:
 		goto L84;
 	}
 	C2F(recu).icall = 4;
-	C2F(com).fin = et;
-	C2F(com).rhs = 2;
+	Fin = et;
+	Rhs = 2;
 	++C2F(recu).pt;
 	C2F(recu).pstk[C2F(recu).pt - 1] = kount;
 	C2F(recu).rstk[C2F(recu).pt - 1] = 109;
@@ -397,7 +397,7 @@ L83:
 	if (C2F(com).comp[0] != 0 && C2F(recu).ids[C2F(recu).pt * 6 - 6] != 0) 
 	{
 		i = C2F(recu).ids[C2F(recu).pt * 6 - 6] - 1;
-		if ( (C2F(compil)(&code, &val, &i, &val, &val)) && (C2F(iop).err > 0) ) return 0;
+		if ( (C2F(compil)(&code, &val, &i, &val, &val)) && (Err > 0) ) return 0;
 	}
 	--C2F(recu).pt;
 L84:
@@ -424,8 +424,8 @@ L86:
 	kount = C2F(recu).pstk[C2F(recu).pt - 1] / 256;
 	--C2F(recu).pt;
 	if (op == 0) goto L82;
-	C2F(com).fin = op;
-	C2F(com).rhs = 1;
+	Fin = op;
+	Rhs = 1;
 	++C2F(recu).pt;
 	C2F(recu).pstk[C2F(recu).pt - 1] = kount;
 	C2F(recu).rstk[C2F(recu).pt - 1] = 111;
@@ -478,8 +478,8 @@ L103:
 	/* *call* expr */
 	goto L2;
 L104:
-	C2F(com).fin = C2F(recu).pstk[C2F(recu).pt - 1];
-	C2F(com).rhs = 2;
+	Fin = C2F(recu).pstk[C2F(recu).pt - 1];
+	Rhs = 2;
 	C2F(recu).rstk[C2F(recu).pt - 1] = 114;
 	C2F(recu).icall = 4;
 	/* *call* allops(fin) */

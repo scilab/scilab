@@ -1384,7 +1384,7 @@ int intscicosimc(fname,fname_len)
  if(il_state[0]!=16) /*Check if state is a tlist*/
  {
   Scierror(56,"%s : First argument must be a Tlist.\n",fname);
-  C2F(iop).err=1;
+  Err=1;
   return 0;
  }
  m1 = il_state[1];
@@ -1430,7 +1430,7 @@ int intscicosimc(fname,fname_len)
     if(il_state_outtb[0]!=15) /*check if il_state_outtb is a list*/
     {
      Scierror(56,"%s : outtb element of state must be a list.\n",fname);
-     C2F(iop).err=4;
+     Err=4;
      return 0;
     }
     nlnk = il_state_outtb[1]; /*nlnk is the dimension of the list state_louttb*/
@@ -1442,7 +1442,7 @@ int intscicosimc(fname,fname_len)
  if(il_tcur[0]!=1) /*Check if tcur is a real or complex matrix*/
  {
   Scierror(53,"%s : Second argument must be a scalar.\n",fname);
-  C2F(iop).err=2;
+  Err=2;
   return 0;
  }
  l_tcur = (double *) (il_tcur+4);
@@ -1458,7 +1458,7 @@ int intscicosimc(fname,fname_len)
  if(il_tf[0]!=1) /*Check if tf is a real or complex matrix*/
  {
   Scierror(53,"%s : Third argument must be a scalar.\n",fname);
-  C2F(iop).err=3;
+  Err=3;
   return 0;
  }
  l_tf = (double *) (il_tf+4);
@@ -1474,7 +1474,7 @@ int intscicosimc(fname,fname_len)
  if(il_sim[0]!=16)  /*Check if sim is a tlist*/
  {
   Scierror(56,"%s : Fourth argument must be a Tlist.\n",fname);
-  C2F(iop).err=4;
+  Err=4;
   return 0;
  }
  m4 = il_sim[1];
@@ -1486,7 +1486,7 @@ int intscicosimc(fname,fname_len)
     if(il_sim_fun[0]!=15) /*check if sim.funs is a list*/
     {
      Scierror(56,"%s : Second element of sim must be a list.\n",fname);
-     C2F(iop).err=4;
+     Err=4;
      return 0;
     }
     nblk = il_sim_fun[1]; /*nblk is the dimension of the list sim.funs*/
@@ -1685,7 +1685,7 @@ int intscicosimc(fname,fname_len)
  else
  {
   Scierror(44,"%s : Fifth argument is incorrect.\n",fname);
-  C2F(iop).err=5;
+  Err=5;
   return 0;
  }
 
@@ -1700,13 +1700,13 @@ int intscicosimc(fname,fname_len)
  if (m6<4) /*Check if tol has a minimun of four elements*/
  {
   Scierror(89,"%s : Sixth argument must have at least four elements.\n",fname); 
-  C2F(iop).err=6;
+  Err=6;
   return 0; 
  }
  else if(m6>7) /*Check if tol has a maximum of seven elements*/
  {
   Scierror(89,"%s : Sixth argument must have a maximum of seven elements.\n",fname);
-  C2F(iop).err=6;
+  Err=6;
   return 0;
  }
 
@@ -1779,9 +1779,9 @@ int intscicosimc(fname,fname_len)
     else 
     {
       C2F(namstr)(id,&subheader[6],&sz_str,(j=0,&j));
-      C2F(com).fin=0;
+      Fin=0;
       C2F(funs)(id);
-      if ((C2F(com).fun==-1)|(C2F(com).fun==-2)) lfunpt[i]=-*Lstk(C2F(com).fin);
+      if ((C2F(com).fun==-1)|(C2F(com).fun==-2)) lfunpt[i]=-*Lstk(Fin);
       else 
       {
        C2F(curblk).kfun=i+1;
@@ -1793,7 +1793,7 @@ int intscicosimc(fname,fname_len)
    }
    else 
    {
-     C2F(iop).err=4;
+     Err=4;
      Scierror(44,"%s : error\n",fname);
      FREE(lfunpt);
      return 0;
@@ -2109,7 +2109,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z, \
               }
               break;
   }
-  if (! (C2F(errgst).err1>0||C2F(iop).err>0))
+  if (! (C2F(errgst).err1>0||Err>0))
   {
    Scierror(888,"%s\n",C2F(cha1).buf);
    C2F(curblk).kfun=0;
@@ -2118,7 +2118,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z, \
   }
  }
 
- if (C2F(iop).err>0) return 0;
+ if (Err>0) return 0;
 
  C2F(curblk).kfun=0;
  C2F(com).fun=0;
@@ -2825,7 +2825,7 @@ int intgetscicosvarsc(fname,fname_len)
   if(il_str[0]!=10) /* Check if input argument is a character string matrix */
   {
    Scierror(55,"%s : First argument must be a string.\n",fname);
-   C2F(iop).err=1;
+   Err=1;
    return 0;
   }
 
