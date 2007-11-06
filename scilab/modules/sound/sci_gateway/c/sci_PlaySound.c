@@ -1,4 +1,5 @@
 /*-----------------------------------------------------------------------------------*/
+#include <stdio.h>
 #ifdef _MSC_VER
 	#include <Windows.h>
 	#pragma comment(lib, "winmm.lib")
