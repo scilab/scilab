@@ -163,7 +163,8 @@ sci_gateway/fortran/sci_sfinit.f
 
 
 MODULE_CHECKS = unit_tests/lsparse.tst \
-unit_tests/sparse.tst
+unit_tests/sparse.tst \
+unit_tests/spisp.tst
 
 
 libscisparse_la_CFLAGS=  	-Iincludes/ \
