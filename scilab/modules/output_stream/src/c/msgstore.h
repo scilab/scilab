@@ -7,6 +7,9 @@
 
 #include "machine.h"
 
+/* max numbers of lines in "error" buffer */
+#define MAX_MSG_LINES  20
+
 /**
  * TODO : comment
  * @param n
@@ -24,8 +27,9 @@ int C2F(linestore)(int *n);
  * TODO : comment
  * @param str
  * @param n
+ * @param length str (required by fortran)
  */
-int C2F(funnamestore)(char *str,int *n);
+int C2F(funnamestore)(char *str,int *n,int lenstr);
 
 /**
  * TODO : comment

@@ -2,14 +2,12 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "msgstore.h"
-
 /*-----------------------------------------------------------------------------------*/ 
 #define MEM_LACK 3
 #define MAX_LINES 2
-#define MAX_MSG_LINES  20
 /*-----------------------------------------------------------------------------------*/ 
-static char* msg_buff[MAX_MSG_LINES];
-static char funname[25];    /* Francois VOGEL August 2004 - Replaced 24 by 25 (bug 803)*/
+static char *msg_buff[MAX_MSG_LINES];
+static char funname[nlgh+1];    /* Francois VOGEL August 2004 - Replaced 24 by 25 (nlgh+1) (bug 803)*/
 static int where = 0;
 static int err_n = 0;
 static int msg_line_counter=0;
@@ -26,9 +24,9 @@ int C2F(linestore)(int *n)
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(funnamestore)(char *str,int *n)
+int C2F(funnamestore)(char *str,int *n,int lenstr)
 {
-  memset(funname,'\0',25);    /* Francois VOGEL August 2004 (bug 803)*/
+  memset(funname,'\0',nlgh+1);    /* Francois VOGEL August 2004 (bug 803)*/
   strncpy(funname, str, (size_t)*n);
   return 0;
 }
