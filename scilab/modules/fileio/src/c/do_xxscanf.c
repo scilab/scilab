@@ -1,8 +1,9 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 /* INRIA */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <ctype.h>  /* isdigit */
+#include <string.h>
 #include "machine.h"
 #include "MALLOC.h"
 #include "do_xxscanf.h"
@@ -10,13 +11,13 @@
 #include "localization.h"
 #include "do_xxprintf.h"
 #include "core_math.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 typedef int (*XXSCANF) __PARAMS((FILE *, char *,...));
 typedef int (*FLUSH) __PARAMS((FILE *));
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 static void set_xxscanf(FILE *fp,XXSCANF *xxscanf,char **target,char **strv)
 {
-	if (fp == (FILE *) 0)		
+	if (fp == (FILE *) 0)
 	{
 		*target = *strv;
 		*xxscanf = (XXSCANF) sscanf;
@@ -27,7 +28,7 @@ static void set_xxscanf(FILE *fp,XXSCANF *xxscanf,char **target,char **strv)
 		*xxscanf = (XXSCANF) fscanf;
 	}
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type)
 {
 	int nc[MAXSCAN];
@@ -50,7 +51,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 	char *sval=NULL;
 	register char *currentchar=NULL;
 
-	XXSCANF xxscanf;	
+	XXSCANF xxscanf;
 
 	set_xxscanf(fp,&xxscanf,&target,&strv);
 	currentchar = format;
@@ -61,26 +62,26 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 		/* scanf */
 		p=currentchar;
 		while (*currentchar != '%' && *currentchar != '\0' ) currentchar++;
-		if ( *currentchar == '%' && *(currentchar+1) == '%' ) 
+		if ( *currentchar == '%' && *(currentchar+1) == '%' )
 		{
 			currentchar=currentchar+2;
 			while (*currentchar != '%' && *currentchar != '\0' ) currentchar++;
 		}
 
-		if (*currentchar == 0) 
+		if (*currentchar == 0)
 		{
 			break ;
 		}
 
 		currentchar++;
-		p1 = currentchar - 1; 
+		p1 = currentchar - 1;
 
 		while ( isdigit(((int)*currentchar)) ) currentchar++;
 
 		width_flag =0;
 
-		if ( p1+1 != currentchar ) 
-		{	  
+		if ( p1+1 != currentchar )
+		{
 			char w= *currentchar;
 			*currentchar='\0';
 			width_flag = 1;
@@ -120,18 +121,18 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 			char *currentchar1=currentchar--;
 			while ( *currentchar1 != '\0' && *currentchar1 != ']') currentchar1++;
 
-			if ( *currentchar1 == '\0') 
+			if ( *currentchar1 == '\0')
 			{
 				Scierror(998,_("Error:\tscanf, unclosed [ directive\n"));
 				return RET_BUG;
 			}
 
-			if ( currentchar1 == currentchar +1 || strncmp(currentchar,"[^]",3)==0 ) 
+			if ( currentchar1 == currentchar +1 || strncmp(currentchar,"[^]",3)==0 )
 			{
 				currentchar1++;
-				while ( *currentchar1 != '\0' && *currentchar1 != ']') currentchar1++;  
+				while ( *currentchar1 != '\0' && *currentchar1 != ']') currentchar1++;
 
-				if ( *currentchar1 == '\0') 
+				if ( *currentchar1 == '\0')
 				{
 					Scierror(998,_("Error:\tscanf unclosed [ directive\n"));
 					return RET_BUG;
@@ -144,11 +145,11 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 		backupcurrrentchar = *currentchar;
 
-		if ( ignore_flag != 1) 
+		if ( ignore_flag != 1)
 		{
 			num_conversion++;
 
-			if ( num_conversion >= MAXSCAN ) 
+			if ( num_conversion >= MAXSCAN )
 			{
 				Scierror(998,_("Error:\tscanf too many (> %d) conversion required\n"),num_conversion,MAXSCAN);
 				return RET_BUG;
@@ -213,17 +214,17 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				break;
 
 			case 'o': case 'u': case 'x': case 'X':
-				if ( l_flag ) 
+				if ( l_flag )
 				{
 					ptrtab[num_conversion] =  &buf[num_conversion].lui;
 					type[num_conversion] = SF_LUI;
 				}
-				else if ( h_flag) 
+				else if ( h_flag)
 				{
 					ptrtab[num_conversion] =  &buf[num_conversion].sui;
 					type[num_conversion] = SF_SUI;
 				}
-				else 
+				else
 				{
 					ptrtab[num_conversion] =  &buf[num_conversion].ui;
 					type[num_conversion] = SF_UI;
@@ -239,17 +240,17 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				n_directive_count++;
 
 			case 'i': case 'd':
-				if ( l_flag ) 
+				if ( l_flag )
 				{
 					ptrtab[num_conversion] =  &buf[num_conversion].li;
 					type[num_conversion] = SF_LI;
 				}
-				else if ( h_flag) 
+				else if ( h_flag)
 				{
 					ptrtab[num_conversion] =  &buf[num_conversion].si;
 					type[num_conversion] = SF_SI;
 				}
-				else 
+				else
 				{
 					ptrtab[num_conversion] =  &buf[num_conversion].i;
 					type[num_conversion] = SF_I;
@@ -262,7 +263,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 					Scierror(998,_("Error:\tscanf: bad conversion\n"));
 					return RET_BUG;
 				}
-				else if (l_flag) 
+				else if (l_flag)
 				{
 					ptrtab[num_conversion] =  &buf[num_conversion].lf;
 					type[num_conversion] = SF_LF;
@@ -283,13 +284,13 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 		}
 	}
 
-	if ( str_width_flag == 1) 
+	if ( str_width_flag == 1)
 	{
 		char *f1=format;
 		char *f2=sformat;
 		char *slast = sformat + MAX_STR - 1 - 4;
 
-		while ( *f1 != '\0'  ) 
+		while ( *f1 != '\0'  )
 		{
 			int n;
 			*f2++ = *f1++;
@@ -311,7 +312,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 		*f2='\0';
 		format = sformat;
 	}
-	
+
 	*retval = (*xxscanf) ((VPTR) target,format,
 		ptrtab[0],ptrtab[1],ptrtab[2],ptrtab[3],ptrtab[4],ptrtab[5],ptrtab[6],ptrtab[7],ptrtab[8],ptrtab[9],
 		ptrtab[10],ptrtab[11],ptrtab[12],ptrtab[13],ptrtab[14],ptrtab[15],ptrtab[16],ptrtab[17],ptrtab[18],ptrtab[19],
@@ -334,7 +335,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 			sval[nc[i-1]]='\0';
 		}
 	}
-	
+
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

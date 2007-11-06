@@ -11,21 +11,21 @@ extern char sprintf_buffer[MAX_SPRINTF_SIZE];
 /*-----------------------------------------------------------------------------------*/
 void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target)
 {
-	if (fp == (FILE *) 0)		
+	if (fp == (FILE *) 0)
 	{
 		/* sprintf */
 		*target = sprintf_buffer;
 		*flush = voidflush;
 		*xxprintf = (XXPRINTF) sprintf;
 	}
-	else if ( fp == stdout ) 
+	else if ( fp == stdout )
 	{
 		/* sciprint2 */
-		*target =  (char *) 0; 
+		*target =  (char *) 0;
 		*flush = fflush;
 		*xxprintf = (XXPRINTF) sciprint2;
 	}
-	else 
+	else
 	{
 		/* fprintf */
 		*target = (char *) fp;
