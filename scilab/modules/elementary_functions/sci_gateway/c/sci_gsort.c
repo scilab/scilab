@@ -36,9 +36,9 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	if (Rhs >= 1)
 	{
 		Type=VarType(1);
-		switch (Type) 
+		switch (Type)
 		{
-		case sci_strings : 
+		case sci_strings :
 			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&S);
 			break;
 		case sci_matrix :
@@ -57,13 +57,13 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	{
 		char c;
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-		if ( m2 == 0 ) 
+		if ( m2 == 0 )
 		{
 			Scierror(999,"%s: second argument is an empty string\n",fname);
 			return 0;
 		}
 		c = *cstk(l2);
-		if (c != ROW_SORT && c != COLUMN_SORT && c != GLOBAL_SORT && c != LIST_SORT) 
+		if (c != ROW_SORT && c != COLUMN_SORT && c != GLOBAL_SORT && c != LIST_SORT)
 		{
 			Scierror(999,"%s: second argument has a wrong value %s should be in r,c,g,lr,lc\n",fname,cstk(l2));
 			return 0;
@@ -83,16 +83,16 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		iord[0] = *cstk(l3);
 	}
 
-	if ( typex[0] == LIST_SORT) 
+	if ( typex[0] == LIST_SORT)
 	{
-		if (typex[1] == ROW_SORT) 
+		if (typex[1] == ROW_SORT)
 		{
 			ind_m1 = m1;
 			ind_n1 = 1;
 			ind_l1 = 0;
 			indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
 		}
-		else 
+		else
 		{
 			ind_m1 = 1;
 			ind_n1 = n1;
@@ -100,7 +100,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
 		}
 	}
-	else 
+	else
 	{
 		ind_m1 = m1;
 		ind_n1 = n1;
@@ -108,7 +108,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1+1));  /* return a matrix*/
 	}
 
-	if (Lhs == 2) iflag = 1; 
+	if (Lhs == 2) iflag = 1;
 	else iflag = 0;
 
 	switch (Type)
@@ -120,9 +120,20 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			int i;
 			tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1+1));
 			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) rowcolsortdouble(tmp_matrix,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
-			if (typex[0]==GLOBAL_SORT ) wholesortdouble(tmp_matrix,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
-			if (typex[0]==LIST_SORT) lgsortdouble(tmp_matrix,indices,m1,n1,typex,iord);  /* When it is going to be lr or lc*/
+			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) {
+			  /* When it is row sort or colume sort*/
+			  rowcolsortdouble(tmp_matrix,indices,m1,n1,typex,iord);
+			}
+			if (typex[0]==GLOBAL_SORT ) {
+			  /* When it is 'g', to sort them all*/
+			  // @FIXME Bruno : Useless param typex.
+			  // wholesortdouble(tmp_matrix,indices,m1,n1,typex,iord);
+			  wholesortdouble(tmp_matrix,indices,m1,n1,iord);
+			}
+			if (typex[0]==LIST_SORT) {
+			  /* When it is going to be lr or lc*/
+			  lgsortdouble(tmp_matrix,indices,m1,n1,typex,iord);
+			}
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&tmp_matrix);
 			LhsVar(1)= Rhs+1 ;                    /*Output */
 			if (Lhs == 2)
@@ -140,13 +151,20 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			int i;
 			char **Str =NULL;
 			Str=(char**)MALLOC(sizeof(char*)*(m1*n1));
-			for (i=0;i<m1*n1;i++) 
+			for (i=0;i<m1*n1;i++)
 			{
 				Str[i]=(char*)MALLOC(sizeof(char)*(strlen(S[i])+1));
 				if (Str[i]) strcpy(Str[i],S[i]);
 			}
-			if (typex[0]==LIST_SORT) lgsortstring(Str,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
-            if (typex[0]==GLOBAL_SORT ) wholesortstring(Str,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
+			if (typex[0]==LIST_SORT) {
+			  lgsortstring(Str,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
+			}
+			if (typex[0]==GLOBAL_SORT ) {
+			  /* When it is 'g', to sort them all*/
+			  // @FIXME Bruno : Useless param typex.
+			  // wholesortstring(Str,indices,m1,n1,typex,iord);
+			  wholesortstring(Str,indices,m1,n1,iord);
+			}
 			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) rowcolsortstring(Str,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, Str);    /*Output */
 			LhsVar(1)=Rhs+1;
@@ -157,14 +175,14 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			}
 			C2F(putlhsvar)();
 			if (indices) {FREE(indices); indices = NULL;}
-			for (i=0;i<m1*n1;i++) 
+			for (i=0;i<m1*n1;i++)
 			{
 				if (Str[i]) {FREE(Str[i]); Str[i]=NULL;}
 			}
             if (Str) {FREE(Str); Str=NULL;}
 		}
 		break;
-	
+
 	case sci_ints:               /* Can not find a example , so can not just remove it */
 		{
 			switch(Im.it)
@@ -207,5 +225,5 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	}
 
 	return 0;
-} 
+}
 /*-----------------------------------------------------------------------------------*/
