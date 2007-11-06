@@ -4,6 +4,18 @@
 */
 #include <string.h>
 #include <stdlib.h>
+
+#ifndef _MSC_VER
+ #ifdef HAVE_LIBINTL_H
+  #include <libintl.h>
+  #ifdef HAVE_LOCALE_H
+   #include <locale.h>
+  #else
+   #error "Cannot find locale.h despite that libintl.h is available"
+  #endif
+ #endif
+#endif
+
 #include "MALLOC.h"
 #include "InitializeLocalization.h"
 #include "localization.h"
@@ -13,6 +25,7 @@
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
 #include "../../../io/includes/setenvc.h"
+
 /*-----------------------------------------------------------------------------------*/ 
 /**
  * Export the variable LC_ALL to the system
