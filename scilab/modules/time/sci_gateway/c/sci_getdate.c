@@ -71,7 +71,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"Parameter must be a 's' or a integer.\n");
+				Scierror(999,_("Parameter must be a 's' or a integer.\n"));
 				return 0;
 			}
 		}
@@ -127,7 +127,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"Parameter must be a 's' or a integer.\n");
+				Scierror(999,_("Parameter must be a 's' or a integer.\n"));
 				return 0;
 			}
 		}

@@ -68,3 +68,9 @@ msgstr ""
 # File: sci_gateway/c/sci_getdate.c, line: 42
 msgid "Impossible to get the date...\n"
 msgstr ""
+
+#
+# File: sci_gateway/c/sci_getdate.c, line: 74
+# File: sci_gateway/c/sci_getdate.c, line: 130
+msgid "Parameter must be a 's' or a integer.\n"
+msgstr ""
