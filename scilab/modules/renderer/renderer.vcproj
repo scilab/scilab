@@ -738,6 +738,10 @@
 				Name="TextDrawing"
 				>
 				<File
+					RelativePath=".\src\jni\CenteredTextDrawerGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\textDrawing\CenteredTextDrawerJavaMapper.cpp"
 					>
 				</File>
@@ -1371,6 +1375,10 @@
 			<Filter
 				Name="TextDrawing"
 				>
+				<File
+					RelativePath=".\src\jni\CenteredTextDrawerGL.hxx"
+					>
+				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\CenteredTextDrawerJavaMapper.hxx"
 					>
