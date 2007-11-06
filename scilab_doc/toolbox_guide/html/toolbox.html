@@ -203,12 +203,17 @@ int minlhs=1, maxlhs=1, minrhs=2, maxrhs=2;
 CheckRhs(minrhs,maxrhs) ; 
 CheckLhs(minlhs,maxlhs) ; 
 
-/* 2 - Check inputs arguments type, and get the size and the address in the Scilab stack of the inputs arguments */  
+/* 2 - Check inputs arguments type, and get the size
+       and the address in the Scilab stack of the inputs
+       arguments
+*/
 GetRhsVar(1, "d", &m1, &n1, &l1);
 GetRhsVar(2, "d", &m2, &n2, &l2);
 		
 /* 3 - Check that the inputs arguments have the same size */
-/* it's possible to use the chekdims and getscalar functions to make these checks*/ 
+/*     it's possible to use the chekdims and getscalar
+       functions to make these checks
+*/ 
 n=m2*n2; 
 if( n1!=n2 || m1!=m2) 
 {
@@ -354,7 +359,9 @@ int sci_fun(char *fname)
 	CheckRhs(minrhs,maxrhs) ;
 	CheckLhs(minlhs,maxlhs) ;
 
-	/* 2 - Check the rhs type, get the rows number (ma) and the columns number (na) of rhs, and its address (la) in the Scilab stack (first position) */
+	/* 2 - Check the rhs type, get the rows number (ma)
+            and the columns number (na) of rhs, and its address
+            (la) in the Scilab stack (first position) */
 	GetRhsVar(1, "d", &ma, &na, &la); 
 
 	/* 3 - Check rhs is a vector */
@@ -369,10 +376,14 @@ int sci_fun(char *fname)
 
 	fun1(stk(la), na*ma, &nx, &x, &s);
 
-	/* 4 - Create the place for the first output argument x ( a vector of doubles, size: 1*nx ) to the address lx in the Scilab stack (second position) */
+	/* 4 - Create the place for the first output argument x
+            ( a vector of doubles, size: 1*nx ) to the address
+            lx in the Scilab stack (second position) */
 	CreateVar(2, "d", &m, &nx, &lx);
 
-	/* if there are two outputs variables then: Create the place for the second output s ( a double, size 1*1) to the address ls in the Scilab stack (third position) */ 
+	/* if there are two outputs variables then: Create
+            the place for the second output s ( a double, size 1*1)
+            to the address ls in the Scilab stack (third position) */ 
 	/* get the value of s, and put it in the Scilab stack */
 	if(Lhs==2)
 	{
