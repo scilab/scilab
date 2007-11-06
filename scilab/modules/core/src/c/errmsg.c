@@ -2,42 +2,28 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include <string.h>
-#include <stdio.h>
-#include "machine.h"
-#include "localization.h"
-#include "stack-c.h"
-#include "MALLOC.h"
-#include "sciprint.h"
-#include "inffic.h"
-#include "stackinfo.h"
-#include "core_math.h"
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(showstack)();
-extern int C2F(cvname)();
-extern int C2F(prntid)();
-static void strip_blank(char *source);
-static void msgout_string(const char *msg);
-/*-----------------------------------------------------------------------------------*/
+
+#include "errmsg.h"
+
 int C2F(errmsg)(integer *n,integer *errtyp)
 {
 /*
 	static integer lunit=0;
 	static integer ll=0;
     static integer io=0;
-*/    
+*/
 	*errtyp = 0;
 /*
     ll = C2F(iop).lct[4];
     lunit = C2F(iop).wte;
-    
+
 
     C2F(linestore)(&i);
     C2F(funnamestore)(" ", &i);//strlen(" "));
     C2F(freemsgtable)();
     C2F(errstore)(n);
-*/    
-    switch ((int)*n) 
+*/
+    switch ((int)*n)
     {
 			case 1:
 			{
@@ -127,10 +113,10 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 				int Memory_used_for_variables = 0;
 				int Intermediate_Memory = 0;
 				int Total_Memory_available = 0;
-				
+
 				Intermediate_Memory = getIntermediateMemoryNeeded();
 				C2F(getstackinfo)(&Total_Memory_available,&Memory_used_for_variables);
-		
+
 				sciprint(_("stack size exceeded!\n"));
 				sciprint(_("Use stacksize function to increase it)\n"));
 				sciprint(_("Memory used for variables : %d\n"),Memory_used_for_variables);
@@ -430,7 +416,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 					/* print variables name on stack :( */
 					C2F(prntid)(&((integer *)&C2F(stack))[C2F(recu).pstk[C2F(recu).pt - 1] - 1], &Rhs, &C2F(iop).wte);
 				}
-				
+
 			}
 			break;
 			case 59:
@@ -837,7 +823,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			break;
   			/*
-			messages from 201 to 203 and 205 to 214 are no more used by error 
+			messages from 201 to 203 and 205 to 214 are no more used by error
 			(see Scierror  in stack1.c)
 			*/
 			case 200:
@@ -1167,7 +1153,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 				/* no message  */
 			}
 			break;
-			
+
 			default:
 			{
 				integer bufl;
@@ -1175,7 +1161,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 				/* message d'erreur soft */
 				/* Bug 1422 corrected - Francois VOGEL June 2006 */
 				bufl = 1;
-				while(*(unsigned char *)&C2F(cha1).buf[bufl - 1] != '\0' && bufl < 80) 
+				while(*(unsigned char *)&C2F(cha1).buf[bufl - 1] != '\0' && bufl < 80)
 				{
 					++bufl;
 				}
@@ -1189,13 +1175,13 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 					sciprint(buffer);
 					FREE(buffer);
 				}
-				
+
 			}
 			break;
     }
-		return 0; 
+		return 0;
 }
-/*-----------------------------------------------------------------------------------*/    
+/*-----------------------------------------------------------------------------------*/
 static void strip_blank(char *source)
 {
 	char *p;
@@ -1209,7 +1195,7 @@ static void strip_blank(char *source)
 		*p = '\0';
 	}
 }
-/*-----------------------------------------------------------------------------------*/    
+/*-----------------------------------------------------------------------------------*/
 static void msgout_string(const char *msg)
 {
 	int i = 0;
@@ -1224,4 +1210,5 @@ static void msgout_string(const char *msg)
 		FREE(buffer);
 	}
 }
-/*-----------------------------------------------------------------------------------*/    
+/*-----------------------------------------------------------------------------------*/
+
