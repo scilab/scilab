@@ -96,14 +96,14 @@ public class CenteredTextDrawerGL extends FixedFontTextDrawerGL {
 		//		 text center refer here to the bottom left corner.
 		// So we need to add half of the box size.
 		Vector3D[] bbox = stringPositions.getExtremBounds();
-		Vector3D realCenter = textCenterPix.add(new Vector3D(halfCenteredBoxWidth, halfCenteredBoxHeight, 0.0));
+		//Vector3D realCenter = textCenterPix.add(new Vector3D(halfCenteredBoxWidth, halfCenteredBoxHeight, 0.0));
 		double halfBoxWidth = (bbox[2].getX() - bbox[1].getX()) / 2.0;
 		double halfBoxHeight = (bbox[0].getY() - bbox[1].getY()) / 2.0;
 		
 		GL gl = getGL();
-		gl.glTranslated(realCenter.getX(), realCenter.getY(), realCenter.getZ());
+		gl.glTranslated(textCenterPix.getX(), textCenterPix.getY(), textCenterPix.getZ());
 		gl.glRotated(Math.toDegrees(rotationAngle), 0.0, 0.0, 1.0);
-		gl.glTranslated(-halfBoxWidth, -halfBoxHeight, 0.0);
+		gl.glTranslated(halfCenteredBoxWidth - halfBoxWidth, halfCenteredBoxHeight - halfBoxHeight, 0.0);
 		return stringPositions;
 	}
 
