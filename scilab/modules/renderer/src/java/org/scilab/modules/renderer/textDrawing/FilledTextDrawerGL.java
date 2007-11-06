@@ -70,7 +70,7 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		StringMatrixGL textMatrix = computeStringSizes(renderer, getTextMatrix());
 		// get default position with size 1.
 		TextGrid stringPos = getStringsPositions(textMatrix);
-		
+
 		// Compute a new font size which will fill the box.
 		Vector3D[] bounds = stringPos.getExtremBounds();
 		double curWidth = bounds[2].getX() - bounds[1].getX();

@@ -1,27 +1,27 @@
 /*------------------------------------------------------------------------*/
-/* file: StandardTextDrawerJavaMapper.hxx                                 */
+/* file: CenteredTextDrawerJavaMapper.hxx                                 */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Contains mapping of java method used by StandardTextDrawerJoGL  */
+/* desc : Contains mapping of Java method used by CenteredTextDrawerJoGL  */
 /*------------------------------------------------------------------------*/
 
-#ifndef _STANDARD_TEXT_DRAWER_JAVA_MAPPER_HXX_
-#define _STANDARD_TEXT_DRAWER_JAVA_MAPPER_HXX_
+#ifndef _CENTERED_TEXT_DRAWER_JAVA_MAPPER_HXX_
+#define _CENTERED_TEXT_DRAWER_JAVA_MAPPER_HXX_
 
 #include "TextContentDrawerJavaMapper.hxx"
-#include "StandardTextDrawerGL.hxx"
+//#include "CenteredTextDrawerGL.hxx"
 
 namespace sciGraphics
 {
 
-class StandardTextDrawerJavaMapper : public virtual TextContentDrawerJavaMapper
+class CenteredTextDrawerJavaMapper : public virtual TextContentDrawerJavaMapper
 {
 
 public:
 
-  StandardTextDrawerJavaMapper(void);
+  CenteredTextDrawerJavaMapper(void);
 
-  virtual ~StandardTextDrawerJavaMapper(void);
+  virtual ~CenteredTextDrawerJavaMapper(void);
 
   /*----------------------------------------------------------------------*/
   // Inherited From DrawableObjectJavaMapper
@@ -45,9 +45,10 @@ public:
 
   virtual long * getScreenBoundingBox(void);
   /*----------------------------------------------------------------------*/
-  // specific for standard text drawer
+  // specific for centered text drawer
   virtual void setTextParameters(int textAlignment, int color, int fontStyle,
-                                 double fontSize, double rotationAngle);
+                                 double fontSize, double rotationAngle,
+                                 int boxWidth, int boxHeight);
   /*----------------------------------------------------------------------*/
 
 private:
@@ -55,11 +56,11 @@ private:
   /**
    * Giws generated wrapper.
    */
-  org_scilab_modules_renderer_textDrawing::StandardTextDrawerGL * m_pJavaObject;
+  //org_scilab_modules_renderer_textDrawing::CenteredTextDrawerGL * m_pJavaObject;
 
 
 };
 
 }
 
-#endif /* _STANDARD_TEXT_DRAWER_JAVA_MAPPER_HXX_ */
+#endif /* _CENTERED_TEXT_DRAWER_JAVA_MAPPER_HXX_ */

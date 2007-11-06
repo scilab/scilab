@@ -48,7 +48,7 @@ public class StandardTextDrawerGL extends FixedFontTextDrawerGL {
 	}
 	
 	/**
-	 * Put the text grid at the righ tposition
+	 * Put the text grid at the right position
 	 * @param stringPositions Initial position of strings, centered on (0,0).
 	 * @param textCenterPix position of the center in pixel coordinates
 	 * @param rotationAngle angle in radian.

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="renderer"
 	ProjectGUID="{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 	RootNamespace="renderer"
@@ -738,6 +738,14 @@
 				Name="TextDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\textDrawing\CenteredTextDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\CenteredTextDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\textDrawing\ConcreteDrawableText.cpp"
 					>
 				</File>
@@ -1363,6 +1371,14 @@
 			<Filter
 				Name="TextDrawing"
 				>
+				<File
+					RelativePath=".\src\cpp\textDrawing\CenteredTextDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\CenteredTextDrawerJoGL.hxx"
+					>
+				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\ConcreteDrawableText.hxx"
 					>
