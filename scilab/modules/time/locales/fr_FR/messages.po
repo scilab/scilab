@@ -16,9 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#
 # File: macros/weekday.sci, line: 17
+#, fuzzy
 msgid "Number of input parameters incorrect."
-msgstr ""
+msgstr "Nombre de paramètres d'entrée incorrect."
 
 #
 # File: macros/weekday.sci, line: 21
@@ -51,25 +53,26 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_calendar.c, line: 48
 msgid "Error : year (1800 - 3000).\n"
-msgstr ""
+msgstr "Erreur : année (1800 - 3000).\n"
 
 #
 # File: sci_gateway/c/sci_calendar.c, line: 54
 msgid "Error : month (1 - 12).\n"
-msgstr ""
+msgstr "Erreur : mois (1 - 12).\n"
 
 #
 # File: sci_gateway/c/sci_calendar.c, line: 60
 msgid "Invalid argument(s) type.\n"
-msgstr ""
+msgstr "Type d'argument(s) invalide"
 
 #
 # File: sci_gateway/c/sci_getdate.c, line: 42
 msgid "Impossible to get the date...\n"
-msgstr ""
+msgstr "Impossible de récupérer la date...\n"
 
 #
 # File: sci_gateway/c/sci_getdate.c, line: 74
 # File: sci_gateway/c/sci_getdate.c, line: 130
 msgid "Input parameter must be a 's' or a integer.\n"
-msgstr ""
+msgstr "Les paramètres d'entrée doivent être 's' or un entier.\n"
+

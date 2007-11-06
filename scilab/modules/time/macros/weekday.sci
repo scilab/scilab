@@ -14,7 +14,7 @@ function [N,S] = weekday(D,form)
 	rhs=argn(2);
 	
 	if rhs < 1 | rhs > 2 then
-		error(gettext("Number of parameters incorrect."));
+		error(gettext("Number of input parameters incorrect."));
 	end
 	
 	if type(D) <> 1 then

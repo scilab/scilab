@@ -56,7 +56,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 		if (GetType(1) == sci_strings)
 		{
 			char *Param1=NULL;
-      GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			Param1=cstk(l1);
 
 			if (strcmp("s",Param1)==0)
@@ -71,7 +71,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Parameter must be a 's' or a integer.\n"));
+				Scierror(999,_("Input parameter must be a 's' or a integer.\n"));
 				return 0;
 			}
 		}
@@ -127,7 +127,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Parameter must be a 's' or a integer.\n"));
+				Scierror(999,_("Input parameter must be a 's' or a integer.\n"));
 				return 0;
 			}
 		}
