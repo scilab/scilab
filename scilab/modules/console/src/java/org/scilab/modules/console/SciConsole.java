@@ -209,7 +209,10 @@ public class SciConsole extends JPanel {
             e.printStackTrace();
         }
         /* Wait for buffer so that clc is displayed */
-        while (!((SciOutputView) config.getOutputView()).isReady());
+        boolean ready = ((SciOutputView) config.getOutputView()).isReady();
+        while (!ready) { 
+        	ready = ((SciOutputView) config.getOutputView()).isReady();
+        }
         
         try {
             config.getOutputViewStyledDocument().remove(0, config.getOutputViewStyledDocument().getLength());
@@ -263,7 +266,10 @@ public class SciConsole extends JPanel {
      */
     public void toHome() {
         /* Wait for buffer so that tohome is displayed */
-    	while (!((SciOutputView) config.getOutputView()).isReady());
+        boolean ready = ((SciOutputView) config.getOutputView()).isReady();
+        while (!ready) { 
+        	ready = ((SciOutputView) config.getOutputView()).isReady();
+        }
         
     	Dimension jSPExtSize = jSP.getViewport().getExtentSize();
     	Dimension newDim = new Dimension(jSPExtSize.width - jSP.getVerticalScrollBar().getPreferredSize().width, jSPExtSize.height);
