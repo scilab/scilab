@@ -9,6 +9,7 @@
 #include "fileio.h"
 #include "cvstr.h"
 #include "localization.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int NumTokens __PARAMS((char *string))
 {
@@ -18,11 +19,11 @@ int NumTokens __PARAMS((char *string))
   int length = (int)strlen(string)+1;
 
   if (string != 0)
-	{ 
+	{
 		/** Counting leading white spaces **/
     sscanf(string,"%*[ \t\n]%n",&lnchar);
     while ( n != 0 && n != EOF && lnchar <= length  )
-		{ 
+		{
 			int nchar1=0,nchar2=0;
 			ntok++;
 			n= sscanf(&(string[lnchar]),"%[^\n\t]%n%*[ \t\n]%n",buf,&nchar1,&nchar2);
@@ -42,12 +43,12 @@ int StringConvert(char *str)
   char *str1;
   int count=0;
   str1 = str;
-  
-  while ( *str != 0) 
+
+  while ( *str != 0)
     {
-      if ( *str == '\\' ) 
+      if ( *str == '\\' )
 	{
-	  switch ( *(str+1)) 
+	  switch ( *(str+1))
 	    {
 	    case 'n' : *str1 = '\n' ; str1++; str += 2;count++;break;
 	    case 't' : *str1 = '\t' ; str1++; str += 2;break;
@@ -55,7 +56,7 @@ int StringConvert(char *str)
 	    default : *str1 = *str; str1++; str++;break;
 	    }
 	}
-      else 
+      else
 	{
 	  *str1 = *str; str1++; str++;
 	}
@@ -69,7 +70,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
   int cur_i,i,j,i1,one=1,zero=0,k,l,iarg,colcount;
   sfdir cur_type;
   char ** temp;
-     
+
 
   /* create Scilab variable with each column of data */
   if (ncol+Rhs > intersiz ){
@@ -82,7 +83,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
       CreateVar(++iarg,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &l);
       LhsVar(1) = iarg;
       *stk(l) = -1.0;
-      for ( i = 2; i <= Lhs ; i++) 
+      for ( i = 2; i <= Lhs ; i++)
       {
 	iarg++;
 	CreateVar(iarg,MATRIX_OF_DOUBLE_DATATYPE,&zero,&zero,&l);
@@ -96,18 +97,18 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
     LhsVar(1)=iarg;
     if (ncol==0) goto Complete;
 
-    for ( i=0 ; i < ncol ; i++) { 
+    for ( i=0 ; i < ncol ; i++) {
       if ( (type[i] == SF_C) || (type[i] == SF_S) ) {
 	if( (temp = (char **) MALLOC(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
 	k=0;
 	for (j=0;j<nrow;j++) temp[k++]=data[i+ncol*j].s;
 	CreateVarFromPtr(++iarg,MATRIX_OF_STRING_DATATYPE, &nrow, &one, temp);
 	FREE(temp);
-	/*for (j=0;j<nrow;j++) FREE(data[i+ncol*j].s);*/ 
+	/*for (j=0;j<nrow;j++) FREE(data[i+ncol*j].s);*/
       }
       else {
 	CreateVar(++iarg,MATRIX_OF_DOUBLE_DATATYPE, &nrow, &one, &l);
-	for ( j=0 ; j < nrow ; j++) 
+	for ( j=0 ; j < nrow ; j++)
 	  *stk(l+j)= data[i+ncol*j].d;
       }
 
@@ -116,7 +117,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
     /*FREE(data);*/
     /** we must complete the returned arguments up to Lhs **/
   Complete:
-    for ( i = ncol+2; i <= Lhs ; i++) 
+    for ( i = ncol+2; i <= Lhs ; i++)
       {
 	iarg++;
 	CreateVar(iarg,MATRIX_OF_DOUBLE_DATATYPE,&zero,&zero,&l);
@@ -128,7 +129,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
     int multi=0,endblk,ii,n;
 
     cur_type=type[0];
-    
+
     for (i=0;i<ncol;i++)
       if (type[i] != cur_type) 	{
 	multi=1;
@@ -142,7 +143,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
       i=0;cur_i=i;
 
       while (1) {
-	if (i < ncol)  
+	if (i < ncol)
 	  endblk=(type[i] != cur_type);
 	else
 	  endblk=1;
@@ -164,7 +165,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 	    CreateVar(++iarg,MATRIX_OF_DOUBLE_DATATYPE, &nrow, &colcount, &l);
 	    ii=0;
 	    for (i1=cur_i;i1<i;i1++) {
-	      for ( j=0 ; j < nrow ; j++) 
+	      for ( j=0 ; j < nrow ; j++)
 		*stk(l+j+nrow*ii)= data[i1+ncol*j].d;
 	      ii++;
 	    }
@@ -177,7 +178,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 	i++;
       }
       n=iarg-Rhs; /* number of list fields*/
-      
+
       iarg++;
       i=Rhs+1;
       C2F(mkmlistfromvars)(&i,&n);
@@ -200,7 +201,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &nrow, &ncol, &l);
 	ii=0;
 	for (i1=0;i1<ncol;i1++) {
-	  for ( j=0 ; j < nrow ; j++) 
+	  for ( j=0 ; j < nrow ; j++)
 	    *stk(l+j+nrow*ii)= data[i1+ncol*j].d;
 	  ii++;
 	}
@@ -213,11 +214,11 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 }
 /*-----------------------------------------------------------------------------------*/
 /* ************************************************************************
- *   Store data scanned by a single call to do_scan in line rowcount of data 
- *   table 
+ *   Store data scanned by a single call to do_scan in line rowcount of data
+ *   table
  ************************************************************************/
 int Store_Scan __PARAMS((int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, int *retval_s, rec_entry *buf, entry **data, int rowcount, int n))
-{ 
+{
   int i,j,nr,nc,err;
   entry * Data;
   int blk=20; /* block size for memory allocation */
@@ -266,10 +267,10 @@ int Store_Scan __PARAMS((int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *
 	goto bad2;
       }
     }
-  } 
+  }
   Data=*data;
   /* store values scanned in a new row */
-  for ( i=0 ; i < nc ; i++) 
+  for ( i=0 ; i < nc ; i++)
     {
       switch ( type_s[i] )
 	{
@@ -308,8 +309,8 @@ int Store_Scan __PARAMS((int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *
   /* FREE allocated strings in scan buffer */
   for ( j=0 ; j < MAXSCAN ; j++)
     if ( (type_s[j] ==  SF_C) || (type_s[j] ==  SF_S))  FREE(buf[j].c);
-  
- bad2: 
+
+ bad2:
   return err;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -321,7 +322,7 @@ void Free_Scan __PARAMS((int nrow, int ncol, sfdir *type_s, entry **data))
 
   if (nrow != 0) {
     for ( j=0 ; j < ncol ; j++)
-      if ( (type_s[j] ==  SF_C) || (type_s[j] ==  SF_S) ) 
+      if ( (type_s[j] ==  SF_C) || (type_s[j] ==  SF_S) )
 	/* free allocated strings in scan data area */
 	for ( i=0 ; i < nrow ; i++) {
 	  FREE(Data[j+ncol*i].s);
@@ -332,23 +333,23 @@ void Free_Scan __PARAMS((int nrow, int ncol, sfdir *type_s, entry **data))
 }
 /*-----------------------------------------------------------------------------------*/
 /********************************************************
- * Converts a Scilab array of  String coded as integer array 
+ * Converts a Scilab array of  String coded as integer array
  * into a regular string.
- * entries of the original array are catenated, separated by 
+ * entries of the original array are catenated, separated by
  * '\n'   char
  ********************************************************/
 int SciStrtoStr __PARAMS((int *Scistring, int *nstring, int *ptrstrings, char **strh))
 {
   char *s,*p;
   int li,ni,*SciS,i,job=1;
-  
+
   li=ptrstrings[0];
   ni=ptrstrings[*nstring] - li + *nstring +1;
   p=(char *) MALLOC(ni);
   if (p ==NULL)  return MEM_LACK;
   SciS= Scistring;
   s=p;
-  for ( i=1 ; i<*nstring+1 ; i++) 
+  for ( i=1 ; i<*nstring+1 ; i++)
     {
       ni=ptrstrings[i]-li;
       li=ptrstrings[i];
