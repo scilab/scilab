@@ -1,22 +1,24 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
+#include "machine.h"
+
 #ifdef HAVE_USLEEP
 #include <unistd.h>
 #endif
 #include "sci_xpause.h"
 #include "Scierror.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 {
 	integer m1,n1,l1,sec=0;
 
 	CheckLhs(0,1);
 	CheckRhs(1,1);
-	if (Rhs == 1) 
-	{ 
+	if (Rhs == 1)
+	{
 		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 		CheckScalar(1,m1,n1);
 		sec = (integer) *stk(l1);
@@ -25,7 +27,7 @@ int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 			Scierror(999,_("%s : error time must be > 0.\n"),fname);
 			return 0;
 		}
-	
+
 	#ifdef _MSC_VER
 		{
 			int ms = (sec)/1000; /** time is specified in milliseconds in scilab**/
@@ -35,7 +37,7 @@ int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			unsigned useconds;
 			useconds=(unsigned) sec;
-			if (useconds != 0)  
+			if (useconds != 0)
 				#ifdef HAVE_USLEEP
 					{ usleep(useconds); }
 				#else
@@ -50,4 +52,4 @@ int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 	 C2F(putlhsvar)();
 	 return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
