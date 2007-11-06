@@ -92,7 +92,7 @@ void mywhole_swaps(char **v,int i, int j, int ColNum,int RowNum)
 	{
 	  temp=v[f*RowNum+i];
 	  v[f*RowNum+i]=v[f*RowNum+j];
-      v[f*RowNum+j]=temp;	  
+      v[f*RowNum+j]=temp;
 	}
 }
 /*------------------------------------------------------------------------------------------*/
@@ -106,8 +106,9 @@ void my_swapSsingle(char **v, int i, int j,int PointerRow,int RowNum)
    v[Right_Position] =temp;
 }
 /*------------------------------------------------------------------------------------------*/
-void mywhole_swapdcol(double *v,int i, int j, int n,int RowNum)
+//void mywhole_swapdcol(double *v,int i, int j, int n,int RowNum)
 	/** @TODO Check why n is unused */
+void mywhole_swapdcol(double *v,int i, int j,int RowNum)
 {
 	int f; /** @TODO rename this variable */
 	double temp;
@@ -119,8 +120,9 @@ void mywhole_swapdcol(double *v,int i, int j, int n,int RowNum)
 	}
 }
 /*------------------------------------------------------------------------------------------*/
-void mywhole_swapscol(char **v,int i, int j, int n,int RowNum)
+//void mywhole_swapscol(char **v,int i, int j, int n,int RowNum)
 	/** @TODO Check why n is unused */
+void mywhole_swapscol(char **v,int i, int j, int RowNum)
 {
 	char *temp;
 	int f; /** @TODO rename this variable */
@@ -137,7 +139,7 @@ void my_swapSsinglecol(char **v, int i, int j,int position,int RowNum)
    char *temp;
    temp=v[position+RowNum*i];
    v[position+RowNum*i]=v[position+RowNum*j];
-   v[position+RowNum*j]=temp; 
+   v[position+RowNum*j]=temp;
 }
 /*------------------------------------------------------------------------------------------*/
 void my_lgsortdoublerow(double *Input_Matrix,int *index, int left, int right,char *iord,int RowNum,int RowCol)
@@ -150,11 +152,11 @@ void my_lgsortdoublerow(double *Input_Matrix,int *index, int left, int right,cha
    mywhole_swapd(Input_Matrix, left, (left + right)/2,RowCol,RowNum); /* move partition elem */
    my_swap(index, left, (left + right)/2);
    last = left;                        /* to v[0] */
-   for (i = left + 1; i <= right; i++) 
+   for (i = left + 1; i <= right; i++)
    {/* partition */
 	   plist=0;
 	   while (plist<RowCol)
-	   { 
+	   {
 		   if (Input_Matrix[plist*RowNum+i]==Input_Matrix[plist*RowNum+left]) plist++;
 		   else break;
 		   if (plist>=RowCol) {
@@ -162,7 +164,7 @@ void my_lgsortdoublerow(double *Input_Matrix,int *index, int left, int right,cha
 			   break;
 		   }
 	   }
-	   
+
 	   if (iord[0]==INCREASE_COMMAND)
 	   {
 		   if (!GetMax(Input_Matrix[plist*RowNum+i],Input_Matrix[plist*RowNum+left]))
@@ -172,7 +174,7 @@ void my_lgsortdoublerow(double *Input_Matrix,int *index, int left, int right,cha
 			   my_swap(index, last, i);
 		   }
 	   }
-	   else 
+	   else
 	   {
 	       if (GetMax(Input_Matrix[plist*RowNum+i],Input_Matrix[plist*RowNum+left]))
 		   {
@@ -191,15 +193,17 @@ void my_lgsortdoublerow(double *Input_Matrix,int *index, int left, int right,cha
 void my_lgsortdoublecol(double *Input_Matrix,int *index, int left, int right,char *iord,int RowNum,int RowCol)
 {
    int i, last,position;
-   /* prototype */
-   void my_swap(int *index, int i, int j);
-   void mywhole_swapdcol(double *v,int i, int j,int n,int RowNum);
+
    if (left >= right) /* do nothing if array contains */
        return;        /* fewer than two elements */
-   mywhole_swapdcol(Input_Matrix, left, (left + right)/2,RowCol,RowNum); /* move partition elem */
+
+   // @FIXME Bruno : Useless parameter at call ? What's the use of RowCol ??
+   //   mywhole_swapdcol(Input_Matrix, left, (left + right)/2,RowCol,RowNum); /* move partition elem */
+
+   mywhole_swapdcol(Input_Matrix, left, (left + right)/2,RowNum); /* move partition elem */
    my_swap(index, left, (left + right)/2);
    last = left;                        /* to v[0] */
-   for (i = left + 1; i <= right; i++) 
+   for (i = left + 1; i <= right; i++)
    {/* partition */
 	   for (position=0;Input_Matrix[i*RowNum+position]==Input_Matrix[left*RowNum+position] ;position++);
 	   if (iord[0]==INCREASE_COMMAND)
@@ -207,7 +211,9 @@ void my_lgsortdoublecol(double *Input_Matrix,int *index, int left, int right,cha
 		   if (!GetMax(Input_Matrix[i*RowNum+position],Input_Matrix[left*RowNum+position]))
 		   {
 			   ++last;
-			   mywhole_swapdcol(Input_Matrix, last, i,RowCol,RowNum);
+			   // @FIXME Bruno : Useless parameter at call ? What's the use of RowCol ??
+			   // mywhole_swapdcol(Input_Matrix, last, i,RowCol,RowNum);
+			   mywhole_swapdcol(Input_Matrix, last, i, RowNum);
 			   my_swap(index, last, i);
 		   }
 	   }
@@ -216,12 +222,17 @@ void my_lgsortdoublecol(double *Input_Matrix,int *index, int left, int right,cha
 	       if (GetMax(Input_Matrix[i*RowNum+position],Input_Matrix[left*RowNum+position]))
 		   {
 			   ++last;
-			   mywhole_swapdcol(Input_Matrix, last, i,RowCol,RowNum);
+			   // @FIXME Bruno : Useless parameter at call ? What's the use of RowCol ??
+			   // mywhole_swapdcol(Input_Matrix, last, i,RowCol,RowNum);
+			   mywhole_swapdcol(Input_Matrix, last, i,RowNum);
 			   my_swap(index, last, i);
 		   }
 	   }
    }
-   mywhole_swapdcol(Input_Matrix, left, last,RowCol,RowNum);
+   // @FIXME Bruno : Useless parameter at call ? What's the use of RowCol ??
+   //   mywhole_swapdcol(Input_Matrix, left, last,RowCol,RowNum);
+   mywhole_swapdcol(Input_Matrix, left, last, RowNum);
+
    my_swap(index, left, last);   /* restore partition elem */
    my_lgsortdoublecol(Input_Matrix,index, left, last-1,iord,RowNum,RowCol);
    my_lgsortdoublecol(Input_Matrix,index, last+1, right,iord,RowNum,RowCol);
@@ -230,14 +241,13 @@ void my_lgsortdoublecol(double *Input_Matrix,int *index, int left, int right,cha
 void my_qsortslrow(char **Input_Matrix,int *index, int left, int right,char *iord,int RowNum,int RowCol)
 {
    int i, last,position;
-   void my_swap(int *index, int i, int j);
-   void mywhole_swaps(char **v,int i, int j,int n,int RowNum);
+
    if (left >= right) /* do nothing if array contains */
        return;        /* fewer than two elements */
    mywhole_swaps(Input_Matrix, left, (left + right)/2,RowCol,RowNum); /* move partition elem */
    my_swap(index, left, (left + right)/2);
    last = left;                        /* to v[0] */
-   for (i = left + 1; i <= right; i++) 
+   for (i = left + 1; i <= right; i++)
    {/* partition */
 	   for (position=0;strcmp(Input_Matrix[position*RowNum+i],Input_Matrix[position*RowNum+left])==0 ;position++);
 	   if (iord[0]==INCREASE_COMMAND)
@@ -275,7 +285,7 @@ void my_qsortsingle(double *Input_Matrix, int *index,int left, int right,int pos
        return;        /* fewer than two elements */
    my_swapsingle(Input_Matrix, left, (left + right)/2,position,RowNum); /* move partition elem */
    my_swapsingle(index, left, (left + right)/2,position,RowNum);
-   last = left;                       
+   last = left;
    for (i = left + 1; i <= right; i++) /* partition */
    {
 	   left_position=position*RowNum+i;
@@ -289,7 +299,7 @@ void my_qsortsingle(double *Input_Matrix, int *index,int left, int right,int pos
 			    my_swapsingle(index, last, i,position,RowNum);
 		   }
 	   }
-	   else 
+	   else
 	   {
 	       if (Input_Matrix[left_position]>Input_Matrix[right_position])
 		   {
@@ -298,8 +308,8 @@ void my_qsortsingle(double *Input_Matrix, int *index,int left, int right,int pos
 			   my_swapsingle(index, last, i,position,RowNum);
 		   }
 	   }
-   }   
-   my_swapsingle(Input_Matrix, left, last,position,RowNum);   
+   }
+   my_swapsingle(Input_Matrix, left, last,position,RowNum);
    my_swapsingle(index, left, last,position,RowNum); /* restore partition elem */
    my_qsortsingle(Input_Matrix,index, left, last-1,position,iord,RowNum);
    my_qsortsingle(Input_Matrix,index, last+1, right,position,iord,RowNum);
@@ -336,8 +346,8 @@ void my_qsortsinglecol(double *Input_Matrix, int *index,int left, int right,int 
 			   my_swapsinglecol(index, last, i,position,RowNum);
 		   }
 	   }
-   }   
-   my_swapsinglecol(Input_Matrix, left, last,position,RowNum);   
+   }
+   my_swapsinglecol(Input_Matrix, left, last,position,RowNum);
    my_swapsinglecol(index, left, last,position,RowNum); /* restore partition elem */
    my_qsortsinglecol(Input_Matrix,index, left, last-1,position,iord,RowNum);
    my_qsortsinglecol(Input_Matrix,index, last+1, right,position,iord,RowNum);
@@ -346,12 +356,12 @@ void my_qsortsinglecol(double *Input_Matrix, int *index,int left, int right,int 
 void lgsortdouble(double *Input_Matrix,int *indices,int RowNum,int RowCol,char *typex, char *iord)  /* When it is double matrix in 'lr' or 'lc'*/
 {
     int i;
-    if (typex[1]==ROW_SORT) 
+    if (typex[1]==ROW_SORT)
 	{
 		for (i=0;i<RowNum;i++)  indices[i]=i+1;
         my_lgsortdoublerow( Input_Matrix, indices,0, RowNum - 1 ,iord,RowNum,RowCol);                /* When it is double matrix in 'lr' */
 	}
-    if (typex[1]==COLUMN_SORT) 
+    if (typex[1]==COLUMN_SORT)
 	{
         for (i=0;i<RowCol;i++)  indices[i]=i+1;
         my_lgsortdoublecol( Input_Matrix, indices,0, RowCol - 1 ,iord,RowNum,RowCol);               /* When it is double matrix in 'lc'*/
@@ -362,22 +372,22 @@ void lgsortdouble(double *Input_Matrix,int *indices,int RowNum,int RowCol,char *
 void rowcolsortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord) /*When it is double matrix in ROW_SORT or COLUMN_SORT*/
 {
     int i,j,position;
-	if (typex[0]==ROW_SORT) 
+	if (typex[0]==ROW_SORT)
 	{
 	    for (i=0;i<RowNum;i++)
 		   for (j=0;j<RowCol;j++) indices[j*RowNum+i]=i+1;
-		
-		for (position=0;position<RowCol;position++) 
-	    { 
+
+		for (position=0;position<RowCol;position++)
+	    {
               my_qsortsingle( Input_Matrix,indices, 0, RowNum - 1 ,position,iord,RowNum);            /*When it is double matrix in ROW_SORT */
 		}
 	}
-	if (typex[0]==COLUMN_SORT) 
+	if (typex[0]==COLUMN_SORT)
 	{
 	    for (i=0;i<RowNum;i++)
 		   for (j=0;j<RowCol;j++) indices[j*RowNum+i]=j+1;
-		for (position=0;position<RowNum;position++) 
-	    { 
+		for (position=0;position<RowNum;position++)
+	    {
               my_qsortsinglecol( Input_Matrix,indices, 0, RowCol - 1 ,position,iord,RowNum);         /*When it is double matrix in COLUMN_SORT*/
 		}
 	}
@@ -387,18 +397,17 @@ void rowcolsortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol
 void my_wholesortstring(char **Input_Matrix,int *index, int left, int right,char *iord,int RowCol)
 {
    int i, last,position;
-   void my_swap(int *index, int i, int j);
-   void mywhole_swap(char **v,int i, int j);
+
    if (left >= right) /* do nothing if array contains */
        return;        /* fewer than two elements */
    mywhole_swap(Input_Matrix, left, (left + right)/2); /* move partition elem */
    my_swap(index, left, (left + right)/2);
    last = left;                        /* to v[0] */
-   for (i = left + 1; i <= right; i++) 
+   for (i = left + 1; i <= right; i++)
    {/* partition */
        position=0;
 	   while (position<RowCol)
-	   { 
+	   {
 		   if (Input_Matrix[i][position]==Input_Matrix[left][position]) position++;
 		   else break;
 		   if (position>=RowCol) {
@@ -415,7 +424,7 @@ void my_wholesortstring(char **Input_Matrix,int *index, int left, int right,char
 			   my_swap(index, last, i);
 		   }
 	   }
-	   else 
+	   else
 	   {
 	       if (Input_Matrix[i][position]>Input_Matrix[left][position])
 		   {
@@ -434,14 +443,13 @@ void my_wholesortstring(char **Input_Matrix,int *index, int left, int right,char
 void my_wholesortdouble(double *Input_Matrix,int *index, int left, int right,char *iord,int RowCol)
 {
    int i, last;
-   void my_swap(int *index, int i, int j);
-   void my_swapdouble(double *v,int i, int j);
+
    if (left >= right) /* do nothing if array contains */
        return;        /* fewer than two elements */
    my_swapdouble(Input_Matrix, left, (left + right)/2); /* move partition elem */
    my_swap(index, left, (left + right)/2);
    last = left;                        /* to v[0] */
-   for (i = left + 1; i <= right; i++) 
+   for (i = left + 1; i <= right; i++)
    {/* partition */
 	   if (iord[0]==INCREASE_COMMAND)
 	   {
@@ -452,7 +460,7 @@ void my_wholesortdouble(double *Input_Matrix,int *index, int left, int right,cha
 			   my_swap(index, last, i);
 		   }
 	   }
-	   else 
+	   else
 	   {
 	       if (Input_Matrix[i]>Input_Matrix[left])
 		   {
@@ -473,14 +481,17 @@ void my_wholesortdouble(double *Input_Matrix,int *index, int left, int right,cha
 void my_qsortscol(char **Input_Matrix,int *index, int left, int right,char *iord,int RowNum,int RowCol)
 {
    int i, last,position;
-   void my_swap(int *index, int i, int j);
-   void mywhole_swapscol(char **v,int i, int j,int n,int RowNum);
+
    if (left >= right) /* do nothing if array contains */
        return;        /* fewer than two elements */
-   mywhole_swapscol(Input_Matrix, left, (left + right)/2,RowCol,RowNum); /* move partition elem */
+
+   // @FIXME Bruno : Useless parameter at call ? What's the use of RowCol ??
+   //   mywhole_swapscol(Input_Matrix, left, (left + right)/2,RowCol,RowNum); /* move partition elem */
+   mywhole_swapscol(Input_Matrix, left, (left + right)/2, RowNum); /* move partition elem */
+
    my_swap(index, left, (left + right)/2);
    last = left;                        /* to v[0] */
-   for (i = left + 1; i <= right; i++) 
+   for (i = left + 1; i <= right; i++)
    {/* partition */
 	   for (position=0;strcmp(Input_Matrix[i*RowNum+position],Input_Matrix[left*RowNum+position])==0 ;position++);
 	   if (iord[0]==INCREASE_COMMAND)
@@ -488,21 +499,30 @@ void my_qsortscol(char **Input_Matrix,int *index, int left, int right,char *iord
 		   if (strcmp(Input_Matrix[i*RowNum+position],Input_Matrix[left*RowNum+position])<=0)
 		   {
 			   ++last;
-			   mywhole_swapscol(Input_Matrix, last, i,RowCol,RowNum);
+			   // @FIXME Bruno : Useless parameter at call ? What's the use of RowCol ??
+			   // mywhole_swapscol(Input_Matrix, last, i,RowCol,RowNum);
+			   mywhole_swapscol(Input_Matrix, last, i, RowNum);
+
 			   my_swap(index, last, i);
 		   }
 	   }
-	   else 
+	   else
 	   {
 	       if (strcmp(Input_Matrix[i*RowNum+position],Input_Matrix[left*RowNum+position])>0)
 		   {
 			   ++last;
-			   mywhole_swapscol(Input_Matrix, last, i,RowCol,RowNum);
+			   // @FIXME Bruno : Useless parameter at call ? What's the use of RowCol ??
+			   // mywhole_swapscol(Input_Matrix, last, i,RowCol,RowNum);
+			   mywhole_swapscol(Input_Matrix, last, i, RowNum);
+
 			   my_swap(index, last, i);
 		   }
 	   }
    }
-   mywhole_swapscol(Input_Matrix, left, last,RowCol,RowNum);
+   // @FIXME Bruno : Useless parameter at call ? What's the use of RowCol ??
+   // mywhole_swapscol(Input_Matrix, left, last,RowCol,RowNum);
+   mywhole_swapscol(Input_Matrix, left, last,RowNum);
+
    my_swap(index, left, last);   /* restore partition elem */
    my_qsortscol(Input_Matrix,index, left, last-1,iord,RowNum,RowCol);
    my_qsortscol(Input_Matrix,index, last+1, right,iord,RowNum,RowCol);
@@ -514,7 +534,7 @@ void my_qsortSsinglerow(char **Input_Matrix, int *index,int left, int right,int 
    int i, last;
    if (left >= right) /* do nothing if array contains */
        return;        /* fewer than two elements */
-   void my_swapSsinglecol(char **v, int i, int j,int position,int RowNum);
+
    my_swapSsingle(Input_Matrix, left, (left + right)/2,position,RowNum); /* move partition elem */
    my_swapsingle(index, left, (left + right)/2,position,RowNum);
    last = left;                        /* to v[0] */
@@ -529,7 +549,7 @@ void my_qsortSsinglerow(char **Input_Matrix, int *index,int left, int right,int 
 			    my_swapsingle(index, last, i,position,RowNum);
 		   }
 	   }
-	   else 
+	   else
 	   {
 	       if (strcmp(Input_Matrix[i+position*RowNum],Input_Matrix[left+position*RowNum])>0)
 		   {
@@ -538,8 +558,8 @@ void my_qsortSsinglerow(char **Input_Matrix, int *index,int left, int right,int 
 			   my_swapsingle(index, last, i,position,RowNum);
 		   }
 	   }
-   }   
-   my_swapSsingle(Input_Matrix, left, last,position,RowNum);   
+   }
+   my_swapSsingle(Input_Matrix, left, last,position,RowNum);
    my_swapsingle(index, left, last,position,RowNum); /* restore partition elem */
    my_qsortSsinglerow(Input_Matrix,index, left, last-1,position,iord,RowNum);
    my_qsortSsinglerow(Input_Matrix,index, last+1, right,position,iord,RowNum);
@@ -552,7 +572,7 @@ void my_qsortSsinglecol(char **Input_Matrix, int *index,int left, int right,int 
    int i, last;
    if (left >= right) /* do nothing if array contains */
        return;        /* fewer than two elements */
-   void my_swapSsinglecol(char **v, int i, int j,int position,int RowNum);
+
    my_swapSsinglecol(Input_Matrix, left, (left + right)/2,position,RowNum); /* move partition elem */
    my_swapsinglecol(index, left, (left + right)/2,position,RowNum);
    last = left;                        /* to v[0] */
@@ -567,7 +587,7 @@ void my_qsortSsinglecol(char **Input_Matrix, int *index,int left, int right,int 
 			    my_swapsinglecol(index, last, i,position,RowNum);
 		   }
 	   }
-	   else 
+	   else
 	   {
 	       if (strcmp(Input_Matrix[position+RowNum*i],Input_Matrix[position+RowNum*left])>0)
 		   {
@@ -576,15 +596,17 @@ void my_qsortSsinglecol(char **Input_Matrix, int *index,int left, int right,int 
 			   my_swapsinglecol(index, last, i,position,RowNum);
 		   }
 	   }
-   }   
-   my_swapSsinglecol(Input_Matrix, left, last,position,RowNum);   
+   }
+   my_swapSsinglecol(Input_Matrix, left, last,position,RowNum);
    my_swapsinglecol(index, left, last,position,RowNum); /* restore partition elem */
    my_qsortSsinglecol(Input_Matrix,index, left, last-1,position,iord,RowNum);
    my_qsortSsinglecol(Input_Matrix,index, last+1, right,position,iord,RowNum);
 }
 /*------------------------------------------------------------------------------------------*/
-void wholesortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord)  /*When it is double matrix in 'g'*/
+// void wholesortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord)
+/*When it is double matrix in 'g'*/
 	/** @TODO check why typex is unused */
+void wholesortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *iord)
 {
     int i,j,k;
 	k=0;
@@ -593,8 +615,10 @@ void wholesortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol,
     my_wholesortdouble( Input_Matrix, indices,0, RowNum*RowCol-1  ,iord,RowCol);
 }
 /*------------------------------------------------------------------------------------------*/
-void wholesortstring(char **Input_Matrix, int *index, int RowNum, int RowCol, char *typex, char *iord)  /*When it is the string matrix in 'g'*/
+// void wholesortstring(char **Input_Matrix, int *index, int RowNum, int RowCol, char *typex, char *iord)
+/*When it is the string matrix in 'g'*/
 	/** @TODO check why typex is unused */
+void wholesortstring(char **Input_Matrix, int *index, int RowNum, int RowCol, char *iord)
 {
     int i,j,k;
 	k=0;
@@ -606,21 +630,21 @@ void wholesortstring(char **Input_Matrix, int *index, int RowNum, int RowCol, ch
 void rowcolsortstring(char **Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord)  /*When it is the string matrix in ROW_SORT or COLUMN_SORT*/
 {
     int i,j,position;
-    if (typex[0]==ROW_SORT) 
+    if (typex[0]==ROW_SORT)
     {
 	    for (i=0;i<RowNum;i++)
 		   for (j=0;j<RowCol;j++) indices[j*RowNum+i]=i+1;
-		for (position=0;position<RowCol;position++) 
-	    { 
+		for (position=0;position<RowCol;position++)
+	    {
 		      my_qsortSsinglerow( Input_Matrix,indices, 0, RowNum - 1 ,position,iord,RowNum);            /*When it is the string matrix in ROW_SORT*/
 		}
 	}
-	if (typex[0]==COLUMN_SORT) 
+	if (typex[0]==COLUMN_SORT)
 	{
 	    for (i=0;i<RowNum;i++)
 		   for (j=0;j<RowCol;j++) indices[j*RowNum+i]=j+1;
-	    for (position=0;position<RowNum;position++) 
-	    { 
+	    for (position=0;position<RowNum;position++)
+	    {
               my_qsortSsinglecol( Input_Matrix,indices, 0, RowCol - 1 ,position,iord,RowNum);           /*When it is the string matrix in COLUMN_SORT*/
 		}
 	}
@@ -629,12 +653,12 @@ void rowcolsortstring(char **Input_Matrix, int *indices, int RowNum, int RowCol,
 void lgsortstring(char **Input_Matrix,int *indices,int RowNum,int RowCol,char *typex, char *iord)  /* When it is string matrix in 'lr' or 'lc'*/
 {
     int i;
-    if (typex[1]==ROW_SORT) 
+    if (typex[1]==ROW_SORT)
 	{
 		for (i=0;i<RowNum;i++)  indices[i]=i+1;
         my_qsortslrow( Input_Matrix, indices,0, RowNum - 1 ,iord,RowNum,RowCol);                 /* When it is string matrix in 'lr'*/
 	}
-    if (typex[1]==COLUMN_SORT) 
+    if (typex[1]==COLUMN_SORT)
 	{
         for (i=0;i<RowCol;i++)  indices[i]=i+1;
         my_qsortscol( Input_Matrix, indices,0, RowCol - 1 ,iord,RowNum,RowCol);                  /* When it is string matrix in 'lc'*/
