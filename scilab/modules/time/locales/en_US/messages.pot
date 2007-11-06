@@ -4,63 +4,67 @@
 # This file is distributed under the same license as the Scilab package.
 # Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
 #
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab - time\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-msgid	""
-msgstr	"Project-Id-Version: Scilab - time\n"
-	"Report-Msgid-Bugs-To: \n"
-	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
-	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-	"Language-Team: Scilab <localization@scilab.org>\n"
-	"MIME-Version: 1.0\n"
-	"Content-Type: text/plain; charset=ISO-8859-1\n"
-	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: macros/weekday.sci, line: 17
-msgid	"Number of parameters incorrect."
-msgstr	""
+msgid "Number of parameters incorrect."
+msgstr ""
+
 #
 # File: macros/weekday.sci, line: 21
-msgid	"The first argument must a real constant matrix."
-msgstr	""
+msgid "The first argument must a real constant matrix."
+msgstr ""
+
 #
 # File: macros/weekday.sci, line: 25
-msgid	"The second parameter must be the string ''long'' or ''short''."
-msgstr	""
-#
-# File: src/c/getdate.c, line: 80
-msgid	"dt=getdate(x) x must be > 0."
-msgstr	""
-#
-# File: src/c/getdate.c, line: 82
-#, possible-c-format
-msgid	"dt=getdate(x) x must be < %d."
-msgstr	""
-#
-# File: sci_gateway/c/sci_xpause.c, line: 24
-# File: sci_gateway/c/sci_sleep.c, line: 21
-#, possible-c-format
-msgid	"%s : error time must be > 0."
-msgstr	""
-#
-# File: sci_gateway/c/sci_calendar.c, line: 46
-msgid	"Error : year (1800 - 3000)."
-msgstr	""
-#
-# File: sci_gateway/c/sci_calendar.c, line: 52
-msgid	"Error : month (1 - 12)."
-msgstr	""
-#
-# File: sci_gateway/c/sci_calendar.c, line: 58
-msgid	"Invalid argument(s) type."
-msgstr	""
-#
-# File: sci_gateway/c/sci_getdate.c, line: 41
-msgid	"Impossible to get the date..."
-msgstr	""
-#
-# File: sci_gateway/c/sci_getdate.c, line: 73
-# File: sci_gateway/c/sci_getdate.c, line: 129
-msgid	"Parameter must be a ''s'' or a integer."
-msgstr	""
+msgid "The second parameter must be the string ''long'' or ''short''."
+msgstr ""
 
+#
+# File: src/c/getdate.c, line: 74
+msgid "dt=getdate(x) x must be > 0.\n"
+msgstr ""
+
+#
+# File: src/c/getdate.c, line: 76
+#, c-format
+msgid "dt=getdate(x) x must be < %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xpause.c, line: 27
+# File: sci_gateway/c/sci_sleep.c, line: 22
+#, c-format
+msgid "%s : error time must be > 0.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_calendar.c, line: 48
+msgid "Error : year (1800 - 3000).\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_calendar.c, line: 54
+msgid "Error : month (1 - 12).\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_calendar.c, line: 60
+msgid "Invalid argument(s) type.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_getdate.c, line: 42
+msgid "Impossible to get the date...\n"
+msgstr ""
