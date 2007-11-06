@@ -2,14 +2,15 @@
 /* Allan CORNET INRIA 2005 */
 /* setenv interface */
 /*-----------------------------------------------------------------------------------*/
-#include <stdio.h> 
-#include <string.h> 
+#include <stdio.h>
+#include <string.h>
 
 #include "MALLOC.h" /* MALLOC */
 #include "stack-c.h"
 #include "setenvc.h"
 #include "intsetenv.h"
 #include "gw_io.h"
+#include "Scierror.h"
 #include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static int ReturnValueSetenv(int value);
@@ -30,7 +31,7 @@ int	C2F(intsetenv) _PARAMS((char *fname, unsigned long len))
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param1=cstk(l1);
-			
+
 		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 		param2=cstk(l1);
 

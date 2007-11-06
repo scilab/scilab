@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #include <sys/stat.h>
 #include <stdio.h>
 #include <string.h>
@@ -12,6 +12,7 @@
 #include "sciprint.h"
 #include "stack-c.h"
 #include "cluni0.h"
+#include "Scierror.h"
 #include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts);
@@ -22,7 +23,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 	if (Rhs < 1)
 	{
 		/* newest() --> [] */
-		int m1,n1,l1;	
+		int m1,n1,l1;
 		m1=0;
 		n1=0;
 		l1=0;
@@ -34,7 +35,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		int m1,n1,l1;	
+		int m1,n1,l1;
 		int RetIndex=1;
 		int j=0;
 
@@ -96,7 +97,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 
 			for (j=1;j<=RhsBackup;j++)
 			{
-				
+
 				GetRhsVar(j,STRING_DATATYPE,&m1,&n1,&l1);
 				Str[j-1]=MALLOC(sizeof(char)*(strlen(cstk(l1))+1));
 				strcpy(Str[j-1],cstk(l1));
@@ -194,6 +195,6 @@ int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
 	}
 
 	RetVal=RetIndex;
-	return RetVal; 
+	return RetVal;
 }
 /*-----------------------------------------------------------------------------------*/
