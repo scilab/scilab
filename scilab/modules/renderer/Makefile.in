@@ -215,7 +215,7 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/jni/FilledTextDrawerGL.cpp \
 	src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
 	src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
-	sci_gateway/c/gw_renderer.c
+	src/jni/CenteredTextDrawerGL.cpp sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -352,7 +352,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-FilledTextDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-FilledTextDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-CenteredTextDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-CenteredTextDrawerJoGL.lo
+@GUI_TRUE@	libscirenderer_la-CenteredTextDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-CenteredTextDrawerGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -692,7 +693,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/textDrawing/FilledTextDrawerJoGL.cpp \
 @GUI_TRUE@src/jni/FilledTextDrawerGL.cpp \
 @GUI_TRUE@src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp
+@GUI_TRUE@src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
+@GUI_TRUE@src/jni/CenteredTextDrawerGL.cpp
 
 
 # List of the gateway c files
@@ -897,6 +899,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableArc.Plo@am__quote@
@@ -2036,6 +2039,13 @@ libscirenderer_la-CenteredTextDrawerJoGL.lo: src/cpp/textDrawing/CenteredTextDra
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp' object='libscirenderer_la-CenteredTextDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CenteredTextDrawerJoGL.lo `test -f 'src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp
+
+libscirenderer_la-CenteredTextDrawerGL.lo: src/jni/CenteredTextDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CenteredTextDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CenteredTextDrawerGL.Tpo -c -o libscirenderer_la-CenteredTextDrawerGL.lo `test -f 'src/jni/CenteredTextDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/CenteredTextDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-CenteredTextDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-CenteredTextDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CenteredTextDrawerGL.cpp' object='libscirenderer_la-CenteredTextDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CenteredTextDrawerGL.lo `test -f 'src/jni/CenteredTextDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/CenteredTextDrawerGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

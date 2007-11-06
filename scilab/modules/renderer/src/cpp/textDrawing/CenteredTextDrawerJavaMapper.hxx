@@ -9,7 +9,7 @@
 #define _CENTERED_TEXT_DRAWER_JAVA_MAPPER_HXX_
 
 #include "TextContentDrawerJavaMapper.hxx"
-//#include "CenteredTextDrawerGL.hxx"
+#include "CenteredTextDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -56,7 +56,7 @@ private:
   /**
    * Giws generated wrapper.
    */
-  //org_scilab_modules_renderer_textDrawing::CenteredTextDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_textDrawing::CenteredTextDrawerGL * m_pJavaObject;
 
 
 };
