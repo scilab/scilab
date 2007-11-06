@@ -13,23 +13,14 @@
 #ifndef   	__ERRMSG_H__
 #define   	__ERRMSG_H__
 
-#include <string.h>
-#include <stdio.h>
 #include "machine.h"
-#include "localization.h"
-#include "stack-c.h"
-#include "MALLOC.h"
-#include "sciprint.h"
-#include "inffic.h"
-#include "stackinfo.h"
-#include "core_math.h"
 
-extern int C2F(showstack)();
-extern int C2F(cvname)();
-extern int C2F(prntid)();
-static void strip_blank(char *source);
-static void msgout_string(const char *msg);
-
+/*
+* errmsg displays the error message
+* @param[in] n : error number, if n exceeds the maximum error number this
+* routines displays the error message contained in buf
+* @param[out] errtyp : error type (recoverable:0 or not:1)
+*/
 int C2F(errmsg)(integer *n,integer *errtyp);
 
 #endif 	    /* !__ERRMSG_H__ */
