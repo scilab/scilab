@@ -43,6 +43,8 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 	C2F(errstore)(n);
 
 	*errtyp = 0; /* by default errors are recoverable */
+	/* errors not recoverable aren't catchable by try,catch */ 
+	/* errors 2,3,16,26,31,34,35,40,46,47,276*/
 
     switch ((int)*n)
     {
@@ -1085,6 +1087,9 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 		}
 		break;
+
+		/* error 145 to 199  not used */
+
 		/*
 		messages from 201 to 203 and 205 to 214 are no more used by error
 		(see Scierror  in stack1.c)
