@@ -66,8 +66,14 @@ void ConcreteDrawableText::removeTextDrawingStrategy(void)
 void ConcreteDrawableText::drawBox(void)
 {
   list<DrawTextBoxStrategy *>::iterator it = m_oDrawingBoxStrategies.begin();
+  
+  // get bounding rectangle corners
+  double corners[4][3];
+  m_pDrawingTextStrategy->getBoundingRectangle(corners[0], corners[1], corners[2], corners[3]);
+
   for( ; it != m_oDrawingBoxStrategies.end(); it++)
   {
+    (*it)->setBoxCorners(corners[0], corners[1], corners[2], corners[3]);
     (*it)->drawBox();
   }
 }
@@ -80,8 +86,14 @@ void ConcreteDrawableText::drawTextContent(void)
 void ConcreteDrawableText::showBox(void)
 {
   list<DrawTextBoxStrategy *>::iterator it = m_oDrawingBoxStrategies.begin();
+
+  // get bounding rectangle corners
+  double corners[4][3];
+  m_pDrawingTextStrategy->getBoundingRectangle(corners[0], corners[1], corners[2], corners[3]);
+
   for( ; it != m_oDrawingBoxStrategies.end(); it++)
   {
+    (*it)->setBoxCorners(corners[0], corners[1], corners[2], corners[3]);
     (*it)->showBox();
   }
 }

@@ -20,7 +20,7 @@ void DrawableText::draw( void )
     return ;
   }
   clip();
-  //drawBox();
+  drawBox();
   drawTextContent();
   unClip();
   endDrawing();
@@ -29,7 +29,7 @@ void DrawableText::draw( void )
 void DrawableText::show( void )
 {
   clip();
-  //showBox();
+  showBox();
   showTextContent();
   unClip();
 }

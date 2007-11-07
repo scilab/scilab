@@ -16,9 +16,15 @@ class DrawTextBoxStrategy
 {
 public:
 
-  DrawTextBoxStrategy(DrawableText * text) { m_pDrawed = text; }
+  DrawTextBoxStrategy(DrawableText * text);
 
-  virtual ~DrawTextBoxStrategy(void) {m_pDrawed = NULL;}
+  virtual ~DrawTextBoxStrategy(void);
+
+  /**
+   * Specify the 4 corners of the text box.
+   */
+  void setBoxCorners(const double corner1[3], const double corner2[3],
+                     const double corner3[3], const double corner4[3]);
 
   /**
    * Draw the rectangle surrounding the text.
@@ -33,6 +39,9 @@ public:
 protected:
 
   DrawableText * m_pDrawed;
+
+  // The 4 corners of the box
+  double m_aCorners[4][3];
 
 };
 

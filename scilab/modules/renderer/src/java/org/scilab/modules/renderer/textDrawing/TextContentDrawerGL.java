@@ -262,7 +262,13 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 		
 		Vector3D[] resPix = getBoundingRectanglePix(textCenterPix);
 		
+		// retrieve canvas coordinates
+		for (int i = 0; i < resPix.length; i++) {
+			resPix[i] = transform.getCanvasCoordinates(gl, resPix[i]);
+		}
+		
 		GLTools.endPixelCoordinates(gl);
+		
 		return resPix;
 	}
 	

@@ -19,7 +19,10 @@ TextContentDrawerJoGL::TextContentDrawerJoGL(DrawableText * drawer)
 /*------------------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getBoundingRectangle(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
+  initializeDrawing();
   setDrawerParameters();
+
+  // we got an array of size 12
   double * rect = getTextContentDrawerJavaMapper()->getBoundingRectangle();
 
   corner1[0] = rect[0];
@@ -39,11 +42,15 @@ void TextContentDrawerJoGL::getBoundingRectangle(double corner1[3], double corne
   corner4[2] = rect[11];
 
   delete[] rect;
+  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2])
 {
+  initializeDrawing();
   setDrawerParameters();
+
+  // we got an array of size 8
   long * rect = getTextContentDrawerJavaMapper()->getScreenBoundingBox();
 
   corner1[0] = rect[0];
@@ -59,7 +66,7 @@ void TextContentDrawerJoGL::getScreenBoundingBox(int corner1[2], int corner2[2],
   corner4[1] = rect[7];
 
   delete[] rect;
-
+  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::drawTextContent(void)

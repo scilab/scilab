@@ -70,17 +70,19 @@ public class CenteredTextDrawerGL extends FixedFontTextDrawerGL {
 	public Vector3D[] placeBoundingBox(Vector3D[] bbox, Vector3D textCenter, double rotationAngle) {
 		// text center refer here to the bottom left corner.
 		// So we need to add half of the box size.
-		Vector3D realCenter = textCenter.add(new Vector3D(halfCenteredBoxWidth, halfCenteredBoxHeight, 0.0));
+		Vector3D realCenter = textCenter.substract(new Vector3D(halfCenteredBoxWidth, halfCenteredBoxHeight, 0.0));
 		double halfBoxWidth = (bbox[2].getX() - bbox[1].getX()) / 2.0;
 		double halfBoxHeight = (bbox[0].getY() - bbox[1].getY()) / 2.0;
-		Vector3D translation = realCenter.substract(new Vector3D(halfBoxWidth, halfBoxHeight, 0.0));
 		
 		Vector3D rotationAxis = new Vector3D(0.0, 0.0, 1.0);
 		for (int i = 0; i < bbox.length; i++) {
+			
 			// translate to textCenter
-			bbox[i] = bbox[i].add(translation);
-			// rotate around textCenter
-			bbox[i] = bbox[i].rotate(realCenter, rotationAxis, rotationAngle);
+			bbox[i] = bbox[i].add(textCenter);
+			bbox[i] = bbox[i].add(new Vector3D(halfCenteredBoxWidth - halfBoxWidth, halfCenteredBoxHeight - halfBoxHeight, 0.0));
+			
+//			 rotate around textCenter
+			bbox[i] = bbox[i].rotate(textCenter, rotationAxis, rotationAngle);
 		}
 		return bbox;
 	}

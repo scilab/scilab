@@ -13,6 +13,7 @@
 #include "FilledTextDrawerJoGL.hxx"
 #include "getHandleDrawer.h"
 #include "CenteredTextDrawerJoGL.hxx"
+#include "TextLineBoxDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -46,19 +47,26 @@ void DrawableTextFactory::setStrategies(ConcreteDrawableText * text)
 
   sciPointObj * pText = text->getDrawedObject();
 
-  if (sciGetCenterPos(pText))
+  if ( sciGetAutoSize( pText ) )
   {
-    text->setTextDrawingStrategy(new CenteredTextDrawerJoGL(text));
-  }
-  else if ( sciGetAutoSize(pText) )
-  {
-    text->setTextDrawingStrategy(new StandardTextDrawerJoGL(text));
+    if ( sciGetCenterPos( pText ) )
+    {
+      text->setTextDrawingStrategy(new CenteredTextDrawerJoGL(text));
+    }
+    else
+    {
+      text->setTextDrawingStrategy(new StandardTextDrawerJoGL(text));
+    }
   }
   else
   {
     text->setTextDrawingStrategy(new FilledTextDrawerJoGL(text));
   }
 
+  if (sciGetIsLine(pText))
+  {
+    text->addBoxDrawingStrategy(new TextLineBoxDrawerJoGL(text));
+  }
 
 }
 /*------------------------------------------------------------------------------------------*/
