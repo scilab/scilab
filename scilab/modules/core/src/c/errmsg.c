@@ -211,7 +211,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			displayAndStoreError(_("too complex recursion! (recursion tables are full))"));
 			/* break recursion */
-			C2F(recu).pt = Min(C2F(recu).pt,4096);
+			C2F(recu).pt = Min(C2F(recu).pt,psiz);
 			*errtyp = 1; /* error not recoverable */
 		}
 		break;
