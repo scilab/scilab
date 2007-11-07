@@ -730,7 +730,7 @@ static int msg_31(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_32(integer *n, integer *ierr)
 {
-	char localbuf1[6];
+	char localbuf1[nsiz];
 	char localbuf2[nlgh];
 	int l=nlgh+1;
 
@@ -751,9 +751,9 @@ static int msg_33(integer *n, integer *ierr)
 {
 	char *localbuf=NULL;
 	integer nreal=0;
-	integer c__1 = 1;
+	integer one = 1;
 	nreal = C2F(iop).lpt[3] - C2F(iop).lpt[2];
-	C2F(cvstr)(&nreal, &C2F(iop).lin[C2F(iop).lpt[2] - 2], BUF, &c__1, (long int)4096);
+	C2F(cvstr)(&nreal, &C2F(iop).lin[C2F(iop).lpt[2] - 2], BUF, &one, (long int)bsiz);
 
 	localbuf=(char*)MALLOC(sizeof(char)*(nreal +1));
 	strncpy(localbuf,BUF,nreal);
@@ -834,10 +834,10 @@ static int msg_42(integer *n, integer *ierr)
 	integer lk=0;
 	integer k=0;
 	integer km=0;
-	integer c__1=1;
+	integer one=1;
 	char line[140];
 
-	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], line, &c__1, (long int)24);
+	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], line, &one, (long int)nlgh);
 	line[24]='\0';
 	
 	sciprint(_("Warning : redefining function : %s"),line);
@@ -865,7 +865,7 @@ L42_2:
 	if (km > C2F(vstk).isiz) goto end_msg_42;
 	if (C2F(vstk).lstk[km - 1] != lk) goto L42_2;
 	/* @TODO what is this ugly line ??? */
-	C2F(cvname)(&C2F(vstk).idstk[km * 6 - 6], line, &c__1, (long int)24);
+	C2F(cvname)(&C2F(vstk).idstk[km * nsiz - nsiz], line, &one, (long int)nlgh);
 
 	sciprint(_("       inside function: %s.\n"),line);
 end_msg_42:
@@ -982,9 +982,9 @@ static int msg_60(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_61(integer *n, integer *ierr)
 {
-	char line[140];
-	integer c__1=1;
-	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], line, &c__1,24);
+	char line[bsiz];
+	integer one = 1;
+	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], line, &one,nlgh);
 	sciprint(_("Warning : \n"));
 	sciprint(_("Impossible to load variable %s.\n"),line);
 	return 0;
@@ -1228,11 +1228,11 @@ static int msg_100(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_101(integer *n, integer *ierr)
 {
-	integer c__1=1;
+	integer one = 1;
 	int i=0;
-	char line[140];
+	char line[bsiz];
 
-	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], line, &c__1, (long int)24);
+	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], line, &one, (long int)nlgh);
 
 	for (i=0;i<(int)strlen(line);i++)
 	{
@@ -1248,11 +1248,11 @@ static int msg_101(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_102(integer *n, integer *ierr)
 {
-	integer c__1=1;
+	integer one = 1;
 	int i=0;
-	char line[140];
+	char line[bsiz];
 
-	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], line, &c__1, (long int)24);
+	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], line, &one, (long int)nlgh);
 
 	for (i=0;i<(int)strlen(line);i++)
 	{
