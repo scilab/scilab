@@ -63,7 +63,7 @@ msgstr "Erreur : mois (1 - 12).\n"
 #
 # File: sci_gateway/c/sci_calendar.c, line: 60
 msgid "Invalid argument(s) type.\n"
-msgstr "Type d'argument(s) invalide"
+msgstr "Type d'argument(s) invalide.\n"
 
 #
 # File: sci_gateway/c/sci_getdate.c, line: 42
@@ -75,4 +75,3 @@ msgstr "Impossible de récupérer la date...\n"
 # File: sci_gateway/c/sci_getdate.c, line: 130
 msgid "Input parameter must be a 's' or a integer.\n"
 msgstr "Les paramètres d'entrée doivent être 's' or un entier.\n"
-
