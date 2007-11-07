@@ -67,3 +67,4 @@ sciGetFontOrientation
 sciGetUserSize
 sciGetAutoSize
 sciGetCenterPos
+sciGetIsBoxed

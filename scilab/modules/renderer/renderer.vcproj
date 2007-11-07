@@ -810,6 +810,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\textDrawing\TextFillBoxDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\textDrawing\TextLineBoxDrawerJoGL.cpp"
 					>
 				</File>
@@ -1465,6 +1469,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\TextContentDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\TextFillBoxDrawerJoGL.hxx"
 					>
 				</File>
 				<File

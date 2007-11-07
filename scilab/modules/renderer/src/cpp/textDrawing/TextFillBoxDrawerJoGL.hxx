@@ -1,27 +1,27 @@
 /*------------------------------------------------------------------------*/
-/* file: TextLineBoxDrawerJoGL.hxx                                        */
+/* file: TextFillBoxDrawerJoGL.hxx                                        */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Strategy drawing the surrounding box a text object              */
+/* desc : Strategy filling the surrounding box a text object              */
 /*------------------------------------------------------------------------*/
 
-#ifndef _TEXT_LINE_BOX_DRAWER_JOGL_H_
-#define _TEXT_LINE_BOX_DRAWER_JOGL_H_
+#ifndef _TEXT_FILL_BOX_DRAWER_JOGL_H_
+#define _TEXT_FILL_BOX_DRAWER_JOGL_H_
 
 #include "DrawTextBoxStrategy.hxx"
-#include "../rectangleDrawing/RectangleLineDrawerJavaMapper.hxx"
+#include "../rectangleDrawing/RectangleFillDrawerJavaMapper.hxx"
 #include "DrawableObjectJoGL.h"
 
 namespace sciGraphics
 {
 
-class TextLineBoxDrawerJoGL : public DrawTextBoxStrategy, public DrawableObjectJoGL
+class TextFillBoxDrawerJoGL : public DrawTextBoxStrategy, public DrawableObjectJoGL
 {
 public:
 
-  TextLineBoxDrawerJoGL(DrawableText * text);
+  TextFillBoxDrawerJoGL(DrawableText * text);
 
-  virtual ~TextLineBoxDrawerJoGL(void);
+  virtual ~TextFillBoxDrawerJoGL(void);
 
   /**
    * Draw the rectangle surrounding the text.
@@ -38,10 +38,10 @@ protected:
   /**
    * Rectangle drawer do the job.
    */
-  RectangleLineDrawerJavaMapper * getLineDrawerJavaMapper(void);
-  
+  RectangleFillDrawerJavaMapper * getFillDrawerJavaMapper(void);
+
 };
 
 }
 
-#endif /* _TEXT_LINE_BOX_DRAWER_JOGL_H_ */
+#endif /* _TEXT_FILL_BOX_DRAWER_JOGL_H_ */
