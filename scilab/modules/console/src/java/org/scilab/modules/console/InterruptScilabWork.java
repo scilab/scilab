@@ -3,8 +3,9 @@
 
 package org.scilab.modules.console;
 
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
-
+import java.awt.Toolkit;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
@@ -15,6 +16,7 @@ import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Stops Scilab current work to enter pause mode
+ * Or copy selected text (if there is)
  * This event is configured in configuration.xml file
  * @author Vincent COUVERT
  */
@@ -37,6 +39,7 @@ public class InterruptScilabWork extends AbstractConsoleAction {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		
+		/* No text selected in the input --> interrupt Scilab work */
 		if (((JTextPane) configuration.getInputCommandView()).getSelectedText() == null) {
 			InterpreterManagement.interruptScilab();
 		
@@ -49,6 +52,9 @@ public class InterruptScilabWork extends AbstractConsoleAction {
 				((SciInputCommandView) configuration.getInputCommandView()).setCmdBuffer("");
 				configuration.getInputParsingManager().reset();
 			}
+		} else { /* Some text selected in the input --> put selection in the clipboard (bug 2592 fix) */
+			StringSelection strSelected = new StringSelection(((JTextPane) configuration.getInputCommandView()).getSelectedText());
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
 		}
 	}
 
