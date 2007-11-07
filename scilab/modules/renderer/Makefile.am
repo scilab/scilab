@@ -144,7 +144,9 @@ src/cpp/textDrawing/FilledTextDrawerJoGL.cpp \
 src/jni/FilledTextDrawerGL.cpp \
 src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
 src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
-src/jni/CenteredTextDrawerGL.cpp
+src/jni/CenteredTextDrawerGL.cpp \
+src/cpp/textDrawing/DrawTextBoxStrategy.cpp \
+src/cpp/textDrawing/TextLineBoxDrawerJoGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
