@@ -259,7 +259,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 35:
 		{
-			switch (C2F(recu).ids[C2F(recu).pt * 6 - 6]) /* find instruction type */
+			switch (C2F(recu).ids[C2F(recu).pt * nsiz - nsiz]) /* find instruction type */
 			{
 				case 1: /* if */
 					displayAndStoreError(_("Syntax error in an if instruction.\n"));
@@ -1746,7 +1746,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 	{
 	case CVNAME_READING_TYPE_1 : 
 		{
-			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf, &one, bsiz);
+			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
 			strncpy(local_variable_buffer, C2F(cha1).buf,bsiz);
 			local_variable_buffer[bsiz-1] = '\0';
 		}
@@ -1754,14 +1754,14 @@ static char *getConvertedNameFromStack(int cvnametype)
 
 	case CVNAME_READING_TYPE_2 :
 		{
-			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], local_variable_buffer, &one, nlgh);
+			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], local_variable_buffer, &one, nlgh);
 			local_variable_buffer[nlgh] = '\0';
 		}
 		break;
 
 	case CVNAME_READING_TYPE_3 :
 		{
-			C2F(cvname)(&C2F(recu).ids[C2F(recu).pt * 6 - 6], C2F(cha1).buf, &one, bsiz);
+			C2F(cvname)(&C2F(recu).ids[C2F(recu).pt * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
 			strncpy(local_variable_buffer, C2F(cha1).buf,bsiz);
 			local_variable_buffer[bsiz-1] = '\0';
 		}
@@ -1769,8 +1769,9 @@ static char *getConvertedNameFromStack(int cvnametype)
 
 	case CVNAME_READING_TYPE_4 :
 		{
-			cvname_(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf + 3, &one, nlgh+1);
-			strncpy(local_variable_buffer, C2F(cha1).buf+3,nlgh);
+			#define SHIFT_CHAR 3
+			cvname_(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf + SHIFT_CHAR, &one, nlgh+1);
+			strncpy(local_variable_buffer, C2F(cha1).buf+SHIFT_CHAR,nlgh);
 			local_variable_buffer[nlgh] = '\0';
 		}
 		break;
