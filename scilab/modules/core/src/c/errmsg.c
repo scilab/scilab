@@ -1517,7 +1517,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			else
 			{
-				displayAndStoreError(_("argument must not be an empty string.\n"));
+				displayAndStoreError(_("Argument must not be an empty string.\n"));
 			}
 		}
 		break;
@@ -1616,7 +1616,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 268:
 		{
-			displayAndStoreError(_("invalid return value for function passed in arg %d.\n"),Err);
+			displayAndStoreError(_("Invalid return value for function passed in arg %d.\n"),Err);
 		}
 		break;
 		case 269:

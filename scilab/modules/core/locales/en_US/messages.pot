@@ -2333,8 +2333,8 @@ msgid "%dth argument must not be an empty string.\n"
 msgstr ""
 
 #
-# File: src/c/errmsg.c, line: 1508
-msgid "argument must not be an empty string.\n"
+# File: src/c/errmsg.c, line: 1520
+msgid "Argument must not be an empty string.\n"
 msgstr ""
 
 #
@@ -2430,9 +2430,9 @@ msgid "A and B must have equal dimensions.\n"
 msgstr ""
 
 #
-# File: src/c/errmsg.c, line: 1607
+# File: src/c/errmsg.c, line: 1619
 #, c-format
-msgid "invalid return value for function passed in arg %d.\n"
+msgid "Invalid return value for function passed in arg %d.\n"
 msgstr ""
 
 #
@@ -2496,6 +2496,11 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1674
 msgid "Too many commands defined.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1780
+msgid "\"unknown data\""
 msgstr ""
 
 #
