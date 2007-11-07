@@ -1,0 +1,104 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-11-06 11:36+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+#
+# File: src/c/sp.c, line: 261
+msgid "m must be at least one.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 266
+msgid "L must be at least one.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 271
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 276
+msgid "nu must be at least 1.0.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 297
+msgid "The matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 403
+# File: src/c/sp.c, line: 588
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 405
+msgid "x0 is not strictly primal feasible.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 418
+msgid "Z0 is not positive definite.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 421
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 443
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 500
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 512
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 561
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr ""
+#
+# File: src/c/sp.c, line: 569
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 51
+#, c-format
+msgid "qld: Argument 3: wrong number of columns %d expected\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 146
+#, c-format
+msgid "qld: Too many iterations (more than %d)\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 148
+msgid "qld: Accuracy insufficient to statify convergence criterion.\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 150
+msgid "qld: Length of working array is too short.\n"
+msgstr ""
+#
+# File: src/c/intqld.c, line: 152
+msgid "qld: The constraints are inconsistent.\n"
+msgstr ""

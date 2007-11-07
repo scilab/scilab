@@ -4,127 +4,35 @@
 # This file is distributed under the same license as the Scilab package.
 # Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
 #
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab - fftw\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-msgid	""
-msgstr	"Project-Id-Version: Scilab - fftw\n"
-	"Report-Msgid-Bugs-To: \n"
-	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
-	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-	"Language-Team: Scilab <localization@scilab.org>\n"
-	"MIME-Version: 1.0\n"
-	"Content-Type: text/plain; charset=ISO-8859-1\n"
-	"Content-Transfer-Encoding: 8bit\n"
 #
 # File: src/nofftw/nofftw.c, line: 10
-msgid	"FFTW interface not installed.\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw_flags.c, line: 127
-#, possible-c-format
-msgid	"%s: Bad flag %s for Rhs(1) parameter\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw_flags.c, line: 148
-#, possible-c-format
-msgid	"%s: Bad type for Rhs(1) parameter\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw_flags.c, line: 167
-# File: sci_gateway/c/sci_fftw_flags.c, line: 174
-# File: sci_gateway/c/sci_fftw_flags.c, line: 187
-# File: sci_gateway/c/sci_fftw_flags.c, line: 194
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 39
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 38
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 45
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 60
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 66
-#, possible-c-format
-msgid	"%s: Memory allocation error\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 62
-#, possible-c-format
-msgid	"%s: FFTW can't read wisdom\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 69
-#, possible-c-format
-msgid	"%s: Bad Rhs type parameter\n"
-msgstr	""
+msgid "FFTW interface not installed.\n"
+msgstr ""
+
 #
 # File: sci_gateway/c/gw_fftw.c, line: 35
-#, possible-c-format
-msgid	"FFTW Library %s not found.\n"
-msgstr	""
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr ""
+
 #
 # File: sci_gateway/c/gw_fftw.c, line: 39
-msgid	"FFTW Library not found.\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 89
-#, possible-c-format
-msgid	"%s: Bad number of Rhs parameters\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 158
-#, possible-c-format
-msgid	"%s: Bad type for Rhs(2) parameter\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 166
-#, possible-c-format
-msgid	"%s: Bad value for Rhs(2) parameter\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 182
-#, possible-c-format
-msgid	"%s: Bad type for Rhs(3) parameter\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 193
-#, possible-c-format
-msgid	"%s: Bad size for Rhs(3) parameter\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 207
-#, possible-c-format
-msgid	"%s: Bad type for Rhs(4) parameter\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 218
-#, possible-c-format
-msgid	"%s: Bad size for Rhs(4) parameter\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 226
-#, possible-c-format
-msgid	"%s: Size of Rhs(3) and Rhs(4) parameters must be the same\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 235
-# File: sci_gateway/c/sci_fftw.c, line: 242
-# File: sci_gateway/c/sci_fftw.c, line: 419
-# File: sci_gateway/c/sci_fftw.c, line: 438
-# File: sci_gateway/c/sci_fftw.c, line: 467
-# File: sci_gateway/c/sci_fftw.c, line: 479
-# File: sci_gateway/c/sci_fftw.c, line: 503
-# File: sci_gateway/c/sci_fftw.c, line: 545
-# File: sci_gateway/c/sci_fftw.c, line: 573
-#, possible-c-format
-msgid	"%s: Allocation memory error\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 299
-#, possible-c-format
-msgid	"%s: Bad value for Rhs(3) parameter : %d\n"
-msgstr	""
-#
-# File: sci_gateway/c/sci_fftw.c, line: 353
-#, possible-c-format
-msgid	"%s: Bad value for Rhs(4) parameter : %d\n"
-msgstr	""
+msgid "FFTW Library not found.\n"
+msgstr ""
+
 #
 # File: sci_gateway/c/sci_loadfftwlibrary.c, line: 41
-msgid	"Invalid parameter type.\n"
-msgstr	""
+msgid "Invalid parameter type.\n"
+msgstr ""

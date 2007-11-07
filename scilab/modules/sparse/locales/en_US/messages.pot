@@ -6,390 +6,249 @@
 #
 # File: src/c/spFortran.c, line: 932
 # File: src/c/spFortran.c, line: 998
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab - sparse\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-msgid	""
-msgstr	"Project-Id-Version: Scilab - sparse\n"
-	"Report-Msgid-Bugs-To: \n"
-	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
-	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-	"Language-Team: Scilab <localization@scilab.org>\n"
-	"MIME-Version: 1.0\n"
-	"Content-Type: text/plain; charset=ISO-8859-1\n"
-	"Content-Transfer-Encoding: 8bit\n"
-#
-# File: macros/pcg.sci, line: 39
-msgid	"pcg: not enough input arguments"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 42
-msgid	"pcg: too many input arguments"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 65
-msgid	"pcg: unknown type for A"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 71
-msgid	"pcg: matrix A must be square"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 77
-msgid	"pcg: right hand side b must be a column vector"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 81
-msgid	"pcg: right hand side b must have the size of the matrix A"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 87
-msgid	"pcg: tol must be a scalar"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 92
-msgid	"pcg: maxIter must be a scalar"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 109
-# File: macros/pcg.sci, line: 135
-msgid	"pcg: unknown type for preconditionner"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 113
-msgid	"pcg: preconditionner matrix M must be square"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 116
-msgid	"pcg: preconditionner matrix M must have the size of b"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 139
-msgid	"pcg: preconditionner matrix M2 must be square"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 142
-msgid	"pcg: preconditionner matrix M2 must have the size of b"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 148
-msgid	"pcg: initial guess x0 must be a column vector"
-msgstr	""
-#
-# File: macros/pcg.sci, line: 151
-msgid	"pcg: initial guess x0 must have the size of b"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 41
-msgid	"gmres: not enough argument"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 56
-msgid	"gmres: matrix A must be square"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 61
-msgid	"gmres: right hand side member must be a column vector"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 65
-msgid	"gmres: right hand side vector must have the size of the matrix A"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 73
-msgid	"gmres: restart must be a scalar"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 83
-msgid	"gmres: tol must be a scalar"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 93
-msgid	"gmres: max_it must be a scalar"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 112
-msgid	"gmres: preconditionner matrix M must be square"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 117
-msgid	"Preconditionner matrix M must have same size as the problem"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 131
-msgid	"Initial guess x0 must be a column vector"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 134
-msgid	"gmres: initial guess x0 must have the size of the matrix A"
-msgstr	""
-#
-# File: macros/gmres.sci, line: 141
-msgid	"gmres: too many input arguments"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 49
-msgid	"qmr: not enough input arguments"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 61
-msgid	"qmr: unknown type for A"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 67
-msgid	"qmr: the matrix A must be square"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 70
-# File: macros/qmr.sci, line: 99
-msgid	"qmr: right hand side vector b is expected"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 80
-msgid	"qmr: transpose of the function A is expected"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 88
-msgid	"qmr: the second variable must be the transpose of the function A"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 96
-msgid	"qmr: right hand side member must be a column vector"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 106
-msgid	"qmr: initial guess x0 must be a column vector"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 109
-msgid	"qmr: initial guess x0 must have the size of the vector b"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 131
-msgid	"qmr: the preconditionner matrix M1 must be square"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 134
-msgid	"qmr: the size of the preconditionner matrix M1 must be the size of b"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 155
-# File: macros/qmr.sci, line: 158
-msgid	"qmr: the transpose function of M1 is expected"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 182
-msgid	"qmr: the preconditionner matrix M2 must be square"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 185
-msgid	"qmr: the size of the preconditionner matrix M2 must be the size of b"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 206
-# File: macros/qmr.sci, line: 209
-msgid	"qmr: the transpose function of M2 is expected"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 225
-msgid	"qmr: max_it must be a scalar"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 238
-msgid	"qmr: tol must be a scalar"
-msgstr	""
-#
-# File: macros/qmr.sci, line: 249
-msgid	"qmr: too many input arguments"
-msgstr	""
 #
 # File: src/c/spOutput.c, line: 179
 #, c-format
-msgid	"MATRIX SUMMARY\n"
-	"\n"
-msgstr	""
+msgid ""
+"MATRIX SUMMARY\n"
+"\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 180
 #, c-format
-msgid	"Size of matrix = %1u x %1u.\n"
-msgstr	""
+msgid "Size of matrix = %1u x %1u.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 182
 #, c-format
-msgid	"Matrix has been reordered.\n"
-msgstr	""
+msgid "Matrix has been reordered.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 186
 #, c-format
-msgid	"Matrix after factorization:\n"
-msgstr	""
+msgid "Matrix after factorization:\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 188
 #, c-format
-msgid	"Matrix before factorization:\n"
-msgstr	""
+msgid "Matrix before factorization:\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 226
 # File: src/c/spOutput.c, line: 228
 #, c-format
-msgid	"Columns %1d to %1d.\n"
-msgstr	""
+msgid "Columns %1d to %1d.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 311
 #, c-format
-msgid	"\n"
-	"Largest element in matrix = %-1.4lg.\n"
-msgstr	""
+msgid ""
+"\n"
+"Largest element in matrix = %-1.4lg.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 312
 #, c-format
-msgid	"Smallest element in matrix = %-1.4lg.\n"
-msgstr	""
+msgid "Smallest element in matrix = %-1.4lg.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 325
 #, c-format
-msgid	"\n"
-	"Largest diagonal element = %-1.4lg.\n"
-msgstr	""
+msgid ""
+"\n"
+"Largest diagonal element = %-1.4lg.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 326
 #, c-format
-msgid	"Smallest diagonal element = %-1.4lg.\n"
-msgstr	""
+msgid "Smallest diagonal element = %-1.4lg.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 329
 #, c-format
-msgid	"\n"
-	"Largest pivot element = %-1.4lg.\n"
-msgstr	""
+msgid ""
+"\n"
+"Largest pivot element = %-1.4lg.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 330
 #, c-format
-msgid	"Smallest pivot element = %-1.4lg.\n"
-msgstr	""
+msgid "Smallest pivot element = %-1.4lg.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 334
 #, c-format
-msgid	"\n"
-	"Density = %2.2lf%%.\n"
-msgstr	""
+msgid ""
+"\n"
+"Density = %2.2lf%%.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 337
 #, c-format
-msgid	"Number of fill-ins = %1d.\n"
-msgstr	""
+msgid "Number of fill-ins = %1d.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 424
 #, c-format
-msgid	"Warning : The following matrix is factored in to LU form.\n"
-msgstr	""
+msgid "Warning : The following matrix is factored in to LU form.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 697
 #, c-format
-msgid	"Matrix has not been factored.\n"
-msgstr	""
+msgid "Matrix has not been factored.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 698
 #, c-format
-msgid	"|||  Starting new matrix  |||\n"
-msgstr	""
+msgid "|||  Starting new matrix  |||\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 701
 #, c-format
-msgid	"Matrix is complex.\n"
-msgstr	""
+msgid "Matrix is complex.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 703
 #, c-format
-msgid	"Matrix is real.\n"
-msgstr	""
+msgid "Matrix is real.\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 727
 #, c-format
-msgid	"     Initial number of elements = %d\n"
-msgstr	""
+msgid "     Initial number of elements = %d\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 730
 #, c-format
-msgid	"     Initial average number of elements per row = %lf\n"
-msgstr	""
+msgid "     Initial average number of elements per row = %lf\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 732
 #, c-format
-msgid	"     Fill-ins = %d\n"
-msgstr	""
+msgid "     Fill-ins = %d\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 733
 #, c-format
-msgid	"     Average number of fill-ins per row = %lf%%\n"
-msgstr	""
+msgid "     Average number of fill-ins per row = %lf%%\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 735
 #, c-format
-msgid	"     Total number of elements = %d\n"
-msgstr	""
+msgid "     Total number of elements = %d\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 737
 #, c-format
-msgid	"     Average number of elements per row = %lf\n"
-msgstr	""
+msgid "     Average number of elements per row = %lf\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 739
 #, c-format
-msgid	"     Density = %lf%%\n"
-msgstr	""
+msgid "     Density = %lf%%\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 741
 #, c-format
-msgid	"     Relative Threshold = %e\n"
-msgstr	""
+msgid "     Relative Threshold = %e\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 742
 #, c-format
-msgid	"     Absolute Threshold = %e\n"
-msgstr	""
+msgid "     Absolute Threshold = %e\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 743
 #, c-format
-msgid	"     Largest Element = %e\n"
-msgstr	""
+msgid "     Largest Element = %e\n"
+msgstr ""
+
 #
 # File: src/c/spOutput.c, line: 744
 #, c-format
-msgid	"     Smallest Element = %e\n"
-	"\n"
-	"\n"
-msgstr	""
+msgid ""
+"     Smallest Element = %e\n"
+"\n"
+"\n"
+msgstr ""
+
 #
 # File: src/c/lu.c, line: 119
-msgid	"zero_diag: A zero was encountered on the diagonal the matrix "
-msgstr	""
+msgid "zero_diag: A zero was encountered on the diagonal the matrix "
+msgstr ""
+
 #
 # File: src/c/spFactor.c, line: 211
 #, c-format
-msgid	"Reordering,  Step = %1d\n"
-msgstr	""
+msgid "Reordering,  Step = %1d\n"
+msgstr ""
+
 #
 # File: src/c/spFactor.c, line: 263
 #, c-format
-msgid	"//Matrix is Singular Returning LU "
-msgstr	""
+msgid "//Matrix is Singular Returning LU "
+msgstr ""
+
 #
 # File: src/c/spFactor.c, line: 265
 #, c-format
-msgid	"//Matrix is Singular at level prec [%f] I return LU\n"
-msgstr	""
+msgid "//Matrix is Singular at level prec [%f] I return LU\n"
+msgstr ""
+
 #
 # File: src/c/spFactor.c, line: 692
 #, c-format
-msgid	"Operation count for inner loop of factorization = %d.\n"
-msgstr	""
+msgid "Operation count for inner loop of factorization = %d.\n"
+msgstr ""
+
 #
 # File: src/c/spFactor.c, line: 2992
 #, c-format
-msgid	"Pivot found at %1d,%1d using "
-msgstr	""
+msgid "Pivot found at %1d,%1d using "
+msgstr ""
+
 #
 # File: includes/spDefs.h, line: 386
 #, c-format
-msgid	"sparse: panic in file `%s' at line %d.\n"
-msgstr	""
+msgid "sparse: panic in file `%s' at line %d.\n"
+msgstr ""
