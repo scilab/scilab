@@ -10,19 +10,17 @@
 int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len))
 {
 	#define nbcharsext 8
-	static int n1,m1;
-	//	char *output=NULL ;
+	static int n1 = 0, m1 = 0;
+	int outIndex = 0 ;
 
 	CheckRhs(0,0);
 	CheckLhs(1,1);
-
-	//	output=(char*)MALLOC((nbcharsext+1)*sizeof(char));
-	//sprintf(output,"%s",SHARED_LIB_EXT);
-
+	
+	m1= (int)strlen(SHARED_LIB_EXT);
 	n1=1;
-	//	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
-	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(SHARED_LIB_EXT), &m1),&n1,&SHARED_LIB_EXT);
-	//	if (output) {FREE(output);output=NULL;}
+
+	CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
+	strcpy(cstk(outIndex), SHARED_LIB_EXT );
 
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();
