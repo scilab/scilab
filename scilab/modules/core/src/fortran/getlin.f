@@ -25,7 +25,7 @@ c
       integer job, menusflag
       integer lrecl,eol,slash,dot,blank,comma
       integer retu(6)
-      integer r,quit(4),lnblnk
+      integer r,quit(4),lnblnk, ncont
       logical isinstring,eof,continued,incomment
       character*20 tmp
       external isinstring,lnblnk, getfastcode
@@ -45,6 +45,7 @@ c
       n=1
 c     continued is set to true when continuation mark found at the end of a line
       continued=.false.
+      ncont=0
  10   l1=lpt(1)
       lct(8)=lct(8)+1
 c     next line to preserve end-of-line marks (eol)
@@ -142,6 +143,7 @@ c
  29   continue
 c     next line is a continuation line
       continued=.true.
+      ncont=ncont+1
       if(job.ne.-1) goto 11
 c     handle continuation lines when scilab is call as a procedure
       fin=-1
@@ -150,6 +152,9 @@ c     handle continuation lines when scilab is call as a procedure
 c     There is no continuation line or syntax error
  31   continue
       continued=.false.
+c     increase the line counter to take the contuation lines into acount
+      lct(8)=lct(8)+ncont
+      ncont=0
       lin(l) = k
       if (l.lt.lsiz) l = l+1
       if (l.ge.lsiz) then

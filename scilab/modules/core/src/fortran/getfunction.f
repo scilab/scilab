@@ -129,9 +129,10 @@ c     statements of the function
       endif
       istk(ilp)=1
       strcnt=0
-      
+      ncont=0
       if(sym.eq.eol) then
          if (lpt(4).ge.lpt(6)) then
+            lct8=lct(8)
             if(comp(1).ne.0) then 
                call getlin(2,0)
                eof=.false.
@@ -139,6 +140,7 @@ c     statements of the function
                call getlin(2,0)
                eof=fin.eq.-2
             endif
+            ncont=lct(8)-lct8-1
          else
             eof=.false.
             lpt(4)=lpt(4)+1
@@ -211,7 +213,7 @@ c     .     endfunction omitted
 c     store a line
  72   continue
       if(last.and.n.le.0) goto 73
-      if(ilp+nr+1.ge.ilw) then
+      if(ilp+nr+1+ncont.ge.ilw) then
 c     .  allocate memory for rblock more rows
          ilw=ilw+rblock
          err=sadr(ilw)-lstk(bot)
@@ -220,9 +222,9 @@ c     .  allocate memory for rblock more rows
             return
          endif
       endif
-      if(ilc+nc+n.ge.ilp) then
+      if(ilc+nc+n+ncont.ge.ilp) then
 c     . allocate memory for cblock more characters
-         ilp1=ilc+nc+n+cblock
+         ilp1=ilc+nc+n+ncont+cblock
          ilw=ilp1+(ilw-ilp)
          err=sadr(ilw)-lstk(bot)
          if(err.gt.0) then
@@ -232,15 +234,27 @@ c     . allocate memory for cblock more characters
          call icopy(nr+1,istk(ilp),-1,istk(ilp1),-1)
          ilp=ilp1
       endif
+      if (ncont.gt.0) then
+c     .  add ncont empty lines before the logical line
+         do ic1=1,ncont
+            istk(ilp+nr+1)=istk(ilp+nr)+1
+            istk(ilc+nc)=blank
+            nc=nc+1
+            nr=nr+1
+         enddo
+         ncont=0
+      endif
       istk(ilp+nr+1)=istk(ilp+nr)+n
       call icopy(n,lin(l4),1,istk(ilc+nc),1)
       nc=nc+n
       nr=nr+1
       if(.not.last) then
          if(lpt(4).ge.lpt(6)) then
+            lct8=lct(8)
             call getlin(2,0)
             eof=fin.eq.-2
             l4=lpt(1)
+            ncont=lct(8)-lct8-1
          else
             lpt(4)=lpt(4)+1
             call getsym
