@@ -874,8 +874,7 @@ IVAR GetVar(name,p)
 
 /* return the variable number of variable name which must already  exist */
 
-IVAR GetExistVar(name)
-     char *name;
+IVAR GetExistVar(char *name)
 {
   int i;
   VARPTR var;
@@ -2323,6 +2322,9 @@ void WriteVariableOutput(f,var,barg,farg,convert,insidelist,nel)
 
   /* if ( insidelist != 0 && var->list_name != (char *) 0 ) */
   /* jpc sept 1997 : was the var inside a list or not */
+
+  /* bug here on Windows (intersci example ext11c) */
+  /* var->list_name!= (char *) 0 OK but not with a valid pointer */
 
   if ( var->list_name != (char *) 0 ) 
     {
