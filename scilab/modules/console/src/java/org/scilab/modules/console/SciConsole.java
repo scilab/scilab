@@ -203,22 +203,23 @@ public class SciConsole extends JPanel {
      */
     public void clear() {
         
-    	try {
+		try {
             config.getInputCommandViewStyledDocument().remove(0, config.getInputCommandViewStyledDocument().getLength());
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        /* Wait for buffer so that clc is displayed */
-        boolean ready = ((SciOutputView) config.getOutputView()).isReady();
-        while (!ready) { 
-        	ready = ((SciOutputView) config.getOutputView()).isReady();
-        }
-        
+
+        /* Wait for the end of the buffer display */
         try {
-            config.getOutputViewStyledDocument().remove(0, config.getOutputViewStyledDocument().getLength());
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
+        	synchronized (this.getConfiguration().getOutputView()) {
+        		this.getConfiguration().getOutputView().wait();
+			}
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		config.getOutputView().reset();
    }
 
     /**
@@ -265,11 +266,15 @@ public class SciConsole extends JPanel {
      * Puts the prompt in the top left corner of the console
      */
     public void toHome() {
-        /* Wait for buffer so that tohome is displayed */
-        boolean ready = ((SciOutputView) config.getOutputView()).isReady();
-        while (!ready) { 
-        	ready = ((SciOutputView) config.getOutputView()).isReady();
-        }
+        /* Wait for the end of the buffer display */
+        try {
+        	synchronized (this.getConfiguration().getOutputView()) {
+        		this.getConfiguration().getOutputView().wait();
+			}
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         
     	Dimension jSPExtSize = jSP.getViewport().getExtentSize();
     	Dimension newDim = new Dimension(jSPExtSize.width - jSP.getVerticalScrollBar().getPreferredSize().width, jSPExtSize.height);
@@ -347,8 +352,6 @@ public class SciConsole extends JPanel {
 				InputParsingManager inputParsingManager = config.getInputParsingManager();
 				OutputView outputView = config.getOutputView();
 				PromptView promptView = config.getPromptView();
-
-				//config.getInputCommandView().append(StringConstants.NEW_LINE);
 				
 				// Reset command line
 				inputParsingManager.reset();

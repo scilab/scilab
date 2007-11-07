@@ -64,6 +64,12 @@ public class SciOutputView extends JTextPane implements OutputView, Runnable {
 	public void run() {
 		while (true) {
 			try {
+				// If the buffer is empty, new readline can be done...
+				if (bufferQueue.isEmpty()) {
+					synchronized (this) {
+						this.notify();
+					}
+				} else {
 				StringBuffer buffer = bufferQueue.take();
 				String style = styleQueue.poll();
 				
@@ -120,6 +126,7 @@ public class SciOutputView extends JTextPane implements OutputView, Runnable {
 				/* Update scroll only if console has been set */
 				if (console != null) {
 					console.updateScrollPosition();
+				}
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -234,13 +241,4 @@ public class SciOutputView extends JTextPane implements OutputView, Runnable {
 	public SciConsole getConsole() {
 		return console;
 	}
-	
-	/**
-	 * Gets the console object containing this output view
-	 * @return the console associated 
-	 */
-	public boolean isReady() {
-		return bufferQueue.isEmpty();
-	}
-
 }

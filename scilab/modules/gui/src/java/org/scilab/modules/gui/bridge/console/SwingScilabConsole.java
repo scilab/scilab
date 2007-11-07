@@ -13,6 +13,7 @@ import javax.swing.text.StyledDocument;
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciInputCommandView;
+import org.scilab.modules.console.SciOutputView;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -55,7 +56,17 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 		
-		// Show the prompt
+		/* Wait for the end of the buffer display */
+        try {
+        	synchronized (this.getConfiguration().getOutputView()) {
+        		this.getConfiguration().getOutputView().wait();
+			}
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+ 		// Show the prompt
 		this.getConfiguration().getPromptView().setVisible(true);
 
 		// Show the input command view and its hidden components
