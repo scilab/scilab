@@ -49,6 +49,10 @@ public class SciOutputView extends JTextPane implements OutputView, Runnable {
       */
 	public SciOutputView() {
 		setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, LEFT_BORDER, BOTTOM_BORDER, RIGHT_BORDER));
+		
+		// Enabled Drag&Drop with this component
+		this.setDragEnabled(true);
+
 		activeStyle = StyleContext.DEFAULT_STYLE;
 		bufferQueue = new ArrayBlockingQueue<StringBuffer>(BUFFER_SIZE);
 		styleQueue = new LinkedList<String>();
