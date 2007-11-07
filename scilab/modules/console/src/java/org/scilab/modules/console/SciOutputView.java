@@ -34,7 +34,7 @@ public class SciOutputView extends JTextPane implements OutputView, Runnable {
 	private static final int LEFT_BORDER = 0;
 	private static final int RIGHT_BORDER = 0;
 	
-	private static final int BUFFER_SIZE = 6;
+	private static final int BUFFER_SIZE = 10;
 
 	private String activeStyle;
 	private String lastAppendedStyle;
@@ -74,63 +74,63 @@ public class SciOutputView extends JTextPane implements OutputView, Runnable {
 						this.notify();
 					}
 				} else {
-				StringBuffer buffer = bufferQueue.take();
-				String style = styleQueue.poll();
+					StringBuffer buffer = bufferQueue.take();
+					String style = styleQueue.poll();
 				
-				/* Temporary variables created to avoid to long line (checkstyle */
-				String dispBuffer = buffer.toString();
-				int sDocLength = getStyledDocument().getLength();
-				getStyledDocument().insertString(sDocLength, dispBuffer, getStyledDocument().getStyle(style));
-				
-				/* Special case for Scilab when clc or tohome have been used */
-				String[] lines = buffer.toString().split(StringConstants.NEW_LINE);
-				/* Change the size of the input command view if necessary */
-				/* - if the console size has been forced to a value */
-				/* - if a carriage return has been appended */
-				if (console != null && console.getInputCommandViewSizeForced() && lines.length > 0) {
-		
-					JTextPane outputView = ((JTextPane) console.getConfiguration().getOutputView());
-					
-					// Get JScrollPane viewport size to adapt input command view size
-					JScrollPane jSP = console.getJScrollPane();
-					Dimension jSPExtSize = jSP.getViewport().getExtentSize();
-		
-					/* Height of a text line in the ouput view */
-					int charHeight = outputView.getFontMetrics(outputView.getFont()).getHeight();
-		
-					JPanel promptView = ((JPanel) console.getConfiguration().getPromptView());
-					
-					/* Input command view dimensions */
-					JTextPane inputCmdView = ((JTextPane) console.getConfiguration().getInputCommandView());
-					int height = inputCmdView.getPreferredSize().height;
-					int width = inputCmdView.getPreferredSize().width - jSPExtSize.width;
-					
-					int promptViewHeight = promptView.getPreferredSize().height;
-		
-					/* New dimension for the input command view */
-					/* -1 because last EOL removed in SwingScilabConsole.readline */
-					int newHeight = height - (lines.length - 1) * charHeight; 
-					Dimension newDim = null;
-					
-					if (newHeight > promptViewHeight) {
-						/* If the input command view is bigger than the promptUI */
-						/* It's height is descreased according to line number of lines added to output view */
-						newDim = new Dimension(width, newHeight);
-					} else {
-						/* If the input command view is smaller than the promptUI */
-						/* It's height adapted to the promptUI height */
-						newDim = new Dimension(width, promptViewHeight);
-						console.setInputCommandViewSizeForced(false);
+					/* Temporary variables created to avoid to long line (checkstyle */
+					String dispBuffer = buffer.toString();
+					int sDocLength = getStyledDocument().getLength();
+					getStyledDocument().insertString(sDocLength, dispBuffer, getStyledDocument().getStyle(style));
+
+					/* Special case for Scilab when clc or tohome have been used */
+					String[] lines = buffer.toString().split(StringConstants.NEW_LINE);
+					/* Change the size of the input command view if necessary */
+					/* - if the console size has been forced to a value */
+					/* - if a carriage return has been appended */
+					if (console != null && console.getInputCommandViewSizeForced() && lines.length > 0) {
+			
+						JTextPane outputView = ((JTextPane) console.getConfiguration().getOutputView());
+						
+						// Get JScrollPane viewport size to adapt input command view size
+						JScrollPane jSP = console.getJScrollPane();
+						Dimension jSPExtSize = jSP.getViewport().getExtentSize();
+			
+						/* Height of a text line in the ouput view */
+						int charHeight = outputView.getFontMetrics(outputView.getFont()).getHeight();
+			
+						JPanel promptView = ((JPanel) console.getConfiguration().getPromptView());
+						
+						/* Input command view dimensions */
+						JTextPane inputCmdView = ((JTextPane) console.getConfiguration().getInputCommandView());
+						int height = inputCmdView.getPreferredSize().height;
+						int width = inputCmdView.getPreferredSize().width - jSPExtSize.width;
+						
+						int promptViewHeight = promptView.getPreferredSize().height;
+			
+						/* New dimension for the input command view */
+						/* -1 because last EOL removed in SwingScilabConsole.readline */
+						int newHeight = height - (lines.length - 1) * charHeight; 
+						Dimension newDim = null;
+						
+						if (newHeight > promptViewHeight) {
+							/* If the input command view is bigger than the promptUI */
+							/* It's height is descreased according to line number of lines added to output view */
+							newDim = new Dimension(width, newHeight);
+						} else {
+							/* If the input command view is smaller than the promptUI */
+							/* It's height adapted to the promptUI height */
+							newDim = new Dimension(width, promptViewHeight);
+							console.setInputCommandViewSizeForced(false);
+						}
+						/* Change the input command view size */
+				       	((JTextPane) console.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
+			        	((JTextPane) console.getConfiguration().getInputCommandView()).invalidate();
+				    	((JTextPane) console.getConfiguration().getInputCommandView()).doLayout();
+					}	
+					/* Update scroll only if console has been set */
+					if (console != null) {
+						console.updateScrollPosition();
 					}
-					/* Change the input command view size */
-			       	((JTextPane) console.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
-		        	((JTextPane) console.getConfiguration().getInputCommandView()).invalidate();
-			    	((JTextPane) console.getConfiguration().getInputCommandView()).doLayout();
-				}	
-				/* Update scroll only if console has been set */
-				if (console != null) {
-					console.updateScrollPosition();
-				}
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();

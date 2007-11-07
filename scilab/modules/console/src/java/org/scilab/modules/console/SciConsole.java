@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
+import javax.swing.SwingUtilities;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -194,8 +195,13 @@ public class SciConsole extends JPanel {
      * Updates the scroll bars according to the contents
      */
     public void updateScrollPosition() {
-        jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
-        jSP.revalidate();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				jSP.getViewport().setViewPosition(new Point(0, 
+						sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
+				jSP.revalidate();
+			}
+		});
     }
 
     /**
@@ -364,9 +370,6 @@ public class SciConsole extends JPanel {
 				config.getInputCommandView().setEditable(false);
 				config.getPromptView().setVisible(false);
 
-				// Print the command in the output view
-				outputView.setCaretPositionToEnd();
-				
 				// Remove the prompt if present at the beginning of the text to execute
 				// TODO what about pause mode prompts ??
 				String prompt = config.getPromptView().getDefaultPrompt();

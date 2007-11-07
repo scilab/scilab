@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 import com.artenum.rosetta.interfaces.core.InputParsingManager;
-import com.artenum.rosetta.interfaces.ui.OutputView;
 import com.artenum.rosetta.interfaces.ui.PromptView;
 import com.artenum.rosetta.util.StringConstants;
 
@@ -32,12 +31,9 @@ public class ValidationAction extends AbstractConsoleAction {
 	public synchronized void actionPerformed(ActionEvent e) {
 		// Init
 		InputParsingManager inputParsingManager = configuration.getInputParsingManager();
-		OutputView outputView = configuration.getOutputView();
 		PromptView promptView = configuration.getPromptView();
 		String cmdToExecute = null;
 		String histEntry = null;
-		
-		outputView.setCaretPositionToEnd();
 
 		// Do the job
 		if (inputParsingManager.isBlockEditing()) {
@@ -50,7 +46,7 @@ public class ValidationAction extends AbstractConsoleAction {
 			cmdToExecute = inputParsingManager.getCommandLine();
 			
 			// Special case: line begins with a !
-			if (cmdToExecute.length()>0 && cmdToExecute.charAt(0) == '!') {
+			if ((cmdToExecute.length() > 0) && (cmdToExecute.charAt(0) == '!')) {
 				// Cast HistoryManager to SciHistoryManager 
 				// because searchBackward will not to be implemented in all not-generic console
 				((SciHistoryManager) configuration.getHistoryManager()).setTmpEntry(cmdToExecute.substring(1));
@@ -64,7 +60,6 @@ public class ValidationAction extends AbstractConsoleAction {
 			
 			// Print the command in the output view (done in sendCommandsToScilab since bug 2510 fix)
 //			boolean firstPrompt = true;
-//			outputView.setCaretPositionToEnd();
 //			for (String line : cmdToExecute.split(StringConstants.NEW_LINE)) {
 //				if (firstPrompt) {
 //					firstPrompt = false;
