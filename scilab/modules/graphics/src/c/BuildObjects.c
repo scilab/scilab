@@ -807,7 +807,6 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
       ppTitle->text.callbacklen = 0; 
       ppTitle->visible = sciGetVisibility(sciGetParentSubwin(pobj));
       ppTitle->text.isboxed = FALSE ;
-      ppTitle->text.isline  = TRUE  ;
 
       ppTitle->text.pStrings = newFullStringMatrix( &text, 1, 1 ) ;
      
@@ -901,7 +900,6 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       ppLegend->text.callbacklen = 0;
       ppLegend->text.callbackevent = 100;
       ppLegend->text.isboxed = FALSE ;
-      ppLegend->text.isline  = TRUE ;
       
       ppLegend->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
 

@@ -207,6 +207,7 @@ sciInitGraphicContext (sciPointObj * pobj)
       (sciGetGraphicContext(pobj))->linestyle = PS_SOLID;
       (sciGetGraphicContext(pobj))->ismark    = FALSE;
       (sciGetGraphicContext(pobj))->isline    = TRUE;
+      (sciGetGraphicContext(pobj))->isfilled  = FALSE;
       (sciGetGraphicContext(pobj))->markstyle = 0;
       (sciGetGraphicContext(pobj))->marksize = 0 ; /* New F.Leray 21.01.05 */
       (sciGetGraphicContext(pobj))->markbackground = /*-3;*/ 33; /* New F.Leray 21.01.05 */
