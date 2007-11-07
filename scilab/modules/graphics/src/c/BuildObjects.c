@@ -110,7 +110,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciPointObj * pfiguremdl = getFigureModel() ;
   sciFigure   * ppFigure = NULL ;
   sciFigure   * ppModel  = pFIGURE_FEATURE(pfiguremdl) ;
-  double      * colorMap = NULL ;
 
   /* memory allocation for the new Figure   affectation du type allocation de la structure */
 
@@ -195,8 +194,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 
   /* Colormap */
   sciSetDefaultColorMap(pobj);
-
-  FREE(colorMap);
 
   /* Add the figure in the list of created figures */
   addNewFigureToList(pobj);

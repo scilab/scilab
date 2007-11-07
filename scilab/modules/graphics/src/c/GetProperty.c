@@ -388,68 +388,15 @@ sciGetForeground (sciPointObj * pobj)
 
   int colorindex = -999;
   
-  /** the foreground is a solid line style in b&w */
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /** the colormap is 32x3 by default */
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_SUBWIN:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_TEXT:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_TITLE:
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_LEGEND:
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_ARC:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_RECTANGLE:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_SURFACE:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_LIGHT:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_AXES:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_MENU:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_MENUCONTEXT:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_STATUSB:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_SEGS:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-	case SCI_UIMENU:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    default:
-      break;
-    }
+  if(sciGetGraphicContext(pobj) != NULL)
+  {
+    colorindex = (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+  }
+  else
+  {
+    sciprint ("\nNo Foreground is associated with this Entity");
+    return -999;
+  }
 
   colorindex = sciGetGoodIndex(pobj, colorindex);
   
@@ -464,69 +411,7 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
   int colorindex = -999;
   int m = sciGetNumColors(pobj);
 
-  /** the foreground is a solid line style in b&w */
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /** the colormap is 32x3 by default */
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_SUBWIN:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_TEXT:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_TITLE:
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_LEGEND:
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_ARC:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_RECTANGLE:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_SURFACE:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_LIGHT:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_AXES:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_MENU:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_MENUCONTEXT:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_STATUSB:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_LABEL:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_UIMENU:
-    case SCI_SEGS:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    default:
-      sciprint ("\nNo Foreground is associated with this Entity");
-      return -1;
-      break;
-    }
-  colorindex = sciGetGoodIndex(pobj, colorindex);
+  colorindex = sciGetForeground(pobj);
   
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
     
@@ -544,72 +429,15 @@ sciGetBackground (sciPointObj * pobj)
 
   int colorindex = -999;
   
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /** the colormap is 32x3 by default
-	  +1 is due to the 
-	  sciGetBackground that returns the "stored color + 1" 
-          that is equal to the color set by the user
-      */
-      colorindex = (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_SUBWIN:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_TEXT:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_TITLE:
-      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_LEGEND:
-      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_ARC:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_RECTANGLE:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_SURFACE:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_LIGHT:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_AXES:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_PANNER:		/* pas de context graphics */
-      break;
-    case SCI_SBH:		/* pas de context graphics */
-      break;
-    case SCI_SBV:		/* pas de context graphics */
-      break;
-    case SCI_MENU:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_MENUCONTEXT:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_STATUSB:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;  
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-   case SCI_UIMENU:
-    default:
-      break;
-    }
+  if(sciGetGraphicContext(pobj) != NULL)
+  {
+    colorindex = (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+  }
+  else
+  {
+    sciprint ("\nNo Background is associated with this Entity");
+    return -999;
+  }
   
   colorindex = sciGetGoodIndex(pobj, colorindex);
   
@@ -627,73 +455,7 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
   int colorindex = -999;
   int m = sciGetNumColors(pobj);
   
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /** the colormap is 32x3 by default
-	  +1 is due to the 
-	  sciGetBackground that returns the "stored color + 1" 
-          that is equal to the color set by the user
-      */
-      colorindex = (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_SUBWIN:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_TEXT:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_TITLE:
-      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_LEGEND:
-      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_ARC:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_RECTANGLE:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_SURFACE:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_LIGHT:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_AXES:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_MENU:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_MENUCONTEXT:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_STATUSB:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;  
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_PANNER:	/* pas de context graphics */
-    case SCI_SBH:	/* pas de context graphics */
-    case SCI_SBV:	/* pas de context graphics */
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-	case SCI_UIMENU:
-    default:
-      sciprint ("\nNo Background is associated with this Entity");
-      return -1;
-      break;
-    }
-  
-  colorindex = sciGetGoodIndex(pobj, colorindex);
+  colorindex = sciGetBackground(pobj);
 
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
   
@@ -710,54 +472,15 @@ sciGetMarkForeground (sciPointObj * pobj)
 
   int colorindex = -999;
   
-  /** the foreground is a solid line style in b&w */
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /** the colormap is 32x3 by default */
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_SUBWIN:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_LEGEND:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_ARC:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_RECTANGLE:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_SURFACE:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_AXES:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_SEGS:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_MENU:
-    case SCI_LIGHT:
-    case SCI_LABEL:
-    case SCI_TITLE:
-    case SCI_TEXT:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-	case SCI_UIMENU:
-    default:
-      break;
-    }
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    colorindex = sciGetGraphicContext(pobj)->markforeground + 1;
+  }
+  else
+  {
+    sciprint("Object has no mark_foreground property.\n");
+    return -1;
+  }
 
   colorindex = sciGetGoodIndex(pobj, colorindex);
   
@@ -772,58 +495,7 @@ sciGetMarkForegroundToDisplay (sciPointObj * pobj)
   int colorindex = -999;
   int m = sciGetNumColors(pobj);
 
-  /** the foreground is a solid line style in b&w */
-  switch (sciGetEntityType (pobj))
-    {
-   case SCI_FIGURE:
-      /** the colormap is 32x3 by default */
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_SUBWIN:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_LEGEND:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_ARC:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_RECTANGLE:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_SURFACE:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_AXES:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_SEGS:
-      colorindex =  (sciGetGraphicContext(pobj))->markforeground + 1;
-      break;
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_MENU:
-    case SCI_LIGHT:
-    case SCI_LABEL:
-    case SCI_TITLE:
-    case SCI_TEXT:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-	case SCI_UIMENU:
-    default:
-      sciprint ("\nNo Mark Foreground is associated with this Entity");
-      return -1;
-      break;
-    }
-
-  colorindex = sciGetGoodIndex(pobj, colorindex);
+  colorindex = sciGetMarkForeground(pobj);
   
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
     
@@ -842,53 +514,15 @@ sciGetMarkBackground (sciPointObj * pobj)
 
   int colorindex = -999;
   
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /** the colormap is 32x3 by default */
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_SUBWIN:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_LEGEND:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_ARC:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_RECTANGLE:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_SURFACE:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_AXES:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_SEGS:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_MENU:
-    case SCI_LIGHT:
-    case SCI_LABEL:
-    case SCI_UIMENU:
-    case SCI_TITLE:
-    case SCI_TEXT:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    default:
-      break;
-    }
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    colorindex = sciGetGraphicContext(pobj)->markbackground + 1;
+  }
+  else
+  {
+    sciprint("Object has no mark_background property.\n");
+    return -1;
+  }
   
   colorindex = sciGetGoodIndex(pobj, colorindex);
   
@@ -906,57 +540,7 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
   int colorindex = -999;
   int m = sciGetNumColors(pobj);
   
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /** the colormap is 32x3 by default */
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_SUBWIN:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_LEGEND:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_ARC:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_RECTANGLE:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_SURFACE:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_AXES:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_SEGS:
-      colorindex =  (sciGetGraphicContext(pobj))->markbackground + 1;
-      break;
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_MENU:
-    case SCI_LIGHT:
-    case SCI_LABEL:
-	case SCI_UIMENU:
-    case SCI_TITLE:
-    case SCI_TEXT:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    default:
-      sciprint ("\nNo Mark Background is associated with this Entity");
-      return -1;
-      break;
-    }
-  
-  colorindex = sciGetGoodIndex(pobj, colorindex);
+  colorindex = sciGetMarkBackground(pobj);
 
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
   
@@ -970,66 +554,11 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
 int
 sciGetLineWidth (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_SUBWIN:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_TEXT:
-      return 0;
-      break;
-    case SCI_TITLE:
-      return 0;
-      break;
-    case SCI_LEGEND:
-      return 0;
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_LIGHT:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_MENU:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_MENUCONTEXT:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_STATUSB:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_SEGS: 
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no Line Width\n");
-      return -1;
-      break;
-    }
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    return sciGetGraphicContext(pobj)->linewidth;
+  }
+  sciprint ("This object has no Line Width\n");
   return -1;
 }
 
@@ -1040,61 +569,12 @@ sciGetLineWidth (sciPointObj * pobj)
 int
 sciGetLineStyle (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_SUBWIN:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_LIGHT:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_MENU:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_MENUCONTEXT:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_STATUSB:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_SEGS: 
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no Line Style\n");
-      return -1;
-      break;
-    }
-  return 0;
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    return sciGetGraphicContext(pobj)->linestyle;
+  }
+  sciprint ("This object has no Line Width\n");
+  return -1;
 }
 
 
@@ -1104,55 +584,12 @@ sciGetLineStyle (sciPointObj * pobj)
 BOOL
 sciGetIsMark (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
-    case SCI_SUBWIN:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
-    case SCI_SEGS:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
-    case SCI_LEGEND:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_PANNER:	/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      /*sciprint ("This object has no ismark\n");*/
-      return FALSE;
-      break;
-    }
-  return 0;
+  if(sciGetGraphicContext(pobj) != NULL)
+  {
+    return sciGetGraphicContext(pobj)->ismark;
+  }
+
+  return FALSE;
 }
 
 
@@ -1162,55 +599,15 @@ sciGetIsMark (sciPointObj * pobj)
 int
 sciGetMarkStyle (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicContext(pobj))->markstyle;
-      break;
-    case SCI_SUBWIN:
-      /*      return sciGetMarkStyle (sciGetParent (pobj));*/ /* F.Leray 11.04.05 : to fix bug 1296 */
-      return (sciGetGraphicContext(pobj))->markstyle; /* and replaced by this line */
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->markstyle;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->markstyle;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->markstyle;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->markstyle;
-      break;
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->markstyle;
-      break;
-    case SCI_SEGS:
-      return (sciGetGraphicContext(pobj))->markstyle;
-      break; 
-    case SCI_LEGEND:
-     return (sciGetGraphicContext(pobj))->markstyle;
-     break; 
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      return -1;
-      break;
-    }
-  return 0;
+
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    return (sciGetGraphicContext(pobj))->markstyle;
+  }
+
+  sciprint("This object has no mark.\n");
+  return -1;
+
 }
 
 
@@ -1221,54 +618,14 @@ sciGetMarkStyle (sciPointObj * pobj)
 int
 sciGetMarkSize (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicContext(pobj))->marksize;
-      break;
-    case SCI_SUBWIN:
-      return (sciGetGraphicContext(pobj))->marksize;
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->marksize;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->marksize;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->marksize;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->marksize;
-      break;
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->marksize;
-      break;
-    case SCI_SEGS:
-      return (sciGetGraphicContext(pobj))->marksize;
-      break; 
-    case SCI_LEGEND:
-      return (sciGetGraphicContext(pobj))->marksize;
-      break; 
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      return -1;
-      break;
-    }
-  return 0;
+
+  if (sciGetGraphicContext(pobj) != NULL )
+  {
+    return sciGetGraphicContext(pobj)->marksize;
+  }
+  
+  sciprint("This object has no mark.\n");
+  return -1;
 }
 
 
@@ -1279,54 +636,14 @@ sciGetMarkSize (sciPointObj * pobj)
 int
 sciGetMarkSizeUnit (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicContext(pobj))->marksizeunit;
-      break;
-    case SCI_SUBWIN:
-      return (sciGetGraphicContext(pobj))->marksizeunit;
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->marksizeunit;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->marksizeunit;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->marksizeunit;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->marksizeunit;
-      break;
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->marksizeunit;
-      break;
-    case SCI_SEGS:
-      return (sciGetGraphicContext(pobj))->marksizeunit;
-      break; 
-    case SCI_LEGEND:
-      return (sciGetGraphicContext(pobj))->marksizeunit;
-      break; 
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      return -1;
-      break;
-    }
-  return 0;
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    return (sciGetGraphicContext(pobj))->marksizeunit;
+  }
+
+  sciprint("this objet has no mark.\n");
+  return -1;
+
 }
 
 /**sciGetIsLine
@@ -1335,59 +652,13 @@ sciGetMarkSizeUnit (sciPointObj * pobj)
 BOOL
 sciGetIsLine (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_SUBWIN:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_FEC:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_SEGS:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_LEGEND:
-      return (sciGetGraphicContext(pobj))->isline;
-      break;
-    case SCI_TEXT:
-      return pTEXT_FEATURE(pobj)->isline ;
-      break ;
-    case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_PANNER:	/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_TITLE:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no isline\n");
-      return -1;
-      break;
-    }
-  return 0;
+
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    return sciGetGraphicContext(pobj)->isline;
+  }
+
+  return FALSE;
 }
 
 /**sciGetIsFilled
@@ -1396,106 +667,11 @@ sciGetIsLine (sciPointObj * pobj)
 BOOL
 sciGetIsFilled (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_POLYLINE:
-      return pPOLYLINE_FEATURE(pobj)->isfilled;
-      break;
-    case SCI_RECTANGLE:
-      return pRECTANGLE_FEATURE(pobj)->fillflag;
-      break;
-    case SCI_ARC:
-      return pARC_FEATURE(pobj)->fill;
-      break;  
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      return sciGetIsFilled( pLABEL_FEATURE(pobj)->text ) ;
-      break;
-    case SCI_TEXT:
-      return pTEXT_FEATURE(pobj)->isfilled ;
-      break ;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_FEC:
-    case SCI_SEGS:
-    case SCI_LEGEND:
-    case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_PANNER:	/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_TITLE:
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no isfilled\n");
-      return -1;
-      break;
-    }
-  return 0;
-}
-
-/**sciGetFillStyle
- * Gets the fill style
- */
-int
-sciGetFillStyle (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicContext(pobj))->fillstyle;
-      break;
-    case SCI_SUBWIN:
-      return sciGetFillStyle (sciGetParent (pobj));
-      break;
-    case SCI_TEXT:
-      return -1;
-      break;
-    case SCI_TITLE:
-      return -1;
-      break;
-    case SCI_LEGEND:
-      return -1;
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->fillstyle;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->fillstyle;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->fillstyle;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->fillstyle;
-      break;
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->fillstyle;
-      break;
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_LIGHT:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      sciprint ("This object has no Fill Style\n");
-      return -1;
-      break;
-    }
-  return 0;
+  if (sciGetGraphicContext(pobj) != NULL)
+  {
+    return sciGetGraphicContext(pobj)->isfilled;
+  }
+  return FALSE;
 }
 
 /**sciGetFontContext

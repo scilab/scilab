@@ -278,13 +278,6 @@ sciRelationShip;
 
 /**@name GraphicContext
  * Used to know what are the contexte value attached with the Graphic area  
- * valeur de hachure (fillstyle)
- * HS_BDIAGONAL 45-degree downward left-to-right hatch 
- * HS_CROSS Horizontal and vertical crosshatch 
- * HS_DIAGCROSS 45-degree crosshatch 
- * HS_FDIAGONAL 45-degree upward left-to-right hatch 
- * HS_HORIZONTAL Horizontal hatch 
- * HS_VERTICAL Vertical hatch 
  * 
  * LineStyle:
  * PS_SOLID The pen is solid. 
@@ -311,8 +304,8 @@ typedef struct
   int foregroundcolor;
   /** */
   int fillcolor;
-  /** */
-  int fillstyle;
+  /** Wheter the object is filled or not */
+  BOOL isfilled;
   /** associeted to PEN or mark size */
   int linewidth;
   /** */
@@ -453,8 +446,9 @@ typedef struct
   /** specifies the number of this window            */
   int number;
 
-  /** specifies if this window is iconified*/
   int numcolors;
+
+  /** specifies if this window is iconified*/
   BOOL isiconified;		     
   /** specifies if this window is selected             */
   BOOL isselected; 
@@ -519,8 +513,6 @@ typedef struct
   BOOL centeredPos ; /**< to know wether the (x,y) position is the point in the middle of the
                         string or the lower-left point */
   BOOL isboxed  ;
-  BOOL isline   ; /* switch the contour of the box */
-  BOOL isfilled ; /* switch the transparency of the box */
   /** */
   /** specifies the text scilab code for the callback associated with this entity */
   char *callback; 
@@ -856,7 +848,6 @@ typedef struct
   double alphabegin;		
   /** end at alpha2   */
   double alphaend;
-  int fill; /* another flag to specify wether we should have a box around the text */
   /** */
   BOOL isselected;
   /** specifies the text scilab code for the callback associated with this entity */
@@ -872,7 +863,6 @@ typedef struct
   double z; /**DJ.Abdemouche 2003**/
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
-  BOOL isfilled; /* to know if an arc is filled or not */
   /* the isline property is inside the associated graphiccontext */
 }  /** */
 sciArc;
@@ -922,7 +912,6 @@ typedef struct
   int clip_region_set;
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
-  BOOL isfilled; /* to know if a polyline is filled or not */
   BOOL isinterpshaded;
   int *scvector; /* interpolation vector */
   int bar_layout;
@@ -949,7 +938,6 @@ typedef struct
   double y;			   /** original */
   double width;
   double height;
-  int fillflag;
   int str; 
   integer strwidth;
   integer strheight;
@@ -969,7 +957,6 @@ typedef struct
   BOOL flagstring; /* flag used to determine wether the rectangle is used to surround a string : used when axes is reversed */
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
-  BOOL isfilled; /* to know if a rectangle is filled or not */
 }
 sciRectangle;  /** */
 

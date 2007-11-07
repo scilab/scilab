@@ -228,8 +228,6 @@ CloneRectangle (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (sciSetLineStyle(pobj, sciGetLineStyle (pthis)) == -1)
     return (sciPointObj *)NULL;
-  if (sciSetFillStyle(pobj, sciGetFillStyle (pthis)) == -1)
-    return (sciPointObj *)NULL;
   if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetIsFilled(pobj, sciGetIsFilled (pthis)) == -1)
@@ -292,8 +290,6 @@ ClonePolyline (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (sciSetLineStyle(pobj, sciGetLineStyle (pthis)) == -1)
     return (sciPointObj *)NULL;
-  if (sciSetFillStyle(pobj, sciGetFillStyle (pthis)) == -1)
-    return (sciPointObj *)NULL;
   if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
     return (sciPointObj *)NULL;
 
@@ -348,8 +344,6 @@ CloneArc (sciPointObj * pthis)
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetLineStyle(pobj, sciGetLineStyle (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetFillStyle(pobj, sciGetFillStyle (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
     return (sciPointObj *)NULL;

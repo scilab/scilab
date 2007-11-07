@@ -49,7 +49,6 @@ BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
 int sciGetMarkStyle (sciPointObj * pobj); /* GET */
 int sciGetMarkSize (sciPointObj * pobj); /* GET */
 int sciGetMarkSizeUnit (sciPointObj * pobj); /* GET */
-int sciGetFillStyle (sciPointObj * pobj); /* GET */
 
 /* Text Functions */
 sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */

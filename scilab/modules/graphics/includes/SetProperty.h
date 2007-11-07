@@ -75,9 +75,6 @@ extern int sciSetMarkBackground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciInitMarkForeground(sciPointObj * pobj, int colorindex);
 extern int sciSetMarkForeground (sciPointObj * pobj, int colorindex);  /* SET */
 
-extern int sciInitFillStyle(sciPointObj * pobj, int fillstyle);
-extern int sciSetFillStyle (sciPointObj * pobj, int fillstyle); /* SET */
-
 extern int sciInitBoxType( sciPointObj * pobj, EAxesBoxType type ) ;
 extern int sciSetBoxType ( sciPointObj * pobj, EAxesBoxType type ) ; /* SET */
 
