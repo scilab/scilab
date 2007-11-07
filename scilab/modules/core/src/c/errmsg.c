@@ -1765,7 +1765,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 	case CVNAME_READING_TYPE_4 :
 		{
 			cvname_(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf + 3, &one, nlgh+1);
-			strncpy(local_variable_buffer, C2F(cha1).buf,nlgh);
+			strncpy(local_variable_buffer, C2F(cha1).buf+3,nlgh);
 			local_variable_buffer[nlgh] = '\0';
 		}
 		break;
