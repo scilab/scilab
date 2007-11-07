@@ -22,11 +22,18 @@ extern int C2F(prntid)(); /* to print variables on stack */
 static void strip_blank(char *source);
 static void displayAndStoreError(const char *msg,...);
 static void resetLastError(void);
-static char *getConvertedNameFromStack(void);
+static char *getConvertedNameFromStack(int cvnametype);
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #define vsnprintf _vsnprintf
 #endif
+/*-----------------------------------------------------------------------------------*/
+typedef enum {
+	CVNAME_READING_TYPE_1 = 0, 
+	CVNAME_READING_TYPE_2 = 1, 
+	CVNAME_READING_TYPE_3 = 2, 
+	CVNAME_READING_TYPE_4 = 3 
+} CVNAME_TYPE;
 /*-----------------------------------------------------------------------------------*/
 int C2F(errmsg)(integer *n,integer *errtyp)
 {
@@ -59,7 +66,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 4:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Undefined variable : %s\n"),NameVarOnStack);
@@ -189,7 +196,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 25:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_2);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("bad call to primitive : %s\n"),NameVarOnStack);
@@ -357,7 +364,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 50:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("subroutine not found : %s\n"),NameVarOnStack);
@@ -532,7 +539,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 72:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_2);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("%s is not valid in this context.\n"),NameVarOnStack);
@@ -563,7 +570,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 77:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("%s  : wrong number of rhs arguments.\n"),NameVarOnStack);
@@ -574,7 +581,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 78:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("%s  :wrong number of lhs arguments.\n"),NameVarOnStack);
@@ -595,7 +602,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 81:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real or complex matrix.\n"),Err,NameVarOnStack);
@@ -606,7 +613,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 82:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real matrix.\n"),Err,NameVarOnStack);
@@ -617,7 +624,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 83:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real vector.\n"),Err,NameVarOnStack);
@@ -628,7 +635,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 84:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a scalar.\n"),Err,NameVarOnStack);
@@ -809,7 +816,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 102:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_2);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("variable or function %s is not in file.\n"),NameVarOnStack);
@@ -820,7 +827,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 103:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("variable %s is not a valid rational function.\n"),NameVarOnStack);
@@ -831,7 +838,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 104:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("variable %s is not a valid state space representation.\n"),NameVarOnStack);
@@ -867,7 +874,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 110:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_2);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("%s was a function when compiled but is now a primitive!\n"),NameVarOnStack);
@@ -878,7 +885,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 111:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_2);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("trying to re-define function %s .\n"),NameVarOnStack);
@@ -1069,7 +1076,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 144:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Undefined operation for the given operands check or define function %s for overloading.\n"),NameVarOnStack);
@@ -1091,7 +1098,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			/* not used  */
 			/* only for compatibility */
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real or complex matrix.\n"),Err,NameVarOnStack);
@@ -1104,7 +1111,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			/* not used  */
 			/* only for compatibility */
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real matrix.\n"),Err,NameVarOnStack);
@@ -1117,7 +1124,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			/* not used  */
 			/* only for compatibility */
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real vector.\n"),Err,NameVarOnStack);
@@ -1130,7 +1137,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			/* not used  */
 			/* only for compatibility */
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a scalar.\n"),Err,NameVarOnStack);
@@ -1144,7 +1151,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			int minvalue = C2F(recu).pstk[C2F(recu).pt];
 			int maxvalue = C2F(recu).pstk[C2F(recu).pt + 1];
 
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong matrix size %d,%d) expected.\n"),Err,NameVarOnStack,minvalue,maxvalue);
@@ -1157,7 +1164,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			int vectorsize = C2F(recu).pstk[C2F(recu).pt];
 
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong vector size (%d) expected.\n"),Err,NameVarOnStack,vectorsize);
@@ -1168,7 +1175,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 207:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a matrix of strings.\n"),Err,NameVarOnStack);
@@ -1179,7 +1186,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 208: 
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a boolean matrix.\n"),Err,NameVarOnStack);
@@ -1190,7 +1197,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 209:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a matrix.\n"),Err,NameVarOnStack);
@@ -1201,7 +1208,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 210:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a list.\n"),Err,NameVarOnStack);
@@ -1212,7 +1219,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 211:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a function or string (external function).\n"),Err,NameVarOnStack);
@@ -1223,7 +1230,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 212:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a polynomial.\n"),Err,NameVarOnStack);
@@ -1234,7 +1241,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 213:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a working integer matrix.\n"),Err,NameVarOnStack);
@@ -1245,7 +1252,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 214:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a  vector.\n"),Err,NameVarOnStack);
@@ -1331,7 +1338,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 223:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("It is not possible to redefine the %s primitive this way (see clearfun).\n"),NameVarOnStack);
@@ -1362,7 +1369,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 228:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("reference to the cleared global variable %s.\n"),NameVarOnStack);
@@ -1428,7 +1435,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 240:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("File %s already exists or directory write access denied.\n"),NameVarOnStack);
@@ -1439,7 +1446,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 241:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("File %s does not exist or read access denied.\n"),NameVarOnStack);
@@ -1470,7 +1477,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 246:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack();
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			displayAndStoreError(_("function not defined for given argument type(s),\n"));
 			if (NameVarOnStack)
 			{
@@ -1722,17 +1729,52 @@ static void strip_blank(char *source)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-static char *getConvertedNameFromStack(void)
+static char *getConvertedNameFromStack(int cvnametype)
 {
-	int i = 0;
+	int one = 1;
 	int lenString = 0;
 
 	char *returnedString = NULL;
-	char local_variable_buffer[nlgh+1];
+	char local_variable_buffer[bsiz];
+	
+	switch (cvnametype)
+	{
+	case CVNAME_READING_TYPE_1 : 
+		{
+			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf, &one, bsiz);
+			strncpy(local_variable_buffer, C2F(cha1).buf,bsiz);
+			local_variable_buffer[bsiz-1] = '\0';
+		}
+		break;
 
-	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf, &i, nlgh);
-	strncpy(local_variable_buffer, C2F(cha1).buf,nlgh);
-	local_variable_buffer[nlgh] = '\0';
+	case CVNAME_READING_TYPE_2 :
+		{
+			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], local_variable_buffer, &one, nlgh);
+			local_variable_buffer[nlgh] = '\0';
+		}
+		break;
+
+	case CVNAME_READING_TYPE_3 :
+		{
+			C2F(cvname)(&C2F(recu).ids[C2F(recu).pt * 6 - 6], C2F(cha1).buf, &one, bsiz);
+			strncpy(local_variable_buffer, C2F(cha1).buf,bsiz);
+			local_variable_buffer[bsiz-1] = '\0';
+		}
+		break;
+
+	case CVNAME_READING_TYPE_4 :
+		{
+			cvname_(&C2F(recu).ids[(C2F(recu).pt + 1) * 6 - 6], C2F(cha1).buf + 3, &one, nlgh+1);
+			strncpy(local_variable_buffer, C2F(cha1).buf,nlgh);
+			local_variable_buffer[nlgh] = '\0';
+		}
+		break;
+
+	default:
+		strcpy(local_variable_buffer,_("\"unknown data\""));
+		break;
+	}
+
 	strip_blank(local_variable_buffer);
 
 	lenString = (int)strlen(local_variable_buffer);
