@@ -12,6 +12,7 @@
 extern "C"
 {
 #include "GetProperty.h"
+#include "StringMatrix.h"
 }
 
 namespace sciGraphics
@@ -34,7 +35,8 @@ void StandardTextDrawerJoGL::setDrawerParameters(void)
   getStandardTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
                                                        sciGetFontStyle(pObj), sciGetFontSize(pObj), sciGetFontOrientation(pObj) );
 
-  getStandardTextDrawerJavaMapper()->setTextContent("toto est beau", 1, 1);
+  StringMatrix * textMatrix = sciGetText(pObj);
+  getStandardTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
 
   double textPos[3];
   sciGetTextPos(pObj, textPos);

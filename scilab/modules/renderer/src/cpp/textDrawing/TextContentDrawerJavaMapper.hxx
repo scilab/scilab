@@ -21,7 +21,7 @@ public:
 
   virtual ~TextContentDrawerJavaMapper( void ) {}
 
-  virtual void setTextContent(const char text[], int nbRow, int nbCol) = 0;
+  virtual void setTextContent(char ** text, int nbRow, int nbCol) = 0;
   virtual void setCenterPosition(double centerX, double centerY, double centerZ) = 0;
   virtual void drawTextContent(void) = 0;
 

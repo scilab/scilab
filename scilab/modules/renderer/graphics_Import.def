@@ -68,3 +68,7 @@ sciGetUserSize
 sciGetAutoSize
 sciGetCenterPos
 sciGetIsBoxed
+sciGetText
+getStrMatData
+getMatNbRow
+getMatNbCol

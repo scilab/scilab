@@ -64,9 +64,9 @@ void CenteredTextDrawerJavaMapper::setTextParameters(int textAlignment, int colo
                                    boxWidth, boxHeight);
 }
 /*------------------------------------------------------------------------------------------*/
-void CenteredTextDrawerJavaMapper::setTextContent(const char text[], int nbRow, int nbCol)
+void CenteredTextDrawerJavaMapper::setTextContent(char ** text, int nbRow, int nbCol)
 {
-  m_pJavaObject->setTextContent( (char *)text, nbRow, nbCol);
+  m_pJavaObject->setTextContent( (char *)(text[0]), 1, 1);
 }
 /*------------------------------------------------------------------------------------------*/
 void CenteredTextDrawerJavaMapper::setCenterPosition(double centerX, double centerY, double centerZ)

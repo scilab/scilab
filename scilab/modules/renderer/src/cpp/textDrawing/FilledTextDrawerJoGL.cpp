@@ -15,6 +15,7 @@
 extern "C"
 {
 #include "GetProperty.h"
+#include "StringMatrix.h"
 }
 
 namespace sciGraphics
@@ -39,8 +40,8 @@ void FilledTextDrawerJoGL::setDrawerParameters(void)
   sciGetUserSize(pObj, &boxWidth, &boxHeight);
 
   
-
-  getFilledTextDrawerJavaMapper()->setTextContent("toto est beau", 1, 1);
+  StringMatrix * textMatrix = sciGetText(pObj);
+  getFilledTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
 
   // get the center Position
   double textPos[3];

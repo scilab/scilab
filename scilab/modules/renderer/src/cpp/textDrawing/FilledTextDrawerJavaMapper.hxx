@@ -37,7 +37,7 @@ public:
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // Inherited from TextContentDrawerJavaMapper
-  virtual void setTextContent(const char text[], int nbRow, int nbCol);
+  virtual void setTextContent(char ** text, int nbRow, int nbCol);
   virtual void setCenterPosition(double centerX, double centerY, double centerZ);
   virtual void drawTextContent(void);
 

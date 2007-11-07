@@ -63,9 +63,9 @@ void StandardTextDrawerJavaMapper::setTextParameters(int textAlignment, int colo
   m_pJavaObject->setTextParameters(textAlignment, color, fontStyle, fontSize, rotationAngle);
 }
 /*------------------------------------------------------------------------------------------*/
-void StandardTextDrawerJavaMapper::setTextContent(const char text[], int nbRow, int nbCol)
+void StandardTextDrawerJavaMapper::setTextContent(char ** text, int nbRow, int nbCol)
 {
-  m_pJavaObject->setTextContent( (char *)text, nbRow, nbCol);
+  m_pJavaObject->setTextContent( (char *)(text[0]), 1, 1);
 }
 /*------------------------------------------------------------------------------------------*/
 void StandardTextDrawerJavaMapper::setCenterPosition(double centerX, double centerY, double centerZ)

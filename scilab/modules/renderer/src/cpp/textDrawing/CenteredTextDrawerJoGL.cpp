@@ -12,6 +12,7 @@
 extern "C"
 {
 #include "GetProperty.h"
+#include "StringMatrix.h"
 }
 
 namespace sciGraphics
@@ -51,7 +52,8 @@ void CenteredTextDrawerJoGL::setDrawerParameters(void)
                                                        sciGetFontStyle(pObj), sciGetFontSize(pObj), sciGetFontOrientation(pObj),
                                                        pixWidth, pixHeight);
 
-  getCenteredTextDrawerJavaMapper()->setTextContent("toto est beau", 1, 1);
+  StringMatrix * textMatrix = sciGetText(pObj);
+  getCenteredTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
 
   getCenteredTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 }
