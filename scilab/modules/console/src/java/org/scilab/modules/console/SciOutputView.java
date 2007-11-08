@@ -69,7 +69,10 @@ public class SciOutputView extends JTextPane implements OutputView, Runnable {
 		while (true) {
 			try {
 				// If the buffer is empty, new readline can be done...
-				if (bufferQueue.isEmpty()) {
+				// boolean variables created to respect Scilab checkstyle (line length)
+				boolean consoleExists = console != null;
+				boolean consoleAtPrompt = consoleExists && ((SciPromptView) console.getConfiguration().getPromptView()).isVisible();
+				if (bufferQueue.isEmpty() && !consoleAtPrompt) {
 					synchronized (this) {
 						this.notify();
 					}
