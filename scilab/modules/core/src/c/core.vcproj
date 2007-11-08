@@ -700,6 +700,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sciprint_full.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sciprint_nd.c"
 				>
 			</File>
@@ -1065,11 +1069,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\scimem.h"
+				RelativePath="..\..\includes\scimem.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\sciprint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sciprint_full.h"
 				>
 			</File>
 			<File
@@ -1133,7 +1141,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\texmacs.h"
+				RelativePath="..\..\includes\texmacs.h"
 				>
 			</File>
 			<File

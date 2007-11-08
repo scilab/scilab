@@ -8,38 +8,47 @@
 #include <string.h>
 /*-----------------------------------------------------------------------------------*/ 
 #include "sciprint_nd.h"
-#include <stdarg.h>
 #include "scilabmode.h"
+#include "stack-def.h"
 #include "../../console/includes/ConsolePrintf.h"
 /*-----------------------------------------------------------------------------------*/ 
-#define MAXPRINTF 512
+#ifdef _MSC_VER
+#define vsnprintf _vsnprintf
+#endif
+#define MAXPRINTF bsiz /* bsiz size of internal chain buf */
 /*-----------------------------------------------------------------------------------*/ 
 void sciprint_nd(char *fmt,...) 
 {
 	int i = 0, count = 0, lstr = 0;
 	va_list args;
-	char buf[MAXPRINTF];
+	char s_buf[MAXPRINTF];
 	va_start(args,fmt);
 
 #if defined(linux) || defined(_MSC_VER)
-	count = vsnprintf (buf,MAXPRINTF-1, fmt, args);
+	count = vsnprintf (s_buf,MAXPRINTF-1, fmt, args);
 	if (count == -1)
 	{
-		buf[MAXPRINTF-1]='\0';
+		s_buf[MAXPRINTF-1]='\0';
 	}
 #else
-	(void ) vsprintf(buf, fmt, args );
+	(void ) vsprintf(s_buf, fmt, args );
 #endif
 	va_end(args);
-	lstr=(int)strlen(buf);
+	lstr=(int)strlen(s_buf);
 
 	if (getScilabMode() == SCILAB_STD)
 	{
-		ConsolePrintf(buf);
+		ConsolePrintf(s_buf);
 	}
 	else
 	{
-		printf("%s",buf); 
+		/* flush before , we can have a 'fortran' write (stdout) before*/
+		fflush( stdout );
+
+		printf("%s",s_buf); 
+
+		/* flush after , we will have a 'fortran' write (stdout) after. */
+		fflush( stdout );
 	}
 }
 /*-----------------------------------------------------------------------------------*/ 

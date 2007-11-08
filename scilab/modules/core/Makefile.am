@@ -47,6 +47,7 @@ src/c/timer.c \
 src/c/stack2.c \
 src/c/sciprint.c \
 src/c/sciprint_nd.c \
+src/c/sciprint_full.c \
 src/c/link.c \
 src/c/xscion.c \
 src/c/SetScilabEnvironment.c \

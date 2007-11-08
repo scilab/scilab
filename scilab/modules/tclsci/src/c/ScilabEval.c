@@ -5,6 +5,7 @@
 #include "TCL_Global.h"
 #include "ScilabEval.h"
 #include "sciprint.h"
+#include "sciprint_full.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "tksynchro.h"
