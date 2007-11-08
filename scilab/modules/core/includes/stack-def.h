@@ -106,10 +106,10 @@ typedef struct
 	int lin[lsiz]; /**< @TODO : add comment */
 	int lpt[6]; /**< @TODO : add comment */
 	int hio; /**< @TODO : add comment */
-	int rio; /**< @TODO : add comment */
-	int wio; /**< @TODO : add comment */
-	int rte; /**< @TODO : add comment */
-	int wte; /**< @TODO : add comment */
+	int rio; /* Id input (fortran) file descriptor */
+	int wio; /* Id output (fortran) file descriptor */
+	int rte; /* Id input (fortran) terminal descriptor (stdin)  */
+	int wte; /* Id output (fortran) terminal descriptor (stdout) */
 } IOP_struct;
 
 IMPORT IOP_struct C2F(iop);
