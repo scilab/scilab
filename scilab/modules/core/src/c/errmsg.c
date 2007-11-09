@@ -9,11 +9,11 @@
 #include "localization.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "sciprint.h"
 #include "stackinfo.h"
 #include "core_math.h"
 #include "inffic.h"
-#include "../../../output_stream/src/c/msgstore.h" /* need to move errmsg in output_stream */
+#include "../../../output_stream/src/c/msgstore.h"
+#include "../../../output_stream/src/c/msgout.h" /* need to move errmsg in output_stream */
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(showstack)(); /* used in error 115 */
 extern int C2F(cvname)(); /* used to get function name */
@@ -1795,6 +1795,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 /*-----------------------------------------------------------------------------------*/
 static void displayAndStoreError(const char *msg,...)
 {
+	int io = 0;
 	int len = 0;
 
 	va_list ap;
@@ -1816,13 +1817,10 @@ static void displayAndStoreError(const char *msg,...)
 #endif
 	va_end(ap);
 
-
-	/* store error (lasterror) */
+	/* store and display error(lasterror) */
+	
 	len = (int)strlen(s_buf);
-	C2F(msgstore)(s_buf,&len);
-
-	/* display error */
-	sciprint(s_buf);
+	C2F(msgout)(&io,&C2F(iop).wte,s_buf,len);
 }
 /*-----------------------------------------------------------------------------------*/
 static void resetLastError(void)
