@@ -1,3 +1,5 @@
+// <-- TEST WITH GRAPHIC -->
+
 // Copyright INRIA
 // test conversion transfer <---> state-space
 // 1- coff inversion 

@@ -17,10 +17,10 @@ r = completion('w','files')
 
 // memory leak
 
-for i=1:1000000,a=completion('w');end;
-for i=1:1000000,a=completion('w',"functions");end;
-for i=1:1000000,a=completion('w',"commands");end;
-for i=1:1000000,a=completion('w',"variables");end;
-for i=1:1000000,a=completion('w',"macros");end;
-for i=1:1000000,a=completion('w',"graphics_properties");end;
-for i=1:1000000,a=completion('w',"files");end;
+//for i=1:1000000,a=completion('w');end;
+//for i=1:1000000,a=completion('w',"functions");end;
+//for i=1:1000000,a=completion('w',"commands");end;
+//for i=1:1000000,a=completion('w',"variables");end;
+//for i=1:1000000,a=completion('w',"macros");end;
+//for i=1:1000000,a=completion('w',"graphics_properties");end;
+//for i=1:1000000,a=completion('w',"files");end;

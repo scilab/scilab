@@ -28,12 +28,15 @@ function unit_test_run(varargin)
 	test_skipped_count = 0;
 	
 	displayed_txt      = '';
+	details_failed     = '';
 	
 	// =======================================================
 	// Gestion des tests à lancer
 	// =======================================================
 	
-	if (rhs == 0) | ((rhs == 1) & (varargin(1)==[])) then
+	if (rhs == 0) ..
+				| ((rhs == 1) & (varargin(1)==[])) ..
+				| ((rhs == 2) & (varargin(1)==[]) & (varargin(1)==[])) then
 		
 		// No input argument
 		// unit_test_run()
@@ -122,44 +125,57 @@ function unit_test_run(varargin)
 	end
 	
 	// Test launch
-	
+	printf("   TMPDIR = %s\n",TMPDIR);
 	printf("\n");
 	
 	for i=1:test_count
 		
-		printf("\t %02d/%02d - ",i,test_count);
+		printf("   %02d/%02d - ",i,test_count);
 		printf("[%s] %s",test_list(i,1),test_list(i,2));
 		for j = length(test_list(i,2) + test_list(i,1)):50
 			printf(".");
 		end
 		
-		[status_id,status_msg] = unit_test_run_onetest(test_list(i,1),test_list(i,2));
+		[status_id,status_msg,status_details] = unit_test_run_onetest(test_list(i,1),test_list(i,2));
 		printf("%s \n",status_msg);
+
+		// Recencement des tests
 		
 		if status_id == 0 then
 			test_passed_count = test_passed_count + 1;
+			
 		elseif status_id == 10 then
 			test_skipped_count = test_skipped_count + 1;
+			
 		elseif status_id > 0 then
 			test_failed_count = test_failed_count + 1;
+			details_failed = [ details_failed ; sprintf("   TEST : [%s] %s",test_list(i,1),test_list(i,2))];
+			details_failed = [ details_failed ; sprintf("     %s",status_msg) ];
+			details_failed = [ details_failed ; status_details ];
+			details_failed = [ details_failed ; "" ];
 		end
+		
 	end
 	
 	// Summary
 	
-	test_passed_percent  = test_passed_count / test_count * 100;
+	test_passed_percent  = test_passed_count  / test_count * 100;
 	test_skipped_percent = test_skipped_count / test_count * 100;
-	test_failed_percent  = test_failed_count / test_count * 100;
-
-	printf("\n");
-	printf("\t---------------------------------------------------------------------------------------\n");
-	printf("\tSummary\n\n");
-	printf("\ttests                     %4d - 100 percent \n",test_count);
-	printf("\tpassed                    %4d - %3d percent \n",test_passed_count,test_passed_percent);
-	printf("\tfailed                    %4d - %3d percent \n",test_failed_count,test_failed_percent);
-	printf("\tskipped                   %4d - %3d percent \n",test_failed_count,test_failed_percent);
-	printf("\t---------------------------------------------------------------------------------------\n");
+	test_failed_percent  = test_failed_count  / test_count * 100;
 	
+	printf("\n");
+	printf("   ---------------------------------------------------------------------------------------\n");
+	printf("   Summary\n\n");
+	printf("   tests                     %4d - 100 percent \n",test_count);
+	printf("   passed                    %4d - %3d percent \n",test_passed_count ,test_passed_percent);
+	printf("   failed                    %4d - %3d percent \n",test_failed_count ,test_failed_percent);
+	printf("   skipped                   %4d - %3d percent \n",test_skipped_count,test_skipped_percent);
+	printf("   ---------------------------------------------------------------------------------------\n\n");
+	printf("   Details\n\n");
+	printf("%s\n",details_failed);
+	printf("\n");
+	printf("   ---------------------------------------------------------------------------------------\n");
+
 endfunction
 
 //-----------------------------------------------------------------------------
@@ -213,20 +229,21 @@ endfunction
 // => Run one test
 //-----------------------------------------------------------------------------
 
-function [status_id,status_msg] = unit_test_run_onetest(module,test)
+function [status_id,status_msg,status_details] = unit_test_run_onetest(module,test)
 	
 	global check_ref;
 	global create_ref;
 	
-	status_id  = 0 ;
-	status_msg = "passed" ;
+	status_id      = 0 ;
+	status_msg     = "passed" ;
+	status_details = "";
 	
-	[status_id,status_msg] = unit_test_run_checkerror(module,test);
+	[status_id,status_msg,status_details] = unit_test_run_checkerror(module,test);
 	
 	if check_ref | create_ref then
 		// Check ref or create ref
 		if status_id == 0 then
-			[status_id,status_msg] = unit_test_run_proc_ref(module,test);
+			[status_id,status_msg,status_details] = unit_test_run_proc_ref(module,test);
 		end
 	end
 	
@@ -243,10 +260,11 @@ endfunction
 // => Check the test
 //-----------------------------------------------------------------------------
 
-function [status_id,status_msg] = unit_test_run_checkerror(module,test)
+function [status_id,status_msg,status_details] = unit_test_run_checkerror(module,test)
 	
-	status_id  = 0 ;
-	status_msg = "passed" ;
+	status_id      = 0 ;
+	status_msg     = "passed" ;
+	status_details = "";
 	
 	// Some definitions
 	
@@ -337,7 +355,8 @@ function [status_id,status_msg] = unit_test_run_checkerror(module,test)
 	tmp_errfile_info = fileinfo(tmp_errfile);
 	
 	if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
-		status_msg = "failed : error_output not empty"
+		status_msg = "failed  : error_output not empty"
+		status_details = sprintf("     Check the following file : \n     - %s",tmp_errfile);
 		status_id  = 5;
 		return;
 	end
@@ -347,7 +366,9 @@ function [status_id,status_msg] = unit_test_run_checkerror(module,test)
 	
 	//Check for execution errors
 	if grep(dia,"<--Error on the test script file-->")<>[] then
-		status_msg = "failed : premature end of the test script";
+		status_msg = "failed  : premature end of the test script";
+		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
+		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
 		status_id = 3;
 		return;
 	end
@@ -358,14 +379,18 @@ function [status_id,status_msg] = unit_test_run_checkerror(module,test)
 	//Check for execution errors
 	
 	if grep(dia,"!--error")<>[] then
-		status_msg = "failed : the string (!--error) has been detected";
+		status_msg     = "failed  : the string (!--error) has been detected";
+		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
+		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
 		status_id  = 1;
 		return;
 	end
 	
 	if grep(dia,"error on test")<>[] then
-		status_msg = "failed : one or several unit tests failed";
-		status_id  = 2;
+		status_msg     = "failed  : one or several unit tests failed";
+		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
+		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
+		status_id      = 2;
 		return;
 	end
 	
@@ -382,13 +407,14 @@ endfunction
 // => Check ref or generate ref
 //-----------------------------------------------------------------------------
 
-function [status_id,status_msg] = unit_test_run_proc_ref(module,test)
+function [status_id,status_msg,status_details] = unit_test_run_proc_ref(module,test)
 	
 	global create_ref;
 	global check_ref;
 	
-	status_id  = 0 ;
-	status_msg = "passed" ;
+	status_id      = 0 ;
+	status_msg     = "passed" ;
+	status_details = "";
 	
 	// Some definitions
 	
@@ -405,8 +431,10 @@ function [status_id,status_msg] = unit_test_run_proc_ref(module,test)
 	
 	if check_ref then
 		if fileinfo(reffile) == [] then
-			status_msg = "failed : the ref file doesn''t exist";
-			status_id  = 5;
+			status_msg     = "failed  : the ref file doesn''t exist";
+			status_details = "     Add or create the following file"+reffile+" file";
+			status_details = sprintf("     Add or create the following file : \n     - %s",reffile);
+			status_id      = 5;
 			return;
 		end
 	end
@@ -480,6 +508,16 @@ function [status_id,status_msg] = unit_test_run_proc_ref(module,test)
 	// Launch the test exec
 	host(unit_test_cmd);
 	
+	// First Check
+	tmp_errfile_info = fileinfo(tmp_errfile);
+	
+	if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
+		status_msg = "failed  : error_output not empty"
+		status_details = sprintf("     Check the following file : \n     - %s",tmp_errfile);
+		status_id  = 5;
+		return;
+	end
+	
 	//  Do some modification in  dia file
 	dia = mgetl(tmp_diafile);
 	
@@ -552,11 +590,13 @@ function [status_id,status_msg] = unit_test_run_proc_ref(module,test)
 			
 			if or(ref<>dia) then
 				if MSDOS then
-					status_msg = "failed : dia and ref are not equal";
-					status_id = 4;
+					status_msg     = "failed  : dia and ref are not equal";
+					status_details = sprintf("     Compare the following files : \n     - %s\n     - %s",diafile,reffile);
+					status_id      = 4;
 				else
-					status_msg = "failed : dia and ref are not equal";
-					status_id = 4;
+					status_msg     = "failed  : dia and ref are not equal";
+					status_details = sprintf("     Compare the following files : \n     - %s\n     - %s",diafile,reffile);
+					status_id      = 4;
 				end
 			end
 		else

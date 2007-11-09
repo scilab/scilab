@@ -75,7 +75,6 @@ L=macr2lst(foo);
 if or(L(5)<>["27","6","23","sin"]) then pause,end // create varfunptr
 if type(foo())<>130 then pause,end
 
-return
 sin=1
 sin //devrait repondre 1 or il essaye d'executer sin
 a=sin //est ok 

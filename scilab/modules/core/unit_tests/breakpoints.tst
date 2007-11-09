@@ -1,3 +1,5 @@
+// <-- INTERACTIVE TEST -->
+
 // Copyright INRIA
 mode(-1)
 //
