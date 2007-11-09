@@ -8,6 +8,9 @@
 
 package org.scilab.modules.renderer.arcDrawing;
 
+import javax.media.opengl.glu.GLU;
+import javax.media.opengl.glu.GLUnurbs;
+
 /**
  * Interface for arc drawing
  * @author Jean-Baptiste Silvy
@@ -34,5 +37,15 @@ public interface ArcDrawerStrategy {
 		     	 double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ,
 				 double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ,
 				 double startAngle, double endAngle);
+	
+	/**
+	 * Draw part af circle starting from the point of angle start angle to angular region.
+	 * The arc is centered on the origin.
+	 * @param glu current GLU object/
+	 * @param nurbsObj nurbsObj used to draw
+	 * @param startAngle angle of the begining of the arc.
+	 * @param sweepAngle size of the arc segment in radian. Should be lower than Pi and gt 0.
+	 */
+	void drawArcPart(GLU glu, GLUnurbs nurbsObj, double startAngle, double sweepAngle);
 	
 }

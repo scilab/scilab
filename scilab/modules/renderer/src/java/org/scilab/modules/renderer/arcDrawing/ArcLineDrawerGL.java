@@ -11,8 +11,12 @@ package org.scilab.modules.renderer.arcDrawing;
 
 
 import javax.media.opengl.GL;
+import javax.media.opengl.glu.GLU;
+import javax.media.opengl.glu.GLUnurbs;
+
+
+
 import org.scilab.modules.renderer.drawers.LineDrawerGL;
-import org.scilab.modules.renderer.gluNurbsWrapping.GLUnurbsObj;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
@@ -21,12 +25,12 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * @author Jean-Baptiste Silvy
  */
 public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
-
-	/** Angle for a quarter of a circle */
-	private static final double QUARTER_ANGLE = Math.PI / 2.0;
 	
-	/** number of quarter in a circle */
-	private static final int NB_QUARTER_MAX = 4;
+	/** vector of knot. Size 6 = NB_CONTROL_POINTS + NURBS_ORDER */
+	public static final float[] KNOTS = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
+	
+	/** Order of the nurbs, i.e. the nurbs will be polynoms of degree 3. */
+	public static final int NURBS_ORDER = 3;
 	
 	private NurbsArcGL nurbsTools;
 	
@@ -85,7 +89,7 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	 * until endRecordDL is called
 	 */
 	protected void startRecordDL() {
-		// No DL usable
+		// No DL usable.
 	}
 	
 	/**
@@ -93,7 +97,7 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	 * Need to be called after a startRecordDL	
 	 */
 	protected void endRecordDL() {
-		// No DL usable
+		// No DL usable.
 	}
 	
 	/**
@@ -101,6 +105,7 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	 */
 	public void drawArc() {
 		GL gl = getGL();
+		GLU glu = getGlu();
 		gl.glEnable(GL.GL_MAP1_VERTEX_4);
 		// set dash mode
 		gl.glLineWidth(getThickness());
@@ -115,14 +120,14 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 		nurbsTools.setCoordinatesToCircleGL(gl);
 		
 		// display circle has a nurbs
-		GLUnurbsObj nurbsObj = GLUnurbsObj.gluNewNurbsRenderer();
-		nurbsTools.setGluProperties(nurbsObj);
+		GLUnurbs nurbsObj = glu.gluNewNurbsRenderer();
+		nurbsTools.setGluProperties(glu, nurbsObj);
 
-        nurbsObj.gluBeginCurve();
-        drawArc(nurbsObj, nurbsTools.getSweepAngle());
-        nurbsObj.gluEndCurve();
+        glu.gluBeginCurve(nurbsObj);
+        drawArc(glu, nurbsObj, nurbsTools.getSweepAngle());
+        glu.gluEndCurve(nurbsObj);
         
-		GLUnurbsObj.gluDeleteNurbsRenderer(nurbsObj);
+		//glu.gluDeleteNurbsRenderer(nurbsObj);
 		nurbsObj = null;
         
         gl.glPopMatrix();
@@ -135,40 +140,28 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	 * Draw an arc starting from the point (1,0) (ie angle = 0) to the angular region.
 	 * The arc is centered on the origin. Unlike draw arc segment, this function can handle
 	 * angles higher than Pi.
+	 * @param glu current glu object.
 	 * @param nurbsObj nurbsObj used to draw
 	 * @param angle size of the arc segment in radian. Should be positive.
 	 */
-	private void drawArc(GLUnurbsObj nurbsObj, double angle) {
-		// We draw has many quarter of circle has needed, but at most 4 (more is useless)
-		// Then we draw the remaining part
-		double displayedAngle = 0.0;
-		int nbQuarter = 0;
-		
-		while (nbQuarter < NB_QUARTER_MAX && displayedAngle < angle - QUARTER_ANGLE) {
-			drawArcSegment(nurbsObj, displayedAngle, QUARTER_ANGLE);
-			displayedAngle += QUARTER_ANGLE;
-			nbQuarter++;
-		}
-		
-		// finish the ramining arc if the circle is not already complete
-		if (nbQuarter < NB_QUARTER_MAX) {
-			drawArcSegment(nurbsObj, displayedAngle, angle - displayedAngle);
-		}
+	private void drawArc(GLU glu, GLUnurbs nurbsObj, double angle) {
+		nurbsTools.drawArc(this, glu, nurbsObj, angle);
 	}
 	
 	/**
 	 * Draw part af circle starting from the point of angle start angle to angular region.
 	 * The arc is centered on the origin.
+	 * @param glu current GLU object/
 	 * @param nurbsObj nurbsObj used to draw
 	 * @param startAngle angle of the begining of the arc.
 	 * @param sweepAngle size of the arc segment in radian. Should be lower than Pi and gt 0.
 	 */
-	private void drawArcSegment(GLUnurbsObj nurbsObj, double startAngle, double sweepAngle) {
+	public void drawArcPart(GLU glu, GLUnurbs nurbsObj, double startAngle, double sweepAngle) {
 		float[] controlPoints = nurbsTools.computeArcControlPoints4D(startAngle, sweepAngle);
-		nurbsObj.gluBeginCurve();
-	    nurbsObj.gluNurbsCurve(NurbsArcGL.KNOTS.length, NurbsArcGL.KNOTS, NurbsArcGL.SIZE_4D,
-	    					   controlPoints, NurbsArcGL.NURBS_ORDER, GL.GL_MAP1_VERTEX_4);
-	    nurbsObj.gluEndCurve();
+		glu.gluBeginCurve(nurbsObj);
+		glu.gluNurbsCurve(nurbsObj, KNOTS.length, KNOTS, NurbsArcGL.SIZE_4D,
+				          controlPoints, NURBS_ORDER, GL.GL_MAP1_VERTEX_4);
+	    glu.gluEndCurve(nurbsObj);
 		
 	}
 	

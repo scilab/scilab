@@ -8,9 +8,9 @@
 package org.scilab.modules.renderer.arcDrawing;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.glu.GLU;
+import javax.media.opengl.glu.GLUnurbs;
 
-import org.scilab.modules.renderer.gluNurbsWrapping.GLUnurbsObj;
-import org.scilab.modules.renderer.gluNurbsWrapping.GluNurbsConst;
 import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
@@ -22,8 +22,6 @@ public class NurbsArcGL {
 
 	/** Number of controm points to draw an circle arc*/
 	public static final int NB_CONTROL_POINTS = 3;
-	/** Order of the nurbs, i.e. the nurbs will be polynoms of degree 3. */
-	public static final int NURBS_ORDER = 3;
 	/** Number of coordinates of a control point */
 	public static final int SIZE_4D = 4;
 	/** Number of coordinates of a control point */
@@ -31,12 +29,18 @@ public class NurbsArcGL {
 	/** Number of coordinates of a control point */
 	public static final int SIZE_2D = 2;
 	
-	/** vector of knot. Size 6 = NB_CONTROL_POINTS + NURBS_ORDER */
-	public static final float[] KNOTS = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
+
+	
+	/** Angle for a quarter of a circle */
+	private static final double QUARTER_ANGLE = Math.PI / 2.0;
+	
+	/** number of quarter in a circle */
+	private static final int NB_QUARTER_MAX = 4;
 	
 	
-	/** Maximal sampling tolerance */
-	private static final float SAMPLING_TOLERANCE = 5.0f;
+	/* Maximal sampling tolerance */
+	// can not currently be used.
+	//private static final float SAMPLING_TOLERANCE = 5.0f;
 	
 	/** scale to transform th ellipse into a circle */
 	private Vector3D scale;
@@ -96,11 +100,14 @@ public class NurbsArcGL {
 	
 	/**
 	 * Set the default properties for the nurbs obj.
+	 * @param glu current glu instance.
 	 * @param nurbsObj current nurbs object
 	 */
-	public void setGluProperties(GLUnurbsObj nurbsObj) {
-		nurbsObj.gluNurbsProperty(GluNurbsConst.GLU_CULLING, GL.GL_TRUE);
-		nurbsObj.gluNurbsProperty(GluNurbsConst.GLU_SAMPLING_TOLERANCE, SAMPLING_TOLERANCE);
+	public void setGluProperties(GLU glu, GLUnurbs nurbsObj) {
+		// Nurbs property can not be modified in current JOGL version.
+		// TODO check when newer version of JOGL become available.
+		//glu.gluNurbsProperty(GLU.GLU_CULLING, GL.GL_TRUE);
+		//nurbsObj.gluNurbsProperty(GluNurbsConst.GLU_SAMPLING_TOLERANCE, SAMPLING_TOLERANCE);
 	}
 	
 	/**
@@ -168,6 +175,34 @@ public class NurbsArcGL {
 		
 		return controlPoints3D;
 		
+	}
+	
+	/**
+	 * Draw an arc starting from the point (1,0) (ie angle = 0) to the angular region.
+	 * The arc is centered on the origin. Unlike draw arc segment, this function can handle
+	 * angles higher than Pi.
+	 * @param drawer object drawing the arc.
+	 * @param glu current glu object.
+	 * @param nurbsObj nurbsObj used to draw
+	 * @param angle size of the arc segment in radian. Should be positive.
+	 */
+	public void drawArc(ArcDrawerStrategy drawer, GLU glu, GLUnurbs nurbsObj, double angle) {
+		// We draw has many quarter of circle has needed, but at most 4 (more is useless)
+		// Then we draw the remaining part
+		double displayedAngle = 0.0;
+		int nbQuarter = 0;
+		
+		// draw as many quarter circle as needed
+		while (nbQuarter < NB_QUARTER_MAX && displayedAngle < angle - QUARTER_ANGLE) {
+			drawer.drawArcPart(glu, nurbsObj, displayedAngle, QUARTER_ANGLE);
+			displayedAngle += QUARTER_ANGLE;
+			nbQuarter++;
+		}
+		
+		// finish the ramining arc if the circle is not already complete
+		if (nbQuarter < NB_QUARTER_MAX) {
+			drawer.drawArcPart(glu, nurbsObj, displayedAngle, angle - displayedAngle);
+		}
 	}
 	
 }
