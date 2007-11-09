@@ -31,8 +31,7 @@ int sci_xend(char *fname,unsigned long fname_len)
   sciDrawObj(figure);
 
   /* figure already defined above */
-  DestroyAllGraphicsSons (figure);
-  DestroyFigure(figure);
+  destroyGraphicHierarchy(figure);
 
   LhsVar(1)=0;
   return 0;

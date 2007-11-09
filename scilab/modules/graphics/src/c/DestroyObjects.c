@@ -42,32 +42,42 @@
 
 /*----------------------------------------------------------------------------*/
 
+/**
+ * Destroy only the sons of an object.
+ * Does not delete the object itself.
+ */
+int destroyGraphicsSons(sciPointObj * pthis)
+{
+  /* to destroy only the sons put the while into the switch !*/
+  sciSons * toto = NULL;
+
+  toto = sciGetSons (pthis);
+  while ((toto != NULL) && (toto->pointobj != NULL))
+  {
+    destroyGraphicHierarchy(toto->pointobj);
+    toto = sciGetSons(pthis);
+  }
+  return 0;
+}
+
 /********************* modifie le 01/02/2002 ************************
  * On detruit pas la sous fenetre, elle est initialiser avec la figure
  * pour cette version, on considere qu'il y'a 1 seule sous fenetre et 
  * elle suit la fenetre principale (voir xbasc() ), la fenetre n'est pas 
  * consideree comme un des fils.  
- **DestroyAllGraphicsSons
- * This function destroies childs and pthis
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroyAllGraphicsSons (sciPointObj * pthis)
+
+ /**
+  * This function destroies childs and pthis
+  * @param sciPointObj * pthis: the pointer to the entity
+  */
+int destroyGraphicHierarchy(sciPointObj * pthis)
 {
-  /* to destroy only the sons put the while into the switch !*/
-  sciSons *toto = NULL;
- 
-  toto = sciGetSons (pthis);
-  while ((toto != (sciSons *) NULL) &&
-	 (toto->pointobj != (sciPointObj *) NULL))
-    {
-      DestroyAllGraphicsSons (toto->pointobj);
-      toto = sciGetSons (pthis);
-    }
+  destroyGraphicsSons(pthis);
   switch (sciGetEntityType (pthis))
     {
 
     case SCI_FIGURE:
+      DestroyFigure(pthis);
       return 0;
       break;
     case SCI_SUBWIN:
@@ -214,14 +224,14 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_WINDOW:
     case SCI_WINDOWFRAME:
     case SCI_SCREEN:
-      DestroyAllGraphicsSons (pthis);
+      destroyGraphicHierarchy (pthis);
       return 0;
       break;
     case SCI_SUBWIN:
       if (sciGetAxes (sciGetParent(pthis),pthis) == (sciPointObj *) NULL)
       	sciXbasc();
       else
-        DestroyAllGraphicsSons (pthis);
+        destroyGraphicHierarchy (pthis);
       return 0;
       break;         
     case SCI_LIGHT:
@@ -258,14 +268,16 @@ int C2F(scigerase)( void )
  */
 int DestroyFigure (sciPointObj * pthis)
 {
-  removeFigureFromList(pthis);
   if ( sciIsCurrentFigure(pthis) )
   {
     sciSetCurrentFigure(getFirstFigure()) ;
   }
   sciSetIsEventHandlerEnable(pthis, FALSE ) ;
   
-  FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
+  if (pFIGURE_FEATURE(pthis)->eventHandler != NULL)
+  {
+    FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
+  }
   FREE ((sciGetFontContext(pthis))->pfontname);
 
   if (pthis == getFigureModel())
@@ -278,6 +290,7 @@ int DestroyFigure (sciPointObj * pthis)
   
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   sciStandardDestroyOperations(pthis) ;
+  removeFigureFromList(pthis);
   return 0;
 }
 
@@ -596,7 +609,7 @@ void DeleteObjs(integer win_num)
   figure = getFigureFromIndex(win_num);
   if ( figure != NULL )
     { 
-      DestroyAllGraphicsSons (figure);
+      destroyGraphicsSons (figure);
 
       /* close ged to prevent errors when using it */
       sciDestroyGed( sciGetNum(figure) ) ;

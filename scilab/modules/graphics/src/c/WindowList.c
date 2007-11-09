@@ -24,7 +24,7 @@ static BOOL figureHasId(void * figure, void * figNum);
 /*---------------------------------------------------------------------------------*/
 BOOL sciHasFigures( void )
 {
-  return sciFigureList != NULL;
+  return !List_is_empty(sciFigureList);
 }
 /*---------------------------------------------------------------------------------*/
 FigureList * getScilabFigureList( void )

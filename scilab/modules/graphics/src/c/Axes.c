@@ -35,7 +35,7 @@ void clearSubWin( sciPointObj * pSubWin )
   {
     if ( curSon->pointobj->entitytype != SCI_LABEL )
     {
-      DestroyAllGraphicsSons (curSon->pointobj) ;
+      destroyGraphicHierarchy (curSon->pointobj) ;
       curSon = sciGetSons ( pSubWin ) ;
     }
     else

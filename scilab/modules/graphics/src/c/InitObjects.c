@@ -952,9 +952,10 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
 /*------------------------------------------------------------------------------------------*/
 void destroyDefaultObjects( void )
 {
-  DestroyAllGraphicsSons( pfiguremdl ) ;
-  DestroyFigure( pfiguremdl ) ;
+  // will destroy the figure and its children (so the axes).
+  destroyGraphicHierarchy( pfiguremdl ) ;
   pfiguremdl = NULL ;
+  paxesmdl = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 /**

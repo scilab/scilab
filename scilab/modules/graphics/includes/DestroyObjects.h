@@ -20,8 +20,8 @@
 #define __SCI_DESTROY__
 
 
-
-extern int DestroyAllGraphicsSons (sciPointObj * pthis); /* DESTROY */
+int destroyGraphicsSons(sciPointObj * pthis);
+extern int destroyGraphicHierarchy(sciPointObj * pthis); /* DESTROY */
 void AllGraphWinDelete( void ) ;
 
 #define SciGerase() { if( C2F(scigerase)() !=0 ) { Scierror(999,"%s :Requested figure cannot be created\n",fname) ; return 0 ; } }

@@ -108,7 +108,7 @@ void sciRedrawF(int *value)
 void sciClearFigure(sciPointObj * pFigure)
 {
   sciPointObj * newSubWin = NULL;
-  DestroyAllGraphicsSons(pFigure);
+  destroyGraphicsSons(pFigure);
 
   if ((newSubWin = ConstructSubWin(pFigure)) != NULL)
   {
