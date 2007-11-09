@@ -249,7 +249,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 33:
 		{
-			displayAndStoreError(_("Too many :\n"));
+			displayAndStoreError(_("Too many ':'\n"));
 		}
 		break;
 		case 34:
@@ -608,7 +608,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real or complex matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real or complex matrix.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -619,7 +619,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real matrix.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -630,7 +630,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real vector.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real vector.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -641,7 +641,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a scalar.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a scalar.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1082,7 +1082,8 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Undefined operation for the given operands check or define function %s for overloading.\n"),NameVarOnStack);
+				displayAndStoreError(_("Undefined operation for the given operands.\n"));
+				displayAndStoreError(_("check or define function %s for overloading.\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1120,7 +1121,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real matrix.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1133,7 +1134,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real vector.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real vector.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1146,7 +1147,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a scalar.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a scalar.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1160,7 +1161,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong matrix size %d,%d) expected.\n"),Err,NameVarOnStack,minvalue,maxvalue);
+				displayAndStoreError(_("Argument %d of %s : wrong matrix size %d,%d) expected.\n"),Err,NameVarOnStack,minvalue,maxvalue);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1173,7 +1174,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong vector size (%d) expected.\n"),Err,NameVarOnStack,vectorsize);
+				displayAndStoreError(_("Argument %d of %s : wrong vector size (%d) expected.\n"),Err,NameVarOnStack,vectorsize);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1184,7 +1185,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a matrix of strings.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a matrix of strings.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1195,7 +1196,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a boolean matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a boolean matrix.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1206,7 +1207,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a matrix.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1217,7 +1218,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a list.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a list.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1228,7 +1229,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a function or string (external function).\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a function or string (external function).\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1239,7 +1240,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a polynomial.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a polynomial.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1250,7 +1251,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a working integer matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a working integer matrix.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1261,7 +1262,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a  vector.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a  vector.\n"),Err,NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
