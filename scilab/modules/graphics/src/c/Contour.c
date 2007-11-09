@@ -65,9 +65,6 @@ static integer Gn1,Gn2;
 static double * Gxcont = NULL ;
 static double * Gycont = NULL ;
 
-static integer * xcont = NULL ;
-static integer * ycont = NULL ;
-
 static void InitValues(double *x, double *y, double *z, integer n1, integer n2)
 {
   Gn1=n1;  Gn2=n2;  GX = x;  GY = y;  GZ = z;

@@ -26,7 +26,7 @@ int geom3d(double *x, double *y, double *z, int n)
   for (i = 0; i < n; i++)
   {
     double userCoords[3] = {x[i], y[i], z[i]};
-    sciGetPixelCoordinate(sciGetCurrentSubWin(), userCoords, pixCoords);
+    sciGetPixelCoordinate(psubwin, userCoords, pixCoords);
     x[i] = pixCoords[0];
     y[i] = pixCoords[1];
   }

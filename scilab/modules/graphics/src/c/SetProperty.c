@@ -2385,7 +2385,7 @@ int sciSetWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
 
 int sciInitScreenPosition( sciPointObj * pobj, int pposx, int pposy )
 {
-  integer y = 0 ;
+  
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:

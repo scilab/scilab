@@ -30,7 +30,7 @@ int sci_xset( char *fname, unsigned long fname_len )
 {
   integer m1,n1,l1,m2,n2,l2, xm[5],xn[5],x[5], i, v;
   integer lr;
-  double fontSize;
+  double fontSize = 0.0;
   double  xx[5];
   sciPointObj *subwin = NULL; 
   BOOL keyFound = FALSE ;

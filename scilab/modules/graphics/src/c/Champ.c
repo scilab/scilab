@@ -211,8 +211,8 @@ void getChampDataBounds( double   xCoords[]  ,
   int    * zPixCoords   = NULL              ;
   int      nbArrowEnds  = 2 * nbRow * nbCol ; /* 2 time the number of arrows */
   int      nbArrows     = 0                 ;
-  int      arrowSize     = 0                ; /* arrow size does not modify bounds for now */
-  double   arrowSizeFact = 0.0              ;
+  //int      arrowSize     = 0                ; /* arrow size does not modify bounds for now */
+  //double   arrowSizeFact = 0.0              ;
 
 
   if ( nbArrowEnds == 0 )

@@ -28,7 +28,7 @@ void getStringBbox( char * string, int center[2], int rect[4] )
 /*----------------------------------------------------------------------------------------*/
 void callXstringL( char * string, int posX, int posY, int boundingRect[4] )
 {
-  sciPointObj * parentSubWin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
+  //sciPointObj * parentSubWin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
 
   /* now we can call xstringl */
   boundingRect[0] = 0;
@@ -181,9 +181,8 @@ void getStringsRectSized( StringMatrix  * strMat           ,
                           int             userSize[2]      ,
                           int           * newFontSize       )
 {
-  integer curFont[2] = {0,0}  ;
-  integer verbose = 0 ;
-  integer fontSizeOne = 1 ;
+  //integer curFont[2] = {0,0}  ;
+  //integer fontSizeOne = 1 ;
   double homothFactors[2] ;
 
   /* first get the automatic array with font 1 */
@@ -230,8 +229,7 @@ void getStringsPositions( StringMatrix  * strMat        ,
                           Vect2iMatrix  * stringPosition,
                           int             boundingBox[4][2] )
 {
-  integer curFont[2] = {0, 0}  ;
-  integer verbose = 0 ;
+  //integer curFont[2] = {0, 0}  ;
   int trans[2] ;
 
   if ( autoSize )
@@ -491,7 +489,7 @@ int computeSuitableFont( StringMatrix  * strMat, Vect2iMatrix  * stringPosition 
   int smallestFont = 1 ;
   int i ;
   int j ; 
-  integer curFont[2] = {0,0} ;
+  //integer curFont[2] = {0,0} ;
 
   /* C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L) ; */
 

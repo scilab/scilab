@@ -106,7 +106,7 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 {
  
   sciPointObj *pobj = (sciPointObj *) NULL;
-  integer x[2], verbose=0, narg=0;
+  integer x[2];
   sciPointObj * pfiguremdl = getFigureModel() ;
   sciFigure   * ppFigure = NULL ;
   sciFigure   * ppModel  = pFIGURE_FEATURE(pfiguremdl) ;

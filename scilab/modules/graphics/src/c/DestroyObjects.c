@@ -65,7 +65,7 @@ int destroyGraphicsSons(sciPointObj * pthis)
  * pour cette version, on considere qu'il y'a 1 seule sous fenetre et 
  * elle suit la fenetre principale (voir xbasc() ), la fenetre n'est pas 
  * consideree comme un des fils.  
-
+ */
  /**
   * This function destroies childs and pthis
   * @param sciPointObj * pthis: the pointer to the entity
@@ -755,8 +755,7 @@ DestroySciMenu (sciPointObj * pthis)
  */
 void delete_sgwin_entities( int win_num )
 {
-  double dv=0;
-  int v=0;
+  
   /* Need to reset the new current figure returned by sciGetCurrentFigure */
   sciHandleTab *hdl = NULL;
   sciPointObj  *pobj= NULL;
