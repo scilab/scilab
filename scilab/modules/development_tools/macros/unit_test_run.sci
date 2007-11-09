@@ -16,11 +16,20 @@ function unit_test_run(varargin)
 	global test_count;
 	global displayed_txt;
 	
+	// options
+	
 	global check_ref;
+	global check_error_output;
 	global create_ref;
+	global launch_mode;
+
 	
 	check_ref          = %T;
+	check_error_output = %T;
 	create_ref         = %F;
+	launch_mode        = "-nw";
+	just_list_tests    = %F;
+	print_help         = %F;
 	
 	test_count         = 0;
 	test_passed_count  = 0;
@@ -36,7 +45,7 @@ function unit_test_run(varargin)
 	
 	if (rhs == 0) ..
 				| ((rhs == 1) & (varargin(1)==[])) ..
-				| ((rhs == 2) & (varargin(1)==[]) & (varargin(1)==[])) then
+				| (((rhs == 2)|(rhs == 3)) & (varargin(1)==[]) & (varargin(2)==[])) then
 		
 		// No input argument
 		// unit_test_run()
@@ -86,8 +95,11 @@ function unit_test_run(varargin)
 		module   = varargin(1);
 		test_mat = varargin(2);
 		
-		if (size(module) <> [1,1]) & (size(module) <> [1,1]) then
-			error(gettext("Input argument sizes are not valid"));
+		if ((or(size(module) <> [1,1])) & (test_mat <> [])) then
+			example = unit_test_examples();
+			err     = ["" ; gettext("error : Input argument sizes are not valid") ; "" ; example ];
+			printf("%s\n",err);
+			return;
 		end
 		
 		[nl,nc] = size(test_mat);
@@ -117,65 +129,113 @@ function unit_test_run(varargin)
 			check_ref  = %F;
 		end
 		
+		if grep(option_mat,"no_check_error_output") <> [] then
+			check_error_output  = %F;
+		end
+		
 		if grep(option_mat,"create_ref") <> [] then
 			create_ref = %T;
 			check_ref  = %F;
 		end
 		
-	end
-	
-	// Test launch
-	printf("   TMPDIR = %s\n",TMPDIR);
-	printf("\n");
-	
-	for i=1:test_count
-		
-		printf("   %02d/%02d - ",i,test_count);
-		printf("[%s] %s",test_list(i,1),test_list(i,2));
-		for j = length(test_list(i,2) + test_list(i,1)):50
-			printf(".");
+		if grep(option_mat,"mode_nw") <> [] then
+			launch_mode = "-nw";
 		end
 		
-		[status_id,status_msg,status_details] = unit_test_run_onetest(test_list(i,1),test_list(i,2));
-		printf("%s \n",status_msg);
-
-		// Recencement des tests
+		if grep(option_mat,"mode_nwni") <> [] then
+			launch_mode = "-nwni";
+		end
 		
-		if status_id == 0 then
-			test_passed_count = test_passed_count + 1;
+		if grep(option_mat,"list") <> [] then
+			just_list_tests    = %T;
+		end
+		
+		if grep(option_mat,"help") <> [] then
+			print_help         = %T;
+		end
+	end
+
+	if print_help then
+		
+		example = unit_test_examples();
+		printf("%s\n",example);
+		return;
+	
+	elseif just_list_tests then
+		
+		// =======================================================
+		// Just list tests
+		// =======================================================
+		
+		for i=1:test_count
+			printf("   %02d - ",i);
+			printf("[%s] %s\n",test_list(i,1),test_list(i,2));
+		end
+		
+	else
+		
+		// =======================================================
+		// Test launch
+		// =======================================================
+		
+		printf("   TMPDIR = %s\n",TMPDIR);
+		printf("\n");
+		
+		for i=1:test_count
 			
-		elseif status_id == 10 then
-			test_skipped_count = test_skipped_count + 1;
+			printf("   %02d/%02d - ",i,test_count);
+			printf("[%s] %s",test_list(i,1),test_list(i,2));
+			for j = length(test_list(i,2) + test_list(i,1)):50
+				printf(".");
+			end
 			
-		elseif status_id > 0 then
-			test_failed_count = test_failed_count + 1;
-			details_failed = [ details_failed ; sprintf("   TEST : [%s] %s",test_list(i,1),test_list(i,2))];
-			details_failed = [ details_failed ; sprintf("     %s",status_msg) ];
-			details_failed = [ details_failed ; status_details ];
-			details_failed = [ details_failed ; "" ];
+			[status_id,status_msg,status_details] = unit_test_run_onetest(test_list(i,1),test_list(i,2));
+			printf("%s \n",status_msg);
+			
+			// Recencement des tests
+			
+			if status_id == 0 then
+				// passed
+				test_passed_count = test_passed_count + 1;
+			
+			elseif (status_id > 0) & (status_id < 10) then
+				// failed
+				test_failed_count = test_failed_count + 1;
+				details_failed = [ details_failed ; sprintf("   TEST : [%s] %s",test_list(i,1),test_list(i,2))];
+				details_failed = [ details_failed ; sprintf("     %s",status_msg) ];
+				details_failed = [ details_failed ; status_details ];
+				details_failed = [ details_failed ; "" ];
+			
+			elseif (status_id > 10) & (status_id < 20) then
+				// skipped
+				test_skipped_count = test_skipped_count + 1;
+			end
+		end
+		
+		// Summary
+		
+		test_passed_percent  = test_passed_count  / test_count * 100;
+		test_skipped_percent = test_skipped_count / test_count * 100;
+		test_failed_percent  = test_failed_count  / test_count * 100;
+		
+		printf("\n");
+		printf("   ---------------------------------------------------------------------------------------\n");
+		printf("   Summary\n\n");
+		printf("   tests                     %4d - 100 %% \n",test_count);
+		printf("   passed                    %4d - %3d %% \n",test_passed_count ,test_passed_percent);
+		printf("   failed                    %4d - %3d %% \n",test_failed_count ,test_failed_percent);
+		printf("   skipped                   %4d - %3d %% \n",test_skipped_count,test_skipped_percent);
+		printf("   ---------------------------------------------------------------------------------------\n");
+		
+		if test_failed_count > 0 then
+			printf("   Details\n\n");
+			printf("%s\n",details_failed);
+			printf("\n");
+			printf("   ---------------------------------------------------------------------------------------\n");
 		end
 		
 	end
 	
-	// Summary
-	
-	test_passed_percent  = test_passed_count  / test_count * 100;
-	test_skipped_percent = test_skipped_count / test_count * 100;
-	test_failed_percent  = test_failed_count  / test_count * 100;
-	
-	printf("\n");
-	printf("   ---------------------------------------------------------------------------------------\n");
-	printf("   Summary\n\n");
-	printf("   tests                     %4d - 100 percent \n",test_count);
-	printf("   passed                    %4d - %3d percent \n",test_passed_count ,test_passed_percent);
-	printf("   failed                    %4d - %3d percent \n",test_failed_count ,test_failed_percent);
-	printf("   skipped                   %4d - %3d percent \n",test_skipped_count,test_skipped_percent);
-	printf("   ---------------------------------------------------------------------------------------\n\n");
-	printf("   Details\n\n");
-	printf("%s\n",details_failed);
-	printf("\n");
-	printf("   ---------------------------------------------------------------------------------------\n");
-
 endfunction
 
 //-----------------------------------------------------------------------------
@@ -266,6 +326,9 @@ function [status_id,status_msg,status_details] = unit_test_run_checkerror(module
 	status_msg     = "passed" ;
 	status_details = "";
 	
+	global launch_mode;
+	global check_error_output;
+	
 	// Some definitions
 	
 	tstfile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".tst",%f,%f);
@@ -300,9 +363,15 @@ function [status_id,status_msg,status_details] = unit_test_run_checkerror(module
 	txt = mgetl(tstfile);
 	
 	// Check if it's an interactive test
-	if grep(txt,"<-- INTERACTIVE TEST -->")<>[] then
+	if grep(txt,"<-- INTERACTIVE TEST -->") <> [] then
 		status_msg = "skipped : interactive test";
 		status_id  = 10;
+		return;
+	end
+	
+	if (grep(txt,"<-- TEST WITH GRAPHIC -->") <> []) & (launch_mode=="-nwni") then
+		status_msg = "skipped : test with graphic";
+		status_id  = 11;
 		return;
 	end
 	
@@ -342,30 +411,31 @@ function [status_id,status_msg,status_details] = unit_test_run_checkerror(module
 	
 	// Build the command to launch
 	if MSDOS then
-		unit_test_cmd = "( """+SCI+"\bin\scilex.exe"+""""+" -nw -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
+		unit_test_cmd = "( """+SCI+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
 	else
-		unit_test_cmd = "( "+SCI+"/bin/scilab -nw -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
+		unit_test_cmd = "( "+SCI+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
 	end
 	
 	// Launch the test exec
-	
 	host(unit_test_cmd);
 	
-	// First Check
-	tmp_errfile_info = fileinfo(tmp_errfile);
-	
-	if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
-		status_msg = "failed  : error_output not empty"
-		status_details = sprintf("     Check the following file : \n     - %s",tmp_errfile);
-		status_id  = 5;
-		return;
+	// First Check : error output
+	if check_error_output then
+		tmp_errfile_info = fileinfo(tmp_errfile);
+		
+		if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
+			status_msg = "failed  : error_output not empty"
+			status_details = sprintf("     Check the following file : \n     - %s",tmp_errfile);
+			status_id  = 5;
+			return;
+		end
 	end
 	
 	//  Do some modification in  dia file
 	dia = mgetl(tmp_diafile);
 	
 	//Check for execution errors
-	if grep(dia,"<--Error on the test script file-->")<>[] then
+	if grep(dia,"<--Error on the test scmodules/time/unit_tests/datenum.tstript file-->")<>[] then
 		status_msg = "failed  : premature end of the test script";
 		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
 		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
@@ -500,22 +570,24 @@ function [status_id,status_msg,status_details] = unit_test_run_proc_ref(module,t
 	
 	// Build the command to launch
 	if MSDOS then
-		unit_test_cmd = "( """+SCI+"\bin\scilex.exe"+""""+" -nw -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
+		unit_test_cmd = "( """+SCI+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
 	else
-		unit_test_cmd = "( "+SCI+"/bin/scilab -nw -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
+		unit_test_cmd = "( "+SCI+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
 	end
 	
 	// Launch the test exec
 	host(unit_test_cmd);
 	
-	// First Check
-	tmp_errfile_info = fileinfo(tmp_errfile);
-	
-	if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
-		status_msg = "failed  : error_output not empty"
-		status_details = sprintf("     Check the following file : \n     - %s",tmp_errfile);
-		status_id  = 5;
-		return;
+	// First Check : error output
+	if check_error_output then
+		tmp_errfile_info = fileinfo(tmp_errfile);
+		
+		if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
+			status_msg = "failed  : error_output not empty"
+			status_details = sprintf("     Check the following file : \n     - %s",tmp_errfile);
+			status_id  = 5;
+			return;
+		end
 	end
 	
 	//  Do some modification in  dia file
@@ -636,5 +708,43 @@ function dia_out = remove_headers(dia_in)
 	end
 	
 	return;
+	
+endfunction
+
+//-----------------------------------------------------------------------------
+// Pierre MARECHAL
+// Scilab team
+// Copyright INRIA
+// Date : 28 oct. 2007
+//
+// => Check ref or generate ref
+//-----------------------------------------------------------------------------
+
+function example = unit_test_examples()
+	
+	example = [ sprintf("Examples :\n\n") ];
+
+	
+	example = [ example ; sprintf("// Launch all tests\n") ];
+	example = [ example ; sprintf("unit_test_run();\n") ];
+	example = [ example ; sprintf("unit_test_run([]);\n") ];
+	example = [ example ; sprintf("unit_test_run([],[]);\n") ];
+	example = [ example ; "" ];
+	example = [ example ; sprintf("// Test one or several module\n") ];
+	example = [ example ; sprintf("unit_test_run(''core'');\n") ];
+	example = [ example ; sprintf("unit_test_run(''core'',[]);\n") ];
+	example = [ example ; sprintf("unit_test_run([''core'',''string'']);\n") ];
+	example = [ example ; "" ];
+	example = [ example ; sprintf("// Launch one or several test in a specified module\n") ];
+	example = [ example ; sprintf("unit_test_run(''core'',[''trycatch'',''opcode'']);\n") ];
+	example = [ example ; "" ];
+	example = [ example ; sprintf("// With options\n") ];
+	example = [ example ; sprintf("unit_test_run([],[],''no_check_ref'');\n") ];
+	example = [ example ; sprintf("unit_test_run([],[],''no_check_error_output'');\n") ];
+	example = [ example ; sprintf("unit_test_run([],[],''create_ref'');\n") ];
+	example = [ example ; sprintf("unit_test_run([],[],''list'');\n") ];
+	example = [ example ; sprintf("unit_test_run([],[],''help'');\n") ];
+	example = [ example ; sprintf("unit_test_run([],[],[''no_check_ref'',''mode_nw'']);\n") ];
+	example = [ example ; "" ];
 	
 endfunction
