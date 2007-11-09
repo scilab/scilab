@@ -32,7 +32,8 @@ typedef enum {
 	CVNAME_READING_TYPE_1 = 0, 
 	CVNAME_READING_TYPE_2 = 1, 
 	CVNAME_READING_TYPE_3 = 2, 
-	CVNAME_READING_TYPE_4 = 3 
+	CVNAME_READING_TYPE_4 = 3,
+	CVNAME_READING_TYPE_5 = 4,
 } CVNAME_TYPE;
 /*-----------------------------------------------------------------------------------*/
 int C2F(errmsg)(integer *n,integer *errtyp)
@@ -366,7 +367,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 50:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_5);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("subroutine not found : %s\n"),NameVarOnStack);
@@ -1440,7 +1441,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 240:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_5);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("File %s already exists or directory write access denied.\n"),NameVarOnStack);
@@ -1451,7 +1452,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 241:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_5);
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("File %s does not exist or read access denied.\n"),NameVarOnStack);
@@ -1776,6 +1777,12 @@ static char *getConvertedNameFromStack(int cvnametype)
 		}
 		break;
 
+	case CVNAME_READING_TYPE_5 :
+		{
+			strncpy(local_variable_buffer, C2F(cha1).buf,bsiz);
+			local_variable_buffer[bsiz-1] = '\0';
+		}
+		break;
 	default:
 		strcpy(local_variable_buffer,_("\"unknown data\""));
 		break;
