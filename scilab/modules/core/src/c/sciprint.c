@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "sciprint.h"
-#include "sciprint_nd.h"
 #include "../../console/includes/ConsolePrintf.h"
 #include "../../fileio/includes/diary.h"
 #include "scilabmode.h"
@@ -19,19 +18,33 @@
 void sciprint(char *fmt,...) 
 {
 	va_list ap;
-	int count = 0;
-	char s_buf[MAXPRINTF];
+	static char s_buf[MAXPRINTF];
 
-	va_start (ap, fmt);
+	va_start(ap,fmt);
+
+#if defined(linux) || defined(_MSC_VER)
+{
+	int count=0;
 	count= vsnprintf(s_buf,MAXPRINTF-1, fmt, ap );
-	va_end (ap);
 	if (count == -1)
 	{
 		s_buf[MAXPRINTF-1]='\0';
 	}
+}
+#else
+	(void )vsprintf(s_buf, fmt, ap );
+#endif
+	va_end(ap);
 
-	sciprint_nd(s_buf);
-
+	if (getScilabMode() == SCILAB_STD)
+	{
+		ConsolePrintf(s_buf);
+	}
+	else
+	{
+		printf("%s",s_buf); 
+	}
+	
 	if (getdiary()) 
 	{
 		integer lstr = (integer)strlen(s_buf);
