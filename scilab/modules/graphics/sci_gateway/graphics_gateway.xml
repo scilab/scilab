@@ -108,6 +108,4 @@
 <PRIMITIVE gatewayId="7" primitiveId="82" primitiveName="help_gtk" />
 <PRIMITIVE gatewayId="7" primitiveId="83" primitiveName="UImenu" />
 <PRIMITIVE gatewayId="7" primitiveId="84" primitiveName="showalluimenushandles" />
-<PRIMITIVE gatewayId="7" primitiveId="85" primitiveName="readxbm" />
-<PRIMITIVE gatewayId="7" primitiveId="86" primitiveName="readgif" />
 </GATEWAY>

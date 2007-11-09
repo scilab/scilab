@@ -316,7 +316,6 @@ src/c/getwindowdim.c \
 src/c/periEmpty.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
-sci_gateway/c/sci_readgif.c \
 sci_gateway/c/sci_grayplot.c \
 sci_gateway/c/sci_matplot1.c \
 sci_gateway/c/sci_xfpolys.c \
@@ -353,7 +352,6 @@ sci_gateway/c/sci_xpoly.c \
 sci_gateway/c/sci_xchange.c \
 sci_gateway/c/sci_UImenu.c \
 sci_gateway/c/sci_matplot.c \
-sci_gateway/c/sci_readxbm.c \
 sci_gateway/c/sci_drawaxis.c \
 sci_gateway/c/sci_demo.c \
 sci_gateway/c/sci_plot2d1.c \
@@ -397,9 +395,7 @@ sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c
 
-MODULE_CHECKS = unit_tests/swap_handles.tst \
-	unit_tests/readgif.tst \
-	unit_tests/readxbm.tst
+MODULE_CHECKS = unit_tests/swap_handles.tst
 
 libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
 				-Isrc/cpp \
@@ -483,7 +479,6 @@ includes/graphicModuleLoad.h \
 includes/xs2file.h \
 includes/sci_matplot.h \
 includes/color.h \
-includes/sci_readxbm.h \
 includes/sci_drawaxis.h \
 includes/Plo3d.h \
 includes/sci_xrect.h \
@@ -518,7 +513,6 @@ includes/sci_contour2di.h \
 includes/HandleManagement.h \
 includes/sci_driver.h \
 includes/sci_fec.h \
-includes/sci_readgif.h \
 includes/sci_matplot1.h \
 includes/XsetXgetParameters.h \
 includes/sci_UImenu.h \

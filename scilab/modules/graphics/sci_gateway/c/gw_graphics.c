@@ -94,9 +94,7 @@ static gw_generic_table Tab[]={
      /* NG end */
 	{sci_help_gtk,"help_gtk"},
 	{sci_UImenu,"UImenu"},
-	{sci_showalluimenushandles,"showalluimenushandles"},
-	{sci_readxbm,"readxbm"},
-	{sci_readgif,"readgif"}
+	{sci_showalluimenushandles,"showalluimenushandles"}
 };
 
 /*-----------------------------------------------------------------------------------*/ 
