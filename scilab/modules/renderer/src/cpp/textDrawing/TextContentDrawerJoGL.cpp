@@ -12,7 +12,7 @@ namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
 TextContentDrawerJoGL::TextContentDrawerJoGL(DrawableText * drawer)
- : DrawableObjectJoGL(drawer), DrawTextContentStrategy(drawer)
+ :  DrawTextContentStrategy(drawer), DrawableObjectJoGL(drawer)
 {
 
 }
