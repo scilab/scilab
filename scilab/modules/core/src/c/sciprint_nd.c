@@ -42,13 +42,7 @@ void sciprint_nd(char *fmt,...)
 	}
 	else
 	{
-		/* flush before , we can have a 'fortran' write (stdout) before*/
-		fflush( stdout );
-
 		printf("%s",s_buf); 
-
-		/* flush after , we will have a 'fortran' write (stdout) after. */
-		fflush( stdout );
 	}
 }
 /*-----------------------------------------------------------------------------------*/ 

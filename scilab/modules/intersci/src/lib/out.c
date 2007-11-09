@@ -5,8 +5,8 @@
 #include <string.h>
 #include "machine.h"
 #include "stack-c.h"
+#include "basout.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(basout)();
 int C2F(out)(char *str,long int str_len);
 /*-----------------------------------------------------------------------------------*/
 int C2F(out)(char *str,long int str_len)

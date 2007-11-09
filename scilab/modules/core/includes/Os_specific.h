@@ -19,7 +19,6 @@ extern void C2F(userlk) __PARAMS((integer *k));
 extern int C2F(basin) __PARAMS((integer *ierr, integer *lunit, char *string, char *fmt, ftnlen string_len, ftnlen fmt_len));  
 
 /*  "basout-n.c.X1" */
-extern int C2F(basout) __PARAMS((integer *io, integer *lunit, char *string, ftnlen string_len));  
 extern int C2F(basou1) __PARAMS((integer *lunit, char *string, ftnlen string_len));  
 /*  "cgpath-n.c.X1" */
 extern void C2F(cgpath) __PARAMS((char *nomfic, integer *ln));  

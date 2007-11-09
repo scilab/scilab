@@ -1,6 +1,7 @@
 #include "stack-c.h"
 #include "../../elementary_functions/includes/elementary_functions.h"
 #include "../../elementary_functions/includes/int2db.h"
+#include "basout.h"
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))
 #define DOUBLE(x)	( stk(x))
@@ -28,7 +29,7 @@ static integer c_n1 = -1;
 static double c_b46 = 0.;
 
 extern  int  C2F(intmfull)(integer *id),  C2F(intmspget)(integer *id);
-extern  int  C2F(basout)(),  C2F(intmsparse)(integer *id);
+extern  int  C2F(intmsparse)(integer *id);
 
 static int wmspful(integer *ma, integer *na, double *ar, double *ai, integer *nela, integer *inda, double *rr, double *ri);
 static int dmspful(integer *ma, integer *na, double *a, integer *nela, integer *inda, double *r__);

@@ -13,12 +13,14 @@
 #include "MALLOC.h"
 #include "../../../shell/includes/more.h"
 #include "../../../shell/includes/scilines.h"
-#include "scilabmode.h"
+/*-----------------------------------------------------------------------------------*/ 
+#define bufferformat "%s\n"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(writelunitstring)();
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 {
+	char *buffer = NULL;
 	static integer ich;
 
 	if (*lunit == C2F(iop).wte)
@@ -53,27 +55,13 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 			}
 		}
 
-		if (getScilabMode() != SCILAB_STD)
+		buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+strlen(bufferformat)+1));
+		if (buffer)
 		{
-			C2F(writelunitstring)(lunit, string,nbcharacters);
-			/* write to diary file if required */
-			diary(string, &nbcharacters);
-		} 
-		else 
-		{
-			if (nbcharacters > 0)
-			{
-				#define bufferformat "%s\n"
-				char *buffer = NULL;
-				buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+strlen(bufferformat)+1));
-				if (buffer)
-				{
-					strncpy(buffer,string,nbcharacters);
-					buffer[nbcharacters]='\0';
-					sciprint(bufferformat,buffer);
-					if (buffer) { FREE(buffer); buffer = NULL;}
-				}
-			}
+			strncpy(buffer,string,nbcharacters);
+			buffer[nbcharacters]='\0';
+			sciprint(bufferformat,buffer);
+			if (buffer) { FREE(buffer); buffer = NULL;}
 		}
 	} 
 	else
