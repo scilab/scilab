@@ -2,13 +2,15 @@
 C     ====================================================================
 C     Scilab Command and Keyword 
 C     ====================================================================
-C     id(nsiz) coded name of the command 
-c     if you update command.f , please update commandwords.c too ...
+C     id(nsiz) coded name of the comand 
 c     Copyright INRIA
       include 'stack.h'
       logical compil
 C     
-      integer lunit,mode(2)
+      integer lunit,mode(2),top0
+      double precision x
+      integer ix(2)
+      equivalence (x,ix(1))
 C     
       integer cmdl
       parameter (cmdl = 29)
@@ -20,7 +22,7 @@ C
       integer iff(nsiz),func(nsiz),endfunc(nsiz)
       integer semi,comma,eol,percen,lparen,slash
       integer count,equal,nchar,pchar
-      logical eqid,cresmat
+      logical eqid,cresmat,cremat
       integer iadr
       common/cmds/cmd
       save cmds
@@ -77,7 +79,7 @@ C
 C     
       if (ddt .eq. 4) then
          call cvname(id,buf,1)
-         call basout(io,wte,' command   : '//buf(1:nlgh))
+         call basout(io,wte,' comand   : '//buf(1:nlgh))
       endif
 C     
       kcont=27
@@ -167,7 +169,7 @@ C     pause
 C     -----
 C     
  20   continue
-c     if special compilation mode skip  commands
+c     if special compilation mode skip  comands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -264,7 +266,7 @@ C     quit
 C     -------------
 C     
  50   continue
-c     if special compilation mode skip  commands
+c     if special compilation mode skip  comands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -305,7 +307,7 @@ C     exit
 C     -------------
 C     
  55   continue
-c     if special compilation mode skip  commands
+c     if special compilation mode skip  comands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -328,7 +330,7 @@ C     ---
          fun=0
          return
       endif
-c     if special compilation mode skip  commands
+c     if special compilation mode skip  comands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -347,7 +349,7 @@ C     abort
 C     -----
 C     
  120  continue
-c     if special compilation mode skip  commands
+c     if special compilation mode skip  comands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -416,17 +418,17 @@ C     break, continue
 C------
  130  continue
       kcmd=k
-c     if special compilation mode skip  commands
+c     if special compilation mode skip  comands
       if (comp(3).eq.1) then
          fin=0
          fun=0
          return
       endif
       if(kcmd.eq.kcont) then
-C     compilation of continue:<13>
+C     compilation de continue:<13>
          if(compil(28,0,0,0,0)) return
       else
-C     compilation of break:<13>
+C     compilation de break:<13>
          if (compil(13,0,0,0,0)) return
       endif
       count = 0
@@ -489,17 +491,19 @@ c     .  inline function definition
          if(err.gt.0) return
          call getsym
          rhs=2
-c     if (.false.) then
-c     c     .     next lines for compilation option
-c     top=top+1
-c     if (.not.cresmat("getfunction",top,1,1,1)) return
-c     l=iadr(lstk(top))+6
-c     istk(l)=23
-c     rhs=3
-c     endif
-c     .
+c     . add an third argument to deff, to notify that it is called by function
+         if (comp(1).eq.0) then
+            top=top+1
+            if (.not.cremat('function',top,0,1,1,lr,lc)) return  
+            stk(lr)=1.0
+           
+         else
+            x=1.0
+            if (.not.compil(6,ix,0,0,0)) return
+         endif
+         rhs=3
          lhs=1
-
+c         *call* deff
          fun=5
          fin=11
          go to 999

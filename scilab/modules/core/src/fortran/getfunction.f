@@ -1,4 +1,39 @@
       subroutine getfunction 
+c     getfunction is used by the parser to acquire an inline function.
+c
+c     Supported syntax are
+c     function <lhs>=fun <rhs> <instr1>
+c      <instri>
+c      ....
+c     endfunction
+c 
+c     or
+c      function <lhs> fun <rhs> <instr1>,endfunction
+c    
+c     <lhs> must be
+c        - a simple variable name followed by an =, 
+c        - a comma separated sequence of variable names enclosed in
+C           brackets  (the sequence may be empty)and followed by an  "="
+c        -  nothing.
+c     <rhs> must be
+c        - a comma separeted sequence of variable names enclosed in
+C          parenthesis (the sequence may be empty)  
+c        - nothing.
+c     <instr1> must be a sequence (may be empty) of Scilab instructions
+c          with no carriage return preceeded by a comma or a semi column
+C          if the sequence of instructions is empty or limmited to a comment
+C          the comma or semi column can be omitted.
+c     <instri> must be a sequence (may be empty) of Scilab instructions
+c          with no carriage return 
+c
+c     getfunction creates a character string vector stored in the Scilab
+c     stack, the first row contains <lhs> fun <rhs>. The second one
+c     contains the  <instr1> instruction or just a blank if <instr1> is empty.
+c     the next rows contains the sequence of <instri>.
+c
+c     The result of getfunction is transformed into a function data type
+C     by the getfun routine.
+
 c     Copyright INRIA
       include 'stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2,nz3=nsiz-3)
@@ -34,44 +69,44 @@ c
 c     syntax line
       l4=lpt(4)-1
 c     analysing syntax to get the end of syntax definition
-      call getsym
+      call getsym1(1)
       if(sym.eq.name) then
 c     .  a=func(..) or func(..) syntaxes
          if(char1.eq.equal) then
 c     .     a=func(..) 
-            call getsym
-            call getsym
+            call getsym1(1)
+            call getsym1(1)
          endif
       elseif(sym.eq.left) then
 c    .   [..]=func()
- 41      call getsym
+ 41      call getsym1(1)
          if(sym.ne.name) goto  42
-         call getsym
+         call getsym1(1)
          if(sym.eq.comma) goto  41
  42      if(sym.ne.right) goto 50
 c     
-         call getsym
+         call getsym1(1)
          if(sym.ne.equal) goto 50
-         call getsym
+         call getsym1(1)
       else
          goto 50
       endif
 c     lhs analyzed
       if(sym.ne.name) goto 50
 c     
-      call getsym
+      call getsym1(1)
       if(sym.eq.eol.or.sym.eq.cmt.or.sym.eq.semi.or.sym.eq.comma) then
          lpt(4)=lpt(3)
          goto 46
       endif
       if(sym.ne.lparen) goto 50
- 44   call getsym
+ 44   call getsym1(1)
       if(sym.ne.name) goto  45
-      call getsym
+      call getsym1(1)
       if(sym.eq.comma) goto  44
  45   if(sym.ne.rparen) goto 50
 c     ok, check is next sym is valid
-      call getsym
+      call getsym1(1)
       if(sym.ne.eol.and.sym.ne.semi.and.
      $     sym.ne.comma.and.sym.ne.cmt) goto 50
       lpt(4)=lpt(3)
@@ -79,10 +114,7 @@ c     ok, check is next sym is valid
 c     rhs analyzed
       lf=lpt(4)
       if(sym.ne.eol) lf=lf-1
-      if(sym.eq.cmt) then
-         sym=semi
-         char1=slash
-      endif
+
       n=lf-l4
       goto 60
  50   continue
@@ -92,7 +124,8 @@ c     invalid syntax
       lct(8)=1
       return
 
- 60   if(comp(1).ne.0) then 
+ 60   continue
+      if(comp(1).ne.0) then 
 c     .  str instruction added to store the syntax line
          lkp=comp(1)
          err=sadr(lkp+2+n)-lstk(bot)
@@ -130,38 +163,21 @@ c     statements of the function
       istk(ilp)=1
       strcnt=0
       ncont=0
-      if(sym.eq.eol) then
-         if (lpt(4).ge.lpt(6)) then
-            lct8=lct(8)
-            if(comp(1).ne.0) then 
-               call getlin(2,0)
-               eof=.false.
-            else
-               call getlin(2,0)
-               eof=fin.eq.-2
-            endif
-            ncont=lct(8)-lct8-1
-         else
-            eof=.false.
-            lpt(4)=lpt(4)+1
-            call getsym
-         endif
-      else
-         eof=.false.
-      endif
-      l4=lpt(4)-1
-      psym=sym
-     
+      eof=.false.
 
+      if (sym.eq.cmt) lpt(4)=lpt(4)-1
+      l4=lpt(4)
+
+      psym=sym
  71   continue
       psym=sym
-      call getsym1(strcnt)
+      call getsym1(1)
       if(sym.eq.quote) then
          if(strcnt.ne.0) then
             qcount=0
  311        qcount=qcount+1
             if(abs(char1).ne.quote) goto 312
-            call getsym1(strcnt)
+            call getsym1(1)
             goto 311
  312        continue
             if(2*int(qcount/2).ne.qcount)  strcnt=0
@@ -203,7 +219,15 @@ c     .     endfunction omitted
          endif
          goto 72
       elseif(strcnt.eq.0.and.sym.eq.cmt) then
-         lpt(4)=lpt(6)
+c     .  looking for eol (needed when function is called in a for
+c     .  because in this case all the for content has already be put
+C     .   into lin
+         l=lpt(4)-1
+ 313     l=l+1
+         if (l.lt.lpt(6).and.lin(l).ne.eol) goto 313
+         lpt(4)=l
+         char1=blank
+         call getsym1(1) 
          n=lpt(4)-l4
          goto 72
       else
@@ -257,14 +281,13 @@ c     .  add ncont empty lines before the logical line
             ncont=lct(8)-lct8-1
          else
             lpt(4)=lpt(4)+1
-            call getsym
             l4=lpt(4)
+            call getsym1(1)
          endif
          goto 71
       endif
 c
-   73   continue
-c      call getsym
+ 73   continue
       il=ilc
       ilp1=il+2
       ilc1=ilp1+nr+1

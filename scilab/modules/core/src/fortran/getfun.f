@@ -1,4 +1,4 @@
-      subroutine getfun(lunit,nlines)
+      subroutine getfun(lunit,nlines,caller)
 c
 c ======================================================================     
 c     get a user defined function
@@ -7,6 +7,7 @@ c
 c     Copyright INRIA
       include 'stack.h'
 c     
+      character *(*) caller
       integer lrecl,id(nsiz),retu(6),icount
       integer slash,dot,blank,equal,lparen,rparen
       integer comma,semi,less,great,left,right
@@ -48,7 +49,7 @@ c
       l = lpt(1)
       if(lunit.eq.0) goto 30
 c     
-c     get macro deff from file
+c     get macro deff from file (getf)
 c     ------------------------
 c     acquisition d'une ligne du fichier
       call getfiletype(lunit,ltype,info)
@@ -88,7 +89,6 @@ c
             goto 25            
          else
             if( ltype.eq.1) then
-c            backspace(lunit)
                call myback(lunit)
             else
                call mseek(lunit,-nr,'cur',ierr)
@@ -236,6 +236,13 @@ c
  33   mn=istk(ilt+1)*istk(ilt+2)
       ili=ilt+4+mn
       ilt=ilt+4
+      if (caller.eq.'deff') then
+c     . add a empty line for backward compatiblity
+c     . (first instruction on line #2)
+         istk(l)=blank
+         istk(l+1)=eol
+         l=l+2
+      endif
       do 35 i=1,mn
          n=istk(ilt+i)-istk(ilt+i-1)
          if(n.gt.0) then
@@ -376,20 +383,14 @@ c
 c     
       il=l
       l=l+1
-      if (sym.eq.cmt) then
-         call icopy(lpt(6)-lpt(4)+3,lin(lpt(4)-3),1,istk(l),1)
-         l=l+lpt(6)-lpt(4)+3
-         istk(l)=eol
-         l=l+1
-         sym=eol
-      elseif (sym.ne.eol) then
-         call getsym
-         if (sym.ne.eol) then
-            ierr=4
-            goto 90
-         endif
-      endif
+
       if(lunit.eq.0) goto 33
+c     caller = 'getf' add a empty line for backward compatiblity
+c     first instruction on line #2
+      istk(l)=eol
+      istk(l+1)=blank
+      l=l+2
+
       first=0
       goto 11
 c     
