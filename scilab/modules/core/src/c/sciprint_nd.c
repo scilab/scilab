@@ -19,31 +19,36 @@
 /*-----------------------------------------------------------------------------------*/ 
 void sciprint_nd(char *fmt,...) 
 {
-	int i = 0, count = 0, lstr = 0;
-	va_list args;
-	char s_buf[MAXPRINTF];
-	va_start(args,fmt);
+	va_list ap;
 
-#if defined(linux) || defined(_MSC_VER)
-	count = vsnprintf (s_buf,MAXPRINTF-1, fmt, args);
-	if (count == -1)
-	{
-		s_buf[MAXPRINTF-1]='\0';
-	}
-#else
-	(void ) vsprintf(s_buf, fmt, args );
-#endif
-	va_end(args);
-	lstr=(int)strlen(s_buf);
-
+	va_start(ap,fmt);
+	scivprint_nd(fmt,ap) ;
+	va_end(ap);
+}
+/*-----------------------------------------------------------------------------------*/ 
+void scivprint_nd(char *fmt,va_list args) 
+{
 	if (getScilabMode() == SCILAB_STD)
 	{
+		static char s_buf[MAXPRINTF];
+
+		#if defined(linux) || defined(_MSC_VER)
+		{
+			int count=0;
+
+			count= vsnprintf(s_buf,MAXPRINTF-1, fmt, args );
+
+			if (count == -1) s_buf[MAXPRINTF-1]='\0';
+		}
+		#else
+		(void )vsprintf(s_buf, fmt, args );
+		#endif
+
 		ConsolePrintf(s_buf);
 	}
 	else
 	{
-		printf("%s",s_buf); 
+		vprintf(fmt,args);
 	}
 }
 /*-----------------------------------------------------------------------------------*/ 
-
