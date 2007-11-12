@@ -29,7 +29,7 @@ GATEWAY_FORTRAN_SOURCES =
 
 MODULE_CHECKS =
 
-libscioutput_stream_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/modules/core/include -Isrc/c/
+libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/ -I$(top_srcdir)/modules/core/include -Isrc/c/
 
 libscioutput_stream_la_LDFLAGS =
 pkglib_LTLIBRARIES = libscioutput_stream.la
