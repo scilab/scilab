@@ -291,52 +291,25 @@ endfunction
 
 function [status_id,status_msg,status_details] = unit_test_run_onetest(module,test)
 	
+	status_id      = 0 ;
+	status_msg     = "passed" ;
+	status_details = "";
+
 	global check_ref;
 	global create_ref;
-	
-	status_id      = 0 ;
-	status_msg     = "passed" ;
-	status_details = "";
-	
-	[status_id,status_msg,status_details] = unit_test_run_checkerror(module,test);
-	
-	if check_ref | create_ref then
-		// Check ref or create ref
-		if status_id == 0 then
-			[status_id,status_msg,status_details] = unit_test_run_proc_ref(module,test);
-		end
-	end
-	
-	return;
-	
-endfunction
-
-//-----------------------------------------------------------------------------
-// Pierre MARECHAL
-// Scilab team
-// Copyright INRIA
-// Date : 8 novembre 2007
-//
-// => Check the test
-//-----------------------------------------------------------------------------
-
-function [status_id,status_msg,status_details] = unit_test_run_checkerror(module,test)
-	
-	status_id      = 0 ;
-	status_msg     = "passed" ;
-	status_details = "";
-	
 	global launch_mode;
 	global check_error_output;
 	
 	// Some definitions
 	
 	tstfile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".tst",%f,%f);
+	diafile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".dia",%f,%f);
+	reffile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".dia.ref",%f,%f);
 	
-	tmp_tstfile = pathconvert(TMPDIR+"/"+test+"_1.tst",%f,%f);
-	tmp_diafile = pathconvert(TMPDIR+"/"+test+"_1.dia",%f,%f);
-	tmp_resfile = pathconvert(TMPDIR+"/"+test+"_1.res",%f,%f);
-	tmp_errfile = pathconvert(TMPDIR+"/"+test+"_1.err",%f,%f);
+	tmp_tstfile = pathconvert(TMPDIR+"/"+test+".tst",%f,%f);
+	tmp_diafile = pathconvert(TMPDIR+"/"+test+".dia",%f,%f);
+	tmp_resfile = pathconvert(TMPDIR+"/"+test+".res",%f,%f);
+	tmp_errfile = pathconvert(TMPDIR+"/"+test+".err",%f,%f);
 	
 	// Remove the previous tmp files
 	if fileinfo(tmp_tstfile) <> [] then
@@ -380,8 +353,6 @@ function [status_id,status_msg,status_details] = unit_test_run_checkerror(module
 	txt = strsubst(txt,'-->','@#>'); //to avoid suppression of input --> with prompts
 	txt = strsubst(txt,'halt();','');
 	
-	// Header : the same for each test
-	
 	head = [	"// <-- HEADER START -->";
 				"mode(3);" ;
 				"clear;" ;
@@ -389,8 +360,10 @@ function [status_id,status_msg,status_details] = unit_test_run_checkerror(module
 				"lines(0);" ;
 				"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;
 				"predef(''all'');" ;
+				"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);" ;
 				"try";
 				"diary(''"+tmp_diafile+"'');";
+				"write(%io(2),tmpdirToPrint);";
 				"// <-- HEADER END -->"];
 				
 	tail = [	"// <-- FOOTER START -->";
@@ -424,6 +397,7 @@ function [status_id,status_msg,status_details] = unit_test_run_checkerror(module
 	end
 	
 	// Launch the test exec
+	
 	host(unit_test_cmd);
 	
 	// First Check : error output
@@ -438,11 +412,15 @@ function [status_id,status_msg,status_details] = unit_test_run_checkerror(module
 		end
 	end
 	
-	//  Do some modification in  dia file
+	//  Get the dia file
 	dia = mgetl(tmp_diafile);
 	
+	// To get TMPDIR value
+	tmpdir1_line = grep(dia,"TMPDIR1");
+	execstr(dia(tmpdir1_line));
+	
 	//Check for execution errors
-	if grep(dia,"<--Error on the test scmodules/time/unit_tests/datenum.tstript file-->")<>[] then
+	if grep(dia,"<--Error on the test script file-->")<>[] then
 		status_msg = "failed  : premature end of the test script";
 		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
 		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
@@ -470,39 +448,7 @@ function [status_id,status_msg,status_details] = unit_test_run_checkerror(module
 		status_id      = 2;
 		return;
 	end
-	
-	return;
-	
-endfunction
 
-//-----------------------------------------------------------------------------
-// Pierre MARECHAL
-// Scilab team
-// Copyright INRIA
-// Date : 28 oct. 2007
-//
-// => Check ref or generate ref
-//-----------------------------------------------------------------------------
-
-function [status_id,status_msg,status_details] = unit_test_run_proc_ref(module,test)
-	
-	global create_ref;
-	global check_ref;
-	
-	status_id      = 0 ;
-	status_msg     = "passed" ;
-	status_details = "";
-	
-	// Some definitions
-	
-	tstfile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".tst",%f,%f);
-	diafile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".dia",%f,%f);
-	reffile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".dia.ref",%f,%f);
-	
-	tmp_tstfile = pathconvert(TMPDIR+"/"+test+"_2.tst",%f,%f);
-	tmp_diafile = pathconvert(TMPDIR+"/"+test+"_2.dia",%f,%f);
-	tmp_resfile = pathconvert(TMPDIR+"/"+test+"_2.res",%f,%f);
-	tmp_errfile = pathconvert(TMPDIR+"/"+test+"_2.err",%f,%f);
 	
 	// On test l'existence de la ref si besoin
 	
@@ -516,178 +462,88 @@ function [status_id,status_msg,status_details] = unit_test_run_proc_ref(module,t
 		end
 	end
 	
-	// Remove the previous tmp files
-	if fileinfo(tmp_tstfile) <> [] then
-		deletefile(tmp_tstfile)
-	end
+	// Comparaison ref <--> dia
 	
-	if fileinfo(tmp_diafile) <> [] then
-		deletefile(tmp_diafile)
-	end
-	
-	if fileinfo(tmp_resfile) <> [] then
-		deletefile(tmp_resfile)
-	end
-	
-	if fileinfo(tmp_errfile) <> [] then
-		deletefile(tmp_errfile)
-	end
-	
-	//Reset standard globals
-	rand('seed',0);
-	rand('uniform');
+	if check_ref | create_ref then
+		
+		//  Do some modification in  dia file
+		dia(grep(dia,"exec("))                     = [];
+		dia(grep(dia,"write(%io(2),tmpdirToPrint"))= [];
+		dia(grep(dia,"TMPDIR1"))                   = [];
+		dia(grep(dia,"diary(0)"))                  = [];
+		
+		dia = strsubst(dia,TMPDIR,'TMPDIR');
+		dia = strsubst(dia,TMPDIR1,'TMPDIR');
+		dia = strsubst(dia,TMPDIR1,'TMPDIR');
+		dia = strsubst(dia,SCI,'SCI');
+		
+		//suppress the prompts
+		dia = strsubst(dia,'-->','');
+		dia = strsubst(dia,'@#>','-->');
+		dia = strsubst(dia,'-1->','');
 
-	// Do some modification in  tst file
-	
-	txt = mgetl(tstfile);
-	txt = strsubst(txt,'pause,end','bugmes();quit;end');
-	txt = strsubst(txt,'-->','@#>'); //to avoid suppression of input --> with prompts
-	txt = strsubst(txt,'halt()','');
-	
-	// Header : the same for each test
-	
-	head = [	"// <-- HEADER START -->";
-				"mode(3);" ;
-				"clear;" ;
-				"lines(28,72);";
-				"lines(0);" ;
-				"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;
-				"predef(''all'');" ;
-				"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);" ;
-				"diary(''"+tmp_diafile+"'');";
-				"write(%io(2),tmpdirToPrint);";
-				"// <-- HEADER END -->"];
-				
-	tail = [	"// <-- FOOTER START -->";
-				"diary(0);";
-				"exit;";
-				"// <-- FOOTER END -->"]
-	
-	txt = [head;
-		txt;
-		tail];
-	
-	// and save it in a temporary file
-	mputl(txt,tmp_tstfile);
-	
-	// Delete previous dia file
-	if fileinfo(diafile) <> [] then
-		deletefile(diafile)
-	end
-	
-	// Gestion de l'emplacement de bin/scilab
-	if (~MSDOS) & (fileinfo(SCI+"/bin/scilab")==[]) then
-		SCI_BIN = strsubst(SCI,'share/scilab','');
-	else
-		SCI_BIN = SCI;
-	end
-	
-	// Build the command to launch
-	if MSDOS then
-		unit_test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
-	else
-		unit_test_cmd = "( "+SCI_BIN+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
-	end
-	
-	// Launch the test exec
-	host(unit_test_cmd);
-	
-	// First Check : error output
-	if check_error_output then
-		tmp_errfile_info = fileinfo(tmp_errfile);
-		
-		if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
-			status_msg = "failed  : error_output not empty"
-			status_details = sprintf("     Check the following file : \n     - %s",tmp_errfile);
-			status_id  = 5;
-			return;
-		end
-	end
-	
-	//  Do some modification in  dia file
-	dia = mgetl(tmp_diafile);
-	
-	// To get TMPDIR line
-	tmpdir1_line = grep(dia,"TMPDIR1");
-	execstr(dia(tmpdir1_line));
-	
-	// Remove Header and Footer
-	dia = remove_headers(dia);
-	
-	//  Do some modification in  dia file
-	dia(grep(dia,"exec("))                     = [];
-	dia(grep(dia,"write(%io(2),tmpdirToPrint"))= [];
-	dia(grep(dia,"TMPDIR1"))                   = [];
-	dia(grep(dia,"diary(0)"))                  = [];
-	
-	dia = strsubst(dia,TMPDIR,'TMPDIR');
-	dia = strsubst(dia,TMPDIR1,'TMPDIR');
-	dia = strsubst(dia,TMPDIR1,'TMPDIR');
-	dia = strsubst(dia,SCI,'SCI');
-	
-	//suppress the prompts
-	dia = strsubst(dia,'-->','');
-	dia = strsubst(dia,'@#>','-->');
-	dia = strsubst(dia,'-1->','');
-	
-	//standardise  number display
-	dia = strsubst(strsubst(strsubst(strsubst(dia,' .','0.'),'E+','D+'),'E-','D-'),'-.','-0.');
 
-	//not to change the ref files
-	dia=strsubst(dia,'bugmes();return','bugmes();quit');
-
-	if create_ref then
 		
-		// Delete previous .dia.ref file
-		if fileinfo(reffile) <> [] then
-			deletefile(reffile)
-		end
+		//standardise  number display
+		dia = strsubst(strsubst(strsubst(strsubst(dia,' .','0.'),'E+','D+'),'E-','D-'),'-.','-0.');
 		
-		mputl(dia,reffile);
+		//not to change the ref files
+		dia=strsubst(dia,'bugmes();return','bugmes();quit');
 		
-		status_msg = "passed : ref created";
-		status_id  = 20;
-		
-		return;
-		
-	else
-		
-		// write down the resulting dia file
-		mputl(dia,diafile)
-		
-		//Check for diff with the .ref file
-		
-		[u,ierr] = mopen(reffile,'r');
-		if ierr== 0 then //ref file exists
+		if create_ref then
 			
-			ref=mgetl(u);
-			mclose(u)
-			
-			// suppress blank (diff -nw)
-			
-			dia = strsubst(dia,' ','')
-			ref = strsubst(ref,' ','')
-			
-			dia(find(dia=='')) = [];
-			ref(find(ref=='')) = [];
-			
-			dia(find(dia=='')) = [];
-			ref(find(ref=='')) = [];
-			
-			if or(ref<>dia) then
-				if MSDOS then
-					status_msg     = "failed  : dia and ref are not equal";
-					status_details = sprintf("     Compare the following files : \n     - %s\n     - %s",diafile,reffile);
-					status_id      = 4;
-				else
-					status_msg     = "failed  : dia and ref are not equal";
-					status_details = sprintf("     Compare the following files : \n     - %s\n     - %s",diafile,reffile);
-					status_id      = 4;
-				end
+			// Delete previous .dia.ref file
+			if fileinfo(reffile) <> [] then
+				deletefile(reffile)
 			end
+			
+			mputl(dia,reffile);
+			
+			status_msg = "passed : ref created";
+			status_id  = 20;
+			
+			return;
+			
 		else
-			error(sprintf(gettext("The ref file (%s) doesn''t exist"),reffile));
+			
+			// write down the resulting dia file
+			mputl(dia,diafile)
+			
+			//Check for diff with the .ref file
+			
+			[u,ierr] = mopen(reffile,'r');
+			if ierr== 0 then //ref file exists
+				
+				ref=mgetl(u);
+				mclose(u)
+				
+				// suppress blank (diff -nw)
+				
+				dia = strsubst(dia,' ','')
+				ref = strsubst(ref,' ','')
+				
+				dia(find(dia=='')) = [];
+				ref(find(ref=='')) = [];
+				
+				dia(find(dia=='')) = [];
+				ref(find(ref=='')) = [];
+				
+				if or(ref<>dia) then
+					if MSDOS then
+						status_msg     = "failed  : dia and ref are not equal";
+						status_details = sprintf("     Compare the following files : \n     - %s\n     - %s",diafile,reffile);
+						status_id      = 4;
+					else
+						status_msg     = "failed  : dia and ref are not equal";
+						status_details = sprintf("     Compare the following files : \n     - %s\n     - %s",diafile,reffile);
+						status_id      = 4;
+					end
+				end
+			else
+				error(sprintf(gettext("The ref file (%s) doesn''t exist"),reffile));
+			end
 		end
+		
 	end
 	
 	return;
