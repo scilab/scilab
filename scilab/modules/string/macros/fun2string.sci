@@ -36,7 +36,13 @@ function txt=fun2string(fun,nam)
   end
 
   hdr='function '+outputs+'='+nam+inputs;
-  txt=[hdr;'  '+crp(2:$-2);'endfunction']
+  crp1=crp(1)
+  if crp1<>'' then crp1=','+crp1,end
+  if crp(2)=='' then
+    txt=[hdr+crp1;'  '+crp(3:$-2);'endfunction']
+  else
+    txt=[hdr+crp1;'  '+crp(2:$-2);'endfunction']
+  end
 endfunction
 
 function txt=ins2sci(lst,ilst)
@@ -414,13 +420,18 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	//      vector of string
 	quote=''''
 	dqote='""'
-	if lst(ilst+1)(1)=='20'&lst(ilst+1)(2)=='deff' then
+	if size(lst)>ilst+2&lst(ilst+1)(1)=='6'&lst(ilst+2)(1)=='20'&lst(ilst+2)(2)=='deff' then
 	  st=op(4:$)
 	  fn='function '+strsubst(strsubst(stk(top)(1),quote,''),dquote,'')
-	  st(stripblanks(st)=='')=[]
-	  fn=[fn;st(:)],
+	  if st(1)=='' then 
+	    st(1)=fn
+	  else
+	     st(1)=fn+','+st(1)
+	  end
+	  fn=st(:),
 	  fn=[fn;'endfunction']
 	  txt=catcode(txt,fn)
+	  lst(ilst+1)(1)='0'; ilst=ilst+1;// ignore getnum (6)
 	  lst(ilst+1)(1)='0'; ilst=ilst+1;// ignore deff (20)
 	  stk(top)=list('','-2'),
 	else
