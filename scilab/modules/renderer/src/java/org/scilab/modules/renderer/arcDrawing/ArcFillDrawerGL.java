@@ -15,7 +15,6 @@ import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUnurbs;
 
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
-import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -136,9 +135,6 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 		double[] color = getBackColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
-		Matrix4D matbef = new Matrix4D();
-		matbef.setToCurrentOpenGLMatrix(gl);
-		
 		// transform the ellipse so we can draw a circle
 		gl.glPushMatrix();
 		nurbsTools.setCoordinatesToCircleGL(gl);
@@ -153,14 +149,6 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 		nurbsObj = null;
         
 		gl.glPopMatrix();
-		
-		gl.glDisable(GL.GL_MAP2_VERTEX_4);
-		
-		Matrix4D matend = new Matrix4D();
-		matend.setToCurrentOpenGLMatrix(gl);
-		//matend = matbef.substract(matend);
-		//System.err.println("matbeg = " + matbef);
-		//System.err.println("matend = " + matend);
 	}
 	
 	/**

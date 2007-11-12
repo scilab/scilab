@@ -74,16 +74,6 @@ public class Matrix4D {
 	}
 	
 	/**
-	 * Set to the current OpenGL transformation matrix (model view or projection).
-	 * @param gl current GL object.
-	 */
-	public void setToCurrentOpenGLMatrix(GL gl) {
-		double[] modelViewMatrix = new double[MATRIX_SIZE * MATRIX_SIZE];
-		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, modelViewMatrix, 0);
-		setFromOpenGLRepresentation(modelViewMatrix);
-	}
-	
-	/**
 	 * Set values of a rotation matrix from the current orthogonal basis (X,Y,Z) and a new one.
 	 * The three vector must be othogonal.
 	 * @param newX first vector of the new basis.

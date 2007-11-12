@@ -77,7 +77,7 @@ void CameraJavaMapper::rotateAxesBox(double centerX, double centerY, double cent
 /*-----------------------------------------------------------------------------------*/
 void CameraJavaMapper::replaceCamera( void )
 {
-  //m_pJavaObject->replaceCamera();
+  m_pJavaObject->replaceCamera();
 }
 /*-----------------------------------------------------------------------------------*/
 void CameraJavaMapper::getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ,

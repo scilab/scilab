@@ -130,8 +130,6 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 		nurbsObj = null;
         
 		gl.glPopMatrix();
-		
-		gl.glDisable(GL.GL_MAP1_VERTEX_4);
         
         GLTools.endDashMode(gl);
 	}
