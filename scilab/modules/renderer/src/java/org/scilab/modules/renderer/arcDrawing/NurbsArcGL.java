@@ -205,4 +205,12 @@ public class NurbsArcGL {
 		}
 	}
 	
+	/**
+	 * @return String representation of this class
+	 */
+	public String toString() {
+		return "Center = " + center + "\nScale = " + scale + "\nRotation Matrix = " + rotationMatrix
+			+ "\nStart Angle = " + startAngle + "\nAngular Region = " + angularRegion;
+	}
+	
 }

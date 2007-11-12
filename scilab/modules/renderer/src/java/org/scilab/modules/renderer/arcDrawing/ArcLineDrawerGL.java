@@ -104,9 +104,11 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	 * Call gl routine to draw to outline of the arc.
 	 */
 	public void drawArc() {
+		
 		GL gl = getGL();
-		GLU glu = getGlu();
+		GLU glu = new GLU();
 		gl.glEnable(GL.GL_MAP1_VERTEX_4);
+		
 		// set dash mode
 		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
@@ -122,15 +124,14 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 		// display circle has a nurbs
 		GLUnurbs nurbsObj = glu.gluNewNurbsRenderer();
 		nurbsTools.setGluProperties(glu, nurbsObj);
-
-        glu.gluBeginCurve(nurbsObj);
         drawArc(glu, nurbsObj, nurbsTools.getSweepAngle());
-        glu.gluEndCurve(nurbsObj);
         
 		//glu.gluDeleteNurbsRenderer(nurbsObj);
 		nurbsObj = null;
         
-        gl.glPopMatrix();
+		gl.glPopMatrix();
+		
+		gl.glDisable(GL.GL_MAP1_VERTEX_4);
         
         GLTools.endDashMode(gl);
 	}

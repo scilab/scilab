@@ -8,6 +8,8 @@
 
 package org.scilab.modules.renderer.utils.geom3D;
 
+import javax.media.opengl.GL;
+
 /**
  * Represent a 4x4 matrix (homogenous coordinates) 
  * @author Jean-Baptiste Silvy
@@ -69,6 +71,16 @@ public class Matrix4D {
 			values[2][j] = openGLMatrix[MATRIX_SIZE * j + 2];
 			values[MATRIX_SIZE - 1][j] = openGLMatrix[MATRIX_SIZE * j + MATRIX_SIZE - 1];
 		}
+	}
+	
+	/**
+	 * Set to the current OpenGL transformation matrix (model view or projection).
+	 * @param gl current GL object.
+	 */
+	public void setToCurrentOpenGLMatrix(GL gl) {
+		double[] modelViewMatrix = new double[MATRIX_SIZE * MATRIX_SIZE];
+		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, modelViewMatrix, 0);
+		setFromOpenGLRepresentation(modelViewMatrix);
 	}
 	
 	/**
@@ -155,6 +167,21 @@ public class Matrix4D {
         	}
         }
         return res;
+	}
+	
+	/**
+	 * Return the relust of the substraction of two matrices.
+	 * @param mat matrix to substract to this.
+	 * @return new matrix result of substraction/
+	 */
+	public Matrix4D substract(Matrix4D mat) {
+		Matrix4D res = new Matrix4D();
+		for (int i = 0; i < MATRIX_SIZE; i++) {
+			for (int j = 0; j < MATRIX_SIZE; j++) {
+				res.values[i][j] = this.values[i][j] - mat.values[i][j];
+			}
+		}
+		return res;
 	}
 	
 	/**

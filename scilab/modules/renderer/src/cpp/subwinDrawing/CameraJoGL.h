@@ -35,6 +35,11 @@ public:
   virtual void renderPosition( void ) ;
 
   /**
+   * Put back camera to default position.
+   */
+  virtual void replaceCamera( void );
+
+  /**
    * Convert user coordinates to pixel coordinates.
    */
   virtual void getPixelCoordinates(const double userCoord[3], int pixCoord[2]);

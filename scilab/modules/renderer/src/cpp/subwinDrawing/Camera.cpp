@@ -89,6 +89,11 @@ void Camera::renderPosition( void )
   m_pImp->renderPosition();
 }
 /*-----------------------------------------------------------------------------------*/
+void Camera::replaceCamera( void )
+{
+  m_pImp->replaceCamera();
+}
+/*-----------------------------------------------------------------------------------*/
 void Camera::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
   m_pImp->getPixelCoordinates(userCoord, pixCoord);

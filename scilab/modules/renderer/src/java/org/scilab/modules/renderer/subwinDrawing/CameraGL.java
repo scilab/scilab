@@ -121,6 +121,13 @@ public class CameraGL extends ObjectGL {
 	}
 	
 	/**
+	 * To be called at the end of camera use.
+	 */
+	public void replaceCamera() {
+		getGL().glPopMatrix();
+	}
+	
+	/**
 	 * Convert scene coordinates to pixel coordinates.
 	 * @param userCoordX X coordinate of the scene coordinate.
 	 * @param userCoordY X coordinate of the scene coordinate.
@@ -162,11 +169,6 @@ public class CameraGL extends ObjectGL {
 		gl.glPopMatrix();
 		gl.glPushMatrix();
 		gl.glTranslated(-center.getX(), -center.getY(), -center.getZ()); // translate origin back
-		//gl.glTranslated(center.getX(), center.getY(), center.getZ());
-		//gl.glRotated(theta - DEFAULT_THETA, 0.0 , 0.0, 1.0);
-		//gl.glRotated(alpha, 1.0 , 0.0, 0.0);
-		//gl.glRotated(DEFAULT_THETA, 0.0, 0.0, 1.0);
-		//gl.glTranslated(-center.getX(), -center.getY(), -center.getZ());
 		
 		// update transformation
 		CoordinateTransformation.getTransformation(gl).update(gl);

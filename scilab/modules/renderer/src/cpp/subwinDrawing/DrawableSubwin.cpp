@@ -54,6 +54,9 @@ void DrawableSubwin::draw( void )
   drawBox(bounds);
 
   displayChildren() ;
+  
+  m_pCamera->replaceCamera();
+
   endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/

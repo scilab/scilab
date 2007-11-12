@@ -77,6 +77,11 @@ public:
    */
   virtual void renderPosition( void ) = 0 ;
 
+  /**
+   * Put back camera to default position.
+   */
+  virtual void replaceCamera( void ) = 0;
+
 protected:
 
   /**

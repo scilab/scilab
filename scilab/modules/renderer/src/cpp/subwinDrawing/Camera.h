@@ -53,6 +53,11 @@ public:
   void renderPosition( void ) ;
 
   /**
+   * Put back camera to default position.
+   */
+  void replaceCamera( void );
+
+  /**
    * Set the camera bridge
    */
   void setBridge( CameraBridge * bridge ) { m_pImp = bridge; }

@@ -31,6 +31,11 @@ void CameraJoGL::renderPosition( void )
   endDrawing();
 }
 /*-----------------------------------------------------------------------------------*/
+void CameraJoGL::replaceCamera( void )
+{
+  getCameraJavaMapper()->replaceCamera();
+}
+/*-----------------------------------------------------------------------------------*/
 CameraJavaMapper * CameraJoGL::getCameraJavaMapper(void)
 {
   return dynamic_cast<CameraJavaMapper *>(getJavaMapper());

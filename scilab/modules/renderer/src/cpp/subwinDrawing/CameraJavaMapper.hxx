@@ -44,6 +44,8 @@ public:
   virtual void rotateAxesBox(double centerX, double centerY, double centerZ,
                              double alpha, double theta, double reductionRatio) ;
 
+  virtual void replaceCamera( void );
+
   virtual void getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]);
   virtual void get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]);
   /*----------------------------------------------------------------------*/

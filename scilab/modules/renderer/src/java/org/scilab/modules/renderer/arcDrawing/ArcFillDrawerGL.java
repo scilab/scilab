@@ -15,6 +15,7 @@ import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUnurbs;
 
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
+import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -24,10 +25,10 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 
 	/** Knots along s paramereter */
-	private static final float[] KNOTS_TEST_S = {-1.0f, -1.0f, 1.0f, 1.0f};
+	private static final float[] KNOTS_S = {-1.0f, -1.0f, 1.0f, 1.0f};
 	
 	/** Knots along t parameter */
-	private static final float[] KNOTS_TEST_T = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
+	private static final float[] KNOTS_T = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
 	
 	/** Nurbs order along s parameter */
 	private static final int ORDER_S = 2;
@@ -127,14 +128,16 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	 * Call gl routine to draw to the inside of the arc.
 	 */
 	public void drawArc() {
-		
 		GL gl = getGL();
-		GLU glu = getGlu();
-		gl.glEnable(GL.GL_MAP1_VERTEX_4);
+		GLU glu = new GLU();
+		gl.glEnable(GL.GL_MAP2_VERTEX_4);
 		
 		// set color
 		double[] color = getBackColor();
 		gl.glColor3d(color[0], color[1], color[2]);
+		
+		Matrix4D matbef = new Matrix4D();
+		matbef.setToCurrentOpenGLMatrix(gl);
 		
 		// transform the ellipse so we can draw a circle
 		gl.glPushMatrix();
@@ -142,13 +145,22 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 		
 		// display circle has a nurbs
 		GLUnurbs nurbsObj = glu.gluNewNurbsRenderer();
-		//nurbsTools.setGluProperties(glu, nurbsObj);
-
+		nurbsTools.setGluProperties(glu, nurbsObj);
+		
         drawArc(glu, nurbsObj, nurbsTools.getSweepAngle());
         
+        //glu.gluDeleteNurbsRenderer(nurbsObj);
 		nurbsObj = null;
         
-        gl.glPopMatrix();
+		gl.glPopMatrix();
+		
+		gl.glDisable(GL.GL_MAP2_VERTEX_4);
+		
+		Matrix4D matend = new Matrix4D();
+		matend.setToCurrentOpenGLMatrix(gl);
+		//matend = matbef.substract(matend);
+		//System.err.println("matbeg = " + matbef);
+		//System.err.println("matend = " + matend);
 	}
 	
 	/**
@@ -181,7 +193,7 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 		}
 		
 		glu.gluBeginSurface(nurbsObj);
-		glu.gluNurbsSurface(nurbsObj, KNOTS_TEST_S.length, KNOTS_TEST_S, KNOTS_TEST_T.length, KNOTS_TEST_T,
+		glu.gluNurbsSurface(nurbsObj, KNOTS_S.length, KNOTS_S, KNOTS_T.length, KNOTS_T,
 						    CPOINT_SIZE_T * NurbsArcGL.SIZE_4D, NurbsArcGL.SIZE_4D,
 						    controlPoints, ORDER_S, ORDER_T, GL.GL_MAP2_VERTEX_4);
 		glu.gluEndSurface(nurbsObj);

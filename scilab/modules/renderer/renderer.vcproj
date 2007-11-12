@@ -69,7 +69,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="graphics.lib glu32.lib"
+				AdditionalDependencies="graphics.lib"
 				OutputFile="../../bin/scirenderer.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="renderer.def"
@@ -156,7 +156,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="graphics.lib glu32.lib"
+				AdditionalDependencies="graphics.lib"
 				OutputFile="../../bin/scirenderer.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="renderer.def"
@@ -639,42 +639,6 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\GraphicSynchronization\LocalSynchronizer.cpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="GluNurbsWrapping"
-				>
-				<File
-					RelativePath=".\src\cpp\gluNurbsWrapping\gluNurbsConstWrapping.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\jni\GluNurbsConstWrapping_wrap.c"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\gluNurbsWrapping\gluNurbsWrapping.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\jni\GluNurbsWrapping_wrap.c"
 					>
 				</File>
 			</Filter>
@@ -1261,18 +1225,6 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\GraphicSynchronization\LocalSynchronizer.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="GluNurbsWrapping"
-				>
-				<File
-					RelativePath=".\src\cpp\gluNurbsWrapping\gluNurbsConstWrapping.hxx"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\gluNurbsWrapping\gluNurbsWrapping.hxx"
 					>
 				</File>
 			</Filter>
