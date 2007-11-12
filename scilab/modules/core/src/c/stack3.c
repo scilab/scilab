@@ -543,7 +543,7 @@ void *Name2ptr(char *namex)
   Fin = -1;
   C2F(stackg)(id);
   if (Fin == 0) {
-    Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,strlen(namex)));
+    Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,(long int)strlen(namex)));
     return 0;
   }
   /* get data */
@@ -580,7 +580,7 @@ int Name2where(char *namex)
   C2F(stackg)(id);
   if (Fin == 0)
   {
-	Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,strlen(namex)));
+	Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,(long int)strlen(namex)));
     return 0;
   }
   return *Lstk(Fin);

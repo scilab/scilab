@@ -12,7 +12,7 @@ int C2F(out)(char *str,long int str_len);
 int C2F(out)(char *str,long int str_len)
 {
     static integer io;
-    C2F(basout)(&io, &C2F(iop).wte, str, strlen(str));
+    C2F(basout)(&io, &C2F(iop).wte, str, (long int)strlen(str));
     return 0;
 }
 /*-----------------------------------------------------------------------------------*/
