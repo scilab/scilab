@@ -4,5 +4,5 @@
 // Copyright INRIA 2007
 // ====================================================================
 // delete help chapter
-del_help_chapter('windows_tools',%F);
+del_help_chapter('windows_tools',%T);
 // ====================================================================
