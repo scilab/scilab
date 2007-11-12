@@ -12,5 +12,5 @@ if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
 end 
 // ====================================================================
 // delete help chapter
-del_help_chapter('history_manager','%F');
+del_help_chapter('history_manager',%F);
 // ====================================================================
