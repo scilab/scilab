@@ -6,6 +6,7 @@
 /* from lines()                                                                      */
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "sciprint_full.h"
 #include "sciprint.h"
