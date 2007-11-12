@@ -24,7 +24,6 @@ Source: modules\{#IO}\etc\{#IO}.quit; DestDir: {app}\modules\{#IO}\etc; Componen
 Source: modules\{#IO}\etc\{#IO}.start; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#IO}\help\addchapter.sce; DestDir: {app}\modules\{#IO}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#IO}\help\removechapter.sce; DestDir: {app}\modules\{#IO}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#IO}\help\*.htm; DestDir: {app}\modules\{#IO}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

@@ -21,7 +21,6 @@ Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.quit; DestDir: {app}\modules
 Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.start; DestDir: {app}\modules\{#OPTIMIZATION}\etc; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\help\addchapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help; Flags: recursesubdirs; Components:  {#COMPN_OPTIM}
-Source: modules\{#OPTIMIZATION}\help\removechapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help; Flags: recursesubdirs; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\help\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help; Flags: recursesubdirs; Components: {#COMPN_OPTIM}
 ;

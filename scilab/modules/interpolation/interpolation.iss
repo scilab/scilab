@@ -21,7 +21,6 @@ Source: modules\{#INTERPOLATION}\etc\{#INTERPOLATION}.quit; DestDir: {app}\modul
 Source: modules\{#INTERPOLATION}\etc\{#INTERPOLATION}.start; DestDir: {app}\modules\{#INTERPOLATION}\etc; Components: {#COMPN_INTERP}
 ;
 Source: modules\{#INTERPOLATION}\help\addchapter.sce; DestDir: {app}\modules\{#INTERPOLATION}\help; Flags: recursesubdirs; Components:  {#COMPN_INTERP}
-Source: modules\{#INTERPOLATION}\help\removechapter.sce; DestDir: {app}\modules\{#INTERPOLATION}\help; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 ;
 Source: modules\{#INTERPOLATION}\help\*.htm; DestDir: {app}\modules\{#INTERPOLATION}\help; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 ;

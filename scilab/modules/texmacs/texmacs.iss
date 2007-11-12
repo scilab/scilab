@@ -13,7 +13,6 @@ Source: modules\{#TEXMACS}\etc\{#TEXMACS}.quit; DestDir: {app}\modules\{#TEXMACS
 Source: modules\{#TEXMACS}\etc\{#TEXMACS}.start; DestDir: {app}\modules\{#TEXMACS}\etc; Components: {#COMPN_TEXMACS}
 ;
 Source: modules\{#TEXMACS}\help\addchapter.sce; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components:  {#COMPN_TEXMACS}
-Source: modules\{#TEXMACS}\help\removechapter.sce; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
 Source: modules\{#TEXMACS}\help\*.htm; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;

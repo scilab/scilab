@@ -24,7 +24,6 @@ Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.quit; DestDir: {app}\modules\{#SYMBO
 Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.start; DestDir: {app}\modules\{#SYMBOLIC}\etc; Components: {#COMPN_SYMB}
 ;
 Source: modules\{#SYMBOLIC}\help\addchapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help; Flags: recursesubdirs; Components:   {#COMPN_SYMB}
-Source: modules\{#SYMBOLIC}\help\removechapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help; Flags: recursesubdirs; Components:  {#COMPN_SYMB}
 ;
 Source: modules\{#SYMBOLIC}\help\*.htm; DestDir: {app}\modules\{#SYMBOLIC}\help; Flags: recursesubdirs; Components: {#COMPN_SYMB}
 ;

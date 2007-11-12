@@ -21,7 +21,6 @@ Source: modules\{#STATS}\etc\{#STATS}.quit; DestDir: {app}\modules\{#STATS}\etc;
 Source: modules\{#STATS}\etc\{#STATS}.start; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
 ;
 Source: modules\{#STATS}\help\addchapter.sce; DestDir: {app}\modules\{#STATS}\help; Flags: recursesubdirs; Components:  {#COMPN_STATS}
-Source: modules\{#STATS}\help\removechapter.sce; DestDir: {app}\modules\{#STATS}\help; Flags: recursesubdirs; Components: {#COMPN_STATS}
 ;
 Source: modules\{#STATS}\help\*.htm; DestDir: {app}\modules\{#STATS}\help; Flags: recursesubdirs; Components: {#COMPN_STATS}
 ;

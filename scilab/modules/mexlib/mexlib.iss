@@ -23,7 +23,6 @@ Source: modules\{#MEXLIB}\etc\{#MEXLIB}.quit; DestDir: {app}\modules\{#MEXLIB}\e
 Source: modules\{#MEXLIB}\etc\{#MEXLIB}.start; DestDir: {app}\modules\{#MEXLIB}\etc; Components: {#COMPN_MEXLIB}
 ;
 Source: modules\{#MEXLIB}\help\addchapter.sce; DestDir: {app}\modules\{#MEXLIB}\help; Flags: recursesubdirs; Components:  {#COMPN_MEXLIB}
-Source: modules\{#MEXLIB}\help\removechapter.sce; DestDir: {app}\modules\{#MEXLIB}\help; Flags: recursesubdirs; Components: {#COMPN_MEXLIB}
 ;
 ;Source: modules\{#MEXLIB}\help\*.htm; DestDir: {app}\modules\{#MEXLIB}\help; Flags: recursesubdirs; Components: {#COMPN_MEXLIB}
 ;

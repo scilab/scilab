@@ -30,10 +30,10 @@
 # the same distribution terms that you use for the rest of that program.
 
 # A sed program that does not truncate output.
-SED="/bin/sed"
+SED="/usr/bin/sed"
 
 # Sed that helps us avoid accidentally triggering echo(1) options like -n.
-Xsed="/bin/sed -e 1s/^X//"
+Xsed="/usr/bin/sed -e 1s/^X//"
 
 # The HP-UX ksh and POSIX shell print the target directory to stdout
 # if CDPATH is set.
@@ -44,7 +44,7 @@ available_tags=" CXX F77"
 
 # ### BEGIN LIBTOOL CONFIG
 
-# Libtool was configured on host gabiniere:
+# Libtool was configured on host tiboulen:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -94,10 +94,10 @@ CC="gcc"
 with_gcc=yes
 
 # An ERE matcher.
-EGREP="/bin/grep -E"
+EGREP="/usr/bin/grep -E"
 
 # The linker used to build libraries.
-LD="/usr/bin/ld"
+LD="/usr/i586-suse-linux/bin/ld"
 
 # Whether we need hard or soft links.
 LN_S="ln -s"
@@ -325,10 +325,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib/ /lib/i486-linux-gnu/4.2.1/ /lib/../lib/ /usr/lib/i486-linux-gnu/4.2.1/ /usr/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../ /lib/ /usr/lib/"
+sys_lib_search_path_spec=" /usr/lib/gcc/i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../../i586-suse-linux/lib/i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../../i586-suse-linux/lib/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../ /lib/i586-suse-linux/4.1.0/ /lib/ /usr/lib/i586-suse-linux/4.1.0/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /usr/lib/atlas/sse2 /usr/lib/sse2 /usr/lib/atlas "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib/Xaw3d /usr/X11R6/lib /usr/i486-linux-libc5/lib /usr/i386-suse-linux/lib /usr/local/lib /opt/kde3/lib /opt/gnome/lib "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7223,7 +7223,7 @@ disable_libs=static
 # End:
 # ### BEGIN LIBTOOL TAG CONFIG: CXX
 
-# Libtool was configured on host gabiniere:
+# Libtool was configured on host tiboulen:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7273,10 +7273,10 @@ CC="g++"
 with_gcc=yes
 
 # An ERE matcher.
-EGREP="/bin/grep -E"
+EGREP="/usr/bin/grep -E"
 
 # The linker used to build libraries.
-LD="/usr/bin/ld"
+LD="/usr/i586-suse-linux/bin/ld"
 
 # Whether we need hard or soft links.
 LN_S="ln -s"
@@ -7405,11 +7405,11 @@ striplib="strip --strip-unneeded"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
-predep_objects="/usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib/crti.o /usr/lib/gcc/i486-linux-gnu/4.2.1/crtbeginS.o"
+predep_objects="/usr/lib/gcc/i586-suse-linux/4.1.0/../../../crti.o /usr/lib/gcc/i586-suse-linux/4.1.0/crtbeginS.o"
 
 # Dependencies to place after the objects being linked to create a
 # shared library.
-postdep_objects="/usr/lib/gcc/i486-linux-gnu/4.2.1/crtendS.o /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib/crtn.o"
+postdep_objects="/usr/lib/gcc/i586-suse-linux/4.1.0/crtendS.o /usr/lib/gcc/i586-suse-linux/4.1.0/../../../crtn.o"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
@@ -7421,7 +7421,7 @@ postdeps="-lstdc++ -lm -lgcc_s -lc -lgcc_s"
 
 # The library search path used internally by the compiler when linking
 # a shared library.
-compiler_lib_search_path="-L/usr/lib/gcc/i486-linux-gnu/4.2.1 -L/usr/lib/gcc/i486-linux-gnu/4.2.1 -L/usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/i486-linux-gnu/4.2.1/../../.."
+compiler_lib_search_path="-L/usr/lib/gcc/i586-suse-linux/4.1.0 -L/usr/lib/gcc/i586-suse-linux/4.1.0 -L/usr/lib/gcc/i586-suse-linux/4.1.0/../../../../i586-suse-linux/lib -L/usr/lib/gcc/i586-suse-linux/4.1.0/../../.."
 
 # Method to check whether dependent libraries are shared objects.
 deplibs_check_method="pass_all"
@@ -7501,10 +7501,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../i486-linux-gnu/4.2.1/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../lib/ /lib/i486-linux-gnu/4.2.1/ /lib/../lib/ /usr/lib/i486-linux-gnu/4.2.1/ /usr/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/4.2.1/../../../ /lib/ /usr/lib/"
+sys_lib_search_path_spec=" /usr/lib/gcc/i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../../i586-suse-linux/lib/i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../../i586-suse-linux/lib/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../ /lib/i586-suse-linux/4.1.0/ /lib/ /usr/lib/i586-suse-linux/4.1.0/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /usr/lib/atlas/sse2 /usr/lib/sse2 /usr/lib/atlas "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib/Xaw3d /usr/X11R6/lib /usr/i486-linux-libc5/lib /usr/i386-suse-linux/lib /usr/local/lib /opt/kde3/lib /opt/gnome/lib "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7528,7 +7528,7 @@ include_expsyms=""
 
 # ### BEGIN LIBTOOL TAG CONFIG: F77
 
-# Libtool was configured on host gabiniere:
+# Libtool was configured on host tiboulen:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7572,16 +7572,16 @@ LTCC="gcc"
 LTCFLAGS="-g -O2"
 
 # A language-specific compiler.
-CC="g77"
+CC="gfortran"
 
 # Is the compiler the GNU C compiler?
 with_gcc=yes
 
 # An ERE matcher.
-EGREP="/bin/grep -E"
+EGREP="/usr/bin/grep -E"
 
 # The linker used to build libraries.
-LD="/usr/bin/ld"
+LD="/usr/i586-suse-linux/bin/ld"
 
 # Whether we need hard or soft links.
 LN_S="ln -s"
@@ -7809,10 +7809,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../../i486-linux-gnu/lib/i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../ /lib/i486-linux-gnu/3.4.6/ /lib/ /usr/lib/i486-linux-gnu/3.4.6/ /usr/lib/"
+sys_lib_search_path_spec=" /usr/lib/gcc/i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../../i586-suse-linux/lib/i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../../i586-suse-linux/lib/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../i586-suse-linux/4.1.0/ /usr/lib/gcc/i586-suse-linux/4.1.0/../../../ /lib/i586-suse-linux/4.1.0/ /lib/ /usr/lib/i586-suse-linux/4.1.0/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /usr/lib/atlas/sse2 /usr/lib/sse2 /usr/lib/atlas "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib/Xaw3d /usr/X11R6/lib /usr/i486-linux-libc5/lib /usr/i386-suse-linux/lib /usr/local/lib /opt/kde3/lib /opt/gnome/lib "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""

@@ -21,7 +21,6 @@ Source: modules\{#FILEIO}\etc\{#FILEIO}.quit; DestDir: {app}\modules\{#FILEIO}\e
 Source: modules\{#FILEIO}\etc\fileio.start; DestDir: {app}\modules\{#FILEIO}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FILEIO}\help\addchapter.sce; DestDir: {app}\modules\{#FILEIO}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\help\removechapter.sce; DestDir: {app}\modules\{#FILEIO}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FILEIO}\help\*.htm; DestDir: {app}\modules\{#FILEIO}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

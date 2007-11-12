@@ -23,7 +23,6 @@ Source: modules\{#INTEGER}\etc\{#INTEGER}.quit; DestDir: {app}\modules\{#INTEGER
 Source: modules\{#INTEGER}\etc\{#INTEGER}.start; DestDir: {app}\modules\{#INTEGER}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\help\addchapter.sce; DestDir: {app}\modules\{#INTEGER}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#INTEGER}\help\removechapter.sce; DestDir: {app}\modules\{#INTEGER}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\help\*.htm; DestDir: {app}\modules\{#INTEGER}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

@@ -19,7 +19,6 @@ Source: modules\{#INTERSCI}\etc\{#INTERSCI}.quit; DestDir: {app}\modules\{#INTER
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.start; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
 ;
 Source: modules\{#INTERSCI}\help\addchapter.sce; DestDir: {app}\modules\{#INTERSCI}\help; Flags: recursesubdirs; Components:  {#COMPN_INTERSCI}
-Source: modules\{#INTERSCI}\help\removechapter.sce; DestDir: {app}\modules\{#INTERSCI}\help; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
 ;
 Source: modules\{#INTERSCI}\help\*.htm; DestDir: {app}\modules\{#INTERSCI}\help; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
 ;

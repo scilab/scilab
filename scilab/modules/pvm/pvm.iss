@@ -25,7 +25,6 @@ Source: bin\pvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;
 ;Source: modules\{#PVM}\help\addchapter.sce; DestDir: {app}\modules\{#PVM}\help; Flags: recursesubdirs; Components:  {#COMPN_PVM}
-;Source: modules\{#PVM}\help\removechapter.sce; DestDir: {app}\modules\{#PVM}\help; Flags: recursesubdirs; Components: {#COMPN_PVM}
 ;
 ;Source: modules\{#PVM}\help\*.htm; DestDir: {app}\modules\{#PVM}\help; Flags: recursesubdirs; Components: {#COMPN_PVM}
 ;

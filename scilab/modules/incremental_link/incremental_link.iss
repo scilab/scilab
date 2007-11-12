@@ -19,7 +19,6 @@ Source: modules\{#INCRLINK}\etc\{#INCRLINK}.quit; DestDir: {app}\modules\{#INCRL
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.start; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INCRLINK}\help\addchapter.sce; DestDir: {app}\modules\{#INCRLINK}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#INCRLINK}\help\removechapter.sce; DestDir: {app}\modules\{#INCRLINK}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INCRLINK}\help\*.htm; DestDir: {app}\modules\{#INCRLINK}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

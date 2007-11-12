@@ -21,7 +21,6 @@ Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.quit; DestDir: {app}\modules\{
 Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.start; DestDir: {app}\modules\{#POLYNOMIALS}\etc; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\help\addchapter.sce; DestDir: {app}\modules\{#POLYNOMIALS}\help; Flags: recursesubdirs; Components:  {#COMPN_POLY}
-Source: modules\{#POLYNOMIALS}\help\removechapter.sce; DestDir: {app}\modules\{#POLYNOMIALS}\help; Flags: recursesubdirs; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\help\*.htm; DestDir: {app}\modules\{#POLYNOMIALS}\help\; Flags: recursesubdirs; Components: {#COMPN_POLY}
 ;

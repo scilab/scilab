@@ -19,7 +19,6 @@ Source: modules\{#SCI2FOR}\etc\{#SCI2FOR}.quit; DestDir: {app}\modules\{#SCI2FOR
 Source: modules\{#SCI2FOR}\etc\{#SCI2FOR}.start; DestDir: {app}\modules\{#SCI2FOR}\etc; Components: {#COMPN_SCI2FOR}
 ;
 Source: modules\{#SCI2FOR}\help\addchapter.sce; DestDir: {app}\modules\{#SCI2FOR}\help; Flags: recursesubdirs; Components:  {#COMPN_SCI2FOR}
-Source: modules\{#SCI2FOR}\help\removechapter.sce; DestDir: {app}\modules\{#SCI2FOR}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
 ;
 Source: modules\{#SCI2FOR}\help\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
 ;

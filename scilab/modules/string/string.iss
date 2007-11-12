@@ -24,7 +24,6 @@ Source: modules\{#STRING}\etc\{#STRING}.quit; DestDir: {app}\modules\{#STRING}\e
 Source: modules\{#STRING}\etc\{#STRING}.start; DestDir: {app}\modules\{#STRING}\etc; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\help\addchapter.sce; DestDir: {app}\modules\{#STRING}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#STRING}\help\removechapter.sce; DestDir: {app}\modules\{#STRING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\help\*.htm; DestDir: {app}\modules\{#STRING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

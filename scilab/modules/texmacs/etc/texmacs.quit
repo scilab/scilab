@@ -5,6 +5,6 @@
 // ====================================================================
  if with_texmacs() then
 // delete help chapter
-del_module_help_chapter('texmacs');
+del_help_chapter('texmacs');
 end
 // ====================================================================

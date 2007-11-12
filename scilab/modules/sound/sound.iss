@@ -27,7 +27,6 @@ Source: modules\{#SOUND}\etc\{#SOUND}.quit; DestDir: {app}\modules\{#SOUND}\etc;
 Source: modules\{#SOUND}\etc\{#SOUND}.start; DestDir: {app}\modules\{#SOUND}\etc; Components: {#COMPN_SOUND}
 ;
 Source: modules\{#SOUND}\help\addchapter.sce; DestDir: {app}\modules\{#SOUND}\help; Flags: recursesubdirs; Components:  {#COMPN_SOUND}
-Source: modules\{#SOUND}\help\removechapter.sce; DestDir: {app}\modules\{#SOUND}\help; Flags: recursesubdirs; Components: {#COMPN_SOUND}
 ;
 Source: modules\{#SOUND}\help\*.htm; DestDir: {app}\modules\{#SOUND}\help; Flags: recursesubdirs; Components: {#COMPN_SOUND}
 ;

@@ -20,7 +20,6 @@ Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.quit; DestDir: {app}\modules\{
 Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.start; DestDir: {app}\modules\{#OVERLOADING}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#OVERLOADING}\help\addchapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#OVERLOADING}\help\removechapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#OVERLOADING}\help\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

@@ -25,7 +25,6 @@ Source: modules\{#METANET}\etc\{#METANET}.quit; DestDir: {app}\modules\{#METANET
 Source: modules\{#METANET}\etc\{#METANET}.start; DestDir: {app}\modules\{#METANET}\etc; Components: {#COMPN_METANET}
 ;
 Source: modules\{#METANET}\help\addchapter.sce; DestDir: {app}\modules\{#METANET}\help; Flags: recursesubdirs; Components:  {#COMPN_METANET}
-Source: modules\{#METANET}\help\removechapter.sce; DestDir: {app}\modules\{#METANET}\help; Flags: recursesubdirs; Components: {#COMPN_METANET}
 ;
 Source: modules\{#METANET}\help\*.htm; DestDir: {app}\modules\{#METANET}\help; Flags: recursesubdirs; Components: {#COMPN_METANET}
 ;

@@ -19,7 +19,6 @@ Source: modules\{#M2SCI}\etc\{#M2SCI}.quit; DestDir: {app}\modules\{#M2SCI}\etc;
 Source: modules\{#M2SCI}\etc\{#M2SCI}.start; DestDir: {app}\modules\{#M2SCI}\etc; Components: {#COMPN_M2SCI}
 ;
 Source: modules\{#M2SCI}\help\addchapter.sce; DestDir: {app}\modules\{#M2SCI}\help; Flags: recursesubdirs; Components:  {#COMPN_M2SCI}
-Source: modules\{#M2SCI}\help\removechapter.sce; DestDir: {app}\modules\{#M2SCI}\help; Flags: recursesubdirs; Components: {#COMPN_M2SCI}
 ;
 Source: modules\{#M2SCI}\help\*.htm; DestDir: {app}\modules\{#M2SCI}\help; Flags: recursesubdirs; Components: {#COMPN_M2SCI}
 ;

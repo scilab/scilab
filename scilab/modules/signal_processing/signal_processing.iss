@@ -21,7 +21,6 @@ Source: modules\{#SIGPROC}\etc\{#SIGPROC}.quit; DestDir: {app}\modules\{#SIGPROC
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.start; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\help\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
-Source: modules\{#SIGPROC}\help\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\help\*.htm; DestDir: {app}\modules\{#SIGPROC}\help;Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
 ;

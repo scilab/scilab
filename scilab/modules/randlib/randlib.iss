@@ -26,7 +26,6 @@ Source: modules\{#RANDLIB}\etc\{#RANDLIB}.quit; DestDir: {app}\modules\{#RANDLIB
 Source: modules\{#RANDLIB}\etc\{#RANDLIB}.start; DestDir: {app}\modules\{#RANDLIB}\etc; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\help\addchapter.sce; DestDir: {app}\modules\{#RANDLIB}\help; Flags: recursesubdirs; Components:  {#COMPN_RANDLIB}
-Source: modules\{#RANDLIB}\help\removechapter.sce; DestDir: {app}\modules\{#RANDLIB}\help; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\help\*.htm; DestDir: {app}\modules\{#RANDLIB}\help; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
 ;

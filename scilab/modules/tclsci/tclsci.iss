@@ -24,7 +24,6 @@ Source: modules\{#TCLSCI}\demos\sciGUI\*.*; DestDir: {app}\modules\{#TCLSCI}\dem
 Source: modules\{#TCLSCI}\demos\tk\*.*; DestDir: {app}\modules\{#TCLSCI}\demos\tk; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\help\addchapter.sce; DestDir: {app}\modules\{#TCLSCI}\help; Flags: recursesubdirs; Components:  {#COMPN_TCLSCI}
-Source: modules\{#TCLSCI}\help\removechapter.sce; DestDir: {app}\modules\{#TCLSCI}\help; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\help\*.htm; DestDir: {app}\modules\{#TCLSCI}\help; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
 ;

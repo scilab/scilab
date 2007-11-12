@@ -21,7 +21,6 @@ Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.quit; DestDir: {app}\modules\{
 Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.start; DestDir: {app}\modules\{#SPFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SPFUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#SPFUNCTIONS}\help\removechapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SPFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

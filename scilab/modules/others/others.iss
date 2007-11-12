@@ -19,7 +19,6 @@ Source: modules\{#OTHERS}\etc\{#OTHERS}.quit; DestDir: {app}\modules\{#OTHERS}\e
 Source: modules\{#OTHERS}\etc\{#OTHERS}.start; DestDir: {app}\modules\{#OTHERS}\etc; Components: {#COMPN_OTHERS}
 ;
 Source: modules\{#OTHERS}\help\addchapter.sce; DestDir: {app}\modules\{#OTHERS}\help; Flags: recursesubdirs; Components:  {#COMPN_OTHERS}
-Source: modules\{#OTHERS}\help\removechapter.sce; DestDir: {app}\modules\{#OTHERS}\help; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 ;
 Source: modules\{#OTHERS}\help\*.htm; DestDir: {app}\modules\{#OTHERS}\help; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 ;

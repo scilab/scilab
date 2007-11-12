@@ -19,7 +19,6 @@ Source: modules\{#DEVTOOLS}\etc\{#DEVTOOLS}.quit; DestDir: {app}\modules\{#DEVTO
 Source: modules\{#DEVTOOLS}\etc\{#DEVTOOLS}.start; DestDir: {app}\modules\{#DEVTOOLS}\etc; Components: {#COMPN_DEVTOOLS}
 ;
 Source: modules\{#DEVTOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_DEVTOOLS}
-Source: modules\{#DEVTOOLS}\help\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_DEVTOOLS}
 ;
 ;Source: modules\{#DEVTOOLS}\help\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;

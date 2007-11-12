@@ -21,7 +21,6 @@ Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.quit; DestDir: {app}\modules\{#D
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.start; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DATASTRUCT}\help\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#DATASTRUCT}\help\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
 Source: modules\{#DATASTRUCT}\help\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

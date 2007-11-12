@@ -4,5 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-del_module_help_chapter('tclsci');
+del_help_chapter('tclsci');
 // ====================================================================

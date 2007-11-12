@@ -1,6 +1,6 @@
-function del_help_chapter(helptitle,modulemode)
+function del_help_chapter(help_to_del,modulemode)
 	
-	// =========================================================================================
+	// =========================================================================
 	// Author : Pierre MARECHAL
 	// Scilab team
 	// Copyright INRIA
@@ -10,51 +10,71 @@ function del_help_chapter(helptitle,modulemode)
 	//
 	// Parameters
 	//
-	// title : a character string, the help chapter title
+	// title : a character string :
+	//   - the help chapter title or
+	//   - the module name
 	//
 	// Description
 	//
 	// This function deletes a entry in the helps list.
-	// =========================================================================================
+	// =========================================================================
 	
 	global %helps;
 	global %helps_modules;
 	
-	// Vérification des paramètres
-	// -----------------------------------------------------------------------------------------
-	[lhs,rhs]=argn(0);
+	// Check input arguments
+	// -------------------------------------------------------------------------
+	[lhs,rhs] = argn(0);
 	if (rhs<1) | (rhs>2) then error(39); end
 	if (rhs == 1) then modulemode=%F; end
-	if type(helptitle) <> 10 then error(55,1); end
+	if type(help_to_del) <> 10 then error(55,1); end
 	
-	// Vérification que le titre est bien présent dans %helps
-	// -----------------------------------------------------------------------------------------
+	// Is the first parameter a module name ?
+	// -------------------------------------------------------------------------
 	
-  if modulemode then
-    k1 = find( %helps_modules(:,2) == helptitle);
-	  if k1 <> [] then
-		  %helps_modules(k1,:) = [];
-	  end
-  else
-    k1 = find( %helps(:,2) == helptitle);
-	  if k1 <> [] then
-		  %helps(k1,:) = [];
-	  end
-  end
+	is_module_name = %F;
+	module_list    = getmodules();
+	is_module_name = find(module_list == help_to_del) <> []
 	
-	if strindex(stripblanks(helptitle),"(*)") == (length(stripblanks(helptitle)) - 2) then
+	// If yes, add the path
+	// -------------------------------------------------------------------------
+	
+	if is_module_name then
+		help_to_del = pathconvert(SCI+"/modules/"+help_to_del+"/help/"+getlanguage(),%F,%F);
+	end
+	
+	// Now, check if help_to_del is present in the %helps_modules matrix
+	// -------------------------------------------------------------------------
+	
+	if modulemode then
 		
-		helptitle = strsubst(helptitle,"(*)","");
-		helptitle = stripblanks(helptitle);
+		k1 = find( %helps_modules == help_to_del);
+		if k1 <> [] then
+			%helps_modules(k1,:) = [];
+		end
+		
+	else
+		
+		k1 = find( %helps == help_to_del);
+		if k1 <> [] then
+			%helps(k1,:) = [];
+		end
+		
+	end
+	
+	if strindex(stripblanks(help_to_del),"(*)") == (length(stripblanks(help_to_del)) - 2) then
+		
+		help_to_del = strsubst(help_to_del,"(*)","");
+		help_to_del = stripblanks(help_to_del);
 		
 		for i=1:100
 		  if modulemode then
-		    k2 = find( %helps_modules(:,2) == helptitle+' ('+string(i)+')' );
+		    k2 = find( %helps_modules(:,2) == help_to_del+' ('+string(i)+')' );
 			  if k2 <> [] then
 				  %helps_modules(k2,:) = [];
 			  end
 		  else
-		    k2 = find( %helps(:,2) == helptitle+' ('+string(i)+')' );
+		    k2 = find( %helps(:,2) == help_to_del+' ('+string(i)+')' );
 			  if k2 <> [] then
 				  %helps(k2,:) = [];
 			  end

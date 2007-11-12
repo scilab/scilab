@@ -24,7 +24,6 @@ Source: modules\{#LINALG}\etc\{#LINALG}.quit; DestDir: {app}\modules\{#LINALG}\e
 Source: modules\{#LINALG}\etc\{#LINALG}.start; DestDir: {app}\modules\{#LINALG}\etc; Components: {#COMPN_LINALG}
 ;
 Source: modules\{#LINALG}\help\addchapter.sce; DestDir: {app}\modules\{#LINALG}\help; Flags: recursesubdirs; Components:  {#COMPN_LINALG}
-Source: modules\{#LINALG}\help\removechapter.sce; DestDir: {app}\modules\{#LINALG}\help; Flags: recursesubdirs; Components: {#COMPN_LINALG}
 ;
 Source: modules\{#LINALG}\help\*.htm; DestDir: {app}\modules\{#LINALG}\help; Flags: recursesubdirs; Components: {#COMPN_LINALG}
 ;

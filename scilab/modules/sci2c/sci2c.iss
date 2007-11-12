@@ -21,7 +21,6 @@ Source: modules\{#SCI2C}\etc\{#SCI2C}.quit; DestDir: {app}\modules\{#SCI2C}\etc;
 Source: modules\{#SCI2C}\etc\{#SCI2C}.start; DestDir: {app}\modules\{#SCI2C}\etc; Components: {#COMPN_SCI2C}
 ;
 Source: modules\{#SCI2C}\help\addchapter.sce; DestDir: {app}\modules\{#SCI2C}\help; Flags: recursesubdirs; Components:  {#COMPN_SCI2C}
-Source: modules\{#SCI2C}\help\removechapter.sce; DestDir: {app}\modules\{#SCI2C}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;
 Source: modules\{#SCI2C}\help\*.htm; DestDir: {app}\modules\{#SCI2C}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;

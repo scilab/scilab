@@ -19,7 +19,6 @@ Source: modules\{#DOUBLE}\etc\{#DOUBLE}.quit; DestDir: {app}\modules\{#DOUBLE}\e
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.start; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DOUBLE}\help\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#DOUBLE}\help\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#DOUBLE}\help\*.htm; DestDir: {app}\modules\{#DOUBLE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
