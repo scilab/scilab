@@ -38,6 +38,8 @@
       <param type="double" name="theta" />
       <param type="double" name="reductionRatio" />
     </method>
+    <method name="replaceCamera" returnType="void">
+    </method>
     <method name="getPixelCoordinates" returnType="int[]">
       <param type="double" name="userCoordX" />
       <param type="double" name="userCoordY" />

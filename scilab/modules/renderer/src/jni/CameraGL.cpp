@@ -112,6 +112,7 @@ voidsetFigureIndexjintID=NULL;
 voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
 voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidreplaceCameraID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 
@@ -144,6 +145,7 @@ voidsetFigureIndexjintID=NULL;
 voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
 voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidreplaceCameraID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 
@@ -351,6 +353,27 @@ exit(EXIT_FAILURE);
 }
 }
   curEnv->CallVoidMethod( this->instance, voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID ,centerX, centerY, centerZ, alpha, theta, reductionRatio);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void CameraGL::replaceCamera (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidreplaceCameraID == NULL)
+{
+this->voidreplaceCameraID = curEnv->GetMethodID(this->instanceClass, "replaceCamera", "()V" ) ;
+if (this->voidreplaceCameraID == NULL) {
+std::cerr << "Could not access to the method " << "replaceCamera" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidreplaceCameraID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

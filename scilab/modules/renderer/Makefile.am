@@ -104,10 +104,6 @@ src/jni/ArcLineDrawerGL.cpp \
 src/jni/ArcFillDrawerGL.cpp \
 src/jni/DrawableArcGL.cpp \
 src/jni/FigureScilabCall_wrap.c \
-src/jni/GluNurbsWrapping_wrap.c \
-src/cpp/gluNurbsWrapping/gluNurbsWrapping.cpp \
-src/jni/GluNurbsConstWrapping_wrap.c \
-src/cpp/gluNurbsWrapping/gluNurbsConstWrapping.cpp \
 src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
 src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
 src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
