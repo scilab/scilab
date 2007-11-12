@@ -39,7 +39,7 @@ endif
 
 
 # Includes need for the compilation
-libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/output_stream/includes/
 
 # Includes need for the compilation
 libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
