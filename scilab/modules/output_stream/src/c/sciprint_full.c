@@ -5,12 +5,17 @@
 /* the long string is splitted in elements of length equal to the number of columns  */
 /* from lines()                                                                      */
 /*-----------------------------------------------------------------------------------*/
+#include <stdio.h>
 #include <string.h>
 #include "sciprint_full.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "../../shell/includes/scilines.h"
+/*-----------------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+#define vsnprintf _vsnprintf
+#endif
 /*-----------------------------------------------------------------------------------*/
 /* MAXCHARSSCIPRINT_FULL is for sciprint_full - more than this gets truncated */
 #define MAXCHARSSCIPRINT_FULL 5000  
