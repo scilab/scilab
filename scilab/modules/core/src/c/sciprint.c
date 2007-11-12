@@ -16,6 +16,10 @@
 #endif
 #define MAXPRINTF bsiz /* bsiz size of internal chain buf */
 /*-----------------------------------------------------------------------------------*/ 
+/* sciprint uses scivprint */
+/* scivprint uses scivprint_nd */
+/* sciprint_nd uses scivprint_nd */
+/*-----------------------------------------------------------------------------------*/ 
 void sciprint(char *fmt,...) 
 {
 	va_list ap;
