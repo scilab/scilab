@@ -9704,7 +9704,7 @@ echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
 // #line 9706 "configure"
-import javax.media.opengl.GL;
+import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -9743,8 +9743,8 @@ echo "${ECHO_T}$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6; }
-	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar jogl used by Scilab 3D rendering (looking for package javax.media.opengl.GL)" >&5
-echo "$as_me: error: Could not find or use the Java package/jar jogl used by Scilab 3D rendering (looking for package javax.media.opengl.GL)" >&2;}
+	{ { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar jogl used by Scilab 3D rendering - Version 1.1.1-pre 20071112 (looking for package javax.media.opengl.glu.GLUnurbs)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar jogl used by Scilab 3D rendering - Version 1.1.1-pre 20071112 (looking for package javax.media.opengl.glu.GLUnurbs)" >&2;}
    { (exit 1); exit 1; }; }
     fi
 

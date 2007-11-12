@@ -21,8 +21,7 @@ bin_SCRIPTS			= bin/scilab
 scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
 
 if GUI
-scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
--lGLU
+scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la
 #	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
 else
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
