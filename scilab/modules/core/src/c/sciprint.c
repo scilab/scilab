@@ -6,10 +6,8 @@
 #include <string.h>
 #include "sciprint.h"
 #include "sciprint_nd.h"
-#include "../../console/includes/ConsolePrintf.h"
 #include "../../fileio/includes/diary.h"
-#include "scilabmode.h"
-#include "stack-def.h"
+#include "stack-def.h" /* bsiz */
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
