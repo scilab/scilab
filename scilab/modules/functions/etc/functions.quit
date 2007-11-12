@@ -4,5 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-del_help_chapter('functions');
+del_help_chapter('functions','%F');
 // ====================================================================

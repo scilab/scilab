@@ -8,7 +8,7 @@ if %fftw then
 if ( fftwlibraryisloaded() ) then
 
 // delete help chapter
-del_help_chapter('fftw');
+del_help_chapter('fftw','%F');
 
 disposefftwlibrary();
 

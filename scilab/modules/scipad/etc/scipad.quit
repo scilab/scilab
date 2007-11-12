@@ -12,5 +12,5 @@ if ( (getscilabmode()<>"NWNI") & with_tk() ) then
 end
 // ====================================================================
 //remove help chapter
-del_help_chapter('scipad');
+del_help_chapter('scipad','%F');
 // ====================================================================
