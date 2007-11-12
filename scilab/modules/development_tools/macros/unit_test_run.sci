@@ -409,11 +409,18 @@ function [status_id,status_msg,status_details] = unit_test_run_checkerror(module
 	// and save it in a temporary file
 	mputl(txt,tmp_tstfile);
 	
+	// Gestion de l'emplacement de bin/scilab
+	if (~MSDOS) & (fileinfo(SCI+"/bin/scilab")==[]) then
+		SCI_BIN = strsubst(SCI,'share/scilab','');
+	else
+		SCI_BIN = SCI;
+	end
+	
 	// Build the command to launch
 	if MSDOS then
-		unit_test_cmd = "( """+SCI+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
+		unit_test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
 	else
-		unit_test_cmd = "( "+SCI+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
+		unit_test_cmd = "( "+SCI_BIN+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
 	end
 	
 	// Launch the test exec
@@ -568,11 +575,18 @@ function [status_id,status_msg,status_details] = unit_test_run_proc_ref(module,t
 		deletefile(diafile)
 	end
 	
+	// Gestion de l'emplacement de bin/scilab
+	if (~MSDOS) & (fileinfo(SCI+"/bin/scilab")==[]) then
+		SCI_BIN = strsubst(SCI,'share/scilab','');
+	else
+		SCI_BIN = SCI;
+	end
+	
 	// Build the command to launch
 	if MSDOS then
-		unit_test_cmd = "( """+SCI+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
+		unit_test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
 	else
-		unit_test_cmd = "( "+SCI+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
+		unit_test_cmd = "( "+SCI_BIN+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
 	end
 	
 	// Launch the test exec
