@@ -696,18 +696,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sciprint.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sciprint_full.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sciprint_nd.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sciquit.c"
 				>
 			</File>
@@ -873,11 +861,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -1070,14 +1058,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\scimem.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\sciprint.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\sciprint_full.h"
 				>
 			</File>
 			<File

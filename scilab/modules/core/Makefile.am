@@ -45,9 +45,6 @@ src/c/isanan.c \
 src/c/parse.c \
 src/c/timer.c \
 src/c/stack2.c \
-src/c/sciprint.c \
-src/c/sciprint_nd.c \
-src/c/sciprint_full.c \
 src/c/link.c \
 src/c/xscion.c \
 src/c/SetScilabEnvironment.c \
@@ -382,7 +379,6 @@ libscicore_la_includedir=$(pkgincludedir)/core
 libscicore_la_include_HEADERS = includes/GetExceptionCode.h \
 includes/CallScilab.h \
 includes/IsAScalar.h \
-includes/sciprint.h \
 includes/intmacr2tree.h \
 includes/core_math.h \
 includes/stack-def.h \

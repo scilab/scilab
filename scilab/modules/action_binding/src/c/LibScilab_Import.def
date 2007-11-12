@@ -2,7 +2,7 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
- sciprint
+
  putlhsvar_
  cluni0_
  createvar_
@@ -15,7 +15,6 @@ EXPORTS
  createvarfromptr_
  callFunctionFromGateway
  iop_
- sciprint_full
  ScilabEventsLoop
  ;
  ;core_f

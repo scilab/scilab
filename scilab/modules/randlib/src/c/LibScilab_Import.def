@@ -6,7 +6,6 @@ EXPORTS
 ;core
 ;
 com_
-sciprint
 cvstr_
 putlhsvar_
 overload_

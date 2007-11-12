@@ -3,5 +3,6 @@
 
 EXPORTS
 	diary
-	
+  diary_nnl	
+  getdiary  
 	

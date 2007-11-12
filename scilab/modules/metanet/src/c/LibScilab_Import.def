@@ -4,6 +4,5 @@
 EXPORTS
 ;core
 com_
-sciprint
 callFunctionFromGateway
 ;

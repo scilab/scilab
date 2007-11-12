@@ -6,7 +6,6 @@ EXPORTS
  vstk_
  iop_
  GetData
- sciprint
  putlhsvar_
  createvar_
  stack_
@@ -23,7 +22,6 @@ EXPORTS
  FreeFileNameOpenedInScilab
  GetMaximumFileOpenedInScilab
  GetFileOpenedInScilab
- sciprint2
  getwsmat_
  mkmlistfromvars_
  cvstr_

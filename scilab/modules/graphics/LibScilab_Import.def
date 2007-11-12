@@ -53,7 +53,6 @@ sciReturnStringMatrix
 addStringColVectorToReturnedList
 sciReturnChar
 sciReturnUserData
-sciprint
 check_length
 check_dim_prop
 check_same_dims

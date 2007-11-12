@@ -6,7 +6,6 @@ EXPORTS
 vstk_
 com_
 stack_
-sciprint
 callFunctionFromGateway
 createvarfromptr_
 putlhsvar_

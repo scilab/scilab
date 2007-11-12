@@ -15,7 +15,11 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/Scierror.c \
 				src/c/msgstore.c \
 				src/c/msgout.c \
-				src/c/basout.c
+				src/c/basout.c \
+				src/c/sciprint.c \
+				src/c/sciprint_nd.c \
+				src/c/sciprint_full.c 
+
 
 OUTPUT_STREAM_FORTRAN_SOURCES =
 
@@ -54,6 +58,8 @@ libscioutput_stream_la_sci_gateway_DATA =
 libscioutput_stream_la_includedir=$(pkgincludedir)/output_stream
 libscioutput_stream_la_include_HEADERS = includes/cerro.h \
 		includes/erro.h \
+		includes/sciprint.h \
+		includes/sciprint_nd.h \
 		includes/Scierror.h
 
 

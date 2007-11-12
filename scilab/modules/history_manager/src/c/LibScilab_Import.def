@@ -5,7 +5,6 @@ EXPORTS
 ;core
 com_
 stack_
-sciprint
 callFunctionFromGateway
 createvarfromptr_
 putlhsvar_

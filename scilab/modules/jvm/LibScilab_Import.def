@@ -19,5 +19,4 @@ EXPORTS
  createvarfromptr_
  GetXmlFileEncoding
  callFunctionFromGateway
- sciprint
 ;

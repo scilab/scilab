@@ -9,7 +9,6 @@ errgst_
 errmgr_
 errloc_
 stack_
-sciprint
 ExceptionMessage
 createvarfromptr_
 putlhsvar_
@@ -21,4 +20,5 @@ intersci_
 errmds_
 createvar_
 writelunitstring_
+getScilabMode
 ;

@@ -19,7 +19,6 @@ gettype_
 vstk_
 getTMPDIR
 getScilabMode
-sciprint
 ExitScilab
 disp_scilab_version
 settexmacs

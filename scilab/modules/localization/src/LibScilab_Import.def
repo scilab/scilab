@@ -2,7 +2,6 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
- sciprint
  putlhsvar_
  intersci_
  stack_
