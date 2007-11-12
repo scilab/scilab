@@ -412,7 +412,6 @@ if a<>1 then bugmes();quit;end
 clear a x;
  
  
- 
 if a<>1 then bugmes();quit;end
  
 clear a x;
@@ -529,7 +528,6 @@ clear a x
 if a<>1 then bugmes();quit;end
  
 clear a x
- 
  
  
  
@@ -849,7 +847,6 @@ a=a+3;
 if ierr<>4|ierr2<>0 then bugmes();quit;end
  
  
- 
 a=1;
  
 if %t then
@@ -874,7 +871,6 @@ a=a+3;
 if a<>5 then bugmes();quit;end
  
 if ierr<>4|ierr2<>0 then bugmes();quit;end
- 
  
  
 a=1;

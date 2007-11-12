@@ -127,6 +127,7 @@ for k=1:2
  z=z+foo();
 end
 if z<>3 then pause,end
+
 //
 z=0;for k=1:2
  function y=foo(),y=k,endfunction
@@ -138,4 +139,131 @@ z=0;for k=1:2, function y=foo(),y=k,endfunction
  z=z+foo();
 end
 if z<>3 then pause,end
+
+
+z=0;
+for k=1:2
+ function y=foo(k)//qsdsdf
+   y=k^2
+ endfunction
+ z=z+foo();
+end
+if z<>5 then pause,end
+
+z=0;
+for k=1:2
+ function y=foo(k)//qsdsdf
+   y=k^2 //a comment
+ endfunction
+ z=z+foo();
+end
+if z<>5 then pause,end
+
+z=0;
+for k=1:2
+ function y=foo(k), y=k^2, endfunction
+ z=z+foo();
+end
+if z<>5 then pause,end
+
+
+z=0;
+for k=1:2
+ function y=foo(k), y=k^2, endfunction// a comment
+ z=z+foo();
+end
+if z<>5 then pause,end
+
+//bug 1024 non regression test
+O=[];
+for n= 1:10;
+  Fx=rand(1,100);
+  Fy=1:100;
+  function [f,g,ind]=cout(x,ind)
+    f1=(1-exp(-x*Fx) - Fy);
+    f= (1/2)*f1*f1';
+    g= x*(Fx.*exp(-x*Fx))*f1';
+  endfunction
+  [fopt,lmopt]=optim(cout,0.4);
+  O=[O fopt];
+end
+if size(O,'*')<>10 then pause,end
+
+// test line count in compiled macros
+// 
+function a=foo(),a=1,endfunction
+L=macr2lst(foo);
+if L(4)(1)<>'6' then pause,end
+
+clear foo
+function a=foo()
+a=1,
+endfunction
+L=macr2lst(foo);
+if L(4)(1)<>'15' then pause,end
+
+clear foo
+function a=foo()//xxcxcx
+a=1,
+endfunction
+L=macr2lst(foo);
+if L(4)(1)<>'31' then pause,end
+
+clear foo
+function a=foo(),
+a=1,
+endfunction
+L=macr2lst(foo);
+if L(4)(1)<>'15' then pause,end
+
+clear foo
+function a=foo(),a=1//xxcxcx
+b=2
+endfunction
+L=macr2lst(foo);
+if L(4)(1)<>'6' then pause,end
+
+
+clear foo
+function a=foo()
+a=..
+sin..
+(..
+1..
+),
+endfunction
+//continuation lines are replaced by a sequence of empty lines followed by the logical line
+//so the function above is  the same as
+function a=foo1()
+
+
+
+
+a=sin(1),
+endfunction
+
+L=macr2lst(foo);
+t=L(9)(1)<>'6';
+for k=4:8,t=t|L(k)(1)<>'15';end
+if t then pause,end
+if foo<>foo1 then pause,end
+
+
+clear foo foo1
+function a=foo(),a=..
+sin..
+(..
+1..
+),
+endfunction
+//continuation lines are replaced by a sequence of empty lines followed by the logical line
+//foo shoud be equal to foo1
+function a=foo1(),a=sin(1),
+endfunction
+
+L=macr2lst(foo);
+if L(4)(1)<>'6'  then pause,end
+if foo<>foo1 then pause,end
+
+
 

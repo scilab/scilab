@@ -80,93 +80,91 @@ MACRO NOT COMPILED
 lig()
 ligne 2
 ligne 8
-Stop after row     8 in function lig.
+Stop after row     8 in function lig :
  
  
-Type 'resume' or 'abort' to return to standard level prompt.
-
 resume
 ligne 9
 ligne 11
-Stop after row    11 in function lig.
+Stop after row    11 in function lig :
  
  
 resume
 ligne 11
-Stop after row    11 in function lig.
+Stop after row    11 in function lig :
  
  
 resume
 ligne 11
-Stop after row    11 in function lig.
+Stop after row    11 in function lig :
  
  
 resume
 ligne 12
-Stop after row    12 in function lig.
+Stop after row    12 in function lig :
  
  
 resume
 ligne 17
-Stop after row    17 in function lig.
+Stop after row    17 in function lig :
  
  
 resume
 ligne 18
 ligne 23
-Stop after row    23 in function lig.
+Stop after row    23 in function lig :
  
  
 resume
 ligne 28
-Stop after row    28 in function lig.
+Stop after row    28 in function lig :
  
  
 resume
 ligne 29
 ligne 38
-Stop after row    38 in function lig.
+Stop after row    38 in function lig :
  
  
 resume
 ligne 39
-Stop after row    39 in function lig.
+Stop after row    39 in function lig :
  
  
 resume
 ligne 40
-Stop after row    40 in function lig.
+Stop after row    40 in function lig :
  
  
 resume
 ligne 43
-Stop after row    43 in function lig.
+Stop after row    43 in function lig :
  
  
 resume
 ligne 43
-Stop after row    43 in function lig.
+Stop after row    43 in function lig :
  
  
 resume
 ligne 43
-Stop after row    43 in function lig.
+Stop after row    43 in function lig :
  
  
 resume
 ligne 44
-Stop after row    44 in function lig.
+Stop after row    44 in function lig :
  
  
 resume
 ligne 47
 ligne 48
-Stop after row    48 in function lig.
+Stop after row    48 in function lig :
  
  
 resume
 comp(lig)
-Warning : redefining function : lig                     
+Warning :redefining function: lig                     
  
 write(%io(2),[' ';'COMPILED MACRO';'-----------------';' '])
  
@@ -176,86 +174,86 @@ COMPILED MACRO
 lig()
 ligne 2
 ligne 8
-Stop after row     8 in function lig.
+Stop after row     8 in function lig :
  
  
 resume
 ligne 9
 ligne 11
-Stop after row    11 in function lig.
+Stop after row    11 in function lig :
  
  
 resume
 ligne 11
-Stop after row    11 in function lig.
+Stop after row    11 in function lig :
  
  
 resume
 ligne 11
-Stop after row    11 in function lig.
+Stop after row    11 in function lig :
  
  
 resume
 ligne 12
-Stop after row    12 in function lig.
+Stop after row    12 in function lig :
  
  
 resume
 ligne 17
-Stop after row    17 in function lig.
+Stop after row    17 in function lig :
  
  
 resume
 ligne 18
 ligne 23
-Stop after row    23 in function lig.
+Stop after row    23 in function lig :
  
  
 resume
 ligne 28
-Stop after row    28 in function lig.
+Stop after row    28 in function lig :
  
  
 resume
 ligne 29
 ligne 38
-Stop after row    38 in function lig.
+Stop after row    38 in function lig :
  
  
 resume
 ligne 39
-Stop after row    39 in function lig.
+Stop after row    39 in function lig :
  
  
 resume
 ligne 40
-Stop after row    40 in function lig.
+Stop after row    40 in function lig :
  
  
 resume
 ligne 43
-Stop after row    43 in function lig.
+Stop after row    43 in function lig :
  
  
 resume
 ligne 43
-Stop after row    43 in function lig.
+Stop after row    43 in function lig :
  
  
 resume
 ligne 43
-Stop after row    43 in function lig.
+Stop after row    43 in function lig :
  
  
 resume
 ligne 44
-Stop after row    44 in function lig.
+Stop after row    44 in function lig :
  
  
 resume
 ligne 47
 ligne 48
-Stop after row    48 in function lig.
+Stop after row    48 in function lig :
  
  
 resume
@@ -281,55 +279,55 @@ Breakpoint line number must be a positive integer
  
  
 setbpt("foo1"),dispbpt()   // set at line 1 (default)
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          1
  
 setbpt("foo1",5),dispbpt()  // add another bpt to a macro that already has bpts, and that is the last one
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          1
          5
  
 setbpt("foo2",5),setbpt("foo2",8),dispbpt()  // add bpts to a new macro (will always be placed at the end)
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          1
          5
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
  
 setbpt("foo1",9),dispbpt()  // add another bpt to a macro that already has bpts, and that is NOT the last one
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          9
          1
          5
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
  
 setbpt("foo1",5),dispbpt()  // check duplicates removal - line 5 should appear only once in foo1
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          9
          1
          5
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
  
 setbpt("foo2",5),dispbpt()  // check duplicates removal - line 5 should appear only once in foo2
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          9
          1
          5
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
@@ -359,13 +357,13 @@ Breakpoint line number must be a positive integer
  
  
 setbpt("foo1",[8,9]),dispbpt()    // add 2 bpts at once to a new macro
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          8
          9
  
 setbpt("foo1",5),setbpt("foo1",[2,3]),dispbpt()  // add further bpts to a macro that already has bpts, and that is the last one
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          8
          9
@@ -374,21 +372,21 @@ setbpt("foo1",5),setbpt("foo1",[2,3]),dispbpt()  // add further bpts to a macro 
          3
  
 setbpt("foo2",[5,8]),setbpt("foo2",7),dispbpt()  // add bpts to a new macro (will always be placed at the end)
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          8
          9
          5
          2
          3
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
          7
  
 setbpt("foo1",[10,15,20]),dispbpt()  // add bpts to a macro that already has bpts, and that is NOT the last one
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
         10
         15
@@ -398,14 +396,14 @@ setbpt("foo1",[10,15,20]),dispbpt()  // add bpts to a macro that already has bpt
          5
          2
          3
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
          7
  
 setbpt("foo1",[50,50,50,60,50,80,60]),dispbpt()  // check duplicates removal in vector input, not the last macro - lines 50 and 60 should appear only once in foo1
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
         50
         60
@@ -418,14 +416,14 @@ setbpt("foo1",[50,50,50,60,50,80,60]),dispbpt()  // check duplicates removal in 
          5
          2
          3
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
          7
  
 setbpt("foo1",[9,5,8,100,3,2]),dispbpt()  // check duplicates removal wrt existing bpts, not the last macro - all lines should appear only once in foo1
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
        100
         50
@@ -439,14 +437,14 @@ setbpt("foo1",[9,5,8,100,3,2]),dispbpt()  // check duplicates removal wrt existi
          5
          2
          3
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
          7
  
 setbpt("foo2",[50,50,50,60,50,80,60]),dispbpt()  // check duplicates removal in vector input, last macro - lines 50 and 60 should appear only once in foo1
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
        100
         50
@@ -460,7 +458,7 @@ setbpt("foo2",[50,50,50,60,50,80,60]),dispbpt()  // check duplicates removal in 
          5
          2
          3
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
@@ -470,7 +468,7 @@ setbpt("foo2",[50,50,50,60,50,80,60]),dispbpt()  // check duplicates removal in 
         80
  
 setbpt("foo2",[9,5,8,100,7,2]),dispbpt()  // check duplicates removal wrt existing bpts, last macro - all lines should appear only once in foo2
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
        100
         50
@@ -484,7 +482,7 @@ setbpt("foo2",[9,5,8,100,7,2]),dispbpt()  // check duplicates removal wrt existi
          5
          2
          3
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          5
          8
@@ -526,14 +524,14 @@ delbpt("foo1"),dispbpt()   // should display no output
 setbpt("foo1",[5,8,11]),delbpt("foo1"),dispbpt()   // should display no output
  
 setbpt("foo1",[5,8,11]),setbpt("foo2",[55,88,111]),delbpt("foo1"),dispbpt()   // should display the 3 bpts for foo2 only
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
         55
         88
        111
  
 setbpt("foo1",[5,8,11]),setbpt("foo2",[55,88,111]),delbpt("foo2"),dispbpt()   // should display the 3 bpts for foo1 only
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          5
          8
@@ -544,13 +542,13 @@ delbpt()
 setbpt("foo1",5),delbpt("foo1",5),dispbpt()   // should display no output
  
 setbpt("foo1",[5,6,8]),delbpt("foo1",5),dispbpt()    // lines 6 and 8 should appear only
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          6
          8
  
 setbpt("foo1",[5,10,11]),delbpt("foo1",10),dispbpt()    // lines 5, 6, 8 and 11 should appear only
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          6
          8
@@ -558,18 +556,18 @@ setbpt("foo1",[5,10,11]),delbpt("foo1",10),dispbpt()    // lines 5, 6, 8 and 11 
         11
  
 delbpt("foo1",11),dispbpt()    // lines 5, 6 and 8 should appear only
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          6
          8
          5
  
 setbpt("foo2",[20,21,22,23]),delbpt("foo1",6),dispbpt()    // lines 5 and 8 for foo1, and 20 to 23 for foo2
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          8
          5
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
         20
         21
@@ -577,11 +575,11 @@ setbpt("foo2",[20,21,22,23]),delbpt("foo1",6),dispbpt()    // lines 5 and 8 for 
         23
  
 delbpt("foo2",21),dispbpt()    // lines 5, and 8 for foo1, and 20, 22, 23 for foo2
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          8
          5
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
         20
         22
@@ -614,22 +612,22 @@ Breakpoint line number must be a positive integer
 delbpt("foo1",[8,9]),dispbpt()   // should display no output
  
 setbpt("foo1",[5,6,8,9]),delbpt("foo1",[8,5]),dispbpt()    // lines 6 and 9 should appear only
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          6
          9
  
 setbpt("foo1",[5,6,8,9]),delbpt("foo1",[8,5,8,8,6,5]),dispbpt()    // check duplicates removal in vector input - line 9 should appear only
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          9
  
 setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo1",[8,5,8,10]),dispbpt()    // not the last macro, check duplicates removal in vector input - lines 6 and 9 should appear for foo1, plus all the 5 bpts for foo2
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          9
          6
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
         10
         12
@@ -638,7 +636,7 @@ setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo1",[8,5,8,10
         18
  
 setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo1",[8,5,6,9]),dispbpt()    // remove all, not the last macro - should display no bpt for foo1, but all the 5 bpts for foo2
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
         10
         12
@@ -647,11 +645,11 @@ setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo1",[8,5,6,9]
         18
  
 setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo2",[14,18,10,20]),dispbpt()    // last macro - should display all the 4 bpts for foo1, but only lines 12 and 16 for foo2
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
         12
         16
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          5
          6
@@ -659,7 +657,7 @@ setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo2",[14,18,10
          9
  
 setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo2",[14,18,10,12,16]),dispbpt()    // remove all, last macro - should display all the 4 bpts for foo1, but no bpt for foo2
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          5
          6
@@ -690,7 +688,7 @@ endfunction
 setbpt("foo2",1)
  
 foo2()
-Stop after row     1 in function foo2.
+Stop after row     1 in function foo2 :
  
  
 delbpt("foo2",1)
@@ -700,14 +698,14 @@ dispbpt
 setbpt("foo1",[1:5]);setbpt("foo2",[1:5]);
  
 dispbpt
- breakpoints of function : foo1                   
+ breakpoints of  function :foo1                    
  
          1
          2
          3
          4
          5
- breakpoints of function : foo2                   
+ breakpoints of  function :foo2                    
  
          1
          2
@@ -722,7 +720,7 @@ dispbpt
 // and not Stop after row     2 in function foo1 :
  
 resume(0)
-Stop after row     2 in function foo2.
+Stop after row     2 in function foo2 :
  
  
 abort
@@ -734,7 +732,7 @@ delbpt()
  
 function foo1
 endfunction
-Warning : redefining function : foo1                    
+Warning :redefining function: foo1                    
  
  
 function foo2
@@ -747,13 +745,13 @@ function foo2
   b=foo3();
   disp("After");
 endfunction
-Warning : redefining function : foo2                    
+Warning :redefining function: foo2                    
  
  
 setbpt("foo2",[1:10]);
  
 foo2()
-Stop after row     1 in function foo2.
+Stop after row     6 in function foo2 :
  
  
 delbpt("foo2",[1:10])
@@ -767,7 +765,9 @@ setbpt("foo1",[1:2]);setbpt("foo2",[1:10]);setbpt("foo3",[1:5]);
 // and not Stop after row     1 in function foo3 :
  
 resume
-Stop after row     6 in function foo2.
+ 
+ Before   
+Stop after row     7 in function foo2 :
  
  
  

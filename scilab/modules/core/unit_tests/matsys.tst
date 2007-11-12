@@ -163,7 +163,7 @@ if whereis('aaa')<>[]  then pause,end
 //where
 deff('[a,b]=foo()','[a,b]=where()')
 [a,b]=foo();
-if a<>2|b<>'foo' then pause,end
+if a(1)<>1|b(1)<>'foo' then pause,end
 
 //funcprot
 funcprot(0)

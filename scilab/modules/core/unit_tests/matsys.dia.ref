@@ -325,7 +325,7 @@ Warning : redefining function : foo
  
 [a,b]=foo();
  
-if a<>2|b<>'foo' then bugmes();quit;end
+if a(1)<>1|b(1)<>'foo' then bugmes();quit;end
  
  
 //funcprot
