@@ -73,7 +73,7 @@ int OpenTCLsci(void)
 
 #ifdef _MSC_VER
   strcpy(TkScriptpath, SciPath);
-  strcat(TkScriptpath, _("/modules/tclsci/tcl/TK_Scilab.tcl"));
+  strcat(TkScriptpath, "/modules/tclsci/tcl/TK_Scilab.tcl");
 
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL)
@@ -91,7 +91,7 @@ int OpenTCLsci(void)
     }
   else closedir(tmpdir);
   strcpy(TkScriptpath,SciPath);
-  strcat(TkScriptpath, _("/modules/tclsci/tcl/TK_Scilab.tcl"));
+  strcat(TkScriptpath,"/modules/tclsci/tcl/TK_Scilab.tcl");
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL)
     {
@@ -106,19 +106,19 @@ int OpenTCLsci(void)
       TCLinterp = Tcl_CreateInterp();
 	  if ( TCLinterp == NULL )
 	  {
-		Scierror(999,_("Tcl Error  : Tcl_CreateInterp.\n"));
+		Scierror(999,_("Tcl Error : Tcl_CreateInterp.\n"));
 		return (1);
 	  }
 
       if ( Tcl_Init(TCLinterp) == TCL_ERROR)
 	  {
-		Scierror(999,_("Tcl Error  : Tcl_Init.\n"));
+		Scierror(999,_("Tcl Error : Tcl_Init %s\n"),TCLinterp->result);
 		return (1);
 	  }
 
       if ( Tk_Init(TCLinterp) == TCL_ERROR)
 	  {
-		Scierror(999,_("Tcl Error  : Tk_Init.\n"));
+		Scierror(999,_("Tcl Error : Tk_Init %s\n"),TCLinterp->result);
 		return (1);
 	  }
 
