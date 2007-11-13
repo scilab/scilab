@@ -16,5 +16,14 @@
 */
 int C2F(error)(integer *n);
 
+
+/**
+* error display and handling
+* as Scierror uses default message associated to 'n'
+* @param n error code
+*/
+void SciError(int n);
+
+
 #endif /* __ERROR_H__ */
 /*-----------------------------------------------------------------------------------*/ 

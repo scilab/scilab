@@ -27,13 +27,6 @@ void Msgs(int n,int ierr);
  * @TODO : add comment
  *
  * @param n 
- */
-void SciError(int n);
-
-/**
- * @TODO : add comment
- *
- * @param n 
  * @return <ReturnValue>
  */
 int Eptover(int n);

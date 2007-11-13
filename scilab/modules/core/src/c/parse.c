@@ -14,6 +14,7 @@
 #include "core_math.h"
 #include "../../tclsci/includes/tksynchro.h"
 #include "cvstr.h"
+#include "error.h"
 /*-----------------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -92,11 +93,6 @@ void handle_onprompt(int *n);
 void Msgs(int n,int ierr)
 {
    C2F(msgs)(&n,&ierr);
-}
-/*-----------------------------------------------------------------------------------*/
-void SciError(int n)
-{
- C2F(error)(&n);
 }
 /*-----------------------------------------------------------------------------------*/
 static int Compil(int code,int * val1,int val2,int val3,int val4)

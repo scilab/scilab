@@ -22,6 +22,7 @@
 #include "parse.h"
 #include "localization.h"
 #include "core_math.h"
+#include "error.h"
 
 #undef Lstk
 #undef Infstk
