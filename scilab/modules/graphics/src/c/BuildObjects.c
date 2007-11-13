@@ -177,8 +177,9 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   ppFigure->numsubwinselected = ppModel->numsubwinselected;
   ppFigure->wshow = ppModel->wshow ; 
   ppFigure->allredraw = ppModel->allredraw;
+  ppFigure->pModelData = NULL;
 
-  pFIGURE_FEATURE(pobj)->eventHandler = NULL ;
+  ppFigure->eventHandler = NULL ;
   sciInitIsEventHandlerEnable( pobj, sciGetIsEventHandlerEnable( pfiguremdl ) ) ;
   sciInitEventHandler( pobj, sciGetEventHandler( pfiguremdl ) ) ;
 

@@ -280,15 +280,10 @@ int DestroyFigure (sciPointObj * pthis)
   }
   FREE ((sciGetFontContext(pthis))->pfontname);
 
-  if (pthis == getFigureModel())
-  {
-    /* colormap is stored by Java classes for displayed objects */
-    FREE(pFIGURE_FEATURE(pthis)->pModelData->colorMap);
-  }
-
   FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
+  pFIGURE_FEATURE(pthis)->pModelData = NULL;
   sciStandardDestroyOperations(pthis) ;
   removeFigureFromList(pthis);
   return 0;

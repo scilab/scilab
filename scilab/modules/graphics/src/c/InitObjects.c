@@ -986,6 +986,8 @@ void destroyFigureModelData( FigureModelData * data )
 {
   if ( data != NULL )
   {
+    FREE(data->colorMap);
+    data->colorMap = NULL;
     FREE( data ) ;
     data = NULL ;
   }
