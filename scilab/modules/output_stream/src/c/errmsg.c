@@ -110,7 +110,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 11:
 		{
-			displayAndStoreError(_("Inconsistent right division \n"));
+			displayAndStoreError(_("Inconsistent right division\n"));
 		}
 		break;
 		case 12:
@@ -169,7 +169,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			if (Err == 1)
 			{
-				displayAndStoreError(_("first argument must be square matrix.\n"));
+				displayAndStoreError(_("First argument must be square matrix.\n"));
 			}
 			else
 			{
@@ -202,7 +202,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_2);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("bad call to primitive : %s\n"),NameVarOnStack);
+				displayAndStoreError(_("Bad call to primitive : %s\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -210,7 +210,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 26:
 		{
-			displayAndStoreError(_("too complex recursion! (recursion tables are full))"));
+			displayAndStoreError(_("Too complex recursion! (recursion tables are full))\n"));
 			/* break recursion */
 			C2F(recu).pt = Min(C2F(recu).pt,psiz);
 			*errtyp = 1; /* error not recoverable */
@@ -238,7 +238,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 31:
 		{
-			displayAndStoreError(_( "incorrect string\n"));
+			displayAndStoreError(_( "Incorrect string\n"));
 			*errtyp = 1; /* error not recoverable */
 		}
 		break;
@@ -254,7 +254,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 34:
 		{
-			displayAndStoreError(_("incorrect control intruction syntax.\n"));
+			displayAndStoreError(_("Incorrect control instruction syntax.\n"));
 			*errtyp = 1; /* error not recoverable */
 		}
 		break;
@@ -263,15 +263,15 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			switch (C2F(recu).ids[C2F(recu).pt * nsiz - nsiz]) /* find instruction type */
 			{
 				case 1: /* if */
-					displayAndStoreError(_("Syntax error in an if instruction.\n"));
+					displayAndStoreError(_("Syntax error in a 'if' instruction.\n"));
 				break;
 
 				case 2: /* while */
-					displayAndStoreError(_("Syntax error in a while instruction.\n"));
+					displayAndStoreError(_("Syntax error in a 'while' instruction.\n"));
 				break;
 
 				default: /* select/case */
-					displayAndStoreError(_("Syntax error in a select/case instruction.\n"));
+					displayAndStoreError(_("Syntax error in a 'select/case' instruction.\n"));
 				break;
 			}
 			*errtyp = 1; /* error not recoverable */
@@ -281,17 +281,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			if (Err == 1)
 			{
-				displayAndStoreError(_("first argument is incorrect.\n"));
+				displayAndStoreError(_("First argument is incorrect.\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("%dth argument is incorrect here.\n"),Err);
+				displayAndStoreError(_("%dth input argument is incorrect here.\n"),Err);
 			}
 		}
 		break;
 		case 37:
 		{
-			displayAndStoreError(_("incorrect function at line %d.\n"),Err);
+			displayAndStoreError(_("Incorrect function at line %d.\n"),Err);
 		}
 		break;
 		case 38:
@@ -301,23 +301,23 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 39:
 		{
-			displayAndStoreError(_("Incorrect number of arguments\n"));
+			displayAndStoreError(_("Incorrect number of input arguments\n"));
 		}
 		break;
 		case 40:
 		{
-			displayAndStoreError(_("waiting for end of command.\n"));
+			displayAndStoreError(_("Waiting for end of command.\n"));
 			*errtyp = 1; /* error not recoverable */
 		}
 		break;
 		case 41:
 		{
-			displayAndStoreError(_("Incompatible output parameter (LHS)\n"));
+			displayAndStoreError(_("Incompatible output argument (LHS)\n"));
 		}
 		break;
 		case 42:
 		{
-			displayAndStoreError(_("Incompatible input parameter (RHS)\n"));
+			displayAndStoreError(_("Incompatible input argument (RHS)\n"));
 		}
 		break;
 		case 43:
@@ -329,7 +329,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			if (Err == 1)
 			{
-				displayAndStoreError(_("first argument is incorrect.\n"));
+				displayAndStoreError(_("First argument is incorrect.\n"));
 			}
 			else
 			{
@@ -600,7 +600,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 80:
 		{
-			displayAndStoreError(_("incorrect function (argument n: %d) \n"),Err);
+			displayAndStoreError(_("Incorrect function (argument n: %d).\n"),Err);
 		}
 		break;
 		case 81:
@@ -1064,7 +1064,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 141:
 		{
-			displayAndStoreError(_("incorrect function (argument n:%d).\n"),Err);
+			displayAndStoreError(_("Incorrect function (argument n: %d).\n"),Err);
 		}
 		break;
 		case 142:
@@ -1276,7 +1276,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			else
 			{
-				displayAndStoreError(_("argument type must be boolean.\n"));
+				displayAndStoreError(_("Argument type must be boolean.\n"));
 			}
 		}
 		break;
@@ -1288,7 +1288,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			else
 			{
-				displayAndStoreError(_("argument type must be boolean or scalar.\n"));
+				displayAndStoreError(_("Argument type must be boolean or scalar.\n"));
 			}
 		}
 		break;
@@ -1296,7 +1296,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			if (Err != 1)
 			{
-				displayAndStoreError(_("%dth argument  must be a sparse matrix of scalars.\n"),Err);
+				displayAndStoreError(_("%dth argument must be a sparse matrix of scalars.\n"),Err);
 			}
 			else
 			{
@@ -1308,11 +1308,11 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			if (Err != 1)
 			{
-				displayAndStoreError(_("%dth argument  must be a  handle to sparse lu factors.\n"),Err);
+				displayAndStoreError(_("%dth argument must be a handle to sparse lu factors.\n"),Err);
 			}
 			else
 			{
-				displayAndStoreError(_("argument type must be a  handle to sparse lu factors.\n"));
+				displayAndStoreError(_("argument type must be a handle to sparse lu factors.\n"));
 			}
 		}
 		break;
@@ -1320,7 +1320,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		{
 			if (Err != 1)
 			{
-				displayAndStoreError(_("%dth argument  must be a sparse or full scalar matrix.\n"),Err);
+				displayAndStoreError(_("%dth argument must be a sparse or full scalar matrix.\n"),Err);
 			}
 			else
 			{
@@ -1397,7 +1397,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 231:
 		{
-			displayAndStoreError(_("First argument must be a single string.\n"));
+			displayAndStoreError(_("First input argument must be a single string.\n"));
 		}
 		break;
 		case 232:
@@ -1464,7 +1464,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 242:
 		{
-			displayAndStoreError(_("binary direct acces files must be opened by 'file'.\n"));
+			displayAndStoreError(_("Binary direct acces files must be opened by 'file'.\n"));
 		}
 		break;
 		case 243:
@@ -1485,7 +1485,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		case 246:
 		{
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
-			displayAndStoreError(_("function not defined for given argument type(s),\n"));
+			displayAndStoreError(_("Function not defined for given argument type(s),\n"));
 			if (NameVarOnStack)
 			{
 				displayAndStoreError(_("  check arguments or define function %s for overloading.\n"),NameVarOnStack);
@@ -1507,7 +1507,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			else
 			{
-				displayAndStoreError(_("argument is not a valid variable name.\n"));
+				displayAndStoreError(_("Argument is not a valid variable name.\n"));
 			}
 		}
 		break;
@@ -1597,7 +1597,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			else
 			{
-				displayAndStoreError(_("argument must not  contain NaN or Inf.\n"));
+				displayAndStoreError(_("Argument must not contain NaN or Inf.\n"));
 			}
 		}
 		break;
@@ -1629,7 +1629,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			else
 			{
-				displayAndStoreError(_("argument eigenvalues must have negative real parts.\n"));
+				displayAndStoreError(_("Argument eigenvalues must have negative real parts.\n"));
 			}
 		}
 		break;
@@ -1641,7 +1641,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			else
 			{
-				displayAndStoreError(_("argument eigenvalues modulus must be less than one.\n"));
+				displayAndStoreError(_("Argument eigenvalues modulus must be less than one.\n"));
 			}
 		}
 		break;
