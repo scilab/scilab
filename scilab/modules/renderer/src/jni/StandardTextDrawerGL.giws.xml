@@ -24,7 +24,7 @@
       <param type="double" name="rotationAngle" />
     </method>
     <method name="setTextContent" returnType="void">
-      <param type="String" name="text" />
+      <param type="String[]" name="text" />
       <param type="int" name="nbRow" />
       <param type="int" name="nbCol" />
     </method>

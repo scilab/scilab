@@ -64,7 +64,7 @@ void FilledTextDrawerJavaMapper::setTextParameters(int textAlignment, int color,
 /*------------------------------------------------------------------------------------------*/
 void FilledTextDrawerJavaMapper::setTextContent(char ** text, int nbRow, int nbCol)
 {
-  m_pJavaObject->setTextContent( (char *)(text[0]), 1, 1);
+  m_pJavaObject->setTextContent(text, nbRow * nbCol, nbRow, nbCol);
 }
 /*------------------------------------------------------------------------------------------*/
 void FilledTextDrawerJavaMapper::setCenterPosition(double centerX, double centerY, double centerZ)

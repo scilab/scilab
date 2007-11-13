@@ -155,14 +155,13 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 * @param nbRow text number of row
 	 * @param nbCol text number of columns
 	 */
-	public void setTextContent(String text, int nbRow, int nbCol) {
+	public void setTextContent(String[] text, int nbRow, int nbCol) {
 		// check if the matrix need to be created or resized.
 		if (textMatrix == null) {
 			textMatrix = new StringMatrixGL();
 		}
-		String[] texto = {"Hello", "I like scilab", "So much", "and you?"};
 		
-		textMatrix.setData(texto, 2, 2);
+		textMatrix.setData(text, nbRow, nbCol);
 
 	}
 	
