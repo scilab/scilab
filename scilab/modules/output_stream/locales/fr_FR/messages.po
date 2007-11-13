@@ -36,7 +36,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 54
 msgid "Incorrect assignment\n"
-msgstr ""
+msgstr "Affication incorrecte\n"
 
 #
 # File: src/c/errmsg.c, line: 66
@@ -92,7 +92,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 123
 msgid "Redefining permanent variable\n"
-msgstr ""
+msgstr "Redéfinition d'une variable permanente\n"
 
 #
 # File: src/c/errmsg.c, line: 128
@@ -107,29 +107,29 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 138
 msgid "Incorrect command!\n"
-msgstr ""
+msgstr "Commande incorrecte!\n"
 
 #
 # File: src/c/errmsg.c, line: 151
 msgid "stack size exceeded!\n"
-msgstr ""
+msgstr "Taille mémoire de Scilab (stack size) dépassée!\n"
 
 #
 # File: src/c/errmsg.c, line: 152
 msgid "Use stacksize function to increase it.\n"
-msgstr ""
+msgstr "Merci d'utiliser la fonction stacksize pour l'augmenter.\n"
 
 #
 # File: src/c/errmsg.c, line: 153
 #, c-format
 msgid "Memory used for variables : %d\n"
-msgstr ""
+msgstr "Mémoire utilisée par les variables : %d\n"
 
 #
 # File: src/c/errmsg.c, line: 154
 #, c-format
 msgid "Intermediate memory needed : %d\n"
-msgstr ""
+msgstr "Mémoire intermédiaire nécessaire : %d\n"
 
 #
 # File: src/c/errmsg.c, line: 155
@@ -165,8 +165,8 @@ msgstr "Index incorrect\n"
 
 #
 # File: src/c/errmsg.c, line: 187
-msgid "Recursion problems. Sorry....\n"
-msgstr ""
+msgid "Recursion problems. Sorry...\n"
+msgstr "Problème de récursion. Désolé...\n"
 
 #
 # File: src/c/errmsg.c, line: 192
@@ -289,8 +289,8 @@ msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 325
-msgid "Not implemented in scilab....\n"
-msgstr ""
+msgid "Not implemented in scilab...\n"
+msgstr "No implémenté dans Scilab...\n"
 
 #
 # File: src/c/errmsg.c, line: 336
@@ -306,8 +306,8 @@ msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 348
-msgid "incorrect syntax.\n"
-msgstr ""
+msgid "Incorrect syntax.\n"
+msgstr "Syntaxe incorrecte.\n"
 
 #
 # File: src/c/errmsg.c, line: 354
