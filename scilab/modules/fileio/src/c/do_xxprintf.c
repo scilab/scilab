@@ -11,6 +11,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "set_xxprintf.h"
+#include "fileio.h"
 /*-----------------------------------------------------------------------------------*/
 #define  PF_C		0
 #define  PF_S		1
@@ -27,8 +28,6 @@ static int GetString (char *fname,int *first,int *arg,int narg, int *ir,int ic,c
 static int GetScalarDouble(char *fname,int *first,int *arg,int narg, int *ir,int ic,double *dval);
 static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target);
 static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *asterisk,int asterisk_count,int conversion_type,double dval );
-/*-----------------------------------------------------------------------------------*/
-extern int SciStrtoStr(int *Scistring, int *nstring, int *ptrstrings, char **strh);
 /*-----------------------------------------------------------------------------------*/
 static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target)
 {
