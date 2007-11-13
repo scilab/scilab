@@ -82,7 +82,14 @@ c     strip blanks at the beginning of the line
  16   m=m+1
       if(buf(m:m).eq.' ') goto 16
 c
-      if(buf(m:m+10).eq.'endfunction') goto 61
+      if(buf(m:m+10).eq.'endfunction') then
+         if(first.eq.0) then  
+            istk(l)=blank
+            istk(l+1)=eol
+            l=l+2
+            goto 61
+         endif
+      endif
       if(buf(m:m+7).eq.'function') then
          if(first.eq.1) then
             j=m+7
@@ -193,6 +200,7 @@ C     .  lines into account
          istk(l+1)=blank
          l=l+2
  29   continue
+
       l=l-1
       icount=0
 c
@@ -237,8 +245,7 @@ c
       ili=ilt+4+mn
       ilt=ilt+4
       if (caller.eq.'deff') then
-c     . add a empty line for backward compatiblity
-c     . (first instruction on line #2)
+c     . add a initial empty line for backward compatiblity
          istk(l)=blank
          istk(l+1)=eol
          l=l+2
@@ -258,6 +265,13 @@ c     . (first instruction on line #2)
          l=l+1
          ili=ili+n
  35   continue
+      if (caller.eq.'deff') then
+c     . add a final empty line for backward compatiblity
+         istk(l)=blank
+         istk(l+1)=eol
+         l=l+2
+      endif
+
       goto 61
 c     
 c     analyse de la ligne de declaration
@@ -386,7 +400,6 @@ c
 
       if(lunit.eq.0) goto 33
 c     caller = 'getf' add a empty line for backward compatiblity
-c     first instruction on line #2
       istk(l)=eol
       istk(l+1)=blank
       l=l+2
@@ -411,7 +424,7 @@ c     fin
       l=l+1
       istk(il)=l-(il+1)
       lstk(top+1)=sadr(l)
-c     
+c
       lpt(1)=l1
       call putid(idstk(1,top),id)
 c

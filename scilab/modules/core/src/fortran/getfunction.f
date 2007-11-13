@@ -97,6 +97,7 @@ c
       call getsym1(1)
       if(sym.eq.eol.or.sym.eq.cmt.or.sym.eq.semi.or.sym.eq.comma) then
          lpt(4)=lpt(3)
+         char1=blank
          goto 46
       endif
       if(sym.ne.lparen) goto 50
@@ -105,16 +106,16 @@ c
       call getsym1(1)
       if(sym.eq.comma) goto  44
  45   if(sym.ne.rparen) goto 50
-c     ok, check is next sym is valid
+c     ok, check if next sym is valid
       call getsym1(1)
       if(sym.ne.eol.and.sym.ne.semi.and.
      $     sym.ne.comma.and.sym.ne.cmt) goto 50
       lpt(4)=lpt(3)
+      char1=blank
  46   continue
 c     rhs analyzed
       lf=lpt(4)
       if(sym.ne.eol) lf=lf-1
-
       n=lf-l4
       goto 60
  50   continue
@@ -177,7 +178,7 @@ c     statements of the function
             qcount=0
  311        qcount=qcount+1
             if(abs(char1).ne.quote) goto 312
-            call getsym1(1)
+            call getsym1(1)     
             goto 311
  312        continue
             if(2*int(qcount/2).ne.qcount)  strcnt=0
@@ -198,8 +199,9 @@ c     statements of the function
          elseif(strcnt.eq.0.and.eqid(syn,endfunc)) then
             if(fcount.eq.1) then 
                last=.true.
-               n=lpt(3)-1-l4
-c               lpt(4)=lpt(4)-1
+               n=lpt(3)-l4
+ 313           n=n-1
+               if(n.gt.0.and.lin(l4-1+n).eq.blank) goto 313
                goto 72
             endif
             fcount=fcount-1
@@ -223,8 +225,8 @@ c     .  looking for eol (needed when function is called in a for
 c     .  because in this case all the for content has already be put
 C     .   into lin
          l=lpt(4)-1
- 313     l=l+1
-         if (l.lt.lpt(6).and.lin(l).ne.eol) goto 313
+ 314     l=l+1
+         if (l.lt.lpt(6).and.lin(l).ne.eol) goto 314
          lpt(4)=l
          char1=blank
          call getsym1(1) 
@@ -236,7 +238,6 @@ C     .   into lin
 
 c     store a line
  72   continue
-      if(last.and.n.le.0) goto 73
       if(ilp+nr+1+ncont.ge.ilw) then
 c     .  allocate memory for rblock more rows
          ilw=ilw+rblock
@@ -268,8 +269,16 @@ c     .  add ncont empty lines before the logical line
          enddo
          ncont=0
       endif
-      istk(ilp+nr+1)=istk(ilp+nr)+n
-      call icopy(n,lin(l4),1,istk(ilc+nc),1)
+      if(last.and.n.le.0) then
+c     .  add an empty line if endfunction is at the beginning of a line
+        istk(ilp+nr+1)=istk(ilp+nr)+1
+         istk(ilc+nc)=blank
+         n=1
+      else
+         istk(ilp+nr+1)=istk(ilp+nr)+n
+c     .  write(6,'(30(i2,1x))') (lin(l4+ii),ii=0,n-1)
+         call icopy(n,lin(l4),1,istk(ilc+nc),1)
+      endif
       nc=nc+n
       nr=nr+1
       if(.not.last) then
