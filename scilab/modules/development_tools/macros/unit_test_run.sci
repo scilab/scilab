@@ -53,6 +53,7 @@ function unit_test_run(varargin)
 		// => Launch each test of each module
 		
 		module_list = getmodules();
+		module_list = gsort(module_list,"lr","i");
 		for k=1:size(module_list,'*')
 			unit_test_add_module(module_list(k));
 		end
@@ -251,7 +252,7 @@ endfunction
 function unit_test_add_module(module_mat)
 	
 	module_test_dir = SCI+"/modules/"+module_mat+"/unit_tests";
-	test_mat        = basename(listfiles(module_test_dir+"/*.tst"));
+	test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
 	
 	nl = size(test_mat,"*");
 	for i=1:nl
