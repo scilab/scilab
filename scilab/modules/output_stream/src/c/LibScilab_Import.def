@@ -6,9 +6,15 @@ EXPORTS
 com_
 iop_
 errgst_
+cha1_
+vstk_
+recu_
+prntid_
 errmgr_
 errloc_
 stack_
+showstack_
+get_sci_data_strings
 ExceptionMessage
 createvarfromptr_
 putlhsvar_
@@ -17,8 +23,10 @@ getrhsvar_
 checkrhs_
 checklhs_
 intersci_
-errmds_
 createvar_
 writelunitstring_
 getScilabMode
+cvname_
+getIntermediateMemoryNeeded
+getstackinfo_
 ;

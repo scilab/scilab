@@ -18,7 +18,11 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/basout.c \
 				src/c/sciprint.c \
 				src/c/sciprint_nd.c \
-				src/c/sciprint_full.c 
+				src/c/sciprint_full.c \
+				src/c/errmds.c \
+				src/c/errmsg.c \
+				src/c/error.c \
+				src/c/error_internal.c
 
 
 OUTPUT_STREAM_FORTRAN_SOURCES =
@@ -58,11 +62,11 @@ libscioutput_stream_la_sci_gateway_DATA =
 libscioutput_stream_la_includedir=$(pkgincludedir)/output_stream
 libscioutput_stream_la_include_HEADERS = includes/cerro.h \
 		includes/erro.h \
+		includes/error.h \
+		includes/errmds.h \
 		includes/sciprint.h \
 		includes/sciprint_nd.h \
 		includes/Scierror.h
-
-
 
 #### output_stream : demos files ####
 libscioutput_stream_la_demosintrodir=$(mydatadir)/demos/intro/

@@ -218,7 +218,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\errmds.c"
+				>
+			</File>
+			<File
+				RelativePath=".\errmsg.c"
+				>
+			</File>
+			<File
 				RelativePath=".\erro.c"
+				>
+			</File>
+			<File
+				RelativePath=".\error.c"
+				>
+			</File>
+			<File
+				RelativePath=".\error_internal.c"
 				>
 			</File>
 			<File
@@ -259,7 +275,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\errmds.h"
+				>
+			</File>
+			<File
+				RelativePath=".\errmsg.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\erro.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\error.h"
+				>
+			</File>
+			<File
+				RelativePath=".\error_internal.h"
 				>
 			</File>
 			<File
@@ -313,10 +345,6 @@
 		</File>
 		<File
 			RelativePath="..\..\output_stream.iss"
-			>
-		</File>
-		<File
-			RelativePath="..\..\output_stream.xml"
 			>
 		</File>
 		<File

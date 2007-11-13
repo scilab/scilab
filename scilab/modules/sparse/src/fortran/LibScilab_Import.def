@@ -18,7 +18,6 @@ setref_
 indxgc_
 isany_
 indxg_
-error_
 putlhsvar_
 createvar_
 getrhsvar_

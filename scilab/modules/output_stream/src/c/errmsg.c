@@ -12,8 +12,8 @@
 #include "stackinfo.h"
 #include "core_math.h"
 #include "inffic.h"
-#include "../../../output_stream/src/c/msgstore.h"
-#include "../../../output_stream/src/c/msgout.h" /* need to move errmsg in output_stream */
+#include "msgstore.h"
+#include "msgout.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(showstack)(); /* used in error 115 */
 extern int C2F(cvname)(); /* used to get function name */
@@ -1815,10 +1815,7 @@ static void displayAndStoreError(const char *msg,...)
 	{
 		int count=0;
 		count= vsnprintf(s_buf,bsiz, msg, ap );
-		if (count == -1)
-		{
-			s_buf[bsiz-1]='\0';
-		}
+		if (count == -1) s_buf[bsiz-1]='\0';
 	}
 #else
 	(void )vsprintf(s_buf, msg, ap );

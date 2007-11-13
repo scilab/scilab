@@ -29,7 +29,6 @@ callinterf_
 ;
 ;core_f
 ;
-error_
 msgs_
 ftob_
 allowptr_

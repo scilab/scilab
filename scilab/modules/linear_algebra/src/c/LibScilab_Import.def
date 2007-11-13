@@ -23,7 +23,6 @@ overload_
 gettype_
 putlhsvar_
 getrhsvar_
-error_
 intersci_
 createvar_
 checklhs_

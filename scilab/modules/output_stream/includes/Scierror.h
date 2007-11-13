@@ -6,13 +6,16 @@
 #define __SCIERROR__
 
 #include <stdarg.h>
-#include "PARAMS.h"
 
-#if defined (__STDC__) || defined (_MSC_VER)
-	int  Scierror __PARAMS((int iv,char *fmt,...));
-#else
-	int Scierror __PARAMS(());
-#endif 
+
+/* 
+* as sciprint but with an added first argument 
+* which is ignored (used in do_printf) 
+* @param iv error code
+* @param fmt
+* @param ...
+*/
+int  Scierror(int iv,char *fmt,...);
 
 #endif /* __SCIERROR__ */
 /*-----------------------------------------------------------------------------------*/ 

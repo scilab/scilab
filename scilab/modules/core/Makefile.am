@@ -82,7 +82,7 @@ src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
 src/c/ScilabEventsLoop.c \
-src/c/errmsg.c
+
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -422,6 +422,7 @@ includes/commandwords.h \
 includes/existfunction.h \
 includes/getfunctionslist.h \
 includes/ScilabEventsLoop.h \
+includes/stackinfo.h \
 includes/timerEvents.h
 
 

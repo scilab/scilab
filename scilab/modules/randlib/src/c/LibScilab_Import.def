@@ -23,8 +23,6 @@ callFunctionFromGateway
 ;
 ;core_f
 ;
-error_
-;
 ;elementary_functions_f
 ;
 logp1_

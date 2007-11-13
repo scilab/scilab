@@ -31,7 +31,6 @@ EXPORTS
  GetCurrentFileId
  islittleendian
  SetCurrentFileId
- error_
  scigetcwd_
  ExtendScilabFilesList
  getmatdims_
