@@ -21,15 +21,17 @@ function %st_p(s)
     var=f(k)
     value=s(var)
     tp=typeof(value)
-    if tp~='st' then
+    if tp=='st' then
+      str="[" + strcat(string(size(value)),"x")+" struct" + "]";
+    elseif type(value)> 10 then
+      str=tp
+    else
       sz=size(value)
-      if sz(1)==1 then // This line can avoid some stacksize error when field contains a big matrix 
+      if sz(1)==1&type(value)<>9 then // This line can avoid some stacksize error when field contains a big matrix 
 	str=sci2exp(value,ll(1))
       else
 	str='['+strcat(string(size(value)),'x')+' '+tp+']'
       end
-    else
-      str="[" + strcat(string(size(value)),"x")+" struct" + "]";
     end
     txt='   '+var
     if multi<=1 then
