@@ -37,49 +37,74 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>mlist object are very similar to tlist objects. But if <VERB>M</VERB>
-    is an mlist, for any index <VERB>i</VERB> which is not a field name,
-    <VERB>M(i)</VERB> is not the <VERB>i</VERB>th field of the list but is
-    interpreted as the <VERB>i</VERB> th entry of <VERB>M</VERB> seen as a
-    vector. This is the only difference between <VERB>mlist</VERB> and
-    <VERB>tlist</VERB>.</P>
+    <SP><VERB>mlist</VERB> object are very similar to <LINK>tlist</LINK> objects.
+    The only difference concerns the <LINK>extraction</LINK>  and <LINK>insertion</LINK>   syntax:
+    if <VERB>M</VERB> is an mlist, for any index <VERB>i</VERB> which is
+    not a field name, <VERB>M(i)</VERB> is no more the <VERB>i</VERB>th
+    field of the list.</SP>
+    <P> The semantic of the extraction and insertion syntax should be given by
+    an <LINK>overloading</LINK> functions.</P>
 
+    <P>The overloading function for extraction syntax <VERB>b=a(i1,...,in)</VERB>
+    has the following calling sequence: <VERB>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</VERB> </P>
+    <P>and the syntax
+    <VERB>[x1,..,xm]=a(i1,...,in)</VERB> has the following calling sequence: 
+    <VERB>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</VERB></P>
+    <P></P>
+    <P> The overloading function associated to the insertion syntax
+    <VERB>a(i1,...,in)=b</VERB>  has the following calling sequence: 
+    <VERB>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</VERB>. </P>
+    <P></P>
     <P>mlist fields must then be designed by their names. They can also be
     handled using the <VERB>getfield</VERB> and <VERB>setfield</VERB>
     functions.</P>
+
+
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
 
-M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
+M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
 //define display
-deff('%V_p(M)','disp(M.name+'':''+string(M.value))')
+function %V_p(M),disp(M.name+':'+string(M.value)),endfunction
+
 //define extraction operation
-deff('r=%V_e(i,M)',..
-'r=mlist([''V'',''name'',''value''],M.name(i),M.value(i))')
-M(2) // the second entry of the vector M
+function r=%V_e(varargin)
+   M=varargin($)
+   r=mlist(['V','name','value'],M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))
+endfunction
+M(2,:) // the second row of  M
 M.value 
 
-//define M as a tlist
-M=tlist(['V','name','value'],['a','b','c'],[1 2 3]);
+//define insertion operations
+function M=%V_i_V(varargin)
+   M=varargin($)
+   N=varargin($-1)
+   M.value(varargin(1:$-2))=N.value
+   M.name(varargin(1:$-2))=N.name
+endfunction
+M(1,1)=M(2,2)
+
+function M=%s_i_V(varargin) //insertion of a regular matrix into a V matrix
+   M=varargin($)
+   N=varargin($-1)
+   M.value(varargin(1:$-2))=N
+   M.name(varargin(1:$-2))=emptystr(N)
+endfunction
+M(1,1)=44
+
+
+
+//tlist case
+M=tlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
 M(2)
+M(2)='a'+string([1 2;3 4])
+
 
 M('name')
 
-//with two  indices
-M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2;3 4]);
-deff('r=%V_e(varargin)',[
-    'M=varargin($)';
-    'H=[''V'',''name'',''value'']'
-    'r=mlist(H,M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))'])
 
-M(:,2)
-// multidimensionnal array
-str=['a','b','c','d','e','f','g','h'];
-n=hypermat([2,2,2],str);
-v=hypermat([2,2,2],1:8);
-M=mlist(['V','name','value'],n,v);
-M(1,1:2,2)
+
  
   ]]></EXAMPLE>
 
