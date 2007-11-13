@@ -128,19 +128,19 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 154
 #, c-format
-msgid "Intermediate memory needed: %d\n"
+msgid "Intermediate memory needed : %d\n"
 msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 155
 #, c-format
-msgid "Total  memory available   : %d\n"
+msgid "Total memory available : %d\n"
 msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 160
 msgid "Too many variables!\n"
-msgstr ""
+msgstr "Trop de variables!\n"
 
 #
 # File: src/c/errmsg.c, line: 165
@@ -161,7 +161,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 182
 msgid "Invalid index\n"
-msgstr ""
+msgstr "Index incorrect\n"
 
 #
 # File: src/c/errmsg.c, line: 187
@@ -192,12 +192,12 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 221
 msgid "Division by zero...\n"
-msgstr ""
+msgstr "Division par zéro...\n"
 
 #
 # File: src/c/errmsg.c, line: 226
 msgid "Empty function...\n"
-msgstr ""
+msgstr "Fonction vide...\n"
 
 #
 # File: src/c/errmsg.c, line: 231
@@ -212,7 +212,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 241
 msgid "Incorrect string\n"
-msgstr ""
+msgstr "Chaîne de caractère incorrecte\n"
 
 #
 # File: src/c/errmsg.c, line: 247

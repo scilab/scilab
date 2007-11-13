@@ -151,8 +151,8 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			displayAndStoreError(_("stack size exceeded!\n"));
 			displayAndStoreError(_("Use stacksize function to increase it.\n"));
 			displayAndStoreError(_("Memory used for variables : %d\n"),Memory_used_for_variables);
-			displayAndStoreError(_("Intermediate memory needed: %d\n"),Intermediate_Memory);
-			displayAndStoreError(_("Total  memory available   : %d\n"),Total_Memory_available);
+			displayAndStoreError(_("Intermediate memory needed : %d\n"),Intermediate_Memory);
+			displayAndStoreError(_("Total memory available : %d\n"),Total_Memory_available);
 		}
 		break;
 		case 18:

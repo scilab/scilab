@@ -128,13 +128,13 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 154
 #, c-format
-msgid "Intermediate memory needed: %d\n"
+msgid "Intermediate memory needed : %d\n"
 msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 155
 #, c-format
-msgid "Total  memory available   : %d\n"
+msgid "Total memory available : %d\n"
 msgstr ""
 
 #
