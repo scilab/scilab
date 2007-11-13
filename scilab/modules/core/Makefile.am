@@ -81,7 +81,7 @@ src/c/librarieslist.c \
 src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
-src/c/ScilabEventsLoop.c \
+src/c/ScilabEventsLoop.c 
 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
