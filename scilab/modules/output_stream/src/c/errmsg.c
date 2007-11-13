@@ -44,7 +44,8 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 	C2F(errstore)(n);
 
 	*errtyp = 0; /* by default errors are recoverable */
-	/* errors not recoverable aren't catchable by try,catch */ 
+	/* errors not recoverable aren't catchable by top
+try,catch */ 
 	/* errors 2,3,16,26,31,34,35,40,46,47,276*/
 
     switch ((int)*n)
@@ -184,7 +185,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 22:
 		{
-			displayAndStoreError(_("Recursion problems. Sorry....\n"));
+			displayAndStoreError(_("Recursion problems. Sorry...\n"));
 		}
 		break;
 		case 23:
@@ -322,7 +323,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 43:
 		{
-			displayAndStoreError(_("Not implemented in scilab....\n"));
+			displayAndStoreError(_("Not implemented in scilab...\n"));
 		}
 		break;
 		case 44:
@@ -345,7 +346,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 		break;
 		case 46:
 		{
-			displayAndStoreError(_("incorrect syntax.\n"));
+			displayAndStoreError(_("Incorrect syntax.\n"));
 			*errtyp = 1; /* error not recoverable */
 		}
 		break;
