@@ -2,21 +2,22 @@
 c     Copyright INRIA/ENPC
       INCLUDE 'stack.h'
 c     
-      integer mode(2),top0
+      integer top0
       integer nocomp,profile
 
-      logical opened,eptover,cremat
+      logical cremat
       integer iadr,sadr
+      character *8 caller
 
-      save opened,lunit,job,icomp
+      save icomp
 c     
       data nocomp/23/,profile/25/
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
-      top0=top-rhs+1
+c      
       icomp=1
+      caller='deff'
       if(rhs.eq.3) then
          ilc=iadr(lstk(top))
          if(istk(ilc).eq.10) then
@@ -25,6 +26,8 @@ c
             elseif(istk(ilc+5+istk(ilc+1)*istk(ilc+2)).eq.profile) then
                icomp=2
             endif
+         else
+            caller='function'
          endif
          rhs=rhs-1
          top=top-1
@@ -37,10 +40,10 @@ c
          call error(41)
          return
       endif
-      
+      top0=top-rhs+1      
       il=iadr(lstk(top))
       nlines=1
-      call getfun(0,nlines,'deff')
+      call getfun(0,nlines,caller)
       if(err.gt.0.or.err1.gt.0) goto 999
       if(icomp.ne.0) then
          call unsfdcopy(lstk(top+1)-lstk(top),stk(lstk(top)),1,
