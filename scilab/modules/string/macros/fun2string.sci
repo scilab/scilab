@@ -15,6 +15,7 @@ function txt=fun2string(fun,nam)
     lst=fun
   end
   lst=mmodlst(lst)
+
   lcount=1;level=[0,0];
   quote=''''
   dquote='""'
@@ -23,6 +24,7 @@ function txt=fun2string(fun,nam)
   // add input variable in the defined variables
   inputs=lst(3);outputs=lst(2)
   sciexp=0
+//  cmt=lst(4)(1)=='31'
   crp=ins2sci(lst,4)
   //add the function header
   select size(outputs,'*')
@@ -30,18 +32,20 @@ function txt=fun2string(fun,nam)
   case 1 then outputs=outputs
   else outputs=lhsargs(outputs)
   end
+  
   select size(inputs,'*')
-  case 0 then inputs=''
+  case 0 then inputs='()'
   else inputs=rhsargs(inputs)
   end
-
+  txt=crp(1:$-2);
   hdr='function '+outputs+'='+nam+inputs;
-  crp1=crp(1)
-  if crp1<>'' then crp1=','+crp1,end
-  if crp(2)=='' then
-    txt=[hdr+crp1;'  '+crp(3:$-2);'endfunction']
+  if stripblanks(txt(1))<>''|txt=='' then hdr=hdr+',',end
+  txt(1)=hdr+txt(1);
+  txt(2:$-1)='  '+txt(2:$-1);
+  if stripblanks(txt($))=='' then
+    txt($)='endfunction';
   else
-    txt=[hdr+crp1;'  '+crp(2:$-2);'endfunction']
+    txt($)=txt($)+'endfunction';
   end
 endfunction
 
@@ -72,7 +76,6 @@ function txt=cla2sci(clause)
 // Author Serge Steer  
   typ=clause(1)
   txt=''
-
   //write(6,'cla2sci '+typ(1))
   level;level(1)=level(1)+1
   select typ(1)
@@ -429,7 +432,11 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	     st(1)=fn+','+st(1)
 	  end
 	  fn=st(:),
-	  fn=[fn;'endfunction']
+	  //remove last line trailing blanks
+	  ln=fn($),nl=length(ln)
+	  while nl>0&part(ln,nl)==' ' do nl=-1,end
+	  //add endfunction at the end of the last line
+	  fn($)=part(ln,1:nl)+'endfunction'
 	  txt=catcode(txt,fn)
 	  lst(ilst+1)(1)='0'; ilst=ilst+1;// ignore getnum (6)
 	  lst(ilst+1)(1)='0'; ilst=ilst+1;// ignore deff (20)
