@@ -2,7 +2,11 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-	#define _USE_32BIT_TIME_T 1
+	#ifdef _WIN32
+		#define _USE_32BIT_TIME_T 1
+	#else /* _WIN64 problem : convert int to time_t */
+	/* need to check */
+	#endif
 #endif
 /*-----------------------------------------------------------------------------------*/
 #include <time.h>
