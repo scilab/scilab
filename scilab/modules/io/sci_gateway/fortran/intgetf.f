@@ -46,7 +46,7 @@ c
       endif
 c     loop on all function defined in the file
       nline=0
- 55   call getfun(lunit,nline)
+ 55   call getfun(lunit,nline,'getf')
       fun=0
       job=fin
       if(err.gt.0.or.err1.gt.0) then

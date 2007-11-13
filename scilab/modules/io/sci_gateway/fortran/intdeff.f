@@ -40,7 +40,7 @@ c
       
       il=iadr(lstk(top))
       nlines=1
-      call getfun(0,nlines)
+      call getfun(0,nlines,'deff')
       if(err.gt.0.or.err1.gt.0) goto 999
       if(icomp.ne.0) then
          call unsfdcopy(lstk(top+1)-lstk(top),stk(lstk(top)),1,
