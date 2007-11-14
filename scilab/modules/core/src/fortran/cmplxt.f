@@ -7,8 +7,7 @@ c     niveau 1.
 c!
 c     Copyright INRIA
       integer istk(ni),cmplxt
-      parameter (bsiz=4096)
-      character buf*(bsiz)
+      character buf*(4096)
 c     
 
       parameter (nsiz=6)

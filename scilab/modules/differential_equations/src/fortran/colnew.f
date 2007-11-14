@@ -482,8 +482,8 @@ C
      1                   TOL, FIXPNT, ISPACE, FSPACE, IFLAG,
      2                   FSUB, DFSUB, GSUB, DGSUB, GUESS)
      
-      PARAMETER (BSIZ=4096)
-      CHARACTER BUF*(BSIZ)    
+      
+      CHARACTER BUF*(4096)    
 C
 C*********************************************************************
 C
@@ -505,7 +505,7 @@ c		   replaces write(6 ...) by basout bug 2598
 c      WRITE(6,99)
         OUT = 6
         WRITE(BUF,99)
-        call basout(io,OUT,BUF)
+        CALL BASOUT(io,OUT,BUF)
       ENDIF
   99  FORMAT(//,33H VERSION *COLNEW* OF COLSYS .    ,//)
 C
