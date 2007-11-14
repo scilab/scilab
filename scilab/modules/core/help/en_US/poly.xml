@@ -7,7 +7,7 @@
   <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="poly"> polynomial definition</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[p]=poly(a,&quot;x&quot;, [&quot;flag&quot;])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>p=poly(a,&quot;x&quot;, [&quot;flag&quot;])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -61,17 +61,30 @@
     </DESCRIPTION_INDENT> 
     <SP><VERB>s=poly(0,&quot;s&quot;)</VERB> is the seed for defining
       polynomials with symbol <VERB>&quot;s&quot;</VERB>.</SP>
-
   </DESCRIPTION>
   <EXAMPLE>
     <![CDATA[
     s=poly(0,"s");p=1+s+2*s^2;
     A=rand(2,2);poly(A,"x")
+    //rational fractions
+    h=(1+2*%s)/poly(1:4,'s','c')
     ]]>
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>coeff</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>roots</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>varn</LINK>
+    </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM>
+      <LINK>horner</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>derivate</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>matrices</LINK>
