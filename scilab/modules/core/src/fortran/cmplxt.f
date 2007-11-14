@@ -7,6 +7,8 @@ c     niveau 1.
 c!
 c     Copyright INRIA
       integer istk(ni),cmplxt
+      parameter (bsiz=4096)
+      character buf*(bsiz)
 c     
 
       parameter (nsiz=6)
@@ -163,7 +165,12 @@ c     matfns
          else
 c     code errone
             cmplxt=-1
-            write(6,'(''cmplxt : code erronne :'',i10)') op
+            out = 6
+c						replaces write(6 ...) by basout bug 2598            
+c           write(6,'(''cmplxt : code erronne :'',i10)') op
+            write(buf,'(''cmplxt : code erronne :'',i10)') op
+            call basout(io,out,buf)
+            
             return
          endif
       endif

@@ -145,7 +145,13 @@ c     nouvelle 'operation'
       endif
       op=istk(lc)
 c     
-      if(ddt.lt.-1) write(6,'(i7)') op
+      if(ddt.lt.-1) then
+c						replaces write(6 ...) by basout bug 2598                  
+c     write(6,'(i7)') op
+        write(buf(1:7),'(i7)') op
+        call basout(io,wte,buf(1:7))
+      endif
+      
       goto(20,25,40,42,30,41,45,50,50,60,
      &     120,90,90,90,90,100,12,101,102,90,
      &     103,104,105,106,107,108,110,90,115,116,
@@ -448,7 +454,11 @@ c
 c     for
 c     
  45   continue
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'for',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c      write(6,'(a10,5i5)') 'for',pt,lcf,ilr,lr,l-lr
+       write(buf,'(a10,5i5)') 'for',pt,lcf,ilr,lr,l-lr
+       call basout(io,wte,buf)
+      endif
       il=iadr(lr)
 c     on preserve les pointeurs de la liste courante
       pt=pt+1
@@ -563,7 +573,12 @@ c     on complete la liste "courante"
       lr=l
       ilr=ilr+1
       pt=pt-1
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'fin for',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c				replaces write(6 ...) by basout bug 2598                  
+c       write(6,'(a10,5i5)') 'fin for',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'fin for',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
       goto 10
 c
 c     if - while
@@ -571,7 +586,12 @@ c     if - while
       if(istk(lc+1).lt.0) goto 60
 c     ce qui suit (jusqu'a l'etiquette 60 correspond a la traduction 
 c     des if/while de  la version 3 et assure la compatibilite
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'if',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c					replaces write(6 ...) by basout bug 2598                  
+c          write(6,'(a10,5i5)') 'if',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'if',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
       il=iadr(lr)
 c     on preserve les pointeurs de la liste courante
       pt=pt+1
@@ -715,7 +735,12 @@ c     on complete la liste  "if" ou "while"
       lr=l
 c     code du else
 c     ---- on preserve les pointeurs  de la liste "if" ou "while"
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'else',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c				replaces write(6 ...) by basout bug 2598                  
+c        write(6,'(a10,5i5)') 'else',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'else',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
       rstk(pt)=9
       ids(1,pt)=ilr
       ids(2,pt)=lr
@@ -742,7 +767,12 @@ c     on complete la liste "if" ou "while"
       istk(ilr)=istk(ilr-1)+l-lr
       lr=l
       ilr=ilr+1
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'fin else',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'fin else',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'fin else',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
 c     on recharge les pointeurs de la liste courante
       ilr=ids(1,pt)
       lr=ids(2,pt)
@@ -752,12 +782,22 @@ c     on complete la liste "courante"
       lr=l
       ilr=ilr+1
       pt=pt-1
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'fin if',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'fin if',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'fin if',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
       goto 10
 c
 c     select - case
  60   continue
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'sel',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c					replaces write(6 ...) by basout bug 2598                  
+c          write(6,'(a10,5i5)') 'sel',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'sel',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
       il=iadr(lr)
 c     on preserve les pointeurs de la liste courante
       pt=pt+1
@@ -852,7 +892,12 @@ c
 c
  62   continue
 c
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'case',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'case',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'case',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
       icase=icase-1
       istk(ilr+1)=icase
 c
@@ -913,12 +958,22 @@ c     on complete la liste  "select case"
       istk(ilr)=istk(ilr-1)+l-lr
       lr=l
       ilr=ilr+1
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'fin case',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'fin case',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'fin case',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
 c
       if(icase.gt.1) goto 62
       lc=lc+1
 c     code du else
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'else',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'else',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'else',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
 c     ---- on preserve les pointeurs  de la liste  "select case"
       rstk(pt)=14
       ids(1,pt)=ilr
@@ -947,7 +1002,12 @@ c     on complete la liste  "select case"
       istk(ilr)=istk(ilr-1)+l-lr
       lr=l
       ilr=ilr+1
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'fin else',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'fin else',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'fin else',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
 c     on recharge les pointeurs de la liste courante
       ilr=ids(1,pt)
       lr=ids(2,pt)
@@ -957,7 +1017,12 @@ c     on complete la liste "courante"
       lr=l
       ilr=ilr+1
       pt=pt-1
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'fin sel',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'fin sel',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'fin sel',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
       goto 10
 c   
  80   continue
@@ -1325,7 +1390,12 @@ c
 c
  120   continue
 c     try/catch
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'try',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'try',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'try',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
       il=iadr(lr)
 c     on preserve les pointeurs de la liste courante
       pt=pt+1
@@ -1438,7 +1508,12 @@ c     add info on "catch instruction" into  "try catch" list
       ilr=ilr+1
       lr=l
       pt=pt-1
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'catch end',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'catch end',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'catch end',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
 c     recall the pointers on the current list
       ilr=ids(1,pt)
       lr=ids(2,pt)
@@ -1449,7 +1524,12 @@ c     add info on "try catch" into  current list
       lr=l
       ilr=ilr+1
       pt=pt-1
-      if(ddt.le.-1) write(6,'(a10,5i5)') 'try end',pt,lcf,ilr,lr,l-lr
+      if(ddt.le.-1) then
+c			 replaces write(6 ...) by basout bug 2598                  
+c      write(6,'(a10,5i5)') 'try end',pt,lcf,ilr,lr,l-lr
+        write(buf,'(a10,5i5)') 'try end',pt,lcf,ilr,lr,l-lr
+        call basout(io,wte,buf)
+      endif
       goto 10
 c   
 

@@ -5984,6 +5984,8 @@ C
       DIMENSION Y(*),YPRIME(*),DELTA(*),EWT(*),E(*)
       DIMENSION WM(*),IWM(*), RPAR(*),IPAR(*)
       EXTERNAL  RES, JACD
+      PARAMETER (BSIZ=4096)
+      character buf*(BSIZ) 
 C
       PARAMETER (LML=1, LMU=2, LMTYPE=4, LNRE=12, LNPD=22, LLCIWP=30)
 C
@@ -6041,7 +6043,11 @@ C     Do dense-matrix LU decomposition on J.
 C     
  230  CALL DGEFA(WM,NEQ,NEQ,IWM(LIPVT),IER)
       IF (IER .ne. 0)  THEN
-         write(6,'('' Singular Jacobian at IER ='',i3)')IER
+C 			 replaces write(6 ...) by basout bug 2598                  
+C        write(6,'('' Singular Jacobian at IER ='',i3)')IER
+        OUT = 6
+        write(buf,'('' Singular Jacobian at IER ='',i3)')IER
+        CALL basout(io,OUT,buf)
       endif
       RETURN
 C     

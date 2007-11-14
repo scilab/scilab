@@ -481,6 +481,9 @@ C
       ENTRY      COLSYS (NCOMP, M, ALEFT, ARIGHT, ZETA, IPAR, LTOL,
      1                   TOL, FIXPNT, ISPACE, FSPACE, IFLAG,
      2                   FSUB, DFSUB, GSUB, DGSUB, GUESS)
+     
+      PARAMETER (BSIZ=4096)
+      CHARACTER BUF*(BSIZ)    
 C
 C*********************************************************************
 C
@@ -497,7 +500,13 @@ C
 C...  specify machine dependent output unit  iout  and compute machine
 C...  dependent constant  precis = 100 * machine unit roundoff
 C
-      IF ( IPAR(7) .LE. 0 )  WRITE(6,99)
+      IF ( IPAR(7) .LE. 0 )  THEN
+c		   replaces write(6 ...) by basout bug 2598                  
+c      WRITE(6,99)
+        OUT = 6
+        WRITE(BUF,99)
+        call basout(io,OUT,BUF)
+      ENDIF
   99  FORMAT(//,33H VERSION *COLNEW* OF COLSYS .    ,//)
 C
       IOUT = 6
