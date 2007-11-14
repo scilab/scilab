@@ -19,18 +19,18 @@ msgstr ""
 # File: macros/unit_test_run.sci, line: 53
 #, c-format
 msgid "%s is not an installed module"
-msgstr ""
+msgstr "%s n'est pas un module installé"
 #
 # File: macros/unit_test_run.sci, line: 73
 msgid "Input argument sizes are not valid"
-msgstr ""
+msgstr "Taille des arguments d'entrées incorrecte"
 #
 # File: macros/unit_test_run.sci, line: 83
 #, c-format
 msgid "The test %s is not available from the %s module"
-msgstr ""
+msgstr "Le test %s n'est pas disponible pour le module %s"
 #
 # File: macros/unit_test_run.sci, line: 360
 #, c-format
 msgid "The ref file (%s) doesn''t exist"
-msgstr ""
+msgstr "Le fichier de référence (%s) n'existe pas"

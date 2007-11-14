@@ -18,11 +18,11 @@ msgstr ""
 #
 # File: src/nocompletion/nocompletion.c, line: 13
 msgid "completion interface not installed.\n"
-msgstr ""
+msgstr "Complétion non installée.\n"
 #
 # File: sci_gateway/c/sci_completion.c, line: 32
 # File: sci_gateway/c/sci_completion.c, line: 85
 # File: sci_gateway/c/sci_completion.c, line: 96
 # File: sci_gateway/c/sci_completion.c, line: 108
 msgid "Invalid parameter(s).\n"
-msgstr ""
+msgstr "Paramètre(s) incorrecte(s).\n"

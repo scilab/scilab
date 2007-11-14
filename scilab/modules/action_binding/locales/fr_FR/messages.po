@@ -19,7 +19,7 @@ msgstr ""
 # File: src/c/dynamic_menus.c, line: 107
 # File: src/c/dynamic_menus.c, line: 115
 msgid "send_command : No more memory.\n"
-msgstr ""
+msgstr "send_command: Pas assez de mémoire disponible.\n"
 
 #
 # File: src/c/dynamic_menus.c, line: 169

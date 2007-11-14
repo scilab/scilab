@@ -18,30 +18,28 @@ msgstr ""
 #
 # File: src/c/windows/command.c, line: 68
 msgid "Input line too long"
-msgstr ""
+msgstr "Ligne saisie trop longue"
 #
 # File: src/c/others/GetCharWithEventsLoop.c, line: 55
 msgid "Error.\n"
-msgstr ""
+msgstr "Erreur.\n"
 #
 # File: src/c/more.c, line: 18
 msgid "[More (y or n ) ?] "
-msgstr ""
+msgstr "[Plus (y ou n) ?] "
 #
 # File: sci_gateway/c/sci_lines.c, line: 50
 # File: sci_gateway/c/sci_lines.c, line: 66
 msgid "Invalid parameter(s).\n"
-msgstr ""
+msgstr "Paramètre(s) incorrect(s).\n"
 #
 # File: sci_gateway/c/sci_clc.c, line: 32
 # File: sci_gateway/c/sci_clc.c, line: 38
 msgid "Invalid parameter.\n"
-msgstr ""
+msgstr "Paramètre incorrect.\n"
 #
 # File: sci_gateway/c/sci_clc.c, line: 51
-msgid "not implemented in this mode.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_tohome.c, line: 24
 msgid "Not implemented in this mode.\n"
-msgstr ""
+msgstr "Pas implémenté dans ce mode.\n"
+
