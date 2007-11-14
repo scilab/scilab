@@ -19,7 +19,7 @@ msgstr ""
 # File: src/c/sciprint_full.c, line: 38
 # File: src/c/sciprint_full.c, line: 56
 msgid "sciprint_full : No more memory.\n"
-msgstr ""
+msgstr "sciprint_full : Plus assez de mémoire.\n"
 
 #
 # File: src/c/sciprint_full.c, line: 92
@@ -36,7 +36,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 54
 msgid "Incorrect assignment\n"
-msgstr "Affication incorrecte\n"
+msgstr "Affectation incorrecte\n"
 
 #
 # File: src/c/errmsg.c, line: 66
@@ -47,17 +47,17 @@ msgstr ""
 # File: src/c/errmsg.c, line: 75
 #, c-format
 msgid "Undefined variable : %s\n"
-msgstr ""
+msgstr "Variable non définie : %s\n"
 
 #
 # File: src/c/errmsg.c, line: 83
 msgid "Inconsistent column/row dimensions\n"
-msgstr ""
+msgstr "Dimensions colonne/ligne incohérentes\n"
 
 #
 # File: src/c/errmsg.c, line: 88
 msgid "Inconsistent row/column dimensions\n"
-msgstr ""
+msgstr "Dimensions ligne/colonne incohérentes\n"
 
 #
 # File: src/c/errmsg.c, line: 93
@@ -67,27 +67,27 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 98
 msgid "Inconsistent addition\n"
-msgstr ""
+msgstr "Addition incohérente\n"
 
 #
 # File: src/c/errmsg.c, line: 103
 msgid "Inconsistent subtraction\n"
-msgstr ""
+msgstr "Soustraction incohérente\n"
 
 #
 # File: src/c/errmsg.c, line: 108
 msgid "Inconsistent multiplication\n"
-msgstr ""
+msgstr "Multiplication incohérente\n"
 
 #
 # File: src/c/errmsg.c, line: 113
 msgid "Inconsistent right division\n"
-msgstr ""
+msgstr "Division droite incohérente\n"
 
 #
 # File: src/c/errmsg.c, line: 118
 msgid "Inconsistent left division\n"
-msgstr ""
+msgstr "Division gauche incohérente\n"
 
 #
 # File: src/c/errmsg.c, line: 123
@@ -135,7 +135,7 @@ msgstr "Mémoire intermédiaire nécessaire : %d\n"
 # File: src/c/errmsg.c, line: 155
 #, c-format
 msgid "Total memory available : %d\n"
-msgstr ""
+msgstr "Mémoire totale disponible : %d\n"
 
 #
 # File: src/c/errmsg.c, line: 160
@@ -176,13 +176,13 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 197
 msgid "Convergence problem...\n"
-msgstr ""
+msgstr "Problème de convergence...\n"
 
 #
 # File: src/c/errmsg.c, line: 205
 #, c-format
 msgid "Bad call to primitive : %s\n"
-msgstr ""
+msgstr "Mauvais appel de la primitive %s\n"
 
 #
 # File: src/c/errmsg.c, line: 213
@@ -207,7 +207,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 236
 msgid "Invalid exponent\n"
-msgstr ""
+msgstr "Exposant incorrecte\n"
 
 #
 # File: src/c/errmsg.c, line: 241
@@ -222,7 +222,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 252
 msgid "Too many ':'\n"
-msgstr ""
+msgstr "Trop de ':'\n"
 
 #
 # File: src/c/errmsg.c, line: 257
@@ -232,17 +232,17 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 266
 msgid "Syntax error in a 'if' instruction.\n"
-msgstr ""
+msgstr "Erreur de syntaxe dans une instruction 'if'.\n"
 
 #
 # File: src/c/errmsg.c, line: 270
 msgid "Syntax error in a 'while' instruction.\n"
-msgstr ""
+msgstr "Erreur de syntaxe dans une instruction 'while'.\n"
 
 #
 # File: src/c/errmsg.c, line: 274
 msgid "Syntax error in a 'select/case' instruction.\n"
-msgstr ""
+msgstr "Erreur de syntaxe dans une instruction 'select/case'.\n"
 
 #
 # File: src/c/errmsg.c, line: 284
@@ -260,12 +260,12 @@ msgstr ""
 # File: src/c/errmsg.c, line: 294
 #, c-format
 msgid "Incorrect function at line %d.\n"
-msgstr ""
+msgstr "Fonction incorrecte à la ligne %d.\n"
 
 #
 # File: src/c/errmsg.c, line: 299
 msgid "File name incorrect\n"
-msgstr ""
+msgstr "Nom de fichier incorrect\n"
 
 #
 # File: src/c/errmsg.c, line: 304
@@ -275,17 +275,17 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 309
 msgid "Waiting for end of command.\n"
-msgstr ""
+msgstr "En attente de la fin de la commande.\n"
 
 #
 # File: src/c/errmsg.c, line: 315
 msgid "Incompatible output argument (LHS)\n"
-msgstr ""
+msgstr "Argument de sortie incompatible (LHS)\n"
 
 #
 # File: src/c/errmsg.c, line: 320
 msgid "Incompatible input argument (RHS)\n"
-msgstr ""
+msgstr "Argument d'entrée incompatible (RHS)\n"
 
 #
 # File: src/c/errmsg.c, line: 325
@@ -312,7 +312,7 @@ msgstr "Syntaxe incorrecte.\n"
 #
 # File: src/c/errmsg.c, line: 354
 msgid " end or else is missing...\n"
-msgstr ""
+msgstr " end ou else est manquant...\n"
 
 #
 # File: src/c/errmsg.c, line: 360
@@ -323,13 +323,13 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 365
 msgid "Incorrect file or format\n"
-msgstr ""
+msgstr "Fichier ou format incorrect\n"
 
 #
 # File: src/c/errmsg.c, line: 373
 #, c-format
 msgid "subroutine not found : %s\n"
-msgstr ""
+msgstr "Fonction introuvable : %s\n"
 
 #
 # File: src/c/errmsg.c, line: 388
@@ -405,7 +405,7 @@ msgstr ""
 # File: src/c/errmsg.c, line: 458
 # File: src/c/errmsg.c, line: 474
 msgid "arguments are :\n"
-msgstr ""
+msgstr "Les arguments sont :\n"
 
 #
 # File: src/c/errmsg.c, line: 469
@@ -431,7 +431,7 @@ msgstr ""
 # File: src/c/errmsg.c, line: 492
 #, c-format
 msgid "end of file at line %d\n"
-msgstr ""
+msgstr "fin de fichier à la line %d\n"
 
 #
 # File: src/c/errmsg.c, line: 497
