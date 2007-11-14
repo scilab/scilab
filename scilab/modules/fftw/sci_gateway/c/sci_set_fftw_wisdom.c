@@ -7,6 +7,7 @@
 #include "callfftw.h"
 #include "MALLOC.h"
 #include "gw_fftw.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 
 /* Set fftw wisdom
@@ -36,8 +37,7 @@ int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
   for (j = 0; j < m1*n1; j++) {
     len += (int)strlen(Str1[j])+1;
     if ((Str = (char *)REALLOC(Str,sizeof(char)*(len))) == NULL) {
-       Scierror(999,"%s: "
-                    "Memory allocation error\n",
+       Scierror(999,_("%s: Memory allocation error\n"),
                     fname);
        return(0);
     }
@@ -59,15 +59,13 @@ int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
   if (Str1) {FREE(Str1); Str1=NULL;}
 
   if(!(call_fftw_import_wisdom_from_string(Str))) {
-   Scierror(999,"%s: "
-                "FFTW can't read wisdom\n",
+   Scierror(999,_("%s: FFTW can't read wisdom\n"),
                  fname);
   }
   FREE(Str);
  }
  else {
-  Scierror(999,"%s: "
-                "Bad Rhs type parameter\n",
+  Scierror(999,_("%s: Bad Rhs type parameter\n"),
                 fname);
  }
  PutLhsVar();

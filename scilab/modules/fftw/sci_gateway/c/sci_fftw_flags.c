@@ -8,6 +8,7 @@
 #include "fftw_utilities.h"
 #include "MALLOC.h"
 #include "gw_fftw.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern unsigned cur_fftw_flags;
 /*-----------------------------------------------------------------------------------*/
@@ -124,8 +125,7 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
       if (strcmp(Str1[j],Str[i])==0) break;
      }
      if (i==nb_flag) {
-      Scierror(999,"%s: "
-                   "Bad flag %s for Rhs(1) parameter\n",
+      Scierror(999,_("%s: Bad flag %s for the first input parameter\n"),
                   fname,Str1[j]);
       return(0);
      }
@@ -145,8 +145,7 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
    }
 
    else {
-    Scierror(53,"%s: "
-                "Bad type for Rhs(1) parameter\n",
+    Scierror(53,_("%s: Bad type for the first input parameter\n"),
                 fname);
     return(0);
    }
@@ -164,19 +163,17 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
   if(cur_fftw_flags==0) {
    j = 1;
    if ((Str3 = (char **)MALLOC(sizeof(char *))) == NULL) {
-     Scierror(999,"%s: "
-                  "Memory allocation error\n",
+     Scierror(999,_("%s: Memory allocation error\n"),
                   fname);
      return(0);
    }
    len = (int)strlen(Str[0]);
    if ((Str3[0] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) {
-     Scierror(999,"%s: "
-                  "Memory allocation error\n",
+     Scierror(999,_("%s: Memory allocation error\n"),
                   fname);
      return(0);
    }
-   sprintf(Str3[0],"%s",Str[0]);
+   strcpy(Str3[0],Str[0]);
   }
   else {
    j = 0;
@@ -184,19 +181,17 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
     if((cur_fftw_flags&flagt[i])==flagt[i]) {
      j++;
      if ((Str3 = (char **)REALLOC(Str3,sizeof(char *)*j)) == NULL) {
-       Scierror(999,"%s: "
-                    "Memory allocation error\n",
+       Scierror(999,_("%s: Memory allocation error\n"),
                     fname);
        return(0);
      }
      len = (int)strlen(Str[i]);
      if ((Str3[j-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) {
-       Scierror(999,"%s: "
-                    "Memory allocation error\n",
+       Scierror(999,_("%s: Memory allocation error\n"),
                     fname);
        return(0);
      }
-     sprintf(Str3[j-1],"%s",Str[i]);
+     strcpy(Str3[j-1],Str[i]);
     }
    }
   }

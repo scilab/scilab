@@ -9,6 +9,7 @@
 #include "callfftw.h"
 #include "MALLOC.h"
 #include "gw_fftw.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern unsigned cur_fftw_flags;
 /*-----------------------------------------------------------------------------------*/
@@ -86,8 +87,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
   /* 3 rhs not allowed */
   if (Rhs==3) {
-   Scierror(39,"%s: "
-               "Bad number of Rhs parameters\n",
+   Scierror(39,_("%s: Bad number of input parameters\n"),
                fname);
    return(0);
   }
@@ -155,16 +155,14 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
    }
    /* if is not int/double then error message */
    else {
-    Scierror(53,"%s: "
-                "Bad type for Rhs(2) parameter\n",
+    Scierror(53,_("%s: Bad type for the second input parameter\n"),
                 fname);
     return(0);
    }
 
    /* check value of second rhs argument */
    if ((isn!=1)&&(isn!=-1)) {
-    Scierror(53,"%s: "
-                "Bad value for Rhs(2) parameter\n",
+    Scierror(53,_("%s: Bad value for the second input parameter\n"),
                 fname);
     return(0);
    }
@@ -179,8 +177,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* look at for type of Rhs(3) */
     if ((VarType(3)!=sci_ints)&&(VarType(3)!=sci_matrix)) {
-     Scierror(53,"%s: "
-                 "Bad type for Rhs(3) parameter\n",
+     Scierror(53,_("%s: Bad type for the third input parameter\n"),
                  fname);
      return(0);
     }
@@ -190,8 +187,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* check dims */
     if (m3*n3==0) {
-     Scierror(999,"%s: "
-                  "Bad size for Rhs(3) parameter\n",
+     Scierror(999,_("%s: Bad size for the third input parameter\n"),
                   fname);
      return(0);
     }
@@ -204,8 +200,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* look at for type of Rhs(4) */
     if ((VarType(4)!=sci_ints)&&(VarType(4)!=sci_matrix)) { /* int */
-     Scierror(53,"%s: "
-                 "Bad type for Rhs(4) parameter\n",
+     Scierror(53,_("%s: Bad type for the fourth input parameter\n"),
                  fname);
      return(0);
     }
@@ -215,32 +210,27 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* check dims */
     if (m4*n4==0) {
-     Scierror(999,"%s: "
-                  "Bad size for Rhs(4) parameter\n",
+     Scierror(999,_("%s: Bad size for the fourth input parameter\n"),
                   fname);
      return(0);
     }
 
     /* cross variable size checking */
     if (mn4!=mn3) {
-     Scierror(999,"%s: "
-                  "Size of Rhs(3) and Rhs(4) parameters "
-                  "must be the same\n",
+     Scierror(999,_("%s: Size of the third and fourth input parameters must be the same\n"),
                    fname);
      return(0);
     }
 
     /* alloc n/nspn with MALLOC */
     if ((n=(int *)MALLOC(mn4*sizeof(int)))==NULL) {
-     Scierror(999,"%s: "
-                  "Allocation memory error\n",
+     Scierror(999,_("%s: Allocation memory error\n"),
                   fname);
      return(0);
     }
 
     if ((nspn=(int *)MALLOC(mn4*sizeof(int)))==NULL) {
-     Scierror(999,"%s: "
-                  "Allocation memory error\n",
+     Scierror(999,_("%s: Allocation memory error\n"),
                   fname);
      FREE(n);
      return(0);
@@ -296,8 +286,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      }
      /* check value of n[i] */
      if (n[i]<=0) {
-      Scierror(999,"%s: "
-                   "Bad value for Rhs(3) parameter : %d\n",
+      Scierror(999,_("%s: Bad value for the third input parameter : %d\n"),
                     fname,n[i]);
       FREE(n);FREE(nspn);
       return(0);
@@ -350,8 +339,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      }
      /* check value of nspn[i] */
      if (nspn[i]<=0) {
-      Scierror(999,"%s: "
-                   "Bad value for Rhs(4) parameter : %d\n",
+      Scierror(999,_("%s: Bad value for the fourth input parameter : %d\n"),
                     fname,nspn[i]);
       FREE(n);FREE(nspn);
       return(0);
@@ -416,8 +404,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
    /* set parameters of fftw_plan_guru_split_dft */
    gdim.rank=1;
    if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-    Scierror(999,"%s: "
-                 "Allocation memory error\n",
+    Scierror(999,_("%s: Allocation memory error\n"),
                  fname);
     return(0);
    }
@@ -435,8 +422,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
     /* set parameters of fftw_plan_guru_split_dft */
     gdim.rank=2;
     if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
-     Scierror(999,"%s: "
-                  "Allocation memory error\n",
+     Scierror(999,_("%s: Allocation memory error\n"),
                   fname);
      return(0);
     }
@@ -464,8 +450,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      /* set parameters of fftw_plan_guru_split_dft */
      gdim.rank = 1;
      if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-      Scierror(999,"%s: "
-                   "Allocation memory error\n",
+      Scierror(999,_("%s: Allocation memory error\n"),
                    fname);
       return(0);
      }
@@ -476,8 +461,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
      gdim.howmany_rank = 1;
      if ((gdim.howmany_dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-      Scierror(999,"%s: "
-                   "Allocation memory error\n",
+      Scierror(999,_("%s: Allocation memory error\n"),
                    fname);
       return(0);
      }
@@ -500,8 +484,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      if ((p = GetFFTWPlan(&gdim,
                           ri, ii, ro, io,
                           cur_fftw_flags,isn)) == NULL) {
-      Scierror(999,"%s: "
-                   "Allocation memory error\n",
+      Scierror(999,_("%s: Allocation memory error\n"),
                    fname);
       FREE(gdim.dims);
       FREE(gdim.howmany_dims);
@@ -542,8 +525,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
       /* set parameters of fftw_plan_guru_split_dft */
       gdim.rank=mn3;
       if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
-       Scierror(999,"%s: "
-                    "Allocation memory error\n",
+       Scierror(999,_("%s: Allocation memory error\n"),
                     fname);
        return(0);
       }
@@ -570,8 +552,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   if ((p = GetFFTWPlan(&gdim,
                        ri, ii, ro, io,
                        cur_fftw_flags,isn)) == NULL) {
-   Scierror(999,"%s: "
-                "Allocation memory error\n",
+   Scierror(999,_("%s: Allocation memory error\n"),
                 fname);
    FREE(gdim.dims);
    FREE(gdim.howmany_dims);

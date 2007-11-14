@@ -7,6 +7,7 @@
 #include "callfftw.h"
 #include "MALLOC.h"
 #include "gw_fftw.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 
 /* Return text of fftw wisdom
@@ -35,15 +36,13 @@ int sci_get_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
    if (Str[i] == '\n') {
      n1++;
      if ((Str1 = (char **)REALLOC(Str1,sizeof(char *)*n1)) == NULL) {
-       Scierror(999,"%s: "
-                    "Memory allocation error\n",
+       Scierror(999,_("%s: Memory allocation error\n"),
                     fname);
        return(0);
      }
      len = i-j;
      if ((Str1[n1-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) {
-       Scierror(999,"%s: "
-                    "Memory allocation error\n",
+       Scierror(999,_("%s: Memory allocation error\n"),
                     fname);
        return(0);
      }
@@ -57,14 +56,12 @@ int sci_get_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
 
   n1++;
   if ((Str1 = (char **)REALLOC(Str1,sizeof(char *)*n1)) == NULL) {
-     Scierror(999,"%s: "
-                  "Memory allocation error\n",
+     Scierror(999,_("%s: Memory allocation error\n"),
                   fname);
      return(0);
   }
   if ((Str1[n1-1] = (char *)MALLOC(sizeof(char))) == NULL) {
-     Scierror(999,"%s: "
-                  "Memory allocation error\n",
+     Scierror(999,_("%s: Memory allocation error\n"),
                   fname);
      return(0);
   }
