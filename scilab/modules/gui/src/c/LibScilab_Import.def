@@ -1,0 +1,21 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+com_
+checklhs_
+checkrhs_
+IsAScalar
+createvar_
+createvarfromptr_
+putlhsvar_
+stack_
+getrhsvar_
+gettype_
+intersci_
+vstk_
+getScilabMode
+callFunctionFromGateway
+SetFunction
+;
+
