@@ -10,14 +10,172 @@
     <CALLING_SEQUENCE_ITEM>[txt]=macr2lst(function-name)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
-    <P>
+    <SP>
     This primitive converts a compiled Scilab function <VERB>function-name</VERB>
     into a list which codes the internal representation of
-    the function. For use with <VERB>mac2for</VERB>.</P>
+    the function (reverse polish notation).</SP>
+    <P>The first entry of the list is the function name, the second
+    and third are respectively the vectors of left hand side variables
+    and right hand side variables names. The following entries are either basic operation records 
+    
+    either lists with contains the hierachical control structures like
+    if , for, ... </P>
+    <P>Basic operation records are described by a character string
+    vector whose first element represents the opcode. </P>
+    <TABLE>
+      <TABLE_NEW_ROW>
+	<TABLE_NEW_COLUMN>op codes</TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>meaning</TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>parameters</TABLE_NEW_COLUMN>     
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+	<TABLE_NEW_COLUMN>"1"</TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>No more used</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>     
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>
+	 <TABLE_NEW_COLUMN>"2"</TABLE_NEW_COLUMN>
+	 <TABLE_NEW_COLUMN>variable or function reference</TABLE_NEW_COLUMN>
+	 <TABLE_NEW_COLUMN>variable name, #rhs, #lhs</TABLE_NEW_COLUMN>  
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>"3"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>put a string in the stack</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>the string</TABLE_NEW_COLUMN>  
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>    
+        <TABLE_NEW_COLUMN>"4"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>put am empty matrix in the stack</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN> 
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>     
+        <TABLE_NEW_COLUMN>"5"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>apply an operation</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>operation code, #rhs,#lhs</TABLE_NEW_COLUMN>  
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>    
+        <TABLE_NEW_COLUMN>"6"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>put a number  in the stack</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>the number</TABLE_NEW_COLUMN>
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>      
+        <TABLE_NEW_COLUMN>"7"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>put a number  in the stack</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>the number</TABLE_NEW_COLUMN> 
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>     
+        <TABLE_NEW_COLUMN>"12"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>pause command</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>      
+        <TABLE_NEW_COLUMN>"12"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>pause command</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN> 
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>     
+        <TABLE_NEW_COLUMN>"13"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>break command</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>      
+        <TABLE_NEW_COLUMN>"14"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>abort command</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN> 
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>     
+        <TABLE_NEW_COLUMN>"15"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>end of line mark</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>     
+        <TABLE_NEW_COLUMN>"17"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>quit command</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>     
+
+        <TABLE_NEW_COLUMN>"18"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>named variable</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>variable name</TABLE_NEW_COLUMN>
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>     
+        <TABLE_NEW_COLUMN>"19"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>create recursive index structure</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>path length, number of final indices</TABLE_NEW_COLUMN>
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>  
+        <TABLE_NEW_COLUMN>"20"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>function call</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>function name, #rhs, #lhs </TABLE_NEW_COLUMN>  
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>  
+        <TABLE_NEW_COLUMN>"23"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>name2var</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>variable name</TABLE_NEW_COLUMN>  
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>  
+        <TABLE_NEW_COLUMN>"24"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>profile record</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>number of call, time spend </TABLE_NEW_COLUMN>  
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>  
+        <TABLE_NEW_COLUMN>"26"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>put a vector of strings in the stack</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>#rows, #columns, element sequence</TABLE_NEW_COLUMN>  
+       </TABLE_NEW_ROW>
+     <TABLE_NEW_ROW>  
+        <TABLE_NEW_COLUMN>"27"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>put a builtin reference in the stack</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>interface number, position in interface, function name</TABLE_NEW_COLUMN>  
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>"28"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>continue command</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>   
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>   
+        <TABLE_NEW_COLUMN>"29"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>assignment</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>#lhs, display mode, (variable name, #rhs)*</TABLE_NEW_COLUMN>      
+       </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>   
+        <TABLE_NEW_COLUMN>"30"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>logical expression short circuit</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>type, jump size</TABLE_NEW_COLUMN>      
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>"99"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>return command</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>      
+      </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> &gt; "100"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>builtin call (obsolete)</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>100*fun, #rhs, #lhs, fin</TABLE_NEW_COLUMN>      
+      </TABLE_NEW_ROW>
+  </TABLE>
+ <P>The <LINK>fun2string</LINK> function can be used to generate the intial code.</P>
   </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//DISPLAY
+function y=foo(x,flag)
+  if flag then 
+    y=sin(x)
+  else
+    y=cos(x)
+  end
+endfunction
+L=macr2lst(foo)
+fun2string(L)
+
+   ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>macrovar</LINK>
-    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>macrovar</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>fun2string</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>macr2tree</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>tree2code</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
