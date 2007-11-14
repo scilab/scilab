@@ -12,7 +12,7 @@ function show_startupinfo()
   if (getlanguage() == 'fr' ) then
     DialogNewGraphic=["Attention:"
 		      " "
-		      "Les versions Scilab 4.x seront les dernières à fonctionner"
+		      "Les versions Scilab 4.x etaient les dernières à fonctionner"
 		      "avec l''ancien mode graphique."
 		      " "
 		      "Veuillez lire le fichier RELEASE_NOTES pour plus de détails."]
@@ -20,7 +20,7 @@ function show_startupinfo()
   else
     DialogNewGraphic=["Warning:"
  		      " "
-		      "Scilab 4.x versions family will be the last versions working"
+		      "Scilab 4.x versions family were the last versions working"
 		      "with the old graphics mode."
 		      " "
 		      "Please read the RELEASE_NOTES file for more details."]
@@ -32,9 +32,16 @@ function show_startupinfo()
       show=grep(mgetl(SCIHOME+'/.scilab_settings'),'displayDialogNewGraphic=no')==[]
     end
     if show
-      if x_message(DialogNewGraphic, Buttons) == 2 then
+
+	mprintf('\n');
+	for i=1:size(DialogNewGraphic,'*')
+	  mprintf('%s\n',DialogNewGraphic(i));
+	end
 	mputl('displayDialogNewGraphic=no',SCIHOME+'/.scilab_settings')
-      end
+// 	x_message disabled (x11 ref removed)
+//      if x_message(DialogNewGraphic, Buttons) == 2 then
+//	mputl('displayDialogNewGraphic=no',SCIHOME+'/.scilab_settings')
+//      end
     end
   end
 endfunction
