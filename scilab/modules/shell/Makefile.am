@@ -23,7 +23,8 @@ src/c/TerminateShell.c
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
 sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_tohome.c \
-sci_gateway/c/sci_lines.c
+sci_gateway/c/sci_lines.c \
+sci_gateway/c/sci_prompt.c
 
 # Includes need for the compilation
 libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ \
