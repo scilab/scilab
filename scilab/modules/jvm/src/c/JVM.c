@@ -40,9 +40,9 @@ JNIEnv *getScilabJNIEnv(void)
 	else
 	{
 #ifdef _MSC_VER
-		MessageBox(NULL,_("Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function."),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+		MessageBox(NULL,_("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-		printf(_("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"));
+		printf(_("Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function."));
 #endif
 	}
 	return JNIEnv_SCILAB;
@@ -124,9 +124,9 @@ BOOL startJVM(char *SCI_PATH)
 			vm_args.version = JNI_VERSION_1_4;
 #else
 #ifdef _MSC_VER
-			MessageBox(NULL,_("Incorrect version JNI (needs at least JDK 1.4)"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+			MessageBox(NULL,_("\nIncorrect version JNI (needs at least JDK 1.4)\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-			printf(_("\n Error : Incorrect version JNI (needs at least JDK 1.4).\n"));
+			printf(_("\nIncorrect version JNI (needs at least JDK 1.4).\n"));
 #endif
 			exit(1);
 #endif
@@ -164,9 +164,9 @@ BOOL startJVM(char *SCI_PATH)
 	if (res != 0)
 	{
 #ifdef _MSC_VER
-		MessageBox(NULL,_("Call to AttachCurrentThread."),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+		MessageBox(NULL,_("\nCall to AttachCurrentThread.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-		printf(_("\n Error : Call to AttachCurrentThread.\n"));
+		printf(_("\nCall to AttachCurrentThread.\n"));
 #endif
 		FreeDynLibJVM();
 		if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}

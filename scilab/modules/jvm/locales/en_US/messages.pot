@@ -49,8 +49,12 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 32
-msgid "Scilab cannot open JVM library."
+# File: src/c/InitializeJVM.c, line: 33
+# File: src/c/InitializeJVM.c, line: 35
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot open JVM library.\n"
 msgstr ""
 
 #
@@ -63,29 +67,13 @@ msgid "Error"
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 34
+# File: src/c/InitializeJVM.c, line: 48
 #, c-format
 msgid ""
 "\n"
-"Error : Scilab cannot open JVM library.\n"
-msgstr ""
-
-#
-# File: src/c/InitializeJVM.c, line: 47
-msgid ""
 "Scilab cannot create Scilab Java Main-Class. (we have not been able to find "
 "the main Scilab class. Check if the Scilab and thirdparty packages are "
-"available)."
-msgstr ""
-
-#
-# File: src/c/InitializeJVM.c, line: 49
-#, c-format
-msgid ""
-"\n"
-"Error : Scilab cannot create Scilab Java Main-Class. (we have not been able "
-"to find the main Scilab class. Check if the Scilab and thirdparty packages "
-"are available).\n"
+"available).\n"
 msgstr ""
 
 #
@@ -131,15 +119,7 @@ msgid "Undefined error code in the JNI. Weird problem"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 42
-msgid ""
-"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
-"has been loaded by Scilab before calling this function."
-msgstr ""
-
-#
 # File: src/c/JVM.c, line: 44
-#, c-format
 msgid ""
 "\n"
 "Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
@@ -147,16 +127,26 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 126
-msgid "Incorrect version JNI (needs at least JDK 1.4)"
+# File: src/c/JVM.c, line: 42
+#, c-format
+msgid ""
+"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
+"has been loaded by Scilab before calling this function."
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 128
+# File: src/c/JVM.c, line: 127
+msgid ""
+"\n"
+"Incorrect version JNI (needs at least JDK 1.4)\n"
+msgstr ""
+
+#
+# File: src/c/JVM.c, line: 129
 #, c-format
 msgid ""
 "\n"
-" Error : Incorrect version JNI (needs at least JDK 1.4).\n"
+"Incorrect version JNI (needs at least JDK 1.4).\n"
 msgstr ""
 
 #
@@ -166,21 +156,17 @@ msgid "Error in the creation of the Java VM : %s\n"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 166
-msgid "Call to AttachCurrentThread."
-msgstr ""
-
-#
-# File: src/c/JVM.c, line: 168
+# File: src/c/JVM.c, line: 167
+# File: src/c/JVM.c, line: 169
 #, c-format
 msgid ""
 "\n"
-" Error : Call to AttachCurrentThread.\n"
+"Call to AttachCurrentThread.\n"
 msgstr ""
 
 #
-# File: src/nojvm/nojvm.c, line: 17
-msgid "TCL/TK interface not installed.\n"
+# File: src/nojvm/nojvm.c, line: 18
+msgid "Java interface not installed.\n"
 msgstr ""
 
 #
