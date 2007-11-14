@@ -41,7 +41,7 @@ msgstr "Affectation incorrecte\n"
 #
 # File: src/c/errmsg.c, line: 66
 msgid "Waiting for right parenthesis\n"
-msgstr ""
+msgstr "En attente de la parenthèse droite\n"
 
 #
 # File: src/c/errmsg.c, line: 75
@@ -145,7 +145,7 @@ msgstr "Trop de variables!\n"
 #
 # File: src/c/errmsg.c, line: 165
 msgid "Problem is singular\n"
-msgstr ""
+msgstr "Le problème est singulier\n"
 
 #
 # File: src/c/errmsg.c, line: 172
@@ -461,25 +461,12 @@ msgid "Unknown file format.\n"
 msgstr ""
 
 #
-# File: src/c/errmsg.c, line: 522
-#, c-format
-msgid "fatal error!!! your variables are saved in file : %s\n"
-msgstr ""
-
-#
 # File: src/c/errmsg.c, line: 523
-msgid "bad call to a scilab function ?\n"
-msgstr ""
-
-#
-# File: src/c/errmsg.c, line: 524
-msgid "check otherwise send a bug report to :\n"
-msgstr ""
-
-#
-# File: src/c/errmsg.c, line: 525
-# File: src/c/errmsg.c, line: 921
-msgid "http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi\n"
+#, c-format
+msgid ""
+"fatal error!!! your variables are saved in file : %s\n"
+"bad call to a scilab function ?\n"
+"check otherwise send a bug report to :\n"
 msgstr ""
 
 #
@@ -803,24 +790,13 @@ msgid "Too many linked routines.\n"
 msgstr ""
 
 #
-# File: src/c/errmsg.c, line: 917
-msgid "Stack problem detected within a loop.\n"
-msgstr ""
-
-#
 # File: src/c/errmsg.c, line: 918
 msgid ""
-"A primitive function has been called with wrong number of lhs arguments.\n"
-msgstr ""
-
-#
-# File: src/c/errmsg.c, line: 919
-msgid "No lhs test made for this function.\n"
-msgstr ""
-
-#
-# File: src/c/errmsg.c, line: 920
-msgid "Please report this bug :\n"
+"Stack problem detected within a loop.\n"
+"A primitive function has been called with a wrong number of output arguments "
+"(LHS).\n"
+"No output argument (LHS) test has been made for this function.\n"
+"Please report this bug :\n"
 msgstr ""
 
 #
@@ -1047,12 +1023,12 @@ msgstr ""
 # File: src/c/errmsg.c, line: 1275
 #, c-format
 msgid "%dth argument type must be boolean.\n"
-msgstr ""
+msgstr "Le type du %dème argument doit être booléen.\n"
 
 #
 # File: src/c/errmsg.c, line: 1279
 msgid "Argument type must be boolean.\n"
-msgstr ""
+msgstr "Le type de l'argument doit être booléen.\n"
 
 #
 # File: src/c/errmsg.c, line: 1287
@@ -1063,7 +1039,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1291
 msgid "Argument type must be boolean or scalar.\n"
-msgstr ""
+msgstr "Le type de l'argument doit être booléen ou scalaire.\n"
 
 #
 # File: src/c/errmsg.c, line: 1299
@@ -1138,7 +1114,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1374
 msgid "Missing index.\n"
-msgstr ""
+msgstr "Index manquant.\n"
 
 #
 # File: src/c/errmsg.c, line: 1382
@@ -1427,3 +1403,8 @@ msgstr ""
 # File: src/c/errmsg.c, line: 1788
 msgid "\"unknown data\""
 msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 523
+#~ msgid "bad call to a scilab function ?\n"
+#~ msgstr "Mauvais appel d'une fonction Scilab ?\n"

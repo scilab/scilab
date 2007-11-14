@@ -520,10 +520,10 @@ try,catch */
 		break;
 		case 68:
 		{
-			displayAndStoreError(_("fatal error!!! your variables are saved in file : %s\n"),get_sci_data_strings(SAVE_ID));
-			displayAndStoreError(_("bad call to a scilab function ?\n"));
-			displayAndStoreError(_("check otherwise send a bug report to :\n"));
-			displayAndStoreError(_("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi\n"));
+			displayAndStoreError(_("fatal error!!! your variables are saved in file : %s\n\
+bad call to a scilab function ?\n\
+check otherwise send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
+			displayAndStoreError("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi\n");
 		}
 		break;
 		case 69:
@@ -915,11 +915,8 @@ try,catch */
 		break;
 		case 115:
 		{
-			displayAndStoreError(_("Stack problem detected within a loop.\n"));
-			displayAndStoreError(_("A primitive function has been called with wrong number of lhs arguments.\n"));
-			displayAndStoreError(_("No lhs test made for this function.\n"));
-			displayAndStoreError(_("Please report this bug :\n"));
-			displayAndStoreError(_("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi\n"));
+			displayAndStoreError(_("Stack problem detected within a loop.\nA primitive function has been called with a wrong number of output arguments (LHS).\nNo output argument (LHS) test has been made for this function.\nPlease report this bug :\n"));
+			displayAndStoreError("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi\n");
 
 			C2F(showstack)(); /* display of calling tree */
 		}
