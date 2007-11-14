@@ -70,13 +70,13 @@ public class DrawableFigureGL extends ObjectGL {
 	 *                          Needed to get the GL context to draw in.
 	 */
 	public void initializeDrawing(int parentFigureIndex) {
-		// destroy all the objects
+		// destroy all the objects stored in the destroy list
 		destroyedObjects.destroyAll(parentFigureIndex);
+		
 		super.initializeDrawing(parentFigureIndex);
-		getGL().glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-		getGL().glClearDepth(1.0f);
-		getGL().glEnable(GL.GL_DEPTH_TEST);
-		getGL().glDepthFunc(GL.GL_LEQUAL);
+		GL gl = getGL();
+		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+		gl.glClearDepth(1.0f);
 	}
 	
 	/**

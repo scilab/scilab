@@ -8,7 +8,6 @@
 
 package org.scilab.modules.renderer.utils.geom3D;
 
-import javax.media.opengl.GL;
 
 /**
  * Represent a 4x4 matrix (homogenous coordinates) 

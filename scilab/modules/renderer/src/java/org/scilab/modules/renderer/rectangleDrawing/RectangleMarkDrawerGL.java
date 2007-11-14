@@ -38,7 +38,9 @@ public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDraw
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) {
+		initializeDrawing(parentFigureIndex);
 		drawRectangle();
+		endDrawing();
 	}
 	
 	/**

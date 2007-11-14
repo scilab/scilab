@@ -37,7 +37,9 @@ public class PolylineMarkDrawerGL extends MarkDrawerGL implements PolylineDrawer
 	 */
 	@Override
 	public void show(int parentFigureIndex) {
-		drawRectangle();
+		initializeDrawing(parentFigureIndex);
+		drawPolyline();
+		endDrawing();
 	}
 
 	/**
@@ -52,14 +54,14 @@ public class PolylineMarkDrawerGL extends MarkDrawerGL implements PolylineDrawer
 			verticesPositions[i] = new Vector3D(xCoords[i], yCoords[i], zCoords[i]);
 		}
 		
-		drawRectangle();
+		drawPolyline();
 		
 	}
 	
 	/**
 	 * Draw the mark on the polyline using the stored vertices.
 	 */
-	public void drawRectangle() {
+	public void drawPolyline() {
 		drawMarks(verticesPositions);
 	}
 

@@ -76,7 +76,7 @@ public class SciRenderer
       gl.glEnable(GL.GL_DEPTH_TEST);							// Enables Depth Testing
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);	// Really Nice Perspective Calculations
-      gl.glEnable(GL.GL_LINE_SMOOTH);
+      gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin lines
       isInit = true;
 
     }

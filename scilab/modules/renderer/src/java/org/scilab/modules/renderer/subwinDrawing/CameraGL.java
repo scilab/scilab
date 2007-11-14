@@ -32,6 +32,7 @@ public class CameraGL extends ObjectGL {
 	private double alpha;
 	private double theta;
 	private Vector3D center = new Vector3D();
+	private double[] viewPort = new double[4];
 	
 	/**
 	 * Default constructor
@@ -46,6 +47,7 @@ public class CameraGL extends ObjectGL {
 	 */
 	public void show(int parentFigureIndex) {
 		super.initializeDrawing(parentFigureIndex);
+		System.err.println("Should not be called.");
 		super.endDrawing();
 		
 	}
@@ -63,17 +65,23 @@ public class CameraGL extends ObjectGL {
 	    gl.glLoadIdentity();
 	    // with this the drawing view current scale for the view is [0,1]x[0,1]
 	    // for perspective view, we need to use glFrustum, not glOrtho
-	    gl.glOrtho(0.0, 1.0, 0.0, 1.0, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
+	    //gl.glOrtho(0.0, 1.0, 0.0, 1.0, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
+	    gl.glGetDoublev(GL.GL_VIEWPORT, viewPort, 0);
+	    double minSize = Math.min(viewPort[2], viewPort[3]);
+	    viewPort[2] /= minSize;
+	    viewPort[3] /= minSize;
+	    gl.glOrtho(0.0, viewPort[2], 0.0, viewPort[3], -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
 	    gl.glMatrixMode(GL.GL_MODELVIEW);
 	    gl.glLoadIdentity();
 
+	    gl.glScaled(viewPort[2], viewPort[3], 1.0);
 		gl.glTranslated(transX, transY, 0.0);
 		gl.glScaled(scaleX, scaleY, 1.0);
 		
 	}
 	
 	/**
-	 * Move the axes box so it fit the viewing area
+	 * Move the axes box so it fit the viewing area.
 	 * @param scaleX X scale to fit user axes coordinates
 	 * @param scaleY Y scale to fit user axes coordinates
 	 * @param scaleZ Z scale to fit user axes coordinates
@@ -104,7 +112,8 @@ public class CameraGL extends ObjectGL {
 		
 		// rotate around the center of the box axes
 		gl.glTranslated(centerX, centerY, centerZ);
-		gl.glScaled(reductionRatio, reductionRatio, reductionRatio); // reduction need to be performed on the center of the screen
+		// reduction need to be performed on the center of the screen
+		gl.glScaled(reductionRatio / viewPort[2], reductionRatio / viewPort[3], reductionRatio);
 		gl.glPushMatrix();
 		gl.glRotated(DEFAULT_ALPHA - alpha, 1.0 , 0.0, 0.0); /* Seems we need to rotate counterclok-wise */
 		gl.glRotated(DEFAULT_THETA - theta, 0.0 , 0.0, 1.0);
@@ -125,6 +134,7 @@ public class CameraGL extends ObjectGL {
 	 */
 	public void replaceCamera() {
 		getGL().glPopMatrix();
+		CoordinateTransformation.getTransformation(getGL()).update(getGL());
 	}
 	
 	/**

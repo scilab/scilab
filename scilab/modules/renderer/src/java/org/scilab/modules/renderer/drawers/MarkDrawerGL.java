@@ -145,6 +145,8 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 			Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
 			getDrawer().drawMark(curCoord.getX(), curCoord.getY(), curCoord.getZ());
 		}
+		// we recreate the dl each time
+		getDrawer().clearDisplayList();
 		
 		GLTools.endPixelCoordinates(gl);
 	}
