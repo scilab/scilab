@@ -20,26 +20,26 @@ msgstr ""
 # File: macros/augment.sci, line: 170
 #, c-format
 msgid "option ''%s'' not allowed, use ''SRT''"
-msgstr ""
+msgstr "option ''%s'' non autorisée, utilisez ''SRT''"
 #
 # File: macros/augment.sci, line: 109
 # File: macros/augment.sci, line: 238
 #, c-format
 msgid "option ''%s'' not allowed use ''SR'', ''ST'' or ''RT'' "
-msgstr ""
+msgstr "option ''%s'' non autorisée, utilisez ''SR'', ''ST'' ou ''RT'' "
 #
 # File: sci_gateway/c/sci_tzer.c, line: 18
 msgid "Incompatible input parameter (RHS).\n"
-msgstr ""
+msgstr "Argument d'entrée (RHS) incompatible.\n"
 #
 # File: sci_gateway/c/sci_tzer.c, line: 23
 msgid "Incompatible output parameter (LHS).\n"
-msgstr ""
+msgstr "Argument de sortie (LHS) incompatible.\n"
 #
 # File: sci_gateway/c/sci_contr.c, line: 36
 msgid "Invalid A,B matrices\n"
-msgstr ""
+msgstr "Matrice A,B incorrecte\n"
 #
 # File: sci_gateway/c/sci_contr.c, line: 41
 msgid "TOL must be in [0 1]\n"
-msgstr ""
+msgstr "TOL doit être entre [0 1]\n"
