@@ -464,9 +464,9 @@ msgstr ""
 # File: src/c/errmsg.c, line: 523
 #, c-format
 msgid ""
-"fatal error!!! your variables are saved in file : %s\n"
-"bad call to a scilab function ?\n"
-"check otherwise send a bug report to :\n"
+"Fatal error!!! Your variables have been saved in the file : %s\n"
+"Bad call to a scilab function ?\n"
+"Otherwise, send a bug report to :\n"
 msgstr ""
 
 #

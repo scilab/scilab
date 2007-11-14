@@ -520,9 +520,9 @@ try,catch */
 		break;
 		case 68:
 		{
-			displayAndStoreError(_("fatal error!!! your variables are saved in file : %s\n\
-bad call to a scilab function ?\n\
-check otherwise send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
+			displayAndStoreError(_("Fatal error!!! Your variables have been saved in the file : %s\n\
+Bad call to a scilab function ?\n\
+Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			displayAndStoreError("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi\n");
 		}
 		break;

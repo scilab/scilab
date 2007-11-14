@@ -464,10 +464,13 @@ msgstr ""
 # File: src/c/errmsg.c, line: 523
 #, c-format
 msgid ""
-"fatal error!!! your variables are saved in file : %s\n"
-"bad call to a scilab function ?\n"
-"check otherwise send a bug report to :\n"
+"Fatal error!!! Your variables have been saved in the file : %s\n"
+"Bad call to a scilab function ?\n"
+"Otherwise, send a bug report to :\n"
 msgstr ""
+"Erreur critique!!! Vos variables ont été enregistrées dans le fichier : %s\n"
+"Mauvais appel d'une fonction Scilab ?\n"
+"Dans le cas contraire, envoyez un rapport de bug à :\n"
 
 #
 # File: src/c/errmsg.c, line: 530
@@ -1372,7 +1375,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1662
 msgid "endfunction is missing.\n"
-msgstr ""
+msgstr "endfunction est manquant.\n"
 
 #
 # File: src/c/errmsg.c, line: 1667
@@ -1387,24 +1390,20 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1677
 msgid "varargout keyword cannot be used here.\n"
-msgstr ""
+msgstr "Le mot clé varargout ne peut pas être utilisé ici.\n"
 
 #
 # File: src/c/errmsg.c, line: 1682
 msgid "Missing operator, comma, or semicolon.\n"
-msgstr ""
+msgstr "Opérateur manquant, virgule ou point-virgule.\n"
 
 #
 # File: src/c/errmsg.c, line: 1688
 msgid "Too many commands defined.\n"
-msgstr ""
+msgstr "Trop de commandes définies\n"
 
 #
 # File: src/c/errmsg.c, line: 1788
 msgid "\"unknown data\""
-msgstr ""
+msgstr "\"Donnée(s) inconnue(s)\""
 
-#
-# File: src/c/errmsg.c, line: 523
-#~ msgid "bad call to a scilab function ?\n"
-#~ msgstr "Mauvais appel d'une fonction Scilab ?\n"
