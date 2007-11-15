@@ -36,11 +36,12 @@ fi
 XGETTEXT=/usr/bin/xgettext
 MSGMERGE=/usr/bin/msgmerge
 FROM_CODE=ISO-8859-1
-EXTENSIONS=( c h cpp hxx java sci )
+EXTENSIONS=( c h cpp hxx java sci start )
 TARGETDIR=locales/
 LANGS=( fr_FR )
 TARGETFILETEMPLATE=messages.pot
 TIMEZONE="+0100"
+
 #
 # Retrieve all the sources files
 FILESCMD='find . -type f '
@@ -79,24 +80,13 @@ for MODULE in $MODULES; do
 
 	echo "..... Parsing all sources in $PATHTOPROCESS"
 # Parse all the sources and get the string which should be localized
-	LOCALIZATION_FILE=$TARGETDIR/en_US/$TARGETFILETEMPLATE
-	if test -f $LOCALIZATION_FILE; then
-		echo "........ Localization already existing ... we merge"
-		$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $TARGETFILETEMPLATE.tmp $FILES > /dev/null
-		$MSGMERGE $LOCALIZATION_FILE $LOCALIZATION_FILE.tmp --output-file $LOCALIZATION_FILE > /dev/null
-		rm $LOCALIZATION_FILE.tmp
-	else
-		echo "........ No localization ... we create a new one with header"
-		$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $TARGETFILETEMPLATE.tmp $FILES > /dev/null
-		if test -s $LOCALIZATION_FILE.tmp; then
-			sed -e "s/MODULE/$MODULE/" -e "s/DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $SCI/modules/localization/locales/en_US/header.pot > $LOCALIZATION_FILE
-			cat $LOCALIZATION_FILE.tmp >> $LOCALIZATION_FILE
-			rm $LOCALIZATION_FILE.tmp
-		else
-			echo "........ No string found in this module"
-			NOSTRING=1
-		fi
-	fi
+	LOCALIZATION_FILE_US=$TARGETDIR/en_US/$TARGETFILETEMPLATE
+	echo "........ Generate the english localization file by parsing the code"
+	$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $TARGETFILETEMPLATE.tmp $FILES > /dev/null
+	sed -e "s/MODULE/$MODULE/" -e "s/DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $SCI/modules/localization/locales/en_US/header.pot > $LOCALIZATION_FILE_US
+	cat $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
+	
+	rm $LOCALIZATION_FILE_US.tmp
 	if test -z "$NOSTRING"; then
 # merge/create the other locales
 		for l in $LANGS; do
@@ -104,7 +94,7 @@ for MODULE in $MODULES; do
 			LOCALIZATION_FILE_LANG=$DIR_LANG/messages.po
 			if test -f $LOCALIZATION_FILE_LANG; then
 				echo "........ Merging new locales for $l"
-				$MSGMERGE $LOCALIZATION_FILE_LANG $LOCALIZATION_FILE --output-file $LOCALIZATION_FILE_LANG > /dev/null
+				$MSGMERGE $LOCALIZATION_FILE_LANG $LOCALIZATION_FILE_US --output-file $LOCALIZATION_FILE_LANG > /dev/null
 			else
 				echo "........ Localization file for $l in this module not existing"
 				echo "........ Creating it ..."
@@ -113,7 +103,7 @@ for MODULE in $MODULES; do
 					mkdir $DIR_LANG
 				fi
 				# Copy the current english localization as default
-				cp $LOCALIZATION_FILE $LOCALIZATION_FILE_LANG
+				cp $LOCALIZATION_FILE_US $LOCALIZATION_FILE_LANG
 			fi
 		done #Browse langs
 	fi
