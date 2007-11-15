@@ -29,6 +29,11 @@
 	<TABLE_NEW_COLUMN>parameters</TABLE_NEW_COLUMN>     
       </TABLE_NEW_ROW>
       <TABLE_NEW_ROW>
+	<TABLE_NEW_COLUMN>"0"</TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>ignored opcode</TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>     
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
 	<TABLE_NEW_COLUMN>"1"</TABLE_NEW_COLUMN>
 	<TABLE_NEW_COLUMN>No more used</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>     
@@ -58,20 +63,10 @@
         <TABLE_NEW_COLUMN>put a number  in the stack</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>the number</TABLE_NEW_COLUMN>
        </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>      
-        <TABLE_NEW_COLUMN>"7"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>put a number  in the stack</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>the number</TABLE_NEW_COLUMN> 
-       </TABLE_NEW_ROW>
        <TABLE_NEW_ROW>     
-        <TABLE_NEW_COLUMN>"12"</TABLE_NEW_COLUMN>
+       <TABLE_NEW_COLUMN>"12"</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>pause command</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>      
-        <TABLE_NEW_COLUMN>"12"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>pause command</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN> 
        </TABLE_NEW_ROW>
        <TABLE_NEW_ROW>     
         <TABLE_NEW_COLUMN>"13"</TABLE_NEW_COLUMN>
@@ -94,7 +89,6 @@
         <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
        </TABLE_NEW_ROW>
        <TABLE_NEW_ROW>     
-
         <TABLE_NEW_COLUMN>"18"</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>named variable</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>variable name</TABLE_NEW_COLUMN>
@@ -111,11 +105,16 @@
        </TABLE_NEW_ROW>
        <TABLE_NEW_ROW>  
         <TABLE_NEW_COLUMN>"23"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>name2var</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>create variable from name</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>variable name</TABLE_NEW_COLUMN>  
        </TABLE_NEW_ROW>
        <TABLE_NEW_ROW>  
         <TABLE_NEW_COLUMN>"24"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>put a variable with type 0 in the stack</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>  
+       </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>  
+        <TABLE_NEW_COLUMN>"25"</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>profile record</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>number of call, time spend </TABLE_NEW_COLUMN>  
        </TABLE_NEW_ROW>
@@ -144,6 +143,12 @@
         <TABLE_NEW_COLUMN>logical expression short circuit</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>type, jump size</TABLE_NEW_COLUMN>      
        </TABLE_NEW_ROW>
+       <TABLE_NEW_ROW>   
+        <TABLE_NEW_COLUMN>"31"</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>comment</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>the comment</TABLE_NEW_COLUMN>      
+       </TABLE_NEW_ROW>
+  
        <TABLE_NEW_ROW>
         <TABLE_NEW_COLUMN>"99"</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>return command</TABLE_NEW_COLUMN>
