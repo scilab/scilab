@@ -73,6 +73,12 @@ try,catch */
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
+				if (strlen(NameVarOnStack)> nlgh ) 
+				{
+					/* clean variable name from fortran */
+					NameVarOnStack[nlgh] = '\0';
+					strip_blank(NameVarOnStack);
+				}
 				displayAndStoreError(_("Undefined variable : %s\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
