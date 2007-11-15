@@ -42,7 +42,7 @@ JNIEnv *getScilabJNIEnv(void)
 #ifdef _MSC_VER
 		MessageBox(NULL,_("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-		printf(_("Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function."));
+		printf(_("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"));
 #endif
 	}
 	return JNIEnv_SCILAB;
@@ -124,7 +124,7 @@ BOOL startJVM(char *SCI_PATH)
 			vm_args.version = JNI_VERSION_1_4;
 #else
 #ifdef _MSC_VER
-			MessageBox(NULL,_("\nIncorrect version JNI (needs at least JDK 1.4)\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+			MessageBox(NULL,_("\nIncorrect version JNI (needs at least JDK 1.4).\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
 			printf(_("\nIncorrect version JNI (needs at least JDK 1.4).\n"));
 #endif
