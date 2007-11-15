@@ -26,12 +26,7 @@ msgstr ""
 
 #
 # File: src/norandlib/norandlib.c, line: 11
-msgid "randlib interface not installed.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 169
-msgid "setall"
+msgid "Scilab randlib interface not installed.\n"
 msgstr ""
 
 #
@@ -41,7 +36,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 175
-msgid "Rhs should be 5 for 'setall' option\n"
+msgid "Input argument (RHS) should be 5 for 'setall' option\n"
 msgstr ""
 
 #
@@ -50,7 +45,7 @@ msgstr ""
 # File: sci_gateway/c/sci_grand.c, line: 258
 # File: sci_gateway/c/sci_grand.c, line: 283
 # File: sci_gateway/c/sci_grand.c, line: 299
-msgid "Second argument must be scalar\n"
+msgid "Second input argument must be scalar\n"
 msgstr ""
 
 #
@@ -58,24 +53,19 @@ msgstr ""
 # File: sci_gateway/c/sci_grand.c, line: 239
 # File: sci_gateway/c/sci_grand.c, line: 261
 # File: sci_gateway/c/sci_grand.c, line: 286
-msgid "Third argument must be scalar\n"
+msgid "Third input argument must be scalar\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 185
 # File: sci_gateway/c/sci_grand.c, line: 264
-msgid "Fourth argument must be scalar\n"
+msgid "Fourth input argument must be scalar\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 188
 # File: sci_gateway/c/sci_grand.c, line: 267
-msgid "Fifth argument must be scalar\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 286
-msgid "Shird argument must be scalar\n"
+msgid "Fifth input argument must be scalar\n"
 msgstr ""
 
 #
@@ -86,13 +76,13 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 448
 #, c-format
-msgid "%s Wrong first argument %s\n"
+msgid "%s Wrong first input argument %s\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 459
 # File: sci_gateway/c/sci_grand.c, line: 463
-msgid "First argument must be scalar\n"
+msgid "First input argument must be scalar\n"
 msgstr ""
 
 #
@@ -260,13 +250,14 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 675
 #, c-format
-msgid "Only %d arguments required for 'lgi' option"
+msgid "Only %d input arguments required for 'lgi' option"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 690
 msgid ""
-"First argument for 'prm' option must be the number of random simulation\n"
+"First input argument for 'prm' option must be the number of random "
+"simulation\n"
 msgstr ""
 
 #
@@ -304,7 +295,8 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 771
 msgid ""
-"First argument for 'mn' option must be the number of random simulation\n"
+"First input argument for 'mn' option must be the number of random "
+"simulation\n"
 msgstr ""
 
 #
@@ -335,7 +327,8 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 808
 msgid ""
-"First argument for 'markov' option must be the number of random simulation\n"
+"First input argument for 'markov' option must be the number of random "
+"simulation\n"
 msgstr ""
 
 #
@@ -379,7 +372,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 892
-msgid "no argument required for 'def' option\n"
+msgid "no input argument required for 'def' option\n"
 msgstr ""
 
 #
@@ -462,5 +455,5 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 1039
 #, c-format
-msgid "%s Wrong argument %s\n"
+msgid "%s Wrong input argument %s\n"
 msgstr ""
