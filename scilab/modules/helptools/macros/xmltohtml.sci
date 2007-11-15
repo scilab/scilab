@@ -44,6 +44,9 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	global %helps_modules;
 	%HELPS=[%helps_modules;%helps];
 	
+	%helps_save         = %helps;
+	%helps_modules_save = %helps_modules;
+	
 	//--------------------------------------------------------------------------
 	// Sauvegarde du chemin courant et de la variable %helps
 	//--------------------------------------------------------------------------
@@ -238,6 +241,21 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		chdir(current_directory);
 		return;
 	end
+	
+	// To get the absolute path name of the xsl file
+	[xsl_path,xsl_fname,xsl_extension] = fileparts(xsl);
+	
+	if xsl_path <> "" then
+		chdir(current_directory);
+		chdir(xsl_path);
+	end
+	
+	if MSDOS then
+		xsl = pathconvert(getlongpathname(pwd())+"/"+xsl_fname+xsl_extension,%f,%t);
+	else
+		xsl = pathconvert(pwd()+"/"+xsl_fname+xsl_extension,%f,%t);
+	end
+	chdir(current_directory);
 	
 	// On transforme le ou les chemins donnés en chemin absolu
 	// -------------------------------------------------------------------------
@@ -444,7 +462,9 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	//--------------------------------------------------------------------------
 	
 	chdir(current_directory);
-	%HELPS = saved_helps;
+	%helps         = %helps_save;
+	%helps_modules = %helps_modules_save;
+	%HELPS         = saved_helps;
 	
 endfunction
 
