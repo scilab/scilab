@@ -340,7 +340,7 @@ msgstr ""
 # File: src/c/msgs.c, line: 517
 #, fuzzy, c-format
 msgid "results may be inaccurate. rcond = %s\n"
-msgstr " "
+msgstr "Les résultats peuvent être inexacts. rcond %s\n"
 
 #
 # File: src/c/msgs.c, line: 548
@@ -2315,7 +2315,7 @@ msgstr ""
 # File: src/c/msgs.c, line: 800
 # File: sci_gateway/c/sci_who.c, line: 303
 msgid "Your variables are :"
-msgstr "Vos variables sont : "
+msgstr "Vos variables sont :"
 
 #
 # File: src/c/msgs.c, line: 885

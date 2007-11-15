@@ -93,7 +93,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				 Scierror(999,_("First parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"));
+				 Scierror(999,_("First input argument must be 'local' , 'get' , 'global' or 'sorted'.\n"));
 				 return 0;
 			 }
 		 }
@@ -102,7 +102,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 Scierror(999,_("First parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"));
+			 Scierror(999,_("First input argument must be 'local' , 'get' , 'global' or 'sorted'.\n"));
 			 return 0;
 		 }
 	 }
@@ -125,7 +125,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				  FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				  FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				  Scierror(999,_("second parameter must be 'sorted'.\n"));
+				  Scierror(999,_("Second input argument must be 'sorted'.\n"));
 				  return 0;
 			  }
 			  else
@@ -162,7 +162,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 					FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 					FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-					Scierror(999,_("first parameter must be 'local' , 'get' or 'global'.\n"));
+					Scierror(999,_("First input argument must be 'local' , 'get' or 'global'.\n"));
 					return 0;
 				 }
 			  }
@@ -172,7 +172,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 Scierror(999,_("first parameter must be 'local' , 'get' , 'global' and second parameter must be 'sorted'.\n"));
+			 Scierror(999,_("First input argument must be 'local' , 'get' , 'global' and second parameter must be 'sorted'.\n"));
 			 return 0;
 		 }
 	 }
@@ -330,7 +330,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 for (i=0;i<lenStructArray;i++)
 	 {
 		 Tab[i] = (char*)MALLOC(sizeof(char)*(strlen(Vstruct[i].NameVariable)+1));
-		 sprintf(Tab[i],"%s",Vstruct[i].NameVariable);
+		 strcpy(Tab[i],Vstruct[i].NameVariable);
 		 Size[i]=Vstruct[i].SizeVariable;
 	 }
 

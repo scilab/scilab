@@ -38,7 +38,7 @@ int C2F(sci_ulink) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("Parameter must be a integer.\n"));
+			Scierror(999,_("Input argument must be a integer.\n"));
 			return 0;
 		}
 	}
