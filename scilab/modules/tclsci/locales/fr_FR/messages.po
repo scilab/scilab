@@ -38,48 +38,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ScilabEval.c, line: 91
-#, c-format
-msgid " Execution starts for %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 99
-#, c-format
-msgid " Execution ends for %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 110
-msgid " Flushing starts for queued commands.\n"
-msgstr ""
-
-#
 # File: src/c/ScilabEval.c, line: 122
 msgid "Warning: Too many callbacks in queue!\n"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 130
-#, c-format
-msgid " Flushed execution starts for %s - No option"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 137
-#, c-format
-msgid " Flushed execution starts for %s - seq"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 147
-#, c-format
-msgid " Flushed execution ends for %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 156
-msgid " Flushing ends\n"
 msgstr ""
 
 #
@@ -252,7 +212,7 @@ msgstr ""
 
 #
 # File: src/notclsci/notclsci.c, line: 55
-msgid "TCL/TK interface not installed.\n"
+msgid "Scilab TCL/TK module not installed.\n"
 msgstr ""
 
 #

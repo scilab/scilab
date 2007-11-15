@@ -37,48 +37,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ScilabEval.c, line: 95
-#, c-format
-msgid " Execution starts for %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 103
-#, c-format
-msgid " Execution ends for %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 110
-msgid " Flushing starts for queued commands.\n"
-msgstr ""
-
-#
 # File: src/c/ScilabEval.c, line: 122
 msgid "Warning: Too many callbacks in queue!\n"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 134
-#, c-format
-msgid " Flushed execution starts for %s - No option"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 141
-#, c-format
-msgid " Flushed execution starts for %s - seq"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 151
-#, c-format
-msgid " Flushed execution ends for %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 156
-msgid " Flushing ends\n"
 msgstr ""
 
 #
@@ -93,12 +53,6 @@ msgid "The SCI environment variable is not set.\n"
 msgstr ""
 
 #
-# File: src/c/InitTclTk.c, line: 76
-# File: src/c/InitTclTk.c, line: 94
-msgid "/modules/tclsci/tcl/TK_Scilab.tcl"
-msgstr ""
-
-#
 # File: src/c/InitTclTk.c, line: 81
 # File: src/c/InitTclTk.c, line: 98
 msgid "Unable to find TCL initialisation scripts.\n"
@@ -106,17 +60,19 @@ msgstr ""
 
 #
 # File: src/c/InitTclTk.c, line: 109
-msgid "Tcl Error  : Tcl_CreateInterp.\n"
+msgid "Tcl Error : Tcl_CreateInterp.\n"
 msgstr ""
 
 #
 # File: src/c/InitTclTk.c, line: 115
-msgid "Tcl Error  : Tcl_Init.\n"
+#, c-format
+msgid "Tcl Error : Tcl_Init %s\n"
 msgstr ""
 
 #
 # File: src/c/InitTclTk.c, line: 121
-msgid "Tcl Error  : Tk_Init.\n"
+#, c-format
+msgid "Tcl Error : Tk_Init %s\n"
 msgstr ""
 
 #
@@ -255,7 +211,7 @@ msgstr ""
 
 #
 # File: src/notclsci/notclsci.c, line: 55
-msgid "TCL/TK interface not installed.\n"
+msgid "Scilab TCL/TK module not installed.\n"
 msgstr ""
 
 #
