@@ -11,9 +11,9 @@ function clean_help(dirs)
 	
 	lines(0);
 	
-	global %helps
-	global %helps_modules
-  %HELPS=[%helps_modules;%helps];
+	global %helps;
+	global %helps_modules;
+	%HELPS=[%helps_modules;%helps];
 	
 	ok = %F;
 	
@@ -49,20 +49,20 @@ function clean_help(dirs)
 	
 	// On transforme le ou les chemins donnés en chemin absolu
 	// -----------------------------------------------------------------------------------------
-
+	
 	for k=1:size(dirs,'*')
-	  try
-	    if typeof(dirs(k)) <> 'string' then
-	      // Probleme ? ? ?
-	    else
-		    chdir(dirs(k));
-		    if MSDOS then
-			    dirs(k) = getlongpathname(pwd());
-		    else
-			    dirs(k) = pwd();
-		    end
-		    chdir(current_directory);
-		  end
+		try
+			if typeof(dirs(k)) <> 'string' then
+				// Probleme ? ? ?
+			else
+				chdir(dirs(k));
+				if MSDOS then
+					dirs(k) = getlongpathname(pwd());
+				else
+					dirs(k) = pwd();
+				end
+				chdir(current_directory);
+			end
 		catch
 		  // Probleme ? ? ?
 		end
@@ -85,8 +85,8 @@ function clean_help(dirs)
 	// -----------------------------------------------------------------------------------------
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
-		
-    if fileinfo(SCI+pathconvert("/modules/helptools/index_"+getlanguage()+".htm",%f,%f)) <> [] then
+	
+	if fileinfo(SCI+pathconvert("/modules/helptools/index_"+getlanguage()+".htm",%f,%f)) <> [] then
 		  mprintf(".");
 			mdelete(SCI+pathconvert("/modules/helptools/index_"+getlanguage()+".htm",%f,%f));
 		end

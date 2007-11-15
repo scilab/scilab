@@ -168,15 +168,20 @@ function t=getlink(name,absolute_path,path)
 				
 			else
 				
-				whatis=mgetl(%HELPS(k,1)+sep+'whatis.htm')
-				f=grep(whatis,name)
+				if fileinfo(%HELPS(k,1)+sep+'whatis.htm') <> [] then
+					whatis = mgetl(%HELPS(k,1)+sep+'whatis.htm');
+					f      = grep(whatis,name);
+				else
+					f      = [];
+				end
+
 				if f<>[] then
 					for k1=f
 						w=whatis(k1)
 						i=strindex(w,">"); j=strindex(w,"</A>")
-						if j<>[] then 
+						if j<>[] then
 							lname=part(w,i(2)+1:j-1)
-							lnames=getwords(lname) 
+							lnames=getwords(lname)
 							// transforms "toto titi tata" into ["toto" "titi" "tata"]
 							for ii=lnames
 								ok=%F
@@ -190,6 +195,7 @@ function t=getlink(name,absolute_path,path)
 						end
 					end
 				end
+				
 				if man_found<>[] then break; end
 			
 			end // if fileinfo ....
