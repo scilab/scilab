@@ -56,7 +56,7 @@ else
 
   if meof(fid)<>0 then
     mclearerr(fid)
-    error(gettext("Cell elements must be arrays chars.8"))
+    error(gettext("End of file reached before all matrix is read"))
   end
   if size(sz,"*")==1 then
     a=a(:)
