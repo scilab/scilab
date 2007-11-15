@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="MALLOC"
 	ProjectGUID="{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}"
 	RootNamespace="MALLOC"
@@ -190,10 +190,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\sci_mem_alloc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\win_mem_alloc.c"
 				>
 			</File>
@@ -213,10 +209,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\MALLOC.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_mem_alloc.h"
 				>
 			</File>
 			<File
