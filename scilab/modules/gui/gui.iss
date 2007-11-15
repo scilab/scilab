@@ -10,6 +10,8 @@
 ;
 #define GUI "gui"
 ;
+Source: bin\scigui.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#GUI}\jar\org.scilab.modules.gui.jar; DestDir: {app}\modules\{#GUI}\jar; Components: {#COMPN_SCILAB}
 Source: thirdparty\flexdock-0.5.1.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\commons-logging-1.1.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
