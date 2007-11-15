@@ -56,7 +56,9 @@ msgstr ""
 msgid ""
 "\n"
 "Scilab cannot open JVM library.\n"
-msgstr "Scilab n'a pas pu ouvrir la bibliothèque de la JVM.\n"
+msgstr ""
+"\n"
+"Scilab n'a pas pu ouvrir la bibliothèque de la JVM.\n"
 
 #
 # File: src/c/InitializeJVM.c, line: 33
