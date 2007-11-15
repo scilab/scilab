@@ -33,10 +33,10 @@ while k<=n
   txt=[txt;strcat(nams(k:k-1+m))];
   k=k+m;
 end
-txt=[gettext('User variables are:');
+txt=[gettext("User variables are:");
     '';
     txt;
     '';
-    gettext('using ')+string(sum(mem))+gettext(' elements out of ')+string(st(1)-(st(2)-sum(mem)))]
+    msprintf(gettext("Using %s elements ouf of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
 write(%io(2),txt,'(1x,a)')
 endfunction

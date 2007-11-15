@@ -41,7 +41,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 				fclose(fp);
 
 				output=(char*)MALLOC((strlen(MD5)+1)*sizeof(char));
-				sprintf(output,"%s",MD5);
+				strcpy(output,MD5);
 				if (MD5) {FREE(MD5);MD5=NULL;}
 
 				n1=1;
@@ -58,7 +58,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("Invalid type of input parameter(s): String expected.\n"));
+			Scierror(999,_("Invalid type of input argument(s): String expected.\n"));
 		}
 	}
 	else /* Rhs == 2 */
@@ -84,7 +84,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 				MD5=md5_str(Param1);
 
 				output=(char*)MALLOC((strlen(MD5)+1)*sizeof(char));
-				sprintf(output,"%s",MD5);
+				strcpy(output,MD5);
 				if (MD5) {FREE(MD5);MD5=NULL;}
 
 				n1=1;
@@ -96,12 +96,12 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Invalid second parameter. It must be a string.\n"));
+				Scierror(999,_("Invalid second input argument. It must be a string.\n"));
 			}
 		}
 		else
 		{
-			Scierror(999,_("Invalid type parameter. parameters must be strings.\n"));
+			Scierror(999,_("Invalid type input argument. Input arguments must be strings.\n"));
 		}
 	}
 	return 0;

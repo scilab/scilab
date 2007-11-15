@@ -93,7 +93,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				 Scierror(999,_("first parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"));
+				 Scierror(999,_("First parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"));
 				 return 0;
 			 }
 		 }
@@ -102,7 +102,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 Scierror(999,_("first parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"));
+			 Scierror(999,_("First parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"));
 			 return 0;
 		 }
 	 }

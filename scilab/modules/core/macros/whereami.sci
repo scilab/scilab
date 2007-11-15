@@ -9,16 +9,16 @@ txt=[]
 for k=2:nn
   if mac(k)=='exec' then
     txt=[txt;
-        part(mac(k-1),1:lm)+gettext(' called at line ')+string(linn(k))+gettext(' of exec_file.')]
+	msprinf(gettext("%s called at line %s of exec_file"),part(mac(k-1),1:lm), string(linn(k)))]
   elseif mac(k)=='execstr' then
     txt=[txt;
-        part(mac(k-1),1:lm)+gettext(' called at line ')+string(linn(k))+gettext(' of execstr instruction.')]
+        	msprinf(gettext("%s called at line %s of execstr instruction."),part(mac(k-1),1:lm), string(linn(k)))]
   elseif mac(k)=='pause' then
      txt=[txt;
-        part(mac(k-1),1:lm)+' called under pause']
+        msprinf(gettext("%s called under pause"),part(mac(k-1),1:lm)) ]
   else
     txt=[txt;
-        part(mac(k-1),1:lm)+gettext(' called at line ')+string(linn(k))+gettext(' of macro ')+mac(k)]
+        msprinf(gettext("%s called at line %s of macro %s"), part(mac(k-1),1:lm), string(linn(k)),mac(k))]
   end
 end
 write(%io(2),txt)

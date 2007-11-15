@@ -479,8 +479,8 @@ int C2F(msgs)(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_1(integer *n, integer *ierr)
 {
-	sciprint(_("Warning : \n"));
-	sciprint(_("Non convergence in the QZ algorithm. \n"));
+	sciprint(_("Warning :\n"));
+	sciprint(_("Non convergence in the QZ algorithm.\n"));
 	if (*ierr > 0)
 	{
 		sciprint(_("The top %d  x %d blocks may not be in generalized Schur form.\n"),*ierr);
@@ -490,7 +490,7 @@ static int msg_1(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_2(integer *n, integer *ierr)
 {
-	sciprint(_("Warning : \n"));
+	sciprint(_("Warning :\n"));
 	sciprint(_("Non convergence in QR steps.\n"));
 
 	if (*ierr > 0)
@@ -502,7 +502,7 @@ static int msg_2(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_3(integer *n, integer *ierr)
 {
-	sciprint(_("Warning : \n"));
+	sciprint(_("Warning :\n"));
 	sciprint(_("Non convergence in QR steps.\n"));
 	if (*ierr > 0)
 	{
@@ -522,7 +522,7 @@ static int msg_5(integer *n, integer *ierr)
 	char localbuf[14];
 	strncpy(localbuf,BUF,13);
 	localbuf[13]='\0';
-	sciprint(_("Warning : \n"));
+	sciprint(_("Warning :\n"));
 	sciprint(_("matrix is close to singular or badly scaled. rcond = %s\n"),localbuf);
 
 	if (*ierr > 0)
@@ -537,7 +537,7 @@ static int msg_6(integer *n, integer *ierr)
 	char localbuf[14];
 	strncpy(localbuf,BUF,13);
 	localbuf[13]='\0';
-	sciprint(_("Warning : \n"));
+	sciprint(_("Warning :\n"));
 	sciprint(_("eigenvectors are badly conditioned.\n"));
 	sciprint(_("results may be inaccurate. rcond = %s\n"),localbuf);
 	return 0;
@@ -757,7 +757,7 @@ static int msg_33(integer *n, integer *ierr)
 
 	localbuf=(char*)MALLOC(sizeof(char)*(nreal +1));
 	strncpy(localbuf,BUF,nreal);
-	sciprint(_("Warning : \n"));
+	sciprint(_("Warning :\n"));
 	sciprint(_("The identifier : %s\n"),localbuf);
 	localbuf[nlgh]='\0';
 	sciprint(_(" has been truncated to: %s.\n"),localbuf);
@@ -818,7 +818,7 @@ static int msg_39(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_40(integer *n, integer *ierr)
 {
-	sciprint(_("System functions : \n"));
+	sciprint(_("System functions :\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -985,7 +985,7 @@ static int msg_61(integer *n, integer *ierr)
 	char line[bsiz];
 	integer one = 1;
 	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], line, &one,nlgh);
-	sciprint(_("Warning : \n"));
+	sciprint(_("Warning :\n"));
 	sciprint(_("Impossible to load variable %s.\n"),line);
 	return 0;
 }

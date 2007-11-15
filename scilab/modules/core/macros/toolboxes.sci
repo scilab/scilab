@@ -39,15 +39,15 @@ function [y]=toolboxes(path,flag,force)
 	exec('builder.sce');
 	chdir('../');
       else
-	 write(%io(2),contribs(k)+gettext(' is already compiled.')+'\n');
+	 write(%io(2),contribs(k)+gettext(" is already compiled.\n"));
       end
     end
   end
 
   if contribs<>[] & grep(sciargs(),"-nw")==[] then 
   	if ( ~fromjava() & ~fromc() ) then
-    	delmenu(gettext('toolboxes'));
-    	addmenu(gettext('toolboxes'),contribs);
+    	delmenu(gettext("toolboxes"));
+    	addmenu(gettext("toolboxes"),contribs);
     	// If you also want a build meny 
     	//addmenu('build',contribs);
     end

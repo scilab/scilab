@@ -194,7 +194,7 @@ static BOOL AppendModules(char *xmlfilename)
 							ScilabModules->numberofModules=indice+1;
 							
 							ScilabModules->ModuleList[indice]=(char*)MALLOC(sizeof(char)*(strlen(name)+1));
-							sprintf(ScilabModules->ModuleList[indice],"%s",name);
+							strcpy(ScilabModules->ModuleList[indice],name);
 							indice++;
 						}
 						else

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: localization@scilab.org\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-15 11:44+0100\n"
 "PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
@@ -106,7 +106,6 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 800
 # File: sci_gateway/c/sci_who.c, line: 303
-#, fuzzy
 msgid "User variables are:"
 msgstr "Vos variables sont : "
 
@@ -118,8 +117,8 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 55
-#, fuzzy, c-format
-msgid "file: %s does not exist."
+#, c-format
+msgid "file: %s does not exist.\n"
 msgstr "Fichier %s n'existe pas.\n"
 
 #
@@ -281,9 +280,8 @@ msgstr ""
 # File: src/c/msgs.c, line: 541
 # File: src/c/msgs.c, line: 761
 # File: src/c/msgs.c, line: 990
-#, fuzzy
 msgid "Warning :\n"
-msgstr "Attention : "
+msgstr "Attention :\n"
 
 #
 # File: src/c/msgs.c, line: 483
@@ -319,9 +317,8 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 517
-#, fuzzy
 msgid "Warning:  Result may be inaccurate.\n"
-msgstr " "
+msgstr "Attention:  Résultat potentiellement inexact.\n"
 
 #
 # File: src/c/msgs.c, line: 526
@@ -1064,10 +1061,10 @@ msgid "A matrix non square!\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_chdir.c, line: 55
+# File: sci_gateway/c/sci_getversion.c, line: 235
 #, fuzzy, c-format
 msgid "Invalid %c,%c matrices.\n"
-msgstr "Paramètre invalide.\n"
+msgstr "Argument invalide.\n"
 
 #
 # File: src/c/stack2.c, line: 2358
@@ -2128,14 +2125,14 @@ msgstr ""
 # File: src/c/InitializeCore.c, line: 29
 #, fuzzy
 msgid "Fatal Error : Can't create table for scilab functions.\n"
-msgstr "Erreur fatale : Impossible de créer la table des fonctions Scilab."
+msgstr "Erreur fatale : Impossible de créer la table des fonctions Scilab.\n"
 
 #
 # File: src/c/scimem.c, line: 34
 # File: src/c/scimem.c, line: 61
 #, fuzzy
 msgid "No space to allocate Scilab stack.\n"
-msgstr "Pas assez de mémoire pour alouer le coeur de Scilab"
+msgstr "Pas assez de mémoire pour alouer le coeur de Scilab\n"
 
 #
 # File: src/c/callinterf.c, line: 133
@@ -2151,7 +2148,7 @@ msgstr ""
 # File: src/c/callinterf.c, line: 85
 #, fuzzy
 msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr "Voulez-vous vraiment arrêter le calcul (y ou n ?) "
+msgstr "Voulez-vous vraiment arrêter le calcul (y ou n ?) \n"
 
 #
 # File: src/c/link.c, line: 178
@@ -2340,7 +2337,7 @@ msgstr ""
 # File: sci_gateway/c/sci_newfun.c, line: 61
 #, fuzzy
 msgid "See help newfun.\n"
-msgstr "cf l'aide de newfun"
+msgstr "cf l'aide de newfun\n"
 
 #
 # File: sci_gateway/c/sci_warning.c, line: 66
@@ -2352,54 +2349,55 @@ msgstr "ATTENTION : %s"
 # File: src/c/errmsg.c, line: 550
 #, fuzzy, c-format
 msgid "%s : can't alloc more memory.\n"
-msgstr "Impossible d'allouer plus de mémoire"
+msgstr "Impossible d'allouer plus de mémoire\n"
 
 #
-# File: sci_gateway/c/sci_getmd5.c, line: 55
-#, c-format
-msgid "File %s doesn't exist.\n"
-msgstr "Fichier %s n'existe pas.\n"
+# File: sci_gateway/c/sci_getversion.c, line: 323
+#, fuzzy
+msgid "Invalid type of input argument(s): String expected.\n"
+msgstr "Argument(s) invalide(s).\n"
 
 #
-# File: sci_gateway/c/sci_getmd5.c, line: 99
-msgid "Invalid second parameter. It must be a string.\n"
-msgstr ""
+# File: sci_gateway/c/sci_getversion.c, line: 323
+#, fuzzy
+msgid "Invalid second input argument. It must be a string.\n"
+msgstr "Argument(s) invalide(s).\n"
 
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 104
-msgid "Invalid type parameter. parameters must be strings.\n"
+msgid "Invalid type input argument. Input arguments must be strings.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_chdir.c, line: 55
+# File: sci_gateway/c/sci_getversion.c, line: 323
 #, fuzzy
-msgid "Invalid input parameter.\n"
-msgstr "Paramètre invalide.\n"
+msgid "Invalid input argument.\n"
+msgstr "Argument(s) invalide(s).\n"
 
 #
 # File: sci_gateway/c/sci_libraryinfo.c, line: 85
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 45
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 51
 msgid "Invalid parameter(s).\n"
-msgstr ""
+msgstr "Paramètre(s) incorrect(s).\n"
 
 #
 # File: sci_gateway/c/sci_clearfun.c, line: 57
 #, fuzzy
 msgid "Must be the name of a scilab function.\n"
-msgstr "Doit être une fonction Scilab."
+msgstr "Doit être le nom d'une fonction Scilab.\n"
 
 #
 # File: sci_gateway/c/sci_what.c, line: 76
 #, fuzzy
 msgid "Internal Functions: \n"
-msgstr "Fonctions internes:"
+msgstr "Fonctions internes:\n"
 
 #
 # File: sci_gateway/c/sci_what.c, line: 93
 #, fuzzy
 msgid "Commands: \n"
-msgstr "Commandes: "
+msgstr "Commandes:\n"
 
 #
 # File: sci_gateway/c/sci_getmodules.c, line: 23
@@ -2411,396 +2409,86 @@ msgstr ""
 # File: sci_gateway/c/sci_getcwd.c, line: 27
 #, fuzzy
 msgid "Internal Error.\n"
-msgstr "Erreur interne."
+msgstr "Erreur interne.\n"
 
 #
 # File: src/c/stack2.c, line: 60
 #, fuzzy, c-format
 msgid "%s : wrong number of output arguments (LHS)\n"
-msgstr "%s : nombre incorrect d'arguments"
+msgstr "%s : nombre incorrect d'arguments\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 217
 # File: sci_gateway/c/sci_getversion.c, line: 305
 #, fuzzy, c-format
 msgid "Error : file VERSION in %s.\n"
-msgstr "Erreur : fichier VERSION dans %s."
+msgstr "Erreur : fichier VERSION dans %s.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 223
 # File: sci_gateway/c/sci_getversion.c, line: 311
 #, fuzzy, c-format
 msgid "Error : incorrect module name %s.\n"
-msgstr "Erreur : nom de module (%s) incorrect."
+msgstr "Erreur : nom de module (%s) incorrect.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 235
 #, fuzzy
 msgid "Invalid argument.\n"
-msgstr "Argument invalide."
+msgstr "Argument invalide.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 317
 #, fuzzy
 msgid "Incorrect second input argument.\n"
-msgstr "Second argument invalide"
+msgstr "Second argument invalide.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
 #, fuzzy
 msgid "Invalid input argument(s).\n"
-msgstr "Argument(s) invalide(s)."
+msgstr "Argument(s) invalide(s).\n"
 
 #
 # File: src/c/msgs.c, line: 517
 #, fuzzy, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
-msgstr " "
+msgstr " Ces résultats peuvent être inexacts. rcond = %s1\n"
 
 #
-# File: src/c/errmsg.c, line: 42
-#, fuzzy
-msgid "Incorrect assignment\n"
-msgstr "Assignation incorrecte"
+# File: etc/scilab.start, line: 34
+msgid "Startup execution:"
+msgstr "Initialisation:"
 
 #
-# File: src/c/errmsg.c, line: 42
-#, fuzzy
-msgid "Incorrect command!\n"
-msgstr "Assignation incorrecte"
+# File: etc/scilab.start, line: 40
+msgid "  loading initial environment"
+msgstr "  Chargement de l'environnement de travail"
 
 #
-# File: src/c/errmsg.c, line: 42
-#, fuzzy
-msgid "incorrect string\n"
-msgstr "Assignation incorrecte"
+# File: etc/scilab.start, line: 94
+# File: etc/scilab.start, line: 95
+msgid "Help"
+msgstr "Aide"
 
 #
-# File: src/c/errmsg.c, line: 42
-#, fuzzy
-msgid "Incorrect number of arguments\n"
-msgstr "Assignation incorrecte"
+# File: etc/scilab.start, line: 95
+msgid "Help browser"
+msgstr "Navigateur de l'aide"
 
 #
-# File: src/c/errmsg.c, line: 42
-#, fuzzy
-msgid "incorrect syntax.\n"
-msgstr "Assignation incorrecte"
+# File: etc/scilab.start, line: 95
+msgid "Apropos"
+msgstr "Apropos"
 
 #
-# File: sci_gateway/c/sci_getversion.c, line: 223
-# File: sci_gateway/c/sci_getversion.c, line: 311
-#, fuzzy
-msgid "Optim : incorrect bounds.\n"
-msgstr "Erreur : nom de module (%s) incorrect."
+# File: etc/scilab.start, line: 95
+msgid "Configure"
+msgstr "Configurer"
 
 #
-# File: src/c/errmsg.c, line: 61
-#, fuzzy
-#~ msgid "Undefined variable : %s\n"
-#~ msgstr "Variable indéfinie : %s"
+# File: etc/scilab.start, line: 99
+# File: etc/scilab.start, line: 100
+msgid "Editor"
+msgstr "Editeur"
 
-#
-# File: src/c/errmsg.c, line: 104
-#, fuzzy
-#~ msgid "Inconsistent column/row dimensions\n"
-#~ msgstr "Division gauche incohérente"
-
-#
-# File: src/c/errmsg.c, line: 104
-#, fuzzy
-#~ msgid "Inconsistent row/column dimensions\n"
-#~ msgstr "Division gauche incohérente"
-
-#
-# File: src/c/errmsg.c, line: 84
-#, fuzzy
-#~ msgid "Inconsistent addition\n"
-#~ msgstr "Addition incohérente"
-
-#
-# File: src/c/errmsg.c, line: 89
-#, fuzzy
-#~ msgid "Inconsistent subtraction\n"
-#~ msgstr "Soustraction incohérente"
-
-#
-# File: src/c/errmsg.c, line: 94
-#, fuzzy
-#~ msgid "Inconsistent multiplication\n"
-#~ msgstr "Multiplication incohérente"
-
-#
-# File: src/c/errmsg.c, line: 99
-#, fuzzy
-#~ msgid "Inconsistent right division \n"
-#~ msgstr "Division droite incohérente"
-
-#
-# File: src/c/errmsg.c, line: 104
-#, fuzzy
-#~ msgid "Inconsistent left division\n"
-#~ msgstr "Division gauche incohérente"
-
-#
-# File: src/c/errmsg.c, line: 109
-#, fuzzy
-#~ msgid "Redefining permanent variable\n"
-#~ msgstr "Redéfinition d'une variable permanente"
-
-#
-# File: src/c/intmacr2tree.c, line: 329
-# File: src/c/intmacr2tree.c, line: 334
-# File: src/c/intmacr2tree.c, line: 416
-# File: src/c/intmacr2tree.c, line: 421
-# File: src/c/intmacr2tree.c, line: 552
-# File: src/c/intmacr2tree.c, line: 559
-# File: src/c/intmacr2tree.c, line: 562
-# File: src/c/intmacr2tree.c, line: 682
-# File: src/c/intmacr2tree.c, line: 687
-# File: src/c/intmacr2tree.c, line: 991
-# File: src/c/intmacr2tree.c, line: 996
-# File: src/c/intmacr2tree.c, line: 1001
-# File: src/c/intmacr2tree.c, line: 1029
-# File: src/c/intmacr2tree.c, line: 1034
-# File: src/c/intmacr2tree.c, line: 1057
-# File: src/c/intmacr2tree.c, line: 1135
-# File: src/c/intmacr2tree.c, line: 1140
-# File: src/c/intmacr2tree.c, line: 1267
-# File: src/c/intmacr2tree.c, line: 1272
-# File: src/c/intmacr2tree.c, line: 1433
-# File: src/c/intmacr2tree.c, line: 1438
-# File: src/c/intmacr2tree.c, line: 1445
-# File: src/c/intmacr2tree.c, line: 1450
-# File: src/c/intmacr2tree.c, line: 1479
-# File: src/c/intmacr2tree.c, line: 1484
-# File: src/c/intmacr2tree.c, line: 1494
-# File: src/c/intmacr2tree.c, line: 1499
-# File: src/c/intmacr2tree.c, line: 1509
-# File: src/c/intmacr2tree.c, line: 1514
-# File: src/c/intmacr2tree.c, line: 1608
-# File: src/c/intmacr2tree.c, line: 1613
-# File: src/c/intmacr2tree.c, line: 1651
-# File: src/c/intmacr2tree.c, line: 1656
-# File: src/c/intmacr2tree.c, line: 1684
-# File: src/c/intmacr2tree.c, line: 1689
-# File: src/c/intmacr2tree.c, line: 1751
-#, fuzzy
-#~ msgid "Total  memory available   : %d\n"
-#~ msgstr "%s : "
-
-#
-# File: sci_gateway/c/sci_chdir.c, line: 55
-#, fuzzy
-#~ msgid "Invalid index\n"
-#~ msgstr "Paramètre invalide.\n"
-
-#
-# File: src/c/msgs.c, line: 1003
-#, fuzzy
-#~ msgid "Division by zero...\n"
-#~ msgstr "Attention : division par zéro..."
-
-#
-# File: sci_gateway/c/sci_chdir.c, line: 55
-#, fuzzy
-#~ msgid "Invalid exponent\n"
-#~ msgstr "Paramètre invalide.\n"
-
-#
-# File: sci_gateway/c/sci_getversion.c, line: 317
-#, fuzzy
-#~ msgid "Incorrect file or format\n"
-#~ msgstr "Second argument invalide"
-
-#
-# File: src/c/getmodules.c, line: 202
-#, fuzzy
-#~ msgid "subroutine not found : %s\n"
-#~ msgstr "module %s introuvable\n"
-
-#
-# File: src/c/intmacr2tree.c, line: 329
-# File: src/c/intmacr2tree.c, line: 334
-# File: src/c/intmacr2tree.c, line: 416
-# File: src/c/intmacr2tree.c, line: 421
-# File: src/c/intmacr2tree.c, line: 552
-# File: src/c/intmacr2tree.c, line: 559
-# File: src/c/intmacr2tree.c, line: 562
-# File: src/c/intmacr2tree.c, line: 682
-# File: src/c/intmacr2tree.c, line: 687
-# File: src/c/intmacr2tree.c, line: 991
-# File: src/c/intmacr2tree.c, line: 996
-# File: src/c/intmacr2tree.c, line: 1001
-# File: src/c/intmacr2tree.c, line: 1029
-# File: src/c/intmacr2tree.c, line: 1034
-# File: src/c/intmacr2tree.c, line: 1057
-# File: src/c/intmacr2tree.c, line: 1135
-# File: src/c/intmacr2tree.c, line: 1140
-# File: src/c/intmacr2tree.c, line: 1267
-# File: src/c/intmacr2tree.c, line: 1272
-# File: src/c/intmacr2tree.c, line: 1433
-# File: src/c/intmacr2tree.c, line: 1438
-# File: src/c/intmacr2tree.c, line: 1445
-# File: src/c/intmacr2tree.c, line: 1450
-# File: src/c/intmacr2tree.c, line: 1479
-# File: src/c/intmacr2tree.c, line: 1484
-# File: src/c/intmacr2tree.c, line: 1494
-# File: src/c/intmacr2tree.c, line: 1499
-# File: src/c/intmacr2tree.c, line: 1509
-# File: src/c/intmacr2tree.c, line: 1514
-# File: src/c/intmacr2tree.c, line: 1608
-# File: src/c/intmacr2tree.c, line: 1613
-# File: src/c/intmacr2tree.c, line: 1651
-# File: src/c/intmacr2tree.c, line: 1656
-# File: src/c/intmacr2tree.c, line: 1684
-# File: src/c/intmacr2tree.c, line: 1689
-# File: src/c/intmacr2tree.c, line: 1751
-#, fuzzy
-#~ msgid "No more logical units available!\n"
-#~ msgstr "%s : "
-
-#
-# File: sci_gateway/c/sci_clearfun.c, line: 57
-#, fuzzy
-#~ msgid "bad call to a scilab function ?\n"
-#~ msgstr "Doit être une fonction Scilab."
-
-#
-# File: src/c/GetExceptionCode.c, line: 79
-#, fuzzy
-#~ msgid "Floating point exception\n"
-#~ msgstr "Exception inconnue"
-
-#
-# File: src/c/stack2.c, line: 60
-#, fuzzy
-#~ msgid "%s  : wrong number of rhs arguments.\n"
-#~ msgstr "%s : nombre incorrect d'arguments"
-
-#
-# File: src/c/stack2.c, line: 60
-#, fuzzy
-#~ msgid "%s  :wrong number of lhs arguments.\n"
-#~ msgstr "%s : nombre incorrect d'arguments"
-
-#
-# File: src/c/msgs.c, line: 840
-#, fuzzy
-#~ msgid "trying to re-define function %s .\n"
-#~ msgstr "Attention : redéfinition de la fonction : %s"
-
-#
-# File: src/c/errmsg.c, line: 550
-#, fuzzy
-#~ msgid "Cannot allocate more memory.\n"
-#~ msgstr "Impossible d'allouer plus de mémoire"
-
-#
-# File: src/c/errmsg.c, line: 555
-#, fuzzy
-#~ msgid "Too large string.\n"
-#~ msgstr "Chaîne de caractère trop longue"
-
-#
-# File: src/c/errmsg.c, line: 89
-#, fuzzy
-#~ msgid "Inconsistent constraints.\n"
-#~ msgstr "Soustraction incohérente"
-
-#
-# File: sci_gateway/c/sci_getversion.c, line: 317
-#, fuzzy
-#~ msgid "Optim: incorrect input parameters.\n"
-#~ msgstr "Second argument invalide"
-
-#
-# File: sci_gateway/c/sci_getversion.c, line: 317
-#, fuzzy
-#~ msgid "Optim : incorrect stopping parameters.\n"
-#~ msgstr "Second argument invalide"
-
-#
-# File: sci_gateway/c/sci_getversion.c, line: 317
-#, fuzzy
-#~ msgid "incorrect function (argument n:%d).\n"
-#~ msgstr "Second argument invalide"
-
-#
-# File: src/c/getmodules.c, line: 202
-#, fuzzy
-#~ msgid "Entry name not found.\n"
-#~ msgstr "module %s introuvable\n"
-
-#
-# File: src/c/callinterf.c, line: 37
-#, fuzzy
-#~ msgid "Link: the shared archive was not loaded.\n"
-#~ msgstr "Interface %s non chargée."
-
-#
-# File: sci_gateway/c/sci_getmd5.c, line: 55
-#, fuzzy
-#~ msgid "File %s does not exist or read access denied.\n"
-#~ msgstr "Fichier %s n'existe pas.\n"
-
-#
-# File: src/c/intmacr2tree.c, line: 329
-# File: src/c/intmacr2tree.c, line: 334
-# File: src/c/intmacr2tree.c, line: 416
-# File: src/c/intmacr2tree.c, line: 421
-# File: src/c/intmacr2tree.c, line: 552
-# File: src/c/intmacr2tree.c, line: 559
-# File: src/c/intmacr2tree.c, line: 562
-# File: src/c/intmacr2tree.c, line: 682
-# File: src/c/intmacr2tree.c, line: 687
-# File: src/c/intmacr2tree.c, line: 991
-# File: src/c/intmacr2tree.c, line: 996
-# File: src/c/intmacr2tree.c, line: 1001
-# File: src/c/intmacr2tree.c, line: 1029
-# File: src/c/intmacr2tree.c, line: 1034
-# File: src/c/intmacr2tree.c, line: 1057
-# File: src/c/intmacr2tree.c, line: 1135
-# File: src/c/intmacr2tree.c, line: 1140
-# File: src/c/intmacr2tree.c, line: 1267
-# File: src/c/intmacr2tree.c, line: 1272
-# File: src/c/intmacr2tree.c, line: 1433
-# File: src/c/intmacr2tree.c, line: 1438
-# File: src/c/intmacr2tree.c, line: 1445
-# File: src/c/intmacr2tree.c, line: 1450
-# File: src/c/intmacr2tree.c, line: 1479
-# File: src/c/intmacr2tree.c, line: 1484
-# File: src/c/intmacr2tree.c, line: 1494
-# File: src/c/intmacr2tree.c, line: 1499
-# File: src/c/intmacr2tree.c, line: 1509
-# File: src/c/intmacr2tree.c, line: 1514
-# File: src/c/intmacr2tree.c, line: 1608
-# File: src/c/intmacr2tree.c, line: 1613
-# File: src/c/intmacr2tree.c, line: 1651
-# File: src/c/intmacr2tree.c, line: 1656
-# File: src/c/intmacr2tree.c, line: 1684
-# File: src/c/intmacr2tree.c, line: 1689
-# File: src/c/intmacr2tree.c, line: 1751
-#, fuzzy
-#~ msgid "sciprint_full : No more memory.\n"
-#~ msgstr "%s : "
-
-#
-# File: src/c/stack2.c, line: 2788
-#~ msgid "third"
-#~ msgstr "troisième"
-
-#
-# File: src/c/stack2.c, line: 2788
-#~ msgid "fourth"
-#~ msgstr "quatrième"
-
-#
-# File: SCI/etc/scilab.start, line: 34
-#~ msgid "Startup execution:"
-#~ msgstr "Initialisation:"
-
-#
-# File: SCI/etc/scilab.start, line: 40
-#~ msgid "  loading initial environment"
-#~ msgstr "  Chargement de l'environnement de travail"
