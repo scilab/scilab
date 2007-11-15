@@ -763,7 +763,7 @@ msgstr ""
 # File: src/c/getmodules.c, line: 151
 #, c-format
 msgid "Error: could not parse file %s\n"
-msgstr "Erreur: Impossible d'analyser (parser) le fichie %s\n"
+msgstr "Erreur: Impossible d'analyser (parser) le fichier %s\n"
 
 #
 # File: src/c/LoadFunctionsTab.c, line: 152
