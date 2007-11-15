@@ -32,9 +32,6 @@
 
 #include "ExportImport.h" /* IMPORT_EXPORT_MALLOC_DLL */
 
-
-#ifndef _MSC_VER
-
 /**
  * Reallocate the memory
  * Unix/Linux only
@@ -89,20 +86,6 @@
 /* Only for Scilab Stacksize use VirtualAlloc on Window */
 #define SCISTACKMALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
 #define SCISTACKFREE(x) if (x  != NULL) MyFree((char *) x,__FILE__,__LINE__);
-
-#else
-/* Windows */
-	#define MALLOC(x) malloc(((unsigned) x))
-	#define FREE(x) if (x  != NULL) free((char *) x);
-	#define REALLOC(x,y) realloc((char *) x,(unsigned) y)
-	#define CALLOC(x,y) calloc( x,(unsigned) y)
-	#ifndef _MSC_VER
-	#define SCISTACKMALLOC(x) malloc(((unsigned) x))
-	#define SCISTACKFREE(x) if (x  != NULL) free((char *) x);
-	#endif
-
-
-#endif	
 
 #define Top C2F(vstk).top
 
