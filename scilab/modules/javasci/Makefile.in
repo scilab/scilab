@@ -885,17 +885,17 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	fi )
 
 @JAVASCI_TRUE@macrossly:
-@JAVASCI_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
+@JAVASCI_TRUE@	@( if test ! -x $(top_builddir)/bin/scilab; then \
 @JAVASCI_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
 @JAVASCI_TRUE@	else \
 @JAVASCI_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 @JAVASCI_TRUE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
 @JAVASCI_TRUE@	echo $$SCI/modules/functions/macros/genlib.bin; \
 @JAVASCI_TRUE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-@JAVASCI_TRUE@	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+@JAVASCI_TRUE@	(cd $$SCI; $$SCI/bin/scilab -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
 @JAVASCI_TRUE@	fi; \
-@JAVASCI_TRUE@	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
-@JAVASCI_TRUE@	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+@JAVASCI_TRUE@	echo $(top_builddir)/bin/scilab -ns -nwni -f macros/buildmacros.sce; \
+@JAVASCI_TRUE@	$(top_builddir)/bin/scilab -nwni -f macros/buildmacros.sce; \
 @JAVASCI_TRUE@	fi )
 @JAVASCI_TRUE@install-html-local:
 @JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)

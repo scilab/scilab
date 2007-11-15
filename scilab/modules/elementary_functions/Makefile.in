@@ -2996,17 +2996,17 @@ build-giws: $(GIWS_WRAPPERS)
 	fi )
 
 macrossly:
-	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	@( if test ! -x $(top_builddir)/bin/scilab; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	SCI=`cd $(top_builddir); pwd;`; export SCI; \
 	echo $$SCI/modules/functions/macros/genlib.bin; \
 	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	(cd $$SCI; $$SCI/bin/scilab -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
 	fi; \
-	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
-	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	echo $(top_builddir)/bin/scilab -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/bin/scilab -nwni -f macros/buildmacros.sce; \
 	fi )
 install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
