@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-15 12:50+0100\n"
+"POT-Creation-Date: 2007-11-15 13:38+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-15 12:50+0100\n"
+"Revision-Date: 2007-11-15 13:38+0100\n"
 
 # File: macros/perl.sci, line: 12
 msgid "Unable to find Perl file: "
@@ -664,12 +664,14 @@ msgstr ""
 #
 # File: src/c/stack2.c, line: 62
 #, c-format
-msgid "%s : wrong number of rhs arguments\n"
+msgid "%s : wrong number of input arguments (RHS)\n"
 msgstr ""
 #
 # File: src/c/stack2.c, line: 76
+# File: sci_gateway/c/sci_getversion.c, line: 178
+# File: sci_gateway/c/sci_getversion.c, line: 246
 #, c-format
-msgid "%s : wrong number of lhs arguments\n"
+msgid "%s : wrong number of output arguments (LHS)\n"
 msgstr ""
 #
 # File: src/c/stack2.c, line: 301
@@ -1927,12 +1929,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_getcwd.c, line: 28
 msgid "Internal Error.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getversion.c, line: 178
-# File: sci_gateway/c/sci_getversion.c, line: 246
-#, c-format
-msgid "%s : wrong number of output arguments (LHS)\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_getversion.c, line: 218

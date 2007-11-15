@@ -9,29 +9,18 @@
 
   <DATE>$LastChangedDate: 2007-04-22 18:33:00 +0200 (dim., 22 avr. 2007)$</DATE>
 
-  <SHORT_DESCRIPTION name="gettext">get text associated to a tag
-  (localization).</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="gettext">get text translated into the current locale.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>msg=gettext(domain,tag)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>msg=gettext(myString)</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>[TAGS_MSG,STRINGS_MGS]=gettext(domain)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
+ 
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>domain</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: with domain='messages' 'errors', or 'menus'</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>tag</PARAM_NAME>
+        <PARAM_NAME>string</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: with tag = a string id. example 'my_tag_1'</SP>

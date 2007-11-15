@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-15 12:50+0100\n"
+"POT-Creation-Date: 2007-11-15 13:38+0100\n"
 "PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
@@ -337,6 +337,7 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 517
+#, c-format
 msgid "results may be inaccurate. rcond = %s\n"
 msgstr "Les résultats peuvent être inexacts. rcond = %s\n"
 
@@ -453,7 +454,7 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 872
-#, fuzzy, c-format
+#, c-format
 msgid "Stop after row %s in function %s.\n"
 msgstr ""
 
@@ -1248,7 +1249,8 @@ msgstr "Liste remplie.\n"
 msgid ""
 "Type 'resume' or 'abort' to return to standard level prompt.\n"
 "\n"
-msgstr "Saisissez 'resume' ou 'abort' pour revenir au niveau de prompt normal.\n"
+msgstr ""
+"Saisissez 'resume' ou 'abort' pour revenir au niveau de prompt normal.\n"
 "\n"
 
 #
