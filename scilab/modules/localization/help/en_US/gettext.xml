@@ -7,7 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2007-04-22 18:33:00 +0200 (dim., 22 avr. 2007)$</DATE>
+  <DATE>$LastChangedDate: 2007-11-15 13:33:00 +0200 (thu., 15 nov. 2007)$</DATE>
 
   <SHORT_DESCRIPTION name="gettext">get text translated into the current locale.</SHORT_DESCRIPTION>
 
@@ -23,28 +23,22 @@
         <PARAM_NAME>string</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: with tag = a string id. example 'my_tag_1'</SP>
+          <SP>: the message to be translated</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>gettext</VERB> get text associated to a tag (localization).</P>
+    <P><VERB>gettext</VERB> get the translation of a string to the current locale.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
 
-addtext('messages','my_tag_3','viva el scilab')
-addtext('messages',['my_tag_1','my_tag_2'],['my message in scilab','hello scilab'])
-gettext('messages','my_tag_2')
-gettext('messages','my_tag_1')
-[TAGS_MSG,STRINGS_MGS]=gettext('messages')
-[TAGS_ERR,STRINGS_ERR]=gettext('errors')
-[TAGS_MNU,STRINGS_MNU]=gettext('menus')
+gettext('Startup execution:')
  
   ]]></EXAMPLE>
-
+<!--
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>addtext</LINK>
@@ -52,8 +46,8 @@ gettext('messages','my_tag_1')
       <LINK>removetext</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-
+-->
   <AUTHORS>
-    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+    <AUTHORS_ITEM>Sylvestre Ledru</AUTHORS_ITEM>
   </AUTHORS>
 </MAN>
