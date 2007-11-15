@@ -31,7 +31,7 @@ msgstr "Impossible de créer la classe principale Scialb. Erreur :\n"
 # File: src/c/loadLibrarypath.c, line: 36
 #, c-format
 msgid "Error: could not parse file %s\n"
-msgstr "Erreur: impossible d'analyser le fichier %s\n"
+msgstr "Erreur: Impossible d'analyser (parser) le fichier %s\n"
 
 #
 # File: src/c/loadClasspath.c, line: 95
@@ -52,11 +52,11 @@ msgstr ""
 
 #
 # File: src/c/InitializeJVM.c, line: 33
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "Scilab cannot open JVM library.\n"
-msgstr "Scilab n'a pas pu ouvrir la bibliothèque de la JVM."
+msgstr "Scilab n'a pas pu ouvrir la bibliothèque de la JVM.\n"
 
 #
 # File: src/c/InitializeJVM.c, line: 33
@@ -135,33 +135,10 @@ msgstr ""
 "cette fonction.\n"
 
 #
-# File: src/c/JVM.c, line: 43
-# File: src/c/JVM.c, line: 45
-#, fuzzy, c-format
-msgid ""
-"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
-"has been loaded by Scilab before calling this function."
-msgstr ""
-"\n"
-"Erreur: Impossible de retourner la variable d'environnement Scilab "
-"(jvm_SCILAB): verifier si la JVM a été correctement chargé avant d'appeller "
-"cette fonction.\n"
-
-#
 # File: src/c/JVM.c, line: 127
 msgid ""
 "\n"
 "Incorrect version JNI (needs at least JDK 1.4)\n"
-msgstr ""
-"\n"
-"Mauvaise version de JNI (au moins JDK 1.4)\n"
-
-#
-# File: src/c/JVM.c, line: 127
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Incorrect version JNI (needs at least JDK 1.4).\n"
 msgstr ""
 "\n"
 "Mauvaise version de JNI (au moins JDK 1.4)\n"
