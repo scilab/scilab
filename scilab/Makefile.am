@@ -77,6 +77,7 @@ build-localization:
 	MASK="modules/*/locales/"; \
 	LC=LC_MESSAGES; \
 	FILENAME="messages.po*"; \
+	rm modules/*/locales/*/*~; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
 		PATHTO=$(top_srcdir)/locale/$$LOCALE/$$LC/; \
