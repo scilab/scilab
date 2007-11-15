@@ -367,7 +367,7 @@ fi
 
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
-
+CPU_64_BITS=false
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
@@ -385,13 +385,19 @@ if test "$CC" = "gcc"; then
 	;;
 	 x86_64-*-linux-gnu)
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64"
+		CPU_64_BITS=enabled
     ;;
-	 i*86-*-linux-gnu | *-pc-linux-gnu | ia64-*-linux-gnu )
+	 i*86-*-linux-gnu | *-pc-linux-gnu )
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
+	;;		
+	 ia64-*-linux-gnu )
+		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
+		CPU_64_BITS=enabled
     ;;
 	 alpha-*-linux-gnu)
 		CFLAGS="$CFLAGS  -mieee-with-inexact -Dlinux -fwritable-strings"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
+		CPU_64_BITS=enabled
 	;;
 	 powerpc-*-linux-gnu)
 		CFLAGS="$CFLAGS -D_GNU_SOURCE -Dlinux -fwritable-strings"
@@ -472,6 +478,8 @@ fi
 CFLAGS="$CFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
+
+AM_CONDITIONAL(CPU_64_BITS, test "$CPU_64_BITS" = "enabled")
 
 ###########################
 ## test for JAVA compiler
@@ -625,9 +633,6 @@ AC_HEADER_TIME
 
 # check if the specific header is available or not | used in modules/core/src/c/link_SYSV.c
 AC_HEADER_SYS_WAIT
-
-# check for OpenGL (GLU)
-AC_CHECK_HEADERS([GL/gl.h GL/glu.h])
 
 
 #######################
@@ -1265,7 +1270,7 @@ echo "  exeext .............. = $exeext"
 
 echo ""
 
-echo "Compilation paths: "
+echo "Compilation paths:"
 echo "  srcdir .............. = $SCI_SRCDIR"
 echo "  srcdir_full ......... = $SCI_SRCDIR_FULL"
 echo "  builddir ............ = $SCI_BUILDDIR"
@@ -1273,32 +1278,38 @@ if test "$SCI_SRCDIR_FULL" != "$SCI_BUILDDIR"; then
 echo "  VPATH build ......... = Activated"
 fi
 
+echo "" 
+echo "Platform informations:"
+echo "  host ........... = $host"
+echo "  host_cpu ....... = $host_cpu"
+echo "  host_vendor .... = $host_vendor"
+echo "  host_os ... .... = $host_os"
+echo "  hostname ....... = $ac_hostname"
+echo "  64 bits CPU .... = $CPU_64_BITS"
 
 echo ""
 echo "Options used to compile and link:"
-echo "  prefix           = $prefix"
-echo "  localedir        = $localedir"
-echo "  VERSION          = $PACKAGE_VERSION"
-echo "  CC               = $CC"
-echo "  CFLAGS           = $CFLAGS"
-#echo "  CPP              = $CPP"
-#echo "  CPPFLAGS         = $CPPFLAGS"
-echo "  PCFLAGS          = $PCFLAGS"
-echo "  DEFS             = $DEFS"
-echo "  LD               = $LD"
-echo "  LDFLAGS          = $LDFLAGS"
-echo "  LIBS             = $LIBS"
-echo "  CXX              = $CXX"
-echo "  CXXFLAGS         = $CXXFLAGS"
-echo "  F77              = $F77"
-echo "  FFLAGS           = $FFLAGS"
-echo "  F77_LDFLAGS      = $F77_LDFLAGS"
-echo "  XML_FLAGS        = $XML_FLAGS"
-echo "  XML_LIBS         = $XML_LIBS"
-echo "  PCRE_CFLAGS      = $PCRE_CFLAGS"
-echo "  PCRE_LIBS        = $PCRE_LIBS"
-echo "  TERMCAP_LIB      = $TERMCAP_LIB"
-echo "  TK_INC_PATH      = $TK_INC_PATH"
-echo "  TCL_INC_PATH     = $TCL_INC_PATH"
-echo "  TCLTK_LIBS       = $TCLTK_LIBS"
+echo "  prefix ......... = $prefix"
+echo "  localedir ...... = $localedir"
+echo "  VERSION ........ = $PACKAGE_VERSION"
+echo "  CC ............. = $CC"
+echo "  CFLAGS ......... = $CFLAGS"
+echo "  PCFLAGS ........ = $PCFLAGS"
+echo "  DEFS ........... = $DEFS"
+echo "  LD ............. = $LD"
+echo "  LDFLAGS ........ = $LDFLAGS"
+echo "  LIBS ........... = $LIBS"
+echo "  CXX ............ = $CXX"
+echo "  CXXFLAGS ....... = $CXXFLAGS"
+echo "  F77 ............ = $F77"
+echo "  FFLAGS ......... = $FFLAGS"
+echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
+echo "  XML_FLAGS ...... = $XML_FLAGS"
+echo "  XML_LIBS ....... = $XML_LIBS"
+echo "  PCRE_CFLAGS .... = $PCRE_CFLAGS"
+echo "  PCRE_LIBS ...... = $PCRE_LIBS"
+echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
+echo "  TK_INC_PATH .... = $TK_INC_PATH"
+echo "  TCL_INC_PATH ... = $TCL_INC_PATH"
+echo "  TCLTK_LIBS ..... = $TCLTK_LIBS"
 echo ""
