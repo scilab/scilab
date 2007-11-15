@@ -19,16 +19,4 @@ msgstr ""
 # File: src/c/dynamic_menus.c, line: 107
 # File: src/c/dynamic_menus.c, line: 115
 msgid "send_command : No more memory.\n"
-msgstr "send_command: Pas assez de mÃ©moire disponible.\n"
-
-#
-# File: src/c/dynamic_menus.c, line: 169
-#, c-format
-msgid "   Unqueuing %s - No option\n"
-msgstr ""
-
-#
-# File: src/c/dynamic_menus.c, line: 170
-#, c-format
-msgid "   Unqueuing %s - seq\n"
-msgstr ""
+msgstr "send_command: Pas assez de mémoire disponible.\n"
