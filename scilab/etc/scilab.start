@@ -31,13 +31,13 @@ verbose=sciargs()<>"-nb"
 if verbose then
   if ~fromjava() & ~fromc() then
     banner();
-    write(%io(2),[' ';' ';gettext('Startup execution:')])
+    write(%io(2),[' ';' ';gettext("Startup execution:")])
   end
 end
 // Load scilab functions libraries  ===================================
 if verbose then
   if ~fromjava() & ~fromc() then
-    write(%io(2),gettext('  loading initial environment'))
+    write(%io(2),gettext("  loading initial environment"))
   end
 end
 clear verbose
@@ -91,13 +91,13 @@ if grep(args,'scilex')<>[] then
   if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs")&(args<>"-nogui") then
 
     if ~MSDOS then
-      delmenu("Help")
-      addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu")),
+      delmenu(gettext("Help"))
+      addmenu(gettext("Help"),[gettext("Help browser"),gettext("Apropos"),gettext("Configure")],list(2,"help_menu")),
     end
     if with_tk() then
 	    if ~MSDOS then
-        delmenu("Editor")
-        addmenu("Editor",list(2,"scipad();"));
+        delmenu(gettext("Editor"))
+        addmenu(gettext("Editor"),list(2,"scipad();"));
       end
     end
   end
