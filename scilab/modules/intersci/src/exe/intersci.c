@@ -7,6 +7,7 @@
 
 #include "intersci.h"
 #include "machine.h"
+#include "stack-def.h"
 
 static char buf[1024];
 
@@ -189,7 +190,7 @@ int ReadFunction(f)
       if (line1 == 1) 
 	{
 	  /* SCILAB function description */
-	  if ((int)strlen(words[0]) > 24) 
+	  if ((int)strlen(words[0]) > nlgh) 
 	    {
 	      printf("SCILAB function name too long: \"%s\"\n",words[0]);
 	      exit(1);

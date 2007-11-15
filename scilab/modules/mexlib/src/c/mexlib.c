@@ -1051,7 +1051,7 @@ const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
   nf=headerstr[1]*headerstr[2]-2;  /* number of fields */
   k=field_number;
   if (k>nf) return (char *) 0;  /*  ?  */
-  longueur=Min(headerstr[7+k]-headerstr[6+k],24);  /* size of kth fieldname */
+  longueur=Min(headerstr[7+k]-headerstr[6+k],nlgh);  /* size of kth fieldname */
   istart=6+nf+headerstr[6+k];    /* start of kth fieldname code */
   C2F(cvstr)(&longueur, &headerstr[istart], str, (job=1, &job),longueur);
   str[longueur]='\0';
@@ -1203,13 +1203,13 @@ int mxGetFieldNumber(const mxArray *ptr, const char *string)
 {
   int nf, longueur, istart, k, ilocal, retval;
   int *headerstr;
-  static char str[24];
+  static char str[nlgh];
   int *header = Header(ptr);
   headerstr = listentry(header,1);
   nf=headerstr[1]*headerstr[2]-2;  /* number of fields */
   retval=-1;
   for (k=0; k<nf; k++) {
-    longueur=Min(headerstr[7+k]-headerstr[6+k],24);  /* size of kth fieldname */
+    longueur=Min(headerstr[7+k]-headerstr[6+k],nlgh);  /* size of kth fieldname */
     istart=6+nf+headerstr[6+k];    /* start of kth fieldname code */
     /*    istart=8+headerstr[4+nf+k]; */
     C2F(cvstr)(&longueur, &headerstr[istart], str, (ilocal=1, &ilocal),longueur);

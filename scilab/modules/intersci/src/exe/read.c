@@ -2,6 +2,9 @@
 
 #include "intersci-n.h"
 
+#ifndef nlgh
+	#define nlgh 24
+#endif
 /**********************************************************
  *Reading the intersci description file 
  **********************************************************/
@@ -43,7 +46,7 @@ int ReadFunction(FILE *f)
       if (line1 == 1) 
 	{
 	  /* SCILAB function description */
-	  if ((int)strlen(words[0]) > 24) 
+	  if ((int)strlen(words[0]) > nlgh) 
 	    {
 	      printf("SCILAB function name too long: \"%s\"\n",words[0]);
 	      exit(1);

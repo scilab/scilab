@@ -10,7 +10,6 @@
 #include <values.h>
 #endif /* HAVE_VALUES_H */
 #endif /* !HAVE_LIMITS_H */
-
 #include "stackinfo.h"
 #include "stack-def.h"
 #include "stack-c.h"
@@ -27,8 +26,6 @@
 #ifndef MAXLONG
 #define MAXLONG LONG_MAX
 #endif
-/*-----------------------------------------------------------------------------------*/
-#define LengthNameVariableScilabMax 24
 /*-----------------------------------------------------------------------------------*/
 static void cleanFortranString(char *fortanbuffer);
 /*-----------------------------------------------------------------------------------*/
@@ -87,12 +84,12 @@ char *getLocalNamefromId(int n)
 	integer *id=NULL;	
 	integer one = 1;
 	char *Name=NULL;
-	char fortranName[LengthNameVariableScilabMax+1];
+	char fortranName[nlgh+1];
 
 	id=&C2F(vstk).idstk[Bot * 6 - 6];
 	id -= 7;
 
-	C2F(cvname)(&id[n * 6 + 1], fortranName, &one,LengthNameVariableScilabMax);
+	C2F(cvname)(&id[n * 6 + 1], fortranName, &one,nlgh);
 
 	cleanFortranString(fortranName);
 
@@ -109,12 +106,12 @@ char *getGlobalNamefromId(int n)
 	integer *id=NULL;	
 	static integer one = 1;
 	char *Name=NULL;
-	char fortranName[LengthNameVariableScilabMax+1];
+	char fortranName[nlgh+1];
 
 	id=&C2F(vstk).idstk[(C2F(vstk).isiz + 2) * 6 - 6];
 	id -= 7;
 
-	C2F(cvname)(&id[(n+1) * 6 + 1], fortranName, &one,LengthNameVariableScilabMax);
+	C2F(cvname)(&id[(n+1) * 6 + 1], fortranName, &one,nlgh);
 
 	cleanFortranString(fortranName);
 
@@ -168,9 +165,9 @@ int getGlobalSizefromId(int n)
 static void cleanFortranString(char *fortanbuffer)
 {
 	int i = 0;
-	fortanbuffer[LengthNameVariableScilabMax]='\0';
+	fortanbuffer[nlgh]='\0';
 
-	for (i=0;i<LengthNameVariableScilabMax;i++)
+	for (i=0;i < nlgh;i++)
 	{
 		if (fortanbuffer[i] == '\0')
 		{

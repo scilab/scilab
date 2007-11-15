@@ -838,7 +838,7 @@ static int msg_42(integer *n, integer *ierr)
 	char line[140];
 
 	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], line, &one, (long int)nlgh);
-	line[24]='\0';
+	line[nlgh]='\0';
 	
 	sciprint(_("Warning : redefining function : %s"),line);
 	sciprint("\n");

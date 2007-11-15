@@ -1003,7 +1003,7 @@ int C2F(parse)()
 	for (ibpt = C2F(dbg).lgptrs[kmac]; ibpt <= i__2; ++ibpt) {
 	  if (Lct[8] - nlc == C2F(dbg).bptlg[ibpt - 1]) { /* yes */
 	    /* display a message */
-	    C2F(cvname)(&C2F(dbg).macnms[kmac * nsiz], tmp, &c__1, 24L);
+	    C2F(cvname)(&C2F(dbg).macnms[kmac * nsiz], tmp, &c__1, nlgh);
 	    sprintf(C2F(cha1).buf,"%s %5d",tmp, Lct[8] - nlc);
 	    Msgs(32, 0);
 	    /* raise the interruption flag */
