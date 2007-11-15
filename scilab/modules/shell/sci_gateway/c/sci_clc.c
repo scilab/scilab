@@ -48,7 +48,7 @@ int C2F(sci_clc) _PARAMS((char *fname,unsigned long fname_len))
 	res = clc(nblines);
 	if (!res)
 	{
-		sciprint(_("not implemented in this mode.\n"));
+		sciprint(_("Not implemented in this mode.\n"));
 	}
 
 	LhsVar(1) = 0;
