@@ -1097,30 +1097,51 @@ function result = need_to_be_build(directory,directory_language,default_language
 	
 	[lhs,rhs]=argn(0);
 	
-	if is_binary_win_ver() then
-		if find( %helps_modules(:,1) == directory ) <> []
-			result = %F;
-			return;
-		end
+	xml_file_list = listfiles(directory+"/*.xml");
+	
+	if xml_file_list == [] then
+		result = %F;
+		return;
 	end
 	
 	if fileinfo(pathconvert(directory+"/.last_successful_build",%f,%f)) == [] then
 		result = %T;
 		return;
+	end
+	
+	exec(pathconvert(directory+"/.last_successful_build",%f,%f),-1);
+	
+	// ---------------------------------------------------------------------
+	
+	directory_info = fileinfo(directory);
+	max_change_date = directory_info(6);
+	
+	for i=1:size(xml_file_list,'*');
+		file_date = fileinfo(xml_file_list(i));
+		if file_date(6) > max_change_date then
+			max_change_date = file_date(6);
+		end
+	end
+	
+	if max_change_date > last_success_build_val then
+		result = %T;
+		return;
 	else
-		exec(pathconvert(directory+"/.last_successful_build",%f,%f),-1);
-		
-		// ---------------------------------------------------------------------
-		
-		directory_info = fileinfo(directory);
-		max_change_date = directory_info(6);
-		
-		xml_file_list = listfiles(directory+"/*.xml");
-		
-		for i=1:size(xml_file_list,'*');
-			file_date = fileinfo(xml_file_list(i));
-			if file_date(6) > max_change_date then
-				max_change_date = file_date(6);
+		if rhs == 3 then
+			
+			df_lang_dir_info = fileinfo(pathconvert(directory+"/../"+default_language,%f,%f));
+			
+			if df_lang_dir_info(6) > max_change_date then
+				max_change_date = df_lang_dir_info(6);
+			end
+			
+			xml_df_lang_file_list = listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f));
+			
+			for i=1:size(xml_df_lang_file_list,'*');
+				file_date = fileinfo(xml_df_lang_file_list(i));
+				if file_date(6) > max_change_date then
+					max_change_date = file_date(6);
+				end
 			end
 		end
 		
@@ -1128,47 +1149,9 @@ function result = need_to_be_build(directory,directory_language,default_language
 			result = %T;
 			return;
 		else
-			if rhs == 3 then
-				
-				df_lang_dir_info = fileinfo(pathconvert(directory+"/../"+default_language,%f,%f));
-				
-				if df_lang_dir_info(6) > max_change_date then
-					max_change_date = df_lang_dir_info(6);
-				end
-				
-				xml_df_lang_file_list = listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f));
-				
-				for i=1:size(xml_df_lang_file_list,'*');
-					file_date = fileinfo(xml_df_lang_file_list(i));
-					if file_date(6) > max_change_date then
-						max_change_date = file_date(6);
-					end
-				end
-			end
-			
-			if max_change_date > last_success_build_val then
-				result = %T;
-				return;
-			else
-				result = %F;
-				return;
-			end
+			result = %F;
+			return;
 		end
 	end
 	
 endfunction
-
-function result = is_binary_win_ver()
-	
-	result = %F;
-	
-	if fileinfo(SCI+"/unins000.exe") == [] then
-		result = %T;
-	end
-	
-	return;
-	
-endfunction
-
-
-
