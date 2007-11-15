@@ -10,7 +10,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_completion)()
 {
-	Scierror(999,_("completion interface not installed.\n"));
+	Scierror(999,_("Scilab completion module not installed.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

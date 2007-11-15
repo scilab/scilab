@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_randlib)()
 {
-	Scierror(999,_("randlib interface not installed.\n"));
+	Scierror(999,_("Scilab randlib interface not installed.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 	

@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_spreadsheet)()
 {
-	Scierror(999,_("spreadsheet interface not installed.\n"));
+	Scierror(999,_("Scilab spreadsheet module not installed.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

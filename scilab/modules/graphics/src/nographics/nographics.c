@@ -11,7 +11,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_graphics)()
 {
-	Scierror(999,"Graphics interface not installed.\n");
+	Scierror(999,"Scilab Graphics module not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

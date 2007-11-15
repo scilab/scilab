@@ -9,7 +9,7 @@ int C2F(gw_windows_tools)(void);
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_windows_tools)(void)
 {
-	Scierror(999,"windows_tools interface not installed.\n");
+	Scierror(999,"Scilab windows_tools module not installed.\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
