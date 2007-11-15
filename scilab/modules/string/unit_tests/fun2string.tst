@@ -82,8 +82,8 @@ if or(fun2string(foo,'foo')<>ref) then pause,end
 
 
 
-//with deff
-------------
+// with deff
+// ---------
 deff('foo','y=1')
 ref=["function []=foo()";
      "  y = 1";
@@ -96,8 +96,8 @@ ref=["function []=foo()";
      "endfunction"];
 if or(fun2string(foo,'foo')<>ref) then pause,end
 
-//with getf
-------------
+// with getf
+// ------------
 ref=["function []=foo()";
      "  y = 1";
      "  z = 3;";
@@ -106,8 +106,8 @@ mputl(ref,TMPDIR+'/foo.sci')
 getf(TMPDIR+'/foo.sci')
 if or(fun2string(foo,'foo')<>ref) then pause,end
 
-//with nested functions
------------------------
+// with nested functions
+// ---------------------
 function y=foo(x)
   function y=foo1(x),
   y=x+1;
@@ -142,8 +142,8 @@ ref=["function []=foo()";
 if or(fun2string(foo,'foo')<>ref) then pause,end
 
 
-//with comments
----------------
+// with comments
+// -------------
 function a=foo//
     if a> 10 then //
     end 
@@ -164,8 +164,3 @@ ref=["function []=foo(),//";
      "  endfunction";
      "endfunction"];
 if or(fun2string(foo,'foo')<>ref) then pause,end
-
-
-
-
-
