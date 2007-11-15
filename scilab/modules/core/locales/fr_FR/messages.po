@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-15 11:44+0100\n"
+"POT-Creation-Date: 2007-11-15 12:50+0100\n"
 "PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
@@ -88,9 +88,8 @@ msgstr ""
 
 #
 # File: src/c/getmodules.c, line: 202
-#, fuzzy
 msgid "Powershell not found."
-msgstr "module %s introuvable\n"
+msgstr "Powershell introuvable"
 
 #
 # File: macros/powershell.sci, line: 35
@@ -118,8 +117,8 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 55
 #, c-format
-msgid "file: %s does not exist.\n"
-msgstr "Fichier %s n'existe pas.\n"
+msgid "file: %s does not exist."
+msgstr "Fichier %s n'existe pas."
 
 #
 # File: macros/add_demo.sci, line: 6
@@ -338,9 +337,8 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 517
-#, fuzzy, c-format
 msgid "results may be inaccurate. rcond = %s\n"
-msgstr "Les résultats peuvent être inexacts. rcond %s\n"
+msgstr "Les résultats peuvent être inexacts. rcond = %s\n"
 
 #
 # File: src/c/msgs.c, line: 548
@@ -407,15 +405,13 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 634
-#, fuzzy
 msgid "End of optimization.\n"
-msgstr "Fin de l'optimisation"
+msgstr "Fin de l'optimisation.\n"
 
 #
 # File: src/c/msgs.c, line: 634
-#, fuzzy
 msgid "End of optimization (linear search fails).\n"
-msgstr "Fin de l'optimisation"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 647
@@ -441,9 +437,9 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 840
-#, fuzzy, c-format
+#, c-format
 msgid "Breakpoints of function : %s\n"
-msgstr "Attention : redéfinition de la fonction : %s"
+msgstr "Point d'arrêt de la fonction : %s\n"
 
 #
 # File: src/c/msgs.c, line: 719
@@ -459,7 +455,7 @@ msgstr ""
 # File: src/c/msgs.c, line: 872
 #, fuzzy, c-format
 msgid "Stop after row %s in function %s.\n"
-msgstr "       dans la fonction: %s."
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 761
@@ -475,15 +471,13 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 771
-#, fuzzy
 msgid "real part\n"
-msgstr "Partie réelle"
+msgstr "Partie réelle\n"
 
 #
 # File: src/c/msgs.c, line: 777
-#, fuzzy
 msgid "imaginary part\n"
-msgstr "Partie imaginaire"
+msgstr "Partie imaginaire\n"
 
 #
 # File: src/c/msgs.c, line: 782
@@ -500,9 +494,8 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 800
 # File: sci_gateway/c/sci_who.c, line: 303
-#, fuzzy
 msgid "Your variables are :\n"
-msgstr "Vos variables sont : "
+msgstr "Vos variables sont :\n"
 
 #
 # File: src/c/msgs.c, line: 811
@@ -518,15 +511,13 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 822
-#, fuzzy
 msgid "System functions :\n"
-msgstr "Fonctions systèmes : "
+msgstr "Fonctions systèmes :\n"
 
 #
 # File: src/c/msgs.c, line: 828
-#, fuzzy
 msgid "Commands:\n"
-msgstr "Commandes:"
+msgstr "Commandes:\n"
 
 #
 # File: src/c/msgs.c, line: 840
@@ -536,22 +527,20 @@ msgstr "Attention : redéfinition de la fonction : %s"
 
 #
 # File: src/c/msgs.c, line: 872
-#, fuzzy, c-format
+#, c-format
 msgid "       inside function: %s.\n"
-msgstr "       dans la fonction: %s."
+msgstr "       dans la fonction: %s.\n"
 
 #
 # File: src/c/msgs.c, line: 879
-#, fuzzy
 msgid "Not enough memory to perform simplification.\n"
-msgstr "Mémoire insuffisante pour effectuer la simplification."
+msgstr "Mémoire insuffisante pour effectuer la simplification.\n"
 
 #
 # File: src/c/msgs.c, line: 885
 # File: sci_gateway/c/sci_who.c, line: 310
-#, fuzzy
 msgid "Your global variables are...\n"
-msgstr "Vos variables globales sont :"
+msgstr "Vos variables globales sont...\n"
 
 #
 # File: src/c/msgs.c, line: 919
@@ -582,9 +571,9 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 991
-#, fuzzy, c-format
+#, c-format
 msgid "Impossible to load variable %s.\n"
-msgstr "Impossible de charger la variable %s."
+msgstr "Impossible de charger la variable %s.\n"
 
 #
 # File: src/c/msgs.c, line: 995
@@ -593,9 +582,8 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 1003
-#, fuzzy
 msgid "Warning : division by zero...\n"
-msgstr "Attention : division par zéro..."
+msgstr "Attention : division par zéro...\n"
 
 #
 # File: src/c/msgs.c, line: 1007
@@ -615,9 +603,9 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 1059
-#, fuzzy, c-format
+#, c-format
 msgid "Warning : variable %%ODEOPTIONS not found.\n"
-msgstr "Attention : variable %%ODEOPTIONS introuvable."
+msgstr "Attention : variable %%ODEOPTIONS introuvable.\n"
 
 #
 # File: src/c/msgs.c, line: 1063
@@ -694,9 +682,9 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 840
-#, fuzzy, c-format
+#, c-format
 msgid "Warning : primitive function %s has moved.\n"
-msgstr "Attention : redéfinition de la fonction : %s"
+msgstr "Attention : la fonction primitive %s a été déplacée.\n"
 
 #
 # File: src/c/msgs.c, line: 1244
@@ -726,9 +714,9 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 1289
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown key <%s> ignored.\n"
-msgstr "Clef inconnue <%s> ignorée."
+msgstr "Clef inconnue <%s> ignorée.\n"
 
 #
 # File: src/c/msgs.c, line: 1294
@@ -753,15 +741,15 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 517
-#, fuzzy, c-format
+#, c-format
 msgid " results may be inaccurate. rcond = %s\n"
-msgstr " "
+msgstr ""
 
 #
 # File: src/c/callinterf.c, line: 37
-#, fuzzy, c-format
+#, c-format
 msgid "Interface %s not linked.\n"
-msgstr "Interface %s non chargée."
+msgstr "Interface %s non liée.\n"
 
 #
 # File: src/c/addinter.c, line: 324
@@ -809,9 +797,9 @@ msgstr ""
 # File: src/c/stack3.c, line: 586
 # File: src/c/stack3.c, line: 657
 # File: src/c/stack3.c, line: 703
-#, fuzzy, c-format
+#, c-format
 msgid "Undefined variable %s.\n"
-msgstr "Variable indéfinie %s."
+msgstr "Variable indéfinie %s.\n"
 
 #
 # File: src/c/stack3.c, line: 272
@@ -820,15 +808,15 @@ msgstr ""
 
 #
 # File: src/c/stack2.c, line: 60
-#, fuzzy, c-format
-msgid "%s : wrong number of rhs arguments\n"
-msgstr "%s : nombre incorrect d'arguments"
+#, c-format
+msgid "%s : wrong number of input arguments (RHS)\n"
+msgstr "%s : nombre incorrect d'arguments d'entrée (RHS)\n"
 
 #
 # File: src/c/stack2.c, line: 60
-#, fuzzy, c-format
-msgid "%s : wrong number of lhs arguments\n"
-msgstr "%s : nombre incorrect d'arguments"
+#, c-format
+msgid "%s : wrong number of output arguments (LHS)\n"
+msgstr "%s : nombre incorrect d'arguments de sortie\n"
 
 #
 # File: src/c/stack2.c, line: 301
@@ -838,9 +826,9 @@ msgstr ""
 
 #
 # File: src/c/stack2.c, line: 60
-#, fuzzy, c-format
+#, c-format
 msgid "%s : unrecognized optional arguments %s.\n"
-msgstr "%s : nombre incorrect d'arguments"
+msgstr ""
 
 #
 # File: src/c/stack2.c, line: 358
@@ -854,9 +842,9 @@ msgstr ""
 
 #
 # File: src/c/link_std.c, line: 381
-#, fuzzy, c-format
+#, c-format
 msgid "and %s.\n"
-msgstr "Impossible de lire %s\n"
+msgstr ""
 
 #
 # File: src/c/stack2.c, line: 386
@@ -1034,9 +1022,9 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_clearfun.c, line: 57
-#, fuzzy, c-format
+#, c-format
 msgid "scistring: %s is not a Scilab function.\n"
-msgstr "Doit être une fonction Scilab."
+msgstr ""
 
 #
 # File: src/c/stack2.c, line: 2128
@@ -1062,9 +1050,9 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 235
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid %c,%c matrices.\n"
-msgstr "Argument invalide.\n"
+msgstr ""
 
 #
 # File: src/c/stack2.c, line: 2358
@@ -1227,9 +1215,9 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 1059
-#, fuzzy, c-format
+#, c-format
 msgid "GetDataFromName: variable %s not found.\n"
-msgstr "Attention : variable %%ODEOPTIONS introuvable."
+msgstr ""
 
 #
 # File: src/c/stack2.c, line: 3143
@@ -1257,11 +1245,11 @@ msgstr "Liste remplie.\n"
 
 #
 # File: src/c/prompt.c, line: 26
-#, fuzzy
 msgid ""
 "Type 'resume' or 'abort' to return to standard level prompt.\n"
 "\n"
-msgstr "Saisissez 'resume' ou 'abort' pour revenir au niveau de prompt normal."
+msgstr "Saisissez 'resume' ou 'abort' pour revenir au niveau de prompt normal.\n"
+"\n"
 
 #
 # File: src/c/SendScilabJobs.c, line: 57
@@ -1358,9 +1346,8 @@ msgstr ""
 # File: src/c/intmacr2tree.c, line: 1684
 # File: src/c/intmacr2tree.c, line: 1689
 # File: src/c/intmacr2tree.c, line: 1751
-#, fuzzy
 msgid "macr2tree: No more memory available.\n"
-msgstr "%s : "
+msgstr ""
 
 #
 # File: src/c/intmacr2tree.c, line: 111
@@ -1434,9 +1421,9 @@ msgstr ""
 # File: src/c/intmacr2tree.c, line: 1684
 # File: src/c/intmacr2tree.c, line: 1689
 # File: src/c/intmacr2tree.c, line: 1751
-#, fuzzy, c-format
+#, c-format
 msgid "%s : No more memory available.\n"
-msgstr "%s : "
+msgstr "%s : Plus assez de mémoire disponible.\n"
 
 #
 # File: src/c/intmacr2tree.c, line: 593
@@ -2123,14 +2110,12 @@ msgstr ""
 
 #
 # File: src/c/InitializeCore.c, line: 29
-#, fuzzy
 msgid "Fatal Error : Can't create table for scilab functions.\n"
 msgstr "Erreur fatale : Impossible de créer la table des fonctions Scilab.\n"
 
 #
 # File: src/c/scimem.c, line: 34
 # File: src/c/scimem.c, line: 61
-#, fuzzy
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Pas assez de mémoire pour alouer le coeur de Scilab\n"
 
@@ -2146,7 +2131,6 @@ msgstr ""
 
 #
 # File: src/c/callinterf.c, line: 85
-#, fuzzy
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "Voulez-vous vraiment arrêter le calcul (y ou n ?) \n"
 
@@ -2231,9 +2215,9 @@ msgstr ""
 # File: src/c/intmacr2tree.c, line: 1684
 # File: src/c/intmacr2tree.c, line: 1689
 # File: src/c/intmacr2tree.c, line: 1751
-#, fuzzy, c-format
+#, c-format
 msgid "%s : can't alloc more memory. stacksize\n"
-msgstr "%s : "
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_stacksize.c, line: 102
@@ -2266,37 +2250,36 @@ msgid "Invalid type of input parameter(s): String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_with_module.c, line: 40
-# File: sci_gateway/c/sci_warning.c, line: 74
-msgid "Parameter must be a string.\n"
+# File: sci_gateway/c/sci_getversion.c, line: 323
+msgid "Input argument must be a string.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ulink.c, line: 41
-msgid "Parameter must be a integer.\n"
+# File: sci_gateway/c/sci_getversion.c, line: 323
+msgid "Input argument must be a integer.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_who.c, line: 96
 # File: sci_gateway/c/sci_who.c, line: 105
-msgid "First parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"
+msgid "First input argument must be 'local' , 'get' , 'global' or 'sorted'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_who.c, line: 128
-msgid "second parameter must be 'sorted'.\n"
+# File: sci_gateway/c/sci_getversion.c, line: 323
+msgid "Second input argument must be 'sorted'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_who.c, line: 165
-msgid "first parameter must be 'local' , 'get' or 'global'.\n"
+# File: sci_gateway/c/sci_getversion.c, line: 323
+msgid "First input argument must be 'local' , 'get' or 'global'.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_who.c, line: 175
 msgid ""
-"first parameter must be 'local' , 'get' , 'global' and second parameter must "
-"be 'sorted'.\n"
+"First input argument must be 'local' , 'get' , 'global' and second parameter "
+"must be 'sorted'.\n"
 msgstr ""
 
 #
@@ -2335,7 +2318,6 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_newfun.c, line: 61
-#, fuzzy
 msgid "See help newfun.\n"
 msgstr "cf l'aide de newfun\n"
 
@@ -2347,21 +2329,25 @@ msgstr "ATTENTION : %s"
 
 #
 # File: src/c/errmsg.c, line: 550
-#, fuzzy, c-format
+#, c-format
 msgid "%s : can't alloc more memory.\n"
-msgstr "Impossible d'allouer plus de mémoire\n"
+msgstr "%s : Impossible d'allouer plus de mémoire.\n"
+
+#
+# File: sci_gateway/c/sci_getmd5.c, line: 55
+#, c-format
+msgid "File %s doesn't exist.\n"
+msgstr "Fichier %s n'existe pas.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
-#, fuzzy
 msgid "Invalid type of input argument(s): String expected.\n"
-msgstr "Argument(s) invalide(s).\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
-#, fuzzy
 msgid "Invalid second input argument. It must be a string.\n"
-msgstr "Argument(s) invalide(s).\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 104
@@ -2370,9 +2356,8 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
-#, fuzzy
 msgid "Invalid input argument.\n"
-msgstr "Argument(s) invalide(s).\n"
+msgstr "Argument invalide d'entrée.\n"
 
 #
 # File: sci_gateway/c/sci_libraryinfo.c, line: 85
@@ -2383,19 +2368,16 @@ msgstr "Paramètre(s) incorrect(s).\n"
 
 #
 # File: sci_gateway/c/sci_clearfun.c, line: 57
-#, fuzzy
 msgid "Must be the name of a scilab function.\n"
 msgstr "Doit être le nom d'une fonction Scilab.\n"
 
 #
 # File: sci_gateway/c/sci_what.c, line: 76
-#, fuzzy
 msgid "Internal Functions: \n"
 msgstr "Fonctions internes:\n"
 
 #
 # File: sci_gateway/c/sci_what.c, line: 93
-#, fuzzy
 msgid "Commands: \n"
 msgstr "Commandes:\n"
 
@@ -2407,51 +2389,41 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_getcwd.c, line: 27
-#, fuzzy
 msgid "Internal Error.\n"
 msgstr "Erreur interne.\n"
 
 #
-# File: src/c/stack2.c, line: 60
-#, fuzzy, c-format
-msgid "%s : wrong number of output arguments (LHS)\n"
-msgstr "%s : nombre incorrect d'arguments\n"
-
-#
 # File: sci_gateway/c/sci_getversion.c, line: 217
 # File: sci_gateway/c/sci_getversion.c, line: 305
-#, fuzzy, c-format
+#, c-format
 msgid "Error : file VERSION in %s.\n"
 msgstr "Erreur : fichier VERSION dans %s.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 223
 # File: sci_gateway/c/sci_getversion.c, line: 311
-#, fuzzy, c-format
+#, c-format
 msgid "Error : incorrect module name %s.\n"
 msgstr "Erreur : nom de module (%s) incorrect.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 235
-#, fuzzy
 msgid "Invalid argument.\n"
 msgstr "Argument invalide.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 317
-#, fuzzy
 msgid "Incorrect second input argument.\n"
 msgstr "Second argument invalide.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
-#, fuzzy
 msgid "Invalid input argument(s).\n"
-msgstr "Argument(s) invalide(s).\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 517
-#, fuzzy, c-format
+#, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " Ces résultats peuvent être inexacts. rcond = %s1\n"
 
@@ -2491,4 +2463,3 @@ msgstr "Configurer"
 # File: etc/scilab.start, line: 100
 msgid "Editor"
 msgstr "Editeur"
-

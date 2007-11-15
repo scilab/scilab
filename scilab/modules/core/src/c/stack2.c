@@ -59,7 +59,7 @@ int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 
   if ( Rhs < *iMin || Rhs > *iMax)
     {
-		Scierror(77,_("%s : wrong number of rhs arguments\n"),get_fname(fname,fname_len));
+		Scierror(77,_("%s : wrong number of input arguments (RHS)\n"),get_fname(fname,fname_len));
       return FALSE_;
     }
   return TRUE_;
@@ -73,7 +73,7 @@ int C2F(checklhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 {
   if ( Lhs < *iMin || Lhs > *iMax)
     {
-		Scierror(78,_("%s : wrong number of lhs arguments\n"),get_fname(fname,fname_len));
+		Scierror(78,_("%s : wrong number of output arguments (LHS)\n"),get_fname(fname,fname_len));
       return FALSE_;
     }
   return TRUE_;

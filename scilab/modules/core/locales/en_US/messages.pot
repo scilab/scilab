@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-15 11:44+0100\n"
+"POT-Creation-Date: 2007-11-15 12:50+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-15 11:44+0100\n"
+"Revision-Date: 2007-11-15 12:50+0100\n"
 
 # File: macros/perl.sci, line: 12
 msgid "Unable to find Perl file: "
@@ -1817,30 +1817,30 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_with_module.c, line: 40
 # File: sci_gateway/c/sci_warning.c, line: 74
-msgid "Parameter must be a string.\n"
+msgid "Input argument must be a string.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_ulink.c, line: 41
-msgid "Parameter must be a integer.\n"
+msgid "Input argument must be a integer.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 96
 # File: sci_gateway/c/sci_who.c, line: 105
-msgid "First parameter must be 'local' , 'get' , 'global' or 'sorted'.\n"
+msgid "First input argument must be 'local' , 'get' , 'global' or 'sorted'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 128
-msgid "second parameter must be 'sorted'.\n"
+msgid "Second input argument must be 'sorted'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 165
-msgid "first parameter must be 'local' , 'get' or 'global'.\n"
+msgid "First input argument must be 'local' , 'get' or 'global'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 175
 msgid ""
-"first parameter must be 'local' , 'get' , 'global' and second parameter must "
-"be 'sorted'.\n"
+"First input argument must be 'local' , 'get' , 'global' and second parameter "
+"must be 'sorted'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 226
