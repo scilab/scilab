@@ -61,7 +61,7 @@ int C2F(intqld)(char *fname)
   /*   Variable 5 (lb)   */
   GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE, &nbis, &unbis, &lb);
   if (nbis*unbis==0) {
-    CreateVar(next+1,MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &lb);
+    CreateVar(next,MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &lb);
     for(k=0; k<n; k++)
     stk(lb)[k] = -C2F(dlamch)("o",1L);
     next=next+1;
@@ -73,7 +73,7 @@ int C2F(intqld)(char *fname)
   /*   Variable 6 (ub)   */
   GetRhsVar(6,MATRIX_OF_DOUBLE_DATATYPE, &nbis, &unbis, &ub);
   if (nbis*unbis==0) {
-    CreateVar(next+1,MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &ub);
+    CreateVar(next,MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &ub);
     for(k=0; k<n; k++)
     stk(ub)[k] = C2F(dlamch)("o",1L);
     next=next+1;
@@ -98,7 +98,6 @@ int C2F(intqld)(char *fname)
     eps1= Max(eps1,*stk(leps));
   }
 
-  next=Rhs;
   /* Internal variables: x, lambda, inform, C_mmax, b_mmax */
   CreateVar(next+1,MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &x);
 
