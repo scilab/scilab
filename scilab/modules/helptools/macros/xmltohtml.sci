@@ -239,7 +239,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		// ---------------------------------------------------------------------
 		
 		if fileinfo(xsl) == [] then
-			err_msg = sprintf(_("The xsl file is not available :\n%s\n"),xsl);
+			err_msg = sprintf(_("The xsl file %s does not exist or read access denied.\n"),xsl);
 			error(1000);
 		end
 		
@@ -264,7 +264,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		for k=1:size(dirs,'*');
 			
 			if ~isdir(dirs(k)) then
-				err_msg = sprintf("Directory %s does not exist or read access denied :\n",dirs(k));
+				err_msg = sprintf("Directory %s does not exist or read access denied.\n",dirs(k));
 				break;
 			end
 			
@@ -379,7 +379,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 							end
 							
 							if ~ok then
-								err_msg = sprintf("The XML File %s has syntax error\n",xml(k1));
+								err_msg = sprintf("The XML File %s has syntax error.\n",xml(k1));
 								break;
 							end
 						end
@@ -482,6 +482,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		//----------------------------------------------------------------------
 		
 		[error_str,error_num,error_line,error_func] = lasterror(%T);
+		
+		printf("   !-- error %d :\n",error_num);
 		
 		if error_num > 300 then
 			printf("\t%s\n",err_msg);
