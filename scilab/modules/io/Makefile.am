@@ -69,7 +69,8 @@ sci_gateway/fortran/intfile.f
 
 MODULE_CHECKS = unit_tests/sprintf.tst \
 	unit_tests/sscanf.tst \
-	unit_tests/saveload.tst
+	unit_tests/saveload.tst \
+	unit_tests/reg2610.tst
 
 
 # Disable optimisation of the file intmgetl.f
