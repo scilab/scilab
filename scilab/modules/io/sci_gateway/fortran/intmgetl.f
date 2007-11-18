@@ -45,7 +45,7 @@ c     .  specified number of lines
          li=ili+m+1
          istk(ili)=1
          mr=m
-         do 10 i=1,m
+         do i=1,m
             mnt=0
  09         call readnextline(lunit,buf,bsiz,mn,nr,info)
             if(info.eq.-1) then
@@ -72,6 +72,7 @@ c     .        buffer too small for this line
             endif
             ili=ili+1
             istk(ili)=istk(ili-1)+mnt
+         enddo
  10      continue
          if(mr.eq.0) then
             istk(il)=1
@@ -86,7 +87,8 @@ c     .        buffer too small for this line
             if(mr.lt.m) then
                nc=istk(il+4+mr)-1
                call icopy(nc,istk(il+4+m+1),1,istk(il+4+mr+1),1)
-               li=il+4+mr+nc
+               li=il+4+mr+nc+1 
+c              +1 added ... see bug 2610 (Thx Bruno Pincon)
             endif
             lstk(top+1)=sadr(li)
          endif
