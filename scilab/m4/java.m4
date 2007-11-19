@@ -76,7 +76,8 @@ AC_DEFUN([AC_PROG_JAVAC], [
 
     # Check for installs which uses a symlink. If it is the case, try to resolve JAVA_HOME from it
     if test -h "$JAVAC" ; then
-		FOLLOW_SYMLINKS($JAVAC)
+		FOLLOW_SYMLINKS($JAVAC,"javac")
+		JAVAC=$SYMLINK_FOLLOWED_TO
         TMP=`dirname $SYMLINK_FOLLOWED_TO`
         TMP=`dirname $TMP`
         ac_java_jvm_dir=$TMP
@@ -304,6 +305,10 @@ AC_DEFUN([AC_JAVA_CLASSPATH], [
 
 AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
 
+	# JAVA_HOME specificed, check if we can find jni.h in this path
+	if test !  -z "$JAVA_HOME"; then
+		ac_java_jvm_dir=$JAVA_HOME
+	fi
     # Look for jni.h in the subdirectory $ac_java_jvm_dir/include
 
     F=$ac_java_jvm_dir/include/jni.h
@@ -333,7 +338,7 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
 
     AC_REQUIRE([AC_PROG_CC])
 
-    AC_CACHE_CHECK(to see if jni.h can be included,
+    AC_CACHE_CHECK(if jni.h can be included,
         ac_java_jvm_jni_working,[
         AC_LANG_PUSH(C)
         ac_saved_cflags=$CFLAGS
@@ -426,6 +431,24 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
             fi
         fi
 
+        # Eclipse/IBM Java Compiler
+
+        F=jre/lib/i386/client/libjvm.so
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            if test -f $ac_java_jvm_dir/$F ; then
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+
+                D=`dirname $ac_java_jvm_dir/$F`
+                ac_java_jvm_jni_lib_runtime_path=$D
+                ac_java_jvm_jni_lib_flags="-L$D -ljvm"
+
+                D=$ac_java_jvm_dir/jre/lib/i386/server
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+            fi
+        fi
+
         # Sun JDK 1.4 and 1.5 for Win32 (client JVM)
 
         F=lib/jvm.lib
@@ -451,7 +474,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
     if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
         AC_MSG_ERROR([Could not detect the location of the Java
-            shared library. You will need to update tcljava.m4
+            shared library. You will need to update java.m4
             to add support for this JVM configuration.])
     fi
 
