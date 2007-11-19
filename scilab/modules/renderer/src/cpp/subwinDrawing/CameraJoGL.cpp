@@ -33,6 +33,8 @@ void CameraJoGL::renderPosition( void )
   double minScale = Min(m_aAxesScale[0], Min(m_aAxesScale[1], m_aAxesScale[2]));
   getCameraJavaMapper()->setFittingScale(minScale, minScale, minScale);
   //                                     m_aAxesScale[0], m_aAxesScale[1], m_aAxesScale[2]) ;
+
+  getCameraJavaMapper()->placeCamera();
   endDrawing();
 }
 /*-----------------------------------------------------------------------------------*/

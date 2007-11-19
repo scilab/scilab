@@ -169,22 +169,7 @@ public class CameraGL extends ObjectGL {
 	 * Compute width and height of the margins in pixels.
 	 */
 	public void computeMarginsSize() {
-//		GL gl = getGL();
-//		
-//		Vector3D[] marginsCorners = {new Vector3D(0.0, 0.0, 0.0),
-//									 new Vector3D(0.0, 1.0, 0.0),
-//									 new Vector3D(1.0, 1.0, 0.0),
-//									 new Vector3D(1.0, 0.0, 0.0)};
-//		
-//		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-//		transform.update(gl);
-//		marginsCorners = transform.getCanvasCoordinates(gl, marginsCorners);
-//		marginWidth = marginsCorners[2].getX() - marginsCorners[1].getX();
-//		marginHeight = marginsCorners[1].getY() - marginsCorners[0].getY();
-		
-		// Margins are front size of the unitary cube.
-		// And unitary cube is facing us.
-		marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL());
+          marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL());
 	}
 	
 	/**
@@ -196,8 +181,8 @@ public class CameraGL extends ObjectGL {
 	 * @param transY Y translation to put the axes in view.
 	 * @param transZ Z translation to put the axes in view.
 	 */
-	public void setNormalizationFactor(double normalizeScaleX, double normalizeScaleY, double normalizeScaleZ,
-									   double transX, double transY, double transZ) {
+	public void setNormalizationParameters(double normalizeScaleX, double normalizeScaleY, double normalizeScaleZ,
+                                               double transX, double transY, double transZ) {
 		normalizeScale.setValues(normalizeScaleX, normalizeScaleY, normalizeScaleZ);
 		normalizeTranslation.setValues(transX, transY, transZ);
 	}
@@ -293,6 +278,10 @@ public class CameraGL extends ObjectGL {
 		
 		GL gl = getGL();
 		
+                moveViewingArea();
+
+                moveAxesBox();
+
 		centerAxesBox();
 		
 		computeFittingScale();
