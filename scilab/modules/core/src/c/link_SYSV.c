@@ -205,14 +205,6 @@ void call_ctor_dtor(handle,loading)
 
 #define MAXARGV 128
 
-
-
-#ifndef hppa
-#define SHARED_SUF ".so"
-#else
-#define SHARED_SUF ".sl"
-#endif
-
 #ifndef RTLD_GLOBAL
 #define RTLD_GLOBAL 0
 #endif
@@ -233,7 +225,7 @@ static int Sci_dlopen(char **loaded_files,int global)
   if ( strncmp(loaded_files[0],"scilab",6) !=0)
     {
       if ( loaded_files[0] != NULL && loaded_files[1] == NULL 
-	   && strstr(loaded_files[0],SHARED_SUF)!= NULL)
+	   && strstr(loaded_files[0],SHARED_LIB_EXT)!= NULL)
 	{
 	  strcpy(tmp_file,loaded_files[0]);
 	  if (debug) sciprint_nd(_("Loading shared executable %s\n"),loaded_files[0]);
