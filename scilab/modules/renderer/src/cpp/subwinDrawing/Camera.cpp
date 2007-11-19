@@ -13,9 +13,6 @@ extern "C"
 #include "math_graphics.h"
 }
 
-// distance between two farthest edges of a square
-#define FIT_WINDOW_RATIO ((1.0)/(sqrt(2.0)))
-
 namespace sciGraphics
 {
 
@@ -78,12 +75,6 @@ void Camera::setSubwinBox( double bounds[6] )
   trans[2] = bounds[4] ;
   m_pImp->setAxesTranslation(trans) ;
 
-  m_pImp->setFitWindowRation(FIT_WINDOW_RATIO);
-}
-/*-----------------------------------------------------------------------------------*/
-void Camera::setFarthestDistance( double maxDist )
-{
-  m_pImp->setFarthestDistance(maxDist);
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::renderPosition( void )

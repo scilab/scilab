@@ -57,9 +57,11 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID voidmoveViewingAreajdoublejdoublejdoublejdoubleID; // cache method id
-jmethodID voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
-jmethodID voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
+jmethodID voidsetViewingAreajdoublejdoublejdoublejdoubleID; // cache method id
+jmethodID voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
+jmethodID voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID; // cache method id
+jmethodID voidsetFittingScalejdoublejdoublejdoubleID; // cache method id
+jmethodID voidplaceCameraID; // cache method id
 jmethodID voidreplaceCameraID; // cache method id
 jmethodID jintArraygetPixelCoordinatesjdoublejdoublejdoubleID; // cache method id
 jmethodID jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID; // cache method id
@@ -116,11 +118,15 @@ void destroy(long parentFigureIndex);
 
 void setFigureIndex(long figureIndex);
 
-void moveViewingArea(double transX, double transY, double scaleX, double scaleY);
+void setViewingArea(double transX, double transY, double scaleX, double scaleY);
 
-void moveAxesBox(double scaleX, double scaleY, double scaleZ, double transX, double transY, double transZ);
+void setNormalizationParameters(double normalizeScaleX, double normalizeScaleY, double normalizeScaleZ, double transX, double transY, double transZ);
 
-void rotateAxesBox(double centerX, double centerY, double centerZ, double alpha, double theta, double reductionRatio, double scaleX, double scaleY, double scaleZ);
+void setAxesRotationParameters(double centerX, double centerY, double centerZ, double alpha, double theta);
+
+void setFittingScale(double scaleX, double scaleY, double scaleZ);
+
+void placeCamera();
 
 void replaceCamera();
 

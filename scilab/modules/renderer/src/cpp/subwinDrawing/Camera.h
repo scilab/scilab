@@ -43,11 +43,6 @@ public:
   void setSubwinBox( double bounds[6] ) ;
 
   /**
-   * Specify the farthest distance from the camera in order to specify zNear and zFar
-   */
-  void setFarthestDistance( double maxDist ) ;
-
-  /**
    * Position the view and view area accordingly to previous calls.
    */
   void renderPosition( void ) ;

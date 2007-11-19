@@ -36,14 +36,17 @@ public:
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for cameras
-  virtual void moveViewingArea(double transX, double transY, double scaleX, double scaleY);
+  virtual void setViewingArea(double transX, double transY, double scaleX, double scaleY);
 
-  virtual void moveAxesBox(double scaleX, double scaleY, double scaleZ,
-                           double transX, double transY, double transZ);
+  virtual void setNormalizationParameters(double scaleX, double scaleY, double scaleZ,
+                                          double transX, double transY, double transZ);
 
-  virtual void rotateAxesBox(double centerX, double centerY, double centerZ,
-                             double alpha, double theta, double reductionRatio,
-                             double scaleX, double scaleY, double scaleZ) ;
+  virtual void setAxesRotationParameters(double centerX, double centerY, double centerZ,
+                                         double alpha, double theta);
+
+  virtual void setFittingScale(double scaleX, double scaleY, double scaleZ);
+
+  virtual void placeCamera(void);
 
   virtual void replaceCamera( void );
 

@@ -104,9 +104,11 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
-voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
-voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
+voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetFittingScalejdoublejdoublejdoubleID=NULL; 
+voidplaceCameraID=NULL; 
 voidreplaceCameraID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
@@ -137,9 +139,11 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
-voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
-voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
+voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetFittingScalejdoublejdoublejdoubleID=NULL; 
+voidplaceCameraID=NULL; 
 voidreplaceCameraID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
@@ -293,19 +297,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void CameraGL::moveViewingArea (double transX, double transY, double scaleX, double scaleY){
+void CameraGL::setViewingArea (double transX, double transY, double scaleX, double scaleY){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidmoveViewingAreajdoublejdoublejdoublejdoubleID == NULL)
+if (this->voidsetViewingAreajdoublejdoublejdoublejdoubleID == NULL)
 {
-this->voidmoveViewingAreajdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "moveViewingArea", "(DDDD)V" ) ;
-if (this->voidmoveViewingAreajdoublejdoublejdoublejdoubleID == NULL) {
-std::cerr << "Could not access to the method " << "moveViewingArea" << std::endl;
+this->voidsetViewingAreajdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setViewingArea", "(DDDD)V" ) ;
+if (this->voidsetViewingAreajdoublejdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "setViewingArea" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  curEnv->CallVoidMethod( this->instance, voidmoveViewingAreajdoublejdoublejdoublejdoubleID ,transX, transY, scaleX, scaleY);
+  curEnv->CallVoidMethod( this->instance, voidsetViewingAreajdoublejdoublejdoublejdoubleID ,transX, transY, scaleX, scaleY);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -314,19 +318,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void CameraGL::moveAxesBox (double scaleX, double scaleY, double scaleZ, double transX, double transY, double transZ){
+void CameraGL::setNormalizationParameters (double normalizeScaleX, double normalizeScaleY, double normalizeScaleZ, double transX, double transY, double transZ){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL)
+if (this->voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL)
 {
-this->voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "moveAxesBox", "(DDDDDD)V" ) ;
-if (this->voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
-std::cerr << "Could not access to the method " << "moveAxesBox" << std::endl;
+this->voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setNormalizationParameters", "(DDDDDD)V" ) ;
+if (this->voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "setNormalizationParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  curEnv->CallVoidMethod( this->instance, voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID ,scaleX, scaleY, scaleZ, transX, transY, transZ);
+  curEnv->CallVoidMethod( this->instance, voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoubleID ,normalizeScaleX, normalizeScaleY, normalizeScaleZ, transX, transY, transZ);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -335,19 +339,61 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void CameraGL::rotateAxesBox (double centerX, double centerY, double centerZ, double alpha, double theta, double reductionRatio, double scaleX, double scaleY, double scaleZ){
+void CameraGL::setAxesRotationParameters (double centerX, double centerY, double centerZ, double alpha, double theta){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID == NULL)
+if (this->voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID == NULL)
 {
-this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "rotateAxesBox", "(DDDDDDDDD)V" ) ;
-if (this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
-std::cerr << "Could not access to the method " << "rotateAxesBox" << std::endl;
+this->voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setAxesRotationParameters", "(DDDDD)V" ) ;
+if (this->voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "setAxesRotationParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  curEnv->CallVoidMethod( this->instance, voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID ,centerX, centerY, centerZ, alpha, theta, reductionRatio, scaleX, scaleY, scaleZ);
+  curEnv->CallVoidMethod( this->instance, voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID ,centerX, centerY, centerZ, alpha, theta);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void CameraGL::setFittingScale (double scaleX, double scaleY, double scaleZ){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidsetFittingScalejdoublejdoublejdoubleID == NULL)
+{
+this->voidsetFittingScalejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setFittingScale", "(DDD)V" ) ;
+if (this->voidsetFittingScalejdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "setFittingScale" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidsetFittingScalejdoublejdoublejdoubleID ,scaleX, scaleY, scaleZ);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void CameraGL::placeCamera (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidplaceCameraID == NULL)
+{
+this->voidplaceCameraID = curEnv->GetMethodID(this->instanceClass, "placeCamera", "()V" ) ;
+if (this->voidplaceCameraID == NULL) {
+std::cerr << "Could not access to the method " << "placeCamera" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  curEnv->CallVoidMethod( this->instance, voidplaceCameraID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

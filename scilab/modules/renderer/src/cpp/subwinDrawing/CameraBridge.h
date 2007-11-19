@@ -96,9 +96,6 @@ protected:
    */
   double m_aViewingScale[2];
 
-  /** maximum found distance between a graphic object and the viewpoint */
-  double m_dFarthestDist;
-
   /** Scale modification to fit axes coordinates */
   double m_aAxesScale[3];
 
@@ -112,8 +109,6 @@ protected:
   /** Center of the axes box */
   double m_aBoxCenter[3];
 
-  /** Reduction Ration to be applied on the graphic in order for it to fit the window */
-  double m_dFitWindowRatio;
 
 };
 

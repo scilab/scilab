@@ -16,30 +16,33 @@
     <method name="setFigureIndex" returnType="void">
       <param type="int" name="figureIndex" />
     </method>
-    <method name="moveViewingArea" returnType="void">
+    <method name="setViewingArea" returnType="void">
       <param type="double" name="transX" />
       <param type="double" name="transY" />
       <param type="double" name="scaleX" />
       <param type="double" name="scaleY" />
     </method>
-    <method name="moveAxesBox" returnType="void">
-      <param type="double" name="scaleX" />
-      <param type="double" name="scaleY" />
-      <param type="double" name="scaleZ" />
+    <method name="setNormalizationParameters" returnType="void">
+      <param type="double" name="normalizeScaleX" />
+      <param type="double" name="normalizeScaleY" />
+      <param type="double" name="normalizeScaleZ" />
       <param type="double" name="transX" />
       <param type="double" name="transY" />
       <param type="double" name="transZ" />
     </method>
-    <method name="rotateAxesBox" returnType="void">
+    <method name="setAxesRotationParameters" returnType="void">
       <param type="double" name="centerX" />
       <param type="double" name="centerY" />
       <param type="double" name="centerZ" />
       <param type="double" name="alpha" />
       <param type="double" name="theta" />
-      <param type="double" name="reductionRatio" />
+    </method>
+    <method name="setFittingScale" returnType="void">
       <param type="double" name="scaleX" />
       <param type="double" name="scaleY" />
       <param type="double" name="scaleZ" />
+    </method>
+    <method name="placeCamera" returnType="void">
     </method>
     <method name="replaceCamera" returnType="void">
     </method>

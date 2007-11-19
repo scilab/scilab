@@ -29,18 +29,34 @@ public class CameraGL extends ObjectGL {
 	private static final double DEFAULT_ALPHA = 0.0;
 	private static final double DEFAULT_THETA = 270.0;
 	
+	/** Move viewPort to respect margins */
+	private Vector3D viewPortTranslation = new Vector3D(); 
 	
-	/** Keep back camera position in oder to switch back to 2D mode if needed */
+	/** Rescale viewport to respect margins */
+	private Vector3D viewPortScale = new Vector3D();
+	
+	/** Scale to put all datas between 0 and 1 */
+	private Vector3D normalizeScale = new Vector3D();
+	
+	/** Translation to put all datas between 0 and 1. */
+	private Vector3D normalizeTranslation = new Vector3D();
+	
+	/** center of the axes box */
+	private Vector3D rotationCenter = new Vector3D();
+	
+	/** Keep back camera parameters in oder to switch back to 2D mode if needed */
 	private double alpha;
 	private double theta;
-	private Vector3D center = new Vector3D();
-	private double viewPortWidth;
-	private double viewPortHeight;
-	private Vector3D normalizeScale = new Vector3D();
+	
+	/** scale used to get the best fitting in the canvas for axes */
 	private Vector3D fittingScale = new Vector3D();
 	
-	private double marginWidth;
-	private double marginHeight;
+	/** size of area enclosed by margins. */
+	private double[] marginSize;
+	
+	/** viewPort size */
+	private double viewPortWidth;
+	private double viewPortHeight;
 	
 	/**
 	 * Default constructor
@@ -51,14 +67,10 @@ public class CameraGL extends ObjectGL {
 	
 	/**
 	 * Display the object by displaying its display list
+	 * Should not be called.
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
-	public void show(int parentFigureIndex) {
-		super.initializeDrawing(parentFigureIndex);
-		System.err.println("Should not be called.");
-		super.endDrawing();
-		
-	}
+	public void show(int parentFigureIndex) { }
 	
 	
 	/**
@@ -121,13 +133,22 @@ public class CameraGL extends ObjectGL {
 	}
 	
 	/**
-	 * Position the viewing area in order to respect Subwin position.
+	 * Set the parameters for positionning viewing area (specified by axes margins)
 	 * @param transX X translation of the viewing area
 	 * @param transY Y translation of the viewing area
 	 * @param scaleX X scale of the viewing area
 	 * @param scaleY Y scale of the viewing area
 	 */
-	public void moveViewingArea(double transX, double transY, double scaleX, double scaleY) {
+	public void setViewingArea(double transX, double transY, double scaleX, double scaleY) {
+		// we move it in 2D.
+		viewPortTranslation.setValues(transX, transY, 0.0);
+		viewPortScale.setValues(scaleX, scaleY, 1.0);
+	}
+	
+	/**
+	 * Position the viewing area in order to respect Subwin position.
+	 */
+	public void moveViewingArea() {
 		GL gl = getGL();
 		
 		setIsoViewViewPort();
@@ -136,8 +157,8 @@ public class CameraGL extends ObjectGL {
 	    gl.glLoadIdentity();
 
 	    gl.glScaled(viewPortWidth, viewPortHeight, 1.0);
-		gl.glTranslated(transX, transY, 0.0);
-		gl.glScaled(scaleX, scaleY, 1.0);
+		gl.glTranslated(viewPortTranslation.getX(), viewPortTranslation.getY(), viewPortTranslation.getZ());
+		gl.glScaled(viewPortScale.getX(), viewPortScale.getY(), viewPortScale.getZ());
 		
 		// save pixel coordinates of the margin box, our axes box needs to fit inside.
 		computeMarginsSize();
@@ -148,50 +169,83 @@ public class CameraGL extends ObjectGL {
 	 * Compute width and height of the margins in pixels.
 	 */
 	public void computeMarginsSize() {
-		GL gl = getGL();
+//		GL gl = getGL();
+//		
+//		Vector3D[] marginsCorners = {new Vector3D(0.0, 0.0, 0.0),
+//									 new Vector3D(0.0, 1.0, 0.0),
+//									 new Vector3D(1.0, 1.0, 0.0),
+//									 new Vector3D(1.0, 0.0, 0.0)};
+//		
+//		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+//		transform.update(gl);
+//		marginsCorners = transform.getCanvasCoordinates(gl, marginsCorners);
+//		marginWidth = marginsCorners[2].getX() - marginsCorners[1].getX();
+//		marginHeight = marginsCorners[1].getY() - marginsCorners[0].getY();
 		
-		Vector3D[] marginsCorners = {new Vector3D(0.0, 0.0, 0.0),
-									 new Vector3D(0.0, 1.0, 0.0),
-									 new Vector3D(1.0, 1.0, 0.0),
-									 new Vector3D(1.0, 0.0, 0.0)};
-		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		transform.update(gl);
-		marginsCorners = transform.getCanvasCoordinates(gl, marginsCorners);
-		marginWidth = marginsCorners[2].getX() - marginsCorners[1].getX();
-		marginHeight = marginsCorners[1].getY() - marginsCorners[0].getY();
+		// Margins are front size of the unitary cube.
+		// And unitary cube is facing us.
+		marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL());
 	}
 	
 	/**
-	 * Move the axes box so it fit the viewing area.
-	 * @param normalizeScaleX X scale to fit bounds within [0,1]
-	 * @param normalizeScaleY Y scale to fit bounds within [0,1]
-	 * @param normalizeScaleZ Z scale to fit bounds within [0,1]
-	 * @param transX X translation to put the axes in view
-	 * @param transY Y translation to put the axes in view
-	 * @param transZ Z translation to put the axes in view
+	 * Set parameters so the axes box is map onto a the [0,1]x[0,1]x[0,1] cube.
+	 * @param normalizeScaleX X scale to fit bounds within [0,1].
+	 * @param normalizeScaleY Y scale to fit bounds within [0,1].
+	 * @param normalizeScaleZ Z scale to fit bounds within [0,1].
+	 * @param transX X translation to put the axes in view.
+	 * @param transY Y translation to put the axes in view.
+	 * @param transZ Z translation to put the axes in view.
 	 */
-	public void moveAxesBox(double normalizeScaleX, double normalizeScaleY, double normalizeScaleZ,
-							double transX, double transY, double transZ) {
-		GL gl = getGL();
-		gl.glScaled(normalizeScaleX, normalizeScaleY, normalizeScaleZ);
+	public void setNormalizationFactor(double normalizeScaleX, double normalizeScaleY, double normalizeScaleZ,
+									   double transX, double transY, double transZ) {
 		normalizeScale.setValues(normalizeScaleX, normalizeScaleY, normalizeScaleZ);
+		normalizeTranslation.setValues(transX, transY, transZ);
+	}
+	
+	/**
+	 * Move the axes box so it map the onto a the [0,1]x[0,1]x[0,1] cube.
+	 */
+	public void moveAxesBox() {
+		GL gl = getGL();
+		gl.glScaled(normalizeScale.getX(), normalizeScale.getY(), normalizeScale.getZ());
 		
-		gl.glTranslated(transX, transY, transZ);
+		gl.glTranslated(normalizeTranslation.getX(), normalizeTranslation.getY(), normalizeTranslation.getZ());
 		
+	}
+	
+	/**
+	 * Set the parameters for rotating the axes box.
+	 * @param centerX X coordiantes of the rotation center 
+	 * @param centerY Y coordinates of the rotation center
+	 * @param centerZ Z coordinates of the rotation center
+	 * @param alpha rotation angle around axe X
+	 * @param theta rotation angle around axe Z
+	 */
+	public void setAxesRotationParameters(double centerX, double centerY, double centerZ,
+									      double alpha, double theta) {
+		rotationCenter.setValues(centerX, centerY, centerZ);
+		this.alpha = alpha;
+		this.theta = theta;
+	}
+	
+	/**
+	 * Set the scale used to best fit the margins.
+	 * @param scaleX X coordinate of the scale
+	 * @param scaleY Y coordinate of the scale
+	 * @param scaleZ Z cordinate of the scale
+	 */
+	public void setFittingScale(double scaleX, double scaleY, double scaleZ) {
+		fittingScale.setValues(scaleX, scaleY, scaleZ);
 	}
 	
 	/**
 	 * Move the box to the center of the screen.
-	 * @param centerX X coordiantes of the rotation center 
-	 * @param centerY Y coordinates of the rotation center
-	 * @param centerZ Z coordinates of the rotation center
 	 */
-	public void centerAxesBox(double centerX, double centerY, double centerZ) {
+	public void centerAxesBox() {
 		GL gl = getGL();
 		
 		// rotate around the center of the box axes
-		gl.glTranslated(centerX,  centerY,  centerZ);
+		gl.glTranslated(rotationCenter.getX(),  rotationCenter.getY(),  rotationCenter.getZ());
 		
 		// reduction need to be performed on the center of the screen
 		gl.glScaled(1.0 / (normalizeScale.getX() * viewPortWidth),
@@ -200,60 +254,53 @@ public class CameraGL extends ObjectGL {
 	}
 	
 	/**
-	 * Compute the scale wich will best fit the window in accordance with viewing angles.
+	 * Compute the bounding rectangle of the axes box projection on the screen. 
+	 * @param gl current OpenGL pipeline.
+	 * @return array of size 2: width and height in pixels.
 	 */
-	public void computeFittingScale() {
-		GL gl = getGL();
+	public double[] getBoxScreenExtent(GL gl) {
+		// apply transformation a first time to 
 		gl.glPushMatrix();
 		applyRotation(gl, alpha, theta);
-		
 		
 		gl.glScaled(fittingScale.getX() / normalizeScale.getX(),
 					fittingScale.getY() / normalizeScale.getY(),
 					fittingScale.getZ() / normalizeScale.getZ());
 		
-		UnitaryCubeGL cube = new UnitaryCubeGL();
-		double[] screenExtent = cube.getCubeScreenExtent(gl);
-		
+		// get the size of the viewing area on the screen.
+		double[] screenExtent = UnitaryCubeGL.getCubeScreenExtent(gl);
 		gl.glPopMatrix();
+		return screenExtent;
+	}
+	
+	/**
+	 * Compute the scale wich will best fit the window in accordance with viewing angles.
+	 */
+	public void computeFittingScale() {
+		GL gl = getGL();
 		
-		double minScale = Math.min(marginWidth / screenExtent[0], Math.min(marginHeight / screenExtent[1], 1.0));
+		
+		double[] screenExtent = getBoxScreenExtent(gl);
+		// apply same factor to preserve isoview.
+		double minScale = Math.min(marginSize[0] / screenExtent[0], Math.min(marginSize[1] / screenExtent[1], 1.0));
 		gl.glScaled(minScale, minScale, minScale);
 	}
 	
 	/**
-	 * Rotate the axes in accordance with viewing angles
-	 * @param centerX X coordiantes of the rotation center 
-	 * @param centerY Y coordinates of the rotation center
-	 * @param centerZ Z coordinates of the rotation center
-	 * @param alpha rotation angle around axe X
-	 * @param theta rotation angle around axe Z
-	 * @param reductionRatio graphic needs to be reduced a little to always fit the window
-	 * @param scaleX scale to set isoview
-	 * @param scaleY scale to set isoview
-	 * @param scaleZ scale to set isoview
+	 * Rotate the axes in accordance with viewing angles.
 	 */
-	public void rotateAxesBox(double centerX, double centerY, double centerZ,
-						      double alpha, double theta, double reductionRatio,
-						      double scaleX, double scaleY, double scaleZ) {
-		
-		// save camera positioning.
-		this.center.setValues(centerX, centerY, centerZ);
-		this.alpha = alpha;
-		this.theta = theta;
-		this.fittingScale.setValues(scaleX, scaleY, scaleZ);
-		
+	public void placeCamera() {
 		
 		GL gl = getGL();
 		
-		centerAxesBox(centerX, centerY, centerZ);
+		centerAxesBox();
 		
 		computeFittingScale();
 		
 		gl.glPushMatrix();
 		applyRotation(gl, alpha, theta);
-		gl.glScaled(scaleX, scaleY, scaleZ);
-		gl.glTranslated(-centerX, -centerY, -centerZ); // translate origin back
+		gl.glScaled(fittingScale.getX(), fittingScale.getY(), fittingScale.getZ());
+		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
 		
 		
 		// compute the matrix for project and unproject.
@@ -276,8 +323,9 @@ public class CameraGL extends ObjectGL {
 	 * To be called at the end of camera use.
 	 */
 	public void replaceCamera() {
-		getGL().glPopMatrix();
-		CoordinateTransformation.getTransformation(getGL()).update(getGL());
+		GL gl = getGL();
+		gl.glPopMatrix();
+		CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
 	/**
@@ -321,7 +369,7 @@ public class CameraGL extends ObjectGL {
 		GL gl = getGL();
 		gl.glPopMatrix();
 		gl.glPushMatrix();
-		gl.glTranslated(-center.getX(), -center.getY(), -center.getZ()); // translate origin back
+		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
 		
 		// update transformation
 		CoordinateTransformation.getTransformation(gl).update(gl);
@@ -336,7 +384,7 @@ public class CameraGL extends ObjectGL {
 		gl.glPopMatrix();
 		gl.glPushMatrix();
 		applyRotation(gl, alpha, theta);
-		gl.glTranslated(-center.getX(), -center.getY(), -center.getZ()); // translate origin back
+		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
 		// update transformation
 		CoordinateTransformation.getTransformation(gl).update(gl);
 	}

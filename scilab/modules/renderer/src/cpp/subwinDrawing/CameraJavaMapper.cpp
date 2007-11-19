@@ -56,25 +56,32 @@ void CameraJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*-----------------------------------------------------------------------------------*/
-void CameraJavaMapper::moveViewingArea(double transX, double transY, double scaleX, double scaleY)
+void CameraJavaMapper::setViewingArea(double transX, double transY, double scaleX, double scaleY)
 {
-  m_pJavaObject->moveViewingArea(transX, transY, scaleX, scaleY);
+  m_pJavaObject->setViewingArea(transX, transY, scaleX, scaleY);
 }
 /*-----------------------------------------------------------------------------------*/
-void CameraJavaMapper::moveAxesBox(double scaleX, double scaleY, double scaleZ,
-                                   double transX, double transY, double transZ)
+void CameraJavaMapper::setNormalizationParameters(double scaleX, double scaleY, double scaleZ,
+                                                  double transX, double transY, double transZ)
 {
-  m_pJavaObject->moveAxesBox(scaleX, scaleY, scaleZ,
-                             transX, transY, transZ);
+  m_pJavaObject->setNormalizationParameters(scaleX, scaleY, scaleZ,
+                                            transX, transY, transZ);
 }
 /*-----------------------------------------------------------------------------------*/
-void CameraJavaMapper::rotateAxesBox(double centerX, double centerY, double centerZ,
-                                     double alpha, double theta, double reductionRatio,
-                                     double scaleX, double scaleY, double scaleZ)
+void CameraJavaMapper::setAxesRotationParameters(double centerX, double centerY, double centerZ,
+                                                  double alpha, double theta)
 {
-  m_pJavaObject->rotateAxesBox(centerX, centerY, centerZ,
-                               alpha  , theta, reductionRatio,
-                               scaleX, scaleY, scaleZ);
+  m_pJavaObject->setAxesRotationParameters(centerX, centerY, centerZ, alpha, theta);
+}
+/*-----------------------------------------------------------------------------------*/
+void CameraJavaMapper::setFittingScale(double scaleX, double scaleY, double scaleZ)
+{
+  m_pJavaObject->setFittingScale(scaleX, scaleY, scaleZ);
+}
+/*-----------------------------------------------------------------------------------*/
+void CameraJavaMapper::placeCamera(void)
+{
+  m_pJavaObject->placeCamera();
 }
 /*-----------------------------------------------------------------------------------*/
 void CameraJavaMapper::replaceCamera( void )

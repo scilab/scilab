@@ -35,14 +35,14 @@ public class UnitaryCubeGL {
 	/**
 	 * Default consturctor
 	 */
-	public UnitaryCubeGL() { }
+	protected UnitaryCubeGL() { }
 	
 	/**
 	 * Get the extent along x axis and y axis on the z = 0 plane.
 	 * @param gl current GL pipeline.
 	 * @return array of size 2 containing width and height.
 	 */
-	public double[] getCubeScreenExtent(GL gl) {
+	public static double[] getCubeScreenExtent(GL gl) {
 		
 		Vector3D[] screenCoordinates;
 		
@@ -51,6 +51,7 @@ public class UnitaryCubeGL {
 		
 		screenCoordinates = transform.getCanvasCoordinates(gl, CUBE_DEFAULT_VERTICES);
 		
+		// find the maximum distance along X and Y axis between each corners.
 		double[] res = {0.0, 0.0};
 		
 		for (int i = 0; i < CUBE_NB_VERTICES; i++) {

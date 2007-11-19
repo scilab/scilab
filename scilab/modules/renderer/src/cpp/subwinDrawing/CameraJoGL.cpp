@@ -21,17 +21,17 @@ CameraJoGL::CameraJoGL( DrawableSubwin * subwin )
 void CameraJoGL::renderPosition( void )
 {
   initializeDrawing();
-  getCameraJavaMapper()->moveViewingArea(m_aViewingTranslation[0], m_aViewingTranslation[1],
+  getCameraJavaMapper()->setViewingArea(m_aViewingTranslation[0], m_aViewingTranslation[1],
                                          m_aViewingScale[0], m_aViewingScale[1]) ;
-  getCameraJavaMapper()->moveAxesBox(m_aAxesScale[0], m_aAxesScale[1], m_aAxesScale[2],
-                                     m_aAxesTranslation[0], m_aAxesTranslation[1], m_aAxesTranslation[2] ) ;
+  getCameraJavaMapper()->setNormalizationParameters(m_aAxesScale[0], m_aAxesScale[1], m_aAxesScale[2],
+                                                    m_aAxesTranslation[0], m_aAxesTranslation[1], m_aAxesTranslation[2] ) ;
+
+
+  getCameraJavaMapper()->setAxesRotationParameters(m_aBoxCenter[0], m_aBoxCenter[1], m_aBoxCenter[2],
+                                                   m_dAlpha, m_dTheta);
 
   double minScale = Min(m_aAxesScale[0], Min(m_aAxesScale[1], m_aAxesScale[2]));
-
-
-  getCameraJavaMapper()->rotateAxesBox(m_aBoxCenter[0], m_aBoxCenter[1], m_aBoxCenter[2],
-                                       m_dAlpha, m_dTheta, m_dFitWindowRatio,
-                                       minScale, minScale, minScale) ;
+  getCameraJavaMapper()->setFittingScale(minScale, minScale, minScale);
   //                                     m_aAxesScale[0], m_aAxesScale[1], m_aAxesScale[2]) ;
   endDrawing();
 }
