@@ -93,8 +93,8 @@ am__objects_2 = strord.lo strdsp.lo
 am__objects_3 = libscistring_la-sci_strindex.lo \
 	libscistring_la-sci_strcat.lo libscistring_la-sci_tokens.lo \
 	libscistring_la-gw_string.lo libscistring_la-sci_string.lo \
-	libscistring_la-sci_part.lo libscistring_la-sci_ssort.lo \
-	libscistring_la-sci_length.lo libscistring_la-sci_strsplit.lo \
+	libscistring_la-sci_part.lo libscistring_la-sci_length.lo \
+	libscistring_la-sci_strsplit.lo \
 	libscistring_la-sci_str2code.lo \
 	libscistring_la-sci_code2str.lo \
 	libscistring_la-sci_emptystr.lo libscistring_la-sci_ascii.lo \
@@ -103,8 +103,7 @@ am__objects_3 = libscistring_la-sci_strindex.lo \
 am__objects_4 = sci_convstr.lo sci_grep.lo sci_strindex.lo \
 	sci_strcat.lo sci_tokens.lo sci_string.lo sci_part.lo \
 	sci_length.lo sci_strsplit.lo sci_str2code.lo sci_code2str.lo \
-	sci_sort.lo sci_emptystr.lo sci_ascii.lo sci_strsubst.lo \
-	strops.lo
+	sci_emptystr.lo sci_ascii.lo sci_strsubst.lo strops.lo
 am_libscistring_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscistring_la_OBJECTS = $(am_libscistring_la_OBJECTS)
@@ -312,7 +311,6 @@ sci_gateway/c/sci_tokens.c \
 sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_string.c \
 sci_gateway/c/sci_part.c \
-sci_gateway/c/sci_ssort.c \
 sci_gateway/c/sci_length.c \
 sci_gateway/c/sci_strsplit.c \
 sci_gateway/c/sci_str2code.c \
@@ -334,7 +332,6 @@ sci_gateway/fortran/sci_length.f \
 sci_gateway/fortran/sci_strsplit.f \
 sci_gateway/fortran/sci_str2code.f \
 sci_gateway/fortran/sci_code2str.f \
-sci_gateway/fortran/sci_sort.f \
 sci_gateway/fortran/sci_emptystr.f \
 sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
@@ -350,7 +347,6 @@ unit_tests/strindex.tst \
 unit_tests/str2code.tst \
 unit_tests/code2str.tst \
 unit_tests/ascii.tst \
-unit_tests/sort.tst \
 unit_tests/strcat.tst \
 unit_tests/grep.tst \
 unit_tests/mulf.tst \
@@ -515,7 +511,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_grep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_length.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_part.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_ssort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_str2code.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strcat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strindex.Plo@am__quote@
@@ -601,13 +596,6 @@ libscistring_la-sci_part.lo: sci_gateway/c/sci_part.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_part.c' object='libscistring_la-sci_part.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_part.lo `test -f 'sci_gateway/c/sci_part.c' || echo '$(srcdir)/'`sci_gateway/c/sci_part.c
-
-libscistring_la-sci_ssort.lo: sci_gateway/c/sci_ssort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_ssort.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_ssort.Tpo -c -o libscistring_la-sci_ssort.lo `test -f 'sci_gateway/c/sci_ssort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ssort.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_ssort.Tpo $(DEPDIR)/libscistring_la-sci_ssort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ssort.c' object='libscistring_la-sci_ssort.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_ssort.lo `test -f 'sci_gateway/c/sci_ssort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ssort.c
 
 libscistring_la-sci_length.lo: sci_gateway/c/sci_length.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_length.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_length.Tpo -c -o libscistring_la-sci_length.lo `test -f 'sci_gateway/c/sci_length.c' || echo '$(srcdir)/'`sci_gateway/c/sci_length.c
@@ -719,9 +707,6 @@ sci_str2code.lo: sci_gateway/fortran/sci_str2code.f
 
 sci_code2str.lo: sci_gateway/fortran/sci_code2str.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_code2str.lo `test -f 'sci_gateway/fortran/sci_code2str.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_code2str.f
-
-sci_sort.lo: sci_gateway/fortran/sci_sort.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_sort.lo `test -f 'sci_gateway/fortran/sci_sort.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_sort.f
 
 sci_emptystr.lo: sci_gateway/fortran/sci_emptystr.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_emptystr.lo `test -f 'sci_gateway/fortran/sci_emptystr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_emptystr.f
