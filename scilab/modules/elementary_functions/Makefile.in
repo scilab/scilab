@@ -364,7 +364,6 @@ am__objects_4 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_cos.lo \
 	libscielementary_functions_la-sci_rand.lo \
 	libscielementary_functions_la-sci_acos.lo \
-	libscielementary_functions_la-sci_sort.lo \
 	libscielementary_functions_la-sci_sin.lo \
 	libscielementary_functions_la-sci_sqrt.lo \
 	libscielementary_functions_la-sci_asin.lo \
@@ -416,7 +415,6 @@ am__objects_5 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_cos.lo \
 	libscielementary_functions_la-sci_f_rand.lo \
 	libscielementary_functions_la-sci_f_acos.lo \
-	libscielementary_functions_la-sci_f_sort.lo \
 	libscielementary_functions_la-sci_f_sin.lo \
 	libscielementary_functions_la-sci_f_sqrt.lo \
 	libscielementary_functions_la-sci_f_asin.lo \
@@ -923,7 +921,6 @@ sci_gateway/c/sci_frexp.c \
 sci_gateway/c/sci_cos.c \
 sci_gateway/c/sci_rand.c \
 sci_gateway/c/sci_acos.c \
-sci_gateway/c/sci_sort.c \
 sci_gateway/c/sci_sin.c \
 sci_gateway/c/sci_sqrt.c \
 sci_gateway/c/sci_asin.c \
@@ -976,7 +973,6 @@ sci_gateway/fortran/sci_f_frexp.f \
 sci_gateway/fortran/sci_f_cos.f \
 sci_gateway/fortran/sci_f_rand.f \
 sci_gateway/fortran/sci_f_acos.f \
-sci_gateway/fortran/sci_f_sort.f \
 sci_gateway/fortran/sci_f_sin.f \
 sci_gateway/fortran/sci_f_sqrt.f \
 sci_gateway/fortran/sci_f_asin.f \
@@ -1004,6 +1000,7 @@ sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_exp.f
 
 MODULE_CHECKS = unit_tests/gsort.tst \
+	unit_tests/sort.tst \
 	unit_tests/binary.tst \
 	unit_tests/binary_representation.tst \
 	unit_tests/maxi.tst
@@ -1250,7 +1247,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sign.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_size.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_spones.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sum.Plo@am__quote@
@@ -1568,13 +1564,6 @@ libscielementary_functions_la-sci_acos.lo: sci_gateway/c/sci_acos.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_acos.c' object='libscielementary_functions_la-sci_acos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_acos.lo `test -f 'sci_gateway/c/sci_acos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_acos.c
-
-libscielementary_functions_la-sci_sort.lo: sci_gateway/c/sci_sort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_sort.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_sort.Tpo -c -o libscielementary_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_sort.Tpo $(DEPDIR)/libscielementary_functions_la-sci_sort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sort.c' object='libscielementary_functions_la-sci_sort.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
 
 libscielementary_functions_la-sci_sin.lo: sci_gateway/c/sci_sin.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_sin.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_sin.Tpo -c -o libscielementary_functions_la-sci_sin.lo `test -f 'sci_gateway/c/sci_sin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sin.c
@@ -2551,9 +2540,6 @@ libscielementary_functions_la-sci_f_rand.lo: sci_gateway/fortran/sci_f_rand.f
 
 libscielementary_functions_la-sci_f_acos.lo: sci_gateway/fortran/sci_f_acos.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_acos.lo `test -f 'sci_gateway/fortran/sci_f_acos.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_acos.f
-
-libscielementary_functions_la-sci_f_sort.lo: sci_gateway/fortran/sci_f_sort.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_sort.lo `test -f 'sci_gateway/fortran/sci_f_sort.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sort.f
 
 libscielementary_functions_la-sci_f_sin.lo: sci_gateway/fortran/sci_f_sin.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_sin.lo `test -f 'sci_gateway/fortran/sci_f_sin.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sin.f
