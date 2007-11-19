@@ -4,7 +4,8 @@
 ##########
 
 STRING_C_SOURCES = src/c/strcat-c.c \
-src/c/men_Sutils.c
+src/c/men_Sutils.c \
+src/c/stripblanks.c
 
 STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
 
@@ -22,7 +23,8 @@ sci_gateway/c/sci_emptystr.c \
 sci_gateway/c/sci_ascii.c \
 sci_gateway/c/sci_strsubst.c \
 sci_gateway/c/sci_grep.c \
-sci_gateway/c/sci_convstr.c
+sci_gateway/c/sci_convstr.c \
+sci_gateway/c/sci_stripblanks.c
 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_convstr.f \
@@ -54,7 +56,8 @@ unit_tests/ascii.tst \
 unit_tests/strcat.tst \
 unit_tests/grep.tst \
 unit_tests/mulf.tst \
-unit_tests/addf.tst
+unit_tests/addf.tst \
+unit_tests/stripblanks.tst
 
 
 libscistring_la_CFLAGS=  	-Isrc/c \

@@ -247,6 +247,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_stripblanks.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_strsplit.c"
 				>
 			</File>
@@ -262,6 +266,10 @@
 				RelativePath=".\strcat-c.c"
 				>
 			</File>
+			<File
+				RelativePath=".\stripblanks.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -273,6 +281,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\men_Sutils.h"
+				>
+			</File>
+			<File
+				RelativePath=".\stripblanks.h"
 				>
 			</File>
 		</Filter>

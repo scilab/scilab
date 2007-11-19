@@ -7,7 +7,6 @@
 listmacrostoload = ['fileparts','fileio';
   'getshell','core';
   'pathconvert','fileio';
-  'stripblanks','string';
   'listfiles','fileio'
   'unix_g','io';
   'OS_Version','core';

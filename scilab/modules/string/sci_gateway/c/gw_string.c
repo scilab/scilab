@@ -21,7 +21,8 @@ static gw_generic_table Tab[]=
 	{C2F(sci_ascii),"ascii"},
 	{C2F(sci_grep),"grep"},
 	{C2F(sci_tokens),"tokens"},
-	{C2F(sci_strsplit),"strsplit"}
+	{C2F(sci_strsplit),"strsplit"},
+	{C2F(sci_stripblanks),"stripblank"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_string)(void)
