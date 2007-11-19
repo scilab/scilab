@@ -23,9 +23,10 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 	CheckRhs(0,1);
 	CheckLhs(1,1);
 
+	Tcl_GetVersion(&major, &minor, &patchLevel, &type);
+
 	if (Rhs == 0)
 	{
-		Tcl_GetVersion(&major, &minor, &patchLevel, &type);
 		switch (type)
 		{
 		case TCL_ALPHA_RELEASE:
@@ -85,12 +86,10 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 				int *VERSIONMATRIX=NULL;
 				VERSIONMATRIX=(int *)MALLOC( (4)*sizeof(int) );
 
-				Tcl_GetVersion(&major, &minor, &patchLevel, &patchLevel);
-
 				VERSIONMATRIX[0]=(int)major;
 				VERSIONMATRIX[1]=(int)minor;
 				VERSIONMATRIX[2]=(int)patchLevel;
-				VERSIONMATRIX[3]=(int)patchLevel; 
+				VERSIONMATRIX[3]=(int)type; 
 
 				m1=1;
 				n1=4;
