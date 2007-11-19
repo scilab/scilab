@@ -14,7 +14,6 @@ sci_gateway/c/sci_tokens.c \
 sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_string.c \
 sci_gateway/c/sci_part.c \
-sci_gateway/c/sci_ssort.c \
 sci_gateway/c/sci_length.c \
 sci_gateway/c/sci_strsplit.c \
 sci_gateway/c/sci_str2code.c \
@@ -37,7 +36,6 @@ sci_gateway/fortran/sci_length.f \
 sci_gateway/fortran/sci_strsplit.f \
 sci_gateway/fortran/sci_str2code.f \
 sci_gateway/fortran/sci_code2str.f \
-sci_gateway/fortran/sci_sort.f \
 sci_gateway/fortran/sci_emptystr.f \
 sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
@@ -53,7 +51,6 @@ unit_tests/strindex.tst \
 unit_tests/str2code.tst \
 unit_tests/code2str.tst \
 unit_tests/ascii.tst \
-unit_tests/sort.tst \
 unit_tests/strcat.tst \
 unit_tests/grep.tst \
 unit_tests/mulf.tst \

@@ -273,7 +273,6 @@ sci_gateway/c/sci_frexp.c \
 sci_gateway/c/sci_cos.c \
 sci_gateway/c/sci_rand.c \
 sci_gateway/c/sci_acos.c \
-sci_gateway/c/sci_sort.c \
 sci_gateway/c/sci_sin.c \
 sci_gateway/c/sci_sqrt.c \
 sci_gateway/c/sci_asin.c \
@@ -326,7 +325,7 @@ sci_gateway/fortran/sci_f_frexp.f \
 sci_gateway/fortran/sci_f_cos.f \
 sci_gateway/fortran/sci_f_rand.f \
 sci_gateway/fortran/sci_f_acos.f \
-sci_gateway/fortran/sci_f_sort.f \
+
 sci_gateway/fortran/sci_f_sin.f \
 sci_gateway/fortran/sci_f_sqrt.f \
 sci_gateway/fortran/sci_f_asin.f \
@@ -354,6 +353,7 @@ sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_exp.f
 
 MODULE_CHECKS = unit_tests/gsort.tst \
+    unit_tests/sort.tst \
 	unit_tests/binary.tst \
 	unit_tests/binary_representation.tst \
 	unit_tests/maxi.tst

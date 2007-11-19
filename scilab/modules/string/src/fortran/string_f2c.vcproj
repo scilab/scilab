@@ -248,10 +248,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_sort.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_str2code.c"
 				>
 			</File>
@@ -333,10 +329,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_part.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_sort.f"
 				>
 			</File>
 			<File

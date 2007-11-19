@@ -31,12 +31,11 @@
 <PRIMITIVE gatewayId="21" primitiveId="5" primitiveName="emptystr" />
 <PRIMITIVE gatewayId="21" primitiveId="6" primitiveName="str2code" />
 <PRIMITIVE gatewayId="21" primitiveId="7" primitiveName="code2str" />
-<PRIMITIVE gatewayId="21" primitiveId="8" primitiveName="ssort" />
-<PRIMITIVE gatewayId="21" primitiveId="9" primitiveName="strcat" />
-<PRIMITIVE gatewayId="21" primitiveId="10" primitiveName="strindex" />
-<PRIMITIVE gatewayId="21" primitiveId="11" primitiveName="strsubst" />
-<PRIMITIVE gatewayId="21" primitiveId="12" primitiveName="ascii" />
-<PRIMITIVE gatewayId="21" primitiveId="13" primitiveName="grep" />
-<PRIMITIVE gatewayId="21" primitiveId="14" primitiveName="tokens" />
-<PRIMITIVE gatewayId="21" primitiveId="15" primitiveName="strsplit" />
+<PRIMITIVE gatewayId="21" primitiveId="8" primitiveName="strcat" />
+<PRIMITIVE gatewayId="21" primitiveId="9" primitiveName="strindex" />
+<PRIMITIVE gatewayId="21" primitiveId="10" primitiveName="strsubst" />
+<PRIMITIVE gatewayId="21" primitiveId="11" primitiveName="ascii" />
+<PRIMITIVE gatewayId="21" primitiveId="12" primitiveName="grep" />
+<PRIMITIVE gatewayId="21" primitiveId="13" primitiveName="tokens" />
+<PRIMITIVE gatewayId="21" primitiveId="14" primitiveName="strsplit" />
 </GATEWAY>

@@ -25,7 +25,6 @@ int C2F(sci_eye) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_rand) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_ones) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_maxi) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_sort) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_kron) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_scimatrix) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_sin) _PARAMS((char *fname,unsigned long fname_len));

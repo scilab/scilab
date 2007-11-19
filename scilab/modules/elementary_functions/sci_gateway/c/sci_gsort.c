@@ -90,14 +90,16 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			ind_m1 = m1;
 			ind_n1 = 1;
 			ind_l1 = 0;
-			indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
+			if (ind_m1) indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
+			else indices = NULL;
 		}
 		else
 		{
 			ind_m1 = 1;
 			ind_n1 = n1;
 			ind_l1 = 0;
-			indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
+			if (ind_n1) indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
+			else indices = NULL;
 		}
 	}
 	else
@@ -105,7 +107,8 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		ind_m1 = m1;
 		ind_n1 = n1;
 		ind_l1 = 0;
-		indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1+1));  /* return a matrix*/
+		if (ind_m1*ind_n1+1) indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1+1));  /* return a matrix*/
+		else indices = NULL;
 	}
 
 	if (Lhs == 2) iflag = 1;

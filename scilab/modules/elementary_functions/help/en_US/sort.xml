@@ -5,7 +5,7 @@
   <TITLE>sort</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sort"> decreasing order sorting</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="sort"> order sorting</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v,'r')  </CALLING_SEQUENCE_ITEM>
@@ -35,10 +35,9 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>s=sort(v)</VERB> sorts <VERB>v</VERB>  in decreasing order. 
-    If <VERB>v</VERB> is a matrix, sorting
-    is done columnwise, <VERB>v</VERB> being seen as the stacked vector <VERB>v(:)</VERB>.
-    <VERB>[s,k]=sort(v)</VERB> gives in addition the indices of entries 
-    of <VERB>s</VERB> in <VERB>v</VERB>, i.e. <VERB>v(k(:)) </VERB> is the vector <VERB>s</VERB>.</P>
+    If <VERB>v</VERB> is a matrix, sorting is done columnwise, <VERB>v</VERB> being seen as the stacked vector <VERB>v(:)</VERB>.
+    If <VERB>v</VERB> is a string, sort is increasing order.
+    <VERB>[s,k]=sort(v)</VERB> gives in addition the indices of entries of <VERB>s</VERB> in <VERB>v</VERB>, i.e. <VERB>v(k(:)) </VERB> is the vector <VERB>s</VERB>.</P>
     <P><VERB>s=sort(v,'r')</VERB> sorts the rows of <VERB>v</VERB> in decreasing order i.e.
     each column of <VERB>s</VERB> is obtained from each column of <VERB>v</VERB>
     by reordering it in decreasing order.

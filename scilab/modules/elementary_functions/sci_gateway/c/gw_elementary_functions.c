@@ -24,7 +24,6 @@ static gw_generic_table Tab[]=
 	{C2F(sci_ones),"ones"},
 	{C2F(sci_maxi),"maxi"},
 	{C2F(sci_maxi),"mini"},
-	{C2F(sci_sort),"sort"},
 	{C2F(sci_kron),"kron"},
 	{C2F(sci_kron),"kron"},
 	{C2F(sci_kron),"kron"},
