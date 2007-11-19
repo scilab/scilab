@@ -37,6 +37,9 @@
       <param type="double" name="alpha" />
       <param type="double" name="theta" />
       <param type="double" name="reductionRatio" />
+      <param type="double" name="scaleX" />
+      <param type="double" name="scaleY" />
+      <param type="double" name="scaleZ" />
     </method>
     <method name="replaceCamera" returnType="void">
     </method>

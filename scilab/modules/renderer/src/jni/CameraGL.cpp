@@ -106,7 +106,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
 voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
-voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidreplaceCameraID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
@@ -139,7 +139,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
 voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
-voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidreplaceCameraID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
@@ -335,19 +335,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void CameraGL::rotateAxesBox (double centerX, double centerY, double centerZ, double alpha, double theta, double reductionRatio){
+void CameraGL::rotateAxesBox (double centerX, double centerY, double centerZ, double alpha, double theta, double reductionRatio, double scaleX, double scaleY, double scaleZ){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL)
+if (this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID == NULL)
 {
-this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "rotateAxesBox", "(DDDDDD)V" ) ;
-if (this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
+this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "rotateAxesBox", "(DDDDDDDDD)V" ) ;
+if (this->voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
 std::cerr << "Could not access to the method " << "rotateAxesBox" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  curEnv->CallVoidMethod( this->instance, voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID ,centerX, centerY, centerZ, alpha, theta, reductionRatio);
+  curEnv->CallVoidMethod( this->instance, voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID ,centerX, centerY, centerZ, alpha, theta, reductionRatio, scaleX, scaleY, scaleZ);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

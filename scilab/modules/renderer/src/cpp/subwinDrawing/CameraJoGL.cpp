@@ -26,8 +26,13 @@ void CameraJoGL::renderPosition( void )
   getCameraJavaMapper()->moveAxesBox(m_aAxesScale[0], m_aAxesScale[1], m_aAxesScale[2],
                                      m_aAxesTranslation[0], m_aAxesTranslation[1], m_aAxesTranslation[2] ) ;
 
+  double minScale = Min(m_aAxesScale[0], Min(m_aAxesScale[1], m_aAxesScale[2]));
+
+
   getCameraJavaMapper()->rotateAxesBox(m_aBoxCenter[0], m_aBoxCenter[1], m_aBoxCenter[2],
-                                       m_dAlpha, m_dTheta, m_dFitWindowRatio ) ;
+                                       m_dAlpha, m_dTheta, m_dFitWindowRatio,
+                                       minScale, minScale, minScale) ;
+  //                                     m_aAxesScale[0], m_aAxesScale[1], m_aAxesScale[2]) ;
   endDrawing();
 }
 /*-----------------------------------------------------------------------------------*/

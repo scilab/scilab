@@ -68,9 +68,11 @@ void Camera::setSubwinBox( double bounds[6] )
   scale[0] = 1.0 / (bounds[1] - bounds[0]) ;
   scale[1] = 1.0 / (bounds[3] - bounds[2]) ;
   scale[2] = 1.0 / (bounds[5] - bounds[4]) ;
+  
   m_pImp->setAxesScale(scale) ;
 
   double trans[3];
+  // put the min bounds to our origin
   trans[0] = -bounds[0] ;
   trans[1] = -bounds[2] ;
   trans[2] = bounds[4] ;

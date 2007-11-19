@@ -85,21 +85,36 @@ public class CoordinateTransformation {
 	 */
 	public Vector3D getCanvasCoordinates(GL gl, Vector3D pos) {
 		// I first used gluProject, but it is slower since it will always perform matrices multiplications and inverse.
-		return projectMatrix.mult(pos);
+		return project(gl, pos);
 	}
 	
 	/**
 	 * Perform the same operation as gluProject.
 	 * @param gl unused
 	 * @param pos scene position
-	 * @return Pixel coordinate of the point.
+	 * @return pixel coordinate of the point.
 	 */
 	public Vector3D project(GL gl, Vector3D pos) {
-		Vector3D canvasCoord = getCanvasCoordinates(gl, pos);
+		Vector3D canvasCoord = projectMatrix.mult(pos);
 		canvasCoord.setX(viewPort[0] + viewPort[2] * (canvasCoord.getX() + 1.0) / 2.0);
 		canvasCoord.setY(viewPort[1] + viewPort[VIEW_PORT_SIZE - 1] * (canvasCoord.getY() + 1.0) / 2.0);
 		canvasCoord.setZ((canvasCoord.getZ() + 1.0) / 2.0);
 		return canvasCoord;
+	}
+	
+	/**
+	 * Perform the same operation as gluUnproject.
+	 * @param gl unused
+	 * @param canvasPos canvas position
+	 * @return scene coordinate of the point
+	 */
+	public Vector3D unProject(GL gl, Vector3D canvasPos) {
+		Vector3D sceneCoord 
+			= new Vector3D(2.0 * (canvasPos.getX() - viewPort[0]) / viewPort[2] - 1.0,
+						   2.0 * (canvasPos.getY() - viewPort[1]) / viewPort[VIEW_PORT_SIZE - 1] - 1.0,
+						   2.0 * canvasPos.getZ() - 1.0);
+		return unprojectMatrix.mult(sceneCoord);
+		
 	}
 	
 	/**
@@ -129,7 +144,7 @@ public class CoordinateTransformation {
 	public Vector3D retrieveSceneCoordinates(GL gl, Vector3D canvasPos) {
 		// I first used gluUnproject, but it is slower since it will always perform matrices multiplications and inverse.
 		
-		return unprojectMatrix.mult(canvasPos);
+		return unProject(gl, canvasPos);
 	}
 	
 	/**

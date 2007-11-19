@@ -42,7 +42,8 @@ public:
                            double transX, double transY, double transZ);
 
   virtual void rotateAxesBox(double centerX, double centerY, double centerZ,
-                             double alpha, double theta, double reductionRatio) ;
+                             double alpha, double theta, double reductionRatio,
+                             double scaleX, double scaleY, double scaleZ) ;
 
   virtual void replaceCamera( void );
 

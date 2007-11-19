@@ -225,6 +225,17 @@ public class Vector3D {
 	}
 	
 	/**
+	 * Apply a scale to the vector.
+	 * @param scaleX scale along X axis.
+	 * @param scaleY scale along Y axis.
+	 * @param scaleZ scale along Z axis.
+	 * @return new vector with scaled applied.
+	 */
+	public Vector3D scale(double scaleX, double scaleY, double scaleZ) {
+		return new Vector3D(scaleX * xCoord, scaleY * yCoord, scaleZ * zCoord);
+	}
+	
+	/**
 	 * Multiply this vector by a scalar.
 	 * @param scalar scalar to use
 	 */

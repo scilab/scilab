@@ -212,6 +212,27 @@ public class Plane3D {
 		point3.setValues(point1.add(p1p3));
 		
 	}
+	
+	/**
+	 * Project a point on the plane orthogonaly.
+	 * @param point point to project
+	 * @return projection of the point on the plane.
+	 */
+	public Vector3D projectOrtho(Vector3D point) {
+		
+		// resut is P' = P + k.n
+		// with k = PO.n / ||n||²
+		// where P is the point, P' its projection, n the normal and O a point on the plane.
+		
+		Vector3D pointOnPlane = new Vector3D();
+		Vector3D normal = new Vector3D();
+		getPointAndNormal(pointOnPlane, normal);
+		
+		Vector3D po = pointOnPlane.substract(point);
+		double k = po.dotProduct(normal) / normal.getSquareNorm();
+		
+		return point.add(normal.scalarMult(k));
+	}
 
 	/**
 	 * @return text representation of the plane

@@ -69,10 +69,12 @@ void CameraJavaMapper::moveAxesBox(double scaleX, double scaleY, double scaleZ,
 }
 /*-----------------------------------------------------------------------------------*/
 void CameraJavaMapper::rotateAxesBox(double centerX, double centerY, double centerZ,
-                                     double alpha, double theta, double reductionRatio)
+                                     double alpha, double theta, double reductionRatio,
+                                     double scaleX, double scaleY, double scaleZ)
 {
   m_pJavaObject->rotateAxesBox(centerX, centerY, centerZ,
-                               alpha  , theta, reductionRatio);
+                               alpha  , theta, reductionRatio,
+                               scaleX, scaleY, scaleZ);
 }
 /*-----------------------------------------------------------------------------------*/
 void CameraJavaMapper::replaceCamera( void )
