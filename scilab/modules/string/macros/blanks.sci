@@ -6,15 +6,18 @@
 // INRIA 2007
 //=============================================
 function str = blanks(n)
-  if type(n) <> 1 then
-    error(42)
+  if ~or(type(n)==[1,8]) then
+    error(44,1)
   end
-  if (n(1) > 0) then
-    BLANK = ' ';
-    str = '';
-    for i=1:n,  str = str + BLANK; end;
+  if n>0 then
+    str=part(" ",ones(1,n))
+  elseif n==0
+    str=""
   else
-    error(21);
+    error(116,1);
   end
 endfunction
 //=============================================
+
+
+
