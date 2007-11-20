@@ -29,8 +29,29 @@ if (LS1 <> 6 ) then bugmes();quit;end;
 if (LS2 <> 7 ) then bugmes();quit;end;
 if (l <> [ LS1, LS2; LS2 , LS1 ]) then bugmes();quit;end
 //===============================
+STRING1 = "Scilab";
+STRING2 = "5.x";
+m=list();
+m(1)=STRING1;
+m(2)=STRING2;
+if length(m) <> 2  then bugmes();quit;end
+//===============================
+STRING1 = "Scilab";
+STRING2 = "5.x";
+LS1 = length(STRING1);
+LS2 = length(STRING2);
+if length([STRING1,STRING2]) <> [LS1,LS2] then bugmes();quit;end
+//===============================
 if length('abd')<>3 then bugmes();quit;end
 if length(emptystr())<>0 then bugmes();quit;end
 if or(length(['abd';emptystr()])<>[3;0]) then bugmes();quit;end
 if or(length(string(ones(10,10)))<>1) then bugmes();quit;end
+//===============================
+fd = mopen(SCI+'/modules/string/unit_tests/text.txt','r');
+txt = mgetl( fd );
+mclose( fd );
+if length(txt(1)) <> 280  then bugmes();quit;end
+S = size(txt);
+if length(txt(S(1)-1)) <> 106  then bugmes();quit;end
+if length(txt(S(1))) <> 0  then bugmes();quit;end
 //===============================
