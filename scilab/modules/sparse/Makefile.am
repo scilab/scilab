@@ -5,7 +5,6 @@
 
 SPARSE_C_SOURCES = \
 src/c/spUtils.c \
-src/c/spFortran.c \
 src/c/mspelm.c \
 src/c/lu.c \
 src/c/spFactor.c \
@@ -13,6 +12,7 @@ src/c/spBuild.c \
 src/c/spOutput.c \
 src/c/spAllocate.c \
 src/c/spSolve.c
+# src/c/spFortran.c
 
 SPARSE_FORTRAN_SOURCES = src/fortran/spcompack.f \
 src/fortran/wsposp.f \
