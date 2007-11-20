@@ -52,7 +52,7 @@ pkglib_LTLIBRARIES = libscishell.la
 libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(SHELL_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 ## Libraries necessary
-libscishell_la_LIBADD = $(top_builddir)/libs/blas/libsciblas.la \
+libscishell_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la
 
 modulename=shell

@@ -38,7 +38,6 @@ libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(CONSOLE_C_JNI_SO
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
 libsciaction_binding_la_LIBADD = \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #### Name of the module and the path ######

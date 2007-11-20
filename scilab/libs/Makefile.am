@@ -5,14 +5,19 @@
 
 # The order DOES matter !!!
 SUBDIRS = \
-	blas \
-	lapack \
 	MALLOC \
 	hashtable \
 	libst \
 	dynamiclibrary \
+	lapack \
 	doublylinkedlist
-# \
-#	f2c
+
+if USE_EMBEDDED_BLAS
+SUBDIRS += blas
+endif
+
+if USE_EMBEDDED_LAPACK
+SUBDIRS += lapack
+endif 
 
 SUBDIRS += .

@@ -45,7 +45,6 @@ libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
 libscicompletion_la_LIBADD = \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #### Name of the module and the path ######

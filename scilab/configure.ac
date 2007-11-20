@@ -481,6 +481,11 @@ FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 AM_CONDITIONAL(CPU_64_BITS, test "$CPU_64_BITS" = "enabled")
 
+#######################
+## test for underscores (name mangling issues between C and fortran)
+#######################
+AC_CHECK_UNDERSCORE_FORTRAN()
+
 ###########################
 ## test for JAVA compiler
 ###########################
@@ -705,7 +710,7 @@ AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
 
 AC_ARG_WITH(fftw,
     [  --with-fftw	           compile with the FFTW 3 library ])
-
+# @TODO change that to add the possibility to specify a directory
 if test "$with_fftw" = yes; then
    AC_FFTW()
 fi
@@ -740,12 +745,6 @@ AM_CONDITIONAL(PVM, test "$PVM_OK" = "1")
 ## Test for libxml
 #######################
 
-AC_ARG_WITH(libxml2,
-		[  --with-libxml2=PREFIX    set the path to your libxml2 installation],
-		[with_libxml2=$withval],
-		[with_libxml2='yes']
-		)
-
 AC_LIBXML2()
 
 #######################
@@ -778,14 +777,33 @@ fi
 AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$with_localization" != no)
 
 #######################
+## Test for blas/Atlas and lapack
+#######################
+AC_MSG_CHECKING([if BLAS, ATLAS or MKL is available])
+echo ""
+EMBEDDED_BLAS=0
+ACX_BLAS(
+		[]
+		,
+		AC_MSG_WARN([Impossible to find a blas compatible library (see BLAS or ATLAS). Use the version of generic blas embedded])
+		EMBEDDED_BLAS=1
+		)
+AM_CONDITIONAL(USE_EMBEDDED_BLAS, test $EMBEDDED_BLAS = 1)
+
+
+AC_MSG_CHECKING([if LAPACK is available])
+echo ""
+EMBEDDED_LAPACK=0
+ACX_LAPACK(
+		[],
+		AC_MSG_WARN([Impossible to find the LAPACK library. Use the version of lapack embedded])
+		EMBEDDED_LAPACK=1
+		)
+AM_CONDITIONAL(USE_EMBEDDED_LAPACK, test $EMBEDDED_LAPACK = 1)
+
+#######################
 ## Test for PCRE
 #######################
-
-AC_ARG_WITH(pcre,
-		[  --with-pcre=PREFIX    set the path to your pcre (Perl 5 Compatible Regular Expression Library) installation],
-		[with_pcre=$withval],
-		[with_pcre='yes']
-		)
 
 AC_PCRE()
 	  	 
@@ -796,8 +814,6 @@ AC_PCRE()
 
 WITH_TKSCI=0
 if test "$with_tk" != no; then
-
-	TCLTKHELP=tksci
 
 	# check user arguments
 	USER_TCL_LIB_PATH=""
@@ -842,53 +858,16 @@ if test "$with_tk" != no; then
 	# set variables
 	if test $WITH_TKSCI = 1; then
 		AC_DEFINE([WITH_TK], [], [With TK])
-		TCLSCILIB="\$(SCI_SRCDIR)/libs/tclsci.a"
-		TCLSCI_SRCDIR=tclsci
-		tcldir="$PREFIX_DIR/tcl/"
 	else
 		AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
 	fi
 
-	TKBASE=
-	## voir quoi faire maintenant avec le SONAME qui se barre
-	GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.so
-
-	case "$host" in
-		*-*-darwin*)
-		GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
-		;;
-	esac
 	AC_SUBST(TCLTK_LIBS)
 	AC_SUBST(TCL_INC_PATH)
 	AC_SUBST(TK_INC_PATH)
 
 fi
 AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
-
-#################
-## atlas
-#################
-# @TODO : make it work
-# check user arguments
-#USER_ATLAS_LIB_PATH=""
-#
-#AC_ARG_WITH(atlas-library,
-#    [  --with-atlas-library=DIR  Atlas library files are in DIR and we use Atlas ],
-#    [  USER_ATLAS_LIB_PATH=$withval
-#    CC_OPTIONS="$CC_OPTIONS -DWITH_ATLAS"],
-#    )
-#
-#if test "$USER_ATLAS_LIB_PATH" = ""; then
-#	WHICH_BLAS="STD_BLAS"
-#	IN_ATLAS=LOCAL
-#else
-#	echo "Using Atlas library"
-#	WHICH_BLAS="ATLAS_LAPACKBLAS"
-#	ATLAS_DIR=$USER_ATLAS_LIB_PATH
-#	IN_ATLAS=ATLAS
-#	AC_DEFINE([WITH_ATLAS],[],[With the Atlas Lib])
-#fi
-
 
 #################
 ## ocaml
@@ -934,10 +913,6 @@ AC_ARG_WITH(install-help-xml,
 
 AM_CONDITIONAL(INSTALL_HELP_XML, test "$with_install_help_xml" = "yes")
 
-#######################
-## test for underscores (name mangling issues between C and fortran)
-#######################
-AC_CHECK_UNDERSCORE_FORTRAN()
 
 #########################
 ## libtool
@@ -1183,6 +1158,29 @@ if test ! -z "$PVM_INCLUDE"; then
    echo "PVM LIBS ........... = $PVM_LIB"
 else
    echo "Not using PVM"
+fi
+
+echo ""
+if test "$with_fftw" != no;  then
+   echo "FFTW Configuration:"
+   echo "FFTW LIBS .......... = $FFTW3_LIB"
+else
+   echo "Not using FFTW"
+fi
+
+
+echo ""
+echo "BLAS/LAPACK/ATLAS Configuration:"
+if test $EMBEDDED_BLAS = 0; then
+   echo "BLAS LIBS ............. = $BLAS_LIBS"
+else
+   echo "BLAS LIBS ............. = Use the generic version of BLAS embedded"
+fi
+
+if test $EMBEDDED_LAPACK = 0; then
+   echo "LAPACK LIBS ........... = $LAPACK_LIBS"
+else
+   echo "LAPACK LIBS ........... = Use the LAPACK embedded"
 fi
 
 echo ""

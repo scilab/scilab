@@ -224,9 +224,9 @@ pkglib_LTLIBRARIES = libscicacsd.la
 
 libscicacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
+libscicacsd_la_LDFLAGS = $(ATLAS_LIBS)
+
 libscicacsd_la_LIBADD = \
-	$(top_builddir)/libs/lapack/libscilapack.la \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la
 #	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 

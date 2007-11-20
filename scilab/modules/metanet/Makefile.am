@@ -119,6 +119,7 @@ MODULE_CHECKS = unit_tests/metanet.tst
 
 libscimetanet_la_CFLAGS=  	-Iincludes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/libs/hashtable/
 
@@ -129,7 +130,6 @@ libscimetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GAT
 libscimetanet_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \

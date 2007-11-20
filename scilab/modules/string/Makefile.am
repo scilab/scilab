@@ -70,7 +70,6 @@ pkglib_LTLIBRARIES = libscistring.la
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscistring_la_LIBADD = \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 # Cyclic deps

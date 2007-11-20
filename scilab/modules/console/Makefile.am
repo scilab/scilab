@@ -56,7 +56,6 @@ libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSO
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
 libsciconsole_la_LIBADD = \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #### Name of the module and the path ######

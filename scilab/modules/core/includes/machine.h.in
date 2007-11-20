@@ -17,8 +17,15 @@
 /* Define C2F without Trailing Underscore */
 #undef F2C
 
+/* Define to dummy `main' function (if any) required to link to the Fortran
+   libraries. */
+#undef F77_DUMMY_MAIN
+
 /* Define to 1 if your Fortran compiler doesn't accept -c and -o together. */
 #undef F77_NO_MINUS_C_MINUS_O
+
+/* Define if F77 and FC dummy `main' functions are identical. */
+#undef FC_DUMMY_MAIN_EQ_F77
 
 /* uses G95 fortran */
 #undef G95_FORTRAN

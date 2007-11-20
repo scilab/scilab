@@ -56,7 +56,8 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
@@ -81,9 +82,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscidifferential_equations_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/blas/libsciblas.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscidifferential_equations_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 am__objects_1 = libscidifferential_equations_la-dassl.lo \
 	libscidifferential_equations_la-feval.lo \
 	libscidifferential_equations_la-fevaltable.lo \
@@ -170,6 +169,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -192,6 +192,7 @@ F77 = @F77@
 FFLAGS = @FFLAGS@
 FFTW3_LIB = @FFTW3_LIB@
 FGREP = @FGREP@
+FLIBS = @FLIBS@
 GIWS_BIN = @GIWS_BIN@
 GREP = @GREP@
 INSTALL = @INSTALL@
@@ -208,6 +209,7 @@ JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
+LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -459,7 +461,6 @@ libscidifferential_equations_la_CFLAGS = -Iincludes/ \
 pkglib_LTLIBRARIES = libscidifferential_equations.la
 libscidifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscidifferential_equations_la_LIBADD = \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 

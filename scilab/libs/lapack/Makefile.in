@@ -45,17 +45,19 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@USE_EMBEDDED_BLAS_TRUE@am__append_1 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = README $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = build-java
-@SWIG_TRUE@am__append_2 = build-swig
-@GIWS_TRUE@am__append_3 = build-giws
+@GUI_TRUE@am__append_2 = build-java
+@SWIG_TRUE@am__append_3 = build-swig
+@GIWS_TRUE@am__append_4 = build-giws
 subdir = libs/lapack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
@@ -83,10 +85,9 @@ am_libdummy_lapack_la_OBJECTS = libdummy_lapack_la-dlamch.lo \
 libdummy_lapack_la_OBJECTS = $(am_libdummy_lapack_la_OBJECTS)
 libdummy_lapack_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) \
-	$(libdummy_lapack_la_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
-libscilapack_la_DEPENDENCIES = libdummy-lapack.la \
-	$(top_builddir)/libs/blas/libsciblas.la
+	$(libdummy_lapack_la_FFLAGS) $(FFLAGS) \
+	$(libdummy_lapack_la_LDFLAGS) $(LDFLAGS) -o $@
+libscilapack_la_DEPENDENCIES = libdummy-lapack.la $(am__append_1)
 am__objects_1 = dlasv2.lo zgeqpf.lo zrot.lo dpotrf.lo zunmr3.lo \
 	zlanhs.lo zgebak.lo zbdsqr.lo zunmrz.lo dgetc2.lo zlaqp2.lo \
 	dsytrd.lo dsytd2.lo zlange.lo dlansp.lo dhgeqz.lo dlasq2.lo \
@@ -161,6 +162,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -183,6 +185,7 @@ F77 = @F77@
 FFLAGS = @FFLAGS@
 FFTW3_LIB = @FFTW3_LIB@
 FGREP = @FGREP@
+FLIBS = @FLIBS@
 GIWS_BIN = @GIWS_BIN@
 GREP = @GREP@
 INSTALL = @INSTALL@
@@ -199,6 +202,7 @@ JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
+LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -614,9 +618,8 @@ dlaqr1.f
 libscilapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 libdummy_lapack_la_SOURCES = dlamch.f slamch.f
 libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
-libscilapack_la_LIBADD = libdummy-lapack.la \
-	$(top_builddir)/libs/blas/libsciblas.la 
-
+libscilapack_la_LIBADD = libdummy-lapack.la $(am__append_1)
+@USE_EMBEDDED_BLAS_FALSE@libdummy_lapack_la_LDFLAGS = $(BLAS_LIBS)
 libscilapack_la_PKGCONFIG = lapack.pc
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -624,7 +627,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target

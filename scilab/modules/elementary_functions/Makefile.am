@@ -395,7 +395,6 @@ libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIO
 libscielementary_functions_la_LIBADD = \
 	libdummy-elementary_functions.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 #	$(top_builddir)/modules/sparse/libscisparse.la \
 #	$(top_builddir)/modules/polynomials/libscipolynomials.la

@@ -342,8 +342,6 @@ pkglib_LTLIBRARIES = libscicore.la
 libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 
 libscicore_la_LIBADD = \
-	$(top_builddir)/libs/blas/libsciblas.la \
-	$(top_builddir)/libs/lapack/libscilapack.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \

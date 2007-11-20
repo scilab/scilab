@@ -80,8 +80,7 @@ pkglib_LTLIBRARIES = libsciarnoldi.la
 
 libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libsciarnoldi_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
-$(top_builddir)/libs/blas/libsciblas.la \
+libsciarnoldi_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la
 
 # Cyclic deps

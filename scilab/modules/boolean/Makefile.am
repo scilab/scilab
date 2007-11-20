@@ -27,7 +27,6 @@ pkglib_LTLIBRARIES = libsciboolean.la
 libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libsciboolean_la_LIBADD = \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 #$(top_builddir)/libs/blas/libsciblas.la:

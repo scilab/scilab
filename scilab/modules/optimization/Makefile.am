@@ -148,8 +148,6 @@ libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN
 
 libscioptimization_la_LIBADD = \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/libs/blas/libsciblas.la \
-	$(top_builddir)/libs/lapack/libscilapack.la\
 	$(top_builddir)/modules/core/libscicore.la
 
 
