@@ -195,6 +195,8 @@ function R=legend(varargin)
   end
   glue(R)
   set('current_axes',Acur),
+
+  // if immediate_drawing was "on", then the figure will redraw itself.
   f.immediate_drawing=vis;
 endfunction
 

@@ -41,7 +41,7 @@ function legends(leg, style, opt, with_box, font_size )
  
   //preserve current graphic context
   f=gcf()
-  vis=f.visible;
+  vis=f.immediate_drawing;
   old_ax=gca(),
   arect=old_ax.margins;
   r1=old_ax.axes_bounds;
@@ -107,7 +107,7 @@ function legends(leg, style, opt, with_box, font_size )
   x=pos(1)+xOffset
   y=pos(2)
  
-  drawlater() ;
+  f.immediate_drawing = "off",
   a=gca() ;
   a.foreground=old_ax.foreground ;
   a.background=old_ax.background ;
@@ -183,11 +183,10 @@ function legends(leg, style, opt, with_box, font_size )
     y=y-bbx(k,2) ;
   end
   glue(R)
-  R=gce()
-  //draw(R)
  
   set('current_axes',old_ax),
-  drawnow()
-  f.visible=vis;
+  
+  // if immediate_drawing was "on", then the figure will redraw itself.
+  f.immediate_drawing = vis;
 
 endfunction
