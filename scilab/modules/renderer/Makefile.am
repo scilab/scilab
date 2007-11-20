@@ -75,7 +75,6 @@ src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
 src/jni/Object.cpp \
 src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
-src/cpp/subwinDrawing/CameraJavaMapper.cpp \
 src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
 src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
 src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
@@ -86,7 +85,6 @@ src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
 src/jni/ScilabGraphicWindow.cpp \
 src/jni/DrawableFigureGL.cpp \
 src/jni/DrawableSubwinGL.cpp \
-src/jni/CameraGL.cpp \
 src/jni/DrawablePolylineGL.cpp \
 src/jni/DrawableRectangleGL.cpp \
 src/jni/RectangleFillDrawerGL.cpp \
@@ -143,7 +141,11 @@ src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
 src/jni/CenteredTextDrawerGL.cpp \
 src/cpp/textDrawing/DrawTextBoxStrategy.cpp \
 src/cpp/textDrawing/TextLineBoxDrawerJoGL.cpp \
-src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp
+src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp \
+src/jni/IsoViewCameraGL.cpp \
+src/jni/IsometricCameraGL.cpp \
+src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
+src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c

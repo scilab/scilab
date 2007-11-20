@@ -151,7 +151,6 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
 	src/jni/Object.cpp \
 	src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
-	src/cpp/subwinDrawing/CameraJavaMapper.cpp \
 	src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
 	src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
 	src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
@@ -160,8 +159,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
 	src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
 	src/jni/ScilabGraphicWindow.cpp src/jni/DrawableFigureGL.cpp \
-	src/jni/DrawableSubwinGL.cpp src/jni/CameraGL.cpp \
-	src/jni/DrawablePolylineGL.cpp src/jni/DrawableRectangleGL.cpp \
+	src/jni/DrawableSubwinGL.cpp src/jni/DrawablePolylineGL.cpp \
+	src/jni/DrawableRectangleGL.cpp \
 	src/jni/RectangleFillDrawerGL.cpp \
 	src/jni/RectangleLineDrawerGL.cpp \
 	src/jni/RectangleMarkDrawerGL.cpp \
@@ -215,6 +214,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/textDrawing/DrawTextBoxStrategy.cpp \
 	src/cpp/textDrawing/TextLineBoxDrawerJoGL.cpp \
 	src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp \
+	src/jni/IsoViewCameraGL.cpp src/jni/IsometricCameraGL.cpp \
+	src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
+	src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -284,7 +286,6 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-GraphicSynchronizerJava.lo \
 @GUI_TRUE@	libscirenderer_la-Object.lo \
 @GUI_TRUE@	libscirenderer_la-ConcreteDrawableRectangle.lo \
-@GUI_TRUE@	libscirenderer_la-CameraJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwinJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-DrawablePolylineJavaMapper.lo \
@@ -295,7 +296,6 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-ScilabGraphicWindow.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureGL.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwinGL.lo \
-@GUI_TRUE@	libscirenderer_la-CameraGL.lo \
 @GUI_TRUE@	libscirenderer_la-DrawablePolylineGL.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableRectangleGL.lo \
 @GUI_TRUE@	libscirenderer_la-RectangleFillDrawerGL.lo \
@@ -352,7 +352,11 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-CenteredTextDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-DrawTextBoxStrategy.lo \
 @GUI_TRUE@	libscirenderer_la-TextLineBoxDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-TextFillBoxDrawerJoGL.lo
+@GUI_TRUE@	libscirenderer_la-TextFillBoxDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-IsoViewCameraGL.lo \
+@GUI_TRUE@	libscirenderer_la-IsometricCameraGL.lo \
+@GUI_TRUE@	libscirenderer_la-IsoViewCameraJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-IsometricCameraJavaMapper.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -624,7 +628,6 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
 @GUI_TRUE@src/jni/Object.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/CameraJavaMapper.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
 @GUI_TRUE@src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
 @GUI_TRUE@src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
@@ -635,7 +638,6 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/ScilabGraphicWindow.cpp \
 @GUI_TRUE@src/jni/DrawableFigureGL.cpp \
 @GUI_TRUE@src/jni/DrawableSubwinGL.cpp \
-@GUI_TRUE@src/jni/CameraGL.cpp \
 @GUI_TRUE@src/jni/DrawablePolylineGL.cpp \
 @GUI_TRUE@src/jni/DrawableRectangleGL.cpp \
 @GUI_TRUE@src/jni/RectangleFillDrawerGL.cpp \
@@ -692,7 +694,11 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/CenteredTextDrawerGL.cpp \
 @GUI_TRUE@src/cpp/textDrawing/DrawTextBoxStrategy.cpp \
 @GUI_TRUE@src/cpp/textDrawing/TextLineBoxDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp
+@GUI_TRUE@src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp \
+@GUI_TRUE@src/jni/IsoViewCameraGL.cpp \
+@GUI_TRUE@src/jni/IsometricCameraGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
 
 
 # List of the gateway c files
@@ -894,8 +900,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerJavaMapper.Plo@am__quote@
@@ -980,6 +984,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleObserverManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-InterpolatedDecomposition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LocalSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-Object.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerGL.Plo@am__quote@
@@ -1561,13 +1569,6 @@ libscirenderer_la-ConcreteDrawableRectangle.lo: src/cpp/rectangleDrawing/Concret
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableRectangle.lo `test -f 'src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
 
-libscirenderer_la-CameraJavaMapper.lo: src/cpp/subwinDrawing/CameraJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraJavaMapper.Tpo -c -o libscirenderer_la-CameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/CameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraJavaMapper.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-CameraJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-CameraJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/CameraJavaMapper.cpp' object='libscirenderer_la-CameraJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/CameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraJavaMapper.cpp
-
 libscirenderer_la-DrawableSubwinJavaMapper.lo: src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinJavaMapper.Tpo -c -o libscirenderer_la-DrawableSubwinJavaMapper.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSubwinJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinJavaMapper.Plo
@@ -1637,13 +1638,6 @@ libscirenderer_la-DrawableSubwinGL.lo: src/jni/DrawableSubwinGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableSubwinGL.cpp' object='libscirenderer_la-DrawableSubwinGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinGL.lo `test -f 'src/jni/DrawableSubwinGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSubwinGL.cpp
-
-libscirenderer_la-CameraGL.lo: src/jni/CameraGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraGL.Tpo -c -o libscirenderer_la-CameraGL.lo `test -f 'src/jni/CameraGL.cpp' || echo '$(srcdir)/'`src/jni/CameraGL.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-CameraGL.Tpo $(DEPDIR)/libscirenderer_la-CameraGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CameraGL.cpp' object='libscirenderer_la-CameraGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraGL.lo `test -f 'src/jni/CameraGL.cpp' || echo '$(srcdir)/'`src/jni/CameraGL.cpp
 
 libscirenderer_la-DrawablePolylineGL.lo: src/jni/DrawablePolylineGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolylineGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolylineGL.Tpo -c -o libscirenderer_la-DrawablePolylineGL.lo `test -f 'src/jni/DrawablePolylineGL.cpp' || echo '$(srcdir)/'`src/jni/DrawablePolylineGL.cpp
@@ -2036,6 +2030,34 @@ libscirenderer_la-TextFillBoxDrawerJoGL.lo: src/cpp/textDrawing/TextFillBoxDrawe
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp' object='libscirenderer_la-TextFillBoxDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TextFillBoxDrawerJoGL.lo `test -f 'src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp
+
+libscirenderer_la-IsoViewCameraGL.lo: src/jni/IsoViewCameraGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsoViewCameraGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Tpo -c -o libscirenderer_la-IsoViewCameraGL.lo `test -f 'src/jni/IsoViewCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsoViewCameraGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Tpo $(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/IsoViewCameraGL.cpp' object='libscirenderer_la-IsoViewCameraGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-IsoViewCameraGL.lo `test -f 'src/jni/IsoViewCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsoViewCameraGL.cpp
+
+libscirenderer_la-IsometricCameraGL.lo: src/jni/IsometricCameraGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsometricCameraGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsometricCameraGL.Tpo -c -o libscirenderer_la-IsometricCameraGL.lo `test -f 'src/jni/IsometricCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsometricCameraGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-IsometricCameraGL.Tpo $(DEPDIR)/libscirenderer_la-IsometricCameraGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/IsometricCameraGL.cpp' object='libscirenderer_la-IsometricCameraGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-IsometricCameraGL.lo `test -f 'src/jni/IsometricCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsometricCameraGL.cpp
+
+libscirenderer_la-IsoViewCameraJavaMapper.lo: src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsoViewCameraJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Tpo -c -o libscirenderer_la-IsoViewCameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp' object='libscirenderer_la-IsoViewCameraJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-IsoViewCameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp
+
+libscirenderer_la-IsometricCameraJavaMapper.lo: src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsometricCameraJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Tpo -c -o libscirenderer_la-IsometricCameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp' object='libscirenderer_la-IsometricCameraJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-IsometricCameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
