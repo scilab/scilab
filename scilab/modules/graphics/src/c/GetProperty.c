@@ -4074,6 +4074,12 @@ void sciGetTextPos(sciPointObj * pObj, double position[3])
   }
 }
 /*-------------------------------------------------------------------------------------------*/
+/**
+ * Convert user coordinates to pixel ones (relative to the viewing canvas).
+ * @param pObj subwindow handle
+ * @param userCoord user coordinates
+ * @param pixCoord result in pixels.
+ */
 void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2])
 {
   switch(sciGetEntityType(pObj))
@@ -4085,6 +4091,36 @@ void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pi
     sciprint("Screen coordinates are only applicable on subwin objects.\n");
     pixCoord[0] = -1;
     pixCoord[1] = -1;
+    break;
+  }
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * @return TRUE if pObj is a subwin with isoview mode on.
+ */
+BOOL sciGetIsIsoView(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->isoview;
+  default:
+    return FALSE;
+    break;
+  }
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * @return TRUE if pObj is a subwindow with cube scaling mode on.
+ */
+BOOL sciGetIsCubeScaled(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->cube_scaling;
+  default:
+    return FALSE;
     break;
   }
 }

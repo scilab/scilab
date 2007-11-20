@@ -219,4 +219,8 @@ void sciGetTextPos(sciPointObj * pObj, double position[3]); /* GET */
 
 void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2]); /* GET */
 
+BOOL sciGetIsIsoView(sciPointObj * pObj); /* GET */
+
+BOOL sciGetIsCubeScaled(sciPointObj * pObj); /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */
