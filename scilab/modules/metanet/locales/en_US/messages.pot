@@ -1,233 +1,212 @@
 # Localization of the module metanet
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - metanet\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 18:04+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-20 18:04+0100\n"
 
-#
 # File: src/c/nometanet/nometanet.c, line: 11
-msgid "Metanet interface not installed.\n"
+msgid "Scilab module metanet not installed.\n"
 msgstr ""
-
 #
-#
-# File: src/c/saveg.c, line: 82
-# File: src/c/paths.c, line: 48
-# File: src/c/paths.c, line: 68
-# File: src/c/paths.c, line: 80
-# File: src/c/paths.c, line: 116
-# File: src/c/paths.c, line: 194
-# File: src/c/paths.c, line: 211
-# File: src/c/dmtree.c, line: 23
-# File: src/c/dmtree.c, line: 27
-# File: src/c/dmtree.c, line: 31
-# File: src/c/dmtree.c, line: 35
-# File: src/c/dmtree.c, line: 39
-# File: src/c/dmtree.c, line: 43
-# File: src/c/dmtree.c, line: 47
-# File: src/c/dmtree.c, line: 51
-# File: src/c/loadg.c, line: 113
-# File: src/c/loadg.c, line: 176
-# File: src/c/loadg.c, line: 182
-# File: src/c/loadg.c, line: 187
-# File: src/c/loadg.c, line: 192
+# File: src/c/saveg.c, line: 38
+# File: src/c/paths.c, line: 47
+# File: src/c/paths.c, line: 67
+# File: src/c/paths.c, line: 79
+# File: src/c/paths.c, line: 115
+# File: src/c/paths.c, line: 193
+# File: src/c/paths.c, line: 210
+# File: src/c/dmtree.c, line: 24
+# File: src/c/dmtree.c, line: 28
+# File: src/c/dmtree.c, line: 32
+# File: src/c/dmtree.c, line: 36
+# File: src/c/dmtree.c, line: 40
+# File: src/c/dmtree.c, line: 44
+# File: src/c/dmtree.c, line: 48
+# File: src/c/dmtree.c, line: 52
+# File: src/c/loadg.c, line: 78
+# File: src/c/loadg.c, line: 141
+# File: src/c/loadg.c, line: 147
+# File: src/c/loadg.c, line: 152
+# File: src/c/loadg.c, line: 157
+# File: src/c/loadg.c, line: 162
+# File: src/c/loadg.c, line: 167
+# File: src/c/loadg.c, line: 172
+# File: src/c/loadg.c, line: 177
+# File: src/c/loadg.c, line: 183
+# File: src/c/loadg.c, line: 191
 # File: src/c/loadg.c, line: 197
 # File: src/c/loadg.c, line: 202
 # File: src/c/loadg.c, line: 207
 # File: src/c/loadg.c, line: 212
-# File: src/c/loadg.c, line: 218
-# File: src/c/loadg.c, line: 226
-# File: src/c/loadg.c, line: 232
-# File: src/c/loadg.c, line: 237
-# File: src/c/loadg.c, line: 242
-# File: src/c/loadg.c, line: 247
-# File: src/c/loadg.c, line: 252
-# File: src/c/loadg.c, line: 257
-# File: src/c/loadg.c, line: 263
-# File: src/c/loadg.c, line: 268
-# File: src/c/loadg.c, line: 273
-# File: src/c/loadg.c, line: 278
-# File: src/c/loadg.c, line: 283
-# File: src/c/loadg.c, line: 288
-# File: src/c/loadg.c, line: 293
-# File: src/c/loadg.c, line: 315
-# File: src/c/loadg.c, line: 334
-# File: src/c/loadg.c, line: 343
-# File: src/c/loadg.c, line: 358
-# File: src/c/loadg.c, line: 406
-# File: src/c/loadg.c, line: 413
-# File: src/c/loadg.c, line: 437
+# File: src/c/loadg.c, line: 217
+# File: src/c/loadg.c, line: 222
+# File: src/c/loadg.c, line: 228
+# File: src/c/loadg.c, line: 233
+# File: src/c/loadg.c, line: 238
+# File: src/c/loadg.c, line: 243
+# File: src/c/loadg.c, line: 248
+# File: src/c/loadg.c, line: 253
+# File: src/c/loadg.c, line: 258
+# File: src/c/loadg.c, line: 280
+# File: src/c/loadg.c, line: 299
+# File: src/c/loadg.c, line: 308
+# File: src/c/loadg.c, line: 323
+# File: src/c/loadg.c, line: 371
+# File: src/c/loadg.c, line: 378
+# File: src/c/loadg.c, line: 402
+# File: src/c/transc.c, line: 16
+# File: src/c/transc.c, line: 20
 # File: src/c/transc.c, line: 25
 # File: src/c/transc.c, line: 29
-# File: src/c/transc.c, line: 34
-# File: src/c/transc.c, line: 38
-# File: src/c/transc.c, line: 42
-# File: src/c/transc.c, line: 46
-# File: src/c/transc.c, line: 50
-# File: src/c/transc.c, line: 54
-# File: src/c/transc.c, line: 58
-# File: src/c/transc.c, line: 62
-# File: src/c/transc.c, line: 66
-# File: src/c/transc.c, line: 70
-# File: src/c/transc.c, line: 74
-# File: src/c/transc.c, line: 78
-# File: src/c/transc.c, line: 82
-# File: src/c/connex.c, line: 17
-# File: src/c/connex.c, line: 35
+# File: src/c/transc.c, line: 33
+# File: src/c/transc.c, line: 37
+# File: src/c/transc.c, line: 41
+# File: src/c/transc.c, line: 45
+# File: src/c/transc.c, line: 49
+# File: src/c/transc.c, line: 53
+# File: src/c/transc.c, line: 57
+# File: src/c/transc.c, line: 61
+# File: src/c/transc.c, line: 65
+# File: src/c/transc.c, line: 69
+# File: src/c/transc.c, line: 73
+# File: src/c/connex.c, line: 9
 msgid "Running out of memory"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 90
-# File: src/c/saveg.c, line: 98
-# File: src/c/loadg.c, line: 370
-# File: src/c/loadg.c, line: 380
+# File: src/c/saveg.c, line: 46
+# File: src/c/saveg.c, line: 54
+# File: src/c/loadg.c, line: 335
+# File: src/c/loadg.c, line: 345
 #, c-format
 msgid "Bad graph file. Node \"%s\" is duplicated"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 140
-# File: src/c/loadg.c, line: 100
+# File: src/c/saveg.c, line: 96
+# File: src/c/loadg.c, line: 64
 #, c-format
 msgid "Directory \"%s\" does not exist"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 161
+# File: src/c/saveg.c, line: 117
 #, c-format
 msgid "Unable to write file in directory %s, check access"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 167
+# File: src/c/saveg.c, line: 123
 #, c-format
 msgid ""
 "GRAPH TYPE (0 = UNDIRECTED, 1 = DIRECTED), DEFAULTS (NODE DIAMETER, NODE "
 "BORDER, ARC WIDTH, HILITED ARC WIDTH, FONTSIZE):\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 172
+# File: src/c/saveg.c, line: 128
 #, c-format
 msgid "NUMBER OF ARCS:\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 175
+# File: src/c/saveg.c, line: 131
 #, c-format
 msgid "NUMBER OF EDGES:\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 178
+# File: src/c/saveg.c, line: 134
 #, c-format
 msgid "NUMBER OF NODES:\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 185
+# File: src/c/saveg.c, line: 141
 #, c-format
 msgid "DESCRIPTION OF ARCS:\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 186
+# File: src/c/saveg.c, line: 142
 #, c-format
 msgid ""
 "ARC NAME, TAIL NODE NAME, HEAD NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 189
+# File: src/c/saveg.c, line: 145
 #, c-format
 msgid "DESCRIPTION OF EDGES:\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 190
+# File: src/c/saveg.c, line: 146
 #, c-format
 msgid "EDGE NAME, NODE NAME, NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 193
+# File: src/c/saveg.c, line: 149
 #, c-format
 msgid "COST, MIN CAP, MAX CAP, LENGTH, Q WEIGHT, Q ORIGIN, WEIGHT\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 208
+# File: src/c/saveg.c, line: 164
 #, c-format
 msgid "DESCRIPTION OF NODES:\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 209
+# File: src/c/saveg.c, line: 165
 #, c-format
 msgid "NODE NAME, POSSIBLE TYPE (1 = SINK, 2 = SOURCE)\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 210
+# File: src/c/saveg.c, line: 166
 #, c-format
 msgid "X, Y, COLOR, DIAMETER, BORDER, FONTSIZE\n"
 msgstr ""
-
 #
-# File: src/c/saveg.c, line: 211
+# File: src/c/saveg.c, line: 167
 #, c-format
 msgid "DEMAND\n"
 msgstr ""
-
 #
-# File: src/c/paths.c, line: 38
-# File: src/c/paths.c, line: 43
-# File: src/c/paths.c, line: 86
-# File: src/c/paths.c, line: 92
+# File: src/c/paths.c, line: 37
+# File: src/c/paths.c, line: 42
+# File: src/c/paths.c, line: 85
+# File: src/c/paths.c, line: 91
 #, c-format
 msgid "Bad internal node number %d"
 msgstr ""
-
 #
-# File: src/c/paths.c, line: 123
+# File: src/c/paths.c, line: 122
 #, c-format
 msgid "Bad internal arc number %d"
 msgstr ""
-
 #
-# File: src/c/loadg.c, line: 89
+# File: src/c/loadg.c, line: 44
+#, c-format
+msgid "Cannot find file \"%s\""
+msgstr ""
+#
+# File: src/c/loadg.c, line: 53
 #, c-format
 msgid "\"%s\" is a directory"
 msgstr ""
-
 #
-# File: src/c/loadg.c, line: 123
+# File: src/c/loadg.c, line: 88
 #, c-format
 msgid "Graph file \"%s/%s.graph\" does not exist"
 msgstr ""
-
 #
-# File: src/c/loadg.c, line: 138
+# File: src/c/loadg.c, line: 103
 #, c-format
 msgid "Unable to open file \"%s/%s.graph\""
 msgstr ""
-
 #
-# File: src/c/loadg.c, line: 421
-# File: src/c/loadg.c, line: 446
+# File: src/c/loadg.c, line: 386
+# File: src/c/loadg.c, line: 411
 #, c-format
 msgid "Bad graph file. Node \"%s\" referenced by arc \"%s\" not found"
 msgstr ""
