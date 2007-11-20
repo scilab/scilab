@@ -1,12 +1,30 @@
- 
- 
-//strsubst
- 
+//===============================
+// unit tests strsubst
+// INRIA 2007
+//===============================
 if strsubst('abc,abd,aa,bxe',',',';')<>'abc;abd;aa;bxe'  then bugmes();quit;end
- 
+//===============================
 if strsubst('abc,abd,aa,bxe',',',emptystr())<>'abcabdaabxe'  then bugmes();quit;end
- 
+//===============================
 if strsubst(',abc,abd,aa,bxe',',',emptystr())<>'abcabdaabxe'  then bugmes();quit;end
- 
+//===============================
 if strsubst('abc',',',';')<>'abc'  then bugmes();quit;end
- 
+//===============================
+if strsubst('SCI/demos/scicos','SCI','.') <> './demos/scicos'  then bugmes();quit;end
+//===============================
+if strsubst('SCI/demos/scicos','/',' ') <> 'SCI demos scicos'  then bugmes();quit;end
+//===============================
+if strsubst([],'/',' ') <> [] then bugmes();quit;end
+//===============================
+if strsubst([],' ','') <> [] then bugmes();quit;end
+//===============================
+if strsubst('',' ','') <> '' then bugmes();quit;end
+//===============================
+if strsubst("2","3","1") <> "2" then bugmes();quit;end
+//===============================
+if strsubst(["2","3"],"3","1") <> ['2' '1'] then bugmes();quit;end
+//===============================
+r = strsubst(['Scilab','Mathlab';'Octlab','Rlab'],'lab','');
+ref  = ['Sci','Math';'Oct','R'];
+if (r <> ref) then  bugmes();quit;end
+//===============================
