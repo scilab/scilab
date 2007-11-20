@@ -11,6 +11,13 @@ dnl * what are the compilation flags
 dnl * what are linking flags
 AC_DEFUN([AC_PCRE], [
 
+
+AC_ARG_WITH(pcre,
+		[  --with-pcre=PREFIX    set the path to your pcre (Perl 5 Compatible Regular Expression Library) installation],
+		[with_pcre=$withval],
+		[with_pcre='yes']
+		)
+
 if test "$with_pcre" != 'yes' -a "$with_pcre" != 'no'; then
    # Look if pcre-config (which provides cflags and ldflags) is available
    AC_MSG_CHECKING([pcre, for pcre-config])

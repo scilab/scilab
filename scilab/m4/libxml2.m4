@@ -11,6 +11,12 @@ dnl * what are the compilation flags
 dnl * what are linking flags
 AC_DEFUN([AC_LIBXML2], [
 
+AC_ARG_WITH(libxml2,
+		[  --with-libxml2=PREFIX    set the path to your libxml2 installation],
+		[with_libxml2=$withval],
+		[with_libxml2='yes']
+		)
+
 if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
    # Look if xml-config xml2_config (which provides cflags and ldflags) is available
    AC_MSG_CHECKING([libxml2, for xml-config])
