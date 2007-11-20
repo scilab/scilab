@@ -15,6 +15,8 @@
 namespace sciGraphics
 {
   
+class DrawableSubwin;
+
 class Camera
 {
 public:
@@ -58,6 +60,11 @@ public:
   void setBridge( CameraBridge * bridge ) { m_pImp = bridge; }
 
   /**
+   * Set the viewed subwindow.
+   */
+  void setViewedSubwin(DrawableSubwin * subwin) {m_pViewedSubwin = subwin;}
+
+  /**
    * Convert user coordinates to pixel coordinates.
    */
   void getPixelCoordinates(const double userCoord[3], int pixCoord[2]);
@@ -74,6 +81,8 @@ protected:
   /** bridge for driver dependent algorithms */
   CameraBridge * m_pImp;
 
+  /** Viewed subwindow */
+  DrawableSubwin * m_pViewedSubwin;
   /*-----------------------------------------------------*/
 
 };

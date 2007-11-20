@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="renderer"
 	ProjectGUID="{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 	RootNamespace="renderer"
@@ -502,14 +502,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\jni\CameraGL.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\subwinDrawing\CameraJavaMapper.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\src\cpp\subwinDrawing\CameraJoGL.cpp"
 					>
 				</File>
@@ -535,6 +527,22 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\IsometricCameraGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\IsometricCameraJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\IsoViewCameraGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\IsoViewCameraJavaMapper.cpp"
 					>
 				</File>
 			</Filter>
@@ -1076,10 +1084,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\jni\CameraGL.hxx"
-					>
-				</File>
-				<File
 					RelativePath=".\src\cpp\subwinDrawing\CameraJavaMapper.hxx"
 					>
 				</File>
@@ -1113,6 +1117,22 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinJoGL.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\IsometricCameraGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\IsometricCameraJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\IsoViewCameraGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\IsoViewCameraJavaMapper.hxx"
 					>
 				</File>
 			</Filter>

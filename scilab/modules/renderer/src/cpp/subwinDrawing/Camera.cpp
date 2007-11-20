@@ -7,10 +7,12 @@
 /*------------------------------------------------------------------------*/
 
 #include "Camera.h"
+#include "DrawableSubwin.h"
 
 extern "C"
 {
 #include "math_graphics.h"
+#include "GetProperty.h"
 }
 
 namespace sciGraphics
@@ -66,7 +68,20 @@ void Camera::setSubwinBox( double bounds[6] )
   scale[1] = 1.0 / (bounds[3] - bounds[2]) ;
   scale[2] = 1.0 / (bounds[5] - bounds[4]) ;
   
-  m_pImp->setAxesScale(scale) ;
+  m_pImp->setAxesNormalizationScale(scale) ;
+
+  if (sciGetIsCubeScaled(m_pViewedSubwin->getDrawedObject()))
+  {
+    m_pImp->setAxesFittingScale(scale);
+  }
+  else
+  {
+    // preserve isometry by applying same scale
+    double minScale = Min(scale[0], Min(scale[1], scale[2]));
+    double fittingScale[3] = {minScale, minScale, minScale};
+    m_pImp->setAxesFittingScale(fittingScale);
+  }
+  
 
   double trans[3];
   // put the min bounds to our origin

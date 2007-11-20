@@ -31,6 +31,16 @@ DrawableSubwin::~DrawableSubwin( void )
   }
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableSubwin::setCamera( Camera * cam )
+{
+  if (m_pCamera != NULL)
+  {
+    delete m_pCamera;
+    m_pCamera = NULL;
+  }
+  m_pCamera = cam;
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
 {
   initializeDrawing() ;

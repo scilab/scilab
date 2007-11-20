@@ -11,6 +11,7 @@
 
 #include "../DrawableObject.h"
 #include "../DrawableObjectFactory.h"
+#include "DrawableSubwin.h"
 
 namespace sciGraphics
 {
@@ -30,6 +31,13 @@ public:
    * To be used when an object was deeply modified and to avoid to create it again completely.
    */
   virtual void update( void ) ;
+
+private:
+
+  /**
+   * Set a new camera to a subwindow
+   */
+  void setNewCamera(DrawableSubwin * subwin);
 
 } ;
 

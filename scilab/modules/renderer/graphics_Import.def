@@ -72,3 +72,5 @@ sciGetText
 getStrMatData
 getMatNbRow
 getMatNbCol
+sciGetIsIsoView
+sciGetIsCubeScaled

@@ -10,7 +10,7 @@
 #include "DrawableSubwin.h"
 #include "CameraFactory.h"
 #include "DrawableSubwinBridgeFactory.h"
-
+#include "getHandleDrawer.h"
 
 
 namespace sciGraphics
@@ -25,17 +25,26 @@ DrawableObject * DrawableSubwinFactory::create( void )
   newSubwin->setDrawableImp(imp.create());
 
   // create the camera
-  CameraFactory cf;
-  cf.setCorrespondingSubwin(newSubwin) ;
-  newSubwin->setCamera( cf.create() ) ;
+ setNewCamera(newSubwin);
 
   return newSubwin;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwinFactory::update( void )
 {
-  // nothing for now
+  DrawableSubwin * curSubwin = getSubwinDrawer(m_pDrawed);
+  setNewCamera(curSubwin);
+  
 }
 /*------------------------------------------------------------------------------------------*/
-
+void DrawableSubwinFactory::setNewCamera(DrawableSubwin * subwin)
+{
+  // set a new camera
+  CameraFactory cf;
+  cf.setCorrespondingSubwin(subwin) ;
+  Camera * newCam = cf.create();
+  newCam->setViewedSubwin(subwin);
+  subwin->setCamera( newCam );
+}
+/*------------------------------------------------------------------------------------------*/
 }

@@ -36,8 +36,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_CAMERAGL__
-#define __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_CAMERAGL__
+#ifndef __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_ISOMETRICCAMERAGL__
+#define __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_ISOMETRICCAMERAGL__
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -45,7 +45,7 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 namespace org_scilab_modules_renderer_subwinDrawing {
 
-class CameraGL {
+class IsometricCameraGL {
 private:
 JavaVM * jvm;
 jobject instance;
@@ -79,17 +79,17 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-CameraGL(JavaVM * jvm_);
+IsometricCameraGL(JavaVM * jvm_);
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-CameraGL(JavaVM * jvm_, jobject JObj);
+IsometricCameraGL(JavaVM * jvm_, jobject JObj);
 
 // Destructor
-~CameraGL();
+~IsometricCameraGL();
 
 // Generic method
 // Synchronization methods

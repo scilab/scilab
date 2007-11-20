@@ -20,7 +20,7 @@ import javax.media.opengl.GL;
  * Class containing the driver dependant routines position the camera.
  * @author Jean-Baptiste Silvy
  */
-public class CameraGL extends ObjectGL {
+public abstract class CameraGL extends ObjectGL {
 
 	/** Distance of the far clipping plane, should be greater than 1.0 and not to high */
 	public static final double FAR_PLANE_DISTANCE = 100.0;
@@ -53,10 +53,7 @@ public class CameraGL extends ObjectGL {
 	
 	/** size of area enclosed by margins. */
 	private double[] marginSize;
-	
-	/** viewPort size */
-	private double viewPortWidth;
-	private double viewPortHeight;
+
 	
 	/**
 	 * Default constructor
@@ -65,72 +62,85 @@ public class CameraGL extends ObjectGL {
 		super();
 	}
 	
+	
+	/**
+	 * @return Width and height of the margins in pixels.
+	 */
+	public double[] getMarginSize() {
+		return marginSize;
+	}
+	
 	/**
 	 * Display the object by displaying its display list
 	 * Should not be called.
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
-	public void show(int parentFigureIndex) { }
-	
-	
-	/**
-	 * Set the viewPort for iso view.
-	 */
-	public void setIsoViewViewPort() {
-		GL gl = getGL();
-		setIsoViewViewPort(gl);
+	public void show(int parentFigureIndex) {
+		initializeDrawing(parentFigureIndex);
+		placeCamera();
+		endDrawing();
 	}
+	
 	
 	/**
 	 * Set the view port for isoview.
 	 * @param gl current GL pipeline
 	 */
-	public void setIsoViewViewPort(GL gl) {
-		double[] viewPort = {0.0, 0.0, 0.0, 0.0};
-		
-		// get width ad height of the viewPort
-		gl.glGetDoublev(GL.GL_VIEWPORT, viewPort, 0);
-		viewPortWidth = viewPort[2];
-		viewPortHeight = viewPort[2 + 1];
-		
-		// get minimum value between the two to set a close to 1 viewPort
-		double minDim = Math.min(viewPortWidth, viewPortHeight);
-		viewPortWidth /= minDim;
-		viewPortHeight /= minDim;
-		
-		// set projection
-		gl.glMatrixMode(GL.GL_PROJECTION);
-		gl.glLoadIdentity();
-	    // for perspective view, we need to use glFrustum, not glOrtho
-		gl.glOrtho(0.0, viewPortWidth, 0.0, viewPortHeight, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
-		
-	}
+//	public void setIsoViewViewPort(GL gl) {
+//		double[] viewPort = {0.0, 0.0, 0.0, 0.0};
+//		
+//		// get width ad height of the viewPort
+//		gl.glGetDoublev(GL.GL_VIEWPORT, viewPort, 0);
+//		viewPortWidth = viewPort[2];
+//		viewPortHeight = viewPort[2 + 1];
+//		
+//		// get minimum value between the two to set a close to 1 viewPort
+//		double minDim = Math.min(viewPortWidth, viewPortHeight);
+//		viewPortWidth /= minDim;
+//		viewPortHeight /= minDim;
+//		
+//		// set projection
+//		gl.glMatrixMode(GL.GL_PROJECTION);
+//		gl.glLoadIdentity();
+//	    // for perspective view, we need to use glFrustum, not glOrtho
+//		gl.glOrtho(0.0, viewPortWidth, 0.0, viewPortHeight, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
+//		
+//	}
 	
-	/**
-	 * Set standard view port (ie wich follows window size).
-	 */
-	void setStandardViewPort() {
-		GL gl = getGL();
-		setStandardViewPort(gl);
-	}
 	
 	/**
 	 * Set standard view port (ie wich follows window size).
 	 * @param gl current GL pipeline
 	 */
-	public void setStandardViewPort(GL gl) {
-		// get width ad height of the viewPort
-		viewPortWidth = 1.0;
-		viewPortHeight = 1.0;
-		
-		// set projection
-		gl.glMatrixMode(GL.GL_PROJECTION);
-		gl.glLoadIdentity();
-		//		 with this the drawing view current scale for the view is [0,1]x[0,1]
-	    // for perspective view, we need to use glFrustum, not glOrtho
-		gl.glOrtho(0.0, 1.0, 0.0, 1.0, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
-		
-	}
+//	public void setStandardViewPort(GL gl) {
+//		// get width ad height of the viewPort
+//		viewPortWidth = 1.0;
+//		viewPortHeight = 1.0;
+//		
+//		// set projection
+//		gl.glMatrixMode(GL.GL_PROJECTION);
+//		gl.glLoadIdentity();
+//		//		 with this the drawing view current scale for the view is [0,1]x[0,1]
+//	    // for perspective view, we need to use glFrustum, not glOrtho
+//		gl.glOrtho(0.0, 1.0, 0.0, 1.0, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
+//		
+//	}
+	
+	/**
+	 * Set the viewPort of the object.
+	 */
+	protected abstract void setViewPort();
+	
+	/**
+	 * @return view port width.
+	 */
+	protected abstract double getViewPortWidth();
+	
+	/**
+	 * @return view port height.
+	 */
+	protected abstract double getViewPortHeight();
+	
 	
 	/**
 	 * Set the parameters for positionning viewing area (specified by axes margins)
@@ -148,15 +158,15 @@ public class CameraGL extends ObjectGL {
 	/**
 	 * Position the viewing area in order to respect Subwin position.
 	 */
-	public void moveViewingArea() {
+	protected void moveViewingArea() {
 		GL gl = getGL();
 		
-		setIsoViewViewPort();
+		setViewPort();
 		
 	    gl.glMatrixMode(GL.GL_MODELVIEW);
 	    gl.glLoadIdentity();
 
-	    gl.glScaled(viewPortWidth, viewPortHeight, 1.0);
+	    gl.glScaled(getViewPortWidth(), getViewPortHeight(), 1.0);
 		gl.glTranslated(viewPortTranslation.getX(), viewPortTranslation.getY(), viewPortTranslation.getZ());
 		gl.glScaled(viewPortScale.getX(), viewPortScale.getY(), viewPortScale.getZ());
 		
@@ -168,7 +178,7 @@ public class CameraGL extends ObjectGL {
 	/**
 	 * Compute width and height of the margins in pixels.
 	 */
-	public void computeMarginsSize() {
+	protected void computeMarginsSize() {
           marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL());
 	}
 	
@@ -190,7 +200,7 @@ public class CameraGL extends ObjectGL {
 	/**
 	 * Move the axes box so it map the onto a the [0,1]x[0,1]x[0,1] cube.
 	 */
-	public void moveAxesBox() {
+	protected void moveAxesBox() {
 		GL gl = getGL();
 		gl.glScaled(normalizeScale.getX(), normalizeScale.getY(), normalizeScale.getZ());
 		
@@ -226,15 +236,15 @@ public class CameraGL extends ObjectGL {
 	/**
 	 * Move the box to the center of the screen.
 	 */
-	public void centerAxesBox() {
+	protected void centerAxesBox() {
 		GL gl = getGL();
 		
 		// rotate around the center of the box axes
 		gl.glTranslated(rotationCenter.getX(),  rotationCenter.getY(),  rotationCenter.getZ());
 		
 		// reduction need to be performed on the center of the screen
-		gl.glScaled(1.0 / (normalizeScale.getX() * viewPortWidth),
-					1.0 / (normalizeScale.getY() * viewPortHeight),
+		gl.glScaled(1.0 / (normalizeScale.getX() * getViewPortWidth()),
+					1.0 / (normalizeScale.getY() * getViewPortHeight()),
 					1.0 / normalizeScale.getZ());
 	}
 	
@@ -243,7 +253,7 @@ public class CameraGL extends ObjectGL {
 	 * @param gl current OpenGL pipeline.
 	 * @return array of size 2: width and height in pixels.
 	 */
-	public double[] getBoxScreenExtent(GL gl) {
+	protected double[] getBoxScreenExtent(GL gl) {
 		// apply transformation a first time to 
 		gl.glPushMatrix();
 		applyRotation(gl, alpha, theta);
@@ -261,14 +271,17 @@ public class CameraGL extends ObjectGL {
 	/**
 	 * Compute the scale wich will best fit the window in accordance with viewing angles.
 	 */
-	public void computeFittingScale() {
+	protected abstract void computeFittingScale();
+	
+	
+	/**
+	 * Rotate the axes box using angles and scale.
+	 */
+	protected void rotateAxesBox() {
 		GL gl = getGL();
-		
-		
-		double[] screenExtent = getBoxScreenExtent(gl);
-		// apply same factor to preserve isoview.
-		double minScale = Math.min(marginSize[0] / screenExtent[0], Math.min(marginSize[1] / screenExtent[1], 1.0));
-		gl.glScaled(minScale, minScale, minScale);
+		applyRotation(gl, alpha, theta);
+		gl.glScaled(fittingScale.getX(), fittingScale.getY(), fittingScale.getZ());
+		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
 	}
 	
 	/**
@@ -278,19 +291,20 @@ public class CameraGL extends ObjectGL {
 		
 		GL gl = getGL();
 		
-                moveViewingArea();
+		// set viewport
+		moveViewingArea();
 
-                moveAxesBox();
+		// set transformation such has coordinates are mapped on the unitary cube.
+		moveAxesBox();
 
+		// put box on its center to perform rotation.
 		centerAxesBox();
 		
+		// find the best scale to fit the view port.
 		computeFittingScale();
 		
 		gl.glPushMatrix();
-		applyRotation(gl, alpha, theta);
-		gl.glScaled(fittingScale.getX(), fittingScale.getY(), fittingScale.getZ());
-		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
-		
+		rotateAxesBox();
 		
 		// compute the matrix for project and unproject.
 		CoordinateTransformation.getTransformation(gl).update(gl);

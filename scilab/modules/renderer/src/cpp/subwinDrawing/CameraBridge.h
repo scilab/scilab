@@ -33,7 +33,7 @@ public:
   /**
    * Set the scale to fit with the subwin data bounds
    */
-  void setAxesScale( double scale[3] ) ;
+  void setAxesFittingScale( double scale[3] ) ;
 
   /**
    * Set the translation to put the axes into view
@@ -53,14 +53,9 @@ public:
   void setAxesCenter( double center[3] ) ;
 
   /**
-   * Specify the farthest distance from the camera in order to specify zNear and zFar
+   * Set scale to mormalize values between 0 and 1.
    */
-  void setFarthestDistance( double maxDist ) ;
-
-  /**
-   * Sepecify the ration used to fit the graphic in the window
-   */
-  void setFitWindowRation( double ratio ) ;
+  void setAxesNormalizationScale(double scale[3]);
 
   /**
    * Convert user coordinates to pixel coordinates.
@@ -97,10 +92,13 @@ protected:
   double m_aViewingScale[2];
 
   /** Scale modification to fit axes coordinates */
-  double m_aAxesScale[3];
+  double m_aAxesFittingScale[3];
 
   /** Translation to put the axes in view */
   double m_aAxesTranslation[3];
+
+  /** Scale modification to map data on the [0,1]x[0,1]x[0,1] cube. */
+  double m_aAxesNormalizationScale[3];
 
   /** Rotation angles */
   double m_dAlpha;

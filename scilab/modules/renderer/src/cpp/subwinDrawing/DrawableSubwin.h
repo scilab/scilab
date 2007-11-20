@@ -33,7 +33,7 @@ public:
   /**
    * Set/Get the current camera
    */
-  void setCamera( Camera * cam ) { m_pCamera = cam ; }
+  void setCamera( Camera * cam ) ;
 
 protected:
 

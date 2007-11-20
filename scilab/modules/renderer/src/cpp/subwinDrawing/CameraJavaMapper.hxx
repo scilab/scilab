@@ -9,57 +9,39 @@
 #define _CAMERA_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-#include "CameraGL.hxx"
+#include "IsoViewCameraGL.hxx"
 
 namespace sciGraphics
 {
 
-class CameraJavaMapper : public virtual  DrawableObjectJavaMapper
+class CameraJavaMapper : public virtual DrawableObjectJavaMapper
 {
 public:
-  
-  CameraJavaMapper( void ) ;
 
-  virtual ~CameraJavaMapper( void ) ;
+  CameraJavaMapper( void ) {}
 
-  /*----------------------------------------------------------------------*/
-  // Inherited From DrawableObjectJavaMapper
-  virtual void display(void);
+  virtual ~CameraJavaMapper( void ) {}
 
-  virtual void initializeDrawing(int figureIndex);
-  virtual void endDrawing(void);
-
-  virtual void show(int figureIndex);
-
-  virtual void destroy(int figureIndex);
-
-  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for cameras
-  virtual void setViewingArea(double transX, double transY, double scaleX, double scaleY);
+  virtual void setViewingArea(double transX, double transY, double scaleX, double scaleY) = 0;
 
   virtual void setNormalizationParameters(double scaleX, double scaleY, double scaleZ,
-                                          double transX, double transY, double transZ);
+                                          double transX, double transY, double transZ) = 0;
 
   virtual void setAxesRotationParameters(double centerX, double centerY, double centerZ,
-                                         double alpha, double theta);
+                                         double alpha, double theta) = 0;
 
-  virtual void setFittingScale(double scaleX, double scaleY, double scaleZ);
+  virtual void setFittingScale(double scaleX, double scaleY, double scaleZ) = 0;
 
-  virtual void placeCamera(void);
+  virtual void placeCamera(void) = 0;
 
-  virtual void replaceCamera( void );
+  virtual void replaceCamera( void ) = 0;
 
-  virtual void getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]);
-  virtual void get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]);
+  virtual void getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]) = 0;
+  virtual void get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]) = 0;
   /*----------------------------------------------------------------------*/
 
-private:
-  
-  /**
-   * Giws generated wrapper
-   */
-  org_scilab_modules_renderer_subwinDrawing::CameraGL * m_pJavaObject;
 
 };
 

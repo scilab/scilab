@@ -20,11 +20,11 @@ void CameraBridge::setViewingArea( double translation[2], double scale[2] )
   m_aViewingScale[1] = scale[1];
 }
 /*-----------------------------------------------------------------------------------*/
-void CameraBridge::setAxesScale( double scale[3] )
+void CameraBridge::setAxesFittingScale( double scale[3] )
 {
-  m_aAxesScale[0] = scale[0] ;
-  m_aAxesScale[1] = scale[1] ;
-  m_aAxesScale[2] = scale[2] ;
+  m_aAxesFittingScale[0] = scale[0] ;
+  m_aAxesFittingScale[1] = scale[1] ;
+  m_aAxesFittingScale[2] = scale[2] ;
 }
 /*-----------------------------------------------------------------------------------*/
 void CameraBridge::setAxesTranslation( double translation[3] )
@@ -45,6 +45,13 @@ void CameraBridge::setAxesCenter( double center[3] )
   m_aBoxCenter[0] = center[0];
   m_aBoxCenter[1] = center[1];
   m_aBoxCenter[2] = center[2];
+}
+/*-----------------------------------------------------------------------------------*/
+void CameraBridge::setAxesNormalizationScale(double scale[3])
+{
+  m_aAxesNormalizationScale[0] = scale[0];
+  m_aAxesNormalizationScale[1] = scale[1];
+  m_aAxesNormalizationScale[2] = scale[2];
 }
 /*-----------------------------------------------------------------------------------*/
 }

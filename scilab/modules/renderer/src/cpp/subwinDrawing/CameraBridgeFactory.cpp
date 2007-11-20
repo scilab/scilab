@@ -7,7 +7,13 @@
 
 #include "CameraBridgeFactory.h"
 #include "CameraJoGL.h"
-#include "CameraJavaMapper.hxx"
+#include "IsoViewCameraJavaMapper.hxx"
+#include "IsometricCameraJavaMapper.hxx"
+
+extern "C"
+{
+#include "GetProperty.h"
+}
 
 namespace sciGraphics
 {
@@ -16,7 +22,16 @@ namespace sciGraphics
 CameraBridge * CameraBridgeFactory::create( void )
 {
   CameraJoGL * newBridge = new CameraJoGL(m_pSubwin) ;
-  newBridge->setJavaMapper(new CameraJavaMapper()) ;
+
+  if (sciGetIsIsoView(m_pSubwin->getDrawedObject()))
+  {
+    newBridge->setJavaMapper(new IsoViewCameraJavaMapper()) ;
+  }
+  else
+  {
+    newBridge->setJavaMapper(new IsometricCameraJavaMapper()) ;
+  }
+  
   return newBridge;
 }
 /*------------------------------------------------------------------------*/

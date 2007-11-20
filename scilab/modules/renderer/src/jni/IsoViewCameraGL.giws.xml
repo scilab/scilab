@@ -1,5 +1,5 @@
 <package name="org.scilab.modules.renderer.subwinDrawing">
-  <object name="CameraGL">
+  <object name="IsoViewCameraGL">
     <method name="display" returnType="void">
     </method>
     <method name="initializeDrawing" returnType="void">
