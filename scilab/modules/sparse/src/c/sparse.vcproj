@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="sparse"
 	ProjectGUID="{51240B08-5E4E-439B-B745-C870D5B513BF}"
+	RootNamespace="sparse"
 	>
 	<Platforms>
 		<Platform
@@ -303,10 +304,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\spFortran.c"
-				>
-			</File>
-			<File
 				RelativePath=".\spOutput.c"
 				>
 			</File>
@@ -349,10 +346,6 @@
 			</File>
 			<File
 				RelativePath=".\spFactor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\spFortran.h"
 				>
 			</File>
 			<File
