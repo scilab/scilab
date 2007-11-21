@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>blanks</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar., 08 août 2006) $</DATE>
+  <SHORT_DESCRIPTION name="blanks">Create string of blank characters</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>txt=blanks(n)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>txt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: number of blanks</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>blanks(n) is a string of n blanks.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+disp(['xxx' blanks(20) 'yyy'])
+ ]]>
+  </EXAMPLE>
+</MAN>
