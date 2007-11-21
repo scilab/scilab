@@ -4,17 +4,20 @@
 ##########
 
 # The order DOES matter !!!
-SUBDIRS = \
+SUBDIRS =
+
+# This is first to be sure that it is the first one to be compiled
+if USE_EMBEDDED_BLAS
+SUBDIRS += blas
+endif
+
+SUBDIRS += \
 	MALLOC \
 	hashtable \
 	libst \
 	dynamiclibrary \
 	lapack \
 	doublylinkedlist
-
-if USE_EMBEDDED_BLAS
-SUBDIRS += blas
-endif
 
 if USE_EMBEDDED_LAPACK
 SUBDIRS += lapack
