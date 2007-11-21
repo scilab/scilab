@@ -47,7 +47,7 @@ int sci_beta(char *fname,unsigned long fname_len)
     {
       if ( x[i] <= 0.0  ||  y[i] <= 0.0 )
 	{
-	  Scierror(999,_("%s: arguments must be positive\n"), fname);
+	  Scierror(999,_("%s: input arguments must be positive\n"), fname);
 	  return 0;
 	}
       xpy = x[i] + y[i];
