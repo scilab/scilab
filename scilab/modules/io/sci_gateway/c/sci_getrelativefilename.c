@@ -40,14 +40,14 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 		if ( n1==1 ){
 			param1=cstk(l1);
 		}else{
-			Scierror(999,_("First parameter incorrect, must be a string (a directory)."));
+			Scierror(999,_("First input argument incorrect, must be a string (a directory)."));
 			return 0;
 		}
 
 		if ( n2==1 ){
 			param2=cstk(l2);
 		}else{
-			Scierror(999,_("Second parameter incorrect, must be a string (a filename)."));
+			Scierror(999,_("Second input argument incorrect, must be a string (a filename)."));
 			return 0;
 		}
 
@@ -55,12 +55,12 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 
 		if( strlen(param1) > PATH_MAX )
 		{
-			Scierror(999,_("The first parameter is too long : must be less than %d caracters"),PATH_MAX);
+			Scierror(999,_("The first input argument is too long : must be less than %d characters"),PATH_MAX);
 		}
 
 		if( strlen(param2) > PATH_MAX )
 		{
-			Scierror(999,_("The second parameter is too long : must be less than %d caracters"),PATH_MAX);
+			Scierror(999,_("The second input argument is too long : must be less than %d characters"),PATH_MAX);
 		}
 
 		result = getrelativefilename(param1,param2);

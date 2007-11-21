@@ -42,12 +42,13 @@ int sci_legendre(char *fname,unsigned long fname_len)
   double *x, xx, dnu1, *pqa;
   int id, ierror, i, j, nudiff;
 
-  CheckLhs(1,1); CheckRhs(3,4);
+  CheckLhs(1,1); 
+  CheckRhs(3,4);
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mN, &nN, &lN);
 
   if ( ! verify_cstr(stk(lN), mN*nN, &n1, &n2) )
     {
-      Scierror(999,_("%s: bad first argument\n"), fname);
+      Scierror(999,_("%s: bad first input argument\n"), fname);
       return 0;
     };
   if ( mN == 1 && nN == 1) N_is_scalar = 1;
@@ -55,7 +56,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &mM, &nM, &lM);
   if ( ! verify_cstr(stk(lM), mM*nM, &m1, &m2) )
     {
-      Scierror(999,_("%s: bad second argument\n"), fname);
+      Scierror(999,_("%s: bad second input argument\n"), fname);
       return 0;
     }
   if ( mM == 1 && nM == 1) M_is_scalar = 1;
@@ -69,7 +70,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
   GetRhsCVar(3,MATRIX_OF_DOUBLE_DATATYPE, &it, &mx, &nx, &lx, &lc);
   if ( it != 0 )
     {
-      Scierror(999,_("%s: 3th argument must be a real matrix\n"), fname);
+      Scierror(999,_("%s: 3th input argument must be a real matrix\n"), fname);
       return 0;
     };
 
@@ -78,7 +79,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
   for ( i = 0 ; i < mnx ; i++ )
     if ( ! (fabs(x[i]) < 1.0) )
       {
-	Scierror(999,_("%s: 3th argument must be a matrix with elements in (-1,1)\n"), fname);
+	Scierror(999,_("%s: 3th input argument must be a matrix with elements in (-1,1)\n"), fname);
 	return 0;
       };
 
@@ -113,7 +114,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
 		   stk(lpqa+i*MNp1), istk(lipqa+i*MNp1), &ierror);
       if ( ierror != 0 )
 	{
-	  if ( ierror == 207 )
+		if ( ierror == 207 ) /* @TODO what is 207 ? */
 	    Scierror(999,_("%s: overflow or underflow of an extended range number\n"), fname);
 	  else
 	    Scierror(999,_("%s: error number %d\n"), fname, ierror);

@@ -2222,7 +2222,7 @@ void mxSetName(mxArray *array_ptr, const char *name)
 
 void mxSetData(mxArray *array_ptr, void *data_ptr)
 {
-  mexErrMsgTxt(_("Routine mxSetData  not implemented\n"));
+  mexErrMsgTxt(_("Routine mxSetData not implemented\n"));
   exit(1);  /* TO BE DONE */
 }
 
@@ -2298,14 +2298,14 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
 
 const char *mxGetName(const mxArray *array_ptr)
 {
-    mexPrintf(_("Routine mxGetName  not implemented\n"));
+    mexPrintf(_("Routine mxGetName not implemented\n"));
     exit(1);
 	return 0;
 }
 
 int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 {
-  mexPrintf(_("Routine mxSetDimensions  not implemented\n"));
+  mexPrintf(_("Routine mxSetDimensions not implemented\n"));
   exit(1);  /* TO BE DONE */
   return 0;
 }
@@ -2664,8 +2664,7 @@ double  C2F(mxgetscalar)(mxArray *ptr)
 void  C2F(mexprintf)(char *error_msg, int len)
 {
   char * buf;
-  if ((buf = (char *)MALLOC((unsigned)sizeof(char)*(len+1)))
-      == NULL) {
+  if ((buf = (char *)MALLOC((unsigned)sizeof(char)*(len+1))) == NULL) {
     cerro(_("Running out of memory"));
     return;
   }

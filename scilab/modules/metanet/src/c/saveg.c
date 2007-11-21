@@ -120,33 +120,33 @@ void C2F(saveg) (char *path, int *lpath,
   }
   /* Write graph to file */
 
-  fprintf(f,_("GRAPH TYPE (0 = UNDIRECTED, 1 = DIRECTED), DEFAULTS (NODE DIAMETER, NODE BORDER, ARC WIDTH, HILITED ARC WIDTH, FONTSIZE):\n"));
+  fprintf(f,"GRAPH TYPE (0 = UNDIRECTED, 1 = DIRECTED), DEFAULTS (NODE DIAMETER, NODE BORDER, ARC WIDTH, HILITED ARC WIDTH, FONTSIZE):\n");
   fprintf(f,"%d %d %d %d %d %d\n",*directed,*default_node_diam,
 	  *default_node_border,*default_edge_width,*default_edge_hi_width,
 	  *default_font_size);
   if (*directed) {
-    fprintf(f,_("NUMBER OF ARCS:\n"));
+    fprintf(f,"NUMBER OF ARCS:\n");
   }
   else {
-    fprintf(f,_("NUMBER OF EDGES:\n"));
+    fprintf(f,"NUMBER OF EDGES:\n");
   }
   fprintf(f,"%d\n",*ma);
-  fprintf(f,_("NUMBER OF NODES:\n"));
+  fprintf(f,"NUMBER OF NODES:\n");
   fprintf(f,"%d\n",*node_number);
   fprintf(f,"****************************************\n");
 
   /* Write arcs to files */
 
   if (*directed) {
-    fprintf(f,_("DESCRIPTION OF ARCS:\n"));
-    fprintf(f,_("ARC NAME, TAIL NODE NAME, HEAD NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"));
+    fprintf(f,"DESCRIPTION OF ARCS:\n");
+    fprintf(f,"ARC NAME, TAIL NODE NAME, HEAD NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n");
   }
   else {
-    fprintf(f,_("DESCRIPTION OF EDGES:\n"));
-    fprintf(f,_("EDGE NAME, NODE NAME, NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"));
+    fprintf(f,"DESCRIPTION OF EDGES:\n");
+    fprintf(f,"EDGE NAME, NODE NAME, NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n");
   }
   fprintf
-    (f,_("COST, MIN CAP, MAX CAP, LENGTH, Q WEIGHT, Q ORIGIN, WEIGHT\n"));
+    (f,"COST, MIN CAP, MAX CAP, LENGTH, Q WEIGHT, Q ORIGIN, WEIGHT\n");
   fprintf(f,"\n");
 
   for (i = 0; i < *ma; i++) {
@@ -161,10 +161,10 @@ void C2F(saveg) (char *path, int *lpath,
   /* Write nodes to files */
 
   fprintf(f,"****************************************\n");
-  fprintf(f,_("DESCRIPTION OF NODES:\n"));
-  fprintf(f,_("NODE NAME, POSSIBLE TYPE (1 = SINK, 2 = SOURCE)\n"));
-  fprintf(f,_("X, Y, COLOR, DIAMETER, BORDER, FONTSIZE\n"));
-  fprintf(f,_("DEMAND\n"));
+  fprintf(f,"DESCRIPTION OF NODES:\n");
+  fprintf(f,"NODE NAME, POSSIBLE TYPE (1 = SINK, 2 = SOURCE)\n");
+  fprintf(f,"X, Y, COLOR, DIAMETER, BORDER, FONTSIZE\n");
+  fprintf(f,"DEMAND\n");
   fprintf(f,"\n");
 
   for (i = 0; i < *node_number; i++) {
