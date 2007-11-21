@@ -307,6 +307,12 @@ function [status_id,status_msg,status_details] = unit_test_run_onetest(module,te
 	diafile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".dia",%f,%f);
 	reffile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".dia.ref",%f,%f);
 	
+	if MSDOS then
+		altreffile = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".win.dia.ref",%f,%f);
+	else
+		altreffile = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".unix.dia.ref",%f,%f);
+	end
+	
 	tmp_tstfile = pathconvert(TMPDIR+"/"+test+".tst",%f,%f);
 	tmp_diafile = pathconvert(TMPDIR+"/"+test+".dia",%f,%f);
 	tmp_resfile = pathconvert(TMPDIR+"/"+test+".res",%f,%f);
@@ -449,18 +455,23 @@ function [status_id,status_msg,status_details] = unit_test_run_onetest(module,te
 		status_id      = 2;
 		return;
 	end
-
 	
 	// On test l'existence de la ref si besoin
 	
 	if check_ref then
-		if fileinfo(reffile) == [] then
+		if (fileinfo(reffile) == []) & (fileinfo(altreffile) == []) then
 			status_msg     = "failed  : the ref file doesn''t exist";
 			status_details = "     Add or create the following file"+reffile+" file";
 			status_details = sprintf("     Add or create the following file : \n     - %s",reffile);
 			status_id      = 5;
 			return;
 		end
+		
+		// Gestion du fichier alternatif ( prioritaire s'il existe )
+		if fileinfo(altreffile) <> [] then
+			reffile = altreffile;
+		end
+		
 	end
 	
 	// Comparaison ref <--> dia
