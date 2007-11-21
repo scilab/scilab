@@ -36,7 +36,7 @@ msgstr ""
 # File: macros/percent/%i_ce2sci.sci, line: 161
 # File: macros/percent/%i_st2sci.sci, line: 82
 msgid "Not yet implemented."
-msgstr "Pas encore implÃ©mentÃ©."
+msgstr "Pas encore implémenté."
 #
 # File: macros/kernel/funcall2sci.sci, line: 75
 #, c-format
@@ -135,7 +135,7 @@ msgstr ""
 # File: macros/kernel/operation2sci.sci, line: 55
 #, c-format
 msgid "operator %s not found."
-msgstr "OpÃ©rateur %s introuvable."
+msgstr "Opérateur %s introuvable."
 #
 # File: macros/kernel/Funcall.sci, line: 11
 # File: macros/kernel/Variable.sci, line: 12
@@ -180,7 +180,7 @@ msgstr ""
 # File: macros/kernel/equal2sci.sci, line: 81
 #, c-format
 msgid "%s is not yet implemented."
-msgstr "%s n'est pas encore implÃ©mentÃ©."
+msgstr "%s n'est pas encore implémenté."
 #
 # File: macros/kernel/Contents.sci, line: 14
 # File: macros/kernel/Contents.sci, line: 17

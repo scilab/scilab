@@ -26,40 +26,40 @@ msgstr "%s ne peut pas traiter les arguments complexes\n"
 # File: sci_gateway/c/sci_beta.c, line: 50
 #, c-format
 msgid "%s: input arguments must be positive\n"
-msgstr "%s : les arguments d'entrÃ©e doivent Ãªtre positifs.\n"
+msgstr "%s : les arguments d'entrée doivent être positifs.\n"
 
 #
 # File: sci_gateway/c/sci_legendre.c, line: 51
 #, c-format
 msgid "%s: bad first input argument\n"
-msgstr "%s: mauvais premier argument d'entrÃ©e\n"
+msgstr "%s: mauvais premier argument d'entrée\n"
 
 #
 # File: sci_gateway/c/sci_legendre.c, line: 59
 #, c-format
 msgid "%s: bad second input argument\n"
-msgstr "%s: mauvais second argument d'entrÃ©e\n"
+msgstr "%s: mauvais second argument d'entrée\n"
 
 #
 # File: sci_gateway/c/sci_legendre.c, line: 65
 #, c-format
 msgid "%s: only one of arg1 and arg2 may be a vector\n"
-msgstr "%s: seul un des deux arguments peut Ãªtre un vecteur\n"
+msgstr "%s: seul un des deux arguments peut être un vecteur\n"
 
 #
 # File: sci_gateway/c/sci_beta.c, line: 50
 #, c-format
 msgid "%s: 3th input argument must be a real matrix\n"
 msgstr ""
-"%s : le troisiÃ¨me argument d'entrÃ©e doit Ãªtre une matrice de rÃ©el\n"
+"%s : le troisième argument d'entrée doit être une matrice de réel\n"
 
 #
 # File: sci_gateway/c/sci_beta.c, line: 50
 #, c-format
 msgid "%s: 3th input argument must be a matrix with elements in (-1,1)\n"
 msgstr ""
-"%s : le troisiÃ¨me argument d'entrÃ©e doit Ãªtre une matrice avec les "
-"Ã©lÃ©ments compris dans (-1,1)\n"
+"%s : le troisième argument d'entrée doit être une matrice avec les "
+"éléments compris dans (-1,1)\n"
 
 #
 # File: sci_gateway/c/sci_legendre.c, line: 117
@@ -71,4 +71,4 @@ msgstr "%s: erreur de dimensionnement\n"
 # File: sci_gateway/c/sci_legendre.c, line: 119
 #, c-format
 msgid "%s: error number %d\n"
-msgstr "%s : erreur numÃ©ro %d\n"
+msgstr "%s : erreur numéro %d\n"
