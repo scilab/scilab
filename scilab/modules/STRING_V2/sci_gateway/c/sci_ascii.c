@@ -1,15 +1,14 @@
-/*------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------*/
 /* File: sci_ascii.c                                                     */
-/* Copyright INRIA 2007                                                   */
-/* @Authors : Cong Wu                                                      */
-/* desc : This function convert Scilab string to a vector of ascii code   */
-/*        or vector of ascii code to Scilab strings.                      */
-/*        If  txt  is a matrix of string,  ascii(txt)  is equivalent to   */  
-/*          ascii(strcat(txt))                                              */
-/*------------------------------------------------------------------------*/
+/* Copyright INRIA 2007                                                  */
+/* @Authors : Cong Wu                                                    */
+/* desc : This function convert Scilab string to a vector of ascii code  */
+/*        or vector of ascii code to Scilab strings.                     */
+/*        If  txt  is a matrix of string,  ascii(txt)  is equivalent to  */  
+/*          ascii(strcat(txt))                                           */
+/*-----------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h>
 #include "gw_string.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -88,7 +87,7 @@ static int asciiStrings(char *fname)
 /*-----------------------------------------------------------------------------------*/
 static int asciiMatrix(char *fname)
 {
-	char **Output_StringMatrix=NULL;
+	char **Output_StringMatrix = NULL;
 	int x = 0,Row_Num = 0,Col_Num = 0,Stack_Pos = 0;
 	int *Input_IntMatrix = NULL;
 	int numRow = 1;
@@ -100,11 +99,25 @@ static int asciiMatrix(char *fname)
 	Input_IntMatrix = istk(Stack_Pos);
 
 	Output_StringMatrix = (char**)MALLOC(sizeof(char*));
+	if (Output_StringMatrix == NULL)
+	{
+		Scierror(999,"%s : Error memory allocation.\n",fname);
+		return 0;
+	}
+
 	if (Row_Num*Col_Num!=0)
 	{
 		Output_StringMatrix[0] = (char*)MALLOC(sizeof(char*)*(Row_Num*Col_Num));
 	}
 	else Output_StringMatrix[0] = (char*)MALLOC(sizeof(char*));
+
+	if (Output_StringMatrix[0] == NULL)
+	{
+		FREE(Output_StringMatrix);
+		Output_StringMatrix = NULL;
+		Scierror(999,"%s : Error memory allocation.\n",fname);
+		return 0;
+	}
 
 	for (x = 0; x < Row_Num*Col_Num; x++) Output_StringMatrix[0][x] = (char)Input_IntMatrix[x];
 	Output_StringMatrix[0][Row_Num*Col_Num] = 0;
