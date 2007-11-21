@@ -1,15 +1,11 @@
 /*------------------------------------------------------------------------*/
-/* File: Get_length.c                                                    */
+/* File: Get_length.c                                                     */
 /* Copyright INRIA 2007                                                   */
-/* @Authors : Cong Wu                                                      */
-/* desc : Caculate the length of the output string
-		                                                                  */
+/* @Authors : Cong Wu                                                     */
+/* desc : Caculate the length of the output string                        */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h> 
-#include "gw_string.h"
-#include "MALLOC.h" 
 #include "Get_length.h"
 /*------------------------------------------------------------------------*/
 int Get_length(char **Input_String_One,char **Input_String_Two,int Number_Input_One)

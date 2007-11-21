@@ -3,14 +3,15 @@
 /*-----------------------------------------------------------------------------------*/
 #ifndef __CREATEEMPTYSTR_H__
 #define __CREATEEMPTYSTR_H__
+
 #define EMPTY_STRING ""
 
 /**
-* convstr case conversion 
-* param[in] Input_Matrix Input string matrix
-* param[out] Output_Matrix 
-* param[in] typ  'l' or 'u'  means low or upper
-* param[in] Number_Input   the number of input string matrix
+* CreateEmptystr 
+* Create Empty strings matrix
+* @param[in] dimension row
+* @param[in] dimension col
+* @return a empty string
 */
 char **CreateEmptystr(int m1,int n1);
 
