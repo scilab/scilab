@@ -34,6 +34,7 @@ typedef enum {
 	CVNAME_READING_TYPE_3 = 2, 
 	CVNAME_READING_TYPE_4 = 3,
 	CVNAME_READING_TYPE_5 = 4,
+	CVNAME_READING_TYPE_6 = 5,
 } CVNAME_TYPE;
 /*-----------------------------------------------------------------------------------*/
 int C2F(errmsg)(integer *n,integer *errtyp)
@@ -70,15 +71,9 @@ try,catch */
 		break;
 		case 4:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_6);
 			if (NameVarOnStack)
 			{
-				if (strlen(NameVarOnStack)> nlgh ) 
-				{
-					/* clean variable name from fortran */
-					NameVarOnStack[nlgh] = '\0';
-					strip_blank(NameVarOnStack);
-				}
 				displayAndStoreError(_("Undefined variable : %s\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
@@ -1488,7 +1483,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 246:
 		{
-			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_6);
 			displayAndStoreError(_("Function not defined for given argument type(s),\n"));
 			if (NameVarOnStack)
 			{
@@ -1788,6 +1783,14 @@ static char *getConvertedNameFromStack(int cvnametype)
 			local_variable_buffer[bsiz-1] = '\0';
 		}
 		break;
+	case CVNAME_READING_TYPE_6 :
+		{
+			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, nlgh+1);
+			strncpy(local_variable_buffer, C2F(cha1).buf,nlgh);
+			local_variable_buffer[nlgh-1] = '\0';
+		}
+		break;
+
 	default:
 		strcpy(local_variable_buffer,_("\"unknown data\""));
 		break;
