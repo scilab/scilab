@@ -199,6 +199,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\convstr.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_string.c"
 				>
 			</File>
@@ -281,6 +285,10 @@
 			>
 			<File
 				RelativePath=".\code2str.h"
+				>
+			</File>
+			<File
+				RelativePath=".\convstr.h"
 				>
 			</File>
 			<File
