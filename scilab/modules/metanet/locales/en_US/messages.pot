@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-20 18:04+0100\n"
+"POT-Creation-Date: 2007-11-20 18:15+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-20 18:04+0100\n"
+"Revision-Date: 2007-11-20 18:15+0100\n"
 
 # File: src/c/nometanet/nometanet.c, line: 11
 msgid "Scilab module metanet not installed.\n"
@@ -102,74 +102,6 @@ msgstr ""
 # File: src/c/saveg.c, line: 117
 #, c-format
 msgid "Unable to write file in directory %s, check access"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 123
-#, c-format
-msgid ""
-"GRAPH TYPE (0 = UNDIRECTED, 1 = DIRECTED), DEFAULTS (NODE DIAMETER, NODE "
-"BORDER, ARC WIDTH, HILITED ARC WIDTH, FONTSIZE):\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 128
-#, c-format
-msgid "NUMBER OF ARCS:\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 131
-#, c-format
-msgid "NUMBER OF EDGES:\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 134
-#, c-format
-msgid "NUMBER OF NODES:\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 141
-#, c-format
-msgid "DESCRIPTION OF ARCS:\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 142
-#, c-format
-msgid ""
-"ARC NAME, TAIL NODE NAME, HEAD NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 145
-#, c-format
-msgid "DESCRIPTION OF EDGES:\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 146
-#, c-format
-msgid "EDGE NAME, NODE NAME, NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 149
-#, c-format
-msgid "COST, MIN CAP, MAX CAP, LENGTH, Q WEIGHT, Q ORIGIN, WEIGHT\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 164
-#, c-format
-msgid "DESCRIPTION OF NODES:\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 165
-#, c-format
-msgid "NODE NAME, POSSIBLE TYPE (1 = SINK, 2 = SOURCE)\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 166
-#, c-format
-msgid "X, Y, COLOR, DIAMETER, BORDER, FONTSIZE\n"
-msgstr ""
-#
-# File: src/c/saveg.c, line: 167
-#, c-format
-msgid "DEMAND\n"
 msgstr ""
 #
 # File: src/c/paths.c, line: 37

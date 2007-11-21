@@ -280,7 +280,7 @@ msgstr "En attente de la fin de la commande.\n"
 #
 # File: src/c/errmsg.c, line: 315
 msgid "Incompatible output argument (LHS)\n"
-msgstr "Argument de sortie incompatible (LHS)\n"
+msgstr "Argument de retour incompatible (LHS)\n"
 
 #
 # File: src/c/errmsg.c, line: 320

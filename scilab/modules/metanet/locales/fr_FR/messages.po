@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-20 18:04+0100\n"
+"POT-Creation-Date: 2007-11-20 18:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 # File: src/c/nometanet/nometanet.c, line: 11
 msgid "Scilab module metanet not installed.\n"
-msgstr ""
+msgstr "Module Scilab metanet non installé.\n"
 
 #
 # File: src/c/saveg.c, line: 38
@@ -84,7 +84,7 @@ msgstr ""
 # File: src/c/transc.c, line: 73
 # File: src/c/connex.c, line: 9
 msgid "Running out of memory"
-msgstr ""
+msgstr "Pas assez de mémoire"
 
 #
 # File: src/c/saveg.c, line: 46
@@ -93,101 +93,21 @@ msgstr ""
 # File: src/c/loadg.c, line: 337
 #, c-format
 msgid "Bad graph file. Node \"%s\" is duplicated"
-msgstr ""
+msgstr "Mauvais fichier graphe. Le sommet \"%s\" est dupliqué"
 
 #
 # File: src/c/saveg.c, line: 96
 # File: src/c/loadg.c, line: 57
 #, c-format
 msgid "Directory \"%s\" does not exist"
-msgstr ""
+msgstr "Le répertoire \"%s\" n'existe pas"
 
 #
 # File: src/c/saveg.c, line: 117
 #, c-format
 msgid "Unable to write file in directory %s, check access"
 msgstr ""
-
-#
-# File: src/c/saveg.c, line: 123
-#, c-format
-msgid ""
-"GRAPH TYPE (0 = UNDIRECTED, 1 = DIRECTED), DEFAULTS (NODE DIAMETER, NODE "
-"BORDER, ARC WIDTH, HILITED ARC WIDTH, FONTSIZE):\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 128
-#, c-format
-msgid "NUMBER OF ARCS:\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 131
-#, c-format
-msgid "NUMBER OF EDGES:\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 134
-#, c-format
-msgid "NUMBER OF NODES:\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 141
-#, c-format
-msgid "DESCRIPTION OF ARCS:\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 142
-#, c-format
-msgid ""
-"ARC NAME, TAIL NODE NAME, HEAD NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 145
-#, c-format
-msgid "DESCRIPTION OF EDGES:\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 146
-#, c-format
-msgid "EDGE NAME, NODE NAME, NODE NAME, COLOR, WIDTH, HIWIDTH, FONTSIZE\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 149
-#, c-format
-msgid "COST, MIN CAP, MAX CAP, LENGTH, Q WEIGHT, Q ORIGIN, WEIGHT\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 164
-#, c-format
-msgid "DESCRIPTION OF NODES:\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 165
-#, c-format
-msgid "NODE NAME, POSSIBLE TYPE (1 = SINK, 2 = SOURCE)\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 166
-#, c-format
-msgid "X, Y, COLOR, DIAMETER, BORDER, FONTSIZE\n"
-msgstr ""
-
-#
-# File: src/c/saveg.c, line: 167
-#, c-format
-msgid "DEMAND\n"
-msgstr ""
+"Impossible d'écrire le fichier dans le répertoire %s, vérifiez les droits"
 
 #
 # File: src/c/paths.c, line: 37
@@ -208,29 +128,29 @@ msgstr ""
 # File: src/c/loadg.c, line: 44
 #, c-format
 msgid "Cannot find file \"%s\""
-msgstr ""
+msgstr "Impossible de trouver le fichier \"%s\""
 
 #
 # File: src/c/loadg.c, line: 46
 #, c-format
 msgid "\"%s\" is a directory"
-msgstr ""
+msgstr "\"%s\" est un répertoire"
 
 #
 # File: src/c/loadg.c, line: 80
 #, c-format
 msgid "Graph file \"%s/%s.graph\" does not exist"
-msgstr ""
+msgstr "Le fichier graphe \"%s/%s.graph\" n'existe pas"
 
 #
 # File: src/c/loadg.c, line: 95
 #, c-format
 msgid "Unable to open file \"%s/%s.graph\""
-msgstr ""
+msgstr "Impossible d'ouvrir le fichier \"%s/%s.graph\""
 
 #
 # File: src/c/loadg.c, line: 378
 # File: src/c/loadg.c, line: 403
 #, c-format
 msgid "Bad graph file. Node \"%s\" referenced by arc \"%s\" not found"
-msgstr ""
+msgstr "Mauvais fichier graphe. Le sommet \"%s\" référencé par l'arc \"%s\" est introuvable"

@@ -7,126 +7,155 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-06 11:36+0100\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 16:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
 #
 # File: src/c/getCommentDateSession.c, line: 12
 msgid "// Begin Session : "
-msgstr ""
+msgstr "// Début de la session : "
+
 #
 # File: src/c/getCommentDateSession.c, line: 13
 msgid "// End Session   : "
-msgstr ""
+msgstr "// Fin de la session   : "
+
 #
 # File: src/c/getCommentDateSession.c, line: 42
 msgid "Sun"
-msgstr ""
+msgstr "Dim"
+
 #
 # File: src/c/getCommentDateSession.c, line: 43
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
+
 #
 # File: src/c/getCommentDateSession.c, line: 44
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
+
 #
 # File: src/c/getCommentDateSession.c, line: 45
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
+
 #
 # File: src/c/getCommentDateSession.c, line: 46
 msgid "Thu"
-msgstr ""
+msgstr "Jeu"
+
 #
 # File: src/c/getCommentDateSession.c, line: 47
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
+
 #
 # File: src/c/getCommentDateSession.c, line: 48
 msgid "Sat"
-msgstr ""
+msgstr "Sam"
+
 #
 # File: src/c/getCommentDateSession.c, line: 51
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
+
 #
 # File: src/c/getCommentDateSession.c, line: 51
 msgid "Feb"
-msgstr ""
+msgstr "Fev"
+
 #
 # File: src/c/getCommentDateSession.c, line: 51
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
+
 #
 # File: src/c/getCommentDateSession.c, line: 51
 msgid "Apr"
-msgstr ""
+msgstr "Avr"
+
 #
 # File: src/c/getCommentDateSession.c, line: 51
 msgid "May"
-msgstr ""
+msgstr "Mai"
+
 #
 # File: src/c/getCommentDateSession.c, line: 51
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
+
 #
 # File: src/c/getCommentDateSession.c, line: 52
 msgid "Jul"
-msgstr ""
+msgstr "Jui"
+
 #
 # File: src/c/getCommentDateSession.c, line: 52
 msgid "Aug"
-msgstr ""
+msgstr "Aou"
+
 #
 # File: src/c/getCommentDateSession.c, line: 52
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
+
 #
 # File: src/c/getCommentDateSession.c, line: 52
 msgid "Oct"
-msgstr ""
+msgstr "Oct"
+
 #
 # File: src/c/getCommentDateSession.c, line: 52
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
+
 #
 # File: src/c/getCommentDateSession.c, line: 52
 msgid "Dec"
-msgstr ""
+msgstr "Dec"
+
 #
 # File: src/nohistory_manager/nohistory_manager.c, line: 15
-msgid "history_manager interface not installed.\n"
-msgstr ""
+msgid "Scilab history_manager module not installed.\n"
+msgstr "Module de gestion de l'historique (history_manager) non installé.\n"
+
 #
 # File: sci_gateway/c/sci_saveafterncommands.c, line: 49
 # File: sci_gateway/c/sci_gethistory.c, line: 50
-msgid "parameter must be a integer.\n"
-msgstr ""
+msgid "Input argument must be a integer.\n"
+msgstr "L'argument d'entrée doit être un entier.\n"
+
 #
 # File: sci_gateway/c/sci_gethistoryfile.c, line: 34
-msgid "Error Impossible to know filename.\n"
-msgstr ""
+msgid "Error : Impossible to find the Scilab history file.\n"
+msgstr "Erreur : Impossible de trouver le fichier d'historique Scilab.\n"
+
 #
 # File: sci_gateway/c/sci_removelinehistory.c, line: 27
 # File: sci_gateway/c/sci_removelinehistory.c, line: 37
-msgid "Invalid parameter.\n"
-msgstr ""
+msgid "Invalid input argument.\n"
+msgstr "Argument d'entrée incorrect.\n"
+
 #
 # File: sci_gateway/c/sci_saveconsecutivecommands.c, line: 48
-msgid "parameter must be a boolean.\n"
-msgstr ""
+msgid "Input argument must be a boolean.\n"
+msgstr "L'argument d'entrée doit être un booléen.\n"
+
 #
 # File: sci_gateway/c/sci_addhistory.c, line: 35
-msgid "parameter must be a string.\n"
-msgstr ""
+msgid "Input argument must be a string.\n"
+msgstr "L'argument d'entrée doit être une chaîne de caractère.\n"
+
 #
 # File: sci_gateway/c/sci_historymanager.c, line: 68
 #, c-format
-msgid "Invalid parameter : '%s' or '%s'"
-msgstr ""
+msgid "Invalid input argument. Must be '%s' or '%s'"
+msgstr "Argument d'entrée incorrect. Doit être '%s' ou '%s'"
+

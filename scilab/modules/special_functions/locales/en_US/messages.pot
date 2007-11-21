@@ -1,72 +1,62 @@
 # Localization of the module special_functions
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - special_functions\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 17:16+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-20 17:16+0100\n"
 
-#
-# File: sci_gateway/c/sci_beta.c, line: 38
+# File: sci_gateway/c/sci_beta.c, line: 40
 #, c-format
 msgid "%s don't work for complex arguments\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_beta.c, line: 48
-# File: sci_gateway/c/gw_special_functions2.c, line: 27
+# File: sci_gateway/c/sci_beta.c, line: 50
 #, c-format
-msgid "%s: arguments must be positive\n"
+msgid "%s: input arguments must be positive\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_legendre.c, line: 48
+# File: sci_gateway/c/sci_legendre.c, line: 51
 #, c-format
-msgid "%s: bad first argument\n"
+msgid "%s: bad first input argument\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_legendre.c, line: 56
+# File: sci_gateway/c/sci_legendre.c, line: 59
 #, c-format
-msgid "%s: bad second argument\n"
+msgid "%s: bad second input argument\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_legendre.c, line: 63
+# File: sci_gateway/c/sci_legendre.c, line: 66
 #, c-format
 msgid "%s: only one of arg1 and arg2 may be a vector\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_legendre.c, line: 70
+# File: sci_gateway/c/sci_legendre.c, line: 73
 #, c-format
-msgid "%s: 3th argument must be a real matrix\n"
+msgid "%s: 3th input argument must be a real matrix\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_legendre.c, line: 79
+# File: sci_gateway/c/sci_legendre.c, line: 82
 #, c-format
-msgid "%s: 3th argument must be a matrix with elements in (-1,1)\n"
+msgid "%s: 3th input argument must be a matrix with elements in (-1,1)\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_legendre.c, line: 115
+# File: sci_gateway/c/sci_legendre.c, line: 118
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_legendre.c, line: 117
+# File: sci_gateway/c/sci_legendre.c, line: 120
 #, c-format
 msgid "%s: error number %d\n"
 msgstr ""

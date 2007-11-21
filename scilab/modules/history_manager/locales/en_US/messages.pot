@@ -1,160 +1,132 @@
 # Localization of the module history_manager
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - history_manager\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 16:50+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-20 16:50+0100\n"
 
-#
-# File: src/c/getCommentDateSession.c, line: 11
+# File: src/c/getCommentDateSession.c, line: 12
 msgid "// Begin Session : "
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 12
+# File: src/c/getCommentDateSession.c, line: 13
 msgid "// End Session   : "
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 41
+# File: src/c/getCommentDateSession.c, line: 42
 msgid "Sun"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 41
+# File: src/c/getCommentDateSession.c, line: 43
 msgid "Mon"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 41
+# File: src/c/getCommentDateSession.c, line: 44
 msgid "Tue"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 41
+# File: src/c/getCommentDateSession.c, line: 45
 msgid "Wed"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 41
+# File: src/c/getCommentDateSession.c, line: 46
 msgid "Thu"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 41
+# File: src/c/getCommentDateSession.c, line: 47
 msgid "Fri"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 41
+# File: src/c/getCommentDateSession.c, line: 48
 msgid "Sat"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 44
+# File: src/c/getCommentDateSession.c, line: 51
 msgid "Jan"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 44
+# File: src/c/getCommentDateSession.c, line: 51
 msgid "Feb"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 44
+# File: src/c/getCommentDateSession.c, line: 51
 msgid "Mar"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 44
+# File: src/c/getCommentDateSession.c, line: 51
 msgid "Apr"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 44
+# File: src/c/getCommentDateSession.c, line: 51
 msgid "May"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 44
+# File: src/c/getCommentDateSession.c, line: 51
 msgid "Jun"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 45
+# File: src/c/getCommentDateSession.c, line: 52
 msgid "Jul"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 45
+# File: src/c/getCommentDateSession.c, line: 52
 msgid "Aug"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 45
+# File: src/c/getCommentDateSession.c, line: 52
 msgid "Sep"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 45
+# File: src/c/getCommentDateSession.c, line: 52
 msgid "Oct"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 45
+# File: src/c/getCommentDateSession.c, line: 52
 msgid "Nov"
 msgstr ""
-
 #
-# File: src/c/getCommentDateSession.c, line: 45
+# File: src/c/getCommentDateSession.c, line: 52
 msgid "Dec"
 msgstr ""
-
 #
-# File: src/nohistory_manager/nohistory_manager.c, line: 14
-msgid "history_manager interface not installed.\n"
+# File: src/nohistory_manager/nohistory_manager.c, line: 15
+msgid "Scilab history_manager module not installed.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_saveafterncommands.c, line: 48
-# File: sci_gateway/c/sci_gethistory.c, line: 49
-msgid "parameter must be a integer.\n"
+# File: sci_gateway/c/sci_saveafterncommands.c, line: 49
+# File: sci_gateway/c/sci_gethistory.c, line: 50
+msgid "Input argument must be a integer.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_gethistoryfile.c, line: 33
-msgid "Error Impossible to know filename.\n"
+# File: sci_gateway/c/sci_gethistoryfile.c, line: 34
+msgid "Error : Impossible to find the Scilab history file.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_removelinehistory.c, line: 26
-# File: sci_gateway/c/sci_removelinehistory.c, line: 36
-msgid "Invalid parameter.\n"
+# File: sci_gateway/c/sci_removelinehistory.c, line: 27
+# File: sci_gateway/c/sci_removelinehistory.c, line: 37
+msgid "Invalid input argument.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_saveconsecutivecommands.c, line: 47
-msgid "parameter must be a boolean.\n"
+# File: sci_gateway/c/sci_saveconsecutivecommands.c, line: 48
+msgid "Input argument must be a boolean.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_addhistory.c, line: 34
-msgid "parameter must be a string.\n"
+# File: sci_gateway/c/sci_addhistory.c, line: 35
+msgid "Input argument must be a string.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_historymanager.c, line: 67
+# File: sci_gateway/c/sci_historymanager.c, line: 68
 #, c-format
-msgid "Invalid parameter : '%s' or '%s'"
+msgid "Invalid input argument. Must be '%s' or '%s'"
 msgstr ""

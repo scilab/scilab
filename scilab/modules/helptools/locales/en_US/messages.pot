@@ -1,0 +1,86 @@
+# File: macros/formatman.sci, line: 75
+#, c-format
+msgid "Processing %s to %s"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 258
+msgid "   HTML files are up-to-date\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 281
+msgid ""
+"\n"
+"Copying missing files copied from\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 284
+# File: macros/xmltohtml.sci, line: 306
+# File: macros/xmltohtml.sci, line: 419
+#, c-format
+msgid "\t%s\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 286
+#, c-format
+msgid ""
+"\n"
+"Copying missing from %s\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 303
+msgid ""
+"\n"
+"Creating whatis.htm\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 308
+#, c-format
+msgid ""
+"\n"
+"Creating whatis.htm in %s\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 328
+#, c-format
+msgid ""
+"\n"
+"Processing chapter %s\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 371
+# File: macros/xmltohtml.sci, line: 381
+#, c-format
+msgid ""
+"\n"
+"Creating %s\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 397
+msgid ""
+"\n"
+"Creating sciman.hh*\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 416
+msgid ""
+"\n"
+"Deleting files copied from\n"
+msgstr ""
+
+#
+# File: macros/xmltohtml.sci, line: 421
+#, c-format
+msgid ""
+"\n"
+"Deleting files copied from %s\n"
+msgstr ""

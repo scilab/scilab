@@ -7,56 +7,68 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-06 11:36+0100\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-20 17:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
 #
 # File: sci_gateway/c/sci_beta.c, line: 40
 #, c-format
 msgid "%s don't work for complex arguments\n"
-msgstr ""
+msgstr "%s ne peut pas traiter les arguments complexes\n"
+
 #
 # File: sci_gateway/c/sci_beta.c, line: 50
 #, c-format
-msgid "%s: arguments must be positive\n"
-msgstr ""
+msgid "%s: input arguments must be positive\n"
+msgstr "%s : les arguments d'entrée doivent être positifs.\n"
+
 #
-# File: sci_gateway/c/sci_legendre.c, line: 50
+# File: sci_gateway/c/sci_legendre.c, line: 51
 #, c-format
-msgid "%s: bad first argument\n"
-msgstr ""
+msgid "%s: bad first input argument\n"
+msgstr "%s: mauvais premier argument d'entrée\n"
+
 #
-# File: sci_gateway/c/sci_legendre.c, line: 58
+# File: sci_gateway/c/sci_legendre.c, line: 59
 #, c-format
-msgid "%s: bad second argument\n"
-msgstr ""
+msgid "%s: bad second input argument\n"
+msgstr "%s: mauvais second argument d'entrée\n"
+
 #
 # File: sci_gateway/c/sci_legendre.c, line: 65
 #, c-format
 msgid "%s: only one of arg1 and arg2 may be a vector\n"
-msgstr ""
+msgstr "%s: seul un des deux arguments peut être un vecteur\n"
+
 #
-# File: sci_gateway/c/sci_legendre.c, line: 72
+# File: sci_gateway/c/sci_beta.c, line: 50
 #, c-format
-msgid "%s: 3th argument must be a real matrix\n"
+msgid "%s: 3th input argument must be a real matrix\n"
 msgstr ""
+"%s : le troisième argument d'entrée doit être une matrice de réel\n"
+
 #
-# File: sci_gateway/c/sci_legendre.c, line: 81
+# File: sci_gateway/c/sci_beta.c, line: 50
 #, c-format
-msgid "%s: 3th argument must be a matrix with elements in (-1,1)\n"
+msgid "%s: 3th input argument must be a matrix with elements in (-1,1)\n"
 msgstr ""
+"%s : le troisième argument d'entrée doit être une matrice avec les "
+"éléments compris dans (-1,1)\n"
+
 #
 # File: sci_gateway/c/sci_legendre.c, line: 117
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
-msgstr ""
+msgstr "%s: erreur de dimensionnement\n"
+
 #
 # File: sci_gateway/c/sci_legendre.c, line: 119
 #, c-format
 msgid "%s: error number %d\n"
-msgstr ""
+msgstr "%s : erreur numéro %d\n"

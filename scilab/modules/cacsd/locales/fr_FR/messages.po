@@ -33,7 +33,7 @@ msgstr "Argument d'entrée (RHS) incompatible.\n"
 #
 # File: sci_gateway/c/sci_tzer.c, line: 23
 msgid "Incompatible output parameter (LHS).\n"
-msgstr "Argument de sortie (LHS) incompatible.\n"
+msgstr "Argument de retour (LHS) incompatible.\n"
 #
 # File: sci_gateway/c/sci_contr.c, line: 36
 msgid "Invalid A,B matrices\n"

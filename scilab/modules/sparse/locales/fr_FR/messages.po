@@ -149,7 +149,7 @@ msgstr ""
 # File: src/c/spOutput.c, line: 728
 #, c-format
 msgid "     Initial number of elements = %d\n"
-msgstr ""
+msgstr "     Nombre initial d'éléments = %d\n"
 
 #
 # File: src/c/spOutput.c, line: 731
@@ -173,13 +173,13 @@ msgstr ""
 # File: src/c/spOutput.c, line: 736
 #, c-format
 msgid "     Total number of elements = %d\n"
-msgstr ""
+msgstr "     Nombre total d'éléments = %d\n"
 
 #
 # File: src/c/spOutput.c, line: 738
 #, c-format
 msgid "     Average number of elements per row = %lf\n"
-msgstr ""
+msgstr "     Nombre moyen d'élément par ligne = %lf\n"
 
 #
 # File: src/c/spOutput.c, line: 740
@@ -191,19 +191,19 @@ msgstr ""
 # File: src/c/spOutput.c, line: 742
 #, c-format
 msgid "     Relative Threshold = %e\n"
-msgstr ""
+msgstr "     Seuil relatif = %e\n"
 
 #
 # File: src/c/spOutput.c, line: 743
 #, c-format
 msgid "     Absolute Threshold = %e\n"
-msgstr ""
+msgstr "     Seuil absolu = %e\n"
 
 #
 # File: src/c/spOutput.c, line: 744
 #, c-format
 msgid "     Largest Element = %e\n"
-msgstr ""
+msgstr "     Plus grand élément = %e\n"
 
 #
 # File: src/c/spOutput.c, line: 745
@@ -213,6 +213,9 @@ msgid ""
 "\n"
 "\n"
 msgstr ""
+"     Plus petit élément = %e\n"
+"\n"
+"\n"
 
 #
 # File: src/c/lu.c, line: 118
@@ -253,4 +256,4 @@ msgstr ""
 # File: includes/spDefs.h, line: 379
 #, c-format
 msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr ""
+msgstr "sparse: Problème dans le fichier '%s' à la ligne %d.\n"
