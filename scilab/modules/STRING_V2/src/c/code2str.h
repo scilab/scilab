@@ -19,7 +19,7 @@ void code2str(char **Output_Matrix,int Number_of_Row, int Number_of_Col, int *In
 * @param[in] Number_of_Row 
 * @param[in] Number_of_Col 
 * @param[in] Input_Matrix a character string 
-* @return 
+* @return size of Output_Matrix
 */
 int str2code(int *Output_Matrix,int Number_of_Row, int Number_of_Col, char **Input_Matrix);
 

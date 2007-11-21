@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* File: code2str1.c                                                      */
+/* File: code2str.c                                                      */
 /* Copyright INRIA 2007                                                   */
 /* @Authors : Cong Wu                                                     */
 /* desc : str=code2str(c)
@@ -36,7 +36,7 @@ void code2str(char **Output_Matrix,int Number_of_Row, int Number_of_Col, int *In
     int x = 0;
 
 	/* To look up in the table */
-	for (x=0;x<Number_of_Row*Number_of_Col;x++)                     
+	for (x=0;x < Number_of_Row*Number_of_Col;x++)                     
 	{
 		if (Input_Matrix[x] >= 0) Output_Matrix[0][x] = Table_One[Input_Matrix[x]];
 		else Output_Matrix[0][x] = Table_Two[abs(Input_Matrix[x])];
@@ -47,25 +47,34 @@ void code2str(char **Output_Matrix,int Number_of_Row, int Number_of_Col, int *In
 int str2code(int *Output_Matrix,int Number_of_Row, int Number_of_Col, char **Input_String)
 {
 	int i = 0;
-	int x = 0;
 	int nbOutput_Matrix = 0;
-	for (i=0;i<strlen(Input_String[0]);i++)
-      {
+
+	for (i = 0;i < (int)strlen(Input_String[0]);i++)
+    {
+		int x = 0;
         int key=0;
-        for (x=0;x<=Seperate_Num;x++)       /* To look up in the table */
-            if (Input_String[0][i] == Table_One[x])
-             {
-                key=1;
-                Output_Matrix[nbOutput_Matrix++]=x;
-            }    
-            if (key==0)
-                for (x=0;x<=Seperate_Num;x++)
-                    if (Input_String[0][i] == Table_Two[x])
-                     {
-                        key=1;
-                        Output_Matrix[nbOutput_Matrix++]=-x;
-                    }       
-      }
+
+        for (x=0;x <= Seperate_Num;x++)       /* To look up in the table */
+		{
+			if (Input_String[0][i] == Table_One[x])
+			{
+				key=1;
+				Output_Matrix[nbOutput_Matrix++]=x;
+			}    
+		}
+
+        if (key==0)
+		{
+			for (x=0;x<=Seperate_Num;x++)
+			{
+				if (Input_String[0][i] == Table_Two[x])
+				{
+					key=1;
+					Output_Matrix[nbOutput_Matrix++]=-x;
+				}       
+			}
+		}
+    }
 	return nbOutput_Matrix;
 }
 /*-----------------------------------------------------------------------------------*/
