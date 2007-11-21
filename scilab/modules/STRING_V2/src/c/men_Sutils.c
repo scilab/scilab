@@ -19,15 +19,15 @@ void strwidth(char *string, int *max_width, int *height)
   *height=0;
   *max_width=1;
   for (i = 0 ; i < (int)strlen(string);i++)
-    {
-      width++;
-      if ( string[i]=='\n' || i == strlen(string)  -1)
+  {
+	width++;
+    if ( (string[i]=='\n') || (i == ((int)strlen(string)-1)) )
 	{
 	  *max_width= (*max_width > width ) ?  *max_width : width;
 	  width=0;
 	  *height = *height+1;
 	}
-    }
+  }
 }
 
 
