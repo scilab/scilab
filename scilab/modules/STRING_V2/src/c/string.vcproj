@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="string"
 	ProjectGUID="{8D45767A-9B03-4905-97F6-D2F3F79141EA}"
 	RootNamespace="string"
@@ -195,6 +195,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\code2str.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_string.c"
 				>
 			</File>
@@ -275,6 +279,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\code2str.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\gw_string.h"
 				>

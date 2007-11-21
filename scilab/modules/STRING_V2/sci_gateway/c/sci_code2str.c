@@ -1,18 +1,86 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*------------------------------------------------------------------------*/
+/* File: sci_code2str.c                                                  */
+/* Copyright INRIA 2007                                                   */
+/* @Authors : Cong Wu                                                      */
+/* desc : str=code2str(c)
+          Returns character string associated with Scilab integer codes.
+          str is such that c(i) is the Scilab integer code of part(str,i))*/
+/*------------------------------------------------------------------------*/
 #include <string.h>
+#include <stdio.h>
+#include <ctype.h>
 #include "gw_string.h"
 #include "machine.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(intcode2str) _PARAMS((int *id));
+#include "MALLOC.h"
+#include "code2str.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int id[6];
-	C2F(intcode2str)(id);
+	char **Output_Matrix = NULL;
+	int Row_Num = 0,Col_Num = 0,Stack_position = 0;
+	int *Input_Matrix = NULL; /* Input matrix */
+
+	int numRow = 1;
+	int numCol = 0;
+	int outIndex = 0 ;
+	int Type = VarType(1);
+  
+
+	CheckRhs(1,1);
+	CheckLhs(1,1);
+
+
+	switch (Type) 
+	{
+		case sci_matrix :
+			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&Row_Num,&Col_Num,&Stack_position);
+			Input_Matrix=istk(Stack_position); /* Input*/
+		break;
+		default :
+			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\r\n",fname);
+		return 0;
+	} 
+
+	numCol   = Row_Num*Col_Num ;
+
+	/* Allocation output matrix */
+
+	Output_Matrix = (char**)MALLOC(sizeof(char*)); 
+
+	if (Output_Matrix == NULL)
+	{
+		Scierror(999,"%s : Error memory allocation.\r\n",fname);
+		return 0;
+	}
+
+	if (numCol != 0) 
+	{
+		Output_Matrix[0]=(char*)MALLOC(sizeof(char*)*(numCol));
+	}
+	else Output_Matrix[0]=(char*)MALLOC(sizeof(char*));
+	if (Output_Matrix[0] == NULL)
+	{
+		FREE(Output_Matrix);
+		Output_Matrix = NULL;
+		Scierror(999,"%s : Error memory allocation.\r\n",fname);
+		return 0;
+	}
+
+	/* code2str algorithm */
+	code2str(Output_Matrix,Row_Num,Col_Num,Input_Matrix);
+
+	/* put on scilab stack */
+	numRow   = 1 ; /*Output number row */
+	outIndex = 0 ;
+	CreateVar(Rhs+1,STRING_DATATYPE,&numRow,&numCol,&outIndex);
+	strncpy(cstk(outIndex), &Output_Matrix[0][0] ,numCol ) ;
+	LhsVar(1) = Rhs+1 ;
+	C2F(putlhsvar)();
+
+	/* free pointers */
+	if (Output_Matrix[0]) { FREE(Output_Matrix[0]); Output_Matrix[0]=NULL;}
+	if (Output_Matrix) {FREE(Output_Matrix); Output_Matrix=NULL; }
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/ 
