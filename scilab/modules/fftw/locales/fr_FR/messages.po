@@ -59,7 +59,7 @@ msgstr "%s: Erreur d'allocation mémoire\n"
 # File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 62
 #, c-format
 msgid "%s: FFTW can't read wisdom\n"
-msgstr "%s: FFTW ne peut pas créer wisdom"
+msgstr "%s: FFTW ne peut pas créer wisdom\n"
 
 #
 # File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 68
