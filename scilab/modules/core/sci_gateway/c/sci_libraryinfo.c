@@ -83,7 +83,7 @@ int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("Invalid type of input parameter(s): String expected.\n"));
+		Scierror(999,_("Invalid type of input argument: String expected.\n"));
 	}
 	return 0;
 }

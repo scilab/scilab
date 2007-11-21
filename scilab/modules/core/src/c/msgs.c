@@ -1261,7 +1261,7 @@ static int msg_102(integer *n, integer *ierr)
 	}
 
 	sciprint(_("Warning : primitive function %s is now a Scilab function.\n"),line);
-	sciprint(_("rebuild your function libraries.\n"));
+	sciprint(_("Rebuild your function libraries.\n"));
 
 	C2F(showstack)();
 	return 0;

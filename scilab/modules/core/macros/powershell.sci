@@ -32,10 +32,10 @@ function [resultat,status] = powershell(varargin)
       end
       [resultat,status]=dos(Chainecmd);
     else
-      error(gettext("Argument must be a string."));
+      error(gettext("Input argument must be a string."));
     end
   else
-    error(gettext("Argument must be a string."));
+    error(gettext("Input argument must be a string."));
   end
   
 endfunction
