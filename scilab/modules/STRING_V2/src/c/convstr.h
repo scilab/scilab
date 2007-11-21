@@ -3,6 +3,7 @@
 /*-----------------------------------------------------------------------------------*/
 #ifndef __CONVSTR_H__
 #define __CONVSTR_H__
+
 #define LOW 'l'
 #define LOW_B 'L'
 #define UPPER 'u'
