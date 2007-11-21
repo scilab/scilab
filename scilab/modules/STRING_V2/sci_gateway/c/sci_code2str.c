@@ -8,7 +8,6 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h>
 #include "gw_string.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -25,11 +24,9 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 	int numCol = 0;
 	int outIndex = 0 ;
 	int Type = VarType(1);
-  
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
-
 
 	switch (Type) 
 	{
@@ -38,7 +35,7 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 			Input_Matrix=istk(Stack_position); /* Input*/
 		break;
 		default :
-			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\r\n",fname);
+			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
 		return 0;
 	} 
 
@@ -50,7 +47,7 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (Output_Matrix == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\r\n",fname);
+		Scierror(999,"%s : Error memory allocation.\n",fname);
 		return 0;
 	}
 
@@ -63,7 +60,7 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		FREE(Output_Matrix);
 		Output_Matrix = NULL;
-		Scierror(999,"%s : Error memory allocation.\r\n",fname);
+		Scierror(999,"%s : Error memory allocation.\n",fname);
 		return 0;
 	}
 

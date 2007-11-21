@@ -50,14 +50,14 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 					typ = cstk(Stack_Pos)[0];
 					if ( (typ != UPPER) && (typ != LOW) && (typ != UPPER_B) && (typ != LOW_B) ) 
 					{
-						Scierror(999,"second argument must be 'u' or 'l' \r\n");
+						Scierror(999,"second argument must be 'u' or 'l'.\n");
 						return 1;	
 					}
 				}
 			}
 			break;
 		default :
-			Scierror(999,"%s : second argument has a wrong type, expecting scalar or string matrix.\r\n",fname);
+			Scierror(999,"%s : second argument has a wrong type, expecting scalar or string matrix.\n",fname);
 			return 0;
 		} 
 	}
@@ -83,13 +83,13 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else 
 			{
-				Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\r\n",fname);
+				Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
 				return 0;
 			}
 		}
 		break;
 		default :
-			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\r\n",fname);
+			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
 			return 0;
 		break;
 	} 
@@ -97,7 +97,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 	Output_Matrix = (char**)MALLOC(sizeof(char*)*(mn));
 	if (Output_Matrix == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\r\n",fname);
+		Scierror(999,"%s : Error memory allocation.\n",fname);
 		return 0;
 	}
 
@@ -111,7 +111,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				if (Output_Matrix[j]) { FREE(Output_Matrix[j]); Output_Matrix[j] = NULL;}
 			}
-			Scierror(999,"%s : Error memory allocation.\r\n",fname);
+			Scierror(999,"%s : Error memory allocation.\n",fname);
 			return 0;
 		}
 	}
