@@ -1177,7 +1177,7 @@ msgstr ""
 msgid "The identifier : %s\n"
 msgstr ""
 "L'identifiant : %s\n"
-" "
+
 
 #
 # File: src/c/msgs.c, line: 763
