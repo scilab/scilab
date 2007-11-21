@@ -50,10 +50,22 @@ if (k <> ref ) then pause,end
 //===============================
 refk = [2 4 8];
 refw = [1 3 4];
-[k,w]=strindex('1+3*abc/2.33',['+','-','*','/'])
+[k,w]=strindex('1+3*abc/2.33',['+','-','*','/']);
 if (k <> refk ) then pause,end
 if (w <> refw ) then pause,end
 //===============================
-
-
-
+fd = mopen(SCI+'/modules/string/unit_tests/text.txt','r');
+txt = mgetl( fd );
+mclose( fd );
+//===============================
+if (strindex(txt(1),'scilab') <> [])  then pause,end
+if (strindex(txt(1),'Scilab') <> [1 216])  then pause,end
+[ind1,ind2] = strindex(txt(1),'Scilab');
+//===============================
+if (ind1 <> [1 1]) then pause,end
+if (ind2 <> [1 216]) then pause,end
+//===============================
+if (strindex('',' ') <> [])  then pause,end
+//===============================
+if (strindex([],' ') <> [])  then pause,end
+//===============================
