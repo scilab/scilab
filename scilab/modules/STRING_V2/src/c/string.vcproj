@@ -203,6 +203,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CreateEmptystr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\Get_length.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_string.c"
 				>
 			</File>
@@ -289,6 +297,14 @@
 			</File>
 			<File
 				RelativePath=".\convstr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\CreateEmptystr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\get_length.h"
 				>
 			</File>
 			<File
