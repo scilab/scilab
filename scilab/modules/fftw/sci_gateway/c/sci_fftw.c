@@ -224,13 +224,13 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* alloc n/nspn with MALLOC */
     if ((n=(int *)MALLOC(mn4*sizeof(int)))==NULL) {
-     Scierror(999,_("%s: Allocation memory error\n"),
+     Scierror(999,_("%s: Memory allocation error\n"),
                   fname);
      return(0);
     }
 
     if ((nspn=(int *)MALLOC(mn4*sizeof(int)))==NULL) {
-     Scierror(999,_("%s: Allocation memory error\n"),
+     Scierror(999,_("%s: Memory allocation error\n"),
                   fname);
      FREE(n);
      return(0);
@@ -404,7 +404,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
    /* set parameters of fftw_plan_guru_split_dft */
    gdim.rank=1;
    if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-    Scierror(999,_("%s: Allocation memory error\n"),
+    Scierror(999,_("%s: Memory allocation error\n"),
                  fname);
     return(0);
    }
@@ -422,7 +422,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
     /* set parameters of fftw_plan_guru_split_dft */
     gdim.rank=2;
     if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
-     Scierror(999,_("%s: Allocation memory error\n"),
+     Scierror(999,_("%s: Memory allocation error\n"),
                   fname);
      return(0);
     }
@@ -450,7 +450,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      /* set parameters of fftw_plan_guru_split_dft */
      gdim.rank = 1;
      if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-      Scierror(999,_("%s: Allocation memory error\n"),
+      Scierror(999,_("%s: Memory allocation error\n"),
                    fname);
       return(0);
      }
@@ -461,7 +461,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
      gdim.howmany_rank = 1;
      if ((gdim.howmany_dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-      Scierror(999,_("%s: Allocation memory error\n"),
+      Scierror(999,_("%s: Memory allocation error\n"),
                    fname);
       return(0);
      }
@@ -484,7 +484,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      if ((p = GetFFTWPlan(&gdim,
                           ri, ii, ro, io,
                           cur_fftw_flags,isn)) == NULL) {
-      Scierror(999,_("%s: Allocation memory error\n"),
+      Scierror(999,_("%s: Memory allocation error\n"),
                    fname);
       FREE(gdim.dims);
       FREE(gdim.howmany_dims);
@@ -525,7 +525,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
       /* set parameters of fftw_plan_guru_split_dft */
       gdim.rank=mn3;
       if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
-       Scierror(999,_("%s: Allocation memory error\n"),
+       Scierror(999,_("%s: Memory allocation error\n"),
                     fname);
        return(0);
       }
@@ -552,7 +552,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   if ((p = GetFFTWPlan(&gdim,
                        ri, ii, ro, io,
                        cur_fftw_flags,isn)) == NULL) {
-   Scierror(999,_("%s: Allocation memory error\n"),
+   Scierror(999,_("%s: Memory allocation error\n"),
                 fname);
    FREE(gdim.dims);
    FREE(gdim.howmany_dims);
