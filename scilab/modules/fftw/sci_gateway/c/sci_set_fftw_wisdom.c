@@ -65,7 +65,7 @@ int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
   FREE(Str);
  }
  else {
-  Scierror(999,_("%s: Bad Rhs type parameter\n"),
+  Scierror(999,_("%s: Bad type for the input parameter\n"),
                 fname);
  }
  PutLhsVar();
