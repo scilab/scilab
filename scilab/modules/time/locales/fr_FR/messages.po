@@ -18,7 +18,6 @@ msgstr ""
 
 #
 # File: macros/weekday.sci, line: 17
-#, fuzzy
 msgid "Number of input parameters incorrect."
 msgstr "Nombre de paramètres d'entrée incorrect."
 
