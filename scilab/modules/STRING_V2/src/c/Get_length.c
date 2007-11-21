@@ -10,7 +10,7 @@
 #include <ctype.h> 
 #include "gw_string.h"
 #include "MALLOC.h" 
-#include "get_length.h"
+#include "Get_length.h"
 /*------------------------------------------------------------------------*/
 int Get_length(char **Input_String_One,char **Input_String_Two,int Number_Input_One)
 {
