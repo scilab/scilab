@@ -14,6 +14,7 @@
 #include "gw_string.h"
 #include "stack-c.h"
 #include "MALLOC.h" 
+#include "Scierror.h"
 #include "stripblanks.h"
 /*-------------------------------------------------------------------------------------*/
 int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
