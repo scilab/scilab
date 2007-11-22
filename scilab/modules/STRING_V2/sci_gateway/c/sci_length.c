@@ -60,23 +60,23 @@ static int lengthStrings(void)
 {
 	char **Input_StringMatrix = NULL;
 	int Row_Num = 0,Col_Num = 0,mn = 0;
-	double *Output_IntMatrix = NULL;
 
 	/* When input character string or matrix of strings. */
 	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
 	mn = Row_Num*Col_Num;  
 
-	Output_IntMatrix = (double*)MALLOC(sizeof(double)*(mn));
-	if (Output_IntMatrix)
+	if (Input_StringMatrix)
 	{
+		int outIndex = 0 ;
 		int x = 0;
-		for (x = 0; x < mn; x++) Output_IntMatrix[x] = (int)strlen(Input_StringMatrix[x]);
 
-		CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&Row_Num,&Col_Num,&Output_IntMatrix);
+		CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Num,&Col_Num, &outIndex );
+		for  ( x = 0; x < mn; x++ )
+		{
+			stk(outIndex)[x] = (int)strlen(Input_StringMatrix[x]);
+		}
 		LhsVar(1) = Rhs+1 ;
 		C2F(putlhsvar)();
-
-		if (Output_IntMatrix) { FREE(Output_IntMatrix); Output_IntMatrix = NULL;}
 	}
 	else
 	{
@@ -88,30 +88,20 @@ static int lengthStrings(void)
 static int lengthMatrix(void)
 {
 	int Row_Num = 0, Col_Num = 0;
-	double *Output_IntMatrix = NULL;
+	int Row_Out = 0, Col_Out = 0;
 	int StackPos = 0;
 
 	/*When input vector of integer ascii codes  */
 	GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&Row_Num,&Col_Num,&StackPos);
 
-	Output_IntMatrix=(double*)MALLOC(sizeof(double));
-	if (Output_IntMatrix)
-	{
-		int numRow = 1;
-		int numCol = 1;
+	StackPos = 0;
+	Row_Out = 1;
+	Col_Out = 1;
 
-		Output_IntMatrix[0]=Row_Num*Col_Num;
-
-		CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&numCol,&Output_IntMatrix);
-		LhsVar(1) = Rhs+1 ;
-		C2F(putlhsvar)();
-
-		if (Output_IntMatrix) {FREE(Output_IntMatrix); Output_IntMatrix=NULL; }
-	}
-	else
-	{
-		Scierror(999,"Error memory allocation.\n");
-	}
+	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Out,&Col_Out, &StackPos );
+	stk(StackPos)[0] = (double)(Row_Num*Col_Num);
+	LhsVar(1) = Rhs+1 ;
+	C2F(putlhsvar)();
 	
 	return 0;
 }
@@ -119,29 +109,20 @@ static int lengthMatrix(void)
 static int lengthList(void)
 {
 	int Row_Num = 0,Col_Num = 0;
-	double *Output_IntMatrix = NULL;
+	int Row_Out = 0, Col_Out = 0;
 	int StackPos = 0; 
 
 	GetRhsVar(1,LIST_DATATYPE,&Row_Num,&Col_Num,&StackPos);
 
-	Output_IntMatrix = (double*)MALLOC(sizeof(double));
-	if (Output_IntMatrix) 
-	{
-		int numRow = 1;
-		int numCol = 1;
+	StackPos = 0;
+	Row_Out = 1;
+	Col_Out = 1;
 
-		Output_IntMatrix[0] = Row_Num*Col_Num;
-		CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&numCol,&Output_IntMatrix);
-		LhsVar(1) = Rhs+1 ;
-		C2F(putlhsvar)();
+	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Out,&Col_Out, &StackPos );
+	stk(StackPos)[0] = (double)(Row_Num*Col_Num);
+	LhsVar(1) = Rhs+1 ;
+	C2F(putlhsvar)();
 
-		if (Output_IntMatrix) {FREE(Output_IntMatrix); Output_IntMatrix=NULL; }
-	}
-	else
-	{
-		Scierror(999,"Error memory allocation.\n");
-		return 1;
-	}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
