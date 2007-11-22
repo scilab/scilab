@@ -1,18 +1,98 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*------------------------------------------------------------------------*/
+/* File: part.c                                                           */
+/* Copyright INRIA 2007                                                   */
+/* @Authors : Cong Wu                                                     */
+/* desc : Let  s[k]  stands for the  k  character of Input_StringMatrixing  s  ( or the
+          white space character if  k >length(s) ).
+          part  returns  c , a matrix of character Input_StringMatrixings, such that  
+          c(i,j)  is the Input_StringMatrixing  "s[v(1)]...s[v(n)]"  (  s=mp(i,j)  ).
+                                                                          */
+/*------------------------------------------------------------------------*/
 #include <string.h>
+#include <stdio.h>
+#include <ctype.h>
 #include "gw_string.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "Scierror.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intpart) _PARAMS((int *id));
+#define CHAR_BLANK ' '
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int id[6];
-	C2F(intpart)(id);
-	return 0;
+    int numRow = 0;
+    int numCol = 0;
+
+	char **Input_StringMatrix = NULL;
+	char **Output_StringMatrix = NULL;
+
+    int x = 0,Row_One = 0,Col_One = 0,RowCol = 0,Row_Two = 0,Col_Two = 0,StackPosTwo=0;
+    int *SecondParamaterValue = NULL;
+
+    CheckRhs(1,4);
+    CheckLhs(1,1);
+
+    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_StringMatrix);
+    RowCol = Row_One*Col_One;  
+
+    GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&StackPosTwo);
+    SecondParamaterValue = istk(StackPosTwo);
+    
+    Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_One));
+	if (Output_StringMatrix == NULL)
+	{
+		Scierror(999,"%s : Error memory allocation.\r\n",fname);
+		return 0;
+	}
+
+    for (x = 0; x < RowCol; x++)
+    {
+		int Char_Position = 0;
+		int y = 0;
+
+        Output_StringMatrix[x]=(char*)MALLOC(sizeof(char*)*(Col_Two+1));
+
+		if (Output_StringMatrix == NULL)
+		{
+			for(y=0; y<=x; y++) 
+			{
+                  if (Output_StringMatrix[y]) { FREE(Output_StringMatrix[y]); Output_StringMatrix[y]=NULL;}
+			}
+			Scierror(999,"%s : Error memory allocation.\r\n",fname);
+			return 0;
+		}
+        
+        for (y=0;y<Col_Two*Row_Two;y++)
+        {
+             if ( SecondParamaterValue[y] <= (int)strlen(Input_StringMatrix[x]) )
+             {
+                 Output_StringMatrix[x][Char_Position]=Input_StringMatrix[x][SecondParamaterValue[y]-1];
+             }
+             else
+             {
+                 Output_StringMatrix[x][Char_Position] = CHAR_BLANK;
+             }
+			 Char_Position++;
+        }
+    }
+
+	/*Output */
+    numRow   = Row_One ;
+    numCol   = Col_One ;
+
+    CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Output_StringMatrix );
+    LhsVar(1) = Rhs+1 ;
+    C2F(putlhsvar)();
+
+	/* FREE memory */
+    for (x = 0;x<RowCol;x++)
+    {
+       if (Output_StringMatrix[x]) { FREE(Output_StringMatrix[x]); Output_StringMatrix[x]=NULL;}
+    }
+    if (Output_StringMatrix) {FREE(Output_StringMatrix); Output_StringMatrix=NULL; }
+
+    return 0;
 }
+
 /*-----------------------------------------------------------------------------------*/
