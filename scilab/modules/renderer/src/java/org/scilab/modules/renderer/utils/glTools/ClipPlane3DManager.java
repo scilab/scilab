@@ -98,8 +98,18 @@ public final class ClipPlane3DManager {
 		Iterator<MovableClipPlane3D> curPlaneIt = activeClipPlanes.iterator();
 		while (curPlaneIt.hasNext()) {
 			curPlaneIt.next().changeFrame(gl);
+		}		
+	}
+	
+	/**
+	 * @return string representation of the class.
+	 */
+	public static String getStringRepresentation() {
+		String res = "";
+		Iterator<MovableClipPlane3D> curPlaneIt = activeClipPlanes.iterator();
+		while (curPlaneIt.hasNext()) {
+			res += curPlaneIt.next().toString() + "\n";
 		}
-
-		
+		return res;
 	}
 }

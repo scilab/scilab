@@ -19,9 +19,9 @@ class CameraBridgeFactory
 
 public:
 
-  CameraBridgeFactory( void ) { m_pSubwin = NULL; }
+  CameraBridgeFactory( void ) { m_pCamera = NULL; }
 
-  ~CameraBridgeFactory( void ) { m_pSubwin = NULL;}
+  ~CameraBridgeFactory( void ) { m_pCamera = NULL;}
 
   /**
    * Create a new cameraBridge with the rigth driver
@@ -31,11 +31,11 @@ public:
   /**
   * Set the parent subwin, needed by CameraImpFactory.
   */
-  void setCorrespondingSubwin( DrawableSubwin * subwin ) { m_pSubwin = subwin; }
+  void setCorrespondingCamera( Camera * camera ) { m_pCamera = camera; }
 
 protected:
 
-  DrawableSubwin * m_pSubwin;
+  Camera * m_pCamera;
 
 };
 

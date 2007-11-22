@@ -76,55 +76,18 @@ public abstract class CameraGL extends ObjectGL {
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) {
-		initializeDrawing(parentFigureIndex);
 		placeCamera();
-		endDrawing();
 	}
 	
-	
 	/**
-	 * Set the view port for isoview.
-	 * @param gl current GL pipeline
+	 * Override endrawing to update coordinate transforation.
 	 */
-//	public void setIsoViewViewPort(GL gl) {
-//		double[] viewPort = {0.0, 0.0, 0.0, 0.0};
-//		
-//		// get width ad height of the viewPort
-//		gl.glGetDoublev(GL.GL_VIEWPORT, viewPort, 0);
-//		viewPortWidth = viewPort[2];
-//		viewPortHeight = viewPort[2 + 1];
-//		
-//		// get minimum value between the two to set a close to 1 viewPort
-//		double minDim = Math.min(viewPortWidth, viewPortHeight);
-//		viewPortWidth /= minDim;
-//		viewPortHeight /= minDim;
-//		
-//		// set projection
-//		gl.glMatrixMode(GL.GL_PROJECTION);
-//		gl.glLoadIdentity();
-//	    // for perspective view, we need to use glFrustum, not glOrtho
-//		gl.glOrtho(0.0, viewPortWidth, 0.0, viewPortHeight, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
-//		
-//	}
-	
-	
-	/**
-	 * Set standard view port (ie wich follows window size).
-	 * @param gl current GL pipeline
-	 */
-//	public void setStandardViewPort(GL gl) {
-//		// get width ad height of the viewPort
-//		viewPortWidth = 1.0;
-//		viewPortHeight = 1.0;
-//		
-//		// set projection
-//		gl.glMatrixMode(GL.GL_PROJECTION);
-//		gl.glLoadIdentity();
-//		//		 with this the drawing view current scale for the view is [0,1]x[0,1]
-//	    // for perspective view, we need to use glFrustum, not glOrtho
-//		gl.glOrtho(0.0, 1.0, 0.0, 1.0, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
-//		
-//	}
+	public void endDrawing() {
+		super.endDrawing();
+		// Camera is placed, update transformation
+		GL gl = getGL();
+		CoordinateTransformation.getTransformation(gl).update(gl);
+	}
 	
 	/**
 	 * Set the viewPort of the object.
@@ -330,6 +293,43 @@ public abstract class CameraGL extends ObjectGL {
 		gl.glPopMatrix();
 		CoordinateTransformation.getTransformation(gl).update(gl);
 	}
+	
+	/**
+	 * inverse data on X axis.
+	 */
+	public void revertXAxis() {
+		GL gl = getGL();
+		// move to the axes box center then apply symetry.
+		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ());
+		gl.glScaled(-1.0, 1.0, 1.0);
+		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ());
+		
+	}
+	
+	/**
+	 * inverse data on Y axis.
+	 */
+	public void revertYAxis() {
+		GL gl = getGL();
+		// move to the axes box center then apply symetry.
+		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ());
+		gl.glScaled(1.0, -1.0, 1.0);
+		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ());
+		
+	}
+	
+	/**
+	 * inverse data on Z axis.
+	 */
+	public void revertZAxis() {
+		GL gl = getGL();
+		// move to the axes box center then apply symetry.
+		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ());
+		gl.glScaled(1.0, 1.0, -1.0);
+		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ());
+		
+	}
+	
 	
 	/**
 	 * Convert scene coordinates to pixel coordinates.

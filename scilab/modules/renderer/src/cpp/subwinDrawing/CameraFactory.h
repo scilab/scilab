@@ -10,32 +10,28 @@
 
 #include "Camera.h"
 #include "DrawableSubwin.h"
+#include "../DrawableObjectFactory.h"
 
 namespace sciGraphics
 {
 
-class CameraFactory
+class CameraFactory : public DrawableObjectFactory
 {
 
 public:
 
-  CameraFactory( void ) { m_pSubwin = NULL; }
-
-  virtual ~CameraFactory( void ) { m_pSubwin = NULL; }
+  /**
+   * Create a new drawer from the drawed object.
+   */
+  Camera * create( void ) ;
 
   /**
-   * Create a new camera instance
+   * Update the drawer of the drawed object.
+   * To be used when an object was deeply modified and to avoid to create it again completely.
    */
-  virtual Camera * create( void ) ;
-
-  /**
-   * Set the parent subwin, needed by CameraImpFactory.
-   */
-  void setCorrespondingSubwin( DrawableSubwin * subwin ) { m_pSubwin = subwin; }
+  virtual void update( void ) ;
 
 protected:
-
-  DrawableSubwin * m_pSubwin;
 
 };
 

@@ -8,22 +8,24 @@
 #ifndef _CAMERA_BRIDGE_H_
 #define _CAMERA_BRIDGE_H_
 
-#include "DrawableObject.h"
+#include <list>
+
+#include "../DrawableObjectBridge.h"
+#include "AxesReverseStrategy.hxx"
 
 namespace sciGraphics
 {
 
-class CameraBridge
+class CameraBridge : public virtual DrawableObjectBridge
 {
 public:
 
   /**
    * Default constructor
-   * @param subwin Subwindow containign the camera
    */
-  CameraBridge( void ) {}
+  CameraBridge( void );
 
-  virtual ~CameraBridge( void ) {}
+  virtual ~CameraBridge( void );
 
   /**
    * Set the viewing position o
@@ -77,6 +79,22 @@ public:
    */
   virtual void replaceCamera( void ) = 0;
 
+  /**
+   * Add an axes reverse strategy.
+   */
+  void addAxesReverseStrategy(AxesReverseStrategy * strategy);
+
+  /**
+   * Remove and delete axes reverse strategies.
+   */
+  void removeAxesReverseStrategies(void);
+
+  /**
+   * Revert needed axes.
+   */
+  void revertAxes(void);
+
+
 protected:
 
   /**
@@ -107,6 +125,8 @@ protected:
   /** Center of the axes box */
   double m_aBoxCenter[3];
 
+  /** list of axes reverse strategies */
+  std::list<AxesReverseStrategy *> m_oReverseStrategies;
 
 };
 

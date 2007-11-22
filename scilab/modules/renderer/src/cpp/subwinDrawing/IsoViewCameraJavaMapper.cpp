@@ -90,6 +90,21 @@ void IsoViewCameraJavaMapper::replaceCamera( void )
   m_pJavaObject->replaceCamera();
 }
 /*-----------------------------------------------------------------------------------*/
+void IsoViewCameraJavaMapper::revertXAxis(void)
+{
+  m_pJavaObject->revertXAxis();
+}
+/*-----------------------------------------------------------------------------------*/
+void IsoViewCameraJavaMapper::revertYAxis(void)
+{
+  m_pJavaObject->revertYAxis();
+}
+/*-----------------------------------------------------------------------------------*/
+void IsoViewCameraJavaMapper::revertZAxis(void)
+{
+  m_pJavaObject->revertZAxis();
+}
+/*-----------------------------------------------------------------------------------*/
 void IsoViewCameraJavaMapper::getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ,
                                             int pixCoord[2])
 {

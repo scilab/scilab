@@ -11,20 +11,51 @@
 #define _CAMERA_H_
 
 #include "CameraBridge.h"
+#include "../DrawableObject.h"
 
 namespace sciGraphics
 {
   
 class DrawableSubwin;
 
-class Camera
+// here the drawn object is a subwindow since camera is part of DrawableSubwin
+class Camera : public DrawableObject
 {
 public:
   
-  Camera( void ) ;
+  Camera( sciPointObj * pObj ) ;
 
   virtual ~Camera( void ) ;
-  
+
+  /**
+   * Put back camera to default position.
+   */
+  void replaceCamera( void );
+
+  /**
+   * Convert user coordinates to pixel coordinates.
+   */
+  void getPixelCoordinates(const double userCoord[3], int pixCoord[2]);
+
+  /**
+   * Convert user coordinates to pixel coordinated using the 2d view.
+   */
+  void get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2]);
+
+protected:
+
+  /**
+   * Draw the graphic handle and store it representation in memory
+   * for later faster drawing.
+   */
+  virtual void draw( void );
+
+  /**
+   * Fast draw of the graphic handle on the screen using the data created by draw.
+   * Warning, be sure that draw is called before show each time the handle is modified.
+   */
+  virtual void show( void );
+
   /**
    * Set the viewing zone for a subwin.
    * @param axesBounds axesBounds (WRECT) of the subwin. This a a vector [x_left,y_up,w,h].
@@ -45,45 +76,19 @@ public:
   void setSubwinBox( double bounds[6] ) ;
 
   /**
+   * Set camera parameters from subwin ones.
+   */
+  void setCameraParameters(void);
+
+  /**
    * Position the view and view area accordingly to previous calls.
    */
   void renderPosition( void ) ;
 
   /**
-   * Put back camera to default position.
+   * Return the real type of implementation object
    */
-  void replaceCamera( void );
-
-  /**
-   * Set the camera bridge
-   */
-  void setBridge( CameraBridge * bridge ) { m_pImp = bridge; }
-
-  /**
-   * Set the viewed subwindow.
-   */
-  void setViewedSubwin(DrawableSubwin * subwin) {m_pViewedSubwin = subwin;}
-
-  /**
-   * Convert user coordinates to pixel coordinates.
-   */
-  void getPixelCoordinates(const double userCoord[3], int pixCoord[2]);
-
-  /**
-   * Convert user coordinates to pixel coordinated using the 2d view.
-   */
-  void get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2]);
-
-protected:
-
-  /*-----------------------------------------------------*/
-
-  /** bridge for driver dependent algorithms */
-  CameraBridge * m_pImp;
-
-  /** Viewed subwindow */
-  DrawableSubwin * m_pViewedSubwin;
-  /*-----------------------------------------------------*/
+  CameraBridge * getCameraImp( void ) ;
 
 };
 

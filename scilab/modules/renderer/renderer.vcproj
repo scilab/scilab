@@ -545,6 +545,18 @@
 					RelativePath=".\src\cpp\subwinDrawing\IsoViewCameraJavaMapper.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XAxisReverseJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YAxisReverseJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZAxisReverseJoGL.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="RectangleDrawing"
@@ -1068,6 +1080,10 @@
 				Name="SubwinDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\AxesReverseStrategy.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\Camera.h"
 					>
 				</File>
@@ -1133,6 +1149,18 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\IsoViewCameraJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XAxisReverseJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YAxisReverseJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZAxisReverseJoGL.hxx"
 					>
 				</File>
 			</Filter>

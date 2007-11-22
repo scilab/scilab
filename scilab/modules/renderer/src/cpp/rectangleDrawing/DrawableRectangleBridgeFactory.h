@@ -14,42 +14,42 @@
 namespace sciGraphics
 {
 
-  class DrawableRectangleBridgeFactory
-  {
+class DrawableRectangleBridgeFactory
+{
 
-  public:
+public:
 
-    DrawableRectangleBridgeFactory( void ) { m_pDrawable = NULL ; }
+  DrawableRectangleBridgeFactory( void ) { m_pDrawable = NULL ; }
 
-    virtual ~DrawableRectangleBridgeFactory( void ) {}
+  virtual ~DrawableRectangleBridgeFactory( void ) {}
 
-    /**
-     * Create a new drawer from the drawed object.
-     */
-    virtual DrawableRectangleBridge * create( void ) ;
-  
-    /**
-     * Update the drawer of the drawed object.
-     * To be used when an object was deeply modified and to avoid to create it again completely.
-     */
-    virtual void update( void ) ;
+  /**
+   * Create a new drawer from the drawed object.
+   */
+  virtual DrawableRectangleBridge * create( void ) ;
 
-    /**
-     * Set the DrawableRectangle wich needs algorithms
-     */
-    void setDrawedRectangle( DrawableRectangle * rect ) ;
+  /**
+   * Update the drawer of the drawed object.
+   * To be used when an object was deeply modified and to avoid to create it again completely.
+   */
+  virtual void update( void ) ;
 
-  protected:
+  /**
+   * Set the DrawableRectangle wich needs algorithms
+   */
+  void setDrawedRectangle( DrawableRectangle * rect ) ;
 
-    /**
-     * Create the drawing strategies.
-     * @param imp Object on which to create the strategies
-     */
-    void setStrategies( DrawableRectangleBridge * imp ) ;
+protected:
 
-    DrawableRectangle * m_pDrawable ;
+  /**
+   * Create the drawing strategies.
+   * @param imp Object on which to create the strategies
+   */
+  void setStrategies( DrawableRectangleBridge * imp ) ;
 
-  } ;
+  DrawableRectangle * m_pDrawable ;
+
+} ;
 
 }
 

@@ -10,6 +10,18 @@
 namespace sciGraphics
 {
 
+using namespace std;
+
+/*-----------------------------------------------------------------------------------*/
+CameraBridge::CameraBridge( void )
+{
+  m_oReverseStrategies.clear();
+}
+/*-----------------------------------------------------------------------------------*/
+CameraBridge::~CameraBridge( void )
+{
+  removeAxesReverseStrategies();
+}
 /*-----------------------------------------------------------------------------------*/
 void CameraBridge::setViewingArea( double translation[2], double scale[2] )
 {
@@ -54,4 +66,30 @@ void CameraBridge::setAxesNormalizationScale(double scale[3])
   m_aAxesNormalizationScale[2] = scale[2];
 }
 /*-----------------------------------------------------------------------------------*/
+void CameraBridge::addAxesReverseStrategy(AxesReverseStrategy * strategy)
+{
+  m_oReverseStrategies.push_back(strategy);
+}
+/*-----------------------------------------------------------------------------------*/
+void CameraBridge::removeAxesReverseStrategies(void)
+{
+  list<AxesReverseStrategy *>::iterator it = m_oReverseStrategies.begin();
+  for( ; it != m_oReverseStrategies.end(); it++)
+  {
+    delete *it;
+    *it = NULL;
+  }
+  m_oReverseStrategies.clear();
+}
+/*-----------------------------------------------------------------------------------*/
+void CameraBridge::revertAxes(void)
+{
+  list<AxesReverseStrategy *>::iterator it = m_oReverseStrategies.begin();
+  for( ; it != m_oReverseStrategies.end(); it++)
+  {
+    (*it)->revertAxis();
+  }
+}
+/*-----------------------------------------------------------------------------------*/
+
 }

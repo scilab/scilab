@@ -40,7 +40,10 @@ public class MovableClipPlane3D extends ClipPlane3D {
 		}
 	}
 	
+	/** normal of the plane */
+	private Vector3D normal = new Vector3D();
 	
+	/** 3 points on the plane */
 	private Vector3D point1 = new Vector3D();
 	private Vector3D point2 = new Vector3D();
 	private Vector3D point3 = new Vector3D();
@@ -113,7 +116,7 @@ public class MovableClipPlane3D extends ClipPlane3D {
 	}
 	
 	/**
-	 * Save the current plane equation befaore a coordinate transformation
+	 * Save the current plane equation before a coordinate transformation.
 	 * @param gl current OpenGL pipeline
 	 */
 	public void pushPlane(GL gl) {
@@ -121,14 +124,19 @@ public class MovableClipPlane3D extends ClipPlane3D {
 		Plane3D copyPlane = new Plane3D(this);
 		pushedPlanes.addFirst(copyPlane);
 		
-		
+		normal = getNormal();
 		getThreePointsOnPlane(point1, point2, point3);
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-
+		
+		// normal is a direction not a position
+		normal = transform.getCanvasCoordinates3D(gl, normal);
+		normal.normalize();
+		
 		point1 = transform.getCanvasCoordinates(gl, point1);
 		point2 = transform.getCanvasCoordinates(gl, point2);
 		point3 = transform.getCanvasCoordinates(gl, point3);
-			
+		
+		
 	}
 	
 	/**
@@ -139,11 +147,18 @@ public class MovableClipPlane3D extends ClipPlane3D {
 
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
+		// normal is a direction, not a point
+		Vector3D newNormal = transform.retrieveSceneCoordinates3D(gl, normal);
+		newNormal.normalize();
+		
 		Vector3D newPoint1 = transform.retrieveSceneCoordinates(gl, point1);
 		Vector3D newPoint2 = transform.retrieveSceneCoordinates(gl, point2);
 		Vector3D newPoint3 = transform.retrieveSceneCoordinates(gl, point3);
 		
-		this.setEquation(newPoint1, newPoint2, newPoint3);
+		// I've tried to use setEquation with a point and normal, but it doesn'r work
+		// for Y axis and I couldn't figure why. Otherwise, it seems to work with 3 points and a normal
+		// with only 3 points normal can have the wrong direction (ie normal should be oppisite).
+		this.setEquation(newPoint1, newPoint2, newPoint3, newNormal);
 		super.clip(gl); // not just clip, otherwise the plane will be added to the list of clipped planes
 	}
 	

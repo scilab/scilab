@@ -25,26 +25,21 @@ DrawableObject * DrawableSubwinFactory::create( void )
   newSubwin->setDrawableImp(imp.create());
 
   // create the camera
- setNewCamera(newSubwin);
+  CameraFactory fact;
+  fact.setGraphicObj(m_pDrawed);
+  newSubwin->setCamera(fact.create());
 
   return newSubwin;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwinFactory::update( void )
 {
-  DrawableSubwin * curSubwin = getSubwinDrawer(m_pDrawed);
-  setNewCamera(curSubwin);
+  // update the camera
+  CameraFactory fact;
+  fact.setGraphicObj(m_pDrawed);
+  fact.update();
   
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableSubwinFactory::setNewCamera(DrawableSubwin * subwin)
-{
-  // set a new camera
-  CameraFactory cf;
-  cf.setCorrespondingSubwin(subwin) ;
-  Camera * newCam = cf.create();
-  newCam->setViewedSubwin(subwin);
-  subwin->setCamera( newCam );
-}
-/*------------------------------------------------------------------------------------------*/
+
 }

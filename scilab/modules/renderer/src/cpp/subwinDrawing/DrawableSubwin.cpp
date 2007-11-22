@@ -43,36 +43,32 @@ void DrawableSubwin::setCamera( Camera * cam )
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
 {
+  m_pCamera->hasChanged();
+  show();
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableSubwin::show( void )
+{
   initializeDrawing() ;
   if ( !checkVisibility() )
   {
     endDrawing();
     return;
   }
-  m_pCamera->setViewingArea(sciGetAxesBounds(m_pDrawed), sciGetMargins(m_pDrawed)) ;
+
+  // set up camera
+  m_pCamera->display();
 
   double bounds[6] ;
   sciGetRealDataBounds(m_pDrawed, bounds) ;
-  m_pCamera->setSubwinBox(bounds) ;
-
-  double alpha;
-  double theta;
-  sciGetViewingAngles(m_pDrawed, &alpha, &theta);
-  m_pCamera->setRotationAngles(alpha, theta);
-  m_pCamera->renderPosition();
-
   drawBox(bounds);
 
   displayChildren() ;
-  
+
+  // needed
   m_pCamera->replaceCamera();
 
   endDrawing();
-}
-/*------------------------------------------------------------------------------------------*/
-void DrawableSubwin::show( void )
-{
-  draw() ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::drawBox(const double bounds[6])

@@ -12,15 +12,14 @@ namespace sciGraphics
 {
 
 /*-----------------------------------------------------------------------------------*/
-CameraJoGL::CameraJoGL( DrawableSubwin * subwin )
-  : CameraBridge(), DrawableObjectJoGL(subwin)
+CameraJoGL::CameraJoGL( Camera * camera )
+  : CameraBridge(), DrawableObjectJoGL(camera)
 {
 
 }
 /*-----------------------------------------------------------------------------------*/
 void CameraJoGL::renderPosition( void )
 {
-  initializeDrawing();
   getCameraJavaMapper()->setViewingArea(m_aViewingTranslation[0], m_aViewingTranslation[1],
                                          m_aViewingScale[0], m_aViewingScale[1]) ;
   getCameraJavaMapper()->setNormalizationParameters(m_aAxesNormalizationScale[0], m_aAxesNormalizationScale[1], m_aAxesNormalizationScale[2],
@@ -33,7 +32,6 @@ void CameraJoGL::renderPosition( void )
   getCameraJavaMapper()->setFittingScale(m_aAxesFittingScale[0], m_aAxesFittingScale[1], m_aAxesFittingScale[2]);
 
   getCameraJavaMapper()->placeCamera();
-  endDrawing();
 }
 /*-----------------------------------------------------------------------------------*/
 void CameraJoGL::replaceCamera( void )

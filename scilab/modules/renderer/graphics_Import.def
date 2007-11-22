@@ -74,3 +74,6 @@ getMatNbRow
 getMatNbCol
 sciGetIsIsoView
 sciGetIsCubeScaled
+sciGetXAxisReverse
+sciGetYAxisReverse
+sciGetZAxisReverse

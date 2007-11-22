@@ -9,6 +9,9 @@
 #include "CameraJoGL.h"
 #include "IsoViewCameraJavaMapper.hxx"
 #include "IsometricCameraJavaMapper.hxx"
+#include "XAxisReverseJoGL.hxx"
+#include "YAxisReverseJoGL.hxx"
+#include "ZAxisReverseJoGL.hxx"
 
 extern "C"
 {
@@ -21,16 +24,43 @@ namespace sciGraphics
 /*------------------------------------------------------------------------*/
 CameraBridge * CameraBridgeFactory::create( void )
 {
-  CameraJoGL * newBridge = new CameraJoGL(m_pSubwin) ;
+  CameraJoGL * newBridge = new CameraJoGL(m_pCamera) ;
 
-  if (sciGetIsIsoView(m_pSubwin->getDrawedObject()))
+  CameraJavaMapper * javaMapper;
+
+  sciPointObj * pSubwin = m_pCamera->getDrawedObject();
+
+  if (sciGetIsIsoView(pSubwin))
   {
-    newBridge->setJavaMapper(new IsoViewCameraJavaMapper()) ;
+    javaMapper = new IsoViewCameraJavaMapper() ;
   }
   else
   {
-    newBridge->setJavaMapper(new IsometricCameraJavaMapper()) ;
+    javaMapper = new IsometricCameraJavaMapper() ;
   }
+
+  if (sciGetXAxisReverse(pSubwin))
+  {
+    XAxisReverseJoGL * axesReverseStrategy = new XAxisReverseJoGL();
+    axesReverseStrategy->setJavaMapper(javaMapper);
+    newBridge->addAxesReverseStrategy(axesReverseStrategy);
+  }
+
+  if (sciGetYAxisReverse(pSubwin))
+  {
+    YAxisReverseJoGL * axesReverseStrategy = new YAxisReverseJoGL();
+    axesReverseStrategy->setJavaMapper(javaMapper);
+    newBridge->addAxesReverseStrategy(axesReverseStrategy);
+  }
+
+  if (sciGetZAxisReverse(pSubwin))
+  {
+    ZAxisReverseJoGL * axesReverseStrategy = new ZAxisReverseJoGL();
+    axesReverseStrategy->setJavaMapper(javaMapper);
+    newBridge->addAxesReverseStrategy(axesReverseStrategy);
+  }
+
+  newBridge->setJavaMapper(javaMapper);
   
   return newBridge;
 }

@@ -122,8 +122,8 @@ public class Matrix4D {
 	}
 	
 	/**
-	 * Return the product of this matrix by a vector
-	 * @param vect vector to multiply
+	 * Return the product of this matrix by a vector.
+	 * @param vect vector to multiply considered as a 4D vector by setting its w to 1.
 	 * @return new vector, result of the product
 	 */
 	public Vector3D mult(Vector3D vect) {
@@ -137,6 +137,22 @@ public class Matrix4D {
         resValues[0] /= resValues[MATRIX_SIZE - 1];
         resValues[1] /= resValues[MATRIX_SIZE - 1];
         resValues[2] /= resValues[MATRIX_SIZE - 1];
+        return new Vector3D(resValues);
+	}
+	
+	/**
+	 * Mutliplication using only the 3x3 upper left part of the matrix.
+	 * @param vect vector to multiply
+	 * @return new vector, result of the product
+	 */
+	public Vector3D mult3D(Vector3D vect) {
+		double[] resValues = {0.0, 0.0, 0.0};
+		
+		// w coordinate of the vector is supposed to be 1;
+        for (int i = 0; i < MATRIX_SIZE - 1; i++) {
+            resValues[i]  =   vect.getX() * values[i][0] + vect.getY() * values[i][1]
+                            + vect.getZ() * values[i][2];
+        }
         return new Vector3D(resValues);
 	}
 	

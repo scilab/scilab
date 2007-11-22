@@ -24,7 +24,7 @@ public final class GLTools {
 	 * Actually when using gluProject z may vary between 0 and 1 (relative to depth buffer)
 	 * 0 is front clip plane and 1 back clip plane.
 	 */
-	public static final double MIN_PIXEL_Z = 0.0;
+	public static final double MIN_PIXEL_Z = -1.0;
 	public static final double MAX_PIXEL_Z = 1.0;
 	
 	/** Contains the different line stipple pattern */

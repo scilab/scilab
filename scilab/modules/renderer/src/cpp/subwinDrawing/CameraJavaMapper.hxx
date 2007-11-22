@@ -38,6 +38,10 @@ public:
 
   virtual void replaceCamera( void ) = 0;
 
+  virtual void revertXAxis(void) = 0;
+  virtual void revertYAxis(void) = 0;
+  virtual void revertZAxis(void) = 0;
+
   virtual void getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]) = 0;
   virtual void get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]) = 0;
   /*----------------------------------------------------------------------*/

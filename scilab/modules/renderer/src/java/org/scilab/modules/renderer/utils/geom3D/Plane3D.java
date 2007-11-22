@@ -140,6 +140,22 @@ public class Plane3D {
 	}
 	
 	/**
+	 * Set plane eqution by giving three of its non aligned points and a direction.
+	 * W3 points defined correctly a plane. However, there is still two possibles normals for the plane
+	 * which are opposite. The normal dir is here to specify the one to choose.
+	 * @param point1 first point on the plane
+	 * @param point2 second point on the plane
+	 * @param point3 third point on the plane
+	 * @param normalDir normal choice is made by using the one which has a positive dot product with normalDir
+	 */
+	public void setEquation(Vector3D point1, Vector3D point2, Vector3D point3, Vector3D normalDir) {
+		setEquation(point1, point2, point3);
+		if (getNormal().dotProduct(normalDir) < 0.0) {
+			setEquation(point1, getNormal().getOpposite());
+		}
+	}
+	
+	/**
 	 * Set plane equation by knowing its normal and a point on the plane
 	 * @param point point on the plane
 	 * @param normal normal of the plane
@@ -183,33 +199,36 @@ public class Plane3D {
 	 * @param point3 third point
 	 */
 	public void getThreePointsOnPlane(Vector3D point1, Vector3D point2, Vector3D point3) {
-
+		// do not modify directly p2 to allows to use the same vector 3 times
+		Vector3D p1 = new Vector3D();
+		Vector3D p2 = new Vector3D();
 		if (Math.abs(a) >= Math.abs(b) && Math.abs(a) >= Math.abs(c)) {
 			
 			// a is the greatest so we can use it as divider.
 		    // we assume that at least one of the first three parameters is not 0.
 		    // now we fix some value for y and z and find the corresponding x
 		    // to avoid arithmetical issues we use the values values (0,0) and (1,1)
-		    point1.setValues(-d / a, 0.0, 0.0); // A.x + 0.B + 0.C + D = 0
-		    point2.setValues(-(b + c + d) / a, 1.0, 1.0); // A.x + B + C + D = 0
+			p1.setValues(-d / a, 0.0, 0.0); // A.x + 0.B + 0.C + D = 0
+		    p2.setValues(-(b + c + d) / a, 1.0, 1.0); // A.x + B + C + D = 0
 		    
 		} else if (Math.abs(b) >= Math.abs(c)) {
 			// same with b instead of a
-			point1.setValues(0.0, -d / b, 0.0); // 0.A + B.y + 0.C + D = 0
-			point2.setValues(1.0, -(a + c + d) / b, 1.0); // A + B.y + C + D = 0
+			p1.setValues(0.0, -d / b, 0.0); // 0.A + B.y + 0.C + D = 0
+			p2.setValues(1.0, -(a + c + d) / b, 1.0); // A + B.y + C + D = 0
 			
 		} else {
 			// same with c
-			point1.setValues(0.0, 0.0, -d / c); // 0.A + 0.B + C.z + D = 0
-			point2.setValues(1.0, 1.0, -(a + b + d) / c); // A + B + C.z + D = 0
+			p1.setValues(0.0, 0.0, -d / c); // 0.A + 0.B + C.z + D = 0
+			p2.setValues(1.0, 1.0, -(a + b + d) / c); // A + B + C.z + D = 0
 		}
-		Vector3D p1p2 = point2.substract(point1);
+		Vector3D p1p2 = p2.substract(p1);
 		p1p2.normalize(); // normalize distance between P1 and P2
-		point2.setValues(point1.add(p1p2)); // retrieve P2 coordinates
+		point2.setValues(p1.add(p1p2)); // retrieve P2 coordinates
 		
 		// find the last vector, cross product of the normal (Z) and the first vector (X).
 		Vector3D p1p3 = getNormal().crossProduct(p1p2);
-		point3.setValues(point1.add(p1p3));
+		point3.setValues(p1.add(p1p3));
+		point1.setValues(p1);
 		
 	}
 	

@@ -85,7 +85,7 @@ public class CoordinateTransformation {
 	 */
 	public Vector3D getCanvasCoordinates(GL gl, Vector3D pos) {
 		// I first used gluProject, but it is slower since it will always perform matrices multiplications and inverse.
-		return project(gl, pos);
+		return projectMatrix.mult(pos);
 	}
 	
 	/**
@@ -144,7 +144,28 @@ public class CoordinateTransformation {
 	public Vector3D retrieveSceneCoordinates(GL gl, Vector3D canvasPos) {
 		// I first used gluUnproject, but it is slower since it will always perform matrices multiplications and inverse.
 		
-		return unProject(gl, canvasPos);
+		return unprojectMatrix.mult(canvasPos);
+	}
+	
+	/**
+	 * Transform a direction vector from current coordinates system to canvas position.
+	 * In this mode, translation are discared.
+	 * @param gl current GL pipeline unused.
+	 * @param dir direction in the current coordinates system.
+	 * @return direction in the canvas coordinate system.
+	 */
+	public Vector3D getCanvasCoordinates3D(GL gl, Vector3D dir) {
+		return projectMatrix.mult3D(dir);
+	}
+	
+	/**
+	 * Opposite transformation of getCanvasCoordinates3D.
+	 * @param gl current GL pipeline unused.
+	 * @param canvasDir direction in canvas coordinates
+	 * @return direction in the current coordinates system
+	 */
+	public Vector3D retrieveSceneCoordinates3D(GL gl, Vector3D canvasDir) {
+		return unprojectMatrix.mult3D(canvasDir);
 	}
 	
 	/**

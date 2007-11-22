@@ -15,30 +15,30 @@
 namespace sciGraphics
 {
 
-  class DrawableSubwinBridgeFactory
-  {
+class DrawableSubwinBridgeFactory
+{
 
-  public:
+public:
 
-    DrawableSubwinBridgeFactory( void ) { m_pDrawable = NULL ; }
+  DrawableSubwinBridgeFactory( void ) { m_pDrawable = NULL ; }
 
-    virtual ~DrawableSubwinBridgeFactory( void ) {}
+  virtual ~DrawableSubwinBridgeFactory( void ) {}
 
-    /**
-    * Create a new drawer from the drawed object.
-    */
-    virtual DrawableSubwinBridge * create( void ) ;
+  /**
+  * Create a new drawer from the drawed object.
+  */
+  virtual DrawableSubwinBridge * create( void ) ;
 
-    /**
-    * Set the DrawableFigure wich needs algorithms
-    */
-    void setDrawedSubwin( DrawableSubwin * subwin ) ;
+  /**
+  * Set the DrawableFigure wich needs algorithms
+  */
+  void setDrawedSubwin( DrawableSubwin * subwin ) ;
 
-  protected:
+protected:
 
-    DrawableSubwin * m_pDrawable ;
+  DrawableSubwin * m_pDrawable ;
 
-  } ;
+} ;
 
 }
 

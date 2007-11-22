@@ -34,11 +34,6 @@ public:
 
 private:
 
-  /**
-   * Set a new camera to a subwindow
-   */
-  void setNewCamera(DrawableSubwin * subwin);
-
 } ;
 
 }

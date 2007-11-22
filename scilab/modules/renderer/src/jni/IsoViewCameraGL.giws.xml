@@ -46,6 +46,12 @@
     </method>
     <method name="replaceCamera" returnType="void">
     </method>
+    <method name="revertXAxis" returnType="void">
+    </method>
+    <method name="revertYAxis" returnType="void">
+    </method>
+    <method name="revertZAxis" returnType="void">
+    </method>
     <method name="getPixelCoordinates" returnType="int[]">
       <param type="double" name="userCoordX" />
       <param type="double" name="userCoordY" />

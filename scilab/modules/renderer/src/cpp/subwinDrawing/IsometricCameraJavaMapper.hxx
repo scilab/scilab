@@ -50,6 +50,10 @@ public:
 
   virtual void replaceCamera( void );
 
+  virtual void revertXAxis(void);
+  virtual void revertYAxis(void);
+  virtual void revertZAxis(void);
+
   virtual void getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]);
   virtual void get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]);
   /*----------------------------------------------------------------------*/

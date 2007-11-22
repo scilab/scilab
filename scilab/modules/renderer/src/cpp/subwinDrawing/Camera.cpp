@@ -19,18 +19,14 @@ namespace sciGraphics
 {
 
 /*-----------------------------------------------------------------------------------*/
-Camera::Camera( void )
+Camera::Camera( sciPointObj * pObj ) : DrawableObject(pObj)
 {
-  m_pImp = NULL;
+  
 }
 /*-----------------------------------------------------------------------------------*/
 Camera::~Camera( void )
 {
-  if ( m_pImp != NULL )
-  {
-    delete m_pImp;
-  }
-  m_pImp = NULL;
+  
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::setViewingArea( double axesBounds[4], double margins[4] )
@@ -45,12 +41,12 @@ void Camera::setViewingArea( double axesBounds[4], double margins[4] )
   double scale[2] ;
   scale[0] = (1.0 - margins[0] - margins[1]) * axesBounds[2] ;
   scale[1] = (1.0 - margins[2] - margins[3]) * axesBounds[3] ;
-  m_pImp->setViewingArea(translation, scale);
+  getCameraImp()->setViewingArea(translation, scale);
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::setRotationAngles( double alpha, double theta )
 {
-  m_pImp->setAxesRotation(alpha, theta);
+  getCameraImp()->setAxesRotation(alpha, theta);
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::setSubwinBox( double bounds[6] )
@@ -60,7 +56,7 @@ void Camera::setSubwinBox( double bounds[6] )
   boxCenter[0] = (bounds[0] + bounds[1]) / 2.0 ;
   boxCenter[1] = (bounds[2] + bounds[3]) / 2.0 ;
   boxCenter[2] = (bounds[4] + bounds[5]) / 2.0 ;
-  m_pImp->setAxesCenter(boxCenter) ;
+  getCameraImp()->setAxesCenter(boxCenter) ;
   
   double scale[3] ;
   // 1.0 / ( Xmax - Xmin )
@@ -68,18 +64,18 @@ void Camera::setSubwinBox( double bounds[6] )
   scale[1] = 1.0 / (bounds[3] - bounds[2]) ;
   scale[2] = 1.0 / (bounds[5] - bounds[4]) ;
   
-  m_pImp->setAxesNormalizationScale(scale) ;
+  getCameraImp()->setAxesNormalizationScale(scale) ;
 
-  if (sciGetIsCubeScaled(m_pViewedSubwin->getDrawedObject()))
+  if (sciGetIsCubeScaled(m_pDrawed))
   {
-    m_pImp->setAxesFittingScale(scale);
+    getCameraImp()->setAxesFittingScale(scale);
   }
   else
   {
     // preserve isometry by applying same scale
     double minScale = Min(scale[0], Min(scale[1], scale[2]));
     double fittingScale[3] = {minScale, minScale, minScale};
-    m_pImp->setAxesFittingScale(fittingScale);
+    getCameraImp()->setAxesFittingScale(fittingScale);
   }
   
 
@@ -88,31 +84,67 @@ void Camera::setSubwinBox( double bounds[6] )
   trans[0] = -bounds[0] ;
   trans[1] = -bounds[2] ;
   trans[2] = bounds[4] ;
-  m_pImp->setAxesTranslation(trans) ;
+  getCameraImp()->setAxesTranslation(trans) ;
 
+}
+/*-----------------------------------------------------------------------------------*/
+void Camera::setCameraParameters(void)
+{
+  // here m_pDrawed is the subwin
+  setViewingArea(sciGetAxesBounds(m_pDrawed), sciGetMargins(m_pDrawed)) ;
+
+  double bounds[6] ;
+  sciGetRealDataBounds(m_pDrawed, bounds) ;
+  setSubwinBox(bounds) ;
+
+  double alpha;
+  double theta;
+  sciGetViewingAngles(m_pDrawed, &alpha, &theta);
+  setRotationAngles(alpha, theta);
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::renderPosition( void )
 {
-  m_pImp->renderPosition();
+  getCameraImp()->renderPosition();
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::replaceCamera( void )
 {
-  m_pImp->replaceCamera();
+  getCameraImp()->replaceCamera();
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
-  m_pImp->getPixelCoordinates(userCoord, pixCoord);
+  getCameraImp()->getPixelCoordinates(userCoord, pixCoord);
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
-  m_pImp->get2dViewPixelCoordinates(userCoord, pixCoord);
+  getCameraImp()->get2dViewPixelCoordinates(userCoord, pixCoord);
 }
 /*-----------------------------------------------------------------------------------*/
-
+void Camera::draw( void )
+{
+  initializeDrawing();
+  setCameraParameters();
+  getCameraImp()->renderPosition();
+  getCameraImp()->revertAxes();
+  endDrawing();
+}
+/*-----------------------------------------------------------------------------------*/
+void Camera::show( void )
+{
+  initializeDrawing();
+  getCameraImp()->show();
+  getCameraImp()->revertAxes();
+  endDrawing();
+}
+/*-----------------------------------------------------------------------------------*/
+CameraBridge * Camera::getCameraImp( void )
+{
+  return dynamic_cast<CameraBridge *>(m_pImp);
+}
+/*-----------------------------------------------------------------------------------*/
 }
 
 #undef FIT_WINDOW_RATIO

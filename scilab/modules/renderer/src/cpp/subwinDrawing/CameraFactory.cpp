@@ -7,6 +7,7 @@
 
 #include "CameraFactory.h"
 #include "CameraBridgeFactory.h"
+#include "getHandleDrawer.h"
 
 namespace sciGraphics
 {
@@ -15,16 +16,25 @@ namespace sciGraphics
 Camera * CameraFactory::create( void )
 {
   CameraBridgeFactory bf ;
+  Camera * res = new Camera(m_pDrawed) ;
 
-  bf.setCorrespondingSubwin( m_pSubwin ) ;
-
-  Camera * res = new Camera() ;
-
-  res->setBridge( bf.create() ) ;
+  bf.setCorrespondingCamera( res ) ;
+  
+  res->setDrawableImp( bf.create() ) ;
 
   return res;
 
 }
 /*------------------------------------------------------------------------*/
+void CameraFactory::update( void )
+{
+  // replace the camera bridge
 
+  // camera to update
+  Camera * cam = getSubwinDrawer(m_pDrawed)->getCamera();
+  CameraBridgeFactory bf ;
+  bf.setCorrespondingCamera( cam ) ;
+  cam->setDrawableImp(bf.create());
+}
+/*------------------------------------------------------------------------*/
 }
