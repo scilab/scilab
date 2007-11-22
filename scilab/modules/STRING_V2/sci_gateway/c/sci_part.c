@@ -22,25 +22,23 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 {
     int numRow = 0;
     int numCol = 0;
-
+    int StackPosTwo = 0;
 	char **Input_StringMatrix = NULL;
 	char **Output_StringMatrix = NULL;
 
     int x = 0,Row_One = 0,Col_One = 0,RowCol = 0,Row_Two = 0,Col_Two = 0;
     int *SecondParamaterValue = NULL;
 
-    CheckRhs(1,2);
+    CheckRhs(2,2);
     CheckLhs(1,1);
 
     GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_StringMatrix);
     RowCol = Row_One*Col_One;  
 
-	if (Rhs == 2)
-	{
-		int StackPosTwo = 0;
-		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&StackPosTwo);
-		SecondParamaterValue = istk(StackPosTwo);
-	}
+	
+	
+	GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&StackPosTwo);
+	SecondParamaterValue = istk(StackPosTwo);
     
     Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_One));
 	if (Output_StringMatrix == NULL)
