@@ -48,20 +48,9 @@ getf(SCIFILE2);
 ce5=test_cell2();
 
 // Verify results
-correct1=and(ce1==mlist(["ce","dims","entries"],int32([1 3]),list(1,23,"c")))
-affich_result(correct1,681.1);
 
-correct2=and(ce2==mlist(["ce","dims","entries"],int32([1 3]),list(1,2,"c")))
-affich_result(correct2,681.2);
-
-correct3=and(ce3==mlist(["ce","dims","entries"],int32([1 3]),list(1,[1 2],"c")))
-affich_result(correct3,681.3);
-
-correct4=and(ce4==mlist(["ce","dims","entries"],int32([1 3]),list(1,2,"c")))
-affich_result(correct4,681.4);
-
-correct5=and(ce5==mlist(["ce","dims","entries"],int32([1 3]),list(1,2,"we")))
-affich_result(correct5,681.5);
-
-correct=correct1&correct2&correct3&correct4&correct5
-affich_result(correct,681);
+if or(ce1<>mlist(["ce","dims","entries"],int32([1 3]),list(1,23,"c")))    then pause,end
+if or(ce2<>mlist(["ce","dims","entries"],int32([1 3]),list(1,2,"c")))     then pause,end
+if or(ce3<>mlist(["ce","dims","entries"],int32([1 3]),list(1,[1 2],"c"))) then pause,end
+if or(ce4<>mlist(["ce","dims","entries"],int32([1 3]),list(1,2,"c")))     then pause,end
+if or(ce5<>mlist(["ce","dims","entries"],int32([1 3]),list(1,2,"we")))    then pause,end

@@ -35,8 +35,4 @@ SCIFILECONTENTSREF=["";
 		"else a = 0;";
 		"end;"]
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,682);
-else
-	affich_result(%T,682);
-end
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

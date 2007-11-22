@@ -38,11 +38,8 @@ SCIFILECONTENTSREF=["";
 "mtlb_fprintf(""qsdfsdcvwqghcv"")";
 ]
 
-correct=%T
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
-end
-instr='mtlb_fprintf(""qsdfsdcvwqghcv"")';
-ierr=execstr(instr,'errcatch') 
-if ierr<>0 then correct=%F, end
-affich_result(correct,1971);
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
+
+instr = 'mtlb_fprintf(""qsdfsdcvwqghcv"")';
+ierr  = execstr(instr,'errcatch');
+if ierr<>0  then pause,end

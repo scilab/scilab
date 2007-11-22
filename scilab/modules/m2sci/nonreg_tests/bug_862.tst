@@ -43,9 +43,4 @@ SCIFILECONTENTSREF=["";
 "";
 "a(1,1) = 0;"]
 
-correct=%T
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
-end
-
-affich_result(correct,862);
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

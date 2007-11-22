@@ -35,8 +35,4 @@ SCIFILECONTENTSREF=["";
 		"x = [1,0;0,0;0,0];";
 		"y(1:3) = x(:,1);"]
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,946);
-else
-	affich_result(%T,946);
-end
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

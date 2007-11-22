@@ -39,8 +39,4 @@ SCIFILECONTENTSREF=["";
 		"e = 1/(-36);x = 1/(-2)";
 		"f = 1/(-36);"]
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,800);
-else
-	affich_result(%T,800);
-end
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

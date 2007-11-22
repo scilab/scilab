@@ -59,8 +59,4 @@ SCIFILECONTENTSREF=["";
 		"elseif a==3 then J = [1;2;3]; G = [4;5;6];";
 		"else J = [1;2;3]; G = [4;5;6];end;"]
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,943);
-else
-	affich_result(%T,943);
-end
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

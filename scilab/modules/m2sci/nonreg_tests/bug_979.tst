@@ -33,8 +33,4 @@ SCIFILECONTENTSREF=["";
 		"comment = 1;";
 		"//This line is a comment line"]
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,979);
-else
-	affich_result(%T,979);
-end
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

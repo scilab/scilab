@@ -38,8 +38,4 @@ SCIFILECONTENTSREF=["";
 		"t(1,10) = timer();"]
 
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,750);
-else
-	affich_result(%T,750);
-end
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

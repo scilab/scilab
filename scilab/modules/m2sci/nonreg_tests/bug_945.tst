@@ -39,8 +39,4 @@ SCIFILECONTENTSREF=["";
 		"y(1) = 0;";
 		"y = mtlb_i(y,2,0);"]
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,945);
-else
-	affich_result(%T,945);
-end
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
