@@ -218,6 +218,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/jni/IsoViewCameraGL.cpp src/jni/IsometricCameraGL.cpp \
 	src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
 	src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
+	src/cpp/subwinDrawing/YAxisReverseJoGL.cpp \
+	src/cpp/subwinDrawing/XAxisReverseJoGL.cpp \
+	src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -357,7 +360,10 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-IsoViewCameraGL.lo \
 @GUI_TRUE@	libscirenderer_la-IsometricCameraGL.lo \
 @GUI_TRUE@	libscirenderer_la-IsoViewCameraJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-IsometricCameraJavaMapper.lo
+@GUI_TRUE@	libscirenderer_la-IsometricCameraJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-YAxisReverseJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-XAxisReverseJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-ZAxisReverseJoGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -702,7 +708,10 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/IsoViewCameraGL.cpp \
 @GUI_TRUE@src/jni/IsometricCameraGL.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
+@GUI_TRUE@src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/YAxisReverseJoGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/XAxisReverseJoGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp
 
 
 # List of the gateway c files
@@ -1030,6 +1039,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextContentDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextFillBoxDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextLineBoxDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxisReverseJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YAxisReverseJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZAxisReverseJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-gw_renderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-norenderer.Plo@am__quote@
@@ -2062,6 +2074,27 @@ libscirenderer_la-IsometricCameraJavaMapper.lo: src/cpp/subwinDrawing/IsometricC
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp' object='libscirenderer_la-IsometricCameraJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-IsometricCameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
+
+libscirenderer_la-YAxisReverseJoGL.lo: src/cpp/subwinDrawing/YAxisReverseJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YAxisReverseJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YAxisReverseJoGL.Tpo -c -o libscirenderer_la-YAxisReverseJoGL.lo `test -f 'src/cpp/subwinDrawing/YAxisReverseJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YAxisReverseJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-YAxisReverseJoGL.Tpo $(DEPDIR)/libscirenderer_la-YAxisReverseJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/YAxisReverseJoGL.cpp' object='libscirenderer_la-YAxisReverseJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YAxisReverseJoGL.lo `test -f 'src/cpp/subwinDrawing/YAxisReverseJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YAxisReverseJoGL.cpp
+
+libscirenderer_la-XAxisReverseJoGL.lo: src/cpp/subwinDrawing/XAxisReverseJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XAxisReverseJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XAxisReverseJoGL.Tpo -c -o libscirenderer_la-XAxisReverseJoGL.lo `test -f 'src/cpp/subwinDrawing/XAxisReverseJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XAxisReverseJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XAxisReverseJoGL.Tpo $(DEPDIR)/libscirenderer_la-XAxisReverseJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/XAxisReverseJoGL.cpp' object='libscirenderer_la-XAxisReverseJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XAxisReverseJoGL.lo `test -f 'src/cpp/subwinDrawing/XAxisReverseJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XAxisReverseJoGL.cpp
+
+libscirenderer_la-ZAxisReverseJoGL.lo: src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZAxisReverseJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZAxisReverseJoGL.Tpo -c -o libscirenderer_la-ZAxisReverseJoGL.lo `test -f 'src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ZAxisReverseJoGL.Tpo $(DEPDIR)/libscirenderer_la-ZAxisReverseJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp' object='libscirenderer_la-ZAxisReverseJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZAxisReverseJoGL.lo `test -f 'src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
