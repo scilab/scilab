@@ -223,6 +223,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\pcre_private.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_ascii.c"
 				>
 			</File>

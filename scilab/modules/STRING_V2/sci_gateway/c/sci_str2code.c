@@ -38,7 +38,7 @@ int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 			else  Output_Matrix=(int*)MALLOC(sizeof(int));  
 
 			/* Please check this */
-			nbOutput_Matrix = str2code(Output_Matrix,m1,n1,Input_String);
+			nbOutput_Matrix = str2code(Output_Matrix,Input_String);
 
 			/* put on scilab stack */
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&nbOutput_Matrix,&numRow,&outIndex);    /*Output*/

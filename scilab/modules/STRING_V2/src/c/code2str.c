@@ -44,7 +44,7 @@ void code2str(char **Output_Matrix,int Number_of_Row, int Number_of_Col, int *In
 	Output_Matrix[0][Number_of_Row*Number_of_Col] = 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int str2code(int *Output_Matrix,int Number_of_Row, int Number_of_Col, char **Input_String)
+int str2code(int *Output_Matrix, char **Input_String)
 {
 	int i = 0;
 	int nbOutput_Matrix = 0;

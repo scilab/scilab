@@ -16,12 +16,10 @@ void code2str(char **Output_Matrix,int Number_of_Row, int Number_of_Col, int *In
 /**
 * str2code  return scilab integer codes associated with a character string 
 * @param[out] Output_Matrix  vector of character integer codes 
-* @param[in] Number_of_Row 
-* @param[in] Number_of_Col 
 * @param[in] Input_Matrix a character string 
 * @return size of Output_Matrix
 */
-int str2code(int *Output_Matrix,int Number_of_Row, int Number_of_Col, char **Input_Matrix);
+int str2code(int *Output_Matrix, char **Input_Matrix);
 
 #endif /* __CODE2STR__ */
 /*-----------------------------------------------------------------------------------*/
