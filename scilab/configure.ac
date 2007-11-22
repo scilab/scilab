@@ -1010,6 +1010,14 @@ AC_SUBST(tcldir)
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 
 
+############## TEMP Stuff ##################
+
+AC_ARG_WITH(string-v2,
+    [  --with-string-v2	           Use the version 2 of the String  ])
+
+AM_CONDITIONAL(STRING_V2, test "$with_string_v2" = yes)
+
+
 #################
 ## stop on warning
 #################
@@ -1063,6 +1071,7 @@ modules/double/Makefile
 modules/fileio/Makefile
 modules/spreadsheet/Makefile
 modules/string/Makefile
+modules/STRING_V2/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
 modules/renderer/Makefile
@@ -1128,27 +1137,27 @@ echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warn
 
 echo ""
 echo "Compiler Configuration:"
-echo "Intel (--with-intelcompilers) .... :		$with_intelcompilers"
-echo "GNU gcc (--with-gcc) ............. :		$with_gcc"
-echo "GNU Fortran 77 (--with-g77) ...... :		$with_g77"
-echo "GNU Fortran 95 (--with-gfortran) . :		$with_gfortran"
+echo "Intel (--with-intelcompilers) .... =		$with_intelcompilers"
+echo "GNU gcc (--with-gcc) ............. =		$with_gcc"
+echo "GNU Fortran 77 (--with-g77) ...... =		$with_g77"
+echo "GNU Fortran 95 (--with-gfortran) . =		$with_gfortran"
 echo ""
 echo "Options:"
-echo "Use PVM (--with-pvm) ............................ : $with_pvm"
-echo "PVM include (--with-pvm-include) ................ : $PVMINCLUDE"
-echo "PVM library (--with-pvm-library) ................ : $PVMLIBDIR"
-echo "Do not use TCL/TK (--without-tk) ................ : $with_tk"
-echo "Do not compile with Ocaml (--without-ocaml) ..... : $with_ocaml"
-echo "TCL include (--with-tcl-include) ................ : $USER_TCL_INC_PATH"
-echo "TCL library (--with-tcl-library) ................ : $USER_TCL_LIB_PATH"
-echo "TK include (--with-tk-include) .................. : $USER_TK_INC_PATH"
-echo "TK library (--with-tk-library) .................. : $USER_TK_LIB_PATH"
-echo "Atlas library (--with-atlas-library) ............ : $USER_ATLAS_LIB_PATH"
-echo "Sablotron processor (--with-sablotron) .......... : $with_sablotron"
-echo "Xsltproc processor (--with-xsltproc) ............ : $with_xsltproc"
-echo "Install XML Help (--with-install-help-xml) ...... : $with_install_help_xml"
-echo "Do not compile Scicos (--without-scicos) ........ : $without_scicos"
-echo "Use FFTW (--with-fftw) .......................... : $with_fftw"
+echo "Use PVM (--with-pvm) ............................ = $with_pvm"
+echo "PVM include (--with-pvm-include) ................ = $PVMINCLUDE"
+echo "PVM library (--with-pvm-library) ................ = $PVMLIBDIR"
+echo "Do not use TCL/TK (--without-tk) ................ = $with_tk"
+echo "Do not compile with Ocaml (--without-ocaml) ..... = $with_ocaml"
+echo "TCL include (--with-tcl-include) ................ = $USER_TCL_INC_PATH"
+echo "TCL library (--with-tcl-library) ................ = $USER_TCL_LIB_PATH"
+echo "TK include (--with-tk-include) .................. = $USER_TK_INC_PATH"
+echo "TK library (--with-tk-library) .................. = $USER_TK_LIB_PATH"
+echo "Atlas library (--with-atlas-library) ............ = $USER_ATLAS_LIB_PATH"
+echo "Sablotron processor (--with-sablotron) .......... = $with_sablotron"
+echo "Xsltproc processor (--with-xsltproc) ............ = $with_xsltproc"
+echo "Install XML Help (--with-install-help-xml) ...... = $with_install_help_xml"
+echo "Do not compile Scicos (--without-scicos) ........ = $without_scicos"
+echo "Use FFTW (--with-fftw) .......................... = $with_fftw"
 
 echo ""
 if test ! -z "$PVM_INCLUDE"; then
