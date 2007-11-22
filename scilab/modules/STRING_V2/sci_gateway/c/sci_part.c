@@ -2,15 +2,14 @@
 /* File: part.c                                                           */
 /* Copyright INRIA 2007                                                   */
 /* @Authors : Cong Wu                                                     */
-/* desc : Let  s[k]  stands for the  k  character of Input_StringMatrixing  s  ( or the
-          white space character if  k >length(s) ).
-          part  returns  c , a matrix of character Input_StringMatrixings, such that  
-          c(i,j)  is the Input_StringMatrixing  "s[v(1)]...s[v(n)]"  (  s=mp(i,j)  ).
+/* desc : Let  s[k]  stands for the  k  character of Input_StringMatrixings
+  ( or the  white space character if  k >length(s) ).
+  part  returns  c , a matrix of character Input_StringMatrixings, such that  
+  c(i,j)  is the Input_StringMatrixing  "s[v(1)]...s[v(n)]"  (  s=mp(i,j)  ).
                                                                           */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h>
 #include "gw_string.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -27,22 +26,26 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 	char **Input_StringMatrix = NULL;
 	char **Output_StringMatrix = NULL;
 
-    int x = 0,Row_One = 0,Col_One = 0,RowCol = 0,Row_Two = 0,Col_Two = 0,StackPosTwo=0;
+    int x = 0,Row_One = 0,Col_One = 0,RowCol = 0,Row_Two = 0,Col_Two = 0;
     int *SecondParamaterValue = NULL;
 
-    CheckRhs(1,4);
+    CheckRhs(1,2);
     CheckLhs(1,1);
 
     GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_StringMatrix);
     RowCol = Row_One*Col_One;  
 
-    GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&StackPosTwo);
-    SecondParamaterValue = istk(StackPosTwo);
+	if (Rhs == 2)
+	{
+		int StackPosTwo = 0;
+		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&StackPosTwo);
+		SecondParamaterValue = istk(StackPosTwo);
+	}
     
     Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_One));
 	if (Output_StringMatrix == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\r\n",fname);
+		Scierror(999,"%s : Error memory allocation.\n",fname);
 		return 0;
 	}
 
@@ -59,11 +62,11 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 			{
                   if (Output_StringMatrix[y]) { FREE(Output_StringMatrix[y]); Output_StringMatrix[y]=NULL;}
 			}
-			Scierror(999,"%s : Error memory allocation.\r\n",fname);
+			Scierror(999,"%s : Error memory allocation.\n",fname);
 			return 0;
 		}
         
-        for (y=0;y<Col_Two*Row_Two;y++)
+        for (y=0;y < Col_Two*Row_Two;y++)
         {
              if ( SecondParamaterValue[y] <= (int)strlen(Input_StringMatrix[x]) )
              {
