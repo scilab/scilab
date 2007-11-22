@@ -6,13 +6,8 @@
 // <-- Short Description -->
 //    error in converting matlab || as && and other translator doubts
 
-
-// Non-regression test file for bug 1812
 // Copyright INRIA
 // Scilab Project - F. Belahcene
-
-mode(-1);
-clear;
 
 MFILECONTENTS=[
 "m=3; a=5; b=2; c=3; d=6";
@@ -83,6 +78,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 end
 
 affich_result(correct,1812);
-
-clear
-

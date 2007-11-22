@@ -7,13 +7,8 @@
 //    Function findobj does not work when property value contains
 //    capital letters and is case sensitive for property name.
 
-
-// Non-regression test file for bug 1321
 // Copyright INRIA
 // Scilab Project - V. Couvert
-
-mode(-1);
-clear all;
 
 h=figure(1);
 
@@ -31,6 +26,3 @@ correct = findobj("tag","Alabel")==t & ...
 close(1);
 
 affich_result(correct,1321);
-
-clear all
-

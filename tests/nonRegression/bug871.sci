@@ -25,13 +25,9 @@
 //
 //        0.7560439
 
-
-// Non-regression test file for bug 871
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Date : 3 mai 2005
-
-clear;
 
 SCIFILE=TMPDIR+"/bug871.dia";
 
@@ -53,5 +49,3 @@ if or(REFCONTENTS<>SCIFILECONTENTS) then
 end
 
 affich_result(correct,871);
-
-clear

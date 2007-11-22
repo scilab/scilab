@@ -10,14 +10,9 @@
 //    incorrect syntax error. Take the comment out and it works fine. Not a 
 //    major problem but a slight nuisance
 
-
-// Non-regression test file for bug 1662
 // Copyright INRIA
 // Scilab Project - F. Belahcene
 
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["function  y=bug1662(x)";
 		"switch x % comment1";

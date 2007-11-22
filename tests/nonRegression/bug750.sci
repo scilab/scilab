@@ -10,17 +10,12 @@
 //
 //    It does not translate. Too bad...
 
-
-// Non-regression test file for bug 750
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 22 Mar 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["t=[];";"cputime;";"t(10)=cputime;"]
 
@@ -48,5 +43,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,750);
 end
-
-clear

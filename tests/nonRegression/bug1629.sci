@@ -26,14 +26,8 @@
 //    Note: without the nargin test surrounding the structure field assignments, the
 // ...
 
-
-// Non-regression test file for bug 1629
 // Copyright INRIA
 // Scilab Project - F. Belahcene
-
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["function out=bug1629(par)";
 		"if (nargin<2)";

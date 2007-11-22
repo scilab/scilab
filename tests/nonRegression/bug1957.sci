@@ -7,15 +7,11 @@
 //    Non fonctionnement de intersci pour les variables optionnelles (au 
 //    moins scalaires)
 
-
-// Non-regression test file for bug 1957
 // Copyright INRIA
 // Scilab Project - Serge Steer
 // Copyright INRIA 2006
 // Date : 15 mai 2006
 
-mode(-1);
-clear
 tab=ascii(9);
 path=TMPDIR;
 
@@ -66,4 +62,3 @@ r=r&norm(res-[1.2,-2.3,2000,1d-7])<1d-10;
 res=test(1.2,-2.3,eps=1d-7,ITMAX=33);
 r=r&norm(res-[1.2,-2.3,33,1d-7])<1d-10;
  affich_result(r,1957); 
-clear

@@ -8,17 +8,10 @@
 //    so much,
 //    that causes spectacular crashes of scilab.
 
-
-// Non-regression test file for bug 1619
 // Copyright INRIA
 // Scilab Project - Serge Steer
 // Copyright INRIA 2006
 // Date : 2 octobre 2006
-
-mode(-1);
-clear;
-
-
 
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'
@@ -35,6 +28,3 @@ function y=foo(),y=sin(33)+1;endfunction
 foo(); //execution creates a deleted op in the pseudo code of foo
 T2=execstr('macr2tree(foo)','errcatch')==0
 affich_result(T1&T2,1619);
-
-clear
-

@@ -7,13 +7,8 @@
 //    matlab file conversion problem (apparently: Extraction of
 //    out from 'funcall' tlist is not yet implemented)
 
-
-// Non-regression test file for bug 973
 // Copyright INRIA
 // Scilab Project - V. Couvert
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["%m2scideclare var|Unknown Unknown|Unknown";"var1 = strrep(var,'' '','','')"]
 
@@ -46,5 +41,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 end
 
 affich_result(correct,973);
-
-clear

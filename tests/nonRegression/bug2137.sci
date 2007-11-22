@@ -21,13 +21,8 @@
 //
 //    Francois
 
-
-// Non-regression test file for bug 2137
 // Copyright INRIA
 // Scilab Project - F. Belahcene
-
-mode(-1);
-clear;
 
 MFILECONTENTS=[
 "R = randn;";
@@ -62,7 +57,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 end
 
 affich_result(correct,2137);
-
-clear
-
-

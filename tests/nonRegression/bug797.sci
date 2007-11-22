@@ -26,14 +26,9 @@
 //    .001 <- OK c'est bien ce qu'on souhaite 
 // ...
 
-
-// Non-regression test file for bug 797
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 1er juin 2005
-
-mode(-1);
-clear;
 
 J=0.001;
 format("v",7);

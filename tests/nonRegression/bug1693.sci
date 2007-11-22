@@ -26,16 +26,10 @@
 //    Since the Windows command interpreter accepts this (cd \ changes 
 // ...
 
-
-// Non-regression test file for bug 1505
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2005
 // Date : 28 décembre 2005
-
-mode(-1);
-clear
-
 
 // ================== Test 1 ==================
 
@@ -115,5 +109,3 @@ if ( test1 & test2 & test3 & test4 & test5 & test6 ) then
 else
 	affich_result(%F,1693);
 end
-
-clear

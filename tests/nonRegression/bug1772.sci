@@ -7,14 +7,11 @@
 //    There is a problem while inserting an object of type list in an undefined struct
 //    field
 
-
-// Non-regression test file for bug 1772
 // Copyright INRIA
 // Scilab Project - Serge Steer
 // Copyright INRIA 2005
 // Date : 20 janvier 2006
 
-mode(-1);
 S.x=1;
 ok=%t
 try

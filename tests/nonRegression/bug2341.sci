@@ -6,13 +6,8 @@
 // <-- Short Description -->
 //    unhandled matlab syntax for lhs (Matlab accepts lhs calling sequence without commas
 
-
-// Non-regression test file for bug 2341
 // Copyright INRIA
 // Scilab Project - Vincent COUVERT
-
-//mode(-1);
-clear;
 
 MFILE=TMPDIR+"/bug2341.m"
 SCIFILE=TMPDIR+"/bug2341.sci"
@@ -108,7 +103,3 @@ ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
 correct=correct&ierr==0;
 
 affich_result(correct,2341);
-
-clear
-
-

@@ -26,17 +26,12 @@
 //    tic;
 // ...
 
-
-// Non-regression test file for bug 853
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 18 Mar 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["dir_name=''path'';";
 "dir_target=dir(dir_name);";
@@ -70,5 +65,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,853);
 end
-
-clear

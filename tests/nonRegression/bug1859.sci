@@ -26,15 +26,10 @@
 //
 // ...
 
-
-// Non-regression test file for bug 1859
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2006
 // Date : 27 fevrier 2006
-
-mode(-1);
-clear
 
 Year  = [2002, 2002];
 Month = [   2,    3];
@@ -48,5 +43,3 @@ if ~or(test <> ref) then
 else
 	affich_result(%F,1859);
 end
-
-clear

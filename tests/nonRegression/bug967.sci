@@ -9,14 +9,9 @@
 //    (infinity) question...' (1 sep 2004) and
 //    'Runtime error...' (31 aug 2004)
 
-
-// Non-regression test file for bug 967
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 1er juin 2005
-
-mode(-1);
-clear;
 
 m=[5 %inf;2 %i];
 

@@ -10,8 +10,6 @@
 //
 //        1.0000000000000007000000000E+03
 
-
-// Non-regression test file for bug 584
 // Copyright INRIA
 
 // Modified by Pierre MARECHAL

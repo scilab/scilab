@@ -11,15 +11,11 @@
 //
 //     Bruno
 
-
-// Non-regression test file for bug 1602
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : 11 janvier 2006
 
-mode(-1);
-clear;
 clf();
 
 x = linspace(-0.95,0.95,80);
@@ -36,6 +32,3 @@ if ( a.data_bounds == data_boundsRef ) then
 else
   affich_result(%F,1602);
 end
-
-clear;
-

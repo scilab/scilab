@@ -19,17 +19,12 @@
 //
 //    TOO BAD !
 
-
-// Non-regression test file for bug 857
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 18 Mar 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["% i and j do not exist as variables -> Imaginary unit";
 		"a=1+2*i";
@@ -114,5 +109,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,857);
 end
-
-clear

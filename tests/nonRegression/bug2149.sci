@@ -23,14 +23,9 @@
 //
 //    Francois
 
-
-// Non-regression test file for bug 2149
 // Copyright INRIA
 // Scilab Project - Allan CORNET
 // Copyright INRIA 2006
-
-mode(-1);
-clear
 
 correctItem=0;
 
@@ -61,6 +56,3 @@ if (correctItem == 2) then
 else
 	affich_result(%F,2149);
 end
-
-
-clear

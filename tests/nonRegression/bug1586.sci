@@ -26,15 +26,10 @@
 //        0.
 // ...
 
-
-// Non-regression test file for bug 1586
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2005
 // Date : 28 octobre 2005
-
-mode(-1);
-clear;
 
 dirToSave = pwd();
 
@@ -50,5 +45,3 @@ end
 
 rmdir('bug1586');
 cd(dirToSave);
-
-clear

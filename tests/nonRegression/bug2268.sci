@@ -7,15 +7,9 @@
 //    Memory leak in msscanf().  When calling msscanf() many times, as in reading in
 //    large CSV files, process size grows beyond memory capacity.
 
-
-// Non-regression test file for bug 2266
 // Serge Steer - Scilab Project
 // Copyright INRIA
 // 2 janv 2007
-
-mode(-1);
-clear;
-
 
 free=getmemory() ;
 for k=1:10000

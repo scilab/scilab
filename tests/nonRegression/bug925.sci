@@ -22,17 +22,12 @@
 //    what is obviously wrong !
 //    4 has become 1 ....
 
-
-// Non-regression test file for bug 925
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 18 Mar 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["function bug925(A,B)";"A(4)=B(3)"]
 
@@ -60,5 +55,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,925);
 end
-
-clear

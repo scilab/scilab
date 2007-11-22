@@ -15,14 +15,10 @@
 //    Jacques-Deric
 
 
-// Non-regression test file for bug 1682
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : 11 janvier 2006
-
-mode(-1);
-clear;
 
 //  Program Spas42151A
 //  Designed for Scilab 3.1 & 4.0
@@ -57,6 +53,3 @@ if ( (ha1.rotation_angles == newAngles) & (ha2.rotation_angles == newAngles) ) t
 else
   affich_result(%F,1682);
 end
-
-clear;
-

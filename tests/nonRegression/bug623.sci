@@ -7,8 +7,6 @@
 //    Even after applying the patch corresponding to bug report
 //    608, integer cast to boolean is still not perfect.
 
-
-// Non-regression test file for bug 623
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2006

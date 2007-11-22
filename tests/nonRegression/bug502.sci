@@ -27,10 +27,6 @@
 // ...
 
 
-// bug502
-
-mode (-1);
-clear;
 // set old_style on;
 // remove old style graphics mode on trunk
 

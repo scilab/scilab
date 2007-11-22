@@ -17,15 +17,10 @@
 //
 //    Fabian
 
-
-// Non-regression test file for bug 1506
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2005
 // Date : 28 décembre 2005
-
-mode(-1);
-clear
 
 now = getdate();
 
@@ -46,5 +41,3 @@ if ( test1 & test2 & test3 ) then
 else
 	affich_result(%F,1506);
 end
-
-clear

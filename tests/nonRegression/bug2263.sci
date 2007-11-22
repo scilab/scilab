@@ -21,14 +21,10 @@
 //      e=in+4;
 //    endfunction
 
-
-// Non-regression test file for bug 2263
 // Serge Steer - Scilab Project
 // Copyright INRIA
 // 2 janv 2007
 
-mode(-1);
-clear;
 function [a,b,c,d,e]=test()
   a=1;b=2;c=3;d=4;e=5;
 endfunction

@@ -12,17 +12,12 @@
 //    function [a] = Test (x) % test
 //    a = x;
 
-
-// Non-regression test file for bug 942
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 18 Mar 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["function [a] = bug942 (x) % bug942";"% help line";"% help line";"a = x;"]
 
@@ -54,5 +49,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,942);
 end
-
-clear

@@ -26,14 +26,9 @@
 //    !   28.    29.    30.    31.    0.     0.     0.  !
 // ...
 
-
-// Non-regression test file for bug 1249
 // Author : Scilab Project - Pierre MARECHAL
 // Copyright INRIA
 // Date : 21 Mar 2005
-
-mode(-1);
-clear;
 
 M = calendar(2005,3);
 
@@ -48,5 +43,3 @@ if or((Mref<>M) <> [%F,%F,%F]) then
 else
 	affich_result(%T,1249);
 end
-
-clear

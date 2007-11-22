@@ -7,14 +7,10 @@
 //    Bug dans la primitive "isequal" (au moins) avec des type de données 
 //    utilisateur
 
-
-// Non-regression test file for bug 2052
 // Serge Steer - Scilab Project
 // Copyright INRIA
 // 19/02/2007
 
-mode(-1);
-clear;
 cur=pwd();
 cd(TMPDIR);
 //first create a function changetype 
@@ -57,4 +53,3 @@ l=list(1,2,3);
 r=isequal(a,a)&~isequal(a,A)&~isequal(A,a)&isequal(A,A)&isequal(l,l)&~isequal(l,A);
 
 affich_result(r,2052);
-clear

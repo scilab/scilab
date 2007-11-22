@@ -16,8 +16,6 @@
 //
 //    Francois
 
-
-// Non-regression test file for bug 2344
 // Author : Francois Vogel
 // Date   : 16 March 2007
 //
@@ -26,9 +24,6 @@
 //X1DOT + 10.0*X1 = 0  
 //X1 + X2 = 1
 //X1(0) = 1.0, X2(0) = 0.0
-
-mode(-1);
-clear;
 
 t=1:10;t0=0;y0=[1;0];y0d=[-10;0];
 info=list([],0,[],[],[],0,0);
@@ -45,6 +40,3 @@ if and(error_str == []) then
 else
     affich_result(%F,2344);  // Bug 2344 re-appeared!!
 end
-
-clear
-

@@ -6,14 +6,9 @@
 // <-- Short Description -->
 //    error in the routine covar.sci
 
-
-// Non-regression test file for bug 801
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Date : 3 mai 2005
-
-clear;
-mode(-1);
 
 x=[4 5];
 y=[3 4 5 6];
@@ -26,5 +21,3 @@ if (covar(x,y,m) <> -0.1785714) then
 end
 
 affich_result(correct,801);
-
-// clear

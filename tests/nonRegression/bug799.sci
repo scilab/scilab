@@ -7,15 +7,10 @@
 //    Reload large matrix file from disk with "fscanfMat" command 
 //    crashes Scilab.
 
-
-// Non-regression test file for bug 799
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2005
 // Date : 6 fevrier 2005
-
-mode(-1);
-clear
 
 stacksize(19e6);
 m=10593;
@@ -29,5 +24,3 @@ if( a1(1,1) == 0.21 ) then
 else
 	affich_result(%F,799);
 end
-
-clear

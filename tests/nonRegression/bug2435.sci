@@ -11,8 +11,6 @@
 // Copyright INRIA 2007
 // Date : June 2007
 
-mode(-1) ;
-clear ;
 BugNumber=2435;
 
 function [f,g,ind]=cost(x,ind)
@@ -25,4 +23,3 @@ x0=[1;-1;1];
 T=execstr('[f,xopt]=optim(cost,,''b'',-2*ones(x0),2*ones(x0),x0);','errcatch')==54
     
 affich_result(T,BugNumber) ;
-clear ;

@@ -7,15 +7,10 @@
 //    fun2string and macr2tree cannot cope with nested function
 //    definitions
 
-
-// Non-regression test file for bug 731
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Date : 3 mai 2005
 // last modified : 10 Jan 2006
-
-clear;
-mode(-1);
 
 // =============== Test 1 =============== 
 
@@ -83,5 +78,3 @@ test3=~or(REFCONTENTS_III<>CONTENTS_III);
 
 // =============== Result =============== 
 affich_result(test1 & test2 & test3,731);
-
-clear

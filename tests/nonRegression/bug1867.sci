@@ -8,13 +8,8 @@
 //    than 30 it
 //    seems).
 
-
-// Non-regression test file for bug 1867
 // A.C
 // Copyright INRIA 2006
-
-mode(-1);
-clear
 
 str1 = '1 2 3 4 5 6 7 8 9 10';
 L1 = msscanf(str1,"%d %d %d %d %d %d %d %d %d %d");
@@ -62,5 +57,3 @@ if (Test1 & Test2 & Test3) then
 else
  affich_result(%F,1867); 
 end
-
-clear

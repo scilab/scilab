@@ -15,17 +15,12 @@
 //
 //    Apply mfile2sci to the Matlab script given below.
 
-
-// Non-regression test file for bug 1262
 // Copyright INRIA
 // Scilab Project - F.Belahcene
 
 // Modified by Pierre MARECHAL
 // Scilab Project
 // 20 mai 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["A = rand(3,3);"
 	""
@@ -89,5 +84,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 end
 
 affich_result(correct,1262);
-
-clear

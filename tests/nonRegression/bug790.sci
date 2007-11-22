@@ -7,17 +7,12 @@
 //    Scilab crashes when you enter findobj().
 //    I know that it is not usefull but, the bug exists.
 
-
-// Non-regression test file for bug 790
 // Author : Allan CORNET
 // Copyright INRIA
- 
+
  // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 23 Mar 2005
-
-mode (-1);
-clear;
 
 ierr1 = execstr('findobj() == []','errcatch');
 ierr2 = execstr('findobj(''test'') == []','errcatch');

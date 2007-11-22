@@ -11,15 +11,11 @@
 //
 //    Also occur in other OS's.
 
-
-// Non-regression test file for bug 614
 // Copyright INRIA
 // Scilab Project - Serge Steer
 // Copyright INRIA 2006
 // Date : 10 janvier 2006
 
-mode(-1);
-clear
 D=pwd()
 cd(TMPDIR)
 mputl('ilib_mex_build(''libmex'',[''mexf16'',''mexfunction16'',''cmex''],[],[],''Makelib'','''','''','''')','builder.sce')

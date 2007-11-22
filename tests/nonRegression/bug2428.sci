@@ -11,13 +11,8 @@
 //    the first case the conversion fails without errors, in the second case 
 //    an error appears and a message suggests to report here the error.
 
-
-// Non-regression test file for bug 2428
 // Copyright INRIA
 // Scilab Project - Vincent COUVERT
-
-//mode(-1);
-clear;
 
 MFILE=TMPDIR+"/bug2428.m"
 SCIFILE=TMPDIR+"/bug2428.sci"
@@ -38,6 +33,3 @@ correct=correct&ierr==0;
 
 //affich_result(correct,2428);
 disp(correct);
-clear
-
-

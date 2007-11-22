@@ -6,17 +6,12 @@
 // <-- Short Description -->
 //    probleme with the logical or in tests.
 
-
-// Non-regression test file for bug 682
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 22 Mar 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["b=1;";"if b==0 | b(2)>0";"  a = 1;";"  else a = 0;";"end"]
 
@@ -45,5 +40,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,682);
 end
-
-clear

@@ -8,9 +8,6 @@
 //    Side effect: getmark() is very verbose and does not show
 //    scaled marks.
 
-
-// exec("bug625.sci");  
- 
 iReturnCode=execstr('xget(''mark size'')','errcatch');
 
 if iReturnCode == 0 then

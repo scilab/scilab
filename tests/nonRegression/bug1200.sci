@@ -11,14 +11,9 @@
 //    format("v",7) => 1.E-3
 //    format("v",8) => 0.001
 
-
-// Non-regression test file for bug 1200
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 1er juin 2005
-
-mode(-1);
-clear;
 
 J=0.001;
 format("v",7);

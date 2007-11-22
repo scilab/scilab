@@ -8,11 +8,6 @@
 //    expected of contour2d: 2D plot of a set of level lines.
 
 
-// exec("bug569.sce")
-
-mode (-1);
-clear;
-
 disp("check the result of the  graphic windows");
 
 x = 0:0.1:1;

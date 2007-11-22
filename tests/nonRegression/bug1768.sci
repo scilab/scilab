@@ -9,15 +9,10 @@
 //    file, xmltohtml crashes. Apparently, it does not found the whatis file 
 //    even if it was just created successfully
 
-
-// Non-regression test file for bug 1768
 // Copyright INRIA
 // Scilab Project - Serge Steer
 // Copyright INRIA 2005
 // Date : 20 janvier 2006
-
-mode(-1);
-clear
 
 function y=foo1(a,b)
   y=a+b
@@ -39,4 +34,3 @@ if ok
   end 
 end
 affich_result(ok,1768);
-clear

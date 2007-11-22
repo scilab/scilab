@@ -12,8 +12,6 @@
 // Copyright INRIA 2007
 // Date : June 2007
 
-mode(-1) ;
-clear ;
 BugNumber=2616;
 T=[];
 //simple case uncompiled 
@@ -62,5 +60,3 @@ T=[T,ierr<>17];
 stacksize(old(1))
 
 affich_result(and(~T),BugNumber) ;
-clear ;
-

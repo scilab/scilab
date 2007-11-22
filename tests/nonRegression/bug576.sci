@@ -8,17 +8,14 @@
 //    when the ouput argument is empty, the ouput is not detected
 //    as an empty result ?
 
-
-// exec("bug576.sce")
-
 disp("press enter");
 chemin=input('?','s');
 
 isempty(chemin)
 
 if isempty(chemin) == %F then
-affich_result(%T,576);
+	affich_result(%T,576);
 else
-affich_result(%T,576);
+	affich_result(%T,576);
 end;
 

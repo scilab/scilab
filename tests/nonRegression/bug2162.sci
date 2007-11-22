@@ -6,15 +6,10 @@
 // <-- Short Description -->
 //    When using plot3d with facets coordinates, it is impossible to draw a single facet.
 
-
-// Non-regression test file for bug 2162
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : October 19 2006
-
-mode(-1);
-clear;
 
 xf = [0;0;0;0] ;
 yf = [0;1;1;0] ;
@@ -30,6 +25,4 @@ if ( e.type == "Fac3d" ) then
 else
   affich_result(%F,2162);
 end
-
-clear;
 

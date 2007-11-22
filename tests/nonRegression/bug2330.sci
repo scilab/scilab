@@ -9,13 +9,9 @@
 //    partially (some data are fitted some others not) on WinXP.
 
 
-// Non-regression test file for bug 2330
 // Serge Steer - Scilab Project
 // Copyright INRIA
 // 30 apr 2007
-
-mode(-1);
-clear;
 
 //build the data to fit
 //---------------------
@@ -35,5 +31,3 @@ p0=[0.01;0.001;0.01;0.001;0.1];
 //call datafit
 [pr,err]=datafit(list(myerf,t),X,p0);
 affich_result(err<5d-6,2330);
-clear
-

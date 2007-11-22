@@ -11,10 +11,6 @@
 //    softwares.all other wave funstions are working such as 
 //    wavread loadwave etc...
 
-
-// exec("e:\testNonReg\bug600.sce")
-
-
 disp("activate your sound card, and run this file");
 disp("if you hear something, that means the playsnd & PlaySnd work");
 

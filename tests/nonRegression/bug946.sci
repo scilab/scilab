@@ -7,17 +7,12 @@
 //    Code badly converted by mfile2sci when using particular 
 //    column vector initialization / assignment (see attachments).
 
-
-// Non-regression test file for bug 946
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 18 Mar 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["x=zeros(3,2);";"y=zeros(3,1);";"x=[1 0;0 0;0 0];";"y(1:3)=x(:,1);"]
 
@@ -45,5 +40,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,946);
 end
-
-clear

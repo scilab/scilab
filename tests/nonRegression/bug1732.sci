@@ -9,15 +9,10 @@
 //
 //    Jacques-Deric
 
-
-// Non-regression test file for bug 1732
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : 18 janvier 2006
-
-mode(-1);
-clear;
 
 ref = [1,0,5] ;
 
@@ -38,6 +33,3 @@ if ( res1 == ref & res2 == ref  ) then
 else
   affich_result(%F,1732);
 end
-
-clear;
-

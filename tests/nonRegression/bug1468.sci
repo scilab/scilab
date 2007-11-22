@@ -11,10 +11,6 @@
 // Copyright INRIA
 // Scilab Project - F. Belahcene
 
-
-mode(-1);
-clear;
-
 MFILECONTENTS=["beep";
 		"beep on";
 		"beep off";
@@ -45,5 +41,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,924);
 end
-
-clear

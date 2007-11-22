@@ -13,14 +13,8 @@
 //    k=k-1 for lines 141 and 181 which seems to work OK. No errors and 
 //    produces an sci file
 
-
-// Non-regression test file for bug 1636
 // Copyright INRIA
 // Scilab Project - F. Belahcene
-
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["function A = bug1636(x,y,...";
 		"z,t,...";
@@ -58,5 +52,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,1636);
 end
-
-clear

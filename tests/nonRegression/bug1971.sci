@@ -7,13 +7,8 @@
 //    the mtlb_fprintf does not work. It should be re-written to follow the Matlab doc
 //    of fprintf
 
-
-// Non-regression test file for bug 1971
 // Copyright INRIA
 // Scilab Project - F. Belahcene
-
-mode(-1);
-clear;
 
 MFILECONTENTS=[
 "fprintf(''qsdfsdcvwqghcv'')";
@@ -51,7 +46,3 @@ instr='mtlb_fprintf(""qsdfsdcvwqghcv"")';
 ierr=execstr(instr,'errcatch') 
 if ierr<>0 then correct=%F, end
 affich_result(correct,1971);
-
-clear
-
- 

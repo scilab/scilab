@@ -7,15 +7,10 @@
 //    xpolys([],[],-1)
 //    kills scilex
 
-
-// Non-regression test file for bug 2045
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : October 27 2006
-
-mode(-1);
-clear;
 
 // should not draw anything
 xpolys([],[],-1) ;
@@ -73,5 +68,3 @@ if ( e.type <> "Polyline" ) then
 end
 
 affich_result(%T,2045) ;
-
-clear ;

@@ -10,15 +10,10 @@
 //    with the entered colormap. Moreover, Scilab often crash some time after this bug
 //    occures.
 
-
-// Non-regression test file for bug 1586
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : 18 Juillet 2006
-
-mode(-1) ;
-clear ;
 
 // test the modification on a figure which is not current
 f1 = gcf() ;

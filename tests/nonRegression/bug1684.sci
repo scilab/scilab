@@ -11,14 +11,11 @@
 //    expressions and I don't want to change it to test is the value is negative and
 //    then add parenthesis.
 
-
-// Non-regression test file for bug 1684
 // Copyright INRIA
 // Scilab Project - Serge Steer
 // Copyright INRIA 2005
 // Date : 6 mars 2006
 
-mode(-1);
 a=1+-1;
 ok1=a==0;
 a=1-+1;

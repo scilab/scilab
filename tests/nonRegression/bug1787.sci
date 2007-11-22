@@ -9,15 +9,10 @@
 //
 //    Jacques-Deric
 
-
-// Non-regression test file for bug 1787
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : 10/02/2006
-
-mode(-1);
-clear ;
 
 titleStr  = "Scilab P0W3R" ;
 xLabelStr = "XXX" ;
@@ -40,5 +35,3 @@ if ( resT & resX & resY ) then
 else
   affich_result(%F,1787);
 end
-
-clear ;

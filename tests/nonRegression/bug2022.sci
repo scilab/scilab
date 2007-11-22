@@ -11,14 +11,9 @@
 //
 //    perctl([23.4,364.34,1929.3,4234.3,293.3,928.3],[10])
 
-
-// Non-regression test file for bug 2022
 // Author : Scilab Project - Pierre MARECHAL
 // Copyright INRIA
 // Date : 12 june 2006
-
-mode(-1);
-clear;
 
 test1 = ( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],90) == [472 3] );
 test2 = ( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],75) == [452 6] );
@@ -34,6 +29,3 @@ if and(test1) & and(test2) & and(test3) & and(test4) & and(test5) & and(test6) &
 else
 	affich_result(%F,2022);
 end
-
-clear
-

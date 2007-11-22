@@ -10,12 +10,6 @@
 //
 //    The pb does not exist under windows
 
-
-// exec("bug612.sci");
-
-mode (-1);
-clear;
-
 xset("wresize",0);
 xset('wdim',2^16+3,5000);
 
@@ -24,7 +18,7 @@ resultWindows=[ 65535.    5000.];
 
 if resultLinux == resultWindows then
 	affich_result(%T,612)
-else 
+else
 	resultLinux
 	affich_result(%F,612);
-end;
+end

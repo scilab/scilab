@@ -11,8 +11,6 @@
 //
 //    the last 'or' looks superfluous to me.
 
-
-// exec("bug558.sce");
 fileName="bug558.txt";
 diary(fileName);
 x = 20;
@@ -25,7 +23,7 @@ if w(1) == 0 then
 else
   affich_result(%T,558);
 end;
- 
+
 mdelete(fileName);
 mdelete('bug558.mat');
-    
+

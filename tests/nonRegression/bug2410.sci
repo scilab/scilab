@@ -6,14 +6,9 @@
 // <-- Short Description -->
 //    string(boolean array) is incredibly slow
 
-
-// Non-regression test file for bug 2410
 // Author : Scilab Project - Pierre MARECHAL
 // Copyright INRIA
 // Date : 05 mai 2007
-
-mode(-1);
-clear;
 
 tic();
 string(zeros(1,10000)==1);
@@ -24,5 +19,3 @@ if( a < 0.1 ) then
 else
 	affich_result(%F,2410);
 end
-
-clear

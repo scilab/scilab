@@ -6,14 +6,9 @@
 // <-- Short Description -->
 //    @?
 
-
-// Non-regression test file for bug 1183
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 1er juin 2005
-
-mode(-1)
-clear
 
 A =1@1
 B=lasterror()

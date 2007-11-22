@@ -9,14 +9,8 @@
 //    (this is simple in Matlab)?    The following is my example
 //    which does not work.  Any suggestions?
 
-
-
-// exec("bug610.sci");
-
- 
-
 function varargout = mysum(a, b)
-  varargout = list(a + b, a - b, a * b);
+	varargout = list(a + b, a - b, a * b);
 endfunction
 
 iCodeError= execstr('function [y, varargout] = MyNew(a,b) ..
@@ -24,15 +18,11 @@ iCodeError= execstr('function [y, varargout] = MyNew(a,b) ..
    endfunction' ..
 ,'errcatch' );
 
-//lasterror()
- 
 if iCodeError   then
-disp("-----------------------");
-lasterror()
-disp("-----------------------");
-affich_result(%T,610)
+	disp("-----------------------");
+	lasterror()
+	disp("-----------------------");
+	affich_result(%T,610)
 else
-affich_result(%F,610)
-
+	affich_result(%F,610)
 end;
- 

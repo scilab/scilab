@@ -15,17 +15,12 @@
 //    disp(a)
 //    but it is not....
 
-
-// Non-regression test file for bug 924
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 18 Mar 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["function bug924";
 		"a=''milou'';";
@@ -75,5 +70,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 else
 	affich_result(%T,924);
 end
-
-clear

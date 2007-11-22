@@ -6,15 +6,11 @@
 // <-- Short Description -->
 //    Problem while inserting a matrix in an N-D matrix
 
-
-// Non-regression test file for bug 1784
 // Copyright INRIA
 // Scilab Project - Serge Steer
 // Copyright INRIA 2005
 // Date : 23 janvier 2006
 
-mode(-1);
-clear
 A=hypermat([3,3,2]);
 try
   A(1,1:3,1:3)=[1 2 3;4 5 6;7 8 9];
@@ -27,4 +23,3 @@ if ok then
 		    6;0;0;9;0;0]))
 end
 affich_result(ok,1784);
-clear

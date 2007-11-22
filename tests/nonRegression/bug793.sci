@@ -6,12 +6,6 @@
 // <-- Short Description -->
 //    Getdate crashes scilab with negative arguments
 
-
-// bug793
-
-mode (-1);
-clear
-
 affich_result(getdate(-1) == [0 0 0 0 0 0 0 0 0 0], 793)
 
 //-->getdate(-1)
@@ -19,5 +13,3 @@ affich_result(getdate(-1) == [0 0 0 0 0 0 0 0 0 0], 793)
 // ans  =
 //
 //!   0.    0.    0.    0.    0.    0.    0.    0.    0. !  
-clear
-

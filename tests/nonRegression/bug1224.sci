@@ -10,14 +10,9 @@
 //    A*A  //This is correct
 //    A*A*A  //This is wrong
 
-
-// Non-regression test file for bug 1224
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 1er juin 2005
-
-mode(-1);
-clear;
 
 inf=%inf;
 A=diag([-inf,inf]);

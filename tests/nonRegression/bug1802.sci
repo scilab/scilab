@@ -13,10 +13,6 @@
 // Copyright INRIA 2005
 // Date : 30 janvier 2006
 
-mode(-1);
-clear
-
 a=rand(100,500);
 timer();sci2exp(a);t=timer();
 affich_result(t<60,1802);
-clear

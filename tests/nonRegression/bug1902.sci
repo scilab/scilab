@@ -6,8 +6,6 @@
 // <-- Short Description -->
 //    in drawlater mode the bounding box of strings may be wrong
 
-
-// Non-regression test file for bug 1902
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
@@ -71,4 +69,3 @@ if (  norm( box11 - box12 ) < 0.1 ..
 else
   affich_result(%F,1902) ;
 end
-

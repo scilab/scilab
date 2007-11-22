@@ -30,9 +30,6 @@
 // bug488
 // 489, 491 492 496 duplicate
 
-mode (-1)
-clear
-
 // rechercher l'existance du répertoire tcl sous Scilab
 
 correct=%F
@@ -45,8 +42,6 @@ if correct & MSDOS then
 end // du if
 
 affich_result(correct, 488)
-
-clear
 
 // Error message :
 //  --> !--error   999

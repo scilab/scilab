@@ -6,15 +6,11 @@
 // <-- Short Description -->
 //    Problem encountered when redefining builtin function
 
-
-// Non-regression test file for bug 1794
 // Copyright INRIA
 // Scilab Project - Serge Steer
 // Copyright INRIA 2005
 // Date : 30 janvier 2006
 
-mode(-1);
-clear
 beta=5;
 try
   beta
@@ -36,4 +32,3 @@ catch
 end
 
 affich_result(ok1&ok2,1794);
-clear

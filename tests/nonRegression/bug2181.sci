@@ -9,14 +9,9 @@
 //
 //    Francois
 
-
-// Non-regression test file for bug 2181
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 30 octobre 2006
-
-mode(-1);
-clear;
 
 if MSDOS then
 	
@@ -39,5 +34,3 @@ if MSDOS then
 else
 	affich_result(%T,2181);
 end
-
-clear

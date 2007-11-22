@@ -7,17 +7,12 @@
 //    M2SCI convert Matlab expression such as a(n,:)=b(m,:) (with
 //    a==[])by a(n,:)=b(m,:) but execution crashes.
 
-
-// Non-regression test file for bug 859
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA
 // Date : 18 Mar 2005
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["result=ones(10,10);";
 		"m=1;";
@@ -53,4 +48,3 @@ else
 	affich_result(%T,859);
 end
 
-clear

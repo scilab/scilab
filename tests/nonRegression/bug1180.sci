@@ -16,14 +16,9 @@
 //    if (da-db) > 0 then b=b*z^(da-db); end 
 //    if (db-da) > 0 then a=a*z^(db-da); end
 
-
-// Non-regression test file for bug 1180
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 1er juin 2005
-
-mode(-1)
-clear
 
 x = zeros(1:10);
 x(5) = 1;

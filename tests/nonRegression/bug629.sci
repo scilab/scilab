@@ -19,12 +19,9 @@ iReturnCode=execstr('wavread(''t1.wav'')','errcatch');
 
 //[strError,iReturnCode]=lasterror() 
 
- if iReturnCode == 0 then
-
-   affich_result(%T,629);
-   
-  else 
-    
-    disp (lasterror());
-    affich_result(%F,629);
+if iReturnCode == 0 then
+	affich_result(%T,629);
+else
+	disp (lasterror());
+	affich_result(%F,629);
  end

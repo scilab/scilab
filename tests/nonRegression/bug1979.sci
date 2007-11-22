@@ -9,18 +9,13 @@
 //    -->a=int32(1);b=int32(6);
 //    -->a:b
 //    a:b
-//        !--error 4 
+//        !--error 4
 //    undefined variable : %i_b_i
 
-
-// Non-regression test file for bug 1979
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2006
 // Date : 23 mai 2006
-
-mode(-1);
-clear
 
 a = int32(1);
 b = int32(6);
@@ -32,5 +27,3 @@ if  and( c == d ) then
 else
 	affich_result(%F,1979);
 end
-
-clear

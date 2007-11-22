@@ -12,8 +12,6 @@
 // Copyright INRIA 2007
 // Date : Sept 2007
 
-mode(-1) ;
-clear ;
 BugNumber=2467
 plot(1:10)
 a=gca();a.log_flags='lnn';
@@ -23,4 +21,3 @@ clf();
 T=execstr("xload(path)",'errcatch')==0
 
 affich_result(T,BugNumber) ;
-clear ;

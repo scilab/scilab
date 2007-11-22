@@ -16,13 +16,8 @@
 //               !--error     4
 //    undefined variable : a
 
-
-// Non-regression test file for bug 862
 // Copyright INRIA
 // Scilab Project - V. Couvert
-
-mode(-1);
-clear;
 
 MFILECONTENTS="a(1)=0;"
 
@@ -54,5 +49,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 end
 
 affich_result(correct,862);
-
-clear

@@ -6,25 +6,10 @@
 // <-- Short Description -->
 //    a(2,3,2)='x' returns an empty matrix.
 
+a(2,3,2)='y'
 
-// exec("bug566.sce");
-
-clear;
-
-a(2,3,2)='y' 
- 
-if a == []   then
-
- affich_result(%F,566);
-
- 
+if a == [] then
+	affich_result(%F,566);
 else
- affich_result(%T,566);
- 
-
-end;
- 
-
-
-
-
+	affich_result(%T,566);
+end

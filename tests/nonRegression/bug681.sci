@@ -7,12 +7,8 @@
 //    m2sci doesn't translate "error" function.
 
 
-// Non-regression test file for bug 681
 // Copyright INRIA
 // Scilab Project - V. Couvert
-
-mode(-1);
-clear;
 
 MFILECONTENTS="error(''This is an error message'')"
 
@@ -44,5 +40,3 @@ if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 end
 
 affich_result(correct,681);
-
-clear

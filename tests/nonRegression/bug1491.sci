@@ -11,15 +11,10 @@
 //
 //    Jacques-Deric
 
-
-// Non-regression test file for bug 1491
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : 10/02/2006
-
-mode(-1);
-clear ;
 
 clipBox = [0.1,0.9,0.8,0.8] ;
 
@@ -48,5 +43,3 @@ if ( checkR1 & checkR2 & checkP1  ) then
 else
   affich_result(%F,1491);
 end
-
-clear ;

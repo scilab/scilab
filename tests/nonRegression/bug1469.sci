@@ -26,14 +26,11 @@
 //    Stop after row     3 in function foo1 :
 // ...
 
-
-// Non-regression test file for bug 1469
 // Copyright INRIA
 // Scilab Project - Serge Steer
 // Copyright INRIA 2006
 // Date : 23 novembre 2006
 
-mode(-1)
 //test of line numbering in  functions, handling initial comments
 
 function foo,endfunction
@@ -204,9 +201,6 @@ getf(TMPDIR+'/foo.sci')
 L=macr2lst(foo); //getf ignores declaration line comments
 R22=L(4)(1)=='15'&L(5)(1)=='31'&L(6)(1)=='15'&size(L)==11
 clear foo;
-
-
-
 
 R=[R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13,R14,R15,R16,R17,R18,R19,R20,R21,R22]
 affich_result(and(R),1469);

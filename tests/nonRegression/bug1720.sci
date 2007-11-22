@@ -14,15 +14,10 @@
 //
 //    Jacques-Deric
 
-
-// Non-regression test file for bug 1720
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : 11 janvier 2006
-
-mode(-1);
-clear;
 
 hf = scf(1) ;
 hf.figure_name = "4.13.22A1";
@@ -42,6 +37,3 @@ if ( hc.line_mode == 'off' ) then
 else
   affich_result(%F,1720);
 end
-
-clear;
-

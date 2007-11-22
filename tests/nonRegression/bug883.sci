@@ -6,14 +6,10 @@
 // <-- Short Description -->
 //    format() output oddities
 
-
-// Non-regression test file for bug 883
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Date : 3 mai 2005
 
-clear;
-mode(-1)
 
 SCIFILE=TMPDIR+"/bug883.dia";
 
@@ -133,5 +129,3 @@ if or(REFCONTENTS<>SCIFILECONTENTS) then
 end
 
 affich_result(correct,883);
-
-clear

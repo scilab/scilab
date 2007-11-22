@@ -22,14 +22,9 @@
 //    Gaubert on Linux PPC version 2.2.13 distribution  with  X/kde as window manager
 //    France  February 10, 2001 at 11:55:40
 
-
-// Non-regression test file for bug 205
 // Author : Scilab Project - Pierre MARECHAL
 // Copyright INRIA
 // Date : 09 june 2006
-
-mode(-1);
-clear;
 
 N=30;
 A=rand(N,N);
@@ -41,5 +36,3 @@ if degree(P)==30  then
 else
 	affich_result(%F,205);
 end
-
-clear

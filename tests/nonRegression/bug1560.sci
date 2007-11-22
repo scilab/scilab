@@ -11,15 +11,10 @@
 //
 //    Jacques-Deric
 
-
-// Non-regression test file for bug 1560
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy
 // Copyright INRIA 2006
 // Date : 11 janvier 2006
-
-mode(-1);
-clear;
 
 hf = scf (1);
 ha = hf.children;
@@ -50,6 +45,3 @@ if ( hs10.data == reference ) then
 else
   affich_result(%F,1560);
 end
-
-clear;
-

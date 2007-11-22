@@ -17,14 +17,9 @@
 //    sys.math.scilab/browse_thread/thread/2f81e9afd1d7d6f1/e33536bff4dc1ecf#e
 //    33536bff4dc1ecf
 
-
-// Non-regression test file for bug 2038
 // Author : Scilab Project - Allan CORNET
 // Copyright INRIA
 // Date : 3 july 2006
-
-mode(-1);
-clear;
 
 mkdir('bug2038_dir');
 cd('bug2038_dir');
@@ -48,5 +43,3 @@ if (T1 & T2) then
 else
 	affich_result(%F,2038);
 end
-
-clear
