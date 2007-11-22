@@ -22,7 +22,10 @@ function test_run(varargin)
 	global check_error_output;
 	global create_ref;
 	global launch_mode;
-
+	
+	// test type
+	test_types        = ["unit_tests","nonreg_tests"];
+	test_types_keeped = "";
 	
 	check_ref          = %T;
 	check_error_output = %T;
@@ -40,6 +43,32 @@ function test_run(varargin)
 	details_failed     = '';
 	
 	// =======================================================
+	// Gestion des types de tests à lancer
+	// =======================================================
+	
+	if rhs < 3 then
+		test_types_keeped = "all_tests";
+	else
+		option_mat =  varargin(3);
+		
+		if ((grep(option_mat,"unit_tests")<>[]) & (grep(option_mat,"nonreg_tests")<>[])) ..
+			| (grep(option_mat,"all_tests")<>[]) then
+			test_types_keeped = "all_tests";
+			
+		elseif grep(option_mat,"unit_tests") <> [] then
+			test_types_keeped = "unit_tests";
+			
+		elseif  grep(option_mat,"nonreg_tests") <> [] then
+			test_types_keeped = "nonreg_tests";
+			
+		else
+			test_types_keeped = "all_tests";
+			
+		end
+		
+	end
+	
+	// =======================================================
 	// Gestion des tests à lancer
 	// =======================================================
 	
@@ -55,7 +84,7 @@ function test_run(varargin)
 		module_list = getmodules();
 		module_list = gsort(module_list,"lr","i");
 		for k=1:size(module_list,'*')
-			test_add_module(module_list(k));
+			test_add_module(module_list(k),test_types_keeped);
 		end
 	
 	elseif (rhs == 1) ..
@@ -77,7 +106,7 @@ function test_run(varargin)
 		for i=1:nl
 			for j=1:nc
 				if( with_module(module_mat(i,j)) ) then
-					test_add_module(module_mat(i,j));
+					test_add_module(module_mat(i,j),test_types_keeped);
 				else
 					error(sprintf(gettext("%s is not an installed module"),module_mat(i,j)));
 				end
@@ -93,8 +122,8 @@ function test_run(varargin)
 		// varargin(1) = <module_name> ==> string 1x1
 		// varargin(2) = <test_name_1> ==> mat nl x nc
 		
-		module   = varargin(1);
-		test_mat = varargin(2);
+		module     = varargin(1);
+		test_mat   = varargin(2);
 		
 		if ((or(size(module) <> [1,1])) & (test_mat <> [])) then
 			example = test_examples();
@@ -107,10 +136,18 @@ function test_run(varargin)
 		
 		for i=1:nl
 			for j=1:nc
-				if( fileinfo(SCI+"/modules/"+module+"/unit_tests/"+test_mat(i,j)+".tst") <> [] ) then
-					test_add_onetest(module,test_mat(i,j));
+				
+				if (fileinfo(SCI+"/modules/"+module+"/unit_tests/"+test_mat(i,j)+".tst")<>[]) ..
+					& ( (test_types_keeped=="all_tests") | (test_types_keeped=="unit_tests") ) then
+					test_add_onetest(module,test_mat(i,j),"unit_tests");
+					
+				elseif (fileinfo(SCI+"/modules/"+module+"/nonreg_tests/"+test_mat(i,j)+".tst")<>[]) ..
+					& ( (test_types_keeped=="all_tests") | (test_types_keeped=="nonreg_tests") ) then
+					test_add_onetest(module,test_mat(i,j),"nonreg_tests");
+				
 				else
 					error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" module"),test_mat(i,j),module));
+				
 				end
 			end
 		end
@@ -190,7 +227,7 @@ function test_run(varargin)
 				printf(".");
 			end
 			
-			[status_id,status_msg,status_details] = test_run_onetest(test_list(i,1),test_list(i,2));
+			[status_id,status_msg,status_details] = test_run_onetest(test_list(i,1),test_list(i,2),test_list(i,3));
 			printf("%s \n",status_msg);
 			
 			// Recencement des tests
@@ -249,14 +286,30 @@ endfunction
 // => Add them to the test_mat matrix
 //-----------------------------------------------------------------------------
 
-function test_add_module(module_mat)
+function test_add_module(module_mat,test_type)
 	
-	module_test_dir = SCI+"/modules/"+module_mat+"/unit_tests";
-	test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+	if (test_type == "all_tests") | (test_type == "unit_tests") then
 	
-	nl = size(test_mat,"*");
-	for i=1:nl
-		test_add_onetest(module_mat,test_mat(i));
+		module_test_dir = SCI+"/modules/"+module_mat+"/unit_tests";
+		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		
+		nl = size(test_mat,"*");
+		for i=1:nl
+			test_add_onetest(module_mat,test_mat(i),"unit_tests");
+		end
+		
+	end
+	
+	if (test_type == "all_tests") | (test_type == "nonreg_tests") then
+		
+		module_test_dir = SCI+"/modules/"+module_mat+"/nonreg_tests";
+		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		
+		nl = size(test_mat,"*");
+		for i=1:nl
+			test_add_onetest(module_mat,test_mat(i),"nonreg_tests");
+		end
+		
 	end
 	
 endfunction
@@ -270,7 +323,7 @@ endfunction
 // => Add the test <test> to the test_mat matrix
 //-----------------------------------------------------------------------------
 
-function test_add_onetest(module,test)
+function test_add_onetest(module,test,test_type)
 	
 	global test_list;
 	global test_count;
@@ -278,6 +331,7 @@ function test_add_onetest(module,test)
 	test_count = test_count + 1;
 	test_list( test_count , 1 ) = module;
 	test_list( test_count , 2 ) = test;
+	test_list( test_count , 3 ) = test_type;
 	
 endfunction
 
@@ -290,7 +344,7 @@ endfunction
 // => Run one test
 //-----------------------------------------------------------------------------
 
-function [status_id,status_msg,status_details] = test_run_onetest(module,test)
+function [status_id,status_msg,status_details] = test_run_onetest(module,test,test_type)
 	
 	status_id      = 0 ;
 	status_msg     = "passed" ;
@@ -303,14 +357,14 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test)
 	
 	// Some definitions
 	
-	tstfile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".tst",%f,%f);
-	diafile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".dia",%f,%f);
-	reffile     = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".dia.ref",%f,%f);
+	tstfile     = pathconvert(SCI+"/modules/"+module+"/"+test_type+"/"+test+".tst",%f,%f);
+	diafile     = pathconvert(SCI+"/modules/"+module+"/"+test_type+"/"+test+".dia",%f,%f);
+	reffile     = pathconvert(SCI+"/modules/"+module+"/"+test_type+"/"+test+".dia.ref",%f,%f);
 	
 	if MSDOS then
-		altreffile = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".win.dia.ref",%f,%f);
+		altreffile = pathconvert(SCI+"/modules/"+module+"/"+test_type+"/"+test+".win.dia.ref",%f,%f);
 	else
-		altreffile = pathconvert(SCI+"/modules/"+module+"/unit_tests/"+test+".unix.dia.ref",%f,%f);
+		altreffile = pathconvert(SCI+"/modules/"+module+"/"+test_type+"/"+test+".unix.dia.ref",%f,%f);
 	end
 	
 	tmp_tstfile = pathconvert(TMPDIR+"/"+test+".tst",%f,%f);
