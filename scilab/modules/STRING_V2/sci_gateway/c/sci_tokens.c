@@ -35,6 +35,7 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 	int numRow = 0;
 	int numCol = 0;
 	int Type_One = VarType(1);
+	int l;
 
 	
 
@@ -139,7 +140,19 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 	/* put result on stack */    
     numRow = Row_Pointer + 1;  /*Output */
     numCol = 1 ;
-    CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Output_String );
+    if (numRow == 1 && strlen(Output_String[0])==0) 
+	{
+            l = 0;
+			numCol=0;
+			numRow=0;
+            CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&numCol,&l);
+			LhsVar(1) = Rhs+1 ;
+			C2F(putlhsvar)();
+			return 0;
+	}
+	
+
+	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Output_String );
     LhsVar(1) = Rhs+1 ;
     C2F(putlhsvar)();
 
