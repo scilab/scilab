@@ -32,7 +32,7 @@ function plotprofile(fun)
   end
   n=size(count,1)
   if n==0 then 
-    error("Perhaps the function(s) has not been loaded for profiling?")
+    error(gettext("Perhaps the function(s) has not been loaded for profiling?"))
   end
   
   //xset("window",win)
@@ -65,7 +65,7 @@ function plotprofile(fun)
   xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',3*ones(ncompl))
   xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',0*ones(ncompl))
   xarrows([1,1],[1.5*mx,0],5,5); marker(2)=gce()
-  xtitle("Complexity")
+  xtitle(gettext("Complexity"))
   xsegs(ones(2,1)*bnd,[0;1.5*mx]*ones(bnd),0*ones(bnd))
 
   subplot(313)
@@ -81,20 +81,18 @@ function plotprofile(fun)
   for i=1:3; axes(i).tight_limits="on"; end
 
   if ~MSDOS then
-    delmenu(win,"3D Rot.")
-    delmenu(win,"Edit")
-    delmenu(win,"Editer")
-    delmenu(win,"Insert")
+    delmenu(win,gettext("3D Rot."))
+    delmenu(win,gettext("Edit"))
+    delmenu(win,gettext("Editer"))
+    delmenu(win,gettext("Insert"))
   else
-    delmenu(win,"3D &Rot.")
-    delmenu(win,"&Edit")
-    delmenu(win,"&Editer")
-    delmenu(win,"&Insert")
-    delmenu(win,"&Inserer")
+    delmenu(win,gettext("3D &Rot."))
+    delmenu(win,gettext("&Edit"))
+    delmenu(win,gettext("&Insert"))
   end   
-  addmenu(win,"Exit");str="execstr(Exit_"+string(win)+"(1))"
-  msg="click to get corresponding line, move with a-z"
-  xinfo(msg)
+  addmenu(win,gettext("Exit"));
+  str="execstr(Exit_"+string(win)+"(1))"
+  xinfo(gettext("click to get corresponding line, move with a-z"))
 
   withpad=with_scipad()
   if withpad then
@@ -143,11 +141,9 @@ function plotprofile(fun)
         k=min(n,k+1)
       end      
       if ncalls(k)==1 then
-        msg="line "+string(k)+" ["+string(ncalls(k))+" call, "+..
-                   string(tcpu(k))+" sec] :: "+txt(k)
+        msg=msprintf(gettext("line %s [%s call, %s sec] :: "+txt(k)), string(k), string(ncalls(k), string(tcpu(k)))
       else
-        msg="line "+string(k)+" ["+string(ncalls(k))+" calls, "+..
-                   string(tcpu(k))+" sec] :: "+txt(k)
+        msg=msprintf(gettext("line %s [%s calls, %s sec] :: "+txt(k)), string(k), string(ncalls(k), string(tcpu(k)))
       end
    // show source code in another window
       if withpad then
@@ -224,24 +220,19 @@ function [h,M]=dispfuntxt(txt,k,h,M)
     xset("wdim",400,600);xset("wresize",0);
     curwin=win+1
     if ~MSDOS then
-      delmenu(curwin,"3D Rot.")
-      delmenu(curwin,"UnZoom")
-      delmenu(curwin,"Zoom")
-      delmenu(curwin,"Edit")
-      delmenu(curwin,"File")
-      delmenu(curwin,"Insert")
+      delmenu(curwin,gettext("3D Rot."))
+      delmenu(curwin,gettext("UnZoom"))
+      delmenu(curwin,gettext("Zoom"))
+      delmenu(curwin,gettext("Edit"))
+      delmenu(curwin,gettext("File"))
+      delmenu(curwin,gettext("Insert"))
     else
       hidetoolbar(curwin)
- 	// French
-      	delmenu(curwin,"&Fichier")
-      	delmenu(curwin,"&Editer")
-      	delmenu(curwin,"&Outils")
-      	delmenu(curwin,"&Inserer")
       	// English
-      	delmenu(curwin,"&File")
-      	delmenu(curwin,"&Edit")
-      	delmenu(curwin,"&Tools")
-      	delmenu(curwin,"&Insert")
+      	delmenu(curwin,gettext("&File"))
+      	delmenu(curwin,gettext("&Edit"))
+      	delmenu(curwin,gettext("&Tools"))
+      	delmenu(curwin,gettext("&Insert"))
   	 end     
     
     xsetech(wrect=[0 0 1 1],frect=[0 0 400 600],arect=[0.1 0 0 0])

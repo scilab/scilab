@@ -5,7 +5,7 @@ else
   lst=fun
 end
 if lst(5)(1)<>'25' then
-  error("The function has not been built for profiling")
+  error(gettext("The function has not been built for profiling"))
 end
 count=get_profile(lst,4)
 count=count(1:$-1,:)

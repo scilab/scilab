@@ -5,7 +5,7 @@ function head_comments(name,%paths)
   if exists(name)==0 then error('undefined function'),end
   execstr('t=type('+name+')')
   if t<>11&t<>13 then
-    error('argument is not the name of a Scilab function')
+    error(gettext("Argument is not the name of a Scilab function"))
   end
   l=whereis(name)
   if l<>[] then
@@ -14,7 +14,7 @@ function head_comments(name,%paths)
   else
     files= listfiles(%paths+'*.sci')
     if files==[] then
-      error(name+'.sci file cannot be found with the given paths')
+      error(msprintf(gettext("%s.sci file cannot be found with the given paths'),name))
     end
     k=grep(files,name+'.sci')
     if k<>[] then
@@ -24,18 +24,18 @@ function head_comments(name,%paths)
     end
   end
   if path==[] then
-    error(name+'.sci file cannot be found with the given paths')
+    error(msprintf(gettext("%s.sci file cannot be found with the given paths"),name))
   end
   txt=mgetl(path);
   k=grep(txt,'function');
   if k==[] then
-    error('argument is not the name of a Scilab function')
+    error(gettext("argument is not the name of a Scilab function"))
   end
   head=txt(k(1))
   txt=txt(k(1)+1:$)
   K=grep(part(txt,1:2),'//')
   if K(1)<>1 then 
-     write(%io(2),'No comment available','(a)')
+     write(%io(2),gettext("No comment available"),'(a)')
      return
   end
   k2=find(K(2:$)-K(1:$-1)<>1,1)
@@ -44,6 +44,6 @@ function head_comments(name,%paths)
   if sel<>[] then
     write(%io(2),[head;strsubst(txt(sel),'//','')],'(a)')
   else
-    write(%io(2),'No comment available','(a)')
+    write(%io(2),gettext("No comment available"),'(a)')
   end
 endfunction

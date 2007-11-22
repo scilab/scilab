@@ -7,12 +7,12 @@ function recompilefunction(funname,kind,force)
   clear fvar funtext tempfun
   execstr("fvar="+funname)
   if ~or(type(fvar)==[11 13]) then
-     error(funname+" must be the name of a scilab function variable")
+     error(msprintf(gettext("%s must be the name of a scilab function variable"), funname))
   end
   if type(fvar)==11 & ~force then 
     oldkind="n"
     if kind=="n" then 
-      warning(funname+" is already noncompiled, nothing to do!")
+      warning(msprintf(gettext("%s is already noncompiled, nothing to do!"),funname))
       return
     end
 //can't avoid "Warning: redefining function: fvar", sorry
@@ -28,11 +28,11 @@ function recompilefunction(funname,kind,force)
     lst=macr2lst(fvar)
     if lst(5)(1)=="25" then oldkind="p"; else oldkind="c"; end
     if kind=="c" & oldkind=="c" & ~force then 
-      warning(funname+" is already compiled, nothing to do!")
+      warning(msprintf(gettext("%s is already compiled, nothing to do!"),funname))
       return
     end
     if kind=="p" & oldkind=="p" & ~force then 
-      warning(funname+" is already compiled for profiling, nothing to do!")
+      warning(msprintf(gettext("%s is already compiled for profiling, nothing to do!"),funname))
       return
     end
     funtext=fun2string(lst,"tempfun")

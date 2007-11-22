@@ -11,7 +11,7 @@ function vars=macrovar(macro)
 //origin S Steer inria 1992
 // Copyright INRIA
 if type(macro)==11 then comp(macro),end
-if type(macro)<>13 then error('Argument to macrovars must be a macro!'),end
+if type(macro)<>13 then error(gettext("Argument to macrovars must be a macro!")),end
 lst=macr2lst(macro);
 out=lst(2)',if prod(size(out))==0 then out =[],end
 in=lst(3)'
