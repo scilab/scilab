@@ -204,7 +204,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\DllmainExcel.c"
+				RelativePath=".\src\c\DllmainSpreadsheet.c"
 				>
 			</File>
 			<File
