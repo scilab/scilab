@@ -9,7 +9,7 @@ void strsplit(char **Input_StringMatrix,char **Output_StringMatrix,int *Row_Poin
 {
 	int x = 0;
 	/*To traverse every string of the input matrix*/
-	for (x=0; x < mn ; x++)
+	for (x=0; x < strlen(Input_StringMatrix[0]) ; x++)
 	{
 		/* To put them in the correct order */
 		if (x != Input_IntMatrix[*Row_Pointer_Two]) 
@@ -18,9 +18,11 @@ void strsplit(char **Input_StringMatrix,char **Output_StringMatrix,int *Row_Poin
 		}
 		else 
 		{
+			
 			(*Row_Pointer)++;
 			(*Row_Pointer_Two)++;
 			*Col_Pointer=0;
+			Output_StringMatrix[*Row_Pointer][(*Col_Pointer)++] = Input_StringMatrix[0][x];
 		}
         Output_StringMatrix[*Row_Pointer][*Col_Pointer]=0;
 	}
