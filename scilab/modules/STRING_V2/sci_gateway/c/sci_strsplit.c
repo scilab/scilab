@@ -27,6 +27,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	int numRow = 0;
 	int numCol = 0;
 	int l=0;
+	int mn2;
 
 	CheckRhs(2,2);
 	CheckLhs(1,1);
@@ -60,6 +61,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		case sci_matrix :
 			GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&l4);
 			Input_IntMatrix = istk(l4);
+			mn2=Row_Two*Col_Two;
 		break;
 
 		default :
@@ -111,7 +113,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		return 0;
 	}
 
-	strsplit(Input_StringMatrix,Output_StringMatrix,&Row_Pointer,&Row_Pointer_Two,&Col_Pointer,mn,Input_IntMatrix);
+	strsplit(Input_StringMatrix,Output_StringMatrix,&Row_Pointer,&Row_Pointer_Two,&Col_Pointer,mn2,Input_IntMatrix);
 
 	/* put result on scilab stack */
 	numRow =  Col_Two+1;
