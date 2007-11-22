@@ -16,7 +16,7 @@
 int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
-	char *param1=NULL,*param2=NULL,*param3=NULL;
+	char *param1=NULL,*param2=NULL;
 
 	Rhs=Max(0,Rhs);
 	CheckRhs(0,2);
@@ -56,7 +56,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,"unknown first parameter.\n");
+				Scierror(999,"Unknown first input argument. Should be 'paste' or 'pastespecial'.\n");
 				return 0;
 			}
 		}
@@ -90,7 +90,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 					}
 					else
 					{
-						Scierror(999,"Incorrect second parameter.");
+						Scierror(999,"Incorrect second input argument.");
 						return 0;
 					}
 
@@ -121,7 +121,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 					{
 						int i=0;
 						int j=0;
-						int l=0;
+						int l2=0;
 						char *TextToSendInClipboard=NULL;
 						int SizeofTextToSendInClipboard=0;
 						char **buffer = (char**)MALLOC( (m1*n1)*sizeof(char *) );
@@ -130,7 +130,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 						{
 							SizeofTextToSendInClipboard=SizeofTextToSendInClipboard+(int)strlen(Str[j*m1+i])+(int)strlen("\n");
 							buffer[i*n1+j]=(char*)MALLOC(strlen(Str[j*m1+i])+1);
-							sprintf(buffer[i*n1+j],"%s",Str[j*m1+i]);
+							strcpy(buffer[i*n1+j],Str[j*m1+i]);
 						}
 
 						TextToSendInClipboard=(char*)MALLOC( (SizeofTextToSendInClipboard)*sizeof(char) );
@@ -140,7 +140,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 						{
 							for (j=0; j<n1; j++) 
 							{
-								strcat(TextToSendInClipboard,buffer[l++]);
+								strcat(TextToSendInClipboard,buffer[l2++]);
 								strcat(TextToSendInClipboard," ");
 							}
 							if ( i != (m1-1) ) strcat(TextToSendInClipboard,"\n");
@@ -164,7 +164,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 				}
 				else
 				{
-					Scierror(999,"Incorrect parameters. See : help clipboard");
+					Scierror(999,"Incorrect input argument. See : help clipboard");
 					return 0;
 				}
 			}
@@ -181,7 +181,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 					num_win=*istk(l1);
 					if (num_win>=0)
 					{
-						sciprint("not yet implemented\n");
+						sciprint("Not yet implemented\n");
 						{
 /*
 // 						struct BCG *ScilabGC=NULL;
@@ -218,20 +218,20 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 					}
 					else
 					{
-						Scierror(999,"parameter must be >= 0.");
+						Scierror(999,"Input argument must be >= 0.");
 						return 0;
 					}
 				}
 				else
 				{
-					Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+					Scierror(999,"Second input argument must be 'EMF' or 'DIB'.");
 					return 0;
 				}
 			}
 		}
 		else
 		{
-			Scierror(999,"Incorrect parameters. See : help clipboard");
+			Scierror(999,"Incorrect argument. See : help clipboard");
 			return 0;	
 		}
 	}
@@ -285,13 +285,13 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 				}
 				else
 				{
-					Scierror(999,"parameter must be >= 0.");
+					Scierror(999,"Input argument must be >= 0.");
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+				Scierror(999,"Second input argument must be 'EMF' or 'DIB'.");
 				return 0;
 			}
 		}
