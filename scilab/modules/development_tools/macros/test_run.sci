@@ -4,10 +4,10 @@
 // Copyright INRIA
 // Date : 25/10/2007
 //
-// Launch unitary tests
+// Launch tests
 //-----------------------------------------------------------------------------
 
-function unit_test_run(varargin)
+function test_run(varargin)
 	
 	lhs = argn(1);
 	rhs = argn(2);
@@ -48,14 +48,14 @@ function unit_test_run(varargin)
 				| (((rhs == 2)|(rhs == 3)) & (varargin(1)==[]) & (varargin(2)==[])) then
 		
 		// No input argument
-		// unit_test_run()
-		// unit_test_run([])
+		// test_run()
+		// test_run([])
 		// => Launch each test of each module
 		
 		module_list = getmodules();
 		module_list = gsort(module_list,"lr","i");
 		for k=1:size(module_list,'*')
-			unit_test_add_module(module_list(k));
+			test_add_module(module_list(k));
 		end
 	
 	elseif (rhs == 1) ..
@@ -63,8 +63,8 @@ function unit_test_run(varargin)
 				| ((rhs == 3) & (varargin(2)==[])) then
 		
 		// One input argument
-		// unit_test_run(<module_name>)
-		// unit_test_run([<module_name_1>,<module_name_2>])
+		// test_run(<module_name>)
+		// test_run([<module_name_1>,<module_name_2>])
 		
 		// varargin(1) = [<module_name_1>,<module_name_2>]
 		
@@ -72,12 +72,12 @@ function unit_test_run(varargin)
 		
 		[nl,nc] = size(module_mat);
 		
-		// unit_test_run([<module_name_1>,<module_name_2>])
+		// test_run([<module_name_1>,<module_name_2>])
 		
 		for i=1:nl
 			for j=1:nc
 				if( with_module(module_mat(i,j)) ) then
-					unit_test_add_module(module_mat(i,j));
+					test_add_module(module_mat(i,j));
 				else
 					error(sprintf(gettext("%s is not an installed module"),module_mat(i,j)));
 				end
@@ -87,8 +87,8 @@ function unit_test_run(varargin)
 	elseif (rhs == 2) | (rhs == 3) then
 		
 		// Two input arguments
-		// unit_test_run(<module_name>,<test_name>)
-		// unit_test_run(<module_name>,[<test_name_1>,<test_name_2>] )
+		// test_run(<module_name>,<test_name>)
+		// test_run(<module_name>,[<test_name_1>,<test_name_2>] )
 		
 		// varargin(1) = <module_name> ==> string 1x1
 		// varargin(2) = <test_name_1> ==> mat nl x nc
@@ -97,7 +97,7 @@ function unit_test_run(varargin)
 		test_mat = varargin(2);
 		
 		if ((or(size(module) <> [1,1])) & (test_mat <> [])) then
-			example = unit_test_examples();
+			example = test_examples();
 			err     = ["" ; gettext("error : Input argument sizes are not valid") ; "" ; example ];
 			printf("%s\n",err);
 			return;
@@ -108,7 +108,7 @@ function unit_test_run(varargin)
 		for i=1:nl
 			for j=1:nc
 				if( fileinfo(SCI+"/modules/"+module+"/unit_tests/"+test_mat(i,j)+".tst") <> [] ) then
-					unit_test_add_onetest(module,test_mat(i,j));
+					test_add_onetest(module,test_mat(i,j));
 				else
 					error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" module"),test_mat(i,j),module));
 				end
@@ -158,7 +158,7 @@ function unit_test_run(varargin)
 
 	if print_help then
 		
-		example = unit_test_examples();
+		example = test_examples();
 		printf("%s\n",example);
 		return;
 	
@@ -190,7 +190,7 @@ function unit_test_run(varargin)
 				printf(".");
 			end
 			
-			[status_id,status_msg,status_details] = unit_test_run_onetest(test_list(i,1),test_list(i,2));
+			[status_id,status_msg,status_details] = test_run_onetest(test_list(i,1),test_list(i,2));
 			printf("%s \n",status_msg);
 			
 			// Recencement des tests
@@ -249,14 +249,14 @@ endfunction
 // => Add them to the test_mat matrix
 //-----------------------------------------------------------------------------
 
-function unit_test_add_module(module_mat)
+function test_add_module(module_mat)
 	
 	module_test_dir = SCI+"/modules/"+module_mat+"/unit_tests";
 	test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
 	
 	nl = size(test_mat,"*");
 	for i=1:nl
-		unit_test_add_onetest(module_mat,test_mat(i));
+		test_add_onetest(module_mat,test_mat(i));
 	end
 	
 endfunction
@@ -270,7 +270,7 @@ endfunction
 // => Add the test <test> to the test_mat matrix
 //-----------------------------------------------------------------------------
 
-function unit_test_add_onetest(module,test)
+function test_add_onetest(module,test)
 	
 	global test_list;
 	global test_count;
@@ -290,7 +290,7 @@ endfunction
 // => Run one test
 //-----------------------------------------------------------------------------
 
-function [status_id,status_msg,status_details] = unit_test_run_onetest(module,test)
+function [status_id,status_msg,status_details] = test_run_onetest(module,test)
 	
 	status_id      = 0 ;
 	status_msg     = "passed" ;
@@ -398,14 +398,14 @@ function [status_id,status_msg,status_details] = unit_test_run_onetest(module,te
 	
 	// Build the command to launch
 	if MSDOS then
-		unit_test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
+		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+launch_mode+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
 	else
-		unit_test_cmd = "( "+SCI_BIN+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
+		test_cmd = "( "+SCI_BIN+"/bin/scilab "+launch_mode+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
 	end
 	
 	// Launch the test exec
 	
-	host(unit_test_cmd);
+	host(test_cmd);
 	
 	// First Check : error output
 	if check_error_output then
@@ -602,31 +602,31 @@ endfunction
 // => Check ref or generate ref
 //-----------------------------------------------------------------------------
 
-function example = unit_test_examples()
+function example = test_examples()
 	
 	example = [ sprintf("Examples :\n\n") ];
 
 	
 	example = [ example ; sprintf("// Launch all tests\n") ];
-	example = [ example ; sprintf("unit_test_run();\n") ];
-	example = [ example ; sprintf("unit_test_run([]);\n") ];
-	example = [ example ; sprintf("unit_test_run([],[]);\n") ];
+	example = [ example ; sprintf("test_run();\n") ];
+	example = [ example ; sprintf("test_run([]);\n") ];
+	example = [ example ; sprintf("test_run([],[]);\n") ];
 	example = [ example ; "" ];
 	example = [ example ; sprintf("// Test one or several module\n") ];
-	example = [ example ; sprintf("unit_test_run(''core'');\n") ];
-	example = [ example ; sprintf("unit_test_run(''core'',[]);\n") ];
-	example = [ example ; sprintf("unit_test_run([''core'',''string'']);\n") ];
+	example = [ example ; sprintf("test_run(''core'');\n") ];
+	example = [ example ; sprintf("test_run(''core'',[]);\n") ];
+	example = [ example ; sprintf("test_run([''core'',''string'']);\n") ];
 	example = [ example ; "" ];
 	example = [ example ; sprintf("// Launch one or several test in a specified module\n") ];
-	example = [ example ; sprintf("unit_test_run(''core'',[''trycatch'',''opcode'']);\n") ];
+	example = [ example ; sprintf("test_run(''core'',[''trycatch'',''opcode'']);\n") ];
 	example = [ example ; "" ];
 	example = [ example ; sprintf("// With options\n") ];
-	example = [ example ; sprintf("unit_test_run([],[],''no_check_ref'');\n") ];
-	example = [ example ; sprintf("unit_test_run([],[],''no_check_error_output'');\n") ];
-	example = [ example ; sprintf("unit_test_run([],[],''create_ref'');\n") ];
-	example = [ example ; sprintf("unit_test_run([],[],''list'');\n") ];
-	example = [ example ; sprintf("unit_test_run([],[],''help'');\n") ];
-	example = [ example ; sprintf("unit_test_run([],[],[''no_check_ref'',''mode_nw'']);\n") ];
+	example = [ example ; sprintf("test_run([],[],''no_check_ref'');\n") ];
+	example = [ example ; sprintf("test_run([],[],''no_check_error_output'');\n") ];
+	example = [ example ; sprintf("test_run([],[],''create_ref'');\n") ];
+	example = [ example ; sprintf("test_run([],[],''list'');\n") ];
+	example = [ example ; sprintf("test_run([],[],''help'');\n") ];
+	example = [ example ; sprintf("test_run([],[],[''no_check_ref'',''mode_nw'']);\n") ];
 	example = [ example ; "" ];
 	
 endfunction
