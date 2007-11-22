@@ -1,3 +1,18 @@
+// <-- Non-regression test for bug 942 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=942
+//
+// <-- Short Description -->
+//    Adding a comment character '%' at the end of a function 
+//    prototype makes the conversion fail.
+//
+//    File Test.m :
+//
+//    function [a] = Test (x) % test
+//    a = x;
+
+
 // Non-regression test file for bug 942
 // Copyright INRIA
 // Scilab Project - V. Couvert

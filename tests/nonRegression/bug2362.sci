@@ -1,3 +1,18 @@
+// <-- Non-regression test for bug 2362 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2362
+//
+// <-- Short Description -->
+//    plot3d3 crash
+//
+//    plot3d3([0,0;10,10],[5,3;5,5],[0,2;0,2]);
+//
+//    badaboom!
+//
+//    Francois
+
+
 // Non-regression test file for bug 2362
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy

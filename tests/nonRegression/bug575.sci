@@ -1,3 +1,19 @@
+// <-- Non-regression test for bug 575 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=575
+//
+// <-- Short Description -->
+//    [m(1),n(1)]=max([1,3,1]) is not possible. 
+//    But this commande is possible :
+//    m(1)=max([1,3,1])
+//     m  =
+//
+//        3. 
+//
+//    I don't if it is really a bug, but MATLAB does :o( ?
+
+
 // exec( "bug575.sci");
 // 
 

@@ -1,3 +1,17 @@
+// <-- Non-regression test for bug 2428 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2428
+//
+// <-- Short Description -->
+//    I would like to convert to SciLab the package TBMLab 3.1 by Smets 
+//    (http://iridia.ulb.ac.be/~psmets/TBMLAB.zip). I tried both via the menu 
+//    Applications -> m2sci and trying to convert recursively the directory 
+//    of the package and via the SciPad menu File -> Import Matlab File. In 
+//    the first case the conversion fails without errors, in the second case 
+//    an error appears and a message suggests to report here the error.
+
+
 // Non-regression test file for bug 2428
 // Copyright INRIA
 // Scilab Project - Vincent COUVERT

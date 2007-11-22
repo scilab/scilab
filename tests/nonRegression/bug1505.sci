@@ -1,3 +1,22 @@
+// <-- Non-regression test for bug 1505 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1505
+//
+// <-- Short Description -->
+//    datenum does not handle years correctly:
+//    example:
+//    datenum(1971,1,1) - datenum(1970,1,1)
+//    returns 0 on my RedHat Linux x86.
+//
+//    However 
+//    datenum(1971,3,1) - datenum(1970,3,1)
+//    gives the expected result : 365.2425
+//    (The bug only occur for month = 1 and 2)
+//
+//    Fabian
+
+
 // Non-regression test file for bug 1505
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

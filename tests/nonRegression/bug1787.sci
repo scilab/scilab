@@ -1,3 +1,15 @@
+// <-- Non-regression test for bug 1787 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1787
+//
+// <-- Short Description -->
+//    Scilab 4.0 RC1
+//    The calling of procedure xtitle bugs when the drawing of boxes is asked.
+//
+//    Jacques-Deric
+
+
 // Non-regression test file for bug 1787
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy

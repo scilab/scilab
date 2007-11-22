@@ -1,3 +1,29 @@
+// <-- Non-regression test for bug 632 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=632
+//
+// <-- Short Description -->
+//    The function "lsqrsolve" makes the the whole Scilab crash.
+//    It even does it with the example cited in the Scilab 
+//    documentation:
+//
+//    // Data fitting problem
+//    // 1 build the data
+//    a=34;b=12;c=14;
+//    deff('y=FF(x)','y=a*(x-b)+c*x.*x');
+//    X=(0:.1:3)';Y=FF(X)+100*(rand()-.5);
+//
+//    //solve
+//    function e=f1(abc,m)
+//      a=abc(1);b=abc(2),c=abc(3),
+//      e=Y-(a*(X-b)+c*X.*X);
+//    endfunction
+//    [abc,v]=lsqrsolve([10;10;10],f1,size(X,1));
+//    abc
+//    norm(v)
+
+
 // Data fitting problem
 // 1 build the data
 //exec("632.sce");  

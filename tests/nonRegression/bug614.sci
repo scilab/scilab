@@ -1,3 +1,17 @@
+// <-- Non-regression test for bug 614 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=614
+//
+// <-- Short Description -->
+//    mxGetDimensions() from mex.h and mexlib.c do not work 
+//    properly. The reason is that it returns a pointer to int 
+//    like Matlab, but in fact, the dimensions in scilab are in 
+//    double format.
+//
+//    Also occur in other OS's.
+
+
 // Non-regression test file for bug 614
 // Copyright INRIA
 // Scilab Project - Serge Steer

@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 71 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=71
+//
+// <-- Short Description -->
+//    The macr2lst() function crashes when a macro including 
+//    an "exit" call is given as parameter
+
+
 // bug71
 
 mode (-1)

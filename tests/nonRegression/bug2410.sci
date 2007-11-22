@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 2410 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2410
+//
+// <-- Short Description -->
+//    string(boolean array) is incredibly slow
+
+
 // Non-regression test file for bug 2410
 // Author : Scilab Project - Pierre MARECHAL
 // Copyright INRIA

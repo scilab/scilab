@@ -1,3 +1,20 @@
+// <-- Non-regression test for bug 2284 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2284
+//
+// <-- Short Description -->
+//    Numerical error when carrying out a particular calculation using the
+//    complex exp function.  E.g.
+//
+//    -->20 * exp(%i * 2 * %pi / 3)
+//     ans  =
+//
+//      -11. + 17.320508i                             
+//
+//    This is the wrong result!!
+
+
 // Non-regression test file for bug 2284
 // Copyright INRIA
 // Scilab Project - S. Steer

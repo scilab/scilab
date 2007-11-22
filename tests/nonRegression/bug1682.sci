@@ -1,3 +1,20 @@
+// <-- Non-regression test for bug 1682 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1682
+//
+// <-- Short Description -->
+//    Scilab 4.0 RC1 under Windows XP
+//    The field Figure.rotation_style="multiple" does not work correctly.
+//
+//    The rotation of the axes of the first system by the change of the field
+//    Axes.rotation_angles does not force the rotation of the second one.
+//
+//    When making a manual rotation, it works.
+//
+//    Jacques-Deric
+
+
 // Non-regression test file for bug 1682
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy

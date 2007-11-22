@@ -1,3 +1,22 @@
+// <-- Non-regression test for bug 862 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=862
+//
+// <-- Short Description -->
+//    Conversion si bad for instructions such as:
+//    ->Matlab: 
+//    a(1)=0;
+//    with a not initialised
+//    ->Scilab conversion: 
+//    a = mtlb_i(a,1,0);
+//
+//    Execution crashes
+//    a = mtlb_i(a,1,0)
+//               !--error     4
+//    undefined variable : a
+
+
 // Non-regression test file for bug 862
 // Copyright INRIA
 // Scilab Project - V. Couvert

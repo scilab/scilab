@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 801 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=801
+//
+// <-- Short Description -->
+//    error in the routine covar.sci
+
+
 // Non-regression test file for bug 801
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

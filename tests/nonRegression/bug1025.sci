@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 1025 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1025
+//
+// <-- Short Description -->
+//    winsid ne marche pas.
+
+
 // Non-regression test file for bug 1025
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA

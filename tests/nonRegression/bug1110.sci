@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 1110 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1110
+//
+// <-- Short Description -->
+//    parser or evaluator error
+
+
 // bug1110
 mode (-1)
 clear 

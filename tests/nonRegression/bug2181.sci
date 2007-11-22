@@ -1,3 +1,15 @@
+// <-- Non-regression test for bug 2181 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2181
+//
+// <-- Short Description -->
+//    getrelativefilename crashes when the two arguments it receives refer to 
+//    different drives.
+//
+//    Francois
+
+
 // Non-regression test file for bug 2181
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA

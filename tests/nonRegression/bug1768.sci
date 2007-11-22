@@ -1,3 +1,15 @@
+// <-- Non-regression test for bug 1768 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1768
+//
+// <-- Short Description -->
+//    I just downloaded Scilab-4.0rc1.
+//    Whenever I write a new function and try to write the relative help 
+//    file, xmltohtml crashes. Apparently, it does not found the whatis file 
+//    even if it was just created successfully
+
+
 // Non-regression test file for bug 1768
 // Copyright INRIA
 // Scilab Project - Serge Steer

@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 548 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=548
+//
+// <-- Short Description -->
+//    Bug Report Id: 031642003101317047
+//
+//
+//    the code itself is trivial, but the mesh i obtain is in format
+//
+//    =| a1   a2
+//      | b1  b2
+//      | c1  c2 ....
+//
+//     where (ai,bi,ci) should be the vertice indices of the mesh. For small XY datasets it behaves as expected, but for my dataset (700 points highly nonuniformly crowded) some edges are crossed 5 or even 7 times in the same sense, and most of the triangles arent as far apart as the whole region
+//
+//    (try for example, mesh(1~3,27 and 28) (triangle 27 and 28: both are 2,5,.. and 2,5,..)
+//
+//
+//
+//    On Scilab 2.7 with " mesh2d " function
+//    The Error Messages are:
+//       nothing, produces erroneous meshes for particular datasets
+//    Commands:   is too big because of dataset:
+//
+// ...
+
+
 // exec("e:\testNonReg\bug548.sce" );
 
 

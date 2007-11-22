@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 569 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=569
+//
+// <-- Short Description -->
+//    contour2d does not work for me; however, contour works as
+//    expected of contour2d: 2D plot of a set of level lines.
+
+
 // exec("bug569.sce")
 
 mode (-1);

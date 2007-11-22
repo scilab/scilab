@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 2268 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2268
+//
+// <-- Short Description -->
+//    Memory leak in msscanf().  When calling msscanf() many times, as in reading in
+//    large CSV files, process size grows beyond memory capacity.
+
+
 // Non-regression test file for bug 2266
 // Serge Steer - Scilab Project
 // Copyright INRIA

@@ -1,3 +1,18 @@
+// <-- Non-regression test for bug 1979 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1979
+//
+// <-- Short Description -->
+//    I think that something is forgotten in the integer treatment in Scilab :
+//
+//    -->a=int32(1);b=int32(6);
+//    -->a:b
+//    a:b
+//        !--error 4 
+//    undefined variable : %i_b_i
+
+
 // Non-regression test file for bug 1979
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

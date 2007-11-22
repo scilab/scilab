@@ -1,3 +1,26 @@
+// <-- Non-regression test for bug 631 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=631
+//
+// <-- Short Description -->
+//    linpro with initial guess does not work correctly.
+//    linpro(-[1;1], [1 -1], zeros(1,1), zeros(2,1), [1;0], 1, 
+//    zeros(2,1)) returns:
+//     ans  =
+//
+//    !   1. !
+//    !   1. !,
+//    which violates the upper-bound constraint ([1;0]).
+//
+//    On the other hand, linpro without initial guess works fine.
+//    -->linpro(-[1;1], [1 -1], zeros(1,1), zeros(2,1), [1;0], 1)
+//     ans  =
+//
+//    !   0. !
+//    !   0. !
+
+
 // Non-regression test file for bug 631
 // Copyright INRIA
 // Scilab Project - Serge Steer

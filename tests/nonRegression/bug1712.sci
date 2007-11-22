@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 1712 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1712
+//
+// <-- Short Description -->
+//    Logical binary operations &,| with hypermatrices fail, as shown in the 
+//    following examples. (The unary operation ~ succeeds.)
+//
+//    -->hm=hypermat([2 2 2],1:8)
+//
+//    -->hm>min(hm) & hm<max(hm)
+//                            !--error 4
+//    undefined variable : %l_h_l
+//
+//    -->hm==min(hm) | hm==max(hm)
+//                              !--error 4
+//    undefined variable : %l_g_l
+//
+//    -->~(hm==min(hm))
+//     ans  =
+//
+//    (:,:,1)
+//
+//    ! F T !
+//    ! T T !
+// ...
+
+
 // Non-regression test file for bug 1712
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

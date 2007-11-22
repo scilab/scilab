@@ -1,3 +1,17 @@
+// <-- Non-regression test for bug 2067 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2067
+//
+// <-- Short Description -->
+//    Scilab dies when the Plot command is given a large numerical value.
+//
+//    Tried it with Scilab Nightly Build 20060710.
+//
+//    Greetings from Poland,
+//    Lukasz Hladowski.
+
+
 // Non-regression test file for bug 2067
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy

@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 2341 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2341
+//
+// <-- Short Description -->
+//    unhandled matlab syntax for lhs (Matlab accepts lhs calling sequence without commas
+
+
 // Non-regression test file for bug 2341
 // Copyright INRIA
 // Scilab Project - Vincent COUVERT

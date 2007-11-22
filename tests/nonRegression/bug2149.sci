@@ -1,3 +1,29 @@
+// <-- Non-regression test for bug 2149 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2149
+//
+// <-- Short Description -->
+//    Missing error message in fprintfMat
+//
+//
+//    help fprintfMat states that the matrix to save must be a matrix of real 
+//    numbers. Therefore:
+//
+//    -->M=[1+%i;1-%i];
+//
+//    -->fprintfMat("mymatrix.txt",M,"%f")
+//
+//    -->
+//    should spit an error. It does not but it silently saves the real part 
+//    of M instead.
+//
+//    Another (better) option: extend fprintfMat/scanfMat so that they work 
+//    with complex matrices (or matrices of integers, booleans, etc).
+//
+//    Francois
+
+
 // Non-regression test file for bug 2149
 // Copyright INRIA
 // Scilab Project - Allan CORNET

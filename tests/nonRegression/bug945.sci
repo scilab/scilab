@@ -1,3 +1,16 @@
+// <-- Non-regression test for bug 945 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=945
+//
+// <-- Short Description -->
+//    mfile2sci fails in case of non pre-sized vectors (all 
+//    assignments are done for the first component).
+//
+//    Test.m leads to Test.sci (obviously wrong)
+//    Test2.m leads to Test2.sci
+
+
 // Non-regression test file for bug 945
 // Copyright INRIA
 // Scilab Project - V. Couvert

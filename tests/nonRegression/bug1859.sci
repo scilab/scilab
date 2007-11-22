@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 1859 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1859
+//
+// <-- Short Description -->
+//    I sent the following commands
+//
+//    Year = [2002, 2002];
+//    Month = [2, 3];
+//    Day = [28, 1];
+//    datenum(Year, Month, Day)
+//
+//    The SCILAB output is:
+//
+//      731275. 731278.
+//
+//    But this seems me incorrect, as 2002-03-01 is just one day following 2002-02-28.
+//
+//    Now, if you give the commands
+//
+//      datenum(2002,2,28)
+//      datenum(2002,3,1)
+//
+//    you respectively obtain the two outputs
+//
+// ...
+
+
 // Non-regression test file for bug 1859
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 2092 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2092
+//
+// <-- Short Description -->
+//    Incorrect handling of second input argument to function mad()
+
+
 // Non-regression test file for bug 2092
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

@@ -1,3 +1,27 @@
+// <-- Non-regression test for bug 2137 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2137
+//
+// <-- Short Description -->
+//    wrong translation of Matlab function randn
+//
+//
+//    Put this single line in an m-file:
+//
+//    R = randn
+//
+//    and try to convert using mfile2sci.
+//
+//    Output is:
+//
+//    R = randn(1,1,"normal")
+//
+//    which is wrong (no such function in Scilab).
+//
+//    Francois
+
+
 // Non-regression test file for bug 2137
 // Copyright INRIA
 // Scilab Project - F. Belahcene

@@ -1,3 +1,21 @@
+// <-- Non-regression test for bug 1262 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1262
+//
+// <-- Short Description -->
+//    Four errors of mfile2sci are reported
+//    (scilab-3.0-u-20050309) Linux+Windows+Solaris.
+//
+//    Briefly: 
+//    1) end; end -> endend
+//    2) Initialization to empty matrix at wrong place
+//    3) Problem with useless [ or ]
+//    4) -(A-B) -> -A-B
+//
+//    Apply mfile2sci to the Matlab script given below.
+
+
 // Non-regression test file for bug 1262
 // Copyright INRIA
 // Scilab Project - F.Belahcene

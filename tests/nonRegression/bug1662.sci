@@ -1,3 +1,16 @@
+// <-- Non-regression test for bug 1662 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1662
+//
+// <-- Short Description -->
+//    when converting Matlab switch case statements to Scilab select case 
+//    statements using m2sci_syntax , if there is a comment line between the 
+//    switch and case statement in the m file, the sytnax is rejected with an 
+//    incorrect syntax error. Take the comment out and it works fine. Not a 
+//    major problem but a slight nuisance
+
+
 // Non-regression test file for bug 1662
 // Copyright INRIA
 // Scilab Project - F. Belahcene

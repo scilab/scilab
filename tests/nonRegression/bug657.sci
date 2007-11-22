@@ -1,3 +1,15 @@
+// <-- Non-regression test for bug 657 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=657
+//
+// <-- Short Description -->
+//    Strange result given with a combined command (max and int8 )
+//    just after a wrong isdir instruction
+//
+//    Note that max(int8(10),-2.6) gives wrong result
+
+
 // Non-regression test file for bug 657
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

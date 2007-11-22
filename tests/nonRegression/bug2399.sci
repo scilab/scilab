@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 2399 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2399
+//
+// <-- Short Description -->
+//    msscanf crashes scilab when scanning a vector of strings for float 
+//    values on Linux.
+
+
 // Non-regression test file for bug 2399
 // Author : Scilab Project - Pierre MARECHAL
 // Copyright INRIA

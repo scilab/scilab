@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 1568 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1568
+//
+// <-- Short Description -->
+//    The random number generator grand() does not always produce the same 
+//    result starting from the same seed, as shown by the following 
+//    transcript of a Scilab session:
+//
+//    $ scilab -nw
+//            -------------------------------------------
+//                             scilab-3.1.1
+//
+//                      Copyright (c) 1989-2005
+//                  Consortium Scilab (INRIA, ENPC)
+//            -------------------------------------------
+//
+//
+//    Startup execution:
+//      loading initial environment
+//
+//    -->grand('setsd',12)
+//
+//    -->grand(1,'prm',[1:5]')
+//     ans  =
+// ...
+
+
 // Non-regression test file for bug 1568
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

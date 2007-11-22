@@ -1,3 +1,21 @@
+// <-- Non-regression test for bug 924 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=924
+//
+// <-- Short Description -->
+//    Bad handling of variable display in functions.
+//    Following Matlab code :
+//    function test
+//    a='milou'
+//    a
+//    sould be converted to Scilab code :
+//    function test
+//    a='milou'
+//    disp(a)
+//    but it is not....
+
+
 // Non-regression test file for bug 924
 // Copyright INRIA
 // Scilab Project - V. Couvert

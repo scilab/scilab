@@ -1,3 +1,14 @@
+// <-- Non-regression test for bug 1933 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1933
+//
+// <-- Short Description -->
+//    log and log2 doesn't work on vectors with %nan under windows. They work 
+//    nicely
+//    under linux.
+
+
 // Non-regression test file for bug 1933
 // A.C
 // Copyright INRIA 2006

@@ -1,3 +1,23 @@
+// <-- Non-regression test for bug 1506 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1506
+//
+// <-- Short Description -->
+//    datevec(datenum()) gives wrong result.
+//
+//    datevec(datenum()) is supposed to give the actual time, right?
+//    On my box (Redhat Linux x86) it now gives
+//    !   2005.    7.    27.    15.    10.    50.249993 !
+//
+//    where the date on a unix shell gives:
+//    Wed Jul 27 12:02:16 CEST 2005
+//
+//    So the date is correct but not the time
+//
+//    Fabian
+
+
 // Non-regression test file for bug 1506
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

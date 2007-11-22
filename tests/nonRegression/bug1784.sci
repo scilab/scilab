@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 1784 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1784
+//
+// <-- Short Description -->
+//    Problem while inserting a matrix in an N-D matrix
+
+
 // Non-regression test file for bug 1784
 // Copyright INRIA
 // Scilab Project - Serge Steer

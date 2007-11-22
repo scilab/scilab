@@ -1,3 +1,14 @@
+// <-- Non-regression test for bug 1082 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1082
+//
+// <-- Short Description -->
+//    Error during conversion of a very simple file. Though the
+//    syntax is the same in both languages, the converter fails to
+//    convert the rounding of the field of a structure: "round(a.b)"
+
+
 // Non-regression test file for bug 1082
 // Copyright INRIA
 // Scilab Project - F.Belahcene

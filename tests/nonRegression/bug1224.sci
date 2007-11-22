@@ -1,3 +1,16 @@
+// <-- Non-regression test for bug 1224 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1224
+//
+// <-- Short Description -->
+//    Product of 2x2 matrices produces wrong result.
+//    inf=%inf;
+//    A=diag([-inf,inf]);
+//    A*A  //This is correct
+//    A*A*A  //This is wrong
+
+
 // Non-regression test file for bug 1224
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA

@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 2093 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2093
+//
+// <-- Short Description -->
+//    matrix(A,q) doesn't return a q*1 matrix when A is a 1*1*q matrix and q a scalar.
+//    Instead, it returns a mlist.
+
+
 // Non-regression test file for bug 2093
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

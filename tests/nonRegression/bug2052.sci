@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 2052 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2052
+//
+// <-- Short Description -->
+//    Bug dans la primitive "isequal" (au moins) avec des type de données 
+//    utilisateur
+
+
 // Non-regression test file for bug 2052
 // Serge Steer - Scilab Project
 // Copyright INRIA

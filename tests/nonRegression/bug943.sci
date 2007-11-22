@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 943 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=943
+//
+// <-- Short Description -->
+//    Conversion of (if, elseif, else) structure leads to 
+//    mfile2sci failure in some particular indentation scheme.
+//
+//    Cyl_.m
+//
+//    function [v,G,J] = Cyl_(a,p1,p2,r)
+//    v = (r^2)*abs(p2-p1)*pi;
+//    l = p1-p2 ; d = 0.5*(p1+p2) ;
+//    j1 = (r^2)/2. ; j2 = (r^2)/4. + (l^2)/12. + d^2 ;
+//    if     (a==1), J = [j1,0.,0. ; 0.,j2,0. ; 0.,0.,j2] ; G = 
+//    [0.5*(p1+p2);0.;0.] ;
+//    elseif (a==2), J = [j2,0.,0. ; 0.,j1,0. ; 0.,0.,j2] ; G = 
+//    [0.;0.5*(p1+p2);0.] ;
+//    elseif (a==3), J = [j2,0.,0. ; 0.,j2,0. ; 0.,0.,j1] ; G = 
+//    [0.;0.;0.5*(p1+p2)] ;
+//    else, J = [0.,0.,0. ; 0.,0.,0. ; 0.,0.,0.] ; G = 
+//    [0.;0.;0.] ; end,
+//
+//    Cyl2_.m
+//
+// ...
+
+
 // Non-regression test file for bug 943
 // Copyright INRIA
 // Scilab Project - V. Couvert

@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 799 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=799
+//
+// <-- Short Description -->
+//    Reload large matrix file from disk with "fscanfMat" command 
+//    crashes Scilab.
+
+
 // Non-regression test file for bug 799
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

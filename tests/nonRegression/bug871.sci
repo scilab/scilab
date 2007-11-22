@@ -1,3 +1,31 @@
+// <-- Non-regression test for bug 871 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=871
+//
+// <-- Short Description -->
+//    The Semicolon operator does not work on functions called
+//    without parenthesis on args '()'. For instance:
+//
+//    --> rand()         // OK
+//    ans  =
+//
+//        0.2113249  
+//
+//    --> rand();         // OK
+//    [NO OUTPUT]
+//
+//    --> rand            // OK
+//     ans  =
+//
+//        0.7560439 
+//
+//    --> rand;          // BUG: the semicolon doesn't work!!!!
+//     ans  =
+//
+//        0.7560439
+
+
 // Non-regression test file for bug 871
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

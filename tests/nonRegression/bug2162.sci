@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 2162 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2162
+//
+// <-- Short Description -->
+//    When using plot3d with facets coordinates, it is impossible to draw a single facet.
+
+
 // Non-regression test file for bug 2162
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy

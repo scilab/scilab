@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 2414 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2414
+//
+// <-- Short Description -->
+//    assignment of empty string an empty variable has disastrous results. Probably a
+//    parser bug, for statements of the form a=string(a), with a=[]
+
+
 // Non-regression test file for bug 2414
 // Author : Scilab Project - Pierre MARECHAL
 // Copyright INRIA

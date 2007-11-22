@@ -1,3 +1,18 @@
+// <-- Non-regression test for bug 2277 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2277
+//
+// <-- Short Description -->
+//    Scilab has a bug with the SPARSE command. When the "values vector" in the
+//    row/column representation is COMPLEX the routine fails to build the sparse
+//    matrix correctly. This seems to occur always when the first AND third entry of
+//    this vector are zero.
+//    The other bug is that when other elements are zero (not the third, the fifth for
+//    example) they are still stored in the sparse representation.
+//    This is very problematic for people doing finite element calculations with scilab!
+
+
 // Non-regression test file for bug 2277
 // Copyright INRIA
 // Scilab Project - S. Steer

@@ -1,3 +1,14 @@
+// <-- Non-regression test for bug 55 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=55
+//
+// <-- Short Description -->
+//    The sci2exp function gives wrong result with the -%inf 
+//    value.
+//    sci2exp(-%inf) = -Inf instead of the right result = -%inf
+
+
 // bug55
 
 mode (-1)

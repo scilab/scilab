@@ -1,3 +1,16 @@
+// <-- Non-regression test for bug 750 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=750
+//
+// <-- Short Description -->
+//    I try to translate to Scilab the benchmark m-file of matlab.
+//    This should give a comparison of scilab and matlab execution
+//    times.
+//
+//    It does not translate. Too bad...
+
+
 // Non-regression test file for bug 750
 // Copyright INRIA
 // Scilab Project - V. Couvert

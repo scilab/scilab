@@ -1,3 +1,20 @@
+// <-- Non-regression test for bug 1977 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1977
+//
+// <-- Short Description -->
+//    inttype has stars in error message
+//
+//
+//    -->inttype("hell")
+//                    !--error 44
+//    ***th argument is incorrect
+//
+//
+//    Francois
+
+
 // Non-regression test file for bug 1977
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

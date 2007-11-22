@@ -1,3 +1,17 @@
+// <-- Non-regression test for bug 1602 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1602
+//
+// <-- Short Description -->
+//    contour2d don't work well with frameflag=4 (while the workaround
+//    which consists of providing frameflag=3 + rect=[xmin,ymin,xmax,ymax]
+//    works). This is with a cvs version of yesterday. See an example
+//    in steps to ...
+//
+//     Bruno
+
+
 // Non-regression test file for bug 1602
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy

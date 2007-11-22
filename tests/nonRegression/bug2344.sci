@@ -1,3 +1,22 @@
+// <-- Non-regression test for bug 2344 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2344
+//
+// <-- Short Description -->
+//    dassl interface bug with the info parameter
+//
+//    Whenever a non default info parameter is given to dassl, a wrong error 
+//    pops up.
+//
+//    This has been reported first in the Scilab newsgroup:
+//
+//    http://groups.google.com/group/comp.soft-
+//    sys.math.scilab/browse_frm/thread/ad556ab9e14f3005/c20f3f4f6031f338
+//
+//    Francois
+
+
 // Non-regression test file for bug 2344
 // Author : Francois Vogel
 // Date   : 16 March 2007

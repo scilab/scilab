@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 2264 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2264
+//
+// <-- Short Description -->
+//    lcm gives wrong value for 3-element vectors(cf bug 666)
+
+
 // Non-regression test file for bug 2264
 // Serge Steer - Scilab Project
 // Copyright INRIA

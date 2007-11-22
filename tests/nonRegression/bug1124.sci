@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 1124 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1124
+//
+// <-- Short Description -->
+//    incapacity to use a function name as an identifier
+
+
 // Non-regression test file for bug 1124
 // Copyright INRIA
 // Scilab Project - F. Belahcene

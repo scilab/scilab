@@ -1,3 +1,17 @@
+// <-- Non-regression test for bug 2022 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2022
+//
+// <-- Short Description -->
+//    percentile function (perctl) doesn't always calculate percentile value, instead
+//    choosing to error out:
+//
+//    Example that causes error:
+//
+//    perctl([23.4,364.34,1929.3,4234.3,293.3,928.3],[10])
+
+
 // Non-regression test file for bug 2022
 // Author : Scilab Project - Pierre MARECHAL
 // Copyright INRIA

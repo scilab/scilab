@@ -1,3 +1,14 @@
+// <-- Non-regression test for bug 1619 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1619
+//
+// <-- Short Description -->
+//    macr2tree doesn't like functions compiled for profiling. It hates them 
+//    so much,
+//    that causes spectacular crashes of scilab.
+
+
 // Non-regression test file for bug 1619
 // Copyright INRIA
 // Scilab Project - Serge Steer

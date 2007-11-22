@@ -1,3 +1,14 @@
+// <-- Non-regression test for bug 2330 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2330
+//
+// <-- Short Description -->
+//    datafit does not work equivalently on WinXP and Linux. With a given dataset and
+//    same routines centered on datafit function, it works perfectly on Linux and
+//    partially (some data are fitted some others not) on WinXP.
+
+
 // Non-regression test file for bug 2330
 // Serge Steer - Scilab Project
 // Copyright INRIA

@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 681 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=681
+//
+// <-- Short Description -->
+//    m2sci doesn't translate "error" function.
+
+
 // Non-regression test file for bug 681
 // Copyright INRIA
 // Scilab Project - V. Couvert

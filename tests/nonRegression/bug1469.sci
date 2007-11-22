@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 1469 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1469
+//
+// <-- Short Description -->
+//    Comments modify line numbering in functions
+//
+//    What you don't believe?
+//
+//    Try this:
+//
+//    1st test, no comment in line 1:
+//
+//    -->function foo1()
+//    -->  function foo3
+//    -->  endfunction
+//    -->  disp("line a");
+//    -->  disp("line b");
+//    -->  disp("line c");
+//    -->endfunction
+//
+//    -->setbpt("foo1",[3,4])
+//
+//    -->foo1()
+//    Stop after row     3 in function foo1 :
+// ...
+
+
 // Non-regression test file for bug 1469
 // Copyright INRIA
 // Scilab Project - Serge Steer

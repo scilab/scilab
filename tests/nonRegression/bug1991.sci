@@ -1,3 +1,14 @@
+// <-- Non-regression test for bug 1991 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1991
+//
+// <-- Short Description -->
+//    [a,b]=(3,int32(5))
+//                      !--error 78 
+//    convert: wrong number of lhs arguments
+
+
 // Non-regression test file for bug 1991
 // Copyright INRIA
 // Scilab Project - Serge Steer

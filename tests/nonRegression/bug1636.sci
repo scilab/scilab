@@ -1,3 +1,19 @@
+// <-- Non-regression test for bug 1636 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1636
+//
+// <-- Short Description -->
+//    When processing an m-file with multiple continuation lines in the 
+//    initial funtion statement, i.e the first line, I received an index 
+//    error in  line 181 of m2sci_syntax. On investigation, I found the index 
+//    k was zero and traced this to lines 141 and 171 which set k=k-1 after 
+//    appending line k to line k-1. I have produced a modified 
+//    m2sci_syntax.sci file with the line if k<> 1 then k=k-1; end instead of 
+//    k=k-1 for lines 141 and 181 which seems to work OK. No errors and 
+//    produces an sci file
+
+
 // Non-regression test file for bug 1636
 // Copyright INRIA
 // Scilab Project - F. Belahcene

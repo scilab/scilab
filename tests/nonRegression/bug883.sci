@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 883 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=883
+//
+// <-- Short Description -->
+//    format() output oddities
+
+
 // Non-regression test file for bug 883
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

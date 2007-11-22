@@ -1,3 +1,16 @@
+// <-- Non-regression test for bug 584 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=584
+//
+// <-- Short Description -->
+//    logspace does not return good max value ! try this :
+//    format('e',32);logspace( 3, 3, 1 )
+//    ans  =
+//
+//        1.0000000000000007000000000E+03
+
+
 // Non-regression test file for bug 584
 // Copyright INRIA
 

@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 797 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=797
+//
+// <-- Short Description -->
+//    Toutes les versions
+//
+//    Objet : Comportemment étrange avec format 
+//    REF  01062004-1545 
+//
+//    voici un comportement étrange avec format (testé sous la 
+//    2.7.2 sur Win 2000), celui-ci est il volontaire ? 
+//
+//    ----------------------------------------------------------
+//    -->J=0.001 
+//    J = 
+//
+//    .001 
+//
+//
+//    -->format("v",6) 
+//    -->J 
+//    J = 
+//
+//    .001 <- OK c'est bien ce qu'on souhaite 
+// ...
+
+
 // Non-regression test file for bug 797
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA

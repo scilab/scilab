@@ -1,3 +1,15 @@
+// <-- Non-regression test for bug 661 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=661
+//
+// <-- Short Description -->
+//    the function quart(x) only works with an even x.
+//    Although the bug is normal, took me a whole afternoon
+//    of debugging of my macro to reach the conclusion 
+//    that there was a problem with quart.
+
+
 // Non-regression test file for bug 661
 // Copyright INRIA
 // Scilab Project - Serge Steer

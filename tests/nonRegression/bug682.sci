@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 682 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=682
+//
+// <-- Short Description -->
+//    probleme with the logical or in tests.
+
+
 // Non-regression test file for bug 682
 // Copyright INRIA
 // Scilab Project - V. Couvert

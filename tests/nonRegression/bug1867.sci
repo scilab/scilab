@@ -1,3 +1,14 @@
+// <-- Non-regression test for bug 1867 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1867
+//
+// <-- Short Description -->
+//    msscanf fails to parse formats with a large number of entries (larger 
+//    than 30 it
+//    seems).
+
+
 // Non-regression test file for bug 1867
 // A.C
 // Copyright INRIA 2006

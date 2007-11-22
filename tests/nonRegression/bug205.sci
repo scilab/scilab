@@ -1,3 +1,28 @@
+// <-- Non-regression test for bug 205 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=205
+//
+// <-- Short Description -->
+//    Bug Report Id: 04062001110115540
+//    determ oublie les termes de plus haut degre.
+//
+//    On Scilab 2.5 with " determ " function
+//    The Error Messages are:
+//
+//    Commands: // scilab dit que le polynome caracteristique de 
+//    // cette matrice de dimension
+//    // 30 est de degre 21
+//    N=30
+//    a=rand(N,N)
+//    s=poly(0,'s')
+//    p=determ(eye(N,N)*s-a)
+//    degree(p)                                           
+//
+//    Gaubert on Linux PPC version 2.2.13 distribution  with  X/kde as window manager
+//    France  February 10, 2001 at 11:55:40
+
+
 // Non-regression test file for bug 205
 // Author : Scilab Project - Pierre MARECHAL
 // Copyright INRIA

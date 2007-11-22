@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 859 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=859
+//
+// <-- Short Description -->
+//    M2SCI convert Matlab expression such as a(n,:)=b(m,:) (with
+//    a==[])by a(n,:)=b(m,:) but execution crashes.
+
+
 // Non-regression test file for bug 859
 // Copyright INRIA
 // Scilab Project - V. Couvert

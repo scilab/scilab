@@ -1,3 +1,15 @@
+// <-- Non-regression test for bug 610 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=610
+//
+// <-- Short Description -->
+//    In a function with a varargout list I want to call another
+//    function having a varargout list.  How should I code it
+//    (this is simple in Matlab)?    The following is my example
+//    which does not work.  Any suggestions?
+
+
 
 // exec("bug610.sci");
 

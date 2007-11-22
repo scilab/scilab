@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 461 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=461
+//
+// <-- Short Description -->
+//    Bug Report Id: 11985200361815216
+//    Result  of following operations:
+//    size(s0)
+//     ans  =
+//    !   1.    43. !  
+//
+//    size(s1)   // and for s2 and s3
+//     ans  =
+//    !   43.    1. ! 
+//    s0 is vector-row and s1, s2 s3- vector-colum
+//
+//
+//    On Scilab 2.7 with " interp " function
+//    The Error Messages are:
+//                      !--error     5
+//    inconsistent column/row dimensions   
+//    Commands:  x=[0. 1.01 2.01 3. 4.02]; 
+//    f=[0. 1. 3.9 8.75 16.5]; 
+//    plot(x,f); 
+//    d=splin(x,f ); 
+// ...
+
+
 // bug461
 
 mode (-1);

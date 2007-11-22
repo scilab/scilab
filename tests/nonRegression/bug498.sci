@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 498 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=498
+//
+// <-- Short Description -->
+//    Bug Report Id: 12361200372510504
+//     I got another one!
+//
+//    On Scilab CVS with " min(), uint() " function
+//    The Error Messages are:
+//      none but wrong result
+//    Commands:  --min(2,uint16(1))  >//WRONG
+//     ans  =
+//
+//        2.  
+//
+//    -->min(2,int16(1)) //OK
+//     ans  =
+//
+//        1.  
+//
+//    -->min(2,int8(1))   //OK
+//     ans  =
+//
+//        1.  
+// ...
+
+
 // bug498 
 
 mode (-1)

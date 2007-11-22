@@ -1,3 +1,20 @@
+// <-- Non-regression test for bug 1720 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1720
+//
+// <-- Short Description -->
+//    Scilab 4.0-RC1
+//    Different default behavior of xfrect and xfarc
+//    xfrec does not draw the limit of the rectangle 
+//    xfarc draws the limit of the circle
+//
+//    I don't know which is right and which is wrong, but there is an obvious
+//    inconsistency between the two behaviors
+//
+//    Jacques-Deric
+
+
 // Non-regression test file for bug 1720
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy

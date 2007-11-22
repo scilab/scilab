@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 979 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=979
+//
+// <-- Short Description -->
+//    Matlab comments like %blabla are translated to
+//    part(comment,"blabla") [!?]
+
+
 // Non-regression test file for bug 979
 // Copyright INRIA
 // Scilab Project - V. Couvert

@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 853 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=853
+//
+// <-- Short Description -->
+//    Error with the m2sci on personnal function :
+//
+//    function CORPABOT_vJuin04
+//
+//    % COntinuous Reltaive Phase Analyser Based On the Tangeant
+//    (CO.R.P.A.B.O.T.)
+//    % Salesse Robin UMR6152 June 17th 2004
+//
+//
+//
+//
+//    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//    % Nettoyage du workspace
+//    clear all;
+//
+//    % Nettoyage du Command Window
+//    clc;
+//
+//    % Lancement du chronomètre
+//    tic;
+// ...
+
+
 // Non-regression test file for bug 853
 // Copyright INRIA
 // Scilab Project - V. Couvert

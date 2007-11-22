@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 2429 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2429
+//
+// <-- Short Description -->
+//    Implicit vector in for loop are allocated
+
+
 // Non-regression test file for bug 2429
 // Copyright INRIA
 // Scilab Project - Serge Steer

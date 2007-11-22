@@ -1,3 +1,17 @@
+// <-- Non-regression test for bug 2396 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2396
+//
+// <-- Short Description -->
+//    Scilab crashes on call to feval. I might have defined a weird function 
+//    to be feval'ed, but scilab should not crash. The steps to reproduce the 
+//    bug cause scilab to hang with the error message below, I have to kill 
+//    it.
+//
+//    Matthias
+
+
 // Non-regression test file for bug 2396
 // Serge Steer - Scilab Project
 // Copyright INRIA

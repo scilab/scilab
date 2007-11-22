@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 1902 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1902
+//
+// <-- Short Description -->
+//    in drawlater mode the bounding box of strings may be wrong
+
+
 // Non-regression test file for bug 1902
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy

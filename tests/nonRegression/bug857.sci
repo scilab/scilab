@@ -1,3 +1,25 @@
+// <-- Non-regression test for bug 857 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=857
+//
+// <-- Short Description -->
+//    Imaginary unit i and index loop i in an M-file are both
+//    converted to %i in Scilab...
+//
+//    for i=1:10
+//    disp(i)
+//    end
+//
+//    is converted as follows :
+//
+//    for i=1:10
+//    disp(%i)
+//    end
+//
+//    TOO BAD !
+
+
 // Non-regression test file for bug 857
 // Copyright INRIA
 // Scilab Project - V. Couvert

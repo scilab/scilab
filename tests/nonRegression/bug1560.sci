@@ -1,3 +1,17 @@
+// <-- Non-regression test for bug 1560 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1560
+//
+// <-- Short Description -->
+//    (Following of bug 1558)
+//    In a 3D representation, under the rotation angles [0,270], the third 
+//    coordinate z1 of the first point of a segment is ignored, while the 
+//    third coordinate z2 of the second point is considered.
+//
+//    Jacques-Deric
+
+
 // Non-regression test file for bug 1560
 // Copyright INRIA
 // Scilab Project - Jean-Baptiste Silvy

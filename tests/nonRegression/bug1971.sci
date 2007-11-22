@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 1971 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1971
+//
+// <-- Short Description -->
+//    the mtlb_fprintf does not work. It should be re-written to follow the Matlab doc
+//    of fprintf
+
+
 // Non-regression test file for bug 1971
 // Copyright INRIA
 // Scilab Project - F. Belahcene

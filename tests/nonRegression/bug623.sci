@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 623 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=623
+//
+// <-- Short Description -->
+//    Even after applying the patch corresponding to bug report
+//    608, integer cast to boolean is still not perfect.
+
+
 // Non-regression test file for bug 623
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL

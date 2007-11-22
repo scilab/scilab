@@ -1,3 +1,22 @@
+// <-- Non-regression test for bug 1180 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1180
+//
+// <-- Short Description -->
+//    mtlb_filter lines 
+//
+//    b=b*z^(max(degree(a)-degree(b),0))
+//    a=a*z^(max(degree(b)-degree(a),0))
+//
+//    should be replaced by :
+//
+//    da = degree(a)
+//    db = degree(b)
+//    if (da-db) > 0 then b=b*z^(da-db); end 
+//    if (db-da) > 0 then a=a*z^(db-da); end
+
+
 // Non-regression test file for bug 1180
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA

@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 1468 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1468
+//
+// <-- Short Description -->
+//    1) 'macr2tree' function doesn't work correctly with the following script
+
+
  // Non-regression test file for bug 1468
 // Copyright INRIA
 // Scilab Project - F. Belahcene

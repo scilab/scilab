@@ -1,3 +1,32 @@
+// <-- Non-regression test for bug 539 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=539
+//
+// <-- Short Description -->
+//    Bug Report Id: 030612003103172113
+//    Normally, as a procedure exists with an error, the message  reports the calling tree, such as
+//
+//    -->function foo(); a_wrong_string; endfunction
+//
+//    -->foo()
+//     !--error     4 
+//    undefined variable : a_wrong_string          
+//    at line       2 of function foo                      called by :  
+//    foo()
+//
+//
+//    Here instead the "called by" is the last scilab command, which is pretty confusing.  My claim is that the error message in the scilab window is wrong, and that is due to ScilabEval(). The use of  scipad is just a quick way of accessing ScilabEval(), in order to evidence the bug; however scipad/execute would certyainly gain if the bug is corrected.
+//    On Scilab CVS with " ScilabEval " function
+//    The Error Messages are:
+//     --> a_wrong_string,return,
+//       !--error     4 
+//    undefined variable : a_wrong_string          
+//    in  execstr instruction    called by :  
+//    disp(" a_wrong_string"),return,
+// ...
+
+
 // exec("bug539.sce")
 
 function foo(); a_wrong_string; endfunction

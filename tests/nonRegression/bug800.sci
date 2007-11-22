@@ -1,3 +1,15 @@
+// <-- Non-regression test for bug 800 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=800
+//
+// <-- Short Description -->
+//    mfile2sci can not convert expressions such as
+//    x=1/ -2;
+//    (Blank space between / and - is important, it works if no
+//    blank space)
+
+
 // Non-regression test file for bug 800
 // Copyright INRIA
 // Scilab Project - V. Couvert

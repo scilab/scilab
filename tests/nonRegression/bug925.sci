@@ -1,3 +1,28 @@
+// <-- Non-regression test for bug 925 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=925
+//
+// <-- Short Description -->
+//    Bad insertion conversion
+//
+//    Following Matlab code:
+//    function test(A,B)
+//    A(3)=B(4);
+//
+//    is converted to Scilab code :
+//    function [] = test(A,B)
+//
+//    // Display warning for floating point exception
+//    ieee(1)
+//
+//    A = mtlb_i(A,1,mtlb_e(B,3));
+//    endfunction
+//
+//    what is obviously wrong !
+//    4 has become 1 ....
+
+
 // Non-regression test file for bug 925
 // Copyright INRIA
 // Scilab Project - V. Couvert

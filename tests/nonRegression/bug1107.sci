@@ -1,3 +1,12 @@
+// <-- Non-regression test for bug 1107 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1107
+//
+// <-- Short Description -->
+//    wrong use of = not detected in if conditions
+
+
 // bug1107
 //the bug was due to a misinterpretation of syntax like (x=2) in
 //factor. It was treated as a named argument of a function instead of a

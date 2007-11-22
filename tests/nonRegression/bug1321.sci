@@ -1,3 +1,13 @@
+// <-- Non-regression test for bug 1321 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1321
+//
+// <-- Short Description -->
+//    Function findobj does not work when property value contains
+//    capital letters and is case sensitive for property name.
+
+
 // Non-regression test file for bug 1321
 // Copyright INRIA
 // Scilab Project - V. Couvert

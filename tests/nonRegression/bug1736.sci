@@ -1,3 +1,17 @@
+// <-- Non-regression test for bug 1736 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1736
+//
+// <-- Short Description -->
+//    Actually this is the same bug as 608, but it has been 
+//    marked incorrectly as RESOLVED. The fix should be the 
+//    same I posted some years ago for version 2.7 and I'm 
+//    surprised it hasn't be applied a lot of years after it 
+//    has been indentified and posted a bug correction... There 
+//    is a problem with uint8 comparisons...
+
+
 // Non-regression test file for bug 1736
 // Copyright INRIA
 // Scilab Project - Serge Steer

@@ -1,3 +1,26 @@
+// <-- Non-regression test for bug 1023 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1023
+//
+// <-- Short Description -->
+//    mfscanf cores dump scilab. 
+//
+//    I have a file named links.txt, its size is 350k. When I 
+//    try to run the below code, line 5 kills scilab with the 
+//    error "error in fscanf : cannot allocate more memory". But 
+//    the command "free" tells me I have 182Mb free memory. 
+//
+//    ================================================= 
+//    filename = "/home/fsilva/kazus.ebooks/links.txt" 
+//    inputfile = mopen(filename,"r") 
+//
+//    [n,a] = mfscanf(-1,inputfile,"%s"); 
+//    [m,b] = mfscanf(-1,inputfile,"%s"); //line 5 
+//
+//    mclose(inputfile);
+
+
 // Non-regression test file for bug 1023
 // Copyright INRIA
 // Scilab Project - Serge Steer

@@ -1,3 +1,14 @@
+// <-- Non-regression test for bug 683 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=683
+//
+// <-- Short Description -->
+//    problem with makecell : when a makecell input is an input of
+//    the main function, makecell doesn't give this input value to
+//    the created cell. Strange behavior...
+
+
 // Non-regression test file for bug 683
 // Copyright INRIA
 // Scilab Project - V. Couvert
