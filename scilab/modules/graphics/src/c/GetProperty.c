@@ -4125,3 +4125,48 @@ BOOL sciGetIsCubeScaled(sciPointObj * pObj)
   }
 }
 /*-------------------------------------------------------------------------------------------*/
+/**
+ * @return TRUE if the X axis of the subwindow pObj is reversed
+ */
+BOOL sciGetXAxisReverse(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->axes.reverse[0];
+  default:
+    return FALSE;
+    break;
+  }
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+* @return TRUE if the Y axis of the subwindow pObj is reversed
+*/
+BOOL sciGetYAxisReverse(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->axes.reverse[1];
+  default:
+    return FALSE;
+    break;
+  }
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+* @return TRUE if the Z axis of the subwindow pObj is reversed
+*/
+BOOL sciGetZAxisReverse(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->axes.reverse[2];
+  default:
+    return FALSE;
+    break;
+  }
+}
+/*-------------------------------------------------------------------------------------------*/

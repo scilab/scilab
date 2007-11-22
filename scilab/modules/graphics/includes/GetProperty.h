@@ -223,4 +223,8 @@ BOOL sciGetIsIsoView(sciPointObj * pObj); /* GET */
 
 BOOL sciGetIsCubeScaled(sciPointObj * pObj); /* GET */
 
+BOOL sciGetXAxisReverse(sciPointObj * pObj); /* GET */
+BOOL sciGetYAxisReverse(sciPointObj * pObj); /* GET */
+BOOL sciGetZAxisReverse(sciPointObj * pObj); /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */
