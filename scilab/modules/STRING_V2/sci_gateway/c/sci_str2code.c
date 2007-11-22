@@ -1,18 +1,66 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*------------------------------------------------------------------------*/
+/* File: sci_str2code1.c                                                     */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Cong Wu                                                      */
+/* desc : This function return scilab integer codes associated with a
+          character string                                                */
+/*------------------------------------------------------------------------*/
 #include <string.h>
+#include <stdio.h>
+#include <ctype.h>
 #include "gw_string.h"
 #include "machine.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(intstr2code) _PARAMS((int *id));
-/*-----------------------------------------------------------------------------------*/
+#include "MALLOC.h"
+#include "code2str.h"
+#include "Scierror.h"
+/*-------------------------------------------------------------------------------------*/
 int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int id[6];
-	C2F(intstr2code)(id);
-	return 0;
+  CheckRhs(1,1);
+  CheckLhs(1,1);
+
+  switch ( VarType(1)) 
+  {
+	case sci_strings :
+		{
+			char **Input_String = NULL;
+			int m1 = 0,n1 = 0,i = 0;
+			int *Output_Matrix = NULL;
+			int nbOutput_Matrix = 0;
+			int numRow   = 1 ;
+			int outIndex = 0;
+			int mn = 0;
+
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_String);
+			mn = m1*n1;
+			if (strlen(Input_String[0]))  Output_Matrix=(int*)MALLOC(sizeof(int)*(strlen(Input_String[0])));
+			else  Output_Matrix=(int*)MALLOC(sizeof(int));  
+
+			/* Please check this */
+			nbOutput_Matrix = str2code(Output_Matrix,m1,n1,Input_String);
+
+			/* put on scilab stack */
+			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&nbOutput_Matrix,&numRow,&outIndex);    /*Output*/
+			for ( i = 0 ; i < nbOutput_Matrix ; i++ )
+			{
+				stk(outIndex)[i] = (double)Output_Matrix[i] ;
+			}
+			LhsVar(1) = Rhs+1 ;
+			C2F(putlhsvar)();
+
+			/* free pointers */
+			if (Output_Matrix) {FREE(Output_Matrix); Output_Matrix=NULL; }
+		}
+	break;
+
+	default : 
+		{
+			Scierror(999,"invalid type.\n");
+			return 0;
+		}
+	break;
+  }
+  return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------*/
