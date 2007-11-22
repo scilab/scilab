@@ -24,6 +24,7 @@ int *next=NULL;
 void getnext(char T[],int *next);
 int kmp(char S[],char T[],int pos,int *);
 int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End);
+/*------------------------------------------------------------------------*/
 int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
 {
     char typ ;
@@ -73,7 +74,7 @@ int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
 	length=0;
     for (x=0; x<mn;x++) 
 	{
-		length=length+strlen(Str[x]);
+		length=length+(int)strlen(Str[x]);
 	}
     
 	if (length==0) 
@@ -92,8 +93,7 @@ int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
     if (Rhs >= 3)
     {
 		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-        if ( m3*n3 != 0)
-            typ = cstk(l3)[0];
+        if ( m3*n3 != 0) typ = cstk(l3)[0];
         if (typ == 'r' )
         {            /*When we use the regexp;*/
 			

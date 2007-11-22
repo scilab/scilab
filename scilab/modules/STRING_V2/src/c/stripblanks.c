@@ -19,11 +19,20 @@ static char* substr(const char*str, unsigned start, unsigned end)
 {
 	unsigned n = end - start;
 	char *stbuf = NULL;
-    stbuf = (char*)MALLOC(sizeof(char*)*n);
+    stbuf = (char*)MALLOC(sizeof(char*)*(n+1));
+	
 	if (stbuf)
 	{
-		strncpy(stbuf, str + start, n);   /*Put a part of str  into stbuf*/
-		stbuf[n] = 0;
+		if ( strcmp(str,"") != 0 )
+		{
+			strncpy(stbuf, str + start, n);   /*Put a part of str  into stbuf*/
+			stbuf[n] = 0;
+
+		}
+		else
+		{
+			strcpy(stbuf,"");
+		}
 	}
 	return stbuf;
 }

@@ -35,18 +35,14 @@ int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
     char **Input_StringMatrix_Two=NULL;
 	char **Input_StringMatrix_Three=NULL;
     int x = 0,Row_One = 0,Col_One = 0,Number_of_Matrix_One = 0,Number_of_Matrix_Two = 0,Row_Three = 0,Row_Two = 0,Col_Two = 0,Number_of_Matrix_Three = 0,Col_Three = 0,m4 = 0,n4 = 0,l4 = 0;
-    unsigned x1;
     int i = 0, l = 0;
-    const size_t nmatch = 10;
     char *pattern = NULL;
     int w = 0;
     int pos = 0;
-    int  z = 0, cflags = 0;
 	int answer;
     int Output_Start;
     int Output_End;
-    regmatch_t pm[20];
-    regex_t out1;
+
 
     CheckRhs(1,4);
 

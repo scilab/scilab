@@ -26,17 +26,13 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
     char **Str=NULL;
 	char **Str2=NULL;
     int x = 0,m1 = 0,n1 = 0,mn = 0,mn2 = 0,i = 0,m2 = 0,n2 = 0,m3 = 0,n3 = 0,l3=0;
-    unsigned int x1 = 0;
     int outIndex = 0 ;
     char *lbuf=NULL;
-    const size_t nmatch = 10;
-    int  z = 0;
     int *values = NULL;
     int nbValues = 0;
     int *position = NULL;
     int nbposition = 0;
     int numRow = 1 ;
-    int numCol = 1 ;
     int w = 0;
     int pos = 0;
 	int Output_Start;
