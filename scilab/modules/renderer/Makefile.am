@@ -145,7 +145,10 @@ src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp \
 src/jni/IsoViewCameraGL.cpp \
 src/jni/IsometricCameraGL.cpp \
 src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
-src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
+src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
+src/cpp/subwinDrawing/YAxisReverseJoGL.cpp \
+src/cpp/subwinDrawing/XAxisReverseJoGL.cpp \
+src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
