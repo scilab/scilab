@@ -39,15 +39,10 @@ AC_REQUIRE([AC_F77_LIBRARY_LDFLAGS])
 acx_blas_ok=no
 acx_blas_save_LIBS="$LIBS"
 
-AC_ARG_WITH(blas,
-            AC_HELP_STRING([--with-blas=<lib>], [use BLAS library <lib>]))
-case $with_blas in
-	yes | "") ;;
-	no) acx_blas_ok=disable ;;
-	-* | *.a | *.so | *.so.* | *.o) BLAS_LIBS="$with_blas" ;;
-        -* | */*) LIBS = "$with_blas $LIBS";;
-	*) BLAS_LIBS="-l$with_blas" ;;
-esac
+AC_ARG_WITH(blas-library,
+            AC_HELP_STRING([--with-blas-library=DIR], [BLAS (refblas, Atlas, MKL...) library files are in DIR]))
+saved_ldflags="$LDFLAGS"
+LDFLAGS="$LDFLAGS -L$with_blas"
 
 # Get fortran linker names of BLAS functions to check for.
 AC_F77_FUNC(sgemm)
@@ -146,6 +141,7 @@ fi
 AC_SUBST(BLAS_LIBS)
 
 LIBS="$acx_blas_save_LIBS"
+LDFLAGS="$saved_ldflags"
 
 # Finally, execute ACTION-IF-FOUND/ACTION-IF-NOT-FOUND:
 if test x"$acx_blas_ok" = xyes; then
@@ -180,7 +176,7 @@ dnl and is sometimes necessary in order to link with F77 libraries.
 dnl Users will also need to use AC_F77_DUMMY_MAIN (see the autoconf
 dnl manual), for the same reason.
 dnl
-dnl The user may also use --with-lapack=<lib> in order to use some
+dnl The user may also use --with-lapack-library=<DIR> in order to use some
 dnl specific LAPACK library <lib>.  In order to link successfully,
 dnl however, be aware that you will probably need to use the same
 dnl Fortran compiler (which can be set via the F77 env. var.) as
@@ -198,14 +194,10 @@ AC_DEFUN([ACX_LAPACK], [
 AC_REQUIRE([ACX_BLAS])
 acx_lapack_ok=no
 
-AC_ARG_WITH(lapack,
-            AC_HELP_STRING([--with-lapack=<lib>], [use LAPACK library <lib>]))
-case $with_lapack in
-        yes | "") ;;
-        no) acx_lapack_ok=disable ;;
-        -* | */* | *.a | *.so | *.so.* | *.o) LAPACK_LIBS="$with_lapack" ;;
-        *) LAPACK_LIBS="-l$with_lapack" ;;
-esac
+AC_ARG_WITH(lapack-library,
+            AC_HELP_STRING([--with-lapack-library=DIR], [LAPACK library files are in DIR]))
+saved_ldflags="$LDFLAGS"
+LDFLAGS="$LDFLAGS -L$with_blas"
 
 # Get fortran linker name of LAPACK function to check for.
 AC_F77_FUNC(cheev)
@@ -243,6 +235,8 @@ for lapack in lapack lapack_rs6k; do
                 LIBS="$save_LIBS"
         fi
 done
+
+LDFLAGS="$saved_ldflags"
 
 AC_SUBST(LAPACK_LIBS)
 
