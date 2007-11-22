@@ -6,14 +6,9 @@
 // <-- Short Description -->
 //    incapacity to use a function name as an identifier
 
-
-// Non-regression test file for bug 1124
 // Copyright INRIA
 // Scilab Project - F. Belahcene
 
-mode(-1);
-clear;
- 
 MFILECONTENTS=[
 "load([rep,''alpha'']);";
 "load([rep,''beta'']);";
@@ -47,13 +42,4 @@ SCIFILECONTENTSREF=["";
 "mu = mtlb_double(beta)*mtlb_double(alpha);";
 ]
 
-correct=%T
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
-end
-
-affich_result(correct,1124);
-
-clear
-
-
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

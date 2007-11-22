@@ -12,9 +12,6 @@
 // Copyright INRIA
 // 1er juin 2005
 
-mode(-1);
-clear;
-
 set figure_style old;
 xset('window',1000);
 set figure_style old;
@@ -23,8 +20,4 @@ set figure_style new;
 
 A = winsid();
 
-if and(A == [0,1000]) then
-	affich_result(%T,1025);
-else
-	affich_result(%F,1025);
-end
+if or(A <> [0,1000]) then pause,end

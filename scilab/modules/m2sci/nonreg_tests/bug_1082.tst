@@ -8,13 +8,8 @@
 //    syntax is the same in both languages, the converter fails to
 //    convert the rounding of the field of a structure: "round(a.b)"
 
-
-// Non-regression test file for bug 1082
 // Copyright INRIA
 // Scilab Project - F.Belahcene
-
-mode(-1);
-clear;
 
 MFILECONTENTS=["structure.field = 2;" 
 ""
@@ -25,10 +20,8 @@ SCIFILE=TMPDIR+"/bug1082.sci"
 
 mputl(MFILECONTENTS,MFILE);
 
-
 mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
-
 
 SCIFILECONTENTSREF=["";
 "// Display mode";
@@ -41,10 +34,4 @@ SCIFILECONTENTSREF=["";
 "";
 "data = round(mtlb_double(structure.field));"]
 
-correct=%T
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
-end
-affich_result(correct,1082);
-
-clear
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

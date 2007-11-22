@@ -9,13 +9,8 @@
 //    matlab lives well with. Awful matlab quirk, I agree, but
 //    some automatic m-file generator does it carelessly.
 
-
- // Non-regression test file for bug 1149
 // Copyright INRIA
 // Scilab Project - F.Belahcene
-
-mode(-1);
-clear;
 
 MFILECONTENTS="a=[,1,2,3,];"
 
@@ -42,9 +37,4 @@ SCIFILECONTENTSREF=["";
 "a = [1,2,3];"]
 
 correct=%T
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
-end
-affich_result(correct,1149);
-
-clear
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS)  then pause,end
