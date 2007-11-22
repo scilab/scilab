@@ -35,9 +35,4 @@ SCIFILECONTENTSREF=["";
 "";
 "var1 = mtlb_strrep(var,"" "","","")"]
 
-correct=%T
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
-end
-
-affich_result(correct,973);
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

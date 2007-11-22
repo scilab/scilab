@@ -15,6 +15,4 @@
 // 15/03/2007
 
 load("SCI/modules/m2sci/macros/kernel/lib");
-r=exists("mfile_path");
-
-affich_result(r,2322);
+if ~(exists("mfile_path")) then pause,end

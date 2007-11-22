@@ -35,8 +35,4 @@ SCIFILECONTENTSREF=["";
 "error(""This is an error message"")"]
 
 correct=%T
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
-end
-
-affich_result(correct,681);
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

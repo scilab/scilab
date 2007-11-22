@@ -49,8 +49,4 @@ SCIFILECONTENTSREF=["function [y] = bug1662(x)";
 		"endfunction"]
 
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,1662);
-else
-	affich_result(%T,1662);
-end
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

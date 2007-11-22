@@ -42,8 +42,4 @@ SCIFILECONTENTSREF=["";
 		"M(1,1) = sin(0.1);"]
 
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,699);
-else
-	affich_result(%T,699);
-end
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
