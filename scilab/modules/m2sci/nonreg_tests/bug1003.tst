@@ -1,0 +1,67 @@
+// <-- Non-regression test for bug 1003 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1003
+//
+// <-- Short Description -->
+//    Matlab fgets translation is wrong
+//
+//    The Matlab function fgets is close to mgetl but not 
+//    identical.
+//    fgets(fd) should be translated into mgetl(fd,1).
+//    The current CVS translates fgets(fd) into mgetl(fd) but 
+//    this is wrong since fgets(fd) in Matlab reads one line of 
+//    the file while mgetl(fd) in Scilab reads the full file (if 
+//    I understand the Matlab and Scilab docs correctly).
+//
+//    The solution I propose to correct this consists simply in 
+//    adding:
+//      tree.rhs(2)=Cste(1)
+//    in the else part of sci_fgets.sci
+//
+//
+//    Example of wrong conversion: Try to convert the following 
+//    file ct1.m:
+//
+//    function ct1()
+// ...
+
+
+// Copyright INRIA
+// Scilab Project - V. Couvert
+
+// Modified by Pierre MARECHAL
+// Copyright INRIA
+// Date : 18 Mar 2005
+
+MFILECONTENTS=["fp = fopen(''testfile.txt'',''r'');";
+		"tempstr = '' '';";
+		"while ( tempstr ~= -1)";
+		"  tempstr = fgets(fp); % -1 if eof ";
+		"  disp(tempstr);";
+		"end";
+		"fclose(fp);"]
+
+MFILE=TMPDIR+"/bug1003.m"
+SCIFILE=TMPDIR+"/bug1003.sci"
+
+mputl(MFILECONTENTS,MFILE);
+mfile2sci(MFILE,TMPDIR);
+SCIFILECONTENTS=mgetl(SCIFILE);
+
+SCIFILECONTENTSREF=["";
+		"// Display mode";
+		"mode(0);";
+		"";
+		"// Display warning for floating point exception";
+		"ieee(1);";
+		"";
+		"fp = mtlb_fopen(""testfile.txt"",""r"");";
+		"tempstr = "" "";";
+		"while asciimat(tempstr)~=(-1)";
+		"  tempstr = mgetl(fp,1);  // -1 if eof ";
+		"  disp(tempstr);";
+		"end;";
+		"mclose(fp);"]
+
+if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
