@@ -39,9 +39,12 @@ void tokens(char **Input_MatrixOne,char **Input_MatrixTwo,char **Output_String,i
 			else 
 			{
 				/* To start copying from the next row, and from the very beginning*/
-				Output_String[*Row_Pointer][*Col_Pointer]=0;
-				(*Row_Pointer)++;
-				*Col_Pointer=0;
+				if ((*Col_Pointer)!=0) 
+				{
+					Output_String[*Row_Pointer][*Col_Pointer]=0;
+					(*Row_Pointer)++;
+					*Col_Pointer=0;
+				}
 			}
 			bo=0;
 		}

@@ -19,4 +19,6 @@ intersci_
 check_length
 callFunctionFromGateway
 gettype_
+sci_strsplit_
+strsplit_
 ;
