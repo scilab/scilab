@@ -70,19 +70,24 @@ check-local:
 	@COMMAND="test_run();quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nw -nb -e "$$COMMAND"
-distclean-local::
-clean-local: clean-help
+
+distclean-recursive: clean-help clean-localization
+
+clean-recursive: clean-help clean-localization
 
 clean-help:
 	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'
+
+clean-localization:
+	rm -rf $(top_srcdir)/locale/
 
 build-localization:
 	@echo "-- Build localization (.mo from .po) --"; \
 	MASK="modules/*/locales/"; \
 	LC=LC_MESSAGES; \
 	FILENAME="messages.po*"; \
-	rm modules/*/locales/*/*~; \
+	rm modules/*/locales/*/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
 		PATHTO=$(top_srcdir)/locale/$$LOCALE/$$LC/; \

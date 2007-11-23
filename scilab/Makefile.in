@@ -836,15 +836,14 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-recursive
 
-clean-am: clean-binPROGRAMS clean-generic clean-libtool clean-local \
-	mostlyclean-am
+clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-hdr distclean-libtool distclean-local distclean-tags
+	distclean-hdr distclean-libtool distclean-tags
 
 dvi: dvi-recursive
 
@@ -903,18 +902,17 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 
 .PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
 	all all-am all-local am--refresh check check-am check-local \
-	clean clean-binPROGRAMS clean-generic clean-libtool \
-	clean-local ctags ctags-recursive dist dist-all dist-bzip2 \
-	dist-gzip dist-shar dist-tarZ dist-zip distcheck distclean \
-	distclean-compile distclean-generic distclean-hdr \
-	distclean-libtool distclean-local distclean-tags \
-	distcleancheck distdir distuninstallcheck dvi dvi-am html \
-	html-am info info-am install install-am install-binPROGRAMS \
-	install-binSCRIPTS install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-pkgconfigDATA install-ps install-ps-am \
+	clean clean-binPROGRAMS clean-generic clean-libtool ctags \
+	ctags-recursive dist dist-all dist-bzip2 dist-gzip dist-shar \
+	dist-tarZ dist-zip distcheck distclean distclean-compile \
+	distclean-generic distclean-hdr distclean-libtool \
+	distclean-tags distcleancheck distdir distuninstallcheck dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-binPROGRAMS install-binSCRIPTS install-data \
+	install-data-am install-data-local install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man install-pdf \
+	install-pdf-am install-pkgconfigDATA install-ps install-ps-am \
 	install-rootDATA install-strip installcheck installcheck-am \
 	installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
@@ -947,19 +945,24 @@ check-local:
 	@COMMAND="test_run();quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nw -nb -e "$$COMMAND"
-distclean-local::
-clean-local: clean-help
+
+distclean-recursive: clean-help clean-localization
+
+clean-recursive: clean-help clean-localization
 
 clean-help:
 	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'
+
+clean-localization:
+	rm -rf $(top_srcdir)/locale/
 
 build-localization:
 	@echo "-- Build localization (.mo from .po) --"; \
 	MASK="modules/*/locales/"; \
 	LC=LC_MESSAGES; \
 	FILENAME="messages.po*"; \
-	rm modules/*/locales/*/*~; \
+	rm modules/*/locales/*/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
 		PATHTO=$(top_srcdir)/locale/$$LOCALE/$$LC/; \
