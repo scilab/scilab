@@ -21,7 +21,7 @@ dnl Process this file with autoconf to produce a configure script.
 #                +- increment if interfaces have been added, removed or changed
 
 AC_REVISION($Revision$)dnl
-AC_INIT([Scilab],[0],[http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi])
+AC_INIT([Scilab],[5],[http://www.scilab.org/cgi-bin/bugzilla_bug_II/])
 AC_PREREQ(2.60)
 
 SCI_BUILDDIR="`pwd`"
