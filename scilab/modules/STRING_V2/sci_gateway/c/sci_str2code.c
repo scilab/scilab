@@ -14,6 +14,7 @@
 #include "MALLOC.h"
 #include "code2str.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-------------------------------------------------------------------------------------*/
 int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -50,7 +51,7 @@ int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 			/* free pointers */
 			if (Output_Matrix) {FREE(Output_Matrix); Output_Matrix=NULL; }
 		}else{
-			Scierror(999,"Input argument must be a string.\n");
+			Scierror(999,_("Input argument must be a string.\n"));
 		}
   return 0;
 }
