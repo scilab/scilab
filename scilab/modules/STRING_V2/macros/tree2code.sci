@@ -10,7 +10,7 @@ function C=tree2code(P,prettyprint)
 
 // Verify good type for input
 if typeof(P)<>"program" then
-  error("Input variable is not a program tree in tree2code !")
+  error(gettext("Input variable is not a program tree in tree2code !"))
 end
 
 // Default value

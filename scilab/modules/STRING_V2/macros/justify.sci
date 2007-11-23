@@ -16,7 +16,7 @@ function t=justify(t,job)
 	t(l,k)=part(' ',1:nl)+t(l,k)+part(' ',1:nr)
       end
     else
-      error('justify: Invalid option')
+      error(gettet("justify: Invalid option"))
     end
   end
 endfunction

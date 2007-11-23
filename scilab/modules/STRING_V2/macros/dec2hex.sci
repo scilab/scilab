@@ -4,7 +4,7 @@ function h=dec2hex(v)
 // Copyright INRIA
 [nr,nc]=size(v)
 if find(v<0)<>[]|norm(round(v)-v,1)>norm(round(v),1)*2*%eps then 
-  error('dec2hex : v entries must be non negative integers')
+  error(gettext("dec2hex : v entries must be non negative integers"))
 end
 v=v(:)
 kz=find(v<>0)

@@ -28,7 +28,7 @@ end
 
 // check the size
 if ( size( cText ) <> 1 ) then
-  error("function only works with an unique string");
+  error(gettext("The function arobasestring2strings only works with a single string"));
   return ;
 end
 

@@ -80,7 +80,7 @@ case 129 then
   t=imp2exp(a,lmax)
 else
 //  execstr('t='+typeof(a)+'2exp(a,lmax)')
-  error('Variable translation of type '+string(type(a))+' Not implemented')
+  error(msprintf(gettext("Variable translation of type %s not implemented"),string(type(a)))
 end,
 if named&and(type(a)<>[11 13]) then
   t(1)=nom+' = '+t(1)
@@ -289,7 +289,6 @@ function t=pol2exp(a,lmax)
 	if ny>1 then x($+1:$+ny-1)=y(2:ny),end
       else
 	if length(x($))==0 then
-	  //added by Andre Hentz (andre@lcmi.ufsc.br) 10-Oct-95
 	  x($:$+ny-1) = y;
 	else
 	  x($)=x($)+','+dots;

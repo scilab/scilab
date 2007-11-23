@@ -4,11 +4,10 @@ function kdf=tokenpos(str,sep)
   if argn(2)<2 then sep=[' ',ascii(9)],end
   
   if size(str,'*')<> 1 then 
-    error('numtok : str must be a single string')
+    error(gettext("numtok : str must be a single string"))
   end
   if or(length(sep)<>1) then 
-    error('numtok : delimitor must be a character or a vector of "+...
-	  "characters')
+    error(gettext("numtok : delimitor must be a character or a vector of characters"))
   end  
   str=sep(1)+str+sep(1)
   k1=strindex(str,sep)
