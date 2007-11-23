@@ -29,7 +29,6 @@ callinterf_
 ;
 ;core_f
 ;
-msgs_
 ftob_
 allowptr_
 ref2val_
