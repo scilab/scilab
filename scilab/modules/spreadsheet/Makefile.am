@@ -30,10 +30,6 @@ libscispreadsheet_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
     $(top_builddir)/libs/libst/libscilibst.la
 
-
-
-
-
 #### Target ######
 modulename=spreadsheet
 
@@ -56,9 +52,14 @@ libscispreadsheet_la_includedir=$(pkgincludedir)/spreadsheet
 libscispreadsheet_la_include_HEADERS = includes/gw_spreadsheet.h
 
 
-#### spreadsheet : demos files ####
+#### core : demos files ####
 libscispreadsheet_la_demosdir=$(mydatadir)/demos/
-libscispreadsheet_la_demos_DATA = demos/xls/Testo1.xls \
+libscispreadsheet_la_demos_DATA = demos/spreadsheet.dem
+
+
+#### spreadsheet : demos files ####
+libscispreadsheet_la_demosxlsdir=$(mydatadir)/demos/xls/
+libscispreadsheet_la_demosxls_DATA = demos/xls/Testo1.xls \
 demos/xls/o1.xls \
 demos/xls/Test1.xls \
 demos/xls/Testobig.xls \
