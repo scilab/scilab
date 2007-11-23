@@ -37,12 +37,17 @@ AC_DEFUN([ACX_BLAS], [
 AC_PREREQ(2.50)
 AC_REQUIRE([AC_F77_LIBRARY_LDFLAGS])
 acx_blas_ok=no
+BLAS_LIBS=
 acx_blas_save_LIBS="$LIBS"
 
 AC_ARG_WITH(blas-library,
             AC_HELP_STRING([--with-blas-library=DIR], [BLAS (refblas, Atlas, MKL...) library files are in DIR]))
 saved_ldflags="$LDFLAGS"
-LDFLAGS="$LDFLAGS -L$with_blas"
+
+
+if test "$with_blas_library" != no -a "$with_blas_library" != ""; then
+LDFLAGS="$LDFLAGS -L$with_blas_library"
+fi
 
 # Get fortran linker names of BLAS functions to check for.
 AC_F77_FUNC(sgemm)
@@ -197,7 +202,11 @@ acx_lapack_ok=no
 AC_ARG_WITH(lapack-library,
             AC_HELP_STRING([--with-lapack-library=DIR], [LAPACK library files are in DIR]))
 saved_ldflags="$LDFLAGS"
-LDFLAGS="$LDFLAGS -L$with_blas"
+
+if test "$with_lapack_library" != no -a "$with_lapack_library" != ""; then
+LDFLAGS="$LDFLAGS -L$with_lapack_library"
+fi
+
 
 # Get fortran linker name of LAPACK function to check for.
 AC_F77_FUNC(cheev)
