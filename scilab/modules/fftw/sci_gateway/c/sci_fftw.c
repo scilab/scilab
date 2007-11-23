@@ -78,16 +78,16 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   double zero=0.0;
 
   /****************************************
-   * Basic constraints on rhs parameters  *
+   * Basic constraints on rhs arguments  *
    ****************************************/
 
-  /* check min/max lhs/rhs parameters of scilab funcion */
+  /* check min/max lhs/rhs arguments of scilab funcion */
   CheckRhs(1,4);
   CheckLhs(1,1);
 
   /* 3 rhs not allowed */
   if (Rhs==3) {
-   Scierror(39,_("%s: Bad number of input parameters\n"),
+   Scierror(39,_("%s: Wrong number of input arguments, expecting 3.\n"),
                fname);
    return(0);
   }
@@ -103,17 +103,17 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   }
 
   /******************************************
-   * Advanced constraints on rhs parameters *
-   * Get value of rhs parameters            *
+   * Advanced constraints on rhs arguments *
+   * Get value of rhs arguments            *
    ******************************************/
 
-  /*only one rhs parameter*/
+  /*only one rhs argument*/
   /*forward fft*/
   if (Rhs==1) {
    /* sign of the exp. component */
    isn=-1;
   }
-  /* two or four rhs parameters case */
+  /* two or four rhs arguments case */
   else {
    /* Get dim/type of Rhs(2) */
    header = GetData(2);
@@ -155,19 +155,19 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
    }
    /* if is not int/double then error message */
    else {
-    Scierror(53,_("%s: Bad type for the second input parameter\n"),
+    Scierror(53,_("%s: Wrong type for the second input argument, expecting matrix.\n"),
                 fname);
     return(0);
    }
 
    /* check value of second rhs argument */
    if ((isn!=1)&&(isn!=-1)) {
-    Scierror(53,_("%s: Bad value for the second input parameter\n"),
+    Scierror(53,_("%s: Wrong value for the second input argument.\n"),
                 fname);
     return(0);
    }
 
-   /* four rhs parameters */
+   /* four rhs arguments */
    if (Rhs==4) {
     /* Get dim/type of Rhs(3) */
     header = GetData(3);
@@ -177,7 +177,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* look at for type of Rhs(3) */
     if ((VarType(3)!=sci_ints)&&(VarType(3)!=sci_matrix)) {
-     Scierror(53,_("%s: Bad type for the third input parameter\n"),
+     Scierror(53,_("%s: Wrong type for the third input argument.\n"),
                  fname);
      return(0);
     }
@@ -187,7 +187,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* check dims */
     if (m3*n3==0) {
-     Scierror(999,_("%s: Bad size for the third input parameter\n"),
+     Scierror(999,_("%s: Wrong size for the third input argument\n"),
                   fname);
      return(0);
     }
@@ -200,7 +200,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* look at for type of Rhs(4) */
     if ((VarType(4)!=sci_ints)&&(VarType(4)!=sci_matrix)) { /* int */
-     Scierror(53,_("%s: Bad type for the fourth input parameter\n"),
+     Scierror(53,_("%s: Wrong type for the fourth input argument\n"),
                  fname);
      return(0);
     }
@@ -210,14 +210,14 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* check dims */
     if (m4*n4==0) {
-     Scierror(999,_("%s: Bad size for the fourth input parameter\n"),
+     Scierror(999,_("%s: Wrong size for the fourth input argument\n"),
                   fname);
      return(0);
     }
 
     /* cross variable size checking */
     if (mn4!=mn3) {
-     Scierror(999,_("%s: Size of the third and fourth input parameters must be the same\n"),
+     Scierror(999,_("%s: Size of the third and fourth input arguments must be the same\n"),
                    fname);
      return(0);
     }
@@ -286,7 +286,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      }
      /* check value of n[i] */
      if (n[i]<=0) {
-      Scierror(999,_("%s: Bad value for the third input parameter : %d\n"),
+      Scierror(999,_("%s: Wrong value for the third input argument : %d\n"),
                     fname,n[i]);
       FREE(n);FREE(nspn);
       return(0);
@@ -339,7 +339,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      }
      /* check value of nspn[i] */
      if (nspn[i]<=0) {
-      Scierror(999,_("%s: Bad value for the fourth input parameter : %d\n"),
+      Scierror(999,_("%s: Wrong value for the fourth input argument : %d\n"),
                     fname,nspn[i]);
       FREE(n);FREE(nspn);
       return(0);
@@ -392,7 +392,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   }
 
   /**********************************
-   * Set parameters needed for fftw *
+   * Set arguments needed for fftw *
    **********************************/
 
   /* check if it is one column or row vector */
@@ -401,7 +401,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
   /* vector transform */
   if ((vect)&&(Rhs<=2)) {
-   /* set parameters of fftw_plan_guru_split_dft */
+   /* set arguments of fftw_plan_guru_split_dft */
    gdim.rank=1;
    if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
     Scierror(999,_("%s: Memory allocation error\n"),
@@ -419,7 +419,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   else {
    /* 2D fft */
    if (Rhs<=2) {
-    /* set parameters of fftw_plan_guru_split_dft */
+    /* set arguments of fftw_plan_guru_split_dft */
     gdim.rank=2;
     if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
      Scierror(999,_("%s: Memory allocation error\n"),
@@ -447,7 +447,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      * compatibility with scilab fft function.
      */
 
-     /* set parameters of fftw_plan_guru_split_dft */
+     /* set arguments of fftw_plan_guru_split_dft */
      gdim.rank = 1;
      if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
       Scierror(999,_("%s: Memory allocation error\n"),
@@ -522,7 +522,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* size mxn Rhs(3)/Rhs(4)  */
     else {
-      /* set parameters of fftw_plan_guru_split_dft */
+      /* set arguments of fftw_plan_guru_split_dft */
       gdim.rank=mn3;
       if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
        Scierror(999,_("%s: Memory allocation error\n"),
@@ -591,7 +591,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   call_fftw_execute_split_dft(p,ri,ii,ro,io);
 
   /***********************************
-   * Return results in lhs parameter *
+   * Return results in lhs argument *
    ***********************************/
 
   LhsVar(1) = 1;

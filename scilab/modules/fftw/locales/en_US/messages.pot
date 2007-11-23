@@ -1,123 +1,40 @@
 # Localization of the module fftw
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - fftw\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-23 11:10+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-23 11:10+0100\n"
 
 # File: src/nofftw/nofftw.c, line: 11
 msgid "Scilab FFTW module not installed.\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_fftw_flags.c, line: 128
 #, c-format
 msgid "%s: Bad flag %s for the first input parameter\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_fftw_flags.c, line: 148
 #, c-format
 msgid "%s: Bad type for the first input parameter\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_fftw_flags.c, line: 166
 # File: sci_gateway/c/sci_fftw_flags.c, line: 172
 # File: sci_gateway/c/sci_fftw_flags.c, line: 184
 # File: sci_gateway/c/sci_fftw_flags.c, line: 190
 # File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 40
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 39
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 45
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 59
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 64
-#, c-format
-msgid "%s: Memory allocation error\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 62
-#, c-format
-msgid "%s: FFTW can't read wisdom\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 68
-#, c-format
-msgid "%s: Bad Rhs type parameter\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/gw_fftw.c, line: 35
-#, c-format
-msgid "FFTW Library %s not found.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/gw_fftw.c, line: 39
-msgid "FFTW Library not found.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 90
-#, c-format
-msgid "%s: Bad number of input parameters\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 158
-#, c-format
-msgid "%s: Bad type for the second input parameter\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 165
-#, c-format
-msgid "%s: Bad value for the second input parameter\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 180
-#, c-format
-msgid "%s: Bad type for the third input parameter\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 190
-#, c-format
-msgid "%s: Bad size for the third input parameter\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 203
-#, c-format
-msgid "%s: Bad type for the fourth input parameter\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 213
-#, c-format
-msgid "%s: Bad size for the fourth input parameter\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 220
-#, c-format
-msgid "%s: Size of the third and fourth input parameters must be the same\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_fftw.c, line: 227
 # File: sci_gateway/c/sci_fftw.c, line: 233
 # File: sci_gateway/c/sci_fftw.c, line: 407
@@ -127,23 +44,83 @@ msgstr ""
 # File: sci_gateway/c/sci_fftw.c, line: 487
 # File: sci_gateway/c/sci_fftw.c, line: 528
 # File: sci_gateway/c/sci_fftw.c, line: 555
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 39
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 45
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 59
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 64
 #, c-format
-msgid "%s: Allocation memory error\n"
+msgid "%s: Memory allocation error\n"
 msgstr ""
-
+#
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 62
+#, c-format
+msgid "%s: FFTW can't read wisdom\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 68
+#, c-format
+msgid "%s: Bad type for the input parameter\n"
+msgstr ""
+#
+# File: sci_gateway/c/gw_fftw.c, line: 37
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr ""
+#
+# File: sci_gateway/c/gw_fftw.c, line: 41
+msgid "FFTW Library not found.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fftw.c, line: 90
+#, c-format
+msgid "%s: Wrong number of input arguments, expecting 3.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fftw.c, line: 158
+#, c-format
+msgid "%s: Wrong type for the second input argument, expecting matrix.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fftw.c, line: 165
+#, c-format
+msgid "%s: Wrong value for the second input argument.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fftw.c, line: 180
+#, c-format
+msgid "%s: Wrong type for the third input argument.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fftw.c, line: 190
+#, c-format
+msgid "%s: Wrong size for the third input argument\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fftw.c, line: 203
+#, c-format
+msgid "%s: Wrong type for the fourth input argument\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fftw.c, line: 213
+#, c-format
+msgid "%s: Wrong size for the fourth input argument\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fftw.c, line: 220
+#, c-format
+msgid "%s: Size of the third and fourth input arguments must be the same\n"
+msgstr ""
 #
 # File: sci_gateway/c/sci_fftw.c, line: 289
 #, c-format
-msgid "%s: Bad value for the third input parameter : %d\n"
+msgid "%s: Wrong value for the third input argument : %d\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_fftw.c, line: 342
 #, c-format
-msgid "%s: Bad value for the fourth input parameter : %d\n"
+msgid "%s: Wrong value for the fourth input argument : %d\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_loadfftwlibrary.c, line: 41
+# File: sci_gateway/c/sci_loadfftwlibrary.c, line: 42
 msgid "Invalid parameter type.\n"
 msgstr ""
