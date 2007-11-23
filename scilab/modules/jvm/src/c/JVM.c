@@ -93,8 +93,8 @@ BOOL startJVM(char *SCI_PATH)
 			memset(&vm_args, 0, sizeof(vm_args));
 
 			SciJNI_GetDefaultJavaVMInitArgs(&vm_args);
-
-			length_JAVACLASSPATH = (int) ( strlen("-Djava.class.path=%s%s%s%s%s%s%s")+
+#define CLASSPATH_COMMAND_FORMAT  "-Djava.class.path=%s%s%s%s%s%s%s"
+			length_JAVACLASSPATH = (int) ( strlen(CLASSPATH_COMMAND_FORMAT)+
 				strlen(SCI_PATH)+
 				strlen(DEFAULT_SCILAB_CLASSPATH)+
 				strlen(PATH_SEPARATOR)+
@@ -104,9 +104,11 @@ BOOL startJVM(char *SCI_PATH)
 				strlen(JVM_CLASSPATH));
 
 			JAVACLASSPATH=(char*) MALLOC( sizeof(char)*	( length_JAVACLASSPATH +1) );
-			sprintf(JAVACLASSPATH,"-Djava.class.path=%s%s%s%s%s%s%s",SCI_PATH,DEFAULT_SCILAB_CLASSPATH,PATH_SEPARATOR,USER_CLASSPATH,PATH_SEPARATOR,SCI_PATH,JVM_CLASSPATH);
+			sprintf(JAVACLASSPATH, CLASSPATH_COMMAND_FORMAT,SCI_PATH,DEFAULT_SCILAB_CLASSPATH,PATH_SEPARATOR,USER_CLASSPATH,PATH_SEPARATOR,SCI_PATH,JVM_CLASSPATH);
 
-			length_JAVALIBRARYPATH = (int)( strlen("-Djava.library.path=%s%s/lib%s%s%s")+
+#define JAVA_LIBRARY_PATH_COMMAND_FORMAT "-Djava.library.path=%s%s/lib%s%s%s"
+			/* @TODO this should be changed for Linux/Unix as we don't know where are the libs */
+			length_JAVALIBRARYPATH = (int)( strlen(JAVA_LIBRARY_PATH_COMMAND_FORMAT)+
 				strlen(SCI_PATH)+
 				strlen(JRE_PATH)+
 				strlen(PATH_SEPARATOR)+
@@ -115,7 +117,7 @@ BOOL startJVM(char *SCI_PATH)
 
 			JAVALIBRARYPATH=(char*)MALLOC(sizeof(char)* ( length_JAVALIBRARYPATH +1) );
 
-			sprintf(JAVALIBRARYPATH,"-Djava.library.path=%s%s/lib%s%s%s",SCI_PATH,JRE_PATH,PATH_SEPARATOR,SCI_PATH,DEFAULT_SCILAB_LIBRARYPATH);
+			sprintf(JAVALIBRARYPATH,JAVA_LIBRARY_PATH_COMMAND_FORMAT,SCI_PATH,JRE_PATH,PATH_SEPARATOR,SCI_PATH,DEFAULT_SCILAB_LIBRARYPATH);
 			/* JAVACLASSPATH & JAVALIBRARYPATH sont liberes à la fin de l'execution de la JVM */
 
 #ifdef JNI_VERSION_1_6
