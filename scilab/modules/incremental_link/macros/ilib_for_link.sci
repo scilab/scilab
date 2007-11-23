@@ -1,5 +1,6 @@
 function libn=ilib_for_link(names,files,libs,flag,makename,loadername,libname,ldflags,cflags,fflags,cc)
 // Copyright Enpc
+// Copyright INRIA
 // Generate a shared library which can be used by link 
 // command. 
 // names = names of entry points or the name of the library to 
@@ -120,17 +121,17 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
 				 ldflags,cflags,fflags,cc)
   
   if libname=="" then libname = names(1);end 
-  linkpath=getcwd();
+  linkpath=TMPDIR;
   commandpath=SCI+"/modules/incremental_link/src/scripts/";
 //  chdir(commandpath);
 	// We launch ./configure in order to produce a "generic" Makefile 
 	// for this computer
-	printf("configure : Generate Makefile in " + commandpath +"\n");
+	printf(gettext("configure : Generate Makefile in %s\n"),commandpath );
 	unix_w(commandpath+"/compilerDetection.sh");
 
 	// Copy files => linkpath
-	
-	printf("Copy compilation files (Makefile*, libtool...) to "+linkpath+"\n");
+	chdir(linkpath)
+	printf(gettext("Copy compilation files (Makefile*, libtool...) to %s\n"),linkpath);
 	copyfile(commandpath+"/Makefile.orig",linkpath);
 	copyfile(commandpath+"/configure.ac",linkpath);
 	copyfile(commandpath+"/configure",linkpath);
