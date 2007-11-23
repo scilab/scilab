@@ -59,6 +59,8 @@ libscigui_la_CFLAGS=	-Isrc/c/ \
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
 
 else
+libscigui_la_CFLAGS=			-Iincludes/ \
+			-I$(top_srcdir)/modules/output_stream/includes
 
 GUI_C_SOURCES = src/nogui/nogui.c
 
