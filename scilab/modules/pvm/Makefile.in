@@ -470,8 +470,24 @@ top_srcdir = @top_srcdir@
 
 #SUFFIXES = .xml .sci .htm
 @PVM_TRUE@SUFFIXES = .sci 
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
 @PVM_FALSE@TARGETS_ALL = $(am__append_4) $(am__append_5) \
 @PVM_FALSE@	$(am__append_6)
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
 @PVM_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @PVM_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
 @PVM_TRUE@	$(am__append_6)
@@ -1300,17 +1316,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	COMMAND="test_run('$(modulename)');quit";\
 @PVM_TRUE@	export LANG=C;\
 @PVM_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-
-########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
-#######################################################################
-
-# TODO : Renamed this variable
-
 @GUI_TRUE@@PVM_TRUE@build-java:
 @GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) jar; \
@@ -1320,33 +1325,32 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) clean; \
 @GUI_TRUE@@PVM_TRUE@	fi
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
+
+@PVM_TRUE@@SWIG_TRUE@build-swig: $(SWIG_WRAPPERS)
+@PVM_TRUE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+@PVM_TRUE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+@PVM_TRUE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@PVM_TRUE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
+@PVM_TRUE@@SWIG_TRUE@			echo "Swig process of $$file ..."; \
+@PVM_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@PVM_TRUE@@SWIG_TRUE@		done; \
+@PVM_TRUE@@SWIG_TRUE@	fi
+
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
+
+@GIWS_TRUE@@PVM_TRUE@build-giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@PVM_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@@PVM_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@PVM_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
+@GIWS_TRUE@@PVM_TRUE@			echo "Giws process of $$file ..."; \
+@GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@PVM_TRUE@		done; \
+@GIWS_TRUE@@PVM_TRUE@	fi
 
 @PVM_TRUE@all-local: $(TARGETS_ALL)
-
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable SWIG_WRAPPERS
-
-@PVM_TRUE@build-swig: $(SWIG_WRAPPERS)
-@PVM_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
-@PVM_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@PVM_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
-@PVM_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
-@PVM_TRUE@			echo "Swig process of $$file ..."; \
-@PVM_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
-@PVM_TRUE@		done; \
-@PVM_TRUE@	fi
-
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable SWIG_WRAPPERS
-
-@PVM_TRUE@build-giws: $(GIWS_WRAPPERS)
-@PVM_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@PVM_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
-@PVM_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
-@PVM_TRUE@			echo "Giws process of $$file ..."; \
-@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
-@PVM_TRUE@		done; \
-@PVM_TRUE@	fi
 
 ################ MACROS ######################"
 # Rule to build a macro
@@ -1462,17 +1466,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	COMMAND="test_run('$(modulename)');quit";\
 @PVM_FALSE@	export LANG=C;\
 @PVM_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-
-########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
-#######################################################################
-
-# TODO : Renamed this variable
-
 @GUI_TRUE@@PVM_FALSE@build-java:
 @GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) jar; \
@@ -1482,33 +1475,32 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) clean; \
 @GUI_TRUE@@PVM_FALSE@	fi
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
+
+@PVM_FALSE@@SWIG_TRUE@build-swig: $(SWIG_WRAPPERS)
+@PVM_FALSE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+@PVM_FALSE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+@PVM_FALSE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@PVM_FALSE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
+@PVM_FALSE@@SWIG_TRUE@			echo "Swig process of $$file ..."; \
+@PVM_FALSE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@PVM_FALSE@@SWIG_TRUE@		done; \
+@PVM_FALSE@@SWIG_TRUE@	fi
+
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
+
+@GIWS_TRUE@@PVM_FALSE@build-giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@PVM_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@@PVM_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@PVM_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
+@GIWS_TRUE@@PVM_FALSE@			echo "Giws process of $$file ..."; \
+@GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@PVM_FALSE@		done; \
+@GIWS_TRUE@@PVM_FALSE@	fi
 
 @PVM_FALSE@all-local: $(TARGETS_ALL)
-
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable SWIG_WRAPPERS
-
-@PVM_FALSE@build-swig: $(SWIG_WRAPPERS)
-@PVM_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
-@PVM_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@PVM_FALSE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
-@PVM_FALSE@		for file in $(SWIG_WRAPPERS) ; do \
-@PVM_FALSE@			echo "Swig process of $$file ..."; \
-@PVM_FALSE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
-@PVM_FALSE@		done; \
-@PVM_FALSE@	fi
-
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable SWIG_WRAPPERS
-
-@PVM_FALSE@build-giws: $(GIWS_WRAPPERS)
-@PVM_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
-@PVM_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
-@PVM_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
-@PVM_FALSE@			echo "Giws process of $$file ..."; \
-@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
-@PVM_FALSE@		done; \
-@PVM_FALSE@	fi
 
 ################ MACROS ######################"
 # Rule to build a macro
