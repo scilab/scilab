@@ -52,7 +52,7 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 		break;
 
 		default :
-			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
+			Scierror(999,_("%s : wrong input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 		return 0;
 	} 
 	 
@@ -65,7 +65,7 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
                      mn2 = Row_Two * Col_Two;
 				break;
 				default :
-					Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
+					Scierror(999,_("%s : first input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 					return 0;
 				break;
 			} 
@@ -75,7 +75,7 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
         Input_MatrixTwo = (char**)MALLOC(sizeof(char*));
 		if (Input_MatrixTwo == NULL)
 		{
-			Scierror(999,"%s : Error memory allocation.\r\n",fname);
+			Scierror(999,_("%s : Memory allocation error\n"),fname);
 			return 0;
 		}
 
@@ -85,7 +85,7 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			FREE(Input_MatrixTwo);
 			Input_MatrixTwo = NULL;
-			Scierror(999,"%s : Error memory allocation.\n",fname);
+			Scierror(999,_("%s : Memory allocation error\n"),fname);
 			return 0;
 		}
 
@@ -109,7 +109,7 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 	    if (Input_MatrixTwo[0]) {FREE(Input_MatrixTwo[0]); Input_MatrixTwo[0]=NULL; }
         if (Input_MatrixTwo) {FREE(Input_MatrixTwo); Input_MatrixTwo=NULL; }
 
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
@@ -128,7 +128,7 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 				if (Input_MatrixTwo[0]) {FREE(Input_MatrixTwo[0]); Input_MatrixTwo[0]=NULL; }
 				if (Input_MatrixTwo) {FREE(Input_MatrixTwo); Input_MatrixTwo=NULL; }
 
-				Scierror(999,"%s : Error memory allocation.\n",fname);
+				Scierror(999,_("%s : Memory allocation error\n"),fname);
 				return 0;
 			}
 		}
