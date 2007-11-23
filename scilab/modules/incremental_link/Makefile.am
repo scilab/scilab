@@ -3,9 +3,6 @@
 ### INRIA - Scilab 2006 
 ##########
 
-
-MODULE_CHECKS = unit_tests/basiclink.tst
-
 #### Target ######
 modulename=incremental_link
 

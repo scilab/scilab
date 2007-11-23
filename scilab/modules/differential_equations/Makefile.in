@@ -450,11 +450,6 @@ sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f
 
-MODULE_CHECKS = unit_tests/feval.tst \
-	unit_tests/dassldasrt.tst \
-	unit_tests/matode.tst \
-	unit_tests/odedc.tst
-
 libscidifferential_equations_la_CFLAGS = -Iincludes/ \
 						-I$(top_builddir)/modules/output_stream/includes
 
@@ -1367,16 +1362,12 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
-	@for check in $(MODULE_CHECKS) ; do \
-		TESTS="$$TESTS'$$check';"; \
-	done; \
-	if test -f build.xml; then \
+	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	if test ! -z "$(MODULE_CHECKS)"; then \
-		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-	fi
+	COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

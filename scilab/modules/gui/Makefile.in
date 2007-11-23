@@ -52,14 +52,8 @@ DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 @GUI_TRUE@am__append_1 = build-java
 @SWIG_TRUE@am__append_2 = build-swig
 @GIWS_TRUE@am__append_3 = build-giws
-
-#BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-
-#$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
-#	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-
-#CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-@GUI_TRUE@am__append_4 = $(JAVA_JNI_INCLUDE)
+@STRING_V2_TRUE@am__append_4 = $(top_builddir)/modules/STRING_V2/libscistring.la
+@STRING_V2_FALSE@am__append_5 = $(top_builddir)/modules/string/libscistring.la
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -95,8 +89,8 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigui_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la
+	$(top_builddir)/modules/tclsci/libscitclsci.la $(am__append_4) \
+	$(am__append_5)
 am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/c/getlookandfeel.c src/c/setlookandfeel.c \
 	src/c/getinstalledlookandfeels.c src/c/TerminateGui.c \
@@ -390,16 +384,6 @@ HELP_CHAPTERFILE = addchapter.sce
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
-libscigui_la_CFLAGS = -Isrc/c/ -Isrc/c/xsci/ -Iincludes/ \
-	-I$(top_srcdir)/modules/graphics/includes/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/core/src/c/ \
-	-I$(top_srcdir)/modules/string/includes/ \
-	-I$(top_srcdir)/modules/tclsci/includes/ \
-	-I$(top_srcdir)/modules/jvm/includes/ \
-	-I$(top_srcdir)/modules/shell/includes/ $(TCL_INC_PATH) \
-	$(Tk_INC_PATH) -I$(top_srcdir)/libs/doublylinkedlist/includes \
-	-I$(top_srcdir)/modules/output_stream/includes $(am__append_4)
 @GUI_FALSE@GUI_C_SOURCES = src/nogui/nogui.c
 @GUI_TRUE@GUI_C_SOURCES = \
 @GUI_TRUE@src/c/getlookandfeel.c \
@@ -435,17 +419,24 @@ libscigui_la_CFLAGS = -Isrc/c/ -Isrc/c/xsci/ -Iincludes/ \
 @GUI_TRUE@sci_gateway/c/sci_hidetoolbar.c \
 @GUI_TRUE@sci_gateway/c/sci_toolbar.c
 
-@GUI_TRUE@MODULE_CHECKS = unit_tests/addmenu.tst \
-@GUI_TRUE@	unit_tests/dialogs.tst
-
+@GUI_TRUE@libscigui_la_CFLAGS = -Isrc/c/ -Isrc/c/xsci/ -Iincludes/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/graphics/includes/ \
+@GUI_TRUE@	-I$(top_srcdir)/libs/MALLOC/includes/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/core/src/c/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/string/includes/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/tclsci/includes/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/jvm/includes/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/shell/includes/ \
+@GUI_TRUE@	$(TCL_INC_PATH) $(Tk_INC_PATH) \
+@GUI_TRUE@	-I$(top_srcdir)/libs/doublylinkedlist/includes \
+@GUI_TRUE@	-I$(top_srcdir)/modules/output_stream/includes \
+@GUI_TRUE@	$(JAVA_JNI_INCLUDE)
 libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscigui_la_LIBADD = \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/string/libscistring.la \
-    $(top_builddir)/modules/tclsci/libscitclsci.la
-
+libscigui_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la $(am__append_4) \
+	$(am__append_5)
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la
@@ -1125,16 +1116,12 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
-	@for check in $(MODULE_CHECKS) ; do \
-		TESTS="$$TESTS'$$check';"; \
-	done; \
-	if test -f build.xml; then \
+	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	if test ! -z "$(MODULE_CHECKS)"; then \
-		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-	fi
+	COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

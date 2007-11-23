@@ -4,8 +4,8 @@
 ## Makefile.am
 ## Made by  Bruno JOFRET <bruno.jofret@inria.fr>
 ##
-## Started on  Fri Oct 26 13:48:04 2007 bruno
-## Last update Fri Oct 26 17:24:00 2007 bruno
+## Started on  Fri Oct 26 13:48:04 2007 Bruno
+## Last update Fri, 23 Nov 2007 15:00:33 +0100 Sylvestre
 ##
 ## Copyright INRIA 2007
 ##
@@ -15,6 +15,8 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/Scierror.c \
 				src/c/msgstore.c \
 				src/c/msgout.c \
+				src/c/msgs.c \
+				src/c/msgstxt.c \
 				src/c/basout.c \
 				src/c/sciprint.c \
 				src/c/sciprint_nd.c \
@@ -30,8 +32,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES =
 GATEWAY_C_SOURCES =
 
 GATEWAY_FORTRAN_SOURCES =
-
-MODULE_CHECKS =
 
 libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/ -I$(top_srcdir)/modules/core/include -Isrc/c/
 

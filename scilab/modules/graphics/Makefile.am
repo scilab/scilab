@@ -5,7 +5,9 @@
 
 # the module Doublylinkedlist  is included here... of course, it is not
 # used in the mode without gui but It causes some silly problems with includes
-libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes  -Iincludes/ -Isrc/c/
+libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
+	-Iincludes/ \
+	-Isrc/c/
 
 if GUI
 
@@ -395,8 +397,6 @@ sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c
 
-MODULE_CHECKS = unit_tests/swap_handles.tst
-
 libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
 				-Isrc/cpp \
 				$(TCL_INC_PATH) \
@@ -417,21 +417,14 @@ libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC
 libscigraphics_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-	$(top_builddir)/modules/string/libscistring.la \
         $(top_builddir)/modules/tclsci/libscitclsci.la
+# Temp stuff
+if STRING_V2
+libscigraphics_la_LIBADD +=	$(top_builddir)/modules/STRING_V2/libscistring.la
+else
+libscigraphics_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
+endif
 
-#	$(top_builddir)/modules/gui/libscigui.la
-
-# JAVAFILES = src/java/org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL.java \
-# src/java/org/scilab/modules/graphics/figureDrawing/SciRenderer.java
-
-# #### Where are the sources (mandatory) ####
-# CLASSPATH = src/java/
-
-# #### graphics : jar file ####
-# JARFILE = graphics.jar
-
-# BUILT_SOURCES+=$(JARFILE)
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)

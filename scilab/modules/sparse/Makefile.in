@@ -485,10 +485,6 @@ sci_gateway/fortran/sci_lusolve.f \
 sci_gateway/fortran/sci_fadj2sp.f \
 sci_gateway/fortran/sci_sfinit.f
 
-MODULE_CHECKS = unit_tests/lsparse.tst \
-unit_tests/sparse.tst \
-unit_tests/spisp.tst
-
 libscisparse_la_CFLAGS = -Iincludes/ \
 				-I$(top_builddir)/modules/output_stream/includes
 
@@ -1580,16 +1576,12 @@ uninstall-am: uninstall-libscisparse_la_etcDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
-	@for check in $(MODULE_CHECKS) ; do \
-		TESTS="$$TESTS'$$check';"; \
-	done; \
-	if test -f build.xml; then \
+	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	if test ! -z "$(MODULE_CHECKS)"; then \
-		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-	fi
+	COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

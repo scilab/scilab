@@ -41,12 +41,6 @@ sci_gateway/fortran/sci_getfield.f \
 sci_gateway/fortran/sci_lstcat.f \
 sci_gateway/fortran/sci_list.f
 
-MODULE_CHECKS = unit_tests/hypermat.tst \
-	unit_tests/lstcat.tst \
-	unit_tests/lstops.tst \
-	unit_tests/listinsertion.tst \
-	unit_tests/listextraction.tst
-
 libscidata_structures_la_CFLAGS=  	-Iincludes/ \
 					-I$(top_srcdir)/libs/MALLOC/includes/ \
 					-I$(top_srcdir)/modules/output_stream/includes

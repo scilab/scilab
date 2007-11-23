@@ -135,10 +135,6 @@ sci_gateway/fortran/Ex-optim.f \
 sci_gateway/fortran/Ex-fsolve.f \
 sci_gateway/fortran/Ex-lsqrsolve.f
 
-MODULE_CHECKS = unit_tests/bvode.tst \
-	unit_tests/colnew.tst \
-	unit_tests/matopt.tst
-
 libscioptimization_la_CFLAGS=  	-Iincludes/ \
 				-I$(top_builddir)/modules/output_stream/includes
 #-Isrc/c/

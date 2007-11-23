@@ -43,23 +43,6 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-MODULE_CHECKS = unit_tests/convstr.tst \
-unit_tests/string.tst \
-unit_tests/base.tst \
-unit_tests/length.tst \
-unit_tests/part.tst \
-unit_tests/strsubst.tst \
-unit_tests/strindex.tst \
-unit_tests/str2code.tst \
-unit_tests/code2str.tst \
-unit_tests/ascii.tst \
-unit_tests/strcat.tst \
-unit_tests/grep.tst \
-unit_tests/mulf.tst \
-unit_tests/addf.tst \
-unit_tests/stripblanks.tst
-
-
 libscistring_la_CFLAGS=  	-Isrc/c \
 				-Iincludes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -67,7 +50,11 @@ libscistring_la_CFLAGS=  	-Isrc/c \
 
 pkglib_LTLIBRARIES = libscistring.la
 
+if STRING_V2
+libscistring_la_SOURCES = 
+else
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+endif
 
 libscistring_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \

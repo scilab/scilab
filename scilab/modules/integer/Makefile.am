@@ -116,8 +116,6 @@ sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
-MODULE_CHECKS = unit_tests/intops.tst
-
 libsciinteger_la_CFLAGS=  	-Iincludes/ \
 				-I$(top_builddir)/modules/output_stream/includes/
 

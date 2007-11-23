@@ -820,16 +820,12 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 
 # This target enables tests for Scilab
 @JAVASCI_TRUE@check-local: $(top_builddir)/scilab-bin
-@JAVASCI_TRUE@	@for check in $(MODULE_CHECKS) ; do \
-@JAVASCI_TRUE@		TESTS="$$TESTS'$$check';"; \
-@JAVASCI_TRUE@	done; \
-@JAVASCI_TRUE@	if test -f build.xml; then \
+@JAVASCI_TRUE@	@if test -f build.xml; then \
 @JAVASCI_TRUE@		$(ANT) checkstyle; \
 @JAVASCI_TRUE@	fi;\
-@JAVASCI_TRUE@	if test ! -z "$(MODULE_CHECKS)"; then \
-@JAVASCI_TRUE@		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-@JAVASCI_TRUE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-@JAVASCI_TRUE@	fi
+@JAVASCI_TRUE@	COMMAND="test_run('$(modulename)');quit";\
+@JAVASCI_TRUE@	export LANG=C;\
+@JAVASCI_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

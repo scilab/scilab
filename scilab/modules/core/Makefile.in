@@ -47,11 +47,15 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@STRING_V2_TRUE@am__append_1 = -I$(top_srcdir)/modules/STRING_V2/includes
+@STRING_V2_FALSE@am__append_2 = -I$(top_srcdir)/modules/string/includes
+@STRING_V2_TRUE@am__append_3 = $(top_builddir)/modules/STRING_V2/libscistring.la
+@STRING_V2_FALSE@am__append_4 = $(top_builddir)/modules/string/libscistring.la
 DIST_COMMON = $(libscicore_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = build-java
-@SWIG_TRUE@am__append_2 = build-swig
-@GIWS_TRUE@am__append_3 = build-giws
+@GUI_TRUE@am__append_5 = build-java
+@SWIG_TRUE@am__append_6 = build-swig
+@GIWS_TRUE@am__append_7 = build-giws
 subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -93,8 +97,8 @@ libscicore_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/fileio/libscifileio.la $(am__append_3) \
+	$(am__append_4)
 am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-tmpdir.lo libscicore_la-intmacr2tree.lo \
 	libscicore_la-fromjava.lo libscicore_la-cvstr.lo \
@@ -103,20 +107,20 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-md5.lo libscicore_la-addinter.lo \
 	libscicore_la-inisci-c.lo libscicore_la-IsAScalar.lo \
 	libscicore_la-texmacs.lo libscicore_la-userf2.lo \
-	libscicore_la-msgstxt.lo libscicore_la-sciquit.lo \
-	libscicore_la-stack1.lo libscicore_la-scicurdir.lo \
-	libscicore_la-realmain.lo libscicore_la-stack3.lo \
-	libscicore_la-str2sci.lo libscicore_la-cluni0.lo \
-	libscicore_la-flags.lo libscicore_la-getmodules.lo \
-	libscicore_la-fromc.lo libscicore_la-setgetSCIpath.lo \
-	libscicore_la-getmemory.lo libscicore_la-Funtab.lo \
-	libscicore_la-csignal.lo libscicore_la-prompt.lo \
-	libscicore_la-CallScilab.lo libscicore_la-SendScilabJobs.lo \
-	libscicore_la-scimem.lo libscicore_la-banier.lo \
-	libscicore_la-callinterf.lo libscicore_la-isanan.lo \
-	libscicore_la-parse.lo libscicore_la-timer.lo \
-	libscicore_la-stack2.lo libscicore_la-link.lo \
-	libscicore_la-xscion.lo libscicore_la-SetScilabEnvironment.lo \
+	libscicore_la-sciquit.lo libscicore_la-stack1.lo \
+	libscicore_la-scicurdir.lo libscicore_la-realmain.lo \
+	libscicore_la-stack3.lo libscicore_la-str2sci.lo \
+	libscicore_la-cluni0.lo libscicore_la-flags.lo \
+	libscicore_la-getmodules.lo libscicore_la-fromc.lo \
+	libscicore_la-setgetSCIpath.lo libscicore_la-getmemory.lo \
+	libscicore_la-Funtab.lo libscicore_la-csignal.lo \
+	libscicore_la-prompt.lo libscicore_la-CallScilab.lo \
+	libscicore_la-SendScilabJobs.lo libscicore_la-scimem.lo \
+	libscicore_la-banier.lo libscicore_la-callinterf.lo \
+	libscicore_la-isanan.lo libscicore_la-parse.lo \
+	libscicore_la-timer.lo libscicore_la-stack2.lo \
+	libscicore_la-link.lo libscicore_la-xscion.lo \
+	libscicore_la-SetScilabEnvironment.lo \
 	libscicore_la-hashtable_core.lo libscicore_la-returnanan.lo \
 	libscicore_la-LoadFunctionsTab.lo libscicore_la-with_module.lo \
 	libscicore_la-loadversion.lo libscicore_la-version.lo \
@@ -127,8 +131,8 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-returnProperty.lo \
 	libscicore_la-returnPropertyList.lo \
 	libscicore_la-scilabmode.lo \
-	libscicore_la-GetXmlFileEncoding.lo libscicore_la-msgs.lo \
-	libscicore_la-GetenvB.lo libscicore_la-islittleendian.lo \
+	libscicore_la-GetXmlFileEncoding.lo libscicore_la-GetenvB.lo \
+	libscicore_la-islittleendian.lo \
 	libscicore_la-filesmanagement.lo libscicore_la-terme.lo \
 	libscicore_la-ifexpr.lo libscicore_la-expr.lo \
 	libscicore_la-getcommandlineargs.lo libscicore_la-syncexec.lo \
@@ -427,7 +431,6 @@ src/c/inisci-c.c \
 src/c/IsAScalar.c \
 src/c/texmacs.c \
 src/c/userf2.c \
-src/c/msgstxt.c \
 src/c/sciquit.c \
 src/c/stack1.c \
 src/c/scicurdir.c \
@@ -473,7 +476,6 @@ src/c/returnProperty.c \
 src/c/returnPropertyList.c \
 src/c/scilabmode.c \
 src/c/GetXmlFileEncoding.c \
-src/c/msgs.c \
 src/c/GetenvB.c \
 src/c/islittleendian.c \
 src/c/filesmanagement.c \
@@ -704,55 +706,26 @@ sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f
 
-MODULE_CHECKS = unit_tests/comment.tst \
-	unit_tests/errcatch.tst \
-	unit_tests/scilab.tst \
-	unit_tests/calpol.tst \
-	unit_tests/clause.tst \
-	unit_tests/auto.tst \
-	unit_tests/breakpoints.tst \
-	unit_tests/cmp.tst \
-	unit_tests/comand.tst \
-	unit_tests/display.tst \
-	unit_tests/elem.tst \
-	unit_tests/fptr.tst \
-	unit_tests/function.tst \
-	unit_tests/global.tst \
-	unit_tests/macro.tst \
-	unit_tests/matops.tst \
-	unit_tests/matsys.tst \
-	unit_tests/matelm.tst \
-	unit_tests/opcode.tst \
-	unit_tests/parse.tst \
-	unit_tests/pause.tst \
-	unit_tests/trycatch.tst \
-	unit_tests/resume.tst
-
-libscicore_la_CFLAGS = -Iincludes/ \
-			-Isrc/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			$(XML_FLAGS) \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/modules/action_binding/includes \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/string/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/tclsci/includes \
-			-I$(top_srcdir)/modules/elementary_functions/includes
-
+libscicore_la_CFLAGS = -Iincludes/ -Isrc/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS) \
+	-I$(top_srcdir)/libs/doublylinkedlist/includes \
+	-I$(top_srcdir)/modules/action_binding/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/tclsci/includes \
+	-I$(top_srcdir)/modules/elementary_functions/includes \
+	$(am__append_1) $(am__append_2)
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
 libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
-libscicore_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+libscicore_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/string/libscistring.la
-
+	$(top_builddir)/modules/fileio/libscifileio.la $(am__append_3) \
+	$(am__append_4)
 
 #### Target ######
 modulename = core
@@ -841,7 +814,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_5) $(am__append_6) $(am__append_7)
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -1001,8 +974,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-loadversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-md5.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-msgs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-msgstxt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-parse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-realmain.Plo@am__quote@
@@ -1228,13 +1199,6 @@ libscicore_la-userf2.lo: src/c/userf2.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/userf2.c' object='libscicore_la-userf2.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-userf2.lo `test -f 'src/c/userf2.c' || echo '$(srcdir)/'`src/c/userf2.c
-
-libscicore_la-msgstxt.lo: src/c/msgstxt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-msgstxt.lo -MD -MP -MF $(DEPDIR)/libscicore_la-msgstxt.Tpo -c -o libscicore_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-msgstxt.Tpo $(DEPDIR)/libscicore_la-msgstxt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgstxt.c' object='libscicore_la-msgstxt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
 
 libscicore_la-sciquit.lo: src/c/sciquit.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sciquit.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sciquit.Tpo -c -o libscicore_la-sciquit.lo `test -f 'src/c/sciquit.c' || echo '$(srcdir)/'`src/c/sciquit.c
@@ -1550,13 +1514,6 @@ libscicore_la-GetXmlFileEncoding.lo: src/c/GetXmlFileEncoding.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetXmlFileEncoding.c' object='libscicore_la-GetXmlFileEncoding.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-GetXmlFileEncoding.lo `test -f 'src/c/GetXmlFileEncoding.c' || echo '$(srcdir)/'`src/c/GetXmlFileEncoding.c
-
-libscicore_la-msgs.lo: src/c/msgs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-msgs.lo -MD -MP -MF $(DEPDIR)/libscicore_la-msgs.Tpo -c -o libscicore_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-msgs.Tpo $(DEPDIR)/libscicore_la-msgs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgs.c' object='libscicore_la-msgs.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
 
 libscicore_la-GetenvB.lo: src/c/GetenvB.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-GetenvB.lo -MD -MP -MF $(DEPDIR)/libscicore_la-GetenvB.Tpo -c -o libscicore_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
@@ -2891,16 +2848,12 @@ uninstall-am: uninstall-libscicore_la_demosintroDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
-	@for check in $(MODULE_CHECKS) ; do \
-		TESTS="$$TESTS'$$check';"; \
-	done; \
-	if test -f build.xml; then \
+	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	if test ! -z "$(MODULE_CHECKS)"; then \
-		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-	fi
+	COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

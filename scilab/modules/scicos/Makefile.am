@@ -204,10 +204,6 @@ sci_gateway/fortran/sci_vec2var.f \
 sci_gateway/fortran/sci_scicos_debug.f \
 sci_gateway/fortran/sci_getblocklabel.f
 
-MODULE_CHECKS = unit_tests/scicos_filesassociation.tst  \
-unit_tests/scicos.tst
-
-
 BUILT_SOURCES = includes/blocks.h
 
 includes/blocks.h:

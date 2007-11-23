@@ -3,8 +3,6 @@
 ### INRIA - Scilab 2006 
 ##########
 
-MODULE_CHECKS = unit_tests/matimp.tst
-
 #### Target ######
 modulename=others
 

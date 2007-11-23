@@ -50,9 +50,10 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
 	$(top_srcdir)/modules/scicos/src/ocaml/Makefile.in ABOUT-NLS \
-	config/compile config/config.guess config/config.rpath \
-	config/config.sub config/depcomp config/install-sh \
-	config/ltmain.sh config/missing
+	config.guess config.sub config/compile config/config.guess \
+	config/config.rpath config/config.sub config/depcomp \
+	config/install-sh config/ltmain.sh config/missing depcomp \
+	install-sh ltmain.sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
@@ -801,6 +802,7 @@ distcleancheck: distclean
 	       $(distcleancheck_listfiles) ; \
 	       exit 1; } >&2
 check-am: all-am
+	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-recursive
 all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA) all-local
 installdirs: installdirs-recursive
@@ -900,10 +902,10 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	install-strip
 
 .PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
-	all all-am all-local am--refresh check check-am clean \
-	clean-binPROGRAMS clean-generic clean-libtool clean-local \
-	ctags ctags-recursive dist dist-all dist-bzip2 dist-gzip \
-	dist-shar dist-tarZ dist-zip distcheck distclean \
+	all all-am all-local am--refresh check check-am check-local \
+	clean clean-binPROGRAMS clean-generic clean-libtool \
+	clean-local ctags ctags-recursive dist dist-all dist-bzip2 \
+	dist-gzip dist-shar dist-tarZ dist-zip distcheck distclean \
 	distclean-compile distclean-generic distclean-hdr \
 	distclean-libtool distclean-local distclean-tags \
 	distcleancheck distdir distuninstallcheck dvi dvi-am html \
@@ -940,6 +942,11 @@ check-help:
 	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'check_help();exit;'
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'check_help();exit;'
 
+check-recursive: check-local
+check-local:
+	@COMMAND="test_run();quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nw -nb -e "$$COMMAND"
 distclean-local::
 clean-local: clean-help
 

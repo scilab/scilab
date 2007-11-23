@@ -45,8 +45,6 @@ sci_gateway/c/sci_set.c \
 sci_gateway/c/sci_TCL_ExistArray.c \
 sci_gateway/c/sci_TCL_UpVar.c
 
-MODULE_CHECKS = unit_tests/TCL_SetGet.tst
-
 pkglib_LTLIBRARIES = libscitclsci.la
 
 libscitclsci_la_CFLAGS= -Iincludes/ \

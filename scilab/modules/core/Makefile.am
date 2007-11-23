@@ -20,7 +20,6 @@ src/c/inisci-c.c \
 src/c/IsAScalar.c \
 src/c/texmacs.c \
 src/c/userf2.c \
-src/c/msgstxt.c \
 src/c/sciquit.c \
 src/c/stack1.c \
 src/c/scicurdir.c \
@@ -66,7 +65,6 @@ src/c/returnProperty.c \
 src/c/returnPropertyList.c \
 src/c/scilabmode.c \
 src/c/GetXmlFileEncoding.c \
-src/c/msgs.c \
 src/c/GetenvB.c \
 src/c/islittleendian.c \
 src/c/filesmanagement.c \
@@ -299,30 +297,6 @@ sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f
 
-MODULE_CHECKS = unit_tests/comment.tst \
-	unit_tests/errcatch.tst \
-	unit_tests/scilab.tst \
-	unit_tests/calpol.tst \
-	unit_tests/clause.tst \
-	unit_tests/auto.tst \
-	unit_tests/breakpoints.tst \
-	unit_tests/cmp.tst \
-	unit_tests/comand.tst \
-	unit_tests/display.tst \
-	unit_tests/elem.tst \
-	unit_tests/fptr.tst \
-	unit_tests/function.tst \
-	unit_tests/global.tst \
-	unit_tests/macro.tst \
-	unit_tests/matops.tst \
-	unit_tests/matsys.tst \
-	unit_tests/matelm.tst \
-	unit_tests/opcode.tst \
-	unit_tests/parse.tst \
-	unit_tests/pause.tst \
-	unit_tests/trycatch.tst \
-	unit_tests/resume.tst
-
 libscicore_la_CFLAGS=  	-Iincludes/ \
 			-Isrc/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -330,11 +304,15 @@ libscicore_la_CFLAGS=  	-Iincludes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/string/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
 			-I$(top_srcdir)/modules/elementary_functions/includes
 
+if STRING_V2
+libscicore_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
+else
+libscicore_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
+endif
 
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
@@ -348,9 +326,13 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/fileio/libscifileio.la
 
+if STRING_V2
+libscicore_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
+else
+libscicore_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
+endif
 
 #### Target ######
 modulename=core

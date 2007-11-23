@@ -90,8 +90,6 @@ sci_gateway/c/sci_cdfbet.c \
 sci_gateway/c/sci_cdfnbn.c \
 sci_gateway/c/sci_cdfnor.c
 
-MODULE_CHECKS = unit_tests/dcd.tst
-
 libscistatistics_la_CFLAGS=  	-Iincludes/ \
 				-Isrc/c/ \
 				-I$(top_builddir)/modules/output_stream/includes

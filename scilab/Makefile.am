@@ -65,6 +65,11 @@ check-help:
 	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'check_help();exit;'
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'check_help();exit;'
 
+check-recursive: check-local
+check-local:
+	@COMMAND="test_run();quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nw -nb -e "$$COMMAND"
 distclean-local::
 clean-local: clean-help
 

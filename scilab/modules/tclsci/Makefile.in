@@ -414,7 +414,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistArray.c \
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_UpVar.c
 
-@TCLTK_TRUE@MODULE_CHECKS = unit_tests/TCL_SetGet.tst
 @TCLTK_FALSE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_TRUE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_FALSE@libscitclsci_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/
@@ -1532,16 +1531,12 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 # This target enables tests for Scilab
 @TCLTK_TRUE@check-local: $(top_builddir)/scilab-bin
-@TCLTK_TRUE@	@for check in $(MODULE_CHECKS) ; do \
-@TCLTK_TRUE@		TESTS="$$TESTS'$$check';"; \
-@TCLTK_TRUE@	done; \
-@TCLTK_TRUE@	if test -f build.xml; then \
+@TCLTK_TRUE@	@if test -f build.xml; then \
 @TCLTK_TRUE@		$(ANT) checkstyle; \
 @TCLTK_TRUE@	fi;\
-@TCLTK_TRUE@	if test ! -z "$(MODULE_CHECKS)"; then \
-@TCLTK_TRUE@		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-@TCLTK_TRUE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-@TCLTK_TRUE@	fi
+@TCLTK_TRUE@	COMMAND="test_run('$(modulename)');quit";\
+@TCLTK_TRUE@	export LANG=C;\
+@TCLTK_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
@@ -1698,16 +1693,12 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 # This target enables tests for Scilab
 @TCLTK_FALSE@check-local: $(top_builddir)/scilab-bin
-@TCLTK_FALSE@	@for check in $(MODULE_CHECKS) ; do \
-@TCLTK_FALSE@		TESTS="$$TESTS'$$check';"; \
-@TCLTK_FALSE@	done; \
-@TCLTK_FALSE@	if test -f build.xml; then \
+@TCLTK_FALSE@	@if test -f build.xml; then \
 @TCLTK_FALSE@		$(ANT) checkstyle; \
 @TCLTK_FALSE@	fi;\
-@TCLTK_FALSE@	if test ! -z "$(MODULE_CHECKS)"; then \
-@TCLTK_FALSE@		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-@TCLTK_FALSE@		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-@TCLTK_FALSE@	fi
+@TCLTK_FALSE@	COMMAND="test_run('$(modulename)');quit";\
+@TCLTK_FALSE@	export LANG=C;\
+@TCLTK_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

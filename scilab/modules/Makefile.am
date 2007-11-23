@@ -15,6 +15,7 @@ output_stream \
 linear_algebra \
 differential_equations \
 string \
+STRING_V2 \
 signal_processing \
 fileio \
 core \
@@ -132,11 +133,16 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
+# Temp stuff
+if STRING_V2
+libscilab_la_LIBADD +=	$(top_builddir)/modules/STRING_V2/libscistring.la
+else
+libscilab_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
+endif
 
 
 #if MPI

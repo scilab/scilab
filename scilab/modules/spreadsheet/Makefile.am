@@ -17,9 +17,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_spreadsheet.c \
 sci_gateway/c/sci_xls_read.c \
 sci_gateway/c/sci_xls_open.c
 
-
-MODULE_CHECKS =
-
 libscispreadsheet_la_CFLAGS=  	-Iincludes/ \
 				-Isrc/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \

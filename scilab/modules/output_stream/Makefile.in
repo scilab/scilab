@@ -87,6 +87,8 @@ am__objects_1 = libscioutput_stream_la-erro.lo \
 	libscioutput_stream_la-Scierror.lo \
 	libscioutput_stream_la-msgstore.lo \
 	libscioutput_stream_la-msgout.lo \
+	libscioutput_stream_la-msgs.lo \
+	libscioutput_stream_la-msgstxt.lo \
 	libscioutput_stream_la-basout.lo \
 	libscioutput_stream_la-sciprint.lo \
 	libscioutput_stream_la-sciprint_nd.lo \
@@ -301,6 +303,8 @@ OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
 				src/c/Scierror.c \
 				src/c/msgstore.c \
 				src/c/msgout.c \
+				src/c/msgs.c \
+				src/c/msgstxt.c \
 				src/c/basout.c \
 				src/c/sciprint.c \
 				src/c/sciprint_nd.c \
@@ -313,7 +317,6 @@ OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
 OUTPUT_STREAM_FORTRAN_SOURCES = 
 GATEWAY_C_SOURCES = 
 GATEWAY_FORTRAN_SOURCES = 
-MODULE_CHECKS = 
 libscioutput_stream_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/ -I$(top_srcdir)/modules/core/include -Isrc/c/
 libscioutput_stream_la_LDFLAGS = 
 pkglib_LTLIBRARIES = libscioutput_stream.la
@@ -473,7 +476,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-error_internal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgout.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgstore.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgstxt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sciprint.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sciprint_full.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sciprint_nd.Plo@am__quote@
@@ -533,6 +538,20 @@ libscioutput_stream_la-msgout.lo: src/c/msgout.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgout.c' object='libscioutput_stream_la-msgout.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgout.lo `test -f 'src/c/msgout.c' || echo '$(srcdir)/'`src/c/msgout.c
+
+libscioutput_stream_la-msgs.lo: src/c/msgs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgs.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgs.Tpo -c -o libscioutput_stream_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioutput_stream_la-msgs.Tpo $(DEPDIR)/libscioutput_stream_la-msgs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgs.c' object='libscioutput_stream_la-msgs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
+
+libscioutput_stream_la-msgstxt.lo: src/c/msgstxt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgstxt.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgstxt.Tpo -c -o libscioutput_stream_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioutput_stream_la-msgstxt.Tpo $(DEPDIR)/libscioutput_stream_la-msgstxt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgstxt.c' object='libscioutput_stream_la-msgstxt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
 
 libscioutput_stream_la-basout.lo: src/c/basout.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-basout.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-basout.Tpo -c -o libscioutput_stream_la-basout.lo `test -f 'src/c/basout.c' || echo '$(srcdir)/'`src/c/basout.c
@@ -890,16 +909,12 @@ uninstall-am: uninstall-libscioutput_stream_la_demosintroDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
-	@for check in $(MODULE_CHECKS) ; do \
-		TESTS="$$TESTS'$$check';"; \
-	done; \
-	if test -f build.xml; then \
+	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	if test ! -z "$(MODULE_CHECKS)"; then \
-		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-	fi
+	COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

@@ -39,9 +39,6 @@ src/fortran/gennor.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
 sci_gateway/c/sci_grand.c
 
-MODULE_CHECKS = unit_tests/grand.tst \
-unit_tests/grandb.tst
-
 libscirandlib_la_CFLAGS=  	-Iincludes/ \
 				-I$(top_builddir)/modules/output_stream/includes
 

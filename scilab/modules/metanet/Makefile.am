@@ -115,8 +115,6 @@ sci_gateway/fortran/sci_m6umtree1.f \
 sci_gateway/fortran/sci_m6umtree.f \
 sci_gateway/fortran/sci_m6visitor.f
 
-MODULE_CHECKS = unit_tests/metanet.tst
-
 libscimetanet_la_CFLAGS=  	-Iincludes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \

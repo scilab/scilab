@@ -5,24 +5,6 @@
 
 include $(top_srcdir)/Makefile.incl.am
 
-
-libscigui_la_CFLAGS=	-Isrc/c/ \
-			-Isrc/c/xsci/ \
-			-Iincludes/ \
-			-I$(top_srcdir)/modules/graphics/includes/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/core/src/c/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/tclsci/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/shell/includes/ \
-			$(TCL_INC_PATH) \
-			$(Tk_INC_PATH) \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/modules/output_stream/includes
-
-
-
 if GUI
 GUI_C_SOURCES = \
 src/c/getlookandfeel.c \
@@ -59,16 +41,20 @@ sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_hidetoolbar.c \
 sci_gateway/c/sci_toolbar.c
 
-MODULE_CHECKS = unit_tests/addmenu.tst \
-	unit_tests/dialogs.tst
-
-
-#BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-
-#$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
-#	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-
-#CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+libscigui_la_CFLAGS=	-Isrc/c/ \
+			-Isrc/c/xsci/ \
+			-Iincludes/ \
+			-I$(top_srcdir)/modules/graphics/includes/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/core/src/c/ \
+			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/tclsci/includes/ \
+			-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/shell/includes/ \
+			$(TCL_INC_PATH) \
+			$(Tk_INC_PATH) \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes \
+			-I$(top_srcdir)/modules/output_stream/includes
 
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
 
@@ -86,8 +72,13 @@ libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_S
 
 libscigui_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/string/libscistring.la \
     $(top_builddir)/modules/tclsci/libscitclsci.la
+
+if STRING_V2
+libscigui_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
+else
+libscigui_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
+endif
 
 
 # Cyclic dep

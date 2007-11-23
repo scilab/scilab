@@ -58,13 +58,16 @@ host_triplet = @host@
 @GUI_TRUE@				-I$(top_srcdir)/modules/action_binding/includes \
 @GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes
 
-@GUI_FALSE@am__append_2 = -I$(top_srcdir)/modules/output_stream/includes
+# Temp stuff
+@GUI_TRUE@@STRING_V2_TRUE@am__append_2 = $(top_builddir)/modules/STRING_V2/libscistring.la
+@GUI_TRUE@@STRING_V2_FALSE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
+@GUI_FALSE@am__append_4 = -I$(top_srcdir)/modules/output_stream/includes
 DIST_COMMON = $(am__libscigraphics_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_3 = build-java
-@SWIG_TRUE@am__append_4 = build-swig
-@GIWS_TRUE@am__append_5 = build-giws
+@GUI_TRUE@am__append_5 = build-java
+@SWIG_TRUE@am__append_6 = build-swig
+@GIWS_TRUE@am__append_7 = build-giws
 subdir = modules/graphics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -101,8 +104,8 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @GUI_TRUE@libscigraphics_la_DEPENDENCIES =  \
 @GUI_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
 @GUI_TRUE@	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-@GUI_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@GUI_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci.la
+@GUI_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci.la \
+@GUI_TRUE@	$(am__append_2) $(am__append_3)
 am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/GetCommandArg.c src/c/WindowList.c src/c/Events.c \
 	src/c/getHandleProperty/get_figure_position_property.c \
@@ -1062,7 +1065,7 @@ top_srcdir = @top_srcdir@
 # used in the mode without gui but It causes some silly problems with includes
 libscigraphics_la_CFLAGS =  \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes -Iincludes/ \
-	-Isrc/c/ $(am__append_1) $(am__append_2)
+	-Isrc/c/ $(am__append_1) $(am__append_4)
 @GUI_FALSE@GRAPHICS_C_SOURCES = src/nographics/nographics.c
 @GUI_TRUE@GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 @GUI_TRUE@src/c/WindowList.c \
@@ -1450,30 +1453,15 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@sci_gateway/c/sci_addcb.c \
 @GUI_TRUE@sci_gateway/c/sci_fec.c
 
-@GUI_TRUE@MODULE_CHECKS = unit_tests/swap_handles.tst
 @GUI_TRUE@libscigraphics_la_CXXFLAGS = -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 @GUI_TRUE@libscigraphics_la_LDFLAGS = $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 @GUI_FALSE@libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)
 @GUI_TRUE@libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
-@GUI_TRUE@libscigraphics_la_LIBADD = \
+@GUI_TRUE@libscigraphics_la_LIBADD =  \
 @GUI_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
 @GUI_TRUE@	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-@GUI_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@GUI_TRUE@        $(top_builddir)/modules/tclsci/libscitclsci.la
-
-
-#	$(top_builddir)/modules/gui/libscigui.la
-
-# JAVAFILES = src/java/org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL.java \
-# src/java/org/scilab/modules/graphics/figureDrawing/SciRenderer.java
-
-# #### Where are the sources (mandatory) ####
-# CLASSPATH = src/java/
-
-# #### graphics : jar file ####
-# JARFILE = graphics.jar
-
-# BUILT_SOURCES+=$(JARFILE)
+@GUI_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci.la \
+@GUI_TRUE@	$(am__append_2) $(am__append_3)
 
 #### graphics : Conf files ####
 @GUI_TRUE@libscigraphics_la_rootdir = $(mydatadir)
@@ -1669,7 +1657,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
-TARGETS_ALL = $(am__append_3) $(am__append_4) $(am__append_5)
+TARGETS_ALL = $(am__append_5) $(am__append_6) $(am__append_7)
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -5180,16 +5168,12 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
-	@for check in $(MODULE_CHECKS) ; do \
-		TESTS="$$TESTS'$$check';"; \
-	done; \
-	if test -f build.xml; then \
+	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	if test ! -z "$(MODULE_CHECKS)"; then \
-		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-	fi
+	COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

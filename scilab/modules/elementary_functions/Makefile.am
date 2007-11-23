@@ -351,12 +351,6 @@ sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_exp.f
 
-MODULE_CHECKS = unit_tests/gsort.tst \
-	unit_tests/sort.tst \
-	unit_tests/binary.tst \
-	unit_tests/binary_representation.tst \
-	unit_tests/maxi.tst
-
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
 

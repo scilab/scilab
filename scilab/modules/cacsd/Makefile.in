@@ -597,10 +597,6 @@ sci_gateway/fortran/sci_f_gspec.f \
 sci_gateway/fortran/sci_f_linmeq.f \
 sci_gateway/fortran/sci_f_rankqr.f
 
-MODULE_CHECKS = unit_tests/slicot.tst \
-	unit_tests/arma.tst \
-	unit_tests/odedi.tst
-
 libscicacsd_la_FFLAGS = -Iincludes/
 libscicacsd_la_CFLAGS = -Iincludes/ \
 			-I$(top_builddir)/modules/output_stream/includes/
@@ -1800,16 +1796,12 @@ uninstall-am: uninstall-libscicacsd_la_etcDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
-	@for check in $(MODULE_CHECKS) ; do \
-		TESTS="$$TESTS'$$check';"; \
-	done; \
-	if test -f build.xml; then \
+	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	if test ! -z "$(MODULE_CHECKS)"; then \
-		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-	fi
+	COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

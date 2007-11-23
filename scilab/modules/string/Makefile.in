@@ -87,6 +87,31 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscistring_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
+am__libscistring_la_SOURCES_DIST = src/c/strcat-c.c src/c/men_Sutils.c \
+	src/c/stripblanks.c src/fortran/strord.f src/fortran/strdsp.f \
+	sci_gateway/c/sci_strindex.c sci_gateway/c/sci_strcat.c \
+	sci_gateway/c/sci_tokens.c sci_gateway/c/gw_string.c \
+	sci_gateway/c/sci_string.c sci_gateway/c/sci_part.c \
+	sci_gateway/c/sci_length.c sci_gateway/c/sci_strsplit.c \
+	sci_gateway/c/sci_str2code.c sci_gateway/c/sci_code2str.c \
+	sci_gateway/c/sci_emptystr.c sci_gateway/c/sci_ascii.c \
+	sci_gateway/c/sci_strsubst.c sci_gateway/c/sci_grep.c \
+	sci_gateway/c/sci_convstr.c sci_gateway/c/sci_stripblanks.c \
+	sci_gateway/fortran/sci_convstr.f \
+	sci_gateway/fortran/sci_grep.f \
+	sci_gateway/fortran/sci_strindex.f \
+	sci_gateway/fortran/sci_strcat.f \
+	sci_gateway/fortran/sci_tokens.f \
+	sci_gateway/fortran/sci_string.f \
+	sci_gateway/fortran/sci_part.f \
+	sci_gateway/fortran/sci_length.f \
+	sci_gateway/fortran/sci_strsplit.f \
+	sci_gateway/fortran/sci_str2code.f \
+	sci_gateway/fortran/sci_code2str.f \
+	sci_gateway/fortran/sci_emptystr.f \
+	sci_gateway/fortran/sci_ascii.f \
+	sci_gateway/fortran/sci_strsubst.f \
+	sci_gateway/fortran/strops.f
 am__objects_1 = libscistring_la-strcat-c.lo \
 	libscistring_la-men_Sutils.lo libscistring_la-stripblanks.lo
 am__objects_2 = strord.lo strdsp.lo
@@ -105,8 +130,9 @@ am__objects_4 = sci_convstr.lo sci_grep.lo sci_strindex.lo \
 	sci_strcat.lo sci_tokens.lo sci_string.lo sci_part.lo \
 	sci_length.lo sci_strsplit.lo sci_str2code.lo sci_code2str.lo \
 	sci_emptystr.lo sci_ascii.lo sci_strsubst.lo strops.lo
-am_libscistring_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4)
+@STRING_V2_FALSE@am_libscistring_la_OBJECTS = $(am__objects_1) \
+@STRING_V2_FALSE@	$(am__objects_2) $(am__objects_3) \
+@STRING_V2_FALSE@	$(am__objects_4)
 libscistring_la_OBJECTS = $(am_libscistring_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -128,7 +154,7 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscistring_la_SOURCES)
-DIST_SOURCES = $(libscistring_la_SOURCES)
+DIST_SOURCES = $(am__libscistring_la_SOURCES_DIST)
 libscistring_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscistring_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscistring_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -343,29 +369,14 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-MODULE_CHECKS = unit_tests/convstr.tst \
-unit_tests/string.tst \
-unit_tests/base.tst \
-unit_tests/length.tst \
-unit_tests/part.tst \
-unit_tests/strsubst.tst \
-unit_tests/strindex.tst \
-unit_tests/str2code.tst \
-unit_tests/code2str.tst \
-unit_tests/ascii.tst \
-unit_tests/strcat.tst \
-unit_tests/grep.tst \
-unit_tests/mulf.tst \
-unit_tests/addf.tst \
-unit_tests/stripblanks.tst
-
 libscistring_la_CFLAGS = -Isrc/c \
 				-Iincludes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscistring.la
-libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+@STRING_V2_FALSE@libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+@STRING_V2_TRUE@libscistring_la_SOURCES = 
 libscistring_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
@@ -1019,16 +1030,12 @@ uninstall-am: uninstall-libscistring_la_etcDATA \
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
-	@for check in $(MODULE_CHECKS) ; do \
-		TESTS="$$TESTS'$$check';"; \
-	done; \
-	if test -f build.xml; then \
+	@if test -f build.xml; then \
 		$(ANT) checkstyle; \
 	fi;\
-	if test ! -z "$(MODULE_CHECKS)"; then \
-		COMMAND="myTests=[$$TESTS];launchtest(pwd(),myTests);quit";\
-		$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
-	fi
+	COMMAND="test_run('$(modulename)');quit";\
+	export LANG=C;\
+	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide

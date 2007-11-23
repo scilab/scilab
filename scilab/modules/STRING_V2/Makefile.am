@@ -3,71 +3,50 @@
 ### INRIA - Scilab 2006
 ##########
 
-STRING_C_SOURCES = src/c/strcat-c.c \
+STRING_C_SOURCES = src/c/code2str.c \
+src/c/kmp.c \
+src/c/stripblanks.c \
+src/c/convstr.c \
 src/c/men_Sutils.c \
-src/c/stripblanks.c
+src/c/strsplit.c \
+src/c/CreateEmptystr.c \
+src/c/tokens.c \
+src/c/strcat-c.c \
+src/c/Get_length.c \
+src/c/strcatfunction.c
 
-STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
-
-GATEWAY_C_SOURCES = sci_gateway/c/sci_strindex.c \
-sci_gateway/c/sci_strcat.c \
-sci_gateway/c/sci_tokens.c \
-sci_gateway/c/gw_string.c \
-sci_gateway/c/sci_string.c \
-sci_gateway/c/sci_part.c \
-sci_gateway/c/sci_length.c \
-sci_gateway/c/sci_strsplit.c \
-sci_gateway/c/sci_str2code.c \
-sci_gateway/c/sci_code2str.c \
-sci_gateway/c/sci_emptystr.c \
+GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \
-sci_gateway/c/sci_strsubst.c \
-sci_gateway/c/sci_grep.c \
+sci_gateway/c/sci_code2str.c \
 sci_gateway/c/sci_convstr.c \
-sci_gateway/c/sci_stripblanks.c
+sci_gateway/c/sci_emptystr.c \
+sci_gateway/c/sci_grep.c \
+sci_gateway/c/sci_length.c \
+sci_gateway/c/sci_part.c \
+sci_gateway/c/sci_str2code.c \
+sci_gateway/c/sci_strcat.c \
+sci_gateway/c/sci_strindex.c \
+sci_gateway/c/sci_string.c \
+sci_gateway/c/sci_stripblanks.c \
+sci_gateway/c/sci_strsplit.c \
+sci_gateway/c/sci_strsubst.c \
+sci_gateway/c/sci_tokens.c
 
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_convstr.f \
-sci_gateway/fortran/sci_grep.f \
-sci_gateway/fortran/sci_strindex.f \
-sci_gateway/fortran/sci_strcat.f \
-sci_gateway/fortran/sci_tokens.f \
-sci_gateway/fortran/sci_string.f \
-sci_gateway/fortran/sci_part.f \
-sci_gateway/fortran/sci_length.f \
-sci_gateway/fortran/sci_strsplit.f \
-sci_gateway/fortran/sci_str2code.f \
-sci_gateway/fortran/sci_code2str.f \
-sci_gateway/fortran/sci_emptystr.f \
-sci_gateway/fortran/sci_ascii.f \
-sci_gateway/fortran/sci_strsubst.f \
-sci_gateway/fortran/strops.f
-
-MODULE_CHECKS = unit_tests/convstr.tst \
-unit_tests/string.tst \
-unit_tests/base.tst \
-unit_tests/length.tst \
-unit_tests/part.tst \
-unit_tests/strsubst.tst \
-unit_tests/strindex.tst \
-unit_tests/str2code.tst \
-unit_tests/code2str.tst \
-unit_tests/ascii.tst \
-unit_tests/strcat.tst \
-unit_tests/grep.tst \
-unit_tests/mulf.tst \
-unit_tests/addf.tst \
-unit_tests/stripblanks.tst
-
-
-libscistring_la_CFLAGS=  	-Isrc/c \
+libscistring_la_CFLAGS= \
+				-Isrc/c \
 				-Iincludes/ \
+				-Isrc/c/pcre/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscistring.la
 
+if STRING_V2
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+else
+libscistring_la_SOURCES= 
+endif
 
 libscistring_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
@@ -80,7 +59,7 @@ libscistring_la_LIBADD = \
 
 
 #### Target ######
-modulename=string
+modulename=STRING_V2
 
 
 #### string : Conf files ####
@@ -89,11 +68,11 @@ libscistring_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### string : init scripts ####
 libscistring_la_etcdir = $(mydatadir)/etc
-libscistring_la_etc_DATA = etc/string.quit etc/string.start
+libscistring_la_etc_DATA = etc/STRING_V2.quit etc/STRING_V2.start
 
 #### string : gateway declaration ####
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
+libscistring_la_sci_gateway_DATA = sci_gateway/STRING_V2_gateway.xml
 
 #### string : include files ####
 libscistring_la_includedir=$(pkgincludedir)/string

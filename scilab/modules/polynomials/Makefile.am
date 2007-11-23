@@ -104,9 +104,6 @@ sci_gateway/fortran/sci_f_pclean.f \
 sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
-MODULE_CHECKS = unit_tests/polelm.tst \
-unit_tests/polops.tst
-
 libscipolynomials_la_CFLAGS= 	-Iincludes/ \
 				-I$(top_builddir)/modules/output_stream/includes
 
