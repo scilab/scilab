@@ -465,12 +465,6 @@ top_srcdir = @top_srcdir@
 # Where all the Scilab stuff is installed (macros, help, ...)
 @PVM_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
 
-#SUFFIXES = .xml .sci .htm
-@PVM_FALSE@SUFFIXES = .sci 
-
-#SUFFIXES = .xml .sci .htm
-@PVM_TRUE@SUFFIXES = .sci 
-
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -491,6 +485,16 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @PVM_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
 @PVM_TRUE@	$(am__append_6)
+
+################ MACROS ######################"
+# Rule to build a macro
+# NOT USED  AT THE MOMENT
+@PVM_FALSE@SUFFIXES = .sci 
+
+################ MACROS ######################"
+# Rule to build a macro
+# NOT USED  AT THE MOMENT
+@PVM_TRUE@SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -1306,7 +1310,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 	uninstall-libscipvm_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-#.java .class .jar
 
 # This target enables tests for Scilab
 @PVM_TRUE@check-local: $(top_builddir)/scilab-bin
@@ -1352,28 +1355,12 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 @PVM_TRUE@all-local: $(TARGETS_ALL)
 
-################ MACROS ######################"
-# Rule to build a macro
 @PVM_TRUE@.sci.bin:
 @PVM_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 @PVM_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
 @PVM_TRUE@	else \
 @PVM_TRUE@	echo "Creating $@"; \
 @PVM_TRUE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
-@PVM_TRUE@	fi )
-
-@PVM_TRUE@macrossly:
-@PVM_TRUE@	@( if test ! -x $(top_builddir)/bin/scilab; then \
-@PVM_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
-@PVM_TRUE@	else \
-@PVM_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@PVM_TRUE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
-@PVM_TRUE@	echo $$SCI/modules/functions/macros/genlib.bin; \
-@PVM_TRUE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-@PVM_TRUE@	(cd $$SCI; $$SCI/bin/scilab -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
-@PVM_TRUE@	fi; \
-@PVM_TRUE@	echo $(top_builddir)/bin/scilab -ns -nwni -f macros/buildmacros.sce; \
-@PVM_TRUE@	$(top_builddir)/bin/scilab -nwni -f macros/buildmacros.sce; \
 @PVM_TRUE@	fi )
 @PVM_TRUE@install-html-local:
 @PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
@@ -1456,7 +1443,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@build-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
 @PVM_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
 @PVM_TRUE@	)
-#.java .class .jar
 
 # This target enables tests for Scilab
 @PVM_FALSE@check-local: $(top_builddir)/scilab-bin
@@ -1502,28 +1488,12 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 @PVM_FALSE@all-local: $(TARGETS_ALL)
 
-################ MACROS ######################"
-# Rule to build a macro
 @PVM_FALSE@.sci.bin:
 @PVM_FALSE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 @PVM_FALSE@	echo "Error : Cannot build $< : Scilab has not been build"; \
 @PVM_FALSE@	else \
 @PVM_FALSE@	echo "Creating $@"; \
 @PVM_FALSE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
-@PVM_FALSE@	fi )
-
-@PVM_FALSE@macrossly:
-@PVM_FALSE@	@( if test ! -x $(top_builddir)/bin/scilab; then \
-@PVM_FALSE@	echo "Error : Cannot build $< : Scilab has not been build"; \
-@PVM_FALSE@	else \
-@PVM_FALSE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@PVM_FALSE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
-@PVM_FALSE@	echo $$SCI/modules/functions/macros/genlib.bin; \
-@PVM_FALSE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-@PVM_FALSE@	(cd $$SCI; $$SCI/bin/scilab -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
-@PVM_FALSE@	fi; \
-@PVM_FALSE@	echo $(top_builddir)/bin/scilab -ns -nwni -f macros/buildmacros.sce; \
-@PVM_FALSE@	$(top_builddir)/bin/scilab -nwni -f macros/buildmacros.sce; \
 @PVM_FALSE@	fi )
 @PVM_FALSE@install-html-local:
 @PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)

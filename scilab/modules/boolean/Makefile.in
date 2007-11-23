@@ -346,9 +346,6 @@ libsciboolean_la_include_HEADERS = includes/gw_boolean.h
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
-#SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci 
-
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -357,6 +354,11 @@ SUFFIXES = .sci
 #### It is why those rules exist.
 #######################################################################
 TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+
+################ MACROS ######################"
+# Rule to build a macro
+# NOT USED  AT THE MOMENT
+SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -845,7 +847,6 @@ uninstall-am: uninstall-libsciboolean_la_etcDATA \
 	uninstall-libsciboolean_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-#.java .class .jar
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
@@ -891,28 +892,12 @@ check-local: $(top_builddir)/scilab-bin
 
 all-local: $(TARGETS_ALL)
 
-################ MACROS ######################"
-# Rule to build a macro
 .sci.bin:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 	echo "Creating $@"; \
 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
-	fi )
-
-macrossly:
-	@( if test ! -x $(top_builddir)/bin/scilab; then \
-	echo "Error : Cannot build $< : Scilab has not been build"; \
-	else \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-	SCI=`cd $(top_builddir); pwd;`; export SCI; \
-	echo $$SCI/modules/functions/macros/genlib.bin; \
-	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-	(cd $$SCI; $$SCI/bin/scilab -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
-	fi; \
-	echo $(top_builddir)/bin/scilab -ns -nwni -f macros/buildmacros.sce; \
-	$(top_builddir)/bin/scilab -nwni -f macros/buildmacros.sce; \
 	fi )
 install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)

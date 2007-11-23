@@ -705,12 +705,6 @@ top_srcdir = @top_srcdir@
 # Where all the Scilab stuff is installed (macros, help, ...)
 @TCLTK_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
 
-#SUFFIXES = .xml .sci .htm
-@TCLTK_FALSE@SUFFIXES = .sci 
-
-#SUFFIXES = .xml .sci .htm
-@TCLTK_TRUE@SUFFIXES = .sci 
-
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
 #### a kind of mechanism like C or Fortran sources :
@@ -731,6 +725,16 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @TCLTK_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
 @TCLTK_TRUE@	$(am__append_6)
+
+################ MACROS ######################"
+# Rule to build a macro
+# NOT USED  AT THE MOMENT
+@TCLTK_FALSE@SUFFIXES = .sci 
+
+################ MACROS ######################"
+# Rule to build a macro
+# NOT USED  AT THE MOMENT
+@TCLTK_TRUE@SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -1543,7 +1547,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 	uninstall-nobase_libscitclsci_la_tclDATA \
 	uninstall-pkglibLTLIBRARIES
 
-#.java .class .jar
 
 # This target enables tests for Scilab
 @TCLTK_TRUE@check-local: $(top_builddir)/scilab-bin
@@ -1589,28 +1592,12 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 @TCLTK_TRUE@all-local: $(TARGETS_ALL)
 
-################ MACROS ######################"
-# Rule to build a macro
 @TCLTK_TRUE@.sci.bin:
 @TCLTK_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 @TCLTK_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
 @TCLTK_TRUE@	else \
 @TCLTK_TRUE@	echo "Creating $@"; \
 @TCLTK_TRUE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
-@TCLTK_TRUE@	fi )
-
-@TCLTK_TRUE@macrossly:
-@TCLTK_TRUE@	@( if test ! -x $(top_builddir)/bin/scilab; then \
-@TCLTK_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
-@TCLTK_TRUE@	else \
-@TCLTK_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@TCLTK_TRUE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
-@TCLTK_TRUE@	echo $$SCI/modules/functions/macros/genlib.bin; \
-@TCLTK_TRUE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-@TCLTK_TRUE@	(cd $$SCI; $$SCI/bin/scilab -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
-@TCLTK_TRUE@	fi; \
-@TCLTK_TRUE@	echo $(top_builddir)/bin/scilab -ns -nwni -f macros/buildmacros.sce; \
-@TCLTK_TRUE@	$(top_builddir)/bin/scilab -nwni -f macros/buildmacros.sce; \
 @TCLTK_TRUE@	fi )
 @TCLTK_TRUE@install-html-local:
 @TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
@@ -1693,7 +1680,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@build-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
 @TCLTK_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
 @TCLTK_TRUE@	)
-#.java .class .jar
 
 # This target enables tests for Scilab
 @TCLTK_FALSE@check-local: $(top_builddir)/scilab-bin
@@ -1739,28 +1725,12 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 @TCLTK_FALSE@all-local: $(TARGETS_ALL)
 
-################ MACROS ######################"
-# Rule to build a macro
 @TCLTK_FALSE@.sci.bin:
 @TCLTK_FALSE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 @TCLTK_FALSE@	echo "Error : Cannot build $< : Scilab has not been build"; \
 @TCLTK_FALSE@	else \
 @TCLTK_FALSE@	echo "Creating $@"; \
 @TCLTK_FALSE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
-@TCLTK_FALSE@	fi )
-
-@TCLTK_FALSE@macrossly:
-@TCLTK_FALSE@	@( if test ! -x $(top_builddir)/bin/scilab; then \
-@TCLTK_FALSE@	echo "Error : Cannot build $< : Scilab has not been build"; \
-@TCLTK_FALSE@	else \
-@TCLTK_FALSE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@TCLTK_FALSE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
-@TCLTK_FALSE@	echo $$SCI/modules/functions/macros/genlib.bin; \
-@TCLTK_FALSE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-@TCLTK_FALSE@	(cd $$SCI; $$SCI/bin/scilab -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
-@TCLTK_FALSE@	fi; \
-@TCLTK_FALSE@	echo $(top_builddir)/bin/scilab -ns -nwni -f macros/buildmacros.sce; \
-@TCLTK_FALSE@	$(top_builddir)/bin/scilab -nwni -f macros/buildmacros.sce; \
 @TCLTK_FALSE@	fi )
 @TCLTK_FALSE@install-html-local:
 @TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
