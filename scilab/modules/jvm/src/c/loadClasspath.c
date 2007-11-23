@@ -49,7 +49,7 @@ BOOL LoadClasspath(char *xmlfilename)
 				{
 
 					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
-					/* Get the properties of <CLASS>  */
+					/* Get the properties of <classpath>  */
 					while (attrib != NULL)
 					{
 						/* loop until when have read all the attributes */
@@ -83,7 +83,7 @@ BOOL LoadClasspath(char *xmlfilename)
 						}
 
   					    if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
-                                                addToClasspath(CLASSPATH);
+						addToClasspath(CLASSPATH);
 						FREE(CLASSPATH);
 						CLASSPATH = NULL;
 					}
@@ -100,6 +100,8 @@ BOOL LoadClasspath(char *xmlfilename)
 			printf(_("Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' found\n"), xmlfilename, encoding);
 		}
 		if (encoding) {FREE(encoding);encoding=NULL;}
+	}else{
+		printf(_("Warning: could not find classpath declaration file %s\n"), xmlfilename);
 	}
 	return bOK;
 }
