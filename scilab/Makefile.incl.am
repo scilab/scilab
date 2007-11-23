@@ -33,10 +33,9 @@ check-local: $(top_builddir)/scilab-bin
 #######################################################################
 
 
-
-# TODO : Renamed this variable
+TARGETS_ALL=
 if GUI
-
+TARGETS_ALL+=build-java
 build-java:
 	@if test -f build.xml; then \
 		$(ANT) jar; \
@@ -46,25 +45,10 @@ clean-java:
 	@if test -f build.xml; then \
 		$(ANT) clean; \
 	fi
-
-endif
-
-
-TARGETS_ALL=
-if GUI
-TARGETS_ALL+=build-java
 endif
 
 if SWIG
 TARGETS_ALL+=build-swig
-endif
-
-if GIWS
-TARGETS_ALL+=build-giws
-endif
-
-all-local: $(TARGETS_ALL)
-
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -79,6 +63,11 @@ build-swig: $(SWIG_WRAPPERS)
 		done; \
 	fi
 
+endif
+
+if GIWS
+TARGETS_ALL+=build-giws
+
 
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
@@ -92,6 +81,12 @@ build-giws: $(GIWS_WRAPPERS)
 			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
 		done; \
 	fi
+
+endif
+
+all-local: $(TARGETS_ALL)
+
+
 
 ################ MACROS ######################"
 # Rule to build a macro

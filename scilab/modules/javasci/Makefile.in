@@ -357,6 +357,14 @@ modulename = javasci
 
 #SUFFIXES = .xml .sci .htm
 @JAVASCI_TRUE@SUFFIXES = .sci 
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
 @JAVASCI_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @JAVASCI_TRUE@	$(am__append_3)
 
@@ -826,17 +834,6 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	COMMAND="test_run('$(modulename)');quit";\
 @JAVASCI_TRUE@	export LANG=C;\
 @JAVASCI_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-
-########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
-#######################################################################
-
-# TODO : Renamed this variable
-
 @GUI_TRUE@@JAVASCI_TRUE@build-java:
 @GUI_TRUE@@JAVASCI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@JAVASCI_TRUE@		$(ANT) jar; \
@@ -846,33 +843,32 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @GUI_TRUE@@JAVASCI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@JAVASCI_TRUE@		$(ANT) clean; \
 @GUI_TRUE@@JAVASCI_TRUE@	fi
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
+
+@JAVASCI_TRUE@@SWIG_TRUE@build-swig: $(SWIG_WRAPPERS)
+@JAVASCI_TRUE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+@JAVASCI_TRUE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+@JAVASCI_TRUE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@JAVASCI_TRUE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
+@JAVASCI_TRUE@@SWIG_TRUE@			echo "Swig process of $$file ..."; \
+@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@JAVASCI_TRUE@@SWIG_TRUE@		done; \
+@JAVASCI_TRUE@@SWIG_TRUE@	fi
+
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
+
+@GIWS_TRUE@@JAVASCI_TRUE@build-giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@@JAVASCI_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@JAVASCI_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
+@GIWS_TRUE@@JAVASCI_TRUE@			echo "Giws process of $$file ..."; \
+@GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@JAVASCI_TRUE@		done; \
+@GIWS_TRUE@@JAVASCI_TRUE@	fi
 
 @JAVASCI_TRUE@all-local: $(TARGETS_ALL)
-
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable SWIG_WRAPPERS
-
-@JAVASCI_TRUE@build-swig: $(SWIG_WRAPPERS)
-@JAVASCI_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
-@JAVASCI_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@JAVASCI_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
-@JAVASCI_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
-@JAVASCI_TRUE@			echo "Swig process of $$file ..."; \
-@JAVASCI_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
-@JAVASCI_TRUE@		done; \
-@JAVASCI_TRUE@	fi
-
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
-# We call the target swig-build on the variable SWIG_WRAPPERS
-
-@JAVASCI_TRUE@build-giws: $(GIWS_WRAPPERS)
-@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@JAVASCI_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
-@JAVASCI_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
-@JAVASCI_TRUE@			echo "Giws process of $$file ..."; \
-@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
-@JAVASCI_TRUE@		done; \
-@JAVASCI_TRUE@	fi
 
 ################ MACROS ######################"
 # Rule to build a macro

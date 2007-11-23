@@ -67,7 +67,7 @@ libsciconsole_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
-libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
+libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/GuiManagement.i
