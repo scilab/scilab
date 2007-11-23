@@ -23,11 +23,14 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 {
     int numRow = 0;
     int numCol = 0;
-    int StackPosTwo = 0;
-	char **Input_StringMatrix = NULL;
 	char **Output_StringMatrix = NULL;
+    int x = 0,RowCol = 0;
 
-    int x = 0,Row_One = 0,Col_One = 0,RowCol = 0,Row_Two = 0,Col_Two = 0;
+	int Row_One = 0,Col_One = 0;
+	char **Input_StringMatrix = NULL;
+
+	int Row_Two = 0,Col_Two = 0;
+	int StackPosTwo = 0;
     int *SecondParamaterValue = NULL;
 
     CheckRhs(2,2);
@@ -35,8 +38,6 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 
     GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_StringMatrix);
     RowCol = Row_One*Col_One;  
-
-	
 	
 	GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&StackPosTwo);
 	SecondParamaterValue = istk(StackPosTwo);
@@ -44,7 +45,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
     Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_One));
 	if (Output_StringMatrix == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -57,11 +58,11 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 
 		if (Output_StringMatrix == NULL)
 		{
-			for(y=0; y<=x; y++) 
+			for(y=0; y <= x; y++) 
 			{
-                  if (Output_StringMatrix[y]) { FREE(Output_StringMatrix[y]); Output_StringMatrix[y]=NULL;}
+				if (Output_StringMatrix[y]) { FREE(Output_StringMatrix[y]); Output_StringMatrix[y] = NULL; }
 			}
-			Scierror(999,_("%s : Memory allocation error\n"),fname);
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
         
@@ -88,7 +89,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
     C2F(putlhsvar)();
 
 	/* FREE memory */
-    for (x = 0;x<RowCol;x++)
+    for (x = 0;x < RowCol;x++)
     {
        if (Output_StringMatrix[x]) { FREE(Output_StringMatrix[x]); Output_StringMatrix[x]=NULL;}
     }

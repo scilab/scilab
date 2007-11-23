@@ -3,10 +3,10 @@
 /* Copyright INRIA 2007                                                   */
 /* @Authors : Cong Wu                                                     */
 /* desc : strips leading and trailing blanks (and tabs) of strings  
-          txt=stripblanks(txt[,tabs])   
-          Parameters 
-          txt : string or matrix of strings 
-          tabs : if TRUE then tabs are also stripped (default value is FALSE)*/                                    
+       txt=stripblanks(txt[,tabs])   
+       Parameters 
+       txt : string or matrix of strings 
+       tabs : if TRUE then tabs are also stripped (default value is FALSE)*/                                    
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
@@ -33,43 +33,47 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (Rhs == 2)
 	{
-		int Type_Two = VarType(2);
-
-		if (Type_Two==sci_boolean) 
-			{
-				int m2 = 0, n2 = 0, l2 = 0;
-				GetRhsVar(2,MATRIX_OF_BOOLEAN_DATATYPE,&m2,&n2,&l2);
-				bREMOVE_TAB = (BOOL)*istk(l2);  
-			}else{
-				Scierror(999,_("%s : Second input argument has a wrong type, expecting a boolean.\n"),fname);
-				return 0;
-			}
+		if ( VarType(2) == sci_boolean ) 
+		{
+			int m2 = 0, n2 = 0, l2 = 0;
+			GetRhsVar(2,MATRIX_OF_BOOLEAN_DATATYPE,&m2,&n2,&l2);
+			bREMOVE_TAB = (BOOL)*istk(l2);  
+		}
+		else
+		{
+			Scierror(999,_("%s : Second input argument has a wrong type, expecting a boolean.\n"),fname);
+			return 0;
+		}
 	}
 
 	switch (Type_One) 
 	{
 		case sci_matrix :
+		{
+			/* case stripblanks([]) */
+			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&Input_String_Matrix_One);
+			if ( (m1 == 0) && (n1 == 0) )
 			{
-				/* case stripblanks([]) */
-				GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&Input_String_Matrix_One);
-				if ( (m1 == 0) && (n1 == 0) )
-				{
-					int l = 0;
-					CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
-					LhsVar(1) = Rhs+1 ;
-					C2F(putlhsvar)();
-					return 0;
-
-				}
+				int l = 0;
+				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
+				LhsVar(1) = Rhs+1 ;
+				C2F(putlhsvar)();
+				return 0;
 			}
-			break;
+		}
+		break;
 		case sci_strings :
+		{
 			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_String_Matrix_One);
-	        mn = m1*n1; 
+			mn = m1*n1; 
+		}
 		break;
 		default :
+		{
 			Scierror(999,_("%s : First argument has a wrong type, expecting scalar or string matrix.\n"),fname);
-		return 0;
+			return 0;
+		}
+		break;
 	} 
 
 	if (mn > 0) Output_String_Matrix = (char**)MALLOC(sizeof(char*)*(mn));	
@@ -95,7 +99,9 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 			return 0;
 		}
 	}
-	stripblanks(Input_String_Matrix_One,Output_String_Matrix,mn,bREMOVE_TAB); /*@ The stripblank function*/
+
+	/*@ The stripblank function*/
+	stripblanks(Input_String_Matrix_One,Output_String_Matrix,mn,bREMOVE_TAB); 
 
 	/* put result on scilab stack */
 	numRow   = m1;

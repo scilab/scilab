@@ -177,7 +177,9 @@ static char *pbuffer = NULL;
 
 
 
-
+static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
+				  int start_offset, int options, int *use_offsets, int use_size_offsets,
+				  int flag, unsigned long int *limit, int errnumber);
 
 
 
@@ -302,7 +304,7 @@ return ((value & 0x000000ff) << 24) |
 static int
 check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
   int start_offset, int options, int *use_offsets, int use_size_offsets,
-  int flag, unsigned long int *limit, int errnumber, const char *msg)
+  int flag, unsigned long int *limit, int errnumber)
 {
 int count;
 int min = 0;
@@ -495,7 +497,7 @@ while (!Cong_Tst)
   char *p; 
   char	*pp, *ppp;
   char *to_file = NULL;
-  const char *tables = NULL;
+  const unsigned char *tables = NULL;
   unsigned long int true_size, true_study_size = 0;
   size_t size, regex_gotten_store;
   int do_study = 0;
@@ -1400,12 +1402,12 @@ while (!Cong_Tst)
         (void)check_match_limit(re, extra, bptr, len, start_offset,
           options|g_notempty, use_offsets, use_size_offsets,
           PCRE_EXTRA_MATCH_LIMIT, &(extra->match_limit),
-          PCRE_ERROR_MATCHLIMIT, "match()");
+          PCRE_ERROR_MATCHLIMIT);
 
         count = check_match_limit(re, extra, bptr, len, start_offset,
           options|g_notempty, use_offsets, use_size_offsets,
           PCRE_EXTRA_MATCH_LIMIT_RECURSION, &(extra->match_limit_recursion),
-          PCRE_ERROR_RECURSIONLIMIT, "match() recursion");
+          PCRE_ERROR_RECURSIONLIMIT);
         }
 
       /* If callout_data is set, use the interface with additional data */
@@ -1468,15 +1470,9 @@ while (!Cong_Tst)
             fprintf(outfile, "%2d: <unset>\n", i/2);
           else
             {
-            //fprintf(outfile, "%2d: ", i/2);
-            //(void)pchars(bptr + use_offsets[i],
-            //  use_offsets[i+1] - use_offsets[i], outfile);
-            //fprintf(outfile, "\n");
-		    *Output_Start=use_offsets[i];
-			*Output_End=use_offsets[i+1];
-				
+				*Output_Start=use_offsets[i];
+				*Output_End=use_offsets[i+1];
 				return 0;
-            
             }
           }
 
@@ -1558,11 +1554,6 @@ while (!Cong_Tst)
             }
           }
         }
-
-
-
- 
-
       /* Failed to match. If this is a /g or /G loop and we previously set
       g_notempty after a null match, this is not necessarily the end. We want
       to advance the start offset, and continue. We won't be at the end of the
@@ -1690,7 +1681,7 @@ FREE(buffer);
 FREE(dbuffer);
 FREE(pbuffer);
 FREE(offsets);
-getchar();
+//getchar();
 
 
 }

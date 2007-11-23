@@ -27,12 +27,8 @@ static char* substr(const char*str, unsigned start, unsigned end)
 		{
 			strncpy(stbuf, str + start, n);   /*Put a part of str into stbuf*/
 			stbuf[n] = 0;
-
 		}
-		else
-		{
-			strcpy(stbuf,"");
-		}
+		else strcpy(stbuf,"");
 	}
 	return stbuf;
 }

@@ -6,6 +6,7 @@
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../../../bin/pcre.lib")
 #pragma comment(lib,"../../../../bin/pcreposix.lib")
+#pragma comment(lib,"../../../../bin/intl.lib")
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

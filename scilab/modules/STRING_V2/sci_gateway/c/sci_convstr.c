@@ -39,20 +39,24 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (Rhs == 2) 
 	{
-		if (Type_Two==sci_strings) {
-				int Row_Num_Two = 0,Col_Num_Two = 0,Stack_Pos=0;
-				GetRhsVar(2,STRING_DATATYPE,&Row_Num_Two,&Col_Num_Two,&Stack_Pos);
-				if ( Row_Num_Two*Col_Num_Two == 1 )
+		if (Type_Two == sci_strings) 
+		{
+			int Row_Num_Two = 0,Col_Num_Two = 0,Stack_Pos=0;
+
+			GetRhsVar(2,STRING_DATATYPE,&Row_Num_Two,&Col_Num_Two,&Stack_Pos);
+			if ( (Row_Num_Two*Col_Num_Two) == 1 )
+			{
+				/* To put "flag" into typ; whether "u" or "l" */
+				typ = cstk(Stack_Pos)[0];
+				if ( (typ != UPPER) && (typ != LOW) && (typ != UPPER_B) && (typ != LOW_B) ) 
 				{
-					/* To put "flag" into typ; whether "u" or "l" */
-					typ = cstk(Stack_Pos)[0];
-					if ( (typ != UPPER) && (typ != LOW) && (typ != UPPER_B) && (typ != LOW_B) ) 
-					{
-						Scierror(999,_("Second input argument must be 'u' (Upper) or 'l' (Lower).\n"));
-						return 1;	
-					}
+					Scierror(999,_("Second input argument must be 'u' (Upper) or 'l' (Lower).\n"));
+					return 0;	
 				}
-		}else{
+			}
+		}
+		else
+		{
 			Scierror(999,_("%s : Second input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 			return 0;
 		}
@@ -69,7 +73,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 		case sci_matrix :
 		{
 			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&Row_Num_One,&Col_Num_One,&Input_Matrix);
-            if ((Row_Num_One == 0) && (Col_Num_One == 0))
+            if ( (Row_Num_One == 0) && (Col_Num_One == 0) )
 			{
 				int l =0;
 				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&Row_Num_One,&Col_Num_One,&l);

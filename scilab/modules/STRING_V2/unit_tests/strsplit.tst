@@ -10,7 +10,14 @@ if R <> STR_SPLITED then pause,end
 //===============================
 if strsplit([],[1 1 1]) <> []  then pause,end
 //===============================
-if execstr('strsplit([],[3 2 1])','errcatch') <> 99  then pause,end
+// Scilab 4.x 
+//if execstr('strsplit([],[3 2 1])','errcatch') <> 99  then pause,end
+// Scilab 5.x
+if strsplit([],[3 2 1]) <> []  then pause,end
+//===============================
 if execstr('strsplit('',[0 1])','errcatch') <> 31  then pause,end
-if execstr('strsplit([])','errcatch') <> 39  then pause,end
+// Scilab 4.x 
+//if execstr('strsplit([])','errcatch') <> 39  then pause,end
+// Scilab 5.x
+if execstr('strsplit([])','errcatch') <> 77  then pause,end
 //===============================

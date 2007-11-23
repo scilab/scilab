@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------*/
-/* File: sci_code2str.c                                                  */
+/* File: sci_code2str.c                                                   */
 /* Copyright INRIA 2007                                                   */
-/* @Authors : Cong Wu                                                      */
+/* @Authors : Cong Wu                                                     */
 /* desc : str=code2str(c)
           Returns character string associated with Scilab integer codes.
           str is such that c(i) is the Scilab integer code of part(str,i))*/
@@ -18,32 +18,31 @@
 int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 {
 	char **Output_Matrix = NULL;
-	int Row_Num = 0,Col_Num = 0,Stack_position = 0;
+	int Row_Num = 0,Col_Num = 0;
 	int *Input_Matrix = NULL; /* Input matrix */
 
 	int numRow = 1;
 	int numCol = 0;
 	int outIndex = 0 ;
-	int Type = VarType(1);
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	switch (Type) 
+	if (VarType(1) == sci_matrix)
 	{
-		case sci_matrix :
-			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&Row_Num,&Col_Num,&Stack_position);
-			Input_Matrix=istk(Stack_position); /* Input*/
-		break;
-		default :
-			Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
+		int Stack_position = 0;
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&Row_Num,&Col_Num,&Stack_position);
+		Input_Matrix=istk(Stack_position); /* Input*/
+	}
+	else
+	{
+		Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 		return 0;
-	} 
+	}
 
 	numCol   = Row_Num*Col_Num ;
 
 	/* Allocation output matrix */
-
 	Output_Matrix = (char**)MALLOC(sizeof(char*)); 
 
 	if (Output_Matrix == NULL)
@@ -57,6 +56,7 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 		Output_Matrix[0]=(char*)MALLOC(sizeof(char*)*(numCol));
 	}
 	else Output_Matrix[0]=(char*)MALLOC(sizeof(char*));
+
 	if (Output_Matrix[0] == NULL)
 	{
 		FREE(Output_Matrix);

@@ -20,7 +20,7 @@
 #include "CreateEmptystr.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-static int sci_emptystr_no_rhs(char *fname);
+static int sci_emptystr_no_rhs(void);
 static int sci_emptystr_one_rhs(char *fname);
 static int sci_emptystr_two_rhs(char *fname);
 /*--------------------------------------------------------------------------*/
@@ -33,7 +33,7 @@ int C2F(sci_emptystr) _PARAMS((char *fname,unsigned long fname_len))
 
    if (Rhs < 1)
    {
-	   sci_emptystr_no_rhs(fname);
+	   sci_emptystr_no_rhs();
    }
    else if (Rhs == 1)
    {
@@ -46,7 +46,7 @@ int C2F(sci_emptystr) _PARAMS((char *fname,unsigned long fname_len))
    return 0;
 }
 /*--------------------------------------------------------------------------*/       
-static int sci_emptystr_no_rhs(char *fname)
+static int sci_emptystr_no_rhs(void)
 {
 	/* With no input argument returns a zero length character string */
 	int m1 = 0, n1 = 0, l1 = 0;
@@ -139,22 +139,28 @@ static int sci_emptystr_two_rhs(char *fname)
 	int Type_Two = VarType(2);
     
 	/*With two integer arguments returns a m*n zero length character strings matrix */
-	if (Type_One==sci_matrix) {
-			int m1 = 0, n1 = 0, l1 = 0;
-			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-			value_param_pos_1 = *istk(l1);
-	}else{
-			Scierror(999,_("%s : First input argument must be integer matrix.\n"),fname);
-			return 0;
+	if (Type_One==sci_matrix) 
+	{
+		int m1 = 0, n1 = 0, l1 = 0;
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
+		value_param_pos_1 = *istk(l1);
+	}
+	else
+	{
+		Scierror(999,_("%s : First input argument must be integer matrix.\n"),fname);
+		return 0;
 	}
 
-    if (Type_Two==sci_matrix) {
-			int m2 = 0, n2 = 0, l2 = 0;
-			GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
-			value_param_pos_2 = *istk(l2);
-	}else{
-			Scierror(999,_("%s : Second input argument must be integer matrix.\n"),fname);
-			return 0;
+    if (Type_Two==sci_matrix) 
+	{
+		int m2 = 0, n2 = 0, l2 = 0;
+		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
+		value_param_pos_2 = *istk(l2);
+	}
+	else
+	{
+		Scierror(999,_("%s : Second input argument must be integer matrix.\n"),fname);
+		return 0;
 	}
 	
 	matrixdimension = value_param_pos_1 * value_param_pos_2;
@@ -199,7 +205,7 @@ static int sci_emptystr_two_rhs(char *fname)
 	}
 	else
 	{
-		sci_emptystr_no_rhs(fname);
+		sci_emptystr_no_rhs();
 	}   
 	return 0;
 }

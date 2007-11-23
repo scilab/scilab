@@ -8,8 +8,6 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h> 
-#include "gw_string.h"
 #include "MALLOC.h" 
 #include "tokens.h"
 /*------------------------------------------------------------------------*/
@@ -27,28 +25,28 @@ void tokens(char **Input_MatrixOne,char **Input_MatrixTwo,char **Output_String,i
 			int i = 0;
 			int bo = 0;
 
-			for (i=0; i<Number_Input_Two; i++)
+			for (i=0; i < Number_Input_Two; i++)
 			{
-				if ( Input_MatrixOne[x][y] == Input_MatrixTwo[i][0] ) bo=1;
+				if ( Input_MatrixOne[x][y] == Input_MatrixTwo[i][0] ) bo = 1;
 			}
-			if (bo==0) 
+			if ( bo == 0 )  
 			{
 				/* if bo is a singal, to put the input string matrix into the output matrix in a correct token way*/
-				Output_String[*Row_Pointer][(*Col_Pointer)++]=Input_MatrixOne[0][y];
+				Output_String[*Row_Pointer][(*Col_Pointer)++] = Input_MatrixOne[0][y];
 			}
 			else 
 			{
 				/* To start copying from the next row, and from the very beginning*/
-				if ((*Col_Pointer)!=0) 
+				if ((*Col_Pointer)!= 0) 
 				{
-					Output_String[*Row_Pointer][*Col_Pointer]=0;
+					Output_String[*Row_Pointer][*Col_Pointer] = 0;
 					(*Row_Pointer)++;
-					*Col_Pointer=0;
+					*Col_Pointer = 0;
 				}
 			}
-			bo=0;
+			bo = 0;
 		}
 	}
-    Output_String[*Row_Pointer][*Col_Pointer]=0;
+    Output_String[*Row_Pointer][*Col_Pointer] = 0;
 }
 /*------------------------------------------------------------------------*/

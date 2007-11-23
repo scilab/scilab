@@ -26,8 +26,8 @@
 /*----------------------------------------------------------------------------*/
 /* get length */
 static int lengthStrings(char *fname);
-static int lengthMatrix(char *fname);
-static int lengthList(char *fname);
+static int lengthMatrix(void);
+static int lengthList(void);
 static int lengthOthers(char *fname);
 /*----------------------------------------------------------------------------*/
 int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
@@ -42,11 +42,11 @@ int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
 	break;
 
 	case sci_matrix :
-		lengthMatrix(fname);
+		lengthMatrix();
 	break;
 
 	case sci_list:
-		lengthList(fname);
+		lengthList();
     break;
 
 	default :
@@ -81,12 +81,12 @@ static int lengthStrings(char *fname)
 	}
 	else
 	{
-		Scierror(999,_("%s : Memory allocation error\n"));
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int lengthMatrix(char *fname)
+static int lengthMatrix(void)
 {
 	int Row_Num = 0, Col_Num = 0;
 	int Row_Out = 0, Col_Out = 0;
@@ -107,7 +107,7 @@ static int lengthMatrix(char *fname)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int lengthList(char *fname)
+static int lengthList(void)
 {
 	int Row_Num = 0,Col_Num = 0;
 	int Row_Out = 0, Col_Out = 0;
@@ -130,7 +130,7 @@ static int lengthList(char *fname)
 static int lengthOthers(char *fname)
 {
 	/* unknow type */
-	Scierror(999, _("%s : Not managed input type.\n"));
+	Scierror(999, _("%s : Not managed input type.\n"),fname);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

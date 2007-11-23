@@ -15,7 +15,6 @@
 /*----------------------------------------------------------------------------*/
 int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 {
-
 	char **Input_StringMatrix=NULL;
 	char **Output_StringMatrix=NULL;
 	int *Input_IntMatrix=NULL;
@@ -24,15 +23,16 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	int Row_Pointer = 0;
 	int Row_Pointer_Two = 0;
 	int Col_Pointer = 0;
-	int Row_One = 0,Col_One = 0,Row_Two = 0,mn = 0,i = 0,j = 0,Col_Two = 0,l4 = 0;
+	int Row_One = 0,Col_One = 0;
+	int Row_Two = 0,mn = 0;
+	int i = 0,Col_Two = 0,l4 = 0;
 	int numRow = 0;
 	int numCol = 0;
-	int l=0;
-	int mn2;
+	
+
 
 	CheckRhs(2,2);
 	CheckLhs(1,1);
-
 	
 	switch (Type_One) 
 	{
@@ -40,7 +40,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&Row_One,&Col_One,&Input_StringMatrix);
 		    if ((Row_One == 0) && (Col_One == 0))
 			{
-				l = 0;
+				int l = 0;
 				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&Row_One,&Col_One,&l);
 				LhsVar(1) = Rhs+1 ;
 				C2F(putlhsvar)();
@@ -57,11 +57,13 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		break;
 	} 
     
-    if (Type_Two==sci_matrix) {
+    if (Type_Two == sci_matrix) 
+	{
 			GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&l4);
 			Input_IntMatrix = istk(l4);
-			mn2=Row_Two*Col_Two;
-	}else{
+	}
+	else
+	{
 			Scierror(999,_("%s : second argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 			return 0;
 	}
@@ -82,12 +84,13 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		return 0;
 	}
 
-	for (i=1;i<Col_Two;i++)
+	for (i = 1; i < Col_Two ;i++)
 	{
 		Output_StringMatrix[i] = (char*)MALLOC(sizeof(char*)*(Input_IntMatrix[i]-Input_IntMatrix[i-1]));
 		if (Output_StringMatrix[i] == NULL) /* Error of the Malloc */
 		{
-			for (j=0;j<i;j++)
+			int j = 0;
+			for ( j = 0; j < i ; j++)
 			{
 				  if (Output_StringMatrix[j]) 
 				  {
@@ -108,7 +111,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		return 0;
 	}
 
-	strsplit(Input_StringMatrix,Output_StringMatrix,&Row_Pointer,&Row_Pointer_Two,&Col_Pointer,mn2,Input_IntMatrix);
+	strsplit(Input_StringMatrix,Output_StringMatrix,&Row_Pointer,&Row_Pointer_Two,&Col_Pointer,Input_IntMatrix);
 
 	/* put result on scilab stack */
 	numRow =  Col_Two+1;

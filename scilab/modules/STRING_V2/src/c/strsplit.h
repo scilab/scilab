@@ -12,7 +12,7 @@
 *@return
 */
 
-void strsplit(char **Input_StringMatrix,char **Output_StringMatrix,int *Row_Pointer,int *Row_Pointer_Two,int *Col_Pointer,int mn,int *Input_IntMatrix);
+void strsplit(char **Input_StringMatrix,char **Output_StringMatrix,int *Row_Pointer,int *Row_Pointer_Two,int *Col_Pointer,int *Input_IntMatrix);
 
 #endif /* __STRSPLIT_H__ */
 /*------------------------------------------------------------------------*/
