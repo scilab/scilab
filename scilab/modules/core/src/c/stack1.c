@@ -92,7 +92,7 @@ int C2F(getrmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,int
     return FALSE_;
 
   if (it != 0) {
-    Scierror(202,_("%s : Argument %d: wrong type argument expecting a real matrix.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
+    Scierror(202,_("%s : Argument %d: wrong type argument, expecting a real matrix.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
     return FALSE_;
   }
   return TRUE_;
@@ -109,7 +109,7 @@ int C2F(getcmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,int
     return FALSE_;
 
   if (it != 1) {
-    Scierror(202,_("%s : Argument %d: wrong type argument expecting a real matrix.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
+    Scierror(202,_("%s : Argument %d: wrong type argument, expecting a real matrix.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
     return FALSE_;
   }
   return TRUE_;
@@ -781,7 +781,7 @@ int C2F(getrsparse)(char *fname, integer *topk, integer *lw, integer *m, integer
     return FALSE_;
 
   if (it != 0) {
-    Scierror(202,_("%s : Argument %d: wrong type argument expecting a real matrix.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
+    Scierror(202,_("%s : Argument %d: wrong type argument, expecting a real matrix.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
     return FALSE_;
   }
   return TRUE_;
@@ -951,7 +951,7 @@ int C2F(getvect)(char *fname,integer *topk,integer *lw,integer *it,integer *m,in
     return FALSE_;
 
   if (*m != 1 && *n != 1) {
-    Scierror(214,_("%s : Argument %d: wrong type argument expecting a vector.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
+    Scierror(214,_("%s : Argument %d: wrong type argument, expecting a vector.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
     return FALSE_;
   };
   return  TRUE_;
@@ -968,7 +968,7 @@ int C2F(getrvect)(char *fname,integer *topk,integer *lw,integer *m,integer *n,in
     return FALSE_;
 
   if (*m != 1 && *n != 1) {
-    Scierror(203,_("%s : Argument %d: wrong type argument expecting a real vector.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
+    Scierror(203,_("%s : Argument %d: wrong type argument, expecting a real vector.\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
     return FALSE_;
   }
   return TRUE_ ;
@@ -1046,7 +1046,7 @@ int C2F(getscalar)(char *fname,integer *topk,integer *lw,integer *lr,unsigned lo
     return  FALSE_;
 
   if (m * n != 1) {
-    Scierror(204,_("%s : Argument 1: wrong type argument expecting a scalar or 'min' or 'max'.\n"),get_fname(fname,fname_len),Rhs + (*lw - *topk));
+    Scierror(204,_("%s : Argument 1: wrong type argument, expecting a scalar or 'min' or 'max'.\n"),get_fname(fname,fname_len),Rhs + (*lw - *topk));
     return FALSE_ ; 
   };
   return TRUE_;
