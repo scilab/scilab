@@ -185,7 +185,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     
     // Update dimensions
     if err then
-      set_infos(msprintf(gettext("Dimensions current value and m2scideclare statements conflict for: %s"),varname,dims2str(vardims),dims2str(infereddims)),2)
+      set_infos(msprintf(gettext("Dimensions current value and m2scideclare statements conflict for: %s\n   m2scideclare given dimension: %s\n   Current dimension: %s\n   m2scideclare IGNORED"),varname,dims2str(vardims),dims2str(infereddims)),2)
     else
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(vardims,Type(varslist(index).type.vtype,property)))
     end
@@ -194,7 +194,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     if varslist(index).type.vtype==Unknown then
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(vardims,Type(vartype,varslist(index).property)))
     elseif varslist(index).type.vtype~=vartype then
-      set_infos(msprintf(gettext("Type current value and m2scideclare statements conflict for: %s"),varname,tp2str(vartype),tp2str(varslist(index).type.vtype)),2)
+      set_infos(msprintf(gettext("Type current value and m2scideclare statements conflict for: %s\n   m2scideclare given type: %s\n   current type: %s\n   m2scideclare IGNORED"),varname,tp2str(vartype),tp2str(varslist(index).type.vtype)),2)
     end
 
     // Update property
@@ -203,7 +203,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     elseif property==Unknown then
       varslist(index).type.property=Unknown
     elseif varslist(index).type.property~=property then
-      set_infos(msprintf(gettext("Property current value and m2scideclare statements conflict for: %s"),name,prop2str(Unknown),prop2str(varslist(index).type.property)),2)
+      set_infos(msprintf(gettext("Property current value and m2scideclare statements conflict for: %s\n   m2scideclare given type: %s\n   current type: %s\n   m2scideclare IGNORED"),name,prop2str(Unknown),prop2str(varslist(index).type.property)),2)
     end
     
     // Update contents (no verification made...too complex)
@@ -266,7 +266,7 @@ else // Variable m2scideclare
     end
 
     if err then
-      set_infos(msprintf(gettext("Dimensions current value and m2scideclare statements conflict for: %s"),name,dims2str(dims),dims2str(infereddims)),2)
+      set_infos(msprintf(gettext("Dimensions current value and m2scideclare statements conflict for: %s\n   m2scideclare given dimension: %s\n   Current dimension: %s\n   m2scideclare IGNORED"),name,dims2str(dims),dims2str(infereddims)),2)
     else
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).sciname,Infer(dims,varslist(index).type))
     end
@@ -275,14 +275,14 @@ else // Variable m2scideclare
     if varslist(index).type.vtype==Unknown then
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).sciname,Infer(varslist(index).dims,Type(vtype,varslist(index).type.property)))
     elseif varslist(index).type.vtype~=vtype then
-      set_infos(msprintf(gettext("Type current value and m2scideclare statements conflict for: %s"),name,tp2str(vtype),tp2str(varslist(index).type.vtype)),2)
+      set_infos(msprintf(gettext("Type current value and m2scideclare statements conflict for: %s\n   m2scideclare given type: %s\n   current type: %s\n   m2scideclare IGNORED"),name,tp2str(vtype),tp2str(varslist(index).type.vtype)),2)
     end
     
     // Update property
     if varslist(index).type.property==Unknown then
       varslist(index)=M2scivar(varslist(index).matname,varslist(index).sciname,Infer(varslist(index).dims,Type(varslist(index).type.vtype,property)))
     elseif varslist(index).type.property~=property then
-      set_infos(msprintf(gettext("Property current value and m2scideclare statements conflict for: %s"),name,prop2str(property),prop2str(varslist(index).type.property)),2)
+      set_infos(msprintf(gettext("Property current value and m2scideclare statements conflict for: %s\n   m2scideclare given type: %s\n   current type: %s\n   m2scideclare IGNORED"),name,prop2str(property),prop2str(varslist(index).type.property)),2)
     end
   end
 end

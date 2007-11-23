@@ -67,7 +67,7 @@ int OpenTCLsci(void)
   /* test SCI validity */
   if (SciPath==NULL)
   {
-	sciprint(_("The SCI environment variable is not set.\n"));
+	sciprint(_("	The SCI environment variable is not set.\n	TCL initialisation failed !\n"));
     return(1);
   }
 
@@ -78,7 +78,7 @@ int OpenTCLsci(void)
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL)
   {
-	sciprint(_("Unable to find TCL initialisation scripts.\n"));
+	sciprint(_("	Unable to find TCL initialisation scripts.\n	Check your SCI environment variable.\n	TCL initialisation failed !"));
     return(1);
   }
   else fclose(tmpfile2);
@@ -86,7 +86,7 @@ int OpenTCLsci(void)
   tmpdir=opendir(SciPath);
   if (tmpdir==NULL)
     {
-      sciprint(_("The SCI environment variable is not set.\n"));
+      sciprint(_("	The SCI environment variable is not set.\n	TCL initialisation failed !\n"));
       return(1);
     }
   else closedir(tmpdir);
@@ -95,7 +95,7 @@ int OpenTCLsci(void)
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL)
     {
-      sciprint(_("Unable to find TCL initialisation scripts.\n"));
+      sciprint(_("	Unable to find TCL initialisation scripts.\n	Check your SCI environment variable.\n	TCL initialisation failed !"));
       return(1);
     }
   else fclose(tmpfile2);

@@ -2174,7 +2174,7 @@ int C2F(getwimat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,in
     il = iadr(*istk(il +1));
   }
   if (*istk(il ) != sci_boolean) {
-    Scierror(213,_("%s : Argument %d: wrong type argument, expecting a working\n"),get_fname(fname,fname_len),Rhs + (*lw - *topk));
+    Scierror(213,_("%s : Argument %d: wrong type argument, expecting a working\n		integer matrix\n"),get_fname(fname,fname_len),Rhs + (*lw - *topk));
     return FALSE_;
   };
   *m = *istk(il + 1);
@@ -2910,7 +2910,7 @@ int C2F(getexternal)(char *fname,integer *topk,integer *lw,char *namex,int *type
       }
     break;
   default: 
-    Scierror(211,_("%s : Argument %d: wrong type argument, expecting a function\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
+    Scierror(211,_("%s : Argument %d: wrong type argument, expecting a function\n		or string (external function).\n"),get_fname(fname,fname_len), Rhs + (*lw - *topk));
     ret_value = FALSE_;
     break;
   }

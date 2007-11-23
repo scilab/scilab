@@ -716,14 +716,14 @@ static int msg_29(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_30(integer *n, integer *ierr)
 {
-	sciprint(_("Warning: recursion problem..., cleared.\n"));
+	sciprint(_("Warning: recursion problem..., cleared.\n will be cleared with next error...\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_31(integer *n, integer *ierr)
 {
 	int cerr=-1;
-	sciprint(_("Warning: stack problem..., cleared\n"));
+	sciprint(_("Warning: stack problem..., cleared\n will be cleared with next error...\n"));
 	C2F(error)(&cerr);
 	return 0;
 }
@@ -922,19 +922,19 @@ static int msg_50(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_51(integer *n, integer *ierr)
 {
-	sciprint(_("arl2: Impossible to reach required order.\n"));
+	sciprint(_("arl2: Impossible to reach required order.\n   previous order computed solution returned.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_52(integer *n, integer *ierr)
 {
-	sciprint(_("arl2: Failure when looking for the intersection with domains boundaries.\n"));
+	sciprint(_("arl2: Failure when looking for the intersection with domains boundaries.\n   previous order computed solution returned.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_53(integer *n, integer *ierr)
 {
-	sciprint(_("arl2: Too many solutions found.\n"));
+	sciprint(_("arl2: Too many solutions found.\n   previous order computed solution returned.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -976,7 +976,7 @@ static int msg_59(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_60(integer *n, integer *ierr)
 {
-	sciprint(_("Warning : loaded file has been created with a previous version of scilab\n"));
+	sciprint(_("Warning : loaded file has been created with a previous version of scilab\nor you are trying to load a file saved on a different architecture.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -992,7 +992,7 @@ static int msg_61(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_62(integer *n, integer *ierr)
 {
-	sciprint(_("Warning : use of standard list to define typed structures\n"));
+	sciprint(_("Warning : use of standard list to define typed structures\n          is obsolete. Use tlist.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1072,25 +1072,25 @@ static int msg_74(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_75(integer *n, integer *ierr)
 {
-	sciprint(_("Warning: Jacobian external is given, but\n"));
+	sciprint(_("Warning: Jacobian external is given, but\n not used!,  see %ODEOPTIONS(6).\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_76(integer *n, integer *ierr)
 {
-	sciprint(_("The first %d singular values may be incorrect.\n"));
+	sciprint(_("Warning: No Jacobian external given but\n one is required by %ODEOPTIONS(6) value !\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_77(integer *n, integer *ierr)
 {
-	sciprint(_("itask=2,3 or 5: At most one value of t.\n"));
+	sciprint(_("itask=2,3 or 5: At most one value of t\n is allowed, the last element of t is used.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static int msg_78(integer *n, integer *ierr)
 {
-	sciprint(_("Warning: odedc forces itask=4 and handles.\n"));
+	sciprint(_("Warning: odedc forces itask=4 and handles\n tcrit.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1269,7 +1269,7 @@ static int msg_102(integer *n, integer *ierr)
 /*-----------------------------------------------------------------------------------*/
 static int msg_103(integer *n, integer *ierr)
 {
-	sciprint(_("Roundoff errors make leading eigenvalues.\n"));
+	sciprint(_("Roundoff errors make leading eigenvalues\n in the Schur form no longer satisfy criterion.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

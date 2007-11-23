@@ -194,7 +194,7 @@ if txt~=[] then
   mname=w(1);
   nametbl=[nametbl;mname]
   if fnam<>mname & ~batch then // warning is not displayed for a batch file
-    mss=msprintf(gettext("Warning: file %s defines function %s instead of %s"),fil,mname,fnam,mname,mname,mname);
+    mss=msprintf(gettext("messages","Warning: file %s defines function %s instead of %s\n         %s.sci, %s.cat and sci_%s.sci will be generated !"),fil,mname,fnam,mname,mname,mname);
     m2sci_info(mss,-1);
   end
 
@@ -307,7 +307,7 @@ if txt~=[] then
   // Output summary information
   infos=[]
   if m2sci_infos(1) then
-    infos=gettext("Translation may be improved: see the //! comments and for all mtlb_<funname> function call");
+    infos=gettext("Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.");
   end
   if m2sci_infos(2) then
     infos=[infos;gettext("Translation may be wrong (see the //!! comments).")]

@@ -11,7 +11,7 @@ A=getrhs(tree)
 A=convert2double(A)
 tree.rhs=Rhs(A)
 
-set_infos(msprintf(gettext("messages","m2sci_message_74"),expression2code(A),expression2code(tree)),2)
+set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."),expression2code(A),expression2code(tree)),2)
   
 tree.lhs(1).dims=A.dims
 tree.lhs(1).type=Type(Double,Unknown)

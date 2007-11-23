@@ -84,7 +84,7 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 							if (ptr) C2F(adjuststacksize)(&MEMSTACKSIZE,&ptr);
 							else
 							{
-								Scierror(999,_("%s : can't alloc more memory. stacksize\n"),fname);
+								Scierror(999,_("%s : can't alloc more memory.\ntry stacksize('max').\n"),fname);
 								return 0;
 							}
 						}
