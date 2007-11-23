@@ -11,6 +11,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "strsplit.h"
+#include "localization.h"
 /*-------------------------------------------------------------------------------------*/
 int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -51,30 +52,24 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 			mn = Row_One*Col_One;  
 		break;
 		default :
-			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
+			Scierror(999,_("%s : first input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 			return 0;
 		break;
 	} 
     
-    switch (Type_Two) 
-	{
-		case sci_matrix :
+    if (Type_Two==sci_matrix) {
 			GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&l4);
 			Input_IntMatrix = istk(l4);
 			mn2=Row_Two*Col_Two;
-		break;
-
-		default :
-			Scierror(999,"%s : second argument has a wrong type, expecting scalar or string matrix.\n",fname);
+	}else{
+			Scierror(999,_("%s : second argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 			return 0;
-		break;
-
-	} 
+	}
 	
 	Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_Two+1));
 	if (Output_StringMatrix == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
@@ -83,14 +78,14 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		FREE(Output_StringMatrix);
 		Output_StringMatrix = NULL;
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
 	for (i=1;i<Col_Two;i++)
 	{
 		Output_StringMatrix[i] = (char*)MALLOC(sizeof(char*)*(Input_IntMatrix[i]-Input_IntMatrix[i-1]));
-		if (Output_StringMatrix[i] == NULL)
+		if (Output_StringMatrix[i] == NULL) /* Error of the Malloc */
 		{
 			for (j=0;j<i;j++)
 			{
@@ -101,7 +96,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 				  }
 			
 			}
-			Scierror(999,"%s : Error memory allocation.\r\n",fname);
+			Scierror(999,_("%s : Memory allocation error\n"),fname);
 			return 0;
 		}
 	}
@@ -109,7 +104,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	Output_StringMatrix[Col_Two] = (char*)MALLOC(sizeof(char*)*(strlen(Input_StringMatrix[0])-Input_IntMatrix[Col_Two-1]));
 	if (Output_StringMatrix[Col_Two] == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 

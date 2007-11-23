@@ -15,8 +15,9 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
-#define CHAR_BLANK ' '
+#define BLANK_CHAR ' '
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -43,7 +44,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
     Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_One));
 	if (Output_StringMatrix == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
@@ -60,7 +61,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 			{
                   if (Output_StringMatrix[y]) { FREE(Output_StringMatrix[y]); Output_StringMatrix[y]=NULL;}
 			}
-			Scierror(999,"%s : Error memory allocation.\n",fname);
+			Scierror(999,_("%s : Memory allocation error\n"),fname);
 			return 0;
 		}
         
@@ -72,7 +73,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
              }
              else
              {
-                 Output_StringMatrix[x][Char_Position] = CHAR_BLANK;
+                 Output_StringMatrix[x][Char_Position] = BLANK_CHAR;
              }
 			 Char_Position++;
         }

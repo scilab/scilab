@@ -20,6 +20,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "tokens.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 #define BLANK_CODE 32
 #define EMPTY_STRING ""

@@ -18,6 +18,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "CreateEmptystr.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static int sci_emptystr_no_rhs(char *fname);
 static int sci_emptystr_one_rhs(char *fname);
@@ -100,7 +101,7 @@ static int sci_emptystr_one_rhs(char *fname)
 			}
 		break;
 		default :
-			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
+			Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 		return 0;
 	} 
     
@@ -108,7 +109,7 @@ static int sci_emptystr_one_rhs(char *fname)
 
 	if (OutputStrings == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
@@ -138,39 +139,23 @@ static int sci_emptystr_two_rhs(char *fname)
 	int Type_Two = VarType(2);
     
 	/*With two integer arguments returns a m*n zero length character strings matrix */
-	switch (Type_One) 
-	{
-		case sci_matrix:
-		{
+	if (Type_One==sci_matrix) {
 			int m1 = 0, n1 = 0, l1 = 0;
 			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 			value_param_pos_1 = *istk(l1);
-		}
-		break;
-		default :
-		{
-			Scierror(999,"%s : first argument must be intenger matrix.\r\n",fname);
+	}else{
+			Scierror(999,_("%s : First input argument must be integer matrix.\n"),fname);
 			return 0;
-		}
-		break;
-	} 
+	}
 
-    switch (Type_Two) 
-	{
-		case sci_matrix:
-		{
+    if (Type_Two==sci_matrix) {
 			int m2 = 0, n2 = 0, l2 = 0;
 			GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
 			value_param_pos_2 = *istk(l2);
-		}
-		break;
-		default :
-		{
-			Scierror(999,"%s : second argument must be integer matrix.\r\n",fname);
+	}else{
+			Scierror(999,_("%s : Second input argument must be integer matrix.\n"),fname);
 			return 0;
-		}
-		break;
-	} 
+	}
 	
 	matrixdimension = value_param_pos_1 * value_param_pos_2;
     if ( (value_param_pos_1 == 0) && (value_param_pos_2==0) )
@@ -189,7 +174,7 @@ static int sci_emptystr_two_rhs(char *fname)
 
 		if (OutputStrings == NULL)
 		{
-			Scierror(999,"%s : Error memory allocation.\n",fname);
+			Scierror(999,_("%s : Memory allocation error\n"),fname);
 			return 0;
 		}
 

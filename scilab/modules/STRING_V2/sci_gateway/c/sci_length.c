@@ -21,13 +21,14 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
+#include "localization.h"
 #include "Scierror.h"
 /*-------------------------------------------------------------------------------------*/
 /* get length */
-static int lengthStrings(void);
-static int lengthMatrix(void);
-static int lengthList(void);
-static int lengthOthers(void);
+static int lengthStrings(char *fname);
+static int lengthMatrix(char *fname);
+static int lengthList(char *fname);
+static int lengthOthers(char *fname);
 /*-------------------------------------------------------------------------------------*/
 int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -37,26 +38,26 @@ int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
   switch ( GetType(1)) 
   {
 	case sci_strings : 
-		lengthStrings();
+		lengthStrings(fname);
 	break;
 
 	case sci_matrix :
-		lengthMatrix();
+		lengthMatrix(fname);
 	break;
 
 	case sci_list:
-		lengthList();
+		lengthList(fname);
     break;
 
 	default :
-	   lengthOthers();
+	   lengthOthers(fname);
 	break;
   }
 
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static int lengthStrings(void)
+static int lengthStrings(char *fname)
 {
 	char **Input_StringMatrix = NULL;
 	int Row_Num = 0,Col_Num = 0,mn = 0;
@@ -80,12 +81,12 @@ static int lengthStrings(void)
 	}
 	else
 	{
-		Scierror(999,"Error memory allocation.\n");
+		Scierror(999,_("%s : Memory allocation error\n"));
 	}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static int lengthMatrix(void)
+static int lengthMatrix(char *fname)
 {
 	int Row_Num = 0, Col_Num = 0;
 	int Row_Out = 0, Col_Out = 0;
@@ -106,7 +107,7 @@ static int lengthMatrix(void)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static int lengthList(void)
+static int lengthList(char *fname)
 {
 	int Row_Num = 0,Col_Num = 0;
 	int Row_Out = 0, Col_Out = 0;
@@ -126,10 +127,10 @@ static int lengthList(void)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static int lengthOthers(void)
+static int lengthOthers(char *fname)
 {
 	/* unknow type */
-	Scierror(999, "Incorrect Input type.\n");
+	Scierror(999, _("%s : Not managed input type.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

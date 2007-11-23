@@ -16,6 +16,7 @@
 #include "MALLOC.h" 
 #include "Scierror.h"
 #include "stripblanks.h"
+#include "localization.h"
 /*-------------------------------------------------------------------------------------*/
 int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -34,21 +35,15 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		int Type_Two = VarType(2);
 
-		switch (Type_Two) 
-		{
-			case sci_boolean :
+		if (Type_Two==sci_boolean) 
 			{
 				int m2 = 0, n2 = 0, l2 = 0;
 				GetRhsVar(2,MATRIX_OF_BOOLEAN_DATATYPE,&m2,&n2,&l2);
 				bREMOVE_TAB = (BOOL)*istk(l2);  
-			}
-			break;
-			default :
-			{
-				Scierror(999,"%s : second argument has a wrong type, expecting a boolean.\n",fname);
+			}else{
+				Scierror(999,_("%s : Second input argument has a wrong type, expecting a boolean.\n"),fname);
 				return 0;
 			}
-		} 
 	}
 
 	switch (Type_One) 
@@ -73,7 +68,7 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 	        mn = m1*n1; 
 		break;
 		default :
-			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
+			Scierror(999,_("%s : First argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 		return 0;
 	} 
 
@@ -82,7 +77,7 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (Output_String_Matrix == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
@@ -96,7 +91,7 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 				if (Output_String_Matrix[j])  { FREE(Output_String_Matrix[j]) ; Output_String_Matrix[j] = NULL;}
 			}
 
-			Scierror(999,"%s : Error memory allocation.\n",fname);
+			Scierror(999,_("%s : Memory allocation error\n"),fname);
 			return 0;
 		}
 	}

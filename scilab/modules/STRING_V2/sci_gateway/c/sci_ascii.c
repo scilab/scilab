@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "localization.h"
 /*-------------------------------------------------------------------------------------*/
 static int asciiStrings(char *fname);
 static int asciiMatrix(char *fname);
@@ -64,7 +65,7 @@ static int asciiStrings(char *fname)
 
 	if (Output_IntMatrix == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
@@ -101,7 +102,7 @@ static int asciiMatrix(char *fname)
 	Output_StringMatrix = (char**)MALLOC(sizeof(char*));
 	if (Output_StringMatrix == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
@@ -115,7 +116,7 @@ static int asciiMatrix(char *fname)
 	{
 		FREE(Output_StringMatrix);
 		Output_StringMatrix = NULL;
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
@@ -139,7 +140,7 @@ static int asciiMatrix(char *fname)
 /*-----------------------------------------------------------------------------------*/
 static int asciiOthers(char *fname)
 {
-	Scierror(999,"%s : Invalid parameter.\n",fname);
+	Scierror(999,_("%s : Not managed input type.\n"),fname);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "convstr.h"
+#include "localization.h"
 #include "Scierror.h"
 /*-------------------------------------------------------------------------------------*/
 int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
@@ -38,10 +39,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (Rhs == 2) 
 	{
-		switch (Type_Two) 
-		{
-		case sci_strings :
-			{
+		if (Type_Two==sci_strings) {
 				int Row_Num_Two = 0,Col_Num_Two = 0,Stack_Pos=0;
 				GetRhsVar(2,STRING_DATATYPE,&Row_Num_Two,&Col_Num_Two,&Stack_Pos);
 				if ( Row_Num_Two*Col_Num_Two == 1 )
@@ -50,16 +48,14 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 					typ = cstk(Stack_Pos)[0];
 					if ( (typ != UPPER) && (typ != LOW) && (typ != UPPER_B) && (typ != LOW_B) ) 
 					{
-						Scierror(999,"second argument must be 'u' or 'l'.\n");
+						Scierror(999,_("Second input argument must be 'u' (Upper) or 'l' (Lower).\n"));
 						return 1;	
 					}
 				}
-			}
-			break;
-		default :
-			Scierror(999,"%s : second argument has a wrong type, expecting scalar or string matrix.\n",fname);
+		}else{
+			Scierror(999,_("%s : Second input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 			return 0;
-		} 
+		}
 	}
 
 	switch (Type_One) 
@@ -83,13 +79,13 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else 
 			{
-				Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
+				Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 				return 0;
 			}
 		}
 		break;
 		default :
-			Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
+			Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 			return 0;
 		break;
 	} 
@@ -97,7 +93,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 	Output_Matrix = (char**)MALLOC(sizeof(char*)*(mn));
 	if (Output_Matrix == NULL)
 	{
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
@@ -111,7 +107,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				if (Output_Matrix[j]) { FREE(Output_Matrix[j]); Output_Matrix[j] = NULL;}
 			}
-			Scierror(999,"%s : Error memory allocation.\n",fname);
+			Scierror(999,("%s : Memory allocation error\n"),fname);
 			return 0;
 		}
 	}
