@@ -1,33 +1,33 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* CORNET Allan */
 /* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
 #include "MALLOC.h"
 #include "machine.h"
 #include "hashtable_metanet.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static struct hashtable *Table_Metanet=NULL;
 static unsigned hsize;
 static unsigned filled;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 struct key_string
 {
 	char *Key_String;
 };
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 struct value_string
 {
 	char *Value_String;
 };
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static unsigned int hashfromkey_string(void *ky);
 static int equalkeys_string(void *k1, void *k2);
 static int isprime(unsigned number);
 static int InsertHashtable_string(struct hashtable *hash_table,struct key_string *k, struct value_string *v);
 static ENTRY *SearchHashtable_string(struct hashtable *hash_table, const char* key);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* see http://www.cse.yorku.ca/~oz/hash.html */
 /* I choose djb2 algo. for strings */
 static unsigned int hashfromkey_string(void *ky)
@@ -46,7 +46,7 @@ static unsigned int hashfromkey_string(void *ky)
 
 	return hash;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int equalkeys_string(void *k1, void *k2)
 {
 	int bequal=0;
@@ -58,7 +58,7 @@ static int equalkeys_string(void *k1, void *k2)
 
 	return bequal;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int isprime(unsigned number)
 {
 	/* no even number will be passed */
@@ -69,7 +69,7 @@ static int isprime(unsigned number)
 
 	return number%div_ != 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int myhcreate(unsigned nel)
 {
 	int bOK=0;
@@ -87,7 +87,7 @@ int myhcreate(unsigned nel)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void myhdestroy()
 {
 	if (Table_Metanet)
@@ -96,12 +96,12 @@ void myhdestroy()
 		Table_Metanet = NULL;
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int InsertHashtable_string(struct hashtable *hash_table,struct key_string *k, struct value_string *v)
 {
 	return hashtable_insert(hash_table,k,v);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* search a key in a hashtable. if succeed, return the ENTRY needed. if fail, return NULL */
 static ENTRY *SearchHashtable_string(struct hashtable *hash_table, const char* key)
 {
@@ -137,7 +137,7 @@ static ENTRY *SearchHashtable_string(struct hashtable *hash_table, const char* k
 
 	return return_entry;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 ENTRY* myhsearch(ENTRY item,SCIACTION action)
 {
 	ENTRY* return_entry=NULL;
@@ -180,4 +180,4 @@ ENTRY* myhsearch(ENTRY item,SCIACTION action)
 
 	return return_entry;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

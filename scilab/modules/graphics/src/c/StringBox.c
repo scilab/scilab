@@ -15,7 +15,7 @@
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void getStringBbox( char * string, int center[2], int rect[4] )
 {
   center[0] = 0;
@@ -25,7 +25,7 @@ void getStringBbox( char * string, int center[2], int rect[4] )
   rect[2] = 0;
   rect[3] = 0;
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void callXstringL( char * string, int posX, int posY, int boundingRect[4] )
 {
   //sciPointObj * parentSubWin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
@@ -37,7 +37,7 @@ void callXstringL( char * string, int posX, int posY, int boundingRect[4] )
   boundingRect[3] = 0;
 
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void getStringBox( char   ** text         ,
                   double    textPos[2]   ,
                   int       textDim[2]   ,
@@ -84,7 +84,7 @@ void getStringBox( char   ** text         ,
   desallocateMatrix( strings ) ;
 
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void getStringsRect( StringMatrix  * strMat            ,
                     int             textPos[2]        ,
                     Vect2iMatrix  * stringPosition    ,
@@ -173,7 +173,7 @@ void getStringsRect( StringMatrix  * strMat            ,
   FREE( colWidth  ) ;
 
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void getStringsRectSized( StringMatrix  * strMat           ,
                           int             textPos[2]       ,
                           Vect2iMatrix  * stringPosition   ,
@@ -217,7 +217,7 @@ void getStringsRectSized( StringMatrix  * strMat           ,
   /* return to the previous font */
   /* C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void getStringsPositions( StringMatrix  * strMat        ,
                           int           * fontId        ,
                           int           * fontSize      ,
@@ -274,7 +274,7 @@ void getStringsPositions( StringMatrix  * strMat        ,
   }
 
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void getTextBoundingBox( sciPointObj * pText        ,
                         int           cornPix[4][2],
                         double        corners[4][2] )
@@ -377,7 +377,7 @@ void getTextBoundingBox( sciPointObj * pText        ,
   }
 
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void getTextAabb( sciPointObj * pText        ,
                  int           rectPix[4]   ,
                  int           cornPix[4][2] )
@@ -411,7 +411,7 @@ void getTextAabb( sciPointObj * pText        ,
   }
 
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 
 void rotateBoundingBox( int boundingBox[4][2], int center[2], double angle )
 {
@@ -425,7 +425,7 @@ void rotateBoundingBox( int boundingBox[4][2], int center[2], double angle )
     iRotate2Dim( boundingBox[3], center, cosAngle, sinAngle, boundingBox[3] ) ;
   }
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void translateBoundingBox( int boundingBox[4][2], int trans[2] )
 {
   iTranslate2D( boundingBox[0], trans, boundingBox[0] ) ;
@@ -434,7 +434,7 @@ void translateBoundingBox( int boundingBox[4][2], int trans[2] )
   iTranslate2D( boundingBox[3], trans, boundingBox[3] ) ;
 
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 int getStringVerticalSpace( void )
 {
   int rect[4] ;
@@ -442,7 +442,7 @@ int getStringVerticalSpace( void )
   getStringBbox( " ", pos, rect ) ;
   return rect[3] ;
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 int getStringHorizontalSpace( void )
 {
   int rect[4] ;
@@ -451,7 +451,7 @@ int getStringHorizontalSpace( void )
   getStringBbox( " ", pos, rect ) ;
   return rect[2] ;
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 BOOL isFittingInCell( char * string, int cellWidth, int cellHeight )
 {
   int rect[4] ;
@@ -466,7 +466,7 @@ BOOL isFittingInCell( char * string, int cellWidth, int cellHeight )
   }
   return FALSE ;
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 void getStringPositionTranslation( BOOL centeredPos, int textSize[2], int bbox[4][2], int trans[2] )
 {
   if ( centeredPos )
@@ -480,7 +480,7 @@ void getStringPositionTranslation( BOOL centeredPos, int textSize[2], int bbox[4
     trans[1] = 0 ;
   }
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 int computeSuitableFont( StringMatrix  * strMat, Vect2iMatrix  * stringPosition )
 {
   int nbRow = getMatNbRow( strMat ) ;
@@ -529,4 +529,4 @@ int computeSuitableFont( StringMatrix  * strMat, Vect2iMatrix  * stringPosition 
   return largestFont ;
 
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/

@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <windows.h>
 #include <windowsx.h>
 #include "resource.h"
@@ -9,13 +9,13 @@
 #include "StartupMessageBox.h"
 #include "getScilabDirectory.h"
 #include "version.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL CALLBACK StartupMessageBoxDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam);
 static BOOL ON_STARTUPMESSAGEBOX_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam);
 static BOOL ON_STARTUPMESSAGEBOX_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int MessageBoxLanguageCode=0;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void StartupMessageBox(void)
 {
 	HKEY key;
@@ -43,7 +43,7 @@ void StartupMessageBox(void)
 		DialogBox(hInstanceThisDll,MAKEINTRESOURCE(IDD_STARTUPBOX), NULL,(DLGPROC)StartupMessageBoxDlgProc);
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL CALLBACK StartupMessageBoxDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam)
 {
    switch(Message)
@@ -59,7 +59,7 @@ static BOOL CALLBACK StartupMessageBoxDlgProc(HWND hwnd,UINT Message, WPARAM wPa
     }
    return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL ON_STARTUPMESSAGEBOX_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam)
 {
 	int LanguageCode=0;
@@ -103,7 +103,7 @@ static BOOL ON_STARTUPMESSAGEBOX_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM 
 	 }
 	 return TRUE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL ON_STARTUPMESSAGEBOX_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 {
 	switch(id)
@@ -172,4 +172,4 @@ static BOOL ON_STARTUPMESSAGEBOX_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UIN
 	}
 	return TRUE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

@@ -9,7 +9,7 @@
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawTextBoxStrategy::DrawTextBoxStrategy(DrawableText * text)
 {
   m_pDrawed = text;
@@ -20,12 +20,12 @@ DrawTextBoxStrategy::DrawTextBoxStrategy(DrawableText * text)
     m_aCorners[i][2] = 0.0;
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawTextBoxStrategy::~DrawTextBoxStrategy(void)
 {
   m_pDrawed = NULL;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawTextBoxStrategy::setBoxCorners(const double corner1[3], const double corner2[3],
                                         const double corner3[3], const double corner4[3])
 {
@@ -37,5 +37,5 @@ void DrawTextBoxStrategy::setBoxCorners(const double corner1[3], const double co
     m_aCorners[3][j] = corner4[j];
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 }

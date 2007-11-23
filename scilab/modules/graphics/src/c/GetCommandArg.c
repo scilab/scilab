@@ -14,9 +14,9 @@
 
 static char logFlagsCpy[3] ; /* real logflags may use either this or the stack */
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* get_style */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
 {
   int m,n,l,first_opt=FirstOpt(),kopt,un=1,ix,i,l1;
@@ -93,9 +93,9 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
   }
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* get_rect */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
 {
   int m,n,l,first_opt=FirstOpt(),kopt,i;
@@ -148,7 +148,7 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
     
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
@@ -193,7 +193,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
   return 1;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
@@ -219,7 +219,7 @@ int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend )
     }
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * retrieve the labels from the command line  and store them into Legend
  */
@@ -272,7 +272,7 @@ int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
   return 1;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
 {
   int i,m,n,l,first_opt=FirstOpt(),kopt;
@@ -316,7 +316,7 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
 }
 
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
@@ -358,7 +358,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
   return 1;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
@@ -395,7 +395,7 @@ int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax )
   return 1;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
@@ -431,7 +431,7 @@ int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout )
     } 
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh)
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
@@ -466,7 +466,7 @@ int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh)
   return 1;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
@@ -554,7 +554,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
   }
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_optional_double_arg(     char  * fname,
                                   int    pos  ,
                                  char  * name ,
@@ -579,7 +579,7 @@ int get_optional_double_arg(     char  * fname,
   }
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_optional_int_arg(     char  * fname,
                                int    pos  ,
                               char  * name ,
@@ -604,4 +604,4 @@ int get_optional_int_arg(     char  * fname,
   }
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

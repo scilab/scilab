@@ -16,7 +16,7 @@
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sci_drawnow(char *fname,unsigned long fname_len)
 { 
   sciPointObj *pfigure = NULL;
@@ -42,4 +42,4 @@ int sci_drawnow(char *fname,unsigned long fname_len)
 
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

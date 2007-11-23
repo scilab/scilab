@@ -8,7 +8,7 @@
 #include "gw_gui.h"
 #include "stack-c.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len ))
 {
 	  Scierror(999,"\nNot yet implemented.\n");	
@@ -80,4 +80,4 @@ int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len ))
 
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

@@ -42,7 +42,7 @@ function [scs_m] = do_stupidmove(%pt,scs_m)
   
   [scs_m_save,enable_undo,edited,nc_save,needreplay] = resume(scs_m_save,%t,%t,needcompile,needreplay)
 endfunction
-//**-----------------------------------------------------------------------------------------------------------
+//**--------------------------------------------------------------------------------------------------
 //**
 //*************************************************************************************************************
 //
@@ -71,7 +71,7 @@ function scs_m = stupid_moveblock(scs_m,k,xc,yc)
   disp (gh_k);
   gh_blk = gh_curwin.children.children(gh_k);
   
-  //**-----------------------------------------------------------------------------------
+  //**--------------------------------------------------------------------------
     
   o = scs_m.objs(k) ;
   
@@ -371,7 +371,7 @@ function scs_m = stupid_movecorner(scs_m,k,xc,yc,wh)
   //** if pixmap then xset('wshow'),end
 endfunction
 
-//**-----------------------------------------------------------------------------------------------
+//**--------------------------------------------------------------------------------------
 
 function [k,wh,scs_m] = stupid_getobj(scs_m,pt)
   n=lstsize(scs_m.objs)
@@ -413,7 +413,7 @@ function [k,wh,scs_m] = stupid_getobj(scs_m,pt)
   end
 endfunction
 
-//**---------------------------------------------------------------------------------------
+//**------------------------------------------------------------------------------
 function [d,pt,ind]=stupid_dist2polyline(xp,yp,pt,pereps)
 // computes minimum distance from a point to a polyline
 //d    minimum distance to polyline
@@ -454,7 +454,7 @@ function [d,pt,ind]=stupid_dist2polyline(xp,yp,pt,pereps)
   if k>np then ind=ki(k-np),else ind=-k,end
 endfunction
 
-//**-----------------------------------------------------------------------------------------
+//**--------------------------------------------------------------------------------
 
 function draw_link_seg(o,seg)
   if o.thick(2)>=0 then

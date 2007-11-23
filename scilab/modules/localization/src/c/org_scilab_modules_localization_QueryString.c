@@ -1,14 +1,14 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include "org_scilab_modules_localization_QueryString.h"
 #include "QueryStringError.h"
 #include "QueryStringMenu.h"
 #include "QueryStringMessage.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 JNIEXPORT jstring JNICALL Java_org_scilab_modules_localization_QueryString_error
 (JNIEnv *env, jclass cl, jstring tag)
 {
@@ -24,7 +24,7 @@ JNIEXPORT jstring JNICALL Java_org_scilab_modules_localization_QueryString_error
 
 	return StrReturn;
 }  
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 JNIEXPORT jstring JNICALL Java_org_scilab_modules_localization_QueryString_message
 (JNIEnv *env, jclass cl, jstring tag)
 {
@@ -40,7 +40,7 @@ JNIEXPORT jstring JNICALL Java_org_scilab_modules_localization_QueryString_messa
 
 	return StrReturn;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 JNIEXPORT jstring JNICALL Java_org_scilab_modules_localization_QueryString_menu
 (JNIEnv *env, jclass cl, jstring tag)
 {
@@ -56,6 +56,6 @@ JNIEXPORT jstring JNICALL Java_org_scilab_modules_localization_QueryString_menu
 
 	return StrReturn;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 
 

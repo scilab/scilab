@@ -32,7 +32,7 @@
 #include "HistoryManager.h"
 #include "scilabmode.h"
 #include "sigbas.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define MAXBUF	512
 #define BACKSPACE 0x08		/* ^H */
 #define SPACE	' '
@@ -182,37 +182,37 @@
 #undef CTRL_RIGHT_ARROW
 #endif 
 #define CTRL_RIGHT_ARROW 116
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char cur_line[MAXBUF];	/* current contents of the line */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern int IsFromC(void);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;		/* maximum character position */
 static int sendprompt = 1;  /* default */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char msdos_getch ();
 static void fix_line ();
 static void redraw_line ();
 static void clear_line ();
 static void clear_eoline ();
 static void copy_line ();
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* user_putc and user_puts should be used in the place of
 * fputc(ch,stdout) and fputs(str,stdout) for all output
 * of user typed characters.  This allows MS-Windows to 
 * display user input in a different color. */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int user_putc (int ch)
 {
 	return fputc(ch,stdout);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int user_puts (char *str)
 {
 	return fputs (str, stdout);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void strip_blank(char *source)
 {
 	char *p;
@@ -226,12 +226,12 @@ static void strip_blank(char *source)
 		*p = '\0';
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void backspace ()
 {
 	user_putc (BACKSPACE);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /***************************************************
 * reads one line when stdin is not a tty 
 * the input characters are not echoed 
@@ -255,7 +255,7 @@ static int NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
 	}
 	return (0);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /***************************************************
 * reads one line 
 * a pointer to an allocated zone (alloc) where
@@ -496,7 +496,7 @@ char * readline_nw (char *prompt, int interrupt)
 		}
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* redraw the entire line, putting the cursor where it belongs */
 static void redraw_line (char *prompt)
 {
@@ -508,7 +508,7 @@ static void redraw_line (char *prompt)
 	/* put the cursor where it belongs */
 	for (i = max_pos; i > cur_pos; i--)  backspace ();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* fix up the line from cur_pos to max_pos */
 /* do not need any terminal capabilities except backspace, */
 /* and space overwrites a character */
@@ -525,7 +525,7 @@ static void fix_line(void)
 	/* backup to original position */
 	for (i = max_pos + 1; i > cur_pos; i--) backspace ();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* clear cur_line and the screen line */
 static void clear_line (char *prompt)
 {
@@ -542,7 +542,7 @@ static void clear_line (char *prompt)
 	cur_pos = 0;
 	max_pos = 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* clear to end of line and the screen end of line */
 static void clear_eoline (char *prompt)
 {
@@ -552,7 +552,7 @@ static void clear_eoline (char *prompt)
 	for (i = cur_pos; i < max_pos; i++) putc (SPACE, stdout);
 	for (i = cur_pos; i < max_pos; i++) backspace ();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* copy line to cur_line, draw it and set cur_pos and max_pos */
 static void copy_line (char *line)
 {
@@ -560,7 +560,7 @@ static void copy_line (char *line)
 	user_puts (cur_line);
 	cur_pos = max_pos = (int)strlen (cur_line);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Convert Arrow keystrokes to Control characters: */
 static char msdos_getch ()
 {
@@ -630,4 +630,4 @@ static char msdos_getch ()
 	}
 	return c;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

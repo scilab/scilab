@@ -19,11 +19,11 @@
 #include "Scierror.h"
 #include "CreateEmptystr.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int sci_emptystr_no_rhs(char *fname);
 static int sci_emptystr_one_rhs(char *fname);
 static int sci_emptystr_two_rhs(char *fname);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(sci_emptystr) _PARAMS((char *fname,unsigned long fname_len))
 {
    Rhs = Max(0, Rhs);
@@ -45,7 +45,7 @@ int C2F(sci_emptystr) _PARAMS((char *fname,unsigned long fname_len))
    }
    return 0;
 }
-/*-----------------------------------------------------------------------------------*/       
+/*--------------------------------------------------------------------------*/       
 static int sci_emptystr_no_rhs(char *fname)
 {
 	/* With no input argument returns a zero length character string */
@@ -56,7 +56,7 @@ static int sci_emptystr_no_rhs(char *fname)
 	C2F(putlhsvar)();
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/       
+/*--------------------------------------------------------------------------*/       
 static int sci_emptystr_one_rhs(char *fname)
 {
 	char **OutputStrings = NULL;
@@ -127,7 +127,7 @@ static int sci_emptystr_one_rhs(char *fname)
 
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/       
+/*--------------------------------------------------------------------------*/       
 static int sci_emptystr_two_rhs(char *fname)
 {
 	/*value_param_pos_1 is the number of row ; value_param_pos_2 is the number of col*/
@@ -203,4 +203,4 @@ static int sci_emptystr_two_rhs(char *fname)
 	}   
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/       
+/*--------------------------------------------------------------------------*/       

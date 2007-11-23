@@ -1,12 +1,12 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern int C2F(intdgeqpf3) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzgeqpf3) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intdgeqpf4) __PARAMS((char *fname, unsigned long fname_len));
@@ -14,7 +14,7 @@ extern int C2F(intzgeqpf4) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(doldqr) __PARAMS((double *tol,char *fname, unsigned long fname_len));
 extern int C2F(zoldqr) __PARAMS((double *tol,char *fname, unsigned long fname_len));
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(intqr)(char *fname,unsigned long fname_len)
 {
 	int *header1;int *header2;
@@ -92,4 +92,4 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 	}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

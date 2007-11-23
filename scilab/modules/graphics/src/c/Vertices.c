@@ -15,17 +15,17 @@ static int vertex_index = 0 ;
 static Vertices * pHead  = NULL ;
 static Vertices * pHead2 = NULL ;
 
-/*--------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------*/
 int  getVertexIndex( void )
 {
   return vertex_index ;
 }
-/*--------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------*/
 void setVertexIndex( int ind )
 {
   vertex_index = ind ;
 }
-/*--------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------*/
 int SetMinMaxVertices(Vertices *vertices_list, double *xmin, double *ymin, double *zmin,double *xmax, double *ymax, double *zmax)
 { 
   Vertices * pCurrent = vertices_list;
@@ -48,7 +48,7 @@ int SetMinMaxVertices(Vertices *vertices_list, double *xmin, double *ymin, doubl
 
   return 0;
 }
-/*--------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------*/
 int GetVerticesAt(Vertices *vertices_list, int *xm, int *ym, double *x, double *y, double *z)
 {
   Vertices * pCurrent = vertices_list;
@@ -66,7 +66,7 @@ int GetVerticesAt(Vertices *vertices_list, int *xm, int *ym, double *x, double *
 
   return 0;
 }
-/*--------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------*/
 int RemoveNext(Vertices *pCurrent)
 {
   Vertices * DeletedElement = pCurrent->pNext;
@@ -78,7 +78,7 @@ int RemoveNext(Vertices *pCurrent)
 
   return 0;
 }
-/*--------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------*/
 int FreeVertices(sciPointObj * psubwin)
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
@@ -98,7 +98,7 @@ int FreeVertices(sciPointObj * psubwin)
 
   return 0;
 }
-/*--------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------*/
 /* Vertices * Tete = NULL; */
 
 int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, double z)
@@ -154,4 +154,4 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
 
   return 0;
 }
-/*----------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------*/

@@ -13,7 +13,7 @@
 #include "ObjectStructure.h"
 #include "CurrentObjectsManagement.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sci_drawlater( char * fname, unsigned long fname_len )
 {
   sciPointObj *pfigure = NULL;
@@ -34,4 +34,4 @@ int sci_drawlater( char * fname, unsigned long fname_len )
   return 0;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

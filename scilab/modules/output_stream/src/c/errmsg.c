@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2006 - 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -14,20 +14,20 @@
 #include "inffic.h"
 #include "msgstore.h"
 #include "msgout.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern int C2F(showstack)(); /* used in error 115 */
 extern int C2F(cvname)(); /* used to get function name */
 extern int C2F(prntid)(); /* to print variables on stack */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void strip_blank(char *source);
 static void displayAndStoreError(const char *msg,...);
 static void resetLastError(void);
 static char *getConvertedNameFromStack(int cvnametype);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #define vsnprintf _vsnprintf
 #endif
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 typedef enum {
 	CVNAME_READING_TYPE_1 = 0, 
 	CVNAME_READING_TYPE_2 = 1, 
@@ -36,7 +36,7 @@ typedef enum {
 	CVNAME_READING_TYPE_5 = 4,
 	CVNAME_READING_TYPE_6 = 5,
 } CVNAME_TYPE;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(errmsg)(integer *n,integer *errtyp)
 {
 	resetLastError();
@@ -1720,7 +1720,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
     }
 		return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void strip_blank(char *source)
 {
 	char *p;
@@ -1734,7 +1734,7 @@ static void strip_blank(char *source)
 		*p = '\0';
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char *getConvertedNameFromStack(int cvnametype)
 {
 	int one = 1;
@@ -1807,7 +1807,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 
 	return returnedString ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void displayAndStoreError(const char *msg,...)
 {
 	int io = 0;
@@ -1834,7 +1834,7 @@ static void displayAndStoreError(const char *msg,...)
 	len = (int)strlen(s_buf);
 	C2F(msgout)(&io,&C2F(iop).wte,s_buf,len);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void resetLastError(void)
 {
 	#define SPACE_CHAR " "
@@ -1846,5 +1846,5 @@ static void resetLastError(void)
 	C2F(funnamestore)(SPACE_CHAR, &zero, lenspace);
 	C2F(freemsgtable)();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 

@@ -28,7 +28,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	ok = %F;
 	
 	// Vérification des paramètres
-	// -----------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------
 	[lhs,rhs]=argn(0);
 	if rhs <> 3 then modulemode=%F; end
 	
@@ -37,20 +37,20 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	if type(path) <> 10 then error(55,2); end
 	
 	// Sauvegarde du chemin dans lequel l'on se trouve
-	// -----------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------
 	current_directory = pwd();
 	
 	// Conversion du chemin dans le format du système d'exploitation utilisé
-	// -----------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------
 	path=pathconvert(path,%f,%t);
 	
 	// Vérification que la chaîne de caractère passé en deuxième paramètre est bien un chemin
-	// -----------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------
 	if ~isdir(path) then 
 		error('second argument should give the path to a directory');
 	
 	// Transformation du chemin passé en deuxième paramètre
-	// -----------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------
 	else
 		chdir(path);
 		if MSDOS then
@@ -62,7 +62,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	end
 	
 	// Vérification que le titre n'est pas déja présent dans %helps
-	// -----------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------
 	if (modulemode) then
 	  k1 = find( %helps_modules(:,2) == helptitle);
 	else

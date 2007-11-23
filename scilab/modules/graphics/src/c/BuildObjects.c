@@ -2749,7 +2749,7 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
       return (sciPointObj *) NULL;
     }
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 sciPointObj * sciConstructConsole( sciPointObj * pparent )
 {
   sciPointObj * pObj = NULL ;
@@ -2777,7 +2777,7 @@ sciPointObj * sciConstructConsole( sciPointObj * pparent )
   return pObj ;
 
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /**
  * contains the functions always called when creating an object
  * pObj should have just been allocated.
@@ -2829,7 +2829,7 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
   return pObj ;
 
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 sciPointObj * sciConstructFrame( sciPointObj * pparent )
 {
   sciPointObj * pObj = NULL ;
@@ -2857,7 +2857,7 @@ sciPointObj * sciConstructFrame( sciPointObj * pparent )
   return pObj ;
 
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 sciPointObj * sciConstructWindow( sciPointObj * pparent )
 {
   sciPointObj * pObj = NULL ;
@@ -2885,7 +2885,7 @@ sciPointObj * sciConstructWindow( sciPointObj * pparent )
   return pObj ;
 
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 sciPointObj * sciConstructWindowFrame( sciPointObj * pparent )
 {
   sciPointObj * pObj = NULL ;
@@ -2913,7 +2913,7 @@ sciPointObj * sciConstructWindowFrame( sciPointObj * pparent )
   return pObj ;
 
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 sciPointObj * sciConstructScreen( sciPointObj * pparent )
 {
   sciPointObj * pObj = NULL ;
@@ -2941,7 +2941,7 @@ sciPointObj * sciConstructScreen( sciPointObj * pparent )
   return pObj ;
 
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /**
  * Create a figure if none exists.
  */
@@ -2952,4 +2952,4 @@ void SciWin(void)
     sciGetCurrentFigure();
   }
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/

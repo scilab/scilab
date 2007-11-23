@@ -165,7 +165,7 @@ int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned l
 }
 
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
 * cwritecmat writes vector/matrix in scilab's internal stack
 * name: character string; name of the scilab variable ( null terMinated)
@@ -174,7 +174,7 @@ int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned l
 * mat: matrix entries stored columnwise in Scilab object
 * for complex number
 */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long name_len)
 {
 	integer   ix1 = *m * *n *2; /* real part + imaginary part */
@@ -197,7 +197,7 @@ int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long 
 	if (Err > 0)  return FALSE_;
 	return TRUE_;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
  /* Put variable number into Scilab internal stack with name "namex" */
 int C2F(putvar)(int  *number,char *namex,  unsigned long name_len)
 {
@@ -634,9 +634,9 @@ int C2F(objptr)(char *namex, integer *lp, integer *fin, unsigned long name_len)
     }
     return  TRUE_;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* read and write a boolean matrix in scilab stack */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned long name_len)
 {
 	integer l = 0;
@@ -663,7 +663,7 @@ int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned lo
 
 	return TRUE_;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned long name_len)
 {
 	integer   ix1 = *m * *n;
@@ -686,7 +686,7 @@ int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned lon
 	return TRUE_;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long name_len)
 {
 	integer id[nsiz];
@@ -712,7 +712,7 @@ int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long 
 	return TRUE_ ;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
 	returns length of a "chain variable" in scilab
 	example :
@@ -746,4 +746,4 @@ int getlengthchain(char *namex)
 	if (m1 * n1 != 1)  return -1;
 	return nlr1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

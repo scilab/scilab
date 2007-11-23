@@ -441,7 +441,7 @@ BOOL HistoryManager::loadFromFile(char *filename)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void HistoryManager::reset(void)
 {
 	char *commentbeginsession = NULL;
@@ -462,7 +462,7 @@ void HistoryManager::reset(void)
 	appendLine(commentbeginsession);
 	if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char **HistoryManager::getAllLines(int *numberoflines)
 {
 	char **lines = NULL;
@@ -493,7 +493,7 @@ char **HistoryManager::getAllLines(int *numberoflines)
 	}
 	return lines;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char *HistoryManager::getLastLine(void)
 {
 	char *line = NULL;
@@ -514,12 +514,12 @@ char *HistoryManager::getLastLine(void)
 	}
 	return line;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 int HistoryManager::getNumberOfLines(void)
 {
 	return (int)CommandsList.size();
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char *HistoryManager::getNthLine(int N)
 {
 	char *line = NULL;
@@ -551,7 +551,7 @@ char *HistoryManager::getNthLine(int N)
 	}
 	return line;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL HistoryManager::deleteNthLine(int N)
 {
 	BOOL bOK = FALSE;
@@ -579,17 +579,17 @@ BOOL HistoryManager::deleteNthLine(int N)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void HistoryManager::setSaveConsecutiveDuplicateLines(BOOL doit)
 {
 	saveconsecutiveduplicatelines = doit;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL HistoryManager::getSaveConsecutiveDuplicateLines(void)
 {
 	return saveconsecutiveduplicatelines;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void HistoryManager::setAfterHowManyLinesHistoryIsSaved(int num)
 {
 	if (num >= 0) 
@@ -598,12 +598,12 @@ void HistoryManager::setAfterHowManyLinesHistoryIsSaved(int num)
 		numberoflinesbeforehistoryissaved = 0;
 	}
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 int HistoryManager::getAfterHowManyLinesHistoryIsSaved(void)
 {
 	return afterhowmanylineshistoryissaved;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char *HistoryManager::getPreviousLine(void)
 {
 	char *returnedline = NULL;
@@ -619,7 +619,7 @@ char *HistoryManager::getPreviousLine(void)
 	}
 	return returnedline;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char *HistoryManager::getNextLine(void)
 {
 	char *returnedline = NULL;
@@ -633,7 +633,7 @@ char *HistoryManager::getNextLine(void)
 	}
 	return returnedline;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL HistoryManager::setToken(char *token)
 {
 	BOOL bOK = FALSE;
@@ -643,7 +643,7 @@ BOOL HistoryManager::setToken(char *token)
 	bOK = my_search.setToken(Token);
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char * HistoryManager::getToken(void)
 {
 	char *returnedtoken = NULL;
@@ -656,9 +656,9 @@ char * HistoryManager::getToken(void)
 	}
 	return returnedtoken;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL HistoryManager::resetToken(void)
 {
 	return my_search.reset();
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

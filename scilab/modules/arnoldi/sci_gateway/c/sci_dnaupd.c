@@ -2,16 +2,16 @@
 #include <string.h>
 #include "stack-c.h"
 #include "core_math.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))
 #define DOUBLE(x)	( stk(x))
 #define CMPLX(x)	(zstk(x))
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern int C2F(dnaupd) __PARAMS((int *ido, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long bmat_len, unsigned long which_len));
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(intdnaupd) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(intdnaupd) _PARAMS((char *fname,unsigned long fname_len))
 { 
   int IDO,   mIDO,   nIDO,    pIDO;
@@ -69,4 +69,4 @@ int C2F(intdnaupd) _PARAMS((char *fname,unsigned long fname_len))
   LhsVar(6)=WORKD;  LhsVar(7)=WORKL; LhsVar(8)=INFO;
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

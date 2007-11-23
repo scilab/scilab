@@ -1,16 +1,16 @@
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /* COPYRIGHT INRIA 2006                                                                      */
 /* File    : sciMatrix.h                                                                     */
 /* Authors : Jean-Baptiste Silvy 2006-xxxx                                                   */
 /* Desc.   : Allocation and deletion and modifications of matrices of pointers               */
 /*           The matrix is stored by colmuns like in Scilab.                                 */
 /*           These matrices can be used as generic matrices since they used void * pointers  */
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 
 #ifndef _SCI_MATRIX_H_
 #define _SCI_MATRIX_H_
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * a matrix on void pointers
  */
@@ -22,7 +22,7 @@ typedef struct
 }
 sciMatrix ;
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /* Constructors */
 /*@{*/
 /**
@@ -43,7 +43,7 @@ sciMatrix * newCompleteMatrix( void ** dataMat, int nbRow, int nbCol ) ;
 /* note that we cannot use a copy constructor since we don't know how to copy two elements */
 /* of the matrix! Maybe it is possible with some function pointers, but it seems a bit */
 /* tricky for me. For something clean, C++ may be better. */
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /* destructor */
 /*@{*/
 /**
@@ -56,7 +56,7 @@ void deleteMatrix( sciMatrix * mat ) ;
  */
 void desallocateMatrix( sciMatrix * mat ) ;
 /*@}*/
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /* accessors */
 /*@{*/
 /**
@@ -98,6 +98,6 @@ void copyMatElement(       sciMatrix * mat      ,
                      const void          * copyValue,
                            int             valueSize ) ;
 /*@}*/
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 
 #endif /* _SCI_MATRIX_H_ */

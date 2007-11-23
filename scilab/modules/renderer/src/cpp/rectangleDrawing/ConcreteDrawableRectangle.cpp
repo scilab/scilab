@@ -11,7 +11,7 @@
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableRectangle::getCornersCoordinates( double corner1[3], double corner2[3], double corner3[3], double corner4[3] )
 {
 
@@ -40,6 +40,6 @@ void ConcreteDrawableRectangle::getCornersCoordinates( double corner1[3], double
   corner4[2] = ppRect->z ;
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

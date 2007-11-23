@@ -16,13 +16,13 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 RectangleLineDrawerJoGL::RectangleLineDrawerJoGL( DrawableRectangleBridge * drawer )
   : DrawRectangleStrategy( drawer ), DrawableObjectJoGL(drawer->getRectangleDrawer())
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void RectangleLineDrawerJoGL::drawRectangle( void )
 {
   sciPointObj * pObj = m_pDrawed->getRectangleDrawer()->getDrawedObject() ;
@@ -49,10 +49,10 @@ void RectangleLineDrawerJoGL::drawRectangle( void )
 
   endDrawing() ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 RectangleLineDrawerJavaMapper * RectangleLineDrawerJoGL::getLineDrawerJavaMapper(void)
 {
   return dynamic_cast<RectangleLineDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 }

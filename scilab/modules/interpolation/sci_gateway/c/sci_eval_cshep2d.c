@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "stack-c.h"
 #include "gw_interpolation.h"
@@ -9,11 +9,11 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern double C2F(cs2val)(double *px, double *py, int *n, double *x, double *y,double *f, int *nr, int *lcell, int *lnext, double *xmin, double *ymin,double *dx, double *dy, double *rmax, double *rw, double *a);
 extern int C2F(cs2grd) (double *px, double *py, int *n, double *x, double *y, double *f, int *nr, int *lcell, int *lnext,  double *xmin, double *ymin,double *dx, double *dy, double *rmax, double *rw, double *a,double *c, double *cx, double *cy, int *ier);
 extern int C2F(cs2hes)  (double *px, double *py, int *n, double *x, double *y, double *f, int *nr, int *lcell, int *lnext,  double *xmin, double *ymin, double *dx, double *dy, double *rmax, double *rw, double *a, double *c, double *cx, double *cy,  double *cxx, double *cxy, double *cyy, int *ier);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int inteval_cshep2d(char *fname,unsigned long fname_len)
 {
   /*
@@ -150,4 +150,4 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

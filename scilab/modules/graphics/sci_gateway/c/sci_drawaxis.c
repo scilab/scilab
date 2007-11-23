@@ -14,7 +14,7 @@
 #include "Scierror.h"
 #include "PloEch.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sci_drawaxis( char * fname, unsigned long fname_len )
 {
   /** XXXXX : un point en suspens c'est le "S" ou une adresse est 
@@ -170,7 +170,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   return 0;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
              long unsigned int xl, int ypos, int yRow, int yCol, long unsigned int yl, 
              int *ntics)
@@ -214,4 +214,4 @@ int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
   }
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

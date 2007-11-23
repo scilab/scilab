@@ -16,18 +16,18 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 BarDecomposition::BarDecomposition( DrawablePolyline * polyline )
   : DecomposeLineStrategy(polyline)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 BarDecomposition::~BarDecomposition( void )
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], double zCoords[])
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
@@ -76,7 +76,7 @@ void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], doub
   }
   
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void BarDecomposition::getDrawnVerticesColor(int colors[])
 {
   // unused for now
@@ -85,13 +85,13 @@ void BarDecomposition::getDrawnVerticesColor(int colors[])
     colors[i] = 0;
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 int BarDecomposition::getDrawnVerticesLength(void)
 {
   // can't be closed
   return sciGetNbPoints(m_pDrawed->getDrawedObject());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void BarDecomposition::getBarHeight(double heights[])
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
@@ -110,7 +110,7 @@ void BarDecomposition::getBarHeight(double heights[])
     }
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void BarDecomposition::getBarPlotMarkVertices(double xCoords[], double yCoords[], double zCoords[])
 {
   // first half
@@ -126,11 +126,11 @@ void BarDecomposition::getBarPlotMarkVertices(double xCoords[], double yCoords[]
     zCoords[i + semiSize] = zCoords[i];
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 int BarDecomposition::getBarPlotMarkVerticesLength(void)
 {
   return 2 * getDrawnVerticesLength();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

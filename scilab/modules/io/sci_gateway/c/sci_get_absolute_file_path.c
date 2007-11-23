@@ -2,7 +2,7 @@
  * Provides get_absolute_file_path to scilab
  * @author Allan CORNET - INRIA 2007
  */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include <stdio.h> /* FILE */
 #ifdef _MSC_VER 
@@ -21,7 +21,7 @@
 #include "getfiledesc.h"
 #include "getfileinfo.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len))
 {
 	int l1,n1,m1;
@@ -123,5 +123,5 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 	}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 

@@ -678,7 +678,7 @@ int InitAxesModel()
 
   /* F.Leray 10.06.04 */
   /* Adding default Labels inside Axes */
-  /*------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------*/
  
   pobj = paxesmdl;
   ppobj = pSUBWIN_FEATURE(paxesmdl);
@@ -866,7 +866,7 @@ sciInitGraphicMode (sciPointObj * pobj)
   return 0;
 }
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 /* allocate and set a new label to default values */
 sciPointObj * initLabel( sciPointObj * pParentObj )
 {
@@ -949,7 +949,7 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
   return newLabel ;
 }
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void destroyDefaultObjects( void )
 {
   // will destroy the figure and its children (so the axes).
@@ -957,7 +957,7 @@ void destroyDefaultObjects( void )
   pfiguremdl = NULL ;
   paxesmdl = NULL;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 /**
  * Create new data with defautl properties.
  */
@@ -978,7 +978,7 @@ FigureModelData * newFigureModelData( void )
 
   return modelData ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 /**
  * Free an existing model Data
  */
@@ -992,7 +992,7 @@ void destroyFigureModelData( FigureModelData * data )
     data = NULL ;
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 /**
  * Set the colormap of a figure to the default one.
  */
@@ -1009,5 +1009,5 @@ void sciSetDefaultColorMap(sciPointObj * pFigure)
 
   FREE(colorMap);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 

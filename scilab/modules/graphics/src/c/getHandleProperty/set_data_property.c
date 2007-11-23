@@ -18,7 +18,7 @@
 #include "../ColorMapManagement.h"
 #include "MALLOC.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the champ data is now set as a tlist (like for surface objects) */
 /* setchampdata(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
@@ -90,7 +90,7 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
   return SET_PROPERTY_SUCCEED ;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the grayplot data is now set as a tlist (like for surface and champ objects) */
 /* setgrayplot(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
@@ -150,7 +150,7 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
 
   return SET_PROPERTY_SUCCEED ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
 int set3ddata( sciPointObj * pobj, AssignedList * tlist )
 {
@@ -516,7 +516,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   }
   return SET_PROPERTY_SUCCEED ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
 {
   sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
@@ -545,7 +545,7 @@ int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
 
   return SET_PROPERTY_SUCCEED ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
 {
   sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
@@ -574,7 +574,7 @@ int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
 
   return SET_PROPERTY_SUCCEED ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
 {
   sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;

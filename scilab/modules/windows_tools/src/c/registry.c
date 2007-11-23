@@ -1,14 +1,14 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2005 - 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include "registry.h"
 #include "win_mem_alloc.h"
 #include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define MAX_KEY_LENGTH 255
 #define MAX_VALUE_NAME 16383
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL WindowsQueryRegistry(char *ParamIn1,char *ParamIn2,char *ParamIn3,char *ParamOut1,int *ParamOut2,BOOL *OuputIsREG_SZ)
 {
 	BOOL bOK=TRUE;
@@ -61,7 +61,7 @@ BOOL WindowsQueryRegistry(char *ParamIn1,char *ParamIn2,char *ParamIn3,char *Par
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL WindowsQueryRegistryList(char *ParamIn1,char *ParamIn2,int dimMax,char **ListKeys)
 {
 	BOOL bOK=TRUE;
@@ -122,7 +122,7 @@ BOOL WindowsQueryRegistryList(char *ParamIn1,char *ParamIn2,int dimMax,char **Li
 	
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 HKEY GetHkeyrootFromString(char *string)
 {
 	HKEY hkey=NULL;
@@ -135,7 +135,7 @@ HKEY GetHkeyrootFromString(char *string)
 
 	return hkey;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,int *Number)
 {
 	BOOL bOK=TRUE;
@@ -195,4 +195,4 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

@@ -22,7 +22,7 @@ static int swapcodechar(char * parmi,char * parmj,int n,int incr)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareCchar(char *i,char *j)
 {
   if ( *((char *)i) > *((char *)j))
@@ -31,7 +31,7 @@ static int compareCchar(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareDchar(char *i,char *j)
 {
   if ( *((char *)i) < *((char *)j))
@@ -40,7 +40,7 @@ static int compareDchar(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareCuchar(char *i,char *j)
 {
   if ( *((unsigned char *)i) > *((unsigned char *)j))
@@ -49,7 +49,7 @@ static int compareCuchar(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareDuchar(char *i,char *j)
 {
   if ( *((unsigned char *)i) < *((unsigned char *)j))
@@ -58,7 +58,7 @@ static int compareDuchar(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
@@ -81,7 +81,7 @@ void ColSortchar(char *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodechar,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
@@ -106,7 +106,7 @@ void RowSortchar(char *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodechar,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
@@ -123,8 +123,8 @@ void GlobalSortchar(char *a,int *ind,int flag,int n,int p,char dir)
 	   (dir == 'i' ) ? compareCchar:compareDchar,
 	   swapcodechar,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
@@ -147,7 +147,7 @@ void ColSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodechar,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
@@ -172,7 +172,7 @@ void RowSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodechar,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
@@ -189,7 +189,7 @@ void GlobalSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 	   (dir == 'i' ) ? compareCuchar:compareDuchar,
 	   swapcodechar,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /*******************************************************
  *  lexicographic order with Rows ind is of size n
  *  ind gives the permutation of the rows which is applied 
@@ -197,7 +197,7 @@ void GlobalSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
  ******************************************************/
 static int lexicolschar =1;
 static int lexirowschar =1;
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void setLexiSizechar(int n,int p) 
 {
   lexicolschar = p;
@@ -260,7 +260,7 @@ static  int LexiRowcompareDuchar(unsigned char *i, unsigned char*j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int LexiRowswapcodechar(char *parmi,char * parmj,int n) 
 { 		
   int i = n,j;
@@ -279,7 +279,7 @@ static int LexiRowswapcodechar(char *parmi,char * parmj,int n)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiRowchar(char *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -295,7 +295,7 @@ void LexiRowchar(char *a,int *ind,int flag,int n,int p,char dir)
 	   LexiRowswapcodechar,swapcodeind);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiRowuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -310,7 +310,7 @@ void LexiRowuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 	   (dir == 'i' ) ? LexiRowcompareCuchar:LexiRowcompareDuchar,
 	   LexiRowswapcodechar,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  *  lexicographic order with Cols ind is of size p
  *  ind gives the permutation of the column which is applied 
@@ -330,7 +330,7 @@ static  int LexiColcompareCchar(char *i,char *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiColcompareDchar(char *i,char *j)
 {
   int ic;
@@ -345,7 +345,7 @@ static  int LexiColcompareDchar(char *i,char *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiColcompareCuchar(unsigned char *i,unsigned char *j)
 {
   int ic;
@@ -360,7 +360,7 @@ static  int LexiColcompareCuchar(unsigned char *i,unsigned char *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiColcompareDuchar(unsigned char *i,unsigned char *j)
 {
   int ic;
@@ -376,7 +376,7 @@ static  int LexiColcompareDuchar(unsigned char *i,unsigned char *j)
   return (0);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int LexiColswapcodechar(char *parmi,char* parmj,int n) 
 { 		
   int i = n,ir;
@@ -395,7 +395,7 @@ static int LexiColswapcodechar(char *parmi,char* parmj,int n)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiColchar(char *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -411,7 +411,7 @@ void LexiColchar(char *a,int *ind,int flag,int n,int p,char dir)
 	   LexiColswapcodechar,
 	   swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiColuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -427,5 +427,5 @@ void LexiColuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 	   LexiColswapcodechar,
 	   swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 

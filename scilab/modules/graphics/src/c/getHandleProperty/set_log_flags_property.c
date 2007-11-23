@@ -14,11 +14,11 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int *u_nxgrads, char ** u_xlabels);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Remove negative graduations when switching from N (linear) to L (logarithmic) scale */
 char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
 {
@@ -68,7 +68,7 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
 
   return u_xlabels;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Called by a.log_flags='nn','ln','nl', or 'll'*/
 /* For the moment, z has no logflag F.Leray 05.10.04 */
 char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int *u_nxgrads, char ** u_xlabels)

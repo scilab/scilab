@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -10,22 +10,22 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 struct VariableStruct
 {
  char *NameVariable;
  int SizeVariable;
 };
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL SetVariablesStructs(struct VariableStruct **GVstruct,int *GlenStructArray,struct VariableStruct **LVstruct,int *LlenStructArray);
 static void DispVariables(struct VariableStruct* Vstruct,char *Message,int lenStructArray,int memused,int memtotal,int varused,int vartotal);
 static void SortVarsStructByStrings(struct VariableStruct *Vstruct,int SizeStruct);
 static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStructArray);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int NoRhs(struct VariableStruct* GVstruct,int GlenStructArray,struct VariableStruct* LVstruct,int LlenStructArray,BOOL Sorted);
 static int OneLhs(struct VariableStruct* Vstruct,int lenStructArray,BOOL Sorted);
 static int TwoLhs(struct VariableStruct* Vstruct,int lenStructArray,BOOL Sorted);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
  {
 	 static int l1,n1,m1;
@@ -182,7 +182,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 
 	 return 0;
  }
- /*-----------------------------------------------------------------------------------*/
+ /*--------------------------------------------------------------------------*/
  static void SortVarsStructByStrings(struct VariableStruct *Vstruct,int SizeStruct)
  {
 	 int fin,i;
@@ -210,7 +210,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 		 if(!Sorted)break;
 	 }
  }
- /*-----------------------------------------------------------------------------------*/
+ /*--------------------------------------------------------------------------*/
 static void DispVariables(struct VariableStruct* Vstruct,char *Message,int lenStructArray,int memused,int memtotal,int varused,int vartotal)
 {
 	 int i=0;
@@ -227,7 +227,7 @@ static void DispVariables(struct VariableStruct* Vstruct,char *Message,int lenSt
 	 sciprint(_(" and   %10d variables out of %10d.\n"),varused,vartotal);
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStructArray)
  {
 	 BOOL bOK=FALSE;
@@ -245,7 +245,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 }
 	 return bOK;
  }
- /*-----------------------------------------------------------------------------------*/
+ /*--------------------------------------------------------------------------*/
  static BOOL SetVariablesStructs(struct VariableStruct **GVstruct,int *GlenStructArray,struct VariableStruct **LVstruct,int *LlenStructArray)
  {
 	 BOOL bOK=FALSE;
@@ -282,7 +282,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 }
 	 return bOK;
  }
- /*-----------------------------------------------------------------------------------*/
+ /*--------------------------------------------------------------------------*/
  static int NoRhs(struct VariableStruct* GVstruct,int GlenStructArray,struct VariableStruct* LVstruct,int LlenStructArray,BOOL Sorted)
  {
 	 integer memtotal=0;
@@ -313,7 +313,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 C2F(putlhsvar)();
 	 return 0;
  }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
  static int TwoLhs(struct VariableStruct* Vstruct,int lenStructArray,BOOL Sorted)
  {
 	 char **Tab=NULL;
@@ -361,7 +361,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 if (Size) {FREE(Size);Size=NULL;}
 	 return 0;
  }
- /*-----------------------------------------------------------------------------------*/
+ /*--------------------------------------------------------------------------*/
  static int OneLhs(struct VariableStruct* Vstruct,int lenStructArray,BOOL Sorted)
  {
 	 int i=0;
@@ -404,4 +404,4 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 C2F(putlhsvar)();
 	 return 0;
  }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

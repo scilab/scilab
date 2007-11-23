@@ -891,7 +891,7 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
 }
 
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 /**
  * draw the figure number numFigure.
  */
@@ -902,12 +902,12 @@ void sciDrawFigure( int numFigure )
   sciDrawObj( sciGetCurrentFigure() ) ;
   sciSetUsedWindow( curFigure ) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /* sciRefreshObj                                                                             */
 /* draw an object but before select the rigth figure for display                             */
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int sciRefreshObj( sciPointObj * pobj )
 {
   
@@ -939,7 +939,7 @@ sciDrawObjIfRequired (sciPointObj * pobj)
 }
 
 
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /* compute the 8 vertices (xbox[i],ybox[i],zbox[i]) of an axis aligned box knowing */
 /* xmin, xmax, ymin, ymax, zmin and zmax in limits */
 void sciGetAxisBox( double limits[6], double xbox[8], double ybox[8], double zbox[8] )
@@ -976,7 +976,7 @@ void sciGetAxisBox( double limits[6], double xbox[8], double ybox[8], double zbo
   ybox[7]=TRY(limits[1],limits[2],limits[5]); /* into [xbox[7],ybox[7],zbox[7] ] */
   zbox[7]=TRZ(limits[1],limits[2],limits[5]); /*                                 */
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /* update the Csacle value from new viewing angles */
 void sciUpdateScaleAngles( double theta, double alpha )
 {
@@ -1002,7 +1002,7 @@ void sciUpdateScaleAngles( double theta, double alpha )
 
 }
 
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /* compute the drawing order of the axes box vertices int xind */
 void sciAxesVerticesIndices( integer insideU[4],
                              integer insideD[4],
@@ -1101,7 +1101,7 @@ void sciAxesVerticesIndices( integer insideU[4],
   xind[5]=ind2;
          
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 /**
  * Update the coordinates of a label to put it in the middle of a segment (normally an axis)
  * but with a little orthogonal offset.
@@ -1184,6 +1184,6 @@ void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2]
                  0.0 ) ;
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 #undef round

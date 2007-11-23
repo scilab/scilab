@@ -12,32 +12,32 @@
 
 using namespace sciGraphics ;
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbColor )
 {
   getFigureDrawer(pFigure)->setColorMap( rgbMat, nbColor ) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] )
 {
   getFigureDrawer(pFigure)->setSize(size) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void sciSetJavaWindowSize( sciPointObj * pFigure, const int size[2] )
 {
   getFigureDrawer(pFigure)->setWindowSize(size) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] )
 {
   getFigureDrawer(pFigure)->setWindowPosition(pos) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage )
 {
   getFigureDrawer(pFigure)->setInfoMessage(infoMessage);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void sciSetJavaPixmapMode(sciPointObj * pFigure, BOOL onOrOff)
 {
   if (onOrOff)
@@ -49,4 +49,4 @@ void sciSetJavaPixmapMode(sciPointObj * pFigure, BOOL onOrOff)
     getFigureDrawer(pFigure)->setPixmapMode(false);
   } 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/

@@ -20,18 +20,18 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 FilledTextDrawerJoGL::FilledTextDrawerJoGL(DrawableText * text)
   : TextContentDrawerJoGL(text)
 {
   setJavaMapper(new FilledTextDrawerJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 FilledTextDrawerJoGL::~FilledTextDrawerJoGL(void)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void FilledTextDrawerJoGL::setDrawerParameters(void)
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
@@ -58,11 +58,11 @@ void FilledTextDrawerJoGL::setDrawerParameters(void)
 
   getFilledTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 FilledTextDrawerJavaMapper * FilledTextDrawerJoGL::getFilledTextDrawerJavaMapper(void)
 {
   return dynamic_cast<FilledTextDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

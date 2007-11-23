@@ -11,7 +11,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "strcatfunction.h"
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 BOOL strcatfunction(char **Input_String_One,char **Input_String_Two,int Number_Input_One,char **Output_StringMatrix)
 {
@@ -32,4 +32,4 @@ BOOL strcatfunction(char **Input_String_One,char **Input_String_Two,int Number_I
 	}
 	return TRUE;
 }
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/

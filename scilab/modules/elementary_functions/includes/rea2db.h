@@ -15,7 +15,7 @@
 
 #include "machine.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* cette subroutine traduit un vecteur dx, de taille n, sur un
    vecteur double precision dy.
    dans le cas de deux increments egaux a 1, cette fonction
@@ -23,7 +23,7 @@
    dans le cas ou les increments sont negatifs cette
    fonction prend les composantes en ordre inverse.
 */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(rea2db)(int *n, float *dx, int *incx, double *dy, int *incy);
 
 #endif /* !__READ2DB__ */

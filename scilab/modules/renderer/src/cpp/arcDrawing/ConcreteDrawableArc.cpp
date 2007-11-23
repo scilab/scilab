@@ -18,22 +18,22 @@ using namespace std;
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 ConcreteDrawableArc::ConcreteDrawableArc(sciPointObj * pObj) : DrawableArc(pObj)
 {
   m_oDrawingStrategies.clear();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 ConcreteDrawableArc::~ConcreteDrawableArc(void)
 {
   removeDrawingStrategies();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableArc::addDrawingStrategy( DrawArcStrategy * strategy )
 {
   m_oDrawingStrategies.push_back(strategy);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableArc::removeDrawingStrategies( void )
 {
   list<DrawArcStrategy *>::iterator it = m_oDrawingStrategies.begin();
@@ -44,7 +44,7 @@ void ConcreteDrawableArc::removeDrawingStrategies( void )
   }
   m_oDrawingStrategies.clear();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableArc::getArcRepresentation(double center[3], double semiMinorAxis[3], double semiMajorAxis[3],
                                                double & startAngle, double & endAngle)
 { //    <---- w ---->
@@ -95,7 +95,7 @@ void ConcreteDrawableArc::getArcRepresentation(double center[3], double semiMino
   
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableArc::drawArc(void)
 {
   list<DrawArcStrategy *>::iterator it = m_oDrawingStrategies.begin();
@@ -104,7 +104,7 @@ void ConcreteDrawableArc::drawArc(void)
     (*it)->drawArc();
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableArc::showArc(void)
 {
   list<DrawArcStrategy *>::iterator it = m_oDrawingStrategies.begin();
@@ -113,5 +113,5 @@ void ConcreteDrawableArc::showArc(void)
     (*it)->showArc();
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 }

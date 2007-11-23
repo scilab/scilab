@@ -1,20 +1,20 @@
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /* COPYRIGHT INRIA 2006                                                                      */
 /* File    : Vect2Matrix.c                                                                   */
 /* Authors : Jean-Baptiste Silvy 2006-xxxx                                                   */
 /* Desc.   : Allocation and deletion and modifications of matrices of 2d vector.             */
 /*           The matrix stored arrays of size two of int or double                           */
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 
 #include "Vect2Matrix.h"
 #include "math_graphics.h"
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int * getVect2iMatElement( const Vect2iMatrix * mat, int row, int col )
 {
   return (int *) getMatElement( mat, row, col ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void copyVect2iMatElement(       sciMatrix * mat,
                                  int row        ,
                                  int col        , 
@@ -22,7 +22,7 @@ void copyVect2iMatElement(       sciMatrix * mat,
 {
   copyMatElement( mat, row, col, copyValue, 2 * sizeof(int) ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void rotateVect2iMatrix( Vect2iMatrix * mat, int center[2], double angle )
 {
   double cosAngle = cos( angle ) ;
@@ -38,7 +38,7 @@ void rotateVect2iMatrix( Vect2iMatrix * mat, int center[2], double angle )
     }
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void translateVect2iMatrix( Vect2iMatrix * mat, int trans[2] )
 {
   int i ;
@@ -52,7 +52,7 @@ void translateVect2iMatrix( Vect2iMatrix * mat, int trans[2] )
     }
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void homothVect2iMatrix( Vect2iMatrix * mat, int center[2], double factors[2] )
 {
   int i ;
@@ -66,12 +66,12 @@ void homothVect2iMatrix( Vect2iMatrix * mat, int center[2], double factors[2] )
     }
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 double * getVect2dMatElement( const Vect2dMatrix * mat, int row, int col )
 {
   return (double *) getMatElement( mat, row, col ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void copyVect2dMatElement(       Vect2dMatrix * mat,
                                  int    row        ,
                                  int    col        , 
@@ -79,7 +79,7 @@ void copyVect2dMatElement(       Vect2dMatrix * mat,
 {
   copyMatElement( mat, row, col, copyValue, 2 * sizeof(double) ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void rotateVect2dMatrix( Vect2dMatrix * mat, double center[2], double angle )
 {
   double cosAngle = cos( angle ) ;
@@ -95,7 +95,7 @@ void rotateVect2dMatrix( Vect2dMatrix * mat, double center[2], double angle )
     }
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void translateVect2dMatrix( Vect2dMatrix * mat, double trans[2] )
 {
   int i ;
@@ -109,7 +109,7 @@ void translateVect2dMatrix( Vect2dMatrix * mat, double trans[2] )
     }
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void homothVect2dMatrix( Vect2dMatrix * mat, double center[2], double factors[2] )
 {
   int i ;
@@ -123,4 +123,4 @@ void homothVect2dMatrix( Vect2dMatrix * mat, double center[2], double factors[2]
     }
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/

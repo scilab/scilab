@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "gw_core.h"
 #include "machine.h"
@@ -11,18 +11,18 @@
 #include "Scierror.h"
 #include "commandwords.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int CreateLocalFunctionsTab(void);
 static int IsACommand(char *primitive);
 static void DispInternalFunctions(void);
 static void DispCommands(void);
 static void SortStrings(char **Strs,int SizeOfStrs);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern char **GetFunctionsList(int *sizeList);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len))
 {
 	int sizecommandwords = 0;
@@ -68,7 +68,7 @@ int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len))
 	C2F(putlhsvar)();
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void DispInternalFunctions(void)
 {
 	int i=0;
@@ -83,7 +83,7 @@ static void DispInternalFunctions(void)
 	}
 	sciprint("\n");
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void DispCommands(void)
 {
 	int i=0;
@@ -106,7 +106,7 @@ static void DispCommands(void)
 		FREE(commandwords); commandwords = NULL;
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int IsACommand(char *primitive)
 {
 	int sizecommandwords = 0;
@@ -135,7 +135,7 @@ static int IsACommand(char *primitive)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int CreateLocalFunctionsTab(void)
 {
 	char **LocalFunctionsTabTmp=NULL;
@@ -196,7 +196,7 @@ static int CreateLocalFunctionsTab(void)
 
 	return TRUE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void SortStrings(char **Strs,int SizeOfStrs)
 {
 	int fin,i;
@@ -217,4 +217,4 @@ static void SortStrings(char **Strs,int SizeOfStrs)
 		if(!Sorted)break;
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

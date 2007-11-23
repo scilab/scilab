@@ -1,4 +1,4 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /*
  *  PURPOSE
  *     interface code for some interpolation / approximation
@@ -7,7 +7,7 @@
  *  AUTHOR
  *     Bruno Pincon
  */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <string.h>
 #include "interpolation.h"
@@ -15,7 +15,7 @@
 #include "getfastcode.h"
 #include "Scierror.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int good_order(double x[], int n)
 {
   /*  test if x[i-1] < x[i] */
@@ -34,7 +34,7 @@ int good_order(double x[], int n)
 
   return ( 1 );
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /*
  *  Routines spéciales :
  *      récupérer une hypermatrice réelle
@@ -44,7 +44,7 @@ int good_order(double x[], int n)
  *   ce qui est fondamental pour que cette interface soit
  *   passée par référence).
  */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_rhs_real_hmat(int num, RealHyperMat *H)
 {
   int il, il1, il2, il3,/* it, */lw;
@@ -99,7 +99,7 @@ int get_rhs_real_hmat(int num, RealHyperMat *H)
   Scierror(999,_("Argument %d is not a real hypermatrix\n"), num);
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_rhs_scalar_string(int num, int *length, int **tabchar)
 {
   int il, lw;
@@ -124,7 +124,7 @@ int get_rhs_scalar_string(int num, int *length, int **tabchar)
   C2F(intersci).lad[num-1] = 0;
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int equal_scistring_and_string(int length, int *scistr,  char *str)
 {
   /* compare a scistring with a classic C string */
@@ -141,7 +141,7 @@ static int equal_scistring_and_string(int length, int *scistr,  char *str)
     }
   return (res);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get_type(TableType *Tab, int dim_table, int *scistr, int strlength)
 {
   int i = 0, found = 0;
@@ -155,7 +155,7 @@ int get_type(TableType *Tab, int dim_table, int *scistr, int strlength)
   else
     return ( UNDEFINED );
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 
 

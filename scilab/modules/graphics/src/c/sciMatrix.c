@@ -1,18 +1,18 @@
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /* COPYRIGHT INRIA 2006                                                                      */
 /* File    : PointerMatrix.c                                                                 */
 /* Authors : Jean-Baptiste Silvy 2006-xxxx                                                   */
 /* Desc.   : Allocation and deletion and modifications of matrices of pointers               */
 /*           The matrix is stored by colmuns like in Scilab.                                 */
 /*           These matrices acan be used as generic matrices since they used void * pointers */
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 
 #include "sciMatrix.h"
 #include "string.h"
 #include "MALLOC.h"
 #include <stdlib.h>
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 sciMatrix * emptyMatrix( void )
 {
   sciMatrix * newMat ;
@@ -24,7 +24,7 @@ sciMatrix * emptyMatrix( void )
   
   return newMat ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 sciMatrix * newMatrix( int nbRow, int nbCol )
 {
   int i ;
@@ -44,7 +44,7 @@ sciMatrix * newMatrix( int nbRow, int nbCol )
 
   return newMat ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 sciMatrix * newCompleteMatrix( void ** dataMat, int nbRow, int nbCol )
 {
   /* create the matrix */
@@ -56,7 +56,7 @@ sciMatrix * newCompleteMatrix( void ** dataMat, int nbRow, int nbCol )
   
   return newMat ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void deleteMatrix( sciMatrix * mat )
 {
   int i ;
@@ -73,7 +73,7 @@ void deleteMatrix( sciMatrix * mat )
 
   FREE( mat ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void desallocateMatrix( sciMatrix * mat )
 {
   mat->nbCol = 0 ;
@@ -81,19 +81,19 @@ void desallocateMatrix( sciMatrix * mat )
   mat->data  = NULL ;
   FREE( mat ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void * getMatElement( const sciMatrix * mat, int row, int col )
 {
   /* the matrix is stored by column like in scilab */
   
   return mat->data[row + col * mat->nbRow] ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void setMatElement( sciMatrix * mat, int row, int col, void * newValue )
 {
   mat->data[row + col * mat->nbRow] = newValue ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void changeMatElement( sciMatrix * mat, int row, int col, void * newValue )
 {
   if ( mat->data[row + col * mat->nbRow] != NULL )
@@ -102,7 +102,7 @@ void changeMatElement( sciMatrix * mat, int row, int col, void * newValue )
   }
   mat->data[row + col * mat->nbRow] = newValue ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void copyMatElement(       sciMatrix     * mat      ,
                            int             row      ,
                            int             col      , 
@@ -116,10 +116,10 @@ void copyMatElement(       sciMatrix     * mat      ,
   /* change the current one */
   changeMatElement( mat, row, col, newValue ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int getMatNbRow( const sciMatrix * mat ) { return mat->nbRow ; }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int getMatNbCol( const sciMatrix * mat ) { return mat->nbCol ; }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void ** getMatData( const sciMatrix * mat ) { return mat->data ; }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/

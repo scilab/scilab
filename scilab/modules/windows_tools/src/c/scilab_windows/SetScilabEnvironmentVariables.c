@@ -1,25 +1,25 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Allan CORNET */
 /* INRIA 2005 */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "SetScilabEnvironmentVariables.h"
 #include "machine.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "setgetSCIpath.h"
 #include "getScilabDirectory.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define putenv _putenv
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern BOOL Set_TK_LIBRARY_PATH(char *DefaultPath);
 extern BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL IsTheGoodShell(void);
 static BOOL Set_Shell(void);
 static BOOL Set_SCI_PATH(char *DefaultPath);
 static BOOL Set_HOME_PATH(char *DefaultPath);
 static BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
 * Les variables d'environnements SCI,TCL_LIBRARY,TK_LIBRARY
 * sont définies directement dans scilab
@@ -44,7 +44,7 @@ void SciEnvForWindows(void)
 	SetScilabEnvironmentVariables(SCIPathName);
 	if (SCIPathName) {FREE(SCIPathName);SCIPathName=NULL;}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /*----------------------------------------------------
 * set env variables (used when calling scilab from
 * other programs)
@@ -66,7 +66,7 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 	}
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char *GetScilabDirectory(BOOL UnixStyle)
 {
 	LPSTR ScilabModuleName=NULL;
@@ -113,7 +113,7 @@ char *GetScilabDirectory(BOOL UnixStyle)
 	setSCIpath(SciPathName);
 	return SciPathName;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix)
 {
 	BOOL bOK=TRUE;
@@ -131,7 +131,7 @@ BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix)
 	return bOK;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL Set_SCI_PATH(char *DefaultPath)
 {
 	BOOL bOK=FALSE;
@@ -197,7 +197,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL Set_HOME_PATH(char *DefaultPath)
 {
 	BOOL bOK=FALSE;
@@ -262,7 +262,7 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 {
 	BOOL bOK=TRUE;
@@ -284,7 +284,7 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL IsTheGoodShell(void)
 {
 	BOOL bOK=FALSE;
@@ -303,7 +303,7 @@ BOOL IsTheGoodShell(void)
 	
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL Set_Shell(void)
 {
 	BOOL bOK=FALSE;
@@ -325,4 +325,4 @@ BOOL Set_Shell(void)
 	if (WINDIRPATH){ FREE(WINDIRPATH); WINDIRPATH=NULL; }
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

@@ -21,7 +21,7 @@ static int swapcodeshort(char * parmi,char * parmj,int n,int incr)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareCshort(char *i,char *j)
 {
   if ( *((short *)i) > *((short *)j))
@@ -30,7 +30,7 @@ static int compareCshort(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareDshort(char *i,char *j)
 {
   if ( *((short *)i) < *((short *)j))
@@ -39,7 +39,7 @@ static int compareDshort(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareCushort(char *i,char *j)
 {
   if ( *((unsigned short *)i) > *((unsigned short *)j))
@@ -48,7 +48,7 @@ static int compareCushort(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareDushort(char *i,char *j)
 {
   if ( *((unsigned short *)i) < *((unsigned short *)j))
@@ -57,7 +57,7 @@ static int compareDushort(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
@@ -80,7 +80,7 @@ void ColSortshort(short *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodeshort,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
@@ -105,7 +105,7 @@ void RowSortshort(short *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodeshort,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
@@ -122,8 +122,8 @@ void GlobalSortshort(short *a,int *ind,int flag,int n,int p,char dir)
 	   (dir == 'i' ) ? compareCshort:compareDshort,
 	   swapcodeshort,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
@@ -146,7 +146,7 @@ void ColSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodeshort,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
@@ -171,7 +171,7 @@ void RowSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodeshort,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
@@ -188,7 +188,7 @@ void GlobalSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 	   (dir == 'i' ) ? compareCushort:compareDushort,
 	   swapcodeshort,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /*******************************************************
  *  lexicographic order with Rows ind is of size n
  *  ind gives the permutation of the rows which is applied 
@@ -196,7 +196,7 @@ void GlobalSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
  ******************************************************/
 static int lexicolsshort =1;
 static int lexirowsshort =1;
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void setLexiSizeshort(int n,int p) 
 {
   lexicolsshort = p;
@@ -259,7 +259,7 @@ static  int LexiRowcompareDushort(unsigned short *i, unsigned short*j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int LexiRowswapcodeshort(char *parmi,char * parmj,int n) 
 { 		
   int i = n,j;
@@ -278,7 +278,7 @@ static int LexiRowswapcodeshort(char *parmi,char * parmj,int n)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiRowshort(short *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -294,7 +294,7 @@ void LexiRowshort(short *a,int *ind,int flag,int n,int p,char dir)
 	   LexiRowswapcodeshort,swapcodeind);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiRowushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -309,7 +309,7 @@ void LexiRowushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 	   (dir == 'i' ) ? LexiRowcompareCushort:LexiRowcompareDushort,
 	   LexiRowswapcodeshort,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  *  lexicographic order with Cols ind is of size p
  *  ind gives the permutation of the column which is applied 
@@ -329,7 +329,7 @@ static  int LexiColcompareCshort(short *i,short *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiColcompareDshort(short *i,short *j)
 {
   int ic;
@@ -344,7 +344,7 @@ static  int LexiColcompareDshort(short *i,short *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiColcompareCushort(unsigned short *i,unsigned short *j)
 {
   int ic;
@@ -359,7 +359,7 @@ static  int LexiColcompareCushort(unsigned short *i,unsigned short *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiColcompareDushort(unsigned short *i,unsigned short *j)
 {
   int ic;
@@ -375,7 +375,7 @@ static  int LexiColcompareDushort(unsigned short *i,unsigned short *j)
   return (0);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int LexiColswapcodeshort(char *parmi,char* parmj,int n) 
 { 		
   int i = n,ir;
@@ -394,7 +394,7 @@ static int LexiColswapcodeshort(char *parmi,char* parmj,int n)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiColshort(short *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -410,7 +410,7 @@ void LexiColshort(short *a,int *ind,int flag,int n,int p,char dir)
 	   LexiColswapcodeshort,
 	   swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiColushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -426,5 +426,5 @@ void LexiColushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 	   LexiColswapcodeshort,
 	   swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 

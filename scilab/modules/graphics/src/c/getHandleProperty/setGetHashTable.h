@@ -12,7 +12,7 @@
 #include "hashtable.h"
 #include "ObjectStructure.h"
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /**
  * Hide the real type of hashtable
  */
@@ -22,9 +22,9 @@ typedef struct hashtable GetPropertyHashTable ;
 * Hide the real type of hashtable
 */
 typedef struct hashtable SetPropertyHashTable ;
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /**
  * Prototype of functions used to get a specific property of an handle.
  * The sciPointObj is the object to get the property from
@@ -40,9 +40,9 @@ typedef int (*getPropertyFunc)(sciPointObj *) ;
 * an error occurred.
 */
 typedef int (*setPropertyFunc)(sciPointObj *, int, int, int, int ) ;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * Create a new hashTable of get functions
  */
@@ -64,7 +64,7 @@ getPropertyFunc searchGetHashtable( GetPropertyHashTable * hashTable , char * ke
  */
 int insertGetHashtable( GetPropertyHashTable * hashTable, char * key, getPropertyFunc value ) ;
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
 * Create a new hashTable of set functions
 */
@@ -86,6 +86,6 @@ setPropertyFunc searchSetHashtable( SetPropertyHashTable * hashTable , char * ke
 */
 int insertSetHashtable( SetPropertyHashTable * hashTable, char * key, setPropertyFunc value ) ;
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 
 #endif /* _SET_GET_HASHTABLE_H_ */

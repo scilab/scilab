@@ -1,8 +1,8 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* INRIA 2007 */
 /* Allan CORNET */
 /* Update : Sylvestre Ledru 2007 */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <string.h> /* strcmp */
 #include "loadhashtableslocalization.h"
 #include "localization.h"
@@ -12,9 +12,9 @@
 #include "../../fileio/includes/FileExist.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml);
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL LoadHashTablesLocalization(char *language)
 {
 	BOOL bOK=FALSE;
@@ -62,7 +62,7 @@ BOOL LoadHashTablesLocalization(char *language)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 {
 	BOOL bOK=FALSE;
@@ -155,4 +155,4 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

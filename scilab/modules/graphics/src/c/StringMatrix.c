@@ -1,17 +1,17 @@
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /* COPYRIGHT INRIA 2006                                                                      */
 /* File    : StringMatrix.c                                                                  */
 /* Authors : Jean-Baptiste Silvy 2006-xxxx                                                   */
 /* Desc.   : Allocation and deletion and modifications of matrices of strings.               */
 /*           The matrix is stored by colmuns like in Scilab                                  */
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 
 #include <string.h>
 #include "StringMatrix.h"
 #include "MALLOC.h"
 #include <stdlib.h>
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol )
 {
   int i ;
@@ -28,22 +28,22 @@ StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol )
 
   return newMat ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 StringMatrix * copyStringMatrix( const StringMatrix * copyMat )
 {
   return newFullStringMatrix( (char **) copyMat->data, copyMat->nbCol, copyMat->nbRow ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 char * getStrMatElement( const StringMatrix * mat, int row, int col )
 {
   return (char *) getMatElement( mat, row, col ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 char ** getStrMatData( const StringMatrix * mat )
 {
   return (char **) getMatData( mat ) ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyStr )
 {
   char * changedString = (char *) mat->data[row + col * mat->nbRow] ; /* for speed */
@@ -55,4 +55,4 @@ void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyS
   strcpy( changedString, copyStr ) ;
   mat->data[row + col * mat->nbRow] = changedString ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/

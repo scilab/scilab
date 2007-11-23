@@ -15,7 +15,7 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableClippedObject::DrawableClippedObject( sciPointObj * drawed )
   : DrawableObject( drawed )
 {
@@ -24,7 +24,7 @@ DrawableClippedObject::DrawableClippedObject( sciPointObj * drawed )
   m_bYClippingEnable = false ;
   m_bZClippingEnable = false ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableClippedObject::setClipBox( void )
 {
   // compute the real clipping of the object
@@ -62,14 +62,14 @@ void DrawableClippedObject::setClipBox( void )
   }
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableClippedObject::setClipBox( double xMin, double xMax,
                                         double yMin, double yMax,
                                         double zMin, double zMax )
 {
   getClippedObjBridge()->setClipBox(xMin, xMax, yMin, yMax, zMin, zMax) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableClippedObject::clip( void )
 {
   setClipBox();
@@ -89,7 +89,7 @@ void DrawableClippedObject::clip( void )
   }
   m_bIsClipped = true ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableClippedObject::unClip( void )
 {
   if ( m_bIsClipped )
@@ -98,11 +98,11 @@ void DrawableClippedObject::unClip( void )
     m_bIsClipped = false ;
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableClippedObjectBridge * DrawableClippedObject::getClippedObjBridge( void )
 {
   return dynamic_cast<DrawableClippedObjectBridge *>(m_pImp) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

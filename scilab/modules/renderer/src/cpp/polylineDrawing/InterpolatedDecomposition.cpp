@@ -16,18 +16,18 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 InterpolatedDecomposition::InterpolatedDecomposition( DrawablePolyline * polyline )
   : DecomposeLineStrategy(polyline)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 InterpolatedDecomposition::~InterpolatedDecomposition( void )
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void InterpolatedDecomposition::getDrawnVertices(double xCoords[], double yCoords[], double zCoords[])
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
@@ -83,7 +83,7 @@ void InterpolatedDecomposition::getDrawnVertices(double xCoords[], double yCoord
   }
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void InterpolatedDecomposition::getDrawnVerticesColor(int colors[])
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
@@ -97,7 +97,7 @@ void InterpolatedDecomposition::getDrawnVerticesColor(int colors[])
     colors[nbVertices] = colors[0];
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 int InterpolatedDecomposition::getDrawnVerticesLength(void)
 {
   int res = sciGetNbPoints(m_pDrawed->getDrawedObject());
@@ -108,6 +108,6 @@ int InterpolatedDecomposition::getDrawnVerticesLength(void)
   
   return res;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

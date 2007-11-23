@@ -9,12 +9,12 @@ using namespace std;
 
 void mywhole_swapd(double *v,int i, int j, int n);
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 template <class T>
 T GetMax (T a, T b) {
   return (a>b?1:0);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 template <class T>
 T my_swapsingle(T *v, int i, int j,int PointerRow,int RowNum)
 {
@@ -27,7 +27,7 @@ T my_swapsingle(T *v, int i, int j,int PointerRow,int RowNum)
    return 0;
 }
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 template <class T>
 T my_swapsinglecol(T *v, int i, int j,int PointerRow,int RowNum)
 {
@@ -39,7 +39,7 @@ T my_swapsinglecol(T *v, int i, int j,int PointerRow,int RowNum)
    v[Right_Position] = temp;
    return 0;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 template <class D>
 void swap (D *a, D *b) {
   D *position;
@@ -47,7 +47,7 @@ void swap (D *a, D *b) {
   *a=*b;
   *b=*position;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_swap(int *index, int i, int j)
 {
    int temp;
@@ -55,7 +55,7 @@ void my_swap(int *index, int i, int j)
    index[i] = index[j];
    index[j] = temp;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_swapdouble(double *index, int i, int j)
 {
    double temp;
@@ -63,7 +63,7 @@ void my_swapdouble(double *index, int i, int j)
    index[i] = index[j];
    index[j] = temp;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void mywhole_swap(char **v,int i, int j)
 {
 
@@ -71,7 +71,7 @@ void mywhole_swap(char **v,int i, int j)
    v[i]=v[j];
    v[j]=temp;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void mywhole_swapd(double *v,int i, int j, int ColNum,int RowNum)
 {
 	int f; /** @TODO rename this variable */
@@ -83,7 +83,7 @@ void mywhole_swapd(double *v,int i, int j, int ColNum,int RowNum)
 	   v[f*RowNum+j] = temp;
 	}
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void mywhole_swaps(char **v,int i, int j, int ColNum,int RowNum)
 {
 	char *temp;
@@ -95,7 +95,7 @@ void mywhole_swaps(char **v,int i, int j, int ColNum,int RowNum)
       v[f*RowNum+j]=temp;
 	}
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_swapSsingle(char **v, int i, int j,int PointerRow,int RowNum)
 {
    char *temp;
@@ -105,7 +105,7 @@ void my_swapSsingle(char **v, int i, int j,int PointerRow,int RowNum)
    v[Left_Position]=v[Right_Position];
    v[Right_Position] =temp;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 //void mywhole_swapdcol(double *v,int i, int j, int n,int RowNum)
 	/** @TODO Check why n is unused */
 void mywhole_swapdcol(double *v,int i, int j,int RowNum)
@@ -119,7 +119,7 @@ void mywhole_swapdcol(double *v,int i, int j,int RowNum)
 	   v[j*RowNum+f] = temp;
 	}
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 //void mywhole_swapscol(char **v,int i, int j, int n,int RowNum)
 	/** @TODO Check why n is unused */
 void mywhole_swapscol(char **v,int i, int j, int RowNum)
@@ -133,7 +133,7 @@ void mywhole_swapscol(char **v,int i, int j, int RowNum)
 	 v[j*RowNum+f]=temp;
 	}
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_swapSsinglecol(char **v, int i, int j,int position,int RowNum)
 {
    char *temp;
@@ -141,7 +141,7 @@ void my_swapSsinglecol(char **v, int i, int j,int position,int RowNum)
    v[position+RowNum*i]=v[position+RowNum*j];
    v[position+RowNum*j]=temp;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_lgsortdoublerow(double *Input_Matrix,int *index, int left, int right,char *iord,int RowNum,int RowCol)
 {
    int i, last,plist;
@@ -189,7 +189,7 @@ void my_lgsortdoublerow(double *Input_Matrix,int *index, int left, int right,cha
    my_lgsortdoublerow(Input_Matrix,index, left, last-1,iord,RowNum,RowCol);
    my_lgsortdoublerow(Input_Matrix,index, last+1, right,iord,RowNum,RowCol);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_lgsortdoublecol(double *Input_Matrix,int *index, int left, int right,char *iord,int RowNum,int RowCol)
 {
    int i, last,position;
@@ -237,7 +237,7 @@ void my_lgsortdoublecol(double *Input_Matrix,int *index, int left, int right,cha
    my_lgsortdoublecol(Input_Matrix,index, left, last-1,iord,RowNum,RowCol);
    my_lgsortdoublecol(Input_Matrix,index, last+1, right,iord,RowNum,RowCol);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_qsortslrow(char **Input_Matrix,int *index, int left, int right,char *iord,int RowNum,int RowCol)
 {
    int i, last,position;
@@ -275,7 +275,7 @@ void my_qsortslrow(char **Input_Matrix,int *index, int left, int right,char *ior
    my_qsortslrow(Input_Matrix,index, last+1, right,iord,RowNum,RowCol);
 }
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_qsortsingle(double *Input_Matrix, int *index,int left, int right,int position,char *iord,int RowNum)
 {
    int i, last;
@@ -314,7 +314,7 @@ void my_qsortsingle(double *Input_Matrix, int *index,int left, int right,int pos
    my_qsortsingle(Input_Matrix,index, left, last-1,position,iord,RowNum);
    my_qsortsingle(Input_Matrix,index, last+1, right,position,iord,RowNum);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_qsortsinglecol(double *Input_Matrix, int *index,int left, int right,int position,char *iord,int RowNum)
 {
    int i, last;
@@ -352,7 +352,7 @@ void my_qsortsinglecol(double *Input_Matrix, int *index,int left, int right,int 
    my_qsortsinglecol(Input_Matrix,index, left, last-1,position,iord,RowNum);
    my_qsortsinglecol(Input_Matrix,index, last+1, right,position,iord,RowNum);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void lgsortdouble(double *Input_Matrix,int *indices,int RowNum,int RowCol,char *typex, char *iord)  /* When it is double matrix in 'lr' or 'lc'*/
 {
     int i;
@@ -367,7 +367,7 @@ void lgsortdouble(double *Input_Matrix,int *indices,int RowNum,int RowCol,char *
         my_lgsortdoublecol( Input_Matrix, indices,0, RowCol - 1 ,iord,RowNum,RowCol);               /* When it is double matrix in 'lc'*/
 	}
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 void rowcolsortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord) /*When it is double matrix in ROW_SORT or COLUMN_SORT*/
 {
@@ -392,7 +392,7 @@ void rowcolsortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol
 		}
 	}
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 void my_wholesortstring(char **Input_Matrix,int *index, int left, int right,char *iord,int RowCol)
 {
@@ -439,7 +439,7 @@ void my_wholesortstring(char **Input_Matrix,int *index, int left, int right,char
    my_wholesortstring(Input_Matrix,index, left, last-1,iord,RowCol);
    my_wholesortstring(Input_Matrix,index, last+1, right,iord,RowCol);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_wholesortdouble(double *Input_Matrix,int *index, int left, int right,char *iord,int RowCol)
 {
    int i, last;
@@ -477,7 +477,7 @@ void my_wholesortdouble(double *Input_Matrix,int *index, int left, int right,cha
 }
 
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_qsortscol(char **Input_Matrix,int *index, int left, int right,char *iord,int RowNum,int RowCol)
 {
    int i, last,position;
@@ -528,7 +528,7 @@ void my_qsortscol(char **Input_Matrix,int *index, int left, int right,char *iord
    my_qsortscol(Input_Matrix,index, last+1, right,iord,RowNum,RowCol);
 }
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_qsortSsinglerow(char **Input_Matrix, int *index,int left, int right,int position,char *iord,int RowNum)
 {
    int i, last;
@@ -566,7 +566,7 @@ void my_qsortSsinglerow(char **Input_Matrix, int *index,int left, int right,int 
 }
 
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void my_qsortSsinglecol(char **Input_Matrix, int *index,int left, int right,int position,char *iord,int RowNum)
 {
    int i, last;
@@ -602,7 +602,7 @@ void my_qsortSsinglecol(char **Input_Matrix, int *index,int left, int right,int 
    my_qsortSsinglecol(Input_Matrix,index, left, last-1,position,iord,RowNum);
    my_qsortSsinglecol(Input_Matrix,index, last+1, right,position,iord,RowNum);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 // void wholesortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord)
 /*When it is double matrix in 'g'*/
 	/** @TODO check why typex is unused */
@@ -614,7 +614,7 @@ void wholesortdouble(double *Input_Matrix, int *indices, int RowNum, int RowCol,
        for (j=1;j<=RowCol;j++) indices[k++]=(i-1)*RowCol+j;
     my_wholesortdouble( Input_Matrix, indices,0, RowNum*RowCol-1  ,iord,RowCol);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 // void wholesortstring(char **Input_Matrix, int *index, int RowNum, int RowCol, char *typex, char *iord)
 /*When it is the string matrix in 'g'*/
 	/** @TODO check why typex is unused */
@@ -626,7 +626,7 @@ void wholesortstring(char **Input_Matrix, int *index, int RowNum, int RowCol, ch
       for (j=1;j<=RowCol;j++) index[k++]=(i-1)*RowCol+j;
     my_wholesortstring( Input_Matrix, index,0, RowNum*RowCol - 1 ,iord,RowCol);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void rowcolsortstring(char **Input_Matrix, int *indices, int RowNum, int RowCol, char *typex, char *iord)  /*When it is the string matrix in ROW_SORT or COLUMN_SORT*/
 {
     int i,j,position;
@@ -649,7 +649,7 @@ void rowcolsortstring(char **Input_Matrix, int *indices, int RowNum, int RowCol,
 		}
 	}
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void lgsortstring(char **Input_Matrix,int *indices,int RowNum,int RowCol,char *typex, char *iord)  /* When it is string matrix in 'lr' or 'lc'*/
 {
     int i;
@@ -664,4 +664,4 @@ void lgsortstring(char **Input_Matrix,int *indices,int RowNum,int RowCol,char *t
         my_qsortscol( Input_Matrix, indices,0, RowCol - 1 ,iord,RowNum,RowCol);                  /* When it is string matrix in 'lc'*/
 	}
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/

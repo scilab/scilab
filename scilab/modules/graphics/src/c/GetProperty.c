@@ -2416,7 +2416,7 @@ sciGetScrollPosH (sciPointObj * pobj)
       break;
     }
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 
 /**sciGetPoint
@@ -3148,7 +3148,7 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"info_message"       ) == 0) {return sci_strings;} /*       01/07 */
   else {return -1;}
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 /**
  * Return the first surface found within the descendant of the object.
  * @param[in] psubwin Object from which the surface will be searched.
@@ -3487,7 +3487,7 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
   return FALSE;
 }
 
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 BOOL sciGetLegendDefined( sciPointObj * pObj )
 {
   sciSubWindow * ppSubWin ;
@@ -3520,7 +3520,7 @@ BOOL sciGetLegendDefined( sciPointObj * pObj )
     return TRUE ;
   }
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 BOOL sciGetAutoSize( sciPointObj * pObj )
 {
   switch (sciGetEntityType (pObj))
@@ -3534,7 +3534,7 @@ BOOL sciGetAutoSize( sciPointObj * pObj )
   }
   return FALSE;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 sciTextAlignment sciGetAlignment( sciPointObj * pObj )
 {
   switch (sciGetEntityType (pObj))
@@ -3548,7 +3548,7 @@ sciTextAlignment sciGetAlignment( sciPointObj * pObj )
   }
   return ALIGN_NONE ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 void sciGetUserSize( sciPointObj * pObj, double * width, double * height )
 {
   switch( sciGetEntityType( pObj ) )
@@ -3562,7 +3562,7 @@ void sciGetUserSize( sciPointObj * pObj, double * width, double * height )
     break ;
   }
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * get how is displayed the text around its position.
  * If TRUE, the position is the middle of the displayed string.
@@ -3580,7 +3580,7 @@ BOOL sciGetCenterPos( sciPointObj * pObj )
     return FALSE ;
   }
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * return wether the current object is displayed in 2d or 3d mode.
  */
@@ -3600,7 +3600,7 @@ BOOL sciGetIs3d( sciPointObj * pObj )
   }
   return FALSE ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * get the number of children of a graphic object
  * @return number of children of object pObj
@@ -3616,7 +3616,7 @@ int sciGetNbChildren( sciPointObj * pObj )
   }
   return nbChildren ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * Return if an object directly accessible as a son of an other in Scilab.
  * For instance, Label objects are not accessible.
@@ -3627,7 +3627,7 @@ BOOL sciGetIsAccessibleChild( sciPointObj * pObj )
   return sciGetEntityType( pObj ) != SCI_LABEL
          && GetHandleVisibilityOnUimenu( pObj ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * return the number of children of an object. This corresponds to the number of children
  * seen in the Scilab console.
@@ -3644,14 +3644,14 @@ int sciGetNbAccessibleChildren( sciPointObj * pObj )
   }
   return nbChildren ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj )
 {
   if (sciGetEntityType(pobj)!=SCI_UIMENU) { return TRUE ; }
   
   return pUIMENU_FEATURE(pobj)->handle_visible;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * return the number of object of a certain type which can be found among the descendants
  * of an object.
@@ -3675,7 +3675,7 @@ int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
   }
   return nbFound ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * return the hidden color of a surface or the inherated attribute of a subwindow.
  */
@@ -3693,7 +3693,7 @@ int sciGetHiddenColor( sciPointObj * pObj )
   }
   return -10 ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * return if the drawlater mode is on for the parent figure.
  */
@@ -3701,7 +3701,7 @@ BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
 {
   return pFIGURE_FEATURE(sciGetParentFigure(pobj))->auto_redraw ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * To retrieve the type of grid for each dimension
  */
@@ -3721,7 +3721,7 @@ void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zSty
     *zStyle = -1 ;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * To retrieve the viewport property
  * viewport property is only enable when the auto_resize property of the figure is
@@ -3750,7 +3750,7 @@ void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize )
     *ySize = -1 ;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 char * sciGetInfoMessage( sciPointObj * pObj )
 {
   switch ( sciGetEntityType(pObj) )
@@ -3763,7 +3763,7 @@ char * sciGetInfoMessage( sciPointObj * pObj )
   }
   return NULL ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int sciGetInfoMessageLength( sciPointObj * pObj )
 {
   switch ( sciGetEntityType(pObj) )
@@ -3777,7 +3777,7 @@ int sciGetInfoMessageLength( sciPointObj * pObj )
   return -1 ;
 
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
 {
   switch ( sciGetEntityType(pObj) )
@@ -3809,7 +3809,7 @@ void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
     *posY = -1 ;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj )
 {
   switch ( sciGetEntityType(pObj) )
@@ -3825,7 +3825,7 @@ BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj )
   }
   return FALSE ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 char * sciGetEventHandler( sciPointObj * pObj )
 {
   switch ( sciGetEntityType(pObj) )
@@ -3841,7 +3841,7 @@ char * sciGetEventHandler( sciPointObj * pObj )
   }
   return NULL ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 double * sciGetAxesBounds( sciPointObj * pObj )
 {
   switch( sciGetEntityType(pObj) )
@@ -3853,7 +3853,7 @@ double * sciGetAxesBounds( sciPointObj * pObj )
     return NULL ;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 double * sciGetMargins( sciPointObj * pObj )
 {
   switch( sciGetEntityType(pObj) )
@@ -3865,7 +3865,7 @@ double * sciGetMargins( sciPointObj * pObj )
     return NULL ;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * To get the computed data bounds of a subwin.
  * * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
@@ -3893,7 +3893,7 @@ void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
   }
   return ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * Get data-bounds defined by the user and not modified for pretty print by scilab.
  * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
@@ -3924,7 +3924,7 @@ void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
   }
   return ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * Get the viewing angles of a subwindow in degrees.
  */
@@ -3943,17 +3943,17 @@ void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
     break;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int sciGetWhiteColorIndex(sciPointObj * pObj)
 {
   return sciGetNumColors(pObj) + 1;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int sciGetBlackColorIndex(sciPointObj * pObj)
 {
   return sciGetNumColors(pObj) + 2;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * Copy the logflags of a subwin to an array of size 3.
  */
@@ -3971,7 +3971,7 @@ void sciGetLogFlags(sciPointObj * pObj, char flags[3])
     break;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * To know if the pixmap mode a figure is on or off.
  */
@@ -3995,7 +3995,7 @@ BOOL sciGetPixmapMode(sciPointObj * pObj)
   }
   return FALSE;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * @return number of vertices of a pointObj
  */
@@ -4011,7 +4011,7 @@ int sciGetNbPoints(sciPointObj * pObj)
   }
   return -1;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int sciGetPolylineStyle(sciPointObj * pObj)
 {
   switch(sciGetEntityType(pObj))
@@ -4024,7 +4024,7 @@ int sciGetPolylineStyle(sciPointObj * pObj)
   }
   return -1;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 BOOL sciGetIsClosed(sciPointObj * pObj)
 {
   switch(sciGetEntityType(pObj))
@@ -4037,7 +4037,7 @@ BOOL sciGetIsClosed(sciPointObj * pObj)
   }
   return FALSE;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 double sciGetArrowSize(sciPointObj * pObj)
 {
   switch(sciGetEntityType(pObj))
@@ -4052,7 +4052,7 @@ double sciGetArrowSize(sciPointObj * pObj)
   }
   return -1;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 void sciGetTextPos(sciPointObj * pObj, double position[3])
 {
   switch(sciGetEntityType(pObj))
@@ -4073,7 +4073,7 @@ void sciGetTextPos(sciPointObj * pObj, double position[3])
     break;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * Convert user coordinates to pixel ones (relative to the viewing canvas).
  * @param pObj subwindow handle
@@ -4094,7 +4094,7 @@ void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pi
     break;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * @return TRUE if pObj is a subwin with isoview mode on.
  */
@@ -4109,7 +4109,7 @@ BOOL sciGetIsIsoView(sciPointObj * pObj)
     break;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * @return TRUE if pObj is a subwindow with cube scaling mode on.
  */
@@ -4124,7 +4124,7 @@ BOOL sciGetIsCubeScaled(sciPointObj * pObj)
     break;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * @return TRUE if the X axis of the subwindow pObj is reversed
  */
@@ -4139,7 +4139,7 @@ BOOL sciGetXAxisReverse(sciPointObj * pObj)
     break;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
 * @return TRUE if the Y axis of the subwindow pObj is reversed
 */
@@ -4154,7 +4154,7 @@ BOOL sciGetYAxisReverse(sciPointObj * pObj)
     break;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
 * @return TRUE if the Z axis of the subwindow pObj is reversed
 */
@@ -4169,4 +4169,4 @@ BOOL sciGetZAxisReverse(sciPointObj * pObj)
     break;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/

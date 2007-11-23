@@ -43,11 +43,11 @@
 #include "MALLOC.h"
 #include "DrawingBridge.h"
 
-/*------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 /* setSubWinAngles                                                                    */
 /* Modify the viewing angles of a subwindow                                           */
 /* for safer modifications prefer use Obj_RedrawNewAngle                              */
-/*------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha )
 {
   /**dj20003***/
@@ -93,10 +93,10 @@ int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha )
   return 0 ;
 }
 
-/*------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 /* Obj_RedrawNewAngle                                                                 */
 /* Modify the viewing angles of a subwindow and the one of its brothers id necessary  */
-/*------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 
 void Obj_RedrawNewAngle( sciPointObj * pSubWin, double theta, double alpha )
 {
@@ -2512,10 +2512,10 @@ sciSetSubWindowPos (sciPointObj * pobj, int *pposx, int *pposy)
 }
 
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* sciSelectFirstSubwin                                                              */
 /* select under the first window found under the current figure                      */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void sciSelectFirstSubwin( sciPointObj * parentFigure )
 {
   sciSons * figureSons = sciGetSons ( parentFigure ) ;
@@ -2582,13 +2582,13 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
   return sciInitSelectedSubWin( psubwinobj ) ;
 }
 
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 int sciInitSelectedObject( sciPointObj * pObj )
 {
   sciAddUniqueSelectedSon(sciGetParent(pObj), pObj ) ;
   return 0 ;
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 /**
  * The object become selected within its siblings
  * For subwin object, use sciSetSelectedSubWin instead.
@@ -2602,7 +2602,7 @@ int sciSetSelectedObject( sciPointObj * pObj )
   }
   return sciInitSelectedObject( pObj ) ;
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 
 /**sciSetOriginalSubWin
  * DO NOT USE !!!
@@ -3107,7 +3107,7 @@ int sciSwitchWindow(int winnum)
   return 0;
 }
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * In new graphic style, select a window and create one if not already done.
  */ 
@@ -3116,7 +3116,7 @@ int sciInitUsedWindow( int winNum )
   return sciSwitchWindow( winNum ) ; /* create the handle */
 }
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * In new graphic style, select a window and create one if not already done.
  */
@@ -3132,7 +3132,7 @@ int sciSetUsedWindow( int winNum )
   return sciInitUsedWindow( winNum ) ;
 }
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 
 
 
@@ -3460,7 +3460,7 @@ int sciSetAutoSize( sciPointObj * pObj, BOOL autoSize )
   }
   return sciInitAutoSize( pObj, autoSize ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitAlignment( sciPointObj * pObj, sciTextAlignment align )
 {
   switch (sciGetEntityType (pObj))
@@ -3474,7 +3474,7 @@ int sciInitAlignment( sciPointObj * pObj, sciTextAlignment align )
   }
   return -1 ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciSetAlignment( sciPointObj * pObj, sciTextAlignment align )
 {
   if ( sciGetAlignment( pObj ) == align )
@@ -3484,7 +3484,7 @@ int sciSetAlignment( sciPointObj * pObj, sciTextAlignment align )
   }
   return sciInitAlignment( pObj, align ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitUserSize( sciPointObj * pObj, double width, double height )
 {
   switch( sciGetEntityType( pObj ) )
@@ -3499,7 +3499,7 @@ int sciInitUserSize( sciPointObj * pObj, double width, double height )
   }
   return -1 ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciSetUserSize( sciPointObj * pObj, double width, double height )
 {
   double curWidth  ;
@@ -3512,7 +3512,7 @@ int sciSetUserSize( sciPointObj * pObj, double width, double height )
   }
   return sciInitUserSize( pObj, width, height ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitCenterPos( sciPointObj * pObj, BOOL newCP )
 {
   switch( sciGetEntityType( pObj ) )
@@ -3526,7 +3526,7 @@ int sciInitCenterPos( sciPointObj * pObj, BOOL newCP )
   }
   return -1 ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciSetCenterPos( sciPointObj * pObj, BOOL newCP )
 {
   if ( sciGetCenterPos( pObj ) == newCP )
@@ -3536,7 +3536,7 @@ int sciSetCenterPos( sciPointObj * pObj, BOOL newCP )
   }
   return sciInitCenterPos( pObj, newCP ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
 {
    switch( sciGetEntityType( pObj ) )
@@ -3579,7 +3579,7 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
    }
    return -1 ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * Force an object to be displayed in 2d or 3d mode.
  */
@@ -3592,7 +3592,7 @@ int sciSetIs3d( sciPointObj * pObj, BOOL is3d )
   }
   return sciInitIs3d( pObj, is3d ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitHiddenColor( sciPointObj * pObj, int newColor )
 {
   switch( sciGetEntityType( pObj ) )
@@ -3609,7 +3609,7 @@ int sciInitHiddenColor( sciPointObj * pObj, int newColor )
   }
   return -1 ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciSetHiddenColor( sciPointObj * pObj, int newColor )
 {
   if ( sciGetHiddenColor( pObj ) == newColor )
@@ -3619,7 +3619,7 @@ int sciSetHiddenColor( sciPointObj * pObj, int newColor )
   }
   return sciInitHiddenColor( pObj, newColor ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
 {
   switch( sciGetEntityType( pObj ) )
@@ -3635,7 +3635,7 @@ int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
   }
   return -1 ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * Set the grid of an axes object
  */
@@ -3652,7 +3652,7 @@ int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
   }
   return sciInitGridStyle( pObj, xStyle, yStyle, zStyle ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitViewport( sciPointObj * pObj, int xSize, int ySize )
 {
   switch( sciGetEntityType( pObj ) )
@@ -3666,7 +3666,7 @@ int sciInitViewport( sciPointObj * pObj, int xSize, int ySize )
   }
   return -1 ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * Set the viewport property of a figure.
  * Effective only if the auto_resize property is enable
@@ -3685,7 +3685,7 @@ int sciSetViewport( sciPointObj * pObj, int xSize, int ySize )
   return sciInitViewport( pObj, xSize, ySize ) ;
 
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * Modify the string in the info bar of the graphic window
  */
@@ -3731,7 +3731,7 @@ int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
     return -1 ;
   }
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitEventHandler( sciPointObj * pObj, char * name )
 {
   switch( sciGetEntityType( pObj ) )
@@ -3770,7 +3770,7 @@ int sciInitEventHandler( sciPointObj * pObj, char * name )
   }
 
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciSetEventHandler( sciPointObj * pObj, char * name )
 {
   if ( strcmp( sciGetEventHandler(pObj), name ) == 0 )
@@ -3781,7 +3781,7 @@ int sciSetEventHandler( sciPointObj * pObj, char * name )
 
   return sciInitEventHandler( pObj, name ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
 {
   switch( sciGetEntityType( pObj ) )
@@ -3796,7 +3796,7 @@ int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
     return -1 ;
   }
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciSetIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
 {
   if ( sciGetIsEventHandlerEnable(pObj) == enable )
@@ -3807,7 +3807,7 @@ int sciSetIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
 
   return sciInitIsEventHandlerEnable( pObj, enable ) ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * Set data-bounds defined by the user.
  * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
@@ -3843,7 +3843,7 @@ int sciSetDataBounds( sciPointObj * pObj, double bounds[6] )
   }
   return 0 ;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta)
 {
   switch(sciGetEntityType(pObj))
@@ -3857,7 +3857,7 @@ int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta)
   }
   return -1;
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * Set the viewing angles (in degrees) of a subwindow
  */
@@ -3875,7 +3875,7 @@ int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta)
   return sciInitViewingAngles(pObj, alpha, theta) ;
 
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * Set the info message of a figure with the information about rotation angles
  */
@@ -3895,7 +3895,7 @@ int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double
   
 
 }
-/*--------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
  * To set the pixmap mode of a figure to on or off
  */
@@ -3919,7 +3919,7 @@ int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff)
   }
   return -1;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * To set the pixmap mode of a figure to on or off
  */
@@ -3932,7 +3932,7 @@ int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff)
   }
   return sciInitPixmapMode(pObj, onOrOff);
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ)
 {
   switch(sciGetEntityType(pObj))
@@ -3949,7 +3949,7 @@ int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ)
     return -1;
   }
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * Set the position of a label or text object.
  */
@@ -3963,4 +3963,4 @@ int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ) {
   }
   return sciInitTextPos(pObj, posX, posY, posZ);
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/

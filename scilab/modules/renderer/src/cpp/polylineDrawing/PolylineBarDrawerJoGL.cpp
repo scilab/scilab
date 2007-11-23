@@ -19,18 +19,18 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 PolylineBarDrawerJoGL::PolylineBarDrawerJoGL( DrawablePolyline * polyline )
   : DrawPolylineStrategy(polyline), DrawableObjectJoGL(polyline)
 {
   setJavaMapper(new PolylineBarDrawerJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 PolylineBarDrawerJoGL::~PolylineBarDrawerJoGL(void)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void PolylineBarDrawerJoGL::drawPolyline( void )
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
@@ -94,16 +94,16 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   delete[] height;
   endDrawing() ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void PolylineBarDrawerJoGL::showPolyline( void )
 {
   show();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 PolylineBarDrawerJavaMapper * PolylineBarDrawerJoGL::getBarDrawerJavaMapper(void)
 {
   return dynamic_cast<PolylineBarDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

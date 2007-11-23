@@ -19,7 +19,7 @@
 #include "DrawingBridge.h"
 #include "getcolordef.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_len )
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,flagx = -1,iwin;
@@ -43,7 +43,7 @@ int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_
   LhsVar(1)=0;
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
 {
   integer ierr;
@@ -105,7 +105,7 @@ int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
 
   return ierr;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(xg2psofig)(char *fname, integer *len, integer *iwin, integer *color, char *driver, long int l1, long int l2)
 {
   int sc;
@@ -116,4 +116,4 @@ int C2F(xg2psofig)(char *fname, integer *len, integer *iwin, integer *color, cha
   /*scig_toPs(*iwin,sc,fname,driver);*/
   return scig_toPs(*iwin,sc,fname,driver); /* why twice ???? */
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

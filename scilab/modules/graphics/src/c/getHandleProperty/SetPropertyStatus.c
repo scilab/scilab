@@ -8,7 +8,7 @@
 
 #include "SetPropertyStatus.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 SetPropertyStatus sciSetFinalStatus( SetPropertyStatus status1, SetPropertyStatus status2 )
 {
   if ( status1 == SET_PROPERTY_ERROR || status2 == SET_PROPERTY_ERROR )
@@ -28,4 +28,4 @@ SetPropertyStatus sciSetFinalStatus( SetPropertyStatus status1, SetPropertyStatu
   }
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

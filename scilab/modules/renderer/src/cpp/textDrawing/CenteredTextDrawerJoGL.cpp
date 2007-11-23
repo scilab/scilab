@@ -17,18 +17,18 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 CenteredTextDrawerJoGL::CenteredTextDrawerJoGL(DrawableText * text)
   : TextContentDrawerJoGL(text)
 {
   setJavaMapper(new CenteredTextDrawerJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 CenteredTextDrawerJoGL::~CenteredTextDrawerJoGL(void)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void CenteredTextDrawerJoGL::setDrawerParameters(void)
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
@@ -57,11 +57,11 @@ void CenteredTextDrawerJoGL::setDrawerParameters(void)
 
   getCenteredTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 CenteredTextDrawerJavaMapper * CenteredTextDrawerJoGL::getCenteredTextDrawerJavaMapper(void)
 {
   return dynamic_cast<CenteredTextDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <Windows.h>
 #include <windowsx.h>
@@ -10,17 +10,17 @@
 #include "version.h"
 #include "wmcopydata.h"
 #include "dynamic_menus.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static HWND hWndScilab = NULL;
 HANDLE HandleThreadWnd = NULL;
 static char titleHiddenScilabWindow[MAX_PATH] = "";
 static int ScilabId = -1;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static DWORD WINAPI WndThread(LPVOID lpParam);
 static void RegisterWindowClass(void);
 static void GetFreeTitleOfWindowHidden(void);
 static BOOL ON_WND_HIDDEN_WM_COPYDATA(HWND hwnd,HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL CreateScilabHiddenWndThread(void)
 {
 	BOOL bOK = FALSE;
@@ -30,7 +30,7 @@ BOOL CreateScilabHiddenWndThread(void)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static DWORD WINAPI WndThread(LPVOID lpParam) 
 {
 	HANDLE hWndScilab = NULL;
@@ -60,7 +60,7 @@ static DWORD WINAPI WndThread(LPVOID lpParam)
 
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 LRESULT CALLBACK HiddenWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) 
 {
 	switch (Msg)
@@ -69,7 +69,7 @@ LRESULT CALLBACK HiddenWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam
 	}
 	return DefWindowProc(hWnd, Msg, wParam, lParam);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void RegisterWindowClass(void)
 {
 	WNDCLASSEX wcex;
@@ -89,7 +89,7 @@ static void RegisterWindowClass(void)
 
 	RegisterClassEx(&wcex);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void GetFreeTitleOfWindowHidden(void)
 {
 	HWND hWndScilab = NULL;
@@ -111,7 +111,7 @@ static void GetFreeTitleOfWindowHidden(void)
 	strcpy(titleHiddenScilabWindow,SearchedScilabWindow);
 	ScilabId = Number_of_Scilab;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL ON_WND_HIDDEN_WM_COPYDATA(HWND hwnd,HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct)
 {
 	char Command[MAX_PATH];
@@ -123,7 +123,7 @@ static BOOL ON_WND_HIDDEN_WM_COPYDATA(HWND hwnd,HWND hWndSend,PCOPYDATASTRUCT My
 
 	return TRUE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char *getCurrentTitleScilabHiddenWindow(void)
 {
 	char *currentTitle = NULL;
@@ -134,9 +134,9 @@ char *getCurrentTitleScilabHiddenWindow(void)
 	}
 	return currentTitle;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int getCurrentScilabId(void)
 {
 	return ScilabId;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

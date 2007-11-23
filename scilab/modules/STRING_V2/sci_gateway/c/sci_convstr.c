@@ -18,7 +18,7 @@
 #include "convstr.h"
 #include "localization.h"
 #include "Scierror.h"
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 {
 	char **Input_Matrix = NULL;
@@ -130,4 +130,4 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 	if (Output_Matrix) {FREE(Output_Matrix); Output_Matrix=NULL; }
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

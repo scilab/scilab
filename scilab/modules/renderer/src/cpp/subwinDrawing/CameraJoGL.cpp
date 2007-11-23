@@ -11,13 +11,13 @@
 namespace sciGraphics
 {
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 CameraJoGL::CameraJoGL( Camera * camera )
   : CameraBridge(), DrawableObjectJoGL(camera)
 {
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void CameraJoGL::renderPosition( void )
 {
   getCameraJavaMapper()->setViewingArea(m_aViewingTranslation[0], m_aViewingTranslation[1],
@@ -33,25 +33,25 @@ void CameraJoGL::renderPosition( void )
 
   getCameraJavaMapper()->placeCamera();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void CameraJoGL::replaceCamera( void )
 {
   getCameraJavaMapper()->replaceCamera();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 CameraJavaMapper * CameraJoGL::getCameraJavaMapper(void)
 {
   return dynamic_cast<CameraJavaMapper *>(getJavaMapper());
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void CameraJoGL::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
   getCameraJavaMapper()->getPixelCoordinates(userCoord[0], userCoord[1], userCoord[2], pixCoord);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void CameraJoGL::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
   getCameraJavaMapper()->get2dViewPixelCoordinates(userCoord[0], userCoord[1], userCoord[2], pixCoord);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 }

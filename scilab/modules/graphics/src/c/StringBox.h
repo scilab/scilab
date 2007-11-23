@@ -14,7 +14,7 @@
 #include "Vect2Matrix.h"
 #include "ObjectStructure.h"
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * return the bounding rectangle of a string.
  * @param string bounded string
@@ -30,7 +30,7 @@ void getStringBbox( char * string, int center[2], int rect[4] ) ;
  * current axes.
  */
 void callXstringL( char * string, int posX, int posY, int boundingRect[4] ) ;
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * compute the four corners of a text
  * works only in 2D
@@ -120,7 +120,7 @@ void getStringsPositions( StringMatrix  * strMat        ,
                           double          angle         ,
                           Vect2iMatrix  * stringPosition,
                           int             boundingBox[4][2] ) ;
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * Compute the bounding box of a text object.
  * @param pText   Pointer on the object to surround.
@@ -141,7 +141,7 @@ void getTextBoundingBox( sciPointObj * pText        ,
 void getTextAabb( sciPointObj * pText        ,
                   int           rectPix[4]   ,
                   int           cornPix[4][2] ) ;
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * Rotate four points around the first one.
  * @param boundingBox the four 2D points.
@@ -155,7 +155,7 @@ void rotateBoundingBox( int boundingBox[4][2], int center[2], double angle ) ;
  * @param angle rotation angle in radian.
  */
 void translateBoundingBox( int boundingBox[4][2], int trans[2] ) ;
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
  /**
  * returns the minimal space between too consecutive strings horizontally.
  */
@@ -166,7 +166,7 @@ int getStringHorizontalSpace( void ) ;
  */
 int getStringVerticalSpace( void ) ;
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
  * Check if a string can be displayed in a cell with a certain width and height.
  */
@@ -193,5 +193,5 @@ void getStringPositionTranslation( BOOL centeredPos, int textSize[2], int bbox[4
 * @param position of the cells in which the strings need to fit.
 */
 int computeSuitableFont( StringMatrix  * strMat, Vect2iMatrix  * stringPosition ) ;
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 #endif /* _STRING_BOX_H_ */

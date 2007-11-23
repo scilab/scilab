@@ -466,7 +466,7 @@ sciSons * sciGetLastSons (sciPointObj * pobj)
   return (sciSons *)sciGetRelationship (pobj)->plastsons ;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * return the next son in the sons list which is accessible, ie which can be seen in the
  * Scilab console. If there is not any more accessible one, then return NULL.
@@ -480,7 +480,7 @@ sciSons * sciGetNextAccessibleSon( sciSons * son )
   }
   return nextSon ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * return the first accessible son of an object or NULL if there is not any.
  */
@@ -493,7 +493,7 @@ sciSons * sciGetFirstAccessibleSon( sciPointObj * pObj )
   }
   return firstSon ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * return the first son of parentObj which points on searchObj.
  * @param[in] searchObj Object we are looking for in the children list.
@@ -509,10 +509,10 @@ sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj )
   }
   return curSon ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 /************************************ END SONS **************************************/
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * move a graphic object from its position in the hierarchy to an other place.
  * Note that we don't check wether the moved object is compatible with its new parent.
@@ -553,7 +553,7 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
 
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * check if an object can be the son of an other.
  * In Scilab :
@@ -595,7 +595,7 @@ BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent )
   }
   return FALSE ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * move a list of handle from anywhere in the handles hierarchy under another handle.
  * Can be used for example to move an object from a window to another.
@@ -696,7 +696,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * Change the position of two graphic objects in the scilab hierarchy.
  * The two objects should be compatible with their new parents.
@@ -749,7 +749,7 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
   return 0 ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * Swap the position of the two handles in the hierarchy.
  * Both handles should be compatible with their new places.
@@ -799,4 +799,4 @@ int swapHandles( unsigned long firstHdl, unsigned long secondHdl )
   return 0 ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

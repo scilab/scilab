@@ -16,7 +16,7 @@
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableObject * DrawableSubwinFactory::create( void )
 {
   DrawableSubwin * newSubwin = new DrawableSubwin( m_pDrawed ) ;
@@ -31,7 +31,7 @@ DrawableObject * DrawableSubwinFactory::create( void )
 
   return newSubwin;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableSubwinFactory::update( void )
 {
   // update the camera
@@ -40,6 +40,6 @@ void DrawableSubwinFactory::update( void )
   fact.update();
   
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

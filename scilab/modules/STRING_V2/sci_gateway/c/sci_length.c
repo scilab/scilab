@@ -23,13 +23,13 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /* get length */
 static int lengthStrings(char *fname);
 static int lengthMatrix(char *fname);
 static int lengthList(char *fname);
 static int lengthOthers(char *fname);
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
 {
   CheckRhs(1,1);
@@ -56,7 +56,7 @@ int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
 
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int lengthStrings(char *fname)
 {
 	char **Input_StringMatrix = NULL;
@@ -85,7 +85,7 @@ static int lengthStrings(char *fname)
 	}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int lengthMatrix(char *fname)
 {
 	int Row_Num = 0, Col_Num = 0;
@@ -106,7 +106,7 @@ static int lengthMatrix(char *fname)
 	
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int lengthList(char *fname)
 {
 	int Row_Num = 0,Col_Num = 0;
@@ -126,11 +126,11 @@ static int lengthList(char *fname)
 
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int lengthOthers(char *fname)
 {
 	/* unknow type */
 	Scierror(999, _("%s : Not managed input type.\n"));
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

@@ -15,11 +15,11 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 static int asciiStrings(char *fname);
 static int asciiMatrix(char *fname);
 static int asciiOthers(char *fname);
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 int C2F(sci_ascii) _PARAMS((char *fname,unsigned long fname_len))
 {
 	CheckRhs(1,1);
@@ -41,7 +41,7 @@ int C2F(sci_ascii) _PARAMS((char *fname,unsigned long fname_len))
   }
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int asciiStrings(char *fname)
 {
 	char **Input_StringMatrix = NULL;
@@ -85,7 +85,7 @@ static int asciiStrings(char *fname)
 	if (Output_IntMatrix) { FREE(Output_IntMatrix); Output_IntMatrix=NULL;}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int asciiMatrix(char *fname)
 {
 	char **Output_StringMatrix = NULL;
@@ -137,10 +137,10 @@ static int asciiMatrix(char *fname)
 	return 0;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int asciiOthers(char *fname)
 {
 	Scierror(999,_("%s : Not managed input type.\n"),fname);
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

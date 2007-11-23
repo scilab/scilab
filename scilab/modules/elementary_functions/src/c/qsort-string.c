@@ -24,17 +24,17 @@ static int swapcodestring( char ** parmi, char ** parmj, int n,int incr)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareCstring(char *i,char *j)
 {
   return(strcmp(*((char * *) i),*((char **) j)));
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareDstring(char *i,char *j)
 {
   return(- strcmp(*((char * *) i),*((char **) j)));
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
@@ -57,7 +57,7 @@ void ColSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodestring,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
@@ -82,7 +82,7 @@ void RowSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodestring,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
@@ -99,7 +99,7 @@ void GlobalSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
 	   (dir == 'i' ) ? compareCstring:compareDstring,
 	   swapcodestring,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /*******************************************************
  *  lexicographic order with Rows ind is of size n
  *  ind gives the permutation of the rows which is applied 
@@ -107,13 +107,13 @@ void GlobalSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
  ******************************************************/
 static int lexicolsstring =1;
 static int lexirowsstring =1;
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void setLexiSizestring(int n,int p) 
 {
   lexicolsstring = p;
   lexirowsstring = n;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiRowcompareCstring(char * *i,char * *j)
 {
   int jc;
@@ -126,7 +126,7 @@ static  int LexiRowcompareCstring(char * *i,char * *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiRowcompareDstring(char * *i,char * *j)
 {
   int jc;
@@ -139,7 +139,7 @@ static  int LexiRowcompareDstring(char * *i,char * *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int LexiRowswapcodestring(char *parmi,char * parmj,int n) 
 { 		
   int i = n,j;
@@ -158,7 +158,7 @@ static int LexiRowswapcodestring(char *parmi,char * parmj,int n)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiRowstring(char * *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -173,7 +173,7 @@ void LexiRowstring(char * *a,int *ind,int flag,int n,int p,char dir)
 	   (dir == 'i' ) ? LexiRowcompareCstring:LexiRowcompareDstring,
 	   LexiRowswapcodestring,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  *  lexicographic order with Cols ind is of size p
  *  ind gives the permutation of the column which is applied 
@@ -191,7 +191,7 @@ static  int LexiColcompareCstring(char * *i,char * *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiColcompareDstring(char * *i,char * *j)
 {
   int ic;
@@ -204,7 +204,7 @@ static  int LexiColcompareDstring(char * *i,char * *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int LexiColswapcodestring(char *parmi,char* parmj,int n) 
 { 		
   int i = n,ir;
@@ -223,7 +223,7 @@ static int LexiColswapcodestring(char *parmi,char* parmj,int n)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiColstring(char * *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -238,4 +238,4 @@ void LexiColstring(char * *a,int *ind,int flag,int n,int p,char dir)
 	   (dir == 'i' ) ? LexiColcompareCstring:LexiColcompareDstring,
 	   LexiColswapcodestring,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

@@ -16,12 +16,12 @@ extern "C"
 
 using namespace sciGraphics ;
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void createDrawer( sciPointObj * pObj )
 {
   getHandleDrawer( pObj ) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void destroyHandleDrawer( sciPointObj * pObj )
 {
   /* don't call getHandleDrawer for the test, otherwise a drawer will be created */
@@ -32,7 +32,7 @@ void destroyHandleDrawer( sciPointObj * pObj )
     pObj->pDrawer = NULL ;
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void sciDrawObj( sciPointObj * pObj )
 {
   /* force total redraw */
@@ -44,12 +44,12 @@ void sciDrawObj( sciPointObj * pObj )
   /* redisplay everything, including this handle */
   getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void displayChildren( sciPointObj * pObj )
 {
   getHandleDrawer( pObj )->displayChildren() ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void redrawHierarchy( sciPointObj * pObj )
 {
   getHandleDrawer(pObj)->familyHasChanged();
@@ -63,4 +63,4 @@ void redrawHierarchy( sciPointObj * pObj )
     getHandleDrawer(pObj)->display();
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/

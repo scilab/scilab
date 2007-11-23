@@ -40,7 +40,7 @@ function [a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,CI,
   //          - ai, bi (String) : avec i=1:7 : expressions des coefficients des differents operateurs       // 
   //          - mesures (vecteur des doubles) : renvoi la liste des points de mesures                       //
   //          - k (entier) : renvoie le nombre de port d'entree regulier du bloc EDP                        //
-  //--------------------------------------------------------------------------------------------------------//
+  //-----------------------------------------------------------------------------------------------//
    
   // domaine
   choix=0;signe=1;discr=0;type_meth=1;degre=1;Nbr_maillage = 10; oper=[];

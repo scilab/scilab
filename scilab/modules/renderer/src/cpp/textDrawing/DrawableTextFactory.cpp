@@ -24,7 +24,7 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableObject * DrawableTextFactory::create( void )
 {
   ConcreteDrawableText * newText = new ConcreteDrawableText( m_pDrawed ) ;
@@ -35,12 +35,12 @@ DrawableObject * DrawableTextFactory::create( void )
 
   return newText;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableTextFactory::update( void )
 {
   setStrategies(dynamic_cast<ConcreteDrawableText *>(getTextDrawer(m_pDrawed)));
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableTextFactory::setStrategies(ConcreteDrawableText * text)
 {
   text->removeTextDrawingStrategy();
@@ -80,6 +80,6 @@ void DrawableTextFactory::setStrategies(ConcreteDrawableText * text)
   }
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

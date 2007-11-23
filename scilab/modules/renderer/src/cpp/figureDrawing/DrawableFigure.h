@@ -31,7 +31,7 @@ public:
    */
   virtual void drawInContext( void ) ;
 
-  /*--------------------------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------------*/
   /* Set/Get properties */
 
   /**
@@ -96,7 +96,7 @@ public:
     * Create the rendering canvas for the figure.
     */
    void openRenderingCanvas( void ) ;
-  /*--------------------------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------------*/
    /**
     * Get the synchronization object that protect this figure.
     */
@@ -106,7 +106,7 @@ public:
     * Set the synchronization object that protect this figure.
     */
    void setSynchronizer( GraphicSynchronizer * synchronizer ) { m_pSynchronizer = synchronizer ; }
-  /*--------------------------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------------*/
 
 protected:
 
@@ -127,14 +127,14 @@ protected:
    */
   DrawableFigureBridge * getFigureImp( void ) ;
   
-  /*--------------------------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------------*/
   // Driver independent Algorithms
   /**
    * check if the auto_redraw option is enable
    */
   virtual bool checkAutoRedraw( void ) = 0 ;
 
-  /*--------------------------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------------*/
   // Driver dependant algorithms
 
   /**
@@ -152,10 +152,10 @@ protected:
    */
   void setBackgroundColor( void ) ;
 
-  /*--------------------------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------------*/
   /** Synchronizer object used to protect data of the figure and its children */
   GraphicSynchronizer * m_pSynchronizer;
-  /*--------------------------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------------*/
 
 } ;
 

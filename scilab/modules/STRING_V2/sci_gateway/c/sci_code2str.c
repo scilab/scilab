@@ -14,7 +14,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "code2str.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 {
 	char **Output_Matrix = NULL;
@@ -81,4 +81,4 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 	if (Output_Matrix) {FREE(Output_Matrix); Output_Matrix=NULL; }
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

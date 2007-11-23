@@ -7,7 +7,7 @@
 #include "qsort.h"
 #include "qsort-int.h"
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareCint(char *i,char *j)
 {
   if ( *((int *)i) > *((int *)j))
@@ -16,7 +16,7 @@ static int compareCint(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareDint(char *i,char *j)
 {
   if ( *((int *)i) < *((int *)j))
@@ -25,7 +25,7 @@ static int compareDint(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareCuint(char *i,char *j)
 {
   if ( *((unsigned int *)i) > *((unsigned int *)j))
@@ -34,7 +34,7 @@ static int compareCuint(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int compareDuint(char *i,char *j)
 {
   if ((unsigned int) *((unsigned int *)i) < (unsigned int)*((unsigned int *)j))
@@ -43,7 +43,7 @@ static int compareDuint(char *i,char *j)
     return (-1);
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 
 /******************************************************
  * Column sort of a matrix 
@@ -67,7 +67,7 @@ void ColSortint(int *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodeint,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void ColSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
 {
   int i,j;
@@ -87,7 +87,7 @@ void ColSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodeint,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 
 /******************************************************
  * Row sort of a matrix 
@@ -113,7 +113,7 @@ void RowSortint(int *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodeint,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void RowSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i,j;
@@ -135,7 +135,7 @@ void RowSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
 	       swapcodeint,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 
 /******************************************************
  * Global sort of a Matrix
@@ -154,7 +154,7 @@ void GlobalSortint(int *a,int *ind,int flag,int n,int p,char dir)
 	   swapcodeint,swapcodeind);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void GlobalSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i;
@@ -169,7 +169,7 @@ void GlobalSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
 	   swapcodeint,swapcodeind);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 
 /*******************************************************
  *  lexicographic order with Rows ind is of size n
@@ -178,7 +178,7 @@ void GlobalSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
  ******************************************************/
 static int lexicolsint =1;
 static int lexirowsint =1;
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void setLexiSizeint(int n,int p) 
 {
   lexicolsint = p;
@@ -245,7 +245,7 @@ static  int LexiRowcompareDuint(unsigned int *i, unsigned int*j)
   return (0);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int LexiRowswapcodeint(char *parmi,char * parmj,int n) 
 { 		
   int i = n,j;
@@ -264,7 +264,7 @@ static int LexiRowswapcodeint(char *parmi,char * parmj,int n)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiRowint(int *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -295,7 +295,7 @@ void LexiRowuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
 	   LexiRowswapcodeint,swapcodeind);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /******************************************************
  *  lexicographic order with Cols ind is of size p
  *  ind gives the permutation of the column which is applied 
@@ -331,7 +331,7 @@ static  int LexiColcompareCuint(unsigned int *i,unsigned int *j)
   return (0);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static  int LexiColcompareDint(int *i,int *j)
 {
   int ic;
@@ -361,7 +361,7 @@ static  int LexiColcompareDuint(unsigned int *i,unsigned int *j)
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int LexiColswapcodeint(char *parmi,char* parmj,int n) 
 { 		
   int i = n,ir;
@@ -380,7 +380,7 @@ static int LexiColswapcodeint(char *parmi,char* parmj,int n)
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void LexiColint(int *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
@@ -413,5 +413,5 @@ void LexiColuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
 	   swapcodeind);
 }
 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 

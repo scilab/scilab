@@ -1,12 +1,12 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include <string.h>
 #include "toolsdictionary.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /**
 * merge two strings array
 * append array2 to array1
@@ -20,7 +20,7 @@ static char **mergearrays(char **array1,int pos,char **array2,int sizearray2);
 
 /* compare function for qsort */
 static int comparewords (const void * a, const void * b);
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL appendDictionary(char ***dictionary,int *i,char ***datas,int *sizedatas)
 {
 	BOOL bOK = FALSE;
@@ -36,7 +36,7 @@ BOOL appendDictionary(char ***dictionary,int *i,char ***datas,int *sizedatas)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static char **mergearrays(char **array1,int pos,char **array2,int sizearray2)
 {
 	if (array1 && array2)
@@ -51,18 +51,18 @@ static char **mergearrays(char **array1,int pos,char **array2,int sizearray2)
 	}
 	return NULL;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int comparewords (const void * a, const void * b)
 {
 	return ( strcmp(*(char**)a,*(char**)b) );
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char ** SortDictionary(char **Strings,int SizeStrings)
 {
 	qsort(Strings,SizeStrings,sizeof(char*),comparewords);
 	return Strings;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** RemoveDuplicateDictionary(char **Strings,int *SizeStrings)
 {
 	char **returnedArray = NULL;
@@ -88,4 +88,4 @@ char ** RemoveDuplicateDictionary(char **Strings,int *SizeStrings)
 	}
 	return returnedArray;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

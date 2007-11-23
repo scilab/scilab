@@ -7,7 +7,7 @@
 
 #include <stdio.h> 
 #include <string.h> 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include "sci_UImenu.h"
 #include "MALLOC.h" /* MALLOC */
 #include "ObjectStructure.h"
@@ -17,7 +17,7 @@
 #include "GetProperty.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sci_UImenu( char *fname,unsigned long fname_len )
 {
   int numrow,numcol,outindex;
@@ -98,4 +98,4 @@ int sci_UImenu( char *fname,unsigned long fname_len )
   LhsVar(1)=Rhs+1;
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

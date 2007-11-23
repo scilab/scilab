@@ -1,20 +1,20 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include "CallScilab.h"
 #include "MALLOC.h"
 #include "scirun.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line,char CharToRemove);
 static BOOL RemoveComments(char *line);
 static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs);
 static BOOL SetLastJob(char *JOB);
 static char *lastjob=NULL;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* see CallScilab.h more informations*/
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int SendScilabJob(char *job)
 {
 	int retCode = -1;
@@ -86,7 +86,7 @@ int SendScilabJob(char *job)
 
 	return retCode;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL SetLastJob(char *JOB)
 {
 	BOOL bOK=FALSE;
@@ -104,7 +104,7 @@ static BOOL SetLastJob(char *JOB)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL GetLastJob(char *JOB,int nbcharsJOB)
 {
 	BOOL bOK=FALSE;
@@ -119,7 +119,7 @@ BOOL GetLastJob(char *JOB,int nbcharsJOB)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int SendScilabJobs(char **jobs,int numberjobs)
 {
 	#define BufferSecuritySize 64
@@ -237,7 +237,7 @@ int SendScilabJobs(char **jobs,int numberjobs)
 	
 	return retcode;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line,char CharToRemove)
 {
 	int l=0;
@@ -256,7 +256,7 @@ static BOOL RemoveCharsFromEOL(char *line,char CharToRemove)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL RemoveComments(char *line)
 {
 	int l=0;
@@ -284,7 +284,7 @@ static BOOL RemoveComments(char *line)
 	
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs)
 {
 	BOOL bOK=FALSE;
@@ -306,4 +306,4 @@ static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs)
 	return bOK;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

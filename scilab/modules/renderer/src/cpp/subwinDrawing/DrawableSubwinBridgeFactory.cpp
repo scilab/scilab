@@ -13,18 +13,18 @@
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableSubwinBridge * DrawableSubwinBridgeFactory::create( void )
 {
   DrawableSubwinJoGL * newBridge =  new DrawableSubwinJoGL(m_pDrawable);
   newBridge->setJavaMapper(new DrawableSubwinJavaMapper());
   return newBridge;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableSubwinBridgeFactory::setDrawedSubwin( DrawableSubwin * subwin )
 {
   m_pDrawable = subwin;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

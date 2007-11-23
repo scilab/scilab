@@ -23,7 +23,7 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableObject * DrawableArcFactory::create( void )
 {
   ConcreteDrawableArc * newArc = new ConcreteDrawableArc(m_pDrawed);
@@ -34,12 +34,12 @@ DrawableObject * DrawableArcFactory::create( void )
   return newArc;
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableArcFactory::update( void )
 {
   setStrategies(getArcDrawer(m_pDrawed));
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableArcFactory::setStrategies( DrawableArc * arc )
 {
   arc->removeDrawingStrategies();
@@ -58,6 +58,6 @@ void DrawableArcFactory::setStrategies( DrawableArc * arc )
     arc->addDrawingStrategy(strategy);
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

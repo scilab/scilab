@@ -257,19 +257,19 @@ function test_run(varargin)
 		test_failed_percent  = test_failed_count  / test_count * 100;
 		
 		printf("\n");
-		printf("   ---------------------------------------------------------------------------------------\n");
+		printf("   ------------------------------------------------------------------------------\n");
 		printf("   Summary\n\n");
 		printf("   tests                     %4d - 100 %% \n",test_count);
 		printf("   passed                    %4d - %3d %% \n",test_passed_count ,test_passed_percent);
 		printf("   failed                    %4d - %3d %% \n",test_failed_count ,test_failed_percent);
 		printf("   skipped                   %4d - %3d %% \n",test_skipped_count,test_skipped_percent);
-		printf("   ---------------------------------------------------------------------------------------\n");
+		printf("   ------------------------------------------------------------------------------\n");
 		
 		if test_failed_count > 0 then
 			printf("   Details\n\n");
 			printf("%s\n",details_failed);
 			printf("\n");
-			printf("   ---------------------------------------------------------------------------------------\n");
+			printf("   ------------------------------------------------------------------------------\n");
 		end
 		
 	end

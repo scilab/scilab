@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
 #include "setgetlanguage.h"
@@ -10,15 +10,15 @@
 #include "defaultlanguage.h"
 #include "loadsavelanguage.h"
 #include "syncexec.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char CURRENTLANGUAGESTRING[LengthAlphacode]=SCILABDEFAULTLANGUAGE;
 static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int FindLanguageCode(char *lang);
 static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
 static char *GetLanguageFromAlias(char *langAlias);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {
 	BOOL bOK=FALSE;
@@ -58,17 +58,17 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char *getlanguage(void)
 {
 	return CURRENTLANGUAGESTRING;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int getcurrentlanguagecode(void)
 {
 	return CURRENTLANGUAGECODE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char *getlanguagefromcode(int code)
 {
 	int i=0;
@@ -82,12 +82,12 @@ char *getlanguagefromcode(int code)
 	}
 	return NULL;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int getcodefromlanguage(char *language)
 {
 	return FindLanguageCode(language);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL LanguageIsOK(char *lang)
 {
 	int i=0;
@@ -101,7 +101,7 @@ BOOL LanguageIsOK(char *lang)
 	}
 	return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int FindLanguageCode(char *lang)
 {
 	int i=0;
@@ -115,7 +115,7 @@ static int FindLanguageCode(char *lang)
 	}
 	return -1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL setlanguagecode(char *lang)
 {
 	int tmpCode=FindLanguageCode(lang);
@@ -127,7 +127,7 @@ static BOOL setlanguagecode(char *lang)
 	}
 	return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char *FindAlias(char *lang)
 {
 	int i=0;
@@ -140,7 +140,7 @@ static char *FindAlias(char *lang)
 	}
 	return NULL;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char *GetLanguageFromAlias(char *langAlias)
 {
 	int i=0;
@@ -153,17 +153,17 @@ static char *GetLanguageFromAlias(char *langAlias)
 	}
 	return NULL;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char *getlanguagealias(void)
 {
 	return FindAlias(CURRENTLANGUAGESTRING);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int comparelanguages(char *language1,char *language2)
 {
 	return strcmp(language1,language2);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL needtochangelanguage(char *language)
 {
   char *currentlanguage=getlanguage();
@@ -174,7 +174,7 @@ BOOL needtochangelanguage(char *language)
 
   return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char *convertlanguagealias(char *strlanguage)
 {
 	char *correctlanguage=NULL;
@@ -189,4 +189,4 @@ char *convertlanguagealias(char *strlanguage)
 	}
 	return correctlanguage;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

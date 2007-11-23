@@ -18,17 +18,17 @@ extern "C"
 namespace sciGraphics
 {
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 Camera::Camera( sciPointObj * pObj ) : DrawableObject(pObj)
 {
   
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 Camera::~Camera( void )
 {
   
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::setViewingArea( double axesBounds[4], double margins[4] )
 {
   double translation[2] ;
@@ -43,12 +43,12 @@ void Camera::setViewingArea( double axesBounds[4], double margins[4] )
   scale[1] = (1.0 - margins[2] - margins[3]) * axesBounds[3] ;
   getCameraImp()->setViewingArea(translation, scale);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::setRotationAngles( double alpha, double theta )
 {
   getCameraImp()->setAxesRotation(alpha, theta);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::setSubwinBox( double bounds[6] )
 {
 
@@ -87,7 +87,7 @@ void Camera::setSubwinBox( double bounds[6] )
   getCameraImp()->setAxesTranslation(trans) ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::setCameraParameters(void)
 {
   // here m_pDrawed is the subwin
@@ -102,27 +102,27 @@ void Camera::setCameraParameters(void)
   sciGetViewingAngles(m_pDrawed, &alpha, &theta);
   setRotationAngles(alpha, theta);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::renderPosition( void )
 {
   getCameraImp()->renderPosition();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::replaceCamera( void )
 {
   getCameraImp()->replaceCamera();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
   getCameraImp()->getPixelCoordinates(userCoord, pixCoord);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
   getCameraImp()->get2dViewPixelCoordinates(userCoord, pixCoord);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::draw( void )
 {
   initializeDrawing();
@@ -131,7 +131,7 @@ void Camera::draw( void )
   getCameraImp()->revertAxes();
   endDrawing();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Camera::show( void )
 {
   initializeDrawing();
@@ -139,12 +139,12 @@ void Camera::show( void )
   getCameraImp()->revertAxes();
   endDrawing();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 CameraBridge * Camera::getCameraImp( void )
 {
   return dynamic_cast<CameraBridge *>(m_pImp);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 }
 
 #undef FIT_WINDOW_RATIO

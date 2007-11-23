@@ -1,16 +1,16 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include <stdlib.h>
 #include "getvariablesname.h"
 #include "stackinfo.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void SortStrings(char **Strings,int SizeStrings);
 static void RemoveDuplicateStrings(char **Strings,int *SizeStrings);
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char **getVariablesName(int *sizearray, BOOL sorted)
 {
 	char **variables = NULL;
@@ -80,7 +80,7 @@ char **getLocalVariablesName(int *sizearray,BOOL sorted)
 
 	return variablesLocal;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char **getGlobalVariablesName(int *sizearray, BOOL sorted)
 {
 	char **variablesGlobal = NULL;
@@ -111,7 +111,7 @@ char **getGlobalVariablesName(int *sizearray, BOOL sorted)
 
 	return variablesGlobal;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void SortStrings(char **Strings,int SizeStrings)
 {
 	int fin,i;
@@ -135,7 +135,7 @@ static void SortStrings(char **Strings,int SizeStrings)
 		if(!Sorted)break;
 	}
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void RemoveDuplicateStrings(char **Strings,int *SizeStrings)
 {
 	int fin,i;
@@ -167,4 +167,4 @@ static void RemoveDuplicateStrings(char **Strings,int *SizeStrings)
 
 	*SizeStrings = newsize;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

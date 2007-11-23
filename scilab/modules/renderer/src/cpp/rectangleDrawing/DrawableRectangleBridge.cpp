@@ -15,18 +15,18 @@ namespace sciGraphics
 
 using namespace std ;
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableRectangleBridge::DrawableRectangleBridge( void )
 {
   m_oDrawingStrategies.clear() ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableRectangleBridge::~DrawableRectangleBridge( void )
 {
   // delete the strategies
   removeDrawingStrategies() ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableRectangleBridge::drawRectangle( void )
 {
   list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin() ;
@@ -35,12 +35,12 @@ void DrawableRectangleBridge::drawRectangle( void )
     (*it)->drawRectangle() ;
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableRectangleBridge::addDrawingStrategy( DrawRectangleStrategy * strategy )
 {
   m_oDrawingStrategies.push_back( strategy ) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableRectangleBridge::removeDrawingStrategies( void )
 {
   list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin() ;
@@ -51,5 +51,5 @@ void DrawableRectangleBridge::removeDrawingStrategies( void )
   }
   m_oDrawingStrategies.clear() ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 }

@@ -1,6 +1,6 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include "Scierror.h"
 #include "machine.h"
 #include "MALLOC.h"
@@ -10,16 +10,16 @@
 #include "gw_fileio.h"
 #include "localization.h"
 #include "../../../shell/includes/zzledt.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #define MAXSTR 512
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 extern int StringConvert __PARAMS((char *str));
 extern int C2F(xscion) __PARAMS((int *));
 extern int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type);
 extern int Store_Scan __PARAMS((int *nrow,int *ncol,sfdir *type_s,sfdir *type,int *retval, int*retval_s, rec_entry *buf, entry **data,int rowcount,int n));
 extern int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s);
 extern void Free_Scan(int nrow, int ncol, sfdir *type_s, entry **data);
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 int int_objscanf(char *fname,unsigned long fname_len)
 {
 	static char String[MAXSTR];
@@ -118,4 +118,4 @@ int int_objscanf(char *fname,unsigned long fname_len)
 	if (err==MEM_LACK) { Scierror(999,_("Error: in sscanf: cannot allocate more memory\n"));}
 	return 0;
 } 
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

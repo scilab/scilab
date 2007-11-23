@@ -17,18 +17,18 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 StandardTextDrawerJoGL::StandardTextDrawerJoGL(DrawableText * text)
   : TextContentDrawerJoGL(text)
 {
   setJavaMapper(new StandardTextDrawerJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 StandardTextDrawerJoGL::~StandardTextDrawerJoGL(void)
 {
   
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void StandardTextDrawerJoGL::setDrawerParameters(void)
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
@@ -42,11 +42,11 @@ void StandardTextDrawerJoGL::setDrawerParameters(void)
   sciGetTextPos(pObj, textPos);
   getStandardTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 StandardTextDrawerJavaMapper * StandardTextDrawerJoGL::getStandardTextDrawerJavaMapper(void)
 {
   return dynamic_cast<StandardTextDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

@@ -16,13 +16,13 @@
 #include "GraphicZoom.h"
 #include "Vertices.h"
 
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 double InvAxis( double min, double max, double u )
 {
   /*return (u-min) / (max-min) * min + (u-max) / (min-max) * max ;*/
   return min + max - u ; /* ahah little simplification */
 }
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 int ReverseDataFor3DXonly( sciPointObj * psubwin, double xvect[], int n1 )
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin) ;
@@ -51,7 +51,7 @@ int ReverseDataFor3DXonly( sciPointObj * psubwin, double xvect[], int n1 )
 
   return 0 ;
 }
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 int ReverseDataFor3DYonly( sciPointObj * psubwin, double yvect[], int n1 )
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
@@ -79,7 +79,7 @@ int ReverseDataFor3DYonly( sciPointObj * psubwin, double yvect[], int n1 )
 
   return 0;
 }
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 int ReverseDataFor3DZonly( sciPointObj * psubwin, double zvect[], int n1 )
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
@@ -110,7 +110,7 @@ int ReverseDataFor3DZonly( sciPointObj * psubwin, double zvect[], int n1 )
 
   return 0;
 }
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 int ReverseDataFor3D( sciPointObj * psubwin, double xvect[], double yvect[], double zvect[], int n1 )
 {
 
@@ -120,7 +120,7 @@ int ReverseDataFor3D( sciPointObj * psubwin, double xvect[], double yvect[], dou
 
   return 0;
 }
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 int trans3d( sciPointObj * pobj,
              integer       n   ,
              integer       xm[],
@@ -338,4 +338,4 @@ int trans3d( sciPointObj * pobj,
   FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
   return(1);
 }
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/

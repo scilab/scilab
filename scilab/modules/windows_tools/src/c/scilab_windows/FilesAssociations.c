@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,11 +14,11 @@
 #include "win_mem_alloc.h" /* MALLOC */
 #include "FindScilab.h"
 #include "wmcopydata.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern void PrintFile(char *filename);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void ReplaceSlash(char *pathout,char *pathin);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define MSG_SCIMSG1 "%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');"
 #define MSG_SCIMSG2 "%s -e scicos(getlongpathname('%s'));"
 #define MSG_SCIMSG3 "%s -e edit_graph(getlongpathname('%s'));"
@@ -27,7 +27,7 @@ static void ReplaceSlash(char *pathout,char *pathin);
 #define MSG_SCIMSG6 "scipad('%s'); "
 #define MSG_SCIMSG7 "Scilab Communication"
 #define MSG_SCIMSG8 "%s -e scipad(getlongpathname('%s')); "
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* teste si la chaine de caractere correspond à un fichier*/
 /* retourne TRUE si c'est le cas sinon FALSE */
 BOOL IsAFile(char *chainefichier)
@@ -45,7 +45,7 @@ BOOL IsAFile(char *chainefichier)
 
      return retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Teste si le fichier a une extension .sav ou .bin*/
 /* retourne TRUE si c'est le cas sinon FALSE */
 BOOL IsABinOrSavFile(char *chainefichier)
@@ -62,7 +62,7 @@ BOOL IsABinOrSavFile(char *chainefichier)
 	return retour;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL IsAGraphFile(char *chainefichier)
 {
 	BOOL retour=FALSE;
@@ -71,7 +71,7 @@ BOOL IsAGraphFile(char *chainefichier)
 	
 	return retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL IsAGraphFilegraph(char *chainefichier)
 {
 	BOOL retour=FALSE;
@@ -85,7 +85,7 @@ BOOL IsAGraphFilegraph(char *chainefichier)
 	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
 	return retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL IsAGraphFilegraphb(char *chainefichier)
 {
 	BOOL retour=FALSE;
@@ -99,7 +99,7 @@ BOOL IsAGraphFilegraphb(char *chainefichier)
 	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
 	return retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL IsAScicosFile(char *chainefichier)
 {
 	BOOL retour=FALSE;
@@ -108,7 +108,7 @@ BOOL IsAScicosFile(char *chainefichier)
 	
 	return retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL IsAScicosFileCOS(char *chainefichier)
 {
 	BOOL retour=FALSE;
@@ -122,7 +122,7 @@ BOOL IsAScicosFileCOS(char *chainefichier)
 	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
 	return retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL IsAScicosFileCOSF(char *chainefichier)
 {
 	BOOL retour=FALSE;
@@ -136,7 +136,7 @@ BOOL IsAScicosFileCOSF(char *chainefichier)
 	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
 	return retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 {
 	int Retour=FALSE;
@@ -231,7 +231,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 	}	
 	return Retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void ExtensionFileIntoLowerCase(char *fichier)
 {
 	char *tmpfile=NULL;
@@ -254,7 +254,7 @@ void ExtensionFileIntoLowerCase(char *fichier)
 	
 	FREE(tmpfile);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static void ReplaceSlash(char *pathout,char *pathin)
 {
 	int i=0;
@@ -265,4 +265,4 @@ static void ReplaceSlash(char *pathout,char *pathin)
 	}
 	pathout[i]='\0';
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

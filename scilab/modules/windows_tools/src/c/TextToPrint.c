@@ -1,14 +1,14 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include "TextToPrint.h"
 #include "win_mem_alloc.h" /* MALLOC */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static HDC PrinterHDC=NULL;
 static char PrinterName[2048];
 static char PrinterOrientation;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes)
 {
 	FLOAT cxDpi, cyDpi ;
@@ -64,7 +64,7 @@ HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWi
 	RestoreDC (hdc, -1) ;
 	return hFont ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void PrintString(char *lines,char *Entete)
 {
 	HDC PrintDC;
@@ -176,7 +176,7 @@ void PrintString(char *lines,char *Entete)
 	}
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void PrintFile(char *filename)
 {
 #define MAXBUF 4096
@@ -335,7 +335,7 @@ void PrintFile(char *filename)
 		SelectObject(PrintDC, hOldFont );
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Footer(HDC hdc,int number)
 {
 	HPEN hPen, hPenOld; 
@@ -369,7 +369,7 @@ void Footer(HDC hdc,int number)
 	TextOut(hdc,(tm.tmMaxCharWidth+10),CySize-(yChar*3),ptrLine,(int)strlen(ptrLine));
 	FREE(ptrLine); 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void PageHeader(HDC hdc,LPSTR Entete)
 {
 	HPEN hPen, hPenOld; 
@@ -418,7 +418,7 @@ void PageHeader(HDC hdc,LPSTR Entete)
 	FREE(ptrLine);     
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine)
 {
 	int LenLine=lstrlen(Line);
@@ -455,7 +455,7 @@ void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine)
 		wsprintf(CutLine,"%s",Line);
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL ConfigurePrinterDialogBox(void)
 {
 	BOOL bOK=FALSE;
@@ -513,7 +513,7 @@ BOOL ConfigurePrinterDialogBox(void)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 HDC GetPrinterDC(void)
 {
 	if (PrinterHDC == NULL)
@@ -555,12 +555,12 @@ HDC GetPrinterDC(void)
 
 	return PrinterHDC;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char GetPrinterOrientation(void)
 {
 	return PrinterOrientation;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char* GetPrinterName(void)
 {
 	char *ReturnPrinterName=NULL;
@@ -570,4 +570,4 @@ char* GetPrinterName(void)
 
 	return ReturnPrinterName;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

@@ -1,18 +1,18 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
 #include "localization.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern int C2F(bicubicinterp)(double *x, double *y, double *C, int *nx, int *ny,double *x_eval, double *y_eval, double *z_eval, int *m,int *outmode);
 extern int C2F(bicubicinterpwithgradandhes)();
 extern int C2F(bicubicinterpwithgrad)();
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define NB_OUTMODE 6
 static TableType OutModeTable[NB_OUTMODE] = {
 	{ "C0"        , C0         },
@@ -21,7 +21,7 @@ static TableType OutModeTable[NB_OUTMODE] = {
 	{ "periodic"  , PERIODIC   },
 	{ "by_nan"    , BY_NAN     },
 	{ "linear"    , LINEAR     }};
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int intinterp2d(char *fname,unsigned long fname_len)
 {
   /*    interface pour interp2d :
@@ -114,5 +114,5 @@ int intinterp2d(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 

@@ -13,42 +13,42 @@
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL isParameterHandle( int type )
 {
   return ( type == sci_handles ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL isParameterDoubleMatrix( int type )
 {
   return ( type == sci_matrix ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL isParameterTlist( int type )
 {
   return ( type == sci_tlist ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL isParameterStringMatrix( int type )
 {
   return ( type == sci_strings ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 double getDoubleFromStack( int stackPointer )
 {
   return *(stk( stackPointer ));
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 double * getDoubleMatrixFromStack( int stackPointer )
 {
   return stk( stackPointer ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void copyDoubleVectorFromStack( int stackPointer, double dest[], int nbElement )
 { 
   doubleArrayCopy( dest, getDoubleMatrixFromStack( stackPointer ), nbElement ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void copyDoubleVectorToIntFromStack( int stackPointer, int dest[], int nbElement )
 { 
   int i ;
@@ -58,7 +58,7 @@ void copyDoubleVectorToIntFromStack( int stackPointer, int dest[], int nbElement
     dest[i] = (int) values[i] ;
   }
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 double * createCopyDoubleVectorFromStack( int stackPointer, int nbElement )
 {
   double * res = MALLOC( nbElement * sizeof(double) ) ;
@@ -69,18 +69,18 @@ double * createCopyDoubleVectorFromStack( int stackPointer, int nbElement )
   copyDoubleVectorFromStack( stackPointer, res, nbElement ) ;
   return res ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char * getStringFromStack( int stackPointer )
 {
   return cstk( stackPointer ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** getStringMatrixFromStack( int stackPointer )
 {
   /* strange but it was taken from sci_set */
   return (char **) stackPointer ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** createCopyStringMatrixFromStack( int stackPointer, int nbElement )
 {
   int i ;
@@ -115,12 +115,12 @@ char ** createCopyStringMatrixFromStack( int stackPointer, int nbElement )
   return res ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 unsigned long getHandleFromStack( int stackPointer )
 {
   return (unsigned long) *(hstk( stackPointer )) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL isStringParamEqual( int stackPointer, const char * str )
 {
   if ( strcmp( getStringFromStack( stackPointer ), str ) == 0 )
@@ -132,8 +132,8 @@ BOOL isStringParamEqual( int stackPointer, const char * str )
     return FALSE ;
   }
 }
-/*-----------------------------------------------------------------------------------*/
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int getStackListNbElement( int paramNum )
 {
   int nbRow        = 0 ;
@@ -145,7 +145,7 @@ int getStackListNbElement( int paramNum )
   return nbRow - 1 ;
 
  }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 AssignedList * createAssignedList( int paramNum, int nbElement )
 {
   AssignedList * newList = NULL ;
@@ -174,32 +174,32 @@ AssignedList * createAssignedList( int paramNum, int nbElement )
   }
   return newList ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void destroyAssignedList( AssignedList * list )
 {
   FREE( list ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int getAssignedListNbElement( AssignedList * list )
 {
   return list->nbElement - 1 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void rewindAssignedList( AssignedList * list )
 {
   list->curElement = 2 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL isListCurrentElementDoubleMatrix( AssignedList * list )
 {
   return ( ElementType( list->paramNumber, list->curElement ) == 1 ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL isListCurrentElementStringMatrix( AssignedList * list )
 {
   return ( ElementType( list->paramNumber, list->curElement ) == 10 ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL isListCurrentElementEmptyMatrix( AssignedList * list )
 {
   int nbRow = 0 ;
@@ -221,7 +221,7 @@ BOOL isListCurrentElementEmptyMatrix( AssignedList * list )
   return FALSE ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 double * getDoubleMatrixFromList( AssignedList * list, int rank, int * nbRow, int * nbCol )
 {
   int valueStackPointer = 0 ;
@@ -229,7 +229,7 @@ double * getDoubleMatrixFromList( AssignedList * list, int rank, int * nbRow, in
   
   return getDoubleMatrixFromStack( valueStackPointer ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** getStringMatrixFromList( AssignedList * list, int rank, int * nbRow, int * nbCol )
 {
   int valueStackPointer = 0 ;
@@ -237,7 +237,7 @@ char ** getStringMatrixFromList( AssignedList * list, int rank, int * nbRow, int
 
   return getStringMatrixFromStack( valueStackPointer ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 double * getCurrentDoubleMatrixFromList( AssignedList * list, int * nbRow, int * nbCol )
 {
   double * res = NULL ;
@@ -252,7 +252,7 @@ double * getCurrentDoubleMatrixFromList( AssignedList * list, int * nbRow, int *
   list->curElement++ ;
   return res ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** getCurrentStringMatrixFromList( AssignedList * list, int * nbRow, int * nbCol )
 {
   char ** res = NULL ;
@@ -268,7 +268,7 @@ char ** getCurrentStringMatrixFromList( AssignedList * list, int * nbRow, int * 
   return res ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 double * createCopyDoubleMatrixFromList( AssignedList * list, int * nbRow, int * nbCol )
 {
   /* get the matrix */
@@ -298,7 +298,7 @@ double * createCopyDoubleMatrixFromList( AssignedList * list, int * nbRow, int *
   return copyMatrix ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** createCopyStringMatrixFromList( AssignedList * list, int * nbRow, int * nbCol )
 {
   /* get the matrix */
@@ -312,4 +312,4 @@ char ** createCopyStringMatrixFromList( AssignedList * list, int * nbRow, int * 
 
   return createStringArrayCopy( stackValues, nbElement ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

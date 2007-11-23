@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include "machine.h"
 #include "completion.h"
@@ -16,9 +16,9 @@
 #include "getDictionarySetProperties.h"
 #include "getDictionaryGetProperties.h"
 #include "toolsdictionary.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **completionOnDictionary(char **dictionary,int sizedictionary,char *somechars,int *sizearrayreturned);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **completion(char *somechars, int *sizeArrayReturned)
 {
 	char **ListWords = NULL;
@@ -80,7 +80,7 @@ char **completion(char *somechars, int *sizeArrayReturned)
 
 	return ListWords;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
 {
 	char **ListWords = NULL;
@@ -101,7 +101,7 @@ char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
 	}
 	return ListWords;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
 {
 	char **ListWords = NULL;
@@ -123,7 +123,7 @@ char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
 	}
 	return ListWords;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **completionOnMacros(char *somechars, int *sizeArrayReturned)
 {
 	char **ListWords = NULL;
@@ -145,7 +145,7 @@ char **completionOnMacros(char *somechars, int *sizeArrayReturned)
 	}
 	return ListWords;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **completionOnVariables(char *somechars, int *sizeArrayReturned)
 {
 	char **ListWords = NULL;
@@ -159,7 +159,7 @@ char **completionOnVariables(char *somechars, int *sizeArrayReturned)
 
 	return ListWords;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **completionOnFiles(char *somechars, int *sizeArrayReturned)
 {
 	char **ListWords = NULL;
@@ -179,7 +179,7 @@ char **completionOnFiles(char *somechars, int *sizeArrayReturned)
 	}
 	return ListWords;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayReturned)
 {
 	char **ListWords = NULL;
@@ -221,7 +221,7 @@ char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayRetur
 
 	return ListWords;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **completionOnDictionary(char **dictionary,int sizedictionary,char *somechars,int *sizearrayreturned)
 {
 	char **ListWords = NULL;
@@ -237,4 +237,4 @@ char **completionOnDictionary(char **dictionary,int sizedictionary,char *somecha
 	}
 	return ListWords;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

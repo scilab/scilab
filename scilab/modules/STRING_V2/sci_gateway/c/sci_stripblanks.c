@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #include "stripblanks.h"
 #include "localization.h"
-/*-------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 {
 	char **Input_String_Matrix_One = NULL;
@@ -113,4 +113,4 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 	 
 	return 0;
   }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

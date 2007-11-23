@@ -22,7 +22,7 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableRectangleBridge * DrawableRectangleBridgeFactory::create( void )
 {
   DrawableRectangleJoGL * imp = new DrawableRectangleJoGL( m_pDrawable ) ;
@@ -33,17 +33,17 @@ DrawableRectangleBridge * DrawableRectangleBridgeFactory::create( void )
 
   return imp ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableRectangleBridgeFactory::update( void )
 {
   setStrategies( m_pDrawable->getRectangleImp() ) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableRectangleBridgeFactory::setDrawedRectangle( DrawableRectangle * rect )
 {
   m_pDrawable = rect ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableRectangleBridgeFactory::setStrategies( DrawableRectangleBridge * imp )
 {
   imp->removeDrawingStrategies() ;
@@ -72,6 +72,6 @@ void DrawableRectangleBridgeFactory::setStrategies( DrawableRectangleBridge * im
     imp->addDrawingStrategy( newMarker ) ;
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

@@ -18,18 +18,18 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 PolylineInterpColorDrawerJoGL::PolylineInterpColorDrawerJoGL( DrawablePolyline * polyline )
   : DrawPolylineStrategy(polyline), DrawableObjectJoGL(polyline)
 {
   setJavaMapper(new PolylineInterpColorDrawerJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 PolylineInterpColorDrawerJoGL::~PolylineInterpColorDrawerJoGL(void)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void PolylineInterpColorDrawerJoGL::drawPolyline( void )
 {
   initializeDrawing() ;
@@ -70,16 +70,16 @@ void PolylineInterpColorDrawerJoGL::drawPolyline( void )
   delete[] colors;
   endDrawing() ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void PolylineInterpColorDrawerJoGL::showPolyline( void )
 {
   show();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 PolylineInterpColorDrawerJavaMapper * PolylineInterpColorDrawerJoGL::getInterpColorDrawerJavaMapper(void)
 {
   return dynamic_cast<PolylineInterpColorDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

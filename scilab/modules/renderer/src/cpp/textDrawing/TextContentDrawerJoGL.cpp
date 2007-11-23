@@ -10,13 +10,13 @@
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 TextContentDrawerJoGL::TextContentDrawerJoGL(DrawableText * drawer)
  :  DrawTextContentStrategy(drawer), DrawableObjectJoGL(drawer)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getBoundingRectangle(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
   initializeDrawing();
@@ -44,7 +44,7 @@ void TextContentDrawerJoGL::getBoundingRectangle(double corner1[3], double corne
   delete[] rect;
   endDrawing();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2])
 {
   initializeDrawing();
@@ -68,7 +68,7 @@ void TextContentDrawerJoGL::getScreenBoundingBox(int corner1[2], int corner2[2],
   delete[] rect;
   endDrawing();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::drawTextContent(void)
 {
   initializeDrawing();
@@ -77,12 +77,12 @@ void TextContentDrawerJoGL::drawTextContent(void)
   getTextContentDrawerJavaMapper()->drawTextContent();
   endDrawing();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::showTextContent(void)
 {
   show();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getPixelLength(sciPointObj * parentSubwin, const double startingPoint[3],
                                            double userWidth, double userHeight,
                                            int * pixelWidth, int * pixelHeight )
@@ -113,10 +113,10 @@ void TextContentDrawerJoGL::getPixelLength(sciPointObj * parentSubwin, const dou
   *pixelWidth = extremeXPix[0] - textPosPix[0];
   *pixelHeight = extremeYPix[1] - textPosPix[1];
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 TextContentDrawerJavaMapper * TextContentDrawerJoGL::getTextContentDrawerJavaMapper(void)
 {
   return dynamic_cast<TextContentDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 }

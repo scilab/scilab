@@ -49,7 +49,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 					       //** this variable is very important for the selective 
 					       //** elimination of undesired object(s)  
 //**	Delete object until "K" is empty				       
-//** ----------------------------------------------------------------------------------------------  
+//** -------------------------------------------------------------------------------------  
 while K<>[] do
 
     k = K(1); K(1) = [] ;

@@ -17,7 +17,7 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableObject * getHandleDrawer( sciPointObj * pObj )
 {
   if ( pObj->pDrawer != NULL )
@@ -36,13 +36,13 @@ DrawableObject * getHandleDrawer( sciPointObj * pObj )
 
   return drawer ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableObject * getHandleDrawerPointer( sciPointObj * pObj )
 {
   if ( pObj->pDrawer == NULL ) { return NULL ; }
   return ((DrawableObjectWrapper *)(pObj->pDrawer))->drawer ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer )
 {
   if ( pObj->pDrawer == NULL )
@@ -51,7 +51,7 @@ void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer )
   }
   ((DrawableObjectWrapper *)(pObj->pDrawer))->drawer = drawer ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableFigure * getFigureDrawer( sciPointObj * pFigure )
 {
   if ( sciGetEntityType(pFigure) != SCI_FIGURE )
@@ -61,7 +61,7 @@ DrawableFigure * getFigureDrawer( sciPointObj * pFigure )
 
   return dynamic_cast<DrawableFigure *>(getHandleDrawer(pFigure));
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle )
 {
   if ( sciGetEntityType(pRectangle) != SCI_RECTANGLE )
@@ -71,7 +71,7 @@ DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle )
 
   return dynamic_cast<DrawableRectangle *>(getHandleDrawer(pRectangle));
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableArc * getArcDrawer( sciPointObj * pArc )
 {
   if ( sciGetEntityType(pArc) != SCI_ARC )
@@ -81,7 +81,7 @@ DrawableArc * getArcDrawer( sciPointObj * pArc )
 
   return dynamic_cast<DrawableArc *>(getHandleDrawer(pArc));
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawablePolyline * getPolylineDrawer( sciPointObj * pPolyline )
 {
   if ( sciGetEntityType(pPolyline) != SCI_POLYLINE )
@@ -91,7 +91,7 @@ DrawablePolyline * getPolylineDrawer( sciPointObj * pPolyline )
 
   return dynamic_cast<DrawablePolyline *>(getHandleDrawer(pPolyline));
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableText * getTextDrawer( sciPointObj * pText )
 {
   if ( sciGetEntityType(pText) != SCI_TEXT )
@@ -101,7 +101,7 @@ DrawableText * getTextDrawer( sciPointObj * pText )
 
   return dynamic_cast<DrawableText *>(getHandleDrawer(pText));
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin )
 {
   if ( sciGetEntityType(pSubwin) != SCI_SUBWIN )
@@ -111,6 +111,6 @@ DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin )
 
   return dynamic_cast<DrawableSubwin *>(getHandleDrawer(pSubwin));
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

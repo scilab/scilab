@@ -16,9 +16,9 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 GlobalSynchronizer * GraphicSynchronizerFactory::s_pGlobalSynchronizer = NULL;
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 GlobalSynchronizer * GraphicSynchronizerFactory::getGlobalSynchronizer( void )
 {
   if (s_pGlobalSynchronizer == NULL)
@@ -28,7 +28,7 @@ GlobalSynchronizer * GraphicSynchronizerFactory::getGlobalSynchronizer( void )
   }
   return s_pGlobalSynchronizer;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void GraphicSynchronizerFactory::destroyGlobalSynchronizer( void )
 {
   if (s_pGlobalSynchronizer != NULL)
@@ -37,7 +37,7 @@ void GraphicSynchronizerFactory::destroyGlobalSynchronizer( void )
     s_pGlobalSynchronizer = NULL;
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 LocalSynchronizer * GraphicSynchronizerFactory::createLocalSynchronizer( void )
 {
   // Create instance
@@ -46,7 +46,7 @@ LocalSynchronizer * GraphicSynchronizerFactory::createLocalSynchronizer( void )
 
   return res;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 GlobalSynchronizer * GraphicSynchronizerFactory::createGlobalSynchronizer( void )
 {
   GlobalSynchronizer * res = new GlobalSynchronizer();
@@ -57,6 +57,6 @@ GlobalSynchronizer * GraphicSynchronizerFactory::createGlobalSynchronizer( void 
   return res;
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

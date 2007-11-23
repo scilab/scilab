@@ -37,7 +37,7 @@ int C2F(entier2d)( integer * n, double * dx,integer * s ) ;
  * @param nbElement must be greater than 2.
  */
 int checkMonotony( double vector[], int nbElement ) ;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * copy an array into an other
  */
@@ -86,6 +86,6 @@ int * createIntArrayCopy( const int src[], int nbElement ) ;
  * allocate a copy of a string array
  */
 char ** createStringArrayCopy( char * src[], int nbElement ) ;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 #endif /* _BASIC_ALGOS_H_ */

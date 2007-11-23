@@ -165,7 +165,7 @@ void destroyStringArray( char * src[], int nbStrings )
   }
   FREE( src ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 double * createDoubleArrayCopy( const double src[], int nbElement )
 {
   double * res = MALLOC( nbElement * sizeof(double) ) ;
@@ -179,7 +179,7 @@ double * createDoubleArrayCopy( const double src[], int nbElement )
 
   return res ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int * createIntArrayCopy( const int src[], int nbElement )
 {
   int * res = MALLOC( nbElement * sizeof(int) ) ;
@@ -193,7 +193,7 @@ int * createIntArrayCopy( const int src[], int nbElement )
 
   return res ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** createStringArrayCopy( char * src[], int nbElement )
 {
   int i ;
@@ -214,4 +214,4 @@ char ** createStringArrayCopy( char * src[], int nbElement )
   return res ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

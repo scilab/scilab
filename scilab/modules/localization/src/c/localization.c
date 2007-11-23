@@ -1,19 +1,19 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* INRIA 2006 */
 /* HUANG Xu */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <string.h>
 #include "localization.h"
 #include "MALLOC.h" /* MALLOC */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static struct hashtable *Table_Scilab_Errors=NULL;
 static struct hashtable *Table_Scilab_Messages=NULL;
 static struct hashtable *Table_Scilab_Menus=NULL;
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static char *QueryString(struct hashtable *Table,char *Tag);
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr,char *Path)
 {
 	BOOL bOK=FALSE;
@@ -46,43 +46,43 @@ BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr,
 	return bOK;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 struct hashtable *GetHashTableScilabErrors(void)
 {
 	return Table_Scilab_Errors;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 struct hashtable *GetHashTableScilabMessages(void)
 {
 	return Table_Scilab_Messages;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 struct hashtable *GetHashTableScilabMenus(void)
 {
 	return Table_Scilab_Menus;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL InitializeHashTableScilabErrors(void)
 {
 	Table_Scilab_Errors=CreateHashtable_string();
 	if (Table_Scilab_Errors) return TRUE;
 	else return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL InitializeHashTableScilabMessages(void)
 {
 	Table_Scilab_Messages=CreateHashtable_string();
 	if (Table_Scilab_Messages) return TRUE;
 	else return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL InitializeHashTableScilabMenus(void)
 {
 	Table_Scilab_Menus=CreateHashtable_string();
 	if (Table_Scilab_Menus) return TRUE;
 	else return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 int DisposeHashTableScilabErrors(void)
 {
 	if (Table_Scilab_Errors)
@@ -92,7 +92,7 @@ int DisposeHashTableScilabErrors(void)
 	}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 int DisposeHashTableScilabMessages(void)
 {
 	if (Table_Scilab_Messages)
@@ -102,7 +102,7 @@ int DisposeHashTableScilabMessages(void)
 	}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 int DisposeHashTableScilabMenus(void)
 {
 	if (Table_Scilab_Menus)
@@ -112,22 +112,22 @@ int DisposeHashTableScilabMenus(void)
 	}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char *QueryStringError(char *Tag)
 {	
 	return QueryString(Table_Scilab_Errors,Tag);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char *QueryStringMessage(char *Tag)
 {
 	return QueryString(Table_Scilab_Messages,Tag);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char *QueryStringMenu(char *Tag)
 {
 	return QueryString(Table_Scilab_Menus,Tag);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static char *QueryString(struct hashtable *Table,char *Tag)
 {
 	char *RetString=NULL;
@@ -139,4 +139,4 @@ static char *QueryString(struct hashtable *Table,char *Tag)
 	RetString = SearchHashtable_string(Table,Tag);
 	return RetString;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

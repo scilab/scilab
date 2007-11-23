@@ -30,12 +30,12 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/ 
+/*---------------------------------------------------------------------------------*/ 
 void DrawableObjectFactory::setGraphicObj( sciPointObj * drawedObj )
 {
   m_pDrawed = drawedObj ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableObject * DrawableObjectFactory::create( void )
 {
   DrawableObjectFactory * fact = createRightFactory() ;
@@ -49,7 +49,7 @@ DrawableObject * DrawableObjectFactory::create( void )
   return drawer ;
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableObjectFactory::update( void )
 {
   DrawableObjectFactory * fact = createRightFactory() ;
@@ -61,7 +61,7 @@ void DrawableObjectFactory::update( void )
   delete fact ;
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
 {
   switch ( sciGetEntityType(m_pDrawed) )
@@ -126,5 +126,5 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
     return NULL;
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 }

@@ -1,12 +1,12 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* INRIA 2006-2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include "JVM_commons.h"
 #include "JVM_functions.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "../../fileio/includes/FileExist.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #define JVM_TYPE "client"
 /* #define JVM_TYPE "server" */
 /* Every form of Sun's Java runtime comes with both the "client VM" and the "server VM."
@@ -14,14 +14,14 @@ Unfortunately, Java applications and applets run by default in the client VM.
 The Server VM is much faster than the Client VM,
 but it has the downside of taking around 10% longer to start up, and it uses more memory.
 */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static char *Search_Java_RuntimeLib_in_Windows_Registry(void);
 static JavaVM *SearchCreatedJavaVMPath(void);
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH);
 static JavaVM *SearchCreatedJavaVMRegistry(void);
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static BOOL EMBEDDED_JRE=FALSE;
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL LoadDynLibJVM(char *SCILAB_PATH)
 {
 	/* 1] search in SCI/java/jre */
@@ -63,7 +63,7 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 {
 	#define JRE_HKEY "Software\\JavaSoft\\Java Runtime Environment"
@@ -124,12 +124,12 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 
 	return RuntimeLib;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL withEmbeddedJRE(void)
 {
 	return EMBEDDED_JRE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
 {
 	JavaVM *jvm = NULL;
@@ -226,4 +226,4 @@ JavaVM *FindCreatedJavaVM(char *SCILAB_PATH)
 	}
 	return NULL;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

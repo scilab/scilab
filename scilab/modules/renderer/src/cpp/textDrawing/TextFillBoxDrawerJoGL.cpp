@@ -14,18 +14,18 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 TextFillBoxDrawerJoGL::TextFillBoxDrawerJoGL(DrawableText * text)
   : DrawTextBoxStrategy(text), DrawableObjectJoGL(text)
 {
   setJavaMapper(new RectangleFillDrawerJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 TextFillBoxDrawerJoGL::~TextFillBoxDrawerJoGL(void)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void TextFillBoxDrawerJoGL::drawBox(void)
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
@@ -43,17 +43,17 @@ void TextFillBoxDrawerJoGL::drawBox(void)
   endDrawing() ;
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void TextFillBoxDrawerJoGL::showBox(void)
 {
   // we need to redraw the whole text object since
   // since it is not displayed in the same frame as other objects.
   drawBox();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 RectangleFillDrawerJavaMapper * TextFillBoxDrawerJoGL::getFillDrawerJavaMapper(void)
 {
   return dynamic_cast<RectangleFillDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 }

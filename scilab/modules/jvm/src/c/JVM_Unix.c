@@ -1,13 +1,13 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* INRIA 2006 - 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include <stdlib.h>
 #include "JVM_commons.h"
 #include "JVM_functions.h"
 #include "sci_mem_alloc.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #define JVM_TYPE "client"
 /* #define JVM_TYPE "server" */
 /* Every form of Sun's Java runtime comes with both the "client VM" and the "server VM."
@@ -15,12 +15,12 @@ Unfortunately, Java applications and applets run by default in the client VM.
 The Server VM is much faster than the Client VM,
 but it has the downside of taking around 10% longer to start up, and it uses more memory.
 */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH);
 static JavaVM *SearchCreatedJavaVMPath(void);
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static BOOL EMBEDDED_JRE=FALSE;
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL LoadDynLibJVM(char *SCILAB_PATH)
 {
 	/* 1] search in SCI/java/jre */
@@ -53,12 +53,12 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 	return bOK;
 
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL withEmbeddedJRE(void)
 {
 	return EMBEDDED_JRE;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
 {
 	JavaVM *jvm = NULL;
@@ -86,7 +86,7 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
 	if (JVMLIBFULLNAME){FREE(JVMLIBFULLNAME);JVMLIBFULLNAME=NULL;}
 	return jvm;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static JavaVM *SearchCreatedJavaVMPath(void)
 {
 	JavaVM *jvm = NULL;
@@ -112,7 +112,7 @@ static JavaVM *SearchCreatedJavaVMPath(void)
 	if (JVMLIBFULLNAME){FREE(JVMLIBFULLNAME);JVMLIBFULLNAME=NULL;};		
 	return jvm;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 JavaVM *FindCreatedJavaVM(char *SCILAB_PATH)
 {
 	JavaVM *jvm = NULL;
@@ -126,4 +126,4 @@ JavaVM *FindCreatedJavaVM(char *SCILAB_PATH)
 	}
 	return NULL;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

@@ -472,7 +472,7 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
       return //** exit point 
   end
   
-  //**-----------------------------------------------------------------------------------
+  //**--------------------------------------------------------------------------
   //** the link is avalid link  
   
   if nx==1 then //1 segment link
@@ -569,7 +569,7 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
 	 delete (gh_compound_delete); //** delete the object 
   end 	  
   drawnow(); show_pixmap(); //** display the buffer  
-  //**------------------------------------------------------------------------------------------
+  //**---------------------------------------------------------------------------------
  
   //----------- update objects structure -----------------------------
   //------------------------------------------------------------------

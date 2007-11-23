@@ -1,16 +1,16 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
 #include "localization.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern int C2F(evalpwhermite) (double *t, double *st, double *dst, double *ddst, double *dddst,int *m, double *x, double *y, double *d, int *n, int *outmode);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define NB_OUTMODE 6
 static TableType OutModeTable[NB_OUTMODE] = {
 	{ "C0"        , C0         },
@@ -19,7 +19,7 @@ static TableType OutModeTable[NB_OUTMODE] = {
 	{ "periodic"  , PERIODIC   },
 	{ "by_nan"    , BY_NAN     },
 	{ "linear"    , LINEAR     }};
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int intinterp1(char *fname,unsigned long fname_len)
 {
   int minrhs=4, maxrhs=5, minlhs=1, maxlhs=4;

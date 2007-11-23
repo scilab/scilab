@@ -9,7 +9,7 @@
 #include "returnProperty.h"
 #include <string.h>
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnEmptyMatrix( void )
 {
   int numRow   = 0 ;
@@ -18,7 +18,7 @@ int sciReturnEmptyMatrix( void )
   CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&numCol,&outIndex);
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnString( const char * value )
 {
   int numRow   = 1 ;
@@ -29,7 +29,7 @@ int sciReturnString( const char * value )
 
   return  0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnChar( char value )
 {
   int nbRow    = 1 ;
@@ -40,7 +40,7 @@ int sciReturnChar( char value )
 
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnDouble( double value )
 {
   int numRow   = 1 ;
@@ -51,7 +51,7 @@ int sciReturnDouble( double value )
 
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnInt( int value )
 {
 
@@ -63,7 +63,7 @@ int sciReturnInt( int value )
 
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnRowVector( const double values[], int nbValues )
 {
   int numRow   = 1        ;
@@ -76,7 +76,7 @@ int sciReturnRowVector( const double values[], int nbValues )
   }
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnRowVectorFromInt( const int values[], int nbValues )
 {
   int numRow   = 1        ;
@@ -89,7 +89,7 @@ int sciReturnRowVectorFromInt( const int values[], int nbValues )
   }
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnRowIntVector( const int values[], int nbValues )
 {
   int numRow   = 1        ;
@@ -102,12 +102,12 @@ int sciReturnRowIntVector( const int values[], int nbValues )
   }
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnRowStringVector(char * values[], int nbValues )
 {
   return sciReturnStringMatrix( values, 1, nbValues );
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnHandle( long handle )
 {
   int numRow   = 1 ;
@@ -117,7 +117,7 @@ int sciReturnHandle( long handle )
   *hstk(outIndex) = handle ;
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnRowHandleVector( const long handles[], int nbValues )
 {
   int numRow   = 1 ;
@@ -130,7 +130,7 @@ int sciReturnRowHandleVector( const long handles[], int nbValues )
   }
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnColHandleVector( const long handles[], int nbValues )
 {
   int numCol   = 1 ;
@@ -143,7 +143,7 @@ int sciReturnColHandleVector( const long handles[], int nbValues )
   }
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnMatrix( double values[], int nbRow, int nbCol )
 {
   int outIndex = 0 ;
@@ -155,13 +155,13 @@ int sciReturnMatrix( double values[], int nbRow, int nbCol )
   }
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnStringMatrix(char * values[], int nbRow, int nbCol )
 {
   CreateVarFromPtr( Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, values );
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciReturnUserData( const int * userData, int userDataSize )
 {
   int * data_ptr = NULL ;
@@ -171,4 +171,4 @@ int sciReturnUserData( const int * userData, int userDataSize )
   memcpy( data_ptr, userData, userDataSize * sizeof (int) );
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

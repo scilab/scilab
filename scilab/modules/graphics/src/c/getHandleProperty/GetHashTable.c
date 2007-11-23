@@ -174,7 +174,7 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
   { "event_handler"       , get_event_handler_property        }
 } ;
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 GetPropertyHashTable * createScilabGetHashTable( void )
 {
   int i ;
@@ -202,7 +202,7 @@ GetPropertyHashTable * createScilabGetHashTable( void )
   return getHashTable ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int callGetProperty( sciPointObj * pObj, char * propertyName )
 {
   getPropertyFunc accessor = searchGetHashtable( getHashTable, propertyName ) ;
@@ -213,7 +213,7 @@ int callGetProperty( sciPointObj * pObj, char * propertyName )
   }
   return accessor( pObj ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void destroyScilabGetHashTable( void )
 {
   if ( !getHashTableCreated )
@@ -224,7 +224,7 @@ void destroyScilabGetHashTable( void )
   destroyGetHashTable( getHashTable ) ;
   getHashTableCreated = FALSE ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **getDictionaryGetProperties(int *sizearray)
 {
 	char **dictionary = NULL;
@@ -244,5 +244,5 @@ char **getDictionaryGetProperties(int *sizearray)
 	}
 	return dictionary;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #undef NB_PROPERTIES

@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_interpolation.h"
 #include "stack-c.h"
@@ -9,7 +9,7 @@
 #include "localization.h"
 #include "someinterp.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define NB_OUTMODE 6
 static TableType OutModeTable[NB_OUTMODE] = {
 	{ "C0"        , C0         },
@@ -18,7 +18,7 @@ static TableType OutModeTable[NB_OUTMODE] = {
 	{ "periodic"  , PERIODIC   },
 	{ "by_nan"    , BY_NAN     },
 	{ "linear"    , LINEAR     }};
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int intlinear_interpn(char *fname,unsigned long fname_len)
 {
 /*  interpolation lineaire n-dimensionnelle
@@ -146,5 +146,5 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
   /* warning C4715: 'intlinear_interpn' : not all control paths return a value */
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 

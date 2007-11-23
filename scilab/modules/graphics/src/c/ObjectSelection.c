@@ -9,7 +9,7 @@
 #include "MALLOC.h"
 #include "GetProperty.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciAddSelectedSon( sciPointObj * pParent, sciPointObj * pObj )
 {
   sciEntityType sonType = sciGetEntityType( pObj ) ;
@@ -40,28 +40,28 @@ int sciAddSelectedSon( sciPointObj * pParent, sciPointObj * pObj )
   return 0 ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciAddUniqueSelectedSon( sciPointObj * pParent, sciPointObj * pObj )
 {
   sciUnselectTypedSons( pParent, sciGetEntityType(pObj) ) ;
   return sciAddSelectedSon( pParent, pObj ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void sciInitSelectedSons( sciPointObj * pObj )
 {
   sciGetRelationship(pObj)->pSelectedSon = DoublyLinkedList_new() ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 sciPointObj * sciGetFirstSelectedSon( sciPointObj * pObj )
 {
   return (sciPointObj *) List_data(((TypedSonsList*)List_data(sciGetRelationship(pObj)->pSelectedSon))->typedSons ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 sciPointObj * sciGetFirstTypedSelectedSon( sciPointObj * pObj, sciEntityType objType )
 {
   return (sciPointObj *) List_data( sciGetTypedSelectedSons( pObj, objType ) ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 DoublyLinkedList * sciGetTypedSelectedSons( sciPointObj * pObj, sciEntityType objType )
 {
   TypedSonsList * curList = sciGetTypedList( pObj, objType ) ;
@@ -71,20 +71,20 @@ DoublyLinkedList * sciGetTypedSelectedSons( sciPointObj * pObj, sciEntityType ob
   }
   return curList->typedSons ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sciRemoveSelectedSon( sciPointObj * pParent, sciPointObj * pObj )
 {
   TypedSonsList * curList = sciGetTypedList( pParent, sciGetEntityType(pObj) ) ;
   curList->typedSons = List_free_item( curList->typedSons, pObj ) ;
   return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void sciUnselectSons( sciPointObj * pParent )
 {
   List_free_full( sciGetRelationship(pParent)->pSelectedSon, deleteTypedSonList ) ;
   sciGetRelationship(pParent)->pSelectedSon = DoublyLinkedList_new() ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void sciUnselectTypedSons( sciPointObj * pParent, sciEntityType sonsType )
 {
   /* first search if there are already objects with the specified type */
@@ -99,14 +99,14 @@ void sciUnselectTypedSons( sciPointObj * pParent, sciEntityType sonsType )
   deleteTypedSonList( typedList ) ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL sciGetIsSelected( sciPointObj * pObj )
 {
   DoublyLinkedList * curList = sciGetTypedSelectedSons( sciGetParent(pObj), sciGetEntityType(pObj) ) ;
   return ( curList != NULL && List_find( curList, pObj ) != NULL ) ;
 }
-/*-----------------------------------------------------------------------------------*/
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
 * Just check if the two typedSonsList has same type.
 * To be used with List_find_full.
@@ -115,7 +115,7 @@ static BOOL hasSameType( void * typedSonsList1, void * typedSonsList2 )
 {
   return ( ((TypedSonsList*)typedSonsList1)->sonType == ((TypedSonsList*)typedSonsList2)->sonType ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 TypedSonsList * sciGetTypedList( sciPointObj * pObj, sciEntityType objType )
 {
   TypedSonsList refType = { objType, NULL } ; /* just for comparison with type */
@@ -123,7 +123,7 @@ TypedSonsList * sciGetTypedList( sciPointObj * pObj, sciEntityType objType )
   if ( foundList == NULL ) { return NULL ; }
   return (TypedSonsList *) List_data( foundList ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 TypedSonsList * newTypedSonList( sciEntityType type, DoublyLinkedList * typedSons )
 {
   TypedSonsList * newList = MALLOC(sizeof(TypedSonsList)) ;
@@ -132,7 +132,7 @@ TypedSonsList * newTypedSonList( sciEntityType type, DoublyLinkedList * typedSon
 
   return newList ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void deleteTypedSonList( void * typedSonsList )
 {
   if ( ((TypedSonsList *)typedSonsList)->typedSons != NULL )
@@ -141,4 +141,4 @@ void deleteTypedSonList( void * typedSonsList )
   }
   FREE(typedSonsList) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

@@ -2,7 +2,7 @@
 /* Allan CORNET */
 /* INRIA 2005 */
 #include <string.h>
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char *GetExceptionString(DWORD ExceptionCode)
 {
 	char *StringOuput=(char *)MALLOC((strlen("EXCEPTION_NONCONTINUABLE_EXCEPTION")+1)*sizeof(char));
@@ -82,4 +82,4 @@ char *GetExceptionString(DWORD ExceptionCode)
 
 	return StringOuput;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

@@ -102,7 +102,7 @@ function [scs_m, fct] = do_addnew(scs_m)
   
   end
   
-//**--------------------------------------------------------------------------------------  
+//**-----------------------------------------------------------------------------  
 
 //** The requested block is valid, then it is accepted 
 
@@ -169,7 +169,7 @@ function [scs_m, fct] = do_addnew(scs_m)
 
 endfunction
 
-//**---------------------------------------------------------------------------------------------------
+//**------------------------------------------------------------------------------------------
 
 function objsi =up_to_date(o)
   if size(o(2)) > 8 then
@@ -222,7 +222,7 @@ function objsi =up_to_date(o)
   if objsi.gui=='ESELECT_f' then objsi.model.sim(2)=-2,end
 endfunction
 
-//** --------------------------------------------------------------------------------------------
+//** -----------------------------------------------------------------------------------
 
 function o=standard_define_old(sz,model,label,gr_i)
 //initialize graphic part of the block data structure

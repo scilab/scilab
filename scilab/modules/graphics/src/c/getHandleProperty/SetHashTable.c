@@ -171,7 +171,7 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "event_handler"       , set_event_handler_property        }
 } ;
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 SetPropertyHashTable * createScilabSetHashTable( void )
 {
   int i ;
@@ -199,7 +199,7 @@ SetPropertyHashTable * createScilabSetHashTable( void )
   return setHashTable ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int callSetProperty( sciPointObj * pObj, int stackPointer, int valueType, int nbRow, int nbCol, char * propertyName )
 {
   setPropertyFunc accessor = searchSetHashtable( setHashTable, propertyName ) ;
@@ -210,7 +210,7 @@ int callSetProperty( sciPointObj * pObj, int stackPointer, int valueType, int nb
   }
   return accessor( pObj, stackPointer, valueType, nbRow, nbCol ) ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void destroyScilabSetHashTable( void )
 {
   if ( !setHashTableCreated )
@@ -221,7 +221,7 @@ void destroyScilabSetHashTable( void )
   destroySetHashTable( setHashTable ) ;
   setHashTableCreated = FALSE ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **getDictionarySetProperties(int *sizearray)
 {
 	char **dictionary = NULL;
@@ -240,5 +240,5 @@ char **getDictionarySetProperties(int *sizearray)
 	}
 	return dictionary;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #undef NB_PROPERTIES

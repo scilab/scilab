@@ -15,7 +15,7 @@ function Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a,..
 //                    imprimer par la suite dans le fichier .c                           //
 // pour plus d'information voir les fonctions de calcul des blocs Scicos de type 4       //
 // (explicite) et de type 10004 (implicite).                                             //
-//---------------------------------------------------------------------------------------//
+//------------------------------------------------------------------------------//
 
   Code=['#include '"'+SCI+'/modules/scicos/includes/scicos_block.h'"'
         '#include <math.h>'

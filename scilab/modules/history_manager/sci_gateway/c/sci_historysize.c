@@ -8,7 +8,7 @@
 #include "stack-c.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(sci_historysize) _PARAMS((char *fname,unsigned long fname_len))
 {
 	int *paramoutINT=NULL;
@@ -28,4 +28,4 @@ int C2F(sci_historysize) _PARAMS((char *fname,unsigned long fname_len))
 	if (paramoutINT) {FREE(paramoutINT);paramoutINT = NULL;}
 	return 0 ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

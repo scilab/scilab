@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #if _MSC_VER
 #include <Windows.h>
 #include "version.h"
@@ -13,10 +13,10 @@
 #include "setgetlanguage.h"
 #include "SCIHOME.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define LINELENGTHMAX 1024
 #define TAGLANGUAGE "LANGUAGE"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #define SCILABREGISTRYKEY "SOFTWARE\\Scilab\\%s\\Settings"
 static BOOL loadlanguagepref_windows(void);
@@ -26,7 +26,7 @@ static BOOL loadlanguagepref_linux(void);
 static BOOL savelanguagepref_linux(void);
 static char *getfilenamelanguagepref(void);
 #endif
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL loadlanguagepref(void)
 {
 #ifdef _MSC_VER
@@ -35,7 +35,7 @@ BOOL loadlanguagepref(void)
 	return loadlanguagepref_linux();
 #endif
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL savelanguagepref(void)
 {
 #ifdef _MSC_VER
@@ -44,7 +44,7 @@ BOOL savelanguagepref(void)
 	return savelanguagepref_linux();
 #endif
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static BOOL loadlanguagepref_linux(void)
 {
@@ -77,7 +77,7 @@ static BOOL loadlanguagepref_linux(void)
 	return bOK;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static BOOL savelanguagepref_linux(void)
 {
@@ -106,7 +106,7 @@ static BOOL savelanguagepref_linux(void)
 	return FALSE;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static char *getfilenamelanguagepref(void)
 {
@@ -137,7 +137,7 @@ static char *getfilenamelanguagepref(void)
 	return retFilename;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #if _MSC_VER
 static BOOL loadlanguagepref_windows(void)
 {
@@ -174,7 +174,7 @@ static BOOL loadlanguagepref_windows(void)
 	return bOK;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #if _MSC_VER
 static BOOL savelanguagepref_windows(void)
 {
@@ -207,5 +207,5 @@ static BOOL savelanguagepref_windows(void)
 	return bOK;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 

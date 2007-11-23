@@ -14,7 +14,7 @@
 #include "../../elementary_functions/includes/elementary_functions.h"
 #include "CurrentObjectsManagement.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sci_glue( char * fname, unsigned long fname_len )
 {
   integer numrow,numcol,l1,l2,lind,n,cx1=1,ret ;
@@ -80,4 +80,4 @@ int sci_glue( char * fname, unsigned long fname_len )
   FREE(handelsvalue);
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

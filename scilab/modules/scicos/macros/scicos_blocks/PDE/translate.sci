@@ -25,7 +25,7 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
 //    - nom (String) : correspond au nom du bloc a generer choisis par l'utilisateur dans la fenêtre //
 //      SCILAB "GIVE US BLOCK's NAME"                                                                // 
 //    - mesures (vecteur des doubles) : renvoi la liste des points de mesures                        //  
-//---------------------------------------------------------------------------------------------------//
+//------------------------------------------------------------------------------------------//
   DF_type=[];
   // fonction principale
   

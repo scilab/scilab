@@ -1,28 +1,28 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "FindScilab.h"
 #include "version.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "WndThread.h"
 #include "resource.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define LineMax 255
 #define NumberScilabMax 10
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char BeginningHiddenScilabWindow[LineMax];
 static char ListScilabName[NumberScilabMax][LineMax];
 static char ListHiddenScilabName[NumberScilabMax][LineMax];
 static int NumberScilab=0;
 static BOOL MoreMaxNumberScilabMax=FALSE;
 static int ItemChooseScilab;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL ExposeDialogBox=FALSE;
 static char * ChooseScilabBox(void);
 static BOOL CALLBACK ChooseScilabDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL HaveAnotherWindowScilab(void)
 {
 	BOOL Retour=FALSE;
@@ -55,7 +55,7 @@ BOOL HaveAnotherWindowScilab(void)
 	}
 	return Retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char * ChooseAnotherWindowScilab(void)
 {
 	char *TitleScilabChoose = NULL;
@@ -78,7 +78,7 @@ char * ChooseAnotherWindowScilab(void)
 	}
 	return TitleScilabChoose;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char * ChooseScilabBox(void)
 {
 	HWND hWndChooseScilabBox=NULL;
@@ -113,7 +113,7 @@ static char * ChooseScilabBox(void)
 
 	return TitleScilabChoose;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static BOOL CALLBACK ChooseScilabDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
 {
   switch (wmsg) 
@@ -162,4 +162,4 @@ static BOOL CALLBACK ChooseScilabDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LP
   }
   return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

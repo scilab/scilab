@@ -8,7 +8,7 @@
 #include "get_ticks_utils.h"
 #include "returnPropertyList.h"
 
-/*-----------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------*/
 int buildTListForTicks( const double * locations, char * labels[], int nbTics )
 {
   char * variable_tlist[] = {"ticks","locations","labels"};
@@ -22,4 +22,4 @@ int buildTListForTicks( const double * locations, char * labels[], int nbTics )
 
   return 0;
 }
-/*-----------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------*/

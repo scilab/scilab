@@ -1,13 +1,13 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Alan Layec :  - initial revision  : 30/09/06 fftw3 toolbox*/
 /*               - revision : 18/04/07 */
 /* Allan CORNET scilab module */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include "fftw_utilities.h"
 #include "MALLOC.h"
 #include "callfftw.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* definition of structures to store parameters
  * of FFTW planners - set here default value -
  */
@@ -26,7 +26,7 @@ FFTW_Plan_struct Sci_Backward_Plan =
 };
 
 unsigned cur_fftw_flags=FFTW_ESTIMATE;
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Free a FFTW_Plan_struct
  *
  * Input : FFTW_Plan_struct *Sci_Plan
@@ -52,7 +52,7 @@ int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan)
   }
   return(1);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Return a valid plan ptr.
  * This function search in the Sci_xx_Plan structures if
  * the given input parameters follows an already stored
@@ -126,7 +126,7 @@ fftw_plan GetFFTWPlan(guru_dim_struct *gdim,
   }
   return(Sci_Plan->p);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Check if two guru_dim structures are equal
  *
  * Input : guru_dim_struct *gdim1
@@ -155,4 +155,4 @@ int CheckGuruDims(guru_dim_struct *gdim1, guru_dim_struct *gdim2)
   }
   else return(0);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

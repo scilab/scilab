@@ -11,7 +11,7 @@
 
 #include "machine.h"
 
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 /* Basic type parameters */
 /**
  * return if a stack parameter is a Handle
@@ -89,7 +89,7 @@ unsigned long getHandleFromStack( int stackPointer ) ;
  *         FALSE otherwise
  */
 BOOL isStringParamEqual( int stackPointer, const char * str ) ;
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 /* Tlist */
 typedef struct 
 {
@@ -197,5 +197,5 @@ double * createCopyDoubleMatrixFromList( AssignedList * list, int * nbRow, int *
 */
 char ** createCopyStringMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
 
-/*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 #endif /* _GET_PROPERTY_ASSIGNEMENT_VALUE_H_ */

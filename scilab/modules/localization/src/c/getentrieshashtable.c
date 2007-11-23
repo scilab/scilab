@@ -1,12 +1,12 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include "getentrieshashtable.h"
 #include "hashtable_private.h"
 #include "MALLOC.h"
 #include "hashtable_localization.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **getTAGSinhashtable(struct hashtable *tableIN,int *numbersEntries)
 {
 	char **return_entries=NULL;
@@ -39,7 +39,7 @@ char **getTAGSinhashtable(struct hashtable *tableIN,int *numbersEntries)
 	}
 	return return_entries;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **getSTRINGSinhashtable(struct hashtable *tableIN,int *numbersEntries)
 {
 	char **return_entries=NULL;
@@ -72,7 +72,7 @@ char **getSTRINGSinhashtable(struct hashtable *tableIN,int *numbersEntries)
 	}
 	return return_entries;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char **getPATHSinhashtable(struct hashtable *tableIN,int *numbersEntries)
 {
 	char **return_entries=NULL;
@@ -105,4 +105,4 @@ char **getPATHSinhashtable(struct hashtable *tableIN,int *numbersEntries)
 	}
 	return return_entries;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

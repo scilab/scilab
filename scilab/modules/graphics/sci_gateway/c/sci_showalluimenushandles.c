@@ -10,7 +10,7 @@
 #include "GetProperty.h"
 #include "HandleManagement.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int sci_showalluimenushandles( char *fname, unsigned long fname_len )
 {
   CheckRhs(1,1);
@@ -42,7 +42,7 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
   LhsVar(1)=0;
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int SciShowAllUimenus( sciPointObj * pparent )
 {
   sciSons * psonstmp = sciGetLastSons(pparent) ;
@@ -59,4 +59,4 @@ int SciShowAllUimenus( sciPointObj * pparent )
   }
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

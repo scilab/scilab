@@ -1,10 +1,10 @@
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* CORNET Allan */
 /* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "hashtable_localization.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* see http://www.cse.yorku.ca/~oz/hash.html */
 /* I choose djb2 algo. for strings */
 static unsigned int hashfromkey_string(void *ky)
@@ -23,7 +23,7 @@ static unsigned int hashfromkey_string(void *ky)
 	return hash;
 
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static int equalkeys_string(void *k1, void *k2)
 {
 	int bequal=0;
@@ -35,17 +35,17 @@ static int equalkeys_string(void *k1, void *k2)
 	
 	return bequal;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 struct hashtable *CreateHashtable_string()
 {
 	return create_hashtable(16, hashfromkey_string, equalkeys_string);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void DestroyHashtable_string(struct hashtable *hash_table)
 {
 	hashtable_destroy(hash_table, 1);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 char *SearchHashtable_string(struct hashtable *hash_table, const char* key)
 /* return a copy of the string in hashtable */
 {
@@ -69,12 +69,12 @@ char *SearchHashtable_string(struct hashtable *hash_table, const char* key)
 
 	return FindString;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 int InsertHashtable_string(struct hashtable *hash_table,struct key_string *k, struct value_string *v)
 {
  	return hashtable_insert(hash_table,k,v);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL RemoveHastable_string(struct hashtable *hash_table, const char* key)
 {
 	BOOL bOK=FALSE;
@@ -99,4 +99,4 @@ BOOL RemoveHastable_string(struct hashtable *hash_table, const char* key)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 

@@ -1,12 +1,12 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* CORNET Allan */
 /* INRIA */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include "setvar.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n)
 {
 	BOOL bOK = TRUE;
@@ -58,7 +58,7 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,i
 	if (MatrixDouble) {FREE(MatrixDouble);MatrixDouble=NULL;}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 {
 	BOOL bOK = FALSE;
@@ -87,7 +87,7 @@ BOOL SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n)
 {
 	BOOL bOK = FALSE;
@@ -122,7 +122,7 @@ BOOL SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str)
 {
 	BOOL bOK = FALSE;
@@ -143,4 +143,4 @@ BOOL SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

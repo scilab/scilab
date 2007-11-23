@@ -1,12 +1,12 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern int C2F(intdgees0) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzgees0) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intoschur) __PARAMS((char *fname, unsigned long fname_len));
@@ -25,9 +25,9 @@ extern int C2F(intgschur) __PARAMS((char *fname, unsigned long fname_len));
 
 extern int schtst __PARAMS((int longueur, int *header));
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(intschur)(char *fname,unsigned long fname_len)
 {
 	int *header1;int *header2;int *header3;
@@ -189,7 +189,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	} /*end of switch(Rhs) */
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int schtst (int longueur,int *header)
 {
 	if( (longueur==1) && ( Abs(header[6])==27 ) ) return STRINGREAL;  /* "r" */
@@ -199,4 +199,4 @@ int schtst (int longueur,int *header)
 	if( (longueur==7) && ( Abs(header[6])==12 ) && (Abs(header[7])==24 ) && (Abs(header[8])==22 ) && ( Abs(header[9])==25 ) && ( Abs(header[10])==21) && ( Abs(header[11])==14) && ( Abs(header[12])==33) ) return STRINGCOMPLEX;  /* "complex" */
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

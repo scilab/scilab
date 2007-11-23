@@ -14,7 +14,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
 int getgrayplotdata(sciPointObj *pobj)
@@ -42,7 +42,7 @@ int getgrayplotdata(sciPointObj *pobj)
 
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the champ data is now given as a tlist (like for surface objects) */
 int getchampdata(sciPointObj *pobj)
@@ -73,7 +73,7 @@ int getchampdata(sciPointObj *pobj)
 
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int get3ddata(sciPointObj *pobj)
 {
   char *variable_tlist_color[] = {"3d","x","y","z","color"};

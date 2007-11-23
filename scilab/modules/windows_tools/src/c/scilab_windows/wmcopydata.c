@@ -1,12 +1,12 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Allan CORNET 2004 INRIA */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include "wmcopydata.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char LineFromAnotherScilab[PATH_MAX];
 static BOOL ReceiveDatafromAnotherScilab=FALSE;
 static char TitleScilabSend[PATH_MAX];
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine)
 {
 	BOOL Retour=FALSE;
@@ -26,7 +26,7 @@ BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine)
 
 	return Retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowNameDestination,char *CommandLine)
 {
    COPYDATASTRUCT MyCDS;
@@ -54,7 +54,7 @@ BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowN
 
    return TRUE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct)
 {
    BOOL Retour=FALSE;
@@ -67,4 +67,4 @@ BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct)
 
    return Retour;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

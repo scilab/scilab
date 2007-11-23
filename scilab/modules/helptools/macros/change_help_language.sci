@@ -13,13 +13,13 @@ function change_help_language(language)
 	global %helps_modules;
 	%HELPS=[%helps_modules;%helps];
 	// Vérification des paramètres
-	// -----------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------
 	[lhs,rhs]=argn(0);
 	if rhs <> 1 then error(39); end
 	if type(language) <> 10 then error(55,1); end
 	
 	// Sauvegarde du chemin dans lequel l'on se trouve
-	// -----------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------
 	current_directory = pwd();
 	
 	dirs = %HELPS(:,1);

@@ -17,18 +17,18 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 PolylineFillDrawerJoGL::PolylineFillDrawerJoGL( DrawablePolyline * polyline )
   : DrawPolylineStrategy(polyline), DrawableObjectJoGL(polyline)
 {
   setJavaMapper(new PolylineFillDrawerJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 PolylineFillDrawerJoGL::~PolylineFillDrawerJoGL(void)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void PolylineFillDrawerJoGL::drawPolyline( void )
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
@@ -78,16 +78,16 @@ void PolylineFillDrawerJoGL::drawPolyline( void )
   delete[] zCoords;
   endDrawing() ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void PolylineFillDrawerJoGL::showPolyline( void )
 {
   show();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 PolylineFillDrawerJavaMapper * PolylineFillDrawerJoGL::getFillDrawerJavaMapper(void)
 {
   return dynamic_cast<PolylineFillDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

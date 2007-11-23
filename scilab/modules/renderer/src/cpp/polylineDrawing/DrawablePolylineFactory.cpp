@@ -28,7 +28,7 @@ extern "C"
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableObject * DrawablePolylineFactory::create( void )
 {
   ConcreteDrawablePolyline * newPoly = new ConcreteDrawablePolyline( m_pDrawed ) ;
@@ -39,12 +39,12 @@ DrawableObject * DrawablePolylineFactory::create( void )
 
   return newPoly ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawablePolylineFactory::update( void )
 {
   setStrategies(dynamic_cast<ConcreteDrawablePolyline *>(getPolylineDrawer(m_pDrawed)));
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline )
 {
   sciPointObj * pPolyline = polyline->getDrawedObject();
@@ -98,6 +98,6 @@ void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline
   }
   
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

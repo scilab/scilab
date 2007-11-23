@@ -1,18 +1,18 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
 extern int C2F(intdgebal) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzgebal) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intdggbal) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzggbal) __PARAMS((char *fname, unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(intbalanc)(char *fname,unsigned long fname_len)
 {
 	int *header1, *header2;
@@ -94,4 +94,4 @@ int C2F(intbalanc)(char *fname,unsigned long fname_len)
 	}/* end switch (Rhs) */
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

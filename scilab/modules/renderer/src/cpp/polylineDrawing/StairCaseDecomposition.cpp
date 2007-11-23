@@ -16,18 +16,18 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 StairCaseDecomposition::StairCaseDecomposition( DrawablePolyline * polyline )
   : DecomposeLineStrategy(polyline)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 StairCaseDecomposition::~StairCaseDecomposition( void )
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[], double zCoords[])
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
@@ -120,7 +120,7 @@ void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[]
     zCoords[nbVertices + 1] = zCoords[0];
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void StairCaseDecomposition::getDrawnVerticesColor(int colors[])
 {
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
@@ -142,7 +142,7 @@ void StairCaseDecomposition::getDrawnVerticesColor(int colors[])
     colors[nbVertices + 1] = colors[0];
   }
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 int StairCaseDecomposition::getDrawnVerticesLength(void)
 {
   int res = 2 * sciGetNbPoints(m_pDrawed->getDrawedObject()) - 1;
@@ -155,6 +155,6 @@ int StairCaseDecomposition::getDrawnVerticesLength(void)
 
   return res;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

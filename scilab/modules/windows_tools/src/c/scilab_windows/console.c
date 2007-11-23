@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* Allan CORNET */
 /* INRIA 2007 */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define  _WIN32_WINNT 0x0500 // GetConsoleWindow
 #include <Windows.h>
 #include <shlwapi.h>
@@ -12,12 +12,12 @@
 #include "MALLOC.h"
 #include "../WinConsole.h"
 #include "WndThread.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define NameConsole "Console" 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static CONSOLE_SCREEN_BUFFER_INFO csbiInfoSave;
 static char ScilexConsoleName[MAX_PATH];
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void UpdateConsoleColors(void)
 {
 	HANDLE hConsole=GetStdHandle(STD_OUTPUT_HANDLE);
@@ -36,12 +36,12 @@ void UpdateConsoleColors(void)
 	SetConsoleTextAttribute(hConsole,BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED|BACKGROUND_INTENSITY);
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void SaveConsoleColors(void)
 {
 	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbiInfoSave); 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void RestoreConsoleColors(void)
 {
 	HANDLE hConsole=GetStdHandle(STD_OUTPUT_HANDLE);
@@ -58,7 +58,7 @@ void RestoreConsoleColors(void)
 		&cWritten);
 	SetConsoleTextAttribute(hConsole,csbiInfoSave.wAttributes);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void RenameConsole(void)
 {
 	HWND hScilex = NULL;
@@ -84,7 +84,7 @@ void RenameConsole(void)
 		DeleteMenu(hmenuConsole, SC_CLOSE, MF_BYCOMMAND);
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void CreateScilabConsole(int ShowBanner)
 {
 	HWND hScilex=NULL;
@@ -127,14 +127,14 @@ void CreateScilabConsole(int ShowBanner)
 		ShowWindow(hScilex,SW_HIDE); 
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void CloseScilabConsole(void)
 {
 	fclose(stdout);
 	fclose(stderr);
 	FreeConsole();
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char *getScilexConsoleName(void)
 {
 	char *retName = NULL;
@@ -146,4 +146,4 @@ char *getScilexConsoleName(void)
 	}
 	return retName;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

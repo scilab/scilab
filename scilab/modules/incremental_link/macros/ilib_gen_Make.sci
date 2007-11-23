@@ -138,7 +138,7 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   mfprintf(fd,"!include $(SCIDIR1)\\modules\\incremental_link\\src\\scripts\\Makedll.incl \n");
   mclose(fd);
 endfunction
-//------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
          
 function ilib_gen_Make_lcc(name,table,files,libs,Makename,with_gateway,ldflags,cflags,fflags,flag)
 // Allan CORNET

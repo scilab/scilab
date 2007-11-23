@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,13 +10,13 @@
 #include "../../../action_binding/includes/dynamic_menus.h" /* storecommand */
 #include "../../../fileio/includes/FindFileExtension.h"
 #include "../../../fileio/includes/URIFileToFilename.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #if _MSC_VER
 	#define stricmp _stricmp
 #else
 	#define stricmp strcasecmp
 #endif
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define BIN_EXTENSION_FILE ".bin"
 #define SAV_EXTENSION_FILE ".sav"
 #define GRAPH_EXTENSION_FILE ".graph"
@@ -28,7 +28,7 @@
 #define TST_EXTENSION_FILE ".tst"
 #define DEM_EXTENSION_FILE ".tst"
 #define SCG_EXTENSION_FILE ".scg"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define FORMAT_BIN_SCE_EXTENSION_FILES "load('%s');"
 #define FORMAT_GRAPH_GRAPHB_EXTENSION_FILES "edit_graph('%s');"
 #define FORMAT_COS_COSF_EXTENSION_FILES "scicos('%s');"
@@ -36,11 +36,11 @@
 #define FORMAT_SCE_TST_EXTENSION_FILES "exec('%s');"
 #define FORMAT_SCG_EXTENSION_FILES "xload('%s');"
 #define FORMAT_UNKNOW_EXTENSION_FILES "disp(gettext('unknown file type : %s\n'));"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char *getCommandByFileExtension(char *File,char *FileExtension);
 static char *buildCommand(char *format,char *filename);
 static BOOL LaunchFilebyExtension(char *File);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL dropFiles(char **files)
 {
 	BOOL bOK = TRUE;
@@ -60,7 +60,7 @@ BOOL dropFiles(char **files)
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 BOOL LaunchFilebyExtension(char *File)
 {
 	BOOL bOK=FALSE;
@@ -84,7 +84,7 @@ BOOL LaunchFilebyExtension(char *File)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char *getCommandByFileExtension(char *File,char *FileExtension)
 {
 	char *command = NULL;
@@ -127,7 +127,7 @@ static char *getCommandByFileExtension(char *File,char *FileExtension)
 	}
 	return command;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static char *buildCommand(char *format,char *filename)
 {
 	char *command = NULL;
@@ -140,4 +140,4 @@ static char *buildCommand(char *format,char *filename)
 
 	return command;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

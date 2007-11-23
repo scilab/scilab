@@ -13,7 +13,7 @@
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableClippedObjectJoGL::DrawableClippedObjectJoGL( DrawableObject * drawer )
   : DrawableObjectJoGL(drawer)
 {
@@ -26,7 +26,7 @@ DrawableClippedObjectJoGL::DrawableClippedObjectJoGL( DrawableObject * drawer )
   m_dZmin = 0.0;
   m_dZmax = 0.0;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::setClipBox( double xMin, double xMax,
                                             double yMin, double yMax,
                                             double zMin, double zMax )
@@ -41,35 +41,35 @@ void DrawableClippedObjectJoGL::setClipBox( double xMin, double xMax,
   m_dZmax = zMax;
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::clipX( void )
 {
   getClippedJavaMapper()->clipX(m_dXmin, m_dXmax);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::clipY( void )
 {
   getClippedJavaMapper()->clipY(m_dYmin, m_dYmax);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::clipZ( void )
 {
   getClippedJavaMapper()->clipZ(m_dZmin, m_dZmax);
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::unClip( void )
 {
   getClippedJavaMapper()->unClip();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableClippedObject * DrawableClippedObjectJoGL::getClippedObjectDrawer( void )
 {
   return dynamic_cast<DrawableClippedObject *>(getDrawer()) ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableClippedObjectJavaMapper * DrawableClippedObjectJoGL::getClippedJavaMapper(void)
 {
   return dynamic_cast<DrawableClippedObjectJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 }

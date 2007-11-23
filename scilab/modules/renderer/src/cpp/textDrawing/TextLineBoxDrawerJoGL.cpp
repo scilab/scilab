@@ -14,18 +14,18 @@ extern "C"
 
 namespace sciGraphics
 {
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 TextLineBoxDrawerJoGL::TextLineBoxDrawerJoGL(DrawableText * text)
   : DrawTextBoxStrategy(text), DrawableObjectJoGL(text)
 {
   setJavaMapper(new RectangleLineDrawerJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 TextLineBoxDrawerJoGL::~TextLineBoxDrawerJoGL(void)
 {
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void TextLineBoxDrawerJoGL::drawBox(void)
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
@@ -45,15 +45,15 @@ void TextLineBoxDrawerJoGL::drawBox(void)
   endDrawing() ;
 
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void TextLineBoxDrawerJoGL::showBox(void)
 {
   drawBox();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 RectangleLineDrawerJavaMapper * TextLineBoxDrawerJoGL::getLineDrawerJavaMapper(void)
 {
   return dynamic_cast<RectangleLineDrawerJavaMapper *>(getJavaMapper());
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 }

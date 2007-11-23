@@ -1,7 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2007 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -14,10 +14,10 @@
 #include "createMainScilabObject.h"
 #include "scilabDefaults.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void DoLoadClasspathInEtc(char *SCIPATH);
 static void DoLoadLibrarypathInEtc(char *SCIPATH);
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 BOOL InitializeJVM(void)
 {
 	BOOL bOK=FALSE;
@@ -58,7 +58,7 @@ BOOL InitializeJVM(void)
 
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void DoLoadClasspathInEtc(char *SCIPATH)
 {
 	char *classpathfile = NULL;
@@ -67,7 +67,7 @@ static void DoLoadClasspathInEtc(char *SCIPATH)
 	LoadClasspath(classpathfile);
 	if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static void DoLoadLibrarypathInEtc(char *SCIPATH)
 {
 	char *librarypathfile = NULL;
@@ -76,6 +76,6 @@ static void DoLoadLibrarypathInEtc(char *SCIPATH)
 	LoadLibrarypath(librarypathfile);
 	if (librarypathfile) {FREE(librarypathfile); librarypathfile = NULL;}
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 
 

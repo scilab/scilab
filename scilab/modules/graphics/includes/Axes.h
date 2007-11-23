@@ -11,7 +11,7 @@
 #include "ObjectStructure.h"
 
 
-/*--------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
 
 /* clear a subwindow from all of its children */
 void clearSubWin( sciPointObj * pSubWin ) ;
@@ -32,5 +32,5 @@ void initSubWinBounds( sciPointObj * pSubWin ) ;
 /* return TRUE if the window has been redrawn */
 BOOL checkRedrawing( void ) ;
 
-/*--------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
 #endif /*__SCI_AXES_H_*/

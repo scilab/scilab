@@ -27,7 +27,7 @@
  * Enhancements and clean up
  * by Graeme W. Gill, 93/5/17
  */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "st.h"
 #include "wav.h"
@@ -35,14 +35,14 @@
 #include "sizes.h"
 #include "styles.h"
 #include "localization.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /* Private data for .wav file */
 typedef struct wavstuff 
 {
   long	samples;
   int	second_header; /* non-zero on second header write */
 } *wav_t;
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 static char *wav_format_str(unsigned int wFormatTag); 
 
 /*
@@ -52,7 +52,7 @@ static char *wav_format_str(unsigned int wFormatTag);
  *	size and style of samples, 
  *	mono/stereo/quad.
  */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void wavstartread(ft_t ft, WavInfo *Wi, int flag)
 {
   wav_t	wav = (wav_t) ft->priv;
@@ -270,7 +270,7 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
     }
   Wi->wav_format = wav_format_str(Wi->wFormatTag);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /*
  * Read up to len samples from file.
  * Convert to signed longs.
@@ -295,17 +295,17 @@ int wavread(ft_t ft, long int *buf, long int len)
   wav->samples -= done;
   return done;
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /*
  * Do anything required when you stop reading samples.  
  * Don't close input file! 
  */
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void wavstopread(ft_t ft);
 void wavstopread(ft_t ft)
 {
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void wavstartwrite(ft_t ft)
 {
   wav_t	wav = (wav_t) ft->priv;
@@ -321,7 +321,7 @@ void wavstartwrite(ft_t ft)
     sciprint(_("Length in output .wav header will wrong since can't seek to fix it\n"));
   wavwritehdr(ft);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void wavwritehdr(ft_t ft)
 {
   wav_t	wav = (wav_t) ft->priv;
@@ -429,14 +429,14 @@ void wavwritehdr(ft_t ft)
   else
     sciprint(_("Finished writing Wave file, %u data bytes\n"),data_length);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void wavwrite(ft_t ft, long int *buf, long int len)
 {
   wav_t	wav = (wav_t) ft->priv;
   wav->samples += len;
   rawwrite(ft, buf, len);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 void wavstopwrite(ft_t ft)
 {
   /* All samples are already written out. */
@@ -452,7 +452,7 @@ void wavstopwrite(ft_t ft)
   ((wav_t) ft->priv)->second_header = 1;
   wavwritehdr(ft);
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 /*
  * Return a string corresponding to the wave format type.
  */
@@ -487,5 +487,5 @@ wav_format_str(unsigned int wFormatTag)
       return _("Unknown");
     }
 }
-/*-----------------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/ 
 

@@ -224,7 +224,7 @@ function ilib_link_gen_Make_win32(names,files,libs,Makename,libname,ldflags, ...
   mclose(fd);
 endfunction
 
-//----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 function ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,ldflags,cflags,fflags,cc,flag)
 // Allan CORNET
 // INRIA 2004
@@ -304,4 +304,4 @@ function ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,ldflags,cflags
  
  mclose(fd);
 endfunction
-//----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------

@@ -1672,7 +1672,7 @@ void scizoom( double bbox[4], sciPointObj * pobj )
   pSUBWIN_FEATURE (psousfen)->ZRect[5] = pSUBWIN_FEATURE (psousfen)->SRect[5];
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void getPixelCoordinates( sciPointObj * pSubWin, double coord3d[3], int pixCoord[2] )
 {
 
@@ -1693,7 +1693,7 @@ void getPixelCoordinates( sciPointObj * pSubWin, double coord3d[3], int pixCoord
     pixCoord[1] = YDouble2Pixel( coord3d[1] ) ;
   }
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int PixelHeight2d( sciPointObj * parentSubWin, double posY, double height )
 {
   if ( pSUBWIN_FEATURE( parentSubWin )->logflags[1] == 'l' )
@@ -1704,7 +1704,7 @@ int PixelHeight2d( sciPointObj * parentSubWin, double posY, double height )
   return HScale( height ) ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int PixelWidth2d( sciPointObj * parentSubWin, double posX, double width )
 {
   if ( pSUBWIN_FEATURE( parentSubWin )->logflags[0] == 'l' )
@@ -1715,7 +1715,7 @@ int PixelWidth2d( sciPointObj * parentSubWin, double posX, double width )
   return WScale( width ) ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
                            double        ulPoint[3]   ,
                            double        userSize[2]  ,
@@ -1784,7 +1784,7 @@ void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
 
   }
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Plo2d2RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
 {
   integer i,j;
@@ -1887,7 +1887,7 @@ void Plo2d2RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *
       break;
   }
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
 {
   integer i,j;
@@ -1994,7 +1994,7 @@ void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *
       break;
   }
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
 {
   integer i,j;
@@ -2090,4 +2090,4 @@ void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *
     break;
   }
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

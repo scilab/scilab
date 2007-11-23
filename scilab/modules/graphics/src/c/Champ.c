@@ -178,7 +178,7 @@ int C2F(champ1)(double *x, double *y, double *fx, double *fy, integer *n1, integ
 }
 
 
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 /**
 * Compute the size of the area used by a champ object( ie scisegs with ptype = 1).
 * @param[in]  xCoords     position of the champ grid
@@ -283,7 +283,7 @@ void getChampDataBounds( double   xCoords[]  ,
   FREE( zPixCoords ) ;
 
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol )
 {
   int i ;
@@ -315,7 +315,7 @@ double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol )
 
   return min ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int ind )
 {
   integer whiteid = sciGetWhiteColorIndex(sciGetCurrentFigure());
@@ -330,7 +330,7 @@ int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int
 
   return color ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 double getLongestVector( double vectX[], double vectY[], int nbRow, int nbCol, double scx, double scy )
 {
   int i ;
@@ -348,4 +348,4 @@ double getLongestVector( double vectX[], double vectY[], int nbRow, int nbCol, d
 
   return max ;
 }
-/*-------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/

@@ -1,12 +1,12 @@
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #include "TclUiSet.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "setvar.h"
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 #define NBRSTYLE 9
 char *UiStyleInternalName[NBRSTYLE] = {"button",
 					           "checkbutton",
@@ -26,9 +26,9 @@ char *UiStyleExternalName[NBRSTYLE] = {"pushbutton",
                                "frame",
                                "listbox",
 				               "popupmenu"};
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int GetStyleInternalName(char *StyleStr);
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValue)
 {
 	int bOK=0;
@@ -229,7 +229,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 {
 	#define CommandLenMax 2048	
@@ -284,7 +284,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 static int GetStyleInternalName(char *StyleStr)
 {
 	int IndexInternalName=-1;
@@ -299,4 +299,4 @@ static int GetStyleInternalName(char *StyleStr)
 	}
 	return IndexInternalName;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

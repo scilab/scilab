@@ -29,7 +29,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
    //    - ai et bi (String) : renvoient les differents coeficients des operateurs (ai(x) et bi(t))      //                                                             //
    //    - k (Entier) : codant le nombre de ports d'entrees du bloc EDP                                  // 
    //    - mesures (vecteur des entiers) : renvoi la liste des points de mesures                         //
-   //----------------------------------------------------------------------------------------------------//
+   //-------------------------------------------------------------------------------------------//
          
   // create a figure
   ok=%f;

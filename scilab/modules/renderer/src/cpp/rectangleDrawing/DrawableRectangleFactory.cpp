@@ -15,7 +15,7 @@
 namespace sciGraphics
 {
 
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 DrawableObject * DrawableRectangleFactory::create( void )
 {
   ConcreteDrawableRectangle * newRect = new ConcreteDrawableRectangle( m_pDrawed ) ;
@@ -25,13 +25,13 @@ DrawableObject * DrawableRectangleFactory::create( void )
 
   return newRect ;
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableRectangleFactory::update( void )
 {
   DrawableRectangleBridgeFactory imp ;
   imp.setDrawedRectangle( getRectangleDrawer(m_pDrawed) ) ;
   imp.update();
 }
-/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 
 }

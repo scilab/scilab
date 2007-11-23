@@ -864,7 +864,7 @@ int GradEqual(const double grads[],const int *ngrads)
   return 1;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int ComputeC_format(sciPointObj * pobj, char * c_format)
 {
   int i,j;
@@ -1029,7 +1029,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   return 0;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim )
 {
   int i;
@@ -1127,7 +1127,7 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * Compute the default labels of an axis from the positions of the ticks.
  * @param[in/out] pobj the axis object
@@ -1191,7 +1191,7 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
   return ticsLabels ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /* compute the c_format used for convert double to char (for labels) */
 int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads )
 {
@@ -1215,7 +1215,7 @@ int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads )
   return 0;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads)
 {
   int flag_limit = 0,i;
@@ -1259,7 +1259,7 @@ double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads)
 
   return tmp;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char * copyFormatedValue( double value, const char format[5], int bufferSize )
 {
   char * buffer = MALLOC( bufferSize * sizeof(char) ) ;
@@ -1291,7 +1291,7 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
   
   return res ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 char ** copyFormatedArray( const double values[], int nbStrings, const char format[5], int bufferSize )
 {
   int i ;
@@ -1311,7 +1311,7 @@ char ** copyFormatedArray( const double values[], int nbStrings, const char form
   return res ;
 
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**************************************************
 * Global values which are set at this level and 
 * not redirected to each driver
@@ -1323,7 +1323,7 @@ char * getFPF(void)
 {
   return(FPF);
 }
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 #undef ROUND
 #undef ABS
