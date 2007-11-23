@@ -9,6 +9,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "CreateEmptystr.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 char ** CreateEmptystr(int m1,int n1)
 {
@@ -32,7 +33,7 @@ char ** CreateEmptystr(int m1,int n1)
 				}
 				if (OutputStrings) {FREE(OutputStrings); OutputStrings = NULL; }
 
-				Scierror(999, "MALLOC error of output matrix");
+				Scierror(999, _("Memory allocation error\n"));
 				break;
 			}
 		}

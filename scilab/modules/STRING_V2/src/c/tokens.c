@@ -21,7 +21,7 @@ void tokens(char **Input_MatrixOne,char **Input_MatrixTwo,char **Output_String,i
 	{
 		int y = 0;
 
-		/*To traverse every string in the input string matrix */
+		/*To loop on every string in the input string matrix */
 		for (y = 0; y < (int)strlen(Input_MatrixOne[x]); y++)
 		{
 			int i = 0;
@@ -33,7 +33,7 @@ void tokens(char **Input_MatrixOne,char **Input_MatrixTwo,char **Output_String,i
 			}
 			if (bo==0) 
 			{
-				/*bo is a singal, to put the input string matrix into the output matrix in a correct token way*/
+				/* if bo is a singal, to put the input string matrix into the output matrix in a correct token way*/
 				Output_String[*Row_Pointer][(*Col_Pointer)++]=Input_MatrixOne[0][y];
 			}
 			else 

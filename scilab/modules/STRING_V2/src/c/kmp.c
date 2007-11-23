@@ -1,8 +1,9 @@
 /*------------------------------------------------------------------------*/
 /* File: kmp.c */
 /* Copyright INRIA 2007 */
-/* @Authors : Cong Wu */
-/* desc : The algorithm of kmp method */
+/* @authors : Cong Wu */
+/* desc : The algorithm of kmp method
+ * @see http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
