@@ -252,24 +252,30 @@ function test_run(varargin)
 		
 		// Summary
 		
-		test_passed_percent  = test_passed_count  / test_count * 100;
-		test_skipped_percent = test_skipped_count / test_count * 100;
-		test_failed_percent  = test_failed_count  / test_count * 100;
+		if test_count<>0 then
+			test_passed_percent  = test_passed_count  / test_count * 100;
+			test_skipped_percent = test_skipped_count / test_count * 100;
+			test_failed_percent  = test_failed_count  / test_count * 100;
+		else
+			test_passed_percent  = 0;
+			test_skipped_percent = 0;
+			test_failed_percent  = 0;
+		end
 		
 		printf("\n");
-		printf("   ------------------------------------------------------------------------------\n");
+		printf("   --------------------------------------------------------------------------\n");
 		printf("   Summary\n\n");
 		printf("   tests                     %4d - 100 %% \n",test_count);
 		printf("   passed                    %4d - %3d %% \n",test_passed_count ,test_passed_percent);
 		printf("   failed                    %4d - %3d %% \n",test_failed_count ,test_failed_percent);
 		printf("   skipped                   %4d - %3d %% \n",test_skipped_count,test_skipped_percent);
-		printf("   ------------------------------------------------------------------------------\n");
+		printf("   --------------------------------------------------------------------------\n");
 		
 		if test_failed_count > 0 then
 			printf("   Details\n\n");
 			printf("%s\n",details_failed);
 			printf("\n");
-			printf("   ------------------------------------------------------------------------------\n");
+			printf("   --------------------------------------------------------------------------\n");
 		end
 		
 	end
@@ -503,7 +509,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	end
 	
 	if grep(dia,"error on test")<>[] then
-		status_msg     = "failed  : one or several unit tests failed";
+		status_msg     = "failed  : one or several tests failed";
 		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
 		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
 		status_id      = 2;
