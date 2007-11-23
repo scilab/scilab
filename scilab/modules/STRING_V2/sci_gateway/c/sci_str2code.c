@@ -20,9 +20,7 @@ int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(1,1);
   CheckLhs(1,1);
 
-  switch ( VarType(1)) 
-  {
-	case sci_strings :
+  if (VarType(1)==sci_strings)
 		{
 			char **Input_String = NULL;
 			int m1 = 0,n1 = 0,i = 0;
@@ -51,16 +49,9 @@ int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 
 			/* free pointers */
 			if (Output_Matrix) {FREE(Output_Matrix); Output_Matrix=NULL; }
+		}else{
+			Scierror(999,"Input argument must be a string.\n");
 		}
-	break;
-
-	default : 
-		{
-			Scierror(999,"invalid type.\n");
-			return 0;
-		}
-	break;
-  }
   return 0;
 }
 /*-------------------------------------------------------------------------------------*/
