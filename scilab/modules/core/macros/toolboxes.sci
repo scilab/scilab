@@ -1,5 +1,5 @@
 function [y]=toolboxes(path,flag,force) 
-// toolboxes loding or compiling 
+// toolboxes loading or compiling 
 // if flag == %t then contribs are recompiled 
 //    if a loader.sce is not found or if force == %t 
 // path is a directory to explore for contribs
