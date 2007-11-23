@@ -21,7 +21,7 @@ BOOL createMainScilabObject(void)
 	{
 		jclass cls=NULL;
 		cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/jvm/Scilab");
-			bOK=catchIfJavaException(_("Could not access to the Main Scilab Class :\n"));
+		bOK=catchIfJavaException(_("Could not access to the Main Scilab Class :\n"));
 		if (cls)
 		{
 			jmethodID mid=NULL;
