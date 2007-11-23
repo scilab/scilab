@@ -2,7 +2,7 @@
 /* File: strcatfunction.c                                                 */
 /* Copyright INRIA 2007                                                   */
 /* @Authors : Cong Wu                                                     */
-/* desc : catenate character strings                                      */
+/* desc : concatenate: character strings                                  */
 /*        The main function                                               */
 /*                                                                        */
 /*------------------------------------------------------------------------*/
