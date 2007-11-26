@@ -62,7 +62,7 @@ done
 # Process all the modules ... then, build the list
 if test $PROCESS_ALL -eq 1; then
 	cd $SCI/modules/
-	MODULES=`find . -maxdepth 1 -type d  ! -name ".*"`
+	MODULES=`find . -maxdepth 1 -type d  ! -name ".*" ! -name 'javasci'`
 fi
 
 
@@ -76,16 +76,16 @@ for MODULE in $MODULES; do
 	echo "... Processing module $MODULE"
 
 	cd $PATHTOPROCESS
-	FILES=`eval $FILESCMD|tr "\n" " "`
 
+	FILES=`eval $FILESCMD|tr "\n" " "`
+	MODULE_NAME=`echo $MODULE|sed -e 's|./||'`
 	echo "..... Parsing all sources in $PATHTOPROCESS"
 # Parse all the sources and get the string which should be localized
 	LOCALIZATION_FILE_US=$TARGETDIR/en_US/$TARGETFILETEMPLATE
 	echo "........ Generate the english localization file by parsing the code"
 	$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $TARGETFILETEMPLATE.tmp $FILES > /dev/null
-	sed -e "s/MODULE/$MODULE/" -e "s/DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $SCI/modules/localization/locales/en_US/header.pot > $LOCALIZATION_FILE_US
+	sed -e "s/MODULE/$MODULE_NAME/" -e "s/DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $SCI/modules/localization/locales/en_US/header.pot > $LOCALIZATION_FILE_US
 	cat $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
-	
 	rm $LOCALIZATION_FILE_US.tmp
 	if test -z "$NOSTRING"; then
 # merge/create the other locales
@@ -108,5 +108,5 @@ for MODULE in $MODULES; do
 		done #Browse langs
 	fi
 	
-	cd -
+	cd $SCI/
 done # Browse modules
