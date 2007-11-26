@@ -15,7 +15,7 @@ src/c/strcat-c.c \
 src/c/Get_length.c \
 src/c/strcatfunction.c \
 src/c/InitializeString.c \
-src/c/setSscilabCharactersCodes.c 
+src/c/setScilabCharactersCodes.c 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \
