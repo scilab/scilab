@@ -105,7 +105,7 @@ int StoreCommand1 (char *command,int flag)
 			  p = (CommandRec *) MALLOC (sizeof (CommandRec));
 			  if (p == (CommandRec *) 0)
 				{
-					sciprint(_("send_command : No more memory.\n"));
+					sciprint(_("%s: No more memory.\n"),"send_command");
 					return (1);
 				}
 			  p->flag = 0;
@@ -113,7 +113,7 @@ int StoreCommand1 (char *command,int flag)
 			  if (p->command == (char *) 0)
 				{
 				  FREE(p);
-				  sciprint(_("send_command : No more memory.\n"));
+				  sciprint(_("%s: No more memory.\n"),"send_command");
 				  return (1);
 				}
 			  strcpy (p->command, command);

@@ -35,7 +35,7 @@ void sciprint_full(char *fmt,...)
 	s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
 	if (s_buf == (char *) 0)
 	{
-		sciprint(_("sciprint_full : No more memory.\n"));
+		sciprint(_("%s: No more memory.\n"),"sciprint_full");
 		return;
 	}
 
@@ -53,7 +53,7 @@ void sciprint_full(char *fmt,...)
 	split_s_buf=MALLOC(sizeof(char)*(colwidth+1));
 	if (split_s_buf == (char *) 0)
 	{
-		sciprint(_("sciprint_full : No more memory.\n"));
+		sciprint(_("%s: No more memory.\n"),"sciprint_full");
 		return;
 	}
 

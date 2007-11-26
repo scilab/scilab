@@ -62,7 +62,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       command = (char *) MALLOC (bsiz * sizeof (char));
       if (command == (char *) 0)
       {
-		sciprint(_("TCL_EvalScilabCmd: No more memory.\n"));
+		sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");
         return TCL_ERROR;
       }
       memset(command,'\0',bsiz);
@@ -74,7 +74,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       command = (char *) MALLOC ((strlen (AsciiFromUTF8) + 1) * sizeof (char));
       if (command == (char *) 0)
       {
-		  sciprint(_("TCL_EvalScilabCmd: No more memory.\n"));
+		  sciprint(_("%s: No more memory.\n"));
           return TCL_ERROR;
       }
       strcpy(command,AsciiFromUTF8);
@@ -115,7 +115,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         comm[ncomm] = (char *) MALLOC (bsiz+1);
         if (comm[ncomm] == (char *) 0)
         {
-			sciprint(_("TCL_EvalScilabCmd: No more memory.\n"));
+			sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");
 			return TCL_ERROR;
         }
         seqf[ncomm]=GetCommand (comm[ncomm]);

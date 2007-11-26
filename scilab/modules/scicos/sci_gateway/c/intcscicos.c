@@ -1916,7 +1916,7 @@ int intscicosimc(fname,fname_len)
   nelem+=outtbsz[j*2]*outtbsz[(j*2)+1];
   if ((outtb_elem=(outtb_el *) REALLOC(outtb_elem,nelem*sizeof(outtb_el)))==NULL)
   {
-   Scierror(999,"%s : No more free memory.\n",fname);
+   Scierror(999,"%s : No more memory.\n",fname);
    FREE(outtbptr);
    FREE(outtbtyp);
    FREE(outtbsz);
@@ -3657,7 +3657,7 @@ int intbuildouttb(fname)
 
   if (ierr==-1)
   {
-   Scierror(999,"%s : No more free memory.\n",fname);
+   Scierror(999,"%s : No more memory.\n",fname);
    FREE(lnksz);
    FREE(lnktyp);
    return 0;
