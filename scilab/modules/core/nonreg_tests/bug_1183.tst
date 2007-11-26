@@ -10,11 +10,7 @@
 // Copyright INRIA
 // 1er juin 2005
 
-A =1@1
-B=lasterror()
+A = 1@1;
+B = lasterror();
 
-if B=='Missing operator, comma, or semicolon' then
-	affich_result(%T,1183);
-else
-	affich_result(%F,1183);
-end
+if B <> 'Missing operator, comma, or semicolon'then pause,end

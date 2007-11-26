@@ -36,8 +36,4 @@ A = grand(1,'prm',[1:5]');
 grand('setsd',12);
 B = grand(1,'prm',[1:5]');
 
-if or(A<>B) then
-	affich_result(%F,1568);
-else
-	affich_result(%T,1568);
-end
+if or(A<>B) then pause,end

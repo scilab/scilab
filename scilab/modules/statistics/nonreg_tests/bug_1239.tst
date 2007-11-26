@@ -28,8 +28,4 @@
 // Copyright INRIA
 // Date : 21 Mar 2005
 
-if( (nanmax([%nan, -1]) <> -1) | (nanmax([%nan, 1]) <> 1) | (nanmin([%nan, -1]) <> -1) | (nanmin([%nan, 1]) <> 1) ) then
-	affich_result(%F,1239);
-else
-	affich_result(%T,1239);
-end
+if( (nanmax([%nan, -1]) <> -1) | (nanmax([%nan, 1]) <> 1) | (nanmin([%nan, -1]) <> -1) | (nanmin([%nan, 1]) <> 1) ) then pause,end

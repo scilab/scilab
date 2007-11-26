@@ -20,9 +20,4 @@
 point1 = [1 ; 0];
 point2 = rotate (point1, %pi/2),	
 
-
-if ( norm( point2 - [0;1] ) < 10e-10 ) then
-  affich_result(%T,1448);
-else
-  affich_result(%F,1448);
-end
+if norm( point2 - [0;1] ) >= 10e-10 then pause,end

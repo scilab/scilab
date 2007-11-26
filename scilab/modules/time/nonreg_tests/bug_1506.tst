@@ -36,8 +36,6 @@ one_hour = datenum(now(1),now(2),now(6),18,now(8),now(9)) -  datenum(now(1),now(
 one_hour_ref = 1/24;
 test3  = (abs( (one_hour - one_hour_ref) / one_hour ) < 1e-8);
 
-if ( test1 & test2 & test3 ) then
-	affich_result(%T,1506);
-else
-	affich_result(%F,1506);
-end
+if ~test1 then pause,end
+if ~test2 then pause,end
+if ~test3 then pause,end

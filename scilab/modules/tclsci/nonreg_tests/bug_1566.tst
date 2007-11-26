@@ -32,11 +32,4 @@
 // Date : 28 octobre 2005
 
 err = execstr('TCL_SetVar(''A'',1+%i)','errcatch');
-
-if (err== 999) then
-	affich_result(%T,1566);
-else
-	affich_result(%F,1566);
-end
-
-lasterror();
+if err<> 999 then pause,end

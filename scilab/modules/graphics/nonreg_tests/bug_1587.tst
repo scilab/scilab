@@ -29,12 +29,5 @@ jc = jetcolormap(45) ;
 f.color_map = jc ;
 
 // check that the colormaps are well copied
-if abs( max( f.color_map - jc ) ) > 1e-8 then
-  affich_result(%F,1587) ;
-end ;
-
-if abs( max( f2.color_map - hc ) ) > 1e-8 then
-  affich_result(%F,1587) ;
-end ;
-
-affich_result(%T,1587) ;
+if abs( max( f.color_map - jc ) ) > 1e-8 then pause,end
+if abs( max( f2.color_map - hc ) ) > 1e-8 then pause,end

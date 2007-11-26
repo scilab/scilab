@@ -25,4 +25,4 @@ correct = findobj("tag","Alabel")==t & ...
 
 close(1);
 
-affich_result(correct,1321);
+if correct == %F then pause,end

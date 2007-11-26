@@ -38,8 +38,4 @@ M3ref = [0,1,2,3,4,5,6;7,8,9,10,11,12,13;14,15,16,17,18,19,20;21,22,23,24,25,26,
 
 Mref = list(M1ref,M2ref,M3ref );
 
-if or((Mref<>M) <> [%F,%F,%F]) then
-	affich_result(%F,1249);
-else
-	affich_result(%T,1249);
-end
+if or((Mref<>M) <> [%F,%F,%F]) then pause,end

@@ -22,8 +22,4 @@ savematfile(TMPDIR+'/file_1232.mat','a');
 clear a
 loadmatfile(TMPDIR+'/file_1232.mat','a');
 
-if( a == 123456789 ) then
-	affich_result(%T, 1227)
-else
-	affich_result(%F, 1227)
-end
+if a <> 123456789 then pause,end

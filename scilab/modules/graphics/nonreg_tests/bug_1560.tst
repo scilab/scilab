@@ -40,8 +40,4 @@ ha.rotation_angles = [0,0];
 reference = [ 1, 0.6, -0.3 ; 0.7, 0.45, -0.4 ] ;
 
 // check that the segment z coordinates are modified
-if ( hs10.data == reference ) then
-  affich_result(%T,1560);
-else
-  affich_result(%F,1560);
-end
+if hs10.data <> referenceif then pause,end

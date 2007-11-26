@@ -14,11 +14,7 @@
 // 1er juin 2005
 
 G = syslin('c', [1 0 ; 0 1], [ 1; 1], [1 1]);
-minss(G)("A")
-B=lasterror()
+minss(G)("A");
+B = lasterror();
 
-if B=='invalid index' then
-	affich_result(%T,1198);
-else
-	affich_result(%F,1198);
-end
+if B <> 'invalid index' then pause,end

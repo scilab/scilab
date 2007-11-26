@@ -38,8 +38,7 @@ checkP1 = ( p1.clip_state == 'on'  ) & ( p1.clip_box == clipBox ) ;
 
 // check if the clip_box is set for objects wich are
 // created after the axes have been clipped
-if ( checkR1 & checkR2 & checkP1  ) then
-  affich_result(%T,1491);
-else
-  affich_result(%F,1491);
-end
+
+if ~checkR1 then pause,end
+if ~checkR2 then pause,end
+if ~checkP1 then pause,end
