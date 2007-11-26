@@ -1,75 +1,65 @@
 # Localization of the module time
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - time\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 16:29+0100\n"
 
 # File: macros/weekday.sci, line: 17
 msgid "Number of input parameters incorrect."
 msgstr ""
-
 #
 # File: macros/weekday.sci, line: 21
 msgid "The first argument must a real constant matrix."
 msgstr ""
-
 #
 # File: macros/weekday.sci, line: 25
 msgid "The second parameter must be the string ''long'' or ''short''."
 msgstr ""
-
 #
-# File: src/c/getdate.c, line: 74
+# File: src/c/getdate.c, line: 82
 msgid "dt=getdate(x) x must be > 0.\n"
 msgstr ""
-
 #
-# File: src/c/getdate.c, line: 76
+# File: src/c/getdate.c, line: 84
 #, c-format
 msgid "dt=getdate(x) x must be < %d.\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_xpause.c, line: 27
 # File: sci_gateway/c/sci_sleep.c, line: 22
 #, c-format
 msgid "%s : error time must be > 0.\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_calendar.c, line: 48
 msgid "Error : year (1800 - 3000).\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_calendar.c, line: 54
 msgid "Error : month (1 - 12).\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_calendar.c, line: 60
 msgid "Invalid argument(s) type.\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_getdate.c, line: 42
 msgid "Impossible to get the date...\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_getdate.c, line: 74
 # File: sci_gateway/c/sci_getdate.c, line: 130
-msgid "Input parameter must be a 's' or a integer.\n"
+msgid "Input parameter must be 's' or a integer.\n"
 msgstr ""

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab - time\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
 "PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab <localization@scilab.org>\n"
@@ -72,5 +72,5 @@ msgstr "Impossible de récupérer la date...\n"
 #
 # File: sci_gateway/c/sci_getdate.c, line: 74
 # File: sci_gateway/c/sci_getdate.c, line: 130
-msgid "Input parameter must be a 's' or a integer.\n"
+msgid "Input parameter must be 's' or a integer.\n"
 msgstr "Les paramètres d'entrée doivent être 's' or un entier.\n"
