@@ -107,7 +107,7 @@ function genlib(nam,path,force,verbose,names)
     if ~predefined then
       execstr(nam+'=resume('+nam+')')
     else
-      write(%io(2),msprintf(gettext("   Library file %slib has been updated, but cannot be loaded into Scilab, because %s is a protected variable."),path1, name));
+      write(%io(2),msprintf(gettext("   Library file %slib has been updated,\n   but cannot be loaded into Scilab,\n   because %s is a protected variable."),path1, nam));
     end
   end
 endfunction
