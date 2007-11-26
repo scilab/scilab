@@ -6,7 +6,7 @@
 	<TYPE>Scilab Function</TYPE>
 	<DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoû 2006) $</DATE>
 	
-	<SHORT_DESCRIPTION name="datenum">Launch tests</SHORT_DESCRIPTION>
+	<SHORT_DESCRIPTION name="test_run">Launch tests</SHORT_DESCRIPTION>
 	
 	<CALLING_SEQUENCE>
 		<CALLING_SEQUENCE_ITEM>N = test_run()</CALLING_SEQUENCE_ITEM>
