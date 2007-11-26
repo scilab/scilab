@@ -3,6 +3,7 @@
 
 EXPORTS
 ;core
+cha1_
 com_
 cvstr_
 putlhsvar_
@@ -19,6 +20,4 @@ intersci_
 check_length
 callFunctionFromGateway
 gettype_
-sci_strsplit_
-strsplit_
 ;

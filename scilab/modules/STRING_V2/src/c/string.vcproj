@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="string"
 	ProjectGUID="{8D45767A-9B03-4905-97F6-D2F3F79141EA}"
 	RootNamespace="string"
@@ -219,6 +219,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitializeString.c"
+				>
+			</File>
+			<File
 				RelativePath=".\men_Sutils.c"
 				>
 			</File>
@@ -287,6 +291,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\setScilabCharactersCodes.c"
+				>
+			</File>
+			<File
 				RelativePath=".\strcat-c.c"
 				>
 			</File>
@@ -328,7 +336,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\InitializeString.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\men_Sutils.h"
+				>
+			</File>
+			<File
+				RelativePath=".\setScilabCharactersCodes.h"
 				>
 			</File>
 			<File

@@ -186,9 +186,10 @@ IMPORT INTERSCI_struct C2F(intersci);
  */
 typedef struct
 {
-	char alfa[csiz]; /**< @TODO : add comment */
-	char alfb[csiz]; /**< @TODO : add comment */
-	char buf[bsiz]; /**< @TODO : add comment */
+	/* see SCI/modules/string/src/c/setScilabCharactersCodes.h */
+	char alfa[csiz]; /* Scilab Characters Codes 0 to 62 */
+	char alfb[csiz]; /* Scilab Characters Codes 63 to 124 */
+	char buf[bsiz]; /* buffer to exchange strings (fortran)*/
 } CHA1_struct;
 
 IMPORT CHA1_struct C2F(cha1);

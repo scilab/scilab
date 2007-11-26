@@ -57,39 +57,7 @@ c     integer graphicsmodels
 c     
       double precision  iov(2)
       character*(nlgh) vname 
-c     character set
-c     0       10       20       30       40       50
-c     
-c     0      0        a        k        u   colon  :  less   <
-c     1      1        b        l        v   plus   +  great  >
-c     2      2        c        m        w   minus  -  perc   %
-c     3      3        d        n        x   star   *  under  _
-c     4      4        e        o        y   slash  /
-c     5      5        f        p        z   bslash \
-c     6      6        g        q  blank     equal  =
-c     7      7        h        r  lparen (  dot    .
-c     8      8        i        s  rparen )  comma  ,
-c     9      9        j        t  semi   ;  quote  '
-c     
-      character alpha(csiz)*1,alphb(csiz)*1
-      data alpha /'0','1','2','3','4','5','6','7','8','9',
-     $     'a','b','c','d','e','f','g','h','i','j',
-     $     'k','l','m','n','o','p','q','r','s','t',
-     $     'u','v','w','x','y','z','_','#','!','$',
-     $     ' ','(',')',';',':','+','-','*','/','\\',
-     $     '=','.',',','''','[',']','%','|','&','<','>','~',
-     $     '^'/
-c     
-c     alternate character set
-c     
-      data alphb /'0','1','2','3','4','5','6','7','8','9',
-     $     'A','B','C','D','E','F','G','H','I','J',
-     $     'K','L','M','N','O','P','Q','R','S','T',
-     $     'U','V','W','X','Y','Z','0','0','?','0',
-     $     '0','0','0','0','0','0','0','0','0','$',
-     $     '0','0','0','"','{','}','0','0','0','`','0','@',
-     $     '0'/
-c     
+c  
       data im/673714744,nz1*673720360/,exp/673713720,nz1*673720360/
       data pi/672274744,nz1*673720360/,bl/nsiz*673720360/
       data eps/471404088,nz1*673720360/,io/672666168,nz1*673720360/
@@ -158,9 +126,6 @@ c     .  wte = unit number for terminal output
 c     .  hio =unit for history output (no more used)
       hio = 0
 c     
-c     .  banner 
-c     .  ------
-c     call banier(wte)
       rio=rte
 c     
 c     .  Control-C recovery
@@ -176,20 +141,6 @@ c     .  ------------------
       ran(1) =  0
       ran(2) =  0
 c     
-c     .  Initial values for main window row and column sizes
-c     .  ---------------------------------------------------
-
-c     commented out by Vincent COUVERT 05/09/2007 (now called by InitializeShell.c)
-c     if (intexmacs().eq.0) then
-c        lct(2) = 1
-c     else
-c        lct(2) = 0
-c     endif
-c     set default values number of lines and columns
-c     call scilinesdefault()
-
-c     .  en mode fenetre ces valeurs sont remplacees par les dimension effectives
-
 c     .  initial format for number display
 c     .  ---------------------------------
       lct(6) =  1
@@ -202,17 +153,7 @@ c     .  ------------------
 c
 c     .  scicos initial debug mode
       cosd = 0
-c     
-c     .  character set
-c     .  -------------
-      do 20 i = 1, csiz
-         alfa(i) = alpha(i)
-         alfb(i) = alphb(i)
- 20   continue
-c     add tab
-c @TODO  What is 41 & 9 ?
-      alfb(41)=char(9) 
-
+c      
 c     .  initial type names
 c     .  ------------------
       call settypnames()

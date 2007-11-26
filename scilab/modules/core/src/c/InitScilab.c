@@ -14,6 +14,7 @@
 #include "../../../windows_tools/includes/InitializeWindows_tools.h"
 #endif
 #include "../../../gui/includes/InitializeGUI.h"
+#include "../../../string/includes/InitializeString.h"
 #include "scilabmode.h"
 #include "SetScilabEnvironment.h"
 /*--------------------------------------------------------------------------*/
@@ -21,6 +22,8 @@ int C2F(initscilab)(void)
 {
 
 	SetScilabEnvironment();
+
+	InitializeString();
 
 	InitializeLocalization();
 

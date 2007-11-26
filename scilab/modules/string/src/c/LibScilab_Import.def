@@ -3,6 +3,7 @@
 
 EXPORTS
 ;core
+cha1_
 com_
 cvstr_
 putlhsvar_
