@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 14:50+0100\n"
+"POT-Creation-Date: 2007-11-26 15:11+0100\n"
 "PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
@@ -105,7 +105,6 @@ msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
 msgstr "Obsolète: Définissez SCIHOME et HOME avant de lancer Scilab."
 
 #
-# File: src/c/msgs.c, line: 800
 # File: sci_gateway/c/sci_who.c, line: 303
 msgid "User variables are:"
 msgstr "Vos variables sont : "
@@ -231,19 +230,19 @@ msgstr "Impossible d'ouvrir %s\n"
 # File: src/c/link_std.c, line: 325
 #, c-format
 msgid "Cannot read filehdr from %s\n"
-msgstr ""
+msgstr "Impossible de lire filehdr de %s\n"
 
 #
 # File: src/c/link_std.c, line: 346
 #, c-format
 msgid "Cannot read auxhdr from %s\n"
-msgstr ""
+msgstr "Impossible de lire auxhdr de %s\n"
 
 #
 # File: src/c/link_std.c, line: 357
 #, c-format
 msgid "Cannot read header from %s\n"
-msgstr ""
+msgstr "Impossible de lire les entêtes (header) de %s\n"
 
 #
 # File: src/c/link_std.c, line: 372
@@ -260,7 +259,7 @@ msgstr "Impossible de lire %s\n"
 # File: src/c/link_std.c, line: 416
 #, c-format
 msgid "IBM load routine failed: %s\n"
-msgstr ""
+msgstr "Erreur dans le chargement de la routine IBM %s\n"
 
 #
 # File: src/c/link_std.c, line: 453
@@ -272,19 +271,13 @@ msgstr "Variable PATH non définie\n"
 # File: src/c/link_std.c, line: 565
 # File: src/c/link_SYSV.c, line: 627
 msgid "Link too many files\n"
-msgstr ""
+msgstr "Link trop de fichiers\n"
 
 #
 # File: src/c/addinter.c, line: 223
 #, c-format
 msgid "Interface %d.\n"
 msgstr "Interface %d.\n"
-
-#
-# File: src/c/msgs.c, line: 517
-#, c-format
-msgid " results may be inaccurate. rcond = %s\n"
-msgstr ""
 
 #
 # File: src/c/callinterf.c, line: 37
@@ -752,12 +745,6 @@ msgstr ""
 # File: src/c/stack2.c, line: 3011
 #, c-format
 msgid "%s : bad call to createdata! (1rst argument).\n"
-msgstr ""
-
-#
-# File: src/c/msgs.c, line: 1059
-#, c-format
-msgid "GetDataFromName: variable %s not found.\n"
 msgstr ""
 
 #
@@ -1819,13 +1806,11 @@ msgid " and   %10d variables out of %10d.\n"
 msgstr ""
 
 #
-# File: src/c/msgs.c, line: 800
 # File: sci_gateway/c/sci_who.c, line: 303
 msgid "Your variables are :"
 msgstr "Vos variables sont :"
 
 #
-# File: src/c/msgs.c, line: 885
 # File: sci_gateway/c/sci_who.c, line: 310
 msgid "Your global variables are :"
 msgstr "Vos variables globales sont :"
@@ -1950,12 +1935,6 @@ msgstr "Second argument invalide.\n"
 # File: sci_gateway/c/sci_getversion.c, line: 323
 msgid "Invalid input argument(s).\n"
 msgstr ""
-
-#
-# File: src/c/msgs.c, line: 517
-#, c-format
-msgid " results may be inaccurate. rcond = %s1\n"
-msgstr " Ces résultats peuvent être inexacts. rcond = %s1\n"
 
 #
 # File: etc/scilab.start, line: 34
