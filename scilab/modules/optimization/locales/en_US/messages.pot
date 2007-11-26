@@ -1,123 +1,104 @@
 # Localization of the module optimization
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - optimization\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 18:05+0100\n"
 
-#
-# File: src/c/sp.c, line: 268
+# File: src/c/sp.c, line: 261
 msgid "m must be at least one.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 273
+# File: src/c/sp.c, line: 266
 msgid "L must be at least one.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 278
+# File: src/c/sp.c, line: 271
 #, c-format
 msgid "blck_szs[%d] must be at least one.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 283
+# File: src/c/sp.c, line: 276
 msgid "nu must be at least 1.0.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 304
+# File: src/c/sp.c, line: 297
 msgid "The matrices Fi, i=1,...,m are linearly dependent.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 410
-# File: src/c/sp.c, line: 595
+# File: src/c/sp.c, line: 403
+# File: src/c/sp.c, line: 588
 #, c-format
 msgid "Error in dspgv, info = %d.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 412
+# File: src/c/sp.c, line: 405
 msgid "x0 is not strictly primal feasible.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 425
+# File: src/c/sp.c, line: 418
 msgid "Z0 is not positive definite.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 428
+# File: src/c/sp.c, line: 421
 msgid "F(x)*Z has a negative eigenvalue.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 450
+# File: src/c/sp.c, line: 443
 msgid ""
 "\n"
 "    primal obj.  dual obj.  dual. gap \n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 507
+# File: src/c/sp.c, line: 500
 #, c-format
 msgid "Error in dgels, info = %d.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 519
+# File: src/c/sp.c, line: 512
 #, c-format
 msgid "Error in dtrcon, info = %d.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 568
+# File: src/c/sp.c, line: 561
 #, c-format
 msgid "Error in dspst, info = %d.\n"
 msgstr ""
-
 #
-# File: src/c/sp.c, line: 576
+# File: src/c/sp.c, line: 569
 #, c-format
 msgid "Error in dspev, info = %d.\n"
 msgstr ""
-
 #
-# File: src/c/intqld.c, line: 52
+# File: src/c/intqld.c, line: 51
 #, c-format
 msgid "qld: Argument 3: wrong number of columns %d expected\n"
 msgstr ""
-
 #
-# File: src/c/intqld.c, line: 147
+# File: src/c/intqld.c, line: 145
 #, c-format
 msgid "qld: Too many iterations (more than %d)\n"
 msgstr ""
-
 #
-# File: src/c/intqld.c, line: 149
+# File: src/c/intqld.c, line: 147
 msgid "qld: Accuracy insufficient to statify convergence criterion.\n"
 msgstr ""
-
 #
-# File: src/c/intqld.c, line: 151
+# File: src/c/intqld.c, line: 149
 msgid "qld: Length of working array is too short.\n"
 msgstr ""
-
 #
-# File: src/c/intqld.c, line: 153
+# File: src/c/intqld.c, line: 151
 msgid "qld: The constraints are inconsistent.\n"
 msgstr ""
