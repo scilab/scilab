@@ -45,7 +45,7 @@ int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 					}
 					else
 					{
-						Scierror(999,_("parameter must be &gt;= 0\n"));
+						Scierror(999,_("parameter must be >= 0\n"));
 						return 0;
 					}
 				}

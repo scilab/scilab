@@ -115,7 +115,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 							AsciiFromUTF8=UTF8toANSI(TCLinterp,RetStr);
 
 							output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
-							sprintf(output,"%s",AsciiFromUTF8);
+							strcpy(output,AsciiFromUTF8);
 							CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 
 							if (output) {FREE(output);output=NULL;}
@@ -177,7 +177,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 								AsciiFromUTF8=UTF8toANSI(TCLinterp,RetStr);
 
 								output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
-								sprintf(output,"%s",AsciiFromUTF8);
+								strcpy(output,AsciiFromUTF8);
 								/*CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=strlen(output), &m1),&n1,&output);*/
 
 								if (output) {FREE(output);output=NULL;}
@@ -212,7 +212,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 								m1=(int)strlen(AsciiFromUTF8);
 								n1=1;
 								CreateVar(Rhs+1,STRING_DATATYPE, &m1,&n1,&l1);
-								sprintf(cstk(l1),"%s",AsciiFromUTF8);
+								strcpy(cstk(l1),AsciiFromUTF8);
 								bOK=1;
 							}
 							else
@@ -257,7 +257,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 							m1=(int)strlen(AsciiFromUTF8);
 							n1=1;
 							CreateVar(Rhs+1,STRING_DATATYPE, &m1,&n1,&l1);
-							sprintf(cstk(l1),"%s",AsciiFromUTF8);
+							strcpy(cstk(l1),AsciiFromUTF8);
 							bOK=1;
 						}
 						else
@@ -285,7 +285,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 		}
 		else
 		{
-			Scierror(999,_("Invalid Handle. it must be &gt;0.\n"));
+			Scierror(999,_("Invalid Handle. it must be > 0.\n"));
 			return 0;
 		}
 	}
