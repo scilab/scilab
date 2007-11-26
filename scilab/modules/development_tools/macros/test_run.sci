@@ -244,7 +244,7 @@ function test_run(varargin)
 				details_failed = [ details_failed ; status_details ];
 				details_failed = [ details_failed ; "" ];
 			
-			elseif (status_id > 10) & (status_id < 20) then
+			elseif (status_id >= 10) & (status_id < 20) then
 				// skipped
 				test_skipped_count = test_skipped_count + 1;
 			end
@@ -500,7 +500,10 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	//Check for execution errors
 	
-	if grep(dia,"!--error")<>[] then
+	dia_tmp                     = dia;
+	dia_tmp(grep(dia_tmp,"//")) = [];  // remove commented lines
+	
+	if grep(dia_tmp,"!--error")<>[] then
 		status_msg     = "failed  : the string (!--error) has been detected";
 		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
 		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
@@ -508,7 +511,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		return;
 	end
 	
-	if grep(dia,"error on test")<>[] then
+	if grep(dia_tmp,"error on test")<>[] then
 		status_msg     = "failed  : one or several tests failed";
 		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
 		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
