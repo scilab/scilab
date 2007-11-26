@@ -18,36 +18,36 @@ msgstr ""
 
 # File: macros/scitest.sci, line: 23
 msgid "scitest: first input argument should not be a file with .dia suffix"
-msgstr ""
+msgstr "scitest: Le premier argument d'entrée ne devrait pas être un fichier avec l'extension .dia"
 
 #
 # File: macros/scitest.sci, line: 115
 # File: macros/scitest.sci, line: 121
 #, c-format
 msgid "Test failed ERROR DETECTED while executing %s"
-msgstr ""
+msgstr "Test échoué. Erreur detectée en exécutant %s"
 
 #
 # File: macros/scitest.sci, line: 136
 #, c-format
 msgid "Test Failed. See : fc /L /N  %s"
-msgstr ""
+msgstr "Test échoué. Voir : fc /L /N  %s"
 
 #
 # File: macros/scitest.sci, line: 138
 #, c-format
 msgid "Test Failed. See : diff -wu  %s"
-msgstr ""
+msgstr "Test échoué. Voir : diff -wu  %s"
 
 #
 # File: macros/scitest.sci, line: 141
 msgid "Test passed"
-msgstr ""
+msgstr "Test réussi"
 
 # File: macros/testexamples.sci, line: 8
 #, c-format
 msgid "No variable %s_ref in reference file"
-msgstr ""
+msgstr "Pas de variable %s_ref dans le fichier de référence"
 
 #
 # File: macros/unit_test_run.sci, line: 53
