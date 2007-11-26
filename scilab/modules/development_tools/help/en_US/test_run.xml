@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>test_run</TITLE>
+	<TYPE>Scilab Function</TYPE>
+	<DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoû 2006) $</DATE>
+	
+	<SHORT_DESCRIPTION name="datenum">Launch tests</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>N = test_run()</CALLING_SEQUENCE_ITEM>
+		<CALLING_SEQUENCE_ITEM>N = test_run(module_name[,test_name[,options]])</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<PARAM>
+		<PARAM_INDENT>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>module_name</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: a vector of string</SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>test_name</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: a vector of string</SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>options</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: a vector of string</SP>
+					
+					<PARAM_INDENT>
+						
+						<PARAM_ITEM>
+							<PARAM_NAME>no_check_ref</PARAM_NAME>
+							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
+						</PARAM_ITEM>
+						
+						<PARAM_ITEM>
+							<PARAM_NAME>no_check_error_output</PARAM_NAME>
+							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
+						</PARAM_ITEM>
+						
+						<PARAM_ITEM>
+							<PARAM_NAME>create_ref</PARAM_NAME>
+							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
+						</PARAM_ITEM>
+						
+						<PARAM_ITEM>
+							<PARAM_NAME>list</PARAM_NAME>
+							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
+						</PARAM_ITEM>
+						<PARAM_ITEM>
+							<PARAM_NAME>help</PARAM_NAME>
+							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
+						</PARAM_ITEM>
+						
+						<PARAM_ITEM>
+							<PARAM_NAME>mode_nw</PARAM_NAME>
+							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
+						</PARAM_ITEM>
+						
+						<PARAM_ITEM>
+							<PARAM_NAME>mode_nwni</PARAM_NAME>
+							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
+						</PARAM_ITEM>
+						
+						<PARAM_ITEM>
+							<PARAM_NAME>nonreg_test</PARAM_NAME>
+							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
+						</PARAM_ITEM>
+						
+						<PARAM_ITEM>
+							<PARAM_NAME>unit_test</PARAM_NAME>
+							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
+						</PARAM_ITEM>
+						
+					</PARAM_INDENT>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+		</PARAM_INDENT>
+	</PARAM>
+	
+	<DESCRIPTION>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+
+// Launch all tests
+test_run();
+test_run([]);
+test_run([],[]);
+
+// Test one or several module
+test_run('core');
+test_run('core',[]);
+test_run(['core','string']);
+
+// Launch one or several test in a specified module
+test_run('core',['trycatch','opcode']);
+
+// Options
+
+test_run([],[],'no_check_ref');
+test_run([],[],'create_ref');
+test_run([],[],'list');
+test_run([],[],'help');
+test_run([],[],'nonreg_test');
+test_run([],[],'unit_test');
+
+test_run([],[],['no_check_ref','mode_nw']);
+	
+	]]></EXAMPLE>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>P.M</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>
