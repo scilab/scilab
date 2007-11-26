@@ -44,7 +44,6 @@ AC_CONFIG_HEADERS([modules/core/includes/machine.h])
 AM_PROG_INSTALL_STRIP
 AC_PROG_LN_S
 AC_SYS_LARGEFILE
-#AC_PACKAGE_VERSION([4.0])
 
 # If configure detect that timestamp changed,
 # it tries to rebuild configure & makefile which can be a painmaker
@@ -1182,6 +1181,7 @@ echo ""
 echo "BLAS/LAPACK/ATLAS Configuration:"
 if test $EMBEDDED_BLAS = 0; then
    echo "BLAS LIBS ............. = $BLAS_LIBS"
+   echo "BLAS TYPE ............. = $BLAS_TYPE"
 else
    echo "BLAS LIBS ............. = Use the generic version of BLAS embedded"
 fi
