@@ -19,7 +19,7 @@
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
-
+#include "localization.h"
 
 #include "MALLOC.h" /* MALLOC */
 

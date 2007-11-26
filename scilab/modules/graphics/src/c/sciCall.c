@@ -21,7 +21,7 @@
 #include "GrayPlot.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
-
+#include "localization.h"
 #include "MALLOC.h" /* MALLOC */
 
 #include "sciCall.h"
