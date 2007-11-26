@@ -1,53 +1,41 @@
 # Localization of the module integer
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - integer\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 16:35+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 16:35+0100\n"
 
-#
 # File: src/c/mputi.c, line: 53
-msgid "mputi : format is of 0 length \n"
+# File: src/c/mgeti.c, line: 57
+#, c-format
+msgid "%s: format is of 0 length\n"
 msgstr ""
-
 #
 # File: src/c/mputi.c, line: 155
 # File: src/c/mputi.c, line: 161
+# File: src/c/mgeti.c, line: 164
+# File: src/c/mgeti.c, line: 170
 #, c-format
-msgid "mputi : %s format not recognized\n"
+msgid "%s: %s format not recognized\n"
 msgstr ""
-
 #
 # File: src/c/mputi.c, line: 168
-# File: src/c/mgeti.c, line: 180
+# File: src/c/mgeti.c, line: 181
 msgid "No input file\n"
 msgstr ""
-
 #
-# File: src/c/mgeti.c, line: 56
-msgid "mgeti : format is of 0 length \n"
-msgstr ""
-
-#
-# File: src/c/mgeti.c, line: 163
-# File: src/c/mgeti.c, line: 169
+# File: src/c/mgeti.c, line: 199
 #, c-format
-msgid "mget : %s format not recognized\n"
-msgstr ""
-
-#
-# File: src/c/mgeti.c, line: 198
-#, c-format
-msgid "mgeti : unknown format %s \n"
+msgid "%s: unknown format %s\n"
 msgstr ""

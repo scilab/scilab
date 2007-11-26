@@ -50,7 +50,7 @@ void C2F(mputi) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
   nc=(int)strlen(type);
   if ( nc == 0) 
     {
-      sciprint(_("mputi : format is of 0 length \n"),type);
+      sciprint(_("%s: format is of 0 length\n"),"mputi", type);
       *ierr=1;
       return;
     }
@@ -152,13 +152,13 @@ void C2F(mputi) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
 		}
 	      break;
 	    default :
-	      sciprint(_("mputi : %s format not recognized\n"),type);
+	      sciprint(_("%s: %s format not recognized\n"),"mputi",type);
 	      *ierr=1;
 	      return;
 	    }
 	  break;
 	default :
-	  sciprint(_("mputi : %s format not recognized\n"),type);
+	  sciprint(_("%s: %s format not recognized\n"),"mputi",type);
 	  *ierr=1;
 	  return;
 	}
