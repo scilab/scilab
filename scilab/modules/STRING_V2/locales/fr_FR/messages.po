@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-23 12:00+0100\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2007-11-23 12:00+0100\n"
 
+# File: macros/tokenpos.sci, line: 7
+msgid "numtok : str must be a single string"
+msgstr ""
+
+#
+# File: macros/tokenpos.sci, line: 10
+msgid "numtok : delimitor must be a character or a vector of characters"
+msgstr ""
+
+#
+# File: macros/evstr.sci, line: 35
+msgid "waiting for: matrix of strings or list"
+msgstr ""
+
+#
+# File: macros/expression2code.sci, line: 316
+#, c-format
+msgid "expression2code(): %s is not yet implemented !"
+msgstr ""
+
+#
+# File: macros/tree2code.sci, line: 13
+msgid "Input variable is not a program tree in tree2code !"
+msgstr ""
+
+#
+# File: macros/sci2exp.sci, line: 83
+#, c-format
+msgid "Variable translation of type %s not implemented"
+msgstr ""
+
+#
+# File: macros/hex2dec.sci, line: 15
+msgid "hex2dec : an entry is not a valid hexadecimal representation"
+msgstr ""
+
+#
+# File: macros/dec2hex.sci, line: 7
+msgid "dec2hex : v entries must be non negative integers"
+msgstr ""
+
+#
+# File: macros/arobasestring2strings.sci, line: 31
+msgid "The function arobasestring2strings only works with a single string"
+msgstr ""
+
 # File: src/c/CreateEmptystr.c, line: 36
 msgid "Memory allocation error\n"
 msgstr ""
+
 #
 # File: src/c/strcat-c.c, line: 42
 #, c-format
 msgid "%s: Third input argument should be 'c' or 'r'\n"
 msgstr ""
+
 #
 # File: src/c/strcat-c.c, line: 78
 # File: src/c/strcat-c.c, line: 89
@@ -32,6 +80,7 @@ msgstr ""
 #, c-format
 msgid "%s: Memory allocation error\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_tokens.c, line: 56
 #, c-format
@@ -39,6 +88,7 @@ msgid ""
 "%s : wrong input argument has a wrong type, expecting scalar or string "
 "matrix.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_tokens.c, line: 69
 # File: sci_gateway/c/sci_strsplit.c, line: 55
@@ -47,6 +97,7 @@ msgid ""
 "%s : first input argument has a wrong type, expecting scalar or string "
 "matrix.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_tokens.c, line: 79
 # File: sci_gateway/c/sci_tokens.c, line: 89
@@ -72,22 +123,33 @@ msgstr ""
 #, c-format
 msgid "%s : Memory allocation error\n"
 msgstr ""
+
+#
+# File: sci_gateway/c/sci_part.c, line: 48
+# File: sci_gateway/c/sci_part.c, line: 65
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr ""
+
 #
 # File: sci_gateway/c/sci_length.c, line: 133
 # File: sci_gateway/c/sci_ascii.c, line: 143
 #, c-format
 msgid "%s : Not managed input type.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_strsplit.c, line: 65
 #, c-format
 msgid ""
 "%s : second argument has a wrong type, expecting scalar or string matrix.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_str2code.c, line: 54
 msgid "Input argument must be a string.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_code2str.c, line: 39
 # File: sci_gateway/c/sci_emptystr.c, line: 104
@@ -98,31 +160,37 @@ msgid ""
 "%s : First input argument has a wrong type, expecting scalar or string "
 "matrix.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_emptystr.c, line: 147
 #, c-format
 msgid "%s : First input argument must be integer matrix.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_emptystr.c, line: 156
 #, c-format
 msgid "%s : Second input argument must be integer matrix.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_stripblanks.c, line: 44
 #, c-format
 msgid "%s : Second input argument has a wrong type, expecting a boolean.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_stripblanks.c, line: 71
 #, c-format
 msgid ""
 "%s : First argument has a wrong type, expecting scalar or string matrix.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_convstr.c, line: 51
 msgid "Second input argument must be 'u' (Upper) or 'l' (Lower).\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_convstr.c, line: 56
 #, c-format

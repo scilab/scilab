@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
@@ -49,6 +49,12 @@ msgid ""
 msgstr ""
 "Erreur : Fichier de déclaration des classpaths invalide %s (codage non 'utf-"
 "8') Codage '%s' trouvé\n"
+
+#
+# File: src/c/loadClasspath.c, line: 104
+#, c-format
+msgid "Warning: could not find classpath declaration file %s\n"
+msgstr ""
 
 #
 # File: src/c/InitializeJVM.c, line: 33
@@ -126,6 +132,7 @@ msgstr "Code erreur JNI indéfini. Problème étrange"
 #
 # File: src/c/JVM.c, line: 43
 # File: src/c/JVM.c, line: 45
+#, c-format
 msgid ""
 "\n"
 "Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
@@ -138,9 +145,10 @@ msgstr ""
 
 #
 # File: src/c/JVM.c, line: 127
+#, fuzzy, c-format
 msgid ""
 "\n"
-"Incorrect version JNI (needs at least JDK 1.4)\n"
+"Incorrect version JNI (needs at least JDK 1.4).\n"
 msgstr ""
 "\n"
 "Mauvaise version de JNI (au moins JDK 1.4)\n"
@@ -163,7 +171,8 @@ msgstr ""
 
 #
 # File: src/nojvm/nojvm.c, line: 18
-msgid "Java interface not installed.\n"
+#, fuzzy
+msgid "Scilab Java module not installed.\n"
 msgstr "Interface java non installée.\n"
 
 #

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,8 @@ msgstr "%s: Mauvais nombre d'argument d'entrée, 3 attendus.\n"
 # File: sci_gateway/c/sci_fftw.c, line: 158
 #, c-format
 msgid "%s: Wrong type for the second input argument, expecting matrix.\n"
-msgstr "%s: Mauvais type pour le deuxième argument d'entrée, matrice attendue.\n"
+msgstr ""
+"%s: Mauvais type pour le deuxième argument d'entrée, matrice attendue.\n"
 
 #
 # File: sci_gateway/c/sci_fftw.c, line: 165

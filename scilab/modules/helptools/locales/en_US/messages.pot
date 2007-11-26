@@ -1,84 +1,101 @@
+# Localization of the module helptools
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 18:05+0100\n"
+
 # File: macros/formatman.sci, line: 75
 #, c-format
 msgid "Processing %s to %s"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 258
-msgid "   HTML files are up-to-date\n"
+# File: macros/xmltohtml.sci, line: 242
+#, c-format
+msgid "The xsl file %s does not exist or read access denied.\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 281
+# File: macros/xmltohtml.sci, line: 299
+#, c-format
+msgid "\tHTML files are up-to-date\n"
+msgstr ""
+#
+# File: macros/xmltohtml.sci, line: 321
+#, c-format
 msgid ""
 "\n"
 "Copying missing files copied from\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 284
-# File: macros/xmltohtml.sci, line: 306
-# File: macros/xmltohtml.sci, line: 419
+# File: macros/xmltohtml.sci, line: 324
+# File: macros/xmltohtml.sci, line: 346
+# File: macros/xmltohtml.sci, line: 457
 #, c-format
 msgid "\t%s\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 286
+# File: macros/xmltohtml.sci, line: 326
 #, c-format
 msgid ""
 "\n"
 "Copying missing from %s\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 303
+# File: macros/xmltohtml.sci, line: 343
+#, c-format
 msgid ""
 "\n"
 "Creating whatis.htm\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 308
+# File: macros/xmltohtml.sci, line: 348
 #, c-format
 msgid ""
 "\n"
 "Creating whatis.htm in %s\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 328
+# File: macros/xmltohtml.sci, line: 368
 #, c-format
 msgid ""
 "\n"
 "Processing chapter %s\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 371
-# File: macros/xmltohtml.sci, line: 381
+# File: macros/xmltohtml.sci, line: 409
+# File: macros/xmltohtml.sci, line: 419
 #, c-format
 msgid ""
 "\n"
 "Creating %s\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 397
+# File: macros/xmltohtml.sci, line: 435
+#, c-format
 msgid ""
 "\n"
 "Creating sciman.hh*\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 416
+# File: macros/xmltohtml.sci, line: 454
+#, c-format
 msgid ""
 "\n"
 "Deleting files copied from\n"
 msgstr ""
-
 #
-# File: macros/xmltohtml.sci, line: 421
+# File: macros/xmltohtml.sci, line: 459
 #, c-format
 msgid ""
 "\n"

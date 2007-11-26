@@ -8,14 +8,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-23 12:00+0100\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-23 12:00+0100\n"
+"Revision-Date: 2007-11-26 18:05+0100\n"
 
+# File: macros/tokenpos.sci, line: 7
+msgid "numtok : str must be a single string"
+msgstr ""
+#
+# File: macros/tokenpos.sci, line: 10
+msgid "numtok : delimitor must be a character or a vector of characters"
+msgstr ""
+#
+# File: macros/evstr.sci, line: 35
+msgid "waiting for: matrix of strings or list"
+msgstr ""
+#
+# File: macros/expression2code.sci, line: 316
+#, c-format
+msgid "expression2code(): %s is not yet implemented !"
+msgstr ""
+#
+# File: macros/tree2code.sci, line: 13
+msgid "Input variable is not a program tree in tree2code !"
+msgstr ""
+#
+# File: macros/sci2exp.sci, line: 83
+#, c-format
+msgid "Variable translation of type %s not implemented"
+msgstr ""
+#
+# File: macros/hex2dec.sci, line: 15
+msgid "hex2dec : an entry is not a valid hexadecimal representation"
+msgstr ""
+#
+# File: macros/dec2hex.sci, line: 7
+msgid "dec2hex : v entries must be non negative integers"
+msgstr ""
+#
+# File: macros/arobasestring2strings.sci, line: 31
+msgid "The function arobasestring2strings only works with a single string"
+msgstr ""
+#
 # File: src/c/CreateEmptystr.c, line: 36
 msgid "Memory allocation error\n"
 msgstr ""
@@ -33,14 +71,14 @@ msgstr ""
 msgid "%s: Memory allocation error\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_tokens.c, line: 56
+# File: sci_gateway/c/sci_tokens.c, line: 54
 #, c-format
 msgid ""
 "%s : wrong input argument has a wrong type, expecting scalar or string "
 "matrix.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_tokens.c, line: 69
+# File: sci_gateway/c/sci_tokens.c, line: 67
 # File: sci_gateway/c/sci_strsplit.c, line: 55
 #, c-format
 msgid ""
@@ -48,29 +86,33 @@ msgid ""
 "matrix.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_tokens.c, line: 79
-# File: sci_gateway/c/sci_tokens.c, line: 89
-# File: sci_gateway/c/sci_tokens.c, line: 113
-# File: sci_gateway/c/sci_tokens.c, line: 132
-# File: sci_gateway/c/sci_part.c, line: 47
-# File: sci_gateway/c/sci_part.c, line: 64
+# File: sci_gateway/c/sci_tokens.c, line: 76
+# File: sci_gateway/c/sci_tokens.c, line: 86
+# File: sci_gateway/c/sci_tokens.c, line: 110
+# File: sci_gateway/c/sci_tokens.c, line: 141
 # File: sci_gateway/c/sci_length.c, line: 84
-# File: sci_gateway/c/sci_strsplit.c, line: 72
-# File: sci_gateway/c/sci_strsplit.c, line: 81
-# File: sci_gateway/c/sci_strsplit.c, line: 99
-# File: sci_gateway/c/sci_strsplit.c, line: 107
-# File: sci_gateway/c/sci_code2str.c, line: 51
+# File: sci_gateway/c/sci_strsplit.c, line: 74
+# File: sci_gateway/c/sci_strsplit.c, line: 83
+# File: sci_gateway/c/sci_strsplit.c, line: 102
+# File: sci_gateway/c/sci_strsplit.c, line: 110
+# File: sci_gateway/c/sci_code2str.c, line: 50
 # File: sci_gateway/c/sci_code2str.c, line: 64
 # File: sci_gateway/c/sci_emptystr.c, line: 112
-# File: sci_gateway/c/sci_emptystr.c, line: 177
+# File: sci_gateway/c/sci_emptystr.c, line: 183
 # File: sci_gateway/c/sci_ascii.c, line: 68
 # File: sci_gateway/c/sci_ascii.c, line: 105
 # File: sci_gateway/c/sci_ascii.c, line: 119
-# File: sci_gateway/c/sci_stripblanks.c, line: 80
-# File: sci_gateway/c/sci_stripblanks.c, line: 94
-# File: sci_gateway/c/sci_convstr.c, line: 96
+# File: sci_gateway/c/sci_stripblanks.c, line: 84
+# File: sci_gateway/c/sci_stripblanks.c, line: 98
+# File: sci_gateway/c/sci_convstr.c, line: 100
 #, c-format
 msgid "%s : Memory allocation error\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_part.c, line: 48
+# File: sci_gateway/c/sci_part.c, line: 65
+#, c-format
+msgid "%s : Memory allocation error.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_length.c, line: 133
@@ -79,32 +121,32 @@ msgstr ""
 msgid "%s : Not managed input type.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 65
+# File: sci_gateway/c/sci_strsplit.c, line: 67
 #, c-format
 msgid ""
 "%s : second argument has a wrong type, expecting scalar or string matrix.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_str2code.c, line: 54
+# File: sci_gateway/c/sci_str2code.c, line: 56
 msgid "Input argument must be a string.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_code2str.c, line: 39
 # File: sci_gateway/c/sci_emptystr.c, line: 104
-# File: sci_gateway/c/sci_convstr.c, line: 82
-# File: sci_gateway/c/sci_convstr.c, line: 88
+# File: sci_gateway/c/sci_convstr.c, line: 86
+# File: sci_gateway/c/sci_convstr.c, line: 92
 #, c-format
 msgid ""
 "%s : First input argument has a wrong type, expecting scalar or string "
 "matrix.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_emptystr.c, line: 147
+# File: sci_gateway/c/sci_emptystr.c, line: 150
 #, c-format
 msgid "%s : First input argument must be integer matrix.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_emptystr.c, line: 156
+# File: sci_gateway/c/sci_emptystr.c, line: 162
 #, c-format
 msgid "%s : Second input argument must be integer matrix.\n"
 msgstr ""
@@ -114,17 +156,17 @@ msgstr ""
 msgid "%s : Second input argument has a wrong type, expecting a boolean.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_stripblanks.c, line: 71
+# File: sci_gateway/c/sci_stripblanks.c, line: 73
 #, c-format
 msgid ""
 "%s : First argument has a wrong type, expecting scalar or string matrix.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_convstr.c, line: 51
+# File: sci_gateway/c/sci_convstr.c, line: 53
 msgid "Second input argument must be 'u' (Upper) or 'l' (Lower).\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_convstr.c, line: 56
+# File: sci_gateway/c/sci_convstr.c, line: 60
 #, c-format
 msgid ""
 "%s : Second input argument has a wrong type, expecting scalar or string "

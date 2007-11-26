@@ -1,53 +1,52 @@
 # Localization of the module jvm
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - jvm\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 18:05+0100\n"
 
-#
-# File: src/c/createMainScilabObject.c, line: 23
+# File: src/c/createMainScilabObject.c, line: 24
 msgid "Could not access to the Main Scilab Class :\n"
 msgstr ""
-
 #
-# File: src/c/createMainScilabObject.c, line: 35
+# File: src/c/createMainScilabObject.c, line: 36
 msgid "Could not create a Scilab main class. Error :\n"
 msgstr ""
-
 #
-# File: src/c/loadLibrarypath.c, line: 35
-# File: src/c/loadClasspath.c, line: 35
+# File: src/c/loadClasspath.c, line: 36
+# File: src/c/loadLibrarypath.c, line: 36
 #, c-format
 msgid "Error: could not parse file %s\n"
 msgstr ""
-
 #
-# File: src/c/loadLibrarypath.c, line: 94
-# File: src/c/loadClasspath.c, line: 94
+# File: src/c/loadClasspath.c, line: 95
+# File: src/c/loadLibrarypath.c, line: 95
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr ""
-
 #
-# File: src/c/loadClasspath.c, line: 99
+# File: src/c/loadClasspath.c, line: 100
 #, c-format
 msgid ""
 "Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-
+#
+# File: src/c/loadClasspath.c, line: 104
+#, c-format
+msgid "Warning: could not find classpath declaration file %s\n"
+msgstr ""
 #
 # File: src/c/InitializeJVM.c, line: 33
 # File: src/c/InitializeJVM.c, line: 35
@@ -56,18 +55,17 @@ msgid ""
 "\n"
 "Scilab cannot open JVM library.\n"
 msgstr ""
-
 #
-# File: src/c/InitializeJVM.c, line: 32
-# File: src/c/InitializeJVM.c, line: 47
-# File: src/c/JVM.c, line: 42
-# File: src/c/JVM.c, line: 126
-# File: src/c/JVM.c, line: 166
+# File: src/c/InitializeJVM.c, line: 33
+# File: src/c/InitializeJVM.c, line: 48
+# File: src/c/JVM.c, line: 43
+# File: src/c/JVM.c, line: 129
+# File: src/c/JVM.c, line: 169
 msgid "Error"
 msgstr ""
-
 #
 # File: src/c/InitializeJVM.c, line: 48
+# File: src/c/InitializeJVM.c, line: 50
 #, c-format
 msgid ""
 "\n"
@@ -75,125 +73,95 @@ msgid ""
 "the main Scilab class. Check if the Scilab and thirdparty packages are "
 "available).\n"
 msgstr ""
-
 #
-# File: src/c/loadLibrarypath.c, line: 99
+# File: src/c/loadLibrarypath.c, line: 100
 #, c-format
 msgid ""
 "Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
 msgstr ""
-
 #
-# File: src/c/JVM_commons.c, line: 76
+# File: src/c/JVM_commons.c, line: 75
 msgid "Unknown JNI error"
 msgstr ""
-
 #
-# File: src/c/JVM_commons.c, line: 79
+# File: src/c/JVM_commons.c, line: 78
 msgid "Thread detached from the VM"
 msgstr ""
-
 #
-# File: src/c/JVM_commons.c, line: 82
+# File: src/c/JVM_commons.c, line: 81
 msgid "JNI version error"
 msgstr ""
-
 #
-# File: src/c/JVM_commons.c, line: 85
+# File: src/c/JVM_commons.c, line: 84
 msgid "JNI: not enough memory"
 msgstr ""
-
 #
-# File: src/c/JVM_commons.c, line: 88
+# File: src/c/JVM_commons.c, line: 87
 msgid "VM already created"
 msgstr ""
-
 #
-# File: src/c/JVM_commons.c, line: 91
+# File: src/c/JVM_commons.c, line: 90
 msgid "JNI: invalid arguments"
 msgstr ""
-
 #
-# File: src/c/JVM_commons.c, line: 94
+# File: src/c/JVM_commons.c, line: 93
 msgid "Undefined error code in the JNI. Weird problem"
 msgstr ""
-
 #
-# File: src/c/JVM.c, line: 44
+# File: src/c/JVM.c, line: 43
+# File: src/c/JVM.c, line: 45
+#, c-format
 msgid ""
 "\n"
 "Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
 "has been loaded by Scilab before calling this function.\n"
 msgstr ""
-
-#
-# File: src/c/JVM.c, line: 42
-#, c-format
-msgid ""
-"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
-"has been loaded by Scilab before calling this function."
-msgstr ""
-
-#
-# File: src/c/JVM.c, line: 127
-msgid ""
-"\n"
-"Incorrect version JNI (needs at least JDK 1.4)\n"
-msgstr ""
-
 #
 # File: src/c/JVM.c, line: 129
+# File: src/c/JVM.c, line: 131
 #, c-format
 msgid ""
 "\n"
 "Incorrect version JNI (needs at least JDK 1.4).\n"
 msgstr ""
-
 #
-# File: src/c/JVM.c, line: 152
+# File: src/c/JVM.c, line: 155
 #, c-format
 msgid "Error in the creation of the Java VM : %s\n"
 msgstr ""
-
 #
-# File: src/c/JVM.c, line: 167
 # File: src/c/JVM.c, line: 169
+# File: src/c/JVM.c, line: 171
 #, c-format
 msgid ""
 "\n"
 "Call to AttachCurrentThread.\n"
 msgstr ""
-
 #
 # File: src/nojvm/nojvm.c, line: 18
-msgid "Java interface not installed.\n"
+msgid "Scilab Java module not installed.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_javalibrarypath.c, line: 63
+# File: sci_gateway/c/sci_javalibrarypath.c, line: 64
 #, c-format
 msgid "could not add path to java.library.path : %s.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_javalibrarypath.c, line: 72
-# File: sci_gateway/c/sci_javaclasspath.c, line: 72
+# File: sci_gateway/c/sci_javalibrarypath.c, line: 73
+# File: sci_gateway/c/sci_javaclasspath.c, line: 73
 msgid "invalid parameter(s).\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_javaclasspath.c, line: 63
+# File: sci_gateway/c/sci_javaclasspath.c, line: 64
 #, c-format
 msgid "could not add URL to system classloader : %s.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_system_setproperty.c, line: 54
-# File: sci_gateway/c/sci_system_getproperty.c, line: 38
+# File: sci_gateway/c/sci_system_setproperty.c, line: 55
+# File: sci_gateway/c/sci_system_getproperty.c, line: 39
 msgid "invalid parameter.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/gw_jvm.c, line: 32
+# File: sci_gateway/c/gw_jvm.c, line: 33
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr ""

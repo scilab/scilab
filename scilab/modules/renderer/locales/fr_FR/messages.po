@@ -8,13 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+
 #
 # File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 76
 # File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 63
@@ -24,7 +25,8 @@ msgstr ""
 # File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 71
 msgid "Unable to render polyline, memory full.\n"
 msgstr ""
+
 #
 # File: src/norenderer/norenderer.c, line: 12
-msgid "Module Renderer interface not installed.\n"
+msgid "Scilab Renderer module not installed.\n"
 msgstr ""

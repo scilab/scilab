@@ -6,38 +6,44 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-06 11:36+0100\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
 #
 # File: macros/augment.sci, line: 37
 # File: macros/augment.sci, line: 170
 #, c-format
 msgid "option ''%s'' not allowed, use ''SRT''"
 msgstr "option ''%s'' non autorisée, utilisez ''SRT''"
+
 #
 # File: macros/augment.sci, line: 109
 # File: macros/augment.sci, line: 238
 #, c-format
 msgid "option ''%s'' not allowed use ''SR'', ''ST'' or ''RT'' "
 msgstr "option ''%s'' non autorisée, utilisez ''SR'', ''ST'' ou ''RT'' "
+
 #
 # File: sci_gateway/c/sci_tzer.c, line: 18
 msgid "Incompatible input parameter (RHS).\n"
 msgstr "Argument d'entrée (RHS) incompatible.\n"
+
 #
 # File: sci_gateway/c/sci_tzer.c, line: 23
 msgid "Incompatible output parameter (LHS).\n"
 msgstr "Argument de retour (LHS) incompatible.\n"
+
 #
 # File: sci_gateway/c/sci_contr.c, line: 36
 msgid "Invalid A,B matrices\n"
 msgstr "Matrice A,B incorrecte\n"
+
 #
 # File: sci_gateway/c/sci_contr.c, line: 41
 msgid "TOL must be in [0 1]\n"

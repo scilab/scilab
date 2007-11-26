@@ -1,309 +1,250 @@
 # Localization of the module statistics
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - statistics\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 18:05+0100\n"
 
-#
-# File: src/c/CdfBase.c, line: 15
+# File: src/c/CdfBase.c, line: 17
 #, c-format
 msgid "%s: Rhs must be %d for '%s' option'\n"
 msgstr ""
-
 #
-# File: src/c/CdfBase.c, line: 25
+# File: src/c/CdfBase.c, line: 27
 #, c-format
 msgid "%s %s must have same size\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 33
+# File: sci_gateway/c/sci_cdfchi.c, line: 35
 msgid "X and Df"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 39
-# File: sci_gateway/c/sci_cdft.c, line: 36
+# File: sci_gateway/c/sci_cdfchi.c, line: 41
+# File: sci_gateway/c/sci_cdft.c, line: 38
 msgid "Df, P and Q"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 45
+# File: sci_gateway/c/sci_cdfchi.c, line: 47
 msgid "P,Q and X"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 50
-# File: sci_gateway/c/sci_cdft.c, line: 47
-# File: sci_gateway/c/sci_cdfgam.c, line: 54
-# File: sci_gateway/c/sci_cdff.c, line: 54
-# File: sci_gateway/c/sci_cdffnc.c, line: 60
-# File: sci_gateway/c/sci_cdfpoi.c, line: 47
-# File: sci_gateway/c/sci_cdfbin.c, line: 56
-# File: sci_gateway/c/sci_cdfchn.c, line: 64
-# File: sci_gateway/c/sci_cdfbet.c, line: 56
-# File: sci_gateway/c/sci_cdfnbn.c, line: 56
-# File: sci_gateway/c/sci_cdfnor.c, line: 54
+# File: sci_gateway/c/sci_cdfchi.c, line: 52
+# File: sci_gateway/c/sci_cdft.c, line: 49
+# File: sci_gateway/c/sci_cdfgam.c, line: 56
+# File: sci_gateway/c/sci_cdff.c, line: 56
+# File: sci_gateway/c/sci_cdffnc.c, line: 62
+# File: sci_gateway/c/sci_cdfpoi.c, line: 49
+# File: sci_gateway/c/sci_cdfbin.c, line: 58
+# File: sci_gateway/c/sci_cdfchn.c, line: 66
+# File: sci_gateway/c/sci_cdfbet.c, line: 58
+# File: sci_gateway/c/sci_cdfnbn.c, line: 58
+# File: sci_gateway/c/sci_cdfnor.c, line: 56
 #, c-format
 msgid "%s: Wrong first argument %s\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 60
-# File: sci_gateway/c/sci_cdft.c, line: 57
-# File: sci_gateway/c/sci_cdfgam.c, line: 64
-# File: sci_gateway/c/sci_cdff.c, line: 64
-# File: sci_gateway/c/sci_cdffnc.c, line: 70
-# File: sci_gateway/c/sci_cdfpoi.c, line: 57
-# File: sci_gateway/c/sci_cdfbin.c, line: 66
-# File: sci_gateway/c/sci_cdfchn.c, line: 17
-# File: sci_gateway/c/sci_cdfbet.c, line: 67
-# File: sci_gateway/c/sci_cdfnbn.c, line: 66
-# File: sci_gateway/c/sci_cdfnor.c, line: 64
+# File: sci_gateway/c/sci_cdfchi.c, line: 62
+# File: sci_gateway/c/sci_cdft.c, line: 59
+# File: sci_gateway/c/sci_cdfgam.c, line: 66
+# File: sci_gateway/c/sci_cdff.c, line: 66
+# File: sci_gateway/c/sci_cdffnc.c, line: 72
+# File: sci_gateway/c/sci_cdfpoi.c, line: 59
+# File: sci_gateway/c/sci_cdfbin.c, line: 68
+# File: sci_gateway/c/sci_cdfchn.c, line: 19
+# File: sci_gateway/c/sci_cdfbet.c, line: 69
+# File: sci_gateway/c/sci_cdfnbn.c, line: 68
+# File: sci_gateway/c/sci_cdfnor.c, line: 66
 #, c-format
 msgid "answer appears to be lower than lowest search bound %f\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 61
-# File: sci_gateway/c/sci_cdft.c, line: 58
-# File: sci_gateway/c/sci_cdfgam.c, line: 65
-# File: sci_gateway/c/sci_cdff.c, line: 65
-# File: sci_gateway/c/sci_cdffnc.c, line: 71
-# File: sci_gateway/c/sci_cdfpoi.c, line: 58
-# File: sci_gateway/c/sci_cdfbin.c, line: 67
-# File: sci_gateway/c/sci_cdfchn.c, line: 18
-# File: sci_gateway/c/sci_cdfbet.c, line: 68
-# File: sci_gateway/c/sci_cdfnbn.c, line: 67
-# File: sci_gateway/c/sci_cdfnor.c, line: 65
+# File: sci_gateway/c/sci_cdfchi.c, line: 63
+# File: sci_gateway/c/sci_cdft.c, line: 60
+# File: sci_gateway/c/sci_cdfgam.c, line: 67
+# File: sci_gateway/c/sci_cdff.c, line: 67
+# File: sci_gateway/c/sci_cdffnc.c, line: 73
+# File: sci_gateway/c/sci_cdfpoi.c, line: 60
+# File: sci_gateway/c/sci_cdfbin.c, line: 69
+# File: sci_gateway/c/sci_cdfchn.c, line: 20
+# File: sci_gateway/c/sci_cdfbet.c, line: 70
+# File: sci_gateway/c/sci_cdfnbn.c, line: 69
+# File: sci_gateway/c/sci_cdfnor.c, line: 67
 #, c-format
 msgid "answer appears to be higher than greatest search bound %f\n"
 msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfchi.c, line: 63
-msgid "cdfchi: Error in  cumgam\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdft.c, line: 30
-msgid "T and Df"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdft.c, line: 42
-msgid "P,Q and T"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfgam.c, line: 31
-msgid "X,Shape and Scale"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfgam.c, line: 37
-msgid "Shape,Scale,P and Q"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfgam.c, line: 43
-msgid "Scale,P,Q and X"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfgam.c, line: 49
-msgid "P,Q,X and Shape"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 31
-msgid "F,Dfn and Dfd"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 37
-msgid "Dfn,Dfd,P and Q"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 43
-msgid "Dfd,P,Q and F"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 49
-msgid "P,Q,F and Dfn"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 31
-msgid "F,Dfn,Dfd and Pnonc"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 37
-msgid "Dfn,Dfd,Pnonc,P and Q"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 43
-msgid "Dfd,Pnonc,P,Q and F"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 49
-msgid "Pnonc,P,Q,F and Dfn"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 55
-msgid "P,Q,F,Dfn and Dfd"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfpoi.c, line: 30
-msgid "S and Xlam"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfpoi.c, line: 36
-msgid "Xlam,P and Q"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfpoi.c, line: 42
-msgid "P,Q and S"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfbin.c, line: 33
-msgid "S,Xn,Pr and Ompr"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfbin.c, line: 39
-msgid "Xn,Pr,Ompr,P and Q"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfbin.c, line: 45
-msgid "Pr,OMPr,P,Q and S"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfbin.c, line: 51
-msgid "P,Q,S  and Xn"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfchn.c, line: 41
-msgid "X,Df and Pnonc"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfchn.c, line: 47
-msgid "Df,Pnonc,P and Q"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfchn.c, line: 53
-msgid "Pnonc,P,Q and X"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfchn.c, line: 59
-msgid "P,Q,X and Df"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfbet.c, line: 33
-msgid "X,Y,A and B"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfbet.c, line: 39
-msgid "A,B,P and Q"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfbet.c, line: 45
-msgid "B,P,Q,X and Y"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfbet.c, line: 51
-msgid "P,Q,X,Y and A"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 32
-msgid "S,XN,PR and OMPR"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 38
-msgid "XN,PR,OMPR,P and Q"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 44
-msgid "PR,OMPR,P,Q and S"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 51
-msgid "P,Q,S and Xn"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 31
-msgid "X,Mean and Std"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 37
-msgid "Mean,Std,P and Q"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 43
-msgid "Std,P,Q and X"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 49
-msgid "P,Q,X and Mean"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 67
-msgid " Std must not be zero\n"
-msgstr ""
-
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 65
-# File: sci_gateway/c/sci_cdft.c, line: 61
-# File: sci_gateway/c/sci_cdfgam.c, line: 69
-# File: sci_gateway/c/sci_cdff.c, line: 68
-# File: sci_gateway/c/sci_cdffnc.c, line: 74
-# File: sci_gateway/c/sci_cdfpoi.c, line: 61
-# File: sci_gateway/c/sci_cdfbin.c, line: 71
-# File: sci_gateway/c/sci_cdfchn.c, line: 21
-# File: sci_gateway/c/sci_cdfbet.c, line: 72
-# File: sci_gateway/c/sci_cdfnbn.c, line: 71
+msgid "cdfchi: Error in  cumgam\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdft.c, line: 32
+msgid "T and Df"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdft.c, line: 44
+msgid "P,Q and T"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfgam.c, line: 33
+msgid "X,Shape and Scale"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfgam.c, line: 39
+msgid "Shape,Scale,P and Q"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfgam.c, line: 45
+msgid "Scale,P,Q and X"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfgam.c, line: 51
+msgid "P,Q,X and Shape"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdff.c, line: 33
+msgid "F,Dfn and Dfd"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdff.c, line: 39
+msgid "Dfn,Dfd,P and Q"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdff.c, line: 45
+msgid "Dfd,P,Q and F"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdff.c, line: 51
+msgid "P,Q,F and Dfn"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdffnc.c, line: 33
+msgid "F,Dfn,Dfd and Pnonc"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdffnc.c, line: 39
+msgid "Dfn,Dfd,Pnonc,P and Q"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdffnc.c, line: 45
+msgid "Dfd,Pnonc,P,Q and F"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdffnc.c, line: 51
+msgid "Pnonc,P,Q,F and Dfn"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdffnc.c, line: 57
+msgid "P,Q,F,Dfn and Dfd"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfpoi.c, line: 32
+msgid "S and Xlam"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfpoi.c, line: 38
+msgid "Xlam,P and Q"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfpoi.c, line: 44
+msgid "P,Q and S"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfbin.c, line: 35
+msgid "S,Xn,Pr and Ompr"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfbin.c, line: 41
+msgid "Xn,Pr,Ompr,P and Q"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfbin.c, line: 47
+msgid "Pr,OMPr,P,Q and S"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfbin.c, line: 53
+msgid "P,Q,S  and Xn"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfchn.c, line: 43
+msgid "X,Df and Pnonc"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfchn.c, line: 49
+msgid "Df,Pnonc,P and Q"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfchn.c, line: 55
+msgid "Pnonc,P,Q and X"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfchn.c, line: 61
+msgid "P,Q,X and Df"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfbet.c, line: 35
+msgid "X,Y,A and B"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfbet.c, line: 41
+msgid "A,B,P and Q"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfbet.c, line: 47
+msgid "B,P,Q,X and Y"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfbet.c, line: 53
+msgid "P,Q,X,Y and A"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfnbn.c, line: 34
+msgid "S,XN,PR and OMPR"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfnbn.c, line: 40
+msgid "XN,PR,OMPR,P and Q"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfnbn.c, line: 46
+msgid "PR,OMPR,P,Q and S"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfnbn.c, line: 53
+msgid "P,Q,S and Xn"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfnor.c, line: 33
+msgid "X,Mean and Std"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfnor.c, line: 39
+msgid "Mean,Std,P and Q"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfnor.c, line: 45
+msgid "Std,P,Q and X"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfnor.c, line: 51
+msgid "P,Q,X and Mean"
+msgstr ""
+#
 # File: sci_gateway/c/sci_cdfnor.c, line: 69
+msgid " Std must not be zero\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfnor.c, line: 71
 #, c-format
 msgid ""
 "input parameter %c is out of range\n"

@@ -1,56 +1,44 @@
 # Localization of the module shell
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - shell\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 18:05+0100\n"
 
-#
-# File: src/c/windows/command.c, line: 67
+# File: src/c/windows/command.c, line: 68
 msgid "Input line too long"
 msgstr ""
-
 #
-# File: src/c/others/GetCharWithEventsLoop.c, line: 54
+# File: src/c/others/GetCharWithEventsLoop.c, line: 57
 msgid "Error.\n"
 msgstr ""
-
 #
-#
-# File: src/c/more.c, line: 17
+# File: src/c/more.c, line: 18
 msgid "[More (y or n ) ?] "
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_lines.c, line: 49
-# File: sci_gateway/c/sci_lines.c, line: 65
+# File: sci_gateway/c/sci_lines.c, line: 51
+# File: sci_gateway/c/sci_lines.c, line: 67
 msgid "Invalid parameter(s).\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_clc.c, line: 31
-# File: sci_gateway/c/sci_clc.c, line: 37
+# File: sci_gateway/c/sci_clc.c, line: 32
+# File: sci_gateway/c/sci_clc.c, line: 38
 msgid "Invalid parameter.\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_clc.c, line: 50
-# File: sci_gateway/c/sci_tohome.c, line: 23
-msgid "not implemented in this mode.\n"
-msgstr ""
-
-#
+# File: sci_gateway/c/sci_clc.c, line: 51
 # File: sci_gateway/c/sci_tohome.c, line: 24
 msgid "Not implemented in this mode.\n"
 msgstr ""

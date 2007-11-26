@@ -1,51 +1,45 @@
 # Localization of the module cacsd
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - cacsd\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:30+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 18:05+0100\n"
 
-#
 # File: macros/augment.sci, line: 37
 # File: macros/augment.sci, line: 170
 #, c-format
 msgid "option ''%s'' not allowed, use ''SRT''"
 msgstr ""
-
 #
 # File: macros/augment.sci, line: 109
 # File: macros/augment.sci, line: 238
 #, c-format
 msgid "option ''%s'' not allowed use ''SR'', ''ST'' or ''RT'' "
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_tzer.c, line: 18
 msgid "Incompatible input parameter (RHS).\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/sci_tzer.c, line: 23
 msgid "Incompatible output parameter (LHS).\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_contr.c, line: 35
+# File: sci_gateway/c/sci_contr.c, line: 36
 msgid "Invalid A,B matrices\n"
 msgstr ""
-
 #
-# File: sci_gateway/c/sci_contr.c, line: 40
+# File: sci_gateway/c/sci_contr.c, line: 41
 msgid "TOL must be in [0 1]\n"
 msgstr ""
