@@ -967,7 +967,7 @@ build-localization:
 		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
 		PATHTO=$(top_srcdir)/locale/$$LOCALE/$$LC/; \
 		if test ! -d $$PATHTO; then \
-			echo "$$PATHTO is not existing"; \
+			echo "Creating $$PATHTO"; \
 			mkdir -p $$PATHTO; \
 		fi; \
 		POFILE=$$PATHTO/$$LANG_DOMAIN.po; \
