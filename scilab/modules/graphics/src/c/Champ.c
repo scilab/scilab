@@ -145,7 +145,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   /* F.Leray Allocation de style[dim = Nbr1] */
   if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
   {
-    sciprint("No more memory available\n");
+    sciprint(_("%s: No more memory.\n"),"champg");
     return;
   }
 
@@ -233,7 +233,7 @@ void getChampDataBounds( double   xCoords[]  ,
     FREE( xPixCoords ) ;
     FREE( yPixCoords ) ;
     FREE( zPixCoords ) ;
-    sciprint( "Cannot allocate temporary vector, memory full.\n" ) ;
+    sciprint(_("Cannot allocate temporary vector, memory full.\n")) ;
     *xMin = 0.0 ;
     *xMax = 0.0 ;
     *yMin = 0.0 ;
