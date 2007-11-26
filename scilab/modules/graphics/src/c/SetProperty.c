@@ -37,7 +37,7 @@
 #include "ObjectSelection.h"
 #include "BasicAlgos.h"
 #include "WindowList.h"
-
+#include "localization.h"
 #include "SetJavaProperty.h"
 
 #include "MALLOC.h"
@@ -160,13 +160,13 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
 
   if ( n != 3 )
   {
-    Scierror(999, "colormap : number of columns must be 3.\n");
+    Scierror(999, _("colormap : number of columns must be 3.\n"));
     return -1 ;
   }
   
   if ( SCI_FIGURE != sciGetEntityType(pobj) )
   {
-    Scierror(999, "sciSetColormap Error: Object must be a SCI_FIGURE.\n");
+    Scierror(999, _("sciSetColormap Error: Object must be a SCI_FIGURE.\n"));
     return -1 ;
   }
   
@@ -540,7 +540,7 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
     return 0;
   }
 
-  sciprint("This object has no background property.\n");
+  sciprint(_("This object has no background property.\n"));
   return -1;
 }
 
@@ -581,7 +581,7 @@ int sciInitForeground( sciPointObj * pobj, int colorindex )
     return 0;
   }
 
-  sciprint("This object has no foreground property.\n");
+  sciprint(_("This object has no foreground property.\n"));
   return -1;
 }
 
@@ -619,7 +619,7 @@ sciInitLineWidth (sciPointObj * pobj, int linewidth)
 
   if (linewidth < 0)
     {
-      sciprint ("Line width must be greater than 0.\n");
+      sciprint(_("Line width must be greater than 0.\n"));
       return -1;
     }
   else
@@ -631,7 +631,7 @@ sciInitLineWidth (sciPointObj * pobj, int linewidth)
       return 0;
     }
   }
-  sciprint("This object has no line width property.\n");
+  sciprint(_("This object has no line width property.\n"));
   return -1;
 }
 
@@ -655,7 +655,7 @@ sciInitLineStyle (sciPointObj * pobj, int linestyle)
 
   if (linestyle < 0)
     {
-      sciprint ("the line style must be greater than 0.\n");
+      sciprint(_("The line style must be greater than 0.\n"));
       return -1;
     }
   else
@@ -667,7 +667,7 @@ sciInitLineStyle (sciPointObj * pobj, int linestyle)
     }
   }
 
-  sciprint("This object has no line style property.\n");
+  sciprint(_("This object has no line style property.\n"));
   return -1;
 }
 
@@ -681,7 +681,7 @@ int sciInitIsMark( sciPointObj * pobj, BOOL ismark )
     return 0;
   }
 
-  sciprint("this object has no mark property.\n");
+  sciprint(_("This object has no mark property.\n"));
   return -1;
   
 }
@@ -714,7 +714,7 @@ int sciInitMarkForeground( sciPointObj * pobj, int colorindex )
     return 0;
   }
 
-  sciprint("this object has no mark.\n");
+  sciprint(_("This object has no mark.\n"));
   return -1;
   
 }
@@ -747,7 +747,7 @@ int sciInitMarkBackground( sciPointObj * pobj, int colorindex )
     return 0;
   }
 
-  sciprint("This object has no mark.\n");
+  sciprint(_("This object has no mark.\n"));
   return -1;
 }
 
@@ -775,7 +775,7 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 {
   if (markstyle < 0)
   {
-    sciprint ("the mark style must be greater or equal than 0\n");
+    sciprint(_("The mark style must be greater or equal than 0\n"));
     return -1;
   }
   else
@@ -787,7 +787,7 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
     }
   }
   
-  sciprint("This objecy has no mark.\n");
+  sciprint(_("This objecy has no mark.\n"));
   return -1;
 }
 
@@ -811,7 +811,7 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
 {
   if (marksize < 0)
   {
-    sciprint ("the mark size must be greater or equal than 0\n");
+    sciprint(_("The mark size must be greater or equal than 0\n"));
     return -1;
   }
   else
@@ -824,7 +824,7 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
 
   }
   
-  sciprint("This object has no mark.\n");
+  sciprint(_("This object has no mark.\n"));
   return -1;
 }
 
@@ -847,7 +847,7 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
 {
   if (marksizeunit < 0)
   {
-    sciprint ("the mark size unit must be greater than 0\n");
+    sciprint(_("The mark size unit must be greater than 0\n"));
     return -1;
   }
   else
@@ -860,7 +860,7 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
     }
   }
 
-  sciprint("This object has no mark.\n");
+  sciprint(_("This object has no mark.\n"));
   return -1;
 }
 
@@ -889,7 +889,7 @@ int sciInitIsLine( sciPointObj * pobj, BOOL isline )
     return 0;
   }
 
-  sciprint("This object has no line property.\n");
+  sciprint(_("This object has no line property.\n"));
   return -1;
 
 }
@@ -915,7 +915,7 @@ int sciInitFontSize( sciPointObj * pobj, double fontSize )
 {
   if (fontSize < 0)
   {
-    sciprint ("The font size must be greater than 0\n");
+    sciprint(_("The font size must be greater than 0\n"));
     return -1;
   }
   else
@@ -927,7 +927,7 @@ int sciInitFontSize( sciPointObj * pobj, double fontSize )
     }
     else
     {
-      sciprint ("This object has no  Font size \n");
+      sciprint(_("This object has no font size\n"));
       return -1;
     }
   }
@@ -955,7 +955,7 @@ int sciInitFontOrientation( sciPointObj * pobj, double textorientation )
     (sciGetFontContext(pobj))->textorientation = textorientation;
     return 0;
   }
-  sciprint("This object has no  font width.\n");
+  sciprint(_("This object has no font width.\n"));
   return -1;
 }
 
@@ -1033,7 +1033,7 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
     case SCI_STATUSB:
     case SCI_AGREG:
     default:
-      sciprint ("This object has no text !\n");
+      sciprint("This object has no text !\n");
       return -1;
       break;
     }
@@ -1107,7 +1107,7 @@ sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
     case SCI_STATUSB:
     case SCI_AGREG:
     default:
-      sciprint ("This object has no text !\n");
+      sciprint("This object has no text !\n");
       return -1;
       break;
     }
@@ -1446,7 +1446,7 @@ sciSetTitlePos (sciPointObj * pobj, int x, int y)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("Your are not using a title object !\n");
+      sciprint("Your are not using a title object !\n");
       return -1;
       break;
     }
@@ -1477,7 +1477,7 @@ sciSetTitlePlace (sciPointObj * pobj, sciTitlePlace place)
       return 0;
     }
   else
-    sciprint ("Your are not using a title object !\n");
+    sciprint("Your are not using a title object !\n");
   return -1;
 }
 
@@ -1498,7 +1498,7 @@ int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
     return sciInitLegendPos (pobj, x, y);
   }
   
-  sciprint ("Your are not using a legend object !\n");
+  sciprint("Your are not using a legend object !\n");
   return -1;
 }
 
@@ -1552,7 +1552,7 @@ int sciInitLegendPos( sciPointObj * pobj, int x, int y )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("Your are not using a legend object !\n");
+      sciprint("Your are not using a legend object !\n");
       return -1;
       break;
     }
@@ -1756,7 +1756,7 @@ int sciInitHighLight( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("We cannot highlight this object\n");
+      sciprint("We cannot highlight this object\n");
       return -1 ;
       break;
     }
@@ -1809,7 +1809,7 @@ int sciInitAddPlot( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("This object cannot be addploted\n");
+      sciprint("This object cannot be addploted\n");
       return -1 ;
       break;
     }
@@ -1864,7 +1864,7 @@ int sciInitAutoScale( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("This object cannot be autoscaled\n");
+      sciprint("This object cannot be autoscaled\n");
       return -1 ;
       break;
     }
@@ -1918,7 +1918,7 @@ int sciInitZooming( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("\nThis object cannot be zoomed\n");
+      sciprint("\nThis object cannot be zoomed\n");
       return -1 ;
       break;
     }
@@ -1991,7 +1991,7 @@ int sciInitXorMode( sciPointObj * pobj, int value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("\nNothing to do\n");
+      sciprint("\nNothing to do\n");
       return -1 ;
       break;
     }
@@ -2148,7 +2148,7 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("This object cannot be resized\n");
+      sciprint("This object cannot be resized\n");
       return -1 ;
       break;
     }
@@ -2216,7 +2216,7 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
           str = CALLOC( realLength, sizeof(char) ) ;
           if ( str == NULL )
           {
-            sciprint("No more memory left.\n");
+            sciprint(_("%s: No more memory.\n"),"sciSetName");
             return -1 ;
           }
           strcpy( str, pvalue ) ;
@@ -2231,7 +2231,7 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
           str = CALLOC( realLength, sizeof(char) ) ;
           if ( str == NULL )
           {
-            sciprint("No more memory left.\n");
+            sciprint(_("%s: No more memory.\n"),"sciSetName");
             return -1 ;
           }
           sprintf( str, pvalue, figureNumber ) ;
@@ -2245,7 +2245,7 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
     case SCI_SUBWIN:
     case SCI_AGREG:
     default:
-      sciprint ("Only Figure can be named\n");
+      sciprint("Only Figure can be named\n");
       return -1 ;
       break;
     }
@@ -2264,7 +2264,7 @@ int sciInitNum( sciPointObj * pobj, int value )
       sciSetNum(sciGetParentFigure (pobj), value);
       break;
     default:
-      sciprint ("Only Figure be numerated\n");
+      sciprint("Only Figure be numerated\n");
       return -1 ;
       break;
     }
@@ -2320,7 +2320,7 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
       break ;
     case SCI_AGREG:
     default:
-      sciprint ("Object can not have a size.\n");
+      sciprint("Object can not have a size.\n");
       return -1 ;
       break;
     }
@@ -2366,7 +2366,7 @@ int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
     }
     break;
   default:
-    sciprint ("Object can not be enclosed in a window.\n");
+    sciprint("Object can not be enclosed in a window.\n");
     return -1 ;
     break;
   }
@@ -2416,7 +2416,7 @@ int sciInitScreenPosition( sciPointObj * pobj, int pposx, int pposy )
       /* nothing for now */
       break ;
     default:
-      sciprint ("Only Figure can return position\n");
+      sciprint("Only Figure can return position\n");
       return -1;
       break;
     }
@@ -2485,7 +2485,7 @@ int sciInitSubWindowPos( sciPointObj * pobj, int *pposx, int *pposy)
       break;
     case SCI_AGREG:
     default:
-      sciprint ("Only subwin can be return position\n");
+      sciprint("Only subwin can be return position\n");
       return -1;
       break;
     }
@@ -2941,7 +2941,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 
 
     case SCI_SURFACE:/* DJ.A 2003 */
-      sciprint ("Un handled data field\n");
+      sciprint("Un handled data field\n");
       return -1;
       break;
     case SCI_GRAYPLOT:
@@ -2952,15 +2952,15 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	ny=*numcol-1;
 	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny || pGRAYPLOT_FEATURE (pthis)->nx!=nx) {
 	  if ((pvecx = CALLOC(nx,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
+	    sciprint("Not enough memory\n");
 	    return -1;}
 	  if ((pvecy = CALLOC(ny,sizeof(double))) == NULL) {
 	    FREE(pvecx);
-	    sciprint ("Not enough memory\n");
+	    sciprint("Not enough memory\n");
 	    return -1;}
 	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
 	    FREE(pvecx);FREE(pvecy);
-	    sciprint ("Not enough memory\n");
+	    sciprint("Not enough memory\n");
 	    return -1;}
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecx);pGRAYPLOT_FEATURE (pthis)->pvecx=pvecx;
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecy);pGRAYPLOT_FEATURE (pthis)->pvecy=pvecy;
@@ -2984,7 +2984,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	ny=*numcol;
 	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny+1 || pGRAYPLOT_FEATURE (pthis)->nx!=nx+1) {
 	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
+	    sciprint("Not enough memory\n");
 	    return -1;}
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
 	}
@@ -2999,20 +2999,20 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	double *pvecx,*pvecy,*pfun;
 	int Nnode;
 	if (*numcol != 3) {
-	  sciprint ("The data must have 3 columns\n");
+	  sciprint("The data must have 3 columns\n");
 	  return -1;}
       
 	Nnode = *numrow;
 	if (pFEC_FEATURE (pthis)->Nnode!=Nnode) {
 	  if ((pvecx = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
+	    sciprint("Not enough memory\n");
 	    return -1;}
 	  if ((pvecy = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
+	    sciprint("Not enough memory\n");
 	    FREE(pvecx);
 	    return -1;}
 	  if ((pfun = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
+	    sciprint("Not enough memory\n");
 	    FREE(pvecx);FREE(pvecy);
 	    return -1;}
 	  FREE( pFEC_FEATURE (pthis)->pvecx); pFEC_FEATURE (pthis)->pvecx=pvecx;
@@ -3042,7 +3042,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("This object has no possibility to set points !\n");
+      sciprint("This object has no possibility to set points !\n");
       return -1;
       break;
     }
@@ -3198,7 +3198,7 @@ int sciInitBoxType( sciPointObj * pobj, EAxesBoxType type )
       return 0;
       break;
     default:
-      sciprint ("This object has no box type \n") ;
+      sciprint("This object has no box type \n") ;
       return -1 ;
       break;
   }
@@ -3260,7 +3260,7 @@ int sciInitIsBoxed( sciPointObj * pobj, BOOL isboxed )
     case SCI_TITLE:
     case SCI_UIMENU:
     default:
-      sciprint ("This object has no isboxed \n");
+      sciprint("This object has no isboxed \n");
       return -1;
       break;
     }
@@ -3291,7 +3291,7 @@ sciSetInterpVector(sciPointObj * pobj, int size, int * value)
   FREE(pPOLYLINE_FEATURE(pobj)->scvector);
   
   if((pPOLYLINE_FEATURE(pobj)->scvector = MALLOC(size*sizeof(int)))==NULL){
-    sciprint("Can not allocate room for shaded color vbector\n");
+    sciprint(_("Can not allocate room for shaded color vbector\n"));
     return -1;
   }
   
@@ -3444,7 +3444,7 @@ int sciInitAutoSize( sciPointObj * pObj, BOOL autoSize )
     pTEXT_FEATURE(pObj)->autoSize = autoSize ;
     return 0 ;
   default:
-    sciprint ("This object hasn't any automoatic size\n");
+    sciprint("This object hasn't any automoatic size\n");
     return -1 ;
     break;
   }
@@ -3469,7 +3469,7 @@ int sciInitAlignment( sciPointObj * pObj, sciTextAlignment align )
     pTEXT_FEATURE(pObj)->stringsAlign = align ;
     return 0 ;
   default:
-    sciprint ("This object has no Text Alignment\n");
+    sciprint("This object has no Text Alignment\n");
     return -1 ;
   }
   return -1 ;
@@ -3494,7 +3494,7 @@ int sciInitUserSize( sciPointObj * pObj, double width, double height )
     pTEXT_FEATURE(pObj)->userSize[1] = height ;
     return 0 ;
   default:
-    sciprint ("This object has no Specified Size\n");
+    sciprint("This object has no Specified Size\n");
     return -1 ;
   }
   return -1 ;
@@ -3521,7 +3521,7 @@ int sciInitCenterPos( sciPointObj * pObj, BOOL newCP )
     pTEXT_FEATURE(pObj)->centeredPos = newCP ;
     return 0 ;
   default:
-    sciprint ("This object has no centered position.\n");
+    sciprint("This object has no centered position.\n");
     return -1 ;
   }
   return -1 ;
@@ -3574,7 +3574,7 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
    case SCI_LABEL:
      return sciInitIs3d( pLABEL_FEATURE( pObj )->text, is3d ) ;
    default:
-     sciprint ("This object has no 3d mode.\n");
+     sciprint("This object has no 3d mode.\n");
      return -1 ;
    }
    return -1 ;
@@ -3604,7 +3604,7 @@ int sciInitHiddenColor( sciPointObj * pObj, int newColor )
     pSURFACE_FEATURE(pObj)->hiddencolor = newColor ;
     return 0;
   default:
-    sciprint ("This object has no hidden color.\n");
+    sciprint("This object has no hidden color.\n");
     return -1 ;
   }
   return -1 ;
@@ -3630,7 +3630,7 @@ int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
     pSUBWIN_FEATURE(pObj)->grid[2] = zStyle ;
     return 0 ;
   default:
-    sciprint( "This object has no grid property.\n" ) ;
+    sciprint(_("This object has no grid property.\n")) ;
     return -1 ;
   }
   return -1 ;
@@ -3914,7 +3914,7 @@ int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff)
     }
     return 0;
   default:
-    sciprint("This object has no pixmap.\n");
+    sciprint(_("This object has no pixmap.\n"));
     break;
   }
   return -1;
@@ -3945,7 +3945,7 @@ int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ)
   case SCI_LABEL:
     return sciInitTextPos(pLABEL_FEATURE(pObj)->text, posX, posY, posZ);
   default:
-    sciprint("This object has no positions property.\n");
+    sciprint(_("This object has no positions property.\n"));
     return -1;
   }
 }
