@@ -59,9 +59,8 @@ msgstr "%s n'est pas un module installé"
 
 #
 # File: macros/unit_test_run.sci, line: 73
-#, fuzzy
 msgid "error : Input argument sizes are not valid"
-msgstr "Taille des arguments d'entrées incorrecte"
+msgstr "Erreur: Taille des arguments d'entrées incorrecte"
 
 #
 # File: macros/unit_test_run.sci, line: 83

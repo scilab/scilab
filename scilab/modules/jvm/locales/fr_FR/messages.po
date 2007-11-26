@@ -145,7 +145,7 @@ msgstr ""
 
 #
 # File: src/c/JVM.c, line: 127
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "Incorrect version JNI (needs at least JDK 1.4).\n"
@@ -171,9 +171,8 @@ msgstr ""
 
 #
 # File: src/nojvm/nojvm.c, line: 18
-#, fuzzy
 msgid "Scilab Java module not installed.\n"
-msgstr "Interface java non installée.\n"
+msgstr "Module Scilab/Java non installée.\n"
 
 #
 # File: sci_gateway/c/sci_javalibrarypath.c, line: 64

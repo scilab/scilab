@@ -18,7 +18,7 @@ msgstr ""
 
 # File: src/c/sciprint_full.c, line: 38
 # File: src/c/sciprint_full.c, line: 56
-#, fuzzy, c-format
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "sciprint_full : Plus assez de mémoire.\n"
 
@@ -1547,9 +1547,8 @@ msgstr "Fin de l'optimisation.\n"
 
 #
 # File: src/c/msgs.c, line: 634
-#, fuzzy
 msgid "End of optimization (linear search fails).\n"
-msgstr "Fin de l'optimisation.\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 647
@@ -1595,9 +1594,9 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 872
-#, fuzzy, c-format
+#, c-format
 msgid "Stop after row %s in function %s.\n"
-msgstr "       dans la fonction: %s.\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 761
@@ -1647,9 +1646,9 @@ msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 75
-#, fuzzy, c-format
+#, c-format
 msgid " and %s variables out of %s.\n"
-msgstr "Variable non définie : %s\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 822
@@ -1799,9 +1798,8 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 840
-#, fuzzy
 msgid "Warning: function is already compiled.\n"
-msgstr "Attention : la fonction primitive %s a été déplacée.\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 1111
@@ -1872,9 +1870,8 @@ msgstr ""
 
 #
 # File: src/c/msgs.c, line: 763
-#, fuzzy
 msgid "Formal variable name has been truncated.\n"
-msgstr " a été tronqué pour: %s.\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 1289

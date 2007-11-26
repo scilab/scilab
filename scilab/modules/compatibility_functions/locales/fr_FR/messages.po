@@ -419,9 +419,8 @@ msgstr ""
 
 #
 # File: macros/mtlb_legendre.sci, line: 8
-#, fuzzy
 msgid "Input argument must be a character string matrix."
-msgstr "Le premier argument d'entrée doit être un entier positif."
+msgstr ""
 
 #
 # File: macros/mtlb_is.sci, line: 8

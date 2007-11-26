@@ -18,9 +18,8 @@ msgstr ""
 
 #
 # File: src/nocompletion/nocompletion.c, line: 13
-#, fuzzy
 msgid "Scilab completion module not installed.\n"
-msgstr "Complétion non installée.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_completion.c, line: 32

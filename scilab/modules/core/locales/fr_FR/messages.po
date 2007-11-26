@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:00+0100\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
@@ -68,7 +68,6 @@ msgstr "whos nécessite zéro ou deux arguments d'entrée."
 
 #
 # File: macros/whos.sci, line: 12
-#, fuzzy
 msgid "First input argument must be ''-name'' or ''-type''."
 msgstr "Le premier argument d'entrée doit être ''-name'' ou ''-type''."
 
@@ -429,7 +428,7 @@ msgstr ""
 
 #
 # File: src/c/stack2.c, line: 844
-#, fuzzy, c-format
+#, c-format
 msgid "%s : (%s) bad third argument!\n"
 msgstr "%s : (%s) mauvais troisième argument!\n"
 
@@ -475,15 +474,15 @@ msgstr "%s : argument %d > (%d) devrait être une matrice de complexe.\n"
 # File: src/c/stack2.c, line: 1199
 # File: src/c/stack2.c, line: 1399
 # File: src/c/stack2.c, line: 1496
-#, fuzzy, c-format
+#, c-format
 msgid "%s : bad call to %s (third argument %c).\n"
-msgstr "%s : mauvais appel à %s! (premier argument).\n"
+msgstr ""
 
 #
 # File: src/c/stack2.c, line: 844
-#, fuzzy, c-format
+#, c-format
 msgid "%s : (%s) bad second argument!\n"
-msgstr "%s : (%s) mauvais troisième argument!\n"
+msgstr ""
 
 #
 # File: src/c/stack2.c, line: 1733
@@ -1639,10 +1638,8 @@ msgstr "Bibliothèque incorrecte.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
-#, fuzzy
 msgid "Invalid type of input argument: String expected.\n"
 msgstr ""
-"Type de(s) argument(s) d'entrée incorrect : Chaîne de caractère attendue.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
@@ -1708,9 +1705,9 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
-#, fuzzy, c-format
+#, c-format
 msgid "%s argument must be > 0.\n"
-msgstr "L'argument d'entrée doit être une chaîne de caractère.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_newfun.c, line: 61
@@ -1737,10 +1734,8 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
-#, fuzzy
 msgid "Invalid second input argument. String expected.\n"
 msgstr ""
-"Type de(s) argument(s) d'entrée incorrect : Chaîne de caractère attendue.\n"
 
 #
 # File: sci_gateway/c/sci_getmd5.c, line: 104
@@ -1756,9 +1751,8 @@ msgstr "Argument invalide d'entrée.\n"
 
 #
 # File: sci_gateway/c/sci_getversion.c, line: 323
-#, fuzzy
 msgid "Invalid input argument. Must be 'global' or 'locale'.\n"
-msgstr "Le premier argument d'entrée doit être 'local', 'get' ou 'global'.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_clearfun.c, line: 57
