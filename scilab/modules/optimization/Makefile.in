@@ -50,9 +50,9 @@ host_triplet = @host@
 DIST_COMMON = $(libscioptimization_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = build-java
-@SWIG_TRUE@am__append_2 = build-swig
-@GIWS_TRUE@am__append_3 = build-giws
+@GUI_TRUE@am__append_1 = java
+@SWIG_TRUE@am__append_2 = swig
+@GIWS_TRUE@am__append_3 = giws
 subdir = modules/optimization
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -1441,7 +1441,7 @@ check-local: $(top_builddir)/scilab-bin
 	COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@build-java:
+@GUI_TRUE@java:
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) jar; \
 @GUI_TRUE@	fi
@@ -1453,7 +1453,7 @@ check-local: $(top_builddir)/scilab-bin
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@SWIG_TRUE@build-swig: $(SWIG_WRAPPERS)
+@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1466,7 +1466,7 @@ check-local: $(top_builddir)/scilab-bin
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@GIWS_TRUE@build-giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -1474,6 +1474,10 @@ check-local: $(top_builddir)/scilab-bin
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+	)
 
 all-local: $(TARGETS_ALL)
 
@@ -1561,10 +1565,6 @@ install-data-local:
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 		fi; \
 	done
-
-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-	)
 
 #demos/datafit/demo_datafit_fr.htm \
 #demos/multiflow/demo_multiflow_fr.htm

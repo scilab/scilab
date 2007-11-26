@@ -29,8 +29,8 @@ check-local: $(top_builddir)/scilab-bin
 
 TARGETS_ALL=
 if GUI
-TARGETS_ALL+=build-java
-build-java:
+TARGETS_ALL+=java
+java:
 	@if test -f build.xml; then \
 		$(ANT) jar; \
 	fi
@@ -42,12 +42,12 @@ clean-java:
 endif
 
 if SWIG
-TARGETS_ALL+=build-swig
+TARGETS_ALL+=swig
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 ## build Swig Java => C wrappers
-build-swig: $(SWIG_WRAPPERS)
+swig: $(SWIG_WRAPPERS)
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -60,14 +60,14 @@ build-swig: $(SWIG_WRAPPERS)
 endif
 
 if GIWS
-TARGETS_ALL+=build-giws
+TARGETS_ALL+=giws
 
 
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 ## build Swig Java => C wrappers
-build-giws: $(GIWS_WRAPPERS)
+giws: $(GIWS_WRAPPERS)
 	@GIWS_OUTPUTDIR=src/jni/;\
 	if test ! -z "$(GIWS_WRAPPERS)"; then \
 		for file in $(GIWS_WRAPPERS) ; do \
@@ -77,6 +77,12 @@ build-giws: $(GIWS_WRAPPERS)
 	fi
 
 endif
+
+## Build the macros of the module
+macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+	)
+
 
 all-local: $(TARGETS_ALL)
 
@@ -216,7 +222,3 @@ endif
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 		fi; \
 	done
-
-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-	)

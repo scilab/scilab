@@ -58,12 +58,12 @@ host_triplet = @host@
 DIST_COMMON = $(am__libscitclsci_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@@TCLTK_TRUE@am__append_1 = build-java
-@SWIG_TRUE@@TCLTK_TRUE@am__append_2 = build-swig
-@GIWS_TRUE@@TCLTK_TRUE@am__append_3 = build-giws
-@GUI_TRUE@@TCLTK_FALSE@am__append_4 = build-java
-@SWIG_TRUE@@TCLTK_FALSE@am__append_5 = build-swig
-@GIWS_TRUE@@TCLTK_FALSE@am__append_6 = build-giws
+@GUI_TRUE@@TCLTK_TRUE@am__append_1 = java
+@SWIG_TRUE@@TCLTK_TRUE@am__append_2 = swig
+@GIWS_TRUE@@TCLTK_TRUE@am__append_3 = giws
+@GUI_TRUE@@TCLTK_FALSE@am__append_4 = java
+@SWIG_TRUE@@TCLTK_FALSE@am__append_5 = swig
+@GIWS_TRUE@@TCLTK_FALSE@am__append_6 = giws
 subdir = modules/tclsci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -1556,7 +1556,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	COMMAND="test_run('$(modulename)');quit";\
 @TCLTK_TRUE@	export LANG=C;\
 @TCLTK_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@@TCLTK_TRUE@build-java:
+@GUI_TRUE@@TCLTK_TRUE@java:
 @GUI_TRUE@@TCLTK_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@TCLTK_TRUE@		$(ANT) jar; \
 @GUI_TRUE@@TCLTK_TRUE@	fi
@@ -1568,7 +1568,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@SWIG_TRUE@@TCLTK_TRUE@build-swig: $(SWIG_WRAPPERS)
+@SWIG_TRUE@@TCLTK_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@@TCLTK_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@@TCLTK_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @SWIG_TRUE@@TCLTK_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1581,7 +1581,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@GIWS_TRUE@@TCLTK_TRUE@build-giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@TCLTK_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@TCLTK_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@TCLTK_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -1589,6 +1589,10 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
 @GIWS_TRUE@@TCLTK_TRUE@		done; \
 @GIWS_TRUE@@TCLTK_TRUE@	fi
+
+@TCLTK_TRUE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@TCLTK_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@TCLTK_TRUE@	)
 
 @TCLTK_TRUE@all-local: $(TARGETS_ALL)
 
@@ -1677,10 +1681,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		fi; \
 @TCLTK_TRUE@	done
 
-@TCLTK_TRUE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@TCLTK_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-@TCLTK_TRUE@	)
-
 # This target enables tests for Scilab
 @TCLTK_FALSE@check-local: $(top_builddir)/scilab-bin
 @TCLTK_FALSE@	@if test -f build.xml; then \
@@ -1689,7 +1689,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@	COMMAND="test_run('$(modulename)');quit";\
 @TCLTK_FALSE@	export LANG=C;\
 @TCLTK_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@@TCLTK_FALSE@build-java:
+@GUI_TRUE@@TCLTK_FALSE@java:
 @GUI_TRUE@@TCLTK_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@TCLTK_FALSE@		$(ANT) jar; \
 @GUI_TRUE@@TCLTK_FALSE@	fi
@@ -1701,7 +1701,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@SWIG_TRUE@@TCLTK_FALSE@build-swig: $(SWIG_WRAPPERS)
+@SWIG_TRUE@@TCLTK_FALSE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@@TCLTK_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@@TCLTK_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @SWIG_TRUE@@TCLTK_FALSE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1714,7 +1714,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@GIWS_TRUE@@TCLTK_FALSE@build-giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@TCLTK_FALSE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@TCLTK_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@TCLTK_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -1722,6 +1722,10 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GIWS_TRUE@@TCLTK_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
 @GIWS_TRUE@@TCLTK_FALSE@		done; \
 @GIWS_TRUE@@TCLTK_FALSE@	fi
+
+@TCLTK_FALSE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@TCLTK_FALSE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@TCLTK_FALSE@	)
 
 @TCLTK_FALSE@all-local: $(TARGETS_ALL)
 
@@ -1809,10 +1813,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @TCLTK_FALSE@		fi; \
 @TCLTK_FALSE@	done
-
-@TCLTK_FALSE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@TCLTK_FALSE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-@TCLTK_FALSE@	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

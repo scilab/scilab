@@ -34,7 +34,7 @@ LANG_DOMAIN=scilab
 
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
-TARGETS_ALL+=build-localization
+TARGETS_ALL+=localization
 endif
 
 all-local: $(TARGETS_ALL)
@@ -82,7 +82,7 @@ clean-help:
 clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
-build-localization:
+localization:
 	@echo "-- Build localization (.mo from .po) --"; \
 	MASK="modules/*/locales/"; \
 	LC=LC_MESSAGES; \

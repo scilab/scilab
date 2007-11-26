@@ -50,9 +50,9 @@ host_triplet = @host@
 DIST_COMMON = $(am__libjavasci_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@@JAVASCI_TRUE@am__append_1 = build-java
-@JAVASCI_TRUE@@SWIG_TRUE@am__append_2 = build-swig
-@GIWS_TRUE@@JAVASCI_TRUE@am__append_3 = build-giws
+@GUI_TRUE@@JAVASCI_TRUE@am__append_1 = java
+@JAVASCI_TRUE@@SWIG_TRUE@am__append_2 = swig
+@GIWS_TRUE@@JAVASCI_TRUE@am__append_3 = giws
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -835,7 +835,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	COMMAND="test_run('$(modulename)');quit";\
 @JAVASCI_TRUE@	export LANG=C;\
 @JAVASCI_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@@JAVASCI_TRUE@build-java:
+@GUI_TRUE@@JAVASCI_TRUE@java:
 @GUI_TRUE@@JAVASCI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@JAVASCI_TRUE@		$(ANT) jar; \
 @GUI_TRUE@@JAVASCI_TRUE@	fi
@@ -847,7 +847,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@JAVASCI_TRUE@@SWIG_TRUE@build-swig: $(SWIG_WRAPPERS)
+@JAVASCI_TRUE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @JAVASCI_TRUE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @JAVASCI_TRUE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @JAVASCI_TRUE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -860,7 +860,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@GIWS_TRUE@@JAVASCI_TRUE@build-giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@JAVASCI_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@JAVASCI_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@JAVASCI_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -868,6 +868,10 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
 @GIWS_TRUE@@JAVASCI_TRUE@		done; \
 @GIWS_TRUE@@JAVASCI_TRUE@	fi
+
+@JAVASCI_TRUE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@JAVASCI_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@JAVASCI_TRUE@	)
 
 @JAVASCI_TRUE@all-local: $(TARGETS_ALL)
 
@@ -955,10 +959,6 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @JAVASCI_TRUE@		fi; \
 @JAVASCI_TRUE@	done
-
-@JAVASCI_TRUE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@JAVASCI_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-@JAVASCI_TRUE@	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

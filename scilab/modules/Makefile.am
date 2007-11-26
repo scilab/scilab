@@ -181,4 +181,6 @@ endif
 #modules:
 #	@for module in $(SUBDIRS); do if test $$module != "."; then echo $$module; fi;	done > modules
 
-include $(top_srcdir)/Makefile.incl.am
+# include $(top_srcdir)/Makefile.incl.am
+
+

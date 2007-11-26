@@ -42,7 +42,7 @@ host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT)
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_1 = build-localization
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_1 = localization
 subdir = .
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/configure \
@@ -957,7 +957,7 @@ clean-help:
 clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
-build-localization:
+localization:
 	@echo "-- Build localization (.mo from .po) --"; \
 	MASK="modules/*/locales/"; \
 	LC=LC_MESSAGES; \

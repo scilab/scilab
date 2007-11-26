@@ -58,12 +58,12 @@ host_triplet = @host@
 DIST_COMMON = $(am__libscipvm_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@@PVM_TRUE@am__append_1 = build-java
-@PVM_TRUE@@SWIG_TRUE@am__append_2 = build-swig
-@GIWS_TRUE@@PVM_TRUE@am__append_3 = build-giws
-@GUI_TRUE@@PVM_FALSE@am__append_4 = build-java
-@PVM_FALSE@@SWIG_TRUE@am__append_5 = build-swig
-@GIWS_TRUE@@PVM_FALSE@am__append_6 = build-giws
+@GUI_TRUE@@PVM_TRUE@am__append_1 = java
+@PVM_TRUE@@SWIG_TRUE@am__append_2 = swig
+@GIWS_TRUE@@PVM_TRUE@am__append_3 = giws
+@GUI_TRUE@@PVM_FALSE@am__append_4 = java
+@PVM_FALSE@@SWIG_TRUE@am__append_5 = swig
+@GIWS_TRUE@@PVM_FALSE@am__append_6 = giws
 subdir = modules/pvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -1319,7 +1319,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	COMMAND="test_run('$(modulename)');quit";\
 @PVM_TRUE@	export LANG=C;\
 @PVM_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@@PVM_TRUE@build-java:
+@GUI_TRUE@@PVM_TRUE@java:
 @GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) jar; \
 @GUI_TRUE@@PVM_TRUE@	fi
@@ -1331,7 +1331,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@PVM_TRUE@@SWIG_TRUE@build-swig: $(SWIG_WRAPPERS)
+@PVM_TRUE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @PVM_TRUE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_TRUE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @PVM_TRUE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1344,7 +1344,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@GIWS_TRUE@@PVM_TRUE@build-giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@PVM_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@PVM_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@PVM_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -1352,6 +1352,10 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
 @GIWS_TRUE@@PVM_TRUE@		done; \
 @GIWS_TRUE@@PVM_TRUE@	fi
+
+@PVM_TRUE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@PVM_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@PVM_TRUE@	)
 
 @PVM_TRUE@all-local: $(TARGETS_ALL)
 
@@ -1440,10 +1444,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		fi; \
 @PVM_TRUE@	done
 
-@PVM_TRUE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@PVM_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-@PVM_TRUE@	)
-
 # This target enables tests for Scilab
 @PVM_FALSE@check-local: $(top_builddir)/scilab-bin
 @PVM_FALSE@	@if test -f build.xml; then \
@@ -1452,7 +1452,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	COMMAND="test_run('$(modulename)');quit";\
 @PVM_FALSE@	export LANG=C;\
 @PVM_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@@PVM_FALSE@build-java:
+@GUI_TRUE@@PVM_FALSE@java:
 @GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) jar; \
 @GUI_TRUE@@PVM_FALSE@	fi
@@ -1464,7 +1464,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@PVM_FALSE@@SWIG_TRUE@build-swig: $(SWIG_WRAPPERS)
+@PVM_FALSE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @PVM_FALSE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_FALSE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @PVM_FALSE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
@@ -1477,7 +1477,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@GIWS_TRUE@@PVM_FALSE@build-giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@PVM_FALSE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@PVM_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@PVM_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
@@ -1485,6 +1485,10 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
 @GIWS_TRUE@@PVM_FALSE@		done; \
 @GIWS_TRUE@@PVM_FALSE@	fi
+
+@PVM_FALSE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@PVM_FALSE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@PVM_FALSE@	)
 
 @PVM_FALSE@all-local: $(TARGETS_ALL)
 
@@ -1572,10 +1576,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @PVM_FALSE@		fi; \
 @PVM_FALSE@	done
-
-@PVM_FALSE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@PVM_FALSE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-@PVM_FALSE@	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
