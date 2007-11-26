@@ -1,0 +1,233 @@
+# Localization of the module graphics
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 17:45+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 17:43+0100\n"
+
+# File: src/c/SetProperty.c, line: 163
+msgid "colormap : number of columns must be 3.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 169
+msgid "sciSetColormap Error: Object must be a SCI_FIGURE.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 543
+msgid "This object has no background property.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 584
+msgid "This object has no foreground property.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 622
+msgid "Line width must be greater than 0.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 634
+msgid "This object has no line width property.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 658
+msgid "The line style must be greater than 0.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 670
+msgid "This object has no line style property.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 684
+msgid "This object has no mark property.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 717
+# File: src/c/SetProperty.c, line: 750
+# File: src/c/SetProperty.c, line: 827
+# File: src/c/SetProperty.c, line: 863
+msgid "This object has no mark.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 778
+msgid "The mark style must be greater or equal than 0\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 790
+msgid "This objecy has no mark.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 814
+msgid "The mark size must be greater or equal than 0\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 850
+msgid "The mark size unit must be greater than 0\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 892
+msgid "This object has no line property.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 918
+msgid "The font size must be greater than 0\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 930
+msgid "This object has no font size\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 958
+msgid "This object has no font width.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 2219
+# File: src/c/SetProperty.c, line: 2234
+# File: src/c/BuildObjects.c, line: 925
+# File: src/c/BuildObjects.c, line: 944
+# File: src/c/Champ.c, line: 148
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 3294
+msgid "Can not allocate room for shaded color vbector\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 3633
+msgid "This object has no grid property.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 3917
+msgid "This object has no pixmap.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 3948
+msgid "This object has no positions property.\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 94
+# File: src/c/BuildObjects.c, line: 524
+# File: src/c/BuildObjects.c, line: 561
+# File: src/c/BuildObjects.c, line: 596
+msgid "The parent has to be a FIGURE\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 769
+# File: src/c/BuildObjects.c, line: 844
+# File: src/c/BuildObjects.c, line: 990
+# File: src/c/BuildObjects.c, line: 1163
+# File: src/c/BuildObjects.c, line: 1249
+# File: src/c/BuildObjects.c, line: 1336
+# File: src/c/BuildObjects.c, line: 1622
+# File: src/c/BuildObjects.c, line: 1724
+# File: src/c/BuildObjects.c, line: 1886
+# File: src/c/BuildObjects.c, line: 2045
+# File: src/c/BuildObjects.c, line: 2226
+# File: src/c/BuildObjects.c, line: 2478
+# File: src/c/BuildObjects.c, line: 2532
+# File: src/c/BuildObjects.c, line: 2592
+msgid "The parent has to be a SUBWIN\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 816
+msgid "No more place to allocates text string, try a shorter string"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 912
+# File: src/c/BuildObjects.c, line: 2629
+msgid ""
+"\n"
+"No more place to allocates text string, try a shorter string\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 976
+msgid "Problem with sciInitFontContext\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 1227
+msgid "No context"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 1269
+msgid "Width and height must be positive.\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 1830
+msgid "Impossible case when building axis\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 2336
+msgid "No handle to allocate\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 2346
+msgid "Unexpected case, please report\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 2682
+msgid "Your second entity is not a popup menu !\n"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 2718
+msgid "No more place to allocate text string, try a shorter string"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 2731
+msgid "No more place to allocate label string, try a shorter string"
+msgstr ""
+
+#
+# File: src/c/BuildObjects.c, line: 2748
+msgid "The parent has to be a FIGURE or a UIMENU\n"
+msgstr ""
+
+#
+# File: src/c/Champ.c, line: 236
+msgid "Cannot allocate temporary vector, memory full.\n"
+msgstr ""

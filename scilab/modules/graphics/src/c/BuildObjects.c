@@ -38,6 +38,7 @@
 #include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
 #include "WindowList.h"
+#include "localization.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -91,7 +92,7 @@ ConstructStatusBar (sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE\n");
+      sciprint(_("The parent has to be a FIGURE\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -521,7 +522,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE\n");
+      sciprint(_("The parent has to be a FIGURE\n"));
       return (sciPointObj *) NULL;
     }
   
@@ -558,7 +559,7 @@ ConstructScrollV (sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE\n");
+      sciprint(_("The parent has to be a FIGURE\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -593,7 +594,7 @@ ConstructScrollH (sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE\n");
+      sciprint(_("The parent has to be a FIGURE\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -766,7 +767,7 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 
   }
   
-  sciprint ("The parent has to be a SUBWIN\n");
+  sciprint(_("The parent has to be a SUBWIN\n"));
   return NULL;
 }
 
@@ -813,7 +814,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
      
       if ( ppTitle->text.pStrings == NULL )
       {
-        sciprint("No more place to allocates text string, try a shorter string");
+        sciprint(_("No more place to allocates text string, try a shorter string"));
         sciDelThisToItsParent (pobj, sciGetParent (pobj));
         sciDelHandle (pobj);
         FREE(ppTitle);
@@ -841,7 +842,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -909,7 +910,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       /* Allocation de la structure sciText */
       if ( ppLegend->text.pStrings == NULL)
       {
-        sciprint("\nNo more place to allocates text string, try a shorter string\n");
+        sciprint(_("\nNo more place to allocates text string, try a shorter string\n"));
         sciDelThisToItsParent (pobj, sciGetParent (pobj));
         sciDelHandle (pobj);
         FREE(ppLegend);
@@ -922,7 +923,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       if ((ppLegend->pptabofpointobj = 
 	   MALLOC(nblegends*sizeof(sciPointObj*))) == NULL)
 	{
-	  sciprint("No more memory for legend\n");
+	  sciprint(_("%s: No more memory.\n"),"ConstructLegend");
 	  deleteMatrix( ppLegend->text.pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -941,7 +942,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
 	}
       else
 	{		  
-	  sciprint("\nNo more place to allocates style\n");
+	  sciprint(_("%s: No more memory.\n"),"ConstructLegend");
 	  FREE(ppLegend->pptabofpointobj);
 	  deleteMatrix( ppLegend->text.pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -973,7 +974,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       
       if (sciInitFontContext (pobj) == -1)
 	{
-	  sciprint("Problem with sciInitFontContext\n");
+	  sciprint(_("Problem with sciInitFontContext\n"));
 	  FREE(ppLegend->pptabofpointobj);
 	  deleteMatrix( ppLegend->text.pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -987,7 +988,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1160,7 +1161,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1224,7 +1225,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 	  sciDelHandle (pobj);
 	  FREE(ppArc);
 	  FREE(pobj);
-	  sciprint("pas de context");
+	  sciprint(_("No context"));
 	  return (sciPointObj *) NULL;
 	}
 
@@ -1246,7 +1247,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1266,7 +1267,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 
   if ( height < 0.0 || width < 0.0 )
   {
-    Scierror(999,"Width and height must be positive.\n");
+    Scierror(999,_("Width and height must be positive.\n"));
     return NULL ;
   }
  
@@ -1333,7 +1334,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1619,7 +1620,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1721,7 +1722,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1827,7 +1828,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       if(str != (char **) NULL)
 	{
 	  if(pAXES_FEATURE (pobj)->nb_tics_labels == -1){
-	    sciprint("Impossible case when buyilding axis\n");
+	    sciprint(_("Impossible case when building axis\n"));
 	    return (sciPointObj *) NULL;
 	  }
 	  
@@ -1883,7 +1884,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -2042,7 +2043,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -2223,7 +2224,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -2333,7 +2334,7 @@ ConstructCompoundSeq (int number)
 
   if (sciAddNewHandle (pobj) == -1)
   {
-    sciprint("no handle to allocate\n");
+    sciprint(_("No handle to allocate\n"));
     FREE(pobj->pfeatures);FREE(pobj);
     return (sciPointObj *) NULL;
   }
@@ -2343,7 +2344,7 @@ ConstructCompoundSeq (int number)
   /* check if s1 predecessor is null*/
   if (sons->pprev != NULL)
   {
-    sciprint("Unexpected case, please report\n");
+    sciprint(_("Unexpected case, please report\n"));
     FREE(pobj->pfeatures);FREE(pobj);
     return (sciPointObj *) NULL;
   }
@@ -2475,7 +2476,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
   }
   else
   {
-    sciprint ("The parent has to be a SUBWIN\n");
+    sciprint(_("The parent has to be a SUBWIN\n"));
     return (sciPointObj *) NULL;
   }
 }
@@ -2529,7 +2530,7 @@ ConstructMenu (sciPointObj * pparentfigure, char plabel[], int n)
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -2574,7 +2575,7 @@ ConstructMenuContext (sciPointObj * pparentfigure)
       /* windows dependant*/
       /*     if ((pMENUCONTEXT_FEATURE(pobj)->hPopMenu = CreatePopupMenu ()) == NULL) 
 	     {
-	     sciprint ("Scilab can't have more menu\n");
+	     sciprint("Scilab can't have more menu\n");
 	     FREE ((sciGetFontContext(pobj))->pfontname);
 	     sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	     sciDelHandle (pobj);
@@ -2589,7 +2590,7 @@ ConstructMenuContext (sciPointObj * pparentfigure)
     }
   else
     {
-      sciprint ("The parent has to be a SUBWIN\n");
+      sciprint(_("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -2626,7 +2627,7 @@ sciAddLabelMenu (sciPointObj * pthis, char plabel[], int n)
     return -1;
   if ((pscilabelmenutmp->plabel = CALLOC (n+1, sizeof (char))) == NULL)
     {
-      sciprint("\nNo more place to allocates text string, try a shorter string\n");
+      sciprint(_("\nNo more place to allocates text string, try a shorter string\n"));
       return -1;
     }
   strncpy (pscilabelmenutmp->plabel, plabel, n);
@@ -2679,7 +2680,7 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
 	break;
       }
     }
-  sciprint("Your second entity is not a popup menu !\n");
+  sciprint(_("Your second entity is not a popup menu !\n"));
   return -1;
 }
 
@@ -2715,7 +2716,7 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
 
       if ((pUIMENU_FEATURE (pobj)->label.callback = CALLOC(strlen(callback)+1,sizeof(char))) == NULL )
 	{
-	  sciprint("No more place to allocates text string, try a shorter string");
+	  sciprint(_("No more place to allocate text string, try a shorter string"));
 	  return (sciPointObj *) NULL;
 	}
 
@@ -2728,7 +2729,7 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
 
       if ( pUIMENU_FEATURE (pobj)->label.pStrings == NULL)
 	{
-	  sciprint("No more place to allocates label string, try a shorter string");
+	  sciprint(_("No more place to allocate label string, try a shorter string"));
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(pUIMENU_FEATURE(pobj));
@@ -2745,7 +2746,7 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE or a UIMENU\n");
+      sciprint(_("The parent has to be a FIGURE or a UIMENU\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -2757,7 +2758,7 @@ sciPointObj * sciConstructConsole( sciPointObj * pparent )
   pObj = MALLOC(sizeof(sciPointObj)) ;
   if ( pObj == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructConsole") ;
     return NULL ;
   }
 
@@ -2766,7 +2767,7 @@ sciPointObj * sciConstructConsole( sciPointObj * pparent )
   pObj->pfeatures = MALLOC(sizeof(sciConsole)) ;
   if ( pObj->pfeatures == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructConsole") ;
     FREE(pObj) ;
     return NULL ;
 
@@ -2837,7 +2838,7 @@ sciPointObj * sciConstructFrame( sciPointObj * pparent )
   pObj = MALLOC(sizeof(sciPointObj)) ;
   if ( pObj == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructFrame") ;
     return NULL ;
   }
 
@@ -2846,7 +2847,7 @@ sciPointObj * sciConstructFrame( sciPointObj * pparent )
   pObj->pfeatures = MALLOC(sizeof(sciFrame)) ;
   if ( pObj->pfeatures == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructFrame") ;
     FREE(pObj) ;
     return NULL ;
 
@@ -2865,7 +2866,7 @@ sciPointObj * sciConstructWindow( sciPointObj * pparent )
   pObj = MALLOC(sizeof(sciPointObj)) ;
   if ( pObj == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructWindow");
     return NULL ;
   }
 
@@ -2874,7 +2875,7 @@ sciPointObj * sciConstructWindow( sciPointObj * pparent )
   pObj->pfeatures = MALLOC(sizeof(sciWindow)) ;
   if ( pObj->pfeatures == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructWindow");
     FREE(pObj) ;
     return NULL ;
 
@@ -2893,7 +2894,7 @@ sciPointObj * sciConstructWindowFrame( sciPointObj * pparent )
   pObj = MALLOC(sizeof(sciPointObj)) ;
   if ( pObj == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructWindowFrame");
     return NULL ;
   }
 
@@ -2902,7 +2903,7 @@ sciPointObj * sciConstructWindowFrame( sciPointObj * pparent )
   pObj->pfeatures = MALLOC(sizeof(sciWindowFrame)) ;
   if ( pObj->pfeatures == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructWindowFrame");
     FREE(pObj) ;
     return NULL ;
 
@@ -2921,7 +2922,7 @@ sciPointObj * sciConstructScreen( sciPointObj * pparent )
   pObj = MALLOC(sizeof(sciPointObj)) ;
   if ( pObj == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructScreen");
     return NULL ;
   }
 
@@ -2930,7 +2931,7 @@ sciPointObj * sciConstructScreen( sciPointObj * pparent )
   pObj->pfeatures = MALLOC(sizeof(sciScreen)) ;
   if ( pObj->pfeatures == NULL )
   {
-    sciprint("Unable to allocate new object, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"sciConstructScreen");
     FREE(pObj) ;
     return NULL ;
 
