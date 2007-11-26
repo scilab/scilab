@@ -20,7 +20,7 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 	else
 		suf = part(tstfile,ind($):length(tstfile));
 		if suf == '.dia' then
-			error('scitest: first argument should not be a file with .dia suffix" );
+			error(gettext("scitest: first input argument should not be a file with .dia suffix"));
 			return
 		end
 		diafile=strsubst(tstfile,suf,'.dia');
@@ -112,13 +112,13 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 	
 	if  error_check == %t then
 		if grep(dia,'!--error')<>[] then
-			mydisp("Test failed ERROR DETECTED  while executing "+tstfile);
+			mydisp(msprintf(gettext("Test failed ERROR DETECTED while executing %s"),tstfile));
 			return;
 		end
 	end
 	
 	if grep(dia,'error on test')<>[] then
-		mydisp("Test failed ERROR DETECTED  while executing "+tstfile);
+		mydisp(msprintf(gettext("Test failed ERROR DETECTED while executing %s"),tstfile));
 		return;
 	end
 	
@@ -133,12 +133,12 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 		
 		if or(ref<>dia) then
 		if MSDOS then
-		mydisp('Test Failed SEE : fc /L /N  '+diafile+' '+diafile+'.ref ');
+		mydisp(msprintf(gettext("Test Failed. See : fc /L /N  %s"),diafile+' '+diafile+'.ref '));
 		else
-		mydisp('Test Failed SEE : diff -wu  '+diafile+' '+diafile+'.ref ');
+		mydisp(msprintf(gettext("Test Failed. See : diff -wu  %s"),diafile+' '+diafile+'.ref '));
 		end
 		else
-		mydisp('Test passed');
+		mydisp(gettext("Test passed"));
 		end
 	end
 	mydisp('----------------------------------------------------------');

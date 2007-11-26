@@ -1,39 +1,66 @@
 # Localization of the module development_tools
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab - development_tools\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 15:01+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab <localization@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-26 15:01+0100\n"
 
-# File: macros/unit_test_run.sci, line: 53
+# File: macros/scitest.sci, line: 23
+msgid "scitest: first input argument should not be a file with .dia suffix"
+msgstr ""
+#
+# File: macros/scitest.sci, line: 115
+# File: macros/scitest.sci, line: 121
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr ""
+#
+# File: macros/scitest.sci, line: 136
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr ""
+#
+# File: macros/scitest.sci, line: 138
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr ""
+#
+# File: macros/scitest.sci, line: 141
+msgid "Test passed"
+msgstr ""
+#
+# File: macros/testexamples.sci, line: 8
+# File: macros/testexamples.sci, line: 23
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr ""
+#
+# File: macros/test_run.sci, line: 111
 #, c-format
 msgid "%s is not an installed module"
 msgstr ""
-
 #
-# File: macros/unit_test_run.sci, line: 73
-msgid "Input argument sizes are not valid"
+# File: macros/test_run.sci, line: 130
+msgid "error : Input argument sizes are not valid"
 msgstr ""
-
 #
-# File: macros/unit_test_run.sci, line: 83
+# File: macros/test_run.sci, line: 149
 #, c-format
 msgid "The test %s is not available from the %s module"
 msgstr ""
-
 #
-# File: macros/unit_test_run.sci, line: 360
+# File: macros/test_run.sci, line: 618
 #, c-format
 msgid "The ref file (%s) doesn''t exist"
 msgstr ""

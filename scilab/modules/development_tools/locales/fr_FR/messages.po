@@ -1,34 +1,72 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Localization of the module developement_tools
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-06 11:36+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 15:01+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+
+# File: macros/scitest.sci, line: 23
+msgid "scitest: first input argument should not be a file with .dia suffix"
+msgstr ""
+
+#
+# File: macros/scitest.sci, line: 115
+# File: macros/scitest.sci, line: 121
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr ""
+
+#
+# File: macros/scitest.sci, line: 136
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr ""
+
+#
+# File: macros/scitest.sci, line: 138
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr ""
+
+#
+# File: macros/scitest.sci, line: 141
+msgid "Test passed"
+msgstr ""
+
+# File: macros/testexamples.sci, line: 8
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr ""
+
 #
 # File: macros/unit_test_run.sci, line: 53
 #, c-format
 msgid "%s is not an installed module"
 msgstr "%s n'est pas un module installé"
+
 #
 # File: macros/unit_test_run.sci, line: 73
-msgid "Input argument sizes are not valid"
+#, fuzzy
+msgid "error : Input argument sizes are not valid"
 msgstr "Taille des arguments d'entrées incorrecte"
+
 #
 # File: macros/unit_test_run.sci, line: 83
 #, c-format
 msgid "The test %s is not available from the %s module"
 msgstr "Le test %s n'est pas disponible pour le module %s"
+
 #
 # File: macros/unit_test_run.sci, line: 360
 #, c-format

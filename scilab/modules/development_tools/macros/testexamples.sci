@@ -5,7 +5,7 @@ function r=load_ref(name)
 	if type(v) == 128 then v=128,end //lu handle
 	load(%U,name+'_ref');
 	if exists(name+'_ref')==0 then
-		disp('no variable '+name+'_ref in reference file')
+		disp(msprintf(gettext("No variable %s_ref in reference file"),name))
 		r=%t
 		return
 	end
@@ -20,7 +20,7 @@ function r=load_ref_nocheck(name)
 	if type(v) == 128 then v=128,end //lu handle
 	load(%U,name+'_ref');
 	if exists(name+'_ref')==0 then
-		disp('no variable '+name+'_ref in reference file')
+		disp(msprintf(gettext("No variable %s_ref in reference file"),name))
 		r=%t
 		return
 	end
