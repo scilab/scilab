@@ -1,7 +1,14 @@
 /*------------------------------------------------------------------------
- *    Copyright (C) 1998-2000 Enpc/Inria 
- *    jpc@cereve.enpc.fr 
+ *    Scilab Memory Management library (Stack API)
+ *    Copyright (C) 1998-2002 Enpc/INRIA
+ *    Copyright (C) 1998-2007 INRIA
+ * @authors jpc@cereve.enpc.fr
+ * Updates :
+ * @authors Allan CORNET
+ * @authors Serge STEER
+ * @authors Sylvestre LEDRU 
  --------------------------------------------------------------------------*/
+
 /*------------------------------------------
  * Scilab stack 
  *------------------------------------------*/
@@ -2202,7 +2209,7 @@ int C2F(crestringv)(char *fname,integer *spos,integer *ilorig,integer *lw,unsign
   C2F(stringc)(istk(*ilorig ), (char ***)stk(*lw ), &ierr);
 
   if (ierr != 0) {
-    Scierror(999,_("Not enough memory\n"));
+    Scierror(999,_("%s: No more memory available.\n"), fname);
     return FALSE_;
   }
   return TRUE_;
@@ -2284,7 +2291,7 @@ int C2F(lcrestringmatfromc)(char *fname,integer *spos,integer *numi,integer *stl
   ix1 = *Lstk(Bot ) - *stlw;
   C2F(cstringf)((char ***)stk(*lorig ), istk(ilw ), m, n, &ix1, &ierr);
   if (ierr > 0) {
-    Scierror(999,_("Not enough memory\n"));
+    Scierror(999,_("%s: No more memory available.\n"), fname);
     return FALSE_;
   }
   ix1 = ilw + 5 + *m * *n + *istk(ilw + 4 + *m * *n ) - 1;
@@ -2315,7 +2322,7 @@ int C2F(crestringmatfromc)(char *fname,integer *spos,integer *lorig,integer *m,i
   ix1 = *Lstk(Bot ) - *Lstk(*spos );
   C2F(cstringf)((char ***)stk(*lorig ), istk(ilw ), m, n, &ix1, &ierr);
   if (ierr > 0) {
-    Scierror(999,_("Not enough memory\n"));
+    Scierror(999,_("%s: No more memory available.\n"), fname);
     return FALSE_;
   }
   ix1 = ilw + 5 + *m * *n + *istk(ilw + 4 + *m * *n ) - 1;
@@ -2780,7 +2787,7 @@ int C2F(stackinfo)(integer *lw,integer *typ)
   m = *istk(il +1);
   n = *istk(il + 1 +1);
 
-  sciprint(_("-----------------stack-info-----------------\n"));
+  sciprint("-----------------stack-info-----------------\n");
   sciprint("lw=%d -[istk]-> il lw+1 -[istk]-> %d\n",*lw,iadr(*Lstk(*lw+1)));
   sciprint("istk(%d:..) ->[%d %d %d %d ....]\n",il, istk(il),istk(il+1),istk(il+2),istk(il+3) );
   if (*typ == 1) {
@@ -2797,7 +2804,7 @@ int C2F(stackinfo)(integer *lw,integer *typ)
     }
   }
   sciprint("\n");
-  sciprint(_("-----------------stack-info-----------------\n"));
+  sciprint("-----------------stack-info-----------------\n");
   return 0;
 }
 

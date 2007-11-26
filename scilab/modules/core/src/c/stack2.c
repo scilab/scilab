@@ -1,8 +1,15 @@
 /*------------------------------------------------------------------------
- *    Graphic library
- *    Copyright (C) 1998-2000 Enpc/Inria
- *    jpc@cereve.enpc.fr
+ *    Scilab Memory Management library (Stack API)
+ *    Copyright (C) 1998-2000 Enpc/INRIA
+ *    Copyright (C) 1998-2007 INRIA
+ * @authors jpc@cereve.enpc.fr
+ * Updates :
+ * @authors Allan CORNET
+ * @authors Serge STEER
+ * @authors Sylvestre LEDRU 
+ * @authors Bruno JOFRET
  --------------------------------------------------------------------------*/
+
 /*---------------------------------------------------------------------
  * Interface Library:   ilib
  *---------------------------------------------------------------------*/
@@ -383,7 +390,7 @@ int C2F(isref)(integer *number)
   integer il,lw;
   lw = *number + Top - Rhs;
   if ( *number > Rhs) {
-    Scierror(999,_("isref: bad call to isref! (1rst argument).\n"));
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),"isref","isref");
     return FALSE_;
   }
   il = iadr(*Lstk(lw));
@@ -841,7 +848,7 @@ int C2F(createlistvarfrom)(integer *lnumber,integer *number,char * typex,integer
     *lar = *lr;
     break;
   default :
-    Scierror(999,_("%s : (createlistvar) bad third argument!\n"),fname);
+    Scierror(999,_("%s : (%s) bad third argument!\n"),fname,"createlistvar");
     return FALSE_;
     break;
   }
@@ -901,7 +908,7 @@ int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, inte
     *lc = *lr + *m * *n;
     break;
   default :
-    Scierror(999,_("%s : (createlistcvar) bad third argument!\n"),fname);
+    Scierror(999,_("%s : (%s) bad third argument!\n"),fname,"createlistcvar");
     return FALSE_;
   }
   return TRUE_;
@@ -1006,7 +1013,7 @@ int C2F(createlistvarfromptr)(integer *lnumber,integer * number,char *typex,inte
     *stk(lr) = (double) ((unsigned long int) iptr);
     break;
   default :
-    Scierror(999,_("%s : (createlistcvar) bad third argument!\n"),fname);
+    Scierror(999,_("%s : (%s) bad third argument!\n"),fname,"createlistcvar");
     return FALSE_;
     break;
   }
@@ -1072,7 +1079,7 @@ int C2F(createlistcvarfromptr)(integer *lnumber,integer *number,char *typex,inte
     if ( *it == 1)     C2F(cint)(&ix1,(int **) iptc, stk(lc));
     break;
   default :
-    Scierror(999,_("%s : (createlistcvarfromptr) bad third argument!\n"),fname);
+    Scierror(999,_("%s : (%s) bad third argument!\n"),fname,"createlistcvarfromptr");
     return FALSE_;
     break;
   }
@@ -1537,7 +1544,7 @@ int C2F(getlistrhsvar)(integer *lnumber,integer *number,char *typex,integer *m,i
     if (! C2F(getlistmat)(fname, &topk, &lw,number, &it, m, n, lr, &lc, nlgh)) return FALSE_;
     ix2 = *m * *n;
     if ((it != 1) && (ix2 !=0)){
-      Scierror(999,_("%s : argument %d < (%d) should be a complex matrix.\n"),fname, Rhs + (lw -topk) , *number);
+      Scierror(999,_("%s : argument %d > (%d) should be a complex matrix.\n"),fname, Rhs + (lw -topk) , *number);
       return FALSE_;
     };
       if (!(*lr % 2) ) {  /* bad adress (lr is even) shift up the stack */
@@ -1593,7 +1600,7 @@ int C2F(getlistrhsvar)(integer *lnumber,integer *number,char *typex,integer *m,i
       return FALSE_;
     break;
   default :
-    Scierror(999,_("%s : getlistrhsvar was called with bad third argument (%c).\n"),fname,Type);
+    Scierror(999,_("%s : bad call to %s (third argument %c).\n"),fname,"getlistrhsvar",Type);
     return FALSE_;
   }
   /* can't perform back data conversion with lists */
@@ -1614,7 +1621,7 @@ int C2F(getlistrhscvar)(integer *lnumber,integer *number,char *typex,integer *it
   Nbvars = Max(Nbvars,*lnumber);
   lw = *lnumber + Top - Rhs;
   if (*lnumber > Rhs) {
-    Scierror(999,_("%s : bad call to getlistrhscvar! (1rst argument).\n"),fname);
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"getlistrhscvar");
     return FALSE_;
   }
   if (*lnumber > intersiz) {
@@ -1642,7 +1649,8 @@ int C2F(getlistrhscvar)(integer *lnumber,integer *number,char *typex,integer *it
     *lc = *lr + *m * *n;
     break;
   default :
-    Scierror(999,_("%s : getlistrhscvar was called with bad third argument!\n"),fname);
+    Scierror(999,_("%s : (%s) bad third argument!\n"),fname,"getlistrhscvar");
+
     return FALSE_;
   }
   /* can't perform back data conversion with lists */
@@ -1709,7 +1717,8 @@ int C2F(createvarfromptr)(integer *number,char *typex,integer *m,integer *n,void
 				C2F(intersci).ntypes[*number - 1] = '$';
 				break;
 			default :
-				Scierror(999,_("%s : createvarfromptr was called with bad second argument!\n"),fname);
+				Scierror(999,_("%s : (%s) bad second argument!\n"),fname,"createvarfromptr");
+
 				return FALSE_;
 		}
 	/*     this object will be copied with a vcopyobj in putlhsvar */
@@ -1756,7 +1765,8 @@ int C2F(createcvarfromptr)(integer *number,char *typex,integer *it,integer *m,in
     }
     break;
   default :
-    Scierror(999,_("%s : createcvarfromptr was called with bad second argument!\n"),fname);
+	Scierror(999,_("%s : (%s) bad second argument!\n"),fname,"createcvarfromptr");
+				
     return FALSE_;
   }
   /*     this object will be copied with a vcopyobj in putlhsvar */
@@ -1844,7 +1854,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
 
   if ( intersci_push() == 0 )
     {
-      Scierror(999,_("scifunction: Running out of memory.\n"));
+      Scierror(999,_("%s: No more memory available.\n"),"scifunction");
       goto L9999;
     }
 
@@ -2080,7 +2090,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
 
   if ( intersci_push() == 0 )
     {
-      Scierror(999,_("scifunction: Running out of memory.\n"));
+      Scierror(999,_("%s: No more memory available.\n"),"scifunction");
       goto L9999;
     }
 
@@ -2707,7 +2717,7 @@ int Ref2val(int from , int to )
   lw = from + Top - Rhs;
   if ( from  > Rhs)
   {
-    Scierror(999,_("copyref: bad call to isref! (1rst argument).\n"));
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),"copyref","isref");
     return FALSE_;
   }
   il = iadr(*Lstk(lw));
@@ -3008,7 +3018,7 @@ int C2F(createdata)(integer *lw, integer n)
   Nbvars = Max(*lw,Nbvars);
   lw1 = *lw + Top - Rhs;
   if (*lw < 0) {
-    Scierror(999,_("%s : bad call to createdata! (1rst argument).\n"),fname);
+    Scierror(999,_("%s : bad call to %s! (1rst argument).\n"),fname,"createdata");
     return FALSE_ ;
   }
   if (! C2F(credata)(fname, &lw1, n, nlgh))    return FALSE_;

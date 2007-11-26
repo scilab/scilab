@@ -84,7 +84,7 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 							if (ptr) C2F(adjuststacksize)(&MEMSTACKSIZE,&ptr);
 							else
 							{
-								Scierror(999,_("%s : can't alloc more memory.\ntry stacksize('max').\n"),fname);
+								Scierror(999,_("%s : can't alloc more memory.\nTry gstacksize('max').\n"),fname);
 								return 0;
 							}
 						}
@@ -99,13 +99,13 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					else
 					{
-						Scierror(1504,_("%s : Out of bounds value not in [%lu,%lu].\n"),fname,MIN_STACKSIZE,get_max_memory_for_scilab_stack()-1);
+						Scierror(1504,_("%s : Out of bounds value. Not in [%lu,%lu].\n"),fname,MIN_STACKSIZE,get_max_memory_for_scilab_stack()-1);
 						return 0;
 					}
 				}
 				else
 				{
-					Scierror(1504,_("%s : Out of bounds value not in [%lu,%lu].\n"),fname,MIN_STACKSIZE,get_max_memory_for_scilab_stack()-1);
+					Scierror(1504,_("%s : Out of bounds value. Not in [%lu,%lu].\n"),fname,MIN_STACKSIZE,get_max_memory_for_scilab_stack()-1);
 					return 0;
 				}
 			}

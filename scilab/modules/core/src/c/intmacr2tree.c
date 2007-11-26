@@ -103,7 +103,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   /* Memory allocation */
   if((name=CALLOC(1,sizeof(char)))==NULL)
     {
-		Scierror(999,_("macr2tree: No more memory available.\n"));
+		Scierror(999,_("%s: No more memory available.\n"),"macr2tree");
       return 0;
     }
   if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
@@ -158,7 +158,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   /* Memory allocation */
   if((data=(int *)CALLOC(1,sizeof(int)*(codelength+ilt+1)))==NULL)
   {
-	  Scierror(999,_("macr2tree: No more memory available.\n"));
+	  Scierror(999,_("%s: No more memory available.\n"),"macr2tree");
       return 0;
     }
   /* Copy */

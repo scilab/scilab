@@ -54,7 +54,7 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("nameptr argument must be < 0.\n"));
+			Scierror(999,_("%s argument must be > 0.\n"),"nameptr");
 			return 0;
 		}
 	}

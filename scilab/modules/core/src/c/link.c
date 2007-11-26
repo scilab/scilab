@@ -358,16 +358,33 @@ static int SearchFandS(char *op, int ilib)
 
 static void ShowDynLinks(void)
 {
-  int i=0,count=0;
-  if (getWarningMode()) sciprint(_("Number of entry points %d.\n"),NEpoints);
-  if (getWarningMode()) sciprint(_("Shared libs : [\n"));
-  for ( i = 0 ; i < Nshared ; i++) 
-    if ( hd[i].ok == OK) { if (getWarningMode())sciprint(_("%d "),i);count++;}
-  if (getWarningMode()) sciprint(_("] : %d libs.\n"),count);
-  for ( i = NEpoints-1 ; i >=0 ; i--) 
-    {
-      if (getWarningMode()) sciprint(_("Entry point %s in shared lib %d.\n"),EP[i].name,EP[i].Nshared);
-    }
+	int i=0,count=0;
+	if (getWarningMode()) 
+		{
+			sciprint(_("Number of entry points %d.\nShared libraries : [\n"),NEpoints);
+		}
+	for ( i = 0 ; i < Nshared ; i++) {
+		if ( hd[i].ok == OK) 
+			{ 
+				if (getWarningMode())
+					{
+						sciprint("%d ",i);
+					}
+				count++;
+			}
+	}
+	if (getWarningMode()) 
+		{
+			sciprint(_("] : %d libraries.\n"),count);
+		}
+	for ( i = NEpoints-1 ; i >=0 ; i--) {
+		{
+			if (getWarningMode()) 
+				{
+					sciprint(_("Entry point %s in shared library %d.\n"),EP[i].name,EP[i].Nshared);
+				}
+		}
+	}
 }
 
 void ulinkall(void)
