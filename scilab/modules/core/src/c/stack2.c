@@ -1854,7 +1854,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
 
   if ( intersci_push() == 0 )
     {
-      Scierror(999,_("%s: No more memory available.\n"),"scifunction");
+      Scierror(999,_("%s: No more memory.\n"),"scifunction");
       goto L9999;
     }
 
@@ -2090,7 +2090,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
 
   if ( intersci_push() == 0 )
     {
-      Scierror(999,_("%s: No more memory available.\n"),"scifunction");
+      Scierror(999,_("%s: No more memory.\n"),"scifunction");
       goto L9999;
     }
 

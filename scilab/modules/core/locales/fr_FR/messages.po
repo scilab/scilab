@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 16:24+0100\n"
+"POT-Creation-Date: 2007-11-26 18:00+0100\n"
 "PO-Revision-Date: 2007-10-03 19:34:27+02:00\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
@@ -180,8 +180,7 @@ msgstr ""
 #
 # File: src/c/link_std.c, line: 119
 msgid "Std link : No unlink up to now\n"
-msgstr ""
-"Lien std : Pas de unlink pour le moment\n"
+msgstr "Lien std : Pas de unlink pour le moment\n"
 
 #
 # File: src/c/link_std.c, line: 156
@@ -494,44 +493,15 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/intmacr2tree.c, line: 329
-# File: src/c/intmacr2tree.c, line: 334
-# File: src/c/intmacr2tree.c, line: 416
-# File: src/c/intmacr2tree.c, line: 421
-# File: src/c/intmacr2tree.c, line: 552
-# File: src/c/intmacr2tree.c, line: 559
-# File: src/c/intmacr2tree.c, line: 562
-# File: src/c/intmacr2tree.c, line: 682
-# File: src/c/intmacr2tree.c, line: 687
-# File: src/c/intmacr2tree.c, line: 991
-# File: src/c/intmacr2tree.c, line: 996
-# File: src/c/intmacr2tree.c, line: 1001
-# File: src/c/intmacr2tree.c, line: 1029
-# File: src/c/intmacr2tree.c, line: 1034
-# File: src/c/intmacr2tree.c, line: 1057
-# File: src/c/intmacr2tree.c, line: 1135
-# File: src/c/intmacr2tree.c, line: 1140
-# File: src/c/intmacr2tree.c, line: 1267
-# File: src/c/intmacr2tree.c, line: 1272
-# File: src/c/intmacr2tree.c, line: 1433
-# File: src/c/intmacr2tree.c, line: 1438
-# File: src/c/intmacr2tree.c, line: 1445
-# File: src/c/intmacr2tree.c, line: 1450
-# File: src/c/intmacr2tree.c, line: 1479
-# File: src/c/intmacr2tree.c, line: 1484
-# File: src/c/intmacr2tree.c, line: 1494
-# File: src/c/intmacr2tree.c, line: 1499
-# File: src/c/intmacr2tree.c, line: 1509
-# File: src/c/intmacr2tree.c, line: 1514
-# File: src/c/intmacr2tree.c, line: 1608
-# File: src/c/intmacr2tree.c, line: 1613
-# File: src/c/intmacr2tree.c, line: 1651
-# File: src/c/intmacr2tree.c, line: 1656
-# File: src/c/intmacr2tree.c, line: 1684
-# File: src/c/intmacr2tree.c, line: 1689
-# File: src/c/intmacr2tree.c, line: 1751
+# File: src/c/stack2.c, line: 1857
+# File: src/c/stack2.c, line: 2093
+# File: src/c/intmacr2tree.c, line: 106
+# File: src/c/intmacr2tree.c, line: 161
+# File: src/c/stack1.c, line: 2212
+# File: src/c/stack1.c, line: 2294
+# File: src/c/stack1.c, line: 2325
 #, c-format
-msgid "%s: No more memory available.\n"
+msgid "%s: No more memory.\n"
 msgstr ""
 
 #
@@ -884,47 +854,6 @@ msgstr ""
 # File: src/c/intmacr2tree.c, line: 254
 #, c-format
 msgid "macr2tree: wrong Top value %d instead of %d\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 329
-# File: src/c/intmacr2tree.c, line: 334
-# File: src/c/intmacr2tree.c, line: 416
-# File: src/c/intmacr2tree.c, line: 421
-# File: src/c/intmacr2tree.c, line: 552
-# File: src/c/intmacr2tree.c, line: 559
-# File: src/c/intmacr2tree.c, line: 562
-# File: src/c/intmacr2tree.c, line: 682
-# File: src/c/intmacr2tree.c, line: 687
-# File: src/c/intmacr2tree.c, line: 991
-# File: src/c/intmacr2tree.c, line: 996
-# File: src/c/intmacr2tree.c, line: 1001
-# File: src/c/intmacr2tree.c, line: 1029
-# File: src/c/intmacr2tree.c, line: 1034
-# File: src/c/intmacr2tree.c, line: 1057
-# File: src/c/intmacr2tree.c, line: 1135
-# File: src/c/intmacr2tree.c, line: 1140
-# File: src/c/intmacr2tree.c, line: 1267
-# File: src/c/intmacr2tree.c, line: 1272
-# File: src/c/intmacr2tree.c, line: 1433
-# File: src/c/intmacr2tree.c, line: 1438
-# File: src/c/intmacr2tree.c, line: 1445
-# File: src/c/intmacr2tree.c, line: 1450
-# File: src/c/intmacr2tree.c, line: 1479
-# File: src/c/intmacr2tree.c, line: 1484
-# File: src/c/intmacr2tree.c, line: 1494
-# File: src/c/intmacr2tree.c, line: 1499
-# File: src/c/intmacr2tree.c, line: 1509
-# File: src/c/intmacr2tree.c, line: 1514
-# File: src/c/intmacr2tree.c, line: 1608
-# File: src/c/intmacr2tree.c, line: 1613
-# File: src/c/intmacr2tree.c, line: 1651
-# File: src/c/intmacr2tree.c, line: 1656
-# File: src/c/intmacr2tree.c, line: 1684
-# File: src/c/intmacr2tree.c, line: 1689
-# File: src/c/intmacr2tree.c, line: 1751
-#, c-format
-msgid "%s : No more memory available.\n"
 msgstr ""
 
 #
