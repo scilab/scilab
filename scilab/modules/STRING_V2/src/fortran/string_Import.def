@@ -26,3 +26,5 @@ EXPORTS
 	sci_strsubst_
 	sci_tokens_
 	intstrcat_
+	getfastcode_
+	cvstr_

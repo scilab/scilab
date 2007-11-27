@@ -1,3 +1,6 @@
+
+/** TODO  : remove and commentCLEAN this code ... */
+
 /*************************************************
 *             PCRE testing program               *
 *************************************************/
@@ -35,7 +38,9 @@ POSSIBILITY OF SUCH DAMAGE.
 -----------------------------------------------------------------------------
 */
 
-
+#ifdef _MSC_VER
+#define HAVE_CONFIG_H
+#endif
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -195,23 +200,8 @@ data is not zero. */
 
 static int callout(pcre_callout_block *cb)
 {
-
-
-
-
-
-
 /* Always print appropriate indicators, with callout number if not already
 shown. For automatic callouts, show the pattern offset. */
-
-
-
-
-
-
-
-
-
 
 first_callout = 0;
 
@@ -470,12 +460,12 @@ if (offsets == NULL)
 
 
 /* Set alternative malloc function */
-
+/*
 pcre_malloc = new_malloc;
 pcre_free = new_free;
 pcre_stack_malloc = stack_malloc;
 pcre_stack_free = stack_free;
-
+*/
 /* Heading line unless quiet, then prompt for first regex if stdin */
 
 //if (!quiet) fprintf(outfile, "PCRE version %s\n\n", pcre_version());
@@ -1107,7 +1097,7 @@ while (!Cong_Tst)
     copynamesptr = copynames;
     getnamesptr = getnames;
 
-    pcre_callout = callout;
+   // pcre_callout = *callout;
     first_callout = 1;
     callout_extra = 0;
     callout_count = 0;
@@ -1207,7 +1197,7 @@ while (!Cong_Tst)
           }
         else if (*p == '-')
           {
-          pcre_callout = NULL;
+         // pcre_callout = NULL;
           p++;
           }
         else if (*p == '!')
