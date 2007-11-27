@@ -29,6 +29,5 @@ getScilabMode
 cvname_
 getIntermediateMemoryNeeded
 getstackinfo_
-cvstr_
 getWarningMode
 ;

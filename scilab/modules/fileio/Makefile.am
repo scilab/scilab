@@ -70,7 +70,12 @@ sci_gateway/c/sci_createdir.c
 libscifileio_la_CFLAGS=		-Iincludes/ \
 				-Isrc/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes 
+if STRING_V2
+libscifileio_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
+else
+libscifileio_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
+endif					
 
 pkglib_LTLIBRARIES = libscifileio.la
 
@@ -80,6 +85,11 @@ libscifileio_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
     $(top_builddir)/libs/libst/libscilibst.la
 
+if STRING_V2
+libscifileio_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
+else
+libscifileio_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
+endif
 
 #### Target ######
 modulename=fileio

@@ -136,7 +136,7 @@ static int equal_scistring_and_string(int length, int *scistr,  char *str)
   res = 1; i = 0;
   while (res && i < length)
     {
-      res = (scistr[i] == (int)C2F(getfastcode)((unsigned char*)str+i,1L));
+      res = (scistr[i] == convertAsciiCodeToScilabCode(str[i]));
       i++;
     }
   return (res);

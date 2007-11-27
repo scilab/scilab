@@ -32,11 +32,23 @@ intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 
 libsciintersci_la_CFLAGS = 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes 
+if STRING_V2
+libsciintersci_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
+else
+libsciintersci_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
+endif					
+
 
 libsciintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+	
+if STRING_V2
+libsciintersci_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
+else
+libsciintersci_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
+endif
 
 #### Target ######
 modulename=intersci

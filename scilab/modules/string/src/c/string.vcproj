@@ -195,6 +195,14 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\cvstr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\getfastcode.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_string.c"
 				>
 			</File>
@@ -283,6 +291,14 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\cvstr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getfastcode.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\gw_string.h"
 				>

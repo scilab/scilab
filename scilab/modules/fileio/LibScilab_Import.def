@@ -24,7 +24,6 @@ EXPORTS
  GetFileOpenedInScilab
  getwsmat_
  mkmlistfromvars_
- cvstr_
  GetFileModeOpenedInScilab
  GetSwapStatus
  cluni0_

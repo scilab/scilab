@@ -15,7 +15,9 @@ src/c/strcat-c.c \
 src/c/Get_length.c \
 src/c/strcatfunction.c \
 src/c/InitializeString.c \
-src/c/setScilabCharactersCodes.c 
+src/c/setScilabCharactersCodes.c \
+src/c/cvstr.c \
+src/c/getfastcode.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \
@@ -80,6 +82,8 @@ libscistring_la_sci_gateway_DATA = sci_gateway/STRING_V2_gateway.xml
 libscistring_la_includedir=$(pkgincludedir)/string
 libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h \
-includes/InitializeString.h
+includes/InitializeString.h \
+includes/cvstr.h
+includes/getfastcode.h
 
 include $(top_srcdir)/Makefile.incl.am

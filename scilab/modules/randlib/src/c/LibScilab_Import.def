@@ -6,7 +6,6 @@ EXPORTS
 ;core
 ;
 com_
-cvstr_
 putlhsvar_
 overload_
 vstk_

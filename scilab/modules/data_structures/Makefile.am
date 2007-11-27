@@ -43,7 +43,14 @@ sci_gateway/fortran/sci_list.f
 
 libscidata_structures_la_CFLAGS=  	-Iincludes/ \
 					-I$(top_srcdir)/libs/MALLOC/includes/ \
-					-I$(top_srcdir)/modules/output_stream/includes
+					-I$(top_srcdir)/modules/output_stream/includes 
+if STRING_V2
+libscidata_structures_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
+else
+libscidata_structures_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
+endif					
+			
+
 pkglib_LTLIBRARIES = libscidata_structures.la
 
 libscidata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -54,6 +61,11 @@ libscidata_structures_la_LIBADD = \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
+if STRING_V2
+libscidata_structures_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
+else
+libscidata_structures_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
+endif
 
 #### Target ######
 modulename=data_structures

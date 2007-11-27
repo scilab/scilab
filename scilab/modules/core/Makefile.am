@@ -9,7 +9,6 @@ src/c/cs2st.c \
 src/c/tmpdir.c \
 src/c/intmacr2tree.c \
 src/c/fromjava.c \
-src/c/cvstr.c \
 src/c/run.c \
 src/c/FTables.c \
 src/c/InitScilab.c \
@@ -73,7 +72,6 @@ src/c/ifexpr.c \
 src/c/expr.c \
 src/c/getcommandlineargs.c \
 src/c/syncexec.c \
-src/c/getfastcode.c  \
 src/c/callFunctionFromGateway.c \
 src/c/librarieslist.c \
 src/c/libraryinfo.c \
@@ -390,10 +388,8 @@ includes/FTables.h \
 includes/scirun.h \
 includes/fromjava.h \
 includes/inisci-c.h \
-includes/cvstr.h \
 includes/GetXmlFileEncoding.h \
 includes/syncexec.h \
-includes/getfastcode.h \
 includes/callFunctionFromGateway.h \
 includes/librarieslist.h \
 includes/libraryinfo.h \

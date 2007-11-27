@@ -23,7 +23,6 @@ createvar_
 getrhsvar_
 funnam_
 ref2val_
-cvstr_
 listcresmat_
 cretlist_
 clunit_

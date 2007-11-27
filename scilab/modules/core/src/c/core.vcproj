@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="core"
 	ProjectGUID="{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	RootNamespace="core"
@@ -216,10 +216,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\cvstr.c"
-				>
-			</File>
-			<File
 				RelativePath=".\ExceptionMessage.c"
 				>
 			</File>
@@ -265,10 +261,6 @@
 			</File>
 			<File
 				RelativePath=".\GetExceptionCode.c"
-				>
-			</File>
-			<File
-				RelativePath=".\getfastcode.c"
 				>
 			</File>
 			<File
@@ -817,10 +809,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\cvstr.h"
-				>
-			</File>
-			<File
 				RelativePath=".\dynamic_menus.h"
 				>
 			</File>
@@ -849,11 +837,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -866,10 +854,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\GetExceptionCode.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\getfastcode.h"
 				>
 			</File>
 			<File
@@ -977,11 +961,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File

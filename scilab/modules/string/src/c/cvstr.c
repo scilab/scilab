@@ -25,20 +25,12 @@ int C2F(cvstr1)(integer *n,integer * line,char * str,integer * job,	unsigned lon
 int C2F(codetoascii)(integer *n,integer * line,char * str, unsigned long str_len)
 {
   static integer eol = 99;
-  int j = 0, m = 0;
+  int j = 0;
 
   /* conversion code ->ascii */
   for (j = 0; j < *n; ++j) 
   {
-    m = line[j];
-    if (m == eol) str[j] = '!';
-    else if (Abs(m) > csiz) 
-    {
-		if (m > eol) str[j] = (char)(m - (eol + 1));
-		else str[j] = '!';
-    } 
-    else if (m < 0) str[j] = C2F(cha1).alfb[Abs(m)];
-    else str[j] = C2F(cha1).alfa[m];
+	str[j] = convertScilabCodeToAsciiCode(line[j]);
   }
   return 0;
 } 
@@ -48,11 +40,11 @@ int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsig
   integer j = 0;
   if (*flagx == 1) 
   {
-    for (j = 0; j < *n ; ++j) line[j] = C2F(getfastcode)(str+j, 1L);
+    for (j = 0; j < *n ; ++j) line[j] = convertAsciiCodeToScilabCode(str[j]);
   }
   else
   {
-    for (j = *n -1 ; j >= 0; --j) line[j] = C2F(getfastcode)(str+j, 1L);
+    for (j = *n -1 ; j >= 0; --j) line[j] = convertAsciiCodeToScilabCode(str[j]);
   }
   return 0;
 } 

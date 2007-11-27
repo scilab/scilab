@@ -4,4 +4,4 @@ LIBRARY    LibScilab.dll
 EXPORTS
 ; core
   iop_
-	cvstr_
+

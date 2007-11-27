@@ -207,11 +207,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\cvstr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\DllMainString.c"
 				>
 			</File>
 			<File
 				RelativePath=".\Get_length.c"
+				>
+			</File>
+			<File
+				RelativePath=".\getfastcode.c"
 				>
 			</File>
 			<File
@@ -328,7 +336,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\cvstr.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Get_length.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getfastcode.h"
 				>
 			</File>
 			<File

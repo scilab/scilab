@@ -9,7 +9,7 @@
 #include "stack-c.h" /* Fin */
 #include "MALLOC.h"
 #include "msgs.h"
-#include "../../localization/includes/localization.h"
+#include "localization.h"
 #include "cvstr.h"
 /*--------------------------------------------------------------------------*/
 #ifdef BUF
