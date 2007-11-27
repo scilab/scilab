@@ -206,7 +206,7 @@ function test_run(varargin)
 		// =======================================================
 		
 		for i=1:test_count
-			printf("   %02d - ",i);
+			printf("   %03d - ",i);
 			printf("[%s] %s\n",test_list(i,1),test_list(i,2));
 		end
 		
@@ -221,7 +221,7 @@ function test_run(varargin)
 		
 		for i=1:test_count
 			
-			printf("   %02d/%02d - ",i,test_count);
+			printf("   %03d/%03d - ",i,test_count);
 			printf("[%s] %s",test_list(i,1),test_list(i,2));
 			for j = length(test_list(i,2) + test_list(i,1)):50
 				printf(".");
