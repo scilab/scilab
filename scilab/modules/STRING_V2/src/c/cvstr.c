@@ -24,7 +24,6 @@ int C2F(cvstr1)(integer *n,integer * line,char * str,integer * job,	unsigned lon
 /*--------------------------------------------------------------------------*/
 int C2F(codetoascii)(integer *n,integer * line,char * str, unsigned long str_len)
 {
-	static integer eol = 99;
 	int j = 0;
 
 	/* conversion code ->ascii */
