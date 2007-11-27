@@ -1,0 +1,33 @@
+// <-- Non-regression test for bug 2039 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2039
+//
+// <-- Short Description -->
+//    non empty lasterror on Scilab startup
+//
+//
+//    Startup execution:
+//      loading initial environment
+//
+//    -->[str,n,line,func]=lasterror(%f)
+//     func  =
+//
+//
+//     line  =
+//
+//        0.
+//     n  =
+//
+//        999.
+//     str  =
+//
+//     Cannot query value of this type.
+//
+// ...
+
+// Author : Scilab Project - Pierre MARECHAL
+// Copyright INRIA
+// Date : 28 june 2006
+
+if lasterror(%F) <> [] then pause,end
