@@ -5,8 +5,10 @@
 
 # The order DOES matter !!!
 SUBDIRS = \
-intersci \
 polynomials \
+string \
+STRING_V2 \
+intersci \
 cacsd \
 elementary_functions \
 arnoldi \
@@ -14,8 +16,6 @@ boolean \
 output_stream \
 linear_algebra \
 differential_equations \
-string \
-STRING_V2 \
 signal_processing \
 fileio \
 core \
