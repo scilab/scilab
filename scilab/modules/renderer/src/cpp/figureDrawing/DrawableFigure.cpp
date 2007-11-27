@@ -38,6 +38,9 @@ DrawableFigure::~DrawableFigure( void )
 void DrawableFigure::setColorMap( const double rgbMat[], int nbColor )
 {
   getFigureImp()->setColorMap( rgbMat, nbColor ) ;
+
+  // we need to redraw every object to take new colors into account.
+  familyHasChanged();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::getColorMap( double rgbMat[] )
