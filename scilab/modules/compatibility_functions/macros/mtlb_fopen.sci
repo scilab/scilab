@@ -8,7 +8,7 @@ function [fid,mess]=mtlb_fopen(filename,permission)
 [fid,err]=mopen(filename,permission,0)
 if err<0 then
   fid=-1
-  mess=gettext("Cannot open file.");
+  mess=msprintf(gettext("Cannot open file %s."),filename);
 else
   mess=""
 end

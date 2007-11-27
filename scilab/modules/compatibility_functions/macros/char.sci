@@ -94,7 +94,7 @@ function y=char(varargin)
 	error(gettext("Not implemented."));
       end
     else 
-      error(gettext("Input argument must be a cell."));
+      error(gettext("Invalid type of input argument: Cell expected."));
     end 
     //More than one input argument
   elseif rhs>1 then

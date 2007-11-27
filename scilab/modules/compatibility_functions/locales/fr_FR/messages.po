@@ -229,8 +229,9 @@ msgstr ""
 
 #
 # File: macros/mtlb_fopen.sci, line: 11
-msgid "Cannot open file."
-msgstr "Impossible d'ouvrir le fichier."
+#, c-format
+msgid "Cannot open file %s."
+msgstr "Impossible d'ouvrir le fichier %s."
 
 #
 # File: macros/mtlb_dir.sci, line: 38
@@ -458,7 +459,7 @@ msgstr ""
 
 #
 # File: macros/char.sci, line: 97
-msgid "Input argument must be a cell."
+msgid "Invalid type of input argument: Cell expected."
 msgstr ""
 
 #
@@ -469,7 +470,7 @@ msgstr ""
 
 #
 # File: macros/mtlb_sortrows.sci, line: 20
-msgid "Second input argument must be a column vector."
+msgid "Invalid type of the second input argument: Column vector expected."
 msgstr ""
 
 #
