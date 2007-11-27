@@ -33,7 +33,7 @@ char ** CreateEmptystr(int m1,int n1)
 				}
 				if (OutputStrings) {FREE(OutputStrings); OutputStrings = NULL; }
 
-				Scierror(999, _("Memory allocation error\n"));
+				Scierror(999, _("%s: No more memory.\n"), "CreateEmptystr");
 				break;
 			}
 		}
