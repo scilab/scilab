@@ -3,6 +3,7 @@
 #include "getHandleDrawer.h"
 #include "CallScilabBridge.hxx"
 extern "C"{
+#include "BOOL.h"
 #include "getScilabJavaVM.h"
 #include "CurrentObjectsManagement.h"
 #include "GetProperty.h"

@@ -1,0 +1,13 @@
+LIBRARY    scigui.dll
+
+
+EXPORTS
+;--------------------------
+; GUI
+;--------------------------
+InitUIMenu
+setMenuCallback
+setMenuParent
+get_label_property
+set_label_property
+;

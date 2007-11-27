@@ -17,5 +17,7 @@ vstk_
 getScilabMode
 callFunctionFromGateway
 SetFunction
+vartype_
+sciReturnString
 ;
 
