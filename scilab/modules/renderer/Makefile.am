@@ -148,7 +148,10 @@ src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
 src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
 src/cpp/subwinDrawing/YAxisReverseJoGL.cpp \
 src/cpp/subwinDrawing/XAxisReverseJoGL.cpp \
-src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp
+src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp \
+src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
+src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
+src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
