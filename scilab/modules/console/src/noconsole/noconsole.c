@@ -19,7 +19,7 @@
 ** Bruno : Useless...
 int C2F(gw_console)()
 {
-Scierror(999,_("console interface not installed.\n"));
+Scierror(999,_("Scilab console module not installed.\n"));
 return 0;
 }
 */
