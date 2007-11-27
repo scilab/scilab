@@ -10,7 +10,7 @@
 // Copyright INRIA
 // 1er juin 2005
 
-A = 1@1;
-B = lasterror();
+res = execstr("A = 1@1;","errcatch");
+B   = lasterror();
 
-if B <> 'Missing operator, comma, or semicolon'then pause,end
+if B <> "Missing operator, comma, or semicolon" then pause,end

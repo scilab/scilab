@@ -57,7 +57,7 @@ exec(foo);
 diary(0);
 
 BUG564TXT = mgetl(TMPDIR+"/bug564.txt");
-BUG564REF = mgetl(SCI+"/modules/core/bug_564.ref");
+BUG564REF = mgetl(SCI+"/modules/core/nonreg_tests/bug_564.ref");
 
 if or(BUG564TXT<>BUG564REF) then pause,end
 mdelete(TMPDIR+"/bug564.txt");

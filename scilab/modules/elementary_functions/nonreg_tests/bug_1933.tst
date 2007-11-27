@@ -15,7 +15,8 @@ A             = [0 0 2 2 0 0];
 A(find(A==0)) = %nan;
 B             = log(A);
 
-if ~(isnan(B(1)) then pause,end
-if ~(isnan(B(2)) then pause,end
-if ~(isnan(B(5)) then pause,end
-if ~(isnan(B(6)) then pause,end
+if ~(isnan(B(1))) then pause,end
+if ~(isnan(B(2))) then pause,end
+if ~(isnan(B(5))) then pause,end
+if ~(isnan(B(6))) then pause,end
+
