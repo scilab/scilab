@@ -1,152 +1,188 @@
 function genlib(nam,path,force,verbose,names)
-// get all .sci files in the specified directory
-// Copyright Inria/Enpc 
-  
-  if exists('force','local')==0 then force = %f,end
-  if exists('verbose','local')==0 then verbose = %f,end
-  
-  //
-  W=who('get');
-  np=predef();
-  predefined=or(W($-np+1:$)==nam);
-  
-  if verbose then 
-    write(%io(2),msprintf(gettext("-- Creation of [%s] (Macros) --"),nam));
-  end
-  
-  updatelib=%f //true if updating an already defined library
-  //check if a library with the same name exists
-  oldlib=[];old_path=[];old_names=[];
-  if exists(nam)==1 then 
-    execstr('oldlib='+nam)
-    if typeof(oldlib)=='library' then
-      //yes, get its path and function list
-      old_names=string(oldlib);clear oldlib
-      old_path=old_names(1);old_names(1)=[];
-    end
-  end
-  if exists('path','local')==0&old_path<>[] then
-    path=old_path
-    updatelib=%t
-  end
-  // convert path according to MSDOS flag 
-  // without env variable substitution
-  path1 = pathconvert(path,%t,%f); 
-  // with env subsitution 
-  path = pathconvert(path,%t,%t); 
-  if exists('names','local')==0 then 
-    // list the sci files 
-    files=listfiles(path+'*.sci',%f)
-    if files==[] | files== "" then 
-      warning(msprintf(gettext("I cannot find any sci files in %s"),path));
-      return ;
-    end
-    names = basename(files,%f);
-  else
-    files = path+names
-    names=strsubst(names,'.sci','')
-  end
-  
-  names_changed=%t
-  if updatelib then
-    if and(sort(names)==sort(old_names)) then names_changed=%f,end
-  end
+	
+	// get all .sci files in the specified directory
+	// Copyright Inria/Enpc
+	
+	if exists('force','local')==0 then force = %f,end
+	if exists('verbose','local')==0 then verbose = %f,end
+	
+	W          = who('get');
+	np         = predef();
+	predefined = or(W($-np+1:$)==nam);
+	
+	if verbose then
+		write(%io(2),msprintf(gettext("-- Creation of [%s] (Macros) --"),nam));
+	end
+	
+	updatelib=%f //true if updating an already defined library
+	//check if a library with the same name exists
+	
+	oldlib    = [];
+	old_path  = [];
+	old_names = [];
+	
+	if exists(nam)==1 then
+		execstr('oldlib='+nam)
+		if typeof(oldlib)=='library' then
+			//yes, get its path and function list
+			old_names = string(oldlib);
+			clear oldlib
+			old_path     = old_names(1);
+			old_names(1) = [];
+		end
+	end
+	
+	if exists('path','local')==0&old_path<>[] then
+		path      = old_path;
+		updatelib = %t;
+	end
+	
+	// convert path according to MSDOS flag
+	// without env variable substitution
+	
+	path1 = pathconvert(path,%t,%f);
+	// with env subsitution
+	path = pathconvert(path,%t,%t);
 
-  modified=%f
-
-  if force == %t then 
-    modified = %t;
-    for i=1:size(files,'*')  // loop on .sci files
-      scif = files(i); 
-      if verbose then 
-	write(%io(2),msprintf(gettext(" %s.sci compilation forced'),names(i)));
-      end
-      // getf sci file and save functions it defines as a .bin file
-      getsave(scif);
-    end  
-  else
-     for i=1:size(files,'*')  // loop on .sci files
-       scif = files(i); 
-       binf = strsubst(scif,'.sci','.bin')
-       binf_info = fileinfo(binf); 
-       recompile = %f ; 
-       if binf_info == [] then 
-	 recompile = %t ;
-       else 
-	  scif_info = fileinfo(scif); 
-	  if ( newest(scif,binf) == 1 ) then 
-	    recompile = %t ; 
-	  end
-       end
-       if recompile == %t then 
-	 if verbose then 
-	   write(%io(2),msprintf(gettext("Processing file %s.sci'),names(i)));
-	 end
-	 // getf sci file and save functions it defines as a .bin file
-	 getsave(scif);
-	 modified = %t;
-       end  
-     end
-  end
-  
-  if modified then 
-    if verbose then write(%io(2),gettext("Regenerate names and lib"));end
-    if names_changed
-      mputl(names,path+'names') // write 'names' file in directory 
-    end
-    // create library
-    execstr(nam+'=lib('''+path1+''')')
-    //save it
-    if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then
-      error(path+'lib file cannot be created')
-    end
-  else
-     execstr(nam+'=lib('''+path1+''')')
-  end
-  if names_changed
-    if ~predefined then
-      execstr(nam+'=resume('+nam+')')
-    else
-      write(%io(2),msprintf(gettext("   Library file %slib has been updated,\n   but cannot be loaded into Scilab,\n   because %s is a protected variable."),path1, nam));
-    end
-  end
+	if exists('names','local')==0 then
+		// list the sci files
+		files=listfiles(path+'*.sci',%f)
+		if files==[] | files== "" then
+		warning(msprintf(gettext("I cannot find any sci files in %s"),path));
+		return ;
+		end
+		names = basename(files,%f);
+	else
+		files = path+names
+		names=strsubst(names,'.sci','')
+	end
+	
+	names_changed = %t;
+	
+	if updatelib then
+		if and(sort(names)==sort(old_names)) then names_changed=%f,end
+	end
+	
+	modified=%f
+	
+	if force == %t then
+		modified = %t;
+		for i=1:size(files,'*')  // loop on .sci files
+			scif = files(i);
+			if verbose then
+				write(%io(2),msprintf(gettext(" %s.sci compilation forced'),names(i)));
+			end
+			// getf sci file and save functions it defines as a .bin file
+			getsave(scif);
+		end
+	else
+		for i=1:size(files,'*')  // loop on .sci files
+			scif      = files(i);
+			binf      = strsubst(scif,'.sci','.bin')
+			binf_info = fileinfo(binf);
+			recompile = %f;
+			
+			if binf_info == [] then
+				recompile = %t;
+			else
+				scif_info = fileinfo(scif);
+				if newest(scif,binf) == 1 then
+					recompile = %t ;
+				end
+			end
+			
+			if recompile == %t then
+				
+				if verbose then
+					write(%io(2),msprintf(gettext("Processing file %s.sci'),names(i)));
+				end
+				
+				// getf sci file and save functions it defines as a .bin file
+				getsave(scif);
+				modified = %t;
+			end
+		end
+	end
+	
+	if modified then
+		
+		if verbose then
+			write(%io(2),gettext("Regenerate names and lib"));
+		end
+		
+		if names_changed
+			mputl(names,path+'names') // write 'names' file in directory
+		end
+		
+		// create library
+		execstr(nam+'=lib('''+path1+''')')
+		//save it
+		
+		if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then
+			error(path+gettext("lib file cannot be created"))
+		end
+	else
+		execstr(nam+'=lib('''+path1+''')')
+	end
+	
+	if names_changed then
+		if ~predefined then
+			execstr(nam+'=resume('+nam+')')
+		else
+			write(%io(2),msprintf(gettext("   Library file %slib has been updated,\n   but cannot be loaded into Scilab,\n   because %s is a protected variable."),path1, nam));
+		end
+	end
+	
 endfunction
 
-
-function getsave(fl)
-// utility function 
-// performs a getf on file fl 
-
-  prot=funcprot();funcprot(0)
-  nold=size(who('get'),'*')
-
-//  ierr=execstr('getf(fl)','errcatch') // get functions defined in file 'fl'
-  ierr=exec(fl,'errcatch',-1)
-  if ierr<>0 then
-  	clear ierr
-    msprintf(gettext("  Warning: Error in file %s :\n    ""%s""\n file ignored"),fl,lasterror())
-  else
-    clear ierr
-    // lookfor names of the functions defined in file 'fl'
-    new=who('get')
-    new=new(1:(size(new,'*')-nold-1))
-    // create output file name
-    fl=strsubst(fl,'.sci','.bin')
-    // save all functions in the output file
-    [u,ierr]=mopen(fl,'wb')
-    if ierr<>0 then 
-      clear ierr
-      nf=length(fl)
-      if nf>40 then fl='...'+part(fl,nf-40:nf),end
-      error(msprintf(gettext("Impossible to open file %s for writing, "),f1))
-    end
-    clear ierr
-    if new<>[] then 
-      execstr('save(u,'+strcat(new($:-1:1),',')+')'); 
-    else 
-      msprintf(gettext("  function ''%s'' does not contain any functions"),f1);
-    end
-    mclose(u)
-  end
-  funcprot(prot)
+function result = getsave(fl)
+	
+	// utility function
+	// performs a getf on file fl
+	result = %f;
+	prot   = funcprot();
+	nold   = size(who('get'),'*');
+	
+	funcprot(0);
+	
+	ierr=execstr('exec(fl);','errcatch') // get functions defined in file 'fl'
+	
+	if ierr<> 0 then
+		clear ierr;
+		mprintf(gettext("   Warning: Error in file %s :\n            ""%s""\n            file ignored\n"),fl,lasterror(%t));
+		result = %f;
+	else
+		clear ierr;
+		
+		// lookfor names of the functions defined in file 'fl'
+		new = who('get')
+		new = new(1:(size(new,'*')-nold-1))
+		
+		// create output file name
+		fl  = strsubst(fl,'.sci','.bin')
+		// save all functions in the output file
+		[u,ierr]=mopen(fl,'wb')
+		if ierr<>0 then
+			clear ierr;
+			nf = length(fl);
+			if nf>40 then
+				fl='...'+part(fl,nf-40:nf);
+			end
+			error(msprintf(gettext("Impossible to open file %s for writing, "),fl))
+		end
+		
+		clear ierr
+		
+		if new<>[] then
+			execstr('save(u,'+strcat(new($:-1:1),',')+')');
+		else
+			mprintf(gettext("   Warning: File ''%s'' does not contain any functions\n"),fl);
+			result = %f;
+		end
+		
+		mclose(u);
+	end
+	
+	funcprot(prot);
+	
 endfunction
