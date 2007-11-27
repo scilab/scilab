@@ -22,9 +22,9 @@ deff('x=foo(n)',['if n==0 then'
                  '    x=x+s(1)'
                  '  end'
                  'end'],'p')
-T1=execstr('T=macr2tree(foo)','errcatch')==0;
+if execstr('T=macr2tree(foo)','errcatch') <> 0 then pause,end
 clear foo;
+
 function y=foo(),y=sin(33)+1;endfunction
 foo(); //execution creates a deleted op in the pseudo code of foo
-T2=execstr('macr2tree(foo)','errcatch')==0
-affich_result(T1&T2,1619);
+if execstr('macr2tree(foo)','errcatch') <> 0 then pause,end
