@@ -39,7 +39,6 @@ FROM_CODE=ISO-8859-1
 EXTENSIONS=( c h cpp hxx java sci start )
 TARGETDIR=locales/
 LANGS=( fr_FR )
-TARGETFILETEMPLATE=messages.pot
 HEADER_TEMPLATE=$SCI/modules/localization/locales/en_US/header.pot
 TIMEZONE="+0100"
 
@@ -83,7 +82,7 @@ for MODULE in $MODULES; do
 
 	echo "..... Parsing all sources in $PATHTOPROCESS"
 # Parse all the sources and get the string which should be localized
-	LOCALIZATION_FILE_US=$TARGETDIR/en_US/$TARGETFILETEMPLATE
+	LOCALIZATION_FILE_US=$TARGETDIR/en_US/$MODULE_NAME.pot
 
 	if test -f $LOCALIZATION_FILE_US; then
 		# Localization file already existing. Retrieve POT-Creation-Date
@@ -91,7 +90,7 @@ for MODULE in $MODULES; do
 	fi
 
 	echo "........ Generate the english localization file by parsing the code"
-	$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $TARGETFILETEMPLATE.tmp $FILES > /dev/null
+	$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $MODULE_NAME.pot.tmp $FILES > /dev/null
 	if test  -z "$CreationDate"; then
 		# File not existing before ... Set the current date a POT-Creation-Date
 		sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
@@ -104,7 +103,7 @@ for MODULE in $MODULES; do
 # merge/create the other locales
 		for l in $LANGS; do
 			DIR_LANG=$TARGETDIR/$l/
-			LOCALIZATION_FILE_LANG=$DIR_LANG/messages.po
+			LOCALIZATION_FILE_LANG=$DIR_LANG/$MODULE_NAME.po
 			if test -f $LOCALIZATION_FILE_LANG; then
 				echo "........ Merging new locales for $l"
 				$MSGMERGE $LOCALIZATION_FILE_LANG $LOCALIZATION_FILE_US --output-file $LOCALIZATION_FILE_LANG > /dev/null

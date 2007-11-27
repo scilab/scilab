@@ -4,11 +4,10 @@ function  generatePoFile(LANGUAGE)
 // Allan CORNET
 // based on generatePoFile.sh
 // ======================================
-PATH_GETTEXT_TOOLS = '';
+PATH_GETTEXT_TOOLS = '/usr/bin/';
 LC = 'LC_MESSAGES';
 DEST_FILE_MO = SCI+filesep()+'locale'+filesep()+LANGUAGE+filesep()+LC+filesep()+'scilab.mo';
 DEST_FILE_PO = SCI+filesep()+'locale'+filesep()+LANGUAGE+filesep()+LC+filesep()+'scilab.po';
-FILENAME_PO = 'messages.po*';
 LC = 'LC_MESSAGES';
 
 if MSDOS then
@@ -33,7 +32,7 @@ List_files = [];
 j = 1;
 for MODULE = getmodules()'
   PATH_PO = SCI + filesep() + 'modules' + filesep() + MODULE + filesep() + 'locales' + filesep() + LANGUAGE;
-  FULLFILENAMEPO = PATH_PO + filesep() + FILENAME_PO;
+  FULLFILENAMEPO = PATH_PO + filesep() + MODULE + ".po*";
   FINDFULLFILENAMEPO = ls(FULLFILENAMEPO);
   if FINDFULLFILENAMEPO <> [] then
     if (fileinfo(FINDFULLFILENAMEPO)<>[]) then
