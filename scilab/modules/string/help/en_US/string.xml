@@ -49,6 +49,9 @@ x=123.356; 'Result is '+string(x)
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
+      <LINK>emptystr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
       <LINK>part</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
