@@ -24,8 +24,8 @@ int execScilabEventLoop(void)
 /*--------------------------------------------------------------------------*/
 int interruptScilab(void)
 {
-  int signal = SIGINT;
-  C2F(sigbas)(&signal);
+  int scilabSignal = SIGINT;
+  C2F(sigbas)(&scilabSignal);
   return 0;
 }
 /*--------------------------------------------------------------------------*/
