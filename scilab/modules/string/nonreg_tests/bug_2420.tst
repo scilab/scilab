@@ -11,9 +11,6 @@
 // Copyright INRIA 2007
 // Date : June 2007
 
-BugNumber=2420;
 function a=strudel(),a='+\@+';endfunction
-t=fun2string(strudel)    
-T=stripblanks(t(2))=="a = ''+\@+'';"
-affich_result(T,BugNumber) ;
-
+t=fun2string(strudel);
+if stripblanks(t(2))<>"a = ''+\@+'';" then pause,end

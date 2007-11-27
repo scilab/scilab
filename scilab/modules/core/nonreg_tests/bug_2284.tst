@@ -20,12 +20,10 @@
 // Copyright INRIA
 // Date : 17 Janv 2007
 
-s1=-9.999999999;
-s2=0.999999999999;
+s1 = -9.999999999;
+s2 = 0.999999999999;
 
-print(TMPDIR+'/bug2284',s1,s2)
-txt=mgetl(TMPDIR+'/bug2284')
-r=and(txt== [" s2  =";" ";"    1.  ";" s1  =";" ";"  -10.  "])
-mdelete(TMPDIR+'/bug2284')
-
-affich_result(r,2284);
+print(TMPDIR+'/bug2284',s1,s2);
+txt = mgetl(TMPDIR+'/bug2284');
+if or(txt <> [" s2  =";" ";"    1.  ";" s1  =";" ";"  -10.  "]) then pause,end
+mdelete(TMPDIR+'/bug2284');

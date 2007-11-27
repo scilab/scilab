@@ -26,13 +26,15 @@
 //                     !--error    78
 // ...
 
+a   = hypermat([3,3,1],1:9);
+[m] = max(a);
 
-correct=%F
-a=hypermat([3,3,1],1:9)
-[m]=max(a)                    
-result2=execstr("[n,i]=max(a)","errcatch","n")
-if result2==0 then
-   result3=execstr("[m,i,j,k]=max(a)","errcatch","n")
-   correct = ((m==n)&(result2==0)&(and(i==[3,3,1]))&(result3==78))
+result = execstr("[n,i]=max(a)","errcatch","n");
+
+if result <> 0 then pause,end
+
+if result == 0 then
+   if execstr("[m,i,j,k]=max(a)","errcatch","n") <> 78 then pause,end
+   if m<>n then pause,end
+   if or(i<>[3,3,1]) then pause,end
 end
-affich_result(correct, 477)

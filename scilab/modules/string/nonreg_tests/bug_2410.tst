@@ -13,9 +13,4 @@
 tic();
 string(zeros(1,10000)==1);
 a = toc();
-
-if( a < 0.1 ) then
-	affich_result(%T,2410);
-else
-	affich_result(%F,2410);
-end
+if a > 0.1 then pause,end

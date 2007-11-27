@@ -12,10 +12,9 @@
 // Date : June 2007
 
 S=stacksize();
+
 function test(),for k=1:2d5,end,endfunction
 
 stacksize(1d5)
-
-ierr=execstr('test()','errcatch')
+if execstr('test()','errcatch') <> 0  then pause,end
 stacksize(S(1))
-affich_result(ierr==0,2429) ;

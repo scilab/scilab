@@ -22,9 +22,13 @@
 //    Enrico Segre on Linux version  distribution RH9 with   as window manager
 //    Israel  July 27, 2003 at 10:7:54
 
-a=hypermat([3,3,1],1:9)
-result = execstr("int8(a)","errcatch","n")  
-if result == 0 then 
-   toto    = (hypermat(a.dims,int8(a.entries)) == int8(a))
+a=hypermat([3,3,1],1:9);
+
+result = execstr("int8(a)","errcatch","n");
+
+if result <> 0 then pause,end
+
+if result == 0 then
+	toto = (hypermat(a.dims,int8(a.entries)) == int8(a))
+	if or(toto(:,:,1)) then pause,end
 end
-affich_result(and(toto(:,:,1)), 480)

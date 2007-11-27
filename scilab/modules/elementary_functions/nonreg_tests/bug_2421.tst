@@ -11,6 +11,4 @@
 // Copyright INRIA 2007
 // Date : June 2007
 
-BugNumber=2421
-T=execstr('[a(:), v(1)] = (1, 2)','errcatch')==0
-affich_result(T,BugNumber) ;
+if execstr('[a(:), v(1)] = (1, 2)','errcatch')<>0 then pause,end

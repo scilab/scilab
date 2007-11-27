@@ -20,8 +20,10 @@
 //    Israel  July 24, 2003 at 16:21:35
 
 
-result=execstr("a=int8(ones(2,2))","errcatch","n")
+result = execstr("a=int8(ones(2,2))","errcatch","n");
+
+if result <> 0 then pause,end
+
 if result == 0 then
-   result=execstr("a(1,1)=uint8(2)","errcatch","n")
+   if execstr("a(1,1)=uint8(2)","errcatch","n") <> 0 then pause,end
 end
-affich_result(result==0, 470)

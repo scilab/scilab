@@ -24,10 +24,12 @@
 //    Enrico Segre on Linux version RH9 distribution  with  gnome as window manager
 //    Israel  July 24, 2003 at 17:51:50
 
-//correct=%F
-a=hypermat([3,3,1],uint16(1:9))
-result=execstr("[m,k]=max(a)","errcatch","n")  
+a = hypermat([3,3,1],uint16(1:9));
+
+result = execstr("[m,k]=max(a)","errcatch","n");
+
+if result <> 0 then pause,end
+
 if result == 0 then
-   result=execstr("[m,k]=min(a)","errcatch","n")  
+   if execstr("[m,k]=min(a)","errcatch","n") <> 0 then pause,end
 end
-affich_result(result==0, 475)

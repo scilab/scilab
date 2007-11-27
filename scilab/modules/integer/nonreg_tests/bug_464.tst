@@ -9,19 +9,14 @@
 //
 //    On Scilab CVS with " inttype " function
 //    The Error Messages are:
-//      -->inttype(1)  
-//               !--error    44 
+//      -->inttype(1)
+//               !--error    44
 //    ***th argument is incorrect
 //
-//    Commands:  
+//    Commands:
 //
 //    Enrico Segre on Linux version RH 9 distribution RH 9 with  gnome as window manager
 //    Israel  July 21, 2003 at 9:13:19
 
-
-correct=%F
-result=execstr("inttype(1)","errcatch","n")  
-if result == 0 then 
-   correct=(inttype(1)==0)
-end
-affich_result(correct, 464)
+if execstr("inttype(1)","errcatch","n") <> 0 then pause,end
+if inttype(1)<>0 then pause,end

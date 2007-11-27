@@ -26,9 +26,10 @@
 //    z = wavread('c:\b.wav',100000);   
 // ...
 
-correct=%F
-result=execstr("[x,y] = wavread(''bug467.wav'',''size'')","errcatch","n")
+result = execstr("[x,y] = wavread(''SCI/modules/sound/bug_467.wav'',''size'')","errcatch","n");
+
+if result <> 0 then pause,end
+
 if result == 0 then 
-   result=execstr("z = wavread(""bug467.wav"",10)","errcatch","n")
+   if execstr("z = wavread(""SCI/modules/sound/bug_467.wav"",10)","errcatch","n") <> 0 then pause,end
 end
-affich_result(result==0, 467)

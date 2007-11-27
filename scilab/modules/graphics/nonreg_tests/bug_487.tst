@@ -26,12 +26,7 @@
 //    Kappen on Linux version 2.4 distribution Debian woody with  gnome1.4 Sawfish as window manager
 // ...
 
-lvl= -0.0003 + (1:10)*(0.0003-(-0.0003))/(10+1)
-result=execstr("contour2d(1:10,1:10,rand(10,10),lvl,rect=[0,0,11,11])","errcatch","n")  
-xdel()
+lvl = -0.0003 + (1:10)*(0.0003-(-0.0003))/(10+1);
 
-if result==0 then
-	affich_result(%T,487);
-else
-	affich_result(%F,487);
-end
+if execstr("contour2d(1:10,1:10,rand(10,10),lvl,rect=[0,0,11,11])","errcatch","n")<>0 then pause,end
+xdel()

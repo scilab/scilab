@@ -12,8 +12,9 @@
 // Copyright INRIA 2007
 // Date : Aug 2007
 
-BugNumber=2453;
-fd=mopen('bug2453.dat','r');
-Lx=mfscanf(-1,fd,'%g %g\n');mclose(fd); 
-T=size(Lx,1)==40000;
-affich_result(T,BugNumber) ;
+
+fd = mopen('bug2453.dat','r');
+Lx = mfscanf(-1,fd,'%g %g\n');
+mclose(fd);
+
+if size(Lx,1)<>40000 then pause,end

@@ -30,4 +30,4 @@ function e=myerf(p,X,t),e=X-biexp(p,t),endfunction
 p0=[0.01;0.001;0.01;0.001;0.1];
 //call datafit
 [pr,err]=datafit(list(myerf,t),X,p0);
-affich_result(err<5d-6,2330);
+if err>=5d-6 then pause,end

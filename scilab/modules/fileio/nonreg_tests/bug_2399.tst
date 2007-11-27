@@ -14,8 +14,4 @@
 toks = ['noddy';'holden'];
 vals = msscanf(-1,toks,'%f');
 
-if( vals == [] ) then
-	affich_result(%T,2399);
-else
-	affich_result(%F,2399);
-end
+if vals <> [] then pause,end

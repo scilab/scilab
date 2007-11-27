@@ -11,11 +11,10 @@
 // Copyright INRIA
 // Date : 05 mai 2007
 
-a=[];
+a = [];
 a = string(a);
 
-if( (type(a) == 1) & (typeof(a) == "constant") & and(size(a) == [0 0]) & (a($,1)==[]) ) then
-	affich_result(%T,2414);
-else
-	affich_result(%F,2414);
-end
+if type(a) <> 1            then pause,end
+if typeof(a) <> "constant" then pause,end
+if or(size(a) <> [0 0])    then pause,end
+if a($,1)<>[]              then pause,end

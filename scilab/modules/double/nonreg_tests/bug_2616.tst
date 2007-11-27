@@ -12,51 +12,51 @@
 // Copyright INRIA 2007
 // Date : June 2007
 
-BugNumber=2616;
 T=[];
-//simple case uncompiled 
+
+//simple case uncompiled
 s=0;for k=1:3,s=s+1;end
-T=[T,s<>3];
+if s<>3 then pause,end
 
 
 s=0;for k=(1:3)+1,s=s+1;end
-T=[T,s<>3];
+if s<>3 then pause,end
 
 s=0;for k=[(1:3) 1],s=s+1;end
-T=[T,s<>4];
+if s<>4 then pause,end
 
 function s=foo(),s=0;for k=1:3,s=s+1;end,endfunction
-T=[T,foo()<>3];
+if foo()<>3 then pause,end
 
 function s=foo(),s=0;for k=(1:3)+1,s=s+1;end,endfunction
-T=[T,foo()<>3];
+if foo()<>3 then pause,end
 
 function s=foo(),s=0;for k=[(1:3) 1],s=s+1;end,endfunction
-T=[T,foo()<>4];
+if foo()<>4 then pause,end
 
 //check if implicit  vector is created or not
 old=stacksize();
 stacksize(180000)
 
-//should evaluate 
+//should evaluate
 ierr=execstr('s=0;for k=1:200000,s=s+1;end','errcatch')
-T=[T,ierr<>0|s<>200000];
+if ierr<>0   then pause,end
+if s<>200000 then pause,end
 
 //should produce a stacksize error
 ierr=execstr('s=0;for k=(1:200000)+1,s=s+1;end','errcatch')
-T=[T,ierr<>17];
+if ierr<>17 then pause,end
 
 ierr=execstr('s=0;for k=[(1:200000) 1],s=s+1;end','errcatch')
-T=[T,ierr<>17];
+if ierr<>17 then pause,end
 
 function s=foo(),s=0;for k=1:200000,s=s+1;end,endfunction
 ierr=execstr('s=foo();','errcatch');
-T=[T,ierr<>0|s<>200000];
-
+if ierr<>0   then pause,end
+if s<>200000 then pause,end
 
 function s=foo(),s=0;for k=1+(1:200000),s=s+1;end,endfunction
 ierr=execstr('s=foo();','errcatch');
-T=[T,ierr<>17];
-stacksize(old(1))
+if ierr<>17 then pause,end
 
-affich_result(and(~T),BugNumber) ;
+stacksize(old(1))
