@@ -15,12 +15,12 @@ if test $# -ne 1; then
 	echo "Syntax : $0 <module>"
 	echo "If <module> is equal to 'parse_all', it will parse all Scilab module"
 	echo "per module"
-	exit
+	exit -1
 fi
 
 if test -z "$SCI"; then
 	echo "Please define the variable SCI" 
-	exit
+	exit -1
 fi
 
 MODULES=$1
@@ -40,6 +40,7 @@ EXTENSIONS=( c h cpp hxx java sci start )
 TARGETDIR=locales/
 LANGS=( fr_FR )
 TARGETFILETEMPLATE=messages.pot
+HEADER_TEMPLATE=$SCI/modules/localization/locales/en_US/header.pot
 TIMEZONE="+0100"
 
 #
@@ -78,13 +79,25 @@ for MODULE in $MODULES; do
 	cd $PATHTOPROCESS
 
 	FILES=`eval $FILESCMD|tr "\n" " "`
-	MODULE_NAME=`echo $MODULE|sed -e 's|./||'`
+	MODULE_NAME=`echo $MODULE|sed -e 's|./||'` # avoid to have ./module_name
+
 	echo "..... Parsing all sources in $PATHTOPROCESS"
 # Parse all the sources and get the string which should be localized
 	LOCALIZATION_FILE_US=$TARGETDIR/en_US/$TARGETFILETEMPLATE
+
+	if test -f $LOCALIZATION_FILE_US; then
+		# Localization file already existing. Retrieve POT-Creation-Date
+		CreationDate=`grep POT-Creation-Date: $LOCALIZATION_FILE_US|sed -e 's|\"POT-Creation-Date: \(.*\)\\\n\"|\1|'`
+	fi
+
 	echo "........ Generate the english localization file by parsing the code"
 	$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $TARGETFILETEMPLATE.tmp $FILES > /dev/null
-	sed -e "s/MODULE/$MODULE_NAME/" -e "s/DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $SCI/modules/localization/locales/en_US/header.pot > $LOCALIZATION_FILE_US
+	if test  -z "$CreationDate"; then
+		# File not existing before ... Set the current date a POT-Creation-Date
+		sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
+	else
+		sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/$CreationDate/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
+	fi
 	cat $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
 	rm $LOCALIZATION_FILE_US.tmp
 	if test -z "$NOSTRING"; then
