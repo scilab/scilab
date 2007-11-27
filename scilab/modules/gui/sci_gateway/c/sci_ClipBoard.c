@@ -268,7 +268,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 					/* copy in clipboard EMF or DIB */
 					{
 
-					sciprint(_("Not yet implemented\n"));
+					sciprint(_("Not yet implemented.\n"));
 
 						m1=0;
 						n1=0;
@@ -298,10 +298,10 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 		}
 		else
 		{
-			Scierror(999,_("Only on Windows mode.\n"));
+			Scierror(999,_("Only on Windows Mode.\n"));
 			return 0;
 		}
-		Scierror(999,_("Only on Windows mode.\n"));
+		Scierror(999,_("Only on Windows Mode.\n"));
 		return 0;
 	}
 	return 0;

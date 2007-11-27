@@ -27,7 +27,7 @@ BOOL TerminateGUI(void)
 /*--------------------------------------------------------------------------*/
 int XClearScreenConsole(char *fname)
 {
-	sciprint(_("Only in Window Mode.\n"));
+	sciprint(_("Only on Windows Mode.\n"));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

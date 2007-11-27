@@ -23,8 +23,9 @@ msgid "Scilab GUI module not installed.\n"
 msgstr ""
 
 #
-# File: src/nogui/nogui.c, line: 30
-msgid "Only in Window Mode.\n"
+# File: sci_gateway/c/sci_ClipBoard.c, line: 301
+# File: sci_gateway/c/sci_ClipBoard.c, line: 304
+msgid "Only on Windows Mode.\n"
 msgstr ""
 
 #
@@ -93,15 +94,4 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 235
 msgid "Incorrect argument. See : help clipboard"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 271
-msgid "Not yet implemented\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 301
-# File: sci_gateway/c/sci_ClipBoard.c, line: 304
-msgid "Only on Windows mode.\n"
 msgstr ""

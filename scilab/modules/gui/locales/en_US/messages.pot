@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-27 11:13+0100\n"
+"Revision-Date: 2007-11-27 11:18+0100\n"
 
 # File: src/nogui/nogui.c, line: 19
 # File: src/nogui/nogui.c, line: 135
@@ -23,7 +23,9 @@ msgid "Scilab GUI module not installed.\n"
 msgstr ""
 #
 # File: src/nogui/nogui.c, line: 30
-msgid "Only in Window Mode.\n"
+# File: sci_gateway/c/sci_ClipBoard.c, line: 301
+# File: sci_gateway/c/sci_ClipBoard.c, line: 304
+msgid "Only on Windows Mode.\n"
 msgstr ""
 #
 # File: src/nogui/nogui.c, line: 101
@@ -48,6 +50,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_raise_window.c, line: 15
 # File: sci_gateway/c/sci_ClipBoard.c, line: 185
+# File: sci_gateway/c/sci_ClipBoard.c, line: 271
 msgid "Not yet implemented.\n"
 msgstr ""
 #
@@ -79,13 +82,4 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 235
 msgid "Incorrect argument. See : help clipboard"
-msgstr ""
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 271
-msgid "Not yet implemented\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 301
-# File: sci_gateway/c/sci_ClipBoard.c, line: 304
-msgid "Only on Windows mode.\n"
 msgstr ""
