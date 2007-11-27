@@ -50,6 +50,44 @@ if test -n "$SCI"; then
 fi
 
 
+start_electric_fence() {
+	echo "Running Scilab with Electric Fence : "  LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" $sci_args
+	LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" $sci_args
+}
+
+start_debug() {
+	  if test -n "$DEVENV"; then
+		  echo "Running debug of Scilab  : " $SCI/libtool --mode=execute gdb $SCILABBIN $sci_args
+		  "$SCI"/libtool --mode=execute gdb "$SCILABBIN" $sci_args
+	  else
+		  echo "Running debug of Scilab  : " gdb "$SCILABBIN" $sci_args
+		  gdb $SCILABBIN $sci_args
+	  fi
+}
+
+start_profiling() {
+	  if test -n "$DEVENV"; then
+		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
+		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
+	  else
+		  echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
+		  valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
+	  fi
+
+}
+
+start_profiling_visu() {
+	if test -n "$DEVENV"; then
+		echo "Running profiling visualization of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
+		"$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
+	else
+		echo "Running profiling visualization of Scilab  : " valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
+		valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
+	  fi
+}
+
+
+
 OLDPWD=`pwd`
 
 # Use scilab-bin in the current dir if it exists
@@ -377,6 +415,7 @@ echo     "      -d Display      : equivalent to display Display."
 echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
 echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
 echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
 echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
 echo     "                        -e and -f options are mutually exclusive."
 echo     "      -f File         : execute the scilab script given in File argument."
@@ -580,6 +619,7 @@ if test "$rest" = "yes"; then
   debug=
   profiling=
   profiling_visu=
+  electric_fence=
   now=
   display=
   start_file=
@@ -615,6 +655,9 @@ if test "$rest" = "yes"; then
           ;;
       -profiling-visu)
           PROFILING_VISU="-profiling-visu"
+          ;;
+      -electric-fence)
+          ELECTRIC_FENCE="-electric-fence"
           ;;
       -nw)
           now="-nw"
@@ -677,41 +720,26 @@ if test "$rest" = "yes"; then
     sci_args="$sci_args -mem  $mem"
   fi
   if test -n "$DEBUG"; then
-	  if test -n "$DEVENV"; then
-		  echo "Running debug of Scilab  : " $SCI/libtool --mode=execute gdb $SCILABBIN $sci_args
-		  "$SCI"/libtool --mode=execute gdb "$SCILABBIN" $sci_args
-	  else
-		  echo "Running debug of Scilab  : " gdb "$SCILABBIN" $sci_args
-		  gdb $SCILABBIN $sci_args
-	  fi
+	  start_debug
   else
 	if test -n "$PROFILING"; then
-	  if test -n "$DEVENV"; then
-		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
-		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
-	  else
-		  echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
-		  valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
-	  fi
+		start_profiling
 	else
 	if test -n "$PROFILING_VISU"; then
-	  if test -n "$DEVENV"; then
-		  echo "Running profiling visualization of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
-		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
-	  else
-		  echo "Running profiling visualization of Scilab  : " valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
-		  valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
-	  fi
+		start_profiling_visu
 	else
-    if test -n "$now"; then
-        sci_exe="do_scilex_now"
-        $sci_exe $sci_args
-    else
-        sci_exe="do_scilex"
-        $sci_exe $sci_args
+		if test -n "$ELECTRIC_FENCE"; then
+			start_electric_fence
+		else
+			if test -n "$now"; then
+				sci_exe="do_scilex_now"
+				$sci_exe $sci_args
+			else
+				sci_exe="do_scilex"
+				$sci_exe $sci_args
+			fi
 		fi
     fi
-   fi
+	fi
   fi
 fi
-
