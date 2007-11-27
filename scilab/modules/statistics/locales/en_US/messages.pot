@@ -14,16 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-26 18:05+0100\n"
+"Revision-Date: 2007-11-27 14:10+0100\n"
 
 # File: src/c/CdfBase.c, line: 17
 #, c-format
-msgid "%s: Rhs must be %d for '%s' option'\n"
+msgid "%s: Input argument must be %d for '%s' option'\n"
 msgstr ""
 #
 # File: src/c/CdfBase.c, line: 27
 #, c-format
-msgid "%s %s must have same size\n"
+msgid "%s and %s must have same size.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 35
@@ -40,18 +40,8 @@ msgid "P,Q and X"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 52
-# File: sci_gateway/c/sci_cdft.c, line: 49
-# File: sci_gateway/c/sci_cdfgam.c, line: 56
-# File: sci_gateway/c/sci_cdff.c, line: 56
-# File: sci_gateway/c/sci_cdffnc.c, line: 62
-# File: sci_gateway/c/sci_cdfpoi.c, line: 49
-# File: sci_gateway/c/sci_cdfbin.c, line: 58
-# File: sci_gateway/c/sci_cdfchn.c, line: 66
-# File: sci_gateway/c/sci_cdfbet.c, line: 58
-# File: sci_gateway/c/sci_cdfnbn.c, line: 58
-# File: sci_gateway/c/sci_cdfnor.c, line: 56
 #, c-format
-msgid "%s: Wrong first argument %s\n"
+msgid "%s: First input argument must be 'PQ', 'X' or 'DF'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 62
@@ -59,14 +49,14 @@ msgstr ""
 # File: sci_gateway/c/sci_cdfgam.c, line: 66
 # File: sci_gateway/c/sci_cdff.c, line: 66
 # File: sci_gateway/c/sci_cdffnc.c, line: 72
-# File: sci_gateway/c/sci_cdfpoi.c, line: 59
+# File: sci_gateway/c/sci_cdfpoi.c, line: 61
 # File: sci_gateway/c/sci_cdfbin.c, line: 68
-# File: sci_gateway/c/sci_cdfchn.c, line: 19
+# File: sci_gateway/c/sci_cdfchn.c, line: 66
 # File: sci_gateway/c/sci_cdfbet.c, line: 69
 # File: sci_gateway/c/sci_cdfnbn.c, line: 68
 # File: sci_gateway/c/sci_cdfnor.c, line: 66
 #, c-format
-msgid "answer appears to be lower than lowest search bound %f\n"
+msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 63
@@ -74,18 +64,34 @@ msgstr ""
 # File: sci_gateway/c/sci_cdfgam.c, line: 67
 # File: sci_gateway/c/sci_cdff.c, line: 67
 # File: sci_gateway/c/sci_cdffnc.c, line: 73
-# File: sci_gateway/c/sci_cdfpoi.c, line: 60
+# File: sci_gateway/c/sci_cdfpoi.c, line: 64
 # File: sci_gateway/c/sci_cdfbin.c, line: 69
-# File: sci_gateway/c/sci_cdfchn.c, line: 20
+# File: sci_gateway/c/sci_cdfchn.c, line: 67
 # File: sci_gateway/c/sci_cdfbet.c, line: 70
 # File: sci_gateway/c/sci_cdfnbn.c, line: 69
 # File: sci_gateway/c/sci_cdfnor.c, line: 67
 #, c-format
-msgid "answer appears to be higher than greatest search bound %f\n"
+msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 65
-msgid "cdfchi: Error in  cumgam\n"
+msgid "cdfchi: Error in cumgam\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfchi.c, line: 67
+# File: sci_gateway/c/sci_cdft.c, line: 63
+# File: sci_gateway/c/sci_cdfgam.c, line: 71
+# File: sci_gateway/c/sci_cdffnc.c, line: 76
+# File: sci_gateway/c/sci_cdfpoi.c, line: 70
+# File: sci_gateway/c/sci_cdfbin.c, line: 73
+# File: sci_gateway/c/sci_cdfchn.c, line: 70
+# File: sci_gateway/c/sci_cdfbet.c, line: 74
+# File: sci_gateway/c/sci_cdfnbn.c, line: 73
+# File: sci_gateway/c/sci_cdfnor.c, line: 71
+#, c-format
+msgid ""
+"Input argument %c is out of range.\n"
+"Bound exceeded: %f\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdft.c, line: 32
@@ -94,6 +100,11 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_cdft.c, line: 44
 msgid "P,Q and T"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdft.c, line: 49
+#, c-format
+msgid "%s: First input argument must be 'PQ', 'T' or 'DF'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdfgam.c, line: 33
@@ -112,6 +123,11 @@ msgstr ""
 msgid "P,Q,X and Shape"
 msgstr ""
 #
+# File: sci_gateway/c/sci_cdfgam.c, line: 56
+#, c-format
+msgid "%s: First input argument must be 'PQ', 'X', 'Shape' or 'Scale'.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_cdff.c, line: 33
 msgid "F,Dfn and Dfd"
 msgstr ""
@@ -126,6 +142,11 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_cdff.c, line: 51
 msgid "P,Q,F and Dfn"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdff.c, line: 56
+#, c-format
+msgid "%s: First input argument must be 'PQ', 'F', 'Dfn' or 'Dfd'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdffnc.c, line: 33
@@ -148,6 +169,11 @@ msgstr ""
 msgid "P,Q,F,Dfn and Dfd"
 msgstr ""
 #
+# File: sci_gateway/c/sci_cdffnc.c, line: 62
+#, c-format
+msgid "%s: First input argument must be 'PQ', 'F', 'Dfn', 'Dfd' or 'Pnonc'.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_cdfpoi.c, line: 32
 msgid "S and Xlam"
 msgstr ""
@@ -158,6 +184,11 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_cdfpoi.c, line: 44
 msgid "P,Q and S"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfpoi.c, line: 49
+#, c-format
+msgid "%s: First input argument must be 'PQ', 'S' or 'Xlam'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdfbin.c, line: 35
@@ -176,20 +207,31 @@ msgstr ""
 msgid "P,Q,S  and Xn"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 43
+# File: sci_gateway/c/sci_cdfbin.c, line: 58
+# File: sci_gateway/c/sci_cdfnbn.c, line: 58
+#, c-format
+msgid "%s: First input argument must be 'PQ', 'S', 'Xn' or 'PrOmpr'.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfchn.c, line: 31
 msgid "X,Df and Pnonc"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 49
+# File: sci_gateway/c/sci_cdfchn.c, line: 37
 msgid "Df,Pnonc,P and Q"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 55
+# File: sci_gateway/c/sci_cdfchn.c, line: 43
 msgid "Pnonc,P,Q and X"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 61
+# File: sci_gateway/c/sci_cdfchn.c, line: 49
 msgid "P,Q,X and Df"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfchn.c, line: 54
+#, c-format
+msgid "%s: First input argument must be 'PQ', 'X', 'Df' or 'Pnonc'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 35
@@ -206,6 +248,11 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 53
 msgid "P,Q,X,Y and A"
+msgstr ""
+#
+# File: sci_gateway/c/sci_cdfbet.c, line: 58
+#, c-format
+msgid "%s: First input argument must be 'PQ', 'XY', 'A' or 'B'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_cdfnbn.c, line: 34
@@ -240,13 +287,11 @@ msgstr ""
 msgid "P,Q,X and Mean"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfnor.c, line: 69
-msgid " Std must not be zero\n"
+# File: sci_gateway/c/sci_cdfnor.c, line: 56
+#, c-format
+msgid "%s: First input argument must be 'PQ', 'X', 'Mean' or 'Std'.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfnor.c, line: 71
-#, c-format
-msgid ""
-"input parameter %c is out of range\n"
-"\tbound exceeded: %f\n"
+# File: sci_gateway/c/sci_cdfnor.c, line: 69
+msgid " Std must not be zero\n"
 msgstr ""

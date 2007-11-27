@@ -21,10 +21,10 @@ static void cdfpoiErr(int status,double bound);
 /*--------------------------------------------------------------------------*/
 int cdfpoiI(char* fname,unsigned long l)
 {
-	int minrhs = 3,maxrhs = 4,minlhs=1,maxlhs=2,m1,n1,l1;
+	int m1,n1,l1;
 	Nbvars = 0;
-	CheckRhs(minrhs,maxrhs);
-	CheckLhs(minlhs,maxlhs);
+	CheckRhs(3,4);
+	CheckLhs(1,2);
 	GetRhsVar(1,STRING_DATATYPE, &m1, &n1, &l1);
 	if ( strcmp(cstk(l1),"PQ")==0)
 	{
@@ -46,7 +46,8 @@ int cdfpoiI(char* fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong first argument %s\n"),fname,cstk(l1));
+		Scierror(999,_("%s: First input argument must be 'PQ', 'S' or 'Xlam'.\n"),fname);
+
 	}
 	return 0;
 }
@@ -56,12 +57,18 @@ static void cdfpoiErr(int status,double bound)
 	static char *param[7]={"X", "P","Q","S","Xlam"};
 	switch ( status )
 	{
-	case 1 : Scierror(999,_("answer appears to be lower than lowest search bound %f\n"),bound);break;
-	case 2 : Scierror(999,_("answer appears to be higher than greatest search bound %f\n"),bound);break;
-	case 3 : Scierror(999," P + Q .ne. 1 \n");break ;
-	default :
-		Scierror(999,"input parameter %c is out of range \n\tbound exceeded: %f\n",
-			param[-status-1],bound);
+		case 1 : 
+			Scierror(999,_("Answer appears to be lower than lowest search bound %f\n"),bound);
+			break;
+		case 2 : 
+			Scierror(999,_("Answer appears to be higher than greatest search bound %f\n"),bound);
+			break;
+		case 3 : 
+			Scierror(999," P + Q .ne. 1 \n");
+			break;
+		default :
+			Scierror(999,_("Input argument %c is out of range.\nBound exceeded: %f\n"),
+					 param[-status-1],bound);
 	}
 }
 /*--------------------------------------------------------------------------*/
