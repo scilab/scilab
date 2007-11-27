@@ -76,8 +76,12 @@ distclean-recursive: clean-help clean-localization
 clean-recursive: clean-help clean-localization
 
 clean-help:
-	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'
-	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'
+	@if test -f $(top_builddir)/scilab-bin; then \
+		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'; \
+		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'; \
+	else \
+		echo "Cannot not find Scilab binary... Won't help help";\
+	fi
 
 clean-localization:
 	rm -rf $(top_srcdir)/locale/
@@ -86,7 +90,7 @@ localization:
 	@echo "-- Build localization (.mo from .po) --"; \
 	MASK="modules/*/locales/"; \
 	LC=LC_MESSAGES; \
-	FILENAME="messages.po*"; \
+	FILENAME="*.po*"; \
 	rm modules/*/locales/*/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
