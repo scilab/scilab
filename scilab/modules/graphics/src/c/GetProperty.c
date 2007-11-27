@@ -30,6 +30,7 @@
 #include "ObjectSelection.h"
 #include "GetJavaProperty.h"
 #include "BasicAlgos.h"
+#include "localization.h"
 
 #include "MALLOC.h" /* MALLOC */
 /*#include "SciViewportGet.h"*/
@@ -1212,7 +1213,7 @@ sciGetTitlePos (sciPointObj * pobj)
     {
       tmppoint.x = -1;
       tmppoint.y = -1;
-      sciprint ("Your are not using a title object !\n");
+      sciprint(_("Your are not using a title object.\n"));
       return tmppoint;
     }
 }
@@ -1230,7 +1231,7 @@ sciGetTitlePlace (sciPointObj * pobj)
   if (sciGetEntityType (pobj) == SCI_TITLE)
     return pTITLE_FEATURE (pobj)->titleplace;
   else
-    sciprint ("Your are not using a title object !\n");
+    sciprint(_("Your are not using a title object.\n"));
   return (sciTitlePlace)-1;
 }
 
@@ -1249,7 +1250,7 @@ sciGetLegendPlace (sciPointObj * pobj)
   }
   else
   {
-    sciprint ("Your are not using a legend object !\n");
+    sciprint (_("Your are not using a legend object.\n"));
     return SCI_LEGEND_OUTSIDE ;
   }
   return SCI_LEGEND_OUTSIDE ;
@@ -1270,7 +1271,7 @@ sciGetLegendPos (sciPointObj * pobj)
     {
       tmppoint.x = -1;
       tmppoint.y = -1;
-      sciprint ("Your are not using a legend object !\n");
+      sciprint (_("Your are not using a legend object.\n"));
       return tmppoint;
     }
 }
@@ -1315,7 +1316,7 @@ sciGetParentFigure (sciPointObj * pobj)
       }  
       break;
     default:
-      sciprint("Object is not a son of any Figure.\n") ;
+      sciprint(_("Handle is not a son of any Figure.\n")) ;
       return NULL;
       break;
     }
@@ -1363,7 +1364,7 @@ sciGetParentSubwin (sciPointObj * pobj)
       return (sciPointObj *) subwin;  
       break;                                                     
     default:
-      sciprint("Object is not a son of any SubWindow.\n") ;
+      sciprint(_("Handle is not a son of any SubWindow.\n")) ;
       return NULL;
       break;
     }
@@ -1613,11 +1614,11 @@ sciGetClipping (sciPointObj * pobj)
     case SCI_GRAYPLOT:
     case SCI_FIGURE: 
     default:
-      sciprint("Error: clip_region is NULL\n");
+      printSetGetErrorMessage("clip_box");
       return (double *) NULL;
       break;
     }   
-  sciprint("Error: clip_region is NULL\n");
+  printSetGetErrorMessage("clip_box");
   return (double *) NULL;
 
 }
@@ -2250,7 +2251,7 @@ sciGetIsFigureIconified (sciPointObj * pobj)
       break;
     case SCI_AGREG:
     default:
-      sciprint ("Only Figure can return iconic status.\n");
+      sciprint(_("Only Figure can return iconic status.\n"));
       return FALSE;
       break;
     }
@@ -2472,7 +2473,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	  *numcol = (*numcol)+1; /* colonne de 0. a prendre en compte / afficher => numcol+1*/
 	  if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
           {
-            sciprint("%s: No more memory.", "sciGetPoint") ;
+            sciprint(_("%s: No more memory."), "sciGetPoint") ;
 	    return NULL;
           }
 	  for ( i = 0 ; i < *numrow ; i++ )
@@ -2486,7 +2487,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       {
         if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
         {
-          sciprint("%s: No more memory.", "sciGetPoint") ;
+          sciprint(_("%s: No more memory."), "sciGetPoint") ;
 	  return NULL ;
         }
 	for ( i = 0 ; i < *numrow ; i++ )
@@ -2605,14 +2606,14 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         }
       }
       else {
-	sciprint("Impossible case happened in %s.\n", "sciGetPoint" );
+	sciprint(_("Impossible case happened in %s.\n"), "sciGetPoint");
 	return (double *) NULL;
       }
       return (double*)tab;
       break;
     case SCI_SURFACE:
       /* F.Leray 17.03.04*/
-      sciprint("Impossible case happened in %s.\n", "sciGetPoint" );
+      sciprint(_("Impossible case happened in %s.\n"), "sciGetPoint" );
       return (double*) NULL;
       break;
     case SCI_GRAYPLOT:
@@ -3760,7 +3761,7 @@ char * sciGetInfoMessage( sciPointObj * pObj )
   case SCI_FIGURE:
     return pFIGURE_FEATURE(pObj)->infoMessage ;
   default:
-    sciprint( "This object has no info_message property.\n" ) ;
+    printSetGetErrorMessage("info_message");
     return NULL ;
   }
   return NULL ;
@@ -4087,7 +4088,7 @@ void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pi
     sciGetJavaPixelCoordinates(pObj, userCoord, pixCoord);
     break;
   default:
-    sciprint("Screen coordinates are only applicable on axes objects.\n");
+    sciprint(_("Pixel coordinates are only applicable on axes objects.\n"));
     pixCoord[0] = -1;
     pixCoord[1] = -1;
     break;
@@ -4184,8 +4185,11 @@ BOOL sciGetTightLimitsOn(sciPointObj * pObj)
   }
 }
 /*----------------------------------------------------------------------------------*/
+/**
+ * Print the message "This object has no xxx property." in Scilab.
+ */
 void printSetGetErrorMessage(const char * propertyName)
 {
-  sciprint("This object has no %s property.\n", propertyName );
+  sciprint(_("This object has no %s property.\n"), propertyName );
 }
 /*----------------------------------------------------------------------------------*/
