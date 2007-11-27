@@ -16,20 +16,37 @@
 // Copyright INRIA
 // Date : 3 july 2006
 
-mkdir('bug2038_dir');
-cd('bug2038_dir');
-mkdir('bug2038_subdir');
-cd('..')
 
-a=dir('bug2038_dir');
-b=mtlb_dir('bug2038_dir');
+my_test_dir_1 = TMPDIR+"/bug_2038_dir";
+my_test_dir_2 = TMPDIR+"/bug_2038_sub_dir";
 
-x=getdate(a.date);
-cx=x(1:4);
+my_test_dir_1_res = mkdir(my_test_dir_1);
 
-y=getdate();
-cy=y(1:4);
+if my_test_dir_1_res == 0 then pause,end
 
-if ~(a.isdir) then pause,end
-if ~(b.isdir) then pause,end
-if cx <> cy   then pause,end
+if my_test_dir_1_res == 1 then
+	
+	cd(my_test_dir_1);
+	
+	my_test_dir_2_res = mkdir(my_test_dir_2);
+	
+	if my_test_dir_2_res == 0 then pause,end
+	
+	if my_test_dir_2_res == 1 then
+		
+		cd('..');
+		
+		a  = dir(my_test_dir_1);
+		b  = mtlb_dir(my_test_dir_1);
+		
+		x  = getdate(a.date);
+		cx = x(1:4);
+		
+		y  = getdate();
+		cy = y(1:4);
+		
+		if ~(a.isdir) then pause,end
+		if ~(b.isdir) then pause,end
+		if cx <> cy   then pause,end
+	end
+end
