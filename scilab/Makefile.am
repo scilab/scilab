@@ -28,9 +28,9 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 	$(X_EXTRA_LIBS)
 endif
 
-TARGETS_ALL=macros
-
 LANG_DOMAIN=scilab
+
+TARGETS_ALL=macros
 
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
@@ -95,9 +95,9 @@ localization:
 			echo "Creating $$PATHTO"; \
 			mkdir -p $$PATHTO; \
 		fi; \
-		POFILE=$$PATHTO/$$LANG_DOMAIN.po; \
+		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 		$(MSGCAT) -o $$POFILE $$FILES; \
-		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$$LANG_DOMAIN.mo $$POFILE; \
+		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 	done
 
 install-data-local:
