@@ -49,7 +49,7 @@ int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (VarType(1) != sci_strings)
 	{
-		Scierror(999,"%s :Invalid parameter.\n",fname);
+		Scierror(999,"%s: Invalid type of input argument: String expected.", fname);
 		return 0;
 	}
 
@@ -68,7 +68,7 @@ int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		if (result == OLEER_NO_INPUT_FILE) 
 		{
-			Scierror(999,_("%s :There is no  file %s\n"),fname,IN);
+			Scierror(999,_("The file %s does not exist.\n"),IN);
 		}
 		else if(result == OLEER_NOT_OLE_FILE || 
 			result == OLEER_INSANE_OLE_FILE || 
@@ -76,11 +76,11 @@ int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len))
 			result == OLEER_MINIFAT_READ_FAIL || 
 			result == OLEER_PROPERTIES_READ_FAIL)
 		{
-			Scierror(999,_("%s :file %s is not an ole2 file\n"),fname,IN);
+			Scierror(999,_("%s: File %s is not an ole2 file\n"),fname,IN);
 		}
 		else if(result == -1)
 		{
-			Scierror(999,_("%s :file %s  cannot be opened\n"),fname,IN);
+			Scierror(999,_("Cannot open file %s.\n"),IN);
 		}
 		return 0;
 	}
@@ -121,7 +121,7 @@ int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len))
 			break;
 
 		case 3:
-			Scierror(999,_("%s : impossible to alloc enough memory\n"),fname);
+			Scierror(999,_("%s: No more memory\n"),fname);
 			return 0;
 			break;
 
