@@ -59,6 +59,13 @@ protected:
    */
   DrawableSubwinBridge * getSubwinImp( void ) ;
 
+  /**
+   * Compute real data bounds from the user ones.
+   * ie fills Frect.
+   */
+  virtual void computeRealDataBounds(void) = 0;
+
+
   /*-----------------------------------------------------------------------------*/
   /** Camera used to visualize this axes */
   Camera * m_pCamera;

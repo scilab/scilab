@@ -11,6 +11,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 
 import org.scilab.modules.renderer.utils.TexturedColorMap;
+import org.scilab.modules.renderer.utils.glTools.SciGL;
 
 /**
  * Object which can be rendered in a GL pipeline
@@ -94,10 +95,20 @@ public abstract class ObjectGL {
 	
 	/**
 	 * Get the current GL context which must be used to draw
-	 * @return current GL current pipeline
+	 * @return current GL pipeline
 	 */
 	protected GL getGL() {
 		return glPipeline;
+	}
+
+	
+	/**
+	 * Specify a new pipeline to use.
+	 * Use with caution.
+	 * @param gl new pipeline
+	 */
+	protected void setGLPipeline(SciGL gl) {
+		glPipeline = gl;
 	}
 	
 	/**

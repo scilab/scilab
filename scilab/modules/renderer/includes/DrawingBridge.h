@@ -41,6 +41,11 @@ extern "C" {
    */
   void displayChildren( sciPointObj * pObj ) ;
 
+  /**
+   * Next call to display will force this object and its children to be drawn.
+   */
+  void forceHierarchyRedraw( sciPointObj * pObj ) ;
+
 #ifdef __cplusplus
 }
 #endif

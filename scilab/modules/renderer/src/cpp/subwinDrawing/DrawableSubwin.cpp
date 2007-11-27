@@ -43,6 +43,7 @@ void DrawableSubwin::setCamera( Camera * cam )
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
 {
+  // force camera position recomputing
   m_pCamera->hasChanged();
   show();
 }
@@ -56,11 +57,16 @@ void DrawableSubwin::show( void )
     return;
   }
 
+  // fill Frect with real data bounds
+  computeRealDataBounds();
+
   // set up camera
   m_pCamera->display();
 
+  // get data bounds to display
   double bounds[6] ;
   sciGetRealDataBounds(m_pDrawed, bounds) ;
+
   drawBox(bounds);
 
   displayChildren() ;

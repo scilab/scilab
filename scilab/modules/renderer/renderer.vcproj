@@ -506,6 +506,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\ConcreteDrawableSubwin.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\DrawableSubwin.cpp"
 					>
 				</File>
@@ -543,6 +547,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\IsoViewCameraJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\LinearBoundsComputer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\LogarithmicBoundsComputer.cpp"
 					>
 				</File>
 				<File
@@ -1108,6 +1120,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\ComputeBoundsStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ConcreteDrawableSubwin.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\DrawableSubwin.h"
 					>
 				</File>
@@ -1149,6 +1169,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\IsoViewCameraJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\LinearBoundsComputer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\LogarithmicBoundsComputer.hxx"
 					>
 				</File>
 				<File

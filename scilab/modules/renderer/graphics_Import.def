@@ -77,3 +77,7 @@ sciGetIsCubeScaled
 sciGetXAxisReverse
 sciGetYAxisReverse
 sciGetZAxisReverse
+sciGetTightLimitsOn
+sciSetRealDataBounds
+sciGetLogFlags
+sciGetDataBounds

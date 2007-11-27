@@ -20,11 +20,13 @@ public final class GLTools {
 	/** display lists index is always different than 0 */
 	public static final int UNINIT_DL_INDEX = 0;
 	
-	/** Depth range when using pixel values.
+	/** 
+	 * Depth range when using pixel values.
 	 * Actually when using gluProject z may vary between 0 and 1 (relative to depth buffer)
 	 * 0 is front clip plane and 1 back clip plane.
 	 */
 	public static final double MIN_PIXEL_Z = -1.0;
+	/** Disctane max */
 	public static final double MAX_PIXEL_Z = 1.0;
 	
 	/** Contains the different line stipple pattern */

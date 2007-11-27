@@ -104,7 +104,6 @@ public:
    * Get the pixmap status (on or off).
    */
   virtual bool getPixmapMode(void);
-
   /**
    * Return the drawn object
    */

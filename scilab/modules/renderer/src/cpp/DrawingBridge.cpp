@@ -64,3 +64,9 @@ void redrawHierarchy( sciPointObj * pObj )
   }
 }
 /*---------------------------------------------------------------------------------*/
+void forceHierarchyRedraw( sciPointObj * pObj )
+{
+  getHandleDrawer(pObj)->familyHasChanged();
+}
+/*---------------------------------------------------------------------------------*/
+

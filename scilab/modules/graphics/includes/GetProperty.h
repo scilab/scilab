@@ -227,4 +227,6 @@ BOOL sciGetXAxisReverse(sciPointObj * pObj); /* GET */
 BOOL sciGetYAxisReverse(sciPointObj * pObj); /* GET */
 BOOL sciGetZAxisReverse(sciPointObj * pObj); /* GET */
 
+BOOL sciGetTightLimitsOn(sciPointObj * pObj); /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */

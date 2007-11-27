@@ -3822,13 +3822,6 @@ int sciSetDataBounds( sciPointObj * pObj, double bounds[6] )
     {
       pSUBWIN_FEATURE(pObj)->SRect[i] = bounds[i] ;
     }
-    /* Temporary */
-    pSUBWIN_FEATURE(pObj)->FRect[0] = bounds[0];
-    pSUBWIN_FEATURE(pObj)->FRect[1] = bounds[2];
-    pSUBWIN_FEATURE(pObj)->FRect[2] = bounds[1];
-    pSUBWIN_FEATURE(pObj)->FRect[3] = bounds[3];
-    pSUBWIN_FEATURE(pObj)->FRect[4] = bounds[4];
-    pSUBWIN_FEATURE(pObj)->FRect[5] = bounds[5];
     break ;
   case SCI_SURFACE:
     for ( i = 0 ; i < 6 ; i++ )
@@ -3844,6 +3837,28 @@ int sciSetDataBounds( sciPointObj * pObj, double bounds[6] )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
+/**
+ * Set the displayed data bounds of a subwin object.
+ */
+int sciSetRealDataBounds(sciPointObj * pObj, const double bounds[6])
+{
+  int i;
+  switch( sciGetEntityType(pObj) )
+  {
+  case SCI_SUBWIN:
+    for ( i = 0 ; i < 6 ; i++ )
+    {
+      pSUBWIN_FEATURE(pObj)->FRect[i] = bounds[i] ;
+    }
+    return 0;
+  default:
+    sciprint("This object has no data bounds.\n");
+    return -1 ; 
+
+  }
+  return 0 ;
+}
+/*--------------------------------------------------------------------------------------------*/
 int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta)
 {
   switch(sciGetEntityType(pObj))
@@ -3953,7 +3968,8 @@ int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ)
 /**
  * Set the position of a label or text object.
  */
-int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ) {
+int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ)
+{
   double curPos[3];
   sciGetTextPos(pObj, curPos);
   if ( curPos[0] == posX && curPos[1] == posY && curPos[2] == posZ )
@@ -3962,5 +3978,27 @@ int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ) {
     return 1;
   }
   return sciInitTextPos(pObj, posX, posY, posZ);
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Set the log flags of a subwindow
+ */
+int sciSetLogFlags(sciPointObj * pObj, char logFlags[3])
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pObj)->logflags[0] = logFlags[0];
+    pSUBWIN_FEATURE(pObj)->logflags[1] = logFlags[1];
+    pSUBWIN_FEATURE(pObj)->logflags[2] = logFlags[2];
+
+    // force redraw of all children of the object.
+    forceHierarchyRedraw(pObj);
+
+    return 0;
+  default:
+    sciprint("This object has no log flags property.\n");
+    return -1;
+  }
 }
 /*----------------------------------------------------------------------------------*/

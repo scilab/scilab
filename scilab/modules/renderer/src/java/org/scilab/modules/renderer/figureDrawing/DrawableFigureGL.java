@@ -41,6 +41,7 @@ public class DrawableFigureGL extends ObjectGL {
       	setColorMap(TexturedColorMap.create());
       	figureId = -1; // figure ids should be greater than 0.
       	destroyedObjects = new ObjectGLCleaner();
+
     }
 	
 	/**
@@ -266,6 +267,7 @@ public class DrawableFigureGL extends ObjectGL {
 	public GL getGL() {
 		return guiProperties.getGLPipeline();
 	}
+	
 	
 	/**
 	 * @param onOrOff specify if we set the pixmap on or off

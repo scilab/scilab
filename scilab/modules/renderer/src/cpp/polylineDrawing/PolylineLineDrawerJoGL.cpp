@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "PolylineLineDrawerJoGL.hxx"
+#include "getHandleDrawer.h"
 
 extern "C"
 {

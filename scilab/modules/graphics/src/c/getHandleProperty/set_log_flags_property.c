@@ -101,6 +101,7 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
 {
   char * flags = getStringFromStack( stackPointer ) ;
   sciSubWindow * ppSubWin = NULL ;
+  char curLogFlags[3] = "nnn";
 
   if ( !isParameterStringMatrix( valueType ) )
   {
@@ -130,6 +131,9 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   ppSubWin = pSUBWIN_FEATURE (pobj) ;
 
+  // get a copy of current log flags
+  sciGetLogFlags(pobj, curLogFlags);
+
 
   /* X axes */
   if( ( ppSubWin->SRect[0] <= 0. || ppSubWin->SRect[1] <= 0.) && flags[0] == 'l' )
@@ -137,11 +141,12 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
     sciprint("Error: data_bounds on x axis must be strictly positive to switch to logarithmic mode.\n") ;
     return SET_PROPERTY_ERROR ;
   }
-  ppSubWin->axes.u_xlabels = ReBuildUserTicks( ppSubWin->logflags[0], flags[0],
+  ppSubWin->axes.u_xlabels = ReBuildUserTicks( curLogFlags[0], flags[0],
                                                ppSubWin->axes.u_xgrads, 
                                                &ppSubWin->axes.u_nxgrads, 
                                                ppSubWin->axes.u_xlabels   );
-  ppSubWin->logflags[0] = flags[0] ;
+  /* ppSubWin->logflags[0] = flags[0] ; */
+  curLogFlags[0] = flags[0];
 
   /* Y axes */
   if( ( ppSubWin->SRect[2] <= 0. || ppSubWin->SRect[3] <= 0. ) && flags[1] == 'l' )
@@ -149,13 +154,15 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
       sciprint("Error: data_bounds on y axis must be strictly positive to switch to logarithmic mode.\n");
       return SET_PROPERTY_ERROR ;
   }
-  ppSubWin->axes.u_ylabels = ReBuildUserTicks( ppSubWin->logflags[1], flags[1],  
+  ppSubWin->axes.u_ylabels = ReBuildUserTicks( curLogFlags[1], flags[1],  
                                                ppSubWin->axes.u_ygrads, 
                                                &ppSubWin->axes.u_nygrads, 
                                                ppSubWin->axes.u_ylabels  ) ;
 
   
-  ppSubWin->logflags[1] = flags[1] ;
+  /* ppSubWin->logflags[1] = flags[1] ; */
+  curLogFlags[1] = flags[1];
+
 
   if ( nbRow * nbCol == 3 )
   {
@@ -171,13 +178,17 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
       return SET_PROPERTY_ERROR ;
     }
 
-    ppSubWin->axes.u_zlabels = ReBuildUserTicks( ppSubWin->logflags[2], flags[2],  
+    ppSubWin->axes.u_zlabels = ReBuildUserTicks( curLogFlags[2], flags[2],  
                                                  ppSubWin->axes.u_zgrads, 
                                                  &ppSubWin->axes.u_nzgrads, 
                                                  ppSubWin->axes.u_zlabels) ;
-    ppSubWin->logflags[2] = flags[2] ;
+    //ppSubWin->logflags[2] = flags[2] ;
+    curLogFlags[2] = flags[2];
 
   }
+
+  sciSetLogFlags(pobj, curLogFlags);
+
 
   return SET_PROPERTY_SUCCEED ;
 

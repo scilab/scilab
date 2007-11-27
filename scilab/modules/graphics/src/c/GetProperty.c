@@ -3876,13 +3876,10 @@ void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
   switch( sciGetEntityType(pObj) )
   {
   case SCI_SUBWIN:
-    /* from history it is stored [xmin,ymin,xmax,ymax,zmin,zmax] */
-    bounds[0] = pSUBWIN_FEATURE(pObj)->FRect[0] ;
-    bounds[1] = pSUBWIN_FEATURE(pObj)->FRect[2] ;
-    bounds[2] = pSUBWIN_FEATURE(pObj)->FRect[1] ;
-    bounds[3] = pSUBWIN_FEATURE(pObj)->FRect[3] ;
-    bounds[4] = pSUBWIN_FEATURE(pObj)->FRect[4] ;
-    bounds[5] = pSUBWIN_FEATURE(pObj)->FRect[5] ;
+    for ( i = 0 ; i < 6 ; i++ )
+    {
+      bounds[i] = pSUBWIN_FEATURE(pObj)->FRect[i] ;
+    }
     return ;
   default:
     sciprint("This object has computed no data bounds.\n");
@@ -4156,14 +4153,29 @@ BOOL sciGetYAxisReverse(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* @return TRUE if the Z axis of the subwindow pObj is reversed
-*/
+ * @return TRUE if the Z axis of the subwindow pObj is reversed
+ */
 BOOL sciGetZAxisReverse(sciPointObj * pObj)
 {
   switch(sciGetEntityType(pObj))
   {
   case SCI_SUBWIN:
     return pSUBWIN_FEATURE(pObj)->axes.reverse[2];
+  default:
+    return FALSE;
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * @return TRUE if subwindow pObj tight_limit mode is on.
+ */
+BOOL sciGetTightLimitsOn(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->tight_limits;
   default:
     return FALSE;
     break;

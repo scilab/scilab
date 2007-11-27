@@ -62,7 +62,7 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   double * zCoords    = NULL;
   double * height     = NULL;
 
-  // special case here, we must use a specila decomosition for bars.
+  // special case here, we must use a special decomposition for bars.
   BarDecomposition decomposer(m_pDrawed);
 
   nbVertices = decomposer.getDrawnVerticesLength();

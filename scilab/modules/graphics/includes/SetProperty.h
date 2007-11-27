@@ -230,6 +230,7 @@ int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
 
 int sciSetSelectedObject( sciPointObj * pObj ) ;
 int sciSetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* SET */
+int sciSetRealDataBounds(sciPointObj * pObj, const double bounds[6]); /* SET */
 
 int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta) ;
 int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta); /* SET */
@@ -241,6 +242,8 @@ int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff); /* SET */
 
 int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
 int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
+
+int sciSetLogFlags(sciPointObj * pObj, char logFlags[3]) ; /* SET */
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */

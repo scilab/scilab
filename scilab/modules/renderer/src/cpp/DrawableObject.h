@@ -55,6 +55,34 @@ public:
    */
   void displayChildren( void ) ;
 
+
+  /**
+   * For non linear scaling (not supported by OpenGL) we need to modify points.
+   * For direction, use direction Scale.
+   */
+  virtual void pointScale(double xCoord, double yCoord, double zCoord,
+                          double * xScaled, double * yScaled, double * zScaled);
+
+  /**
+   * Apply scale on a vector.
+   */
+  virtual void pointScale(double vectorX[], double vectorY[], double vectorZ[], int vectorLength);
+
+  /**
+   * Apply non linear scaling on direction vector (opposite as point vector).
+   * Since scaling is non linear, we need to have a starting point of the vector.
+   */
+  virtual void directionScale(double xCoord, double yCoord, double zCoord,
+                              double startingPointX, double startingPointY, double startingPointZ,
+                              double * xScaled, double * yScaled, double * zScaled);
+
+  /**
+   * Apply distance scale on a vector.
+   */
+  virtual void directionScale(double vectorX[], double vectorY[], double vectorZ[],
+                              double startingPointsX[], double startingPointsY[],
+                              double startingPointsZ[], double vectorLength);
+
   /**
    * Set the driver dependent implementation of algorithms
    */

@@ -15,6 +15,7 @@ sciDrawObj
 displayChildren
 displayFigure
 redrawFigure
+forceHierarchyRedraw
 sciSetJavaColormap
 sciGetJavaColormap
 createDrawer

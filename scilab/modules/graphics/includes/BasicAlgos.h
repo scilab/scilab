@@ -37,6 +37,7 @@ int C2F(entier2d)( integer * n, double * dx,integer * s ) ;
  * @param nbElement must be greater than 2.
  */
 int checkMonotony( double vector[], int nbElement ) ;
+
 /*--------------------------------------------------------------------------*/
 /**
  * copy an array into an other

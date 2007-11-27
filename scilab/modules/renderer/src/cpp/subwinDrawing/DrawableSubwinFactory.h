@@ -11,7 +11,7 @@
 
 #include "../DrawableObject.h"
 #include "../DrawableObjectFactory.h"
-#include "DrawableSubwin.h"
+#include "ConcreteDrawableSubwin.hxx"
 
 namespace sciGraphics
 {
@@ -32,7 +32,9 @@ public:
    */
   virtual void update( void ) ;
 
-private:
+protected:
+
+  void setStrategies(ConcreteDrawableSubwin * subwin);
 
 } ;
 

@@ -73,6 +73,36 @@ void DrawableObject::displayChildren( void )
   }
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableObject::pointScale(double xCoord, double yCoord, double zCoord,
+                                double * xScaled, double * yScaled, double * zScaled)
+{
+  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->pointScale(xCoord, yCoord, zCoord,
+                                                             xScaled, yScaled, zScaled);
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::pointScale(double vectorX[], double vectorY[], double vectorZ[], int vectorLength)
+{
+  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->pointScale(vectorX, vectorY, vectorZ, vectorLength);
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::directionScale(double xCoord, double yCoord, double zCoord,
+                                    double startingPointX, double startingPointY, double startingPointZ,
+                                    double * xScaled, double * yScaled, double * zScaled)
+{
+  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->directionScale(xCoord, yCoord, zCoord, startingPointX,
+                                                                 startingPointY, startingPointZ,
+                                                                 xScaled, yScaled, zScaled);
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::directionScale(double vectorX[], double vectorY[], double vectorZ[],
+                                    double startingPointsX[], double startingPointsY[],
+                                    double startingPointsZ[], double vectorLength)
+{
+  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->directionScale(vectorX, vectorY, vectorZ,
+                                                                 startingPointsX, startingPointsY,
+                                                                 startingPointsZ, vectorLength);
+}
+/*------------------------------------------------------------------------------------------*/
 bool DrawableObject::checkVisibility( void )
 {
   return sciGetVisibility( m_pDrawed ) == TRUE ;
