@@ -18,6 +18,6 @@ msgstr ""
 
 # File: src/c/dynamic_menus.c, line: 107
 # File: src/c/dynamic_menus.c, line: 115
-#, fuzzy, c-format
+#, c-format
 msgid "%s: No more memory.\n"
-msgstr "send_command: Pas assez de mémoire disponible.\n"
+msgstr "%s: Pas assez de mémoire disponible.\n"
