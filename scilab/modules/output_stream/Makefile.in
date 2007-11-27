@@ -42,12 +42,14 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@STRING_V2_TRUE@am__append_1 = -I$(top_srcdir)/modules/STRING_V2/includes
+@STRING_V2_FALSE@am__append_2 = -I$(top_srcdir)/modules/string/includes
 DIST_COMMON = $(libscioutput_stream_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
+@GUI_TRUE@am__append_3 = java
+@SWIG_TRUE@am__append_4 = swig
+@GIWS_TRUE@am__append_5 = giws
 subdir = modules/output_stream
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -81,7 +83,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscioutput_stream_la_DEPENDENCIES =
+@STRING_V2_FALSE@libscioutput_stream_la_DEPENDENCIES = $(top_builddir)/modules/string/libscistring.la
+@STRING_V2_TRUE@libscioutput_stream_la_DEPENDENCIES = $(top_builddir)/modules/STRING_V2/libscistring.la
 am__objects_1 = libscioutput_stream_la-erro.lo \
 	libscioutput_stream_la-cerro.lo \
 	libscioutput_stream_la-Scierror.lo \
@@ -317,11 +320,16 @@ OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
 OUTPUT_STREAM_FORTRAN_SOURCES = 
 GATEWAY_C_SOURCES = 
 GATEWAY_FORTRAN_SOURCES = 
-libscioutput_stream_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/ -I$(top_srcdir)/modules/core/include -Isrc/c/
+libscioutput_stream_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
+	-Iincludes/ -I$(top_srcdir)/modules/core/include -Isrc/c/ \
+	$(am__append_1) $(am__append_2)
 libscioutput_stream_la_LDFLAGS = 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
-libscioutput_stream_la_LIBADD = 
+@STRING_V2_FALSE@libscioutput_stream_la_LIBADD = $(top_builddir)/modules/string/libscistring.la
+
+#libscioutput_stream_la_LIBADD =
+@STRING_V2_TRUE@libscioutput_stream_la_LIBADD = $(top_builddir)/modules/STRING_V2/libscistring.la
 
 #### Target ######
 modulename = output_stream
@@ -363,7 +371,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 ####
 #### It is why those rules exist.
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_3) $(am__append_4) $(am__append_5)
 
 ################ MACROS ######################"
 # Rule to build a macro

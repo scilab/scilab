@@ -101,26 +101,25 @@ libscicore_la_DEPENDENCIES =  \
 	$(am__append_4)
 am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-tmpdir.lo libscicore_la-intmacr2tree.lo \
-	libscicore_la-fromjava.lo libscicore_la-cvstr.lo \
-	libscicore_la-run.lo libscicore_la-FTables.lo \
-	libscicore_la-InitScilab.lo libscicore_la-getval.lo \
-	libscicore_la-md5.lo libscicore_la-addinter.lo \
-	libscicore_la-inisci-c.lo libscicore_la-IsAScalar.lo \
-	libscicore_la-texmacs.lo libscicore_la-userf2.lo \
-	libscicore_la-sciquit.lo libscicore_la-stack1.lo \
-	libscicore_la-scicurdir.lo libscicore_la-realmain.lo \
-	libscicore_la-stack3.lo libscicore_la-str2sci.lo \
-	libscicore_la-cluni0.lo libscicore_la-flags.lo \
-	libscicore_la-getmodules.lo libscicore_la-fromc.lo \
-	libscicore_la-setgetSCIpath.lo libscicore_la-getmemory.lo \
-	libscicore_la-Funtab.lo libscicore_la-csignal.lo \
-	libscicore_la-prompt.lo libscicore_la-CallScilab.lo \
-	libscicore_la-SendScilabJobs.lo libscicore_la-scimem.lo \
-	libscicore_la-banier.lo libscicore_la-callinterf.lo \
-	libscicore_la-isanan.lo libscicore_la-parse.lo \
-	libscicore_la-timer.lo libscicore_la-stack2.lo \
-	libscicore_la-link.lo libscicore_la-xscion.lo \
-	libscicore_la-SetScilabEnvironment.lo \
+	libscicore_la-fromjava.lo libscicore_la-run.lo \
+	libscicore_la-FTables.lo libscicore_la-InitScilab.lo \
+	libscicore_la-getval.lo libscicore_la-md5.lo \
+	libscicore_la-addinter.lo libscicore_la-inisci-c.lo \
+	libscicore_la-IsAScalar.lo libscicore_la-texmacs.lo \
+	libscicore_la-userf2.lo libscicore_la-sciquit.lo \
+	libscicore_la-stack1.lo libscicore_la-scicurdir.lo \
+	libscicore_la-realmain.lo libscicore_la-stack3.lo \
+	libscicore_la-str2sci.lo libscicore_la-cluni0.lo \
+	libscicore_la-flags.lo libscicore_la-getmodules.lo \
+	libscicore_la-fromc.lo libscicore_la-setgetSCIpath.lo \
+	libscicore_la-getmemory.lo libscicore_la-Funtab.lo \
+	libscicore_la-csignal.lo libscicore_la-prompt.lo \
+	libscicore_la-CallScilab.lo libscicore_la-SendScilabJobs.lo \
+	libscicore_la-scimem.lo libscicore_la-banier.lo \
+	libscicore_la-callinterf.lo libscicore_la-isanan.lo \
+	libscicore_la-parse.lo libscicore_la-timer.lo \
+	libscicore_la-stack2.lo libscicore_la-link.lo \
+	libscicore_la-xscion.lo libscicore_la-SetScilabEnvironment.lo \
 	libscicore_la-hashtable_core.lo libscicore_la-returnanan.lo \
 	libscicore_la-LoadFunctionsTab.lo libscicore_la-with_module.lo \
 	libscicore_la-loadversion.lo libscicore_la-version.lo \
@@ -136,7 +135,6 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-filesmanagement.lo libscicore_la-terme.lo \
 	libscicore_la-ifexpr.lo libscicore_la-expr.lo \
 	libscicore_la-getcommandlineargs.lo libscicore_la-syncexec.lo \
-	libscicore_la-getfastcode.lo \
 	libscicore_la-callFunctionFromGateway.lo \
 	libscicore_la-librarieslist.lo libscicore_la-libraryinfo.lo \
 	libscicore_la-getvariablesname.lo \
@@ -420,7 +418,6 @@ src/c/cs2st.c \
 src/c/tmpdir.c \
 src/c/intmacr2tree.c \
 src/c/fromjava.c \
-src/c/cvstr.c \
 src/c/run.c \
 src/c/FTables.c \
 src/c/InitScilab.c \
@@ -484,7 +481,6 @@ src/c/ifexpr.c \
 src/c/expr.c \
 src/c/getcommandlineargs.c \
 src/c/syncexec.c \
-src/c/getfastcode.c  \
 src/c/callFunctionFromGateway.c \
 src/c/librarieslist.c \
 src/c/libraryinfo.c \
@@ -782,10 +778,8 @@ includes/FTables.h \
 includes/scirun.h \
 includes/fromjava.h \
 includes/inisci-c.h \
-includes/cvstr.h \
 includes/GetXmlFileEncoding.h \
 includes/syncexec.h \
-includes/getfastcode.h \
 includes/callFunctionFromGateway.h \
 includes/librarieslist.h \
 includes/libraryinfo.h \
@@ -956,7 +950,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-coretable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cs2st.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-csignal.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cvstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-expr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-filesmanagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-flags.Plo@am__quote@
@@ -964,7 +957,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromjava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getcommandlineargs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getfastcode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmodules.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getval.Plo@am__quote@
@@ -1132,13 +1124,6 @@ libscicore_la-fromjava.lo: src/c/fromjava.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fromjava.c' object='libscicore_la-fromjava.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-fromjava.lo `test -f 'src/c/fromjava.c' || echo '$(srcdir)/'`src/c/fromjava.c
-
-libscicore_la-cvstr.lo: src/c/cvstr.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-cvstr.lo -MD -MP -MF $(DEPDIR)/libscicore_la-cvstr.Tpo -c -o libscicore_la-cvstr.lo `test -f 'src/c/cvstr.c' || echo '$(srcdir)/'`src/c/cvstr.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-cvstr.Tpo $(DEPDIR)/libscicore_la-cvstr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cvstr.c' object='libscicore_la-cvstr.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-cvstr.lo `test -f 'src/c/cvstr.c' || echo '$(srcdir)/'`src/c/cvstr.c
 
 libscicore_la-run.lo: src/c/run.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-run.lo -MD -MP -MF $(DEPDIR)/libscicore_la-run.Tpo -c -o libscicore_la-run.lo `test -f 'src/c/run.c' || echo '$(srcdir)/'`src/c/run.c
@@ -1580,13 +1565,6 @@ libscicore_la-syncexec.lo: src/c/syncexec.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/syncexec.c' object='libscicore_la-syncexec.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-syncexec.lo `test -f 'src/c/syncexec.c' || echo '$(srcdir)/'`src/c/syncexec.c
-
-libscicore_la-getfastcode.lo: src/c/getfastcode.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getfastcode.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getfastcode.Tpo -c -o libscicore_la-getfastcode.lo `test -f 'src/c/getfastcode.c' || echo '$(srcdir)/'`src/c/getfastcode.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-getfastcode.Tpo $(DEPDIR)/libscicore_la-getfastcode.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getfastcode.c' object='libscicore_la-getfastcode.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getfastcode.lo `test -f 'src/c/getfastcode.c' || echo '$(srcdir)/'`src/c/getfastcode.c
 
 libscicore_la-callFunctionFromGateway.lo: src/c/callFunctionFromGateway.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-callFunctionFromGateway.lo -MD -MP -MF $(DEPDIR)/libscicore_la-callFunctionFromGateway.Tpo -c -o libscicore_la-callFunctionFromGateway.lo `test -f 'src/c/callFunctionFromGateway.c' || echo '$(srcdir)/'`src/c/callFunctionFromGateway.c

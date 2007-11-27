@@ -89,16 +89,16 @@ libscistring_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__libscistring_la_SOURCES_DIST = src/c/strcat-c.c src/c/men_Sutils.c \
 	src/c/stripblanks.c src/c/InitializeString.c \
-	src/c/setScilabCharactersCodes.c src/fortran/strord.f \
-	src/fortran/strdsp.f sci_gateway/c/sci_strindex.c \
-	sci_gateway/c/sci_strcat.c sci_gateway/c/sci_tokens.c \
-	sci_gateway/c/gw_string.c sci_gateway/c/sci_string.c \
-	sci_gateway/c/sci_part.c sci_gateway/c/sci_length.c \
-	sci_gateway/c/sci_strsplit.c sci_gateway/c/sci_str2code.c \
-	sci_gateway/c/sci_code2str.c sci_gateway/c/sci_emptystr.c \
-	sci_gateway/c/sci_ascii.c sci_gateway/c/sci_strsubst.c \
-	sci_gateway/c/sci_grep.c sci_gateway/c/sci_convstr.c \
-	sci_gateway/c/sci_stripblanks.c \
+	src/c/setScilabCharactersCodes.c src/c/cvstr.c \
+	src/c/getfastcode.c src/fortran/strord.f src/fortran/strdsp.f \
+	sci_gateway/c/sci_strindex.c sci_gateway/c/sci_strcat.c \
+	sci_gateway/c/sci_tokens.c sci_gateway/c/gw_string.c \
+	sci_gateway/c/sci_string.c sci_gateway/c/sci_part.c \
+	sci_gateway/c/sci_length.c sci_gateway/c/sci_strsplit.c \
+	sci_gateway/c/sci_str2code.c sci_gateway/c/sci_code2str.c \
+	sci_gateway/c/sci_emptystr.c sci_gateway/c/sci_ascii.c \
+	sci_gateway/c/sci_strsubst.c sci_gateway/c/sci_grep.c \
+	sci_gateway/c/sci_convstr.c sci_gateway/c/sci_stripblanks.c \
 	sci_gateway/fortran/sci_convstr.f \
 	sci_gateway/fortran/sci_grep.f \
 	sci_gateway/fortran/sci_strindex.f \
@@ -117,7 +117,8 @@ am__libscistring_la_SOURCES_DIST = src/c/strcat-c.c src/c/men_Sutils.c \
 am__objects_1 = libscistring_la-strcat-c.lo \
 	libscistring_la-men_Sutils.lo libscistring_la-stripblanks.lo \
 	libscistring_la-InitializeString.lo \
-	libscistring_la-setScilabCharactersCodes.lo
+	libscistring_la-setScilabCharactersCodes.lo \
+	libscistring_la-cvstr.lo libscistring_la-getfastcode.lo
 am__objects_2 = strord.lo strdsp.lo
 am__objects_3 = libscistring_la-sci_strindex.lo \
 	libscistring_la-sci_strcat.lo libscistring_la-sci_tokens.lo \
@@ -339,7 +340,9 @@ STRING_C_SOURCES = src/c/strcat-c.c \
 src/c/men_Sutils.c \
 src/c/stripblanks.c \
 src/c/InitializeString.c \
-src/c/setScilabCharactersCodes.c 
+src/c/setScilabCharactersCodes.c \
+src/c/cvstr.c \
+src/c/getfastcode.c
 
 STRING_FORTRAN_SOURCES = src/fortran/strord.f src/fortran/strdsp.f
 GATEWAY_C_SOURCES = sci_gateway/c/sci_strindex.c \
@@ -409,7 +412,9 @@ libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 libscistring_la_includedir = $(pkgincludedir)/string
 libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h \
-includes/InitializeString.h
+includes/InitializeString.h \
+includes/cvstr.h \
+includes/getfastcode.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -537,6 +542,8 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-InitializeString.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-cvstr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-getfastcode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-gw_string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-men_Sutils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_ascii.Plo@am__quote@
@@ -613,6 +620,20 @@ libscistring_la-setScilabCharactersCodes.lo: src/c/setScilabCharactersCodes.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setScilabCharactersCodes.c' object='libscistring_la-setScilabCharactersCodes.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-setScilabCharactersCodes.lo `test -f 'src/c/setScilabCharactersCodes.c' || echo '$(srcdir)/'`src/c/setScilabCharactersCodes.c
+
+libscistring_la-cvstr.lo: src/c/cvstr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-cvstr.lo -MD -MP -MF $(DEPDIR)/libscistring_la-cvstr.Tpo -c -o libscistring_la-cvstr.lo `test -f 'src/c/cvstr.c' || echo '$(srcdir)/'`src/c/cvstr.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-cvstr.Tpo $(DEPDIR)/libscistring_la-cvstr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cvstr.c' object='libscistring_la-cvstr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-cvstr.lo `test -f 'src/c/cvstr.c' || echo '$(srcdir)/'`src/c/cvstr.c
+
+libscistring_la-getfastcode.lo: src/c/getfastcode.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-getfastcode.lo -MD -MP -MF $(DEPDIR)/libscistring_la-getfastcode.Tpo -c -o libscistring_la-getfastcode.lo `test -f 'src/c/getfastcode.c' || echo '$(srcdir)/'`src/c/getfastcode.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-getfastcode.Tpo $(DEPDIR)/libscistring_la-getfastcode.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getfastcode.c' object='libscistring_la-getfastcode.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-getfastcode.lo `test -f 'src/c/getfastcode.c' || echo '$(srcdir)/'`src/c/getfastcode.c
 
 libscistring_la-sci_strindex.lo: sci_gateway/c/sci_strindex.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_strindex.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_strindex.Tpo -c -o libscistring_la-sci_strindex.lo `test -f 'sci_gateway/c/sci_strindex.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strindex.c

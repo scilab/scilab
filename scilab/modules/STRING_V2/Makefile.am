@@ -38,11 +38,11 @@ sci_gateway/c/sci_tokens.c
 
 
 libscistring_la_CFLAGS= \
-				-Isrc/c \
-				-Iincludes/ \
-				-Isrc/c/pcre/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+	-Isrc/c \
+	-Iincludes/ \
+	-Isrc/c/pcre/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscistring.la
 
@@ -81,9 +81,6 @@ libscistring_la_sci_gateway_DATA = sci_gateway/STRING_V2_gateway.xml
 #### string : include files ####
 libscistring_la_includedir=$(pkgincludedir)/string
 libscistring_la_include_HEADERS = includes/men_Sutils.h \
-includes/gw_string.h \
-includes/InitializeString.h \
-includes/cvstr.h
-includes/getfastcode.h
+includes/gw_string.h includes/InitializeString.h includes/cvstr.h includes/getfastcode.h
 
 include $(top_srcdir)/Makefile.incl.am
