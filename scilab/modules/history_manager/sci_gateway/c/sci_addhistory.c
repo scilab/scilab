@@ -32,7 +32,7 @@ int C2F(sci_addhistory) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("parameter must be a string.\n"));
+		Scierror(999,_("Invalid type of input argument: String or matrix of string expected.\n"));
 		return 0;
 	}
 

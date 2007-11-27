@@ -31,7 +31,7 @@ int C2F(sci_gethistoryfile) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("Error Impossible to know filename.\n"));
+		Scierror(999,_("Error : Impossible to find the Scilab history file.\n"));
 	}
 	return 0;
 }

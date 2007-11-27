@@ -19,15 +19,14 @@ int C2F(sci_saveconsecutivecommands) _PARAMS((char *fname,unsigned long fname_le
 	if (Rhs == 0)
 	{
 		int n1 = 1, l1 = 0;
+		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 
 		if ( getSaveConsecutiveDuplicateLinesInScilabHistory() )
 		{
-			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(TRUE);
 		}
 		else
 		{
-			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);
 		}
 		LhsVar(1)=Rhs+1;
@@ -45,7 +44,7 @@ int C2F(sci_saveconsecutivecommands) _PARAMS((char *fname,unsigned long fname_le
 		}
 		else
 		{
-			Scierror(999,_("parameter must be a boolean.\n"));
+			Scierror(999,_("Input argument must be a boolean.\n"));
 			return 0;
 		}
 	}
