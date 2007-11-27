@@ -13,7 +13,7 @@
 // Date : Aug 2007
 
 
-fd = mopen('bug2453.dat','r');
+fd = mopen(SCI+'/modules/fileio/nonreg_tests/bug2453.dat','r');
 Lx = mfscanf(-1,fd,'%g %g\n');
 mclose(fd);
 
