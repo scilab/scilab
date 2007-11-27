@@ -28,6 +28,16 @@ public abstract class ScilabUIElement implements UIElement {
 	private MenuBar menuBar;
 
 	/**
+	 * The Id of the MenuBar associated to the UIElement
+	 */
+	private int menuBarId;
+
+	/**
+	 * The Id associated to the UIElement
+	 */
+	//private int elementId;
+
+	/**
 	 * The layout of the foreground of the UIElement
 	 * @see org.scilab.modules.gui.utils.Layout
 	 */
@@ -86,19 +96,32 @@ public abstract class ScilabUIElement implements UIElement {
 	}
 
 	/**
-	 * Gets the menubar associated to an UIElement
-	 * @return the menuBar associated to the UIElement
-	 */
-	public MenuBar getMenuBar() {
-		return menuBar;
-	}
-
-	/**
 	 * Sets the menubar associated to an UIElement
 	 * @param menuBar the menuBar to set
 	 */
 	public void addMenuBar(MenuBar menuBar) {
 		this.menuBar = menuBar;
+		// When the menuBar is added to an element, 
+		// we also have to update the menuBarId of this element
+		if (menuBar != null) {
+			setMenuBarId(menuBar.getAsSimpleMenuBar().getElementId());
+		}
+	}
+
+	/**
+	 * Get the Id of the menubar in the UIElementMapper
+	 * @return the Id of the UIElement
+	 */
+	public int getMenuBarId() {
+		return menuBarId;
+	}
+	
+	/**
+	 * Set the Id of the menubar in the UIElementMapper
+	 * @param id the Id of the UIElement
+	 */
+	public void setMenuBarId(int id) {
+		this.menuBarId = id;
 	}
 
 	/**
@@ -143,5 +166,4 @@ public abstract class ScilabUIElement implements UIElement {
 	 * Draws an UIElement
 	 */
 	public abstract void draw();
-
 }

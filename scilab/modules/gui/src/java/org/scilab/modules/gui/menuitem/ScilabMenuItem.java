@@ -50,7 +50,16 @@ public class ScilabMenuItem implements MenuItem {
 	 * @param mnemonic the mnemonic to add to the MenuItem
 	 * @see org.scilab.modules.gui.widget.MenuItem#setMnemonic(org.scilab.modules.gui.widget.int)
 	 */
-	public void setMnemonic(int mnemonic) {
+	public void setMnemonic(char mnemonic) {
 		ScilabBridge.setMnemonic(this, mnemonic);
 	}
+
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the menu is activated
+	 */
+	public void setCallback(String command) {
+		ScilabBridge.setCallback(this, command);
+	}
+	
 }

@@ -1,0 +1,239 @@
+
+/* Copyright INRIA 2007 */
+
+package org.scilab.modules.gui.bridge;
+
+import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menubar.ScilabMenuBarBridge;
+import org.scilab.modules.gui.tab.ScilabTabBridge;
+import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.renderer.FigureMapper;
+
+/**
+ * This class is used to call Scilab GUIs objects from Scilab
+ * @author Vincent COUVERT
+ */
+public class CallScilabBridge {
+
+	/**
+	 * Constructor
+	 */
+	protected CallScilabBridge() {
+		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+	}
+	
+	/**********************************/
+	/* Methods used to create objects */
+	/**********************************/
+	
+	/**
+	 * Create a new Window in Scilab GUIs
+	 * @return the ID of the window in the UIElementMapper
+	 */
+	public static int newWindow() {
+		Window window = ScilabWindow.createWindow();
+		return UIElementMapper.add(window);
+	}
+
+	/**
+	 * Create a new Menubar in Scilab GUIs
+	 * @return the ID of the Menubar in the UIElementMapper
+	 */
+	public static int newMenuBar() {
+		MenuBar menuBar = ScilabMenuBar.createMenuBar();
+		return UIElementMapper.add(menuBar);
+	}
+
+	/**
+	 * Create a new Menu in Scilab GUIs
+	 * @return the ID of the menu in the UIElementMapper
+	 */
+	public static int newMenu() {
+		Menu menu = ScilabMenu.createMenu();
+		return UIElementMapper.add(menu);
+	}
+	
+	/**
+	 * Set the dimensions of an object in Scilab GUIs
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @param width the width of the object
+	 * @param height the height of the object
+	 */
+	public static void setDims(int objID, int width, int height) {
+		UIElementMapper.getCorrespondingUIElement(objID).setDims(new Size(width, height));
+	}
+	
+	/**
+	 * Set the dimensions of an object in Scilab GUIs
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @param text the text to set to the UIElement
+	 */
+	public static void setText(int objID, String text) {
+		// TODO do not cast !
+		((Menu) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
+	}
+	
+	/**
+	 * Set the dimensions of an object in Scilab GUIs
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @return the label of the Menu
+	 */
+	public static String getText(int objID) {
+		// TODO do not cast !
+		return ((Menu) UIElementMapper.getCorrespondingUIElement(objID)).getText();
+	}
+	
+	/*****************************/
+	/* Parent setting properties */
+	/*****************************/
+
+	/**
+	 * Set a figure as parent for an UIElement
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the object in the UIElementMapper
+	 */
+	public static void setFigureAsParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+
+		MenuBar menuBar;
+		int menuBarId;
+
+		// Create a menuBar if not already one associated to the parentTab
+		if (parentTab.getMenuBarId() == UIElementMapper.getDefaultId()) {
+			menuBar = ScilabMenuBar.createMenuBar();
+			menuBarId = UIElementMapper.add(menuBar);
+
+			parentTab.addMenuBar(menuBar);
+			parentTab.setMenuBarId(menuBarId);
+		} else {
+			menuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(parentTab.getMenuBarId());
+			menuBarId = parentTab.getMenuBarId();
+		}
+		// Add the menu to the tab
+		ScilabMenuBarBridge.add(menuBar, (Menu) UIElementMapper.getCorrespondingUIElement(objID));
+
+		// If parent tab is the currently "on top" tab, then the MenuBar is also added to the parent window
+		if (ScilabTabBridge.isCurrentTab(parentTab)) {
+			UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(parentTab)).addMenuBar(menuBar);
+			UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(parentTab)).setMenuBarId(menuBarId);
+		}
+	}
+	
+	/**
+	 * Set root Scilab object (the console tab) as the parent of the menu
+	 * @param objID the id of the menu
+	 */
+	public static void setRootAsParent(int objID) {
+		int consoleTabId = UIElementMapper.getConsoleId();
+		Tab consoleTab = (Tab) UIElementMapper.getCorrespondingUIElement(consoleTabId);
+
+		MenuBar menuBar;
+		int menuBarId;
+
+		// Create a menuBar if not already one associated to the parentTab
+		if (consoleTab.getMenuBarId() == UIElementMapper.getDefaultId()) {
+			menuBar = ScilabMenuBar.createMenuBar();
+			menuBarId = UIElementMapper.add(menuBar);
+
+			consoleTab.addMenuBar(menuBar);
+			consoleTab.setMenuBarId(menuBarId);
+		} else {
+			menuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(consoleTab.getMenuBarId());
+			menuBarId = consoleTab.getMenuBarId();
+		}
+		// Add the menu to the tab
+		ScilabMenuBarBridge.add(menuBar, (Menu) UIElementMapper.getCorrespondingUIElement(objID));
+
+		// If parent tab is the currently "on top" tab, then the MenuBar is also added to the parent window
+		if (ScilabTabBridge.isCurrentTab(consoleTab)) {
+			UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(consoleTab)).addMenuBar(menuBar);
+			UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(consoleTab)).setMenuBarId(menuBarId);
+		}
+		
+	}
+	
+	/**
+	 * Set an other menu as the parent of the menu
+	 * @param menuID the id of the parent menu
+	 * @param objID the id of the menu
+	 */
+	public static void setMenuAsParent(int menuID, int objID) {
+		Menu parentMenu = (Menu) UIElementMapper.getCorrespondingUIElement(menuID);
+		Menu menu = (Menu) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.add(parentMenu, menu);
+	}
+
+	/**
+	 * Set a callback for a Menu
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @param callback the text of the callback
+	 */
+	public static void setMenuCallback(int objID, String callback) {
+		System.out.println("setMenuCallback is not implemented");
+	}
+	
+	/**
+	 * Disable a menu of a Scilab figure giving its name
+	 * @param figureID the id of the figure
+	 * @param menuName the name of the menu
+	 * @param status true to set the menu enabled
+	 */
+	public static void setFigureMenuEnabled(int figureID, String menuName, boolean status) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		
+		MenuBar figureMenuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(parentTab.getMenuBarId());
+		
+		figureMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+	}
+
+	/**
+	 * Disable a menu of a Scilab root window giving its name
+	 * @param menuName the name of the menu
+	 * @param status true to set the menu enabled
+	 */
+	public static void setRootMenuEnabled(String menuName, boolean status) {
+		int consoleTabId = UIElementMapper.getConsoleId();
+		Tab consoleTab = (Tab) UIElementMapper.getCorrespondingUIElement(consoleTabId);
+		
+		MenuBar consoleMenuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(consoleTab.getMenuBarId());
+
+		consoleMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+	}
+	
+	/**
+	 * Delete a menu of a Scilab figure giving its name
+	 * @param figureID the id of the figure
+	 * @param menuName the name of the menu
+	 */
+	public static void removeFigureMenu(int figureID, String menuName) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		
+		MenuBar figureMenuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(parentTab.getMenuBarId());
+		
+		figureMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
+	}
+
+	/**
+	 * Delete a menu of a Scilab root window giving its name
+	 * @param menuName the name of the menu
+	 */
+	public static void removeRootMenu(String menuName) {
+		int consoleTabId = UIElementMapper.getConsoleId();
+		Tab consoleTab = (Tab) UIElementMapper.getCorrespondingUIElement(consoleTabId);
+		
+		MenuBar consoleMenuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(consoleTab.getMenuBarId());
+		
+		if (consoleMenuBar != null) {
+			consoleMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
+		}
+	}
+	
+}

@@ -11,6 +11,7 @@ import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.utils.Position;
@@ -22,7 +23,14 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabTab extends View  implements SimpleTab {
+public class SwingScilabTab extends View implements SimpleTab {
+	
+	private static final long serialVersionUID = 1L;
+	
+	private int parentWindowId;
+	
+	private int elementId;
+
 	/**
 	 * Constructor
 	 * @param name the name of the tab (used to identify it)
@@ -59,7 +67,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 		this.setVisible(true);
 		this.doLayout();
 	}
-
+	
 	/**
 	 * Gets the dimensions (width and height) of a swing Scilab tab
 	 * @return the dimensions of the tab
@@ -155,4 +163,54 @@ public class SwingScilabTab extends View  implements SimpleTab {
 		return this.getComponentZOrder(member);
 	}
 
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(Dockable member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * Get the current status of the Tab in its parent
+	 * @return true is the tab is the tab currently "on top" in its parent
+	 */
+	public boolean isCurrentTab() {
+        // TODO should not always return TRUE
+		return true;
+	}
+
+	/**
+	 * Get the parent window id for this tab
+	 * @return the id of the parent window
+	 */
+	public int getParentWindowId() {
+		return this.parentWindowId;
+	}
+
+	/**
+	 * Set the parent window id for this tab
+	 * @param id the id of the parent window
+	 */
+	public void setParentWindowId(int id) {
+		this.parentWindowId = id;
+	}
+
+	/**
+	 * Get the element id for this tab
+	 * @return id the id of the corresponding tab object
+	 */
+	public int getElementId() {
+		return this.elementId;
+	}
+
+	/**
+	 * Set the element id for this tab
+	 * @param id the id of the corresponding tab object
+	 */
+	public void setElementId(int id) {
+		this.elementId = id;
+	}
 }

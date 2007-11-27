@@ -9,11 +9,13 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
- * Class for tabs is Scilab GUIs
+ * Class for tabs in Scilab GUIs
  * @author Vincent COUVERT
  */
 public class ScilabTab extends ScilabContainer implements Tab {
@@ -21,8 +23,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	/**
 	**	Just let the Bridge do his job translating Scilab thinking to Java
 	*/
-
-
 	private SimpleTab component;
 	
 	/**
@@ -31,6 +31,9 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 */
 	protected ScilabTab(String name) {
 		component = ScilabBridge.createTab(name);
+		component.setElementId(UIElementMapper.add(this));
+		
+		setMenuBarId(UIElementMapper.getDefaultId());
     }
 
 	/**
@@ -145,6 +148,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Console member) {
+		UIElementMapper.setConsoleId(this.getAsSimpleTab().getElementId());
 		return ScilabBridge.addMember(this, member);
 	}
 	
@@ -162,6 +166,15 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	}
 
 	/**
+	 * Sets a MenuBar to a Scilab tab
+	 * @param newMenuBar the tab to add to the tab
+	 * @see org.scilab.modules.gui.tab.Tab#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
+	 */
+	public void addMenuBar(MenuBar newMenuBar) {
+		super.addMenuBar(newMenuBar);
+	}
+	
+	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
@@ -170,4 +183,30 @@ public class ScilabTab extends ScilabContainer implements Tab {
 		return ScilabBridge.addMember(this, member);
 	}
 
+	/**
+	 * Get the current status of the Tab in its parent
+	 * @return true is the tab is the tab currently "on top" in its parent
+	 * @see org.scilab.modules.gui.tab.Tab#isCurrentTab()
+	 */
+	public boolean isCurrentTab() {
+		return ScilabBridge.isCurrentTab(this);
+	}
+
+	/**
+	 * Set the parent window id for this tab
+	 * @param id the id of the parent window
+	 * @see org.scilab.modules.gui.tab.Tab#setParentWindowId(int)
+	 */
+	public void setParentWindowId(int id) {
+		ScilabBridge.setParentWindowId(this, id);
+	}
+	
+	/**
+	 * Get the parent window id for this tab
+	 * @return the id of the parent window
+	 * @see org.scilab.modules.gui.tab.Tab#getParentWindowId()
+	 */
+	public int getParentWindowId() {
+		return ScilabBridge.getParentWindowId(this);
+	}
 }

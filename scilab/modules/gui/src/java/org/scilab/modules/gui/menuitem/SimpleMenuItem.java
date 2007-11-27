@@ -19,6 +19,11 @@ public interface SimpleMenuItem {
 	 * set a mnemonic to a MenuItem
 	 * @param mnemonic the int to add to the MenuItem
 	 */
-	void setMnemonic(int mnemonic);
+	void setMnemonic(char mnemonic);
 	
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the menu is activated
+	 */
+	void setCallback(String command);
 }

@@ -39,6 +39,7 @@
 #include "DrawingBridge.h"
 #include "WindowList.h"
 #include "localization.h"
+#include "InitUIMenu.h" /* Used for ConstructUIMenu */
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -2694,61 +2695,68 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
  */
 sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback,BOOL handle_visible)
 {
+  int ** userData = NULL ;
+  int *  udSize   = NULL ;
+
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciUimenu *ppobj=NULL;
 
-  if ( (sciGetEntityType (pparent) == SCI_FIGURE) || (sciGetEntityType (pparent) == SCI_UIMENU) )
+  if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
+
+  sciSetEntityType (pobj, SCI_UIMENU);
+
+  if ((pobj->pfeatures = MALLOC ((sizeof (sciUimenu)))) == NULL)
     {
-      if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
-
-      sciSetEntityType (pobj, SCI_UIMENU);
-
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciUimenu)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      ppobj=pUIMENU_FEATURE (pobj);
-      if ( sciStandardBuildOperations( pobj, pparent ) == NULL )
-      {
-        return NULL ;
-      }
-
-      if ((pUIMENU_FEATURE (pobj)->label.callback = CALLOC(strlen(callback)+1,sizeof(char))) == NULL )
-	{
-	  sciprint(_("No more place to allocate text string, try a shorter string"));
-	  return (sciPointObj *) NULL;
-	}
-
-      strcpy(pUIMENU_FEATURE (pobj)->label.callback,callback);
-      pUIMENU_FEATURE (pobj)->label.callbacklen =  (int)strlen(callback); 
-
-      pUIMENU_FEATURE (pobj)->visible = TRUE; /* A changer */ 
-
-      pUIMENU_FEATURE (pobj)->label.pStrings = newFullStringMatrix( &label, 1 , 1 ) ;
-
-      if ( pUIMENU_FEATURE (pobj)->label.pStrings == NULL)
-	{
-	  sciprint(_("No more place to allocate label string, try a shorter string"));
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pUIMENU_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      
-      pUIMENU_FEATURE (pobj)->handle_visible=handle_visible;
-      pUIMENU_FEATURE (pobj)->MenuPosition=0;
-      pUIMENU_FEATURE (pobj)->CallbackType=0;
-      pUIMENU_FEATURE (pobj)->Enable=TRUE;
-
-      return (sciPointObj *) pobj;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a FIGURE or a UIMENU\n"));
+      FREE(pobj);
       return (sciPointObj *) NULL;
     }
+  ppobj=pUIMENU_FEATURE (pobj);
+
+  if ((pUIMENU_FEATURE (pobj)->callback = CALLOC(1,sizeof(char))) == NULL )
+    {
+      sciprint(_("No more place to allocates text string, try a shorter string"));
+      return (sciPointObj *) NULL;
+    }
+
+  strcpy(pUIMENU_FEATURE (pobj)->callback,"");
+  pUIMENU_FEATURE (pobj)->callbacklen = 0;
+  pUIMENU_FEATURE (pobj)->MenuPosition=0;
+  pUIMENU_FEATURE (pobj)->CallbackType=0;
+  pUIMENU_FEATURE (pobj)->Enable=TRUE;
+
+
+  /* add the handle in the handle list */
+  if ( sciAddNewHandle(pobj) == -1 )
+    {
+      FREE( pobj->pfeatures ) ;
+      FREE( pobj ) ;
+      return NULL ;
+    }
+
+  /* no sons for now */
+  sciInitSelectedSons( pobj ) ;
+      
+  sciGetRelationship(pobj)->psons        = NULL ;
+  sciGetRelationship(pobj)->plastsons    = NULL ;
+  sciGetRelationship(pobj)->pSelectedSon = NULL ;
+      
+  sciInitVisibility( pobj, TRUE ) ;
+      
+  sciGetPointerToUserData( pobj, &userData, &udSize ) ;
+  *userData = NULL ;
+  *udSize   = 0    ;
+      
+      
+  pobj->pObservers = DoublyLinkedList_new() ;
+  createDrawingObserver( pobj ) ;
+      
+      
+  pobj->pDrawer = NULL ;
+      
+ 
+  InitUIMenu((sciPointObj *) pobj);
+      
+  return (sciPointObj *) pobj;
 }
 /*----------------------------------------------------------------------------*/
 sciPointObj * sciConstructConsole( sciPointObj * pparent )

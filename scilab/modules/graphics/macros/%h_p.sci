@@ -679,7 +679,7 @@ function %h_p(h)
   "parent: "+h.parent.type
   "children: "+fmtchildren(h.children)
   "visible = "+sci2exp(h.visible)
-  "text = "+h.text 
+  "label = "+h.label 
   "callback = "+h.callback
   "callback type = "+h.callback_type
   "handle_visible = "+sci2exp(h.handle_visible)

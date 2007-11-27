@@ -3,8 +3,6 @@
 
 package org.scilab.modules.gui.radiobutton;
 
-import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
-
 /**
  * Bridge for Scilab RadioButton in GUIs
  * @author Marouane BEN JELLOUL

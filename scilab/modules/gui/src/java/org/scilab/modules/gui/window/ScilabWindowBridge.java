@@ -9,6 +9,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.menubar.MenuBar;
 
 /**
@@ -121,6 +122,15 @@ public class ScilabWindowBridge {
 	 */
 	public static void addTab(Window window, Tab newTab) {
 		window.getAsSimpleWindow().addTab(newTab);
+		newTab.getAsSimpleTab().setParentWindowId(window.getAsSimpleWindow().getElementId());
+		// Manages menuBar
+		// If the tab has no menuBar, then the window menuBar is associted to it
+		// Else it keeps its own menuBar
+		if (newTab.getMenuBarId() == UIElementMapper.getDefaultId()) {
+			if (window.getMenuBarId() != UIElementMapper.getDefaultId()) {
+				newTab.setMenuBarId(window.getMenuBarId());
+			}
+		}
 	}
 	
 	/**
@@ -129,6 +139,7 @@ public class ScilabWindowBridge {
 	 * @param newMenuBar the MenuBar to add to the window
 	 */
 	public static void addMenuBar(Window window, MenuBar newMenuBar) {
+		//window.setMenuBarId(newMenuBar.getAsSimpleMenuBar().getElementId());
 		window.getAsSimpleWindow().addMenuBar(newMenuBar);
 	}
 	

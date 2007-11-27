@@ -798,7 +798,7 @@ StringMatrix * sciGetText( sciPointObj * pobj )
       return sciGetText( pLABEL_FEATURE (pobj)->text ) ;
       break;
     case SCI_UIMENU:
-      return pUIMENU_FEATURE (pobj)->label.pStrings;
+      return pUIMENU_FEATURE (pobj)->label;
       break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
@@ -2995,8 +2995,10 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
       *user_data_ptr = &(pSCREEN_FEATURE (pobj)->user_data);
       *size_ptr=&(pSCREEN_FEATURE (pobj)->size_of_user_data);
       break;
-
-	case SCI_UIMENU:
+    case SCI_UIMENU:
+      *user_data_ptr = &(pUIMENU_FEATURE (pobj)->user_data);
+      *size_ptr=&(pUIMENU_FEATURE (pobj)->size_of_user_data);
+      break;
     default:
       *user_data_ptr = (int **)NULL;
       *size_ptr =   (int *)NULL;

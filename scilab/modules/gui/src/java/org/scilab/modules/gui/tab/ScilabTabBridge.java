@@ -4,10 +4,10 @@
 package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -16,7 +16,7 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  */
 public class ScilabTabBridge {
-
+	
 	/**
 	 * Constructor
 	 */
@@ -143,4 +143,39 @@ public class ScilabTabBridge {
 		return (tab.getAsSimpleTab().addMember(member));
 	}
 
+	/**
+	 * Sets a MenuBar to a Scilab tab
+	 * @param tab the tab which we want to add the MenuBar to
+	 * @param newMenuBar the MenuBar to add to the tab
+	 */
+	public static void addMenuBar(Tab tab, MenuBar newMenuBar) {
+		tab.addMenuBar(newMenuBar);
+	}
+
+	/**
+	 * Get the current status of the Tab in its parent
+	 * @param tab the tab which we want to add the MenuBar to
+	 * @return true is the tab is the tab currently "on top" in its parent
+	 */
+	public static boolean isCurrentTab(Tab tab) {
+		return (tab.getAsSimpleTab().isCurrentTab());
+	}
+
+	/**
+	 * Set the parent window id for this tab
+	 * @param tab the tab which we want to set the parent window id
+	 * @param id the id of the parent window
+	 */
+	public static void setParentWindowId(Tab tab, int id) {
+		tab.getAsSimpleTab().setParentWindowId(id);
+	}
+	
+	/**
+	 * Get the parent window id for this tab
+	 * @param tab the tab which we want to get the parent window id
+	 * @return the id of the parent window
+	 */
+	public static int getParentWindowId(Tab tab) {
+		return tab.getAsSimpleTab().getParentWindowId();
+	}
 }

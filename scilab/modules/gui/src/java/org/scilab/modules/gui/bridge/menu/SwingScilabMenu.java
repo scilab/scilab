@@ -8,13 +8,20 @@ import javax.swing.JMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.SimpleMenu;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.SciActionListener;
+import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab Menus in GUIs
  * @author Marouane BEN JELLOUL
  */
 public class SwingScilabMenu extends JMenu implements SimpleMenu {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructor
@@ -52,6 +59,16 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	}
 	
 	/**
+	 * Get the Text of a swing Scilab Menu
+	 * @return the label of the Menu
+	 * @see javax.swing.AbstractButton#setText(java.lang.String)
+	 */
+	@Override
+	public String getText() {
+		return super.getText();
+	}
+
+	/**
 	 * set a mnemonic to a Menu
 	 * @param mnemonic the mnemonic to set to the Menu
 	 * @see org.scilab.modules.gui.menu.Menu#setMnemonic(org.scilab.modules.gui.widget.int)
@@ -71,4 +88,100 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 		super.addSeparator();
 	}
 
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the menu is activated
+	 */
+	public void setCallback(String command) {
+		super.addMenuListener(new SciActionListener(command));
+	}
+
+	/**
+	 * Add a Scilab MenuBar to a Scilab menu
+	 * @param menuBarToAdd the Scilab MenuBar to add to the Scilab menu
+	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
+	 */
+	public void addMenuBar(MenuBar menuBarToAdd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Add a Scilab Toolbar to a Scilab menu
+	 * @param toolBarToAdd the Scilab ToolBar to add to the Scilab menu
+	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.menubar.ToolBar)
+	 */
+	public void addToolBar(ToolBar toolBarToAdd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Draws a swing Scilab menu
+	 * @see org.scilab.modules.gui.UIElement#draw()
+	 */
+	public void draw() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a swing Scilab menu
+	 * @return the dimensions of the menu
+	 * @see org.scilab.modules.gui.UIElement#getDims()
+	 */
+	public Size getDims() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab menu
+	 * @return the position of the menu
+	 * @see org.scilab.modules.gui.UIElement#getPosition()
+	 */
+	public Position getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a swing Scilab menu
+	 * @param newSize the dimensions to set to the menu
+	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+	 */
+	public void setDims(Size newSize) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab menu
+	 * @param newPosition the position to set to the menu
+	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+	 */
+	public void setPosition(Position newPosition) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Get the id of the menu bar associated to the menu (not the parent menubar)
+	 * @return the id of the menubar
+	 * @see org.scilab.modules.gui.uielement.UIElement#getMenuBarId()
+	 */
+	public int getMenuBarId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * Set the id of the menu bar associated to the menu (not the parent menubar)
+	 * @param id the id of the menubar
+	 * @see org.scilab.modules.gui.uielement.UIElement#getMenuBarId()
+	 */
+	public void setMenuBarId(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

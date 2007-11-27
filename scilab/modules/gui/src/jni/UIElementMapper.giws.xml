@@ -1,0 +1,6 @@
+<package name="org.scilab.modules.gui.utils">
+  <object name="UIElementMapper">
+	<method name="getMaxId" returnType="int">
+	</method>
+  </object>
+</package>

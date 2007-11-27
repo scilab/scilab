@@ -673,8 +673,8 @@ int DestroyLabel (sciPointObj * pthis)
 
 int DestroyUimenu (sciPointObj * pthis)
 {
-  deleteMatrix( pUIMENU_FEATURE (pthis)->label.pStrings ) ;
-  FREE (pUIMENU_FEATURE (pthis)->label.callback);
+  FREE(pUIMENU_FEATURE (pthis)->label) ;
+  FREE (pUIMENU_FEATURE (pthis)->callback);
 
   return sciStandardDestroyOperations(pthis) ;
 }

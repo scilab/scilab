@@ -167,7 +167,7 @@ public class ScilabBridge {
 	}
 
 	/**
-	 * Sets a MeunBar to a window
+	 * Sets a MenuBar to a window
 	 * @param window the window which we want to add the MeunBar to
 	 * @param newMenuBar the MeunBar to add to the window
 	 */
@@ -452,7 +452,43 @@ public class ScilabBridge {
 	public static int addMember(Tab tab, Canvas member) {
 		return ScilabTabBridge.addMember(tab, member);
 	}
+	
+	/**
+	 * Sets a MenuBar to a tab
+	 * @param tab the tab which we want to add the MenuBar to
+	 * @param newMenuBar the MenuBar to add to the tab
+	 */
+	public static void addMenuBar(Tab tab, MenuBar newMenuBar) {
+		ScilabTabBridge.addMenuBar(tab, newMenuBar);
+	}
+	
+	/**
+	 * Get the current status of the Tab in its parent
+	 * @param tab the tab we want to get the status of
+	 * @return true is the tab is the tab currently displayed in its parent
+	 */
+	public static boolean isCurrentTab(Tab tab) {
+		return ScilabTabBridge.isCurrentTab(tab);
+	}
 
+	/**
+	 * Set the parent window id for this tab
+	 * @param tab the tab we want to set the parent window id of
+	 * @param id the id of the parent window
+	 */
+	public static void setParentWindowId(Tab tab, int id) {
+		ScilabTabBridge.setParentWindowId(tab, id);
+	}
+	
+	/**
+	 * Get the parent window id for this tab
+	 * @param tab the tab we want to get the parent window id of
+	 * @return the id of the parent window
+	 */
+	public static int getParentWindowId(Tab tab) {
+		return ScilabTabBridge.getParentWindowId(tab);
+	}
+	
 	/******************/
 	/* Console Bridge */
 	/******************/
@@ -787,10 +823,19 @@ public class ScilabBridge {
 	 * @param menuItem the MenuItem which we want to add the mnemonic to
 	 * @param mnemonic the mnemonic to add to the MenuItem
 	 */
-	public static void setMnemonic(MenuItem menuItem, int mnemonic) {
+	public static void setMnemonic(MenuItem menuItem, char mnemonic) {
 		ScilabMenuItemBridge.setMnemonic(menuItem, mnemonic);
 	}
 	
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param menuItem the MenuItem which we want to add the mnemonic to
+	 * @param command the Scilab command to execute when the menu is activated
+	 */
+	public static void setCallback(MenuItem menuItem, String command) {
+		ScilabMenuItemBridge.setCallback(menuItem, command);
+	}
+
 	/*****************/
 	/* Menu Bridge */
 	/*****************/
@@ -828,6 +873,15 @@ public class ScilabBridge {
 	 */
 	public static void setText(Menu menu, String newText) {
 		ScilabMenuBridge.setText(menu, newText);
+	}
+	
+	/**
+	 * Get the text to a menu
+	 * @param menu the Menu which we want to get the text of
+	 * @return the text of the menu
+	 */
+	public static String getText(Menu menu) {
+		return ScilabMenuBridge.getText(menu);
 	}
 	
 	/**
@@ -1161,9 +1215,9 @@ public class ScilabBridge {
 		return ScilabFlowLayoutBridge.createFlowLayout();
 	}
 	
-	/*****************/
+	/***********************/
 	/* BorderLayout Bridge */
-	/*****************/
+	/***********************/
 	/**
 	 * Creates a new BorderLayout
 	 * @return the created BorderLayout

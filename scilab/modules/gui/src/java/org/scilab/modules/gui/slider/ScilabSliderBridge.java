@@ -3,8 +3,6 @@
 
 package org.scilab.modules.gui.slider;
 
-import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
-
 /**
  * Bridge for Scilab Sliders in GUIs
  * @author Marouane BEN JELLOUL

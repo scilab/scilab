@@ -1007,9 +1007,9 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
       return sciSetStrings( pLABEL_FEATURE(pObjDest)->text, pStrings ) ;
       break;
     case SCI_UIMENU:
-      deleteMatrix( pUIMENU_FEATURE (pObjDest)->label.pStrings ) ;
-      pUIMENU_FEATURE (pObjDest)->label.pStrings = copyStringMatrix( pStrings ) ;
-      if ( pUIMENU_FEATURE (pObjDest)->label.pStrings == NULL )
+      FREE(pUIMENU_FEATURE (pObjDest)->label) ;
+      pUIMENU_FEATURE (pObjDest)->label = *getStrMatData(pStrings);
+      if ( pUIMENU_FEATURE (pObjDest)->label == NULL )
       {
         return -1 ;
       }
@@ -1081,9 +1081,9 @@ sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
       return sciSetText( pLABEL_FEATURE(pobj)->text, text, nbRow, nbCol ) ;
       break;
     case SCI_UIMENU:
-      deleteMatrix( pUIMENU_FEATURE (pobj)->label.pStrings ) ;
-      pUIMENU_FEATURE (pobj)->label.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
-      if ( pUIMENU_FEATURE (pobj)->label.pStrings == NULL )
+      FREE(pUIMENU_FEATURE (pobj)->label) ;
+      pUIMENU_FEATURE (pobj)->label = *text;
+      if ( pUIMENU_FEATURE (pobj)->label == NULL )
       {
         return -1 ;
       }

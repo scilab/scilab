@@ -21,6 +21,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.SciDockingListener;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.SimpleWindow;
 
@@ -37,9 +38,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	private static final int DEFAULTHEIGHT = 500;
 
 	private DefaultDockingPort sciDockingPort;
+	private SciDockingListener sciDockingListener;
 	private SimpleMenuBar menuBar;
 	private SimpleToolBar toolBar;
 	private SimpleTextBox infoBar;
+	
+	private int elementId; // the id of the Window which contains this SimpleWindow
 	
 	/**
 	 * Constructor
@@ -63,6 +67,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		this.menuBar = null;
 		this.toolBar = null;
 		this.infoBar = null;
+		
+		sciDockingListener = new SciDockingListener();
+		sciDockingPort.addDockingListener(sciDockingListener);
 	}
 
 	/**
@@ -151,6 +158,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
 	 */
 	public void addTab(Tab newTab) {
+		((SwingScilabTab) newTab.getAsSimpleTab()).setParentWindowId(this.elementId);
 		DockingManager.dock((SwingScilabTab) newTab.getAsSimpleTab(), this.getDockingPort());
 	}
 	
@@ -161,9 +169,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 */
 	public void addMenuBar(MenuBar newMenuBar) {
 		this.menuBar = newMenuBar.getAsSimpleMenuBar();
-		super.setJMenuBar((SwingScilabMenuBar) this.menuBar);
+		super.setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
 	}
-		
+
 	/**
 	 * Sets a Scilab ToolBar to a Scilab window
 	 * @param newToolBar the Scilab ToolBar to set to the Scilab window
@@ -182,5 +190,22 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	public void addInfoBar(TextBox newInfoBar) {
 		this.infoBar = newInfoBar.getAsSimpleTextBox();
 		super.add((SwingScilabTextBox) this.infoBar, java.awt.BorderLayout.PAGE_END);
+	}
+
+	/**
+	 * Get the element id for this window
+	 * @return id the id of the corresponding window object
+	 */
+	public int getElementId() {
+		return elementId;
+	}
+
+	/**
+	 * Set the element id for this window
+	 * @param id the id of the corresponding window object
+	 */
+	public void setElementId(int id) {
+		this.elementId = id;
+		sciDockingListener.setAssociatedWindowId(id);
 	}
 }

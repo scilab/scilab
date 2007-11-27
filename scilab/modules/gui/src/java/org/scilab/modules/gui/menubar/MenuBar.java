@@ -4,13 +4,14 @@
 package org.scilab.modules.gui.menubar;
 
 import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.uielement.UIElement;
 
 /**
  * Interface for MenuBar associated to objects in Scilab GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public interface MenuBar {
+public interface MenuBar extends UIElement {
 	//	 TODO : Add the methods that are usefull for a MenuBar
 	
 	/**

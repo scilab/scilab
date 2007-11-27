@@ -33,7 +33,44 @@ public class ScilabMenuBridge {
 	 * @param newText the new text to set to the menu
 	 */
 	public static void setText(Menu menu, String newText) {
-		menu.getAsSimpleMenu().setText(newText);
+		String label = newText;
+		
+		// Try to set a mnemonic according to text (character preeceded by a &)
+		for (int charIndex = 0; charIndex < newText.length(); charIndex++) {
+			if (newText.charAt(charIndex) == '&') {
+				
+				boolean canBeAMnemonic = true;
+				
+				// Previous char must not be a &
+				if ((charIndex != 0) && (newText.charAt(charIndex - 1) == '&')) {
+					canBeAMnemonic = false;
+				}
+
+				if (canBeAMnemonic && newText.charAt(charIndex + 1) != '&') {
+					// A mnemonic
+					menu.getAsSimpleMenu().setMnemonic(newText.charAt(charIndex + 1));
+					
+					// Have to remove the & used to set a Mnemonic
+					String firstPart = newText.substring(0, Math.max(charIndex - 1, 0)); // Before &
+					String secondPart = newText.substring(Math.min(charIndex + 1, newText.length()), newText.length()); // After &
+					label = firstPart + secondPart; 
+					break;
+				}
+
+			}
+		}
+
+		// Set the text after relacing all && (display a & in the label) by &
+		menu.getAsSimpleMenu().setText(label.replaceAll("&&", "&"));
+	}
+	
+	/**
+	 * Get a text of a menu
+	 * @param menu the Menu which we want to set the text to
+	 * @return the text of the menu
+	 */
+	public static String getText(Menu menu) {
+		return menu.getAsSimpleMenu().getText();
 	}
 	
 	/**

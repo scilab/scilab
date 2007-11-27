@@ -3,8 +3,6 @@
 
 package org.scilab.modules.gui.listbox;
 
-import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
-
 /**
  * Bridge for Scilab ListBox in GUIs
  * @author Marouane BEN JELLOUL

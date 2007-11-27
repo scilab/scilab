@@ -9,6 +9,7 @@ package org.scilab.modules.gui.graphicWindow;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
@@ -65,7 +66,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	}
 
 	public void setCanvasSize(int width, int height) {
-		parentCanvas.setDims(new Size(width,height));
+		parentCanvas.setDims(new Size(width, height));
 	}
 
 	public void setInfoMessage(String infoMessage) {
@@ -90,5 +91,9 @@ public class ScilabRendererProperties implements RendererProperties {
     	// pixmap "on" means auto swap buffer off.
     	return !(parentCanvas.getAutoSwapBufferMode());
     }
+
+	public Tab getParentTab() {
+		return parentTab;
+	}
 	
 }

@@ -16,5 +16,29 @@ public interface SimpleMenuBar {
 	 * @param newMenu the Menu to add to the MenuBar
 	 */
 	void add(Menu newMenu);
+
+	/**
+	 * Set the element id for this menubar
+	 * @param id the id of the corresponding menubar object
+	 */
+	void setElementId(int id);
 	
+	/**
+	 * Get the element id for this menubar
+	 * @return id the id of the corresponding menubar object
+	 */
+	int getElementId();
+	
+	/**
+	 * Enable/Disable a menu giving its name
+	 * @param menuName the name of the menu
+	 * @param status true to enable the menu
+	 */
+	void setMenuEnabled(String menuName, boolean status);
+	
+	/**
+	 * Remove a menu giving its name
+	 * @param menuName the name of the menu
+	 */
+	void removeMenu(String menuName);
 }

@@ -53,4 +53,21 @@ public interface Tab extends Container {
 	 */
 	int addMember(Frame member);
 	
+	/**
+	 * Get the current status of the Tab in its parent
+	 * @return true is the tab is the tab currently "on top" in its parent
+	 */
+	boolean isCurrentTab();
+	
+	/**
+	 * Set the parent window id for this tab
+	 * @param id the id of the parent window
+	 */
+	void setParentWindowId(int id);
+	
+	/**
+	 * Get the parent window id for this tab
+	 * @return the id of the parent window
+	 */
+	int getParentWindowId();
 }

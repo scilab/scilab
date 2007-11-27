@@ -5,12 +5,16 @@ package org.scilab.modules.gui.menubar;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.uielement.ScilabUIElement;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
  * Class for Scilab MenuBars in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class ScilabMenuBar implements MenuBar {
+public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 
 	private SimpleMenuBar component;
 	
@@ -19,6 +23,9 @@ public class ScilabMenuBar implements MenuBar {
 	 */
 	protected ScilabMenuBar() {
 		component = ScilabBridge.createMenuBar();
+		component.setElementId(UIElementMapper.add(this));
+		
+		setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
 	/**
@@ -44,5 +51,60 @@ public class ScilabMenuBar implements MenuBar {
 	 */
 	public void add(Menu newMenu) {
 		ScilabBridge.add(this, newMenu);
+	}
+
+	/**
+	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 */
+	public void draw() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * @return nothing
+	 */
+	public Size getDims() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * @return nothing
+	 */
+	public Position getPosition() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * @return nothing
+	 */
+	public boolean isVisible() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * @param newSize is not used
+	 */
+	public void setDims(Size newSize) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * @param newPosition is not used
+	 */
+	public void setPosition(Position newPosition) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * @param newVisibleState is not used
+	 */
+	public void setVisible(boolean newVisibleState) {
+		throw new UnsupportedOperationException();
 	}
 }

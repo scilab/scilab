@@ -40,7 +40,17 @@ public class ScilabMenuItemBridge {
 	 * @param menuItem the MenuItem which we want to add the mnemonic to
 	 * @param mnemonic the mnemonic to add to the MenuItem
 	 */
-	public static void setMnemonic(MenuItem menuItem, int mnemonic) {
+	public static void setMnemonic(MenuItem menuItem, char mnemonic) {
 		menuItem.getAsSimpleMenuItem().setMnemonic(mnemonic);
 	}
+	
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param menuItem the MenuItem which we want to add the mnemonic to
+	 * @param command the Scilab command to execute when the menu is activated
+	 */
+	public static void setCallback(MenuItem menuItem, String command) {
+		menuItem.getAsSimpleMenuItem().setCallback(command);
+	}
+
 }

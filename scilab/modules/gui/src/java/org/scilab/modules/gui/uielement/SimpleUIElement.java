@@ -13,6 +13,18 @@ import org.scilab.modules.gui.utils.Size;
  * @author Marouane BEN JELLOUL
  */
 public interface SimpleUIElement {
+	
+	/**
+	 * Get the Id of the element in the UIElementMapper
+	 * @return the Id of the UIElement
+	 */
+	int getElementId();
+	
+	/**
+	 * Set the Id of the element in the UIElementMapper
+	 * @param id the Id of the UIElement
+	 */
+	void setElementId(int id);
 
 	/**
 	 * Sets a MenuBar to a window

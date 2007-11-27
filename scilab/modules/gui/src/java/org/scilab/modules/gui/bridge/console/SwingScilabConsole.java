@@ -29,6 +29,8 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
 	private static final long serialVersionUID = 1L;
 	
+	private int elementId;
+	
 	/**
 	 * Constructor
 	 */
@@ -211,10 +213,28 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	}
 
 	/**
-	   * Sets the prompt displayed in the console
-	   * @param prompt the prompt to be displayed in the console
-	   */
+	  * Sets the prompt displayed in the console
+	  * @param prompt the prompt to be displayed in the console
+	  */
 	public void setPrompt(String prompt) {
 		this.getConfiguration().getPromptView().setDefaultPrompt(prompt);
+	}
+	
+	/**
+	 * Get the element id for this console
+	 * @return id the id of the corresponding console object
+	 */
+	public int getElementId() {
+		// TODO Auto-generated method stub
+		return this.elementId;
+	}
+
+	/**
+	 * Set the element id for this console
+	 * @param id the id of the corresponding console object
+	 */
+	public void setElementId(int id) {
+		// TODO Auto-generated method stub
+		this.elementId = id;
 	}
 }

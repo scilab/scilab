@@ -6,6 +6,7 @@ package org.scilab.modules.gui.console;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.dockable.ScilabDockable;
 
 /**
@@ -22,6 +23,9 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 */
 	protected ScilabConsole() {
 		component = ScilabBridge.createConsole();
+		component.setElementId(UIElementMapper.add(this));
+		
+		setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
 	/**

@@ -13,89 +13,130 @@
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
+#include "localization.h"
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
+#include "SetPropertyStatus.h"
+#include "SetHashTable.h"
 /*--------------------------------------------------------------------------*/
 int sci_UImenu( char *fname,unsigned long fname_len )
 {
-  int numrow,numcol,outindex;
-  int m1,n1,l1;
-  int m2,n2,l2;
-  int m3,n3,l3;
+  int nbRow = 0, nbCol = 0, stkAdr = 0;
+
+  int setStatus = SET_PROPERTY_SUCCEED;
+
+  int inputIndex = 0, beginIndex = 0;
 
   char *labelmenu=NULL;
   char *callbackmenu=NULL;
+  char *propertyName=NULL;
 
   sciPointObj *pParent=NULL;
 
-  unsigned long GraphicHandle=0;
+  unsigned long GraphicHandle = 0;
 
-  CheckRhs(2,3);
-  CheckLhs(0,1);
+  /* Create a new menu */
+  GraphicHandle=sciGetHandle(ConstructUimenu (pParent,labelmenu,callbackmenu,TRUE));
 
-  if (Rhs == 2)
+  /**
+   * Odd number of input arguments
+   * First input is the parent ID
+   * All event inputs are property names
+   * All odd (except first) inputs are property values
+   */
+  if (Rhs%2==1)
     {
-      if ( (VarType(1) == sci_strings) && (VarType(2) == sci_strings) )
-	{
-	  pParent= (sciPointObj *) sciGetCurrentFigure(); 
-			
+      if (VarType(1) != sci_handles)
+        {
+          Scierror(999,_("First input argument must be a graphic handle."));
+          return FALSE;
+        }
+      else /* Get parent ID */
+        {
+	  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
 
-	  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-	  labelmenu = cstk(l1); 
-
-	  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-	  callbackmenu = cstk(l2); 
-	}
-      else
-	{
-	  Scierror(999,"Incorrect parameter(s)");
-	  return 0;
-	}
-    }
-  else
-    {
-      /* Rhs == 3 */
-      if ( (VarType(1) == sci_handles) && (VarType(2) == sci_strings) && (VarType(3) == sci_strings) )
-	{
-	  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
-	  pParent=sciGetPointerFromHandle((long)*hstk(l1));
+          if (nbRow*nbCol != 1)
+            {
+	      Scierror(999,_("First input argument must be a single handle."));
+	      return FALSE;
+            }
+	  pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
 	  if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
 	    {
-	      Scierror(999,"Must be a figure or a uimenu parent.");
-	      return 0;
+	      Scierror(999,_("Parent must be a figure or a uimenu."));
+	      return FALSE;
 	    }
 
+          // Set the parent property
+          callSetProperty((sciPointObj*) GraphicHandle, 1, sci_handles, nbRow, nbCol, "parent");
+          return TRUE;
 
-	  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-	  labelmenu = cstk(l2); 
+        }
 
-	  GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-	  callbackmenu = cstk(l3); 
-
-	}
-      else
-	{
-	  Scierror(999,"Incorrect parameter(s)");
-	  return 0;
-	}
-
+      // First input parameter which is a property name
+      beginIndex = 2;
+    }
+  /**
+   * Even number of input arguments
+   * All odd inputs are property names
+   * All even inputs are property values
+   */
+  else
+    {
+      // First input parameter which is a property name
+      beginIndex = 1;
     }
 
+  /* Read and set all properties */
+  for(inputIndex = beginIndex; inputIndex<Rhs; inputIndex = inputIndex+2)
+    {
+      /* Read property name */
+      if (VarType(inputIndex) != sci_strings)
+        {
+          Scierror(999, _("Property name must be a character string."));
+          return FALSE;
+        }
+      else
+        {
+          GetRhsVar(inputIndex,STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
+          propertyName = cstk(stkAdr); 
+        }
+      
+      /* Read property value */
+      switch (VarType(inputIndex + 1)) {
+      case sci_matrix:
+        GetRhsVar(inputIndex + 1,MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
+        setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_matrix, nbRow, nbCol, propertyName);
+        break;
+      case sci_strings:
+        GetRhsVar(inputIndex + 1,STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+        setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_strings, nbRow, nbCol, propertyName);
+        break;
+      case sci_handles:
+        GetRhsVar(inputIndex + 1,GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
+        setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, propertyName);
+        break;
+      default:
+        setStatus = SET_PROPERTY_ERROR;
+        break;
+      }
+      if (setStatus == SET_PROPERTY_ERROR)
+        {
+          Scierror(999, _("Could not set property %s.\n"), propertyName);              
+          return FALSE;
+        }
+    }
 
-  sciprint("%s %s\n",labelmenu,callbackmenu);
-
-  GraphicHandle=sciGetHandle(ConstructUimenu (pParent,labelmenu,callbackmenu,TRUE));
-	
-
-  numrow   = 1;
-  numcol   = 1;
-  CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
-  *hstk(outindex) = GraphicHandle;
-	
+  /* Create return variable */
+  nbRow = 1;
+  nbCol = 1;
+  CreateVar(Rhs+1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+  *hstk(stkAdr) = GraphicHandle;
 
   LhsVar(1)=Rhs+1;
-  return 0;
+
+  return TRUE;
 }
 /*--------------------------------------------------------------------------*/

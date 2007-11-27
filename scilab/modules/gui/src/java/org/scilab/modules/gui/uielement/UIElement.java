@@ -29,11 +29,11 @@ public interface UIElement {
 
 	/**
 	 * Associate the Menu bar to the UIElement
-	 * @param toolMenuToAdd - the Tool bar.
+	 * @param menuBarToAdd - the Menu bar.
 	 */
 	// FIXME : Must be available at all !!
-	void addMenuBar(MenuBar toolMenuToAdd);
-
+	void addMenuBar(MenuBar menuBarToAdd);
+	
 //	public abstract void resize();
 //
 //	public abstract void focus();
@@ -105,4 +105,15 @@ public interface UIElement {
 	 */
 	//void setBorder(LineBorder lineBorder);
 	
+	/**
+	 * Get the Id of the menubar in the UIElementMapper
+	 * @return the Id of the UIElement
+	 */
+	int getMenuBarId();
+	
+	/**
+	 * Set the Id of the menubar in the UIElementMapper
+	 * @param id the Id of the UIElement
+	 */
+	void setMenuBarId(int id);
 }

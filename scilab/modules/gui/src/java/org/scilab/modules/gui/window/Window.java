@@ -4,10 +4,8 @@
 package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.uielement.UIElement;
-import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ToolBar;
 
 /**
  * Interface for Scilab GUIs windows
@@ -15,23 +13,6 @@ import org.scilab.modules.gui.toolbar.ToolBar;
  * @author Bruno JOFRET
  */
 public interface Window extends UIElement {
-
-	
-	/**
-	 * Associate the Tool bar to the UIElement
-	 * @param toolBarToAdd - the Tool bar.
-	 */
-	// FIXME : Must be removed
-	// Comes from inherited UIElement
-	void addToolBar(ToolBar toolBarToAdd);
-
-	/**
-	 * Associate the Menu bar to the UIElement
-	 * @param toolMenuToAdd - the Tool bar.
-	 */
-	// FIXME : Must be removed
-	// Comes from inherited UIElement
-	void addMenuBar(MenuBar toolMenuToAdd);
 	
 	/**
 	 * Gets a much more dummy Objects

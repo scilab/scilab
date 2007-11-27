@@ -4,12 +4,14 @@
 package org.scilab.modules.gui.menu;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Interface for SimpleMenu the associated object to Scilab GUIs Menu
  * @author Marouane BEN JELLOUL
  */
-public interface SimpleMenu {
+public interface SimpleMenu extends Widget {
+	
 	/**
 	 * Append a MenuItem to the Menu
 	 * @param newMenuItem the MenuItem to add to the Menu
@@ -29,6 +31,12 @@ public interface SimpleMenu {
 	void setText(String newText);
 	
 	/**
+	 * Gets the text of the Menu
+	 * @return the text of the Menu
+	 */
+	String getText();
+	
+	/**
 	 * set a mnemonic to the Menu
 	 * @param mnemonic the new mnemonic of the Menu
 	 */
@@ -38,5 +46,4 @@ public interface SimpleMenu {
 	 * Add a Separator to a Menu
 	 */
 	void addSeparator();
-
 }

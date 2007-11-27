@@ -87,7 +87,7 @@ global %browsehelp
 clear %browsehelp with_tk with_gtk loaddefaultbrowser //remove the local variable
 
 // Menu for Help and editor ===========================================
-if grep(args,'scilex')<>[] then
+if grep(args,'lt-scilab-bin')<>[] then
   if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs")&(args<>"-nogui") then
 
     if ~MSDOS then
@@ -102,7 +102,7 @@ if grep(args,'scilex')<>[] then
     end
   end
 end
-clear ans  %b_h_s args with_tk delmenu addmenu
+clear ans  %b_h_s args with_tk addmenu addMenuSubMenusCallback addMenuSubMenus addSingleMenuCallback addSingleMenu
 // Protect variable previously defined  ================================
 predef('all')
 // Graphic mode and Startup info ======================================

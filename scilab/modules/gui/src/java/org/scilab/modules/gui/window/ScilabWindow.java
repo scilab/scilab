@@ -10,6 +10,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.menubar.MenuBar;
 
 /**
@@ -28,14 +29,19 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 */
 	protected ScilabWindow() {
 		component = ScilabBridge.createWindow();
+		component.setElementId(UIElementMapper.add(this));
+
 		super.addMenuBar(null);
 		super.addToolBar(null);
 		// FIXME : infoBar must not be null when creating a Window !!
 		// Setter should not exists as used in java.
 		// Just think Scilab...
 		this.infoBar = null;
-	}
+		
+		setMenuBarId(UIElementMapper.getDefaultId());
 
+	}
+	
 	/**
 	 * Creates a Scilab window object
 	 * @return the created window
@@ -142,7 +148,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	}
 
 	/**
-	 * Sets a MeunBar to a Scilab window
+	 * Sets a MenuBar to a Scilab window
 	 * @param newMenuBar the tab to add to the window
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
 	 */

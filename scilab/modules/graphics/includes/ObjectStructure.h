@@ -657,8 +657,10 @@ typedef struct
 {
   sciRelationShip relationship;
   /** */
-  sciText label; /* Callback in sciText struct. */
-  /** specifies if this object is visble             */
+  char *label;
+  char *callback;
+  int callbacklen;
+  /** specifies if this object is visible             */
   BOOL visible;
   BOOL handle_visible;
   BOOL Enable;
@@ -671,6 +673,12 @@ typedef struct
 	int IDM_this;
   #endif
 
+  /* Vincent */
+  int * user_data;
+  int size_of_user_data;
+
+  int hashMapIndex;
+  /* Vincent */
 
 }/** */
 sciUimenu;

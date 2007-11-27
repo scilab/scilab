@@ -12,7 +12,8 @@
 #include "Interaction.h"
 #include "sciprint.h"
 #include "SetPropertyStatus.h"
-
+#include "InitUIMenu.h"
+#include "GetProperty.h"
 /*------------------------------------------------------------------------*/
 int set_callback_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
@@ -22,6 +23,13 @@ int set_callback_property( sciPointObj * pobj, int stackPointer, int valueType, 
     return SET_PROPERTY_ERROR ;
   }
 
-  return sciAddCallback( pobj, getStringFromStack( stackPointer ), nbRow * nbCol, 1 ) ;
+  if (sciGetEntityType(pobj) == SCI_UIMENU)
+    {
+      return setMenuCallback(pobj, stackPointer, valueType, nbRow, nbCol);
+    }
+  else
+    {
+      return sciAddCallback( pobj, getStringFromStack( stackPointer ), nbRow * nbCol, 1 ) ;
+    }
 }
 /*------------------------------------------------------------------------*/

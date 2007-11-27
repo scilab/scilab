@@ -138,5 +138,6 @@ int get_screen_position_property(      sciPointObj * pobj ) ;
 int get_dimension_property(            sciPointObj * pobj ) ;
 int get_event_handler_enable_property( sciPointObj * pobj ) ;
 int get_event_handler_property(        sciPointObj * pobj ) ;
+int get_label_property(        sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

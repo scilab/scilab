@@ -93,4 +93,16 @@ public interface SimpleWindow {
 	 * @param newToolBar the ToolBar to set to the window
 	 */
 	void addToolBar(ToolBar newToolBar);
+	
+	/**
+	 * Set the element id for this window
+	 * @param id the id of the corresponding window object
+	 */
+	void setElementId(int id);
+	
+	/**
+	 * Get the element id for this window
+	 * @return id the id of the corresponding window object
+	 */
+	int getElementId();
 }

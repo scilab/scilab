@@ -36,7 +36,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 126
+#define NB_PROPERTIES 127
 
 /**
 * list of all property names and associated functions in scilab
@@ -168,7 +168,8 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "screen_position"     , set_screen_position_property      },
   { "dimension"           , set_dimension_property            },
   { "event_handler_enable", set_event_handler_enable_property },
-  { "event_handler"       , set_event_handler_property        }
+  { "event_handler"       , set_event_handler_property        },
+  { "label"       , set_label_property        }
 } ;
 
 /*--------------------------------------------------------------------------*/
@@ -205,7 +206,7 @@ int callSetProperty( sciPointObj * pObj, int stackPointer, int valueType, int nb
   setPropertyFunc accessor = searchSetHashtable( setHashTable, propertyName ) ;
   if ( accessor == NULL )
   {
-    sciprint( "Unknown property.\n" ) ;
+    sciprint( "Unknown property: %s.\n", propertyName ) ;
     return -1 ;
   }
   return accessor( pObj, stackPointer, valueType, nbRow, nbCol ) ;

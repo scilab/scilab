@@ -16,7 +16,7 @@ import org.scilab.modules.gui.utils.Size;
  * must be able to do as a GUI Component
  * @author Bruno JOFRET
  */
-public interface SimpleTab  {
+public interface SimpleTab {
 
 	/**
 	 * Gets the Name of a tab
@@ -92,5 +92,34 @@ public interface SimpleTab  {
 	 * Draws an Tab
 	 */
 	void draw();
+	
+	/**
+	 * Get the current status of the Tab in its parent
+	 * @return true is the tab is the tab currently "on top" in its parent
+	 */
+	boolean isCurrentTab();
+	
+	/**
+	 * Set the parent window id for this tab
+	 * @param id the id of the parent window
+	 */
+	void setParentWindowId(int id);
+	
+	/**
+	 * Get the parent window id for this tab
+	 * @return the id of the parent window
+	 */
+	int getParentWindowId();
 
+	/**
+	 * Set the element id for this tab
+	 * @param id the id of the corresponding tab object
+	 */
+	void setElementId(int id);
+	
+	/**
+	 * Get the element id for this tab
+	 * @return id the id of the corresponding tab object
+	 */
+	int getElementId();
 }

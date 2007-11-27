@@ -19,6 +19,10 @@ src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c
 
+GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
+src/jni/CallScilabBridge.cpp
+
+GIWS_WRAPPERS = src/jni/DrawableRectangleGL.giws.xml
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_x_message_modeless.c \
@@ -29,10 +33,9 @@ sci_gateway/c/sci_raise_window.c \
 sci_gateway/c/sci_x_choose.c \
 sci_gateway/c/sci_xgetfile.c \
 sci_gateway/c/sci_x_message.c \
-sci_gateway/c/sci_unsetmenu_old.c \
-sci_gateway/c/sci_delmenu_old.c \
-sci_gateway/c/sci_addmenu_old.c \
-sci_gateway/c/sci_setmenu_old.c \
+sci_gateway/c/sci_unsetmenu.c \
+sci_gateway/c/sci_delmenu.c \
+sci_gateway/c/sci_setmenu.c \
 sci_gateway/c/sci_getlookandfeel.c \
 sci_gateway/c/sci_getinstalledlookandfeels.c \
 sci_gateway/c/sci_setlookandfeel.c \
@@ -54,9 +57,22 @@ libscigui_la_CFLAGS=	-Isrc/c/ \
 			$(TCL_INC_PATH) \
 			$(Tk_INC_PATH) \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-Isrc/cpp/ \
+			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
 
-libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
+libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes/
+
+libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ \
+	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/renderer/src/jni/ \
+			-I$(top_srcdir)/modules/renderer/src/cpp/ \
+			-I$(top_srcdir)/modules/renderer/src/cpp/figureDrawing/ \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/graphics/includes/ \
+			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
+			-Isrc/jni/
 
 else
 libscigui_la_CFLAGS=			-Iincludes/ \
@@ -70,7 +86,7 @@ libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 
 pkglib_LTLIBRARIES = libscigui.la
 
-libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
 
 libscigui_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \

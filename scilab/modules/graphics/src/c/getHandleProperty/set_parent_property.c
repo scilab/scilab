@@ -15,7 +15,13 @@
 /*------------------------------------------------------------------------*/
 int set_parent_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  sciprint( "Parent property can not be modified directly.\n" ) ;
-  return SET_PROPERTY_ERROR ;
+  if(sciGetEntityType( pobj ) != SCI_MENU) {
+    return setMenuParent(pobj, stackPointer, valueType, nbRow, nbCol);
+  }
+  else
+    {
+      sciprint( "Parent property can not be modified directly.\n" ) ;
+      return SET_PROPERTY_ERROR ;
+    }
 }
 /*------------------------------------------------------------------------*/

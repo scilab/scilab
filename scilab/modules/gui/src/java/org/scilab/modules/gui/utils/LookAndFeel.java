@@ -47,10 +47,9 @@ public class LookAndFeel {
 	 * @return a boolean
 	 */
 	public static boolean setLookAndFeel(String lookandfeel) {
-		boolean bok = false;
 		boolean blnfexists = false;
 		String[] lookandfeels = getInstalledLookAndFeels();
-		
+
 		for (int i = 0; i < lookandfeels.length; i++) {
 			if (lookandfeels[i].compareTo(lookandfeel) == 0) {
 				blnfexists = true;
@@ -82,24 +81,16 @@ public class LookAndFeel {
 		try {
 			UIManager.setLookAndFeel(lookandfeel);
 			bok = true;
-		}
-		
-		catch (UnsupportedLookAndFeelException e) {
+		} catch (UnsupportedLookAndFeelException e) {
 			// handle exception
 			bok = false;
-		}
-		
-		catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			// handle exception
 			bok = false; 
-		}
-		
-		catch (InstantiationException e) {
+		} catch (InstantiationException e) {
 		// handle exception
 			bok = false;
-		}
-		
-		catch (IllegalAccessException e) {
+		} catch (IllegalAccessException e) {
 		// handle exception
 			bok = false;
 		}

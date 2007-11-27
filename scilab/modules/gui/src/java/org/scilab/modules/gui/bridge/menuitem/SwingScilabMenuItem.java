@@ -3,8 +3,14 @@
 
 package org.scilab.modules.gui.bridge.menuitem;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JMenuItem;
+
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
+import org.scilab.modules.gui.utils.SciActionListener;
 
 /**
  * Swing implementation for Scilab MenuBars in GUIs
@@ -37,5 +43,13 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	@Override
 	public void setMnemonic(int mnemonic) {
 		super.setMnemonic(mnemonic);
+	}
+	
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the menu is activated
+	 */
+	public void setCallback(String command) {
+		super.addActionListener(new SciActionListener(command));
 	}
 }
