@@ -229,4 +229,6 @@ BOOL sciGetZAxisReverse(sciPointObj * pObj); /* GET */
 
 BOOL sciGetTightLimitsOn(sciPointObj * pObj); /* GET */
 
+void printSetGetErrorMessage(const char * propertyName);
+
 #endif /* __SCI_GET_PROPERTY__ */
