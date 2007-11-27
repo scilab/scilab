@@ -53,12 +53,12 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("File %s doesn't exist.\n"),Param1);
+				Scierror(999,_("The file %s does not exist.\n"),Param1);
 			}
 		}
 		else
 		{
-			Scierror(999,_("Invalid type of input argument(s): String expected.\n"));
+			Scierror(999,_("Invalid type of input argument: String expected.\n"));
 		}
 	}
 	else /* Rhs == 2 */
@@ -96,12 +96,12 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Invalid second input argument. String expected.\n"));
+				Scierror(999,_("Invalid type of the second input argument: String expected.\n"));
 			}
 		}
 		else
 		{
-			Scierror(999,_("Invalid type input argument. Input arguments must be strings.\n"));
+			Scierror(999,_("Invalid type of the input arguments: Strings expected.\n"));
 		}
 	}
 	return 0;
