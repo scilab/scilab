@@ -16,4 +16,4 @@
 
 err_number  = execstr('window(''ch'',128,[0.25 0.1])','errcatch');
 err_message = lasterror();
-if stripblanks(err_message,%T) <> "Parameter par should be [dp,df] where one of dp, df is equal to -1") then pause,end
+if stripblanks(err_message,%T) <> "Parameter par should be [dp,df] where one of dp, df is equal to -1" then pause,end
