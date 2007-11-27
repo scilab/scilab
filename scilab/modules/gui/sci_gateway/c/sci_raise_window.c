@@ -8,10 +8,11 @@
 #include "gw_gui.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len ))
 {
-	  Scierror(999,"\nNot yet implemented.\n");	
+	  Scierror(999,_("Not yet implemented.\n"));	
 	  return 0;
 //#ifdef _MSC_VER
 //  static int l1, m1, n1;	

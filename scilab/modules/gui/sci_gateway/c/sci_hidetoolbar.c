@@ -5,6 +5,7 @@
 #include "gw_gui.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_hidetoolbar) _PARAMS((char *fname,unsigned long l))
 {
@@ -27,7 +28,7 @@ int C2F(sci_hidetoolbar) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		Scierror(999,"Parameter incorrect type.\n");
+		Scierror(999,_("Input argument incorrect type.\n"));
 		return 0;
 	}
 	return 0;

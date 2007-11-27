@@ -11,6 +11,7 @@
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "scilabmode.h"
+#include "localization.h"
 #include "IsAScalar.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
@@ -56,7 +57,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,"Unknown first input argument. Should be 'paste' or 'pastespecial'.\n");
+				Scierror(999,_("Unknown first input argument. Should be 'paste' or 'pastespecial'.\n"));
 				return 0;
 			}
 		}
@@ -90,7 +91,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 					}
 					else
 					{
-						Scierror(999,"Incorrect second input argument.");
+						Scierror(999,_("Incorrect second input argument."));
 						return 0;
 					}
 
@@ -164,7 +165,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 				}
 				else
 				{
-					Scierror(999,"Incorrect input argument. See : help clipboard");
+					Scierror(999,_("Incorrect input argument. See : help clipboard"));
 					return 0;
 				}
 			}
@@ -181,7 +182,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 					num_win=*istk(l1);
 					if (num_win>=0)
 					{
-						sciprint("Not yet implemented\n");
+						sciprint(_("Not yet implemented.\n"));
 						{
 /*
 // 						struct BCG *ScilabGC=NULL;
@@ -218,20 +219,20 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 					}
 					else
 					{
-						Scierror(999,"Input argument must be >= 0.");
+						Scierror(999,_("Input argument must be >= 0."));
 						return 0;
 					}
 				}
 				else
 				{
-					Scierror(999,"Second input argument must be 'EMF' or 'DIB'.");
+					Scierror(999,_("Second input argument must be 'EMF' or 'DIB'."));
 					return 0;
 				}
 			}
 		}
 		else
 		{
-			Scierror(999,"Incorrect argument. See : help clipboard");
+			Scierror(999,_("Incorrect argument. See : help clipboard"));
 			return 0;	
 		}
 	}
@@ -267,7 +268,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 					/* copy in clipboard EMF or DIB */
 					{
 
-					sciprint("not yet implemented\n");
+					sciprint(_("Not yet implemented\n"));
 
 						m1=0;
 						n1=0;
@@ -285,22 +286,22 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 				}
 				else
 				{
-					Scierror(999,"Input argument must be >= 0.");
+					Scierror(999,_("Input argument must be >= 0."));
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(999,"Second input argument must be 'EMF' or 'DIB'.");
+				Scierror(999,_("Second input argument must be 'EMF' or 'DIB'."));
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"Only on Windows mode.\n");
+			Scierror(999,_("Only on Windows mode.\n"));
 			return 0;
 		}
-		Scierror(999,"Only on Windows mode.\n");
+		Scierror(999,_("Only on Windows mode.\n"));
 		return 0;
 	}
 	return 0;

@@ -6,6 +6,7 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l))
 {
@@ -32,7 +33,7 @@ int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l))
 		}
 		else
 		{
-			Scierror(999,"parameter type incorrect");
+			Scierror(999,_("Input argument type incorrect"));
 			return 0;
 		}
 	}
@@ -57,13 +58,13 @@ int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,"Second parameter incorrect: 'on' or 'off'");
+				Scierror(999,_("Second parameter incorrect: 'on' or 'off'"));
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"parameter(s) type incorrect");
+			Scierror(999,_("Input argument(s) type incorrect"));
 			return 0;
 		}
 	}

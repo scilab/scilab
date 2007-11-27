@@ -8,6 +8,7 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_setlookandfeel) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -57,7 +58,7 @@ int C2F(sci_setlookandfeel) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"invalid parameter.\n");
+		Scierror(999,"Invalid input argument.\n");
 	}
 	return 0;
 }

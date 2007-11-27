@@ -11,11 +11,12 @@
 #include "sciprint.h"
 #include "nogui.h"
 #include "xscimore.h"
+#include "localization.h"
 #include "core_math.h" /* Max */
 /*--------------------------------------------------------------------------*/
 int C2F(gw_gui)()
 {
-	Scierror(999,"Scilab GUI module not installed.\n");
+	Scierror(999,_("Scilab GUI module not installed.\n"));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -26,7 +27,7 @@ BOOL TerminateGUI(void)
 /*--------------------------------------------------------------------------*/
 int XClearScreenConsole(char *fname)
 {
-	sciprint("\n Only in Window Mode\n");
+	sciprint(_("Only in Window Mode.\n"));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -97,7 +98,7 @@ int Xorgetchar(int interrupt){
     if (i < 0) {
 		if (errno != EINTR) /* EINTR  A signal was caught. */
 	{
-	  sciprint("Error.\n");
+	  sciprint(_("Error. A signal has been caught.\n"));
 	  exit(0);
 	  continue;
 	}
@@ -131,11 +132,11 @@ int XEvorgetchar(int interrupt){
 }
 /*--------------------------------------------------------------------------*/
 void main_sci (char *startup, int lstartup,int memory){
-	Scierror(999,"GUI interface not installed.\n");
+	Scierror(999,_("Scilab GUI module not installed.\n"));
 }
 /*--------------------------------------------------------------------------*/
 void InitXsession(void){
-	Scierror(999,"GUI interface not installed.\n");
+	Scierror(999,_("Scilab GUI module not installed.\n"));
 }
 /*--------------------------------------------------------------------------*/
 BOOL InitializeGUI(void)

@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "scilabmode.h"
 #include "callFunctionFromGateway.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
@@ -37,7 +38,7 @@ int C2F(gw_gui)(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,"interface disabled in -nogui mode.");
+		Scierror(999,_("Module disabled in -nogui mode."));
 		return 0;
 	}
 

@@ -1,0 +1,91 @@
+# Localization of the module gui
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2007-11-27 11:13+0100\n"
+
+# File: src/nogui/nogui.c, line: 19
+# File: src/nogui/nogui.c, line: 135
+# File: src/nogui/nogui.c, line: 139
+msgid "Scilab GUI module not installed.\n"
+msgstr ""
+#
+# File: src/nogui/nogui.c, line: 30
+msgid "Only in Window Mode.\n"
+msgstr ""
+#
+# File: src/nogui/nogui.c, line: 101
+msgid "Error. A signal has been caught.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_toolbar.c, line: 36
+msgid "Input argument type incorrect"
+msgstr ""
+#
+# File: sci_gateway/c/sci_toolbar.c, line: 61
+msgid "Second parameter incorrect: 'on' or 'off'"
+msgstr ""
+#
+# File: sci_gateway/c/sci_toolbar.c, line: 67
+msgid "Input argument(s) type incorrect"
+msgstr ""
+#
+# File: sci_gateway/c/gw_gui.c, line: 41
+msgid "Module disabled in -nogui mode."
+msgstr ""
+#
+# File: sci_gateway/c/sci_raise_window.c, line: 15
+# File: sci_gateway/c/sci_ClipBoard.c, line: 185
+msgid "Not yet implemented.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_hidetoolbar.c, line: 31
+msgid "Input argument incorrect type.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_ClipBoard.c, line: 60
+msgid "Unknown first input argument. Should be 'paste' or 'pastespecial'.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_ClipBoard.c, line: 94
+msgid "Incorrect second input argument."
+msgstr ""
+#
+# File: sci_gateway/c/sci_ClipBoard.c, line: 168
+msgid "Incorrect input argument. See : help clipboard"
+msgstr ""
+#
+# File: sci_gateway/c/sci_ClipBoard.c, line: 222
+# File: sci_gateway/c/sci_ClipBoard.c, line: 289
+msgid "Input argument must be >= 0."
+msgstr ""
+#
+# File: sci_gateway/c/sci_ClipBoard.c, line: 228
+# File: sci_gateway/c/sci_ClipBoard.c, line: 295
+msgid "Second input argument must be 'EMF' or 'DIB'."
+msgstr ""
+#
+# File: sci_gateway/c/sci_ClipBoard.c, line: 235
+msgid "Incorrect argument. See : help clipboard"
+msgstr ""
+#
+# File: sci_gateway/c/sci_ClipBoard.c, line: 271
+msgid "Not yet implemented\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_ClipBoard.c, line: 301
+# File: sci_gateway/c/sci_ClipBoard.c, line: 304
+msgid "Only on Windows mode.\n"
+msgstr ""
