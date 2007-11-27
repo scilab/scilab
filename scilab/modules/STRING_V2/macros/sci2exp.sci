@@ -80,7 +80,7 @@ case 129 then
   t=imp2exp(a,lmax)
 else
 //  execstr('t='+typeof(a)+'2exp(a,lmax)')
-  error(msprintf(gettext("Variable translation of type %s not implemented"),string(type(a)))
+   error(msprintf(gettext("Variable translation of type %s not implemented"),string(type(a))))
 end,
 if named&and(type(a)<>[11 13]) then
   t(1)=nom+' = '+t(1)
