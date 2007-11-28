@@ -514,18 +514,18 @@ if cplist(hrn , tlist(['r','num','den','dt'],z+1,z-1,[]))==0 then pause,end
 //
 //
 text=['aa=1,if a==2 then aa=b(a),end']
-fic=file('open','test_macro_exec','unknown');
+fic=file('open',TMPDIR+"/test_macro_exec",'unknown');
 write(fic,text)
 file('close',fic)
 deff('[x]=b(a)','x=a,prod([1 1])','n')
-deff('[x]=t9(a)','exec(''test_macro_exec''),x=aa','n')
+deff('[x]=t9(a)','exec(TMPDIR+''/test_macro_exec''),x=aa','n')
 y=t9(2)
 if y<>2 then pause,end
 file('rewind',fic)
 y=t9(2)
 if y<>2 then pause,end
 //
-deff('[x]=t9(a)','exec(''test_macro_exec''),x=aa','n')
+deff('[x]=t9(a)','exec(TMPDIR+''/test_macro_exec''),x=aa','n')
 y=t9(2)
 if y<>2 then pause,end
 y=t9(2)
