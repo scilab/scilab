@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="gui"
 	ProjectGUID="{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	RootNamespace="gui"
@@ -59,7 +59,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scigui.dll %%f &gt;NUL&#x0D;&#x0A;copy *.def guitmp.def  &gt;NUL&#x0D;&#x0A;copy ..\gui_header.def+guitmp.def  ..\gui.def &gt;NUL&#x0D;&#x0A;rem del *.def  &gt;NUL&#x0D;&#x0A;cd ..  &gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scigui.dll %%f &gt;NUL&#x0D;&#x0A;copy *.def guitmp.def  &gt;NUL&#x0D;&#x0A;copy ..\gui_header.def+guitmp.def  ..\gui.def &gt;NUL&#x0D;&#x0A;del *.def  &gt;NUL&#x0D;&#x0A;cd ..  &gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -145,7 +145,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scigui.dll %%f &gt;NUL&#x0D;&#x0A;copy *.def guitmp.def  &gt;NUL&#x0D;&#x0A;copy ..\gui_header.def+guitmp.def  ..\gui.def &gt;NUL&#x0D;&#x0A;rem del *.def  &gt;NUL&#x0D;&#x0A;cd ..  &gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scigui.dll %%f &gt;NUL&#x0D;&#x0A;copy *.def guitmp.def  &gt;NUL&#x0D;&#x0A;copy ..\gui_header.def+guitmp.def  ..\gui.def &gt;NUL&#x0D;&#x0A;del *.def  &gt;NUL&#x0D;&#x0A;cd ..  &gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
