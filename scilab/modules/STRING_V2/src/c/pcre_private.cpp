@@ -487,7 +487,7 @@ while (!Cong_Tst)
   char *p; 
   char	*pp, *ppp;
   char *to_file = NULL;
-  const unsigned char *tables = NULL;
+  const char *tables = NULL;
   unsigned long int true_size, true_study_size = 0;
   size_t size, regex_gotten_store;
   int do_study = 0;
