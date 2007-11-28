@@ -39,16 +39,31 @@ public class SciActionListener implements ActionListener, MenuListener {
 		InterpreterManagement.putCommandInScilabQueue(sciCommand);
 	}
 
+	/**
+	 * What do we have to do when this action is canceled ?
+	 * @param e the event to threat
+	 * @see javax.swing.event.MenuListener#menuCanceled(javax.swing.event.MenuEvent)
+	 */
 	public void menuCanceled(MenuEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * What do we have to do when the menu is deselected ?
+	 * @param e the event to threat
+	 * @see javax.swing.event.MenuListener#menuCanceled(javax.swing.event.MenuEvent)
+	 */
 	public void menuDeselected(MenuEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * What do we have to do when the menu is deselected ?
+	 * @param e the event to threat
+	 * @see javax.swing.event.MenuListener#menuCanceled(javax.swing.event.MenuEvent)
+	 */
 	public void menuSelected(MenuEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("Menu Selected = " + sciCommand);
