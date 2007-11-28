@@ -221,9 +221,7 @@ function Data=read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext)
   if (~(ext==[]))&(ext==-1) then
     // Just return the samples per channel, and seek past data:
     Data = SamplesPerChannel;
-    if mseek(total_bytes,fid,'cur')==-1 then
-      error( 'Error reading .wav file');
-    end
+    mseek(total_bytes,fid,'cur');
     return
   end
   if ext==[] then
@@ -243,10 +241,7 @@ function Data=read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext)
 
   if ext(1)>1 then
     // Skip if specified:
-    if mseek(BytesPerSample*(ext(1)-1)*nChannels,fid,'cur')==-1 then
-      error('Error reading .wav file');
-      return
-    end
+    mseek(BytesPerSample*(ext(1)-1)*nChannels,fid,'cur');
   end
   
   // Read data:
@@ -256,11 +251,9 @@ function Data=read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext)
   Data=matrix(mget(nChannels*nSPCext,dtype,fid),[nChannels,nSPCext])
 
   // Skip trailing samples:
-  if mseek(BytesPerSample*(SamplesPerChannel-ext(2))*nChannels,fid,'cur')==-1 then
-    error('Error reading .wav file');
-    return
-  end
-  
+
+  mseek(BytesPerSample*(SamplesPerChannel-ext(2))*nChannels,fid,'cur')
+
   // Determine if a pad-byte is appended and skip if present:
   junk = Size;
   if junk-fix(junk./2).*2 then
