@@ -36,17 +36,15 @@ static int INTERNAL_CHARACTERS_TABLE_CODES_FOR_SCILAB[NUMBER_INTERNAL_CHARACTERS
 /*--------------------------------------------------------------------------*/
 integer C2F(getfastcode)(unsigned char *c, unsigned long c_len) 
 {
-	return convertAsciiCodeToScilabCode(*c);
+	return convertAsciiCodeToScilabCode(c[0]);
 } 
 /*--------------------------------------------------------------------------*/
-int convertAsciiCodeToScilabCode(char ascii_char)
+int convertAsciiCodeToScilabCode(unsigned char scilab_char)
 {
+	int k = (int)scilab_char ;
 	int val = 0;
-	int k = (int)ascii_char ;
-
 	if (k < NUMBER_INTERNAL_CHARACTERS) val = INTERNAL_CHARACTERS_TABLE_CODES_FOR_SCILAB[k];
 	else val = k + 100;
-
 	return val;
 }
 /*--------------------------------------------------------------------------*/

@@ -36,15 +36,23 @@ int C2F(codetoascii)(integer *n,integer * line,char * str, unsigned long str_len
 /*--------------------------------------------------------------------------*/
 int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsigned long  str_len)
 {
-  integer j = 0;
-  if (*flagx == 1)
-  {
-    for (j = 0; j < *n ; ++j) line[j] = convertAsciiCodeToScilabCode(str[j]);
-  }
-  else
-  {
-    for (j = *n -1 ; j >= 0; --j) line[j] = convertAsciiCodeToScilabCode(str[j]);
-  }
-  return 0;
+	integer j = 0;
+	if (*flagx == 1) 
+	{
+		for (j = 0; j < *n ; ++j) 
+		{
+			unsigned char current_char = str[j];
+			line[j] = convertAsciiCodeToScilabCode(current_char);
+		}
+	} 
+	else 
+	{
+		for (j = *n -1 ; j >= 0; --j) 
+		{
+			unsigned char current_char = str[j];
+			line[j] = convertAsciiCodeToScilabCode(current_char);
+		}
+	}
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

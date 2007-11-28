@@ -23,7 +23,7 @@ integer C2F(getfastcode)(unsigned char *c, unsigned long c_len);
 * @param[in] ascii char
 * @return scilab code
 */
-int convertAsciiCodeToScilabCode(char ascii_char);
+int convertAsciiCodeToScilabCode(unsigned char scilab_char);
 
 /**
 * converts Scilab internal coding to ascii code
