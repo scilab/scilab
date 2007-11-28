@@ -11,6 +11,8 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "SetPropertyStatus.h"
+#include "GetProperty.h"
+#include "InitUIMenu.h"
 
 /*------------------------------------------------------------------------*/
 int set_parent_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
