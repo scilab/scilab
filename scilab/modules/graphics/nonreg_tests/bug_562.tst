@@ -19,8 +19,8 @@
 //    cycle this is not working. It would help us a lot if this 
 //    bug was fixed!
 
-disp("start scilab");
-disp("start scipad");
-disp("write something in scipad");
-disp("don''t save!");
-disp("quit scilab");
+
+plot2d();
+mprintf("In the graphic window's menu: Copy to Clipboard\n");
+mprintf("Paste the clipboard into an arbitrary application: Scilab\n");
+mprintf("crashes in the background, nothing is pasted\n");
