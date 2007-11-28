@@ -12,7 +12,6 @@
 #include "MALLOC.h"
 #include "strcatfunction.h"
 /*----------------------------------------------------------------------------*/
-
 BOOL strcatfunction(char **Input_String_One,char **Input_String_Two,int Number_Input_One,char **Output_StringMatrix)
 {
 	int x = 0;
@@ -20,7 +19,7 @@ BOOL strcatfunction(char **Input_String_One,char **Input_String_Two,int Number_I
 	if (Number_Input_One > 1)
 	{
 		/* Travers for every argument*/
-		for (x=1;x<Number_Input_One-1;++x)
+		for (x = 1; x < (Number_Input_One-1) ;++x)
 		{
 			if (strlen(Input_String_Two[0]) == 0) return FALSE;
 

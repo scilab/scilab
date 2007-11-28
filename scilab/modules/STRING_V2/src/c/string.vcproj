@@ -215,10 +215,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Get_length.c"
-				>
-			</File>
-			<File
 				RelativePath=".\getfastcode.c"
 				>
 			</File>
@@ -337,10 +333,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\cvstr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Get_length.h"
 				>
 			</File>
 			<File

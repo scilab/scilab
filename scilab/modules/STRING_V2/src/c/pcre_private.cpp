@@ -1,5 +1,5 @@
 
-/** TODO  : remove and commentCLEAN this code ... */
+/** TODO  : clean and comment this code ... */
 
 /*************************************************
 *             PCRE testing program               *
