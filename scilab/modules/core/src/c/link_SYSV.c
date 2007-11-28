@@ -421,7 +421,7 @@ static int CreateCppShared(char **loaded_files, char *tmp_file)
     int pid, status, wpid;
     static char *argv[MAXARGV];
     argv[0] = "sc_cpp";
-    argv[1] = (char *) malloc((strlen(Use_c_cpp)+1)*sizeof(char));
+    argv[1] = (char *) MALLOC((strlen(Use_c_cpp)+1)*sizeof(char));
     strcpy(argv[1],Use_c_cpp);
     argv[2] = "-o";
     argv[argc] = tmp_file; argc++;
@@ -438,7 +438,7 @@ static int CreateCppShared(char **loaded_files, char *tmp_file)
      for ( i=0 ; i < argc ; i++) 
        sciprint("arg[%d]=%s\n",i,argv[i]);
 #endif	
-     exec_cpp = (char *) malloc((strlen((char *)getSCIpath()) + 16) * 
+     exec_cpp = (char *) MALLOC((strlen((char *)getSCIpath()) + 16) * 
 			     sizeof(char));
      strcpy(exec_cpp,(char *)getSCIpath());
      strcat(exec_cpp,"/scripts/sc_cpp");
