@@ -22,14 +22,14 @@
   </CALLING_SEQUENCE>
 
   <DESCRIPTION>
-	
+
 	<P>
 		mkdir('dirname') creates the directory dirname in the current
 		directory, if dirname represents a relative path. Otherwise, dirname
 		represents an absolute path and mkdir attempts to create the absolute
 		directory dirname
 	</P>
-	
+
     <P>mkdir('parentdir','dirname') creates the directory dirname in the
     existing directory parentdir, where parentdir is an absolute or relative
     pathname.</P>
@@ -40,13 +40,20 @@
     otherwise.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[
-rmdir(SCI + '/Directory'); //remove the directory if it exists
-mkdir(SCI,'Directory')
-status=mkdir(SCI,'Directory')
-[status,msg] = mkdir(SCI,'Directory')
-rmdir(SCI+'/Directory')
-  ]]></EXAMPLE>
+	<EXAMPLE><![CDATA[
+		// Absolute pathname
+		mkdir(TMPDIR+"/mkdir_example_1")
+		status_2 = mkdir(TMPDIR+"/mkdir_example_2")
+		[status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
+
+		// Absolute pathname (parentdir + dirname)
+		[status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
+
+		// Relative pathname
+		cd TMPDIR;
+		[status_5,msg_5] = mkdir("mkdir_example_5")
+		[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
+	]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

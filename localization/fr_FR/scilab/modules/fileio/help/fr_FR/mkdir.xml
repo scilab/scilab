@@ -1,61 +1,71 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
-  <LANGUAGE>fr</LANGUAGE>
+	
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>mkdir</TITLE>
+	<TYPE>Fonction Scilab</TYPE>
+	<DATE>$LastChangedDate$</DATE>
+	<SHORT_DESCRIPTION name="mkdir">Crée un nouveau   répertoire</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>mkdir('dirname')</CALLING_SEQUENCE_ITEM>
+		<CALLING_SEQUENCE_ITEM>mkdir('parentdir','newdir')</CALLING_SEQUENCE_ITEM>
+		<CALLING_SEQUENCE_ITEM>status=mkdir( ... )</CALLING_SEQUENCE_ITEM>
+		<CALLING_SEQUENCE_ITEM>[status,msg]=mkdir( ... )</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		
+		<P>
+			mkdir('dirname') crée le repertoire <VERB>dirname</VERB>. Si dirname
+			représente représente un chemin relatif, le répertoire dirname est créé
+			dans le répertoire courant.
+		</P>
+		
+		<P>
+			mkdir('parentdir','dirname') crée le répertoire <VERB>dirname</VERB> dans le
+			répertoire existant <VERB>parentdir</VERB>, ou <VERB>parentdir</VERB> est un chemin relatif ou
+			absolu.
+		</P>
+		
+		<P>
+			[status,message] = mkdir(...,'dirname') crée le répertoire <VERB>dirname</VERB> dans
+			le répertoire existant <VERB>parentdir</VERB>, retourne le status, et un message. Ici,
+			<VERB>status</VERB> vaut 1 si tout c'est bien passé, 2 si le repertoire existe déjà, 0
+			dans un autre cas.
+		</P>
+		
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+		// Chemin absolu
+		mkdir(TMPDIR+"/mkdir_example_1")
+		status_2 = mkdir(TMPDIR+"/mkdir_example_2")
+		[status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
+		
+		// Chemin absolu (parentdir + dirname)
+		[status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
+		
+		// Chemin relatif
+		cd TMPDIR;
+		[status_5,msg_5] = mkdir("mkdir_example_5")
+		[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
+	]]></EXAMPLE>
 
-  <TITLE>mkdir</TITLE>
-
-  <TYPE>Fonction Scilab</TYPE>
-
-  <DATE>$LastChangedDate$</DATE>
-
-  <SHORT_DESCRIPTION name="mkdir">Crée un nouveau   répertoire</SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mkdir('dirname')</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>mkdir('parentdir','newdir')</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>status=mkdir( ... )</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>[status,msg]=mkdir( ... )</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <DESCRIPTION>
-    <P>mkdir('dirname') crée le repertoire <VERB>dirname</VERB> dans le répertoire
-    courant.</P>
-
-    <P>mkdir('parentdir','dirname') crée le répertoire <VERB>dirname</VERB> dans le
-    répertoire existant <VERB>parentdir</VERB>, ou <VERB>parentdir</VERB> est un chemin relatif ou
-    absolu.</P>
-
-    <P>[status,message] = mkdir(...,'dirname') crée le répertoire <VERB>dirname</VERB> dans
-    le répertoire existant <VERB>parentdir</VERB>, retourne le status, et un message. Ici,
-    <VERB>status</VERB> vaut 1 si tout c'est bien passé, 2 si le repertoire existe déjà, 0
-    dans un autre cas.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
-rmdir(SCI + '/Directory'); //détruit le répertoire s'il existe
-mkdir(SCI,'Directory')
-status=mkdir(SCI,'Directory')
-[status,msg] = mkdir(SCI,'Directory')
-rmdir(SCI+'/Directory')
-  ]]></EXAMPLE>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>cd</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>dir</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>rmdir</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>cd</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>dir</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>rmdir</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>A.C, P.M</AUTHORS_ITEM>
+	</AUTHORS>
 </MAN>
