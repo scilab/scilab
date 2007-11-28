@@ -22,9 +22,14 @@
   </CALLING_SEQUENCE>
 
   <DESCRIPTION>
-    <P>mkdir('dirname') creates the directory dirname in the current
-    directory, if dirname represents a relative path.</P>
-
+	
+	<P>
+		mkdir('dirname') creates the directory dirname in the current
+		directory, if dirname represents a relative path. Otherwise, dirname
+		represents an absolute path and mkdir attempts to create the absolute
+		directory dirname
+	</P>
+	
     <P>mkdir('parentdir','dirname') creates the directory dirname in the
     existing directory parentdir, where parentdir is an absolute or relative
     pathname.</P>
