@@ -39,7 +39,7 @@
 #
 ###
 
-SCIVERBOSE=0
+SCIVERBOSE=1
 
 if test -n "$SCI"; then
 	if test ! -d "$SCI/modules"; then
@@ -158,7 +158,7 @@ else
 		SCILABBIN=$SCI/scilab-bin
 		DEVENV=1
 	else
-		echo "Cannot not find scilab-bin ..."
+		echo "Cannot find scilab-bin ..."
 		exit 1
 	fi
 fi
