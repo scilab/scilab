@@ -29,6 +29,8 @@ import org.scilab.modules.gui.utils.LookAndFeel;
   */
 public class Scilab {
 	
+	private static final String CLASS_NOT_FOUND = "Could not find class: ";
+	
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
@@ -50,9 +52,9 @@ public class Scilab {
 				mainView = ScilabWindow.createWindow();
 				mainView.draw();
 				mainView.setTitle("Scilab-5.0");
-			}catch (NoClassDefFoundError exception){
+			} catch (NoClassDefFoundError exception) {
 				System.err.println("Cannot create Scilab Window.\nCheck if the thirdparties are available (Flexdock, JOGL...).");
-				System.err.println("Could not find class: "+exception.getLocalizedMessage());
+				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
 			
@@ -88,7 +90,7 @@ public class Scilab {
 				consoleTab.addMember(sciConsole);
 			} catch (NoClassDefFoundError exception) {
 				System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (Rosetta/Jrosetta...).");
-				System.err.println("Could not find class: " + exception.getLocalizedMessage());
+				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
 
