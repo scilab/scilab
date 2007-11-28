@@ -3,20 +3,19 @@
 
 package org.scilab.modules.gui.bridge.menuitem;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JMenuItem;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.gui.utils.SciActionListener;
 
 /**
  * Swing implementation for Scilab MenuBars in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructor
