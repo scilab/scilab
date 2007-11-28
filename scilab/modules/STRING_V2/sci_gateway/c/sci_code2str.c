@@ -66,7 +66,8 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 	}
 
 	/* code2str algorithm */
-	code2str(Output_Matrix,Row_Num,Col_Num,Input_Matrix);
+
+	code2str(Output_Matrix,Input_Matrix,Row_Num*Col_Num);
 
 	/* put on scilab stack */
 	numRow   = 1 ; /*Output number row */
