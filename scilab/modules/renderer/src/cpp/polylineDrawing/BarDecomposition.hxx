@@ -47,9 +47,16 @@ public:
 
   /**
    * Get the height of each bar to draw.
-   * @param height array containg the height of size getDrawnVerticesLength().
+   * @param heights array containing heights. Its size is getDrawnVerticesLength().
    */
   void getBarHeight(double heights[]);
+
+  /**
+   * Get the width of each bar to draw.
+   * @param left array containing left abscissa of the bars. Its size is getDrawnVerticesLength().
+   * @param right array containing the right abscissa of the bars. Its size is getDrawnVerticesLength().
+   */
+  void getBarWidth(double left[], double right[]);
 
   /**
    * Bar plot mode (ie polyline_style = 3), also draws mark on y = 0 line.

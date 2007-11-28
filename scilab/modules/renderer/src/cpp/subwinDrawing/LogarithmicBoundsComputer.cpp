@@ -42,14 +42,16 @@ void LogarithmicBoundsComputer::pointScale(double vector[], int vectorLength)
 /*------------------------------------------------------------------------------------------*/
 void LogarithmicBoundsComputer::directionScale(double coord,  double startingPoint, double * scaledCoord)
 {
-  *scaledCoord = log10(startingPoint + coord) - log10(startingPoint);
+  // I guess that "/" is faster than "log10"
+  *scaledCoord = log10((startingPoint + coord) / startingPoint);
 }
 /*------------------------------------------------------------------------------------------*/
 void LogarithmicBoundsComputer::directionScale(double vector[], double startingPoints[], double vectorLength)
 {
   for (int i = 0; i < vectorLength; i++)
   {
-    vector[i] = log10(startingPoints[i] + vector[i]) - log10(startingPoints[i]);
+    // I guess that "/" is faster than "log10"
+    vector[i] = log10((startingPoints[i] + vector[i]) / startingPoints[i]);
   }
 }
 /*------------------------------------------------------------------------------------------*/

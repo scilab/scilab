@@ -119,6 +119,10 @@ void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[]
     yCoords[nbVertices + 1] = yCoords[0];
     zCoords[nbVertices + 1] = zCoords[0];
   }
+
+  // apply logarithmic mode if needed
+  m_pDrawed->pointScale(xCoords, yCoords, zCoords, getDrawnVerticesLength());
+
 }
 /*---------------------------------------------------------------------------------*/
 void StairCaseDecomposition::getDrawnVerticesColor(int colors[])

@@ -103,8 +103,8 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetBarParametersjintjintjfloatjintjdoubleID=NULL; 
-voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
+voidsetBarParametersjintjintjfloatjintID=NULL; 
+voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
 
 
 }
@@ -132,8 +132,8 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetBarParametersjintjintjfloatjintjdoubleID=NULL; 
-voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
+voidsetBarParametersjintjintjfloatjintID=NULL; 
+voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
 
 
 }
@@ -278,18 +278,18 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void PolylineBarDrawerGL::setBarParameters (long background, long foreground, float thickness, long lineStyle, double barWidth){
+void PolylineBarDrawerGL::setBarParameters (long background, long foreground, float thickness, long lineStyle){
 
 JNIEnv * curEnv = getCurrentEnv();
                 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetBarParametersjintjintjfloatjintjdoubleID = curEnv->GetMethodID(this->instanceClass, "setBarParameters", "(IIFID)V" ) ;
-if (voidsetBarParametersjintjintjfloatjintjdoubleID == NULL) {
+jmethodID voidsetBarParametersjintjintjfloatjintID = curEnv->GetMethodID(this->instanceClass, "setBarParameters", "(IIFI)V" ) ;
+if (voidsetBarParametersjintjintjfloatjintID == NULL) {
 std::cerr << "Could not access to the method " << "setBarParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                         curEnv->CallVoidMethod( this->instance, voidsetBarParametersjintjintjfloatjintjdoubleID ,background, foreground, thickness, lineStyle, barWidth);
+                         curEnv->CallVoidMethod( this->instance, voidsetBarParametersjintjintjfloatjintID ,background, foreground, thickness, lineStyle);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -298,13 +298,13 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void PolylineBarDrawerGL::drawPolyline (double * topX, int topXSize, double * topY, int topYSize, double * topZ, int topZSize, double * height, int heightSize){
+void PolylineBarDrawerGL::drawPolyline (double * topX, int topXSize, double * topY, int topYSize, double * topZ, int topZSize, double * height, int heightSize, double * left, int leftSize, double * right, int rightSize){
 
 JNIEnv * curEnv = getCurrentEnv();
                 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID = curEnv->GetMethodID(this->instanceClass, "drawPolyline", "([D[D[D[D)V" ) ;
-if (voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID == NULL) {
+jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID = curEnv->GetMethodID(this->instanceClass, "drawPolyline", "([D[D[D[D[D[D)V" ) ;
+if (voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID == NULL) {
 std::cerr << "Could not access to the method " << "drawPolyline" << std::endl;
 exit(EXIT_FAILURE);
 }
@@ -321,7 +321,13 @@ curEnv->SetDoubleArrayRegion( topZ_, 0, topZSize, (jdouble*) topZ ) ;
 jdoubleArray height_ = curEnv->NewDoubleArray( heightSize ) ;
 curEnv->SetDoubleArrayRegion( height_, 0, heightSize, (jdouble*) height ) ;
 
-                         curEnv->CallVoidMethod( this->instance, voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID ,topX_, topY_, topZ_, height_);
+jdoubleArray left_ = curEnv->NewDoubleArray( leftSize ) ;
+curEnv->SetDoubleArrayRegion( left_, 0, leftSize, (jdouble*) left ) ;
+
+jdoubleArray right_ = curEnv->NewDoubleArray( rightSize ) ;
+curEnv->SetDoubleArrayRegion( right_, 0, rightSize, (jdouble*) right ) ;
+
+                         curEnv->CallVoidMethod( this->instance, voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID ,topX_, topY_, topZ_, height_, left_, right_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

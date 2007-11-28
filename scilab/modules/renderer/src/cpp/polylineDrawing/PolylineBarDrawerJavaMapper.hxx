@@ -37,12 +37,14 @@ public:
   /*----------------------------------------------------------------------*/
   // specific for polyline line drawer
   virtual void setBarParameters(int background, int foreground, float thickness,
-                                int lineStyle, double barWidth);
+                                int lineStyle);
 
   virtual void drawPolyline(const double topX[],
                             const double topY[],
                             const double topZ[],
                             const double height[],
+                            const double left[],
+                            const double right[],
                             int nbCoords);
   /*----------------------------------------------------------------------*/
 

@@ -82,6 +82,9 @@ void InterpolatedDecomposition::getDrawnVertices(double xCoords[], double yCoord
     zCoords[nbVertices] = zCoords[0];
   }
 
+  // apply logarithmic mode if needed
+  m_pDrawed->pointScale(xCoords, yCoords, zCoords, getDrawnVerticesLength());
+
 }
 /*---------------------------------------------------------------------------------*/
 void InterpolatedDecomposition::getDrawnVerticesColor(int colors[])

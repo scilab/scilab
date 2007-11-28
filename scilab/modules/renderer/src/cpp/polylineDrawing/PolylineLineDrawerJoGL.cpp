@@ -63,7 +63,7 @@ void PolylineLineDrawerJoGL::drawPolyline( void )
 
   m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
 
-  // display the rectangle
+  // display the polyline
   getLineDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, nbVertices);
 
   delete[] xCoords;

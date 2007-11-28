@@ -37,23 +37,13 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   initializeDrawing() ;
 
 
-  double bar_width;
-  if (sciGetPolylineStyle(pObj) == 3)
-  {
-    // bar plot mode
-    bar_width = 0.0;
-  }
-  else
-  {
-    bar_width = pPOLYLINE_FEATURE(pObj)->bar_width;
-  }
+  
 
   // set the line parameters
   getBarDrawerJavaMapper()->setBarParameters(sciGetGraphicContext(pObj)->backgroundcolor,
                                              sciGetGraphicContext(pObj)->foregroundcolor,
                                             (float)sciGetLineWidth(pObj),
-                                             sciGetLineStyle(pObj),
-                                             bar_width);
+                                             sciGetLineStyle(pObj));
 
   // get the data of the polyline
   int      nbVertices = 0   ;
@@ -61,6 +51,8 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   double * yCoords    = NULL;
   double * zCoords    = NULL;
   double * height     = NULL;
+  double * left       = NULL;
+  double * right      = NULL;
 
   // special case here, we must use a special decomposition for bars.
   BarDecomposition decomposer(m_pDrawed);
@@ -70,28 +62,36 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   yCoords = new double[nbVertices];
   zCoords = new double[nbVertices];
   height  = new double[nbVertices];
+  left    = new double[nbVertices];
+  right   = new double[nbVertices]; 
 
-  if (xCoords == NULL || yCoords == NULL || zCoords == NULL || height == NULL)
+  if (   xCoords == NULL || yCoords == NULL || zCoords == NULL
+      || height == NULL || left == NULL || right == NULL)
   {
     sciprint(_("Unable to render polyline, memory full.\n"));
     if (xCoords != NULL) { delete[] xCoords; }
     if (yCoords != NULL) { delete[] yCoords; }
     if (zCoords != NULL) { delete[] zCoords; }
     if (height  != NULL) { delete[] height;  }
+    if (left    != NULL) { delete[] left;    }
+    if (right   != NULL) { delete[] right;   }
     endDrawing();
     return;
   }
 
   decomposer.getDrawnVertices(xCoords, yCoords, zCoords);
   decomposer.getBarHeight(height);
+  decomposer.getBarWidth(left, right);
 
   // display the rectangle
-  getBarDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, height, nbVertices);
-
+  getBarDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, height, left, right, nbVertices);
+ 
   delete[] xCoords;
   delete[] yCoords;
   delete[] zCoords;
   delete[] height;
+  delete[] left;
+  delete[] right;
   endDrawing() ;
 }
 /*---------------------------------------------------------------------------------*/

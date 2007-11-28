@@ -26,7 +26,6 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 	private int lineColor;
 	private float thickness;
 	private int lineStyle;
-	private double barWidth;
 	
 	/**
 	 * Default constructor
@@ -37,7 +36,6 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 		lineColor = -1;
 		thickness = 1.0f;
 		lineStyle = 1;
-		barWidth = 1;
 	}
 	
 	/**
@@ -101,34 +99,17 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 	}
 	
 	/**
-	 * Set the width of bar
-	 * @param barWidth width of bar in user coordinates
-	 */
-	public void setBarWidth(double barWidth) {
-		this.barWidth = barWidth;
-	}
-	
-	/**
-	 * @return width of bar in user coordinates
-	 */
-	public double getBarWidth() {
-		return barWidth;
-	}
-	
-	/**
 	 * Set all parameters to draw bars in one function
 	 * @param background background color index
 	 * @param foreground line color index
 	 * @param thickness thickness of the outlin ein pixel
 	 * @param lineStyle index of the line style
-	 * @param barWidth width of bars in pixel coordinates
 	 */
-	public void setBarParameters(int background, int foreground, float thickness, int lineStyle, double barWidth) {
+	public void setBarParameters(int background, int foreground, float thickness, int lineStyle) {
 		setBackColorIndex(background);
 		setLineColorIndex(foreground);
 		setThickness(thickness);
 		setLineStyle(lineStyle);
-		setBarWidth(barWidth);
 	}
 	
 	/**
@@ -138,13 +119,14 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 	 * @param topY Y coordinate of the middle of the top segment of each bar
 	 * @param topZ Z coordinate of the middle of the top segment of each bar
 	 * @param height height of each bar
+	 * @param left left abscissa of each bar
+	 * @param right right abscissa of each bar
 	 */
-	public void drawPolyline(double[] topX, double[] topY, double[] topZ, double[] height) {
+	public void drawPolyline(double[] topX, double[] topY, double[] topZ,
+						     double[] height, double[] left, double[] right) {
 		
-		if (getBarWidth() > 0.0) {
-			fillBars(topX, topY, topZ, height);
-		}
-		encloseBars(topX, topY, topZ, height);
+		fillBars(topX, topY, topZ, height, left, right);
+		encloseBars(topX, topY, topZ, height, left, right);
 		
 	}
 	
@@ -154,11 +136,13 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 	 * @param topY Y coordinate of the middle of the top segment of each bar
 	 * @param topZ Z coordinate of the middle of the top segment of each bar
 	 * @param height height of each bar
+	 * @param left left abscissa of each bar
+	 * @param right right abscissa of each bar
 	 */
-	private void fillBars(double[] topX, double[] topY, double[] topZ, double[] height) {
+	private void fillBars(double[] topX, double[] topY, double[] topZ,
+						  double[] height, double[] left, double[] right) {
 		
 		GL gl = getGL();
-		double semiBarWidth = getBarWidth() / 2.0;
 
 
 		// set color
@@ -167,10 +151,10 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 		
 		gl.glBegin(GL.GL_QUADS);
 		for (int i = 0; i < topX.length; i++) {
-			gl.glVertex3d(topX[i] - semiBarWidth, topY[i] - height[i], topZ[i]);
-			gl.glVertex3d(topX[i] + semiBarWidth, topY[i] - height[i], topZ[i]);
-			gl.glVertex3d(topX[i] + semiBarWidth, topY[i], topZ[i]);
-			gl.glVertex3d(topX[i] - semiBarWidth, topY[i], topZ[i]);
+			gl.glVertex3d(left[i], topY[i] - height[i], topZ[i]);
+			gl.glVertex3d(right[i], topY[i] - height[i], topZ[i]);
+			gl.glVertex3d(right[i], topY[i], topZ[i]);
+			gl.glVertex3d(left[i], topY[i], topZ[i]);
 		}
 		gl.glEnd();
 	}
@@ -181,11 +165,13 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 	 * @param topY Y coordinate of the middle of the top segment of each bar
 	 * @param topZ Z coordinate of the middle of the top segment of each bar
 	 * @param height height of each bar
+	 * @param left left abscissa of each bar
+	 * @param right right abscissa of each bar
 	 */
-	private void encloseBars(double[] topX, double[] topY, double[] topZ, double[] height) {
+	private void encloseBars(double[] topX, double[] topY, double[] topZ,
+							 double[] height, double[] left, double[] right) {
 		
 		GL gl = getGL();
-		double semiBarWidth = getBarWidth() / 2.0;
 
 
 		// set color
@@ -198,10 +184,10 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 				
 		for (int i = 0; i < topX.length; i++) {
 			gl.glBegin(GL.GL_LINE_LOOP);
-			gl.glVertex3d(topX[i] - semiBarWidth, topY[i] - height[i], topZ[i]);
-			gl.glVertex3d(topX[i] + semiBarWidth, topY[i] - height[i], topZ[i]);
-			gl.glVertex3d(topX[i] + semiBarWidth, topY[i], topZ[i]);
-			gl.glVertex3d(topX[i] - semiBarWidth, topY[i], topZ[i]);
+			gl.glVertex3d(left[i], topY[i] - height[i], topZ[i]);
+			gl.glVertex3d(right[i], topY[i] - height[i], topZ[i]);
+			gl.glVertex3d(right[i], topY[i], topZ[i]);
+			gl.glVertex3d(left[i], topY[i], topZ[i]);
 			gl.glEnd();
 		}
 		

@@ -57,8 +57,8 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID voidsetBarParametersjintjintjfloatjintjdoubleID; // cache method id
-jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID; // cache method id
+jmethodID voidsetBarParametersjintjintjfloatjintID; // cache method id
+jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID; // cache method id
 
 
 /**
@@ -112,9 +112,9 @@ void destroy(long parentFigureIndex);
 
 void setFigureIndex(long figureIndex);
 
-void setBarParameters(long background, long foreground, float thickness, long lineStyle, double barWidth);
+void setBarParameters(long background, long foreground, float thickness, long lineStyle);
 
-void drawPolyline(double * topX, int topXSize, double * topY, int topYSize, double * topZ, int topZSize, double * height, int heightSize);
+void drawPolyline(double * topX, int topXSize, double * topY, int topYSize, double * topZ, int topZSize, double * height, int heightSize, double * left, int leftSize, double * right, int rightSize);
 
 
                         /**
