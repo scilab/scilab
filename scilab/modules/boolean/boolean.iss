@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -37,4 +37,9 @@ Source: modules\{#BOOLEAN}\macros\cleanmacros.bat; DestDir: {app}\modules\{#BOOL
 ;
 ;Source: modules\{#BOOLEAN}\demos\*.*; DestDir: {app}\modules\{#BOOLEAN}\demos; Components: {#COMPN_SCILAB}
 ;
+;Source: modules\{#BOOLEAN}\nonreg_tests\*.*; DestDir: {app}\modules\{#BOOLEAN}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+;
+;Source: modules\{#BOOLEAN}\unit_tests\*.ref; DestDir: {app}\modules\{#BOOLEAN}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#BOOLEAN}\unit_tests\*.tst; DestDir: {app}\modules\{#BOOLEAN}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+
 ;--------------------------------------------------------------------------------------------------------------

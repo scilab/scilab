@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -35,5 +35,10 @@ Source: modules\{#JAVASCI}\includes\*.h; DestDir: {app}\modules\{#JAVASCI}\inclu
 Source: modules\{#JAVASCI}\src\java\javasci\*.*; DestDir: {app}\modules\{#JAVASCI}\src\java\javasci; Components: {#COMPN_JAVASCI}
 ;
 Source: modules\{#JAVASCI}\examples\*.*; DestDir: {app}\modules\{#JAVASCI}\examples; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
+;
+;Source: modules\{#JAVASCI}\nonreg_tests\*.*; DestDir: {app}\modules\{#JAVASCI}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_JAVASCI} and {#COMPN_NO_REGRESSION_TESTS}
+;
+;Source: modules\{#JAVASCI}\unit_tests\*.ref; DestDir: {app}\modules\{#JAVASCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_JAVASCI} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#JAVASCI}\unit_tests\*.tst; DestDir: {app}\modules\{#JAVASCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_JAVASCI} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

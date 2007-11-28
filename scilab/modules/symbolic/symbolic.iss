@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -39,5 +39,10 @@ Source: modules\{#SYMBOLIC}\macros\buildmacros.bat; DestDir: {app}\modules\{#SYM
 Source: modules\{#SYMBOLIC}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
 ;
 ;Source: modules\{#SYMBOLIC}\demos\*.*; DestDir: {app}\modules\{#SYMBOLIC}\demos; Flags: recursesubdirs; Components: {#COMPN_SYMB}
+;
+;Source: modules\{#SYMBOLIC}\nonreg_tests\*.*; DestDir: {app}\modules\{#SYMBOLIC}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SYMB} and {#COMPN_NO_REGRESSION_TESTS}
+;
+;Source: modules\{#SYMBOLIC}\unit_tests\*.ref; DestDir: {app}\modules\{#SYMBOLIC}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SYMB} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#SYMBOLIC}\unit_tests\*.tst; DestDir: {app}\modules\{#SYMBOLIC}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SYMB} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

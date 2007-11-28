@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -40,5 +40,10 @@ Source: modules\{#MEXLIB}\macros\cleanmacros.bat; DestDir: {app}\modules\{#MEXLI
 ;Source: modules\{#MEXLIB}\demos\*.*; DestDir: {app}\modules\{#MEXLIB}\demos; Flags: recursesubdirs; Components: {#COMPN_MEXLIB}
 ;
 Source: modules\{#MEXLIB}\examples\*.*; DestDir: {app}\modules\{#MEXLIB}\examples; Flags: recursesubdirs; Components: {#COMPN_MEXLIB}
+;
+Source: modules\{#MEXLIB}\nonreg_tests\*.*; DestDir: {app}\modules\{#MEXLIB}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_MEXLIB} and {#COMPN_NO_REGRESSION_TESTS}
+;
+;Source: modules\{#MEXLIB}\unit_tests\*.ref; DestDir: {app}\modules\{#MEXLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#MEXLIB}\unit_tests\*.tst; DestDir: {app}\modules\{#MEXLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

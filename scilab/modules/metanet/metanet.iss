@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -41,7 +41,12 @@ Source: modules\{#METANET}\macros\cleanmacros.bat; DestDir: {app}\modules\{#META
 ;
 Source: modules\{#METANET}\demos\*.*; DestDir: {app}\modules\{#METANET}\demos; Flags: recursesubdirs; Components: {#COMPN_METANET}
 ;
-Source: modules\{#METANET}\unit_tests\*.ref; DestDir: {app}\modules\{#METANET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_METANET} and {#COMPN_DEVTOOLS}
-Source: modules\{#METANET}\unit_tests\*.tst; DestDir: {app}\modules\{#METANET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_METANET} and {#COMPN_DEVTOOLS}
+Source: modules\{#METANET}\unit_tests\*.ref; DestDir: {app}\modules\{#METANET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_METANET} and {#COMPN_UNIT_TESTS}
+Source: modules\{#METANET}\unit_tests\*.tst; DestDir: {app}\modules\{#METANET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_METANET} and {#COMPN_UNIT_TESTS}
+;
+;Source: modules\{#METANET}\nonreg_tests\*.*; DestDir: {app}\modules\{#METANET}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_METANET} and {#COMPN_NO_REGRESSION_TESTS}
+;
+Source: modules\{#METANET}\unit_tests\*.ref; DestDir: {app}\modules\{#METANET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_METANET} and {#COMPN_UNIT_TESTS}
+Source: modules\{#METANET}\unit_tests\*.tst; DestDir: {app}\modules\{#METANET}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_METANET} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

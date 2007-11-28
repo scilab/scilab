@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -42,5 +42,10 @@ Source: modules\{#HISTORY_MANAGER}\macros\cleanmacros.bat; DestDir: {app}\module
 ;Source: modules\{#HISTORY_MANAGER}\macros\names; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HISTORY_MANAGER}\demos\*.*; DestDir: {app}\modules\{#HISTORY_MANAGER}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;
+;Source: modules\{#HISTORY_MANAGER}\nonreg_tests\*.*; DestDir: {app}\modules\{#HISTORY_MANAGER}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+;
+;Source: modules\{#HISTORY_MANAGER}\unit_tests\*.ref; DestDir: {app}\modules\{#HISTORY_MANAGER}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#HISTORY_MANAGER}\unit_tests\*.tst; DestDir: {app}\modules\{#HISTORY_MANAGER}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

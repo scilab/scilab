@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -41,5 +41,10 @@ Source: modules\{#LOCALIZATION}\macros\cleanmacros.bat; DestDir: {app}\modules\{
 Source: modules\{#LOCALIZATION}\xml\*.dtd; DestDir: {app}\modules\{#LOCALIZATION}\xml; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#LOCALIZATION}\demos\*.*; DestDir: {app}\modules\{#LOCALIZATION}\demos; Components: {#COMPN_SCILAB}
+;
+;Source: modules\{#LOCALIZATION}\nonreg_tests\*.*; DestDir: {app}\modules\{#LOCALIZATION}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+;
+;Source: modules\{#LOCALIZATION}\unit_tests\*.ref; DestDir: {app}\modules\{#LOCALIZATION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#LOCALIZATION}\unit_tests\*.tst; DestDir: {app}\modules\{#LOCALIZATION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

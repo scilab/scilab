@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -41,5 +41,9 @@ Source: modules\{#FFTW}\macros\cleanmacros.bat; DestDir: {app}\modules\{#FFTW}\m
 Source: bin\fftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: {#COMPN_FFTW}
 Source: bin\nofftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: not ({#COMPN_FFTW})
 ;
+;Source: modules\{#FFTW}\nonreg_tests\*.*; DestDir: {app}\modules\{#FFTW}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_FFTW} and {#COMPN_NO_REGRESSION_TESTS}
+;
+;Source: modules\{#FFTW}\unit_tests\*.ref; DestDir: {app}\modules\{#FFTW}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_FFTW} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#FFTW}\unit_tests\*.tst; DestDir: {app}\modules\{#FFTW}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_FFTW} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

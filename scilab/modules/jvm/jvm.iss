@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -40,5 +40,10 @@ Source: modules\{#JVM}\macros\*.bin; DestDir: {app}\modules\{#JVM}\macros; Compo
 Source: modules\{#JVM}\macros\*.sci; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\help\addchapter.sce; DestDir: {app}\modules\{#JVM}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+;
+;Source: modules\{#JVM}\nonreg_tests\*.*; DestDir: {app}\modules\{#JVM}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+;
+;Source: modules\{#JVM}\unit_tests\*.ref; DestDir: {app}\modules\{#JVM}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#JVM}\unit_tests\*.tst; DestDir: {app}\modules\{#JVM}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

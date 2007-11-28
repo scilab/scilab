@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -46,8 +46,12 @@ Source: modules\{#GRAPHICS}\fonts\*.bdf; DestDir: {app}\modules\{#GRAPHICS}\font
 ;
 Source: modules\{#GRAPHICS}\demos\*.*; DestDir: {app}\modules\{#GRAPHICS}\demos; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\unit_tests\*.ref; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_DEVTOOLS}
-Source: modules\{#GRAPHICS}\unit_tests\*.tst; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_DEVTOOLS}
-
+Source: modules\{#GRAPHICS}\unit_tests\*.ref; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
+Source: modules\{#GRAPHICS}\unit_tests\*.tst; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
+;
+Source: modules\{#FUNCTIONS}\nonreg_tests\*.*; DestDir: {app}\modules\{#GRAPHICS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_NO_REGRESSION_TESTS}
+;
+Source: modules\{#FUNCTIONS}\unit_tests\*.ref; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
+Source: modules\{#FUNCTIONS}\unit_tests\*.tst; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

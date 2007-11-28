@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -42,8 +42,10 @@ Source: modules\{#COMPLETION}\macros\cleanmacros.bat; DestDir: {app}\modules\{#C
 ;Source: modules\{#COMPLETION}\macros\names; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#COMPLETION}\demos\*.*; DestDir: {app}\modules\{#COMPLETION}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;Source: modules\{#COMPLETION}\unit_tests\*.ref; DestDir: {app}\modules\{#COMPLETION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_DEVTOOLS}
-Source: modules\{#COMPLETION}\unit_tests\*.tst; DestDir: {app}\modules\{#COMPLETION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_DEVTOOLS}
-
+;
+Source: modules\{#COMPLETION}\unit_tests\*.ref; DestDir: {app}\modules\{#COMPLETION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+Source: modules\{#COMPLETION}\unit_tests\*.tst; DestDir: {app}\modules\{#COMPLETION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+;
+;Source: modules\{#COMPLETION}\nonreg_tests\*.*; DestDir: {app}\modules\{#COMPLETION}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

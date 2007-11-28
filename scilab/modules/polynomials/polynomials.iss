@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -37,8 +37,12 @@ Source: modules\{#POLYNOMIALS}\macros\*.sci; DestDir: {app}\modules\{#POLYNOMIAL
 ;
 ;Source: modules\{#POLYNOMIALS}\demos\*.*; DestDir: {app}\modules\{#POLYNOMIALS}\demos; Flags: recursesubdirs; Components: {#COMPN_POLY}
 ;
-Source: modules\{#POLYNOMIALS}\unit_tests\*.ref; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components:  {#COMPN_POLY} and {#COMPN_DEVTOOLS}
-Source: modules\{#POLYNOMIALS}\unit_tests\*.tst; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components:  {#COMPN_POLY} and {#COMPN_DEVTOOLS}
+Source: modules\{#POLYNOMIALS}\unit_tests\*.ref; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components:  {#COMPN_POLY} and {#COMPN_UNIT_TESTS}
+Source: modules\{#POLYNOMIALS}\unit_tests\*.tst; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components:  {#COMPN_POLY} and {#COMPN_UNIT_TESTS}
 ;
+Source: modules\{#POLYNOMIALS}\nonreg_tests\*.*; DestDir: {app}\modules\{#POLYNOMIALS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_POLY} and {#COMPN_NO_REGRESSION_TESTS}
+;
+Source: modules\{#POLYNOMIALS}\unit_tests\*.ref; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_POLY} and {#COMPN_UNIT_TESTS}
+Source: modules\{#POLYNOMIALS}\unit_tests\*.tst; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_POLY} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

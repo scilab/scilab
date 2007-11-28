@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -51,5 +51,10 @@ Source: bin\pvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#PVM}\pvmconf.bat; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\pvmconf.sce; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
+;
+;Source: modules\{#PVM}\nonreg_tests\*.*; DestDir: {app}\modules\{#PVM}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_PVM} and {#COMPN_NO_REGRESSION_TESTS}
+;
+;Source: modules\{#PVM}\unit_tests\*.ref; DestDir: {app}\modules\{#PVM}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_PVM} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#PVM}\unit_tests\*.tst; DestDir: {app}\modules\{#PVM}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_PVM} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

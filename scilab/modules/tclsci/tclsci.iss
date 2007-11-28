@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -48,7 +48,9 @@ Source: bin\tcl84.lib; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
 Source: bin\tk84.dll; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
 Source: bin\tk84.lib; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
 ;
-Source: modules\{#TCLSCI}\unit_tests\*.ref; DestDir: {app}\modules\{#TCLSCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TCLSCI} and {#COMPN_DEVTOOLS}
-Source: modules\{#TCLSCI}\unit_tests\*.tst; DestDir: {app}\modules\{#TCLSCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TCLSCI} and {#COMPN_DEVTOOLS}
+Source: modules\{#TCLSCI}\unit_tests\*.ref; DestDir: {app}\modules\{#TCLSCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TCLSCI} and {#COMPN_UNIT_TESTS}
+Source: modules\{#TCLSCI}\unit_tests\*.tst; DestDir: {app}\modules\{#TCLSCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TCLSCI} and {#COMPN_UNIT_TESTS}
+;
+Source: modules\{#TCLSCI}\nonreg_tests\*.*; DestDir: {app}\modules\{#TCLSCI}\nonreg_tests; Flags: recursesubdirs; Components:  {#COMPN_TCLSCI} and {#COMPN_NO_REGRESSION_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

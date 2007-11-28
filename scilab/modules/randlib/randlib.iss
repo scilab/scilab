@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -43,7 +43,12 @@ Source: modules\{#RANDLIB}\macros\cleanmacros.bat; DestDir: {app}\modules\{#RAND
 Source: modules\{#RANDLIB}\demos\*.*; DestDir: {app}\modules\{#RANDLIB}\demos; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
 ;
 ;
-Source: modules\{#RANDLIB}\unit_tests\*.ref; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_DEVTOOLS}
-Source: modules\{#RANDLIB}\unit_tests\*.tst; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_DEVTOOLS}
+Source: modules\{#RANDLIB}\unit_tests\*.ref; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_UNIT_TESTS}
+Source: modules\{#RANDLIB}\unit_tests\*.tst; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_UNIT_TESTS}
+;
+Source: modules\{#RANDLIB}\nonreg_tests\*.*; DestDir: {app}\modules\{#RANDLIB}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_NO_REGRESSION_TESTS}
+;
+Source: modules\{#RANDLIB}\unit_tests\*.ref; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_UNIT_TESTS}
+Source: modules\{#RANDLIB}\unit_tests\*.tst; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

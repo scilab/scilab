@@ -1,5 +1,5 @@
 ;##############################################################################################################
-; Script d'installation Inno Setup (5.1.7) pour scilab
+; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
 ; Copyright INRIA 2007
@@ -39,7 +39,8 @@ Source: modules\{#CACSD}\macros\cleanmacros.bat; DestDir: {app}\modules\{#CACSD}
 ;
 Source: modules\{#CACSD}\demos\*.*; DestDir: {app}\modules\{#CACSD}\demos; Flags: recursesubdirs; Components: {#COMPN_CACSD}
 ;
-Source: modules\{#CACSD}\unit_tests\*.ref; DestDir: {app}\modules\{#CACSD}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_CACSD} and {#COMPN_DEVTOOLS}
-Source: modules\{#CACSD}\unit_tests\*.tst; DestDir: {app}\modules\{#CACSD}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_CACSD} and {#COMPN_DEVTOOLS}
+Source: modules\{#CACSD}\unit_tests\*.ref; DestDir: {app}\modules\{#CACSD}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_CACSD} and {#COMPN_UNIT_TESTS}
+Source: modules\{#CACSD}\unit_tests\*.tst; DestDir: {app}\modules\{#CACSD}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_CACSD} and {#COMPN_UNIT_TESTS}
 ;
+Source: modules\{#CACSD}\nonreg_tests\*.*; DestDir: {app}\modules\{#CACSD}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_CACSD} and {#COMPN_NO_REGRESSION_TESTS}
 ;--------------------------------------------------------------------------------------------------------------
