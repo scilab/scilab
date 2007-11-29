@@ -17,7 +17,8 @@ src/c/strcatfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
 src/c/cvstr.c \
-src/c/getfastcode.c
+src/c/getfastcode.c \
+src/c/pcre_private.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \

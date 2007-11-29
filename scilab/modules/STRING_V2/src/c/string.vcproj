@@ -235,7 +235,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\pcre_private.cpp"
+				RelativePath=".\pcre_private.c"
 				>
 			</File>
 			<File
@@ -357,6 +357,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\men_Sutils.h"
+				>
+			</File>
+			<File
+				RelativePath=".\pcre_private.h"
 				>
 			</File>
 			<File

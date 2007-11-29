@@ -1,158 +1,268 @@
 /*------------------------------------------------------------------------*/
 /* File: sci_grep.c                                                       */
 /* Copyright INRIA 2007                                                   */
-/* @Authors : Cong Wu                                                     */
+/* @Authors : Cong Wu , Allan CORNET                                      */
 /* desc : search position of a character string in an other string
           using regular express .                                         */
 /*------------------------------------------------------------------------*/
+#include <stdio.h>
 #include <string.h>
 #include "gw_string.h"
-#include "machine.h"
 #include "pcre.h"
 #include "pcreposix.h"
-#include "stack-c.h"
-#include <ctype.h>
-#include "returnProperty.h"
-#include <string.h>
-#include <stdio.h>
 #include "machine.h"
+#include "stack-c.h"
 #include "kmp.h"
 #include "MALLOC.h" /* MALLOC */
-#include "pcre_private.cpp" /* @TODO remove that !! Do not include a cpp file */
+#include "pcre_private.h"
+#include "Scierror.h"
 /*------------------------------------------------------------------------*/
-int *next=NULL;
-int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End);
+static int sci_grep_old(char *fname);
+static int sci_grep_new(char *fname);
+/*------------------------------------------------------------------------*/
 int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
 {
-    char typ ;
-    char **Str=NULL;
-	char **Str2=NULL;
-    int y,x,m1=0,n1=0,mn,mn2,i,m2=0,n2=0,m3,n3,l3=0;
-    int outIndex = 0 ;
-    int *values=NULL;
-    int nbValues=0;
-    int *position=NULL;
-    int nbposition=0;
-    int numRow   = 1 ;
-    int w,l;
-    int pos=0;
-   int answer;
-   int Output_Start;
-   int Output_End;
-	int typeInput = 0;
-	int length;
-    CheckRhs(1,3);
+    CheckRhs(2,3);
     CheckLhs(1,2);
 
-	typeInput = VarType(1);
-
-	if (typeInput == sci_matrix)
+	if (VarType(1) == sci_matrix)
 	{
+		int m1 = 0, n1 = 0;
+		char **Str=NULL;
+
 		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&Str);
-		
-		if ((m1==0) && (n1==0))
+
+		if ((m1 == 0) && (n1 == 0))
 		{
-			l = 0;
-            CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
+			int l = 0;
+			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
 			LhsVar(1) = Rhs+1 ;
 			C2F(putlhsvar)();
 			return 0;
-
-
 		}
 	}
-	//else
-	
 
-    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
-    mn = m1*n1;  
-    GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str2);
-    mn2 = m2*n2;  
-	length=0;
-    for (x=0; x<mn;x++) 
+	if (Rhs == 3)
 	{
-		length=length+strlen(Str[x]);
-	}
-    
-	if (length==0) 
-	{
-		next=(int *)MALLOC(1);
-		values=(int *)MALLOC(1);
-		position=(int *)MALLOC(1);
-	}
-	else 
-	{
-		next=(int *)MALLOC(sizeof(int)*(length));
-		values=(int *)MALLOC(sizeof(int)*(length));
-		position=(int *)MALLOC(sizeof(int)*(length));
-	}
+		if (VarType(3) == sci_strings)
+		{
+			char typ = 'd'; /*default */
+			int m3 = 0,n3 = 0,l3 = 0;
 
-    if (Rhs >= 3)
-    {
-		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-        if ( m3*n3 != 0)
-            typ = cstk(l3)[0];
-        if (typ == 'r' )
-        {            /*When we use the regexp;*/
-			
-            for (y=0;y<mn;++y)
-            {
-                for (x=0;x<mn2;++x)
-                {
-                    answer=pcre_private(Str[y],Str2[x],&Output_Start,&Output_End);
-					if (answer==0)
-                    {
-                        values[nbValues++]=y+1; /*adding the answer into the outputmatrix*/
-                        position[nbposition++]=x+1;  /*The number according to the str2 matrix*/
-                    }     
-                }
-            }
-        }/* end of typ=='r'*/
-    }/* end of Rhs>=3*/
-    else
-    {                            /* without using the regexp*/
-        nbposition=0;
-        for (y=0;y<mn;++y)
-        {
-            for (x=0;x<mn2;++x)
-            {
-                if (strlen(Str2[x])==0)
-                {
-                    Scierror(249,"%s:2th argument must not be an empty string\r\n",fname); 
-					return 1;
-                }
-                getnext(Str2[x],next);
-                w=kmp(Str[y],Str2[x],pos,next);    /*Str is the input string matrix, Str2[x] is the substring to match; pos is the start point*/
-                if (w !=0)
-                {            
-                    values[nbValues++]=y+1;
-                    position[nbposition++]=x+1;
-                }     
-            }
-        }
-    }
-    numRow   = 1        ;  /* Output values[] and position[]*/
-    outIndex = 0        ;
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);
-    for ( i = 0 ; i < nbValues ; i++ )
-    {
-        stk(outIndex)[i] = (double)values[i] ;
-    }
-    LhsVar(1) = Rhs+1 ;
-    numRow   = 1        ;
-    outIndex = 0        ;
-    CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbposition,&outIndex);
-    for ( i = 0 ; i < nbposition ; i++ )
-    {
-        stk(outIndex)[i] = (double)position[i] ;
-    }
-    LhsVar(2) = Rhs+2;    
+			GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
+			if ( m3*n3 != 0) typ = cstk(l3)[0];
 
-    C2F(putlhsvar)();
-	if (values) {FREE(values); values=NULL;}
-    if (position) {FREE(position); position=NULL;}
-    if (next) {FREE(next); next=NULL;}
+			if (typ == 'r' )
+			{
+				sci_grep_new(fname);
+			}
+			else
+			{
+				Scierror(999,"3th argument invalid value.\n");
+				return 0;
+			}
+		}
+		else
+		{
+			Scierror(999,"3th argument invalid type.\n");
+			return 0;
+		}
+	}
+	else /* Rhs == 2 */
+	{
+		sci_grep_old(fname);
+	}
     return 0;
 }
+/*-----------------------------------------------------------------------------------*/
+static int sci_grep_old(char *fname)
+{
+	int x = 0, y = 0;
 
+	int m1 = 0, n1 = 0;
+	char **Strings_Input_One = NULL;
+	int m1n1 = 0; /* m1 * n1 */
+
+	int m2 = 0, n2 = 0;
+	char **Strings_Input_Two = NULL;
+	int m2n2 = 0; /* m2 * n2 */
+
+	int *next = NULL;
+	int *values = NULL;
+	int *positions = NULL;
+
+	int lengthMax = 0; /* MAX size of values and positions array */
+	int currentLength = 0;
+
+	int numRow   = 0;
+	int outIndex = 0;
+
+	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Strings_Input_One);
+	m1n1 = m1*n1;  
+	GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Strings_Input_Two);
+	m2n2 = m2*n2; 
+
+	for (x = 0; x < m1n1 ;x++) 
+	{
+		lengthMax = lengthMax + (int)strlen(Strings_Input_One[x]);
+	}
+
+	next = (int *)MALLOC(sizeof(int)*(lengthMax+1));
+	values = (int *)MALLOC(sizeof(int)*(lengthMax+1));
+	positions = (int *)MALLOC(sizeof(int)*(lengthMax+1));
+
+	/* without using the regexp*/
+	for (y = 0; y < m1n1; ++y)
+	{
+		for (x = 0; x < m2n2; ++x)
+		{
+			int w = 0;
+			int pos = 0;
+			if ( strlen(Strings_Input_Two[x]) == 0)
+			{
+				if (values) {FREE(values); values = NULL;}
+				if (positions) {FREE(positions); positions = NULL;}
+				if (next) {FREE(next); next=NULL;}
+
+				Scierror(249,"%s : 2th argument must not be an empty string.\n",fname); 
+				return 0;
+			}
+
+			getnext(Strings_Input_Two[x],next);
+
+			/* Strings_Input_One is the input string matrix,
+			 * Strings_Input_Two[x] is the substring to match
+			 * pos is the start point*/
+			w = kmp(Strings_Input_One[y],Strings_Input_Two[x],pos,next);  
+			if (w != 0)
+			{            
+				if (currentLength < lengthMax) 
+				{
+					values[currentLength] = y+1;
+					positions[currentLength] = x+1;
+					currentLength++;
+				}
+			}     
+		}
+	}
+
+	if (currentLength > lengthMax) currentLength = lengthMax;
+
+	numRow   = 1;  /* Output values[]*/
+	outIndex = 0;
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&currentLength,&outIndex);
+	for ( x = 0 ; x < currentLength ; x++ )
+	{
+		stk(outIndex)[x] = (double)values[x] ;
+	}
+	LhsVar(1) = Rhs+1 ;
+
+	if (Lhs == 2)
+	{
+		/* Output positions[]*/
+		numRow   = 1;
+		outIndex = 0;
+		CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&currentLength,&outIndex);
+		for ( x = 0 ; x < currentLength ; x++ )
+		{
+			stk(outIndex)[x] = (double)positions[x] ;
+		}
+		LhsVar(2) = Rhs+2;    
+	}
+	C2F(putlhsvar)();
+
+	if (values) {FREE(values); values = NULL;}
+	if (positions) {FREE(positions); positions = NULL;}
+	if (next) {FREE(next); next = NULL;}
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+static int sci_grep_new(char *fname)
+{
+	int x = 0, y = 0;
+
+	int m1 = 0, n1 = 0;
+	char **Strings_Input_One = NULL;
+	int m1n1 = 0; /* m1 * n1 */
+
+	int m2 = 0, n2 = 0;
+	char **Strings_Input_Two = NULL;
+	int m2n2 = 0; /* m2 * n2 */
+
+	int *next = NULL;
+	int *values = NULL;
+	int *positions = NULL;
+
+	int lengthMax = 0; /* MAX size of values and positions array */
+	int currentLength = 0;
+
+	int numRow   = 0;
+	int outIndex = 0;
+
+	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Strings_Input_One);
+	m1n1 = m1*n1;  
+	GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Strings_Input_Two);
+	m2n2 = m2*n2; 
+
+
+	for (x = 0; x < m1n1 ;x++) 
+	{
+		lengthMax = lengthMax + (int)strlen(Strings_Input_One[x]);
+	}
+
+	next = (int *)MALLOC(sizeof(int)*(lengthMax+1));
+	values = (int *)MALLOC(sizeof(int)*(lengthMax+1));
+	positions = (int *)MALLOC(sizeof(int)*(lengthMax+1));
+	
+	/*When we use the regexp;*/
+	for ( y = 0; y < m1n1; ++y)
+	{
+		for ( x = 0; x < m2n2; ++x)
+		{
+			int Output_Start = 0;
+			int Output_End = 0;
+			int answer = pcre_private(Strings_Input_One[y],Strings_Input_Two[x],&Output_Start,&Output_End);
+
+			if ( answer == 0 )
+			{
+				if (currentLength < lengthMax) 
+				{
+					values[currentLength] = y+1;
+					positions[currentLength] = x+1;
+					currentLength++;
+				}
+			}     
+		}
+	}
+
+	if (currentLength > lengthMax) currentLength = lengthMax;
+
+	numRow   = 1;  /* Output values[]*/
+	outIndex = 0;
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&currentLength,&outIndex);
+	for ( x = 0 ; x < currentLength ; x++ )
+	{
+		stk(outIndex)[x] = (double)values[x] ;
+	}
+	LhsVar(1) = Rhs+1 ;
+
+	if (Lhs == 2)
+	{
+		/* Output positions[]*/
+		numRow   = 1;
+		outIndex = 0;
+		CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&currentLength,&outIndex);
+		for ( x = 0 ; x < currentLength ; x++ )
+		{
+			stk(outIndex)[x] = (double)positions[x] ;
+		}
+		LhsVar(2) = Rhs+2;    
+	}
+	C2F(putlhsvar)();
+
+	if (values) {FREE(values); values = NULL;}
+	if (positions) {FREE(positions); positions = NULL;}
+	if (next) {FREE(next); next = NULL;}
+	return 0;
+}
 /*-----------------------------------------------------------------------------------*/

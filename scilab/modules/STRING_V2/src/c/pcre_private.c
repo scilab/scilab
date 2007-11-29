@@ -420,7 +420,7 @@ int posix = 0;
 int debug = 0;
 int all_use_dfa = 0;
 int yield = 0;
-int Cong_Tst;
+BOOL LOOP_PCRE_TST = FALSE;
 
 /* These vectors store, end-to-end, a list of captured substring names. Assume
 that 1024 is plenty long enough for the few names we'll be testing. */
@@ -459,21 +459,9 @@ if (offsets == NULL)
 
 
 
-/* Set alternative malloc function */
-/*
-pcre_malloc = new_malloc;
-pcre_free = new_free;
-pcre_stack_malloc = stack_malloc;
-pcre_stack_free = stack_free;
-*/
-/* Heading line unless quiet, then prompt for first regex if stdin */
-
-//if (!quiet) fprintf(outfile, "PCRE version %s\n\n", pcre_version());
-
 /* Main loop */
-getchar();
-Cong_Tst=0;
-while (!Cong_Tst)
+LOOP_PCRE_TST = FALSE;
+while (!LOOP_PCRE_TST)
 {
   pcre *re = NULL;
   pcre_extra *extra = NULL;
@@ -501,7 +489,7 @@ while (!Cong_Tst)
 
   use_utf8 = 0;
   debug_lengths = 1;
-  Cong_Tst=1;
+  LOOP_PCRE_TST = TRUE;
 
  
   
