@@ -402,6 +402,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\polylineDrawing\HorizontalBarDecomposition.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\polylineDrawing\InterpolatedDecomposition.cpp"
 					>
 				</File>
@@ -479,6 +483,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\polylineDrawing\StairCaseDecomposition.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\VerticalBarDecomposition.cpp"
 					>
 				</File>
 			</Filter>
@@ -1008,7 +1016,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\polylineDrawing\HorizontalBarDecomposition.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\polylineDrawing\InterpolatedDecomposition.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\LinearBarDecomposition.hxx"
 					>
 				</File>
 				<File
@@ -1085,6 +1101,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\polylineDrawing\StairCaseDecomposition.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\polylineDrawing\VerticalBarDecomposition.hxx"
 					>
 				</File>
 			</Filter>

@@ -61,9 +61,6 @@ void PolylineInterpColorDrawerJoGL::drawPolyline( void )
   m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
   m_pDrawed->getDrawnVerticesColor(colors);
 
-  // apply logarithmic mode if needed
-  m_pDrawed->pointScale(xCoords, yCoords, zCoords, nbVertices);
-
   // display the rectangle
   getInterpColorDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, colors, nbVertices);
 

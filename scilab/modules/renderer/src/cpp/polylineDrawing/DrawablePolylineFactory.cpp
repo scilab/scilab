@@ -19,6 +19,7 @@
 #include "PolylineArrowDrawerJoGL.hxx"
 #include "PolylineBarDrawerJoGL.hxx"
 #include "PolylineInterpColorDrawerJoGL.hxx"
+#include "BarDecomposition.hxx"
 
 extern "C"
 {
@@ -52,12 +53,42 @@ void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline
   polyline->removeDecompositionStrategy();
   polyline->removeDrawingStrategies();
 
-  if (sciGetPolylineStyle(pPolyline) == 5)
+
+  switch(sciGetPolylineStyle(pPolyline))
   {
+  case 1:
+    polyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
+    break;
+  case 2:
+    // stair case polyline
+    polyline->setDecompositionStrategy(new StairCaseDecomposition(polyline));
+    break;
+  case 3:
+  case 6:
+  case 7:
+    // bar polyline
+    polyline->setDecompositionStrategy(new BarDecomposition(polyline));
+    polyline->addDrawingStrategy(new PolylineBarDrawerJoGL(polyline));
+    break;
+  case 4:
+    // arrow drawing
+    polyline->addDrawingStrategy(new PolylineArrowDrawerJoGL(polyline));
+    polyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
+    break;
+  case 5:
+    // fill drawing
     polyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
+    polyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
+    break;
+  default:
+    break;
   }
-  else if (sciGetIsFilled(pPolyline))
+
+  // if polyline style is 5, fill mode has already been enable
+  if (sciGetIsFilled(pPolyline) && sciGetPolylineStyle(pPolyline) != 5)
   {
+    // interp vector does not work with staircase since it create a polygon with
+    // more than 4 vertices.
     if (sciGetIsColorInterpolated(pPolyline) && sciGetPolylineStyle(pPolyline) != 2)
     {
       polyline->addDrawingStrategy(new PolylineInterpColorDrawerJoGL(polyline));
@@ -66,25 +97,6 @@ void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline
     {
       polyline->addDrawingStrategy(new PolylineFillDrawerJoGL(polyline));
     }
-  }
-
-  if (sciGetPolylineStyle(pPolyline) == 2)
-  {
-    polyline->setDecompositionStrategy(new StairCaseDecomposition(polyline));
-  }
-  else
-  {
-    polyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
-  }
-
-  if (sciGetPolylineStyle(pPolyline) == 4)
-  {
-    polyline->addDrawingStrategy(new PolylineArrowDrawerJoGL(polyline));
-  }
-
-  if (sciGetPolylineStyle(pPolyline) == 3 || sciGetPolylineStyle(pPolyline) == 6)
-  {
-    polyline->addDrawingStrategy(new PolylineBarDrawerJoGL(polyline));
   }
 
   if (sciGetIsLine(pPolyline))

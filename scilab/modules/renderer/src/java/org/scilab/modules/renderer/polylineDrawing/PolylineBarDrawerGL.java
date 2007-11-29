@@ -115,32 +115,32 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 	/**
 	 * Draw the bar plot. The number of bar to draw is the length of the array.
 	 * The length of each array must be the same.
-	 * @param topX X coordinate of the middle of the top segment of each bar
-	 * @param topY Y coordinate of the middle of the top segment of each bar
-	 * @param topZ Z coordinate of the middle of the top segment of each bar
-	 * @param height height of each bar
-	 * @param left left abscissa of each bar
-	 * @param right right abscissa of each bar
+	 * @param left abscissa of left edge of each bar
+	 * @param right abscissa of right edge of each bar
+	 * @param bottom ordinate of bottom edge of each bar
+	 * @param top ordinate of top edge of each bar
+	 * @param zCoord z coordinate of each bar
 	 */
-	public void drawPolyline(double[] topX, double[] topY, double[] topZ,
-						     double[] height, double[] left, double[] right) {
+	public void drawPolyline(double[] left, double[] right,
+							 double[] bottom, double[] top,
+							 double[] zCoord) {
 		
-		fillBars(topX, topY, topZ, height, left, right);
-		encloseBars(topX, topY, topZ, height, left, right);
+		fillBars(left, right, bottom, top, zCoord);
+		encloseBars(left, right, bottom, top, zCoord);
 		
 	}
 	
 	/**
 	 * Fill the inside of bars
-	 * @param topX X coordinate of the middle of the top segment of each bar
-	 * @param topY Y coordinate of the middle of the top segment of each bar
-	 * @param topZ Z coordinate of the middle of the top segment of each bar
-	 * @param height height of each bar
-	 * @param left left abscissa of each bar
-	 * @param right right abscissa of each bar
+	 * @param left abscissa of left edge of each bar
+	 * @param right abscissa of right edge of each bar
+	 * @param bottom ordinate of bottom edge of each bar
+	 * @param top ordinate of top edge of each bar
+	 * @param zCoord z coordinate of each bar
 	 */
-	private void fillBars(double[] topX, double[] topY, double[] topZ,
-						  double[] height, double[] left, double[] right) {
+	private void fillBars(double[] left, double[] right,
+			 			  double[] bottom, double[] top,
+			 			  double[] zCoord) {
 		
 		GL gl = getGL();
 
@@ -150,26 +150,26 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 		gl.glColor3d(color[0], color[1], color[2]);
 		
 		gl.glBegin(GL.GL_QUADS);
-		for (int i = 0; i < topX.length; i++) {
-			gl.glVertex3d(left[i], topY[i] - height[i], topZ[i]);
-			gl.glVertex3d(right[i], topY[i] - height[i], topZ[i]);
-			gl.glVertex3d(right[i], topY[i], topZ[i]);
-			gl.glVertex3d(left[i], topY[i], topZ[i]);
+		for (int i = 0; i < left.length; i++) {
+			gl.glVertex3d(left[i], bottom[i], zCoord[i]);
+			gl.glVertex3d(right[i], bottom[i], zCoord[i]);
+			gl.glVertex3d(right[i], top[i], zCoord[i]);
+			gl.glVertex3d(left[i], top[i], zCoord[i]);
 		}
 		gl.glEnd();
 	}
 	
 	/**
 	 * Draw the outline of every bars
-	 * @param topX X coordinate of the middle of the top segment of each bar
-	 * @param topY Y coordinate of the middle of the top segment of each bar
-	 * @param topZ Z coordinate of the middle of the top segment of each bar
-	 * @param height height of each bar
-	 * @param left left abscissa of each bar
-	 * @param right right abscissa of each bar
+	 * @param left abscissa of left edge of each bar
+	 * @param right abscissa of right edge of each bar
+	 * @param bottom ordinate of bottom edge of each bar
+	 * @param top ordinate of top edge of each bar
+	 * @param zCoord z coordinate of each bar
 	 */
-	private void encloseBars(double[] topX, double[] topY, double[] topZ,
-							 double[] height, double[] left, double[] right) {
+	private void encloseBars(double[] left, double[] right,
+			  double[] bottom, double[] top,
+ 			  double[] zCoord) {
 		
 		GL gl = getGL();
 
@@ -182,12 +182,12 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 				
-		for (int i = 0; i < topX.length; i++) {
+		for (int i = 0; i < left.length; i++) {
 			gl.glBegin(GL.GL_LINE_LOOP);
-			gl.glVertex3d(left[i], topY[i] - height[i], topZ[i]);
-			gl.glVertex3d(right[i], topY[i] - height[i], topZ[i]);
-			gl.glVertex3d(right[i], topY[i], topZ[i]);
-			gl.glVertex3d(left[i], topY[i], topZ[i]);
+			gl.glVertex3d(left[i], bottom[i], zCoord[i]);
+			gl.glVertex3d(right[i], bottom[i], zCoord[i]);
+			gl.glVertex3d(right[i], top[i], zCoord[i]);
+			gl.glVertex3d(left[i], top[i], zCoord[i]);
 			gl.glEnd();
 		}
 		

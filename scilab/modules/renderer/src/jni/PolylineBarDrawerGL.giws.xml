@@ -23,12 +23,11 @@
       <param type="int" name="lineStyle" />
     </method>
     <method name="drawPolyline" returnType="void">
-      <param type="double[]" name="topX" />
-      <param type="double[]" name="topY" />
-      <param type="double[]" name="topZ" />
-      <param type="double[]" name="height" />
       <param type="double[]" name="left" />
       <param type="double[]" name="right" />
+      <param type="double[]" name="bottom" />
+      <param type="double[]" name="top" />
+      <param type="double[]" name="zCoord" />
     </method>
   </object>
 </package>

@@ -63,16 +63,18 @@ void PolylineBarDrawerJavaMapper::setBarParameters(int background, int foregroun
   m_pJavaObject->setBarParameters(background, foreground, thickness, lineStyle);
 }
 /*---------------------------------------------------------------------------------*/
-void PolylineBarDrawerJavaMapper::drawPolyline(const double topX[], const double topY[],
-                                               const double topZ[], const double height[],
-                                               const double left[], const double right[], int nbCoords)
+void PolylineBarDrawerJavaMapper::drawPolyline(const double left[],
+                                               const double right[],
+                                               const double bottom[],
+                                               const double top[],
+                                               const double zCoord[],
+                                               int nbCoords)
 {
-  m_pJavaObject->drawPolyline((double *)topX, nbCoords,
-                              (double *)topY, nbCoords,
-                              (double *)topZ, nbCoords,
-                              (double *)height, nbCoords,
-                              (double *)left, nbCoords,
-                              (double *)right, nbCoords); 
+  m_pJavaObject->drawPolyline((double *)left, nbCoords,
+                              (double *)right, nbCoords,
+                              (double *)bottom, nbCoords,
+                              (double *)top, nbCoords,
+                              (double *)zCoord, nbCoords); 
 }
 /*---------------------------------------------------------------------------------*/
 }

@@ -50,7 +50,8 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   double * xCoords    = NULL;
   double * yCoords    = NULL;
   double * zCoords    = NULL;
-  double * height     = NULL;
+  double * bottom     = NULL;
+  double * top        = NULL;
   double * left       = NULL;
   double * right      = NULL;
 
@@ -61,18 +62,20 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   xCoords = new double[nbVertices];
   yCoords = new double[nbVertices];
   zCoords = new double[nbVertices];
-  height  = new double[nbVertices];
+  bottom  = new double[nbVertices];
+  top     = new double[nbVertices];
   left    = new double[nbVertices];
   right   = new double[nbVertices]; 
 
   if (   xCoords == NULL || yCoords == NULL || zCoords == NULL
-      || height == NULL || left == NULL || right == NULL)
+      || bottom == NULL || top == NULL || left == NULL || right == NULL)
   {
     sciprint(_("Unable to render polyline, memory full.\n"));
     if (xCoords != NULL) { delete[] xCoords; }
     if (yCoords != NULL) { delete[] yCoords; }
     if (zCoords != NULL) { delete[] zCoords; }
-    if (height  != NULL) { delete[] height;  }
+    if (bottom  != NULL) { delete[] bottom;  }
+    if (top     != NULL) { delete[] top;     }
     if (left    != NULL) { delete[] left;    }
     if (right   != NULL) { delete[] right;   }
     endDrawing();
@@ -80,16 +83,17 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   }
 
   decomposer.getDrawnVertices(xCoords, yCoords, zCoords);
-  decomposer.getBarHeight(height);
-  decomposer.getBarWidth(left, right);
+  decomposer.getBarOrdinates(bottom, top);
+  decomposer.getBarAbscissas(left, right);
 
   // display the rectangle
-  getBarDrawerJavaMapper()->drawPolyline(xCoords, yCoords, zCoords, height, left, right, nbVertices);
+  getBarDrawerJavaMapper()->drawPolyline(left, right, bottom, top, zCoords, nbVertices);
  
   delete[] xCoords;
   delete[] yCoords;
   delete[] zCoords;
-  delete[] height;
+  delete[] bottom;
+  delete[] top;
   delete[] left;
   delete[] right;
   endDrawing() ;

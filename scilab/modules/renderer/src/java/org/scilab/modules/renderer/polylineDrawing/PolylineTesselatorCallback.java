@@ -92,6 +92,10 @@ public class PolylineTesselatorCallback extends GLUtessellatorCallbackAdapter {
 	 */
 	@Override
 	public void error(int errnum) {
-		System.err.println("Glu Error: " + currentGLU.gluErrorString(errnum));
+		try {
+			System.err.println("Glu Error: " + currentGLU.gluErrorString(errnum));
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.err.println("Glu Error: Unknown glu Error number " + errnum);
+		}
 	}
 }

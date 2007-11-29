@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: StairCaseDecomposition.cpp                                       */
+/* file: BarDecomposition.cpp                                             */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Decompose polyline to get data for bar drawing                  */
@@ -7,6 +7,8 @@
 
 
 #include "BarDecomposition.hxx"
+#include "HorizontalBarDecomposition.hxx"
+#include "VerticalBarDecomposition.hxx"
 
 extern "C"
 {
@@ -20,12 +22,21 @@ namespace sciGraphics
 BarDecomposition::BarDecomposition( DrawablePolyline * polyline )
   : DecomposeLineStrategy(polyline)
 {
-
+  sciPointObj * pPolyline = polyline->getDrawedObject();
+  if (sciGetPolylineStyle(pPolyline) == 7)
+  {
+    m_pExtentComputer = new HorizontalBarDecomposition(this);
+  }
+  else
+  {
+    m_pExtentComputer = new VerticalBarDecomposition(this);
+  }
 }
 /*---------------------------------------------------------------------------------*/
 BarDecomposition::~BarDecomposition( void )
 {
-
+  delete m_pExtentComputer;
+  m_pExtentComputer = NULL;
 }
 /*---------------------------------------------------------------------------------*/
 void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], double zCoords[])
@@ -39,41 +50,51 @@ void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], doub
   double * yShift = pPOLYLINE_FEATURE(pPolyline)->y_shift;
   double * zShift = pPOLYLINE_FEATURE(pPolyline)->z_shift;
 
-  doubleArrayCopy(xCoords, xPoints, nbVertices);
-  doubleArrayCopy(yCoords, yPoints, nbVertices);
-
-  if ( zPoints == NULL )
+  if (xCoords != NULL)
   {
-    setDoubleArraySingleValue(zCoords, 0.0, nbVertices);
-  }
-  else
-  {
-    doubleArrayCopy(zCoords, zPoints, nbVertices);
-  }
-
-  if (xShift != NULL)
-  {
-    for(int i = 0; i < nbVertices; i++)
+    doubleArrayCopy(xCoords, xPoints, nbVertices);
+    if (xShift != NULL)
     {
-      xCoords[i] += xShift[i];
+      for(int i = 0; i < nbVertices; i++)
+      {
+        xCoords[i] += xShift[i];
+      }
     }
   }
+  
 
-  if (yShift != NULL)
+  if (yCoords != NULL)
   {
-    for(int i = 0; i < nbVertices; i++)
+    doubleArrayCopy(yCoords, yPoints, nbVertices);
+    if (yShift != NULL)
     {
-      yCoords[i] += yShift[i];
+      for(int i = 0; i < nbVertices; i++)
+      {
+        yCoords[i] += yShift[i];
+      }
     }
   }
-
-  if (zShift != NULL)
+  
+  if (zCoords != NULL)
   {
-    for(int i = 0; i < nbVertices; i++)
+    if ( zPoints == NULL )
     {
-      zCoords[i] += zShift[i];
+      setDoubleArraySingleValue(zCoords, 0.0, nbVertices);
+    }
+    else
+    {
+      doubleArrayCopy(zCoords, zPoints, nbVertices);
+    }
+
+    if (zShift != NULL)
+    {
+      for(int i = 0; i < nbVertices; i++)
+      {
+        zCoords[i] += zShift[i];
+      }
     }
   }
+  
 
   // apply logarithmic mode if needed
   m_pDrawed->pointScale(xCoords, yCoords, zCoords, getDrawnVerticesLength());
@@ -95,92 +116,24 @@ int BarDecomposition::getDrawnVerticesLength(void)
   return sciGetNbPoints(m_pDrawed->getDrawedObject());
 }
 /*---------------------------------------------------------------------------------*/
-void BarDecomposition::getBarHeight(double heights[])
+void BarDecomposition::getBarOrdinates(double bottom[], double top[])
 {
-  sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
-  int nbVertices = sciGetNbPoints(pPolyline);
-  double * yPoints = pPOLYLINE_FEATURE(pPolyline)->pvy;
-  double * yShift = pPOLYLINE_FEATURE(pPolyline)->y_shift;
 
-  doubleArrayCopy(heights, yPoints, nbVertices);
+  int nbVertices = getDrawnVerticesLength();
+  getBarLinearOrdinates(bottom, top);
 
-  if (sciGetPolylineStyle(pPolyline) == 3 && yShift != NULL)
-  {
-    // barplot, bars start at y = 0
-    for (int i = 0; i < nbVertices; i++)
-    {
-      heights[i] += yShift[i];
-    }
-    // now consider that ySHift is NULL.
-    yShift = NULL;
-  }
-
-  // special case for logFlags
-  // bars start at y = 1 = 10^0, not y = 0 since 0 can not be displayed
-  char logFlags[3];
-  sciGetLogFlags(sciGetParentSubwin(pPolyline), logFlags);
-  if (logFlags[1] == 'l')
-  {
-    for (int i = 0; i < nbVertices; i++)
-    {
-      heights[i] -= 1.0;
-    }
-  }
-
-  
-  // apply log scale if needed
-  if (yShift == NULL)
-  {
-    for (int i = 0; i < nbVertices; i++)
-    {
-      double dummyX = 1.0;
-      double dummyZ = 1.0;
-      m_pDrawed->directionScale(dummyX, heights[i], dummyZ,
-                                dummyX, 1.0, dummyZ,
-                                &dummyX, &(heights[i]), &dummyZ);
-    }
-  }
-  else
-  {
-    for (int i = 0; i < nbVertices; i++)
-    {
-      double dummyX = 1.0;
-      double dummyZ = 1.0;
-      m_pDrawed->directionScale(dummyX, heights[i], dummyZ,
-                                dummyX, 1.0 + yShift[i], dummyZ,
-                                &dummyX, &(heights[i]), &dummyZ);
-    }
-  }
+  m_pDrawed->pointScale(NULL, bottom, NULL, nbVertices);
+  m_pDrawed->pointScale(NULL, top, NULL, nbVertices);
 }
 /*---------------------------------------------------------------------------------*/
-void BarDecomposition::getBarWidth(double left[], double right[])
+void BarDecomposition::getBarAbscissas(double left[], double right[])
 {
-  sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
+  // apply log scale if needed
   int nbVertices = getDrawnVerticesLength();
-  double * xPoints = pPOLYLINE_FEATURE(pPolyline)->pvx;
-  double * xShift = pPOLYLINE_FEATURE(pPolyline)->x_shift;
+  getBarLinearAbscissas(left, right);
 
-  double barWidth;
-  if (sciGetPolylineStyle(pPolyline) == 3)
-  {
-    // bar plot mode
-    barWidth = 0.0;
-  }
-  else
-  {
-    barWidth = pPOLYLINE_FEATURE(pPolyline)->bar_width;
-  }
-
-  // apply logarithmic mode if needed
-  for (int i = 0; i < nbVertices; i++)
-  {
-    double dummyY = 1.0;
-    double dummyZ = 1.0;
-    m_pDrawed->pointScale(xPoints[i] - barWidth / 2.0, dummyY, dummyZ,
-                          &(left[i]),&dummyY, &dummyZ);
-    m_pDrawed->pointScale(xPoints[i] + barWidth / 2.0, dummyY, dummyZ,
-                          &(right[i]),&dummyY, &dummyZ);
-  }
+  m_pDrawed->pointScale(left, NULL, NULL, nbVertices);
+  m_pDrawed->pointScale(right, NULL, NULL, nbVertices);
 
 }
 /*---------------------------------------------------------------------------------*/
@@ -192,12 +145,31 @@ void BarDecomposition::getBarPlotMarkVertices(double xCoords[], double yCoords[]
   int semiSize = getDrawnVerticesLength();
 
   // second half
-  for (int i = 0; i < semiSize ; i++)
+  sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
+  
+  // special case for with logarithmic mode
+  // bars starts at y = 1 = 10^0 and not 0 which is not displayable
+  char logFlags[3];
+  sciGetLogFlags(pPolyline, logFlags);
+  if (logFlags[1] == 'l')
   {
-    xCoords[i + semiSize] = xCoords[i];
-    yCoords[i + semiSize] = 0.0;
-    zCoords[i + semiSize] = zCoords[i];
+    for (int i = 0; i < semiSize ; i++)
+    {
+      xCoords[i + semiSize] = xCoords[i];
+      yCoords[i + semiSize] = 1.0;
+      zCoords[i + semiSize] = zCoords[i];
+    }
   }
+  else
+  {
+    for (int i = 0; i < semiSize ; i++)
+    {
+      xCoords[i + semiSize] = xCoords[i];
+      yCoords[i + semiSize] = 0.0;
+      zCoords[i + semiSize] = zCoords[i];
+    }
+  }
+  
 }
 /*---------------------------------------------------------------------------------*/
 int BarDecomposition::getBarPlotMarkVerticesLength(void)
@@ -205,5 +177,14 @@ int BarDecomposition::getBarPlotMarkVerticesLength(void)
   return 2 * getDrawnVerticesLength();
 }
 /*---------------------------------------------------------------------------------*/
-
+void BarDecomposition::getBarLinearOrdinates(double bottom[], double top[])
+{
+  m_pExtentComputer->getBarOrdinates(bottom, top);
+}
+/*---------------------------------------------------------------------------------*/
+void BarDecomposition::getBarLinearAbscissas(double left[], double right[])
+{
+  m_pExtentComputer->getBarAbscissas(left, right);
+}
+/*---------------------------------------------------------------------------------*/
 }

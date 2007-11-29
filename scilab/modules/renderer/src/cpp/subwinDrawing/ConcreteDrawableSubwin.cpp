@@ -67,34 +67,34 @@ void ConcreteDrawableSubwin::setZBoundsStrategy(ComputeBoundsStrategy * strategy
 void ConcreteDrawableSubwin::pointScale(double xCoord, double yCoord, double zCoord,
                                         double * xScaled, double * yScaled, double * zScaled)
 {
-  m_pXBoundsStrategy->pointScale(xCoord, xScaled);
-  m_pYBoundsStrategy->pointScale(yCoord, yScaled);
-  m_pZBoundsStrategy->pointScale(zCoord, zScaled);
+  if (xScaled != NULL) { m_pXBoundsStrategy->pointScale(xCoord, xScaled); }
+  if (yScaled != NULL) { m_pYBoundsStrategy->pointScale(yCoord, yScaled); }
+  if (zScaled != NULL) { m_pZBoundsStrategy->pointScale(zCoord, zScaled); }
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::pointScale(double vectorX[], double vectorY[], double vectorZ[], int vectorLength)
 {
-  m_pXBoundsStrategy->pointScale(vectorX, vectorLength);
-  m_pYBoundsStrategy->pointScale(vectorY, vectorLength);
-  m_pZBoundsStrategy->pointScale(vectorZ, vectorLength);
+  if (vectorX != NULL) { m_pXBoundsStrategy->pointScale(vectorX, vectorLength); }
+  if (vectorY != NULL) { m_pYBoundsStrategy->pointScale(vectorY, vectorLength); }
+  if (vectorZ != NULL) { m_pZBoundsStrategy->pointScale(vectorZ, vectorLength); }
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::directionScale(double xCoord, double yCoord, double zCoord,
                                             double startingPointX, double startingPointY, double startingPointZ,
                                             double * xScaled, double * yScaled, double * zScaled)
 {
-  m_pXBoundsStrategy->directionScale(xCoord, startingPointX, xScaled);
-  m_pYBoundsStrategy->directionScale(yCoord, startingPointY, yScaled);
-  m_pZBoundsStrategy->directionScale(zCoord, startingPointZ, zScaled);
+  if (xScaled != NULL) { m_pXBoundsStrategy->directionScale(xCoord, startingPointX, xScaled); }
+  if (yScaled != NULL) { m_pYBoundsStrategy->directionScale(yCoord, startingPointY, yScaled); }
+  if (zScaled != NULL) { m_pZBoundsStrategy->directionScale(zCoord, startingPointZ, zScaled); }
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::directionScale(double vectorX[], double vectorY[], double vectorZ[],
                                             double startingPointsX[], double startingPointsY[],
                                             double startingPointsZ[], double vectorLength)
 {
-  m_pXBoundsStrategy->directionScale(vectorX, startingPointsX, vectorLength);
-  m_pYBoundsStrategy->directionScale(vectorY, startingPointsY, vectorLength);
-  m_pZBoundsStrategy->directionScale(vectorZ, startingPointsZ, vectorLength);
+  if (vectorX != NULL) { m_pXBoundsStrategy->directionScale(vectorX, startingPointsX, vectorLength); }
+  if (vectorY != NULL) { m_pYBoundsStrategy->directionScale(vectorY, startingPointsY, vectorLength); }
+  if (vectorZ != NULL) { m_pZBoundsStrategy->directionScale(vectorZ, startingPointsZ, vectorLength); }
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::computeRealDataBounds(void)

@@ -39,12 +39,11 @@ public:
   virtual void setBarParameters(int background, int foreground, float thickness,
                                 int lineStyle);
 
-  virtual void drawPolyline(const double topX[],
-                            const double topY[],
-                            const double topZ[],
-                            const double height[],
-                            const double left[],
+  virtual void drawPolyline(const double left[],
                             const double right[],
+                            const double bottom[],
+                            const double top[],
+                            const double zCoord[],
                             int nbCoords);
   /*----------------------------------------------------------------------*/
 

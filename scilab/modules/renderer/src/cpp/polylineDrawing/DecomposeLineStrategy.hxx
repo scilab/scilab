@@ -44,6 +44,8 @@ public:
    */
   virtual int getDrawnVerticesLength(void) = 0;
 
+  DrawablePolyline * getDrawedPolyline(void) { return m_pDrawed;}
+
 protected:
 
   DrawablePolyline * m_pDrawed;

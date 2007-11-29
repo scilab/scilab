@@ -104,7 +104,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetBarParametersjintjintjfloatjintID=NULL; 
-voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
+voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
 
 
 }
@@ -133,7 +133,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetBarParametersjintjintjfloatjintID=NULL; 
-voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
+voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
 
 
 }
@@ -298,28 +298,16 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void PolylineBarDrawerGL::drawPolyline (double * topX, int topXSize, double * topY, int topYSize, double * topZ, int topZSize, double * height, int heightSize, double * left, int leftSize, double * right, int rightSize){
+void PolylineBarDrawerGL::drawPolyline (double * left, int leftSize, double * right, int rightSize, double * bottom, int bottomSize, double * top, int topSize, double * zCoord, int zCoordSize){
 
 JNIEnv * curEnv = getCurrentEnv();
                 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID = curEnv->GetMethodID(this->instanceClass, "drawPolyline", "([D[D[D[D[D[D)V" ) ;
-if (voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID == NULL) {
+jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID = curEnv->GetMethodID(this->instanceClass, "drawPolyline", "([D[D[D[D[D)V" ) ;
+if (voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID == NULL) {
 std::cerr << "Could not access to the method " << "drawPolyline" << std::endl;
 exit(EXIT_FAILURE);
 }
-
-jdoubleArray topX_ = curEnv->NewDoubleArray( topXSize ) ;
-curEnv->SetDoubleArrayRegion( topX_, 0, topXSize, (jdouble*) topX ) ;
-
-jdoubleArray topY_ = curEnv->NewDoubleArray( topYSize ) ;
-curEnv->SetDoubleArrayRegion( topY_, 0, topYSize, (jdouble*) topY ) ;
-
-jdoubleArray topZ_ = curEnv->NewDoubleArray( topZSize ) ;
-curEnv->SetDoubleArrayRegion( topZ_, 0, topZSize, (jdouble*) topZ ) ;
-
-jdoubleArray height_ = curEnv->NewDoubleArray( heightSize ) ;
-curEnv->SetDoubleArrayRegion( height_, 0, heightSize, (jdouble*) height ) ;
 
 jdoubleArray left_ = curEnv->NewDoubleArray( leftSize ) ;
 curEnv->SetDoubleArrayRegion( left_, 0, leftSize, (jdouble*) left ) ;
@@ -327,7 +315,16 @@ curEnv->SetDoubleArrayRegion( left_, 0, leftSize, (jdouble*) left ) ;
 jdoubleArray right_ = curEnv->NewDoubleArray( rightSize ) ;
 curEnv->SetDoubleArrayRegion( right_, 0, rightSize, (jdouble*) right ) ;
 
-                         curEnv->CallVoidMethod( this->instance, voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID ,topX_, topY_, topZ_, height_, left_, right_);
+jdoubleArray bottom_ = curEnv->NewDoubleArray( bottomSize ) ;
+curEnv->SetDoubleArrayRegion( bottom_, 0, bottomSize, (jdouble*) bottom ) ;
+
+jdoubleArray top_ = curEnv->NewDoubleArray( topSize ) ;
+curEnv->SetDoubleArrayRegion( top_, 0, topSize, (jdouble*) top ) ;
+
+jdoubleArray zCoord_ = curEnv->NewDoubleArray( zCoordSize ) ;
+curEnv->SetDoubleArrayRegion( zCoord_, 0, zCoordSize, (jdouble*) zCoord ) ;
+
+                         curEnv->CallVoidMethod( this->instance, voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID ,left_, right_, bottom_, top_, zCoord_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
