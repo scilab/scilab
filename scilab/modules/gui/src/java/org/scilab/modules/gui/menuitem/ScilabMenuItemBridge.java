@@ -53,4 +53,13 @@ public class ScilabMenuItemBridge {
 		menuItem.getAsSimpleMenuItem().setCallback(command);
 	}
 
+	/**
+	 * Set if the menu item is enabled or not
+	 * @param menuItem the MenuItem which we want to add the mnemonic to
+	 * @param status true if the menu item is enabled
+	 */
+	public static void setEnabled(MenuItem menuItem, boolean status) {
+		menuItem.getAsSimpleMenuItem().setEnabled(status);
+	}
+	
 }

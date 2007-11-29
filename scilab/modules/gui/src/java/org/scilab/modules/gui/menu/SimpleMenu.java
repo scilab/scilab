@@ -46,4 +46,11 @@ public interface SimpleMenu extends Widget {
 	 * Add a Separator to a Menu
 	 */
 	void addSeparator();
+
+	/**
+	 * Set if the menu item is enabled or not
+	 * @param status true if the menu item is enabled
+	 */
+	void setEnabled(boolean status);
+	
 }

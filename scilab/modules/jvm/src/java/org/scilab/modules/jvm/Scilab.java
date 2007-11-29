@@ -3,23 +3,21 @@
 
 package org.scilab.modules.jvm;
 
+import java.io.IOException;
+
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.utils.LookAndFeel;
-
-
-
-
+import org.scilab.modules.gui.utils.MenuBarBuilder;
 
 /**
  * Main Class for Scilab
@@ -30,6 +28,10 @@ import org.scilab.modules.gui.utils.LookAndFeel;
 public class Scilab {
 	
 	private static final String CLASS_NOT_FOUND = "Could not find class: ";
+	private static final String FILE_NOT_FOUND = "Could not find file: ";
+	private static final String CANNOT_CREATE_MENUBAR = "Cannot create Scilab MenuBar.\nCheck if file main_menus.xml is available and valid.";
+	
+	private static final String MENUSXMLFILE = System.getenv("SCI") + "/modules/gui/etc/main_menus.xml";
 	
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
@@ -58,29 +60,35 @@ public class Scilab {
 				System.exit(-1);
 			}
 			
+			/************/
 			/* MENU BAR */
-			MenuBar menuBar = ScilabMenuBar.createMenuBar();
-			//mainView.addMenuBar(menuBar);
-
-			Menu fileMenu = ScilabMenu.createMenu();
-			fileMenu.setText("File");
-			menuBar.add(fileMenu);
-			
-			MenuItem quitScilab = ScilabMenuItem.createMenuItem();
-			quitScilab.setText("Exit");
-			quitScilab.setMnemonic('E');
-			quitScilab.setCallback("exit();");
-			fileMenu.add(quitScilab);
+			/************/
+			MenuBar menuBar = null;
+			try {
+				menuBar = MenuBarBuilder.buildMenuBar(MENUSXMLFILE);
+				mainView.addMenuBar(menuBar);
+			} catch (IllegalArgumentException e) {
+				System.err.println(CANNOT_CREATE_MENUBAR);
+				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+				System.exit(-1);
+			} catch (SAXException e) {
+				System.err.println(CANNOT_CREATE_MENUBAR);
+				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+				System.exit(-1);
+			} catch (IOException e) {
+				System.err.println(CANNOT_CREATE_MENUBAR);
+				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+				e.printStackTrace();
+			} catch (ParserConfigurationException e) {
+				System.err.println(CANNOT_CREATE_MENUBAR);
+				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+				System.exit(-1);
+			}
 			
 			/* CONSOLE */
 			/* Create a tab to put console into */
 			Tab consoleTab = ScilabTab.createTab("Console Scilab");
 			consoleTab.setName("Console");
-			
-            // Special case because the menuBar is associated to the mainView and not to the tab
-			// TODO This could perhaps be done in mainView.addTab ???
-			//consoleTab.addMenuBar(menuBar); 
-			//consoleTab.setMenuBarId(menuBar.getAsSimpleMenuBar().getElementId());
 			
 			mainView.addTab(consoleTab);
 
@@ -138,6 +146,7 @@ public class Scilab {
 	public Window getMainWindow() {
 		return mainView;
 	}
+
 }
 /*--------------------------------------------------------------------------*/
 

@@ -836,6 +836,15 @@ public class ScilabBridge {
 		ScilabMenuItemBridge.setCallback(menuItem, command);
 	}
 
+	/**
+	 * Set if the menu item is enabled or not
+	 * @param menuItem the MenuItem which we want to add the mnemonic to
+	 * @param status true if the menu item is enabled
+	 */
+	public static void setEnabled(MenuItem menuItem, boolean status) {
+		ScilabMenuItemBridge.setEnabled(menuItem, status);
+	}
+
 	/*****************/
 	/* Menu Bridge */
 	/*****************/
@@ -900,6 +909,36 @@ public class ScilabBridge {
 	public static void addSeparator(Menu menu) {
 		ScilabMenuBridge.addSeparator(menu);
 	}
+
+	/**
+	 * Set if the menu is enabled or not
+	 * @param menu the menu which we want to add the mnemonic to
+	 * @param status true if the menu item is enabled
+	 */
+	public static void setEnabled(Menu menu, boolean status) {
+		ScilabMenuBridge.setEnabled(menu, status);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab menu
+	 * @param menu the menu we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the menu (true to set the menu visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(Menu menu, boolean newVisibleState) {
+		ScilabMenuBridge.setVisible(menu, newVisibleState);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab Menu
+	 * @param menu the menu we want to get the visiblity status of
+	 * @return the visibility status of the menu (true if the menu is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(Menu menu) {
+		return ScilabMenuBridge.isVisible(menu);
+	}
+
 	
 	/*****************/
 	/* Separator Bridge */

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<menubar>
+    <menu label="File" mnemonic="F">
+        <submenu label="New figure..." mnemonic="N" enabled="false"/> 
+        <separator/>
+        <submenu label="Load..." mnemonic="L" enabled="false"/> 
+        <submenu label="Save..." mnemonic="S" enabled="false"/> 
+        <separator/>
+        <submenu label="Export" mnemonic="E" enabled="false"/> 
+        <submenu label="Copy to clipboard" mnemonic="C" enabled="false"/> 
+        <separator/>
+        <submenu label="Print setup..." mnemonic="R" enabled="false"/> 
+        <submenu label="Print" mnemonic="P" enabled="false"/> 
+        <separator/>
+        <submenu label="Close" mnemonic="L" enabled="false"/> 
+    </menu>
+
+    <menu label="Tools" mnemonic="T">
+        <submenu label="Toolbar" mnemonic="T" enabled="false"/> 
+        <separator/>
+        <submenu label="Zoom" mnemonic="Z" enabled="false"/> 
+        <submenu label="UnZoom" mnemonic="U" enabled="false"/> 
+        <separator/>
+        <submenu label="2D/3D Rotation" mnemonic="R" enabled="false"/> 
+    </menu>
+
+    <menu label="Edit" mnemonic="E">
+        <submenu label="Select as current figure" mnemonic="S" enabled="false"/> 
+        <submenu label="Redraw figure" mnemonic="R" enabled="false"/> 
+        <submenu label="Clear figure" mnemonic="C" enabled="false"/> 
+        <separator/>
+        <submenu label="Figure properties" mnemonic="F" enabled="false"/> 
+        <submenu label="Axes properties" mnemonic="A" enabled="false"/> 
+        <separator/>
+        <submenu label="Start entity picker" mnemonic="S" enabled="false"/> 
+        <submenu label="Stop entity picker" mnemonic="T" enabled="false"/> 
+    </menu>
+
+    <menu label="?" mnemonic="?">
+        <submenu label="Scilab Help" mnemonic="S" enabled="false"/> 
+        <separator/>
+        <submenu label="About Scilab..." mnemonic="A" enabled="false"/> 
+    </menu>
+</menubar>

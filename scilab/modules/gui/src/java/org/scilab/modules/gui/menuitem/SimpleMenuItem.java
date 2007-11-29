@@ -26,4 +26,10 @@ public interface SimpleMenuItem {
 	 * @param command the Scilab command to execute when the menu is activated
 	 */
 	void setCallback(String command);
+
+	/**
+	 * Set if the menu item is enabled or not
+	 * @param status true if the menu item is enabled
+	 */
+	void setEnabled(boolean status);
 }

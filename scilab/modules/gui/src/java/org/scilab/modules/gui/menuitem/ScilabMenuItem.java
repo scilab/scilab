@@ -61,5 +61,13 @@ public class ScilabMenuItem implements MenuItem {
 	public void setCallback(String command) {
 		ScilabBridge.setCallback(this, command);
 	}
+
+	/**
+	 * Set if the menu item is enabled or not
+	 * @param status true if the menu item is enabled
+	 */
+	public void setEnabled(boolean status) {
+		ScilabBridge.setEnabled(this, status);
+	}
 	
 }

@@ -120,7 +120,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	 * @return nothing
 	 */
 	public boolean isVisible() {
-		throw new UnsupportedOperationException();
+		return ScilabBridge.isVisible(this);
 	}
 
 	/**
@@ -144,6 +144,14 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	 * @param newVisibleState is not used
 	 */
 	public void setVisible(boolean newVisibleState) {
-		throw new UnsupportedOperationException();
+		ScilabBridge.setVisible(this, newVisibleState);
+	}
+
+	/**
+	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * @param status is not used
+	 */
+	public void setEnabled(boolean status) {
+		ScilabBridge.setEnabled(this, status);
 	}
 }
