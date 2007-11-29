@@ -8050,7 +8050,7 @@ CPU_64_BITS=false
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
-	  CFLAGS="$CFLAGS -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -Wall "
+	  CFLAGS="$CFLAGS -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall "
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
    else

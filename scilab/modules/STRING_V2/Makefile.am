@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
+### INRIA - Scilab 2006/2007
 ##########
 
 STRING_C_SOURCES = src/c/code2str.c \
@@ -46,11 +46,11 @@ libscistring_la_CFLAGS= \
 
 pkglib_LTLIBRARIES = libscistring.la
 
-if STRING_V2
+#if STRING_V2
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-else
-libscistring_la_SOURCES= 
-endif
+#else
+#libscistring_la_SOURCES= 
+#endif
 
 libscistring_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \

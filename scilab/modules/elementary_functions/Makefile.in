@@ -1066,11 +1066,9 @@ includes/xerhlt.h
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 ########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
+#### We are delegating java compilation to ant... Thanks to that
+#### the procedure will be the same with Microsoft Windows (C) 
+#### and Linux/Unix
 #######################################################################
 TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 

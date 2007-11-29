@@ -19,11 +19,9 @@ check-local: $(top_builddir)/scilab-bin
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 
 ########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
+#### We are delegating java compilation to ant... Thanks to that
+#### the procedure will be the same with Microsoft Windows (C) 
+#### and Linux/Unix
 #######################################################################
 
 

@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
+### INRIA - Scilab 2006/2007
 ##########
 
 ##########
@@ -87,20 +87,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscistring_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__libscistring_la_SOURCES_DIST = src/c/code2str.c src/c/kmp.c \
-	src/c/stripblanks.c src/c/convstr.c src/c/men_Sutils.c \
-	src/c/strsplit.c src/c/CreateEmptystr.c src/c/tokens.c \
-	src/c/strcat-c.c src/c/Get_length.c src/c/strcatfunction.c \
-	src/c/InitializeString.c src/c/setScilabCharactersCodes.c \
-	src/c/cvstr.c src/c/getfastcode.c sci_gateway/c/gw_string.c \
-	sci_gateway/c/sci_ascii.c sci_gateway/c/sci_code2str.c \
-	sci_gateway/c/sci_convstr.c sci_gateway/c/sci_emptystr.c \
-	sci_gateway/c/sci_grep.c sci_gateway/c/sci_length.c \
-	sci_gateway/c/sci_part.c sci_gateway/c/sci_str2code.c \
-	sci_gateway/c/sci_strcat.c sci_gateway/c/sci_strindex.c \
-	sci_gateway/c/sci_string.c sci_gateway/c/sci_stripblanks.c \
-	sci_gateway/c/sci_strsplit.c sci_gateway/c/sci_strsubst.c \
-	sci_gateway/c/sci_tokens.c
 am__objects_1 = libscistring_la-code2str.lo libscistring_la-kmp.lo \
 	libscistring_la-stripblanks.lo libscistring_la-convstr.lo \
 	libscistring_la-men_Sutils.lo libscistring_la-strsplit.lo \
@@ -120,8 +106,7 @@ am__objects_2 = libscistring_la-gw_string.lo \
 	libscistring_la-sci_stripblanks.lo \
 	libscistring_la-sci_strsplit.lo \
 	libscistring_la-sci_strsubst.lo libscistring_la-sci_tokens.lo
-@STRING_V2_TRUE@am_libscistring_la_OBJECTS = $(am__objects_1) \
-@STRING_V2_TRUE@	$(am__objects_2)
+am_libscistring_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscistring_la_OBJECTS = $(am_libscistring_la_OBJECTS)
 libscistring_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscistring_la_CFLAGS) \
@@ -139,7 +124,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscistring_la_SOURCES)
-DIST_SOURCES = $(am__libscistring_la_SOURCES_DIST)
+DIST_SOURCES = $(libscistring_la_SOURCES)
 libscistring_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscistring_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscistring_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -357,8 +342,12 @@ libscistring_la_CFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscistring.la
-@STRING_V2_FALSE@libscistring_la_SOURCES = 
-@STRING_V2_TRUE@libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+
+#if STRING_V2
+libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+#else
+#libscistring_la_SOURCES= 
+#endif
 libscistring_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
@@ -391,11 +380,9 @@ includes/gw_string.h includes/InitializeString.h includes/cvstr.h includes/getfa
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 ########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
+#### We are delegating java compilation to ant... Thanks to that
+#### the procedure will be the same with Microsoft Windows (C) 
+#### and Linux/Unix
 #######################################################################
 TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 

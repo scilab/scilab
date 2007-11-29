@@ -3,7 +3,11 @@
 ### INRIA - Scilab 2006 
 ##########
 
-MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c
+MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c 
+
+if CPU_64_BITS
+MALLOC_C_SOURCES += src/malloc.c
+endif
 
 libscimalloc_la_includedir=$(pkgincludedir)/malloc
 

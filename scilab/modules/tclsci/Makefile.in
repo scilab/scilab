@@ -706,21 +706,17 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 ########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
+#### We are delegating java compilation to ant... Thanks to that
+#### the procedure will be the same with Microsoft Windows (C) 
+#### and Linux/Unix
 #######################################################################
 @TCLTK_FALSE@TARGETS_ALL = $(am__append_4) $(am__append_5) \
 @TCLTK_FALSE@	$(am__append_6)
 
 ########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
+#### We are delegating java compilation to ant... Thanks to that
+#### the procedure will be the same with Microsoft Windows (C) 
+#### and Linux/Unix
 #######################################################################
 @TCLTK_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @TCLTK_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
