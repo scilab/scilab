@@ -84,9 +84,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscistring_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscistring_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+libscistring_la_DEPENDENCIES =
 am__objects_1 = libscistring_la-code2str.lo libscistring_la-kmp.lo \
 	libscistring_la-stripblanks.lo libscistring_la-convstr.lo \
 	libscistring_la-men_Sutils.lo libscistring_la-strsplit.lo \
@@ -348,10 +346,9 @@ libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWA
 #else
 #libscistring_la_SOURCES= 
 #endif
-libscistring_la_LIBADD = \
-	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
+libscistring_la_LIBADD = 
+#	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+#	$(top_builddir)/libs/MALLOC/libscimalloc.la
 # Cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la
 

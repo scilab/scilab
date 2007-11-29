@@ -4,10 +4,15 @@
 ##########
 
 # The order DOES matter !!!
-SUBDIRS = \
+SUBDIRS = 
+
+if STRING_V2
+SUBDIRS += STRING_V2
+endif
+
+SUBDIRS += \
 polynomials \
 string \
-STRING_V2 \
 intersci \
 cacsd \
 elementary_functions \

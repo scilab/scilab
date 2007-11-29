@@ -52,9 +52,9 @@ libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWA
 #libscistring_la_SOURCES= 
 #endif
 
-libscistring_la_LIBADD = \
-	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+libscistring_la_LIBADD = 
+#	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+#	$(top_builddir)/libs/MALLOC/libscimalloc.la
 # Cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la
 
