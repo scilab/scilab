@@ -323,8 +323,11 @@ modulename = javasci
 @JAVASCI_TRUE@libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
 @JAVASCI_TRUE@libjavasci_la_CFLAGS = -Iincludes/ \
 @JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
+@JAVASCI_TRUE@			$(TCL_INC_PATH) \
+@JAVASCI_TRUE@            $(TK_INC_PATH) \
 @JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes 
 
 @JAVASCI_TRUE@libjavasci_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \

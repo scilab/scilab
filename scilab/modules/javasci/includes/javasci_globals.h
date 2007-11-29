@@ -19,7 +19,7 @@
 #include "sciquit.h"
 #include "CallScilab.h"
 #include "fromjava.h"
-
+#include "InitTclTk.h"
 #include "MALLOC.h"
 
 /********************************************************************************************************/
@@ -61,11 +61,9 @@ int send_scilab_job(char *job) ;
 void Initialize(void) ;
 /********************************************************************************************************/
 extern void C2F(banier)(int *x) ;
-extern void initTCLTK();
 extern int C2F(inisci)(int *,int *,int *);
 extern void C2F(storeversion)(char *str,int n);
 extern int GetLastErrorCode(void);
-extern void *GetDataFromName( char *name );
 /********************************************************************************************************/
 #ifdef _MSC_VER
 extern void start_sci_tcltk();

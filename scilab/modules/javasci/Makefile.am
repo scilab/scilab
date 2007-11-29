@@ -30,8 +30,12 @@ libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
 
 libjavasci_la_CFLAGS = 	-Iincludes/ \
 			$(JAVA_JNI_INCLUDE) \
+			$(TCL_INC_PATH) \
+            $(TK_INC_PATH) \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/tclsci/includes \
+			-I$(top_srcdir)/modules/output_stream/includes 
+
 
 libjavasci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \

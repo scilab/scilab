@@ -235,7 +235,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass
 #define MAX_String 1024
 	const char *cname;
 	int nbRow, nbCol;
-	int i, j, max=MAX_String;
+	int i, j;
 	jstring jelement;
 	const char *element;
 	char job[MAX_String*4];
