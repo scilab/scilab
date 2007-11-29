@@ -21,24 +21,24 @@ int sci_drawnow(char *fname,unsigned long fname_len)
 { 
   sciPointObj *pfigure = NULL;
 
-  startGraphicDataWriting();
+  
 
   CheckRhs(0,0);
   CheckLhs(0,1); 
 
 
   if (Rhs <= 0) {
+    startGraphicDataWriting();
     pfigure = sciGetCurrentFigure() ;
     pFIGURE_FEATURE(pfigure)->auto_redraw = TRUE;
+    endGraphicDataWriting();
 
     sciDrawObj(pfigure);
     LhsVar(1) = 0;
-    endGraphicDataWriting();
     return 0;
   }
 
   LhsVar(1) = 0;
-  endGraphicDataWriting();
 
   return 0;
 }

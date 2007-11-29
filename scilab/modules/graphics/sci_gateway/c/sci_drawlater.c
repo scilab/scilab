@@ -12,6 +12,7 @@
 #include "GetProperty.h"
 #include "ObjectStructure.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_drawlater( char * fname, unsigned long fname_len )
@@ -23,8 +24,10 @@ int sci_drawlater( char * fname, unsigned long fname_len )
 
 
   if (Rhs <= 0) {
+    startGraphicDataWriting();
     pfigure = sciGetCurrentFigure ();
     pFIGURE_FEATURE(pfigure)->auto_redraw = FALSE;
+    endGraphicDataWriting();
 
     LhsVar(1) = 0;
     return 0;

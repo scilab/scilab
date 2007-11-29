@@ -136,7 +136,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
   }
 
   if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
-  SciGerase() ;
+  SciWin() ;
 
   /******************** 24/015/2002 ********************/
   if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) /* NG beg */
