@@ -1,0 +1,7 @@
+// <-- Non-regression test for bug C -->
+//
+// <-- OLD BUG -->
+
+files     = [''];
+files     = listfiles([SCI+'/modules/core/macros/*.bin']);
+if files == [''] then pause,end

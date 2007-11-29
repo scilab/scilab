@@ -1,0 +1,8 @@
+// <-- Non-regression test for bug K -->
+//
+// <-- OLD BUG -->
+
+x = 'a';
+z = x($:-1:1);
+
+if z <> 'a' then pause,end

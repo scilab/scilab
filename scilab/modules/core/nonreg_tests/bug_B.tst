@@ -1,0 +1,5 @@
+// <-- Non-regression test for bug B -->
+//
+// <-- OLD BUG -->
+
+if or((1|[1,0,1;1,1,0])<>[%T,%T,%T;%T,%T,%T]) then pause,end

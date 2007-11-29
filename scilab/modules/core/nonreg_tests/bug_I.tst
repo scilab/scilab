@@ -1,0 +1,7 @@
+// <-- Non-regression test for bug I -->
+//
+// <-- OLD BUG -->
+//
+
+result = execstr("comp(beurk)","errcatch","n");
+if result <> 4 then pause,end

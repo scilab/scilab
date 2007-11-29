@@ -1,0 +1,5 @@
+// <-- Non-regression test for bug D -->
+//
+// <-- OLD BUG -->
+
+if ~isnan(1:%nan) then pause,end
