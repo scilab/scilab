@@ -224,6 +224,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
 	src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
 	src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
+	src/cpp/polylineDrawing/VerticalBarDecomposition.cpp \
+	src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -369,7 +371,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-ZAxisReverseJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-LinearBoundsComputer.lo \
 @GUI_TRUE@	libscirenderer_la-ConcreteDrawableSubwin.lo \
-@GUI_TRUE@	libscirenderer_la-LogarithmicBoundsComputer.lo
+@GUI_TRUE@	libscirenderer_la-LogarithmicBoundsComputer.lo \
+@GUI_TRUE@	libscirenderer_la-VerticalBarDecomposition.lo \
+@GUI_TRUE@	libscirenderer_la-HorizontalBarDecomposition.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -720,7 +724,9 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp
+@GUI_TRUE@src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
+@GUI_TRUE@src/cpp/polylineDrawing/VerticalBarDecomposition.cpp \
+@GUI_TRUE@src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp
 
 
 # List of the gateway c files
@@ -1014,6 +1020,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleObserverManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HorizontalBarDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-InterpolatedDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Plo@am__quote@
@@ -1059,6 +1066,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextContentDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextFillBoxDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextLineBoxDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxisReverseJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YAxisReverseJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZAxisReverseJoGL.Plo@am__quote@
@@ -2136,6 +2144,20 @@ libscirenderer_la-LogarithmicBoundsComputer.lo: src/cpp/subwinDrawing/Logarithmi
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp' object='libscirenderer_la-LogarithmicBoundsComputer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LogarithmicBoundsComputer.lo `test -f 'src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp
+
+libscirenderer_la-VerticalBarDecomposition.lo: src/cpp/polylineDrawing/VerticalBarDecomposition.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-VerticalBarDecomposition.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Tpo -c -o libscirenderer_la-VerticalBarDecomposition.lo `test -f 'src/cpp/polylineDrawing/VerticalBarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/VerticalBarDecomposition.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Tpo $(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/VerticalBarDecomposition.cpp' object='libscirenderer_la-VerticalBarDecomposition.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-VerticalBarDecomposition.lo `test -f 'src/cpp/polylineDrawing/VerticalBarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/VerticalBarDecomposition.cpp
+
+libscirenderer_la-HorizontalBarDecomposition.lo: src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-HorizontalBarDecomposition.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-HorizontalBarDecomposition.Tpo -c -o libscirenderer_la-HorizontalBarDecomposition.lo `test -f 'src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-HorizontalBarDecomposition.Tpo $(DEPDIR)/libscirenderer_la-HorizontalBarDecomposition.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp' object='libscirenderer_la-HorizontalBarDecomposition.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-HorizontalBarDecomposition.lo `test -f 'src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
