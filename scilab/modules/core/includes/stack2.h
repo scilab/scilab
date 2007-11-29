@@ -44,6 +44,13 @@ integer C2F(overload) __PARAMS(( integer *lw, char *fname, unsigned long l));
 
 int C2F(convert2sci) __PARAMS((int *));
 
+/* 
+ * returns the type of object at position lw in the stack
+ * @param lw position
+ * @return the type of object at position lw in the stack
+ */
+integer C2F(gettype)(integer *lw);
+
 
 /**
  * int C2F(putlhsvar)()

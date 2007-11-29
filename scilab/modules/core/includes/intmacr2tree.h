@@ -31,8 +31,7 @@ extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len);
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
 
-/* Defined in SCI/routines/system/mklist.f */
-extern int C2F(mklist)(int *nbitems); 
+/* Defined in SCI/modules/core/src/fortran/mklist.f */
 extern int C2F(mktlist)(int *nbitems); 
 
 /* Some useful definitions unexistant in stack-c.h */

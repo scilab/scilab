@@ -5,7 +5,6 @@
 
 typedef  void (*S_fp) __PARAMS((char *,int *));
 
-extern integer C2F(gettype)  __PARAMS((integer *lw));
 extern integer C2F(ogettype)  __PARAMS((integer *lw));
 
 
@@ -32,11 +31,6 @@ extern int C2F(iset)  __PARAMS((integer *n, integer *dx, integer *dy, integer *i
 extern int C2F(stacki2d)  __PARAMS((integer *n, integer *il1, integer *dl1));
 extern int C2F(stackr2d)  __PARAMS((integer *n, integer *sl1, integer *dl1));
 extern int C2F(stackc2i)  __PARAMS((integer *n, integer *sl1, integer *il1));
-
-/* cvstr */
-extern int C2F(cvstr1)  __PARAMS((integer *n, integer *line, char *str, integer *job, unsigned long str_len));
-extern int C2F(codetoascii)  __PARAMS((integer *n, integer *line, char *str, unsigned long str_len));
-extern int C2F(asciitocode)  __PARAMS((integer *n, integer *line, char *str, integer *flag__, unsigned long str_len));
 
 /* stack1.c */
 
@@ -149,13 +143,11 @@ int C2F(mspcreate)  __PARAMS((integer *lw, integer *m, integer *n, integer *nzma
 int C2F(cresmat4)  __PARAMS((char *fname, integer *lw, integer *m, integer *nchar, integer *lr, unsigned long fname_len));
 int C2F(credata) __PARAMS((char *fname, integer *lw, integer m, unsigned long fname_len));
 
-int cre_smat_from_str  __PARAMS((char *fname, integer *lw, integer *m, integer *n, char **Str, long unsigned int fname_len));
 int cre_listsmat_from_str  __PARAMS((char *fname, integer *lw, integer *numi, integer *stlw, integer *m, integer *n, char **Str, long unsigned int fname_len));
 
 int cre_sparse_from_ptr __PARAMS((char *fname,integer * lw,integer *m, integer *n,SciSparse *Str, unsigned long fname_len ));
 
-int cre_listsparse_from_ptr  __PARAMS((char *fname,integer * lw,integer * numi,integer * stlw,integer *  m,integer * n,
-				      SciSparse *M, unsigned long fname_len ));
+int cre_listsparse_from_ptr  __PARAMS((char *fname,integer * lw,integer * numi,integer * stlw,integer *  m,integer * n, SciSparse *M, unsigned long fname_len ));
 
 
 

@@ -386,9 +386,7 @@ extern int C2F(error) __PARAMS((int *));
 extern int C2F(firstopt) __PARAMS((void));
 extern int C2F(findopt) __PARAMS((char *, rhs_opts *));
 
-extern int C2F(numopt) __PARAMS((void));
 extern int C2F(isopt) __PARAMS((integer *,char *,unsigned long));
-extern int C2F(gettype) __PARAMS((integer *pos));
 
 extern int C2F(checkrhs)  __PARAMS((char *fname, integer *imin, integer *imax, unsigned long fname_len));
 extern int C2F(checklhs)  __PARAMS((char *fname, integer *imin, integer *imax, unsigned long fname_len));

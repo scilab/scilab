@@ -19,10 +19,6 @@
 #ifdef _MSC_VER 
 		#include <float.h>
 		#define finite(x) _finite(x) 
-#else  /* _MSC_VER */ 
-	#ifndef __cplusplus
-		int finite __PARAMS((double));
-	#endif
 #endif /* _MSC_VER */
 
 #ifdef _MSC_VER 
