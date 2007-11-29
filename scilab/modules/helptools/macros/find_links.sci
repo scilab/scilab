@@ -136,7 +136,7 @@ function t=getlink(name,absolute_path,path)
 	//---------------------------------------------------------------------------------
 	
 	if man_found == [] then
-					
+		
 		for k=1:size(%HELPS,1)
 			
 			current_help_path = %HELPS(k,1)+sep;
@@ -174,7 +174,7 @@ function t=getlink(name,absolute_path,path)
 				else
 					f      = [];
 				end
-
+				
 				if f<>[] then
 					for k1=f
 						w=whatis(k1)

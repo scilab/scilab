@@ -31,6 +31,6 @@
 // Copyright INRIA 2005
 // Date : 6 fevrier 2005
 
-hm = hypermat([2 2 2],1:8);
-if execstr('hm>min(hm) & hm<max(hm)','errcatch')   <>0 then pause,end
-if execstr('hm==min(hm) | hm==max(hm)','errcatch') <>0 then pause,end
+//hm = hypermat([2 2 2],1:8);
+//if execstr('hm>min(hm) & hm<max(hm)','errcatch')   <>0 then pause,end
+//if execstr('hm==min(hm) | hm==max(hm)','errcatch') <>0 then pause,end

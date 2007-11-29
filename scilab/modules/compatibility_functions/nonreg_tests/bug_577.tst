@@ -9,5 +9,8 @@
 //
 //    I can reproduce the bug with integers data type not with imaginary
 
+my_mat_file = TMPDIR+"/bug_577.mat";
+
 x=rand(5,5,100)+%i;
-if (execstr('mtlb_save(''gain.mat'',''x'')','errcatch')) <> 0 then pause,end
+if (execstr('mtlb_save(my_mat_file,''x'')','errcatch')) <> 0 then pause,end
+

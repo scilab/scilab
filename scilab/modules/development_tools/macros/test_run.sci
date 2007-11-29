@@ -519,6 +519,13 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		return;
 	end
 	
+	if tmpdir1_line == [] then
+		status_msg     = "failed  : the dia file is not correct";
+		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
+		status_id = 6;
+		return;
+	end
+	
 	// On test l'existence de la ref si besoin
 	
 	if check_ref then
