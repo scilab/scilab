@@ -1,1 +1,0 @@
-open -u qualif -p qualifpwd frioul.inria.fr
