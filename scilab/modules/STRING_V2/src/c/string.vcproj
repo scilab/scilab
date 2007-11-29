@@ -227,6 +227,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\kmp.c"
+				>
+			</File>
+			<File
 				RelativePath=".\men_Sutils.c"
 				>
 			</File>
@@ -345,6 +349,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\InitializeString.h"
+				>
+			</File>
+			<File
+				RelativePath=".\kmp.h"
 				>
 			</File>
 			<File
