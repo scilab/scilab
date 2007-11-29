@@ -31,8 +31,6 @@ extern int C2F(dbasin) __PARAMS((integer *ierr, integer *lunit, char *fmt, doubl
 extern int C2F(s2val) __PARAMS((char *str, double *v, integer *iv, integer *n, integer *maxv, integer *ierr, ftnlen str_len));  
 extern int C2F(nextv) __PARAMS((char *str, double *v, integer *nv, integer *ir, integer *ierr, ftnlen str_len));  
 extern int C2F(s2int) __PARAMS((char *str, integer *nlz, integer *v, integer *ir, integer *ierr, ftnlen str_len));  
-/*  "fgetarg-hpux-n.c.X1" */
-extern int C2F(fgetarg) __PARAMS((integer *n, char *str, ftnlen str_len));  
 /*  "fgetarg-n.c.X1" */
 extern int C2F(fgetarg) __PARAMS((integer *n, char *str, ftnlen str_len));  
 /*  "flags-n.c.X1" */
