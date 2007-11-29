@@ -59,17 +59,32 @@ void ConcreteDrawableArc::getArcRepresentation(double center[3], double semiMino
 
   sciArc * ppArc = pARC_FEATURE(m_pDrawed) ;
 
-  center[0] = ppArc->x + ppArc->width / 2.0 ;
-  center[1] = ppArc->y - ppArc->height / 2.0 ;
-  center[2] = ppArc->z ;
+  double width;
+  double height;
+  double x;
+  double y;
+  double z;
 
-  if ( Abs(ppArc->width) >= Abs(ppArc->height) )
+  // apply log scale if needed
+  // get lower x and y for that
+  pointScale(ppArc->x, ppArc->y - ppArc->height, ppArc->z, &x, &y, &z);
+  directionScale(ppArc->width, ppArc->height, 0.0,
+                 ppArc->x, ppArc->y - ppArc->height, ppArc->z,
+                 &width, &height, NULL);
+
+  center[0] = x + width / 2.0 ;
+  center[1] = y + height / 2.0 ;
+  center[2] = z ;
+
+  
+
+  if ( Abs(width) >= Abs(height) )
   {
     semiMinorAxis[0] = 0.0;
-    semiMinorAxis[1] = -ppArc->height / 2.0;
+    semiMinorAxis[1] = -height / 2.0;
     semiMinorAxis[2] = 0.0;
 
-    semiMajorAxis[0] = ppArc->width / 2.0;
+    semiMajorAxis[0] = width / 2.0;
     semiMajorAxis[1] = 0.0;
     semiMajorAxis[2] = 0.0;
 
@@ -81,12 +96,12 @@ void ConcreteDrawableArc::getArcRepresentation(double center[3], double semiMino
   else
   {
     // rotate of -Pi/2 from previous case
-    semiMinorAxis[0] = ppArc->width / 2.0;
+    semiMinorAxis[0] = width / 2.0;
     semiMinorAxis[1] = 0.0;
     semiMinorAxis[2] = 0.0;
 
     semiMajorAxis[0] = 0.0;
-    semiMajorAxis[1] = ppArc->height / 2.0;
+    semiMajorAxis[1] = height / 2.0;
     semiMajorAxis[2] = 0.0;
     startAngle = Min(ppArc->alphabegin, ppArc->alphabegin + ppArc->alphaend);
     endAngle   = Max(ppArc->alphabegin, ppArc->alphabegin + ppArc->alphaend);
