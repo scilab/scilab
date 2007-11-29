@@ -16,6 +16,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "pcre_private.h"
 #include "Scierror.h"
+#include "localization.h"
 /*------------------------------------------------------------------------*/
 static int sci_grep_old(char *fname);
 static int sci_grep_new(char *fname);
@@ -110,6 +111,15 @@ static int sci_grep_old(char *fname)
 	next = (int *)MALLOC(sizeof(int)*(lengthMax+1));
 	values = (int *)MALLOC(sizeof(int)*(lengthMax+1));
 	positions = (int *)MALLOC(sizeof(int)*(lengthMax+1));
+
+	if ( (next == NULL) || (values == NULL) || (positions == NULL) )
+	{
+		if (next) {FREE(next); next = NULL;}
+		if (values) {FREE(values);values = NULL;}
+		if (positions) {FREE(positions);positions = NULL;}
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		return 0;
+	}
 
 	/* without using the regexp*/
 	for (y = 0; y < m1n1; ++y)
@@ -213,6 +223,15 @@ static int sci_grep_new(char *fname)
 	next = (int *)MALLOC(sizeof(int)*(lengthMax+1));
 	values = (int *)MALLOC(sizeof(int)*(lengthMax+1));
 	positions = (int *)MALLOC(sizeof(int)*(lengthMax+1));
+
+	if ( (next == NULL) || (values == NULL) || (positions == NULL) )
+	{
+		if (next) {FREE(next); next = NULL;}
+		if (values) {FREE(values);values = NULL;}
+		if (positions) {FREE(positions);positions = NULL;}
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		return 0;
+	}
 	
 	/*When we use the regexp;*/
 	for ( y = 0; y < m1n1; ++y)
