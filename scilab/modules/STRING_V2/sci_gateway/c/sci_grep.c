@@ -18,11 +18,9 @@
 #include "machine.h"
 #include "kmp.h"
 #include "MALLOC.h" /* MALLOC */
-#include "pcre_private.cpp"
+#include "pcre_private.cpp" /* @TODO remove that !! Do not include a cpp file */
 /*------------------------------------------------------------------------*/
 int *next=NULL;
-void getnext(char T[],int *next);
-int kmp(char S[],char T[],int pos,int *);
 int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End);
 int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
 {
