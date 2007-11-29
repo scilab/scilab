@@ -23,9 +23,6 @@ static int last_eol_pos = 0;
 
 /****************************************************************/
 static int CreateRecursiveIndex2List(int *data,int *index2);
-
-/****************************************************************/
-int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len));
 /****************************************************************
  Function name: macr2tree
 ****************************************************************/
