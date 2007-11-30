@@ -45,7 +45,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <locale.h>
 #include <errno.h>
 #include "MALLOC.h"
-
+#include <pcre.h>
 
 /* A number of things vary for Windows builds. Originally, pcretest opened its
 input and output without "b"; then I was told that "b" was needed in some
@@ -79,7 +79,7 @@ Although pcre_internal.h does itself include pcre.h, we explicitly include it
 here before pcre_internal.h so that the PCRE_EXP_xxx macros get set
 appropriately for an application, not for building PCRE. */
 
-#include "pcre.h"
+#include <pcre.h>
 #include "pcre_internal.h"
 
 /* We need access to the data tables that PCRE uses. So as not to have to keep
@@ -365,8 +365,8 @@ if (strncmpic(p, (uschar *)"lf>", 3) == 0) return PCRE_NEWLINE_LF;
 if (strncmpic(p, (uschar *)"crlf>", 5) == 0) return PCRE_NEWLINE_CRLF;
 if (strncmpic(p, (uschar *)"anycrlf>", 8) == 0) return PCRE_NEWLINE_ANYCRLF;
 if (strncmpic(p, (uschar *)"any>", 4) == 0) return PCRE_NEWLINE_ANY;
-if (strncmpic(p, (uschar *)"bsr_anycrlf>", 12) == 0) return PCRE_BSR_ANYCRLF;
-if (strncmpic(p, (uschar *)"bsr_unicode>", 12) == 0) return PCRE_BSR_UNICODE;
+//if (strncmpic(p, (uschar *)"bsr_anycrlf>", 12) == 0) return PCRE_BSR_ANYCRLF;
+//if (strncmpic(p, (uschar *)"bsr_unicode>", 12) == 0) return PCRE_BSR_UNICODE;
 fprintf(f, "Unknown newline type at: <%s\n", p);
 return 0;
 }
@@ -824,8 +824,8 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				((get_options & PCRE_MULTILINE) != 0)? " multiline" : "",
 				((get_options & PCRE_FIRSTLINE) != 0)? " firstline" : "",
 				((get_options & PCRE_DOTALL) != 0)? " dotall" : "",
-				((get_options & PCRE_BSR_ANYCRLF) != 0)? " bsr_anycrlf" : "",
-				((get_options & PCRE_BSR_UNICODE) != 0)? " bsr_unicode" : "",
+						 //				((get_options & PCRE_BSR_ANYCRLF) != 0)? " bsr_anycrlf" : "",
+						 //				((get_options & PCRE_BSR_UNICODE) != 0)? " bsr_unicode" : "",
 				((get_options & PCRE_DOLLAR_ENDONLY) != 0)? " dollar_endonly" : "",
 				((get_options & PCRE_EXTRA) != 0)? " extra" : "",
 				((get_options & PCRE_UNGREEDY) != 0)? " ungreedy" : "",
