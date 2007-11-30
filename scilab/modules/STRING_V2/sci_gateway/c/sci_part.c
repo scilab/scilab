@@ -41,11 +41,11 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 	
 	GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&StackPosTwo);
 	SecondParamaterValue = istk(StackPosTwo);
-	if (SecondParamaterValue[0] == 0) 
+	/*if (SecondParamaterValue[0] == 0) 
 	{
 		Scierror(36,_(" 2th argument is incorrect here\n"));
 		return 0;
-	}
+	}*/
     
     Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_One));
 	if (Output_StringMatrix == NULL)
