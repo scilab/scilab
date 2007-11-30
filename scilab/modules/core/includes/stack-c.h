@@ -144,12 +144,7 @@ typedef struct { double r, i; } doublecomplex;
 #define Infstk(x) (((integer *) C2F(vstk).infstk) + x-1 )
 
 /* to retreive handles on the stack */
-#ifdef _MSC_VER
 #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-#else
-#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-#endif
-
 
 #define CheckOpt(first) if ( C2F(checkopt)(first) ) {return 0;}
 
