@@ -372,6 +372,7 @@ public abstract class CameraGL extends ObjectGL {
 		GL gl = getGL();
 		gl.glPopMatrix();
 		gl.glPushMatrix();
+		gl.glScaled(fittingScale.getX(), fittingScale.getY(), fittingScale.getZ());
 		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
 		
 		// update transformation
@@ -386,8 +387,7 @@ public abstract class CameraGL extends ObjectGL {
 		GL gl = getGL();
 		gl.glPopMatrix();
 		gl.glPushMatrix();
-		applyRotation(gl, alpha, theta);
-		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
+		rotateAxesBox();
 		// update transformation
 		CoordinateTransformation.getTransformation(gl).update(gl);
 	}

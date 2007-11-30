@@ -72,6 +72,14 @@ void ConcreteDrawableSubwin::pointScale(double xCoord, double yCoord, double zCo
   if (zScaled != NULL) { m_pZBoundsStrategy->pointScale(zCoord, zScaled); }
 }
 /*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::inversePointScale(double xScaled, double yScaled, double zScaled,
+                                               double * xCoord, double * yCoord, double * zCoord)
+{
+  if (xCoord != NULL) { m_pXBoundsStrategy->inversePointScale(xScaled, xCoord); }
+  if (yCoord != NULL) { m_pYBoundsStrategy->inversePointScale(yScaled, yCoord); }
+  if (zCoord != NULL) { m_pZBoundsStrategy->inversePointScale(zScaled, zCoord); }
+}
+/*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::pointScale(double vectorX[], double vectorY[], double vectorZ[], int vectorLength)
 {
   if (vectorX != NULL) { m_pXBoundsStrategy->pointScale(vectorX, vectorLength); }

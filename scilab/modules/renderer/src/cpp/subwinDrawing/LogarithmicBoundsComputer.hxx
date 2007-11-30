@@ -37,6 +37,11 @@ public:
   virtual void pointScale(double coord, double * scaledCoord);
 
   /**
+   * Inverse of pointScale.
+   */
+  virtual void inversePointScale(double scaledCoord, double * coord);
+
+  /**
    * Apply scale on a vector.
    */
   virtual void pointScale(double vector[], int vectorLength);

@@ -10,6 +10,11 @@
 
 #include <math.h>
 
+extern "C"
+{
+#include "math_graphics.h"
+}
+
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
@@ -30,6 +35,12 @@ void LogarithmicBoundsComputer::applyBestFitting(const double inputBounds[2], do
 void LogarithmicBoundsComputer::pointScale(double coord, double * scaledCoord)
 {
   *scaledCoord = log10(coord);
+}
+/*------------------------------------------------------------------------------------------*/
+void LogarithmicBoundsComputer::inversePointScale(double scaledCoord, double * coord)
+{
+  // nothing to do, this is linear
+  *coord = exp10(scaledCoord);
 }
 /*------------------------------------------------------------------------------------------*/
 void LogarithmicBoundsComputer::pointScale(double vector[], int vectorLength)

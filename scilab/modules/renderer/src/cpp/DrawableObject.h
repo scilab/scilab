@@ -63,6 +63,13 @@ public:
   virtual void pointScale(double xCoord, double yCoord, double zCoord,
                           double * xScaled, double * yScaled, double * zScaled);
 
+
+  /**
+   * Inverse function of pointScale.
+   */
+  virtual void inversePointScale(double xScaled, double yScaled, double zScaled,
+                                 double * xCoord, double * yCoord, double * zCoord);
+
   /**
    * Apply scale on a vector.
    */

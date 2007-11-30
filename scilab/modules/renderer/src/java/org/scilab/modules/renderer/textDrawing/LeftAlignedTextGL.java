@@ -20,9 +20,7 @@ public class LeftAlignedTextGL implements TextAlignementStrategy {
 	/**
 	 * Default constructor
 	 */
-	public LeftAlignedTextGL() {
-		
-	}
+	public LeftAlignedTextGL() { }
 	
 	/**
 	 * Draw the text matrix inside a position matrix using a specific text renderer.

@@ -38,8 +38,9 @@ void StandardTextDrawerJoGL::setDrawerParameters(void)
   StringMatrix * textMatrix = sciGetText(pObj);
   getStandardTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
 
+  // get text position.
   double textPos[3];
-  sciGetTextPos(pObj, textPos);
+  getTextDisplayPos(textPos);
   getStandardTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 }
 /*---------------------------------------------------------------------------------*/

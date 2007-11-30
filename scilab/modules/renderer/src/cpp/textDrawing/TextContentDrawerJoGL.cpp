@@ -8,6 +8,11 @@
 #include "TextContentDrawerJoGL.hxx"
 #include "GetJavaProperty.h"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 namespace sciGraphics
 {
 /*---------------------------------------------------------------------------------*/
@@ -40,8 +45,18 @@ void TextContentDrawerJoGL::getBoundingRectangle(double corner1[3], double corne
   corner4[0] = rect[9];
   corner4[1] = rect[10];
   corner4[2] = rect[11];
-
   delete[] rect;
+
+  // use logarithmic scale if needed.
+  m_pDrawed->inversePointScale(corner1[0], corner1[1], corner1[2],
+                               &(corner1[0]), &(corner1[1]), &(corner1[2]));
+  m_pDrawed->inversePointScale(corner2[0], corner2[1], corner2[2],
+                               &(corner2[0]), &(corner2[1]), &(corner2[2]));
+  m_pDrawed->inversePointScale(corner3[0], corner3[1], corner3[2],
+                               &(corner3[0]), &(corner3[1]), &(corner3[2]));
+  m_pDrawed->inversePointScale(corner4[0], corner4[1], corner4[2],
+                               &(corner4[0]), &(corner4[1]), &(corner4[2]));
+
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
@@ -112,6 +127,27 @@ void TextContentDrawerJoGL::getPixelLength(sciPointObj * parentSubwin, const dou
   // compute lengths accordingly
   *pixelWidth = extremeXPix[0] - textPosPix[0];
   *pixelHeight = extremeYPix[1] - textPosPix[1];
+}
+/*---------------------------------------------------------------------------------*/
+void TextContentDrawerJoGL::getTextDisplayPos(double pos[3])
+{
+  sciGetTextPos(m_pDrawed->getDrawedObject(), pos);
+  m_pDrawed->pointScale(pos[0], pos[1], pos[2], &(pos[0]), &(pos[1]), &(pos[2]) );
+}
+/*---------------------------------------------------------------------------------*/
+void TextContentDrawerJoGL::getTextBoxDisplaySize(double * width, double * height)
+{
+  // get user size
+  sciGetUserSize(m_pDrawed->getDrawedObject(), width, height);
+
+  // get text position
+  double textPos[3];
+  sciGetTextPos(m_pDrawed->getDrawedObject(), textPos);
+  
+  // apply log scale if needed
+  m_pDrawed->directionScale(*width, *height, 0.0,
+                            textPos[0], textPos[1], textPos[2],
+                            width, height, NULL);
 }
 /*---------------------------------------------------------------------------------*/
 TextContentDrawerJavaMapper * TextContentDrawerJoGL::getTextContentDrawerJavaMapper(void)

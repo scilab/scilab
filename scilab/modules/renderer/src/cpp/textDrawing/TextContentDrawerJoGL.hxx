@@ -57,6 +57,16 @@ protected:
                       int * pixelWidth, int * pixelHeight );
 
   /**
+   * Get position of the text to display.
+   */
+  void getTextDisplayPos(double pos[3]);
+
+  /**
+   * Get the display size of text box specified by user.
+   */
+  void getTextBoxDisplaySize(double * width, double * height);
+
+  /**
    * Get the object performing mapping with Java class.
    */
   TextContentDrawerJavaMapper * getTextContentDrawerJavaMapper(void);

@@ -180,12 +180,11 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 		
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		
+
 		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		gl.glPushMatrix();
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
-		transform.update(gl);
 		
 		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
 		

@@ -35,15 +35,16 @@ FilledTextDrawerJoGL::~FilledTextDrawerJoGL(void)
 void FilledTextDrawerJoGL::setDrawerParameters(void)
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
+
+  // get box size in user coordinates
+  StringMatrix * textMatrix = sciGetText(pObj);
+  getFilledTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
+
+  // get box size in user coordinates
   double boxWidth;
   double boxHeight;
   sciGetUserSize(pObj, &boxWidth, &boxHeight);
 
-  
-  StringMatrix * textMatrix = sciGetText(pObj);
-  getFilledTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
-
-  // get the center Position
   double textPos[3];
   sciGetTextPos(pObj, textPos);
 
@@ -56,6 +57,7 @@ void FilledTextDrawerJoGL::setDrawerParameters(void)
                                                      sciGetFontStyle(pObj), sciGetFontOrientation(pObj),
                                                      pixWidth, pixHeight);
 
+  getTextDisplayPos(textPos);
   getFilledTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 }
 /*---------------------------------------------------------------------------------*/

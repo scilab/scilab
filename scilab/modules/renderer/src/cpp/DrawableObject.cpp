@@ -80,6 +80,13 @@ void DrawableObject::pointScale(double xCoord, double yCoord, double zCoord,
                                                              xScaled, yScaled, zScaled);
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableObject::inversePointScale(double xScaled, double yScaled, double zScaled,
+                                       double * xCoord, double * yCoord, double * zCoord)
+{
+  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->inversePointScale(xScaled, yScaled, zScaled,
+                                                                    xCoord, yCoord, zCoord);
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawableObject::pointScale(double vectorX[], double vectorY[], double vectorZ[], int vectorLength)
 {
   getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->pointScale(vectorX, vectorY, vectorZ, vectorLength);

@@ -55,6 +55,7 @@ void CenteredTextDrawerJoGL::setDrawerParameters(void)
   StringMatrix * textMatrix = sciGetText(pObj);
   getCenteredTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
 
+  getTextDisplayPos(textPos);
   getCenteredTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
 }
 /*---------------------------------------------------------------------------------*/

@@ -46,12 +46,22 @@ CameraJavaMapper * CameraJoGL::getCameraJavaMapper(void)
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
-  getCameraJavaMapper()->getPixelCoordinates(userCoord[0], userCoord[1], userCoord[2], pixCoord);
+  double finalUserCoord[3];
+  // convert user coordinates to log scale if needed
+  m_pDrawer->pointScale(userCoord[0], userCoord[1], userCoord[2],
+                        &(finalUserCoord[0]), &(finalUserCoord[1]), (&finalUserCoord[2]));
+
+  getCameraJavaMapper()->getPixelCoordinates(finalUserCoord[0], finalUserCoord[1], finalUserCoord[2], pixCoord);
 }
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
-  getCameraJavaMapper()->get2dViewPixelCoordinates(userCoord[0], userCoord[1], userCoord[2], pixCoord);
+  double finalUserCoord[3];
+  // convert user coordinates to log scale if needed
+  m_pDrawer->pointScale(userCoord[0], userCoord[1], userCoord[2],
+                        &(finalUserCoord[0]), &(finalUserCoord[1]), (&finalUserCoord[2]));
+
+  getCameraJavaMapper()->get2dViewPixelCoordinates(finalUserCoord[0], finalUserCoord[1], finalUserCoord[2], pixCoord);
 }
 /*--------------------------------------------------------------------------*/
 }
