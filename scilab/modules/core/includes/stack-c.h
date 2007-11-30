@@ -151,9 +151,6 @@ typedef struct { double r, i; } doublecomplex;
 #endif
 
 
-#ifndef FTable_H
-extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int*));
-#endif
 #define CheckOpt(first) if ( C2F(checkopt)(first) ) {return 0;}
 
 #define FirstOpt() C2F(firstopt)()
@@ -166,7 +163,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define Maxvol(n,ct)  C2F(maxvol)((c_local=n,&c_local),ct,1L)
 
-#define CreateVarFromPtr(n,ct,mx,nx,lx) if ( ! C2F(createvarfromptr)((c_local=n,&c_local),ct,mx,nx,(double *)lx,1L)) \
+#define CreateVarFromPtr(n,ct,mx,nx,lx) if ( ! C2F(createvarfromptr)((c_local=n,&c_local),ct,mx,nx,(void *)lx,1L)) \
 					     { return 0;}
 
 #define CreateCVarFromPtr(n,ct,it,mx,nx,lrx,lcx) if ( ! C2F(createcvarfromptr)((c_local=n,&c_local),ct,it,mx,nx,(double *)lrx,(double *) lcx,1L)) \
