@@ -1,0 +1,19 @@
+//======================================
+// test code2str
+// memory
+//======================================
+clear;
+NB_LOOPS = 1000000;
+REF_4_1_2 = 0;
+[BEFORE_FREE,BEFORE_TOTAL] = getmemory();
+BEFORE_USED = BEFORE_TOTAL - BEFORE_FREE;
+
+for i=1:NB_LOOPS
+  r = code2str([-28 12 18 21 10 11]);
+  clear r;
+end  
+
+[AFTER_FREE,AFTER_TOTAL] = getmemory();
+AFTER_USED = AFTER_TOTAL - AFTER_FREE;
+if (AFTER_USED - BEFORE_USED > REF_4_1_2 ) then disp("MEMORY LEAK"),end;
+//====================================
