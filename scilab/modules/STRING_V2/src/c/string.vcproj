@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="string"
 	ProjectGUID="{8D45767A-9B03-4905-97F6-D2F3F79141EA}"
 	RootNamespace="string"
@@ -275,6 +275,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_strcmp.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_strindex.c"
 				>
 			</File>
@@ -304,6 +308,10 @@
 			</File>
 			<File
 				RelativePath=".\strcat-c.c"
+				>
+			</File>
+			<File
+				RelativePath=".\stringsCompare.c"
 				>
 			</File>
 			<File
@@ -368,6 +376,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\stringsCompare.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stripblanks.h"
 				>
 			</File>
@@ -401,7 +413,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\string_gateway.xml"
+			RelativePath="..\..\sci_gateway\STRING_V2_gateway.xml"
 			>
 		</File>
 		<File

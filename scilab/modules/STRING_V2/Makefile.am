@@ -18,7 +18,8 @@ src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
 src/c/cvstr.c \
 src/c/getfastcode.c \
-src/c/pcre_private.c
+src/c/pcre_private.c \
+src/c/StringsCompare.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \
@@ -35,8 +36,8 @@ sci_gateway/c/sci_string.c \
 sci_gateway/c/sci_stripblanks.c \
 sci_gateway/c/sci_strsplit.c \
 sci_gateway/c/sci_strsubst.c \
-sci_gateway/c/sci_tokens.c
-
+sci_gateway/c/sci_tokens.c \
+sci_gateway/c/sci_strcmp.c
 
 libscistring_la_CFLAGS= \
 	-Isrc/c \
