@@ -139,7 +139,8 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-librarieslist.lo libscicore_la-libraryinfo.lo \
 	libscicore_la-getvariablesname.lo \
 	libscicore_la-commandwords.lo \
-	libscicore_la-ScilabEventsLoop.lo
+	libscicore_la-ScilabEventsLoop.lo \
+	libscicore_la-freeArrayOfString.lo
 am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	dldsp.lo bcol.lo getlin.lo isany.lo hmcreate.lo nextj.lo \
 	functionsforbasout.lo setgetmode.lo showstack.lo misops.lo \
@@ -486,7 +487,8 @@ src/c/librarieslist.c \
 src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
-src/c/ScilabEventsLoop.c 
+src/c/ScilabEventsLoop.c \
+src/c/freeArrayOfString.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -789,7 +791,8 @@ includes/existfunction.h \
 includes/getfunctionslist.h \
 includes/ScilabEventsLoop.h \
 includes/stackinfo.h \
-includes/timerEvents.h
+includes/timerEvents.h \
+includes/freeArrayOfString.h
 
 
 #### core : demos files ####
@@ -952,6 +955,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-filesmanagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-flags.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-force_link.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-freeArrayOfString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromjava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getcommandlineargs.Plo@am__quote@
@@ -1605,6 +1609,13 @@ libscicore_la-ScilabEventsLoop.lo: src/c/ScilabEventsLoop.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ScilabEventsLoop.c' object='libscicore_la-ScilabEventsLoop.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-ScilabEventsLoop.lo `test -f 'src/c/ScilabEventsLoop.c' || echo '$(srcdir)/'`src/c/ScilabEventsLoop.c
+
+libscicore_la-freeArrayOfString.lo: src/c/freeArrayOfString.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-freeArrayOfString.lo -MD -MP -MF $(DEPDIR)/libscicore_la-freeArrayOfString.Tpo -c -o libscicore_la-freeArrayOfString.lo `test -f 'src/c/freeArrayOfString.c' || echo '$(srcdir)/'`src/c/freeArrayOfString.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-freeArrayOfString.Tpo $(DEPDIR)/libscicore_la-freeArrayOfString.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/freeArrayOfString.c' object='libscicore_la-freeArrayOfString.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-freeArrayOfString.lo `test -f 'src/c/freeArrayOfString.c' || echo '$(srcdir)/'`src/c/freeArrayOfString.c
 
 libscicore_la-sci_stacksize.lo: sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_stacksize.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_stacksize.Tpo -c -o libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/c/sci_stacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_stacksize.c
