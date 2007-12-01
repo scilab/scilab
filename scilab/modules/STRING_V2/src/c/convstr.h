@@ -8,11 +8,6 @@
 #define LOW_B 'L'
 #define UPPER 'u'
 #define UPPER_B 'U'
-#define Letter_a 97
-#define Letter_z 122
-#define Letter_A 65
-#define Letter_Z 90
-#define	Conversion_Letter 32
 
 /**
 * convstr case conversion 
