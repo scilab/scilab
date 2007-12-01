@@ -21,7 +21,7 @@ void strwidth(char *string, int *max_width, int *height)
   for (i = 0 ; i < (int)strlen(string);i++)
     {
       width++;
-      if ( string[i]=='\n' || i == strlen(string)  -1)
+      if ( string[i]=='\n' || i == (int)strlen(string)-1)
 	{
 	  *max_width= (*max_width > width ) ?  *max_width : width;
 	  width=0;

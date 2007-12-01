@@ -18,4 +18,5 @@ checkrhs_
 intersci_
 check_length
 callFunctionFromGateway
+freeArrayOfString
 ;

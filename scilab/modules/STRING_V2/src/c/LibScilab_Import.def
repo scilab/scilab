@@ -19,4 +19,5 @@ intersci_
 check_length
 callFunctionFromGateway
 gettype_
+freeArrayOfString
 ;
