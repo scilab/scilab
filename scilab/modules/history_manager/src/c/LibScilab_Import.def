@@ -18,4 +18,5 @@ vstk_
 getSCIHOME 
 cluni0_
 gettype_
+freeArrayOfString
 ;

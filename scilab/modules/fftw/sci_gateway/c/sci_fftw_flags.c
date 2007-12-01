@@ -9,6 +9,7 @@
 #include "MALLOC.h"
 #include "gw_fftw.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 extern unsigned cur_fftw_flags;
 /*--------------------------------------------------------------------------*/
@@ -134,14 +135,8 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
      }
     }
     cur_fftw_flags = flagv;
-    /* FreeRhsSVar(Str1);*/
-    if (Str1) for (i = 0; i<m1*n1 ;i++) {
-      if (Str1[i]) {
-         FREE(Str1[i]);
-         Str1[i]=NULL;
-      }
-    }
-    if (Str1) {FREE(Str1); Str1=NULL;}
+
+	freeArrayOfString(Str1,m1*n1);
    }
 
    else {
@@ -197,11 +192,8 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
   }
 
   n1=1;
-  /*CreateVarFromPtr( 3,MATRIX_OF_STRING_DATATYPE, &j, &n1, Str3);*/
   CreateVarFromPtr( Rhs+3,MATRIX_OF_STRING_DATATYPE, &j, &n1, Str3);
 
-  /*LhsVar(1)=2;*/
-  /*LhsVar(2)=3;*/
   LhsVar(1)=Rhs+2;
   LhsVar(2)=Rhs+3;
   PutLhsVar();

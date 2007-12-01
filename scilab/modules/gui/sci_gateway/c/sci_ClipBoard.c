@@ -13,6 +13,7 @@
 #include "scilabmode.h"
 #include "localization.h"
 #include "IsAScalar.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 {
@@ -155,6 +156,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 						if(TextToSendInClipboard) {FREE(TextToSendInClipboard);TextToSendInClipboard=NULL;}
 					}
 
+					freeArrayOfString(Str,m1*n1);
 					m1=0;
 					n1=0;
 					l1=0;

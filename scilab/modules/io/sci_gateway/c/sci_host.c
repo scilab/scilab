@@ -7,6 +7,7 @@
 #include "systemc.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_host) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -22,6 +23,7 @@ int C2F(sci_host) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (m1 != 1) && (n1 != 1) )
 		{
+			freeArrayOfString(Str,m1*n1);
 			Scierror(89,_("Input argument has incorrect dimensions.\n"));
 			return 0;
 		}
@@ -37,6 +39,7 @@ int C2F(sci_host) _PARAMS((char *fname,unsigned long fname_len))
 
 			LhsVar(1)= Rhs+1;
 			C2F(putlhsvar)();
+			freeArrayOfString(Str,m1*n1);
 		}
 	}
 	else

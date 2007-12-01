@@ -9,6 +9,7 @@
 #include "fileio.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int int_objfprintfMat(char *fname,unsigned long fname_len)
 {
@@ -96,19 +97,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 	LhsVar(1)=0 ; /** no return value **/
 	if ( Rhs >= 4)
 	{
-		if (Str2)
-		{
-			for ( i=0 ; i < mS*nS ; i++)
-			{
-				if (Str2[i])
-				{
-					FREE(Str2[i]);
-					Str2[i]=NULL;
-				}
-			}
-			FREE(Str2);
-			Str2=NULL;
-		}
+		freeArrayOfString(Str2,mS*nS);
 	}
 	PutLhsVar();
 	return 0;

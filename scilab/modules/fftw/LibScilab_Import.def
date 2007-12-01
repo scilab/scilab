@@ -21,6 +21,7 @@ EXPORTS
  gettype_
  vstk_
  callFunctionFromGateway
+ freeArrayOfString
 ;
 ;elementary_functions_f
  dset_

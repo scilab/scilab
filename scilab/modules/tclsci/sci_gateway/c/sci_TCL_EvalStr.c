@@ -6,6 +6,7 @@
 #include "gw_tclsci.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 { 
@@ -25,6 +26,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 
 		if (TCLinterp == NULL)
 		{
+			freeArrayOfString(Str,m1*n1);
 			Scierror(999,_("%s : Error main TCL interpreter not initialized.\n"),fname);
 			return 0;
 		}
@@ -38,12 +40,14 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 				TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 				if (TCLinterpreter==NULL)
 				{
+					freeArrayOfString(Str,m1*n1);
 					Scierror(999,_("%s: No such slave interpreter.\n"),fname);
 					return 0;
 				}
 			}
 			else
 			{
+				freeArrayOfString(Str,m1*n1);
 				Scierror(999,_("%s : Argument type must be character string.\n"),fname);
 				 return 0;
 			}
@@ -66,6 +70,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 			if (RET==TCL_ERROR)
 			{
                 const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
+				freeArrayOfString(Str,m1*n1);
 				if(Err>0)
 				{
 					Scierror(999,"%s, ScilabEval error at line %i\n	%s.\n",fname,i+1,(char *)trace);
@@ -74,17 +79,10 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 				{
 					Scierror(999,"%s, %s at line %i\n	%s\n",fname,TCLinterpreter->result,i+1,(char *)trace);
 				}
-				if (Str) for (i = 0; i<m1*n1 ;i++)
-				{
-					if (Str[i]) 
-					{
-						FREE(Str[i]);
-						Str[i]=NULL;
-					}
-				}
-				if (Str) {FREE(Str); Str=NULL;}
 				return 0;
-            } else {
+            } 
+			else
+			{
                 /* return result of the successful evaluation of the script */
                 /* return a matrix of string results */
                 RetStr = (char*)Tcl_GetStringResult(TCLinterpreter);
@@ -98,6 +96,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 
 		for (i=0;i<n1;i++) for (j=0;j<m1;j++) { FREE(ReturnArrayString[i+n1*j]);ReturnArrayString[i+n1*j]=NULL; }
 		FREE(ReturnArrayString);
+		freeArrayOfString(Str,m1*n1);
 	}
 	else
 	{

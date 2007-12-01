@@ -16,7 +16,7 @@
 #include "Axes.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
-
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_xstringl( char *fname, unsigned long fname_len )
 {
@@ -44,6 +44,8 @@ int sci_xstringl( char *fname, unsigned long fname_len )
   *stk(l4+1) = 0.0;
   *stk(l4+2) = 0.0;
   *stk(l4+3) = 0.0;
+
+  freeArrayOfString(Str,m3*n3);
 
   LhsVar(1)=Rhs+1;
   return 0;

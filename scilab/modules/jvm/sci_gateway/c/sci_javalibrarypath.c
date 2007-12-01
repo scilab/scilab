@@ -11,6 +11,7 @@
 #include "addToLibrarypath.h"
 #include "getLibrarypath.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -30,20 +31,7 @@ int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
-		if (Strings)
-		{
-			for (i=0;i<nbRow;i++)
-			{
-				if (Strings[i])
-				{
-					FREE(Strings[i]);
-					Strings[i]=NULL;
-				}
-			}
-			FREE(Strings);
-			Strings=NULL;
-		}
-
+		freeArrayOfString(Strings,nbRow*nbCol);
 	}
 	else
 	{
@@ -61,12 +49,14 @@ int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 				bOK=addToLibrarypath(LIBRARYPATHS[i]);
 				if (!bOK)
 				{
+					freeArrayOfString(LIBRARYPATHS,m1*n1);
 					Scierror(999,_("could not add path to java.library.path : %s.\n"),LIBRARYPATHS[i]);
 					return 0;
 				}
 			}
 			LhsVar(1) = 0;
 			C2F(putlhsvar)();	
+			freeArrayOfString(LIBRARYPATHS,m1*n1);
 		}
 		else
 		{

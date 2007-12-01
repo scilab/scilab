@@ -6,6 +6,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "setvar.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define NBRSTYLE 9
 char *UiStyleInternalName[NBRSTYLE] = {"button",
@@ -66,15 +67,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					{
 						SetVarStrings(TCLinterp,VarName,Str,m1,n1);
 					}
-					if (Str) for (i = 0; i<m1*n1 ;i++)
-					{
-						if (Str[i]) 
-						{
-							FREE(Str[i]);
-							Str[i]=NULL;
-						}
-					}
-					if (Str) {FREE(Str); Str=NULL;}
+					freeArrayOfString(Str,m1*n1);
 				}
 				else if (GetType(RhsPropertieValue)==sci_matrix)
 				{
@@ -159,15 +152,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 								}
 							}
 						}
-						if (Str) for (i = 0; i<m1*n1 ;i++)
-						{
-							if (Str[i]) 
-							{
-								FREE(Str[i]);
-								Str[i]=NULL;
-							}
-						}
-						if (Str) {FREE(Str); Str=NULL;}
+						freeArrayOfString(Str,m1*n1);
 						bOK=1;
 					}
 					else

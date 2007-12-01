@@ -16,7 +16,7 @@
 #include "GetProperty.h"
 #include "MALLOC.h"
 #include "sciCall.h"
-
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_xstringb(char *fname,unsigned long fname_len)
 {
@@ -69,20 +69,7 @@ int sci_xstringb(char *fname,unsigned long fname_len)
 
   LhsVar(1)=0;
 
-  if (Str)
-  {
-	  int i=0;
-	  for(i=0;i<m3*n3;i++)
-	  {
-		  if (Str[i])
-		  {
-			  FREE(Str[i]);
-			  Str[i]=NULL;
-		  }
-	  }
-	  FREE(Str);
-	  Str=NULL;
-  } 
+  freeArrayOfString(Str,m3*n3);
 
   return 0;
 

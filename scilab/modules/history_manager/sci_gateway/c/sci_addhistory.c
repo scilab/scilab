@@ -10,6 +10,7 @@
 #include "HistoryManager.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_addhistory) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -27,8 +28,9 @@ int C2F(sci_addhistory) _PARAMS((char *fname,unsigned long fname_len))
 		bOK = appendLinesToScilabHistory(lines,m1*n1);
 
 		LhsVar(1) = 0;
-		C2F(putlhsvar)();	
+		C2F(putlhsvar)();
 
+		freeArrayOfString(lines, m1*n1);
 	}
 	else
 	{

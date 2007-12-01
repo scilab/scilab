@@ -42,4 +42,5 @@ EXPORTS
  IsAlreadyOpenedInScilab
  getWarningMode
  callFunctionFromGateway
+ freeArrayOfString
  

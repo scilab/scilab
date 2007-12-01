@@ -11,6 +11,7 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "sortTemplate.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 {
@@ -159,6 +160,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 				Str[i]=(char*)MALLOC(sizeof(char)*(strlen(S[i])+1));
 				if (Str[i]) strcpy(Str[i],S[i]);
 			}
+			freeArrayOfString(S,m1*n1);
 			if (typex[0]==LIST_SORT) {
 			  lgsortstring(Str,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
 			}

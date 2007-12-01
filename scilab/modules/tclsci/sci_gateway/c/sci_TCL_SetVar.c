@@ -7,6 +7,7 @@
 #include "setvar.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 {
@@ -71,15 +72,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 		{
 			*paramoutINT=SetVarStrings(TCLinterpreter,VarName,Str,m1,n1);
 		}
-		if (Str) for (i = 0; i<m1*n1 ;i++)
-		{
-			if (Str[i]) 
-			{
-				FREE(Str[i]);
-				Str[i]=NULL;
-			}
-		}
-		if (Str) {FREE(Str); Str=NULL;}
+		freeArrayOfString(Str,m1*n1);
 	}
 	else
 	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_matrix) )

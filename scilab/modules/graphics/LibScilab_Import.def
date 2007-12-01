@@ -62,3 +62,4 @@ check_vector
 IsAScalar
 GetData
 GetDataSize
+freeArrayOfString

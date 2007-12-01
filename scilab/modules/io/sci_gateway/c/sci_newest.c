@@ -14,6 +14,7 @@
 #include "cluni0.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts);
 /*--------------------------------------------------------------------------*/
@@ -87,6 +88,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 				return 0;
 			}
 			RetIndex=GetIndexLastModifiedFileInList(Str,m1*n1);
+			freeArrayOfString(Str,m1*n1);
 		}
 		else
 		{
@@ -104,16 +106,8 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 			}
 
 			RetIndex=GetIndexLastModifiedFileInList(Str,RhsBackup);
-			if (Str)
-			{
-				for (j=1;j<=RhsBackup;j++)
-				{
-					FREE(Str[j-1]);
-					Str[j-1]=NULL;
-				}
-				FREE(Str);
-				Str=NULL;
-			}
+
+			freeArrayOfString(Str,RhsBackup);
 		}
 
 		if (RetIndex>=1)

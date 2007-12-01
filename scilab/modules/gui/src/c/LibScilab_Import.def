@@ -19,5 +19,6 @@ callFunctionFromGateway
 SetFunction
 vartype_
 sciReturnString
+freeArrayOfString
 ;
 

@@ -8,6 +8,7 @@
 #include "gw_localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 static struct hashtable *GetLocalizationHashTable(char *param1);
 /*--------------------------------------------------------------------------*/
@@ -57,6 +58,8 @@ int C2F(sci_addtext) _PARAMS((char *fname,unsigned long fname_len))
 						}
 					}
 
+					freeArrayOfString(param2,m2*n2);
+					freeArrayOfString(param3,m3*n3);
 					/* it is okay ;) */
 					n1=1;
 					CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);

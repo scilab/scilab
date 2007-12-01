@@ -6,6 +6,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_pvm.h"
 #include "sci_pvm.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_addhosts, fin = 10
@@ -23,6 +24,7 @@ int intspvm_addhosts _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),(mn2=n1,&mn2),&l2);/* named: infos */
   pvm_addhosts(Str1,n1 ,istk(l2));
 
+  freeArrayOfString(Str1,m1*n1);
   LhsVar(1)= Rhs+2;
   C2F(putlhsvar)();
   return 0;

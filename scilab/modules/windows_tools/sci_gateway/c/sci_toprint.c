@@ -11,6 +11,7 @@
 #include "Scierror.h"
 #include "../../../fileio/includes/FileExist.h"
 #include "IsAScalar.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 extern BOOL FigureToPrint(int figurenumber,BOOL Postscript);
 /*--------------------------------------------------------------------------*/
@@ -113,19 +114,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 						sprintf(lines,"%s%s\n",lines,Str[i]);
 					}
 				}
-				if (Str)
-				{
-					for (i = 0; i<m1 ;i++)
-					{
-						if (Str[i])
-						{
-							FREE(Str[i]);
-							Str[i]=NULL;
-						}
-					}
-					FREE(Str);
-					Str=NULL;
-				}
+				freeArrayOfString(Str,m1);
 			}
 			else
 			if (m1 == 1)
@@ -142,36 +131,11 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 					}
 					else sprintf(lines,"%s%s\n",lines,Str[i]);
 				}
-				if (Str)
-				{
-					for (i = 0; i<n1 ;i++)
-					{
-						if (Str[i])
-						{
-							FREE(Str[i]);
-							Str[i]=NULL;
-						}
-					}
-					FREE(Str);
-					Str=NULL;
-				}
+				freeArrayOfString(Str,m1);
 			}
 			else
 			{
-				if (Str)
-				{
-					int i=0;
-					for (i = 0; i<n1 ;i++)
-					{
-						if (Str[i])
-						{
-							FREE(Str[i]);
-							Str[i]=NULL;
-						}
-					}
-					FREE(Str);
-					Str=NULL;
-				}
+				freeArrayOfString(Str,m1);
 				Scierror(999,"parameter incorrect must be a string or a string matrix (1 x m) or (n x 1).");
 				return 0;
 			}

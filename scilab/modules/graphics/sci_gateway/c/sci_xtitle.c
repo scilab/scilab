@@ -19,7 +19,7 @@
 #include "DrawObjects.h"
 #include "MALLOC.h"
 #include "CurrentObjectsManagement.h"
-
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )
 {
@@ -97,19 +97,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
       strcat(C2F(cha1).buf,Str[i]);
     }
 
-	if (Str)
-	{
-		for ( i= 1 ; i < m*n ; i++) 
-		{
-			if (Str[i])
-			{
-				FREE(Str[i]);
-				Str[i]=NULL;
-			}
-		}
-		FREE(Str);
-		Str=NULL;
-	}
+	freeArrayOfString(Str,m*n);
 
     switch(narg)
     {

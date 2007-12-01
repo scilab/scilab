@@ -12,7 +12,7 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "MALLOC.h"
-
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_xstring( char *fname, unsigned long fname_len )
 {
@@ -58,20 +58,8 @@ int sci_xstring( char *fname, unsigned long fname_len )
 
 
   /* we must free Str memory */ 
-  if (Str)
-  {
-	  int i=0;
-	  for(i=0;i<m3*n3;i++)
-	  {
-		  if (Str[i])
-		  {
-			  FREE(Str[i]);
-			  Str[i]=NULL;
-		  }
-	  }
-	  FREE(Str);
-	  Str=NULL;
-  }
+  
+  freeArrayOfString(Str,m3*n3);
 
   LhsVar(1)=0;
   return 0;

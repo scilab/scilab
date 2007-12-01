@@ -8,6 +8,7 @@
 #include "MALLOC.h"
 #include "gw_fftw.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 
 /* Set fftw wisdom
@@ -49,15 +50,8 @@ int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
   }
   Str[k-1] = '\0';
 
-  /*FreeRhsSVar(Str1);*/
-  if (Str1) for (i = 0; i<m1*n1 ;i++) {
-    if (Str1[i]) {
-       FREE(Str1[i]);
-       Str1[i]=NULL;
-    }
-  }
-  if (Str1) {FREE(Str1); Str1=NULL;}
-
+  freeArrayOfString(Str1,m1*n1);
+  
   if(!(call_fftw_import_wisdom_from_string(Str))) {
    Scierror(999,_("%s: FFTW can't read wisdom\n"),
                  fname);
