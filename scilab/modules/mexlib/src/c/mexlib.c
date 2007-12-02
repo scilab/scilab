@@ -54,20 +54,15 @@
 #include "cerro.h"
 #include "erro.h"
 #include "localization.h"
+#include "error.h"
 
 static char *the_current_mex_name;
 
-extern int C2F(dcopy) __PARAMS((int*, double *, int *, double *, int *));
-extern int  C2F(mxgetm) __PARAMS((    mxArray *ptr));
-extern int  C2F(mxgetn) __PARAMS((    mxArray *ptr));
 extern int  C2F(hmcreate)  __PARAMS((int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval));
 extern int  C2F(stcreate)  __PARAMS((int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval));
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 extern int arr2num __PARAMS(( mxArray  *ptr ));
 extern int arr2numcst __PARAMS((const mxArray  *ptr ));
-
-extern int C2F(changetoref) __PARAMS((int number, int pointed));
-
 extern int IsReference  __PARAMS((mxArray *array_ptr));
 
 #define DOUBLEMATRIX sci_matrix
