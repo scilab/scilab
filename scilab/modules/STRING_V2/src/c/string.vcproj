@@ -227,6 +227,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\isalphanum.c"
+				>
+			</File>
+			<File
+				RelativePath=".\isdigit.c"
+				>
+			</File>
+			<File
+				RelativePath=".\isletter.c"
+				>
+			</File>
+			<File
 				RelativePath=".\kmp.c"
 				>
 			</File>
@@ -256,6 +268,18 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_grep.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_isalphanum.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_isdigit.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_isletter.c"
 				>
 			</File>
 			<File
@@ -357,6 +381,18 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\InitializeString.h"
+				>
+			</File>
+			<File
+				RelativePath=".\isalphanum.h"
+				>
+			</File>
+			<File
+				RelativePath=".\isdigit.h"
+				>
+			</File>
+			<File
+				RelativePath=".\isletter.h"
 				>
 			</File>
 			<File

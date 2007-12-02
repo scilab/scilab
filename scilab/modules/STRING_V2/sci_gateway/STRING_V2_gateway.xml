@@ -40,4 +40,7 @@
 <PRIMITIVE gatewayId="21" primitiveId="14" primitiveName="strsplit" />
 <PRIMITIVE gatewayId="21" primitiveId="15" primitiveName="stripblanks" />
 <PRIMITIVE gatewayId="21" primitiveId="16" primitiveName="strcmp" />
+<PRIMITIVE gatewayId="21" primitiveId="17" primitiveName="isletter" />
+<PRIMITIVE gatewayId="21" primitiveId="18" primitiveName="isdigit" />
+<PRIMITIVE gatewayId="21" primitiveId="19" primitiveName="isalphanum" />
 </GATEWAY>

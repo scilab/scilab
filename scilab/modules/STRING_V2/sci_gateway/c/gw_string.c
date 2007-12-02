@@ -23,7 +23,10 @@ static gw_generic_table Tab[]=
 	{C2F(sci_tokens),"tokens"},
 	{C2F(sci_strsplit),"strsplit"},
 	{C2F(sci_stripblanks),"stripblank"},
-	{C2F(sci_strcmp),"strcmp"}
+	{C2F(sci_strcmp),"strcmp"},
+	{C2F(sci_isletter),"isletter"},
+	{C2F(sci_isdigit),"isdigit"},
+	{C2F(sci_isalphanum),"isalphanum"}
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_string)(void)

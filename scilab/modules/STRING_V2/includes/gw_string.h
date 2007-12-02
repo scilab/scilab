@@ -25,6 +25,9 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_isletter) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_isdigit) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_isalphanum) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_STRING__ */
 /*--------------------------------------------------------------------------*/
