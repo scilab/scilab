@@ -85,7 +85,7 @@ void Initialize(void)
     else 
 	{
 		char *pathSCI=(char*)MALLOC((strlen(p1)+1)*sizeof(char));
-		sprintf(pathSCI,"%s",p1);
+		strcpy(pathSCI,p1);
 		SetScilabEnvironmentVariables(pathSCI);
 		if (pathSCI) {FREE(pathSCI);pathSCI=NULL;}
 	}

@@ -2,6 +2,8 @@
 #include "../../elementary_functions/includes/elementary_functions.h"
 #include "../../elementary_functions/includes/int2db.h"
 #include "basout.h"
+#include "error.h"
+
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))
 #define DOUBLE(x)	( stk(x))
@@ -36,10 +38,6 @@ static int dmspful(integer *ma, integer *na, double *a, integer *nela, integer *
 
 extern  int C2F(dspt)();
 extern  int C2F(wspt)();
-extern  int C2F(unsfdcopy)();
-extern  int C2F(icopy)();
-extern  int C2F(error)();
-extern  int C2F(dset)();
 extern  int empty(void);
 
 int C2F(intmsparse)(integer *id)

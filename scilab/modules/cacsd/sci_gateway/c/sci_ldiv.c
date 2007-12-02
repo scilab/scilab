@@ -4,10 +4,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "stack-c.h"
+#include "gw_cacsd3.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(scildiv) _PARAMS((char *fname,unsigned long fname_len));
-/*--------------------------------------------------------------------------*/
-int C2F(sci_ldiv) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
 int C2F(sci_ldiv) _PARAMS((char *fname,unsigned long fname_len))
 {

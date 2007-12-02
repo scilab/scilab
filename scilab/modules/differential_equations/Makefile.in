@@ -117,7 +117,6 @@ am__objects_3 = libscidifferential_equations_la-sci_int2d.lo \
 	libscidifferential_equations_la-gw_differential_equations3.lo \
 	libscidifferential_equations_la-gw_differential_equations4.lo \
 	libscidifferential_equations_la-sci_bvode.lo \
-	libscidifferential_equations_la-gw_differential_equations5.lo \
 	libscidifferential_equations_la-gw_differential_equations6.lo
 am__objects_4 = sci_dasrt.lo sci_feval.lo sci_odedc.lo sci_bvode.lo \
 	sci_impl.lo sci_dassl.lo sci_ode.lo bsurf.lo bsurfd.lo \
@@ -411,7 +410,6 @@ sci_gateway/c/gw_differential_equations2.c \
 sci_gateway/c/gw_differential_equations3.c \
 sci_gateway/c/gw_differential_equations4.c \
 sci_gateway/c/sci_bvode.c \
-sci_gateway/c/gw_differential_equations5.c \
 sci_gateway/c/gw_differential_equations6.c
 
 GATEWAY_FORTRAN_SOURCES = \
@@ -608,7 +606,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations3.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations4.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations6.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-impltable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-int2dtable.Plo@am__quote@
@@ -811,13 +808,6 @@ libscidifferential_equations_la-sci_bvode.lo: sci_gateway/c/sci_bvode.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_bvode.c' object='libscidifferential_equations_la-sci_bvode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-sci_bvode.lo `test -f 'sci_gateway/c/sci_bvode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bvode.c
-
-libscidifferential_equations_la-gw_differential_equations5.lo: sci_gateway/c/gw_differential_equations5.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-gw_differential_equations5.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-gw_differential_equations5.Tpo -c -o libscidifferential_equations_la-gw_differential_equations5.lo `test -f 'sci_gateway/c/gw_differential_equations5.c' || echo '$(srcdir)/'`sci_gateway/c/gw_differential_equations5.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidifferential_equations_la-gw_differential_equations5.Tpo $(DEPDIR)/libscidifferential_equations_la-gw_differential_equations5.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_differential_equations5.c' object='libscidifferential_equations_la-gw_differential_equations5.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-gw_differential_equations5.lo `test -f 'sci_gateway/c/gw_differential_equations5.c' || echo '$(srcdir)/'`sci_gateway/c/gw_differential_equations5.c
 
 libscidifferential_equations_la-gw_differential_equations6.lo: sci_gateway/c/gw_differential_equations6.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-gw_differential_equations6.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-gw_differential_equations6.Tpo -c -o libscidifferential_equations_la-gw_differential_equations6.lo `test -f 'sci_gateway/c/gw_differential_equations6.c' || echo '$(srcdir)/'`sci_gateway/c/gw_differential_equations6.c

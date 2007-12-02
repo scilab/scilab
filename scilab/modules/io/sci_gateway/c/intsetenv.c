@@ -39,7 +39,7 @@ int	C2F(intsetenv) _PARAMS((char *fname, unsigned long len))
 	}
 	else
 	{
-		Scierror(999,_("Invalid type : string required"));
+		Scierror(999,_("%s: Invalid type : string required"),fname);
 	}
 
 	return 0;

@@ -56,7 +56,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					GetRhsVar(RhsPropertieValue,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 					sprintf(VarName,"USERDATA_%d",Handle);
 
-					/* Efface valeur precedente */
+					/* Erase the previous value */
 					Tcl_UnsetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
 
 					if ( (m1==1) && (n1==1) )
@@ -158,7 +158,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					else
 					{
 						/* doit une chaine ou matrice de chaine */
-						Scierror(999,_("Argument type incorrect: Must be a string.\n"));
+						Scierror(999,_("Input argument type incorrect: Must be a string.\n"));
 						return 0;
 					}
 
@@ -170,7 +170,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					char *PropertieValue=NULL;
 
 					PropertieField=(char*)MALLOC((strlen(StrField)+1)*sizeof(char));
-					sprintf(PropertieField,"%s",StrField);
+					strcpy(PropertieField,StrField);
 
 					if (GetType(RhsPropertieValue) == sci_strings)
 					{
@@ -180,7 +180,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 						TmpCharValue=cstk(l1);
 
 						PropertieValue=(char*)MALLOC((strlen(TmpCharValue)+1)*sizeof(char));
-						sprintf(PropertieValue,"%s",TmpCharValue);
+						strcpy(PropertieValue,TmpCharValue);
 					}
 					else if (GetType(RhsPropertieValue) == sci_matrix)
 					{
@@ -241,7 +241,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 			StyleValue=GetStyleInternalName(PropertieValue);
 			if (StyleValue!=-1)
 			{
-				sprintf(MyTclCommand,_("SetField %d \"%s\" \"%s\""),Handle,PropertieField,UiStyleExternalName[StyleValue]);
+				sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,UiStyleExternalName[StyleValue]);
 			}
 			else
 			{
@@ -251,7 +251,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 		}
 		else
 		{
-			sprintf(MyTclCommand,_("SetField %d \"%s\" \"%s\""),Handle,PropertieField,PropertieValue);
+			sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,PropertieValue);
 		}
 
 		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )

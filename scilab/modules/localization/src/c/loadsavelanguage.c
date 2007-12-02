@@ -48,7 +48,6 @@ BOOL savelanguagepref(void)
 #ifndef _MSC_VER
 static BOOL loadlanguagepref_linux(void)
 {
-	BOOL bOK=FALSE;
 	char *filepref=NULL;
 	FILE *fileR;
 
@@ -70,11 +69,11 @@ static BOOL loadlanguagepref_linux(void)
 			fclose(fileR);
 
 			if (LANGUAGE){FREE(LANGUAGE);LANGUAGE=NULL;}
-			bOK=TRUE;
+			return TRUE;
 		}
 	}
 	// TODO : if this file is not available load the locale of the system for the language
-	return bOK;
+	return FALSE;
 }
 #endif
 /*--------------------------------------------------------------------------*/
@@ -131,7 +130,7 @@ static char *getfilenamelanguagepref(void)
 	else
 	{
 		retFilename=(char*)MALLOC((strlen(namelanguagepref)+1)*sizeof(char));
-		sprintf(retFilename,"%s",namelanguagepref);
+		strcpy(retFilename,namelanguagepref);
 	}
 
 	return retFilename;
@@ -142,9 +141,10 @@ static char *getfilenamelanguagepref(void)
 static BOOL loadlanguagepref_windows(void)
 {
 	BOOL bOK=FALSE;
-	/* Modification Restauration depuis la base de registre dans
-	HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Settings\\LANGUAGE
-	"Version" correspondant à la version de Scilab
+	/* @TODO translate to english
+	   Modification Restauration depuis la base de registre dans
+	   HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Settings\\LANGUAGE
+	   "Version" correspondant à la version de Scilab
 	*/
 	HKEY key;
 

@@ -20,11 +20,10 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 	int	littlendian = 1,type = 2,ierr,mode;
 	char	*endptr;
 	FILE * fa;
-	/* next line added by ss 16/10/98 */
 
 	if ( getWarningMode() && IsAlreadyOpenedInScilab(file) )
 	{
-		sciprint(_("Warning : file '%s' already opened in scilab.\n"),file);
+		sciprint(_("Warning: file '%s' already opened in Scilab.\n"),file);
 	}
 
 	swap =0;

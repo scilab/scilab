@@ -68,8 +68,6 @@ extern int C2F(ddmpev)();
 int C2F(createlistcvarfrom)();
 #endif
 
-extern int C2F(tpconv)(integer *xtyp, integer *ytyp, integer *n, void *dx, integer *incx, void *dy, integer *incy);
-
 static int get_length(int num)
 {
   int il;

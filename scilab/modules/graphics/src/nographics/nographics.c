@@ -2,12 +2,10 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
-#include "ObjectStructure.h"
-#include "Events.h"
+#include "nographics.h"
 #include "WindowList.h"
 #include "machine.h"
 #include "Scierror.h"
-#include "nographics.h"
 /*--------------------------------------------------------------------------*/
 int C2F(gw_graphics)()
 {

@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "MALLOC.h" /* MALLOC */
-#include "sci_fileio.h"
+#include "stack-c.h"
 #include "gw_fileio.h"
 #include "cluni0.h"
 #include "mopen.h"

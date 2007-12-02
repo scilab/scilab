@@ -85,11 +85,11 @@ void CreMATRIX(f,var)
   WriteCallRestCheck(f,var,"nn",0,0) ;
   GetDim(str4,var->el[0]);
   if ( str3[0] == '&' || str3[0] == '(') 
-    sprintf(str2,"%s",str3);
+    strcpy(str2,str3);
   else 
     sprintf(str2,"&%s",str3);
   if ( str4[0] == '&' || str4[0] == '(') 
-    sprintf(str1,"%s",str4);
+    strcpy(str1,str4);
   else 
     sprintf(str1,"&%s",str4);
   CreCommon(f,var);
@@ -534,13 +534,13 @@ void GetDim(char *lstr,IVAR ivar)
        || strncmp(s,"sstk",4)==0 || strncmp(s,"stk",3)==0 || 
        strncmp(s,"cstk",4)==0 )
     {
-      sprintf(lstr,"%s",s);
+      strcpy(lstr,s);
       return ;
     }
   else 
     {
       AddDeclare1(DEC_INT,s);
-      sprintf(lstr,"%s",s);
+      strcpy(lstr,s);
     }
 }
 

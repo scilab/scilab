@@ -2,6 +2,7 @@
 #include <string.h>
 #include "stack-c.h"
 #include "core_math.h"
+#include "gw_arnoldi.h"
 /*--------------------------------------------------------------------------*/
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))
@@ -9,8 +10,6 @@
 #define CMPLX(x)	(zstk(x))
 /*--------------------------------------------------------------------------*/
 extern int C2F(dneupd) __PARAMS((int *rvec, char *howmny, int *select, double *dr, double *di, double *z, int *ldz, double *sigmar, double *sigmai, double *workev, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_length));
-/*--------------------------------------------------------------------------*/
-int C2F(intdneupd) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
 int C2F(intdneupd) _PARAMS((char *fname,unsigned long fname_len))
 { 

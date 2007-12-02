@@ -31,7 +31,6 @@ int C2F(sciimin) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sciimaxi) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sciimini) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sciip) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciiconvert) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sciimatrix) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sciiprod) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sciicumprod) _PARAMS((char *fname,unsigned long fname_len));

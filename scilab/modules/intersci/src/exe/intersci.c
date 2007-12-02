@@ -63,7 +63,7 @@ void ISCIReadFile(file)
   sprintf(filin,"%s.desc",file);
   fin = fopen(filin,"r");
   if (fin == 0) {
-    printf("interface file \"%s\" does not exist\n",filin);
+    printf("Interface file \"%s\" does not exist\n",filin);
     exit(1);
   }
   Copyright();

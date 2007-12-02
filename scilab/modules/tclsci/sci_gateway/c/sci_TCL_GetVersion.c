@@ -64,7 +64,7 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 		if (msg_) {FREE(msg_);msg_=NULL;}
 
 		output=(char*)MALLOC((strlen(VersionString)+1)*sizeof(char));
-		sprintf(output,"%s",VersionString);
+		strcpy(output,VersionString);
 		n1=1;
 		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 		if (output) {FREE(output);output=NULL;}
@@ -100,12 +100,12 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,_("%s: invalid rhs parameter : help TCL_GetVersion.\n"),fname);
+				Scierror(999,_("%s: invalid output argument : help TCL_GetVersion.\n"),fname);
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: invalid rhs parameter : help TCL_GetVersion.\n"),fname);
+			Scierror(999,_("%s: invalid input argument : help TCL_GetVersion.\n"),fname);
 		}
 		
 	}

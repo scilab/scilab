@@ -4,6 +4,7 @@
 #include <string.h>
 #include "gw_special_functions2.h"
 #include "stack-c.h"
+#include "error.h"
 /*--------------------------------------------------------------------------*/
 extern void C2F(msgs)(int *n, int* ierr);
 extern void C2F(dset)(int *n, double *a,double *x,int *ix);

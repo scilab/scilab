@@ -17,7 +17,7 @@ BOOL TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 	*m=0;
 	*n=0;
 	if (strcmp(VarName,TCL_SCILAB_VARIABLE_TMP))
-	{
+		{
 		char MyTclCommand[2048];
 		char *StrArrayDims=NULL;
 
@@ -42,8 +42,14 @@ BOOL TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 			{
 				int loop=0;
 				if (token[0]==CHAR_BLANK) token=&token[1];
-				for(loop=0;loop<(int)strlen(token);loop++) if (token[loop] == CHAR_PERIOD) token[loop]=CHAR_BLANK;
-				sprintf(StrDimensions,"%s",token);
+				for(loop=0;loop<(int)strlen(token);loop++) 
+					{
+						if (token[loop] == CHAR_PERIOD) 
+							{
+								token[loop]=CHAR_BLANK;
+							}
+					}
+				strcpy(StrDimensions,token);
 				sscanf(StrDimensions,"%d %d",&DimX,&DimY);
 				*n=DimX;
 				*m=DimY;
@@ -52,7 +58,7 @@ BOOL TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 			{
 				int loop=0;
 				for(loop=0;loop<(int)strlen(StrArrayDims);loop++) if ( StrArrayDims[loop] == CHAR_PERIOD)  StrArrayDims[loop]=CHAR_BLANK;
-				sprintf(StrDimensions,"%s", StrArrayDims);
+				strcpy(StrDimensions,StrArrayDims);
 				sscanf(StrDimensions,"%d %d",&DimX,&DimY);
 				*n=DimX;
 				*m=DimY;

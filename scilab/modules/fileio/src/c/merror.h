@@ -8,8 +8,11 @@
 #include "machine.h"
 
 /**
-* check error
-*/
+ * check error
+ *
+ * @param fd    
+ * @param res   
+ */
 void C2F(merror) (integer *fd, double *res);
 
 #endif /* __MERROR_H__ */

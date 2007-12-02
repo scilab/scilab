@@ -16,7 +16,6 @@
 #include "msgout.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(showstack)(); /* used in error 115 */
-extern int C2F(cvname)(); /* used to get function name */
 extern int C2F(prntid)(); /* to print variables on stack */
 /*--------------------------------------------------------------------------*/
 static void strip_blank(char *source);

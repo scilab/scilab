@@ -88,7 +88,6 @@ sci_gateway/c/gw_differential_equations2.c \
 sci_gateway/c/gw_differential_equations3.c \
 sci_gateway/c/gw_differential_equations4.c \
 sci_gateway/c/sci_bvode.c \
-sci_gateway/c/gw_differential_equations5.c \
 sci_gateway/c/gw_differential_equations6.c
 
 GATEWAY_FORTRAN_SOURCES = \

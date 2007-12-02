@@ -36,7 +36,7 @@ void C2F(scipvmconfig)(int *nhost, int *narch, int **dtid,
   *n = *nhost;
   
   if (*info) {
-    Scierror(999,_("pvm_config: Error  %d\n"), *info);
+    Scierror(999,_("%s: Error %d\n"), "pvm_config", *info);
     *n = 0;
     *name = NULL;
     *arch = NULL;
@@ -69,14 +69,14 @@ void C2F(scipvmconfig)(int *nhost, int *narch, int **dtid,
       *info = PvmNoMem;
       return;
     }
-    (void) sprintf((*name)[i], "%s", hostp[i].hi_name);
+    strcpy((*name)[i], hostp[i].hi_name);
     
     if (((*arch)[i] = (char *) MALLOC((1+strlen(hostp[i].hi_arch)) * 
 				      sizeof(char*))) == NULL) {
       *info = PvmNoMem;
       return;
     }
-    (void) sprintf((*arch)[i], "%s", hostp[i].hi_arch);
+    strcpy((*arch)[i], hostp[i].hi_arch);
     
     (*dtid)[i] =hostp[i].hi_tid;
     (*speed)[i] =hostp[i].hi_speed;
@@ -137,7 +137,7 @@ void C2F(scipvmtasks)(int *where, int *ntask,
       *info = PvmNoMem;
       return;
     }
-    (void) sprintf((*name)[i], "%s", taskp[i].ti_a_out);
+    strcpy((*name)[i], taskp[i].ti_a_out);
   }
 }
 

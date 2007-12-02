@@ -5,10 +5,9 @@
 #include <string.h>
 #include "machine.h"
 #include "stack-c.h"
+#include "gw_polynomials.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intvarn) _PARAMS((int *id));
-/*--------------------------------------------------------------------------*/
-int C2F(sci_varn) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
 int C2F(sci_varn) _PARAMS((char *fname,unsigned long fname_len))
 {

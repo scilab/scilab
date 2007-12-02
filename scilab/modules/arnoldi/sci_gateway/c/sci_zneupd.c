@@ -1,6 +1,7 @@
 #include <math.h>
 #include <string.h>
 #include "stack-c.h"
+#include "gw_arnoldi.h"
 #include "core_math.h"
 /*--------------------------------------------------------------------------*/
 #define CHAR(x)         (cstk(x))
@@ -9,8 +10,6 @@
 #define CMPLX(x)	(zstk(x))
 /*--------------------------------------------------------------------------*/
 extern int C2F(zneupd)();
-/*--------------------------------------------------------------------------*/
-int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
 int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len))
 { 

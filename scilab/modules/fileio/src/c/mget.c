@@ -40,7 +40,7 @@ int swap = 0;
 		  MGET_NC(NumType,Fswap); break; \
 	  case 'l': swap = (islittleendian()==1) ? 0:1; \
 	  MGET_NC(NumType,Fswap);  break; \
-	  default: sciprint(_("mget : %s format not recognized\n"),type); \
+	  default: sciprint(_("%s: %s format not recognized\n"),"mget",type); \
 	  *ierr=1; return; \
 				} \
 }
@@ -156,7 +156,7 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	*ierr=0;
 	if ( nc == 0) 
 	{
-		sciprint(_("mget : format is of length 0\n"),type);
+		sciprint(_("%s: Length of format is 0\n"),"mget");
 		*ierr=2;
 		return;
 	}
@@ -165,7 +165,7 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	{
 		swap2 = GetSwapStatus(*fd);
 		mget2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) sciprint(_("mget : %s format not recognized\n"),type);
+		if (*ierr > 0) sciprint(_("%s: %s format not recognized\n"),"mget",type);
 	}
 	else 
 	{

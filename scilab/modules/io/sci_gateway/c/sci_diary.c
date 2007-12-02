@@ -5,8 +5,6 @@
 #include <stdio.h>
 #include "gw_io.h"
 /*--------------------------------------------------------------------------*/
-int C2F(intdiary)();
-/*--------------------------------------------------------------------------*/
 int C2F(sci_diary) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(intdiary)();

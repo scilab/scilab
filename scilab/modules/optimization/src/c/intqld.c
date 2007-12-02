@@ -1,13 +1,6 @@
 #include "intqld.h"
 #include "localization.h"
-
-extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
-
-extern int C2F(ql0001)(int *m,int *me,int *mmax,int *n,int *nmax,int *mnn,
-            double *c,double *d,double *a,double *b,double *xl,
-            double *xu,double *x,double *u,int *iout,int *ifail,
-            int *iprint,double *war,int *lwar,int *iwar,int *liwar,
-            double *eps1);
+#include "error.h"
 
 int C2F(intqld)(char *fname)
 {
@@ -25,12 +18,9 @@ int C2F(intqld)(char *fname)
   static int war, lwar, iwar, iout, C_mmax, b_mmax, k, l;
   static double eps1;
 
-  /*    Define minls=1, maxlhs, minrhs, maxrhs   */
-  static int minlhs=1, minrhs=7, maxlhs=3, maxrhs=8;
-
   /*   Check rhs and lhs   */
-  CheckRhs(minrhs,maxrhs) ;
-  CheckLhs(minlhs,maxlhs) ;
+  CheckRhs(7,9) ;
+  CheckLhs(1,3) ;
 
   /* RhsVar: qld(Q,p,C,b,lb,ub,me,eps) */
   /*             1,2,3,4,5 ,6 ,7, 8  */
@@ -48,7 +38,7 @@ int C2F(intqld)(char *fname)
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m, &nbis, &C);
   if (( nbis != n ) && (m > 0))
     {
-      Scierror(205,_("qld: Argument 3: wrong number of columns %d expected\n"), n);
+      Scierror(205,_("%s: Argument 3: wrong number of columns %d expected\n"), "qld", n);
       return 0;
     }
   mmax = m+1;
@@ -142,13 +132,13 @@ int C2F(intqld)(char *fname)
     C2F(putlhsvar)();
   }
   else if (ifail==1)
-    Scierror(24,_("qld: Too many iterations (more than %d)\n"), 40*(n+m));
+    Scierror(24,_("%s: Too many iterations (more than %d)\n"),"qld",40*(n+m));
   else if (ifail==2)
-    Scierror(24,_("qld: Accuracy insufficient to statify convergence criterion.\n"));
+    Scierror(24,_("%s: Accuracy insufficient to statify convergence criterion.\n"),"qld");
   else if (ifail==5)
-    Scierror(999,_("qld: Length of working array is too short.\n"));
+    Scierror(999,_("%s: Length of working array is too short.\n"),"qld");
  else if (ifail>10)
-    Scierror(999,_("qld: The constraints are inconsistent.\n"));
+    Scierror(999,_("%s: The constraints are inconsistent.\n"),"qld");
 
 
   return 0;

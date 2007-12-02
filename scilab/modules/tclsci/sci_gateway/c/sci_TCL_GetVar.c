@@ -51,7 +51,7 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,_("%s : Argument type must be character string.\n"),fname);
+				Scierror(999,_("%s: Argument type must be character string.\n"),fname);
 				return 0;
 			}
 		}
@@ -104,7 +104,7 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 				AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
 
 				output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
-				sprintf(output,"%s",AsciiFromUTF8);
+				strcpy(output,AsciiFromUTF8);
 				n1=1;
 				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 
@@ -116,14 +116,14 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,_("TCL_GetVar: Could not read Tcl Var.\n"));
+				Scierror(999,_("%s: Could not read Tcl Var.\n"),"TCL_GetVar");
 				return 0;
 			}
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : Argument type must be character string.\n"),fname);
+		Scierror(999,_("%s : Input rgument type must be character string.\n"),fname);
 		return 0;
 	}
 	

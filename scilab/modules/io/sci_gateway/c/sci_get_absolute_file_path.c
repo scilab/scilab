@@ -31,7 +31,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 	
 	if (! (GetType(1) == sci_strings))
 	{
-		Scierror(999,_("parameter incorrect must be a string (a filename).\n"));
+		Scierror(999,_("%s: Input argument incorrect must be a string (a filename).\n"),fname);
 		return 0;
 	}
 	else
@@ -117,7 +117,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 		}
 		else
 		{
-			Scierror(999,_("First parameter incorrect, must be a string (a file).\n"));
+			Scierror(999,_("%s: First input argument incorrect, must be a string (a file).\n"),fname);
 			return 0;
 		}
 	}

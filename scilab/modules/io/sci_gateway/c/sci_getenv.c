@@ -4,8 +4,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_io.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intgetenv) _PARAMS((char *fname,unsigned long fname_len));
-/*--------------------------------------------------------------------------*/
 int C2F(sci_getenv) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(intgetenv)(fname,fname_len);

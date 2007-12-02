@@ -4,7 +4,6 @@
 typedef integer (*I_fp)();
 
 int C2F(vfinite)  _PARAMS((int *n, double *v));
-int C2F(unsfdcopy) _PARAMS((int *n, double *dx, int *incx, double *dy, int *incy));
 
 extern int C2F(wsort) _PARAMS((double *countr, double *counti, int *n, int *index, I_fp test));
 
@@ -50,18 +49,16 @@ extern int C2F(dwpow1) _PARAMS((int *n, double *v, int *iv, double *pr, double *
 extern int C2F(dwpowe) _PARAMS((double *v, double *pr, double *pi, double *rr, double *ri, int *ierr));
 extern int C2F(dwpow) _PARAMS((int *n, double *vr, double *vi, int *iv, double *powr, double *powi, int *ierr));
 extern int C2F(dwrdiv) _PARAMS((double *ar, int *ia, double *br, double *bi, int *ib, double *rr, double *ri, int *ir, int *n, int *ierr));
-extern int C2F(entier) _PARAMS((int *n, double *d__, int *s));
 extern int C2F(franck) _PARAMS((double *a, int *na, int *n, int *job));
 extern double C2F(dgamma) _PARAMS((double *x));
 extern int C2F(gdcp2i) _PARAMS((int *n, int *itab, int *m));
 extern int C2F(hilber) _PARAMS((double *a, int *lda, int *n));
-extern int C2F(icopy) _PARAMS((int *n, int *dx, int *incx, int *dy, int *incy));
+
 extern int C2F(idmax) _PARAMS((int *n, double *dx, int *incx));
 extern int C2F(idmin) _PARAMS((int *n, double *dx, int *incx));
 extern int C2F(imcopy) _PARAMS((int *a, int *na, int *b, int *nb, int *m, int *n));
 extern double C2F(infinity) _PARAMS((double *x));
 extern int C2F(intp) _PARAMS((double *x, double *xd, double *yd, int *n, int *nc, double *y));
-extern int C2F(iset) _PARAMS((int *n, int *dx, int *dy, int *incy));
 extern int C2F(isort) _PARAMS((int *count, int *n, int *index));
 extern int C2F(isova0) _PARAMS((double *a, int *lda, int *m, int *n, double *path, int *kpath, int *ir, int *ic, int *dir, int *pend, int *h__, int *v, double *c__));
 extern int C2F(isoval) _PARAMS((double *a, int *lda, int *m, int *n, double *c__, double *path, int *npath, int *maxp, int *ierr, int *iw, int *job));
@@ -76,13 +73,11 @@ extern double C2F(nearfloat) _PARAMS((double *x, double *dir));
 extern double C2F(psi) _PARAMS((double *xx));
 extern double C2F(pythag) _PARAMS((double *a, double *b));
 extern int C2F(rat) _PARAMS((double *x, double *eps, int *n, int *d__, int *fail));
-extern int C2F(rcopy) _PARAMS((int *n, float *dx, int *incx, float *dy, int *incy));
 extern int C2F(ribesl) _PARAMS((double *x, double *alpha, int *nb, int *ize, double *b, int *ncalc));
 extern int C2F(rjbesl) _PARAMS((double *x, double *alpha, int *nb, double *b, int *ncalc));
 extern int C2F(rkbesl) _PARAMS((double *x, double *alpha, int *nb, int *ize, double *bk, int *ncalc));
 /*extern double C2F(round) _PARAMS((double *x1));*/
 extern int C2F(rybesl) _PARAMS((double *x, double *alpha, int *nb, double *by, int *ncalc));
-extern int C2F(simple) _PARAMS((int *n, double *d__, float *s));
 extern double C2F(urand) _PARAMS((int *iy));
 extern int C2F(vpythag) _PARAMS((int *n, double *xr, double *xi));
 extern int C2F(wacos) _PARAMS((double *zr, double *zi, double *ar, double *ai));

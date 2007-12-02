@@ -8,9 +8,23 @@
 #include "machine.h"
 
 /**
-* read a string 
-*/
+ * read a string 
+ *
+ * @param fd    
+ * @param start 
+ * @param n 
+ * @param ierr  
+ */
 void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr);
+
+/**
+ * read a string 
+ *
+ * @param fd    
+ * @param start 
+ * @param n 
+ * @param ierr  
+ */
 void C2F(mgetstr1) (integer *fd, char *start, integer *n, integer *ierr);
 
 #endif /* __MGETSTR_H__ */

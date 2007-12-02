@@ -1,29 +1,20 @@
 /*--------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
+/* INRIA 2006/2007 */
+/* @author Allan CORNET */
+/* @author Sylvestre LEDRU */
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "gw_cacsd2.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(scitzer) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
-int C2F(sci_tzer) _PARAMS((char *fname,unsigned long fname_len));
-/*--------------------------------------------------------------------------*/
 int C2F(sci_tzer) _PARAMS((char *fname,unsigned long fname_len))
 {
-	if (Rhs != 4)
-	{
-		Scierror(42,_("Incompatible input parameter (RHS).\n"));
-		return 0;
-	}
-	if ( (Lhs != 2) && (Lhs !=3) )
-	{
-		Scierror(41,_("Incompatible output parameter (LHS).\n"));
-		return 0;
-	}
-
+	CheckRhs(4,4);
+	CheckLhs(2,3);
 	C2F(scitzer)(fname,fname_len);
 	return 0;
 }

@@ -207,7 +207,7 @@ char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 			{
 				if (DetachProcess)
 				{
-					sprintf(OuputStrings[i],"%s",line);
+					strpcy(OuputStrings[i],line);
 				}
 				else
 				{
@@ -222,7 +222,7 @@ char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 				}
 				else
 				{
-					sprintf(OuputStrings[i],"%s",line);
+					strcpy(OuputStrings[i],line);
 				}
 			}
 

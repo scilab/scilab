@@ -21,11 +21,11 @@ int intab01od(char* fname)
 	int N, M, mtol, ntol; int un, one; int INFO, INDCON, NCONT;
 	char  *JOBU, *JOBV;
 	double theTOL;
-	int minlhs=1, minrhs=2, maxlhs=6, maxrhs=3;
 
 	/*     [NCONT,U,KSTAIR,V,A,B]=ab01od(A,B,[TOL])   */
 
-	CheckRhs(minrhs,maxrhs);  CheckLhs(minlhs,maxlhs);
+	CheckRhs(2,3);  
+	CheckLhs(1,6);
 	theTOL=(double) C2F(dlamch)("e",1L);
 	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&mA,&nA,&ptrA);   A=1;        /*     A */
 	N=mA;

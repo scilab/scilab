@@ -16,7 +16,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts);
+static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -84,7 +84,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 
 			if ( (m1 != 1) && (n1 != 1) )
 			{
-				Scierror(999,_("not a vector of filenames.\n"));
+				Scierror(999,_("Not a vector of filename.\n"));
 				return 0;
 			}
 			RetIndex=GetIndexLastModifiedFileInList(Str,m1*n1);
@@ -137,7 +137,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
+static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
 {
 #ifdef _MSC_VER
 	struct _stat buf;
