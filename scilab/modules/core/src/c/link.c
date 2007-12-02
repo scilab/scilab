@@ -25,7 +25,6 @@ static void Underscores __PARAMS((int isfor,char *ename,char *ename1));
 static int SearchFandS  __PARAMS( ( char *,int ));
 static void ShowDynLinks(void);
 int LinkStatus __PARAMS((void)) ;
-int C2F(scilinknorhs)(void);
 
 
 /*********************************************

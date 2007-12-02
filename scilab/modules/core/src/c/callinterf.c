@@ -18,8 +18,6 @@
 
 static  jmp_buf jmp_env;
 
-extern int C2F(error) __PARAMS((int *));
-
 static void sci_sigint_addinter(int n);
 
 /**
@@ -58,7 +56,7 @@ static OpTab Interfaces[] = {
 	/* 28  */ {C2F(gw_slicot)},
 	/* 29  */ {C2F(gw_differential_equations3)},
 	/* 30  */ {C2F(gw_differential_equations4)},
-	/* 31  */ {C2F(gw_differential_equations5)},
+	/* 31  */ {C2F(gw_user2)},/* free position may be used */
 	/* 32  */ {C2F(gw_differential_equations6)},
 	/* 33  */ {C2F(gw_user2)}, /* free position may be used */
 	/* 34  */ {C2F(gw_fileio)},
@@ -162,7 +160,7 @@ static void sci_sigint_addinter(int n)
 /*-------------------------------------
  * long jump to stop interface computation
  *-------------------------------------*/
-void errjump(int n)
+void  errjump(int n)
 {
   longjmp(jmp_env,-1);
 }

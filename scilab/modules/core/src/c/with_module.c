@@ -8,7 +8,6 @@
 /*--------------------------------------------------------------------------*/
 BOOL with_module(char *modulename)
 {
-	BOOL bOK=FALSE;
 	if (modulename)
 	{
 		struct MODULESLIST *Modules=getmodules();
@@ -23,7 +22,7 @@ BOOL with_module(char *modulename)
 			}
 		}
 	}
-	return bOK;
+	return FALSE;
 
 }
 /*--------------------------------------------------------------------------*/

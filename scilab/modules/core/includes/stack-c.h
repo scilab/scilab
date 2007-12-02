@@ -209,6 +209,7 @@ typedef struct { double r, i; } doublecomplex;
 #define CreateCVar(n,ct,it,mx,nx,lrx,lcx) if(! C2F(createcvar)((c_local=n,&c_local),ct,it,mx,nx,lrx,lcx, 1L))\
         { return 0;  }
 
+/* the real function error is defined in output_stream */
 #define Error(x) C2F(error)((c_local=x,&c_local))
 
 #define Errorinfo(routinename,info) C2F(errorinfo)(routinename,(c_local=info, &c_local), strlen(routinename));
@@ -372,8 +373,6 @@ int get_optionals __PARAMS((char *name,rhs_opts opts[]));
 /*------------------------------
  * prototypes
  *-----------------------------*/
-
-extern int C2F(error) __PARAMS((int *));
 
 extern int C2F(firstopt) __PARAMS((void));
 extern int C2F(findopt) __PARAMS((char *, rhs_opts *));

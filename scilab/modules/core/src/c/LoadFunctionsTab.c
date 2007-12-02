@@ -96,7 +96,7 @@ static BOOL Load_primitives_from_file(char *filename)
 			{
 				printf(_("Error: could not parse file %s\n"), filename);
 				if (encoding) {FREE(encoding);encoding=NULL;}
-				return bOK;
+				return FALSE;
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
@@ -151,7 +151,7 @@ static BOOL Load_primitives_from_file(char *filename)
 			else
 			{
 				printf(_("Error : Not a valid gateway file %s (should start with <GATEWAY> and contains <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"), filename);
-				return bOK;
+				return FALSE;
 			}
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
 			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);

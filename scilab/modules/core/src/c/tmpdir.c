@@ -75,7 +75,7 @@ void C2F(settmpdir)(void)
 		  exit(1);
 		  #else
 		  GetTempPath(PATH_MAX,TmpDirDefault);
-		  sprintf(tmp_dir,"%s",TmpDirDefault);
+		  strcpy(tmp_dir,TmpDirDefault);
 		  tmp_dir[strlen(tmp_dir)-1]='\0'; /* Remove last \ */
 		  #endif
 		}

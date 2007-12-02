@@ -220,7 +220,7 @@ static int Sci_dlopen(char **loaded_files,int global)
   shl_t hd1;
   void (*init_ctor)() = 0;
 #endif
-  char tmp_file[PATH_MAX],*getenv(const char *);
+  char tmp_file[PATH_MAX];
   /** XXXXX **/
   if ( strncmp(loaded_files[0],"scilab",6) !=0)
     {

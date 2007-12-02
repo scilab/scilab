@@ -55,11 +55,9 @@ extern int C2F(fact)();
 extern int C2F(expr)();
 extern int C2F(terme)();
 extern int C2F(stackp)();
-extern int C2F(stackg)();
 extern int C2F(macro)();
 extern int C2F(getsym)();
 
-extern int C2F(putid)(); 
 extern int C2F(eqid)();
 extern int C2F(funs)();
 
@@ -70,7 +68,6 @@ extern int C2F(findequal)();
 extern int C2F(print)();
 extern int C2F(createref1)();
 extern int C2F(command)();
-extern int C2F(cvname)();
 extern int C2F(getlin)();
 extern int C2F(mrknmd)();
 extern int C2F(stimer)();
@@ -78,15 +75,12 @@ extern int C2F(mkindx)();
 extern int C2F(whatln)();
 extern int C2F(prompt)();
 extern int C2F(seteol)();
-extern int C2F(allops)();
 extern int C2F(run)();
 extern int C2F(name2var)();
 extern int C2F(msgs)();
-extern int C2F(error)();
 extern int C2F(compil)();
 extern int C2F(ptover)(); /* see src/fortran/ptover.f */
 extern int C2F(eptover)();/* see src/fortran/eptover.f */
-extern int C2F(callinterf) (int *k);
 /*--------------------------------------------------------------------------*/
 void handle_onprompt(int *n);
 /*--------------------------------------------------------------------------*/

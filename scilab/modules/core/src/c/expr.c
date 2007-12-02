@@ -7,20 +7,19 @@
 #include "msgs.h"
 #include "stack-def.h"
 #include "stack-c.h"
+#include "error.h"
 /*--------------------------------------------------------------------------*/ 
 static int inc = 1;
 static int checkvalue = 4095;
 static int code = 30;
 static int val = 0;
 /*--------------------------------------------------------------------------*/ 
-extern int C2F(putid)(int *, int *);
-extern int C2F(error)(int *);
 extern int C2F(compil)(int *, int *, int *, int *, int *);
 extern int C2F(getsym)(void);
 extern int C2F(istrue)(int *);
 extern int C2F(eptover)(int *, int *);
 /*--------------------------------------------------------------------------*/ 
-#define  et      58
+#define  et      58 /* @TODO does 'et' is 'and' in english ? */
 #define  equal   50
 #define  less    59
 #define  great   60
@@ -30,7 +29,7 @@ extern int C2F(eptover)(int *, int *);
 #define  blank   40
 #define  plus    45
 #define  minus   46
-#define  ou      57
+#define  ou      57 /* @TODO does 'ou' is 'or' in english ? */
 /*--------------------------------------------------------------------------*/ 
 int C2F(expr)(void)
 {

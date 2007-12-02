@@ -35,11 +35,6 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   int *stkdata = NULL; /* Pointeur to rhs arguments */
   int *data = NULL; /* Macro integer vector (pointer to copy of rhs argument) */
  
-  int minRhs = 1; /* Minimum number of RHS arguments */
-  int maxRhs = 1; /* Maximum number of RHS arguments */
-  int minLhs = 1; /* Minimum number of LHS arguments */
-  int maxLhs = 1; /* Maximum number of LHS arguments */
-  
   int il = 0,ils = 0,ile = 0,ilt = 0,codelength = 0;
   
   int i = 0,cod_ind = 0; /* Loop index */
@@ -72,17 +67,17 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   int newinstr = 0; /* flag used to know if a new instruction has been created (1->TRUE) */
 
   /* Verify number of RHS arguments */
-  CheckRhs(minRhs,maxRhs);
+  CheckRhs(1,1);
   
   /* Verify number of LHS arguments */
-  CheckLhs(minLhs,maxLhs);
+  CheckLhs(1,1);
 
   /* Read all data */
   stkdata = (int *) stk(*Lstk(Top));
 
   if (stkdata[0] > 0) /* Not a reference to variable */
     {
-		Scierror(999,_("acr2tree: input argument must be a named variable\n"));
+		Scierror(999,_("%s: input argument must be a named variable\n"),"acr2tree");
       return 0;
     }
   else
@@ -93,7 +88,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   /* Verify good type for input: must be a compiled macro (type 13) */
   if(stkdata[0] != 13)
     {
-		Scierror(999,_("macr2tree: Wrong input type (must be a compiled macro)!\n"));
+		Scierror(999,_("%s: Wrong input type (must be a compiled macro)!\n"),"macr2tree");
       return 0;
     }
 
@@ -105,7 +100,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
     }
   if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
     {
-		Scierror(999,_("macr2tree: Out of code\n"));
+		Scierror(999,_("%s: Out of code\n"),"macr2tree");
       return 0;
     }
   (name[0])[nlgh]='\0';
@@ -233,7 +228,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 	  cod_ind++;
 	  if(cod_ind>codelength+ilt+1)
 	  {
-		  Scierror(999,_("macr2tree: Out of code\n"));
+		  Scierror(999,_("%s: Out of code\n"),"macr2tree");
  
 	      /* Free memory */
 	      FREE(name[0]);
@@ -248,7 +243,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 	}
       if(TopSave!=Top-1) 
 	  {
-		  Scierror(999,_("macr2tree: wrong Top value %d instead of %d\n"),Top,TopSave+1);
+		  Scierror(999,_("%s: wrong Top value %d instead of %d\n"),"macr2tree",Top,TopSave+1);
 
 
 	/* Free memory */
@@ -776,7 +771,7 @@ static int GetControlInstruction(int *data,int *index2,int *nblines)
 	{
 	  /* This part will not be written */
 	  /* No more used */
-	  Scierror(999,_("GetControlInstruction: old version of if and while not yet implemented.\n"));
+	  Scierror(999,_("%s: old version of if and while not yet implemented.\n"),"GetControlInstruction");
 	  return 0;
 	}
       else
@@ -1084,7 +1079,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
     }
   else /* Should never happen */
     {
-	  Scierror(999,_("CreateCsteTList: wrong type value.\n"),type);
+	  Scierror(999,_("%s: wrong type value.\n"),"CreateCsteTList");
       return 0;
     }
   
@@ -1160,7 +1155,7 @@ static int CreateOperationTList(int *data,int *index2)
 	}
     }
   if(operator_index2<0) {
-	  Scierror(999,_("CreateOperationTList: unknown operator %d.\n"),operator_num);
+	  Scierror(999,_("%s: unknown operator %d.\n"),"CreateOperationTList",operator_num);
     return 0;
   }
 
@@ -1338,7 +1333,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
     }
   else /* Should never happen */
     {
-	  Scierror(999,_("CreateEqualTList: wrong fromwhat value %s\n"),fromwhat);
+	  Scierror(999,_("%s: wrong fromwhat value %s\n"),"CreateEqualTList",fromwhat);
       return 0;
     }
 
@@ -1699,7 +1694,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
     }
   else /* Should not happen */
     {
-	  Scierror(999,_("CreateEqualTList: wrong fromwhat value %s\n"),fromwhat);
+	  Scierror(999,_("%s: wrong fromwhat value %s\n"),"CreateEqualTList",fromwhat);
       return 0;
     }
 
@@ -1983,7 +1978,7 @@ int complexity(int *data,int *index2,int *lgth)
 	    }
 	  else
 	    {
-	      sciprint(_("complexity: wrong code %d.\n"),data[cur_ind]);
+	      sciprint(_("%s: wrong code %d.\n"),"Complexity",data[cur_ind]);
 	      return -1;
 	    }
 	  break;

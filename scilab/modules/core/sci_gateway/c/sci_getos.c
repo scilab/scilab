@@ -27,7 +27,7 @@ int C2F(sci_getos) _PARAMS((char *fname,unsigned long fname_len))
 int C2F(intgetos) _PARAMS((char *fname))
 {
 	static int n1,m1;
-	char OperatinSystem[256];
+	char OperatingSystem[256];
 	char Release[256];
 	char *output=NULL;
 
@@ -42,69 +42,69 @@ int C2F(intgetos) _PARAMS((char *fname))
 #ifdef _MSC_VER
 
 
-	sprintf(OperatinSystem,"%s","Windows");
+	strcpy(OperatingSystem,"Windows");
 
 	switch (GetWindowsVersion())
 	{
 	case OS_ERROR : default :
-		sprintf(Release,"%s","Unknow");
+		strcpy(Release,"Unknow");
 		break;
 	case OS_WIN32_WINDOWS_NT_3_51 :
-		sprintf(Release,"%s","NT 3.51");
+		strcpy(Release,"NT 3.51");
 		break;
 	case OS_WIN32_WINDOWS_NT_4_0 :
-		sprintf(Release,"%s","NT 4.0");
+		strcpy(Release,"NT 4.0");
 		break;
 	case OS_WIN32_WINDOWS_95 :
-		sprintf(Release,"%s","95");
+		strcpy(Release,"95");
 		break;
 	case OS_WIN32_WINDOWS_98 :
-		sprintf(Release,"%s","98");
+		strcpy(Release,"98");
 		break;
 	case OS_WIN32_WINDOWS_Me :
-		sprintf(Release,"%s","ME");
+		strcpy(Release,"ME");
 		break;
 	case OS_WIN32_WINDOWS_2000 :
-		sprintf(Release,"%s","2000");
+		strcpy(Release,"2000");
 		break;
 	case OS_WIN32_WINDOWS_XP :
-		sprintf(Release,"%s","XP");
+		strcpy(Release,"XP");
 		break;
 	case OS_WIN32_WINDOWS_XP_64 :
-		sprintf(Release,"%s","XP x64");
+		strcpy(Release,"XP x64");
 		break;
 	case OS_WIN32_WINDOWS_SERVER_2003 :
-		sprintf(Release,"%s","Server 2003");
+		strcpy(Release,"Server 2003");
 		break;
 	case OS_WIN32_WINDOWS_SERVER_2003_R2 :
-		sprintf(Release,"%s","Server 2003 R2");
+		strcpy(Release,"Server 2003 R2");
 		break;
 	case OS_WIN32_WINDOWS_SERVER_2003_64 :
-		sprintf(Release,"%s","Server 2003 x64");
+		strcpy(Release,"Server 2003 x64");
 		break;
 	case OS_WIN32_WINDOWS_VISTA :
-		sprintf(Release,"%s","Vista");
+		strcpy(Release,"Vista");
 		break;
 	case OS_WIN32_WINDOWS_VISTA_64 :
-		sprintf(Release,"%s","Vista x64");
+		strcpy(Release,"Vista x64");
 		break;
 	case OS_WIN32_WINDOWS_LONGHORN :
-		sprintf(Release,"%s","Longhorn");
+		strcpy(Release,"Longhorn");
 		break;
 	case OS_WIN32_WINDOWS_LONGHORN_64 :
-		sprintf(Release,"%s","Longhorn x64");
+		strcpy(Release,"Longhorn x64");
 		break;
 
 	}
 #else
 	uname(&uname_pointer);
-	sprintf(OperatinSystem,"%s",uname_pointer.sysname);
-	sprintf(Release,"%s",uname_pointer.release);
+	strcpy(OperatingSystem,uname_pointer.sysname);
+	strcpy(Release,uname_pointer.release);
 #endif
 
 
-	output=(char*)MALLOC((strlen(OperatinSystem)+1)*sizeof(char));
-	sprintf(output,"%s",OperatinSystem);
+	output=(char*)MALLOC((strlen(OperatingSystem)+1)*sizeof(char));
+	strcpy(output,OperatingSystem);
 	n1=1;
 	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 	if (output) {FREE(output);output=NULL;}
@@ -114,7 +114,7 @@ int C2F(intgetos) _PARAMS((char *fname))
 	{
 		char *output2=NULL;
 		output2=(char*)MALLOC((strlen(Release)+1)*sizeof(char));
-		sprintf(output2,"%s",Release);
+		strcpy(output2,Release);
 		n1=1;
 		CreateVarFromPtr(Rhs+ 2,STRING_DATATYPE,(m1=(int)strlen(output2), &m1),&n1,&output2);
 		if (output2) {FREE(output2);output2=NULL;}

@@ -3,6 +3,7 @@
 #include "machine.h"
 #include "str2sci.h"
 #include "cvstr.h"
+#include "error.h"
 
 void str2sci(char** x,int n,int m)
 {

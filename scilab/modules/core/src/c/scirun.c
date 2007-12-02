@@ -3,15 +3,10 @@
 /* Scilab */
 /*--------------------------------------------------------------------------*/ 
 #include "scirun.h"
-#include "callinterf.h" 
 #include "stack-c.h"
+#include "error.h"
 /*--------------------------------------------------------------------------*/ 
-extern int C2F(allowptr)(int *);
-extern int C2F(iset)(int *, int *, int *, int *);
-extern int C2F(funs)(int *);
 extern int C2F(parse)(void);
-extern int C2F(error)(int *);
-extern int C2F(ref2val)(void);
 extern int C2F(isbyref)(int *);
 /*--------------------------------------------------------------------------*/ 
 static void str_copy_buf(register char *a, register char *b, long int la, long int lb);

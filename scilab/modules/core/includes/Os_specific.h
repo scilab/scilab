@@ -24,8 +24,6 @@ extern int C2F(basou1) __PARAMS((integer *lunit, char *string, ftnlen string_len
 extern void C2F(cgpath) __PARAMS((char *nomfic, integer *ln));  
 /*  "clunit-n.c.X1" */
 extern int C2F(clunit) __PARAMS((integer *lunit, char *name, integer *mode, ftnlen name_len));  
-/*  "csignal-n.c.X1" */
-extern void controlC_handler  __PARAMS((int sig));  
 /*  "dbasin-n.c.X1" */
 extern int C2F(dbasin) __PARAMS((integer *ierr, integer *lunit, char *fmt, double *v, integer *iv, integer *n, ftnlen fmt_len));  
 extern int C2F(s2val) __PARAMS((char *str, double *v, integer *iv, integer *n, integer *maxv, integer *ierr, ftnlen str_len));  

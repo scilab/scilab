@@ -6,6 +6,7 @@
 #include "stack-c.h"
 #include "core_math.h"
 #include "parse.h"
+#include "error.h"
 /*--------------------------------------------------------------------------*/ 
 #define Pt (C2F(recu).pt)
 /*--------------------------------------------------------------------------*/ 
@@ -15,8 +16,6 @@ IMPORT struct {
 /*--------------------------------------------------------------------------*/ 
 int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
 {
-	extern int C2F(iset)();
-	extern int C2F(ref2val)();
 	extern int C2F(bexec)();
 
 	/* Local variables */

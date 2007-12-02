@@ -16,7 +16,6 @@
 #include "Scierror.h"
 
 extern int C2F(dmcopy)  __PARAMS((double *a, integer *na, double *b, integer *nb, integer *m, integer *n));
-extern int C2F(stackg)  __PARAMS((integer *id));
 extern int C2F(stackp)  __PARAMS((integer *id, integer *macmod));
 
 /*------------------------------------------------------*/
@@ -269,7 +268,7 @@ int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long n
 	return FALSE_;
     }
     if (m1 * n1 != 1) {
-      Scierror(999,_("creadchain: argument must be a string.\n"));
+      Scierror(999,_("%s: argument must be a string.\n"),"creadchain");
       return FALSE_ ;
     }
 

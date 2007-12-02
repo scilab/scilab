@@ -14,13 +14,12 @@ int getScilabMode(void)
 /*--------------------------------------------------------------------------*/ 
 BOOL setScilabMode(int newmode)
 {
-	BOOL bOK=FALSE;
 	if ( (newmode == SCILAB_API) || (newmode == SCILAB_STD) || (newmode == SCILAB_NW) || (newmode == SCILAB_NWNI) )
 	{
 		CurrentScilabMode = (scilabMode)newmode;
-		bOK=TRUE;
+		return TRUE;
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
 int C2F(getscilabmode)(int *mode)

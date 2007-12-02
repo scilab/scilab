@@ -94,12 +94,12 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	if (ScilabStartup==NULL)
 	{
 		ScilabStartupUsed=(char*)MALLOC((strlen(DEFAULTSCILABSTARTUP)+1)*sizeof(char));
-		sprintf(ScilabStartupUsed,"%s",DEFAULTSCILABSTARTUP);
+		strcpy(ScilabStartupUsed,DEFAULTSCILABSTARTUP);
 	}
 	else
 	{
 		ScilabStartupUsed=(char*)MALLOC((strlen(DEFAULTSCILABSTARTUP)+1)*sizeof(char));
-		sprintf(ScilabStartupUsed,"%s",ScilabStartup);
+		strcpy(ScilabStartupUsed,ScilabStartup);
 	}
 	
 	if (Stacksize==NULL)

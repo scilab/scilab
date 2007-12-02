@@ -935,12 +935,12 @@ msgstr "Variable TMPDIR non définie.\n"
 # File: src/c/link_W95.c, line: 44
 # File: src/c/link_SYSV.c, line: 125
 msgid "shared archive loaded\n"
-msgstr ""
+msgstr "Bibliothèque partagée chargée\n"
 
 #
 # File: src/c/link_W95.c, line: 96
 msgid "link: first argument must be a unique dll name\n"
-msgstr ""
+msgstr "link: le premier argument doit être le nom unique d'une DLL\n"
 
 #
 # File: src/c/link_W95.c, line: 101
@@ -967,7 +967,7 @@ msgstr ""
 # File: src/c/link_SYSV.c, line: 505
 #, c-format
 msgid "Shared lib %d does not exists\n"
-msgstr ""
+msgstr "La bibliothèque partagée %d n'existe pas\n"
 
 #
 # File: src/c/link_W95.c, line: 159
@@ -981,7 +981,7 @@ msgstr ""
 # File: src/c/link_SYSV.c, line: 529
 #, c-format
 msgid "%s is not an entry point\n"
-msgstr ""
+msgstr "%s n'est pas un point d'entré\n"
 
 #
 # File: src/c/link_W95.c, line: 172
@@ -1005,12 +1005,12 @@ msgstr ""
 # File: src/c/link_linux.c, line: 140
 #, c-format
 msgid "There are a total of %d undefined symbols:\n"
-msgstr ""
+msgstr "Il y a en tout %d symboles indéfinis :\n "
 
 #
 # File: src/c/link_linux.c, line: 147
 msgid "No undefined symbols\n"
-msgstr ""
+msgstr "Pas de symboles indéfinis\n"
 
 #
 # File: src/c/link_linux.c, line: 170
@@ -1023,7 +1023,7 @@ msgstr ""
 # File: src/c/link_linux.c, line: 305
 #, c-format
 msgid "unloading : \"%s\"\n"
-msgstr ""
+msgstr "Déchargement : \"%s\"\n"
 
 #
 # File: src/c/link_linux.c, line: 203

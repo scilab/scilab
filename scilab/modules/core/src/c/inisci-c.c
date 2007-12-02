@@ -230,8 +230,8 @@ int ExistJavaSciUnix(void)
 	char extension[5];
 
 	uname(&uname_pointer);
-	sprintf(OperatinSystem,"%s",uname_pointer.sysname);
-	sprintf(Release,"%s",uname_pointer.release);
+	strcpy(OperatinSystem,uname_pointer.sysname);
+	strcpy(Release,uname_pointer.release);
 
 	if ( strcmp(OperatinSystem,"HP-UX") == 0 )
 	{

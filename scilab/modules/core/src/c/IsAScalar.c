@@ -10,7 +10,6 @@
 /*--------------------------------------------------------------------------*/ 
 int IsAScalar(int RhsNumber)
 {
-	int bOK=0;
 
 	if ( GetType(RhsNumber) == sci_matrix )
 	{
@@ -18,9 +17,9 @@ int IsAScalar(int RhsNumber)
 		GetRhsVar(RhsNumber,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 		if ( (m1 == 1) && (n1 == 1) )
 		{
-			bOK=1;
+			return 1;
 		}
 	}
-	return bOK;
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

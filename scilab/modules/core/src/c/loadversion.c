@@ -60,7 +60,7 @@ BOOL getversionmodule(char *modulename,
 				if (doc == NULL) 
 				{
 					printf(_("Error: could not parse file %s\n"), filename_VERSION_module);
-					return bOK;
+					return FALSE;
 				}
 
 			xpathCtxt = xmlXPathNewContext(doc);
@@ -116,7 +116,7 @@ BOOL getversionmodule(char *modulename,
 			else
 				{
 					printf(_("Error : Not a valid version file %s (should start with <MODULE_VERSION> and contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"), filename_VERSION_module);
-					return bOK;
+					return FALSE;
 				}
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
 			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);

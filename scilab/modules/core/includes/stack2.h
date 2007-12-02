@@ -1,6 +1,5 @@
 #ifndef STACK2_H
 #define  STACK2_H
-
 /* from sci_tools */
 
 void SciToF77 __PARAMS((double *ptr, int size, int lda));
@@ -21,7 +20,6 @@ extern int C2F(putid) __PARAMS((integer *,integer *));
 extern int C2F(allowptr) __PARAMS((integer *));
 extern int C2F(ref2val) __PARAMS((void));
 extern int C2F(allops) __PARAMS((void));
-extern int C2F(callinterf) __PARAMS((integer *));
 extern int C2F(putfunnam) __PARAMS((char *fname,integer *lw, unsigned long));
 
 

@@ -267,7 +267,7 @@ static int getversion_two_rhs(void)
 			{
 				char *output=NULL ;
 				output=(char*)MALLOC((strlen(SCI_VERSION_STRING)+1)*sizeof(char));
-				sprintf(output,"%s",SCI_VERSION_STRING);
+				strcpy(output,SCI_VERSION_STRING);
 
 				n1=1;
 				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
@@ -291,7 +291,7 @@ static int getversion_two_rhs(void)
 				{
 					char *output=NULL ;
 					output=(char*)MALLOC((LineMax+1)*sizeof(char));
-					sprintf(output,"%s",versionstring);
+					strcpy(output,versionstring);
 
 					n1=1;
 					CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);

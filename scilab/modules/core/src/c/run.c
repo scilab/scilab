@@ -45,18 +45,14 @@ static int c__0 = 0;
 #define Pt (C2F(recu).pt)
 
 extern int C2F(stackp)();
-extern int C2F(stackg)();
 
-extern int C2F(putid)(); 
 extern int C2F(eqid)();
-extern int C2F(funs)();
 
 extern int C2F(bexec)();
 extern int C2F(getmen)();
 
 extern int C2F(print)();
 extern int C2F(createref1)();
-extern int C2F(cvname)();
 extern int C2F(stimer)();
 
 extern int C2F(mkindx)();
@@ -69,10 +65,7 @@ extern int C2F(nextj)();
 extern int C2F(isafunptr)();
 extern int C2F(varfunptr)();
 extern int C2F(defmat)();
-extern int C2F(ref2val)();
-extern int C2F(objvide)();
 
-extern int C2F(gettype)();
 extern int C2F(clunit)();
 
 extern int C2F(istrue)();

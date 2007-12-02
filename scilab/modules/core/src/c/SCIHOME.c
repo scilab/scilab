@@ -24,7 +24,6 @@ static char SCIHOMEPATH[PATH_MAX*2]="empty_SCIHOME";
 /*--------------------------------------------------------------------------*/
 BOOL setSCIHOME(void)
 {
-	BOOL bOK=FALSE;
 	int ierr=0;
 	int buflen=PATH_MAX;
 	int iflag=0;
@@ -54,7 +53,7 @@ BOOL setSCIHOME(void)
 		#endif
 
 
-		if (ierr) {return bOK; }
+		if (ierr) {return FALSE; }
 		else
 		{
 			sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIR_SEPARATOR,BASEDIR);
@@ -73,13 +72,11 @@ BOOL setSCIHOME(void)
 		if(!isdir(USERPATHSCILAB)) createdirectory(USERPATHSCILAB);
 		if (createdirectory(SCIHOMEPATH))
 		{
-			bOK=TRUE;
-			return bOK;
+			return TRUE;
 		}
 	}
-	else bOK=TRUE;
-	
-	return bOK;
+	else return TRUE;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 char *getSCIHOME(void)

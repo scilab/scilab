@@ -14,7 +14,7 @@ static char SCIPATH[PATH_MAX];
 /*--------------------------------------------------------------------------*/ 
 void setSCIpath(char *path)
 {
-	sprintf(SCIPATH,"%s",path);
+	strcpy(SCIPATH,path);
 }
 /*--------------------------------------------------------------------------*/ 
 char *getSCIpath(void)

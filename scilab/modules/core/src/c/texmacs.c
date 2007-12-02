@@ -21,16 +21,16 @@ static int texmacs_mode=0;
 
 extern int LineRead();
 
-void settexmacs() {
+void settexmacs(void) {
   texmacs_mode=1;
 }
 
 
-int  C2F(intexmacs)() {
+int  C2F(intexmacs)(void) {
   return texmacs_mode;
 }
 
-void next_input () {
+void next_input (void) {
   fprintf(stdout,"%cchannel:prompt%c",DATA_BEGIN,DATA_END);
   if (Pause==0)
     fprintf(stdout,SCIPROMPT);
@@ -40,7 +40,7 @@ void next_input () {
   fprintf(stdout,"%c",DATA_END);fflush (stdout);
 }
 
-extern void
+void
 C2F(texmacsin)(char buffer[],int *buf_size, int *len_line,int *eof,long int dummy1)
 {
 

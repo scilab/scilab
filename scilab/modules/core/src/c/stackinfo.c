@@ -64,14 +64,13 @@ integer getIntermediateMemoryNeeded(void)
 /*--------------------------------------------------------------------------*/
 BOOL is_a_valid_size_for_scilab_stack(int sizestack)
 {
-	BOOL bOK=TRUE;
 	double dsize = ((double) sizeof(double)) * (sizestack);
 	unsigned long ulsize = ((unsigned long)sizeof(double)) * (sizestack);
 	if ( dsize != (double) ulsize)
 	{
-		bOK=FALSE;
+		return FALSE;
 	}
-	return bOK;
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 unsigned long get_max_memory_for_scilab_stack(void)
