@@ -1,8 +1,10 @@
-// function linmeq 
+// function linmeq
+
 function A=testmat1(a,n)
-//eigen values are given by a dilation of nth roots of 1
-A=diag(a*ones(1,n-1),1)+diag((1/a)*ones(1,n-1),-1)
-A(1,n)=1/a;A(n,1)=a
+  //eigen values are given by a dilation of nth roots of 1
+  A=diag(a*ones(1,n-1),1)+diag((1/a)*ones(1,n-1),-1)
+  A(1,n)=1/a;
+  A(n,1)=a;
 endfunction
 
 //-----------------------------------------------------------
@@ -12,17 +14,34 @@ endfunction
 //Small dimension
 n=4;m=3;
 //A and B full
-A=testmat1(2.5,n);C=rand(n,m);B=testmat1(0.3,m);
-if execstr('X = linmeq(5,A,B,C)','errcatch')==0 then pause,end
+A = testmat1(2.5,n);
+C = rand(n,m);
+B = testmat1(0.3,m);
 
-if execstr('X = linmeq(1,A,B)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,rand(3,3),B,C)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,rand(4,3),B,C)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,A,rand(3,2),C)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,A,B,rand(m,n))','errcatch')==0 then pause,end
+if execstr('X = linmeq(5,A,B,C)'            ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,A,B)'              ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,rand(3,3),B,C)'    ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,rand(4,3),B,C)'    ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,A,rand(3,2),C)'    ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,A,B,rand(m,n))'    ,'errcatch') == 0 then pause,end
+errclear();
  
-if execstr('X = linmeq(1,A,B,C,[0,0,0],8)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,A,B,C,[0,0,0],0,4)','errcatch')==0 then pause,end
+if execstr('X = linmeq(1,A,B,C,[0,0,0],8)'  ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,A,B,C,[0,0,0],0,4)','errcatch') == 0 then pause,end
+errclear();
+
 flag=[0,0,0];  
 X = linmeq(1,A,B,C);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
@@ -296,25 +315,45 @@ if norm(A*X+X*B-C,1)>100000*%eps then pause,end
 A=testmat1(2.5,n);
 X = linmeq(1,A,B,C,[0,0,2]);
 if norm(A*X+X*B-C,1)>100000*%eps then pause,end
+  
+  
 //-----------------------------------------------------------
 //---------- op(A)*X*op(B) + X = C, (1b) --------------------
 //-----------------------------------------------------------
+
 //Small dimension
-n=4;m=3;
+n=4;
+m=3;
+
 //A and B full
-A=testmat1(2.5,n);C=rand(n,m);B=testmat1(0.3,m);flag=[1,0,0];
-if execstr('X = linmeq(5,A,B,C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,rand(3,3),B,C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,rand(4,3),B,C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,A,rand(3,2),C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,A,B,rand(m,n),flag)','errcatch')==0 then pause,end
- 
-if execstr('X = linmeq(1,A,B,C,flag,8)','errcatch')==0 then pause,end
-if execstr('X = linmeq(1,A,B,C,flag,0,4)','errcatch')==0 then pause,end
+A    = testmat1(2.5,n);
+C    = rand(n,m);
+B    = testmat1(0.3,m);
+flag = [1,0,0];
+
+if execstr('X = linmeq(5,A,B,C,flag)'        ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,rand(3,3),B,C,flag)','errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,rand(4,3),B,C,flag)','errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,A,rand(3,2),C,flag)','errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,A,B,rand(m,n),flag)','errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,A,B,C,flag,8)','errcatch')       == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(1,A,B,C,flag,0,4)','errcatch')     == 0 then pause,end
+errclear();
 
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-
 
 Schur=1;
 trans=0;
@@ -579,22 +618,44 @@ if norm(A*X*B+X-C,1)>100000*%eps then pause,end
 //---------- op(A)'*X + X*op(A) = C, (2a)--------------------
 //-----------------------------------------------------------
 //Small dimension
-n=4;
+n = 4;
+
 //A  full
-A=testmat1(2.5,n);C=rand(n,n);C=C+C';
-if execstr('X = linmeq(2,A,C)','errcatch')==0 then pause,end
+A = testmat1(2.5,n);
+C = rand(n,n);
+C = C+C';
 
-if execstr('X = linmeq(2,A,C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(2,rand(3,3),C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(2,rand(4,3),C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(2,A,C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(2,A,rand(4,3),flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(2,A,rand(3,3),flag)','errcatch')==0 then pause,end
- 
-if execstr('X = linmeq(2,A,C,flag,8)','errcatch')==0 then pause,end
-if execstr('X = linmeq(2,A,C,flag,0,4)','errcatch')==0 then pause,end
+if execstr('X = linmeq(2,A,C)'                ,'errcatch') == 0 then pause,end
+errclear();
 
-function A=testmat2(a,n),A=testmat1(a,n)+eye()+diag([1 1],n-2),endfunction
+if execstr('X = linmeq(2,A,C,flag)'           ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(2,rand(3,3),C,flag)'   ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(2,rand(4,3),C,flag)'   ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(2,A,C,flag)'           ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(2,A,rand(4,3),flag)'   ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(2,A,rand(3,3),flag)'   ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(2,A,C,flag,8)'         ,'errcatch') == 0 then pause,end
+errclear();
+
+if execstr('X = linmeq(2,A,C,flag,0,4)'       ,'errcatch') == 0 then pause,end
+errclear();
+
+function A=testmat2(a,n)
+  A=testmat1(a,n)+eye()+diag([1 1],n-2);
+endfunction
+
 A=testmat2(2.5,n);
 X = linmeq(2,A,C);
 if norm(A'*X+X*A-C,1)>1000*%eps then pause,end
@@ -664,7 +725,9 @@ if norm(A'*X+X*A-C,1)>100000*%eps then pause,end
 //Small dimension
 n=4;
 //A  full
-A=testmat1(2.5,n);C=rand(n,n);C=C+C';
+A=testmat1(2.5,n);
+C=rand(n,n);
+C=C+C';
 flag=[1,0];
 X = linmeq(2,A,C,flag);
 if norm(A'*X*A-X-C,1)>1000*%eps then pause,end
@@ -675,7 +738,6 @@ if norm(A'*X*A-X-C,1)>1000*%eps then pause,end
 trans=1;
 X = linmeq(2,A,C,flag,trans);
 if norm(A*X*A'-X-C,1)>1000*%eps then pause,end
-
 
 //A in schur form
 [U,A]=schur(A);
@@ -726,20 +788,39 @@ if norm(A'*X*A-X-C,1)>100000*%eps then pause,end
 //-----------------------------------------------------------
 //Small dimension
 n=4;
+
 //A  full
-C=rand(n,n);A=testmat1(2.5,n);flag=[0,0];
+C    = rand(n,n);
+A    = testmat1(2.5,n);
+flag = [0,0];
 
-if execstr('X = linmeq(3,A,C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,rand(3,3),C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,rand(4,3),C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,A,C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,A,rand(4,3),flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,A,rand(3,3),flag)','errcatch')==0 then pause,end
- 
-if execstr('X = linmeq(3,A,C,flag,8)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,A,C,flag,0,4)','errcatch')==0 then pause,end
+if execstr('X = linmeq(3,A,C,flag)'           ,'errcatch')==0 then pause,end
+errclear();
 
-if execstr('X = linmeq(3,A,C)','errcatch')==0 then pause,end
+if execstr('X = linmeq(3,rand(3,3),C,flag)'   ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,rand(4,3),C,flag)'   ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,C,flag)'           ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,rand(4,3),flag)'   ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,rand(3,3),flag)'   ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,C,flag,8)'         ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,C,flag,0,4)'       ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,C)'                ,'errcatch')==0 then pause,end
+errclear();
+
 //shift poles to make all of them negative
 function A=testmat3(a,n),A=testmat1(a,n)-(2+a^2)/a*eye(),endfunction
 A=testmat3(2.5,n);
@@ -802,26 +883,43 @@ A=testmat3(2.5,n);[U,A]=hess(A);
 flag=[0,2];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>100000*%eps then pause,end
+  
 //-----------------------------------------------------------
 //---   op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =       --
 //---                  -  op(C)'*op(C),               (3a) --
 //-----------------------------------------------------------
-//Small dimension
-n=4;
-//A  full
-C=rand(n,n);
-A=testmat1(2.5,n);
-flag=[1,0];
 
-if execstr('X = linmeq(3,A,C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,rand(3,3),C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,rand(4,3),C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,A,C,flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,A,rand(4,3),flag)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,A,rand(3,3),flag)','errcatch')==0 then pause,end
- 
-if execstr('X = linmeq(3,A,C,flag,8)','errcatch')==0 then pause,end
-if execstr('X = linmeq(3,A,C,flag,0,4)','errcatch')==0 then pause,end
+//Small dimension
+n    = 4;
+
+//A  full
+C    = rand(n,n);
+A    = testmat1(2.5,n);
+flag = [1,0];
+
+if execstr('X = linmeq(3,A,C,flag)'         ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,rand(3,3),C,flag)' ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,rand(4,3),C,flag)' ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,C,flag)'         ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,rand(4,3),flag)' ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,rand(3,3),flag)' ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,C,flag,8)'       ,'errcatch')==0 then pause,end
+errclear();
+
+if execstr('X = linmeq(3,A,C,flag,0,4)'     ,'errcatch')==0 then pause,end
+errclear();
 
 //shift poles to make all of them negative
 function A=testmat4(a,n),A=testmat1(a,n)/((2+a^2)/a),endfunction
