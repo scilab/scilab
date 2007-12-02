@@ -19,6 +19,7 @@
 #include "Scierror.h"
 #include "CreateEmptystr.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 static int sci_emptystr_no_rhs(void);
 static int sci_emptystr_one_rhs(char *fname);
@@ -86,6 +87,7 @@ static int sci_emptystr_one_rhs(char *fname)
 			{
 				char **StringsFromStack = NULL;
 				GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&StringsFromStack);
+				freeArrayOfString(StringsFromStack,m1*n1);
 			}
 		break;
 		case sci_matrix :

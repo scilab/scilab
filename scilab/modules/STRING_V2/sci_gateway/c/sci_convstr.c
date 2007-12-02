@@ -18,6 +18,7 @@
 #include "convstr.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
 int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -31,14 +32,17 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 	int mn = 0; /* Row_Num_One * Col_Num_One */
 	int i = 0;
 
-	int Type_One = VarType(1);
-	int Type_Two = VarType(2);
+	int Type_One = 0;
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
+	
+	Type_One = VarType(1);
 
 	if (Rhs == 2) 
 	{
+		int Type_Two = VarType(2);
+
 		if (Type_Two == sci_strings) 
 		{
 			int Row_Num_Two = 0,Col_Num_Two = 0,Stack_Pos=0;
@@ -118,6 +122,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
       
 	/* convstr algorithm */
 	convstr(Input_Matrix,Output_Matrix,typ,mn); 
+	freeArrayOfString(Input_Matrix,mn);
       
 	/* put on scilab stack */
 	numRow   = Row_Num_One; 

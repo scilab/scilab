@@ -14,6 +14,7 @@
 #include "code2str.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
 int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -33,11 +34,15 @@ int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			/* str2code('') returns [] */
 			int l = 0;
+
+			freeArrayOfString(Input_String,m1*n1);
+
 			m1 = 0;
 			n1 = 0;
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
 			LhsVar(1) = Rhs+1 ;
 			C2F(putlhsvar)();
+			
 			return 0;
 		}
 		else
@@ -51,6 +56,7 @@ int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 				int outIndex = 0;
 
 				str2code(Output_Matrix,Input_String);
+				freeArrayOfString(Input_String,m1*n1);
 
 				/* put on scilab stack */
 				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&nbOutput_Matrix,&numRow,&outIndex);    /*Output*/
@@ -66,6 +72,7 @@ int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
+				freeArrayOfString(Input_String,m1*n1);
 				Scierror(999,"Error memory allocation.\n"); 
 			}
 		}

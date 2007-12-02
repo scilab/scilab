@@ -17,6 +17,7 @@
 #include "pcre_private.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*------------------------------------------------------------------------*/
 #define GREP_OK             0
 #define MEMORY_ALLOC_ERROR -1
@@ -242,6 +243,9 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 	{
 		code_error_grep = GREP_OLD(&grepresults,Strings_Input_One,m1n1,Strings_Input_Two,m2n2);
 	}
+
+	freeArrayOfString(Strings_Input_One,m1n1);
+	freeArrayOfString(Strings_Input_Two,m2n2);
 
 	switch (code_error_grep)
 	{

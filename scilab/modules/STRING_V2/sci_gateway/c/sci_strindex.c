@@ -18,10 +18,10 @@
 #include "MALLOC.h"
 #include "kmp.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*------------------------------------------------------------------------*/
 int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 {
-    
     int *next= NULL;   /* This const is just for testing. I will make it better soon*/
 	char typ ='\0';
     char **Str=NULL;
@@ -126,6 +126,9 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
             while(w!=0);          /* w is the answer of the kmp algorithem*/
         }
     }
+
+	freeArrayOfString(Str,mn);
+	freeArrayOfString(Str2,mn2);
 
     numRow   = 1        ;/* Output values[] and position[]*/
     outIndex = 0        ;

@@ -15,6 +15,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
 static int asciiStrings(char *fname);
 static int asciiMatrix(char *fname);
@@ -78,6 +79,7 @@ static int asciiStrings(char *fname)
 		}
 	}
 
+	freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
 	CreateVarFromPtr(Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbOutput_IntMatrix,&Output_IntMatrix);
 
 	LhsVar(1) = Rhs + 1 ;

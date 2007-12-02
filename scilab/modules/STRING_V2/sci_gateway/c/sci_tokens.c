@@ -20,6 +20,7 @@
 #include "Scierror.h"
 #include "tokens.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define BLANK_CODE 32
 #define EMPTY_STRING ""
@@ -64,6 +65,7 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
+				freeArrayOfString(Input_MatrixOne,mn_One);
 				Scierror(999,_("%s : first input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 				return 0;
 			}
@@ -145,6 +147,7 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 	}
 
 	tokens(Input_MatrixOne,Input_MatrixTwo,Output_String,&Row_Pointer,&Col_Pointer,mn_One,mn_Two);
+	
 
 	/* put result on stack */    
     numRow = Row_Pointer + 1;  /*Output */
@@ -185,6 +188,8 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 		FREE(Input_MatrixTwo);
 		Input_MatrixTwo=NULL;
 	}
+	
+	freeArrayOfString(Input_MatrixOne,mn_One);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -23,6 +23,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
 /* get length */
 static int lengthStrings(char *fname);
@@ -78,9 +79,11 @@ static int lengthStrings(char *fname)
 		}
 		LhsVar(1) = Rhs+1 ;
 		C2F(putlhsvar)();
+		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
 	}
 	else
 	{
+		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
 		Scierror(999,_("%s : Memory allocation error\n"),fname);
 	}
 	return 0;

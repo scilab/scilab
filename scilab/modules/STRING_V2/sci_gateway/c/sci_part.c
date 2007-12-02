@@ -16,6 +16,7 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define BLANK_CHAR ' '
 /*--------------------------------------------------------------------------*/
@@ -50,6 +51,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
     Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_One));
 	if (Output_StringMatrix == NULL)
 	{
+		freeArrayOfString(Input_StringMatrix,RowCol);
 		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
@@ -67,6 +69,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				if (Output_StringMatrix[y]) { FREE(Output_StringMatrix[y]); Output_StringMatrix[y] = NULL; }
 			}
+			freeArrayOfString(Input_StringMatrix,RowCol);
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
@@ -85,6 +88,8 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
         }
     }
 
+	freeArrayOfString(Input_StringMatrix,RowCol);
+
 	/*Output */
     numRow   = Row_One ;
     numCol   = Col_One ;
@@ -94,13 +99,8 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
     C2F(putlhsvar)();
 
 	/* FREE memory */
-    for (x = 0;x < RowCol;x++)
-    {
-       if (Output_StringMatrix[x]) { FREE(Output_StringMatrix[x]); Output_StringMatrix[x]=NULL;}
-    }
-    if (Output_StringMatrix) {FREE(Output_StringMatrix); Output_StringMatrix=NULL; }
+	  freeArrayOfString(Output_StringMatrix,RowCol);
 
     return 0;
 }
-
 /*--------------------------------------------------------------------------*/

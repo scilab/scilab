@@ -12,6 +12,7 @@
 #include "MALLOC.h"
 #include "strsplit.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
 int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -64,6 +65,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
+			freeArrayOfString(Input_StringMatrix,mn);
 			Scierror(999,_("%s : second argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 			return 0;
 	}
@@ -71,6 +73,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_Two+1));
 	if (Output_StringMatrix == NULL)
 	{
+		freeArrayOfString(Input_StringMatrix,mn);
 		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
@@ -80,6 +83,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		FREE(Output_StringMatrix);
 		Output_StringMatrix = NULL;
+		freeArrayOfString(Input_StringMatrix,mn);
 		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
@@ -99,6 +103,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 				  }
 			
 			}
+			freeArrayOfString(Input_StringMatrix,mn);
 			Scierror(999,_("%s : Memory allocation error\n"),fname);
 			return 0;
 		}
@@ -107,11 +112,14 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	Output_StringMatrix[Col_Two] = (char*)MALLOC(sizeof(char*)*(strlen(Input_StringMatrix[0])-Input_IntMatrix[Col_Two-1]));
 	if (Output_StringMatrix[Col_Two] == NULL)
 	{
+		freeArrayOfString(Input_StringMatrix,mn);
 		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
 	strsplit(Input_StringMatrix,Output_StringMatrix,&Row_Pointer,&Row_Pointer_Two,&Col_Pointer,Input_IntMatrix);
+
+	freeArrayOfString(Input_StringMatrix,mn);
 
 	/* put result on scilab stack */
 	numRow =  Col_Two+1;
@@ -121,16 +129,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	C2F(putlhsvar)();
 
 	/* free pointers */
-	for (i = 0; i < Col_Two+1 ; i++)
-	{
-      if (Output_StringMatrix[i]) 
-	  {
-		  FREE(Output_StringMatrix[i]);
-		  Output_StringMatrix[i]=NULL;
-	  }
-	}
-	if (Output_StringMatrix) {FREE(Output_StringMatrix); Output_StringMatrix=NULL;}
-
+	freeArrayOfString(Output_StringMatrix,Col_Two+1);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

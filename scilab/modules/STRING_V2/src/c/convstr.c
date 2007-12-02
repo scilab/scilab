@@ -13,32 +13,29 @@ void convstr(char **Input_Matrix, char **Output_Matrix, char typ, int mn)
 	for (x =0 ; x < mn; x++)
 	{
 		int y = 0;
-		for (y=0;y < (int)strlen(Input_Matrix[x]);y++)
+		for (y = 0;y < (int)strlen(Input_Matrix[x]);y++)
 		{
 			/*To traverse every string in the string matrix */
 			if ( (typ == UPPER) || (typ == UPPER_B) )
 			{
 				/*converts the matrix of strings  str-matrix into upper case */
-				if (isalpha(Input_Matrix[x][y]))
+				if (Input_Matrix[x][y] > 0)
 				{
-					Output_Matrix[x][y] = (char)toupper(Input_Matrix[x][y]);
+					if (isalpha(Input_Matrix[x][y])) Output_Matrix[x][y] = (char)toupper(Input_Matrix[x][y]);
+					else Output_Matrix[x][y] = (char)Input_Matrix[x][y];
 				}
-				else
-				{
-					Output_Matrix[x][y] = (char)Input_Matrix[x][y];
-				}
+				else Output_Matrix[x][y] = (char)0;
 			}
 			else if ( (typ==LOW) || (typ==LOW_B) )
 			{
 				/*converts the matrix of strings  str-matrix  into lower case */
-				if (isalpha(Input_Matrix[x][y]))
+				if (Input_Matrix[x][y] > 0)
 				{
-					Output_Matrix[x][y] = (char)tolower(Input_Matrix[x][y]);
+					if (isalpha(Input_Matrix[x][y])) Output_Matrix[x][y] = (char)tolower(Input_Matrix[x][y]);
+					else Output_Matrix[x][y] = (char)Input_Matrix[x][y];
 				}
-				else
-				{
-					Output_Matrix[x][y] = (char)Input_Matrix[x][y];
-				}
+				else Output_Matrix[x][y] = (char)0;
+
 			}
 		}
         Output_Matrix[x][y] = 0;
