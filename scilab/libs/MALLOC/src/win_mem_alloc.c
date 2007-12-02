@@ -14,7 +14,13 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,cha
 
  if (lpAddress)
  {
-	 NewPointer=HeapReAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,lpAddress,dwSize);
+	 _try
+	 {
+		 NewPointer=HeapReAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,lpAddress,dwSize);
+	 }
+	 _except (EXCEPTION_EXECUTE_HANDLER)
+	 {
+	 }
  }
  else
  {
@@ -43,7 +49,14 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int lign
 
 	if (dwSize>0)
 	{
-		NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		_try
+		{
+			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
+
 
 		if (NewPointer==NULL)
 		{
@@ -61,7 +74,14 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int lign
 			wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ",fichier,ligne);
 			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 		#endif
-			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+			_try
+			{
+				NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+			}
+			_except (EXCEPTION_EXECUTE_HANDLER)
+			{
+			}
+
 	}
 	return NewPointer;
 }
@@ -88,7 +108,13 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int l
 
 	if (dwSize>0)
 	{
-		NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		_try
+		{
+			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
 
 		if (NewPointer==NULL)
 		{
@@ -107,7 +133,14 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int l
 		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 		#endif
 
-		NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		_try
+		{
+			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
+
 	}
 
 	return NewPointer;
@@ -117,7 +150,14 @@ IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int l
 {
 	if (lpAddress) 
 	{
-		VirtualFree(lpAddress,0,MEM_RELEASE);
+		_try
+		{
+			VirtualFree(lpAddress,0,MEM_RELEASE);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
+
 	}
 }
 /*-----------------------------------------------------------------------------------*/
