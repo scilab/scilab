@@ -49,6 +49,13 @@ void Camera::setRotationAngles( double alpha, double theta )
   getCameraImp()->setAxesRotation(alpha, theta);
 }
 /*--------------------------------------------------------------------------*/
+void Camera::setAxesReverse(BOOL axesReverse[3])
+{
+  getCameraImp()->setAxesReverse(axesReverse[0] == TRUE,
+                                 axesReverse[1] == TRUE,
+                                 axesReverse[2] == TRUE);
+}
+/*--------------------------------------------------------------------------*/
 void Camera::setSubwinBox( double bounds[6] )
 {
 
@@ -101,6 +108,10 @@ void Camera::setCameraParameters(void)
   double theta;
   sciGetViewingAngles(m_pDrawed, &alpha, &theta);
   setRotationAngles(alpha, theta);
+
+  BOOL axesReverse[3];
+  sciGetAxesReverse(m_pDrawed, axesReverse);
+  setAxesReverse(axesReverse);
 }
 /*--------------------------------------------------------------------------*/
 void Camera::renderPosition( void )
@@ -128,7 +139,6 @@ void Camera::draw( void )
   initializeDrawing();
   setCameraParameters();
   getCameraImp()->renderPosition();
-  getCameraImp()->revertAxes();
   endDrawing();
 }
 /*--------------------------------------------------------------------------*/
@@ -136,7 +146,6 @@ void Camera::show( void )
 {
   initializeDrawing();
   getCameraImp()->show();
-  getCameraImp()->revertAxes();
   endDrawing();
 }
 /*--------------------------------------------------------------------------*/

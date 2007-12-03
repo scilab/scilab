@@ -109,9 +109,7 @@ voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID=NULL;
 voidsetFittingScalejdoublejdoublejdoubleID=NULL; 
 voidplaceCameraID=NULL; 
 voidreplaceCameraID=NULL; 
-voidrevertXAxisID=NULL; 
-voidrevertYAxisID=NULL; 
-voidrevertZAxisID=NULL; 
+voidsetAxesReversejbooleanjbooleanjbooleanID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 
@@ -147,9 +145,7 @@ voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID=NULL;
 voidsetFittingScalejdoublejdoublejdoubleID=NULL; 
 voidplaceCameraID=NULL; 
 voidreplaceCameraID=NULL; 
-voidrevertXAxisID=NULL; 
-voidrevertYAxisID=NULL; 
-voidrevertZAxisID=NULL; 
+voidsetAxesReversejbooleanjbooleanjbooleanID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 jintArrayget2dViewPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
 
@@ -416,58 +412,18 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void IsometricCameraGL::revertXAxis (){
+void IsometricCameraGL::setAxesReverse (bool xAxisRevert, bool yAxisRevert, bool zAxisRevert){
 
 JNIEnv * curEnv = getCurrentEnv();
                 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidrevertXAxisID = curEnv->GetMethodID(this->instanceClass, "revertXAxis", "()V" ) ;
-if (voidrevertXAxisID == NULL) {
-std::cerr << "Could not access to the method " << "revertXAxis" << std::endl;
+jmethodID voidsetAxesReversejbooleanjbooleanjbooleanID = curEnv->GetMethodID(this->instanceClass, "setAxesReverse", "(ZZZ)V" ) ;
+if (voidsetAxesReversejbooleanjbooleanjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setAxesReverse" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                         curEnv->CallVoidMethod( this->instance, voidrevertXAxisID );
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
-}
-
-void IsometricCameraGL::revertYAxis (){
-
-JNIEnv * curEnv = getCurrentEnv();
-                jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidrevertYAxisID = curEnv->GetMethodID(this->instanceClass, "revertYAxis", "()V" ) ;
-if (voidrevertYAxisID == NULL) {
-std::cerr << "Could not access to the method " << "revertYAxis" << std::endl;
-exit(EXIT_FAILURE);
-}
-
-                         curEnv->CallVoidMethod( this->instance, voidrevertYAxisID );
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
-}
-
-void IsometricCameraGL::revertZAxis (){
-
-JNIEnv * curEnv = getCurrentEnv();
-                jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidrevertZAxisID = curEnv->GetMethodID(this->instanceClass, "revertZAxis", "()V" ) ;
-if (voidrevertZAxisID == NULL) {
-std::cerr << "Could not access to the method " << "revertZAxis" << std::endl;
-exit(EXIT_FAILURE);
-}
-
-                         curEnv->CallVoidMethod( this->instance, voidrevertZAxisID );
+                         curEnv->CallVoidMethod( this->instance, voidsetAxesReversejbooleanjbooleanjbooleanID ,xAxisRevert, yAxisRevert, zAxisRevert);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

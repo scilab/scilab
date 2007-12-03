@@ -76,12 +76,27 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		double curWidth = bounds[2].getX() - bounds[1].getX();
 		double curHeight = bounds[0].getY() - bounds[1].getY();
 		
+		Vector3D newCenter = new Vector3D(textCenterPix);
+		double newBoxWidth = filledBoxWidth;
+		double newBoxHeight = filledBoxHeight;
+		// when axes are reversed size might be negative
+		if (newBoxWidth < 0) {
+			newBoxWidth = -newBoxWidth;
+			newCenter.setX(newCenter.getX() - newBoxWidth);
+		}
+		
+		if (newBoxHeight < 0) {
+			newBoxHeight = -newBoxHeight;
+			newCenter.setY(newCenter.getY() - newBoxHeight);
+		}
+		
 		// compute the needed size for each dimension.
-		double xFactor = filledBoxWidth / curWidth;
-		double yFactor = filledBoxHeight / curHeight;
+		double xFactor = newBoxWidth / curWidth;
+		double yFactor = newBoxHeight / curHeight;
 		
 		// apply scale factor
 		double factor = Math.min(xFactor, yFactor);
+		
 		float newFontSize = (float) (getFont().getSize2D() * factor);
 		stringPos.scale(factor);
 		
@@ -91,7 +106,7 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		
 		// update StringSizes with the new renderer
 		textMatrix.update(renderer);
-		stringPos = placeTextGrid(stringPos, textCenterPix, getRotationAngle());
+		stringPos = placeTextGrid(stringPos, newCenter, textCenterPix, getRotationAngle());
 		
 		
 		drawText(renderer, textMatrix, stringPos);
@@ -148,16 +163,39 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	 * Put the text grid at the righ tposition
 	 * @param stringPositions Initial position of strings, centered on (0,0).
 	 * @param textCenterPix position of the center in pixel coordinates
+	 * @param rotationCenter center of rotation
+	 * @param rotationAngle angle in radian.
+	 * @return the new text grid ut at the right position.
+	 */
+	//@Override
+	public TextGrid placeTextGrid(TextGrid stringPositions,
+								  Vector3D textCenterPix, Vector3D rotationCenter, double rotationAngle) {
+		GL gl = getGL();
+		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ());
+		gl.glRotated(Math.toDegrees(rotationAngle), 0.0, 0.0, 1.0);
+		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ());
+		
+		// move the text in the middle of the bounfing box
+		Vector3D[] bbox = stringPositions.getExtremBounds();
+		double halfBoxWidth = (bbox[2].getX() - bbox[1].getX()) / 2.0;
+		double halfBoxHeight = (bbox[0].getY() - bbox[1].getY()) / 2.0;
+		
+		gl.glTranslated(textCenterPix.getX(), textCenterPix.getY(), textCenterPix.getZ());
+		gl.glTranslated(filledBoxWidth / 2.0 - halfBoxWidth, filledBoxHeight / 2.0 - halfBoxHeight, 0.0);
+		return stringPositions;
+	}
+
+	/**
+	 * Not used
+	 * @param stringPositions Initial position of strings, centered on (0,0).
+	 * @param textCenterPix position of the center in pixel coordinates
 	 * @param rotationAngle angle in radian.
 	 * @return the new text grid ut at the right position.
 	 */
 	@Override
-	public TextGrid placeTextGrid(TextGrid stringPositions,
-								  Vector3D textCenterPix, double rotationAngle) {
-		GL gl = getGL();
-		gl.glTranslated(textCenterPix.getX(), textCenterPix.getY(), textCenterPix.getZ());
-		gl.glRotated(Math.toDegrees(rotationAngle), 0.0, 0.0, 1.0);
-		return stringPositions;
+	public TextGrid placeTextGrid(TextGrid stringPositions, Vector3D textCenterPix, double rotationAngle) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

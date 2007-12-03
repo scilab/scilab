@@ -70,6 +70,11 @@ protected:
   void setRotationAngles( double alpha, double theta ) ;
 
   /**
+   * Specify which axes must be reversed.
+   */
+  void setAxesReverse(BOOL axesReverse[3]);
+
+  /**
    * Specify the axes box to render.
    * @param bounds [Xmin,Xmax,Ymin,Ymax,Zmin,Zmax] vector.
    */

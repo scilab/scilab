@@ -37,8 +37,7 @@ public class CenteredAlignedTextGL implements TextAlignementStrategy {
 			for (int j = 0; j < text.getNbCol(); j++) {
 				Vector3D[] curCell = positionMatrix.getCellCoordinates(i, j);
 				// put the middle of the string in the middle of the cell
-				double xCoord =   curCell[1].getX()
-				               + ((curCell[2].getX() - curCell[1].getX()) - text.getStringWidth(i, j)) / 2.0;
+				double xCoord = ((curCell[2].getX() + curCell[1].getX()) - text.getStringWidth(i, j)) / 2.0;
 				double yCoord = curCell[1].getY() - (curCell[1].getY() - curCell[0].getY()) * TextGrid.EXTEND_FACTOR_Y / 2.0;
 				renderer.draw3D(text.getMatrixElement(i, j), xCoord,
 						        yCoord, curCell[1].getZ());

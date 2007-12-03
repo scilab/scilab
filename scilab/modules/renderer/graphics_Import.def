@@ -74,9 +74,7 @@ getMatNbRow
 getMatNbCol
 sciGetIsIsoView
 sciGetIsCubeScaled
-sciGetXAxisReverse
-sciGetYAxisReverse
-sciGetZAxisReverse
+sciGetAxesReverse
 sciGetTightLimitsOn
 sciSetRealDataBounds
 sciGetLogFlags

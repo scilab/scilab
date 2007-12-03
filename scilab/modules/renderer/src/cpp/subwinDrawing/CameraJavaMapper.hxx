@@ -38,9 +38,7 @@ public:
 
   virtual void replaceCamera( void ) = 0;
 
-  virtual void revertXAxis(void) = 0;
-  virtual void revertYAxis(void) = 0;
-  virtual void revertZAxis(void) = 0;
+  virtual void setAxesReverse(bool xAxisRevert, bool yAxisRevert, bool zAxisRevert) = 0;
 
   virtual void getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]) = 0;
   virtual void get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]) = 0;

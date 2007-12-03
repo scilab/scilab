@@ -4126,46 +4126,19 @@ BOOL sciGetIsCubeScaled(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
- * @return TRUE if the X axis of the subwindow pObj is reversed
+ * Get axes reverse property for each axis of a subwin object
  */
-BOOL sciGetXAxisReverse(sciPointObj * pObj)
+void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3])
 {
   switch(sciGetEntityType(pObj))
   {
   case SCI_SUBWIN:
-    return pSUBWIN_FEATURE(pObj)->axes.reverse[0];
-  default:
-    return FALSE;
+    axesReverse[0] = pSUBWIN_FEATURE(pObj)->axes.reverse[0];
+    axesReverse[1] = pSUBWIN_FEATURE(pObj)->axes.reverse[1];
+    axesReverse[2] = pSUBWIN_FEATURE(pObj)->axes.reverse[2];
     break;
-  }
-}
-/*----------------------------------------------------------------------------------*/
-/**
-* @return TRUE if the Y axis of the subwindow pObj is reversed
-*/
-BOOL sciGetYAxisReverse(sciPointObj * pObj)
-{
-  switch(sciGetEntityType(pObj))
-  {
-  case SCI_SUBWIN:
-    return pSUBWIN_FEATURE(pObj)->axes.reverse[1];
   default:
-    return FALSE;
-    break;
-  }
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * @return TRUE if the Z axis of the subwindow pObj is reversed
- */
-BOOL sciGetZAxisReverse(sciPointObj * pObj)
-{
-  switch(sciGetEntityType(pObj))
-  {
-  case SCI_SUBWIN:
-    return pSUBWIN_FEATURE(pObj)->axes.reverse[2];
-  default:
-    return FALSE;
+    printSetGetErrorMessage("axes_reverse");
     break;
   }
 }

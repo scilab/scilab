@@ -31,6 +31,8 @@ void CameraJoGL::renderPosition( void )
 
   getCameraJavaMapper()->setFittingScale(m_aAxesFittingScale[0], m_aAxesFittingScale[1], m_aAxesFittingScale[2]);
 
+  getCameraJavaMapper()->setAxesReverse(m_aAxesReverse[0], m_aAxesReverse[1], m_aAxesReverse[2]);
+
   getCameraJavaMapper()->placeCamera();
 }
 /*--------------------------------------------------------------------------*/

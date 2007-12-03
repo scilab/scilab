@@ -53,7 +53,11 @@ public abstract class CameraGL extends ObjectGL {
 	
 	/** size of area enclosed by margins. */
 	private double[] marginSize;
-
+	
+	/** To know which axis to revert */
+	private boolean xAxisRevert;
+	private boolean yAxisRevert;
+	private boolean zAxisRevert;
 	
 	/**
 	 * Default constructor
@@ -161,6 +165,18 @@ public abstract class CameraGL extends ObjectGL {
 	}
 	
 	/**
+	 * Specify which axies to revert
+	 * @param xAxisRevert set wether X axis is revert or not.
+	 * @param yAxisRevert set wether Y axis is revert or not.
+	 * @param zAxisRevert set wether Z axis is revert or not.
+	 */
+	public void setAxesReverse(boolean xAxisRevert, boolean yAxisRevert, boolean zAxisRevert) {
+		this.xAxisRevert = xAxisRevert;
+		this.yAxisRevert = yAxisRevert;
+		this.zAxisRevert = zAxisRevert;
+	}
+	
+	/**
 	 * Move the axes box so it map the onto a the [0,1]x[0,1]x[0,1] cube.
 	 */
 	protected void moveAxesBox() {
@@ -245,6 +261,28 @@ public abstract class CameraGL extends ObjectGL {
 		applyRotation(gl, alpha, theta);
 		gl.glScaled(fittingScale.getX(), fittingScale.getY(), fittingScale.getZ());
 		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
+		
+	}
+	
+	/**
+	 * 
+	 *
+	 */
+	protected void revertAxes() {
+		// to be applyed on the center of the box
+		GL gl = getGL();
+		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ()); // translate origin back
+
+		if (xAxisRevert) {
+			gl.glScaled(-1.0, 1.0, 1.0);
+		}
+		if (yAxisRevert) {
+			gl.glScaled(1.0, -1.0, 1.0);
+		}
+		if (zAxisRevert) {
+			gl.glScaled(1.0, 1.0, -1.0);
+		}
+		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
 	}
 	
 	/**
@@ -266,8 +304,11 @@ public abstract class CameraGL extends ObjectGL {
 		// find the best scale to fit the view port.
 		computeFittingScale();
 		
+		
 		gl.glPushMatrix();
 		rotateAxesBox();
+		revertAxes();
+		
 		
 		// compute the matrix for project and unproject.
 		CoordinateTransformation.getTransformation(gl).update(gl);
@@ -292,42 +333,6 @@ public abstract class CameraGL extends ObjectGL {
 		GL gl = getGL();
 		gl.glPopMatrix();
 		CoordinateTransformation.getTransformation(gl).update(gl);
-	}
-	
-	/**
-	 * inverse data on X axis.
-	 */
-	public void revertXAxis() {
-		GL gl = getGL();
-		// move to the axes box center then apply symetry.
-		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ());
-		gl.glScaled(-1.0, 1.0, 1.0);
-		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ());
-		
-	}
-	
-	/**
-	 * inverse data on Y axis.
-	 */
-	public void revertYAxis() {
-		GL gl = getGL();
-		// move to the axes box center then apply symetry.
-		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ());
-		gl.glScaled(1.0, -1.0, 1.0);
-		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ());
-		
-	}
-	
-	/**
-	 * inverse data on Z axis.
-	 */
-	public void revertZAxis() {
-		GL gl = getGL();
-		// move to the axes box center then apply symetry.
-		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ());
-		gl.glScaled(1.0, 1.0, -1.0);
-		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ());
-		
 	}
 	
 	
@@ -374,6 +379,7 @@ public abstract class CameraGL extends ObjectGL {
 		gl.glPushMatrix();
 		gl.glScaled(fittingScale.getX(), fittingScale.getY(), fittingScale.getZ());
 		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
+		revertAxes();
 		
 		// update transformation
 		CoordinateTransformation.getTransformation(gl).update(gl);
@@ -388,6 +394,8 @@ public abstract class CameraGL extends ObjectGL {
 		gl.glPopMatrix();
 		gl.glPushMatrix();
 		rotateAxesBox();
+		revertAxes();
+		
 		// update transformation
 		CoordinateTransformation.getTransformation(gl).update(gl);
 	}

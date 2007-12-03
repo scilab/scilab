@@ -11,7 +11,6 @@
 #include <list>
 
 #include "../DrawableObjectBridge.h"
-#include "AxesReverseStrategy.hxx"
 
 namespace sciGraphics
 {
@@ -82,17 +81,7 @@ public:
   /**
    * Add an axes reverse strategy.
    */
-  void addAxesReverseStrategy(AxesReverseStrategy * strategy);
-
-  /**
-   * Remove and delete axes reverse strategies.
-   */
-  void removeAxesReverseStrategies(void);
-
-  /**
-   * Revert needed axes.
-   */
-  void revertAxes(void);
+  void setAxesReverse(bool axisReverseX, bool axisReverseY, bool axisReverseZ);
 
 
 protected:
@@ -126,7 +115,7 @@ protected:
   double m_aBoxCenter[3];
 
   /** list of axes reverse strategies */
-  std::list<AxesReverseStrategy *> m_oReverseStrategies;
+  bool m_aAxesReverse[3];
 
 };
 
