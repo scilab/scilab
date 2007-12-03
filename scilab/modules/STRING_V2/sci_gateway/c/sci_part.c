@@ -61,7 +61,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 		int Char_Position = 0;
 		int y = 0;
 
-        Output_StringMatrix[x]=(char*)MALLOC(sizeof(char*)*(Col_Two+1));
+        Output_StringMatrix[x]=(char*)MALLOC(sizeof(char)*(Col_Two+1));
 
 		if (Output_StringMatrix == NULL)
 		{
