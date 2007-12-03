@@ -1,0 +1,18 @@
+// =============================================================================
+// Tests for cdff() function
+//
+// Scilab Team
+// Copyright INRIA
+//
+// =============================================================================
+prec = 1.e-5;
+f       = [1:2];
+dfn     = [1:2];
+dfd     = 2*dfn;
+[P,Q]   = cdff("PQ",f,dfn,dfd);
+[f1]    = cdff("F",dfn,dfd,P,Q);
+[dfn1]  = cdff("Dfn",dfd,P,Q,f);
+[dfd1]  = cdff("Dfd",P,Q,f,dfn);
+if norm(f1-f)     > prec then bugmes();quit;end
+if norm(dfn1-dfn) > prec then bugmes();quit;end
+if norm(dfd1-dfd) > prec then bugmes();quit;end
