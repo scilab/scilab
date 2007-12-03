@@ -362,15 +362,15 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	global check_error_output;
 	
 	// Some definitions
-	
-	tstfile     = pathconvert(SCI+"/modules/"+module+"/tests/"+test_type+"/"+test+".tst",%f,%f);
-	diafile     = pathconvert(SCI+"/modules/"+module+"/tests/"+test_type+"/"+test+".dia",%f,%f);
-	reffile     = pathconvert(SCI+"/modules/"+module+"/tests/"+test_type+"/"+test+".dia.ref",%f,%f);
+	fullPath=SCI+"/modules/"+module+"/tests/"+test_type+"/"+test
+	tstfile     = pathconvert(fullPath+".tst",%f,%f);
+	diafile     = pathconvert(fullPath+".dia",%f,%f);
+	reffile     = pathconvert(fullPath+".dia.ref",%f,%f);
 	
 	if MSDOS then
-		altreffile = pathconvert(SCI+"/modules/"+module+"/tests/"+test_type+"/"+test+".win.dia.ref",%f,%f);
+		altreffile = pathconvert(fullPath+".win.dia.ref",%f,%f);
 	else
-		altreffile = pathconvert(SCI+"/modules/"+module+"/tests/"+test_type+"/"+test+".unix.dia.ref",%f,%f);
+		altreffile = pathconvert(fullPath+".unix.dia.ref",%f,%f);
 	end
 	
 	tmp_tstfile = pathconvert(TMPDIR+"/"+test+".tst",%f,%f);
