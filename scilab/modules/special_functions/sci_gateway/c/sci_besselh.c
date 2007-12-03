@@ -4,8 +4,8 @@
 #include <string.h>
 #include "gw_special_functions2.h"
 #include "stack-c.h"
+#include "msgs.h"
 /*--------------------------------------------------------------------------*/
-extern void C2F(msgs)(int *n, int* ierr);
 extern void  C2F(zbeshv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, int *K, double *rr,double *ri, double *wr, double *wi, int *ierr);
 /*--------------------------------------------------------------------------*/
 int sci_besselh(char *fname,unsigned long fname_len)
@@ -108,7 +108,7 @@ int sci_besselh(char *fname,unsigned long fname_len)
   if (ierr==2) {
     if ( C2F(errgst).ieee==0) { 
       ierr=69;
-      C2F(error)(&ierr);
+      Error(ierr);
     }
     else if ( C2F(errgst).ieee==1) {
      ierr=63;
@@ -123,7 +123,7 @@ int sci_besselh(char *fname,unsigned long fname_len)
   else if (ierr==4||ierr==5) {
     if ( C2F(errgst).ieee==0) { 
       ierr=69;
-      C2F(error)(&ierr);
+      Error(ierr);
     }
     else if ( C2F(errgst).ieee==1) {
      ierr=107;

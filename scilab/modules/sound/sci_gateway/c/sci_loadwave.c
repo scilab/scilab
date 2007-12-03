@@ -1,8 +1,8 @@
 #include "gw_sound.h"
+#include "machine.h"
 #include "stack-c.h"
 #include "sox.h"
 #include "cluni0.h"
-#include "machine.h"
 /*--------------------------------------------------------------------------*/
 static char filename[PATH_MAX];
 static int out_n;

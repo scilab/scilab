@@ -22,5 +22,6 @@ int C2F(errmds)(integer *num, integer *imess, integer *imode)
 	}
 	*imess = *imode / 8;
 	*imode = *imode - 8* (*imess);
+	return 0;
 } 
 /*--------------------------------------------------------------------------*/ 

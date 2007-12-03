@@ -1,6 +1,5 @@
 #include <string.h>
 #include "stack-c.h"
-#include "stack-c.h"
 #include "stcreate.h"
 #include "cvstr.h"
 #include "Scierror.h"
@@ -36,9 +35,10 @@ int C2F(stcreate)(integer *lw, integer *nz, integer *sz, integer *nf, char *fnam
 /*     create the mlist header */
     il = iadr(l0);
     Err = sadr(il+6) + n1 - *Lstk(Bot);
-    if (Err > 0) {
-	C2F(error)(&c17);
-	return 1;
+    if (Err > 0) 
+	{
+		Error(c17);
+		return 1;
     }
     *istk(il) = 17;
     *istk(il+1) = 2+*nf;

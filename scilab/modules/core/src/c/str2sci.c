@@ -3,7 +3,6 @@
 #include "machine.h"
 #include "str2sci.h"
 #include "cvstr.h"
-#include "error.h"
 
 void str2sci(char** x,int n,int m)
 {
@@ -12,7 +11,7 @@ void str2sci(char** x,int n,int m)
       
   if (Top >= Bot) {
     i=18;
-    C2F(error)(&i);
+    Error(i);
   } else {
     Top = Top + 1;
     il = iadr(*Lstk(Top));
@@ -22,7 +21,7 @@ void str2sci(char** x,int n,int m)
   err = l + n*m - *Lstk(Bot);
   if (err > 0) {
     i=17;
-    C2F(error)(&i);
+    Error(i);
     return;
   }
   *istk(il) = sci_strings;

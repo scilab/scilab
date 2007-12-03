@@ -1,6 +1,6 @@
 #include "intqld.h"
 #include "localization.h"
-#include "error.h"
+
 
 int C2F(intqld)(char *fname)
 {

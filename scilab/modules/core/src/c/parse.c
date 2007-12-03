@@ -14,7 +14,7 @@
 #include "core_math.h"
 #include "../../tclsci/includes/tksynchro.h"
 #include "cvstr.h"
-#include "error.h"
+#include "msgs.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -77,7 +77,6 @@ extern int C2F(prompt)();
 extern int C2F(seteol)();
 extern int C2F(run)();
 extern int C2F(name2var)();
-extern int C2F(msgs)();
 extern int C2F(compil)();
 extern int C2F(ptover)(); /* see src/fortran/ptover.f */
 extern int C2F(eptover)();/* see src/fortran/eptover.f */

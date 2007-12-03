@@ -7,7 +7,6 @@
 #include "msgs.h"
 #include "stack-def.h"
 #include "stack-c.h"
-#include "error.h"
 /*--------------------------------------------------------------------------*/ 
 static int inc = 1;
 static int checkvalue = 4095;
@@ -71,7 +70,7 @@ L1:
 	if (C2F(com).sym >= ou && C2F(com).sym <= great) 
 	{
 		int code_error = 40;
-		C2F(error)(&code_error);
+		Error(code_error);
 		return 0;
 	}
 L2:
@@ -192,7 +191,7 @@ L60:
 	if (kount > 3) 
 	{
 		int code_error = 33;
-		C2F(error)(&code_error);
+		Error(code_error);
 		if (Err > 0) return 0;
 	}
 	Rhs = kount;

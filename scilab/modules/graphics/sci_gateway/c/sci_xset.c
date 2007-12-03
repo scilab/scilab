@@ -22,6 +22,7 @@
 #include "sciprint.h"
 #include "Format.h"
 #include "ObjectSelection.h"
+#include "msgs.h"
 
 /*--------------------------------------------------------------------------*/
 int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1) ;

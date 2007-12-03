@@ -3,8 +3,8 @@
 /* Scilab */
 /*--------------------------------------------------------------------------*/ 
 #include "scirun.h"
+#include "callinterf.h"
 #include "stack-c.h"
-#include "error.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(parse)(void);
 extern int C2F(isbyref)(int *);
@@ -91,14 +91,14 @@ L89:
     if (Top < Rhs) 
 	{
 		int code_error=22;
-		C2F(error)(&code_error);
+		Error(code_error);
 		if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;
 		goto L60;
     }
     if (Top - Rhs + Lhs + 1 >= Bot) 
 	{
 		int code_error=18;
-		C2F(error)(&code_error);
+		Error(code_error);
 		if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;
 		goto L60;
     }
@@ -118,7 +118,7 @@ L91:
 	{
 		int code_error=22;
 		C2F(recu).krec = -1;
-		C2F(error)(&code_error);
+		Error(code_error);
 		if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;
 		goto L60;
     }
@@ -178,7 +178,7 @@ L95:
     if (Fin == 0) 
 	{
 		int code_error=246;
-		C2F(error)(&code_error);
+		Error(code_error);
 		if (Err > 0) 
 		{
 			if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;

@@ -19,7 +19,7 @@ int C2F(matlog)(void)
 
     static integer j=0;
     static double e1, e2;
-    extern  int C2F(error)();
+
     static integer i1, i2, l1, l2, m2, n2, m1, n1, op, lw, il1, il2, mn2, it1, it2, mn1, top0;
 
     top0 = Top;
@@ -115,7 +115,7 @@ int C2F(matlog)(void)
 		if (mn1 != mn2) 
 		{
 			static integer code_error = 60;
-			C2F(error)(&code_error);
+			Error(code_error);
 			return 0;
 		}
 		if (Fin == ou) 

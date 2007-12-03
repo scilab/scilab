@@ -11,6 +11,7 @@
 #include "msgs.h"
 #include "localization.h"
 #include "cvstr.h"
+#include "error.h"
 /*--------------------------------------------------------------------------*/
 #ifdef BUF
 #undef BUF
@@ -18,7 +19,6 @@
 #define BUF C2F(cha1).buf
 /*--------------------------------------------------------------------------*/
 extern int C2F(showstack)();
-extern int C2F(error)(int *);
 /*--------------------------------------------------------------------------*/
 static int msg_1(integer *n, integer *ierr);
 static int msg_2(integer *n, integer *ierr);
@@ -724,7 +724,7 @@ static int msg_31(integer *n, integer *ierr)
 {
 	int cerr=-1;
 	sciprint(_("Warning: stack problem..., cleared\n will be cleared with next error...\n"));
-	C2F(error)(&cerr);
+	Error(cerr);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

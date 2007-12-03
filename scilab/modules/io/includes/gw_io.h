@@ -46,7 +46,22 @@ int C2F(intsave)();
 int C2F(intload)();
 int C2F(intdisp)();
 int C2F(intexec)();
-
+int C2F(intdiary)();
+int C2F(intdeff)();
+int C2F(intfile)();
+int C2F(intgetenv)();
+int C2F(intlib)();
+int C2F(intmgetl)();
+int C2F(oldload)();
+int C2F(oldsave)();
+int C2F(intprint)();
+int C2F(intrat)();
+int C2F(intread)();
+int C2F(intread4b)();
+int C2F(intreadb)();
+int C2F(intwrite)();
+int C2F(intwrite4b)();
+int C2F(intwritb)();
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_IO__ */
 /*--------------------------------------------------------------------------*/

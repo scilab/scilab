@@ -26,7 +26,7 @@
 #include "scicos-def.h"
 #include "sciprint.h"
 #include "cvstr.h"
-
+#include "msgs.h"
 
 
 typedef struct {
@@ -203,7 +203,7 @@ int C2F(scicos)(
 {
   integer i1,kf,lprt,in,out,job=1;
 
-  extern /* Subroutine */ int C2F(msgs)();
+
   static integer mxtb, ierr0, kfun0, i, j, k;
   extern /* Subroutine */ int C2F(makescicosimport)();
   extern /* Subroutine */ int C2F(getscsmax)();

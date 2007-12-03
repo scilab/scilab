@@ -223,10 +223,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\gw_differential_equations5.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\gw_differential_equations6.c"
 				>
 			</File>
@@ -301,10 +297,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_differential_equations4.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\gw_differential_equations5.h"
 				>
 			</File>
 			<File

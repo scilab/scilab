@@ -14,6 +14,7 @@
 #include "sciCall.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int sci_param3d1( char *fname, unsigned long fname_len )
 {

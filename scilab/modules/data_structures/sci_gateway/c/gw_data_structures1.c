@@ -7,8 +7,6 @@
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(error)();
-/*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
 	{C2F(sci_scilist),"list"},
@@ -28,7 +26,7 @@ int C2F(gwdatastructures1)()
 	if (Top - Rhs + Lhs + 1 >= Bot) 
 	{
 		static integer codeerror = 18;
-		C2F(error)(&codeerror);
+		Error(codeerror);
 		return 0;
 	}
 

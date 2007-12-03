@@ -21,6 +21,7 @@
 #include "mget.h"
 #include "mgetstr.h"
 #include "Scierror.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 static char filename[PATH_MAX];
 static int out_n;

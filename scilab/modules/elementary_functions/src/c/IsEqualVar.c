@@ -8,6 +8,7 @@
 
 #include "IsEqualVar.h"
 
+
 /**intisequalvar
  * Gateway for isequalbitwise and isequal builtins
  * @param char * fname: the Scilab code of the function name

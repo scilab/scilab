@@ -1710,10 +1710,13 @@ int C2F(fakecresmat2)(integer *lw,integer *nchar,integer *lr)
   static integer il;
   il = iadr((*Lstk(*lw)));
   Err = sadr(il + 4 + (*nchar + 1)) - *Lstk(Bot);
-  if (Err > 0) {
-    C2F(error)(&cx17);
+  if (Err > 0) 
+  {
+    Error(cx17);
     retval = FALSE_;
-  } else {
+  }
+  else
+  {
     ilast = il + 5;
     *Lstk(*lw+1) = sadr(ilast + *istk(ilast));
     *lr = ilast + *istk(ilast - 1);

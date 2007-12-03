@@ -23,8 +23,10 @@
 #include "ExceptionMessage.h"
 #endif
 
+#include "stack-c.h"
+
 extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer *job));
-extern int C2F(error)  __PARAMS((integer *n));  
+  
 
 #include <stdlib.h>
 
@@ -263,7 +265,7 @@ void C2F(userlk)(integer *k)
   if ( k1 >= LastInterf || k1 < 0 ) 
     {
       if (getWarningMode()) sciprint(_(" results may be inaccurate. rcond = %s\n"),k1);
-      C2F(error)(&imes);
+	  Error(imes);
       return;
     }
   if ( DynInterf[k1].ok == 1 ) 
@@ -288,7 +290,7 @@ void C2F(userlk)(integer *k)
   else 
     {
       if (getWarningMode()) sciprint(_("Interface %s not linked.\n"),DynInterf[k1].name);
-      C2F(error)(&imes);
+      Error(imes);
       return;
     }
 }
@@ -370,7 +372,7 @@ void CallDynInterf(int *pos, int num_names, int namepos, char **names,
   else 
     {
       if (getWarningMode()) sciprint(_("Interface %s not linked.\n"),DynInterf[*pos].name);
-      C2F(error)(&imes);
+      Error(imes);
     }
 }  
 

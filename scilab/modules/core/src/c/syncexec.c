@@ -3,10 +3,10 @@
 /* S. Steer */
 /*--------------------------------------------------------------------------*/ 
 #include "syncexec.h"
+#include "callinterf.h"
 #include "stack-c.h"
 #include "core_math.h"
 #include "parse.h"
-#include "error.h"
 /*--------------------------------------------------------------------------*/ 
 #define Pt (C2F(recu).pt)
 /*--------------------------------------------------------------------------*/ 
@@ -90,12 +90,12 @@ L60:
 L89:
 	if (Top < Rhs) {
 		int lierr = 22;
-		C2F(error)(&lierr);
+		Error(lierr);
 		goto L9999;
 	}
 	if (Top - Rhs + Lhs + 1 >= Bot) {
 		int lierr = 18;
-		C2F(error)(&lierr);
+		Error(lierr);
 		goto L9999;
 	}
 	goto L91;
@@ -110,7 +110,7 @@ L91:
 	if (k == C2F(recu).krec) {
 		int lierr = 22;
 		C2F(recu).krec = -1;
-		C2F(error)(&lierr);
+		Error(lierr);
 		goto L9999;
 	}
 	C2F(recu).krec = -1;
@@ -144,7 +144,7 @@ L95:
 	}
 	if (Fin == 0) {
 		int lierr = 246;
-		C2F(error)(&lierr);
+		Error(lierr);
 		if (Err > 0) {
 			goto L9999;
 		}

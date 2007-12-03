@@ -15,6 +15,8 @@
 #include "stack-def.h"
 #include "stackTypeVariable.h"
 
+#include "error.h"
+
 /*-------------------------------------------------
  * types
  * -------------------------------------------------*/

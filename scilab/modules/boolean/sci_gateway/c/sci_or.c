@@ -34,7 +34,7 @@ int C2F(intor)(char *fname,unsigned long l)
        opt=2;
      else {
        Err=2;
-       C2F(error)(&errn);
+	   Error(errn);
      }
  
    }
@@ -43,7 +43,7 @@ int C2F(intor)(char *fname,unsigned long l)
      opt=(int) *stk(lo);
      if (opt>2||opt<1) {
        Err=2;
-       C2F(error)(&errn);
+       Error(errn);
      }
    }
  }  /*(Rhs==2) */

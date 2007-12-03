@@ -116,7 +116,7 @@ void WriteOptArgPhase2(FILE *f,IVAR i)
 	  OptMATRIX(f,var);
 	  break;
 	case STRING:
-	  strcpy(size,strlen(var->opt_name));
+	  sprintf(size,"%d",strlen(var->opt_name));
 	  sprintf(data,"\"%s\"",var->opt_name);
 	  OptMATRIX(f,var);
 	  break;

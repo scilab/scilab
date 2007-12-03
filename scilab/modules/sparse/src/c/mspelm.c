@@ -2,7 +2,6 @@
 #include "../../elementary_functions/includes/elementary_functions.h"
 #include "../../elementary_functions/includes/int2db.h"
 #include "basout.h"
-#include "error.h"
 
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))
@@ -61,11 +60,11 @@ int C2F(intmsparse)(integer *id)
 
     lw = C2F(vstk).lstk[Top];
     if (Lhs != 1) {
-	C2F(error)(&c41);
+	Error(c41);
 	return 0;
     }
     if (Rhs != 1) {
-	C2F(error)(&c39);
+	Error(c39);
 	return 0;
     }
     il = C2F(vstk).lstk[Top-1] + C2F(vstk).lstk[Top-1] - 1;
@@ -87,7 +86,7 @@ int C2F(intmsparse)(integer *id)
 	lw = lat + nel * (it + 1);
 	Err = lw - C2F(vstk).lstk[Bot-1];
 	if (Err > 0) {
-	    C2F(error)(&c17);
+	    Error(c17);
 	    return 0;
 	}
 	*istk(ia) = 1;
@@ -118,7 +117,7 @@ int C2F(intmsparse)(integer *id)
 	C2F(vstk).lstk[Top] = lr + nel * (it + 1);
     } else if (*istk(il ) == 7) {
     } else {
-	C2F(error)(&c44);
+	Error(c44);
 	return 0;
     }
     return 0;
@@ -173,11 +172,11 @@ int C2F(intmspget)(integer *id)
     top0 = Top + 1 - Rhs;
     lw = C2F(vstk).lstk[Top];
     if (Rhs != 1) {
-	C2F(error)(&c39);
+	Error(c39);
 	return 0;
     }
     if (Lhs > 3) {
-	C2F(error)(&c41);
+	Error(c41);
 	return 0;
     }
     il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 1;
@@ -238,7 +237,7 @@ int C2F(intmspget)(integer *id)
     lw = I1 / 2 + 1;
     Err = lw - C2F(vstk).lstk[Bot -1];
     if (Err > 0) {
-	C2F(error)(&c17);
+	Error(c17);
 	return 0;
     }
     I1 = n + nel + 1;
@@ -329,11 +328,11 @@ int C2F(intmfull)(integer *id)
     top0 = Top + 1 - Rhs;
     lw = C2F(vstk).lstk[Top];
     if (Rhs != 1) {
-	C2F(error)(&c39);
+	Error(c39);
 	return 0;
     }
     if (Lhs != 1) {
-	C2F(error)(&c41);
+	Error(c41);
 	return 0;
     }
     il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 1;
@@ -355,7 +354,7 @@ int C2F(intmfull)(integer *id)
     lw = ls + nel * (it + 1);
     Err = lw - C2F(vstk).lstk[Bot-1];
     if (Err > 0) {
-	C2F(error)(&c17);
+	Error(c17);
 	return 0;
     }
     I1 = n + 1 + nel;

@@ -29,7 +29,6 @@
 #include "rea2b.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "error.h"
 #include "callinterf.h"
 
 #ifdef _MSC_VER
@@ -1865,7 +1864,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
   Top = Top - Rhs + *number + *mrhs - 1;
   ++C2F(recu).pt;
   if (C2F(recu).pt > psiz) {
-    C2F(error)(&cx26);
+    Error(cx26);
     goto L9999;
   }
   C2F(recu).ids[C2F(recu).pt * nsiz - nsiz] = Lhs;
@@ -1963,7 +1962,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
   }
   if (Fin == 0) {
     integer cx4 = 4;
-    C2F(error)(&cx4);
+    Error(cx4);
     if (Err > 0) {
       goto L9999;
     }
@@ -2194,7 +2193,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   }
   if (Fin == 0) {
     integer cx4 = 4;
-    C2F(error)(&cx4);
+    Error(cx4);
     if (Err > 0) {
       goto L9999;
     }

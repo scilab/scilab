@@ -7,7 +7,6 @@
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(getsym)();
-extern int C2F(error)(int *);
 /*--------------------------------------------------------------------------*/ 
 int C2F(terme)(void)
 {
@@ -79,7 +78,7 @@ int C2F(terme)(void)
 			if (op != 0) 
 			{
 				code_error = 7;
-				C2F(error)(&code_error);
+				Error(code_error);
 			}
 			return 0;
 		}
@@ -126,7 +125,7 @@ int C2F(terme)(void)
 			if (op != 0) 
 			{
 				code_error = 7;
-				C2F(error)(&code_error);
+				Error(code_error);
 			}
 			return 0;
 		}
@@ -143,7 +142,7 @@ int C2F(terme)(void)
 	}
 
 	code_error = 22;
-	C2F(error)(&code_error);
+	Error(code_error);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

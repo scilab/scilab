@@ -16,7 +16,6 @@
 #include "GetProperty.h"
 #include "sciCall.h"
 #include "sciprint.h"
-
 /*--------------------------------------------------------------------------*/
 int sci_plot2d1_1 (char *fname,unsigned long fname_len)
 {
