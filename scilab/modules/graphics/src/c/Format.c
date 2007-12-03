@@ -863,7 +863,145 @@ int GradEqual(const double grads[],const int *ngrads)
     }
   return 1;
 }
+/*--------------------------------------------------------------------------*/
 
+/* compute the graduation of the segment [minVal,maxVal] knowing the number of ticks */
+void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads )
+{
+  int initSize ;
+  int i ;
+
+  /* intialize the array as usual */
+  GradLog( minVal, maxVal, ticks, &initSize, FALSE ) ;
+
+  if ( initSize > nbGrads )
+  {
+    /* we create a smaller vector from a bigger one */
+    int nbRemove = initSize - nbGrads ;
+
+    BOOL * removedTicks ;
+    if( ( removedTicks = MALLOC( initSize * sizeof(BOOL) ) ) == NULL )
+    {
+      return ;
+    }
+
+    for ( i = 0 ; i < initSize ; i++ )
+    {
+      removedTicks[i] = FALSE ;
+    }
+
+    /* we now remove the nbremove indexes : round( ( 0.5 + i ) * size / nbRemove ) */
+    /* i=0..nbReg-1 should do the thing */
+    for ( i = 0 ; i < nbRemove ; i++ )
+    {
+      int remIndex = 1 + (int) round(  i  * ((double) initSize - 2 ) / ( (double) nbRemove ) ) ;
+      removedTicks[remIndex] = TRUE ;
+    }
+
+    /* removeBadTicks( ticks, removedTicks, &initSize ) ; */
+
+    FREE( removedTicks ) ;
+
+  }
+
+}
+
+
+/* compute the automatic graduation of the segment [_min,_max] and store it in _grads */
+/* the number of graduation may be fixed if compNgrads is TRUE or automaticaly computed */
+/* otherwise. */
+int GradLog( double   _min   ,
+            double   _max   ,
+            double * _grads ,
+            int    * n_grads,
+            int      compNgrads )
+{
+  int i;
+  int log_min, log_max;
+  int size;
+
+  if ( compNgrads )
+  {
+    GradFixedlog( _min, _max, _grads, *n_grads ) ;
+    return 0 ;
+  }
+
+  log_max =  (int) ceil(_max);
+  log_min =  (int) floor(_min);
+
+
+  size = log_max - log_min +1;
+  /*  tab=(int *)MALLOC(size*sizeof(int)); */
+
+  /*   for(i=0;i<size;i++) tab[i]=log_min+i; */
+
+  *n_grads = 0 ;
+
+  if(size<=7)    {
+    for(i=0;i<size;i++)
+    {
+      /*    _grads[i] = exp10(tab[i]); */
+      _grads[i] = log_min+i;
+      *n_grads = (*n_grads) + 1;
+      /* 	  sciprint("Juste en sortie, _grads[%d] = %lf\n",i, _grads[i]); */
+    }
+  }
+  else
+  {
+    int pas = 0, old_pas= 0,j;
+    int val = size, passed = 0;
+
+    for(j=val-1;j>1;j--)
+      if(val%j == 0){
+        old_pas = pas;
+        pas=j; 
+        passed = 1;
+
+        if((7*pas)<=val){ 
+          if(old_pas != 0) {pas = old_pas; }
+          break;
+        }
+      }
+
+      if(passed != 1 || (size/pas)>15 ) pas = size;
+
+      if(pas==size)
+      {
+        _grads[0] = log_min;
+        _grads[1] = log_max;
+        *n_grads =2;
+      }
+      else
+      {
+        for(i=0;i<=(int )(size/pas);i++)
+        {
+          _grads[i] = log_min+(i*pas);
+
+          *n_grads = (*n_grads) + 1;
+          /* 	    sciprint("Juste en sortie, _grads[%d] = %lf\n",i, _grads[i]); */
+        }
+      }
+  }
+
+  return 0;
+}
+
+/**
+* get the exponent used for log axis from given data bounds
+* @return 0 if OK, -1 if negative bounds.
+*/
+int sciGetLogExponent( double minBound, double maxBound, double * expMin, double * expMax )
+{
+  if ( minBound > 0 )
+  {
+    *expMin = floor( log10( minBound ) ) ;
+    *expMax = ceil(  log10( maxBound ) ) ;
+    return 0 ;
+  }
+  *expMax = 1.0 ;
+  *expMin = 0.0 ;
+  return -1 ;
+}
 /*--------------------------------------------------------------------------*/
 int ComputeC_format(sciPointObj * pobj, char * c_format)
 {

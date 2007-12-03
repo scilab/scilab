@@ -79,3 +79,5 @@ sciGetTightLimitsOn
 sciSetRealDataBounds
 sciGetLogFlags
 sciGetDataBounds
+TheTicks
+GradLog

@@ -8,6 +8,11 @@
 
 #include "LinearBoundsComputer.hxx"
 
+extern "C"
+{
+#include "Format.h"
+}
+
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
@@ -20,9 +25,21 @@ void LinearBoundsComputer::applyScaleModification(const double inputBounds[2], d
 /*------------------------------------------------------------------------------------------*/
 void LinearBoundsComputer::applyBestFitting(const double inputBounds[2], double outputBounds[2])
 {
-  // nothing for now
+  // we use the ticks since it compute correct data bounds
+  // TODO rewrite TheTicks to avoid aloso computing ticks
+
+  // variables used by the ticks
+  int nbTicks;
+  double ticks[20];
+
   outputBounds[0] = inputBounds[0];
   outputBounds[1] = inputBounds[1];
+
+  TheTicks(&(outputBounds[0]), &(outputBounds[1]), ticks, &nbTicks, FALSE);
+
+  // nothing for now
+  outputBounds[0] = ticks[0];
+  outputBounds[1] = ticks[nbTicks - 1];
 }
 /*------------------------------------------------------------------------------------------*/
 void LinearBoundsComputer::pointScale(double coord, double * scaledCoord)

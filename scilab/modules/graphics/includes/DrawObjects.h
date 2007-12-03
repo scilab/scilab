@@ -57,7 +57,6 @@ extern void sciXclear(void); /* DRAWINGS */
 extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag); /* DRAWINGS */
 
 extern void Nextind(integer ind1, integer *ind2, integer *ind3); /* DRAWINGS */
-extern int GradLog(double _min, double _max, double *_grads, int * n_grads, int compNgrads );
 extern BOOL Ishidden(sciPointObj *pobj); /* DRAWINGS */
 extern BOOL IsDownAxes(sciPointObj *pobj); /* DRAWINGS */
 extern void sciGetDisplayedBounds( sciPointObj * pSubWin,

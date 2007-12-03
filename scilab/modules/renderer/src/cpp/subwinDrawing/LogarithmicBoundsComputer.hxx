@@ -23,10 +23,13 @@ public:
   virtual ~LogarithmicBoundsComputer(void) {}
 
   /**
-  * Modify scale for (to use with non linear scale).
-  */
+   * Modify scale for (to use with non linear scale).
+   */
   virtual void applyScaleModification(const double inputBounds[2], double outputBounds[2]);
 
+  /**
+   * Modify data bounds in order to have nice ticks labels (not 0.9545121 for example).
+   */
   virtual void applyBestFitting(const double inputBounds[2], double outputBounds[2]);
 
 
