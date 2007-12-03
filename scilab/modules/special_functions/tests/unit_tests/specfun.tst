@@ -13,7 +13,7 @@ ieee(1)
 // ------------------------------ besseli(alpha,x)------------------------------
 
 //test of numerical precision reference computed by maple
-exec(SCI'/modules/special/functions/unit_tests/besseli_ref.sce',-1)
+exec(SCI'/modules/special/functions/tests/unit_tests/besseli_ref.sce',-1)
 besselI=besseli(alpha',x);
 if norm((besselI-besselI_ref)./abs(besselI_ref),1)>1d6*%eps then pause,end
 
@@ -1104,7 +1104,7 @@ y=besseli(alpha,x,1);
 if testresult() then pause,end
 // ------------------------------ besselj(alpha,x)------------------------------
 //test of numerical precision reference computed by maple
-exec(SCI'/modules/special/functions/unit_tests/besselj_ref.sce',-1)
+exec(SCI'/modules/special/functions/tests/unit_tests/besselj_ref.sce',-1)
 besselJ=besselj(alpha',x);
 if norm((besselJ-besselJ_ref)./abs(besselJ_ref),1)>1d6*%eps then pause,end
 
@@ -2289,7 +2289,7 @@ y=besselj(alpha,x,1);
 if testresult() then pause,end
 // ------------------------------ besselk(alpha,x)------------------------------
 //test of numerical precision reference computed by maple
-exec(SCI'/modules/special/functions/unit_tests/besselk_ref.sce',-1)
+exec(SCI'/modules/special/functions/tests/unit_tests/besselk_ref.sce',-1)
 besselK=besselk(alpha',x);
 if norm((besselK-besselK_ref)./abs(besselK_ref),1)>1d6*%eps then pause,end
 
@@ -3379,7 +3379,7 @@ y=besselk(alpha,x,1);
 if testresult() then pause,end
 // ------------------------------ bessely(alpha,x)------------------------------
 //test of numerical precision reference computed by maple
-exec(SCI'/modules/special/functions/unit_tests/bessely_ref.sce',-1)
+exec(SCI'/modules/special/functions/tests/unit_tests/bessely_ref.sce',-1)
 besselY=bessely(alpha',x);
 if norm((besselY-besselY_ref)./abs(besselY_ref),1)>1d6*%eps then pause,end
 

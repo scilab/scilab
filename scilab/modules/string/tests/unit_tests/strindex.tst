@@ -54,7 +54,7 @@ refw = [1 3 4];
 if (k <> refk ) then pause,end
 if (w <> refw ) then pause,end
 //===============================
-fd = mopen(SCI+'/modules/string/unit_tests/text.txt','r');
+fd = mopen(SCI+'/modules/string/tests/unit_tests/text.txt','r');
 txt = mgetl( fd );
 mclose( fd );
 //===============================

@@ -29,7 +29,7 @@ if grep(['AB','B'],['A';'B']) <> 1 then pause,end
 //===============================
 if grep(['AB','B'],['A';'B';'C']) <> 1 then pause,end 
 //===============================
-fd = mopen(SCI+'/modules/string/unit_tests/text.txt','r');
+fd = mopen(SCI+'/modules/string/tests/unit_tests/text.txt','r');
 txt = mgetl( fd );
 mclose( fd );
 //===============================

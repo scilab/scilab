@@ -137,11 +137,11 @@ function test_run(varargin)
 		for i=1:nl
 			for j=1:nc
 				
-				if (fileinfo(SCI+"/modules/"+module+"/unit_tests/"+test_mat(i,j)+".tst")<>[]) ..
+				if (fileinfo(SCI+"/modules/"+module+"/tests/unit_tests/"+test_mat(i,j)+".tst")<>[]) ..
 					& ( (test_types_keeped=="all_tests") | (test_types_keeped=="unit_tests") ) then
 					test_add_onetest(module,test_mat(i,j),"unit_tests");
 					
-				elseif (fileinfo(SCI+"/modules/"+module+"/nonreg_tests/"+test_mat(i,j)+".tst")<>[]) ..
+				elseif (fileinfo(SCI+"/modules/"+module+"/tests/nonreg_tests/"+test_mat(i,j)+".tst")<>[]) ..
 					& ( (test_types_keeped=="all_tests") | (test_types_keeped=="nonreg_tests") ) then
 					test_add_onetest(module,test_mat(i,j),"nonreg_tests");
 				
@@ -296,7 +296,7 @@ function test_add_module(module_mat,test_type)
 	
 	if (test_type == "all_tests") | (test_type == "unit_tests") then
 	
-		module_test_dir = SCI+"/modules/"+module_mat+"/unit_tests";
+		module_test_dir = SCI+"/modules/"+module_mat+"/tests/unit_tests";
 		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
 		
 		nl = size(test_mat,"*");
@@ -308,7 +308,7 @@ function test_add_module(module_mat,test_type)
 	
 	if (test_type == "all_tests") | (test_type == "nonreg_tests") then
 		
-		module_test_dir = SCI+"/modules/"+module_mat+"/nonreg_tests";
+		module_test_dir = SCI+"/modules/"+module_mat+"/tests/nonreg_tests";
 		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
 		
 		nl = size(test_mat,"*");

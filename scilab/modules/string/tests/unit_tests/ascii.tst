@@ -23,7 +23,7 @@ if ascii([str_scilab 'a';'b' 'c']) <> [115 99 105 108 97 98 98 97 99] then pause
 
 // == TEST 4 ===================================================================
 
-fd  = mopen(SCI+'/modules/string/unit_tests/text.txt','r');
+fd  = mopen(SCI+'/modules/string/tests/unit_tests/text.txt','r');
 txt = mgetl( fd );
 mclose( fd );
 ASCII_TXT           = ascii(txt);
