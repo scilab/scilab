@@ -146,9 +146,6 @@ src/jni/IsoViewCameraGL.cpp \
 src/jni/IsometricCameraGL.cpp \
 src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
 src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
-src/cpp/subwinDrawing/YAxisReverseJoGL.cpp \
-src/cpp/subwinDrawing/XAxisReverseJoGL.cpp \
-src/cpp/subwinDrawing/ZAxisReverseJoGL.cpp \
 src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
 src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
 src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
