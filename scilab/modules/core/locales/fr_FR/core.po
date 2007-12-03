@@ -1005,7 +1005,7 @@ msgstr ""
 # File: src/c/link_linux.c, line: 140
 #, c-format
 msgid "There are a total of %d undefined symbols:\n"
-msgstr "Il y a en tout %d symboles indéfinis :\n "
+msgstr "Il y a en tout %d symboles indéfinis :\n"
 
 #
 # File: src/c/link_linux.c, line: 147
