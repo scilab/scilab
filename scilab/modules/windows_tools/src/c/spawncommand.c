@@ -207,7 +207,7 @@ char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 			{
 				if (DetachProcess)
 				{
-					strpcy(OuputStrings[i],line);
+					strcpy(OuputStrings[i],line);
 				}
 				else
 				{
