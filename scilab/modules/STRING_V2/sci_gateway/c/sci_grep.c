@@ -95,6 +95,10 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 	int *next = NULL;
 
 	results->sizeArraysMax = 0;
+	if (results->values) {FREE(results->values);results->values = NULL;}
+	if (results->positions) {FREE(results->positions);results->positions = NULL;}
+	results->currentLength = 0;
+	
 	for (x = 0; x <  mn_one ;x++) 
 	{
 		results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
@@ -150,6 +154,10 @@ static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 	int *next = NULL;
 
 	results->sizeArraysMax = 0;
+	if (results->values) {FREE(results->values);results->values = NULL;}
+	if (results->positions) {FREE(results->positions);results->positions = NULL;}
+	results->currentLength = 0;
+
 	for (x = 0; x <  mn_one ;x++) 
 	{
 		results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
@@ -166,8 +174,6 @@ static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 		if (results->positions) {FREE(results->positions);results->positions = NULL;}
 		return MEMORY_ALLOC_ERROR;
 	}
-
-	results->currentLength = 0;
 
 	for (y = 0; y < mn_one; ++y)
 	{
