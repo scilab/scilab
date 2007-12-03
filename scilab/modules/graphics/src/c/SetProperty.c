@@ -540,7 +540,7 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
     return 0;
   }
 
-  printSetGetErrorMessage("background");
+  /*printSetGetErrorMessage("background");*/ /* rewrite updatebaw to renable this message */
   return -1;
 }
 
@@ -581,7 +581,7 @@ int sciInitForeground( sciPointObj * pobj, int colorindex )
     return 0;
   }
 
-  printSetGetErrorMessage("foreground");
+  /*printSetGetErrorMessage("foreground");*/ /* rewrite updatebaw to renable this message */
   return -1;
 }
 

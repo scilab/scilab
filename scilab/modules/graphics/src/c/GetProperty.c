@@ -395,7 +395,7 @@ sciGetForeground (sciPointObj * pobj)
   }
   else
   {
-    printSetGetErrorMessage("foreground");
+    /*printSetGetErrorMessage("foreground");*/ /* rewrite updatebaw to renable this message */
     return -999;
   }
 
@@ -436,7 +436,7 @@ sciGetBackground (sciPointObj * pobj)
   }
   else
   {
-    printSetGetErrorMessage("background");
+    /*printSetGetErrorMessage("background");*/ /* rewrite updatebaw to renable this message */
     return -999;
   }
   
