@@ -243,6 +243,7 @@ int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff); /* SET */
 int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
 int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
 
+int sciInitLogFlags(sciPointObj * pObj, char logFlags[3]);
 int sciSetLogFlags(sciPointObj * pObj, char logFlags[3]) ; /* SET */
 
 /*---------------------------------------------------------------------------*/

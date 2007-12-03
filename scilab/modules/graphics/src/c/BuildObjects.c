@@ -217,8 +217,9 @@ sciPointObj *
 ConstructSubWin(sciPointObj * pparentfigure)
 {
 
-  char dir;
+  char logFlags[3];
   int i;
+  char dir;
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciSubWindow * ppsubwin = NULL;
   sciPointObj * paxesmdl = getAxesModel() ;
@@ -278,14 +279,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	  return (sciPointObj *) NULL;
 	}
 
-      dir= ppaxesmdl->logflags[0];
-      ppsubwin->logflags[0] = dir;
-
-      dir= ppaxesmdl->logflags[1]; 
-      ppsubwin->logflags[1] = dir;
-
-      dir= ppaxesmdl->logflags[2];
-      ppsubwin->logflags[2] = dir;
+      sciGetLogFlags(paxesmdl, logFlags);
+      sciInitLogFlags(pobj, logFlags);
 
       ppsubwin->axes.ticscolor  = ppaxesmdl->axes.ticscolor;
       ppsubwin->axes.subint[0]  = ppaxesmdl->axes.subint[0];   

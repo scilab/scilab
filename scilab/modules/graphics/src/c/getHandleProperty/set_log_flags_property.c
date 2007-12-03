@@ -145,7 +145,6 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
                                                ppSubWin->axes.u_xgrads, 
                                                &ppSubWin->axes.u_nxgrads, 
                                                ppSubWin->axes.u_xlabels   );
-  /* ppSubWin->logflags[0] = flags[0] ; */
   curLogFlags[0] = flags[0];
 
   /* Y axes */
@@ -159,8 +158,6 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
                                                &ppSubWin->axes.u_nygrads, 
                                                ppSubWin->axes.u_ylabels  ) ;
 
-  
-  /* ppSubWin->logflags[1] = flags[1] ; */
   curLogFlags[1] = flags[1];
 
 
@@ -182,7 +179,6 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
                                                  ppSubWin->axes.u_zgrads, 
                                                  &ppSubWin->axes.u_nzgrads, 
                                                  ppSubWin->axes.u_zlabels) ;
-    //ppSubWin->logflags[2] = flags[2] ;
     curLogFlags[2] = flags[2];
 
   }

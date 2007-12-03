@@ -3987,10 +3987,7 @@ int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ)
   return sciInitTextPos(pObj, posX, posY, posZ);
 }
 /*----------------------------------------------------------------------------------*/
-/**
- * Set the log flags of a subwindow
- */
-int sciSetLogFlags(sciPointObj * pObj, char logFlags[3])
+int sciInitLogFlags(sciPointObj * pObj, char logFlags[3])
 {
   switch(sciGetEntityType(pObj))
   {
@@ -4000,12 +3997,31 @@ int sciSetLogFlags(sciPointObj * pObj, char logFlags[3])
     pSUBWIN_FEATURE(pObj)->logflags[2] = logFlags[2];
 
     // force redraw of all children of the object.
-    forceHierarchyRedraw(pObj);
+    if (pObj != getAxesModel())
+    {
+      forceHierarchyRedraw(pObj);
+    }
 
     return 0;
   default:
     printSetGetErrorMessage("log_flags");
     return -1;
   }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Set the log flags of a subwindow
+ */
+int sciSetLogFlags(sciPointObj * pObj, char logFlags[3])
+{
+  char curLogFlags[3];
+  sciGetLogFlags(pObj, curLogFlags);
+  if (   logFlags[0] == curLogFlags[0] && logFlags[1] == curLogFlags[1]
+      && logFlags[2] == curLogFlags[2])
+  {
+    // nothing to do
+    return 1;
+  }
+  return sciInitLogFlags(pObj, logFlags);
 }
 /*----------------------------------------------------------------------------------*/

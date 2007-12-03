@@ -541,6 +541,7 @@ int InitAxesModel()
   sciPointObj * pobj = NULL;
   sciSubWindow * ppobj = NULL;
   sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
+  char linLogFlags[3] = {'n','n','n'};
 
   sciInitGraphicContext (paxesmdl);
   sciInitGraphicMode (paxesmdl);
@@ -548,10 +549,8 @@ int InitAxesModel()
   ppaxesmdl->cube_scaling = FALSE;
   ppaxesmdl->callback = (char *)NULL;
   ppaxesmdl->callbacklen = 0;
-  ppaxesmdl->callbackevent = 100;  
-  ppaxesmdl->logflags[0] = 'n';
-  ppaxesmdl->logflags[1] = 'n';
-  ppaxesmdl->logflags[2] = 'n';
+  ppaxesmdl->callbackevent = 100;
+  sciInitLogFlags(paxesmdl, linLogFlags);
   ppaxesmdl->axes.ticscolor  = -1;
   ppaxesmdl->axes.subint[0]  = 1;   
   ppaxesmdl->axes.subint[1]  = 1; 
@@ -679,53 +678,50 @@ int InitAxesModel()
   /* F.Leray 10.06.04 */
   /* Adding default Labels inside Axes */
   /*---------------------------------------------------------------------------*/
- 
-  pobj = paxesmdl;
-  ppobj = pSUBWIN_FEATURE(paxesmdl);
   
    /******************************  title *************************/
   
-  ppobj->mon_title = initLabel( paxesmdl ) ;
+  ppaxesmdl->mon_title = initLabel( paxesmdl ) ;
 
-  if ( ppobj->mon_title == NULL )
+  if ( ppaxesmdl->mon_title == NULL )
   {
     return -1 ;
   }
   
-  pLABEL_FEATURE(ppobj->mon_title)->ptype = 1;
+  pLABEL_FEATURE(ppaxesmdl->mon_title)->ptype = 1;
   
   /******************************  x_label *************************/
   
-  ppobj->mon_x_label = initLabel( paxesmdl ) ;
+  ppaxesmdl->mon_x_label = initLabel( paxesmdl ) ;
   
-  if ( ppobj->mon_x_label == NULL )
+  if ( ppaxesmdl->mon_x_label == NULL )
   {
     return -1 ;
   }
   
-  pLABEL_FEATURE( ppobj->mon_x_label )->ptype = 2 ;
+  pLABEL_FEATURE( ppaxesmdl->mon_x_label )->ptype = 2 ;
   
   /******************************  y_label *************************/
   
-  ppobj->mon_y_label = initLabel( paxesmdl ) ;
+  ppaxesmdl->mon_y_label = initLabel( paxesmdl ) ;
   
-  if ( ppobj->mon_y_label == NULL )
+  if ( ppaxesmdl->mon_y_label == NULL )
   {
     return -1 ;
   }
   
-  pLABEL_FEATURE( ppobj->mon_y_label )->ptype = 3 ;
+  pLABEL_FEATURE( ppaxesmdl->mon_y_label )->ptype = 3 ;
   
   /******************************  z_label *************************/
   
-  ppobj->mon_z_label = initLabel( paxesmdl ) ;
+  ppaxesmdl->mon_z_label = initLabel( paxesmdl ) ;
   
-  if ( ppobj->mon_z_label == NULL )
+  if ( ppaxesmdl->mon_z_label == NULL )
   {
     return -1 ;
   }
   
-  pLABEL_FEATURE( ppobj->mon_z_label )->ptype = 4 ;
+  pLABEL_FEATURE( ppaxesmdl->mon_z_label )->ptype = 4 ;
   
   return 0; 
 }

@@ -454,6 +454,7 @@ void Objplot3d ( char    * fname ,
   int flag_y = 1;
   int dimvectx = -1;
   int dimvecty = -1;
+  char linLogFlags[3] = {'n','n','n'};
 
   sciPointObj  * pNewSurface = NULL ;
   sciSubWindow * ppsubwin = NULL;
@@ -514,9 +515,7 @@ void Objplot3d ( char    * fname ,
   }
    
   /* Force psubwin->logflags to linear */
-  pSUBWIN_FEATURE (psubwin)->logflags[0]='n';
-  pSUBWIN_FEATURE (psubwin)->logflags[1]='n';
-  pSUBWIN_FEATURE (psubwin)->logflags[2]='n'; /* add z logscale default here */
+  sciSetLogFlags(psubwin, linLogFlags);
  
   
   pSUBWIN_FEATURE (psubwin)->axes.flag[0] = iflag[0]; /* mode: treatment of hidden parts */
