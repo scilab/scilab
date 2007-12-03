@@ -23,7 +23,6 @@ int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		int nbRow=0;
 		int nbCol=1;
-		int i=0;
 		char **Strings=NULL;
 
 		Strings=getLibrarypath(&nbRow);
