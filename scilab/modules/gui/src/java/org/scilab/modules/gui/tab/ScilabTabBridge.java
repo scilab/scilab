@@ -8,6 +8,7 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -140,6 +141,16 @@ public class ScilabTabBridge {
  	 * @return index of member
  	 */
 	public static int addMember(Tab tab, Canvas member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the pushbutton to
+	 * @param member the pushbutton to add
+	 * @return the position of the pushbutton in the member list.
+	 */
+	public static int addMember(Tab tab, PushButton member) {
 		return (tab.getAsSimpleTab().addMember(member));
 	}
 

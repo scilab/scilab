@@ -7,6 +7,7 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Interface for tabs in Scilab GUIs
@@ -53,6 +54,13 @@ public interface Tab extends Container {
 	 */
 	int addMember(Frame member);
 	
+	/**
+	 * We want to be able to add directly a pushbutton in a Tab.
+	 * @param member the pushbutton to add
+	 * @return the position of the pushbutton in the member list.
+	 */
+	int addMember(PushButton member);
+
 	/**
 	 * Get the current status of the Tab in its parent
 	 * @return true is the tab is the tab currently "on top" in its parent

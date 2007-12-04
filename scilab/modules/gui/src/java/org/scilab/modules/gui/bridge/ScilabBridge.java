@@ -463,6 +463,16 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the pushbutton to
+	 * @param member the pushbutton to add
+	 * @return the position of the pushbutton in the member list.
+	 */
+	public static int addMember(Tab tab, PushButton member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
 	 * Get the current status of the Tab in its parent
 	 * @param tab the tab we want to get the status of
 	 * @return true is the tab is the tab currently displayed in its parent

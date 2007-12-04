@@ -10,6 +10,7 @@ import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
@@ -180,6 +181,15 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Frame member) {
+		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * We want to be able to add directly a pushbutton in a Tab.
+	 * @param member the pushbutton to add
+	 * @return the position of the pushbutton in the member list.
+	 */
+	public int addMember(PushButton member) {
 		return ScilabBridge.addMember(this, member);
 	}
 

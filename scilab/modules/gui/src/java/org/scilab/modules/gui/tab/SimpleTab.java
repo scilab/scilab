@@ -7,6 +7,7 @@ package org.scilab.modules.gui.tab;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -50,6 +51,13 @@ public interface SimpleTab {
 	 * @return the position of the console in the member list.
 	 */
 	int addMember(Canvas member);
+
+	/**
+	 * We want to be able to add directly a pushbutton in a Tab.
+	 * @param member the pushbutton to add
+	 * @return the position of the pushbutton in the member list.
+	 */
+	int addMember(PushButton member);
 
 	/**
 	 * Gets the size of an Tab (width and height)
