@@ -1046,6 +1046,16 @@ public class ScilabBridge {
 		ScilabPushButtonBridge.setIcon(pushButton, filename);
 	}
 	
+	/**
+	 * Add a callback to the pushbutton, this callback is a Scilab command
+	 * @param pushButton the PushButton we want to set the callback of
+	 * @param command the Scilab command to execute when the pushbutton is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(PushButton pushButton, String command, int commandType) {
+		ScilabPushButtonBridge.setCallback(pushButton, command, commandType);
+	}
+
 	/*****************/
 	/* TextBox Bridge */
 	/*****************/

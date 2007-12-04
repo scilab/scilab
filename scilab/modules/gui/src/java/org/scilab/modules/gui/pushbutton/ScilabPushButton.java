@@ -115,7 +115,16 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 		ScilabBridge.setIcon(this, filename);
 	}
 
-//	/**
+	/**
+	 * Add a callback to the pushbutton, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the pushbutton is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public void setCallback(String command, int commandType) {
+		ScilabBridge.setCallback(this, command, commandType);
+	}
+
+	//	/**
 //	 * Sets a MenuBar to an element
 //	 * @param newMenuBar the MenuBar to set to the element
 //	 */

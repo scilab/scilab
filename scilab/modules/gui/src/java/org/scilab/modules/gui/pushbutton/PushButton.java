@@ -29,4 +29,11 @@ public interface PushButton extends Widget {
 	 * @param filename the path to the icon image to set to the PushButton
 	 */
 	void setIcon(String filename);
+	
+	/**
+	 * Add a callback to the pushbutton, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the pushbutton is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	void setCallback(String command, int commandType);
 }

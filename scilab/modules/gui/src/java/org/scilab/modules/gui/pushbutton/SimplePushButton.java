@@ -73,6 +73,11 @@ public interface SimplePushButton {
 	 */
 	void setIcon(String filename);
 	
-	
-	
+	/**
+	 * Add a callback to the pushbutton, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the pushbutton is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	void setCallback(String command, int commandType);
+
 }

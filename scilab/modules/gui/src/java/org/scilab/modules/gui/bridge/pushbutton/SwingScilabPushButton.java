@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.pushbutton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -75,6 +76,14 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void setIcon(String filename) {
 		super.setIcon(new ImageIcon(filename));
 	}
-
+	
+	/**
+	 * Add a callback to the pushbutton, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the pushbutton is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public void setCallback(String command, int commandType) {
+		super.addActionListener(ScilabCallBack.create(command, commandType));
+	}
 }
 

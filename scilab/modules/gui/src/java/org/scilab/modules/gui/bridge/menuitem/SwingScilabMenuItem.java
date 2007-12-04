@@ -7,7 +7,6 @@ import javax.swing.JMenuItem;
 
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
-import org.scilab.modules.gui.utils.SciActionListener;
 
 /**
  * Swing implementation for Scilab MenuBars in GUIs
