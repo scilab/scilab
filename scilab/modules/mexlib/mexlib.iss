@@ -41,9 +41,6 @@ Source: modules\{#MEXLIB}\macros\cleanmacros.bat; DestDir: {app}\modules\{#MEXLI
 ;
 Source: modules\{#MEXLIB}\examples\*.*; DestDir: {app}\modules\{#MEXLIB}\examples; Flags: recursesubdirs; Components: {#COMPN_MEXLIB}
 ;
-Source: modules\{#MEXLIB}\nonreg_tests\*.*; DestDir: {app}\modules\{#MEXLIB}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_MEXLIB} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#MEXLIB}\unit_tests\*.ref; DestDir: {app}\modules\{#MEXLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#MEXLIB}\unit_tests\*.tst; DestDir: {app}\modules\{#MEXLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+Source: modules\{#MEXLIB}\tests\*.*; DestDir: {app}\modules\{#MEXLIB}\tests; Flags: recursesubdirs; Components: {#COMPN_MEXLIB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

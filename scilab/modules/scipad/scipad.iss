@@ -40,9 +40,6 @@ Source: modules\{#SCIPAD}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SCIPA
 ;
 Source: modules\{#SCIPAD}\tcl\*.*; DestDir: {app}\modules\{#SCIPAD}\tcl; Flags: recursesubdirs; Components: {#COMPN_SCIPAD}
 ;
-Source: modules\{#SCIPAD}\nonreg_tests\*.*; DestDir: {app}\modules\{#SCIPAD}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCIPAD} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#SCIPAD}\unit_tests\*.ref; DestDir: {app}\modules\{#SCIPAD}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCIPAD} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#SCIPAD}\unit_tests\*.tst; DestDir: {app}\modules\{#SCIPAD}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCIPAD} and {#COMPN_UNIT_TESTS}
+Source: modules\{#SCIPAD}\tests\*.*; DestDir: {app}\modules\{#SCIPAD}\tests; Flags: recursesubdirs; Components: {#COMPN_SCIPAD} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

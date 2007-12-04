@@ -37,9 +37,6 @@ Source: modules\{#INTERPOLATION}\macros\cleanmacros.bat; DestDir: {app}\modules\
 ;
 Source: modules\{#INTERPOLATION}\demos\*.*; DestDir: {app}\modules\{#INTERPOLATION}\demos; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 ;
-Source: modules\{#INTERPOLATION}\nonreg_tests\*.*; DestDir: {app}\modules\{#INTERPOLATION}\nonreg_tests; Flags: recursesubdirs; Components:{#COMPN_INTERP} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#INTERPOLATION}\unit_tests\*.ref; DestDir: {app}\modules\{#INTERPOLATION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_INTERP} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#INTERPOLATION}\unit_tests\*.tst; DestDir: {app}\modules\{#INTERPOLATION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_INTERP} and {#COMPN_UNIT_TESTS}
+Source: modules\{#INTERPOLATION}\tests\*.*; DestDir: {app}\modules\{#INTERPOLATION}\tests; Flags: recursesubdirs; Components:{#COMPN_INTERP} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

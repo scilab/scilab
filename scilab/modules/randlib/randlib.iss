@@ -42,13 +42,6 @@ Source: modules\{#RANDLIB}\macros\cleanmacros.bat; DestDir: {app}\modules\{#RAND
 ;
 Source: modules\{#RANDLIB}\demos\*.*; DestDir: {app}\modules\{#RANDLIB}\demos; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
 ;
-;
-Source: modules\{#RANDLIB}\unit_tests\*.ref; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_UNIT_TESTS}
-Source: modules\{#RANDLIB}\unit_tests\*.tst; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_UNIT_TESTS}
-;
-Source: modules\{#RANDLIB}\nonreg_tests\*.*; DestDir: {app}\modules\{#RANDLIB}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_NO_REGRESSION_TESTS}
-;
-Source: modules\{#RANDLIB}\unit_tests\*.ref; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_UNIT_TESTS}
-Source: modules\{#RANDLIB}\unit_tests\*.tst; DestDir: {app}\modules\{#RANDLIB}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_UNIT_TESTS}
+Source: modules\{#RANDLIB}\tests\*.*; DestDir: {app}\modules\{#RANDLIB}\tests; Flags: recursesubdirs; Components: {#COMPN_RANDLIB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

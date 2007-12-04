@@ -35,10 +35,6 @@ Source: modules\{#DOUBLE}\macros\cleanmacros.bat; DestDir: {app}\modules\{#DOUBL
 ;
 ;Source: modules\{#DOUBLE}\demos\*.*; DestDir: {app}\modules\{#DOUBLE}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DOUBLE}\nonreg_tests\*.*; DestDir: {app}\modules\{#DOUBLE}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#DOUBLE}\unit_tests\*.ref; DestDir: {app}\modules\{#DOUBLE}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#DOUBLE}\unit_tests\*.tst; DestDir: {app}\modules\{#DOUBLE}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-
+Source: modules\{#DOUBLE}\tests\*.*; DestDir: {app}\modules\{#DOUBLE}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

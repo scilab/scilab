@@ -37,12 +37,6 @@ Source: modules\{#POLYNOMIALS}\macros\*.sci; DestDir: {app}\modules\{#POLYNOMIAL
 ;
 ;Source: modules\{#POLYNOMIALS}\demos\*.*; DestDir: {app}\modules\{#POLYNOMIALS}\demos; Flags: recursesubdirs; Components: {#COMPN_POLY}
 ;
-Source: modules\{#POLYNOMIALS}\unit_tests\*.ref; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components:  {#COMPN_POLY} and {#COMPN_UNIT_TESTS}
-Source: modules\{#POLYNOMIALS}\unit_tests\*.tst; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components:  {#COMPN_POLY} and {#COMPN_UNIT_TESTS}
-;
-Source: modules\{#POLYNOMIALS}\nonreg_tests\*.*; DestDir: {app}\modules\{#POLYNOMIALS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_POLY} and {#COMPN_NO_REGRESSION_TESTS}
-;
-Source: modules\{#POLYNOMIALS}\unit_tests\*.ref; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_POLY} and {#COMPN_UNIT_TESTS}
-Source: modules\{#POLYNOMIALS}\unit_tests\*.tst; DestDir: {app}\modules\{#POLYNOMIALS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_POLY} and {#COMPN_UNIT_TESTS}
+Source: modules\{#POLYNOMIALS}\tests\*.*; DestDir: {app}\modules\{#POLYNOMIALS}\tests; Flags: recursesubdirs; Components: {#COMPN_POLY} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

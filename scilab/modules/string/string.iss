@@ -40,9 +40,6 @@ Source: modules\{#STRING}\macros\*.sci; DestDir: {app}\modules\{#STRING}\macros;
 ;
 ;Source: modules\{#STRING}\demos\*.*; DestDir: {app}\modules\{#STRING}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#STRING}\unit_tests\*.ref; DestDir: {app}\modules\{#STRING}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-Source: modules\{#STRING}\unit_tests\*.tst; DestDir: {app}\modules\{#STRING}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;
-Source: modules\{#STRING}\nonreg_tests\*.*; DestDir: {app}\modules\{#STRING}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+Source: modules\{#STRING}\tests\*.*; DestDir: {app}\modules\{#STRING}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

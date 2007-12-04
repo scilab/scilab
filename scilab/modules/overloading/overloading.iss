@@ -36,7 +36,7 @@ Source: modules\{#OVERLOADING}\macros\*.sci; DestDir: {app}\modules\{#OVERLOADIN
 ;
 ;Source: modules\{#OVERLOADING}\demos\*.*; DestDir: {app}\modules\{#OVERLOADING}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#OVERLOADING}\nonreg_tests\*.*; DestDir: {app}\modules\{#OVERLOADING}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+;Source: modules\{#OVERLOADING}\tests\*.*; DestDir: {app}\modules\{#OVERLOADING}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;Source: modules\{#OVERLOADING}\unit_tests\*.ref; DestDir: {app}\modules\{#OVERLOADING}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
 ;Source: modules\{#OVERLOADING}\unit_tests\*.tst; DestDir: {app}\modules\{#OVERLOADING}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}

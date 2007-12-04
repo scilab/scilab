@@ -35,9 +35,5 @@ Source: modules\{#SIGPROC}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SIGP
 ;
 Source: modules\{#SIGPROC}\demos\*.*; DestDir: {app}\modules\{#SIGPROC}\demos; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\nonreg_tests\*.*; DestDir: {app}\modules\{#SIGPROC}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SIGPROC} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#SIGPROC}\unit_tests\*.ref; DestDir: {app}\modules\{#SIGPROC}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SIGPROC} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#SIGPROC}\unit_tests\*.tst; DestDir: {app}\modules\{#SIGPROC}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SIGPROC} and {#COMPN_UNIT_TESTS}
-;
+Source: modules\{#SIGPROC}\tests\*.*; DestDir: {app}\modules\{#SIGPROC}\tests; Flags: recursesubdirs; Components: {#COMPN_SIGPROC} and {#COMPN_TESTS}
 ;--------------------------------------------------------------------------------------------------------------

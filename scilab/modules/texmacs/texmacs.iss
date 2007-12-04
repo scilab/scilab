@@ -27,9 +27,7 @@ Source: modules\{#TEXMACS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TEXM
 ;
 ;Source: modules\{#TEXMACS}\demos\*.*; DestDir: {app}\modules\{#TEXMACS}\demos; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
-;Source: modules\{#TEXMACS}\nonreg_tests\*.*; DestDir: {app}\modules\{#TEXMACS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_TEXMACS} and {#COMPN_NO_REGRESSION_TESTS}
+;Source: modules\{#TEXMACS}\tests\*.*; DestDir: {app}\modules\{#TEXMACS}\tests; Flags: recursesubdirs; Components: {#COMPN_TEXMACS} and {#COMPN_TESTS}
 ;
-;Source: modules\{#TEXMACS}\unit_tests\*.ref; DestDir: {app}\modules\{#TEXMACS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TEXMACS} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#TEXMACS}\unit_tests\*.tst; DestDir: {app}\modules\{#TEXMACS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TEXMACS} and {#COMPN_UNIT_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

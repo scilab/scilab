@@ -44,9 +44,5 @@ Source: modules\{#ACTION_BINDING}\macros\cleanmacros.bat; DestDir: {app}\modules
 ;
 ;Source: modules\{#ACTION_BINDING}\demos\*.*; DestDir: {app}\modules\{#ACTION_BINDING}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#ACTION_BINDING}\nonreg_tests\*.*; DestDir: {app}\modules\{#ACTION_BINDING}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#ACTION_BINDING}\unit_tests\*.ref; DestDir: {app}\modules\{#ACTION_BINDING}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#ACTION_BINDING}\unit_tests\*.tst; DestDir: {app}\modules\{#ACTION_BINDING}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;
+;Source: modules\{#ACTION_BINDING}\tests\*.*; DestDir: {app}\modules\{#ACTION_BINDING}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;--------------------------------------------------------------------------------------------------------------

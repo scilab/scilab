@@ -42,9 +42,6 @@ Source: modules\{#SHELL}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SHELL}
 ;
 ;Source: modules\{#SHELL}\demos\*.*; DestDir: {app}\modules\{#SHELL}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#SHELL}\nonreg_tests\*.*; DestDir: {app}\modules\{#SHELL}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#SHELL}\unit_tests\*.ref; DestDir: {app}\modules\{#SHELL}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#SHELL}\unit_tests\*.tst; DestDir: {app}\modules\{#SHELL}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#SHELL}\tests\*.*; DestDir: {app}\modules\{#SHELL}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

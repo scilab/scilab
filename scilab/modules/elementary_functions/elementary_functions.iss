@@ -39,9 +39,6 @@ Source: modules\{#ELEMFUNCTIONS}\macros\*.sci; DestDir: {app}\modules\{#ELEMFUNC
 ;
 ;Source: modules\{#ELEMFUNCTIONS}\demos\*.*; DestDir: {app}\modules\{#ELEMFUNCTIONS}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#ELEMFUNCTIONS}\unit_tests\*.ref; DestDir: {app}\modules\{#ELEMFUNCTIONS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-Source: modules\{#ELEMFUNCTIONS}\unit_tests\*.tst; DestDir: {app}\modules\{#ELEMFUNCTIONS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;
-Source: modules\{#ELEMFUNCTIONS}\nonreg_tests\*.*; DestDir: {app}\modules\{#ELEMFUNCTIONS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+Source: modules\{#ELEMFUNCTIONS}\tests\*.*; DestDir: {app}\modules\{#ELEMFUNCTIONS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

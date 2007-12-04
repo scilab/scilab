@@ -42,9 +42,6 @@ Source: modules\{#LOCALIZATION}\xml\*.dtd; DestDir: {app}\modules\{#LOCALIZATION
 ;
 ;Source: modules\{#LOCALIZATION}\demos\*.*; DestDir: {app}\modules\{#LOCALIZATION}\demos; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#LOCALIZATION}\nonreg_tests\*.*; DestDir: {app}\modules\{#LOCALIZATION}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#LOCALIZATION}\unit_tests\*.ref; DestDir: {app}\modules\{#LOCALIZATION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#LOCALIZATION}\unit_tests\*.tst; DestDir: {app}\modules\{#LOCALIZATION}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#LOCALIZATION}\tests\*.*; DestDir: {app}\modules\{#LOCALIZATION}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

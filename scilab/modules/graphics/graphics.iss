@@ -49,9 +49,6 @@ Source: modules\{#GRAPHICS}\demos\*.*; DestDir: {app}\modules\{#GRAPHICS}\demos;
 Source: modules\{#GRAPHICS}\unit_tests\*.ref; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
 Source: modules\{#GRAPHICS}\unit_tests\*.tst; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
 ;
-Source: modules\{#FUNCTIONS}\nonreg_tests\*.*; DestDir: {app}\modules\{#GRAPHICS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_NO_REGRESSION_TESTS}
-;
-Source: modules\{#FUNCTIONS}\unit_tests\*.ref; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
-Source: modules\{#FUNCTIONS}\unit_tests\*.tst; DestDir: {app}\modules\{#GRAPHICS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
+Source: modules\{#FUNCTIONS}\tests\*.*; DestDir: {app}\modules\{#GRAPHICS}\tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

@@ -39,9 +39,6 @@ Source: modules\{#SPARSE}\macros\*.sci; DestDir: {app}\modules\{#SPARSE}\macros;
 ;
 ;Source: modules\{#SPARSE}\demos\*.*; DestDir: {app}\modules\{#SPARSE}\demos; Flags: recursesubdirs;  Components: {#COMPN_SPARSE}
 ;
-Source: modules\{#SPARSE}\unit_tests\*.ref; DestDir: {app}\modules\{#SPARSE}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SPARSE} and {#COMPN_UNIT_TESTS}
-Source: modules\{#SPARSE}\unit_tests\*.tst; DestDir: {app}\modules\{#SPARSE}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SPARSE} and {#COMPN_UNIT_TESTS}
-;
-Source: modules\{#SPARSE}\nonreg_tests\*.*; DestDir: {app}\modules\{#SPARSE}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SPARSE} and {#COMPN_NO_REGRESSION_TESTS}
+Source: modules\{#SPARSE}\tests\*.*; DestDir: {app}\modules\{#SPARSE}\tests; Flags: recursesubdirs; Components: {#COMPN_SPARSE} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

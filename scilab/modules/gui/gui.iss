@@ -45,9 +45,6 @@ Source: modules\{#GUI}\macros\cleanmacros.bat; DestDir: {app}\modules\{#GUI}\mac
 ;
 Source: modules\{#GUI}\demos\*.*; DestDir: {app}\modules\{#GUI}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#GUI}\unit_tests\*.ref; DestDir: {app}\modules\{#GUI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#GUI}\unit_tests\*.tst; DestDir: {app}\modules\{#GUI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;
-Source: modules\{#GUI}\nonreg_tests\*.*; DestDir: {app}\modules\{#GUI}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+Source: modules\{#GUI}\tests\*.*; DestDir: {app}\modules\{#GUI}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

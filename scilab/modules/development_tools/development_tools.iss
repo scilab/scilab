@@ -37,9 +37,6 @@ Source: modules\{#DEVTOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#DEV
 ;
 Source: modules\{#DEVTOOLS}\examples\*.*; DestDir: {app}\modules\{#DEVTOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
-;Source: modules\{#DEVTOOLS}\unit_tests\*.ref; DestDir: {app}\modules\{#DEVTOOLS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#DEVTOOLS}\unit_tests\*.tst; DestDir: {app}\modules\{#DEVTOOLS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS} and {#COMPN_UNIT_TESTS}
-;
-;Source: modules\{#DEVTOOLS}\nonreg_tests\*.*; DestDir: {app}\modules\{#DEVTOOLS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS} and {#COMPN_NO_REGRESSION_TESTS}
+;Source: modules\{#DEVTOOLS}\tests\*.*; DestDir: {app}\modules\{#DEVTOOLS}\tests; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

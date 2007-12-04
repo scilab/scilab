@@ -39,9 +39,6 @@ Source: modules\{#INCRLINK}\macros\cleanmacros.bat; DestDir: {app}\modules\{#INC
 ;
 Source: modules\{#INCRLINK}\examples\*.*; DestDir: {app}\modules\{#INCRLINK}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INCRLINK}\unit_tests\*.ref; DestDir: {app}\modules\{#INCRLINK}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-Source: modules\{#INCRLINK}\unit_tests\*.tst; DestDir: {app}\modules\{#INCRLINK}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;
-;Source: modules\{#INCRLINK}\nonreg_tests\*.*; DestDir: {app}\modules\{#INCRLINK}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+Source: modules\{#INCRLINK}\tests\*.*; DestDir: {app}\modules\{#INCRLINK}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

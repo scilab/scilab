@@ -35,9 +35,6 @@ Source: modules\{#COMPATFUNCTIONS}\macros\cleanmacros.bat; DestDir: {app}\module
 ;
 ;Source: modules\{#COMPATFUNCTIONS}\demos\*.*; DestDir: {app}\modules\{#COMPATFUNCTIONS}\demos; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS}
 ;
-Source: modules\{#COMPATFUNCTIONS}\nonreg_tests\*.*; DestDir: {app}\modules\{#COMPATFUNCTIONS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS} and {#COMPN_NO_REGRESSION_TESTS}
+Source: modules\{#COMPATFUNCTIONS}\tests\*.*; DestDir: {app}\modules\{#COMPATFUNCTIONS}\tests; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS} and {#COMPN_TESTS}
 ;
-;Source: modules\{#COMPATFUNCTIONS}\unit_tests\*.ref; DestDir: {app}\modules\{#COMPATFUNCTIONS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#COMPATFUNCTIONS}\unit_tests\*.tst; DestDir: {app}\modules\{#COMPATFUNCTIONS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS} and {#COMPN_UNIT_TESTS}
-
 ;--------------------------------------------------------------------------------------------------------------

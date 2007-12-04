@@ -41,9 +41,6 @@ Source: modules\{#ARNOLDI}\macros\cleanmacros.bat; DestDir: {app}\modules\{#ARNO
 ;
 ;Source: modules\{#ARNOLDI}\demos\*.*; DestDir: {app}\modules\{#ARNOLDI}\demos; Components: {#COMPN_ARNOLDI}
 ;
-;Source: modules\{#ARNOLDI}\nonreg_tests\*.*; DestDir: {app}\modules\{#ARNOLDI}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_ARNOLDI} and {#COMPN_NO_REGRESSION_TESTS}
+;Source: modules\{#ARNOLDI}\tests\*.*; DestDir: {app}\modules\{#ARNOLDI}\tests; Flags: recursesubdirs; Components: {#COMPN_ARNOLDI} and {#COMPN_TESTS}
 ;
-;Source: modules\{#ARNOLDI}\unit_tests\*.ref; DestDir: {app}\modules\{#ARNOLDI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_ARNOLDI} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#ARNOLDI}\unit_tests\*.tst; DestDir: {app}\modules\{#ARNOLDI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_ARNOLDI} and {#COMPN_UNIT_TESTS}
-
 ;--------------------------------------------------------------------------------------------------------------

@@ -39,9 +39,6 @@ Source: modules\{#HELPTOOLS}\bin\sablotron\*.*; DestDir: {app}\modules\{#HELPTOO
 ;
 Source: modules\{#HELPTOOLS}\examples\*.*; DestDir: {app}\modules\{#HELPTOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\nonreg_tests\*.*; DestDir: {app}\modules\{#HELPTOOLS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#HELPTOOLS}\unit_tests\*.ref; DestDir: {app}\modules\{#HELPTOOLS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#HELPTOOLS}\unit_tests\*.tst; DestDir: {app}\modules\{#HELPTOOLS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+Source: modules\{#HELPTOOLS}\tests\*.*; DestDir: {app}\modules\{#HELPTOOLS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

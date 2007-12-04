@@ -41,9 +41,6 @@ Source: modules\{#CORE}\demos\*.*; DestDir: {app}\modules\{#CORE}\demos; Flags: 
 ;
 Source: modules\{#CORE}\examples\*.*; DestDir: {app}\modules\{#CORE}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\unit_tests\*.ref; DestDir: {app}\modules\{#CORE}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-Source: modules\{#CORE}\unit_tests\*.tst; DestDir: {app}\modules\{#CORE}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;
-Source: modules\{#CORE}\nonreg_tests\*.*; DestDir: {app}\modules\{#CORE}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
+Source: modules\{#CORE}\tests\*.*; DestDir: {app}\modules\{#CORE}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

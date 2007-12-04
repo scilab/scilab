@@ -40,9 +40,6 @@ Source: modules\{#FUNCTIONS}\scripts\buildmacros\*.bat; DestDir: {app}\modules\{
 ;
 Source: modules\{#FUNCTIONS}\examples\*.*; DestDir: {app}\modules\{#FUNCTIONS}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FUNCTIONS}\nonreg_tests\*.*; DestDir: {app}\modules\{#FUNCTIONS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_NO_REGRESSION_TESTS}
-;
-Source: modules\{#FUNCTIONS}\unit_tests\*.ref; DestDir: {app}\modules\{#FUNCTIONS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-Source: modules\{#FUNCTIONS}\unit_tests\*.tst; DestDir: {app}\modules\{#FUNCTIONS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
+Source: modules\{#FUNCTIONS}\tests\*.*; DestDir: {app}\modules\{#FUNCTIONS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

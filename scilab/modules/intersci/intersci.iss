@@ -37,9 +37,6 @@ Source: modules\{#INTERSCI}\bin\*.exe; DestDir: {app}\modules\{#INTERSCI}\bin; C
 ;
 ;Source: modules\{#INTERSCI}\examples\*.*; DestDir: {app}\modules\{#INTERSCI}\examples; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
 ;
-Source: modules\{#INTERSCI}\nonreg_tests\*.*; DestDir: {app}\modules\{#INTERSCI}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_INTERSCI} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#INTERSCI}\unit_tests\*.ref; DestDir: {app}\modules\{#INTERSCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_INTERSCI} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#INTERSCI}\unit_tests\*.tst; DestDir: {app}\modules\{#INTERSCI}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_INTERSCI} and {#COMPN_UNIT_TESTS}
+Source: modules\{#INTERSCI}\tests\*.*; DestDir: {app}\modules\{#INTERSCI}\tests; Flags: recursesubdirs; Components: {#COMPN_INTERSCI} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

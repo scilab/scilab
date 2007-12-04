@@ -35,9 +35,6 @@ Source: modules\{#STATS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#STATS}
 ;
 ;Source: modules\{#STATS}\demos\*.*; DestDir: {app}\modules\{#STATS}\demos; Flags: recursesubdirs; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\unit_tests\*.ref; DestDir: {app}\modules\{#STATS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_STATS} and {#COMPN_UNIT_TESTS}
-Source: modules\{#STATS}\unit_tests\*.tst; DestDir: {app}\modules\{#STATS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_STATS} and {#COMPN_UNIT_TESTS}
-;
-Source: modules\{#STATS}\nonreg_tests\*.*; DestDir: {app}\modules\{#STATS}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_STATS} and {#COMPN_NO_REGRESSION_TESTS}
+Source: modules\{#STATS}\tests\*.*; DestDir: {app}\modules\{#STATS}\tests; Flags: recursesubdirs; Components: {#COMPN_STATS} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

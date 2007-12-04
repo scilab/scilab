@@ -33,9 +33,6 @@ Source: modules\{#SCI2FOR}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SCI2
 ;
 Source: modules\{#SCI2FOR}\demos\*.*; DestDir: {app}\modules\{#SCI2FOR}\demos; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
 ;
-;Source: modules\{#SCI2FOR}\nonreg_tests\*.*; DestDir: {app}\modules\{#SCI2FOR}\nonreg_tests; Flags: recursesubdirs; Components:{#COMPN_SCI2FOR} and {#COMPN_NO_REGRESSION_TESTS}
-;
-;Source: modules\{#SCI2FOR}\unit_tests\*.ref; DestDir: {app}\modules\{#SCI2FOR}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#SCI2FOR}\unit_tests\*.tst; DestDir: {app}\modules\{#SCI2FOR}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR} and {#COMPN_UNIT_TESTS}
+;Source: modules\{#SCI2FOR}\tests\*.*; DestDir: {app}\modules\{#SCI2FOR}\tests; Flags: recursesubdirs; Components:{#COMPN_SCI2FOR} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

@@ -42,9 +42,6 @@ Source: modules\{#LINALG}\macros\*.sci; DestDir: {app}\modules\{#LINALG}\macros;
 ;
 Source: modules\{#LINALG}\examples\*.*; DestDir: {app}\modules\{#LINALG}\examples; Flags: recursesubdirs;  Components: {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\unit_tests\*.ref; DestDir: {app}\modules\{#LINALG}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_LINALG} and {#COMPN_UNIT_TESTS}
-Source: modules\{#LINALG}\unit_tests\*.tst; DestDir: {app}\modules\{#LINALG}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_LINALG} and {#COMPN_UNIT_TESTS}
-;
-Source: modules\{#LINALG}\nonreg_tests\*.*; DestDir: {app}\modules\{#LINALG}\nonreg_tests; Flags: recursesubdirs; Components: {#COMPN_LINALG} and {#COMPN_NO_REGRESSION_TESTS}
+Source: modules\{#LINALG}\tests\*.*; DestDir: {app}\modules\{#LINALG}\tests; Flags: recursesubdirs; Components: {#COMPN_LINALG} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
