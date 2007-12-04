@@ -203,6 +203,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallJxclick.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\CallScilabBridge.cpp"
 				>
 			</File>
@@ -240,6 +244,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\InitUIMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\Jxclick.cpp"
 				>
 			</File>
 			<File
@@ -348,6 +356,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallJxclick.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\CallScilabBridge.hxx"
 				>
 			</File>
@@ -381,6 +393,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\InitUIMenu.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\Jxclick.hxx"
 				>
 			</File>
 			<File

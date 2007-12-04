@@ -10,4 +10,10 @@ setMenuCallback
 setMenuParent
 get_label_property
 set_label_property
+getMenuCallback
+getWindowID
+getYCoordinate
+getXCoordinate
+getMouseButtonNumber
+CallJxclick
 ;
