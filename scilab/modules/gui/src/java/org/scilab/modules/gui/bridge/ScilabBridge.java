@@ -831,9 +831,10 @@ public class ScilabBridge {
 	 * Add a callback to the menu, this callback is a Scilab command
 	 * @param menuItem the MenuItem which we want to add the mnemonic to
 	 * @param command the Scilab command to execute when the menu is activated
+	 * @param commandType the type of the command that will be executed.
 	 */
-	public static void setCallback(MenuItem menuItem, String command) {
-		ScilabMenuItemBridge.setCallback(menuItem, command);
+	public static void setCallback(MenuItem menuItem, String command, int commandType) {
+		ScilabMenuItemBridge.setCallback(menuItem, command, commandType);
 	}
 
 	/**

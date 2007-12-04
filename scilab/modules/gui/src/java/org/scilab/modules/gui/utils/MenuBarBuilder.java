@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -197,13 +198,17 @@ public final class MenuBarBuilder {
 					while (callback != null) {
 						if (callback.getNodeName() == CALLBACK) {
 							NamedNodeMap cbAttributes = callback.getAttributes();
+							String command = null;
+							int commandType = CallBack.UNTYPED;
 							for (int j = 0; j < cbAttributes.getLength(); j++) {
 								if (cbAttributes.item(j).getNodeName() == INSTRUCTION) {
-									menuItem.setCallback(cbAttributes.item(j).getNodeValue());
+									command = cbAttributes.item(j).getNodeValue();
 								} else if (cbAttributes.item(j).getNodeName() == TYPE) {
-									// TODO uncomment the line after writing setCallbackType ;)
-									//menuItem.setCallbackType(nodeCallback.item(i).getNodeValue().charAt(0));
+									commandType = cbAttributes.item(j).getNodeValue().charAt(0);
 								}
+							}
+						if (command != null && commandType != CallBack.UNTYPED) {
+							menuItem.setCallback(command, commandType);
 							}
 						}
 						// Read next child
