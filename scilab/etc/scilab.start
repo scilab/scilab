@@ -142,17 +142,15 @@ if sciargs()<>'-nouserstartup' then
   end
 end
 clear startup ierr
-// =====================================================================
-
 // Menu can now be enabled ===========================================
-if grep(args,'lt-scilab-bin')<>[] then
-  if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs")&(args<>"-nogui") then
+if ( getscilabmode() == 'STD') then
         setmenu(gettext("File"));
         setmenu(gettext("Edit"));
         setmenu(gettext("Preferences"));
         setmenu(gettext("Control"));
         setmenu(gettext("Applications"));
         setmenu(gettext("?"));
-  end
 end
+// =====================================================================
 clear ans
+// =====================================================================
