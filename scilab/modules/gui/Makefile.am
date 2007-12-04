@@ -20,7 +20,9 @@ src/c/setMainWindowTitle.c \
 src/c/addmenu.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
-src/jni/CallScilabBridge.cpp
+src/jni/CallScilabBridge.cpp \
+src/jni/Jxclick.cpp \
+src/cpp/CallJxclick.cpp
 
 GIWS_WRAPPERS = src/jni/DrawableRectangleGL.giws.xml
 
