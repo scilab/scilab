@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>getscilabmode</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>$LastChangedDate: 2007-04-02 14:33:52 +0200 (Mon, 02 Apr 2007) $</DATE>
+  <SHORT_DESCRIPTION name="getscilabmode">returns scilab mode</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mode = getscilabmode()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>returns scilab mode. 4 modes are possible : STD , API , NW , NWNI .</P>
+    <P><VERB>API</VERB> : Scilab is launch as an API.</P>
+    <P><VERB>STD</VERB> : The standard Scilab (gui, plot ...) </P>
+    <P><VERB>NW</VERB> : Scilab in command line with the plots.</P>
+    <P><VERB>NWNI</VERB> : Scilab in command line without any graphics.</P>
+    
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[getscilabmode()]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>scilab</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
