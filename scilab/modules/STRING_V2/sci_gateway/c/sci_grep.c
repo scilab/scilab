@@ -282,6 +282,8 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 				LhsVar(2) = Rhs+2;    
 			}
 			C2F(putlhsvar)();
+			if (grepresults.values) {FREE(grepresults.values); grepresults.values = NULL;}
+			if (grepresults.positions) {FREE(grepresults.positions); grepresults.positions = NULL;}
 		}
 		break;
 
