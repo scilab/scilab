@@ -130,10 +130,17 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   for x=libs(:)' ; mfprintf(fd," %s.lib",x);end
   mfprintf(fd,"\n");
   mfprintf(fd,"!include $(SCIDIR1)\\Makefile.incl.mak\n");
-  mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
+  if findmsvccompiler() <>'msvc90express' then
+    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
 	   " -Dmexfunction_=mex$*_  -DmexFunction=mex_$* "+ cflags +" \n"); 
-  mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
+    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
 	   " -Dmexfunction=mex$* "+ fflags +"\n"); 
+	else
+    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
+	   " "+ cflags +" \n"); 
+    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
+	   " "+ fflags +"\n"); 
+	end
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");
   mfprintf(fd,"!include $(SCIDIR1)\\modules\\incremental_link\\src\\scripts\\Makedll.incl \n");
   mclose(fd);

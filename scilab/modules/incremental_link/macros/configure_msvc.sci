@@ -10,6 +10,8 @@ if MSDOS then
       bOK=setmsvc80pro()
   case 'msvc80std' then
       bOK=setmsvc80std()    
+  case 'msvc90express' then
+      bOK=setmsvc90express()      
   case 'msvc80express' then
       bOK=setmsvc80express()
   case 'msvc71' then
@@ -116,6 +118,66 @@ function bOK=setmsvc80express()
 if MSDOS then
   MSVSDir=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VCExpress\8.0\Setup\VS','ProductDir');
   if ( part(MSVSDir,length(MSVSDir)) == filesep() ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
+  
+  err=setenv('VSINSTALLDIR',MSVSDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  MSVCDir=MSVSDir+'\VC';
+  err=setenv('VCINSTALLDIR',MSVCDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  DevEnvDir=MSVSDir+'\Common7\IDE';
+  err=setenv('DevEnvDir',DevEnvDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  PATH=getenv('PATH','ndef');
+  if (PATH =='ndef') then  bOK=%F,return,end
+  
+  err=setenv('PATH',DevEnvDir+';'+MSVCDir+'\bin;'+MSVSDir+'\Common7\Tools;'+MSVSDir+'\SDK\v2.0\bin;'+MSVCDir+'\VCPackages;'+PATH+";"+WSCI+"\bin;");
+  if (err == %F) then bOK=%F,return,end
+  
+  ierr1=execstr("VISTASDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\Microsoft SDKs\Windows'',''CurrentInstallFolder'');","errcatch");  
+  ierr2=execstr("W2003R2SDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1'',''Install Dir'');","errcatch");
+  ierr3=execstr("W2003SDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3'',''Install Dir'');","errcatch");
+  
+  if (ierr1 == 0) then
+    WINDOWSSDK = winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\Microsoft SDKs\Windows','CurrentInstallFolder');
+    lasterror(%T); // The error message is cleared
+  else 
+    if (ierr2 == 0) then
+      WINDOWSSDK = winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1','Install Dir');
+      lasterror(%T); // The error message is cleared
+    else
+      if (ierr3 == 0) then
+        WINDOWSSDK = winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3','Install Dir');
+        lasterror(%T); // The error message is cleared
+      end
+    end
+  end
+  
+  INCLUDE=getenv('INCLUDE','');  
+  INCLUDE=MSVCDir+'\INCLUDE;'+WINDOWSSDK+'INCLUDE;'
+  err=setenv("INCLUDE",INCLUDE);
+  if (err == %F) then bOK=%F,return,end
+  
+  LIB=getenv('LIB',''); 
+  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+WINDOWSSDK+'Lib;'+LIB;
+  err=setenv("LIB",LIB);
+  if (err == %F) then bOK=%F,return,end
+  
+  err=setenv("USE_MT","-MT");
+  if (err == %F) then bOK=%F,return,end
+  
+  bOK=%T
+else
+  bOK=%F;
+end
+endfunction
+//-----------------------------------------------------------------------------
+function bOK=setmsvc90express()
+if MSDOS then
+  MSVSDir=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VCExpress\9.0\Setup\VS','ProductDir');
+  if ( part(MSVSDir,length(MSVSDir)) == '\' ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
   
   err=setenv('VSINSTALLDIR',MSVSDir);
   if (err == %F) then bOK=%F,return,end

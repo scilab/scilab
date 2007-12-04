@@ -16,6 +16,8 @@ if MSDOS then
     	  bOK=%T
     	case 'msvc80std' then
     	  bOK=%T
+	    case 'msvc90express' then
+    	  bOK=%T    	  
     	case 'msvc80express' then
     	  bOK=%T
       case 'msvc71' then
