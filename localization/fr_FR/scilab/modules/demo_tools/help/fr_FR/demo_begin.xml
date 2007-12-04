@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>demo_begin</TITLE>
+	<TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="demo_begin">Commence une démonstration</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>demo_begin()</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+		La fonction demo_begin() sert à commencer une démonstration.
+		Elle place le script et les valeurs en mode de non affichage à la console,
+		enregistre les variables de l'environnement dans un fichier temporaire et
+		sauvegarde la largeur de la console.
+		Elle doit être utilisée avec la function demo_end.
+		</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+getf('SCI/demos/demos_lib/demo_begin.sci');
+
+demo_begin;
+
+getf('SCI/demos/graphics/bezier/Macros.sci');
+exec('SCI/demos/graphics/bezier/bezier.sci','n');
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_end</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_run</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_message</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>

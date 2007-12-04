@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>demo_run</TITLE>
+	<TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="demo_run"> script file execution </SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>demo_run(fil)</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+		The  function demo_run executes a script in the file 'fil' given in argument.
+		</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+demo_run('SCI/demos/control/pid/pid_1.sce');
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>exec</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_message</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>demo_begin</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_end</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>

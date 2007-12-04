@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>demo_mdialog</TITLE>
+	<TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="demo_mdialog"> create a dialog box </SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>resp = demo_mdialog(fil)</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+			The function demo_mdialog create a dialog box. It takes as argument a binary 
+			file. This file is built by a .sce file written like below. It shall contain 
+			the variables 'titl', the title a the dialog box, 'namevar', the name of the 
+			fields to fill, and 'value', the values written by default. After this, these 
+			three variables shall be saved in the binary file.
+			The use of demo_mdialog shall be preceded by the execution of the .sce 
+			associated.
+			The function demo_mdialog returns 'resp', the values chosen by the user.
+		</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+exec('SCI/demos/control/pid/pid_dial_4.sce');
+[defv]=demo_mdialog('SCI/demos/control/pid/pid_dial_4.bin');  
+  
+  if defv==[] then warning('Demo stops!');return;end
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_choose</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>x_mdialog</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>x_dialog</LINK>
+		</SEE_ALSO_ITEM>
+		</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>

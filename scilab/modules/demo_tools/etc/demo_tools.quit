@@ -1,0 +1,8 @@
+// =============================================================================
+// This file contains command to be executed at the end
+// of a scilab session for demo_tools module
+// Copyright INRIA 2006
+// =============================================================================
+
+// delete help chapter
+del_help_chapter('demo_tools',%T);

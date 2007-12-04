@@ -1,0 +1,17 @@
+# Localization of the module time
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab - demo_tools\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-12-04 16:29+0100\n"
+"PO-Revision-Date: 2007-12-04 19:34:28+02:00\n"
+"Last-Translator: Pierre MARECHAL <pierre.marechal@inria.fr>\n"
+"Language-Team: Scilab <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"

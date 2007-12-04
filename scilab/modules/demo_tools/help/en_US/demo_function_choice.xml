@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>demo_function_choice</TITLE>
+	<TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="demo_function_choice"> choose and execute an item within a list </SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>demo_function_choice()</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+		The function demo_function_choice choose and execute an item chosen in the 
+		variable 'demolist' that shall appear above.
+		The variable 'demolist' is a text matrix whose first column contains item names 
+		displayed in an options window and whose second column contains the function that will 
+		be called. The title of the options window is 'Choose a demo'. 
+		If the options window is cancelled, the console is put back to its previous 
+		width.
+		</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+demolist=[
+	'Simulation of a binomial random variable','set figure_style new;xbasc();BinomialT();';
+	'Simulation of a discrete random variable','set figure_style new;xbasc();RndDiscT();';
+	'Simulation of a geometric random variable','set figure_style new;xbasc();GeomT(1000);';
+	'Simulation of a Poisson random variable','set figure_style new;xbasc();PoissonT() ;';
+	'Simulation of an exponential random variable','set figure_style new;xbasc();ExpT();';
+	'Simulation of a Weibull random variable','set figure_style new;xbasc();WeibullT();';
+	'Simulation of an hyper geometric random variable','set figure_style new;xbasc();HyperGeomT();';
+	'Simulation of an Erlang random variable','set figure_style new;xbasc();ErlangT();'];
+
+demo_function_choice();
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_file_choice</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>

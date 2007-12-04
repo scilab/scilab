@@ -1,0 +1,12 @@
+// =============================================================================
+// demo_tools module initialisation file
+// Author : Pierre MARECHAL
+// Scilab Project
+// Copyright INRIA 2007
+// =============================================================================
+
+// Load  functions library
+load('SCI/modules/demo_tools/macros/lib');
+
+// Add help chapter
+add_module_help_chapter('demo_tools');

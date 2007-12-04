@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>demo_begin</TITLE>
+	<TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="demo_begin"> begin a demonstration </SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>demo_begin()</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+		The function demo_begin is used to begin a demonstration.
+		It sets the script and the values in mode of non display on the console, save the 
+		environment variables in a temporary file and save the width of the console.
+		This function shall be used with the function demo_end.
+		</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+getf('SCI/demos/demos_lib/demo_begin.sci');
+
+demo_begin;
+
+getf('SCI/demos/graphics/bezier/Macros.sci');
+exec('SCI/demos/graphics/bezier/bezier.sci','n');
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_end</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_run</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_message</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>

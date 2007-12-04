@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>demo_file_choice</TITLE>
+	<TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="demo_file_choice"> choisit et exécute un item au sein d'une liste </SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>demo_file_choice(path,ch)</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+			La fonction demo_file_choice choisit et exécute un item choisi dans la variable
+			'demolist' qui doit figurer avant. La variable 'demolist' est une matrice de
+			texte dont la premiere colonne contient des noms d'items affichée dans une
+			fenêtre d'options et la deuxième, le nom d'un fichier correspondant qui sera
+			exécuté Le titre de la fenêtre d'options est 'Choose a demo'.
+			La variable 'path' est le chemin d'accès aux fichiers appelée dans la deuxième
+			colonne. La variable 'ch' permet d'éviter les cas particuliers 'root' et 'anim'
+			qui sont destinés à des démonstrations particulières. Il faut donc mettre autre
+			chose que 'root' ou 'anim', 'no' par exemple.
+			Quand on choisit d'abandonner la fenêtre d'options, la console est remise à sa largeur 
+			initiale.
+		</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+demolist=['n-pendulum','npend/npend_gateway.sce';
+	  'Wheel simulation','wheel2/wheel_gateway.sce';
+	  'Bike Simulation','bike/bike_gateway.sce';
+	  'ODE''S','ode/ode.dem';
+	  'DAE''S','dae/dae.dem']
+
+demo_file_choice('SCI/demos/simulation/','no');
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_function_choice</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>
+    

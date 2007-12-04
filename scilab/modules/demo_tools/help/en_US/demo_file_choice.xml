@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>demo_file_choice</TITLE>
+	<TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="demo_file_choice"> choose and executes an item within a list </SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>demo_file_choice(path,ch)</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+		The function demo_file_choice choose and executes an item chosen in the 
+		'demolist' variable, that shall be written above. The variable 'demolist' is a 
+		text matrix whose first column contains names of items displayed in an options 
+		window and whose second column contains the names of the files that will be 
+		executed. The title of the options window is 'Choose a demo'.
+		The 'path' variable is the access to the files called in the second column.
+		The 'ch' variable allows to avoid the special cases 'root' and 'anim' that are 
+		used in peculiar demonstrations of Scilab. Then you have to enter another word 
+		than 'root' or 'ch', 'no' for example.
+		If you choose to cancel the options window, the console is put back to its 
+		previous width.
+		</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+demolist=['n-pendulum','npend/npend_gateway.sce';
+	  'Wheel simulation','wheel2/wheel_gateway.sce';
+	  'Bike Simulation','bike/bike_gateway.sce';
+	  'ODE''S','ode/ode.dem';
+	  'DAE''S','dae/dae.dem']
+
+demo_file_choice('SCI/demos/simulation/','no');
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_function_choice</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>

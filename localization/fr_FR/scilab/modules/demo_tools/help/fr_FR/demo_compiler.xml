@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>demo_compiler</TITLE>
+	<TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="demo_compiler"> teste la présence d'un compilateur </SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>N = datenum()</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+			La fonction demo_compiler interroge l'ordinateur pour savoir s'il possède un 
+			compilateur C. Elle renvoie un booléen corresdondant à la présence ou non du
+			compilateur.
+		</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+select num,
+ case 0
+  return;
+ case 2 then 
+  demo_compiler(); //The compiler will be used
+  if (ans==%t) then
+	  mode(0);
+	  wheel_build_and_load()
+	end
+ case 1 then // A precomputed value
+	x=read(path+'/x.wrt',8,301);
+	wheelg=wheelgs;
+	show(x);
+end
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>findmsvccompiler</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>

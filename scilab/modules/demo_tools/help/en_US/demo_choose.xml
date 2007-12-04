@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>demo_choose</TITLE>
+	<TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="demo_choose"> create a dialog box for the choice of options </SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>num = demo_choose(fil)</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+			The function demo_choose create a dialog box for the choice of options. It 
+			takes as argument the binary file 'fil'. This file is built by a .sce file 
+			written like below. It shall contain the variables 'choice', an array of text
+			within bracket (the different options), and 'titl', the title of the dialog 
+			box. After that, the .sce file shall save both variables in the binary file 
+			in argument.
+			Before the use of demo_choose, the .sce file shall be executed.
+			The function demo_choose returns the number of line chosen in the options 
+			array.
+		</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+exec('SCI/demos/control/pid/pid_ch_2.sce');
+[n]=demo_choose('SCI/demos/control/pid/pid_ch_2.bin');
+select n
+  case 0
+    break
+  case 1
+    mode(1)
+  case 2
+	mode(-1)
+end
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>x_choose</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>demo_mdialog</LINK>
+		</SEE_ALSO_ITEM>
+		</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>
