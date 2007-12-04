@@ -1316,12 +1316,16 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	export LANG=C;\
 @PVM_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 @GUI_TRUE@@PVM_TRUE@java:
-@GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
+# Some configurations needs to export JAVA_HOME in the current env
+@GUI_TRUE@@PVM_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@@PVM_TRUE@	if test -f build.xml; then \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) jar; \
 @GUI_TRUE@@PVM_TRUE@	fi
 
-@GUI_TRUE@@PVM_TRUE@clean-java: 
-@GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@@PVM_TRUE@clean-java:
+# Some configurations needs to export JAVA_HOME in the current env
+@GUI_TRUE@@PVM_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@@PVM_TRUE@	if test -f build.xml; then \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) clean; \
 @GUI_TRUE@@PVM_TRUE@	fi
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
@@ -1449,12 +1453,16 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	export LANG=C;\
 @PVM_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 @GUI_TRUE@@PVM_FALSE@java:
-@GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
+# Some configurations needs to export JAVA_HOME in the current env
+@GUI_TRUE@@PVM_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@@PVM_FALSE@	if test -f build.xml; then \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) jar; \
 @GUI_TRUE@@PVM_FALSE@	fi
 
-@GUI_TRUE@@PVM_FALSE@clean-java: 
-@GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
+@GUI_TRUE@@PVM_FALSE@clean-java:
+# Some configurations needs to export JAVA_HOME in the current env
+@GUI_TRUE@@PVM_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@@PVM_FALSE@	if test -f build.xml; then \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) clean; \
 @GUI_TRUE@@PVM_FALSE@	fi
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 

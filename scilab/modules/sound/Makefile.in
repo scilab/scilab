@@ -850,12 +850,16 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 @GUI_TRUE@java:
-@GUI_TRUE@	@if test -f build.xml; then \
+# Some configurations needs to export JAVA_HOME in the current env
+@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@	if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) jar; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@clean-java: 
-@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@clean-java:
+# Some configurations needs to export JAVA_HOME in the current env
+@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@	if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) clean; \
 @GUI_TRUE@	fi
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
