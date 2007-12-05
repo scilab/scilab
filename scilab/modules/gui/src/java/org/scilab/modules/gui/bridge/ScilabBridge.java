@@ -214,6 +214,15 @@ public class ScilabBridge {
 		ScilabToolBarBridge.add(toolBar, pushButton);
 	}
 
+	/**
+	 * Add a Separator to a Toolbar
+	 * @param toolbar the Toolbar which we want to add the Separator to
+	 */
+	public static void addSeparator(ToolBar toolbar) {
+		ScilabToolBarBridge.addSeparator(toolbar);
+	}
+
+
 	
 	/****************/
 	/* Frame Bridge */
@@ -1064,6 +1073,15 @@ public class ScilabBridge {
 	 */
 	public static void setCallback(PushButton pushButton, String command, int commandType) {
 		ScilabPushButtonBridge.setCallback(pushButton, command, commandType);
+	}
+
+	/**
+	 * Set if the pushbutton is enabled or not
+	 * @param pushButton the PushButton we want to set the status of
+	 * @param status true if the pushbutton is enabled
+	 */
+	public static void setEnabled(PushButton pushButton, boolean status) {
+		ScilabPushButtonBridge.setEnabled(pushButton, status);
 	}
 
 	/*****************/

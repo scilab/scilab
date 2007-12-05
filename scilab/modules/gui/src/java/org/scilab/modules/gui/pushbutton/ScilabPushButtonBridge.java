@@ -117,5 +117,14 @@ public class ScilabPushButtonBridge {
 	public static void setCallback(PushButton pushButton, String command, int commandType) {
 		pushButton.getAsSimplePushButton().setCallback(command, commandType);
 	}
+
+	/**
+	 * Set if the pushbutton is enabled or not
+	 * @param pushButton the PushButton we want to set the status of
+	 * @param status true if the pushbutton is enabled
+	 */
+	public static void setEnabled(PushButton pushButton, boolean status) {
+		pushButton.getAsSimplePushButton().setEnabled(status);
+	}
 }
 

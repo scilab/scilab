@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<toolbar>
+    <!-- New Scilab -->
+    <button icon="window-new.png" enabled="false"/>
+
+    <separator/>
+
+    <!-- Scipad -->
+    <button icon="accessories-text-editor.png" enabled="false"/>
+    <!-- Open File -->
+    <button icon="document-open.png" enabled="false"/>
+
+    <separator/>
+
+    <!-- Copy -->
+    <button icon="edit-copy.png" enabled="false"/>
+    <!-- Paste -->
+    <button icon="edit-paste.png" enabled="false"/>
+
+    <separator/>
+
+    <!-- Change current directory -->
+    <button icon="folder.png" enabled="false"/>
+
+    <separator/>
+
+    <!-- Change font -->
+    <button icon="format-text-bold.png" enabled="false"/>
+    <!-- Print -->
+    <button icon="printer.png" enabled="false"/>
+
+    <separator/>
+
+    <!-- Help -->
+    <button icon="help-browser.png" enabled="false"/>
+</toolbar>

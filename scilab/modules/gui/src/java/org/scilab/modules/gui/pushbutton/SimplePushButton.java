@@ -80,4 +80,10 @@ public interface SimplePushButton {
 	 */
 	void setCallback(String command, int commandType);
 
+	/**
+	 * Set if the pushbutton is enabled or not
+	 * @param status true if the pushbutton is enabled
+	 */
+	void setEnabled(boolean status);
+
 }

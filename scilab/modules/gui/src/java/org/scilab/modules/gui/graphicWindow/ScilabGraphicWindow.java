@@ -17,6 +17,7 @@ import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.renderer.FigureMapper;
@@ -29,9 +30,18 @@ import org.xml.sax.SAXException;
 public class ScilabGraphicWindow extends ScilabWindow {
 
 	private static final String FIGURE_TITLE = "Graphic window number ";
-	private static final String MENUSXMLFILE = System.getenv("SCI") + "/modules/gui/etc/graphics_menus.xml";;
+	
+	private static final String SCIDIR = System.getenv("SCI");
+	
+	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";;
+	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";;
+	
 	private static final String FILE_NOT_FOUND = "Could not find file: ";
-	private static final String CANNOT_CREATE_MENUBAR = "Cannot create Figure MenuBar.\nCheck if file graphics_menus.xml is available and valid.";
+	
+	private static final String CANNOT_CREATE_MENUBAR = "Cannot create Figure MenuBar.\n"
+								+ "Check if file graphics_menubar.xml is available and valid.";
+	private static final String CANNOT_CREATE_TOOLBAR = "Cannot create Figure ToolBar.\n"
+								+ "Check if file graphics_toolbar.xml is available and valid.";
 	
 	/**
 	 * Constructor
@@ -47,8 +57,9 @@ public class ScilabGraphicWindow extends ScilabWindow {
 	 */
 	public void setFigureIndex(int figureIndex) {
 		this.setTitle(FIGURE_TITLE + figureIndex);
+		/* MENUBAR */
 		try {
-			this.addMenuBar(MenuBarBuilder.buildMenuBar(MENUSXMLFILE));
+			this.addMenuBar(MenuBarBuilder.buildMenuBar(MENUBARXMLFILE));
 		} catch (SAXException e) {
 			System.err.println(CANNOT_CREATE_MENUBAR);
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
@@ -57,6 +68,19 @@ public class ScilabGraphicWindow extends ScilabWindow {
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
 		} catch (ParserConfigurationException e) {
 			System.err.println(CANNOT_CREATE_MENUBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+		}
+		/* TOOLBAR */
+		try {
+			this.addToolBar(ToolBarBuilder.buildToolBar(TOOLBARXMLFILE));
+		} catch (SAXException e) {
+			System.err.println(CANNOT_CREATE_TOOLBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+		} catch (IOException e) {
+			System.err.println(CANNOT_CREATE_TOOLBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+		} catch (ParserConfigurationException e) {
+			System.err.println(CANNOT_CREATE_TOOLBAR);
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
 		}
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);

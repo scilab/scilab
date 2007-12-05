@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<toolbar>
+    <!-- Rotate -->
+    <button icon="view-refresh.png" enabled="false"/>
+
+    <separator/>
+
+    <!-- Zoom In -->
+    <button icon="list-add.png" enabled="false"/>
+    <!-- Zoom Out -->
+    <button icon="list-remove.png" enabled="false"/>
+
+    <separator/>
+
+    <!-- Help -->
+    <button icon="help-browser.png" enabled="false"/>
+</toolbar>

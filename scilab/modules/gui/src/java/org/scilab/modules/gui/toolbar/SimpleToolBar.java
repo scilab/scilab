@@ -16,4 +16,22 @@ public interface SimpleToolBar {
 	 * @param pushButton the PushButton to add.
 	 */
 	void add(PushButton pushButton);
+
+	/**
+	 * Add a Separator to a toolbar
+	 */
+	void addSeparator();
+
+	/**
+	 * Set the element id for this toolbar
+	 * @param id the id of the corresponding toolbar object
+	 */
+	void setElementId(int id);
+	
+	/**
+	 * Get the element id for this toolbar
+	 * @return id the id of the corresponding toolbar object
+	 */
+	int getElementId();
+	
 }

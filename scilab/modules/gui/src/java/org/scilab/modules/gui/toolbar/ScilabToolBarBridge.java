@@ -35,4 +35,13 @@ public class ScilabToolBarBridge {
 	public static void add(ToolBar toolBar, PushButton pushButton) {
 		toolBar.getAsSimpleToolBar().add(pushButton);
 	}
+
+	/**
+	 * Add a Separator to a Toolbar
+	 * @param toolbar the toolbar which we want to add the Separator to
+	 */
+	public static void addSeparator(ToolBar toolbar) {
+		toolbar.getAsSimpleToolBar().addSeparator();
+	}
+
 }

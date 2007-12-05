@@ -39,7 +39,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 		this.infoBar = null;
 		
 		setMenuBarId(UIElementMapper.getDefaultId());
-
+		setToolBarId(UIElementMapper.getDefaultId());
 	}
 	
 	/**

@@ -116,4 +116,16 @@ public interface UIElement {
 	 * @param id the Id of the UIElement
 	 */
 	void setMenuBarId(int id);
+	
+	/**
+	 * Get the Id of the toolbar in the UIElementMapper
+	 * @return the Id of the UIElement
+	 */
+	int getToolBarId();
+	
+	/**
+	 * Set the Id of the toolbar in the UIElementMapper
+	 * @param id the Id of the UIElement
+	 */
+	void setToolBarId(int id);
 }

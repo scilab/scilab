@@ -7,6 +7,7 @@ import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.event.DockingListener;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.window.ScilabWindow;
 
 /**
@@ -45,12 +46,22 @@ public class SciDockingListener implements DockingListener {
 		// Change the parent window id of docked tab
 		dockedTab.setParentWindowId(associatedScilabWindowId);
 		
+		// Manage the menubar
 		int dockedTabMenuBarId = UIElementMapper.getCorrespondingUIElement(dockedTab.getElementId()).getMenuBarId();
 		ScilabMenuBar dockedTabMenuBar = (ScilabMenuBar) UIElementMapper.getCorrespondingUIElement(dockedTabMenuBarId);
 		
 		if (dockedTabMenuBar != null) {
 			// If docked tab has a menubar, this menubar becomes current menubar for the parent window
 			((ScilabWindow) UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId)).addMenuBar(dockedTabMenuBar);
+		}
+		
+		// Manage the toolbar
+		int dockedTabToolBarId = UIElementMapper.getCorrespondingUIElement(dockedTab.getElementId()).getToolBarId();
+		ScilabToolBar dockedTabToolBar = (ScilabToolBar) UIElementMapper.getCorrespondingUIElement(dockedTabToolBarId);
+		
+		if (dockedTabToolBar != null) {
+			// If docked tab has a toolbar, this toolbar becomes current menubar for the parent window
+			((ScilabWindow) UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId)).addToolBar(dockedTabToolBar);
 		}
 		
 		if (e.getOldDockingPort() != null) {

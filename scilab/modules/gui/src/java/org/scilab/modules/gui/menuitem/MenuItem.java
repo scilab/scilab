@@ -33,6 +33,7 @@ public interface MenuItem {
 	 * @param commandType the type of the command that will be executed.
 	 */
 	void setCallback(String command, int commandType);
+	
 	/**
 	 * Set if the menu item is enabled or not
 	 * @param status true if the menu item is enabled

@@ -23,6 +23,11 @@ public abstract class ScilabUIElement implements UIElement {
 	private ToolBar toolBar;
 
 	/**
+	 * The Id of the ToolBar associated to the UIElement
+	 */
+	private int toolBarId;
+
+	/**
 	 * The menubar associated to the UIElement
 	 */
 	private MenuBar menuBar;
@@ -125,6 +130,22 @@ public abstract class ScilabUIElement implements UIElement {
 	}
 
 	/**
+	 * Get the Id of the toolbar in the UIElementMapper
+	 * @return the Id of the UIElement
+	 */
+	public int getToolBarId() {
+		return toolBarId;
+	}
+	
+	/**
+	 * Set the Id of the toolbar in the UIElementMapper
+	 * @param id the Id of the UIElement
+	 */
+	public void setToolBarId(int id) {
+		this.toolBarId = id;
+	}
+
+	/**
 	 * Gets the layout of the text of an UIElement
 	 * @return the textLayout
 	 * @see org.scilab.modules.gui.utils.Layout
@@ -156,6 +177,11 @@ public abstract class ScilabUIElement implements UIElement {
 	 */
 	public void addToolBar(ToolBar toolBar) {
 		this.toolBar = toolBar;
+		// When the toolBar is added to an element, 
+		// we also have to update the toolBarId of this element
+		if (toolBar != null) {
+			setToolBarId(toolBar.getAsSimpleToolBar().getElementId());
+		}
 	}
 
 	/*******************************/

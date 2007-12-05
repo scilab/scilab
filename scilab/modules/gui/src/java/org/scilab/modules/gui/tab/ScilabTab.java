@@ -35,7 +35,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 		component.setElementId(UIElementMapper.add(this));
 		
 		setMenuBarId(UIElementMapper.getDefaultId());
-    }
+		setToolBarId(UIElementMapper.getDefaultId());
+   }
 
 	/**
 	 * Creates a Scilab Tab

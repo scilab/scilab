@@ -124,6 +124,14 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 		ScilabBridge.setCallback(this, command, commandType);
 	}
 
+	/**
+	 * Set if the pushbutton is enabled or not
+	 * @param status true if the pushbutton is enabled
+	 */
+	public void setEnabled(boolean status) {
+		ScilabBridge.setEnabled(this, status);
+	}
+
 	//	/**
 //	 * Sets a MenuBar to an element
 //	 * @param newMenuBar the MenuBar to set to the element

@@ -85,5 +85,13 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void setCallback(String command, int commandType) {
 		super.addActionListener(ScilabCallBack.create(command, commandType));
 	}
+
+	/**
+	 * Set if the pushbutton is enabled or not
+	 * @param status true if the pushbutton is enabled
+	 */
+	public void setEnabled(boolean status) {
+		super.setEnabled(status);
+	}
 }
 
