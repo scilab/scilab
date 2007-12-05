@@ -81,3 +81,5 @@ sciGetLogFlags
 sciGetDataBounds
 TheTicks
 GradLog
+sciGetBoxType
+sciGetHiddenColor

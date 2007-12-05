@@ -50,9 +50,19 @@ protected:
   virtual void show( void ) ;
 
   /**
-   * Draw the bounding box of the sunwin object.
+   * Draw the bounding box and ticks of the sunwin object.
    */
-  void drawBox(const double bounds[6]);
+  void drawAxesBox(void);
+
+  /**
+   * Draw the surrounding cube of the subwin object.
+   */
+  virtual void drawBox(void) = 0;
+
+  /**
+   * Draw the ticks of the subwin object.
+   */
+  virtual void drawTicks(void) = 0;
 
   /**
    * Return the real type of implementation object

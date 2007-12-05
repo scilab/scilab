@@ -67,7 +67,7 @@ void DrawableSubwin::show( void )
   double bounds[6] ;
   sciGetRealDataBounds(m_pDrawed, bounds) ;
 
-  drawBox(bounds);
+  drawAxesBox();
 
   displayChildren() ;
 
@@ -77,9 +77,10 @@ void DrawableSubwin::show( void )
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableSubwin::drawBox(const double bounds[6])
+void DrawableSubwin::drawAxesBox(void)
 {
-  getSubwinImp()->drawBox(bounds);
+  drawBox();
+  drawTicks();
 }
 /*---------------------------------------------------------------------------------*/
 DrawableSubwinBridge * DrawableSubwin::getSubwinImp( void )

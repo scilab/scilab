@@ -382,7 +382,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
       ppsubwin->project[0]= ppaxesmdl->project[0];
       ppsubwin->project[1]= ppaxesmdl->project[1];
       ppsubwin->project[2]= ppaxesmdl->project[2];
-      ppsubwin->hiddencolor= ppaxesmdl->hiddencolor;
+      sciInitHiddenColor(pobj, sciGetHiddenColor(paxesmdl));
       ppsubwin->hiddenstate= ppaxesmdl->hiddenstate;
       ppsubwin->isoview= ppaxesmdl->isoview;
       ppsubwin->WRect[0]   = ppaxesmdl->WRect[0];
@@ -1599,7 +1599,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       psurf->ebox[5] = ebox[5];
       psurf->flagcolor =flagcolor;
       psurf->typeof3d = typeof3d;
-      psurf->hiddencolor = pSUBWIN_FEATURE(pparentsubwin)->hiddencolor;
+      sciInitHiddenColor(pobj, sciGetHiddenColor(pparentsubwin));
       
       if (sciInitGraphicContext (pobj) == -1)
 	{

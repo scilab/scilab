@@ -1,9 +1,9 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawablePolylineJoGL.java                                        */
+/* file: DrawablePolylineGL.java                                          */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw a        */
-/*        polyline object with JoGL                                      */
+/*        polyline object with JoGL                                       */
 /*------------------------------------------------------------------------*/
 
 

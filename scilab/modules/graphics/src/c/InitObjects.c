@@ -640,7 +640,7 @@ int InitAxesModel()
   ppaxesmdl->project[0]= 1;
   ppaxesmdl->project[1]= 1;
   ppaxesmdl->project[2]= 0;
-  ppaxesmdl->hiddencolor=4;
+  sciInitHiddenColor(paxesmdl,4);
   ppaxesmdl->hiddenstate=0; 
   ppaxesmdl->isoview= FALSE;/*TRUE;*/
  

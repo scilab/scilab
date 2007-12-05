@@ -494,6 +494,18 @@
 				Name="SubwinDrawing"
 				>
 				<File
+					RelativePath=".\src\jni\BackTrihedronDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\BackTrihedronDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\BackTrihedronDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\Camera.cpp"
 					>
 				</File>
@@ -1100,6 +1112,18 @@
 				Name="SubwinDrawing"
 				>
 				<File
+					RelativePath=".\src\jni\BackTrihedronDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\BackTrihedronDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\BackTrihedronDrawerJoGL.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\Camera.h"
 					>
 				</File>
@@ -1157,6 +1181,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinJoGL.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\DrawAxesBoxStrategy.hxx"
 					>
 				</File>
 				<File

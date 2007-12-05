@@ -12,6 +12,7 @@
 #include "getHandleDrawer.h"
 #include "LogarithmicBoundsComputer.hxx"
 #include "LinearBoundsComputer.hxx"
+#include "BackTrihedronDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -85,6 +86,11 @@ void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
   else
   {
     subwin->setZBoundsStrategy(new LinearBoundsComputer());
+  }
+
+  if (sciGetBoxType(pSubwin) == BT_HIDDEN_AXIS)
+  {
+    subwin->setAxesBoxDrawer(new BackTrihedronDrawerJoGL(subwin));
   }
 }
 /*------------------------------------------------------------------------------------------*/

@@ -27,8 +27,6 @@ public:
 
   virtual ~DrawableSubwinBridge( void ) {}
 
-  virtual void drawBox(const double bounds[6]) = 0;
-
 protected:
 
   /**

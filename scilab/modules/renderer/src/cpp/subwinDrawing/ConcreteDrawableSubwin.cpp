@@ -25,6 +25,7 @@ ConcreteDrawableSubwin::ConcreteDrawableSubwin(sciPointObj * pObj)
   m_pXBoundsStrategy = NULL;
   m_pYBoundsStrategy = NULL;
   m_pZBoundsStrategy = NULL;
+  m_pAxesBoxDrawer = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 ConcreteDrawableSubwin::~ConcreteDrawableSubwin(void)
@@ -35,6 +36,12 @@ ConcreteDrawableSubwin::~ConcreteDrawableSubwin(void)
   m_pYBoundsStrategy = NULL;
   delete m_pZBoundsStrategy;
   m_pZBoundsStrategy = NULL;
+
+  if (m_pAxesBoxDrawer != NULL)
+  {
+    delete m_pAxesBoxDrawer;
+    m_pAxesBoxDrawer = NULL;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::setXBoundsStrategy(ComputeBoundsStrategy * strategy)
@@ -62,6 +69,15 @@ void ConcreteDrawableSubwin::setZBoundsStrategy(ComputeBoundsStrategy * strategy
     delete m_pZBoundsStrategy;
   }
   m_pZBoundsStrategy = strategy;
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::setAxesBoxDrawer(DrawAxesBoxStrategy * strategy)
+{
+  if (m_pAxesBoxDrawer != NULL)
+  {
+    delete m_pAxesBoxDrawer;
+  }
+  m_pAxesBoxDrawer = strategy;
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::pointScale(double xCoord, double yCoord, double zCoord,
@@ -137,6 +153,20 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
 
   sciSetRealDataBounds(m_pDrawed, bestBounds);
 
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::drawBox(void)
+{
+  // If axes is not displayed m_pAxesbox is not drawn.
+  if (m_pAxesBoxDrawer != NULL)
+  {
+    m_pAxesBoxDrawer->drawAxesBox(); 
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::drawTicks(void)
+{
+  // TODO
 }
 /*------------------------------------------------------------------------------------------*/
 

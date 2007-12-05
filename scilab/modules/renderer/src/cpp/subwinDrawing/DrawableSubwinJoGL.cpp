@@ -27,11 +27,6 @@ DrawableSubwinJoGL::~DrawableSubwinJoGL( void )
 
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableSubwinJoGL::drawBox(const double bounds[6])
-{
-  getSubwinJavaMapper()->drawBox(bounds[0], bounds[1], bounds[2], bounds[3], bounds[4], bounds[5]);
-}
-/*---------------------------------------------------------------------------------*/
 DrawableSubwin * DrawableSubwinJoGL::getSubwinDrawer( void )
 {
   return dynamic_cast<DrawableSubwin *>(getDrawer()) ;

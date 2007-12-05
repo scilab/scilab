@@ -11,6 +11,7 @@
 
 #include "DrawableSubwin.h"
 #include "ComputeBoundsStrategy.hxx"
+#include "DrawAxesBoxStrategy.hxx"
 
 namespace sciGraphics
 {
@@ -26,6 +27,8 @@ public:
   void setXBoundsStrategy(ComputeBoundsStrategy * strategy);
   void setYBoundsStrategy(ComputeBoundsStrategy * strategy);
   void setZBoundsStrategy(ComputeBoundsStrategy * strategy);
+
+  void setAxesBoxDrawer(DrawAxesBoxStrategy * strategy);
 
   /**
    * For non linear scaling (not supported by OpenGL) we need to modify points.
@@ -69,10 +72,22 @@ protected:
    * ie fills Frect.
    */
   virtual void computeRealDataBounds(void);
+
+  /**
+   * Draw the surrounding cube of the subwin object.
+   */
+  virtual void drawBox(void);
+
+  /**
+  * Draw the ticks of the subwin object.
+  */
+  virtual void drawTicks(void);
   /*---------------------------------------------------------------------*/
   ComputeBoundsStrategy * m_pXBoundsStrategy;
   ComputeBoundsStrategy * m_pYBoundsStrategy;
   ComputeBoundsStrategy * m_pZBoundsStrategy;
+
+  DrawAxesBoxStrategy * m_pAxesBoxDrawer;
   /*---------------------------------------------------------------------*/
 
 };

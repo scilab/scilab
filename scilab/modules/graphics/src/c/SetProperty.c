@@ -3602,13 +3602,18 @@ int sciSetIs3d( sciPointObj * pObj, BOOL is3d )
 /*-----------------------------------------------------------------------------------*/
 int sciInitHiddenColor( sciPointObj * pObj, int newColor )
 {
+  int m = sciGetNumColors(pObj); 
+  if(newColor < -2 || newColor > m + 2) return 0;
+
+  newColor = sciSetGoodIndex(pObj,newColor);
+
   switch( sciGetEntityType( pObj ) )
   {
   case SCI_SUBWIN:
-    pSUBWIN_FEATURE(pObj)->hiddencolor = newColor ;
+    pSUBWIN_FEATURE(pObj)->hiddencolor = Max (0, Min (newColor - 1, m + 1));
     return 0 ;
   case SCI_SURFACE:
-    pSURFACE_FEATURE(pObj)->hiddencolor = newColor ;
+    pSURFACE_FEATURE(pObj)->hiddencolor = Max (0, Min (newColor - 1, m + 1));
     return 0;
   default:
     printSetGetErrorMessage("hidden_color");

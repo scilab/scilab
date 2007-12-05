@@ -3684,17 +3684,22 @@ int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
  */
 int sciGetHiddenColor( sciPointObj * pObj )
 {
+
+  int colorIndex;
   switch( sciGetEntityType( pObj ) )
   {
   case SCI_SUBWIN:
-    return pSUBWIN_FEATURE(pObj)->hiddencolor ;
+    colorIndex = pSUBWIN_FEATURE(pObj)->hiddencolor + 1 ;
+    break;
   case SCI_SURFACE:
-    return pSURFACE_FEATURE(pObj)->hiddencolor ;
+    colorIndex = pSURFACE_FEATURE(pObj)->hiddencolor + 1 ;
+    break;
   default:
     printSetGetErrorMessage("hidden_color");
     return -10 ;
   }
-  return -10 ;
+  colorIndex = sciGetGoodIndex(pObj, colorIndex);
+  return colorIndex ;
 }
 /*----------------------------------------------------------------------------------*/
 /**
@@ -3871,7 +3876,7 @@ double * sciGetMargins( sciPointObj * pObj )
 /*----------------------------------------------------------------------------------*/
 /**
  * To get the computed data bounds of a subwin.
- * * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
+ * * @param bounds [Xmin,Xmax,Ymin,Ymax,Zmin,Zmax] vector.
  */
 void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
 {

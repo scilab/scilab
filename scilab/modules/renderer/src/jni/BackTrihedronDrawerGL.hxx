@@ -36,8 +36,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_DRAWABLESUBWINGL__
-#define __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_DRAWABLESUBWINGL__
+#ifndef __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_BACKTRIHEDRONDRAWERGL__
+#define __ORG_SCILAB_MODULES_RENDERER_SUBWINDRAWING_BACKTRIHEDRONDRAWERGL__
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -45,7 +45,7 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 namespace org_scilab_modules_renderer_subwinDrawing {
 
-class DrawableSubwinGL {
+class BackTrihedronDrawerGL {
 private:
 JavaVM * jvm;
 jobject instance;
@@ -57,6 +57,8 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
+jmethodID voidsetBoxParametersjintjintjintjfloatID; // cache method id
+jmethodID voiddrawBoxjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 
 
 /**
@@ -71,17 +73,17 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-DrawableSubwinGL(JavaVM * jvm_);
+BackTrihedronDrawerGL(JavaVM * jvm_);
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-DrawableSubwinGL(JavaVM * jvm_, jobject JObj);
+BackTrihedronDrawerGL(JavaVM * jvm_, jobject JObj);
 
 // Destructor
-~DrawableSubwinGL();
+~BackTrihedronDrawerGL();
 
 // Generic method
 // Synchronization methods
@@ -110,6 +112,10 @@ void destroy(long figureIndex);
 
 void setFigureIndex(long figureIndex);
 
+void setBoxParameters(long hiddenAxisColor, long backgroundColor, long lineStyle, float thickness);
+
+void drawBox(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax);
+
 
                         /**
                         * Get class name to use for static methods
@@ -118,7 +124,7 @@ void setFigureIndex(long figureIndex);
                         
                 static const std::string className()
                 {
-                return "org/scilab/modules/renderer/subwinDrawing/DrawableSubwinGL";
+                return "org/scilab/modules/renderer/subwinDrawing/BackTrihedronDrawerGL";
                 }
                 
 };

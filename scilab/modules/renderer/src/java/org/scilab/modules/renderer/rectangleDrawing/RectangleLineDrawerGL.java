@@ -26,8 +26,6 @@ public class RectangleLineDrawerGL extends LineDrawerGL implements RectangleDraw
 		super();
 	}
 	
-
-	
 	/**
 	 * create the display list for the rectangle
 	 * @param corner1X first corner X coordinate

@@ -57,11 +57,4 @@ void DrawableSubwinJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void DrawableSubwinJavaMapper::drawBox(double xMin, double xMax,
-                                       double yMin, double yMax,
-                                       double zMin, double zMax)
-{
-  m_pJavaObject->drawBox(xMin, xMax, yMin, yMax, zMin, zMax);
-}
-/*--------------------------------------------------------------------------*/
 }
