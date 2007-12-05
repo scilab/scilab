@@ -18,6 +18,41 @@
 int sci_plot2d1( char * fname, unsigned long fname_len ) ;
 
 /**
+* interface function for the plot2d1_1 routine.
+*
+* @param[in] fname     name of the routine (ie plot2d1_1)
+* @param[in] fname_len length of fname
+* @return 0 if success, -1 otherwise
+*/
+int sci_plot2d1_1 (char *fname,unsigned long fname_len);
+
+/**
+* interface function for the plot2d1_2 routine.
+*
+* @param[in] fname     name of the routine (ie plot2d1_2)
+* @param[in] fname_len length of fname
+* @return 0 if success, -1 otherwise
+*/
+int sci_plot2d1_2 (char *fname,unsigned long fname_len);
+
+/**
+* interface function for the plot2d1_3 routine.
+*
+* @param[in] fname     name of the routine (ie plot2d1_3)
+* @param[in] fname_len length of fname
+* @return 0 if success, -1 otherwise
+*/
+int sci_plot2d1_3 (char *fname,unsigned long fname_len);
+
+/**
+* interface function for the plot2d1_4 routine.
+*
+* @param[in] fname     name of the routine (ie plot2d1_4)
+* @param[in] fname_len length of fname
+* @return 0 if success, -1 otherwise
+*/
+int sci_plot2d1_4 (char *fname,unsigned long fname_len);
+/**
 * interface function for the plot2d2 routine.
 *
 * @param[in] fname     name of the routine (ie plot2d2)

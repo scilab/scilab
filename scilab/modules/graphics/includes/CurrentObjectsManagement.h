@@ -12,8 +12,15 @@
 
 /**
 * To know if the current figure is a graphic one.
+* @return 
 */
 int  get_cf_type( void ) ;
+
+/**
+ * @TODO add comment
+ *
+ * @param val   
+ */
 void set_cf_type( int val ) ;
 /*-----------------------------------------------------------------------------*/
 /**
@@ -26,7 +33,20 @@ sciPointObj * sciGetCurrentFigure( void ) ;
  */
 BOOL sciIsCurrentFigure(sciPointObj * pFigure);
 
+/**
+ * @TODO add comment
+ *
+ * @param mafigure  
+ * @return <ReturnValue>
+ */
 int sciInitCurrentFigure( sciPointObj * mafigure ) ;
+
+/**
+ * @TODO add comment
+ *
+ * @param mafigure  
+ * @return <ReturnValue>
+ */
 int sciSetCurrentFigure(  sciPointObj * mafigure ) ;
 /*-----------------------------------------------------------------------------*/
 /**

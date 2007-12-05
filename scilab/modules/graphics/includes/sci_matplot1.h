@@ -17,4 +17,13 @@
 */
 int sci_matlot1( char * fname, unsigned long fname_len ) ;
 
+/**
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param fname_len 
+ * @return <ReturnValue>
+ */
+int sci_matplot1( char * fname, unsigned long fname_len );
+
 #endif /* _INT_MATPLOT1_H_ */

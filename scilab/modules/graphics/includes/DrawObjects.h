@@ -25,12 +25,6 @@
 #include "Vect2Matrix.h"
 #include "StringMatrix.h"
 
-int get_cf_type( void ) ;
-
-void set_cf_type( int val ) ;
-
-
-
 char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
 double * AllocUserGrads(double * u_xgrads, int nb);
 int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);

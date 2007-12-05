@@ -8,13 +8,15 @@
 #ifndef _INT_ZOOM_RECT_H_
 #define _INT_ZOOM_RECT_H_
 
+
 /**
-* interface function for the zoom_rect routine.
-*
-* @param[in] fname     name of the routine (ie zoom_rect)
-* @param[in] fname_len length of fname
-* @return 0 if success, -1 otherwise
-*/
-int sci_xrects( char * fname, unsigned long fname_len ) ;
+ * @TODO add comment
+ *
+ * @param fname 
+ * @param fname_len 
+ * @return <ReturnValue>
+ */
+int sci_zoom_rect(char *fname,unsigned long fname_len);
+
 
 #endif /* _INT_ZOOM_RECT_H_ */

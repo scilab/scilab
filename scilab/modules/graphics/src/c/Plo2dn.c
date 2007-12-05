@@ -25,17 +25,14 @@
 #include "MALLOC.h" /* MALLOC */
 #include "DrawingBridge.h"
 
-extern void initsubwin();
 void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1,integer n2,double *drect);
 void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, integer n1,integer n2, double *drect);
 BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
-extern char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
+
 extern double * FreeUserGrads(double * u_xgrads);
-extern double * AllocUserGrads(double * u_xgrads, int nb);
-extern int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
-extern char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag);
+
 extern char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 extern int GraduateWithNax(sciSubWindow * ppsubwin,double *min,double *max,int nbtics, double * grads);
@@ -416,6 +413,85 @@ BOOL update_specification_bounds(psubwin, rect,flag)
 }
 
 
+
+static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag)
+{
+  int i;
+  char c_format[5]; 
+  int nbtics = u_nxgrads;
+
+  if(u_xgrads == NULL)
+    return (char **) NULL;
+  
+  if(u_xlabels != NULL)
+    {
+      sciprint("Impossible: u_xlabels must be freed before re-allocating");
+      return (char **) NULL;
+    }
+  
+
+  if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
+    sciprint("No more place for allocating user labels using Nax");
+    return (char **) NULL;
+  }
+
+  ChooseGoodFormat(c_format,logflag,u_xgrads,u_nxgrads);
+  
+  for(i=0;i<nbtics;i++)
+    {  
+      char foo[100];
+      
+      sprintf(foo,c_format, u_xgrads[i]);
+      
+      if((u_xlabels[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
+	sciprint("No more place for allocating u_xlabels");
+	return (char **) NULL;
+      }
+      
+      strcpy(u_xlabels[i],foo);
+    }
+  
+  return u_xlabels;
+}
+
+
+
+char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads)
+{
+  int i;
+  int nbtics = u_nxgrads;
+
+  if(u_nxgrads == 0)
+    return (char **) NULL;
+  
+  if(u_xlabels != NULL)
+    {
+      sciprint("Impossible: u_xlabels must be freed before re-allocating");
+      return (char **) NULL;
+    }
+  
+  if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
+    sciprint("No more place for allocating user labels using Nax");
+    return (char **) NULL;
+  }
+
+  
+  for(i=0;i<nbtics;i++)
+    {  
+      if((u_xlabels[i]=(char *)MALLOC((strlen(u_xlabels_MDL[i])+1)*sizeof(char )))==NULL){
+	sciprint("No more place for allocating u_xlabels");
+	return (char **) NULL;
+      }
+      
+      strcpy(u_xlabels[i],u_xlabels_MDL[i]);
+    }
+  
+  return u_xlabels;
+}
+
+
+
+
 /* F.Leray */
 /* brect must have the same format as drect i.e.: [xmin,xmax,ymin,ymax] */
 /* brect = INPUT ; drect = OUTPUT (warning drect is dim 6) */
@@ -707,82 +783,4 @@ int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim)
   
   return 0;
 }
-
-
-
-char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag)
-{
-  int i;
-  char c_format[5]; 
-  int nbtics = u_nxgrads;
-
-  if(u_xgrads == NULL)
-    return (char **) NULL;
-  
-  if(u_xlabels != NULL)
-    {
-      sciprint("Impossible: u_xlabels must be freed before re-allocating");
-      return (char **) NULL;
-    }
-  
-
-  if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
-    sciprint("No more place for allocating user labels using Nax");
-    return (char **) NULL;
-  }
-
-  ChooseGoodFormat(c_format,logflag,u_xgrads,u_nxgrads);
-  
-  for(i=0;i<nbtics;i++)
-    {  
-      char foo[100];
-      
-      sprintf(foo,c_format, u_xgrads[i]);
-      
-      if((u_xlabels[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
-	sciprint("No more place for allocating u_xlabels");
-	return (char **) NULL;
-      }
-      
-      strcpy(u_xlabels[i],foo);
-    }
-  
-  return u_xlabels;
-}
-
-
-
-char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads)
-{
-  int i;
-  int nbtics = u_nxgrads;
-
-  if(u_nxgrads == 0)
-    return (char **) NULL;
-  
-  if(u_xlabels != NULL)
-    {
-      sciprint("Impossible: u_xlabels must be freed before re-allocating");
-      return (char **) NULL;
-    }
-  
-  if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
-    sciprint("No more place for allocating user labels using Nax");
-    return (char **) NULL;
-  }
-
-  
-  for(i=0;i<nbtics;i++)
-    {  
-      if((u_xlabels[i]=(char *)MALLOC((strlen(u_xlabels_MDL[i])+1)*sizeof(char )))==NULL){
-	sciprint("No more place for allocating u_xlabels");
-	return (char **) NULL;
-      }
-      
-      strcpy(u_xlabels[i],u_xlabels_MDL[i]);
-    }
-  
-  return u_xlabels;
-}
-
 

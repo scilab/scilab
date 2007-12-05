@@ -6,93 +6,85 @@
 #define __INTGRAPHICS__
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
+#include "sci_fec.h"
+#include "sci_champ.h"
+#include "sci_param3d.h"
+#include "sci_plot3d.h"
+#include "sci_plot2d.h"
+#include "sci_plot2d1.h"
+#include "sci_grayplot.h"
+#include "sci_xarc.h"
+#include "sci_xarcs.h"
+#include "sci_xrects.h"
+#include "sci_xarrows.h"
+#include "sci_xsegs.h"
+#include "sci_drawaxis.h"
+#include "sci_xchange.h"
+#include "sci_xclea.h"
+#include "sci_xrect.h"
+#include "sci_xclear.h"
+#include "sci_xclick.h"
+#include "sci_xend.h"
+#include "sci_xfpoly.h"
+#include "sci_xfpolys.h"
+#include "sci_xget.h"
+#include "sci_xlfont.h"
+#include "sci_xpoly.h"
+#include "sci_xset.h"
+#include "sci_xstring.h"
+#include "sci_xstringl.h"
+#include "sci_StringBox.h"
+#include "sci_xsetech.h"
+#include "sci_xgetech.h"
+#include "sci_geom3d.h"
+#include "sci_xgetmouse.h"
+#include "sci_xtitle.h"
+#include "sci_xgrid.h"
+#include "sci_xfarcs.h"
+#include "sci_param3d1.h"
+#include "sci_xstringb.h"
+#include "sci_xname.h"
+#include "sci_xaxis.h"
+#include "sci_set.h"
+#include "sci_get.h"
+#include "sci_delete.h"
+#include "sci_addcb.h"
+#include "sci_copy.h"
+#include "sci_move.h"
+#include "sci_glue.h"
+#include "sci_unglue.h"
+#include "sci_drawnow.h"
+#include "sci_drawlater.h"
+#include "sci_draw.h"
+#include "sci_unzoom.h"
+#include "sci_UImenu.h"
+#include "sci_newaxes.h"
+#include "sci_relocate_handle.h"
+#include "sci_swap_handles.h"
+#include "sci_help_gtk.h"
+#include "sci_driver.h"
+#include "sci_matplot.h"
+#include "sci_matplot1.h"
+#include "sci_xinit.h"
+#include "sci_showalluimenushandles.h"
+#include "sci_zoom_rect.h"
+#include "sci_set_posfig_dim.h"
+#include "sci_xs2emf.h"
+#include "sci_xs2bmp.h"
+#include "sci_xs2ps.h"
+#include "sci_xs2ppm.h"
+#include "sci_xs2gif.h"
+#include "sci_xgraduate.h"
+#include "sci_xtape.h"
+#include "sci_show_window.h"
+#include "sci_xs2fig.h"
+#include "sci_xpolys.h"
+#include "sci_xg2ps.h"
+#include "sci_xdel.h"
+#include "sci_winsid.h"
+#include "sci_contour2di.h"
 /*--------------------------------------------------------------------------*/ 
 int C2F(gw_graphics)(void);
-/*--------------------------------------------------------------------------*/ 
-int sci_champ                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_param3d                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_plot3d                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_plot2d                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_plot2d1_1                  _PARAMS((char *fname, unsigned long fname_len));
-int sci_plot2d1_2                  _PARAMS((char *fname, unsigned long fname_len));
-int sci_plot2d1_3                  _PARAMS((char *fname, unsigned long fname_len));
-int sci_plot2d1_4                  _PARAMS((char *fname, unsigned long fname_len));
-int sci_grayplot                   _PARAMS((char *fname, unsigned long fname_len));
-int sci_driver                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xarc                       _PARAMS((char *fname, unsigned long fname_len));
-int sci_xarcs                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xrects                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xarrows                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_xsegs                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_drawaxis                   _PARAMS((char *fname, unsigned long fname_len));
-int sci_xchange                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_xclea                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xrect                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xclear                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xclick                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xend                       _PARAMS((char *fname, unsigned long fname_len));
-int sci_xfpoly                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xfpolys                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_xget                       _PARAMS((char *fname, unsigned long fname_len));
-int sci_xinit                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xlfont                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xpoly                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xpolys                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_show_window                _PARAMS((char *fname, unsigned long fname_len));
-int sci_xset                       _PARAMS((char *fname, unsigned long fname_len));
-int sci_xstring                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_xstringl                   _PARAMS((char *fname, unsigned long fname_len));
-int sci_StringBox                  _PARAMS((char *fname, unsigned long fname_len)) ;
-int sci_xtape                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xsetech                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_xgetech                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_geom3d                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_fec                        _PARAMS((char *fname, unsigned long fname_len));
-int sci_xgetmouse                  (char *fname, unsigned long fname_len);
-int sci_xtitle                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xgrid                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xfarcs                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_champ1                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xdel                       _PARAMS((char *fname, unsigned long fname_len));
-int sci_xg2ps                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xs2ps                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xs2fig                     _PARAMS((char *fname, unsigned long fname_len));
-
-int sci_winsid                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_param3d1                   _PARAMS((char *fname, unsigned long fname_len));
-int sci_xstringb                   _PARAMS((char *fname, unsigned long fname_len));
-int sci_matplot                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_contour2di                 _PARAMS((char *fname, unsigned long fname_len));
-int sci_matplot1                   _PARAMS((char *fname, unsigned long fname_len));
-int sci_xgraduate                  _PARAMS((char *fname, unsigned long fname_len));
-int sci_xname                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_xaxis                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_help_gtk                   _PARAMS((char *fname, unsigned long fname_len));
-int sci_set                        _PARAMS((char *fname, unsigned long fname_len));
-int sci_get                        _PARAMS((char *fname, unsigned long fname_len));
-int sci_delete                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_addcb                      _PARAMS((char *fname, unsigned long fname_len));
-int sci_copy                       _PARAMS((char *fname, unsigned long subwinparenttarget));
-int sci_move                       _PARAMS((char *fname, unsigned long fname_len));
-int sci_glue                       _PARAMS((char *fname, unsigned long fname_len));
-int sci_unglue                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_drawnow                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_drawlater                  _PARAMS((char *fname, unsigned long fname_len));
-int sci_draw                       _PARAMS((char *fname, unsigned long fname_len));
-int sci_xs2gif                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xs2ppm                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_set_posfig_dim             _PARAMS((char *fname, unsigned long fname_len));
-int sci_zoom_rect                  _PARAMS((char *fname, unsigned long fname_len));
-int sci_unzoom                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xs2bmp                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xs2emf                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_UImenu                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_newaxes                    _PARAMS((char *fname, unsigned long fname_len));
-int sci_showalluimenushandles      _PARAMS(( char * fname, unsigned long fname_len ) ) ;
-int sci_relocate_handle            _PARAMS(( char * fname, unsigned long fname_len ) ) ;
-int sci_swap_handles               _PARAMS(( char * fname, unsigned long fname_len ) ) ;
-int sci_readxbm	                  _PARAMS(( char * fname, unsigned long fname_len ) ) ;
-int sci_readgif	                  _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 /*--------------------------------------------------------------------------*/ 
 #endif /* __INTGRAPHICS__ */
 /*--------------------------------------------------------------------------*/ 

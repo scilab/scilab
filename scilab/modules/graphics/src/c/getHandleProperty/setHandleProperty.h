@@ -105,7 +105,6 @@ int set_labels_font_style_property(    sciPointObj * pobj, int stackPointer, int
 int set_tics_labels_property(          sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_xtics_coord_property(          sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_ytics_coord_property(          sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
-int set_tics_labels_property(          sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_box_property(                  sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_grid_property(                 sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_axes_visible_property(         sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
