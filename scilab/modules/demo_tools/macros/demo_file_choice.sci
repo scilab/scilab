@@ -1,58 +1,77 @@
 // =============================================================================
-// Author : Ghislain HELIOT
+// Author : Pierre MARECHAL
 // Scilab Project
 // Copyright INRIA 2007
 // =============================================================================
 
-function []=demo_file_choice(path,ch)
+// demolist
+// demopath
+// demolistlabel
+
+function [] = demo_file_choice()
 	
-	if ch=='anim' then
-		deff('[]=demoexc(num)','exec(path+demolist(num,2),-1)')
-		fs=get('figure_style');
+	while %t then
 		
-		while %t then
-			num=tk_choose(demolist(:,1),'Choose a demo');
-			if num==0 then
-				set('figure_style',fs);
-				lines(oldln(1));
-				return
-			else
-				set('figure_style','new');
-				delete(gcf());//new style
-				clf();
-				demoexc(num);
-			end
+		if ~exists('demolistlabel') then
+			demolistlabel = "choose a demo";
 		end
 		
-	else
+		num = tk_choose(demolist(:,1),demolistlabel);
 		
-		if ch=='root' then
-			deff('[]=demoexec(num)','exec(demolist(num,2),-1)')
-			while %t then
-			num=tk_choose(demolist(:,1),['Click to choose a demo';
-			'(see also in SCIDIR/demos/...)']);
-			if num==0 then
-				lines(oldln(1))
-				return
-			else
-				demoexec(num);
-			end,
-		end
-		
+		if num == 0 then
+			
+			demo_clean();
+			return;
+			
 		else
-			deff('[]=demoex(num)','exec(path+demolist(num,2),-1)');
-			while %t then
-				num=tk_choose(demolist(:,1),'Choose a demo');
-				if num==0 then
-					lines(oldln(1))
-					return
-				else
-					xdel(0);
-					clf();
-					demoex(num);
-				end
+			
+			script_path = demolist(num,2);
+			
+			if (exists("demopath")) & (demopath <> "") then
+				script_path = pathconvert( demopath + "/" + script_path , %F , %T );
+			end
+			
+			if grep(script_path,"dem.gateway.sce") == 1 then
+				
+				// Gateway
+				
+				previous_demolist      = demolist;
+				previous_demopath      = demopath;
+				previous_demolistlabel = demolistlabel;
+				
+				exec(script_path,-1);
+				demo_file_choice();
+				
+				demolist      = previous_demolist;
+				demopath      = previous_demopath;
+				demolistlabel = previous_demolistlabel;
+				
+			elseif grep(script_path,"dem.sce") == 1 then
+				// Demonstration
+				demo_clean();
+				demo_run(script_path);
+			else
+				// Old system
+				exec(script_path,-1);
+				
 			end
 		end
 	end
-	mode(0);
+	
+endfunction
+
+
+function [] = demo_clean()
+
+	// Suppression de toutes les fenêtres graphiques créé
+	// par les précédentes démos
+	
+	opened_windows = winsid();
+	
+	for i=1:size(opened_windows,"c")
+		if (opened_windows(i)>=100000) & (opened_windows(i)<=100100) then
+			xdel(opened_windows(i));
+		end
+	end
+	
 endfunction

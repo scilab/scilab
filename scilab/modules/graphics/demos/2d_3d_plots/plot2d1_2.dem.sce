@@ -1,0 +1,16 @@
+// =============================================================================
+// Scilab Project
+// Copyright INRIA 2007
+// =============================================================================
+
+my_plot_desc          = "plot2d1";
+
+my_handle             = scf(100001);
+my_handle.figure_name = my_plot_desc;
+
+rand("normal")
+v=(1:20)+(1:20).*rand(1,20);
+
+plot2d1("enn",1,v');
+plot2d1("enn",1,(1:20)',[2,-2],"100","estimated");
+xtitle(my_plot_desc," "," "," ");

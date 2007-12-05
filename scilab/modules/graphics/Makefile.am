@@ -601,18 +601,50 @@ demos/cmplxfunc/MacCmplx.sci \
 demos/cmplxfunc/cmplxfunc.dem \
 demos/bar/bar.dem \
 demos/peaks.sci \
-demos/xdemo.dem \
-demos/xdemo.dem.pos \
-demos/dessin-1.dem \
-demos/dessin.dem.pos \
-demos/dessin.dem \
 demos/sd.sav \
 demos/xsetechfig.sce \
 demos/contourf.dem \
-demos/graphics.dem \
 demos/portrait.dem \
-demos/xdemo-1.dem \
-demos/bike.dem
+demos/bike.dem \
+demos/basic_functions/basic_functions.dem.gateway.sce \
+demos/basic_functions/basic_functions_1.dem.sce \
+demos/basic_functions/basic_functions_2.dem.sce \
+demos/basic_functions/basic_functions_3.dem.sce \
+demos/basic_functions/basic_functions_4.dem.sce \
+demos/basic_functions/basic_functions_5.dem.sce \
+demos/basic_functions/basic_functions_6.dem.sce \
+demos/basic_functions/basic_functions_7.dem.sce \
+demos/basic_functions/basic_functions_8.dem.sce \
+demos/2d_3d_plots/2d_3d_plots.dem.gateway.sce \
+demos/2d_3d_plots/plot2d.dem.sce \
+demos/2d_3d_plots/plot2d1_2.dem.sce \
+demos/2d_3d_plots/champ.dem.sce \
+demos/2d_3d_plots/histplot.dem.sce \
+demos/2d_3d_plots/grayplot.dem.sce \
+demos/2d_3d_plots/plot2d3.dem.sce \
+demos/2d_3d_plots/plot2d1_1.dem.sce \
+demos/2d_3d_plots/fchamp.dem.sce \
+demos/2d_3d_plots/fplot2d.dem.sce \
+demos/2d_3d_plots/param3d_1.dem.sce \
+demos/2d_3d_plots/abaque.dem.sce \
+demos/2d_3d_plots/param3d_2.dem.sce \
+demos/2d_3d_plots/fgrayplot.dem.sce \
+demos/2d_3d_plots/zgrid.dem.sce \
+demos/2d_3d_plots/plot3d.dem.sce \
+demos/2d_3d_plots/errbar.dem.sce \
+demos/2d_3d_plots/fplot3d.dem.sce \
+demos/2d_3d_plots/xgeom.dem.sce \
+demos/2d_3d_plots/plot3d1.dem.sce \
+demos/2d_3d_plots/fplot3d1.dem.sce \
+demos/2d_3d_plots/contour_3d_2.dem.sce \
+demos/2d_3d_plots/contour.dem.sce \
+demos/2d_3d_plots/subplot.dem.sce \
+demos/2d_3d_plots/fcontour.dem.sce \
+demos/2d_3d_plots/contour_3d_3.dem.sce \
+demos/2d_3d_plots/contourf.dem.sce \
+demos/2d_3d_plots/contour_3d_4.dem.sce \
+demos/2d_3d_plots/fac3d.dem.sce \
+demos/2d_3d_plots/fac3d1.dem.sce
 
 USEANT=1
 

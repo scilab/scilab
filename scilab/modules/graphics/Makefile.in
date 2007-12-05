@@ -1637,18 +1637,50 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/cmplxfunc/cmplxfunc.dem \
 @GUI_TRUE@demos/bar/bar.dem \
 @GUI_TRUE@demos/peaks.sci \
-@GUI_TRUE@demos/xdemo.dem \
-@GUI_TRUE@demos/xdemo.dem.pos \
-@GUI_TRUE@demos/dessin-1.dem \
-@GUI_TRUE@demos/dessin.dem.pos \
-@GUI_TRUE@demos/dessin.dem \
 @GUI_TRUE@demos/sd.sav \
 @GUI_TRUE@demos/xsetechfig.sce \
 @GUI_TRUE@demos/contourf.dem \
-@GUI_TRUE@demos/graphics.dem \
 @GUI_TRUE@demos/portrait.dem \
-@GUI_TRUE@demos/xdemo-1.dem \
-@GUI_TRUE@demos/bike.dem
+@GUI_TRUE@demos/bike.dem \
+@GUI_TRUE@demos/basic_functions/basic_functions.dem.gateway.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_1.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_2.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_3.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_4.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_5.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_6.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_7.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_8.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/2d_3d_plots.dem.gateway.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot2d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot2d1_2.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/champ.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/histplot.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/grayplot.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot2d3.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot2d1_1.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fchamp.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fplot2d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/param3d_1.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/abaque.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/param3d_2.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fgrayplot.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/zgrid.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot3d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/errbar.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fplot3d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/xgeom.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot3d1.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fplot3d1.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/contour_3d_2.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/contour.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/subplot.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fcontour.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/contour_3d_3.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/contourf.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/contour_3d_4.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fac3d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fac3d1.dem.sce
 
 @GUI_TRUE@USEANT = 1
 pkglib_LTLIBRARIES = libscigraphics.la
