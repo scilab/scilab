@@ -13,6 +13,8 @@
 #include "LogarithmicBoundsComputer.hxx"
 #include "LinearBoundsComputer.hxx"
 #include "BackTrihedronDrawerJoGL.hxx"
+#include "FullBoxDrawerJoGL.hxx"
+#include "HalfBoxDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -88,9 +90,21 @@ void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
     subwin->setZBoundsStrategy(new LinearBoundsComputer());
   }
 
-  if (sciGetBoxType(pSubwin) == BT_HIDDEN_AXIS)
+  switch(sciGetBoxType(pSubwin))
   {
+  case BT_HIDDEN_AXIS:
     subwin->setAxesBoxDrawer(new BackTrihedronDrawerJoGL(subwin));
+    break;
+  case BT_BACK_HALF:
+    subwin->setAxesBoxDrawer(new HalfBoxDrawerJoGL(subwin));
+    break;
+  case BT_ON:
+    subwin->setAxesBoxDrawer(new FullBoxDrawerJoGL(subwin));
+    break;
+  case BT_OFF:
+  default:
+    subwin->setAxesBoxDrawer(NULL);
+    break;
   }
 }
 /*------------------------------------------------------------------------------------------*/

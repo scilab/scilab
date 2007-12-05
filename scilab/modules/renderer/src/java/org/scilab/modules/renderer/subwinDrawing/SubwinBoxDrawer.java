@@ -24,18 +24,47 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 	/** Number of corners of the box */
 	protected static final int BOX_NB_CORNERS = 8;
 	
-	/** For each coner of the box get th eindexof its neighbours */
-	protected static final int[][] BOX_CORNERS_NEIGHBOURS = {{1, 4, 2},
-															 {0, 3, 5},
-															 {0, 3, 6},
-															 {1, 2, 7},
-															 {0, 5, 6},
-															 {1, 4, 7},
-															 {4, 2, 7},
-															 {3, 5, 6}};
+	/** For each corners, lines to draw for the back trihedron */
+	private static final int[][][] BACK_TRIHEDRON = {{{0, 1}, {0, 4}, {0, 2}},
+													 {{1, 0}, {1, 3}, {1, 5}},
+													 {{2, 0}, {2, 3}, {2, 6}},
+													 {{3, 1}, {3, 2}, {3, 7}},
+													 {{4, 0}, {4, 5}, {4, 6}},
+												   	 {{5, 1}, {5, 4}, {5, 7}},
+												   	 {{6, 4}, {6, 2}, {6, 7}},
+												   	 {{7, 3}, {7, 5}, {7, 6}}};
 	
-	private static final double UNMERGE_FACTOR = 0.01;
+	/** For each corners, corners of the facet to draw as back facet. */
+	private static final int[][][] BACK_FACETS = {{{0, 2, 3, 1}, {0, 4, 5, 1}, {0, 4, 6, 2}}, 
+												  {{1, 0, 4, 5}, {1, 3, 2, 0}, {1, 5, 7, 3}},
+												  {{2, 3, 1, 0}, {2, 6, 7, 3}, {2, 0, 4, 6}},
+												  {{3, 7, 6, 2}, {3, 1, 0, 2}, {3, 7, 5, 1}},
+												  {{4, 5, 1, 0}, {4, 5, 7, 6}, {4, 6, 2, 0}},
+												  {{5, 1, 0, 4}, {5, 7, 6, 4}, {5, 7, 3, 1}},
+												  {{6, 7, 5, 4}, {6, 2, 3, 7}, {6, 2, 0, 4}},
+												  {{7, 5, 4, 6}, {7, 3, 2, 6}, {7, 3, 1, 5}}};
 	
+	/** For each corners, lines to draw between back trihedron and front one */
+	private static final int[][] HALF_BOX_LINES = {{1, 3, 2, 6, 4, 5},
+								     			   {0, 2, 3, 7, 5, 4},
+												   {3, 1, 0, 4, 6, 7},
+												   {2, 0, 1, 5, 7, 6},
+												   {5, 1, 0, 2, 6, 7},
+												   {4, 0, 1, 3, 7, 6},
+												   {7, 3, 2, 0, 4, 5},
+												   {6, 2, 3, 1, 5, 4}};
+	
+	/** For each corners, lines to draw for the front trihedron */
+	private static final int[][][] FRONT_TRIHEDRON = {{{7, 3}, {7, 5}, {7, 6}},
+		                                              {{6, 4}, {6, 2}, {6, 7}},
+		                                              {{5, 1}, {5, 4}, {5, 7}},
+		                                              {{4, 0}, {4, 5}, {4, 6}},
+													  {{3, 1}, {3, 2}, {3, 7}},
+													  {{2, 0}, {2, 3}, {2, 6}},
+												      {{1, 0}, {1, 3}, {1, 5}},
+												   	  {{0, 1}, {0, 4}, {0, 2}}};
+	
+	private static final double UNMERGE_FACTOR = 0.01;	
 	private int hiddenAxisColor;
 	private int backgroundColor;
 	private int lineColor;
@@ -194,7 +223,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 	/**
 	 * @return index of the coner which is concealed
 	 */
-	private int findConcealedCorner() {
+	protected int findConcealedCorner() {
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
@@ -230,49 +259,39 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 	}
 	/**
 	 * Draw the back triedre of the subwin box
+	 * @param concealedCornerIndex index of the concealed corner
 	 */
-	protected void drawTrihedron() {
-		// find farthest triedre
-		int firstPointIndex = findConcealedCorner();
-		int secondPointIndex = BOX_CORNERS_NEIGHBOURS[firstPointIndex][0];
-		int thirdPointIndex = BOX_CORNERS_NEIGHBOURS[firstPointIndex][1];
-		int fourthPointIndex = BOX_CORNERS_NEIGHBOURS[firstPointIndex][2];
-		
+	protected void drawTrihedron(int concealedCornerIndex) {
 		
 		GL gl = getGL();
 		
-		//		 draw background
+		// draw background
 		double[] backColor = getBackgroundColor();
 		gl.glColor3d(backColor[0], backColor[1], backColor[2]);
 		
 		gl.glBegin(GL.GL_QUADS);
-		drawFacet(gl, firstPointIndex, secondPointIndex, thirdPointIndex);
-		drawFacet(gl, firstPointIndex, secondPointIndex, fourthPointIndex);
-		drawFacet(gl, firstPointIndex, thirdPointIndex, fourthPointIndex);
+		for (int i = 0; i < BACK_FACETS[concealedCornerIndex].length; i++) {
+			for (int j = 0; j < BACK_FACETS[concealedCornerIndex][i].length; j++) {
+				Vector3D curVertex = boxCorners[BACK_FACETS[concealedCornerIndex][i][j]];
+				gl.glVertex3d(curVertex.getX(), curVertex.getY(), curVertex.getZ());
+			}
+		}
 		gl.glEnd();
 		
+		// the concealed line is draw wiht dashes
+		gl.glLineWidth(getThickness());
+		GLTools.beginDashMode(gl, 2, getThickness());
 		
 		double[] hiddenColor = getHiddenAxisColor();
 		gl.glColor3d(hiddenColor[0], hiddenColor[1], hiddenColor[2]);
 		
-		
-		// the concealed line is draw wih dashes
-		GLTools.beginDashMode(gl, 2, getThickness());
-		
 		gl.glBegin(GL.GL_LINES);
-		Vector3D firstPoint = smallBoxCorners[firstPointIndex];
-		Vector3D secondPoint = smallBoxCorners[secondPointIndex];
-		gl.glVertex3d(firstPoint.getX(), firstPoint.getY(), firstPoint.getZ());
-		gl.glVertex3d(secondPoint.getX(), secondPoint.getY(), secondPoint.getZ());
-		
-		Vector3D thirdPoint = smallBoxCorners[thirdPointIndex];
-		gl.glVertex3d(firstPoint.getX(), firstPoint.getY(), firstPoint.getZ());
-		gl.glVertex3d(thirdPoint.getX(), thirdPoint.getY(), thirdPoint.getZ());
-		
-		Vector3D fourthPoint = smallBoxCorners[fourthPointIndex];
-		gl.glVertex3d(firstPoint.getX(), firstPoint.getY(), firstPoint.getZ());
-		gl.glVertex3d(fourthPoint.getX(), fourthPoint.getY(), fourthPoint.getZ());
-		
+		for (int i = 0; i < BACK_TRIHEDRON[concealedCornerIndex].length; i++) {
+			for (int j = 0; j < BACK_TRIHEDRON[concealedCornerIndex][i].length; j++) {
+				Vector3D curVertex = smallBoxCorners[BACK_TRIHEDRON[concealedCornerIndex][i][j]];
+				gl.glVertex3d(curVertex.getX(), curVertex.getY(), curVertex.getZ());
+			}
+		}
 		gl.glEnd();
 		
 		GLTools.endDashMode(gl);
@@ -281,38 +300,51 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 	}
 	
 	/**
-	 * Draw a facet of the subwindow knowing only three of its corners.
-	 * The drawing order will be coner1, corner2, missing corner, corner3
-	 * @param gl current GL pipeline
-	 * @param cornerIndex1 first corner
-	 * @param cornerIndex2 second corner
-	 * @param cornerIndex3 third corner
+	 * Draw the lines between the back and front coordinates
+	 * @param concealedCornerIndex index of the concealed corner
 	 */
-	private void drawFacet(GL gl, int cornerIndex1, int cornerIndex2, int cornerIndex3) {
-		// find last corner, it is neigbour of corner 2 and 3;
-		int[] corner2Neighbours = BOX_CORNERS_NEIGHBOURS[cornerIndex2];
-		int[] corner3Neighbours = BOX_CORNERS_NEIGHBOURS[cornerIndex3];
+	protected void drawHalfBox(int concealedCornerIndex) {
+		GL gl = getGL();
 		
-		int commonNeighbourIndex = 0;
-		// find the common corner which is not corner1
-		for (int i = 0; i < corner2Neighbours.length; i++) {
-			for (int j = 0; j < corner3Neighbours.length; j++) {
-				if (corner2Neighbours[i] != cornerIndex1 && corner2Neighbours[i] == corner3Neighbours[j]) {
-					commonNeighbourIndex = corner2Neighbours[i];
-				}
+		
+		gl.glLineWidth(getThickness());
+		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
+		
+		double[] color = getLineColor();
+		gl.glColor3d(color[0], color[1], color[2]);
+		
+		gl.glBegin(GL.GL_LINE_LOOP);
+		for (int i = 0; i < HALF_BOX_LINES[concealedCornerIndex].length; i++) {
+			Vector3D curVertex = smallBoxCorners[HALF_BOX_LINES[concealedCornerIndex][i]];
+			gl.glVertex3d(curVertex.getX(), curVertex.getY(), curVertex.getZ());
+		}
+		gl.glEnd();
+		GLTools.endDashMode(gl);
+	}
+	
+	/**
+	 * Draw the front thrihedron of the box.
+	 * @param concealedCornerIndex index of the concealed corner
+	 */
+	protected void drawFrontTrihedron(int concealedCornerIndex) {
+		GL gl = getGL();
+		
+		// set dash mode
+		gl.glLineWidth(getThickness());
+		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
+		
+		double[] color = getLineColor();
+		gl.glColor3d(color[0], color[1], color[2]);
+		
+		gl.glBegin(GL.GL_LINES);
+		for (int i = 0; i < FRONT_TRIHEDRON[concealedCornerIndex].length; i++) {
+			for (int j = 0; j < FRONT_TRIHEDRON[concealedCornerIndex][i].length; j++) {
+				Vector3D curVertex = smallBoxCorners[FRONT_TRIHEDRON[concealedCornerIndex][i][j]];
+				gl.glVertex3d(curVertex.getX(), curVertex.getY(), curVertex.getZ());
 			}
 		}
-		
-		Vector3D corner1 = boxCorners[cornerIndex1];
-		Vector3D corner2 = boxCorners[cornerIndex2];
-		Vector3D corner3 = boxCorners[commonNeighbourIndex];
-		Vector3D corner4 = boxCorners[cornerIndex3];
-		
-		gl.glVertex3d(corner1.getX(), corner1.getY(), corner1.getZ());
-		gl.glVertex3d(corner2.getX(), corner2.getY(), corner2.getZ());
-		gl.glVertex3d(corner3.getX(), corner3.getY(), corner3.getZ());
-		gl.glVertex3d(corner4.getX(), corner4.getY(), corner4.getZ());
-		
+		gl.glEnd();
+		GLTools.endDashMode(gl);
 	}
 	
 	

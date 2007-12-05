@@ -26,14 +26,12 @@ public class BackTrihedronDrawerGL extends SubwinBoxDrawer {
 	 * An other seetting for parameters since line colro is not needed
 	 * @param hiddenAxisColor color of back trihedron lines
 	 * @param backgroundColor color of back trihedron facets
-	 * @param lineStyle pattern to use for lines
 	 * @param thickness thickness of the lines
 	 */
 	public void setBoxParameters(int hiddenAxisColor, int backgroundColor,
-								 int lineStyle, float thickness) {
+								 float thickness) {
 		setHiddenAxisColor(hiddenAxisColor);
 		setBackgroundColor(backgroundColor);
-		setLineStyle(lineStyle);
 		setThickness(thickness);
 	}
 	
@@ -41,7 +39,7 @@ public class BackTrihedronDrawerGL extends SubwinBoxDrawer {
 	 * Draw the box specified by its bounds.
 	 */
 	public void drawBox() {
-		drawTrihedron();
+		drawTrihedron(findConcealedCorner());
 	}
 
 }

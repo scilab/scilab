@@ -136,6 +136,8 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		// need to perform this befaore swithching to pixel coordinates
 		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, marksPosition);
 		
+		// mark are drawn with a line width of 1.
+		gl.glLineWidth(1.0f);
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);

@@ -83,7 +83,7 @@ public class ScilabGraphicWindow extends ScilabWindow {
 			System.err.println(CANNOT_CREATE_TOOLBAR);
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
 		}
-		this.draw();
+		
 		
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
 		Canvas graphicCanvas = ScilabCanvas.createCanvas(figureIndex);
@@ -97,6 +97,7 @@ public class ScilabGraphicWindow extends ScilabWindow {
 		associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
 		
 		//graphicCanvas.display();
+		this.draw();
 	}
 
 	/**

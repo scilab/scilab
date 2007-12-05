@@ -35,7 +35,6 @@ void BackTrihedronDrawerJoGL::drawAxesBox(void)
 
   getBackTrihedronDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->hiddencolor,
                                                        sciGetGraphicContext(pSubwin)->backgroundcolor,
-                                                       sciGetLineStyle(pSubwin),
                                                        (float) sciGetLineWidth(pSubwin));
 
   // get displayed bounds

@@ -61,9 +61,9 @@ public final class GLTools {
 			return;
 		}
 		
-		gl.glLineStipple((int) thickness, STIPPLE_PATTERN[lineStyle]);
-		
+		// glLineStipple seems to need to be modified when GL_LINE_STIPPLE is enable
 		gl.glEnable(GL.GL_LINE_STIPPLE);
+		gl.glLineStipple((int) thickness, STIPPLE_PATTERN[lineStyle]);
 	}
 	
 	/**

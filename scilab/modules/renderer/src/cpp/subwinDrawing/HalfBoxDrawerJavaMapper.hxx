@@ -1,30 +1,30 @@
 /*------------------------------------------------------------------------*/
-/* file: BackTrihedronDrawerJavaMapper.hxx                                */
+/* file: HalfBoxDrawerJavaMapper.hxx                                      */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing java methods needed by BackTrihedronJoGL       */
+/* desc : Class containing java methods needed by HalfBoxDrawerJoGL       */
 /*------------------------------------------------------------------------*/
 
-#ifndef _BACK_TRIHEDRON_DRAWER_JAVA_MAPPER_HXX_
-#define _BACK_TRIHEDRON_DRAWER_JAVA_MAPPER_HXX_
+#ifndef _HALF_BOX_DRAWER_JAVA_MAPPER_HXX_
+#define _HALF_BOX_DRAWER_JAVA_MAPPER_HXX_
 
 #include "../DrawableObjectJavaMapper.hxx"
-#include "BackTrihedronDrawerGL.hxx"
+#include "HalfBoxDrawerGL.hxx"
 
 
 namespace sciGraphics
 {
 
 /**
- * Contains mapping of java method used by BackTrihedronDrawerJoGL 
+ * Contains mapping of java method used by HalfBoxDrawerJoGL 
  */
-class BackTrihedronDrawerJavaMapper : public virtual DrawableObjectJavaMapper
+class HalfBoxDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
 public:
 
-  BackTrihedronDrawerJavaMapper(void);
+  HalfBoxDrawerJavaMapper(void);
 
-  virtual ~BackTrihedronDrawerJavaMapper(void);
+  virtual ~HalfBoxDrawerJavaMapper(void);
 
   /*----------------------------------------------------------------------*/
   // Inherited From DrawableObjectJavaMapper
@@ -39,9 +39,9 @@ public:
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
-  // specific for back trihedron
-  virtual void setBoxParameters(int hiddenAxisColor, int backgroundColor,
-                                float thickness);
+  // specific for HalfBoxDrawer
+  virtual void setBoxParameters(int hiddenAxisColor, int backgroundColor, int lineColor,
+                                int lineStyle, float thickness);
   virtual void drawBox(double xMin, double xMax, double yMin,
                        double yMax, double zMin, double zMax);
   /*----------------------------------------------------------------------*/
@@ -49,12 +49,12 @@ public:
 protected:
 
   /**
-   * Giws generated wrapper
-   */
-  org_scilab_modules_renderer_subwinDrawing::BackTrihedronDrawerGL * m_pJavaObject;
+  * Giws generated wrapper
+  */
+  org_scilab_modules_renderer_subwinDrawing::HalfBoxDrawerGL * m_pJavaObject;
 
 };
 
 }
 
-#endif /* _BACK_TRIHEDRON_DRAWER_JAVA_MAPPER_HXX_ */
+#endif /* _HALF_BOX_DRAWER_JAVA_MAPPER_HXX_ */

@@ -554,6 +554,30 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\FullBoxDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\FullBoxDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\FullBoxDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\HalfBoxDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\HalfBoxDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\HalfBoxDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\IsometricCameraGL.cpp"
 					>
 				</File>
@@ -1185,6 +1209,30 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\DrawAxesBoxStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\FullBoxDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\FullBoxDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\FullBoxDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\HalfBoxDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\HalfBoxDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\HalfBoxDrawerJoGL.hxx"
 					>
 				</File>
 				<File

@@ -1,5 +1,5 @@
 <package name="org.scilab.modules.renderer.subwinDrawing">
-  <object name="BackTrihedronDrawerGL">
+  <object name="HalfBoxDrawerGL">
     <method name="display" returnType="void">
     </method>
     <method name="initializeDrawing" returnType="void">
@@ -19,6 +19,8 @@
     <method name="setBoxParameters" returnType="void">
       <param type="int" name="hiddenAxisColor" />
       <param type="int" name="backgroundColor" />
+      <param type="int" name="lineColor" />
+      <param type="int" name="lineStyle" />
       <param type="float" name="thickness" />
     </method>
     <method name="drawBox" returnType="void">
