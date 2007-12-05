@@ -9,3 +9,4 @@ EXPORTS
 	ConsolePrintf
 	GetCharWithoutOutput
 	SetConsolePrompt
+	ConsoleIsWaitingForInput
