@@ -52,7 +52,4 @@ Source: modules\{#RENDERER}\macros\cleanmacros.bat; DestDir: {app}\modules\{#REN
 ;
 ;Source: modules\{#RENDERER}\tests\*.*; DestDir: {app}\modules\{#RENDERER}\tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_TESTS}
 ;
-;Source: modules\{#RENDERER}\unit_tests\*.ref; DestDir: {app}\modules\{#RENDERER}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#RENDERER}\unit_tests\*.tst; DestDir: {app}\modules\{#RENDERER}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_UNIT_TESTS}
-;
 ;--------------------------------------------------------------------------------------------------------------

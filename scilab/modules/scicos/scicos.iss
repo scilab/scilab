@@ -53,9 +53,6 @@ Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;
 ;Source: modules\{#SCICOS}\tcl\*.*; DestDir: {app}\modules\{#SCICOS}\bin; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS}\unit_tests\*.ref; DestDir: {app}\modules\{#SCICOS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCICOS} and {#COMPN_UNIT_TESTS}
-;Source: modules\{#SCICOS}\unit_tests\*.tst; DestDir: {app}\modules\{#SCICOS}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCICOS} and {#COMPN_UNIT_TESTS}
-;
 ;Source: bin\.scicos_pal; DestDir: {app}\bin; Flags: ignoreversion; Components: {#COMPN_SCICOS}
 ;
 Source: modules\{#SCICOS}\tests\*.*; DestDir: {app}\modules\{#SCICOS}\tests; Flags: recursesubdirs; Components: {#SCICOS} and {#COMPN_TESTS}

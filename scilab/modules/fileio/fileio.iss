@@ -39,9 +39,6 @@ Source: modules\{#FILEIO}\macros\*.sci; DestDir: {app}\modules\{#FILEIO}\macros;
 ;
 ;Source: modules\{#FILEIO}\demos\*.*; DestDir: {app}\modules\{#FILEIO}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FILEIO}\unit_tests\*.ref; DestDir: {app}\modules\{#FILEIO}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-Source: modules\{#FILEIO}\unit_tests\*.tst; DestDir: {app}\modules\{#FILEIO}\unit_tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_UNIT_TESTS}
-;
 Source: modules\{#FILEIO}\tests\*.*; DestDir: {app}\modules\{#FILEIO}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
