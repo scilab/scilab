@@ -6,7 +6,6 @@
 #include "machine.h"
 #include "prompt.h"
 #include "sciprint.h"
-#include "sciprint.h"
 #include "warningmode.h"
 #include "localization.h"
 /*------------------------------------------------------------------------*/
