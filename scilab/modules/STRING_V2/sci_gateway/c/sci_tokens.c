@@ -182,11 +182,9 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 		}
 	}
 
-	if (Input_MatrixTwo)
+	if (Rhs==2)
 	{
-		if (Input_MatrixTwo[0]) {FREE(Input_MatrixTwo[0]); Input_MatrixTwo[0]=NULL; }
-		FREE(Input_MatrixTwo);
-		Input_MatrixTwo=NULL;
+		freeArrayOfString(Input_MatrixTwo,mn_Two);
 	}
 	
 	freeArrayOfString(Input_MatrixOne,mn_One);
