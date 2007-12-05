@@ -87,7 +87,7 @@ public final class ToolBarBuilder {
 		protected static final String TRUE = "true";
 		protected static final String FALSE = "false";
 		
-		protected static final String DEFAULT_ICON_PATH = System.getenv("SCI") + "/modules/gui/etc/icons/";
+		protected static final String DEFAULT_ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/";
 
 		private Document dom;
 		private Object proxy;
