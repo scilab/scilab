@@ -13,7 +13,8 @@ static gw_generic_table Tab[]=
 {C2F(sci_clc),"clc"},
 {C2F(sci_tohome),"tohome"},
 {C2F(sci_lines),"lines"},
-{C2F(sci_prompt),"prompt"}
+{C2F(sci_prompt),"prompt"},
+{sci_iswaitingforinput,"iswaitingforinput"}
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_shell)()

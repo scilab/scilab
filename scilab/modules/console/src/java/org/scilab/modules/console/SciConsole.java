@@ -432,4 +432,13 @@ public class SciConsole extends JPanel {
 		return sciConsole;
 	}
 	
+	/**
+	 * Get the current status of the console
+	 * If the prompt view is visible, Scilab is waiting for commands
+	 * @return true is Scilab is waiting for commands
+	 */
+	public boolean isWaitingForInput() {
+		return ((JTextPane) config.getInputCommandView()).isEditable();
+	}
+	
 }

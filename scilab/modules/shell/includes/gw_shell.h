@@ -16,6 +16,7 @@ int C2F(sci_clc) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_tohome) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_prompt) _PARAMS((char *fname,unsigned long fname_len));
+int sci_iswaitingforinput(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SHELL_H__ */
 

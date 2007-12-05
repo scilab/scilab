@@ -10,7 +10,9 @@
         <submenu label="Save..." mnemonic="S" enabled="false"/> 
         <separator/>
         <submenu label="Change directory..." mnemonic="C" enabled="false"/> 
-        <submenu label="Display current directory" mnemonic="D" enabled="false"/> 
+        <submenu label="Display current directory" mnemonic="D">
+            <callback instruction="if iswaitingforinput() then printf('\n%s\n\n%s\n',prompt(),getcwd()); else printf('\n\n%s\n\n',getcwd());end" type="1"/>
+        </submenu> 
         <separator/>
         <submenu label="Print setup..." mnemonic="R" enabled="false"/> 
         <submenu label="Print" mnemonic="P" enabled="false"/> 

@@ -170,10 +170,20 @@ public class ScilabConsoleBridge {
 	/**
 	 * Updates Scilab internal variables containing the size of the console
 	 * These variables are used to format data before displaying it
- 	 * @param console object we want to get the size
+ 	 * @param console object we want to get the size of
  	 */
 	public static void scilabLinesUpdate(Console console) {
 		console.getAsSimpleConsole().scilabLinesUpdate();
+	}
+	
+	/**
+	 * Get the current status of the console
+	 * If the prompt view is visible, Scilab is waiting for commands
+ 	 * @param console object we want to get the status of
+	 * @return true is Scilab is waiting for commands
+	 */
+	public static boolean isWaitingForInput(Console console) {
+		return console.getAsSimpleConsole().isWaitingForInput();
 	}
 
 }

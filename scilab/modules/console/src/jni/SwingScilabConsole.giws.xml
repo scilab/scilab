@@ -19,5 +19,6 @@
 	<method name="setPrompt" returnType="void">
 	  <parameter type="String" name="promptToSet" />
 	</method>
+	<method name="isWaitingForInput" returnType="boolean"/>
   </object>
 </package>

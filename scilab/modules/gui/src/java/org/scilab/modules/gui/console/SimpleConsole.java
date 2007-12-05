@@ -103,6 +103,13 @@ public interface SimpleConsole {
 	void scilabLinesUpdate();
 
 	/**
+	 * Get the current status of the console
+	 * If the prompt view is visible, Scilab is waiting for commands
+	 * @return true is Scilab is waiting for commands
+	 */
+	boolean isWaitingForInput();
+	
+	/**
 	 * Set the element id for this console
 	 * @param id the id of the corresponding console object
 	 */

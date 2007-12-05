@@ -92,9 +92,9 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/c/dropFiles.c src/c/TerminateConsole.c \
 	src/jni/SwingScilabConsole.cpp src/cpp/ClearConsole.cpp \
 	src/cpp/ClearConsolePart.cpp src/cpp/ConsolePrintf.cpp \
-	src/cpp/ConsoleRead.cpp src/cpp/GetCharWithoutOutput.cpp \
-	src/cpp/PromptToHome.cpp src/cpp/ScilabLinesUpdate.cpp \
-	src/cpp/SetConsolePrompt.cpp \
+	src/cpp/ConsoleRead.cpp src/cpp/ConsoleIsWaitingForInput.cpp \
+	src/cpp/GetCharWithoutOutput.cpp src/cpp/PromptToHome.cpp \
+	src/cpp/ScilabLinesUpdate.cpp src/cpp/SetConsolePrompt.cpp \
 	src/cpp/GetScilabConsoleObject.cpp
 @GUI_TRUE@am__objects_1 = libsciconsole_la-GuiManagement_wrap.lo \
 @GUI_TRUE@	libsciconsole_la-DropFiles_wrap.lo
@@ -108,6 +108,7 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 @GUI_TRUE@	libsciconsole_la-ClearConsolePart.lo \
 @GUI_TRUE@	libsciconsole_la-ConsolePrintf.lo \
 @GUI_TRUE@	libsciconsole_la-ConsoleRead.lo \
+@GUI_TRUE@	libsciconsole_la-ConsoleIsWaitingForInput.lo \
 @GUI_TRUE@	libsciconsole_la-GetCharWithoutOutput.lo \
 @GUI_TRUE@	libsciconsole_la-PromptToHome.lo \
 @GUI_TRUE@	libsciconsole_la-ScilabLinesUpdate.lo \
@@ -320,6 +321,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/ClearConsolePart.cpp \
 @GUI_TRUE@src/cpp/ConsolePrintf.cpp \
 @GUI_TRUE@src/cpp/ConsoleRead.cpp \
+@GUI_TRUE@src/cpp/ConsoleIsWaitingForInput.cpp \
 @GUI_TRUE@src/cpp/GetCharWithoutOutput.cpp \
 @GUI_TRUE@src/cpp/PromptToHome.cpp \
 @GUI_TRUE@src/cpp/ScilabLinesUpdate.cpp \
@@ -517,6 +519,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsolePrintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsoleRead.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo@am__quote@
@@ -658,6 +661,13 @@ libsciconsole_la-ConsoleRead.lo: src/cpp/ConsoleRead.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ConsoleRead.cpp' object='libsciconsole_la-ConsoleRead.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ConsoleRead.lo `test -f 'src/cpp/ConsoleRead.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleRead.cpp
+
+libsciconsole_la-ConsoleIsWaitingForInput.lo: src/cpp/ConsoleIsWaitingForInput.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ConsoleIsWaitingForInput.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Tpo -c -o libsciconsole_la-ConsoleIsWaitingForInput.lo `test -f 'src/cpp/ConsoleIsWaitingForInput.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleIsWaitingForInput.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Tpo $(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ConsoleIsWaitingForInput.cpp' object='libsciconsole_la-ConsoleIsWaitingForInput.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-ConsoleIsWaitingForInput.lo `test -f 'src/cpp/ConsoleIsWaitingForInput.cpp' || echo '$(srcdir)/'`src/cpp/ConsoleIsWaitingForInput.cpp
 
 libsciconsole_la-GetCharWithoutOutput.lo: src/cpp/GetCharWithoutOutput.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-GetCharWithoutOutput.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Tpo -c -o libsciconsole_la-GetCharWithoutOutput.lo `test -f 'src/cpp/GetCharWithoutOutput.cpp' || echo '$(srcdir)/'`src/cpp/GetCharWithoutOutput.cpp

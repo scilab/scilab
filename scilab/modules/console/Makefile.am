@@ -13,6 +13,7 @@ CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
 src/cpp/ClearConsolePart.cpp \
 src/cpp/ConsolePrintf.cpp \
 src/cpp/ConsoleRead.cpp \
+src/cpp/ConsoleIsWaitingForInput.cpp \
 src/cpp/GetCharWithoutOutput.cpp \
 src/cpp/PromptToHome.cpp \
 src/cpp/ScilabLinesUpdate.cpp \

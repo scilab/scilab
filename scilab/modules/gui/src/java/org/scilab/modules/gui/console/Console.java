@@ -36,25 +36,33 @@ public interface Console extends Dockable {
 	void clear();
 	
 	/**
-   * Clears lines from the end of the output view
-   * @param nbLines the number of lines to be deleted
-   */
-  void clear(int nbLines);
-  
-  /**
-   * Puts the prompt in the top left corner of the console
-   */
-  void toHome();
+	 * Clears lines from the end of the output view
+	 * @param nbLines the number of lines to be deleted
+	 */
+	void clear(int nbLines);
 
-  /**
-   * Sets the prompt displayed in the console
-   * @param prompt the prompt to be displayed in the console
-   */
-  void setPrompt(String prompt);
-  
-  /**
-   * Updates Scilab internal variables containing the size of the console
-   * These variables are used to format data before displaying it
-   */
-  void scilabLinesUpdate();
+	/**
+	 * Puts the prompt in the top left corner of the console
+	 */
+	void toHome();
+
+	/**
+	 * Sets the prompt displayed in the console
+	 * @param prompt the prompt to be displayed in the console
+	 */
+	void setPrompt(String prompt);
+
+	/**
+	 * Updates Scilab internal variables containing the size of the console
+	 * These variables are used to format data before displaying it
+	 */
+	void scilabLinesUpdate();
+
+	/**
+	 * Get the current status of the console
+	 * If the prompt view is visible, Scilab is waiting for commands
+	 * @return true is Scilab is waiting for commands
+	 */
+	boolean isWaitingForInput();
+
 }

@@ -17,14 +17,14 @@ import org.scilab.modules.gui.dockable.ScilabDockable;
 public class ScilabConsole extends ScilabDockable implements Console {
 
 	private SimpleConsole component;
-	
+
 	/**
 	 * Constructor
 	 */
 	protected ScilabConsole() {
 		component = ScilabBridge.createConsole();
 		component.setElementId(UIElementMapper.add(this));
-		
+
 		setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
@@ -43,7 +43,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	public SimpleConsole getAsSimpleConsole() {
 		return component;
 	}
-	
+
 	/**
 	 * Displays data in the console
 	 * @param dataToDisplay the data to be displayed
@@ -130,21 +130,21 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	public void clear() {
 		ScilabBridge.clear(this);
 	}
-	
+
 	/**
-   * Clears lines from the end of the output view
-   * @param nbLines the number of lines to be deleted
-   */
-  public void clear(int nbLines) {
+	 * Clears lines from the end of the output view
+	 * @param nbLines the number of lines to be deleted
+	 */
+	public void clear(int nbLines) {
 		ScilabBridge.clear(this, nbLines);
 	}
-	
+
 	/**
-   * Puts the prompt in the top left corner of the console
-   */
-  public void toHome() {
-  	ScilabBridge.toHome(this);
-  }
+	 * Puts the prompt in the top left corner of the console
+	 */
+	public void toHome() {
+		ScilabBridge.toHome(this);
+	}
 
 	/**
 	 * Reads one user input char
@@ -155,14 +155,14 @@ public class ScilabConsole extends ScilabDockable implements Console {
 		return ScilabBridge.getCharWithoutOutput(this);
 	}
 
-    /**
-	   * Sets the prompt displayed in the console
-	   * @param prompt the prompt to be displayed in the console
-	   */
+	/**
+	 * Sets the prompt displayed in the console
+	 * @param prompt the prompt to be displayed in the console
+	 */
 	public void setPrompt(String prompt) {
 		ScilabBridge.setPrompt(this, prompt);
 	}
-	
+
 	/**
 	 * Updates Scilab internal variables containing the size of the console
 	 * These variables are used to format data before displaying it
@@ -171,4 +171,12 @@ public class ScilabConsole extends ScilabDockable implements Console {
 		ScilabBridge.scilabLinesUpdate(this);
 	}
 
+	/**
+	 * Get the current status of the console
+	 * If the prompt view is visible, Scilab is waiting for commands
+	 * @return true is Scilab is waiting for commands
+	 */
+	public boolean isWaitingForInput() {
+		return ScilabBridge.isWaitingForInput(this);
+	}
 }
