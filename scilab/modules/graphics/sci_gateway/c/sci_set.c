@@ -285,9 +285,11 @@ int sci_set(char *fname, unsigned long fname_len)
 			 }
 		 }
 	 }
-	 else if ( ( setStatus = sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3) ) < 0 )
+	 else
 	 {
-
+           endGraphicDataWriting();
+           sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+           startGraphicDataWriting();
 	 }
 
 	 endGraphicDataWriting();

@@ -83,11 +83,14 @@ public class ScilabGraphicWindow extends ScilabWindow {
 			System.err.println(CANNOT_CREATE_TOOLBAR);
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
 		}
+		this.draw();
+		
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
 		Canvas graphicCanvas = ScilabCanvas.createCanvas(figureIndex);
 		graphicTab.addMember(graphicCanvas);
 		this.addTab(graphicTab);
-		this.draw();
+		// don't draw for now
+		
 		
 		// link the tab and canvas with theie figure
 		DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);

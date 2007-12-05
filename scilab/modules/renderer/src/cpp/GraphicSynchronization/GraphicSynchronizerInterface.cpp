@@ -55,7 +55,7 @@ void endGraphicDataWriting( void )
 /*---------------------------------------------------------------------------------*/
 void startGraphicDataReading( void )
 {
-  GraphicSynchronizerFactory::getGlobalSynchronizer()->startWriting();
+  GraphicSynchronizerFactory::getGlobalSynchronizer()->startReading();
 }
 /*---------------------------------------------------------------------------------*/
 void endGraphicDataReading( void )
