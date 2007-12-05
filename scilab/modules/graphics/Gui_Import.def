@@ -16,4 +16,14 @@ getYCoordinate
 getXCoordinate
 getMouseButtonNumber
 CallJxclick
+getJxclickMenuCallback
+getJxclickWindowID
+getJxclickYCoordinate
+getJxclickXCoordinate
+getJxclickMouseButtonNumber
+getJxgetmouseYCoordinate
+getJxgetmouseXCoordinate
+getJxgetmouseMouseButtonNumber
+CallJxgetmouse
+CallJxgetmouseWithOptions
 ;
