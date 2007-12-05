@@ -31,7 +31,6 @@ char *sciGetCharEntityType (sciPointObj * pobj);  /* GET */
 sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
 int sciGetNumColors (sciPointObj * pobj); /* GET */
 int sciGetColormap (sciPointObj * pobj, double rgbmat[] ); /* GET */
-int sciGetNumColors( sciPointObj * pobj ) ; /* GET */
 int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET */
 
 int sciGetForegroundToDisplay (sciPointObj * pobj); /* GET */
@@ -128,8 +127,6 @@ sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin); /* GE
 
 
 int sciType (char *marker, sciPointObj *pobj); /* GET */
-
-unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
 
 sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
 
