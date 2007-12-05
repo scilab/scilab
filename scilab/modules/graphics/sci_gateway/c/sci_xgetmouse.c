@@ -2,7 +2,7 @@
 /* file: sci_xgetmouse.c                                                  */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
-/* Java version: Vincent COUVERT (2007)
+/* Java version: Vincent COUVERT (2007)                                   */
 /* desc : interface for sci_xgetmouse routine                             */
 /*------------------------------------------------------------------------*/
 
