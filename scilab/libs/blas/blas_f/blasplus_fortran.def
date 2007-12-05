@@ -1,0 +1,150 @@
+LIBRARY    blasplus.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; Atlas libray for Scilab 5.x
+; Export files with symbols used by Scilab
+; --------------------------------------- 
+dasum
+daxpy
+dcopy
+ddot
+dgbmv
+dgemm
+dgemv
+dger
+dnrm2
+drot
+drotg
+dsbmv
+dscal
+dspmv
+dspr
+dspr2
+dswap
+dsymm
+dsymv
+dsyr
+dsyr2
+dsyr2k
+dsyrk
+dtbmv
+dtbsv
+dtpmv
+dtpsv
+dtrmm
+dtrmv
+dtrsm
+dtrsv
+dzasum
+dznrm2
+idamax
+izamax
+xerbla
+zaxpy
+zcopy
+zdotc
+zdotu
+zdscal
+zgbmv
+zgemm
+zgemv
+zgerc
+zgeru
+zhbmv
+zhemm
+zhemv
+zher
+zher2
+zher2k
+zherk
+zhpmv
+zhpr
+zhpr2
+zrotg
+zscal
+zswap
+zsymm
+zsyr2k
+zsyrk
+ztbmv
+ztbsv
+ztpmv
+ztpsv
+ztrmm
+ztrmv
+ztrsm
+ztrsv
+;
+dasum_ =       dasum   
+daxpy_ =       daxpy   
+dcopy_ =       dcopy   
+ddot_  =       ddot    
+dgbmv_ =       dgbmv   
+dgemm_ =       dgemm   
+dgemv_ =       dgemv   
+dger_  =       dger    
+dnrm2_ =       dnrm2   
+drot_  =       drot    
+drotg_ =       drotg   
+dsbmv_ =       dsbmv   
+dscal_ =       dscal   
+dspmv_ =       dspmv   
+dspr_  =       dspr    
+dspr2_ =       dspr2   
+dswap_ =       dswap   
+dsymm_ =       dsymm   
+dsymv_ =       dsymv   
+dsyr_  =       dsyr    
+dsyr2_ =       dsyr2   
+dsyr2k_=       dsyr2k   
+dsyrk_ =       dsyrk   
+dtbmv_ =       dtbmv   
+dtbsv_ =       dtbsv   
+dtpmv_ =       dtpmv   
+dtpsv_ =       dtpsv   
+dtrmm_ =       dtrmm   
+dtrmv_ =       dtrmv   
+dtrsm_ =       dtrsm   
+dtrsv_ =       dtrsv   
+dzasum_=       dzasum   
+dznrm2_=       dznrm2   
+idamax_=       idamax   
+izamax_=       izamax   
+xerbla_=       xerbla   
+zaxpy_ =       zaxpy   
+zcopy_ =       zcopy   
+zdotc_ =       zdotc   
+zdotu_ =       zdotu   
+zdscal_=       zdscal   
+zgbmv_ =       zgbmv   
+zgemm_ =       zgemm   
+zgemv_ =       zgemv   
+zgerc_ =       zgerc   
+zgeru_ =       zgeru   
+zhbmv_ =       zhbmv   
+zhemm_ =       zhemm   
+zhemv_ =       zhemv   
+zher_  =       zher    
+zher2_ =       zher2   
+zher2k_=       zher2k   
+zherk_ =       zherk   
+zhpmv_ =       zhpmv   
+zhpr_  =       zhpr    
+zhpr2_ =       zhpr2   
+zrotg_ =       zrotg   
+zscal_ =       zscal   
+zswap_ =       zswap   
+zsymm_ =       zsymm   
+zsyr2k_=       zsyr2k   
+zsyrk_ =       zsyrk   
+ztbmv_ =       ztbmv   
+ztbsv_ =       ztbsv   
+ztpmv_ =       ztpmv   
+ztpsv_ =       ztpsv   
+ztrmm_ =       ztrmm   
+ztrmv_ =       ztrmv   
+ztrsm_ =       ztrsm   
+ztrsv_ =       ztrsv      
+           
