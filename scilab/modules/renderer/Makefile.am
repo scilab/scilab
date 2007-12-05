@@ -153,7 +153,13 @@ src/cpp/polylineDrawing/VerticalBarDecomposition.cpp \
 src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp \
 src/jni/BackTrihedronDrawerGL.cpp \
 src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp \
-src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp
+src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp \
+src/jni/FullBoxDrawerGL.cpp \
+src/jni/HalfBoxDrawerGL.cpp \
+src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp \
+src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
+ src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
