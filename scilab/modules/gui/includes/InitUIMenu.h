@@ -5,9 +5,9 @@
 #include "returnProperty.h"
 
 void InitUIMenu(sciPointObj* sciObj);
-int set_label_property(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol);
 int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol);
 int setMenuCallback(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol);
+int set_label_property(        sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int get_label_property(sciPointObj* sciObj);
 void EnableRootMenu(char *name, BOOL status);
 void EnableFigureMenu(int figurenum, char *name, BOOL status);
