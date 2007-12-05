@@ -109,7 +109,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_ClipBoard.c sci_gateway/c/sci_hidetoolbar.c \
 	sci_gateway/c/sci_toolbar.c src/cpp/InitUIMenu.cpp \
 	src/jni/CallScilabBridge.cpp src/jni/Jxclick.cpp \
-	src/cpp/CallJxclick.cpp
+	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
+	src/cpp/CallJxgetmouse.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -142,7 +143,9 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_toolbar.lo
 @GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
-@GUI_TRUE@	libscigui_la-Jxclick.lo libscigui_la-CallJxclick.lo
+@GUI_TRUE@	libscigui_la-Jxclick.lo libscigui_la-CallJxclick.lo \
+@GUI_TRUE@	libscigui_la-Jxgetmouse.lo \
+@GUI_TRUE@	libscigui_la-CallJxgetmouse.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -420,9 +423,15 @@ JARMASK = *.jar
 @GUI_TRUE@GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 @GUI_TRUE@src/jni/CallScilabBridge.cpp \
 @GUI_TRUE@src/jni/Jxclick.cpp \
-@GUI_TRUE@src/cpp/CallJxclick.cpp
+@GUI_TRUE@src/cpp/CallJxclick.cpp \
+@GUI_TRUE@src/jni/Jxgetmouse.cpp \
+@GUI_TRUE@src/cpp/CallJxgetmouse.cpp
 
-@GUI_TRUE@GIWS_WRAPPERS = src/jni/DrawableRectangleGL.giws.xml
+@GUI_TRUE@GIWS_WRAPPERS = \
+@GUI_TRUE@src/jni/DrawableRectangleGL.giws.xml \
+@GUI_TRUE@src/jni/Jxclick.giws.xml \
+@GUI_TRUE@src/jni/Jxgetmouse.giws.xml
+
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 @GUI_TRUE@sci_gateway/c/sci_x_message_modeless.c \
 @GUI_TRUE@sci_gateway/c/gw_gui.c \
@@ -582,10 +591,12 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxclick.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallScilabBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitUIMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitializeGUI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxclick.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-TerminateGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
@@ -903,6 +914,20 @@ libscigui_la-CallJxclick.lo: src/cpp/CallJxclick.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallJxclick.cpp' object='libscigui_la-CallJxclick.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallJxclick.lo `test -f 'src/cpp/CallJxclick.cpp' || echo '$(srcdir)/'`src/cpp/CallJxclick.cpp
+
+libscigui_la-Jxgetmouse.lo: src/jni/Jxgetmouse.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-Jxgetmouse.lo -MD -MP -MF $(DEPDIR)/libscigui_la-Jxgetmouse.Tpo -c -o libscigui_la-Jxgetmouse.lo `test -f 'src/jni/Jxgetmouse.cpp' || echo '$(srcdir)/'`src/jni/Jxgetmouse.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-Jxgetmouse.Tpo $(DEPDIR)/libscigui_la-Jxgetmouse.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Jxgetmouse.cpp' object='libscigui_la-Jxgetmouse.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-Jxgetmouse.lo `test -f 'src/jni/Jxgetmouse.cpp' || echo '$(srcdir)/'`src/jni/Jxgetmouse.cpp
+
+libscigui_la-CallJxgetmouse.lo: src/cpp/CallJxgetmouse.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallJxgetmouse.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallJxgetmouse.Tpo -c -o libscigui_la-CallJxgetmouse.lo `test -f 'src/cpp/CallJxgetmouse.cpp' || echo '$(srcdir)/'`src/cpp/CallJxgetmouse.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-CallJxgetmouse.Tpo $(DEPDIR)/libscigui_la-CallJxgetmouse.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallJxgetmouse.cpp' object='libscigui_la-CallJxgetmouse.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallJxgetmouse.lo `test -f 'src/cpp/CallJxgetmouse.cpp' || echo '$(srcdir)/'`src/cpp/CallJxgetmouse.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

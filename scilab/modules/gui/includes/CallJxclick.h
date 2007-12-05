@@ -5,15 +5,15 @@
 /* Vincent COUVERT 2007 */
 void CallJxclick();
 
-int getMouseButtonNumber();
+int getJxclickMouseButtonNumber();
 
-double getXCoordinate();
+double getJxclickXCoordinate();
 
-double getYCoordinate();
+double getJxclickYCoordinate();
 
-int getWindowID();
+int getJxclickWindowID();
 
-char * getMenuCallback();
+char * getJxclickMenuCallback();
 
 #endif
 

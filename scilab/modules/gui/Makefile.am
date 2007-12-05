@@ -22,9 +22,14 @@ src/c/addmenu.c
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
-src/cpp/CallJxclick.cpp
+src/cpp/CallJxclick.cpp \
+src/jni/Jxgetmouse.cpp \
+src/cpp/CallJxgetmouse.cpp
 
-GIWS_WRAPPERS = src/jni/DrawableRectangleGL.giws.xml
+GIWS_WRAPPERS = \
+src/jni/DrawableRectangleGL.giws.xml \
+src/jni/Jxclick.giws.xml \
+src/jni/Jxgetmouse.giws.xml
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_x_message_modeless.c \

@@ -1,0 +1,12 @@
+<package name="org.scilab.modules.gui.events">
+  <object name="Jxgetmouse">
+	<method name="xgetmouse" returnType="void" modifier="static"/>
+	<method name="xgetmouse" returnType="void" modifier="static">
+              <parameter name="withMotion" type="boolean"/>
+              <parameter name="withRelease" type="boolean"/>
+        </method>
+	<method name="getMouseButtonNumber" returnType="int" modifier="static"/>
+	<method name="getXCoordinate" returnType="float" modifier="static"/>
+	<method name="getYCoordinate" returnType="float" modifier="static"/>
+  </object>
+</package>

@@ -48,7 +48,7 @@ int sci_xsetech                    _PARAMS((char *fname, unsigned long fname_len
 int sci_xgetech                    _PARAMS((char *fname, unsigned long fname_len));
 int sci_geom3d                     _PARAMS((char *fname, unsigned long fname_len));
 int sci_fec                        _PARAMS((char *fname, unsigned long fname_len));
-int sci_xgetmouse                  _PARAMS((char *fname, unsigned long fname_len));
+int sci_xgetmouse                  (char *fname, unsigned long fname_len);
 int sci_xtitle                     _PARAMS((char *fname, unsigned long fname_len));
 int sci_xgrid                      _PARAMS((char *fname, unsigned long fname_len));
 int sci_xfarcs                     _PARAMS((char *fname, unsigned long fname_len));

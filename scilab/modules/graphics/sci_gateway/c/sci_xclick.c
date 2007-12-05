@@ -35,11 +35,11 @@ int sci_xclick(char *fname,unsigned long fname_len)
   CallJxclick();
 
   // Get return values
-  mouseButtonNumber = getMouseButtonNumber();
-  xCoordinate = getXCoordinate();
-  yCoordinate = getYCoordinate();
-  windowID = getWindowID();
-  menuCallback = getMenuCallback();
+  mouseButtonNumber = getJxclickMouseButtonNumber();
+  xCoordinate = getJxclickXCoordinate();
+  yCoordinate = getJxclickYCoordinate();
+  windowID = getJxclickWindowID();
+  menuCallback = getJxclickMenuCallback();
 
   if (Lhs == 1)
   {

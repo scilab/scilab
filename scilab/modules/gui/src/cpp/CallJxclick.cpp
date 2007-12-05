@@ -10,27 +10,27 @@ void CallJxclick()
   Jxclick::xclick(getScilabJavaVM());
 }
 
-int getMouseButtonNumber()
+int getJxclickMouseButtonNumber()
 {
   return Jxclick::getMouseButtonNumber(getScilabJavaVM());
 }
 
-double getXCoordinate()
+double getJxclickXCoordinate()
 {
   return Jxclick::getXCoordinate(getScilabJavaVM());
 }
 
-double getYCoordinate()
+double getJxclickYCoordinate()
 {
   return Jxclick::getYCoordinate(getScilabJavaVM());
 }
 
-int getWindowID()
+int getJxclickWindowID()
 {
   return Jxclick::getWindowID(getScilabJavaVM());
 }
 
-char * getMenuCallback()
+char * getJxclickMenuCallback()
 {
   return Jxclick::getMenuCallback(getScilabJavaVM());
 }
