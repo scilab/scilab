@@ -80,7 +80,7 @@ int sci_xclick(char *fname,unsigned long fname_len)
   if (Lhs >= 5) 
   {
     LhsVar(5) = Rhs+5;
-    istr = strlen(menuCallback);
+    istr = (int)strlen(menuCallback);
     CreateVar(Rhs+5,STRING_DATATYPE,&istr,&one,&rep); 
     strncpy(cstk(rep),menuCallback,istr);
   }
