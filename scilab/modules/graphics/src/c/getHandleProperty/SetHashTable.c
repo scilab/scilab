@@ -11,6 +11,7 @@
 #include "sciprint.h"
 #include "getDictionarySetProperties.h"
 #include "MALLOC.h"
+#include "InitUIMenu.h"
 /** 
 * use for the singleton to know if the hashtable has already be created.
 */
