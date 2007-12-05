@@ -14,10 +14,12 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.LookAndFeel;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
 
 /**
  * Main Class for Scilab
@@ -29,9 +31,16 @@ public class Scilab {
 	
 	private static final String CLASS_NOT_FOUND = "Could not find class: ";
 	private static final String FILE_NOT_FOUND = "Could not find file: ";
-	private static final String CANNOT_CREATE_MENUBAR = "Cannot create Scilab MenuBar.\nCheck if file main_menus.xml is available and valid.";
+
+	private static final String CANNOT_CREATE_MENUBAR = "Cannot create Figure MenuBar.\n"
+							+ "Check if file main_menubar.xml is available and valid.";
+	private static final String CANNOT_CREATE_TOOLBAR = "Cannot create Figure ToolBar.\n"
+							+ "Check if file main_toolbar.xml is available and valid.";
 	
-	private static final String MENUSXMLFILE = System.getenv("SCI") + "/modules/gui/etc/main_menus.xml";
+	private static final String SCIDIR = System.getenv("SCI");
+	
+	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/main_menubar.xml";
+	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/main_toolbar.xml";
 	
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
@@ -65,7 +74,7 @@ public class Scilab {
 			/************/
 			MenuBar menuBar = null;
 			try {
-				menuBar = MenuBarBuilder.buildMenuBar(MENUSXMLFILE);
+				menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
 				mainView.addMenuBar(menuBar);
 			} catch (IllegalArgumentException e) {
 				System.err.println(CANNOT_CREATE_MENUBAR);
@@ -81,6 +90,31 @@ public class Scilab {
 				e.printStackTrace();
 			} catch (ParserConfigurationException e) {
 				System.err.println(CANNOT_CREATE_MENUBAR);
+				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+				System.exit(-1);
+			}
+			
+			/************/
+			/* TOOL BAR */
+			/************/
+			ToolBar toolBar = null;
+			try {
+				toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
+				mainView.addToolBar(toolBar);
+			} catch (IllegalArgumentException e) {
+				System.err.println(CANNOT_CREATE_TOOLBAR);
+				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+				System.exit(-1);
+			} catch (SAXException e) {
+				System.err.println(CANNOT_CREATE_TOOLBAR);
+				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+				System.exit(-1);
+			} catch (IOException e) {
+				System.err.println(CANNOT_CREATE_TOOLBAR);
+				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+				e.printStackTrace();
+			} catch (ParserConfigurationException e) {
+				System.err.println(CANNOT_CREATE_TOOLBAR);
 				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
 				System.exit(-1);
 			}
