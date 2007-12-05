@@ -37,7 +37,7 @@ case 2
     
     // No verification for submenus labels
     
-    addMenuWithSubMenus(0, varargin(1), varargin(2));
+    addMenuSubMenus(0, varargin(1), varargin(2));
     
   elseif type(varargin(1))==10 & type(varargin(2))==15
     // addmenu(menu_label, action_in_a_list)
@@ -170,7 +170,7 @@ endfunction
 //------------------------------------------------------------------------------
 function addSingleMenuCallback(fig, menulabel, callback)
 
-// TODO: Code for callback should be factorized with addSingleMenuWithSubMenusWithCallback
+// TODO: Code for callback should be factorized with addSingleMenuSubMenusCallback
 callbackType = callback(1);
 if type(callbackType)<>1 | size(callbackType,"*")<>1
   error(_("Callback type must be a 0, 1 or 2"));
@@ -210,7 +210,7 @@ endfunction
 //------------------------------------------------------------------------------
 function addMenuSubMenusCallback(fig, menulabel, submenuslabels, callback)
 
-// TODO: Code for callback should be factorized with addSingleMenuWithCallback
+// TODO: Code for callback should be factorized with addSingleMenuCallback
 callbackType = callback(1);
 if type(callbackType)<>1 | size(callbackType,"*")<>1
   error(_("Callback type must be a 0, 1 or 2"));
