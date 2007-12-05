@@ -150,7 +150,10 @@ src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
 src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
 src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
 src/cpp/polylineDrawing/VerticalBarDecomposition.cpp \
-src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp
+src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp \
+src/jni/BackTrihedronDrawerGL.cpp \
+src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp \
+src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
