@@ -16,6 +16,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "getfastcode.h"
 /*----------------------------------------------------------------------------*/
 static int asciiStrings(char *fname);
 static int asciiMatrix(char *fname);
@@ -45,6 +46,40 @@ int C2F(sci_ascii) _PARAMS((char *fname,unsigned long fname_len))
 /*--------------------------------------------------------------------------*/
 static int asciiStrings(char *fname)
 {
+	/* interface written with stack3 */
+	/* 3 phases :
+		 1] get data from stack 
+			conversion scilab code to ascii and strings (char **)
+		 2] algo. conversion ascii to values
+		 3] put results on stack
+	*/
+
+	/* interface written with stack1*/
+	/* it works immediately on stack (read and write)
+	conversion scilab code to ascii values 
+	*/
+
+	/* Benchmark 
+	str_test_mat =  ["abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz", ..
+	"abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz"; ..
+	"abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz", ..
+	"abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz"];
+
+	tic();
+	for i=1:10000000
+	ascii(["abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz"]);
+	end
+	duree = toc();
+
+	printf("\nDUREE 1 = %d seconds\n\n",duree);
+	*/
+
+	/* on windows C2D 6600 2400 mhz */
+	/* scilab 4.1.2 : 40 s */
+	/* scilab with stack3 interface : 75 s*/
+	/* scilab with stack1 interface : 41 s */
+
+/*
 	char **Input_StringMatrix = NULL;
 	int x = 0,y = 0,Row_Num = 0,Col_Num = 0;
 
@@ -86,55 +121,122 @@ static int asciiStrings(char *fname)
 	C2F(putlhsvar)();
 	if (Output_IntMatrix) { FREE(Output_IntMatrix); Output_IntMatrix=NULL;}
 	return 0;
+*/
+
+	BOOL is_a_reference_on_stack = FALSE; /* variable is a reference on stack */
+	int i = 0, j = 0;
+	int nbr_characters  = 0;
+	int  l = 0, il = 0, lr = 0;
+	int ilr = 0;
+
+	#define I_STK ((int *)&C2F(stack))
+
+	il = iadr( C2F(vstk).lstk[Top - 1] );
+
+	ilr = il;
+	if (I_STK[il - 1] < 0) 
+	{
+		il = I_STK[il] + I_STK[il] - 1;
+	}
+	/* check if parameter is a reference */
+	is_a_reference_on_stack = (il != ilr);
+
+	/* find number of characters */
+	nbr_characters = I_STK[il + 4 +I_STK[il] * I_STK[il + 1] - 1] - 1;
+
+	l = il + 5 + I_STK[il] * I_STK[il + 1];
+
+	if (is_a_reference_on_stack) 
+	{
+		/* it is a reference on stack : txt = 'Scilab' ; ascii(txt) */
+		j = ilr + 4;
+		Err = j / 2 + 1 + nbr_characters - C2F(vstk).lstk[Bot - 1];
+		if (Err > 0) 
+		{
+			/* stacksize exceeded */
+			Error(17);
+			return 0;
+		}
+	} 
+	else 
+	{
+		/* it is not a reference on stack  ascii('Scilab') */
+		int one = 1;
+		int lw = l + nbr_characters;
+
+		j = lw + nbr_characters;
+		Err = j / 2 + 1 - C2F(vstk).lstk[Bot - 1];
+		if (Err > 0) 
+		{
+			/* stacksize exceeded */
+			Error(17);
+			return 0;
+		}
+		C2F(icopy)(&nbr_characters, &I_STK[l - 1], &one, &I_STK[(l + nbr_characters) - 1], &one);
+		l = lw;
+	}
+
+	/* create output int matrix , see C2F(crematvar) stack1.c */
+	I_STK[ilr - 1] = sci_matrix;
+	I_STK[ilr] = 1;
+	I_STK[ilr + 1] = nbr_characters;
+	I_STK[ilr + 2] = 0;
+
+	j = ilr + 4;
+	lr = j / 2 + 1;
+
+	/* put each value on stack */
+	for (i = 0; i < nbr_characters; i++) 
+	{
+		int scilab_code = I_STK[l + i - 1];
+		C2F(stack).Stk[lr + i - 1] = convertScilabCodeToAsciiCode(scilab_code);
+	}
+	/* update Top of stack */
+	C2F(vstk).lstk[Top] = lr + nbr_characters;
+
+	#undef I_STK 
+
+	return 0;
+	
 }
 /*--------------------------------------------------------------------------*/
 static int asciiMatrix(char *fname)
 {
-	char **Output_StringMatrix = NULL;
+	char *Output_StringMatrix = NULL;
 	int x = 0,Row_Num = 0,Col_Num = 0,Stack_Pos = 0;
 	int *Input_IntMatrix = NULL;
 	int numRow = 1;
 	int numCol = 0;
 	int outIndex = 0 ;
 
-	/*When input vector of integer ascii codes  */
+	/*When input vector of int ascii codes  */
 	GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&Row_Num,&Col_Num,&Stack_Pos);
 	Input_IntMatrix = istk(Stack_Pos);
 
-	Output_StringMatrix = (char**)MALLOC(sizeof(char*));
+	if (Row_Num*Col_Num!=0)
+	{
+		Output_StringMatrix = (char*)MALLOC(sizeof(char)*(Row_Num*Col_Num));
+	}
+	else Output_StringMatrix = (char*)MALLOC(sizeof(char));
+
 	if (Output_StringMatrix == NULL)
 	{
 		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
 
-	if (Row_Num*Col_Num!=0)
-	{
-		Output_StringMatrix[0] = (char*)MALLOC(sizeof(char*)*(Row_Num*Col_Num));
-	}
-	else Output_StringMatrix[0] = (char*)MALLOC(sizeof(char*));
-
-	if (Output_StringMatrix[0] == NULL)
-	{
-		FREE(Output_StringMatrix);
-		Output_StringMatrix = NULL;
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
-		return 0;
-	}
-
-	for (x = 0; x < Row_Num*Col_Num; x++) Output_StringMatrix[0][x] = (char)Input_IntMatrix[x];
-	Output_StringMatrix[0][Row_Num*Col_Num] = 0;
+	for (x = 0; x < Row_Num*Col_Num; x++) Output_StringMatrix[x] = (char)Input_IntMatrix[x];
+	Output_StringMatrix[Row_Num*Col_Num] = 0;
 
 	numRow   = 1 ;
 	numCol   = Row_Num*Col_Num ;
 	outIndex = 0 ;
 
 	CreateVar(Rhs+1,STRING_DATATYPE,&numRow,&numCol,&outIndex);
-	strncpy(cstk(outIndex), &Output_StringMatrix[0][0] , Row_Num*Col_Num ) ;
+	strncpy(cstk(outIndex), &Output_StringMatrix[0] , Row_Num*Col_Num ) ;
 	LhsVar(1) = Rhs+1 ;
 	C2F(putlhsvar)();
 
-	if (Output_StringMatrix[0]) { FREE(Output_StringMatrix[0]); Output_StringMatrix[0]=NULL;}
 	if (Output_StringMatrix) {FREE(Output_StringMatrix); Output_StringMatrix=NULL; }
 	return 0;
 }
