@@ -77,8 +77,8 @@ static int sci_strcat_three_rhs(char *fname)
 		mn = Row_One*Col_One;  
 		if (Rhs >= 2) 
 		{ 
-			GetRhsVar(2,STRING_DATATYPE,&Row_Two,&Col_Two,&l2);
-			Input_String_Two = cstk(l2);
+			GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&Row_Two,&Col_Two,&Input_String_Two);
+			//Input_String_Two = cstk(l2);
 		}
 		if (Rhs >= 3) 
 		{
@@ -118,6 +118,10 @@ static int sci_strcat_three_rhs(char *fname)
 				Input_String_One=NULL;
 			}
 			LhsVar(1) = Rhs+1  ;
+
+			
+			if (Input_String_Two)  freeArrayOfString(Input_String_One,Row_Two*Col_Two);
+			
 			break;
 		case COL: 
 			/* return a column matrix */ 
@@ -160,6 +164,22 @@ static int sci_strcat_three_rhs(char *fname)
 				FREE(Input_String_One);
 				Input_String_One=NULL;
 			}
+
+            if (Input_String_Two) 
+			{
+				for ( i = 0 ; i <Row_Two*Col_Two ; i++ )
+				{
+					if (Input_String_Two[i])
+					{
+						FREE(Input_String_Two[i]);
+						Input_String_Two[i]=NULL; 
+					}
+				}
+				FREE(Input_String_Two);
+				Input_String_Two=NULL;
+			}
+
+
 			LhsVar(1) = Rhs+1  ;
 			if (Output_String)
 			{
@@ -216,6 +236,21 @@ static int sci_strcat_three_rhs(char *fname)
 				}
 				FREE(Input_String_One);
 				Input_String_One=NULL;
+			}
+
+
+			if (Input_String_Two) 
+			{
+				for ( i = 0 ; i <Row_Two*Col_Two ; i++ )
+				{
+					if (Input_String_Two[i])
+					{
+						FREE(Input_String_Two[i]);
+						Input_String_Two[i]=NULL; 
+					}
+				}
+				FREE(Input_String_Two);
+				Input_String_Two=NULL;
 			}
 			if (Output_String)
 			{
@@ -352,6 +387,8 @@ static int sci_strcat_two_rhs(char *fname)
 
 					FREE(Output_String);
 					Output_String = NULL;
+					freeArrayOfString(Input_String_One,Row_One*Col_One);
+					freeArrayOfString(Input_String_Two,Number_Inputs_Two);
 				}
 				else
 				{
@@ -463,6 +500,8 @@ static int sci_strcat_one_rhs(char *fname)
 
 					FREE(Output_String);
 					Output_String = NULL;
+					if (Input_String_One)  freeArrayOfString(Input_String_One,Number_Inputs);
+
 				}
 				else
 				{
@@ -508,10 +547,12 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname)
 				C2F(putlhsvar)();
 				FREE(Output_StringMatrix[0]); Output_StringMatrix[0] = NULL;
 				FREE(Output_StringMatrix); 	Output_StringMatrix = NULL;
+				//freeArrayOfString(Input_String_One,Row_One*Col_One);
 			}
 			else
 			{
 				FREE(Output_StringMatrix); Output_StringMatrix = NULL;
+				//freeArrayOfString(Input_String_One,Row_One*Col_One);
 				Scierror(999,"Error memory allocation.\n"); 
 			}
 		}
