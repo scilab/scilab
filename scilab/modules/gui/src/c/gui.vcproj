@@ -207,6 +207,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallJxgetmouse.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\CallScilabBridge.cpp"
 				>
 			</File>
@@ -248,6 +252,10 @@
 			</File>
 			<File
 				RelativePath="..\jni\Jxclick.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\Jxgetmouse.cpp"
 				>
 			</File>
 			<File
@@ -356,7 +364,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\CallJxclick.h"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallJxclick.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallJxgetmouse.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CallJxgetmouse.hxx"
 				>
 			</File>
 			<File
@@ -397,6 +417,10 @@
 			</File>
 			<File
 				RelativePath="..\jni\Jxclick.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\Jxgetmouse.hxx"
 				>
 			</File>
 			<File
