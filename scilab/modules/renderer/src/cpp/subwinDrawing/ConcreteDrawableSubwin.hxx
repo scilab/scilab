@@ -79,9 +79,19 @@ protected:
   virtual void drawBox(void);
 
   /**
-  * Draw the ticks of the subwin object.
-  */
+   * Draw the ticks of the subwin object.
+   */
   virtual void drawTicks(void);
+
+  /**
+   * Draw the surrounding cube of the subwin object from alraedy computed data.
+   */
+  virtual void showBox(void);
+
+  /**
+   * Draw the ticks of the subwin from alraedy computed data.
+  */
+  virtual void showTicks(void);
   /*---------------------------------------------------------------------*/
   ComputeBoundsStrategy * m_pXBoundsStrategy;
   ComputeBoundsStrategy * m_pYBoundsStrategy;

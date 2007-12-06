@@ -169,5 +169,18 @@ void ConcreteDrawableSubwin::drawTicks(void)
   // TODO
 }
 /*------------------------------------------------------------------------------------------*/
-
+void ConcreteDrawableSubwin::showBox(void)
+{
+  // If axes is not displayed m_pAxesbox is not drawn.
+  if (m_pAxesBoxDrawer != NULL)
+  {
+    m_pAxesBoxDrawer->show(); 
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::showTicks(void)
+{
+  // TODO
+}
+/*------------------------------------------------------------------------------------------*/
 }

@@ -42,7 +42,6 @@ public:
    */
   void get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2]);
 
-protected:
 
   /**
    * Draw the graphic handle and store it representation in memory
@@ -55,6 +54,8 @@ protected:
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
   virtual void show( void );
+
+protected:
 
   /**
    * Set the viewing zone for a subwin.

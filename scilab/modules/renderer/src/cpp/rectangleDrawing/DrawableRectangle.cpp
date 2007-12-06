@@ -36,9 +36,11 @@ void DrawableRectangle::draw( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableRectangle::show( void )
 {
+  initializeDrawing();
   clip();
   getRectangleImp()->show() ;
   unClip();
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 DrawableRectangleBridge * DrawableRectangle::getRectangleImp( void )

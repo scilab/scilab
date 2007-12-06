@@ -32,9 +32,11 @@ void DrawablePolyline::draw( void )
 /*---------------------------------------------------------------------------------*/
 void DrawablePolyline::show( void )
 {
+  initializeDrawing();
   clip();
   showPolyline();
   unClip();
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 

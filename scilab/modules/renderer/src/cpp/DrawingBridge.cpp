@@ -37,9 +37,6 @@ void sciDrawObj( sciPointObj * pObj )
 {
   /* force total redraw */
   /* we need to recreate a new one */
-  DrawableObjectFactory updater ;
-  updater.setGraphicObj( pObj ) ;
-  updater.update() ;
   getHandleDrawer(pObj)->hasChanged() ;
   /* redisplay everything, including this handle */
   getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;
@@ -69,4 +66,8 @@ void forceHierarchyRedraw( sciPointObj * pObj )
   getHandleDrawer(pObj)->familyHasChanged();
 }
 /*---------------------------------------------------------------------------------*/
-
+void forceRedraw(sciPointObj * pObj)
+{
+  getHandleDrawer(pObj)->hasChanged();
+}
+/*---------------------------------------------------------------------------------*/

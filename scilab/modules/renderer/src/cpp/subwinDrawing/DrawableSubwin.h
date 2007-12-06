@@ -50,9 +50,14 @@ protected:
   virtual void show( void ) ;
 
   /**
-   * Draw the bounding box and ticks of the sunwin object.
+   * Draw the bounding box and ticks of the subwin object.
    */
   void drawAxesBox(void);
+
+  /**
+   * Draw the bounding box and ticks of a subwin object with alredy computed data.
+   */
+  void showAxesBox(void);
 
   /**
    * Draw the surrounding cube of the subwin object.
@@ -63,6 +68,16 @@ protected:
    * Draw the ticks of the subwin object.
    */
   virtual void drawTicks(void) = 0;
+
+  /**
+   * Draw the surrounding cube of the subwin object from alraedy computed data.
+   */
+  virtual void showBox(void) = 0;
+
+  /**
+   * Draw the ticks of the subwin from alraedy computed data.
+   */
+  virtual void showTicks(void) = 0;
 
   /**
    * Return the real type of implementation object

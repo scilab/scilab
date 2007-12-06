@@ -198,11 +198,11 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   }
   endFigureDataWriting(curFigure);
   
-  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+  /*if(bounds_changed == TRUE || axes_properties_changed == TRUE)
   {
     
     sciDrawObj(sciGetCurrentFigure());
-  }
+  }*/
   
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
@@ -245,8 +245,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       cmpt++;
     }
     endFigureDataWriting(curFigure);
-    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing once is sufficient (F.Leray 10.01.05) */
-    
+    /*DrawAxesIfRequired(sciGetCurrentObj ());*/ /* force axes redrawing once is sufficient (F.Leray 10.01.05) */
+    forceRedraw(psubwin);
     
     /*---- Drawing the Legends ----*/
     startFigureDataWriting(curFigure);
@@ -264,9 +264,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     sciSetCurrentObj(ConstructCompound (hdltab, cmpt)); 
     FREE(hdltab);
     endFigureDataWriting(curFigure);
-    return(0);
+    
   }
   
+  sciDrawObj(curFigure);
   return(0);
 }
 

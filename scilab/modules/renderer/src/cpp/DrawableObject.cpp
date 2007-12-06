@@ -12,6 +12,7 @@ extern "C"
 
 #include "DrawableObject.h"
 #include "getHandleDrawer.h"
+#include "DrawableObjectFactory.h"
 
 namespace sciGraphics
 {
@@ -49,6 +50,9 @@ void DrawableObject::display( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::hasChanged( void )
 {
+  DrawableObjectFactory updater ;
+  updater.setGraphicObj( m_pDrawed ) ;
+  updater.update() ;
   m_bNeedRedraw = true ;
 }
 /*---------------------------------------------------------------------------------*/

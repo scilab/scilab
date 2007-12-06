@@ -64,7 +64,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 												      {{1, 0}, {1, 3}, {1, 5}},
 												   	  {{0, 1}, {0, 4}, {0, 2}}};
 	
-	private static final double UNMERGE_FACTOR = 0.005;	
+	private static final double UNMERGE_FACTOR = 0.01;	
 	private int hiddenAxisColor;
 	private int backgroundColor;
 	private int lineColor;

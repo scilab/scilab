@@ -43,9 +43,27 @@ void DrawableSubwin::setCamera( Camera * cam )
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
 {
-  // force camera position recomputing
-  m_pCamera->hasChanged();
-  show();
+  initializeDrawing() ;
+  if ( !checkVisibility() )
+  {
+    endDrawing();
+    return;
+  }
+
+  // fill Frect with real data bounds
+  computeRealDataBounds();
+
+  // set up camera
+  m_pCamera->draw();
+
+  drawAxesBox();
+
+  displayChildren() ;
+
+  // needed
+  m_pCamera->replaceCamera();
+
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwin::show( void )
@@ -58,16 +76,12 @@ void DrawableSubwin::show( void )
   }
 
   // fill Frect with real data bounds
-  computeRealDataBounds();
+  //computeRealDataBounds();
 
   // set up camera
-  m_pCamera->display();
+  m_pCamera->show();
 
-  // get data bounds to display
-  double bounds[6] ;
-  sciGetRealDataBounds(m_pDrawed, bounds) ;
-
-  drawAxesBox();
+  showAxesBox();
 
   displayChildren() ;
 
@@ -81,6 +95,12 @@ void DrawableSubwin::drawAxesBox(void)
 {
   drawBox();
   drawTicks();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableSubwin::showAxesBox(void)
+{
+  showBox();
+  showTicks();
 }
 /*---------------------------------------------------------------------------------*/
 DrawableSubwinBridge * DrawableSubwin::getSubwinImp( void )
