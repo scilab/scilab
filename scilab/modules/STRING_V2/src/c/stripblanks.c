@@ -99,11 +99,13 @@ void stripblanks(char **InputStrings,char **OutputStrings,int InputStringsDim,BO
 			replacedstr=substr(InputStrings[x], lenghtInput_One, lenghtInput_Two+1 ); 
 			/*To add the substring into the output matrix*/
 			strcpy(OutputStrings[x],replacedstr);
+			freeArrayOfString(replacedstr,1);
 		}
 		else
 		{
 			strcpy(OutputStrings[x],InputStrings[x]);
 		}
+
 	}
 }
 /*------------------------------------------------------------------------*/
