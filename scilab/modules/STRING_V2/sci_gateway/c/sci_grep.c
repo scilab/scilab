@@ -52,6 +52,7 @@ int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
 			LhsVar(1) = Rhs+1 ;
 			C2F(putlhsvar)();
+
 			return 0;
 		}
 	}
@@ -136,14 +137,54 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 			}
 			else
 			{
-				/* TO DO : manage pcre errors !!! */
+				switch (answer)
+				{
+				case -1:
+					/*No match */
+
+				break;
+				case -2:
+					Scierror(999,"Failed to get enough memory for offsets vector\n"); 
+				    return 0; 
+					break;
+				case -3:
+					Scierror(999,"Delimiter must not be alphameric\n"); 
+					return 0; 
+					break;
+				case -4:
+					Scierror(999,"Capturing subpatterns error\n"); 
+					return 0; 
+				break;
+				case -5:
+					Scierror(999,"Partial matching not supported\n"); 
+					return 0; 
+				break;
+				case -6:
+					Scierror(999,"Contains explicit CR or LF match\n"); 
+					return 0; 
+				break;
+				case -7:
+					Scierror(999,"Duplicate name status changes\n"); 
+					return 0; 
+				break;
+				case -8:
+					Scierror(999,"Returned count is too big for offset size\n"); 
+					return 0; 
+				break;
+				case -9:
+					Scierror(999,"Match limit not relevant for DFA matching: ignored\n"); 
+					return 0; 
+				break;
+				default :
+			         return 0;
+		        break;	
+
+				}
 			}
 		}
 	}
 
 	if (results->currentLength > results->sizeArraysMax) results->currentLength = results->sizeArraysMax;
-
-	if (next) {FREE(next); next = NULL;}
 
 	return GREP_OK;
 }
@@ -197,10 +238,7 @@ static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 					results->currentLength++;
 				}
 			}
-			else
-			{
-				/* errors ??? */
-			}
+		
 		}
 	}
 
