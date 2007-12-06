@@ -4,6 +4,7 @@
 package org.scilab.modules.console;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.io.IOException;
@@ -23,6 +24,7 @@ import org.xml.sax.SAXException;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 import com.artenum.rosetta.interfaces.core.InputParsingManager;
+import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.interfaces.ui.OutputView;
 import com.artenum.rosetta.interfaces.ui.PromptView;
 import com.artenum.rosetta.ui.Console;
@@ -34,7 +36,7 @@ import com.artenum.rosetta.util.StringConstants;
  * Main class for Scilab Console based on Generic Console from Artenum
  * @author Vincent COUVERT
  */
-public class SciConsole extends JPanel {
+public abstract class SciConsole extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -77,6 +79,11 @@ public class SciConsole extends JPanel {
 	 */
 	private Semaphore canReadUserInputValue = new Semaphore(1);
 
+	/**
+	 * Boolean flag used to store the state of Scilab (true is all works done)
+	 */
+	private boolean workDone;
+	
 	/**
 	 * Constructor
 	 */
@@ -439,6 +446,41 @@ public class SciConsole extends JPanel {
 	 */
 	public boolean isWaitingForInput() {
 		return ((JTextPane) config.getInputCommandView()).isEditable();
+	}
+
+	/**
+	 * This methods is used by Scilab to get a new command to execute
+	 * @return the command to execute
+	 */
+	public String readLine() {
+		
+		workDone = true;
+		
+		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
+		
+		// Force the prompt to be displayed
+		if (!((SciOutputView) this.getConfiguration().getOutputView()).getThread().isAlive()) {
+			((SciOutputView) this.getConfiguration().getOutputView()).getThread().run();
+		}
+
+		workDone = false;		
+		// Reads the buffer
+		String cmd = ((SciInputCommandView) inputCmdView).getCmdBuffer();
+		
+		return cmd;
+	}
+
+	/**
+	 * This method is used to display the prompt
+	 */
+	public abstract void waitForInput();
+	
+	/**
+	 * Does Scilab have finished its work ?
+	 * @return true if Scilab is waiting for new commands
+	 */
+	public boolean isWorkDone() {
+		return workDone;
 	}
 	
 }

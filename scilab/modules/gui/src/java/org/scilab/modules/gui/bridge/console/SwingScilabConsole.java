@@ -48,26 +48,12 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	}
 
 	/**
-	 * Reads input data in the console
-	 * @return the data entered by the user
-	 * @see fr.scilab.console.Console#readLine()
+	 * This method is used to display the prompt
 	 */
-	public String readLine() {
-		String cmd;
+	public void waitForInput() {
 		
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
-		
-		/* Wait for the end of the buffer display */
-        try {
-        	synchronized (this.getConfiguration().getOutputView()) {
-        		this.getConfiguration().getOutputView().wait();
-			}
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        
- 		// Show the prompt
+		// Show the prompt
 		this.getConfiguration().getPromptView().setVisible(true);
 
 		// Show the input command view and its hidden components
@@ -96,19 +82,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
 		// Avoids reading of an empty buffer
 		((SciInputCommandView) inputCmdView).setBufferProtected();
-
-		// Reads the buffer
-		cmd = ((SciInputCommandView) inputCmdView).getCmdBuffer();
-
-		// Hide the prompt
-		this.getConfiguration().getPromptView().setVisible(false);
-
-		// Show the input command view and its hidden components
-		inputCmdView.setEditable(false);
-		((JTextPane) inputCmdView).grabFocus(); /* To manage CTRL+Y: stop execution */
-		((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getBackground());
-		
-		return cmd;
 	}
 
 	/**
@@ -237,4 +210,5 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		// TODO Auto-generated method stub
 		this.elementId = id;
 	}
+	
 }
