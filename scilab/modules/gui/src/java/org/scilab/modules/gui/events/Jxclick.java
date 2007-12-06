@@ -1,54 +1,50 @@
 package org.scilab.modules.gui.events;
 
+
 public class Jxclick {
 
 	public static void xclick() {
-		initValues();
 		GlobalEventWatcher.enable();
+		synchronized (ClickInfos.getInstance()) {
+			try {
+				ClickInfos.getInstance().init();
+				ClickInfos.getInstance().wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		GlobalEventWatcher.disable();
 	}
 	
-	private static void initValues() {
-		mouseButtonNumber = 0;
-		xCoordinate = 0;
-		yCoordinate = 0;
-		windowID = 0;
-		menuCallback = "void";
-	}
-
 	/**
 	 * @return the mouseButtonNumber
 	 */
 	public static int getMouseButtonNumber() {
-		return mouseButtonNumber;
+		return ClickInfos.getInstance().getMouseButtonNumber();
 	}
 	/**
 	 * @return the xCoordinate
 	 */
 	public static float getXCoordinate() {
-		return xCoordinate;
+		return ClickInfos.getInstance().getXCoordinate();
 	}
 	/**
 	 * @return the yCoordinate
 	 */
 	public static float getYCoordinate() {
-		return yCoordinate;
+		return ClickInfos.getInstance().getYCoordinate();
 	}
 	/**
 	 * @return the windowID
 	 */
 	public static int getWindowID() {
-		return windowID;
+		return ClickInfos.getInstance().getWindowID();
 	}
 	/**
 	 * @return the menuCallback
 	 */
 	public static String getMenuCallback() {
-		return menuCallback;
+		return ClickInfos.getInstance().getMenuCallback();
 	}
-
-	private static int mouseButtonNumber;
-	private static float xCoordinate;
-	private static float yCoordinate;
-	private static int windowID;
-	private static String menuCallback;
 }

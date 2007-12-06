@@ -3,6 +3,10 @@ package org.scilab.modules.gui.events;
 public class ClickInfos {
 	
 	private ClickInfos() {
+		init();
+	}
+	
+	public void init() {
 		mouseButtonNumber = 0;
 		xCoordinate = 0;
 		yCoordinate = 0;
