@@ -19,6 +19,6 @@ int get_hidden_axis_color_property( sciPointObj * pobj )
     sciprint("hidden_axis_color property does not exist for this handle.\n");
     return -1;
   }
-  return sciReturnInt( pSUBWIN_FEATURE(pobj)->axes.hiddenAxisColor ) ;
+  return sciReturnInt( sciGetHiddenAxisColor(pobj)) ;
 }
 /*------------------------------------------------------------------------*/

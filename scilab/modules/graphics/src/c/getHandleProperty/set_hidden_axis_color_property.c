@@ -34,8 +34,7 @@ int set_hidden_axis_color_property( sciPointObj * pobj, int stackPointer, int va
 
   if ( haColor >= -2 && haColor <= colormapSize + 1 )
   {
-    pSUBWIN_FEATURE(pobj)->axes.hiddenAxisColor = haColor ;
-    return SET_PROPERTY_SUCCEED ;
+    return sciSetHiddenAxisColor(pobj, haColor);
   }
   else
   {

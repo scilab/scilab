@@ -33,7 +33,7 @@ void FullBoxDrawerJoGL::drawAxesBox(void)
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
   initializeDrawing();
 
-  getFullBoxDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->hiddencolor,
+  getFullBoxDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->axes.hiddenAxisColor,
                                                  sciGetGraphicContext(pSubwin)->backgroundcolor,
                                                  sciGetGraphicContext(pSubwin)->foregroundcolor,
                                                  sciGetLineStyle(pSubwin),

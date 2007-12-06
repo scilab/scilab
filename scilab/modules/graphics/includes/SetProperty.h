@@ -209,6 +209,9 @@ extern int sciSetSelectObject(    sciPointObj * pObj ) ;
 extern int sciInitHiddenColor( sciPointObj * pObj, int newColor ) ;
 extern int sciSetHiddenColor(  sciPointObj * pObj, int newColor ) ;
 
+int sciInitHiddenAxisColor( sciPointObj * pObj, int newColor ) ;
+int sciSetHiddenAxisColor( sciPointObj * pObj, int newColor ) ;
+
 int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha );
 int sciInitdrawmode( BOOL mode );
 

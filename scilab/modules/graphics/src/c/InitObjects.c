@@ -636,11 +636,11 @@ int InitAxesModel()
   ppaxesmdl->axes.flag[0]= 2;
   ppaxesmdl->axes.flag[1]= 2;
   ppaxesmdl->axes.flag[2]= 4;
-  ppaxesmdl->axes.hiddenAxisColor = 4 ;
+  sciInitHiddenAxisColor(paxesmdl, 4);
   ppaxesmdl->project[0]= 1;
   ppaxesmdl->project[1]= 1;
   ppaxesmdl->project[2]= 0;
-  sciInitHiddenColor(paxesmdl,4);
+  sciInitHiddenColor(paxesmdl, 4);
   ppaxesmdl->hiddenstate=0; 
   ppaxesmdl->isoview= FALSE;/*TRUE;*/
  

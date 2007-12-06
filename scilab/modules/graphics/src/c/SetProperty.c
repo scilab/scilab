@@ -3632,6 +3632,35 @@ int sciSetHiddenColor( sciPointObj * pObj, int newColor )
   return sciInitHiddenColor( pObj, newColor ) ;
 }
 /*-----------------------------------------------------------------------------------*/
+int sciInitHiddenAxisColor( sciPointObj * pObj, int newColor )
+{
+  int m = sciGetNumColors(pObj); 
+  if(newColor < -2 || newColor > m + 2) return 0;
+
+  newColor = sciSetGoodIndex(pObj,newColor);
+
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pObj)->axes.hiddenAxisColor = Max (0, Min (newColor - 1, m + 1));
+    return 0 ;
+  default:
+    printSetGetErrorMessage("hidden_axis_color");
+    return -1 ;
+  }
+  return -1 ;
+}
+/*-----------------------------------------------------------------------------------*/
+int sciSetHiddenAxisColor( sciPointObj * pObj, int newColor )
+{
+  if ( sciGetHiddenAxisColor( pObj ) == newColor )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+  return sciInitHiddenAxisColor( pObj, newColor ) ;
+}
+/*-----------------------------------------------------------------------------------*/
 int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
 {
   switch( sciGetEntityType( pObj ) )

@@ -172,7 +172,9 @@ BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj ) ; /* GET */
 
 int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
 
-int sciGetHiddenColor( sciPointObj * pObj ) ;
+int sciGetHiddenColor( sciPointObj * pObj ) ; /* GET */
+
+int sciGetHiddenAxisColor( sciPointObj * pObj ) ; /* GET */
 
 BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
 

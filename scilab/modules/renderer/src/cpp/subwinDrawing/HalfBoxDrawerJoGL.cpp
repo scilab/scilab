@@ -33,7 +33,7 @@ void HalfBoxDrawerJoGL::drawAxesBox(void)
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
   initializeDrawing();
 
-  getHalfBoxDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->hiddencolor,
+  getHalfBoxDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->axes.hiddenAxisColor,
                                                  sciGetGraphicContext(pSubwin)->backgroundcolor,
                                                  sciGetGraphicContext(pSubwin)->foregroundcolor,
                                                  sciGetLineStyle(pSubwin),

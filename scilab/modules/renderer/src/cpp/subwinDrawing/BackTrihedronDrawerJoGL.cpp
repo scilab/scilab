@@ -33,7 +33,7 @@ void BackTrihedronDrawerJoGL::drawAxesBox(void)
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
   initializeDrawing();
 
-  getBackTrihedronDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->hiddencolor,
+  getBackTrihedronDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->axes.hiddenAxisColor,
                                                        sciGetGraphicContext(pSubwin)->backgroundcolor,
                                                        (float) sciGetLineWidth(pSubwin));
 
