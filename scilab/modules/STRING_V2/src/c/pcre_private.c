@@ -1,42 +1,5 @@
 
-/** TODO  : clean and comment this code ... */
-
-/*************************************************
-*             PCRE testing program               *
-*************************************************/
-
-/* This program was hacked up as a tester for PCRE. I really should have
-written it more tidily in the first place. Will I ever learn? It has grown and
-been extended and consequently is now rather, er, *very* untidy in places.
-
------------------------------------------------------------------------------
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-    * Redistributions of source code must retain the above copyright notice,
-      this list of conditions and the following disclaimer.
-
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-
-    * Neither the name of the University of Cambridge nor the names of its
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
------------------------------------------------------------------------------
-*/
+/*-------------------------------------------------------------------------------*/
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
@@ -176,10 +139,6 @@ static char *pbuffer = NULL;
 static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
 				  int start_offset, int options, int *use_offsets, int use_size_offsets,
 				  int flag, unsigned long int *limit, int errnumber);
-
-
-
-
 
 /*************************************************
 *              Callout function                  *
@@ -343,35 +302,6 @@ static int strncmpic(char *s, uschar *t, int n)
 	return 0;
 }
 
-/*************************************************
-*         Check newline indicator                *
-*************************************************/
-
-/* This is used both at compile and run-time to check for <xxx> escapes, where
-xxx is LF, CR, CRLF, ANYCRLF, or ANY. Print a message and return 0 if there is
-no match.
-
-Arguments:
-  p           points after the leading '<'
-  f           file for error message
-
-Returns:      appropriate PCRE_NEWLINE_xxx flags, or 0
-*/
-
-static int check_newline(char *p, FILE *f)
-{
-if (strncmpic(p, (uschar *)"cr>", 3) == 0) return PCRE_NEWLINE_CR;
-if (strncmpic(p, (uschar *)"lf>", 3) == 0) return PCRE_NEWLINE_LF;
-if (strncmpic(p, (uschar *)"crlf>", 5) == 0) return PCRE_NEWLINE_CRLF;
-if (strncmpic(p, (uschar *)"anycrlf>", 8) == 0) return PCRE_NEWLINE_ANYCRLF;
-if (strncmpic(p, (uschar *)"any>", 4) == 0) return PCRE_NEWLINE_ANY;
-//if (strncmpic(p, (uschar *)"bsr_anycrlf>", 12) == 0) return PCRE_BSR_ANYCRLF;
-//if (strncmpic(p, (uschar *)"bsr_unicode>", 12) == 0) return PCRE_BSR_UNICODE;
-fprintf(f, "Unknown newline type at: <%s\n", p);
-return 0;
-}
-
-
 
 /*************************************************
 *                Main Program                    *
@@ -383,7 +313,6 @@ options, followed by a set of test data, terminated by an empty line. */
 
 int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End)
 {
-	FILE *infile = stdin;
 	int options = 0;
 	int study_options = 0;
 	int timeit = 0;
@@ -426,25 +355,18 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 	offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
 	if (offsets == NULL)
 	{
-		printf("** Failed to get %d bytes of memory for offsets vector\n",
-		(int)(size_offsets_max * sizeof(int)));
-		yield = 1;
-		goto EXIT;
+		return -2;
 	}
-
-
 	/* Main loop */
 	LOOP_PCRE_TST = FALSE;
 	while (!LOOP_PCRE_TST)
 	{
 		pcre *re = NULL;
 		pcre_extra *extra = NULL;
-  
 		#if !defined NOPOSIX  /* There are still compilers that require no indent */
 			regex_t preg;
 			int do_posix = 0;
 		#endif
-
 		const char *error;
 		char *p; 
 		char	*pp, *ppp;
@@ -460,44 +382,34 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 		int do_showrest = 0;
 		int do_flip = 0;
 		int erroroffset, len, delimiter, poffset;
-	
 		use_utf8 = 0;
 		debug_lengths = 1;
 		LOOP_PCRE_TST = TRUE;
-
  		strcpy(buffer,INPUT_PAT); 
 		p = buffer;
 		while (isspace(*p)) p++;
 		if (*p == 0) continue;
-
 		/* See if the pattern is to be loaded pre-compiled from a file. */
 		if (*p == '<' && strchr((char *)(p+1), '<') == NULL)
 		{
 			unsigned long int magic, get_options;
 			uschar sbuf[8];
 			FILE *f;
-
 			p++;
 			pp = p + (int)strlen((char *)p);
 			while (isspace(pp[-1])) pp--;
 			*pp = 0;
-
 			f = fopen((char *)p, "rb");
 			if (f == NULL)
 			{
 				continue;
 			}
-
 			if (fread(sbuf, 1, 8, f) != 8) goto FAIL_READ;
-
 			true_size = (sbuf[0] << 24) | (sbuf[1] << 16) | (sbuf[2] << 8) | sbuf[3];
 			true_study_size = (sbuf[4] << 24) | (sbuf[5] << 16) | (sbuf[6] << 8) | sbuf[7];
-
 			re = (real_pcre *)new_malloc(true_size);
 			regex_gotten_store = gotten_store;
-
 			if (fread(re, 1, true_size, f) != true_size) goto FAIL_READ;
-
 			magic = ((real_pcre *)re)->magic_number;
 			if (magic != MAGIC_NUMBER)
 			{
@@ -510,15 +422,10 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 					continue;
 				}
 			}
-
-
 			/* Need to know if UTF-8 for printing data strings */
-
 			new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
 			use_utf8 = (get_options & PCRE_UTF8) != 0;
-
 			/* Now see if there is any following study data */
-
 			if (true_study_size != 0)
 			{
 				pcre_study_data *psd;
@@ -549,8 +456,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 
 	if (isalnum(delimiter) || delimiter == '\\')
     {
-		fprintf(outfile, "** Delimiter must not be alphameric or \\\n");
-		goto SKIP_DATA;
+		return -3;
     }
 
 	pp = p;
@@ -643,9 +549,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 			break;
 			case '<':
 			{
-				int x = check_newline(pp, outfile);
-				if (x == 0) goto SKIP_DATA;
-				options |= x;
 				while (*pp++ != '>');
 			}
 			break;
@@ -655,7 +558,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 			break;
 
 			default:
-			fprintf(outfile, "** Unknown option '%c'\n", pp[-1]);
 			goto SKIP_DATA;
 		}
 	}
@@ -664,33 +566,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 	timing, showing, or debugging options, nor the ability to pass over
 	local character tables. */
 
-#if !defined NOPOSIX
-	if (posix || do_posix)
-    {
-		int rc;
-		int cflags = 0;
 
-		if ((options & PCRE_CASELESS) != 0) cflags |= REG_ICASE;
-		if ((options & PCRE_MULTILINE) != 0) cflags |= REG_NEWLINE;
-		if ((options & PCRE_DOTALL) != 0) cflags |= REG_DOTALL;
-		if ((options & PCRE_NO_AUTO_CAPTURE) != 0) cflags |= REG_NOSUB;
-		if ((options & PCRE_UTF8) != 0) cflags |= REG_UTF8;
-
-		rc = regcomp(&preg, (char *)p, cflags);
-
-		/* Compilation failed; go back for another re, skipping to blank line
-		if non-interactive. */
-
-		if (rc != 0)
-		{
-			(void)regerror(rc, &preg, (char *)buffer, buffer_size);
-			fprintf(outfile, "Failed: POSIX code %d: %s\n", rc, buffer);
-			goto SKIP_DATA;
-		}
-    }
-	/* Handle compiling via the native interface */
-	else
-#endif  /* !defined NOPOSIX */
     {
 		if (timeit > 0)
 		{
@@ -703,51 +579,17 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				if (re != NULL) FREE(re);
 			}
 			time_taken = clock() - start_time;
-			fprintf(outfile, "Compile time %.4f milliseconds\n",
-				(((double)time_taken * 1000.0) / (double)timeit) /
-				(double)CLOCKS_PER_SEC);
 		}
-
 		re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
-
 		/* Compilation failed; go back for another re, skipping to blank line
 		if non-interactive. */
-
 		if (re == NULL)
 		{
-			fprintf(outfile, "Failed: %s at offset %d\n", error, erroroffset);
-		SKIP_DATA:
-			if (infile != stdin)
-			{
-				for (;;)
-				{
-					len = (int)strlen((char *)buffer);
-					while (len > 0 && isspace(buffer[len-1])) len--;
-					if (len == 0) break;
-				}
-				fprintf(outfile, "\n");
-			}
+		    SKIP_DATA:
 			goto CONTINUE;
 		}
-
-		/* Compilation succeeded; print data if required. There are now two
-		info-returning functions. The old one has a limited interface and
-		returns only limited data. Check that it agrees with the newer one. */
-
-		if (log_store)
-		fprintf(outfile, "Memory allocation (code space): %d\n",
-			(int)(gotten_store -
-             sizeof(real_pcre) -
-            ((real_pcre *)re)->name_count * ((real_pcre *)re)->name_entry_size));
-
-		/* Extract the size for possible writing before possibly flipping it,
-		and remember the store that was got. */
-
 		true_size = ((real_pcre *)re)->size;
 		regex_gotten_store = gotten_store;
-
-    /* Extract information from the compiled data if required */
-
 	SHOW_INFO:
 		if (do_showinfo)
 		{
@@ -771,198 +613,37 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 			new_info(re, NULL, PCRE_INFO_OKPARTIAL, &okpartial);
 			new_info(re, NULL, PCRE_INFO_JCHANGED, &jchanged);
 			new_info(re, NULL, PCRE_INFO_HASCRORLF, &hascrorlf);
-
-		#if !defined NOINFOCHECK
-			old_count = pcre_info(re, &old_options, &old_first_char);
-			if (count < 0) fprintf(outfile,
-				"Error %d from pcre_info()\n", count);
-			else
-			{
-				if (old_count != count) fprintf(outfile,
-					"Count disagreement: pcre_fullinfo=%d pcre_info=%d\n", count,
-					old_count);
-
-				if (old_first_char != first_char) fprintf(outfile,
-					"First char disagreement: pcre_fullinfo=%d pcre_info=%d\n",
-					first_char, old_first_char);
-
-				if (old_options != (int)get_options) fprintf(outfile,
-					"Options disagreement: pcre_fullinfo=%ld pcre_info=%d\n",
-					get_options, old_options);
-			}
-		#endif
-
-			if (size != regex_gotten_store) fprintf(outfile,
-				"Size disagreement: pcre_fullinfo=%d call to malloc for %d\n",
-				(int)size, (int)regex_gotten_store);
-
-			fprintf(outfile, "Capturing subpattern count = %d\n", count);
-			if (backrefmax > 0) fprintf(outfile, "Max back reference = %d\n", backrefmax);
-
 			if (namecount > 0)
 			{
-				fprintf(outfile, "Named capturing subpatterns:\n");
+				return -4;
 				while (namecount-- > 0)
 				{
-					fprintf(outfile, "  %s %*s%3d\n", nametable + 2,
-					nameentrysize - 3 - (int)strlen((char *)nametable + 2), "",
-					GET2(nametable, 0));
 					nametable += nameentrysize;
 				}
 			}
-			if (!okpartial) fprintf(outfile, "Partial matching not supported\n");
-			if (hascrorlf) fprintf(outfile, "Contains explicit CR or LF match\n");
+			if (!okpartial) return -5;
+			if (hascrorlf) return -6;
 
 			all_options = ((real_pcre *)re)->options;
 			if (do_flip) all_options = byteflip(all_options, sizeof(all_options));
 
-			if (get_options == 0) fprintf(outfile, "No options\n");
-			else fprintf(outfile, "Options:%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",
-				((get_options & PCRE_ANCHORED) != 0)? " anchored" : "",
-				((get_options & PCRE_CASELESS) != 0)? " caseless" : "",
-				((get_options & PCRE_EXTENDED) != 0)? " extended" : "",
-				((get_options & PCRE_MULTILINE) != 0)? " multiline" : "",
-				((get_options & PCRE_FIRSTLINE) != 0)? " firstline" : "",
-				((get_options & PCRE_DOTALL) != 0)? " dotall" : "",
-						 //				((get_options & PCRE_BSR_ANYCRLF) != 0)? " bsr_anycrlf" : "",
-						 //				((get_options & PCRE_BSR_UNICODE) != 0)? " bsr_unicode" : "",
-				((get_options & PCRE_DOLLAR_ENDONLY) != 0)? " dollar_endonly" : "",
-				((get_options & PCRE_EXTRA) != 0)? " extra" : "",
-				((get_options & PCRE_UNGREEDY) != 0)? " ungreedy" : "",
-				((get_options & PCRE_NO_AUTO_CAPTURE) != 0)? " no_auto_capture" : "",
-				((get_options & PCRE_UTF8) != 0)? " utf8" : "",
-				((get_options & PCRE_NO_UTF8_CHECK) != 0)? " no_utf8_check" : "",
-				((get_options & PCRE_DUPNAMES) != 0)? " dupnames" : "");
+			
 
-			if (jchanged) fprintf(outfile, "Duplicate name status changes\n");
+			if (jchanged) return -7;
 
-			switch (get_options & PCRE_NEWLINE_BITS)
-			{
-				case PCRE_NEWLINE_CR:
-					fprintf(outfile, "Forced newline sequence: CR\n");
-				break;
-				case PCRE_NEWLINE_LF:
-					fprintf(outfile, "Forced newline sequence: LF\n");
-				break;
-
-				case PCRE_NEWLINE_CRLF:
-					fprintf(outfile, "Forced newline sequence: CRLF\n");
-				break;
-
-				case PCRE_NEWLINE_ANYCRLF:
-					fprintf(outfile, "Forced newline sequence: ANYCRLF\n");
-				break;
-
-				case PCRE_NEWLINE_ANY:
-					fprintf(outfile, "Forced newline sequence: ANY\n");
-				break;
-
-				default:
-				break;
-			}
-
-			if (first_char == -1)
-			{
-				fprintf(outfile, "First char at start or follows newline\n");
-		    }
-			else if (first_char < 0)
-		    {
-				fprintf(outfile, "No first char\n");
-			}
-	
-			if (need_char < 0)
-			{
-				fprintf(outfile, "No need char\n");
-			}
-
+			
 			/* Don't output study size; at present it is in any case a fixed
 			value, but it varies, depending on the computer architecture, and
 			so messes up the test suite. (And with the /F option, it might be
 			flipped.) */
 
-			if (do_study)
-			{
-				if (extra == NULL)
-					fprintf(outfile, "Study returned NULL\n");
-				else
-				{
-					uschar *start_bits = NULL;
-					new_info(re, extra, PCRE_INFO_FIRSTTABLE, &start_bits);
-
-					if (start_bits == NULL)
-						fprintf(outfile, "No starting byte set\n");
-					else
-					{
-						int i;
-						int c = 24;
-
-						fprintf(outfile, "Starting byte set: ");
-						for (i = 0; i < 256; i++)
-						{
-							if ((start_bits[i/8] & (1<<(i&7))) != 0)
-							{
-								if (c > 75)
-								{
-									fprintf(outfile, "\n  ");
-									c = 2;
-								}
-							}
-						}
-						fprintf(outfile, "\n");
-					}
-				}
-			}
+			
 		}
 
 		/* If the '>' option was present, we write out the regex to a file, and
 		that is all. The first 8 bytes of the file are the regex length and then
 		the study length, in big-endian order. */
 
-		if (to_file != NULL)
-		{
-			FILE *f = fopen((char *)to_file, "wb");
-			if (f == NULL)
-			{
-				fprintf(outfile, "Unable to open %s: %s\n", to_file, strerror(errno));
-			}
-			else
-			{
-				uschar sbuf[8];
-				sbuf[0] = (uschar)((true_size >> 24) & 255);
-				sbuf[1] = (uschar)((true_size >> 16) & 255);
-				sbuf[2] = (uschar)((true_size >>  8) & 255);
-				sbuf[3] = (uschar)((true_size) & 255);
-				sbuf[4] = (uschar)((true_study_size >> 24) & 255);
-				sbuf[5] = (uschar)((true_study_size >> 16) & 255);
-				sbuf[6] = (uschar)((true_study_size >>  8) & 255);
-				sbuf[7] = (uschar)((true_study_size) & 255);
-
-				if (fwrite(sbuf, 1, 8, f) < 8 ||
-					fwrite(re, 1, true_size, f) < true_size)
-				{
-					fprintf(outfile, "Write error on %s: %s\n", to_file, strerror(errno));
-				}
-				else
-				{
-					fprintf(outfile, "Compiled regex written to %s\n", to_file);
-					if (extra != NULL)
-					{
-						if (fwrite(extra->study_data, 1, true_study_size, f) <
-							true_study_size)
-						{
-							fprintf(outfile, "Write error on %s: %s\n", to_file,
-							strerror(errno));
-						}
-						else fprintf(outfile, "Study data written to %s\n", to_file);
-					}
-				}
-				fclose(f);
-			}
-			new_free(re);
-			if (extra != NULL) new_free(extra);
-			if (tables != NULL) new_free((void *)tables);
-			continue;  /* With next regex */
-		}
     }        /* End of non-POSIX compile */
 
   /* Read data lines and test them */
@@ -1062,7 +743,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 						*npp++ = 0;
 						*npp = 0;
 						n = pcre_get_stringnumber(re, (char *)copynamesptr);
-						if (n < 0) fprintf(outfile, "no parentheses with name \"%s\"\n", copynamesptr);
 						copynamesptr = npp;
 					}
 					else if (*p == '+')
@@ -1182,9 +862,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				continue;
 				case '<':
 				{
-					int x = check_newline(p, outfile);
-					if (x == 0) goto NEXT_DATA;
-					options |= x;
 					while (*p++ != '>');
 				}
 				continue;
@@ -1196,7 +873,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 
 		if ((all_use_dfa || use_dfa) && find_match_limit)
 		{
-			printf("**Match limit not relevant for DFA matching: ignored\n");
+			return -9;
 			find_match_limit = 0;
 		}
 
@@ -1205,34 +882,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 
 		for (;; gmatched++)    /* Loop for /g or /G */
 		{
-			if (timeitm > 0)
-			{
-				register int i;
-				clock_t time_taken;
-				clock_t start_time = clock();
-
-			#if !defined NODFA
-				if (all_use_dfa || use_dfa)
-				{
-					int workspace[1000];
-					for (i = 0; i < timeitm; i++)
-						count = pcre_dfa_exec(re, NULL, (char *)bptr, len, start_offset,
-						options | g_notempty, use_offsets, use_size_offsets, workspace,
-						sizeof(workspace)/sizeof(int));
-				}
-				else
-			#endif
-
-			for (i = 0; i < timeitm; i++)
-				count = pcre_exec(re, extra, (char *)bptr, len,
-				start_offset, options | g_notempty, use_offsets, use_size_offsets);
-
-			time_taken = clock() - start_time;
-			fprintf(outfile, "Execute time %.4f milliseconds\n",
-				(((double)time_taken * 1000.0) / (double)timeitm) /
-				(double)CLOCKS_PER_SEC);
-			}
-
+			
 			/* If find_match_limit is set, we want to do repeated matches with
 			varying limits in order to find the minimum value for the match limit and
 			for the recursion limit. */
@@ -1278,7 +928,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 					start_offset, options | g_notempty, use_offsets, use_size_offsets);
 				if (count == 0)
 				{
-					fprintf(outfile, "Matched, but too many substrings\n");
 					count = use_size_offsets/3;
 				}
 			}
@@ -1290,10 +939,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				/* This is a check against a lunatic return value. */
 				if (count > maxcount)
 				{
-					fprintf(outfile,
-						"** PCRE error: returned count %d is too big for offset size %d\n",
-						count, use_size_offsets);
-						count = use_size_offsets/3;
+					return -8;
 					if (do_g || do_G)
 					{
 						do_g = do_G = FALSE;        /* Break g/G loop */
@@ -1302,9 +948,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 
 				for (i = 0; i < count * 2; i += 2)
 				{
-					if (use_offsets[i] < 0)
-						fprintf(outfile, "%2d: <unset>\n", i/2);
-					else
+					if (use_offsets[i] >= 0)
 					{
 						*Output_Start=use_offsets[i];
 						*Output_End=use_offsets[i+1];
@@ -1318,10 +962,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 					{
 						char copybuffer[256];
 						int rc = pcre_copy_substring((char *)bptr, use_offsets, count,i, copybuffer, sizeof(copybuffer));
-						if (rc < 0)
-							fprintf(outfile, "copy substring %d failed %d\n", i, rc);
-						else
-							fprintf(outfile, "%2dC %s (%d)\n", i, copybuffer, rc);
 					}
 				}
 
@@ -1330,10 +970,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 					char copybuffer[256];
 					int rc = pcre_copy_named_substring(re, (char *)bptr, use_offsets,
 							count, (char *)copynamesptr, copybuffer, sizeof(copybuffer));
-					if (rc < 0)
-						fprintf(outfile, "copy substring %s failed %d\n", copynamesptr, rc);
-					else
-						fprintf(outfile, "  C %s (%d) %s\n", copybuffer, rc, copynamesptr);
 				}
 
 				for (i = 0; i < 32; i++)
@@ -1342,13 +978,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 					{
 						const char *substring;
 						int rc = pcre_get_substring((char *)bptr, use_offsets, count,i, &substring);
-						if (rc < 0)
-							fprintf(outfile, "get substring %d failed %d\n", i, rc);
-						else
-						{
-							fprintf(outfile, "%2dG %s (%d)\n", i, substring, rc);
-							pcre_free_substring(substring);
-						}
 					}
 				}
 
@@ -1356,28 +985,9 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				{
 					const char *substring;
 					int rc = pcre_get_named_substring(re, (char *)bptr, use_offsets,count, (char *)getnamesptr, &substring);
-					if (rc < 0)
-						fprintf(outfile, "copy substring %s failed %d\n", getnamesptr, rc);
-					else
-					{
-						fprintf(outfile, "  G %s (%d) %s\n", substring, rc, getnamesptr);
-						pcre_free_substring(substring);
-					}
+					
 				}
 
-			if (getlist)
-			{
-				const char **stringlist;
-				int rc = pcre_get_substring_list((char *)bptr, use_offsets, count,&stringlist);
-				if (rc < 0)
-					fprintf(outfile, "get substring list failed %d\n", rc);
-				else
-				{
-					for (i = 0; i < count; i++) fprintf(outfile, "%2dL %s\n", i, stringlist[i]);
-					if (stringlist[i] != NULL) fprintf(outfile, "string list not terminated by NULL\n");
-					pcre_free_substring_list(stringlist);
-				}
-			}
         }
 		/* Failed to match. If this is a /g or /G loop and we previously set
 		g_notempty after a null match, this is not necessarily the end. We want
@@ -1432,7 +1042,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				{
 					if (gmatched == 0) 
 					{
-						fprintf(outfile, "No match\n");
 						return -1;
 					}
 				}
@@ -1488,14 +1097,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 		locale_set = 0;
     }
   }
-
-	if (infile == stdin) fprintf(outfile, "\n");
-
 	EXIT:
-
-	if (infile != NULL && infile != stdin) fclose(infile);
-	if (outfile != NULL && outfile != stdout) fclose(outfile);
-	
 	FREE(buffer);
 	FREE(dbuffer);
 	FREE(pbuffer);
