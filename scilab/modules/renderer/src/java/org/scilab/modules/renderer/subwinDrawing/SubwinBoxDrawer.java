@@ -64,7 +64,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 												      {{1, 0}, {1, 3}, {1, 5}},
 												   	  {{0, 1}, {0, 4}, {0, 2}}};
 	
-	private static final double UNMERGE_FACTOR = 0.01;	
+	private static final double UNMERGE_FACTOR = 0.005;	
 	private int hiddenAxisColor;
 	private int backgroundColor;
 	private int lineColor;
@@ -72,7 +72,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 	private float lineThickness;
 	
 	private Vector3D[] boxCorners;
-	private Vector3D[] smallBoxCorners;
+	private Vector3D[] largerBoxCorners;
 	
 	/**
 	 * Default constructor
@@ -85,7 +85,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		lineStyle = 0;
 		lineThickness = 0.0f;
 		boxCorners = null;
-		smallBoxCorners = new Vector3D[BOX_NB_CORNERS];
+		largerBoxCorners = new Vector3D[BOX_NB_CORNERS];
 	}
 	
 	/**
@@ -214,7 +214,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		// create a slighly smaller box to avoid merging between lines and background.
 		Vector3D boxCenter = findBoxCenter();
 		for (int i = 0; i < BOX_NB_CORNERS; i++) {
-			smallBoxCorners[i] = boxCorners[i].add(boxCenter.substract(boxCorners[i]).scalarMult(UNMERGE_FACTOR));
+			largerBoxCorners[i] = boxCorners[i].add(boxCorners[i].substract(boxCenter).scalarMult(UNMERGE_FACTOR));
 		}
 		
 		drawBox();
@@ -272,7 +272,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		gl.glBegin(GL.GL_QUADS);
 		for (int i = 0; i < BACK_FACETS[concealedCornerIndex].length; i++) {
 			for (int j = 0; j < BACK_FACETS[concealedCornerIndex][i].length; j++) {
-				Vector3D curVertex = boxCorners[BACK_FACETS[concealedCornerIndex][i][j]];
+				Vector3D curVertex = largerBoxCorners[BACK_FACETS[concealedCornerIndex][i][j]];
 				gl.glVertex3d(curVertex.getX(), curVertex.getY(), curVertex.getZ());
 			}
 		}
@@ -288,7 +288,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		gl.glBegin(GL.GL_LINES);
 		for (int i = 0; i < BACK_TRIHEDRON[concealedCornerIndex].length; i++) {
 			for (int j = 0; j < BACK_TRIHEDRON[concealedCornerIndex][i].length; j++) {
-				Vector3D curVertex = smallBoxCorners[BACK_TRIHEDRON[concealedCornerIndex][i][j]];
+				Vector3D curVertex = boxCorners[BACK_TRIHEDRON[concealedCornerIndex][i][j]];
 				gl.glVertex3d(curVertex.getX(), curVertex.getY(), curVertex.getZ());
 			}
 		}
@@ -315,7 +315,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		
 		gl.glBegin(GL.GL_LINE_LOOP);
 		for (int i = 0; i < HALF_BOX_LINES[concealedCornerIndex].length; i++) {
-			Vector3D curVertex = smallBoxCorners[HALF_BOX_LINES[concealedCornerIndex][i]];
+			Vector3D curVertex = boxCorners[HALF_BOX_LINES[concealedCornerIndex][i]];
 			gl.glVertex3d(curVertex.getX(), curVertex.getY(), curVertex.getZ());
 		}
 		gl.glEnd();
@@ -339,7 +339,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		gl.glBegin(GL.GL_LINES);
 		for (int i = 0; i < FRONT_TRIHEDRON[concealedCornerIndex].length; i++) {
 			for (int j = 0; j < FRONT_TRIHEDRON[concealedCornerIndex][i].length; j++) {
-				Vector3D curVertex = smallBoxCorners[FRONT_TRIHEDRON[concealedCornerIndex][i][j]];
+				Vector3D curVertex = boxCorners[FRONT_TRIHEDRON[concealedCornerIndex][i][j]];
 				gl.glVertex3d(curVertex.getX(), curVertex.getY(), curVertex.getZ());
 			}
 		}

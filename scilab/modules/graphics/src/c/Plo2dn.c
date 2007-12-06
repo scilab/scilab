@@ -21,6 +21,7 @@
 #include "BasicAlgos.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "DrawingBridge.h"
@@ -90,18 +91,24 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   int jj = 0;
   sciPointObj **pptabofpointobj = NULL ;
   sciPointObj  *psubwin = NULL ;
+  sciPointObj * curFigure = NULL;
   long hdl;
   long *hdltab = NULL ;
-  int cmpt=0/*,i*/;
+  int cmpt=0;
   int with_leg;
   double drect[6];
-  char dataflag/*,frameflag*/;
+  char dataflag;
   sciSubWindow * ppsubwin = NULL;
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
 
+  startGraphicDataWriting();
+  curFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();
   ppsubwin = pSUBWIN_FEATURE(psubwin);
+  endGraphicDataWriting();
+
+  startFigureDataWriting(curFigure);
 
   /* check if the auto_clear property is on and then erase everything */
   checkRedrawing() ;
@@ -120,24 +127,18 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   ppsubwin->alpha  = 0.0;
   ppsubwin->theta  = 270.0;
 
-  /* Force psubwin->axes.aaint to those given by argument aaint*/
-  /* F.Leray 07.10.04 REMOVE AAINT*/
- /*  for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i];  */
-
-  
-
   /* Force psubwin->logflags to those given by argument*/
   if ( ppsubwin->FirstPlot )
   {
-    ppsubwin->logflags[0]=logflags[1];
-    ppsubwin->logflags[1]=logflags[2];
+    char newLogFlags[3];
+    sciGetLogFlags(psubwin, newLogFlags);
+    newLogFlags[0] = logflags[1];
+    newLogFlags[1] = logflags[2];
+    sciSetLogFlags(psubwin, newLogFlags);
   }
 
   /* Force "cligrf" clipping */
   sciSetIsClipping (psubwin,0); 
-
-  /* Force  axes_visible property */
-  /*pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/ /* WHY ??? */
 
   if (sciGetGraphicMode (psubwin)->autoscaling) {
     /* compute and merge new specified bounds with psubwin->Srect */
@@ -190,13 +191,18 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	
 	CreatePrettyGradsFromNax(psubwin,aaint);
       }
-    else{
-      sciprint("Warning : Nax does not work with logarithmic scaling\n");}
+    else
+    {
+      sciprint("Warning : Nax does not work with logarithmic scaling\n");
+    }
   }
+  endFigureDataWriting(curFigure);
   
   if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+  {
+    
     sciDrawObj(sciGetCurrentFigure());
-  /*     EraseAndOrRedraw(psubwin); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
+  }
   
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
@@ -212,6 +218,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
         return 0;
       }
     }
+
+    startFigureDataWriting(curFigure);
     for (jj = 0;jj < *n1; jj++) {/*A.Djalel 3D axes*/
       sciPointObj * pobj = NULL;
       if (style[jj] > 0) { 
@@ -230,17 +238,18 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       pobj = sciGetCurrentObj();
       
       if (with_leg) pptabofpointobj[jj] = pobj;
-      sciDrawObjIfRequired(pobj);
+      /*sciDrawObjIfRequired(pobj);*/
       
       hdl=sciGetHandle(pobj);
       hdltab[cmpt]=hdl;
       cmpt++;
     }
-    
+    endFigureDataWriting(curFigure);
     DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing once is sufficient (F.Leray 10.01.05) */
     
     
     /*---- Drawing the Legends ----*/
+    startFigureDataWriting(curFigure);
     if (with_leg) {
       sciSetCurrentObj (ConstructLegend
                         (sciGetCurrentSubWin(),
@@ -254,11 +263,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     /*---- construct Compound ----*/
     sciSetCurrentObj(ConstructCompound (hdltab, cmpt)); 
     FREE(hdltab);
+    endFigureDataWriting(curFigure);
     return(0);
   }
   
-
-  /*  sciDrawObj(sciGetCurrentFigure ());*/
   return(0);
 }
 
