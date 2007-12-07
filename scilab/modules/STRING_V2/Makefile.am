@@ -19,10 +19,8 @@ src/c/setScilabCharactersCodes.c \
 src/c/cvstr.c \
 src/c/getfastcode.c \
 src/c/pcre_private.c \
-src/c/StringsCompare.c \
 src/c/isletter.c \
-src/c/isdigit.c \
-src/c/alphanum.c
+src/c/isdigit.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \

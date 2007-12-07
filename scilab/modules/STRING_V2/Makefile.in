@@ -94,9 +94,8 @@ am__objects_1 = libscistring_la-code2str.lo libscistring_la-kmp.lo \
 	libscistring_la-InitializeString.lo \
 	libscistring_la-setScilabCharactersCodes.lo \
 	libscistring_la-cvstr.lo libscistring_la-getfastcode.lo \
-	libscistring_la-pcre_private.lo \
-	libscistring_la-StringsCompare.lo libscistring_la-isletter.lo \
-	libscistring_la-isdigit.lo libscistring_la-alphanum.lo
+	libscistring_la-pcre_private.lo libscistring_la-isletter.lo \
+	libscistring_la-isdigit.lo
 am__objects_2 = libscistring_la-gw_string.lo \
 	libscistring_la-sci_ascii.lo libscistring_la-sci_code2str.lo \
 	libscistring_la-sci_convstr.lo libscistring_la-sci_emptystr.lo \
@@ -321,10 +320,8 @@ src/c/setScilabCharactersCodes.c \
 src/c/cvstr.c \
 src/c/getfastcode.c \
 src/c/pcre_private.c \
-src/c/StringsCompare.c \
 src/c/isletter.c \
-src/c/isdigit.c \
-src/c/alphanum.c
+src/c/isdigit.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \
@@ -513,8 +510,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-CreateEmptystr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-Get_length.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-InitializeString.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-StringsCompare.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-alphanum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-code2str.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-convstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-cvstr.Plo@am__quote@
@@ -684,13 +679,6 @@ libscistring_la-pcre_private.lo: src/c/pcre_private.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-pcre_private.lo `test -f 'src/c/pcre_private.c' || echo '$(srcdir)/'`src/c/pcre_private.c
 
-libscistring_la-StringsCompare.lo: src/c/StringsCompare.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-StringsCompare.lo -MD -MP -MF $(DEPDIR)/libscistring_la-StringsCompare.Tpo -c -o libscistring_la-StringsCompare.lo `test -f 'src/c/StringsCompare.c' || echo '$(srcdir)/'`src/c/StringsCompare.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-StringsCompare.Tpo $(DEPDIR)/libscistring_la-StringsCompare.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/StringsCompare.c' object='libscistring_la-StringsCompare.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-StringsCompare.lo `test -f 'src/c/StringsCompare.c' || echo '$(srcdir)/'`src/c/StringsCompare.c
-
 libscistring_la-isletter.lo: src/c/isletter.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-isletter.lo -MD -MP -MF $(DEPDIR)/libscistring_la-isletter.Tpo -c -o libscistring_la-isletter.lo `test -f 'src/c/isletter.c' || echo '$(srcdir)/'`src/c/isletter.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-isletter.Tpo $(DEPDIR)/libscistring_la-isletter.Plo
@@ -704,13 +692,6 @@ libscistring_la-isdigit.lo: src/c/isdigit.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/isdigit.c' object='libscistring_la-isdigit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-isdigit.lo `test -f 'src/c/isdigit.c' || echo '$(srcdir)/'`src/c/isdigit.c
-
-libscistring_la-alphanum.lo: src/c/alphanum.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-alphanum.lo -MD -MP -MF $(DEPDIR)/libscistring_la-alphanum.Tpo -c -o libscistring_la-alphanum.lo `test -f 'src/c/alphanum.c' || echo '$(srcdir)/'`src/c/alphanum.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-alphanum.Tpo $(DEPDIR)/libscistring_la-alphanum.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/alphanum.c' object='libscistring_la-alphanum.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-alphanum.lo `test -f 'src/c/alphanum.c' || echo '$(srcdir)/'`src/c/alphanum.c
 
 libscistring_la-gw_string.lo: sci_gateway/c/gw_string.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-gw_string.lo -MD -MP -MF $(DEPDIR)/libscistring_la-gw_string.Tpo -c -o libscistring_la-gw_string.lo `test -f 'sci_gateway/c/gw_string.c' || echo '$(srcdir)/'`sci_gateway/c/gw_string.c

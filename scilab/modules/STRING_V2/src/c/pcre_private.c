@@ -9,6 +9,7 @@
 #include <errno.h>
 #include "MALLOC.h"
 #include <pcre.h>
+#include "pcre_error_code.h"
 
 /* A number of things vary for Windows builds. Originally, pcretest opened its
 input and output without "b"; then I was told that "b" was needed in some
@@ -326,7 +327,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 	offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
 	if (offsets == NULL)
 	{
-		return -2;
+		return NOT_ENOUGH_MEMORY_FOR_VECTOR;
 	}
 	/* Main loop */
 	LOOP_PCRE_TST = FALSE;
@@ -417,7 +418,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 
 	if (isalnum(delimiter) || delimiter == '\\')
     {
-		return -3;
+		return DELIMITER_NOT_ALPHANUMERIC;
     }
 
 	pp = p;
@@ -576,20 +577,20 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 			new_info(re, NULL, PCRE_INFO_HASCRORLF, &hascrorlf);
 			if (namecount > 0)
 			{
-				return -4;
+				return CAPTURING_SUBPATTERNS_ERROR;
 				while (namecount-- > 0)
 				{
 					nametable += nameentrysize;
 				}
 			}
-			if (!okpartial) return -5;
-			if (hascrorlf) return -6;
+			if (!okpartial) return PARTIAL_MATCHING_NOT_SUPPORTED;
+			if (hascrorlf) return CONTAINS_EXPLICIT_CR_OR_LF_MATCH;
 
 			all_options = ((real_pcre *)re)->options;
 		
 			
 
-			if (jchanged) return -7;
+			if (jchanged) return DUPLICATE_NAME_STATUS_CHANGES;
 
 			
 			/* Don't output study size; at present it is in any case a fixed
@@ -833,7 +834,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 
 		if ((all_use_dfa || use_dfa) && find_match_limit)
 		{
-			return -9;
+			return LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING;
 			find_match_limit = 0;
 		}
 
@@ -899,7 +900,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				/* This is a check against a lunatic return value. */
 				if (count > maxcount)
 				{
-					return -8;
+					return TOO_BIG_FOR_OFFSET_SIZE;
 					if (do_g || do_G)
 					{
 						do_g = do_G = FALSE;        /* Break g/G loop */
@@ -1002,7 +1003,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				{
 					if (gmatched == 0) 
 					{
-						return -1;
+						return NO_MATCH;
 					}
 				}
 				else fprintf(outfile, "Error %d\n", count);

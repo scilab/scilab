@@ -18,6 +18,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "pcre_error_code.h"
 /*------------------------------------------------------------------------*/
 #define GREP_OK             0
 #define MEMORY_ALLOC_ERROR -1
@@ -124,7 +125,7 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 		{
 			int Output_Start = 0;
 			int Output_End = 0;
-			int answer = pcre_private(Inputs_param_one[y],Inputs_param_two[x],&Output_Start,&Output_End);
+			pcre_error_code answer = pcre_private(Inputs_param_one[y],Inputs_param_two[x],&Output_Start,&Output_End);
 
 			if ( answer == 0 )
 			{
@@ -139,39 +140,39 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 			{
 				switch (answer)
 				{
-				case -1:
+				case NO_MATCH:
 					/*No match */
 
 				break;
-				case -2:
+				case NOT_ENOUGH_MEMORY_FOR_VECTOR:
 					Scierror(999,"Failed to get enough memory for offsets vector\n"); 
 				    return 0; 
 					break;
-				case -3:
+				case DELIMITER_NOT_ALPHANUMERIC:
 					Scierror(999,"Delimiter must not be alphameric\n"); 
 					return 0; 
 					break;
-				case -4:
+				case CAPTURING_SUBPATTERNS_ERROR:
 					Scierror(999,"Capturing subpatterns error\n"); 
 					return 0; 
 				break;
-				case -5:
+				case PARTIAL_MATCHING_NOT_SUPPORTED:
 					Scierror(999,"Partial matching not supported\n"); 
 					return 0; 
 				break;
-				case -6:
+				case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
 					Scierror(999,"Contains explicit CR or LF match\n"); 
 					return 0; 
 				break;
-				case -7:
+				case DUPLICATE_NAME_STATUS_CHANGES:
 					Scierror(999,"Duplicate name status changes\n"); 
 					return 0; 
 				break;
-				case -8:
+				case TOO_BIG_FOR_OFFSET_SIZE:
 					Scierror(999,"Returned count is too big for offset size\n"); 
 					return 0; 
 				break;
-				case -9:
+				case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
 					Scierror(999,"Match limit not relevant for DFA matching: ignored\n"); 
 					return 0; 
 				break;
