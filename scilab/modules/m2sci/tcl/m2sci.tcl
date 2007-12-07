@@ -8,7 +8,7 @@
 # Scilab specification
 toplevel .m2sci
 
-ScilabEval TCL_SetVar("localizedtitle",gettext("menus","Matlab to Scilab conversion tool"))
+ScilabEval "TCL_SetVar(\"localizedtitle\",gettext(\"Matlab to Scilab conversion tool\"))" "sync"
 wm title .m2sci $localizedtitle
 
 
@@ -105,24 +105,24 @@ global rFlagWhatToConvert
 frame .m2sci.mainframe
 
 # FILES SELECTION
-ScilabEval TCL_SetVar("localizedLabelFiles",gettext("menus","FILES SELECTION"))
+ScilabEval "TCL_SetVar(\"localizedLabelFiles\",gettext(\"FILES SELECTION\"))" "sync"
 label .m2sci.mainframe.lFileSelect -textvariable localizedLabelFiles -background lightblue
 
 grid .m2sci.mainframe.lFileSelect -column 0 -columnspan 4 -row 1 -sticky news
 
 # Whole directory
 radiobutton .m2sci.mainframe.rDir -variable rFlagWhatToConvert -value 0 
-ScilabEval TCL_SetVar("localizedlDir",gettext("menus","Convert a whole directory"))
+ScilabEval "TCL_SetVar(\"localizedlDir\",gettext(\"Convert a whole directory\"))" "sync"
 label .m2sci.mainframe.lDir -textvariable localizedlDir
 
 grid .m2sci.mainframe.rDir -column 0 -row 2
 grid .m2sci.mainframe.lDir -column 1 -columnspan 3 -row 2 -sticky w
 
-ScilabEval TCL_SetVar("localizedlDirName",gettext("menus","Directory name: "))
+ScilabEval "TCL_SetVar(\"localizedlDirName\",gettext(\"Directory name: \"))" "sync"
 label .m2sci.mainframe.lDirName -textvariable localizedlDirName
 entry .m2sci.mainframe.eDirName -textvariable ePathToConvert -width 50
 bind .m2sci.mainframe.eDirName <FocusIn> {set rFlagWhatToConvert 0}
-ScilabEval TCL_SetVar("localizedBrowse",gettext("menus","Browse"))
+ScilabEval "TCL_SetVar(\"localizedBrowse\",gettext(\"Browse\"))" "sync"
 button .m2sci.mainframe.bBrowseDir -textvariable localizedBrowse -command {setPathToConvert}
 
 grid .m2sci.mainframe.lDirName -column 1 -row 3
@@ -131,13 +131,13 @@ grid .m2sci.mainframe.bBrowseDir -column 3 -row 3
 
 # Single file
 radiobutton .m2sci.mainframe.rFile -variable rFlagWhatToConvert -value 1
-ScilabEval TCL_SetVar("localizedlFile",gettext("menus","Convert a single file"))
+ScilabEval "TCL_SetVar(\"localizedlFile\",gettext(\"Convert a single file\"))" "sync"
 label .m2sci.mainframe.lFile -textvariable localizedlFile  
 
 grid .m2sci.mainframe.rFile -column 0 -row 4
 grid .m2sci.mainframe.lFile -column 1 -columnspan 3 -row 4 -sticky w
 
-ScilabEval TCL_SetVar("localizedlFileName",gettext("menus","File name:"))
+ScilabEval "TCL_SetVar(\"localizedlFileName\",gettext(\"File name: \"))" "sync"
 label .m2sci.mainframe.lFileName -textvariable localizedlFileName
 entry .m2sci.mainframe.eFileName -textvariable eFileToConvert -width 50
 bind .m2sci.mainframe.eFileName <FocusIn> {set rFlagWhatToConvert 1}
@@ -148,12 +148,12 @@ grid .m2sci.mainframe.eFileName -column 2 -row 5
 grid .m2sci.mainframe.bBrowseFile -column 3 -row 5
 
 # RESULTING FILES DIRECTORY
-ScilabEval TCL_SetVar("localizedlResDirSelect",gettext("menus","OUTPUT FILES DIRECTORY"))
+ScilabEval "TCL_SetVar(\"localizedlResDirSelect\",gettext(\"OUTPUT FILES DIRECTORY\"))" "sync"
 label .m2sci.mainframe.lResDirSelect -textvariable localizedlResDirSelect -background lightblue
 
 grid .m2sci.mainframe.lResDirSelect -column 0 -columnspan 4 -row 6 -sticky news
 
-ScilabEval TCL_SetVar("localizedlResDirName",gettext("menus","Directory name:"))
+ScilabEval "TCL_SetVar(\"localizedlResDirName\",gettext(\"Directory name:\"))" "sync"
 label .m2sci.mainframe.lResDirName -textvariable localizedlResDirName
 entry .m2sci.mainframe.eResDirName -textvariable eResDirName -width 50
 button .m2sci.mainframe.bBrowseResDir -textvariable localizedBrowse -command {setResDirName}
@@ -163,19 +163,19 @@ grid .m2sci.mainframe.eResDirName -column 2 -row 7
 grid .m2sci.mainframe.bBrowseResDir -column 3 -row 7
 
 # OPTIONS
-ScilabEval TCL_SetVar("localizedlOptions",gettext("menus","CONVERSION OPTIONS"))
+ScilabEval "TCL_SetVar(\"localizedlOptions\",gettext(\"CONVERSION OPTIONS\"))" "sync"
 label .m2sci.mainframe.lOptions -textvariable localizedlOptions -background lightblue
 
 grid .m2sci.mainframe.lOptions -column 0 -columnspan 4 -row 8 -sticky news
 
 # RecMode
-ScilabEval TCL_SetVar("localizedlRecMode",gettext("menus","Recursive conversion:"))
+ScilabEval "TCL_SetVar(\"localizedlRecMode\",gettext(\"Recursive conversion:\"))" "sync"
 label .m2sci.mainframe.lRecMode -textvariable localizedlRecMode
 frame .m2sci.mainframe.fRecMode
-ScilabEval TCL_SetVar("localizedYes",gettext("menus","Yes"))
-ScilabEval TCL_SetVar("localizedNo",gettext("menus","No"))
-ScilabEval TCL_SetVar("localizedYES",gettext("menus","YES"))
-ScilabEval TCL_SetVar("localizedNO",gettext("menus","NO"))
+ScilabEval "TCL_SetVar(\"localizedYes\",gettext(\"Yes\"))" "sync"
+ScilabEval "TCL_SetVar(\"localizedNo\",gettext(\"No\"))" "sync"
+ScilabEval "TCL_SetVar(\"localizedYES\",gettext(\"YES\"))" "sync"
+ScilabEval "TCL_SetVar(\"localizedNO\",gettext(\"NO\"))" "sync"
 radiobutton .m2sci.mainframe.fRecMode.rRecModeYES -textvariable localizedYes -variable rRecMode -value $localizedYES
 radiobutton .m2sci.mainframe.fRecMode.rRecModeNO -textvariable localizedNo -variable rRecMode -value $localizedNO 
 		   
@@ -187,7 +187,7 @@ grid .m2sci.mainframe.lRecMode -column 0 -columnspan 2 -row 9
 grid .m2sci.mainframe.fRecMode -column 1 -columnspan 2 -row 9 
 
 # OnlyDouble
-ScilabEval TCL_SetVar("localizedlOnlyDouble",gettext("menus","Only double values used:"))
+ScilabEval "TCL_SetVar(\"localizedlOnlyDouble\",gettext(\"Only double values used:\"))" "sync"
 label .m2sci.mainframe.lOnlyDouble -textvariable localizedlOnlyDouble
 frame .m2sci.mainframe.fOnlyDouble
 radiobutton .m2sci.mainframe.fOnlyDouble.rOnlyDoubleYES -textvariable localizedYes -variable rOnlyDouble -value $localizedYES  
@@ -201,7 +201,7 @@ grid .m2sci.mainframe.lOnlyDouble -column 0 -columnspan 2 -row 10
 grid .m2sci.mainframe.fOnlyDouble -column 1 -columnspan 2 -row 10
 
 # VerbMode
-ScilabEval TCL_SetVar("localizedlVerbMode",gettext("menus","Verbose Mode:"))
+ScilabEval "TCL_SetVar(\"localizedlVerbMode\",gettext(\"Verbose Mode:\"))" "sync"
 label .m2sci.mainframe.lVerbMode -textvariable localizedlVerbMode
 frame .m2sci.mainframe.fVerbMode
 radiobutton .m2sci.mainframe.fVerbMode.rVerbMode0 -text "0" -variable rVerbMode -value 0  
@@ -219,7 +219,7 @@ grid .m2sci.mainframe.lVerbMode -column 0 -columnspan 2 -row 11
 grid .m2sci.mainframe.fVerbMode -column 1 -columnspan 2 -row 11
 
 # PrettyPrint
-ScilabEval TCL_SetVar("localizedlPrettyPrint",gettext("menus","Generate pretty printed code:"))
+ScilabEval "TCL_SetVar(\"localizedlPrettyPrint\",gettext(\"Generate pretty printed code:\"))" "sync"
 label .m2sci.mainframe.lPrettyPrint -textvariable localizedlPrettyPrint
 frame .m2sci.mainframe.fPrettyPrint
 radiobutton .m2sci.mainframe.fPrettyPrint.rPrettyPrintYES -textvariable localizedYes -variable rPrettyPrint -value $localizedYES  
@@ -233,15 +233,15 @@ grid .m2sci.mainframe.lPrettyPrint -column 0 -columnspan 2 -row 12
 grid .m2sci.mainframe.fPrettyPrint -column 1 -columnspan 2 -row 12
 
 # VALIDATION
-ScilabEval TCL_SetVar("localizedlButtons",gettext("menus","VALIDATION"))
+ScilabEval "TCL_SetVar(\"localizedlButtons\",gettext(\"VALIDATION\"))" "sync"
 label .m2sci.mainframe.lButtons -textvariable localizedlButtons -background lightblue
 
 grid .m2sci.mainframe.lButtons -column 0 -columnspan 4 -row 13 -sticky news
 
 frame .m2sci.mainframe.fButtons
-ScilabEval TCL_SetVar("localizedbConvert",gettext("menus","Convert"))
+ScilabEval "TCL_SetVar(\"localizedbConvert\",gettext(\"Convert\"))" "sync"
 button .m2sci.mainframe.fButtons.bConvert -textvariable localizedbConvert -command {launchConversion} 
-ScilabEval TCL_SetVar("localizedbCancel",gettext("menus","Cancel"))
+ScilabEval "TCL_SetVar(\"localizedbCancel\",gettext(\"Cancel\"))" "sync"
 button .m2sci.mainframe.fButtons.bCancel -textvariable localizedbCancel -command {cancelConversion} 
 
 pack configure  .m2sci.mainframe.fButtons.bCancel  \
