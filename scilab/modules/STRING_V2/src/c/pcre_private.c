@@ -97,19 +97,6 @@ UTF8 support if PCRE is built without it. */
 #endif
 
 
-/* Other parameters */
-
-#ifndef CLOCKS_PER_SEC
-#ifdef CLK_TCK
-#define CLOCKS_PER_SEC CLK_TCK
-#else
-#define CLOCKS_PER_SEC 100
-#endif
-#endif
-
-/* This is the default loop count for timing. */
-
-#define LOOPREPEAT 500000
 
 /* Static variables */
 
@@ -264,7 +251,7 @@ Arguments:
 Returns:    < 0, = 0, or > 0, according to the comparison
 */
 
-static int strncmpic(char *s, uschar *t, int n)
+static int strncmpic(char *s, char *t, int n)
 {
 	while (n--)
 	{
@@ -305,11 +292,11 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 	/* These vectors store, end-to-end, a list of captured substring names. Assume
 	that 1024 is plenty long enough for the few names we'll be testing. */
 
-	uschar copynames[1024];
-	uschar getnames[1024];
+	char copynames[1024];
+	char getnames[1024];
 
-	uschar *copynamesptr;
-	uschar *getnamesptr;
+	char *copynamesptr;
+	char *getnamesptr;
 
 	/* Get buffers from malloc() so that Electric Fence will check their misuse
 	when I am debugging. They grow automatically when very long lines are read. */
@@ -365,7 +352,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 		if (*p == '<' && strchr((char *)(p+1), '<') == NULL)
 		{
 			unsigned long int magic, get_options;
-			uschar sbuf[8];
+			char sbuf[8];
 			FILE *f;
 			p++;
 			pp = p + (int)strlen((char *)p);
@@ -561,7 +548,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 		#endif
 			int count, backrefmax, first_char, need_char, okpartial, jchanged,hascrorlf;
 			int nameentrysize, namecount;
-			const uschar *nametable;
+			const char *nametable;
 
 			new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
 			new_info(re, NULL, PCRE_INFO_SIZE, &size);
@@ -699,7 +686,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 					}
 					else if (isalnum(*p))
 					{
-						uschar *npp = copynamesptr;
+						char *npp = copynamesptr;
 						while (isalnum(*p)) *npp++ = *p++;
 						*npp++ = 0;
 						*npp = 0;
@@ -747,7 +734,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 					}
 					else if (isalnum(*p))
 					{
-						uschar *npp = getnamesptr;
+						char *npp = getnamesptr;
 						while (isalnum(*p)) *npp++ = *p++;
 						*npp++ = 0;
 						*npp = 0;
@@ -901,10 +888,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				if (count > maxcount)
 				{
 					return TOO_BIG_FOR_OFFSET_SIZE;
-					if (do_g || do_G)
-					{
-						do_g = do_G = FALSE;        /* Break g/G loop */
-					}
 				}
 
 				for (i = 0; i < count * 2; i += 2)
@@ -1006,7 +989,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 						return NO_MATCH;
 					}
 				}
-				else fprintf(outfile, "Error %d\n", count);
 				break;  /* Out of the /g loop */
 			}
 		}
