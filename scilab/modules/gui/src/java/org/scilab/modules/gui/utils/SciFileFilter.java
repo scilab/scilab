@@ -23,7 +23,17 @@ public class SciFileFilter extends FileFilter {
 	public SciFileFilter(String fileMask) {
 		// Remove the * at the beginning
 		mask = fileMask.substring(1);
-		description = "";
+		if (mask.equals(".*")) {
+			mask = "";
+		} else if (mask.equals(".sci")) {
+			description = "Scilab SCI file";
+		} else if (mask.equals(".sce")) {
+			description = "Scilab SCE file";
+		} else if (mask.equals(".bin")) {
+			description = "Scilab binary file";
+		} else {
+			description = "All " + fileMask + " files";
+		}
 	}
 
 	/**
