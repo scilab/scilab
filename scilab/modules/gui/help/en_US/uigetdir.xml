@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>uigetdir</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 déc 2007) $</DATE>
+  <SHORT_DESCRIPTION name="uigetdir">dialog for selecting a directory</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>directory = uigetdir()</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>directory = uigetdir(start_path [,title])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>start_path</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string which gives the initial directory used for search. By default uigetdir uses current working directory.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>title</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the title for the uigetdir window.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>directory</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is the user selected directory if user answers &quot;Ok&quot; or the &quot; &quot; string if user cancels.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Creates a dialog window for selecting a directory</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+uigetdir()
+uigetdir("SCI/modules/")
+uigetdir("SCI/modules/", "Choose a directory")
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>xgetfile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tk_getfile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tk_getdir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

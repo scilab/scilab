@@ -57,6 +57,9 @@ xgetfile("*.sci", "SCI/modules/gui/macros/", "Choose a file name")
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
+      <LINK>uigetdir</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
       <LINK>x_dialog</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
