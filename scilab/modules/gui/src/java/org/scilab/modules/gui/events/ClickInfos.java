@@ -30,13 +30,13 @@ public class ClickInfos {
 	/**
 	 * @return the xCoordinate
 	 */
-	public float getXCoordinate() {
+	public double getXCoordinate() {
 		return xCoordinate;
 	}
 	/**
 	 * @return the yCoordinate
 	 */
-	public float getYCoordinate() {
+	public double getYCoordinate() {
 		return yCoordinate;
 	}
 	/**
@@ -62,14 +62,14 @@ public class ClickInfos {
 	/**
 	 * @param coordinate the xCoordinate to set
 	 */
-	public void setXCoordinate(float coordinate) {
+	public void setXCoordinate(double coordinate) {
 		this.xCoordinate = coordinate;
 	}
 
 	/**
 	 * @param coordinate the yCoordinate to set
 	 */
-	public void setYCoordinate(float coordinate) {
+	public void setYCoordinate(double coordinate) {
 		this.yCoordinate = coordinate;
 	}
 
@@ -88,8 +88,8 @@ public class ClickInfos {
 	}
 	
 	private int mouseButtonNumber;
-	private float xCoordinate;
-	private float yCoordinate;
+	private double xCoordinate;
+	private double yCoordinate;
 	private int windowID;
 	private String menuCallback;
 	

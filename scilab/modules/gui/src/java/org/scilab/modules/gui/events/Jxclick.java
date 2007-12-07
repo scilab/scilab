@@ -26,13 +26,13 @@ public class Jxclick {
 	/**
 	 * @return the xCoordinate
 	 */
-	public static float getXCoordinate() {
+	public static double getXCoordinate() {
 		return ClickInfos.getInstance().getXCoordinate();
 	}
 	/**
 	 * @return the yCoordinate
 	 */
-	public static float getYCoordinate() {
+	public static double getYCoordinate() {
 		return ClickInfos.getInstance().getYCoordinate();
 	}
 	/**
