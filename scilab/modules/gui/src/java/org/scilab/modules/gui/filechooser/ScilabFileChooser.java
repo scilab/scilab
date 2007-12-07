@@ -93,6 +93,20 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 	}
 	
 	/**
+	 * Set the flag indicating that we want only select directories
+	 */
+	public void setDirectorySelectionOnly() {
+		ScilabBridge.setDirectorySelectionOnly(this);
+	}
+
+	/**
+	 * Set the flag indicating that we want only select files
+	 */
+	public void setFileSelectionOnly() {
+		ScilabBridge.setFileSelectionOnly(this);
+	}
+
+	/**
 	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {

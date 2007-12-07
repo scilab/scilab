@@ -1380,5 +1380,21 @@ public class ScilabBridge {
 	public static String[] getSelection(FileChooser fileChooser) {
 		return ScilabFileChooserBridge.getSelection(fileChooser);
 	}
+	
+	/**
+	 * Set the flag indicating that we want only select directories
+	 * @param fileChooser the file chooser we want to set the flag of 
+	 */
+	public static void setDirectorySelectionOnly(FileChooser fileChooser) {
+		ScilabFileChooserBridge.setDirectorySelectionOnly(fileChooser);
+	}
+
+	/**
+	 * Set the flag indicating that we want only select files
+	 * @param fileChooser the file chooser we want to set the flag of 
+	 */
+	public static void setFileSelectionOnly(FileChooser fileChooser) {
+		ScilabFileChooserBridge.setFileSelectionOnly(fileChooser);
+	}
 
 }

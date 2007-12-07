@@ -51,4 +51,14 @@ public interface FileChooser extends UIElement {
 	 * @return the names of selected files
 	 */
 	String[] getSelection();
+	
+	/**
+	 * Set the flag indicating that we want only select directories
+	 */
+	void setDirectorySelectionOnly();
+	
+	/**
+	 * Set the flag indicating that we want only select files
+	 */
+	void setFileSelectionOnly();
 }

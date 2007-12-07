@@ -17,5 +17,10 @@ void fileChooserDisplayAndWait(int ID);
 char** getFileChooserSelection(int ID);
 
 int getFileChooserSelectionSize(int ID);
+
+void setFileChooserDirectorySelectionOnly(int ID);
+
+void setFileChooserFileSelectionOnly(int ID);
+
 #endif
 

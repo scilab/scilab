@@ -124,4 +124,19 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	public String[] getSelection() {
 		return selection;
 	}
+	
+	/**
+	 * Set the flag indicating that we want only select directories
+	 */
+	public void setDirectorySelectionOnly() {
+		setFileSelectionMode(DIRECTORIES_ONLY);
+	}
+
+	/**
+	 * Set the flag indicating that we want only select files
+	 */
+	public void setFileSelectionOnly() {
+		setFileSelectionMode(FILES_ONLY);
+	}
+	
 }

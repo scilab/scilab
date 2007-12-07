@@ -75,5 +75,11 @@
 	<method name="getFileChooserSelection" returnType="String[]" modifier="static">
             <parameter name="id" type="int"/>
         </method>      
+	<method name="setFileChooserDirectorySelectionOnly" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="setFileChooserFileSelectionOnly" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
   </object>
 </package>

@@ -303,4 +303,21 @@ public class CallScilabBridge {
 	public static String[] getFileChooserSelection(int id) {
 		return ((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelection();
 	}
+	
+	/**
+	 * Set the flag indicating that we want only select directories
+	 * @param id the id of the fileChooser
+	 */
+	public static void setFileChooserDirectorySelectionOnly(int id) {
+		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setDirectorySelectionOnly();
+	}
+
+	/**
+	 * Set the flag indicating that we want only select files
+	 * @param id the id of the fileChooser
+	 */
+	public static void setFileChooserFileSelectionOnly(int id) {
+		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setFileSelectionOnly();
+	}
+	
 }

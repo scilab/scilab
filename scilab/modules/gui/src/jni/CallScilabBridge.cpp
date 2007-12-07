@@ -118,6 +118,8 @@ voidsetFileChooserMaskjintjstringID=NULL;
 voidfileChooserDisplayAndWaitjintID=NULL; 
 jintgetFileChooserSelectionSizejintID=NULL; 
 jobjectArraygetFileChooserSelectionjintID=NULL; 
+voidsetFileChooserDirectorySelectionOnlyjintID=NULL; 
+voidsetFileChooserFileSelectionOnlyjintID=NULL; 
 
 
 }
@@ -160,6 +162,8 @@ voidsetFileChooserMaskjintjstringID=NULL;
 voidfileChooserDisplayAndWaitjintID=NULL; 
 jintgetFileChooserSelectionSizejintID=NULL; 
 jobjectArraygetFileChooserSelectionjintID=NULL; 
+voidsetFileChooserDirectorySelectionOnlyjintID=NULL; 
+voidsetFileChooserFileSelectionOnlyjintID=NULL; 
 
 
 }
@@ -671,6 +675,48 @@ curEnv->ReleaseStringUTFChars(resString, tempString);
 
 return arrayOfString;
 
+}
+
+void CallScilabBridge::setFileChooserDirectorySelectionOnly (JavaVM * jvm_, long id){
+
+JNIEnv * curEnv = NULL;
+                jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+                jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFileChooserDirectorySelectionOnlyjintID = curEnv->GetStaticMethodID(cls, "setFileChooserDirectorySelectionOnly", "(I)V" ) ;
+if (voidsetFileChooserDirectorySelectionOnlyjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFileChooserDirectorySelectionOnly" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFileChooserDirectorySelectionOnlyjintID ,id);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setFileChooserFileSelectionOnly (JavaVM * jvm_, long id){
+
+JNIEnv * curEnv = NULL;
+                jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+                jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFileChooserFileSelectionOnlyjintID = curEnv->GetStaticMethodID(cls, "setFileChooserFileSelectionOnly", "(I)V" ) ;
+if (voidsetFileChooserFileSelectionOnlyjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFileChooserFileSelectionOnly" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFileChooserFileSelectionOnlyjintID ,id);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

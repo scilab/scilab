@@ -78,5 +78,21 @@ public class ScilabFileChooserBridge {
 	public static String[] getSelection(FileChooser fileChooser) {
 		return fileChooser.getAsSimpleFileChooser().getSelection();
 	}
+	
+	/**
+	 * Set the flag indicating that we want only select directories
+	 * @param fileChooser the file chooser we want to set the flag of 
+	 */
+	public static void setDirectorySelectionOnly(FileChooser fileChooser) {
+		fileChooser.getAsSimpleFileChooser().setDirectorySelectionOnly();
+	}
+
+	/**
+	 * Set the flag indicating that we want only select files
+	 * @param fileChooser the file chooser we want to set the flag of 
+	 */
+	public static void setFileSelectionOnly(FileChooser fileChooser) {
+		fileChooser.getAsSimpleFileChooser().setFileSelectionOnly();
+	}
 
 }

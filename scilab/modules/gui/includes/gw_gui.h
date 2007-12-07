@@ -18,6 +18,7 @@ int sci_delmenu(char *fname,unsigned long fname_len);
 int sci_setmenu(char *fname,unsigned long fname_len);
 int sci_unsetmenu(char *fname,unsigned long fname_len);
 int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len));
+int sci_uigetdir(char *fname);
 int C2F(sci_x_message_modeless) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len )) ;
 int C2F(sci_getlookandfeel) _PARAMS(( char * fname, unsigned long fname_len )) ;

@@ -72,6 +72,8 @@ jmethodID voidsetFileChooserMaskjintjstringID; // cache method id
 jmethodID voidfileChooserDisplayAndWaitjintID; // cache method id
 jmethodID jintgetFileChooserSelectionSizejintID; // cache method id
 jmethodID jobjectArraygetFileChooserSelectionjintID; // cache method id
+jmethodID voidsetFileChooserDirectorySelectionOnlyjintID; // cache method id
+jmethodID voidsetFileChooserFileSelectionOnlyjintID; // cache method id
 
 
 /**
@@ -154,6 +156,10 @@ static void fileChooserDisplayAndWait(JavaVM * jvm_, long id);
 static long getFileChooserSelectionSize(JavaVM * jvm_, long id);
 
 static char ** getFileChooserSelection(JavaVM * jvm_, long id);
+
+static void setFileChooserDirectorySelectionOnly(JavaVM * jvm_, long id);
+
+static void setFileChooserFileSelectionOnly(JavaVM * jvm_, long id);
 
 
                         /**

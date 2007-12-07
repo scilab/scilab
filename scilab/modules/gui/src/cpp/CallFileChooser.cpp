@@ -39,3 +39,13 @@ int getFileChooserSelectionSize(int ID)
 {
   return CallScilabBridge::getFileChooserSelectionSize(getScilabJavaVM(), ID);
 }
+
+void setFileChooserDirectorySelectionOnly(int ID)
+{
+  CallScilabBridge::setFileChooserDirectorySelectionOnly(getScilabJavaVM(), ID);
+}
+
+void setFileChooserFileSelectionOnly(int ID)
+{
+  CallScilabBridge::setFileChooserFileSelectionOnly(getScilabJavaVM(), ID);
+}
