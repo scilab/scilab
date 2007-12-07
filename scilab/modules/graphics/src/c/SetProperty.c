@@ -4059,3 +4059,34 @@ int sciSetLogFlags(sciPointObj * pObj, char logFlags[3])
   return sciInitLogFlags(pObj, logFlags);
 }
 /*----------------------------------------------------------------------------------*/
+int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pObj)->axes.auto_ticks[0] = autoTicksX;
+    pSUBWIN_FEATURE(pObj)->axes.auto_ticks[1] = autoTicksY;
+    pSUBWIN_FEATURE(pObj)->axes.auto_ticks[2] = autoTicksZ;
+    break;
+  default:
+    printSetGetErrorMessage("auto_ticks");
+    return -1;
+  }
+  return 0;
+}
+/*----------------------------------------------------------------------------------*/
+int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)
+{
+  BOOL curAutoTicks[3];
+  sciGetAutoTicks(pObj, curAutoTicks);
+
+  if (curAutoTicks[0] == autoTicksX && curAutoTicks[1] == autoTicksY && curAutoTicks[2] == autoTicksZ)
+  {
+    // nothing to do
+    return 1;
+  }
+
+  return sciInitAutoTicks(pObj, autoTicksX, autoTicksY, autoTicksZ);
+
+}
+/*----------------------------------------------------------------------------------*/

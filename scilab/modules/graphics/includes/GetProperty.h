@@ -226,6 +226,10 @@ void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3]); /* GET */
 
 BOOL sciGetTightLimitsOn(sciPointObj * pObj); /* GET */
 
+void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3]); /* GET */
+
+void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]); /* GET */
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

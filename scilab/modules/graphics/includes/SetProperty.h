@@ -249,6 +249,9 @@ int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
 int sciInitLogFlags(sciPointObj * pObj, char logFlags[3]);
 int sciSetLogFlags(sciPointObj * pObj, char logFlags[3]) ; /* SET */
 
+int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
+int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ); /* SET */
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

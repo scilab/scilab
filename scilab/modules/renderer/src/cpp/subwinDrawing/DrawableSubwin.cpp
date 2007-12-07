@@ -75,9 +75,6 @@ void DrawableSubwin::show( void )
     return;
   }
 
-  // fill Frect with real data bounds
-  //computeRealDataBounds();
-
   // set up camera
   m_pCamera->show();
 

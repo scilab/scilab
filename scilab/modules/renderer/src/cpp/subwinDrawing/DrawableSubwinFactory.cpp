@@ -15,6 +15,7 @@
 #include "BackTrihedronDrawerJoGL.hxx"
 #include "FullBoxDrawerJoGL.hxx"
 #include "HalfBoxDrawerJoGL.hxx"
+#include "TicksDrawerFactory.hxx"
 
 extern "C"
 {
@@ -105,6 +106,38 @@ void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
   default:
     subwin->setAxesBoxDrawer(NULL);
     break;
+  }
+
+  TicksDrawerFactory tdf(subwin);
+
+  BOOL axesVisible[3];
+  sciGetAxesVisible(pSubwin, axesVisible);
+
+  if (axesVisible[0])
+  {
+    subwin->setXTicksDrawer(tdf.createXTicksDrawer());
+  }
+  else
+  {
+    subwin->setXTicksDrawer(NULL);
+  }
+  
+  if (axesVisible[1])
+  {
+    subwin->setYTicksDrawer(tdf.createYTicksDrawer());
+  }
+  else
+  {
+    subwin->setYTicksDrawer(NULL);
+  }
+
+  if (axesVisible[2])
+  {
+    subwin->setZTicksDrawer(tdf.createZTicksDrawer());
+  }
+  else
+  {
+    subwin->setZTicksDrawer(NULL);
   }
 }
 /*------------------------------------------------------------------------------------------*/

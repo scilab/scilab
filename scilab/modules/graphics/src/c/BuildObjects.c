@@ -220,6 +220,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
   char logFlags[3];
   int i;
   char dir;
+  BOOL autoTicks[3];
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciSubWindow * ppsubwin = NULL;
   sciPointObj * paxesmdl = getAxesModel() ;
@@ -368,9 +369,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 								ppaxesmdl->axes.u_zlabels,
 								ppsubwin->axes.u_nzgrads);
 
-      (ppsubwin->axes).auto_ticks[0] = ppaxesmdl->axes.auto_ticks[0];
-      (ppsubwin->axes).auto_ticks[1] = ppaxesmdl->axes.auto_ticks[1];
-      (ppsubwin->axes).auto_ticks[2] = ppaxesmdl->axes.auto_ticks[2];
+      sciGetAutoTicks(paxesmdl, autoTicks);
+      sciInitAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
       /* end 22.09.04 */
 
       ppsubwin->axes.zlim[0]= ppaxesmdl->axes.zlim[0];

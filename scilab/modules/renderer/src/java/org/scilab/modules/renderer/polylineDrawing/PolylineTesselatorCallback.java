@@ -65,7 +65,8 @@ public class PolylineTesselatorCallback extends GLUtessellatorCallbackAdapter {
 	 */
 	@Override
 	public void combine(double[] coords, Object[] data, float[] weight, Object[] outData) {
-		outData[0] = coords;
+		double[] outVertex = {coords[0], coords[1], coords[2]};
+		outData[0] = outVertex;
 	}
 	
 	/**
@@ -95,7 +96,7 @@ public class PolylineTesselatorCallback extends GLUtessellatorCallbackAdapter {
 		try {
 			System.err.println("Glu Error: " + currentGLU.gluErrorString(errnum));
 		} catch (ArrayIndexOutOfBoundsException e) {
-			System.err.println("Glu Error: Unknown glu Error number " + errnum);
+			System.err.println("Glu Error: Unknown glu Error number" + errnum);
 		}
 	}
 }

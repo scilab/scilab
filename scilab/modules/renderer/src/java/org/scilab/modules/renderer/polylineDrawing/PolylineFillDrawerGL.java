@@ -72,7 +72,6 @@ public class PolylineFillDrawerGL extends FillDrawerGL implements PolylineDrawer
 		}
 		glu.gluTessEndContour(tess);
 		glu.gluEndPolygon(tess);
-		
 		glu.gluDeleteTess(tess);
 		
 	}

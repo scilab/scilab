@@ -12,6 +12,7 @@
 #include "DrawableSubwin.h"
 #include "ComputeBoundsStrategy.hxx"
 #include "DrawAxesBoxStrategy.hxx"
+#include "TicksDrawer.hxx"
 
 namespace sciGraphics
 {
@@ -27,6 +28,10 @@ public:
   void setXBoundsStrategy(ComputeBoundsStrategy * strategy);
   void setYBoundsStrategy(ComputeBoundsStrategy * strategy);
   void setZBoundsStrategy(ComputeBoundsStrategy * strategy);
+
+  void setXTicksDrawer(TicksDrawer * xTicksDrawer);
+  void setYTicksDrawer(TicksDrawer * yTicksDrawer);
+  void setZTicksDrawer(TicksDrawer * zTicksDrawer);
 
   void setAxesBoxDrawer(DrawAxesBoxStrategy * strategy);
 
@@ -96,6 +101,10 @@ protected:
   ComputeBoundsStrategy * m_pXBoundsStrategy;
   ComputeBoundsStrategy * m_pYBoundsStrategy;
   ComputeBoundsStrategy * m_pZBoundsStrategy;
+
+  TicksDrawer * m_pXTicksDrawer;
+  TicksDrawer * m_pYTicksDrawer;
+  TicksDrawer * m_pZTicksDrawer;
 
   DrawAxesBoxStrategy * m_pAxesBoxDrawer;
   /*---------------------------------------------------------------------*/

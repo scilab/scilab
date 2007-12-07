@@ -186,8 +186,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   if(ppsubwin->flagNax == TRUE){
     if(ppsubwin->logflags[0] == 'n' && ppsubwin->logflags[1] == 'n')
       {
-	ppsubwin->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
-	ppsubwin->axes.auto_ticks[1] = FALSE;
+        BOOL autoTicks[3];
+        sciGetAutoTicks(psubwin, autoTicks);
+        /* x and y graduations are imposed by Nax */
+        sciSetAutoTicks(psubwin, FALSE, FALSE, autoTicks[2]);
 	
 	CreatePrettyGradsFromNax(psubwin,aaint);
       }

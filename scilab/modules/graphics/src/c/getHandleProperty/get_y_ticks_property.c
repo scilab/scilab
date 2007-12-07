@@ -18,6 +18,7 @@
 int get_y_ticks_property( sciPointObj * pobj )
 {
   sciSubWindow * ppSubWin = NULL ;
+  BOOL autoTicks[3];
   char c_format[5];
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
   {
@@ -30,7 +31,8 @@ int get_y_ticks_property( sciPointObj * pobj )
   /* compute the c_format used for convert double to char (for labels) */
   ChooseGoodFormat( c_format, ppSubWin->logflags[1], ppSubWin->axes.ygrads, ppSubWin->axes.nygrads ) ;
 
-  if( ppSubWin->axes.auto_ticks[1] )
+  sciGetAutoTicks(pobj, autoTicks);
+  if( autoTicks[1] )
   {
     int       nbtics        = ppSubWin->axes.nygrads ;
     char   ** ticklabel     = NULL                   ;

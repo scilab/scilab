@@ -31,8 +31,8 @@ public:
 protected:
 
   /**
-  * Get the object performing mapping with Java class.
-  */
+   * Get the object performing mapping with Java class.
+   */
   FullBoxDrawerJavaMapper * getFullBoxDrawerJavaMapper(void);
 
 };

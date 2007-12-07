@@ -26,6 +26,9 @@ ConcreteDrawableSubwin::ConcreteDrawableSubwin(sciPointObj * pObj)
   m_pYBoundsStrategy = NULL;
   m_pZBoundsStrategy = NULL;
   m_pAxesBoxDrawer = NULL;
+  m_pXTicksDrawer = NULL;
+  m_pYTicksDrawer = NULL;
+  m_pZTicksDrawer = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 ConcreteDrawableSubwin::~ConcreteDrawableSubwin(void)
@@ -42,6 +45,13 @@ ConcreteDrawableSubwin::~ConcreteDrawableSubwin(void)
     delete m_pAxesBoxDrawer;
     m_pAxesBoxDrawer = NULL;
   }
+
+  delete m_pXTicksDrawer;
+  m_pXTicksDrawer = NULL;
+  delete m_pYTicksDrawer;
+  m_pYTicksDrawer = NULL;
+  delete m_pZTicksDrawer;
+  m_pZTicksDrawer = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::setXBoundsStrategy(ComputeBoundsStrategy * strategy)
@@ -69,6 +79,33 @@ void ConcreteDrawableSubwin::setZBoundsStrategy(ComputeBoundsStrategy * strategy
     delete m_pZBoundsStrategy;
   }
   m_pZBoundsStrategy = strategy;
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::setXTicksDrawer(TicksDrawer * xTicksDrawer)
+{
+  if(m_pXTicksDrawer != NULL)
+  {
+    delete m_pXTicksDrawer;
+  }
+  m_pXTicksDrawer = xTicksDrawer;
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::setYTicksDrawer(TicksDrawer * yTicksDrawer)
+{
+  if(m_pYTicksDrawer != NULL)
+  {
+    delete m_pYTicksDrawer;
+  }
+  m_pYTicksDrawer = yTicksDrawer;
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::setZTicksDrawer(TicksDrawer * zTicksDrawer)
+{
+  if(m_pZTicksDrawer != NULL)
+  {
+    delete m_pZTicksDrawer;
+  }
+  m_pZTicksDrawer = zTicksDrawer;
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::setAxesBoxDrawer(DrawAxesBoxStrategy * strategy)
@@ -160,13 +197,15 @@ void ConcreteDrawableSubwin::drawBox(void)
   // If axes is not displayed m_pAxesbox is not drawn.
   if (m_pAxesBoxDrawer != NULL)
   {
-    m_pAxesBoxDrawer->drawAxesBox(); 
+    m_pAxesBoxDrawer->drawAxesBox();
   }
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::drawTicks(void)
 {
-  // TODO
+  if (m_pXTicksDrawer != NULL) {m_pXTicksDrawer->draw();}
+  //m_pYTicksDrawer->draw();
+  //m_pZTicksDrawer->draw();
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::showBox(void)

@@ -601,6 +601,30 @@
 					RelativePath=".\src\cpp\subwinDrawing\LogarithmicBoundsComputer.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TicksDrawer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\UserDefinedTicksComputer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\XTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJoGL.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="RectangleDrawing"
@@ -1176,6 +1200,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\ComputeTicksStrategy.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\ConcreteDrawableSubwin.hxx"
 					>
 				</File>
@@ -1257,6 +1285,34 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\LogarithmicBoundsComputer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TicksDrawer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerFactory.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\UserDefinedTicksComputer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\XTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

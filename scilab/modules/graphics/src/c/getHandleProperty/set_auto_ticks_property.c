@@ -37,15 +37,11 @@ int set_auto_ticks_property( sciPointObj * pobj, int stackPointer, int valueType
     /* only one parameter to set the value for every axes.*/
     if ( strcmp( values[0], "off" ) == 0 ) 
     {
-      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[0] = FALSE ;
-      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[1] = FALSE ;
-      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[2] = FALSE ;
+      sciSetAutoTicks(pobj, FALSE, FALSE, FALSE);
     }
     else if ( strcmp( values[0], "on" ) == 0 )
     {
-      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[0] = TRUE ;
-      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[1] = TRUE ;
-      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[2] = TRUE ;
+      sciSetAutoTicks(pobj, TRUE, TRUE, TRUE);
     }
     else
     {
@@ -57,21 +53,24 @@ int set_auto_ticks_property( sciPointObj * pobj, int stackPointer, int valueType
   else if ( nbCol == 2 || nbCol == 3)
   {
     int i ;
+    BOOL autoTicks[3];
+    sciGetAutoTicks(pobj, autoTicks);
     for ( i = 0; i < nbCol; i++ )
     {
       if ( strcmp(values[i],"off") == 0 )
       {
-        pSUBWIN_FEATURE(pobj)->axes.auto_ticks[i] = FALSE ;
+        autoTicks[i] = FALSE ;
       }
       else if ( strcmp(values[i],"on") == 0 )
       {
-        pSUBWIN_FEATURE(pobj)->axes.auto_ticks[i] = TRUE ;
+        autoTicks[i] = TRUE ;
       }
       else
       {
         sciprint("Second argument must be 'on' or 'off'.\n");
         return SET_PROPERTY_ERROR ;
       }
+      sciSetAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
       return SET_PROPERTY_SUCCEED ;
     }	
   }

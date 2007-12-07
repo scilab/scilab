@@ -119,8 +119,10 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
   if(pSUBWIN_FEATURE (psubwin)->flagNax == TRUE){
     if(pSUBWIN_FEATURE (psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE (psubwin)->logflags[1] == 'n')
     {
-      pSUBWIN_FEATURE (psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
-      pSUBWIN_FEATURE (psubwin)->axes.auto_ticks[1] = FALSE;
+      BOOL autoTicks[3];
+      sciGetAutoTicks(psubwin, autoTicks);
+      /* x and y graduations are imposed by Nax */
+      sciSetAutoTicks(psubwin, FALSE, FALSE, autoTicks[2]);
 
       CreatePrettyGradsFromNax(psubwin,aaint);
     }
@@ -232,8 +234,10 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   if(pSUBWIN_FEATURE(psubwin)->flagNax == TRUE){
     if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
     {
-      pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
-      pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[1] = FALSE;
+      BOOL autoTicks[3];
+      sciGetAutoTicks(psubwin, autoTicks);
+      /* x and y graduations are imposed by Nax */
+      sciSetAutoTicks(psubwin, FALSE, FALSE, autoTicks[2]);
 
       CreatePrettyGradsFromNax(psubwin,aaint);
     }

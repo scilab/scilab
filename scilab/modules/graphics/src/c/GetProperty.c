@@ -4184,6 +4184,48 @@ BOOL sciGetTightLimitsOn(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Get auto_ticks property for each axis
+ */
+void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3])
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    autoTicks[0] = pSUBWIN_FEATURE(pObj)->axes.auto_ticks[0];
+    autoTicks[1] = pSUBWIN_FEATURE(pObj)->axes.auto_ticks[1];
+    autoTicks[2] = pSUBWIN_FEATURE(pObj)->axes.auto_ticks[2];
+    break;
+  default:
+    autoTicks[0] = FALSE;
+    autoTicks[1] = FALSE;
+    autoTicks[2] = FALSE;
+    printSetGetErrorMessage("auto_ticks");
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the axes visible property for each axis.
+ */
+void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    axesVisible[0] = pSUBWIN_FEATURE(pObj)->axes.axes_visible[0];
+    axesVisible[1] = pSUBWIN_FEATURE(pObj)->axes.axes_visible[1];
+    axesVisible[2] = pSUBWIN_FEATURE(pObj)->axes.axes_visible[2];
+    break;
+  default:
+    axesVisible[0] = FALSE;
+    axesVisible[1] = FALSE;
+    axesVisible[2] = FALSE;
+    printSetGetErrorMessage("axes_visible");
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Print the message "This object has no xxx property." in Scilab.
  */
 void printSetGetErrorMessage(const char * propertyName)

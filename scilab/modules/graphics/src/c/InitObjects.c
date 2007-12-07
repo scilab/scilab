@@ -626,9 +626,7 @@ int InitAxesModel()
   (ppaxesmdl->axes).u_ylabels= (char **) NULL;
   (ppaxesmdl->axes).u_zlabels= (char **) NULL;
 
-  (ppaxesmdl->axes).auto_ticks[0] = TRUE;
-  (ppaxesmdl->axes).auto_ticks[1] = TRUE;
-  (ppaxesmdl->axes).auto_ticks[2] = TRUE;
+  sciInitAutoTicks(paxesmdl, TRUE, TRUE, TRUE);
   /* end 22.09.04 */
 
   ppaxesmdl->axes.zlim[0]= -1.0;

@@ -41,6 +41,7 @@ sciGetAxesBounds
 sciGetMargins
 doubleArrayCopy
 intArrayCopy
+stringArrayCopy
 setDoubleArraySingleValue
 sciGetIsReadyForRendering
 sciGetRealDataBounds
@@ -83,3 +84,5 @@ TheTicks
 GradLog
 sciGetBoxType
 sciGetHiddenAxisColor
+sciGetAutoTicks
+sciGetAxesVisible
