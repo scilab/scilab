@@ -214,23 +214,11 @@ public abstract class SciConsole extends JPanel {
      * Clears the console and the output view
      */
     public void clear() {
-        
 		try {
             config.getInputCommandViewStyledDocument().remove(0, config.getInputCommandViewStyledDocument().getLength());
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-
-        /* Wait for the end of the buffer display */
-        try {
-        	synchronized (this.getConfiguration().getOutputView()) {
-        		this.getConfiguration().getOutputView().wait();
-			}
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
 		config.getOutputView().reset();
    }
 
@@ -257,6 +245,8 @@ public abstract class SciConsole extends JPanel {
     			// Are there enough lines in the output view ?
     			String[] allLines = outputTxt.split(StringConstants.NEW_LINE);
     			if (allLines.length < totalNumberOfLines) {
+    				// Delete lines
+    				config.getOutputView().reset();
     				config.getOutputView().append("Out of Screen");
     			} else {
     				// Delete lines
@@ -278,16 +268,6 @@ public abstract class SciConsole extends JPanel {
      * Puts the prompt in the top left corner of the console
      */
     public void toHome() {
-        /* Wait for the end of the buffer display */
-        try {
-        	synchronized (this.getConfiguration().getOutputView()) {
-        		this.getConfiguration().getOutputView().wait();
-			}
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        
     	Dimension jSPExtSize = jSP.getViewport().getExtentSize();
     	Dimension newDim = new Dimension(jSPExtSize.width - jSP.getVerticalScrollBar().getPreferredSize().width, jSPExtSize.height);
     	((JTextPane) config.getInputCommandView()).setPreferredSize(newDim);
