@@ -40,42 +40,51 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
   if (Rhs==1)
     {
       /* Argument is file_mask or optional title */
-      if (IsOpt(1, optName))
+      if (VarType(1) == sci_strings) /* Check type */
         {
-          if (strcmp(optName,"title")==0)
+          if (IsOpt(1, optName)) /* Check if optional title */
             {
-              GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
+              if (strcmp(optName,"title")==0) /* Check if optional parameter is title */
+                {
+                  GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
+                  if (nbCol !=1)
+                    {
+                      Scierror(999, _("Wrong type for first parameter, should be a single string."));
+                      FREE(optName);
+                      return FALSE;
+                    }
+                  title = cstk(titleAdr);
+                }
+              else
+                {
+                  Scierror(999, _("Optional parameter must be 'title='."));
+                  FREE(optName);
+                  return FALSE;
+                }
+            }
+          else
+            {
+              GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &fileMaskAdr);
               if (nbCol !=1)
                 {
                   Scierror(999, _("Wrong type for first parameter, should be a single string."));
                   FREE(optName);
                   return FALSE;
                 }
-              title = cstk(titleAdr);
-            }
-          else
-            {
-              Scierror(999, _("Optional parameter must be 'title='."));
-              FREE(optName);
-              return FALSE;
+              fileMask = cstk(fileMaskAdr);
             }
         }
-      else if (VarType(1) == sci_strings)
+      else
         {
-          GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &fileMaskAdr);
-          if (nbCol !=1)
-            {
-              Scierror(999, _("Wrong type for first parameter, should be a single string."));
-              FREE(optName);
-              return FALSE;
-            }
-          fileMask = cstk(fileMaskAdr);
-       }
+          Scierror(999, _("Wrong type for first parameter, should be a single string."));
+          FREE(optName);
+          return FALSE;
+        }
     }
   else if (Rhs==2)
     {
       /* First argument is file_mask */
-      if (VarType(1) == sci_strings)
+      if (VarType(1) == sci_strings) /* Check type */
         {
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &fileMaskAdr);
           if (nbCol !=1)
@@ -94,52 +103,61 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
         }
 
       /* Second argument is initial directory or optional title */
-      if (IsOpt(2, optName))
+      if (VarType(2) == sci_strings) /* Check type */
         {
-          if (strcmp(optName,"title")==0)
+          if (IsOpt(2, optName)) /* Check if optional title */
             {
-              GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
-              if (nbCol !=1)
+              if (strcmp(optName,"title")==0) /* Check if optional parameter is title */
                 {
-                  Scierror(999, _("Wrong type for first parameter, should be a single string."));
+                  GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
+                  if (nbCol !=1)
+                    {
+                      Scierror(999, _("Wrong type for first parameter, should be a single string."));
+                      FREE(optName);
+                      return FALSE;
+                    }
+                  title = cstk(titleAdr);
+                }
+              else
+                {
+                  Scierror(999, _("Optional parameter must be 'title='."));
                   FREE(optName);
                   return FALSE;
                 }
-              title = cstk(titleAdr);
             }
           else
             {
-              Scierror(999, _("Optional parameter must be 'title='."));
-              FREE(optName);
-              return FALSE;
+              GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
+              if (nbCol !=1)
+                {
+                  Scierror(999, _("Wrong type for second parameter, should be a single string."));
+                  FREE(optName);
+                  return FALSE;
+                }
+              initialDirectory = cstk(initialDirectoryAdr);
             }
         }
-      else if (VarType(2) == sci_strings)
+      else
         {
-          GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
-          if (nbCol !=1)
-            {
-              Scierror(999, _("Wrong type for second parameter, should be a single string."));
-              FREE(optName);
-              return FALSE;
-            }
-              initialDirectory = cstk(initialDirectoryAdr);
+          Scierror(999, _("Wrong type for second parameter, should be a single string."));
+          FREE(optName);
+          return FALSE;
         }
     }
   else if (Rhs==3)
     {
       /* First argument is file_mask */
-      if (VarType(1) == sci_strings)
+      if (VarType(1) == sci_strings) /* Check type */
         {
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &fileMaskAdr);
           if (nbCol !=1)
             {
               Scierror(999, _("Wrong size for first parameter, should be a single string."));
-               FREE(optName);
-             return FALSE;
+              FREE(optName);
+              return FALSE;
             }
           fileMask = cstk(fileMaskAdr);
-       }
+        }
       else
         {
           Scierror(999, _("Wrong type for first parameter, should be a single string."));
@@ -147,7 +165,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
         }
 
       /* Second argument is initial directory */
-       if (VarType(2) == sci_strings)
+      if (VarType(2) == sci_strings) /* Check type */
         {
           GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
           if (nbCol !=1)
@@ -156,51 +174,63 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
               FREE(optName);
               return FALSE;
             }
-              initialDirectory = cstk(initialDirectoryAdr);
+          initialDirectory = cstk(initialDirectoryAdr);
         }
-       else
+      else
         {
           Scierror(999, _("Wrong type for second parameter, should be a single string."));
-              FREE(optName);
+          FREE(optName);
           return FALSE;
         }
      
       /* Third argument is title or optional title */
-      if (IsOpt(3, optName))
+      if (VarType(3) == sci_strings)  /* Check type */
         {
-          if (strcmp(optName,"title")==0)
+          if (IsOpt(3, optName)) /* Check if optional title */
+            {
+              if (strcmp(optName,"title")==0) /* Check if optional parameter is title */
+                {
+                  GetRhsVar(3, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
+                  if (nbCol !=1)
+                    {
+                      Scierror(999, _("Wrong type for first parameter, should be a single string."));
+                      FREE(optName);
+                      return FALSE;
+                    }
+                  title = cstk(titleAdr);
+                }
+              else
+                {
+                  Scierror(999, _("Optional parameter must be 'title='."));
+                  FREE(optName);
+                  return FALSE;
+                }
+            }
+          else
             {
               GetRhsVar(3, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
               if (nbCol !=1)
                 {
-                  Scierror(999, _("Wrong type for first parameter, should be a single string."));
+                  Scierror(999, _("Wrong size for third parameter, should be a single string."));
                   FREE(optName);
                   return FALSE;
                 }
               title = cstk(titleAdr);
             }
-          else
-            {
-              Scierror(999, _("Optional parameter must be 'title='."));
-              FREE(optName);
-              return FALSE;
-            }
         }
-      else if (VarType(3) == sci_strings)
+      else
         {
-          GetRhsVar(3, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
-          if (nbCol !=1)
-            {
-              Scierror(999, _("Wrong size for third parameter, should be a single string."));
-              FREE(optName);
-              return FALSE;
-            }
-          title = cstk(titleAdr);
+          Scierror(999, _("Wrong type for third parameter, should be a single string."));
+          FREE(optName);
+          return FALSE;
         }
     }
 
   /* Create the Java Object */
   fileChooserID = createFileChooser();
+
+  /* Do not allow to select a directory */
+  setFileChooserFileSelectionOnly(fileChooserID);
   
   /* Set options */
   if (title != NULL)
