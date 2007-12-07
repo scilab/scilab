@@ -183,22 +183,11 @@ gotten_store = size;
 return block;
 }
 
-static void new_free(void *block)
-{
-	FREE(block);
-}
-
-
 /* For recursion malloc/free, to test stacking calls */
 
 static void *stack_malloc(size_t size)
 {
 	return (void *)MALLOC(size);
-}
-
-static void stack_free(void *block)
-{
-	FREE(block);
 }
 
 
@@ -213,24 +202,6 @@ static void new_info(pcre *re, pcre_extra *study, int option, void *ptr)
 	int rc = 0;
 	rc = pcre_fullinfo(re, study, option, ptr);
 }
-
-
-
-/*************************************************
-*         Byte flipping function                 *
-*************************************************/
-
-static unsigned long int byteflip(unsigned long int value, int n)
-{
-if (n == 2) return ((value & 0x00ff) << 8) | ((value & 0xff00) >> 8);
-return ((value & 0x000000ff) << 24) |
-       ((value & 0x0000ff00) <<  8) |
-       ((value & 0x00ff0000) >>  8) |
-       ((value & 0xff000000) >> 24);
-}
-
-
-
 
 /*************************************************
 *        Check match or recursion limit          *
@@ -411,17 +382,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 			regex_gotten_store = gotten_store;
 			if (fread(re, 1, true_size, f) != true_size) goto FAIL_READ;
 			magic = ((real_pcre *)re)->magic_number;
-			if (magic != MAGIC_NUMBER)
-			{
-				if (byteflip(magic, sizeof(magic)) == MAGIC_NUMBER)
-				{
-					do_flip = 1;
-				}
-				else
-				{
-					continue;
-				}
-			}
+		
 			/* Need to know if UTF-8 for printing data strings */
 			new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
 			use_utf8 = (get_options & PCRE_UTF8) != 0;
@@ -439,8 +400,8 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 				if (fread(psd, 1, true_study_size, f) != true_study_size)
 				{
 					FAIL_READ:
-					if (extra != NULL) new_free(extra);
-					if (re != NULL) new_free(re);
+					if (extra != NULL) FREE(extra);
+					if (re != NULL) FREE(re);
 					fclose(f);
 					continue;
 				}
@@ -625,8 +586,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 			if (hascrorlf) return -6;
 
 			all_options = ((real_pcre *)re)->options;
-			if (do_flip) all_options = byteflip(all_options, sizeof(all_options));
-
+		
 			
 
 			if (jchanged) return -7;
@@ -1088,11 +1048,11 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 	if (posix || do_posix) regfree(&preg);
 #endif
 
-	if (re != NULL) new_free(re);
-	if (extra != NULL) new_free(extra);
+	if (re != NULL) FREE(re);
+	if (extra != NULL) FREE(extra);
 	if (tables != NULL)
     {
-		new_free((void *)tables);
+		FREE((void *)tables);
 		setlocale(LC_CTYPE, "C");
 		locale_set = 0;
     }
