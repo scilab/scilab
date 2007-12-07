@@ -12,10 +12,11 @@ public class GlobalMouseEventWatcher implements AWTEventListener {
 		ClickInfos.getInstance().setXCoordinate(((MouseEvent) mouseEvent).getPoint().getX());
 		ClickInfos.getInstance().setYCoordinate(((MouseEvent) mouseEvent).getPoint().getY());
 		if (mouseEvent.getID() == MouseEvent.MOUSE_CLICKED) {
+			// FIXME : Only for Debug... 
+			// System.out.println("Mouse Event : "+((MouseEvent) mouseEvent).toString());
 			if (mouseEvent.getSource() instanceof SwingScilabCanvas) {
 				GlobalEventFilter.filter((MouseEvent) mouseEvent, (SwingScilabCanvas) mouseEvent.getSource());
 			}
 		}
-		//System.out.println("Mouse Event : "+((MouseEvent) mouseEvent).toString());
 	}
 }
