@@ -47,8 +47,12 @@
   <EXAMPLE>
 <![CDATA[
 xgetfile()
-xgetfile('*.sci','SCI/macros/xdess')
-xgetfile(title='Choose a file name ')
+xgetfile(title="Choose a file name")
+xgetfile("*.sci")
+xgetfile("*.sci", title="Choose a file name")
+xgetfile("*.sci", "SCI/modules/gui/macros/")
+xgetfile("*.sci", "SCI/modules/gui/macros/", title="Choose a file name")
+xgetfile("*.sci", "SCI/modules/gui/macros/", "Choose a file name")
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
