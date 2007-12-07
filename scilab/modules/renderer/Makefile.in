@@ -231,6 +231,12 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp \
 	src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
 	src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp \
+	src/jni/XTicksDrawerGL.cpp \
+	src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp \
+	src/cpp/subwinDrawing/XTicksDrawerJavaMapper.cpp \
+	src/cpp/subwinDrawing/TicksDrawer.cpp \
+	src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp \
+	src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -384,7 +390,13 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-HalfBoxDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-HalfBoxDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-FullBoxDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-FullBoxDrawerJoGL.lo
+@GUI_TRUE@	libscirenderer_la-FullBoxDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-XTicksDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-UserDefinedTicksComputer.lo \
+@GUI_TRUE@	libscirenderer_la-XTicksDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-TicksDrawer.lo \
+@GUI_TRUE@	libscirenderer_la-XTicksDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-TicksDrawerFactory.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -743,7 +755,13 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
-@GUI_TRUE@ src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp
+@GUI_TRUE@src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp \
+@GUI_TRUE@src/jni/XTicksDrawerGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/XTicksDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/TicksDrawer.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/TicksDrawerFactory.cpp
 
 
 # List of the gateway c files
@@ -1092,7 +1110,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextContentDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextFillBoxDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextLineBoxDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XTicksDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XTicksDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XTicksDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-gw_renderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-norenderer.Plo@am__quote@
@@ -2223,6 +2247,48 @@ libscirenderer_la-FullBoxDrawerJoGL.lo: src/cpp/subwinDrawing/FullBoxDrawerJoGL.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp' object='libscirenderer_la-FullBoxDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FullBoxDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp
+
+libscirenderer_la-XTicksDrawerGL.lo: src/jni/XTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XTicksDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XTicksDrawerGL.Tpo -c -o libscirenderer_la-XTicksDrawerGL.lo `test -f 'src/jni/XTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/XTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XTicksDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-XTicksDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/XTicksDrawerGL.cpp' object='libscirenderer_la-XTicksDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XTicksDrawerGL.lo `test -f 'src/jni/XTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/XTicksDrawerGL.cpp
+
+libscirenderer_la-UserDefinedTicksComputer.lo: src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-UserDefinedTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Tpo -c -o libscirenderer_la-UserDefinedTicksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp' object='libscirenderer_la-UserDefinedTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-UserDefinedTicksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp
+
+libscirenderer_la-XTicksDrawerJavaMapper.lo: src/cpp/subwinDrawing/XTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XTicksDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XTicksDrawerJavaMapper.Tpo -c -o libscirenderer_la-XTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/XTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XTicksDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-XTicksDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/XTicksDrawerJavaMapper.cpp' object='libscirenderer_la-XTicksDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/XTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XTicksDrawerJavaMapper.cpp
+
+libscirenderer_la-TicksDrawer.lo: src/cpp/subwinDrawing/TicksDrawer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-TicksDrawer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-TicksDrawer.Tpo -c -o libscirenderer_la-TicksDrawer.lo `test -f 'src/cpp/subwinDrawing/TicksDrawer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-TicksDrawer.Tpo $(DEPDIR)/libscirenderer_la-TicksDrawer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/TicksDrawer.cpp' object='libscirenderer_la-TicksDrawer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TicksDrawer.lo `test -f 'src/cpp/subwinDrawing/TicksDrawer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawer.cpp
+
+libscirenderer_la-XTicksDrawerJoGL.lo: src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XTicksDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XTicksDrawerJoGL.Tpo -c -o libscirenderer_la-XTicksDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XTicksDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-XTicksDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp' object='libscirenderer_la-XTicksDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XTicksDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp
+
+libscirenderer_la-TicksDrawerFactory.lo: src/cpp/subwinDrawing/TicksDrawerFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-TicksDrawerFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-TicksDrawerFactory.Tpo -c -o libscirenderer_la-TicksDrawerFactory.lo `test -f 'src/cpp/subwinDrawing/TicksDrawerFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawerFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-TicksDrawerFactory.Tpo $(DEPDIR)/libscirenderer_la-TicksDrawerFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/TicksDrawerFactory.cpp' object='libscirenderer_la-TicksDrawerFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TicksDrawerFactory.lo `test -f 'src/cpp/subwinDrawing/TicksDrawerFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawerFactory.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
