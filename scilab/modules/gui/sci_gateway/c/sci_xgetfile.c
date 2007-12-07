@@ -239,11 +239,14 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
       nbRow = 0;
       nbCol = 0;
 
-      CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &voidSelectionAdr);
+      CreateVar(Rhs+1, STRING_DATATYPE, &nbRow, &nbCol, &voidSelectionAdr);
     }
   
   LhsVar(1)=Rhs+1;
   C2F(putlhsvar)();
-  return 0;
+
+  FREE(optName);
+
+  return TRUE;
 }
 /*--------------------------------------------------------------------------*/
