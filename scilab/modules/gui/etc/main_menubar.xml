@@ -42,7 +42,16 @@
         </submenu> 
         <submenu label="Save..." mnemonic="S" enabled="false"/> 
         <separator/>
-        <submenu label="Change directory..." mnemonic="C" enabled="false"/> 
+        <submenu label="Change current directory..." mnemonic="C"> 
+            <callback 
+            instruction="
+              %newDir = uigetdir(getcwd(), 'Select a directory');
+              if ~isempty(%newDir) then 
+                cd(%newDir);
+              end
+              clear %newDir"
+            type="1"/>
+        </submenu> 
         <submenu label="Display current directory" mnemonic="D">
             <callback instruction="if iswaitingforinput() then printf('\n%s\n\n%s\n',prompt(),getcwd()); else printf('\n\n%s\n\n',getcwd());end" type="1"/>
         </submenu> 

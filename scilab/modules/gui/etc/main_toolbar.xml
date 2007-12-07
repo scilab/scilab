@@ -31,7 +31,16 @@
     <separator/>
 
     <!-- Change current directory -->
-    <button icon="folder.png" enabled="false"/>
+    <button icon="folder.png">
+        <callback 
+        instruction="
+          %newDir = uigetdir(getcwd(), 'Select a directory');
+          if ~isempty(%newDir) then 
+            cd(%newDir);
+          end
+          clear %newDir"
+        type="1"/>
+    </button> 
 
     <separator/>
 
