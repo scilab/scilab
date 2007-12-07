@@ -32,10 +32,10 @@ void fileChooserDisplayAndWait(int ID)
 
 char** getFileChooserSelection(int ID)
 {
-  CallScilabBridge::getFileChooserSelection(getScilabJavaVM(), ID);
+  return CallScilabBridge::getFileChooserSelection(getScilabJavaVM(), ID);
 }
 
 int getFileChooserSelectionSize(int ID)
 {
-  CallScilabBridge::getFileChooserSelectionSize(getScilabJavaVM(), ID);
+  return CallScilabBridge::getFileChooserSelectionSize(getScilabJavaVM(), ID);
 }
