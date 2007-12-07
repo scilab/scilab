@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.bridge;
 
+import org.scilab.modules.gui.filechooser.FileChooser;
+import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -59,6 +61,15 @@ public class CallScilabBridge {
 	public static int newMenu() {
 		Menu menu = ScilabMenu.createMenu();
 		return UIElementMapper.add(menu);
+	}
+	
+	/**
+	 * Create a new File Chooser in Scilab GUIs
+	 * @return the ID of the File Chooser in the UIElementMapper
+	 */
+	public static int newFileChooser() {
+		FileChooser fileChooser = ScilabFileChooser.createFileChooser();
+		return UIElementMapper.add(fileChooser);
 	}
 	
 	/**
@@ -236,4 +247,60 @@ public class CallScilabBridge {
 		}
 	}
 	
+	/***************************/
+	/* File chooser properties */
+	/***************************/
+	
+	/**
+	 * Set the file chooser title 
+	 * @param id the id of the fileChooser
+	 * @param title the title of the fileChooser
+	 */
+	public static void setFileChooserTitle(int id, String title) {
+		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setTitle(title);
+	}
+	
+	/**
+	 * Set the initial directory used for file search
+	 * @param id the id of the fileChooser
+	 * @param path the default path
+	 */
+	public static void setFileChooserInitialDirectory(int id, String path) {
+		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setInitialDirectory(path);
+	}
+
+	/**
+	 * Set the mask for files that can be selected
+	 * @param id the id of the fileChooser
+	 * @param mask the mask to apply
+	 */
+	public static void setFileChooserMask(int id, String mask) {
+		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setMask(mask);
+	}
+
+	/**
+	 * Display this chooser and wait for user selection 
+	 * @param id the id of the fileChooser
+	 */
+	public static void fileChooserDisplayAndWait(int id) {
+		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
+	}
+	
+	/**
+	 * Get the number of files selected
+	 * @param id the id of the fileChooser
+	 * @return the number of files selected
+	 */
+	public static int getFileChooserSelectionSize(int id) {
+		return ((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectionSize();
+	}
+	
+	/**
+	 * Get the names of selected files
+	 * @param id the id of the fileChooser
+	 * @return the names of selected files
+	 */
+	public static String[] getFileChooserSelection(int id) {
+		return ((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelection();
+	}
 }

@@ -24,7 +24,8 @@ src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
-src/cpp/CallJxgetmouse.cpp
+src/cpp/CallJxgetmouse.cpp \
+src/cpp/CallFileChooser.cpp
 
 GIWS_WRAPPERS = \
 src/jni/DrawableRectangleGL.giws.xml \

@@ -4,6 +4,7 @@
 	<method name="newWindow" returnType="int" modifier="static"/>
 	<method name="newMenuBar" returnType="int" modifier="static"/>
 	<method name="newMenu" returnType="int" modifier="static"/>        
+  
 <!-- Parent setting -->
 	<method name="setFigureAsParent" returnType="void" modifier="static">
 	  <parameter type="int" name="figureID"/>
@@ -51,5 +52,28 @@
 	  <parameter type="int" name="figureID"/>
 	  <parameter type="String" name="menuName"/>
 	</method>
+<!-- File chooser -->
+	<method name="newFileChooser" returnType="int" modifier="static"/>      
+	<method name="setFileChooserTitle" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="title" type="String"/>
+        </method>      
+	<method name="setFileChooserInitialDirectory" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="path" type="String"/>
+        </method>      
+	<method name="setFileChooserMask" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="mask" type="String"/>
+        </method>      
+	<method name="fileChooserDisplayAndWait" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="getFileChooserSelectionSize" returnType="int" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="getFileChooserSelection" returnType="String[]" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
   </object>
 </package>

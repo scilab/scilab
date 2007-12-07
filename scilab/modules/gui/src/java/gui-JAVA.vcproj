@@ -81,6 +81,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\gui\filechooser\FileChooser.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\gui\frame\Frame.java"
 				>
 			</File>
@@ -117,6 +121,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\gui\utils\SciFileFilter.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\gui\canvas\ScilabCanvas.java"
 				>
 			</File>
@@ -138,6 +146,14 @@
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\gui\dockable\ScilabDockable.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\gui\filechooser\ScilabFileChooser.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\gui\filechooser\ScilabFileChooserBridge.java"
 				>
 			</File>
 			<File
@@ -190,6 +206,10 @@
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\gui\bridge\SwingScilabConsole.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\gui\bridge\SwingScilabFileChooser.java"
 				>
 			</File>
 			<File

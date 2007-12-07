@@ -14,6 +14,9 @@ import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBoxBridge;
 import org.scilab.modules.gui.editbox.SimpleEditBox;
+import org.scilab.modules.gui.filechooser.FileChooser;
+import org.scilab.modules.gui.filechooser.ScilabFileChooserBridge;
+import org.scilab.modules.gui.filechooser.SimpleFileChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrameBridge;
 import org.scilab.modules.gui.frame.SimpleFrame;
@@ -1312,4 +1315,70 @@ public class ScilabBridge {
 	public static BorderLayout createBorderLayout() {
 		return ScilabBorderLayoutBridge.createBorderLayout();
 	}
+	
+	/***********************/
+	/* FileChooser Bridge */
+	/***********************/
+
+	/**
+	 * Create a new FileChooser
+	 * @return the created FileChooser
+	 */
+	public static SimpleFileChooser createFileChooser() {
+		return ScilabFileChooserBridge.createFileChooser();
+	}
+	
+	/**
+	 * Set the title of the file chooser
+	 * @param fileChooser the file chooser we want to set the title of
+	 * @param title the title to set
+	 */
+	public static void setTitle(FileChooser fileChooser, String title) {
+		ScilabFileChooserBridge.setTitle(fileChooser, title);
+	}
+	
+	/**
+	 * Set the mask for files to choose
+	 * @param fileChooser the file chooser we want to set the mask of
+	 * @param mask the mask to set
+	 */
+	public static void setMask(FileChooser fileChooser, String mask) {
+		ScilabFileChooserBridge.setMask(fileChooser, mask);
+	}
+	
+	/**
+	 * Set the initial directory used for file search
+	 * @param fileChooser the file chooser we want to set the initial directory of
+	 * @param path the default path
+	 */
+	public static void setInitialDirectory(FileChooser fileChooser, String path) {
+		ScilabFileChooserBridge.setInitialDirectory(fileChooser, path);
+	}
+
+	/**
+	 * Display this chooser and wait for user selection 
+	 * @param fileChooser the file chooser we want to display
+	 */
+	public static void displayAndWait(FileChooser fileChooser) {
+		ScilabFileChooserBridge.displayAndWait(fileChooser);
+	}
+	
+	/**
+	 * Get the number of files selected
+	 * @param fileChooser the file chooser we want to get the selection size of
+	 * @return the number of files selected
+	 */
+	public static int getSelectionSize(FileChooser fileChooser) {
+		return ScilabFileChooserBridge.getSelectionSize(fileChooser);
+	}
+	
+	/**
+	 * Get the names of selected files
+	 * @param fileChooser the file chooser we want to get the selection of 
+	 * @return the names of selected files
+	 */
+	public static String[] getSelection(FileChooser fileChooser) {
+		return ScilabFileChooserBridge.getSelection(fileChooser);
+	}
+
 }

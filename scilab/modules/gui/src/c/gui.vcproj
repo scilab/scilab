@@ -203,6 +203,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallFileChooser.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallJxclick.cpp"
 				>
 			</File>
@@ -343,6 +347,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\FileChooser.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\SwingScilabMenu.cpp"
 				>
 			</File>
@@ -361,6 +369,14 @@
 			>
 			<File
 				RelativePath=".\buildMainWindowTitle.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallFileChooser.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CallFileChooser.hxx"
 				>
 			</File>
 			<File
@@ -413,6 +429,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\InitUIMenu.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\FileChooser.hxx"
 				>
 			</File>
 			<File
