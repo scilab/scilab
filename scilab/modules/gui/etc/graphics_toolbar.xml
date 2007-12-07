@@ -13,5 +13,7 @@
     <separator/>
 
     <!-- Help -->
-    <button icon="help-browser.png" enabled="false"/>
+    <button icon="help-browser.png">
+        <callback instruction="help();" type="1"/>
+    </button>
 </toolbar>

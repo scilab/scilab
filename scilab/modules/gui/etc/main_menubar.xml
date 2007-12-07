@@ -1,12 +1,45 @@
 <?xml version="1.0"?>
 <menubar>
-    <menu label="File" mnemonic="F" enabled="false">
+
+   <!-- All "main" menus are disabled when created and then enabled in scilab.start file after all macros are loaded -->
+
+   <!-- File menu -->
+   <menu label="File" mnemonic="F" enabled="false">
         <submenu label="Launch new Scilab" mnemonic="N" enabled="false"/> 
         <separator/>
-        <submenu label="Exec..." mnemonic="E" enabled="false"/> 
+        <submenu label="Exec..." mnemonic="E">
+            <callback 
+            instruction="
+              %fileToExec = xgetfile('*.sci', getcwd(), 'Select a file to exec');
+              if ~isempty(%fileToExec) then 
+                exec(%fileToExec);
+                disp('Exec done.');
+              end
+              clear %fileToExec"
+            type="1"/>
+        </submenu> 
         <separator/>
-        <submenu label="Open..." mnemonic="O" enabled="false"/> 
-        <submenu label="Load..." mnemonic="L" enabled="false"/> 
+        <submenu label="Open..." mnemonic="O"> 
+            <callback 
+            instruction="
+              %fileToOpen = xgetfile('*.sci', getcwd(), 'Select a file to open with Scipad');
+              if ~isempty(%fileToOpen) then 
+                scipad(%fileToOpen);
+              end
+              clear %fileToOpen"
+            type="1"/>
+        </submenu> 
+        <submenu label="Load..." mnemonic="L"> 
+            <callback 
+            instruction="
+              %fileToLoad = xgetfile('*.bin', getcwd(), 'Select a file to load');
+              if ~isempty(%fileToLoad) then 
+                exec(%fileToLoad);
+                disp('File loaded.');
+              end
+              clear %fileToLoad"
+            type="1"/>
+        </submenu> 
         <submenu label="Save..." mnemonic="S" enabled="false"/> 
         <separator/>
         <submenu label="Change directory..." mnemonic="C" enabled="false"/> 
@@ -22,6 +55,7 @@
         </submenu>
     </menu>
 
+    <!-- Edit menu -->
     <menu label="Edit" mnemonic="E" enabled="false">
         <submenu label="Select all" mnemonic="S" enabled="false"/> 
         <separator/>
@@ -30,6 +64,7 @@
         <submenu label="Empty clipboard" mnemonic="L" enabled="false"/> 
     </menu>
 
+    <!-- Preferences menu -->
     <menu label="Preferences" mnemonic="P" enabled="false">
         <submenu label="Language" mnemonic="L" enabled="false"/> 
         <submenu label="Colors" mnemonic="C" enabled="false"/> 
@@ -40,6 +75,7 @@
         <submenu label="Clear Console" mnemonic="O" enabled="false"/> 
     </menu>
 
+    <!-- Control menu -->
     <menu label="Control" mnemonic="C" enabled="false">
         <submenu label="Resume" mnemonic="R" enabled="false"> 
             <callback instruction="resume;" type="1"/>
@@ -52,6 +88,7 @@
         </submenu>
     </menu>
 
+    <!-- Applications menu -->
     <menu label="Applications" mnemonic="A" enabled="false">
         <submenu label="Editor" mnemonic="S"> 
             <callback instruction="scipad();" type="1"/>
@@ -61,15 +98,24 @@
             <callback instruction="scicos();" type="1"/>
         </submenu>
         <separator/>
-        <submenu label="EditGraph" mnemonic="E" enabled="false"/> 
+        <submenu label="EditGraph" mnemonic="E" enabled="false"> 
+            <callback instruction="edit_graph();" type="1"/>
+        </submenu>
         <separator/>
-        <submenu label="Matlab to Scilab translator" mnemonic="M" enabled="false"/> 
+        <submenu label="Matlab to Scilab translator" mnemonic="M"> 
+            <callback instruction="mfile2sci();" type="1"/>
+        </submenu>
         <separator/>
-        <submenu label="Variable Editor" mnemonic="V" enabled="false"/> 
+        <submenu label="Variable Editor" mnemonic="V"> 
+            <callback instruction="browsevar();" type="1"/>
+        </submenu>
     </menu>
 
+    <!-- Help menu -->
     <menu label="?" mnemonic="?" enabled="false">
-        <submenu label="Scilab Help" mnemonic="S" enabled="false"/> 
+        <submenu label="Scilab Help" mnemonic="S"> 
+            <callback instruction="help();" type="1"/>
+        </submenu>
         <submenu label="Configure" mnemonic="C" enabled="false"/> 
         <separator/>
         <submenu label="Scilab demonstrations" mnemonic="D" enabled="false"/> 

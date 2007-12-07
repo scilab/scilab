@@ -6,9 +6,20 @@
     <separator/>
 
     <!-- Scipad -->
-    <button icon="accessories-text-editor.png" enabled="false"/>
+    <button icon="accessories-text-editor.png">
+        <callback instruction="scipad();" type="1"/>
+    </button>
     <!-- Open File -->
-    <button icon="document-open.png" enabled="false"/>
+    <button icon="document-open.png">
+        <callback 
+        instruction="
+          %fileToOpen = xgetfile('*.sci', getcwd(), 'Select a file to open with Scipad');
+          if ~isempty(%fileToOpen) then 
+            scipad(%fileToOpen);
+          end
+          clear %fileToOpen"
+        type="1"/>
+    </button> 
 
     <separator/>
 
@@ -32,5 +43,7 @@
     <separator/>
 
     <!-- Help -->
-    <button icon="help-browser.png" enabled="false"/>
+    <button icon="help-browser.png">
+        <callback instruction="help();" type="1"/>
+    </button>
 </toolbar>

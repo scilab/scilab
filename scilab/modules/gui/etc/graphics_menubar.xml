@@ -37,7 +37,9 @@
     </menu>
 
     <menu label="?" mnemonic="?">
-        <submenu label="Scilab Help" mnemonic="S" enabled="false"/> 
+        <submenu label="Scilab Help" mnemonic="S"> 
+            <callback instruction="help();" type="1"/>
+        </submenu>
         <separator/>
         <submenu label="About Scilab..." mnemonic="A" enabled="false"/> 
     </menu>
