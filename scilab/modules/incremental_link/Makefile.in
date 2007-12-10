@@ -86,8 +86,7 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciincremental_link_la_LIBADD =
 am__objects_1 = libsciincremental_link_la-addinter.lo \
-	libsciincremental_link_la-link.lo \
-	libsciincremental_link_la-callinterf.lo
+	libsciincremental_link_la-link.lo
 am_libsciincremental_link_la_OBJECTS = $(am__objects_1)
 libsciincremental_link_la_OBJECTS =  \
 	$(am_libsciincremental_link_la_OBJECTS)
@@ -287,8 +286,7 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 INCREMENTAL_LINK_C_SOURCES = src/c/addinter.c \
-src/c/link.c \
-src/c/callinterf.c
+src/c/link.c
 
 
 #src/c/link_SYSV.c 
@@ -474,7 +472,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciincremental_link_la-addinter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciincremental_link_la-callinterf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciincremental_link_la-link.Plo@am__quote@
 
 .c.o:
@@ -511,13 +508,6 @@ libsciincremental_link_la-link.lo: src/c/link.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/link.c' object='libsciincremental_link_la-link.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciincremental_link_la_CFLAGS) $(CFLAGS) -c -o libsciincremental_link_la-link.lo `test -f 'src/c/link.c' || echo '$(srcdir)/'`src/c/link.c
-
-libsciincremental_link_la-callinterf.lo: src/c/callinterf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciincremental_link_la_CFLAGS) $(CFLAGS) -MT libsciincremental_link_la-callinterf.lo -MD -MP -MF $(DEPDIR)/libsciincremental_link_la-callinterf.Tpo -c -o libsciincremental_link_la-callinterf.lo `test -f 'src/c/callinterf.c' || echo '$(srcdir)/'`src/c/callinterf.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciincremental_link_la-callinterf.Tpo $(DEPDIR)/libsciincremental_link_la-callinterf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/callinterf.c' object='libsciincremental_link_la-callinterf.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciincremental_link_la_CFLAGS) $(CFLAGS) -c -o libsciincremental_link_la-callinterf.lo `test -f 'src/c/callinterf.c' || echo '$(srcdir)/'`src/c/callinterf.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
