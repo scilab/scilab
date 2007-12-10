@@ -41,6 +41,8 @@ public:
   // Inherited from TicksDrawer
   virtual void drawTicks(const double ticksPositions[], char * ticksLabels[],
                          int nbTicks, const double subticksPositions[], int nbSubticks);
+
+  virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks);
   /*----------------------------------------------------------------------*/
 
 protected:

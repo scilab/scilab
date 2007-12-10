@@ -48,6 +48,17 @@ public:
    */
   virtual void getSubticksPosition(double positions[]) = 0;
 
+  /**
+   * To be called when there are too many ticks.
+   * Compute a new sequence of ticks with less ticks.
+   */
+  virtual void reduceTicksNumber(void) = 0;
+
+  /**
+   * To know if the ticks computer needs decimation.
+   */
+  virtual bool needTicksDecimation(void) = 0;
+
 protected:
 
   DrawableSubwin * m_pDrawer;

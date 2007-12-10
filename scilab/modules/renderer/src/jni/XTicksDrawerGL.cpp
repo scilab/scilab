@@ -104,6 +104,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetBoxParametersjintjintjintjintjfloatID=NULL; 
+jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
 voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
 
 
@@ -133,6 +134,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetBoxParametersjintjintjintjintjfloatID=NULL; 
+jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
 voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
 
 
@@ -298,7 +300,58 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void XTicksDrawerGL::drawTicks (double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize, double * subTicksPositions, int subTicksPositionsSize){
+bool XTicksDrawerGL::checkTicks (double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize){
+
+JNIEnv * curEnv = getCurrentEnv();
+                jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleancheckTicksjdoubleArrayjobjectArrayID = curEnv->GetMethodID(this->instanceClass, "checkTicks", "([D[Ljava/lang/String;)Z" ) ;
+if (jbooleancheckTicksjdoubleArrayjobjectArrayID == NULL) {
+std::cerr << "Could not access to the method " << "checkTicks" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jdoubleArray ticksPositions_ = curEnv->NewDoubleArray( ticksPositionsSize ) ;
+curEnv->SetDoubleArrayRegion( ticksPositions_, 0, ticksPositionsSize, (jdouble*) ticksPositions ) ;
+
+// Might be saved. No need to find it each time.
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+// create java array of strings.
+jobjectArray ticksLabels_ = curEnv->NewObjectArray( ticksLabelsSize, stringArrayClass, NULL);
+if (ticksLabels_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < ticksLabelsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( ticksLabels[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( ticksLabels_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                        jboolean res =  (jboolean) curEnv->CallBooleanMethod( this->instance, jbooleancheckTicksjdoubleArrayjobjectArrayID ,ticksPositions_, ticksLabels_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void XTicksDrawerGL::drawTicks (double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize, double * subticksPositions, int subticksPositionsSize){
 
 JNIEnv * curEnv = getCurrentEnv();
                 jclass cls = curEnv->FindClass( className().c_str() );
@@ -338,10 +391,10 @@ curEnv->SetObjectArrayElement( ticksLabels_, i, TempString);
 // avoid keeping reference on to many strings
 curEnv->DeleteLocalRef(TempString);
 }
-jdoubleArray subTicksPositions_ = curEnv->NewDoubleArray( subTicksPositionsSize ) ;
-curEnv->SetDoubleArrayRegion( subTicksPositions_, 0, subTicksPositionsSize, (jdouble*) subTicksPositions ) ;
+jdoubleArray subticksPositions_ = curEnv->NewDoubleArray( subticksPositionsSize ) ;
+curEnv->SetDoubleArrayRegion( subticksPositions_, 0, subticksPositionsSize, (jdouble*) subticksPositions ) ;
 
-                         curEnv->CallVoidMethod( this->instance, voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID ,ticksPositions_, ticksLabels_, subTicksPositions_);
+                         curEnv->CallVoidMethod( this->instance, voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID ,ticksPositions_, ticksLabels_, subticksPositions_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

@@ -76,6 +76,17 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
+	 * Check if the ticks label does not concealed each other at the specified positions.
+	 * @param ticksPositions initial position of the ticks
+	 * @param ticksLabels labels to display in front of the ticks
+	 * @return true if the ticks can be displayed as if or false if the number of ticks needs to be reduced.
+	 */
+	public boolean checkTicks(double[] ticksPositions, String[] ticksLabels) {
+		// TODO actually check
+		return true;
+	}
+	
+	/**
 	 * Draw a set of ticks
 	 * @param ticksPositions positions of each ticks on their axis.
 	 * @param ticksLabels labels to draw in front of ticks.

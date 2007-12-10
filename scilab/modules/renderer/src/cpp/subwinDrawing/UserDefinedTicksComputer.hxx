@@ -48,6 +48,17 @@ public:
   virtual void getSubticksPosition(double positions[]);
 
   /**
+   * To be called when there are too many ticks.
+   * Compute a new sequence of ticks with less ticks.
+   */
+  virtual void reduceTicksNumber(void);
+
+  /**
+   * To know if the ticks computer needs decimation.
+   */
+  virtual bool needTicksDecimation(void) {return false;}
+
+  /**
    * Set the parameter for drawing user ticks.
    * @param nbSubticks number of subticks between each ticks.
    */

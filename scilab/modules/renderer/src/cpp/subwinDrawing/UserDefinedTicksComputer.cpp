@@ -6,11 +6,8 @@
 /*------------------------------------------------------------------------*/
 
 #include "UserDefinedTicksComputer.hxx"
+#include "BasicAlgos.hxx"
 
-extern "C"
-{
-#include "BasicAlgos.h"
-}
 
 namespace sciGraphics
 {
@@ -43,7 +40,7 @@ void UserDefinedTicksComputer::getTicksPosition(double positions[])
 /*------------------------------------------------------------------------------------------*/
 void UserDefinedTicksComputer::getTicksLabels(char * labels[])
 {
-  stringArrayCopy(labels, m_aUserTicksLabels, m_iNbUserTicks);
+  BasicAlgos::stringArrayCopy(labels, m_aUserTicksLabels, m_iNbUserTicks);
 }
 /*------------------------------------------------------------------------------------------*/
 int UserDefinedTicksComputer::getNbSubticks(void)
@@ -69,6 +66,12 @@ void UserDefinedTicksComputer::getSubticksPosition(double positions[])
         =  prevTick + (nextTick - prevTick) * (j + 1.0) / (m_iNbSubticks + 1.0); 
     }
   }
+}
+/*------------------------------------------------------------------------------------------*/
+void UserDefinedTicksComputer::reduceTicksNumber(void)
+{
+  // don't do anything since this is user defined ticks
+  // Actually, this function should not be called.
 }
 /*------------------------------------------------------------------------------------------*/
 void UserDefinedTicksComputer::setUserTicks(double * userTicks, char ** userLabels,

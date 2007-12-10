@@ -65,4 +65,10 @@ void XTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * tic
                            (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
+bool XTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
+{
+  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
+                                   ticksLabels, nbTicks);
+}
+/*--------------------------------------------------------------------------*/
 }

@@ -203,6 +203,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\src\cpp\BasicAlgos.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\BuildDrawingObserver.cpp"
 				>
 			</File>
@@ -610,6 +614,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\UserDefinedTicksComputer.cpp"
 					>
 				</File>
@@ -876,6 +884,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\src\cpp\BasicAlgos.hxx"
+				>
+			</File>
 			<File
 				RelativePath=".\src\cpp\BuildDrawingObserver.h"
 				>
@@ -1297,6 +1309,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerJoGL.hxx"
 					>
 				</File>
 				<File

@@ -11,7 +11,7 @@ namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
 XTicksDrawerJoGL::XTicksDrawerJoGL(DrawableSubwin * subwin)
- : TicksDrawer(subwin), DrawableObjectJoGL(subwin)
+ : TicksDrawerJoGL(subwin)
 {
   setJavaMapper(new XTicksDrawerJavaMapper());
 }
@@ -19,15 +19,6 @@ XTicksDrawerJoGL::XTicksDrawerJoGL(DrawableSubwin * subwin)
 XTicksDrawerJoGL::~XTicksDrawerJoGL(void)
 {
 
-}
-/*------------------------------------------------------------------------------------------*/
-void XTicksDrawerJoGL::drawTicks(double ticksPositions[], char * ticksLabels[], int nbTicks,
-                                 double subticksPositions[], int nbSubtics)
-{
-  initializeDrawing();
-  getXTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels, nbTicks,
-                                         subticksPositions, nbSubtics);
-  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 XTicksDrawerJavaMapper * XTicksDrawerJoGL::getXTicksDrawerJavaMapper(void)

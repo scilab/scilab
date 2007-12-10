@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "TicksDrawer.hxx"
+#include "BasicAlgos.hxx"
 
 namespace sciGraphics
 {
@@ -33,25 +34,52 @@ void TicksDrawer::setTicksComputer(ComputeTicksStrategy * ticksComputer)
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::draw(void)
 {
+  initializeDrawing();
+
   if (m_pTicksComputer == NULL) { return; }
-  int nbTicks = m_pTicksComputer->getNbTicks();
-  int nbSubticks = m_pTicksComputer->getNbSubticks();
+
+  
 
   // allocate positions and ticks
-  char ** labels = new char *[nbTicks];
-  double * ticksPos = new double[nbTicks];
-  double * subticksPos = new double[nbSubticks];
+  int initNbTicks = m_pTicksComputer->getNbTicks();
+  char ** labels = BasicAlgos::createStringArray(initNbTicks);
+  double * ticksPos = new double[initNbTicks];
 
   m_pTicksComputer->getTicksLabels(labels);
   m_pTicksComputer->getTicksPosition(ticksPos);
+
+  // final number of ticks
+  int nbTicks = initNbTicks;
+
+  // decimate ticks if needed
+  if (m_pTicksComputer->needTicksDecimation())
+  {
+    while(!checkTicks(ticksPos, labels, nbTicks))
+    {
+      m_pTicksComputer->reduceTicksNumber();
+      // there is less ticks and positions, no need to reallocate smaller arrays
+
+      // get new positions
+      nbTicks = m_pTicksComputer->getNbTicks();
+      m_pTicksComputer->getTicksLabels(labels);
+      m_pTicksComputer->getTicksPosition(ticksPos);
+    }
+  }
+
+  // ticks are computed, now we can get subticks
+  int nbSubticks = m_pTicksComputer->getNbSubticks();
+  double * subticksPos = new double[nbSubticks];
   m_pTicksComputer->getSubticksPosition(subticksPos);
 
+  // everything is computed so draw!!!
   drawTicks(ticksPos, labels, nbTicks, subticksPos, nbSubticks);
 
-  delete[] labels;
+  BasicAlgos::destroyStringArray(labels, initNbTicks);
+
   delete[] ticksPos;
   delete[] subticksPos;
 
+  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 
