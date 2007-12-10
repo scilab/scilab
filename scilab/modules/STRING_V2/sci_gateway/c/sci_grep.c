@@ -18,7 +18,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "pcre_error_code.h"
 /*------------------------------------------------------------------------*/
 #define GREP_OK             0
 #define MEMORY_ALLOC_ERROR -1

@@ -12,7 +12,6 @@ src/c/strsplit.c \
 src/c/CreateEmptystr.c \
 src/c/tokens.c \
 src/c/strcat-c.c \
-src/c/Get_length.c \
 src/c/strcatfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
@@ -46,7 +45,6 @@ sci_gateway/c/sci_isalphanum.c
 libscistring_la_CFLAGS= \
 	-Isrc/c \
 	-Iincludes/ \
-	-Isrc/c/pcre/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes
 

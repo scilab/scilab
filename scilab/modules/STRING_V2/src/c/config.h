@@ -9,7 +9,10 @@
 
 /* #undef HAVE_BCOPY */
 #define HAVE_MEMMOVE
+
+#ifndef HAVE_STRERROR
 #define HAVE_STRERROR
+#endif
 
 /* #undef PCRE_STATIC */
 

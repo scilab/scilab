@@ -1,4 +1,3 @@
-
 /*-------------------------------------------------------------------------------*/
 #include <ctype.h>
 #include <stdio.h>
@@ -8,8 +7,8 @@
 #include <locale.h>
 #include <errno.h>
 #include "MALLOC.h"
+#include "pcre_private.h"
 #include <pcre.h>
-#include "pcre_error_code.h"
 
 /* A number of things vary for Windows builds. Originally, pcretest opened its
 input and output without "b"; then I was told that "b" was needed in some
@@ -275,7 +274,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 	int options = 0;
 	int study_options = 0;
 	int timeit = 0;
-	int timeitm = 0;
 	int showinfo = 0;
 	int showstore = 0;
 	int size_offsets = 45;
@@ -543,9 +541,6 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 		if (do_showinfo)
 		{
 			unsigned long int get_options, all_options;
-		#if !defined NOINFOCHECK
-			int old_first_char, old_options, old_count;
-		#endif
 			int count, backrefmax, first_char, need_char, okpartial, jchanged,hascrorlf;
 			int nameentrysize, namecount;
 			const char *nametable;

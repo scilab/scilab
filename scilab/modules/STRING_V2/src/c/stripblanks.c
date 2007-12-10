@@ -9,6 +9,7 @@
 #include "gw_string.h"
 #include "MALLOC.h" 
 #include "stripblanks.h"
+#include "freeArrayOfString.h"
 /*------------------------------------------------------------------------*/
 static char* substr(const char*str, unsigned start, unsigned end);
 /*------------------------------------------------------------------------*/
@@ -99,7 +100,7 @@ void stripblanks(char **InputStrings,char **OutputStrings,int InputStringsDim,BO
 			replacedstr=substr(InputStrings[x], lenghtInput_One, lenghtInput_Two+1 ); 
 			/*To add the substring into the output matrix*/
 			strcpy(OutputStrings[x],replacedstr);
-			freeArrayOfString(replacedstr,1);
+			if (replacedstr) {FREE(replacedstr);replacedstr = NULL;}
 		}
 		else
 		{

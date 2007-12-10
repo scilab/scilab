@@ -37,27 +37,12 @@ copy string_f_header.def+string_f.vcdef string_f.def &gt;nul" Description="Build
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="..\..\sci_gateway\fortran\sci_ascii.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_code2str.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_convstr.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_emptystr.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_grep.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_length.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_part.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_sort.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_str2code.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_strcat.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_strindex.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_string.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_strsplit.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_strsubst.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_tokens.f"/>
 		<File RelativePath=".\strdsp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\strops.f"/>
 		<File RelativePath=".\strord.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<File RelativePath="..\..\Makefile.am"/>
-		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\sci_gateway\STRING_V2_gateway.xml"/></Files>
 	<Globals/></VisualStudioProject>

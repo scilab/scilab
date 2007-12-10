@@ -13,6 +13,7 @@
 #include "machine.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 /*-------------------------------------------------------------------------------------*/ 
 #define STAR '*'
 #define COL 'c'
@@ -68,7 +69,7 @@ static int sci_strcat_three_rhs(char *fname)
 	int i = 0,j = 0,k = 0;
 	int Row_Two = 0,Col_Two = 0;
 	int Row_Three = 0,Col_Three = 0;
-	int l2 = 0,l3 = 0,nchars = 0; 
+	int l3 = 0,nchars = 0; 
 
 	switch ( VarType(1)) 
 	{

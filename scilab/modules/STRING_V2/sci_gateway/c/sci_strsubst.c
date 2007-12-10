@@ -10,12 +10,14 @@
 #include <ctype.h>
 #include "gw_string.h"
 #include "machine.h"
-#include "pcre.h"
-#include "pcreposix.h"
 #include "stack-c.h"
 #include "machine.h"
 #include "MALLOC.h"
 #include "kmp.h"
+#include "pcre.h"
+#include "pcreposix.h"
+#include "pcre_internal.h"
+#include "pcre_private.h"
 /*-------------------------------------------------------------------------------------*/
 static int *next = NULL;
 static char * newstr(const char*str, unsigned start, unsigned end, char*_replacedstr1);
@@ -139,7 +141,7 @@ int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
 									return 1;
 								}
 							Middle=(char*)MALLOC(sizeof(char)*(strlen(Input_StringMatrix_Two[0])+1));
-							for (i=0; i<strlen(Output_StringMatrix[x]);i++)
+							for (i=0; i<(int)strlen(Output_StringMatrix[x]);i++)
 								{
 									if (Output_StringMatrix[x]==NULL) 
 										{
@@ -166,7 +168,7 @@ int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
 											Output_StringMatrix[x] = _replacedstr;
 											if (strlen(Input_StringMatrix_Three[0])>strlen(Input_StringMatrix_Two[0])) 
 												{
-													i=i+(strlen(Input_StringMatrix_Three[0])-strlen(Input_StringMatrix_Two[0]));
+													i=i+((int)strlen(Input_StringMatrix_Three[0])-(int)strlen(Input_StringMatrix_Two[0]));
 												}
 										}
 								}

@@ -19,6 +19,7 @@
 #include "kmp.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "pcre_private.h"
 /*------------------------------------------------------------------------*/
 #define CHAR_S 's'
 #define CHAR_R 'r'
