@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../incremental_link/includes;../../../incremental_link/src/c;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_DEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -118,7 +118,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../incremental_link/includes;../../../incremental_link/src/c;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -175,10 +175,6 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
-			<File
-				RelativePath=".\addinter.c"
-				>
-			</File>
 			<File
 				RelativePath=".\banier.c"
 				>
@@ -353,10 +349,6 @@
 			</File>
 			<File
 				RelativePath=".\libraryinfo.c"
-				>
-			</File>
-			<File
-				RelativePath=".\link.c"
 				>
 			</File>
 			<File
@@ -769,10 +761,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\addinter.h"
-				>
-			</File>
-			<File
 				RelativePath=".\banier.h"
 				>
 			</File>
@@ -845,11 +833,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -945,10 +933,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\link.h"
-				>
-			</File>
-			<File
 				RelativePath=".\LoadFunctionsTab.h"
 				>
 			</File>
@@ -969,11 +953,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File

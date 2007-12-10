@@ -1,7 +1,4 @@
-// Copyright Enpc 
-
 // basic test for link 
-
 foo=['void foo(double *a,double *b,double *c)';
      '{ *c = *a + *b; }'  ];
 
@@ -19,14 +16,20 @@ end
 //5+7 by C function
 call('foo',5,1,'d',7,2,'d','out',[1,1],3,'d')
 
+
+
 // basic test for addinter 
 //--------------------------
  
 if ~c_link('libintertest') then
+  path = getcwd(); 
+  copyfile(SCI+filesep()+'modules'+filesep()+'incremental_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'addinter.c', TMPDIR+filesep()+'addinter.c');
+  chdir(TMPDIR); 
   files=['addinter.o'];
   ilib_build('libintertest',['scifun1','intfun1'],files,[]);
   // load the shared library 
   exec loader.sce ;
   if norm(scifun1(%pi)- sin(%pi+1)/%pi ) > %eps then pause;end 
+  chdir(path) 
 end
 

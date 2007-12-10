@@ -1,0 +1,16 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+com_
+callFunctionFromGateway
+getWarningMode
+createvar_
+putlhsvar_
+createvarfromptr_
+iop_
+intersci_
+namstr_
+funtab_
+;

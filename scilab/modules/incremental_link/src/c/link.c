@@ -198,7 +198,7 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
 #endif /* end of __ELF__ */
 #else
 #if defined(_MSC_VER)
-#include "link_W95.c"
+#include "link_Windows.c"
 #else
 /**
   C2F(dynload)() {cerro("Dynamic link not implemented");}

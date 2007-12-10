@@ -8,6 +8,8 @@
 #include "dynamiclibrary.h"
 #include "addinter.h"
 #include "core_math.h"
+#include "sciprint.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 #ifdef round
 #undef round
