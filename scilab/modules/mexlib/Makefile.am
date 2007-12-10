@@ -15,7 +15,8 @@ endif
 
 
 MEXLIB_DEP = $(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/data_structures/libscidata_structures.la \
+$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la 
 #	$(top_builddir)/libs/blas/libsciblas.la \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la

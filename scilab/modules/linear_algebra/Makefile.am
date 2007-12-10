@@ -97,6 +97,7 @@ pkglib_LTLIBRARIES = libscilinear_algebra.la
 libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscilinear_algebra_la_LIBADD = \
+$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
 $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 

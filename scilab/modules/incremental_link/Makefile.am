@@ -3,6 +3,26 @@
 ### INRIA - Scilab 2006 
 ##########
 
+
+INCREMENTAL_LINK_C_SOURCES = src/c/addinter.c \
+src/c/link.c \
+src/c/callinterf.c
+
+#src/c/link_SYSV.c 
+#src/c/link_std.c 
+#src/c/link_W95.c
+
+libsciincremental_link_la_CFLAGS = \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/libs/doublylinkedlist/includes \
+-Isrc/c/ \
+-Iincludes/
+
+pkglib_LTLIBRARIES = libsciincremental_link.la
+libsciincremental_link_la_SOURCES = $(INCREMENTAL_LINK_C_SOURCES)
+
+
+
 #### Target ######
 modulename=incremental_link
 

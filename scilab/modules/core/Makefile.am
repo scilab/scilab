@@ -14,7 +14,6 @@ src/c/FTables.c \
 src/c/InitScilab.c \
 src/c/getval.c \
 src/c/md5.c \
-src/c/addinter.c \
 src/c/inisci-c.c \
 src/c/IsAScalar.c \
 src/c/texmacs.c \
@@ -38,12 +37,10 @@ src/c/CallScilab.c \
 src/c/SendScilabJobs.c \
 src/c/scimem.c \
 src/c/banier.c \
-src/c/callinterf.c \
 src/c/isanan.c \
 src/c/parse.c \
 src/c/timer.c \
 src/c/stack2.c \
-src/c/link.c \
 src/c/xscion.c \
 src/c/SetScilabEnvironment.c \
 src/c/hashtable_core.c \
@@ -59,7 +56,6 @@ src/c/warningmode.c \
 src/c/InitializeCore.c \
 src/c/TerminateCore.c \
 src/c/coretable.c \
-src/c/force_link.c \
 src/c/returnProperty.c \
 src/c/returnPropertyList.c \
 src/c/scilabmode.c \
@@ -305,7 +301,9 @@ libscicore_la_CFLAGS=  	-Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
+                        -I$(top_srcdir)/modules/incremental_link/includes \
 			-I$(top_srcdir)/modules/elementary_functions/includes
+
 
 if STRING_V2
 libscicore_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
@@ -323,6 +321,7 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+        $(top_builddir)/modules/incremental_link/libsciincremental_link.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/fileio/libscifileio.la

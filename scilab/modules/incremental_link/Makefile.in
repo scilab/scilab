@@ -28,6 +28,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -70,26 +71,54 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
-am__installdirs = "$(DESTDIR)$(libincremental_link_la_scriptdir)" \
-	"$(DESTDIR)$(libincremental_link_la_etcdir)" \
-	"$(DESTDIR)$(libincremental_link_la_rootdir)" \
-	"$(DESTDIR)$(libincremental_link_la_scriptdir)"
-libincremental_link_la_scriptSCRIPT_INSTALL = $(INSTALL_SCRIPT)
-SCRIPTS = $(libincremental_link_la_script_SCRIPTS)
-SOURCES =
-DIST_SOURCES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+am__installdirs = "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(libincremental_link_la_scriptdir)" \
+	"$(DESTDIR)$(libincremental_link_la_etcdir)" \
+	"$(DESTDIR)$(libincremental_link_la_rootdir)" \
+	"$(DESTDIR)$(libincremental_link_la_scriptdir)"
+pkglibLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
+libsciincremental_link_la_LIBADD =
+am__objects_1 = libsciincremental_link_la-addinter.lo \
+	libsciincremental_link_la-link.lo \
+	libsciincremental_link_la-callinterf.lo
+am_libsciincremental_link_la_OBJECTS = $(am__objects_1)
+libsciincremental_link_la_OBJECTS =  \
+	$(am_libsciincremental_link_la_OBJECTS)
+libsciincremental_link_la_LINK = $(LIBTOOL) --tag=CC \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libsciincremental_link_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+libincremental_link_la_scriptSCRIPT_INSTALL = $(INSTALL_SCRIPT)
+SCRIPTS = $(libincremental_link_la_script_SCRIPTS)
+DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
+depcomp = $(SHELL) $(top_srcdir)/config/depcomp
+am__depfiles_maybe = depfiles
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+SOURCES = $(libsciincremental_link_la_SOURCES)
+DIST_SOURCES = $(libsciincremental_link_la_SOURCES)
 libincremental_link_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libincremental_link_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libincremental_link_la_scriptDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libincremental_link_la_etc_DATA) \
 	$(libincremental_link_la_root_DATA) \
 	$(libincremental_link_la_script_DATA)
+ETAGS = etags
+CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -257,6 +286,22 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+INCREMENTAL_LINK_C_SOURCES = src/c/addinter.c \
+src/c/link.c \
+src/c/callinterf.c
+
+
+#src/c/link_SYSV.c 
+#src/c/link_std.c 
+#src/c/link_W95.c
+libsciincremental_link_la_CFLAGS = \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/libs/doublylinkedlist/includes \
+-Isrc/c/ \
+-Iincludes/
+
+pkglib_LTLIBRARIES = libsciincremental_link.la
+libsciincremental_link_la_SOURCES = $(INCREMENTAL_LINK_C_SOURCES)
 
 #### Target ######
 modulename = incremental_link
@@ -343,7 +388,7 @@ JARMASK = *.jar
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin
+.SUFFIXES: .sci .bin .c .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -373,6 +418,35 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    f=$(am__strip_dir) \
+	    echo " $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	    $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkglibdir)/$$f"; \
+	  else :; fi; \
+	done
+
+uninstall-pkglibLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  p=$(am__strip_dir) \
+	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(pkglibdir)/$$p'"; \
+	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(pkglibdir)/$$p"; \
+	done
+
+clean-pkglibLTLIBRARIES:
+	-test -z "$(pkglib_LTLIBRARIES)" || rm -f $(pkglib_LTLIBRARIES)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
+libsciincremental_link.la: $(libsciincremental_link_la_OBJECTS) $(libsciincremental_link_la_DEPENDENCIES) 
+	$(libsciincremental_link_la_LINK) -rpath $(pkglibdir) $(libsciincremental_link_la_OBJECTS) $(libsciincremental_link_la_LIBADD) $(LIBS)
 install-libincremental_link_la_scriptSCRIPTS: $(libincremental_link_la_script_SCRIPTS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libincremental_link_la_scriptdir)" || $(MKDIR_P) "$(DESTDIR)$(libincremental_link_la_scriptdir)"
@@ -392,6 +466,58 @@ uninstall-libincremental_link_la_scriptSCRIPTS:
 	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
 	done
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT)
+
+distclean-compile:
+	-rm -f *.tab.c
+
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciincremental_link_la-addinter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciincremental_link_la-callinterf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciincremental_link_la-link.Plo@am__quote@
+
+.c.o:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c $<
+
+.c.obj:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+.c.lo:
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libsciincremental_link_la-addinter.lo: src/c/addinter.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciincremental_link_la_CFLAGS) $(CFLAGS) -MT libsciincremental_link_la-addinter.lo -MD -MP -MF $(DEPDIR)/libsciincremental_link_la-addinter.Tpo -c -o libsciincremental_link_la-addinter.lo `test -f 'src/c/addinter.c' || echo '$(srcdir)/'`src/c/addinter.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciincremental_link_la-addinter.Tpo $(DEPDIR)/libsciincremental_link_la-addinter.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/addinter.c' object='libsciincremental_link_la-addinter.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciincremental_link_la_CFLAGS) $(CFLAGS) -c -o libsciincremental_link_la-addinter.lo `test -f 'src/c/addinter.c' || echo '$(srcdir)/'`src/c/addinter.c
+
+libsciincremental_link_la-link.lo: src/c/link.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciincremental_link_la_CFLAGS) $(CFLAGS) -MT libsciincremental_link_la-link.lo -MD -MP -MF $(DEPDIR)/libsciincremental_link_la-link.Tpo -c -o libsciincremental_link_la-link.lo `test -f 'src/c/link.c' || echo '$(srcdir)/'`src/c/link.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciincremental_link_la-link.Tpo $(DEPDIR)/libsciincremental_link_la-link.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/link.c' object='libsciincremental_link_la-link.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciincremental_link_la_CFLAGS) $(CFLAGS) -c -o libsciincremental_link_la-link.lo `test -f 'src/c/link.c' || echo '$(srcdir)/'`src/c/link.c
+
+libsciincremental_link_la-callinterf.lo: src/c/callinterf.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciincremental_link_la_CFLAGS) $(CFLAGS) -MT libsciincremental_link_la-callinterf.lo -MD -MP -MF $(DEPDIR)/libsciincremental_link_la-callinterf.Tpo -c -o libsciincremental_link_la-callinterf.lo `test -f 'src/c/callinterf.c' || echo '$(srcdir)/'`src/c/callinterf.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciincremental_link_la-callinterf.Tpo $(DEPDIR)/libsciincremental_link_la-callinterf.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/callinterf.c' object='libsciincremental_link_la-callinterf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciincremental_link_la_CFLAGS) $(CFLAGS) -c -o libsciincremental_link_la-callinterf.lo `test -f 'src/c/callinterf.c' || echo '$(srcdir)/'`src/c/callinterf.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -449,12 +575,54 @@ uninstall-libincremental_link_la_scriptDATA:
 	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
 	done
+
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	mkid -fID $$unique
 tags: TAGS
-TAGS:
 
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	if test -z "$(ETAGS_ARGS)$$tags$$unique"; then :; else \
+	  test -n "$$unique" || unique=$$empty_fix; \
+	  $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	    $$tags $$unique; \
+	fi
 ctags: CTAGS
-CTAGS:
+CTAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(CTAGS_ARGS)$$tags$$unique" \
+	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
+	     $$tags $$unique
 
+GTAGS:
+	here=`$(am__cd) $(top_builddir) && pwd` \
+	  && cd $(top_srcdir) \
+	  && gtags -i $(GTAGS_ARGS) $$here
+
+distclean-tags:
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -485,9 +653,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(SCRIPTS) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(SCRIPTS) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libincremental_link_la_scriptdir)" "$(DESTDIR)$(libincremental_link_la_etcdir)" "$(DESTDIR)$(libincremental_link_la_rootdir)" "$(DESTDIR)$(libincremental_link_la_scriptdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libincremental_link_la_scriptdir)" "$(DESTDIR)$(libincremental_link_la_etcdir)" "$(DESTDIR)$(libincremental_link_la_rootdir)" "$(DESTDIR)$(libincremental_link_la_scriptdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -516,11 +684,14 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-local mostlyclean-am
+clean-am: clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic
+distclean-am: clean-am distclean-compile distclean-generic \
+	distclean-tags
 
 dvi: dvi-am
 
@@ -540,7 +711,7 @@ install-data-am: install-data-local \
 
 install-dvi: install-dvi-am
 
-install-exec-am:
+install-exec-am: install-pkglibLTLIBRARIES
 
 install-html: install-html-am
 
@@ -557,12 +728,14 @@ install-ps: install-ps-am
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-generic mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool
 
 pdf: pdf-am
 
@@ -575,30 +748,34 @@ ps-am:
 uninstall-am: uninstall-libincremental_link_la_etcDATA \
 	uninstall-libincremental_link_la_rootDATA \
 	uninstall-libincremental_link_la_scriptDATA \
-	uninstall-libincremental_link_la_scriptSCRIPTS
+	uninstall-libincremental_link_la_scriptSCRIPTS \
+	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am all-local check check-am check-local clean \
-	clean-generic clean-libtool clean-local distclean \
-	distclean-generic distclean-libtool distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libincremental_link_la_etcDATA \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
+	clean clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libincremental_link_la_etcDATA \
 	install-libincremental_link_la_rootDATA \
 	install-libincremental_link_la_scriptDATA \
 	install-libincremental_link_la_scriptSCRIPTS install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	uninstall uninstall-am \
+	tags uninstall uninstall-am \
 	uninstall-libincremental_link_la_etcDATA \
 	uninstall-libincremental_link_la_rootDATA \
 	uninstall-libincremental_link_la_scriptDATA \
-	uninstall-libincremental_link_la_scriptSCRIPTS
+	uninstall-libincremental_link_la_scriptSCRIPTS \
+	uninstall-pkglibLTLIBRARIES
 
 
 # This target enables tests for Scilab
