@@ -81,7 +81,7 @@
 <!-- comments -->
 <module name="pvm" activate="0"/>
 <module name="sci2c" activate="0"/>
-<module name="fftw" activate="0"/>
+<module name="fftw" activate="1"/>
 <module name="module_skeleton" activate="0"/>
  </modules>
  

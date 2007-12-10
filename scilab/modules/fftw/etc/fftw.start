@@ -31,16 +31,30 @@ path = getshortpathname(path);
 clear  pathdemos;
 
 else
-
-	printf('\n');
-  warning('You choose to use scilab with fftw module.');
-  printf('This module requires : '+librarynamefftw+'\n');
-  printf('Scilab will use standard fft by default.\n');
-  printf('See help for more informations.\n');
+  // TO DO : replace this by a Message box
+  settings_file = pathconvert(SCIHOME+'/.scilab_settings',%f,%t)
+  w=fileinfo(settings_file);
+  show=%t;
+  if w <> [] then
+    show=grep(mgetl(SCIHOME+'/.scilab_settings'),'displayWarningFFTW=no')==[]
+  end
+  if show then
+    MSG_FTTW = 'You choose to install scilab with fftw module.'+ascii(10)+ ..
+         'This module requires : '+librarynamefftw+' (GPL licence).'+ascii(10)+ ..
+         'Scilab will use standard fft by default until you install this library.'+ascii(10)+ ..
+         'See help fftw for more informations.'+ascii(10);
+   printf('\n');      
+   warning(MSG_FTTW);
+   clear MSG_FTTW;
+   mputl('displayWarningFFTW=no',SCIHOME+'/.scilab_settings')
+   clear mputl;
+   clear printf;
+  end
+  clear show;
+  clear settings_file;
+  clear w;
   
 end // if ( loadfftwlibrary(librarynamefftw) ) then
 
 clear librarynamefftw
-
-
 // ====================================================================
