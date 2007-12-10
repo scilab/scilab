@@ -21,6 +21,5 @@ vartype_
 sciReturnString
 freeArrayOfString
 isopt_
-sci_xgetfile_
 ;
 
