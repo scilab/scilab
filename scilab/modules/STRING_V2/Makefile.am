@@ -21,6 +21,8 @@ src/c/pcre_private.c \
 src/c/isletter.c \
 src/c/isdigit.c
 
+STRING_FORTRAN_SOURCES =src/fortran/strdsp.f
+
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \
 sci_gateway/c/sci_code2str.c \
@@ -41,6 +43,10 @@ sci_gateway/c/sci_strcmp.c \
 sci_gateway/c/sci_isletter.c \
 sci_gateway/c/sci_isdigit.c \
 sci_gateway/c/sci_isalphanum.c
+
+
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
+sci_gateway/fortran/strops.f
 
 libscistring_la_CFLAGS= \
 	-Isrc/c \
