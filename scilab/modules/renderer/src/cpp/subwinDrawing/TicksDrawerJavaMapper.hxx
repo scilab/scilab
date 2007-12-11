@@ -31,6 +31,13 @@ public:
                          int nbTicks, const double subticksPositions[], int nbSubticks) = 0;
 
   virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks) = 0;
+
+  virtual void setAxesBounds(double xMin, double xMax,
+                             double yMin, double yMax,
+                             double zMin, double zMax) = 0;
+
+  virtual void setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
+                                  int fontType, double fontSize, int fontColor) = 0;
   /*----------------------------------------------------------------------*/
 
 protected:

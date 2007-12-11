@@ -8,13 +8,18 @@
 #include "TicksDrawer.hxx"
 #include "BasicAlgos.hxx"
 
+extern "C"
+{
+#include "GetProperty.h"
+};
+
 namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
 TicksDrawer::TicksDrawer(DrawableSubwin * subwin)
 {
-  m_pDrawer = subwin;
+  m_pSubwin = subwin;
   m_pTicksComputer = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
@@ -25,6 +30,7 @@ TicksDrawer::~TicksDrawer(void)
     delete m_pTicksComputer;
     m_pTicksComputer = NULL;
   }
+  m_pSubwin = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::setTicksComputer(ComputeTicksStrategy * ticksComputer)
@@ -34,12 +40,12 @@ void TicksDrawer::setTicksComputer(ComputeTicksStrategy * ticksComputer)
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::draw(void)
 {
-  initializeDrawing();
+  
 
   if (m_pTicksComputer == NULL) { return; }
 
+  initializeDrawing();
   
-
   // allocate positions and ticks
   int initNbTicks = m_pTicksComputer->getNbTicks();
   char ** labels = BasicAlgos::createStringArray(initNbTicks);

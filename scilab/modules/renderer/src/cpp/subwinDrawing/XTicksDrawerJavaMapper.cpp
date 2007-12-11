@@ -71,4 +71,18 @@ bool XTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ti
                                    ticksLabels, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
+void XTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
+                                           double yMin, double yMax,
+                                           double zMin, double zMax)
+{
+  m_pJavaObject->setAxesBounds(xMin, xMax, yMin, yMax, zMin, zMax);
+}
+/*--------------------------------------------------------------------------*/
+void XTicksDrawerJavaMapper::setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
+                                                int fontType, double fontSize, int fontColor)
+{
+  m_pJavaObject->setAxisParameters(lineStyle, lineWidth, lineColor,
+                                   fontType, fontSize, fontColor);
+}
+/*--------------------------------------------------------------------------*/
 }

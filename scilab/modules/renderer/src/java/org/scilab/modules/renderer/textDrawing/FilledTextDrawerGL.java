@@ -65,7 +65,7 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	 */
 	@Override
 	public void drawTextContentPix(Vector3D textCenterPix) {
-		SciTextRenderer renderer = SciTextRenderer.create(getFont());
+		SciTextRenderer renderer = getTextRenderer();
 		
 		StringMatrixGL textMatrix = computeStringSizes(renderer, getTextMatrix());
 		// get default position with size 1.
@@ -101,8 +101,10 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		stringPos.scale(factor);
 		
 		// create a new renderer with a new font.
-		renderer.dispose();
-		renderer = SciTextRenderer.create(getFont().deriveFont(newFontSize), getFontColor());
+		destroyTextRenderer();
+		setFont(getFont().deriveFont(newFontSize));
+		//renderer = SciTextRenderer.create(getFont().deriveFont(newFontSize), getFontColor());
+		renderer = getTextRenderer();
 		
 		// update StringSizes with the new renderer
 		textMatrix.update(renderer);
@@ -111,7 +113,7 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		
 		drawText(renderer, textMatrix, stringPos);
 		
-		renderer.dispose();
+		destroyTextRenderer();
 	}
 
 	/**

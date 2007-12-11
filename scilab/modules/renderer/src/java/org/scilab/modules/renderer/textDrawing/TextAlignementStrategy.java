@@ -15,6 +15,13 @@ package org.scilab.modules.renderer.textDrawing;
  */
 public interface TextAlignementStrategy {
 
+	/** left aligned text */
+	int LEFT_ALIGNED_INDEX = 1;
+	/** centered aligned text */
+	int CENTERED_ALIGNED_INDEX = 2;
+	/** right aligned text */
+	int RIGHT_ALIGNED_INDEX = 3;
+	
 	/**
 	 * Draw the text matrix inside a position matrix using a specific text renderer.
 	 * @param renderer renderer to use for drawing

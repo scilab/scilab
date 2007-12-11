@@ -24,13 +24,10 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * @author Jean-Baptiste Silvy
  */
 public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implements TextRenderingPipeline {
-
-	private static final int LEFT_ALIGNED_INDEX = 1;
-	private static final int CENTERED_ALIGNED_INDEX = 2;
-	private static final int RIGHT_ALIGNED_INDEX = 3;
 	
 	private StringMatrixGL textMatrix;
 	private TextAlignementStrategy textDrawer;
+	private SciTextRenderer textRenderer;
 	private int fontColorIndex;
 	private Font fontType;
 	/** Rotation angle in radian */
@@ -46,7 +43,7 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 		fontColorIndex = 0;
 		fontType = null;
 		rotationAngle = 0.0;
-		textCenter = null;
+		textCenter = new Vector3D();
 	}
 	
 	/**
@@ -55,13 +52,13 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 */
 	public void setTextAlignement(int alignmentIndex) {
 		switch(alignmentIndex) {
-		case LEFT_ALIGNED_INDEX:
+		case TextAlignementStrategy.LEFT_ALIGNED_INDEX:
 			textDrawer = new LeftAlignedTextGL();
 			break;
-		case CENTERED_ALIGNED_INDEX:
+		case TextAlignementStrategy.CENTERED_ALIGNED_INDEX:
 			textDrawer = new CenteredAlignedTextGL();
 			break;
-		case RIGHT_ALIGNED_INDEX:
+		case TextAlignementStrategy.RIGHT_ALIGNED_INDEX:
 			textDrawer = new RightAlignedTextGL();
 			break;
 		default:
@@ -117,6 +114,14 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	}
 	
 	/**
+	 * Specify a new font draw the text object.
+	 * @param newFont new font to use.
+	 */
+	public void setFont(Font newFont) {
+		fontType = newFont;
+	}
+	
+	/**
 	 * Set many text parameters in one function.
 	 * @param textAlignement kind of alignement.
 	 * @param color index of the color in the colormap.
@@ -147,6 +152,26 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 */
 	public Vector3D getTextCenter() {
 		return textCenter;
+	}
+	
+	/**
+	 * Get the text renderer used to draw the text object.
+	 * Create one if none has already been created.
+	 * @return instance of SciTextRenderer
+	 */
+	public SciTextRenderer getTextRenderer() {
+		if (textRenderer == null) {
+			textRenderer = SciTextRenderer.create(getFont(), getFontColor());
+		}
+		return textRenderer;
+	}
+	
+	/**
+	 * Destroy the current text renderer.
+	 */
+	public void destroyTextRenderer() {
+		textRenderer.dispose();
+		textRenderer = null;
 	}
 	
 	/**
@@ -250,7 +275,7 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 	 * Get the screen position in pixels of the text bounding box.
 	 * @return array of size 4 containing the 4 vertices.
 	 */
-	protected Vector3D[] getBoundingRectangle2D() {
+	public Vector3D[] getBoundingRectangle2D() {
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());

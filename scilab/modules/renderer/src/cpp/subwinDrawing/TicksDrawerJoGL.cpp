@@ -7,6 +7,11 @@
 
 #include "TicksDrawerJoGL.hxx"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 namespace sciGraphics
 {
 
@@ -32,6 +37,29 @@ void TicksDrawerJoGL::drawTicks(double ticksPositions[], char * ticksLabels[], i
 bool TicksDrawerJoGL::checkTicks(double ticksPositions[], char * ticksLabels[], int nbTicks)
 {
   return getTicksDrawerJavaMapper()->checkTicks(ticksPositions, ticksLabels, nbTicks);
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawerJoGL::initializeDrawing(void)
+{
+  // initialize drawing as usual
+  DrawableObjectJoGL::initializeDrawing();
+
+  // also set axis drawing parameters
+  
+  sciPointObj * pSubwin = m_pSubwin->getDrawedObject();
+
+  // set axes bounds
+  double bounds[6];
+  sciGetRealDataBounds(pSubwin, bounds);
+  getTicksDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1], bounds[2],
+                                            bounds[3], bounds[4], bounds[5]);
+  // set other parameters
+  getTicksDrawerJavaMapper()->setAxisParamerters(sciGetLineStyle(pSubwin),
+                                                 (float) sciGetLineWidth(pSubwin),
+                                                 sciGetGraphicContext(pSubwin)->foregroundcolor,
+                                                 sciGetFontStyle(pSubwin),
+                                                 sciGetFontSize(pSubwin),
+                                                 sciGetFontContext(pSubwin)->foregroundcolor);
 }
 /*------------------------------------------------------------------------------------------*/
 TicksDrawerJavaMapper * TicksDrawerJoGL::getTicksDrawerJavaMapper(void)

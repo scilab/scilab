@@ -60,6 +60,8 @@ jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetBoxParametersjintjintjintjintjfloatID; // cache method id
 jmethodID jbooleancheckTicksjdoubleArrayjobjectArrayID; // cache method id
 jmethodID voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID; // cache method id
+jmethodID voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
+jmethodID voidsetAxisParametersjintjfloatjintjintjdoublejintID; // cache method id
 
 
 /**
@@ -118,6 +120,10 @@ void setBoxParameters(long hiddenAxisColor, long backgroundColor, long lineColor
 bool checkTicks(double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize);
 
 void drawTicks(double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize, double * subticksPositions, int subticksPositionsSize);
+
+void setAxesBounds(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax);
+
+void setAxisParameters(long lineStyle, float lineWidth, long lineColor, long fontType, double fontSize, long fontColor);
 
 
                         /**

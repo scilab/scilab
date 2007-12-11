@@ -29,14 +29,14 @@ public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 	 * @param textCenterPix center of text to draw in pixels
 	 */
 	public void drawTextContentPix(Vector3D textCenterPix) {
-		SciTextRenderer renderer = SciTextRenderer.create(getFont(), getFontColor());
+		SciTextRenderer renderer = getTextRenderer();
 		
 		StringMatrixGL textMatrix = computeStringSizes(renderer, getTextMatrix());
 		TextGrid stringPos = getStringsPositions(textMatrix);
 		stringPos = placeTextGrid(stringPos, textCenterPix, getRotationAngle());
 		drawText(renderer, textMatrix, stringPos);
 		
-		renderer.dispose();
+		destroyTextRenderer();
 	}
 
 
@@ -58,13 +58,13 @@ public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 	 */
 	public Vector3D[] getBoundingRectanglePix(Vector3D textCenterPix) {
 		// assume we are in pixels coordinates
-		SciTextRenderer renderer = SciTextRenderer.create(getFont(), getFontColor());
+		SciTextRenderer renderer = getTextRenderer();
 		
 		StringMatrixGL textMatrix = computeStringSizes(renderer, getTextMatrix());
 		Vector3D[] bbox = getBoundingBox(textMatrix);
 		bbox = placeBoundingBox(bbox, textCenterPix, getRotationAngle());
 		
-		renderer.dispose();
+		destroyTextRenderer();
 		return bbox;
 	}
 

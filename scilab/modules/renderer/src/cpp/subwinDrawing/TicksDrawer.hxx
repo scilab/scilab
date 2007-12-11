@@ -46,7 +46,7 @@ protected:
   /*----------------------------------------------------------------------*/
   ComputeTicksStrategy * m_pTicksComputer;
 
-  DrawableSubwin * m_pDrawer;
+  DrawableSubwin * m_pSubwin;
   /*----------------------------------------------------------------------*/
 };
 

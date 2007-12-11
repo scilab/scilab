@@ -106,6 +106,8 @@ voidsetFigureIndexjintID=NULL;
 voidsetBoxParametersjintjintjintjintjfloatID=NULL; 
 jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
 voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
+voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
 
 
 }
@@ -136,6 +138,8 @@ voidsetFigureIndexjintID=NULL;
 voidsetBoxParametersjintjintjintjintjfloatID=NULL; 
 jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
 voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
+voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
 
 
 }
@@ -395,6 +399,46 @@ jdoubleArray subticksPositions_ = curEnv->NewDoubleArray( subticksPositionsSize 
 curEnv->SetDoubleArrayRegion( subticksPositions_, 0, subticksPositionsSize, (jdouble*) subticksPositions ) ;
 
                          curEnv->CallVoidMethod( this->instance, voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID ,ticksPositions_, ticksLabels_, subticksPositions_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void XTicksDrawerGL::setAxesBounds (double xMin, double xMax, double yMin, double yMax, double zMin, double zMax){
+
+JNIEnv * curEnv = getCurrentEnv();
+                jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setAxesBounds", "(DDDDDD)V" ) ;
+if (voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "setAxesBounds" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallVoidMethod( this->instance, voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID ,xMin, xMax, yMin, yMax, zMin, zMax);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void XTicksDrawerGL::setAxisParameters (long lineStyle, float lineWidth, long lineColor, long fontType, double fontSize, long fontColor){
+
+JNIEnv * curEnv = getCurrentEnv();
+                jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetAxisParametersjintjfloatjintjintjdoublejintID = curEnv->GetMethodID(this->instanceClass, "setAxisParameters", "(IFIIDI)V" ) ;
+if (voidsetAxisParametersjintjfloatjintjintjdoublejintID == NULL) {
+std::cerr << "Could not access to the method " << "setAxisParameters" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallVoidMethod( this->instance, voidsetAxisParametersjintjfloatjintjintjdoublejintID ,lineStyle, lineWidth, lineColor, fontType, fontSize, fontColor);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

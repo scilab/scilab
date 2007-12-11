@@ -37,6 +37,11 @@ protected:
   virtual bool checkTicks(double ticksPositions[], char * ticksLabels[], int nbTicks);
 
   /**
+   * Specify initialize drawing in setting all useful parameters.
+   */
+  virtual void initializeDrawing(void);
+
+  /**
    * Get the object performing mapping with Java class.
    */
   TicksDrawerJavaMapper * getTicksDrawerJavaMapper(void);
