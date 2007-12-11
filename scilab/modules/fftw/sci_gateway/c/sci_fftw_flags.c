@@ -34,19 +34,19 @@ extern unsigned cur_fftw_flags;
 */
 int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
 {
-  /* declaration of variables to store scilab parameters address */
-  static int l1, m1, n1;
-  SciIntMat M1;
-  char **Str1;
+	/* declaration of variables to store scilab parameters address */
+	static int l1 = 0, m1 = 0, n1 = 0;
+	SciIntMat M1;
+	char **Str1 = NULL;
 
-  static int l2, m2, n2;
+	static int l2 = 0, m2 = 0, n2 = 0;
 
-  char **Str3=NULL;
-  int len;
+	char **Str3 = NULL;
+	int len = 0;
 
-  /* please update me ! */
-  static int nb_flag=22;
-  static char *Str[]= {/* documented flags */
+	/* please update me ! */
+	static int nb_flag = 22;
+	static char *Str[]= {/* documented flags */
                        "FFTW_MEASURE",
                        "FFTW_DESTROY_INPUT",
                        "FFTW_UNALIGNED",
@@ -72,7 +72,7 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
                        "FFTW_NO_FIXED_RADIX_LARGE_N",
                        "FFTW_ALLOW_PRUNING"};
 
-  static unsigned flagt[]= {/* documented flags */
+	static unsigned flagt[]= {/* documented flags */
                             FFTW_MEASURE,
                             FFTW_DESTROY_INPUT,
                             FFTW_UNALIGNED,
@@ -97,110 +97,123 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
                             FFTW_NO_SLOW,
                             FFTW_NO_FIXED_RADIX_LARGE_N,
                             FFTW_ALLOW_PRUNING};
+	unsigned flagv = 0;
 
-  unsigned flagv=0;
+	int i = 0,j = 0;
 
-  int i,j;
+	CheckRhs(0,1);
 
-  CheckRhs(0,1);
+	if (Rhs==0) 
+	{
+		// nothing
+	}
+	else 
+	{
+		if (VarType(1)==sci_ints) 
+		{ 
+			/* int */
+			GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m1, &n1, &M1);
+			CheckDims(1,m1,n1,1,1);
+			cur_fftw_flags = ((int *)M1.D)[0];
+		}
+		else if (VarType(1)==sci_matrix) 
+		{ 
+			/* double */
+			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+			CheckDims(1,m1,n1,1,1);
+			cur_fftw_flags = (int)*stk(l1);
+		}
+		else if (VarType(1)==sci_strings) 
+		{ 
+			/* string */
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str1);
+			for (j=0;j<m1*n1;j++) 
+			{
+				for (i=0;i<nb_flag;i++) 
+				{
+					if (strcmp(Str1[j],Str[i])==0) break;
+				}
 
-  if (Rhs==0) {
+				if (i == nb_flag) 
+				{
+					freeArrayOfString(Str1,m1*n1);
+					Scierror(999,_("%s: Bad flag %s for the first input parameter\n"),fname,Str1[j]);
+					return(0);
+				}
+				else 
+				{
+					if (i>0) flagv = ( flagv | (1U << (i-1)) );
+				}
+			}
+			cur_fftw_flags = flagv;
+			freeArrayOfString(Str1,m1*n1);
+		}
+		else 
+		{
+			Scierror(53,_("%s: Bad type for the first input parameter\n"),fname);
+			return(0);
+		}
+	}
+	/* return value of Sci_Plan.flags in position 2 */
+	m2 = 1;
+	n2 = m2;
+	l2 = I_INT32;
+	CreateVar(Rhs+2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m2,&n2,&l2);
+	*istk(l2)=(int) cur_fftw_flags;
 
-  }
-  else {
-   if (VarType(1)==sci_ints) { /* int */
-    GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m1, &n1, &M1);
-    CheckDims(1,m1,n1,1,1);
-    cur_fftw_flags=((int *)M1.D)[0];
-   }
-   else if (VarType(1)==sci_matrix) { /* double */
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-    CheckDims(1,m1,n1,1,1);
-    cur_fftw_flags=(int)*stk(l1);
-   }
-   else if (VarType(1)==sci_strings) { /* string */
-    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str1);
+	/*Test for only FFTW_MEASURE*/
+	if (cur_fftw_flags == 0) 
+	{
+		j = 1;
+		if ((Str3 = (char **)MALLOC(sizeof(char *))) == NULL) 
+		{
+			Scierror(999,_("%s: Memory allocation error\n"),fname);
+			return(0);
+		}
 
-    for (j=0;j<m1*n1;j++) {
-     for (i=0;i<nb_flag;i++) {
-      if (strcmp(Str1[j],Str[i])==0) break;
-     }
-     if (i==nb_flag) {
-      Scierror(999,_("%s: Bad flag %s for the first input parameter\n"),
-                  fname,Str1[j]);
-      return(0);
-     }
-     else {
-      if (i>0) flagv=flagv|(1U << (i-1));
-     }
-    }
-    cur_fftw_flags = flagv;
+		len = (int)strlen(Str[0]);
+		if ((Str3[0] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) 
+		{
+			Scierror(999,_("%s: Memory allocation error\n"),fname);
+			return(0);
+		}
+		strcpy(Str3[0],Str[0]);
+	}
+	else 
+	{
+		j = 0;
+		for (i = 1;i < nb_flag; i++) 
+		{
+			if((cur_fftw_flags&flagt[i])==flagt[i]) 
+			{
+				j++;
+				if (Str3) Str3 = (char **)REALLOC(Str3,sizeof(char *)*j);
+				else Str3 = (char **)MALLOC(sizeof(char *)*j);
 
-	freeArrayOfString(Str1,m1*n1);
-   }
+				if ( Str3 == NULL) 
+				{
+					Scierror(999,_("%s: Memory allocation error\n"),fname);
+					return(0);
+				}
+				len = (int)strlen(Str[i]);
+				if ((Str3[j-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) 
+				{
+					freeArrayOfString(Str3,j);
+					Scierror(999,_("%s: Memory allocation error\n"),fname);
+					return(0);
+				}
+				strcpy(Str3[j-1],Str[i]);
+			}
+		}
+	}
 
-   else {
-    Scierror(53,_("%s: Bad type for the first input parameter\n"),
-                fname);
-    return(0);
-   }
-  }
+	n1=1;
+	CreateVarFromPtr( Rhs+3,MATRIX_OF_STRING_DATATYPE, &j, &n1, Str3);
+	LhsVar(1)=Rhs+2;
+	LhsVar(2)=Rhs+3;
+	PutLhsVar();
 
-  /* return value of Sci_Plan.flags in position 2 */
-  m2 = 1;
-  n2 = m2;
-  l2 = I_INT32;
-  /*CreateVar(2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m2,&n2,&l2);*/
-  CreateVar(Rhs+2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m2,&n2,&l2);
-  *istk(l2)=(int) cur_fftw_flags;
-
-  /*Test for only FFTW_MEASURE*/
-  if(cur_fftw_flags==0) {
-   j = 1;
-   if ((Str3 = (char **)MALLOC(sizeof(char *))) == NULL) {
-     Scierror(999,_("%s: Memory allocation error\n"),
-                  fname);
-     return(0);
-   }
-   len = (int)strlen(Str[0]);
-   if ((Str3[0] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) {
-     Scierror(999,_("%s: Memory allocation error\n"),
-                  fname);
-     return(0);
-   }
-   strcpy(Str3[0],Str[0]);
-  }
-  else {
-   j = 0;
-   for (i = 1;i < nb_flag; i++) {
-    if((cur_fftw_flags&flagt[i])==flagt[i]) {
-     j++;
-     if ((Str3 = (char **)REALLOC(Str3,sizeof(char *)*j)) == NULL) {
-       Scierror(999,_("%s: Memory allocation error\n"),
-                    fname);
-       return(0);
-     }
-     len = (int)strlen(Str[i]);
-     if ((Str3[j-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) {
-       Scierror(999,_("%s: Memory allocation error\n"),
-                    fname);
-       return(0);
-     }
-     strcpy(Str3[j-1],Str[i]);
-    }
-   }
-  }
-
-  n1=1;
-  CreateVarFromPtr( Rhs+3,MATRIX_OF_STRING_DATATYPE, &j, &n1, Str3);
-
-  LhsVar(1)=Rhs+2;
-  LhsVar(2)=Rhs+3;
-  PutLhsVar();
-
-  for (i=0;i<j;i++) FREE(Str3[i]);
-  FREE(Str3);
-
-  return(0);
+	freeArrayOfString(Str3,j);
+	return(0);
 }
 /*--------------------------------------------------------------------------*/ 

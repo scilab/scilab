@@ -41,40 +41,40 @@ extern unsigned cur_fftw_flags;
 int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 {
   /* declaration of variables to store scilab parameters address */
-  static int lr1,li1,it1,m1, n1; /* Rhs(1) */
+  static int lr1 = 0,li1 = 0,it1 = 0,m1 = 0, n1 = 0; /* Rhs(1) */
 
-  static int it2,m2,n2;   /* Rhs(2) */
+  static int it2 = 0,m2 = 0,n2 = 0;   /* Rhs(2) */
 
-  static int it3,m3,n3;           /* Rhs(3) */
-  int mn3;
+  static int it3 = 0,m3 = 0,n3 = 0;           /* Rhs(3) */
+  int mn3 = 0;
 
-  static int it4,m4,n4;           /* Rhs(4) */
-  int mn4;
+  static int it4 = 0,m4 = 0,n4 = 0;           /* Rhs(4) */
+  int mn4 = 0;
 
-  int *header;
+  int *header = NULL;
 
-  double         *ptr_d;
-  char           *ptr_c;
-  unsigned char  *ptr_uc;
-  short          *ptr_s;
-  unsigned short *ptr_us;
-  int            *ptr_i;
-  unsigned int   *ptr_ui;
+  double         *ptr_d  = NULL;
+  char           *ptr_c  = NULL;
+  unsigned char  *ptr_uc = NULL;
+  short          *ptr_s  = NULL;
+  unsigned short *ptr_us = NULL;
+  int            *ptr_i  = NULL;
+  unsigned int   *ptr_ui = NULL;
 
   /* specific declaration for FFTW library variable */
   fftw_plan p;
   guru_dim_struct gdim;
 
   /* input/output address for transform variables */
-  double *ri,*ii,*ro,*io;
-  double *ptr;
+  double *ri = NULL,*ii = NULL,*ro = NULL,*io = NULL;
+  double *ptr = NULL;
 
   /* local counter variable */
-  int i,j,k;
+  int i = 0,j = 0,k = 0;
 
   /* local variable */
-  int isn,vect;
-  int *n,*nspn;
+  int isn = 0,vect = 0;
+  int *n = NULL,*nspn = NULL;
   double zero=0.0;
 
   /****************************************
@@ -97,7 +97,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
   /* void input gives void output */
   if ((m1<1)|(n1<1)) {
-   LhsVar(1)=1;
+   LhsVar(1) =  1;
    PutLhsVar();
    return(0);
   }
@@ -513,7 +513,6 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
       FREE(n);FREE(nspn);
 
       LhsVar(1) = 1;
-
       PutLhsVar();
 
       return(0);

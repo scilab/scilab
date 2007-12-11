@@ -1,0 +1,13 @@
+//=============================================
+ff = fftw_flags();
+if ff <> 64 then bugmes();quit;end;
+//=============================================
+//change flags
+r = fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
+if r <> 4 then bugmes();quit;end;
+//=============================================
+//change flags and display current value of fftw flags (both integer and strings)
+[a,S]=fftw_flags("FFTW_PATIENT");
+if a <> 32 then bugmes();quit;end;
+if S <>'FFTW_PATIENT' then bugmes();quit;end;
+//=============================================
