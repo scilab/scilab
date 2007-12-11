@@ -19,6 +19,7 @@ elementary_functions \
 arnoldi \
 boolean \
 output_stream \
+incremental_link \
 linear_algebra \
 differential_equations \
 signal_processing \
@@ -51,7 +52,6 @@ gui \
 graphics \
 windows_tools \
 functions \
-incremental_link \
 others \
 overloading \
 maple2scilab \

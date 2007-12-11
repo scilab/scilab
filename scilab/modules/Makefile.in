@@ -167,15 +167,15 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = STRING_V2 polynomials string intersci cacsd \
 	elementary_functions arnoldi boolean output_stream \
-	linear_algebra differential_equations signal_processing fileio \
-	core metanet optimization interpolation localization sound \
-	statistics time integer special_functions double randlib \
-	data_structures mexlib symbolic tclsci sparse io shell \
-	completion history_manager action_binding console renderer gui \
-	graphics windows_tools functions incremental_link others \
-	overloading maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools scicos \
-	fftw pvm spreadsheet jvm . javasci
+	incremental_link linear_algebra differential_equations \
+	signal_processing fileio core metanet optimization \
+	interpolation localization sound statistics time integer \
+	special_functions double randlib data_structures mexlib \
+	symbolic tclsci sparse io shell completion history_manager \
+	action_binding console renderer gui graphics windows_tools \
+	functions others overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools scicos fftw pvm spreadsheet jvm . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -351,15 +351,15 @@ top_srcdir = @top_srcdir@
 #endif
 SUBDIRS = $(am__append_1) polynomials string intersci cacsd \
 	elementary_functions arnoldi boolean output_stream \
-	linear_algebra differential_equations signal_processing fileio \
-	core metanet optimization interpolation localization sound \
-	statistics time integer special_functions double randlib \
-	data_structures mexlib symbolic tclsci sparse io shell \
-	completion history_manager action_binding console renderer gui \
-	graphics windows_tools functions incremental_link others \
-	overloading maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools scicos \
-	fftw pvm spreadsheet jvm . $(am__append_2)
+	incremental_link linear_algebra differential_equations \
+	signal_processing fileio core metanet optimization \
+	interpolation localization sound statistics time integer \
+	special_functions double randlib data_structures mexlib \
+	symbolic tclsci sparse io shell completion history_manager \
+	action_binding console renderer gui graphics windows_tools \
+	functions others overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools scicos fftw pvm spreadsheet jvm . $(am__append_2)
 modulename = 
 
 #### Basic files ####
