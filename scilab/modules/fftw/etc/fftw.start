@@ -5,7 +5,7 @@
 if %fftw then
 
 if MSDOS then
-  librarynamefftw = SCI+"/bin/libfftw3-3"+getdynlibext();
+  librarynamefftw = SCI+"/bin/fftw/libfftw3-3"+getdynlibext();
 else
   librarynamefftw = "libfftw3"+getdynlibext();
 end
