@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------*/
 /* File: part.c                                                           */
 /* Copyright INRIA 2007                                                   */
-/* @Authors : Cong Wu                                                     */
+/* @Authors : Cong Wu , Allan CORNET                                      */
 /* desc : Let  s[k]  stands for the  k  character of Input_StringMatrixings
   ( or the  white space character if  k >length(s) ).
   part  returns  c , a matrix of character Input_StringMatrixings, such that  
@@ -22,84 +22,130 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 {
-    int numRow = 0;
-    int numCol = 0;
-	char **Output_StringMatrix = NULL;
-    int x = 0,RowCol = 0;
+	int i = 0;
 
-	int Row_One = 0,Col_One = 0;
+	int m1 = 0, n1 = 0;
 	char **Input_StringMatrix = NULL;
+	int m1n1 = 0; /* m1 * n1 */
 
-	int Row_Two = 0,Col_Two = 0;
+	int m2 = 0, n2 = 0;
 	int StackPosTwo = 0;
-    int *SecondParamaterValue = NULL;
+	int *SecondParamaterValue = NULL;
+	int m2n2 = 0; /* m2 * n2 */
+
+	int m = 0, n = 0;
+	char **Output_StringMatrix = NULL;
+	int mn = 0; /* m * n */
 
     CheckRhs(2,2);
     CheckLhs(1,1);
 
-    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_StringMatrix);
-    RowCol = Row_One*Col_One;  
-	
-	GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&Row_Two,&Col_Two,&StackPosTwo);
-	SecondParamaterValue = istk(StackPosTwo);
-	/*if (SecondParamaterValue[0] == 0) 
+	if (VarType(1) != sci_strings)
 	{
-		Scierror(36,_(" 2th argument is incorrect here\n"));
-		return 0;
-	}*/
-    
-    Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_One));
-	if (Output_StringMatrix == NULL)
-	{
-		freeArrayOfString(Input_StringMatrix,RowCol);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,"Invalid parameter.\n");
 		return 0;
 	}
 
-    for (x = 0; x < RowCol; x++)
-    {
-		int Char_Position = 0;
-		int y = 0;
+	if (VarType(2) != sci_matrix)
+	{
+		Scierror(999,"Invalid parameter.\n");
+		return 0;
+	}
 
-        Output_StringMatrix[x]=(char*)MALLOC(sizeof(char)*(Col_Two+1));
+    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_StringMatrix);
+	m1n1 = m1 * n1;
+	
+	GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&StackPosTwo);
 
-		if (Output_StringMatrix == NULL)
+	if ( (m2 == n2) && (n2 == 0) )
+	{
+		/* part('something',[]) */
+		int l = 0;
+		m = 0;
+		n = 0;
+
+		freeArrayOfString(Input_StringMatrix,m1n1);
+		CreateVar(Rhs+1,STRING_DATATYPE,  &m, &n, &l);
+		LhsVar(1)=Rhs+1;
+		C2F(putlhsvar)();
+		return 0;
+	}
+	
+	if ( !( (m2 == 1 && n2 > 0) || (m2 > 0 && n2 == 1) ) )
+	{
+		Scierror(89,"2th argument has incorrect dimensions.\n");
+		return 0;
+	}
+
+	m2n2 = m2 * n2;
+	SecondParamaterValue = istk(StackPosTwo);
+
+	/* check values of second parameter */
+	for (i = 0;i < m2n2 ;i++)
+	{
+		if (SecondParamaterValue[i] < 1)
 		{
-			for(y=0; y <= x; y++) 
-			{
-				if (Output_StringMatrix[y]) { FREE(Output_StringMatrix[y]); Output_StringMatrix[y] = NULL; }
-			}
-			freeArrayOfString(Input_StringMatrix,RowCol);
+			freeArrayOfString(Input_StringMatrix,m1n1);
+			Scierror(36,"2th argument is incorrect here.\n");
+			return 0;
+		}
+	}
+
+	m = m1;
+	n = n1;
+	mn = m * n ;
+
+	/* memory allocation output */
+
+	Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(mn));
+	if (Output_StringMatrix == NULL)
+	{
+		freeArrayOfString(Input_StringMatrix,m1n1);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		return 0;
+	}
+		
+	for (i = 0;i < mn; i++)
+	{
+		Output_StringMatrix[i] = (char*)MALLOC(sizeof(char)*((m2n2)+1));
+		if (Output_StringMatrix[i] == NULL)
+		{
+			freeArrayOfString(Input_StringMatrix,m1n1);
+			freeArrayOfString(Output_StringMatrix,i);
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
-        
-        for (y=0;y < Col_Two*Row_Two;y++)
-        {
-             if ( SecondParamaterValue[y] <= (int)strlen(Input_StringMatrix[x]) )
-             {
-                 Output_StringMatrix[x][Char_Position]=Input_StringMatrix[x][SecondParamaterValue[y]-1];
-             }
-             else
-             {
-                 Output_StringMatrix[x][Char_Position] = BLANK_CHAR;
-             }
-			 Char_Position++;
-        }
-    }
+	}
 
-	freeArrayOfString(Input_StringMatrix,RowCol);
+	/* output */
+	for (i = 0;i < m1n1; i++)
+	{
+		int j = 0;
+		int position_in_string = 0;
+		for (j = 0;j < m2n2; j++)
+		{
+			if ( SecondParamaterValue[j] <= (int)strlen(Input_StringMatrix[i]) )
+			{
+				Output_StringMatrix[i][position_in_string] = Input_StringMatrix[i][SecondParamaterValue[j]-1];
+			}
+			else
+			{
+				Output_StringMatrix[i][position_in_string] = BLANK_CHAR;
+			}
+			position_in_string++;
+		}
 
-	/*Output */
-    numRow   = Row_One ;
-    numCol   = Col_One ;
+		Output_StringMatrix[i][position_in_string] ='\0';
+	}
 
-    CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Output_StringMatrix );
-    LhsVar(1) = Rhs+1 ;
-    C2F(putlhsvar)();
+	/* put values on stack */
+	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n, Output_StringMatrix );
+	LhsVar(1) = Rhs+1 ;
+	C2F(putlhsvar)();
 
-	/* FREE memory */
-	  freeArrayOfString(Output_StringMatrix,RowCol);
+	/* free pointers */
+	freeArrayOfString(Input_StringMatrix,m1n1);
+	freeArrayOfString(Output_StringMatrix,mn);
 
     return 0;
 }
