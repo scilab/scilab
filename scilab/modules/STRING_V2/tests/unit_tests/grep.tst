@@ -29,7 +29,7 @@ if grep(['AB','B'],['A';'B']) <> 1 then pause,end
 //===============================
 if grep(['AB','B'],['A';'B';'C']) <> 1 then pause,end 
 //===============================
-fd = mopen(SCI+'/modules/string/unit_tests/text.txt','r');
+fd = mopen(SCI+'/modules/STRING_V2/tests/unit_tests/text.txt','r');
 txt = mgetl( fd );
 mclose( fd );
 //===============================
@@ -140,7 +140,7 @@ if grep('aabbabc'                                 ,'/a{1,}b{1,}c/'              
 if grep('abcabc'                                  ,'/a.+?c/'                               ,'r') <>  1   then pause,end
 if grep('cde'                                     ,'/[^ab]*/'                              ,'r') <>  1   then pause,end
 if grep(''                                        ,'/abc/'                                 ,'r') <>  []  then pause,end
-if grep(''                                        ,'/a*/'                                  ,'r') <>  1   then pause,end
+if grep(''                                        ,'/a*/'                                  ,'r') <>  []  then pause,end
 if grep('e'                                       ,'/a|b|c|d|e/'                           ,'r') <>  1   then pause,end
 if grep('abcdefg'                                 ,'/abcd*efg/'                            ,'r') <>  1   then pause,end
 if grep('xabyabbbz'                               ,'/ab*/'                                 ,'r') <>  1   then pause,end
@@ -227,7 +227,7 @@ if grep('ABCABC'                                  ,'/a.*?c/i'                   
 if grep('ABCABC'                                  ,'/a.{0,5}?c/i'                          ,'r') <>  1   then pause,end
 if grep('CDE'                                     ,'/[^ab]*/i'                             ,'r') <>  1   then pause,end
 if grep(''                                        ,'/abc/i'                                ,'r') <>  []  then pause,end
-if grep(''                                        ,'/a*/i'                                 ,'r') <>  1   then pause,end
+if grep(''                                        ,'/a*/i'                                 ,'r') <>  []  then pause,end
 if grep('E'                                       ,'/a|b|c|d|e/i'                          ,'r') <>  1   then pause,end
 if grep('ABCDEFG'                                 ,'/abcd*efg/i'                           ,'r') <>  1   then pause,end
 if grep('XABYABBBZ'                               ,'/ab*/i'                                ,'r') <>  1   then pause,end
@@ -479,7 +479,7 @@ if grep('ab'                                      ,'/(^|a)b/'                   
 if grep('abcab'                                   ,'/(\w)?(abc)\1b/'                       ,'r') <>  []  then pause,end
 if grep('a,b,c'                                   ,'/^(?:.,){2}c/'                         ,'r') <>  1   then pause,end
 if grep('a,b,c'                                   ,'/^(?:[^,]*,){2}c/'                     ,'r') <>  1   then pause,end
-if grep(''                                        ,'/(?i)/'                                ,'r') <>  1   then pause,end
+if grep(''                                        ,'/(?i)/'                                ,'r') <>  []  then pause,end
 if grep('a\nxb\n'                                 ,'/(?!\A)x/m'                            ,'r') <>  1   then pause,end
 if grep('123\nabcabcabcabc\n'                     ,'/^.{9}abc.*\n/m'                       ,'r') <>  1   then pause,end
 if grep('a'                                       ,'/^(a)?(?(1)a|b)+$/'                    ,'r') <>  []  then pause,end
@@ -498,7 +498,7 @@ if grep('fools'                                   ,'/(foo|fool|x.|money|parted)$
 if grep('fools'                                   ,'/(x.|foo|fool|x.|money|parted|y.)$/'   ,'r') <>  []  then pause,end
 if grep('fools'                                   ,'/(foo|fool|money|parted)$/'            ,'r') <>  []  then pause,end
 
-
+// depend of PCRE library options
 // if grep('a\b'                                     ,'/a\\b/'                                ,'r') <>  1   then pause,end
 //if grep('bbbbXcXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'  ,'/.X(.+)+X/'                            ,'r') <>  1   then pause,end
 //if grep('bbbbXcXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.X(.+)+XX/'                           ,'r') <>  1   then pause,end

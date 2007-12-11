@@ -57,7 +57,7 @@ refw = [1 3 4];
 if (k <> refk ) then bugmes();quit;end
 if (w <> refw ) then bugmes();quit;end
 //===============================
-fd = mopen(SCI+'/modules/string/unit_tests/text.txt','r');
+fd = mopen(SCI+'/modules/STRING_V2/tests/unit_tests/text.txt','r');
 txt = mgetl( fd );
 mclose( fd );
 //===============================

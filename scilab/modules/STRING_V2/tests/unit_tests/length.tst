@@ -47,7 +47,7 @@ if length(emptystr())<>0 then pause,end
 if or(length(['abd';emptystr()])<>[3;0]) then pause,end
 if or(length(string(ones(10,10)))<>1) then pause,end
 //===============================
-fd = mopen(SCI+'/modules/string/unit_tests/text.txt','r');
+fd = mopen(SCI+'/modules/STRING_V2/tests/unit_tests/text.txt','r');
 txt = mgetl( fd );
 mclose( fd );
 if length(txt(1)) <> 280  then pause,end
