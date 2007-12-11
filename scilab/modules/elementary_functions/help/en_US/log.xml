@@ -36,6 +36,9 @@ exp(log([1,%i,-1,-%i]))
       <LINK>logm</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
+      <LINK>log10</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
       <LINK>ieee</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
