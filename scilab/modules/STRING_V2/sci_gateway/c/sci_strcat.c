@@ -105,24 +105,12 @@ static int sci_strcat_three_rhs(char *fname)
 				for ( j =0 ; j < (int)strlen(Input_String_One[i]) ; j++ ) *cstk(l3+ k++) = Input_String_One[i][j]; 
 				if ( i != mn-1) for ( j =0 ; j < (int)strlen(Input_String_Two) ; j++ ) *cstk(l3+ k++) = Input_String_Two[j];
 			}
-			if (Input_String_One)
-			{
-				for ( i = 0 ; i < mn ; i++ ) 
-				{
-					if (Input_String_One[i])
-					{
-						FREE(Input_String_One[i]);
-						Input_String_One[i]=NULL;
-					}
-				} 
-				FREE(Input_String_One);
-				Input_String_One=NULL;
-			}
+			freeArrayOfString(Input_String_One,mn);
 			LhsVar(1) = Rhs+1  ;
 
-			
-			if (Input_String_Two)  freeArrayOfString(Input_String_One,Row_Two*Col_Two);
-			
+			// A modifier
+			//freeArrayOfString(Input_String_Two,Row_Two*Col_Two);
+
 			break;
 		case COL: 
 			/* return a column matrix */ 
@@ -152,21 +140,10 @@ static int sci_strcat_three_rhs(char *fname)
 				}
 			}
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_One, &un, Output_String);
-			if (Input_String_One) 
-			{
-				for ( i = 0 ; i < mn ; i++ )
-				{
-					if (Input_String_One[i])
-					{
-						FREE(Input_String_One[i]);
-						Input_String_One[i]=NULL; 
-					}
-				}
-				FREE(Input_String_One);
-				Input_String_One=NULL;
-			}
+			freeArrayOfString(Input_String_One,mn);
 
-            if (Input_String_Two) 
+			/* !!! Problem with this part */ 
+			if (Input_String_Two) 
 			{
 				for ( i = 0 ; i <Row_Two*Col_Two ; i++ )
 				{
@@ -179,23 +156,12 @@ static int sci_strcat_three_rhs(char *fname)
 				FREE(Input_String_Two);
 				Input_String_Two=NULL;
 			}
+			/* !!! Problem with this part */ 
+			//freeArrayOfString(Input_String_Two,Row_Two*Col_Two);
 
 
 			LhsVar(1) = Rhs+1  ;
-			if (Output_String)
-			{
-				int i2=0;
-				for (i2=0;i2<Row_One+1;i2++)
-				{
-					if (Output_String[i2])
-					{
-						FREE(Output_String[i2]);
-						Output_String[i2]=NULL; 
-					}
-				}
-				FREE(Output_String);
-				Output_String=NULL;
-			}
+			freeArrayOfString(Output_String,Row_One+1);
 			break;
 		case ROW: 
 			/* return a row matrix */ 
@@ -225,21 +191,9 @@ static int sci_strcat_three_rhs(char *fname)
 				}
 			}
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &un, &Col_One, Output_String);
-			if (Input_String_One) 
-			{
-				for ( i = 0 ; i < mn ; i++ )
-				{
-					if (Input_String_One[i])
-					{
-						FREE(Input_String_One[i]);
-						Input_String_One[i]=NULL; 
-					}
-				}
-				FREE(Input_String_One);
-				Input_String_One=NULL;
-			}
+			freeArrayOfString(Input_String_One,mn);
 
-
+			/* !!! Problem with this part */ 
 			if (Input_String_Two) 
 			{
 				for ( i = 0 ; i <Row_Two*Col_Two ; i++ )
@@ -253,20 +207,10 @@ static int sci_strcat_three_rhs(char *fname)
 				FREE(Input_String_Two);
 				Input_String_Two=NULL;
 			}
-			if (Output_String)
-			{
-				int i2=0;
-				for (i2=0;i2<Col_One+1;i2++) 
-				{
-					if (Output_String[i2])
-					{
-						FREE(Output_String[i2]);
-						Output_String[i2]=NULL;
-					}
-				} 
-				FREE(Output_String);
-				Output_String=NULL;
-			}
+			/* !!! Problem with this part */ 
+			//freeArrayOfString(Input_String_Two,Row_Two*Col_Two);
+
+			freeArrayOfString(Output_String,Col_One+1);
 			LhsVar(1) = Rhs+1  ;
 			break;
 		}
@@ -302,6 +246,7 @@ static int sci_strcat_two_rhs(char *fname)
 		/* check we have only a string as second parameter */
 		if (Number_Inputs_Two != 1)
 		{
+			freeArrayOfString(Input_String_Two,Number_Inputs_Two);
 			Scierror(36,"%s : 2th argument is incorrect here.\n",fname); 
 			return 0;
 		}
@@ -309,6 +254,7 @@ static int sci_strcat_two_rhs(char *fname)
 
 	if ( (Type_One != sci_strings) && (Type_One != sci_matrix) )
 	{
+		freeArrayOfString(Input_String_Two,Number_Inputs_Two);
 		Scierror(246,"function not defined for given argument type(s), check arguments or define function %s for overloading.\n",fname); 
 		return 0;
 	}
@@ -316,6 +262,7 @@ static int sci_strcat_two_rhs(char *fname)
 	{
 		if (Type_One == sci_matrix)
 		{
+			freeArrayOfString(Input_String_Two,Number_Inputs_Two);
 			sci_strcat_rhs_one_is_a_matrix(fname);
 		}
 		else /* sci_strings */
@@ -338,6 +285,9 @@ static int sci_strcat_two_rhs(char *fname)
 					CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
 					LhsVar(1)=Rhs+1;
 					C2F(putlhsvar)();
+
+					freeArrayOfString(Input_String_Two,Number_Inputs_Two);
+					freeArrayOfString(Input_String_One,Number_Inputs_One);
 					return 0;
 				}
 				else
@@ -347,7 +297,8 @@ static int sci_strcat_two_rhs(char *fname)
 					{
 						if (Input_String_One[i])
 						{
-							length_ouput = length_ouput + (int)strlen(Input_String_One[i])+(int)strlen(Input_String_Two[0]);
+							if (i < (Number_Inputs_One - 1)) length_ouput += (int)strlen(Input_String_One[i])+(int)strlen(Input_String_Two[0]);
+							else length_ouput += (int)strlen(Input_String_One[i]);
 						}
 					}
 				}
@@ -358,81 +309,54 @@ static int sci_strcat_two_rhs(char *fname)
 				static int n1 = 0, m1 = 0;
 				int outIndex = 0 ;
 				char *Output_String = NULL;
-				Output_String = (char *)MALLOC( sizeof(char) * (length_ouput + 1) );
+				int i = 0;
 
-				if (Output_String)
+				m1 = length_ouput;
+				n1 = 1;
+
+				CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
+				Output_String = cstk(outIndex);
+				for (i = 0; i < Number_Inputs_One; i++)
 				{
-					int i = 0;
-					for (i = 0; i < Number_Inputs_One; i++)
+					if ( i == 0)
 					{
-						if ( i == 0)
-						{
-							strcpy(Output_String,Input_String_One[i]);
-							if (i<Number_Inputs_One - 1) strcat(Output_String,Input_String_Two[0]);
-						}
-						else
-						{
-							strcat(Output_String,Input_String_One[i]);
-							if (i<Number_Inputs_One - 1) strcat(Output_String,Input_String_Two[0]);
-						}
+						strcpy(Output_String,Input_String_One[i]);
+						if (i < (Number_Inputs_One - 1)) strcat(Output_String,Input_String_Two[0]);
 					}
-
-					m1= (int)strlen(Output_String);
-					n1=1;
-
-					CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
-					strcpy(cstk(outIndex),Output_String );
-
-					LhsVar(1) = Rhs+1;
-					C2F(putlhsvar)();
-
-					FREE(Output_String);
-					Output_String = NULL;
-					freeArrayOfString(Input_String_One,Row_One*Col_One);
-					freeArrayOfString(Input_String_Two,Number_Inputs_Two);
+					else
+					{
+						strcat(Output_String,Input_String_One[i]);
+						if (i<Number_Inputs_One - 1) strcat(Output_String,Input_String_Two[0]);
+					}
 				}
-				else
-				{
-					Scierror(999,"Error memory allocation.\n");
-				}
+				LhsVar(1) = Rhs+1;
+				C2F(putlhsvar)();
+				freeArrayOfString(Input_String_One,Row_One*Col_One);
+				freeArrayOfString(Input_String_Two,Number_Inputs_Two);
 			}
 			else
 			{
 				if (length_ouput == 0)
 				{
-					char **Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(ONE_CHAR));
-					if (Output_StringMatrix)
-					{
-						Output_StringMatrix[0] = (char*)MALLOC(sizeof(char)*(ONE_CHAR));
-						if (Output_StringMatrix[0])
-						{
-							strcpy(Output_StringMatrix[0],EMPTY_CHAR);
-							Row_One = 1;
-							Col_One = 1;
-							CreateVarFromPtr(Rhs + 1,MATRIX_OF_STRING_DATATYPE,&Row_One, &Col_One, Output_StringMatrix); 
-							LhsVar(1) = Rhs + 1;
-							C2F(putlhsvar)();
-							FREE(Output_StringMatrix[0]); Output_StringMatrix[0] = NULL;
-							FREE(Output_StringMatrix); 	Output_StringMatrix = NULL;
-							return 0;
-						}
-						else
-						{
-							FREE(Output_StringMatrix); Output_StringMatrix = NULL;
-							Scierror(999,"Error memory allocation.\n"); 
-						}
-					}
-					else
-					{
-						Scierror(999,"Error memory allocation.\n"); 
-					}		
+					int one    = 1 ;
+					int len   = (int)strlen(EMPTY_CHAR);
+					int outIndex = 0 ;
+
+					CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
+					strcpy(cstk(outIndex),EMPTY_CHAR);
+					LhsVar(1) = Rhs+1 ;
+					C2F(putlhsvar)();
+
+					freeArrayOfString(Input_String_Two,Number_Inputs_Two);
+					freeArrayOfString(Input_String_One,Number_Inputs_One);
 				}
 				else
 				{
+					freeArrayOfString(Input_String_Two,Number_Inputs_Two);
+					freeArrayOfString(Input_String_One,Number_Inputs_One);
 					Scierror(999,"%s : incorrect argument(s).\n",fname);
 				}
 			}
-
 		}
 	}
 	return 0;
@@ -464,7 +388,7 @@ static int sci_strcat_one_rhs(char *fname)
 				{
 					if (Input_String_One[i])
 					{
-						length_ouput = length_ouput + (int)strlen(Input_String_One[i]);
+						length_ouput += (int)strlen(Input_String_One[i]);
 					}
 				}
 			}
@@ -474,40 +398,26 @@ static int sci_strcat_one_rhs(char *fname)
 				static int n1 = 0, m1 = 0;
 				int outIndex = 0 ;
 				char *Output_String = NULL;
-				Output_String = (char *)MALLOC( sizeof(char) * (length_ouput+1) );
-				if (Output_String)
+				int i = 0;
+				m1= length_ouput;
+				n1=1;
+
+				CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
+				Output_String = cstk(outIndex);
+				for (i = 0; i < Number_Inputs; i++)
 				{
-					int i = 0;
-					for (i = 0; i < Number_Inputs; i++)
+					if ( i == 0)
 					{
-						if ( i == 0)
-						{
-							strcpy(Output_String,Input_String_One[i]);
-						}
-						else
-						{
-							strcat(Output_String,Input_String_One[i]);
-						}
+						strcpy(Output_String,Input_String_One[i]);
 					}
-
-					m1= (int)strlen(Output_String);
-					n1=1;
-
-					CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
-					strcpy(cstk(outIndex),Output_String );
-
-					LhsVar(1) = Rhs+1;
-					C2F(putlhsvar)();
-
-					FREE(Output_String);
-					Output_String = NULL;
-					if (Input_String_One)  freeArrayOfString(Input_String_One,Number_Inputs);
-
+					else
+					{
+						strcat(Output_String,Input_String_One[i]);
+					}
 				}
-				else
-				{
-					Scierror(999,"Error memory allocation.\n");
-				}
+				LhsVar(1) = Rhs+1;
+				C2F(putlhsvar)();
+				if (Input_String_One) freeArrayOfString(Input_String_One,Number_Inputs);
 			}
 			else
 			{
@@ -525,8 +435,7 @@ static int sci_strcat_one_rhs(char *fname)
 static int sci_strcat_rhs_one_is_a_matrix(char *fname)
 {
 	/* strcat([],'A') returns a empty string matrix */
-	char **Input_String_One = NULL;
-	char **Output_StringMatrix = NULL;
+	double *Input_String_One = NULL;
 	int Row_One = 0,Col_One = 0;
 
 	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&Row_One,&Col_One,&Input_String_One);
@@ -534,37 +443,18 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname)
 	/* check that we have [] */
 	if ((Row_One == 0) && (Col_One == 0)) 
 	{
-		Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(ONE_CHAR));
-		if (Output_StringMatrix)
-		{
-			Output_StringMatrix[0] = (char*)MALLOC(sizeof(char)*(ONE_CHAR));
-			if (Output_StringMatrix[0])
-			{
-				strcpy(Output_StringMatrix[0],EMPTY_CHAR);
-				Row_One = 1;
-				Col_One = 1;
-				CreateVarFromPtr(Rhs + 1,MATRIX_OF_STRING_DATATYPE,&Row_One, &Col_One, Output_StringMatrix); 
-				LhsVar(1) = Rhs + 1;
-				C2F(putlhsvar)();
-				FREE(Output_StringMatrix[0]); Output_StringMatrix[0] = NULL;
-				FREE(Output_StringMatrix); 	Output_StringMatrix = NULL;
-				//freeArrayOfString(Input_String_One,Row_One*Col_One);
-			}
-			else
-			{
-				FREE(Output_StringMatrix); Output_StringMatrix = NULL;
-				//freeArrayOfString(Input_String_One,Row_One*Col_One);
-				Scierror(999,"Error memory allocation.\n"); 
-			}
-		}
-		else
-		{
-			Scierror(999,"Error memory allocation.\n"); 
-		}
+		int one    = 1 ;
+		int len   = (int)strlen(EMPTY_CHAR);
+		int outIndex = 0 ;
+
+		CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
+		strcpy(cstk(outIndex),EMPTY_CHAR);
+		LhsVar(1) = Rhs+1 ;
+		C2F(putlhsvar)();
 	}
 	else
 	{
-		Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n"); 
+		Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname); 
 	}
 	return 0;
 }
