@@ -238,7 +238,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp \
 	src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
 	src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
-	src/cpp/BasicAlgos.cpp sci_gateway/c/gw_renderer.c
+	src/cpp/BasicAlgos.cpp \
+	src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
+	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -399,7 +401,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-XTicksDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-TicksDrawerFactory.lo \
 @GUI_TRUE@	libscirenderer_la-TicksDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-BasicAlgos.lo
+@GUI_TRUE@	libscirenderer_la-BasicAlgos.lo \
+@GUI_TRUE@	libscirenderer_la-AutomaticTicksComputer.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -766,7 +769,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/BasicAlgos.cpp
+@GUI_TRUE@src/cpp/BasicAlgos.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/AutomaticTicksComputer.cpp
 
 
 # List of the gateway c files
@@ -970,6 +974,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJoGL.Plo@am__quote@
@@ -2310,6 +2315,13 @@ libscirenderer_la-BasicAlgos.lo: src/cpp/BasicAlgos.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/BasicAlgos.cpp' object='libscirenderer_la-BasicAlgos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BasicAlgos.lo `test -f 'src/cpp/BasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/BasicAlgos.cpp
+
+libscirenderer_la-AutomaticTicksComputer.lo: src/cpp/subwinDrawing/AutomaticTicksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AutomaticTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Tpo -c -o libscirenderer_la-AutomaticTicksComputer.lo `test -f 'src/cpp/subwinDrawing/AutomaticTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutomaticTicksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/AutomaticTicksComputer.cpp' object='libscirenderer_la-AutomaticTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AutomaticTicksComputer.lo `test -f 'src/cpp/subwinDrawing/AutomaticTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutomaticTicksComputer.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
