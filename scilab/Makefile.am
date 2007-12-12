@@ -30,7 +30,7 @@ endif
 
 LANG_DOMAIN=scilab
 
-TARGETS_ALL=macros
+TARGETS_ALL=macros 
 
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
@@ -61,31 +61,38 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	$(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e "xmltohtml();exit;")
 
 
-check-help:
+check-help:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'check_help();exit;'
 	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'check_help();exit;'
 
 check-recursive: check-local
 check-local:
-	@COMMAND="test_run();quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nw -nb -e "$$COMMAND"
+	@if test -x $(top_builddir)/scilab-bin; then \
+		COMMAND="test_run();quit";\
+		export LANG=C;\
+		$(top_builddir)/bin/scilab -nw -nb -e "$$COMMAND"; \
+	else \
+		echo "Cannot find Scilab binary"; \
+	fi
 
 distclean-recursive: clean-help clean-localization
 
 clean-recursive: clean-help clean-localization
 
 clean-help:
-	@if test -f $(top_builddir)/scilab-bin; then \
+	@if test -x $(top_builddir)/scilab-bin; then \
 		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'; \
 		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'; \
 	else \
-		echo "Cannot not find Scilab binary... Won't help help";\
+		echo "Cannot find Scilab binary"; \
 	fi
 
 clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
+
+#  The user wants to compile the localization files
+if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \
 	MASK="modules/*/locales/"; \
@@ -93,6 +100,7 @@ localization:
 	FILENAME="*.po*"; \
 	rm modules/*/locales/*/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
+		echo "Building for $$LOCALE :"; \
 		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
 		PATHTO=$(top_srcdir)/locale/$$LOCALE/$$LC/; \
 		if test ! -d $$PATHTO; then \
@@ -103,6 +111,7 @@ localization:
 		$(MSGCAT) -o $$POFILE $$FILES; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 	done
+endif
 
 install-data-local:
 	@$(mkinstalldirs) $(DESTDIR)$(localedir); \
