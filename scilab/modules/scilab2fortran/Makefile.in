@@ -321,8 +321,8 @@ MACROBUILDMASK = *.sce
 MACROBINMASK = *.bin
 # List of the function of a module
 FUNCTION_NAMES = macros/names
-# Localisation directory name
-LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
+# Tests directory name
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 # Chapter file 
 HELP_CHAPTERDIR = help/en_US/
 HELP_CHAPTERFILE = addchapter.sce
@@ -653,6 +653,7 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@	done
 install-data-local:
 	@if test -f $(FUNCTION_NAMES); then \
+		echo "-- Install of declaration files --"; \
 		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
 		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
 		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
@@ -663,13 +664,26 @@ install-data-local:
 # Install the help chapter
 	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 	if test -f $$HELPFILE; then \
+		echo "-- Install of help --"; \
 		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
 		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
 		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 	fi
+# Install the tests	
+	@echo "-- Install tests (if any) --"; \
+	for dir in $(TESTS_DIR); do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+		  done; \
+		fi; \
+	done
 # Install the macros
-	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+	@echo "-- Install macros (if any) --"; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
@@ -680,6 +694,7 @@ install-data-local:
 	done
 # Install java files (.jar)
 	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+	echo "-- Install jar files --"; \
     $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \

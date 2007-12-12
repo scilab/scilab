@@ -400,8 +400,8 @@ modulename = javasci
 @JAVASCI_TRUE@MACROBINMASK = *.bin
 # List of the function of a module
 @JAVASCI_TRUE@FUNCTION_NAMES = macros/names
-# Localisation directory name
-@JAVASCI_TRUE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
+# Tests directory name
+@JAVASCI_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 # Chapter file 
 @JAVASCI_TRUE@HELP_CHAPTERDIR = help/en_US/
 @JAVASCI_TRUE@HELP_CHAPTERFILE = addchapter.sce
@@ -914,6 +914,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	done
 @JAVASCI_TRUE@install-data-local:
 @JAVASCI_TRUE@	@if test -f $(FUNCTION_NAMES); then \
+@JAVASCI_TRUE@		echo "-- Install of declaration files --"; \
 @JAVASCI_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
 @JAVASCI_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
 @JAVASCI_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
@@ -924,13 +925,26 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 # Install the help chapter
 @JAVASCI_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @JAVASCI_TRUE@	if test -f $$HELPFILE; then \
+@JAVASCI_TRUE@		echo "-- Install of help --"; \
 @JAVASCI_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
 @JAVASCI_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
 @JAVASCI_TRUE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @JAVASCI_TRUE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @JAVASCI_TRUE@	fi
+# Install the tests	
+@JAVASCI_TRUE@	@echo "-- Install tests (if any) --"; \
+@JAVASCI_TRUE@	for dir in $(TESTS_DIR); do \
+@JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@JAVASCI_TRUE@		if test -d $(srcdir)/$$dir/; then \
+@JAVASCI_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
+@JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@JAVASCI_TRUE@		  done; \
+@JAVASCI_TRUE@		fi; \
+@JAVASCI_TRUE@	done
 # Install the macros
-@JAVASCI_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@JAVASCI_TRUE@	@echo "-- Install macros (if any) --"; \
+@JAVASCI_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @JAVASCI_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @JAVASCI_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
@@ -941,6 +955,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	done
 # Install java files (.jar)
 @JAVASCI_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@JAVASCI_TRUE@	echo "-- Install jar files --"; \
 @JAVASCI_TRUE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 @JAVASCI_TRUE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \

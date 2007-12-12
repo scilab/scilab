@@ -551,10 +551,10 @@ top_srcdir = @top_srcdir@
 @PVM_FALSE@FUNCTION_NAMES = macros/names
 # List of the function of a module
 @PVM_TRUE@FUNCTION_NAMES = macros/names
-# Localisation directory name
-@PVM_FALSE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
-# Localisation directory name
-@PVM_TRUE@LOCALISATIONDIRS = locales/fr_FR/ locales/en_US/
+# Tests directory name
+@PVM_FALSE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+# Tests directory name
+@PVM_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 # Chapter file 
 @PVM_FALSE@HELP_CHAPTERDIR = help/en_US/
 # Chapter file 
@@ -1393,6 +1393,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
 @PVM_TRUE@install-data-local:
 @PVM_TRUE@	@if test -f $(FUNCTION_NAMES); then \
+@PVM_TRUE@		echo "-- Install of declaration files --"; \
 @PVM_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
 @PVM_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
 @PVM_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
@@ -1403,13 +1404,26 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # Install the help chapter
 @PVM_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @PVM_TRUE@	if test -f $$HELPFILE; then \
+@PVM_TRUE@		echo "-- Install of help --"; \
 @PVM_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
 @PVM_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
 @PVM_TRUE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_TRUE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_TRUE@	fi
+# Install the tests	
+@PVM_TRUE@	@echo "-- Install tests (if any) --"; \
+@PVM_TRUE@	for dir in $(TESTS_DIR); do \
+@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
+@PVM_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
+@PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@PVM_TRUE@		  done; \
+@PVM_TRUE@		fi; \
+@PVM_TRUE@	done
 # Install the macros
-@PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@PVM_TRUE@	@echo "-- Install macros (if any) --"; \
+@PVM_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @PVM_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
@@ -1420,6 +1434,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	done
 # Install java files (.jar)
 @PVM_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@PVM_TRUE@	echo "-- Install jar files --"; \
 @PVM_TRUE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 @PVM_TRUE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
@@ -1530,6 +1545,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done
 @PVM_FALSE@install-data-local:
 @PVM_FALSE@	@if test -f $(FUNCTION_NAMES); then \
+@PVM_FALSE@		echo "-- Install of declaration files --"; \
 @PVM_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
 @PVM_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
 @PVM_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
@@ -1540,13 +1556,26 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 # Install the help chapter
 @PVM_FALSE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @PVM_FALSE@	if test -f $$HELPFILE; then \
+@PVM_FALSE@		echo "-- Install of help --"; \
 @PVM_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
 @PVM_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
 @PVM_FALSE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_FALSE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_FALSE@	fi
+# Install the tests	
+@PVM_FALSE@	@echo "-- Install tests (if any) --"; \
+@PVM_FALSE@	for dir in $(TESTS_DIR); do \
+@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@PVM_FALSE@		if test -d $(srcdir)/$$dir/; then \
+@PVM_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
+@PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@PVM_FALSE@		  done; \
+@PVM_FALSE@		fi; \
+@PVM_FALSE@	done
 # Install the macros
-@PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@PVM_FALSE@	@echo "-- Install macros (if any) --"; \
+@PVM_FALSE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_FALSE@		if test -d $(srcdir)/$$dir/; then \
 @PVM_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
@@ -1557,6 +1586,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	done
 # Install java files (.jar)
 @PVM_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@PVM_FALSE@	echo "-- Install jar files --"; \
 @PVM_FALSE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
 @PVM_FALSE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
 @PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
