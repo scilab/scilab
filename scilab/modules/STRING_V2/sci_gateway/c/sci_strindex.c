@@ -146,19 +146,22 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 				return 0;
             }
 
-            do
-            {
-                getnext(Str2[x],next);
-				/*Str is the input string matrix, Str2[x] is the substring to match; pos is the start point*/
-                w = kmp(*Str,Str2[x],pos,next);      
-                if (w !=0)
-                {            
-                    values[nbValues++] = w;
-                    position[nbposition++] = x+1;
-                }
-                pos = w;
-            }
-            while(w != 0);/* w is the answer of the kmp algorithem*/
+			if (Str2)
+			{
+				do
+				{	
+					getnext(Str2[x],next);
+					/*Str is the input string matrix, Str2[x] is the substring to match; pos is the start point*/
+					w = kmp(*Str,Str2[x],pos,next);      
+					if (w !=0)
+					{            
+						values[nbValues++] = w;
+						position[nbposition++] = x+1;
+					}
+					pos = w;
+				}
+				while(w != 0);/* w is the answer of the kmp algorithem*/
+			}
         }
     }
 
