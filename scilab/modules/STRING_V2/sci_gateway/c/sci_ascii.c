@@ -204,38 +204,27 @@ static int asciiMatrix(char *fname)
 {
 	int Row_Num = 0,Col_Num = 0,Stack_Pos = 0;
 	int outIndex = 0 ;
-
+	int len = 0;
 	/*When input vector of int ascii codes  */
 	GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&Row_Num,&Col_Num,&Stack_Pos);
+	len = Row_Num * Col_Num ;
 
-	if (Row_Num * Col_Num != 0)
+	if (len != 0)
 	{
 		int x = 0;
-		int len = 0;
 		int one = 1;
 		int *Input_IntMatrix = NULL;
 		char *Output_StringMatrix = NULL;
 
-		Output_StringMatrix = (char*)MALLOC(sizeof(char)*( (Row_Num*Col_Num) + 1));
-
-		if (Output_StringMatrix == NULL)
-		{
-			Scierror(999,_("%s : Memory allocation error\n"),fname);
-			return 0;
-		}
-
 		Input_IntMatrix = istk(Stack_Pos);
-		for (x = 0; x < Row_Num*Col_Num; x++) 
+		outIndex = 0 ;
+		CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
+		Output_StringMatrix = cstk(outIndex);
+		for (x = 0; x < len; x++) 
 		{
 			Output_StringMatrix[x] = (char)Input_IntMatrix[x];
 		}
-		Output_StringMatrix[Row_Num*Col_Num] = '\0';
-
-		len   = (int)strlen(Output_StringMatrix) ;
-		outIndex = 0 ;
-		CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
-		strcpy(cstk(outIndex), Output_StringMatrix) ;
-		if (Output_StringMatrix) {FREE(Output_StringMatrix); Output_StringMatrix=NULL; }
+		Output_StringMatrix[len] = '\0';
 	}
 	else
 	{
@@ -250,10 +239,8 @@ static int asciiMatrix(char *fname)
 	
 	LhsVar(1) = Rhs+1 ;
 	C2F(putlhsvar)();
-	
 	return 0;
 }
-
 /*--------------------------------------------------------------------------*/
 static int asciiOthers(char *fname)
 {
