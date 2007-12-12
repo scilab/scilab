@@ -14,6 +14,7 @@ import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.textDrawing.CenteredTextDrawerGL;
 import org.scilab.modules.renderer.textDrawing.TextAlignementStrategy;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
+import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
@@ -24,9 +25,9 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
 public abstract class TicksDrawerGL extends DrawableObjectGL {
 
 	/** Size in pixel of ticks */
-	public static final double TICKS_PIXEL_LENGTH = 0.05;
-	/** Sie in pixel of subticks */
-	public static final double SUBTICKS_PIXEL_LENGTH = 0.03;
+	public static final double TICKS_PIXEL_LENGTH = 0.04;
+	/** Size of subticks compared to ticks */
+	public static final double SUBTICKS_FACTOR = 0.5;
 	
 	private double[] ticksPositions;
 	private String[] ticksLabels;
@@ -121,6 +122,20 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	 */
 	protected double getSubtickPosition(int subtickIndex) {
 		return subticksPositions[subtickIndex];
+	}
+	
+	/**
+	 * @return positions of the subticks on their axis.
+	 */
+	protected double[] getSubTicksPositions() {
+		return subticksPositions;
+	}
+	
+	/**
+	 * @return positions of ticks on their axis.
+	 */
+	protected double[] getTicksPositions() {
+		return ticksPositions;
 	}
 	
 	/**
@@ -287,8 +302,12 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	 * @return true if the ticks can be displayed as if or false if the number of ticks needs to be reduced.
 	 */
 	public boolean checkTicks(double[] ticksPositions, String[] ticksLabels) {
-		// TODO actually check
-		return true;
+		this.ticksPositions = ticksPositions;
+		this.ticksLabels = ticksLabels;
+		getGL().glPushMatrix();
+		boolean res = checkTicks();
+		getGL().glPopMatrix();
+		return res;
 	}
 	
 	/**
@@ -303,17 +322,22 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		this.ticksLabels = ticksLabels;
 		this.subticksPositions = subticksPositions;
 		
+		
+		getGL().glPushMatrix();
 		drawTicks();
+		getGL().glPopMatrix();
 	}
 	
 	/**
 	 * Draw ticks segment and the axis segment
 	 * @param ticksPositions starting edge of ticks lines.
+	 * @param subticksPositions positions of subticks
 	 * @param ticksDirection direction of ticks
 	 * @param axisSegementStart one end of the axis segment
 	 * @param axisSegmentEnd the other end
 	 */
-	protected void drawTicksLines(Vector3D[] ticksPositions, Vector3D ticksDirection,
+	protected void drawTicksLines(Vector3D[] ticksPositions, Vector3D[] subticksPositions,
+								  Vector3D ticksDirection,
 								  Vector3D axisSegementStart, Vector3D axisSegmentEnd) {
 		GL gl = getGL();
 		
@@ -330,13 +354,60 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		
 		// draw ticks
 		for (int i = 0; i < ticksPositions.length; i++) {
+			if (ticksPositions[i] == null) { continue; }
 			gl.glVertex3d(ticksPositions[i].getX(), ticksPositions[i].getY(), ticksPositions[i].getZ());
 			Vector3D lineEnd = ticksPositions[i].add(ticksDirection);
 			gl.glVertex3d(lineEnd.getX(), lineEnd.getY(), lineEnd.getZ());
 		}
+		
+		// draw subticks
+		// same has ticks but with a new ticks length.
+		Vector3D subTicksDirection = ticksDirection.scalarMult(SUBTICKS_FACTOR);
+		for (int i = 0; i < subticksPositions.length; i++) {
+			if (subticksPositions[i] == null) { continue; }
+			gl.glVertex3d(subticksPositions[i].getX(), subticksPositions[i].getY(), subticksPositions[i].getZ());
+			Vector3D lineEnd = subticksPositions[i].add(subTicksDirection);
+			gl.glVertex3d(lineEnd.getX(), lineEnd.getY(), lineEnd.getZ());
+		}
+		
 		gl.glEnd();
 		
 		GLTools.endDashMode(gl);
+	}
+	
+	/**
+	 * Compute label center from its ticks direction and location
+	 * @param tickPosition base of the ticks on the axis segment
+	 * @param tickDirection vector defining the ticks
+	 * @return center of the text to display
+	 */
+	private Vector3D computeLabelCenter(Vector3D tickPosition, Vector3D tickDirection) {
+		GL gl = getGL();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		Vector3D ticksPosPix = transform.getCanvasCoordinates(gl, tickPosition);
+		Vector3D ticksEndPix = transform.getCanvasCoordinates(gl, tickPosition.add(tickDirection));
+		Vector3D ticksDirPix = ticksEndPix.substract(ticksPosPix);
+		
+		// get text bounding box
+		Vector3D[] pixBoundingBox = getTextDrawer().getBoundingRectangle2D();
+		double boxWidth = Math.abs(pixBoundingBox[0].getX() - pixBoundingBox[2].getX()) / 2.0;
+		double boxHeight = Math.abs(pixBoundingBox[0].getY() - pixBoundingBox[2].getY()) / 2.0;
+		
+		Vector3D textCenter = ticksPosPix.add(ticksDirPix.scalarMult(2.0));
+		
+		// move text in order to put its box in front of ticks
+		// the aim is to put ticks segment and text center aligned
+		if (ticksDirPix.getX() > Math.abs(ticksDirPix.getY())) {
+			textCenter = textCenter.add(new Vector3D(boxWidth, 0.0, 0.0));
+		} else if (ticksDirPix.getX() < -Math.abs(ticksDirPix.getY())) {
+			textCenter = textCenter.add(new Vector3D(-boxWidth, 0.0, 0.0));
+		} else if (ticksDirPix.getY() > Math.abs(ticksDirPix.getX())) {
+			textCenter = textCenter.add(new Vector3D(0.0, boxHeight, 0.0));
+		} else {
+			textCenter = textCenter.add(new Vector3D(0.0, -boxHeight, 0.0));
+		}
+		
+		return transform.retrieveSceneCoordinates(gl, textCenter);
 	}
 	
 	/**
@@ -346,39 +417,15 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	 */
 	protected void drawLabels(Vector3D[] ticksPosition, Vector3D ticksDirection) {
 		int nbLabels = getNbTicks();
-		GL gl = getGL();
-		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		for (int i = 0; i < nbLabels; i++) {
-			Vector3D ticksPosPix = transform.getCanvasCoordinates(gl, ticksPosition[i]);
-			Vector3D ticksEndPix = transform.getCanvasCoordinates(gl, ticksPosition[i].add(ticksDirection));
-			Vector3D ticksDirPix = ticksEndPix.substract(ticksPosPix);
+			
+			if (ticksPosition[i] == null) { continue; }
 			
 			// set label text
-			String[] curLabel = {getTickLabel(i)};
-			getTextDrawer().setTextContent(curLabel, 1, 1);
+			getTextDrawer().setTextContent(getTickLabel(i));
 			
-			// get text bounding box
-			Vector3D[] pixBoundingBox = getTextDrawer().getBoundingRectangle2D();
-			double boxWidth = Math.abs(pixBoundingBox[0].getX() - pixBoundingBox[2].getX()) / 2.0;
-			double boxHeight = Math.abs(pixBoundingBox[0].getY() - pixBoundingBox[2].getY()) / 2.0;
-			
-			Vector3D textCenter = ticksPosPix.add(ticksDirPix.scalarMult(2.0));
-			
-			// move text in order to put its box in front of ticks
-			// the aim is to put ticks segment and text center aligned
-			if (ticksDirPix.getX() > Math.abs(ticksDirPix.getY())) {
-				textCenter = textCenter.add(new Vector3D(boxWidth, 0.0, 0.0));
-			} else if (ticksDirPix.getX() < -Math.abs(ticksDirPix.getY())) {
-				textCenter = textCenter.add(new Vector3D(-boxWidth, 0.0, 0.0));
-			} else if (ticksDirPix.getY() > Math.abs(ticksDirPix.getX())) {
-				textCenter = textCenter.add(new Vector3D(0.0, boxHeight, 0.0));
-			} else {
-				textCenter = textCenter.add(new Vector3D(0.0, -boxHeight, 0.0));
-			}
-			
-			textCenter = transform.retrieveSceneCoordinates(gl, textCenter);
+			Vector3D textCenter = computeLabelCenter(ticksPosition[i], ticksDirection);
 			
 			getTextDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());
 			
@@ -387,8 +434,70 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
+	 * Check if the labels which should be displayed do not concealed each other.
+	 * @param ticksPosition position of ticks along the axis
+	 * @param ticksDirection direction of ticks
+	 * @return true if no labels concealed, false otherwise
+	 */
+	protected boolean checkLabels(Vector3D[] ticksPosition, Vector3D ticksDirection) {
+		
+		int nbLabels = getNbTicks();
+		Vector3D[] curLabelBox;
+		Vector3D[] nextLabelBox;
+		int firstNonNullTicksIndex = 0;
+		
+		// find first non null ticks
+		while (ticksPosition[firstNonNullTicksIndex] == null && firstNonNullTicksIndex < nbLabels) {
+			firstNonNullTicksIndex++;
+		}
+		
+		if (firstNonNullTicksIndex == nbLabels) {
+			// no ticks, no conceal possible
+			return true;
+		}
+		
+		
+		
+		getTextDrawer().setTextContent(getTickLabel(firstNonNullTicksIndex));
+		Vector3D textCenter = computeLabelCenter(ticksPosition[firstNonNullTicksIndex], ticksDirection);
+		curLabelBox = getTextDrawer().getBoundingRectangle2D();
+		
+		for (int i = firstNonNullTicksIndex + 1; i < nbLabels; i++) {
+			if (ticksPosition[i] == null) { continue; }
+			
+			// set label text
+			getTextDrawer().setTextContent(getTickLabel(i));
+			
+			textCenter = computeLabelCenter(ticksPosition[i], ticksDirection);
+			
+			getTextDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());
+			
+			nextLabelBox = getTextDrawer().getBoundingRectangle2D();
+			
+			// remove Z coordinate
+			for (int j = 0; j < GeomAlgos.RECTANGLE_NB_CORNERS; j++) {
+				nextLabelBox[j].setZ(0.0);
+				curLabelBox[j].setZ(0.0);
+			}
+			
+			if (GeomAlgos.areRectangleConcealing(nextLabelBox, curLabelBox)) {			
+				return false;
+			}
+			
+			curLabelBox = nextLabelBox;
+		}
+		return true;
+	}
+	
+	/**
 	 * Draw ticks from the recorded data.
 	 */
 	public abstract void drawTicks();
+	
+	/**
+	 * Check if labels can be displayed has if.
+	 * @return true if ticks can be displayed or false if we need to reduc number of ticks.
+	 */
+	public abstract boolean checkTicks();
 
 }

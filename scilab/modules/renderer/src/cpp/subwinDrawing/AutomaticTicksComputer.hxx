@@ -1,25 +1,25 @@
 /*------------------------------------------------------------------------*/
-/* file: UserDefinedTicksComputer.hxx                                     */
+/* file: AutomaticTicksComputer.hxx                                       */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Compute ticks from ticks given by the user                      */
+/* desc : Compute automatic ticks                                         */
 /*------------------------------------------------------------------------*/
 
-#ifndef _USER_DEFINED_TICKS_COMPUTER_HXX_
-#define _USER_DEFINED_TICKS_COMPUTER_HXX_
+#ifndef _AUTOMATIC_TICKS_COMPUTER_HXX_
+#define _AUTOMATIC_TICKS_COMPUTER_HXX_
 
 #include "ComputeTicksStrategy.hxx"
 
 namespace sciGraphics
 {
 
-class UserDefinedTicksComputer: public ComputeTicksStrategy
+class AutomaticTicksComputer: public ComputeTicksStrategy
 {
 public:
 
-  UserDefinedTicksComputer(DrawableSubwin * subwin);
+  AutomaticTicksComputer(DrawableSubwin * subwin);
 
-  virtual ~UserDefinedTicksComputer(void);
+  virtual ~AutomaticTicksComputer(void);
 
   /**
    * Get the number of ticks which will be computed by the strategy.
@@ -52,24 +52,23 @@ public:
   /**
    * To know if the ticks computer needs decimation.
    */
-  virtual bool needTicksDecimation(void) {return false;}
+  virtual bool needTicksDecimation(void) {return true;}
 
   /**
-   * Set the parameter for drawing user ticks.
-   * @param nbSubticks number of subticks between each ticks.
+   * Set bounds between which we must compute ticks.
    */
-  void setUserTicks(double * userTicksPos, char ** userLabels,
-                    int nbUserTicks, int nbSubticks);
+  void setAxisBounds(double min, double max);
 
 protected:
 
-  double * m_aUserTicksPositions;
-  char ** m_aUserTicksLabels;
-  int m_iNbUserTicks;
-  int m_iNbSubticks;
+  /** Current number of ticks */
+  int m_iNbTicks;
+
+  double m_dMinBounds;
+  double m_dMaxBounds;
 
 };
 
 }
 
-#endif /* _USER_DEFINED_TICKS_COMPUTER_HXX_ */
+#endif /* _AUTOMATIC_TICKS_COMPUTER_HXX_ */

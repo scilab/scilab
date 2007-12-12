@@ -1,0 +1,120 @@
+/*------------------------------------------------------------------------*/
+/* file: AutomaticTicksComputer.cpp                                       */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Compute automatic ticks                                         */
+/*------------------------------------------------------------------------*/
+
+#include "AutomaticTicksComputer.hxx"
+
+extern "C"
+{
+#include "Format.h"
+#include "DrawObjects.h"
+}
+
+namespace sciGraphics
+{
+/*------------------------------------------------------------------------------------------*/
+AutomaticTicksComputer::AutomaticTicksComputer(DrawableSubwin * subwin)
+  : ComputeTicksStrategy(subwin)
+{
+  m_dMinBounds = 0.0;
+  m_dMinBounds = 0.0;
+  m_iNbTicks = -1; /* ie unitialized */
+}
+/*------------------------------------------------------------------------------------------*/
+AutomaticTicksComputer::~AutomaticTicksComputer(void)
+{
+  
+}
+/*------------------------------------------------------------------------------------------*/
+int AutomaticTicksComputer::getNbTicks(void)
+{
+
+  if (m_iNbTicks < 0)
+  {
+    double ticks[20];
+    TheTicks(&m_dMinBounds, &m_dMaxBounds, ticks, &m_iNbTicks, FALSE);
+  }
+  return m_iNbTicks;
+}
+/*------------------------------------------------------------------------------------------*/
+void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[])
+{
+  if (m_iNbTicks < 0)
+  {
+    getNbTicks();
+  }
+
+  // Number of ticks has already been computed.
+  TheTicks(&m_dMinBounds, &m_dMaxBounds, positions, &m_iNbTicks, TRUE);
+
+  // now convert ticks positions in strings for labels
+  // find ticks format
+  char labelsFormat[5];
+  int lastIndex = Max( m_iNbTicks - 1, 0 ) ;
+
+  ChoixFormatE( labelsFormat,
+                positions[0],
+                positions[lastIndex],
+                (positions[lastIndex] - positions[0]) / lastIndex ); /* Adding F.Leray 06.05.04 */
+
+  char buffer[64];
+  for (int i = 0; i < m_iNbTicks; i++)
+  {
+    // convert current position into a string
+    sprintf(buffer, labelsFormat, positions[i]);
+
+    // add the string to labels
+    if (labels[i] != NULL) {delete labels[i];}
+
+    labels[i] = new char[strlen(buffer) + 1];
+    strcpy(labels[i], buffer);
+  }
+  
+
+
+}
+/*------------------------------------------------------------------------------------------*/
+int AutomaticTicksComputer::getNbSubticks(void)
+{
+  return Max(0, ComputeNbSubTics(m_pDrawer->getDrawedObject(), m_iNbTicks, 'n', NULL, 0) * (m_iNbTicks - 1));
+}
+/*------------------------------------------------------------------------------------------*/
+void AutomaticTicksComputer::getSubticksPosition(const double ticksPositions[], int nbTicks,
+                                                 double subTickspositions[])
+{
+  // compute number of subtics
+  int nbSubtics = ComputeNbSubTics(m_pDrawer->getDrawedObject(), m_iNbTicks, 'n', NULL, 0);
+
+  /*    |              |              |    */
+  /* ___|____|____|____|____|____|____|___ */
+  /*   t0             t1             t2   */
+
+  // draw only between two ticks, so skip last one
+  for (int i = 0; i < nbTicks - 1; i++)
+  {
+    // decompose interval in nbsubtics parts
+    double prevTick = ticksPositions[i];
+    double nextTick = ticksPositions[i + 1];
+    for (int j = 0; j < nbSubtics; j++)
+    {
+      subTickspositions[j + nbSubtics * i]
+      =  prevTick + (nextTick - prevTick) * (j + 1.0) / (nbSubtics + 1.0); 
+    }
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void AutomaticTicksComputer::reduceTicksNumber(void)
+{
+  m_iNbTicks = (m_iNbTicks + 1) / 2;
+}
+/*------------------------------------------------------------------------------------------*/
+void AutomaticTicksComputer::setAxisBounds(double min, double max)
+{
+  m_dMinBounds = min;
+  m_dMaxBounds = max;
+}
+/*------------------------------------------------------------------------------------------*/
+}

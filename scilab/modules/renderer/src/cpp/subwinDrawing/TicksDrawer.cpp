@@ -51,8 +51,7 @@ void TicksDrawer::draw(void)
   char ** labels = BasicAlgos::createStringArray(initNbTicks);
   double * ticksPos = new double[initNbTicks];
 
-  m_pTicksComputer->getTicksLabels(labels);
-  m_pTicksComputer->getTicksPosition(ticksPos);
+  m_pTicksComputer->getTicksPosition(ticksPos, labels);
 
   // final number of ticks
   int nbTicks = initNbTicks;
@@ -67,15 +66,14 @@ void TicksDrawer::draw(void)
 
       // get new positions
       nbTicks = m_pTicksComputer->getNbTicks();
-      m_pTicksComputer->getTicksLabels(labels);
-      m_pTicksComputer->getTicksPosition(ticksPos);
+      m_pTicksComputer->getTicksPosition(ticksPos, labels);
     }
   }
 
   // ticks are computed, now we can get subticks
   int nbSubticks = m_pTicksComputer->getNbSubticks();
   double * subticksPos = new double[nbSubticks];
-  m_pTicksComputer->getSubticksPosition(subticksPos);
+  m_pTicksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
 
   // everything is computed so draw!!!
   drawTicks(ticksPos, labels, nbTicks, subticksPos, nbSubticks);

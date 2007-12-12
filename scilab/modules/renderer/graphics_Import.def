@@ -86,3 +86,5 @@ sciGetBoxType
 sciGetHiddenAxisColor
 sciGetAutoTicks
 sciGetAxesVisible
+ChoixFormatE
+ComputeNbSubTics

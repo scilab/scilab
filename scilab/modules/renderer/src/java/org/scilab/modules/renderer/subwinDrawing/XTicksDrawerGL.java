@@ -19,6 +19,8 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public class XTicksDrawerGL extends TicksDrawerGL {
+
+	private static final double MAX_COS = 0.99;
 	
 	/**
 	 * Default consturctor.
@@ -106,6 +108,18 @@ public class XTicksDrawerGL extends TicksDrawerGL {
 		origin = transform.getCanvasCoordinates(gl, origin);
 		Vector3D pixRes = transform.getCanvasCoordinates(gl, res);
 		
+		// if ticks are too close from beeing horizonal, then put them vertical
+		Vector3D ticksDir = pixRes.substract(origin);
+		ticksDir.normalize();
+		if (Math.abs(ticksDir.dotProduct(new Vector3D(1.0, 0.0, 0.0))) > MAX_COS) {
+			if (Math.abs(zCoordinate - getZmin()) < Math.abs(zCoordinate - getZmax())) {
+				// yCoordinate is closer to Ymin
+				res = new Vector3D(0.0, 0.0, getZmin() - getZmax());
+			} else {
+				res = new Vector3D(0.0, 0.0, getZmax() - getZmin());
+			}
+		}
+		pixRes = transform.getCanvasCoordinates(gl, res);
 		// get length in pixels
 		double pixelLength = pixRes.substract(origin).getNorm();
 		
@@ -117,21 +131,47 @@ public class XTicksDrawerGL extends TicksDrawerGL {
 	}
 	
 	/**
-	 * Get the segment to draw in order to draw ticks.
-	 * @param yCoordinate Y coordinate of the X axis
-	 * @param zCoordinate Z coordinate of the X axis
-	 * @return array containing the pair of ticks to draw
+	 * Compute ticks positions from an array of x coordinates
+	 * @param xCoordinates X coordinates of ticks
+	 * @param yCoordinate Y coordinate common for all ticks
+	 * @param zCoordinate Z coordinate common for all ticks
+	 * @return array of vector with only displayable ticks
 	 */
-	public Vector3D[] getTicksPositions(double yCoordinate, double zCoordinate) {
-		int nbTicks = getNbTicks();
+	private Vector3D[] getTicksPosition(double[] xCoordinates, double yCoordinate, double zCoordinate) {
+		int nbTicks = xCoordinates.length;
 		Vector3D[] res = new Vector3D[nbTicks];
 		
 		for (int i = 0; i < nbTicks; i++) {
-			res[i] = new Vector3D(getTickPosition(i), yCoordinate, zCoordinate);
+			double xCoordinate = xCoordinates[i];
+			// remove ticks wich are out of bounds
+			if (xCoordinate <= getXmax() && xCoordinate >= getXmin()) {
+				res[i] = new Vector3D(xCoordinate, yCoordinate, zCoordinate);
+			} else {
+				res[i] = null;
+			}
 		}
-		
+
 		return res;
-		
+	}
+	
+	/**
+	 * Get the base of each ticks segment.
+	 * @param yCoordinate Y coordinate of the X axis
+	 * @param zCoordinate Z coordinate of the X axis
+	 * @return array containing the base of each ticks
+	 */
+	protected Vector3D[] getTicksPositions(double yCoordinate, double zCoordinate) {
+		return getTicksPosition(getTicksPositions(), yCoordinate, zCoordinate);
+	}
+	
+	/**
+	 * Get the base of each ticks segment.
+	 * @param yCoordinate Y coordinate of the X axis
+	 * @param zCoordinate Z coordinate of the X axis
+	 * @return array containing the base of each subticks
+	 */
+	protected Vector3D[] getSubTicksPositions(double yCoordinate, double zCoordinate) {
+		return getTicksPosition(getSubTicksPositions(), yCoordinate, zCoordinate);
 	}
 	
 
@@ -148,11 +188,26 @@ public class XTicksDrawerGL extends TicksDrawerGL {
 		Vector3D axisSegmentEnd = new Vector3D(getXmax(), yCoordinate, zCoordinate);
 		
 		Vector3D[] ticksPosition = getTicksPositions(yCoordinate, zCoordinate);
+		Vector3D[] subticksPosition = getSubTicksPositions(yCoordinate, zCoordinate);
 		Vector3D ticksDirection = findTicksDirection(yCoordinate, zCoordinate);
-		drawTicksLines(ticksPosition, ticksDirection, axisSegmentStart, axisSegmentEnd);
+		drawTicksLines(ticksPosition, subticksPosition, ticksDirection, axisSegmentStart, axisSegmentEnd);
 		
 		drawLabels(ticksPosition, ticksDirection);
 		
+	}
+	
+	/**
+	 * Check if labels can be displayed has if.
+	 * @return true if ticks can be displayed or false if we need to reduc number of ticks.
+	 */
+	public boolean checkTicks() {
+		double zCoordinate = findZCoordinate();
+		double yCoordinate = findYCoordinate(zCoordinate);
+		
+		Vector3D[] ticksPosition = getTicksPositions(yCoordinate, zCoordinate);
+		Vector3D ticksDirection = findTicksDirection(yCoordinate, zCoordinate);
+		
+		return checkLabels(ticksPosition, ticksDirection);
 	}
 
 }

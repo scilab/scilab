@@ -52,11 +52,11 @@ int set_sub_tics_property( sciPointObj * pobj, int stackPointer, int valueType, 
       nbTicks = (int) values[i] ;
       if( nbTicks >= 0 )
       {
-        ppSubWin->axes.nbsubtics[i] = nbTicks + 1 ;
+        ppSubWin->axes.nbsubtics[i] = nbTicks ;
       } 
       else
       {
-        ppSubWin->axes.nbsubtics[i] = 1 ;
+        ppSubWin->axes.nbsubtics[i] = 0 ;
       }
     }
     return SET_PROPERTY_SUCCEED ;

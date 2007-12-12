@@ -31,12 +31,7 @@ public:
    * Fill positions parameters
    * with the ticks abscissas, ordinate, ...
    */
-  virtual void getTicksPosition(double positions[]) = 0;
-
-  /**
-   * Get the label to display for each ticks.
-   */
-  virtual void getTicksLabels(char * labels[]) = 0;
+  virtual void getTicksPosition(double positions[], char * labels[]) = 0;
 
   /**
    * Get the number of subticks which will be computed by the strategy.
@@ -46,7 +41,8 @@ public:
   /**
    * Get the subticks positions.
    */
-  virtual void getSubticksPosition(double positions[]) = 0;
+  virtual void getSubticksPosition(const double ticksPositions[], int nbTicks,
+                                   double subTickspositions[]) = 0;
 
   /**
    * To be called when there are too many ticks.

@@ -28,7 +28,7 @@ int get_sub_tics_property( sciPointObj * pobj )
     int i ;
     for ( i = 0 ; i < 3 ; i++ )
     {
-      sub_ticks[i] = pSUBWIN_FEATURE (pobj)->axes.nbsubtics[i] - 1 ;
+      sub_ticks[i] = pSUBWIN_FEATURE (pobj)->axes.nbsubtics[i];
     }
     if ( sciGetIs3d( pobj ) )
     {

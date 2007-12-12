@@ -8,6 +8,7 @@
 #include "TicksDrawerFactory.hxx"
 #include "XTicksDrawerJoGL.hxx"
 #include "UserDefinedTicksComputer.hxx"
+#include "AutomaticTicksComputer.hxx"
 
 extern "C"
 {
@@ -48,7 +49,11 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
   }
   else
   {
-    newTicksDrawer->setTicksComputer(NULL);
+    AutomaticTicksComputer * ticksComputer = new AutomaticTicksComputer(m_pDrawer);
+    double bounds[6];
+    sciGetDataBounds(pSubwin, bounds);
+    ticksComputer->setAxisBounds(bounds[0], bounds[1]);
+    newTicksDrawer->setTicksComputer(ticksComputer);
   }
 
   return newTicksDrawer;

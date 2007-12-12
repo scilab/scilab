@@ -12,7 +12,7 @@ import java.awt.Font;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.AutoDrawableObjectGL;
+import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.FontManager;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
@@ -23,7 +23,7 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * Abstract class containing for drawing text content of a text object
  * @author Jean-Baptiste Silvy
  */
-public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implements TextRenderingPipeline {
+public abstract class TextContentDrawerGL extends DrawableObjectGL implements TextRenderingPipeline {
 	
 	private StringMatrixGL textMatrix;
 	private TextAlignementStrategy textDrawer;
@@ -65,6 +65,16 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 			textDrawer = new LeftAlignedTextGL();	
 			break;
 		}
+	}
+	
+	/**
+	 * Display the object by displaying its display list
+	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
+	 */
+	public void show(int parentFigureIndex) {
+		initializeDrawing(parentFigureIndex);
+		drawTextContent();
+		endDrawing();
 	}
 	
 	/**
@@ -188,6 +198,15 @@ public abstract class TextContentDrawerGL extends AutoDrawableObjectGL implement
 		
 		textMatrix.setData(text, nbRow, nbCol);
 
+	}
+	
+	/**
+	 * Specify a single string to display
+	 * @param text string to be displayed
+	 */
+	public void setTextContent(String text) {
+		String[] textArray = {text};
+		setTextContent(textArray, 1, 1);
 	}
 	
 	/**

@@ -498,6 +498,10 @@
 				Name="SubwinDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\AutomaticTicksComputer.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\BackTrihedronDrawerGL.cpp"
 					>
 				</File>
@@ -1171,6 +1175,10 @@
 			<Filter
 				Name="SubwinDrawing"
 				>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\AutomaticTicksComputer.hxx"
+					>
+				</File>
 				<File
 					RelativePath=".\src\jni\BackTrihedronDrawerGL.hxx"
 					>
