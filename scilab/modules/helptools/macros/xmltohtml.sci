@@ -1152,9 +1152,15 @@ function result = need_to_be_build(directory,directory_language,default_language
 	
 	[lhs,rhs]=argn(0);
 	
-	xml_file_list = listfiles(directory+"/*.xml");
+	// S'il n'y a pas de fichiers XML dans le répertoire ni dans son homologue,
+	// Le répertoire n'a pas besoin d'être construit.
+	// Cela est une sécurité pour éviter de detruire les whatis des versions binaires
+	// où il n'y a pas de fichiers XML
 	
-	if xml_file_list == [] then
+	xml_file_list    = listfiles(directory+"/*.xml");
+	xml_df_file_list = listfiles(pathconvert(directory+"/../"+default_language,%f,%f)+"/*.xml");
+	
+	if (xml_file_list == []) & (xml_df_file_list == []) then
 		result = %F;
 		return;
 	end
