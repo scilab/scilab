@@ -49,7 +49,7 @@ end
 if unk then
   error(gettext("Unknown type in mtlb_format()."))
 elseif ratf|loose|compact|bank|hex then
-  warning(msprintf(gettext("Unknown type %s in mtlb_format(): INGNORED."),type));
+  warning(msprintf(gettext("Unknown type %s in mtlb_format(): IGNORED."),type));
 else
   if rhs1==1 then
     format(d+1)
