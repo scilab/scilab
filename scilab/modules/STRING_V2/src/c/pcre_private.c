@@ -7,6 +7,7 @@
 #include <locale.h>
 #include <errno.h>
 #include "MALLOC.h"
+#include "BOOL.h"
 #include "pcre_private.h"
 #include <pcre.h>
 

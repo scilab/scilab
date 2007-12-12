@@ -11,7 +11,6 @@ src/c/men_Sutils.c \
 src/c/strsplit.c \
 src/c/CreateEmptystr.c \
 src/c/tokens.c \
-src/c/strcat-c.c \
 src/c/strcatfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \

@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "gw_string.h"
 #include "MALLOC.h" 
 #include "stripblanks.h"
