@@ -15,7 +15,7 @@ cd(TMPDIR);
 mkdir(TMPDIR+'/test_bug2639');
 files_1 = ls(TMPDIR+'/test_bug2639');
 cd(TMPDIR+'/test_bug2639');
-files_2 = ls;
+files_2 = ls();
 
 if files_1 <> [] | files_2 <> [] then pause,end
 
