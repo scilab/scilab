@@ -1600,7 +1600,6 @@ libscigraphics_la_CFLAGS =  \
 #### graphics : demos files ####
 @GUI_TRUE@libscigraphics_la_demosdir = $(mydatadir)
 @GUI_TRUE@nobase_libscigraphics_la_demos_DATA = demos/peaks.sci \
-@GUI_TRUE@demos/2d_3d_plots \
 @GUI_TRUE@demos/2d_3d_plots/fplot2d.dem.sce \
 @GUI_TRUE@demos/2d_3d_plots/grayplot.dem.sce \
 @GUI_TRUE@demos/2d_3d_plots/champ.dem.sce \
@@ -1633,7 +1632,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/2d_3d_plots/fchamp.dem.sce \
 @GUI_TRUE@demos/portrait.dem \
 @GUI_TRUE@demos/xsetechfig.sce \
-@GUI_TRUE@demos/fec \
 @GUI_TRUE@demos/fec/MESH \
 @GUI_TRUE@demos/fec/fec.ex4 \
 @GUI_TRUE@demos/fec/fec.info \
@@ -1644,26 +1642,21 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/fec/fec.ex3 \
 @GUI_TRUE@demos/fec/fec.ex2 \
 @GUI_TRUE@demos/bike.dem \
-@GUI_TRUE@demos/misc \
 @GUI_TRUE@demos/misc/misc.dem \
 @GUI_TRUE@demos/misc/oscil.dem \
 @GUI_TRUE@demos/misc/numerique.dem \
 @GUI_TRUE@demos/misc/oscil.sci \
 @GUI_TRUE@demos/misc/point.dem \
-@GUI_TRUE@demos/surface \
 @GUI_TRUE@demos/surface/Macros.sci \
 @GUI_TRUE@demos/surface/surfaces.sci \
 @GUI_TRUE@demos/surface/bezier.dem \
 @GUI_TRUE@demos/surface/bezier.sci \
 @GUI_TRUE@demos/surface/surfaces.dem \
-@GUI_TRUE@demos/cmplxfunc \
 @GUI_TRUE@demos/cmplxfunc/MacCmplx.sci \
 @GUI_TRUE@demos/cmplxfunc/cmplxfunc.dem \
-@GUI_TRUE@demos/bar \
 @GUI_TRUE@demos/bar/bar.dem \
 @GUI_TRUE@demos/graphics.dem.gateway.sce \
 @GUI_TRUE@demos/sd.sav \
-@GUI_TRUE@demos/basic_functions \
 @GUI_TRUE@demos/basic_functions/basic_functions_4.dem.sce \
 @GUI_TRUE@demos/basic_functions/basic_functions_6.dem.sce \
 @GUI_TRUE@demos/basic_functions/basic_functions_1.dem.sce \
@@ -1674,9 +1667,7 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/basic_functions/basic_functions_8.dem.sce \
 @GUI_TRUE@demos/basic_functions/basic_functions_5.dem.sce \
 @GUI_TRUE@demos/contourf.dem \
-@GUI_TRUE@demos/anim \
 @GUI_TRUE@demos/anim/riemann.sci \
-@GUI_TRUE@demos/anim/~anim6.sci \
 @GUI_TRUE@demos/anim/anim8.dem \
 @GUI_TRUE@demos/anim/yt.wrt \
 @GUI_TRUE@demos/anim/anim6.dem \

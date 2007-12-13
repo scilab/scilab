@@ -564,7 +564,6 @@ includes/ObjectSelection.h
 #### graphics : demos files ####
 libscigraphics_la_demosdir=$(mydatadir)
 nobase_libscigraphics_la_demos_DATA = demos/peaks.sci \
-demos/2d_3d_plots \
 demos/2d_3d_plots/fplot2d.dem.sce \
 demos/2d_3d_plots/grayplot.dem.sce \
 demos/2d_3d_plots/champ.dem.sce \
@@ -597,7 +596,6 @@ demos/2d_3d_plots/plot2d3.dem.sce \
 demos/2d_3d_plots/fchamp.dem.sce \
 demos/portrait.dem \
 demos/xsetechfig.sce \
-demos/fec \
 demos/fec/MESH \
 demos/fec/fec.ex4 \
 demos/fec/fec.info \
@@ -608,26 +606,21 @@ demos/fec/fec.ex1 \
 demos/fec/fec.ex3 \
 demos/fec/fec.ex2 \
 demos/bike.dem \
-demos/misc \
 demos/misc/misc.dem \
 demos/misc/oscil.dem \
 demos/misc/numerique.dem \
 demos/misc/oscil.sci \
 demos/misc/point.dem \
-demos/surface \
 demos/surface/Macros.sci \
 demos/surface/surfaces.sci \
 demos/surface/bezier.dem \
 demos/surface/bezier.sci \
 demos/surface/surfaces.dem \
-demos/cmplxfunc \
 demos/cmplxfunc/MacCmplx.sci \
 demos/cmplxfunc/cmplxfunc.dem \
-demos/bar \
 demos/bar/bar.dem \
 demos/graphics.dem.gateway.sce \
 demos/sd.sav \
-demos/basic_functions \
 demos/basic_functions/basic_functions_4.dem.sce \
 demos/basic_functions/basic_functions_6.dem.sce \
 demos/basic_functions/basic_functions_1.dem.sce \
@@ -638,9 +631,7 @@ demos/basic_functions/basic_functions.dem.gateway.sce \
 demos/basic_functions/basic_functions_8.dem.sce \
 demos/basic_functions/basic_functions_5.dem.sce \
 demos/contourf.dem \
-demos/anim \
 demos/anim/riemann.sci \
-demos/anim/~anim6.sci \
 demos/anim/anim8.dem \
 demos/anim/yt.wrt \
 demos/anim/anim6.dem \
