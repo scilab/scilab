@@ -91,7 +91,7 @@
     <TABLE>
       <TABLE_NEW_ROW>
         <TABLE_NEW_COLUMN>      op</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>char code</TABLE_NEW_COLUMN>/usr/local/lib/scilab5svn/modules/overloading/help/en_US/overloading.xml
+        <TABLE_NEW_COLUMN>char code</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>      op</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>char code</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
@@ -146,7 +146,7 @@
       <TABLE_NEW_ROW>
         <TABLE_NEW_COLUMN>    <VERB>\.</VERB>        </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    w</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>   [a,b]     </TABLE_NEW_COLUMN>/usr/local/lib/scilab5svn/modules/overloading/help/en_US/overloading.xml
+        <TABLE_NEW_COLUMN>   [a,b]     </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    c</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
       <TABLE_NEW_ROW>
