@@ -56,7 +56,13 @@ function [status,msg]=copyfile(varargin)
     Status=0;
     ErrorMessage='Source directory '+SourceDir+' does not exist or is unreadable.';
   else
-    Rep=ls(Src)
+
+   if MSDOS then
+     Rep=ls(fullfile(SourceDir,SourceFile))
+   else
+     Rep=ls(Src)
+   end
+    
     if (Rep==[]) then
 // Check the source file existes
       Status=0;
@@ -73,12 +79,7 @@ function [status,msg]=copyfile(varargin)
   if (Status==1) then
     if MSDOS then
       cmd='copy '+Src+' '+Dest;
-      ver=OS_Version();
-      if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
-	batchlog = ' >'+ TMPDIR+'\copyfile.out';
-      else
-	batchlog = ' >'+ TMPDIR+'\copyfile.out' +' 2>'+TMPDIR+'\copyfile.err';
-      end
+	    batchlog = ' >'+ TMPDIR+'\copyfile.out' +' 2>'+TMPDIR+'\copyfile.err';
     else
       cmd='cp '+Src+' '+Dest;
       batchlog = ' >'+ TMPDIR+'/copyfile.out' +' 2>'+TMPDIR+'/copyfile.err';
@@ -87,16 +88,11 @@ function [status,msg]=copyfile(varargin)
     status=unix(cmdline);
     if (status~=0) then
       if MSDOS then
-	ver=OS_Version();
-	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
-	  msg='Error :'+cmd;
-	else
-	  msg='Error : '+mgetl(TMPDIR+'\copyfile.err');
-	  msg=msg+' '+mgetl(TMPDIR+'\copyfile.out');
-	end
+	      msg='Error : '+mgetl(TMPDIR+'\copyfile.err');
+	      msg=msg+' '+mgetl(TMPDIR+'\copyfile.out');
       else
-	msg='Error : '+mgetl(TMPDIR+'/copyfile.err');
-	msg=msg+' '+mgetl(TMPDIR+'/copyfile.out');
+	      msg='Error : '+mgetl(TMPDIR+'/copyfile.err');
+	      msg=msg+' '+mgetl(TMPDIR+'/copyfile.out');
       end
       status=0;
     else
@@ -106,32 +102,22 @@ function [status,msg]=copyfile(varargin)
 
     if (Writable==%T) & (status==1) then
       if MSDOS then
-	ver=OS_Version();
-	cmd='attrib -r '+ Dest;
-	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
-	  batchlog = ' >'+ TMPDIR+'\attrib.out';
-	else
-	  batchlog = ' >'+ TMPDIR+'\attrib.out' +' 2>'+TMPDIR+'\attrib.err';
-	end
+	      cmd='attrib -r '+ Dest;
+	      batchlog = ' >'+ TMPDIR+'\attrib.out' +' 2>'+TMPDIR+'\attrib.err';
       else
-	cmd='chmod +w '+ Dest;
-	batchlog = ' >'+ TMPDIR+'\attrib.out' +' 2>'+TMPDIR+'\attrib.err';
+	      cmd='chmod +w '+ Dest;
+	      batchlog = ' >'+ TMPDIR+'\attrib.out' +' 2>'+TMPDIR+'\attrib.err';
       end
       cmdline =cmd+batchlog;
       status=unix(cmdline);
       if (status~=0) then
-	if MSDOS then
-	  ver=OS_Version();
-	  if ver == 'Windows 98' | ver == 'Windows 95' then
-	    msg='Error :'+cmd;
-	  else
-	    msg='Error : '+mgetl(TMPDIR+'\attrib.err');
-	    msg=msg+' '+mgetl(TMPDIR+'\attrib.out');
-	  end
-	else
-	  msg='Error : '+mgetl(TMPDIR+'/attrib.err');
-	  msg=msg+' '+mgetl(TMPDIR+'/attrib.out');
-	end
+	      if MSDOS then
+	        msg='Error : '+mgetl(TMPDIR+'\attrib.err');
+	        msg=msg+' '+mgetl(TMPDIR+'\attrib.out');
+	      else
+	        msg='Error : '+mgetl(TMPDIR+'/attrib.err');
+	        msg=msg+' '+mgetl(TMPDIR+'/attrib.out');
+	      end
       end
     end
   else

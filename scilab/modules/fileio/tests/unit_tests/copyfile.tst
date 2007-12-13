@@ -1,5 +1,6 @@
 // =============================================================================
-// Auhtor : Bruno JOFRET
+// Authors : Bruno JOFRET
+//           CORNET Allan
 //          Scilab Team
 // Copyright INRIA 2007
 //
@@ -7,13 +8,24 @@
 //
 // Unitary tests for copyfile function
 // =============================================================================
-
-// TEST 1 : absolute path
-
+// TEST 1 : copyfile
 cd TMPDIR;
 mkdir test_copyfile_source;
 mkdir test_copyfile_target;
 
-// if status_1 <> 1      then pause,end
-// if ~isdir(test_1_dir) then pause,end
+cd('test_copyfile_source');
+mputl('I am a dummy String', 'dummyFile.dummy')
+lsResult = ls("dummyFile.dummy");
+if lsResult == [] then pause,end
 
+r = copyfile(TMPDIR+'/test_copyfile_source/dummyFile.dummy',TMPDIR+'/test_copyfile_target/dummyFile.dummy');
+if r <> 1 then pause,end
+
+lsResult = ls(TMPDIR+'/test_copyfile_target/dummyFile.dummy');
+if lsResult == [] then pause,end
+mdelete(TMPDIR+'/test_copyfile_source/dummyFile.dummy');
+mdelete(TMPDIR+'/test_copyfile_target/dummyFile.dummy');
+
+rmdir(TMPDIR+'/test_copyfile_source');
+rmdir(TMPDIR+'/test_copyfile_target');
+// =============================================================================
