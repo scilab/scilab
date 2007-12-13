@@ -25,19 +25,28 @@ function files=ls(varargin)
     
     path=stripblanks(strsubst(stripblanks(path),' ','\ '));
     if and(opts<>'-b')&and(opts<>'--escape') then opts=[opts '-b'],end
+    
     tab=%f;
+    
     if and(opts<>'-1') then
-      if and(opts<>'-C') then opts=[opts '-C'],end
-      ll=lines();ll=max(ll(1),20);
-       opts=[opts '-w '+string(ll), '-T 0'];
-       tab=%t;
+      if and(opts<>'-C') then 
+        opts=[opts '-C'];
+      end
+      ll   = lines();
+      ll   = max(ll(1),20);
+      opts = [opts '-w '+string(ll), '-T 0'];
+      tab  = %t;
     end
+    
     files=unix_g('ls '+strcat(opts,' ')+' '+path);
-    if files== "" then 
-      files=[],
+    
+    if (files == "") | (files == []) then 
+      files=[];
+      return;
     elseif tab then 
-      files=part(files,1:max(length(files))),
+      files=part(files,1:max(length(files)));
     end
   end
   
 endfunction
+
