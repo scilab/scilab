@@ -270,7 +270,7 @@ static int strncmpic(char *s, char *t, int n)
 consist of a regular expression, in delimiters and optionally followed by
 options, followed by a set of test data, terminated by an empty line. */
 
-int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End)
+pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End)
 {
 	int options = 0;
 	int study_options = 0;
@@ -892,7 +892,7 @@ int pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_
 					{
 						*Output_Start=use_offsets[i];
 						*Output_End=use_offsets[i+1];
-						return 0;
+						return TOO_BIG_FOR_OFFSET_SIZE;
 					}
 				}
 
