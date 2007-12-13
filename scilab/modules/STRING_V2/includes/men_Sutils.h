@@ -1,16 +1,46 @@
-#ifndef MEN_SUTIL_PROTO
-#define MEN_SUTIL_PROTO
+/*--------------------------------------------------------------------------*/ 
+/* Copyright INRIA*/
+/*--------------------------------------------------------------------------*/ 
+#ifndef __MEN_SUTILS_H__
+#define __MEN_SUTILS_H__
 
-/** men_Sutils.c **/
-/* Copyright Inria/Enpc */
+/**
+* Converts a Scilab String coded as integer array
+* into a C string [ the C string is allocated with MALLOC ]
+* @param[in] size of integer array
+* @param[in] integer array
+* @param[out] C string converted from integer array
+* @param[out] error code 0 = OK , 1 = Problem
+*/
+void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr);
 
-#include "machine.h"
-  
-extern void strwidth __PARAMS((char *, int *, int *));  
-extern void ScilabStr2C __PARAMS((int *n, int *, char **, int *));  
-extern void ScilabMStr2CM __PARAMS((int *, int *, int *, char ***, int *));  
-extern void ScilabMStr2C __PARAMS((int *, int *, int *, char **, int *));  
-extern void ScilabC2MStr2 __PARAMS((int*,int *,int *,char *,int *, int,int)); 
-extern void ScilabCM2MStr __PARAMS((char **,int,int *,int *,int ,int *));  
 
-#endif /*  MEN_SUTIL_PROTO */
+/**
+* Converts a Scilab array of 
+* String coded as integer array
+* into a C array of strings [ NULL terminated ]
+* @param[in] Scistring
+* @param[in] nstring
+* @param[in] ptrstrings
+* @param[out] C string converted from integer array
+* @param[out] error code 0 = OK , 1 = Problem
+*/
+void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, int *ierr);
+
+/**
+* Converts a Scilab array of 
+* String coded as integer array
+* into a C string where all the Scilab strings are
+* separated by '\n' or '\r\n' (windows)
+* desc,nd,ptrdesc : scilab string info 
+* strh : the C coded string 
+* @param[in] descriptor
+* @param[in] size of array of integer
+* @param[in] pointer on descriptor
+* @param[out] C string converted from integer array
+* @param[out] error code 0 = OK , 1 = Problem
+*/
+void ScilabMStr2C(int *desc, int *nd, int *ptrdesc, char **strh, int *ierr);
+
+#endif /*  __MEN_SUTILS_H__ */
+/*--------------------------------------------------------------------------*/ 
