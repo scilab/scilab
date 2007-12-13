@@ -44,6 +44,12 @@ public:
 
   virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks);
 
+  virtual void drawTicks(const double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
+                         int nbTicks, const double subticksPositions[], int nbSubticks);
+
+  virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[],
+                          char * labelsExponents[], int nbTicks);
+
   virtual void setAxesBounds(double xMin, double xMax,
                              double yMin, double yMax,
                              double zMin, double zMax);

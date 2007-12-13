@@ -71,6 +71,32 @@ bool XTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ti
                                    ticksLabels, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
+void XTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
+                                       char * labelsExponents[], int nbTicks,
+                                       const double subticksPositions[], int nbSubticks)
+{
+  /*m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
+                           ticksLabels, nbTicks,
+                           labelsExponents, nbTicks,
+                           (double *)subticksPositions, nbSubticks);*/
+  m_pJavaObject->setLabelsExponents(labelsExponents, nbTicks);
+  m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
+                            ticksLabels, nbTicks,
+                            (double *)subticksPositions, nbSubticks);
+}
+/*--------------------------------------------------------------------------*/
+bool XTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],
+                                        char * labelsExponents[], int nbTicks)
+{
+  
+ /* return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
+                                    ticksLabels, nbTicks,
+                                    labelsExponents, nbTicks);*/
+  m_pJavaObject->setLabelsExponents(labelsExponents, nbTicks);
+  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
+                                   ticksLabels, nbTicks);
+}
+/*--------------------------------------------------------------------------*/
 void XTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
                                            double yMin, double yMax,
                                            double zMin, double zMax)

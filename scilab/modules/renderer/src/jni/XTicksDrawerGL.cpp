@@ -106,6 +106,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetBoxParametersjintjintjintjintjfloatID=NULL; 
 jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
 voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
+voidsetLabelsExponentsjobjectArrayID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
 
@@ -138,6 +139,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetBoxParametersjintjintjintjintjfloatID=NULL; 
 jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
 voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
+voidsetLabelsExponentsjobjectArrayID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
 
@@ -399,6 +401,52 @@ jdoubleArray subticksPositions_ = curEnv->NewDoubleArray( subticksPositionsSize 
 curEnv->SetDoubleArrayRegion( subticksPositions_, 0, subticksPositionsSize, (jdouble*) subticksPositions ) ;
 
                          curEnv->CallVoidMethod( this->instance, voiddrawTicksjdoubleArrayjobjectArrayjdoubleArrayID ,ticksPositions_, ticksLabels_, subticksPositions_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void XTicksDrawerGL::setLabelsExponents (char ** labelsExponents, int labelsExponentsSize){
+
+JNIEnv * curEnv = getCurrentEnv();
+                jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetLabelsExponentsjobjectArrayID = curEnv->GetMethodID(this->instanceClass, "setLabelsExponents", "([Ljava/lang/String;)V" ) ;
+if (voidsetLabelsExponentsjobjectArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setLabelsExponents" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// Might be saved. No need to find it each time.
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+// create java array of strings.
+jobjectArray labelsExponents_ = curEnv->NewObjectArray( labelsExponentsSize, stringArrayClass, NULL);
+if (labelsExponents_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < labelsExponentsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( labelsExponents[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( labelsExponents_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallVoidMethod( this->instance, voidsetLabelsExponentsjobjectArrayID ,labelsExponents_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

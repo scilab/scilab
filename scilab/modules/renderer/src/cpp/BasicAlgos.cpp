@@ -42,6 +42,8 @@ void BasicAlgos::stringArrayCopy(char * dest[], char * src[], int nbElement)
 /*------------------------------------------------------------------------------------------*/
 void BasicAlgos::destroyStringArray(char * src[], int nbElement)
 {
+  if (src == NULL) {return;}
+
   for (int i = 0; i < nbElement; i++)
   {
     delete[] src[i];

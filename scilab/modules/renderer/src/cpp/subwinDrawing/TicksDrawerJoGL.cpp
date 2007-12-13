@@ -27,16 +27,36 @@ TicksDrawerJoGL::~TicksDrawerJoGL(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-void TicksDrawerJoGL::drawTicks(double ticksPositions[], char * ticksLabels[], int nbTicks,
-                                double subticksPositions[], int nbSubtics)
+void TicksDrawerJoGL::drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
+                                int nbTicks, double subticksPositions[], int nbSubtics)
 {
-  getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels, nbTicks,
-                                        subticksPositions, nbSubtics);
+  if (labelsExponents == NULL)
+  {
+    getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels, nbTicks,
+                                          subticksPositions, nbSubtics);
+  }
+  else
+  {
+    getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels,
+                                          labelsExponents, nbTicks,
+                                          subticksPositions, nbSubtics);
+  }
+  
 }
 /*------------------------------------------------------------------------------------------*/
-bool TicksDrawerJoGL::checkTicks(double ticksPositions[], char * ticksLabels[], int nbTicks)
+bool TicksDrawerJoGL::checkTicks(double ticksPositions[], char * ticksLabels[],
+                                 char * labelsExponents[], int nbTicks)
 {
-  return getTicksDrawerJavaMapper()->checkTicks(ticksPositions, ticksLabels, nbTicks);
+  if (labelsExponents == NULL)
+  {
+    return getTicksDrawerJavaMapper()->checkTicks(ticksPositions, ticksLabels, nbTicks);
+  }
+  else
+  {
+    return getTicksDrawerJavaMapper()->checkTicks(ticksPositions, ticksLabels,
+                                                  labelsExponents, nbTicks);
+  }
+  
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawerJoGL::initializeDrawing(void)

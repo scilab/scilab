@@ -32,6 +32,10 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
 {
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
 
+  BOOL axesVisible[3];
+  sciGetAxesVisible(pSubwin, axesVisible);
+  if (!axesVisible[0]) {return NULL;}
+
   XTicksDrawerJoGL * newTicksDrawer = new XTicksDrawerJoGL(m_pDrawer);
   
   BOOL autoTicks[3];

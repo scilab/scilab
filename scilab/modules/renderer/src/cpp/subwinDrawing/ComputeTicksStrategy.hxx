@@ -31,7 +31,7 @@ public:
    * Fill positions parameters
    * with the ticks abscissas, ordinate, ...
    */
-  virtual void getTicksPosition(double positions[], char * labels[]) = 0;
+  virtual void getTicksPosition(double positions[], char * labels[], char * labelsExponents[]) = 0;
 
   /**
    * Get the number of subticks which will be computed by the strategy.
@@ -54,6 +54,11 @@ public:
    * To know if the ticks computer needs decimation.
    */
   virtual bool needTicksDecimation(void) = 0;
+
+  /**
+   * To know if we need to get ticks exposants or not.
+   */
+  virtual bool isDisplayingLabelsExponents(void) = 0;
 
 protected:
 

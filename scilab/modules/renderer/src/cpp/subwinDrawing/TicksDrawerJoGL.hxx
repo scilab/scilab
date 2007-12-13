@@ -28,13 +28,14 @@ protected:
   /**
    * Draw the ticks on the right axis.
    */
-  virtual void drawTicks(double ticksPositions[], char * ticksLabels[], int nbTicks,
-                         double subticksPositions[], int nbSubtics);
+  virtual void drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
+                         int nbTicks, double subticksPositions[], int nbSubtics);
 
   /**
    * Check if the ticks do not conceal each others.
    */
-  virtual bool checkTicks(double ticksPositions[], char * ticksLabels[], int nbTicks);
+  virtual bool checkTicks(double ticksPositions[], char * ticksLabels[],
+                          char * labelsExponents[], int nbTicks);
 
   /**
    * Specify initialize drawing in setting all useful parameters.

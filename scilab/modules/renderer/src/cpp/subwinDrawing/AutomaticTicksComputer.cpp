@@ -40,7 +40,7 @@ int AutomaticTicksComputer::getNbTicks(void)
   return m_iNbTicks;
 }
 /*------------------------------------------------------------------------------------------*/
-void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[])
+void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[], char * labelsExponents[])
 {
   if (m_iNbTicks < 0)
   {

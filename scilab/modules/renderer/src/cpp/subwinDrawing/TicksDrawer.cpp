@@ -50,8 +50,14 @@ void TicksDrawer::draw(void)
   int initNbTicks = m_pTicksComputer->getNbTicks();
   char ** labels = BasicAlgos::createStringArray(initNbTicks);
   double * ticksPos = new double[initNbTicks];
+  char ** labelsExponents = NULL;
 
-  m_pTicksComputer->getTicksPosition(ticksPos, labels);
+  if (m_pTicksComputer->isDisplayingLabelsExponents())
+  {
+    labelsExponents = BasicAlgos::createStringArray(initNbTicks);
+  }
+
+  m_pTicksComputer->getTicksPosition(ticksPos, labels, labelsExponents);
 
   // final number of ticks
   int nbTicks = initNbTicks;
@@ -59,14 +65,14 @@ void TicksDrawer::draw(void)
   // decimate ticks if needed
   if (m_pTicksComputer->needTicksDecimation())
   {
-    while(!checkTicks(ticksPos, labels, nbTicks))
+    while(!checkTicks(ticksPos, labels, labelsExponents, nbTicks))
     {
       m_pTicksComputer->reduceTicksNumber();
       // there is less ticks and positions, no need to reallocate smaller arrays
 
       // get new positions
       nbTicks = m_pTicksComputer->getNbTicks();
-      m_pTicksComputer->getTicksPosition(ticksPos, labels);
+      m_pTicksComputer->getTicksPosition(ticksPos, labels, labelsExponents);
     }
   }
 
@@ -76,7 +82,13 @@ void TicksDrawer::draw(void)
   m_pTicksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
 
   // everything is computed so draw!!!
-  drawTicks(ticksPos, labels, nbTicks, subticksPos, nbSubticks);
+  drawTicks(ticksPos, labels, labelsExponents, nbTicks, subticksPos, nbSubticks);
+
+  // clear used data
+  if (m_pTicksComputer->isDisplayingLabelsExponents())
+  {
+    BasicAlgos::destroyStringArray(labelsExponents, initNbTicks);
+  }
 
   BasicAlgos::destroyStringArray(labels, initNbTicks);
 

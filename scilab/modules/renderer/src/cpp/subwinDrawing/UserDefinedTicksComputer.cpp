@@ -30,7 +30,7 @@ int UserDefinedTicksComputer::getNbTicks(void)
   return m_iNbUserTicks;
 }
 /*------------------------------------------------------------------------------------------*/
-void UserDefinedTicksComputer::getTicksPosition(double positions[], char * labels[])
+void UserDefinedTicksComputer::getTicksPosition(double positions[], char * labels[], char * labelsExponents[])
 {
   for (int i = 0; i < m_iNbUserTicks; i++)
   {
