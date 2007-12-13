@@ -1,0 +1,25 @@
+// =============================================================================
+// Auhtor : Bruno JOFRET
+//          Scilab Team
+// Copyright INRIA 2007
+//
+// Date   : 13/12/2007
+//
+// Unitary tests for mdelete function
+// =============================================================================
+
+// TEST 1 : dummy file
+cd TMPDIR;
+mputl('I am a dummy String', 'dummyFile.dummy')
+lsResult = ls("dummyFile.dummy")
+
+// Testing if the file created exists
+if lsResult == []      then pause,end
+
+// Now trying to delete it
+mdelete dummyFile.dummy
+// Test if the file has been deleted or not
+lsResult = ls("dummyFile.dummy")
+
+// Testing if the file is effectively dead
+if lsResult <> []      then pause,end
