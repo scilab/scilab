@@ -22,6 +22,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 */
 	public SwingScilabPushButton() {
 		super();
+		this.setFocusable(false);
 	}
 
 	/**
@@ -83,7 +84,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * @param commandType the type of the command that will be executed.
 	 */
 	public void setCallback(String command, int commandType) {
-		super.addActionListener(ScilabCallBack.create(command, commandType));
+		addActionListener(ScilabCallBack.create(command, commandType));
 	}
 
 	/**
