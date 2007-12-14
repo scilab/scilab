@@ -72,8 +72,7 @@ src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
 src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
-src/jni/Object.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
 src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
 src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
 src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
@@ -168,7 +167,8 @@ src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp \
 src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
 src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
 src/cpp/BasicAlgos.cpp \
-src/cpp/subwinDrawing/AutomaticTicksComputer.cpp
+src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
+src/jni/GraphicSynchronizerJava.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
