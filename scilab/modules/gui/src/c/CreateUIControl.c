@@ -7,7 +7,6 @@
 
 #include "CreateUIControl.h"
 #include "ObjectStructure.h"
-#include "CreateUIControl.h"
 #include "PushButton.h"
 /**CreateUIControl
  * This function creates Uicontrol structure.
