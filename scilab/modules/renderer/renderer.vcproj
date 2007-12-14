@@ -319,10 +319,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\jni\Object.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\SetJavaProperty.cpp"
 				>
 			</File>
@@ -1022,10 +1018,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\HandleObserverManagement.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\jni\Object.hxx"
 				>
 			</File>
 			<File
