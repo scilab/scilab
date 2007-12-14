@@ -3,17 +3,17 @@
 
 /* Copyright INRIA */
 /* Vincent COUVERT 2007 */
-void CallJxclick();
+void CallJxclick(void);
 
-int getJxclickMouseButtonNumber();
+int getJxclickMouseButtonNumber(void);
 
-double getJxclickXCoordinate();
+double getJxclickXCoordinate(void);
 
-double getJxclickYCoordinate();
+double getJxclickYCoordinate(void);
 
-int getJxclickWindowID();
+int getJxclickWindowID(void);
 
-char * getJxclickMenuCallback();
+char * getJxclickMenuCallback(void);
 
 #endif
 
