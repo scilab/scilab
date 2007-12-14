@@ -40,7 +40,6 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
     int outIndex = 0;
     int numRow = 1;
 
-	int *next= NULL;   /* This const is just for testing. I will make it better soon*/
 	int *values = NULL;
     int *position = NULL;
 
@@ -87,15 +86,13 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 
 	if ( (int)strlen(Str[0]) == 0 ) 
 	{
-		next = (int *)MALLOC(sizeof(int));
 		values = (int *)MALLOC(sizeof(int));
 		position = (int *)MALLOC(sizeof(int));
 	}
 	else
 	{
-		next = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) * strlen(Str[0]) ) );
-		values = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) * strlen(Str[0]) ) );
-		position = (int *)MALLOC( sizeof(int) * ( strlen(Str[0])*strlen(Str[0]) ) );
+		values = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) ) );
+		position = (int *)MALLOC( sizeof(int) * ( strlen(Str[0])) );
 	}
 
     if (Rhs >= 3)
@@ -136,10 +133,10 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		for (x=0; x < mn2 ;++x)
         {
 			int w = 0;
+			int w1=0;
 			
             if ( strlen(Str2[x]) == 0 )
             {
-				if (next) {FREE(next); next = NULL;}
 				if (values) {FREE(values); values = NULL;}
 				if (position) {FREE(position); position = NULL;}
 				Scierror(999, _("Second input argument can not be an empty string.\n"));
@@ -148,19 +145,21 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 
 			if (Str2)
 			{
-				do
-				{	
-					getnext(Str2[x],next);
-					/*Str is the input string matrix, Str2[x] is the substring to match; pos is the start point*/
-					w = kmp(*Str,Str2[x],pos,next);      
-					if (w !=0)
-					{            
-						values[nbValues++] = w;
-						position[nbposition++] = x+1;
-					}
-					pos = w;
+				
+				for (w=0; w<strlen(Str[0]);w++)
+				{
+					pos=0;
+					w1=w;
+			        for ( ; Str[0][w1]==Str2[x][pos] && Str[0][w1]!='\0';w1++,pos++) ;
+                    if (pos == strlen(Str2[x])) 
+						{
+							values[nbValues++] = w1-strlen(Str2[x])+1;
+							position[nbposition++] = x+1;
+							pos=0;
+						}
 				}
-				while(w != 0);/* w is the answer of the kmp algorithem*/
+
+
 			}
         }
     }
@@ -189,7 +188,6 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 
     C2F(putlhsvar)();
 
-    if (next) {FREE(next); next = NULL;}
     if (values) {FREE(values); values = NULL;}
     if (position) {FREE(position); position = NULL;}
 
