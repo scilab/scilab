@@ -10,6 +10,7 @@
 #include "sci_xclick.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "CurrentObjectsManagement.h"
 #include "gw_graphics.h"
 #include "CallJxclick.h"
 
@@ -30,6 +31,9 @@ int sci_xclick(char *fname,unsigned long fname_len)
   CheckLhs(1,5) ;
 
   //iflag = ( Rhs >= 1) ? 1 :0;
+
+  // Select current figure or create it
+  sciGetCurrentFigure();
 
   // Call Java xclick
   CallJxclick();
