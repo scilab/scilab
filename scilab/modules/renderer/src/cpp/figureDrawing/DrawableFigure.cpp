@@ -147,4 +147,10 @@ bool DrawableFigure::getPixmapMode(void)
   return getFigureImp()->getPixmapMode();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigure::setRenderingEnable(bool isEnable)
+{
+  getFigureImp()->setRenderingEnable(isEnable);
+}
+/*---------------------------------------------------------------------------------*/
+
 }

@@ -50,6 +50,11 @@ void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage ) ;
  */
 void sciSetJavaPixmapMode(sciPointObj * pFigure, BOOL onOrOff);
 
+/**
+ * Specify if the figure can be renderered now
+ */
+void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable);
+
 #ifdef __cplusplus
 }
 #endif

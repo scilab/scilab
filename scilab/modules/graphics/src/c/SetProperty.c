@@ -4090,3 +4090,20 @@ int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL a
 
 }
 /*----------------------------------------------------------------------------------*/
+/**
+ * Specify to a figure that is now ready to be rendered
+ * ie that all its parameters are set
+ */
+int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_FIGURE:
+    sciSetJavaRenderingEnable(pObj, enable);
+    break;
+  default:
+    return -1;
+  }
+  return 0;
+}
+/*----------------------------------------------------------------------------------*/

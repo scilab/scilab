@@ -93,6 +93,11 @@ public:
    bool getPixmapMode(void);
 
    /**
+    * Specify if the figure can be render or not.
+    */
+   void setRenderingEnable(bool isEnable);
+
+   /**
     * Create the rendering canvas for the figure.
     */
    void openRenderingCanvas( void ) ;

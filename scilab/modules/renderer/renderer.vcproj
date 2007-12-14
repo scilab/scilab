@@ -734,7 +734,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerJava.cpp"
+					RelativePath=".\src\jni\GraphicSynchronizerJava.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerJavaMapper.cpp"
 					>
 				</File>
 				<File
@@ -1444,7 +1448,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerJava.h"
+					RelativePath=".\src\jni\GraphicSynchronizerJava.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerJavaMapper.h"
 					>
 				</File>
 				<File

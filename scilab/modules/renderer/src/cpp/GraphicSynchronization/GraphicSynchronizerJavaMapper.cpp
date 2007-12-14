@@ -1,12 +1,12 @@
 /*------------------------------------------------------------------------*/
-/* file: GraphicSynchronizerJava.h                                        */
+/* file: GraphicSynchronizerJavaMapper.h                                  */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Implementation of GraphicSynchronizer bridge using java         */
 /*         methods                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "GraphicSynchronizerJava.h"
+#include "GraphicSynchronizerJavaMapper.h"
 extern "C"
 {
 #include "getScilabJavaVM.h"
@@ -16,40 +16,45 @@ namespace sciGraphics
 {
 
 /*---------------------------------------------------------------------------------*/
-GraphicSynchronizerJava::GraphicSynchronizerJava( void )
+GraphicSynchronizerJavaMapper::GraphicSynchronizerJavaMapper( void )
 {
-  m_pJavaObject = new java_lang::Object(getScilabJavaVM());
+  m_pJavaObject = new org_scilab_modules_renderer_utils_graphicSynchronization::GraphicSynchronizerJava(getScilabJavaVM());
 }
 /*---------------------------------------------------------------------------------*/
-GraphicSynchronizerJava::~GraphicSynchronizerJava( void )
+GraphicSynchronizerJavaMapper::~GraphicSynchronizerJavaMapper( void )
 {
   delete m_pJavaObject;
   m_pJavaObject = NULL;
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizerJava::enterCriticalSection( void )
+void GraphicSynchronizerJavaMapper::enterCriticalSection( void )
 {
   m_pJavaObject->synchronize();
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizerJava::exitCriticalSection( void )
+void GraphicSynchronizerJavaMapper::exitCriticalSection( void )
 {
   m_pJavaObject->endSynchronize();
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizerJava::wait( void )
+void GraphicSynchronizerJavaMapper::wait( void )
 {
   m_pJavaObject->wait();
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizerJava::notify( void )
+void GraphicSynchronizerJavaMapper::notify( void )
 {
   m_pJavaObject->notify();
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizerJava::notifyAll( void )
+void GraphicSynchronizerJavaMapper::notifyAll( void )
 {
   m_pJavaObject->notifyAll();
+}
+/*---------------------------------------------------------------------------------*/
+int GraphicSynchronizerJavaMapper::getCurrentThreadId(void)
+{
+  return m_pJavaObject->getCurrentThreadId();
 }
 /*---------------------------------------------------------------------------------*/
 

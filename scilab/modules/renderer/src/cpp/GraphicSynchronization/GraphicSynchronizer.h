@@ -9,6 +9,8 @@
 #ifndef _GRAPHIC_SYNCHRONIZER_H_
 #define _GRAPHIC_SYNCHRONIZER_H_
 
+#include <list>
+
 namespace sciGraphics
 {
 
@@ -81,49 +83,70 @@ protected:
 
   /*--------------------------------------------------------------------------------*/
   /**
+  * Remove one element with value value from the list.
+  * If no element is found, do nothing.
+  */
+  void removeOne(std::list<int>& intList, int value);
+  /*--------------------------------------------------------------------------------*/
+  /**
    * To know if the object can currently be written or we should wait
    */
-  virtual bool isWritable( void ) ;
+  virtual bool isWritable( int threadId ) ;
 
   /**
    * To know if the object can be read of if we need to wait
    */
-  virtual bool isReadable( void ) ;
+  virtual bool isReadable( int threadId ) ;
 
   /**
    * To know if the object can be displayed or if we need to wait
    */
-  virtual bool isDisplayable( void ) ;
+  virtual bool isDisplayable( int threadId ) ;
 
   /**
    * Specify that a new writer has been added.
    */
-  virtual void addWriter( void ) ;
+  virtual void addWriter( int threadId ) ;
 
   /**
    * Specify that a writer has finished is job.
    */
-  virtual void removeWriter( void ) ;
+  virtual void removeWriter( int threadId ) ;
 
   /**
    * Specify that a new writer has been added.
    */
-  virtual void addReader( void ) ;
+  virtual void addReader( int threadId ) ;
 
   /**
    * Specify that a writer has finished is job.
    */
-  virtual void removeReader( void ) ;
+  virtual void removeReader( int threadId ) ;
 
   /**
    * Specify that a new writer has been added.
    */
-  virtual void addDisplayer( void ) ;
+  virtual void addDisplayer( int threadId ) ;
 
   /**
    * Specify that a writer has finished is job.
    */
-  virtual void removeDisplayer( void ) ;
+  virtual void removeDisplayer( int threadId ) ;
+
+  /**
+   * To know if a thread is the only writting thread
+   */
+  virtual bool isOnlyWriter(int threadId);
+
+  /**
+   * To know if a thread is the only displayer.
+   */
+  virtual bool isOnlyDisplayer(int threadId);
+
+  /**
+   * To know if a thread is the only reader.
+   */
+  virtual bool isOnlyReader(int threadId);
   /*--------------------------------------------------------------------------------*/
   /* Driver dependent routines */
   
@@ -151,14 +174,20 @@ protected:
    * Wake all the thread which called the wait method of this object.
    */
   virtual void notifyAll( void ) = 0 ;
+
+  /**
+   * Get the current threadId
+   */
+  virtual int getCurrentThreadId(void) = 0;
   /*--------------------------------------------------------------------------------*/
   /** Number of active writer */
-  int m_iNbWriters;
+  std::list<int> m_oReadersIds;
   /** Number of active reader*/
-  int m_iNbReaders;
+  std::list<int> m_oDisplayersIds;
   /** Number of active displayer */
-  int m_iNbDisplayers;
+  std::list<int> m_oWritersIds;
   /*--------------------------------------------------------------------------------*/
+
 };
 
 }

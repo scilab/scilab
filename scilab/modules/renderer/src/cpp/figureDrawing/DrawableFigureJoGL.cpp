@@ -127,6 +127,11 @@ bool DrawableFigureJoGL::getPixmapMode(void)
   return getFigureJavaMapper()->getPixmapMode();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setRenderingEnable(bool isEnable)
+{
+  getFigureJavaMapper()->setRenderingEnable(isEnable);
+}
+/*---------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
 {
   return dynamic_cast<DrawableFigure *>(getDrawer()) ;

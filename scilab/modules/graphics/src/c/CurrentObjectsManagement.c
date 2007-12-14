@@ -134,8 +134,10 @@ sciPointObj * sciGetCurrentScreen( void )
 sciPointObj * sciGetCurrentSubWin( void )
 {
   sciPointObj * currentFigure = sciGetCurrentFigure() ;
+  sciPointObj * currentSubwin = NULL; 
   if ( currentFigure == NULL ) { return NULL ; }
-  return sciGetFirstTypedSelectedSon( currentFigure, SCI_SUBWIN ) ;
+  currentSubwin = sciGetFirstTypedSelectedSon( currentFigure, SCI_SUBWIN ) ;
+  return currentSubwin;
 }
 /*-----------------------------------------------------------------------------*/
 sciPointObj * sciGetCurrentConsole( void )

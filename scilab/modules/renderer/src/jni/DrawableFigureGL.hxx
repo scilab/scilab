@@ -75,6 +75,7 @@ jmethodID voidsetWindowSizejintjintID; // cache method id
 jmethodID voidsetInfoMessagejstringID; // cache method id
 jmethodID voidsetPixmapModejintID; // cache method id
 jmethodID jintgetPixmapModeID; // cache method id
+jmethodID voidsetIsRenderingEnablejbooleanID; // cache method id
 
 
 /**
@@ -163,6 +164,8 @@ void setInfoMessage(char * infoMessage);
 void setPixmapMode(long onOrOff);
 
 long getPixmapMode();
+
+void setIsRenderingEnable(bool isEnable);
 
 
                         /**

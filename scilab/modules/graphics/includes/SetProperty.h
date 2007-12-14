@@ -252,6 +252,8 @@ int sciSetLogFlags(sciPointObj * pObj, char logFlags[3]) ; /* SET */
 int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
 int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ); /* SET */
 
+int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable); /* SET */
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

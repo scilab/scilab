@@ -26,55 +26,55 @@ LocalSynchronizer::~LocalSynchronizer( void )
   
 }
 /*---------------------------------------------------------------------------------*/
-bool LocalSynchronizer::isWritable( void )
+bool LocalSynchronizer::isWritable( int threadId )
 {
-  return GraphicSynchronizer::isWritable() && m_pParentSynchronizer->areDataWritable();
+  return GraphicSynchronizer::isWritable(threadId) && m_pParentSynchronizer->areDataWritable(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-bool LocalSynchronizer::isReadable( void )
+bool LocalSynchronizer::isReadable( int threadId )
 {
-  return GraphicSynchronizer::isReadable() && m_pParentSynchronizer->areDataReadable();
+  return GraphicSynchronizer::isReadable(threadId) && m_pParentSynchronizer->areDataReadable(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-bool LocalSynchronizer::isDisplayable( void )
+bool LocalSynchronizer::isDisplayable( int threadId )
 {
-  return GraphicSynchronizer::isDisplayable() && m_pParentSynchronizer->areDataDisplayable();
+  return GraphicSynchronizer::isDisplayable(threadId) && m_pParentSynchronizer->areDataDisplayable(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void LocalSynchronizer::addWriter( void )
+void LocalSynchronizer::addWriter( int threadId )
 {
-  GraphicSynchronizer::addWriter();
-  m_pParentSynchronizer->addLocalWriter();
+  GraphicSynchronizer::addWriter(threadId);
+  m_pParentSynchronizer->addLocalWriter(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void LocalSynchronizer::removeWriter( void )
+void LocalSynchronizer::removeWriter( int threadId )
 {
-  GraphicSynchronizer::removeWriter();
-  m_pParentSynchronizer->removeLocalWriter();
+  GraphicSynchronizer::removeWriter(threadId);
+  m_pParentSynchronizer->removeLocalWriter(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void LocalSynchronizer::addReader( void )
+void LocalSynchronizer::addReader( int threadId )
 {
-  GraphicSynchronizer::addReader();
-  m_pParentSynchronizer->addLocalReader();
+  GraphicSynchronizer::addReader(threadId);
+  m_pParentSynchronizer->addLocalReader(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void LocalSynchronizer::removeReader( void )
+void LocalSynchronizer::removeReader( int threadId )
 {
-  GraphicSynchronizer::removeReader();
-  m_pParentSynchronizer->removeLocalReader();
+  GraphicSynchronizer::removeReader(threadId);
+  m_pParentSynchronizer->removeLocalReader(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void LocalSynchronizer::addDisplayer( void )
+void LocalSynchronizer::addDisplayer( int threadId )
 {
-  GraphicSynchronizer::addDisplayer();
-  m_pParentSynchronizer->addLocalDisplayer();
+  GraphicSynchronizer::addDisplayer(threadId);
+  m_pParentSynchronizer->addLocalDisplayer(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void LocalSynchronizer::removeDisplayer( void )
+void LocalSynchronizer::removeDisplayer( int threadId )
 {
-  GraphicSynchronizer::removeDisplayer();
-  m_pParentSynchronizer->removeLocalDisplayer();
+  GraphicSynchronizer::removeDisplayer(threadId);
+  m_pParentSynchronizer->removeLocalDisplayer(threadId);
 }
 /*---------------------------------------------------------------------------------*/
 void LocalSynchronizer::enterCriticalSection( void )
@@ -102,5 +102,9 @@ void LocalSynchronizer::notifyAll( void )
   m_pParentSynchronizer->notifyAll();
 }
 /*---------------------------------------------------------------------------------*/
-
+int LocalSynchronizer::getCurrentThreadId(void)
+{
+  return m_pParentSynchronizer->getCurrentThreadId();
+}
+/*---------------------------------------------------------------------------------*/
 }

@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: GraphicSynchronizerJava.h                                        */
+/* file: GraphicSynchronizerJavaMapper.h                                  */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Implementation of GraphicSynchronizer bridge using java         */
@@ -10,18 +10,18 @@
 #define _GRAPHIC_SYNCHRONIZER_JAVA_H_
 
 #include "GraphicSynchronizerBridge.h"
-#include "Object.hxx"
+#include "GraphicSynchronizerJava.hxx"
 
 namespace sciGraphics
 {
 
-class GraphicSynchronizerJava : public virtual GraphicSynchronizerBridge
+class GraphicSynchronizerJavaMapper : public virtual GraphicSynchronizerBridge
 {
 public:
 
-  GraphicSynchronizerJava( void ) ;
+  GraphicSynchronizerJavaMapper( void ) ;
 
-  virtual ~GraphicSynchronizerJava( void ) ;
+  virtual ~GraphicSynchronizerJavaMapper( void ) ;
 
   /**
    * Protect some part of code to be accessed by several threads.
@@ -48,9 +48,14 @@ public:
    */
   virtual void notifyAll( void ) ;
 
+  /**
+   * Get the id of the thread currently running.
+   */
+  virtual int getCurrentThreadId(void);
+
 protected:
 
-  java_lang::Object * m_pJavaObject;
+  org_scilab_modules_renderer_utils_graphicSynchronization::GraphicSynchronizerJava * m_pJavaObject;
 
 };
 

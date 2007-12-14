@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "GraphicSynchronizerBridgeFactory.h"
-#include "GraphicSynchronizerJava.h"
+#include "GraphicSynchronizerJavaMapper.h"
 
 namespace sciGraphics
 {
@@ -14,7 +14,7 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 GraphicSynchronizerBridge * GraphicSynchronizerBridgeFactory::create( void )
 {
-  return new GraphicSynchronizerJava();
+  return new GraphicSynchronizerJavaMapper();
 }
 /*---------------------------------------------------------------------------------*/
 

@@ -51,9 +51,7 @@ int set_current_figure_property( sciPointObj * pobj, int stackPointer, int value
   endGraphicDataReading();
 
   /* select the figure num */
-  startGraphicDataWriting();
   res = sciSetUsedWindow( figNum ) ;
-  endGraphicDataWriting();
   if ( res < 0 )
   {
     sciprint("It was not possible to create the requested figure.\n");

@@ -21,36 +21,36 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 void displayFigure(int figureId)
 {
-  startGraphicDataDisplaying();
-
+  startGraphicDataReading();
   sciPointObj * curFig = getFigureFromIndex(figureId) ;
+  endGraphicDataReading();
+
   if ( curFig == NULL )
   {
-    endGraphicDataDisplaying();
     return ;
   }
- 
+
+  startFigureDataDisplaying(curFig);
  (sciGraphics::getFigureDrawer(curFig))->drawInContext() ;
- 
-  endGraphicDataDisplaying();
+  endFigureDataDisplaying(curFig);
 }
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 void redrawFigure(int figureId)
 {
-  startGraphicDataDisplaying();
-
+  startGraphicDataReading();
   sciPointObj * curFig = getFigureFromIndex(figureId) ;
+  endGraphicDataReading();
+
   if ( curFig == NULL )
   {
-    endGraphicDataDisplaying();
     return ;
   }
 
-  redrawHierarchy(curFig) ;
-
-  endGraphicDataDisplaying();
+  startFigureDataDisplaying(curFig);
+  redrawHierarchy(curFig);
+  endFigureDataDisplaying(curFig);
 }
 /*--------------------------------------------------------------------------*/
 

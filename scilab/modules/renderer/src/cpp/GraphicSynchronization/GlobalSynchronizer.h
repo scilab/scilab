@@ -30,17 +30,17 @@ public:
   /**
    * To know if local synchronizer can write data
    */
-  bool areDataWritable( void ) ;
+  bool areDataWritable( int threadId ) ;
 
   /**
    * To know if local synchronizer can write data
    */
-  bool areDataReadable( void ) ;
+  bool areDataReadable( int threadId ) ;
 
   /**
    * To know if local synchronizer can write data
    */
-  bool areDataDisplayable( void ) ;
+  bool areDataDisplayable( int threadId ) ;
 
   /**
    * Set the implementation for driver dependent routines
@@ -56,49 +56,49 @@ protected:
 
   /*-----------------------------------------------------------------------------*/
   /**
-   * To know if the object can currently be written or we should wait
-   */
-  virtual bool isWritable( void ) ;
-
-  /**
-   * To know if the object can be read of if we need to wait
-   */
-  virtual bool isReadable( void ) ;
-
-  /**
-   * To know if the object can be displayed or if we need to wait
-   */
-  virtual bool isDisplayable( void ) ;
-
-  /**
    * Specify that a new writer has been added.
    */
-  virtual void addLocalWriter( void ) ;
+  virtual void addLocalWriter( int threadId ) ;
 
   /**
    * Specify that a writer has finished is job.
    */
-  virtual void removeLocalWriter( void ) ;
+  virtual void removeLocalWriter( int threadId ) ;
 
   /**
    * Specify that a new writer has been added.
    */
-  virtual void addLocalReader( void ) ;
+  virtual void addLocalReader( int threadId ) ;
 
   /**
    * Specify that a writer has finished is job.
    */
-  virtual void removeLocalReader( void ) ;
+  virtual void removeLocalReader( int threadId ) ;
 
   /**
    * Specify that a new writer has been added.
    */
-  virtual void addLocalDisplayer( void ) ;
+  virtual void addLocalDisplayer( int threadId ) ;
 
   /**
    * Specify that a writer has finished is job.
    */
-  virtual void removeLocalDisplayer( void ) ;
+  virtual void removeLocalDisplayer( int threadId ) ;
+
+  /**
+  * To know if a thread is the only writting thread
+  */
+  virtual bool isOnlyWriter(int threadId);
+
+  /**
+   * To know if a thread is the only displayer.
+   */
+  virtual bool isOnlyDisplayer(int threadId);
+
+  /**
+   * To know if a thread is the only reader.
+   */
+  virtual bool isOnlyReader(int threadId);
   /*-----------------------------------------------------------------------------*/
   /* Driver dependent routines */
 
@@ -126,15 +126,15 @@ protected:
    * Wake all the thread which called the wait method of this object.
    */
   virtual void notifyAll( void ) ;
+
+  /**
+   * Get the current threadId
+   */
+  virtual int getCurrentThreadId(void);
   /*-----------------------------------------------------------------------------*/
-  /** Number of local synchronizer writing graphic data */
-  int m_iNbLocalWriters;
-
-  /** Number of local synchronizer writing graphic data */
-  int m_iNbLocalReaders;
-
-  /** Number of local synchronizer writing graphic data */
-  int m_iNbLocalDisplayers;
+  std::list<int> m_oLocalReadersIds;
+  std::list<int> m_oLocalWritersIds;
+  std::list<int> m_oLocalDisplayersIds;
 
   /** Bridge for driver dependent routines */
   GraphicSynchronizerBridge * m_pBridge;

@@ -104,6 +104,12 @@ public:
    * Get the pixmap status (on or off).
    */
   virtual bool getPixmapMode(void);
+
+  /**
+   * Specify if the figure can be render or not.
+   */
+  virtual void setRenderingEnable(bool isEnable);
+
   /**
    * Return the drawn object
    */

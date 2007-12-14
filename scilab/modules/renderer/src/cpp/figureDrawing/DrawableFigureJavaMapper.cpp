@@ -170,4 +170,10 @@ bool DrawableFigureJavaMapper::getPixmapMode(void)
   }
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::setRenderingEnable(bool isEnable)
+{
+  m_pJavaObject->setIsRenderingEnable(isEnable);
+}
+/*---------------------------------------------------------------------------------*/
+
 }

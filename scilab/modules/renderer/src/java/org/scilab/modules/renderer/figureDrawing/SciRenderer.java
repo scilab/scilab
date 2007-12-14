@@ -23,9 +23,6 @@ import org.scilab.modules.renderer.jni.FigureScilabCall;
  */
 public class SciRenderer
   implements GLEventListener {
-  
-	/** To know if the graphic context has already been initialized */
-	private boolean isInit;
 	
 	/** index of the figure to render */
 	private int renderedFigure;
@@ -35,7 +32,6 @@ public class SciRenderer
 	 * @param figureIndex index of the figure to render
 	 */
 	public SciRenderer(int figureIndex) {
-		isInit = false;
 		renderedFigure = figureIndex;
 	}
 	
@@ -46,8 +42,10 @@ public class SciRenderer
    */    
   public void display(GLAutoDrawable gLDrawable) {
     // should call the draw function of the corresponding figure
-    //gLDrawable.getContext().setSynchronized(true);
-    FigureScilabCall.displayFigure(renderedFigure);
+	if (FigureMapper.getCorrespondingFigure(renderedFigure).getIsRenderingEnable()) {
+		FigureScilabCall.displayFigure(renderedFigure);
+	}
+
   }
     
     
@@ -64,12 +62,12 @@ public class SciRenderer
    * @param gLDrawable The GLDrawable object.
    */
   public void init(GLAutoDrawable gLDrawable) {
-	  
-      if (isInit) {
+	  DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
+      if (curFigure.getIsRenderingEnable()) {
     	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
     	  FigureScilabCall.redrawFigure(renderedFigure);
       }
-      final GL gl = gLDrawable.getGL();
+      GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
       gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);    // white Background
       gl.glClearDepth(1.0f);                      // Depth Buffer Setup
@@ -77,7 +75,6 @@ public class SciRenderer
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really Nice Perspective Calculations
       gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin lines
-      isInit = true;
 
     }
     

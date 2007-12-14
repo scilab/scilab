@@ -11,124 +11,188 @@
 namespace sciGraphics
 {
 
+using namespace std;
+
 /*---------------------------------------------------------------------------------*/
 GraphicSynchronizer::GraphicSynchronizer( void )
 {
-  m_iNbDisplayers = 0;
-  m_iNbReaders    = 0;
-  m_iNbWriters    = 0;
+  m_oWritersIds.clear();
+  m_oReadersIds.clear();
+  m_oDisplayersIds.clear();
 }
 /*---------------------------------------------------------------------------------*/
 GraphicSynchronizer::~GraphicSynchronizer( void )
 {
-
+  m_oWritersIds.clear();
+  m_oReadersIds.clear();
+  m_oDisplayersIds.clear();
 }
 /*---------------------------------------------------------------------------------*/
 void GraphicSynchronizer::startWriting( void )
 {
+  int threadId = getCurrentThreadId();
   enterCriticalSection();
-  while ( !isWritable() )
+  while ( !isWritable(threadId) )
   {
     // writer must be alone
     wait();
   }
-  addWriter();
+  addWriter(threadId);
   exitCriticalSection();
 }
 /*---------------------------------------------------------------------------------*/
 void GraphicSynchronizer::endWritting( void )
 {
+  int threadId = getCurrentThreadId();
   enterCriticalSection();
-  removeWriter();
+  removeWriter(threadId);
   notifyAll();
   exitCriticalSection();
 }
 /*---------------------------------------------------------------------------------*/
 void GraphicSynchronizer::startReading( void )
 {
+  int threadId = getCurrentThreadId();
   enterCriticalSection();
-  while( !isReadable() )
+  while( !isReadable(threadId) )
   {
     // Thread can not read while someone is writing
     wait();
   }
-  addReader();
+  addReader(threadId);
   exitCriticalSection();
 }
 /*---------------------------------------------------------------------------------*/
 void GraphicSynchronizer::endReading( void )
 {
+  int threadId = getCurrentThreadId();
   enterCriticalSection();
-  removeReader();
+  removeReader(threadId);
   notifyAll();
   exitCriticalSection();
 }
 /*---------------------------------------------------------------------------------*/
 void GraphicSynchronizer::startDisplaying( void )
 {
+  int threadId = getCurrentThreadId();
   enterCriticalSection();
-  while ( !isDisplayable() )
+  while ( !isDisplayable(threadId) )
   {
     // only one display at a time and can not display while writing
     wait();
   }
-  addDisplayer();
+  addDisplayer(threadId);
   exitCriticalSection();
 
 }
 /*---------------------------------------------------------------------------------*/
 void GraphicSynchronizer::endDisplaying( void )
 {
+  int threadId = getCurrentThreadId();
   enterCriticalSection();
-  removeDisplayer();
+  removeDisplayer(threadId);
   notifyAll();
   exitCriticalSection();
 }
 /*---------------------------------------------------------------------------------*/
-bool GraphicSynchronizer::isWritable( void )
+bool GraphicSynchronizer::isWritable( int threadId )
 {
-  return (m_iNbWriters == 0) && (m_iNbReaders == 0) && (m_iNbDisplayers == 0) ;
+  return isOnlyWriter(threadId) && isOnlyDisplayer(threadId) && isOnlyReader(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-bool GraphicSynchronizer::isReadable( void )
+bool GraphicSynchronizer::isReadable( int threadId )
 {
-  return (m_iNbWriters == 0) ;
+  return isOnlyWriter(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-bool GraphicSynchronizer::isDisplayable( void )
+bool GraphicSynchronizer::isDisplayable( int threadId )
 {
-  return (m_iNbWriters == 0) && (m_iNbDisplayers == 0) ;
+  return isOnlyWriter(threadId) && isOnlyDisplayer(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizer::addWriter( void )
+void GraphicSynchronizer::addWriter( int threadId )
 {
-  m_iNbWriters++;
+  m_oWritersIds.push_back(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizer::removeWriter( void )
+void GraphicSynchronizer::removeWriter( int threadId )
 {
-  m_iNbWriters--;
+  removeOne(m_oWritersIds, threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizer::addReader( void )
+void GraphicSynchronizer::addReader( int threadId )
 {
-  m_iNbReaders++;
+  m_oReadersIds.push_back(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizer::removeReader( void )
+void GraphicSynchronizer::removeReader( int threadId )
 {
-  m_iNbReaders--;
+  removeOne(m_oReadersIds, threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizer::addDisplayer( void )
+void GraphicSynchronizer::addDisplayer( int threadId )
 {
-  m_iNbDisplayers++;
+  m_oDisplayersIds.push_back(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GraphicSynchronizer::removeDisplayer( void )
+void GraphicSynchronizer::removeDisplayer( int threadId )
 {
-  m_iNbDisplayers--;
+  removeOne(m_oDisplayersIds, threadId);
 }
 /*---------------------------------------------------------------------------------*/
-
+bool GraphicSynchronizer::isOnlyWriter(int threadId)
+{
+  list<int>::iterator it = m_oWritersIds.begin();
+  for ( ; it != m_oWritersIds.end(); it++)
+  {
+    if (*it != threadId)
+    {
+      // there is an other thread
+      return false;
+    }
+  }
+  return true;
+}
+/*---------------------------------------------------------------------------------*/
+bool GraphicSynchronizer::isOnlyDisplayer(int threadId)
+{
+  list<int>::iterator it = m_oDisplayersIds.begin();
+  for ( ; it != m_oDisplayersIds.end(); it++)
+  {
+    if (*it != threadId)
+    {
+      // there is an other thread
+      return false;
+    }
+  }
+  return true;
+}
+/*---------------------------------------------------------------------------------*/
+bool GraphicSynchronizer::isOnlyReader(int threadId)
+{
+  list<int>::iterator it = m_oReadersIds.begin();
+  for ( ; it != m_oReadersIds.end(); it++)
+  {
+    if (*it != threadId)
+    {
+      // there is an other thread
+      return false;
+    }
+  }
+  return true;
+}
+/*---------------------------------------------------------------------------------*/
+void GraphicSynchronizer::removeOne(std::list<int>& intList, int value)
+{
+  list<int>::iterator it = intList.begin();
+  for ( ;it != intList.end(); it++)
+  {
+    if (*it == value)
+    {
+      intList.erase(it);
+      return;
+    }
+  }
+}
+/*---------------------------------------------------------------------------------*/
 }

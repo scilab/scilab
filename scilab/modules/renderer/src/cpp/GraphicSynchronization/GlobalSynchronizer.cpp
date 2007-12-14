@@ -15,80 +15,112 @@ extern "C"
 namespace sciGraphics
 {
 
+using namespace std;
+
 /*---------------------------------------------------------------------------------*/
 GlobalSynchronizer::GlobalSynchronizer( void ) : GraphicSynchronizer()
 {
   m_pBridge = NULL;
-  m_iNbLocalDisplayers = 0;
-  m_iNbLocalReaders = 0;
-  m_iNbLocalWriters = 0;
+  m_oLocalWritersIds.clear();
+  m_oLocalDisplayersIds.clear();
+  m_oLocalReadersIds.clear();
 }
 /*---------------------------------------------------------------------------------*/
 GlobalSynchronizer::~GlobalSynchronizer( void )
 {
   delete m_pBridge;
   m_pBridge = NULL;
+  m_oLocalWritersIds.clear();
+  m_oLocalDisplayersIds.clear();
+  m_oLocalReadersIds.clear();
 }
 /*---------------------------------------------------------------------------------*/
-bool GlobalSynchronizer::areDataWritable( void )
+bool GlobalSynchronizer::areDataWritable( int threadId )
 {
   // check if there is no other global synchronizer
-  return GraphicSynchronizer::isWritable();
+  return GraphicSynchronizer::isWritable(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-bool GlobalSynchronizer::areDataReadable( void )
+bool GlobalSynchronizer::areDataReadable( int threadId )
 {
-  return GraphicSynchronizer::isReadable();
+  return GraphicSynchronizer::isReadable(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-bool GlobalSynchronizer::areDataDisplayable( void )
+bool GlobalSynchronizer::areDataDisplayable( int threadId )
 {
-  return GraphicSynchronizer::isDisplayable();
+  return GraphicSynchronizer::isDisplayable(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-bool GlobalSynchronizer::isWritable( void )
+void GlobalSynchronizer::addLocalWriter( int threadId )
 {
-  return areDataWritable() && (m_iNbLocalWriters == 0) && (m_iNbLocalReaders == 0) && (m_iNbLocalDisplayers == 0);
+  m_oLocalWritersIds.push_back(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-bool GlobalSynchronizer::isReadable( void )
+void GlobalSynchronizer::removeLocalWriter( int threadId )
 {
-  return areDataReadable() && (m_iNbLocalWriters == 0);
+  removeOne(m_oLocalWritersIds, threadId);
 }
 /*---------------------------------------------------------------------------------*/
-bool GlobalSynchronizer::isDisplayable( void )
+void GlobalSynchronizer::addLocalReader( int threadId )
 {
-  return areDataDisplayable() && (m_iNbLocalWriters == 0) && (m_iNbLocalDisplayers == 0);
+  m_oLocalReadersIds.push_back(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GlobalSynchronizer::addLocalWriter( void )
+void GlobalSynchronizer::removeLocalReader( int threadId )
 {
-  m_iNbLocalWriters++;
+  removeOne(m_oLocalReadersIds, threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GlobalSynchronizer::removeLocalWriter( void )
+void GlobalSynchronizer::addLocalDisplayer( int threadId )
 {
-  m_iNbLocalWriters--;
+  m_oLocalDisplayersIds.push_back(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GlobalSynchronizer::addLocalReader( void )
+void GlobalSynchronizer::removeLocalDisplayer( int threadId )
 {
-  m_iNbLocalReaders++;
+  removeOne(m_oLocalDisplayersIds, threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GlobalSynchronizer::removeLocalReader( void )
+bool GlobalSynchronizer::isOnlyWriter(int threadId)
 {
-  m_iNbLocalReaders--;
+  list<int>::iterator it = m_oLocalWritersIds.begin();
+  for ( ; it != m_oLocalWritersIds.end(); it++)
+  {
+    if (*it != threadId)
+    {
+      // there is an other thread
+      return false;
+    }
+  }
+  return GraphicSynchronizer::isOnlyWriter(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GlobalSynchronizer::addLocalDisplayer( void )
+bool GlobalSynchronizer::isOnlyDisplayer(int threadId)
 {
-  m_iNbLocalDisplayers++;
+  list<int>::iterator it = m_oLocalDisplayersIds.begin();
+  for ( ; it != m_oLocalDisplayersIds.end(); it++)
+  {
+    if (*it != threadId)
+    {
+      // there is an other thread
+      return false;
+    }
+  }
+  return GraphicSynchronizer::isOnlyDisplayer(threadId);
 }
 /*---------------------------------------------------------------------------------*/
-void GlobalSynchronizer::removeLocalDisplayer( void )
+bool GlobalSynchronizer::isOnlyReader(int threadId)
 {
-  m_iNbLocalDisplayers--;
+  list<int>::iterator it = m_oLocalReadersIds.begin();
+  for ( ; it != m_oLocalReadersIds.end(); it++)
+  {
+    if (*it != threadId)
+    {
+      // there is an other thread
+      return false;
+    }
+  }
+  return GraphicSynchronizer::isOnlyReader(threadId);
 }
 /*---------------------------------------------------------------------------------*/
 void GlobalSynchronizer::enterCriticalSection( void )
@@ -116,5 +148,9 @@ void GlobalSynchronizer::notifyAll( void )
   m_pBridge->notifyAll();
 }
 /*---------------------------------------------------------------------------------*/
-
+int GlobalSynchronizer::getCurrentThreadId(void)
+{
+  return m_pBridge->getCurrentThreadId();
+}
+/*---------------------------------------------------------------------------------*/
 }

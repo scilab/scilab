@@ -44,6 +44,11 @@ public:
    */
   virtual void notifyAll( void ) = 0 ;
 
+  /**
+   * Get the id of the thread currently running.
+   */
+  virtual int getCurrentThreadId(void) = 0;
+
 };
 
 }

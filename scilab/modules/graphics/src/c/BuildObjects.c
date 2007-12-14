@@ -40,6 +40,7 @@
 #include "WindowList.h"
 #include "localization.h"
 #include "InitUIMenu.h" /* Used for ConstructUIMenu */
+#include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -201,6 +202,8 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   /* Add the figure in the list of created figures */
   addNewFigureToList(pobj);
 
+  sciSetRenderingEnable(pobj, TRUE);
+
   return pobj;
 }
 
@@ -225,11 +228,10 @@ ConstructSubWin(sciPointObj * pparentfigure)
   sciSubWindow * ppsubwin = NULL;
   sciPointObj * paxesmdl = getAxesModel() ;
   sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl); 
-  
 
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
-      
+
       if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
 	return NULL;
       sciSetEntityType (pobj, SCI_SUBWIN);
@@ -238,9 +240,12 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      
+     
+      startFigureDataWriting(pparentfigure);
+
       if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
       {
+        endFigureDataWriting(pparentfigure);
         return NULL ;
       }
       
@@ -258,7 +263,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(pobj->pfeatures);
-	  FREE(pobj);          
+	  FREE(pobj);
+          endFigureDataWriting(pparentfigure);
 	  return (sciPointObj *) NULL;
 	}   
       if (sciInitGraphicMode (pobj) == -1)
@@ -267,6 +273,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	  sciDelHandle (pobj);
 	  FREE(pobj->pfeatures);
 	  FREE(pobj);
+          endFigureDataWriting(pparentfigure);
 	  return (sciPointObj *) NULL;
 	} 
       
@@ -277,6 +284,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	  sciDelHandle (pobj);
 	  FREE(pobj->pfeatures);	  
 	  FREE(pobj);
+          endFigureDataWriting(pparentfigure);
 	  return (sciPointObj *) NULL;
 	}
 
@@ -423,6 +431,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
       
       if (sciInitSelectedSubWin(pobj) < 0 )
       { 
+        endFigureDataWriting(pparentfigure);
 	return (sciPointObj *)NULL ;
       }
       
@@ -433,6 +442,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	sciDelHandle (pobj);
 	FREE(pobj->pfeatures);
 	FREE(pobj);
+        endFigureDataWriting(pparentfigure);
 	return (sciPointObj *) NULL;
       }
 
@@ -447,6 +457,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	sciDelHandle (pobj);
 	FREE(pobj->pfeatures);
 	FREE(pobj);
+        endFigureDataWriting(pparentfigure);
 	return (sciPointObj *) NULL;
       }
 
@@ -462,6 +473,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	sciDelHandle (pobj);
 	FREE(pobj->pfeatures);
 	FREE(pobj);
+        endFigureDataWriting(pparentfigure);
 	return (sciPointObj *) NULL;
       }
       sciSetStrings( ppsubwin->mon_y_label,
@@ -476,6 +488,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	sciDelHandle (pobj);
 	FREE(pobj->pfeatures);
 	FREE(pobj);
+        endFigureDataWriting(pparentfigure);
 	return (sciPointObj *) NULL;
       }
       sciSetStrings( ppsubwin->mon_z_label,
@@ -513,6 +526,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
       cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   ) ;
                   
       ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
+      endFigureDataWriting(pparentfigure);
       return (sciPointObj *)pobj;
       
     }

@@ -63,6 +63,8 @@ public:
 
   virtual void setPixmapMode(bool onOrOff);
   virtual bool getPixmapMode(void);
+
+  virtual void setRenderingEnable(bool isEnable);
   /*----------------------------------------------------------------------*/
 
 protected:

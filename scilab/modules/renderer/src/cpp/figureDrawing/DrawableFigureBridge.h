@@ -105,6 +105,11 @@ public:
   virtual bool getPixmapMode(void) = 0;
 
   /**
+   * Specify if the figure can be render or not.
+   */
+  virtual void setRenderingEnable(bool isEnable) = 0;
+
+  /**
    * Return the drawed object
    */
   virtual DrawableFigure * getFigureDrawer( void ) = 0 ;

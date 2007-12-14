@@ -32,6 +32,9 @@ public class DrawableFigureGL extends ObjectGL {
 	/** To get all the objects which needs to be destroyed */
 	private ObjectGLCleaner destroyedObjects;
 	
+	/** To know if the figure can be displayed */
+	private boolean isReadyForRendering;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -41,8 +44,36 @@ public class DrawableFigureGL extends ObjectGL {
       	setColorMap(TexturedColorMap.create());
       	figureId = -1; // figure ids should be greater than 0.
       	destroyedObjects = new ObjectGLCleaner();
-
+      	isReadyForRendering = false;
     }
+	
+	/**
+	 * Set .OR. get if the rendering is enable for this figure.
+	 * @param setMode if true act as a set function, if false act a get function
+	 * @param isEnable when in set mode, specify the new value for rendering
+	 * @return if in get mode return the current rendering value
+	 */
+	private synchronized boolean isRenderingEnable(boolean setMode, boolean isEnable) {
+		if (setMode) {
+			isReadyForRendering = isEnable;
+		}
+		return isReadyForRendering;
+	}
+	
+	/**
+	 * Specify a new state for the rendering enable mode
+	 * @param isEnalbe if true figure can no be rendered
+	 */
+	public void setIsRenderingEnable(boolean isEnalbe) {
+		isRenderingEnable(true, isEnalbe);
+	}
+	
+	/**
+	 * @return true if the figure can be rendered, false otherwise
+	 */
+	public boolean getIsRenderingEnable() {
+		return isRenderingEnable(false, false);
+	}
 	
 	/**
 	 * Set figureId property

@@ -121,6 +121,7 @@ voidsetWindowSizejintjintID=NULL;
 voidsetInfoMessagejstringID=NULL; 
 voidsetPixmapModejintID=NULL; 
 jintgetPixmapModeID=NULL; 
+voidsetIsRenderingEnablejbooleanID=NULL; 
 
 
 }
@@ -166,6 +167,7 @@ voidsetWindowSizejintjintID=NULL;
 voidsetInfoMessagejstringID=NULL; 
 voidsetPixmapModejintID=NULL; 
 jintgetPixmapModeID=NULL; 
+voidsetIsRenderingEnablejbooleanID=NULL; 
 
 
 }
@@ -703,6 +705,26 @@ curEnv->ExceptionDescribe() ;
                         
 return res;
 
+}
+
+void DrawableFigureGL::setIsRenderingEnable (bool isEnable){
+
+JNIEnv * curEnv = getCurrentEnv();
+                jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetIsRenderingEnablejbooleanID = curEnv->GetMethodID(this->instanceClass, "setIsRenderingEnable", "(Z)V" ) ;
+if (voidsetIsRenderingEnablejbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setIsRenderingEnable" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallVoidMethod( this->instance, voidsetIsRenderingEnablejbooleanID ,isEnable);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

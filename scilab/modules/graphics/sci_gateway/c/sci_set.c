@@ -92,8 +92,6 @@ int sci_set(char *fname, unsigned long fname_len)
 	  ptrindex[0] = 0;
 	  ptrindex[1] = 0;
 
-	  startGraphicDataWriting();
-
 	  /*  set or create a graphic window */
 	  switch(VarType(1)) 
 	  {
@@ -111,7 +109,6 @@ int sci_set(char *fname, unsigned long fname_len)
 					if (m1!=1||n1!=1) 
 					{ 
 						Scierror(999,"%s :the handle is not or no more valid\n",fname);
-						endGraphicDataWriting();
 						return 0;
 					}
 
@@ -241,7 +238,6 @@ int sci_set(char *fname, unsigned long fname_len)
 
 	  default:
 		  Scierror(999,"%s : invalid parameter(s).\n",fname);
-		  endGraphicDataWriting();
 		  return 0;
 		  break;
 	 }
@@ -279,20 +275,14 @@ int sci_set(char *fname, unsigned long fname_len)
 				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label )
 			 { 
 				 /* Addings F.Leray 10.06.04 */
-                                 endGraphicDataWriting();
 				 sciDrawObj(pobj) ;
-                                 startGraphicDataWriting();
 			 }
 		 }
 	 }
 	 else
 	 {
-           endGraphicDataWriting();
            sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
-           startGraphicDataWriting();
 	 }
-
-	 endGraphicDataWriting();
 	 LhsVar(1)=0;
   }
     return 0;

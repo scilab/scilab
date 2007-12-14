@@ -39,47 +39,47 @@ protected:
   /**
    * To know if the object can currently be written or we should wait
    */
-  virtual bool isWritable( void ) ;
+  virtual bool isWritable( int threadId ) ;
 
   /**
    * To know if the object can be read of if we need to wait
    */
-  virtual bool isReadable( void ) ;
+  virtual bool isReadable( int threadId ) ;
 
   /**
    * To know if the object can be displayed or if we need to wait
    */
-  virtual bool isDisplayable( void ) ;
+  virtual bool isDisplayable( int threadId ) ;
 
   /**
    * Specify that a new writer has been added.
    */
-  virtual void addWriter( void ) ;
+  virtual void addWriter( int threadId ) ;
 
   /**
    * Specify that a writer has finished is job.
    */
-  virtual void removeWriter( void ) ;
+  virtual void removeWriter( int threadId ) ;
 
   /**
    * Specify that a new writer has been added.
    */
-  virtual void addReader( void ) ;
+  virtual void addReader( int threadId ) ;
 
   /**
    * Specify that a writer has finished is job.
    */
-  virtual void removeReader( void ) ;
+  virtual void removeReader( int threadId ) ;
 
   /**
    * Specify that a new writer has been added.
    */
-  virtual void addDisplayer( void ) ;
+  virtual void addDisplayer( int threadId ) ;
 
   /**
    * Specify that a writer has finished is job.
    */
-  virtual void removeDisplayer( void ) ;
+  virtual void removeDisplayer( int threadId ) ;
   /*--------------------------------------------------------------------------------*/
   /* Driver dependent routines */
 
@@ -107,6 +107,11 @@ protected:
   * Wake all the thread which called the wait method of this object.
   */
   virtual void notifyAll( void ) ;
+
+  /**
+   * Get the current threadId
+   */
+  virtual int getCurrentThreadId(void);
   /*--------------------------------------------------------------------------------*/
   /**
    * Get a pointer on the parent synchronizer to know if graphic data are locked

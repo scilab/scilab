@@ -36,16 +36,16 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __JAVA_LANG_OBJECT__
-#define __JAVA_LANG_OBJECT__
+#ifndef __ORG_SCILAB_MODULES_RENDERER_UTILS_GRAPHICSYNCHRONIZATION_GRAPHICSYNCHRONIZERJAVA__
+#define __ORG_SCILAB_MODULES_RENDERER_UTILS_GRAPHICSYNCHRONIZATION_GRAPHICSYNCHRONIZERJAVA__
 #include <string>
 #include <iostream>
 #include <stdlib.h>
 #include <jni.h>
 
-namespace java_lang {
+namespace org_scilab_modules_renderer_utils_graphicSynchronization {
 
-class Object {
+class GraphicSynchronizerJava {
 private:
 JavaVM * jvm;
 jobject instance;
@@ -54,6 +54,7 @@ jclass instanceClass; // cache class
 jmethodID voidwaitID; // cache method id
 jmethodID voidnotifyID; // cache method id
 jmethodID voidnotifyAllID; // cache method id
+jmethodID jintgetCurrentThreadIdID; // cache method id
 
 
 /**
@@ -68,17 +69,17 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-Object(JavaVM * jvm_);
+GraphicSynchronizerJava(JavaVM * jvm_);
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-Object(JavaVM * jvm_, jobject JObj);
+GraphicSynchronizerJava(JavaVM * jvm_, jobject JObj);
 
 // Destructor
-~Object();
+~GraphicSynchronizerJava();
 
 // Generic method
 // Synchronization methods
@@ -101,6 +102,8 @@ void notify();
 
 void notifyAll();
 
+long getCurrentThreadId();
+
 
                         /**
                         * Get class name to use for static methods
@@ -109,7 +112,7 @@ void notifyAll();
                         
                 static const std::string className()
                 {
-                return "java/lang/Object";
+                return "org/scilab/modules/renderer/utils/graphicSynchronization/GraphicSynchronizerJava";
                 }
                 
 };
