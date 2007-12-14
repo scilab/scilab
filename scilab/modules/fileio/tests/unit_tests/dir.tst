@@ -13,7 +13,7 @@ if MSDOS then
  TMP = getenv('TMP');
 else
  if isdir('/tmp') then 
-   TMP = '/tmp'
+   TMP = '/tmp';
  else
    TMP = TMPDIR;
  end
