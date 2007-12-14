@@ -343,6 +343,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\strsubst.c"
+				>
+			</File>
+			<File
 				RelativePath=".\tokens.c"
 				>
 			</File>
@@ -417,6 +421,10 @@
 			</File>
 			<File
 				RelativePath=".\strsplit.h"
+				>
+			</File>
+			<File
+				RelativePath=".\strsubst.h"
 				>
 			</File>
 			<File
