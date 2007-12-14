@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../graphics/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories=".;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +126,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../graphics/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories=".;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -219,11 +219,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CreateUIControl.c"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainGUI.c"
 				>
 			</File>
 			<File
+				RelativePath="..\jni\FileChooser.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\getinstalledlookandfeels.c"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetLabelProperty.cpp"
 				>
 			</File>
 			<File
@@ -236,6 +248,10 @@
 			</File>
 			<File
 				RelativePath=".\getScreenProperties.c"
+				>
+			</File>
+			<File
+				RelativePath=".\GetStyleProperty.c"
 				>
 			</File>
 			<File
@@ -260,6 +276,10 @@
 			</File>
 			<File
 				RelativePath="..\jni\Jxgetmouse.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\PushButton.cpp"
 				>
 			</File>
 			<File
@@ -303,6 +323,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_uicontrol.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_uigetdir.c"
 				>
 			</File>
@@ -343,6 +367,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetLabelProperty.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\setlookandfeel.c"
 				>
 			</File>
@@ -351,7 +379,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\jni\FileChooser.cpp"
+				RelativePath="..\cpp\SetUicontrolParent.cpp"
 				>
 			</File>
 			<File
@@ -404,7 +432,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CreateUIControl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\FileChooser.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\getinstalledlookandfeels.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetLabelProperty.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetLabelProperty.hxx"
 				>
 			</File>
 			<File
@@ -420,6 +464,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetStyleProperty.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GraphicWindow.h"
 				>
 			</File>
@@ -432,11 +480,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\InitUIMenu.hxx"
+				RelativePath="..\..\includes\InitUIMenu.h"
 				>
 			</File>
 			<File
-				RelativePath="..\jni\FileChooser.hxx"
+				RelativePath="..\cpp\InitUIMenu.hxx"
 				>
 			</File>
 			<File
@@ -456,11 +504,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\PushButton.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\PushButton.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\sci_raise_window.h"
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\sci_uicontrol.h"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\ScilabBridge.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetLabelProperty.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetLabelProperty.hxx"
 				>
 			</File>
 			<File
@@ -469,6 +537,14 @@
 			</File>
 			<File
 				RelativePath=".\setMainWindowTitle.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolParent.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolParent.hxx"
 				>
 			</File>
 			<File

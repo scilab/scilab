@@ -9,13 +9,13 @@
 #include "MALLOC.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_uigetdir(char *fname)
+int sci_uigetdir(char *fname,unsigned long l)
 {
   int fileChooserID = 0;
   
   int nbRow = 0, nbCol = 0;
 
-  char *userSelection = NULL;
+  
   int voidSelectionAdr = 0;
 
   int titleAdr = 0;
@@ -105,6 +105,7 @@ int sci_uigetdir(char *fname)
 
   if (nbRow !=0 ) 
     {
+	  char **userSelection = NULL;
       /* The user selected a file --> returns the files names */
       nbCol = 1;
       

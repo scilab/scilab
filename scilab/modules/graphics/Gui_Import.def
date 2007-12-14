@@ -26,4 +26,8 @@ getJxgetmouseXCoordinate
 getJxgetmouseMouseButtonNumber
 CallJxgetmouse
 CallJxgetmouseWithOptions
+GetStyleProperty
+GetLabelProperty
+SetUicontrolParent
+SetLabelProperty
 ;

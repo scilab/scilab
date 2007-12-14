@@ -2342,6 +2342,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\graphics_header.def"
+			>
+		</File>
+		<File
 			RelativePath=".\Gui_Import.def"
 			>
 		</File>
