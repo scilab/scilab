@@ -10,6 +10,9 @@ if %fftw then
    librarynamefftw = "libfftw3"+getdynlibext();
  end
 
+//add help chapter
+  add_module_help_chapter('fftw');
+  
  if ( loadfftwlibrary(librarynamefftw) ) then
 
 //Load  functions librarie
@@ -18,9 +21,6 @@ if %fftw then
 // replace scilab fft function by fftw
   clearfun fft;
   fft=fftw;
-
-//add help chapter
-  add_module_help_chapter('fftw');
 
 //add demos
   path = get_absolute_file_path('fftw.start');
