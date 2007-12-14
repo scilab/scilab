@@ -192,64 +192,27 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char **Inputs_param_two,int mn_two)
 {
 	int x = 0,y = 0;
-	int *next = NULL;
 
 	results->sizeArraysMax = 0;
 	if (results->values) {FREE(results->values);results->values = NULL;}
 	if (results->positions) {FREE(results->positions);results->positions = NULL;}
 	results->currentLength = 0;
 
-	/*for (x = 0; x < 1 ;x++) 
-	{
-		results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
-	}*/
-
-	//next = (int *)MALLOC(sizeof(int)*(3*results->sizeArraysMax+1));
-	//results->values = (int *)MALLOC(sizeof(int)*(3*results->sizeArraysMax+1));
-	//results->positions = (int *)MALLOC(sizeof(int)*(3*results->sizeArraysMax+1));
     results->values = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
 	results->positions = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
-
-	/*if ( (next == NULL) || (results->values == NULL) || (results->positions == NULL) )
-	{
-		if (next) {FREE(next); next = NULL;}
-		if (results->values) {FREE(results->values);results->values = NULL;}
-		if (results->positions) {FREE(results->positions);results->positions = NULL;}
-		return MEMORY_ALLOC_ERROR;
-	}*/
 
 	for (y = 0; y < mn_one; ++y)
 	{
 		for (x = 0; x < mn_two; ++x)
 		{
-			int w = 0;
-			int pos = 0;
-
-			//getnext(Inputs_param_two[x],next);
-
-			/* Strings_Input_One is the input string matrix,
-			* Strings_Input_Two[x] is the substring to match
-			* pos is the start point*/
-			//w = kmp(Inputs_param_one[y],Inputs_param_two[x],pos,next);  
-
-			//if (w != 0)
 			if (strstr(Inputs_param_one[y],Inputs_param_two[x])!=NULL)
 			{            
-				//if (results->currentLength < results->sizeArraysMax) 
-				{
-					results->values[results->currentLength] = y+1;
-					results->positions[results->currentLength] = x+1;
-					results->currentLength++;
-				}
+				results->values[results->currentLength] = y+1;
+				results->positions[results->currentLength] = x+1;
+				results->currentLength++;
 			}
-		
 		}
 	}
-
-	//if (results->currentLength > results->sizeArraysMax) results->currentLength = results->sizeArraysMax;
-
-//	if (next) {FREE(next); next = NULL;}
-
 	return GREP_OK;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -336,9 +299,6 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		}
 		break;
-
-		/* TO DO : Add others cases returned by GREP_NEW */
-		/* ... */
 	}
 	return 0;
 }
