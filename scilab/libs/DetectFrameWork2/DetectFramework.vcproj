@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="DetectFramework"
 	ProjectGUID="{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}"
 	RootNamespace="DetectFramework"

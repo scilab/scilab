@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="doublylinkedlist"
 	ProjectGUID="{ED02137F-0A4F-4EF0-AC58-97ACE37FA89D}"
 	RootNamespace="doublylinkedlist"

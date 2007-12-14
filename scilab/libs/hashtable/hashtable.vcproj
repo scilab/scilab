@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="hashtable"
 	ProjectGUID="{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}"
 	>
