@@ -1,0 +1,19 @@
+/* Copyright INRIA 2007 */
+/* Vincent COUVERT */
+
+#ifndef __SETUICONTROLBACKGROUNDCOLOR_HXX__
+#define __SETUICONTROLBACKGROUNDCOLOR_HXX__
+
+#include "CallScilabBridge.hxx"
+extern "C"
+{
+#include "SetUicontrolBackgroundColor.h"
+#include "GetProperty.h"
+#include "getPropertyAssignedValue.h"
+#include "returnProperty.h"
+#include "localization.h"
+#include "getScilabJavaVM.h"
+#include "SetPropertyStatus.h"
+}
+
+#endif /* __SETUICONTROLBACKGROUNDCOLOR_HXX__ */

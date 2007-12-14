@@ -379,6 +379,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolBackgroundColor.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUicontrolParent.cpp"
 				>
 			</File>
@@ -540,7 +544,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\SetUicontrolBackgroundColor.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\SetUicontrolParent.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolBackgroundColor.hxx"
 				>
 			</File>
 			<File

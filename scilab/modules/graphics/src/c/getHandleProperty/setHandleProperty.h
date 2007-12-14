@@ -16,6 +16,7 @@
 
 #include "ObjectStructure.h"
 #include "SetLabelProperty.h"
+#include "SetUicontrolBackgroundColor.h"
 
 int set_color_map_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_old_style_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;

@@ -31,7 +31,8 @@ src/cpp/CallFileChooser.cpp \
 src/cpp/PushButton.cpp \
 src/cpp/SetLabelProperty.cpp \
 src/cpp/GetLabelProperty.cpp \
-src/cpp/SetUicontrolParent.cpp
+src/cpp/SetUicontrolParent.cpp \
+src/cpp/SetUicontrolBackgroundColor.cpp
 
 GIWS_WRAPPERS = \
 src/jni/DrawableRectangleGL.giws.xml \

@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.widget;
 
+import java.awt.Color;
+
 import org.scilab.modules.gui.dockable.Dockable;
 
 /**
@@ -11,4 +13,9 @@ import org.scilab.modules.gui.dockable.Dockable;
  */
 public interface Widget extends Dockable {
 
+	/**
+	 * To set the Background color of the widget.
+	 * @param color the Color
+	 */
+	void setBackground(Color color);
 }

@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.pushbutton;
 
+import java.awt.Color;
+
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -91,5 +93,11 @@ public interface SimplePushButton {
 	 * @param status true if the pushbutton is enabled
 	 */
 	void setEnabled(boolean status);
+
+	/**
+	 * To set the Background color of the widget.
+	 * @param color the Color
+	 */
+	void setBackground(Color color);
 
 }

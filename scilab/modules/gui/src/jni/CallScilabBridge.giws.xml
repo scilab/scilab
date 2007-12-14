@@ -41,6 +41,13 @@
 	<method name="getPushButtonText" returnType="String" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
+<!-- Color setting -->
+	<method name="setPushButtonBackgroundColor" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="red"/>
+	  <parameter type="int" name="green"/>
+	  <parameter type="int" name="blue"/>
+	</method>
 <!-- Callback setting -->
 	<method name="setMenuCallback" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>

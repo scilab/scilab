@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.pushbutton;
 
+import java.awt.Color;
+
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
@@ -138,6 +140,14 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 */
 	public void setEnabled(boolean status) {
 		ScilabBridge.setEnabled(this, status);
+	}
+
+	/**
+	 * To set the Background color of the pushbutton
+	 * @param color the Color
+	 */
+	public void setBackground(Color color) {
+		ScilabBridge.setBackground(this, color);
 	}
 
 	//	/**

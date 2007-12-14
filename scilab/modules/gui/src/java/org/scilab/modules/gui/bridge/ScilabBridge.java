@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.bridge;
 
+import java.awt.Color;
+
 import javax.media.opengl.GL;
 
 import org.scilab.modules.gui.canvas.Canvas;
@@ -1103,6 +1105,15 @@ public class ScilabBridge {
 	 */
 	public static void setEnabled(PushButton pushButton, boolean status) {
 		ScilabPushButtonBridge.setEnabled(pushButton, status);
+	}
+	
+	/**
+	 * Set the Background color of the pushbutton
+	 * @param pushButton the PushButton we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(PushButton pushButton, Color color) {
+		ScilabPushButtonBridge.setBackground(pushButton, color);
 	}
 
 	/*****************/

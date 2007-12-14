@@ -114,7 +114,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
 	src/cpp/CallJxgetmouse.cpp src/cpp/CallFileChooser.cpp \
 	src/cpp/PushButton.cpp src/cpp/SetLabelProperty.cpp \
-	src/cpp/GetLabelProperty.cpp src/cpp/SetUicontrolParent.cpp
+	src/cpp/GetLabelProperty.cpp src/cpp/SetUicontrolParent.cpp \
+	src/cpp/SetUicontrolBackgroundColor.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -158,7 +159,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-PushButton.lo \
 @GUI_TRUE@	libscigui_la-SetLabelProperty.lo \
 @GUI_TRUE@	libscigui_la-GetLabelProperty.lo \
-@GUI_TRUE@	libscigui_la-SetUicontrolParent.lo
+@GUI_TRUE@	libscigui_la-SetUicontrolParent.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolBackgroundColor.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -445,7 +447,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/PushButton.cpp \
 @GUI_TRUE@src/cpp/SetLabelProperty.cpp \
 @GUI_TRUE@src/cpp/GetLabelProperty.cpp \
-@GUI_TRUE@src/cpp/SetUicontrolParent.cpp
+@GUI_TRUE@src/cpp/SetUicontrolParent.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolBackgroundColor.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/DrawableRectangleGL.giws.xml \
@@ -626,6 +629,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PushButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetLabelProperty.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolParent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-TerminateGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
@@ -1023,6 +1027,13 @@ libscigui_la-SetUicontrolParent.lo: src/cpp/SetUicontrolParent.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolParent.cpp' object='libscigui_la-SetUicontrolParent.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolParent.lo `test -f 'src/cpp/SetUicontrolParent.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolParent.cpp
+
+libscigui_la-SetUicontrolBackgroundColor.lo: src/cpp/SetUicontrolBackgroundColor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolBackgroundColor.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Tpo -c -o libscigui_la-SetUicontrolBackgroundColor.lo `test -f 'src/cpp/SetUicontrolBackgroundColor.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolBackgroundColor.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Tpo $(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolBackgroundColor.cpp' object='libscigui_la-SetUicontrolBackgroundColor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolBackgroundColor.lo `test -f 'src/cpp/SetUicontrolBackgroundColor.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolBackgroundColor.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

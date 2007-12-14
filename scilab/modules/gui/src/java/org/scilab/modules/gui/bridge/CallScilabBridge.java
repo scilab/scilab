@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.bridge;
 
+import java.awt.Color;
+
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
@@ -361,6 +363,21 @@ public class CallScilabBridge {
 	 */
 	public static void setFileChooserFileSelectionOnly(int id) {
 		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setFileSelectionOnly();
+	}
+	
+	/******************/
+	/* Colors setting */
+	/******************/
+	
+	/**
+	 * Set the background color of a push button 
+	 * @param id the id of the push button
+	 * @param red the red value for the color
+	 * @param green the green value for the color
+	 * @param blue the blue value for the color
+	 */
+	public static void setPushButtonBackgroundColor(int id, int red, int green, int blue) {
+		((PushButton) UIElementMapper.getCorrespondingUIElement(id)).setBackground(new Color(red, green, blue));
 	}
 	
 }

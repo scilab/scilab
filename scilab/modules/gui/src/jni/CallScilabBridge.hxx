@@ -64,6 +64,7 @@ jmethodID voidsetMenuTextjintjstringID; // cache method id
 jmethodID voidsetPushButtonTextjintjstringID; // cache method id
 jmethodID jstringgetMenuTextjintID; // cache method id
 jmethodID jstringgetPushButtonTextjintID; // cache method id
+jmethodID voidsetPushButtonBackgroundColorjintjintjintjintID; // cache method id
 jmethodID voidsetMenuCallbackjintjstringID; // cache method id
 jmethodID voidsetRootMenuEnabledjstringjbooleanID; // cache method id
 jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID; // cache method id
@@ -144,6 +145,8 @@ static void setPushButtonText(JavaVM * jvm_, long objID, char * text);
 static char * getMenuText(JavaVM * jvm_, long objID);
 
 static char * getPushButtonText(JavaVM * jvm_, long objID);
+
+static void setPushButtonBackgroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
 
 static void setMenuCallback(JavaVM * jvm_, long objID, char * text);
 

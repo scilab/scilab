@@ -110,6 +110,7 @@ voidsetMenuTextjintjstringID=NULL;
 voidsetPushButtonTextjintjstringID=NULL; 
 jstringgetMenuTextjintID=NULL; 
 jstringgetPushButtonTextjintID=NULL; 
+voidsetPushButtonBackgroundColorjintjintjintjintID=NULL; 
 voidsetMenuCallbackjintjstringID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
@@ -158,6 +159,7 @@ voidsetMenuTextjintjstringID=NULL;
 voidsetPushButtonTextjintjstringID=NULL; 
 jstringgetMenuTextjintID=NULL; 
 jstringgetPushButtonTextjintID=NULL; 
+voidsetPushButtonBackgroundColorjintjintjintjintID=NULL; 
 voidsetMenuCallbackjintjstringID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
@@ -493,6 +495,27 @@ curEnv->ReleaseStringUTFChars(res, tempString);
 
 return myStringBuffer;
 
+}
+
+void CallScilabBridge::setPushButtonBackgroundColor (JavaVM * jvm_, long objID, long red, long green, long blue){
+
+JNIEnv * curEnv = NULL;
+                jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+                jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetPushButtonBackgroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonBackgroundColor", "(IIII)V" ) ;
+if (voidsetPushButtonBackgroundColorjintjintjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setPushButtonBackgroundColor" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetPushButtonBackgroundColorjintjintjintjintID ,objID, red, green, blue);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 void CallScilabBridge::setMenuCallback (JavaVM * jvm_, long objID, char * text){

@@ -10,5 +10,5 @@ import org.scilab.modules.gui.uielement.ScilabUIElement;
  * @author Marouane BEN JELLOUL
  */
 public abstract class ScilabWidget extends ScilabUIElement implements Widget {
-	
+
 }

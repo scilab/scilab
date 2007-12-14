@@ -3,6 +3,9 @@
 
 package org.scilab.modules.gui.pushbutton;
 
+import java.awt.Color;
+
+import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -135,5 +138,15 @@ public class ScilabPushButtonBridge {
 	public static void setEnabled(PushButton pushButton, boolean status) {
 		pushButton.getAsSimplePushButton().setEnabled(status);
 	}
+
+	/**
+	 * To set the Background color of the pushbutton
+	 * @param pushButton the PushButton we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(PushButton pushButton, Color color) {
+		pushButton.getAsSimplePushButton().setBackground(color);
+	}
+
 }
 
