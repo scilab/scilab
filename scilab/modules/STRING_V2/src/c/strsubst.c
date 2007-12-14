@@ -28,7 +28,7 @@ char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char
 char *strsub(char* input_string, const char* string_to_search, const char* replacement_string)
 {
 	char *occurrence_str = NULL, *result_str = NULL;
-	const char *N;
+	
 
 	char *replacedString = NULL;
 	int count = 0, len = 0;
@@ -79,6 +79,7 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 	{
 		if (*occurrence_str == string_to_search[0] && strncmp (occurrence_str, string_to_search, len) == 0) 
 		{
+			const char *N = NULL;
 			N = replacement_string;
 			while (*N != '\0') *result_str++ = *N++;
 			occurrence_str += len;
