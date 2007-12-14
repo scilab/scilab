@@ -98,6 +98,15 @@ public class ScilabPushButtonBridge {
 	public static void setText(PushButton pushButton, String newText) {
 		pushButton.getAsSimplePushButton().setText(newText);
 	}
+
+	/**
+	 * Gets the text of a PushButton
+	 * @param pushButton the PushButton we want to get the Text of
+	 * @return the text of the PushButton
+	 */
+	public static String getText(PushButton pushButton) {
+		return pushButton.getAsSimplePushButton().getText();
+	}
 	
 	/**
 	 * Sets the icon of a PushButton

@@ -11,6 +11,8 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBarBridge;
+import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Size;
@@ -73,6 +75,15 @@ public class CallScilabBridge {
 	}
 	
 	/**
+	 * Create a new PushButton in Scilab GUIs
+	 * @return the ID of the PushButton in the UIElementMapper
+	 */
+	public static int newPushButton() {
+		PushButton pushButton = ScilabPushButton.createPushButton();
+		return UIElementMapper.add(pushButton);
+	}
+
+	/**
 	 * Set the dimensions of an object in Scilab GUIs
 	 * @param objID the ID of the object in the UIElementMapper
 	 * @param width the width of the object
@@ -83,13 +94,23 @@ public class CallScilabBridge {
 	}
 	
 	/**
-	 * Set the dimensions of an object in Scilab GUIs
-	 * @param objID the ID of the object in the UIElementMapper
-	 * @param text the text to set to the UIElement
+	 * Set the dimensions of a menu in Scilab GUIs
+	 * @param objID the ID of the menu in the UIElementMapper
+	 * @param text the text to set to the menu
 	 */
-	public static void setText(int objID, String text) {
+	public static void setMenuText(int objID, String text) {
 		// TODO do not cast !
 		((Menu) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
+	}
+	
+	/**
+	 * Set the dimensions of a pushbutton in Scilab GUIs
+	 * @param objID the ID of the pushbutton in the UIElementMapper
+	 * @param text the text to set to the pushbutton
+	 */
+	public static void setPushButtonText(int objID, String text) {
+		// TODO do not cast !
+		((PushButton) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
 	}
 	
 	/**
@@ -97,11 +118,21 @@ public class CallScilabBridge {
 	 * @param objID the ID of the object in the UIElementMapper
 	 * @return the label of the Menu
 	 */
-	public static String getText(int objID) {
+	public static String getMenuText(int objID) {
 		// TODO do not cast !
 		return ((Menu) UIElementMapper.getCorrespondingUIElement(objID)).getText();
 	}
 	
+	/**
+	 * Set the dimensions of an object in Scilab GUIs
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @return the label of the Menu
+	 */
+	public static String getPushButtonText(int objID) {
+		// TODO do not cast !
+        return ((PushButton) UIElementMapper.getCorrespondingUIElement(objID)).getText();
+	}
+
 	/*****************************/
 	/* Parent setting properties */
 	/*****************************/
@@ -138,6 +169,18 @@ public class CallScilabBridge {
 		}
 	}
 	
+	/**
+	 * Set a figure as parent for a PushButton
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void setPushButtonParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		//parentTab.addMember((PushButton) UIElementMapper.getCorrespondingUIElement(objID));
+		PushButton pushButton = (PushButton) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.addMember(parentTab, pushButton);
+	}
+
 	/**
 	 * Set root Scilab object (the console tab) as the parent of the menu
 	 * @param objID the id of the menu

@@ -181,6 +181,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	private int addMember(SwingScilabPushButton member) {
 		this.add(member);
+		this.revalidate(); // If do not revalidate then the component do not appear
 		return this.getComponentZOrder(member);
 	}
 

@@ -54,12 +54,16 @@ jclass instanceClass; // cache class
 jmethodID jintnewWindowID; // cache method id
 jmethodID jintnewMenuBarID; // cache method id
 jmethodID jintnewMenuID; // cache method id
+jmethodID jintnewPushButtonID; // cache method id
 jmethodID voidsetFigureAsParentjintjintID; // cache method id
 jmethodID voidsetMenuAsParentjintjintID; // cache method id
 jmethodID voidsetRootAsParentjintID; // cache method id
 jmethodID voidsetParentjintjintID; // cache method id
-jmethodID voidsetTextjintjstringID; // cache method id
-jmethodID jstringgetTextjintID; // cache method id
+jmethodID voidsetPushButtonParentjintjintID; // cache method id
+jmethodID voidsetMenuTextjintjstringID; // cache method id
+jmethodID voidsetPushButtonTextjintjstringID; // cache method id
+jmethodID jstringgetMenuTextjintID; // cache method id
+jmethodID jstringgetPushButtonTextjintID; // cache method id
 jmethodID voidsetMenuCallbackjintjstringID; // cache method id
 jmethodID voidsetRootMenuEnabledjstringjbooleanID; // cache method id
 jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID; // cache method id
@@ -121,6 +125,8 @@ static long newMenuBar(JavaVM * jvm_);
 
 static long newMenu(JavaVM * jvm_);
 
+static long newPushButton(JavaVM * jvm_);
+
 static void setFigureAsParent(JavaVM * jvm_, long figureID, long objID);
 
 static void setMenuAsParent(JavaVM * jvm_, long menuID, long objID);
@@ -129,9 +135,15 @@ static void setRootAsParent(JavaVM * jvm_, long objID);
 
 static void setParent(JavaVM * jvm_, long parentID, long objID);
 
-static void setText(JavaVM * jvm_, long objID, char * text);
+static void setPushButtonParent(JavaVM * jvm_, long parentID, long objID);
 
-static char * getText(JavaVM * jvm_, long objID);
+static void setMenuText(JavaVM * jvm_, long objID, char * text);
+
+static void setPushButtonText(JavaVM * jvm_, long objID, char * text);
+
+static char * getMenuText(JavaVM * jvm_, long objID);
+
+static char * getPushButtonText(JavaVM * jvm_, long objID);
 
 static void setMenuCallback(JavaVM * jvm_, long objID, char * text);
 

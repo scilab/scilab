@@ -1069,6 +1069,14 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Gets the Text of a PushButton
+	 * @param pushButton the PushButton we want to get the Text of
+	 */
+	public static String getText(PushButton pushButton) {
+		return ScilabPushButtonBridge.getText(pushButton);
+	}
+	
+	/**
 	 * Sets the icon of a PushButton
 	 * @param pushButton the PushButton we want to set the icon of
 	 * @param filename the path to the icon image to set to the PushButton

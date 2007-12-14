@@ -28,7 +28,6 @@
 #include "GetProperty.h"
 #include "InitObjects.h"
 #include "DestroyObjects.h"
-#include "BuildObjects.h"
 #include "SetProperty.h"
 #include "CloneObjects.h"
 #include "StringMatrix.h"

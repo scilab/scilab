@@ -202,6 +202,7 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) != SCI_LEGEND)      &&
      (sciGetEntityType(pobj) != SCI_AXES)        &&
      (sciGetEntityType(pobj) != SCI_MENU)        &&
+     (sciGetEntityType(pobj) != SCI_UICONTROL)   &&
      (sciGetEntityType(pobj) != SCI_MENUCONTEXT) &&
      (sciGetEntityType(pobj) != SCI_STATUSB)    &&
      (sciGetEntityType(pobj) != SCI_LABEL)      &&
@@ -2080,6 +2081,9 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
       break;
     case SCI_UIMENU:
       pUIMENU_FEATURE(pobj)->visible=value;	
+      break;
+    case SCI_UICONTROL:
+      pUICONTROL_FEATURE(pobj)->visible=value;	
       break;
     case SCI_CONSOLE:
       pCONSOLE_FEATURE(pobj)->visible = value ;

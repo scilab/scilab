@@ -11,6 +11,8 @@
 #define _GET_HANDLE_PROPERTY_H_
 
 #include "ObjectStructure.h"
+#include "GetLabelProperty.h"
+#include "GetStyleProperty.h"
 
 int get_figures_id_property(           sciPointObj * pobj ) ;
 int get_visible_property(              sciPointObj * pobj ) ;
@@ -138,6 +140,5 @@ int get_screen_position_property(      sciPointObj * pobj ) ;
 int get_dimension_property(            sciPointObj * pobj ) ;
 int get_event_handler_enable_property( sciPointObj * pobj ) ;
 int get_event_handler_property(        sciPointObj * pobj ) ;
-int get_label_property(        sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

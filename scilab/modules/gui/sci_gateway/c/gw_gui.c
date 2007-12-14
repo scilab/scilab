@@ -29,7 +29,8 @@ static gw_generic_table Tab[]=
 	{C2F(sci_ClipBoard),"ClipBoard"},
 	{C2F(sci_toolbar),"toolbar"},
 	{C2F(sci_hidetoolbar),"hidetoolbar"},
-	{sci_uigetdir,"uigetdir"}
+	{sci_uigetdir,"uigetdir"},
+	{sci_uicontrol,"uicontrol"}
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_gui)(void)

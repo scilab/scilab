@@ -15,32 +15,60 @@
 int get_callback_type_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_UIMENU)
-  {
-    sciprint("callback_type property does not exist for this handle.\n");
-    return -1;
-  }
-  switch (pUIMENU_FEATURE(pobj)->CallbackType)
-  {
-  case -1:
-    return sciReturnString( "disable" ) ;
-    break;
-  case 0:
-    return sciReturnString( "string" ) ;
-    break;
-  case 1:
-    return sciReturnString( "C" ) ;
-    break;
-  case 2:
-    return sciReturnString( "internal" ) ;
-    break;
-  case 3:
-    return sciReturnString( "addmenu" ) ;
-    break;
-  default:
-    sciprint("unknow callbak type\n");
-    return -1;
-    break;
-  }
-
+    {
+      switch (pUIMENU_FEATURE(pobj)->CallbackType)
+        {
+        case -1:
+          return sciReturnString( "disabled" ) ;
+          break;
+        case 0:
+          return sciReturnString( "string" ) ;
+          break;
+        case 1:
+          return sciReturnString( "C" ) ;
+          break;
+        case 2:
+          return sciReturnString( "internal" ) ;
+          break;
+        case 3:
+          return sciReturnString( "addmenu" ) ;
+          break;
+        default:
+          sciprint("unknow callbak type\n");
+          return -1;
+          break;
+        }
+    }
+  else if (sciGetEntityType (pobj) != SCI_UICONTROL)
+    {
+      switch (pUICONTROL_FEATURE(pobj)->CallbackType)
+        {
+        case -1:
+          return sciReturnString( "disabled" ) ;
+          break;
+        case 0:
+          return sciReturnString( "string" ) ;
+          break;
+        case 1:
+          return sciReturnString( "C" ) ;
+          break;
+        case 2:
+          return sciReturnString( "internal" ) ;
+          break;
+        case 3:
+          return sciReturnString( "addmenu" ) ;
+          break;
+        default:
+          sciprint("unknow callbak type\n");
+          return -1;
+          break;
+        }
+    }
+  else
+    {
+      sciprint("callback_type property does not exist for this handle.\n");
+      return -1;
+    }
+  
 }
 /*------------------------------------------------------------------------*/

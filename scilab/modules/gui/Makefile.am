@@ -17,7 +17,9 @@ src/c/getMainWindowTitle.c \
 src/c/getScreenProperties.c \
 src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
-src/c/addmenu.c
+src/c/addmenu.c \
+src/c/CreateUIControl.c \
+src/c/GetStyleProperty.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
@@ -25,7 +27,11 @@ src/jni/Jxclick.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
-src/cpp/CallFileChooser.cpp
+src/cpp/CallFileChooser.cpp \
+src/cpp/PushButton.cpp \
+src/cpp/SetLabelProperty.cpp \
+src/cpp/GetLabelProperty.cpp \
+src/cpp/SetUicontrolParent.cpp
 
 GIWS_WRAPPERS = \
 src/jni/DrawableRectangleGL.giws.xml \
@@ -51,7 +57,8 @@ sci_gateway/c/sci_about.c \
 sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_hidetoolbar.c \
 sci_gateway/c/sci_toolbar.c \
-sci_gateway/c/sci_uigetdir.c
+sci_gateway/c/sci_uigetdir.c \
+sci_gateway/c/sci_uicontrol.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \
@@ -66,6 +73,7 @@ libscigui_la_CFLAGS=	-Isrc/c/ \
 			$(TCL_INC_PATH) \
 			$(Tk_INC_PATH) \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
+			-I$(top_srcdir)/libs/hashtable \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-Isrc/cpp/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/

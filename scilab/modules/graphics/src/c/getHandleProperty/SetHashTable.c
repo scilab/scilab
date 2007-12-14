@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------*/
 /* file: SetHashTable.c                                                   */
 /* Copyright INRIA 2006                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
+/* Authors : Jean-Baptiste Silvy, Vincent COUVERT                         */
 /* desc : implementation of the scilab hashtable for the set procedure    */
 /*------------------------------------------------------------------------*/
 
@@ -11,7 +11,7 @@
 #include "sciprint.h"
 #include "getDictionarySetProperties.h"
 #include "MALLOC.h"
-#include "InitUIMenu.h"
+
 /** 
 * use for the singleton to know if the hashtable has already be created.
 */
@@ -170,7 +170,7 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "dimension"           , set_dimension_property            },
   { "event_handler_enable", set_event_handler_enable_property },
   { "event_handler"       , set_event_handler_property        },
-  { "label"       , set_label_property        }
+  { "label"               , SetLabelProperty                  }
 } ;
 
 /*--------------------------------------------------------------------------*/

@@ -36,7 +36,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 130
+#define NB_PROPERTIES 131
 
 /**
  * list of all property names and associated functions in scilab
@@ -172,7 +172,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
   { "dimension"           , get_dimension_property            },
   { "event_handler_enable", get_event_handler_enable_property },
   { "event_handler"       , get_event_handler_property        },
-  { "label"               , get_label_property                }  
+  { "label"               , GetLabelProperty                  },  
+  { "style"               , GetStyleProperty                  }
 } ;
 
 /*--------------------------------------------------------------------------*/

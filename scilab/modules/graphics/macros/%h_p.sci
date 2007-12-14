@@ -686,6 +686,19 @@ function %h_p(h)
   "position = "+sci2exp(h.position,0)
   "menu_enable = "+sci2exp(h.menu_enable)
     ]
+  case "uicontrol"
+  t=[t;
+  "parent: "+h.parent.type
+  "children: "+fmtchildren(h.children)
+  "style = "+h.style
+  "visible = "+sci2exp(h.visible)
+  "label = "+h.label 
+  "callback = "+h.callback
+  "callback type = "+h.callback_type
+  //"handle_visible = "+sci2exp(h.handle_visible)
+  //"position = "+sci2exp(h.position,0)
+  //"enabled = "+sci2exp(h.menu_enable)
+    ]
     end
   end
   write(%io(2),t)

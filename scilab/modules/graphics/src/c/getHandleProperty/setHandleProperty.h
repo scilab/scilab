@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------*/
 /* file: setHandleProperty.h                                              */
 /* Copyright INRIA 2006                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
+/* Authors : Jean-Baptiste Silvy, Vincent COUVERT                         */
 /* desc : contains declarations of functions needed by sci_set            */
 /*        Each function has the same signature and :                      */
 /*        int (sciPointobj *, int, int, int)                              */
@@ -15,6 +15,7 @@
 #define _SET_HANDLE_PROPERTY_H_
 
 #include "ObjectStructure.h"
+#include "SetLabelProperty.h"
 
 int set_color_map_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_old_style_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;

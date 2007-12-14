@@ -120,9 +120,12 @@ sciGetPointerToFeature (sciPointObj * pobj)
     case SCI_LABEL:
       return (sciLabel *) pLABEL_FEATURE (pobj);
       break;
-	case SCI_UIMENU:
-	  return (sciUimenu *) pUIMENU_FEATURE (pobj);
-	  break;
+    case SCI_UIMENU:
+      return (sciUimenu *) pUIMENU_FEATURE (pobj);
+      break;
+    case SCI_UICONTROL:
+      return (sciUicontrol *) pUICONTROL_FEATURE (pobj);
+      break;
     default:
       return (void *) NULL;
       break;
@@ -232,6 +235,9 @@ sciGetCharEntityType (sciPointObj * pobj)
       break;
     case SCI_UIMENU: 
       return "Uimenu";
+      break;
+    case SCI_UICONTROL: 
+      return "uicontrol";
       break;
     case SCI_CONSOLE:
       return "Console" ;
@@ -799,8 +805,6 @@ StringMatrix * sciGetText( sciPointObj * pobj )
       return sciGetText( pLABEL_FEATURE (pobj)->text ) ;
       break;
     case SCI_UIMENU:
-      return pUIMENU_FEATURE (pobj)->label;
-      break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
@@ -2999,6 +3003,10 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
     case SCI_UIMENU:
       *user_data_ptr = &(pUIMENU_FEATURE (pobj)->user_data);
       *size_ptr=&(pUIMENU_FEATURE (pobj)->size_of_user_data);
+      break;
+    case SCI_UICONTROL:
+      *user_data_ptr = &(pUICONTROL_FEATURE (pobj)->user_data);
+      *size_ptr=&(pUICONTROL_FEATURE (pobj)->size_of_user_data);
       break;
     default:
       *user_data_ptr = (int **)NULL;

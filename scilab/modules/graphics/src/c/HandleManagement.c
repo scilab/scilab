@@ -274,8 +274,10 @@ sciGetRelationship (sciPointObj * pobj)
       return  sciGetRelationship( pLABEL_FEATURE (pobj)->text ) ;
       break;
     case SCI_UIMENU: 
-      tmp=&(pUIMENU_FEATURE (pobj)->relationship);
       return  &(pUIMENU_FEATURE (pobj)->relationship);
+      break;
+    case SCI_UICONTROL: 
+      return  &(pUICONTROL_FEATURE (pobj)->relationship);
       break;
     case SCI_CONSOLE:
       return  &(pCONSOLE_FEATURE (pobj)->relationship);

@@ -38,26 +38,6 @@ int setMenuCallback(sciPointObj* sciObj, int stackPointer, int valueType, int nb
 /**
  * @TODO add comment
  *
- * @param pobj  
- * @param stackPointer  
- * @param valueType 
- * @param nbRow 
- * @param nbCol 
- * @return <ReturnValue>
- */
-int set_label_property(sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
-
-/**
- * @TODO add comment
- *
- * @param sciObj    
- * @return <ReturnValue>
- */
-int get_label_property(sciPointObj* sciObj);
-
-/**
- * @TODO add comment
- *
  * @param name  
  * @param status    
  */

@@ -13,13 +13,19 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "InitUIMenu.h"
+#include "SetUicontrolParent.h"
 
 /*------------------------------------------------------------------------*/
 int set_parent_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if(sciGetEntityType( pobj ) != SCI_MENU) {
-    return setMenuParent(pobj, stackPointer, valueType, nbRow, nbCol);
-  }
+  if(sciGetEntityType( pobj ) == SCI_UIMENU)
+    {
+      return setMenuParent(pobj, stackPointer, valueType, nbRow, nbCol);
+    }
+  else if(sciGetEntityType(pobj) == SCI_UICONTROL)
+    {
+      return SetUicontrolParent(pobj, stackPointer, valueType, nbRow, nbCol);
+    }
   else
     {
       sciprint( "Parent property can not be modified directly.\n" ) ;

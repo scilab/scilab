@@ -78,6 +78,7 @@
 #define pSEGS_FEATURE(pointobj)        ((sciSegs          *)pointobj->pfeatures)/** */
 #define pLABEL_FEATURE(pointobj)       ((sciLabel         *)pointobj->pfeatures)/** */
 #define pUIMENU_FEATURE(pointobj)      ((sciUimenu        *)pointobj->pfeatures)/** */
+#define pUICONTROL_FEATURE(pointobj)   ((sciUicontrol        *)pointobj->pfeatures)/** */
 #define pCONSOLE_FEATURE(pointobj)     ((sciConsole       *)pointobj->pfeatures)/** */
 #define pFRAME_FEATURE(pointobj)       ((sciFrame         *)pointobj->pfeatures)/** */
 #define pWINDOW_FEATURE(pointobj)      ((sciWindow        *)pointobj->pfeatures)/** */
@@ -178,6 +179,8 @@ typedef enum
     SCI_LABEL,
     /**Entity type UIMENU created by A.C 28.09.05 **/
     SCI_UIMENU,
+    /**Entity type UICONTROL **/
+    SCI_UICONTROL,
     /** Entity type CONSOLE created by JB Silvy 27/02/07 */
     SCI_CONSOLE,
     /** Entity type FRAME created by JB Silvy 27/02/07 */
@@ -682,6 +685,30 @@ typedef struct
 
 }/** */
 sciUimenu;
+
+typedef struct
+{
+  sciRelationShip relationship;
+  /** */
+  char *label;
+  char *callback;
+  int callbacklen;
+  /** specifies if this object is visible             */
+  BOOL visible;
+  BOOL handle_visible;
+  BOOL Enable;
+
+  int MenuPosition;
+  int CallbackType;
+
+  int * user_data;
+  int size_of_user_data;
+
+  int hashMapIndex;
+  char * style;
+
+}/** */
+sciUicontrol;
 
 /* the part of the drawn box for 3d axis */
 typedef enum { BT_OFF = FALSE, BT_ON = TRUE, BT_HIDDEN_AXIS, BT_BACK_HALF } EAxesBoxType ;

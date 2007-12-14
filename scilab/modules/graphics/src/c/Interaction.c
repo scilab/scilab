@@ -132,6 +132,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
                         
 	}
       break;
+    case SCI_UICONTROL:
     case SCI_UIMENU:
 /*       if ((pUIMENU_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL) */
 /* 	{ */
@@ -210,6 +211,9 @@ char *sciGetCallback(sciPointObj * pthis)
       break;
     case SCI_UIMENU:
       return (char *)(pUIMENU_FEATURE(pthis)->callback);
+      break;
+    case SCI_UICONTROL:
+      return (char *)(pUICONTROL_FEATURE(pthis)->callback);
       break;
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -381,6 +385,9 @@ sciGetCallbackLen (sciPointObj * pthis)
       break;    
     case SCI_UIMENU:
       return pUIMENU_FEATURE(pthis)->callbacklen;
+      break;
+    case SCI_UICONTROL:
+      return pUICONTROL_FEATURE(pthis)->callbacklen;
       break;
     case SCI_TEXT:
     case SCI_TITLE:

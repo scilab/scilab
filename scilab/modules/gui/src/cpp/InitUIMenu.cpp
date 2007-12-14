@@ -19,30 +19,6 @@ void InitUIMenu(sciPointObj* sciObj)
   pUIMENU_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newMenu(getScilabJavaVM());
 }
 
-int set_label_property(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
-{
-  // Label must be only one character string
-  if (valueType != sci_strings) {
-    // TODO display a message ?
-    return SET_PROPERTY_ERROR;
-  }
-  if (nbCol != 1) {
-    // TODO display a message ?
-    return SET_PROPERTY_ERROR;
-  }
-
-  if (nbRow == 0) {
-    // This case should never happen beacause if nbRow==0 then nbCol is also 0
-    // TODO display a message ?
-    return SET_PROPERTY_ERROR;
-  }
-
-  // Send the label to Java
-  CallScilabBridge::setText(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
-
-  return SET_PROPERTY_SUCCEED;
-}
-
 int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
 {
 
@@ -104,12 +80,6 @@ int setMenuCallback(sciPointObj* sciObj, int stackPointer, int valueType, int nb
 
   return SET_PROPERTY_SUCCEED;
   
-}
-
-int get_label_property(sciPointObj* sciObj)
-{
-  // Get the label from Java
-  return  sciReturnString(CallScilabBridge::getText(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex));
 }
 
 void EnableRootMenu(char *name, BOOL status)

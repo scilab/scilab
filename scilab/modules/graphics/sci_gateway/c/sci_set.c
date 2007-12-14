@@ -272,10 +272,12 @@ int sci_set(char *fname, unsigned long fname_len)
 				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_title
 				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_x_label
 				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_y_label
-				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label )
+				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label
+                                 && sciGetEntityType(pobj) != SCI_UIMENU
+                                 && sciGetEntityType(pobj) != SCI_UICONTROL)
 			 { 
 				 /* Addings F.Leray 10.06.04 */
-				 sciDrawObj(pobj) ;
+                                 sciDrawObj(pobj) ;
 			 }
 		 }
 	 }

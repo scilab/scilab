@@ -68,6 +68,12 @@ public interface SimplePushButton {
 	void setText(String text);
 
 	/**
+	 * Gets the text of a PushButton
+	 * @return the text of the PushButton
+	 */
+	String getText();
+
+	/**
 	 * Sets the icon of a PushButton
 	 * @param filename the path to the icon image to set to the PushButton
 	 */

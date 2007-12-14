@@ -48,6 +48,14 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	}
 	
 	/**
+	 * Gets the text of a PushButton
+	 * @return the text of the PushButton
+	 */
+	public String getText() {
+		return ScilabBridge.getText(this);
+	}
+
+	/**
 	 * Draws a PushButton
 	 */
 	public void draw() {
