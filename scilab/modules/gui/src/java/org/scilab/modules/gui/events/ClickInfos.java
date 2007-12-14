@@ -1,11 +1,32 @@
 package org.scilab.modules.gui.events;
 
-public class ClickInfos {
+/**
+ * This class is to manage some Clicks informations
+ * such as the button/key pressed, the mouse position...
+ * 
+ * @author bruno
+ *
+ */
+public final class ClickInfos {
+
+	private static ClickInfos self;
 	
+	private int mouseButtonNumber;
+	private double xCoordinate;
+	private double yCoordinate;
+	private int windowID;
+	private String menuCallback;	
+
+	/**
+	 * SINGLETON
+	 */
 	private ClickInfos() {
 		init();
 	}
 	
+	/**
+	 * Initialise ClickInfos attributes.
+	 */
 	public void init() {
 		mouseButtonNumber = 0;
 		xCoordinate = 0;
@@ -14,6 +35,10 @@ public class ClickInfos {
 		menuCallback = "void";
 	}
 	
+	/**
+	 * Singleton.
+	 * @return the unique ClickInfos
+	 */
 	public static ClickInfos getInstance() {
 		if (self == null) {
 			self = new ClickInfos();
@@ -87,11 +112,5 @@ public class ClickInfos {
 		this.menuCallback = menuCallback;
 	}
 	
-	private int mouseButtonNumber;
-	private double xCoordinate;
-	private double yCoordinate;
-	private int windowID;
-	private String menuCallback;
-	
-	private static ClickInfos self;
+
 }

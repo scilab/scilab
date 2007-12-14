@@ -1,8 +1,24 @@
 package org.scilab.modules.gui.events;
 
 
-public class Jxclick {
+/**
+ * This class implements the xclick Scilab method
+ * by updating the ClickInfos attributes.
+ * 
+ * @author bruno
+ *
+ */
+public final class Jxclick {
 
+	/**
+	 * PRIVATE constructor
+	 * We do not want a Jxclick object.
+	 */
+	private Jxclick() { }
+	
+	/**
+	 * Scilab call point for xclick.
+	 */
 	public static void xclick() {
 		GlobalEventWatcher.enable();
 		synchronized (ClickInfos.getInstance()) {
