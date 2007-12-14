@@ -2,19 +2,13 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
-import java.awt.BorderLayout;
+import java.awt.AWTEvent;
 import java.awt.Dimension;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import javax.media.opengl.GL;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
-import org.scilab.modules.gui.events.GlobalKeyEventWatcher;
-import org.scilab.modules.gui.events.GlobalMouseEventWatcher;
-import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
@@ -40,30 +34,17 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
 		super(cap);
 		// TODO to remove, just for testing
-		// this.setLayout(null);
+		this.setLayout(null);
 		this.addGLEventListener(new SciRenderer(figureIndex));
 		
 		/**
-		 * FIXME : Magical Hack !!!
-		 * Works as this... must investigate more to understand why...
+		 * FIXed : No more Magical Hack !!!
 		 * {
 		 */
-		// Opaque and Focusable in order to catch KeyEvents...
+		// Focusable in order to catch KeyEvents...
 		this.setFocusable(true);
-		this.setOpaque(true);
-	
-		MouseListener toto =  new MouseListener() {
-			public void mouseClicked(MouseEvent arg0) {
-				//System.out.println("*** Clicked on this fucking Canvas !!!");
-			}
-			public void mouseEntered(MouseEvent arg0) { }
-			public void mouseExited(MouseEvent arg0) { }
-			public void mousePressed(MouseEvent arg0) {	}
-			public void mouseReleased(MouseEvent arg0) { }
-		};
-		
-		super.addMouseListener(toto);
-		//this.removeMouseListener(toto);
+		// Enable mouse Events sensitivity...
+		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
 		/**
 		 * }
 		 * end Magical HACK
