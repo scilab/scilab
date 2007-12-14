@@ -1071,6 +1071,7 @@ public class ScilabBridge {
 	/**
 	 * Gets the Text of a PushButton
 	 * @param pushButton the PushButton we want to get the Text of
+	 * @return the Text of the PushButton
 	 */
 	public static String getText(PushButton pushButton) {
 		return ScilabPushButtonBridge.getText(pushButton);
