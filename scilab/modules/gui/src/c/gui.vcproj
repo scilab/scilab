@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="gui"
 	ProjectGUID="{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	RootNamespace="gui"
@@ -548,11 +548,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\SetUicontrolParent.h"
+				RelativePath="..\cpp\SetUicontrolBackgroundColor.hxx"
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\SetUicontrolBackgroundColor.hxx"
+				RelativePath="..\..\includes\SetUicontrolParent.h"
 				>
 			</File>
 			<File
@@ -598,6 +598,10 @@
 		</File>
 		<File
 			RelativePath="..\..\sci_gateway\gui_gateway.xml"
+			>
+		</File>
+		<File
+			RelativePath=".\gui_header.def"
 			>
 		</File>
 		<File

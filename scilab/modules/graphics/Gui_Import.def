@@ -30,4 +30,5 @@ GetStyleProperty
 GetLabelProperty
 SetUicontrolParent
 SetLabelProperty
+SetUicontrolBackgroundColor
 ;
