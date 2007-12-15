@@ -5,7 +5,9 @@ package org.scilab.modules.gui.bridge.textbox;
 
 import javax.swing.JTextArea;
 
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -86,4 +88,65 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
 	
+
+	/**
+	 * Get the id of the menu bar associated to the TextBox
+	 * @return the id of the menubar
+	 * @see org.scilab.modules.gui.uielement.UIElement#getMenuBarId()
+	 */
+	public int getMenuBarId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * Set the id of the menu bar associated to the TextBox
+	 * @param id the id of the menubar
+	 * @see org.scilab.modules.gui.uielement.UIElement#getMenuBarId()
+	 */
+	public void setMenuBarId(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Get the id of the tool bar associated to the TextBox
+	 * @return the id of the toolbar
+	 * @see org.scilab.modules.gui.uielement.UIElement#getToolBarId()
+	 */
+	public int getToolBarId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * Set the id of the tool bar associated to the TextBox
+	 * @param id the id of the toolbar
+	 * @see org.scilab.modules.gui.uielement.UIElement#getToolBarId()
+	 */
+	public void setToolBarId(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * Add a Scilab MenuBar to a Scilab TextBox
+	 * @param menuBarToAdd the Scilab MenuBar to add to the Scilab TextBox
+	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
+	 */
+	public void addMenuBar(MenuBar menuBarToAdd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Add a Scilab Toolbar to a Scilab TextBox
+	 * @param toolBarToAdd the Scilab ToolBar to add to the Scilab TextBox
+	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.menubar.ToolBar)
+	 */
+	public void addToolBar(ToolBar toolBarToAdd) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

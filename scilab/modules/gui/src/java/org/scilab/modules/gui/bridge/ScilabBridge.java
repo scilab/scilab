@@ -973,6 +973,14 @@ public class ScilabBridge {
 		return ScilabMenuBridge.isVisible(menu);
 	}
 
+	/**
+	 * Set the Background color of the menu
+	 * @param menu the menu we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(Menu menu, Color color) {
+		ScilabMenuBridge.setBackground(menu, color);
+	}
 	
 	/*****************/
 	/* Separator Bridge */
@@ -1214,7 +1222,16 @@ public class ScilabBridge {
 	public static void setVisible(TextBox textBox, boolean newVisibleState) {
 		ScilabTextBoxBridge.setVisible(textBox, newVisibleState);
 	}
-	
+
+	/**
+	 * Set the Background color of the textbox
+	 * @param textBox the textbox we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(TextBox textBox, Color color) {
+		ScilabTextBoxBridge.setBackground(textBox, color);
+	}
+
 	/*****************/
 	/* EditBox Bridge */
 	/*****************/

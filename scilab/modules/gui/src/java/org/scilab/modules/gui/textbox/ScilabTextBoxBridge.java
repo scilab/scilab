@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.textbox;
 
+import java.awt.Color;
+
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -114,4 +116,14 @@ public class ScilabTextBoxBridge {
 	public static void setVisible(TextBox textBox, boolean newVisibleState) {
 		textBox.getAsSimpleTextBox().setVisible(newVisibleState);
 	}
+
+	/**
+	 * Set the Background color of a Scilab TextBox
+	 * @param textBox the textbox we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(TextBox textBox, Color color) {
+		textBox.getAsSimpleTextBox().setBackground(color);
+	}
+	
 }

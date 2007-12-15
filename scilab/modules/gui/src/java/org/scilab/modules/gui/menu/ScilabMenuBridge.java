@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.menu;
 
+import java.awt.Color;
+
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
@@ -136,5 +138,13 @@ public class ScilabMenuBridge {
 	public static void setVisible(Menu menu, boolean newVisibleState) {
 		menu.getAsSimpleMenu().setVisible(newVisibleState);
 	}
-	
+
+	/**
+	 * Set the Background color of the menu
+	 * @param menu the menu we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(Menu menu, Color color) {
+		menu.getAsSimpleMenu().setBackground(color);
+	}
 }

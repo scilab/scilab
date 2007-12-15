@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.textbox;
 
+import java.awt.Color;
+
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.text.ScilabText;
 import org.scilab.modules.gui.utils.Position;
@@ -114,5 +116,12 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	public void setVisible(boolean newVisibleState) {
 		ScilabBridge.setVisible(this, newVisibleState);
 	}
-	
+
+	/**
+	 * Set the Background color of the textbox
+	 * @param color the Color
+	 */
+	public void setBackground(Color color) {
+		ScilabBridge.setBackground(this, color);
+	}
 }

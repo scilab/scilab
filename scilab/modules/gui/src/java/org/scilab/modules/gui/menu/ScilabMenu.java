@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.menu;
 
+import java.awt.Color;
+
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.Position;
@@ -153,5 +155,13 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	 */
 	public void setEnabled(boolean status) {
 		ScilabBridge.setEnabled(this, status);
+	}
+	
+	/**
+	 * Set the Background color of the menu
+	 * @param color the Color
+	 */
+	public void setBackground(Color color) {
+		ScilabBridge.setBackground(this, color);
 	}
 }
