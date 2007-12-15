@@ -5,7 +5,6 @@ package org.scilab.modules.gui.pushbutton;
 
 import java.awt.Color;
 
-import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
