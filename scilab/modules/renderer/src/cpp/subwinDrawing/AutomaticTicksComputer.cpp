@@ -9,6 +9,7 @@
 
 extern "C"
 {
+#include <stdio.h>
 #include "Format.h"
 #include "DrawObjects.h"
 }

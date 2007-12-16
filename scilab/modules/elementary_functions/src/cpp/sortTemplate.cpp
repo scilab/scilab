@@ -205,7 +205,7 @@ void my_lgsortdoublecol(double *Input_Matrix,int *index, int left, int right,cha
    last = left;                        /* to v[0] */
    for (i = left + 1; i <= right; i++)
    {/* partition */
-	   for (position=0;Input_Matrix[i*RowNum+position]==Input_Matrix[left*RowNum+position] ;position++);
+	   for (position=0;Input_Matrix[i*RowNum+position]==Input_Matrix[left*RowNum+position] ;position++) {}
 	   if (iord[0]==INCREASE_COMMAND)
 	   {
 		   if (!GetMax(Input_Matrix[i*RowNum+position],Input_Matrix[left*RowNum+position]))
@@ -249,7 +249,7 @@ void my_qsortslrow(char **Input_Matrix,int *index, int left, int right,char *ior
    last = left;                        /* to v[0] */
    for (i = left + 1; i <= right; i++)
    {/* partition */
-	   for (position=0;strcmp(Input_Matrix[position*RowNum+i],Input_Matrix[position*RowNum+left])==0 ;position++);
+	   for (position=0;strcmp(Input_Matrix[position*RowNum+i],Input_Matrix[position*RowNum+left])==0 ;position++) {}
 	   if (iord[0]==INCREASE_COMMAND)
 	   {
 		   if (strcmp(Input_Matrix[position*RowNum+i],Input_Matrix[position*RowNum+left])<=0)
@@ -493,7 +493,7 @@ void my_qsortscol(char **Input_Matrix,int *index, int left, int right,char *iord
    last = left;                        /* to v[0] */
    for (i = left + 1; i <= right; i++)
    {/* partition */
-	   for (position=0;strcmp(Input_Matrix[i*RowNum+position],Input_Matrix[left*RowNum+position])==0 ;position++);
+	   for (position=0;strcmp(Input_Matrix[i*RowNum+position],Input_Matrix[left*RowNum+position])==0 ;position++) {}
 	   if (iord[0]==INCREASE_COMMAND)
 	   {
 		   if (strcmp(Input_Matrix[i*RowNum+position],Input_Matrix[left*RowNum+position])<=0)
