@@ -4,7 +4,8 @@
 /*------------------------------------------------------------------------*/
 extern "C"
 {
-	#include <string.h>
+#include <string.h>
+#include <stdlib.h>
 }
 #include "HistorySearch.hxx"
 #include "MALLOC.h"
