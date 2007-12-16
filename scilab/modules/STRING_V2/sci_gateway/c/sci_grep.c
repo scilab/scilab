@@ -12,7 +12,6 @@
 #include "pcreposix.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "kmp.h"
 #include "MALLOC.h" /* MALLOC */
 #include "pcre_private.h"
 #include "Scierror.h"

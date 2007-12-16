@@ -5,21 +5,6 @@ EXPORTS
 ; --------------------------------------- 
 ; string_f
 ; --------------------------------------- 
-intascii_
-intcode2str_
-intconvstr_
-intemptystr_
-intgrep_
-intlength_
-intpart_
-intstr2code_
-instrcat_
-instrindex_
 intstring_
-intstrsplit_
-intstrsubst_
-inttokens_
-is_a_sep_
 strdsp_
 strops_
-strord_

@@ -19,7 +19,9 @@ src/c/getfastcode.c \
 src/c/pcre_private.c \
 src/c/isletter.c \
 src/c/isdigit.c \
-src/c/strsubst.c
+src/c/strsubst.c \
+src/c/stringsstrrchr.c \
+src/c/stringsstrrev.c
 
 STRING_FORTRAN_SOURCES =src/fortran/strdsp.f
 
@@ -42,8 +44,17 @@ sci_gateway/c/sci_tokens.c \
 sci_gateway/c/sci_strcmp.c \
 sci_gateway/c/sci_isletter.c \
 sci_gateway/c/sci_isdigit.c \
-sci_gateway/c/sci_isalphanum.c
-
+sci_gateway/c/sci_isalphanum.c \
+sci_gateway/c/sci_isascii.c \
+sci_gateway/c/sci_strchr.c \
+sci_gateway/c/sci_strcspn.c \
+sci_gateway/c/sci_strncpy.c \
+sci_gateway/c/sci_strrchr.c \
+sci_gateway/c/sci_strrev.c \
+sci_gateway/c/sci_strspn.c \
+sci_gateway/c/sci_strstr.c \
+sci_gateway/c/sci_strtod.c \
+sci_gateway/c/sci_strtok.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f
@@ -67,9 +78,6 @@ libscistring_la_LIBADD =
 #	$(top_builddir)/libs/MALLOC/libscimalloc.la
 # Cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la
-
-
-
 
 
 #### Target ######

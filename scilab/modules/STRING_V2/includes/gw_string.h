@@ -28,6 +28,16 @@ int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_isletter) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_isdigit) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_isalphanum) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_isascii) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strcspn) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strrchr) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strchr) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strrev) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strtok) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strspn) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strtod) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_STRING__ */
 /*--------------------------------------------------------------------------*/

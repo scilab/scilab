@@ -1,0 +1,138 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright INRIA 2007 */
+/* @Author : Allan CORNET */
+/*----------------------------------------------------------------------------*/
+#include <string.h>
+#include <stdio.h>
+#include <ctype.h>
+#include "gw_string.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "MALLOC.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "freeArrayOfString.h"
+/*----------------------------------------------------------------------------*/
+int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
+{
+	CheckRhs(2,2);
+	CheckLhs(0,1);
+
+	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_matrix) )
+	{
+		int m1 = 0; int n1 = 0;
+		char **InputString_Parameter1 = NULL;
+		int m1n1 = 0; /* m1 * n1 */
+
+		int m2 = 0; int n2 = 0 ; int l2 = 0;
+		double *InputLength_Parameter2 = NULL;
+		int *InputLength_Parameter2_checked = NULL;
+		int m2n2 = 0; /* m2 * n2 */
+
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&InputString_Parameter1);
+		m1n1 = m1 * n1;
+
+		GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
+		InputLength_Parameter2 = stk(l2);
+		m2n2 = m2 * n2;
+
+		if (m2n2 == 0)
+		{
+			freeArrayOfString(InputString_Parameter1,m1n1);
+			Scierror(999,_("%s : Invalid size second parameter.\n"),fname);
+			return 0;
+		}
+		else
+		{
+			int j = 0;
+			InputLength_Parameter2_checked = (int*)MALLOC(sizeof(int)*m2n2);
+			if (InputLength_Parameter2_checked == NULL)
+			{
+				freeArrayOfString(InputString_Parameter1,m1n1);
+				Scierror(999,"%s: Out of memory\r\n",fname);
+				return 0;
+			}
+
+			
+			for(j = 0; j < m2n2;j++)
+			{
+				int len = (int)strlen(InputString_Parameter1[j]);
+				if ( len < InputLength_Parameter2[j] ) InputLength_Parameter2_checked[j] = len;
+				else
+				{
+					if ( InputLength_Parameter2[j] < 0 ) InputLength_Parameter2_checked[j] = 0;
+					else InputLength_Parameter2_checked[j] = (int)InputLength_Parameter2[j];
+				}
+
+			}
+		}
+
+		if ( (m1n1 == m2n2) || (m2n2 == 1) )
+		{
+			char **OutputStrings = NULL;
+			int i = 0;
+
+			OutputStrings = (char**)MALLOC(sizeof(char*)*m1n1);
+			if (OutputStrings == NULL)
+			{
+				if (InputLength_Parameter2_checked) 
+				{
+					FREE(InputLength_Parameter2_checked);
+					InputLength_Parameter2_checked = NULL;
+				}
+				freeArrayOfString(InputString_Parameter1,m1n1);
+				Scierror(999,"%s: Out of memory\r\n",fname);
+				return 0;
+			}
+
+			for (i=0; i < m1n1 ; i++)
+			{
+				int j = 0;
+
+				if (m2n2 == 1) j = 0;
+				else j = i;
+
+				OutputStrings[i] = (char*)MALLOC(sizeof(char)*(InputLength_Parameter2_checked[j]+1));
+				if (OutputStrings[i]==NULL)
+				{
+					if (InputLength_Parameter2_checked) 
+					{
+						FREE(InputLength_Parameter2_checked);
+						InputLength_Parameter2_checked = NULL;
+					}
+					freeArrayOfString(InputString_Parameter1,m1n1);
+					freeArrayOfString(OutputStrings,i);
+					Scierror(999,"%s: Out of memory\r\n",fname);
+					return 0;
+				}
+				strncpy(OutputStrings[i],InputString_Parameter1[i],InputLength_Parameter2_checked[j]);
+				OutputStrings[i][InputLength_Parameter2_checked[j]] = '\0';
+			}
+
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,OutputStrings);
+			freeArrayOfString(OutputStrings,m1n1);
+			if (InputLength_Parameter2_checked) 
+			{
+				FREE(InputLength_Parameter2_checked);
+				InputLength_Parameter2_checked = NULL;
+			}
+
+			LhsVar(1) = Rhs+1 ;
+			C2F(putlhsvar)();
+		}
+		else
+		{
+			freeArrayOfString(InputString_Parameter1,m1n1);
+			Scierror(999,_("%s : Invalid size second parameter.\n"),fname);
+			return 0;
+		}
+
+		freeArrayOfString(InputString_Parameter1,m1n1);
+	}
+	else
+	{
+		Scierror(999,_("%s : Invalid input parameter(s).\n"),fname);
+	}
+	return 0;
+}
+/*--------------------------------------------------------------------------*/

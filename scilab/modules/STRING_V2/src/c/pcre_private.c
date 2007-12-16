@@ -561,17 +561,11 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			if (namecount > 0)
 			{
 				return CAPTURING_SUBPATTERNS_ERROR;
-				while (namecount-- > 0)
-				{
-					nametable += nameentrysize;
-				}
 			}
 			if (!okpartial) return PARTIAL_MATCHING_NOT_SUPPORTED;
 			if (hascrorlf) return CONTAINS_EXPLICIT_CR_OR_LF_MATCH;
 
 			all_options = ((real_pcre *)re)->options;
-		
-			
 
 			if (jchanged) return DUPLICATE_NAME_STATUS_CHANGES;
 
@@ -818,7 +812,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		if ((all_use_dfa || use_dfa) && find_match_limit)
 		{
 			return LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING;
-			find_match_limit = 0;
 		}
 
 		/* Handle matching via the POSIX interface, which does not
@@ -892,7 +885,9 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					{
 						*Output_Start=use_offsets[i];
 						*Output_End=use_offsets[i+1];
-						return TOO_BIG_FOR_OFFSET_SIZE;
+						// TO DO REORGANIZE CODE & OUTPUT ERRORS 
+						// IT WORKS by a MIRACLE ...
+						return 0;
 					}
 				}
 
@@ -901,15 +896,14 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					if ((copystrings & (1 << i)) != 0)
 					{
 						char copybuffer[256];
-						int rc = pcre_copy_substring((char *)bptr, use_offsets, count,i, copybuffer, sizeof(copybuffer));
+						pcre_copy_substring((char *)bptr, use_offsets, count,i, copybuffer, sizeof(copybuffer));
 					}
 				}
 
 				for (copynamesptr = copynames; *copynamesptr != 0;copynamesptr += (int)strlen((char*)copynamesptr) + 1)
 				{
 					char copybuffer[256];
-					int rc = pcre_copy_named_substring(re, (char *)bptr, use_offsets,
-							count, (char *)copynamesptr, copybuffer, sizeof(copybuffer));
+					pcre_copy_named_substring(re, (char *)bptr, use_offsets,count, (char *)copynamesptr, copybuffer, sizeof(copybuffer));
 				}
 
 				for (i = 0; i < 32; i++)
@@ -917,15 +911,14 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					if ((getstrings & (1 << i)) != 0)
 					{
 						const char *substring;
-						int rc = pcre_get_substring((char *)bptr, use_offsets, count,i, &substring);
+						pcre_get_substring((char *)bptr, use_offsets, count,i, &substring);
 					}
 				}
 
 				for (getnamesptr = getnames;*getnamesptr != 0;getnamesptr += (int)strlen((char*)getnamesptr) + 1)
 				{
 					const char *substring;
-					int rc = pcre_get_named_substring(re, (char *)bptr, use_offsets,count, (char *)getnamesptr, &substring);
-					
+					pcre_get_named_substring(re, (char *)bptr, use_offsets,count, (char *)getnamesptr, &substring);
 				}
 
         }
@@ -1018,7 +1011,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
         }
 	}  /* End of loop for /g and /G */
 
-    NEXT_DATA: continue;
+    continue;
     }    /* End of loop for data lines */
 
   CONTINUE:
@@ -1041,5 +1034,5 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	FREE(dbuffer);
 	FREE(pbuffer);
 	FREE(offsets);
-
+	return PCRE_EXIT;
 }

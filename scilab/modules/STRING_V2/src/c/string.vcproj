@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="string"
 	ProjectGUID="{8D45767A-9B03-4905-97F6-D2F3F79141EA}"
 	RootNamespace="string"
@@ -239,10 +239,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\kmp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\men_Sutils.c"
 				>
 			</File>
@@ -275,6 +271,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_isascii.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_isdigit.c"
 				>
 			</File>
@@ -299,7 +299,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_strchr.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_strcmp.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_strcspn.c"
 				>
 			</File>
 			<File
@@ -315,11 +323,39 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_strncpy.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_strrchr.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_strrev.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_strsplit.c"
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_strspn.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_strstr.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_strsubst.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_strtod.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_strtok.c"
 				>
 			</File>
 			<File
@@ -332,6 +368,14 @@
 			</File>
 			<File
 				RelativePath=".\stringsCompare.c"
+				>
+			</File>
+			<File
+				RelativePath=".\stringsstrrchr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\stringsstrrev.c"
 				>
 			</File>
 			<File
@@ -396,10 +440,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\kmp.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\men_Sutils.h"
 				>
 			</File>
@@ -413,6 +453,14 @@
 			</File>
 			<File
 				RelativePath=".\stringsCompare.h"
+				>
+			</File>
+			<File
+				RelativePath=".\stringsstrrchr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\stringsstrrev.h"
 				>
 			</File>
 			<File
@@ -450,6 +498,10 @@
 		</File>
 		<File
 			RelativePath="..\..\string.iss"
+			>
+		</File>
+		<File
+			RelativePath=".\string_f_Import.def"
 			>
 		</File>
 		<File

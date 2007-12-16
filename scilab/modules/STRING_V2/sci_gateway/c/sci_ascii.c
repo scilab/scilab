@@ -9,6 +9,7 @@
 /*-----------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
+#include <ctype.h>
 #include "gw_string.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -101,6 +102,7 @@ static int asciiStrings(char *fname)
 
 	if (Output_IntMatrix == NULL)
 	{
+		freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
 		Scierror(999,_("%s : Memory allocation error\n"),fname);
 		return 0;
 	}
@@ -222,7 +224,7 @@ static int asciiMatrix(char *fname)
 		Output_StringMatrix = cstk(outIndex);
 		for (x = 0; x < len; x++) 
 		{
-			Output_StringMatrix[x] = (char)Input_IntMatrix[x];
+			Output_StringMatrix[x] = (char)toascii(Input_IntMatrix[x]);
 		}
 		Output_StringMatrix[len] = '\0';
 	}

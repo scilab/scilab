@@ -12,11 +12,6 @@ c
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-
-      if(rhs.ne.1) then
-         call  error(39)
-         return
-      endif
 c
       il=iadr(lstk(top))
       ilr=il
@@ -34,10 +29,6 @@ c
 c
 c     conversion d'une matrice de scalaires
 c     -------------------------------------
-         if(lhs.ne.1) then
-            call error(39)
-            return
-         endif
          m=istk(il+1)
          n=istk(il+2)
          if(m*n.eq.0) then
@@ -81,13 +72,8 @@ c
 c
 c     conversion d'une macro non compilee
 c     -----------------------------------
-
          ilm=il
 c
-         if(lhs.ne.3) then
-            call error(41)
-            return
-         endif
 c     form vectors of output and input variables
          il=il+1
          lw=lstk(top+1)
@@ -117,7 +103,6 @@ c     form vectors of output and input variables
             endif
             lw=sadr(l+1)
  37      continue
-c
 c
          if(istk(ilm).eq.13) then
             ltxt=lw
@@ -192,10 +177,6 @@ c     update stack
 
       elseif(istk(il).eq.14) then
 c     librairies
-         if(lhs.ne.1) then
-            call error(39)
-            return
-         endif
          il0=ilr
 c
          n1=istk(il+1)
@@ -236,5 +217,4 @@ c
       endif
  999  return
       end
-
 c =========================================  

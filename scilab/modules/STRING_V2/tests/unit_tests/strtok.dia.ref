@@ -1,0 +1,18 @@
+//=================================================
+if strtok('') <> '' then bugmes();quit;end
+//=================================================
+if strtok('','') <> '' then bugmes();quit;end
+//=================================================
+if strtok('','a') <> '' then bugmes();quit;end
+if strtok('a') <> '' then bugmes();quit;end
+//=================================================
+TOKENS = [];
+token = strtok("A string of ,,tokens and some  more tokens"," ,");
+TOKENS = [TOKENS,token];
+while( token <> '' )
+  token = strtok(" ,");
+  TOKENS = [TOKENS,token];
+end
+REF = 'A string of tokens and some more tokens ';
+if strcat(TOKENS,' ')<> REF then bugmes();quit;end
+//=================================================

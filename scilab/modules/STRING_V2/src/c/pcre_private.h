@@ -5,6 +5,7 @@
 #define __PCRE_PRIVATE_H__
 
 typedef enum {
+	PCRE_EXIT = 1,
 	NO_MATCH = -1,
 	NOT_ENOUGH_MEMORY_FOR_VECTOR = -2,
 	DELIMITER_NOT_ALPHANUMERIC = -3,

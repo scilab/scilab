@@ -16,7 +16,6 @@
 #include "stack-c.h"
 #include "machine.h"
 #include "MALLOC.h"
-#include "kmp.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "pcre_private.h"
@@ -146,14 +145,14 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 			if (Str2)
 			{
 				
-				for (w=0; w<strlen(Str[0]);w++)
+				for (w=0; w<(int)strlen(Str[0]);w++)
 				{
 					pos=0;
 					w1=w;
 			        for ( ; Str[0][w1]==Str2[x][pos] && Str[0][w1]!='\0';w1++,pos++) ;
-                    if (pos == strlen(Str2[x])) 
+                    if (pos == (int)strlen(Str2[x])) 
 						{
-							values[nbValues++] = w1-strlen(Str2[x])+1;
+							values[nbValues++] = w1-(int)strlen(Str2[x])+1;
 							position[nbposition++] = x+1;
 							pos=0;
 						}

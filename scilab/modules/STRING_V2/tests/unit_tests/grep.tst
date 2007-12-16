@@ -497,9 +497,9 @@ if grep('......abef'                              ,'/.*a(?!(b|cd)*e).*f/'       
 if grep('fools'                                   ,'/(foo|fool|x.|money|parted)$/'         ,'r') <>  []  then pause,end
 if grep('fools'                                   ,'/(x.|foo|fool|x.|money|parted|y.)$/'   ,'r') <>  []  then pause,end
 if grep('fools'                                   ,'/(foo|fool|money|parted)$/'            ,'r') <>  []  then pause,end
-
+//========================================================================================
 // depend of PCRE library options
-// if grep('a\b'                                     ,'/a\\b/'                                ,'r') <>  1   then pause,end
+//if grep('a\b'                                     ,'/a\\b/'                                ,'r') <>  1   then pause,end
 //if grep('bbbbXcXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'  ,'/.X(.+)+X/'                            ,'r') <>  1   then pause,end
 //if grep('bbbbXcXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.X(.+)+XX/'                           ,'r') <>  1   then pause,end
 //if grep('bbbbXXcXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.XX(.+)+X/'                           ,'r') <>  1   then pause,end
@@ -525,3 +525,4 @@ if grep('fools'                                   ,'/(foo|fool|money|parted)$/' 
 //if grep('cabd'                                    ,'/a(?{"\{"})b/'                         ,'r') <>  1   then pause,end
 //if grep('A\B'                                     ,'/a\\b/i'                               ,'r') <>  1   then pause,end
 //if grep('aaaaaaaaaaaaaaab'                        ,'/(a|aa|aaa|aaaa|aaaaa|aaaaaa)(??{$1&&"foo"})(b|c)/','r') <>  []  then pause,end
+//========================================================================================

@@ -1,10 +1,10 @@
 /*------------------------------------------------------------------------*/
-/* File: tokens.c                                                    */
+/* File: tokens.c                                                         */
 /* Copyright INRIA 2007                                                   */
-/* @Authors : Cong Wu                                                      */
-/* desc : returns the tokens of a character string.  
-          The main function
-		                                                                  */
+/* @Authors : Cong Wu                                                     */
+/* desc : returns the tokens of a character string.                       */
+/*        The main function                                               */
+/*		                                                                  */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
@@ -31,7 +31,7 @@ void tokens(char **Input_MatrixOne,char **Input_MatrixTwo,char **Output_String,i
 			}
 			if ( bo == 0 )  
 			{
-				/* if bo is a singal, to put the input string matrix into the output matrix in a correct token way*/
+				/* if bo is a signal, to put the input string matrix into the output matrix in a correct token way*/
 				Output_String[*Row_Pointer][(*Col_Pointer)++] = Input_MatrixOne[0][y];
 			}
 			else 

@@ -2,7 +2,6 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
-#include <string.h>
 #include "gw_string.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
@@ -26,7 +25,18 @@ static gw_generic_table Tab[]=
 	{C2F(sci_strcmp),"strcmp"},
 	{C2F(sci_isletter),"isletter"},
 	{C2F(sci_isdigit),"isdigit"},
-	{C2F(sci_isalphanum),"isalphanum"}
+	{C2F(sci_isalphanum),"isalphanum"},
+	{C2F(sci_isascii),"isascii"},
+	{C2F(sci_strcspn),"strcspn"},
+	{C2F(sci_strncpy),"strncpy"},
+	{C2F(sci_strrchr),"strrchr"},
+	{C2F(sci_strchr),"strchr"},
+	{C2F(sci_strstr),"strstr"},
+	{C2F(sci_strrev),"strrev"},
+	{C2F(sci_strtok),"strtok"},
+	{C2F(sci_strspn),"strspn"},
+	{C2F(sci_strtod),"strtod"}
+
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_string)(void)
@@ -35,3 +45,4 @@ int C2F(gw_string)(void)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
+

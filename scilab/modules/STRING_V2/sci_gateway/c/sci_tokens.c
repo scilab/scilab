@@ -58,17 +58,17 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 	 
     if (Rhs == 2)
     {
-			if ( VarType(2) == sci_strings )
-			{
-				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&Row_Two,&Col_Two,&Input_MatrixTwo); 
-				mn_Two = Row_Two * Col_Two;
-			}
-			else
-			{
-				freeArrayOfString(Input_MatrixOne,mn_One);
-				Scierror(999,_("%s : first input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
-				return 0;
-			}
+		if ( VarType(2) == sci_strings )
+		{
+			GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&Row_Two,&Col_Two,&Input_MatrixTwo); 
+			mn_Two = Row_Two * Col_Two;
+		}
+		else
+		{
+			freeArrayOfString(Input_MatrixOne,mn_One);
+			Scierror(999,_("%s : first input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
+			return 0;
+		}
     }
     else
     {
@@ -104,7 +104,8 @@ int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		Output_String = (char**)MALLOC( sizeof(char*)*((int)strlen(Input_MatrixOne[0])));
 	}
-	if (Output_String== NULL)
+
+	if (Output_String == NULL)
 	{
 	    if (Input_MatrixTwo[0]) {FREE(Input_MatrixTwo[0]); Input_MatrixTwo[0]=NULL; }
         if (Input_MatrixTwo) {FREE(Input_MatrixTwo); Input_MatrixTwo=NULL; }
