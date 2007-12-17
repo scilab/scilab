@@ -232,10 +232,10 @@ static int asciiMatrix(char *fname)
 	{
 		#define EMPTY_STR ""
 		int one    = 1 ;
-		int len   = (int)strlen(EMPTY_STR);
+		int lenStr   = (int)strlen(EMPTY_STR);
 		outIndex = 0 ;
 
-		CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
+		CreateVar(Rhs+1,STRING_DATATYPE,&lenStr,&one,&outIndex);
 		strcpy(cstk(outIndex),EMPTY_STR);
 	}
 	
