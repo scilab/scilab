@@ -5,6 +5,7 @@
 /* desc : Compute automatic ticks with logarithmic scaling                */
 /*------------------------------------------------------------------------*/
 #include <math.h>
+#include <stdio.h>
 
 #include "AutoLogTicksComputer.hxx"
 
