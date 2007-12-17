@@ -204,7 +204,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jintnewWindowID = curEnv->GetStaticMethodID(cls, "newWindow", "()I" ) ;
+jmethodID jintnewWindowID = curEnv->GetStaticMethodID(cls, "newWindow", "()I" ) ;
 if (jintnewWindowID == NULL) {
 std::cerr << "Could not access to the method " << "newWindow" << std::endl;
 exit(EXIT_FAILURE);
@@ -227,7 +227,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jintnewMenuBarID = curEnv->GetStaticMethodID(cls, "newMenuBar", "()I" ) ;
+jmethodID jintnewMenuBarID = curEnv->GetStaticMethodID(cls, "newMenuBar", "()I" ) ;
 if (jintnewMenuBarID == NULL) {
 std::cerr << "Could not access to the method " << "newMenuBar" << std::endl;
 exit(EXIT_FAILURE);
@@ -250,7 +250,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jintnewMenuID = curEnv->GetStaticMethodID(cls, "newMenu", "()I" ) ;
+jmethodID jintnewMenuID = curEnv->GetStaticMethodID(cls, "newMenu", "()I" ) ;
 if (jintnewMenuID == NULL) {
 std::cerr << "Could not access to the method " << "newMenu" << std::endl;
 exit(EXIT_FAILURE);
@@ -273,7 +273,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jintnewPushButtonID = curEnv->GetStaticMethodID(cls, "newPushButton", "()I" ) ;
+jmethodID jintnewPushButtonID = curEnv->GetStaticMethodID(cls, "newPushButton", "()I" ) ;
 if (jintnewPushButtonID == NULL) {
 std::cerr << "Could not access to the method " << "newPushButton" << std::endl;
 exit(EXIT_FAILURE);
@@ -296,7 +296,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetFigureAsParentjintjintID = curEnv->GetStaticMethodID(cls, "setFigureAsParent", "(II)V" ) ;
+jmethodID voidsetFigureAsParentjintjintID = curEnv->GetStaticMethodID(cls, "setFigureAsParent", "(II)V" ) ;
 if (voidsetFigureAsParentjintjintID == NULL) {
 std::cerr << "Could not access to the method " << "setFigureAsParent" << std::endl;
 exit(EXIT_FAILURE);
@@ -317,7 +317,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetMenuAsParentjintjintID = curEnv->GetStaticMethodID(cls, "setMenuAsParent", "(II)V" ) ;
+jmethodID voidsetMenuAsParentjintjintID = curEnv->GetStaticMethodID(cls, "setMenuAsParent", "(II)V" ) ;
 if (voidsetMenuAsParentjintjintID == NULL) {
 std::cerr << "Could not access to the method " << "setMenuAsParent" << std::endl;
 exit(EXIT_FAILURE);
@@ -338,7 +338,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetRootAsParentjintID = curEnv->GetStaticMethodID(cls, "setRootAsParent", "(I)V" ) ;
+jmethodID voidsetRootAsParentjintID = curEnv->GetStaticMethodID(cls, "setRootAsParent", "(I)V" ) ;
 if (voidsetRootAsParentjintID == NULL) {
 std::cerr << "Could not access to the method " << "setRootAsParent" << std::endl;
 exit(EXIT_FAILURE);
@@ -359,7 +359,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetParentjintjintID = curEnv->GetStaticMethodID(cls, "setParent", "(II)V" ) ;
+jmethodID voidsetParentjintjintID = curEnv->GetStaticMethodID(cls, "setParent", "(II)V" ) ;
 if (voidsetParentjintjintID == NULL) {
 std::cerr << "Could not access to the method " << "setParent" << std::endl;
 exit(EXIT_FAILURE);
@@ -380,7 +380,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetPushButtonParentjintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonParent", "(II)V" ) ;
+jmethodID voidsetPushButtonParentjintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonParent", "(II)V" ) ;
 if (voidsetPushButtonParentjintjintID == NULL) {
 std::cerr << "Could not access to the method " << "setPushButtonParent" << std::endl;
 exit(EXIT_FAILURE);
@@ -401,7 +401,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetMenuTextjintjstringID = curEnv->GetStaticMethodID(cls, "setMenuText", "(ILjava/lang/String;)V" ) ;
+jmethodID voidsetMenuTextjintjstringID = curEnv->GetStaticMethodID(cls, "setMenuText", "(ILjava/lang/String;)V" ) ;
 if (voidsetMenuTextjintjstringID == NULL) {
 std::cerr << "Could not access to the method " << "setMenuText" << std::endl;
 exit(EXIT_FAILURE);
@@ -424,7 +424,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetPushButtonTextjintjstringID = curEnv->GetStaticMethodID(cls, "setPushButtonText", "(ILjava/lang/String;)V" ) ;
+jmethodID voidsetPushButtonTextjintjstringID = curEnv->GetStaticMethodID(cls, "setPushButtonText", "(ILjava/lang/String;)V" ) ;
 if (voidsetPushButtonTextjintjstringID == NULL) {
 std::cerr << "Could not access to the method " << "setPushButtonText" << std::endl;
 exit(EXIT_FAILURE);
@@ -447,7 +447,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jstringgetMenuTextjintID = curEnv->GetStaticMethodID(cls, "getMenuText", "(I)Ljava/lang/String;" ) ;
+jmethodID jstringgetMenuTextjintID = curEnv->GetStaticMethodID(cls, "getMenuText", "(I)Ljava/lang/String;" ) ;
 if (jstringgetMenuTextjintID == NULL) {
 std::cerr << "Could not access to the method " << "getMenuText" << std::endl;
 exit(EXIT_FAILURE);
@@ -475,7 +475,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jstringgetPushButtonTextjintID = curEnv->GetStaticMethodID(cls, "getPushButtonText", "(I)Ljava/lang/String;" ) ;
+jmethodID jstringgetPushButtonTextjintID = curEnv->GetStaticMethodID(cls, "getPushButtonText", "(I)Ljava/lang/String;" ) ;
 if (jstringgetPushButtonTextjintID == NULL) {
 std::cerr << "Could not access to the method " << "getPushButtonText" << std::endl;
 exit(EXIT_FAILURE);
@@ -503,7 +503,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetPushButtonBackgroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonBackgroundColor", "(IIII)V" ) ;
+jmethodID voidsetPushButtonBackgroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonBackgroundColor", "(IIII)V" ) ;
 if (voidsetPushButtonBackgroundColorjintjintjintjintID == NULL) {
 std::cerr << "Could not access to the method " << "setPushButtonBackgroundColor" << std::endl;
 exit(EXIT_FAILURE);
@@ -524,7 +524,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetMenuCallbackjintjstringID = curEnv->GetStaticMethodID(cls, "setMenuCallback", "(ILjava/lang/String;)V" ) ;
+jmethodID voidsetMenuCallbackjintjstringID = curEnv->GetStaticMethodID(cls, "setMenuCallback", "(ILjava/lang/String;)V" ) ;
 if (voidsetMenuCallbackjintjstringID == NULL) {
 std::cerr << "Could not access to the method " << "setMenuCallback" << std::endl;
 exit(EXIT_FAILURE);
@@ -547,7 +547,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetRootMenuEnabledjstringjbooleanID = curEnv->GetStaticMethodID(cls, "setRootMenuEnabled", "(Ljava/lang/String;Z)V" ) ;
+jmethodID voidsetRootMenuEnabledjstringjbooleanID = curEnv->GetStaticMethodID(cls, "setRootMenuEnabled", "(Ljava/lang/String;Z)V" ) ;
 if (voidsetRootMenuEnabledjstringjbooleanID == NULL) {
 std::cerr << "Could not access to the method " << "setRootMenuEnabled" << std::endl;
 exit(EXIT_FAILURE);
@@ -572,7 +572,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetFigureMenuEnabledjintjstringjbooleanID = curEnv->GetStaticMethodID(cls, "setFigureMenuEnabled", "(ILjava/lang/String;Z)V" ) ;
+jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID = curEnv->GetStaticMethodID(cls, "setFigureMenuEnabled", "(ILjava/lang/String;Z)V" ) ;
 if (voidsetFigureMenuEnabledjintjstringjbooleanID == NULL) {
 std::cerr << "Could not access to the method " << "setFigureMenuEnabled" << std::endl;
 exit(EXIT_FAILURE);
@@ -597,7 +597,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidremoveRootMenujstringID = curEnv->GetStaticMethodID(cls, "removeRootMenu", "(Ljava/lang/String;)V" ) ;
+jmethodID voidremoveRootMenujstringID = curEnv->GetStaticMethodID(cls, "removeRootMenu", "(Ljava/lang/String;)V" ) ;
 if (voidremoveRootMenujstringID == NULL) {
 std::cerr << "Could not access to the method " << "removeRootMenu" << std::endl;
 exit(EXIT_FAILURE);
@@ -620,7 +620,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidremoveFigureMenujintjstringID = curEnv->GetStaticMethodID(cls, "removeFigureMenu", "(ILjava/lang/String;)V" ) ;
+jmethodID voidremoveFigureMenujintjstringID = curEnv->GetStaticMethodID(cls, "removeFigureMenu", "(ILjava/lang/String;)V" ) ;
 if (voidremoveFigureMenujintjstringID == NULL) {
 std::cerr << "Could not access to the method " << "removeFigureMenu" << std::endl;
 exit(EXIT_FAILURE);
@@ -643,7 +643,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jintnewFileChooserID = curEnv->GetStaticMethodID(cls, "newFileChooser", "()I" ) ;
+jmethodID jintnewFileChooserID = curEnv->GetStaticMethodID(cls, "newFileChooser", "()I" ) ;
 if (jintnewFileChooserID == NULL) {
 std::cerr << "Could not access to the method " << "newFileChooser" << std::endl;
 exit(EXIT_FAILURE);
@@ -666,7 +666,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetFileChooserTitlejintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserTitle", "(ILjava/lang/String;)V" ) ;
+jmethodID voidsetFileChooserTitlejintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserTitle", "(ILjava/lang/String;)V" ) ;
 if (voidsetFileChooserTitlejintjstringID == NULL) {
 std::cerr << "Could not access to the method " << "setFileChooserTitle" << std::endl;
 exit(EXIT_FAILURE);
@@ -689,7 +689,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetFileChooserInitialDirectoryjintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserInitialDirectory", "(ILjava/lang/String;)V" ) ;
+jmethodID voidsetFileChooserInitialDirectoryjintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserInitialDirectory", "(ILjava/lang/String;)V" ) ;
 if (voidsetFileChooserInitialDirectoryjintjstringID == NULL) {
 std::cerr << "Could not access to the method " << "setFileChooserInitialDirectory" << std::endl;
 exit(EXIT_FAILURE);
@@ -712,7 +712,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetFileChooserMaskjintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserMask", "(ILjava/lang/String;)V" ) ;
+jmethodID voidsetFileChooserMaskjintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserMask", "(ILjava/lang/String;)V" ) ;
 if (voidsetFileChooserMaskjintjstringID == NULL) {
 std::cerr << "Could not access to the method " << "setFileChooserMask" << std::endl;
 exit(EXIT_FAILURE);
@@ -735,7 +735,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidfileChooserDisplayAndWaitjintID = curEnv->GetStaticMethodID(cls, "fileChooserDisplayAndWait", "(I)V" ) ;
+jmethodID voidfileChooserDisplayAndWaitjintID = curEnv->GetStaticMethodID(cls, "fileChooserDisplayAndWait", "(I)V" ) ;
 if (voidfileChooserDisplayAndWaitjintID == NULL) {
 std::cerr << "Could not access to the method " << "fileChooserDisplayAndWait" << std::endl;
 exit(EXIT_FAILURE);
@@ -756,7 +756,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jintgetFileChooserSelectionSizejintID = curEnv->GetStaticMethodID(cls, "getFileChooserSelectionSize", "(I)I" ) ;
+jmethodID jintgetFileChooserSelectionSizejintID = curEnv->GetStaticMethodID(cls, "getFileChooserSelectionSize", "(I)I" ) ;
 if (jintgetFileChooserSelectionSizejintID == NULL) {
 std::cerr << "Could not access to the method " << "getFileChooserSelectionSize" << std::endl;
 exit(EXIT_FAILURE);
@@ -779,7 +779,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jobjectArraygetFileChooserSelectionjintID = curEnv->GetStaticMethodID(cls, "getFileChooserSelection", "(I)[Ljava/lang/String;" ) ;
+jmethodID jobjectArraygetFileChooserSelectionjintID = curEnv->GetStaticMethodID(cls, "getFileChooserSelection", "(I)[Ljava/lang/String;" ) ;
 if (jobjectArraygetFileChooserSelectionjintID == NULL) {
 std::cerr << "Could not access to the method " << "getFileChooserSelection" << std::endl;
 exit(EXIT_FAILURE);
@@ -813,7 +813,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetFileChooserDirectorySelectionOnlyjintID = curEnv->GetStaticMethodID(cls, "setFileChooserDirectorySelectionOnly", "(I)V" ) ;
+jmethodID voidsetFileChooserDirectorySelectionOnlyjintID = curEnv->GetStaticMethodID(cls, "setFileChooserDirectorySelectionOnly", "(I)V" ) ;
 if (voidsetFileChooserDirectorySelectionOnlyjintID == NULL) {
 std::cerr << "Could not access to the method " << "setFileChooserDirectorySelectionOnly" << std::endl;
 exit(EXIT_FAILURE);
@@ -834,7 +834,7 @@ JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-voidsetFileChooserFileSelectionOnlyjintID = curEnv->GetStaticMethodID(cls, "setFileChooserFileSelectionOnly", "(I)V" ) ;
+jmethodID voidsetFileChooserFileSelectionOnlyjintID = curEnv->GetStaticMethodID(cls, "setFileChooserFileSelectionOnly", "(I)V" ) ;
 if (voidsetFileChooserFileSelectionOnlyjintID == NULL) {
 std::cerr << "Could not access to the method " << "setFileChooserFileSelectionOnly" << std::endl;
 exit(EXIT_FAILURE);
