@@ -49,7 +49,7 @@ int C2F(sci_strrev) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s : Invalid input parameter.\n"),fname);
+		Scierror(999,_("%s : Wrong type for input argument: String expected.\n"),fname);
 	}
 	return 0;
 }

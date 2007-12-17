@@ -36,7 +36,7 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
+		Scierror(999,_("%s : Wrong type for first input argument: scalar or string matrix expected.\n"),fname);
 		return 0;
 	}
 

@@ -72,13 +72,13 @@ int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("%s : Third argument should be 'r'.\n"),fname);
+				Scierror(999,_("%s : Wrong third argument: 'r' expected.\n"),fname);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"%s : Invalid type of third input argument: String expected.\n");
+			Scierror(999,"%s : Invalid type for third input argument: string expected.\n");
 			return 0;
 		}
 	}
@@ -239,7 +239,7 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 	{
 		if ( strlen(Strings_Input_Two[i]) == 0)
 		{
-			Scierror(249,_("%s : 2th argument must not have an empty string.\n"),fname); 
+			Scierror(249,_("%s : Second input argument must not have an empty string.\n"),fname); 
 			return 0;
 		}
 	}

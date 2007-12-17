@@ -42,13 +42,13 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (VarType(1) != sci_strings)
 	{
-		Scierror(999,_("%s : First input argument has a wrong type, must be a string.\n"),fname);
+		Scierror(999,_("%s : Wrong type for first input argument: string expected.\n"),fname);
 		return 0;
 	}
 
 	if (VarType(2) != sci_matrix)
 	{
-		Scierror(999,_("%s : Second input argument has a wrong type.\n"),fname);
+		Scierror(999,_("%s : Wrong type for second input argument.\n"),fname);
 		return 0;
 	}
 
@@ -73,7 +73,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 	
 	if ( !( (m2 == 1 && n2 > 0) || (m2 > 0 && n2 == 1) ) )
 	{
-		Scierror(89,_("%s : Second input argument has incorrect dimensions.\n"),fname);
+		Scierror(89,_("%s : Wrong dimensions for second input argument.\n"),fname);
 		return 0;
 	}
 
@@ -86,7 +86,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 		if (SecondParamaterValue[i] < 1)
 		{
 			freeArrayOfString(Input_StringMatrix,m1n1);
-			Scierror(36,_("%s : Second input argument is incorrect.\n"),fname);
+			Scierror(36,_("%s : Incorrect second input argument.\n"),fname);
 			return 0;
 		}
 	}

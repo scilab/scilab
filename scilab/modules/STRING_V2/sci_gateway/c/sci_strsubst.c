@@ -38,7 +38,7 @@ int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				else
 				{
-					Scierror(999,_("%s : Wrong size of the first input argument, expecting a scalar.\n"), fname);
+					Scierror(999,_("%s : Wrong size for first input argument, expecting a scalar.\n"), fname);
 					return 0;
 				}
 			}
@@ -70,7 +70,7 @@ int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
 				{
 					freeArrayOfString(Input_StringMatrix_One,m1n1);
 					freeArrayOfString(Input_StringMatrix_Two,m2n2);
-					Scierror(36,_("%s : Wrong size of the second input argument, expecting a scalar.\n"), fname);
+					Scierror(36,_("%s : Wrong size for second input argument, expecting a scalar.\n"), fname);
 					return 0;
 				}
 				GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&Input_StringMatrix_Three);
@@ -80,7 +80,7 @@ int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
 					freeArrayOfString(Input_StringMatrix_One,m1n1);
 					freeArrayOfString(Input_StringMatrix_Two,m2n2);
 					freeArrayOfString(Input_StringMatrix_Three,m3n3);
-					Scierror(36,_("%s : Wrong size of the third input argument, expecting a scalar.\n"),fname);
+					Scierror(36,_("%s : Wrong size for third input argument, expecting a scalar.\n"),fname);
 					return 0;
 				}
 
@@ -99,7 +99,7 @@ int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
 
 			default:
 			{
-				Scierror(999,_("%s : Invalid first input argument(s).\n"),fname);
+				Scierror(999,_("%s : Wrong type for first input argument.\n"),fname);
 				return 0;
 			}
 			break;
@@ -107,7 +107,7 @@ int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("Invalid input argument(s).\n"),fname);
+		Scierror(999,_("%s : Wrong type for input argument(s).\n"),fname);
 	}
 	return 0;
 }

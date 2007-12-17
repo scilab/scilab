@@ -79,7 +79,7 @@ int C2F(sci_string) _PARAMS((char *fname,unsigned long fname_len))
 
 		default:
 		{
-			Scierror(999,_("%s : Input type unknown.\n"),fname);
+			Scierror(999,_("%s : Wrong type for input argument.\n"),fname);
 		}
 		break;
 	}

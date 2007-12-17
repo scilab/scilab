@@ -76,7 +76,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 	if (mn != 1)
     {
 		freeArrayOfString(Str,mn);
-        Scierror(36, _("%s : Wrong size of the first input argument, expecting scalar.\n"));
+        Scierror(36, _("%s : Wrong size for first input argument: scalar expected.\n"));
         return 0;
     }
 
@@ -138,7 +138,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
             {
 				if (values) {FREE(values); values = NULL;}
 				if (position) {FREE(position); position = NULL;}
-				Scierror(999, _("%s : Wrong size of the second input argument, expecting a not empty string.\n"));
+				Scierror(999, _("%s : Wrong size for second input argument: a not empty string expected.\n"));
 				return 0;
             }
 

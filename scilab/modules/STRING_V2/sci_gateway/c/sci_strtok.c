@@ -41,13 +41,13 @@ int C2F(sci_strtok) _PARAMS((char *fname,unsigned long fname_len))
 			if (m2n2 != 1)
 			{
 				freeArrayOfString(Input_strings2,m2n2);
-				Scierror(999,_("%s : Second input argument has a wrong type, expecting a string.\n"),fname);
+				Scierror(999,_("%s : Wrong type for second input argument, expecting a string.\n"),fname);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s : Second input argument has a wrong type, expecting a string.\n"),fname);
+			Scierror(999,_("%s : Wrong type for second input argument, expecting a string.\n"),fname);
 			return 0;
 		}
 	}
@@ -61,14 +61,14 @@ int C2F(sci_strtok) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			freeArrayOfString(Input_strings1,m1n1);
 			freeArrayOfString(Input_strings2,m2n2);
-			Scierror(999,_("%s : First input argument has a wrong type, expecting a string.\n"),fname);
+			Scierror(999,_("%s : Wrong type for first input argument, expecting a string.\n"),fname);
 			return 0;
 		}
 	}
 	else
 	{
 		freeArrayOfString(Input_strings2,m2n2);
-		Scierror(999,_("%s : First input argument has a wrong type, expecting a string.\n"),fname);
+		Scierror(999,_("%s : Wrong type for first input argument, expecting a string.\n"),fname);
 		return 0;
 	}
 

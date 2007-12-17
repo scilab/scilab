@@ -88,7 +88,7 @@ static int sci_strcat_three_rhs(char *fname)
 				typ = cstk(l3)[0];
 			if (typ != COL && typ != ROW ) 
 			{
-				Scierror(999,_("%s: Wrong third input argument, expecting 'c' or 'r'.\n"),fname); 
+				Scierror(999,_("%s: Wrong type for third input argument: 'c' or 'r'  expected.\n"),fname); 
 				return 0;
 			}
 		}
@@ -247,7 +247,7 @@ static int sci_strcat_two_rhs(char *fname)
 		if (Number_Inputs_Two != 1)
 		{
 			freeArrayOfString(Input_String_Two,Number_Inputs_Two);
-			Scierror(36,"%s : Wrong second input argument, expecting a string.\n",fname); 
+			Scierror(36,"%s : Wrong type for second input argument: a string  expected.\n",fname); 
 			return 0;
 		}
 	}
@@ -356,11 +356,11 @@ static int sci_strcat_two_rhs(char *fname)
 					freeArrayOfString(Input_String_Two,Number_Inputs_Two);
 					freeArrayOfString(Input_String_One,Number_Inputs_One);
 				}
-ù				else
+				else
 				{
 					freeArrayOfString(Input_String_Two,Number_Inputs_Two);
 					freeArrayOfString(Input_String_One,Number_Inputs_One);
-					Scierror(999,_("%s : incorrect argument(s).\n"),fname);
+					Scierror(999,_("%s : Wrong size for input argument(s).\n"),fname);
 				}
 			}
 		}
@@ -427,7 +427,7 @@ static int sci_strcat_one_rhs(char *fname)
 			}
 			else
 			{
-				Scierror(999,_("%s : incorrect argument(s).\n"),fname);
+				Scierror(999,_("%s : Wrong size for input argument(s).\n"),fname);
 			}
 		}
 		else /* sci_matrix*/
@@ -460,7 +460,7 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname)
 	}
 	else
 	{
-		Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname); 
+		Scierror(999,_("%s : Wrong type for input argument: scalar or string matrix expected.\n"),fname); 
 	}
 	return 0;
 }

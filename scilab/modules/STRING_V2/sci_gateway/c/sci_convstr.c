@@ -54,14 +54,14 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 				typ = cstk(Stack_Pos)[0];
 				if ( (typ != UPPER) && (typ != LOW) && (typ != UPPER_B) && (typ != LOW_B) ) 
 				{
-					Scierror(999,_("Second input argument must be 'u' (Upper) or 'l' (Lower).\n"));
+					Scierror(999,_("%s : Wrong second input argument: 'u' (Upper) or 'l' (Lower) expected.\n"),fname);
 					return 0;	
 				}
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s : Second input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
+			Scierror(999,_("%s : Wrong type for second input argument, scalar or string matrix expected.\n"),fname);
 			return 0;
 		}
 	}
@@ -87,13 +87,13 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else 
 			{
-				Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
+				Scierror(999,_("%s : Wrong type for first input argument, scalar or string matrix expected.\n"),fname);
 				return 0;
 			}
 		}
 		break;
 		default :
-			Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
+			Scierror(999,_("%s : Wrong type for first input argument, scalar or string matrix expected.\n"),fname);
 			return 0;
 		break;
 	} 

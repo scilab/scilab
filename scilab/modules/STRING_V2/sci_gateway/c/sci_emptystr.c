@@ -102,7 +102,7 @@ static int sci_emptystr_one_rhs(char *fname)
 			}
 		break;
 		default :
-			Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
+			Scierror(999,_("%s : Wrong type for first input argument: scalar or string matrix expected.\n"),fname);
 		return 0;
 	} 
     
@@ -144,7 +144,7 @@ static int sci_emptystr_two_rhs(char *fname)
 	}
 	else
 	{
-		Scierror(999,_("%s : First input argument must be integer matrix.\n"),fname);
+		Scierror(999,_("%s : Wrong type for first input argument: integer matrix expected.\n"),fname);
 		return 0;
 	}
 
@@ -156,7 +156,7 @@ static int sci_emptystr_two_rhs(char *fname)
 	}
 	else
 	{
-		Scierror(999,_("%s : Second input argument must be integer matrix.\n"),fname);
+		Scierror(999,_("%s : Wrong type for second input argument:  integer matrix expected.\n"),fname);
 		return 0;
 	}
 	

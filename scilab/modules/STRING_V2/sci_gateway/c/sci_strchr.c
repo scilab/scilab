@@ -46,7 +46,7 @@ int C2F(sci_strchr) _PARAMS((char *fname,unsigned long fname_len))
 				{
 					freeArrayOfString(Input_StringMatrix_1,m1n1);
 					freeArrayOfString(Input_StringMatrix_2,m2n2);
-					Scierror(999,_("%s : Second input argument must be a character.\n"),fname);
+					Scierror(999,_("%s : Wrong type for second input argument: a character expected.\n"),fname);
 					return 0;
 				}
 			}
@@ -73,13 +73,13 @@ int C2F(sci_strchr) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			freeArrayOfString(Input_StringMatrix_1,m1n1);
 			freeArrayOfString(Input_StringMatrix_2,m2n2);
-			Scierror(999,_("%s : Invalid size of the second input argument.\n"),fname);
+			Scierror(999,_("%s : Wrong size for second input argument.\n"),fname);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s :  First or second input argument has a wrong type, expecting string(s).\n"),fname);
+		Scierror(999,_("%s : Wrong type for first or second input argument: string(s) expected.\n"),fname);
 	}
 	return 0;
 }

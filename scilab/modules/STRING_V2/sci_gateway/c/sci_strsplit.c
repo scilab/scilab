@@ -53,7 +53,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 			mn = Row_One*Col_One;  
 		break;
 		default :
-			Scierror(999,_("%s : first input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
+			Scierror(999,_("%s : Wrong type for first input argument: scalar or string matrix expected.\n"),fname);
 			return 0;
 		break;
 	} 
@@ -66,7 +66,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	else
 	{
 			freeArrayOfString(Input_StringMatrix,mn);
-			Scierror(999,_("%s : second argument has a wrong type, expecting scalar or string matrix.\n"),fname);
+			Scierror(999,_("%s : Wrong type for second input argument: scalar or string matrix expected.\n"),fname);
 			return 0;
 	}
 	

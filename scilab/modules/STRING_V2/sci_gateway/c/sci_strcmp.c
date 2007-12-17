@@ -44,7 +44,7 @@ int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len))
 				typ = cstk(Stack_Pos)[0];
 				if ( (typ != CHAR_I) && (typ != CHAR_S)) 
 				{
-					Scierror(999,_("%s : Third input argument must be 'i' (stricmp) or 's' (strcmp).\n"),fname);
+					Scierror(999,_("%s : Wrong type for third input argument: 'i' (stricmp) or 's' (strcmp) expected.\n"),fname);
 					return 0;	
 				}
 				 if (typ == CHAR_I) do_stricmp = TRUE;
@@ -52,7 +52,7 @@ int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("%s : Third input argument must be 'i' (stricmp) or 's' (strcmp).\n"),fname);
+			Scierror(999,_("%s : Wrong type for third input argument: 'i' (stricmp) or 's' (strcmp) expected.\n"),fname);
 			return 0;
 		}
 	}
@@ -82,7 +82,7 @@ int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				freeArrayOfString(Input_Strings_One,m1n1);
 				freeArrayOfString(Input_Strings_Two,m2n2);
-				Scierror(999,_("%s : Memory allocation error\n"),fname);
+				Scierror(999,_("%s : No more memory.\n"),fname);
 			}
 			else
 			{
@@ -107,12 +107,12 @@ int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			freeArrayOfString(Input_Strings_One,m1n1);
 			freeArrayOfString(Input_Strings_Two,m2n2);
-			Scierror(999,_("%s : Second input argument has a wrong dimension,\nexpecting a string or string matrix as same dimension as first argument.\n"),fname);
+			Scierror(999,_("%s : Wrong dimension for second input argument: a string or string matrix as same dimension as first argument expected.\n"),fname);
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : First or second input argument has a wrong type, expecting string or string matrix.\n"),fname);
+		Scierror(999,_("%s : Wrong type for first or second input argument: string or string matrix expected.\n"),fname);
 	}
 	return 0;
 }
