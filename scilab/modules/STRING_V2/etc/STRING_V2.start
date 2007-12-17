@@ -6,5 +6,5 @@
 load('SCI/modules/STRING_V2/macros/lib');
 // ====================================================================
 //add help chapter
-add_module_help_chapter('string');
+add_module_help_chapter('STRING_V2');
 // ====================================================================
