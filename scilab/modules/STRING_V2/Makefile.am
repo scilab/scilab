@@ -4,7 +4,6 @@
 ##########
 
 STRING_C_SOURCES = src/c/code2str.c \
-src/c/kmp.c \
 src/c/stripblanks.c \
 src/c/convstr.c \
 src/c/men_Sutils.c \

@@ -43,7 +43,8 @@ char* scistrrev(char* str)
 	if ( !str ) return NULL;
 	int i = strlen(str);
 	int t = !(i%2)? 1 : 0;      // check the length of the string .
-	for(int j = i-1 , k = 0 ; j > (i/2 -t) ; j-- )
+	int j,k;
+	for(j = i-1 , k = 0 ; j > (i/2 -t) ; j-- ) /* @TODO add comment */
 	{
 		char ch  = str[j];
 		str[j]   = str[k];
