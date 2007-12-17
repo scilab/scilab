@@ -573,10 +573,10 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
 
 
 
-int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input)
+int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double * grads, int nbsubtics_input)
 {
   int ticsval[] =    {2 ,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-  int subticsval[] = {10,7,5,5,4,4,3,2,2 ,2 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 };
+  int subticsval[] = {9,6,4,4,3,3,2,1,1 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 };
   int i;
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
@@ -584,11 +584,11 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grad
   if(logflag =='l'){
     if((grads[1]-grads[0])==1) /* intervalle de type ...10^n 10^(n+1)...*/
       {
-	return 9; /* 9 subtics to have a pretty tics/grid in log.*/
+	return 8; /* 9 subtics to have a pretty tics/grid in log.*/
       }
     else
       {
-	return 1; /* no subtics at all (1 but draw on a tics place) */
+	return 0; /* no subtics at all (1 but draw on a tics place) */
       }
   }
   else{

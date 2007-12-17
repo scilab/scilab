@@ -5,11 +5,11 @@
 /* desc : Compute automatic ticks                                         */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
 #include "AutomaticTicksComputer.hxx"
 
 extern "C"
 {
-#include <stdio.h>
 #include "Format.h"
 #include "DrawObjects.h"
 }
@@ -28,6 +28,11 @@ AutomaticTicksComputer::AutomaticTicksComputer(DrawableSubwin * subwin)
 AutomaticTicksComputer::~AutomaticTicksComputer(void)
 {
   
+}
+/*------------------------------------------------------------------------------------------*/
+void AutomaticTicksComputer::reinit(void)
+{
+  m_iNbTicks = -1;
 }
 /*------------------------------------------------------------------------------------------*/
 int AutomaticTicksComputer::getNbTicks(void)
@@ -78,16 +83,16 @@ void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[
 
 }
 /*------------------------------------------------------------------------------------------*/
-int AutomaticTicksComputer::getNbSubticks(void)
+int AutomaticTicksComputer::getNbSubticks(double ticksPositions[], int nbTicks)
 {
-  return Max(0, ComputeNbSubTics(m_pDrawer->getDrawedObject(), m_iNbTicks, 'n', NULL, 0) * (m_iNbTicks - 1));
+  return Max(0, ComputeNbSubTics(m_pDrawer->getDrawedObject(), nbTicks, 'n', ticksPositions, 0) * (m_iNbTicks - 1));
 }
 /*------------------------------------------------------------------------------------------*/
 void AutomaticTicksComputer::getSubticksPosition(const double ticksPositions[], int nbTicks,
                                                  double subTickspositions[])
 {
   // compute number of subtics
-  int nbSubtics = ComputeNbSubTics(m_pDrawer->getDrawedObject(), m_iNbTicks, 'n', NULL, 0);
+  int nbSubtics = ComputeNbSubTics(m_pDrawer->getDrawedObject(), nbTicks, 'n', ticksPositions, 0);
 
   /*    |              |              |    */
   /* ___|____|____|____|____|____|____|___ */
@@ -102,7 +107,7 @@ void AutomaticTicksComputer::getSubticksPosition(const double ticksPositions[], 
     for (int j = 0; j < nbSubtics; j++)
     {
       subTickspositions[j + nbSubtics * i]
-      =  prevTick + (nextTick - prevTick) * (j + 1.0) / (nbSubtics + 1.0); 
+        =  prevTick + (nextTick - prevTick) * (j + 1.0) / (nbSubtics + 1.0); 
     }
   }
 }

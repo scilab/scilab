@@ -63,7 +63,7 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		labelsDrawer.setFontColor(1);
 		exponentDrawer = new StandardTextDrawerGL();
 		exponentDrawer.setRotationAngle(0.0);
-		exponentDrawer.setFont(1, 2.0);
+		exponentDrawer.setFont(1, 1.0);
 		exponentDrawer.setTextAlignement(TextAlignementStrategy.CENTERED_ALIGNED_INDEX);
 		exponentDrawer.setFontColor(1);
 		lineStyle = 0;
@@ -336,8 +336,10 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	public boolean checkTicks(double[] ticksPositions, String[] ticksLabels) {
 		this.ticksPositions = ticksPositions;
 		this.ticksLabels = ticksLabels;
+		CoordinateTransformation.getTransformation(getGL()).update(getGL());
+		boolean res = checkTicks();
 		this.labelsExponents = null;
-		return checkTicks();
+		return res;
 	}
 	
 	/**
@@ -364,10 +366,11 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	public void drawTicks(double[] ticksPositions, String[] ticksLabels, double[] subticksPositions) {
 		this.ticksPositions = ticksPositions;
 		this.ticksLabels = ticksLabels;
-		this.labelsExponents = null;
 		this.subticksPositions = subticksPositions;
+		CoordinateTransformation.getTransformation(getGL()).update(getGL());
 		
 		drawTicks();
+		this.labelsExponents = null;
 	}
 	
 	/**
@@ -543,7 +546,9 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		
 		getLabelsDrawer().setTextContent(getTickLabel(firstNonNullTicksIndex));
 		Vector3D textCenter = computeLabelCenter(ticksPosition[firstNonNullTicksIndex], ticksDirection, null);
+		getLabelsDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());
 		curLabelBox = getLabelsDrawer().getBoundingRectangle2D();
+
 		
 		for (int i = firstNonNullTicksIndex + 1; i < nbLabels; i++) {
 			if (ticksPosition[i] == null) { continue; }
@@ -562,7 +567,7 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 				nextLabelBox[j].setZ(0.0);
 				curLabelBox[j].setZ(0.0);
 			}
-			
+				
 			if (GeomAlgos.areRectangleConcealing(nextLabelBox, curLabelBox)) {			
 				return false;
 			}

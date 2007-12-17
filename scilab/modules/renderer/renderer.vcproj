@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="renderer"
 	ProjectGUID="{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 	RootNamespace="renderer"
@@ -494,6 +494,10 @@
 				Name="SubwinDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\AutoLogTicksComputer.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\AutomaticTicksComputer.cpp"
 					>
 				</File>
@@ -619,6 +623,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\UserDefinedTicksComputer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\UserDefLogTicksComputer.cpp"
 					>
 				</File>
 				<File
@@ -1172,6 +1180,10 @@
 				Name="SubwinDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\AutoLogTicksComputer.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\AutomaticTicksComputer.hxx"
 					>
 				</File>
@@ -1321,6 +1333,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\UserDefinedTicksComputer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\UserDefLogTicksComputer.hxx"
 					>
 				</File>
 				<File

@@ -16,13 +16,22 @@ UserDefinedTicksComputer::UserDefinedTicksComputer(DrawableSubwin * subwin)
   : ComputeTicksStrategy(subwin)
 {
   m_aUserTicksPositions = NULL;
+  m_aUserTicksLabels = NULL;
   m_iNbUserTicks = 0;
+  m_iNbSubticks = 0;
 }
 /*------------------------------------------------------------------------------------------*/
 UserDefinedTicksComputer::~UserDefinedTicksComputer(void)
 {
   m_aUserTicksPositions = NULL;
+  m_aUserTicksLabels = NULL;
   m_iNbUserTicks = 0;
+  m_iNbSubticks = 0;
+}
+/*------------------------------------------------------------------------------------------*/
+void UserDefinedTicksComputer::reinit(void)
+{
+
 }
 /*------------------------------------------------------------------------------------------*/
 int UserDefinedTicksComputer::getNbTicks(void)
@@ -39,7 +48,7 @@ void UserDefinedTicksComputer::getTicksPosition(double positions[], char * label
   BasicAlgos::stringArrayCopy(labels, m_aUserTicksLabels, m_iNbUserTicks);
 }
 /*------------------------------------------------------------------------------------------*/
-int UserDefinedTicksComputer::getNbSubticks(void)
+int UserDefinedTicksComputer::getNbSubticks(double ticksPositions[], int nbTicks)
 {
   return Max(0, m_iNbSubticks * (m_iNbUserTicks - 1));
 }

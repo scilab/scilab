@@ -22,6 +22,11 @@ public:
   virtual ~AutomaticTicksComputer(void);
 
   /**
+   * Reinitialize ticks computer data.
+   */
+  virtual void reinit(void);
+
+  /**
    * Get the number of ticks which will be computed by the strategy.
    */
   virtual int getNbTicks(void);
@@ -35,7 +40,7 @@ public:
   /**
    * Get the number of subticks which will be computed by the strategy.
    */
-  virtual int getNbSubticks(void);
+  virtual int getNbSubticks(double ticksPositions[], int nbTicks);
 
   /**
   * Get the subticks positions.
@@ -57,7 +62,7 @@ public:
   /**
    * Set bounds between which we must compute ticks.
    */
-  void setAxisBounds(double min, double max);
+  virtual void setAxisBounds(double min, double max);
 
   /**
    * To know if we need to get ticks exposants or not.

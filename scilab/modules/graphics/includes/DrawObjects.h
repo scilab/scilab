@@ -63,7 +63,7 @@ extern void sciGetDisplayedBounds( sciPointObj * pSubWin,
 extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
 extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
 
-extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input); /* DRAWINGS */
+extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double * grads, int nbsubtics_input); /* DRAWINGS */
 extern int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbox, integer *xind, integer *InsideU, integer *InsideD); /* DRAWINGS */
 extern int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind); /* DRAWINGS */
 

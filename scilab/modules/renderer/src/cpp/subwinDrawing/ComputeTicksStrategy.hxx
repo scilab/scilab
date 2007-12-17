@@ -22,10 +22,14 @@ public:
   virtual ~ComputeTicksStrategy(void) {m_pDrawer = NULL;}
 
   /**
+   * Reinitialize ticks computer data.
+   */
+  virtual void reinit(void) = 0;
+
+  /**
    * Get the number of ticks which will be computed by the strategy.
    */
   virtual int getNbTicks(void) = 0;
-
 
   /**
    * Fill positions parameters
@@ -36,7 +40,7 @@ public:
   /**
    * Get the number of subticks which will be computed by the strategy.
    */
-  virtual int getNbSubticks(void) = 0;
+  virtual int getNbSubticks(double ticksPositions[], int nbTicks) = 0;
 
   /**
    * Get the subticks positions.

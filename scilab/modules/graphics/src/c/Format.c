@@ -864,7 +864,32 @@ int GradEqual(const double grads[],const int *ngrads)
   return 1;
 }
 /*--------------------------------------------------------------------------*/
-
+/* remove an element in the array from translating the next
+elements on step backward */
+void removeIndex( double * changedArray, int size, int ind )
+{
+  int i ;
+  for ( i = ind + 1 ; i < size ; i++ )
+  {
+    changedArray[i-1] = changedArray[i] ;
+  } 
+}
+/*--------------------------------------------------------------------------*/
+/* remove in the ticks array the indices i such as removedTicks[i] */
+/* is true. The value nbtics is an in-out variable */
+void removeBadTicks( double * ticks, BOOL * removedTicks, int * nbTicks )
+{
+  int i ;
+  for ( i = *nbTicks - 1 ; i >= 0 ; i-- )
+  {
+    if ( removedTicks[i] )
+    {
+      removeIndex( ticks, *nbTicks, i ) ;
+      *nbTicks = *nbTicks - 1 ;
+    }
+  }
+}
+/*--------------------------------------------------------------------------*/
 /* compute the graduation of the segment [minVal,maxVal] knowing the number of ticks */
 void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads )
 {
@@ -872,7 +897,8 @@ void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads )
   int i ;
 
   /* intialize the array as usual */
-  GradLog( minVal, maxVal, ticks, &initSize, FALSE ) ;
+  double tempTicks[20];
+  GradLog( minVal, maxVal, tempTicks, &initSize, FALSE ) ;
 
   if ( initSize > nbGrads )
   {
@@ -898,11 +924,12 @@ void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads )
       removedTicks[remIndex] = TRUE ;
     }
 
-    /* removeBadTicks( ticks, removedTicks, &initSize ) ; */
+    removeBadTicks( tempTicks, removedTicks, &initSize ) ;
 
     FREE( removedTicks ) ;
 
   }
+  doubleArrayCopy(ticks, tempTicks, nbGrads);
 
 }
 

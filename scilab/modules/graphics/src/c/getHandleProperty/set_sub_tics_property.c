@@ -43,12 +43,6 @@ int set_sub_tics_property( sciPointObj * pobj, int stackPointer, int valueType, 
       char logflag = ppSubWin->logflags[i] ;
       int  nbTicks ;
 
-      if(logflag == 'l')
-      {
-        /* sciprint("Subtics number can not be set while using logarithmic scaling\n"); */
-        continue ;
-      }
-
       nbTicks = (int) values[i] ;
       if( nbTicks >= 0 )
       {

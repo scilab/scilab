@@ -9,6 +9,8 @@
 #include "XTicksDrawerJoGL.hxx"
 #include "UserDefinedTicksComputer.hxx"
 #include "AutomaticTicksComputer.hxx"
+#include "AutoLogTicksComputer.hxx"
+#include "UserDefLogTicksComputer.hxx"
 
 extern "C"
 {
@@ -41,10 +43,21 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
   BOOL autoTicks[3];
   sciGetAutoTicks(pSubwin, autoTicks);
 
+  char logFlags[3];
+  sciGetLogFlags(pSubwin, logFlags);
+
   if (!autoTicks[0])
   {
     // ticks defines by user
-    UserDefinedTicksComputer * ticksComputer = new UserDefinedTicksComputer(m_pDrawer);
+    UserDefinedTicksComputer * ticksComputer = NULL;
+    if (logFlags[0] == 'l')
+    {
+      ticksComputer = new UserDefLogTicksComputer(m_pDrawer);
+    }
+    else
+    {
+      ticksComputer = new UserDefinedTicksComputer(m_pDrawer);
+    }
     ticksComputer->setUserTicks(pSUBWIN_FEATURE(pSubwin)->axes.u_xgrads,
                                 pSUBWIN_FEATURE(pSubwin)->axes.u_xlabels,
                                 pSUBWIN_FEATURE(pSubwin)->axes.u_nxgrads,
@@ -53,7 +66,17 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
   }
   else
   {
-    AutomaticTicksComputer * ticksComputer = new AutomaticTicksComputer(m_pDrawer);
+    AutomaticTicksComputer * ticksComputer = NULL;
+    if (logFlags[0] == 'l')
+    {
+      ticksComputer = new AutoLogTicksComputer(m_pDrawer);
+    }
+    else
+    {
+      ticksComputer = new AutomaticTicksComputer(m_pDrawer);
+    }
+    
+    new AutomaticTicksComputer(m_pDrawer);
     double bounds[6];
     sciGetDataBounds(pSubwin, bounds);
     ticksComputer->setAxisBounds(bounds[0], bounds[1]);

@@ -46,7 +46,7 @@ void BasicAlgos::destroyStringArray(char * src[], int nbElement)
 
   for (int i = 0; i < nbElement; i++)
   {
-    delete[] src[i];
+    if (src[i] != NULL) {delete[] src[i];}
   }
   delete[] src;
 }
