@@ -1,0 +1,35 @@
+//===============================
+// strtod
+//===============================
+N = 666.666;
+STREND = ' is a double';
+STR = string(N)+STREND;
+d = strtod(STR);
+if d <> N then bugmes();quit;end
+[d,s] = strtod(STR);
+if d <> N bugmes();quit;end
+if s <> STREND then bugmes();quit;end
+//===============================
+STR ='1';
+[d,s] = strtod(STR);
+if s<>'' then bugmes();quit;end
+if d<>1 then bugmes();quit;end
+//===============================
+STR = 'string';
+[d,s] = strtod(STR);
+if s<>STR then bugmes();quit;end
+if d<>0 then bugmes();quit;end
+//===============================
+STR1 = '1A';
+STR2 = '2B';
+STR3 = '3C';
+STR4 = '4d';
+STR = [STR1,STR2;STR3,STR4];
+[d,s] = strtod(STR);
+if s<>['A','B';'C','d'] then bugmes();quit;end
+if d<>[1,2;3,4] then bugmes();quit;end
+//===============================
+[d,s] = strtod('');
+if s<>'' then bugmes();quit;end
+if d<>0 then bugmes();quit;end
+//===============================
