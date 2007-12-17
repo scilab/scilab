@@ -82,29 +82,10 @@ msgid "%s: Wrong type for third input argument: 'c' or 'r'  expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_tokens.c, line: 79
-# File: sci_gateway/c/sci_tokens.c, line: 89
-# File: sci_gateway/c/sci_tokens.c, line: 113
-# File: sci_gateway/c/sci_tokens.c, line: 132
-# File: sci_gateway/c/sci_part.c, line: 47
-# File: sci_gateway/c/sci_part.c, line: 64
-# File: sci_gateway/c/sci_length.c, line: 84
-# File: sci_gateway/c/sci_strsplit.c, line: 72
-# File: sci_gateway/c/sci_strsplit.c, line: 81
-# File: sci_gateway/c/sci_strsplit.c, line: 99
-# File: sci_gateway/c/sci_strsplit.c, line: 107
-# File: sci_gateway/c/sci_code2str.c, line: 51
-# File: sci_gateway/c/sci_code2str.c, line: 64
-# File: sci_gateway/c/sci_emptystr.c, line: 112
-# File: sci_gateway/c/sci_emptystr.c, line: 177
-# File: sci_gateway/c/sci_ascii.c, line: 68
-# File: sci_gateway/c/sci_ascii.c, line: 105
-# File: sci_gateway/c/sci_ascii.c, line: 119
-# File: sci_gateway/c/sci_stripblanks.c, line: 80
-# File: sci_gateway/c/sci_stripblanks.c, line: 94
-# File: sci_gateway/c/sci_convstr.c, line: 96
+# File: sci_gateway/c/sci_part.c, line: 48
+# File: sci_gateway/c/sci_part.c, line: 65
 #, c-format
-msgid "%s : Memory allocation error\n"
+msgid "%s : Memory allocation error.\n"
 msgstr ""
 
 #
@@ -168,13 +149,6 @@ msgstr ""
 # File: sci_gateway/c/sci_part.c, line: 89
 #, c-format
 msgid "%s : Incorrect second input argument.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_part.c, line: 48
-# File: sci_gateway/c/sci_part.c, line: 65
-#, c-format
-msgid "%s : Memory allocation error.\n"
 msgstr ""
 
 #
