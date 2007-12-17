@@ -538,45 +538,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		}
 		true_size = ((real_pcre *)re)->size;
 		regex_gotten_store = gotten_store;
-	SHOW_INFO:
-		if (do_showinfo)
-		{
-			unsigned long int get_options, all_options;
-			int count, backrefmax, first_char, need_char, okpartial, jchanged,hascrorlf;
-			int nameentrysize, namecount;
-			const char *nametable;
-
-			new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
-			new_info(re, NULL, PCRE_INFO_SIZE, &size);
-			new_info(re, NULL, PCRE_INFO_CAPTURECOUNT, &count);
-			new_info(re, NULL, PCRE_INFO_BACKREFMAX, &backrefmax);
-			new_info(re, NULL, PCRE_INFO_FIRSTBYTE, &first_char);
-			new_info(re, NULL, PCRE_INFO_LASTLITERAL, &need_char);
-			new_info(re, NULL, PCRE_INFO_NAMEENTRYSIZE, &nameentrysize);
-			new_info(re, NULL, PCRE_INFO_NAMECOUNT, &namecount);
-			new_info(re, NULL, PCRE_INFO_NAMETABLE, (void *)&nametable);
-			new_info(re, NULL, PCRE_INFO_OKPARTIAL, &okpartial);
-			new_info(re, NULL, PCRE_INFO_JCHANGED, &jchanged);
-			new_info(re, NULL, PCRE_INFO_HASCRORLF, &hascrorlf);
-			if (namecount > 0)
-			{
-				return CAPTURING_SUBPATTERNS_ERROR;
-			}
-			if (!okpartial) return PARTIAL_MATCHING_NOT_SUPPORTED;
-			if (hascrorlf) return CONTAINS_EXPLICIT_CR_OR_LF_MATCH;
-
-			all_options = ((real_pcre *)re)->options;
-
-			if (jchanged) return DUPLICATE_NAME_STATUS_CHANGES;
-
-			
-			/* Don't output study size; at present it is in any case a fixed
-			value, but it varies, depending on the computer architecture, and
-			so messes up the test suite. (And with the /F option, it might be
-			flipped.) */
-
-			
-		}
+	SHOW_INFO: ;
 
 		/* If the '>' option was present, we write out the regex to a file, and
 		that is all. The first 8 bytes of the file are the regex length and then
