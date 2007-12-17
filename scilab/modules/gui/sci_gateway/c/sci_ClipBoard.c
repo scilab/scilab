@@ -69,7 +69,7 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 				param1=cstk(l1);
-
+				/* @TODO : should be remplaced by an enum */
 				if ( strcmp(param1,"do") == 0 )
 				{
 					GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
@@ -77,22 +77,22 @@ int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l))
 
 					if ( strcmp(param2,"paste") == 0 )
 					{
-						/* TO DO interface with java */
+						/* @TODO interface with java */
 						/* PASTE action */
 					}
 					else if ( strcmp(param2,"copy") == 0 )
 					{
-						/* TO DO interface with java */
+						/* @TODO interface with java */
 						/* COPY action */
 					}
 					else if ( strcmp(param2,"empty") == 0 )
 					{
-						/* TO DO interface with java */
+						/* @TODO interface with java */
 						/* EMPTY clipboard action */
 					}
 					else
 					{
-						Scierror(999,_("Incorrect second input argument."));
+						Scierror(999,_("Incorrect second input argument. Should be 'do', 'paste', 'copy' or 'empty'.\n"));
 						return 0;
 					}
 
