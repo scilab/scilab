@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <string.h>
+#include <stdio.h>
 #include "AutomaticTicksComputer.hxx"
 
 extern "C"
