@@ -112,7 +112,7 @@ int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s : input argument has a wrong type, expecting string or string matrix.\n"),fname);
+		Scierror(999,_("%s : First or second input argument has a wrong type, expecting string or string matrix.\n"),fname);
 	}
 	return 0;
 }

@@ -53,7 +53,7 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 				{
 					freeArrayOfString(InputString_Parameter1,m1n1);
 					freeArrayOfString(InputString_Parameter2,m2n2);
-					Scierror(999,"%s: Out of memory.\n",fname);
+					Scierror(999,_("%s : Memory allocation error\n"),fname);
 					return 0;
 				}
 
@@ -61,8 +61,14 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 				{
 					int i = 0;
 
-					if (m2n2 == 1) i = 0;
-					else i = j;
+					if (m2n2 == 1) 
+						{
+							i = 0;
+						}
+					else 
+						{
+							i = j;
+						}
 
 					if (strlen(InputString_Parameter1[j])< strlen(InputString_Parameter2[i]))
 					{
@@ -87,7 +93,7 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 								freeArrayOfString(OutputStrings,m1n1);
 								freeArrayOfString(InputString_Parameter1,m1n1);
 								freeArrayOfString(InputString_Parameter2,m2n2);
-								Scierror(999,"%s: Out of memory.\n",fname);
+								Scierror(999,_("%s : Memory allocation error\n"),fname);
 								return 0;
 							}
 						}
@@ -103,7 +109,7 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 								freeArrayOfString(OutputStrings,m1n1);
 								freeArrayOfString(InputString_Parameter1,m1n1);
 								freeArrayOfString(InputString_Parameter2,m2n2);
-								Scierror(999,"%s: Out of memory.\n",fname);
+								Scierror(999,_("%s : Memory allocation error\n"),fname);
 								return 0;
 							}
 						}

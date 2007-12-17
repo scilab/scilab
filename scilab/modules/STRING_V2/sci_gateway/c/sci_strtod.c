@@ -39,7 +39,7 @@ int C2F(sci_strtod) _PARAMS((char *fname,unsigned long fname_len))
 			if (OutputStrings == NULL)
 			{
 				freeArrayOfString(Input_StringMatrix_1,m1n1);
-				Scierror(999,"%s: Out of memory.\n",fname);
+				Scierror(999,_("%s : Memory allocation error\n"),fname);
 				return 0;
 			}
 
@@ -48,7 +48,7 @@ int C2F(sci_strtod) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				FREE(OutputStrings); OutputStrings = NULL;
 				freeArrayOfString(Input_StringMatrix_1,m1n1);
-				Scierror(999,"%s: Out of memory.\n",fname);
+				Scierror(999,_("%s : Memory allocation error\n"),fname);
 				return 0;
 			}
 
@@ -65,7 +65,7 @@ int C2F(sci_strtod) _PARAMS((char *fname,unsigned long fname_len))
 					freeArrayOfString(Input_StringMatrix_1,m1n1);
 					freeArrayOfString(OutputStrings,m1n1);
 					if (OutputDoubles) {FREE(OutputDoubles); OutputDoubles = NULL;}
-					Scierror(999,"%s: Out of memory.\n",fname);
+					Scierror(999,"%s: Memory allocation error\n",fname);
 					return 0;
 				}
 
@@ -99,7 +99,7 @@ int C2F(sci_strtod) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s : Invalid input parameter.\n"),fname);
+		Scierror(999,_("%s : first argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 	}
 	return 0;
 }

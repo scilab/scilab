@@ -72,13 +72,13 @@ int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"3th argument invalid value.\n");
+				Scierror(999,_("%s : Third argument should be 'r'.\n"),fname);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"3th argument invalid type.\n");
+			Scierror(999,"%s : Invalid type of third input argument: String expected.\n");
 			return 0;
 		}
 	}
@@ -143,36 +143,36 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 
 				break;
 				case NOT_ENOUGH_MEMORY_FOR_VECTOR:
-					Scierror(999,"Failed to get enough memory for offsets vector\n"); 
-				    return 0; 
+					Scierror(999,_("Failed to get enough memory for offsets vector\n"));
+				    return 0;
 					break;
 				case DELIMITER_NOT_ALPHANUMERIC:
-					Scierror(999,"Delimiter must not be alphameric\n"); 
-					return 0; 
+					Scierror(999,_("Delimiter must not be alphameric\n"));
+					return 0;
 					break;
 				case CAPTURING_SUBPATTERNS_ERROR:
-					Scierror(999,"Capturing subpatterns error\n"); 
-					return 0; 
+					Scierror(999,_("Capturing subpatterns error\n"));
+					return 0;
 				break;
 				case PARTIAL_MATCHING_NOT_SUPPORTED:
-					Scierror(999,"Partial matching not supported\n"); 
-					return 0; 
+					Scierror(999,_("Partial matching not supported\n"));
+					return 0;
 				break;
 				case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
-					Scierror(999,"Contains explicit CR or LF match\n"); 
-					return 0; 
+					Scierror(999,_("Contains explicit CR or LF match\n"));
+					return 0;
 				break;
 				case DUPLICATE_NAME_STATUS_CHANGES:
-					Scierror(999,"Duplicate name status changes\n"); 
-					return 0; 
+					Scierror(999,_("Duplicate name status changes\n"));
+					return 0;
 				break;
 				case TOO_BIG_FOR_OFFSET_SIZE:
-					Scierror(999,"Returned count is too big for offset size\n"); 
-					return 0; 
+					Scierror(999,_("Returned count is too big for offset size\n"));
+					return 0;
 				break;
 				case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
-					Scierror(999,"Match limit not relevant for DFA matching: ignored\n"); 
-					return 0; 
+					Scierror(999,_("Match limit not relevant for DFA matching: ignored\n"));
+					return 0;
 				break;
 				default :
 			         return 0;
@@ -239,7 +239,7 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 	{
 		if ( strlen(Strings_Input_Two[i]) == 0)
 		{
-			Scierror(249,"%s : 2th argument must not have an empty string.\n",fname); 
+			Scierror(249,_("%s : 2th argument must not have an empty string.\n"),fname); 
 			return 0;
 		}
 	}

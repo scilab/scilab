@@ -43,7 +43,7 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"%s : second argument has a wrong type, expecting a boolean.\n",fname);
+			Scierror(999,_("%s : second argument has a wrong type, expecting a boolean.\n"),fname);
 			return 0;
 		}
 	}
@@ -71,7 +71,7 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		break;
 	default :
-		Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname);
+		Scierror(999,_("%s : first argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 		return 0;
 	}
 
@@ -81,7 +81,7 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 	if (Output_String_Matrix == NULL)
 	{
 		freeArrayOfString(Input_String_Matrix_One,mn);
-		Scierror(999,"%s : Error memory allocation.\n",fname);
+		Scierror(999,_("%s : Error memory allocation.\n"),fname);
 		return 0;
 	}
 
@@ -92,7 +92,7 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			freeArrayOfString(Input_String_Matrix_One,mn);
 			freeArrayOfString(Output_String_Matrix,i);
-			Scierror(999,"%s : Error memory allocation.\n",fname);
+			Scierror(999,_("%s : Error memory allocation.\n"),fname);
 			return 0;
 		}
 	}

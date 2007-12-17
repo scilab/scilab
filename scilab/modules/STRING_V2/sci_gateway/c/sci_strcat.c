@@ -88,7 +88,7 @@ static int sci_strcat_three_rhs(char *fname)
 				typ = cstk(l3)[0];
 			if (typ != COL && typ != ROW ) 
 			{
-				Scierror(999,"%s: third argument should be 'c' or 'r'.\n",fname); 
+				Scierror(999,_("%s: Wrong third input argument, expecting 'c' or 'r'.\n"),fname); 
 				return 0;
 			}
 		}
@@ -116,7 +116,7 @@ static int sci_strcat_three_rhs(char *fname)
 			/* return a column matrix */ 
 			if ( (Output_String = MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
 			{
-				Scierror(999,"%s: Out of memory.\n",fname);
+				Scierror(999,_("%s : Memory allocation error\n"),fname);
 				return 0;
 			}
 			Output_String[Row_One]=NULL;
@@ -128,7 +128,7 @@ static int sci_strcat_three_rhs(char *fname)
 				nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
 				if ( (Output_String[i]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 				{
-					Scierror(999,"%s: Out of memory.\n",fname);
+					Scierror(999,_("%s : Memory allocation error\n"),fname);
 					return 0;
 				} 
 				/* fill the string */ 
@@ -167,7 +167,7 @@ static int sci_strcat_three_rhs(char *fname)
 			/* return a row matrix */ 
 			if ( (Output_String = MALLOC((Col_One+1)*sizeof(char *)))==NULL) 
 			{
-				Scierror(999,"%s: Out of memory.\n",fname);
+				Scierror(999,_("%s : Memory allocation error\n"),fname);
 				return 0;
 			}
 			Output_String[Col_One]=NULL;
@@ -180,7 +180,7 @@ static int sci_strcat_three_rhs(char *fname)
 				nchars += (Row_One-1)*(int)strlen(Input_String_Two); 
 				if ( (Output_String[j]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 				{
-					Scierror(999,"%s: Out of memory.\n",fname);
+					Scierror(999,_("%s : Memory allocation error\n"),fname);
 					return 0;
 				} 
 				/* fill the string */ 
@@ -234,7 +234,7 @@ static int sci_strcat_two_rhs(char *fname)
 
 	if (Type_Two != sci_strings)
 	{
-		Scierror(246,"function not defined for given argument type(s), check arguments or define function %s for overloading",fname); 
+		Scierror(246,_("Function not defined for given argument type(s), check arguments or define function %s for overloading"),fname); 
 		return 0;
 	}
 	else /* sci_strings */
@@ -247,7 +247,7 @@ static int sci_strcat_two_rhs(char *fname)
 		if (Number_Inputs_Two != 1)
 		{
 			freeArrayOfString(Input_String_Two,Number_Inputs_Two);
-			Scierror(36,"%s : 2th argument is incorrect here.\n",fname); 
+			Scierror(36,"%s : Wrong second input argument, expecting a string.\n",fname); 
 			return 0;
 		}
 	}
@@ -255,7 +255,7 @@ static int sci_strcat_two_rhs(char *fname)
 	if ( (Type_One != sci_strings) && (Type_One != sci_matrix) )
 	{
 		freeArrayOfString(Input_String_Two,Number_Inputs_Two);
-		Scierror(246,"function not defined for given argument type(s), check arguments or define function %s for overloading.\n",fname); 
+		Scierror(246,"Function not defined for given argument type(s), check arguments or define function %s for overloading.\n",fname); 
 		return 0;
 	}
 	else
@@ -270,7 +270,7 @@ static int sci_strcat_two_rhs(char *fname)
 			char **Input_String_One = NULL;
 			int Row_One = 0,Col_One = 0;
 			int Number_Inputs_One = 0;
-			int length_ouput = 0;
+			int length_output = 0;
 
 			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_String_One);
 			Number_Inputs_One = Row_One * Col_One;
@@ -297,21 +297,27 @@ static int sci_strcat_two_rhs(char *fname)
 					{
 						if (Input_String_One[i])
 						{
-							if (i < (Number_Inputs_One - 1)) length_ouput += (int)strlen(Input_String_One[i])+(int)strlen(Input_String_Two[0]);
-							else length_ouput += (int)strlen(Input_String_One[i]);
+							if (i < (Number_Inputs_One - 1)) 
+								{
+									length_output += (int)strlen(Input_String_One[i])+(int)strlen(Input_String_Two[0]);
+								} 
+							else 
+								{
+									length_output += (int)strlen(Input_String_One[i]);
+								}
 						}
 					}
 				}
 			}
 
-			if (length_ouput > 0)
+			if (length_output > 0)
 			{
 				static int n1 = 0, m1 = 0;
 				int outIndex = 0 ;
 				char *Output_String = NULL;
 				int i = 0;
 
-				m1 = length_ouput;
+				m1 = length_output;
 				n1 = 1;
 
 				CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
@@ -336,7 +342,7 @@ static int sci_strcat_two_rhs(char *fname)
 			}
 			else
 			{
-				if (length_ouput == 0)
+				if (length_output == 0)
 				{
 					int one    = 1 ;
 					int len   = (int)strlen(EMPTY_CHAR);
@@ -350,11 +356,11 @@ static int sci_strcat_two_rhs(char *fname)
 					freeArrayOfString(Input_String_Two,Number_Inputs_Two);
 					freeArrayOfString(Input_String_One,Number_Inputs_One);
 				}
-				else
+ù				else
 				{
 					freeArrayOfString(Input_String_Two,Number_Inputs_Two);
 					freeArrayOfString(Input_String_One,Number_Inputs_One);
-					Scierror(999,"%s : incorrect argument(s).\n",fname);
+					Scierror(999,_("%s : incorrect argument(s).\n"),fname);
 				}
 			}
 		}
@@ -367,7 +373,7 @@ static int sci_strcat_one_rhs(char *fname)
 	int Type_One = VarType(1);
 	if ( (Type_One != sci_strings) && (Type_One != sci_matrix) )
 	{
-		Scierror(246,"function not defined for given argument type(s), check arguments or define function %s for overloading",fname); 
+		Scierror(246,_("Function not defined for given argument type(s), check arguments or define function %s for overloading"),fname); 
 		return 0;
 	}
 	else
@@ -377,7 +383,7 @@ static int sci_strcat_one_rhs(char *fname)
 			char **Input_String_One = NULL;
 			int Row_One = 0,Col_One = 0;
 			int Number_Inputs = 0;
-			int length_ouput = 0;
+			int length_output = 0;
 
 			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_String_One);
 			Number_Inputs = Row_One * Col_One;
@@ -388,18 +394,18 @@ static int sci_strcat_one_rhs(char *fname)
 				{
 					if (Input_String_One[i])
 					{
-						length_ouput += (int)strlen(Input_String_One[i]);
+						length_output += (int)strlen(Input_String_One[i]);
 					}
 				}
 			}
 
-			if (length_ouput > 0)
+			if (length_output > 0)
 			{
 				static int n1 = 0, m1 = 0;
 				int outIndex = 0 ;
 				char *Output_String = NULL;
 				int i = 0;
-				m1= length_ouput;
+				m1= length_output;
 				n1=1;
 
 				CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
@@ -421,7 +427,7 @@ static int sci_strcat_one_rhs(char *fname)
 			}
 			else
 			{
-				Scierror(999,"%s : incorrect argument(s).\n",fname);
+				Scierror(999,_("%s : incorrect argument(s).\n"),fname);
 			}
 		}
 		else /* sci_matrix*/
@@ -454,7 +460,7 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname)
 	}
 	else
 	{
-		Scierror(999,"%s : first argument has a wrong type, expecting scalar or string matrix.\n",fname); 
+		Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname); 
 	}
 	return 0;
 }

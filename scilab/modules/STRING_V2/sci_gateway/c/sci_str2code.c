@@ -73,13 +73,13 @@ int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len))
 			else
 			{
 				freeArrayOfString(Input_String,m1*n1);
-				Scierror(999,"Error memory allocation.\n"); 
+				Scierror(999,_("%s : Memory allocation error\n"),fname); 
 			}
 		}
 	}
 	else
 	{
-		Scierror(999,_("Input argument must be a string.\n"));
+		Scierror(999,_("%s : First input argument has a wrong type, expecting scalar or string matrix.\n"),fname);
 	}
 	return 0;
 }
