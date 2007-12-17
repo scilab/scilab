@@ -34,7 +34,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
 		super(cap);
 		// TODO to remove, just for testing
-		this.setLayout(null);
+		//this.setLayout(null);
 		this.addGLEventListener(new SciRenderer(figureIndex));
 		
 		/**
