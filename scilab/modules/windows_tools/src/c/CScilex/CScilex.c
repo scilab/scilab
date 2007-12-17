@@ -60,7 +60,7 @@ int main (int argc, char **argv)
 	{
 		char *nwparam=NULL;
 		nwparam=(char*)MALLOC((strlen(ARG_NW)+1)*sizeof(char));
-		strcpy_s(nwparam,strlen(ARG_NW),ARG_NW);
+		strcpy_s(nwparam,(strlen(ARG_NW)+1),ARG_NW);
 		for (i=0;i<argc;i++)
 		{
 			argvbis[i]=argv[i];
