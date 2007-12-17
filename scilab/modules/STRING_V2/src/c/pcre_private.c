@@ -898,40 +898,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		character, not one byte. */
 		else
         {
-			if (g_notempty != 0)
-			{
-				int onechar = 1;
-				unsigned int obits = ((real_pcre *)re)->options;
-				use_offsets[0] = start_offset;
-				if ((obits & PCRE_NEWLINE_BITS) == 0)
-				{
-					int d;
-					(void)pcre_config(PCRE_CONFIG_NEWLINE, &d);
-						obits = (d == '\r')? PCRE_NEWLINE_CR :
-						(d == '\n')? PCRE_NEWLINE_LF :
-						(d == ('\r'<<8 | '\n'))? PCRE_NEWLINE_CRLF :
-						(d == -2)? PCRE_NEWLINE_ANYCRLF :
-						(d == -1)? PCRE_NEWLINE_ANY : 0;
-				}
-				if (((obits & PCRE_NEWLINE_BITS) == PCRE_NEWLINE_ANY ||
-					(obits & PCRE_NEWLINE_BITS) == PCRE_NEWLINE_ANYCRLF)&&
-					start_offset < len - 1 &&
-					bptr[start_offset] == '\r' &&
-					bptr[start_offset+1] == '\n')
-				onechar++;
-				else if (use_utf8)
-				{
-					while (start_offset + onechar < len)
-					{
-						int tb = bptr[start_offset+onechar];
-						if (tb <= 127) break;
-						tb &= 0xc0;
-						if (tb != 0 && tb != 0xc0) onechar++;
-					}
-				}
-				use_offsets[1] = start_offset + onechar;
-			}
-			else
+			
 			{
 				if (count == PCRE_ERROR_NOMATCH)
 				{
