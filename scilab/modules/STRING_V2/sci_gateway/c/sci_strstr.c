@@ -44,7 +44,7 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 		else
 		{
 			int j = 0;
-			if ( (m1n1 == m2n2) || (m2n2 == 1) )
+			if ( ((m1 == m2) && (n1 == n2)) || (m2n2 == 1) )
 			{
 				char **OutputStrings = NULL;
 

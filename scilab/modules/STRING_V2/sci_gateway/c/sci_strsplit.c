@@ -93,16 +93,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		Output_StringMatrix[i] = (char*)MALLOC(sizeof(char*)*(Input_IntMatrix[i]-Input_IntMatrix[i-1]));
 		if (Output_StringMatrix[i] == NULL) /* Error of the Malloc */
 		{
-			int j = 0;
-			for ( j = 0; j < i ; j++)
-			{
-				  if (Output_StringMatrix[j]) 
-				  {
-					  FREE(Output_StringMatrix[j]);
-					  Output_StringMatrix[j]=NULL;
-				  }
-			
-			}
+			freeArrayOfString(Output_StringMatrix,i);
 			freeArrayOfString(Input_StringMatrix,mn);
 			Scierror(999,_("%s : Memory allocation error\n"),fname);
 			return 0;

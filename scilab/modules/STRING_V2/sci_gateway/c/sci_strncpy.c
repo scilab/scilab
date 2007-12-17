@@ -49,7 +49,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 			if (InputLength_Parameter2_checked == NULL)
 			{
 				freeArrayOfString(InputString_Parameter1,m1n1);
-				Scierror(999,"%s: Out of memory\r\n",fname);
+				Scierror(999,"%s: Out of memory.\n",fname);
 				return 0;
 			}
 
@@ -67,7 +67,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 			}
 		}
 
-		if ( (m1n1 == m2n2) || (m2n2 == 1) )
+		if ( ((m1 == m2) && (n1 == n2)) || (m2n2 == 1) )
 		{
 			char **OutputStrings = NULL;
 			int i = 0;
@@ -81,7 +81,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 					InputLength_Parameter2_checked = NULL;
 				}
 				freeArrayOfString(InputString_Parameter1,m1n1);
-				Scierror(999,"%s: Out of memory\r\n",fname);
+				Scierror(999,"%s: Out of memory.\n",fname);
 				return 0;
 			}
 
@@ -102,7 +102,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					freeArrayOfString(InputString_Parameter1,m1n1);
 					freeArrayOfString(OutputStrings,i);
-					Scierror(999,"%s: Out of memory\r\n",fname);
+					Scierror(999,"%s: Out of memory.\n",fname);
 					return 0;
 				}
 				strncpy(OutputStrings[i],InputString_Parameter1[i],InputLength_Parameter2_checked[j]);

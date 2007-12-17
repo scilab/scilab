@@ -43,11 +43,16 @@ char* scistrrev(char* str)
 	if ( !str ) return NULL;
 	int i = strlen(str);
 	int t = !(i%2)? 1 : 0;      // check the length of the string .
-	int j,k;
-	for(j = i-1 , k = 0 ; j > (i/2 -t) ; j-- ) /* @TODO add comment */
+	int j = 0,k = 0;
+
+	/* copy character by character to reverse string */
+	k = 0;
+	for(j = i-1; j > (i/2 -t) ; j-- ) /* @TODO add comment */
 	{
-		char ch  = str[j];
-		str[j]   = str[k];
+		/* j starts from end of string */
+		/* k starts from beginning of string */
+		char ch  = str[j]; /* ch temp. character */
+		str[j]   = str[k]; /* end and beginning characters are exchanged */
 		str[k++] = ch;
 	}
 	return str;

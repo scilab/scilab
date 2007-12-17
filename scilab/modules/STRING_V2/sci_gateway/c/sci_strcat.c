@@ -88,7 +88,7 @@ static int sci_strcat_three_rhs(char *fname)
 				typ = cstk(l3)[0];
 			if (typ != COL && typ != ROW ) 
 			{
-				Scierror(999,"%s: third argument should be 'c' or 'r'\r\n",fname); 
+				Scierror(999,"%s: third argument should be 'c' or 'r'.\n",fname); 
 				return 0;
 			}
 		}
@@ -116,7 +116,7 @@ static int sci_strcat_three_rhs(char *fname)
 			/* return a column matrix */ 
 			if ( (Output_String = MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
 			{
-				Scierror(999,"%s: Out of memory\r\n",fname);
+				Scierror(999,"%s: Out of memory.\n",fname);
 				return 0;
 			}
 			Output_String[Row_One]=NULL;
@@ -128,7 +128,7 @@ static int sci_strcat_three_rhs(char *fname)
 				nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
 				if ( (Output_String[i]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 				{
-					Scierror(999,"%s: Out of memory\r\n",fname);
+					Scierror(999,"%s: Out of memory.\n",fname);
 					return 0;
 				} 
 				/* fill the string */ 
@@ -167,7 +167,7 @@ static int sci_strcat_three_rhs(char *fname)
 			/* return a row matrix */ 
 			if ( (Output_String = MALLOC((Col_One+1)*sizeof(char *)))==NULL) 
 			{
-				Scierror(999,"%s: Out of memory\r\n",fname);
+				Scierror(999,"%s: Out of memory.\n",fname);
 				return 0;
 			}
 			Output_String[Col_One]=NULL;
@@ -180,7 +180,7 @@ static int sci_strcat_three_rhs(char *fname)
 				nchars += (Row_One-1)*(int)strlen(Input_String_Two); 
 				if ( (Output_String[j]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 				{
-					Scierror(999,"%s: Out of memory\r\n",fname);
+					Scierror(999,"%s: Out of memory.\n",fname);
 					return 0;
 				} 
 				/* fill the string */ 

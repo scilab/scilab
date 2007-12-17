@@ -34,7 +34,7 @@ int C2F(sci_strspn) _PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&InputString_Parameter2);
 		m2n2 = m2 * n2;
 
-		if ( (m2n2 == m1n1) || (m2n2 == 1) )
+		if ( ((m2 == m1) && (n2 == n1)) || (m2n2 == 1) )
 		{
 			int i = 0;
 			int j = 0;

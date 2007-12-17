@@ -110,11 +110,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 		Output_Matrix[i] = (char*)MALLOC( sizeof(char*) * (strlen(Input_Matrix[i])+1) );
 		if (Output_Matrix[i] == NULL)
 		{
-			int j = 0;
-			for (j = 0;j < i;j++)
-			{
-				if (Output_Matrix[j]) { FREE(Output_Matrix[j]); Output_Matrix[j] = NULL;}
-			}
+			freeArrayOfString(Output_Matrix,i);
 			Scierror(999,("%s : Memory allocation error\n"),fname);
 			return 0;
 		}
@@ -132,11 +128,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 	C2F(putlhsvar)();
 
 	/* free pointers used */
-	for (i = 0;i < mn;i++)
-	{
-		if (Output_Matrix[i]) { FREE(Output_Matrix[i]); Output_Matrix[i]=NULL;}
-	}
-	if (Output_Matrix) {FREE(Output_Matrix); Output_Matrix=NULL; }
+	freeArrayOfString(Output_Matrix,mn);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

@@ -10,15 +10,17 @@
 #include "Scierror.h"
 #include "CreateEmptystr.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 char ** CreateEmptystr(int m1,int n1)
 {
-	char **OutputStrings = (char**)MALLOC(sizeof(char*)*(m1*n1+1)); 
+	int m1n1 = m1*n1;
+	char **OutputStrings = (char**)MALLOC(sizeof(char*)*(m1n1+1)); 
 
 	if (OutputStrings)
 	{
 		int i = 0;
-		for (i = 0;i < m1*n1; i++)  /*m1 is the number of row ; n1 is the number of col*/
+		for (i = 0;i < m1n1; i++)  /*m1 is the number of row ; n1 is the number of col*/
 		{
 			OutputStrings[i] = (char*)MALLOC(sizeof(char)*(strlen(EMPTY_STRING)+1));
 			if (OutputStrings[i])
@@ -27,14 +29,8 @@ char ** CreateEmptystr(int m1,int n1)
 			}
 			else
 			{
-				for (i=0;i<m1*n1;i++)
-				{
-					if (OutputStrings[i]) { FREE(OutputStrings[i]); OutputStrings[i] = NULL;}
-				}
-				if (OutputStrings) {FREE(OutputStrings); OutputStrings = NULL; }
-
-				Scierror(999, _("%s: No more memory.\n"), "CreateEmptystr");
-				break;
+				freeArrayOfString(OutputStrings,m1n1);
+				return NULL;
 			}
 		}
 	}

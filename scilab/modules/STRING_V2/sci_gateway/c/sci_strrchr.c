@@ -35,7 +35,7 @@ int C2F(sci_strrchr) _PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Input_StringMatrix_2);
 		m2n2 = m2 * n2 ;
 
-		if ( (m1n1 == m2n2) || (m2n2 == 1) )
+		if ( ((m1 == m2) && (n1 == n2)) || (m2n2 == 1) )
 		{
 			char **Output_Strings = NULL;
 			int i = 0;
@@ -66,7 +66,7 @@ int C2F(sci_strrchr) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				freeArrayOfString(Input_StringMatrix_1,m1n1);
 				freeArrayOfString(Input_StringMatrix_2,m2n2);
-				Scierror(999,"%s: Out of memory\r\n",fname);
+				Scierror(999,"%s: Out of memory.\n",fname);
 			}
 		}
 		else
