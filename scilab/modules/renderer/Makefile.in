@@ -240,6 +240,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/BasicAlgos.cpp \
 	src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
 	src/jni/GraphicSynchronizerJava.cpp \
+	src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
+	src/cpp/subwinDrawing/AutoLogTicksComputer.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -402,7 +404,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-TicksDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-BasicAlgos.lo \
 @GUI_TRUE@	libscirenderer_la-AutomaticTicksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-GraphicSynchronizerJava.lo
+@GUI_TRUE@	libscirenderer_la-GraphicSynchronizerJava.lo \
+@GUI_TRUE@	libscirenderer_la-UserDefLogTicksComputer.lo \
+@GUI_TRUE@	libscirenderer_la-AutoLogTicksComputer.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -770,7 +774,9 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/BasicAlgos.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
-@GUI_TRUE@src/jni/GraphicSynchronizerJava.cpp
+@GUI_TRUE@src/jni/GraphicSynchronizerJava.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/AutoLogTicksComputer.cpp
 
 
 # List of the gateway c files
@@ -974,6 +980,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJavaMapper.Plo@am__quote@
@@ -1124,6 +1131,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XTicksDrawerGL.Plo@am__quote@
@@ -2322,6 +2330,20 @@ libscirenderer_la-GraphicSynchronizerJava.lo: src/jni/GraphicSynchronizerJava.cp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GraphicSynchronizerJava.cpp' object='libscirenderer_la-GraphicSynchronizerJava.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerJava.lo `test -f 'src/jni/GraphicSynchronizerJava.cpp' || echo '$(srcdir)/'`src/jni/GraphicSynchronizerJava.cpp
+
+libscirenderer_la-UserDefLogTicksComputer.lo: src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-UserDefLogTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Tpo -c -o libscirenderer_la-UserDefLogTicksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp' object='libscirenderer_la-UserDefLogTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-UserDefLogTicksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp
+
+libscirenderer_la-AutoLogTicksComputer.lo: src/cpp/subwinDrawing/AutoLogTicksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AutoLogTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Tpo -c -o libscirenderer_la-AutoLogTicksComputer.lo `test -f 'src/cpp/subwinDrawing/AutoLogTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutoLogTicksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/AutoLogTicksComputer.cpp' object='libscirenderer_la-AutoLogTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AutoLogTicksComputer.lo `test -f 'src/cpp/subwinDrawing/AutoLogTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutoLogTicksComputer.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -168,7 +168,9 @@ src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
 src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
 src/cpp/BasicAlgos.cpp \
 src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
-src/jni/GraphicSynchronizerJava.cpp
+src/jni/GraphicSynchronizerJava.cpp \
+src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
+src/cpp/subwinDrawing/AutoLogTicksComputer.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
