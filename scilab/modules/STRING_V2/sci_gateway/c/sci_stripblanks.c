@@ -17,6 +17,7 @@ tabs : if TRUE then tabs are also stripped (default value is FALSE)*/
 #include "stripblanks.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+#include "localization.h"
 /*----------------------------------------------------------------------------*/
 int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 {

@@ -62,13 +62,13 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 					int i = 0;
 
 					if (m2n2 == 1) 
-						{
-							i = 0;
-						}
+					{
+						i = 0; /* Input parameter two is dimension one */
+					}
 					else 
-						{
-							i = j;
-						}
+					{
+						i = j; /* Input parameter One & two have same dimension */
+					}
 
 					if (strlen(InputString_Parameter1[j])< strlen(InputString_Parameter2[i]))
 					{

@@ -89,14 +89,14 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				int j = 0;
 
-				if (m2n2 == 1)  /* @TODO : explain that */
-					{
-						j = 0;
-					}
+				if (m2n2 == 1) 
+				{
+					j = 0; /* Input parameter two is dimension one */
+				}
 				else 
-					{
-						j = i;
-					}
+				{
+					j = i; /* Input parameter One & two have same dimension */
+				}
 
 				OutputStrings[i] = (char*)MALLOC(sizeof(char)*(InputLength_Parameter2_checked[j]+1));
 				if (OutputStrings[i]==NULL)

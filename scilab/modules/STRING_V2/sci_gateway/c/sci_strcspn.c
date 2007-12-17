@@ -1,7 +1,10 @@
 /*---------------------------------------------------------------------------*/
 /* Copyright INRIA 2007 */
 /* @Author : Allan CORNET */
-/* @TODO : explain this function */
+/* res = strcspn(str1,str2) */
+/* Scans str1 for the first occurrence of any of the characters */
+/* that are part of str2, returning the number of characters */
+/* of str1 read before this first occurrence. */
 /*---------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>

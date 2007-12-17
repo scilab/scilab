@@ -1,6 +1,9 @@
 /*----------------------------------------------------------------------------*/
 /* Copyright INRIA 2007 */
 /* @Author : Allan CORNET */
+/* res = strspn(str1,str2) */
+/* Returns the length of the initial portion of str1 */
+/* which consists only of characters that are part of str2. */
 /*----------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>

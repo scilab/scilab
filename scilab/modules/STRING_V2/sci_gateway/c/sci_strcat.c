@@ -14,6 +14,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+#include "localization.h"
 /*-------------------------------------------------------------------------------------*/ 
 #define STAR '*'
 #define COL 'c'

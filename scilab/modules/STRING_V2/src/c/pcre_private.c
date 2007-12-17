@@ -331,7 +331,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		char *to_file = NULL;
 		const unsigned char *tables = NULL;
 		unsigned long int true_size, true_study_size = 0;
-		size_t size, regex_gotten_store;
+		size_t regex_gotten_store;
 		int do_study = 0;
 		int do_debug = debug;
 		int do_G = 0;

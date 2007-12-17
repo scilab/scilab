@@ -43,14 +43,14 @@ int C2F(sci_string) _PARAMS((char *fname,unsigned long fname_len))
 		case sci_lufact_pointer:
 		{
 			if (Lhs == 1)
-				{
-					int id[6];
-					C2F(intstring)(id);
-				}
+			{
+				int id[6];
+				C2F(intstring)(id);
+			}
 			else
-				{
-					Error(39);
-				}
+			{
+				Error(39);
+			}
 		}
 		break;
 
