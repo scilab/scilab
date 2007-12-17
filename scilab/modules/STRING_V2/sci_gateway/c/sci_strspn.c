@@ -44,7 +44,7 @@ int C2F(sci_strspn) _PARAMS((char *fname,unsigned long fname_len))
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&outIndex);   
 			for ( i = 0 ; i < m1n1 ; i++ )
 			{
-				if (m2n2 == 1) j = 1;
+				if (m2n2 == 1) j = 0;
 				else j = i;
 
 				stk(outIndex)[i] = (double) strspn( InputString_Parameter1[i], InputString_Parameter2[j] );
