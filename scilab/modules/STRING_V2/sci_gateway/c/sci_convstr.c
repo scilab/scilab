@@ -101,7 +101,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 	Output_Matrix = (char**)MALLOC(sizeof(char*)*(mn));
 	if (Output_Matrix == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -111,7 +111,7 @@ int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
 		if (Output_Matrix[i] == NULL)
 		{
 			freeArrayOfString(Output_Matrix,i);
-			Scierror(999,("%s : Memory allocation error\n"),fname);
+			Scierror(999,("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
 	}

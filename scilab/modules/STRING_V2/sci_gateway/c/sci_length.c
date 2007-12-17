@@ -84,7 +84,7 @@ static int lengthStrings(char *fname)
 	else
 	{
 		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 	}
 	return 0;
 }

@@ -47,7 +47,7 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (Output_Matrix == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -61,7 +61,7 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		FREE(Output_Matrix);
 		Output_Matrix = NULL;
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 

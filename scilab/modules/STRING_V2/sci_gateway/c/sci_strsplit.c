@@ -74,7 +74,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	if (Output_StringMatrix == NULL)
 	{
 		freeArrayOfString(Input_StringMatrix,mn);
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -84,7 +84,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		FREE(Output_StringMatrix);
 		Output_StringMatrix = NULL;
 		freeArrayOfString(Input_StringMatrix,mn);
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -95,7 +95,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			freeArrayOfString(Output_StringMatrix,i);
 			freeArrayOfString(Input_StringMatrix,mn);
-			Scierror(999,_("%s : Memory allocation error\n"),fname);
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
 	}
@@ -104,7 +104,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	if (Output_StringMatrix[Col_Two] == NULL)
 	{
 		freeArrayOfString(Input_StringMatrix,mn);
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 

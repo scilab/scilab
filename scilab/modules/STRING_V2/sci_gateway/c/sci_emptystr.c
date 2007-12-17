@@ -110,7 +110,7 @@ static int sci_emptystr_one_rhs(char *fname)
 
 	if (OutputStrings == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -177,7 +177,7 @@ static int sci_emptystr_two_rhs(char *fname)
 
 		if (OutputStrings == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error\n"),fname);
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
 
@@ -187,7 +187,7 @@ static int sci_emptystr_two_rhs(char *fname)
 			if (OutputStrings[i] == NULL)
 			{
 				freeArrayOfString(OutputStrings,i);
-				Scierror(999,_("%s : Memory allocation error\n"),fname);
+				Scierror(999,_("%s : Memory allocation error.\n"),fname);
 				return 0;
 			}
 			else strcpy(OutputStrings[i],EMPTY_STRING);

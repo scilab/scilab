@@ -43,7 +43,7 @@ int C2F(sci_strrev) _PARAMS((char *fname,unsigned long fname_len))
 		else
 		{
 			freeArrayOfString(InputStrings,m1n1);
-			Scierror(999,_("%s : Memory allocation error\n"),fname);
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
 	}
