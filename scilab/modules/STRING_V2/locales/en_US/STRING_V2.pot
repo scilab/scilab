@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-12-17 18:44+0100\n"
+"Revision-Date: 2007-12-17 18:51+0100\n"
 
 # File: macros/tokenpos.sci, line: 7
 msgid "numtok : str must be a single string"
@@ -55,6 +55,7 @@ msgid "The function arobasestring2strings only works with a single string"
 msgstr ""
 #
 # File: sci_gateway/c/sci_strindex.c, line: 79
+# File: sci_gateway/c/sci_strsubst.c, line: 41
 #, c-format
 msgid "%s : Wrong size for first input argument: scalar expected.\n"
 msgstr ""
@@ -130,10 +131,14 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_tokens.c, line: 55
 # File: sci_gateway/c/sci_tokens.c, line: 69
+# File: sci_gateway/c/sci_strsplit.c, line: 56
+# File: sci_gateway/c/sci_str2code.c, line: 82
+# File: sci_gateway/c/sci_code2str.c, line: 39
+# File: sci_gateway/c/sci_emptystr.c, line: 105
+# File: sci_gateway/c/sci_stripblanks.c, line: 74
 #, c-format
 msgid ""
-"%s : Wrong type for first input argument, expecting scalar or string "
-"matrix.\n"
+"%s : Wrong type for first input argument: scalar or string matrix expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_string.c, line: 82
@@ -144,6 +149,8 @@ msgstr ""
 # File: sci_gateway/c/sci_part.c, line: 45
 # File: sci_gateway/c/sci_isalphanum.c, line: 69
 # File: sci_gateway/c/sci_isletter.c, line: 69
+# File: sci_gateway/c/sci_strtok.c, line: 64
+# File: sci_gateway/c/sci_strtok.c, line: 71
 #, c-format
 msgid "%s : Wrong type for first input argument: string expected.\n"
 msgstr ""
@@ -169,16 +176,6 @@ msgstr ""
 msgid "%s : Not managed input type.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 56
-# File: sci_gateway/c/sci_str2code.c, line: 82
-# File: sci_gateway/c/sci_code2str.c, line: 39
-# File: sci_gateway/c/sci_emptystr.c, line: 105
-# File: sci_gateway/c/sci_stripblanks.c, line: 74
-#, c-format
-msgid ""
-"%s : Wrong type for first input argument: scalar or string matrix expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_strsplit.c, line: 69
 #, c-format
 msgid ""
@@ -193,22 +190,17 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_emptystr.c, line: 159
 #, c-format
-msgid "%s : Wrong type for second input argument:  integer matrix expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_strsubst.c, line: 41
-#, c-format
-msgid "%s : Wrong size for first input argument, expecting a scalar.\n"
+msgid "%s : Wrong type for second input argument: integer matrix expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_strsubst.c, line: 73
 #, c-format
-msgid "%s : Wrong size for second input argument, expecting a scalar.\n"
+msgid "%s : Wrong size for second input argument: scalar expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_strsubst.c, line: 83
 #, c-format
-msgid "%s : Wrong size for third input argument, expecting a scalar.\n"
+msgid "%s : Wrong size for third input argument: scalar expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_strsubst.c, line: 102
@@ -218,8 +210,13 @@ msgid "%s : Wrong type for first input argument.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_strsubst.c, line: 110
+# File: sci_gateway/c/sci_strstr.c, line: 138
+# File: sci_gateway/c/sci_strncpy.c, line: 140
+# File: sci_gateway/c/sci_strrchr.c, line: 82
+# File: sci_gateway/c/sci_strspn.c, line: 68
+# File: sci_gateway/c/sci_strcspn.c, line: 69
 #, c-format
-msgid "%s : Wrong type for input argument(s).\n"
+msgid "%s : Wrong type for input arguments(s): Strings expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_stripblanks.c, line: 46
@@ -342,15 +339,6 @@ msgstr ""
 msgid "%s : Wrong size for second parameter.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strstr.c, line: 138
-# File: sci_gateway/c/sci_strncpy.c, line: 140
-# File: sci_gateway/c/sci_strrchr.c, line: 82
-# File: sci_gateway/c/sci_strspn.c, line: 68
-# File: sci_gateway/c/sci_strcspn.c, line: 69
-#, c-format
-msgid "%s : Wrong type for input arguments(s): Strings expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_strncpy.c, line: 42
 #, c-format
 msgid "%s : Wrong size for Second input argument.\n"
@@ -377,8 +365,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_strtod.c, line: 102
 #, c-format
-msgid ""
-"%s : Wrong type for first argument, expecting scalar or string matrix.\n"
+msgid "%s : Wrong type for first argument: scalar or string matrix expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_strrev.c, line: 52
@@ -389,11 +376,5 @@ msgstr ""
 # File: sci_gateway/c/sci_strtok.c, line: 44
 # File: sci_gateway/c/sci_strtok.c, line: 50
 #, c-format
-msgid "%s : Wrong type for second input argument, expecting a string.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_strtok.c, line: 64
-# File: sci_gateway/c/sci_strtok.c, line: 71
-#, c-format
-msgid "%s : Wrong type for first input argument, expecting a string.\n"
+msgid "%s : Wrong type for second input argument: string expected.\n"
 msgstr ""

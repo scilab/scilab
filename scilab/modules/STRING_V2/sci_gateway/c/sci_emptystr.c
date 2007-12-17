@@ -156,7 +156,7 @@ static int sci_emptystr_two_rhs(char *fname)
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for second input argument:  integer matrix expected.\n"),fname);
+		Scierror(999,_("%s : Wrong type for second input argument: integer matrix expected.\n"),fname);
 		return 0;
 	}
 	
