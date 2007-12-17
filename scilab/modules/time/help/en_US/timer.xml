@@ -13,6 +13,7 @@
 	
 	<DESCRIPTION>
 		<P>Returns the CPU time from the preceding call to <VERB>timer()</VERB>.</P>
+		<P>timer has a time precision of 100 nanoseconds.</P>
 	</DESCRIPTION>
 	
 	<EXAMPLE><![CDATA[
@@ -23,7 +24,6 @@ timer();A=rand(100,100);timer()
 		<SEE_ALSO_ITEM><LINK>getdate</LINK></SEE_ALSO_ITEM>
 		<SEE_ALSO_ITEM><LINK>toc</LINK></SEE_ALSO_ITEM>
 		<SEE_ALSO_ITEM><LINK>tic</LINK></SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM><LINK>timer</LINK></SEE_ALSO_ITEM>
 		<SEE_ALSO_ITEM><LINK>etime</LINK></SEE_ALSO_ITEM>
 	</SEE_ALSO>
 </MAN>
