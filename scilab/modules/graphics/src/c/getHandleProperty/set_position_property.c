@@ -43,7 +43,7 @@ int set_position_property( sciPointObj * pobj, int stackPointer, int valueType, 
   }
   else
   {
-    sciprint("position does not exist for this handle.\n") ;
+    sciprint(_("%s does not exist for this handle.\n"), "position") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

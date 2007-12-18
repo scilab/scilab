@@ -18,7 +18,7 @@ int set_pixmap_property( sciPointObj * pobj, int stackPointer, int valueType, in
 {
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint("pixmap property undefined for this object.\n") ;
+    sciprint(_("%s property undefined for this object.\n"), "pixmap") ;
     return -1;
   }
 

@@ -27,7 +27,7 @@ int set_ytics_coord_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint("ytics_coord does not exist for this handle.\n") ;
+    sciprint(_("%s does not exist for this handle.\n"), "ytics_coord") ;
     return SET_PROPERTY_ERROR ;
   }
 

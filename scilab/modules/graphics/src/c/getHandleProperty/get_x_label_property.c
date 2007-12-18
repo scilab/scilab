@@ -17,7 +17,7 @@ int get_x_label_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint("x_label property undefined for this object\n.") ;
+    sciprint(_("%s property undefined for this object.\n"), "x_label") ;
     return -1 ;
   }
   return sciReturnHandle( sciGetHandle( pSUBWIN_FEATURE(pobj)->mon_x_label ) ) ;

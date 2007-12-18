@@ -54,7 +54,7 @@ int set_z_shift_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
     if ( pPOLYLINE_FEATURE (pobj)->y_shift == NULL )
     {
-      sciprint(_("%s: No more memory.\n.\n"),"set_z_shift_property");
+      sciprint(_("%s: No more memory.\n"),"set_z_shift_property");
       return SET_PROPERTY_ERROR ;
     }
   }

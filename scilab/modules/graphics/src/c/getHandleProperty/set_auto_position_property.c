@@ -25,7 +25,7 @@ int set_auto_position_property( sciPointObj * pobj, int stackPointer, int valueT
 
   if ( sciGetEntityType(pobj) != SCI_LABEL )
   {
-    sciprint("auto_position does not exist for this handle.\n") ;
+    sciprint(_("%s does not exist for this handle.\n"), "auto_position") ;
     return SET_PROPERTY_ERROR ;
   }
 

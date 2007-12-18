@@ -17,7 +17,7 @@ int get_labels_font_style_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN && sciGetEntityType( pobj ) != SCI_FIGURE )
   {
-    sciprint("labels_font_style property does not exist for this handle\n.") ;
+    sciprint(_("%s does not exist for this handle.\n"), "labels_font_style property") ;
     return -1 ;
   }
 

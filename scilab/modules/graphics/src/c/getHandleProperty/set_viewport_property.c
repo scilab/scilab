@@ -29,7 +29,7 @@ int set_viewport_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint("viewport does not exist for this handle.\n") ;
+    sciprint(_("%s does not exist for this handle.\n"), "viewport") ;
     return SET_PROPERTY_ERROR ;
   }
 

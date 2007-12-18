@@ -25,7 +25,7 @@ int get_labels_font_size_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint("labels_font_size property does not exist for this handle\n.");
+    sciprint(_("%s does not exist for this handle.\n"), "labels_font_size property");
     return -1;
   }
 

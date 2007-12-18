@@ -27,7 +27,7 @@ int set_segs_color_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( sciGetEntityType(pobj) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
   {
-    sciprint("segs_color_property does not exist for this handle.\n") ;
+    sciprint(_("%s does not exist for this handle.\n"), "segs_color_property") ;
     return SET_PROPERTY_ERROR ;
   }
 

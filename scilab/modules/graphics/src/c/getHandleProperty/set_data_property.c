@@ -271,7 +271,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     int monotony = checkMonotony( pvecx, dimvectx ) ;
     if ( monotony == 0 )
     {
-      sciprint("Objplot3d: x vector is not monotonous \t\n.");
+      sciprint("Objplot3d: x vector is not monotonous.\n");
       return 0;
     }
 
@@ -300,7 +300,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     int monotony = checkMonotony( pvecx, dimvecty ) ;
     if ( monotony == 0 )
     {
-      sciprint("Objplot3d: x vector is not monotonous \t\n.");
+      sciprint("Objplot3d: x vector is not monotonous.\n");
       return 0;
     }
 

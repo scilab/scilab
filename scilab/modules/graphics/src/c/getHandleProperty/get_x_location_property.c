@@ -17,7 +17,7 @@ int get_x_location_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    sciprint("x_location property undefined for this handle\n.") ;
+    sciprint(_("%s property undefined for this handle.\n"), "x_location") ;
     return -1 ;
   }
 
@@ -33,7 +33,7 @@ int get_x_location_property( sciPointObj * pobj )
     return sciReturnString( "middle" ) ;
     break;
   default : 
-    sciprint("x_location is not correctly defined\n.") ;
+    sciprint(_("%s is not correctly defined.\n"), "x_location") ;
     break;
   }
   return -1 ;

@@ -17,7 +17,7 @@ int get_auto_position_property( sciPointObj * pobj )
 {
   if( sciGetEntityType(pobj) != SCI_LABEL )
   {
-    sciprint("auto_position does not exist for this handle.\n") ;
+    sciprint(_("%s does not exist for this handle.\n"), "auto_position") ;
     return -1 ;
   }
 

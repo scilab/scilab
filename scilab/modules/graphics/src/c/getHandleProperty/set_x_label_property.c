@@ -19,7 +19,7 @@ int set_x_label_property( sciPointObj * pobj, int stackPointer, int valueType, i
 {
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint("x_label property undefined for this object.\n") ;
+    sciprint(_("%s property undefined for this object.\n"), "x_label") ;
     return SET_PROPERTY_ERROR ;
   }
   else

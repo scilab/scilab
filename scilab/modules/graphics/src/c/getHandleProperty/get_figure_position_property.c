@@ -23,7 +23,7 @@ int get_figure_position_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint("figure_position property undefined for this object" ) ;
+    sciprint("figure_position property undefined for this object") ;
     return -1;
   }
 

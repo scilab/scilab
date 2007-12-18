@@ -21,7 +21,7 @@ int set_title_property( sciPointObj * pobj, int stackPointer, int valueType, int
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint("title property undefined for this object.\n") ;
+    sciprint(_("%s property undefined for this object.\n"), "title") ;
     return SET_PROPERTY_ERROR ;
   }
   else

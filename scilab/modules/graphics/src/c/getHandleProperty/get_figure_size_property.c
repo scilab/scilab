@@ -21,7 +21,7 @@ int get_figure_size_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint("figure_size property undefined for this object.\n") ;
+    sciprint(_("%s property undefined for this object.\n"), "figure_size") ;
     return -1;
   }
 
