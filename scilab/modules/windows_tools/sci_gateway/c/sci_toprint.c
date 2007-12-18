@@ -85,7 +85,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong first input argument: see help toprint."),fname=;
+				Scierror(999,_("%s: Wrong first input argument: see help toprint."),fname);
 				return 0;
 			}
 		}
