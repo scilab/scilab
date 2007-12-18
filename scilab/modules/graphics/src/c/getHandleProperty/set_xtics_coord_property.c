@@ -51,7 +51,7 @@ int set_xtics_coord_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if (  pAXES_FEATURE(pobj)->nx != 1 && nbCol == 1 )
   {
-    sciprint("Second argument  must be a vector.\n") ;
+    sciprint(_("%s: Wrong type for second input argument: vector expected.\n"), "set_xtics_coord_property") ;
     return SET_PROPERTY_ERROR ;
   }
 
