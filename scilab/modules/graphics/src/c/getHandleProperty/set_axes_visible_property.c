@@ -51,7 +51,7 @@ int set_axes_visible_property( sciPointObj * pobj, int stackPointer, int valueTy
     }
     else
     {
-      sciprint("Second argument must be 'on' or 'off'.\n") ;
+      sciprint(_("%s: Wrong second input argument: '%s' or '%s' expected."),"set_axes_visible_property","on","off") ;
       return SET_PROPERTY_ERROR ;
     }
     return SET_PROPERTY_SUCCEED ;

@@ -60,7 +60,7 @@ int set_box_property( sciPointObj * pobj, int stackPointer, int valueType, int n
     }
     else
     {
-      sciprint("Second argument must be 'on' or 'off'.\n") ;
+      sciprint(_("%s: Wrong second input argument: '%s' or '%s' expected."),"set_box_property","on","off") ;
       return SET_PROPERTY_SUCCEED ;
     }
   }
