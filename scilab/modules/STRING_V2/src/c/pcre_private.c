@@ -295,15 +295,9 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	char *copynamesptr;
 	char *getnamesptr;
 
-	/* Get buffers from malloc() so that Electric Fence will check their misuse
-	when I am debugging. They grow automatically when very long lines are read. */
 
-	buffer = (char *)MALLOC(buffer_size);
+	buffer = (char *)MALLOC(strlen(INPUT_LINE)+1);
 
-	/* The outfile variable is static so that new_malloc can use it. */
-	outfile = stdout;
-
-	/* Get the store for the offsets vector, and remember what it was */
 
 	size_offsets_max = size_offsets;
 	offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
