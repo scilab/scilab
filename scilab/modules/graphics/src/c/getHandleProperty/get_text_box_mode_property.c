@@ -32,7 +32,7 @@ int get_text_box_mode_property( sciPointObj * pobj )
       return sciReturnString( "filled" ) ;
     }
   }
-  sciprint("text_box_mode property does not exist for this handle.\n");
+  sciprint(_("%s property does not exist for this handle.\n"),"text_box_mode");
   return -1;
 }
 /*------------------------------------------------------------------------*/

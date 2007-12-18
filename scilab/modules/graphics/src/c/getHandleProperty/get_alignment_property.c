@@ -32,7 +32,7 @@ int get_alignment_property( sciPointObj * pobj )
       return -1 ;
     }
   }
-  sciprint("alignment property does not exist for this handle.\n");
+  sciprint(_("%s property does not exist for this handle.\n"),"alignment");
   return -1 ;
 
 }

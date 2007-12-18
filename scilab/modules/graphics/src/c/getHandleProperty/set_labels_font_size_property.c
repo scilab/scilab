@@ -32,7 +32,7 @@ int set_labels_font_size_property( sciPointObj * pobj, int stackPointer, int val
   }
   else
   {
-    sciprint( "labels_font_size property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"labels_font_size") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

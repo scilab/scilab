@@ -25,7 +25,7 @@ int set_arrow_size_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( sciGetEntityType(pobj) != SCI_SEGS )
   {
-    sciprint("arrow_size property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"arrow_size") ;
     return SET_PROPERTY_ERROR ;
   }
 

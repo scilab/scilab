@@ -25,7 +25,7 @@ int set_text_box_mode_property( sciPointObj * pobj, int stackPointer, int valueT
 
   if ( sciGetEntityType(pobj) != SCI_TEXT )
   {
-    sciprint( "text_box_mode property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"text_box_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 

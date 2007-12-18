@@ -16,7 +16,7 @@ int get_z_bounds_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_FEC)
   {
-    sciprint("z_bounds property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"z_bounds") ;
     return -1 ;
   }
   

@@ -16,7 +16,7 @@ int get_menu_enable_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_UIMENU)
   {
-    sciprint("menu_enable property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"menu_enable");
     return -1;
   }
   if ( pUIMENU_FEATURE(pobj)->Enable )

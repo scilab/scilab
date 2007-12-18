@@ -16,7 +16,7 @@ int get_cdata_mapping_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType (pobj) != SCI_SURFACE  )
   {
-    sciprint("cdata_mapping property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"cdata_mapping");
     return -1;
   }
   if ( pSURFACE_FEATURE (pobj)->typeof3d != SCI_FAC3D )

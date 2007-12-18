@@ -25,7 +25,7 @@ int get_tics_color_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint("tics_color property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"tics_color");
     return -1;
   }
 

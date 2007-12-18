@@ -25,7 +25,7 @@ int set_bar_layout_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint( "bar_layout property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"bar_layout") ;
     return SET_PROPERTY_ERROR ;
   }
   

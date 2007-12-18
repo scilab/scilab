@@ -28,7 +28,7 @@ int set_grid_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint( "grid property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"grid") ;
     return SET_PROPERTY_ERROR ;
   }
 

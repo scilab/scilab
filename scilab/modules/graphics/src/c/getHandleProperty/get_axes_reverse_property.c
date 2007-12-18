@@ -22,7 +22,7 @@ int get_axes_reverse_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint("axes_reverse property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"axes_reverse") ;
     return -1 ;
   }
 

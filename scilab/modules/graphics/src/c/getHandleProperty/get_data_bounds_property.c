@@ -37,7 +37,7 @@ int get_data_bounds_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint("data_bounds property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"data_bounds");
     return -1;
   }
 

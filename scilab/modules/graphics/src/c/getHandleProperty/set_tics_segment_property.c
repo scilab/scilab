@@ -25,7 +25,7 @@ int set_tics_segment_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint( "tics_segment property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"tics_segment") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -18,7 +18,7 @@ int get_rotation_angles_property( sciPointObj * pobj )
   double angles[2] ;
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint("rotation_angle property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"rotation_angle") ;
     return -1 ;
   }
 

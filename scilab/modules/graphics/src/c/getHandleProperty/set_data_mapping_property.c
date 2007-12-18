@@ -27,7 +27,7 @@ int set_data_mapping_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( sciGetEntityType(pobj) != SCI_GRAYPLOT )
   {
-    sciprint( "data_mapping property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"data_mapping") ;
     return SET_PROPERTY_ERROR ;
   }
 

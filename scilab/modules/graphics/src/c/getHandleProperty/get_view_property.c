@@ -17,7 +17,7 @@ int get_view_property( sciPointObj * pobj )
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint( "view property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"view") ;
     return -1;
   }
 

@@ -16,7 +16,7 @@ int get_closed_property( sciPointObj * pobj )
 {
   if(sciGetEntityType(pobj) != SCI_POLYLINE)
   {
-    sciprint("closed property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"closed") ;
     return -1 ;
   }
 

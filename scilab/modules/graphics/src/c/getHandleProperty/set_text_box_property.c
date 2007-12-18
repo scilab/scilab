@@ -26,7 +26,7 @@ int set_text_box_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if (sciGetEntityType (pobj) != SCI_TEXT)
   {
-    sciprint("text_box property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"text_box");
     return SET_PROPERTY_ERROR ;
   }
 

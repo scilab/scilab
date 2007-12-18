@@ -27,7 +27,7 @@ int set_axes_bounds_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint( "axes_bounds property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"axes_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
   if ( nbRow * nbCol != 4 )

@@ -26,7 +26,7 @@ int set_polyline_style_property( sciPointObj * pobj, int stackPointer, int value
 
   if (sciGetEntityType (pobj) != SCI_POLYLINE)
   {
-    sciprint( "polyline_style property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"polyline_style") ;
     return SET_PROPERTY_ERROR ;
   }
     

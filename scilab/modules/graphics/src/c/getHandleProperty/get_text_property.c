@@ -22,7 +22,7 @@ int get_text_property( sciPointObj * pobj )
 
   if ( nbRow < 0 || nbCol < 0 )
   {
-    sciprint("text property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"text") ;
     return -1;
   }
 

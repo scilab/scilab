@@ -41,7 +41,7 @@ int get_sub_tics_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint("sub_ticks property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"sub_ticks") ;
     return -1 ;
   }
 }

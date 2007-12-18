@@ -16,7 +16,7 @@ int get_arrow_size_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_SEGS )
   {
-    sciprint("arrow_size property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"arrow_size") ;
     return -1 ;
   }
   return sciReturnDouble( sciGetArrowSize(pobj) ) ;

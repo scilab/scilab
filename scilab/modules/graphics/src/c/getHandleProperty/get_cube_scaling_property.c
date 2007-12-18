@@ -16,7 +16,7 @@ int get_cube_scaling_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint("cube_scaling property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"cube_scaling") ;
     return -1 ;
   }
   if ( pSUBWIN_FEATURE(pobj)->cube_scaling )

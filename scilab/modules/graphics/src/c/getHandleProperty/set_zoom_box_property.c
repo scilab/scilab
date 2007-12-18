@@ -1,7 +1,3 @@
-sed -i -e 's|sciprint(.*"\(.*\) property does not exist for this handle.\\n")|sciprint(_("%s property does not exist for this handle.\\n"),"\1")|' *.c
-
-
-
 /*------------------------------------------------------------------------*/
 /* file: set_zoom_box_property.c                                          */
 /* Copyright INRIA 2006                                                   */
@@ -30,7 +26,7 @@ int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint( "zoom_box property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"zoom_box") ;
     return SET_PROPERTY_ERROR ;
   }
 

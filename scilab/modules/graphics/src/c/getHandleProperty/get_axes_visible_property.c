@@ -22,7 +22,7 @@ int get_axes_visible_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint("axes_visible property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"axes_visible") ;
     return -1 ;
   }
 

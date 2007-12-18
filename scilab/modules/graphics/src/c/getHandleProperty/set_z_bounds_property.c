@@ -29,7 +29,7 @@ int set_z_bounds_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( sciGetEntityType(pobj) != SCI_FEC )
   {
-    sciprint("z_bounds property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"z_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 

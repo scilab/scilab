@@ -28,7 +28,7 @@ int set_triangles_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if (sciGetEntityType (pobj) != SCI_FEC )
   {
-    sciprint("triangles property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"triangles") ;
     return SET_PROPERTY_ERROR ;
   }
 

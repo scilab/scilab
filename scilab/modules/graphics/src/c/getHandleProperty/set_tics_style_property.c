@@ -32,7 +32,7 @@ int set_tics_style_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint( "tics_style property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"tics_style") ;
     return SET_PROPERTY_ERROR ;
   }
 

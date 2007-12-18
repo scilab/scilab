@@ -16,7 +16,7 @@ int get_format_n_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType (pobj) != SCI_AXES )
   {
-    sciprint("format_n property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"format_n");
     return -1;
   }
   return sciReturnString( pAXES_FEATURE (pobj)->format ) ;

@@ -25,7 +25,7 @@ int set_cube_scaling_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint("cube_scaling property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"cube_scaling") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -21,7 +21,7 @@ int get_segs_color_property( sciPointObj * pobj )
   int status = -1 ;
   if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
   {
-    sciprint("segs_color property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"segs_color") ;
     return -1 ;
   }
 

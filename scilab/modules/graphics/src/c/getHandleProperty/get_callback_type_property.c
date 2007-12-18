@@ -66,7 +66,7 @@ int get_callback_type_property( sciPointObj * pobj )
     }
   else
     {
-      sciprint("callback_type property does not exist for this handle.\n");
+      sciprint(_("%s property does not exist for this handle.\n"),"callback_type");
       return -1;
     }
   

@@ -28,7 +28,7 @@ int set_hidden_axis_color_property( sciPointObj * pobj, int stackPointer, int va
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint( "hidden_axis_color property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"hidden_axis_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

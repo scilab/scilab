@@ -25,7 +25,7 @@ int set_y_location_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint("y_location property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"y_location") ;
     return SET_PROPERTY_ERROR ;
   }
 

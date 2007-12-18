@@ -25,7 +25,7 @@ int set_menu_enable_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( sciGetEntityType(pobj) != SCI_UIMENU )
   {
-    sciprint( "menu_enable property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"menu_enable") ;
     return SET_PROPERTY_ERROR ;
   }
 

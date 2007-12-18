@@ -25,7 +25,7 @@ int set_callback_type_property( sciPointObj * pobj, int stackPointer, int valueT
 
   if (sciGetEntityType (pobj) != SCI_UIMENU)
   {
-    sciprint("callback_type property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"callback_type");
     return SET_PROPERTY_ERROR ;
   }
 

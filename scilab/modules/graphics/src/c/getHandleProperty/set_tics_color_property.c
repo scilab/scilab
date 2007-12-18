@@ -36,7 +36,7 @@ int set_tics_color_property( sciPointObj * pobj, int stackPointer, int valueType
   }
   else
   {
-    sciprint( "tics_color property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"tics_color") ;
     return SET_PROPERTY_SUCCEED ;
   }
   return SET_PROPERTY_SUCCEED ;

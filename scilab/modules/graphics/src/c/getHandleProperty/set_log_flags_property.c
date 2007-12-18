@@ -111,7 +111,7 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    sciprint( "log_flags property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"log_flags") ;
     return SET_PROPERTY_ERROR ;
   }
   

@@ -36,7 +36,7 @@ int set_font_color_property( sciPointObj * pobj, int stackPointer, int valueType
   } /* F.Leray 08.04.04 */
   else
   {
-    sciprint( "font_color property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"font_color") ;
     return -1 ;
   }
   return -1 ;

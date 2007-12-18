@@ -16,7 +16,7 @@ int get_zoom_state_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint( "zoom_state property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"zoom_state") ;
     return -1 ;
   }
 

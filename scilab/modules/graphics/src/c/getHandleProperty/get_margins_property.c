@@ -17,7 +17,7 @@ int get_margins_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint("margins property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"margins") ;
     return -1 ;
   }
 

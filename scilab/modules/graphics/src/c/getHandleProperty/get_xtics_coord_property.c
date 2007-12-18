@@ -16,7 +16,7 @@ int get_xtics_coord_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint("xtics_coord property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"xtics_coord") ;
     return -1 ;
   }
   return sciReturnRowVector( pAXES_FEATURE(pobj)->vx, pAXES_FEATURE(pobj)->nx ) ;

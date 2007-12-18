@@ -17,7 +17,7 @@ int get_event_handler_enable_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint("event_handler_enable property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"event_handler_enable") ;
     return -1 ;
   }
 

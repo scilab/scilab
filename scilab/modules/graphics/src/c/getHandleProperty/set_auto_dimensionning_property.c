@@ -24,7 +24,7 @@ int set_auto_dimensionning_property( sciPointObj * pobj, int stackPointer, int v
 
   if ( sciGetEntityType( pobj ) != SCI_TEXT )
   {
-    sciprint( "auto_dimensionning property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"auto_dimensionning") ;
     return SET_PROPERTY_ERROR ;
   }
 

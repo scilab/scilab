@@ -24,7 +24,7 @@ int get_font_color_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint( "Font_color property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"Font_color") ;
     return -1 ;
   }
 }

@@ -25,7 +25,7 @@ int set_closed_property( sciPointObj * pobj, int stackPointer, int valueType, in
 
   if(sciGetEntityType(pobj) != SCI_POLYLINE)
   {
-    sciprint( "closed property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"closed") ;
     return SET_PROPERTY_ERROR ;
   }
 

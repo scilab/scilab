@@ -16,7 +16,7 @@ int get_colored_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_SEGS || pSEGS_FEATURE (pobj)->ptype == 0 )
   {
-    sciprint("colored property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"colored") ;
     return -1 ;
   }
 

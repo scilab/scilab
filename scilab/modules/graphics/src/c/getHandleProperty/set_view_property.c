@@ -28,7 +28,7 @@ int set_view_property( sciPointObj * pobj, int stackPointer, int valueType, int 
   /* DJ.A 2003 */
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    sciprint("view property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"view");
     return  SET_PROPERTY_ERROR ;
   }
 

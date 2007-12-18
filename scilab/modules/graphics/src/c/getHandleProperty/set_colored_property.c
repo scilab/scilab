@@ -25,7 +25,7 @@ int set_colored_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype == 0 )
   {
-    sciprint( "colored property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"colored") ;
     return SET_PROPERTY_ERROR ;
   }
 

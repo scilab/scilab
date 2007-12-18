@@ -22,7 +22,7 @@ int get_auto_ticks_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint("auto_ticks property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"auto_ticks") ;
     return -1 ;
   }
 

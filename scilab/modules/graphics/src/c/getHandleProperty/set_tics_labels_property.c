@@ -26,7 +26,7 @@ int set_tics_labels_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint( "tics_labels property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"tics_labels") ;
     return SET_PROPERTY_ERROR ;
   }
 

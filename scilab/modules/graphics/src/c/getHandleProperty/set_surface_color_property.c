@@ -28,7 +28,7 @@ int set_surface_color_property( sciPointObj * pobj, int stackPointer, int valueT
 
   if (sciGetEntityType (pobj) != SCI_SURFACE)
   {
-    sciprint( "surface_color property does not exist for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"surface_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

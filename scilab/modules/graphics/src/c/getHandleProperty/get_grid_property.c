@@ -18,7 +18,7 @@ int get_grid_property( sciPointObj * pobj )
 
   if (sciGetEntityType (pobj) != SCI_SUBWIN) 
   {
-    sciprint("grid property does not exist for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"grid") ;
     return -1 ;
   }
 

@@ -25,7 +25,7 @@ int get_auto_dimensionning_property( sciPointObj * pobj )
       return sciReturnString( "off" ) ;
     }
   }
-  sciprint("auto_dimensionning property does not exist for this handle.\n") ;
+  sciprint(_("%s property does not exist for this handle.\n"),"auto_dimensionning") ;
   return -1 ;
 }
 /*------------------------------------------------------------------------*/

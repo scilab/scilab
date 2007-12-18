@@ -16,7 +16,7 @@ int get_hidden_axis_color_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint("hidden_axis_color property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"hidden_axis_color");
     return -1;
   }
   return sciReturnInt( sciGetHiddenAxisColor(pobj)) ;

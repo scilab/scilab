@@ -20,7 +20,7 @@ int get_bar_width_property( sciPointObj * pobj )
   }
   else
   { 
-    sciprint("bar_with property does not exist for this handle.\n");
+    sciprint(_("%s property does not exist for this handle.\n"),"bar_with");
     return -1 ;
   }
 }
