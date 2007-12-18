@@ -1,0 +1,11 @@
+// =============================================================================
+// unit tests for isnum function
+// Author : Pierre MARECHAL
+// Scilab Project
+// Copyright INRIA 2007
+// =============================================================================
+if ~isnum('%pi')       then pause, end
+ 
+Type 'resume' or 'abort' to return to standard level prompt.
+
+ 
