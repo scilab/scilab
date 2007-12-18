@@ -245,6 +245,12 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/MiddleXTicksDrawerJavaMapper.cpp \
 	src/cpp/subwinDrawing/TopXTicksDrawerJavaMapper.cpp \
 	src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp \
+	src/jni/LeftYTicksDrawerGL.cpp src/jni/RightYTicksDrawerGL.cpp \
+	src/jni/MiddleYTicksDrawerGL.cpp \
+	src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp \
+	src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp \
+	src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp \
+	src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -413,7 +419,14 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-BottomXTicksDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-MiddleXTicksDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-TopXTicksDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-BottomXTicksDrawerJavaMapper.lo
+@GUI_TRUE@	libscirenderer_la-BottomXTicksDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-LeftYTicksDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-RightYTicksDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-MiddleYTicksDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-RightYTicksDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-MiddleYTicksDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-YTicksDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-LeftYTicksDrawerJavaMapper.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -787,7 +800,14 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/BottomXTicksDrawerGL.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/MiddleXTicksDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/TopXTicksDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp
+@GUI_TRUE@src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp \
+@GUI_TRUE@src/jni/LeftYTicksDrawerGL.cpp \
+@GUI_TRUE@src/jni/RightYTicksDrawerGL.cpp \
+@GUI_TRUE@src/jni/MiddleYTicksDrawerGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp
 
 
 # List of the gateway c files
@@ -1102,11 +1122,15 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LeftYTicksDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LeftYTicksDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LinearBoundsComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LocalSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LogarithmicBoundsComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleXTicksDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleXTicksDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleYTicksDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleYTicksDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJoGL.Plo@am__quote@
@@ -1134,6 +1158,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYTicksDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYTicksDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-StairCaseDecomposition.Plo@am__quote@
@@ -1152,6 +1178,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XTicksDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YTicksDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-gw_renderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-norenderer.Plo@am__quote@
@@ -2387,6 +2414,55 @@ libscirenderer_la-BottomXTicksDrawerJavaMapper.lo: src/cpp/subwinDrawing/BottomX
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp' object='libscirenderer_la-BottomXTicksDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BottomXTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp
+
+libscirenderer_la-LeftYTicksDrawerGL.lo: src/jni/LeftYTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-LeftYTicksDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-LeftYTicksDrawerGL.Tpo -c -o libscirenderer_la-LeftYTicksDrawerGL.lo `test -f 'src/jni/LeftYTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/LeftYTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-LeftYTicksDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-LeftYTicksDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/LeftYTicksDrawerGL.cpp' object='libscirenderer_la-LeftYTicksDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LeftYTicksDrawerGL.lo `test -f 'src/jni/LeftYTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/LeftYTicksDrawerGL.cpp
+
+libscirenderer_la-RightYTicksDrawerGL.lo: src/jni/RightYTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RightYTicksDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RightYTicksDrawerGL.Tpo -c -o libscirenderer_la-RightYTicksDrawerGL.lo `test -f 'src/jni/RightYTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/RightYTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-RightYTicksDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-RightYTicksDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/RightYTicksDrawerGL.cpp' object='libscirenderer_la-RightYTicksDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RightYTicksDrawerGL.lo `test -f 'src/jni/RightYTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/RightYTicksDrawerGL.cpp
+
+libscirenderer_la-MiddleYTicksDrawerGL.lo: src/jni/MiddleYTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-MiddleYTicksDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-MiddleYTicksDrawerGL.Tpo -c -o libscirenderer_la-MiddleYTicksDrawerGL.lo `test -f 'src/jni/MiddleYTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/MiddleYTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-MiddleYTicksDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-MiddleYTicksDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/MiddleYTicksDrawerGL.cpp' object='libscirenderer_la-MiddleYTicksDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-MiddleYTicksDrawerGL.lo `test -f 'src/jni/MiddleYTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/MiddleYTicksDrawerGL.cpp
+
+libscirenderer_la-RightYTicksDrawerJavaMapper.lo: src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RightYTicksDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RightYTicksDrawerJavaMapper.Tpo -c -o libscirenderer_la-RightYTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-RightYTicksDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-RightYTicksDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp' object='libscirenderer_la-RightYTicksDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RightYTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp
+
+libscirenderer_la-MiddleYTicksDrawerJavaMapper.lo: src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-MiddleYTicksDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-MiddleYTicksDrawerJavaMapper.Tpo -c -o libscirenderer_la-MiddleYTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-MiddleYTicksDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-MiddleYTicksDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp' object='libscirenderer_la-MiddleYTicksDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-MiddleYTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp
+
+libscirenderer_la-YTicksDrawerJoGL.lo: src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YTicksDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YTicksDrawerJoGL.Tpo -c -o libscirenderer_la-YTicksDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-YTicksDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-YTicksDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp' object='libscirenderer_la-YTicksDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YTicksDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp
+
+libscirenderer_la-LeftYTicksDrawerJavaMapper.lo: src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-LeftYTicksDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-LeftYTicksDrawerJavaMapper.Tpo -c -o libscirenderer_la-LeftYTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-LeftYTicksDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-LeftYTicksDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp' object='libscirenderer_la-LeftYTicksDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LeftYTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

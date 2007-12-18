@@ -174,7 +174,14 @@ src/jni/TopXTicksDrawerGL.cpp \
 src/jni/BottomXTicksDrawerGL.cpp \
 src/cpp/subwinDrawing/MiddleXTicksDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/TopXTicksDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp
+src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp \
+src/jni/LeftYTicksDrawerGL.cpp \
+src/jni/RightYTicksDrawerGL.cpp \
+src/jni/MiddleYTicksDrawerGL.cpp \
+src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp \
+src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
