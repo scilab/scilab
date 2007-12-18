@@ -159,9 +159,7 @@ src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp \
 src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp \
-src/jni/XTicksDrawerGL.cpp \
 src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp \
-src/cpp/subwinDrawing/XTicksDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/TicksDrawer.cpp \
 src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp \
 src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
@@ -170,7 +168,13 @@ src/cpp/BasicAlgos.cpp \
 src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
 src/jni/GraphicSynchronizerJava.cpp \
 src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
-src/cpp/subwinDrawing/AutoLogTicksComputer.cpp
+src/cpp/subwinDrawing/AutoLogTicksComputer.cpp \
+src/jni/MiddleXTicksDrawerGL.cpp \
+src/jni/TopXTicksDrawerGL.cpp \
+src/jni/BottomXTicksDrawerGL.cpp \
+src/cpp/subwinDrawing/MiddleXTicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/TopXTicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
