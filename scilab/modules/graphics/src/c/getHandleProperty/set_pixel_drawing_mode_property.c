@@ -21,7 +21,7 @@ int set_pixel_drawing_mode_property( sciPointObj * pobj, int stackPointer, int v
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property pixel_drawing_mode.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"pixel_drawing_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -19,7 +19,7 @@ int set_isoview_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property isoview.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"isoview") ;
     return SET_PROPERTY_ERROR ;
   }
 

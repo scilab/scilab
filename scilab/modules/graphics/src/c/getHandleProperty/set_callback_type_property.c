@@ -19,7 +19,7 @@ int set_callback_type_property( sciPointObj * pobj, int stackPointer, int valueT
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property callback_type.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"callback_type") ;
     return SET_PROPERTY_ERROR ;
   }
 

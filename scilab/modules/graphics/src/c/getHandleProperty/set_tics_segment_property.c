@@ -19,7 +19,7 @@ int set_tics_segment_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property tics_segment.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"tics_segment") ;
     return SET_PROPERTY_ERROR ;
   }
 

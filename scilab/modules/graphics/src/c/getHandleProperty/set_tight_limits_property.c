@@ -19,7 +19,7 @@ int set_tight_limits_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property tight_limits.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"tight_limits") ;
     return SET_PROPERTY_ERROR ;
   }
 

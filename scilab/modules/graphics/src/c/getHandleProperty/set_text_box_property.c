@@ -20,7 +20,7 @@ int set_text_box_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property text_box.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"text_box") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -19,7 +19,7 @@ int set_event_handler_property( sciPointObj * pobj, int stackPointer, int valueT
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property event_handler.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"event_handler") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -19,7 +19,7 @@ int set_interp_color_vector_property( sciPointObj * pobj, int stackPointer, int 
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property interp_color_vector.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"interp_color_vector") ;
     return SET_PROPERTY_ERROR ;
   }
 

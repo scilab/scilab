@@ -21,7 +21,7 @@ int set_rotation_angles_property( sciPointObj * pobj, int stackPointer, int valu
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property rotation_angles.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"rotation_angles") ;
     return SET_PROPERTY_ERROR ;
   }
 

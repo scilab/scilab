@@ -20,7 +20,7 @@ int set_tics_labels_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property tics_labels.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"tics_labels") ;
     return SET_PROPERTY_ERROR ;
   }
 

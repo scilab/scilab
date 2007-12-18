@@ -17,7 +17,7 @@ int set_color_map_property( sciPointObj * pobj, int stackPointer, int valueType,
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property color_map.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"color_map") ;
     return SET_PROPERTY_ERROR ;
   }
 

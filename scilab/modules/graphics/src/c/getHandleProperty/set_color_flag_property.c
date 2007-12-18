@@ -23,7 +23,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property color_flag.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"color_flag") ;
     return SET_PROPERTY_ERROR ;
   }
 

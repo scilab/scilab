@@ -20,7 +20,7 @@ int set_polyline_style_property( sciPointObj * pobj, int stackPointer, int value
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property polyline_style.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"polyline_style") ;
     return SET_PROPERTY_ERROR ;
   }
 

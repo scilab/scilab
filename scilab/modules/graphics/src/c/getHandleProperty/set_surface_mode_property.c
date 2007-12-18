@@ -19,7 +19,7 @@ int set_surface_mode_property( sciPointObj * pobj, int stackPointer, int valueTy
   
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property surface_mode.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"surface_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 

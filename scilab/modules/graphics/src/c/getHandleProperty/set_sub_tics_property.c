@@ -19,7 +19,7 @@ int set_sub_tics_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property sub_tics.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"sub_tics") ;
     return SET_PROPERTY_ERROR ;
   }
 

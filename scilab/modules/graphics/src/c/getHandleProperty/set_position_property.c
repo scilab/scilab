@@ -19,7 +19,7 @@ int set_position_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property position.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"position") ;
     return SET_PROPERTY_ERROR ;
   }
 

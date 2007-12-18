@@ -18,7 +18,7 @@ int set_auto_dimensionning_property( sciPointObj * pobj, int stackPointer, int v
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property auto_dimensionning.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"auto_dimensionning") ;
     return SET_PROPERTY_ERROR ;
   }
 

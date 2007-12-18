@@ -21,7 +21,7 @@ int set_view_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property view.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"view") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -18,7 +18,7 @@ int set_auto_clear_property( sciPointObj * pobj, int stackPointer, int valueType
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property auto_clear.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"auto_clear") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -19,7 +19,7 @@ int set_arrow_size_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property arrow_size_factor.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"arrow_size_factor") ;
     return SET_PROPERTY_ERROR ;
   }
 

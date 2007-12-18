@@ -22,13 +22,13 @@ int set_grid_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property grid.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"grid") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint( "grid property does nor exist for this handle.\n" ) ;
+    sciprint( "grid property does not exist for this handle.\n" ) ;
     return SET_PROPERTY_ERROR ;
   }
 

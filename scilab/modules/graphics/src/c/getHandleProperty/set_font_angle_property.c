@@ -18,7 +18,7 @@ int set_font_angle_property( sciPointObj * pobj, int stackPointer, int valueType
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property font_angle.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"font_angle") ;
     return SET_PROPERTY_ERROR ;
   }
 

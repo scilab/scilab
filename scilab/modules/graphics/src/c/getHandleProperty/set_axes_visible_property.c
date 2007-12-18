@@ -23,7 +23,7 @@ int set_axes_visible_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property axes_visible.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"axes_visible") ;
     return SET_PROPERTY_ERROR ;
   }
 

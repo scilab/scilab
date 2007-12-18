@@ -20,7 +20,7 @@ int set_zoom_state_property( sciPointObj * pobj, int stackPointer, int valueType
   
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property zoom_state.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"zoom_state") ;
     return SET_PROPERTY_ERROR ;
   }
 

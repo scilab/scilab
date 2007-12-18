@@ -19,7 +19,7 @@ int set_alignment_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property alignment.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"alignment") ;
     return SET_PROPERTY_ERROR ;
   }
 

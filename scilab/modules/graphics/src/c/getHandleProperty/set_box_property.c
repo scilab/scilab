@@ -19,7 +19,7 @@ int set_box_property( sciPointObj * pobj, int stackPointer, int valueType, int n
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property box.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"box") ;
     return SET_PROPERTY_ERROR ;
   }
 

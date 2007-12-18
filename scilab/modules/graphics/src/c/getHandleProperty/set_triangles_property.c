@@ -22,7 +22,7 @@ int set_triangles_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property triangles.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"triangles") ;
     return SET_PROPERTY_ERROR ;
   }
 

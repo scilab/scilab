@@ -18,7 +18,7 @@ int set_labels_font_size_property( sciPointObj * pobj, int stackPointer, int val
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property labels_font_size.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"labels_font_size") ;
     return SET_PROPERTY_ERROR ;
   }
 

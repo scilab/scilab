@@ -692,7 +692,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int valueType, int 
   {
     if ( !isParameterDoubleMatrix( valueType ) )
     {
-      sciprint("Incompatible type for property data.\n") ;
+      sciprint(_("Incompatible type for property %s.\n"),"data") ;
       return SET_PROPERTY_ERROR ;
     }
 

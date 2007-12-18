@@ -17,7 +17,7 @@ int set_foreground_property( sciPointObj * pobj, int stackPointer, int valueType
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property foreground.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"foreground") ;
     return SET_PROPERTY_ERROR ;
   }
 

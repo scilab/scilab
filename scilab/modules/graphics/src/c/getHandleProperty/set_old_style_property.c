@@ -19,7 +19,7 @@ int set_old_style_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property old_style.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"old_style") ;
     return SET_PROPERTY_ERROR ;
   }
 

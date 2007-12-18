@@ -18,7 +18,7 @@ int set_default_values_property( sciPointObj * pobj, int stackPointer, int value
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property default_values.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"default_values") ;
     return SET_PROPERTY_ERROR ;
   }
 

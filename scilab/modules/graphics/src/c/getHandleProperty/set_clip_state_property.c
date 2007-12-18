@@ -19,13 +19,13 @@ int set_clip_state_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property clip_state.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"clip_state") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property axes_visible.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"axes_visible") ;
     return SET_PROPERTY_ERROR ;
   }
 

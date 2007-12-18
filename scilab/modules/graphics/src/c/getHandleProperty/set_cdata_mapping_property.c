@@ -23,7 +23,7 @@ int set_cdata_mapping_property( sciPointObj * pobj, int stackPointer, int valueT
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property cdata_mapping.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"cdata_mapping") ;
     return SET_PROPERTY_ERROR ;
   }
 

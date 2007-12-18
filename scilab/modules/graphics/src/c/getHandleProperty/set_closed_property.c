@@ -19,7 +19,7 @@ int set_closed_property( sciPointObj * pobj, int stackPointer, int valueType, in
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property closed.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"closed") ;
     return SET_PROPERTY_ERROR ;
   }
 

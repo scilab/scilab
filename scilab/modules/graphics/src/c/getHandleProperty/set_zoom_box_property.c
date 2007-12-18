@@ -1,3 +1,7 @@
+sed -i -e 's|sciprint(.*"\(.*\) property does not exist for this handle.\\n")|sciprint(_("%s property does not exist for this handle.\\n"),"\1")|' *.c
+
+
+
 /*------------------------------------------------------------------------*/
 /* file: set_zoom_box_property.c                                          */
 /* Copyright INRIA 2006                                                   */
@@ -20,13 +24,13 @@ int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property zoom_box.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"zoom_box") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint( "zoom_box property does nor exist for this handle.\n" ) ;
+    sciprint( "zoom_box property does not exist for this handle.\n" ) ;
     return SET_PROPERTY_ERROR ;
   }
 

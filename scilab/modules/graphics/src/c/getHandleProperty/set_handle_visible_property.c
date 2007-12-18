@@ -19,7 +19,7 @@ int set_handle_visible_property( sciPointObj * pobj, int stackPointer, int value
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property handle_visible.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"handle_visible") ;
     return SET_PROPERTY_ERROR ;
   }
 

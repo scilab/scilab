@@ -19,7 +19,7 @@ int set_callbackmevent_property( sciPointObj * pobj, int stackPointer, int value
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property callbackmevent.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"callbackmevent") ;
     return SET_PROPERTY_ERROR ;
   }
 

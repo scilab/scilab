@@ -19,7 +19,7 @@ int set_bar_layout_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property bar_layout.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"bar_layout") ;
     return SET_PROPERTY_ERROR ;
   }
 

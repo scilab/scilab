@@ -26,7 +26,7 @@ int set_xtics_coord_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property xtics_coord.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"xtics_coord") ;
     return SET_PROPERTY_ERROR ;
   }
 

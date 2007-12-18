@@ -17,7 +17,7 @@ int set_figure_name_property( sciPointObj * pobj, int stackPointer, int valueTyp
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property figure_name.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"figure_name") ;
     return SET_PROPERTY_ERROR ;
   }
 

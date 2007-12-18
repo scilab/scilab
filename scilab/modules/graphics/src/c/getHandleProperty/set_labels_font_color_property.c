@@ -19,7 +19,7 @@ int set_labels_font_color_property( sciPointObj * pobj, int stackPointer, int va
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property labels_font_color.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"labels_font_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

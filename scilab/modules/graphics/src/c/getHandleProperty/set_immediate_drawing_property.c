@@ -19,7 +19,7 @@ int set_immediate_drawing_property( sciPointObj * pobj, int stackPointer, int va
   
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property immediate_drawing.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"immediate_drawing") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -23,7 +23,7 @@ int set_z_bounds_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property z_bounds.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"z_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 

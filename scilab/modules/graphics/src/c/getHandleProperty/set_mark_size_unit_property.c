@@ -17,7 +17,7 @@ int set_mark_size_unit_property( sciPointObj * pobj, int stackPointer, int value
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property mark_size_unit.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"mark_size_unit") ;
     return SET_PROPERTY_ERROR ;
   }
 

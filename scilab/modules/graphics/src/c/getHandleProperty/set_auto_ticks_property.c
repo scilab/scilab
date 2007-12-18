@@ -22,7 +22,7 @@ int set_auto_ticks_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property auto_ticks.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"auto_ticks") ;
     return SET_PROPERTY_ERROR ;
   }
 

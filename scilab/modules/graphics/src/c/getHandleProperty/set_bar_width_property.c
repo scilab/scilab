@@ -19,7 +19,7 @@ int set_bar_width_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property bar_width.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"bar_width") ;
     return SET_PROPERTY_ERROR ;
   }
 

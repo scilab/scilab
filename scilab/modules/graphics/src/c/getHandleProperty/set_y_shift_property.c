@@ -22,7 +22,7 @@ int set_y_shift_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property y_shift.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"y_shift") ;
     return SET_PROPERTY_ERROR ;
   }
 

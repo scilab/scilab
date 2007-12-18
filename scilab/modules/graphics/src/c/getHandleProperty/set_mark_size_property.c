@@ -17,7 +17,7 @@ int set_mark_size_property( sciPointObj * pobj, int stackPointer, int valueType,
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property mark_size.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"mark_size") ;
     return SET_PROPERTY_ERROR ;
   }
 

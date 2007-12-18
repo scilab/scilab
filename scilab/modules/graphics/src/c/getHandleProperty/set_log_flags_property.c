@@ -105,7 +105,7 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property log_flags.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"log_flags") ;
     return SET_PROPERTY_ERROR ;
   }
 

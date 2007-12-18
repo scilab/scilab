@@ -26,7 +26,7 @@ int set_tics_style_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property tics_style.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"tics_style") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -19,7 +19,7 @@ int set_interp_color_mode_property( sciPointObj * pobj, int stackPointer, int va
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property interp_color_mode.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"interp_color_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 

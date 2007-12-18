@@ -17,7 +17,7 @@ int set_font_name_property( sciPointObj * pobj, int stackPointer, int valueType,
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property font_name.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"font_name") ;
     return SET_PROPERTY_ERROR ;
   }
 

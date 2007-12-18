@@ -19,7 +19,7 @@ int set_x_location_property( sciPointObj * pobj, int stackPointer, int valueType
   
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property x_location.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"x_location") ;
     return SET_PROPERTY_ERROR ;
   }
 

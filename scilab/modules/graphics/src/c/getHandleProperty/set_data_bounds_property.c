@@ -128,7 +128,7 @@ int set_data_bounds_property( sciPointObj * pobj, int stackPointer, int valueTyp
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property data_bounds.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"data_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 

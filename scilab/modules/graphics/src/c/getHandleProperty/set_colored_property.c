@@ -19,7 +19,7 @@ int set_colored_property( sciPointObj * pobj, int stackPointer, int valueType, i
   
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property colored.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"colored") ;
     return SET_PROPERTY_ERROR ;
   }
 

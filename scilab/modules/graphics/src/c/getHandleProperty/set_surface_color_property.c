@@ -22,7 +22,7 @@ int set_surface_color_property( sciPointObj * pobj, int stackPointer, int valueT
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property surface_color.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"surface_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

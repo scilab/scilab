@@ -18,7 +18,7 @@ int set_text_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property text.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"text") ;
     return SET_PROPERTY_ERROR ;
   }
 

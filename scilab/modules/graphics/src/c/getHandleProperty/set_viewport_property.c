@@ -22,7 +22,7 @@ int set_viewport_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property viewport.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"viewport") ;
     return SET_PROPERTY_ERROR ;
   }
 

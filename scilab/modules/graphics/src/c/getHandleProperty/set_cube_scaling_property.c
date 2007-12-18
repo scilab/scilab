@@ -19,7 +19,7 @@ int set_cube_scaling_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property cube_scaling.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"cube_scaling") ;
     return SET_PROPERTY_ERROR ;
   }
 

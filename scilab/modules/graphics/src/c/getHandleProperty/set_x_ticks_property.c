@@ -27,7 +27,7 @@ int set_x_ticks_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   if ( !isParameterTlist( valueType ) )
   {
-    sciprint("Incompatible type for property x_ticks.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"x_ticks") ;
     return SET_PROPERTY_ERROR ;
   }
 

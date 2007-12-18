@@ -20,7 +20,7 @@ int set_segs_color_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property segs_color.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"segs_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

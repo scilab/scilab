@@ -20,7 +20,7 @@ int set_current_entity_property( sciPointObj * pobj, int stackPointer, int value
   
   if ( !isParameterHandle( valueType ) )
   {
-    sciprint("Incompatible type for property current_entity.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"current_entity") ;
     return SET_PROPERTY_ERROR ;
   }
 

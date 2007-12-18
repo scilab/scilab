@@ -22,7 +22,7 @@ int set_hidden_axis_color_property( sciPointObj * pobj, int stackPointer, int va
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property hidden_axis_color.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"hidden_axis_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

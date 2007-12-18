@@ -19,7 +19,7 @@ int set_menu_enable_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property menu_enable.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"menu_enable") ;
     return SET_PROPERTY_ERROR ;
   }
 

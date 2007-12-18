@@ -17,7 +17,7 @@ int set_info_message_property( sciPointObj * pobj, int stackPointer, int valueTy
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property info_message.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"info_message") ;
     return SET_PROPERTY_ERROR ;
   }
 

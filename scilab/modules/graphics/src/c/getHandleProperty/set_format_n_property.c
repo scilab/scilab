@@ -18,7 +18,7 @@ int set_format_n_property( sciPointObj * pobj, int stackPointer, int valueType, 
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property format_n.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"format_n") ;
     return SET_PROPERTY_ERROR ;
   }
 

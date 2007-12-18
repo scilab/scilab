@@ -22,7 +22,7 @@ int set_axes_reverse_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property axes_reverse.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"axes_reverse") ;
     return SET_PROPERTY_ERROR ;
   }
 

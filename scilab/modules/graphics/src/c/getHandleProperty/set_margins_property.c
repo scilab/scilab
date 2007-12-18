@@ -21,7 +21,7 @@ int set_margins_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property margins.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"margins") ;
     return SET_PROPERTY_ERROR ;
   }
 

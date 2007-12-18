@@ -17,7 +17,7 @@ int set_mark_mode_property( sciPointObj * pobj, int stackPointer, int valueType,
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property mark_mode.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"mark_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 

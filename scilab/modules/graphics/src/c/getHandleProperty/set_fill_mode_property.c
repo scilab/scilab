@@ -17,7 +17,7 @@ int set_fill_mode_property( sciPointObj * pobj, int stackPointer, int valueType,
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property fill_mode.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"fill_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 

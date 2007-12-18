@@ -23,7 +23,7 @@ int set_figure_style_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property figure_style.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"figure_style") ;
     return SET_PROPERTY_ERROR ;
   }
 

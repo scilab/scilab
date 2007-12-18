@@ -21,7 +21,7 @@ int set_tics_color_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property tics_color.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"tics_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -19,7 +19,7 @@ int set_auto_scale_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property aut_scale.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"aut_scale") ;
     return SET_PROPERTY_ERROR ;
   }
 

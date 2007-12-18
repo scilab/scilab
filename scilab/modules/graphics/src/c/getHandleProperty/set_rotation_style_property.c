@@ -20,7 +20,7 @@ int set_rotation_style_property( sciPointObj * pobj, int stackPointer, int value
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property rotation_style.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"rotation_style") ;
     return SET_PROPERTY_ERROR ;
   }
 

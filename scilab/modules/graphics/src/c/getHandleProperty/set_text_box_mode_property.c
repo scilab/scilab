@@ -19,7 +19,7 @@ int set_text_box_mode_property( sciPointObj * pobj, int stackPointer, int valueT
   
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property text_box_mode.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"text_box_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 

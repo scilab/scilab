@@ -19,7 +19,7 @@ int set_tics_direction_property( sciPointObj * pobj, int stackPointer, int value
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property tics_direction.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"tics_direction") ;
     return SET_PROPERTY_ERROR ;
   }
 

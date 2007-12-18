@@ -18,7 +18,7 @@ int set_thickness_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property thickness.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"thickness") ;
     return SET_PROPERTY_ERROR ;
   }
 

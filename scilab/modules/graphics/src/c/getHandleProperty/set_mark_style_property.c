@@ -20,7 +20,7 @@ int set_mark_style_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property mark_style.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"mark_style") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -21,7 +21,7 @@ int set_figure_id_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property figure_id.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"figure_id") ;
     return SET_PROPERTY_ERROR ;
   }
 

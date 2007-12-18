@@ -21,7 +21,7 @@ int set_data_mapping_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property data_mapping.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"data_mapping") ;
     return SET_PROPERTY_ERROR ;
   }
 

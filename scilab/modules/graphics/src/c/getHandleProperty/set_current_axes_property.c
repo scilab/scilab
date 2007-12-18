@@ -24,7 +24,7 @@ int set_current_axes_property( sciPointObj * pobj, int stackPointer, int valueTy
   
   if ( !isParameterHandle( valueType ) )
   {
-    sciprint("Incompatible type for property current_axes.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"current_axes") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -17,7 +17,7 @@ int set_background_property( sciPointObj * pobj, int stackPointer, int valueType
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("Incompatible type for property background.\n") ;
+    sciprint(_("Incompatible type for property %s.\n"),"background") ;
     return SET_PROPERTY_ERROR ;
   }
 
