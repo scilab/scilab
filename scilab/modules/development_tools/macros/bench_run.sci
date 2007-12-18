@@ -144,6 +144,8 @@ function bench_run(varargin)
 		// Just list tests
 		// =======================================================
 		
+		printf("\n");
+		
 		for i=1:test_count
 			printf("   %03d - ",i);
 			printf("[%s] %s\n",test_list(i,1),test_list(i,2));
@@ -155,7 +157,6 @@ function bench_run(varargin)
 		// Test launch
 		// =======================================================
 		
-		printf("   TMPDIR = %s\n",TMPDIR);
 		printf("\n");
 		
 		for i=1:test_count
@@ -166,8 +167,14 @@ function bench_run(varargin)
 				printf(".");
 			end
 			printf(" ");
-			returned_time = bench_run_onebench(test_list(i,1),test_list(i,2),nb_run);
-			printf("%4.2f microsecondes \n",returned_time);
+			returned_time     = bench_run_onebench(test_list(i,1),test_list(i,2),nb_run);
+			returned_time_str = sprintf("%4.2f %ss",returned_time,ascii(181));
+			
+			for j = length(returned_time_str):10
+				printf(' ');
+			end
+			
+			printf("%s\n",returned_time_str);
 		end
 		
 	end
