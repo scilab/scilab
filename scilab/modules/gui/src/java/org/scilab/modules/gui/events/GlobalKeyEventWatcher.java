@@ -38,7 +38,6 @@ public class GlobalKeyEventWatcher implements AWTEventListener {
 				this.keyChar = keyEvent.getKeyChar();
 			}
 			else {
-				// Serge, j'aurai ta peau !!!!!!!!!
 				if (keyEvent.isShiftDown()) {
 					this.keyChar = keyEvent.getKeyCode();
 				}
