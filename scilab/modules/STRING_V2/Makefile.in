@@ -96,7 +96,9 @@ am__objects_1 = libscistring_la-code2str.lo \
 	libscistring_la-pcre_private.lo libscistring_la-isletter.lo \
 	libscistring_la-isdigit.lo libscistring_la-strsubst.lo \
 	libscistring_la-stringsstrrchr.lo \
-	libscistring_la-stringsstrrev.lo
+	libscistring_la-stringsstrrev.lo \
+	libscistring_la-stringsCompare.lo \
+	libscistring_la-isalphanum.lo
 am__objects_2 = strdsp.lo
 am__objects_3 = libscistring_la-gw_string.lo \
 	libscistring_la-sci_ascii.lo libscistring_la-sci_code2str.lo \
@@ -337,7 +339,9 @@ src/c/isletter.c \
 src/c/isdigit.c \
 src/c/strsubst.c \
 src/c/stringsstrrchr.c \
-src/c/stringsstrrev.c
+src/c/stringsstrrev.c \
+src/c/stringsCompare.c \
+src/c/isalphanum.c
 
 STRING_FORTRAN_SOURCES = src/fortran/strdsp.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
@@ -544,6 +548,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-cvstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-getfastcode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-gw_string.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-isalphanum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-isdigit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-isletter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-men_Sutils.Plo@am__quote@
@@ -579,6 +584,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_tokens.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-setScilabCharactersCodes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-strcatfunction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-stringsCompare.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-stringsstrrchr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-stringsstrrev.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-stripblanks.Plo@am__quote@
@@ -732,6 +738,20 @@ libscistring_la-stringsstrrev.lo: src/c/stringsstrrev.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/stringsstrrev.c' object='libscistring_la-stringsstrrev.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-stringsstrrev.lo `test -f 'src/c/stringsstrrev.c' || echo '$(srcdir)/'`src/c/stringsstrrev.c
+
+libscistring_la-stringsCompare.lo: src/c/stringsCompare.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-stringsCompare.lo -MD -MP -MF $(DEPDIR)/libscistring_la-stringsCompare.Tpo -c -o libscistring_la-stringsCompare.lo `test -f 'src/c/stringsCompare.c' || echo '$(srcdir)/'`src/c/stringsCompare.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-stringsCompare.Tpo $(DEPDIR)/libscistring_la-stringsCompare.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/stringsCompare.c' object='libscistring_la-stringsCompare.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-stringsCompare.lo `test -f 'src/c/stringsCompare.c' || echo '$(srcdir)/'`src/c/stringsCompare.c
+
+libscistring_la-isalphanum.lo: src/c/isalphanum.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-isalphanum.lo -MD -MP -MF $(DEPDIR)/libscistring_la-isalphanum.Tpo -c -o libscistring_la-isalphanum.lo `test -f 'src/c/isalphanum.c' || echo '$(srcdir)/'`src/c/isalphanum.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-isalphanum.Tpo $(DEPDIR)/libscistring_la-isalphanum.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/isalphanum.c' object='libscistring_la-isalphanum.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-isalphanum.lo `test -f 'src/c/isalphanum.c' || echo '$(srcdir)/'`src/c/isalphanum.c
 
 libscistring_la-gw_string.lo: sci_gateway/c/gw_string.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-gw_string.lo -MD -MP -MF $(DEPDIR)/libscistring_la-gw_string.Tpo -c -o libscistring_la-gw_string.lo `test -f 'sci_gateway/c/gw_string.c' || echo '$(srcdir)/'`sci_gateway/c/gw_string.c
