@@ -117,7 +117,7 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
       pCurrent = pHead;
 
       if(( pCurrent->pNext = (Vertices*) MALLOC(sizeof(Vertices))) == NULL){
-        sciprint("%s: No more memory.\n","Store3DPixelValues");
+        sciprint(_("%s: No more memory.\n"),"Store3DPixelValues");
         return -1;
       }
 
@@ -135,7 +135,7 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
     else
     { /* first element is created */
       if((ppsubwin->vertices_list = (Vertices*) MALLOC(sizeof(Vertices))) == NULL){
-        sciprint("%s: No more memory.\n","Store3DPixelValues");
+        sciprint(_("%s: No more memory.\n"),"Store3DPixelValues");
         return -1;
       }
 
