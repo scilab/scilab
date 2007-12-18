@@ -89,7 +89,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       ns=(int)strlen(command); 
       if (C2F(iop).ddt==-1)
 	  {
-		  char *msg=" Execution starts for %s";
+		  char *msg=_("Execution starts for %s");
 		  sciprint_full(msg,command);
 		  if (msg){FREE(msg);msg=NULL;}
           sciprint("\n");
@@ -97,7 +97,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       C2F(syncexec)(command,&ns,&ierr,&seq,ns);
       if (C2F(iop).ddt==-1)
 	  {
-		  char *msg=" Execution ends for %s";
+		  char *msg=_("Execution ends for %s");
 		  sciprint_full(msg,command);
 		  if (msg){FREE(msg);msg=NULL;}
           sciprint("\n");
@@ -108,7 +108,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     else if (strncmp(command,"flush",5)==0)
 	{
       /* flush */
-      if (C2F(iop).ddt==-1) sciprint(" Flushing starts for queued commands.\n");
+      if (C2F(iop).ddt==-1) sciprint(_(" Flushing starts for queued commands.\n"));
       while (ismenu() && ncomm<arbitrary_max_queued_callbacks-1)
 	  {
         ncomm++;
@@ -128,14 +128,14 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         {
 	      if (seqf[nc]==0)
 		  {
-			  char *msg=" Flushed execution starts for %s - No option";
+			  char *msg=_("Flushed execution starts for %s - No option");
 			  sciprint_full(msg,comm[nc]);
 			  if (msg){FREE(msg);msg=NULL;}
               sciprint("\n");
 		  }
 	      else
 		  {
-			  char *msg=" Flushed execution starts for %s - seq";
+			  char *msg=_("Flushed execution starts for %s - seq");
 			  sciprint_full(msg,comm[nc]);
 			  if (msg){FREE(msg);msg=NULL;}
               sciprint("\n");
@@ -145,7 +145,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
         if (C2F(iop).ddt==-1)
         {
-			char *msg=" Flushed execution ends for %s";
+			char *msg=_("Flushed execution ends for %s");
 			sciprint_full(msg,comm[nc]);
 			if (msg){FREE(msg);msg=NULL;}
             sciprint("\n");
@@ -154,7 +154,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         C2F(tksynchro)(&C2F(recu).paus);
         if (ierr != 0) return TCL_ERROR;
       }
-      if (C2F(iop).ddt==-1) sciprint(" Flushing ends\n");
+      if (C2F(iop).ddt==-1) sciprint(_("Flushing ends\n"));
     }
     else
 	{
@@ -177,7 +177,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
   else
   {
 	/* ScilabEval called without argument */
-	Scierror(999,_("ScilabEval: at least one argument is required.\n"));
+	Scierror(999,_("%s: Wrong number of input argument(s): at least one expected.\n"),"TCL_EvalScilabCmd");
   }
 
   return TCL_OK;
