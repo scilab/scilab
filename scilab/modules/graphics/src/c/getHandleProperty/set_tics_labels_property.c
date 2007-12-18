@@ -33,7 +33,7 @@ int set_tics_labels_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( nbRow != 1)
   {
-    sciprint("Second argument must be a row vector.\n");
+    sciprint(_("%s: Wrong type for second input argument: row vector expected.\n"), "set_tics_labels_property");
     return SET_PROPERTY_ERROR ;
   }
 

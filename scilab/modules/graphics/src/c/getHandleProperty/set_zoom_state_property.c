@@ -51,7 +51,7 @@ int set_zoom_state_property( sciPointObj * pobj, int stackPointer, int valueType
   }
   else
   {
-    sciprint("Value must be 'on' or 'off'.\n") ;
+    sciprint(_("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_zoom_state_property","on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

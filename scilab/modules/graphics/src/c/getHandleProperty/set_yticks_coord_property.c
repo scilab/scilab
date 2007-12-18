@@ -33,19 +33,19 @@ int set_ytics_coord_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( nbRow != 1 )
   {
-    sciprint("Second argument must be a row vector.\n") ;
+    sciprint(_("%s: Wrong type for second input argument: row vector expected.\n"), "set_yticks_coord_property") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( pAXES_FEATURE(pobj)->ny == 1 && nbCol != 1 )
   {
-    sciprint("Second argument must be a scalar.\n") ;
+    sciprint(_("%s: Wrong type for second input argument: scalar expected.\n"), "set_yticks_coord_property") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if (  pAXES_FEATURE(pobj)->ny != 1 && nbCol == 1 )
   {
-    sciprint("Second argument  must be a vector.\n") ;
+    sciprint(_("%s: Wrong type for second input argument: vector expected.\n"), "set_yticks_coord_property") ;
     return SET_PROPERTY_ERROR ;
   }
 

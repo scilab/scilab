@@ -35,7 +35,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
   }
   if ( nbRow * nbCol != 1 )
   {
-    sciprint("Second argument must be a scalar.\n") ;
+    sciprint(_("%s: Wrong type for second input argument: scalar expected.\n"), "set_color_flag_property") ;
     return SET_PROPERTY_ERROR ;
   }
 
