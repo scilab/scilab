@@ -10,6 +10,7 @@
 #include "defaultlanguage.h"
 #include "MALLOC.h"
 #include "loadhashtableslocalization.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -59,7 +60,7 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			if (getWarningMode())
 			{
-				sciprint(_("\nUnsupported language \"%s\".\n",param));
+				sciprint(_("\nUnsupported language \"%s\".\n"),param);
 				sciprint(_("Choosing default language : \"%s\".\n\n"),SCILABDEFAULTLANGUAGE);
 			}
 
@@ -71,7 +72,7 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"));
+		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
 		return 0;
 	}
 
