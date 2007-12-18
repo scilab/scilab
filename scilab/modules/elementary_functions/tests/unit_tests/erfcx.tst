@@ -1,4 +1,3 @@
-mode(-1)
 //maple code
 //writeto("erfcx.ref"):interface(prettyprint=0):
 //for i from 0 to 40 do x:=-10^(-(200-i*5)):print(evalf[30](erfc(x)*exp(x*x),30)): od:
