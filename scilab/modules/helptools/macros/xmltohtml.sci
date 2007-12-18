@@ -366,9 +366,9 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				if need_to_be_build_tab(k) then
 					
 					printf(_("\nProcessing chapter %s\n"),dirs(k));
-					chdir(dirs(k));
 					
-					xml = listfiles('*.xml');
+					chdir(dirs(k));
+					xml = gsort(listfiles('*.xml'),"lr","i");
 					
 					if xml <> [] then 
 						for k1=1:size(xml,'*')  // loop on .xml files
@@ -1158,7 +1158,12 @@ function result = need_to_be_build(directory,directory_language,default_language
 	// où il n'y a pas de fichiers XML
 	
 	xml_file_list    = listfiles(directory+"/*.xml");
-	xml_df_file_list = listfiles(pathconvert(directory+"/../"+default_language,%f,%f)+"/*.xml");
+	
+	if rhs == 3 then
+		xml_df_file_list = listfiles(pathconvert(directory+"/../"+default_language,%f,%f)+"/*.xml");
+	else
+		xml_df_file_list = [];
+	end
 	
 	if (xml_file_list == []) & (xml_df_file_list == []) then
 		result = %F;
