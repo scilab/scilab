@@ -118,8 +118,6 @@ static size_t gotten_store;
 static int buffer_size = 50000;
 char *buffer = NULL;
 
-static char *dbuffer = NULL;
-static char *pbuffer = NULL;
 
 
 
@@ -301,8 +299,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	when I am debugging. They grow automatically when very long lines are read. */
 
 	buffer = (char *)MALLOC(buffer_size);
-	dbuffer = (char *)MALLOC(buffer_size);
-	pbuffer = (char *)MALLOC(buffer_size);
 
 	/* The outfile variable is static so that new_malloc can use it. */
 	outfile = stdout;
@@ -343,8 +339,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		use_utf8 = 0;
 		debug_lengths = 1;
 		LOOP_PCRE_TST = TRUE;
- 		strcpy(buffer,INPUT_PAT); 
-		p = buffer;
+		p = INPUT_PAT;
 		while (isspace(*p)) p++;
 		if (*p == 0) continue;
 		/* See if the pattern is to be loaded pre-compiled from a file. */
@@ -436,7 +431,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	for callouts. */
 
 	*pp++ = 0;
-	strcpy((char *)pbuffer, (char *)p);
 
 	/* Look for options after final delimiter */
 
@@ -582,12 +576,11 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 		len = 0;
 
-		strcpy(buffer,INPUT_LINE); 
 
-		p = buffer;
+		p = INPUT_LINE;
 		while (isspace(*p)) p++;
 
-		bptr = q = dbuffer;
+		bptr = q = buffer;
 		while ((c = *p++) != 0)
 		{
 			int i = 0;
@@ -769,7 +762,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			*q++ =(char)c;
 		}
 		*q = 0;
-		len = (int)(q - dbuffer);
+		len = (int)(q - buffer);
 
 		if ((all_use_dfa || use_dfa) && find_match_limit)
 		{
@@ -960,8 +953,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
   }
 	EXIT:
 	FREE(buffer);
-	FREE(dbuffer);
-	FREE(pbuffer);
 	FREE(offsets);
 	return PCRE_EXIT;
 }
