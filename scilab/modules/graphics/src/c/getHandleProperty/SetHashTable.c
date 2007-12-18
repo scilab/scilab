@@ -9,6 +9,7 @@
 #include "machine.h"
 #include "setHandleProperty.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "getDictionarySetProperties.h"
 #include "MALLOC.h"
 

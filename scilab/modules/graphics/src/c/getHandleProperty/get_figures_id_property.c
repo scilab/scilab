@@ -10,6 +10,7 @@
 #include "returnProperty.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "WindowList.h"
 
 /*------------------------------------------------------------------------*/

@@ -11,6 +11,7 @@
 #include "returnProperty.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int get_children_property( sciPointObj * pobj )

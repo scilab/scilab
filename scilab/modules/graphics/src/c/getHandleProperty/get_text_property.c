@@ -11,6 +11,7 @@
 #include "returnProperty.h"
 #include "StringMatrix.h"
 #include "sciprint.h"
+#include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int get_text_property( sciPointObj * pobj )

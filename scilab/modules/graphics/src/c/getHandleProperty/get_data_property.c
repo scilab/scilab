@@ -12,6 +12,7 @@
 #include "returnProperty.h"
 #include "returnPropertyList.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "MALLOC.h"
 
 /*--------------------------------------------------------------------------*/

@@ -14,6 +14,7 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int set_axes_reverse_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )

@@ -12,6 +12,7 @@
 #include "Interaction.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/

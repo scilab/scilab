@@ -10,6 +10,7 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/

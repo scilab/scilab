@@ -11,6 +11,7 @@
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "SetPropertyStatus.h"
 #include "CheckTicksProperty.h"
 #include "MALLOC.h"

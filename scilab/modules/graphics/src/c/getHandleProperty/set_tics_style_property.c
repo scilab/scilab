@@ -14,6 +14,7 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "Format.h"
 
 /*------------------------------------------------------------------------*/

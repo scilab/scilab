@@ -10,6 +10,7 @@
 #include "getPropertyAssignedValue.h"
 #include "stack-c.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 

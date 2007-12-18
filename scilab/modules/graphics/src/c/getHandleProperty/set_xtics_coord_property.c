@@ -12,6 +12,7 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "BasicAlgos.h"
 #include "Format.h"
 #include "MALLOC.h"

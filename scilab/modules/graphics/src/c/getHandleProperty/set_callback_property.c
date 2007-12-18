@@ -11,6 +11,7 @@
 #include "getPropertyAssignedValue.h"
 #include "Interaction.h"
 #include "sciprint.h"
+#include "localization.h"
 #include "SetPropertyStatus.h"
 #include "InitUIMenu.h"
 #include "GetProperty.h"

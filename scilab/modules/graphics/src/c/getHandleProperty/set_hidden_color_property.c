@@ -11,6 +11,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "sciprint.h"
+#include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int set_hidden_color_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
