@@ -1,23 +1,29 @@
-function [x]=isnum(str)
-// isnum(str) retourne la variable logique vrai si la chaine de caractere
-// represente un nombre
-//!
-// Copyright INRIA
-ok =[48:57,46,100,101,43,45] 
-y=ascii(str);
-x =%t 
-for c=y; 
-   x= (find(c==ok) <>[]) & x;
-end 
+// =============================================================================
+// Author : Pierre MARECHAL
+// Scilab Project
+// Copyright INRIA 2007
+// Date : 18 Dec 2007
+//
+// isnum(str) return %T if str represent a number
+//
+// =============================================================================
+
+function res = isnum(str)
+	
+	if type(str) <> 10 then
+		error(44,1);
+	end
+	
+	[nr,nc] = size(str);
+	
+	for j=1:nc
+		for i=1:nr
+			res(i,j) = (grep(str(i,j),"/^([+-]?(([0-9]+)?\.)?[0-9]+([eEdD][-+]?[0-9]+)?)$/","r") == 1);
+			if str(i,j) == '%pi' then
+				res(i,j) = %T;
+			end
+		end
+	end
+	
 endfunction
-
-
-
-
-
-
-
-// scientific notation : [-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
-
-
 
