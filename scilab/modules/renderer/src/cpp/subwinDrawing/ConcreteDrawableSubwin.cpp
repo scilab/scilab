@@ -219,7 +219,9 @@ void ConcreteDrawableSubwin::showBox(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::showTicks(void)
 {
-  // TODO
+  if (m_pXTicksDrawer != NULL) {m_pXTicksDrawer->showTicks();}
+  //m_pYTicksDrawer->draw();
+  //m_pZTicksDrawer->draw();
 }
 /*------------------------------------------------------------------------------------------*/
 }

@@ -97,7 +97,7 @@ void DrawableSubwin::drawAxesBox(void)
 void DrawableSubwin::showAxesBox(void)
 {
   showBox();
-  drawTicks();
+  showTicks();
 }
 /*---------------------------------------------------------------------------------*/
 DrawableSubwinBridge * DrawableSubwin::getSubwinImp( void )

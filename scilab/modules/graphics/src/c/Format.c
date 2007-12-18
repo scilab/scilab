@@ -821,7 +821,7 @@ int TheTicks( double * xminv ,
 
   C2F(theticks)(xminv, xmaxv, grads, ngrads);
   
-  if(*ngrads == 1)
+  if(*ngrads == 1 && !compNgrads)
     {
       /* unfortunately there is only 1 graduation (normally this case 
 	 happens when handling small intervals with huge numbers (i.e. [10^60 10^60+1]) */
@@ -835,7 +835,7 @@ int TheTicks( double * xminv ,
       *ngrads = 3;
       return 1 ;
     }
-  else if(GradEqual(grads,ngrads)==0)
+  else if(GradEqual(grads,ngrads)==0 && !compNgrads)
     {
       tmp = grads[0];
       grads[0] = (1-epsilon)*tmp;

@@ -30,11 +30,21 @@ public:
    */
   void draw(void);
 
+  /**
+   * Redefined show since we can not use display lists.
+   */
+  void showTicks(void);
+
 protected:
 
   /*----------------------------------------------------------------------*/
   /**
-   * Draw the ticks on the right axis.
+   * Compoute ticks positions and draw ticks from the computed position.
+   */
+  void drawTicks(void);
+
+  /**
+   * Draw the ticks on the right axis on computed positions.
    */
   virtual void drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
                          int nbTicks, double subticksPositions[], int nbSubtics) = 0;

@@ -325,9 +325,7 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) {
-		initializeDrawing(parentFigureIndex);
-		drawTicks();
-		endDrawing();
+		// should not be called
 	}
 	
 	/**

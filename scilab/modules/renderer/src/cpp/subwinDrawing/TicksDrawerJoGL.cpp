@@ -82,6 +82,21 @@ void TicksDrawerJoGL::initializeDrawing(void)
                                                  sciGetFontContext(pSubwin)->foregroundcolor);
 }
 /*------------------------------------------------------------------------------------------*/
+void TicksDrawerJoGL::endDrawing(void)
+{
+  DrawableObjectJoGL::endDrawing();
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawerJoGL::initializeShowing(void)
+{
+  DrawableObjectJoGL::initializeDrawing();
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawerJoGL::endShowing(void)
+{
+  DrawableObjectJoGL::endDrawing();
+}
+/*------------------------------------------------------------------------------------------*/
 TicksDrawerJavaMapper * TicksDrawerJoGL::getTicksDrawerJavaMapper(void)
 {
   return dynamic_cast<TicksDrawerJavaMapper *>(getJavaMapper());

@@ -41,11 +41,29 @@ void TicksDrawer::setTicksComputer(ComputeTicksStrategy * ticksComputer)
 void TicksDrawer::draw(void)
 {
   
-
   if (m_pTicksComputer == NULL) { return; }
 
   initializeDrawing();
   
+  drawTicks();
+
+  endDrawing();
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawer::showTicks(void)
+{
+  if (m_pTicksComputer == NULL) { return; }
+
+  // same as initialize drawing but don't set constant parameters
+  initializeShowing();
+  
+  drawTicks();
+
+  endShowing();
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawer::drawTicks(void)
+{
   m_pTicksComputer->reinit();
 
   // allocate positions and ticks
@@ -96,9 +114,6 @@ void TicksDrawer::draw(void)
 
   delete[] ticksPos;
   delete[] subticksPos;
-
-  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-
 }
