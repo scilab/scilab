@@ -18,7 +18,7 @@
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "getcolordef.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_len )
 {
