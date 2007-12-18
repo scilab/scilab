@@ -9,12 +9,12 @@
 
 #include "sci_xtape.h"
 #include "Scierror.h"
-
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xtape( char *fname,unsigned long fname_len )
 {
-  Scierror(999,"xtape routine was only available with old graphic mode.\n");
+  Scierror(999,_("xtape routine was only available with old graphic mode.\n"));
   return -1 ;
 }
 /*--------------------------------------------------------------------------*/

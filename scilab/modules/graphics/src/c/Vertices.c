@@ -10,6 +10,7 @@
 #include "GetProperty.h"
 #include "GraphicZoom.h"
 #include "sciprint.h"
+#include "localization.h"
 
 static int vertex_index = 0 ;
 static Vertices * pHead  = NULL ;
@@ -116,7 +117,7 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
       pCurrent = pHead;
 
       if(( pCurrent->pNext = (Vertices*) MALLOC(sizeof(Vertices))) == NULL){
-        sciprint("Allocation failed for vertices when zoom called.\n");
+        sciprint("%s: No more memory.\n","Store3DPixelValues");
         return -1;
       }
 
@@ -134,7 +135,7 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
     else
     { /* first element is created */
       if((ppsubwin->vertices_list = (Vertices*) MALLOC(sizeof(Vertices))) == NULL){
-        sciprint("Allocation failed for vertices when zoom called\n");
+        sciprint("%s: No more memory.\n","Store3DPixelValues");
         return -1;
       }
 

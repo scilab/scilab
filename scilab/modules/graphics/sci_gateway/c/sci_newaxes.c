@@ -13,6 +13,7 @@
 #include "Scierror.h"
 #include "SetProperty.h"
 #include "CurrentObjectsManagement.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_newaxes( char * fname,unsigned long fname_len )
@@ -34,7 +35,7 @@ int sci_newaxes( char * fname,unsigned long fname_len )
     LhsVar(1)=1;
   }
   else {
-    Scierror(999,"%s: running out of memory\n",fname);
+    Scierror(999,_("%s: No more memory.\n"),fname);
   }
   return 0;
 

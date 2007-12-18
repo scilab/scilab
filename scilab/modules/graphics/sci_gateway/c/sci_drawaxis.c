@@ -13,6 +13,7 @@
 #include "sciCall.h"
 #include "Scierror.h"
 #include "PloEch.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_drawaxis( char * fname, unsigned long fname_len )
@@ -96,7 +97,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
 
   if ( opts[8].position != -1 ) 
   { 
-    val = (char **) opts[8].l; /* F.Leray 08.03.04*/
+    val = (char **) opts[8].l;
   } 
 
   if ( opts[9].position != -1 ) 
@@ -150,7 +151,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
       return 0;
     break;
   default :
-    Scierror(999,"%s: tics has a wrong value \"%c\" should be one of \"r\",\"v\" and \"i\"\n", 
+    Scierror(999,_("%: Wrong value for tics \"%c\": \"r\",\"v\" and \"i\" expected.\n"), 
       fname,dir);
     return 0;
   }
@@ -208,7 +209,7 @@ int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
     }
     break;
   default :
-    Scierror(999,"%s: dir has a wrong value \"%c\" should be one of \"u\",\"d\",\"r\" and \"l\"\n", 
+    Scierror(999,"%s: Wrong value for dir \"%c\": \"u\",\"d\",\"r\" and \"l\" expected.\n", 
       fname,dir);
     return 0;
   }

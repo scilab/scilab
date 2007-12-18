@@ -18,11 +18,13 @@
 #include "syncexec.h"
 #include "DrawingBridge.h"
 #include "CurrentObjectsManagement.h"
+#include "localization.h"
+
 extern int xinitxend_flag;
 
 /********************************************************
  * the functions in this file are called from 
- * callback ( see jpc_SGraph.c ) for the XWindow version 
+ * callback ( see SGraph.c ) for the XWindow version 
  * Nov 1998 : we must be sure that during the evaluation of 
  *            scig_xxx an other function scig_yyy won't be 
  *            run. This is possible since during the execution of 
@@ -140,7 +142,7 @@ void scig_loadsg(int win_num, char *filename)
   C2F(syncexec)(macroCall,&macroCallLength,&ierr,&seq, macroCallLength );
 
   FREE( macroCall ) ;
-  if(ierr != 0) { sciprint("Wrong plot file : %s\n",filename) ; }
+  if(ierr != 0) { sciprint(_("Wrong plot file: %s\n"),filename) ; }
 
   sciSetUsedWindow(curFigId);
 

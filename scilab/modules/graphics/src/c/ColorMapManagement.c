@@ -9,6 +9,7 @@
 #include "sciprint.h"
 #include "getHandleProperty/SetPropertyStatus.h"
 #include "MALLOC.h"
+#include "localization.h"
 /*------------------------------------------------------------------------*/
 int LinearScaling2Colormap( sciPointObj * pobj );
 void convertColorMap2BW( double * bwColorMap, double * colorMap, int colorMapSize );
@@ -28,13 +29,13 @@ int LinearScaling2Colormap( sciPointObj * pobj )
 
 
   if(psurf->zcol == NULL){
-    sciprint("Color matrix is NULL ; can not build color scaled linearly into the current colormap");
+    sciprint(_("Color matrix is NULL ; can not build color scaled linearly into the current colormap"));
     return SET_PROPERTY_ERROR ;
   }
 
   if (((psurf->color = MALLOC (nc * sizeof (double))) == NULL)){
-    sciprint("Allocation failed for color in LinearScaling2Colormap");
-    return SET_PROPERTY_ERROR ;
+	  sciprint(_("%s: No more memory.\n"),"LinearScaling2Colormap");
+	  return SET_PROPERTY_ERROR ;
   }
 
   /* get the min inside zcol */

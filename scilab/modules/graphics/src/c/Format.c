@@ -21,10 +21,8 @@
 #include "BasicAlgos.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
-
-/* Add those lines for FD algo on Theticks */
-#define ROUND(x) (x<0?ceil((x)-0.5):floor((x)+0.5))
-#define  ABS(a)  ((a) < 0.0 ? -(a) : (a))
+#include "core_math.h"
+#include "localization.h"
 
 static double spans[18] = {10,12,14,15,16,18,20,25,30,35,40,45,50,60,70,80,90,100};
 static int ticks[18] = {11,7,8,4,9,10,11,6,7,8,9,10,11,7,8,9,10,11};
@@ -275,8 +273,8 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, integer 
       xma1 = *xmi+exp10((double) - iexp);
       if ( count > 1 ) 
 	{
-	  sciprint("Internal Error: Loop in graduate1\n");
-	  sciprint("Please send a Bug report to scilab@inria.fr\n");
+	  sciprint(_("Internal Error: Loop in graduate1\n"));
+	  sciprint(_("Please send a Bug report to dev@lists.scilab.org\n"));
 	}
       graduate1(&xmi1,&xma1,xi,xa,np1,np2,kminr,kmaxr,ar,count+1);
       return;
@@ -552,7 +550,7 @@ void  newbnds(double *xminv,double *xmaxv,double *xmin, double *xmax, double *sc
   double fmin, fmax, sgmin, sgmax, sclmax,sclmin, arguc, arguf, scl;
   flexpo1(xminv,&fmin,&sgmin,&sclmin);
   flexpo1(xmaxv,&fmax,&sgmax,&sclmax);
-    if ( ABS(*xmaxv) > ABS(*xminv)) 
+    if ( Abs(*xmaxv) > Abs(*xminv)) 
     {scl=sclmax;}
   else
     {scl=sclmin;}
@@ -630,9 +628,9 @@ void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
   
   
   
-  nlow= ROUND(*xminv/ width2);
+  nlow= round(*xminv/ width2);
   low=nlow* width2;
-  nup = ROUND(*xmaxv/ width2);
+  nup = round(*xmaxv/ width2);
   up = nup * width2;
   
   if ( low > *xminv )
@@ -1045,7 +1043,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
 
 
   if(sciGetEntityType(pobj) != SCI_AXES){
-    sciprint("Error: ComputeFormat must be used with SCI_AXES objects\n");
+    sciprint(_("Error: ComputeFormat must be used with SCI_AXES objects\n"));
     return -1;
   }
 
@@ -1054,28 +1052,28 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   /* Allocating space before re-copying values to not polluate the good values 
   that will be used inside Axes.c */
   if((x=MALLOC((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
-    sciprint("Memory allocation failed in ComputeFormat\n");
-    return -1;
+	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+	  return -1;
   }
 
   if((y=MALLOC((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
-    sciprint("Memory allocation failed in ComputeFormat\n");
-    return -1;
+	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+	  return -1;
   }
 
   if((nx=MALLOC(sizeof(int)))==NULL){
-    sciprint("Memory allocation failed in ComputeFormat\n");
-    return -1;
+	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+	  return -1;
   }  
 
   if((ny=MALLOC(sizeof(int)))==NULL){
-    sciprint("Memory allocation failed in ComputeFormat\n");
-    return -1;
+	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+	  return -1;
   } 
 
   if((format=MALLOC(5*(sizeof(char ))+1))==NULL){
-    sciprint("Memory allocation failed in ComputeFormat\n");
-    return -1;
+	  sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+	  return -1;
   } 
 
   nx[0] = pAXES_FEATURE (pobj)->nx;
@@ -1140,7 +1138,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
     }
     break;
   default: 
-    sciprint("Sci_Axis: wrong type argument xy_type\n");
+    sciprint(_("Sci_Axis: wrong type argument xy_type\n"));
   }
   switch (pos ) 
   {
@@ -1221,7 +1219,7 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
     *N = n = nval;
 
     if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
-      sciprint("No memory left for allocating temporary tics_labels\n");
+	  sciprint(_("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1236,17 +1234,17 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 
     if(checkdim){
       if(nval != 3)
-        sciprint("Warning: tics_coord must be changed, xy_type is 'r' and tics_coord dimension is not 3\n");
+        sciprint(_("Warning: tics_coord must be changed, xy_type is 'r' and tics_coord dimension is not 3\n"));
 
       if(nval < 3){
-        sciprint("Error: tics_coord must be changed FIRST, xy_type is 'r' and tics_coord dimension < 3\n");
+        sciprint(_("Error: tics_coord must be changed FIRST, xy_type is 'r' and tics_coord dimension < 3\n"));
         *vector = (double *) NULL;
         return -1;
       }
     }
 
     if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
-      sciprint("No memory left for allocating temporary tics_labels");
+	  sciprint(_("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1266,17 +1264,17 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 
     if(checkdim){
       if(nval != 4)
-        sciprint("Warning: tics_coord must be changed, xy_type is 'i' and tics_coord dimension is not 4\n");
+        sciprint(_("Warning: tics_coord must be changed, xy_type is 'i' and tics_coord dimension is not 4\n"));
 
       if(nval < 4){
-        sciprint("Error: tics_coord must be changed FIRST, xy_type is 'i' and tics_coord dimension < 4\n");
+        sciprint(_("Error: tics_coord must be changed FIRST, xy_type is 'i' and tics_coord dimension < 4\n"));
         *vector = (double *) NULL;
         return -1;
       }
     }
 
     if((*vector =(double *)  MALLOC(n*sizeof(double ))) == NULL){
-      sciprint("No memory left for allocating temporary tics_labels");
+	  sciprint(_("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1325,7 +1323,7 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
   /* vector is allocated here */
   if( ComputeXIntervals( pobj, pAXES_FEATURE (pobj)->tics, &vector, &nbTics, 1 ) != 0 )
   {
-    Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
+    Scierror(999,_("Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n"));
     return 0;
   }
 
@@ -1336,8 +1334,8 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
 
   if ( curLabelBuffer == NULL )
   {
-    sciprint("No memory left for allocating temporary tics_labels\n.") ;
-    return NULL ;
+	  sciprint(_("%s: No more memory.\n"),"computeDefaultTicsLabels");
+	  return NULL ;
   }
 
   for( i = 0 ; i < nbTics ; i++ )
@@ -1433,8 +1431,8 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
 
   if ( buffer == NULL )
   {
-    sciprint("Can not copy the string, memory full.\n" ) ;
-    return NULL ;
+	  sciprint(_("%s: No more memory.\n"),"copyFormatedValue");
+	  return NULL ;
   }
 
   sprintf( buffer , format, value ) ;
@@ -1445,9 +1443,9 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
 
   if ( res == NULL )
   {
-    sciprint("Can not copy the string, memory full.\n" ) ;
-    FREE( buffer ) ;
-    return NULL ;
+	  sciprint(_("%s: No more memory.\n"),"copyFormatedValue");
+	  FREE( buffer ) ;
+	  return NULL ;
   }
 
   strncpy( res, buffer, resLength ) ;
@@ -1464,8 +1462,8 @@ char ** copyFormatedArray( const double values[], int nbStrings, const char form
 
   if ( res == NULL )
   {
-    sciprint("Can not copy the strings, memory full.\n" ) ;
-    return NULL ;
+	  sciprint(_("%s: No more memory.\n"),"copyFormatedArray");
+	  return NULL ;
   }
 
   for ( i = 0 ; i < nbStrings ; i++ )
@@ -1489,6 +1487,3 @@ char * getFPF(void)
   return(FPF);
 }
 /*--------------------------------------------------------------------------*/
-
-#undef ROUND
-#undef ABS

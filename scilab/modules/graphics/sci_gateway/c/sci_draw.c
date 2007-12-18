@@ -14,6 +14,7 @@
 #include "HandleManagement.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_draw( char * fname, unsigned long fname_len )
@@ -58,7 +59,7 @@ int sci_draw( char * fname, unsigned long fname_len )
     }
     else
     {
-      Scierror(999,"%s: object has no parent !!",fname);
+      Scierror(999,_("%s: Object has no parent.\n"),fname);
       return 0;
     }
   }

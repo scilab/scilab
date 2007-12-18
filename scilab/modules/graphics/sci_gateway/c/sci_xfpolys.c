@@ -16,7 +16,7 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xfpolys( char *fname, unsigned long fname_len )
 {
@@ -47,7 +47,7 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
 
       if ( m3 != 3 && m3 != 4 ) 
       {
-        Scierror(999,"%s: interpolated shading only works for polygons of size 3 or 4\n",fname);
+        Scierror(999,_("%s: interpolated shading only works for polygons of size 3 or 4\n"),fname);
         return 0;
       }
     } else
@@ -75,11 +75,11 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
       }
       else
       {
-        Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+i),&hdl,v1); /* F.Leray fix bug 04.10.05 */
+        Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+i),&hdl,v1);
       }
     }
     else /* we have a color matrix used for interpolated shading : one color per vertex */
-      Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+i*m3),&hdl,v1); /* F.Leray fix bug 04.10.05 */
+      Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+i*m3),&hdl,v1);
   }
   /** construct Compound and make it current object**/
   sciSetCurrentObj (ConstructCompoundSeq (n1));

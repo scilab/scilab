@@ -25,14 +25,16 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "DrawingBridge.h"
+#include "localization.h"
 
+/* @TODO : remove that stuff */
 void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1,integer n2,double *drect);
 void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, integer n1,integer n2, double *drect);
 BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 
-extern double * FreeUserGrads(double * u_xgrads);
+double * FreeUserGrads(double * u_xgrads);
 
 extern char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
@@ -195,7 +197,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       }
     else
     {
-      sciprint("Warning : Nax does not work with logarithmic scaling\n");
+      sciprint(_("Warning : Nax does not work with logarithmic scaling.\n"));
     }
   }
   endFigureDataWriting(curFigure);
@@ -208,14 +210,14 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
-    if ((hdltab = MALLOC ((*n1+2) * sizeof (long))) == NULL) {
-      sciprint ("Running out of memory for plot2d\n");
-      return 0;   
+	  if ((hdltab = MALLOC ((*n1+2) * sizeof (long))) == NULL) {
+		  sciprint(_("%s: No more memory.\n"),"plot2d");
+		  return 0;
     }
     if (with_leg) {
       /* pptabofpointobj allocated for legends */
       if ((pptabofpointobj = MALLOC((*n1)*sizeof(sciPointObj*))) == NULL) {
-        sciprint ("Running out of memory for plot2d\n");
+        sciprint(_("%s: No more memory.\n"),"plot2d");
         FREE(hdltab);
         return 0;
       }
@@ -362,15 +364,19 @@ void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1
   double *x1;
   switch ( dataflag ) {
   case 'e' : 
-    xd[0] = 1.0; xd[1] = (double)n2;
-    x1 = xd;size_x = (n2 != 0) ? 2 : 0 ;
+    xd[0] = 1.0; 
+	xd[1] = (double)n2;
+    x1 = xd;
+	size_x = (n2 != 0) ? 2 : 0 ;
     break; 
   case 'o' : 
-    x1 = x;size_x = n2;
+    x1 = x;
+	size_x = n2;
     break;
   case 'g' : 
   default  : 
-    x1 = x;size_x = (cflag == 1) ? n1 : (n1*n2) ;
+    x1 = x;
+	size_x = (cflag == 1) ? n1 : (n1*n2) ;
     break; 
   }
 
@@ -393,10 +399,15 @@ void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1
     drect[3] = 10.0;
   }
   /* back to default values for  x=[] and y = [] */
-  if ( drect[2] == LARGEST_REAL ) { drect[2] = 0.0; drect[3] = 10.0 ;} 
-  if ( drect[0] == LARGEST_REAL ) { drect[0] = 0.0; drect[1] = 10.0 ;} 
+  if ( drect[2] == LARGEST_REAL ) { 
+	  drect[2] = 0.0; drect[3] = 10.0 ;
+  } 
+  if ( drect[0] == LARGEST_REAL ) {
+	  drect[0] = 0.0; drect[1] = 10.0 ;
+  }
 
 }
+
 BOOL update_specification_bounds(psubwin, rect,flag)
      sciPointObj  *psubwin;
      double rect[6] ;
@@ -425,7 +436,7 @@ BOOL update_specification_bounds(psubwin, rect,flag)
 
 
 
-static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag)
+char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrads, char logflag)
 {
   int i;
   char c_format[5]; 
@@ -436,14 +447,14 @@ static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u
   
   if(u_xlabels != NULL)
     {
-      sciprint("Impossible: u_xlabels must be freed before re-allocating");
+      sciprint(_("Impossible: u_xlabels must be freed before re-allocating"));
       return (char **) NULL;
     }
   
 
   if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
-    sciprint("No more place for allocating user labels using Nax");
-    return (char **) NULL;
+	  sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabels");
+	  return (char **) NULL;
   }
 
   ChooseGoodFormat(c_format,logflag,u_xgrads,u_nxgrads);
@@ -455,8 +466,8 @@ static char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u
       sprintf(foo,c_format, u_xgrads[i]);
       
       if((u_xlabels[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
-	sciprint("No more place for allocating u_xlabels");
-	return (char **) NULL;
+		  sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabels");
+		  return (char **) NULL;
       }
       
       strcpy(u_xlabels[i],foo);
@@ -477,21 +488,21 @@ char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, i
   
   if(u_xlabels != NULL)
     {
-      sciprint("Impossible: u_xlabels must be freed before re-allocating");
+      sciprint(_("Impossible: u_xlabels must be freed before re-allocating"));
       return (char **) NULL;
     }
   
   if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
-    sciprint("No more place for allocating user labels using Nax");
-    return (char **) NULL;
+	  sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabelsFromMdl");
+	  return (char **) NULL;
   }
 
   
   for(i=0;i<nbtics;i++)
     {  
-      if((u_xlabels[i]=(char *)MALLOC((strlen(u_xlabels_MDL[i])+1)*sizeof(char )))==NULL){
-	sciprint("No more place for allocating u_xlabels");
-	return (char **) NULL;
+		if((u_xlabels[i]=(char *)MALLOC((strlen(u_xlabels_MDL[i])+1)*sizeof(char )))==NULL){
+			sciprint(_("%s: No more memory.\n"), "AllocAndSetUserLabelsFromMdl");
+			return (char **) NULL;
       }
       
       strcpy(u_xlabels[i],u_xlabels_MDL[i]);
@@ -769,13 +780,13 @@ double * AllocUserGrads(double * u_xgrads, int nb)
   
   if(u_xgrads != NULL)
     {
-      sciprint("Impossible: u_xgrads must be freed before re-allocating");
+      sciprint(_("Impossible: u_xgrads must be freed before re-allocating"));
       return (double *) NULL;
     }
   
   if((u_xgrads=(double *)MALLOC(nb*sizeof(double)))==NULL){
-    sciprint("No more place for allocating user grads using Nax");
-    return (double *) NULL;
+	  sciprint(_("%s: No more memory.\n"),"AllocUserGrads");
+	  return (double *) NULL;
   }
     
   return u_xgrads;

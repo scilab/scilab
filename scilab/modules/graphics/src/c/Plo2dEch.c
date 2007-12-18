@@ -27,13 +27,13 @@
 #include "scirun.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
-
+#include "dynamic_menus.h" /* StoreCommand */
 
 #include "MALLOC.h" /* MALLOC */
+#include "localization.h"
 
 extern void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag, integer *x1, integer *yy1, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
 extern void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x1, integer *yy1, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
-extern int StoreCommand( char *command);
 
 /*----------------------------------------------
  * A List for storing Window scaling information 
@@ -178,17 +178,14 @@ static void set_window_scale(i,scale)
   set_scale_win(&The_List,Max(0L,i),scale);
 }
 
-static void set_scale_win(listptr, i,scale)
-     ScaleList **listptr;
-     integer i;
-     WCScaleList *scale;
+static void set_scale_win(ScaleList **listptr, integer i, WCScaleList *scale)
 {
   if ( *listptr == (ScaleList  *) NULL)
     {
       /* window i does not exist add an entry for it */
       if ((*listptr = (ScaleList *) MALLOC( sizeof (ScaleList)))==0)
 	{
-	  sciprint("AddWindowScale_ memory exhausted\n");
+		sciprint(_("%s: No more memory.\n"),"set_scale_win");
 	  return;
 	}
       else 
@@ -199,7 +196,7 @@ static void set_scale_win(listptr, i,scale)
 	  if ( (*listptr)->scales == 0) 
 	    {
 	      *listptr = 0;
-	      sciprint("AddWindowScale_ memory exhausted\n");
+		  sciprint(_("%s: No more memory.\n"),"set_scale_win");
 	    }
 	  return ;
 	}
@@ -227,7 +224,7 @@ static void set_scale_win(listptr, i,scale)
 	  /* subwin does not exists we add it a the begining of the list */
 	  if (( loc = new_wcscale(scale))== NULL)
 	    {
-	      sciprint("AddWindowScale_ memory exhausted\n");
+		  sciprint(_("%s: No more memory.\n"),"set_scale_win");
 	      return ;
 	    }
 	  else 
@@ -242,8 +239,7 @@ static void set_scale_win(listptr, i,scale)
     set_scale_win( &((*listptr)->next),i,scale);
 }
  
-static WCScaleList *new_wcscale(val) 
-     WCScaleList *val;
+static WCScaleList *new_wcscale(WCScaleList *val)
 {
   WCScaleList *new ;
   if ((new = (WCScaleList *) MALLOC( sizeof (WCScaleList))) == NULL) 
@@ -547,7 +543,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	{
 	  if ( FRect[0] <= 0 || FRect[2] <= 0 ) 
 	    {
-	      sciprint("Warning: negative boundaries on x scale with a log scale\n");
+	      sciprint(_("Warning: negative boundaries on x scale with a log scale\n"));
 	      FRect[0]=1.e-8;FRect[2]=1.e+8;
 	    } 
 	  FRect[0]=log10(FRect[0]);
@@ -557,7 +553,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	{
 	  if ( FRect[1] <= 0 || FRect[3] <= 0 ) 
 	    {
-	      sciprint("Warning: negative boundaries on y scale with a log scale\n");
+	      sciprint(_("Warning: negative boundaries on y scale with a log scale\n"));
 	      FRect[1]=1.e-8;FRect[3]=1.e+8;
 	    } 
 	  FRect[1]=log10(FRect[1]);
@@ -807,7 +803,7 @@ int C2F(xechelle2d)(double x[], integer x1[], integer *  n1,char dir[],integer l
       for ( i=0 ; i < (*n1) ; i++) x[i]= exp10(XPi2R( x1[i]));
   }
   else 
-    sciprint(" Wrong dir %s argument in echelle2d\n",dir);
+    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir);
 
   return(0);
 }
@@ -832,7 +828,7 @@ int C2F(yechelle2d)(double y[], integer yy1[], integer * n2,char dir[], integer 
       for ( i=0 ; i < (*n2) ; i++)  y[i]= exp10(YPi2R( yy1[i]));
   }
   else 
-    sciprint(" Wrong dir %s argument in echelle2d\n",dir); 
+    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir); 
 
   return(0);
 }
@@ -897,7 +893,7 @@ void C2F(echelle2dl)( double    x[]  ,
 	}
     }
   else 
-    sciprint(" Wrong dir %s argument in echelle2d\n",dir);
+    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir);
 }
 
 /** meme chose mais pour transformer des ellipses **/
@@ -931,7 +927,7 @@ void C2F(ellipse2d)( double x[], integer x1[], integer * n, char * dir)
 	}
     }
   else 
-    sciprint(" Wrong dir %s argument in echelle2d\n",dir);
+    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir);
 }
 
 /** meme chose mais pour transformer des rectangles **/
@@ -995,7 +991,7 @@ void C2F(rect2d)( double x[], integer x1[], integer * n, char * dir)
 	}
     }
   else 
-    sciprint(" Wrong dir %s argument in echelle2d\n",dir);
+    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir);
 }
 
  
@@ -1447,9 +1443,6 @@ int XScale(double x)
     return FLOAT_2_INT( dRes ) ;
   }
   
-
-  sciprint("Error in XScale\n");
-  return -9000;
 }
 
 
@@ -1462,14 +1455,11 @@ int XLogScale(double x)
   sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
-  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE){
     return inint( Cscale.Wscx1*(Cscale.frect[2] - log10(x)) + Cscale.Wxofset1);
-  else
+  }else{
     return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1);
-     	
-
-  sciprint("Error in XLogScale\n");
-  return -9000;
+  }
 }
 
 
@@ -1492,10 +1482,6 @@ int YScale(double y)
     double dRes = Cscale.Wscy1 * ( -y + Cscale.frect[3] ) + Cscale.Wyofset1 ;
     return FLOAT_2_INT( dRes ) ;
   }
-
-  
-  sciprint("Error in YScale\n");
-  return -9000;
 }
 
 
@@ -1505,15 +1491,12 @@ int YLogScale(double y)
   sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
-  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE){
     return inint( Cscale.Wscy1*(log10(y)-Cscale.frect[1]) + Cscale.Wyofset1);
-  else
+  }else{
     return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1);
- 
-  
+  }
 
-  sciprint("Error in YLogScale\n");
-  return -9000;
 }
 
 
@@ -1525,14 +1508,11 @@ double XPi2R(int x)
   sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
-  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE){
     return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-  else
+  }else{
     return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
- 
-
-  sciprint("Error in XScale\n");
-  return -9000;
+  }
 }
 
 
@@ -1542,14 +1522,11 @@ double YPi2R(int y)
   sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
-  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE){
     return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-  else
+  }else{
     return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-
-
-  sciprint("Error in YScale\n");
-  return -9000;
+  }
 }
 
 double XDPi2R( double x )
@@ -1558,14 +1535,12 @@ double XDPi2R( double x )
   sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
-  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE){
     return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-  else
+  }else{
     return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+  }
 
-
-  sciprint("Error in XScale\n");
-  return -9000;
 }
 
 
@@ -1575,15 +1550,11 @@ double YDPi2R( double y )
   sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
-  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE){
     return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-  else
+  }else{
     return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-
-  
-  
-  sciprint("Error in YScale\n");
-  return -9000;
+  }
 }
 
 double Zoom3d_XPi2R(int x)
@@ -1592,14 +1563,11 @@ double Zoom3d_XPi2R(int x)
   sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
-  if(ppsubwin->axes.reverse[0]==TRUE) /* difference is HERE */
+  if(ppsubwin->axes.reverse[0]==TRUE){ /* difference is HERE */
     return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-  else
+  }else{
     return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-  
-
-  sciprint("Error in Zoom3d_XScale\n");
-  return -9000;
+  }
 }
 
 
@@ -1610,15 +1578,11 @@ double Zoom3d_YPi2R(int y)
   sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
-  if(ppsubwin->axes.reverse[1]==TRUE) /* difference is HERE */
+  if(ppsubwin->axes.reverse[1]==TRUE) { /* difference is HERE */
     return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-  else
+  }else{
     return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-
-  
-  
-  sciprint("Error in Zoom3d_YScale\n");
-  return -9000;
+  }
 }
 
 void scizoom( double bbox[4], sciPointObj * pobj )

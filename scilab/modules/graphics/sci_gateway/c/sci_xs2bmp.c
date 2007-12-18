@@ -10,6 +10,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "IsAScalar.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xs2bmp( char * fname, unsigned long fname_len )
 {
@@ -32,7 +33,7 @@ int sci_xs2bmp( char * fname, unsigned long fname_len )
     }
     else
     {
-      Scierror(999,"%s: First Argument. Must be >=0.\n",fname);
+      Scierror(999,_("%s: Wrong input argument: >=0 expected.\n"),fname);
       return 0;
     }
 
@@ -41,18 +42,18 @@ int sci_xs2bmp( char * fname, unsigned long fname_len )
   {
     if ( IsAScalar(1) )
     {
-      Scierror(999,"%s: First Argument. Must be a integer scalar.\n",fname);
+      Scierror(999,_("%s: Wrong type for first input argument: integer scalar expected.\n"),fname);
       return 0;
     }
     if ( GetType(2) != sci_strings)
     {
-      Scierror(999,"%s: Second Argument. Must be a string.\n",fname);
+      Scierror(999,_("%s: Wrong type for second input argument. String expected.\n"),fname);
       return 0;
     }
   }
 
 #else
-  sciprint("%s: Only for Windows.\n",fname);
+  sciprint(_("%s: Only for Windows.\n"),fname);
   bOK=0;
 #endif
   return bOK;

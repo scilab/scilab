@@ -8,7 +8,7 @@
 #include "sci_swap_handles.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_swap_handles( char * fname, unsigned long fname_len )
 {
@@ -27,7 +27,7 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
 
   if ( firstHdlRow * firstHdlCol != 1 || secondHdlRow * secondHdlCol != 1 )
   {
-    Scierror(999,"%s : Routine can only swap two single handles.\n",fname);
+    Scierror(999,_("%s : Routine can only swap two single handles.\n"),fname);
     return 0 ;
   }
 

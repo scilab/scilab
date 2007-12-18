@@ -12,7 +12,7 @@
 #include "ObjectStructure.h"
 #include "GetProperty.h"
 #include "DestroyObjects.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_unglue(char *fname,unsigned long fname_len)
 { 
@@ -30,7 +30,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
   pobj = sciGetPointerFromHandle(hdl);
   if (pobj == NULL)
   {
-    Scierror(999,"%s :the handle is not or no more valid\n",fname);
+    Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
     return 0;
   }
   if (sciGetEntityType (pobj) == SCI_AGREG)
@@ -59,7 +59,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
   }
   else
   {
-    Scierror(999,"%s: Object must be an Compound\n",fname);
+    Scierror(999,_("%s: Object must be a Compound.\n"),fname);
   }
   return 0;
 }

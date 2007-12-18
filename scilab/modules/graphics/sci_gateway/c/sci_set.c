@@ -26,6 +26,7 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "DrawingBridge.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 static int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol) ;
@@ -108,7 +109,7 @@ int sci_set(char *fname, unsigned long fname_len)
 				{
 					if (m1!=1||n1!=1) 
 					{ 
-						Scierror(999,"%s :the handle is not or no more valid\n",fname);
+						Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
 						return 0;
 					}
 
@@ -200,14 +201,14 @@ int sci_set(char *fname, unsigned long fname_len)
 			t2=sciType(cstk(l2),pobj);
 			if (t2<0) 
 			{
-				Scierror(999,"%s: unknown property name '%s'\n",fname,cstk(l2));
+				Scierror(999,_("%s: Unknown property name '%s'.\n"),fname,cstk(l2));
 				return 0;
 			} 
 			if ( valueType != t2 ) if(strcmp(cstk(l2),"current_figure") != 0 && VarType(2) !=sci_matrix )
 			{  
 				/* F.Leray : special unique case here set("current_figure", HANDLE);*/
 				/* HANDLE type is 9 */
-				Scierror(999,"%s: uncompatible values for property type  '%s'\n",fname,cstk(l2));
+				Scierror(999,_("%s: Uncompatible values for property type '%s'.\n"),fname,cstk(l2));
 				return 0;
 			}
 
@@ -237,22 +238,21 @@ int sci_set(char *fname, unsigned long fname_len)
 			break;
 
 	  default:
-		  Scierror(999,"%s : invalid parameter(s).\n",fname);
+		  Scierror(999,_("%s: Wrong type for input argument: String or handle expected.\n"),fname);
 		  return 0;
 		  break;
 	 }
 
 	 if ( (hdl != (unsigned long)0) ) 
 	 { 
-		 /* F.Leray 16.03.04*/
 		 pobj = sciGetPointerFromHandle(hdl);
 		 if ( pobj == NULL )
 		 {
-			 Scierror(999,"%s :the handle is not or no more valid\n",fname);
+			 Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
 			 endGraphicDataWriting();
 			 return 0;
 		 }
-		 vis_save = sciGetVisibility(pobj) ; /*used not to redraw the figure is object remains invisible SS 20.04.04*/
+		 vis_save = sciGetVisibility(pobj) ; /*used not to redraw the figure is object remains invisible */
 		 if ( (setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3)) < 0 )
 		 {
 			 endGraphicDataWriting();
@@ -276,8 +276,7 @@ int sci_set(char *fname, unsigned long fname_len)
                                  && sciGetEntityType(pobj) != SCI_UIMENU
                                  && sciGetEntityType(pobj) != SCI_UICONTROL)
 			 { 
-				 /* Addings F.Leray 10.06.04 */
-                                 sciDrawObj(pobj) ;
+				 sciDrawObj(pobj) ;
 			 }
 		 }
 	 }

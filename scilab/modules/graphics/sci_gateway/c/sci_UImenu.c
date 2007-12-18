@@ -20,6 +20,7 @@
 #include "CurrentObjectsManagement.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_UImenu( char *fname,unsigned long fname_len )
 {

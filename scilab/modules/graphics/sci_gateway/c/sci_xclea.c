@@ -9,7 +9,7 @@
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xclea( char *fname,unsigned long fname_len )
 {
@@ -33,7 +33,7 @@ int sci_xclea( char *fname,unsigned long fname_len )
     
     break;
   default :
-    Scierror(999,"%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\n",fname,Rhs);
+    Scierror(999,_("%s: Wrong number of input argument(s): 1 or 4 expected.\n"),fname,Rhs);
   }
   LhsVar(1)=0;
   return 0;

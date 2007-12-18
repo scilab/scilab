@@ -17,8 +17,9 @@
 #include "CurrentObjectsManagement.h"
 
 #include "../src/c/getHandleProperty/GetHashTable.h"
-
 #include "../src/c/getHandleProperty/getHandleProperty.h"
+
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker);
@@ -49,8 +50,8 @@ int sci_get(char *fname,unsigned long fname_len)
   
   /*  set or create a graphic window */
 
-  /* le premier argument peut etre soit un Id, ou un marker(auquel cas, get renvoi la valeur de 
-     l'objet courant ) */
+  /* 
+	 The first input argument can be an ID or a marker (in this case, get returns the value of the current object */
   switch(VarType(1))
     {
     case 1: /* tclsci handle */
@@ -146,7 +147,7 @@ int sci_get(char *fname,unsigned long fname_len)
     }
     else
     {
-      Scierror(999,"%s :the handle is not or no more valid\n",fname);
+      Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
     }
   }
   LhsVar(1)=Rhs+1;

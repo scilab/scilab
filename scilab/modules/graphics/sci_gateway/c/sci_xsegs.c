@@ -13,7 +13,7 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xsegs(char *fname,unsigned long fname_len)
 {
@@ -36,7 +36,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
     GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); CheckVector(3,m3,n3);
     if (m3 * n3 == 1) dstyle = *istk(l3 );
     if (m3 * n3 != 1 && m2 * n2 / 2 != m3 * n3) {
-      Scierror(999,"%s: style has a wrong size (%d), expecting (%d)\n",fname,m3 * n3, m2 * n2 / 2);
+      Scierror(999,_("%s: Wrong size for style: %d expected.\n"),fname, m2 * n2 / 2);
       return 0;
     }
   }

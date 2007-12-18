@@ -15,6 +15,7 @@
 #include "Contour.h"
 
 #include "GetProperty.h"
+#include "localization.h"
 
 typedef void (level_f) __PARAMS((integer ival, double Cont, double xncont,
 			       double yncont));
@@ -184,7 +185,7 @@ static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb,
       y_cont(j));
     break;
   default :
-    sciprint(" Error in case wrong value ");
+    sciprint(_("Error in case wrong value"));
     break;
   }
   wflag=1;
@@ -268,7 +269,7 @@ static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb,
   else
   {
     /* contour2di only computes level curves, not display them. */
-    sciprint("Contourdi, is only made to compute level curves and not display them.\n");
+    sciprint(_("Contourdi, is only made to compute level curves and not display them.\n"));
   }
 }
 
@@ -308,7 +309,7 @@ static void contourI(ptr_level_f func, double *x, double *y, double *z, double *
     FREE( xbd_cont ) ;
     FREE( ybd_cont ) ;
     FREE( itg_cont ) ;
-    sciprint("contourI_: Running out of memory\n");
+    sciprint(_("%s: No more memory.\n"),"contourI");
     return;
   }
   /* just a parametrization of the boundary points */
@@ -375,7 +376,7 @@ int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, in
     {
       if ( ( zconst = MALLOC( (*nz) * sizeof(double) ) ) == 0 ) 
 	{
-	  sciprint("Running out of memory\n");
+	  sciprint(_("%s: No more memory.\n"),"contourif");
 	  return 0;
 	}
       for ( i =0 ; i < *nz ; i++) 

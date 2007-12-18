@@ -14,20 +14,20 @@
 #include "GetProperty.h"
 #include "InitObjects.h"
 #include "CurrentObjectsManagement.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_show_window( char *fname,unsigned long fname_len )
 {
   int winNum = 0 ;
-  sciPointObj * curFigure = sciGetCurrentFigure() ;
+  sciPointObj * curFigure = sciGetCurrentFigure();
 
-  CheckRhs(0,1) ;
-  CheckLhs(0,1) ;
+  CheckRhs(0,1);
+  CheckLhs(0,1);
 
   if ( Rhs == 1 )
   {
     /* the window to show is specified */
-    int paramType    = VarType(1) ;
+    int paramType    = VarType(1);
     int nbRow        = 0 ;
     int nbCol        = 0 ;
     int stackPointer = 0 ;
@@ -40,19 +40,19 @@ int sci_show_window( char *fname,unsigned long fname_len )
 
       if ( nbRow * nbCol != 1 )
       {
-        sciprint("Only one window can be shown.\n") ;
+        sciprint(_("%s: Only one window can be shown.\n"),fname);
         return -1 ;
       }
 
-      shownFigure = sciGetPointerFromHandle( getHandleFromStack(stackPointer) ) ;
+      shownFigure = sciGetPointerFromHandle( getHandleFromStack(stackPointer) );
 
       if ( shownFigure == NULL )
       {
-        sciprint("Figure does not or no longer exists.\n") ;
+        sciprint(_("%s: Figure does not or no longer exists.\n"),fname);
         return -1 ;
       }
 
-      winNum = sciGetNum( shownFigure ) ;
+      winNum = sciGetNum( shownFigure );
 
     }
     else if ( isParameterDoubleMatrix( paramType ) )
@@ -60,18 +60,18 @@ int sci_show_window( char *fname,unsigned long fname_len )
       GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
       if ( nbRow * nbCol != 1 )
       {
-        sciprint("Only one window can be shown.\n") ;
+        sciprint(_("Only one window can be shown.\n"));
         return -1 ;
       }
-      winNum = (int) getDoubleFromStack(stackPointer) ;
+      winNum = (int) getDoubleFromStack(stackPointer);
 
     }
     else
     {
-      sciprint("Parameter should be a handle on the window to redraw or it's number.\n") ;
+      sciprint(_("Parameter should be a handle on the window to redraw or it's number.\n"));
     }
 
-    sciSetUsedWindow( winNum ) ;
+    sciSetUsedWindow( winNum );
 
   }
   
@@ -79,7 +79,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
   /* and it is already the selected one */
   if( Rhs == 1 && curFigure != NULL )
   {
-    sciSetUsedWindow( sciGetNum( curFigure ) ) ;
+    sciSetUsedWindow( sciGetNum( curFigure ) );
   }
 
   LhsVar(1)=0;

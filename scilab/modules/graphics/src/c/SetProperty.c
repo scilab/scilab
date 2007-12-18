@@ -1447,10 +1447,10 @@ sciSetTitlePos (sciPointObj * pobj, int x, int y)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
+    case SCI_LABEL: 
     case SCI_UIMENU:
     default:
-      sciprint(_("Your are not using a title object.\n"));
+      sciprint(_("You are not using a title object.\n"));
       return -1;
       break;
     }
@@ -1481,7 +1481,7 @@ sciSetTitlePlace (sciPointObj * pobj, sciTitlePlace place)
       return 0;
     }
   else
-    sciprint(_("Your are not using a title object.\n"));
+    sciprint(_("You are not using a title object.\n"));
   return -1;
 }
 
@@ -1502,7 +1502,7 @@ int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
     return sciInitLegendPos (pobj, x, y);
   }
   
-  sciprint(_("Your are not using a legend object.\n"));
+  sciprint(_("You are not using a legend object.\n"));
   return -1;
 }
 
@@ -1553,10 +1553,10 @@ int sciInitLegendPos( sciPointObj * pobj, int x, int y )
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
+    case SCI_LABEL: 
     case SCI_UIMENU:
     default:
-      sciprint(_("Your are not using a legend object.\n"));
+      sciprint(_("You are not using a legend object.\n"));
       return -1;
       break;
     }
@@ -2577,7 +2577,7 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
   /* on verifie que l'entite passee en argument est bien une sous fenetre */
   if (sciGetEntityType (psubwinobj) != SCI_SUBWIN)
   {
-    sciprint(_("Handle is not a SubWindow\n"));
+    sciprint(_("Handle is not a SubWindow.\n"));
     return -1;
   }
 

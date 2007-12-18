@@ -13,7 +13,7 @@
 #include "gw_graphics.h"
 #include "DrawObjects.h"
 #include "StringBox.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_StringBox( char * fname, unsigned long fname_len )
 {
@@ -30,7 +30,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 
   if ( VarType(1) != sci_handles )
   {
-    Scierror(999,"Function StringBox works with only one text handle.\n") ;
+    Scierror(999,_("%s: Wrong type for first input argument: Only one text handle expected.\n"),fname);
     return 0 ;
   }
 
@@ -39,7 +39,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 
   if ( m * n != 1 )
   {
-    Scierror(999,"Function StringBox works with only one text handle.\n" ) ;
+	  Scierror(999,_("%s: Wrong type for first input argument: Only one text handle expected.\n"),fname);
     return 0 ;
   }
 
@@ -47,7 +47,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 
   if ( pText == NULL )
   {
-    Scierror(999,"%s : The handle is not valid.\n",fname);
+    Scierror(999,_("%s : The handle is not valid.\n"),fname);
     return 0 ;
   }
 
@@ -57,7 +57,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
   }
   else if ( sciGetEntityType( pText ) != SCI_TEXT )
   {
-    Scierror(999,"Function StringBox works with only one text handle.\n") ;
+	  Scierror(999,_("%s: Wrong type for first input argument: Only one text handle expected.\n"),fname);
     return 0 ;
   }
 

@@ -15,6 +15,7 @@
 #include "PloEch.h"
 #include "GraphicZoom.h"
 #include "Vertices.h"
+#include "localization.h"
 
 /*------------------------------------------------------------------------------*/
 double InvAxis( double min, double max, double u )
@@ -177,8 +178,8 @@ int trans3d( sciPointObj * pobj,
         }
 
         if(ppsubwin->logflags[2] == 'l'){
-          sciprint("Warning: Value on z data is negative or zero while logarithmic scale enabled\n");
-          sciprint("Object not drawn\n");
+          sciprint(_("Warning: Value on z data is negative or zero while logarithmic scale enabled\n"));
+          sciprint(_("Object not drawn\n"));
           FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
           return 0;
         }
@@ -261,8 +262,8 @@ int trans3d( sciPointObj * pobj,
           tmpy = y[i];
 
         if(ppsubwin->logflags[2] == 'l'){
-          sciprint("Warning: Value on z data is negative or zero while logarithmic scale enabled\n");
-          sciprint("Object not drawn\n");
+          sciprint(_("Warning: Value on z data is negative or zero while logarithmic scale enabled\n"));
+          sciprint(_("Object not drawn\n"));
           FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
           return 0;
         }

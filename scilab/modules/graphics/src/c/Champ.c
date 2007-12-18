@@ -19,9 +19,9 @@
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
-#include "localization.h"
 
 #include "MALLOC.h" /* MALLOC */
+#include "localization.h"
 
 extern void initsubwin();
 /* extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect); */
@@ -233,7 +233,7 @@ void getChampDataBounds( double   xCoords[]  ,
     FREE( xPixCoords ) ;
     FREE( yPixCoords ) ;
     FREE( zPixCoords ) ;
-    sciprint(_("Cannot allocate temporary vector, memory full.\n")) ;
+    sciprint(_("%s: No more memory.\n"),"getChampDataBounds");
     *xMin = 0.0 ;
     *xMax = 0.0 ;
     *yMin = 0.0 ;

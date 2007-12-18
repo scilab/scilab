@@ -7,6 +7,8 @@
 #include "stack-c.h"
 #include "scilabmode.h"
 #include "callFunctionFromGateway.h"
+#include "localization.h"
+
 /*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[]={
 	{sci_champ,"champ"},	
@@ -109,8 +111,7 @@ int C2F(gw_graphics)(void)
   }
   else
   {
-	Scierror(999,"graphic interface disabled -nogui or -nwni mode.\n");
-	return 0;
+	Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
   }
 
   return 0;

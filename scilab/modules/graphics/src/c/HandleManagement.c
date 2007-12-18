@@ -32,6 +32,7 @@
 #include "BuildDrawingObserver.h"
 
 #include "MALLOC.h" /* MALLOC */
+#include "localization.h"
 
 sciHandleTab * PENDOFHANDLETAB;
 
@@ -142,7 +143,7 @@ extern int sciDelHandle
     case 5:/* in prevision */
     case 7:/* in prevision */
     default:
-      sciprint ("no handle to del\n");
+      sciprint(_("No handle to delete.\n"));
       return -1;
       break;
     }
@@ -440,7 +441,7 @@ BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case 5:
     case 7:
     default :
-      sciprint ("There is no Son in this Parent!!!!\n");
+      sciprint(_("There is no Son in this Parent.\n"));
       return FALSE;
       break;
     }
@@ -618,7 +619,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   /* check parent */
   if ( parentObj == NULL )
   {
-    Scierror( 999,"The parent handle is not or no more valid.\n" ) ;
+    Scierror( 999,_("The parent handle is not or no more valid.\n")) ;
     return -1 ;
   }
 
@@ -626,7 +627,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   movedObjs = MALLOC( nbHandles * sizeof(sciPointObj *) ) ;
   if ( movedObjs == NULL )
   {
-    Scierror(999,"Memory full, aborting operation.\n") ;
+    Scierror(999,_("%s: No more memory.\n"), "sciRelocateHandles");
     return -1 ;
   }
 
@@ -639,14 +640,14 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
     /* check handle validity */
     if ( movedObjs[i] == NULL )
     {
-       Scierror(999,"Handle number %d is not or no more valid.\n", i + 1  ) ;
+       Scierror(999,_("Handle number %d is not or no more valid.\n"), i + 1  ) ;
        FREE( movedObjs ) ;
        return -1 ;
     }
     /* check that handles can be inserted under the parent */
     if ( !sciCanBeSonOf( movedObjs[i], parentObj ) )
     {
-      Scierror(999,"Handle number %d is not compatible with the parent handle.\n", i + 1 ) ;
+      Scierror(999,_("Handle number %d is not compatible with the parent handle.\n"), i + 1 ) ;
       FREE( movedObjs ) ;
       return -1 ;
     }
@@ -677,7 +678,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
 
     if ( sciRelocateObject( movedObjs[i], parentObj ) != 0 )
     {
-      Scierror(999,"Error relocating handle %d.", i  ) ;
+      Scierror(999,_("Error relocating handle %d."), i  ) ;
     }
   }
   
@@ -714,13 +715,13 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
   /* check compatibility of the objects with new parents */
   if ( !sciCanBeSonOf( firstObject, sciGetParent( secondObject ) ) )
   {
-    Scierror(999,"First handle is not compatible with its new parent.\n" ) ;
+    Scierror(999,_("First handle is not compatible with its new parent.\n")) ;
     return -1 ;
   }
   
   if ( !sciCanBeSonOf( secondObject, sciGetParent( firstObject ) ) )
   {
-    Scierror(999,"Second handle is not compatible with its new parent.\n" ) ;
+    Scierror(999,_("Second handle is not compatible with its new parent.\n")) ;
     return -1 ;
   }
 
@@ -730,12 +731,12 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
   /* check if the sons are correct. This should always be true. */
   if ( firstSon == NULL )
   {
-    Scierror( 999,"First object is not correctly placed in the hierarchy.\n" ) ;
+    Scierror( 999,_("First object is not correctly placed in the hierarchy.\n")) ;
     return -1 ;
   }
   if ( secondSon == NULL )
   {
-    Scierror( 999,"Second object is not correctly placed in the hierarchy.\n" ) ;
+    Scierror( 999,_("Second object is not correctly placed in the hierarchy.\n")) ;
     return -1 ;
   }
 
@@ -768,13 +769,13 @@ int swapHandles( unsigned long firstHdl, unsigned long secondHdl )
   
   if ( firstObject == NULL )
   {
-    Scierror( 999,"First handle is not or no more valid.\n" ) ;
+    Scierror( 999,_("First handle is not or no more valid.\n"));
     return -1 ;
   }
 
   if ( secondObject == NULL )
   {
-     Scierror( 999,"Second handle is not or no more valid.\n" ) ;
+     Scierror( 999,_("Second handle is not or no more valid.\n"));
     return -1 ;
   }
 

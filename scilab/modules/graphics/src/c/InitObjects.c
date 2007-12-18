@@ -30,6 +30,7 @@
 #include "ObjectSelection.h"
 
 #include "MALLOC.h" /* MALLOC */
+#include "localization.h"
 
 static char error_message[70]; /* DJ.A 08/01/04 */
 extern unsigned short defcolors[];
@@ -57,14 +58,14 @@ int C2F(graphicsmodels) (void)
 
   if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
-      strcpy(error_message,"Default figure cannot be create");
+      strcpy(error_message,_("Default figure cannot be create"));
       return 0;  	  
     }
   sciSetEntityType (pfiguremdl, SCI_FIGURE);
   if ((pfiguremdl->pfeatures = MALLOC ((sizeof (sciFigure)))) == NULL)
     {
       FREE(pfiguremdl);
-      strcpy(error_message,"Default figure cannot be create");
+      strcpy(error_message,_("Default figure cannot be create"));
       return 0;
     }
   
@@ -72,7 +73,7 @@ int C2F(graphicsmodels) (void)
     {
       FREE(pfiguremdl->pfeatures);
       FREE(pfiguremdl);
-      strcpy(error_message,"Default figure cannot be create");
+      strcpy(error_message,_("Default figure cannot be create"));
       return 0;
     }
   newhd1->pnext = (sciHandleTab *) NULL;
@@ -85,7 +86,7 @@ int C2F(graphicsmodels) (void)
       sciDelHandle (pfiguremdl);
       FREE(pfiguremdl->pfeatures);
       FREE(pfiguremdl);
-      strcpy(error_message,"Default figure cannot be create");
+      strcpy(error_message,_("Default figure cannot be create"));
       return 0;
     }
   
@@ -100,7 +101,7 @@ int C2F(graphicsmodels) (void)
     sciDelHandle (pfiguremdl);
     FREE(pfiguremdl->pfeatures);
     FREE(pfiguremdl);
-    strcpy(error_message,"Default figure cannot be create");
+    strcpy(error_message,_("Default figure cannot be create"));
     return 0;
   }
 
@@ -110,21 +111,21 @@ int C2F(graphicsmodels) (void)
   
   if ((paxesmdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
-      strcpy(error_message,"Default axes cannot be create");
+      strcpy(error_message,_("Default axes cannot be create"));
       return 0;
     }
   sciSetEntityType (paxesmdl, SCI_SUBWIN);
   if ((paxesmdl->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
     {
       FREE(paxesmdl);
-      strcpy(error_message,"Default axes cannot be create");
+      strcpy(error_message,_("Default axes cannot be create"));
       return 0;
     }
   if ((newhd2 = MALLOC ((sizeof (sciHandleTab)))) == NULL)
     {
       FREE(paxesmdl->pfeatures);
       FREE(paxesmdl);
-      strcpy(error_message,"Default axes cannot be create");
+      strcpy(error_message,_("Default axes cannot be create"));
       return 0;
     }
   newhd2->pnext = (sciHandleTab *) NULL;
@@ -137,7 +138,7 @@ int C2F(graphicsmodels) (void)
       sciDelHandle (paxesmdl);
       FREE(paxesmdl->pfeatures);
       FREE(paxesmdl);
-      strcpy(error_message,"Default axes cannot be create");
+      strcpy(error_message,_("Default axes cannot be create"));
       return 0;
     }
   
@@ -153,7 +154,7 @@ int C2F(graphicsmodels) (void)
     sciDelHandle (paxesmdl);
     FREE(paxesmdl->pfeatures);
     FREE(paxesmdl);          
-    strcpy(error_message,"Default axes cannot be create");
+    strcpy(error_message,_("Default axes cannot be create"));
     return 0;
   }
 
@@ -513,8 +514,9 @@ int InitFigureModel( void )
   colorMap = MALLOC( m * 3 * sizeof(double) ) ;
   if ( colorMap == NULL )
   {
-    strcpy(error_message,"Cannot init color map, memory full.\n");
-    return -1 ;
+	  char *errMsg=sprintf(_("%s: No more memory.\n"),"InitFigureModel");
+	  strcpy(error_message,errMsg);
+	  return -1 ;
   }
 
   for ( i = 0 ; i < m ; i++ )
@@ -853,7 +855,7 @@ sciInitGraphicMode (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("This object haven't any graphic mode\n");
+      sciprint (_("This object has not any graphic mode\n"));
       return -1;
       break;
     }
@@ -996,7 +998,7 @@ void sciSetDefaultColorMap(sciPointObj * pFigure)
   double * colorMap = MALLOC( 3 * numColor * sizeof(double) );
   if (colorMap == NULL)
   {
-    sciprint("Unable to allocate colormap, memory full.\n");
+	  sciprint(_("%s: No more memory.\n"),"sciSetDefaultColorMap");
   }
   sciGetColormap(getFigureModel(), colorMap);
   sciSetColormap(pFigure, colorMap, numColor, 3);

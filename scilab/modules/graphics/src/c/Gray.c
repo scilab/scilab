@@ -17,18 +17,13 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "Axes.h"
-#include "Gray.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "GrayPlot.h"
 #include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
-
-
-
-
-
+#include "localization.h"
 
 extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
@@ -242,7 +237,7 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
       CreatePrettyGradsFromNax(psubwin,aaint);
     }
     else{
-      sciprint("Warning : Nax does not work with logarithmic scaling\n");}
+      sciprint(_("Warning : Nax does not work with logarithmic scaling\n"));}
   }
 
 

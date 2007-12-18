@@ -43,6 +43,7 @@
 #include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
+#include "localization.h"
 
 #include "../../../tclsci/includes/GedManagement.h"
 
@@ -252,7 +253,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
   {
     if ( sciGetLogExponent( *xmin, *xmax, xmin, xmax ) != 0 )
     {
-      sciprint("Warning: Can't use Log on X-axis xmin is negative.\n");
+      sciprint(_("Warning: Can't use Log on X-axis xmin is negative.\n"));
     }
   }
 
@@ -263,7 +264,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
   {
     if ( sciGetLogExponent( *ymin, *ymax, ymin, ymax ) != 0 )
     {
-      sciprint("Warning: Can't use Log on Y-axis ymin is negative.\n");
+      sciprint(_("Warning: Can't use Log on Y-axis ymin is negative.\n"));
     }
   }
 
@@ -274,7 +275,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
   {
     if ( sciGetLogExponent( *zmin, *zmax, zmin, zmax ) != 0 )
     {
-      sciprint("Warning: Can't use Log on Z-axis zmin is negative.\n");
+      sciprint(_("Warning: Can't use Log on Z-axis zmin is negative.\n"));
     }
   }
 
@@ -909,7 +910,7 @@ void sciAxesVerticesIndices( integer insideU[4],
   
   if (ind < 0 || ind > 8) 
   {
-    sciprint("xind out of bounds");
+    sciprint(_("xind out of bounds"));
     xind[0]=0;
   }
   Nextind(xind[0],&ind2,&ind3);

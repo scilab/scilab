@@ -2636,7 +2636,7 @@ sciAddLabelMenu (sciPointObj * pthis, char plabel[], int n)
     return -1;
   if ((pscilabelmenutmp->plabel = CALLOC (n+1, sizeof (char))) == NULL)
     {
-      sciprint(_("\nNo more place to allocates text string, try a shorter string\n"));
+      sciprint(_("No more place to allocate text string, try a shorter string\n"));
       return -1;
     }
   strncpy (pscilabelmenutmp->plabel, plabel, n);

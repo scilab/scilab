@@ -486,8 +486,9 @@ void Objplot3d ( char    * fname ,
   {
     /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
     loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
-    if ( loc == NULL)    
-      sciprint("Objplot3d : No more Place to store all the labels\n");
+    if ( loc == NULL) {
+		sciprint(_("%s: No more memory.\n"),"Objplot3d");
+	}
   
     strcpy(loc,legend);
   
@@ -669,7 +670,7 @@ void Objplot3d ( char    * fname ,
       int monotony = checkMonotony( x, dimvectx ) ;
       if ( monotony == 0 )
       {
-        sciprint("Objplot3d: x vector is not monotonous \t\n.");
+        sciprint(_("%s: x vector is not monotonous.\n"),"Objplot3d");
         return;
       }
 
@@ -700,7 +701,7 @@ void Objplot3d ( char    * fname ,
       int monotony = checkMonotony( y, dimvecty ) ;
       if ( monotony == 0 )
       {
-        sciprint("Objplot3d: x vector is not monotonous \t\n.");
+        sciprint(_("%s: x vector is not monotonous.\n"),"Objplot3d");
         return ;
       }
 

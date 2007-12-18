@@ -17,6 +17,7 @@
 #include "sciCall.h"
 #include "sciprint.h"
 #include "GraphicSynchronizerInterface.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_plot2d1_1 (char *fname,unsigned long fname_len)
@@ -109,7 +110,7 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   {
     if ( FirstOpt() <= Rhs)
     {
-      sciprint("%s: misplaced optional argument, first must be at position %d\n",fname,3+iskip);
+      sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),fname,3+iskip);
       Error(999); 
       return(0);
     }
@@ -128,7 +129,7 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   {
     if ( FirstOpt() < 3+iskip) 
     {
-      sciprint("%s: misplaced optional argument, first must be at position %d\n",
+      sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),
         fname,3+iskip);
       Error(999); 
       return(0);

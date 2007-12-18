@@ -18,7 +18,7 @@
 #include "sciprint.h"
 #include "ObjectSelection.h"
 #include "msgs.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1);
 /*--------------------------------------------------------------------------*/
@@ -160,7 +160,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else
     {
-      sciprint("Unhandled propery.\n");
+      sciprint(_("Unhandled property.\n"));
     }
     if (x2 > 0) {
       CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);

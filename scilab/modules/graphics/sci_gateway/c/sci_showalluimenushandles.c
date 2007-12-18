@@ -9,7 +9,7 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "HandleManagement.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_showalluimenushandles( char *fname, unsigned long fname_len )
 {
@@ -26,7 +26,7 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
 
     if (sciGetEntityType (pParent) != SCI_FIGURE ) 
     {
-      Scierror(999,"Invalid parameter. must be a Figure handle");
+      Scierror(999,_("%s: Wrong type for input argument: Figure handle expected.\n"),fname);
       return 0;
     }
     else
@@ -36,7 +36,7 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
   }
   else
   {
-    Scierror(999,"Invalid parameter. must be a Figure handle");
+	  Scierror(999,_("%s: Wrong type for input argument: Figure handle expected.\n"),fname);
   return 0;
   }
   LhsVar(1)=0;

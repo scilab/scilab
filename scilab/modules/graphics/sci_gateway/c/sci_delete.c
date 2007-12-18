@@ -17,6 +17,7 @@
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "DrawingBridge.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
@@ -48,7 +49,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     }
     else
     {
-      Scierror(999,"%s :Incorrect argument\n",fname);
+      Scierror(999,_("%s: Wrong first input argument: 'all' expected.\n"),fname);
       return 0;
     }
     break;
@@ -61,7 +62,7 @@ int sci_delete(char *fname,unsigned long fname_len)
   pobj = sciGetPointerFromHandle(hdl);
   if (pobj == NULL)
   {
-    Scierror(999,"%s :the handle is not valid\n",fname);
+    Scierror(999,_("%s: The handle is not valid.\n"),fname);
     return 0;
   }
   

@@ -15,7 +15,7 @@
 #include "SetProperty.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xrects( char *fname, unsigned long fname_len )
 {
@@ -29,7 +29,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 
   if (m1 != 4) {
-    Scierror(999,"%s: rects has a wrong size (4,n) expected\n",fname);
+    Scierror(999,_("%s: Wrong size for first input argument: (4,n) expected.\n"),fname);
     return 0;
   }
 
@@ -39,7 +39,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     CheckVector(2,m2,n2);
     if (m2 * n2 != n1) {
-      Scierror(999,"%s: first and second arguments have incompatible length\n",fname);
+      Scierror(999,_("%s: Incompatible length for first and second input arguments.\n"),fname);
       return 0;
     }
   }

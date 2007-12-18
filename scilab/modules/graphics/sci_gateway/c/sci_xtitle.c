@@ -20,6 +20,7 @@
 #include "MALLOC.h"
 #include "CurrentObjectsManagement.h"
 #include "freeArrayOfString.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )
 {
@@ -71,7 +72,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     if ( opts[0].m * opts[0].n != 1 )
     {       
       /* check size */
-      Scierror( 999, "The boxed parameter must be a scalar", fname ) ;
+      Scierror( 999, _("The boxed parameter must be a scalar"), fname ) ;
       return 1 ;
     } 
     nbLabels-- ; /* it is not a label text */

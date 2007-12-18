@@ -11,6 +11,7 @@
 #include "stack-c.h"
 #include "sci_demo.h"
 #include "sciprint.h"
+#include "localization.h"
 
 int sci_demo( char * fname, char * code, int * flagx )
 {
@@ -27,7 +28,7 @@ int sci_demo( char * fname, char * code, int * flagx )
 	/* execute the Scilab execstr function */
 	if ( *flagx == 1){
 		sciprint("\n");
-		sciprint("Demo of %s()\n",fname);
+		sciprint(_("Demo of %s()\n"),fname);
 		sciprint("========================================");
 		sciprint("\n");
 		sciprint("%s\n",code);

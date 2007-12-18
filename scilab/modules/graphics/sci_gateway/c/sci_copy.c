@@ -14,6 +14,7 @@
 #include "GetProperty.h"
 #include "CloneObjects.h"
 #include "DrawingBridge.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_copy(char *fname,unsigned long fname_len)
@@ -40,7 +41,7 @@ int sci_copy(char *fname,unsigned long fname_len)
     hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle*/
     pobj = sciGetPointerFromHandle(hdl);
     if (pobj == NULL) {
-      Scierror(999,"%s :the handle is not or no more valid\n",fname);
+      Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
       return 0;
     }
     typ=sciGetEntityType(pobj);
@@ -55,7 +56,7 @@ int sci_copy(char *fname,unsigned long fname_len)
     hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle*/
     pobj = sciGetPointerFromHandle(hdl);
     if (pobj == NULL) {
-      Scierror(999,"%s :the handle is not or no more valid\n",fname);
+      Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
       return 0;
     }
     typ=sciGetEntityType(pobj);
@@ -67,7 +68,7 @@ int sci_copy(char *fname,unsigned long fname_len)
     hdlparent = (unsigned long)*hstk(l2); /* on recupere le pointeur d'objet par le handle*/
     psubwinparenttarget = sciGetPointerFromHandle(hdlparent);
     if ( psubwinparenttarget == NULL) {
-      Scierror(999,"%s :the handle is not or no more valid\n",fname);
+      Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
       return 0;
     }
   }

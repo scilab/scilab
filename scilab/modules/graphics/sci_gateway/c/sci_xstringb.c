@@ -17,6 +17,7 @@
 #include "MALLOC.h"
 #include "sciCall.h"
 #include "freeArrayOfString.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xstringb(char *fname,unsigned long fname_len)
 {
@@ -56,7 +57,7 @@ int sci_xstringb(char *fname,unsigned long fname_len)
     } 
     else
     {
-      Scierror(999,"%s: optional argument has a wrong value 'fill' expected\n",
+      Scierror(999,_("%s: Wrong optional input argument, 'fill' expected.\n"),
         fname);
       return 0;
     }

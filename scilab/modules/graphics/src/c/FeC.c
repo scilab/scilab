@@ -26,7 +26,9 @@ for entities handling
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
+#include "localization.h"
 
+/* @TODO : remove this stuff */
 
 extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
@@ -163,7 +165,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
       CreatePrettyGradsFromNax(psubwin,aaint);
     }
     else{
-      sciprint("Warning : Nax does not work with logarithmic scaling\n");}
+      sciprint(_("Warning : Nax does not work with logarithmic scaling\n"));
+	}
   }
 
   if(bounds_changed || axes_properties_changed )

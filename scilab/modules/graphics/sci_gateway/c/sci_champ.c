@@ -16,6 +16,8 @@
 #include "Champ.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "localization.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_champ (char *fname,unsigned long fname_len)
 {
@@ -58,13 +60,13 @@ int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
   } 
   else if ( Rhs < 4 ) 
   {
-    Scierror(999,"%s: expecting at least 4 arguments\n",fname);
+    Scierror(999,_("%s: Wrong number of input arguments: at least 4 expected.\n"),fname);
     return 0;
   }
   if ( get_optionals(fname,opts) == 0) { return 0 ; }
   if ( FirstOpt() < 5 )
   {
-    sciprint("%s: misplaced optional argument, first must be at position %d\n",
+    sciprint(_("%s: Misplaced optional argument, first must be at position %d\n"),
       fname,5);
     Error(999); 
     return(0);
@@ -95,8 +97,6 @@ int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
     strf = strfl;
     if ( !isDefRect( rect ) ) {strf[1]='5';} 
   }
-
-
 
   (*func)(stk(l1 ),stk(l2 ),stk(l3 ),stk(l4 ),&m3,&n3,strf,rect, arfact, 4L);
   LhsVar(1)=0;

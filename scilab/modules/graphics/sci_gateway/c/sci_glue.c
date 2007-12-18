@@ -13,6 +13,7 @@
 #include "GetProperty.h"
 #include "../../elementary_functions/includes/elementary_functions.h"
 #include "CurrentObjectsManagement.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_glue( char * fname, unsigned long fname_len )
@@ -36,7 +37,7 @@ int sci_glue( char * fname, unsigned long fname_len )
     C2F(dsort)(stk(l2),&n,istk(lind));
     for (i = 1; i < n;i++) {
       if (*stk(l2+i) == *stk(l2+i-1)) {
-        Scierror(999,"%s :each handle should not appear twice\n",fname);
+        Scierror(999,_("%s: Each handle should not appear twice.\n"),fname);
         return 0;
       }
     }
@@ -48,7 +49,7 @@ int sci_glue( char * fname, unsigned long fname_len )
     handelsvalue[i] = (unsigned long) (hstk(l1))[i];
     pobj = sciGetPointerFromHandle(handelsvalue[i]);
     if (pobj == NULL) {
-      Scierror(999,"%s :the handle is not or no more valid\n",fname);
+      Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
       return 0;
     }
     parenthdl = (unsigned long ) sciGetHandle(sciGetParent (pobj));
@@ -56,18 +57,18 @@ int sci_glue( char * fname, unsigned long fname_len )
       hdl=parenthdl;
     if  (parenthdl != hdl)
     {
-      Scierror(999,"%s: Objects must have the same parent\n",fname);
+      Scierror(999,_("%s: Objects must have the same parent.\n"),fname);
       return 0;
     }
 
   }
   ret = CheckForCompound (handelsvalue, n);
   if (ret>0) {
-    Scierror(999,"%s: handle %d cannot be glued (invalid parent)\n",fname,ret);
+    Scierror(999,_("%s: Handle %d cannot be glued (invalid parent).\n"),fname,ret);
     return 0;
   }
   if (ret<0) {
-    Scierror(999,"%s: handle %d cannot be glued (invalid type)\n",fname,-ret);
+    Scierror(999,_("%s: Handle %d cannot be glued (invalid type).\n"),fname,-ret);
     return 0;
   }
   sciSetCurrentObj ((sciPointObj *)ConstructCompound (handelsvalue, n));

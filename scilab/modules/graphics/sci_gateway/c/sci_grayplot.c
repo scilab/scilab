@@ -15,6 +15,8 @@
 #include "DefaultCommandArg.h"
 #include "sciCall.h"
 #include "sciprint.h"
+#include "localization.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_grayplot( char *fname, unsigned long fname_len )
 {
@@ -45,7 +47,7 @@ int sci_grayplot( char *fname, unsigned long fname_len )
 
   if ( get_optionals(fname,opts) == 0) { return 0 ; }
   if ( FirstOpt() < 4) {
-    sciprint("%s: misplaced optional argument, first must be at position %d\n",
+    sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),
       fname,4);
     Error(999); 
     return(0);

@@ -14,7 +14,7 @@
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xrect( char *fname, unsigned long fname_len )
 {
@@ -90,7 +90,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
     }
     break;
   default :
-    Scierror(999,"%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\n",fname,Rhs);
+    Scierror(999,_("%s: Wrong number of input argument(s): 1 or 4 expected.\n"),fname);
     break ;
   }
 

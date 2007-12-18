@@ -11,6 +11,7 @@
 #include "GetProperty.h"
 #include "DefaultCommandArg.h"
 #include "CurrentObjectsManagement.h"
+#include "localization.h"
 
 static char logFlagsCpy[3] ; /* real logflags may use either this or the stack */
 
@@ -31,7 +32,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
 	    GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
 	    if (m * n < n1)
       {
-	      Scierror(999,"%s: style is too small (%d < %d)\n",fname,m*n,n1);
+	      Scierror(999,_("%s: Wrong size for input argument: %d < %d expected.\n"),fname,m*n,n1);
 	      return 0;
 	    }
 	    if ( n1 == 1 && m * n == 1 )
@@ -64,7 +65,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
     GetRhsVar(kopt,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
     if (m * n < n1)
     {
-      Scierror(999,"%s: style is too small (%d < %d)\n",fname,m*n,n1);
+		Scierror(999,_("%s: Wrong size for input argument: %d < %d expected.\n"),fname,m*n,n1);
       return 0;
     }
     if (n1==1&&m*n==1)
@@ -98,55 +99,55 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
 /*--------------------------------------------------------------------------*/
 int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
 {
-  int m,n,l,first_opt=FirstOpt(),kopt,i;
+	int m,n,l,first_opt=FirstOpt(),kopt,i;
 
-  if (pos < first_opt) 
-    { 
-      if (VarType(pos)) {
-	GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
-	if (m * n != 4) { 
-	  Scierror(999,"%s: rect has wrong size (%d), 4 expected\n",fname,m*n); 
-	  return 0;
-	}
-	*rect = stk(l);
+	if (pos < first_opt) 
+		{ 
+			if (VarType(pos)) {
+				GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
+				if (m * n != 4) { 
+					Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,4); 
+					return 0;
+				}
+				*rect = stk(l);
 	
-	for(i=0;i<4;i++)
-	  if(finite((*rect)[i]) == 0){
-	    Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected\n",fname,m*n); 
-	    return 0;
-	  }
-      }
-      else 
-	{
-	  /** global value can be modified  **/
-    double zeros[4] = { 0.0, 0.0, 0.0, 0.0 } ;
-    setDefRect( zeros ) ;
-	  *rect = getDefRect() ;
+				for(i=0;i<4;i++)
+					if(finite((*rect)[i]) == 0){
+						Scierror(999,"%s: Wrong values (Nan or Inf) for input argument: %d finite values expected\n",fname,4); 
+						return 0;
+					}
+			}
+			else 
+				{
+					/** global value can be modified  **/
+					double zeros[4] = { 0.0, 0.0, 0.0, 0.0 } ;
+					setDefRect( zeros ) ;
+					*rect = getDefRect() ;
+				}
+		}
+	else if ((kopt=FindOpt("rect",opts))) {/* named argument: rect=value */
+		GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
+		if (m * n != 4) { 
+			Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,4); 
+			return 0;
+		}
+		*rect = stk(l);
+    
+		for(i=0;i<4;i++)
+			if(finite((*rect)[i]) == 0){
+				Scierror(999,"%s: Wrong values (Nan or Inf) for input argument: %d finite values expected\n",fname,4); 
+				return 0;
+			}
 	}
-    }
-  else if ((kopt=FindOpt("rect",opts))) {/* named argument: rect=value */
-    GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
-    if (m * n != 4) { 
-      Scierror(999,"%s: rect has wrong size (%d), 4 expected\n",fname,m*n); 
-      return 0;
-    }
-    *rect = stk(l);
+	else
+		{
+			/** global value can be modified  **/
+			double zeros[4] = { 0.0, 0.0, 0.0, 0.0 } ;
+			setDefRect( zeros ) ;
+			*rect = getDefRect() ;
+		}
     
-    for(i=0;i<4;i++)
-      if(finite((*rect)[i]) == 0){
-	Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected\n",fname,m*n); 
-	return 0;
-      }
-  }
-  else
-    {
-      /** global value can be modified  **/
-      double zeros[4] = { 0.0, 0.0, 0.0, 0.0 } ;
-      setDefRect( zeros ) ;
-	    *rect = getDefRect() ;
-    }
-    
-  return 1;
+	return 1;
 }
 /*--------------------------------------------------------------------------*/
 int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
@@ -160,7 +161,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
 	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	    if ( m * n != 3 )
       { 
-	      Scierror(999,"%s: strf has wrong size (%d), 3 expected\n",fname,m*n); 
+		  Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,3);
 	      return 0;
 	    }
 	  *strf = cstk(l); 
@@ -177,8 +178,8 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
     GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     if (m * n != 3)
     { 
-      Scierror(999,"%s: strf has wrong size (%d), 3 expected\n",fname,m*n); 
-      return 0;
+		Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,3);
+		return 0;
     }
     *strf = cstk(l); 
   }
@@ -326,7 +327,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
       if (VarType(pos)) {
         GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 	if (m * n != 2) { 
-	  Scierror(999,"%s: zminmax has wrong size (%d), 2 expected\n",fname,m*n); 
+      Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,2);
 	  return 0;
 	}
 	*zminmax = stk(l); 
@@ -342,7 +343,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
   else if ((kopt=FindOpt("zminmax",opts))) {/* named argument: rect=value */
     GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
     if (m * n != 2) { 
-      Scierror(999,"%s: zminmax has wrong size (%d), 2 expected\n",fname,m*n); 
+      Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,2);
       return 0;
     }
     *zminmax = stk(l); 
@@ -478,7 +479,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
 	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	    if ((m * n != 2)&&(m * n != 3))
       {
-	      Scierror(999,"%s: logflag has wrong size (%d), expected 2 or 3\n",fname,m*n);
+		  Scierror(999,"%s: Wrong size for input argument: %d or %d expected\n",fname,2, 3);
 	      return 0;
 	    }
 	    if (m * n == 2)
@@ -518,7 +519,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
     GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     if ((m * n != 2)&&(m * n != 3))
     {
-      Scierror(999,"%s: logflag has wrong size (%d), expected 2 or 3\n",fname,m * n);
+	  Scierror(999,"%s: Wrong size for input argument: %d or %d expected\n",fname,2, 3);
       return 0;
     }
     if (m * n == 2)

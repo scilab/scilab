@@ -9,6 +9,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "HandleManagement.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 
@@ -36,7 +37,7 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
 
   if ( parentCol * parentRow != 1 )
   {
-    Scierror(999,"%s :Handles must be relocated under a single parent.\n",fname);
+    Scierror(999,_("%s: Handles must be relocated under a single parent.\n"),fname);
     return 0 ;
   }
 
@@ -44,7 +45,7 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
   handleArray = MALLOC( nbHandle * sizeof( unsigned long ) ) ;
   if ( handleArray == NULL )
   {
-    Scierror(999,"Memory full, aborting operation.\n",fname);
+    Scierror(999,_("%s: No more memory.\n"),fname);
     return 0 ;
   }
 

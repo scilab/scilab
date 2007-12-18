@@ -20,6 +20,8 @@
 #include "DefaultCommandArg.h"
 #include "sci_plot2d.h"
 #include "sciprint.h"
+#include "localization.h"
+
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )
 {
@@ -78,7 +80,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   {
     if ( FirstOpt() <= Rhs )
     {
-	    sciprint("%s: misplaced optional argument, first must be at position %d\n",fname,3+iskip);
+	    sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),fname,3+iskip);
 	    Error(999); 
 	    return(0);
     }
@@ -100,7 +102,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   {
     if ( FirstOpt() < 3+iskip)
     {
-      sciprint("%s: misplaced optional argument, first must be at position %d\n", fname,3+iskip);
+      sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"), fname,3+iskip);
       Error(999); 
       return(0);
     }
@@ -169,7 +171,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 
   if(n1 == -1 || n2 == -1 || m1 == -1 || m2 == -1)
   {
-    sciprint("%s: bad argument specified in input\n", fname);
+	  sciprint(_("%s: Wrong input argument.\n"), fname); /* @TODO : detail error */
     Error(999); 
     return(0);
   }
@@ -226,19 +228,19 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     /* based on Rect arg */ 
     if( rect[0] > rect[2] || rect[1] > rect[3])
     {
-      sciprint("Error:  Impossible status min > max in x or y rect data\n") ;
-      return -1 ;
+      sciprint(_("%s: Impossible status min > max in x or y rect data.\n"),fname);
+      return -1;
     }
 
     if( rect[0] <= 0. && logFlags[1] =='l') /* xmin */
     {
-      sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n") ;
+      sciprint(_("%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"),fname);
       return -1 ;
     }
 
     if( rect[1] <= 0. && logFlags[2] =='l') /* ymin */
     {
-      sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n") ;
+      sciprint(_("%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"),fname);
       return -1 ;
     }
 
@@ -273,7 +275,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     {
       if(logFlags[1] == 'l' && sciFindStPosMin(stk(l1),size_x) <= 0.0 )
       {
-        sciprint("Error: at least one x data must be strictly positive to compute the bounds and use logarithmic mode\n") ;
+        sciprint(_("%s: At least one x data must be strictly positive to compute the bounds and use logarithmic mode.\n"),fname);
         return -1 ;
       }
     }
@@ -284,7 +286,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     {
       if( logFlags[2] == 'l' && sciFindStPosMin(stk(l2),size_y) <= 0.0 )
       {
-        sciprint("Error: at least one y data must be strictly positive to compute the bounds and use logarithmic mode\n") ;
+        sciprint(_("%s: At least one y data must be strictly positive to compute the bounds and use logarithmic mode\n"),fname);
         return -1 ;
       }
     }

@@ -9,6 +9,7 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "Interaction.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_move( char * fname, unsigned long fname_len )
@@ -22,11 +23,15 @@ int sci_move( char * fname, unsigned long fname_len )
   opt = FALSE;
   if (Rhs ==3) {
     GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-    if (strcmp(cstk(l3),"alone") == 0) { opt = TRUE; }
-    else {
-      Scierror(999,"%s: invalid option\n",fname); 
-      return 0;
-    }
+    if (strcmp(cstk(l3),"alone") == 0) 
+		{ 
+			opt = TRUE; 
+		}
+    else 
+		{
+			Scierror(999,_("%s: Wrong third input argument: 'alone' expected.\n"),fname); 
+			return 0;
+		}
   }
 
   GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */    
@@ -35,7 +40,7 @@ int sci_move( char * fname, unsigned long fname_len )
   n=m2*n2;
   if (n != 2&&n !=3)
   { 
-    Scierror(999,"%s: third argument is a vector,[x y] or [x,y,z]\n",fname);
+    Scierror(999,_("%s: Wrong type for third input argument: vector [x y] or [x,y,z] expected.\n"),fname);
     return 0;
   }
   Objmove(&hdl,stk(l2),n,opt);

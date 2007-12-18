@@ -12,6 +12,7 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_addcb(char *fname,unsigned long fname_len)
@@ -26,21 +27,21 @@ int sci_addcb(char *fname,unsigned long fname_len)
   /*  set or create a graphic window*/
   switch(VarType(1)) 
   {
-  case 1: /* first is a scalar argument so it's a legend(hdl,"str1",...)*/
+  case sci_matrix: /* first is a scalar argument so it's a legend(hdl,"str1",...)*/
     CheckRhs(3,3);
     GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument*/
-    hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle*/
+    hdl = (unsigned long)*hstk(l1); /* Retrieve the object pointer through the handle */
     GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1); /* Gets the command name  */
     GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2); /* Gets the mouse event */
     break;
-  case 10:/* first is a string argument so it's a sciset("str1",....)*/
+  case sci_strings:/* first is a string argument so it's a sciset("str1",....)*/
     hdl = (unsigned long ) sciGetHandle(sciGetCurrentSubWin()); /* Gets the figure handle value if it ones (the phather)*/
     CheckRhs(2,2);
     GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1); /* Gets the command name    */
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2); /* Gets the mouse event */
     break;
   default: 
-    Scierror(999,"%s: Pad parameters\n",fname);
+    Scierror(999,_("%s: Wrong input arguments.\n"),fname);
     return 0;
     break;
 
@@ -48,7 +49,7 @@ int sci_addcb(char *fname,unsigned long fname_len)
   if ((pobj = sciGetPointerFromHandle(hdl)) != NULL )
     sciAddCallback((sciPointObj *)pobj, cstk(l1),m1*n1,*istk(l2));
   else {
-    Scierror(999,"%s :the handle is not or no more valid\n",fname);
+    Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
     return 0;
   }
   LhsVar(1)=0;

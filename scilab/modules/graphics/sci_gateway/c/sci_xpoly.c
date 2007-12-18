@@ -17,7 +17,7 @@
 #include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )
 {
@@ -44,7 +44,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
       strcpy(C2F(cha1).buf,"xmarks"); 
       mark=0; /* NG */
     } else {
-      Scierror(999,"%s:  dtype must be \"lines\" or \"marks\"\n",fname);
+      Scierror(999,_("%s: Wrong third input argument: \"lines\" or \"marks\" expected.\n"),fname);
       return 0;
     } 
   }

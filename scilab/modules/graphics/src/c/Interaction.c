@@ -23,6 +23,7 @@
 #include "DrawObjects.h"
 #include "sciprint.h"
 #include "MALLOC.h" /* MALLOC */
+#include "localization.h"
 
 /**sciAddCallback
  * exec the callback associated with pthis
@@ -38,7 +39,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_SUBWIN:
       if ((pSUBWIN_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint("No more Memory allocation !\n");
+	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -51,7 +52,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_ARC:
       if ((pARC_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint("No more Memory allocation !\n");
+	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -65,7 +66,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_RECTANGLE:
       if ((pRECTANGLE_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint("No more Memory allocation !\n");
+	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -79,7 +80,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_SEGS:  
       if ((pSEGS_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint("No more Memory allocation !\n");
+	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -93,7 +94,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_FEC:  
       if ((pFEC_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint("No more Memory allocation !\n");
+	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -107,7 +108,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_GRAYPLOT: 
       if ((pGRAYPLOT_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint("No more Memory allocation !\n");
+	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -121,7 +122,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_POLYLINE:
       if ((pPOLYLINE_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
-	  sciprint("No more Memory allocation !\n");
+	  sciprint(_("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
       else 
@@ -162,7 +163,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_LABEL: /* F.Leray 28.05.04 */
 	
     default:
-      sciprint ("\n No Callback is associated with this Entity");
+      sciprint(_("No Callback is associated with this Entity.\n"));
       return -1;
       break;
     }
@@ -228,7 +229,7 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\nNo Callback is associetad with this Entity");
+      sciprint(_("No Callback is associated with this Entity.\n"));
       return (char *)NULL;
       break;
     }
@@ -286,7 +287,7 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\nNo Callback is associated with this Entity");
+      sciprint (_("No Callback is associated with this Entity.\n"));
       return 100;
       break;
     }
@@ -344,7 +345,7 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\nNo Callback is associated with this Entity");
+      sciprint (_("No Callback is associated with this Entity.\n"));
       return 100;
       break;
     }
@@ -405,7 +406,7 @@ sciGetCallbackLen (sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\nNo Callback is associated with this Entity");
+      sciprint (_("No Callback is associated with this Entity.\n"));
       return -1;
       break;
     }
@@ -485,7 +486,7 @@ sciDelCallback (sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\nNo Callback is associated with this Entity");
+      sciprint(_("No Callback is associated with this Entity.\n"));
       return -1;
       break;
     }
@@ -522,7 +523,7 @@ sciExecCallback (sciPointObj * pthis)
 	  LhsVar(1) = 0; 
 	  return 0;
 	}
-      else sciprint ("\nNo Callback is associated with this Entity");
+      else sciprint(_("No Callback is associated with this Entity\n."));
       return 0;
       break;
     case SCI_TEXT:
@@ -542,7 +543,7 @@ sciExecCallback (sciPointObj * pthis)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      sciprint ("\nNo Callback is associated with this Entity");
+      sciprint (_("No Callback is associated with this Entity.\n"));
       return -1;
       break;
     }
@@ -711,7 +712,7 @@ int Objmove (long *hdl, double *d, int m,BOOL opt)
     case SCI_LEGEND:
     case SCI_UIMENU:
     default:
-      sciprint ("This object can not be moved\n");
+      sciprint(_("This object can not be moved.\n"));
       return -1;
       break;
     }    

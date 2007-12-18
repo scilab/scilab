@@ -10,7 +10,7 @@
 #include "WindowList.h"
 #include "sciprint.h"
 #include "returnProperty.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_winsid(char *fname,unsigned long fname_len)
 {
@@ -28,7 +28,7 @@ int sci_winsid(char *fname,unsigned long fname_len)
     int * ids = MALLOC(nbFigure * sizeof(int));
     if (ids == NULL)
     {
-      sciprint("Error in function winsid, unable to perform operations, memory full.\n");
+      sciprint(_("%s: No more memory.\n"),fname);
       return 0;
     }
     sciGetFiguresId(ids);

@@ -38,7 +38,7 @@
 #include "../../../tclsci/includes/GedManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
-
+#include "localization.h"
 
 /*----------------------------------------------------------------------------*/
 
@@ -180,7 +180,7 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
       sciDestroyScreen(pthis) ;
       return 0 ;
     default:
-      sciprint ("Entity with type %d cannot be destroyed\n",sciGetEntityType (pthis));
+      sciprint (_("Entity with type %d cannot be destroyed\n"),sciGetEntityType (pthis));
       return -1;
       break;
     }
@@ -240,7 +240,7 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_SBV:
     case SCI_STATUSB:
     default:
-      sciprint ("This object cannot be deleted\n");
+      sciprint(_("This object cannot be deleted.\n"));
       return -1;
       break;
     }

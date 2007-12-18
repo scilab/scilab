@@ -23,7 +23,7 @@
 #include "Format.h"
 #include "ObjectSelection.h"
 #include "msgs.h"
-
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1) ;
 /*--------------------------------------------------------------------------*/
@@ -65,7 +65,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   /* Bloque la commande xset('window') sans numero de fenetre */
   if (Rhs == 1 && (strcmp(cstk(l1),"window") == 0) )
   {
-    sciprint("xset(\"window\",window-number): window-number must be set\n");
+    sciprint(_("%s : xset(\"window\",window-number): window-number must be set\n"),fname);
     LhsVar(1)=0; return 0;
   }
 
@@ -134,7 +134,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   {
     if (*stk(lr) == 1)
     {
-      sciprint("Old graphic mode is no longer available. Please refer to the set help page.\n") ;
+      sciprint(_("Old graphic mode is no longer available. Please refer to the set help page.\n"));
     }
     else
     {
@@ -172,7 +172,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   /* NG beg */
   if ( strcmp(cstk(l1),"window") == 0 )
     if (sciSwitchWindow(x[0]) != 0){
-      Scierror(999,"%s: It was not possible to create the requested figure",fname);
+      Scierror(999,_("%s: It was not possible to create the requested figure"),fname);
     }
 
     if ( strcmp(cstk(l1),"wshow") != 0 )
@@ -309,7 +309,7 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
   }
   else 
   {
-    sciprint("xset(arg,<string>): Unrecognized arg: %s\n",str);
+    sciprint(_("xset(arg,<string>): Unrecognized arg: %s\n"),str);
   }
   return 0;
 }
