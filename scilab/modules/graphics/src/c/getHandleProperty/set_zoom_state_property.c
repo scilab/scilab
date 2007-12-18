@@ -51,7 +51,7 @@ int set_zoom_state_property( sciPointObj * pobj, int stackPointer, int valueType
   }
   else
   {
-    sciprint("Value must be 'on/off'.\n") ;
+    sciprint("Value must be 'on' or 'off'.\n") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

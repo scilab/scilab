@@ -39,7 +39,7 @@ int set_auto_dimensionning_property( sciPointObj * pobj, int stackPointer, int v
   }
   else
   {
-    sciprint("Value must be 'on/off'.\n");
+    sciprint(_("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_auto_dimensionning_property","on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

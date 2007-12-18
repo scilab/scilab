@@ -42,7 +42,7 @@ int set_surface_mode_property( sciPointObj * pobj, int stackPointer, int valueTy
   }
   else
   {
-    sciprint("Value must be 'on/off'.\n") ;
+    sciprint("Value must be 'on' or 'off'.\n") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

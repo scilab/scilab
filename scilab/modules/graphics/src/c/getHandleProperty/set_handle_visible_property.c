@@ -40,7 +40,7 @@ int set_handle_visible_property( sciPointObj * pobj, int stackPointer, int value
   }
   else
   {
-    sciprint("Value must be 'on' or 'off'.\n");
+    sciprint(_("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_handle_visible_property","on","off");
     return SET_PROPERTY_ERROR ;
   }
 

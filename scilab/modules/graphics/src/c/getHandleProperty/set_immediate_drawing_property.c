@@ -42,7 +42,7 @@ int set_immediate_drawing_property( sciPointObj * pobj, int stackPointer, int va
   }
   else
   {
-    sciprint("Nothing to do (value must be 'on/off')") ;
+    sciprint("Nothing to do (value must be 'on' or 'off')") ;
     return SET_PROPERTY_ERROR ;
   }
   

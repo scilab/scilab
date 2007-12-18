@@ -34,7 +34,7 @@ int set_auto_scale_property( sciPointObj * pobj, int stackPointer, int valueType
   }
   else
   {
-    sciprint("Value must be 'on/off'.\n");
+    sciprint(_("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_auto_scale_property","on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

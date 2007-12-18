@@ -39,7 +39,7 @@ int set_auto_rotation_property( sciPointObj * pobj, int stackPointer, int valueT
   }
   else
   {
-    sciprint("Nothing to do (value must be 'on/off').\n") ;
+    sciprint("Nothing to do (value must be 'on' or 'off').\n") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

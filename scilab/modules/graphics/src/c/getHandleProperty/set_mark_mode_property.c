@@ -32,7 +32,7 @@ int set_mark_mode_property( sciPointObj * pobj, int stackPointer, int valueType,
   }
   else
   {
-    sciprint("Value must be 'on/off'.\n") ;
+    sciprint("Value must be 'on' or 'off'.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 }

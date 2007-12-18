@@ -32,7 +32,7 @@ int set_pixmap_property( sciPointObj * pobj, int stackPointer, int valueType, in
   }
   else
   {
-    sciprint("Nothing to do (value must be 'on/off').\n") ;
+    sciprint("Nothing to do (value must be 'on' or 'off').\n") ;
     return -1 ;
   }
   return 0 ;
