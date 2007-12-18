@@ -17,7 +17,7 @@ int get_log_flags_property( sciPointObj * pobj )
   char logFlagsString[4];
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint( "log_flag property undefined for this object\n." ) ;
+    sciprint("log_flag property undefined for this object\n.") ;
     return -1 ;
   }
 

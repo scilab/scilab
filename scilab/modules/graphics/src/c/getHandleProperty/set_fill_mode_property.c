@@ -31,7 +31,7 @@ int set_fill_mode_property( sciPointObj * pobj, int stackPointer, int valueType,
   }
   else
   {
-    sciprint( "Nothing to do (value must be 'on/off').\n" ) ;
+    sciprint("Nothing to do (value must be 'on/off').\n") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

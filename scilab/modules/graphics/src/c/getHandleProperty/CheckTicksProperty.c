@@ -32,7 +32,7 @@ AssignedList * createTlistForTicks( void )
     /* labels should also be an empty matrix */
     if ( !isListCurrentElementEmptyMatrix( tlist ) )
     {
-      sciprint( "Ticks location and label vectors must have the same size.\n" ) ;
+      sciprint("Ticks location and label vectors must have the same size.\n") ;
       return NULL ;
     }  
   }
@@ -48,7 +48,7 @@ AssignedList * createTlistForTicks( void )
 
     if ( nbRowLoc != nbRowLab || nbColLoc != nbColLab )
     {
-      sciprint( "Ticks location and label vectors must have the same size.\n" ) ;
+      sciprint("Ticks location and label vectors must have the same size.\n") ;
       return NULL ;
     }
   }

@@ -25,7 +25,7 @@ int get_position_property( sciPointObj * pobj )
     sciGetTextPos( pobj, position ) ;
     return sciReturnRowVector( position, 2 ) ;
   }
-  sciprint( "position does not exist for this handle.\n" ) ;
+  sciprint("position does not exist for this handle.\n") ;
   return -1;
 }
 /*------------------------------------------------------------------------*/

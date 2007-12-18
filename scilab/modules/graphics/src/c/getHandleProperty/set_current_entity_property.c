@@ -28,7 +28,7 @@ int set_current_entity_property( sciPointObj * pobj, int stackPointer, int value
 
   if ( curEntity == NULL )
   {
-    sciprint( "Object is not valid.\n" ) ;
+    sciprint("Object is not valid.\n") ;
     return SET_PROPERTY_ERROR ;
   }
   sciSetCurrentObj( curEntity ) ;

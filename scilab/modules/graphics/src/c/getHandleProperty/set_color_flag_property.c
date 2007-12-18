@@ -55,7 +55,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
 
     if ( flagcolor < 0 || flagcolor > 4 )
     {
-      sciprint( "Second argument must be 0 1 2 3 or 4.\n" ) ;
+      sciprint("Second argument must be 0 1 2 3 or 4.\n") ;
       return -1 ;
     }
 
@@ -85,7 +85,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
       {
         if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL)
         {
-          sciprint( "Unable to create color vector, memory full.\n" ) ;
+          sciprint("Unable to create color vector, memory full.\n") ;
           return SET_PROPERTY_ERROR ;
         }
       }
@@ -141,7 +141,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
 
       if ((psurf->zcol = MALLOC ( nc * sizeof (double))) == NULL)
       {
-        sciprint( "Unable to create color vector, memory full.\n" ) ;
+        sciprint("Unable to create color vector, memory full.\n") ;
         return SET_PROPERTY_ERROR ;
       }
 
@@ -197,7 +197,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
       {
         if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL)
         {
-          sciprint( "Unable to create color vector, memory full.\n" ) ;
+          sciprint("Unable to create color vector, memory full.\n") ;
           return SET_PROPERTY_ERROR ;
         }
       }
@@ -255,7 +255,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
         {
           if ((psurf->color = MALLOC (nc * sizeof (double))) == NULL)
           {
-            sciprint( "Unable to create color vector, memory full.\n" ) ;
+            sciprint("Unable to create color vector, memory full.\n") ;
             return -1;
           }
           doubleArrayCopy( psurf->color, psurf->zcol, nc ) ;

@@ -16,7 +16,7 @@ int get_arrow_size_factor_property( sciPointObj * pobj )
 {
   if( sciGetEntityType(pobj) != SCI_POLYLINE)
   {
-    sciprint( "arrow_size_factor does not exist for this handle.\n" ) ;
+    sciprint("arrow_size_factor does not exist for this handle.\n") ;
     return -1 ;
   }
   return sciReturnDouble( pPOLYLINE_FEATURE(pobj)->arsize_factor ) ;

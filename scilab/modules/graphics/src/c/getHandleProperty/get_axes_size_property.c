@@ -20,7 +20,7 @@ int get_axes_size_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint( "axes_size property undefined for this object" ) ;
+    sciprint("axes_size property undefined for this object") ;
     return -1;
   }
   

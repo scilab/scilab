@@ -117,7 +117,7 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
   
   if ( nbRow * nbCol != 2 && nbRow * nbCol != 3 )
   {
-    sciprint( "log_flags must have a size of 2 or 3.\n" ) ;
+    sciprint("log_flags must have a size of 2 or 3.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -125,7 +125,7 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
   if (   (flags[0] != 'n' && flags[0] != 'l')
       || (flags[1] != 'n' && flags[1] != 'l') )
   {
-    sciprint( "flags must be 'n' or 'l'.\n" ) ;
+    sciprint("flags must be 'n' or 'l'.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -165,7 +165,7 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
   {
     if ( flags[2] != 'n' && flags[2] != 'l' )
     {
-      sciprint( "flags must be 'n' or 'l'.\n" ) ;
+      sciprint("flags must be 'n' or 'l'.\n") ;
       return SET_PROPERTY_ERROR ;
     }
 

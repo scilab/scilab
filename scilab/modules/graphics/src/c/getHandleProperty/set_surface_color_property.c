@@ -61,7 +61,7 @@ int set_surface_color_property( sciPointObj * pobj, int stackPointer, int valueT
   }
   else
   {
-    sciprint( "surface_color cannot be set in this case.\n" ) ;
+    sciprint("surface_color cannot be set in this case.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 

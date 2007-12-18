@@ -57,7 +57,7 @@ int set_cdata_mapping_property( sciPointObj * pobj, int stackPointer, int valueT
       {
         if ((ppSurf->color = MALLOC (nc * sizeof (double))) == NULL)
         {
-          sciprint( "Unable to allocate color vector, memory full.\n" ) ;
+          sciprint("Unable to allocate color vector, memory full.\n") ;
           return SET_PROPERTY_ERROR ;
         }
       }

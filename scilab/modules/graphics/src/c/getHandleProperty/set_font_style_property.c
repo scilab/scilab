@@ -26,7 +26,7 @@ int set_font_style_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( value > 10 || value < 0 )
   {
-    sciprint( "The value must be in [0 10].\n" ) ;
+    sciprint("The value must be in [0 10].\n") ;
     return SET_PROPERTY_ERROR ;
   }
   

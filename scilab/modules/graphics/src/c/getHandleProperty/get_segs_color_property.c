@@ -30,7 +30,7 @@ int get_segs_color_property( sciPointObj * pobj )
   colors = MALLOC( nbSegs * sizeof(double) ) ;
   if ( colors == NULL )
   {
-    sciprint( "Error returing segs color, memory full.\n" ) ;
+    sciprint("Error returing segs color, memory full.\n") ;
     return -1 ;
   }
 

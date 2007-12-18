@@ -27,14 +27,14 @@ int set_pixel_drawing_mode_property( sciPointObj * pobj, int stackPointer, int v
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint( "pixel_drawing_mode: unknown property for this handle.\n" ) ;
+    sciprint("pixel_drawing_mode: unknown property for this handle.\n") ;
     return SET_PROPERTY_ERROR ;
   }
   v = getPixelModeIndex( getStringFromStack( stackPointer ) ) ;
 
   if ( v < 0 )
   {
-    sciprint( "pixel_drawing_mode: unknown property for this handle.\n" ) ;
+    sciprint("pixel_drawing_mode: unknown property for this handle.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 

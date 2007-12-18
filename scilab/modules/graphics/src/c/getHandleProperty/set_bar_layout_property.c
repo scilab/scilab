@@ -39,7 +39,7 @@ int set_bar_layout_property( sciPointObj * pobj, int stackPointer, int valueType
   }
   else
   {
-    sciprint( "bar_layout must be set to 'grouped' or 'stacked'.\n" ) ;
+    sciprint("bar_layout must be set to 'grouped' or 'stacked'.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 

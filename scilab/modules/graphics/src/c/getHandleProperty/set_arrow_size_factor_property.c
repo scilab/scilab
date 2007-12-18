@@ -24,7 +24,7 @@ int set_arrow_size_factor_property( sciPointObj * pobj, int stackPointer, int va
 
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint( "arrow_size_factor property undefined for this handle.\n" ) ;
+    sciprint("arrow_size_factor property undefined for this handle.\n") ;
     return SET_PROPERTY_ERROR ;
   }
   pPOLYLINE_FEATURE(pobj)->arsize_factor = getDoubleFromStack( stackPointer ) ;

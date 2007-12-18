@@ -16,7 +16,7 @@ int get_rotation_style_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint( "rotation_style property undefined for this object" ) ;
+    sciprint("rotation_style property undefined for this object") ;
     return -1;
   }
   if ( pFIGURE_FEATURE(pobj)->rotstyle == 0 )

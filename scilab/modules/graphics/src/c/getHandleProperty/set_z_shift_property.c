@@ -28,13 +28,13 @@ int set_z_shift_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint( "This handle has no z_shift property.\n" ) ;
+    sciprint("This handle has no z_shift property.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow > 1 && nbCol > 1 )
   {
-    sciprint( "Bad input, z_shift should be a row or column vector.\n" ) ;
+    sciprint("Bad input, z_shift should be a row or column vector.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 

@@ -16,7 +16,7 @@ int get_tics_direction_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType( pobj ) != SCI_AXES )
   {
-    sciprint( "tics_direction property undefined for this handle\n." ) ;
+    sciprint("tics_direction property undefined for this handle\n.") ;
     return -1 ;
   }
 
@@ -35,7 +35,7 @@ int get_tics_direction_property( sciPointObj * pobj )
     return sciReturnString( "left" ) ;
     break;
   default : 
-    sciprint( "tics_direction is not correctly defined\n." ) ;
+    sciprint("tics_direction is not correctly defined\n.") ;
     break;
   }
   return -1;

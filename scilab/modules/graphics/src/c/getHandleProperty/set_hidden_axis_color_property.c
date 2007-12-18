@@ -38,7 +38,7 @@ int set_hidden_axis_color_property( sciPointObj * pobj, int stackPointer, int va
   }
   else
   {
-    sciprint( "Color outside of color map boundaries.\n" ) ;
+    sciprint("Color outside of color map boundaries.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 

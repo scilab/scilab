@@ -56,7 +56,7 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
 
   if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] || nbRow[3] != nbRow[2] || nbCol[3] != nbCol[2] )
   {
-    sciprint( "Inside the Tlist : incompatible length in the third and/or fourth argument(s)\n" ) ;
+    sciprint("Inside the Tlist : incompatible length in the third and/or fourth argument(s)\n") ;
     FREE( vx  ) ;
     FREE( vy  ) ;
     FREE( vfx ) ;
@@ -184,7 +184,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   {
     if ( m2 * n2 != n3 )
     {
-      sciprint( "Inside the Tlist (third argument): The second and third arguments have incompatible length\n" ) ;
+      sciprint("Inside the Tlist (third argument): The second and third arguments have incompatible length\n") ;
       return SET_PROPERTY_ERROR ;
     }
     if ( m1 * n1 != m3 )
@@ -536,7 +536,7 @@ int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
 
   if ( new_bar == NULL )
   {
-    sciprint( "Error creating new x_shift, memory full.\n" ) ;
+    sciprint("Error creating new x_shift, memory full.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -565,7 +565,7 @@ int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
 
   if ( new_bar == NULL )
   {
-    sciprint( "Error creating new y_shift, memory full.\n" ) ;
+    sciprint("Error creating new y_shift, memory full.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -594,7 +594,7 @@ int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
 
   if ( new_bar == NULL )
   {
-    sciprint( "Error creating new z_shift, memory full.\n" ) ;
+    sciprint("Error creating new z_shift, memory full.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -613,7 +613,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
     if( !isParameterTlist( valueType ) )
     {
-      sciprint( "Incorrect argument, must be a Tlist!\n" ) ;
+      sciprint("Incorrect argument, must be a Tlist!\n") ;
       return SET_PROPERTY_ERROR ;
     }
   
@@ -635,7 +635,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
     if( !isParameterTlist( valueType ) )
     {
-      sciprint( "Incorrect argument, must be a Tlist!\n" ) ;
+      sciprint("Incorrect argument, must be a Tlist!\n") ;
       return SET_PROPERTY_ERROR ;
     }
 
@@ -658,7 +658,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
     if( !isParameterTlist( valueType ) )
     {
-      sciprint( "Incorrect argument, must be a Tlist!\n" ) ;
+      sciprint("Incorrect argument, must be a Tlist!\n") ;
       return SET_PROPERTY_ERROR ;
     }
 

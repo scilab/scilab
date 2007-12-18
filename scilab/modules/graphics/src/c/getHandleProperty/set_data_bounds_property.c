@@ -57,7 +57,7 @@ int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+      sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
       return SET_PROPERTY_ERROR ;
     }
     break ;
@@ -81,7 +81,7 @@ int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+      sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
       return SET_PROPERTY_ERROR ;
     }
     break ;
@@ -96,7 +96,7 @@ int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+      sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
       return SET_PROPERTY_ERROR ;
     }
     break ;
@@ -112,12 +112,12 @@ int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
     }
     else
     {
-      sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+      sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
       return SET_PROPERTY_ERROR ;
     }
     break ;
   default:
-    sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+    sciprint("Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix.") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;
@@ -210,7 +210,7 @@ int set_data_bounds_property( sciPointObj * pobj, int stackPointer, int valueTyp
   {
     if ( nbRow * nbCol != 6 )
     {
-      sciprint( "Second argument must have 6 elements.\n" ) ;
+      sciprint("Second argument must have 6 elements.\n") ;
       return SET_PROPERTY_ERROR ;
     }
     sciSetDataBounds(pobj, getDoubleMatrixFromStack(stackPointer) ) ;

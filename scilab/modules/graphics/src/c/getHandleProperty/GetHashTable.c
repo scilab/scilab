@@ -210,7 +210,7 @@ int callGetProperty( sciPointObj * pObj, char * propertyName )
   getPropertyFunc accessor = searchGetHashtable( getHashTable, propertyName ) ;
   if ( accessor == NULL )
   {
-    sciprint( "Unknown property.\n" ) ;
+    sciprint("Unknown property.\n") ;
     return -1 ;
   }
   return accessor( pObj ) ;

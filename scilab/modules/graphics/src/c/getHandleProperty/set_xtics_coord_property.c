@@ -32,13 +32,13 @@ int set_xtics_coord_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint( "xtics_coord does not exist for this handle.\n" ) ;
+    sciprint("xtics_coord does not exist for this handle.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow != 1 )
   {
-    sciprint( "Second argument must be a row vector.\n" ) ;
+    sciprint("Second argument must be a row vector.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -50,7 +50,7 @@ int set_xtics_coord_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if (  pAXES_FEATURE(pobj)->nx != 1 && nbCol == 1 )
   {
-    sciprint( "Second argument  must be a vector.\n" ) ;
+    sciprint("Second argument  must be a vector.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 

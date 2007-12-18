@@ -49,7 +49,7 @@ int set_triangles_property( sciPointObj * pobj, int stackPointer, int valueType,
 
     if ( pnoeud == NULL )
     {
-      sciprint( "Unable to allocate new triangle list, memory full.\n" ) ;
+      sciprint("Unable to allocate new triangle list, memory full.\n") ;
       return SET_PROPERTY_ERROR ;
     }
 

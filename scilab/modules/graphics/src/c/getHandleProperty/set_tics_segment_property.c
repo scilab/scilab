@@ -39,7 +39,7 @@ int set_tics_segment_property( sciPointObj * pobj, int stackPointer, int valueTy
   }
   else
   {
-    sciprint( "Nothing to do (value must be 'on/off').\n" ) ;
+    sciprint("Nothing to do (value must be 'on/off').\n") ;
     return SET_PROPERTY_ERROR ;
   }
 

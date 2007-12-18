@@ -49,7 +49,7 @@ int set_text_box_mode_property( sciPointObj * pobj, int stackPointer, int valueT
   }
   else
   {
-    sciprint( "Value must be 'off', 'centered' or 'filled'.\n" );
+    sciprint("Value must be 'off', 'centered' or 'filled'.\n");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

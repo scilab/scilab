@@ -169,7 +169,7 @@ AssignedList * createAssignedList( int paramNum, int nbElement )
   /* check the size */
   if ( nbRow != newList->nbElement || nbCol != 1 )
   {
-    sciprint( "Wrong size for tlist.\n" ) ;
+    sciprint("Wrong size for tlist.\n") ;
     return NULL ;
   }
   return newList ;

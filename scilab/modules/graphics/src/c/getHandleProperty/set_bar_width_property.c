@@ -25,7 +25,7 @@ int set_bar_width_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if ( sciGetEntityType (pobj) != SCI_POLYLINE )
   {
-    sciprint( "Object has no bar shift.\n" ) ;
+    sciprint("Object has no bar shift.\n") ;
     return SET_PROPERTY_ERROR ;
   }
   pPOLYLINE_FEATURE (pobj)->bar_width = getDoubleFromStack( stackPointer ) ;

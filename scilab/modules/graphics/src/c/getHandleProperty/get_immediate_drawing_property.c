@@ -16,7 +16,7 @@ int get_immediate_drawing_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_FIGURE)
   {
-    sciprint( "immediate_drawing property undefined for this object" ) ;
+    sciprint("immediate_drawing property undefined for this object") ;
     return -1;
   }
   if ( pFIGURE_FEATURE(pobj)->auto_redraw )

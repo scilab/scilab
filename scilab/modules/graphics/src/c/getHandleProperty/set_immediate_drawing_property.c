@@ -25,7 +25,7 @@ int set_immediate_drawing_property( sciPointObj * pobj, int stackPointer, int va
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    sciprint( "immediate_drawing property undefined for this object.\n" ) ;
+    sciprint("immediate_drawing property undefined for this object.\n") ;
     return SET_PROPERTY_ERROR ;
   }
   

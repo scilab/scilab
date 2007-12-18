@@ -25,7 +25,7 @@ int set_handle_visible_property( sciPointObj * pobj, int stackPointer, int value
 
   if (sciGetEntityType (pobj) != SCI_UIMENU)
   {
-    sciprint( "handle_visible property does not exist for this handle" ) ;
+    sciprint("handle_visible property does not exist for this handle") ;
     return SET_PROPERTY_ERROR ;
   }
 

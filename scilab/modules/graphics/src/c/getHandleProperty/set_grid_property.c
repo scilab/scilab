@@ -34,7 +34,7 @@ int set_grid_property( sciPointObj * pobj, int stackPointer, int valueType, int 
 
   if ( nbRow != 1 || nbCol > 3 )
   {
-    sciprint( "grid must be a 1x2 or 1x3 vector.\n" ) ;
+    sciprint("grid must be a 1x2 or 1x3 vector.\n") ;
     return SET_PROPERTY_ERROR ;
   }
 

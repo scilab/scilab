@@ -26,7 +26,7 @@ int set_current_figure_property( sciPointObj * pobj, int stackPointer, int value
     
     if ( curFig == NULL )
     {
-      sciprint( "Object is not valid.\n" ) ;
+      sciprint("Object is not valid.\n") ;
       endGraphicDataReading();
       return -1 ;
     }
