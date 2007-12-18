@@ -120,6 +120,9 @@ am__objects_4 = sci_string.lo strops.lo
 am_libscistring_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscistring_la_OBJECTS = $(am_libscistring_la_OBJECTS)
+libscistring_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+	$(libscistring_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -377,6 +380,7 @@ libscistring_la_CFLAGS = \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes
 
+libscistring_la_LDFLAGS = $(PCRE_LIBS)
 pkglib_LTLIBRARIES = libscistring.la
 
 #if STRING_V2
@@ -525,7 +529,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscistring.la: $(libscistring_la_OBJECTS) $(libscistring_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(pkglibdir) $(libscistring_la_OBJECTS) $(libscistring_la_LIBADD) $(LIBS)
+	$(libscistring_la_LINK) -rpath $(pkglibdir) $(libscistring_la_OBJECTS) $(libscistring_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
