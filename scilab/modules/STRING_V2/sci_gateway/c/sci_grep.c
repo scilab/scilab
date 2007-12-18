@@ -94,11 +94,6 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 	int x = 0,y = 0;
 	int *next = NULL;
 
-	results->sizeArraysMax = 0;
-	if (results->values) {FREE(results->values);results->values = NULL;}
-	if (results->positions) {FREE(results->positions);results->positions = NULL;}
-	results->currentLength = 0;
-	
 	for (x = 0; x <  mn_one ;x++) 
 	{
 		results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
@@ -192,12 +187,7 @@ static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 {
 	int x = 0,y = 0;
 
-	results->sizeArraysMax = 0;
-	if (results->values) {FREE(results->values);results->values = NULL;}
-	if (results->positions) {FREE(results->positions);results->positions = NULL;}
-	results->currentLength = 0;
-
-    results->values = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
+        results->values = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
 	results->positions = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
 
 	for (y = 0; y < mn_one; ++y)
@@ -243,8 +233,12 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 			return 0;
 		}
 	}
-	
+
 	grepresults.currentLength = 0;
+	grepresults.sizeArraysMax = 0; 
+	grepresults.positions = NULL;
+	grepresults.values = NULL;
+
 	if (new_grep)
 	{
 		code_error_grep = GREP_NEW(&grepresults,Strings_Input_One,m1n1,Strings_Input_Two,m2n2);
