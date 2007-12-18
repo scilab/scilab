@@ -68,7 +68,7 @@ int sci_fec(char *fname,unsigned long fname_len)
 
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
   if (n3 != 5) {
-    Scierror(999,_("%s: Wrong number of columns for third input argument: 5 expected.\n"),fname,n3);
+    Scierror(999,_("%s: Wrong number of columns for third input argument: %d expected.\n"),fname,n3,5);
     return 0;
   }
 

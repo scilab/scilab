@@ -29,7 +29,7 @@ int sci_move( char * fname, unsigned long fname_len )
 		}
     else 
 		{
-			Scierror(999,_("%s: Wrong third input argument: 'alone' expected.\n"),fname); 
+			Scierror(999,_("%s: Wrong third input argument: '%s' expected.\n"),fname,"alone"); 
 			return 0;
 		}
   }

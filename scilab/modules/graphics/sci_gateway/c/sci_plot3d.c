@@ -122,11 +122,11 @@ int sci_plot3d( char * fname, unsigned long fname_len )
     }
   } else {
     if (m2 * n2 != n3) {
-      Scierror(999,_("%s: Second and third input arguments have incompatible length\n"),fname);
+      Scierror(999,_("%s: Second and third input arguments have incompatible length.\n"),fname);
       return 0;
     }
     if (m1 * n1 != m3) {
-      Scierror(999,_("%s: First and third input arguments have incompatible length\n"),fname);
+      Scierror(999,_("%s: First and third input arguments have incompatible length.\n"),fname);
       return 0;
     }
     if ( m1*n1 <= 1 || m2*n2 <= 1 ) 

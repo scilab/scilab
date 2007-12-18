@@ -33,7 +33,7 @@ int sci_xs2bmp( char * fname, unsigned long fname_len )
     }
     else
     {
-      Scierror(999,_("%s: Wrong input argument: >=0 expected.\n"),fname);
+      Scierror(999,_("%s: Wrong input argument: %s expected.\n"),fname,">=0");
       return 0;
     }
 
@@ -47,7 +47,7 @@ int sci_xs2bmp( char * fname, unsigned long fname_len )
     }
     if ( GetType(2) != sci_strings)
     {
-      Scierror(999,_("%s: Wrong type for second input argument. String expected.\n"),fname);
+      Scierror(999,_("%s: Wrong type for second input argument: String expected.\n"),fname);
       return 0;
     }
   }

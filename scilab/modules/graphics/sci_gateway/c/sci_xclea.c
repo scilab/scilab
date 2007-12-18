@@ -33,7 +33,7 @@ int sci_xclea( char *fname,unsigned long fname_len )
     
     break;
   default :
-    Scierror(999,_("%s: Wrong number of input argument(s): 1 or 4 expected.\n"),fname,Rhs);
+    Scierror(999,_("%s: Wrong number of input argument(s): %s or %s expected.\n"),fname,"1","4");
   }
   LhsVar(1)=0;
   return 0;

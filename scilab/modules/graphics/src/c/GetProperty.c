@@ -1217,7 +1217,7 @@ sciGetTitlePos (sciPointObj * pobj)
     {
       tmppoint.x = -1;
       tmppoint.y = -1;
-      sciprint(_("Your are not using a title object.\n"));
+      sciprint(_("You are not using a title object.\n"));
       return tmppoint;
     }
 }
@@ -1235,7 +1235,7 @@ sciGetTitlePlace (sciPointObj * pobj)
   if (sciGetEntityType (pobj) == SCI_TITLE)
     return pTITLE_FEATURE (pobj)->titleplace;
   else
-    sciprint(_("Your are not using a title object.\n"));
+    sciprint(_("You are not using a title object.\n"));
   return (sciTitlePlace)-1;
 }
 
@@ -1254,7 +1254,7 @@ sciGetLegendPlace (sciPointObj * pobj)
   }
   else
   {
-    sciprint (_("Your are not using a legend object.\n"));
+    sciprint (_("You are not using a legend object.\n"));
     return SCI_LEGEND_OUTSIDE ;
   }
   return SCI_LEGEND_OUTSIDE ;
@@ -1275,7 +1275,7 @@ sciGetLegendPos (sciPointObj * pobj)
     {
       tmppoint.x = -1;
       tmppoint.y = -1;
-      sciprint (_("Your are not using a legend object.\n"));
+      sciprint (_("You are not using a legend object.\n"));
       return tmppoint;
     }
 }

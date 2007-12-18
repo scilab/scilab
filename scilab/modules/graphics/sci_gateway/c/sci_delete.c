@@ -49,7 +49,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     }
     else
     {
-      Scierror(999,_("%s: Wrong first input argument: 'all' expected.\n"),fname);
+      Scierror(999,_("%s: Wrong first input argument: '%s' expected.\n"),fname,"all");
       return 0;
     }
     break;

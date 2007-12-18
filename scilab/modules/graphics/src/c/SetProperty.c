@@ -3236,7 +3236,7 @@ int sciInitIsBoxed( sciPointObj * pobj, BOOL isboxed )
       return 0;
       break;
     case SCI_SUBWIN:
-      sciprint(_("SetProperty.c:sciSetIsBoxed : please use sciSetBoxType instead\n"));
+      sciprint(_("sciSetIsBoxed: please use sciSetBoxType instead\n"));
       if ( isboxed )
       {
         pSUBWIN_FEATURE(pobj)->axes.rect = BT_ON ;

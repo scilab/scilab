@@ -57,8 +57,8 @@ int sci_xstringb(char *fname,unsigned long fname_len)
     } 
     else
     {
-      Scierror(999,_("%s: Wrong optional input argument, 'fill' expected.\n"),
-        fname);
+      Scierror(999,_("%s: Wrong optional input argument, '%s' expected.\n"),
+        fname,"fill");
       return 0;
     }
   }

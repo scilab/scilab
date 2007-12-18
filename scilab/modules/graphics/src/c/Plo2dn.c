@@ -447,7 +447,7 @@ char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrad
   
   if(u_xlabels != NULL)
     {
-      sciprint(_("Impossible: u_xlabels must be freed before re-allocating"));
+      sciprint(_("Impossible: %s must be freed before re-allocating"),"u_xlabels");
       return (char **) NULL;
     }
   
@@ -488,7 +488,7 @@ char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, i
   
   if(u_xlabels != NULL)
     {
-      sciprint(_("Impossible: u_xlabels must be freed before re-allocating"));
+      sciprint(_("Impossible: %s must be freed before re-allocating"),"u_xlabels");
       return (char **) NULL;
     }
   
@@ -780,7 +780,7 @@ double * AllocUserGrads(double * u_xgrads, int nb)
   
   if(u_xgrads != NULL)
     {
-      sciprint(_("Impossible: u_xgrads must be freed before re-allocating"));
+      sciprint(_("Impossible: %s must be freed before re-allocating"),"u_xgrads");
       return (double *) NULL;
     }
   

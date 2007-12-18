@@ -31,12 +31,12 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   if ( strcmp(fname,"xarcs") == 0) {
     if (m1 != 6) {
-      Scierror(999,_("%s: Wrong size for first input argument: (6,n) expected.\n"),fname);
+      Scierror(999,_("%s: Wrong size for first input argument: %s expected.\n"),fname,"(6,n)");
       return 0;
     }
   } else {
     if (m1 != 4) {
-      Scierror(999,_("%s: Wrong size for first input argument: (4,n) expected.\n"),fname);
+      Scierror(999,_("%s: Wrong size for first input argument: %s expected.\n"),fname,"(4,n)");
       return 0;
     }
   }
