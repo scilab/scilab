@@ -10,3 +10,14 @@ for c=y;
    x= (find(c==ok) <>[]) & x;
 end 
 endfunction
+
+
+
+
+
+
+
+// scientific notation : [-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
+
+
+
