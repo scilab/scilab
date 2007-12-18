@@ -62,7 +62,7 @@ int set_color_mode_property( sciPointObj * pobj, int stackPointer, int valueType
 
       if ((psurf->zcol = MALLOC ( nc * sizeof (double))) == NULL)
       {
-        sciprint("Can not performed requested action, memory full.\n" ) ;
+        sciprint(_("%s: No more memory\n"),"set_color_mode_property");
         return SET_PROPERTY_ERROR ;
       }
 
@@ -94,8 +94,8 @@ int set_color_mode_property( sciPointObj * pobj, int stackPointer, int valueType
           {
             if ((psurf->color = MALLOC (nc_ * sizeof (double))) == NULL)
             {
-              sciprint("Can not performed requested action, memory full.\n" ) ;
-              return SET_PROPERTY_ERROR ;
+				sciprint(_("%s: No more memory\n"),"set_color_mode_property");
+				return SET_PROPERTY_ERROR ;
             }
             doubleArrayCopy( psurf->color, psurf->zcol, nc_ ) ;
           }

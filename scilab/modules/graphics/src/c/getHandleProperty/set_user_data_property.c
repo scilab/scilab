@@ -57,7 +57,7 @@ int set_user_data_property( sciPointObj * pobj, int stackPointer,  int valueType
 
   if ( *user_data_ptr == NULL )
   {
-    sciprint("Error allocating user data, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"set_user_data_property") ;
     *size_ptr = 0 ;
     return SET_PROPERTY_ERROR ;
   }

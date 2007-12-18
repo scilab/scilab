@@ -54,7 +54,7 @@ int set_y_shift_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
     if ( pPOLYLINE_FEATURE (pobj)->y_shift == NULL )
     {
-      sciprint("No memory left for allocating temporary tics_coord.\n") ;
+      sciprint(_("%s: No more memory.\n"),"set_y_shift_property");
       return SET_PROPERTY_ERROR ;
     }
   }

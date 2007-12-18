@@ -537,7 +537,7 @@ int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
 
   if ( new_bar == NULL )
   {
-    sciprint("Error creating new x_shift, memory full.\n") ;
+    sciprint(_("%s: No more memory.\n"),"set_data_property") ;
     return SET_PROPERTY_ERROR ;
   }
 

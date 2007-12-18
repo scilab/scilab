@@ -36,7 +36,7 @@ int get_axes_visible_property( sciPointObj * pobj )
       for ( j = 0 ; j < i ; j++ )
       {
         FREE( axes_visible[j] ) ;
-        sciprint("Not enough memory to display vector.\n") ;
+		sciprint(_("%s: No more memory.\n"),"get_axes_visible_property");
         return -1 ;
       }
     }

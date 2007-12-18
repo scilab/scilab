@@ -62,7 +62,7 @@ int set_z_ticks_property( sciPointObj * pobj, int stackPointer, int valueType, i
   {
     if ( nbTicsRow == -1 )
     {
-      sciprint("Unable to assigned tics, memory full.\n") ;
+      sciprint(_("%s: No more memory.\n"),"set_z_ticks_property");
       return SET_PROPERTY_ERROR ;
     }
     /* empty matrix nothing to do*/

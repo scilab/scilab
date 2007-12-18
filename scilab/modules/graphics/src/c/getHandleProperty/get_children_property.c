@@ -32,8 +32,8 @@ int get_children_property( sciPointObj * pobj )
     children = MALLOC( nbChildren * sizeof(long) ) ;
     if ( children == NULL )
     {
-      sciprint("Error returning children vector, memory full.\n") ;
-      return -1 ;
+		sciprint(_("%s: No more memory.\n"),"get_children_property");
+		return -1 ;
     }
 
     curSon = sciGetFirstAccessibleSon( pobj ) ;

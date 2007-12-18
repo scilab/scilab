@@ -26,8 +26,8 @@ int get_figures_id_property( sciPointObj * pobj )
   ids = MALLOC( nbFig * sizeof(int) ) ;
   if ( ids == NULL )
   { 
-    sciprint("Error returning figures_id vector, memory full.\n") ;
-    return -1 ;
+	  sciprint(_("%s: No more memory.\n"),"get_figures_id_property");
+	  return -1 ;
   }
 
   sciGetFiguresId( ids ) ;

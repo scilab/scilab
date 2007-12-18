@@ -36,7 +36,7 @@ int get_axes_reverse_property( sciPointObj * pobj )
       for ( j = 0 ; j < i ; j++ )
       {
         FREE( axes_reverse[j] ) ;
-        sciprint("Not enough memory to display vector.\n") ;
+		sciprint(_("%s: No more memory.\n"),"get_axes_reverse_property");
         return -1 ;
       }
     }

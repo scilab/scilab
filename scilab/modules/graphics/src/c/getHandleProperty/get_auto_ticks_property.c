@@ -36,7 +36,7 @@ int get_auto_ticks_property( sciPointObj * pobj )
       for ( j = 0 ; j < i ; j++ )
       {
         FREE( auto_ticks[j] ) ;
-        sciprint("Not enough memory to display ticks.\n") ;
+		sciprint(_("%s: No more memory.\n"),"get_auto_ticks_property");
         return -1 ;
       }
     }
