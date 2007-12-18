@@ -42,7 +42,7 @@ int set_tics_direction_property( sciPointObj * pobj, int stackPointer, int value
     }
     else
     {
-      sciprint("Second argument must be 'top' or 'bottom'.\n") ;
+      sciprint(_("%s: Wrong type for second input argument: '%s' or '%s' expected.\n"), "set_tics_direction_property","top","bottom") ;
       return SET_PROPERTY_ERROR ;
     }
     return SET_PROPERTY_SUCCEED ;
@@ -59,7 +59,7 @@ int set_tics_direction_property( sciPointObj * pobj, int stackPointer, int value
     }
     else
     {
-      sciprint("Second argument must be 'right' or 'left'.\n") ;
+      sciprint(_("%s: Wrong type for second input argument: '%s' or '%s' expected.\n"), "set_tics_direction_property","right","left") ;
       return -1 ;
     }
     return SET_PROPERTY_SUCCEED ;

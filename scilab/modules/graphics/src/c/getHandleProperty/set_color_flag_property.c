@@ -43,7 +43,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
   {
     if ( flagcolor < 0 || flagcolor > 1 )
     {
-      sciprint("Second argument must be equal to 0 or 1.\n") ;
+      sciprint(_("%s: Wrong type for second input argument: equal to 0 or 1 expected.\n"), "set_color_flag_property") ;
       return SET_PROPERTY_ERROR ;
     }
     pSURFACE_FEATURE(pobj)->flagcolor = flagcolor ;
@@ -56,7 +56,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
 
     if ( flagcolor < 0 || flagcolor > 4 )
     {
-      sciprint("Second argument must be 0 1 2 3 or 4.\n") ;
+      sciprint(_("%s: Wrong type for second input argument: 0 1 2 3 or 4 expected.\n"), "set_color_flag_property") ;
       return -1 ;
     }
 

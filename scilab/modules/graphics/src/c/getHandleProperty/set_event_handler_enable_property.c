@@ -38,7 +38,7 @@ int set_event_handler_enable_property( sciPointObj * pobj, int stackPointer, int
   {
     return sciSetIsEventHandlerEnable( pobj, FALSE ) ;
   }
-  sciprint("Second argument must be 'on' or 'off'.\n");
+  sciprint(_("%s: Wrong type for second input argument: '%s' or '%s' expected.\n"), "set_event_handler_enable_property","on","off");
   return SET_PROPERTY_ERROR ;
 
 }

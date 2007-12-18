@@ -44,7 +44,7 @@ int set_box_property( sciPointObj * pobj, int stackPointer, int valueType, int n
     }
     else
     {
-      sciprint("Second argument must be 'on', 'off', 'hidden_axis' or 'back_half'.\n") ;
+      sciprint(_("%s: Wrong type for second input argument: '%s', '%s', '%s' or '%s' expected.\n"), "set_box_property","on","off","hidden_axis","back_half") ;
       return SET_PROPERTY_ERROR ;
     }
   }
