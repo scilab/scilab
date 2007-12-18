@@ -1,5 +1,6 @@
 package org.scilab.modules.gui.events;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -17,14 +18,22 @@ import org.scilab.modules.gui.utils.UIElementMapper;
  */
 public class GlobalEventFilter {
 
+	private static final int SCILAB_CTRL_OFFSET = 1000;
+	private static final int SCILAB_CALLBACK = -2;
+	
 	/**
 	 * Update ClickInfos structure when a KeyEvent occurs.
 	 * 
-	 * @param event : the key event caught.
+	 * @param keyPressed : the key pressed.
+	 * @param isControlDown : is CTRL key modifier activated.
 	 */
-	public static void filter(KeyEvent event) {
+	public static void filterKey(int keyPressed, boolean isControlDown) {
+		int keyCode = keyPressed;
 		synchronized (ClickInfos.getInstance()) {
-			ClickInfos.getInstance().setMouseButtonNumber(event.getKeyChar());
+			if (isControlDown) {
+				keyCode += SCILAB_CTRL_OFFSET;
+			}
+			ClickInfos.getInstance().setMouseButtonNumber(keyCode);
 			ClickInfos.getInstance().notify();
 		}
 	}
@@ -37,6 +46,7 @@ public class GlobalEventFilter {
 	 */
 	public static void filter(ActionEvent event, String command) {
 		synchronized (ClickInfos.getInstance()) {
+			ClickInfos.getInstance().setMouseButtonNumber(SCILAB_CALLBACK);
 			ClickInfos.getInstance().setMenuCallback(command);
 			ClickInfos.getInstance().notify();
 		}
@@ -51,8 +61,10 @@ public class GlobalEventFilter {
 	 */
 	public static void filter(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonCode) {
 		synchronized (ClickInfos.getInstance()) {
-			// @TODO : Find a way to get the ID.
+			ClickInfos.getInstance().setXCoordinate(mouseEvent.getPoint().getX());
+			ClickInfos.getInstance().setYCoordinate(mouseEvent.getPoint().getY());
 			ClickInfos.getInstance().setMouseButtonNumber(buttonCode);
+			// @TODO : Find a way to get the ID.
 			ClickInfos.getInstance().setWindowID(0);
 			ClickInfos.getInstance().notify();
 		}

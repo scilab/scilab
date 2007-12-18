@@ -40,9 +40,6 @@ public class GlobalMouseEventWatcher implements AWTEventListener {
 	 * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
 	 */
 	public void eventDispatched(AWTEvent mouseEvent) {
-		ClickInfos.getInstance().setXCoordinate(((MouseEvent) mouseEvent).getPoint().getX());
-		ClickInfos.getInstance().setYCoordinate(((MouseEvent) mouseEvent).getPoint().getY());
-		ClickInfos.getInstance().setMouseButtonNumber(((MouseEvent) mouseEvent).getButton());
 		// Manage Scilab Canvas
 		if (mouseEvent.getSource() instanceof SwingScilabCanvas) {
 			// DEBUG

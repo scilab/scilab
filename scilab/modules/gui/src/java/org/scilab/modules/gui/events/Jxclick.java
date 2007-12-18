@@ -1,5 +1,8 @@
 package org.scilab.modules.gui.events;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+
 
 /**
  * This class implements the xclick Scilab method
@@ -8,13 +11,13 @@ package org.scilab.modules.gui.events;
  * @author bruno
  *
  */
-public final class Jxclick {
+public class Jxclick {
 
 	/**
 	 * PRIVATE constructor
 	 * We do not want a Jxclick object.
 	 */
-	private Jxclick() { }
+	public Jxclick() { }
 	
 	/**
 	 * Scilab call point for xclick.
