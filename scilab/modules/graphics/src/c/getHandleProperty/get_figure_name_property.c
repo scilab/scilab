@@ -17,7 +17,7 @@ int get_figure_name_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint("figure_name property undefined for this object") ;
+    sciprint(_("%s undefined for this object.\n"), "figure_name") ;
     return -1;
   }
   return sciReturnString( sciGetName( pobj ) ) ;

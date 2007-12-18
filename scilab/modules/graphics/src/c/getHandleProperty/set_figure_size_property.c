@@ -20,7 +20,7 @@ int set_figure_size_property( sciPointObj * pobj, int stackPointer, int valueTyp
 {
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint("figure_size property undefined for this object") ;
+    sciprint(_("%s undefined for this object.\n"), "figure_size") ;
     return SET_PROPERTY_ERROR ;
   }
   return set_dimension_property( pobj, stackPointer, valueType, nbRow, nbCol ) ;

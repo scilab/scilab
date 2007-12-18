@@ -17,7 +17,7 @@ int get_info_message_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint("info_message property undefined for this object") ;
+    sciprint(_("%s undefined for this object.\n"), "info_message") ;
     return -1;
   }
   return sciReturnString( sciGetInfoMessage( pobj ) ) ;

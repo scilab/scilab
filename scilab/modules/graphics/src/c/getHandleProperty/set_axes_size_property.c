@@ -28,7 +28,7 @@ int set_axes_size_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint("axes_size property undefined for this object") ;
+    sciprint(_("%s undefined for this object.\n"), "axes_size") ;
     return SET_PROPERTY_ERROR ;
   }
 

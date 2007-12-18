@@ -17,7 +17,7 @@ int get_pixmap_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint("pixmap property undefined for this object") ;
+    sciprint(_("%s undefined for this object.\n"), "pixmap") ;
     return -1;
   }
   if ( sciGetPixmapMode(pobj) )

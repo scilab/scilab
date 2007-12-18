@@ -27,7 +27,7 @@ int set_rotation_style_property( sciPointObj * pobj, int stackPointer, int value
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE ) 
   {
-    sciprint("rotation_style_property undefined for this object") ;
+    sciprint(_("%s undefined for this object.\n"), "rotation_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
