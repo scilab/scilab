@@ -1,14 +1,14 @@
 /*------------------------------------------------------------------------*/
-/* file: XTicksDrawerJoGL.cpp                                             */
+/* file: YTicksDrawerJoGL.cpp                                             */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class specialized in drawing ticks for X axis                   */
 /*------------------------------------------------------------------------*/
 
-#include "XTicksDrawerJoGL.hxx"
-#include "TopXTicksDrawerJavaMapper.hxx"
-#include "MiddleXTicksDrawerJavaMapper.hxx"
-#include "BottomXTicksDrawerJavaMapper.hxx"
+#include "YTicksDrawerJoGL.hxx"
+#include "LeftYTicksDrawerJavaMapper.hxx"
+#include "MiddleYTicksDrawerJavaMapper.hxx"
+#include "RightYTicksDrawerJavaMapper.hxx"
 
 extern "C"
 {
@@ -18,8 +18,8 @@ extern "C"
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
-XTicksDrawerJoGL::XTicksDrawerJoGL(DrawableSubwin * subwin)
- : TicksDrawerJoGL(subwin)
+YTicksDrawerJoGL::YTicksDrawerJoGL(DrawableSubwin * subwin)
+  : TicksDrawerJoGL(subwin)
 {
   sciPointObj * pSubwin = subwin->getDrawedObject();
 
@@ -29,30 +29,46 @@ XTicksDrawerJoGL::XTicksDrawerJoGL(DrawableSubwin * subwin)
     setJavaMapper(NULL);
   }
 
-  switch(pSUBWIN_FEATURE(pSubwin)->axes.xdir)
+  switch(pSUBWIN_FEATURE(pSubwin)->axes.ydir)
   {
-  case 'u':
-    setJavaMapper(new TopXTicksDrawerJavaMapper());
+  case 'l':
+    // special case for 2D, y labels is drawn on the opposite side
+    if(sciGetIs3d(pSubwin))
+    {
+      setJavaMapper(new LeftYTicksDrawerJavaMapper());
+    }
+    else
+    {
+      setJavaMapper(new RightYTicksDrawerJavaMapper());
+    }
     break;
   case 'c':
-    setJavaMapper(new MiddleXTicksDrawerJavaMapper());
+    setJavaMapper(new MiddleYTicksDrawerJavaMapper());
     break;
-  case 'd':
-    setJavaMapper(new BottomXTicksDrawerJavaMapper());
+  case 'r':
+    // special case for 2D, y labels is drawn on the opposite side
+    if(sciGetIs3d(pSubwin))
+    {
+      setJavaMapper(new RightYTicksDrawerJavaMapper());
+    }
+    else
+    {
+      setJavaMapper(new LeftYTicksDrawerJavaMapper());
+    }
     break;
   default:
-    setJavaMapper(new TopXTicksDrawerJavaMapper());
+    setJavaMapper(new LeftYTicksDrawerJavaMapper());
     break;
   }
-  
+
 }
 /*------------------------------------------------------------------------------------------*/
-XTicksDrawerJoGL::~XTicksDrawerJoGL(void)
+YTicksDrawerJoGL::~YTicksDrawerJoGL(void)
 {
 
 }
 /*------------------------------------------------------------------------------------------*/
-TicksDrawerJavaMapper * XTicksDrawerJoGL::getXTicksDrawerJavaMapper(void)
+TicksDrawerJavaMapper * YTicksDrawerJoGL::getYTicksDrawerJavaMapper(void)
 {
   return dynamic_cast<TicksDrawerJavaMapper *>(getJavaMapper());
 }

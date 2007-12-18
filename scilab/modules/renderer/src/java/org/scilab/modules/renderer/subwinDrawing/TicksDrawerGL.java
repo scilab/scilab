@@ -632,6 +632,45 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
+	 * Find the height of the bottom facet
+	 * @return Z coordinate of the segment to draw
+	 */
+	protected double findLowerZCoordinate() {
+		GL gl = getGL();
+		
+		// get two point with different Z.
+		Vector3D pointZmin = new Vector3D(getXmin(), getYmin(), getZmin());
+		Vector3D pointZmax = new Vector3D(getXmin(), getYmin(), getZmax());
+		
+		// find the one which is upper in term of pixels
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		
+		pointZmin = transform.getCanvasCoordinates(gl, pointZmin);
+		pointZmax = transform.getCanvasCoordinates(gl, pointZmax);
+		
+		if (pointZmax.getY() > pointZmin.getY()) {
+			// standard case Zmax plane is higher than Zmin plane
+			return getZmin();
+		} else {
+			return getZmax();
+		}
+		
+	}
+	
+	/**
+	 * Find the height of the background facet
+	 * @return Z coordinate of the segment to draw
+	 */
+	protected double findUpperZCoordinate() {
+		// inverse of lower coordinate
+		if (findLowerZCoordinate() == getZmin()) {
+			return getZmax();
+		} else {
+			return getZmin();
+		}
+	}
+	
+	/**
 	 * Draw ticks from the recorded data.
 	 */
 	public abstract void drawTicks();

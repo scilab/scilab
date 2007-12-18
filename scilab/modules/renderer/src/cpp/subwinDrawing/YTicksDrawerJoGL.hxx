@@ -1,12 +1,12 @@
 /*------------------------------------------------------------------------*/
-/* file: XTicksDrawerJoGL.hxx                                            */
+/* file: YTicksDrawerJoGL.hxx                                            */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class specialized in drawing ticks for X axis                   */
+/* desc : Class specialized in drawing ticks for Y axis                   */
 /*------------------------------------------------------------------------*/
 
-#ifndef _X_TICKS_DRAWER_JOGL_HXX_
-#define _X_TICKS_DRAWER_JOGL_HXX_
+#ifndef _Y_TICKS_DRAWER_JOGL_HXX_
+#define _Y_TICKS_DRAWER_JOGL_HXX_
 
 #include "TicksDrawerJoGL.hxx"
 #include "TicksDrawerJavaMapper.hxx"
@@ -14,23 +14,23 @@
 namespace sciGraphics
 {
 
-class XTicksDrawerJoGL: public TicksDrawerJoGL
+class YTicksDrawerJoGL: public TicksDrawerJoGL
 {
 public:
 
-  XTicksDrawerJoGL(DrawableSubwin * subwin);
+  YTicksDrawerJoGL(DrawableSubwin * subwin);
 
-  virtual ~XTicksDrawerJoGL(void);
+  virtual ~YTicksDrawerJoGL(void);
 
 protected:
 
   /**
    * Get the object performing mapping with Java class.
    */
-  TicksDrawerJavaMapper * getXTicksDrawerJavaMapper(void);
+  TicksDrawerJavaMapper * getYTicksDrawerJavaMapper(void);
 
 };
 
 }
 
-#endif /* _X_TICKS_DRAWER_JOGL_HXX_ */
+#endif /* _Y_TICKS_DRAWER_JOGL_HXX_ */

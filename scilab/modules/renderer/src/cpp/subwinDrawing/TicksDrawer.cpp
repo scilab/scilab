@@ -35,6 +35,10 @@ TicksDrawer::~TicksDrawer(void)
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::setTicksComputer(ComputeTicksStrategy * ticksComputer)
 {
+  if (m_pTicksComputer != NULL)
+  {
+    delete m_pTicksComputer;
+  }
   m_pTicksComputer = ticksComputer;
 }
 /*------------------------------------------------------------------------------------------*/

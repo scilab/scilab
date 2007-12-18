@@ -610,6 +610,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\LeftYTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\LeftYTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\LinearBoundsComputer.cpp"
 					>
 				</File>
@@ -623,6 +631,22 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\MiddleXTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\MiddleYTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\MiddleYTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\RightYTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\RightYTicksDrawerJavaMapper.cpp"
 					>
 				</File>
 				<File
@@ -655,6 +679,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YTicksDrawerJoGL.cpp"
 					>
 				</File>
 			</Filter>
@@ -1332,6 +1360,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\LeftYTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\LeftYTicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\LinearBoundsComputer.hxx"
 					>
 				</File>
@@ -1345,6 +1381,22 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\MiddleXTicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\MiddleYTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\MiddleYTicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\RightYTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\RightYTicksDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File
@@ -1381,6 +1433,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YTicksDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

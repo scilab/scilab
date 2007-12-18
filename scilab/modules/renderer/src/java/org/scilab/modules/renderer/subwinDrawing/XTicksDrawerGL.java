@@ -28,48 +28,7 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 	}
 	
 	
-	/**
-	 * Find the Z coordinate of the X axis segment.
-	 * Select the height of the bottom facet
-	 * X axis segment is always displayed on the bottom of tyhe box.
-	 * @return Z coordinate of the segment to draw
-	 */
-	protected double findLowerZCoordinate() {
-		GL gl = getGL();
-		
-		// get two point with different Z.
-		Vector3D pointZmin = new Vector3D(getXmin(), getYmin(), getZmin());
-		Vector3D pointZmax = new Vector3D(getXmin(), getYmin(), getZmax());
-		
-		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		
-		pointZmin = transform.getCanvasCoordinates(gl, pointZmin);
-		pointZmax = transform.getCanvasCoordinates(gl, pointZmax);
-		
-		if (pointZmax.getY() > pointZmin.getY()) {
-			// standard case Zmax plane is higher than Zmin plane
-			return getZmin();
-		} else {
-			return getZmax();
-		}
-		
-	}
 	
-	/**
-	 * Find the Z coordinate of the X axis segment.
-	 * Select the height of the background facet
-	 * X axis segment is always displayed on the bottom of tyhe box.
-	 * @return Z coordinate of the segment to draw
-	 */
-	protected double findUpperZCoordinate() {
-		// inverse of lower coordinate
-		if (findLowerZCoordinate() == getZmin()) {
-			return getZmax();
-		} else {
-			return getZmin();
-		}
-	}
 	
 	/**
 	 * Compute the Y coordinate of the X axis segment
@@ -123,8 +82,12 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 		// if so then one of yMax or yMax is <= 0 and the other is not
 		if (getYmin() * getYmax() <= 0.0) {
 			return 0.0;
+		} else if (getYmax() < 0.0) {
+			// both bounds are negative
+			return getYmax();
 		} else {
-			return findFrontYCoordinate(zCoordinate);
+			// both bounds are positive
+			return getYmin();
 		}
 	}
 	
@@ -175,7 +138,7 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 	}
 	
 	/**
-	 * Compute ticks positions from an array of x coordinates
+	 * Compute ticks positions from an array of X coordinates
 	 * @param xCoordinates X coordinates of ticks
 	 * @param yCoordinate Y coordinate common for all ticks
 	 * @param zCoordinate Z coordinate common for all ticks
@@ -261,7 +224,7 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 	
 	/**
 	 * Compute the Y coordinate of the X axis segment
-	 * @param zCoordinate Z coordinate of the X axis segment alredy computed by findZCoordinate
+	 * @param zCoordinate Z coordinate of the X axis segment already computed by findZCoordinate
 	 * @return Y coordinate of the segment to draw
 	 */
 	public abstract double findYCoordinate(double zCoordinate);

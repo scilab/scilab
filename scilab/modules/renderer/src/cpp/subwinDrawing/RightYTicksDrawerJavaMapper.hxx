@@ -1,30 +1,30 @@
 /*------------------------------------------------------------------------*/
-/* file: BottomXTicksDrawerJavaMapper.hxx                                 */
+/* file: RightYTicksDrawerJavaMapper.hxx                                  */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing java methods needed by XTicksDrawerJoGL        */
+/* desc : Class containing java methods needed by YTicksDrawerJoGL        */
 /*------------------------------------------------------------------------*/
 
-#ifndef _BOTTOM_X_TICKS_DRAWER_JAVA_MAPPER_HXX_
-#define _BOTTOM_X_TICKS_DRAWER_JAVA_MAPPER_HXX_
+#ifndef _RIGHT_Y_TICKS_DRAWER_JAVA_MAPPER_HXX_
+#define _RIGHT_Y_TICKS_DRAWER_JAVA_MAPPER_HXX_
 
 #include "TicksDrawerJavaMapper.hxx"
-#include "BottomXTicksDrawerGL.hxx"
+#include "RightYTicksDrawerGL.hxx"
 
 
 namespace sciGraphics
 {
 
 /**
- * Contains mapping of java method used by XTicksDrawerJoGL 
+ * Contains mapping of java method used by YTicksDrawerJoGL 
  */
-class BottomXTicksDrawerJavaMapper : public virtual TicksDrawerJavaMapper
+class RightYTicksDrawerJavaMapper : public virtual TicksDrawerJavaMapper
 {
 public:
 
-  BottomXTicksDrawerJavaMapper(void);
+  RightYTicksDrawerJavaMapper(void);
 
-  virtual ~BottomXTicksDrawerJavaMapper(void);
+  virtual ~RightYTicksDrawerJavaMapper(void);
   /*----------------------------------------------------------------------*/
   // Inherited from DrawableObjectJavaMapper
   virtual void display(void);
@@ -63,10 +63,10 @@ protected:
   /**
   * Giws generated wrapper
   */
-  org_scilab_modules_renderer_subwinDrawing::BottomXTicksDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_subwinDrawing::RightYTicksDrawerGL * m_pJavaObject;
 
 };
 
 }
 
-#endif /* _BOTTOM_X_TICKS_DRAWER_JAVA_MAPPER_HXX_ */
+#endif /* _RIGHT_Y_TICKS_DRAWER_JAVA_MAPPER_HXX_ */
