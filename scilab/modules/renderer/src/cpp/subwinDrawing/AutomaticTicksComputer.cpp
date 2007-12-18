@@ -16,6 +16,9 @@ extern "C"
 
 namespace sciGraphics
 {
+
+static const int BUFFER_LENGTH = 64;
+
 /*------------------------------------------------------------------------------------------*/
 AutomaticTicksComputer::AutomaticTicksComputer(DrawableSubwin * subwin)
   : ComputeTicksStrategy(subwin)
@@ -66,7 +69,7 @@ void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[
                 positions[lastIndex],
                 (positions[lastIndex] - positions[0]) / lastIndex ); /* Adding F.Leray 06.05.04 */
 
-  char buffer[64];
+  char buffer[BUFFER_LENGTH];
   for (int i = 0; i < m_iNbTicks; i++)
   {
     // convert current position into a string

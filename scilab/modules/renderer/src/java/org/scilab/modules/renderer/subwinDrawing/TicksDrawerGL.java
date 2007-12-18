@@ -29,6 +29,9 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	/** Size of subticks compared to ticks */
 	public static final double SUBTICKS_FACTOR = 0.5;
 	
+	/** Maximum accpetable value for dot product between axis direction and ticks direction */
+	private static final double MAX_COS = 0.99;
+	
 	/** Distance from labels to axis relative to ticks length */
 	private static final double LABEL_TO_AXIS_DISTANCE = 2.0;
 	
@@ -572,6 +575,62 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 			curLabelBox = nextLabelBox;
 		}
 		return true;
+	}
+	
+	/**
+	 * Chack if the ticks direction is not too close to the axis segment. That would lead to a bad displaying.
+	 * @param ticksDirection direction of ticks
+	 * @param axisSegmentStart one edge of the axis segment
+	 * @param axisSegmentEnd the other edge
+	 * @return true if ticks direction is OK, false otherwise
+	 */
+	public boolean checkTicksDirection(Vector3D ticksDirection, Vector3D axisSegmentStart, Vector3D axisSegmentEnd) {
+		
+		
+		GL gl = getGL();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		
+		// compute ticks direction in pixels
+		Vector3D origin = new Vector3D(0.0, 0.0, 0.0);
+		Vector3D ticksDirPix = transform.getCanvasCoordinates(gl, ticksDirection);
+		origin = transform.getCanvasCoordinates(gl, origin);
+		ticksDirPix = ticksDirPix.substract(origin);
+		ticksDirPix.normalize();
+		
+		// compute axis direction in pixels
+		Vector3D axisStartPix = transform.getCanvasCoordinates(gl, axisSegmentStart);
+		Vector3D axisEndPix = transform.getCanvasCoordinates(gl, axisSegmentEnd);
+		Vector3D axisDirPix = axisEndPix.substract(axisStartPix);
+		axisDirPix.normalize();
+		
+		if (Math.abs(axisDirPix.dotProduct(ticksDirPix)) > MAX_COS) {
+			return false;
+		}
+		
+		return true;
+		
+		
+	}
+	
+	/**
+	 * Compute a new vector with the same direction than ticksDirection but with the right length
+	 * @param ticksDirection initial direction of ticks whose length will be modified 
+	 * @return new direction with right length
+	 */
+	public Vector3D setTicksDirectionLength(Vector3D ticksDirection) {
+		GL gl = getGL();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		
+		Vector3D origin = new Vector3D(0.0, 0.0, 0.0);
+		origin = transform.getCanvasCoordinates(gl, origin);
+		
+		Vector3D pixDir = transform.getCanvasCoordinates(gl, ticksDirection);
+		// get length in pixels
+		double pixelLength = pixDir.substract(origin).getNorm();
+		
+		// apply number of pixels 
+		return ticksDirection.scalarMult(TICKS_PIXEL_LENGTH / pixelLength);
+		
 	}
 	
 	/**

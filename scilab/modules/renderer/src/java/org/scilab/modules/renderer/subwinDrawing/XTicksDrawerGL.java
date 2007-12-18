@@ -19,8 +19,6 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public abstract class XTicksDrawerGL extends TicksDrawerGL {
-
-	private static final double MAX_COS = 0.99;
 	
 	/**
 	 * Default consturctor.
@@ -133,10 +131,27 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 	/**
 	 * @param yCoordinate Y coordinate of the X axis
 	 * @param zCoordinate Z coordinate of the X axis
+	 * @return one of the axis segment edge
+	 */
+	protected Vector3D getAxisSegmentStart(double yCoordinate, double zCoordinate) {
+		return new Vector3D(getXmin(), yCoordinate, zCoordinate);
+	}
+	
+	/**
+	 * @param yCoordinate Y coordinate of the X axis
+	 * @param zCoordinate Z coordinate of the X axis
+	 * @return the other axis segment edge
+	 */
+	protected Vector3D getAxisSegmentEnd(double yCoordinate, double zCoordinate) {
+		return new Vector3D(getXmax(), yCoordinate, zCoordinate);
+	}
+	
+	/**
+	 * @param yCoordinate Y coordinate of the X axis
+	 * @param zCoordinate Z coordinate of the X axis
 	 * @return direction in which to draw the ticks
 	 */
 	public Vector3D findTicksDirection(double yCoordinate, double zCoordinate) {
-		GL gl = getGL();
 		Vector3D res;
 		if (Math.abs(yCoordinate - getYmin()) <= Math.abs(yCoordinate - getYmax())) {
 			// yCoordinate is closer to Ymin
@@ -145,19 +160,8 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 			res = new Vector3D(0.0, getYmax() - getYmin(), 0.0);
 		}
 		
-		Vector3D origin = new Vector3D(0.0, 0.0, 0.0);
-		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		
-		// to get real pixel values we should use project instead of getCanvasCoordinates
-		// however gatCanvasCoordinate is viewport independant.
-		origin = transform.getCanvasCoordinates(gl, origin);
-		Vector3D pixRes = transform.getCanvasCoordinates(gl, res);
-		
-		// if ticks are too close from beeing horizonal, then put them vertical
-		Vector3D ticksDir = pixRes.substract(origin);
-		ticksDir.normalize();
-		if (Math.abs(ticksDir.dotProduct(new Vector3D(1.0, 0.0, 0.0))) > MAX_COS) {
+		// if angle is too small then use Z direction
+		if (!checkTicksDirection(res, getAxisSegmentStart(yCoordinate, zCoordinate), getAxisSegmentEnd(yCoordinate, zCoordinate))) {
 			if (Math.abs(zCoordinate - getZmin()) < Math.abs(zCoordinate - getZmax())) {
 				// yCoordinate is closer to Ymin
 				res = new Vector3D(0.0, 0.0, getZmin() - getZmax());
@@ -165,14 +169,8 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 				res = new Vector3D(0.0, 0.0, getZmax() - getZmin());
 			}
 		}
-		pixRes = transform.getCanvasCoordinates(gl, res);
-		// get length in pixels
-		double pixelLength = pixRes.substract(origin).getNorm();
 		
-		// apply number of pixels 
-		res.scalarMultSelf(TICKS_PIXEL_LENGTH / pixelLength);
-		
-		return res;
+		return setTicksDirectionLength(res);
 		
 	}
 	
@@ -229,14 +227,12 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 		double zCoordinate = findZCoordinate();
 		double yCoordinate = findYCoordinate(zCoordinate);
 		
-		// draw axis ticks and lines
-		Vector3D axisSegmentStart = new Vector3D(getXmin(), yCoordinate, zCoordinate);
-		Vector3D axisSegmentEnd = new Vector3D(getXmax(), yCoordinate, zCoordinate);
-		
 		Vector3D[] ticksPosition = getTicksPositions(yCoordinate, zCoordinate);
 		Vector3D[] subticksPosition = getSubTicksPositions(yCoordinate, zCoordinate);
 		Vector3D ticksDirection = findTicksDirection(yCoordinate, zCoordinate);
-		drawTicksLines(ticksPosition, subticksPosition, ticksDirection, axisSegmentStart, axisSegmentEnd);
+		drawTicksLines(ticksPosition, subticksPosition, ticksDirection,
+					   getAxisSegmentStart(yCoordinate, zCoordinate),
+					   getAxisSegmentEnd(yCoordinate, zCoordinate));
 		
 		drawLabels(ticksPosition, ticksDirection);
 		
