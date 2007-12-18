@@ -261,7 +261,7 @@ function returned_time = bench_run_onebench(module,test,nb_run)
 				bench;
 				"end";
 				"timing = timer();";
-				"returned_time = (timing / nb_run) * 1000000 ;"]
+				"returned_time = timing * 1000000 / nb_run;"]
 	
 	mputl(tst_str,scefile);
 	exec(scefile);
@@ -298,7 +298,8 @@ function example = bench_examples()
 	example = [ example ; "" ];
 	example = [ example ; sprintf("// With options\n") ];
 	example = [ example ; sprintf("bench_run([],[],''list'');\n") ];
-	example = [ example ; sprintf("bench_run([],[],''help'');\n") ];;
+	example = [ example ; sprintf("bench_run([],[],''help'');\n") ];
+	example = [ example ; sprintf("bench_run([],[],''nb_run=2000'');\n") ];
 	example = [ example ; "" ];
 	
 endfunction
