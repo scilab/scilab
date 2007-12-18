@@ -205,7 +205,7 @@
       </ITEM>
       <ITEM label="Poisson">
         <SP>: <VERB>Y=grand(m,n,'poi',mu)</VERB> generates random variates from the Poisson 
-     distribution with mean <VERB>mu (real &gt;= 0.0)</VERB>.</SP>
+     distribution with mean <VERB>mu (real &gt;= 0.0)</VERB>. Related function(s) : <LINK>cdfpoi</LINK>.</SP>
       </ITEM>
       <ITEM label="random permutations">
         <SP>: <VERB>Y=grand(n,'prm',vect)</VERB> generate <VERB>n</VERB> random permutations of the
