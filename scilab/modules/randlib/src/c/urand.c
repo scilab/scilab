@@ -22,6 +22,7 @@
 #include "machine.h"
 #include "sciprint.h"
 #include "others_generators.h"
+#include "localization.h"
 
 static unsigned long s = 0;
 
@@ -44,7 +45,7 @@ int set_state_urand(double g)
     }
   else
     {
-      sciprint("\nBad seed for urand, must be an integer in [0,  2147483647]\n");
+      sciprint(_("\nBad seed for urand, must be an integer in [0,  2147483647]\n"));
       return ( 0 );
     }
 }

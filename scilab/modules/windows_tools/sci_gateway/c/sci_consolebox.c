@@ -10,6 +10,7 @@
 #include "sciprint.h"
 #include "WinConsole.h"
 #include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_consolebox) _PARAMS((char *fname,unsigned long l))
 {
@@ -32,7 +33,7 @@ int C2F(sci_consolebox) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				sciprint("Only on Windows Mode, not in Console Mode.\n");
+				sciprint(_("Only on Windows Mode, not in Console Mode.\n"));
 				strcpy(Output,"off");
 			}
 	}
@@ -69,19 +70,19 @@ int C2F(sci_consolebox) _PARAMS((char *fname,unsigned long l))
 				}
 				else
 				{
-						sciprint("Only on Windows Mode, not in Console Mode.\n");
+						sciprint(_("Only on Windows Mode, not in Console Mode.\n"));
 						strcpy(Output,"off");
 				}
 			}
 			else
 			{
-				Scierror(999,"parameter incorrect: 'on' or 'off'");
+				Scierror(999,("%s: Wrong input argument: 'on', 'off' or 'toggle' expected."),fname);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"parameter incorrect: 'on' or 'off'");
+			Scierror(999,("%s: Wrong input argument: 'on', 'off' or 'toggle' expected."),fname);
 			return 0;
 		}
 

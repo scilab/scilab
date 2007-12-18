@@ -808,7 +808,7 @@ static int msg_39(integer *n, integer *ierr)
 	strncpy(localbuf1,BUF,9);
 	strncpy(localbuf2,&BUF[10],9);
 
-	sciprint(_("Using %s elements  out of %s.\n"),localbuf1,localbuf2);
+	sciprint(_("Using %s elements out of %s.\n"),localbuf1,localbuf2);
 
 	strncpy(localbuf1,&BUF[20],9);
 	strncpy(localbuf2,&BUF[30],9);

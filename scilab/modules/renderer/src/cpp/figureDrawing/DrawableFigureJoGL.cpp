@@ -14,7 +14,6 @@ extern "C"
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "getScilabJavaVM.h"
-#include "Scierror.h"
 }
 
 #include <string.h>

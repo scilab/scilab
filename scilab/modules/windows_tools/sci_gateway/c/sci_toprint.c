@@ -12,6 +12,8 @@
 #include "../../../fileio/includes/FileExist.h"
 #include "IsAScalar.h"
 #include "freeArrayOfString.h"
+#include "localization.h"
+
 /*--------------------------------------------------------------------------*/
 extern BOOL FigureToPrint(int figurenumber,BOOL Postscript);
 /*--------------------------------------------------------------------------*/
@@ -44,13 +46,13 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 				}
 				else 
 				{
-					sciprint("\nError : Can't open %s.\n",param);
+					sciprint(_("\nError : Can't open %s.\n"),param);
 					*paramoutINT=(int)(FALSE);
 				}
 			}
 			else
 			{
-				Scierror(999,"parameter incorrect must be a string (a filename).");
+				Scierror(999,_("%: Wrong type for first input argument: a string expected.\n"),fname);
 				return 0;
 			}
 		}
@@ -66,24 +68,24 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 					if (num_win>=0)
 					{
 						/* DISABLE */
-						sciprint("Not yet implemented.\n");
+						sciprint(_("Not yet implemented.\n"));
 						//*paramoutINT=(int)FigureToPrint(num_win,FALSE);
 					}
 					else
 					{
-						Scierror(999,"parameter must be >= 0.");
+						Scierror(999,_("%s: Wrong first input argument: >= 0 expected.\n"),fname);
 						return 0;
 					}
 				}
 				else
 				{
-					Scierror(999,"parameter incorrect --> see help toprint.");
+					Scierror(999,_("%s: Wrong first input argument: see help toprint."),fname);
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(999,"parameter incorrect --> see help toprint.");
+				Scierror(999,_("%s: Wrong first input argument: see help toprint."),fname=;
 				return 0;
 			}
 		}

@@ -62,6 +62,7 @@ See Also:	README		for a brief description
 #include "others_generators.h"
 #include "machine.h" 
 #include "sciprint.h"
+#include "localization.h"
 
 #define N  37           /* size of table        */
 #define N2 24           /* The shorter lag      */
@@ -162,7 +163,7 @@ int set_state_fsultra_simple(double s1, double s2)
     }
   else
     {
-      sciprint("\nBad seed for fsultra, must be integers in [0, 2^32-1]\n");
+      sciprint(_("\nBad seed for fsultra, must be integers in [0, 2^32-1]\n"));
       return 0;
     }
 }
@@ -175,7 +176,7 @@ int set_state_fsultra(double *s)
   try = s[0];
   if ( floor(try) != try || try < 0.0  ||  try > (double) N)
     {
-      sciprint("\nThe first component of the fsultra state, must be an integer in [0, %d]\n",N);
+      sciprint(_("\nThe first component of the fsultra state, must be an integer in [0, %d]\n"),N);
       return 0;
     }
   swb_index = (int) try;
@@ -183,7 +184,7 @@ int set_state_fsultra(double *s)
   try = s[1];
   if ( try != 0.0  &&  try != 1.0)
     {
-      sciprint("\nThe second component of the fsultra state, must be 0 or 1\n");
+      sciprint(_("\nThe second component of the fsultra state, must be 0 or 1\n"));
       return 0;
     }
   swb_flag = (int) try;
@@ -191,7 +192,7 @@ int set_state_fsultra(double *s)
   try = s[2];
   if ( floor(try) != try  ||  try <= 0 ||  try > 4294967295.0 )
     {
-      sciprint("\nThe third component of the fsultra state, must be an integer in [1, 2^32-1]\n");
+      sciprint(_("\nThe third component of the fsultra state, must be an integer in [1, 2^32-1]\n"));
       return 0;
     }
   cong_state = (unsigned long) try;

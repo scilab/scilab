@@ -59,8 +59,8 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			if (getWarningMode())
 			{
-				sciprint("\nUnsupported language \"%s\".\n",param);
-				sciprint("Choosing default language : \"%s\".\n\n",SCILABDEFAULTLANGUAGE);
+				sciprint(_("\nUnsupported language \"%s\".\n",param));
+				sciprint(_("Choosing default language : \"%s\".\n\n"),SCILABDEFAULTLANGUAGE);
 			}
 
 			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
@@ -71,7 +71,7 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"parameter incorrect: see 'help setlanguage'");
+		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"));
 		return 0;
 	}
 

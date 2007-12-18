@@ -55,6 +55,7 @@
 #include <math.h>             /* for floor */
 #include "sciprint.h"
 #include "others_generators.h"
+#include "localization.h"
 
 /***********************************************************************/
 /* Private part.                                                       */
@@ -158,7 +159,7 @@ static int verif_seeds_clcg4(double s0, double s1, double s2, double s3)
 static void display_info_clcg4()
 {
   /* display the seeds range (in case of error) */
-  sciprint("\n bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n                                             s2 in [1, 2147483542]\n                                             s3 in [1, 2147483422]\n                                             s4 in [1, 2147483322]");
+  sciprint(_("\n bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n                                             s2 in [1, 2147483542]\n                                             s3 in [1, 2147483422]\n                                             s4 in [1, 2147483322]"));
 }
 
 
@@ -176,7 +177,7 @@ int set_seed_clcg4(int g, double s0, double s1, double s2, double s3)
       Ig [0][g] = (long) s0; Ig [1][g] = (long) s1;
       Ig [2][g] = (long) s2; Ig [3][g] = (long) s3;
       init_generator_clcg4(g, InitialSeed);
-      sciprint("\n=> be aware that you have may lost synchronization\n    between the virtual gen %d and the others !\n    use grand(\"setall\", s1, s2, s3, s4) if you want recover it.", g);
+      sciprint(_("\n=> be aware that you have may lost synchronization\n    between the virtual gen %d and the others !\n    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."), g);
       return ( 1 );
     }
   else

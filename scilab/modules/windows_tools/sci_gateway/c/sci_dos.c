@@ -11,6 +11,8 @@
 #include "sciprint.h"
 #include "tmpdir.h"
 #include "../../../fileio/includes/FileExist.h"
+#include "localization.h"
+
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
@@ -36,7 +38,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 
 	if (GetType(1)!=sci_strings) 
 	{
-		Scierror(999,"first parameter must be a string.\n");
+		Scierror(999,_("%s: Wrong type for first input argument: String expected."),fname);
 		return 0;
 	}
 
@@ -48,7 +50,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 	{
 		if (GetType(2)!=sci_strings) 
 		{
-			Scierror(999,"second parameter must be a string.\n");
+			Scierror(999,_("%s: Wrong type for first input argument: String expected."),fname);
 			return 0;
 		}
 		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
@@ -56,7 +58,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 
 		if (strcmp("-echo",Param2String))
 		{
-			Scierror(999,"Unrecognized option: %s.\n",Param2String);
+			Scierror(999,_("%s: Wrong second input argument: 'echo' expected."),fname);
 			return 0;
 		}
 		else

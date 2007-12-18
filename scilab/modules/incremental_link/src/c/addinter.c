@@ -13,7 +13,6 @@
 
 #include "stack-def.h"
 #include "MALLOC.h" /* MALLOC */
-#include "sciprint.h"
 #include "Funtab.h"
 #include "warningmode.h"
 #include "sciprint.h"
@@ -343,7 +342,7 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
       DynInterf[nums[j]].Nshared = ilib;
       if ( SearchInDynLinks(names[0],&DynInterf[nums[j]].func) < 0 ) 
 	{
-	  if (getWarningMode()) sciprint("addinter failed for %s not found!\n",names[j]);
+	  if (getWarningMode()) sciprint(_("addinter failed for %s not found!\n"),names[j]);
 	  return -1;
 	}
       else

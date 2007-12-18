@@ -118,7 +118,7 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,W
       *size_res += olen ;
       if (flag == 1 &&  *size_res > size_max ) 
 	{
-	  sciprint(_(" Sorry wav file too big\n"));
+	  sciprint(_("Sorry wav file too big\n"));
 	  return 0;
 	}
       /** sciprint("2 premier nombres du bloc\n"); **/

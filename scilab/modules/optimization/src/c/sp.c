@@ -294,7 +294,7 @@ int sp(
     max_n  = Max(max_n, blck_szs[i]);
  }
  if (m > sz){
-     sciprint(_("The matrices Fi, i=1,...,m are linearly dependent.\n"));
+     sciprint(_("Matrices Fi, i=1,...,m are linearly dependent.\n"));
     *info = -3;  return 1;
  }
 
@@ -308,8 +308,7 @@ int sp(
  nrmc = F2C(dnrm2)(&m, c, &int1);
  for (i=0; i<m; i++)
  if (fabs(inprd(F+(i+1)*sz, Z, L, blck_szs) - c[i]) > nrmc*TOLC){
-     sciprint("Z0 does not satisfy equality conditions\
- for dual feasibility.\n");
+     sciprint(_("Z0 does not satisfy equality conditions for dual feasibility.\n"));
 
     *info = -7;
     return 1;
@@ -344,8 +343,7 @@ int sp(
  minlwork = (m+2)*sz + up_sz + 2*n +
             Max( Max( m+sz, 3*max_n + max_n*(max_n+1) ), 3*m );
  if (lwork < minlwork){
-    sciprint("Work space is too small.  Need at least\
- %d*sizeof(double).\n", minlwork);
+    sciprint(_("Work space is too small.  Need at least %d*sizeof(double).\n"), minlwork);
     *info = -15;
     return 1;
  }
@@ -513,8 +511,7 @@ int sp(
           *info = -18; return 1;
        }
        if (rcond < MINRCOND) {
-          sciprint("The matrices F_i, i=1,...,m are linearly\
- dependent (or the initial points are very badly conditioned).\n");
+          sciprint(_("The matrices F_i, i=1,...,m are linearly dependent (or the initial points are very badly conditioned).\n"));
           *info = -3; return 1;
        }
 

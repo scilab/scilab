@@ -2660,7 +2660,7 @@ void  C2F(mexprintf)(char *error_msg, int len)
 {
   char * buf;
   if ((buf = (char *)MALLOC((unsigned)sizeof(char)*(len+1))) == NULL) {
-    cerro(_("Running out of memory"));
+    cerro(_("No more memory"));
     return;
   }
   buf[len]='\0';

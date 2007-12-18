@@ -55,6 +55,7 @@
 #include "grand.h"            /* to check prototypes */
 #include "sciprint.h"
 #include "others_generators.h"
+#include "localization.h"
 
 int set_state_mt_simple(double s);
 
@@ -140,7 +141,7 @@ int set_state_mt_simple(double s)
     }
   else
     {
-      sciprint("Bad seed for mt, must be an integer in [0, 2^32-1]\n");
+      sciprint(_("Bad seed for mt, must be an integer in [0, 2^32-1]\n"));
       return ( 0 );
     }
 }
@@ -167,7 +168,7 @@ int set_state_mt(double seed_array[])
     mti_try = (int) seed_array[0];
     if (mti_try < 1  ||  mti_try > 624)
       {
-	sciprint("The first component of the mt state mt, must be an integer in [1, 624]\n");
+	sciprint(_("The first component of the mt state mt, must be an integer in [1, 624]\n"));
 	return ( 0 );
       }
     is_init = 1;

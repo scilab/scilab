@@ -27,6 +27,7 @@
 #include "machine.h" 
 #include "sciprint.h"
 #include "others_generators.h"
+#include "localization.h"
 
 /* The Marsaglia 's macros : */
 #define znew  (z=36969*(z&65535)+(z>>16))
@@ -63,7 +64,7 @@ int set_state_kiss(double g1, double g2, double g3, double g4)
     }
   else
     {
-      sciprint("Bad seeds for kiss, must be integers in [0,2^32-1]\n");
+      sciprint(_("Bad seeds for kiss, must be integers in [0,2^32-1]\n"));
       return ( 0 );
     }
 }
