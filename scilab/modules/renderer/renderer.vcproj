@@ -514,6 +514,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\BottomXTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\BottomXTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\Camera.cpp"
 					>
 				</File>
@@ -610,6 +618,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\MiddleXTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\MiddleXTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\TicksDrawer.cpp"
 					>
 				</File>
@@ -622,19 +638,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\TopXTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TopXTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\UserDefinedTicksComputer.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\UserDefLogTicksComputer.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\jni\XTicksDrawerGL.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJavaMapper.cpp"
 					>
 				</File>
 				<File
@@ -1200,6 +1216,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\BottomXTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\BottomXTicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\Camera.h"
 					>
 				</File>
@@ -1316,6 +1340,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\MiddleXTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\MiddleXTicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\TicksDrawer.hxx"
 					>
 				</File>
@@ -1332,19 +1364,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\TopXTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TopXTicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\UserDefinedTicksComputer.hxx"
 					>
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\UserDefLogTicksComputer.hxx"
-					>
-				</File>
-				<File
-					RelativePath=".\src\jni\XTicksDrawerGL.hxx"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File

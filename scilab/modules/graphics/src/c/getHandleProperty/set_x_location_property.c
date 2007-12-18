@@ -46,6 +46,6 @@ int set_x_location_property( sciPointObj * pobj, int stackPointer, int valueType
     sciprint("Second argument must be 'top', 'bottom' or 'middle'.\n") ;
     return SET_PROPERTY_ERROR ;
   }
-  return SET_PROPERTY_ERROR ;
+  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

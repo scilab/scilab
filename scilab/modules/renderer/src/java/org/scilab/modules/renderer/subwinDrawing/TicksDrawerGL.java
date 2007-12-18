@@ -336,10 +336,8 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	public boolean checkTicks(double[] ticksPositions, String[] ticksLabels) {
 		this.ticksPositions = ticksPositions;
 		this.ticksLabels = ticksLabels;
-		CoordinateTransformation.getTransformation(getGL()).update(getGL());
-		boolean res = checkTicks();
 		this.labelsExponents = null;
-		return res;
+		return checkTicks();
 	}
 	
 	/**
@@ -367,10 +365,9 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		this.ticksPositions = ticksPositions;
 		this.ticksLabels = ticksLabels;
 		this.subticksPositions = subticksPositions;
-		CoordinateTransformation.getTransformation(getGL()).update(getGL());
-		
-		drawTicks();
 		this.labelsExponents = null;
+		drawTicks();
+		
 	}
 	
 	/**
@@ -543,7 +540,7 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		}
 		
 		
-		
+		// get bouding box of current label
 		getLabelsDrawer().setTextContent(getTickLabel(firstNonNullTicksIndex));
 		Vector3D textCenter = computeLabelCenter(ticksPosition[firstNonNullTicksIndex], ticksDirection, null);
 		getLabelsDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());

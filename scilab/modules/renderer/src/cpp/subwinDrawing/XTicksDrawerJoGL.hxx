@@ -9,7 +9,7 @@
 #define _X_TICKS_DRAWER_JOGL_HXX_
 
 #include "TicksDrawerJoGL.hxx"
-#include "XTicksDrawerJavaMapper.hxx"
+#include "TicksDrawerJavaMapper.hxx"
 
 namespace sciGraphics
 {
@@ -27,7 +27,7 @@ protected:
   /**
    * Get the object performing mapping with Java class.
    */
-  XTicksDrawerJavaMapper * getXTicksDrawerJavaMapper(void);
+  TicksDrawerJavaMapper * getXTicksDrawerJavaMapper(void);
 
 };
 

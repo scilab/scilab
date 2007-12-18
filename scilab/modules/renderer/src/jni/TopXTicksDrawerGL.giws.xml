@@ -1,5 +1,5 @@
 <package name="org.scilab.modules.renderer.subwinDrawing">
-  <object name="XTicksDrawerGL">
+  <object name="TopXTicksDrawerGL">
     <method name="display" returnType="void">
     </method>
     <method name="initializeDrawing" returnType="void">
@@ -32,20 +32,17 @@
       <param type="String[]" name="ticksLabels" />
       <param type="double[]" name="subticksPositions" />
     </method>
-    <method name="setLabelsExponents" returnType="void">
-      <param type="String[]" name="labelsExponents" />
-    </method>
-    <!--method name="checkTicks" returnType="boolean">
+    <method name="checkTicks" returnType="boolean">
       <param type="double[]" name="ticksPositions" />
       <param type="String[]" name="ticksLabels" />
       <param type="String[]" name="labelsExponents" />
-    </method-->
-    <!--method name="drawTicks" returnType="void">
+    </method>
+    <method name="drawTicks" returnType="void">
       <param type="double[]" name="ticksPositions" />
       <param type="String[]" name="ticksLabels" />
       <param type="String[]" name="labelsExponents" />
       <param type="double[]" name="subticksPositions" />
-    </method-->
+    </method>
     <method name="setAxesBounds" returnType="void">
       <param type="double" name="xMin" />
       <param type="double" name="xMax" />

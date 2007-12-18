@@ -1,11 +1,11 @@
 /*------------------------------------------------------------------------*/
-/* file: XTicksDrawerJavaMapper.cpp                                       */
+/* file: TopXTicksDrawerJavaMapper.cpp                                    */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing java methods needed by XTicksDrawerJoGL        */
 /*------------------------------------------------------------------------*/
 
-#include "XTicksDrawerJavaMapper.hxx"
+#include "TopXTicksDrawerJavaMapper.hxx"
 
 extern "C"
 {
@@ -16,48 +16,48 @@ namespace sciGraphics
 {
 
 /*--------------------------------------------------------------------------*/
-XTicksDrawerJavaMapper::XTicksDrawerJavaMapper(void)
+TopXTicksDrawerJavaMapper::TopXTicksDrawerJavaMapper(void)
 {
-  m_pJavaObject = new org_scilab_modules_renderer_subwinDrawing::XTicksDrawerGL(getScilabJavaVM());
+  m_pJavaObject = new org_scilab_modules_renderer_subwinDrawing::TopXTicksDrawerGL(getScilabJavaVM());
 }
 /*--------------------------------------------------------------------------*/
-XTicksDrawerJavaMapper::~XTicksDrawerJavaMapper(void)
+TopXTicksDrawerJavaMapper::~TopXTicksDrawerJavaMapper(void)
 {
   delete m_pJavaObject;
   m_pJavaObject = NULL;
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::display(void)
+void TopXTicksDrawerJavaMapper::display(void)
 {
   m_pJavaObject->display();
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::initializeDrawing(int figureIndex)
+void TopXTicksDrawerJavaMapper::initializeDrawing(int figureIndex)
 {
   m_pJavaObject->initializeDrawing(figureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::endDrawing(void)
+void TopXTicksDrawerJavaMapper::endDrawing(void)
 {
   m_pJavaObject->endDrawing();
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::show(int figureIndex)
+void TopXTicksDrawerJavaMapper::show(int figureIndex)
 {
   m_pJavaObject->show(figureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::destroy(int parentFigureIndex)
+void TopXTicksDrawerJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::setFigureIndex(int figureIndex)
+void TopXTicksDrawerJavaMapper::setFigureIndex(int figureIndex)
 {
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
+void TopXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
                                        int nbTicks, const double subticksPositions[], int nbSubticks)
 {
   m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
@@ -65,46 +65,39 @@ void XTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * tic
                            (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
-bool XTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
+bool TopXTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
 {
   return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
                                    ticksLabels, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
+void TopXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
                                        char * labelsExponents[], int nbTicks,
                                        const double subticksPositions[], int nbSubticks)
 {
-  /*m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
+  m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
                            ticksLabels, nbTicks,
                            labelsExponents, nbTicks,
-                           (double *)subticksPositions, nbSubticks);*/
-  m_pJavaObject->setLabelsExponents(labelsExponents, nbTicks);
-  m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
-                            ticksLabels, nbTicks,
-                            (double *)subticksPositions, nbSubticks);
+                           (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
-bool XTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],
+bool TopXTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],
                                         char * labelsExponents[], int nbTicks)
 {
   
- /* return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                    ticksLabels, nbTicks,
-                                    labelsExponents, nbTicks);*/
-  m_pJavaObject->setLabelsExponents(labelsExponents, nbTicks);
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks);
+ return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
+                                  ticksLabels, nbTicks,
+                                  labelsExponents, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
+void TopXTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
                                            double yMin, double yMax,
                                            double zMin, double zMax)
 {
   m_pJavaObject->setAxesBounds(xMin, xMax, yMin, yMax, zMin, zMax);
 }
 /*--------------------------------------------------------------------------*/
-void XTicksDrawerJavaMapper::setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
+void TopXTicksDrawerJavaMapper::setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
                                                 int fontType, double fontSize, int fontColor)
 {
   m_pJavaObject->setAxisParameters(lineStyle, lineWidth, lineColor,

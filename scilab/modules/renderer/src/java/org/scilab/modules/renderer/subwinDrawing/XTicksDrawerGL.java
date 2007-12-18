@@ -18,7 +18,7 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * Class drawing ticks for the X axis
  * @author Jean-Baptiste Silvy
  */
-public class XTicksDrawerGL extends TicksDrawerGL {
+public abstract class XTicksDrawerGL extends TicksDrawerGL {
 
 	private static final double MAX_COS = 0.99;
 	
@@ -32,10 +32,11 @@ public class XTicksDrawerGL extends TicksDrawerGL {
 	
 	/**
 	 * Find the Z coordinate of the X axis segment.
+	 * Select the height of the bottom facet
 	 * X axis segment is always displayed on the bottom of tyhe box.
 	 * @return Z coordinate of the segment to draw
 	 */
-	public double findZCoordinate() {
+	protected double findLowerZCoordinate() {
 		GL gl = getGL();
 		
 		// get two point with different Z.
@@ -58,11 +59,27 @@ public class XTicksDrawerGL extends TicksDrawerGL {
 	}
 	
 	/**
+	 * Find the Z coordinate of the X axis segment.
+	 * Select the height of the background facet
+	 * X axis segment is always displayed on the bottom of tyhe box.
+	 * @return Z coordinate of the segment to draw
+	 */
+	protected double findUpperZCoordinate() {
+		// inverse of lower coordinate
+		if (findLowerZCoordinate() == getZmin()) {
+			return getZmax();
+		} else {
+			return getZmin();
+		}
+	}
+	
+	/**
 	 * Compute the Y coordinate of the X axis segment
+	 * Select the one wich is in front of the camera
 	 * @param zCoordinate Z coordinate of the X axis segment alredy computed by findZCoordinate
 	 * @return Y coordinate of the segment to draw
 	 */
-	public double findYCoordinate(double zCoordinate) {
+	protected double findFrontYCoordinate(double zCoordinate) {
 		GL gl = getGL();
 		
 		// same processus as for Z coordinate
@@ -85,6 +102,35 @@ public class XTicksDrawerGL extends TicksDrawerGL {
 	}
 	
 	/**
+	 * Compute the Y coordinate of the X axis segment
+	 * Select the one which on the back of the screen
+	 * @param zCoordinate Z coordinate of the X axis segment alredy computed by findZCoordinate
+	 * @return Y coordinate of the segment to draw
+	 */
+	protected double findBackYCoordinate(double zCoordinate) {
+		if (findFrontYCoordinate(zCoordinate) == getYmin()) {
+			return getYmax();
+		} else {
+			return getYmin();
+		}
+	}
+	
+	/**
+	 * Compute the Y coordinate of the X axis segment
+	 * @param zCoordinate Z coordinate of the X axis segment alredy computed by findZCoordinate
+	 * @return Y coordinate of the segment to draw
+	 */
+	protected double findMiddleYCoordinate(double zCoordinate) {
+		// find if 0 is in the range of Y coordinates
+		// if so then one of yMax or yMax is <= 0 and the other is not
+		if (getYmin() * getYmax() <= 0.0) {
+			return 0.0;
+		} else {
+			return findFrontYCoordinate(zCoordinate);
+		}
+	}
+	
+	/**
 	 * @param yCoordinate Y coordinate of the X axis
 	 * @param zCoordinate Z coordinate of the X axis
 	 * @return direction in which to draw the ticks
@@ -92,7 +138,7 @@ public class XTicksDrawerGL extends TicksDrawerGL {
 	public Vector3D findTicksDirection(double yCoordinate, double zCoordinate) {
 		GL gl = getGL();
 		Vector3D res;
-		if (Math.abs(yCoordinate - getYmin()) < Math.abs(yCoordinate - getYmax())) {
+		if (Math.abs(yCoordinate - getYmin()) <= Math.abs(yCoordinate - getYmax())) {
 			// yCoordinate is closer to Ymin
 			res = new Vector3D(0.0, getYmin() - getYmax(), 0.0);
 		} else {
@@ -209,5 +255,19 @@ public class XTicksDrawerGL extends TicksDrawerGL {
 		
 		return checkLabels(ticksPosition, ticksDirection);
 	}
+	
+	/**
+	 * Find the Z coordinate of the X axis segment.
+	 * X axis segment is always displayed on the bottom of tyhe box.
+	 * @return Z coordinate of the segment to draw
+	 */
+	public abstract double findZCoordinate();
+	
+	/**
+	 * Compute the Y coordinate of the X axis segment
+	 * @param zCoordinate Z coordinate of the X axis segment alredy computed by findZCoordinate
+	 * @return Y coordinate of the segment to draw
+	 */
+	public abstract double findYCoordinate(double zCoordinate);
 
 }

@@ -80,12 +80,22 @@ public class CoordinateTransformation {
 	/**
 	 * Get the coordinate of a 3D position in a canvas frame from its user coordinates.
 	 * @param gl current OpenGL pipeline
-	 * @param pos coordinates of the position (size 3).
-	 * @return array of size 3 containing the X, Y and Z positions in the canvas frame.
+	 * @param pos coordinates of the position.
+	 * @return Vector the X, Y and Z positions in the canvas frame.
 	 */
 	public Vector3D getCanvasCoordinates(GL gl, Vector3D pos) {
 		// I first used gluProject, but it is slower since it will always perform matrices multiplications and inverse.
 		return projectMatrix.mult(pos);
+	}
+	
+	/**
+	 * Static function which compute Canvas coordinates unsing current coordinates transformation
+	 * @param gl current OpenGL pipeline
+	 * @param pos coordinates of the position.
+	 * @return Vector the X, Y and Z positions in the canvas frame.
+	 */
+	public static Vector3D getCanvasCoordinatesS(GL gl, Vector3D pos) {
+		return getTransformation(gl).getCanvasCoordinates(gl, pos);
 	}
 	
 	/**
