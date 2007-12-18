@@ -33,7 +33,7 @@ int set_y_ticks_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint( "y_ticks property does not exists for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"y_ticks") ;
     return SET_PROPERTY_ERROR ;
   }
 

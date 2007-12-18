@@ -22,7 +22,7 @@ int get_y_ticks_property( sciPointObj * pobj )
   char c_format[5];
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
   {
-    sciprint("y_ticks property does not exists for this label.\n") ;
+    sciprint(_("%s property does not exist for this label.\n"),"y_ticks") ;
     return -1 ;
   }
 

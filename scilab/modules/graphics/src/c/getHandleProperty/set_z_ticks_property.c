@@ -33,7 +33,7 @@ int set_z_ticks_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint( "z_ticks property does not exists for this handle.\n" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"ticks");
     return SET_PROPERTY_ERROR ;
   }
 

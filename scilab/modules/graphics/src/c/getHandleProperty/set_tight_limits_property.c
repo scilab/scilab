@@ -25,7 +25,7 @@ int set_tight_limits_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint("tight_limits property does not exists for this handle.\n") ;
+    sciprint(_("%s property does not exist for this handle.\n"),"tight_limits") ;
     return SET_PROPERTY_ERROR ;
   }
 

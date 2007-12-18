@@ -24,7 +24,7 @@ int set_format_n_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint( "format_n property does not exists for this handle" ) ;
+    sciprint(_("%s property does not exist for this handle.\n"),"format_n") ;
     return SET_PROPERTY_ERROR ;
   }
   pAXES_FEATURE(pobj)->format[0] = getStringFromStack(stackPointer)[0] ;

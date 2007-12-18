@@ -22,7 +22,7 @@ int get_z_ticks_property( sciPointObj * pobj )
   char c_format[5];
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
   {
-    sciprint("z_ticks property does not exists for this label.\n") ;
+    sciprint(_("%s property does not exist for this label.\n"),"z_ticks") ;
     return -1 ;
   }
 
