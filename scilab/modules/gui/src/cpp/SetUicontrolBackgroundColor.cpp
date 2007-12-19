@@ -21,7 +21,7 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
       if(nbCol != 1)
         {
           /* Wrong string size */
-          sciprint(_("BackgroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
+          sciprint(_("%s property value must be \"R|G|B\" or [R, G, B].\n"), "BackgroundColor");
           return SET_PROPERTY_ERROR;
         }
       
@@ -30,7 +30,7 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
       if (nbvalues != 3)
         {
           /* Wrong string format */
-          sciprint(_("BackgroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
+          sciprint(_("%s property value must be \"R|G|B\" or [R, G, B].\n"), "BackgroundColor");
           return SET_PROPERTY_ERROR;
         }
 
@@ -44,7 +44,7 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
        if(nbCol != 3 || nbRow != 1)
         {
           /* Wrong matrix size */
-          sciprint(_("BackgroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
+          sciprint(_("%s property value must be \"R|G|B\" or [R, G, B].\n"), "BackgroundColor");
           return SET_PROPERTY_ERROR;
         }
 
@@ -57,7 +57,7 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
   else
     {
       /* Wrong datatype */
-      sciprint(_("BackgroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
+      sciprint(_("%s property value must be \"R|G|B\" or [R, G, B].\n"), "BackgroundColor");
       return SET_PROPERTY_ERROR;
     }
 
@@ -69,7 +69,7 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
   else
     {
       /* Unimplmented uicontrol style */
-      sciprint(_("No BackgroundColor for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+      sciprint(_("No %s property for uicontrols of style: %s.\n"), "BackgroundColor", pUICONTROL_FEATURE(sciObj)->style);
       return SET_PROPERTY_ERROR;
     }
 }

@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.bridge;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.media.opengl.GL;
 
@@ -1009,6 +1010,24 @@ public class ScilabBridge {
 		return ScilabMenuBridge.getForeground(menu);
 	}
 
+	/**
+	 * Set the font of the menu.
+	 * @param menu the menu we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(Menu menu, Font font) {
+		ScilabMenuBridge.setFont(menu, font);
+	}
+	
+	/**
+	 * Get the font of the menu.
+	 * @param menu the menu we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(Menu menu) {
+		return ScilabMenuBridge.getFont(menu);
+	}
+
 	/*****************/
 	/* Separator Bridge */
 	/*****************/
@@ -1170,12 +1189,30 @@ public class ScilabBridge {
 	}
 
 	/**
-	 * Get the Foreround color of the pushbutton
+	 * Get the Foreground color of the pushbutton
 	 * @param pushButton the PushButton we want to get the foreground of
 	 * @return the Color
 	 */
 	public static Color getForeground(PushButton pushButton) {
 		return ScilabPushButtonBridge.getForeground(pushButton);
+	}
+
+	/**
+	 * Set the font of the pushbutton.
+	 * @param pushButton the pushbutton we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(PushButton pushButton, Font font) {
+		ScilabPushButtonBridge.setFont(pushButton, font);
+	}
+	
+	/**
+	 * Get the font of the pushbutton.
+	 * @param pushButton the pushbutton we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(PushButton pushButton) {
+		return ScilabPushButtonBridge.getFont(pushButton);
 	}
 
 	/*****************/
@@ -1311,6 +1348,24 @@ public class ScilabBridge {
 	 */
 	public static Color getForeground(TextBox textBox) {
 		return ScilabTextBoxBridge.getForeground(textBox);
+	}
+
+	/**
+	 * Set the font of the textbox.
+	 * @param textBox the textbox we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(TextBox textBox, Font font) {
+		ScilabTextBoxBridge.setFont(textBox, font);
+	}
+	
+	/**
+	 * Get the font of the textbox.
+	 * @param textBox the textbox we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(TextBox textBox) {
+		return ScilabTextBoxBridge.getFont(textBox);
 	}
 
 	/*****************/

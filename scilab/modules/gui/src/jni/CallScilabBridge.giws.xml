@@ -69,6 +69,11 @@
 	<method name="getMenuForegroundColor" returnType="int[]" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
+<!-- Font setting -->
+	<method name="setPushButtonFontWeight" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="weight"/>
+	</method>
 <!-- Position setting -->
 	<method name="setPushButtonPosition" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>

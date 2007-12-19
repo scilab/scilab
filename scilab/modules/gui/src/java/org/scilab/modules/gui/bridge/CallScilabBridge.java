@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.bridge;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -517,6 +518,34 @@ public class CallScilabBridge {
 		return color;
 	}
 
+	/****************/
+	/* Font setting */
+	/****************/
+	/**
+	 * Set the weight of a pushbutton font
+	 * @param id the id of the push button
+	 * @param weight the weight of the button font
+	 */
+	public static void setPushButtonFontWeight(int id, String weight) {
+		Font font = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+
+		if (weight.equals("bold")) {
+			if (font.isItalic()) {
+				font = new Font(font.getName(), font.getSize(), Font.ITALIC + Font.BOLD);
+			} else {
+				font = new Font(font.getName(), font.getSize(), Font.BOLD);
+			}
+		} else {
+			if (font.isItalic()) {
+				font = new Font(font.getName(), font.getSize(), Font.ITALIC);
+			} else {
+				font = new Font(font.getName(), font.getSize(), Font.PLAIN);
+			}
+		}
+
+		ScilabBridge.setFont((PushButton) UIElementMapper.getCorrespondingUIElement(id), font);
+	}
+	
 	/********************/
 	/* Position setting */
 	/********************/

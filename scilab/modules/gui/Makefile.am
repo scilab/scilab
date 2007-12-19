@@ -38,6 +38,8 @@ src/cpp/SetUiobjectForegroundColor.cpp \
 src/cpp/GetUiobjectForegroundColor.cpp \
 src/cpp/SetUicontrolPosition.cpp \
 src/cpp/GetUicontrolPosition.cpp \
+src/cpp/SetUicontrolFontWeight.cpp \
+src/cpp/GetUicontrolFontWeight.cpp \
 src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp
 

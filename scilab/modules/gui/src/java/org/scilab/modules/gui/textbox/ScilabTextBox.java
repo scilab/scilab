@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.textbox;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.text.ScilabText;
@@ -149,4 +150,19 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 		return ScilabBridge.getForeground(this);
 	}
 
+	/**
+	 * Set the font of the textbox.
+	 * @param font the font
+	 */
+	public void setFont(Font font) {
+		ScilabBridge.setFont(this, font);
+	}
+	
+	/**
+	 * Get the font of the textbox.
+	 * @return the font
+	 */
+	public Font getFont() {
+		return ScilabBridge.getFont(this);
+	}
 }

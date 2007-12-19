@@ -17,6 +17,7 @@
 #include "GetUicontrolBackgroundColor.h"
 #include "GetUiobjectForegroundColor.h"
 #include "GetUiobjectCallback.h"
+#include "GetUicontrolFontWeight.h"
 
 int get_figures_id_property(           sciPointObj * pobj ) ;
 int get_visible_property(              sciPointObj * pobj ) ;

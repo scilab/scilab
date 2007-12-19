@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.pushbutton;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -172,6 +173,22 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 */
 	public Color getForeground() {
 		return ScilabBridge.getForeground(this);
+	}
+
+	/**
+	 * Set the font of the pushbutton.
+	 * @param font the font
+	 */
+	public void setFont(Font font) {
+		ScilabBridge.setFont(this, font);
+	}
+	
+	/**
+	 * Get the font of the pushbutton.
+	 * @return the font
+	 */
+	public Font getFont() {
+		return ScilabBridge.getFont(this);
 	}
 
 	//	/**

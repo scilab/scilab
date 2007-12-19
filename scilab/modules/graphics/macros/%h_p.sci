@@ -700,6 +700,7 @@ function %h_p(h)
   "position = "+sci2exp(h.position,0)
   "backgroundcolor = "+sci2exp(h.backgroundcolor,0)
   "foregroundcolor = "+sci2exp(h.foregroundcolor,0)
+  "fontweight = "+h.fontweight
   //"enabled = "+sci2exp(h.menu_enable)
     ]
     end

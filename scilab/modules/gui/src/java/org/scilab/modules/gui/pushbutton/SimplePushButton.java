@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.pushbutton;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -117,5 +118,17 @@ public interface SimplePushButton {
 	 * @return the Color
 	 */
 	Color getForeground();
+
+	/**
+	 * Set the font of the simple pushbutton
+	 * @param font the font
+	 */
+	void setFont(Font font);
+	
+	/**
+	 * Get the font of the simple pushbutton
+	 * @return the font
+	 */
+	Font getFont();
 
 }

@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.pushbutton;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.utils.Position;
@@ -172,6 +173,24 @@ public class ScilabPushButtonBridge {
 	 */
 	public static Color getForeground(PushButton pushButton) {
 		return pushButton.getAsSimplePushButton().getForeground();
+	}
+
+	/**
+	 * Set the font of the pushbutton.
+	 * @param pushButton the pushbutton we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(PushButton pushButton, Font font) {
+		pushButton.getAsSimplePushButton().setFont(font);
+	}
+	
+	/**
+	 * Get the font of the pushbutton.
+	 * @param pushButton the pushbutton we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(PushButton pushButton) {
+		return pushButton.getAsSimplePushButton().getFont();
 	}
 }
 

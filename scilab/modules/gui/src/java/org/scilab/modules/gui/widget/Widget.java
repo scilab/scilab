@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.widget;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import org.scilab.modules.gui.dockable.Dockable;
 
@@ -36,5 +37,17 @@ public interface Widget extends Dockable {
 	 * @return the Color
 	 */
 	Color getForeground();
+
+	/**
+	 * Set the font of the widget.
+	 * @param font the font
+	 */
+	void setFont(Font font);
+	
+	/**
+	 * Get the font of the widget.
+	 * @return the font
+	 */
+	Font getFont();
 
 }

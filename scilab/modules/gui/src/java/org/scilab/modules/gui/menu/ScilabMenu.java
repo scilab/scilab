@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.menu;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -187,5 +188,21 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	 */
 	public Color getForeground() {
 		return ScilabBridge.getForeground(this);
+	}
+
+	/**
+	 * Set the font of the menu.
+	 * @param font the font
+	 */
+	public void setFont(Font font) {
+		ScilabBridge.setFont(this, font);
+	}
+	
+	/**
+	 * Get the font of the menu.
+	 * @return the font
+	 */
+	public Font getFont() {
+		return ScilabBridge.getFont(this);
 	}
 }
