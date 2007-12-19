@@ -706,17 +706,22 @@ typedef struct
 
   int hashMapIndex;
 
-  /* Must be a value from UicontrolStyle enum */
+  /* UICONTROL STYLE: Must be a value from UicontrolStyle enum */
   int style;
 
-  /* Must be a value from UicontrolFontWeight enum */
+  /* UICONTROL FONTWEIGHT: Must be a value from UicontrolFontWeight enum */
   int fontWeight;
+
+  /* UICONTROL FONTUNITS: Must be a value from UicontrolUnits enum */
+  int fontUnits;
 }/** */
 sciUicontrol;
 /* uicontrol font weight */
 typedef enum {LIGHT_FONT, NORMAL_FONT, DEMI_FONT, BOLD_FONT} UicontrolFontWeight ;
 /* uicontrol style */
 typedef enum {SCI_PUSHBUTTON} UicontrolStyle ;
+/* uicontrol units */
+typedef enum {POINTS_UNITS, NORMALIZED_UNITS, INCHES_UNITS, CENTIMETERS_UNITS, PIXELS_UNITS} UicontrolUnits ;
 
 /* the part of the drawn box for 3d axis */
 typedef enum { BT_OFF = FALSE, BT_ON = TRUE, BT_HIDDEN_AXIS, BT_BACK_HALF } EAxesBoxType ;

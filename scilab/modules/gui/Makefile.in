@@ -124,6 +124,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/GetUicontrolPosition.cpp \
 	src/cpp/SetUicontrolFontWeight.cpp \
 	src/cpp/GetUicontrolFontWeight.cpp \
+	src/cpp/SetUicontrolFontUnits.cpp \
+	src/cpp/GetUicontrolFontUnits.cpp \
 	src/cpp/SetUiobjectCallback.cpp \
 	src/cpp/GetUiobjectCallback.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
@@ -179,6 +181,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-GetUicontrolPosition.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolFontWeight.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolFontWeight.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolFontUnits.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolFontUnits.lo \
 @GUI_TRUE@	libscigui_la-SetUiobjectCallback.lo \
 @GUI_TRUE@	libscigui_la-GetUiobjectCallback.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
@@ -477,6 +481,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/GetUicontrolPosition.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolFontWeight.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolFontWeight.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolFontUnits.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolFontUnits.cpp \
 @GUI_TRUE@src/cpp/SetUiobjectCallback.cpp \
 @GUI_TRUE@src/cpp/GetUiobjectCallback.cpp
 
@@ -654,6 +660,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetLabelProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetStyleProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolBackgroundColor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontWeight.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolPosition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectCallback.Plo@am__quote@
@@ -665,6 +672,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PushButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetLabelProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontWeight.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolParent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolPosition.Plo@am__quote@
@@ -1130,6 +1138,20 @@ libscigui_la-GetUicontrolFontWeight.lo: src/cpp/GetUicontrolFontWeight.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolFontWeight.cpp' object='libscigui_la-GetUicontrolFontWeight.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolFontWeight.lo `test -f 'src/cpp/GetUicontrolFontWeight.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolFontWeight.cpp
+
+libscigui_la-SetUicontrolFontUnits.lo: src/cpp/SetUicontrolFontUnits.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolFontUnits.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolFontUnits.Tpo -c -o libscigui_la-SetUicontrolFontUnits.lo `test -f 'src/cpp/SetUicontrolFontUnits.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolFontUnits.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolFontUnits.Tpo $(DEPDIR)/libscigui_la-SetUicontrolFontUnits.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolFontUnits.cpp' object='libscigui_la-SetUicontrolFontUnits.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolFontUnits.lo `test -f 'src/cpp/SetUicontrolFontUnits.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolFontUnits.cpp
+
+libscigui_la-GetUicontrolFontUnits.lo: src/cpp/GetUicontrolFontUnits.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolFontUnits.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolFontUnits.Tpo -c -o libscigui_la-GetUicontrolFontUnits.lo `test -f 'src/cpp/GetUicontrolFontUnits.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolFontUnits.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolFontUnits.Tpo $(DEPDIR)/libscigui_la-GetUicontrolFontUnits.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolFontUnits.cpp' object='libscigui_la-GetUicontrolFontUnits.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolFontUnits.lo `test -f 'src/cpp/GetUicontrolFontUnits.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolFontUnits.cpp
 
 libscigui_la-SetUiobjectCallback.lo: src/cpp/SetUiobjectCallback.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectCallback.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectCallback.Tpo -c -o libscigui_la-SetUiobjectCallback.lo `test -f 'src/cpp/SetUiobjectCallback.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectCallback.cpp

@@ -41,6 +41,8 @@ src/cpp/SetUicontrolPosition.cpp \
 src/cpp/GetUicontrolPosition.cpp \
 src/cpp/SetUicontrolFontWeight.cpp \
 src/cpp/GetUicontrolFontWeight.cpp \
+src/cpp/SetUicontrolFontUnits.cpp \
+src/cpp/GetUicontrolFontUnits.cpp \
 src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp
 

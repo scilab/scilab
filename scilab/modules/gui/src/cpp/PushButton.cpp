@@ -21,6 +21,7 @@ void createPushButton(sciPointObj* sciObj)
   pUICONTROL_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newPushButton(getScilabJavaVM());
   // Scilab default values
   pUICONTROL_FEATURE(sciObj)->fontWeight = NORMAL_FONT;
+  pUICONTROL_FEATURE(sciObj)->fontUnits = POINTS_UNITS;
 }
 
 int setCurentFigureAsPushButtonParent(sciPointObj* sciObj)
