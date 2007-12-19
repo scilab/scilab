@@ -31,4 +31,11 @@ GetLabelProperty
 SetUicontrolParent
 SetLabelProperty
 SetUicontrolBackgroundColor
+GetUiobjectCallback
+GetUicontrolPosition
+GetUiobjectForegroundColor
+GetUicontrolBackgroundColor
+SetUiobjectCallback
+SetUicontrolPosition
+SetUiobjectForegroundColor
 ;

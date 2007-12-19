@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="gui"
 	ProjectGUID="{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	RootNamespace="gui"
@@ -255,6 +255,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolBackgroundColor.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolPosition.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUiobjectCallback.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUiobjectForegroundColor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\guitable.c"
 				>
 			</File>
@@ -387,6 +403,18 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolPosition.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectCallback.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectForegroundColor.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\SwingScilabMenu.cpp"
 				>
 			</File>
@@ -469,6 +497,38 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\GetStyleProperty.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolBackgroundColor.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolBackgroundColor.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolPosition.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolPosition.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUiobjectCallback.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUiobjectCallback.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUiobjectForegroundColor.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUiobjectForegroundColor.hxx"
 				>
 			</File>
 			<File
@@ -557,6 +617,30 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolParent.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolPosition.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolPosition.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUiobjectCallback.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectCallback.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUiobjectForegroundColor.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectForegroundColor.hxx"
 				>
 			</File>
 			<File
