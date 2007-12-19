@@ -19,7 +19,8 @@ src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
-src/c/GetStyleProperty.c
+src/c/GetStyleProperty.c \
+src/c/UicontrolStyleToString.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \

@@ -14,6 +14,7 @@ extern "C"{
 #include "localization.h"
 #include "sciprint.h"
 #include "SetLabelProperty.h"
+#include "UicontrolStyleToString.h"
 }
 
 #endif

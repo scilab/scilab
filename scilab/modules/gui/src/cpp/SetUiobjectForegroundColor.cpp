@@ -66,15 +66,14 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
     }
   else if(sciGetEntityType(sciObj) == SCI_UICONTROL)  /* Sets the foreground of an uicontrol */
     {
-      if (strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0) 
+      switch(pUICONTROL_FEATURE(sciObj)->style) 
         {
+        case SCI_PUSHBUTTON:
           CallScilabBridge::setPushButtonForegroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, redInt, greenInt, blueInt);
           return SET_PROPERTY_SUCCEED;
-        }
-      else
-        {
+        default:
           /* Unimplemented uicontrol type */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "ForegroundColor", pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "ForegroundColor", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
           return SET_PROPERTY_ERROR;
         }
     }

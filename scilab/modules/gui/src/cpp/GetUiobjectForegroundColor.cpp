@@ -3,12 +3,6 @@
 /* Get the foreground color of an uicontrol or an uimenu */
 
 #include "GetUiobjectForegroundColor.hxx"
-#include "CallScilabBridge.hxx"
-extern "C"{
-#include "getScilabJavaVM.h"
-#include "GetProperty.h"
-#include "localization.h"
-}
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -21,14 +15,14 @@ int GetUiobjectForegroundColor(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the color from Java
-      if(strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0)
+      switch(pUICONTROL_FEATURE(sciObj)->style)
         {
+        case SCI_PUSHBUTTON:
           returnValues = CallScilabBridge::getPushButtonForegroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-        }
-      else
-        {
+          break;
+        default:
           /* Unimplemented uicontrol style */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "ForegroundColor", pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "ForegroundColor", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
           return FALSE;
         }
     }

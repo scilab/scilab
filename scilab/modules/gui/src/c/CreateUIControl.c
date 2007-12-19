@@ -6,8 +6,10 @@
 /*------------------------------------------------------------------------*/
 
 #include "CreateUIControl.h"
+#include "BuildObjects.h"
 #include "ObjectStructure.h"
 #include "PushButton.h"
+
 /**CreateUIControl
  * This function creates Uicontrol structure.
  * @param char style[]: the type of the uicontrol object
@@ -15,12 +17,7 @@
  */
 sciPointObj * CreateUIControl(char *style)
 {
-  int ** userData = NULL ;
-  int *  udSize   = NULL ;
-  char *callback = NULL;
-
   sciPointObj *pobj = (sciPointObj *) NULL;
-  //sciUicontrol *ppobj=NULL;
 
   if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
 
@@ -31,7 +28,6 @@ sciPointObj * CreateUIControl(char *style)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
-  //ppobj=pUICONTROL_FEATURE (pobj);
 
   if ((pUICONTROL_FEATURE (pobj)->callback = CALLOC(1,sizeof(char))) == NULL )
     {
@@ -78,15 +74,7 @@ sciPointObj * CreateUIControl(char *style)
   if (style == NULL || strcmp(style,"pushbutton")==0)
     {
       createPushButton((sciPointObj *) pobj);
-      if ((pUICONTROL_FEATURE (pobj)->style = (char*)MALLOC(sizeof("pushbutton")+1))==NULL)
-        {
-          Scierror(999, _("No more memory.\n"));
-          return NULL;
-        }
-      else
-        {
-          strcpy(pUICONTROL_FEATURE (pobj)->style, "pushbutton");
-        }
+      pUICONTROL_FEATURE (pobj)->style = SCI_PUSHBUTTON;
     }
   else
     {

@@ -7,6 +7,9 @@
 #include "CallScilabBridge.hxx"
 extern "C"
 {
+#include "BuildObjects.h"
+#include "sciprint.h"
+#include "UicontrolStyleToString.h"
 #include "SetUicontrolParent.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"

@@ -46,15 +46,14 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, int stackPointer, int valueType,
           return SET_PROPERTY_ERROR;
         }
       
-      if (strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0)
+      switch(pUICONTROL_FEATURE(sciObj)->style)
         {
+        case SCI_PUSHBUTTON:
           CallScilabBridge::setPushButtonFontWeight(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontWeight);
           return SET_PROPERTY_SUCCEED;
-        }
-      else
-        {
+        default:
           /* Unimplmented uicontrol style */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "FontWeight", pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "FontWeight", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
           return SET_PROPERTY_ERROR;
         }
     }

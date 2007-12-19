@@ -3,11 +3,6 @@
 /* Sets the parent of an uicontrol object */
 
 #include "SetUicontrolParent.hxx"
-extern "C"
-{
-#include "BuildObjects.h"
-#include "sciprint.h"
-}
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -35,18 +30,17 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
           // The parent is a figure
           parentFigureIndex = sciGetNum(figure);
           
-          if(strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0)
+          switch(pUICONTROL_FEATURE(sciObj)->style)
             {
+            case SCI_PUSHBUTTON:
               CallScilabBridge::setPushButtonParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-  
+              
               // Scilab default values
               CallScilabBridge::setPushButtonPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(figure) - 80, 40, 20);
-
+              
               return SET_PROPERTY_SUCCEED;
-            }
-          else
-            {
-              sciprint(_("No %s property for uicontrols of style: %s.\n"), "Parent", pUICONTROL_FEATURE(sciObj)->style);
+            default:
+              sciprint(_("No %s property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
               return SET_PROPERTY_ERROR;
             }
         }

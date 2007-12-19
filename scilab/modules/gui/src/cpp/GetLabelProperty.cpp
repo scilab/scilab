@@ -16,13 +16,12 @@ int GetLabelProperty(sciPointObj* sciObj)
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the label from Java
-      if(strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0)
+      switch(pUICONTROL_FEATURE(sciObj)->style)
         {
+        case SCI_PUSHBUTTON:
           return sciReturnString(CallScilabBridge::getPushButtonText(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex));
-        }
-      else
-        {
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Label", pUICONTROL_FEATURE(sciObj)->style);
+        default:
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Label", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
           return FALSE;
         }
     }

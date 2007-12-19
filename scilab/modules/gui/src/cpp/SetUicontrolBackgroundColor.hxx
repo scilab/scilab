@@ -15,6 +15,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "sciprint.h"
+#include "UicontrolStyleToString.h"
 }
 
 #endif /* __SET_UICONTROL_BACKGROUNDCOLOR_HXX__ */

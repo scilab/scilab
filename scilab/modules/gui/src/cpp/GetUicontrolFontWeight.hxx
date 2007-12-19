@@ -4,8 +4,12 @@
 #ifndef __GET_UICONTROL_FONTWEIGHT_HXX__
 #define __GET_UICONTROL_FONTWEIGHT_HXX__
 
-extern "C"
-{
+#include "CallScilabBridge.hxx"
+extern "C"{
+#include "getScilabJavaVM.h"
+#include "GetProperty.h"
+#include "localization.h"
+#include "UicontrolStyleToString.h"
 #include "GetUicontrolFontWeight.h"
 #include "sciprint.h"
 }

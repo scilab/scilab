@@ -15,6 +15,7 @@ extern "C"
 #include "sciprint.h"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
+#include "UicontrolStyleToString.h"
 }
 
 #endif /* __SET_UICONTROL_POSITION_HXX__ */

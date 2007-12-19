@@ -689,18 +689,18 @@ function %h_p(h)
     ]
   case "uicontrol"
   t=[t;
-  "parent: "+h.parent.type
-  "children: "+fmtchildren(h.children)
-  "style = "+h.style
-  "visible = "+sci2exp(h.visible)
-  "label = "+h.label 
-  "callback = "+h.callback
-  "callback type = "+h.callback_type
+  "Parent: "+h.parent.type
+  "Children: "+fmtchildren(h.children)
+  "Style = "+h.style
+  "Visible = "+sci2exp(h.visible)
+  "String = "+h.label 
+  "Callback = "+h.callback
+  "CallbackType = "+h.callback_type
   //"handle_visible = "+sci2exp(h.handle_visible)
-  "position = "+sci2exp(h.position,0)
-  "backgroundcolor = "+sci2exp(h.backgroundcolor,0)
-  "foregroundcolor = "+sci2exp(h.foregroundcolor,0)
-  "fontweight = "+h.fontweight
+  "Position = "+sci2exp(h.position,0)
+  "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
+  "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
+  "FontWeight = "+h.fontweight
   //"enabled = "+sci2exp(h.menu_enable)
     ]
     end

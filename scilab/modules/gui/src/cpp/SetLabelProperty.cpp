@@ -31,14 +31,14 @@ int SetLabelProperty(sciPointObj* sciObj, int stackPointer, int valueType, int n
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
-      if(strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0)
+      switch(pUICONTROL_FEATURE(sciObj)->style)
         {
           // Send the label to Java
+        case SCI_PUSHBUTTON:
           CallScilabBridge::setPushButtonText(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
-        }
-      else
-        {
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Label", pUICONTROL_FEATURE(sciObj)->style);
+          return SET_PROPERTY_SUCCEED;
+        default:
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Label", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
           return SET_PROPERTY_ERROR;
        }
     }

@@ -60,16 +60,14 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
       return SET_PROPERTY_ERROR;
     }
 
-  if (strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0)
+  switch(pUICONTROL_FEATURE(sciObj)->style)
     {
-
+    case SCI_PUSHBUTTON:
       CallScilabBridge::setPushButtonPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, xInt, sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, widthInt, heightInt);
 
       return SET_PROPERTY_SUCCEED;
-    }
-  else
-    {
-      sciprint(_("No %s property for uicontrols of style: %s.\n"), "Position", pUICONTROL_FEATURE(sciObj)->style);
+    default:
+      sciprint(_("No %s property for uicontrols of style: %s.\n"), "Position", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
       return SET_PROPERTY_ERROR;
     }
 }

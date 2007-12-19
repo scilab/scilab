@@ -3,12 +3,6 @@
 /* Get the background color of an uicontrol */
 
 #include "GetUicontrolBackgroundColor.hxx"
-#include "CallScilabBridge.hxx"
-extern "C"{
-#include "getScilabJavaVM.h"
-#include "GetProperty.h"
-#include "localization.h"
-}
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -21,8 +15,9 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the color from Java
-      if(strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0)
+      switch(pUICONTROL_FEATURE(sciObj)->style)
         {
+        case SCI_PUSHBUTTON:
           returnValues = CallScilabBridge::getPushButtonBackgroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
           
           tmp = new double[3];
@@ -35,10 +30,8 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
           delete(tmp);
           
           return returnFlag;
-        }
-      else
-        {
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "BackgroundColor", pUICONTROL_FEATURE(sciObj)->style);
+        default:
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "BackgroundColor", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
           return FALSE;
         }
     }

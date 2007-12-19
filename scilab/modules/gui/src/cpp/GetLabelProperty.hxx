@@ -11,6 +11,7 @@ extern "C"{
 #include "localization.h"
 #include "sciprint.h"
 #include "GetLabelProperty.h"
+#include "UicontrolStyleToString.h"
 }
 
 #endif /* __GET_LABEL_PROPERTY_HXX__ */

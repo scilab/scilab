@@ -31,19 +31,19 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
-      if(strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0)
+      switch(pUICONTROL_FEATURE(sciObj)->style)
         {
           // Send the label to Java
+        case SCI_PUSHBUTTON:
           CallScilabBridge::setPushButtonCallback(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
-        }
-      else
-        {
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Callback", pUICONTROL_FEATURE(sciObj)->style);
+          return SET_PROPERTY_SUCCEED;
+        default:
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Callback", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
           return SET_PROPERTY_ERROR;
        }
     }
 
   sciprint(_("No %s property for this object.\n"), "Callback");
-  return SET_PROPERTY_SUCCEED;
+  return SET_PROPERTY_ERROR;
 }
 
