@@ -8,6 +8,7 @@
 #include "TicksDrawerFactory.hxx"
 #include "XTicksDrawerJoGL.hxx"
 #include "YTicksDrawerJoGL.hxx"
+#include "ZTicksDrawerJoGL.hxx"
 #include "UserDefinedTicksComputer.hxx"
 #include "AutomaticTicksComputer.hxx"
 #include "AutoLogTicksComputer.hxx"
@@ -116,10 +117,10 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
     {
       ticksComputer = new UserDefinedTicksComputer(m_pDrawer);
     }
-    ticksComputer->setUserTicks(pSUBWIN_FEATURE(pSubwin)->axes.u_xgrads,
-      pSUBWIN_FEATURE(pSubwin)->axes.u_ylabels,
-      pSUBWIN_FEATURE(pSubwin)->axes.u_nygrads,
-      pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[1]);
+    ticksComputer->setUserTicks(pSUBWIN_FEATURE(pSubwin)->axes.u_ygrads,
+                                pSUBWIN_FEATURE(pSubwin)->axes.u_ylabels,
+                                pSUBWIN_FEATURE(pSubwin)->axes.u_nygrads,
+                                pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[1]);
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
   else
@@ -146,7 +147,64 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
 /*------------------------------------------------------------------------------------------*/
 TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
 {
-  return NULL;
+  sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
+
+  BOOL axesVisible[3];
+  sciGetAxesVisible(pSubwin, axesVisible);
+  if (!axesVisible[2]) {return NULL;}
+
+  // special case here, in 2D mode, Z axis is not displayed
+  if (!sciGetIs3d(pSubwin))
+  {
+    return NULL;
+  }
+
+  ZTicksDrawerJoGL * newTicksDrawer = new ZTicksDrawerJoGL(m_pDrawer);
+
+  BOOL autoTicks[3];
+  sciGetAutoTicks(pSubwin, autoTicks);
+
+  char logFlags[3];
+  sciGetLogFlags(pSubwin, logFlags);
+
+  if (!autoTicks[2])
+  {
+    // ticks defines by user
+    UserDefinedTicksComputer * ticksComputer = NULL;
+    if (logFlags[2] == 'l')
+    {
+      ticksComputer = new UserDefLogTicksComputer(m_pDrawer);
+    }
+    else
+    {
+      ticksComputer = new UserDefinedTicksComputer(m_pDrawer);
+    }
+    ticksComputer->setUserTicks(pSUBWIN_FEATURE(pSubwin)->axes.u_zgrads,
+                                pSUBWIN_FEATURE(pSubwin)->axes.u_zlabels,
+                                pSUBWIN_FEATURE(pSubwin)->axes.u_nzgrads,
+                                pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[2]);
+    newTicksDrawer->setTicksComputer(ticksComputer);
+  }
+  else
+  {
+    AutomaticTicksComputer * ticksComputer = NULL;
+    if (logFlags[2] == 'l')
+    {
+      ticksComputer = new AutoLogTicksComputer(m_pDrawer);
+    }
+    else
+    {
+      ticksComputer = new AutomaticTicksComputer(m_pDrawer);
+    }
+
+    new AutomaticTicksComputer(m_pDrawer);
+    double bounds[6];
+    sciGetDataBounds(pSubwin, bounds);
+    ticksComputer->setAxisBounds(bounds[4], bounds[5]);
+    newTicksDrawer->setTicksComputer(ticksComputer);
+  }
+
+  return newTicksDrawer;
 }
 /*------------------------------------------------------------------------------------------*/
 }

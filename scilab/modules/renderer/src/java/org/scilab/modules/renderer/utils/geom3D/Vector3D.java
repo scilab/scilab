@@ -315,4 +315,24 @@ public class Vector3D {
 		
 	}
 	
+	/**
+	 * Test if this vector equals another
+	 * use with caution since it deals with double
+	 * @param v2 other vector to test
+	 * @return true if the each coordinates of the two vector equals
+	 */
+	public boolean equals(Vector3D v2) {
+		return   (xCoord == v2.xCoord)
+		      && (yCoord == v2.yCoord)
+		      && (zCoord == v2.zCoord);
+	}
+	
+	/**
+	 * We must provide this
+	 * @return super hashcode
+	 */
+	public int hashCode() {
+		return (int) xCoord + (int) yCoord + (int) zCoord;
+	}
+	
 }

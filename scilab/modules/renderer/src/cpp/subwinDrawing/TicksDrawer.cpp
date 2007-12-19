@@ -44,9 +44,6 @@ void TicksDrawer::setTicksComputer(ComputeTicksStrategy * ticksComputer)
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::draw(void)
 {
-  
-  if (m_pTicksComputer == NULL) { return; }
-
   initializeDrawing();
   
   drawTicks();
@@ -56,7 +53,6 @@ void TicksDrawer::draw(void)
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::showTicks(void)
 {
-  if (m_pTicksComputer == NULL) { return; }
 
   // same as initialize drawing but don't set constant parameters
   initializeShowing();

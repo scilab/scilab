@@ -33,15 +33,30 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 	/**
 	 * Compute the Y coordinate of the X axis segment
 	 * Select the one wich is in front of the camera
-	 * @param zCoordinate Z coordinate of the X axis segment alredy computed by findZCoordinate
+	 * @param zCoordinate Z coordinate of the X axis segment already computed by findZCoordinate
 	 * @return Y coordinate of the segment to draw
 	 */
 	protected double findFrontYCoordinate(double zCoordinate) {
 		GL gl = getGL();
 		
+		return findFrontYCoordinate(gl, zCoordinate, getXmin(), getYmin(), getYmax());
+		
+	}
+	
+	/**
+	 * Compute the Y coordinate of the X axis segment
+	 * Select the one wich is in front of the camera
+	 * @param gl current GL pipeline
+	 * @param zCoordinate Z coordinate of the X axis segment
+	 * @param xMin mimimum bounds on X axis
+	 * @param yMin minimum bounds on Y axis
+	 * @param yMax maximum bounds on Y axis
+	 * @return Y coordinate of the segment to draw
+	 */
+	protected static double findFrontYCoordinate(GL gl, double zCoordinate, double xMin, double yMin, double yMax) {
 		// same processus as for Z coordinate
-		Vector3D pointYmin = new Vector3D(getXmin(), getYmin(), zCoordinate);
-		Vector3D pointYmax = new Vector3D(getXmin(), getYmax(), zCoordinate);
+		Vector3D pointYmin = new Vector3D(xMin, yMin, zCoordinate);
+		Vector3D pointYmax = new Vector3D(xMin, yMax, zCoordinate);
 		
 		// find the one which is upper in term of pixels
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
@@ -51,11 +66,10 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 		
 		// get the lowest one
 		if (pointYmax.getY() > pointYmin.getY()) {
-			return getYmin();
+			return yMin;
 		} else {
-			return getYmax();
+			return yMax;
 		}
-		
 	}
 	
 	/**

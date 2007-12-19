@@ -249,13 +249,11 @@ int sci_set(char *fname, unsigned long fname_len)
 		 if ( pobj == NULL )
 		 {
 			 Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
-			 endGraphicDataWriting();
 			 return 0;
 		 }
 		 vis_save = sciGetVisibility(pobj) ; /*used not to redraw the figure is object remains invisible */
 		 if ( (setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3)) < 0 )
 		 {
-			 endGraphicDataWriting();
 			 LhsVar(1)=0;
 			 return 0 ;
 		 }

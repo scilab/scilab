@@ -685,6 +685,18 @@
 					RelativePath=".\src\cpp\subwinDrawing\YTicksDrawerJoGL.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\src\jni\ZTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZTicksDrawerJoGL.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="RectangleDrawing"
@@ -1437,6 +1449,18 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\YTicksDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\ZTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZTicksDRawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZTicksDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

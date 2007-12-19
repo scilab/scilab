@@ -205,7 +205,7 @@ void ConcreteDrawableSubwin::drawTicks(void)
 {
   if (m_pXTicksDrawer != NULL) {m_pXTicksDrawer->draw();}
   if (m_pYTicksDrawer != NULL) {m_pYTicksDrawer->draw();}
-  //m_pZTicksDrawer->draw();
+  if (m_pZTicksDrawer != NULL) {m_pZTicksDrawer->draw();}
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::showBox(void)
@@ -221,7 +221,7 @@ void ConcreteDrawableSubwin::showTicks(void)
 {
   if (m_pXTicksDrawer != NULL) {m_pXTicksDrawer->showTicks();}
   if (m_pYTicksDrawer != NULL) {m_pYTicksDrawer->showTicks();}
-  //m_pZTicksDrawer->draw();
+  if (m_pZTicksDrawer != NULL) {m_pZTicksDrawer->showTicks();}
 }
 /*------------------------------------------------------------------------------------------*/
 }

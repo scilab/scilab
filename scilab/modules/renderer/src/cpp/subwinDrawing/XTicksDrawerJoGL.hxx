@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: XTicksDrawerJoGL.hxx                                            */
+/* file: XTicksDrawerJoGL.hxx                                             */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class specialized in drawing ticks for X axis                   */

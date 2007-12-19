@@ -23,12 +23,6 @@ YTicksDrawerJoGL::YTicksDrawerJoGL(DrawableSubwin * subwin)
 {
   sciPointObj * pSubwin = subwin->getDrawedObject();
 
-  if (getJavaMapper() != NULL)
-  {
-    delete getJavaMapper();
-    setJavaMapper(NULL);
-  }
-
   switch(pSUBWIN_FEATURE(pSubwin)->axes.ydir)
   {
   case 'l':
