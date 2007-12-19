@@ -21,13 +21,13 @@ typedef enum {
 * @param new scilab mode
 * @return TRUE is newmode is OK
 */
-BOOL setScilabMode(int newmode);
+BOOL setScilabMode(scilabMode newmode);
 
 /**
 * Get scilab mode
 * @return current scilab mode
 */
-int getScilabMode(void);
+scilabMode getScilabMode(void);
 
 
 /**
@@ -35,7 +35,7 @@ int getScilabMode(void);
  * @param[out] the mode of scilab
  * @return 1
  */
-int C2F(getscilabmode)(int *mode);
+int C2F(getscilabmode)(scilabMode *mode);
 
 
 #endif /* __SCILABMODE_H__ */

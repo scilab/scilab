@@ -1,8 +1,9 @@
-/*     ==================================================================== */
-/*     Scilab parsing function */
-/*     ==================================================================== */
-/*     Copyright INRIA, S. Steer */
-/* *------------------------------------------------------------------ */
+/*--------------------------------------------------------------------------
+ * Scilab parsing function 
+ * @author S. Steer, INRIA
+ *
+ * Code automatically translated from Fortran to C 
+ *------------------------------------------------------------------ */
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
@@ -15,6 +16,7 @@
 #include "../../tclsci/includes/tksynchro.h"
 #include "cvstr.h"
 #include "msgs.h"
+#include "scilabmode.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -59,7 +61,6 @@ extern int C2F(macro)();
 extern int C2F(getsym)();
 
 extern int C2F(eqid)();
-extern int C2F(funs)();
 
 extern int C2F(bexec)();
 extern int C2F(getmen)();
@@ -105,7 +106,7 @@ int Ptover(int n)
   return C2F(ptover)(&n,(c=psiz,&c));
 }
 /*--------------------------------------------------------------------------*/
-int C2F(parse)()
+int C2F(parse)(void)
 {
   /* Initialized data */
   static int ans[6] = { 672929546,673720360,673720360,673720360,
@@ -146,6 +147,8 @@ int C2F(parse)()
   static int job, nlc, pts;
   static char tmp[80];
 
+  /* Retrieve the current Scilab Mode */
+  scilabMode sciMode=getScilabMode();
 
   itime = 10000;
  L1:
@@ -265,7 +268,12 @@ int C2F(parse)()
   /*     Beginning of a new statement, clause expression or command */
   /* ------------------------------------------------------------ */
  L15:
-  ScilabEventsLoop();
+
+  if (sciMode != SCILAB_NWNI){
+	  /* Don't call the Event loop in the NWNI mode */
+	  ScilabEventsLoop();
+  }
+
   if (ismenu() == 1 && C2F(basbrk).interruptible) {
     iret = 1;
     goto L96;

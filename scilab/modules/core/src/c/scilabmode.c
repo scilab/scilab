@@ -7,12 +7,12 @@
 /* default mode is API */
 static scilabMode CurrentScilabMode = SCILAB_API;
 /*--------------------------------------------------------------------------*/ 
-int getScilabMode(void)
+scilabMode getScilabMode(void)
 {
 	return CurrentScilabMode;
 }
 /*--------------------------------------------------------------------------*/ 
-BOOL setScilabMode(int newmode)
+BOOL setScilabMode(scilabMode newmode)
 {
 	if ( (newmode == SCILAB_API) || (newmode == SCILAB_STD) || (newmode == SCILAB_NW) || (newmode == SCILAB_NWNI) )
 	{
@@ -22,7 +22,7 @@ BOOL setScilabMode(int newmode)
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
-int C2F(getscilabmode)(int *mode)
+int C2F(getscilabmode)(scilabMode *mode)
 {
 	*mode=getScilabMode();
 	return 0;

@@ -1,6 +1,7 @@
 /*--------------------------------------------------------------------------*/ 
 /* INRIA 2007 */
 /* Scilab */
+/* Code automatically translated from Fortran to C */
 /*--------------------------------------------------------------------------*/ 
 #include "scirun.h"
 #include "callinterf.h"

@@ -1,10 +1,11 @@
-/* ========================================================================
- *     Execution of a compiled macro (byte code)
- *     bye code is a sequence of tags each of them containing the data relative 
- *     to a particular basic operation
- *     Copyright INRIA 
- *     Author  Serge Steer
- *  ========================================================================*/
+/*--------------------------------------------------------------------------
+ * Execution of a compiled macro (byte code)
+ * byte code is a sequence of tags each of them containing the data relative 
+ * to a particular basic operation
+ * @author S. Steer, INRIA
+ *
+ * Code automatically translated from Fortran to C 
+ *------------------------------------------------------------------ */
 
 #include <string.h>
 #include <stdio.h>
@@ -22,6 +23,7 @@
 #include "parse.h"
 #include "localization.h"
 #include "core_math.h"
+#include "scilabmode.h"
 
 #undef Lstk
 #undef Infstk
@@ -67,7 +69,7 @@ extern int C2F(defmat)();
 
 extern int C2F(clunit)();
 
-extern int C2F(istrue)();
+extern int C2F(istrue)(int *);
 
 int Istrue(int n)
 {
@@ -113,6 +115,9 @@ int C2F(run)()
   
   /* @TODO Why 80 ? */
   static char tmp[80];
+
+  /* Retrieve the current Scilab Mode */
+  scilabMode sciMode=getScilabMode();
 
   tref = 0;
 
@@ -476,7 +481,11 @@ int C2F(run)()
   if (Pstk[Pt] != 0) {
     Lct[8] = Ids[2 + Pt * nsiz];
 
-    ScilabEventsLoop();
+	if (sciMode != SCILAB_NWNI){
+		/* Don't call the Event loop in the NWNI mode */
+		ScilabEventsLoop();
+	}
+
     if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   }
@@ -586,7 +595,11 @@ int C2F(run)()
     Ids[1 + Pt * nsiz] = l0;
     Ids[2 + Pt * nsiz] = nc;
     Rstk[Pt] = 616;
-    ScilabEventsLoop();
+
+	if (sciMode != SCILAB_NWNI){
+		/* Don't call the Event loop in the NWNI mode */
+		ScilabEventsLoop();
+	}
     if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   } else {
@@ -644,7 +657,11 @@ int C2F(run)()
 
  L70:
   /* re entering run to continue macro evaluation */
-  ScilabEventsLoop();
+
+	if (sciMode != SCILAB_NWNI){
+		/* Don't call the Event loop in the NWNI mode */
+		ScilabEventsLoop();
+	}
   if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
 
  L71:
@@ -917,7 +934,10 @@ int C2F(run)()
   ++Lct[8];
   ++lc;
 
-  ScilabEventsLoop();
+  if (sciMode != SCILAB_NWNI){
+	  /* Don't call the Event loop in the NWNI mode */
+	  ScilabEventsLoop();
+  }
   if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
 
   goto L10;

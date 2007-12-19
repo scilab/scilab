@@ -67,7 +67,11 @@ int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 
   if ( Rhs < *iMin || Rhs > *iMax)
     {
-		Scierror(77,_("%s: wrong number of input arguments (RHS)\n"),get_fname(fname,fname_len));
+		if (Rhs==0 || Rhs==1) { /* 0 or 1 input argument */
+			Scierror(77,_("%s: Wrong number of input arguments: %d expected.\n"),get_fname(fname,fname_len), *iMax);
+		}else{
+			Scierror(77,_("%s: Wrong number of input arguments: %d to %d expected.\n"),get_fname(fname,fname_len), *iMin, *iMax);
+		}
       return FALSE_;
     }
   return TRUE_;
@@ -81,7 +85,11 @@ int C2F(checklhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 {
   if ( Lhs < *iMin || Lhs > *iMax)
     {
-		Scierror(78,_("%s: wrong number of output arguments (LHS)\n"),get_fname(fname,fname_len));
+		if (Lhs==0 || Lhs==1) { /* 0 or 1 output argument */
+			Scierror(78,_("%s: Wrong number of output arguments: %d expected.\n"),get_fname(fname,fname_len), *iMax);
+		}else{
+			Scierror(78,_("%s: Wrong number of output arguments: %d to %d expected.\n"),get_fname(fname,fname_len), *iMin, *iMax);
+		}
       return FALSE_;
     }
   return TRUE_;
@@ -306,7 +314,7 @@ int get_optionals(char *fname ,rhs_opts opts[])
     {
       if ( IsOpt(k,name) == 0  )
 	{
-	  Scierror(999,_("%s: optional arguments name=val must be at the end.\n"),fname);
+	  Scierror(999,_("%s: Optional arguments name=val must be at the end.\n"),fname);
 	  return 0;
 	}
       else
@@ -321,7 +329,7 @@ int get_optionals(char *fname ,rhs_opts opts[])
 	    }
 	  else
 	    {
-	      sciprint(_("%s: unrecognized optional arguments %s.\n"),fname,name);
+	      sciprint(_("%s: Unrecognized optional arguments %s.\n"),fname,name);
 	      rhs_opt_print_names(opts) ;
 	      Error(999);
 	      return(0);

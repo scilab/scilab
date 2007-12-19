@@ -15,15 +15,11 @@ int C2F (ScilabEventsLoop) (void)
 /*--------------------------------------------------------------------------*/
 BOOL ScilabEventsLoop(void)
 {
-	BOOL bOK = FALSE;
-	if ( getScilabMode() != SCILAB_NWNI )
-	{
-		if (scilab_timer_check())
+	if (scilab_timer_check())
 		{
 			TclEventsLoop() ;
-			bOK = TRUE;
+			return TRUE;
 		}
-	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
