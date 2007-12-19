@@ -79,4 +79,6 @@ void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, inte
 
 int sciStandardDestroyOperations( sciPointObj * pThis ) ;
 
+int DestroyUicontrol (sciPointObj * pthis);
+
 #endif /* __SCI_DESTROY__ */

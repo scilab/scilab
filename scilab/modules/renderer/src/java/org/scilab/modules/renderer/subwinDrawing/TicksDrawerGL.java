@@ -531,7 +531,7 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		int firstNonNullTicksIndex = 0;
 		
 		// find first non null ticks
-		while (ticksPosition[firstNonNullTicksIndex] == null && firstNonNullTicksIndex < nbLabels) {
+		while (firstNonNullTicksIndex < nbLabels && ticksPosition[firstNonNullTicksIndex] == null) {
 			firstNonNullTicksIndex++;
 		}
 		

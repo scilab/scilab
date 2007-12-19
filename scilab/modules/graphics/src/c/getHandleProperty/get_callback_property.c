@@ -9,6 +9,7 @@
 #include "getHandleProperty.h"
 #include "Interaction.h"
 #include "returnProperty.h"
+#include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/
 int get_callback_property( sciPointObj * pobj )

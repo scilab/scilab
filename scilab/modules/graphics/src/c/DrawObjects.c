@@ -116,7 +116,7 @@ void sciClearFigure(sciPointObj * pFigure)
     sciSetCurrentObj(newSubWin);
     sciSetOriginalSubWin(pFigure, newSubWin);
   }
-  notifyObservers(pFigure);    
+  forceHierarchyRedraw(pFigure);    
 }
 
 void sciXbasc()
