@@ -21,5 +21,6 @@ vartype_
 sciReturnString
 freeArrayOfString
 isopt_
+sciReturnRowVector
 ;
 

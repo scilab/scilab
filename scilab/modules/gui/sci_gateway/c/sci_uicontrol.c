@@ -14,7 +14,7 @@
 #include "SetHashTable.h"
 #include "PushButton.h" /* setCurentFigureAsPushButtonParent */
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 5 
+#define NBPROPERTIES 6 
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
