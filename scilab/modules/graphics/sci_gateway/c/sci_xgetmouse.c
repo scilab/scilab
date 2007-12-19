@@ -26,7 +26,8 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
 
   if (Rhs<=0)
     {
-      sel[0]=1;sel[1]=0;
+      // Call Java xgetmouse
+      CallJxgetmouse();
     }
   else
     {
@@ -43,7 +44,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
       else
         {
           // Call Java xgetmouse
-          CallJxgetmouse();
+         CallJxgetmouse();
         }
 /*       if (Rhs==2) */
 /*         { */
