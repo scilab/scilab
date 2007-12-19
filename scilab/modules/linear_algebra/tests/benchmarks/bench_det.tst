@@ -3,10 +3,13 @@
 // Copyright INRIA 2007
 //==============================================================================
 
-a = 0; b = 0;
-stacksize(30000000);
-a = rand(650, 650, 'n');
-// <-- BENCH START -->
-    b = det(a);
-// <-- BENCH END -->
+// <-- BENCH NB RUN : 10 -->
 
+stacksize(30000000);
+a = 0;
+b = 0;
+a = rand(650, 650,'n');
+
+// <-- BENCH START -->
+b = det(a);
+// <-- BENCH END -->

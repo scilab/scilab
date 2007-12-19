@@ -3,14 +3,19 @@
 // Copyright INRIA 2007
 //==============================================================================
 
-a = 0; b = 0;
+// <-- BENCH NB RUN : 10 -->
+
 stacksize(30000000);
+
+a = 0;
+b = 0;
+
 a=rand(300,300);
 
-// <-- BENCH START -->
-    b=a*a';
-    [c,d]=lu(b);
-    inv(a);
-    v=svd(a);
-// <-- BENCH END -->
+b     = a*a';
+[c,d] = lu(b);
+inv(a);
 
+// <-- BENCH START -->
+v = svd(a);
+// <-- BENCH END -->

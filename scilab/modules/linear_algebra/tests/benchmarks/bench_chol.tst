@@ -3,11 +3,15 @@
 // Copyright INRIA 2007
 //==============================================================================
 
-a = 0; b = 0;
-stacksize(30000000);
-a = rand(900, 900, 'n');
-// <-- BENCH START -->
-    a = a'*a;
-    b = chol(a);
-// <-- BENCH END -->
+// <-- BENCH NB RUN : 10 -->
 
+stacksize(30000000);
+
+a = 0;
+b = 0;
+a = rand(900, 900, 'n');
+a = a'*a;
+
+// <-- BENCH START -->
+b = chol(a);
+// <-- BENCH END -->
