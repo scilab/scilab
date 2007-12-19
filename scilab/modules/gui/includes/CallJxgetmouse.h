@@ -3,14 +3,14 @@
 
 /* Copyright INRIA */
 /* Vincent COUVERT 2007 */
-void CallJxgetmouse();
+void CallJxgetmouse(void);
 
 void CallJxgetmouseWithOptions(int withMotion, int withRelease);
 
-int getJxgetmouseMouseButtonNumber();
+int getJxgetmouseMouseButtonNumber(void);
 
-double getJxgetmouseXCoordinate();
+double getJxgetmouseXCoordinate(void);
 
-double getJxgetmouseYCoordinate();
+double getJxgetmouseYCoordinate(void);
 #endif
 
