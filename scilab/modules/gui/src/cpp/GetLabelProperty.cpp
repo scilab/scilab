@@ -3,12 +3,6 @@
 /* Get the label of an uicontrol or uimenu */
 
 #include "GetLabelProperty.hxx"
-#include "CallScilabBridge.hxx"
-extern "C"{
-#include "getScilabJavaVM.h"
-#include "GetProperty.h"
-#include "localization.h"
-}
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -34,7 +28,7 @@ int GetLabelProperty(sciPointObj* sciObj)
     }
   else
     {
-      Scierror(999, _("No style for this kind of objecf.\n"));
+      Scierror(999, _("No style for this kind of object.\n"));
       return FALSE;
     }
 }

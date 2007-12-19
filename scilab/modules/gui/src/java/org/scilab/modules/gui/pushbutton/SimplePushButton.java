@@ -95,9 +95,27 @@ public interface SimplePushButton {
 	void setEnabled(boolean status);
 
 	/**
-	 * To set the Background color of the widget.
+	 * To set the Background color of the simple pushbutton
 	 * @param color the Color
 	 */
 	void setBackground(Color color);
+
+	/**
+	 * Get the Background color of the simple pushbutton
+	 * @return the Color
+	 */
+	Color getBackground();
+
+	/**
+	 * To set the Foreground color of the simple pushbutton
+	 * @param color the Color
+	 */
+	void setForeground(Color color);
+
+	/**
+	 * Get the Foreground color of the simple pushbutton
+	 * @return the Color
+	 */
+	Color getForeground();
 
 }

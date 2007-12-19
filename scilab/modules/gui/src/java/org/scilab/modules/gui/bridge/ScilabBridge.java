@@ -982,6 +982,33 @@ public class ScilabBridge {
 		ScilabMenuBridge.setBackground(menu, color);
 	}
 	
+	/**
+	 * Get the Background color of the menu
+	 * @param menu the menu we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(Menu menu) {
+		return ScilabMenuBridge.getBackground(menu);
+	}
+
+	/**
+	 * Set the Foreground color of the menu
+	 * @param menu the menu we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(Menu menu, Color color) {
+		ScilabMenuBridge.setForeground(menu, color);
+	}
+	
+	/**
+	 * Get the Foreground color of the menu
+	 * @param menu the menu we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(Menu menu) {
+		return ScilabMenuBridge.getForeground(menu);
+	}
+
 	/*****************/
 	/* Separator Bridge */
 	/*****************/
@@ -1049,7 +1076,7 @@ public class ScilabBridge {
 	public static void setPosition(PushButton pushButton, Position newPosition) {
 		ScilabPushButtonBridge.setPosition(pushButton, newPosition);
 	}
-	
+
 	/**
 	 * Gets the visibility status of a pushButton
 	 * @param pushButton the pushButton we want to get the status of
@@ -1122,6 +1149,33 @@ public class ScilabBridge {
 	 */
 	public static void setBackground(PushButton pushButton, Color color) {
 		ScilabPushButtonBridge.setBackground(pushButton, color);
+	}
+
+	/**
+	 * Get the Background color of the pushbutton
+	 * @param pushButton the PushButton we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(PushButton pushButton) {
+		return ScilabPushButtonBridge.getBackground(pushButton);
+	}
+
+	/**
+	 * Set the Foreground color of the pushbutton
+	 * @param pushButton the PushButton we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(PushButton pushButton, Color color) {
+		ScilabPushButtonBridge.setForeground(pushButton, color);
+	}
+
+	/**
+	 * Get the Foreround color of the pushbutton
+	 * @param pushButton the PushButton we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(PushButton pushButton) {
+		return ScilabPushButtonBridge.getForeground(pushButton);
 	}
 
 	/*****************/
@@ -1230,6 +1284,33 @@ public class ScilabBridge {
 	 */
 	public static void setBackground(TextBox textBox, Color color) {
 		ScilabTextBoxBridge.setBackground(textBox, color);
+	}
+
+	/**
+	 * Get the Background color of the textbox
+	 * @param textBox the textbox we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(TextBox textBox) {
+		return ScilabTextBoxBridge.getBackground(textBox);
+	}
+
+	/**
+	 * Set the Foreground color of the textbox
+	 * @param textBox the textbox we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(TextBox textBox, Color color) {
+		ScilabTextBoxBridge.setForeground(textBox, color);
+	}
+
+	/**
+	 * Get the Foreground color of the textbox
+	 * @param textBox the textbox we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(TextBox textBox) {
+		return ScilabTextBoxBridge.getForeground(textBox);
 	}
 
 	/*****************/

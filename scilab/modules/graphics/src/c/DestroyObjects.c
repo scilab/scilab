@@ -164,6 +164,10 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
       DestroyUimenu (pthis);
       return 0;
       break;
+    case SCI_UICONTROL:
+      DestroyUicontrol (pthis);
+      return 0;
+      break;
     case SCI_CONSOLE:
       sciDestroyConsole( pthis ) ;
       return 0 ;
@@ -679,6 +683,13 @@ int DestroyUimenu (sciPointObj * pthis)
   return sciStandardDestroyOperations(pthis) ;
 }
 
+int DestroyUicontrol (sciPointObj * pthis)
+{
+  //FREE(pUICONTROL_FEATURE (pthis)->label) ;
+  //FREE (pUICONTROL_FEATURE (pthis)->callback);
+
+  return sciStandardDestroyOperations(pthis) ;
+}
 
 
 /**del sciDelLabelsMenu

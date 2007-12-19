@@ -24,7 +24,16 @@ void createPushButton(sciPointObj* sciObj)
 int setCurentFigureAsPushButtonParent(sciPointObj* sciObj)
 {
   int parentFigureIndex = 0;
+  
+  // Scilab list of parent
+  sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
+  
+  // Java objects
   parentFigureIndex = sciGetNum(sciGetCurrentFigure());
   CallScilabBridge::setPushButtonParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+  
+  // Scilab default values
+  CallScilabBridge::setPushButtonPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(sciGetCurrentFigure()) - 80, 40, 20);
+
   return SET_PROPERTY_SUCCEED;
 }

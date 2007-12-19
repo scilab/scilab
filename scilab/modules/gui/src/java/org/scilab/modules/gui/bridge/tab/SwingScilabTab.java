@@ -41,6 +41,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 		super(name, name, name);
 		this.addAction(DockingConstants.CLOSE_ACTION);
 		this.addAction(DockingConstants.PIN_ACTION);
+		this.setLayout(null);
  	}
 
 	/**

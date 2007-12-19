@@ -147,5 +147,31 @@ public class ScilabPushButtonBridge {
 		pushButton.getAsSimplePushButton().setBackground(color);
 	}
 
+	/**
+	 * Get the Background color of the pushbutton
+	 * @param pushButton the PushButton we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(PushButton pushButton) {
+		return pushButton.getAsSimplePushButton().getBackground();
+	}
+
+	/**
+	 * To set the Foreground color of the pushbutton
+	 * @param pushButton the PushButton we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(PushButton pushButton, Color color) {
+		pushButton.getAsSimplePushButton().setForeground(color);
+	}
+
+	/**
+	 * Get the Foreground color of the pushbutton
+	 * @param pushButton the PushButton we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(PushButton pushButton) {
+		return pushButton.getAsSimplePushButton().getForeground();
+	}
 }
 

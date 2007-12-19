@@ -8,41 +8,43 @@ using namespace org_scilab_modules_gui_bridge;
 
 int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
 {
-  // Color can be [R, G, B]
-  // or "R|G|B"
+  /* Color can be [R, G, B] or "R|G|B" */
 
   int redInt = 0, greenInt = 0, blueInt = 0, nbvalues = 0;
 
   double * allcolors = NULL;
   
-  float redDouble = 0.0, greenDouble = 0.0, blueDouble = 0.0;
+  float redFloat = 0.0, greenFloat = 0.0, blueFloat = 0.0;
   
   if (valueType == sci_strings)
     {
       if(nbCol != 1)
         {
-          // Parent must be a single string
+          /* Wrong string size */
+          sciprint(_("BackgroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
           return SET_PROPERTY_ERROR;
         }
       
-      nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e", &redDouble, &greenDouble, &blueDouble);
+      nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e", &redFloat, &greenFloat, &blueFloat);
 
       if (nbvalues != 3)
         {
-          // Could not read color values
+          /* Wrong string format */
+          sciprint(_("BackgroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
           return SET_PROPERTY_ERROR;
         }
 
-      redInt = (int) (redDouble * 255);
-      greenInt = (int) (greenDouble * 255);
-      blueInt = (int) (blueDouble * 255);
+      redInt = (int) (redFloat * 255);
+      greenInt = (int) (greenFloat * 255);
+      blueInt = (int) (blueFloat * 255);
       
     }
   else if (valueType == sci_matrix)
     {
        if(nbCol != 3 || nbRow != 1)
         {
-          // Parent must be a [R, G, B]
+          /* Wrong matrix size */
+          sciprint(_("BackgroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
           return SET_PROPERTY_ERROR;
         }
 
@@ -54,8 +56,8 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
     }
   else
     {
-      // Do not know how to set the parent
-      Scierror(999, _("Wrong value for uicontrol BackgroundColor property, must be [R, G, B] or \"R|G|B\".\n"));
+      /* Wrong datatype */
+      sciprint(_("BackgroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
       return SET_PROPERTY_ERROR;
     }
 
@@ -66,7 +68,8 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
     }
   else
     {
-      Scierror(999, _("Do not known how to set BackgroundColor for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+      /* Unimplmented uicontrol style */
+      sciprint(_("No BackgroundColor for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
       return SET_PROPERTY_ERROR;
     }
 }

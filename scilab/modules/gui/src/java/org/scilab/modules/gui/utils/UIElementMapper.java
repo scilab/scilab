@@ -84,9 +84,9 @@ public final class UIElementMapper {
 	}
 	
 	/**
-	 * Get the canvas on which the figure is drawn.
+	 * Get the element corresponding an ID
 	 * @param uielementId id of the UIElement
-	 * @return the corresponding canvas
+	 * @return the corresponding element
 	 */
 	public static UIElement getCorrespondingUIElement(int uielementId) {
 		return mapper.get(uielementId);

@@ -17,6 +17,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -28,6 +29,15 @@ import org.scilab.modules.renderer.FigureMapper;
  * @author Vincent COUVERT
  */
 public class CallScilabBridge {
+	
+	private static final int NB_COLORS = 3;
+	
+	private static final int POSITION_SIZE = 4;
+	
+	private static final int X_INDEX = 0;
+	private static final int Y_INDEX = 1;
+	private static final int WIDTH_INDEX = 2;
+	private static final int HEIGHT_INDEX = 3;
 
 	/**
 	 * Constructor
@@ -181,6 +191,36 @@ public class CallScilabBridge {
 		//parentTab.addMember((PushButton) UIElementMapper.getCorrespondingUIElement(objID));
 		PushButton pushButton = (PushButton) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.addMember(parentTab, pushButton);
+		
+//		Class[] paramTypes = new Class[2];
+//		paramTypes[0] = parentTab.getClass().getSuperclass();
+//		paramTypes[1] = UIElementMapper.getCorrespondingUIElement(objID).getClass().getSuperclass();
+//		Method m = null;
+//		try {
+//			m = ScilabBridge.class.getMethod("addMember", paramTypes);
+//		} catch (SecurityException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NoSuchMethodException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		Object[] objects = new Object[2];
+//		objects[0] = parentTab;
+//		objects[1] = UIElementMapper.getCorrespondingUIElement(objID).getClass();
+//		try {
+//			m.invoke("addMember", objects);
+//		} catch (IllegalArgumentException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IllegalAccessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (InvocationTargetException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	/**
@@ -226,6 +266,10 @@ public class CallScilabBridge {
 		Menu menu = (Menu) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.add(parentMenu, menu);
 	}
+	
+	/*************/
+	/* Callbacks */
+	/*************/
 
 	/**
 	 * Set a callback for a Menu
@@ -236,6 +280,35 @@ public class CallScilabBridge {
 		System.out.println("setMenuCallback is not implemented");
 	}
 	
+	/**
+	 * Get the callback for a Menu
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @return the text of the callback
+	 */
+	public static String getMenuCallback(int objID) {
+		System.out.println("getMenuCallback is not implemented");
+		return "";
+	}
+	
+	/**
+	 * Set a callback for a PushButton
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @param callback the text of the callback
+	 */
+	public static void setPushButtonCallback(int objID, String callback) {
+		System.out.println("setPushButtonCallback is not implemented");
+	}
+	
+	/**
+	 * Get the callback for a PushButton
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @return the text of the callback
+	 */
+	public static String getPushButtonCallback(int objID) {
+		System.out.println("getPushButtonCallback is not implemented");
+		return "";
+	}
+
 	/**
 	 * Disable a menu of a Scilab figure giving its name
 	 * @param figureID the id of the figure
@@ -380,4 +453,101 @@ public class CallScilabBridge {
 		((PushButton) UIElementMapper.getCorrespondingUIElement(id)).setBackground(new Color(red, green, blue));
 	}
 	
+	/**
+	 * Get the background color of a pushbutton 
+	 * @param id the id of the pushbutton
+	 * @return the color [R, G, B]
+	 */
+	public static int[] getPushButtonBackgroundColor(int id) {
+		Color tmpColor = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getBackground();
+		int[] color = new int[NB_COLORS];
+		color[0] = tmpColor.getRed();
+		color[1] = tmpColor.getGreen();
+		color[2] = tmpColor.getBlue();
+		return color;
+	}
+	
+	/**
+	 * Set the foreground color of a push button 
+	 * @param id the id of the push button
+	 * @param red the red value for the color
+	 * @param green the green value for the color
+	 * @param blue the blue value for the color
+	 */
+	public static void setPushButtonForegroundColor(int id, int red, int green, int blue) {
+		((PushButton) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
+	}
+	
+	/**
+	 * Get the foreground color of a pushbutton 
+	 * @param id the id of the pushbutton
+	 * @return the color [R, G, B]
+	 */
+	public static int[] getPushButtonForegroundColor(int id) {
+		Color tmpColor = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getForeground();
+		int[] color = new int[NB_COLORS];
+		color[0] = tmpColor.getRed();
+		color[1] = tmpColor.getGreen();
+		color[2] = tmpColor.getBlue();
+		return color;
+	}
+
+	/**
+	 * Set the foreground color of a menu
+	 * @param id the id of the menu
+	 * @param red the red value for the color
+	 * @param green the green value for the color
+	 * @param blue the blue value for the color
+	 */
+	public static void setMenuForegroundColor(int id, int red, int green, int blue) {
+		((Menu) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
+	}
+	
+	/**
+	 * Get the foreground color of a menu 
+	 * @param id the id of the menu
+	 * @return the color [R, G, B]
+	 */
+	public static int[] getMenuForegroundColor(int id) {
+		Color tmpColor = ((Menu) UIElementMapper.getCorrespondingUIElement(id)).getForeground();
+		int[] color = new int[NB_COLORS];
+		color[0] = tmpColor.getRed();
+		color[1] = tmpColor.getGreen();
+		color[2] = tmpColor.getBlue();
+		return color;
+	}
+
+	/********************/
+	/* Position setting */
+	/********************/
+	
+	/**
+	 * Set the position (in Scilab terms) of a pushbutton 
+	 * @param id the id of the push button
+	 * @param x the X-coordinate for the button
+	 * @param y the Y-coordinate for the button
+	 * @param width the width of the button
+	 * @param height the height of the button
+	 */
+	public static void setPushButtonPosition(int id, int x, int y, int width, int height) {
+		((PushButton) UIElementMapper.getCorrespondingUIElement(id)).setPosition(new Position(x, y));
+		//ScilabBridge.setPosition(UIElementMapper.getCorrespondingUIElement(id), new Position(x, y));
+		((PushButton) UIElementMapper.getCorrespondingUIElement(id)).setDims(new Size(width, height));
+	}
+	
+	/**
+	 * Get the position (in Scilab terms) of a pushbutton 
+	 * @param id the id of the push button
+	 * @return the position (X-coordinate, Y-coordinate, width, height) of the button
+	 */
+	public static int[] getPushButtonPosition(int id) {
+		int[] position = new int[POSITION_SIZE];
+		
+		position[X_INDEX] = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getX();
+		position[Y_INDEX] = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getY();
+		position[WIDTH_INDEX] = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getDims().getWidth();
+		position[HEIGHT_INDEX] = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getDims().getHeight();
+		
+		return position;
+	}
 }

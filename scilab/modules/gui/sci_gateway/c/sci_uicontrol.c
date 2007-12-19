@@ -14,7 +14,7 @@
 #include "SetHashTable.h"
 #include "PushButton.h" /* setCurentFigureAsPushButtonParent */
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 2 
+#define NBPROPERTIES 5 
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
@@ -35,7 +35,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][7] = {"style", "parent"};
+  char propertiesNames[NBPROPERTIES][16] = {"style", "parent", "backgroundcolor", "foregroundcolor","label", "position"};
   int *propertiesValuesIndices = NULL;
 
   //CheckRhs(2,2);

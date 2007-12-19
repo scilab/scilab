@@ -150,6 +150,30 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 		ScilabBridge.setBackground(this, color);
 	}
 
+	/**
+	 * Get the Background color of the pushbutton
+	 * @return the Color
+	 */
+	public Color getBackground() {
+		return ScilabBridge.getBackground(this);
+	}
+	
+	/**
+	 * To set the Foreground color of the pushbutton
+	 * @param color the Color
+	 */
+	public void setForeground(Color color) {
+		ScilabBridge.setForeground(this, color);
+	}
+
+	/**
+	 * Get the Foreground color of the pushbutton
+	 * @return the Color
+	 */
+	public Color getForeground() {
+		return ScilabBridge.getForeground(this);
+	}
+
 	//	/**
 //	 * Sets a MenuBar to an element
 //	 * @param newMenuBar the MenuBar to set to the element

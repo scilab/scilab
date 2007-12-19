@@ -125,5 +125,32 @@ public class ScilabTextBoxBridge {
 	public static void setBackground(TextBox textBox, Color color) {
 		textBox.getAsSimpleTextBox().setBackground(color);
 	}
-	
+
+	/**
+	 * Get the Background color of the textbox
+	 * @param textBox the textbox we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(TextBox textBox) {
+		return textBox.getAsSimpleTextBox().getBackground();
+	}
+
+	/**
+	 * Set the Foreground color of a Scilab TextBox
+	 * @param textBox the textbox we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(TextBox textBox, Color color) {
+		textBox.getAsSimpleTextBox().setForeground(color);
+	}
+
+	/**
+	 * Get the Foreground color of the textbox
+	 * @param textBox the textbox we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(TextBox textBox) {
+		return textBox.getAsSimpleTextBox().getForeground();
+	}
+
 }

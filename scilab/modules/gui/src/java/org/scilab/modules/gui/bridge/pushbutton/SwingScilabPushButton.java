@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.bridge.pushbutton;
 
+import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -58,7 +60,9 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		super.setSize(newSize.getWidth(), newSize.getHeight());
+		setSize(newSize.getWidth(), newSize.getHeight());
+		setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+		setBounds(getPosition().getX(), getPosition().getY(), newSize.getWidth(), newSize.getHeight());
 	}
 
 	/**
@@ -67,7 +71,8 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		super.setLocation(newPosition.getX(), newPosition.getY());
+		setLocation(newPosition.getX(), newPosition.getY());
+		setBounds(newPosition.getX(), newPosition.getY(), getDims().getWidth(),	getDims().getHeight());
 	}
 	
 	/**

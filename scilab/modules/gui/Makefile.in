@@ -115,7 +115,14 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/CallJxgetmouse.cpp src/cpp/CallFileChooser.cpp \
 	src/cpp/PushButton.cpp src/cpp/SetLabelProperty.cpp \
 	src/cpp/GetLabelProperty.cpp src/cpp/SetUicontrolParent.cpp \
-	src/cpp/SetUicontrolBackgroundColor.cpp
+	src/cpp/SetUicontrolBackgroundColor.cpp \
+	src/cpp/GetUicontrolBackgroundColor.cpp \
+	src/cpp/SetUiobjectForegroundColor.cpp \
+	src/cpp/GetUiobjectForegroundColor.cpp \
+	src/cpp/SetUicontrolPosition.cpp \
+	src/cpp/GetUicontrolPosition.cpp \
+	src/cpp/SetUiobjectCallback.cpp \
+	src/cpp/GetUiobjectCallback.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -160,7 +167,14 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-SetLabelProperty.lo \
 @GUI_TRUE@	libscigui_la-GetLabelProperty.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolParent.lo \
-@GUI_TRUE@	libscigui_la-SetUicontrolBackgroundColor.lo
+@GUI_TRUE@	libscigui_la-SetUicontrolBackgroundColor.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolBackgroundColor.lo \
+@GUI_TRUE@	libscigui_la-SetUiobjectForegroundColor.lo \
+@GUI_TRUE@	libscigui_la-GetUiobjectForegroundColor.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolPosition.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolPosition.lo \
+@GUI_TRUE@	libscigui_la-SetUiobjectCallback.lo \
+@GUI_TRUE@	libscigui_la-GetUiobjectCallback.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -448,7 +462,14 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/SetLabelProperty.cpp \
 @GUI_TRUE@src/cpp/GetLabelProperty.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolParent.cpp \
-@GUI_TRUE@src/cpp/SetUicontrolBackgroundColor.cpp
+@GUI_TRUE@src/cpp/SetUicontrolBackgroundColor.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolBackgroundColor.cpp \
+@GUI_TRUE@src/cpp/SetUiobjectForegroundColor.cpp \
+@GUI_TRUE@src/cpp/GetUiobjectForegroundColor.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolPosition.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolPosition.cpp \
+@GUI_TRUE@src/cpp/SetUiobjectCallback.cpp \
+@GUI_TRUE@src/cpp/GetUiobjectCallback.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/DrawableRectangleGL.giws.xml \
@@ -623,6 +644,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetLabelProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetStyleProperty.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolBackgroundColor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolPosition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectCallback.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectForegroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitUIMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitializeGUI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxclick.Plo@am__quote@
@@ -631,6 +656,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetLabelProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolParent.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolPosition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectCallback.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectForegroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-TerminateGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
@@ -1034,6 +1062,55 @@ libscigui_la-SetUicontrolBackgroundColor.lo: src/cpp/SetUicontrolBackgroundColor
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolBackgroundColor.cpp' object='libscigui_la-SetUicontrolBackgroundColor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolBackgroundColor.lo `test -f 'src/cpp/SetUicontrolBackgroundColor.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolBackgroundColor.cpp
+
+libscigui_la-GetUicontrolBackgroundColor.lo: src/cpp/GetUicontrolBackgroundColor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolBackgroundColor.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolBackgroundColor.Tpo -c -o libscigui_la-GetUicontrolBackgroundColor.lo `test -f 'src/cpp/GetUicontrolBackgroundColor.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolBackgroundColor.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolBackgroundColor.Tpo $(DEPDIR)/libscigui_la-GetUicontrolBackgroundColor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolBackgroundColor.cpp' object='libscigui_la-GetUicontrolBackgroundColor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolBackgroundColor.lo `test -f 'src/cpp/GetUicontrolBackgroundColor.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolBackgroundColor.cpp
+
+libscigui_la-SetUiobjectForegroundColor.lo: src/cpp/SetUiobjectForegroundColor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectForegroundColor.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectForegroundColor.Tpo -c -o libscigui_la-SetUiobjectForegroundColor.lo `test -f 'src/cpp/SetUiobjectForegroundColor.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectForegroundColor.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUiobjectForegroundColor.Tpo $(DEPDIR)/libscigui_la-SetUiobjectForegroundColor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectForegroundColor.cpp' object='libscigui_la-SetUiobjectForegroundColor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectForegroundColor.lo `test -f 'src/cpp/SetUiobjectForegroundColor.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectForegroundColor.cpp
+
+libscigui_la-GetUiobjectForegroundColor.lo: src/cpp/GetUiobjectForegroundColor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUiobjectForegroundColor.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUiobjectForegroundColor.Tpo -c -o libscigui_la-GetUiobjectForegroundColor.lo `test -f 'src/cpp/GetUiobjectForegroundColor.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectForegroundColor.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUiobjectForegroundColor.Tpo $(DEPDIR)/libscigui_la-GetUiobjectForegroundColor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUiobjectForegroundColor.cpp' object='libscigui_la-GetUiobjectForegroundColor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUiobjectForegroundColor.lo `test -f 'src/cpp/GetUiobjectForegroundColor.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectForegroundColor.cpp
+
+libscigui_la-SetUicontrolPosition.lo: src/cpp/SetUicontrolPosition.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolPosition.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolPosition.Tpo -c -o libscigui_la-SetUicontrolPosition.lo `test -f 'src/cpp/SetUicontrolPosition.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolPosition.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolPosition.Tpo $(DEPDIR)/libscigui_la-SetUicontrolPosition.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolPosition.cpp' object='libscigui_la-SetUicontrolPosition.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolPosition.lo `test -f 'src/cpp/SetUicontrolPosition.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolPosition.cpp
+
+libscigui_la-GetUicontrolPosition.lo: src/cpp/GetUicontrolPosition.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolPosition.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolPosition.Tpo -c -o libscigui_la-GetUicontrolPosition.lo `test -f 'src/cpp/GetUicontrolPosition.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolPosition.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolPosition.Tpo $(DEPDIR)/libscigui_la-GetUicontrolPosition.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolPosition.cpp' object='libscigui_la-GetUicontrolPosition.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolPosition.lo `test -f 'src/cpp/GetUicontrolPosition.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolPosition.cpp
+
+libscigui_la-SetUiobjectCallback.lo: src/cpp/SetUiobjectCallback.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectCallback.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectCallback.Tpo -c -o libscigui_la-SetUiobjectCallback.lo `test -f 'src/cpp/SetUiobjectCallback.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectCallback.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUiobjectCallback.Tpo $(DEPDIR)/libscigui_la-SetUiobjectCallback.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectCallback.cpp' object='libscigui_la-SetUiobjectCallback.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectCallback.lo `test -f 'src/cpp/SetUiobjectCallback.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectCallback.cpp
+
+libscigui_la-GetUiobjectCallback.lo: src/cpp/GetUiobjectCallback.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUiobjectCallback.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUiobjectCallback.Tpo -c -o libscigui_la-GetUiobjectCallback.lo `test -f 'src/cpp/GetUiobjectCallback.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectCallback.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUiobjectCallback.Tpo $(DEPDIR)/libscigui_la-GetUiobjectCallback.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUiobjectCallback.cpp' object='libscigui_la-GetUiobjectCallback.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUiobjectCallback.lo `test -f 'src/cpp/GetUiobjectCallback.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectCallback.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

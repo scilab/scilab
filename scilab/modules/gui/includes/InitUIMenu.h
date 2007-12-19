@@ -26,18 +26,6 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
 /**
  * @TODO add comment
  *
- * @param sciObj    
- * @param stackPointer  
- * @param valueType 
- * @param nbRow 
- * @param nbCol 
- * @return <ReturnValue>
- */
-int setMenuCallback(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol);
-
-/**
- * @TODO add comment
- *
  * @param name  
  * @param status    
  */

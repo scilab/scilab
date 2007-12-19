@@ -147,4 +147,31 @@ public class ScilabMenuBridge {
 	public static void setBackground(Menu menu, Color color) {
 		menu.getAsSimpleMenu().setBackground(color);
 	}
+
+	/**
+	 * Get the Background color of the menu
+	 * @param menu the menu we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(Menu menu) {
+		return menu.getAsSimpleMenu().getBackground();
+	}
+
+	/**
+	 * Set the Foreground color of the menu
+	 * @param menu the menu we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(Menu menu, Color color) {
+		menu.getAsSimpleMenu().setForeground(color);
+	}
+
+	/**
+	 * Get the Foreground color of the menu
+	 * @param menu the menu we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(Menu menu) {
+		return menu.getAsSimpleMenu().getForeground();
+	}
 }

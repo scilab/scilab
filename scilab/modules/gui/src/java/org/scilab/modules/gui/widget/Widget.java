@@ -14,8 +14,27 @@ import org.scilab.modules.gui.dockable.Dockable;
 public interface Widget extends Dockable {
 
 	/**
-	 * To set the Background color of the widget.
+	 * Set the Background color of the widget.
 	 * @param color the Color
 	 */
 	void setBackground(Color color);
+	
+	/**
+	 * Get the Background color of the widget.
+	 * @return the Color
+	 */
+	Color getBackground();
+	
+	/**
+	 * Set the Foreground color of the widget.
+	 * @param color the Color
+	 */
+	void setForeground(Color color);
+	
+	/**
+	 * Get the Foreground color of the widget.
+	 * @return the Color
+	 */
+	Color getForeground();
+
 }

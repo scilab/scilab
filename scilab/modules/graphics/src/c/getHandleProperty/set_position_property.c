@@ -34,6 +34,11 @@ int set_position_property( sciPointObj * pobj, int stackPointer, int valueType, 
     pUIMENU_FEATURE(pobj)->MenuPosition = (int) getDoubleFromStack( stackPointer ) ;
     return SET_PROPERTY_SUCCEED ;
   }
+  else if(sciGetEntityType(pobj) == SCI_UICONTROL)
+  {
+    SetUicontrolPosition(pobj, stackPointer, valueType, nbRow, nbCol);
+    return SET_PROPERTY_SUCCEED ;
+  }
   else if( sciGetEntityType(pobj) == SCI_LABEL )
   {
     double * values = getDoubleMatrixFromStack( stackPointer ) ;

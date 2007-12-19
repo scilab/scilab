@@ -48,10 +48,52 @@
 	  <parameter type="int" name="green"/>
 	  <parameter type="int" name="blue"/>
 	</method>
+	<method name="getPushButtonBackgroundColor" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setPushButtonForegroundColor" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="red"/>
+	  <parameter type="int" name="green"/>
+	  <parameter type="int" name="blue"/>
+	</method>
+	<method name="getPushButtonForegroundColor" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setMenuForegroundColor" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="red"/>
+	  <parameter type="int" name="green"/>
+	  <parameter type="int" name="blue"/>
+	</method>
+	<method name="getMenuForegroundColor" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+<!-- Position setting -->
+	<method name="setPushButtonPosition" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="x"/>
+	  <parameter type="int" name="y"/>
+	  <parameter type="int" name="width"/>
+	  <parameter type="int" name="height"/>
+	</method>
+	<method name="getPushButtonPosition" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
 <!-- Callback setting -->
 	<method name="setMenuCallback" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="text"/>
+	</method>
+	<method name="getMenuCallback" returnType="String" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setPushButtonCallback" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="text"/>
+	</method>
+	<method name="getPushButtonCallback" returnType="String" modifier="static">
+	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Enable/Disable -->
 	<method name="setRootMenuEnabled" returnType="void" modifier="static">

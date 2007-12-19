@@ -3,6 +3,11 @@
 /* Sets the parent of an uicontrol object */
 
 #include "SetUicontrolParent.hxx"
+extern "C"
+{
+#include "BuildObjects.h"
+#include "sciprint.h"
+}
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -10,6 +15,8 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
 {
 
   int parentFigureIndex = 0; 
+
+  sciPointObj *figure = NULL;
 
   if (nbRow*nbCol != 1)
     {
@@ -19,17 +26,22 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
   
   if (valueType == sci_handles)
     {
-      if (sciGetEntityType(sciGetPointerFromHandle(getHandleFromStack(stackPointer))) == SCI_FIGURE)
+      figure = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
+      if (sciGetEntityType(figure) == SCI_FIGURE)
         {
           // Scilab relationship
-          sciSetParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
+          sciAddThisToItsParent(sciObj, figure);
 
           // The parent is a figure
-          parentFigureIndex = sciGetNum(sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
+          parentFigureIndex = sciGetNum(figure);
           
           if(strcmp(pUICONTROL_FEATURE(sciObj)->style, "pushbutton")==0)
             {
               CallScilabBridge::setPushButtonParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+  
+              // Scilab default values
+              CallScilabBridge::setPushButtonPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(figure) - 80, 40, 20);
+
               return SET_PROPERTY_SUCCEED;
             }
           else

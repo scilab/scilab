@@ -13,7 +13,6 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
-#include "InitUIMenu.h"
 #include "GetProperty.h"
 /*------------------------------------------------------------------------*/
 int set_callback_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
@@ -24,9 +23,9 @@ int set_callback_property( sciPointObj * pobj, int stackPointer, int valueType, 
     return SET_PROPERTY_ERROR ;
   }
 
-  if (sciGetEntityType(pobj) == SCI_UIMENU)
+  if (sciGetEntityType(pobj) == SCI_UIMENU || sciGetEntityType(pobj) == SCI_UICONTROL)
     {
-      return setMenuCallback(pobj, stackPointer, valueType, nbRow, nbCol);
+      return SetUiobjectCallback(pobj, stackPointer, valueType, nbRow, nbCol);
     }
   else
     {

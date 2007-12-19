@@ -32,7 +32,14 @@ src/cpp/PushButton.cpp \
 src/cpp/SetLabelProperty.cpp \
 src/cpp/GetLabelProperty.cpp \
 src/cpp/SetUicontrolParent.cpp \
-src/cpp/SetUicontrolBackgroundColor.cpp
+src/cpp/SetUicontrolBackgroundColor.cpp \
+src/cpp/GetUicontrolBackgroundColor.cpp \
+src/cpp/SetUiobjectForegroundColor.cpp \
+src/cpp/GetUiobjectForegroundColor.cpp \
+src/cpp/SetUicontrolPosition.cpp \
+src/cpp/GetUicontrolPosition.cpp \
+src/cpp/SetUiobjectCallback.cpp \
+src/cpp/GetUiobjectCallback.cpp
 
 GIWS_WRAPPERS = \
 src/jni/DrawableRectangleGL.giws.xml \

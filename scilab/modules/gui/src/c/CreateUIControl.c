@@ -20,7 +20,7 @@ sciPointObj * CreateUIControl(char *style)
   char *callback = NULL;
 
   sciPointObj *pobj = (sciPointObj *) NULL;
-  sciUicontrol *ppobj=NULL;
+  //sciUicontrol *ppobj=NULL;
 
   if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
 
@@ -31,7 +31,7 @@ sciPointObj * CreateUIControl(char *style)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
-  ppobj=pUICONTROL_FEATURE (pobj);
+  //ppobj=pUICONTROL_FEATURE (pobj);
 
   if ((pUICONTROL_FEATURE (pobj)->callback = CALLOC(1,sizeof(char))) == NULL )
     {
@@ -45,34 +45,34 @@ sciPointObj * CreateUIControl(char *style)
   pUICONTROL_FEATURE (pobj)->CallbackType=0;
   pUICONTROL_FEATURE (pobj)->Enable=TRUE;
 
-
+  sciStandardBuildOperations(pobj, NULL);
   /* add the handle in the handle list */
-  if ( sciAddNewHandle(pobj) == -1 )
-    {
-      FREE( pobj->pfeatures ) ;
-      FREE( pobj ) ;
-      return NULL ;
-    }
+/*   if ( sciAddNewHandle(pobj) == -1 ) */
+/*     { */
+/*       FREE( pobj->pfeatures ) ; */
+/*       FREE( pobj ) ; */
+/*       return NULL ; */
+/*     } */
 
-  /* no sons for now */
-  sciInitSelectedSons( pobj ) ;
+/*   /\* no sons for now *\/ */
+/*   sciInitSelectedSons( pobj ) ; */
       
-  sciGetRelationship(pobj)->psons        = NULL ;
-  sciGetRelationship(pobj)->plastsons    = NULL ;
-  sciGetRelationship(pobj)->pSelectedSon = NULL ;
+/*   sciGetRelationship(pobj)->psons        = NULL ; */
+/*   sciGetRelationship(pobj)->plastsons    = NULL ; */
+/*   sciGetRelationship(pobj)->pSelectedSon = NULL ; */
       
-  sciInitVisibility( pobj, TRUE ) ;
+/*   sciInitVisibility( pobj, TRUE ) ; */
       
-  sciGetPointerToUserData( pobj, &userData, &udSize ) ;
-  *userData = NULL ;
-  *udSize   = 0    ;
-      
-      
-  //pobj->pObservers = DoublyLinkedList_new() ;
-  //createDrawingObserver( pobj ) ;
+/*   sciGetPointerToUserData( pobj, &userData, &udSize ) ; */
+/*   *userData = NULL ; */
+/*   *udSize   = 0    ; */
       
       
-  pobj->pDrawer = NULL ;
+/*   //pobj->pObservers = DoublyLinkedList_new() ; */
+/*   //createDrawingObserver( pobj ) ; */
+      
+      
+/*   pobj->pDrawer = NULL ; */
       
   /* Default Style is PushButton */
   if (style == NULL || strcmp(style,"pushbutton")==0)

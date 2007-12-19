@@ -15,10 +15,15 @@
 /*------------------------------------------------------------------------*/
 int get_position_property( sciPointObj * pobj )
 {
+  
 
   if (sciGetEntityType(pobj) == SCI_UIMENU )
   {
     return sciReturnDouble( pUIMENU_FEATURE(pobj)->MenuPosition ) ;
+  }
+  else if (sciGetEntityType(pobj) == SCI_UICONTROL)
+  {
+    return  GetUicontrolPosition(pobj);
   }
   else if ( sciGetEntityType(pobj) == SCI_LABEL )
   {

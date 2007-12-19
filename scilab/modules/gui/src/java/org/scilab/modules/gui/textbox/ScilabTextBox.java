@@ -124,4 +124,29 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	public void setBackground(Color color) {
 		ScilabBridge.setBackground(this, color);
 	}
+
+	/**
+	 * Get the Background color of the textbox
+	 * @return the Color
+	 */
+	public Color getBackground() {
+		return ScilabBridge.getBackground(this);
+	}
+	
+	/**
+	 * Set the Foreground color of the textbox
+	 * @param color the Color
+	 */
+	public void setForeground(Color color) {
+		ScilabBridge.setForeground(this, color);
+	}
+
+	/**
+	 * Get the Foreground color of the textbox
+	 * @return the Color
+	 */
+	public Color getForeground() {
+		return ScilabBridge.getForeground(this);
+	}
+
 }

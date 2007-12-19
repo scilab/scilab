@@ -164,4 +164,28 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	public void setBackground(Color color) {
 		ScilabBridge.setBackground(this, color);
 	}
+	
+	/**
+	 * Get the Background color of the menu
+	 * @return the Color
+	 */
+	public Color getBackground() {
+		return ScilabBridge.getBackground(this);
+	}
+	
+	/**
+	 * Set the Foreground color of the menu
+	 * @param color the Color
+	 */
+	public void setForeground(Color color) {
+		ScilabBridge.setForeground(this, color);
+	}
+	
+	/**
+	 * Get the Foreground color of the menu
+	 * @return the Color
+	 */
+	public Color getForeground() {
+		return ScilabBridge.getForeground(this);
+	}
 }

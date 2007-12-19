@@ -13,6 +13,13 @@
 /*------------------------------------------------------------------------*/
 int get_callback_property( sciPointObj * pobj )
 {
-  return sciReturnString( sciGetCallback( pobj ) ) ;
+  if(sciGetEntityType(pobj) == SCI_UIMENU || sciGetEntityType(pobj) == SCI_UICONTROL)
+    {
+      return GetUiobjectCallback(pobj);
+    }
+  else
+    {
+      return sciReturnString( sciGetCallback( pobj ) ) ;
+    }
 }
 /*------------------------------------------------------------------------*/

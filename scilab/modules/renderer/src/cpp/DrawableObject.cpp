@@ -62,7 +62,10 @@ void DrawableObject::familyHasChanged( void )
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )
   {
-    getHandleDrawer( curSon->pointobj )->familyHasChanged();
+    if (sciGetEntityType(curSon->pointobj) != SCI_UICONTROL) 
+      {
+        getHandleDrawer( curSon->pointobj )->familyHasChanged();
+      }
     curSon = curSon->pprev ;
   }
 }
@@ -72,7 +75,10 @@ void DrawableObject::displayChildren( void )
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )
   {
-    getHandleDrawer( curSon->pointobj )->display() ;
+    if (sciGetEntityType(curSon->pointobj) != SCI_UICONTROL)
+      {
+        getHandleDrawer( curSon->pointobj )->display() ;
+      }
     curSon = curSon->pprev ;
   }
 }

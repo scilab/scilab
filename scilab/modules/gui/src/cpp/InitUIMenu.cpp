@@ -57,31 +57,6 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
   
 }
 
-int setMenuCallback(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
-{
-  // Callback must be only one character string
-  if (valueType != sci_strings) {
-    // TODO display a message ?
-    return SET_PROPERTY_ERROR;
-  }
-  if (nbCol != 1) {
-    // TODO display a message ?
-    return SET_PROPERTY_ERROR;
-  }
-
-  if (nbRow == 0) {
-    // This case should never happen beacause if nbRow==0 then nbCol is also 0
-    // TODO display a message ?
-    return SET_PROPERTY_ERROR;
-  }
-
-  // Send the callback to Java
-  CallScilabBridge::setMenuCallback(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
-
-  return SET_PROPERTY_SUCCEED;
-  
-}
-
 void EnableRootMenu(char *name, BOOL status)
 {
   CallScilabBridge::setRootMenuEnabled(getScilabJavaVM(), name, status);
