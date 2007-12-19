@@ -259,6 +259,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolFontWeight.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUicontrolPosition.cpp"
 				>
 			</File>
@@ -399,6 +403,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolFontWeight.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUicontrolParent.cpp"
 				>
 			</File>
@@ -508,6 +516,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUicontrolFontWeight.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolFontWeight.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetUicontrolPosition.h"
 				>
 			</File>
@@ -609,6 +625,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolBackgroundColor.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolFontWeight.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolFontWeight.hxx"
 				>
 			</File>
 			<File

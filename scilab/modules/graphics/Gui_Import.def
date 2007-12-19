@@ -38,4 +38,6 @@ GetUicontrolBackgroundColor
 SetUiobjectCallback
 SetUicontrolPosition
 SetUiobjectForegroundColor
+GetUicontrolFontWeight
+SetUicontrolFontWeight
 ;
