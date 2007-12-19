@@ -24,6 +24,9 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   CheckRhs(0,2);
   CheckLhs(1,2);
 
+  // Select current figure or create it
+  sciGetCurrentFigure();
+
   if (Rhs<=0)
     {
       // Call Java xgetmouse
