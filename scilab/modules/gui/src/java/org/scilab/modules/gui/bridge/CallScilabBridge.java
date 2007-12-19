@@ -93,7 +93,10 @@ public class CallScilabBridge {
 	 */
 	public static int newPushButton() {
 		PushButton pushButton = ScilabPushButton.createPushButton();
-		return UIElementMapper.add(pushButton);
+		int id = UIElementMapper.add(pushButton);
+		// Scilab default font
+		setPushButtonFontWeight(id, "normal");
+		return id;
 	}
 
 	/**
@@ -531,15 +534,15 @@ public class CallScilabBridge {
 
 		if (weight.equals("bold")) {
 			if (font.isItalic()) {
-				font = new Font(font.getName(), font.getSize(), Font.ITALIC + Font.BOLD);
+				font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
 			} else {
-				font = new Font(font.getName(), font.getSize(), Font.BOLD);
+				font = new Font(font.getName(), Font.BOLD, font.getSize());
 			}
 		} else {
 			if (font.isItalic()) {
-				font = new Font(font.getName(), font.getSize(), Font.ITALIC);
+				font = new Font(font.getName(), Font.ITALIC, font.getSize());
 			} else {
-				font = new Font(font.getName(), font.getSize(), Font.PLAIN);
+				font = new Font(font.getName(), Font.PLAIN, font.getSize());
 			}
 		}
 

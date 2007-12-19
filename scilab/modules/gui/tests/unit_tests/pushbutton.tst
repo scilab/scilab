@@ -6,24 +6,28 @@ set(h, "label", "Black button");
 set(h, "backgroundcolor", [0 0 0]);
 set(h, "foregroundcolor", [1 0 0]);
 set(h, "position", [50 100 200 30]);
+set(h, "fontweight", "normal");
 
 h = uicontrol(gcf());
 set(h, "label", "White button");
 set(h, "backgroundcolor", [1 1 1]);
 set(h, "foregroundcolor", [0 1 0]);
 set(h, "position", [50 125 200 30]);
+set(h, "fontweight", "light");
 
 h = uicontrol("parent", gcf());
 set(h, "label", "Light grey button");
 set(h, "backgroundcolor", [0.7 0.7 0.7]);
 set(h, "foregroundcolor", [0 0 1]);
 set(h, "position", [50 150 200 30]);
+set(h, "fontweight", "demi");
 
 h = uicontrol("style", "pushbutton");
 set(h, "label", "Yellow button");
 set(h, "backgroundcolor", "1|1|0");
 set(h, "foregroundcolor", "1|0|0");
 set(h, "position", [250 100 200 30]);
+set(h, "fontweight", "bold");
 
 h = uicontrol(gcf(), "style", "pushbutton");
 set(h, "label", "Cyan button");
@@ -53,6 +57,6 @@ h = uicontrol("parent", gcf(), "style", "pushbutton", "position", [0 figsize(2)-
 set(h, "backgroundcolor", [0 0 1]);
 set(h, "foregroundcolor", [1 0.5 0]);
 
-h = uicontrol("parent", gcf(), "style", "pushbutton", "position", [figsize(1)-200 figsize(2)-20 200 20], "label", "I''m a top right button");
+h = uicontrol("parent", gcf(), "style", "pushbutton", "position", [figsize(1)-200 figsize(2)-20 200 20], "label", "I''m a top right button", "fontweight", "bold");
 set(h, "backgroundcolor", [1 0 1]);
 set(h, "foregroundcolor", [0 0 0]);
