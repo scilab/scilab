@@ -702,6 +702,7 @@ function %h_p(h)
   "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
   "FontWeight = "+h.fontweight
   "FontUnits = "+h.fontunits
+  "FontSize = "+sci2exp(h.fontsize)
   //"enabled = "+sci2exp(h.menu_enable)
     ]
     end

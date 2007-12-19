@@ -549,6 +549,26 @@ public class CallScilabBridge {
 		ScilabBridge.setFont((PushButton) UIElementMapper.getCorrespondingUIElement(id), font);
 	}
 	
+	/**
+	 * Set the size of a pushbutton font
+	 * @param id the id of the push button
+	 * @param size the size of the button font
+	 */
+	public static void setPushButtonFontSize(int id, int size) {
+		Font font = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+		font = new Font(font.getName(), font.getStyle(), size);
+		ScilabBridge.setFont((PushButton) UIElementMapper.getCorrespondingUIElement(id), font);
+	}
+
+	/**
+	 * Get the size of a pushbutton font
+	 * @param id the id of the push button
+	 * @return the size of the button font
+	 */
+	public static int getPushButtonFontSize(int id) {
+		return ScilabBridge.getFont((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getSize();
+	}
+
 	/********************/
 	/* Position setting */
 	/********************/

@@ -43,6 +43,8 @@ src/cpp/SetUicontrolFontWeight.cpp \
 src/cpp/GetUicontrolFontWeight.cpp \
 src/cpp/SetUicontrolFontUnits.cpp \
 src/cpp/GetUicontrolFontUnits.cpp \
+src/cpp/SetUicontrolFontSize.cpp \
+src/cpp/GetUicontrolFontSize.cpp \
 src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp
 

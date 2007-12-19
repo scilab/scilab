@@ -72,6 +72,8 @@ jmethodID jintArraygetPushButtonForegroundColorjintID; // cache method id
 jmethodID voidsetMenuForegroundColorjintjintjintjintID; // cache method id
 jmethodID jintArraygetMenuForegroundColorjintID; // cache method id
 jmethodID voidsetPushButtonFontWeightjintjstringID; // cache method id
+jmethodID voidsetPushButtonFontSizejintjintID; // cache method id
+jmethodID jintgetPushButtonFontSizejintID; // cache method id
 jmethodID voidsetPushButtonPositionjintjintjintjintjintID; // cache method id
 jmethodID jintArraygetPushButtonPositionjintID; // cache method id
 jmethodID voidsetMenuCallbackjintjstringID; // cache method id
@@ -171,6 +173,10 @@ static void setMenuForegroundColor(JavaVM * jvm_, long objID, long red, long gre
 static long * getMenuForegroundColor(JavaVM * jvm_, long objID);
 
 static void setPushButtonFontWeight(JavaVM * jvm_, long objID, char * weight);
+
+static void setPushButtonFontSize(JavaVM * jvm_, long objID, long size);
+
+static long getPushButtonFontSize(JavaVM * jvm_, long objID);
 
 static void setPushButtonPosition(JavaVM * jvm_, long objID, long x, long y, long width, long height);
 

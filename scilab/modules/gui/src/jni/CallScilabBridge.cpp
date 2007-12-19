@@ -117,6 +117,8 @@ jintArraygetPushButtonForegroundColorjintID=NULL;
 voidsetMenuForegroundColorjintjintjintjintID=NULL; 
 jintArraygetMenuForegroundColorjintID=NULL; 
 voidsetPushButtonFontWeightjintjstringID=NULL; 
+voidsetPushButtonFontSizejintjintID=NULL; 
+jintgetPushButtonFontSizejintID=NULL; 
 voidsetPushButtonPositionjintjintjintjintjintID=NULL; 
 jintArraygetPushButtonPositionjintID=NULL; 
 voidsetMenuCallbackjintjstringID=NULL; 
@@ -177,6 +179,8 @@ jintArraygetPushButtonForegroundColorjintID=NULL;
 voidsetMenuForegroundColorjintjintjintjintID=NULL; 
 jintArraygetMenuForegroundColorjintID=NULL; 
 voidsetPushButtonFontWeightjintjstringID=NULL; 
+voidsetPushButtonFontSizejintjintID=NULL; 
+jintgetPushButtonFontSizejintID=NULL; 
 voidsetPushButtonPositionjintjintjintjintjintID=NULL; 
 jintArraygetPushButtonPositionjintID=NULL; 
 voidsetMenuCallbackjintjstringID=NULL; 
@@ -708,6 +712,50 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+void CallScilabBridge::setPushButtonFontSize (JavaVM * jvm_, long objID, long size){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetPushButtonFontSizejintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonFontSize", "(II)V" ) ;
+if (voidsetPushButtonFontSizejintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setPushButtonFontSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetPushButtonFontSizejintjintID ,objID, size);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long CallScilabBridge::getPushButtonFontSize (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetPushButtonFontSizejintID = curEnv->GetStaticMethodID(cls, "getPushButtonFontSize", "(I)I" ) ;
+if (jintgetPushButtonFontSizejintID == NULL) {
+std::cerr << "Could not access to the method " << "getPushButtonFontSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetPushButtonFontSizejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
 }
 
 void CallScilabBridge::setPushButtonPosition (JavaVM * jvm_, long objID, long x, long y, long width, long height){

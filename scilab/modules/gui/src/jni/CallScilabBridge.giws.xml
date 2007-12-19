@@ -74,6 +74,13 @@
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="weight"/>
 	</method>
+	<method name="setPushButtonFontSize" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="size"/>
+	</method>
+	<method name="getPushButtonFontSize" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
 <!-- Position setting -->
 	<method name="setPushButtonPosition" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>

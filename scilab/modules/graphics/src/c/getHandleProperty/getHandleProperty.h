@@ -19,6 +19,7 @@
 #include "GetUiobjectCallback.h"
 #include "GetUicontrolFontWeight.h"
 #include "GetUicontrolFontUnits.h"
+#include "GetUicontrolFontSize.h"
 
 int get_figures_id_property(           sciPointObj * pobj ) ;
 int get_visible_property(              sciPointObj * pobj ) ;
