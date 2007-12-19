@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "machine.h"
 #include "MALLOC.h"
+#include "kmp.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "pcre_private.h"
@@ -29,7 +30,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 	BOOL bStrindex_with_pattern = FALSE;
 	int outIndex = 0;
 	int numRow = 1;
-
+    int *next= NULL;
 	int i = 0;
 
 	CheckRhs(2,3);
@@ -169,37 +170,35 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			int x = 0;
 			int pos = 0;
-
-			/* We don't use pcre library */
-			for (x = 0; x < m2n2 ; ++x)
+				/* We don't use pcre library */
+			for (x=0; x < m2n2 ;++x)
 			{
 				int w = 0;
-				int w1 = 0;
-
 				if ( strlen(Strings_Input2[x]) == 0 )
 				{
-					freeArrayOfString(Strings_Input2,m2n2);
-					freeArrayOfString(Strings_Input1,m1n1);
-					if (values) {FREE(values); values = NULL;}
-					if (position) {FREE(position); position = NULL;}
-					Scierror(999, _("%s : Wrong size for second input argument: a not empty string expected.\n"));
-					return 0;
+						freeArrayOfString(Strings_Input2,m2n2);
+						freeArrayOfString(Strings_Input1,m1n1);
+						if (next) {FREE(next); next = NULL;}
+						if (values) {FREE(values); values = NULL;}
+						if (position) {FREE(position); position = NULL;}
+						Scierror(999, _("%s : Wrong size for second input argument: a not empty string expected.\n"));
+						return 0;
 				}
-
 				if (Strings_Input2)
 				{
-					for (w = 0; w<(int)strlen(Strings_Input1[0]);w++)
-					{
-						pos = 0;
-						w1 = w;
-						for ( ; (Strings_Input1[0][w1] == Strings_Input2[x][pos]) && (Strings_Input1[0][w1] != '\0'); w1++,pos++ ) ;
-						if (pos == (int)strlen(Strings_Input2[x])) 
-						{
-							values[nbValues++] = w1-(int)strlen(Strings_Input2[x])+1;
+					do
+					{	
+						next=getnext(Strings_Input2[x]);
+						/*Str is the input string matrix, Str2[x] is the substring to match; pos is the start point*/
+						w = kmp(*Strings_Input1,Strings_Input2[x],pos,next);      
+						if (w !=0)
+						{            
+							values[nbValues++] = w;
 							position[nbposition++] = x+1;
-							pos = 0;
 						}
+						pos = w;
 					}
+					while(w != 0);/* w is the answer of the kmp algorithem*/
 				}
 			}
 		}
