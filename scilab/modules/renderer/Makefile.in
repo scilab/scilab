@@ -251,6 +251,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp \
 	src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp \
 	src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp \
+	src/jni/ZTicksDrawerGL.cpp \
+	src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp \
+	src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -426,7 +429,10 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-RightYTicksDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-MiddleYTicksDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-YTicksDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-LeftYTicksDrawerJavaMapper.lo
+@GUI_TRUE@	libscirenderer_la-LeftYTicksDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-ZTicksDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-ZTicksDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-ZTicksDrawerJoGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -807,7 +813,10 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp
+@GUI_TRUE@src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp \
+@GUI_TRUE@src/jni/ZTicksDrawerGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp
 
 
 # List of the gateway c files
@@ -1179,6 +1188,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XTicksDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YTicksDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZTicksDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZTicksDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZTicksDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-gw_renderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-norenderer.Plo@am__quote@
@@ -2463,6 +2475,27 @@ libscirenderer_la-LeftYTicksDrawerJavaMapper.lo: src/cpp/subwinDrawing/LeftYTick
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp' object='libscirenderer_la-LeftYTicksDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LeftYTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp
+
+libscirenderer_la-ZTicksDrawerGL.lo: src/jni/ZTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZTicksDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZTicksDrawerGL.Tpo -c -o libscirenderer_la-ZTicksDrawerGL.lo `test -f 'src/jni/ZTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/ZTicksDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ZTicksDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-ZTicksDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ZTicksDrawerGL.cpp' object='libscirenderer_la-ZTicksDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZTicksDrawerGL.lo `test -f 'src/jni/ZTicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/ZTicksDrawerGL.cpp
+
+libscirenderer_la-ZTicksDrawerJavaMapper.lo: src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZTicksDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZTicksDrawerJavaMapper.Tpo -c -o libscirenderer_la-ZTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ZTicksDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-ZTicksDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp' object='libscirenderer_la-ZTicksDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZTicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp
+
+libscirenderer_la-ZTicksDrawerJoGL.lo: src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZTicksDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZTicksDrawerJoGL.Tpo -c -o libscirenderer_la-ZTicksDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ZTicksDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-ZTicksDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp' object='libscirenderer_la-ZTicksDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZTicksDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
