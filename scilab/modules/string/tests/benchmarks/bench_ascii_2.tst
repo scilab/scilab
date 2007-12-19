@@ -3,6 +3,8 @@
 // Copyright INRIA 2007
 //==============================================================================
 
+// <-- BENCH NB RUN : 1000000 -->
+
 str_test_mat =  ["abcdefghijklmnopqrstuvxyz","abcdefghijklmnopqrstuvxyz", ..
 				 "abcdefghijklmnopqrstuvxyz","abcdefghijklmnopqrstuvxyz", ..
 				 "abcdefghijklmnopqrstuvxyz","abcdefghijklmnopqrstuvxyz", ..
