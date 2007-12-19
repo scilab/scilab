@@ -14,8 +14,12 @@ function bench_run(varargin)
 	
 	global test_list;
 	global test_count;
+	global boucle_for_time;
 	
-	launch_mode        = "-nw";
+	test_list          = [];
+	test_count         = 0;
+	boucle_for_time    = 0;
+	
 	just_list_tests    = %F;
 	print_help         = %F;
 	nb_run             = "10000";
@@ -25,8 +29,8 @@ function bench_run(varargin)
 	// =======================================================
 	
 	if (rhs == 0) ..
-				| ((rhs == 1) & (varargin(1)==[])) ..
-				| (((rhs == 2)|(rhs == 3)) & (varargin(1)==[]) & (varargin(2)==[])) then
+		| ((rhs == 1) & (varargin(1)==[])) ..
+		| (((rhs == 2)|(rhs == 3)) & (varargin(1)==[]) & (varargin(2)==[])) then
 		
 		// No input argument
 		// bench_run()
@@ -40,8 +44,8 @@ function bench_run(varargin)
 		end
 	
 	elseif (rhs == 1) ..
-				| ((rhs == 2) & (varargin(2)==[])) ..
-				| ((rhs == 3) & (varargin(2)==[])) then
+		| ((rhs == 2) & (varargin(2)==[])) ..
+		| ((rhs == 3) & (varargin(2)==[])) then
 		
 		// One input argument
 		// bench_run(<module_name>)
@@ -109,14 +113,6 @@ function bench_run(varargin)
 		
 		option_mat =  varargin(3);
 		
-		if grep(option_mat,"mode_nw") <> [] then
-			launch_mode = "-nw";
-		end
-		
-		if grep(option_mat,"mode_nwni") <> [] then
-			launch_mode = "-nwni";
-		end
-		
 		if grep(option_mat,"list") <> [] then
 			just_list_tests    = %T;
 		end
@@ -133,6 +129,10 @@ function bench_run(varargin)
 	end
 	
 	if print_help then
+		
+		// =======================================================
+		// Display help
+		// =======================================================
 		
 		example = bench_examples();
 		printf("%s\n",example);
@@ -159,28 +159,46 @@ function bench_run(varargin)
 		
 		printf("\n");
 		
+		// Calcul de la durée de la boucle for en µs
+		
+		timer();
+		for i = 1:1000000
+		end
+		timing = timer();
+		boucle_for_time = timing;
+		
+		printf("             Boucle For .......................................        %1.2f %ss [ 1000000 x]\n\n",boucle_for_time,ascii(181));
+		
 		for i=1:test_count
 			
 			printf("   %03d/%03d - ",i,test_count);
 			printf("[%s] %s ",test_list(i,1),test_list(i,2));
-			for j = length(test_list(i,2) + test_list(i,1)):50
+			for j = length(test_list(i,2) + test_list(i,1)):45
 				printf(".");
 			end
 			printf(" ");
-			returned_time     = bench_run_onebench(test_list(i,1),test_list(i,2),nb_run);
-			returned_time_str = sprintf("%4.2f %ss",returned_time,ascii(181));
+			[returned_time,nb_run_done] = bench_run_onebench(test_list(i,1),test_list(i,2),nb_run);
+			returned_time_str           = sprintf("%4.2f %ss",returned_time,ascii(181));
 			
-			for j = length(returned_time_str):10
+			for j = length(returned_time_str):13
 				printf(' ');
 			end
 			
-			printf("%s\n",returned_time_str);
+			printf("%s [",returned_time_str);
+			
+			for j = length(nb_run_done):7
+				printf(' ');
+			end
+			
+			printf("%s x]\n",nb_run_done);
+			
 		end
 		
 	end
 	
 	clearglobal test_list;
 	clearglobal test_count;
+	clearglobal boucle_for_time;
 	
 endfunction
 
@@ -236,7 +254,7 @@ endfunction
 // => Run one test
 //-----------------------------------------------------------------------------
 
-function returned_time = bench_run_onebench(module,test,nb_run)
+function [returned_time,nb_run_done] = bench_run_onebench(module,test,nb_run)
 	
 	returned_time = 0;
 	
@@ -249,13 +267,27 @@ function returned_time = bench_run_onebench(module,test,nb_run)
 	// Get the tst file
 	txt = mgetl(tstfile);
 	
+	// Check if the nb run is defined in the test
+	
+	check_nb_run_line = grep(txt,"<-- BENCH NB RUN :");
+	
+	nb_run_done   = nb_run;
+	
+	if check_nb_run_line <> [] then
+		nb_run_line   = txt(check_nb_run_line);
+		nb_run_start  = strindex(nb_run_line,"<-- BENCH NB RUN :") + length("<-- BENCH NB RUN :");
+		nb_run_end    = strindex(nb_run_line,"-->") - 1;
+		nb_run        = stripblanks(part(nb_run_line,[nb_run_start:nb_run_end]));
+		nb_run_done   = nb_run;
+	end
+	
 	// get the <-- BENCH START --> and <-- BENCH END --> tags
 	line_start = grep(txt,"<-- BENCH START -->");
 	line_end   = grep(txt,"<-- BENCH END -->");
 	
 	// Get the context and the bench
-	context = txt([1:line_start-1]);
-	bench   = txt([line_start+1:line_end-1]);
+	context    = txt([1:line_start-1]);
+	bench      = txt([line_start+1:line_end-1]);
 	
 	// Remove blank lines
 	context(find(context == '' )) = [];
@@ -272,7 +304,7 @@ function returned_time = bench_run_onebench(module,test,nb_run)
 	
 	mputl(tst_str,scefile);
 	exec(scefile);
-	
+	returned_time = returned_time - boucle_for_time;
 	return;
 	
 endfunction
@@ -310,4 +342,3 @@ function example = bench_examples()
 	example = [ example ; "" ];
 	
 endfunction
-
