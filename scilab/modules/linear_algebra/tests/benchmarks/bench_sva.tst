@@ -1,19 +1,12 @@
 //==============================================================================
-// Benchmark for matrix function
+// Benchmark for sva function
 // Copyright INRIA 2007
 //==============================================================================
 
-// <-- BENCH NB RUN : 10 -->
+// <-- BENCH NB RUN : 1000 -->
 
-stacksize(30000000);
-
-a = 0;
-b = 0;
-
-a = abs(rand(1500,1500,'n')/10);
+A = rand(50,40)*rand(40,50);
 
 // <-- BENCH START -->
-b = a';
-a = matrix(b,750,3000);
-b = a';
+[U,s,V] = sva(A,2);
 // <-- BENCH END -->

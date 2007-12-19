@@ -3,14 +3,11 @@
 // Copyright INRIA 2007
 //==============================================================================
 
-b = 0;
-stacksize(30000000);
-b = zeros(220, 220);
-// <-- BENCH START -->
-    for j = 1:220
-      for k = 1:220
-        b(k,j) = abs(j - k) + 1;
-      end
-    end  
-// <-- BENCH END -->
+// <-- BENCH NB RUN : 10 -->
 
+// <-- BENCH START -->
+for j = 1:220
+	for k = 1:220
+	end
+end
+// <-- BENCH END -->

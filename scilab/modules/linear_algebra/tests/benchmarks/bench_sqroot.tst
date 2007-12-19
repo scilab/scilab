@@ -1,19 +1,13 @@
 //==============================================================================
-// Benchmark for matrix function
+// Benchmark for sqroot function
 // Copyright INRIA 2007
 //==============================================================================
 
-// <-- BENCH NB RUN : 10 -->
+// <-- BENCH NB RUN : 10000 -->
 
-stacksize(30000000);
-
-a = 0;
-b = 0;
-
-a = abs(rand(1500,1500,'n')/10);
+X = rand(5,2)*rand(2,5);
+X = X*X';
 
 // <-- BENCH START -->
-b = a';
-a = matrix(b,750,3000);
-b = a';
+W = sqroot(X);
 // <-- BENCH END -->
