@@ -29,13 +29,13 @@ int GetUiobjectCallback(sciPointObj* sciObj)
         }
       else
         {
-          Scierror(999, _("No Callback for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Callback", pUICONTROL_FEATURE(sciObj)->style);
           return FALSE;
         }
     }
   else
     {
-      Scierror(999, _("No Callback property for this object.\n"));
+      sciprint(_("No %s property for this object.\n"), "Callback");
       return FALSE;
     }
 }

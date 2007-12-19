@@ -20,7 +20,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
     {
       if(nbCol != 1) /* More than one string */
         {
-          sciprint(_("ForegroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
+          sciprint(_("%s property value must be \"R|G|B\" or [R, G, B].\n"), "ForegroundColor");
           return SET_PROPERTY_ERROR;
         }
       
@@ -28,7 +28,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
 
       if (nbvalues != 3) /* Wrong format string */
         {
-          sciprint(_("ForegroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
+          sciprint(_("%s property value must be \"R|G|B\" or [R, G, B].\n"), "ForegroundColor");
           return SET_PROPERTY_ERROR;
         }
 
@@ -41,7 +41,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
     {
       if(nbCol != 3 || nbRow != 1) /* Wrong matrix size */
         {
-          sciprint(_("ForegroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
+          sciprint(_("%s property value must be \"R|G|B\" or [R, G, B].\n"), "ForegroundColor");
           return SET_PROPERTY_ERROR;
         }
 
@@ -54,7 +54,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
   else
     {
       /* Wrong value type */
-      sciprint(_("ForegroundColor property value must be \"R|G|B\" or [R, G, B].\n"));
+      sciprint(_("%s property value must be \"R|G|B\" or [R, G, B].\n"), "ForegroundColor");
       return SET_PROPERTY_ERROR;
     }
 
@@ -74,13 +74,13 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
       else
         {
           /* Unimplemented uicontrol type */
-          Scierror(999, _("Do not known how to set ForegroundColor for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "ForegroundColor", pUICONTROL_FEATURE(sciObj)->style);
           return SET_PROPERTY_ERROR;
         }
     }
   else
     {
-      sciprint(_("No Foreground property for this object.\n"));
+      sciprint(_("No %s property for this object.\n"), "ForegroundColor");
       return SET_PROPERTY_ERROR;
     }
 }

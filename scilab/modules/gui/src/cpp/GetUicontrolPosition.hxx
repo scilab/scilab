@@ -1,12 +1,13 @@
 /* Copyright INRIA 2007 */
 /* Vincent COUVERT */
 
-#ifndef __GETUICONTROLPOSITION_HXX__
-#define __GETUICONTROLPOSITION_HXX__
+#ifndef __GET_UICONTROL_POSITION_HXX__
+#define __GET_UICONTROL_POSITION_HXX__
 
 extern "C"
 {
 #include "GetUicontrolPosition.h"
+#include "sciprint.h"
 }
 
-#endif /* __GETUICONTROLPOSITION_HXX__ */
+#endif /* __GET_UICONTROL_POSITION_HXX__ */

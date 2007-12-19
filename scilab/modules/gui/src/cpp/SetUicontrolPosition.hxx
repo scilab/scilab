@@ -1,8 +1,8 @@
 /* Copyright INRIA 2007 */
 /* Vincent COUVERT */
 
-#ifndef __SETUICONTROLPOSITION_HXX__
-#define __SETUICONTROLPOSITION_HXX__
+#ifndef __SET_UICONTROL_POSITION_HXX__
+#define __SET_UICONTROL_POSITION_HXX__
 
 #include "CallScilabBridge.hxx"
 extern "C"
@@ -12,8 +12,9 @@ extern "C"
 #include "getPropertyAssignedValue.h"
 #include "returnProperty.h"
 #include "localization.h"
+#include "sciprint.h"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 }
 
-#endif /* __SETUICONTROLPOSITION_HXX__ */
+#endif /* __SET_UICONTROL_POSITION_HXX__ */

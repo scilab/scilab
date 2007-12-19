@@ -20,7 +20,7 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
 
   if (nbRow*nbCol != 1)
     {
-      // Parent must be a single value
+      sciprint(_("%s property value must be a single handle.\n"), "Parent");
       return SET_PROPERTY_ERROR;
     }
   
@@ -46,21 +46,21 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
             }
           else
             {
-              Scierror(999, _("Could not set parent of an uicontrol of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+              sciprint(_("No %s property for uicontrols of style: %s.\n"), "Parent", pUICONTROL_FEATURE(sciObj)->style);
               return SET_PROPERTY_ERROR;
             }
         }
       else
         {
-          // Parent is a figure is not a figure
-          Scierror(999, _("Could not set an other object than a figure as parent of an uicontrol.\n"));
+          // Parent is not a figure
+          sciprint(_("Could not set an other object than a figure as parent of an uicontrol.\n"));
           return SET_PROPERTY_ERROR;
         }
     }
   else
     {
       // Do not know how to set the parent
-      Scierror(999, _("Could not set an other object than a handle as parent of an uicontrol.\n"));
+      sciprint(_("Could not set an other object than a handle as parent of an uicontrol.\n"));
       return SET_PROPERTY_ERROR;
     }
 }

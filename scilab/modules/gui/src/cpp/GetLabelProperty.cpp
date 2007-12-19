@@ -22,13 +22,13 @@ int GetLabelProperty(sciPointObj* sciObj)
         }
       else
         {
-          Scierror(999, _("No label for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Label", pUICONTROL_FEATURE(sciObj)->style);
           return FALSE;
         }
     }
   else
     {
-      Scierror(999, _("No style for this kind of object.\n"));
+      sciprint(_("No %s property for this object.\n"), "Label");
       return FALSE;
     }
 }

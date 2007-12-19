@@ -39,13 +39,13 @@ int GetUicontrolPosition(sciPointObj* sciObj)
         }
       else
         {
-          Scierror(999, _("No position for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Position", pUICONTROL_FEATURE(sciObj)->style);
           return FALSE;
         }
     }
   else
     {
-      Scierror(999, _("No position for this kind of object.\n"));
+      sciprint(_("No %s property for this object.\n"), "Position");
       return FALSE;
     }
 }

@@ -10,17 +10,17 @@ int SetLabelProperty(sciPointObj* sciObj, int stackPointer, int valueType, int n
 {
   // Label must be only one character string
   if (valueType != sci_strings) {
-    // TODO display a message ?
+    sciprint(_("%s property value must be a single string.\n"), "Label");
     return SET_PROPERTY_ERROR;
   }
   if (nbCol != 1) {
-    // TODO display a message ?
+    sciprint(_("%s property value must be a single string.\n"), "Label");
     return SET_PROPERTY_ERROR;
   }
 
   if (nbRow == 0) {
     // This case should never happen beacause if nbRow==0 then nbCol is also 0
-    // TODO display a message ?
+    sciprint(_("%s property value must be a single string.\n"), "Label");
     return SET_PROPERTY_ERROR;
   }
 
@@ -38,10 +38,14 @@ int SetLabelProperty(sciPointObj* sciObj, int stackPointer, int valueType, int n
         }
       else
         {
-          Scierror(999, _("Do not know how to set the label of an uicontrol of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Label", pUICONTROL_FEATURE(sciObj)->style);
           return SET_PROPERTY_ERROR;
        }
     }
-  return SET_PROPERTY_SUCCEED;
+  else
+    {
+      sciprint(_("No %s property for this object.\n"), "Label");
+      return SET_PROPERTY_ERROR;
+    }
 }
 

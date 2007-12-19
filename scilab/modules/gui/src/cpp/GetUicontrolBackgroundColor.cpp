@@ -38,13 +38,13 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
         }
       else
         {
-          Scierror(999, _("No BackgroundColor property for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "BackgroundColor", pUICONTROL_FEATURE(sciObj)->style);
           return FALSE;
         }
     }
   else
     {
-      Scierror(999, _("No BackgroundColor property for this object.\n"));
+      sciprint(_("No %s property for this object.\n"), "BackgroundColor");
       return FALSE;
     }
 }

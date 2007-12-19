@@ -28,7 +28,7 @@ int GetUiobjectForegroundColor(sciPointObj* sciObj)
       else
         {
           /* Unimplemented uicontrol style */
-          sciprint(_("No ForegroundColor property for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "ForegroundColor", pUICONTROL_FEATURE(sciObj)->style);
           return FALSE;
         }
     }
@@ -38,7 +38,7 @@ int GetUiobjectForegroundColor(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No ForegroundColor property for this object.\n"));
+      sciprint(_("No %s property for this object.\n"), "ForegroundColor");
       return FALSE;
     }
           

@@ -21,7 +21,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
     {
       if(nbCol != 1)
         {
-          // Parent must be a single string
+          sciprint(_("Position property value must be \"x|y|width|height\" or [x, y, width, height].\n"));
           return SET_PROPERTY_ERROR;
         }
       
@@ -29,7 +29,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
 
       if (nbvalues != 4)
         {
-          // Could not read all position values
+          sciprint(_("Position property value must be \"x|y|width|height\" or [x, y, width, height].\n"));
           return SET_PROPERTY_ERROR;
         }
 
@@ -43,7 +43,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
     {
        if(nbCol != 4 || nbRow != 1)
         {
-          // Parent must be a [x, y, width, height]
+          sciprint(_("Position property value must be \"x|y|width|height\" or [x, y, width, height].\n"));
           return SET_PROPERTY_ERROR;
         }
 
@@ -56,8 +56,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
     }
   else
     {
-      // Do not know how to set the parent
-      Scierror(999, _("Wrong value for uicontrol Position property, must be [x, y, width, height] or \"x|y|width|height\".\n"));
+      sciprint(_("Position property value must be \"x|y|width|height\" or [x, y, width, height].\n"));
       return SET_PROPERTY_ERROR;
     }
 
@@ -70,7 +69,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
     }
   else
     {
-      Scierror(999, _("Do not known how to set Position for uicontrols of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+      sciprint(_("No %s property for uicontrols of style: %s.\n"), "Position", pUICONTROL_FEATURE(sciObj)->style);
       return SET_PROPERTY_ERROR;
     }
 }

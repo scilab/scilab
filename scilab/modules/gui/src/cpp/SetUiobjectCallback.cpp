@@ -10,17 +10,17 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
 {
   // Label must be only one character string
   if (valueType != sci_strings) {
-    // TODO display a message ?
+    sciprint(_("%s property value must be a single string.\n"), "Callback");
     return SET_PROPERTY_ERROR;
   }
   if (nbCol != 1) {
-    // TODO display a message ?
+    sciprint(_("%s property value must be a single string.\n"), "Callback");
     return SET_PROPERTY_ERROR;
   }
 
   if (nbRow == 0) {
     // This case should never happen because if nbRow==0 then nbCol is also 0
-    // TODO display a message ?
+    sciprint(_("%s property value must be a single string.\n"), "Callback");
     return SET_PROPERTY_ERROR;
   }
 
@@ -38,10 +38,12 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
         }
       else
         {
-          Scierror(999, _("Do not know how to set the callback of an uicontrol of style: %s.\n"), pUICONTROL_FEATURE(sciObj)->style);
+          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Callback", pUICONTROL_FEATURE(sciObj)->style);
           return SET_PROPERTY_ERROR;
        }
     }
+
+  sciprint(_("No %s property for this object.\n"), "Callback");
   return SET_PROPERTY_SUCCEED;
 }
 

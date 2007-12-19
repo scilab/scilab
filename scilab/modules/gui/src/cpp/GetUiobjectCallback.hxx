@@ -1,8 +1,8 @@
 /* Copyright INRIA 2007 */
 /* Vincent COUVERT */
 
-#ifndef __GETUIOBJECTCALLBACK_HXX__
-#define __GETUIOBJECTCALLBACK_HXX__
+#ifndef __GET_UIOBJECT_CALLBACK_HXX__
+#define __GET_UIOBJECT_CALLBACK_HXX__
 
 #include "CallScilabBridge.hxx"
 extern "C"{
@@ -10,6 +10,7 @@ extern "C"{
 #include "GetProperty.h"
 #include "localization.h"
 #include "GetUiobjectCallback.h"
+#include "sciprint.h"
 }
 
-#endif
+#endif /* __GET_UIOBJECT_CALLBACK_HXX__ */
