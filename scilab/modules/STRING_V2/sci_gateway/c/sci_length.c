@@ -60,33 +60,85 @@ int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
 /*--------------------------------------------------------------------------*/
 static int lengthStrings(char *fname)
 {
-	char **Input_StringMatrix = NULL;
-	int Row_Num = 0,Col_Num = 0,mn = 0;
+	#define RHSPOS 1
+	int m = 0, n = 0; /* matrix size */
+	int mn = 0; /* m*n */
 
-	/* When input character string or matrix of strings. */
-	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
-	mn = Row_Num*Col_Num;  
+	int il = 0; int ilrd = 0;
+	int l1 = 0;
 
-	if (Input_StringMatrix)
+	int outIndex = 0 ;
+	int x = 0;
+	
+	int lw = RHSPOS + Top - Rhs;
+	
+	l1 = *Lstk(lw);
+	il = iadr(l1);
+
+	if (*istk(il ) < 0) il = iadr(*istk(il + 1));
+
+	/* get dimensions */
+	m = getNumberOfLines(il); /* row */
+	n = getNumberOfColumns(il); /* col */
+	mn = m * n ;
+	
+	ilrd = il + 4;
+	
+	/* readjust stack before to call createvar */
+	C2F(intersci).ntypes[RHSPOS - 1] = '$';
+	C2F(intersci).iwhere[RHSPOS - 1] = l1;
+	C2F(intersci).lad[RHSPOS - 1] = l1;
+
+	/* Create Variable on stack */
+	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &m,&n, &outIndex );
+	for  ( x = 0; x < mn; x++ )
 	{
-		int outIndex = 0 ;
-		int x = 0;
+		#define STK_POS_STRING ((integer *)&C2F(stack))
+		/* put length of strings */
+		/* beginning of string : STK_POS[ilrd + x ] */
+		/* end of string : STK_POS[ilrd + x - 1] */
+		stk(outIndex)[x] = (double) (STK_POS_STRING[ilrd + x ] - STK_POS_STRING[ilrd + x - 1]);
+		#undef STK_POS_STRING
+	}
 
-		CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Num,&Col_Num, &outIndex );
-		for  ( x = 0; x < mn; x++ )
-		{
-			stk(outIndex)[x] = (int)strlen(Input_StringMatrix[x]);
-		}
-		LhsVar(1) = Rhs+1 ;
-		C2F(putlhsvar)();
-		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
-	}
-	else
-	{
-		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
-	}
+	LhsVar(1) = Rhs+1 ;
+	C2F(putlhsvar)();
 	return 0;
+
+	/* benchmark on Windows */
+	/* C2D 6600 2.4 Ghz */
+	/* fortran code : 135 microsecondes */
+	/* optimized code stack2 : 146 microsecondes */
+	/* code stack3 (commented) : 17629 microsecondes */
+	/* Conclusion : GetRhsVar with strings is too slow ... */
+
+	//char **Input_StringMatrix = NULL;
+	//int Row_Num = 0,Col_Num = 0,mn = 0;
+
+	///* When input character string or matrix of strings. */
+	//GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
+	//mn = Row_Num*Col_Num;  
+
+	//if (Input_StringMatrix)
+	//{
+	//	int outIndex = 0 ;
+	//	int x = 0;
+
+	//	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Num,&Col_Num, &outIndex );
+	//	for  ( x = 0; x < mn; x++ )
+	//	{
+	//		stk(outIndex)[x] = (int)strlen(Input_StringMatrix[x]);
+	//	}
+	//	LhsVar(1) = Rhs+1 ;
+	//	C2F(putlhsvar)();
+	//	freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
+	//}
+	//else
+	//{
+	//	freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
+	//	Scierror(999,_("%s : Memory allocation error.\n"),fname);
+	//}
+	//return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int lengthMatrix(void)
