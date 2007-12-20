@@ -3,7 +3,7 @@
 // Copyright INRIA 2007
 //==============================================================================
 
-text = mgetl(SCI+"/modules/string/tests/unit_tests/text.txt");
+text = mgetl(SCI+"/modules/STRING_V2/tests/unit_tests/text.txt");
 
 // <-- BENCH START -->
 a = grep(text,"fonction");
