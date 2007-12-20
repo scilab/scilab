@@ -24,6 +24,8 @@ function bench_run(varargin)
 	print_help         = %F;
 	nb_run             = "10000";
 	
+	xml_str            = "";
+	
 	// =======================================================
 	// Gestion des tests à lancer
 	// =======================================================
@@ -159,6 +161,9 @@ function bench_run(varargin)
 		
 		printf("\n");
 		
+		xml_str = [ "<?xml version=""1.0"" encoding=""UTF-8"" standalone=""no""?>" ];
+		xml_str = [ xml_str ; "<benchmarks>" ];
+		
 		// Calcul de la durée de la boucle for en µs
 		
 		timer();
@@ -171,30 +176,43 @@ function bench_run(varargin)
 		
 		for i=1:test_count
 			
+			// Display
 			printf("   %03d/%03d - ",i,test_count);
 			printf("[%s] %s ",test_list(i,1),test_list(i,2));
 			for j = length(test_list(i,2) + test_list(i,1)):45
 				printf(".");
 			end
 			printf(" ");
-			[returned_time,nb_run_done] = bench_run_onebench(test_list(i,1),test_list(i,2),nb_run);
-			returned_time_str           = sprintf("%4.2f %ss",returned_time,ascii(181));
 			
+			// Bench process
+			[returned_time,nb_run_done] = bench_run_onebench(test_list(i,1),test_list(i,2),nb_run);
+			
+			// Display
+			returned_time_str           = sprintf("%4.2f %ss",returned_time,ascii(181));
 			for j = length(returned_time_str):13
 				printf(' ');
 			end
-			
 			printf("%s [",returned_time_str);
-			
 			for j = length(nb_run_done):7
 				printf(' ');
 			end
-			
 			printf("%s x]\n",nb_run_done);
+			
+			// XML print
+			xml_str = [ xml_str ; ..
+				sprintf("    <bench id=""%s"" duration=""%s"" nb_run=""%s"">", ..
+					test_list(i,2), ..
+					strsubst(returned_time_str," "+ascii(181)+"s",""), ..
+					nb_run_done) ];
 			
 		end
 		
 	end
+	
+	// XML management
+	xml_str = [ xml_str ; "</benchmarks>" ];
+	xml_file_name = SCI+"/bench_"+getversion()+"_"+date()+".xml";
+	mputl(xml_str,xml_file_name);
 	
 	clearglobal test_list;
 	clearglobal test_count;
