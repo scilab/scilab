@@ -45,7 +45,7 @@
 <module name="signal_processing" activate="1"/>
 <module name="sparse" activate="1"/>
 <module name="special_functions" activate="1"/>
-<module name="string" activate="1"/>
+<module name="STRING_V2" activate="1"/>
 <module name="symbolic" activate="1"/>
 <module name="time" activate="1"/>
 <module name="statistics" activate="1"/>
