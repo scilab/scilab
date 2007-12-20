@@ -25,7 +25,7 @@ public class ScilabToolBar extends ScilabUIElement implements ToolBar {
 		component = ScilabBridge.createToolBar();
 		component.setElementId(UIElementMapper.add(this));
 		
-		setMenuBarId(UIElementMapper.getDefaultId());
+		//setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
 	/**
