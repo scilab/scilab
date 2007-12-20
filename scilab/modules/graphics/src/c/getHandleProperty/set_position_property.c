@@ -13,7 +13,7 @@
 #include "GetProperty.h"
 #include "sciprint.h"
 #include "localization.h"
-
+#include "SetUicontrolPosition.h"
 /*------------------------------------------------------------------------*/
 int set_position_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {

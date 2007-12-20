@@ -514,8 +514,7 @@ int InitFigureModel( void )
   colorMap = MALLOC( m * 3 * sizeof(double) ) ;
   if ( colorMap == NULL )
   {
-	  char *errMsg=sprintf(_("%s: No more memory.\n"),"InitFigureModel");
-	  strcpy(error_message,errMsg);
+	  sprintf(error_message,_("%s: No more memory.\n"),"InitFigureModel");
 	  return -1 ;
   }
 

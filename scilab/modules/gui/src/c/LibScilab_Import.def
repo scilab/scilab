@@ -22,5 +22,6 @@ sciReturnString
 freeArrayOfString
 isopt_
 sciReturnRowVector
+sciReturnDouble
 ;
 

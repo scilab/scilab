@@ -40,4 +40,8 @@ SetUicontrolPosition
 SetUiobjectForegroundColor
 GetUicontrolFontWeight
 SetUicontrolFontWeight
+GetUicontrolFontSize
+GetUicontrolFontUnits
+SetUicontrolFontSize
+SetUicontrolFontUnits
 ;

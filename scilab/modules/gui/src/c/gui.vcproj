@@ -259,6 +259,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolFontSize.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolFontUnits.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUicontrolFontWeight.cpp"
 				>
 			</File>
@@ -403,6 +411,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolFontSize.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolFontUnits.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUicontrolFontWeight.cpp"
 				>
 			</File>
@@ -428,6 +444,14 @@
 			</File>
 			<File
 				RelativePath=".\TerminateGui.c"
+				>
+			</File>
+			<File
+				RelativePath=".\UicontrolStyleToString.c"
+				>
+			</File>
+			<File
+				RelativePath=".\UicontrolStyleToString.h"
 				>
 			</File>
 			<File
@@ -513,6 +537,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolBackgroundColor.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolFontSize.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolFontUnits.hxx"
 				>
 			</File>
 			<File
@@ -625,6 +657,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolBackgroundColor.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolFontSize.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolFontUnits.hxx"
 				>
 			</File>
 			<File
