@@ -141,6 +141,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Canvas member) {
+		addMenuBar(member.getMenuBar());
+		addToolBar(member.getToolBar());
 		return ScilabBridge.addMember(this, member);
 	}
 
@@ -150,6 +152,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Console member) {
+		addMenuBar(member.getMenuBar());
+		addToolBar(member.getToolBar());
 		UIElementMapper.setConsoleId(this.getAsSimpleTab().getElementId());
 		return ScilabBridge.addMember(this, member);
 	}
