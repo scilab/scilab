@@ -683,6 +683,8 @@ typedef struct
   int hashMapIndex;
   /* Vincent */
 
+  char * tag;
+
 }/** */
 sciUimenu;
 
@@ -698,7 +700,6 @@ typedef struct
   BOOL handle_visible;
   BOOL Enable;
 
-  int MenuPosition;
   int CallbackType;
 
   int * user_data;
@@ -714,12 +715,30 @@ typedef struct
 
   /* UICONTROL FONTUNITS: Must be a value from UicontrolUnits enum */
   int fontUnits;
+
+  /* UICONTROL UNITS: Must be a value from UicontrolUnits enum */
+  int units;
+
+  int min;
+  int max;
+
+  char * tag;
 }/** */
 sciUicontrol;
 /* uicontrol font weight */
 typedef enum {LIGHT_FONT, NORMAL_FONT, DEMI_FONT, BOLD_FONT} UicontrolFontWeight ;
 /* uicontrol style */
-typedef enum {SCI_PUSHBUTTON} UicontrolStyle ;
+typedef enum {
+  SCI_PUSHBUTTON,
+  SCI_RADIOBUTTON,
+  SCI_CHECKBOX,
+  SCI_EDIT,
+  SCI_UITEXT,
+  SCI_SLIDER,
+  SCI_UIFRAME,
+  SCI_LISTBOX,
+  SCI_POPUMENU
+} UicontrolStyle ;
 /* uicontrol units */
 typedef enum {POINTS_UNITS, NORMALIZED_UNITS, INCHES_UNITS, CENTIMETERS_UNITS, PIXELS_UNITS} UicontrolUnits ;
 

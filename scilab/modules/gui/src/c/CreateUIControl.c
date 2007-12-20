@@ -37,9 +37,23 @@ sciPointObj * CreateUIControl(char *style)
 
   strcpy(pUICONTROL_FEATURE (pobj)->callback,"");
   pUICONTROL_FEATURE (pobj)->callbacklen = 0;
-  pUICONTROL_FEATURE (pobj)->MenuPosition=0;
-  pUICONTROL_FEATURE (pobj)->CallbackType=0;
-  pUICONTROL_FEATURE (pobj)->Enable=TRUE;
+  pUICONTROL_FEATURE (pobj)->CallbackType = 0;
+  pUICONTROL_FEATURE (pobj)->Enable = TRUE;
+
+  /* Tag is set to NULL as default */
+  /* The getter for tag returns "" is tag is NULL */
+  pUICONTROL_FEATURE (pobj)->tag = NULL;
+
+  /* Min/Max default values */
+  pUICONTROL_FEATURE (pobj)->max = 1;
+  pUICONTROL_FEATURE (pobj)->min = 0;
+
+  /* Font default */
+  pUICONTROL_FEATURE(pobj)->fontWeight = NORMAL_FONT;
+  pUICONTROL_FEATURE(pobj)->fontUnits = POINTS_UNITS;
+
+  /* Units default */
+  pUICONTROL_FEATURE(pobj)->units = POINTS_UNITS;
 
   sciStandardBuildOperations(pobj, NULL);
   /* add the handle in the handle list */

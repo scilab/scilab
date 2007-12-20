@@ -22,6 +22,10 @@
 #include "SetUicontrolFontWeight.h"
 #include "SetUicontrolFontUnits.h"
 #include "SetUicontrolFontSize.h"
+#include "SetUiobjectTag.h"
+#include "SetUicontrolMin.h"
+#include "SetUicontrolMax.h"
+#include "SetUicontrolUnits.h"
 
 int set_color_map_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_old_style_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;

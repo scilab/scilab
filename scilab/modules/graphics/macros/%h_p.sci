@@ -691,20 +691,24 @@ function %h_p(h)
   t=[t;
   "Parent: "+h.parent.type
   "Children: "+fmtchildren(h.children)
-  "Style = "+h.style
-  "Visible = "+sci2exp(h.visible)
+  "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
+  //"Enable = "+sci2exp(h.menu_enable)
+  "FontSize = "+sci2exp(h.fontsize)
+  "FontUnits = "+h.fontunits
+  "FontWeight = "+h.fontweight
+  "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
+  "Max = "+sci2exp(h.max)
+  "Min = "+sci2exp(h.min)
+  "Position = "+sci2exp(h.position,0)
   "String = "+h.label 
+  "Style = "+h.style
+  "Units = "+h.units
+  "Visible = "+sci2exp(h.visible)
   "Callback = "+h.callback
   "CallbackType = "+h.callback_type
   //"handle_visible = "+sci2exp(h.handle_visible)
-  "Position = "+sci2exp(h.position,0)
-  "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
-  "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
-  "FontWeight = "+h.fontweight
-  "FontUnits = "+h.fontunits
-  "FontSize = "+sci2exp(h.fontsize)
-  //"enabled = "+sci2exp(h.menu_enable)
-    ]
+  "Tag = "+h.tag
+  ]
     end
   end
   write(%io(2),t)
