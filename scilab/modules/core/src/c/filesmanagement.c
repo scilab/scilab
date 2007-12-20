@@ -142,15 +142,13 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 /*--------------------------------------------------------------------------*/
 BOOL FreeFileNameOpenedInScilab(int Id)
 {
-	BOOL bOK=FALSE;
 	char *ptr = ScilabFileList[Id].ftname;
-	if (ptr) { FREE(ptr);  ptr = NULL; bOK=TRUE;}
-	return bOK;
+	if (ptr) { FREE(ptr);  ptr = NULL; return TRUE;}
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL InitializeScilabFilesList(void)
 {
-	BOOL bOK=FALSE;
 	if (!ScilabFileList)
 	{
 		CurrentMaxFiles=DEFAULT_MAX_FILES;
@@ -167,28 +165,25 @@ BOOL InitializeScilabFilesList(void)
 				ScilabFileList[i].ftswap=0;
 				ScilabFileList[i].fttype=0;
 			}
-			bOK=TRUE;
+			return TRUE;
 		}
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL TerminateScilabFilesList(void)
 {
-	BOOL bOK=FALSE;
-
 	if (ScilabFileList)
 	{
 		FREE(ScilabFileList);
 		ScilabFileList=NULL;
-		bOK=TRUE;
+		return TRUE;
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL ExtendScilabFilesList(int NewSize)
 {
-	BOOL bOK=FALSE;
 	if (ScilabFileList)
 	{
 		if (NewSize > CurrentMaxFiles)
@@ -209,17 +204,15 @@ BOOL ExtendScilabFilesList(int NewSize)
 					ScilabFileList[i].fttype=0;
 				}
 				CurrentMaxFiles=NewSize;
-				bOK=TRUE;
+				return TRUE;
 			}
 		}
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL IsAlreadyOpenedInScilab(char *filename)
 {
-	BOOL bOK=FALSE;
-
 	if (ScilabFileList)
 	{
 		char fullpath[PATH_MAX*4];
@@ -239,6 +232,6 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 			}
 		}
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
