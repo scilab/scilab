@@ -167,41 +167,21 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 
 	/**
 	 * Get the id of the menu bar associated to the menu (not the parent menubar)
-	 * @return the id of the menubar
+	 * @return the menubar
 	 * @see org.scilab.modules.gui.uielement.UIElement#getMenuBarId()
 	 */
-	public int getMenuBarId() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/**
-	 * Set the id of the menu bar associated to the menu (not the parent menubar)
-	 * @param id the id of the menubar
-	 * @see org.scilab.modules.gui.uielement.UIElement#getMenuBarId()
-	 */
-	public void setMenuBarId(int id) {
-		// TODO Auto-generated method stub
-		
+	public MenuBar getMenuBar() {
+		// Must not be there...
+		return null;
 	}
 
 	/**
 	 * Get the id of the tool bar associated to the menu
-	 * @return the id of the toolbar
+	 * @return the toolbar
 	 * @see org.scilab.modules.gui.uielement.UIElement#getToolBarId()
 	 */
-	public int getToolBarId() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/**
-	 * Set the id of the tool bar associated to the menu
-	 * @param id the id of the toolbar
-	 * @see org.scilab.modules.gui.uielement.UIElement#getToolBarId()
-	 */
-	public void setToolBarId(int id) {
-		// TODO Auto-generated method stub
-		
+	public ToolBar getToolBar() {
+		// Must not be there...
+		return null;
 	}
 }
