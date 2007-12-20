@@ -126,6 +126,7 @@ tcl/sciGUI/sciConfig.tcl \
 tcl/sciGUI/sciBrowseVar.tcl \
 tcl/sciGUI/sciDemoPlay.tcl \
 tcl/sciGUI/sciEditVar.tcl \
+tcl/sciGUI/sciBrowseHelp.tcl \
 tcl/BWidget-1.8.0/demo/select.tcl \
 tcl/BWidget-1.8.0/demo/tree.tcl \
 tcl/BWidget-1.8.0/demo/basic.tcl \

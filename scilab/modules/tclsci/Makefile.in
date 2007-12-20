@@ -505,6 +505,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/sciGUI/sciBrowseVar.tcl \
 @TCLTK_TRUE@tcl/sciGUI/sciDemoPlay.tcl \
 @TCLTK_TRUE@tcl/sciGUI/sciEditVar.tcl \
+@TCLTK_TRUE@tcl/sciGUI/sciBrowseHelp.tcl \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/demo/select.tcl \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/demo/tree.tcl \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/demo/basic.tcl \
