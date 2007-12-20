@@ -46,4 +46,12 @@ GetUicontrolFontSize
 GetUicontrolFontUnits
 SetUicontrolFontSize
 SetUicontrolFontUnits
+GetUicontrolUnits
+GetUiobjectTag
+GetUicontrolMax
+GetUicontrolMin
+SetUicontrolUnits
+SetUiobjectTag
+SetUicontrolMax
+SetUicontrolMin
 ;

@@ -263,6 +263,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolMax.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolMin.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUicontrolPosition.cpp"
 				>
 			</File>
@@ -275,6 +283,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolUnits.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUimenuLabel.cpp"
 				>
 			</File>
@@ -284,6 +296,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUiobjectForegroundColor.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUiobjectTag.cpp"
 				>
 			</File>
 			<File
@@ -423,6 +439,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolMax.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolMin.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUicontrolParent.cpp"
 				>
 			</File>
@@ -432,6 +456,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolString.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolUnits.cpp"
 				>
 			</File>
 			<File
@@ -447,6 +475,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUiobjectTag.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\SwingScilabMenu.cpp"
 				>
 			</File>
@@ -456,10 +488,6 @@
 			</File>
 			<File
 				RelativePath=".\UicontrolStyleToString.c"
-				>
-			</File>
-			<File
-				RelativePath=".\UicontrolStyleToString.h"
 				>
 			</File>
 			<File
@@ -536,7 +564,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUicontrolFontSize.h"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUicontrolFontSize.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolFontUnits.h"
 				>
 			</File>
 			<File
@@ -549,6 +585,22 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolFontWeight.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolMax.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolMax.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolMin.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolMin.hxx"
 				>
 			</File>
 			<File
@@ -576,6 +628,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUicontrolUnits.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolUnits.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetUimenuLabel.h"
 				>
 			</File>
@@ -597,6 +657,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUiobjectForegroundColor.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUiobjectTag.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUiobjectTag.hxx"
 				>
 			</File>
 			<File
@@ -672,7 +740,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\SetUicontrolFontSize.h"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUicontrolFontSize.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolFontUnits.h"
 				>
 			</File>
 			<File
@@ -685,6 +761,22 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolFontWeight.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolMax.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolMax.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolMin.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolMin.hxx"
 				>
 			</File>
 			<File
@@ -712,6 +804,18 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolTag.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolUnits.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolUnits.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\SetUimenuLabel.h"
 				>
 			</File>
@@ -736,11 +840,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\SetUiobjectTag.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectTag.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\SwingScilabMenu.hxx"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\TerminateGui.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UicontrolStyleToString.h"
 				>
 			</File>
 			<File
