@@ -69,6 +69,13 @@ if (strindex('',' ') <> [])  then pause,end
 //===============================
 if (strindex([],' ') <> [])  then pause,end
 //===============================
+a = 'd:\TRUNK\Dev-Tools\SE\Innosetup\script\Create_ISS.sce';
+[r1,r2] = strindex(a,['\',':']);
+ref2  = [2.    1.    1.    1.    1.    1.    1.];
+ref1  = [2.    3.    9.    19.    22.    32.    39];
+if (ref2 <> r2) then pause,end;
+if (ref1 <> r1) then pause,end;
+//===============================
 if strindex('abc'                                     ,'/abc/'                                 ,'r') <>  1   then pause,end
 if strindex('xbc'                                     ,'/abc/'                                 ,'r') <>  []  then pause,end
 if strindex('axc'                                     ,'/abc/'                                 ,'r') <>  []  then pause,end

@@ -165,6 +165,46 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 					position[nbposition++] = x+1;        /* The number according to the str2 matrix */
 				}     
 			}
+
+			/* values are sorted */
+			/* TO DO : Optimize this , with a qsort */
+			{
+				int i   = 0; /* Indice de répétition du tri */
+				int j   = 0; /* Variable de boucle */
+				int tmp = 0; /* Variable de stockage temporaire */
+
+				/* Booléen marquant l'arrêt du tri si le tableau est ordonné */
+				BOOL en_desordre = TRUE; 
+				/* Boucle de répétition du tri et le test qui
+				arrête le tri dès que le tableau est ordonné */
+				for(i = 0 ; (i < nbposition) && en_desordre; i++)
+				{
+					/* Supposons le tableau ordonné */
+					en_desordre = FALSE;
+					/* Vérification des éléments des places j et j-1 */
+					for(j = 1 ; j < nbposition - i ; j++)
+					{
+						/* Si les 2 éléments sont mal triés */
+						if(values[j] < values[j-1])
+						{
+							/* Inversion des 2 éléments */
+							tmp = values[j-1];
+							values[j-1] = values[j];
+							values[j] = tmp;
+
+							tmp = position[j-1];
+							position[j-1] = position[j];
+							position[j] = tmp;
+
+							/* Le tableau n'est toujours pas trié */
+							en_desordre = TRUE;
+						}
+					}
+				}
+			}
+
+			
+
 		}
 		else
 		{
@@ -199,6 +239,43 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 						pos = w;
 					}
 					while(w != 0);/* w is the answer of the kmp algorithem*/
+
+					/* values are sorted */
+					/* TO DO : Optimize this , with a qsort */
+					{
+						int i   = 0; /* Indice de répétition du tri */
+						int j   = 0; /* Variable de boucle */
+						int tmp = 0; /* Variable de stockage temporaire */
+
+						/* Booléen marquant l'arrêt du tri si le tableau est ordonné */
+						BOOL en_desordre = TRUE; 
+						/* Boucle de répétition du tri et le test qui
+						arrête le tri dès que le tableau est ordonné */
+						for(i = 0 ; (i < nbposition) && en_desordre; i++)
+						{
+							/* Supposons le tableau ordonné */
+							en_desordre = FALSE;
+							/* Vérification des éléments des places j et j-1 */
+							for(j = 1 ; j < nbposition - i ; j++)
+							{
+								/* Si les 2 éléments sont mal triés */
+								if(values[j] < values[j-1])
+								{
+									/* Inversion des 2 éléments */
+									tmp = values[j-1];
+									values[j-1] = values[j];
+									values[j] = tmp;
+
+									tmp = position[j-1];
+									position[j-1] = position[j];
+									position[j] = tmp;
+
+									/* Le tableau n'est toujours pas trié */
+									en_desordre = TRUE;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
