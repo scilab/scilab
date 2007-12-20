@@ -94,7 +94,7 @@ public final class Jxgetmouse {
 	 * @return the yCoordinate
 	 */
 	public static double getYCoordinate() {
-		return ClickInfos.getInstance().getXCoordinate();
+		return ClickInfos.getInstance().getYCoordinate();
 	}
 	/**
 	 * Manage xgetmouse behaviour for keyboard entry.
