@@ -126,18 +126,20 @@ public class ScilabWindowBridge {
 		// Manages menuBar
 		// If the tab has no menuBar, then the window menuBar is associated to it
 		// Else it keeps its own menuBar
-		if (newTab.getMenuBarId() == UIElementMapper.getDefaultId()) {
-			if (window.getMenuBarId() != UIElementMapper.getDefaultId()) {
-				newTab.setMenuBarId(window.getMenuBarId());
-			}
+		if (newTab.getMenuBar() == null) {
+				newTab.addMenuBar(window.getMenuBar());
+		}
+		else {
+			window.addMenuBar(newTab.getMenuBar());
 		}
 		// Manages toolBar
 		// If the tab has no toolBar, then the window toolBar is associated to it
 		// Else it keeps its own toolBar
-		if (newTab.getToolBarId() == UIElementMapper.getDefaultId()) {
-			if (window.getToolBarId() != UIElementMapper.getDefaultId()) {
-				newTab.setToolBarId(window.getToolBarId());
-			}
+		if (newTab.getToolBar() == null) {
+				newTab.addToolBar(window.getToolBar());
+		}
+		else {
+			window.addToolBar(newTab.getToolBar());
 		}
 	}
 	
