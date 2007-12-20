@@ -566,15 +566,22 @@ modulename = gui
 libscigui_la_rootdir = $(mydatadir)
 libscigui_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-####�gui : init scripts ####
+#### gui : init scripts ####
 libscigui_la_etcdir = $(mydatadir)/etc
-libscigui_la_etc_DATA = etc/gui.quit etc/gui.start
+libscigui_la_etc_DATA = etc/gui.quit \
+etc/gui.start \
+etc/graphics_menubar.xml \
+etc/graphics_toolbar.xml \
+etc/main_menubar.xml \
+etc/main_toolbar.xml
 
-####�gui : gateway declaration ####
+
+#### gui : gateway declaration ####
 libscigui_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
-####�gui : include files ####
+
+#### gui : include files ####
 libscigui_la_includedir = $(pkgincludedir)/gui
 libscigui_la_include_HEADERS = includes/men_choice.h \
 includes/men_scilab.h \
@@ -585,7 +592,7 @@ includes/GraphicWindow.h \
 includes/InitializeGUI.h
 
 
-####�gui : demos files ####
+#### gui : demos files ####
 libscigui_la_demosdir = $(mydatadir)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
 @GUI_TRUE@USEANT = 1
