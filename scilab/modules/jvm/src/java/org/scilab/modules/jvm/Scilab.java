@@ -28,7 +28,7 @@ import org.scilab.modules.gui.utils.ToolBarBuilder;
  * @author Sylvestre Ledru INRIA 2007
   */
 public class Scilab {
-	
+
 	private static final String CLASS_NOT_FOUND = "Could not find class: ";
 	private static final String FILE_NOT_FOUND = "Could not find file: ";
 
@@ -36,20 +36,20 @@ public class Scilab {
 							+ "Check if file main_menubar.xml is available and valid.";
 	private static final String CANNOT_CREATE_TOOLBAR = "Cannot create Figure ToolBar.\n"
 							+ "Check if file main_toolbar.xml is available and valid.";
-	
+
 	private static final String SCIDIR = System.getenv("SCI");
-	
+
 	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/main_menubar.xml";
 	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/main_toolbar.xml";
-	
+
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
 	private Console sciConsole;
 	private int mode;
-	
+
 	private Window mainView;
-	
+
 	 /**
 	 * Constructor Scilab Class.
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
@@ -68,14 +68,14 @@ public class Scilab {
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
-			
+
 			/************/
 			/* MENU BAR */
 			/************/
 			MenuBar menuBar = null;
 			try {
 				menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
-				mainView.addMenuBar(menuBar);
+				//mainView.addMenuBar(menuBar);
 			} catch (IllegalArgumentException e) {
 				System.err.println(CANNOT_CREATE_MENUBAR);
 				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
@@ -93,14 +93,14 @@ public class Scilab {
 				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
 				System.exit(-1);
 			}
-			
+
 			/************/
 			/* TOOL BAR */
 			/************/
 			ToolBar toolBar = null;
 			try {
 				toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
-				mainView.addToolBar(toolBar);
+				//mainView.addToolBar(toolBar);
 			} catch (IllegalArgumentException e) {
 				System.err.println(CANNOT_CREATE_TOOLBAR);
 				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
@@ -118,18 +118,18 @@ public class Scilab {
 				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
 				System.exit(-1);
 			}
-			
+
 			/* CONSOLE */
 			/* Create a tab to put console into */
 			Tab consoleTab = ScilabTab.createTab("Console Scilab");
 			consoleTab.setName("Console");
-			
-			mainView.addTab(consoleTab);
+
+			// mainView.addTab(consoleTab);
 
 			/* Create the console */
 			try {
 				sciConsole = ScilabConsole.createConsole();
-				consoleTab.addMember(sciConsole);
+				//consoleTab.addMember(sciConsole);
 			} catch (NoClassDefFoundError exception) {
 				System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (Rosetta/Jrosetta...).");
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
@@ -143,12 +143,18 @@ public class Scilab {
 				System.err.println(exception.getLocalizedMessage());
 				System.exit(-1);
 			}
+
+			/** Adding content into container */
+			sciConsole.addToolBar(toolBar);
+			sciConsole.addMenuBar(menuBar);
+			consoleTab.addMember(sciConsole);
+			mainView.addTab(consoleTab);
 		} else {
 			System.out.println("mode -NW");
 		}
-		
+
 	}
-	
+
 	/**
 	 * Gets the console object associated to Scilab
 	 * @return the console
@@ -156,7 +162,7 @@ public class Scilab {
 	public Console getSciConsole() {
 		return sciConsole;
 	}
-	
+
 	/**
 	 * Sets the console object associated to Scilab
 	 * @param sciConsole the console to associate to Scilab
@@ -164,7 +170,7 @@ public class Scilab {
 	public void setSciConsole(Console sciConsole) {
 		this.sciConsole = sciConsole;
 	}
-	
+
 	/**
 	 * Sets the prompt displayed in Scilab console
 	 * @param prompt the prompt to be displayed as a String
@@ -172,7 +178,7 @@ public class Scilab {
 	public void setPrompt(String prompt) {
 		this.sciConsole.setPrompt(prompt);
 	}
-	
+
 	/**
 	 * Get main Scilab Window
 	 * @return main Scilab window
