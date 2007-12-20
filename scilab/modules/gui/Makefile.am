@@ -172,6 +172,22 @@ libscigui_la_demosdir=$(mydatadir)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
 
 
+#### graphics : icons files ####
+libscigui_la_iconsdir=$(mydatadir)/images/icons/
+nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \
+images/icons/document-open.png \
+images/icons/edit-copy.png \
+images/icons/edit-paste.png \
+images/icons/folder.png \
+images/icons/format-text-bold.png \
+images/icons/help-browser.png \
+images/icons/list-add.png \
+images/icons/list-remove.png \
+images/icons/printer.png \
+images/icons/view-refresh.png \
+images/icons/window-new.png
+
+
 if GUI
 
 USEANT=1

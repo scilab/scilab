@@ -84,6 +84,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigui_la_etcdir)" \
 	"$(DESTDIR)$(libscigui_la_rootdir)" \
 	"$(DESTDIR)$(libscigui_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscigui_la_iconsdir)" \
 	"$(DESTDIR)$(libscigui_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -222,8 +223,10 @@ libscigui_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libscigui_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscigui_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscigui_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+nobase_libscigui_la_iconsDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscigui_la_demos_DATA) $(libscigui_la_etc_DATA) \
-	$(libscigui_la_root_DATA) $(libscigui_la_sci_gateway_DATA)
+	$(libscigui_la_root_DATA) $(libscigui_la_sci_gateway_DATA) \
+	$(nobase_libscigui_la_icons_DATA)
 libscigui_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscigui_la_include_HEADERS)
 ETAGS = etags
@@ -580,7 +583,6 @@ etc/main_toolbar.xml
 libscigui_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
-
 #### gui : include files ####
 libscigui_la_includedir = $(pkgincludedir)/gui
 libscigui_la_include_HEADERS = includes/men_choice.h \
@@ -595,6 +597,22 @@ includes/InitializeGUI.h
 #### gui : demos files ####
 libscigui_la_demosdir = $(mydatadir)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
+
+#### graphics : icons files ####
+libscigui_la_iconsdir = $(mydatadir)/images/icons/
+nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \
+images/icons/document-open.png \
+images/icons/edit-copy.png \
+images/icons/edit-paste.png \
+images/icons/folder.png \
+images/icons/format-text-bold.png \
+images/icons/help-browser.png \
+images/icons/list-add.png \
+images/icons/list-remove.png \
+images/icons/printer.png \
+images/icons/view-refresh.png \
+images/icons/window-new.png
+
 @GUI_TRUE@USEANT = 1
 all: all-am
 
@@ -1269,6 +1287,25 @@ uninstall-libscigui_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscigui_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscigui_la_sci_gatewaydir)/$$f"; \
 	done
+install-nobase_libscigui_la_iconsDATA: $(nobase_libscigui_la_icons_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscigui_la_iconsdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_iconsdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscigui_la_icons_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libscigui_la_iconsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigui_la_iconsdir)/$$f'"; \
+	  $(nobase_libscigui_la_iconsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigui_la_iconsdir)/$$f"; \
+	done
+
+uninstall-nobase_libscigui_la_iconsDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscigui_la_icons_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libscigui_la_iconsdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscigui_la_iconsdir)/$$f"; \
+	done
 install-libscigui_la_includeHEADERS: $(libscigui_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscigui_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_includedir)"
@@ -1366,7 +1403,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_demosdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_demosdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_iconsdir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1418,7 +1455,8 @@ install-data-am: install-data-local install-libscigui_la_demosDATA \
 	install-libscigui_la_etcDATA \
 	install-libscigui_la_includeHEADERS \
 	install-libscigui_la_rootDATA \
-	install-libscigui_la_sci_gatewayDATA
+	install-libscigui_la_sci_gatewayDATA \
+	install-nobase_libscigui_la_iconsDATA
 
 install-dvi: install-dvi-am
 
@@ -1461,6 +1499,7 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 	uninstall-libscigui_la_includeHEADERS \
 	uninstall-libscigui_la_rootDATA \
 	uninstall-libscigui_la_sci_gatewayDATA \
+	uninstall-nobase_libscigui_la_iconsDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1477,7 +1516,8 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 	install-libscigui_la_etcDATA \
 	install-libscigui_la_includeHEADERS \
 	install-libscigui_la_rootDATA \
-	install-libscigui_la_sci_gatewayDATA install-man install-pdf \
+	install-libscigui_la_sci_gatewayDATA install-man \
+	install-nobase_libscigui_la_iconsDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
@@ -1488,6 +1528,7 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 	uninstall-libscigui_la_includeHEADERS \
 	uninstall-libscigui_la_rootDATA \
 	uninstall-libscigui_la_sci_gatewayDATA \
+	uninstall-nobase_libscigui_la_iconsDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
