@@ -13,6 +13,6 @@
 // Copyright INRIA 2007
 // =============================================================================
 
-if isnum('e') then pause, end
-if isnum('d') then pause, end
+if isnum('e') then pause,end
+if isnum('d') then pause,end
 
