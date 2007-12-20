@@ -42,8 +42,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@STRING_V2_TRUE@am__append_1 = -I$(top_srcdir)/modules/STRING_V2/includes
-@STRING_V2_FALSE@am__append_2 = -I$(top_srcdir)/modules/string/includes
+@STRING_V1_TRUE@am__append_1 = -I$(top_srcdir)/modules/string/includes
+@STRING_V1_FALSE@am__append_2 = -I$(top_srcdir)/modules/STRING_V2/includes
 DIST_COMMON = $(libscioutput_stream_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
@@ -83,8 +83,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@STRING_V2_FALSE@libscioutput_stream_la_DEPENDENCIES = $(top_builddir)/modules/string/libscistring.la
-@STRING_V2_TRUE@libscioutput_stream_la_DEPENDENCIES = $(top_builddir)/modules/STRING_V2/libscistring.la
+@STRING_V1_FALSE@libscioutput_stream_la_DEPENDENCIES = $(top_builddir)/modules/STRING_V2/libscistring.la
+@STRING_V1_TRUE@libscioutput_stream_la_DEPENDENCIES = $(top_builddir)/modules/string/libscistring.la
 am__objects_1 = libscioutput_stream_la-erro.lo \
 	libscioutput_stream_la-cerro.lo \
 	libscioutput_stream_la-Scierror.lo \
@@ -326,10 +326,10 @@ libscioutput_stream_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 libscioutput_stream_la_LDFLAGS = 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
-@STRING_V2_FALSE@libscioutput_stream_la_LIBADD = $(top_builddir)/modules/string/libscistring.la
+@STRING_V1_FALSE@libscioutput_stream_la_LIBADD = $(top_builddir)/modules/STRING_V2/libscistring.la
 
 #libscioutput_stream_la_LIBADD =
-@STRING_V2_TRUE@libscioutput_stream_la_LIBADD = $(top_builddir)/modules/STRING_V2/libscistring.la
+@STRING_V1_TRUE@libscioutput_stream_la_LIBADD = $(top_builddir)/modules/string/libscistring.la
 
 #### Target ######
 modulename = output_stream

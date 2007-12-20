@@ -59,8 +59,8 @@ host_triplet = @host@
 @GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes
 
 # Temp stuff
-@GUI_TRUE@@STRING_V2_TRUE@am__append_2 = $(top_builddir)/modules/STRING_V2/libscistring.la
-@GUI_TRUE@@STRING_V2_FALSE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
+@GUI_TRUE@@STRING_V1_TRUE@am__append_2 = $(top_builddir)/modules/string/libscistring.la
+@GUI_TRUE@@STRING_V1_FALSE@am__append_3 = $(top_builddir)/modules/STRING_V2/libscistring.la
 @GUI_FALSE@am__append_4 = -I$(top_srcdir)/modules/output_stream/includes
 DIST_COMMON = $(am__libscigraphics_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \

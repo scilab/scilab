@@ -135,9 +135,9 @@ am__objects_4 = sci_convstr.lo sci_grep.lo sci_strindex.lo \
 	sci_strcat.lo sci_tokens.lo sci_string.lo sci_part.lo \
 	sci_length.lo sci_strsplit.lo sci_str2code.lo sci_code2str.lo \
 	sci_emptystr.lo sci_ascii.lo sci_strsubst.lo strops.lo
-@STRING_V2_FALSE@am_libscistring_la_OBJECTS = $(am__objects_1) \
-@STRING_V2_FALSE@	$(am__objects_2) $(am__objects_3) \
-@STRING_V2_FALSE@	$(am__objects_4)
+@STRING_V1_TRUE@am_libscistring_la_OBJECTS = $(am__objects_1) \
+@STRING_V1_TRUE@	$(am__objects_2) $(am__objects_3) \
+@STRING_V1_TRUE@	$(am__objects_4)
 libscistring_la_OBJECTS = $(am_libscistring_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -384,8 +384,8 @@ libscistring_la_CFLAGS = -Isrc/c \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscistring.la
-@STRING_V2_FALSE@libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-@STRING_V2_TRUE@libscistring_la_SOURCES = 
+@STRING_V1_FALSE@libscistring_la_SOURCES = 
+@STRING_V1_TRUE@libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscistring_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la

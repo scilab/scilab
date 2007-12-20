@@ -124,10 +124,10 @@ libscigui_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
     $(top_builddir)/modules/tclsci/libscitclsci.la
 
-if STRING_V2
-libscigui_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
-else
+if STRING_V1
 libscigui_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
+else
+libscigui_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
 endif
 
 

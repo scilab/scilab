@@ -1011,10 +1011,10 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 
 ##############�TEMP Stuff ##################
 
-AC_ARG_WITH(string-v2,
-    [  --with-string-v2	           Use the version 2 of the String  ])
+AC_ARG_WITH(string-v1,
+    [  --with-string-v1	           Use the old version of the String  ])
 
-AM_CONDITIONAL(STRING_V2, test "$with_string_v2" = yes)
+AM_CONDITIONAL(STRING_V1, test "$with_string_v1" = yes)
 
 
 #################

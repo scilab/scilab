@@ -93,10 +93,8 @@ libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
 
 
-
 #### Target ######
 modulename=io
-
 
 #### io : Conf files ####
 libsciio_la_rootdir = $(mydatadir)

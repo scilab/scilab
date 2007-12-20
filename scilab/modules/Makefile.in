@@ -37,7 +37,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@STRING_V2_TRUE@am__append_1 = STRING_V2
+@STRING_V1_TRUE@am__append_1 = string
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
@@ -46,8 +46,8 @@ host_triplet = @host@
 @USE_EMBEDDED_BLAS_FALSE@am__append_4 = $(BLAS_LIBS)
 
 # Temp stuff
-@STRING_V2_TRUE@am__append_5 = $(top_builddir)/modules/STRING_V2/libscistring.la
-@STRING_V2_FALSE@am__append_6 = $(top_builddir)/modules/string/libscistring.la
+@STRING_V1_TRUE@am__append_5 = $(top_builddir)/modules/string/libscistring.la
+@STRING_V1_FALSE@am__append_6 = $(top_builddir)/modules/STRING_V2/libscistring.la
 
 #if MPI
 #libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
@@ -165,7 +165,7 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = STRING_V2 polynomials string intersci cacsd \
+DIST_SUBDIRS = string polynomials STRING_V2 intersci cacsd \
 	elementary_functions arnoldi boolean output_stream \
 	incremental_link linear_algebra differential_equations \
 	signal_processing fileio core metanet optimization \
@@ -349,7 +349,7 @@ top_srcdir = @top_srcdir@
 #if MPI
 #SUBDIRS += mpi
 #endif
-SUBDIRS = $(am__append_1) polynomials string intersci cacsd \
+SUBDIRS = $(am__append_1) polynomials STRING_V2 intersci cacsd \
 	elementary_functions arnoldi boolean output_stream \
 	incremental_link linear_algebra differential_equations \
 	signal_processing fileio core metanet optimization \

@@ -54,10 +54,10 @@ libscistring_la_CFLAGS=  	-Isrc/c \
 
 pkglib_LTLIBRARIES = libscistring.la
 
-if STRING_V2
-libscistring_la_SOURCES = 
-else
+if STRING_V1
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+else
+libscistring_la_SOURCES = 
 endif
 
 libscistring_la_LIBADD = \

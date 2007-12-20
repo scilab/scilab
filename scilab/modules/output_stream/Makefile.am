@@ -35,10 +35,10 @@ GATEWAY_FORTRAN_SOURCES =
 
 libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -Iincludes/ -I$(top_srcdir)/modules/core/include -Isrc/c/ 
-if STRING_V2
-libscioutput_stream_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
-else
+if STRING_V1
 libscioutput_stream_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
+else
+libscioutput_stream_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
 endif	
 
 libscioutput_stream_la_LDFLAGS =
@@ -48,10 +48,10 @@ libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORT
 
 #libscioutput_stream_la_LIBADD =
 
-if STRING_V2
-libscioutput_stream_la_LIBADD= $(top_builddir)/modules/STRING_V2/libscistring.la
-else
+if STRING_V1
 libscioutput_stream_la_LIBADD= $(top_builddir)/modules/string/libscistring.la
+else
+libscioutput_stream_la_LIBADD= $(top_builddir)/modules/STRING_V2/libscistring.la
 endif
 
 #### Target ######

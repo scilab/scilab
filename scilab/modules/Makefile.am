@@ -6,13 +6,13 @@
 # The order DOES matter !!!
 SUBDIRS = 
 
-if STRING_V2
-SUBDIRS += STRING_V2
+if STRING_V1
+SUBDIRS += string
 endif
 
 SUBDIRS += \
 polynomials \
-string \
+STRING_V2 \
 intersci \
 cacsd \
 elementary_functions \
@@ -145,10 +145,10 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # Temp stuff
-if STRING_V2
-libscilab_la_LIBADD +=	$(top_builddir)/modules/STRING_V2/libscistring.la
-else
+if STRING_V1
 libscilab_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
+else
+libscilab_la_LIBADD +=	$(top_builddir)/modules/STRING_V2/libscistring.la
 endif
 
 

@@ -306,10 +306,10 @@ libscicore_la_CFLAGS=  	-Iincludes/ \
 			-I$(top_srcdir)/modules/elementary_functions/includes
 
 
-if STRING_V2
-libscicore_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
-else
+if STRING_V1
 libscicore_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
+else
+libscicore_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
 endif
 
 libscicore_la_LDFLAGS = $(XML_LIBS)
@@ -327,10 +327,10 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/fileio/libscifileio.la
 
-if STRING_V2
-libscicore_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
-else
+if STRING_V1
 libscicore_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
+else
+libscicore_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
 endif
 
 #### Target ######

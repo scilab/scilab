@@ -30,10 +30,10 @@ libsciinterpolation_la_CFLAGS= 	-Iincludes/ \
 				-Isrc/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes 
-if STRING_V2
-libsciinterpolation_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
-else
+if STRING_V1
 libsciinterpolation_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
+else
+libsciinterpolation_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
 endif					
 
 
@@ -45,10 +45,10 @@ libsciinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
-if STRING_V2
-libsciinterpolation_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
-else
+if STRING_V1
 libsciinterpolation_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
+else
+libsciinterpolation_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
 endif
 
 

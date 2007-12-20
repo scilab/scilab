@@ -421,10 +421,10 @@ libscigraphics_la_LIBADD = \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
         $(top_builddir)/modules/tclsci/libscitclsci.la
 # Temp stuff
-if STRING_V2
-libscigraphics_la_LIBADD +=	$(top_builddir)/modules/STRING_V2/libscistring.la
-else
+if STRING_V1
 libscigraphics_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
+else
+libscigraphics_la_LIBADD +=	$(top_builddir)/modules/STRING_V2/libscistring.la
 endif
 
 

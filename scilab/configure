@@ -967,8 +967,8 @@ TERM_ZTERM_FALSE
 TERM_VTE_TRUE
 TERM_VTE_FALSE
 tcldir
-STRING_V2_TRUE
-STRING_V2_FALSE
+STRING_V1_TRUE
+STRING_V1_FALSE
 LTLIBOBJS'
 ac_subst_files=''
       ac_precious_vars='build_alias
@@ -1625,7 +1625,7 @@ Optional Packages:
   --with-pic              try to use only PIC/non-PIC objects [default=use
                           both]
   --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
-  --with-string-v2	           Use the version 2 of the String
+  --with-string-v1	           Use the old version of the String
 
 Some influential environment variables:
   CC          C compiler command
@@ -35135,18 +35135,18 @@ _ACEOF
 ##############�TEMP Stuff ##################
 
 
-# Check whether --with-string-v2 was given.
-if test "${with_string_v2+set}" = set; then
-  withval=$with_string_v2;
+# Check whether --with-string-v1 was given.
+if test "${with_string_v1+set}" = set; then
+  withval=$with_string_v1;
 fi
 
 
- if test "$with_string_v2" = yes; then
-  STRING_V2_TRUE=
-  STRING_V2_FALSE='#'
+ if test "$with_string_v1" = yes; then
+  STRING_V1_TRUE=
+  STRING_V1_FALSE='#'
 else
-  STRING_V2_TRUE='#'
-  STRING_V2_FALSE=
+  STRING_V1_TRUE='#'
+  STRING_V1_FALSE=
 fi
 
 
@@ -35440,10 +35440,10 @@ echo "$as_me: error: conditional \"TERM_VTE\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
-if test -z "${STRING_V2_TRUE}" && test -z "${STRING_V2_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"STRING_V2\" was never defined.
+if test -z "${STRING_V1_TRUE}" && test -z "${STRING_V1_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"STRING_V1\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"STRING_V2\" was never defined.
+echo "$as_me: error: conditional \"STRING_V1\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -36745,8 +36745,8 @@ TERM_ZTERM_FALSE!$TERM_ZTERM_FALSE$ac_delim
 TERM_VTE_TRUE!$TERM_VTE_TRUE$ac_delim
 TERM_VTE_FALSE!$TERM_VTE_FALSE$ac_delim
 tcldir!$tcldir$ac_delim
-STRING_V2_TRUE!$STRING_V2_TRUE$ac_delim
-STRING_V2_FALSE!$STRING_V2_FALSE$ac_delim
+STRING_V1_TRUE!$STRING_V1_TRUE$ac_delim
+STRING_V1_FALSE!$STRING_V1_FALSE$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 

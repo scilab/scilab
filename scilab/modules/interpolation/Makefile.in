@@ -47,10 +47,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@STRING_V2_TRUE@am__append_1 = -I$(top_srcdir)/modules/STRING_V2/includes
-@STRING_V2_FALSE@am__append_2 = -I$(top_srcdir)/modules/string/includes
-@STRING_V2_TRUE@am__append_3 = $(top_builddir)/modules/STRING_V2/libscistring.la
-@STRING_V2_FALSE@am__append_4 = $(top_builddir)/modules/string/libscistring.la
+@STRING_V1_TRUE@am__append_1 = -I$(top_srcdir)/modules/string/includes
+@STRING_V1_FALSE@am__append_2 = -I$(top_srcdir)/modules/STRING_V2/includes
+@STRING_V1_TRUE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
+@STRING_V1_FALSE@am__append_4 = $(top_builddir)/modules/STRING_V2/libscistring.la
 DIST_COMMON = $(libsciinterpolation_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am

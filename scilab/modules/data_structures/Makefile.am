@@ -44,12 +44,12 @@ sci_gateway/fortran/sci_list.f
 libscidata_structures_la_CFLAGS=  	-Iincludes/ \
 					-I$(top_srcdir)/libs/MALLOC/includes/ \
 					-I$(top_srcdir)/modules/output_stream/includes 
-if STRING_V2
+if STRING_V1
 libscidata_structures_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
 else
 libscidata_structures_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
 endif					
-			
+
 
 pkglib_LTLIBRARIES = libscidata_structures.la
 
@@ -61,10 +61,10 @@ libscidata_structures_la_LIBADD = \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-if STRING_V2
-libscidata_structures_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
-else
+if STRING_V1
 libscidata_structures_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
+else
+libscidata_structures_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
 endif
 
 #### Target ######

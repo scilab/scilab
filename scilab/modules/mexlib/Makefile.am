@@ -7,10 +7,10 @@ MEXLIB_C_SOURCES = src/c/mexlib.c
 
 MEXLIB_FLAGS = -Iincludes/ -I$(top_builddir)/modules/output_stream/includes/
 
-if STRING_V2
-MEXLIB_FLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
-else
+if STRING_V1
 MEXLIB_FLAGS += -I$(top_srcdir)/modules/string/includes
+else
+MEXLIB_FLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
 endif					
 
 
@@ -22,10 +22,10 @@ $(top_builddir)/modules/data_structures/libscidata_structures.la \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 
-if STRING_V2
-MEXLIB_DEP += $(top_builddir)/modules/STRING_V2/libscistring.la
-else
+if STRING_V1
 MEXLIB_DEP += $(top_builddir)/modules/string/libscistring.la
+else
+MEXLIB_DEP += $(top_builddir)/modules/STRING_V2/libscistring.la
 endif
 
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
