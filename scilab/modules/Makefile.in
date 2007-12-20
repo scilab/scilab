@@ -175,7 +175,7 @@ DIST_SUBDIRS = STRING_V2 polynomials string intersci cacsd \
 	action_binding console renderer gui graphics windows_tools \
 	functions others overloading maple2scilab m2sci texmacs scipad \
 	scilab2fortran development_tools compatibility_functions \
-	helptools scicos fftw pvm spreadsheet jvm . javasci
+	helptools scicos fftw pvm spreadsheet jvm demo_tools . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -359,7 +359,8 @@ SUBDIRS = $(am__append_1) polynomials string intersci cacsd \
 	action_binding console renderer gui graphics windows_tools \
 	functions others overloading maple2scilab m2sci texmacs scipad \
 	scilab2fortran development_tools compatibility_functions \
-	helptools scicos fftw pvm spreadsheet jvm . $(am__append_2)
+	helptools scicos fftw pvm spreadsheet jvm demo_tools . \
+	$(am__append_2)
 modulename = 
 
 #### Basic files ####

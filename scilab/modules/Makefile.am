@@ -66,7 +66,8 @@ scicos \
 fftw \
 pvm \
 spreadsheet \
-jvm
+jvm \
+demo_tools
 
 #if MPI
 #SUBDIRS += mpi

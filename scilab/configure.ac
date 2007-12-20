@@ -1009,7 +1009,7 @@ AC_SUBST(tcldir)
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 
 
-############## TEMP Stuff ##################
+##############ï¿½TEMP Stuff ##################
 
 AC_ARG_WITH(string-v2,
     [  --with-string-v2	           Use the version 2 of the String  ])
@@ -1098,6 +1098,7 @@ modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
+modules/demo_tools/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
