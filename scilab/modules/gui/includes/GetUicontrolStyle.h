@@ -1,8 +1,8 @@
 /* Copyright INRIA 2007 */
 /* Vincent COUVERT */
 
-#ifndef __GETSTYLEPROPERTY_H__
-#define __GETSTYLEPROPERTY_H__
+#ifndef __GET_UICONTROL_STYLE_H__
+#define __GET_UICONTROL_STYLE_H__
 
 #include "ObjectStructure.h"
 #include "returnProperty.h"
@@ -13,6 +13,6 @@
  * @param pobj Scilab object corresponding to the uicontrol
  * @return 0
  */
-int GetStyleProperty(sciPointObj * pobj);
+int GetUicontrolStyle(sciPointObj * pobj);
 
-#endif
+#endif /* __GET_UICONTROL_STYLE_H__ */

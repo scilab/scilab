@@ -247,10 +247,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\GetStyleProperty.c"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\GetUicontrolBackgroundColor.cpp"
 				>
 			</File>
@@ -272,6 +268,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolString.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolStyle.cpp"
 				>
 			</File>
 			<File
@@ -528,10 +528,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\GetStyleProperty.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\GetUicontrolBackgroundColor.h"
 				>
 			</File>
@@ -569,6 +565,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolString.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolStyle.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolStyle.hxx"
 				>
 			</File>
 			<File

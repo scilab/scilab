@@ -13,7 +13,7 @@
 #include "ObjectStructure.h"
 #include "GetUimenuLabel.h"
 #include "GetUicontrolString.h"
-#include "GetStyleProperty.h"
+#include "GetUicontrolStyle.h"
 #include "GetUicontrolPosition.h"
 #include "GetUicontrolBackgroundColor.h"
 #include "GetUiobjectForegroundColor.h"

@@ -19,7 +19,6 @@ src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
-src/c/GetStyleProperty.c \
 src/c/UicontrolStyleToString.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
@@ -32,6 +31,7 @@ src/cpp/CallFileChooser.cpp \
 src/cpp/PushButton.cpp \
 src/cpp/SetUimenuLabel.cpp \
 src/cpp/GetUimenuLabel.cpp \
+src/cpp/GetUicontrolStyle.cpp \
 src/cpp/SetUicontrolString.cpp \
 src/cpp/GetUicontrolString.cpp \
 src/cpp/SetUicontrolParent.cpp \

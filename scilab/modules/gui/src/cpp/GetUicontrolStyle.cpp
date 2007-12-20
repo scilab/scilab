@@ -2,14 +2,9 @@
 /* Vincent COUVERT */
 /* Get the style of an uicontrol object */
 
-#include "GetStyleProperty.h"
-#include "ObjectStructure.h"
-#include "returnProperty.h"
-#include "GetProperty.h"
-#include "localization.h"
-#include "UicontrolStyleToString.h"
+#include "GetUicontrolStyle.hxx"
 
-int GetStyleProperty(sciPointObj* sciObj)
+int GetUicontrolStyle(sciPointObj* sciObj)
 {
   if (sciGetEntityType(sciObj) == SCI_UICONTROL)
     {
@@ -17,7 +12,7 @@ int GetStyleProperty(sciPointObj* sciObj)
     }
   else
     {
-      Scierror(999, _("No style property for this object.\n"));
+      sciprint(_("No %s property for this object.\n"), "Style");
       return FALSE;
     }
   
