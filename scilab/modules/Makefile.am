@@ -4,14 +4,13 @@
 ##########
 
 # The order DOES matter !!!
-SUBDIRS = 
+SUBDIRS = polynomials
 
 if STRING_V1
 SUBDIRS += string
 endif
 
 SUBDIRS += \
-polynomials \
 STRING_V2 \
 intersci \
 cacsd \

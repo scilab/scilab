@@ -165,7 +165,7 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = string polynomials STRING_V2 intersci cacsd \
+DIST_SUBDIRS = polynomials string STRING_V2 intersci cacsd \
 	elementary_functions arnoldi boolean output_stream \
 	incremental_link linear_algebra differential_equations \
 	signal_processing fileio core metanet optimization \
@@ -349,7 +349,7 @@ top_srcdir = @top_srcdir@
 #if MPI
 #SUBDIRS += mpi
 #endif
-SUBDIRS = $(am__append_1) polynomials STRING_V2 intersci cacsd \
+SUBDIRS = polynomials $(am__append_1) STRING_V2 intersci cacsd \
 	elementary_functions arnoldi boolean output_stream \
 	incremental_link linear_algebra differential_equations \
 	signal_processing fileio core metanet optimization \
