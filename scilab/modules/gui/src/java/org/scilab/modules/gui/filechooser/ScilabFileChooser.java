@@ -26,7 +26,7 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 		component = ScilabBridge.createFileChooser();
 		component.setElementId(UIElementMapper.add(this));
 		
-		setMenuBarId(UIElementMapper.getDefaultId());
+		//setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
 	/**

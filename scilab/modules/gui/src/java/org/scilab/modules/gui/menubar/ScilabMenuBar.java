@@ -25,7 +25,7 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 		component = ScilabBridge.createMenuBar();
 		component.setElementId(UIElementMapper.add(this));
 		
-		setMenuBarId(UIElementMapper.getDefaultId());
+		//setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
 	/**
