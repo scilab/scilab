@@ -23,24 +23,14 @@ public abstract class ScilabUIElement implements UIElement {
 	private ToolBar toolBar;
 
 	/**
-	 * The Id of the ToolBar associated to the UIElement
-	 */
-	private int toolBarId;
-
-	/**
 	 * The menubar associated to the UIElement
 	 */
 	private MenuBar menuBar;
 
 	/**
-	 * The Id of the MenuBar associated to the UIElement
+	 * The title associated to the UIElement
 	 */
-	private int menuBarId;
-
-	/**
-	 * The Id associated to the UIElement
-	 */
-	//private int elementId;
+	private String title;
 
 	/**
 	 * The layout of the foreground of the UIElement
@@ -106,45 +96,16 @@ public abstract class ScilabUIElement implements UIElement {
 	 */
 	public void addMenuBar(MenuBar menuBar) {
 		this.menuBar = menuBar;
-		// When the menuBar is added to an element, 
-		// we also have to update the menuBarId of this element
-		if (menuBar != null) {
-			setMenuBarId(menuBar.getAsSimpleMenuBar().getElementId());
-		}
 	}
 
 	/**
-	 * Get the Id of the menubar in the UIElementMapper
-	 * @return the Id of the UIElement
+	 * Get the menubar in the UIElementMapper
+	 * @return the MenuBar of the UIElement
 	 */
-	public int getMenuBarId() {
-		return menuBarId;
+	public MenuBar getMenuBar() {
+		return menuBar;
 	}
 	
-	/**
-	 * Set the Id of the menubar in the UIElementMapper
-	 * @param id the Id of the UIElement
-	 */
-	public void setMenuBarId(int id) {
-		this.menuBarId = id;
-	}
-
-	/**
-	 * Get the Id of the toolbar in the UIElementMapper
-	 * @return the Id of the UIElement
-	 */
-	public int getToolBarId() {
-		return toolBarId;
-	}
-	
-	/**
-	 * Set the Id of the toolbar in the UIElementMapper
-	 * @param id the Id of the UIElement
-	 */
-	public void setToolBarId(int id) {
-		this.toolBarId = id;
-	}
-
 	/**
 	 * Gets the layout of the text of an UIElement
 	 * @return the textLayout
@@ -164,26 +125,21 @@ public abstract class ScilabUIElement implements UIElement {
 	}
 
 	/**
+	 * Sets the toolbar associated to an UIElement
+	 * @param toolBar the toolBar to set
+	 */
+	public void addToolBar(ToolBar toolBar) {
+		this.toolBar = toolBar;
+	}
+
+	/**
 	 * Gets the toolbar associated to an UIElement
 	 * @return the toolBar
 	 */
 	public ToolBar getToolBar() {
 		return toolBar;
 	}
-
-	/**
-	 * Sets the toolbar associated to an UIElement
-	 * @param toolBar the toolBar to set
-	 */
-	public void addToolBar(ToolBar toolBar) {
-		this.toolBar = toolBar;
-		// When the toolBar is added to an element, 
-		// we also have to update the toolBarId of this element
-		if (toolBar != null) {
-			setToolBarId(toolBar.getAsSimpleToolBar().getElementId());
-		}
-	}
-
+	
 	/*******************************/
 	/* UIElement interface methods */
 	/*******************************/
