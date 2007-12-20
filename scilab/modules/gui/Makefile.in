@@ -624,7 +624,7 @@ libscigui_la_demosdir = $(mydatadir)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
 
 #### graphics : icons files ####
-libscigui_la_iconsdir = $(mydatadir)/images/icons/
+libscigui_la_iconsdir = $(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \
 images/icons/document-open.png \
 images/icons/edit-copy.png \
