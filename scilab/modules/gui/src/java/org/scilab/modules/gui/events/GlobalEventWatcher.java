@@ -20,36 +20,52 @@ public final class GlobalEventWatcher {
 	/**
 	 * Private Constructor : SINGLETON.
 	 */
-	private GlobalEventWatcher() {
-		keyWatcher = new GlobalKeyEventWatcher();
-		mouseWatcher = new GlobalMouseEventWatcher();
-	}
-
+	private GlobalEventWatcher() {	}
+	
 	/**
 	 * Singleton enable.
 	 * 
 	 * @return the global watcher instance
-	 */
-	public static GlobalEventWatcher enable() {
+	 */	
+	public static GlobalEventWatcher getInstance() {
 		if (me == null) {
 			me = new GlobalEventWatcher();
 		}
-		if (!activated) {
-			Toolkit.getDefaultToolkit().addAWTEventListener(keyWatcher,
-					AWTEvent.KEY_EVENT_MASK);
-			Toolkit.getDefaultToolkit().addAWTEventListener(mouseWatcher,
-					AWTEvent.MOUSE_EVENT_MASK);
-			activated = true;
-		}
 		return me;
 	}
+	
+	
+	/**
+	 * Singleton enable keyWatcher.
+	 * 
+	 * @param keyWatcher : the Key Listener.
+	 */
+	public static void enable(GlobalKeyEventWatcher keyWatcher) {
+		GlobalEventWatcher.keyWatcher = keyWatcher;
+		Toolkit.getDefaultToolkit().addAWTEventListener(keyWatcher,
+				AWTEvent.KEY_EVENT_MASK);
+		GlobalEventWatcher.activated = true;
+	}
 
+	/**
+	 * Singleton enable keyWatcher.
+	 * 
+	 * @param mouseWatcher : the Mouse Listener.
+	 */
+	public static void enable(GlobalMouseEventWatcher mouseWatcher) {
+		GlobalEventWatcher.mouseWatcher = mouseWatcher;
+		Toolkit.getDefaultToolkit().addAWTEventListener(mouseWatcher,
+				mouseWatcher.getEventMask());
+			GlobalEventWatcher.activated = true;
+	}
+
+	
 	/**
 	 * Disable the global watcher
 	 */
 	public static void disable() {
-		Toolkit.getDefaultToolkit().removeAWTEventListener(keyWatcher);
-		Toolkit.getDefaultToolkit().removeAWTEventListener(mouseWatcher);
+		Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.keyWatcher);
+		Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.mouseWatcher);
 		activated = false;
 	}
 
@@ -60,5 +76,4 @@ public final class GlobalEventWatcher {
 	public static boolean isActivated() {
 		return activated;
 	}
-
 }

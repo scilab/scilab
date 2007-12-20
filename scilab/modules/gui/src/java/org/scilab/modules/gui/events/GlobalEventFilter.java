@@ -44,7 +44,7 @@ public class GlobalEventFilter {
 	 * @param event : the event caught.
 	 * @param command : the callback that was supposed to be called.
 	 */
-	public static void filter(ActionEvent event, String command) {
+	public static void filterCallback(ActionEvent event, String command) {
 		synchronized (ClickInfos.getInstance()) {
 			ClickInfos.getInstance().setMouseButtonNumber(SCILAB_CALLBACK);
 			ClickInfos.getInstance().setMenuCallback(command);
@@ -59,11 +59,16 @@ public class GlobalEventFilter {
 	 * @param source : the canvas where the event occurs.
 	 * @param buttonCode : the Scilab button code.
 	 */
-	public static void filter(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonCode) {
+	public static void filterMouse(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonCode) {
 		synchronized (ClickInfos.getInstance()) {
 			ClickInfos.getInstance().setXCoordinate(mouseEvent.getPoint().getX());
 			ClickInfos.getInstance().setYCoordinate(mouseEvent.getPoint().getY());
-			ClickInfos.getInstance().setMouseButtonNumber(buttonCode);
+			if (mouseEvent.isControlDown()) {
+				ClickInfos.getInstance().setMouseButtonNumber(buttonCode + mouseEvent.getButton() + SCILAB_CTRL_OFFSET);
+			}
+			else {
+				ClickInfos.getInstance().setMouseButtonNumber(buttonCode + mouseEvent.getButton());
+			}
 			// @TODO : Find a way to get the ID.
 			ClickInfos.getInstance().setWindowID(0);
 			ClickInfos.getInstance().notify();

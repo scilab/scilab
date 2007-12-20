@@ -13,24 +13,54 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
  * @author bruno
  *
  */
-public class GlobalMouseEventWatcher implements AWTEventListener {
+public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 
-	private static final int UNMANAGED = -1;
-	private static final int PRESSED = 0;
-	private static final int RELEASED = -1;
-	private static final int CLICKED = 3;
-	private static final int DCLICKED = 10;
+	/**
+	 * Those static final constant are only for reverse compatibility
+	 * With old Scilab.
+	 * Java button are :
+	 * 1 = left
+	 * 2 = middle
+	 * 3 = right
+	 * We add those statics state integers such as
+	 * button + state = scilab return value.
+	 * 
+	 * ex : left PRESSED = 1 + (-1) = 0
+	 * 
+	 * MOVE does not feat the rule because 
+	 * it does not have any Button associated with.
+	 */
+	/** Internal state PRESSED */ 
+	public static final int PRESSED = -1;
+	/** Internal state RELEASED */
+	public static final int RELEASED = -6;
+	/** Internal state CLICKED */
+	public static final int CLICKED = 2;
+	/** Internal state DCLICKED */
+	public static final int DCLICKED = 9;
+	/** Internal state MOVED */
+	public static final int MOVED = -100;
+	
+	private static final int UNMANAGED = -10000;
 	private static final int TIMETOSLEEP = 300;
 	
+	private boolean inCanvas;
 	private boolean freedom = true;
 	private int action = UNMANAGED;
+	private long eventMask;
 	private MouseEvent lastMouse;
 	private SwingScilabCanvas canvas;
 	
 	/**
 	 * Constructor.
+	 * 
+	 * @param eventMask : a Mask for mouse event watching.
+	 * xclick is AWTEvent.MOUSE_EVENT_MASK
+	 * xgetmouse is AWTEvent.MOUSE_EVENT_MASK + AWTEvent.MOUSE_MOTION_EVENT_MASK
 	 */
-	public GlobalMouseEventWatcher() { }
+	public GlobalMouseEventWatcher(long eventMask) {
+		this.eventMask = eventMask;
+	}
 
 	/** 
 	 * 
@@ -40,43 +70,81 @@ public class GlobalMouseEventWatcher implements AWTEventListener {
 	 * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
 	 */
 	public void eventDispatched(AWTEvent mouseEvent) {
-		// Manage Scilab Canvas
+		// DEBUG
+		//System.out.println(((MouseEvent) mouseEvent).toString());
+
+		/*
+		 * Managing Canvas
+		 * PRESSED
+		 * CLICKED
+		 * DCLICKED
+		 * MOVED
+		 */
+		this.lastMouse = (MouseEvent) mouseEvent;
 		if (mouseEvent.getSource() instanceof SwingScilabCanvas) {
-			// DEBUG
-			//System.out.println(((MouseEvent) mouseEvent).toString());
-			this.lastMouse = (MouseEvent) mouseEvent;
 			this.canvas = (SwingScilabCanvas) mouseEvent.getSource();
-			if (mouseEvent.getID() == MouseEvent.MOUSE_CLICKED) {
-				if (((MouseEvent) mouseEvent).getClickCount() == 1) {
-					this.action = CLICKED;
-				}		
-				else if (((MouseEvent) mouseEvent).getClickCount() == 2) {
-					this.action = DCLICKED;
-					synchronized (this) {
-						this.notify();
-					}
+			switch (mouseEvent.getID()) {
+			/* CLICKED */
+			case MouseEvent.MOUSE_CLICKED :
+				if (lastMouse.getClickCount() == 1) {
+						setAction(CLICKED);
 				}
 				else {
-					this.action = UNMANAGED;
+					/*
+					 * Means mouseEvent.getClickCount() >= 2
+					 */ 
+					setAction(DCLICKED);
 					synchronized (this) {
 						this.notify();
 					}
-				}				
-			}
-			if (mouseEvent.getID() == MouseEvent.MOUSE_PRESSED) {
-				this.action = PRESSED;
+				}		
+				break;
+			/* PRESSED */
+			case MouseEvent.MOUSE_PRESSED :
+				setAction(PRESSED);
 				if (this.freedom) {
 					Thread timer = new Thread() {
-						public void run() {launchFilter();} 
+						public void run() { launchFilter(); } 
 					};
 					timer.start();
 				}			
+				break;
+			/* ENTERED */
+			case MouseEvent.MOUSE_ENTERED :
+				this.inCanvas = true;
+				mouseEventFilter(lastMouse, canvas, MOVED);
+				break;
+			/* EXITED */
+			case MouseEvent.MOUSE_EXITED :
+				this.inCanvas = false;
+				break;
+			default:
+				break;
 			}
-			if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED) {
+		}
+		/*
+		 * Manage RELEASED on a Canvas
+		 * Means we are still in a Canvas (ENTERED && !EXITED)
+		 * and the event is not comming from a Canvas itself.
+		 * and got a RELEASED
+		 */
+		else {
+			if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas) {
 				this.action = RELEASED;
+				mouseEventFilter(lastMouse, canvas, this.action);	
 			}
 		}
 	}
+
+	/**
+	 * Setter for action
+	 * (just in case we need a lock in the future)
+	 * @param newAction : the Action to remember.
+	 */
+	private void setAction(int newAction) {
+			this.action = newAction;
+	}
+	
 	
 	/**
 	 * Thread to manage old style scilab
@@ -92,10 +160,28 @@ public class GlobalMouseEventWatcher implements AWTEventListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		GlobalEventFilter.filter(lastMouse, canvas, this.action + lastMouse.getButton() - 1);
+		mouseEventFilter(lastMouse, canvas, this.action);
 		this.freedom = true;
 		this.action = UNMANAGED;		
 	}
-	
+
+	/**
+	 * Method to filter the event received.
+	 * Depends off what kind of function is called.
+	 * 
+	 * @param mouseEvent : the mouse event caught (as seen in Scilab) 
+	 * @param canvas : the canvas where action occurs.
+	 * @param scilabMouseAction : the integer scilab code for mouse action.
+	 */
+	public abstract void mouseEventFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction);
+
+	/**
+	 * Event Mask getter.
+	 * 
+	 * @return eventMask
+	 */
+	public long getEventMask() {
+		return eventMask;
+	}
 
 }

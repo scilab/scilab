@@ -28,11 +28,11 @@ public final class ClickInfos {
 	 * Initialise ClickInfos attributes.
 	 */
 	public void init() {
-		mouseButtonNumber = 0;
-		xCoordinate = 0;
-		yCoordinate = 0;
-		windowID = 0;
-		menuCallback = "void";
+		this.mouseButtonNumber = 0;
+		this.xCoordinate = 0;
+		this.yCoordinate = 0;
+		this.windowID = 0;
+		this.menuCallback = "void";
 	}
 	
 	/**

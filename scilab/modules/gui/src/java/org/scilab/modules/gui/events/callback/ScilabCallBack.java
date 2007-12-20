@@ -50,7 +50,7 @@ public abstract class ScilabCallBack extends CallBack {
 		}
 		else {
 			if (this.command != null) {
-				GlobalEventFilter.filter(e, this.command);
+				GlobalEventFilter.filterCallback(e, this.command);
 			}
 		}
 	}

@@ -1,11 +1,8 @@
 package org.scilab.modules.gui.events;
 
 import java.awt.AWTEvent;
-import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.awt.event.KeyEvent;
-
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 
 
 /**
@@ -14,11 +11,8 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
  * @author bruno
  *
  */
-public class GlobalKeyEventWatcher implements AWTEventListener {
+public abstract class GlobalKeyEventWatcher implements AWTEventListener {
 
-	private int keyChar;
-	private boolean isCtrlDown;
-	
 	/**
 	 *  Constructor.
 	 */
@@ -31,28 +25,14 @@ public class GlobalKeyEventWatcher implements AWTEventListener {
 	 * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
 	 */
 	public void eventDispatched(AWTEvent event) {
-		KeyEvent keyEvent = (KeyEvent) event;
-		System.out.println(keyEvent.toString());
-		if(keyEvent.getID() == KeyEvent.KEY_PRESSED) {
-			if (Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
-				this.keyChar = keyEvent.getKeyChar();
-			}
-			else {
-				if (keyEvent.isShiftDown()) {
-					this.keyChar = keyEvent.getKeyCode();
-				}
-				else {
-					this.keyChar = Character.toLowerCase(keyEvent.getKeyCode());
-				}
-			}
-			this.isCtrlDown = ((KeyEvent) keyEvent).isControlDown();
-		}
-		else if(keyEvent.getID() == KeyEvent.KEY_TYPED) {	
-			if (keyEvent.getSource() instanceof SwingScilabCanvas) {
-				if (GlobalEventWatcher.isActivated()) {
-					GlobalEventFilter.filterKey(keyChar, isCtrlDown);
-				}
-			}
-		} 
+		keyEventFilter((KeyEvent) event);
 	}
+	
+	/**
+	 * Method to filter the event received.
+	 * Depends off what kind of function is called.
+	 * 
+	 * @param keyEvent : the key event caught 
+	 */
+	public abstract void keyEventFilter(KeyEvent keyEvent);
 }
