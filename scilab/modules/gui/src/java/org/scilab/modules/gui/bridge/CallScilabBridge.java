@@ -162,18 +162,18 @@ public class CallScilabBridge {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 
 		MenuBar menuBar;
-		int menuBarId;
+		//int menuBarId;
 
 		// Create a menuBar if not already one associated to the parentTab
-		if (parentTab.getMenuBarId() == UIElementMapper.getDefaultId()) {
+		if (parentTab.getMenuBar() == null) {
 			menuBar = ScilabMenuBar.createMenuBar();
-			menuBarId = UIElementMapper.add(menuBar);
+			//menuBarId = UIElementMapper.add(menuBar);
 
 			parentTab.addMenuBar(menuBar);
-			parentTab.setMenuBarId(menuBarId);
+			// parentTab.setMenuBarId(menuBarId);
 		} else {
-			menuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(parentTab.getMenuBarId());
-			menuBarId = parentTab.getMenuBarId();
+			menuBar = parentTab.getMenuBar();
+			//menuBarId = parentTab.getMenuBarId();
 		}
 		// Add the menu to the tab
 		ScilabMenuBarBridge.add(menuBar, (Menu) UIElementMapper.getCorrespondingUIElement(objID));
@@ -181,7 +181,7 @@ public class CallScilabBridge {
 		// If parent tab is the currently "on top" tab, then the MenuBar is also added to the parent window
 		if (ScilabTabBridge.isCurrentTab(parentTab)) {
 			UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(parentTab)).addMenuBar(menuBar);
-			UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(parentTab)).setMenuBarId(menuBarId);
+			//UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(parentTab)).setMenuBarId(menuBarId);
 		}
 	}
 	
@@ -236,26 +236,26 @@ public class CallScilabBridge {
 		Tab consoleTab = (Tab) UIElementMapper.getCorrespondingUIElement(consoleTabId);
 
 		MenuBar menuBar;
-		int menuBarId;
+		//int menuBarId;
 
 		// Create a menuBar if not already one associated to the parentTab
-		if (consoleTab.getMenuBarId() == UIElementMapper.getDefaultId()) {
+		if (consoleTab.getMenuBar() == null) {
 			menuBar = ScilabMenuBar.createMenuBar();
-			menuBarId = UIElementMapper.add(menuBar);
+			//menuBarId = UIElementMapper.add(menuBar);
 
 			consoleTab.addMenuBar(menuBar);
-			consoleTab.setMenuBarId(menuBarId);
+			//consoleTab.setMenuBarId(menuBarId);
 		} else {
-			menuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(consoleTab.getMenuBarId());
-			menuBarId = consoleTab.getMenuBarId();
+			menuBar = consoleTab.getMenuBar();
+			//menuBarId = consoleTab.getMenuBarId();
 		}
 		// Add the menu to the tab
 		ScilabMenuBarBridge.add(menuBar, (Menu) UIElementMapper.getCorrespondingUIElement(objID));
 
 		// If parent tab is the currently "on top" tab, then the MenuBar is also added to the parent window
 		if (ScilabTabBridge.isCurrentTab(consoleTab)) {
-			UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(consoleTab)).addMenuBar(menuBar);
-			UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(consoleTab)).setMenuBarId(menuBarId);
+			consoleTab.addMenuBar(menuBar);
+			//consoleTab.setMenuBarId(menuBarId);
 		}
 		
 	}
@@ -322,7 +322,7 @@ public class CallScilabBridge {
 	public static void setFigureMenuEnabled(int figureID, String menuName, boolean status) {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 		
-		MenuBar figureMenuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(parentTab.getMenuBarId());
+		MenuBar figureMenuBar = parentTab.getMenuBar();
 		
 		figureMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
 	}
@@ -336,7 +336,7 @@ public class CallScilabBridge {
 		int consoleTabId = UIElementMapper.getConsoleId();
 		Tab consoleTab = (Tab) UIElementMapper.getCorrespondingUIElement(consoleTabId);
 		
-		MenuBar consoleMenuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(consoleTab.getMenuBarId());
+		MenuBar consoleMenuBar = consoleTab.getMenuBar();
 
 		consoleMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
 	}
@@ -349,7 +349,7 @@ public class CallScilabBridge {
 	public static void removeFigureMenu(int figureID, String menuName) {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 		
-		MenuBar figureMenuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(parentTab.getMenuBarId());
+		MenuBar figureMenuBar = parentTab.getMenuBar();
 		
 		figureMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
 	}
@@ -362,7 +362,7 @@ public class CallScilabBridge {
 		int consoleTabId = UIElementMapper.getConsoleId();
 		Tab consoleTab = (Tab) UIElementMapper.getCorrespondingUIElement(consoleTabId);
 		
-		MenuBar consoleMenuBar = (MenuBar) UIElementMapper.getCorrespondingUIElement(consoleTab.getMenuBarId());
+		MenuBar consoleMenuBar = consoleTab.getMenuBar();
 		
 		if (consoleMenuBar != null) {
 			consoleMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
@@ -582,9 +582,9 @@ public class CallScilabBridge {
 	 * @param height the height of the button
 	 */
 	public static void setPushButtonPosition(int id, int x, int y, int width, int height) {
-		((PushButton) UIElementMapper.getCorrespondingUIElement(id)).setPosition(new Position(x, y));
+		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
 		//ScilabBridge.setPosition(UIElementMapper.getCorrespondingUIElement(id), new Position(x, y));
-		((PushButton) UIElementMapper.getCorrespondingUIElement(id)).setDims(new Size(width, height));
+		UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
 	}
 	
 	/**
