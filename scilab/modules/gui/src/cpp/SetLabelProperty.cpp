@@ -28,6 +28,7 @@ int SetLabelProperty(sciPointObj* sciObj, int stackPointer, int valueType, int n
     {
       // Send the label to Java
       CallScilabBridge::setMenuText(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
+      return SET_PROPERTY_SUCCEED;
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
