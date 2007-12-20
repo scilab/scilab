@@ -15,7 +15,8 @@
 #define _SET_HANDLE_PROPERTY_H_
 
 #include "ObjectStructure.h"
-#include "SetLabelProperty.h"
+#include "SetUimenuLabel.h"
+#include "SetUicontrolString.h"
 #include "SetUicontrolBackgroundColor.h"
 #include "SetUiobjectForegroundColor.h"
 #include "SetUiobjectCallback.h"

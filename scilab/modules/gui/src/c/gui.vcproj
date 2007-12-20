@@ -235,10 +235,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\GetLabelProperty.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\getlookandfeel.c"
 				>
 			</File>
@@ -272,6 +268,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolPosition.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolString.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUimenuLabel.cpp"
 				>
 			</File>
 			<File
@@ -395,10 +399,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\SetLabelProperty.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\setlookandfeel.c"
 				>
 			</File>
@@ -428,6 +428,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolPosition.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolString.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUimenuLabel.cpp"
 				>
 			</File>
 			<File
@@ -508,14 +516,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\GetLabelProperty.h"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\GetLabelProperty.hxx"
-				>
-			</File>
-			<File
 				RelativePath=".\getlookandfeel.h"
 				>
 			</File>
@@ -561,6 +561,22 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolPosition.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolString.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolString.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUimenuLabel.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUimenuLabel.hxx"
 				>
 			</File>
 			<File
@@ -636,14 +652,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\SetLabelProperty.h"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\SetLabelProperty.hxx"
-				>
-			</File>
-			<File
 				RelativePath=".\setlookandfeel.h"
 				>
 			</File>
@@ -689,6 +697,22 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolPosition.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolString.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolString.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUimenuLabel.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUimenuLabel.hxx"
 				>
 			</File>
 			<File

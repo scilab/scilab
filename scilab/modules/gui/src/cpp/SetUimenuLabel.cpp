@@ -1,12 +1,12 @@
 /* Copyright INRIA 2007 */
 /* Vincent COUVERT */
-/* Set the label of an uicontrol or uimenu */
+/* Set the label of anuimenu */
 
-#include "SetLabelProperty.hxx"
+#include "SetUimenuLabel.hxx"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetLabelProperty(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
+int SetUimenuLabel(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
 {
   // Label must be only one character string
   if (valueType != sci_strings) {
@@ -29,19 +29,6 @@ int SetLabelProperty(sciPointObj* sciObj, int stackPointer, int valueType, int n
       // Send the label to Java
       CallScilabBridge::setMenuText(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
       return SET_PROPERTY_SUCCEED;
-    }
-  else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
-    {
-      switch(pUICONTROL_FEATURE(sciObj)->style)
-        {
-          // Send the label to Java
-        case SCI_PUSHBUTTON:
-          CallScilabBridge::setPushButtonText(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
-          return SET_PROPERTY_SUCCEED;
-        default:
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Label", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return SET_PROPERTY_ERROR;
-       }
     }
   else
     {

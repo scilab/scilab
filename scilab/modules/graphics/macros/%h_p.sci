@@ -686,7 +686,8 @@ function %h_p(h)
   "position = "+sci2exp(h.position,0)
   "menu_enable = "+sci2exp(h.menu_enable)
   "foregroundcolor = "+sci2exp(h.foregroundcolor,0)
-    ]
+  "Tag = "+h.tag
+  ]
   case "uicontrol"
   t=[t;
   "Parent: "+h.parent.type
@@ -700,7 +701,7 @@ function %h_p(h)
   "Max = "+sci2exp(h.max)
   "Min = "+sci2exp(h.min)
   "Position = "+sci2exp(h.position,0)
-  "String = "+h.label 
+  "String = "+h.string
   "Style = "+h.style
   "Units = "+h.units
   "Visible = "+sci2exp(h.visible)

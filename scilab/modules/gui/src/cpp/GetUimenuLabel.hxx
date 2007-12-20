@@ -1,8 +1,8 @@
 /* Copyright INRIA 2007 */
 /* Vincent COUVERT */
 
-#ifndef __GET_LABEL_PROPERTY_HXX__
-#define __GET_LABEL_PROPERTY_HXX__
+#ifndef __GET_UIMENU_LABEL_HXX__
+#define __GET_UIMENU_LABEL_HXX__
 
 #include "CallScilabBridge.hxx"
 extern "C"{
@@ -10,8 +10,8 @@ extern "C"{
 #include "GetProperty.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "GetLabelProperty.h"
+#include "GetUimenuLabel.h"
 #include "UicontrolStyleToString.h"
 }
 
-#endif /* __GET_LABEL_PROPERTY_HXX__ */
+#endif /* __GET_UIMENULABEL_HXX__ */

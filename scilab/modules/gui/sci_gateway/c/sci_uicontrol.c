@@ -35,7 +35,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][16] = {"style", "parent", "backgroundcolor", "foregroundcolor","label", "position", "fontweight", "min", "max", "tag", "units"};
+  char propertiesNames[NBPROPERTIES][16] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "position", "fontweight", "min", "max", "tag", "units"};
   int *propertiesValuesIndices = NULL;
 
   //CheckRhs(2,2);

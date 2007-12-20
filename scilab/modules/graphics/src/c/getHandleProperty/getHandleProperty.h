@@ -11,7 +11,8 @@
 #define _GET_HANDLE_PROPERTY_H_
 
 #include "ObjectStructure.h"
-#include "GetLabelProperty.h"
+#include "GetUimenuLabel.h"
+#include "GetUicontrolString.h"
 #include "GetStyleProperty.h"
 #include "GetUicontrolPosition.h"
 #include "GetUicontrolBackgroundColor.h"

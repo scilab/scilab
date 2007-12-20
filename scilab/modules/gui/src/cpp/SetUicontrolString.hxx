@@ -1,8 +1,8 @@
 /* Copyright INRIA 2007 */
 /* Vincent COUVERT */
 
-#ifndef __SETLABELPROPERTY_HXX__
-#define __SETLABELPROPERTY_HXX__
+#ifndef __SET_UICONTROL_STRING_HXX__
+#define __SET_UICONTROL_STRING_HXX__
 
 #include "CallScilabBridge.hxx"
 
@@ -13,8 +13,8 @@ extern "C"{
 #include "getPropertyAssignedValue.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "SetLabelProperty.h"
+#include "SetUicontrolString.h"
 #include "UicontrolStyleToString.h"
 }
 
-#endif
+#endif /* __SET_UICONTROL_STRING_HXX__ */

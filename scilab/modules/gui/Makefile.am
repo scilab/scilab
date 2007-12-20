@@ -30,8 +30,10 @@ src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallFileChooser.cpp \
 src/cpp/PushButton.cpp \
-src/cpp/SetLabelProperty.cpp \
-src/cpp/GetLabelProperty.cpp \
+src/cpp/SetUimenuLabel.cpp \
+src/cpp/GetUimenuLabel.cpp \
+src/cpp/SetUicontrolString.cpp \
+src/cpp/GetUicontrolString.cpp \
 src/cpp/SetUicontrolParent.cpp \
 src/cpp/SetUicontrolBackgroundColor.cpp \
 src/cpp/GetUicontrolBackgroundColor.cpp \

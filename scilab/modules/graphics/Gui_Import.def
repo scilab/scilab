@@ -27,9 +27,11 @@ getJxgetmouseMouseButtonNumber
 CallJxgetmouse
 CallJxgetmouseWithOptions
 GetStyleProperty
-GetLabelProperty
+GetUimenuLabel
+GetUicontrolString
 SetUicontrolParent
-SetLabelProperty
+SetUimenuLabel
+SetUicontrolString
 SetUicontrolBackgroundColor
 GetUiobjectCallback
 GetUicontrolPosition

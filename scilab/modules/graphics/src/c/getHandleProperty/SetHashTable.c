@@ -38,7 +38,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 136
+#define NB_PROPERTIES 137
 
 /**
 * list of all property names and associated functions in scilab
@@ -171,7 +171,8 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "dimension"           , set_dimension_property            },
   { "event_handler_enable", set_event_handler_enable_property },
   { "event_handler"       , set_event_handler_property        },
-  { "label"               , SetLabelProperty                  },
+  { "label"               , SetUimenuLabel                    },
+  { "string"              , SetUicontrolString                },
   { "backgroundcolor"     , SetUicontrolBackgroundColor       },
   { "foregroundcolor"     , SetUiobjectForegroundColor        },
   { "fontweight"          , SetUicontrolFontWeight            },
