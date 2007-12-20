@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* File: sci_emptystr1.c                                                  */
+/* File: sci_emptystr.c                                                  */
 /* Copyright INRIA 2007                                                   */
 /* @Authors : Cong Wu                                                     */
 /* desc : zero length string                                              */
@@ -60,7 +60,6 @@ static int sci_emptystr_no_rhs(void)
 /*--------------------------------------------------------------------------*/       
 static int sci_emptystr_one_rhs(char *fname)
 {
-	char **OutputStrings = NULL;
 	int m1 = 0,n1 = 0; /* m1 is the number of row ; n1 is the number of col*/
 
 	/*With a matrix for input argument returns a zero length character strings matrix of the same size */
@@ -105,22 +104,12 @@ static int sci_emptystr_one_rhs(char *fname)
 			Scierror(999,_("%s : Wrong type for first input argument: scalar or string matrix expected.\n"),fname);
 		return 0;
 	} 
-    
-	OutputStrings = CreateEmptystr(m1,n1);
-
-	if (OutputStrings == NULL)
-	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
-		return 0;
-	}
 
 	/* m1 is the number of row ; n1 is the number of col*/
-	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1, &n1, OutputStrings);   
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1, &n1, NULL);   
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
 
-	/* clean OutputStrings pointer */
-	freeArrayOfString(OutputStrings,m1*n1);
 
 	return 0;
 }
@@ -172,33 +161,9 @@ static int sci_emptystr_two_rhs(char *fname)
 	
 	if (matrixdimension > 0)
 	{
-		char **OutputStrings = (char**)MALLOC(sizeof(char*)*(matrixdimension));
-		int i = 0;
-
-		if (OutputStrings == NULL)
-		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
-			return 0;
-		}
-
-		for (i=0;i < matrixdimension;i++)              
-		{
-			OutputStrings[i] = (char*)MALLOC(sizeof(char*)*(strlen(EMPTY_STRING)+1));
-			if (OutputStrings[i] == NULL)
-			{
-				freeArrayOfString(OutputStrings,i);
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
-				return 0;
-			}
-			else strcpy(OutputStrings[i],EMPTY_STRING);
-		}
-
-		CreateVarFromPtr(Rhs + 1,MATRIX_OF_STRING_DATATYPE,&value_param_pos_1, &value_param_pos_2, OutputStrings);
+		CreateVarFromPtr(Rhs + 1,MATRIX_OF_STRING_DATATYPE,&value_param_pos_1, &value_param_pos_2, NULL);
 		LhsVar(1) = Rhs + 1;
 		C2F(putlhsvar)();
-
-		/* free OutputStrings */
-		freeArrayOfString(OutputStrings,matrixdimension);
 		return 0;
 	}
 	else
