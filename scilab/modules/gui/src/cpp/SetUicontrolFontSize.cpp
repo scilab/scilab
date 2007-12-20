@@ -11,7 +11,7 @@ int SetUicontrolFontSize(sciPointObj* sciObj, int stackPointer, int valueType, i
   /* Font weight can be points, normalized, inches, centimeters or pixels */
 
   double fontSizeDouble = 0.0; 
-  int fontSizeInt = 0.0; 
+  int fontSizeInt = 0; 
 
   if (valueType == sci_matrix)
     {
@@ -39,7 +39,7 @@ int SetUicontrolFontSize(sciPointObj* sciObj, int stackPointer, int valueType, i
           fontSizeInt = (int)fontSizeDouble * 72;
           break;
         case CENTIMETERS_UNITS:
-          fontSizeInt = (int)fontSizeDouble * 72 * 2.54;
+          fontSizeInt = (int)(fontSizeDouble * 72 * 2.54);
           break;
         case PIXELS_UNITS:
           // TODO get correct value

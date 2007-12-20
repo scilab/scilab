@@ -45,7 +45,7 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
           Scierror(999, _("First input parameter must be a double value.\n"));
           return FALSE;
         }
-      GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
+      GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
       
       if (nbRow*nbCol != 1)
         {
@@ -60,7 +60,7 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
         }
       GetRhsVar(2, STRING_DATATYPE, &nbRow1, &nbCol1, &stkAdr1);
 
-      EnableFigureMenu((int)stk(stkAdr), cstk(stkAdr), FALSE);
+      EnableFigureMenu((int)*stk(stkAdr), cstk(stkAdr1), FALSE);
     }
   
   LhsVar(1)=0;
