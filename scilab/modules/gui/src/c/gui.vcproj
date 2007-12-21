@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="gui"
 	ProjectGUID="{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	RootNamespace="gui"
@@ -251,6 +251,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolFontAngle.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUicontrolFontSize.cpp"
 				>
 			</File>
@@ -427,6 +431,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolFontAngle.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUicontrolFontSize.cpp"
 				>
 			</File>
@@ -561,6 +569,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolBackgroundColor.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolFontAngle.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolFontAngle.hxx"
 				>
 			</File>
 			<File
@@ -737,6 +753,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolBackgroundColor.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolFontAngle.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolFontAngle.hxx"
 				>
 			</File>
 			<File
