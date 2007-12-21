@@ -361,7 +361,7 @@ modulename = javasci
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C) 
-#### and Linux/Unix
+####ï¿½and Linux/Unix
 #######################################################################
 @JAVASCI_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @JAVASCI_TRUE@	$(am__append_3)
@@ -379,10 +379,17 @@ modulename = javasci
 
 # Where it should be installed
 @JAVASCI_TRUE@pkgdocdir = $(mydatadir)
+
 # Which directories we have to install
 @JAVASCI_TRUE@DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
 @JAVASCI_TRUE@DOCMASK = *.htm
+
+# Which directories we have to install
+@JAVASCI_TRUE@DOCIMGDIRS = help/images
+# What is the mask of the help images
+@JAVASCI_TRUE@DOCIMGMASK = *
+
 # What is the mask of the help source
 @JAVASCI_TRUE@DOCMASKXML = *.xml
 
@@ -887,6 +894,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	echo "Creating $@"; \
 @JAVASCI_TRUE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 @JAVASCI_TRUE@	fi )
+
 @JAVASCI_TRUE@install-html-local:
 @JAVASCI_TRUE@	echo "-- Install of htm help files --"; \
 @JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
@@ -901,6 +909,20 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		fi; \
 @JAVASCI_TRUE@	 fi; \
 @JAVASCI_TRUE@	done
+@JAVASCI_TRUE@	echo "-- Install of images help files --"; \
+@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@JAVASCI_TRUE@	@for dir in $(DOCIMGDIRS) ; do \
+@JAVASCI_TRUE@	 if test -d $$dir; then \
+@JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@JAVASCI_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
+@JAVASCI_TRUE@		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
+@JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@JAVASCI_TRUE@		  done ; \
+@JAVASCI_TRUE@		fi; \
+@JAVASCI_TRUE@	 fi; \
+@JAVASCI_TRUE@	done
+
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	@for dir in $(DOCDIRS) ; do \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	 if test -d $$dir; then \

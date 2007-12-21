@@ -21,7 +21,7 @@ check-local: $(top_builddir)/scilab-bin
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C) 
-#### and Linux/Unix
+####ï¿½and Linux/Unix
 #######################################################################
 
 
@@ -80,7 +80,7 @@ giws: $(GIWS_WRAPPERS)
 
 endif
 
-## Build the macros of the module
+##ï¿½Build the macros of the module
 macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
 	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
 	)
@@ -109,12 +109,20 @@ SUFFIXES = .sci
 
 # Where it should be installed
 pkgdocdir = $(mydatadir)
+
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
 DOCMASK = *.htm
+
+# Which directories we have to install
+DOCIMGDIRS = help/images
+# What is the mask of the help images
+DOCIMGMASK = *
+
 # What is the mask of the help source
 DOCMASKXML = *.xml
+
 install-html-local:
 	echo "-- Install of htm help files --"; \
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
@@ -129,6 +137,20 @@ install-html-local:
 		fi; \
 	 fi; \
 	done
+	echo "-- Install of images help files --"; \
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCIMGDIRS) ; do \
+	 if test -d $$dir; then \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
+		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	 fi; \
+	done
+
 if INSTALL_HELP_XML 
 # If the user wants the help sources to be installed
 	@for dir in $(DOCDIRS) ; do \

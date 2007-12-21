@@ -709,7 +709,7 @@ top_srcdir = @top_srcdir@
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C) 
-#### and Linux/Unix
+####ï¿½and Linux/Unix
 #######################################################################
 @TCLTK_FALSE@TARGETS_ALL = $(am__append_4) $(am__append_5) \
 @TCLTK_FALSE@	$(am__append_6)
@@ -717,7 +717,7 @@ top_srcdir = @top_srcdir@
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C) 
-#### and Linux/Unix
+####ï¿½and Linux/Unix
 #######################################################################
 @TCLTK_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @TCLTK_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
@@ -750,16 +750,30 @@ top_srcdir = @top_srcdir@
 
 # Where it should be installed
 @TCLTK_TRUE@pkgdocdir = $(mydatadir)
+
 # Which directories we have to install
 @TCLTK_FALSE@DOCDIRS = help/fr_FR help/en_US
+
 # Which directories we have to install
 @TCLTK_TRUE@DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
 @TCLTK_FALSE@DOCMASK = *.htm
 # What is the mask of the help output
 @TCLTK_TRUE@DOCMASK = *.htm
+
+# Which directories we have to install
+@TCLTK_FALSE@DOCIMGDIRS = help/images
+
+# Which directories we have to install
+@TCLTK_TRUE@DOCIMGDIRS = help/images
+# What is the mask of the help images
+@TCLTK_FALSE@DOCIMGMASK = *
+# What is the mask of the help images
+@TCLTK_TRUE@DOCIMGMASK = *
+
 # What is the mask of the help source
 @TCLTK_FALSE@DOCMASKXML = *.xml
+
 # What is the mask of the help source
 @TCLTK_TRUE@DOCMASKXML = *.xml
 
@@ -1604,6 +1618,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	echo "Creating $@"; \
 @TCLTK_TRUE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 @TCLTK_TRUE@	fi )
+
 @TCLTK_TRUE@install-html-local:
 @TCLTK_TRUE@	echo "-- Install of htm help files --"; \
 @TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
@@ -1618,6 +1633,20 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		fi; \
 @TCLTK_TRUE@	 fi; \
 @TCLTK_TRUE@	done
+@TCLTK_TRUE@	echo "-- Install of images help files --"; \
+@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@TCLTK_TRUE@	@for dir in $(DOCIMGDIRS) ; do \
+@TCLTK_TRUE@	 if test -d $$dir; then \
+@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
+@TCLTK_TRUE@		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
+@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_TRUE@		  done ; \
+@TCLTK_TRUE@		fi; \
+@TCLTK_TRUE@	 fi; \
+@TCLTK_TRUE@	done
+
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	@for dir in $(DOCDIRS) ; do \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 if test -d $$dir; then \
@@ -1757,6 +1786,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@	echo "Creating $@"; \
 @TCLTK_FALSE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 @TCLTK_FALSE@	fi )
+
 @TCLTK_FALSE@install-html-local:
 @TCLTK_FALSE@	echo "-- Install of htm help files --"; \
 @TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
@@ -1771,6 +1801,20 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@		fi; \
 @TCLTK_FALSE@	 fi; \
 @TCLTK_FALSE@	done
+@TCLTK_FALSE@	echo "-- Install of images help files --"; \
+@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@TCLTK_FALSE@	@for dir in $(DOCIMGDIRS) ; do \
+@TCLTK_FALSE@	 if test -d $$dir; then \
+@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
+@TCLTK_FALSE@		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_FALSE@		  done ; \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	 fi; \
+@TCLTK_FALSE@	done
+
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 if test -d $$dir; then \
