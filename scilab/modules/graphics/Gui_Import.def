@@ -56,4 +56,8 @@ SetUicontrolUnits
 SetUiobjectTag
 SetUicontrolMax
 SetUicontrolMin
+GetUicontrolValue
+SetUicontrolValue
+GetUicontrolListboxTop
+SetUicontrolListboxTop
 ;

@@ -267,6 +267,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolListboxTop.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUicontrolMax.cpp"
 				>
 			</File>
@@ -288,6 +292,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolUnits.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolValue.cpp"
 				>
 			</File>
 			<File
@@ -447,6 +455,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolListboxTop.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUicontrolMax.cpp"
 				>
 			</File>
@@ -468,6 +480,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolUnits.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolValue.cpp"
 				>
 			</File>
 			<File
@@ -604,6 +620,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUicontrolListboxTop.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolListboxTop.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetUicontrolMax.h"
 				>
 			</File>
@@ -649,6 +673,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolUnits.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolValue.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolValue.hxx"
 				>
 			</File>
 			<File
@@ -788,6 +820,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\SetUicontrolListboxTop.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolListboxTop.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\SetUicontrolMax.h"
 				>
 			</File>
@@ -837,6 +877,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolUnits.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolValue.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolValue.hxx"
 				>
 			</File>
 			<File
