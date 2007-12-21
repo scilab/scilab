@@ -70,7 +70,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 			return 0;
 	}
 	
-	Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_Two+1));
+	Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(Col_Two+5));
 	if (Output_StringMatrix == NULL)
 	{
 		freeArrayOfString(Input_StringMatrix,mn);
@@ -108,7 +108,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		return 0;
 	}
 
-	strsplit(Input_StringMatrix,Output_StringMatrix,&Row_Pointer,&Row_Pointer_Two,&Col_Pointer,Input_IntMatrix);
+	strsplit(Input_StringMatrix,Output_StringMatrix,&Row_Two,&Col_Two,&Col_Pointer,Input_IntMatrix);
 
 	freeArrayOfString(Input_StringMatrix,mn);
 
