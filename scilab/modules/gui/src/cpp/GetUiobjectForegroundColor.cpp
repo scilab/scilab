@@ -28,7 +28,7 @@ int GetUiobjectForegroundColor(sciPointObj* sciObj)
     }
   else if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {
-      returnValues = CallScilabBridge::getMenuForegroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+      returnValues = CallScilabBridge::getMenuForegroundColor(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex);
     }
   else
     {
