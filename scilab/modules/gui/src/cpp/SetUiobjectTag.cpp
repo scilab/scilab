@@ -28,7 +28,7 @@ int SetUiobjectTag(sciPointObj* sciObj, int stackPointer, int valueType, int nbR
           delete (pUIMENU_FEATURE(sciObj)->tag);
         }
       // Set the new tag
-      pUIMENU_FEATURE(sciObj)->tag = new char(strlen(getStringFromStack(stackPointer)) + 1);
+      pUIMENU_FEATURE(sciObj)->tag = new char[strlen(getStringFromStack(stackPointer)) + 1];
       strcpy(pUIMENU_FEATURE(sciObj)->tag, getStringFromStack(stackPointer));
 
       return SET_PROPERTY_SUCCEED;
@@ -43,7 +43,7 @@ int SetUiobjectTag(sciPointObj* sciObj, int stackPointer, int valueType, int nbR
           delete (pUICONTROL_FEATURE(sciObj)->tag);
         }
       // Set the new tag
-      pUICONTROL_FEATURE(sciObj)->tag = new char(strlen(getStringFromStack(stackPointer)) + 1);
+      pUICONTROL_FEATURE(sciObj)->tag = new char[strlen(getStringFromStack(stackPointer)) + 1];
       strcpy(pUICONTROL_FEATURE(sciObj)->tag, getStringFromStack(stackPointer));
       
       return SET_PROPERTY_SUCCEED;
