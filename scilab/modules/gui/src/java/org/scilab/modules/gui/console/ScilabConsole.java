@@ -4,7 +4,6 @@
 package org.scilab.modules.gui.console;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
@@ -179,10 +178,5 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 */
 	public boolean isWaitingForInput() {
 		return ScilabBridge.isWaitingForInput(this);
-	}
-
-	public MenuBar getMenuBar() {
-		// Must not be there...
-		return null;
 	}
 }
