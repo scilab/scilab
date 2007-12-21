@@ -15,6 +15,7 @@
 #define _SET_HANDLE_PROPERTY_H_
 
 #include "ObjectStructure.h"
+
 #include "SetUimenuLabel.h"
 #include "SetUicontrolString.h"
 #include "SetUicontrolBackgroundColor.h"
@@ -23,6 +24,7 @@
 #include "SetUicontrolFontWeight.h"
 #include "SetUicontrolFontUnits.h"
 #include "SetUicontrolFontSize.h"
+#include "SetUicontrolFontAngle.h"
 #include "SetUiobjectTag.h"
 #include "SetUicontrolMin.h"
 #include "SetUicontrolMax.h"

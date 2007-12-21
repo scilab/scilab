@@ -11,6 +11,7 @@
 #define _GET_HANDLE_PROPERTY_H_
 
 #include "ObjectStructure.h"
+
 #include "GetUimenuLabel.h"
 #include "GetUicontrolString.h"
 #include "GetUicontrolStyle.h"
@@ -21,6 +22,7 @@
 #include "GetUicontrolFontWeight.h"
 #include "GetUicontrolFontUnits.h"
 #include "GetUicontrolFontSize.h"
+#include "GetUicontrolFontAngle.h"
 #include "GetUiobjectTag.h"
 #include "GetUicontrolMin.h"
 #include "GetUicontrolMax.h"

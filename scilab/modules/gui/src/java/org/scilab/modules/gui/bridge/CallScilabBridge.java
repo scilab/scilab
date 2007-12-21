@@ -524,6 +524,7 @@ public class CallScilabBridge {
 	/****************/
 	/* Font setting */
 	/****************/
+
 	/**
 	 * Set the weight of a pushbutton font
 	 * @param id the id of the push button
@@ -541,6 +542,31 @@ public class CallScilabBridge {
 		} else {
 			if (font.isItalic()) {
 				font = new Font(font.getName(), Font.ITALIC, font.getSize());
+			} else {
+				font = new Font(font.getName(), Font.PLAIN, font.getSize());
+			}
+		}
+
+		ScilabBridge.setFont((PushButton) UIElementMapper.getCorrespondingUIElement(id), font);
+	}
+	
+	/**
+	 * Set the angle of a pushbutton font
+	 * @param id the id of the push button
+	 * @param angle the angle of the button font
+	 */
+	public static void setPushButtonFontAngle(int id, String angle) {
+		Font font = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+
+		if (angle.equals("italic") || angle.equals("oblique")) {
+			if (font.isBold()) {
+				font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
+			} else {
+				font = new Font(font.getName(), Font.ITALIC, font.getSize());
+			}
+		} else {
+			if (font.isBold()) {
+				font = new Font(font.getName(), Font.BOLD, font.getSize());
 			} else {
 				font = new Font(font.getName(), Font.PLAIN, font.getSize());
 			}

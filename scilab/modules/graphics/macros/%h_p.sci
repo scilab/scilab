@@ -694,6 +694,7 @@ function %h_p(h)
   "Children: "+fmtchildren(h.children)
   "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
   //"Enable = "+sci2exp(h.menu_enable)
+  "FontAngle = "+h.fontangle
   "FontSize = "+sci2exp(h.fontsize)
   "FontUnits = "+h.fontunits
   "FontWeight = "+h.fontweight

@@ -47,6 +47,8 @@ src/cpp/SetUicontrolFontUnits.cpp \
 src/cpp/GetUicontrolFontUnits.cpp \
 src/cpp/SetUicontrolFontSize.cpp \
 src/cpp/GetUicontrolFontSize.cpp \
+src/cpp/SetUicontrolFontAngle.cpp \
+src/cpp/GetUicontrolFontAngle.cpp \
 src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp \
 src/cpp/SetUiobjectTag.cpp \

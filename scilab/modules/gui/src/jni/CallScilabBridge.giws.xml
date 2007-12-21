@@ -81,6 +81,10 @@
 	<method name="getPushButtonFontSize" returnType="int" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
+	<method name="setPushButtonFontAngle" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="angle"/>
+	</method>
 <!-- Position setting -->
 	<method name="setPushButtonPosition" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>

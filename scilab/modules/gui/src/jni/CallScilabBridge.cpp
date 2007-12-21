@@ -119,6 +119,7 @@ jintArraygetMenuForegroundColorjintID=NULL;
 voidsetPushButtonFontWeightjintjstringID=NULL; 
 voidsetPushButtonFontSizejintjintID=NULL; 
 jintgetPushButtonFontSizejintID=NULL; 
+voidsetPushButtonFontAnglejintjstringID=NULL; 
 voidsetPushButtonPositionjintjintjintjintjintID=NULL; 
 jintArraygetPushButtonPositionjintID=NULL; 
 voidsetMenuCallbackjintjstringID=NULL; 
@@ -181,6 +182,7 @@ jintArraygetMenuForegroundColorjintID=NULL;
 voidsetPushButtonFontWeightjintjstringID=NULL; 
 voidsetPushButtonFontSizejintjintID=NULL; 
 jintgetPushButtonFontSizejintID=NULL; 
+voidsetPushButtonFontAnglejintjstringID=NULL; 
 voidsetPushButtonPositionjintjintjintjintjintID=NULL; 
 jintArraygetPushButtonPositionjintID=NULL; 
 voidsetMenuCallbackjintjstringID=NULL; 
@@ -756,6 +758,29 @@ curEnv->ExceptionDescribe() ;
                         
 return res;
 
+}
+
+void CallScilabBridge::setPushButtonFontAngle (JavaVM * jvm_, long objID, char * angle){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetPushButtonFontAnglejintjstringID = curEnv->GetStaticMethodID(cls, "setPushButtonFontAngle", "(ILjava/lang/String;)V" ) ;
+if (voidsetPushButtonFontAnglejintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setPushButtonFontAngle" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring angle_ = curEnv->NewStringUTF( angle );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetPushButtonFontAnglejintjstringID ,objID, angle_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 void CallScilabBridge::setPushButtonPosition (JavaVM * jvm_, long objID, long x, long y, long width, long height){

@@ -710,7 +710,10 @@ typedef struct
   /* UICONTROL STYLE: Must be a value from UicontrolStyle enum */
   int style;
 
-  /* UICONTROL FONTWEIGHT: Must be a value from UicontrolFontWeight enum */
+  /* UICONTROL FONTANGLE: Must be a value from UicontrolFontProperties enum */
+  int fontAngle;
+
+  /* UICONTROL FONTWEIGHT: Must be a value from UicontrolFontProperties enum */
   int fontWeight;
 
   /* UICONTROL FONTUNITS: Must be a value from UicontrolUnits enum */
@@ -725,8 +728,8 @@ typedef struct
   char * tag;
 }/** */
 sciUicontrol;
-/* uicontrol font weight */
-typedef enum {LIGHT_FONT, NORMAL_FONT, DEMI_FONT, BOLD_FONT} UicontrolFontWeight ;
+/* uicontrol font properties */
+typedef enum {LIGHT_FONT, NORMAL_FONT, DEMI_FONT, BOLD_FONT, ITALIC_FONT, OBLIQUE_FONT} UicontrolFontProperties ;
 /* uicontrol style */
 typedef enum {
   SCI_PUSHBUTTON,
